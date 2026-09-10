@@ -1,0 +1,786 @@
+<title>Classraum Introduction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@400;700&display=swap">
+<style>
+  /* ── Tokens ── */
+  :root{
+    --blue:#2B7FFF; --blue-ink:#1D5FD1; --teal:#14B8A6; --teal-ink:#0F8F82;
+    --ink:#0F172A; --ink-2:#334155; --muted:#64748B; --faint:#94A3B8;
+    --line:#E2E8F0; --line-2:#CBD5E1; --fill:#CBD5E1;
+    --tint:#EEF4FF; --tint-2:#F5F8FF; --teal-tint:#ECFDF9; --paper:#FFFFFF; --desk:#EEF1F6;
+    --ok:#16A34A; --warn:#D97706; --bad:#DC2626; --ok-bg:#ECFDF3; --bad-bg:#FEF2F2;
+    --display:"Montserrat",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --body:"Source Sans 3","Noto Sans KR",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --kr:"Noto Sans KR","Source Sans 3",sans-serif;
+    /* ONE spacing scale. Every gap in the document is one of these five, chosen
+       by the ROLE of the boundary (opener / figure / list row), never a default. */
+    --s1:4px; --s2:8px; --s3:14px; --s4:22px; --s5:34px;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){ --desk:#0B1220; } }
+  :root[data-theme="dark"]{ --desk:#0B1220; }
+
+  html{ background:var(--desk); }
+  body{ margin:0; background:var(--desk); color:var(--ink); font-family:var(--body); font-size:10.2pt; line-height:1.4;
+        -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  *{ box-sizing:border-box; }
+  h1,h2,h3,h4{ font-family:var(--display); margin:0; text-wrap:balance; letter-spacing:-0.014em; color:var(--ink); }
+  p,figure{ margin:0; } ul,ol{ margin:0; padding:0; list-style:none; } strong,b{ font-weight:700; }
+  .kr{ font-family:var(--kr); }
+  svg{ display:block; max-width:100%; height:auto; color:var(--ink-2); font-family:var(--body); }
+  svg text:not([fill]){ fill:currentColor; }
+  svg text.lbl{ paint-order:stroke; stroke:#fff; stroke-width:3px; stroke-linejoin:round; }
+
+  /* ── Page frame ── */
+  .doc{ max-width:820px; margin:0 auto; padding:28px 16px 60px; display:flex; flex-direction:column; gap:22px; }
+  .page{ background:var(--paper); width:100%; aspect-ratio:210/297; padding:11mm 14mm 9mm; position:relative;
+         box-shadow:0 1px 2px rgba(15,23,42,.06),0 18px 40px -22px rgba(15,23,42,.35); border-radius:3px;
+         display:flex; flex-direction:column; overflow:hidden; }
+  /* No uniform gap. Spacing comes from each element's role, below. */
+  .page > .body{ flex:1; min-height:0; display:flex; flex-direction:column; gap:0; }
+  .rh{ display:flex; justify-content:space-between; align-items:baseline; font-size:7.2pt; letter-spacing:.14em;
+       text-transform:uppercase; color:var(--blue); font-weight:700; margin-bottom:var(--s3); padding-bottom:var(--s2); border-bottom:1px solid var(--line); }
+  .rh .r{ color:var(--faint); font-weight:600; letter-spacing:.08em; }
+  .rf{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line);
+       padding-top:6px; margin-top:var(--s2); font-size:7.2pt; color:var(--muted); letter-spacing:.06em; }
+  .rf b{ font-weight:700; color:var(--ink-2); letter-spacing:.1em; }
+  .logo{ display:inline-flex; align-items:center; gap:7px; font-family:var(--display); font-weight:800; font-size:12pt; letter-spacing:.02em; color:var(--ink); }
+  .logo svg{ width:22px; height:22px; }
+
+  /* ── Type scale: five steps, used consistently ── */
+  .h-title{ font-size:23pt; font-weight:800; line-height:1.06; } .h-title .b{ color:var(--blue); }
+  .h1{ font-size:17pt; font-weight:800; line-height:1.12; }
+  .h3{ font-size:9.4pt; font-weight:700; line-height:1.25; }
+  .lede{ font-size:10.6pt; color:var(--ink-2); line-height:1.42; max-width:68ch; }
+  .small{ font-size:8.8pt; color:var(--muted); line-height:1.38; }
+  .micro{ font-size:8.2pt; color:var(--muted); line-height:1.36; }
+  .eyebrow{ font-size:7.2pt; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--blue); }
+  .eyebrow.t{ color:var(--teal-ink); }
+  .num{ font-variant-numeric:tabular-nums; }
+
+  /* ── Section opener: the loudest thing on the page, with real air above it ── */
+  .open{ display:grid; grid-template-columns:52px 1fr; gap:0 12px; align-items:start; margin-bottom:var(--s3); }
+  .open .n{ font-family:var(--display); font-weight:800; font-size:23pt; color:var(--blue); line-height:.9; letter-spacing:-.03em; }
+  .open .n.t{ color:var(--teal); }
+  .open .lede{ margin-top:var(--s1); max-width:none; }
+  .body > .open:not(:first-child){ margin-top:var(--s5); padding-top:var(--s3); border-top:1px solid var(--line); }
+  /* Hide the hand-placed rule when an opener follows it: the opener draws its own. */
+  .rule{ height:1px; background:var(--line); margin:var(--s3) 0; }
+  .rule:has(+ .open){ display:none; }
+
+  /* ── Vertical rhythm by role ── */
+  .body > figure.fig{ margin:var(--s3) 0 var(--s2); }
+  .body > .g12, .body > .g2, .body > .g3, .body > .g4{ margin:var(--s2) 0; }
+  .body > .tbl{ margin:var(--s3) 0 var(--s2); }
+  .body > .card, .body > .g{ margin:var(--s2) 0; }
+  .body > p.micro{ margin-top:var(--s2); }
+  .body > .eyebrow{ margin-top:var(--s4); margin-bottom:var(--s1); }
+  .body > [style*="margin-top:auto"]{ margin-top:auto !important; padding-top:var(--s3); }
+
+  /* ── Grid ── */
+  .g2,.g3,.g4{ display:grid; gap:var(--s2) var(--s3); } .g2{ grid-template-columns:1fr 1fr; } .g3{ grid-template-columns:repeat(3,1fr); } .g4{ grid-template-columns:repeat(4,1fr); }
+  .g12{ display:grid; grid-template-columns:repeat(12,1fr); gap:var(--s2) var(--s4); }
+  .s3{ grid-column:span 3; } .s4{ grid-column:span 4; } .s5{ grid-column:span 5; } .s6{ grid-column:span 6; } .s7{ grid-column:span 7; } .s8{ grid-column:span 8; } .s12{ grid-column:span 12; }
+
+  /* ── Blocks: rules, not boxes. A hairline above an item groups it with its
+     siblings; a border around it declares it a separate object, and when every
+     block is a separate object the page has no hierarchy. Fill is reserved for
+     the ONE emphasized block per page. ── */
+  .card{ border:0; border-top:1px solid var(--line-2); border-radius:0; padding:var(--s2) 0 0; background:transparent; }
+  .card.tint{ border-top:2px solid var(--blue); }
+  .card.tt{ border-top:2px solid var(--teal); }
+  .card.soft{ border-top:1px solid var(--line-2); }
+  .card .eyebrow{ margin-bottom:var(--s1); }
+  .card > b:first-child{ font-size:9.4pt; display:block; }
+  .pill{ display:inline-flex; align-items:center; gap:6px; background:var(--tint); color:var(--blue-ink); border-radius:999px; padding:3px 10px; font-size:8.2pt; font-weight:700; white-space:nowrap; }
+  .chip{ display:inline-block; border:1px solid var(--line-2); border-radius:999px; padding:1px 8px; font-size:8.2pt; font-weight:600; color:var(--ink-2); background:#fff; white-space:nowrap; }
+  .chip.b{ border-color:#BFD5FF; color:var(--blue-ink); background:var(--tint-2); } .chip.t{ border-color:#99E6DB; color:var(--teal-ink); background:var(--teal-tint); }
+  .badge{ display:inline-block; background:var(--blue); color:#fff; border-radius:4px; padding:1px 5px; font-size:7.2pt; font-weight:800; font-family:var(--display); margin-right:5px; vertical-align:1px; }
+  .badge.t{ background:var(--teal); }
+  .kv{ display:grid; grid-template-columns:auto 1fr; gap:3px 12px; font-size:8.8pt; } .kv dt{ color:var(--muted); } .kv dd{ margin:0; font-weight:600; }
+  .dot li{ position:relative; padding-left:11px; font-size:8.8pt; color:var(--ink-2); line-height:1.36; } .dot li+li{ margin-top:3px; }
+  .dot li::before{ content:""; position:absolute; left:0; top:.55em; width:4px; height:4px; border-radius:50%; background:var(--blue); }
+  .steps{ counter-reset:s; } .steps li{ counter-increment:s; position:relative; padding-left:22px; font-size:8.8pt; color:var(--ink-2); line-height:1.36; } .steps li+li{ margin-top:5px; }
+  .steps li::before{ content:counter(s); position:absolute; left:0; top:1px; width:14px; height:14px; border-radius:4px; background:var(--tint); color:var(--blue-ink); font-weight:800; font-size:7.2pt; display:grid; place-items:center; font-family:var(--display); }
+
+  /* tables: a report table — heavy top rule, hairlines inside, no box */
+  table{ width:100%; border-collapse:collapse; font-size:8.8pt; }
+  th{ text-align:left; font-size:7.2pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700; padding:6px 8px 5px; border-bottom:1px solid var(--line-2); }
+  td{ padding:5px 8px; border-bottom:1px solid var(--line); vertical-align:top; } tr:last-child td{ border-bottom:0; }
+  tr.hi td{ background:var(--tint); } tr.hi td:first-child{ box-shadow:inset 3px 0 0 var(--blue); }
+  .tbl{ border:0; border-top:2px solid var(--ink); border-radius:0; overflow:hidden; }
+  .tbl.dense td{ padding:4px 8px; font-size:8.2pt; line-height:1.32; }
+  .toc{ display:grid; grid-template-columns:auto 1fr auto 1fr; gap:0 14px; font-size:8.8pt; }
+  .toc > *{ padding:5px 0; border-bottom:1px solid var(--line); } .toc > *:nth-last-child(-n+4){ border-bottom:0; }
+  .toc .n{ color:var(--blue); font-weight:800; font-family:var(--display); font-size:8.2pt; } .toc .t{ font-weight:700; } .toc .t .d{ display:block; color:var(--muted); font-weight:400; font-size:8.2pt; }
+  /* the contents block anchors the bottom of the cover, in a tint band */
+  .body > div:has(> .toc){ margin-top:auto; background:var(--tint-2); padding:var(--s3) var(--s3) var(--s2); border-radius:8px; }
+  .body > div:has(> .toc) .toc > *{ border-color:#DCE7FF; }
+
+  /* figures */
+  figure.fig{ display:flex; flex-direction:column; gap:6px; }
+  figcaption{ font-size:8.2pt; color:var(--muted); line-height:1.36; max-width:80ch; }
+  figcaption b{ color:var(--ink-2); }
+  .shot{ border:1px solid var(--line-2); border-radius:6px; overflow:hidden; background:#F8FAFC; box-shadow:0 1px 2px rgba(15,23,42,.06); }
+  .shot img{ display:block; width:100%; height:auto; }
+  .callouts{ display:flex; flex-wrap:wrap; gap:4px 12px; font-size:8.2pt; color:var(--ink-2); }
+  .callouts .c{ display:inline-grid; place-items:center; width:13px; height:13px; border-radius:50%; background:var(--blue); color:#fff; font-family:var(--display); font-weight:800; font-size:7.2pt; margin-right:4px; vertical-align:-2px; }
+  .callouts .c.t{ background:var(--teal); }
+  .flow{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:8.8pt; font-weight:700; } .flow .a{ color:var(--blue); font-weight:800; }
+  .qa{ background:var(--tint); border:0; border-radius:8px; padding:10px 12px; font-size:8.8pt; }
+  .opt{ display:inline-block; border:1px solid var(--line-2); border-radius:5px; padding:1px 7px; font-size:8.2pt; font-weight:600; margin:3px 4px 0 0; background:#fff; }
+  .opt.ok{ border-color:var(--ok); color:var(--ok); background:var(--ok-bg); } .opt.bad{ border-color:var(--bad); color:var(--bad); background:var(--bad-bg); }
+  /* stat: a number with a rule above, left-aligned like a spec sheet, not a centered tile */
+  .stat{ text-align:left; padding-top:var(--s2); }
+  .stat .v{ font-family:var(--display); font-weight:800; font-size:23pt; color:var(--blue); line-height:1; letter-spacing:-.02em; }
+  .stat .l{ font-weight:700; font-size:8.8pt; margin-top:4px; } .stat .d{ font-size:8.2pt; color:var(--muted); margin-top:1px; }
+
+  /* ── Print ── */
+  @page{ size:A4 portrait; margin:0; }
+  @media print{
+    html,body{ background:#fff; } .doc{ max-width:none; padding:0; gap:0; }
+    .page{ width:210mm; height:297mm; aspect-ratio:auto; box-shadow:none; border-radius:0; break-after:page; page-break-after:always; }
+    .page:last-child{ break-after:auto; page-break-after:auto; } a{ color:inherit; text-decoration:none; }
+  }
+  @media (max-width:640px){
+    .page{ aspect-ratio:auto; padding:18px 16px; }
+    .g2,.g3,.g4{ grid-template-columns:1fr; } .g12{ grid-template-columns:1fr; } .g12 > *{ grid-column:span 1; }
+    .toc{ grid-template-columns:auto 1fr; }
+  }
+  /* The closing page carries the largest screenshot; cap it so the page keeps
+     real slack for print variance instead of ending 5px short of the frame. */
+  .page:last-child .shot{ max-width:86%; }
+  /* cover: three things, stacked */
+  .cover{ display:flex; flex-direction:column; gap:var(--s3); }
+  .cover-text .lede{ max-width:72ch; }
+  figure.hero{ margin:var(--s3) 0 var(--s2); }
+  figure.hero .shot{ border-radius:8px; box-shadow:0 1px 2px rgba(15,23,42,.06),0 14px 30px -18px rgba(15,23,42,.35); }
+  /* company block: a full-width footer, contact details in two columns */
+  .company{ border-top:2px solid var(--ink); padding-top:var(--s2); margin-top:var(--s2); }
+  .company .small, .company .rule{ display:none; }
+  .company .logo{ float:left; margin-right:var(--s4); }
+  .company .kv{ grid-template-columns:auto 1fr auto 1fr; gap:3px 12px; margin-top:var(--s2); clear:both; }
+  .company > p{ display:inline-block; margin-left:0 !important; margin-top:2px !important; }
+  .company .micro{ display:block; margin-top:var(--s2) !important; }
+  /* the copyright line is the least valuable 18px on the closing page */
+  .company .micro{ display:none; }
+
+
+
+  /* ── Restraint. No gradients, no tracked-caps labels, no pills, no glyph numerals. ── */
+  .cover-page{ padding:16mm 14mm 10mm; }
+  .cover-page > .body{ gap:0; }
+  .cov-top{ display:flex; justify-content:space-between; align-items:center; padding-bottom:var(--s2); border-bottom:1px solid var(--line); }
+  .cov-meta{ font-size:8.8pt; color:var(--muted); font-weight:600; }
+  .cov-body{ margin-top:var(--s5); }
+  .cov-title{ font-family:var(--display); font-weight:800; font-size:46pt; line-height:1.04; letter-spacing:-.028em; color:var(--ink); max-width:15ch; text-wrap:balance; word-break:keep-all; }
+  .cov-title span{ color:var(--blue); }
+  .cov-lede{ margin-top:var(--s4); font-size:12pt; line-height:1.45; color:var(--ink-2); max-width:52ch; word-break:keep-all; }
+  .cov-shot{ margin-top:auto; margin-bottom:var(--s4); }
+  .cov-shot .shot{ border-radius:4px; }
+  .cov-foot{ display:flex; justify-content:space-between; gap:var(--s3); font-size:8.2pt; color:var(--muted); border-top:1px solid var(--line); padding-top:var(--s2); }
+  .eyebrow{ font-size:8.8pt; letter-spacing:0; text-transform:none; color:var(--ink); font-weight:700; }
+  .eyebrow.t{ color:var(--ink); }
+  .rh{ letter-spacing:.06em; }
+  .pill{ background:none; color:var(--ink-2); padding:0; border-radius:0; font-weight:600; font-size:9.4pt; }
+  .pill + .pill::before{ content:"·"; color:var(--faint); margin-right:6px; }
+  .chip{ border-radius:3px; } .badge{ border-radius:3px; }
+  .open{ grid-template-columns:40px 1fr; }
+  .open .n, .open .n.t{ background:none; -webkit-background-clip:initial; background-clip:initial; -webkit-text-fill-color:initial; color:var(--muted); font-size:10.6pt; font-weight:700; letter-spacing:0; padding-top:7px; }
+  .body > .open:not(:first-child){ border-top:1px solid var(--line); padding-top:var(--s3); }
+  .body > .open:not(:first-child)::before{ display:none; }
+  figcaption b{ font-weight:600; color:var(--ink-2); }
+  .callouts .c{ display:none; } .callouts{ gap:2px 20px; font-weight:600; }
+  .body > div:has(> .toc){ background:none; border-top:1px solid var(--line); border-radius:0; padding:var(--s3) 0 0; }
+  .body > div:has(> .toc) .toc > *{ border-color:var(--line); }
+  .qa{ border-radius:4px; } .shot, figure.hero .shot{ border-radius:4px; }
+  .card.tint, .card.tt{ border-top:1px solid var(--line-2); }
+  /* Slack falls to the bottom of the page, not between text and its figure. */
+  .cov-title{ font-size:46pt; }
+  .cov-shot{ margin-top:var(--s5); margin-bottom:0; }
+  .cov-foot{ margin-top:auto; }
+  .body > div:has(> .toc){ margin-top:var(--s5); }
+
+  /* ── Consistency: symmetric margins, one screenshot treatment, footer height fixed ── */
+  .page{ padding:13mm 15mm 12mm; }
+  .cover-page{ padding:16mm 15mm 12mm; }
+  .rf{ height:18px; box-sizing:content-box; }
+  .shot, figure.hero .shot, .cov-shot .shot{ border:1px solid var(--line-2); border-radius:4px; box-shadow:none; background:#fff; }
+  figcaption{ font-size:8.2pt; }
+  .g12 > figure.fig{ margin:0; }
+  .body > figure.fig + .open{ margin-top:var(--s5); }
+  .eyebrow{ margin-top:var(--s3); }
+  .page > .body > *{ flex-shrink:0; }
+  .pill + .pill::before{ margin:0 8px; }
+  .cover-text > div{ margin-top:var(--s2); }
+  /* Amounts and column headers never wrap: a price split across two lines is a wrong number. */
+  td.num:not(.micro), th{ white-space:nowrap; }
+
+  /* ── design-pass applied: air, contrast, icons ── */
+  :root{ --s1:6px; --s2:12px; --s3:20px; --s4:30px; --s5:46px; --faint:#7C8AA0; }
+  body{ line-height:1.46; }
+  .page{ padding:16mm 17mm 15mm; }
+  .cover-page{ padding:18mm 17mm 14mm; }
+  .rh{ margin-bottom:var(--s4); padding-bottom:var(--s2); }
+  .open{ grid-template-columns:48px 1fr; gap:0 16px; margin-bottom:var(--s4); }
+  .open .n, .open .n.t{ display:flex; flex-direction:column; align-items:center; gap:5px; padding-top:1px; color:var(--muted); }
+  .open .ic{ width:36px; height:36px; border-radius:9px; background:var(--tint); display:grid; place-items:center; }
+  .open .ic svg{ width:18px; height:18px; fill:none; stroke:var(--blue-ink); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .open .n.t .ic{ background:var(--teal-tint); } .open .n.t .ic svg{ stroke:var(--teal-ink); }
+  .open .nl{ font-size:7.6pt; font-weight:700; color:var(--muted); letter-spacing:.02em; }
+  .open .lede{ margin-top:var(--s2); }
+  .body > .open:not(:first-child){ margin-top:var(--s5); padding-top:var(--s4); }
+  .body > figure.fig{ margin:var(--s3) 0 var(--s2); }
+  .body > figure.fig + figure.fig{ margin-top:var(--s4); }
+  figure.fig{ gap:12px; }
+  figcaption, .cap{ font-size:8.6pt; color:var(--ink-2); line-height:1.45; max-width:78ch; }
+  .cap{ margin-top:12px; }
+  .small{ color:var(--ink-2); }
+  .g12{ gap:var(--s3) var(--s4); } .g2,.g3,.g4{ gap:var(--s3); }
+  .card{ padding:var(--s2) 0 0; } .card + .card{ margin-top:var(--s3); }
+  th{ font-size:7.6pt; color:var(--ink-2); padding:9px 10px 8px; }
+  td{ padding:8px 10px; } .tbl.dense td{ padding:7px 10px; font-size:8.6pt; line-height:1.4; }
+  .body > .tbl{ margin:var(--s3) 0 var(--s2); }
+  .body > .eyebrow{ margin-top:var(--s4); margin-bottom:var(--s2); }
+  .body > p.small, .body > p.micro{ margin-top:var(--s3); }
+  .toc > *{ padding:8px 0; }
+  .body > div:has(> .toc){ margin-top:var(--s5); padding-top:var(--s4); }
+  .cover-text > div{ margin-top:var(--s3); }
+  .cov-shot{ margin-top:var(--s5); }
+  .phones{ grid-template-columns:repeat(3,1fr); gap:var(--s3); margin-top:var(--s3); }
+  .phones .shot{ border-radius:10px; }
+  .company{ margin-top:var(--s4); padding-top:var(--s3); }
+  .company .kv{ margin-top:var(--s3); }
+  .rf{ margin-top:var(--s3); }
+  /* rebalance: keep the air, trim the most generous gaps */
+  .body > .open:not(:first-child){ margin-top:var(--s4); padding-top:var(--s3); }
+  .body > div:has(> .toc){ margin-top:var(--s4); padding-top:var(--s3); }
+  .toc > *{ padding:7px 0; }
+  td{ padding:7px 10px; } .tbl.dense td{ padding:6px 10px; }
+  .body > .tbl{ margin:var(--s2) 0; }
+  .body > .eyebrow{ margin-bottom:var(--s1); }
+  /* slack for every page: a shallower footer band and bottom margin */
+  .page{ padding-bottom:13mm; } .rf{ margin-top:var(--s2); }
+  body{ line-height:1.44; }
+  .tbl.dense td{ padding:5px 10px; }
+
+  /* ── book covers: front and back on one navy field ── */
+  .cover-page, .back-page{ background:#0B1B3A; color:#fff; }
+  .cover-page{ padding:18mm 17mm 0; }
+  .cover-page .logo, .back-page .logo{ color:#fff; } .cover-page .logo svg path, .back-page .logo svg path{ fill:#fff; }
+  .cover-page .cov-top{ border-bottom:1px solid rgba(255,255,255,.16); }
+  .cover-page .cov-meta{ color:#9FB3D1; }
+  .cover-page .cov-title{ color:#fff; font-size:50pt; } .cover-page .cov-title span{ color:#6AA6FF; }
+  .cover-page .cov-lede{ color:#C7D2E4; }
+  .cover-page .cov-shot{ flex:1 1 0; min-height:0; overflow:hidden; margin:var(--s5) 0 0; }
+  .cover-page .cov-shot .shot{ width:116%; border:1px solid rgba(255,255,255,.22); border-bottom:0; border-radius:12px 0 0 0; box-shadow:0 -18px 60px rgba(0,0,0,.45); background:#fff; }
+  .back-page{ padding:18mm 17mm 16mm; }
+  .back-page .body{ display:flex; flex-direction:column; }
+  .bk-mid{ margin-top:auto; margin-bottom:auto; }
+  .bk-tag{ font-family:var(--display); font-weight:800; font-size:27pt; line-height:1.1; letter-spacing:-.02em; margin:0; max-width:24ch; hyphens:manual; word-break:keep-all; text-wrap:balance; } .bk-tag span{ color:#6AA6FF; }
+  .bk-blurb{ margin:var(--s3) 0 0; font-size:11pt; line-height:1.5; color:#C7D2E4; max-width:58ch; word-break:keep-all; }
+  .bk-rule{ height:2px; width:48px; background:#2B7FFF; margin-bottom:var(--s3); }
+  .back-page .kv{ grid-template-columns:auto 1fr auto 1fr; gap:7px 16px; font-size:9pt; } .back-page .kv dt{ color:#9FB3D1; } .back-page .kv dd{ color:#E6ECF7; font-weight:600; }
+  .bk-links{ margin:var(--s3) 0 0; font-size:9.4pt; color:#C7D2E4; } .bk-links b{ color:#fff; }
+  .bk-foot{ display:flex; justify-content:space-between; gap:var(--s3); margin-top:var(--s4); padding-top:var(--s2); border-top:1px solid rgba(255,255,255,.16); font-size:8.2pt; color:#9FB3D1; }
+  .bk-micro{ margin:var(--s2) 0 0; font-size:7.6pt; line-height:1.4; color:#7F94B8; }
+  .about-steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s3); margin:var(--s4) 0 0; padding:0; list-style:none; }
+  .about-steps li{ font-size:9.4pt; } .about-steps li b{ display:block; color:var(--ink); }
+
+  /* ── pass 5: device frames, module tiles, facts row, icon eyebrows ── */
+  .shot.win{ position:relative; padding-top:20px; background:#F1F5F9; }
+  .shot.win::before{ content:""; position:absolute; left:11px; top:7px; width:7px; height:7px; border-radius:50%; background:#CBD5E1; box-shadow:13px 0 0 #CBD5E1, 26px 0 0 #CBD5E1; }
+  .shot.win::after{ content:"app.classraum.com"; position:absolute; left:50%; top:4px; transform:translateX(-50%); font-size:6.6pt; line-height:12px; color:var(--muted); background:#fff; border-radius:4px; padding:0 12px; letter-spacing:.01em; }
+  .shot.win img{ border-top:1px solid var(--line); }
+  .dev-phone{ border:4px solid #0F172A; border-radius:20px; overflow:hidden; background:#0F172A; box-shadow:0 2px 8px rgba(15,23,42,.14); }
+  .dev-phone img{ display:block; width:100%; border-radius:16px; }
+  .pair-grid{ display:grid; grid-template-columns:1fr var(--pw,150px); gap:var(--s4); align-items:center; }
+  .phones{ grid-template-columns:repeat(4,1fr); gap:var(--s3); }
+  .facts{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s3); margin-top:var(--s3); }
+  .facts > div{ display:grid; grid-template-columns:28px 1fr; gap:1px 10px; align-items:center; }
+  .facts .mi{ grid-row:1 / 3; }
+  .facts b{ font-family:var(--display); font-size:14pt; line-height:1; letter-spacing:-.02em; color:var(--ink); }
+  .facts span:not(.mi){ font-size:8pt; color:var(--ink-2); line-height:1.25; }
+  .mi{ display:inline-grid; place-items:center; width:28px; height:28px; border-radius:8px; background:var(--tint); }
+  .mi svg{ width:15px; height:15px; fill:none; stroke:var(--blue-ink); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .eyebrow .mi{ width:22px; height:22px; border-radius:6px; margin-right:8px; vertical-align:-6px; } .eyebrow .mi svg{ width:12px; height:12px; }
+  .layers{ display:grid; grid-template-columns:76px 1fr; gap:var(--s3) var(--s3); align-items:start; }
+  .layers .ll{ padding-top:4px; font-size:8pt; color:var(--ink-2); line-height:1.2; }
+  .layers .ll b{ display:block; font-family:var(--display); font-weight:800; font-size:15pt; color:var(--blue); line-height:1; letter-spacing:-.02em; margin-bottom:3px; }
+  .layers .lr{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s2); }
+  .mod{ display:grid; grid-template-columns:26px 1fr; gap:8px; align-items:start; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:#fff; min-height:44px; }
+  .mod .mi{ width:26px; height:26px; border-radius:7px; } .mod .mi svg{ width:14px; height:14px; }
+  .mod b{ display:block; font-size:8.8pt; line-height:1.2; color:var(--ink); } .mod b i{ font-style:normal; color:var(--blue-ink); margin-right:4px; }
+  .mod span:not(.mi){ display:block; font-size:7.8pt; color:var(--ink-2); line-height:1.3; margin-top:2px; }
+  .mod.t{ border-color:#99E6DB; background:var(--teal-tint); } .mod.t .mi{ background:#CDF3EC; } .mod.t .mi svg{ stroke:var(--teal-ink); } .mod.t b i{ color:var(--teal-ink); }
+  .mod.g{ background:var(--tint-2); }
+  .layers{ gap:var(--s2) var(--s3); } .mod{ padding:6px 9px; min-height:40px; } .mod span:not(.mi){ font-size:7.5pt; line-height:1.25; }
+  .pair-grid{ --pw:140px; }
+
+  /* ── pass 6: phones that read as phones, cover shot, tile parity, one spacing rule ── */
+  .dev-phone{ position:relative; border:5px solid #1F2937; border-radius:28px; background:#0B1220; box-shadow:0 0 0 1.5px #6B7280, 0 6px 16px rgba(15,23,42,.18); overflow:visible; }
+  .dev-phone img{ border-radius:23px; }
+  .dev-phone::after{ content:""; position:absolute; top:7px; left:50%; transform:translateX(-50%); width:30%; height:7px; border-radius:4px; background:#0B1220; }
+  .dev-phone::before{ content:""; position:absolute; right:-9px; top:24%; width:3px; height:13%; border-radius:2px; background:#4B5563; }
+  .pair-grid, .phones{ padding-right:4px; }
+  .cover-page .cov-shot .shot{ width:100%; border-radius:14px 14px 0 0; border:1px solid rgba(255,255,255,.22); border-bottom:0; }
+  .mod{ min-height:58px; align-items:center; } .mod.g{ background:#fff; }
+  .mod b{ white-space:nowrap; }
+  .body > figure.fig, .body > .g12, .body > .g3, .body > .layers, .body > .tbl{ margin-top:var(--s2); }
+  .body > .open + *{ margin-top:0; }
+  .mod{ height:58px; min-height:0; box-sizing:border-box; } .mod span:not(.mi){ display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+
+  /* ── pass 7: phones with a status bar, cover with the sidebar ── */
+  .dev-phone::after{ display:none; }
+  .dev-phone .sb{ display:block; width:100%; border-radius:23px 23px 0 0; }
+  .dev-phone img{ border-radius:0 0 23px 23px; }
+
+  /* ── pass 8: thinner bezel, no floating button ── */
+  .dev-phone{ border-width:4px; border-radius:30px; box-shadow:0 0 0 1px #9CA3AF, 0 6px 16px rgba(15,23,42,.16); }
+  .dev-phone::before{ display:none; }
+  .dev-phone .sb{ border-radius:26px 26px 0 0; } .dev-phone img{ border-radius:0 0 26px 26px; }
+  .pair-grid, .phones{ padding-right:0; }
+  /* ── pass 9: notch iPhone frame ── */
+  .dev-phone{ z-index:0; border:5px solid #111214; border-radius:22px; background:#111214; box-shadow:0 0 0 1px #45484E, 0 0 0 1.8px #0B0C0E, 0 12px 28px rgba(15,23,42,.26); }
+  .dev-phone .sb{ border-radius:17px 17px 0 0; } .dev-phone img{ border-radius:0 0 17px 17px; }
+  .dev-phone::before{ content:""; display:block; position:absolute; z-index:-1; left:-4px; top:44px; width:5px; height:82px; border-radius:2px; background:linear-gradient(to bottom, #2A2C30 0 11px, transparent 11px 21px, #2A2C30 21px 44px, transparent 44px 54px, #2A2C30 54px 77px, transparent 77px); }
+  .dev-phone::after{ content:""; display:block; position:absolute; z-index:-1; right:-4px; top:70px; width:5px; height:38px; border-radius:2px; background:#2A2C30; }
+  .pair-grid, .phones{ padding:0 4px; }
+  .dev-phone{ background:#fff; } .dev-phone .sb{ margin-bottom:-1px; position:relative; z-index:1; } .dev-phone img{ border:0; margin-top:0; }
+
+  /* ── pass 10: team block, phone ground, product icons ── */
+  .dev-phone{ background:#111214; box-shadow:0 0 0 1px #0B0C0E, 0 12px 28px rgba(15,23,42,.26); }
+  .team .card{ padding-top:var(--s2); } .team .card > b{ display:block; font-family:var(--display); font-weight:800; font-size:11pt; color:var(--ink); }
+  .team .role{ display:block; font-size:8pt; font-weight:700; color:var(--blue-ink); margin:2px 0 6px; } .team .small{ margin:0; }
+  .team .stat .v{ font-size:23pt; } .team .stat .d{ font-size:8.6pt; color:var(--ink-2); line-height:1.4; }
+  .team .q{ margin:0 0 6px; font-size:9pt; font-style:italic; color:var(--ink-2); line-height:1.4; }
+
+  /* ── pass 13: pricing cards as on the landing page ── */
+  .lp-free, .lp-card, .lp-anchor{ font-family:var(--display); }
+  .lp-free{ display:flex; align-items:center; justify-content:space-between; gap:16px; border:1px solid #E5E7EB; border-radius:12px; padding:12px 16px; background:#fff; margin-top:var(--s2); }
+  .lp-free b{ display:block; font-size:10pt; font-weight:700; color:#163e64; } .lp-free span{ display:block; font-size:8.4pt; color:#6B7280; margin-top:2px; font-family:var(--body); }
+  .lp-anchor{ margin:8px 0 0; font-size:7.8pt; color:#9CA3AF; font-variant-numeric:tabular-nums; }
+  .lp-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:var(--s4); }
+  .lp-card{ position:relative; display:flex; flex-direction:column; border:1px solid #E5E7EB; border-radius:12px; padding:16px 12px 12px; background:#fff; }
+  .lp-card.pop{ box-shadow:0 0 0 2px #2885e8; }
+  .lp-badge{ position:absolute; top:-9px; left:50%; transform:translateX(-50%); background:#2885e8; color:#fff; border-radius:999px; padding:2px 9px; font-size:7pt; font-weight:600; white-space:nowrap; box-shadow:inset 0 1px 0 rgba(255,255,255,.18); }
+  .lp-card h4{ margin:0; font-size:9.8pt; font-weight:700; color:#163e64; letter-spacing:0; line-height:1.2; }
+  .lp-desc{ margin:2px 0 10px; font-size:7.8pt; color:#9CA3AF; font-family:var(--body); }
+  .lp-price{ display:flex; align-items:baseline; gap:3px; margin-bottom:10px; } .lp-price b{ font-size:15pt; font-weight:700; color:#163e64; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1; } .lp-price span{ font-size:8pt; color:#9CA3AF; }
+  .lp-feats{ list-style:none; margin:0 0 10px; padding:0; flex:1; } .lp-feats li{ display:flex; gap:6px; align-items:flex-start; font-size:7.9pt; color:#4B5563; line-height:1.3; margin-bottom:5px; font-family:var(--body); }
+  .lp-feats li svg{ width:9px; height:9px; flex:none; margin-top:2px; stroke:#00a98d; fill:none; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; }
+  .lp-add{ margin-bottom:9px; } .lp-add p{ margin:0; font-size:6.9pt; color:#9CA3AF; font-variant-numeric:tabular-nums; font-family:var(--body); line-height:1.35; }
+  .lp-btn{ border:1px solid #E5E7EB; border-radius:8px; height:24px; display:grid; place-items:center; font-size:7.8pt; font-weight:600; color:#163e64; background:#fff; } .lp-btn.solid{ background:#2885e8; border-color:#2885e8; color:#fff; }
+  .lp-notes{ margin-top:var(--s4); }
+  .lp-grid{ grid-template-columns:repeat(4,minmax(0,1fr)); } .lp-card{ min-width:0; } .lp-price{ flex-wrap:wrap; } .lp-price b{ font-size:13.5pt; } .lp-card h4{ overflow-wrap:anywhere; }
+  .lp-notes .card{ margin:0 !important; }
+
+  /* ── pass 15: contents with pages, layer list, premium icon tiles, no mid-word breaks ── */
+  .toc.toc2{ display:grid; grid-template-columns:1fr 1fr; gap:0 var(--s4); }
+  .toc2 > *{ padding:0; border:0; }
+  .te{ display:grid; grid-template-columns:30px auto 1fr auto; align-items:baseline; gap:0 10px; padding:8px 0 7px; border-bottom:1px solid var(--line); }
+  .te.sub{ padding:3px 0 4px; border-bottom:0; } .te.sub + .te:not(.sub){ border-top:1px solid var(--line); }
+  .tn{ font-family:var(--display); font-weight:800; font-size:8.6pt; color:var(--blue); } .te.sub .tn{ font-size:7.4pt; color:var(--muted); text-align:right; }
+  .tt{ font-weight:700; font-size:9.6pt; color:var(--ink); } .te.sub .tt{ font-weight:500; font-size:8.6pt; color:var(--ink-2); }
+  .td{ display:block; font-weight:400; font-size:8.2pt; color:var(--muted); line-height:1.35; margin-top:1px; }
+  .tl{ align-self:start; margin-top:10px; border-bottom:1px dotted #CBD5E1; min-width:12px; } .te.sub .tl{ margin-top:9px; }
+  .tp{ font-family:var(--display); font-weight:700; font-size:8.6pt; color:var(--ink-2); font-variant-numeric:tabular-nums; } .te.sub .tp{ font-weight:600; color:var(--muted); }
+  .lay{ margin-top:var(--s2); }
+  .lrow{ display:grid; grid-template-columns:40px 200px 1fr; gap:0 18px; align-items:start; padding:11px 0; border-top:1px solid var(--line); position:relative; }
+  .lrow:last-child{ border-bottom:1px solid var(--line); }
+  .ln b{ display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--blue); color:#fff; font-family:var(--display); font-weight:800; font-size:10pt; }
+  .lrow.t .ln b{ background:var(--teal); } .lrow.all .ln b{ background:#fff; color:var(--muted); box-shadow:inset 0 0 0 1.5px var(--line-2); font-size:12pt; }
+  .lh b{ display:block; font-family:var(--display); font-weight:700; font-size:10pt; color:var(--ink); } .lh span{ display:block; font-size:8.2pt; color:var(--ink-2); line-height:1.35; margin-top:2px; }
+  .lm{ display:flex; flex-wrap:wrap; gap:6px 18px; padding-top:5px; } .lm span{ font-size:9.4pt; font-weight:600; color:var(--ink); white-space:nowrap; }
+  .lm i{ font-style:normal; font-family:var(--display); font-weight:800; font-size:8pt; color:var(--blue); margin-right:5px; } .lrow.t .lm span{ color:var(--teal-ink); }
+  .open .ic, .mi{ background:linear-gradient(160deg,#3B8BFF,#1D5FD1); box-shadow:0 1px 2px rgba(29,95,209,.28), inset 0 1px 0 rgba(255,255,255,.28); }
+  .open .ic svg, .mi svg{ stroke:#fff; }
+  .open .n.t .ic{ background:linear-gradient(160deg,#2DD4BF,#0F8F82); box-shadow:0 1px 2px rgba(15,143,130,.28), inset 0 1px 0 rgba(255,255,255,.28); } .open .n.t .ic svg{ stroke:#fff; }
+  .mod .mi{ background:linear-gradient(160deg,#3B8BFF,#1D5FD1); } .mod .mi svg{ stroke:#fff; }
+  .lp-card h4{ overflow-wrap:normal; }
+  body, body *{ hyphens:manual; }
+  .te{ padding:7px 0 6px; }
+  /* one distance from every opener to what follows it, and from the intro title to its lede */
+  .body > .open + figure.fig, .body > .open + .g12, .body > .open + .g2, .body > .open + .g3, .body > .open + .lay, .body > .open + .lp-free, .body > .open + .tbl{ margin-top:0 !important; }
+  .cover-text .h-title + .lede{ margin-top:12px; }
+  /* cover: the coloured phrase holds one line; the screenshot sits on the page foot */
+  .cov-title span{ white-space:nowrap; }
+  .cover-page .cov-shot{ flex:0 0 auto; margin-top:auto; margin-bottom:0; overflow:visible; }
+  .cover-page .cov-body{ margin-top:auto; margin-bottom:auto; padding:var(--s5) 0; }
+
+  /* ── pass 19: availability line, four onboarding steps, eyebrow spacing, 6.2 without the table ── */
+  .eyebrow + p{ margin-top:var(--s2); }
+  .about-steps{ grid-template-columns:repeat(4,1fr); }
+  .te{ padding:6px 0 5px; }
+  .about-steps{ margin-top:var(--s3); } .about-steps li{ font-size:8.8pt; line-height:1.35; } .team .q{ margin-bottom:4px; } .team .card{ padding-top:8px; }
+  .te{ padding:5px 0 4px; } .te.sub{ padding:2px 0 3px; }
+  /* ── print-safe: no blurred shadows or gradients (they rasterize into grey slabs in PDF viewers) ── */
+  .dev-phone{ box-shadow:0 0 0 1px #0B0C0E; }
+  .open .ic, .mi, .mod .mi{ background:#2B7FFF; box-shadow:none; } .open .n.t .ic{ background:#14B8A6; box-shadow:none; }
+  .lp-card.pop{ box-shadow:none; border:2px solid #2885e8; padding:15px 11px 11px; }
+  .lp-badge{ box-shadow:none; }
+  .lrow.all .ln b{ box-shadow:none; border:1.5px solid var(--line-2); }
+  .cover-page .cov-shot .shot{ box-shadow:none; }
+  .shot, figure.hero .shot{ box-shadow:none; }
+
+  /* ── print-only pages (inside covers, FAQ) live in the print-pages template and are inserted by the build with PRINT16=1 ── */
+  .faq{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s3) var(--s4); margin-top:var(--s2); }
+  .faq > div{ border-top:1px solid var(--line); padding-top:10px; } .faq b{ display:block; font-size:10pt; color:var(--ink); margin-bottom:4px; line-height:1.3; }
+  .faq p{ margin:0; font-size:9pt; color:var(--ink-2); line-height:1.45; }
+  .ifc .bk-mid{ margin:auto 0; }
+  .faq{ gap:var(--s4) var(--s5); margin-top:var(--s3); } .faq > div{ padding-top:14px; } .faq b{ font-size:11.5pt; margin-bottom:6px; } .faq p{ font-size:10.2pt; line-height:1.5; }
+  .faq b{ font-size:12pt; } .faq p{ font-size:10.6pt; } .faq{ gap:var(--s5) var(--s5); }
+  .faq-foot{ margin-top:auto; padding-top:var(--s3); border-top:2px solid var(--ink); } .faq-foot b{ display:block; font-family:var(--display); font-size:12pt; color:var(--ink); margin-bottom:4px; } .faq-foot p{ margin:0; font-size:10.2pt; color:var(--ink-2); }
+</style>
+
+<main class="doc">
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<section class="page cover-page">
+  <div class="body">
+    <div class="cov-top"><span class="logo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5a1.6 1.6 0 0 1 1.6 1.6v.6A6.5 6.5 0 0 1 18.5 11v3.8l1.6 2.2a1 1 0 0 1-.8 1.6H4.7a1 1 0 0 1-.8-1.6l1.6-2.2V11a6.5 6.5 0 0 1 4.9-6.3v-.6A1.6 1.6 0 0 1 12 2.5Z" fill="url(#lg)"/><path d="M9.6 19.6a2.4 2.4 0 0 0 4.8 0H9.6Z" fill="#2B7FFF"/></svg>CLASSRAUM</span><span class="cov-meta">Company &amp; Product Introduction · 2026</span></div>
+    <div class="cov-body">
+      <h1 class="cov-title">Attendance to Month‑End, <span>on One Record.</span></h1>
+      <p class="cov-lede">A management platform for academies, schools and educational institutions, and a study app that stays with the student after class.</p>
+    </div>
+    <figure class="cov-shot"><div class="shot"><img src="__IMG_home__" alt="Classraum Study home on a desktop: a greeting, today's study goal, XP and sessions, and the test-prep grid of SAT, TOEFL, ACT and SSAT"></div></figure>
+  </div>
+</section>
+
+<!-- ═══════════════ PAGE 1 — Cover ═══════════════ -->
+<section class="page">
+  <div class="rh">
+    <span class="logo" style="text-transform:none;letter-spacing:.02em">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3B9CFF"/><stop offset="1" stop-color="#14B8A6"/></linearGradient></defs><path d="M12 2.5a1.6 1.6 0 0 1 1.6 1.6v.6A6.5 6.5 0 0 1 18.5 11v3.8l1.6 2.2a1 1 0 0 1-.8 1.6H4.7a1 1 0 0 1-.8-1.6l1.6-2.2V11a6.5 6.5 0 0 1 4.9-6.3v-.6A1.6 1.6 0 0 1 12 2.5Z" fill="url(#lg)"/><path d="M9.6 19.6a2.4 2.4 0 0 0 4.8 0H9.6Z" fill="#2B7FFF"/></svg>
+      CLASSRAUM
+    </span>
+    <span class="r">Company &amp; Product Introduction · 2026</span>
+  </div>
+  <div class="body">
+    <div class="cover">
+      <div class="cover-text">
+        <h1 class="h-title">What Classraum Does</h1>
+        <p class="lede" >Directors, teachers, parents and students work on one record: attendance, messages to parents, tuition, exams and AI‑drafted report cards. Classraum Study picks up where the lesson ends.</p>
+        <div class="facts"><div><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></span><b>₩24,900</b><span>Starting Price, per Month</span></div><div><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg></span><b>10 Days</b><span>Free Trial, No Card</span></div><div><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span><b>13</b><span>Modules on One Record</span></div><div><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><b>2</b><span>Languages: Korean, English</span></div></div>
+      </div>
+      <figure class="fig hero">
+        <div class="pair-grid" style="--pw:120px"><div class="shot win"><img src="__IMG_stats__" alt="A student's statistics page: weekly XP, streak, lifetime questions and accuracy, score trend, achievements and topics to work on"></div><div class="dev-phone"><svg class="sb" viewBox="0 0 393 54" aria-hidden="true"><rect width="393" height="54" fill="#fff"/><text x="30" y="35" font-family="-apple-system,'SF Pro Text','Source Sans 3',sans-serif" font-weight="600" font-size="16" fill="#0F172A">9:41</text><path d="M112 0h169v13a17 17 0 0 1-17 17H129a17 17 0 0 1-17-17z" fill="#111214"/><rect x="176" y="8" width="41" height="5" rx="2.5" fill="#2A2C30"/><circle cx="232" cy="10.5" r="3.2" fill="#1F2226"/><g fill="#0F172A"><rect x="300" y="30" width="3" height="6" rx="1"/><rect x="305" y="27" width="3" height="9" rx="1"/><rect x="310" y="24" width="3" height="12" rx="1"/><rect x="315" y="21" width="3" height="15" rx="1"/></g><path d="M329 28a11 11 0 0 1 16 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><path d="M332.5 31.5a6 6 0 0 1 9 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><circle cx="337" cy="35" r="1.7" fill="#0F172A"/><rect x="351" y="22" width="24" height="12" rx="3.5" fill="none" stroke="#0F172A" stroke-width="1.5"/><rect x="353" y="24" width="20" height="8" rx="2" fill="#0F172A"/><rect x="376.5" y="25.5" width="2" height="5" rx="1" fill="#0F172A"/></svg><img src="__IMG_pp-stats__" alt=""></div></div><figcaption>The same statistics page on a desktop and on a phone. Classraum runs in the browser and as iOS and Android apps, on one account.</figcaption>
+      </figure>
+    </div>
+    <div>
+      <div class="eyebrow"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></span>Contents</div>
+      <div class="toc toc2"><div class="tcol"><div class="te"><span class="tn">01</span><span class="tt">The Problem<span class="td">A third of the week never reaches a student.</span></span><span class="tl"></span><span class="tp">03</span></div><div class="te"><span class="tn">02</span><span class="tt">One Record, Four Roles<span class="td">Who writes what, who reads what.</span></span><span class="tl"></span><span class="tp">04</span></div><div class="te"><span class="tn">03</span><span class="tt">The Platform<span class="td">One day on a time axis, and thirteen modules in four layers.</span></span><span class="tl"></span><span class="tp">05</span></div><div class="te sub"><span class="tn">3.3</span><span class="tt">Attendance</span><span class="tl"></span><span class="tp">05</span></div><div class="te sub"><span class="tn">3.1–13</span><span class="tt">Thirteen Modules</span><span class="tl"></span><span class="tp">06</span></div><div class="te"><span class="tn">04</span><span class="tt">Classraum Study<span class="td">The student's half, shown on screen.</span></span><span class="tl"></span><span class="tp">07</span></div></div><div class="tcol"><div class="te"><span class="tn">05</span><span class="tt">SAT Camps<span class="td">A program the school runs on infrastructure it does not have to build.</span></span><span class="tl"></span><span class="tp">08</span></div><div class="te sub"><span class="tn">5.3</span><span class="tt">Per‑Question Review</span><span class="tl"></span><span class="tp">09</span></div><div class="te"><span class="tn">06</span><span class="tt">Pricing<span class="td">Institution plans against capacity; student plans against credits.</span></span><span class="tl"></span><span class="tp">10</span></div><div class="te sub"><span class="tn">6.2</span><span class="tt">Student Plans</span><span class="tl"></span><span class="tp">11</span></div><div class="te"><span class="tn">07</span><span class="tt">About<span class="td">Mission, company details, getting started.</span></span><span class="tl"></span><span class="tp">12</span></div></div></div>
+    </div>
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+<!-- ═══════════════ PAGE 2 — Problem · Roles ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>01 — The Problem</span><span class="r">03 / 13</span></div>
+  <div class="body">
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg></span><span class="nl">01</span></div><div><h2 class="h1">A Third of the Week Never Reaches a Student.</h2><p class="lede">Educators spend 30 to 50 percent of their week on work other than teaching, spread across five to ten tools that do not share data. Little of that work is difficult, but almost all of it is repetitive.</p></div></div>
+
+    <div class="g12" style="align-items:center"><figure class="fig s8"><svg viewBox="0 0 460 128" role="img" aria-label="An educator's week: 30 to 50 percent administration, the remainder teaching">
+          <g font-size="12">
+            <line x1="146" y1="28" x2="230" y2="28" stroke="#1D5FD1" stroke-width="1.2"/><line x1="146" y1="23" x2="146" y2="33" stroke="#1D5FD1" stroke-width="1.2"/><line x1="230" y1="23" x2="230" y2="33" stroke="#1D5FD1" stroke-width="1.2"/>
+            <text x="188" y="18" text-anchor="middle" font-weight="700" fill="#1D5FD1">30 – 50%</text>
+            <rect x="20" y="40" width="168" height="28" rx="5" fill="#2B7FFF"/><rect x="190" y="40" width="250" height="28" rx="5" fill="#CBD5E1"/>
+            <g stroke="#CBD5E1"><line x1="20" y1="68" x2="20" y2="74"/><line x1="125" y1="68" x2="125" y2="74"/><line x1="230" y1="68" x2="230" y2="74"/><line x1="335" y1="68" x2="335" y2="74"/><line x1="440" y1="68" x2="440" y2="74"/></g>
+            <g font-size="9" fill="#7C8AA0" text-anchor="middle"><text x="20" y="85">0%</text><text x="125" y="85">25%</text><text x="230" y="85">50%</text><text x="335" y="85">75%</text><text x="440" y="85">100%</text></g>
+            <text x="20" y="108" font-weight="700" font-size="12.5" fill="#1D5FD1">Administration</text><text x="20" y="122" font-size="10" fill="#4B5563">Report Cards · Data Re‑Entry · Timetables · Tuition · The Same Parent Question Forty Times</text>
+            <text x="440" y="108" text-anchor="end" font-weight="700" font-size="12.5" fill="#334155">Teaching</text>
+          </g>
+        </svg></figure><p class="cap s4" style="margin:0">The bar is drawn at 40 percent; the bracket marks the published range of 30 to 50. The company estimates that working across five to ten separate systems reduces meaningful student engagement by about 70 percent.</p></div>
+    <div class="g12" style="align-items:center;margin-top:var(--s3)"><figure class="fig s8"><svg viewBox="0 0 460 176" role="img" aria-label="Hours returned per month for a 120-student, 6-teacher academy: 36 from student administration plus 24 from teacher reporting equals 60">
+          <g font-size="11">
+            <g stroke="#E5EAF1"><line x1="40" y1="103.3" x2="440" y2="103.3"/><line x1="40" y1="66.7" x2="440" y2="66.7"/><line x1="40" y1="30" x2="440" y2="30"/></g>
+            <g font-size="9" fill="#7C8AA0" text-anchor="end"><text x="34" y="106.5">20 h</text><text x="34" y="70">40 h</text><text x="34" y="33.5">60 h</text></g>
+            <line x1="40" y1="140" x2="440" y2="140" stroke="#CBD5E1" stroke-width="1.2"/>
+            <rect x="70" y="74" width="84" height="66" rx="4" fill="#2B7FFF"/><text x="112" y="64" text-anchor="middle" font-weight="700" font-size="13" fill="#0F172A">36 h</text>
+            <rect x="200" y="96" width="84" height="44" rx="4" fill="#2B7FFF"/><text x="242" y="86" text-anchor="middle" font-weight="700" font-size="13" fill="#0F172A">24 h</text>
+            <rect x="330" y="30" width="84" height="110" rx="4" fill="#1D5FD1"/><text x="372" y="52" text-anchor="middle" font-weight="700" font-size="13" fill="#fff">60 h</text>
+            <g font-size="20" fill="#94A3B8" text-anchor="middle"><text x="177" y="120">+</text><text x="307" y="120">=</text></g>
+            <g font-size="10" fill="#4B5563" text-anchor="middle"><text x="112" y="158">120 students × 18 min</text><text x="242" y="158">6 teachers × 4 h</text><text x="372" y="158">≈ ₩720,000 / month</text></g>
+          </g>
+        </svg></figure><p class="cap s4" style="margin:0">Classraum's own model for an academy of 120 students and 6 teachers assumes 18 minutes per student per month on attendance, billing and parent updates, and 4 hours per teacher per month on reports. Actual savings depend on how the academy operates.</p></div>
+
+    
+    <figure class="fig">
+      <svg viewBox="20 0 720 150" role="img" aria-label="Three products — the management platform, Classraum Study and SAT Camps — all read from and write to one shared record"><defs><linearGradient id="spineg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2B7FFF"/><stop offset="1" stop-color="#14B8A6"/></linearGradient></defs>
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+        <g font-size="12.5">
+          <rect x="20" y="12" width="230" height="52" rx="7" fill="#EEF4FF" stroke="none"/><g transform="translate(34 22) scale(0.9)" fill="none" stroke="#1D5FD1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22v-4a2 2 0 1 0-4 0v4"/><path d="m18 10 3.447 1.724a1 1 0 0 1 .553.894V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7.382a1 1 0 0 1 .553-.894L6 10"/><path d="M18 5v17"/><path d="m4 6 7.106-3.553a2 2 0 0 1 1.788 0L20 6"/><path d="M6 5v17"/><circle cx="12" cy="9" r="2"/></g><text x="66" y="33" font-weight="700" fill="#0F172A" font-size="11">Academy Management Platform</text><text x="66" y="50" fill="#4B5563" font-size="10">Directors · Teachers · Parents</text>
+          <rect x="265" y="12" width="230" height="52" rx="7" fill="#ECFDF9" stroke="none"/><g transform="translate(279 22) scale(0.9)" fill="none" stroke="#0F8F82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></g><text x="311" y="33" font-weight="700" fill="#0F172A" font-size="11">Classraum Study</text><text x="311" y="50" fill="#4B5563" font-size="10">Students · SAT TOEFL TOEIC IELTS KSAT</text>
+          <rect x="510" y="12" width="230" height="52" rx="7" fill="#EEF4FF" stroke="none"/><g transform="translate(524 22) scale(0.9)" fill="none" stroke="#1D5FD1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></g><text x="556" y="33" font-weight="700" fill="#0F172A" font-size="11">SAT Camps</text><text x="556" y="50" fill="#4B5563" font-size="10">Schools · Program Partnership</text>
+          <line x1="110" y1="64" x2="110" y2="104" stroke="#2B7FFF" stroke-width="1.4" marker-end="url(#ar)"/><text x="116" y="88" font-size="10.5" fill="#1D5FD1">Writes Attendance · Grades · Invoices</text>
+          <line x1="355" y1="64" x2="355" y2="104" stroke="#14B8A6" stroke-width="1.4" marker-end="url(#ar)"/><text x="361" y="88" font-size="10.5" fill="#0F8F82">Writes Results · Weak Topics</text>
+          <line x1="600" y1="64" x2="600" y2="104" stroke="#2B7FFF" stroke-width="1.4" marker-end="url(#ar)"/><text x="606" y="88" font-size="10.5" fill="#1D5FD1">Writes Mock Scores · Bands</text>
+          <rect x="20" y="106" width="720" height="30" rx="15" fill="#1D5FD1"/>
+          <text x="380" y="125" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="12" letter-spacing="1.6" fill="#fff">ONE RECORD — SESSIONS · STUDENTS · FAMILIES · INVOICES · RESULTS</text>
+        </g>
+      </svg>
+      <figcaption>The three products write to the same record. A teacher's attendance mark, a student's wrong answer and a camp's mock‑test score are stored once and appear wherever they are needed next.</figcaption>
+    </figure>
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+<!-- ═══════════════ PAGE 2b — One record, four roles ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>02 — One Record, Four Roles</span><span class="r">04 / 13</span></div>
+  <div class="body">
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span><span class="nl">02</span></div><div><h2 class="h1">One Record, Four Roles</h2><p class="lede">Everyone at the academy works on the same record, and each role sees the part of it that concerns them.</p></div></div>
+
+    
+
+    <figure class="fig">
+      <svg viewBox="20 0 720 214" role="img" aria-label="Four roles — teacher, director, parent, student — each writing to and reading from one shared record"><defs><linearGradient id="spineg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2B7FFF"/><stop offset="1" stop-color="#14B8A6"/></linearGradient></defs>
+        <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+        <g font-size="11">
+          <!-- nodes -->
+          <rect x="20" y="10" width="170" height="36" rx="7" fill="#EEF4FF" stroke="none"/><text x="105" y="33" text-anchor="middle" font-weight="700" font-size="13" fill="#0F172A">Teacher</text>
+          <rect x="203" y="10" width="170" height="36" rx="7" fill="#EEF4FF" stroke="none"/><text x="288" y="33" text-anchor="middle" font-weight="700" font-size="13" fill="#0F172A">Director</text>
+          <rect x="386" y="10" width="170" height="36" rx="7" fill="#ECFDF9" stroke="none"/><text x="471" y="33" text-anchor="middle" font-weight="700" font-size="13" fill="#0F172A">Parent</text>
+          <rect x="569" y="10" width="170" height="36" rx="7" fill="#ECFDF9" stroke="none"/><text x="654" y="33" text-anchor="middle" font-weight="700" font-size="13" fill="#0F172A">Student</text>
+          <!-- teacher -->
+          <line x1="44" y1="48" x2="44" y2="160" stroke="#2B7FFF" stroke-width="1.3" marker-end="url(#ar2)"/><line x1="166" y1="160" x2="166" y2="50" stroke="#94A3B8" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <text x="52" y="68" font-size="9.5" fill="#1D5FD1" font-weight="700">Writes</text><text x="52" y="80" font-size="10">Attendance · Lateness</text><text x="52" y="92" font-size="10">Marks · Comments</text><text x="52" y="104" font-size="10">Report‑Card Edits</text>
+          <text x="158" y="122" text-anchor="end" font-size="9.5" fill="#4B5563" font-weight="700">Reads</text><text x="158" y="134" text-anchor="end" font-size="10">Roster · Timetable</text><text x="158" y="146" text-anchor="end" font-size="10">AI Draft Feedback</text>
+          <!-- director -->
+          <line x1="227" y1="48" x2="227" y2="160" stroke="#2B7FFF" stroke-width="1.3" marker-end="url(#ar2)"/><line x1="349" y1="160" x2="349" y2="50" stroke="#94A3B8" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <text x="235" y="68" font-size="9.5" fill="#1D5FD1" font-weight="700">Writes</text><text x="235" y="80" font-size="10">Invoices · Plans</text><text x="235" y="92" font-size="10">Staff · Classrooms</text>
+          <text x="341" y="122" text-anchor="end" font-size="9.5" fill="#4B5563" font-weight="700">Reads</text><text x="341" y="134" text-anchor="end" font-size="10">Revenue · Collection %</text><text x="341" y="146" text-anchor="end" font-size="10">Attendance by Class</text>
+          <!-- parent -->
+          <line x1="410" y1="48" x2="410" y2="160" stroke="#14B8A6" stroke-width="1.3" marker-end="url(#ar2)"/><line x1="532" y1="160" x2="532" y2="50" stroke="#94A3B8" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <text x="418" y="68" font-size="9.5" fill="#0F8F82" font-weight="700">Writes</text><text x="418" y="80" font-size="10">Card Payment</text><text x="418" y="92" font-size="10">Replies</text>
+          <text x="524" y="122" text-anchor="end" font-size="9.5" fill="#4B5563" font-weight="700">Reads</text><text x="524" y="134" text-anchor="end" font-size="10">Arrival Alert · Invoice</text><text x="524" y="146" text-anchor="end" font-size="10">Report Card</text>
+          <!-- student -->
+          <line x1="593" y1="48" x2="593" y2="160" stroke="#14B8A6" stroke-width="1.3" marker-end="url(#ar2)"/><line x1="715" y1="160" x2="715" y2="50" stroke="#94A3B8" stroke-width="1.3" marker-end="url(#ar2)"/>
+          <text x="601" y="68" font-size="9.5" fill="#0F8F82" font-weight="700">Writes</text><text x="601" y="80" font-size="10">Submissions</text><text x="601" y="92" font-size="10">Practice Results</text>
+          <text x="707" y="122" text-anchor="end" font-size="9.5" fill="#4B5563" font-weight="700">Reads</text><text x="707" y="134" text-anchor="end" font-size="10">Assignments · Scores</text><text x="707" y="146" text-anchor="end" font-size="10">Explanations · Review</text>
+          <!-- spine -->
+          <rect x="20" y="164" width="720" height="30" rx="15" fill="#1D5FD1"/>
+          <text x="380" y="183" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="12" letter-spacing="1.6" fill="#fff">ONE RECORD</text>
+          <text x="380" y="209" text-anchor="middle" font-size="10" fill="#4B5563">Blue: the academy's side. Teal: the family's side. Gray arrows: what each role reads back.</text>
+        </g>
+      </svg>
+      <figcaption>Most academies run attendance, messaging, billing, exams, reports and a study app as six separate products. In Classraum they are six views of one record.</figcaption>
+    </figure>
+
+    <div class="g3 phones"><div class="dev-phone"><svg class="sb" viewBox="0 0 393 54" aria-hidden="true"><rect width="393" height="54" fill="#fff"/><text x="30" y="35" font-family="-apple-system,'SF Pro Text','Source Sans 3',sans-serif" font-weight="600" font-size="16" fill="#0F172A">9:41</text><path d="M112 0h169v13a17 17 0 0 1-17 17H129a17 17 0 0 1-17-17z" fill="#111214"/><rect x="176" y="8" width="41" height="5" rx="2.5" fill="#2A2C30"/><circle cx="232" cy="10.5" r="3.2" fill="#1F2226"/><g fill="#0F172A"><rect x="300" y="30" width="3" height="6" rx="1"/><rect x="305" y="27" width="3" height="9" rx="1"/><rect x="310" y="24" width="3" height="12" rx="1"/><rect x="315" y="21" width="3" height="15" rx="1"/></g><path d="M329 28a11 11 0 0 1 16 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><path d="M332.5 31.5a6 6 0 0 1 9 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><circle cx="337" cy="35" r="1.7" fill="#0F172A"/><rect x="351" y="22" width="24" height="12" rx="3.5" fill="none" stroke="#0F172A" stroke-width="1.5"/><rect x="353" y="24" width="20" height="8" rx="2" fill="#0F172A"/><rect x="376.5" y="25.5" width="2" height="5" rx="1" fill="#0F172A"/></svg><img src="__IMG_ph-reports__" alt=""></div><div class="dev-phone"><svg class="sb" viewBox="0 0 393 54" aria-hidden="true"><rect width="393" height="54" fill="#fff"/><text x="30" y="35" font-family="-apple-system,'SF Pro Text','Source Sans 3',sans-serif" font-weight="600" font-size="16" fill="#0F172A">9:41</text><path d="M112 0h169v13a17 17 0 0 1-17 17H129a17 17 0 0 1-17-17z" fill="#111214"/><rect x="176" y="8" width="41" height="5" rx="2.5" fill="#2A2C30"/><circle cx="232" cy="10.5" r="3.2" fill="#1F2226"/><g fill="#0F172A"><rect x="300" y="30" width="3" height="6" rx="1"/><rect x="305" y="27" width="3" height="9" rx="1"/><rect x="310" y="24" width="3" height="12" rx="1"/><rect x="315" y="21" width="3" height="15" rx="1"/></g><path d="M329 28a11 11 0 0 1 16 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><path d="M332.5 31.5a6 6 0 0 1 9 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><circle cx="337" cy="35" r="1.7" fill="#0F172A"/><rect x="351" y="22" width="24" height="12" rx="3.5" fill="none" stroke="#0F172A" stroke-width="1.5"/><rect x="353" y="24" width="20" height="8" rx="2" fill="#0F172A"/><rect x="376.5" y="25.5" width="2" height="5" rx="1" fill="#0F172A"/></svg><img src="__IMG_ph-invoices__" alt=""></div><div class="dev-phone"><svg class="sb" viewBox="0 0 393 54" aria-hidden="true"><rect width="393" height="54" fill="#fff"/><text x="30" y="35" font-family="-apple-system,'SF Pro Text','Source Sans 3',sans-serif" font-weight="600" font-size="16" fill="#0F172A">9:41</text><path d="M112 0h169v13a17 17 0 0 1-17 17H129a17 17 0 0 1-17-17z" fill="#111214"/><rect x="176" y="8" width="41" height="5" rx="2.5" fill="#2A2C30"/><circle cx="232" cy="10.5" r="3.2" fill="#1F2226"/><g fill="#0F172A"><rect x="300" y="30" width="3" height="6" rx="1"/><rect x="305" y="27" width="3" height="9" rx="1"/><rect x="310" y="24" width="3" height="12" rx="1"/><rect x="315" y="21" width="3" height="15" rx="1"/></g><path d="M329 28a11 11 0 0 1 16 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><path d="M332.5 31.5a6 6 0 0 1 9 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><circle cx="337" cy="35" r="1.7" fill="#0F172A"/><rect x="351" y="22" width="24" height="12" rx="3.5" fill="none" stroke="#0F172A" stroke-width="1.5"/><rect x="353" y="24" width="20" height="8" rx="2" fill="#0F172A"/><rect x="376.5" y="25.5" width="2" height="5" rx="1" fill="#0F172A"/></svg><img src="__IMG_ph-assignments__" alt=""></div><div class="dev-phone"><svg class="sb" viewBox="0 0 393 54" aria-hidden="true"><rect width="393" height="54" fill="#fff"/><text x="30" y="35" font-family="-apple-system,'SF Pro Text','Source Sans 3',sans-serif" font-weight="600" font-size="16" fill="#0F172A">9:41</text><path d="M112 0h169v13a17 17 0 0 1-17 17H129a17 17 0 0 1-17-17z" fill="#111214"/><rect x="176" y="8" width="41" height="5" rx="2.5" fill="#2A2C30"/><circle cx="232" cy="10.5" r="3.2" fill="#1F2226"/><g fill="#0F172A"><rect x="300" y="30" width="3" height="6" rx="1"/><rect x="305" y="27" width="3" height="9" rx="1"/><rect x="310" y="24" width="3" height="12" rx="1"/><rect x="315" y="21" width="3" height="15" rx="1"/></g><path d="M329 28a11 11 0 0 1 16 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><path d="M332.5 31.5a6 6 0 0 1 9 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><circle cx="337" cy="35" r="1.7" fill="#0F172A"/><rect x="351" y="22" width="24" height="12" rx="3.5" fill="none" stroke="#0F172A" stroke-width="1.5"/><rect x="353" y="24" width="20" height="8" rx="2" fill="#0F172A"/><rect x="376.5" y="25.5" width="2" height="5" rx="1" fill="#0F172A"/></svg><img src="__IMG_ph-messages__" alt=""></div></div>
+    <p class="cap">The family's side on a phone: monthly reports, invoices payable in the app, the assignment list and messages with the academy.</p>
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+<!-- ═══════════════ PAGE 3 — A day · Attendance ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>03 — The Platform</span><span class="r">05 / 13</span></div>
+  <div class="body">
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span><span class="nl">03</span></div><div><h2 class="h1">One Day, on a Time Axis</h2><p class="lede">Each marker is a point where the system acts without being asked, and each one feeds the next. Report day and month end sit off the axis but read the same record the day wrote to.</p></div></div>
+
+    <figure class="fig">
+      <svg viewBox="20 0 720 204" role="img" aria-label="A school day from 06:00 to 24:00 with five automated moments, plus weekly report day and month-end settlement">
+        <g font-size="10.5">
+          <line x1="40" y1="50" x2="720" y2="50" stroke="#CBD5E1" stroke-width="1.2"/><line x1="40" y1="46" x2="40" y2="54" stroke="#CBD5E1"/><text x="40" y="65" text-anchor="middle" font-size="9.5" fill="#7C8AA0">06:00</text><line x1="266.6666666666667" y1="46" x2="266.6666666666667" y2="54" stroke="#CBD5E1"/><text x="266.6666666666667" y="65" text-anchor="middle" font-size="9.5" fill="#7C8AA0">09:00</text><line x1="493.33333333333337" y1="46" x2="493.33333333333337" y2="54" stroke="#CBD5E1"/><text x="493.33333333333337" y="65" text-anchor="middle" font-size="9.5" fill="#7C8AA0">12:00</text><line x1="720" y1="46" x2="720" y2="54" stroke="#CBD5E1"/><text x="720" y="65" text-anchor="middle" font-size="9.5" fill="#7C8AA0">15:00</text><line x1="115.55555555555556" y1="47.5" x2="115.55555555555556" y2="52.5" stroke="#E5EAF1"/><line x1="191.11111111111111" y1="47.5" x2="191.11111111111111" y2="52.5" stroke="#E5EAF1"/><line x1="342.22222222222223" y1="47.5" x2="342.22222222222223" y2="52.5" stroke="#E5EAF1"/><line x1="417.77777777777777" y1="47.5" x2="417.77777777777777" y2="52.5" stroke="#E5EAF1"/><line x1="568.8888888888889" y1="47.5" x2="568.8888888888889" y2="52.5" stroke="#E5EAF1"/><line x1="644.4444444444445" y1="47.5" x2="644.4444444444445" y2="52.5" stroke="#E5EAF1"/>
+          <line x1="228.88888888888889" y1="50" x2="228.88888888888889" y2="38" stroke="#2B7FFF"/><circle cx="228.88888888888889" cy="50" r="4.5" fill="#2B7FFF" stroke="#fff" stroke-width="2"/><text x="228.88888888888889" y="16" text-anchor="middle" font-weight="700" font-size="11" fill="#1D5FD1">08:30 · Timetable Builds Itself</text><text x="228.88888888888889" y="29" text-anchor="middle" font-size="9.5" fill="#4B5563">Every class becomes a session record</text>
+          <line x1="707.1555555555556" y1="50" x2="707.1555555555556" y2="38" stroke="#2B7FFF"/><circle cx="707.1555555555556" cy="50" r="4.5" fill="#2B7FFF" stroke="#fff" stroke-width="2"/><text x="720" y="16" text-anchor="end" font-weight="700" font-size="11" fill="#1D5FD1">14:50 · One Tap, Class Present</text><text x="720" y="29" text-anchor="end" font-size="9.5" fill="#4B5563">Parent’s phone buzzes within a minute</text>
+          <line x1="40" y1="130" x2="720" y2="130" stroke="#CBD5E1" stroke-width="1.2"/><line x1="40" y1="126" x2="40" y2="134" stroke="#CBD5E1"/><text x="40" y="145" text-anchor="middle" font-size="9.5" fill="#7C8AA0">15:00</text><line x1="266.6666666666667" y1="126" x2="266.6666666666667" y2="134" stroke="#CBD5E1"/><text x="266.6666666666667" y="145" text-anchor="middle" font-size="9.5" fill="#7C8AA0">18:00</text><line x1="493.33333333333337" y1="126" x2="493.33333333333337" y2="134" stroke="#CBD5E1"/><text x="493.33333333333337" y="145" text-anchor="middle" font-size="9.5" fill="#7C8AA0">21:00</text><line x1="720" y1="126" x2="720" y2="134" stroke="#CBD5E1"/><text x="720" y="145" text-anchor="middle" font-size="9.5" fill="#7C8AA0">24:00</text><line x1="115.55555555555556" y1="127.5" x2="115.55555555555556" y2="132.5" stroke="#E5EAF1"/><line x1="191.11111111111111" y1="127.5" x2="191.11111111111111" y2="132.5" stroke="#E5EAF1"/><line x1="342.22222222222223" y1="127.5" x2="342.22222222222223" y2="132.5" stroke="#E5EAF1"/><line x1="417.77777777777777" y1="127.5" x2="417.77777777777777" y2="132.5" stroke="#E5EAF1"/><line x1="568.8888888888889" y1="127.5" x2="568.8888888888889" y2="132.5" stroke="#E5EAF1"/><line x1="644.4444444444445" y1="127.5" x2="644.4444444444445" y2="132.5" stroke="#E5EAF1"/>
+          <line x1="153.33333333333334" y1="130" x2="153.33333333333334" y2="118" stroke="#2B7FFF"/><circle cx="153.33333333333334" cy="130" r="4.5" fill="#2B7FFF" stroke="#fff" stroke-width="2"/><text x="168" y="96" text-anchor="middle" font-weight="700" font-size="11" fill="#1D5FD1">16:30 · Homework Out, Graded in Place</text><text x="168" y="109" text-anchor="middle" font-size="9.5" fill="#4B5563">A photographed worksheet becomes a digital assignment</text>
+          <line x1="380" y1="130" x2="380" y2="118" stroke="#14B8A6"/><circle cx="380" cy="130" r="4.5" fill="#14B8A6" stroke="#fff" stroke-width="2"/><text x="380" y="96" text-anchor="middle" font-weight="700" font-size="11" fill="#0F8F82">19:30 · Study Continues at Home</text><text x="380" y="109" text-anchor="middle" font-size="9.5" fill="#4B5563">Tonight's misses reach the teacher tomorrow</text>
+          <line x1="498.62222222222226" y1="130" x2="498.62222222222226" y2="142" stroke="#2B7FFF"/><circle cx="498.62222222222226" cy="130" r="4.5" fill="#2B7FFF" stroke="#fff" stroke-width="2"/><text x="498.62222222222226" y="160" text-anchor="middle" font-weight="700" font-size="11" fill="#1D5FD1">21:04 · Tuition Collects Itself</text>
+          <line x1="40" y1="190" x2="330" y2="190" stroke="#CBD5E1" stroke-width="1.2"/><circle cx="60" cy="190" r="4.5" fill="#2B7FFF" stroke="#fff" stroke-width="2"/><text x="72" y="186" font-weight="700" fill="#1D5FD1" font-size="10">Fri 15:00 · 24 Report Cards Drafted</text><text x="72" y="198" font-size="9.5" fill="#4B5563">In the academy's voice, Korean or English — teacher edits and sends</text>
+          <line x1="430" y1="190" x2="720" y2="190" stroke="#CBD5E1" stroke-width="1.2"/><circle cx="450" cy="190" r="4.5" fill="#2B7FFF" stroke="#fff" stroke-width="2"/><text x="462" y="186" font-weight="700" fill="#1D5FD1" font-size="10">Month End · Settlement on One Screen</text><text x="462" y="198" font-size="9.5" fill="#4B5563">Collection Rate · Attendance Rate · Per‑Class Status</text>
+        </g>
+      </svg>
+    </figure>
+
+    <div class="rule"></div>
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 11 2 2 4-4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span class="nl">3.3</span></div><div><h2 class="h1" style="font-size:12pt">Attendance: One Action, Several Jobs</h2><p class="lede">The most‑used screen in the product. A teacher marks a whole class in seconds, the parent hears within a minute, and the report card and month‑end use the same entry.</p></div></div>
+
+    <figure class="fig hero"><div class="shot win"><img src="__IMG_attendance__" alt="The attendance screen on a director’s tablet: one card per class with the date, the number present and the attendance rate, above the term's record count"></div><figcaption>One card per class: the date, who was present, the rate. A late student is marked late, with the minutes.</figcaption></figure>
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+<!-- ═══════════════ PAGE 4 — Modules as a graph ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>03 — The Platform · Thirteen Modules</span><span class="r">06 / 13</span></div>
+  <div class="body">
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span><span class="nl">3.1–13</span></div><div><h2 class="h1">Thirteen Modules, in Four Layers</h2><p class="lede">Each layer reads what the layer above wrote, so nothing is typed twice.</p></div></div>
+
+    <div class="lay"><div class="lrow"><div class="ln"><b>1</b></div><div class="lh"><b>Foundation</b><span>The session is the object everything else attaches to.</span></div><div class="lm"><span><i>3.2</i>Sessions</span><span><i>3.10</i>Directory</span></div></div><div class="lrow"><div class="ln"><b>2</b></div><div class="lh"><b>Daily Records</b><span>Written during the day, by teachers and by the system.</span></div><div class="lm"><span><i>3.3</i>Attendance</span><span><i>3.5</i>Assignments</span><span><i>3.6</i>Exams</span><span><i>3.8</i>Payments</span></div></div><div class="lrow"><div class="ln"><b>3</b></div><div class="lh"><b>Outputs</b><span>Assembled from the records above.</span></div><div class="lm"><span><i>3.7</i>AI Report Cards</span><span><i>3.4</i>Messages</span><span><i>3.9</i>Month‑End</span><span><i>3.1</i>Dashboard</span></div></div><div class="lrow t"><div class="ln"><b>4</b></div><div class="lh"><b>Outside</b><span>What the family and the student receive.</span></div><div class="lm"><span>Parent App</span><span>Classraum Study</span></div></div><div class="lrow all"><div class="ln"><b>∞</b></div><div class="lh"><b>Everywhere</b><span>Present in every layer.</span></div><div class="lm"><span><i>3.11</i>Archive</span><span><i>3.12</i>Help Center</span><span><i>3.13</i>Bilingual</span></div></div></div>
+    <p class="cap">Layer 4 leaves the academy, in teal. The three modules in the last row apply to everything above.</p>
+
+    <figure class="fig hero"><div class="shot win"><img src="__IMG_dashboard__" alt="The director's dashboard: revenue this month with a trend line, active users, classrooms and active sessions this week"></div><figcaption>Revenue with its trend, active users, classrooms and this week's sessions, read live from the other modules.</figcaption></figure>
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+<!-- ═══════════════ PAGE 5 — Classraum Study ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>04 — Classraum Study</span><span class="r">07 / 13</span></div>
+  <div class="body">
+    <div class="open"><div class="n t"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="nl">04</span></div><div><h2 class="h1">The Student's Half of the System</h2><p class="lede">Included for every student at an academy on the platform, and sold on its own. A mock test is a diagnosis rather than a score, so most of the product is about what happens after a wrong answer.</p></div></div>
+
+    <div class="g12" style="align-items:start">
+      <figure class="fig hero s12">
+        <div class="shot win"><img src="__IMG_test__" alt="The test runner on desktop: passage on the left, question and four options on the right, a 27-question navigation rail, timer and pause"></div>
+        <div class="callouts"><span><span class="c t">1</span>Passage and Question as Two Panes, like the Real Digital Exam</span><span><span class="c t">2</span>Question Rail with Answered State</span><span><span class="c t">3</span>Keyboard: 1–4 Select, Arrows Move</span></div>
+        <figcaption>A full Reading and Writing test: 27 questions per module, a real time limit, and a second module that adapts to the first.</figcaption>
+      </figure>
+    </div>
+
+    
+
+    <figure class="fig hero"><div class="pair-grid"><div class="shot win"><img src="__IMG_review__" alt="The review page: a wrong Reading and Writing answer with the correct one, an explanation, step-by-step and simple-explanation buttons, an English/Korean toggle and a note field"></div><div class="dev-phone"><svg class="sb" viewBox="0 0 393 54" aria-hidden="true"><rect width="393" height="54" fill="#fff"/><text x="30" y="35" font-family="-apple-system,'SF Pro Text','Source Sans 3',sans-serif" font-weight="600" font-size="16" fill="#0F172A">9:41</text><path d="M112 0h169v13a17 17 0 0 1-17 17H129a17 17 0 0 1-17-17z" fill="#111214"/><rect x="176" y="8" width="41" height="5" rx="2.5" fill="#2A2C30"/><circle cx="232" cy="10.5" r="3.2" fill="#1F2226"/><g fill="#0F172A"><rect x="300" y="30" width="3" height="6" rx="1"/><rect x="305" y="27" width="3" height="9" rx="1"/><rect x="310" y="24" width="3" height="12" rx="1"/><rect x="315" y="21" width="3" height="15" rx="1"/></g><path d="M329 28a11 11 0 0 1 16 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><path d="M332.5 31.5a6 6 0 0 1 9 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><circle cx="337" cy="35" r="1.7" fill="#0F172A"/><rect x="351" y="22" width="24" height="12" rx="3.5" fill="none" stroke="#0F172A" stroke-width="1.5"/><rect x="353" y="24" width="20" height="8" rx="2" fill="#0F172A"/><rect x="376.5" y="25.5" width="2" height="5" rx="1" fill="#0F172A"/></svg><img src="__IMG_pp-review__" alt=""></div></div><figcaption>The wrong‑answer notebook: each miss filed by topic and difficulty with its explanation, and a flashcard scheduled automatically.</figcaption></figure>
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+<!-- ═══════════════ PAGE 6 — SAT Camps ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>05 — SAT Camps</span><span class="r">08 / 13</span></div>
+  <div class="body">
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></svg></span><span class="nl">05</span></div><div><h2 class="h1">A Complete SAT Program, Minus the Teacher</h2><p class="lede">A partnership rather than a license. The school brings the teacher, the students and the room; Classraum brings the curriculum, the tests, the grading and the analytics.</p></div></div>
+
+    <div class="g12" style="align-items:start">
+      <figure class="fig s6">
+        <svg viewBox="0 0 300 232" role="img" aria-label="The camp cycle: teach, practice, analyze, improve and back to teach">
+          <defs><marker id="ar5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+          <g font-size="10.5">
+            <rect x="102" y="10" width="96" height="34" rx="8" fill="#DCE7FF" stroke="#2B7FFF" stroke-width="1.2"/><text x="150" y="31" text-anchor="middle" font-weight="700" font-size="12.5" fill="#0F172A"><tspan fill="#1D5FD1">1</tspan> Teach</text>
+            <rect x="200" y="99" width="96" height="34" rx="8" fill="#EEF4FF" stroke="none"/><text x="248" y="120" text-anchor="middle" font-weight="700" font-size="12.5" fill="#0F172A"><tspan fill="#1D5FD1">2</tspan> Practice</text>
+            <rect x="102" y="188" width="96" height="34" rx="8" fill="#EEF4FF" stroke="none"/><text x="150" y="209" text-anchor="middle" font-weight="700" font-size="12.5" fill="#0F172A"><tspan fill="#1D5FD1">3</tspan> Analyze</text>
+            <rect x="4" y="99" width="96" height="34" rx="8" fill="#EEF4FF" stroke="none"/><text x="52" y="120" text-anchor="middle" font-weight="700" font-size="12.5" fill="#0F172A"><tspan fill="#1D5FD1">4</tspan> Improve</text>
+            <line x1="192" y1="44" x2="232" y2="97" stroke="#2B7FFF" stroke-width="1.3" marker-end="url(#ar5)"/><text x="228" y="64" font-size="9.5" fill="#1D5FD1">Materials · Tests</text>
+            <line x1="232" y1="135" x2="192" y2="186" stroke="#2B7FFF" stroke-width="1.3" marker-end="url(#ar5)"/><text x="226" y="170" font-size="9.5" fill="#1D5FD1">Submissions</text>
+            <line x1="108" y1="186" x2="68" y2="135" stroke="#2B7FFF" stroke-width="1.3" marker-end="url(#ar5)"/><text x="74" y="170" font-size="9.5" fill="#1D5FD1" text-anchor="end">Domain Bands</text>
+            <line x1="68" y1="97" x2="108" y2="44" stroke="#2B7FFF" stroke-width="1.3" marker-end="url(#ar5)"/><text x="72" y="64" font-size="9.5" fill="#1D5FD1" text-anchor="end">Next Lesson</text>
+            <text x="150" y="122" text-anchor="middle" font-size="9.5" fill="#4B5563">No end point —</text><text x="150" y="134" text-anchor="middle" font-size="9.5" fill="#4B5563">a mock test is the middle</text>
+          </g>
+        </svg>
+      </figure>
+      <div class="s6"><div class="eyebrow"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16h8"/><path d="M7 11h12"/><path d="M7 6h3"/></svg></span>Teaching from the Data</div><p class="small" style="color:var(--ink-2)">Results are banded by the SAT's own domains, four in Math and four in Reading and Writing, so a teacher plans in the exam's categories: a low domain is re‑taught briefly, a wrong answer shared by many is corrected with the whole class, and a strong domain moves the student to harder practice.</p></div>
+    </div>
+    <figure class="fig hero"><div class="pair-grid" style="--pw:125px"><div class="shot win"><img src="__IMG_sat__" alt="The SAT Reading and Writing track in Classraum Study: the student's path, a diagnostic of 98 questions in four adaptive modules over 2 hours 14 minutes, mastery and a score trend"></div><div class="dev-phone"><svg class="sb" viewBox="0 0 393 54" aria-hidden="true"><rect width="393" height="54" fill="#fff"/><text x="30" y="35" font-family="-apple-system,'SF Pro Text','Source Sans 3',sans-serif" font-weight="600" font-size="16" fill="#0F172A">9:41</text><path d="M112 0h169v13a17 17 0 0 1-17 17H129a17 17 0 0 1-17-17z" fill="#111214"/><rect x="176" y="8" width="41" height="5" rx="2.5" fill="#2A2C30"/><circle cx="232" cy="10.5" r="3.2" fill="#1F2226"/><g fill="#0F172A"><rect x="300" y="30" width="3" height="6" rx="1"/><rect x="305" y="27" width="3" height="9" rx="1"/><rect x="310" y="24" width="3" height="12" rx="1"/><rect x="315" y="21" width="3" height="15" rx="1"/></g><path d="M329 28a11 11 0 0 1 16 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><path d="M332.5 31.5a6 6 0 0 1 9 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><circle cx="337" cy="35" r="1.7" fill="#0F172A"/><rect x="351" y="22" width="24" height="12" rx="3.5" fill="none" stroke="#0F172A" stroke-width="1.5"/><rect x="353" y="24" width="20" height="8" rx="2" fill="#0F172A"/><rect x="376.5" y="25.5" width="2" height="5" rx="1" fill="#0F172A"/></svg><img src="__IMG_pp-sat__" alt=""></div></div><figcaption>The SAT track: the diagnostic (98 questions, four adaptive modules, 2 h 14 m) and mastery against the section, on both screens.</figcaption></figure>
+
+      </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+<!-- ═══════════════ PAGE 5c — Per-question review ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>05 — SAT Camps · Per‑Question Review</span><span class="r">09 / 13</span></div>
+  <div class="body">
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span><span class="nl">5.3</span></div><div><h2 class="h1">What a Wrong Answer Turns Into</h2><p class="lede">The teacher opens the same card the student sees, so the correction in class and the student's own review start from one record.</p></div></div>
+    <figure class="fig hero"><div class="pair-grid"><div class="shot"><img src="__IMG_reviewcard__" alt="A single review card: the question, the answer the student chose struck through, the correct answer and the explanation, with step-by-step and simple-explanation buttons and an English/Korean toggle"></div><div class="dev-phone"><svg class="sb" viewBox="0 0 393 54" aria-hidden="true"><rect width="393" height="54" fill="#fff"/><text x="30" y="35" font-family="-apple-system,'SF Pro Text','Source Sans 3',sans-serif" font-weight="600" font-size="16" fill="#0F172A">9:41</text><path d="M112 0h169v13a17 17 0 0 1-17 17H129a17 17 0 0 1-17-17z" fill="#111214"/><rect x="176" y="8" width="41" height="5" rx="2.5" fill="#2A2C30"/><circle cx="232" cy="10.5" r="3.2" fill="#1F2226"/><g fill="#0F172A"><rect x="300" y="30" width="3" height="6" rx="1"/><rect x="305" y="27" width="3" height="9" rx="1"/><rect x="310" y="24" width="3" height="12" rx="1"/><rect x="315" y="21" width="3" height="15" rx="1"/></g><path d="M329 28a11 11 0 0 1 16 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><path d="M332.5 31.5a6 6 0 0 1 9 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><circle cx="337" cy="35" r="1.7" fill="#0F172A"/><rect x="351" y="22" width="24" height="12" rx="3.5" fill="none" stroke="#0F172A" stroke-width="1.5"/><rect x="353" y="24" width="20" height="8" rx="2" fill="#0F172A"/><rect x="376.5" y="25.5" width="2" height="5" rx="1" fill="#0F172A"/></svg><img src="__IMG_pp-review__" alt=""></div></div><figcaption>The chosen answer struck through above the correct one, an explanation that names the reasoning error, step‑by‑step and simpler versions in English or Korean, and a note field.</figcaption></figure>
+    <div class="g4" style="margin-top:var(--s3)"><div class="mod"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></span><div><b>Step‑by‑Step</b><span>The reasoning, one move at a time</span></div></div><div class="mod"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div><b>Explain Simply</b><span>The same answer in plainer words</span></div></div><div class="mod"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></span><div><b>My Note</b><span>The student's own line on what went wrong</span></div></div><div class="mod"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><div><b>EN / 한국어</b><span>Every explanation in both languages</span></div></div></div>
+
+    
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+<!-- ═══════════════ PAGE 7 — Console · Institution pricing ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>06 — Pricing</span><span class="r">10 / 13</span></div>
+  <div class="body">
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></span><span class="nl">06</span></div><div><h2 class="h1">Institution Pricing</h2><p class="lede">The free plan covers 10 users and 2 classrooms indefinitely. Paid plans are sized on total accounts and, from Small Academies upward, on included students.</p></div></div>
+
+    <div class="lp-free"><div><b>Start free — no card required</b><span>Up to 10 users and 2 classrooms, free forever. Upgrade when your academy grows.</span></div><div class="lp-btn" style="padding:0 14px;height:26px">Start Free</div></div>
+    <p class="lp-anchor">10-day trial on every paid plan · cancel anytime</p>
+    <div class="lp-grid"><div class="lp-card"><h4>Individual</h4><p class="lp-desc">For tutors &amp; private teachers</p><div class="lp-price"><b>₩24,900</b><span>/month</span></div><ul class="lp-feats"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Up to 50 total users</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>5GB cloud storage</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Web‑only access</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Contacts &amp; classrooms</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Sessions &amp; assignments</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Email support</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Basic security features</span></li></ul><div class="lp-add"><p>+₩10,000 per 5 users</p><p>+₩5,000 per 1GB storage</p></div><div class="lp-btn">Start Free Trial</div></div><div class="lp-card"><h4>Small Academies</h4><p class="lp-desc">For growing academies</p><div class="lp-price"><b>₩249,000</b><span>/month</span></div><ul class="lp-feats"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>150 users (70 students)</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>25GB cloud storage</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Report cards included</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>App &amp; web access</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Full management suite</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Priority email support</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Professional reports</span></li></ul><div class="lp-add"><p>+₩25,000 per 10 users</p><p>+₩12,000 per 5GB storage</p></div><div class="lp-btn">Start Free Trial</div></div><div class="lp-card pop"><span class="lp-badge">Most Popular</span><h4>Mid‑Sized Academies</h4><p class="lp-desc">Established institutions</p><div class="lp-price"><b>₩399,000</b><span>/month</span></div><ul class="lp-feats"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>320 users (150 students)</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>100GB cloud storage</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>150 AI report cards</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Layout customization</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Consulting introduction</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>All features included</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Priority support</span></li></ul><div class="lp-add"><p>+₩25,000 per 10 users</p><p>+₩15,000 per 10GB storage</p></div><div class="lp-btn solid">Start Free Trial</div></div><div class="lp-card"><h4>Large‑Sized Academies</h4><p class="lp-desc">Large institutions</p><div class="lp-price"><b>₩699,000</b><span>/month</span></div><ul class="lp-feats"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>650 users (300 students)</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>300GB cloud storage</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>600 AI report cards</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Advanced AI functions</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Training + consulting</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Enterprise features</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Multi‑location support</span></li></ul><div class="lp-add"><p>+₩25,000 per 10 users</p><p>+₩20,000 per 20GB storage</p><p>+₩100,000 per 100 AI cards</p></div><div class="lp-btn">Start Free Trial</div></div></div>
+    <div class="g2 lp-notes"><div class="card soft"><div class="eyebrow"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg></span>What Counts as a User</div><p class="small">Every account on the system: students, parents, teachers and administrators. A student with two linked parents occupies three seats, which is why user counts run well above student counts.</p></div><div class="card soft"><div class="eyebrow"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span>Where the Tiers Change Shape</div><p class="small">Individual is web‑only. Small Academies adds the mobile app and report cards. Mid‑Sized adds AI report cards and layout customization. Large‑Sized adds advanced AI, enterprise features and multi‑location support.</p></div></div>
+
+
+    
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+<!-- ═══════════════ PAGE 6b — Plans ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>06 — Pricing · Plans</span><span class="r">11 / 13</span></div>
+  <div class="body">
+        <div class="open"><div class="n t"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></span><span class="nl">6.2</span></div><div><h2 class="h1" style="font-size:12pt">Classraum Study — Student Plans</h2><p class="lede">Included for the students of any academy on the platform; individuals can subscribe directly. Every plan has every study mode. They differ only in mock tests per month.</p></div></div>
+
+    <div class="g12" style="align-items:center"><figure class="fig s6"><svg viewBox="0 0 330 138" role="img" aria-label="Mock-test credits per month by plan — Basic 10, Premium 20, Premium Plus 30 — with price per credit falling from 990 to 945 to 897 won">
+          <g font-size="10.5">
+            <line x1="20" y1="118" x2="310" y2="118" stroke="#E2E8F0"/>
+            <rect x="36" y="85" width="62" height="33" rx="3" fill="#14B8A6"/><text x="67" y="76" text-anchor="middle" font-weight="700">10</text>
+            <rect x="134" y="52" width="62" height="66" rx="3" fill="#14B8A6"/><text x="165" y="43" text-anchor="middle" font-weight="700">20</text>
+            <rect x="232" y="18" width="62" height="100" rx="3" fill="#0F8F82"/><text x="263" y="9" text-anchor="middle" font-weight="700">30</text>
+            <g text-anchor="middle" font-size="9.5" fill="#4B5563"><text x="67" y="131">Basic · ₩9,900</text><text x="165" y="131">Premium · ₩18,900</text><text x="263" y="131">Premium Plus · ₩26,900</text></g>
+            <g text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F8F82"></g>
+          </g>
+        </svg></figure><p class="cap s6" style="margin:0">Mock‑test credits per month. Annual billing includes two months free.</p></div>
+    <figure class="fig hero"><div class="shot win"><img src="__IMG_subscription__" alt="The Study subscription screen: four plan cards from Free to Premium Plus with their monthly prices and included features"></div><figcaption>The plans as the student sees them in the app: Free, Basic, Premium and Premium Plus, with what each unlocks.</figcaption></figure>
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+
+<!-- ═══════════════ PAGE 8 — Student plans · About ═══════════════ -->
+<section class="page">
+  <div class="rh"><span>07 — About</span><span class="r">12 / 13</span></div>
+  <div class="body">
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span><span class="nl">07</span></div><div><h2 class="h1">Built by People Who Have Taught.</h2><p class="lede">Classraum's aim is to automate the administrative work that fills an educator's day, including reports, timetables, attendance and notifications, so that teachers spend their time on teaching.</p></div></div>
+
+    <div class="g12" style="align-items:start">
+      <div class="s12">
+        <figure class="fig hero">
+          <div class="pair-grid" style="--pw:108px"><div class="shot win"><img src="__IMG_tests__" alt="A student's mock tests: one ready to start and two completed at 89 percent"></div><div class="dev-phone"><svg class="sb" viewBox="0 0 393 54" aria-hidden="true"><rect width="393" height="54" fill="#fff"/><text x="30" y="35" font-family="-apple-system,'SF Pro Text','Source Sans 3',sans-serif" font-weight="600" font-size="16" fill="#0F172A">9:41</text><path d="M112 0h169v13a17 17 0 0 1-17 17H129a17 17 0 0 1-17-17z" fill="#111214"/><rect x="176" y="8" width="41" height="5" rx="2.5" fill="#2A2C30"/><circle cx="232" cy="10.5" r="3.2" fill="#1F2226"/><g fill="#0F172A"><rect x="300" y="30" width="3" height="6" rx="1"/><rect x="305" y="27" width="3" height="9" rx="1"/><rect x="310" y="24" width="3" height="12" rx="1"/><rect x="315" y="21" width="3" height="15" rx="1"/></g><path d="M329 28a11 11 0 0 1 16 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><path d="M332.5 31.5a6 6 0 0 1 9 0" fill="none" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/><circle cx="337" cy="35" r="1.7" fill="#0F172A"/><rect x="351" y="22" width="24" height="12" rx="3.5" fill="none" stroke="#0F172A" stroke-width="1.5"/><rect x="353" y="24" width="20" height="8" rx="2" fill="#0F172A"/><rect x="376.5" y="25.5" width="2" height="5" rx="1" fill="#0F172A"/></svg><img src="__IMG_pp-tests__" alt=""></div></div>
+          <figcaption>A student's mock tests on a demo account: one ready to start and two completed.</figcaption>
+        </figure>
+      </div>
+
+    </div>
+    <div class="eyebrow" style="margin-top:var(--s4)"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg></span>Who Built Classraum</div>
+    <div class="g12 team"><div class="s4 card soft"><b>Teachers and Engineers, Side by Side</b><p class="small" style="margin-top:6px">People who understand the classroom and people who can build the infrastructure a real SAT program needs, working day to day on one product.</p></div><div class="s4 card soft"><b>Daniel Kim</b><span class="role">Education &amp; Academic Product</span><p class="q">“We understand what teachers and students actually need.”</p><p class="small">7+ years in international education · SAT, AP, IB, TOEFL &amp; IGCSE instruction · students in Korea and abroad</p></div><div class="s4 card soft"><b>Andy Lee</b><span class="role">Technology &amp; Product Engineering</span><p class="q">“We can build and maintain the infrastructure required to deliver it.”</p><p class="small">6+ years in software development · education, finance &amp; marketing technology</p></div></div>
+    <div class="eyebrow" style="margin-top:var(--s4)"><span class="mi"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg></span>Getting Started</div>
+    <ol class="about-steps steps"><li><b>Sign Up</b>At app.classraum.com, in about ten minutes. Ten‑day trial, no card.</li><li><b>Import</b>Families and students from a CSV; classes and sessions set up once.</li><li><b>Invite</b>Teachers by invitation link; parents and students by family link.</li><li><b>Go Live</b>Attendance from the first class, the first invoices at month end. Free for 10 users and 2 classrooms.</li></ol>
+
+    <p class="micro" style="margin-top:auto">Prepared from classraum.com. Figures in the website's own product screenshots (revenue, student counts, camp averages) are sample data and are not reproduced as results. Screenshots in this document are the live product on a demo account.</p>
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+
+
+<!-- ═══════════════ BACK COVER ═══════════════ -->
+<section class="page back-page">
+  <div class="body">
+    <div class="bk-top"><span class="logo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5a1.6 1.6 0 0 1 1.6 1.6v.6A6.5 6.5 0 0 1 18.5 11v3.8l1.6 2.2a1 1 0 0 1-.8 1.6H4.7a1 1 0 0 1-.8-1.6l1.6-2.2V11a6.5 6.5 0 0 1 4.9-6.3v-.6A1.6 1.6 0 0 1 12 2.5Z" fill="url(#lg)"/><path d="M9.6 19.6a2.4 2.4 0 0 0 4.8 0H9.6Z" fill="#2B7FFF"/></svg>CLASSRAUM</span></div>
+    <div class="bk-mid">
+      <p class="bk-tag">Attendance to <b style="white-space:nowrap;font-weight:inherit">Month‑End,</b> <span>on One Record.</span></p>
+      <p class="bk-blurb">An integrated management solution for academies, schools and educational institutions, giving educators back their most valuable asset: time.</p>
+      </div>
+    <div class="bk-bottom">
+      <div class="bk-rule"></div>
+      <dl class="kv"><dt>Entity</dt><dd>Classraum Inc. · <span class="kr">(주)클래스라움</span></dd><dt>CEO</dt><dd>Kim Sung‑eun</dd><dt>Address</dt><dd style="font-weight:400">#1521, 1250 Gyeongui‑ro, Paju‑si, Gyeonggi‑do, Republic of Korea</dd><dt>Phone</dt><dd class="num">010-6830-1764</dd><dt>Business reg.</dt><dd class="num">484-86-03572</dd></dl>
+      <p class="bk-links"><b>classraum.com</b> · app.classraum.com · support@classraum.com</p>
+      <div class="bk-foot"><span>© 2026 Classraum Inc. · <span class="kr">(주)클래스라움</span></span><span>English edition · Korean edition available</span></div>
+      <p class="bk-micro">Prepared from classraum.com. Every figure and capability comes from the company's own published material. Numbers inside the website's product screenshots are sample data; the screenshots in this document are the live product on a demo account.</p>
+    </div>
+  </div>
+</section>
+
+
+<template id="print-pages"><!--IFC--><section class="page back-page ifc">
+  <div class="body">
+    <div class="bk-top"><span class="logo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5a1.6 1.6 0 0 1 1.6 1.6v.6A6.5 6.5 0 0 1 18.5 11v3.8l1.6 2.2a1 1 0 0 1-.8 1.6H4.7a1 1 0 0 1-.8-1.6l1.6-2.2V11a6.5 6.5 0 0 1 4.9-6.3v-.6A1.6 1.6 0 0 1 12 2.5Z" fill="url(#lg)"/><path d="M9.6 19.6a2.4 2.4 0 0 0 4.8 0H9.6Z" fill="#2B7FFF"/></svg>CLASSRAUM</span></div>
+    <div class="bk-mid"><p class="bk-tag">Attendance to <b style="white-space:nowrap;font-weight:inherit">Month‑End,</b> <span>on One Record.</span></p><p class="bk-blurb">An integrated management solution for academies, schools and educational institutions, giving educators back their most valuable asset: time.</p></div>
+  </div>
+</section>
+<!--FAQ--><section class="page">
+  <div class="rh"><span>Questions Schools Ask</span><span class="r">14 / 16</span></div>
+  <div class="body">
+    <div class="open"><div class="n"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="nl">FAQ</span></div><div><h2 class="h1">Questions Schools Ask</h2><p class="lede">Short answers to what schools and the people who introduce us ask first. Everything here is also in the pages before.</p></div></div>
+    <div class="faq"><div><b>Do we need IT staff?</b><p>No. Sign‑up takes about ten minutes, families and students import from a CSV, and teachers and parents join by link. Most teachers are comfortable within their first week.</p></div><div><b>Does it work in Korean and English?</b><p>Yes. Every screen, report card and explanation is available in both languages, and each user chooses their own.</p></div><div><b>Where does student data live, and who can see it?</b><p>In Seoul, on managed cloud infrastructure. Traffic is encrypted in transit, access is role‑based, and each academy's records are isolated with row‑level security. Student data is used only to operate the service for your academy.</p></div><div><b>Can parents pay in the app?</b><p>Yes. Invoices are issued automatically, parents pay by card in the app, and overdue accounts are reminded without anyone chasing.</p></div><div><b>What does the free plan include?</b><p>10 users and 2 classrooms, with no time limit and no card. Paid plans start at ₩24,900 a month, each with a ten‑day trial.</p></div><div><b>What happens after the trial?</b><p>You choose a plan or the account is paused. Your data stays safe and accessible for 30 days, and subscribing within that time restores everything as it was.</p></div><div><b>Is there a mobile app?</b><p>Yes. iOS and Android apps for students and parents, alongside the full web app for directors and teachers. Classraum Study runs on all three.</p></div><div><b>What support do we get?</b><p>Email, live chat and phone during business hours, plus documentation and video tutorials. Higher plans include priority support.</p></div></div>
+    <div class="faq-foot"><b>Still have a question?</b><p>Write to support@classraum.com or call 010‑6830‑1764. A 30‑minute demo on your own classes is the quickest way to see the rest.</p></div>
+  </div>
+  <div class="rf"><span><b>CLASSRAUM</b> · Company &amp; Product Introduction</span><span>classraum.com</span></div>
+</section>
+<!--IBC--><section class="page"><div class="body"></div></section>
+</template>
+</main>
