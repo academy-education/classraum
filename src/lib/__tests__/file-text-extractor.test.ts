@@ -150,3 +150,69 @@ describe('extractFromPdf — module contract', () => {
     expect(typeof mod.default).not.toBe('function')
   })
 })
+
+/**
+ * DOCX and legacy HWP — the two remaining lazy imports in this file.
+ *
+ * Two of the four extraction paths here were found silently broken on
+ * 2026-09-10 and -11 (hwpx threw on the parser options, pdf threw because
+ * pdf-parse stopped exporting a callable default). Both had shipped for
+ * months. These cover the other two so the file stops being a place where
+ * that can happen unnoticed.
+ *
+ * A .docx is a zip of XML like .hwpx, so the fixture is built here too and
+ * runs through mammoth for real rather than through a mock.
+ */
+async function makeDocx(paragraphs: string[]): Promise<Buffer> {
+  const AdmZip = (await import('adm-zip')).default
+  const zip = new AdmZip()
+  zip.addFile('[Content_Types].xml', Buffer.from(
+    '<?xml version="1.0" encoding="UTF-8"?>' +
+    '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
+    '<Default Extension="xml" ContentType="application/xml"/>' +
+    '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
+    '</Types>', 'utf8'))
+  zip.addFile('_rels/.rels', Buffer.from(
+    '<?xml version="1.0" encoding="UTF-8"?>' +
+    '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+    '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>' +
+    '</Relationships>', 'utf8'))
+  zip.addFile('word/document.xml', Buffer.from(
+    '<?xml version="1.0" encoding="UTF-8"?>' +
+    '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>' +
+    paragraphs.map(t => `<w:p><w:r><w:t>${t}</w:t></w:r></w:p>`).join('') +
+    '</w:body></w:document>', 'utf8'))
+  return zip.toBuffer()
+}
+
+describe('extractTextFromFile — docx', () => {
+  it('extracts paragraphs from a real .docx', async () => {
+    const buf = await makeDocx(['첫째 줄', 'Second line'])
+    const { text, kind } = await extractTextFromFile(
+      buf, '과제.docx',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+    expect(kind).toBe('docx')
+    expect(text).toContain('첫째 줄')
+    expect(text).toContain('Second line')
+  })
+})
+
+describe('extractFromHwp — module contract', () => {
+  // Legacy .hwp is a binary CFB format; there is no readable way to build a
+  // fixture inline, and a committed binary would not say what it contains.
+  // So this asserts the shape the code depends on, which is the thing that
+  // rotted in the other two paths.
+  it('hwp.js still exports the parse function this file calls', async () => {
+    const mod = await import('hwp.js')
+    const parse = mod.parse ?? (mod as unknown as { default?: { parse?: unknown } }).default?.parse
+    expect(typeof parse).toBe('function')
+  })
+})
+
+describe('mammoth — module contract', () => {
+  it('still exports extractRawText', async () => {
+    const mammoth = await import('mammoth')
+    expect(typeof mammoth.extractRawText).toBe('function')
+  })
+})
