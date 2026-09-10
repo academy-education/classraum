@@ -84,7 +84,16 @@ describe('environment variables', () => {
    */
   const RUNTIME_PROVIDED = new Set([
     'NODE_ENV', 'VERCEL_ENV', 'VERCEL_URL', 'VERCEL_REGION', 'CI',
+    // Injected by Vercel from the git metadata of the deployment, read by
+    // /api/version so "which commit is running" is a curl. Documenting them
+    // in .env.example would suggest someone should set them by hand, which
+    // would produce an endpoint that confidently reports the wrong commit.
+    'VERCEL_GIT_COMMIT_SHA', 'VERCEL_GIT_COMMIT_REF',
     'npm_package_version', 'ANALYZE', 'PORT',
+    // Overrides you pass on a command line, not configuration you set once:
+    // `QC_PORT=55019 node scripts/qc/mobile-manager.mjs` when a stale dev
+    // server has taken 3000 and the preview moved elsewhere.
+    'QC_PORT',
     // Injected by Next.js and by GitHub Actions respectively — never
     // set by hand, so documenting them would be misleading.
     'NEXT_RUNTIME', 'GITHUB_REF_NAME', 'GITHUB_SHA',
