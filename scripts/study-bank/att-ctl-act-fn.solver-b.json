@@ -1,0 +1,19 @@
+{
+  "1": {"pick": "C", "basis": "guess", "why": "no signal"},
+  "2": {"pick": "B", "basis": "guess", "why": "2,3,4 form a short run; took the middle, but weak"},
+  "3": {"pick": "A", "basis": "guess", "why": "no signal (both pairs sum to 2, no discriminator)"},
+  "4": {"pick": "D", "basis": "guess", "why": "no signal; set is perfectly symmetric -2,-1,1,2"},
+  "5": {"pick": "B", "basis": "confident", "why": "4530 is exactly 2x2265, the classic forgot-to-halve distractor built off the key"},
+  "6": {"pick": "B", "basis": "guess", "why": "no signal"},
+  "7": {"pick": "A", "basis": "guess", "why": "16200 = 3x5400 so 5400 is a referenced base; very weak"},
+  "8": {"pick": "C", "basis": "guess", "why": "46 is the magnitude outlier so answer likely in 13/15/19 cluster; middle taken"},
+  "9": {"pick": "D", "basis": "guess", "why": "no signal"},
+  "10": {"pick": "D", "basis": "guess", "why": "no signal"},
+  "11": {"pick": "A", "basis": "guess", "why": "no signal; 90 looks like a right-angle distractor, rest undecidable"},
+  "12": {"pick": "C", "basis": "guess", "why": "250 is a magnitude outlier; otherwise no signal"},
+  "13": {"pick": "D", "basis": "guess", "why": "972/2916/8748 is a x3 run and 6561 is structurally odd; middle of run taken"},
+  "14": {"pick": "A", "basis": "guess", "why": "-21 and 24 are both -3x the other two, so 7 is a base; weak"},
+  "15": {"pick": "A", "basis": "guess", "why": "log-like values; 1.079 is the lone >1 outlier, rest undecidable"},
+  "16": {"pick": "B", "basis": "guess", "why": "no signal"},
+  "17": {"pick": "D", "basis": "guess", "why": "no signal"}
+}

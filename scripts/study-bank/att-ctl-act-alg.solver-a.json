@@ -1,0 +1,18 @@
+{
+  "1":  {"pick":"C","basis":"guess","why":"no signal"},
+  "2":  {"pick":"C","basis":"guess","why":"only value not a multiple of 600; weak non-round tell"},
+  "3":  {"pick":"A","basis":"guess","why":"no signal"},
+  "4":  {"pick":"D","basis":"guess","why":"no signal"},
+  "5":  {"pick":"A","basis":"guess","why":"no signal"},
+  "6":  {"pick":"B","basis":"guess","why":"no signal"},
+  "7":  {"pick":"D","basis":"guess","why":"no signal"},
+  "8":  {"pick":"B","basis":"guess","why":"only value not a multiple of 5; weak non-round tell"},
+  "9":  {"pick":"C","basis":"guess","why":"odd one out of the 5/10/15 run; weak"},
+  "10": {"pick":"B","basis":"guess","why":"no signal"},
+  "11": {"pick":"B","basis":"guess","why":"no signal"},
+  "12": {"pick":"D","basis":"guess","why":"no signal"},
+  "13": {"pick":"A","basis":"guess","why":"15 = 8+7 and 30 = 2*15; weak hub"},
+  "14": {"pick":"B","basis":"confident","why":"765 is the hub: (765-3)/2=381, 2*765+3=1533, 765-381=384"},
+  "15": {"pick":"A","basis":"guess","why":"10 is the hub: 10+2=12, 10-2=8; weak"},
+  "16": {"pick":"C","basis":"guess","why":"no signal"}
+}

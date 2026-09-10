@@ -1,0 +1,19 @@
+{
+  "1": {"pick": "C", "basis": "guess", "why": "no signal"},
+  "2": {"pick": "B", "basis": "guess", "why": "no signal"},
+  "3": {"pick": "A", "basis": "guess", "why": "two sign/offset pairs, no way to choose between them"},
+  "4": {"pick": "C", "basis": "guess", "why": "no signal - perfectly symmetric set"},
+  "5": {"pick": "B", "basis": "confident", "why": "2265 is the hub: 4530 is exactly 2x it, and it sits between 2205 and 2280"},
+  "6": {"pick": "B", "basis": "guess", "why": "no signal"},
+  "7": {"pick": "A", "basis": "guess", "why": "5400 is a weak hub (16200 = 3x), but 2400/12000 pair the same way"},
+  "8": {"pick": "C", "basis": "guess", "why": "46 is the odd magnitude; nothing separates 13/15/19"},
+  "9": {"pick": "C", "basis": "guess", "why": "no signal"},
+  "10": {"pick": "A", "basis": "guess", "why": "no signal"},
+  "11": {"pick": "C", "basis": "guess", "why": "no signal"},
+  "12": {"pick": "C", "basis": "guess", "why": "no signal"},
+  "13": {"pick": "D", "basis": "guess", "why": "972/2916/8748 are a x3 run; 2916 is its median, but 6561 could equally be the key"},
+  "14": {"pick": "A", "basis": "guess", "why": "no signal"},
+  "15": {"pick": "A", "basis": "guess", "why": "log-like values; 0.778 = 1.079 - log2, but not a clean hub"},
+  "16": {"pick": "B", "basis": "guess", "why": "no signal"},
+  "17": {"pick": "A", "basis": "guess", "why": "no signal"}
+}

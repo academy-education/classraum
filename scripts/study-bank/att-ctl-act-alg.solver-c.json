@@ -1,0 +1,18 @@
+{
+  "1":  {"pick": "C", "basis": "guess", "why": "no signal"},
+  "2":  {"pick": "C", "basis": "confident", "why": "only value that is not a round multiple of 100/hundreds-pattern; 16800/20400/18000 read as round distractors"},
+  "3":  {"pick": "A", "basis": "guess", "why": "no signal; two sign-pairs (+-4, +-1) leave nothing to discriminate"},
+  "4":  {"pick": "D", "basis": "guess", "why": "no signal; +-6 pair plus two unrelated integers"},
+  "5":  {"pick": "C", "basis": "guess", "why": "no signal"},
+  "6":  {"pick": "A", "basis": "guess", "why": "no signal; 15 and 8 are the product and sum of 5 and 3, but that does not name a key"},
+  "7":  {"pick": "C", "basis": "guess", "why": "no signal"},
+  "8":  {"pick": "B", "basis": "confident", "why": "only non-multiple of 5; 25/30/20 are a round arithmetic run"},
+  "9":  {"pick": "B", "basis": "guess", "why": "no signal; 5/10/15 run with 3 outside it, direction undetermined"},
+  "10": {"pick": "B", "basis": "guess", "why": "no signal"},
+  "11": {"pick": "B", "basis": "guess", "why": "no signal"},
+  "12": {"pick": "D", "basis": "guess", "why": "no signal; decimals appear twice so no lone-decimal tell"},
+  "13": {"pick": "A", "basis": "guess", "why": "no signal"},
+  "14": {"pick": "B", "basis": "guess", "why": "no signal; 381/765/1533 form a doubling chain, 384 sits outside it, chain median chosen arbitrarily"},
+  "15": {"pick": "A", "basis": "guess", "why": "no signal"},
+  "16": {"pick": "C", "basis": "guess", "why": "no signal"}
+}

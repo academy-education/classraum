@@ -1,0 +1,18 @@
+{
+  "1":  {"pick":"C","basis":"guess","why":"no signal"},
+  "2":  {"pick":"C","basis":"confident","why":"only non-round value; 16800/18000/20400 all read as round anchors, 17340 as the computed one"},
+  "3":  {"pick":"A","basis":"guess","why":"no signal; set is symmetric +/-4, +/-1"},
+  "4":  {"pick":"D","basis":"guess","why":"no signal"},
+  "5":  {"pick":"C","basis":"guess","why":"no signal; 25 and -11 both look like odd-ones-out, cancelling"},
+  "6":  {"pick":"A","basis":"guess","why":"no signal"},
+  "7":  {"pick":"B","basis":"guess","why":"no signal"},
+  "8":  {"pick":"B","basis":"guess","why":"only non-multiple of 5, but 20/25/30 run makes this ambiguous"},
+  "9":  {"pick":"C","basis":"guess","why":"no signal beyond 3 being the non-multiple of 5"},
+  "10": {"pick":"B","basis":"guess","why":"no signal"},
+  "11": {"pick":"B","basis":"guess","why":"no signal"},
+  "12": {"pick":"D","basis":"guess","why":"no signal"},
+  "13": {"pick":"A","basis":"guess","why":"15 is what the other three sit one operation from (8+7, 30/2), but weak"},
+  "14": {"pick":"A","basis":"guess","why":"381->765->1533 doubling chain; last term guessed, no real basis"},
+  "15": {"pick":"A","basis":"guess","why":"no signal"},
+  "16": {"pick":"C","basis":"guess","why":"no signal"}
+}

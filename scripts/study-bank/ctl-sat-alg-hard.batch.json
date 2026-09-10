@@ -1,0 +1,287 @@
+[
+ {
+  "id": "CTL-01",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "One solution of x^2 - 16x + k = 0 is three times the other, and k > 0. What is the value of k?",
+  "choices": [
+   "12",
+   "64",
+   "48",
+   "16"
+  ],
+  "correct_answer": "48",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-02",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The solutions of x² − 6x + 4 = 0 are r₁ and r₂. What is the value of r₁² + r₂²?",
+  "choices": [
+   "28",
+   "44",
+   "32",
+   "20"
+  ],
+  "correct_answer": "28",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-03",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The line y = 2x + c is tangent to the parabola y = x^2 - 4x + 10. What is the value of c?",
+  "choices": [
+   "-1",
+   "9",
+   "4",
+   "1"
+  ],
+  "correct_answer": "1",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-04",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The equation 2x^2 + (k + 2)x + 8 = 0 has exactly one real solution. What is the sum of all possible values of k?",
+  "choices": [
+   "-10",
+   "6",
+   "-4",
+   "12"
+  ],
+  "correct_answer": "-4",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-05",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "A nursery tests two seed lots, each with its own constant germination rate. In the first trial a flat of 360 Lot A seeds and 240 Lot B seeds produced 450 germinated seedlings. In the second trial a flat of 200 Lot A seeds and 400 Lot B seeds produced 410 germinated seedlings. The nursery now plants a flat of 800 seeds using only these two lots and wants at least 620 seedlings to germinate. Based on the trial rates, what is the least number of Lot A seeds the flat can contain?",
+  "choices": [
+   "140",
+   "240",
+   "480",
+   "560"
+  ],
+  "correct_answer": "560",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-06",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The equation x² + bx + 10 = 0 has two real solutions that differ by 3. If b > 0, what is the value of b?",
+  "choices": [
+   "3",
+   "13",
+   "-7",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-07",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The line y = x + 1 intersects the circle x^2 + y^2 = 25 at two points. What is the positive difference of the x-coordinates of these two points?",
+  "choices": [
+   "1",
+   "7",
+   "5",
+   "12"
+  ],
+  "correct_answer": "7",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-08",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "Priya rents a market stall with 18 square feet of table space and has $168 to spend stocking it. Each gift basket takes up 1.5 square feet of table space and costs $14 to assemble; each candle box takes up 0.5 square feet and costs $6 to assemble. Her contract with the market requires her to display at least 4 gift baskets. What is the greatest number of candle boxes Priya can stock?",
+  "choices": [
+   "28",
+   "24",
+   "19",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-09",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The function f(x) = 2x^2 + bx + 5 has a minimum value of -3, where b < 0. What is the value of b?",
+  "choices": [
+   "-3",
+   "5",
+   "-8",
+   "8"
+  ],
+  "correct_answer": "-8",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-10",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The quadratic equation x^2 - 20x + c = 0 has two roots whose ratio is 2 to 3. What is the value of c?",
+  "choices": [
+   "40",
+   "96",
+   "240",
+   "60"
+  ],
+  "correct_answer": "96",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-11",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "A bike-share dock is called balanced when the number of bikes b at the dock satisfies |b - 48| <= 9. At 6:00 a.m. the dock holds 105 bikes. Starting at 6:00 a.m. commuters take bikes from the dock at a constant rate of 36 bikes per hour while other riders return bikes to it at a constant rate of 12 bikes per hour. Treating the bike count as changing continuously, for how many minutes is the dock balanced?",
+  "choices": [
+   "45",
+   "30",
+   "120",
+   "165"
+  ],
+  "correct_answer": "45",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-12",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The system of equations 3x + ky = 7 and 12x + 20y = 9 has no solution. What is the value of k ?",
+  "choices": [
+   "80",
+   "15",
+   "5",
+   "-5"
+  ],
+  "correct_answer": "5",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-13",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "In the equation x² − 8x + k = 0, one solution is 3 times the other. What is the value of k?",
+  "choices": [
+   "16",
+   "12",
+   "8",
+   "48"
+  ],
+  "correct_answer": "12",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-14",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "A freight elevator's counterweight system operates safely only when the total load in the car is at least 400 kg, and the car is rated for a maximum total load of 1190 kg. A maintenance crew must ride with a tool cart that weighs 220 kg, and each crew member has an average mass of 70 kg. If n is the number of crew members in the car, how many integer values of n keep the total load within the safe operating range?",
+  "choices": [
+   "11",
+   "12",
+   "13",
+   "14"
+  ],
+  "correct_answer": "11",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-15",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "In a survey of stay cables, the tension T in a cable is measured in newtons. A cable passes the tension specification if |T - 3800| <= 260. Separately, a cable is flagged for retesting if its tension differs from the design tension of 4000 newtons by more than 4% of that design tension. The tensions that both pass the specification and are not flagged for retesting form a single interval. What is the width, in newtons, of that interval?",
+  "choices": [
+   "220",
+   "320",
+   "520",
+   "620"
+  ],
+  "correct_answer": "220",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-16",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The line y = 4x + c is tangent to the parabola y = x² + 2x + 7. What is the value of c?",
+  "choices": [
+   "6",
+   "1",
+   "-2",
+   "7"
+  ],
+  "correct_answer": "6",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-17",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "Three grade levels at a high school raised a combined $2,700 in a fundraiser. The juniors raised 3 times as much as the sophomores, and the seniors raised $100 less than the juniors and sophomores raised combined. How much money, in dollars, did the sophomores raise?",
+  "choices": [
+   "350",
+   "325",
+   "1050",
+   "900"
+  ],
+  "correct_answer": "350",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-18",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The equation 2x^2 - 12x + k = 0 has roots r and s. If r^2 + s^2 = 22, what is the value of k?",
+  "choices": [
+   "14",
+   "7",
+   "18",
+   "61"
+  ],
+  "correct_answer": "14",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-19",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The line y = 3x + c is tangent to the parabola y = x^2 + 5x + 7 in the xy-plane. What is the value of c?",
+  "choices": [
+   "8",
+   "6",
+   "0.75",
+   "-6"
+  ],
+  "correct_answer": "6",
+  "explanation": "",
+  "solve": "return null;"
+ }
+]

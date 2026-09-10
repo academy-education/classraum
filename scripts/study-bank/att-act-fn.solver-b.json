@@ -1,0 +1,21 @@
+{
+  "1":  {"pick":"A","basis":"guess","why":"no signal; 24/-24 sign pair plus 0 and -6, nothing separates"},
+  "2":  {"pick":"C","basis":"guess","why":"no signal; 24 is the magnitude outlier but that does not name a key"},
+  "3":  {"pick":"D","basis":"confident","why":"4/7/10 arithmetic run d=3 with -1 as the odd value; key sits at the run's centre"},
+  "4":  {"pick":"C","basis":"confident","why":"5/15/25 run d=10 plus outlier 16; centre of the run"},
+  "5":  {"pick":"C","basis":"confident","why":"6/10/14 run d=4 plus outlier 24; centre of the run"},
+  "6":  {"pick":"A","basis":"confident","why":"4/5/6 run d=1 plus outlier 9; centre of the run"},
+  "7":  {"pick":"C","basis":"guess","why":"no signal; four consecutive integers, no centre and no outlier"},
+  "8":  {"pick":"C","basis":"confident","why":"75/80/85 run d=5 plus outlier 15; centre of the run"},
+  "9":  {"pick":"B","basis":"guess","why":"no signal; 6/18/36/108 all multiplicatively linked, no unique hub"},
+  "10": {"pick":"D","basis":"guess","why":"no signal; +/-6 pair with 10 and 50 unrelated"},
+  "11": {"pick":"A","basis":"guess","why":"no signal; 0/0.5/1.5/2 with the gap at 1, decimals not unique"},
+  "12": {"pick":"A","basis":"guess","why":"no signal; 60 is small but three large values are unrelated"},
+  "13": {"pick":"B","basis":"guess","why":"no signal; 121/11 and 116/16 are two rival pairings"},
+  "14": {"pick":"C","basis":"confident","why":"36/48/60 run d=12 plus outlier 27; centre of the run"},
+  "15": {"pick":"C","basis":"guess","why":"no signal; +/-12 pair with 0 and -9"},
+  "16": {"pick":"A","basis":"guess","why":"no signal; +/-1 pair with -15 and -36"},
+  "17": {"pick":"C","basis":"guess","why":"no signal; 752/1152 differ by 400 but 24 and -400 give no ranking"},
+  "18": {"pick":"A","basis":"guess","why":"no signal; two squares (9, 16) and two non-squares"},
+  "19": {"pick":"B","basis":"guess","why":"no signal; 6/8/10/12 is a full run with two joint centres"}
+}

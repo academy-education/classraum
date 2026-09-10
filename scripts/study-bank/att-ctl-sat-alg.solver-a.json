@@ -1,0 +1,21 @@
+{
+  "1":  {"pick":"D","basis":"guess","why":"no signal - all multiples of 4, no outlier"},
+  "2":  {"pick":"D","basis":"guess","why":"no signal - squares and a lone negative both present, no direction"},
+  "3":  {"pick":"A","basis":"guess","why":"no signal"},
+  "4":  {"pick":"C","basis":"guess","why":"48 is the magnitude outlier so I picked inside the 8/12/16 cluster; no real reason for which"},
+  "5":  {"pick":"C","basis":"guess","why":"no signal - consecutive run 11-14, no unique member"},
+  "6":  {"pick":"B","basis":"guess","why":"0.75 is the only non-integer, but that cuts both ways; effectively a guess"},
+  "7":  {"pick":"B","basis":"guess","why":"no signal - two sign pairs"},
+  "8":  {"pick":"D","basis":"guess","why":"no signal - 7/-7 pair plus two others"},
+  "9":  {"pick":"C","basis":"guess","why":"no signal - even arithmetic run 220-620, no median"},
+  "10": {"pick":"B","basis":"guess","why":"no signal"},
+  "11": {"pick":"B","basis":"guess","why":"80 is the magnitude outlier; picked inside the cluster, otherwise no signal"},
+  "12": {"pick":"C","basis":"guess","why":"no signal"},
+  "13": {"pick":"A","basis":"guess","why":"no signal"},
+  "14": {"pick":"B","basis":"guess","why":"no signal"},
+  "15": {"pick":"A","basis":"guess","why":"no signal"},
+  "16": {"pick":"D","basis":"guess","why":"61 is the outlier; picked inside the cluster, otherwise no signal"},
+  "17": {"pick":"B","basis":"guess","why":"no signal - two x4 pairs, symmetric"},
+  "18": {"pick":"A","basis":"guess","why":"no signal - 325 is the only non-multiple of 50 but no direction"},
+  "19": {"pick":"C","basis":"guess","why":"no signal"}
+}

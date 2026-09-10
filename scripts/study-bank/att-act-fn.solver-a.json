@@ -1,0 +1,21 @@
+{
+  "1":  {"pick":"A","basis":"guess","why":"no signal; 24/-24 sign pair, 0 and -6 unrelated"},
+  "2":  {"pick":"A","basis":"guess","why":"no signal"},
+  "3":  {"pick":"D","basis":"confident","why":"4/7/10 arithmetic run with -1 off-run; median of the run"},
+  "4":  {"pick":"C","basis":"guess","why":"no signal; two squares (16,25) and two multiples of 5"},
+  "5":  {"pick":"C","basis":"confident","why":"6/10/14 run d=4 with 24 off-run; median of the run"},
+  "6":  {"pick":"A","basis":"confident","why":"4/5/6 run with 9 off-run; median of the run"},
+  "7":  {"pick":"C","basis":"guess","why":"no signal; 21-24 is a complete consecutive run"},
+  "8":  {"pick":"C","basis":"confident","why":"75/80/85 run d=5 with 15 off-run; median of the run"},
+  "9":  {"pick":"D","basis":"confident","why":"36 is one operation from each other value (6x6, 18x2, 108/3)"},
+  "10": {"pick":"D","basis":"guess","why":"no signal; 6/-6 pair, positive taken arbitrarily"},
+  "11": {"pick":"A","basis":"guess","why":"no signal"},
+  "12": {"pick":"A","basis":"guess","why":"no signal; 60 is the magnitude outlier but that cuts either way"},
+  "13": {"pick":"B","basis":"guess","why":"121 sits between 11 (square of) and 116 (+5), but weak"},
+  "14": {"pick":"C","basis":"confident","why":"36/48/60 run d=12 with 27 off-run; median of the run"},
+  "15": {"pick":"C","basis":"guess","why":"no signal; 12/-12 pair"},
+  "16": {"pick":"A","basis":"guess","why":"no signal; 1/-1 pair, sign matched to majority"},
+  "17": {"pick":"C","basis":"guess","why":"no signal"},
+  "18": {"pick":"B","basis":"guess","why":"no signal"},
+  "19": {"pick":"B","basis":"guess","why":"no signal; 6/8/10/12 is a complete run"}
+}

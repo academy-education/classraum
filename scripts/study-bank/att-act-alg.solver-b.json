@@ -1,0 +1,18 @@
+{
+  "1":  {"pick":"B","basis":"guess","why":"no signal"},
+  "2":  {"pick":"A","basis":"guess","why":"3 recurs across three options; no way to choose among them"},
+  "3":  {"pick":"A","basis":"guess","why":"34 is the only non-repdigit, but that cuts either way"},
+  "4":  {"pick":"D","basis":"guess","why":"6 is roughly central to 1.2/3.6/18 but nothing decides it"},
+  "5":  {"pick":"A","basis":"guess","why":"no signal"},
+  "6":  {"pick":"A","basis":"guess","why":"7 = 5+2 and 12-5, weak one-operation-away hint"},
+  "7":  {"pick":"C","basis":"guess","why":"median of the 10/20/30 run; 5 sits outside it"},
+  "8":  {"pick":"C","basis":"guess","why":"360 is the multiple the others scale from, but all are 120-multiples"},
+  "9":  {"pick":"A","basis":"confident","why":"3.75 and 33.75 are 11.25/3 and 11.25*3; 20.00 is the lone unrelated round value"},
+  "10": {"pick":"C","basis":"guess","why":"no signal"},
+  "11": {"pick":"A","basis":"confident","why":"x^2-3 is off-shape and x-9 is a sign/constant slip; x-3 is the canonical (x^2-9)/(x+3) result"},
+  "12": {"pick":"A","basis":"guess","why":"4.5 is the only non-integer; direction unknown"},
+  "13": {"pick":"A","basis":"guess","why":"3/2 and -3/2 form the sign pair; picked the positive arbitrarily"},
+  "14": {"pick":"A","basis":"guess","why":"3/-3 sign pair; no basis to choose the sign"},
+  "15": {"pick":"B","basis":"guess","why":"no signal"},
+  "16": {"pick":"B","basis":"guess","why":"median of the consecutive run 11/12/13"}
+}

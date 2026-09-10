@@ -1,0 +1,18 @@
+{
+  "1":  {"pick": "C", "basis": "guess", "why": "no signal"},
+  "2":  {"pick": "A", "basis": "guess", "why": "3/-3 sign pair, no way to choose a side"},
+  "3":  {"pick": "A", "basis": "guess", "why": "34 is the only non-repdigit, but that cuts either way"},
+  "4":  {"pick": "D", "basis": "guess", "why": "6 sits closest to a hub of the others, weak"},
+  "5":  {"pick": "A", "basis": "guess", "why": "7/14 doubling pair, no signal"},
+  "6":  {"pick": "A", "basis": "guess", "why": "12 and 2 are 7+-5, so 7 is hub-ish; weak"},
+  "7":  {"pick": "D", "basis": "guess", "why": "10 is one operation from 5, 20, 30; weak"},
+  "8":  {"pick": "C", "basis": "guess", "why": "no signal"},
+  "9":  {"pick": "A", "basis": "guess", "why": "11.25 is median of the 3.75/11.25/33.75 run; 20.00 formatted oddly"},
+  "10": {"pick": "C", "basis": "guess", "why": "no signal"},
+  "11": {"pick": "A", "basis": "confident", "why": "x-3 with x+3 and x-9 is the classic (x^2-9)/(x+3) distractor family; x^2-3 is degree noise"},
+  "12": {"pick": "D", "basis": "guess", "why": "no signal"},
+  "13": {"pick": "A", "basis": "guess", "why": "3/2 vs -3/2 sign pair, no way to choose"},
+  "14": {"pick": "A", "basis": "guess", "why": "3/-3 sign pair, no signal"},
+  "15": {"pick": "B", "basis": "guess", "why": "no signal"},
+  "16": {"pick": "B", "basis": "guess", "why": "11/12/13 consecutive run, 17 outlier; median guess"}
+}

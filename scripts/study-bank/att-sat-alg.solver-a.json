@@ -1,0 +1,21 @@
+{
+  "1": {"pick": "A", "basis": "guess", "why": "28 is the only value the other three sit one operation from (14x2, 4x7, 2x14) - weak hub hunch"},
+  "2": {"pick": "D", "basis": "confident", "why": "9/11/13 is an arithmetic run and -2 is a lone negative outlier; 11 is the run's median"},
+  "3": {"pick": "B", "basis": "confident", "why": "6 appears both as the sign-pair member (6/-6) and in the 2,6,18 x3 run - the shared hub"},
+  "4": {"pick": "B", "basis": "guess", "why": "only non-integer in the set; 1 and +/-4 read as sign/arith slips"},
+  "5": {"pick": "C", "basis": "guess", "why": "10/15/20 run of 5 with 16 as the outlier; median 15 - but the outlier could equally be the key"},
+  "6": {"pick": "A", "basis": "guess", "why": "5,10,20 doubling chain with 3 as the outlier; 10 is the middle term"},
+  "7": {"pick": "C", "basis": "confident", "why": "100/105/110 arithmetic run, 404 is a different magnitude entirely; median 105"},
+  "8": {"pick": "B", "basis": "confident", "why": "2/4/6 run with -2 as lone negative; median 4"},
+  "9": {"pick": "C", "basis": "guess", "why": "no signal"},
+  "10": {"pick": "B", "basis": "guess", "why": "no signal"},
+  "11": {"pick": "C", "basis": "guess", "why": "44 = 24+20 and 40 = 2x20, so 44 is the one the others compose into"},
+  "12": {"pick": "C", "basis": "confident", "why": "16/20/24 run of 4, -21 is the only negative and only odd; median 20"},
+  "13": {"pick": "B", "basis": "guess", "why": "37 = 14+23 and 28 = 2x14, so 37 sits one operation from the rest"},
+  "14": {"pick": "B", "basis": "confident", "why": "-24 is the sign-pair member (24/-24) and -72 = 3x(-24); it is the hub"},
+  "15": {"pick": "D", "basis": "guess", "why": "no signal - 1,2,3,4 is a complete small-integer set"},
+  "16": {"pick": "C", "basis": "confident", "why": "5 is the sign-pair member (5/-5) and 20 = 4x5; the others derive from it"},
+  "17": {"pick": "A", "basis": "guess", "why": "12 is the mid-magnitude value the others hang off (8+4, -4, 30 odd)"},
+  "18": {"pick": "B", "basis": "confident", "why": "42/48/54 arithmetic run of 6 with 30 as the outlier; median 48"},
+  "19": {"pick": "C", "basis": "guess", "why": "19,33,61,117 chain by x2-5; no way to tell which link is the key"}
+}

@@ -1,0 +1,21 @@
+{
+  "1":  {"pick":"C","basis":"guess","why":"14 sits between 28 and 2 by doubling/halving; very weak"},
+  "2":  {"pick":"D","basis":"guess","why":"no signal; -2 looks like the odd distractor, 11 chosen among the odd run"},
+  "3":  {"pick":"B","basis":"confident","why":"6 is the hub: -6 is its negation, 18 = 6x3, 2 = 6/3 - the other three are each one operation off it"},
+  "4":  {"pick":"B","basis":"guess","why":"lone decimal among integers; direction of that tell is unknown"},
+  "5":  {"pick":"C","basis":"guess","why":"10/15/20 arithmetic run with 16 off it; picked the run's median"},
+  "6":  {"pick":"A","basis":"guess","why":"10 relates to both 5 and 20 by doubling; weak"},
+  "7":  {"pick":"C","basis":"guess","why":"100/105/110 run, 404 is a different magnitude; picked the run's median"},
+  "8":  {"pick":"B","basis":"guess","why":"2/4/6 run with lone negative -2; picked the middle"},
+  "9":  {"pick":"D","basis":"guess","why":"lone decimal; no real signal"},
+  "10": {"pick":"C","basis":"guess","why":"no signal; picked an interior value of the spread"},
+  "11": {"pick":"A","basis":"guess","why":"44 = 24+20 reads as a sum distractor; picked 24 arbitrarily of the rest"},
+  "12": {"pick":"C","basis":"guess","why":"16/20/24 even run with -21 off it; picked the median"},
+  "13": {"pick":"C","basis":"guess","why":"28 = 2x14 and 37 = 14+23 look derived; weak"},
+  "14": {"pick":"B","basis":"guess","why":"-24 pairs with 24 and thirds into -72, but -32 does not fit the hub"},
+  "15": {"pick":"D","basis":"guess","why":"no signal - options are just 1,2,3,4"},
+  "16": {"pick":"C","basis":"guess","why":"5 negates to -5 and quadruples to 20; weak hub"},
+  "17": {"pick":"A","basis":"guess","why":"no signal; 30 and -4 look like outliers"},
+  "18": {"pick":"B","basis":"guess","why":"42/48/54 step-6 run with 30 off it; picked the median"},
+  "19": {"pick":"C","basis":"guess","why":"no signal"}
+}

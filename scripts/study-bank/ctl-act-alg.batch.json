@@ -1,0 +1,242 @@
+[
+ {
+  "id": "CTL-01",
+  "domain": "Algebra",
+  "difficulty": "easy",
+  "prompt": "What value of x satisfies the equation 3(2x - 5) = 4x + 7?",
+  "choices": [
+   "-4",
+   "4",
+   "11",
+   "22"
+  ],
+  "correct_answer": "11",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-02",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "What is the minimum value of y = 2x² − 12x + 7?",
+  "choices": [
+   "-11",
+   "25",
+   "7",
+   "3"
+  ],
+  "correct_answer": "-11",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "What value of x satisfies 4^(x + 1) = 8^(x − 2)?",
+  "choices": [
+   "-4",
+   "4",
+   "1",
+   "8"
+  ],
+  "correct_answer": "8",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-04",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all real solutions of √(2x + 5) = x − 5?",
+  "choices": [
+   "8",
+   "12",
+   "10",
+   "2"
+  ],
+  "correct_answer": "10",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "A ball is thrown upward from the top of a building. Its height above the ground, in feet, t seconds after it is thrown is given by h(t) = -16t² + 64t + 80. After how many seconds does the ball hit the ground?",
+  "choices": [
+   "-1",
+   "2",
+   "4",
+   "5"
+  ],
+  "correct_answer": "5",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-06",
+  "domain": "Algebra",
+  "difficulty": "easy",
+  "prompt": "In the standard (x, y) coordinate plane, a line passes through the points (2, 7) and (-4, -5). What is the y-coordinate of the point where this line crosses the y-axis?",
+  "choices": [
+   "-3",
+   "3",
+   "6",
+   "11"
+  ],
+  "correct_answer": "3",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-07",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "What is the sum of the first 8 terms of the geometric sequence 3, 6, 12, 24, … ?",
+  "choices": [
+   "1533",
+   "765",
+   "381",
+   "384"
+  ],
+  "correct_answer": "765",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-08",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "A theater sold 50 tickets for a total of $450. Adult tickets cost $12 each and child tickets cost $7 each. How many child tickets were sold?",
+  "choices": [
+   "20",
+   "25",
+   "30",
+   "37"
+  ],
+  "correct_answer": "30",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "How many integers x satisfy the inequality |x - 3| ≤ 5?",
+  "choices": [
+   "5",
+   "8",
+   "10",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-10",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "For what value of p does the system 2x + 5y = 7 and 6x + py = 21 have infinitely many solutions?",
+  "choices": [
+   "3",
+   "10",
+   "15",
+   "5"
+  ],
+  "correct_answer": "15",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-11",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "For what value of k is (x - 2) a factor of the polynomial x³ + kx² - 5x + 6?",
+  "choices": [
+   "-4",
+   "-1",
+   "1",
+   "4"
+  ],
+  "correct_answer": "-1",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-12",
+  "domain": "Algebra",
+  "difficulty": "easy",
+  "prompt": "What is the greatest integer x that satisfies the inequality 4x - 7 ≤ 2x + 8?",
+  "choices": [
+   "7",
+   "8",
+   "15",
+   "30"
+  ],
+  "correct_answer": "7",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-13",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "If 3x + 2y = 19 and 4x - 2y = 2, what is the value of the product xy?",
+  "choices": [
+   "3",
+   "5",
+   "8",
+   "15"
+  ],
+  "correct_answer": "15",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-14",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "What is the product of the two solutions of 2x² − 7x + 3 = 0?",
+  "choices": [
+   "6",
+   "3",
+   "1.5",
+   "3.5"
+  ],
+  "correct_answer": "1.5",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-15",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "A car purchased for $24,000 loses 15% of its value each year. To the nearest dollar, what is the value of the car 2 years after purchase?",
+  "choices": [
+   "16800",
+   "17340",
+   "18000",
+   "20400"
+  ],
+  "correct_answer": "17340",
+  "explanation": "",
+  "solve": "return null;"
+ },
+ {
+  "id": "CTL-16",
+  "domain": "Algebra",
+  "difficulty": "easy",
+  "prompt": "What is the least integer value of x that satisfies 5 − 3x < −13?",
+  "choices": [
+   "7",
+   "3",
+   "-6",
+   "6"
+  ],
+  "correct_answer": "7",
+  "explanation": "",
+  "solve": "return null;"
+ }
+]
