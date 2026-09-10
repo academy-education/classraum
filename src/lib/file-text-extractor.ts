@@ -55,14 +55,29 @@ export async function extractTextFromFile(
 }
 
 async function extractFromPdf(buffer: Buffer): Promise<string> {
-  // Lazy import keeps the heavy dependency out of the cold-start path for
-  // routes that don't use it, and avoids pdf-parse's known module-load issues.
-  const pdfParseModule = await import('pdf-parse') as unknown as {
-    default?: (b: Buffer) => Promise<{ text: string }>
+  // pdf-parse 2.x exports a PDFParse CLASS. It used to export a callable
+  // default, and this function still asked for one:
+  //
+  //     const pdfParse = module.default ?? (module as unknown as (b) => ...)
+  //     await pdfParse(buffer)          // TypeError: pdfParse is not a function
+  //
+  // In 2.4.5 `default` is undefined and the namespace is not callable, so
+  // every PDF upload threw. The double cast is what let it compile — it
+  // asserted a shape the package had already stopped having, so the compiler
+  // had nothing left to check. No cast here now: if the API moves again,
+  // this stops building instead of failing at runtime.
+  //
+  // Lazy import still, to keep the heavy dependency off the cold-start path
+  // of routes that never touch it.
+  const { PDFParse } = await import('pdf-parse')
+  const parser = new PDFParse({ data: buffer })
+  try {
+    const result = await parser.getText()
+    return cleanupExtractedText(result.text)
+  } finally {
+    // Releases the worker; without it the lambda can hold the document open.
+    await parser.destroy()
   }
-  const pdfParse = (pdfParseModule.default ?? (pdfParseModule as unknown as (b: Buffer) => Promise<{ text: string }>))
-  const result = await pdfParse(buffer)
-  return cleanupExtractedText(result.text)
 }
 
 async function extractFromDocx(buffer: Buffer): Promise<string> {

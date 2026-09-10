@@ -116,3 +116,37 @@ describe('extractTextFromFile — hwpx', () => {
     expect(text).toBe('')
   })
 })
+
+/**
+ * PDF — a CONTRACT test, not a parse test.
+ *
+ * This path was broken exactly like the hwpx one: pdf-parse 2.x exports a
+ * `PDFParse` class, the code asked for a callable default and cast until it
+ * compiled, and every upload threw "pdfParse is not a function".
+ *
+ * Actually parsing a PDF here is not possible: pdfjs-dist loads its worker
+ * through a dynamic import that jest's CJS VM refuses without
+ * --experimental-vm-modules, and turning that on globally to test one
+ * function is a bad trade. So this asserts the thing that actually broke —
+ * the shape of the module we import — which is cheap, runs anywhere, and
+ * fails the moment the package changes its exports again.
+ *
+ * End-to-end PDF extraction is covered by uploading a real PDF to
+ * /api/assignments/extract-text.
+ */
+describe('extractFromPdf — module contract', () => {
+  it('pdf-parse still exports the PDFParse class this file calls', async () => {
+    const mod = await import('pdf-parse')
+    expect(typeof mod.PDFParse).toBe('function')
+    expect(typeof mod.PDFParse.prototype.getText).toBe('function')
+    expect(typeof mod.PDFParse.prototype.destroy).toBe('function')
+  })
+
+  it('does NOT export a callable default — the shape this file used to assume', async () => {
+    // Kept as a live assertion rather than a comment: if pdf-parse ever
+    // restores a callable default, this fails and someone re-reads the code
+    // above instead of discovering it through a broken upload.
+    const mod: Record<string, unknown> = await import('pdf-parse')
+    expect(typeof mod.default).not.toBe('function')
+  })
+})
