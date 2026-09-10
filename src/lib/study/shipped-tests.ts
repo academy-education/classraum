@@ -24,10 +24,24 @@ export const SHIPPED_TEST_SLUGS: ReadonlySet<string> = new Set([
   // SSAT and ISEE, re-measured with verify-admission-forms.mjs on
   // 2026-09-12. Every delivered section fills, with these margins:
   //
-  //     SSAT reading  138 drawable / 40 needed   (31 passages, 6/passage)
   //     SSAT verbal   180 / 60      SSAT math   153 / 50
-  //     ISEE reading  117 / 36      (29 passages, 6/passage)
   //     ISEE verbal   128 / 40      ISEE math   283 / 84
+  //
+  //     SSAT reading  1.86 forms    ISEE reading  1.83 forms
+  //
+  // READING IS COUNTED IN WHOLE PASSAGES, NOT ITEMS, and getting that
+  // wrong is a mistake this comment has now made twice in one day. The
+  // first version quoted a retired 3-item cap. The replacement quoted
+  // verify-admission-forms.mjs, which sums min(cap, groupSize) over all
+  // groups and so counts a 2-item passage as 2 drawable items -- giving
+  // 138/40 = 3.45 forms. But `drawByPassage` fills SIX questions from
+  // one passage and sorts groups that can supply a full six ahead of
+  // everything else, so a short group is fallback, not stock. Measured
+  // by whole groups: SSAT holds 13 full-six passages of 31 (sizes
+  // 1x4, 2x2, 3x3, 4x2, 5x7, 6x13) against 7 needed per form = 1.86;
+  // ISEE holds 11 of 29 against 6 needed = 1.83. Roughly HALF the
+  // item-count figure, and `admission-tests.ts` asserts "every passage
+  // group holds exactly 6 items", which the live bank does not.
   //
   // THE READING NUMBERS ABOVE REPLACE A STALE AND MISLEADING PAIR. This
   // block used to say reading counts were "AFTER the 3-items-per-passage
