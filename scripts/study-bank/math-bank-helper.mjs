@@ -134,6 +134,57 @@ function sandbox(item) {
   }
 }
 
+/**
+ * Recompute each DISTRACTOR from its own stated derivation.
+ *
+ * `distractor_solve` is an optional map from a distractor's exact option
+ * string to a JS function body that must produce it — the same contract as
+ * `solve`, applied to the wrong answers.
+ *
+ * WHY THIS EXISTS. On 2026-09-11 an ACT Functions item shipped a
+ * "grew instead of shrank" distractor of 31484 when 18000 x 1.15^4 rounds to
+ * 31482. Sandbox green, both hub lines green, key correct: nothing in this
+ * pipeline recomputes a distractor, so a distractor whose stated derivation
+ * does not produce it is invisible to every script here. It was caught by an
+ * author recomputing all fourteen named paths by hand.
+ *
+ * A CHEAPER PROXY WAS BUILT FIRST AND REFUSED, and the negative is recorded
+ * so nobody builds it again: "every distractor's value must appear in its own
+ * explanation" is mechanical, needs no new field, and measured 55.7% across
+ * 4,017 numeric distractors in the repo with a clean bimodal split. It also
+ * would NOT have caught this bug. The explanations quote the option's own
+ * value verbatim — 'The option "31482" comes from a solver who grows the
+ * value' — so a wrong distractor and its explanation agree with each other
+ * and disagree only with the arithmetic. The proxy tests transcription, not
+ * derivation. Same lesson as the five structural proxies in CLAUDE.md: each
+ * caught its own tell and none caught the next.
+ *
+ * Absent on an item, this reports NO-DSOLVE and does not fail — it is being
+ * introduced against a bank of existing batches that predate it. Present and
+ * wrong is a hard failure.
+ */
+function sandboxDistractors(item) {
+  const map = item.distractor_solve
+  if (!map || typeof map !== 'object') return null
+  const wrong = []
+  const keyStr = String(item.correct_answer).trim()
+  for (const [option, body] of Object.entries(map)) {
+    if (String(option).trim() === keyStr) {
+      wrong.push(`${option}: is the KEY, not a distractor`); continue
+    }
+    if (!item.choices.map(c => String(c).trim()).includes(String(option).trim())) {
+      wrong.push(`${option}: not one of this item's choices`); continue
+    }
+    let out
+    try { out = String(new Function('"use strict";' + body)()) }
+    catch (e) { wrong.push(`${option}: ERROR ${String(e).slice(0, 60)}`); continue }
+    if (!answersMatch(out, option)) wrong.push(`${option}: computes ${out}`)
+  }
+  const covered = Object.keys(map).length
+  const expected = item.choices.length - 1
+  return { wrong, covered, expected }
+}
+
 // SAT items carry 4 options; SSAT and ISEE items carry 5. This was pinned at
 // exactly 4 until 2026-09-01, which meant `verify` reported SHAPE on every
 // 5-option batch and printed "0/48 recompute to their key" — the sandbox never
@@ -201,13 +252,32 @@ async function main() {
 
   if (cmd === 'verify') {
     let pass = 0
+    const noDsolve = [], dPartial = []
+    let dCovered = 0, dExpected = 0, dBad = 0
     for (const raw of batch) {
       if (!shapeOk(raw)) { console.log(`SHAPE  id${raw.id} — need 4 or 5 distinct choices incl. key + a solve string`); continue }
       const r = sandbox(raw)
       if (r.ok) { pass++; console.log(`OK     id${raw.id} [${raw.domain}] key=${raw.correct_answer}  ✓computed ${r.computed}`) }
       else console.log(`FAIL   id${raw.id} [${raw.domain}] key=${raw.correct_answer}  ✗computed ${r.computed}`)
+      const d = sandboxDistractors(raw)
+      if (d === null) noDsolve.push(raw.id)
+      else {
+        dCovered += d.covered; dExpected += d.expected
+        if (d.wrong.length) { dBad++; console.log(`  DISTRACTOR id${raw.id}: ${d.wrong.join('; ')}`) }
+        if (d.covered < d.expected) dPartial.push(`${raw.id} (${d.covered}/${d.expected})`)
+      }
     }
     console.log(`\nSandbox: ${pass}/${batch.length} recompute to their key.`)
+    // Read the denominator, not the verdict. "0 bad" over zero recomputed
+    // distractors is the absence of a measurement.
+    if (noDsolve.length === batch.length) {
+      console.log(`Distractors: NOT CHECKED — no item carries distractor_solve (0 of ${batch.length}).`)
+    } else {
+      console.log(`Distractors: ${dCovered} of ${dExpected} recomputed across ${batch.length - noDsolve.length} item(s); ${dBad} item(s) with a mismatch.`)
+      if (noDsolve.length) console.log(`  no distractor_solve on ${noDsolve.length}: ${noDsolve.join(', ')}`)
+      if (dPartial.length) console.log(`  partial coverage: ${dPartial.join(', ')}`)
+      if (dBad) { console.log(`  A distractor that does not compute to its stated derivation is a wrong number on screen.`) }
+    }
     // The sandbox proves the key is RIGHT. It says nothing about whether the
     // key is GUESSABLE from the options with the stem covered — a separate
     // defect that held a 24-item Advanced Math batch on 2026-09-04 while all

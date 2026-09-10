@@ -25,6 +25,7 @@ R&W plus `graphic` (optional) in the shapes the runner renders:
 
 Brief essentials:
 - Numeric answers must be exactly computable; the sandbox recomputes them.
+- **Every distractor needs a `distractor_solve` entry**: a map from the exact option string to a JS body that produces it, same contract as `solve`. `verify` runs them. Nothing recomputed a distractor until 2026-09-11, when an ACT item shipped 31484 where the stated "grew instead of shrank" path gives 31482 — sandbox green, both hub lines green, key correct, and the explanation quoted the wrong number back at itself. Rounding is part of the derivation: if the option is `9`, the body must round, not return 9.1125.
 - Distractors bracket the key with named errors (sign slip, wrong formula, unit) - the bank is middle-heavy by design, which is why choices are shuffled at draw.
 - Figure items must NEED the figure. The figure-blind attack found 80.6% of maths figures decorative (`FIGURE-BLIND-RESULT.md`); cover the graphic and try the item.
 - Do not repeat the derivational hub: options must not be a chain of `a, 2a, a+1, a-1`, nor a set of expressions where the key is the unique one every distractor is one token-edit from. Derive each distractor from a DIFFERENT wrong path; two distractors being one edit from each other is fine.
