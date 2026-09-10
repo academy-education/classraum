@@ -1,0 +1,842 @@
+[
+  {
+    "id": "ADV5-01",
+    "domain": "Advanced Math",
+    "subskill": "completing the square: the constant term",
+    "difficulty": "medium",
+    "prompt": "The expression x² − 14x + 40 can be written in the form (x − h)² + k, where h and k are constants. What is the value of k?",
+    "choices": [
+      "-49",
+      "9",
+      "-9",
+      "40"
+    ],
+    "correct_answer": "-9",
+    "explanation": "Half of the coefficient of x is −7, so (x − 7)² = x² − 14x + 49. To keep the expression equal to x² − 14x + 40 the 49 must be removed and the 40 restored: x² − 14x + 40 = (x − 7)² − 49 + 40 = (x − 7)² − 9. So h = 7 and k = −9.",
+    "distractor_steps": [
+      {
+        "choice": "-49",
+        "mis_step": "Subtracts the completing constant but never adds the original constant back, reporting −(14/2)² and losing the 40 entirely."
+      },
+      {
+        "choice": "9",
+        "mis_step": "Reverses the subtraction, computing h² − c instead of c − h², which flips the sign of the correct constant."
+      },
+      {
+        "choice": "40",
+        "mis_step": "Assumes (x − h)² reproduces x² − 14x exactly, so the constant term is carried across unchanged."
+      }
+    ],
+    "solve": "const h = 14/2; return 40 - h*h;",
+    "distractor_solve": {
+      "9": "const h = 14/2; return h*h - 40;",
+      "40": "return 40;",
+      "-49": "const h = 14/2; return -(h*h);"
+    }
+  },
+  {
+    "id": "ADV5-02",
+    "domain": "Advanced Math",
+    "subskill": "the remainder theorem at a negative input",
+    "difficulty": "medium",
+    "prompt": "What is the remainder when the polynomial p(x) = x³ − 4x² + x + 9 is divided by x + 2?",
+    "choices": [
+      "13",
+      "-17",
+      "15",
+      "-26"
+    ],
+    "correct_answer": "-17",
+    "explanation": "By the remainder theorem the remainder on division by x + 2 is p(−2), because x + 2 = x − (−2). p(−2) = −8 − 16 − 2 + 9 = −17.",
+    "distractor_steps": [
+      {
+        "choice": "13",
+        "mis_step": "Carries out the synthetic division correctly but reports the last coefficient of the quotient rather than the final entry, the remainder."
+      },
+      {
+        "choice": "15",
+        "mis_step": "Evaluates the −4x² term as though it were +4x², so the squared term enters the substitution with the wrong sign."
+      },
+      {
+        "choice": "-26",
+        "mis_step": "Evaluates the variable terms at −2 but drops the constant term of the polynomial."
+      }
+    ],
+    "solve": "const p = x => x**3 - 4*x*x + x + 9; return p(-2);",
+    "distractor_solve": {
+      "13": "const b = [1,-4,1,9], r = -2; let cur = b[0]; const q = [cur]; for (let i = 1; i < b.length - 1; i++) { cur = b[i] + cur*r; q.push(cur); } return q[q.length-1];",
+      "15": "const p = x => x**3 + 4*x*x + x + 9; return p(-2);",
+      "-26": "const p = x => x**3 - 4*x*x + x; return p(-2);"
+    }
+  },
+  {
+    "id": "ADV5-03",
+    "domain": "Advanced Math",
+    "subskill": "vertex form: locating an x-intercept",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 3(x − 7)² − 27. What is the greater of the two x-intercepts of the graph of y = f(x) in the xy-plane?",
+    "choices": [
+      "10",
+      "16",
+      "-4",
+      "4"
+    ],
+    "correct_answer": "10",
+    "explanation": "Setting 3(x − 7)² − 27 = 0 gives (x − 7)² = 9, so x − 7 = ±3 and x = 10 or x = 4. The greater x-intercept is 10.",
+    "distractor_steps": [
+      {
+        "choice": "16",
+        "mis_step": "Divides by 3 and then adds without taking the square root, treating (x − 4)² as if it were x − 4."
+      },
+      {
+        "choice": "-4",
+        "mis_step": "Reads 3(x − 7)² as 3(x + 7)², shifting the vertex to x = −7 and reporting the greater intercept of that parabola."
+      },
+      {
+        "choice": "4",
+        "mis_step": "Solves correctly but reports the lesser of the two intercepts."
+      }
+    ],
+    "solve": "return 7 + Math.sqrt(27/3);",
+    "distractor_solve": {
+      "4": "return 7 - Math.sqrt(27/3);",
+      "16": "return 7 + 27/3;",
+      "-4": "return -7 + Math.sqrt(27/3);"
+    }
+  },
+  {
+    "id": "ADV5-04",
+    "domain": "Advanced Math",
+    "subskill": "rational equations that reduce after factoring",
+    "difficulty": "hard",
+    "prompt": "What value of x satisfies the equation (2x² − 8)/(x − 2) = 3x − 1 ?",
+    "choices": [
+      "2",
+      "5",
+      "7",
+      "-3"
+    ],
+    "correct_answer": "5",
+    "explanation": "For x ≠ 2 the left side factors: 2x² − 8 = 2(x − 2)(x + 2), so the quotient is 2(x + 2) = 2x + 4. Then 2x + 4 = 3x − 1 gives x = 5. Cross-multiplying instead gives x² − 7x + 10 = 0 with roots 5 and 2, and x = 2 must be rejected because it makes the original denominator zero.",
+    "distractor_steps": [
+      {
+        "choice": "2",
+        "mis_step": "Cross-multiplies to x² − 7x + 10 = 0 and reports the smaller root without checking it against the excluded value x = 2."
+      },
+      {
+        "choice": "7",
+        "mis_step": "Cross-multiplies to x² − 7x + 10 = 0 and reports the sum of its roots instead of the root that satisfies the original equation."
+      },
+      {
+        "choice": "-3",
+        "mis_step": "Factors 2x² − 8 as 2(x − 2)(x − 2), so the quotient is read as 2x − 4 and 2x − 4 = 3x − 1 is solved for x."
+      }
+    ],
+    "solve": "const a = 1, b = -7, c = 10; const d = Math.sqrt(b*b - 4*a*c); const rs = [(-b-d)/(2*a), (-b+d)/(2*a)]; const ok = rs.filter(x => x !== 2 && Math.abs((2*x*x - 8)/(x - 2) - (3*x - 1)) < 1e-9); if (ok.length !== 1) return 'EXPECTED EXACTLY ONE SOLUTION'; return ok[0];",
+    "distractor_solve": {
+      "2": "const a = 1, b = -7, c = 10; const d = Math.sqrt(b*b - 4*a*c); return (-b - d)/(2*a);",
+      "7": "return -(-7)/1;",
+      "-3": "const L = [2, -4], R = [3, -1]; return (R[1] - L[1])/(L[0] - R[0]);"
+    }
+  },
+  {
+    "id": "ADV5-05",
+    "domain": "Advanced Math",
+    "subskill": "radical equations and a rejected candidate",
+    "difficulty": "medium",
+    "prompt": "What is the solution to the equation √(x + 12) = x ?",
+    "choices": [
+      "6",
+      "4",
+      "1",
+      "-3"
+    ],
+    "correct_answer": "4",
+    "explanation": "Squaring gives x + 12 = x², so x² − x − 12 = 0 and (x − 4)(x + 3) = 0, giving x = 4 or x = −3. A square root is never negative, so x = −3 cannot satisfy the original equation; checking x = 4 gives √16 = 4. The solution is 4.",
+    "distractor_steps": [
+      {
+        "choice": "6",
+        "mis_step": "Mis-factors x² − x − 12 as (x − 6)(x + 2) and reports the positive root of that incorrect factorization."
+      },
+      {
+        "choice": "1",
+        "mis_step": "Reports the sum of the two roots of x² − x − 12 = 0 rather than the one that survives the check."
+      },
+      {
+        "choice": "-3",
+        "mis_step": "Solves the squared equation and reports the negative root, never substituting it back into an equation whose left side cannot be negative."
+      }
+    ],
+    "solve": "const d = Math.sqrt(1 + 48); const rs = [(1-d)/2, (1+d)/2]; const ok = rs.filter(x => x >= 0 && Math.abs(Math.sqrt(x+12) - x) < 1e-9); if (ok.length !== 1) return 'EXPECTED EXACTLY ONE SOLUTION'; return ok[0];",
+    "distractor_solve": {
+      "1": "return 4 + (-3);",
+      "6": "return [6, -2].filter(x => x > 0)[0];",
+      "-3": "const d = Math.sqrt(1 + 48); return (1 - d)/2;"
+    }
+  },
+  {
+    "id": "ADV5-06",
+    "domain": "Advanced Math",
+    "subskill": "exponential equations with both bases rewritten",
+    "difficulty": "hard",
+    "prompt": "If 4^(2x − 1) = 8^(x + 2), what is the value of x?",
+    "choices": [
+      "8",
+      "-7",
+      "3",
+      "4"
+    ],
+    "correct_answer": "8",
+    "explanation": "Writing both sides in base 2 gives 2^(2(2x − 1)) = 2^(3(x + 2)), so 4x − 2 = 3x + 6 and x = 8.",
+    "distractor_steps": [
+      {
+        "choice": "-7",
+        "mis_step": "Rewrites only the right side in base 2, leaving the left exponent unmultiplied, and solves 2x − 1 = 3(x + 2)."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Equates the exponents without first rewriting 4 and 8 as powers of 2, solving 2x − 1 = x + 2."
+      },
+      {
+        "choice": "4",
+        "mis_step": "Rewrites both bases correctly but moves the −2 across the equals sign without changing its sign, solving 4x + 2 = 3x + 6."
+      }
+    ],
+    "solve": "const L = [4, -2], R = [3, 6]; return (R[1] - L[1])/(L[0] - R[0]);",
+    "distractor_solve": {
+      "3": "const L = [2, -1], R = [1, 2]; return (R[1] - L[1])/(L[0] - R[0]);",
+      "4": "const L = [4, 2], R = [3, 6]; return (R[1] - L[1])/(L[0] - R[0]);",
+      "-7": "const L = [2, -1], R = [3, 6]; return (R[1] - L[1])/(L[0] - R[0]);"
+    }
+  },
+  {
+    "id": "ADV5-07",
+    "domain": "Advanced Math",
+    "subskill": "logarithmic and exponential forms of the same statement",
+    "difficulty": "medium",
+    "prompt": "If log₃(x − 5) = 2, what is the value of x?",
+    "choices": [
+      "9",
+      "11",
+      "7",
+      "14"
+    ],
+    "correct_answer": "14",
+    "explanation": "The equation log₃(x − 5) = 2 says that 3 raised to the power 2 equals x − 5, so x − 5 = 9 and x = 14. Checking: log₃(14 − 5) = log₃9 = 2.",
+    "distractor_steps": [
+      {
+        "choice": "9",
+        "mis_step": "Converts to exponential form correctly but reports 3², the value of x − 5, stopping one step before solving for x."
+      },
+      {
+        "choice": "11",
+        "mis_step": "Multiplies the base by the logarithm instead of raising the base to it, using 3 × 2 in place of 3²."
+      },
+      {
+        "choice": "7",
+        "mis_step": "Treats log₃(x − 5) = 2 as x − 5 = 2, dropping the base from the conversion altogether."
+      }
+    ],
+    "solve": "return 5 + Math.pow(3, 2);",
+    "distractor_solve": {
+      "7": "return 5 + 2;",
+      "9": "return Math.pow(3, 2);",
+      "11": "return 5 + 3*2;"
+    }
+  },
+  {
+    "id": "ADV5-08",
+    "domain": "Advanced Math",
+    "subskill": "the factor theorem with one unknown coefficient",
+    "difficulty": "medium",
+    "prompt": "The polynomial p(x) = x³ + kx² − 7x − 30, where k is a constant, has x + 2 as a factor. What is the value of k?",
+    "choices": [
+      "-6",
+      "9",
+      "13",
+      "6"
+    ],
+    "correct_answer": "6",
+    "explanation": "x + 2 is a factor exactly when p(−2) = 0. p(−2) = −8 + 4k + 14 − 30 = 4k − 24, so 4k = 24 and k = 6. With k = 6, p(−2) = −8 + 24 + 14 − 30 = 0.",
+    "distractor_steps": [
+      {
+        "choice": "-6",
+        "mis_step": "Squares −2 as −4, so the k term enters as −4k and the final division flips the sign of k."
+      },
+      {
+        "choice": "9",
+        "mis_step": "Substitutes x = 2 rather than x = −2, treating the factor x + 2 as vanishing at its own constant."
+      },
+      {
+        "choice": "13",
+        "mis_step": "Evaluates −7x at x = −2 as −14 instead of +14, so the sign of that term is carried through wrongly."
+      }
+    ],
+    "solve": "return (8 - 14 + 30)/4;",
+    "distractor_solve": {
+      "9": "return (-8 + 14 + 30)/4;",
+      "13": "return (8 + 14 + 30)/4;",
+      "-6": "return (8 - 14 + 30)/(-4);"
+    }
+  },
+  {
+    "id": "ADV5-09",
+    "domain": "Advanced Math",
+    "subskill": "a system with one nonlinear member: combining the y-values",
+    "difficulty": "hard",
+    "prompt": "In the xy-plane the graphs of y = x² − 4x + 1 and y = 2x − 4 intersect at two points. What is the sum of the y-coordinates of those two points?",
+    "choices": [
+      "4",
+      "-12",
+      "8",
+      "6"
+    ],
+    "correct_answer": "4",
+    "explanation": "Setting x² − 4x + 1 = 2x − 4 gives x² − 6x + 5 = 0, so x = 1 or x = 5. The corresponding y-values are 2(1) − 4 = −2 and 2(5) − 4 = 6, and their sum is 4.",
+    "distractor_steps": [
+      {
+        "choice": "-12",
+        "mis_step": "Finds both y-values correctly and multiplies them rather than adding them."
+      },
+      {
+        "choice": "8",
+        "mis_step": "Adds the two x-coordinates first and substitutes that single sum into the line, applying the −4 only once."
+      },
+      {
+        "choice": "6",
+        "mis_step": "Solves for the intersection points but adds the x-coordinates instead of the y-coordinates."
+      }
+    ],
+    "solve": "const d = Math.sqrt(36 - 20); const xs = [(6-d)/2, (6+d)/2]; return xs.reduce((s, x) => s + (2*x - 4), 0);",
+    "distractor_solve": {
+      "6": "const d = Math.sqrt(36 - 20); return (6-d)/2 + (6+d)/2;",
+      "8": "const d = Math.sqrt(36 - 20); const sx = (6-d)/2 + (6+d)/2; return 2*sx - 4;",
+      "-12": "const d = Math.sqrt(36 - 20); const xs = [(6-d)/2, (6+d)/2]; return xs.reduce((p, x) => p * (2*x - 4), 1);"
+    }
+  },
+  {
+    "id": "ADV5-10",
+    "domain": "Advanced Math",
+    "subskill": "composition of functions evaluated at a point",
+    "difficulty": "medium",
+    "prompt": "The functions f and g are defined by f(x) = x² − 3x and g(x) = 2x + 1. What is the value of f(g(2)) ?",
+    "choices": [
+      "-3",
+      "22",
+      "3",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "g(2) = 2(2) + 1 = 5, and f(5) = 5² − 3(5) = 25 − 15 = 10.",
+    "distractor_steps": [
+      {
+        "choice": "-3",
+        "mis_step": "Composes in the wrong order, computing g(f(2)) instead of f(g(2))."
+      },
+      {
+        "choice": "22",
+        "mis_step": "Evaluates the inner function correctly, then treats the −3x term of f as a constant −3 rather than as −3 times the input."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Reads f(g(2)) as a product-free combination and adds the two separate outputs f(2) and g(2)."
+      }
+    ],
+    "solve": "const f = x => x*x - 3*x, g = x => 2*x + 1; return f(g(2));",
+    "distractor_solve": {
+      "3": "const f = x => x*x - 3*x, g = x => 2*x + 1; return f(2) + g(2);",
+      "22": "const g = x => 2*x + 1; const u = g(2); return u*u - 3;",
+      "-3": "const f = x => x*x - 3*x, g = x => 2*x + 1; return g(f(2));"
+    }
+  },
+  {
+    "id": "ADV5-11",
+    "domain": "Advanced Math",
+    "subskill": "the y-intercept of a quadratic given in factored form",
+    "difficulty": "easy",
+    "prompt": "The function f is defined by f(x) = (x − 3)(x + 8). At what value of y does the graph of y = f(x) cross the y-axis?",
+    "choices": [
+      "11",
+      "-5",
+      "24",
+      "-24"
+    ],
+    "correct_answer": "-24",
+    "explanation": "The graph crosses the y-axis where x = 0, and f(0) = (0 − 3)(0 + 8) = (−3)(8) = −24.",
+    "distractor_steps": [
+      {
+        "choice": "11",
+        "mis_step": "Adds the constants as printed, again reading the −3 as +3."
+      },
+      {
+        "choice": "-5",
+        "mis_step": "Adds the two zeros of the function instead of evaluating the product at x = 0."
+      },
+      {
+        "choice": "24",
+        "mis_step": "Multiplies the two constants as they are printed, taking (x − 3) to contribute +3 at x = 0."
+      }
+    ],
+    "solve": "const f = x => (x - 3)*(x + 8); return f(0);",
+    "distractor_solve": {
+      "11": "return 3 + 8;",
+      "24": "return 3 * 8;",
+      "-5": "return 3 + (-8);"
+    }
+  },
+  {
+    "id": "ADV5-12",
+    "domain": "Advanced Math",
+    "subskill": "the maximum value of a downward-opening quadratic",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = −2x² + 12x − 7. What is the maximum value of f(x) ?",
+    "choices": [
+      "-7",
+      "3",
+      "11",
+      "-25"
+    ],
+    "correct_answer": "11",
+    "explanation": "The parabola opens downward, so its maximum is at the vertex x = −b/(2a) = −12/(−4) = 3, and f(3) = −2(9) + 36 − 7 = 11.",
+    "distractor_steps": [
+      {
+        "choice": "-7",
+        "mis_step": "Reports the constant term, treating c as the extreme value of the function the way it is for the vertex form a(x − h)² + k."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Reports the x-coordinate of the vertex rather than the value of the function there."
+      },
+      {
+        "choice": "-25",
+        "mis_step": "Uses the shortcut c − b²/(4a) but takes 4a as positive, subtracting 18 where the negative leading coefficient requires adding it."
+      }
+    ],
+    "solve": "const a = -2, b = 12, c = -7; const xv = -b/(2*a); return a*xv*xv + b*xv + c;",
+    "distractor_solve": {
+      "3": "const a = -2, b = 12; return -b/(2*a);",
+      "-7": "return -7;",
+      "-25": "const a = -2, b = 12, c = -7; return c - (b*b)/(4*Math.abs(a));"
+    }
+  },
+  {
+    "id": "ADV5-13",
+    "domain": "Advanced Math",
+    "subskill": "polynomial zeros and symmetric functions of the roots",
+    "difficulty": "hard",
+    "prompt": "The polynomial p(x) = x³ − 3x² − 10x + 24 has three distinct real zeros. What is the sum of the squares of those three zeros?",
+    "choices": [
+      "9",
+      "-24",
+      "29",
+      "-10"
+    ],
+    "correct_answer": "29",
+    "explanation": "p factors as (x − 2)(x − 4)(x + 3), so the zeros are 2, 4 and −3. Their squares are 4, 16 and 9, and the sum is 29. (Equivalently, (Σz)² − 2Σzw = 3² − 2(−10) = 29.)",
+    "distractor_steps": [
+      {
+        "choice": "9",
+        "mis_step": "Squares the sum of the zeros instead of summing their squares, discarding the cross terms."
+      },
+      {
+        "choice": "-24",
+        "mis_step": "Reports the product of the zeros rather than the sum of their squares."
+      },
+      {
+        "choice": "-10",
+        "mis_step": "Reads the sum of the squares off the coefficients as the x-coefficient itself, which is the sum of the pairwise products."
+      }
+    ],
+    "solve": "const zs = [2, 4, -3]; const p = x => x**3 - 3*x*x - 10*x + 24; if (zs.some(z => Math.abs(p(z)) > 1e-9)) return 'NOT A ZERO'; return zs.reduce((s, z) => s + z*z, 0);",
+    "distractor_solve": {
+      "9": "const zs = [2, 4, -3]; const s = zs.reduce((a, z) => a + z, 0); return s*s;",
+      "-24": "const zs = [2, 4, -3]; return zs.reduce((a, z) => a * z, 1);",
+      "-10": "const zs = [2, 4, -3]; let t = 0; for (let i = 0; i < 3; i++) for (let j = i+1; j < 3; j++) t += zs[i]*zs[j]; return t;"
+    }
+  },
+  {
+    "id": "ADV5-14",
+    "domain": "Advanced Math",
+    "subskill": "a quadratic with a known root and an unknown coefficient",
+    "difficulty": "medium",
+    "prompt": "One solution to the equation x² + kx − 21 = 0, where k is a constant, is x = 3. What is the other solution?",
+    "choices": [
+      "-3",
+      "-7",
+      "7",
+      "4"
+    ],
+    "correct_answer": "-7",
+    "explanation": "Substituting x = 3 gives 9 + 3k − 21 = 0, so k = 4 and the equation is x² + 4x − 21 = 0, which factors as (x − 3)(x + 7). The other solution is −7. (The product of the roots is −21, and −21/3 = −7.)",
+    "distractor_steps": [
+      {
+        "choice": "-3",
+        "mis_step": "Substitutes x = −3 rather than x = 3, which gives k = −4 and the equation x² − 4x − 21 = 0, and reports the negative root of that."
+      },
+      {
+        "choice": "7",
+        "mis_step": "Uses the product of the roots but drops the sign of the constant term, dividing 21 rather than −21 by the known root."
+      },
+      {
+        "choice": "4",
+        "mis_step": "Reports the value of k, the constant found on the way to the answer, instead of the second solution."
+      }
+    ],
+    "solve": "const k = (21 - 9)/3; const d = Math.sqrt(k*k + 84); const rs = [(-k-d)/2, (-k+d)/2]; const other = rs.filter(x => Math.abs(x - 3) > 1e-9); if (other.length !== 1) return 'EXPECTED ONE OTHER ROOT'; return other[0];",
+    "distractor_solve": {
+      "4": "return (21 - 9)/3;",
+      "7": "return 21/3;",
+      "-3": "const k = (21 - 9)/(-3); const d = Math.sqrt(k*k + 84); const rs = [(-k-d)/2, (-k+d)/2]; return Math.min(...rs);"
+    }
+  },
+  {
+    "id": "ADV5-15",
+    "domain": "Advanced Math",
+    "subskill": "exponential models: recovering the initial value",
+    "difficulty": "medium",
+    "prompt": "A colony of bacteria grows so that its population t hours from now is P(t) = P₀(1.5)^t, where P₀ is the population now. If the population 3 hours from now will be 2,025, what is the population now?",
+    "choices": [
+      "675",
+      "1350",
+      "900",
+      "600"
+    ],
+    "correct_answer": "600",
+    "explanation": "P(3) = P₀(1.5)³ = 3.375·P₀ = 2,025, so P₀ = 2,025 ÷ 3.375 = 600. Checking: 600 × 1.5 × 1.5 × 1.5 = 2,025.",
+    "distractor_steps": [
+      {
+        "choice": "675",
+        "mis_step": "Divides by the number of hours, treating the growth as though the population tripled over the interval."
+      },
+      {
+        "choice": "1350",
+        "mis_step": "Undoes a single hour of growth and stops, dividing by the growth factor once rather than three times."
+      },
+      {
+        "choice": "900",
+        "mis_step": "Undoes only two of the three hours of growth, dividing by 1.5 squared."
+      }
+    ],
+    "solve": "return 2025/Math.pow(1.5, 3);",
+    "distractor_solve": {
+      "675": "return 2025/3;",
+      "900": "return 2025/Math.pow(1.5, 2);",
+      "1350": "return 2025/1.5;"
+    }
+  },
+  {
+    "id": "ADV5-16",
+    "domain": "Advanced Math",
+    "subskill": "a circle and a horizontal line in the xy-plane",
+    "difficulty": "easy",
+    "prompt": "In the xy-plane the circle x² + y² = 169 intersects the line y = 5 at two points. What is the x-coordinate of the point of intersection that lies to the right of the y-axis?",
+    "choices": [
+      "13",
+      "18",
+      "12",
+      "8"
+    ],
+    "correct_answer": "12",
+    "explanation": "Substituting y = 5 gives x² + 25 = 169, so x² = 144 and x = ±12. The point to the right of the y-axis has x = 12.",
+    "distractor_steps": [
+      {
+        "choice": "13",
+        "mis_step": "Reports the radius of the circle, taking the intersection to lie a full radius from the y-axis."
+      },
+      {
+        "choice": "18",
+        "mis_step": "Adds the y-value to the radius, combining the two given lengths in the wrong direction."
+      },
+      {
+        "choice": "8",
+        "mis_step": "Subtracts the y-value from the radius as though the two legs and the hypotenuse were related linearly."
+      }
+    ],
+    "solve": "return Math.sqrt(169 - 25);",
+    "distractor_solve": {
+      "8": "return Math.sqrt(169) - 5;",
+      "13": "return Math.sqrt(169);",
+      "18": "return Math.sqrt(169) + 5;"
+    }
+  },
+  {
+    "id": "ADV5-17",
+    "domain": "Advanced Math",
+    "subskill": "quartic equations in quadratic form",
+    "difficulty": "hard",
+    "prompt": "What is the greatest solution to the equation x⁴ − 13x² + 36 = 0 ?",
+    "choices": [
+      "5",
+      "13",
+      "3",
+      "9"
+    ],
+    "correct_answer": "3",
+    "explanation": "Let u = x². Then u² − 13u + 36 = 0 gives u = 4 or u = 9, so x² = 4 or x² = 9 and x = ±2 or x = ±3. The greatest solution is 3.",
+    "distractor_steps": [
+      {
+        "choice": "5",
+        "mis_step": "Adds the two positive solutions together rather than choosing the greater of them."
+      },
+      {
+        "choice": "13",
+        "mis_step": "Reports the sum of the two values of u, read off the coefficient of x², instead of a solution for x."
+      },
+      {
+        "choice": "9",
+        "mis_step": "Solves for u and reports the greater value of u = x², never taking the square root to return to x."
+      }
+    ],
+    "solve": "const us = [4, 9]; const xs = us.flatMap(u => [Math.sqrt(u), -Math.sqrt(u)]); return Math.max(...xs);",
+    "distractor_solve": {
+      "5": "const us = [4, 9]; return us.reduce((s, u) => s + Math.sqrt(u), 0);",
+      "9": "const us = [4, 9]; return Math.max(...us);",
+      "13": "return 13;"
+    }
+  },
+  {
+    "id": "ADV5-18",
+    "domain": "Advanced Math",
+    "subskill": "radical equations with a term outside the radical",
+    "difficulty": "hard",
+    "prompt": "What is the solution to the equation √(x + 5) + 1 = x ?",
+    "choices": [
+      "9",
+      "-1",
+      "3",
+      "4"
+    ],
+    "correct_answer": "4",
+    "explanation": "Isolating the radical gives √(x + 5) = x − 1. Squaring gives x + 5 = x² − 2x + 1, so x² − 3x − 4 = 0 and x = 4 or x = −1. At x = −1 the right side x − 1 is negative while the radical is not, so −1 fails; x = 4 gives √9 + 1 = 4. The solution is 4.",
+    "distractor_steps": [
+      {
+        "choice": "9",
+        "mis_step": "Reports the value of x + 5 under the radical rather than the value of x itself."
+      },
+      {
+        "choice": "-1",
+        "mis_step": "Reports the root of the squared equation that makes x − 1 negative, without checking either candidate in the original equation."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Squares term by term, writing x + 5 + 1 = x², which gives x² − x − 6 = 0 and a different positive root."
+      }
+    ],
+    "solve": "const d = Math.sqrt(9 + 16); const rs = [(3-d)/2, (3+d)/2]; const ok = rs.filter(x => x - 1 >= 0 && Math.abs(Math.sqrt(x+5) + 1 - x) < 1e-9); if (ok.length !== 1) return 'EXPECTED EXACTLY ONE SOLUTION'; return ok[0];",
+    "distractor_solve": {
+      "3": "const d = Math.sqrt(1 + 24); const rs = [(1-d)/2, (1+d)/2]; return Math.max(...rs);",
+      "9": "return 4 + 5;",
+      "-1": "const d = Math.sqrt(9 + 16); return (3 - d)/2;"
+    }
+  },
+  {
+    "id": "ADV5-19",
+    "domain": "Advanced Math",
+    "subskill": "the lesser solution of a quadratic equation",
+    "difficulty": "easy",
+    "prompt": "What is the lesser of the two solutions to the equation x² − 2x − 24 = 0 ?",
+    "choices": [
+      "6",
+      "-4",
+      "4",
+      "2"
+    ],
+    "correct_answer": "-4",
+    "explanation": "x² − 2x − 24 factors as (x − 6)(x + 4), so the solutions are 6 and −4. The lesser of the two is −4.",
+    "distractor_steps": [
+      {
+        "choice": "6",
+        "mis_step": "Solves correctly but reports the greater of the two solutions."
+      },
+      {
+        "choice": "4",
+        "mis_step": "Factors to (x − 6)(x + 4) and reads the solutions straight off the parentheses, so the second is taken as +4."
+      },
+      {
+        "choice": "2",
+        "mis_step": "Reports the sum of the two solutions, −b/a, rather than either solution itself."
+      }
+    ],
+    "solve": "const d = Math.sqrt(4 + 96); return (2 - d)/2;",
+    "distractor_solve": {
+      "2": "return -(-2)/1;",
+      "4": "const d = Math.sqrt(4 + 96); return Math.abs((2 - d)/2);",
+      "6": "const d = Math.sqrt(4 + 96); return (2 + d)/2;"
+    }
+  },
+  {
+    "id": "ADV5-20",
+    "domain": "Advanced Math",
+    "subskill": "exponential equations with a non-integer exponent",
+    "difficulty": "hard",
+    "prompt": "If 8^x = 32, what is the value of x?",
+    "choices": [
+      "8/5",
+      "5/3",
+      "3/5",
+      "5/2"
+    ],
+    "correct_answer": "5/3",
+    "explanation": "Both sides are powers of 2: 8^x = 2^(3x) and 32 = 2^5, so 3x = 5 and x = 5/3. Checking, 8^(5/3) = (8^(1/3))^5 = 2^5 = 32.",
+    "distractor_steps": [
+      {
+        "choice": "8/5",
+        "mis_step": "Divides the two given numbers as printed, forming the ratio of the base to the exponent on the right."
+      },
+      {
+        "choice": "3/5",
+        "mis_step": "Writes 3x = 5 and then divides in the wrong direction, reporting 3/5."
+      },
+      {
+        "choice": "5/2",
+        "mis_step": "Rewrites 8 as 2² rather than 2³, so the equation becomes 2x = 5."
+      }
+    ],
+    "solve": "const lg2 = n => Math.round(Math.log(n)/Math.log(2)); const num = lg2(32), den = lg2(8); const gcd = (a,b) => b ? gcd(b, a%b) : a; const k = gcd(num, den); if (Math.abs(Math.pow(8, num/den) - 32) > 1e-9) return 'NOT A SOLUTION'; return (num/k) + '/' + (den/k);",
+    "distractor_solve": {
+      "8/5": "const lg2 = n => Math.round(Math.log(n)/Math.log(2)); return 8 + '/' + lg2(32);",
+      "3/5": "const lg2 = n => Math.round(Math.log(n)/Math.log(2)); return lg2(8) + '/' + lg2(32);",
+      "5/2": "const lg2 = n => Math.round(Math.log(n)/Math.log(2)); return lg2(32) + '/' + 2;"
+    }
+  },
+  {
+    "id": "ADV5-21",
+    "domain": "Advanced Math",
+    "subskill": "a horizontal and vertical translation applied to a value",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 30 − x², and the function g is defined by g(x) = f(x − 3) + 4. What is the value of g(5) ?",
+    "choices": [
+      "30",
+      "26",
+      "9",
+      "22"
+    ],
+    "correct_answer": "30",
+    "explanation": "g(5) = f(5 − 3) + 4 = f(2) + 4. Since f(2) = 30 − 4 = 26, g(5) = 26 + 4 = 30.",
+    "distractor_steps": [
+      {
+        "choice": "26",
+        "mis_step": "Applies the horizontal shift correctly and reports f(2), stopping before the vertical shift."
+      },
+      {
+        "choice": "9",
+        "mis_step": "Ignores the − 3 inside f, evaluating the inner function at 5 rather than at 5 − 3."
+      },
+      {
+        "choice": "22",
+        "mis_step": "Applies the vertical shift downward, subtracting 4 where the + 4 in g requires adding it."
+      }
+    ],
+    "solve": "const f = x => 30 - x*x; const g = x => f(x - 3) + 4; return g(5);",
+    "distractor_solve": {
+      "9": "const f = x => 30 - x*x; return f(5) + 4;",
+      "22": "const f = x => 30 - x*x; return f(2) - 4;",
+      "26": "const f = x => 30 - x*x; return f(2);"
+    }
+  },
+  {
+    "id": "ADV5-22",
+    "domain": "Advanced Math",
+    "subskill": "rational functions: a vertical asymptote versus a removable point",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = (x² − 2x − 24)/(x² − 36). For one value of x the graph of y = f(x) in the xy-plane has a vertical asymptote. What is that value of x?",
+    "choices": [
+      "6",
+      "4",
+      "-6",
+      "-4"
+    ],
+    "correct_answer": "-6",
+    "explanation": "The numerator factors as (x − 6)(x + 4) and the denominator as (x − 6)(x + 6). The common factor x − 6 makes x = 6 a removable point, a hole. At x = −6 the denominator is zero while the numerator is 24 ≠ 0, so the graph has a vertical asymptote at x = −6.",
+    "distractor_steps": [
+      {
+        "choice": "6",
+        "mis_step": "Reports the excluded value that the numerator and denominator share, which produces a hole rather than an asymptote."
+      },
+      {
+        "choice": "4",
+        "mis_step": "Takes the zero x = −4 from the factor (x + 4) with the sign shown in the parentheses rather than the sign of the root."
+      },
+      {
+        "choice": "-4",
+        "mis_step": "Reports the remaining zero of the numerator, which is an x-intercept of the graph and not an excluded value at all."
+      }
+    ],
+    "solve": "const num = x => x*x - 2*x - 24, den = x => x*x - 36; const cands = [6, -6]; const a = cands.filter(x => Math.abs(den(x)) < 1e-9 && Math.abs(num(x)) > 1e-9); if (a.length !== 1) return 'EXPECTED EXACTLY ONE ASYMPTOTE'; return a[0];",
+    "distractor_solve": {
+      "4": "return -(-4);",
+      "6": "const num = x => x*x - 2*x - 24, den = x => x*x - 36; return [6, -6].filter(x => Math.abs(den(x)) < 1e-9 && Math.abs(num(x)) < 1e-9)[0];",
+      "-4": "const num = x => x*x - 2*x - 24; const zs = [6, -4]; return zs.filter(x => Math.abs(num(x)) < 1e-9 && x < 0)[0];"
+    }
+  },
+  {
+    "id": "ADV5-23",
+    "domain": "Advanced Math",
+    "subskill": "a horizontal line meeting a parabola exactly once",
+    "difficulty": "hard",
+    "prompt": "In the xy-plane the system y = −x² + 6x + 4 and y = c, where c is a constant, has exactly one real solution. What is the value of c?",
+    "choices": [
+      "13",
+      "9",
+      "3",
+      "4"
+    ],
+    "correct_answer": "13",
+    "explanation": "A horizontal line meets a parabola exactly once only at the vertex. The vertex is at x = −6/(−2) = 3, and there y = −9 + 18 + 4 = 13, so c = 13. (Equivalently −x² + 6x + 4 = c has one solution when 36 + 4(4 − c) = 0.)",
+    "distractor_steps": [
+      {
+        "choice": "9",
+        "mis_step": "Computes the vertex offset b²/(4|a|) = 9 and reports it on its own, never adding it to the constant term of the quadratic."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Reports the x-coordinate of the vertex rather than the y-value the horizontal line must take."
+      },
+      {
+        "choice": "4",
+        "mis_step": "Reports the constant term of the quadratic, the y-intercept, as though the single intersection occurred there."
+      }
+    ],
+    "solve": "const a = -1, b = 6, k = 4; const xv = -b/(2*a); return a*xv*xv + b*xv + k;",
+    "distractor_solve": {
+      "3": "const a = -1, b = 6; return -b/(2*a);",
+      "4": "return 4;",
+      "9": "const a = -1, b = 6; return (b*b)/(4*Math.abs(a));"
+    }
+  },
+  {
+    "id": "ADV5-24",
+    "domain": "Advanced Math",
+    "subskill": "a reflection and a vertical stretch applied to a point",
+    "difficulty": "medium",
+    "prompt": "The graph of y = f(x) in the xy-plane passes through the point (−3, 5). The graph of y = −2f(x) + 1 passes through the point (−3, k). What is the value of k?",
+    "choices": [
+      "-9",
+      "5",
+      "11",
+      "-11"
+    ],
+    "correct_answer": "-9",
+    "explanation": "At x = −3 the value of f is 5, so the new y-value is −2(5) + 1 = −10 + 1 = −9. The point is (−3, −9).",
+    "distractor_steps": [
+      {
+        "choice": "5",
+        "mis_step": "Reads −2f(x) + 1 as a change to the inputs of f rather than to its outputs, so the y-coordinate is taken to be unchanged."
+      },
+      {
+        "choice": "11",
+        "mis_step": "Applies the vertical stretch but not the reflection, using +2 in place of −2."
+      },
+      {
+        "choice": "-11",
+        "mis_step": "Applies the reflection and the stretch but subtracts the vertical shift, using − 1 where the definition of the new function adds it."
+      }
+    ],
+    "solve": "const y = 5; return -2*y + 1;",
+    "distractor_solve": {
+      "5": "const y = 5; return y;",
+      "11": "const y = 5; return 2*y + 1;",
+      "-11": "const y = 5; return -2*y - 1;"
+    }
+  }
+]
