@@ -24,13 +24,13 @@
     "passage": "Field recordings from a single valley had suggested that the sparrow's song is ______ across generations, since males recorded forty years apart shared the same terminal trill. A larger archive complicates the picture. When the valley is sampled every second year rather than once a generation, the trill drifts steadily and then snaps back toward the older form whenever an unusually large cohort of yearlings arrives. Stability at forty-year intervals turns out to be the product of repeated correction, not of faithful copying.",
     "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
     "choices": [
-      "malleable",
-      "arbitrary",
+      "stochastic",
+      "attenuated",
       "invariant",
-      "elaborate"
+      "polymorphic"
     ],
     "correct_answer": "invariant",
-    "explanation": "The clause after the blank gives the evidence the earlier recordings supplied — males forty years apart sharing the same terminal trill — so the property they seemed to show is that the song does not change, which is \"invariant.\" \"Malleable\" describes the drift the larger archive finds between those two endpoints, the opposite of what the sparse sampling suggested. \"Arbitrary\" would concern whether the trill's form is fixed by anything, a question the text never raises. \"Elaborate\" describes complexity of structure, and the recordings are compared for sameness, not intricacy.",
+    "explanation": "The clause after the blank supplies the evidence: males recorded forty years apart shared the same terminal trill, so the property the early recordings seemed to establish is that the song does not change, which is what \"invariant\" names. \"Polymorphic\" would mean the valley holds several coexisting song forms at once, whereas the recordings are compared for sameness across time. \"Stochastic\" makes the trill a matter of chance, which no evidence in the text speaks to. \"Attenuated\" would describe a trill that had weakened, and the text reports drift and correction in form rather than loss of strength.",
     "topic_tag": "birdsong dialects"
   },
   {
@@ -141,15 +141,15 @@
     "subskill": "text structure and purpose",
     "difficulty": "hard",
     "passage": "Lichen growth curves are calibrated on gravestones, whose carving dates are known. A curve built this way was used to date a rockfall in an alpine valley to about 1710. Thalli on the rockfall boulders, however, are on average a third smaller than thalli on gravestones of that date two valleys away. The gravestones stand upright and the boulders lie flat, and flat surfaces in this range hold snow for six more weeks a year.",
-    "prompt": "Which choice best describes the function of the third sentence in the text as a whole?",
+    "prompt": "Which choice best describes the function of the last sentence in the text?",
     "choices": [
-      "It reports a measurement that confirms the date the growth curve assigned to the rockfall.",
-      "It reports a measurement that shows the gravestones themselves to have been carved later.",
-      "It reports a measurement that establishes the curve as the best method available for dating.",
-      "It reports a measurement that the final sentence explains without discarding the curve."
+      "It accounts for the undersized thalli by naming a difference in the age of the surfaces the two sets of lichens occupy.",
+      "It accounts for the undersized thalli by naming a difference in the mineral composition of boulders and of carved stone.",
+      "It accounts for the undersized thalli by naming a difference in the elevation at which the rockfall and the graveyard lie.",
+      "It accounts for the undersized thalli by naming a difference in the length of time each kind of surface stays snow-covered."
     ],
-    "correct_answer": "It reports a measurement that the final sentence explains without discarding the curve.",
-    "explanation": "The third sentence introduces the undersized thalli, and the sentence after it supplies a reason they would be undersized at the same age — flat surfaces hold snow six more weeks a year — so the discrepancy is accounted for rather than turned against the method. The reading that the measurement \"confirms the date the growth curve assigned to the rockfall\" inverts it, since the thalli are a third smaller than the curve predicts. Nothing in the text bears on when the gravestones \"were carved later\"; their dates are given as known and are the calibration. And a sentence that reports a mismatch cannot be what \"establishes the curve as the best method available for dating.\"",
+    "correct_answer": "It accounts for the undersized thalli by naming a difference in the length of time each kind of surface stays snow-covered.",
+    "explanation": "The last sentence contrasts upright gravestones with boulders lying flat and then states that flat surfaces in this range hold snow for six more weeks a year, so the difference it names is one of \"the length of time each kind of surface stays snow-covered.\" Surface age is held constant by the setup rather than varied, since boulders and gravestones are both being treated as dating from about 1710, so nothing turns on \"the age of the surfaces the two sets of lichens occupy.\" Elevation never appears; the two valleys are not compared by height, only their surfaces by orientation. And rock type is likewise absent, which rules out any \"difference in the mineral composition of boulders and of carved stone.\"",
     "topic_tag": "lichenometry"
   },
   {
@@ -160,13 +160,13 @@
     "passage": "Recording contracts of the 1920s paid a flat fee for a session and no royalty on sales. Historians have read the arrangement as straightforwardly exploitative. The ledgers of one Chicago label show that the flat fee was often three times a week's wage and was paid whether or not the master was ever issued. Roughly half the masters cut under those contracts were never pressed, and the label bore that loss entirely.",
     "prompt": "Which choice best describes the function of the second sentence in the text as a whole?",
     "choices": [
-      "It states a reading of the contracts that the rest of the text extends to a second industry.",
-      "It states a reading of the contracts that the rest of the text supports with ledger evidence.",
-      "It states a reading of the contracts that the rest of the text attributes to the label itself.",
-      "It states a reading of the contracts that the rest of the text complicates with ledger evidence."
+      "It states the reading of the contracts that the rest of the text tests against royalty statements gathered from a rival label.",
+      "It states the reading of the contracts that the rest of the text tests against the wages session musicians were paid elsewhere.",
+      "It states the reading of the contracts that the rest of the text tests against the number of records the label sold in a year.",
+      "It states the reading of the contracts that the rest of the text tests against the fees it paid and the masters it never issued."
     ],
-    "correct_answer": "It states a reading of the contracts that the rest of the text complicates with ledger evidence.",
-    "explanation": "After the sentence naming the exploitative reading, the ledgers report a fee worth three weeks' wages, paid on unissued masters, with the label absorbing the loss on half of them — facts that pull against the reading rather than for it. The alternative that the rest of the text \"supports with ledger evidence\" is the near-mirror and fails on the same facts, which cut the other way. No second industry appears anywhere in the text, so nothing is \"extended to a second industry.\" And the exploitative reading is credited to historians, not \"attributed to the label itself.\"",
+    "correct_answer": "It states the reading of the contracts that the rest of the text tests against the fees it paid and the masters it never issued.",
+    "explanation": "After the exploitative reading is stated, the evidence brought against it comes from one label's own ledgers: a flat fee worth three weeks' wages, paid whether or not a master was issued, and half the masters never pressed. That is a test against \"the fees it paid and the masters it never issued.\" No rival label appears anywhere, so nothing is tested against \"royalty statements gathered from a rival label.\" A week's wage is used once as a yardstick for the size of the fee, not as a body of comparative pay data, so the reading is not tested against \"the wages session musicians were paid elsewhere.\" And sales figures are absent entirely, which rules out \"the number of records the label sold in a year.\"",
     "topic_tag": "recording industry"
   },
   {
@@ -177,13 +177,13 @@
     "passage": "Planting programs are judged by seedling survival at one year, and by that measure a decade of work along the delta has succeeded. Survival exceeds eighty percent. Canopy area, measured from the air over the same decade, has not increased. Seedlings planted in rows on bare mudflats survive because they are tended, and they remain small; the closed stands that store carbon and break waves have gone on shrinking behind them.",
     "prompt": "Which choice best describes the function of the last sentence in the text as a whole?",
     "choices": [
-      "It supplies an account of the survival figure that treats that figure as an error of measurement.",
-      "It supplies an account of the planting method that urges its replacement by direct seeding instead.",
-      "It supplies an account of the two measures that shows why both of them can be accurate at once.",
-      "It supplies an account of the canopy decline that traces the decline to the tending of seedlings."
+      "It reconciles the two figures reported above by pointing out that seedlings are counted from the air and closed stands from the ground.",
+      "It reconciles the two figures reported above by pointing out that canopy area was measured over a shorter period than seedling survival.",
+      "It reconciles the two figures reported above by pointing out that the tended seedlings survive without growing into closed stand.",
+      "It reconciles the two figures reported above by pointing out that the delta's closed stands had begun shrinking before planting started."
     ],
-    "correct_answer": "It supplies an account of the two measures that shows why both of them can be accurate at once.",
-    "explanation": "The text sets an eighty percent survival rate beside a canopy area that has not grown, and the final sentence removes the apparent contradiction: tended seedlings in rows survive and stay small while the closed stands shrink behind them. Both numbers stand. The reading that it \"traces the decline to the tending of seedlings\" makes tending the cause of the shrinkage, which the sentence never claims — tending explains the survival figure, not the loss of closed stand. Treating the survival figure as \"an error of measurement\" contradicts a sentence that explains how the figure can be right. And no replacement method is proposed, so nothing \"urges its replacement by direct seeding.\"",
+    "correct_answer": "It reconciles the two figures reported above by pointing out that the tended seedlings survive without growing into closed stand.",
+    "explanation": "Eighty percent survival and a canopy that has not grown can both be true because the surviving plants are tended seedlings in rows that stay small while the closed stands shrink behind them, which is to say because \"the tended seedlings survive without growing into closed stand.\" The text puts both measurements on the same decade, so nothing rests on canopy area having been \"measured over a shorter period than seedling survival.\" Canopy area is the figure measured from the air and survival the one taken on the ground, the reverse of an account in which \"seedlings are counted from the air and closed stands from the ground.\" And no history before the decade of planting is given, so the text cannot say the stands \"had begun shrinking before planting started.\"",
     "topic_tag": "mangrove restoration"
   },
   {
@@ -194,13 +194,13 @@
     "passage": "Court records from the port list the occupations of witnesses, and in the 1780s the list is short: mariner, cooper, victualler. By the 1820s it runs to sixty terms, many of them narrow, such as block maker and sail hand. A historian reading only the lists would infer a rapid division of labor. Guild rolls from the same decades, though, carry the narrow terms from the start; what changed was the clerk's instruction to record them.",
     "prompt": "Which choice best describes the function of the third sentence in the text?",
     "choices": [
-      "It states an inference that the guild rolls in the next sentence are shown to confirm.",
-      "It states an inference that the evidence in the next sentence is used to undercut.",
-      "It states an inference that the historian in question is said to have rejected.",
-      "It states an inference that the earlier occupational lists were too short to license."
+      "It states an inference that the next sentence sets against wage books showing the sixty trades paid alike.",
+      "It states an inference that the next sentence sets against guild rolls carrying the narrow terms from the start.",
+      "It states an inference that the next sentence sets against muster lists naming only three trades in the 1820s.",
+      "It states an inference that the next sentence sets against apprentice bonds recording no narrow terms before 1810."
     ],
-    "correct_answer": "It states an inference that the evidence in the next sentence is used to undercut.",
-    "explanation": "The third sentence draws a rapid division of labor out of the growing list, and the sentence that follows takes it away: the guild rolls carry the narrow terms from the start, so what changed was recording practice. The option under which the guild rolls \"are shown to confirm\" the inference has the evidence pointing the wrong way. The historian is a hypothetical reader of the lists, not someone the text reports as having \"rejected\" anything. And the inference is drawn from the growth of the lists across four decades, not defeated by the earlier lists being \"too short to license\" it.",
+    "correct_answer": "It states an inference that the next sentence sets against guild rolls carrying the narrow terms from the start.",
+    "explanation": "The sentence after the inference introduces the guild rolls, which carry block maker and sail hand from the beginning, leaving the clerk's instruction as the thing that changed; the inference is set against \"guild rolls carrying the narrow terms from the start.\" Wages never enter the text, so nothing is set against \"wage books showing the sixty trades paid alike.\" Muster lists appear nowhere, and a source \"naming only three trades in the 1820s\" would in any case support the division-of-labor story rather than test it. Apprentice bonds are equally absent, which rules out records \"recording no narrow terms before 1810.\"",
     "topic_tag": "occupational records"
   },
   {
@@ -217,7 +217,7 @@
       "It describes a mowing practice, reports a proposal to change it, and ends by disputing the counts the proposal relies on."
     ],
     "correct_answer": "It describes a mowing practice, reports a proposal to change it, and ends by stating what the change would add to councils' workload.",
-    "explanation": "The closing sentence adds the biomass that must be cleared and the funding formula that pays per cut rather than per kilogram — extra work falling on the councils, stated as fact. The ending does not end \"by comparing the later cut favorably with the current one\"; the one comparison it makes runs against the later cut. Nothing in the text \"urg[es] councils to adopt the later cut at once,\" and no recommendation is made in either direction. The quarter increase in flowering cover is reported without challenge, so the text is not \"disputing the counts the proposal relies on.\"",
+    "explanation": "The closing sentence adds the biomass that must be cleared and the funding formula that pays per cut rather than per kilogram — extra work falling on the councils, stated as fact. The ending does not end \"by comparing the later cut favorably with the current one\"; the one comparison it makes runs against the later cut. The text does not end by \"urging councils to adopt the later cut at once\"; no recommendation is made in either direction. The quarter increase in flowering cover is reported without challenge, so the text is not \"disputing the counts the proposal relies on.\"",
     "topic_tag": "roadside verges"
   },
   {
@@ -228,13 +228,13 @@
     "passage": "A hoard of silver buried in a field is usually read as a sign of danger: coin goes into the ground when armies are near. The dates of hoards from the eastern counties fit that reading well, clustering in two decades of known raiding. The western hoards do not cluster at all. They are spread evenly across a century and lie almost entirely within a day's walk of a mint, which suggests storage rather than flight.",
     "prompt": "Which choice best describes the overall structure of the text?",
     "choices": [
-      "It sets out an interpretation of buried coin, finds it borne out in one region, and finds it borne out again in a second.",
-      "It sets out an interpretation of buried coin, finds it borne out in one region, and abandons it as unsupported anywhere.",
-      "It sets out an interpretation of buried coin, disputes the dating on which it rests, and proposes a new method of dating.",
-      "It sets out an interpretation of buried coin, finds it borne out in one region, and finds a second region it does not fit."
+      "It sets out an interpretation of buried coin and tests it against hoards from two centuries, most of which fit it.",
+      "It sets out an interpretation of buried coin and tests it against coin weights, only some of which bear it out.",
+      "It sets out an interpretation of buried coin and tests it against hoards near two mints, neither of which fits it.",
+      "It sets out an interpretation of buried coin and tests it against hoards in two regions, only one of which fits it."
     ],
-    "correct_answer": "It sets out an interpretation of buried coin, finds it borne out in one region, and finds a second region it does not fit.",
-    "explanation": "The danger reading is stated, the eastern hoards are said to fit it well, and the western hoards then fail to cluster and point to storage instead — one region confirming and one not. The version that \"finds it borne out again in a second\" region misreads the western evidence, which is offered as a contrast. The version that \"abandons it as unsupported anywhere\" overshoots, since the eastern fit is never withdrawn. And the text accepts the hoard dates throughout, so it does not \"disput[e] the dating on which it rests.\"",
+    "correct_answer": "It sets out an interpretation of buried coin and tests it against hoards in two regions, only one of which fits it.",
+    "explanation": "The danger reading is stated first, the eastern hoards cluster in two decades of known raiding and fit it, and the western hoards spread evenly across a century and point to storage instead: a test against \"hoards in two regions, only one of which fits it.\" The two groups are divided by region rather than by date, so the reading is not tested against \"hoards from two centuries, most of which fit it.\" Coin weights are never measured or mentioned, which rules out \"coin weights, only some of which bear it out.\" And a mint figures in the western evidence only as something the hoards lie near, not as a way of sorting them, so nothing is tested against \"hoards near two mints, neither of which fits it.\"",
     "topic_tag": "coin hoards"
   },
   {
@@ -245,13 +245,13 @@
     "passage": "Enzymes from cold-water fish work faster at low temperature than the same enzymes from temperate fish, and the usual explanation is a more flexible protein fold. Substituting the three residues that differ between the two forms does raise the cold-water rate, but only by a fifth of the gap. The remainder tracks the concentration of a small solute in the surrounding fluid, which is four times higher in the cold-water species.",
     "prompt": "Which choice best describes the overall structure of the text?",
     "choices": [
-      "It gives an explanation of a difference in rate, tests it and finds it fully sufficient, and closes by naming a second case.",
-      "It gives an explanation of a difference in rate, rejects it outright, and closes by naming the factor responsible instead.",
-      "It gives an explanation of a difference in rate, tests it and finds it partial, and closes by naming a factor that covers the rest.",
-      "It gives an explanation of a difference in rate, questions the measurements behind it, and closes by calling for better ones."
+      "It names an explanation of the rate difference and reports that it accounts for the whole of the gap once the residues are swapped.",
+      "It names an explanation of the rate difference and reports that it accounts for none of the gap once the solute has been controlled.",
+      "It names an explanation of the rate difference and reports that it accounts for a fifth of the gap, a solute covering the rest.",
+      "It names an explanation of the rate difference and reports that it accounts for half the gap, temperature covering the rest."
     ],
-    "correct_answer": "It gives an explanation of a difference in rate, tests it and finds it partial, and closes by naming a factor that covers the rest.",
-    "explanation": "The residue substitution does raise the cold-water rate, so the flexible-fold explanation survives; it closes only a fifth of the gap, so it is incomplete; and the solute concentration is then offered for the remainder. Finding it \"fully sufficient\" contradicts the fifth. Saying the text \"rejects it outright\" ignores that the substitution worked at all, which is the whole force of \"does raise.\" And no measurement is challenged anywhere, so the text is not \"question[ing] the measurements behind it.\"",
+    "correct_answer": "It names an explanation of the rate difference and reports that it accounts for a fifth of the gap, a solute covering the rest.",
+    "explanation": "Substituting the three differing residues raises the cold-water rate by only a fifth of the gap, and the remainder tracks a small solute four times more concentrated in the cold-water species, so the flexible-fold account covers \"a fifth of the gap, a solute covering the rest.\" It does not account for \"the whole of the gap once the residues are swapped,\" since four fifths remain. Nor for \"none of the gap once the solute has been controlled\": the substitution demonstrably raised the rate. And temperature is the condition under which both enzymes are compared rather than a variable that covers any share, which rules out \"half the gap, temperature covering the rest.\"",
     "topic_tag": "enzyme kinetics"
   },
   {
@@ -262,13 +262,13 @@
     "passage": "The 1611 rendering of the psalm keeps the Hebrew word order at the cost of English idiom, and for three centuries that was counted a fault. Twentieth-century translators smoothed the lines. Readers of the smoothed versions, asked to say where a psalm turns, agree with one another far less often than readers of the older text, whose awkward inversions fall exactly at the points the Hebrew marks.",
     "prompt": "Which choice best describes the main purpose of the text?",
     "choices": [
-      "To explain why the older rendering was preferred by its first readers over later ones.",
-      "To explain why Hebrew word order cannot be reproduced in an English translation.",
-      "To explain why twentieth-century translators found the older psalm text difficult.",
-      "To explain why a feature long treated as a defect turns out to do useful work."
+      "To explain why the older rendering's inversions were smoothed away by twentieth-century translators.",
+      "To explain why the older rendering's inversions were counted a fault for three hundred years.",
+      "To explain why the older rendering's inversions make the psalm harder to read aloud than the smoothed text.",
+      "To explain why the older rendering's inversions help readers agree about where a psalm actually turns."
     ],
-    "correct_answer": "To explain why a feature long treated as a defect turns out to do useful work.",
-    "explanation": "The awkward inversions were \"counted a fault\" for three centuries, and the reading experiment shows them marking the psalm's turns where the smoothed versions leave readers guessing — a defect that does a job. The text says nothing about how the rendering struck \"its first readers,\" only how three centuries judged the inversions. It also gives no ground for saying Hebrew word order \"cannot be reproduced in an English translation\"; the older version reproduces it. And the smoothing is presented as a change in taste, not as evidence that later translators \"found the older psalm text difficult.\"",
+    "correct_answer": "To explain why the older rendering's inversions help readers agree about where a psalm actually turns.",
+    "explanation": "The experiment is the point of the text: readers of the older version agree about where a psalm turns far more often than readers of the smoothed one, because the awkward inversions fall exactly where the Hebrew marks the turn. The text's business is therefore why those inversions \"help readers agree about where a psalm actually turns.\" That they \"were counted a fault for three hundred years\" is the premise the finding overturns, and no reason for that judgment is ever given. The smoothing is reported without a motive, so the text does not explain why the inversions \"were smoothed away by twentieth-century translators.\" And reading aloud is never at issue, which rules out any account of what makes the psalm \"harder to read aloud than the smoothed text.\"",
     "topic_tag": "translation"
   },
   {
@@ -279,13 +279,13 @@
     "passage": "A city's heat map is drawn from twelve fixed stations, all of them in parks, because parks are where the instruments could be kept safe. Volunteers carrying calibrated sensors along fixed walking routes recorded afternoon temperatures up to six degrees above the nearest station. The gap is largest on treeless streets in the early evening, which is when and where the map is used to decide where cooling centers open.",
     "prompt": "Which choice best describes the main purpose of the text?",
     "choices": [
-      "To describe a method of measuring urban heat and the instruments that it requires.",
-      "To describe a disagreement among volunteers about how urban heat should be measured.",
-      "To describe a program of cooling centers and the criticism that it has attracted.",
-      "To describe a limitation in a heat map and where that limitation bites the hardest."
+      "To report how the city's heat map compares with maps other cities build from a similar set of stations.",
+      "To report how the city's heat map compares with the temperatures recorded inside the city's cooling centers.",
+      "To report how the city's heat map compares with forecasts issued for the same afternoons by the weather service.",
+      "To report how the city's heat map compares with readings volunteers took along fixed routes through the streets."
     ],
-    "correct_answer": "To describe a limitation in a heat map and where that limitation bites the hardest.",
-    "explanation": "The map is built from park stations for reasons of instrument safety, the walking sensors run up to six degrees hotter, and the gap peaks precisely on the treeless evening streets the map is used to act on — a shortcoming, located where it matters most. The volunteers are not reported as disputing anything with anyone, so there is no \"disagreement among volunteers about how urban heat should be measured.\" The cooling centers appear only in the last clause as the decision the map feeds, not as a program the text evaluates. And the instruments are mentioned in passing rather than laid out as \"a method of measuring urban heat.\"",
+    "correct_answer": "To report how the city's heat map compares with readings volunteers took along fixed routes through the streets.",
+    "explanation": "The text sets twelve park stations beside sensors carried on foot and finds the walking figures up to six degrees hotter, with the gap widest on treeless streets in the early evening: a comparison with \"readings volunteers took along fixed routes through the streets.\" Cooling centers appear only as the decision the map feeds, and no temperature inside one is given, so the map is not compared with \"the temperatures recorded inside the city's cooling centers.\" No other city is mentioned, which rules out \"maps other cities build from a similar set of stations.\" And the weather service and its forecasts are absent from the text altogether.",
     "topic_tag": "urban heat"
   },
   {
@@ -296,13 +296,13 @@
     "passage": "The bowed lyre survived in one province after dying out everywhere else, and the survival has been credited to isolation. The province was not isolated; it lay on the main timber road and its fiddlers traveled widely. What it had was a wedding rite in which the lyre, and no other instrument, accompanies the walk to the church. The rite fixed a job that nothing else could do.",
     "prompt": "Which choice best describes the main purpose of the text?",
     "choices": [
-      "To argue that a musical survival is better explained by a local rite than by isolation.",
-      "To argue that a musical survival is better explained by isolation than by a local rite.",
-      "To argue that a musical survival owed as much to the timber road as to the wedding rite.",
-      "To argue that a musical survival should be credited to the skill of the province's fiddlers."
+      "To argue that the lyre survived in the province because of a wedding rite no other instrument could perform.",
+      "To argue that the lyre survived in the province because of the province's distance from the main trade routes.",
+      "To argue that the lyre survived in the province because of the unusual skill of its traveling fiddlers.",
+      "To argue that the lyre survived in the province because of the timber trade that brought players through."
     ],
-    "correct_answer": "To argue that a musical survival is better explained by a local rite than by isolation.",
-    "explanation": "The isolation account is named and then denied by the timber road and the traveling fiddlers, and the wedding rite is put in its place as the thing that fixed a job no other instrument could do. The reverse ordering, \"better explained by isolation than by a local rite,\" is the account the second sentence refutes. The timber road appears as evidence against isolation rather than as a cause, so the survival did not owe \"as much to the timber road as to the wedding rite.\" And the fiddlers' travel is cited to show the province was connected, not to credit the survival to \"the skill of the province's fiddlers.\"",
+    "correct_answer": "To argue that the lyre survived in the province because of a wedding rite no other instrument could perform.",
+    "explanation": "The text ends on the rite in which the lyre and no other instrument accompanies the walk to the church, and states that the rite fixed a job that nothing else could do, so the survival is credited to \"a wedding rite no other instrument could perform.\" Distance from trade is the account the text explicitly refuses, since the province lay on the main timber road, which rules out \"the province's distance from the main trade routes.\" The fiddlers are mentioned to show that they traveled, evidence against isolation rather than a claim about \"the unusual skill of its traveling fiddlers.\" And the timber road appears for that same reason, not as something that sustained the instrument, so the survival is not owed to \"the timber trade that brought players through.\"",
     "topic_tag": "folk instruments"
   },
   {
@@ -313,13 +313,13 @@
     "passage": "Text 1\n\nHospitals that replaced overhead fluorescent light with dimmable amber lamps on night wards report that patients sleep about forty minutes longer. The lamps are inexpensive, and the result has been reproduced on four wards.\n\nText 2\n\nSleep on those wards is scored from actigraphy, which reads stillness as sleep. Amber light also made staff slower to enter rooms, and the interval between checks rose by half an hour. A patient lying awake in the dark and a patient asleep produce the same trace.",
     "prompt": "Based on the texts, how would the author of Text 2 most likely respond to Text 1's finding about sleep duration?",
     "choices": [
-      "By pointing out that the amber lamps cost more to install than the fixtures that they replace.",
-      "By pointing out that the measure of sleep does not separate sleep from lying still in the dark.",
-      "By pointing out that the result has been reproduced on too few wards to support a general claim.",
-      "By pointing out that patients on night wards sleep longer than patients admitted during the day."
+      "By pointing out that the sleep measure was applied only to patients admitted after midnight.",
+      "By pointing out that the sleep measure does not separate sleep from lying still in the dark.",
+      "By pointing out that the sleep measure was read by staff who knew which wards had amber lamps.",
+      "By pointing out that the sleep measure counts each nap as a separate episode of sleep."
     ],
-    "correct_answer": "By pointing out that the measure of sleep does not separate sleep from lying still in the dark.",
-    "explanation": "Text 2's whole case is about the instrument: actigraphy reads stillness as sleep, staff entered rooms less often under the amber lamps, and a wakeful patient lying in the dark leaves the same trace as a sleeping one. The extra forty minutes may be extra stillness. Cost is raised only in Text 1, which calls the lamps inexpensive, and Text 2 never contests it, so nothing supports the claim that they \"cost more to install than the fixtures that they replace.\" The four wards are likewise left alone by Text 2, which does not argue from sample size at all. And no comparison of night-ward and daytime patients appears in either text.",
+    "correct_answer": "By pointing out that the sleep measure does not separate sleep from lying still in the dark.",
+    "explanation": "Text 2 works entirely on the instrument: actigraphy scores stillness as sleep, staff entered rooms half an hour less often under amber light, and a wakeful patient lying in the dark leaves the same trace as a sleeping one, so the measure \"does not separate sleep from lying still in the dark.\" Admission times are given in neither text, so nothing supports a measure \"applied only to patients admitted after midnight.\" The scoring is described as automatic rather than as a judgment, which rules out its being \"read by staff who knew which wards had amber lamps.\" And Text 2's complaint is that stillness is over-counted as sleep, not that one night is subdivided, so it does not turn on a measure that \"counts each nap as a separate episode of sleep.\"",
     "topic_tag": "hospital sleep"
   },
   {
@@ -330,13 +330,13 @@
     "passage": "Text 1\n\nFields under a four-year rotation out-yield fields under continuous cereal by about nine percent in the trial's tenth year. Because the rotation adds no fertilizer, the gain is attributed to the break that rotation gives the soil's structure.\n\nText 2\n\nThe rotation's break crop is a legume, and legumes leave nitrogen behind. Continuous-cereal plots in the trial receive the same fertilizer as the rotated ones, so the rotated plots end a cycle with more nitrogen available, not merely with better structure.",
     "prompt": "Based on the texts, how would the author of Text 2 most likely respond to Text 1's account of the yield gain?",
     "choices": [
-      "By observing that the trial's rotated plots received more fertilizer than the cereal plots did.",
-      "By observing that the rotation itself supplies nitrogen the attribution to structure leaves out.",
-      "By observing that soil structure cannot be measured reliably over a period as short as a decade.",
-      "By observing that continuous cereal improves soil structure more than a four-year rotation does."
+      "By observing that the rotation also leaves each of the plots bare for one season in four.",
+      "By observing that the rotation also includes a legume, which leaves nitrogen in the soil.",
+      "By observing that the rotation also shortens the interval between cereal crops.",
+      "By observing that the rotation also spreads the harvest labor over more months."
     ],
-    "correct_answer": "By observing that the rotation itself supplies nitrogen the attribution to structure leaves out.",
-    "explanation": "Text 1 reasons that because no fertilizer is added, structure must be doing the work; Text 2 identifies a nitrogen source that is not fertilizer at all — a legume break crop — so the inference has a gap. Text 2 states the opposite of the claim that the rotated plots \"received more fertilizer than the cereal plots did\": the fertilizer is the same on both. Measurement of soil structure is never discussed, so neither text says it \"cannot be measured reliably over a period as short as a decade.\" And Text 2 says nothing about continuous cereal improving structure; its subject is what the rotation adds.",
+    "correct_answer": "By observing that the rotation also includes a legume, which leaves nitrogen in the soil.",
+    "explanation": "Text 1 reasons that because no fertilizer is added the gain must come from soil structure; Text 2 answers that the break crop \"includes a legume, which leaves nitrogen in the soil,\" so a nutrient source outside the fertilizer schedule is available and the inference has a gap. Bare ground is discussed by neither text, so nothing rests on a rotation that \"leaves each of the plots bare for one season in four.\" A four-year rotation lengthens rather than \"shortens the interval between cereal crops,\" and Text 2 says nothing about cereal spacing in any case. Labor lies outside both texts, which concern yield and its causes rather than how a rotation \"spreads the harvest labor over more months.\"",
     "topic_tag": "crop rotation"
   },
   {
@@ -364,13 +364,13 @@
     "passage": "Text 1\n\nJournals that post reviewer reports alongside accepted papers receive fewer submissions than comparable journals that do not. Openness, whatever its merits, imposes a cost that authors are unwilling to pay.\n\nText 2\n\nThe journals posting reports also desk-reject a larger share of what they receive, and authors know it. Submission counts fall wherever the odds of reaching review are visibly worse, published reports or not.",
     "prompt": "Based on the texts, the authors of Text 1 and Text 2 would most likely agree with which statement about journals that post reviewer reports?",
     "choices": [
-      "Those journals receive fewer submissions than otherwise comparable journals do.",
-      "Those journals deter authors chiefly because their reviewer reports are made public.",
-      "Those journals reject a larger share of submissions before review than others do.",
-      "Those journals would attract more submissions if they stopped posting the reports."
+      "Those journals receive fewer submissions than comparable journals do.",
+      "Those journals publish reviewer reports for every paper they receive.",
+      "Those journals reject a larger share before review than others do.",
+      "Those journals draw submissions from a narrower range of institutions."
     ],
-    "correct_answer": "Those journals receive fewer submissions than otherwise comparable journals do.",
-    "explanation": "The shortfall in submissions is Text 1's opening report and the fact Text 2 sets out to explain differently; both take it as given, and they part company only over the cause. Making publicity the reason authors stay away is Text 1's explanation alone, which is exactly what Text 2 replaces, so the two do not agree that the journals \"deter authors chiefly because their reviewer reports are made public.\" The higher rate of rejection before review is Text 2's contribution and appears nowhere in Text 1. And the prediction that submissions would recover if posting stopped follows from Text 1's account only, since on Text 2's account the desk-rejection rate would still be visible.",
+    "correct_answer": "Those journals receive fewer submissions than comparable journals do.",
+    "explanation": "The shortfall is Text 1's opening report and the thing Text 2 sets out to explain differently; both take it as established and disagree only about its cause, so both hold that those journals \"receive fewer submissions than comparable journals do.\" Text 1 says the reports are posted alongside accepted papers, which contradicts journals that \"publish reviewer reports for every paper they receive.\" The higher rate of rejection before review is Text 2's own contribution and appears nowhere in Text 1, so it is not shared ground that those journals \"reject a larger share before review than others do.\" And neither text says anything about where submissions come from, which rules out their drawing \"from a narrower range of institutions.\"",
     "topic_tag": "peer review"
   },
   {
@@ -381,13 +381,13 @@
     "passage": "Text 1\n\nChildren taught to form letters by hand recall the shapes of unfamiliar characters better than children taught to select them on a keyboard. Motor rehearsal, not visual exposure, is what fixes a letterform.\n\nText 2\n\nThe handwriting groups in these studies also spend longer with each character, since writing is slower than typing. When typing groups are given matched time, their recall matches the writers'; their reproduction of the shapes does not.",
     "prompt": "Based on the texts, how would the author of Text 2 most likely describe the role of motor rehearsal in the results Text 1 reports?",
     "choices": [
-      "As a factor that accounts for the recall difference once time on task has been matched.",
-      "As a factor that shapes reproduction but not recall once time on task has been matched.",
-      "As a factor that plays no part in either recall or reproduction of unfamiliar characters.",
-      "As a factor that matters only for characters children have already encountered in print."
+      "As a factor that explains the recall gap only when time on task differs.",
+      "As a factor that explains the reproduction gap but not the gap in recall.",
+      "As a factor that explains both gaps for characters children have not seen.",
+      "As a factor that explains neither gap once time on task has been matched."
     ],
-    "correct_answer": "As a factor that shapes reproduction but not recall once time on task has been matched.",
-    "explanation": "Text 2 splits the result in two: with time equalized the typists' recall catches up, which takes recall away from motor rehearsal, while their reproduction of the shapes still lags, which leaves reproduction with it. Saying motor rehearsal \"accounts for the recall difference once time on task has been matched\" contradicts the sentence in which matched time makes that difference disappear. Saying it \"plays no part in either recall or reproduction\" discards the reproduction gap Text 2 itself preserves. And familiar characters are outside both texts, which study unfamiliar ones, so nothing turns on characters \"children have already encountered in print.\"",
+    "correct_answer": "As a factor that explains the reproduction gap but not the gap in recall.",
+    "explanation": "Text 2 splits the result: with time equalized the typists' recall catches up, which takes recall away from motor rehearsal, while their reproduction of the shapes still lags, which leaves reproduction with it. Motor rehearsal therefore \"explains the reproduction gap but not the gap in recall.\" Saying it \"explains neither gap once time on task has been matched\" discards the reproduction gap Text 2 expressly preserves. Text 2 attributes the recall difference to time on task rather than to rehearsal, so rehearsal does not explain \"the recall gap only when time on task differs.\" And both texts study unfamiliar characters throughout, which makes \"both gaps for characters children have not seen\" a description of the whole evidence rather than a role for one factor.",
     "topic_tag": "handwriting"
   },
   {
@@ -398,13 +398,13 @@
     "passage": "Text 1\n\nWillows along the valley's streams grew taller in the decade after wolves returned. With elk browsing under pressure, the streamside vegetation recovered, and the beaver followed it back.\n\nText 2\n\nWillow height in the valley tracks the water table, and the water table rose over that same decade as two wet winters refilled the aquifer. Where the aquifer stayed low, willows beside recolonized beaver ponds grew no taller than before.",
     "prompt": "Based on the texts, which choice best describes what the evidence in Text 2 implies about the account offered in Text 1?",
     "choices": [
-      "That the willow recovery it describes may have been confined to the wettest streams.",
-      "That the beaver return it describes may have preceded rather than followed the growth.",
-      "That the willow growth it credits to browsing pressure may track the water table instead.",
-      "That the browsing pressure it describes may have been lighter than the elk counts suggest."
+      "That the willow growth it describes may track the number of beaver ponds along the streams.",
+      "That the willow growth it describes may track the size of the elk herd rather than its browsing.",
+      "That the willow growth it describes may track the height of the water table rather than browsing.",
+      "That the willow growth it describes may track the depth of winter snowpack rather than the wolves."
     ],
-    "correct_answer": "That the willow growth it credits to browsing pressure may track the water table instead.",
-    "explanation": "Text 2 supplies a rival cause running on the same clock — two wet winters raising the water table across the decade the wolves returned — and then removes the beaver from the picture by showing that willows beside recolonized ponds grew no taller where the aquifer stayed low. Text 2 gives no basis for confining the recovery to \"the wettest streams,\" since it reports where growth failed rather than a subset where it succeeded. Nothing in either text bears on the order of beaver return and willow growth. And elk counts are never given, so no text implies that browsing pressure was \"lighter than the elk counts suggest.\"",
+    "correct_answer": "That the willow growth it describes may track the height of the water table rather than browsing.",
+    "explanation": "Text 2 offers a rival cause running on the same clock, two wet winters refilling the aquifer over the decade the wolves returned, and then shows that where the aquifer stayed low the willows grew no taller, so the growth may \"track the height of the water table rather than browsing.\" That same sentence rules out the ponds, since willows beside recolonized beaver ponds grew no taller where the table was low, so growth does not \"track the number of beaver ponds along the streams.\" Herd size is reported by neither text, which speak of browsing pressure rather than elk numbers, ruling out \"the size of the elk herd rather than its browsing.\" And snowpack is absent: Text 2 names wet winters refilling an aquifer, not snow depth.",
     "topic_tag": "trophic cascade"
   }
 ]
