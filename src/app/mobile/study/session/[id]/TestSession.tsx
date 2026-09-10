@@ -1280,7 +1280,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               type="button"
               onClick={() => void doBuy(fivePack.id)}
               disabled={!!buyingPack}
-              className="inline-flex items-center justify-center gap-1.5 px-5 h-12 rounded-full bg-primary text-white text-sm font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 transition-all"
+              className="inline-flex items-center justify-center gap-1.5 px-5 h-12 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 transition-all"
             >
               {buyingPack === fivePack.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Coins className="w-4 h-4" />}
               {ko ? `크레딧 ${fivePack.credits}개 — ${fmtWon(fivePack.priceWon)}` : `Get ${fivePack.credits} credits — ${fmtWon(fivePack.priceWon)}`}
@@ -1296,8 +1296,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               {buyingPack === MICRO_PACK.id ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
               {ko ? `또는 ${MICRO_PACK.credits}개만 — ${fmtWon(MICRO_PACK.priceWon)}` : `Or just ${MICRO_PACK.credits} — ${fmtWon(MICRO_PACK.priceWon)}`}
             </button>
-            {buyError && <p className="text-[12px] text-rose-600 leading-snug">{buyError}</p>}
-            <Link href="/mobile/study/subscription" className="text-[12px] text-gray-400 underline mt-0.5">
+            {buyError && <p className="text-[13px] text-rose-600 leading-snug">{buyError}</p>}
+            <Link href="/mobile/study/subscription" className="text-[13px] text-gray-400 underline mt-0.5">
               {ko ? '구독 플랜 보기' : 'See subscription plans'}
             </Link>
           </div>
@@ -1305,13 +1305,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           <button
             type="button"
             onClick={() => void load()}
-            className="mt-2 inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+            className="mt-2 inline-flex items-center gap-1.5 px-5 h-11 rounded-full bg-primary text-white text-[15px] font-semibold"
           >
             <RefreshCw className="w-4 h-4" />
             {copy.cta}
           </button>
         )}
-        <Link href="/mobile/study" className="text-[12.5px] text-gray-400 underline mt-1">
+        <Link href="/mobile/study" className="text-[13px] text-gray-400 underline mt-1">
           {ko ? '학습 홈으로 돌아가기' : 'Back to Study home'}
         </Link>
       </div>
@@ -1511,7 +1511,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   type="button"
                   disabled={anyRecording || moduleLocked || sectionLocked}
                   onClick={() => { if (moduleLocked || sectionLocked) return; setCurrentIdx(i); setGridOpen(false) }}
-                  className={`h-11 rounded-md text-xs font-medium transition-colors tabular-nums disabled:opacity-40 ${
+                  className={`h-11 rounded-md text-[13px] font-medium transition-colors tabular-nums disabled:opacity-40 ${
                     isCurrent
                       ? 'bg-primary text-white'
                       : isAnswered
@@ -1543,7 +1543,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             ['Enter', ko ? '다음' : 'next'],
             ['?', ko ? '이 도움말' : 'this bar'],
           ] as const).map(([k, label]) => (
-            <span key={k} className="inline-flex items-center gap-1.5 text-[12px] whitespace-nowrap">
+            <span key={k} className="inline-flex items-center gap-1.5 text-[13px] whitespace-nowrap">
               <kbd className="rounded bg-white/15 px-1.5 py-0.5 font-mono text-[11px] leading-none">{k}</kbd>
               <span className="text-white/75">{label}</span>
             </span>
@@ -1551,7 +1551,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           <button
             type="button"
             onClick={() => setKeyHelpOpen(false)}
-            className="ml-1 text-white/50 hover:text-white text-[12px]"
+            className="ml-1 text-white/50 hover:text-white text-[13px]"
             aria-label={ko ? '닫기' : 'Close'}
           >
             ✕
@@ -1742,7 +1742,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
               Module 2
             </div>
-            <div className="text-[14px] font-semibold text-gray-900 leading-tight">
+            <div className="text-[15px] font-semibold text-gray-900 leading-tight">
               {ko ? '모듈 2 시작' : 'Module 2 begins'}
             </div>
             {/* Says NOTHING about Module 1 performance.
@@ -1764,7 +1764,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               *
               * The route still happens; it is simply not announced. It shows
               * up where it belongs, in the summary after submission. */}
-            <p className="text-[12px] text-gray-500 leading-relaxed mt-0.5">
+            <p className="text-[13px] text-gray-500 leading-relaxed mt-0.5">
               {ko
                 ? '남은 문제는 모듈 2에 속합니다. 모듈 1로는 돌아갈 수 없어요.'
                 : 'The remaining questions are in Module 2. You cannot return to Module 1.'}
@@ -1792,7 +1792,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   {ko ? '모듈 2 시작' : 'Module 2 begins'}
                 </span>
               </div>
-              <p className="text-[12px] text-amber-800 leading-relaxed">
+              <p className="text-[13px] text-amber-800 leading-relaxed">
                 {ko
                   ? (isReading
                       ? '나머지 문제는 모듈 2에 속합니다. 두 번째 Complete-the-Words 지문이 포함됩니다.'
@@ -1820,7 +1820,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <div className="text-[17px] font-semibold text-gray-900 mb-1.5">
               {ko ? '스피킹 테스트 준비' : 'Ready for the Speaking test'}
             </div>
-            <p className="text-[12.5px] text-gray-600 mb-6 leading-relaxed max-w-[280px] mx-auto">
+            <p className="text-[13px] text-gray-600 mb-6 leading-relaxed max-w-[280px] mx-auto">
               {ko
                 ? '시작을 누르면 마이크가 설정되고 첫 문제의 오디오가 재생됩니다. 각 문항은 자동으로 재생되고 자동으로 녹음됩니다.'
                 : 'Tap start to set up your microphone. The first question’s audio will then play — every item auto-plays and auto-records.'}
@@ -1846,7 +1846,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           </div>
         )}
         {(q.type === 'speaking_repeat' || q.type === 'speaking_interview') && micDenied && (
-          <div role="alert" className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[12px] text-amber-800 leading-relaxed">
+          <div role="alert" className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[13px] text-amber-800 leading-relaxed">
             {ko
               ? '마이크 권한이 거부되어 답변이 녹음되지 않습니다. 브라우저 설정에서 마이크를 허용한 뒤 새로고침하면 녹음이 다시 활성화됩니다.'
               : 'Microphone access was denied, so your answers will not be recorded. Allow the microphone in your browser settings and refresh to re-enable recording.'}
@@ -1946,14 +1946,14 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   paused={paused}
                 />
               ) : (q.type === 'writing_email' || q.type === 'writing_discussion') ? (
-                <div className="mb-4 rounded-xl border border-primary/25 bg-white px-4 py-4 text-[14px] text-gray-800 leading-relaxed shadow-[0_1px_2px_-1px_rgba(15,23,42,0.06)]">
+                <div className="mb-4 rounded-xl border border-primary/25 bg-white px-4 py-4 text-[15px] text-gray-800 leading-relaxed shadow-[0_1px_2px_-1px_rgba(15,23,42,0.06)]">
                   <WritingScenario text={q.passage} kind={q.type === 'writing_email' ? 'email' : 'discussion'} />
                 </div>
               ) : (
                 /* Desktop: the passage box IS the left pane — it fills the
                    column and scrolls its own overflow, instead of ending
                    wherever the text ends. Inert below lg. */
-                <div className={`mb-4 rounded-2xl ring-1 ring-gray-200/70 bg-gradient-to-b from-gray-50 to-white px-4 py-3.5 text-[14px] text-gray-800 leading-relaxed shadow-[0_1px_2px_rgba(0,0,0,0.03)]${
+                <div className={`mb-4 rounded-2xl ring-1 ring-gray-200/70 bg-gradient-to-b from-gray-50 to-white px-4 py-3.5 text-[15px] text-gray-800 leading-relaxed shadow-[0_1px_2px_rgba(0,0,0,0.03)]${
                   twoPane
                     ? ' lg:mb-0 lg:flex-1 lg:min-h-0 lg:overflow-y-auto'
                       + ' lg:rounded-none lg:ring-0 lg:bg-none lg:bg-transparent'
@@ -1977,7 +1977,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // and repeat sentence are audio-only. Showing the text
           // defeats the whole listening task. The inner branch below
           // renders task-specific instructions instead.
-          <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap mb-4">
+          <p className="text-[17px] text-gray-900 leading-relaxed whitespace-pre-wrap mb-4">
             <PromptText text={q.prompt} />
           </p>
         )}
@@ -1986,7 +1986,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // SAT Math SPR / GRE NE / KSAT 단답형: free-text numeric input.
           <div className="space-y-2">
             <label className="block">
-              <span className="block text-[12px] uppercase tracking-[0.10em] text-gray-500 mb-1.5">
+              <span className="block text-[11px] uppercase tracking-[0.10em] text-gray-500 mb-1.5">
                 {ko ? '답 입력' : 'Enter answer'}
               </span>
               <input
@@ -2002,7 +2002,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   })
                 }}
                 placeholder={ko ? '예: 12, 3.44, 5/8' : 'e.g. 12, 3.44, 5/8'}
-                className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
+                className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-[17px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
               />
             </label>
             <p className="text-[11px] text-gray-500">
@@ -2030,7 +2030,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             }
             return (
               <>
-                <p className="text-[12px] text-amber-700 mb-2 font-medium">
+                <p className="text-[13px] text-amber-700 mb-2 font-medium">
                   {ko ? `정확히 ${targetCount}개 선택` : `Select exactly ${targetCount}`}
                 </p>
                 <div className="space-y-2">
@@ -2042,7 +2042,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                         type="button"
                         data-runner-option
                         onClick={() => { hapticSelection(); toggle(choice) }}
-                        className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors active:scale-[0.99] flex items-start gap-3 ${
+                        className={`w-full text-left px-4 py-3 rounded-xl border text-[15px] transition-colors active:scale-[0.99] flex items-start gap-3 ${
                           selected
                             ? 'border-primary bg-primary/5 text-gray-900'
                             : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
@@ -2093,7 +2093,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             return (
               <div className="space-y-3">
                 <div className="flex items-center justify-between gap-3 flex-wrap">
-                  <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                  <p className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
                     {ko ? '빈칸에 알맞은 글자를 입력하세요' : 'Type the missing letters'}
                   </p>
                   <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold tabular-nums transition ${
@@ -2183,7 +2183,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             const endPunct = endPunctuation(q.correct_answer)
             return (
               <div className="space-y-4">
-                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                <p className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
                   {ko ? '단어를 순서대로 눌러 문장을 만드세요' : 'Tap the words in order to build the sentence'}
                 </p>
                 {/* Slot row — assembled sentence so far */}
@@ -2203,7 +2203,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   {complete && (
                     <span
                       aria-hidden
-                      className="text-[16px] font-semibold text-gray-800 leading-none pl-0.5"
+                      className="text-[17px] font-semibold text-gray-800 leading-none pl-0.5"
                     >
                       {endPunct}
                     </span>
@@ -2262,7 +2262,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             }
             return (
               <div className="space-y-3">
-                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                <p className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
                   {ko ? '문장을 들은 뒤 그대로 따라 말하세요' : 'Listen, then repeat the sentence exactly'}
                 </p>
                 <ListeningAudioPlayer
@@ -2314,7 +2314,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     green "recording complete" confirmation once the
                     answer has landed. */}
                 {!isRecording && interviewProcessing[timerKey] && (
-                  <div role="status" aria-live="polite" className="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2 text-[12px] text-amber-800 flex items-center gap-2">
+                  <div role="status" aria-live="polite" className="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2 text-[13px] text-amber-800 flex items-center gap-2">
                     <Loader2 className="w-3.5 h-3.5 animate-spin flex-shrink-0" />
                     <span className="font-semibold">
                       {ko ? '답변 처리 중…' : 'Processing your answer…'}
@@ -2324,7 +2324,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 {!isRecording && !interviewProcessing[timerKey]
                   && !!interviewNextReady[timerKey]
                   && !!(answers[currentIdx] ?? '').trim() && (
-                  <div role="status" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
+                  <div role="status" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[13px] text-emerald-800 flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
                     <span className="font-semibold">
                       {ko ? '녹음 완료 — 답변이 저장되었습니다' : 'Recording complete — your answer was captured'}
@@ -2377,7 +2377,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             const wordCount = student.trim().split(/\s+/).filter(Boolean).length
             return (
               <div className="space-y-3">
-                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                <p className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
                   {q.type === 'writing_email'
                     ? (ko ? '이메일 답장을 작성하세요' : 'Write your email reply')
                     : (ko ? '토론에 기여할 글을 작성하세요' : 'Write your contribution to the discussion')}
@@ -2396,7 +2396,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   placeholder={q.type === 'writing_email'
                     ? (ko ? '여기에 이메일을 작성하세요…' : 'Type your email here…')
                     : (ko ? '여기에 토론 기여글을 작성하세요…' : 'Type your contribution here…')}
-                  className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-base text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
+                  className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-[17px] text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
                 />
                 <div className="flex items-center justify-between text-[11px] text-gray-500">
                   <span>
@@ -2443,7 +2443,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             const isRecording = !!interviewRecordingActive[timerKey]
             return (
               <div className="space-y-3">
-                <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
+                <p className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
                   {ko ? '면접관의 질문을 듣고, 준비 시간 후 답변하세요' : 'Listen to the interviewer, then respond after the prep window'}
                 </p>
                 <ListeningAudioPlayer
@@ -2535,7 +2535,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 {/* Post-recording status: amber "processing" while the
                     upload + Whisper transcription is in flight… */}
                 {!isRecording && interviewProcessing[timerKey] && (
-                  <div role="status" aria-live="polite" className="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2 text-[12px] text-amber-800 flex items-center gap-2">
+                  <div role="status" aria-live="polite" className="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2 text-[13px] text-amber-800 flex items-center gap-2">
                     <Loader2 className="w-3.5 h-3.5 animate-spin flex-shrink-0" />
                     <span className="font-semibold">
                       {ko ? '답변 처리 중…' : 'Processing your answer…'}
@@ -2550,7 +2550,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     glitches instead of moving on (real ETS never
                     shows a transcript either). */}
                 {(answers[currentIdx] ?? '').trim() && !isRecording && !interviewProcessing[timerKey] && (
-                  <div role="status" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[12px] text-emerald-800 flex items-center gap-2">
+                  <div role="status" className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[13px] text-emerald-800 flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
                     <span className="font-semibold">
                       {ko ? '녹음 완료 — 답변이 저장되었습니다' : 'Recording complete — your answer was captured'}
@@ -2581,13 +2581,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                       return next
                     })
                   }}
-                  className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors active:scale-[0.99] flex items-start gap-3 ${
+                  className={`w-full text-left px-4 py-3 rounded-xl border text-[15px] transition-colors active:scale-[0.99] flex items-start gap-3 ${
                     selected
                       ? 'border-primary bg-primary/5 text-gray-900'
                       : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  <span className={`flex-shrink-0 inline-flex items-center justify-center min-w-[28px] h-6 px-1.5 rounded-md text-[12.5px] font-semibold tabular-nums ${
+                  <span className={`flex-shrink-0 inline-flex items-center justify-center min-w-[28px] h-6 px-1.5 rounded-md text-[13px] font-semibold tabular-nums ${
                     selected ? 'bg-primary/15 text-primary' : 'bg-gray-100 text-gray-600'
                   }`}>
                     {label}
@@ -2710,7 +2710,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     else void routeToModule2()
                   }}
                   disabled={module2Loading || audioPlaying}
-                  className="h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                  className="h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[15px] font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
                 >
                   {module2Loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
                   {module2Loading
@@ -2743,7 +2743,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   // ring, focus ring and disabled opacity, and adopting it
                   // here would change the PHONE runner, which this pass is
                   // required to leave untouched.
-                  className="flex-1 lg:flex-none lg:min-w-[220px] lg:px-6 h-11 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                  className="flex-1 lg:flex-none lg:min-w-[220px] lg:px-6 h-11 rounded-full bg-primary text-white text-[15px] font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
                 >
                   {(phase === 'submitting' || speechBusy)
                     ? <Loader2 className="w-4 h-4 animate-spin" />
@@ -2768,7 +2768,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   setCurrentIdx(i => Math.min(test.questions.length - 1, i + 1))
                 }}
                 disabled={audioPlaying}
-                className="flex-1 lg:flex-none lg:min-w-[220px] h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                className="flex-1 lg:flex-none lg:min-w-[220px] h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[15px] font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
               >
                 {t('study.test.next')}
                 <ArrowRight className="w-4 h-4" />
@@ -2779,7 +2779,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         )
       })()}
       {audioPlaying && (
-        <div className="absolute bottom-16 left-4 right-4 rounded-lg bg-primary/95 text-white text-[12px] px-3 py-2 shadow-lg pointer-events-none text-center">
+        <div className="absolute bottom-16 left-4 right-4 rounded-lg bg-primary/95 text-white text-[13px] px-3 py-2 shadow-lg pointer-events-none text-center">
           {t('study.test.audioLockedNav')}
         </div>
       )}
@@ -2790,7 +2790,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         <div
           role="status"
           aria-live="polite"
-          className="absolute bottom-16 left-4 right-4 z-40 rounded-lg bg-amber-500/95 text-white text-[12px] px-3 py-2 shadow-lg pointer-events-none text-center"
+          className="absolute bottom-16 left-4 right-4 z-40 rounded-lg bg-amber-500/95 text-white text-[13px] px-3 py-2 shadow-lg pointer-events-none text-center"
         >
           {t('study.test.sectionTimeUp')}
         </div>
@@ -2822,7 +2822,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <button
               type="button"
               onClick={togglePause}
-              className="mt-5 inline-flex items-center justify-center gap-1.5 h-11 px-5 rounded-full bg-primary text-white text-[14px] font-semibold shadow-[0_2px_6px_-2px_rgba(40,133,232,0.35)] active:scale-[0.99] transition"
+              className="mt-5 inline-flex items-center justify-center gap-1.5 h-11 px-5 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_6px_-2px_rgba(40,133,232,0.35)] active:scale-[0.99] transition"
             >
               {ko ? '재개' : 'Resume test'}
             </button>
@@ -2841,7 +2841,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               <div className="text-[13px] font-semibold text-amber-900">
                 {ko ? '오프라인이에요' : "You're offline"}
               </div>
-              <div className="text-[12px] text-amber-800 mt-0.5">
+              <div className="text-[13px] text-amber-800 mt-0.5">
                 {ko
                   ? '답안은 안전하게 저장됐어요. 인터넷이 연결되면 자동으로 제출됩니다.'
                   : 'Your answers are saved. We’ll submit automatically once you’re back online.'}
@@ -2863,7 +2863,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               <div className="text-[13px] font-semibold text-rose-900">
                 {String(t('study.test.submitError.title'))}
               </div>
-              <div className="text-[12px] text-rose-800 mt-0.5 break-words">{submitError}</div>
+              <div className="text-[13px] text-rose-800 mt-0.5 break-words">{submitError}</div>
             </div>
             <button
               type="button"

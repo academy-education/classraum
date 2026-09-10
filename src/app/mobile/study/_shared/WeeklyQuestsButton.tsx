@@ -44,10 +44,10 @@ export function WeeklyQuestsButton() {
           <ListChecks className="w-5 h-5" />
         </span>
         <span className="flex-1 min-w-0">
-          <span className="block text-[14px] font-semibold text-gray-900">
+          <span className="block text-[15px] font-semibold text-gray-900">
             {ko ? '주간 퀘스트' : 'Weekly quests'}
           </span>
-          <span className="block text-[12px] text-gray-500">
+          <span className="block text-[13px] text-gray-500">
             {ko ? '이번 주 목표를 확인하고 보너스 XP를 받으세요' : "See this week's goals and earn bonus XP"}
           </span>
         </span>

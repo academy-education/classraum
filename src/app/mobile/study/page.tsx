@@ -777,7 +777,7 @@ function StudyLandingInner() {
                             </span>
                           )}
                           {isTarget && unlocked && (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white text-[9px] font-bold uppercase tracking-[0.10em] text-gray-900 shadow-[0_2px_6px_-2px_rgba(0,0,0,0.30)] ring-1 ring-white/60">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white text-[10px] font-bold uppercase tracking-[0.10em] text-gray-900 shadow-[0_2px_6px_-2px_rgba(0,0,0,0.30)] ring-1 ring-white/60">
                               <span className="w-1 h-1 rounded-full bg-emerald-500" />
                               {ko ? '내 목표' : 'My target'}
                             </span>
@@ -854,7 +854,7 @@ function StudyLandingInner() {
               {comingSoon.map(test => (
                 <span
                   key={test.slug}
-                  className="px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[11.5px] font-medium text-gray-400"
+                  className="px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[11px] font-medium text-gray-400"
                 >
                   {name(test)}
                 </span>
@@ -891,7 +891,7 @@ function StudyLandingInner() {
                   type="button"
                   onClick={() => setFreeFormCount(n)}
                   disabled={creatingFreeForm}
-                  className={`h-7 min-w-[34px] px-2 rounded-full text-[12px] font-semibold transition-all ${
+                  className={`h-7 min-w-[34px] px-2 rounded-full text-[13px] font-semibold transition-all ${
                     freeFormCount === n
                       ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                       : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
@@ -915,7 +915,7 @@ function StudyLandingInner() {
                   type="button"
                   onClick={() => setFreeFormDifficulty(d.key)}
                   disabled={creatingFreeForm}
-                  className={`h-7 px-2.5 rounded-full text-[12px] font-semibold transition-all ${
+                  className={`h-7 px-2.5 rounded-full text-[13px] font-semibold transition-all ${
                     freeFormDifficulty === d.key
                       ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                       : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
@@ -939,7 +939,7 @@ function StudyLandingInner() {
                   type="button"
                   onClick={() => setFreeFormLanguage(l.key)}
                   disabled={creatingFreeForm}
-                  className={`h-7 px-2.5 rounded-full text-[12px] font-semibold transition-all ${
+                  className={`h-7 px-2.5 rounded-full text-[13px] font-semibold transition-all ${
                     freeFormLanguage === l.key
                       ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                       : 'bg-white text-gray-600 ring-1 ring-gray-200/70 hover:bg-gray-50'
@@ -975,7 +975,7 @@ function StudyLandingInner() {
               {creatingFreeForm ? '…' : String(t('study.landing.freeformGo'))}
             </StudyButton>
           </form>
-          <p className="text-xs text-gray-400 mt-2.5 px-1 leading-relaxed">
+          <p className="text-[13px] text-gray-400 mt-2.5 px-1 leading-relaxed">
             {t('study.landing.freeformHint')}
           </p>
         </section>
@@ -1066,7 +1066,7 @@ function HeaderOverflowMenu({ variant = 'light' }: { variant?: 'light' | 'dark' 
             <Link
               href="/mobile/study/preferences"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2.5 px-3.5 py-2.5 text-[13.5px] text-gray-800 hover:bg-gray-50 active:bg-gray-100"
+              className="flex items-center gap-2.5 px-3.5 py-2.5 text-[13px] text-gray-800 hover:bg-gray-50 active:bg-gray-100"
             >
               <Settings className="w-4 h-4 text-gray-500" />
               {String(t('study.prefs.title'))}
@@ -1074,7 +1074,7 @@ function HeaderOverflowMenu({ variant = 'light' }: { variant?: 'light' | 'dark' 
             <Link
               href="/mobile/study/subscription"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2.5 px-3.5 py-2.5 text-[13.5px] text-gray-800 hover:bg-gray-50 active:bg-gray-100 border-t border-gray-100"
+              className="flex items-center gap-2.5 px-3.5 py-2.5 text-[13px] text-gray-800 hover:bg-gray-50 active:bg-gray-100 border-t border-gray-100"
             >
               <CreditCard className="w-4 h-4 text-gray-500" />
               {String(t('study.subscription.title'))}
@@ -1149,7 +1149,7 @@ function ReferralClaimBanner({ code, onDone }: { code: string; onDone: () => voi
           {state === 'done' ? <Check className="w-5 h-5" /> : <Gift className="w-5 h-5" />}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="inline-flex items-center gap-1 text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
+          <div className="inline-flex items-center gap-1 text-[11px] font-bold tracking-[0.14em] uppercase opacity-90">
             <Sparkles className="w-3 h-3" />
             {ko ? '친구 초대' : "You're invited"}
           </div>
@@ -1284,14 +1284,14 @@ function FirstTestActivationCard() {
           <PenLine className="w-5 h-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="inline-flex items-center gap-1 text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
+          <div className="inline-flex items-center gap-1 text-[11px] font-bold tracking-[0.14em] uppercase opacity-90">
             <Sparkles className="w-3 h-3" />
             {ko ? '첫 걸음' : 'Start here'}
           </div>
-          <div className="text-[16px] font-bold leading-snug mt-0.5">
+          <div className="text-[17px] font-bold leading-snug mt-0.5">
             {ko ? '첫 모의고사를 풀어보세요' : 'Take your first practice test'}
           </div>
-          <div className="text-[12.5px] opacity-90 mt-0.5 leading-snug">
+          <div className="text-[13px] opacity-90 mt-0.5 leading-snug">
             {ko ? 'SAT 읽기와 쓰기' : 'SAT Reading & Writing'}
             {/* Coin + count, matching the top-bar credits chip. The dot
                 and coin chip are one no-wrap unit so a wrap never
@@ -1327,11 +1327,11 @@ function SnapToSolveCTA() {
           <Camera className="w-5 h-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="inline-flex items-center gap-1 text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
+          <div className="inline-flex items-center gap-1 text-[11px] font-bold tracking-[0.14em] uppercase opacity-90">
             <Sparkles className="w-3 h-3" />{t('study.snap.eyebrow')}
           </div>
           <div className="text-[15px] font-semibold leading-snug mt-0.5">{t('study.snap.ctaTitle')}</div>
-          <div className="text-[12px] opacity-90 mt-0.5">{t('study.snap.ctaSubtitle')}</div>
+          <div className="text-[13px] opacity-90 mt-0.5">{t('study.snap.ctaSubtitle')}</div>
         </div>
         <ArrowRight className="w-4 h-4 opacity-90 group-hover:translate-x-1 transition-transform" />
       </div>

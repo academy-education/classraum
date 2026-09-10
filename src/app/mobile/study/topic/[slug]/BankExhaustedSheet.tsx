@@ -40,13 +40,13 @@ export function BankExhaustedSheet({
           {exhausted ? <Sparkles className="w-6 h-6" /> : <ListChecks className="w-6 h-6" />}
         </div>
 
-        <h2 className="text-[19px] font-bold text-gray-900 mt-3 leading-tight">
+        <h2 className="text-[20px] font-bold text-gray-900 mt-3 leading-tight">
           {exhausted
             ? (ko ? '새 문제를 만들고 있어요' : 'We are writing more questions')
             : (ko ? '아직 준비 중인 영역이에요' : 'This section is not ready yet')}
         </h2>
 
-        <p className="text-[13.5px] text-gray-600 mt-2 leading-relaxed">
+        <p className="text-[13px] text-gray-600 mt-2 leading-relaxed">
           {exhausted
             ? (ko
                 ? '이 영역의 문제를 모두 풀었어요. 이미 본 문제로 시험을 만들면 실력이 아니라 기억을 재는 셈이라, 새 문제가 준비될 때까지 기다려 주세요.'
@@ -57,20 +57,20 @@ export function BankExhaustedSheet({
         </p>
 
         {exhausted && unseen > 0 && (
-          <p className="text-[12px] text-gray-400 mt-2 tabular-nums">
+          <p className="text-[13px] text-gray-400 mt-2 tabular-nums">
             {ko ? `남은 새 문제 ${unseen}개 — 한 세트를 채우기엔 부족해요.`
                 : `${unseen} unseen ${unseen === 1 ? 'question' : 'questions'} left — not enough for a full set.`}
           </p>
         )}
 
-        <p className="text-[12px] text-gray-400 mt-3 leading-relaxed">
+        <p className="text-[13px] text-gray-400 mt-3 leading-relaxed">
           {ko ? '크레딧은 차감되지 않았어요.' : 'You were not charged a credit.'}
         </p>
 
         <button
           type="button"
           onClick={onClose}
-          className="mt-5 w-full rounded-full bg-primary text-white text-[14px] font-semibold py-3 transition-opacity hover:opacity-90 active:scale-[0.99]"
+          className="mt-5 w-full rounded-full bg-primary text-white text-[15px] font-semibold py-3 transition-opacity hover:opacity-90 active:scale-[0.99]"
         >
           {ko ? '확인' : 'Got it'}
         </button>

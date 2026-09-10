@@ -267,7 +267,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                 return qs ? `/mobile/study/wrong-notebook/print?${qs}` : '/mobile/study/wrong-notebook/print'
               })()}
               target="_blank"
-              className="tap-target-y inline-flex items-center gap-1.5 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[12.5px] font-medium text-gray-800 hover:ring-primary/40 hover:text-primary transition"
+              className="tap-target-y inline-flex items-center gap-1.5 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[13px] font-medium text-gray-800 hover:ring-primary/40 hover:text-primary transition"
             >
               <Printer className="w-3.5 h-3.5" />{t('study.wrongNotebook.print')}
             </Link>
@@ -296,7 +296,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder={ko ? '문제·정답·메모로 검색' : 'Search question, answer, or note'}
-            className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+            className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[17px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />
           {query && (
             <button
@@ -314,7 +314,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
           <div className="space-y-6">
           {/* Annotated count chip (only when > 0). */}
           {annotated > 0 && (
-            <div className="flex items-center gap-2 text-[12px] text-gray-700">
+            <div className="flex items-center gap-2 text-[13px] text-gray-700">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 ring-1 ring-indigo-100">
                 <Pencil className="w-3.5 h-3.5 text-indigo-500" />
                 <span className="font-semibold tabular-nums">{annotated}</span> {t('study.wrongNotebook.annotatedSuffix')}
@@ -419,7 +419,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
             /* A failed fetch must not masquerade as the celebratory
                "no mistakes" empty state. */
             <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-              <p className="text-[13.5px] text-gray-600">
+              <p className="text-[13px] text-gray-600">
                 {ko ? '오답노트를 불러오지 못했어요.' : "We couldn't load your wrong answers."}
               </p>
               <StudyButton
@@ -488,7 +488,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                         <ChevronLeft className="w-4 h-4" />
                         {ko ? '이전' : 'Previous'}
                       </button>
-                      <div className="text-[12.5px] text-gray-500 tabular-nums">
+                      <div className="text-[13px] text-gray-500 tabular-nums">
                         {ko
                           ? `${clampedPage + 1} / ${totalPages} 페이지 · 총 ${filteredActive.length}개`
                           : `Page ${clampedPage + 1} of ${totalPages} · ${filteredActive.length} total`}
@@ -535,7 +535,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                             <ChevronLeft className="w-4 h-4" />
                             {ko ? '이전' : 'Previous'}
                           </button>
-                          <div className="text-[12.5px] text-gray-500 tabular-nums">
+                          <div className="text-[13px] text-gray-500 tabular-nums">
                             {ko
                               ? `${clampedReviewedPage + 1} / ${reviewedTotalPages} 페이지`
                               : `Page ${clampedReviewedPage + 1} of ${reviewedTotalPages}`}
@@ -625,7 +625,7 @@ function FilterSelect({
         {label}
       </span>
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger className="tap-target-y w-full h-11 md:h-10 rounded-xl bg-white ring-1 ring-gray-200/70 border-0 text-base font-medium text-gray-700 shadow-none">
+        <SelectTrigger className="tap-target-y w-full h-11 md:h-10 rounded-xl bg-white ring-1 ring-gray-200/70 border-0 text-[17px] font-medium text-gray-700 shadow-none">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -696,11 +696,11 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           </span>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500 flex-1 truncate">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-500 flex-1 truncate">
                 {topicName}
               </div>
               {entry.difficulty && (
-                <span className={`text-[9.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${
+                <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${
                   entry.difficulty.toLowerCase() === 'hard'
                     ? 'bg-rose-50 text-rose-700 ring-1 ring-rose-200'
                     : entry.difficulty.toLowerCase() === 'medium'
@@ -729,7 +729,7 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
                 </button>
               )}
             </div>
-            <p className={`text-[13.5px] text-gray-900 leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}>
+            <p className={`text-[13px] text-gray-900 leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}>
               {entry.question.prompt}
             </p>
             {entry.question.prompt.length > 160 && (
@@ -741,7 +741,7 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           </div>
         </div>
 
-        <div className="mt-3 space-y-1.5 text-[12.5px]">
+        <div className="mt-3 space-y-1.5 text-[13px]">
           <div className="flex items-start gap-2">
             <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
             <span className="text-rose-700 line-through flex-1 break-words">{entry.student_answer || '—'}</span>
@@ -753,7 +753,7 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
         </div>
 
         {entry.ai_explanation && (
-          <div className="mt-3 rounded-xl bg-indigo-50/50 ring-1 ring-indigo-100 px-3 py-2 text-[12px] text-gray-700 leading-relaxed">
+          <div className="mt-3 rounded-xl bg-indigo-50/50 ring-1 ring-indigo-100 px-3 py-2 text-[13px] text-gray-700 leading-relaxed">
             <span className="font-medium text-indigo-700">{t('study.wrongNotebook.explanationLabel')}: </span>{entry.ai_explanation}
           </div>
         )}
@@ -800,7 +800,7 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           onChange={e => setNote(e.target.value)}
           placeholder={String(t('study.wrongNotebook.notePlaceholder'))}
           rows={2}
-          className="w-full rounded-xl bg-white ring-1 ring-gray-200/70 px-3 py-2 text-base text-gray-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"
+          className="w-full rounded-xl bg-white ring-1 ring-gray-200/70 px-3 py-2 text-[17px] text-gray-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"
         />
       </div>
     </li>

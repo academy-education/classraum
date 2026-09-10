@@ -78,10 +78,10 @@ export function TestPrepPathCard({ test, target: targetProp, targets: targetsPro
           <div className="flex-1 min-w-0">
             <div className="inline-flex items-center gap-1 rounded-full bg-white/20 backdrop-blur-sm px-2 py-0.5 mb-1.5">
               <Sparkles className="w-3 h-3" />
-              <span className="text-[10px] font-bold tracking-[0.12em] uppercase">{ko ? '학습 경로' : 'Your path'}</span>
+              <span className="text-[11px] font-bold tracking-[0.12em] uppercase">{ko ? '학습 경로' : 'Your path'}</span>
             </div>
             <div className="text-[15px] font-bold leading-tight">{title}</div>
-            <div className="text-[12px] text-white/85 leading-snug mt-0.5">
+            <div className="text-[13px] text-white/85 leading-snug mt-0.5">
               {ko ? '라우미가 오늘 할 일을 골라줘요 — 한 걸음씩.' : "Raumi picks today's next step — one at a time."}
             </div>
           </div>
@@ -117,10 +117,10 @@ export function TestPrepPathCard({ test, target: targetProp, targets: targetsPro
           <Target className="w-5 h-5" />
         </span>
         <div className="flex-1 min-w-0">
-          <p className="text-[14px] font-semibold text-gray-900">
+          <p className="text-[15px] font-semibold text-gray-900">
             {ko ? `${title.replace(' 학습 경로', '')}를 목표로 설정할까요?` : `Make this your goal?`}
           </p>
-          <p className="text-[12.5px] text-gray-500 leading-snug mt-0.5">
+          <p className="text-[13px] text-gray-500 leading-snug mt-0.5">
             {ko
               ? '목표로 설정하면 라우미가 단계별 학습 경로를 안내하고, 예상 점수도 추적해 드려요.'
               : 'Set it as your goal and Raumi guides a step-by-step path — with your predicted score tracked along the way.'}

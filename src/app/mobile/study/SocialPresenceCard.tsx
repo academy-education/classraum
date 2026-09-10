@@ -79,7 +79,7 @@ export function SocialPresenceCard() {
         </span>
       </div>
       <div className="relative flex-1 min-w-0">
-        <div className="text-[13.5px] font-semibold text-gray-900 leading-tight">
+        <div className="text-[13px] font-semibold text-gray-900 leading-tight">
           {label}
         </div>
         <div className="text-[11px] text-gray-500 mt-0.5">

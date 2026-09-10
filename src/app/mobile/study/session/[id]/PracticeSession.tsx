@@ -260,11 +260,11 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-5 text-center gap-3">
         <PathMascot state="sad" size={84} />
-        <p className="text-sm text-gray-600">{t('study.practice.loadFailed')}</p>
+        <p className="text-[15px] text-gray-600">{t('study.practice.loadFailed')}</p>
         <button
           type="button"
           onClick={() => void fetchQuestions()}
-          className="inline-flex items-center gap-1.5 px-4 h-10 rounded-full bg-primary text-white text-sm font-medium"
+          className="inline-flex items-center gap-1.5 px-4 h-10 rounded-full bg-primary text-white text-[15px] font-medium"
         >
           <RefreshCw className="w-4 h-4" />
           {t('study.practice.tryAgain')}
@@ -290,14 +290,14 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
         <div className="w-full max-w-xs flex flex-col gap-2 mt-2">
           <Link
             href="/mobile/study/subscription"
-            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-[15px] font-semibold"
           >
             {ko ? '프리미엄 보기' : 'See Premium'}
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href="/mobile/study"
-            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-[15px] font-medium text-gray-700"
           >
             {t('study.practice.backToStudy')}
           </Link>
@@ -323,14 +323,14 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
         <div className="w-full max-w-xs flex flex-col gap-2 mt-2">
           <Link
             href="/mobile/study/review"
-            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-[15px] font-semibold"
           >
             {ko ? '복습하러 가기' : 'Go to review'}
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href="/mobile/study"
-            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-[15px] font-medium text-gray-700"
           >
             {t('study.practice.backToStudy')}
           </Link>
@@ -358,8 +358,8 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
             {t('study.practice.doneEyebrow')}
           </p>
           <div className="relative mt-1 flex items-end justify-center gap-1.5">
-            <span className="text-5xl font-black tracking-tight tabular-nums leading-none">{correct}</span>
-            <span className="text-2xl font-bold text-white/70 leading-none mb-0.5">/ {total}</span>
+            <span className="text-[48px] font-black tracking-tight tabular-nums leading-none">{correct}</span>
+            <span className="text-[24px] font-bold text-white/70 leading-none mb-0.5">/ {total}</span>
           </div>
           <p className="relative text-[13px] text-white/85 mt-1.5">
             {t(`study.practice.doneMessage.${tone}`)} · {pct}%
@@ -385,7 +385,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
               type="button"
               onClick={() => void startNewSet()}
               disabled={startingNew}
-              className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold disabled:opacity-60 active:scale-[0.98] transition"
+              className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-[15px] font-semibold disabled:opacity-60 active:scale-[0.98] transition"
             >
               {startingNew ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
               {t('study.practice.moreQuestions')}
@@ -394,7 +394,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
           {!daily && results.some(r => r === false) && (
             <Link
               href={`/mobile/study/session/${sessionId}/summary`}
-              className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
+              className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-[15px] font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
             >
               {language === 'ko' ? '틀린 문제 보기' : 'Review mistakes'}
               <ArrowRight className="w-4 h-4" />
@@ -402,7 +402,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
           )}
           <Link
             href="/mobile/study"
-            className={`w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full text-sm font-medium transition ${
+            className={`w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full text-[15px] font-medium transition ${
               daily
                 ? 'bg-primary text-white font-semibold active:scale-[0.98]'
                 : 'bg-white border border-gray-200 text-gray-700'
@@ -421,7 +421,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
   return (
     <div className="flex-1 flex flex-col min-h-0">
       {/* Progress strip */}
-      <div className="flex-shrink-0 px-5 lg:px-8 py-3 flex items-center justify-between text-xs text-gray-500">
+      <div className="flex-shrink-0 px-5 lg:px-8 py-3 flex items-center justify-between text-[13px] text-gray-500">
         <span>{t('study.practice.progress', { current: String(idx + 1), total: String(questions.length) })}</span>
         <span className="inline-flex items-center gap-1 text-emerald-700">
           <CheckCircle2 className="w-3.5 h-3.5" />
@@ -444,7 +444,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
               the answer choices on the right, so a wide screen is used
               instead of a narrow centered column. Stacks on phones. */}
           <div className="lg:grid lg:grid-cols-[1.4fr_1fr] lg:gap-8 lg:items-start">
-            <p className="text-base text-gray-900 leading-relaxed whitespace-pre-wrap">
+            <p className="text-[17px] text-gray-900 leading-relaxed whitespace-pre-wrap">
               {q.prompt}
             </p>
 
@@ -464,7 +464,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
                     type="button"
                     onClick={() => phase === 'asking' && setAnswer(choice)}
                     disabled={phase !== 'asking'}
-                    className={`w-full flex items-start gap-3 text-left px-3.5 py-3 rounded-xl border text-sm transition-colors ${
+                    className={`w-full flex items-start gap-3 text-left px-3.5 py-3 rounded-xl border text-[15px] transition-colors ${
                       showCorrect
                         ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
                         : showWrong
@@ -503,7 +503,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
                       type="button"
                       onClick={() => phase === 'asking' && setAnswer(opt)}
                       disabled={phase !== 'asking'}
-                      className={`h-12 rounded-xl border text-sm font-medium transition-colors ${
+                      className={`h-12 rounded-xl border text-[15px] font-medium transition-colors ${
                         showCorrect
                           ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
                           : showWrong
@@ -526,7 +526,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
                 onChange={(e) => phase === 'asking' && setAnswer(e.target.value)}
                 disabled={phase !== 'asking'}
                 placeholder={String(t('study.practice.shortAnswerPlaceholder'))}
-                className="w-full h-12 px-4 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-primary disabled:bg-gray-50"
+                className="w-full h-12 px-4 rounded-xl border border-gray-200 text-[15px] focus:outline-none focus:border-primary disabled:bg-gray-50"
               />
             )}
           </div>
@@ -545,17 +545,17 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
                 ) : (
                   <XCircle className="w-4 h-4 text-rose-600" />
                 )}
-                <span className={`text-sm font-semibold ${
+                <span className={`text-[15px] font-semibold ${
                   verdict.isCorrect ? 'text-emerald-900' : 'text-rose-900'
                 }`}>
                   {verdict.isCorrect ? t('study.practice.correct') : t('study.practice.incorrect')}
                 </span>
               </div>
-              <p className="text-sm text-gray-700 leading-relaxed">
+              <p className="text-[15px] text-gray-700 leading-relaxed">
                 {verdict.aiExplanation}
               </p>
               {!verdict.isCorrect && q.type !== 'short_answer' && (
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-[13px] text-gray-500 mt-2">
                   {t('study.practice.correctAnswerLabel')}: <strong>{q.correct_answer}</strong>
                 </p>
               )}
@@ -593,7 +593,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
             type="button"
             onClick={() => void submit()}
             disabled={!answer.trim() || submitting}
-            className="w-full h-12 rounded-full bg-primary text-white text-sm font-semibold flex items-center justify-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-full h-12 rounded-full bg-primary text-white text-[15px] font-semibold flex items-center justify-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {submitting ? (
               <>

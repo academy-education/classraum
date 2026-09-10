@@ -111,14 +111,14 @@ export default function RefundPolicyPage() {
                 </span>
                 <h2 className="text-[15px] font-semibold text-gray-900">{s.title}</h2>
               </div>
-              <div className="space-y-2 text-[13.5px] text-gray-600 leading-relaxed">
+              <div className="space-y-2 text-[13px] text-gray-600 leading-relaxed">
                 {s.body.map((p, i) => <p key={i}>{p}</p>)}
               </div>
             </div>
           )
         })}
 
-        <p className="text-[12px] text-gray-400 leading-relaxed px-1">
+        <p className="text-[13px] text-gray-400 leading-relaxed px-1">
           {ko
             ? '문의: support@classraum.com · 본 정책은 관련 법령 및 서비스 운영 방침에 따라 변경될 수 있습니다.'
             : 'Questions? support@classraum.com · This policy may change in line with applicable law and our service terms.'}

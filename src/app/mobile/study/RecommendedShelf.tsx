@@ -144,10 +144,10 @@ export function RecommendedShelf({ hideUpsell = false }: { hideUpsell?: boolean 
               <Lightbulb className="w-5 h-5" />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-[14.5px] font-semibold text-gray-900">
+              <div className="text-[15px] font-semibold text-gray-900">
                 {ko ? '맞춤 추천 잠금 해제' : 'Unlock personalized picks'}
               </div>
-              <p className="text-[12.5px] text-gray-500 mt-0.5 leading-snug">
+              <p className="text-[13px] text-gray-500 mt-0.5 leading-snug">
                 {ko
                   ? '일반 플랜부터 약점 분석 기반 추천을 받아요.'
                   : 'General plan finds your weak areas and picks what to study next.'}
@@ -192,7 +192,7 @@ export function RecommendedShelf({ hideUpsell = false }: { hideUpsell?: boolean 
           </div>
           {!targetTest ? (
             <>
-              <p className="text-[13.5px] text-gray-500 leading-relaxed max-w-[26ch] mx-auto">
+              <p className="text-[13px] text-gray-500 leading-relaxed max-w-[26ch] mx-auto">
                 {ko
                   ? '목표 시험을 선택하면 맞춤 추천이 시작돼요.'
                   : 'Pick a target test to unlock personalized picks.'}
@@ -206,7 +206,7 @@ export function RecommendedShelf({ hideUpsell = false }: { hideUpsell?: boolean 
               </Link>
             </>
           ) : (
-            <p className="text-[13.5px] text-gray-500 leading-relaxed max-w-[24ch] mx-auto">
+            <p className="text-[13px] text-gray-500 leading-relaxed max-w-[24ch] mx-auto">
               {t('study.landing.recommendedEmpty')}
             </p>
           )}
@@ -264,17 +264,17 @@ function SnapFollowupCard({ card, ko, startSession, creating }: {
       <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/30 blur-2xl" />
       <div className="relative flex flex-col h-full">
         <div className="flex items-center justify-between mb-2">
-          <div className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.14em] uppercase opacity-95">
+          <div className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.14em] uppercase opacity-95">
             <Camera className="w-3 h-3" />{ko ? '사진 후속' : 'Snap follow-up'}
           </div>
           <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-white/20 text-[10px] font-bold uppercase tracking-wider">
             {subjLabel}
           </span>
         </div>
-        <p className="text-[12.5px] leading-relaxed line-clamp-2 opacity-95 mb-3">
+        <p className="text-[13px] leading-relaxed line-clamp-2 opacity-95 mb-3">
           {card.snap?.ocr_text || (ko ? '이전에 찍은 문제' : 'A problem you snapped')}
         </p>
-        <div className="mt-auto inline-flex items-center gap-1.5 text-[12.5px] font-semibold">
+        <div className="mt-auto inline-flex items-center gap-1.5 text-[13px] font-semibold">
           {isCreating ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ArrowRight className="w-3.5 h-3.5" />}
           {ko ? '유사 문제 5개 풀기' : 'Practice 5 similar'}
         </div>
@@ -326,7 +326,7 @@ function WeakAreaCard({ card, name, t, startSession, creating }: {
               {score}<span className="text-amber-500">/100</span>
             </span>
           </div>
-          <div className="text-[12.5px] text-gray-600 mt-1 leading-relaxed pr-1">
+          <div className="text-[13px] text-gray-600 mt-1 leading-relaxed pr-1">
             {String(reasonText)}
           </div>
           {/* Mastery bar — gives the card a concrete data anchor */}
@@ -376,7 +376,7 @@ function RecentSessionCard({ card, name, t, startSession, creating }: {
               {String(t(`study.modes.${card.suggested_mode}.title`))}
             </span>
           </div>
-          <div className="text-[12.5px] text-gray-600 mt-1 leading-relaxed">
+          <div className="text-[13px] text-gray-600 mt-1 leading-relaxed">
             {String(t('study.recommended.recentReason', {
               mode: String(t(`study.modes.${card.suggested_mode}.title`)),
             }))}

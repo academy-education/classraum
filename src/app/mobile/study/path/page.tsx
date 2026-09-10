@@ -219,7 +219,7 @@ function StudyPathInner() {
         <button
           type="button"
           onClick={() => setPickerOpen(true)}
-          className="inline-flex items-center gap-1 h-8 px-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11.5px] font-semibold transition"
+          className="inline-flex items-center gap-1 h-8 px-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-semibold transition"
           aria-label={showChipStrip
             ? (ko ? '목표 시험 추가' : 'Add target test')
             : (ko ? '목표 시험 변경' : 'Change target test')}
@@ -479,7 +479,7 @@ function StudyPathInner() {
             type="button"
             onClick={() => setPickerOpen(false)}
             aria-label={ko ? '닫기' : 'Close'}
-            className="fixed top-4 right-4 z-[70] inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 shadow-[0_4px_12px_-4px_rgba(0,0,0,0.20)] text-gray-700 text-[12px] font-semibold hover:ring-primary/40 transition"
+            className="fixed top-4 right-4 z-[70] inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200 shadow-[0_4px_12px_-4px_rgba(0,0,0,0.20)] text-gray-700 text-[13px] font-semibold hover:ring-primary/40 transition"
           >
             <X className="w-3.5 h-3.5" />
             {ko ? '취소' : 'Cancel'}
@@ -529,7 +529,7 @@ function SectionTabs({
               type="button"
               onClick={() => onSwitch(p.id)}
               aria-pressed={isCurrent}
-              className={`flex-shrink-0 h-9 px-3 text-[12.5px] font-semibold tracking-tight border-b-2 transition-colors ${
+              className={`flex-shrink-0 h-9 px-3 text-[13px] font-semibold tracking-tight border-b-2 transition-colors ${
                 isCurrent
                   ? 'border-primary text-primary'
                   : 'border-transparent text-gray-500 hover:text-gray-800'
@@ -574,7 +574,7 @@ function TargetChipStrip({
             return (
               <div
                 key={test}
-                className={`group flex-shrink-0 inline-flex items-center h-7 rounded-full text-[11.5px] font-bold tracking-tight transition-all ${
+                className={`group flex-shrink-0 inline-flex items-center h-7 rounded-full text-[11px] font-bold tracking-tight transition-all ${
                   isCurrent
                     ? 'bg-primary text-white shadow-[0_2px_6px_-2px_rgba(40,133,232,0.45)]'
                     : 'bg-white ring-1 ring-gray-200 text-gray-700'
@@ -650,7 +650,7 @@ function RemoveConfirmSheet({
         <h3 className="text-[15px] font-bold text-gray-900 leading-tight">
           {ko ? `${test} 경로를 제거할까요?` : `Remove your ${test} path?`}
         </h3>
-        <p className="text-[12.5px] text-gray-600 mt-1.5 leading-relaxed">
+        <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
           {ko
             ? '이미 푼 문제 기록은 그대로 남아있어요. 언제든지 다시 추가할 수 있어요.'
             : 'Your past attempts stay saved. You can add it back anytime.'}
@@ -811,12 +811,12 @@ function PathList({
               />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-[10px] font-bold tracking-[0.14em] uppercase text-white/75 mb-0.5">
+              <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-white/75 mb-0.5">
                 {ko ? '전체 진행률' : 'Overall progress'}
               </div>
               <div className="flex items-baseline gap-2">
-                <div className="text-[32px] font-bold tabular-nums leading-none">{overallPct}<span className="text-[18px] opacity-80">%</span></div>
-                <div className="text-[12px] text-white/85 tabular-nums">
+                <div className="text-[32px] font-bold tabular-nums leading-none">{overallPct}<span className="text-[17px] opacity-80">%</span></div>
+                <div className="text-[13px] text-white/85 tabular-nums">
                   {ko
                     ? `${completedCount} / ${nodes.length} 완료`
                     : `${completedCount} / ${nodes.length} done`}
@@ -936,10 +936,10 @@ function PathList({
               <div className="flex justify-center">
                 <PathMascot state="celebrate" size={72} />
               </div>
-              <p className="mt-2 text-[16px] font-bold text-gray-900">
+              <p className="mt-2 text-[17px] font-bold text-gray-900">
                 {ko ? '경로를 모두 완주했어요!' : 'You finished the whole path!'}
               </p>
-              <p className="mt-1 text-[12.5px] text-gray-500 leading-relaxed">
+              <p className="mt-1 text-[13px] text-gray-500 leading-relaxed">
                 {ko
                   ? '완료한 단계는 다시 열리지 않아요. 처음부터 새 문제로 전체 경로를 다시 도전할 수 있어요.'
                   : 'Completed stops stay locked in. You can take on the whole path again from the start with fresh questions.'}
@@ -947,7 +947,7 @@ function PathList({
               <button
                 type="button"
                 onClick={onRepeatRequest}
-                className="mt-3.5 inline-flex items-center gap-1.5 h-11 px-5 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13.5px] font-bold shadow-[0_6px_14px_-4px_rgba(40,133,232,0.55)] hover:brightness-110 active:scale-95 transition-all"
+                className="mt-3.5 inline-flex items-center gap-1.5 h-11 px-5 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13px] font-bold shadow-[0_6px_14px_-4px_rgba(40,133,232,0.55)] hover:brightness-110 active:scale-95 transition-all"
               >
                 <Repeat className="w-4 h-4" />
                 {ko
@@ -1109,7 +1109,7 @@ function PathNode({
               of them covered — and the real name was already there, in
               aria-label, visible only to screen readers. The kind is
               carried by the icon above. */}
-          <span className={`mt-1 text-[9.5px] font-bold tracking-tight leading-[1.15] px-1.5 text-center line-clamp-2 ${
+          <span className={`mt-1 text-[10px] font-bold tracking-tight leading-[1.15] px-1.5 text-center line-clamp-2 ${
             status === 'locked' ? 'text-gray-400' : ''
           }`}>
             {label}
@@ -1153,10 +1153,10 @@ function ActiveCallout({
         }}
       />
       <div className="relative text-center">
-        <div className="text-[14px] font-bold text-gray-900 leading-tight">
+        <div className="text-[15px] font-bold text-gray-900 leading-tight">
           {ko ? node.labelKo : node.labelEn}
         </div>
-        <div className="text-[11.5px] text-gray-500 mt-1 leading-snug">
+        <div className="text-[11px] text-gray-500 mt-1 leading-snug">
           {ko ? node.detailKo : node.detailEn}
         </div>
         <button
@@ -1210,11 +1210,11 @@ function LockedCallout({
             <PathMascot state="idle" size={48} />
           </div>
           <div className="min-w-0">
-            <p className="text-[13.5px] font-bold text-gray-900 leading-tight">{label}</p>
-            <p className="text-[12px] text-gray-600 mt-1 leading-relaxed">{detail}</p>
+            <p className="text-[13px] font-bold text-gray-900 leading-tight">{label}</p>
+            <p className="text-[13px] text-gray-600 mt-1 leading-relaxed">{detail}</p>
           </div>
         </div>
-        <p className="mt-2.5 text-[12px] text-gray-500 leading-relaxed border-t border-gray-100 pt-2.5">
+        <p className="mt-2.5 text-[13px] text-gray-500 leading-relaxed border-t border-gray-100 pt-2.5">
           {ko
             ? `아직 잠겨 있어요. 순서대로 ${steps}단계만 더 지나면 열려요.`
             : steps === 1
@@ -1243,10 +1243,10 @@ function CompletedCallout({
         style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
       />
       <div className="relative text-center">
-        <div className="text-[14px] font-bold text-gray-900 leading-tight">
+        <div className="text-[15px] font-bold text-gray-900 leading-tight">
           {ko ? node.labelKo : node.labelEn}
         </div>
-        <div className="mt-1 inline-flex items-center gap-1.5 text-[12px] font-semibold text-emerald-600">
+        <div className="mt-1 inline-flex items-center gap-1.5 text-[13px] font-semibold text-emerald-600">
           <CheckCircle2 className="w-3.5 h-3.5" />
           {score !== null
             ? (ko ? `완료 · 점수 ${Math.round(score)}점` : `Completed · Score ${Math.round(score)}%`)
@@ -1256,7 +1256,7 @@ function CompletedCallout({
           {node.state.completedSessionId && (
             <Link
               href={`/mobile/study/session/${node.state.completedSessionId}/summary`}
-              className="inline-flex items-center gap-1 h-9 px-3.5 rounded-full whitespace-nowrap bg-gradient-to-b from-primary to-primary/90 text-white text-[12.5px] font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:brightness-110 active:scale-95 transition-all"
+              className="inline-flex items-center gap-1 h-9 px-3.5 rounded-full whitespace-nowrap bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:brightness-110 active:scale-95 transition-all"
             >
               <ChevronRight className="w-3.5 h-3.5" />
               {ko ? '결과 보기' : 'View results'}
@@ -1378,7 +1378,7 @@ function TargetTestPicker({
               {ko ? '라우미' : 'Meet Raumi'}
             </span>
           </div>
-          <h2 className="text-[19px] font-bold tracking-tight text-gray-900">
+          <h2 className="text-[20px] font-bold tracking-tight text-gray-900">
             {String(t('study.path.noTargetTitle'))}
           </h2>
           <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
@@ -1387,7 +1387,7 @@ function TargetTestPicker({
         </div>
 
         {error && (
-          <div className="mb-3 rounded-xl bg-rose-50 ring-1 ring-rose-200 px-3 py-2 text-[12.5px] text-rose-800">
+          <div className="mb-3 rounded-xl bg-rose-50 ring-1 ring-rose-200 px-3 py-2 text-[13px] text-rose-800">
             {error}
           </div>
         )}
@@ -1414,27 +1414,27 @@ function TargetTestPicker({
                   {opt.initial}
                 </div>
                 <div className="relative flex-1 min-w-0 text-left">
-                  <div className="text-[16px] font-bold leading-tight flex items-center gap-2">
+                  <div className="text-[17px] font-bold leading-tight flex items-center gap-2">
                     {ko ? opt.labelKo : opt.labelEn}
                     {isCurrent && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[9.5px] font-bold tracking-[0.1em] uppercase">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[10px] font-bold tracking-[0.1em] uppercase">
                         <CheckCircle2 className="w-2.5 h-2.5" />
                         {ko ? '현재' : 'Current'}
                       </span>
                     )}
                     {!isCurrent && isAlreadyAdded && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[9.5px] font-bold tracking-[0.1em] uppercase">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[10px] font-bold tracking-[0.1em] uppercase">
                         <CheckCircle2 className="w-2.5 h-2.5" />
                         {ko ? '추가됨' : 'Added'}
                       </span>
                     )}
                     {opt.comingSoon && !isCurrent && !isAlreadyAdded && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[9.5px] font-bold tracking-[0.1em] uppercase">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-white/25 backdrop-blur-sm px-1.5 py-0.5 text-[10px] font-bold tracking-[0.1em] uppercase">
                         {ko ? '준비 중' : 'Coming soon'}
                       </span>
                     )}
                   </div>
-                  <div className="text-[11.5px] text-white/85 mt-0.5 leading-snug">
+                  <div className="text-[11px] text-white/85 mt-0.5 leading-snug">
                     {ko ? opt.subKo : opt.subEn}
                   </div>
                 </div>
@@ -1456,7 +1456,7 @@ function TargetTestPicker({
           <button
             type="button"
             onClick={() => onPicked(sessionAdded[sessionAdded.length - 1])}
-            className="mt-5 w-full h-12 rounded-2xl bg-primary text-white text-[14px] font-bold hover:bg-primary/90 transition"
+            className="mt-5 w-full h-12 rounded-2xl bg-primary text-white text-[15px] font-bold hover:bg-primary/90 transition"
           >
             {ko
               ? `${sessionAdded.length}개 경로로 시작하기`

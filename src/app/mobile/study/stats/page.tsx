@@ -112,7 +112,7 @@ function StatsInner() {
     return (
       <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14">
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-          <p className="text-[13.5px] text-gray-600">
+          <p className="text-[13px] text-gray-600">
             {ko ? '통계를 불러오지 못했어요.' : "We couldn't load your stats."}
           </p>
           <StudyButton type="button" size="sm" onClick={() => setRetryKey(k => k + 1)}>
@@ -218,10 +218,10 @@ function StatsInner() {
               <Lock className="w-4 h-4" />
             </span>
             <span className="flex-1 min-w-0">
-              <span className="block text-[13.5px] font-semibold text-gray-900">
+              <span className="block text-[13px] font-semibold text-gray-900">
                 {ko ? '프리미엄에서 점수 변화를 확인하세요' : 'See your score progress with Premium'}
               </span>
-              <span className="block text-[12px] text-gray-500 mt-0.5">
+              <span className="block text-[13px] text-gray-500 mt-0.5">
                 {ko ? '섹션별 점수 추이와 상세 분석이 포함됩니다.' : 'Per-section score trends and deeper analytics are included.'}
               </span>
             </span>
@@ -304,7 +304,7 @@ function StatsInner() {
                 href={`/mobile/study/topic/${row.topic.slug}`}
                 className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-br from-emerald-50/60 to-white ring-1 ring-emerald-200/60 hover:ring-emerald-300 transition-all"
               >
-                <span className="text-[14px] font-semibold text-gray-900">{name(row.topic)}</span>
+                <span className="text-[15px] font-semibold text-gray-900">{name(row.topic)}</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-white/80 ring-1 ring-emerald-200 rounded-full px-2 py-0.5">
                   {row.score}/100
                 </span>
@@ -328,7 +328,7 @@ function StatsInner() {
                 href={`/mobile/study/topic/${row.topic.slug}`}
                 className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-br from-amber-50/60 to-white ring-1 ring-amber-200/60 hover:ring-amber-300 transition-all"
               >
-                <span className="text-[14px] font-semibold text-gray-900">{name(row.topic)}</span>
+                <span className="text-[15px] font-semibold text-gray-900">{name(row.topic)}</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-white/80 ring-1 ring-amber-200 rounded-full px-2 py-0.5">
                   {row.score}/100
                 </span>
@@ -377,10 +377,10 @@ function ScoreTrendRow({ row, ko }: {
       className="flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-gray-300 transition-all"
     >
       <div className="min-w-0">
-        <div className="text-[14px] font-semibold text-gray-900 truncate">
+        <div className="text-[15px] font-semibold text-gray-900 truncate">
           {ko ? row.name_ko : row.name_en}
         </div>
-        <div className="mt-1 flex items-center gap-1.5 text-[12px] tabular-nums">
+        <div className="mt-1 flex items-center gap-1.5 text-[13px] tabular-nums">
           <span className="text-gray-500">{first}%</span>
           <ArrowRight className="w-3 h-3 text-gray-400" />
           <span className="font-semibold text-gray-900">{latest}%</span>
@@ -407,7 +407,7 @@ function ScoreTrendRow({ row, ko }: {
 function MiniMetric({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-3.5 py-2.5 flex items-center justify-between">
-      <span className="text-[12px] text-gray-600">{label}</span>
+      <span className="text-[13px] text-gray-600">{label}</span>
       <span className="text-[15px] font-bold tabular-nums text-gray-900">
         <NumberRoll target={value} />
       </span>
@@ -439,18 +439,18 @@ function StreakFreezeCard({ info, ko }: {
     <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4">
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.12em] text-gray-400 inline-flex items-center gap-1">
+          <div className="text-[11px] uppercase tracking-[0.12em] text-gray-400 inline-flex items-center gap-1">
             <Flame className="w-3 h-3 text-orange-500" />{ko ? '연속' : 'Streak'}
           </div>
-          <div className="text-2xl font-bold tabular-nums leading-none mt-1 text-gray-900">
+          <div className="text-[24px] font-bold tabular-nums leading-none mt-1 text-gray-900">
             {info.streak}<span className="text-[13px] font-medium text-gray-400 ml-0.5">{ko ? '일' : 'd'}</span>
           </div>
         </div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.12em] text-gray-400 inline-flex items-center gap-1">
+          <div className="text-[11px] uppercase tracking-[0.12em] text-gray-400 inline-flex items-center gap-1">
             <Trophy className="w-3 h-3 text-amber-500" />{ko ? '최고 기록' : 'Best'}
           </div>
-          <div className="text-2xl font-bold tabular-nums leading-none mt-1 text-gray-900">
+          <div className="text-[24px] font-bold tabular-nums leading-none mt-1 text-gray-900">
             {info.maxStreak}<span className="text-[13px] font-medium text-gray-400 ml-0.5">{ko ? '일' : 'd'}</span>
           </div>
         </div>
@@ -470,31 +470,31 @@ function WeekCard({ week, ko, t }: {
       className="group block rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white p-4 shadow-[0_8px_24px_-8px_rgba(251,146,60,0.40)] hover:shadow-[0_12px_32px_-8px_rgba(251,146,60,0.55)] hover:-translate-y-0.5 transition-all overflow-hidden relative">
       <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-28 h-28 rounded-full bg-white/20 blur-2xl" />
       <div className="relative flex items-center justify-between mb-3">
-        <div className="text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
+        <div className="text-[11px] font-bold tracking-[0.14em] uppercase opacity-90">
           {ko ? '이번 주' : 'This week'}
         </div>
         <ArrowRight className="w-4 h-4 opacity-90 group-hover:translate-x-1 transition-transform" />
       </div>
       <div className="relative grid grid-cols-3 gap-3">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.12em] opacity-80 inline-flex items-center gap-1">
+          <div className="text-[11px] uppercase tracking-[0.12em] opacity-80 inline-flex items-center gap-1">
             <Sparkles className="w-3 h-3" />XP
           </div>
-          <div className="text-2xl font-bold tabular-nums leading-none mt-1">
+          <div className="text-[24px] font-bold tabular-nums leading-none mt-1">
             <NumberRoll target={week.xp} />
           </div>
         </div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.12em] opacity-80 inline-flex items-center gap-1">
+          <div className="text-[11px] uppercase tracking-[0.12em] opacity-80 inline-flex items-center gap-1">
             <Flame className="w-3 h-3" />{ko ? '활동일' : 'Active'}
           </div>
-          <div className="text-2xl font-bold tabular-nums leading-none mt-1">
+          <div className="text-[24px] font-bold tabular-nums leading-none mt-1">
             <NumberRoll target={week.activeDays} />
-            <span className="text-[14px] font-medium opacity-80 ml-0.5">/7</span>
+            <span className="text-[15px] font-medium opacity-80 ml-0.5">/7</span>
           </div>
         </div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.12em] opacity-80 inline-flex items-center gap-1">
+          <div className="text-[11px] uppercase tracking-[0.12em] opacity-80 inline-flex items-center gap-1">
             <Trophy className="w-3 h-3" />{ko ? '리그' : 'League'}
           </div>
           {tierLabel && week.rank ? (
@@ -535,10 +535,10 @@ function AchievementBadge({ achievement, t }: { achievement: Achievement; t: Ret
         {unlocked ? <Award className="w-4 h-4" fill="currentColor" /> : <Lock className="w-3.5 h-3.5" />}
       </div>
       <div className="relative flex-1 min-w-0">
-        <div className={`text-[12.5px] font-semibold leading-tight ${unlocked ? 'text-gray-900' : 'text-gray-500'}`}>
+        <div className={`text-[13px] font-semibold leading-tight ${unlocked ? 'text-gray-900' : 'text-gray-500'}`}>
           {String(t(`study.achievements.${key}.title`))}
         </div>
-        <div className={`text-[10.5px] mt-0.5 leading-snug ${unlocked ? 'text-amber-700/90 font-medium' : 'text-gray-400'}`}>
+        <div className={`text-[10px] mt-0.5 leading-snug ${unlocked ? 'text-amber-700/90 font-medium' : 'text-gray-400'}`}>
           {unlocked
             ? String(t(`study.achievements.${key}.unlocked`))
             : String(t(`study.achievements.${key}.locked`, { value: String(value), threshold: String(threshold) }))}
@@ -617,7 +617,7 @@ function ActivityHeatmap({ data, ko }: { data: Array<{ date: string; count: numb
         })}
       </div>
       {/* Detail strip — date + count of the selected cell. */}
-      <div className="mt-3 flex items-center justify-between gap-3 text-[12px]">
+      <div className="mt-3 flex items-center justify-between gap-3 text-[13px]">
         <div className="text-gray-700">
           <span className="font-semibold">{dateLabel(selected.date)}</span>
           <span className="text-gray-500 mx-1.5">·</span>

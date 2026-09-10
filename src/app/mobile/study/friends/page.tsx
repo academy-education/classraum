@@ -100,7 +100,7 @@ function FriendsInner() {
       <StudyScrollShell header={header}>
         {failed ? (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-            <p className="text-[13.5px] text-gray-600">{ko ? '친구 정보를 불러오지 못했어요.' : "Couldn't load your friends."}</p>
+            <p className="text-[13px] text-gray-600">{ko ? '친구 정보를 불러오지 못했어요.' : "Couldn't load your friends."}</p>
             <StudyButton type="button" size="sm" onClick={() => void load()}>
               {ko ? '다시 시도' : 'Retry'}
             </StudyButton>
@@ -153,7 +153,7 @@ function ViewLeaderboardButton({ ko, count }: { ko: boolean; count: number }) {
       </div>
       <div className="min-w-0 flex-1">
         <div className="text-[15px] font-bold leading-tight">{ko ? '친구 리더보드' : 'Friends leaderboard'}</div>
-        <div className="text-[12px] opacity-90">{ko ? `친구 ${count}명과 이번 주 경쟁` : `Compete with ${count} friend${count === 1 ? '' : 's'} this week`}</div>
+        <div className="text-[13px] opacity-90">{ko ? `친구 ${count}명과 이번 주 경쟁` : `Compete with ${count} friend${count === 1 ? '' : 's'} this week`}</div>
       </div>
     </Link>
   )
@@ -278,7 +278,7 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
           type="text" value={q} onChange={e => setQ(e.target.value)}
           autoCapitalize="none" autoCorrect="off" spellCheck={false}
           placeholder={ko ? '닉네임으로 검색' : 'Search by nickname'}
-          className="w-full h-11 pl-9 pr-9 rounded-xl bg-gray-50 ring-1 ring-gray-200/70 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+          className="w-full h-11 pl-9 pr-9 rounded-xl bg-gray-50 ring-1 ring-gray-200/70 text-[15px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
         />
         {searching && <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 animate-spin" />}
       </div>
@@ -287,7 +287,7 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
           {results.map(r => (
             <div key={r.student_id} className="flex items-center gap-2.5 px-1 py-1">
               <Avatar name={r.nickname} avatarId={r.avatar_id} avatarConfig={r.avatar_config} />
-              <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{r.nickname}</span>
+              <span className="flex-1 min-w-0 truncate text-[15px] font-medium text-gray-800">{r.nickname}</span>
               {/* Quiet by design: reporting is rare and must not compete
                   with Add, which is what this screen is for. */}
               <button
@@ -303,17 +303,17 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
                   : <Flag className="w-3.5 h-3.5" />}
               </button>
               {r.relation === 'friends' ? (
-                <span className="text-[11.5px] font-semibold text-emerald-600">{ko ? '친구' : 'Friends'}</span>
+                <span className="text-[11px] font-semibold text-emerald-600">{ko ? '친구' : 'Friends'}</span>
               ) : r.relation === 'pending_out' ? (
-                <span className="text-[11.5px] font-medium text-gray-400">{ko ? '요청됨' : 'Requested'}</span>
+                <span className="text-[11px] font-medium text-gray-400">{ko ? '요청됨' : 'Requested'}</span>
               ) : r.relation === 'pending_in' ? (
                 <button type="button" onClick={() => void addByNickname(r.nickname)}
-                  className="h-8 px-3 rounded-full bg-primary text-white text-[12px] font-semibold hover:opacity-95 active:scale-95 transition">
+                  className="h-8 px-3 rounded-full bg-primary text-white text-[13px] font-semibold hover:opacity-95 active:scale-95 transition">
                   {ko ? '수락' : 'Accept'}
                 </button>
               ) : (
                 <button type="button" onClick={() => void addByNickname(r.nickname)}
-                  className="h-8 px-3 rounded-full bg-gray-900 text-white text-[12px] font-semibold hover:bg-gray-800 active:scale-95 transition">
+                  className="h-8 px-3 rounded-full bg-gray-900 text-white text-[13px] font-semibold hover:bg-gray-800 active:scale-95 transition">
                   {ko ? '추가' : 'Add'}
                 </button>
               )}
@@ -324,21 +324,21 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
 
       {/* Add by friend code */}
       <div className="pt-1 border-t border-gray-100 space-y-2">
-        <p className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-gray-400 pt-2">{ko ? '친구 코드로 추가' : 'Add by friend code'}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400 pt-2">{ko ? '친구 코드로 추가' : 'Add by friend code'}</p>
         <div className="flex gap-2">
           <input
             type="text" value={codeInput} onChange={e => { setCodeInput(e.target.value.toUpperCase()); setCodeMsg(null) }}
             onKeyDown={e => { if (e.key === 'Enter') void addByCode() }}
             autoCapitalize="characters" autoCorrect="off" spellCheck={false} maxLength={12}
             placeholder={ko ? '코드 입력' : 'Enter code'}
-            className="flex-1 min-w-0 h-11 px-4 rounded-xl bg-gray-50 ring-1 ring-gray-200/70 text-[14px] font-semibold tracking-[0.1em] uppercase text-gray-900 placeholder:font-normal placeholder:tracking-normal placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+            className="flex-1 min-w-0 h-11 px-4 rounded-xl bg-gray-50 ring-1 ring-gray-200/70 text-[15px] font-semibold tracking-[0.1em] uppercase text-gray-900 placeholder:font-normal placeholder:tracking-normal placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />
           <button type="button" onClick={() => void addByCode()} disabled={!codeInput.trim() || codeBusy}
             className="flex-shrink-0 inline-flex items-center justify-center h-11 px-4 rounded-xl bg-gray-900 text-white text-[13px] font-semibold disabled:opacity-40 hover:bg-gray-800 active:scale-[0.98] transition">
             {codeBusy ? <Loader2 className="w-4 h-4 animate-spin" /> : (ko ? '추가' : 'Add')}
           </button>
         </div>
-        {codeMsg && <p className={`text-[12px] px-1 ${codeMsg.ok ? 'text-emerald-600' : 'text-rose-600'}`}>{codeMsg.text}</p>}
+        {codeMsg && <p className={`text-[13px] px-1 ${codeMsg.ok ? 'text-emerald-600' : 'text-rose-600'}`}>{codeMsg.text}</p>}
       </div>
 
       {/* My own code to share */}
@@ -346,10 +346,10 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
         <div className="flex items-center justify-between gap-2 rounded-xl bg-primary/5 ring-1 ring-primary/15 px-4 py-3">
           <div className="min-w-0">
             <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{ko ? '내 친구 코드' : 'My friend code'}</div>
-            <div className="text-[18px] font-bold tracking-[0.14em] text-primary tabular-nums select-all">{myCode}</div>
+            <div className="text-[17px] font-bold tracking-[0.14em] text-primary tabular-nums select-all">{myCode}</div>
           </div>
           <button type="button" onClick={() => void copyCode()}
-            className="flex-shrink-0 inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-white ring-1 ring-gray-200/70 text-[12.5px] font-semibold text-gray-700 hover:ring-primary/30 active:scale-95 transition">
+            className="flex-shrink-0 inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-semibold text-gray-700 hover:ring-primary/30 active:scale-95 transition">
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
             {copied ? (ko ? '복사됨' : 'Copied') : (ko ? '복사' : 'Copy')}
           </button>
@@ -374,16 +374,16 @@ function IncomingRequests({ ko, requests, onChanged }: { ko: boolean; requests: 
     <section className="space-y-2">
       <div className="flex items-center gap-2 px-1">
         <Clock className="w-4 h-4 text-gray-400" />
-        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600">{ko ? '받은 요청' : 'Requests'}</h2>
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600">{ko ? '받은 요청' : 'Requests'}</h2>
         <span className="text-[11px] font-bold text-white bg-primary rounded-full px-1.5 min-w-[18px] text-center">{requests.length}</span>
       </div>
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 divide-y divide-gray-100">
         {requests.map(r => (
           <div key={r.id} className="flex items-center gap-2.5 px-4 py-3">
             <Avatar name={r.display_name} avatarId={r.avatar_id} avatarConfig={r.avatar_config} />
-            <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{r.display_name}</span>
+            <span className="flex-1 min-w-0 truncate text-[15px] font-medium text-gray-800">{r.display_name}</span>
             <button type="button" onClick={() => void respond(r.id, 'accept')}
-              className="h-8 px-3 rounded-full bg-primary text-white text-[12px] font-semibold hover:opacity-95 active:scale-95 transition">
+              className="h-8 px-3 rounded-full bg-primary text-white text-[13px] font-semibold hover:opacity-95 active:scale-95 transition">
               {ko ? '수락' : 'Accept'}
             </button>
             <button type="button" onClick={() => void respond(r.id, 'decline')} aria-label={ko ? '거절' : 'Decline'}
@@ -447,17 +447,17 @@ function FriendsList({ ko, friends, outgoing, onChanged, onChallenge }: { ko: bo
     <section className="space-y-2">
       <div className="flex items-center gap-2 px-1">
         <Users className="w-4 h-4 text-gray-400" />
-        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600">{ko ? '친구' : 'Friends'} · {friends.length}</h2>
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600">{ko ? '친구' : 'Friends'} · {friends.length}</h2>
       </div>
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 divide-y divide-gray-100">
         {friends.map(f => (
           <div key={f.student_id} className="group flex items-center gap-2.5 px-4 py-3">
             <Avatar name={f.display_name} avatarId={f.avatar_id} avatarConfig={f.avatar_config} />
-            <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{f.display_name}</span>
+            <span className="flex-1 min-w-0 truncate text-[15px] font-medium text-gray-800">{f.display_name}</span>
             {/* duels hidden for launch */}
             {false && (
               <button type="button" onClick={() => void challenge(f.student_id)} disabled={challenging === f.student_id}
-                className="inline-flex items-center gap-1 h-8 px-3 rounded-full bg-primary/10 text-primary text-[12px] font-semibold hover:bg-primary/15 active:scale-95 disabled:opacity-50 transition">
+                className="inline-flex items-center gap-1 h-8 px-3 rounded-full bg-primary/10 text-primary text-[13px] font-semibold hover:bg-primary/15 active:scale-95 disabled:opacity-50 transition">
                 {challenging === f.student_id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Swords className="w-3.5 h-3.5" />}
                 {ko ? '대결' : 'Duel'}
               </button>
@@ -471,8 +471,8 @@ function FriendsList({ ko, friends, outgoing, onChanged, onChallenge }: { ko: bo
         {outgoing.map(o => (
           <div key={o.id} className="flex items-center gap-2.5 px-4 py-3 opacity-70">
             <Avatar name={o.display_name} avatarId={o.avatar_id} avatarConfig={o.avatar_config} />
-            <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-500">{o.display_name}</span>
-            <span className="text-[11.5px] font-medium text-gray-400">{ko ? '대기 중' : 'Pending'}</span>
+            <span className="flex-1 min-w-0 truncate text-[15px] font-medium text-gray-500">{o.display_name}</span>
+            <span className="text-[11px] font-medium text-gray-400">{ko ? '대기 중' : 'Pending'}</span>
             <button type="button" onClick={() => void cancel(o.id)} aria-label={ko ? '취소' : 'Cancel'}
               className="w-8 h-8 inline-flex items-center justify-center rounded-full text-gray-300 hover:bg-gray-100 hover:text-gray-500 active:scale-95 transition">
               <X className="w-4 h-4" />
@@ -526,7 +526,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
     <section className="space-y-2">
       <div className="flex items-center gap-2 px-1">
         <Swords className="w-4 h-4 text-primary" />
-        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600">{ko ? '대결' : 'Duels'}</h2>
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600">{ko ? '대결' : 'Duels'}</h2>
       </div>
 
       {/* Incoming challenge requests */}
@@ -534,11 +534,11 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
         <div key={r.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-primary/20 px-4 py-3">
           <Avatar name={r.opponent.display_name} avatarId={r.opponent.avatar_id} avatarConfig={r.opponent.avatar_config} />
           <div className="flex-1 min-w-0">
-            <div className="text-[13.5px] font-medium text-gray-800 truncate">{r.opponent.display_name}</div>
-            <div className="text-[11.5px] text-gray-400">{ko ? '대결을 신청했어요' : 'challenged you'}</div>
+            <div className="text-[13px] font-medium text-gray-800 truncate">{r.opponent.display_name}</div>
+            <div className="text-[11px] text-gray-400">{ko ? '대결을 신청했어요' : 'challenged you'}</div>
           </div>
           <button type="button" onClick={() => void respond(r.id, 'accept')}
-            className="h-8 px-3 rounded-full bg-primary text-white text-[12px] font-semibold hover:opacity-95 active:scale-95 transition">
+            className="h-8 px-3 rounded-full bg-primary text-white text-[13px] font-semibold hover:opacity-95 active:scale-95 transition">
             {ko ? '수락' : 'Accept'}
           </button>
           <button type="button" onClick={() => void respond(r.id, 'decline')} aria-label={ko ? '거절' : 'Decline'}
@@ -555,7 +555,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
         return (
           <div key={d.id} className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-3">
             <div className="flex items-center justify-between mb-2">
-              <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-gray-800">
+              <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-gray-800">
                 <Avatar name={d.opponent.display_name} avatarId={d.opponent.avatar_id} avatarConfig={d.opponent.avatar_config} />
                 <span className="truncate max-w-[120px]">{d.opponent.display_name}</span>
               </span>
@@ -565,16 +565,16 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
             </div>
             <div className="flex items-center gap-2">
               <div className={`flex-1 text-center rounded-xl py-2 ${!tied && leading ? 'bg-emerald-50 ring-1 ring-emerald-200' : 'bg-gray-50 ring-1 ring-gray-200/70'}`}>
-                <div className="text-[10px] uppercase tracking-wide text-gray-400">{ko ? '나' : 'You'}</div>
-                <div className="text-[18px] font-bold tabular-nums text-gray-900">{d.my_xp}</div>
+                <div className="text-[11px] uppercase tracking-wide text-gray-400">{ko ? '나' : 'You'}</div>
+                <div className="text-[17px] font-bold tabular-nums text-gray-900">{d.my_xp}</div>
               </div>
               <span className="text-[11px] font-bold text-gray-300">VS</span>
               <div className={`flex-1 text-center rounded-xl py-2 ${!tied && !leading ? 'bg-rose-50 ring-1 ring-rose-200' : 'bg-gray-50 ring-1 ring-gray-200/70'}`}>
-                <div className="text-[10px] uppercase tracking-wide text-gray-400 truncate">{d.opponent.display_name}</div>
-                <div className="text-[18px] font-bold tabular-nums text-gray-900">{d.their_xp}</div>
+                <div className="text-[11px] uppercase tracking-wide text-gray-400 truncate">{d.opponent.display_name}</div>
+                <div className="text-[17px] font-bold tabular-nums text-gray-900">{d.their_xp}</div>
               </div>
             </div>
-            <div className={`mt-2 text-center text-[11.5px] font-semibold ${tied ? 'text-gray-400' : leading ? 'text-emerald-600' : 'text-rose-500'}`}>
+            <div className={`mt-2 text-center text-[11px] font-semibold ${tied ? 'text-gray-400' : leading ? 'text-emerald-600' : 'text-rose-500'}`}>
               {tied ? (ko ? '동점 — 접전이에요!' : 'Tied — neck and neck!') : leading ? (ko ? '앞서고 있어요! 🔥' : "You're ahead! 🔥") : (ko ? '뒤처지고 있어요 — 분발하세요!' : 'Behind — catch up!')}
             </div>
           </div>
@@ -585,8 +585,8 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
       {data.outgoing.map(o => (
         <div key={o.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-3 opacity-80">
           <Avatar name={o.opponent.display_name} avatarId={o.opponent.avatar_id} avatarConfig={o.opponent.avatar_config} />
-          <span className="flex-1 min-w-0 truncate text-[13.5px] text-gray-600">{o.opponent.display_name}</span>
-          <span className="text-[11.5px] font-medium text-gray-400">{ko ? '대기 중' : 'Pending'}</span>
+          <span className="flex-1 min-w-0 truncate text-[13px] text-gray-600">{o.opponent.display_name}</span>
+          <span className="text-[11px] font-medium text-gray-400">{ko ? '대기 중' : 'Pending'}</span>
           <button type="button" onClick={() => void respond(o.id, 'cancel')} aria-label={ko ? '취소' : 'Cancel'}
             className="w-8 h-8 inline-flex items-center justify-center rounded-full text-gray-300 hover:bg-gray-100 hover:text-gray-500 active:scale-95 transition">
             <X className="w-4 h-4" />
@@ -598,8 +598,8 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
       {data.recent.map(r => (
         <div key={r.id} className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 px-4 py-2.5">
           <Avatar name={r.opponent.display_name} avatarId={r.opponent.avatar_id} avatarConfig={r.opponent.avatar_config} />
-          <span className="flex-1 min-w-0 truncate text-[13.5px] text-gray-700">{r.opponent.display_name}</span>
-          <span className="text-[12px] tabular-nums text-gray-500">{r.my_xp}–{r.their_xp}</span>
+          <span className="flex-1 min-w-0 truncate text-[13px] text-gray-700">{r.opponent.display_name}</span>
+          <span className="text-[13px] tabular-nums text-gray-500">{r.my_xp}–{r.their_xp}</span>
           <span className={`text-[11px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${
             r.won === null ? 'bg-gray-100 text-gray-500' : r.won ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-600'
           }`}>

@@ -78,11 +78,11 @@ export function CampAssignmentsShelf() {
                   : <GraduationCap className="w-5 h-5" strokeWidth={2.25} />}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[14.5px] font-semibold text-gray-900 truncate leading-snug">
+                <div className="text-[15px] font-semibold text-gray-900 truncate leading-snug">
                   {a.title}
                 </div>
                 {from && (
-                  <div className="text-[11.5px] text-gray-500 truncate mt-0.5">{from}</div>
+                  <div className="text-[11px] text-gray-500 truncate mt-0.5">{from}</div>
                 )}
                 <div className="flex items-center gap-1.5 mt-1 flex-wrap">
                   <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gray-100 text-[11px] font-medium text-gray-600 tabular-nums">

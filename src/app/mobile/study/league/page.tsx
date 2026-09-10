@@ -189,7 +189,7 @@ function LeagueInner() {
           </div>
         ) : loadFailed ? (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-            <p className="text-[13.5px] text-gray-600">
+            <p className="text-[13px] text-gray-600">
               {ko ? '리그 정보를 불러오지 못했어요.' : "We couldn't load your league."}
             </p>
             <StudyButton
@@ -300,21 +300,21 @@ function NicknameJoinGate({ ko, onConfirmed }: { ko: boolean; onConfirmed: () =>
             onChange={(e) => setValue(e.target.value)}
             maxLength={NICKNAME_MAX}
             placeholder={ko ? '닉네임' : 'Nickname'}
-            className="w-full rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-3 text-[14px] text-gray-900 outline-none focus:border-amber-400 focus:bg-white focus:ring-2 focus:ring-amber-100"
+            className="w-full rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-3 text-[15px] text-gray-900 outline-none focus:border-amber-400 focus:bg-white focus:ring-2 focus:ring-amber-100"
             autoCapitalize="off" autoCorrect="off" spellCheck={false}
           />
           {status === 'available' && (
             <Check className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-500" weight="bold" />
           )}
         </div>
-        <div className="mt-1.5 min-h-[16px] text-[11.5px]">
+        <div className="mt-1.5 min-h-[16px] text-[11px]">
           {status === 'checking' && <span className="text-gray-400">{ko ? '확인 중…' : 'Checking…'}</span>}
           {status === 'available' && <span className="text-emerald-600">{ko ? '사용 가능해요' : 'Available'}</span>}
           {status === 'taken' && <span className="text-rose-500">{ko ? '이미 사용 중이에요' : 'Already taken'}</span>}
           {status === 'invalid' && <span className="text-rose-500">{ko ? '2–16자, 문자·숫자·밑줄만' : '2–16 characters, letters/numbers/underscore'}</span>}
         </div>
       </div>
-      {error && <p className="mt-1 text-[12px] text-rose-500">{error}</p>}
+      {error && <p className="mt-1 text-[13px] text-rose-500">{error}</p>}
       <div className="mt-4 max-w-xs mx-auto">
         <StudyButton type="button" onClick={confirm} disabled={!canConfirm} className="w-full justify-center">
           {saving ? (ko ? '참가하는 중…' : 'Joining…') : (ko ? '확인하고 참가하기' : 'Confirm & join')}
@@ -358,7 +358,7 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
   if (failed) {
     return (
       <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-        <p className="text-[13.5px] text-gray-600">{ko ? '친구 순위를 불러오지 못했어요.' : "Couldn't load the friends leaderboard."}</p>
+        <p className="text-[13px] text-gray-600">{ko ? '친구 순위를 불러오지 못했어요.' : "Couldn't load the friends leaderboard."}</p>
         <StudyButton type="button" size="sm" onClick={() => setRetryKey(k => k + 1)}>
           {ko ? '다시 시도' : 'Retry'}
         </StudyButton>
@@ -397,11 +397,11 @@ function FriendsLeaderboardView({ ko }: { ko: boolean }) {
             <span className={`flex-shrink-0 w-6 text-center text-[13px] font-bold tabular-nums ${r.rank === 1 ? 'text-amber-500' : 'text-gray-400'}`}>{r.rank}</span>
             <RankAvatar row={r} size={32}
               initialsClass={`flex-shrink-0 w-8 h-8 rounded-full ${hueOf(r.student_id)} flex items-center justify-center text-[11px] font-bold`} />
-            <span className={`flex-1 min-w-0 truncate text-[13.5px] ${r.is_me ? 'font-semibold text-amber-900' : 'text-gray-800'}`}>
+            <span className={`flex-1 min-w-0 truncate text-[13px] ${r.is_me ? 'font-semibold text-amber-900' : 'text-gray-800'}`}>
               {r.display_name}{r.is_me && <span className="text-[10px] font-semibold text-amber-600 ml-1.5">({ko ? '나' : 'me'})</span>}
             </span>
             {r.rank === 1 && r.xp_this_week > 0 && <Crown className="flex-shrink-0 w-3.5 h-3.5 text-amber-400" />}
-            <span className="flex-shrink-0 inline-flex items-center gap-1 text-[12.5px] tabular-nums font-semibold text-gray-700">
+            <span className="flex-shrink-0 inline-flex items-center gap-1 text-[13px] tabular-nums font-semibold text-gray-700">
               <Sparkles className="w-3 h-3 text-amber-500" />{r.xp_this_week}
             </span>
           </li>
@@ -494,7 +494,7 @@ function hueOf(id: string): string {
  *  coloured pill always means "your tier changes". */
 function TierChip({ tier, muted, ko }: { tier: typeof TIERS[number]; muted: boolean; ko: boolean }) {
   return (
-    <span className={`flex-shrink-0 inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-[10.5px] font-bold ${
+    <span className={`flex-shrink-0 inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-bold ${
       muted ? 'bg-gray-100 text-gray-500' : `bg-gradient-to-br ${tier.color} text-white`
     }`}>
       {ko ? tier.label_ko : tier.label_en}
@@ -563,7 +563,7 @@ function PromotionZone({ tier, ko, myRank, memberCount }: {
             <HeadIcon className="w-5 h-5" />
           </span>
           <div className="min-w-0 flex-1">
-            <div className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none">
               {ko ? '내 위치' : 'Your position'}
             </div>
             <div className="text-[15px] font-semibold text-gray-900 mt-1.5 leading-none truncate">
@@ -599,8 +599,8 @@ function PromotionZone({ tier, ko, myRank, memberCount }: {
                 <Icon className={`flex-shrink-0 w-4 h-4 ${mine ? tone.text : 'text-gray-400'}`} />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5 min-w-0">
-                    <span className={`text-[12.5px] font-semibold truncate ${mine ? 'text-gray-900' : 'text-gray-600'}`}>{b.label}</span>
-                    <span className="flex-shrink-0 text-[11.5px] tabular-nums text-gray-400">{range(b.from, b.to)}</span>
+                    <span className={`text-[13px] font-semibold truncate ${mine ? 'text-gray-900' : 'text-gray-600'}`}>{b.label}</span>
+                    <span className="flex-shrink-0 text-[11px] tabular-nums text-gray-400">{range(b.from, b.to)}</span>
                     {mine && myRank != null && (
                       <span className={`flex-shrink-0 inline-flex items-center rounded-full bg-white ring-1 ${tone.ring} px-1.5 py-px text-[10px] font-bold tabular-nums ${tone.text}`}>
                         {ko ? `나 ${myRank}위` : `you #${myRank}`}
@@ -639,9 +639,9 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh, promoteC
           <tier.Icon className="w-8 h-8 drop-shadow" />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="text-[10px] font-semibold tracking-[0.16em] uppercase opacity-85">{ko ? '이번 주 리그' : 'This week · League'}</div>
+          <div className="text-[11px] font-semibold tracking-[0.16em] uppercase opacity-85">{ko ? '이번 주 리그' : 'This week · League'}</div>
           <div className="flex items-center gap-2 mt-1">
-            <h2 className="text-[26px] font-bold tracking-tight leading-none">{ko ? tier.label_ko : tier.label_en}</h2>
+            <h2 className="text-[24px] font-bold tracking-tight leading-none">{ko ? tier.label_ko : tier.label_en}</h2>
             {showHigh && highTier && (
               <span className="inline-flex items-center gap-1 rounded-full bg-white/20 ring-1 ring-white/25 px-2 py-0.5 text-[10px] font-bold">
                 <Crown className="w-3 h-3" />
@@ -664,8 +664,8 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh, promoteC
           { label: ko ? '마감' : 'Resets', node: <span className="inline-flex items-center gap-1 text-[15px] whitespace-nowrap break-keep"><Clock className="w-3.5 h-3.5" />{formatCountdown(resetSeconds, ko)}</span> },
         ].map((s, i) => (
           <div key={i} className="rounded-2xl bg-white/12 ring-1 ring-white/15 px-3 py-2.5">
-            <div className="text-[9.5px] uppercase tracking-[0.12em] opacity-70">{s.label}</div>
-            <div className="text-[22px] font-bold leading-none mt-1">{s.node}</div>
+            <div className="text-[11px] uppercase tracking-[0.12em] opacity-70">{s.label}</div>
+            <div className="text-[20px] font-bold leading-none mt-1">{s.node}</div>
           </div>
         ))}
       </div>
@@ -674,7 +674,7 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh, promoteC
           <PromotionZone>, which says the same thing with the relegation
           side attached — two copies of it 40px apart read as noise. */}
       {inPromo && (
-        <div className="relative mt-3 rounded-xl px-3 py-2 text-[12px] font-semibold flex items-center justify-center gap-1.5 bg-emerald-400/25 ring-1 ring-emerald-200/40">
+        <div className="relative mt-3 rounded-xl px-3 py-2 text-[13px] font-semibold flex items-center justify-center gap-1.5 bg-emerald-400/25 ring-1 ring-emerald-200/40">
           <Confetti weight="fill" className="w-3.5 h-3.5 flex-shrink-0" />
           <span>{ko ? '승급권 안에 있어요 — 계속 유지하세요!' : "You're in the promotion zone — hold your spot!"}</span>
         </div>
@@ -701,17 +701,17 @@ function Podium({ top, ko }: { top: LeaderboardRow[]; ko: boolean }) {
             <div key={r.student_id} className="flex flex-col items-center animate-card-in opacity-0" style={{ animationDelay: `${r.rank * 60}ms` }}>
               <div className="relative">
                 <RankAvatar row={r} size={56} avatarClass={`ring-2 ${m.ring} shadow-sm`}
-                  initialsClass={`w-14 h-14 rounded-full ring-2 ${m.ring} ${hueOf(r.student_id)} flex items-center justify-center text-[16px] font-bold shadow-sm`} />
+                  initialsClass={`w-14 h-14 rounded-full ring-2 ${m.ring} ${hueOf(r.student_id)} flex items-center justify-center text-[17px] font-bold shadow-sm`} />
                 <span className="absolute -bottom-1 -right-1 text-[15px] drop-shadow-sm">{m.medal}</span>
               </div>
-              <div className={`mt-2 max-w-full truncate text-[12px] font-semibold ${r.is_me ? 'text-amber-700' : 'text-gray-800'}`}>
-                {r.display_name}{r.is_me && <span className="text-[9px] text-amber-600 ml-1">({ko ? '나' : 'me'})</span>}
+              <div className={`mt-2 max-w-full truncate text-[13px] font-semibold ${r.is_me ? 'text-amber-700' : 'text-gray-800'}`}>
+                {r.display_name}{r.is_me && <span className="text-[10px] text-amber-600 ml-1">({ko ? '나' : 'me'})</span>}
               </div>
               <div className="inline-flex items-center gap-0.5 text-[11px] font-bold tabular-nums text-gray-500">
                 <Sparkles className="w-2.5 h-2.5 text-amber-500" />{r.xp_this_week}
               </div>
               <div className={`mt-1.5 w-full ${m.h} rounded-t-xl bg-gradient-to-b from-white to-gray-100 ring-1 ring-gray-200/70 flex items-start justify-center pt-1.5`}>
-                <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-[12px] font-bold tabular-nums ${m.badge}`}>{r.rank}</span>
+                <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-[13px] font-bold tabular-nums ${m.badge}`}>{r.rank}</span>
               </div>
             </div>
           )
@@ -728,7 +728,7 @@ function ZoneDivider({ label, tone }: { label: string; tone: LeagueBand }) {
   return (
     <div className="flex items-center gap-2 py-1.5 px-1">
       <div className={`flex-1 h-px bg-gradient-to-r ${line} to-transparent`} />
-      <span className={`text-[9.5px] font-bold uppercase tracking-wider ${text}`}>{label}</span>
+      <span className={`text-[11px] font-bold uppercase tracking-wider ${text}`}>{label}</span>
       <div className={`flex-1 h-px bg-gradient-to-l ${line} to-transparent`} />
     </div>
   )
@@ -749,7 +749,7 @@ function Leaderboard({ rows, ko, memberCount }: { rows: LeaderboardRow[]; ko: bo
           {/* The legend that used to live here is now the whole
               <PromotionZone> card above — repeating one of its three
               bands as a lone dot was the weaker half of the pair. */}
-          <span className="text-[10.5px] font-medium text-gray-400 tabular-nums">
+          <span className="text-[10px] font-medium text-gray-400 tabular-nums">
             {ko ? `${memberCount}명` : `${memberCount} students`}
           </span>
         </div>
@@ -785,16 +785,16 @@ function Leaderboard({ rows, ko, memberCount }: { rows: LeaderboardRow[]; ko: bo
                           ? 'bg-rose-50/50 ring-rose-100'
                           : 'bg-white ring-gray-200/70'
                   }`}>
-                  <span className={`flex-shrink-0 w-6 text-center text-[12.5px] font-bold tabular-nums ${band === 'safe' ? 'text-gray-400' : tone.text}`}>{r.rank}</span>
+                  <span className={`flex-shrink-0 w-6 text-center text-[13px] font-bold tabular-nums ${band === 'safe' ? 'text-gray-400' : tone.text}`}>{r.rank}</span>
                   <RankAvatar row={r} size={32}
                     initialsClass={`flex-shrink-0 w-8 h-8 rounded-full ${hueOf(r.student_id)} flex items-center justify-center text-[11px] font-bold`} />
-                  <span className={`flex-1 min-w-0 truncate text-[13.5px] ${r.is_me ? 'font-semibold text-amber-900' : 'text-gray-800'}`}>
+                  <span className={`flex-1 min-w-0 truncate text-[13px] ${r.is_me ? 'font-semibold text-amber-900' : 'text-gray-800'}`}>
                     {r.display_name}{r.is_me && <span className="text-[10px] font-semibold text-amber-600 ml-1.5">({ko ? '나' : 'me'})</span>}
                   </span>
                   {/* The band arrow renders even on the amber "me" row, so
                       the band survives the row tint being overridden. */}
                   {band !== 'safe' && <BandIcon className={`flex-shrink-0 w-3.5 h-3.5 ${tone.text}`} />}
-                  <span className="flex-shrink-0 inline-flex items-center gap-1 text-[12.5px] tabular-nums font-semibold text-gray-700">
+                  <span className="flex-shrink-0 inline-flex items-center gap-1 text-[13px] tabular-nums font-semibold text-gray-700">
                     <Sparkles className="w-3 h-3 text-amber-500" />{r.xp_this_week}
                   </span>
                 </li>
@@ -864,17 +864,17 @@ function PromotionBanner({ notice, ko }: { notice: PromotionNotice; ko: boolean 
           <Icon className="w-5 h-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">
+          <div className="text-[11px] font-bold tracking-[0.14em] uppercase opacity-90">
             {ko ? '지난주 결과' : 'Last week'}
           </div>
-          <div className="text-[16px] font-semibold leading-snug mt-0.5">
+          <div className="text-[17px] font-semibold leading-snug mt-0.5">
             {ko ? headlineKo : headlineEn}
           </div>
-          <div className="text-[12.5px] opacity-95 mt-0.5 leading-relaxed">
+          <div className="text-[13px] opacity-95 mt-0.5 leading-relaxed">
             {ko ? bodyKo : bodyEn}
           </div>
           {(notice.rewardCredits ?? 0) > 0 && (
-            <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-sm ring-1 ring-white/25 px-2.5 py-1 text-[12px] font-bold">
+            <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-sm ring-1 ring-white/25 px-2.5 py-1 text-[13px] font-bold">
               <Sparkles className="w-3.5 h-3.5" />
               {ko ? `크레딧 +${notice.rewardCredits}` : `+${notice.rewardCredits} credits`}
             </div>
@@ -993,7 +993,7 @@ function RewardsPanel({ ko, tier, myRank, memberCount, seasonHigh }: {
               and the total is NOT repeated as a chip beside the headline
               that already states it. */}
           <div className="min-w-0 flex-1">
-            <div className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none">
               {ko ? '일요일 마감 지급' : 'Sunday payout'}
             </div>
             <div className="text-[15px] font-semibold text-gray-900 mt-1.5 leading-none">
@@ -1016,10 +1016,10 @@ function RewardsPanel({ ko, tier, myRank, memberCount, seasonHigh }: {
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="text-[13px] font-semibold text-gray-900 truncate">{r.title}</div>
-                  <div className="text-[11.5px] text-gray-500 leading-snug mt-0.5">{r.detail}</div>
+                  <div className="text-[11px] text-gray-500 leading-snug mt-0.5">{r.detail}</div>
                 </div>
                 <div className="flex-shrink-0 flex flex-col items-end gap-1">
-                  <span className={`inline-flex items-center gap-1 text-[12.5px] font-bold tabular-nums whitespace-nowrap ${dim ? 'text-gray-400' : 'text-amber-700'}`}>
+                  <span className={`inline-flex items-center gap-1 text-[13px] font-bold tabular-nums whitespace-nowrap ${dim ? 'text-gray-400' : 'text-amber-700'}`}>
                     {!dim && <Sparkles className="w-3 h-3 text-amber-500" weight="fill" />}
                     {r.value}
                   </span>
@@ -1068,7 +1068,7 @@ function EarnXpPanel({ ko }: { ko: boolean }) {
                 <Icon className="w-4 h-4" />
               </div>
               <div className="flex-1 min-w-0 text-[13px] text-gray-800">{ko ? r.label_ko : r.label_en}</div>
-              <span className="flex-shrink-0 inline-flex items-center gap-1 text-[12px] font-bold tabular-nums text-amber-700">
+              <span className="flex-shrink-0 inline-flex items-center gap-1 text-[13px] font-bold tabular-nums text-amber-700">
                 <Sparkles className="w-3 h-3" />+{r.xp}
               </span>
             </Link>
@@ -1162,7 +1162,7 @@ function CollectRewards({ ko }: { ko: boolean }) {
     return (
       <div className="rounded-2xl bg-emerald-50 ring-1 ring-emerald-200/70 px-4 py-3 flex items-center gap-2">
         <Check className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-        <span className="text-[13.5px] font-semibold text-emerald-800">
+        <span className="text-[13px] font-semibold text-emerald-800">
           {collected > 0
             ? (ko ? `크레딧 ${collected}개를 받았어요` : `Collected ${collected} credit${collected === 1 ? '' : 's'}`)
             : (ko ? '이미 받았어요' : 'Already collected')}
@@ -1181,7 +1181,7 @@ function CollectRewards({ ko }: { ko: boolean }) {
           {ko ? '받을 보상' : 'Rewards waiting'}
         </span>
       </div>
-      <p className="text-[13.5px] text-amber-900/80 leading-relaxed mb-3">
+      <p className="text-[13px] text-amber-900/80 leading-relaxed mb-3">
         {ko
           ? `지난주 리그 보상 ${count}개, 크레딧 ${total}개가 기다리고 있어요.`
           : `${count} league reward${count === 1 ? '' : 's'} worth ${total} credit${total === 1 ? '' : 's'}.`}

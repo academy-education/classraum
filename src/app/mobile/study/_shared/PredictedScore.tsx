@@ -183,7 +183,7 @@ export function PredictedScore() {
     <Shell>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="inline-flex items-center gap-1.5 text-[10.5px] font-bold uppercase tracking-[0.12em] text-white/70">
+          <p className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white/70">
             <TrendingUp className="w-3 h-3" />{ko ? '예상 점수' : 'Predicted score'}
           </p>
           <div className="mt-1 flex items-baseline gap-2">
@@ -198,8 +198,8 @@ export function PredictedScore() {
         </div>
         {data.weeksToTest != null && (
           <div className="flex-shrink-0 text-right">
-            <p className="text-[10px] uppercase tracking-[0.1em] text-white/60">{ko ? '시험까지' : 'To test'}</p>
-            <p className="text-[18px] font-bold tabular-nums leading-none mt-0.5">{data.weeksToTest}{ko ? '주' : 'w'}</p>
+            <p className="text-[11px] uppercase tracking-[0.1em] text-white/60">{ko ? '시험까지' : 'To test'}</p>
+            <p className="text-[17px] font-bold tabular-nums leading-none mt-0.5">{data.weeksToTest}{ko ? '주' : 'w'}</p>
           </div>
         )}
       </div>
@@ -208,17 +208,17 @@ export function PredictedScore() {
       <div className="mt-3 pt-3 border-t border-white/15 flex items-center justify-between gap-3">
         {goalSet ? (
           data.onTrack ? (
-            <span className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-emerald-200">
+            <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-emerald-200">
               <Target className="w-3.5 h-3.5" />{ko ? `목표 ${data.goalScore} · 순조롭게 가는 중!` : `Goal ${data.goalScore} · On track!`}
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-white/85">
+            <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white/85">
               <Target className="w-3.5 h-3.5" />
               {ko ? `목표 ${data.goalScore} · ${data.gap}점 더` : `Goal ${data.goalScore} · ${data.gap} to go`}
             </span>
           )
         ) : (
-          <Link href="/mobile/study/preferences" className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-white/85 hover:text-white transition">
+          <Link href="/mobile/study/preferences" className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white/85 hover:text-white transition">
             <Target className="w-3.5 h-3.5" />{ko ? '목표 점수 설정하기' : 'Set a goal score'}<ArrowRight className="w-3 h-3" />
           </Link>
         )}
@@ -265,9 +265,9 @@ function DiagnosticCard({ ko, isPremium, starting, onStart, doneCount, totalCoun
         </span>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5">
-            <p className="text-[10.5px] font-bold uppercase tracking-[0.12em] text-white/70">{ko ? '진단 모의고사' : 'Diagnostic'}</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-white/70">{ko ? '진단 모의고사' : 'Diagnostic'}</p>
             {!isPremium && (
-              <span className="inline-flex items-center gap-0.5 rounded-full bg-amber-300/25 ring-1 ring-amber-200/40 px-1.5 py-px text-[9px] font-bold uppercase tracking-wide text-amber-100">
+              <span className="inline-flex items-center gap-0.5 rounded-full bg-amber-300/25 ring-1 ring-amber-200/40 px-1.5 py-px text-[10px] font-bold uppercase tracking-wide text-amber-100">
                 <Crown className="w-2.5 h-2.5" />{ko ? '프리미엄' : 'Premium'}
               </span>
             )}
@@ -277,7 +277,7 @@ function DiagnosticCard({ ko, isPremium, starting, onStart, doneCount, totalCoun
               ? (ko ? `${nextLabel} 테스트로 예상 점수 완성하기` : `${doneCount} of ${totalCount} done — finish with ${nextLabel}`)
               : (ko ? 'SAT 기준 점수 찾기' : 'Find your SAT baseline')}
           </p>
-          <p className="text-[12px] text-white/75 leading-snug mt-0.5">
+          <p className="text-[13px] text-white/75 leading-snug mt-0.5">
             {partial
               ? (ko
                   ? `${totalCount}개 섹션 중 ${doneCount}개를 완료했어요. ${nextLabel} 테스트를 마치면 예상 점수가 열려요.`
@@ -297,7 +297,7 @@ function DiagnosticCard({ ko, isPremium, starting, onStart, doneCount, totalCoun
             <div key={i} className="rounded-xl bg-white/10 ring-1 ring-white/15 px-1.5 py-2 text-center">
               <Icon className="w-3.5 h-3.5 mx-auto text-white/70" />
               <div className="text-[13px] font-bold tabular-nums leading-none mt-1 whitespace-nowrap break-keep">{f.value}</div>
-              <div className="text-[9px] uppercase tracking-wide text-white/55 mt-0.5">{f.label}</div>
+              <div className="text-[11px] uppercase tracking-wide text-white/55 mt-0.5">{f.label}</div>
             </div>
           )
         })}
@@ -319,7 +319,7 @@ function DiagnosticCard({ ko, isPremium, starting, onStart, doneCount, totalCoun
                 ? (ko ? `${nextLabel} 시작하기` : `Start ${nextLabel}`)
                 : (ko ? '진단 시작하기' : 'Start diagnostic')}
             </StudyButton>
-            <p className="text-[10.5px] text-white/55 text-center mt-1.5">
+            <p className="text-[10px] text-white/55 text-center mt-1.5">
               {partial
                 ? (ko ? '크레딧 2개 사용 · 2개 적응형 모듈' : 'Uses 2 credits · 2 adaptive modules')
                 : (ko ? 'Reading & Writing부터 시작 · 크레딧 2개 사용' : 'Begins with Reading & Writing · uses 2 credits')}
@@ -333,7 +333,7 @@ function DiagnosticCard({ ko, isPremium, starting, onStart, doneCount, totalCoun
             >
               <Lock className="w-4 h-4" />{ko ? '프리미엄으로 잠금 해제' : 'Unlock with Premium'}
             </Link>
-            <p className="text-[10.5px] text-white/55 text-center mt-1.5">
+            <p className="text-[10px] text-white/55 text-center mt-1.5">
               {ko ? '진단 모의고사 + 취약 영역 맞춤 연습은 프리미엄 전용이에요.' : 'Diagnostic + targeted weak-area practice are Premium features.'}
             </p>
           </>

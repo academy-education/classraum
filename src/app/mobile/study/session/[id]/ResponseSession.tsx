@@ -258,8 +258,8 @@ function SkillPicker({ onPick, ko }: { onPick: (f: Family, s: Skill) => void; ko
               <div className={`w-10 h-10 rounded-xl text-white flex items-center justify-center ${opt.iconBg} mb-3`}>
                 <Icon className="w-4 h-4" />
               </div>
-              <div className="text-[14px] font-semibold text-gray-900">{opt.title}</div>
-              <div className="text-[12px] text-gray-600 mt-1">{opt.body}</div>
+              <div className="text-[15px] font-semibold text-gray-900">{opt.title}</div>
+              <div className="text-[13px] text-gray-600 mt-1">{opt.body}</div>
             </button>
           )
         })}
@@ -286,11 +286,11 @@ function BriefScreen({
         <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-indigo-600 mb-2">
           {family.toUpperCase()} · {skill === 'speaking' ? (ko ? '말하기' : 'Speaking') : (ko ? '작문' : 'Writing')}
         </div>
-        <h2 className="text-[16px] font-semibold text-gray-900 leading-snug mb-3">
+        <h2 className="text-[17px] font-semibold text-gray-900 leading-snug mb-3">
           {ko ? '오늘의 과제' : "Today's task"}
         </h2>
-        <p className="text-[14px] text-gray-800 leading-relaxed whitespace-pre-line">{prompt}</p>
-        <div className="mt-4 flex items-center gap-4 text-[12px] text-gray-600">
+        <p className="text-[15px] text-gray-800 leading-relaxed whitespace-pre-line">{prompt}</p>
+        <div className="mt-4 flex items-center gap-4 text-[13px] text-gray-600">
           <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{timer}</span>
           <span className="inline-flex items-center gap-1.5"><Pencil className="w-3.5 h-3.5" />{target}</span>
         </div>
@@ -301,7 +301,7 @@ function BriefScreen({
           <RotateCcw className="w-3.5 h-3.5" />{ko ? '다른 문제' : 'New prompt'}
         </button>
         <button type="button" onClick={onStart}
-          className="flex-[1.4] h-11 rounded-xl bg-indigo-600 text-white text-[14px] font-semibold hover:bg-indigo-700 transition inline-flex items-center justify-center gap-1.5">
+          className="flex-[1.4] h-11 rounded-xl bg-indigo-600 text-white text-[15px] font-semibold hover:bg-indigo-700 transition inline-flex items-center justify-center gap-1.5">
           {ko ? '시작' : 'Start'}<ArrowRight className="w-4 h-4" />
         </button>
       </div>
@@ -334,10 +334,10 @@ function WritingCapture({
   const canSubmit = wordCount >= 30
   return (
     <div className="space-y-3">
-      <div className="rounded-xl bg-indigo-50/60 ring-1 ring-indigo-100 p-3 text-[12px] text-gray-700 leading-relaxed">
+      <div className="rounded-xl bg-indigo-50/60 ring-1 ring-indigo-100 p-3 text-[13px] text-gray-700 leading-relaxed">
         <span className="font-medium text-indigo-700">{ko ? '과제' : 'Prompt'}: </span>{prompt}
       </div>
-      <div className="flex items-center justify-between text-[12px]">
+      <div className="flex items-center justify-between text-[13px]">
         <span className="inline-flex items-center gap-1.5 font-mono tabular-nums text-gray-700">
           <Clock className="w-3.5 h-3.5" />{mm}:{ss}
         </span>
@@ -350,13 +350,13 @@ function WritingCapture({
         onChange={e => onChange(e.target.value)}
         placeholder={ko ? '여기에 작성하세요…' : 'Type your response here…'}
         rows={14}
-        className="w-full rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-4 text-[14px] text-gray-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"
+        className="w-full rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-4 text-[15px] text-gray-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"
       />
       <button
         type="button"
         disabled={!canSubmit}
         onClick={() => onSubmit(value)}
-        className="w-full h-11 rounded-xl bg-indigo-600 text-white text-[14px] font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-indigo-700 transition inline-flex items-center justify-center gap-1.5"
+        className="w-full h-11 rounded-xl bg-indigo-600 text-white text-[15px] font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-indigo-700 transition inline-flex items-center justify-center gap-1.5"
       >
         <Sparkles className="w-4 h-4" />{ko ? '제출하고 평가 받기' : 'Submit for grading'}
       </button>
@@ -481,7 +481,7 @@ function SpeakingCapture({
           test pages and the camp marketing panel: quiet gray card, the
           prompt itself as the content. */}
       <div className="rounded-xl bg-gray-50 ring-1 ring-gray-100 px-4 py-3.5">
-        <p className="text-[14px] text-gray-800 font-medium leading-[1.7]">
+        <p className="text-[15px] text-gray-800 font-medium leading-[1.7]">
           <span className="font-semibold text-gray-500">{ko ? '과제' : 'Prompt'}: </span>{prompt}
         </p>
       </div>
@@ -491,8 +491,8 @@ function SpeakingCapture({
           <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-amber-600 mb-2">
             {ko ? '준비 시간' : 'Prep time'}
           </div>
-          <div className="text-5xl font-bold tabular-nums text-gray-900 leading-none">{prepRemaining}s</div>
-          <p className="text-[12px] text-gray-500 mt-3">
+          <div className="text-[48px] font-bold tabular-nums text-gray-900 leading-none">{prepRemaining}s</div>
+          <p className="text-[13px] text-gray-500 mt-3">
             {ko ? '메모하세요. 자동으로 녹음이 시작됩니다.' : 'Take notes. Recording starts automatically.'}
           </p>
           <StudyButton size="sm" onClick={() => { setPrepRemaining(0); void startRecording() }} className="mt-4">
@@ -515,11 +515,11 @@ function SpeakingCapture({
               <span className="relative inline-flex w-3 h-3 rounded-full bg-white" />
             </span>
             <span className="text-[15px] font-semibold">{ko ? '녹음 중지' : 'Stop recording'}</span>
-            <span className="text-[14px] font-mono tabular-nums opacity-90 min-w-[3.2ch] text-right">
+            <span className="text-[15px] font-mono tabular-nums opacity-90 min-w-[3.2ch] text-right">
               {`${Math.floor(recRemaining / 60)}:${String(recRemaining % 60).padStart(2, '0')}`}
             </span>
           </button>
-          <p className="mt-1.5 text-center text-[11.5px] text-gray-400">
+          <p className="mt-1.5 text-center text-[11px] text-gray-400">
             {ko ? '탭하여 정지 · 시간이 끝나면 자동으로 종료됩니다.' : 'Tap to stop · ends on its own when time runs out.'}
           </p>
         </div>
@@ -541,7 +541,7 @@ function SpeakingCapture({
           </div>
           {err ?? (ko ? '알 수 없는 오류' : 'Unknown error')}
           <button type="button" onClick={() => { setState('prep'); setPrepRemaining(prepLimit); setRecRemaining(recLimit) }}
-            className="mt-3 inline-flex items-center justify-center h-9 px-3 rounded-lg bg-white ring-1 ring-rose-200 text-rose-800 text-[12px] font-medium">
+            className="mt-3 inline-flex items-center justify-center h-9 px-3 rounded-lg bg-white ring-1 ring-rose-200 text-rose-800 text-[13px] font-medium">
             {ko ? '다시 시도' : 'Retry'}
           </button>
         </div>
@@ -554,8 +554,8 @@ function GradingScreen({ ko }: { ko: boolean }) {
   return (
     <div className="py-16 text-center">
       <div className="flex justify-center mb-3"><PathMascot state="thinking" size={96} /></div>
-      <p className="text-[14px] font-medium text-gray-900">{ko ? '평가 중…' : 'Grading your response…'}</p>
-      <p className="text-[12px] text-gray-500 mt-1.5">{ko ? '약 10–20초 소요됩니다.' : 'Typically 10–20 seconds.'}</p>
+      <p className="text-[15px] font-medium text-gray-900">{ko ? '평가 중…' : 'Grading your response…'}</p>
+      <p className="text-[13px] text-gray-500 mt-1.5">{ko ? '약 10–20초 소요됩니다.' : 'Typically 10–20 seconds.'}</p>
     </div>
   )
 }
@@ -564,8 +564,8 @@ function ErrorScreen({ message, ko, onRetry }: { message: string | null; ko: boo
   return (
     <div className="py-12 text-center">
       <AlertCircle className="w-7 h-7 text-rose-500 mx-auto mb-2" />
-      <p className="text-[14px] font-medium text-gray-900">{ko ? '문제가 발생했습니다' : 'Something went wrong'}</p>
-      <p className="text-[12px] text-gray-500 mt-1.5 max-w-xs mx-auto">{message ?? ''}</p>
+      <p className="text-[15px] font-medium text-gray-900">{ko ? '문제가 발생했습니다' : 'Something went wrong'}</p>
+      <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs mx-auto">{message ?? ''}</p>
       <button type="button" onClick={onRetry}
         className="mt-4 inline-flex items-center justify-center h-10 px-4 rounded-xl bg-gray-900 text-white text-[13px] font-medium">
         {ko ? '다시 시도' : 'Try again'}
@@ -588,7 +588,7 @@ function ResultScreen({
       <div className="rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-700 text-white p-5 shadow-[0_8px_24px_-8px_rgba(79,70,229,0.45)]">
         <div className="flex items-start justify-between">
           <div>
-            <div className="text-[10px] font-semibold tracking-[0.14em] uppercase opacity-80">
+            <div className="text-[11px] font-semibold tracking-[0.14em] uppercase opacity-80">
               {family.toUpperCase()} · {skill === 'speaking' ? (ko ? '말하기' : 'Speaking') : (ko ? '작문' : 'Writing')}
             </div>
             <div className="text-[11px] uppercase tracking-[0.12em] opacity-70 mt-1">{ko ? '종합 점수' : 'Overall'}</div>
@@ -596,10 +596,10 @@ function ResultScreen({
           <Award className="w-6 h-6 opacity-90" />
         </div>
         <div className="mt-2 flex items-baseline gap-1.5">
-          <span className="text-5xl font-bold tabular-nums leading-none">
+          <span className="text-[48px] font-bold tabular-nums leading-none">
             {Number.isInteger(grade.overallBand) ? grade.overallBand : grade.overallBand.toFixed(1)}
           </span>
-          <span className="text-[16px] opacity-80">/ {scaleMax}</span>
+          <span className="text-[17px] opacity-80">/ {scaleMax}</span>
         </div>
         <p className="text-[13px] mt-3 leading-relaxed opacity-95">{grade.summary}</p>
       </div>
@@ -621,7 +621,7 @@ function ResultScreen({
                 <div className="mt-2 h-1.5 rounded-full bg-gray-100 overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-indigo-400 to-blue-600 rounded-full transition-all" style={{ width: `${pct}%` }} />
                 </div>
-                <p className="text-[12px] text-gray-600 mt-2 leading-relaxed">{c.evidence}</p>
+                <p className="text-[13px] text-gray-600 mt-2 leading-relaxed">{c.evidence}</p>
               </div>
             )
           })}
@@ -641,8 +641,8 @@ function ResultScreen({
                 <blockquote className="text-[13px] text-gray-900 border-l-2 border-indigo-200 pl-2.5 italic mb-2">
                   &ldquo;{a.quote}&rdquo;
                 </blockquote>
-                <div className="text-[12px] text-gray-700 leading-relaxed"><span className="font-medium text-rose-700">{ko ? '문제' : 'Issue'}:</span> {a.issue}</div>
-                <div className="text-[12px] text-gray-700 leading-relaxed mt-1"><span className="font-medium text-emerald-700">{ko ? '개선' : 'Fix'}:</span> {a.suggestion}</div>
+                <div className="text-[13px] text-gray-700 leading-relaxed"><span className="font-medium text-rose-700">{ko ? '문제' : 'Issue'}:</span> {a.issue}</div>
+                <div className="text-[13px] text-gray-700 leading-relaxed mt-1"><span className="font-medium text-emerald-700">{ko ? '개선' : 'Fix'}:</span> {a.suggestion}</div>
               </div>
             ))}
           </div>
@@ -660,7 +660,7 @@ function ResultScreen({
         </section>
       )}
 
-      <details className="rounded-xl bg-gray-50 ring-1 ring-gray-200 p-3 text-[12px] text-gray-600">
+      <details className="rounded-xl bg-gray-50 ring-1 ring-gray-200 p-3 text-[13px] text-gray-600">
         <summary className="cursor-pointer font-medium text-gray-800 inline-flex items-center gap-1.5">
           <Info className="w-3.5 h-3.5" />{ko ? '이 점수가 정확한가요?' : 'How accurate is this score?'}
         </summary>
@@ -671,7 +671,7 @@ function ResultScreen({
         </p>
       </details>
 
-      <details className="rounded-xl bg-white ring-1 ring-gray-200/70 p-3 text-[12px] text-gray-600">
+      <details className="rounded-xl bg-white ring-1 ring-gray-200/70 p-3 text-[13px] text-gray-600">
         <summary className="cursor-pointer font-medium text-gray-800 inline-flex items-center gap-1.5">
           <Volume2 className="w-3.5 h-3.5" />{ko ? '내가 작성한 응답 보기' : 'View my response'}
         </summary>
@@ -680,7 +680,7 @@ function ResultScreen({
 
       <div className="pt-1">
         <button type="button" onClick={onRetry}
-          className="w-full h-11 rounded-xl bg-gray-900 text-white text-[14px] font-semibold hover:bg-gray-800 transition inline-flex items-center justify-center gap-1.5">
+          className="w-full h-11 rounded-xl bg-gray-900 text-white text-[15px] font-semibold hover:bg-gray-800 transition inline-flex items-center justify-center gap-1.5">
           {ko ? '다른 문제 풀기' : 'Try another prompt'}<ChevronRight className="w-4 h-4" />
         </button>
       </div>

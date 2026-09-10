@@ -42,7 +42,7 @@ export function RecordingPanel({ barsRef, barCount, totalSec, elapsedSec, silent
       }`}
     >
       <div className="flex items-center justify-between gap-3">
-        <span className={`inline-flex items-center gap-2 text-[12.5px] font-semibold ${
+        <span className={`inline-flex items-center gap-2 text-[13px] font-semibold ${
           urgent ? 'text-rose-800' : 'text-emerald-800'
         }`}>
           <span className="relative inline-flex w-2.5 h-2.5">

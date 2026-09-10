@@ -56,7 +56,7 @@ export function UndoToast() {
           current.onUndo()
           setCurrent(null)
         }}
-        className="inline-flex items-center gap-1 h-8 px-3 rounded-full bg-white/15 hover:bg-white/25 text-white text-[12.5px] font-semibold transition"
+        className="inline-flex items-center gap-1 h-8 px-3 rounded-full bg-white/15 hover:bg-white/25 text-white text-[13px] font-semibold transition"
       >
         <RotateCcw className="w-3.5 h-3.5" />
         Undo

@@ -138,7 +138,7 @@ function TestsInner() {
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder={ko ? '주제로 검색' : 'Search by topic'}
-            className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+            className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[17px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />
           {query && (
             <button
@@ -236,7 +236,7 @@ function StateFilter({ value, onSelect, counts, ko }: {
               key={item.key}
               type="button"
               onClick={() => onSelect(item.key)}
-              className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
+              className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[13px] font-medium transition ${
                 active
                   ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                   : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'
@@ -310,7 +310,7 @@ function TestRow({ row, ko }: { row: Row; ko: boolean }) {
       subtitle={relativeTime}
       rightSlot={scored ? (
         <div className="text-right">
-          <div className="text-[16px] font-bold text-gray-900 tabular-nums leading-none">
+          <div className="text-[17px] font-bold text-gray-900 tabular-nums leading-none">
             {Math.round(row.score!)}%
           </div>
           {row.correct_count !== null && row.total_count !== null && (

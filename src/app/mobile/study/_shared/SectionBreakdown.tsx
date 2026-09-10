@@ -42,11 +42,11 @@ export function SectionBreakdownCard({
     <>
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-400">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-400">
             {title ?? (ko ? '영역별 결과' : 'How you did by section')}
           </div>
           {best && worst && best !== worst && (
-            <p className="text-[12px] text-gray-600 mt-1 leading-relaxed">
+            <p className="text-[13px] text-gray-600 mt-1 leading-relaxed">
               {ko
                 ? `${best.label}이(가) 가장 좋았고, ${worst.label}이(가) 가장 약했어요.`
                 : <>Strongest on <b className="text-gray-900 font-semibold">{best.label}</b>,
@@ -77,7 +77,7 @@ export function SectionBreakdownCard({
       {/* Never a silent cap. A student who answered 30 questions and
           sees rows covering 25 is owed the difference. */}
       {breakdown.omitted > 0 && (
-        <p className="mt-2.5 text-[10.5px] text-gray-400 leading-relaxed">
+        <p className="mt-2.5 text-[10px] text-gray-400 leading-relaxed">
           {ko
             ? `${breakdown.covered}문항 기준. 나머지 ${breakdown.omitted}문항은 영역을 나누기에 너무 적어 제외했어요.`
             : `Based on ${breakdown.covered} questions. ${breakdown.omitted} more sat in groups too small to report.`}
@@ -100,8 +100,8 @@ function SectionRow({ group, ko }: { group: SectionGroup; ko: boolean }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-[12.5px] font-semibold text-gray-800 truncate">{group.label}</span>
-        <span className="flex-shrink-0 text-[11.5px] tabular-nums">
+        <span className="text-[13px] font-semibold text-gray-800 truncate">{group.label}</span>
+        <span className="flex-shrink-0 text-[11px] tabular-nums">
           <span className={`font-semibold ${TONE_CLASS[tone].text}`}>{pct}%</span>
           <span className="text-gray-400 font-medium"> · {group.earned}/{group.max}</span>
         </span>
@@ -185,7 +185,7 @@ export function SkillCards({
 
       {(onPractice || assessedAt) && (
         <div className="flex items-center justify-between gap-3 px-4 py-3 border-t border-gray-100 bg-gray-50/60">
-          <span className="text-[10.5px] text-gray-400 leading-snug min-w-0">
+          <span className="text-[10px] text-gray-400 leading-snug min-w-0">
             {assessedAt
               ? (ko ? `${formatDay(assessedAt, ko)} AI 분석 기준`
                     : `From your AI assessment on ${formatDay(assessedAt, ko)}`)
@@ -198,7 +198,7 @@ export function SkillCards({
             <button
               type="button"
               onClick={onPractice}
-              className="flex-shrink-0 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-[12px] font-semibold text-white transition-opacity hover:opacity-90 active:scale-[0.98]"
+              className="flex-shrink-0 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-[13px] font-semibold text-white transition-opacity hover:opacity-90 active:scale-[0.98]"
             >
               {practiceLabel ?? (ko ? '연습하기' : 'Practice')}
               <ArrowRight className="w-3.5 h-3.5" />
@@ -306,10 +306,10 @@ export function CriterionTrendCard({
 
   return (
     <div className="rounded-2xl bg-white ring-1 ring-gray-200 p-4">
-      <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-400">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-400">
         {ko ? '채점 기준별 변화' : 'Your writing and speaking, by criterion'}
       </div>
-      <p className="text-[12px] text-gray-600 mt-1 leading-relaxed">
+      <p className="text-[13px] text-gray-600 mt-1 leading-relaxed">
         {anyDirection
           ? (ko ? '루브릭 기준별 점수 흐름이에요.'
                 : 'How each rubric criterion has moved across your graded responses.')
@@ -328,7 +328,7 @@ export function CriterionTrendCard({
               style={{ height: `${(v / 5) * 100}%` }} />
           ))}
         </div>
-        <p className="text-[10.5px] text-gray-500 leading-snug min-w-0">
+        <p className="text-[10px] text-gray-500 leading-snug min-w-0">
           {ko
             ? '막대 하나가 응답 하나예요. 왼쪽이 오래된 것, 오른쪽이 최신. 높이는 0–5점.'
             : 'One bar per response, oldest on the left. Height is the 0–5 score that response got.'}
@@ -343,7 +343,7 @@ export function CriterionTrendCard({
 
       {/* Says out loud that the level is not trustworthy even though the
           movement is. Without this the card reads as a score report. */}
-      <p className="mt-3 pt-2.5 border-t border-gray-100 text-[10.5px] text-gray-400 leading-relaxed">
+      <p className="mt-3 pt-2.5 border-t border-gray-100 text-[10px] text-gray-400 leading-relaxed">
         {ko
           ? 'AI 채점 기준이라 실제 시험 점수와 다를 수 있어요. 변화의 방향을 보는 용도예요.'
           : 'Our AI grader marks harder than the real exam, so treat the level as rough — the movement is the useful part.'}
@@ -375,22 +375,22 @@ function CriterionRow({
   return (
     <div>
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-[12.5px] font-semibold text-gray-800 truncate">
+        <span className="text-[13px] font-semibold text-gray-800 truncate">
           {gloss?.short ?? trend.label}
         </span>
         <span className="flex-shrink-0 flex items-center gap-1.5">
           {dir ? (
-            <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10.5px] font-semibold ${dir.chip}`}>
+            <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold ${dir.chip}`}>
               {trend.direction === 'up' && <TrendingUp className="w-3 h-3" />}
               {trend.direction === 'down' && <TrendingDown className="w-3 h-3" />}
               {ko ? dir.ko : dir.en}
             </span>
           ) : (
-            <span className="text-[10.5px] text-gray-400">
+            <span className="text-[10px] text-gray-400">
               {ko ? `${need}개 더 필요` : `${need} more to call it`}
             </span>
           )}
-          <span className={`text-[11.5px] font-semibold tabular-nums ${TONE_CLASS[tone].text}`}>
+          <span className={`text-[11px] font-semibold tabular-nums ${TONE_CLASS[tone].text}`}>
             {trend.average.toFixed(1)}<span className="text-gray-400 font-medium">/5</span>
           </span>
         </span>

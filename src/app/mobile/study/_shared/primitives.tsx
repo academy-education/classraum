@@ -128,15 +128,16 @@ export function StudyPageHeader({
           )}
           <div className="min-w-0 flex-1">
             {!collapsed && (
-              <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none mb-1.5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none mb-1.5">
                 {eyebrow}
               </p>
             )}
-            {/* Non-collapsed title matches StudySubPageHeader (24/26px) so
+            {/* Non-collapsed title matches StudySubPageHeader (the `page`
+                step, 24px) so
                 sticky-header pages (review, league, snap, session) read
                 identically to the in-flow ones (profile, stats, prefs). */}
             <h1 className={`font-bold tracking-tight text-gray-900 truncate transition-all ${
-              collapsed ? 'text-[14px]' : 'text-[24px] sm:text-[26px] leading-tight'
+              collapsed ? 'text-[15px]' : 'text-[24px] sm:text-[24px] leading-tight'
             }`}>{title}</h1>
             {subtitle && !collapsed && (
               <p className="text-[13px] text-gray-500 mt-1 leading-snug truncate">{subtitle}</p>
@@ -265,7 +266,7 @@ export function StudyPager({ page, totalPages, total, ko, onPrev, onNext }: {
       <button type="button" onClick={onPrev} disabled={page <= 0} className={btn}>
         <ChevronLeft className="w-4 h-4" />{ko ? '이전' : 'Prev'}
       </button>
-      <div className="text-[12.5px] text-gray-500 tabular-nums">
+      <div className="text-[13px] text-gray-500 tabular-nums">
         {ko ? `${page + 1} / ${totalPages} 페이지 · 총 ${total}개` : `Page ${page + 1} of ${totalPages} · ${total} total`}
       </div>
       <button type="button" onClick={onNext} disabled={page >= totalPages - 1} className={btn}>
@@ -288,7 +289,7 @@ export function StudyFilterChip({ label, active, count, icon: Icon, onClick }: {
     <button
       type="button"
       onClick={onClick}
-      className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
+      className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[13px] font-medium transition ${
         active
           ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
           : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'
@@ -353,14 +354,14 @@ export function StudySubPageHeader({
           <p className="text-2xs font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none mb-1.5">
             {eyebrow}
           </p>
-          <h1 className="text-2xl font-semibold tracking-tight text-gray-900 truncate leading-tight">
+          <h1 className="text-[24px] font-semibold tracking-tight text-gray-900 truncate leading-tight">
             {title}
           </h1>
         </div>
         {!hasBackRow && rightSlot}
       </div>
       {subtitle && (
-        <p className="text-sm text-gray-500 mt-1.5 leading-relaxed">{subtitle}</p>
+        <p className="text-[15px] text-gray-500 mt-1.5 leading-relaxed">{subtitle}</p>
       )}
     </header>
   )
@@ -429,11 +430,11 @@ export function StudyHeroCard({
         )}
         <div className="min-w-0 flex-1">
           {eyebrow && (
-            <div className="text-[10px] font-bold tracking-[0.14em] uppercase opacity-90">{eyebrow}</div>
+            <div className="text-[11px] font-bold tracking-[0.14em] uppercase opacity-90">{eyebrow}</div>
           )}
           <div className="text-[15px] font-semibold leading-snug mt-0.5">{title}</div>
           {subtitle && (
-            <div className="text-[12px] opacity-90 mt-0.5 leading-relaxed">{subtitle}</div>
+            <div className="text-[13px] opacity-90 mt-0.5 leading-relaxed">{subtitle}</div>
           )}
         </div>
         {showArrow && (
@@ -474,7 +475,7 @@ export function StudySectionHeader({
       </h2>
       {rightHref && rightText && (
         <Link href={rightHref}
-          className="inline-flex items-center gap-1 text-[12px] font-medium text-gray-600 hover:text-primary transition-colors">
+          className="inline-flex items-center gap-1 text-[13px] font-medium text-gray-600 hover:text-primary transition-colors">
           {RightIcon && <RightIcon className="w-3.5 h-3.5" />}
           {rightText}
         </Link>
@@ -534,7 +535,7 @@ export function StudyTodayCard({
         <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
           {eyebrow}
         </div>
-        <div className="text-[14px] font-semibold text-gray-900 leading-tight truncate">
+        <div className="text-[15px] font-semibold text-gray-900 leading-tight truncate">
           {title}
         </div>
         {meta && meta.length > 0 ? (
@@ -553,7 +554,7 @@ export function StudyTodayCard({
             })}
           </div>
         ) : subtitle ? (
-          <div className="text-[12px] text-gray-500 mt-0.5 truncate">
+          <div className="text-[13px] text-gray-500 mt-0.5 truncate">
             {subtitle}
           </div>
         ) : null}
@@ -588,7 +589,7 @@ export function StudyTodayCard({
           aria-label={dismissLabel ?? 'Dismiss'}
           className="absolute top-1/2 -translate-y-1/2 right-2 w-7 h-7 rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-600 active:scale-[0.94] transition-all inline-flex items-center justify-center z-10"
         >
-          <span className="text-lg leading-none">×</span>
+          <span className="text-[17px] leading-none">×</span>
         </button>
       )}
     </div>
@@ -634,7 +635,7 @@ export function StudyEmptyState({
         <Icon className="w-6 h-6" />
       </div>
       <p className="text-[15px] font-semibold text-gray-900">{headline}</p>
-      {body && <p className="text-[12px] text-gray-500 mt-1.5 max-w-xs mx-auto leading-relaxed">{body}</p>}
+      {body && <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs mx-auto leading-relaxed">{body}</p>}
       {ctaHref && ctaText && (
         <Link href={ctaHref}
           className="mt-4 inline-flex items-center justify-center h-10 px-4 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[13px] font-medium hover:opacity-95 active:scale-[0.98] transition-all">
@@ -692,10 +693,10 @@ export function StudyMetric({
       <div className={`w-11 h-11 rounded-2xl bg-gradient-to-br ${ACCENT_TILE[accent]} text-white flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.28)] ${ACCENT_GLOW[accent]} mb-2.5`}>
         <Icon className="w-5 h-5" strokeWidth={2.25} />
       </div>
-      <div className="text-[26px] font-bold tracking-tight text-gray-900 leading-none tabular-nums">
+      <div className="text-[24px] font-bold tracking-tight text-gray-900 leading-none tabular-nums">
         <NumberRoll target={value} />{suffix ?? ''}
       </div>
-      <div className="text-[11.5px] font-medium uppercase tracking-[0.10em] text-gray-500 mt-1.5">{label}</div>
+      <div className="text-[11px] font-medium uppercase tracking-[0.10em] text-gray-500 mt-1.5">{label}</div>
     </div>
   )
 }

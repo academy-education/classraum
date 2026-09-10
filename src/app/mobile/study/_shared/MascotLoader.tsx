@@ -69,7 +69,7 @@ export function MascotLoader({ label, className = '' }: {
 }) {
   return (
     <div className={`flex items-center justify-center px-5 ${className}`}>
-      <div className="flex flex-col items-center gap-3 text-sm text-gray-500 text-center animate-fade-in">
+      <div className="flex flex-col items-center gap-3 text-[15px] text-gray-500 text-center animate-fade-in">
         <PathMascot state="thinking" size={96} />
         {label && <div>{label}</div>}
       </div>

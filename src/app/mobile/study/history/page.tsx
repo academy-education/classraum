@@ -166,7 +166,7 @@ function HistoryInner() {
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder={ko ? '제목·주제·모드로 검색' : 'Search by title, topic, or mode'}
-            className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+            className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[17px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />
           {query && (
             <button
@@ -189,7 +189,7 @@ function HistoryInner() {
           <SkeletonRowList count={6} />
         ) : loadFailed ? (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-            <p className="text-[13.5px] text-gray-600">
+            <p className="text-[13px] text-gray-600">
               {ko ? '세션 기록을 불러오지 못했어요.' : "We couldn't load your sessions."}
             </p>
             <StudyButton
@@ -256,8 +256,8 @@ function HistoryInner() {
                             <Icon className="w-[18px] h-[18px]" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <div className="text-sm font-semibold text-gray-900 truncate">{title}</div>
-                            <div className="text-[12.5px] text-gray-500 mt-0.5">
+                            <div className="text-[15px] font-semibold text-gray-900 truncate">{title}</div>
+                            <div className="text-[13px] text-gray-500 mt-0.5">
                               {t(`study.modes.${row.mode}.title`)} <span className="text-gray-300 mx-1">·</span> {time}
                             </div>
                           </div>
@@ -320,7 +320,7 @@ function ModeFilter({ value, onSelect, counts, ko }: {
               key={item.key}
               type="button"
               onClick={() => onSelect(item.key)}
-              className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[12.5px] font-medium transition ${
+              className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-[13px] font-medium transition ${
                 active
                   ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                   : 'bg-white ring-1 ring-gray-200/70 text-gray-700 hover:bg-gray-50'

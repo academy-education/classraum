@@ -125,7 +125,7 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
     const ko = language === 'korean'
     return (
       <div className="flex flex-col items-center justify-center h-screen p-6 text-center gap-3">
-        <p className="text-sm text-gray-600">
+        <p className="text-[15px] text-gray-600">
           {ko ? '연결에 문제가 있어요. 다시 시도해 주세요.' : "We couldn't check your access. Please try again."}
         </p>
         <button
@@ -141,7 +141,7 @@ export function StudySubscriptionGate({ children }: { children: ReactNode }) {
 
   if (state.kind === 'unauthenticated') {
     return (
-      <div className="flex flex-col items-center justify-center h-screen p-6 text-center gap-3 text-sm text-gray-500">
+      <div className="flex flex-col items-center justify-center h-screen p-6 text-center gap-3 text-[15px] text-gray-500">
         <p>{t('study.gate.signInRequired') ?? 'Please sign in to access Study.'}</p>
         {/* Escape hatch — this gate also wraps session routes where the
             bottom nav is hidden, so without a link a logged-out visitor

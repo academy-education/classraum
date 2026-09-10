@@ -142,7 +142,7 @@ export function ExplainMore({
           type="button"
           onClick={() => void run('steps')}
           disabled={busy || stepsUsed}
-          className="tap-target-y inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
+          className="tap-target-y inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[13px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
         >
           {stepsUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <ListOrdered className="w-3.5 h-3.5" />}
           {label('steps', lang)}
@@ -151,7 +151,7 @@ export function ExplainMore({
           type="button"
           onClick={() => void run('simpler')}
           disabled={busy || simplerUsed}
-          className="tap-target-y inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
+          className="tap-target-y inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[13px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
         >
           {simplerUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Baby className="w-3.5 h-3.5" />}
           {label('simpler', lang)}
@@ -172,7 +172,7 @@ export function ExplainMore({
               {it.lang === 'ko' ? '설명을 불러오지 못했어요. 다시 시도해 주세요.' : "Couldn't load that. Try again."}
             </p>
           ) : (
-            <p className="text-[13.5px] text-gray-800 leading-relaxed whitespace-pre-wrap">{it.text}</p>
+            <p className="text-[13px] text-gray-800 leading-relaxed whitespace-pre-wrap">{it.text}</p>
           )}
         </div>
       ))}

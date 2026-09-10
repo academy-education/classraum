@@ -123,7 +123,7 @@ function XpChip({ evt }: { evt: XpEvent }) {
     'from-amber-400 to-orange-500'
   const size =
     evt.tier === 'big' ? 'px-4 py-2 text-[15px]' :
-    evt.tier === 'mid' ? 'px-3.5 py-1.5 text-[14px]' :
+    evt.tier === 'mid' ? 'px-3.5 py-1.5 text-[15px]' :
     'px-3 py-1.5 text-[13px]'
   const shadow =
     evt.tier === 'big' ? 'shadow-[0_10px_28px_-6px_rgba(245,158,11,0.55)] ring-1 ring-white/25' :

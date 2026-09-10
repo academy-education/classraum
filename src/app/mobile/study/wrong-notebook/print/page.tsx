@@ -177,7 +177,7 @@ function PrintInner() {
                 <ArrowLeft className="w-4 h-4" />
                 {ko ? '오답노트' : 'Back'}
               </Link>
-              <span className="text-[12px] text-gray-500 truncate">{ko ? '인쇄 미리보기' : 'Print preview'}</span>
+              <span className="text-[13px] text-gray-500 truncate">{ko ? '인쇄 미리보기' : 'Print preview'}</span>
             </div>
             <button type="button" onClick={() => window.print()}
               className="inline-flex items-center justify-center h-10 px-4 rounded-lg bg-black text-white text-[13px] font-semibold hover:bg-gray-800 transition">
@@ -197,11 +197,11 @@ function PrintInner() {
               />
             </div>
             <h1 className="text-[28px] font-bold tracking-tight">{ko ? '오답노트' : 'Wrong-Answer Notebook'}</h1>
-            <p className="text-[12px] text-gray-600 mt-1 tabular-nums">{today} · {visible.length} {ko ? '문항' : 'items'}</p>
+            <p className="text-[13px] text-gray-600 mt-1 tabular-nums">{today} · {visible.length} {ko ? '문항' : 'items'}</p>
             {filterLabels.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {filterLabels.map((label, i) => (
-                  <span key={i} className="inline-flex items-center rounded-full border border-gray-300 px-2 py-0.5 text-[10.5px] font-medium text-gray-700">
+                  <span key={i} className="inline-flex items-center rounded-full border border-gray-300 px-2 py-0.5 text-[10px] font-medium text-gray-700">
                     {label}
                   </span>
                 ))}
@@ -218,14 +218,14 @@ function PrintInner() {
               {visible.map((e, i) => (
                 <li key={e.attempt_id} className="entry">
                   <div className="flex items-baseline gap-3 mb-2">
-                    <span className="text-[16px] font-bold tabular-nums">{i + 1}.</span>
+                    <span className="text-[17px] font-bold tabular-nums">{i + 1}.</span>
                     {e.topic && (
-                      <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-gray-600">
+                      <span className="text-[11px] uppercase tracking-[0.14em] font-semibold text-gray-600">
                         {ko ? e.topic.name_ko : e.topic.name_en}
                       </span>
                     )}
                   </div>
-                  <p className="text-[14px] leading-relaxed mb-3">{e.question.prompt}</p>
+                  <p className="text-[15px] leading-relaxed mb-3">{e.question.prompt}</p>
 
                   <div className="space-y-1 text-[13px] mb-3">
                     <div><span className="font-semibold text-gray-500 inline-block w-[88px]">{ko ? '내가 쓴 답' : 'My answer'}:</span> <span className="line-through">{e.student_answer || '—'}</span></div>
@@ -233,13 +233,13 @@ function PrintInner() {
                   </div>
 
                   {e.ai_explanation && (
-                    <div className="text-[12.5px] leading-relaxed border-l-2 border-gray-300 pl-3 mb-3 text-gray-800">
+                    <div className="text-[13px] leading-relaxed border-l-2 border-gray-300 pl-3 mb-3 text-gray-800">
                       <span className="font-semibold">{ko ? '해설' : 'Explanation'}:</span> {e.ai_explanation}
                     </div>
                   )}
 
                   {e.note && (
-                    <div className="text-[12.5px] leading-relaxed border border-gray-300 rounded p-3 bg-gray-50 print:bg-white">
+                    <div className="text-[13px] leading-relaxed border border-gray-300 rounded p-3 bg-gray-50 print:bg-white">
                       <span className="font-semibold text-gray-700">{ko ? '내 메모' : 'My note'}:</span> {e.note}
                     </div>
                   )}

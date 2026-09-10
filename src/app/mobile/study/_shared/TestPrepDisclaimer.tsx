@@ -35,7 +35,7 @@ export function TestPrepDisclaimer({ ko }: { ko: boolean }) {
 
   return (
     <div ref={wrapRef} className="relative mt-4 px-1">
-      <p className="text-[10.5px] leading-relaxed text-gray-400">
+      <p className="text-[10px] leading-relaxed text-gray-400">
         {ko
           ? '본 연습 콘텐츠는 AI를 활용해 독자적으로 제작되었으며, 교육 목적으로만 제공됩니다. 공식 시험 주관사와 제휴하거나 승인을 받지 않았으며, 실제 시험 문제를 복제한 것이 아닙니다.'
           : 'This practice content is independently generated using AI and is intended solely for educational purposes. It is not affiliated with, endorsed by, or reproduced from the official examination providers.'}
@@ -54,7 +54,7 @@ export function TestPrepDisclaimer({ ko }: { ko: boolean }) {
       {open && (
         <div
           role="note"
-          className="absolute bottom-full left-1 right-1 mb-2 z-30 rounded-xl bg-gray-900 text-gray-200 px-3.5 py-3 text-[10.5px] leading-relaxed shadow-[0_8px_24px_-8px_rgba(0,0,0,0.4)] animate-in fade-in slide-in-from-bottom-1 duration-150"
+          className="absolute bottom-full left-1 right-1 mb-2 z-30 rounded-xl bg-gray-900 text-gray-200 px-3.5 py-3 text-[10px] leading-relaxed shadow-[0_8px_24px_-8px_rgba(0,0,0,0.4)] animate-in fade-in slide-in-from-bottom-1 duration-150"
           onMouseLeave={() => setOpen(false)}
         >
           {ko

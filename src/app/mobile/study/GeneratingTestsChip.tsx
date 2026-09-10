@@ -167,13 +167,13 @@ function StatusRow({
           : <Loader2 className="w-5 h-5 animate-spin" />}
       </div>
       <div className="flex-1 min-w-0">
-        <div className={`text-[13.5px] font-semibold leading-tight ${
+        <div className={`text-[13px] font-semibold leading-tight ${
           failed ? 'text-rose-900' : 'text-gray-900'
         }`}>
           {title}
         </div>
         {subtitle && (
-          <div className="text-[12px] text-gray-600 truncate mt-0.5">
+          <div className="text-[13px] text-gray-600 truncate mt-0.5">
             {subtitle}
           </div>
         )}

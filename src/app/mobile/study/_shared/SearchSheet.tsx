@@ -109,7 +109,7 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
               value={q}
               onChange={e => setQ(e.target.value)}
               placeholder={ko ? '주제, 세션, 오답 검색…' : 'Search topics, sessions, mistakes…'}
-              className="flex-1 bg-transparent outline-none text-[14px] text-gray-900 placeholder:text-gray-400"
+              className="flex-1 bg-transparent outline-none text-[15px] text-gray-900 placeholder:text-gray-400"
               autoComplete="off"
               spellCheck={false}
             />
@@ -128,10 +128,10 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
         {showStartHint && (
           <div className="py-16 px-6 text-center">
             <Search className="w-7 h-7 text-gray-300 mx-auto mb-3" />
-            <p className="text-[14px] font-medium text-gray-900">
+            <p className="text-[15px] font-medium text-gray-900">
               {ko ? '무엇을 찾고 있나요?' : 'What are you looking for?'}
             </p>
-            <p className="text-[12px] text-gray-500 mt-1.5 max-w-xs mx-auto leading-relaxed">
+            <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs mx-auto leading-relaxed">
               {ko ? '주제 이름, 세션 제목, 틀린 문제 모두 검색할 수 있어요.' : 'Search topics, recent sessions, and wrong-answer entries.'}
             </p>
           </div>
@@ -140,10 +140,10 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
         {showEmptyHint && (
           <div className="py-16 px-6 text-center">
             <AlertCircle className="w-7 h-7 text-gray-300 mx-auto mb-3" />
-            <p className="text-[14px] font-medium text-gray-900">
+            <p className="text-[15px] font-medium text-gray-900">
               {ko ? '결과 없음' : 'No matches'}
             </p>
-            <p className="text-[12px] text-gray-500 mt-1.5">
+            <p className="text-[13px] text-gray-500 mt-1.5">
               &quot;{q}&quot;
             </p>
           </div>
@@ -209,7 +209,7 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
 function ResultGroup({ label, icon: Icon, children }: { label: string; icon: typeof Search; children: React.ReactNode }) {
   return (
     <section>
-      <h3 className="px-2 mb-1.5 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-gray-500">
+      <h3 className="px-2 mb-1.5 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-gray-500">
         <Icon className="w-3 h-3" />{label}
       </h3>
       <div className="space-y-1">{children}</div>
@@ -234,7 +234,7 @@ function ResultRow({ onClick, icon: Icon, accent, title, sub, highlight, delay }
         <Icon className="w-4 h-4" />
       </div>
       <div className="min-w-0 flex-1">
-        <div className="text-[13.5px] text-gray-900 truncate">
+        <div className="text-[13px] text-gray-900 truncate">
           <Highlighted text={title} query={highlight} />
         </div>
         <div className="text-[11px] text-gray-500 truncate mt-0.5">{sub}</div>

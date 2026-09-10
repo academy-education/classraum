@@ -40,14 +40,14 @@ export function StudyPathPromo() {
         <div className="flex-1 min-w-0">
           <div className="inline-flex items-center gap-1 rounded-full bg-white/20 backdrop-blur-sm px-2 py-0.5 mb-1.5">
             <Sparkles className="w-3 h-3" />
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase">
+            <span className="text-[11px] font-bold tracking-[0.12em] uppercase">
               {ko ? '신규' : 'New'}
             </span>
           </div>
           <div className="text-[15px] font-bold leading-tight">
             {ko ? template.titleKo : template.titleEn}
           </div>
-          <div className="text-[12px] text-white/85 leading-snug mt-0.5">
+          <div className="text-[13px] text-white/85 leading-snug mt-0.5">
             {ko
               ? '라우미가 오늘 할 일을 골라줘요 — 한 걸음씩.'
               : 'Raumi picks today\'s next step — one at a time.'}

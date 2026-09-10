@@ -55,10 +55,10 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
             <span className="w-11 h-11 rounded-full bg-amber-500/15 text-amber-600 flex items-center justify-center">
               <Coins className="w-5 h-5" />
             </span>
-            <p className="text-[16px] font-bold text-gray-900">
+            <p className="text-[17px] font-bold text-gray-900">
               {title ?? (ko ? `크레딧 ${cost}개를 사용할까요?` : `Use ${cost} credit${cost === 1 ? '' : 's'} to start?`)}
             </p>
-            <p className="text-[12.5px] text-gray-500 leading-relaxed">
+            <p className="text-[13px] text-gray-500 leading-relaxed">
               {description ?? (ko
                 ? `이 테스트를 시작하면 테스트 크레딧 ${cost}개가 사용돼요. 테스트 생성에 실패하면 자동으로 환불돼요.`
                 : `Starting this test uses ${cost} test credit${cost === 1 ? '' : 's'}. If the test fails to generate, they're refunded automatically.`)}
@@ -66,7 +66,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
           </div>
           {showSource && (
             <div className="mt-4">
-              <p className="text-[11.5px] font-medium text-gray-500 mb-1.5 px-0.5">
+              <p className="text-[11px] font-medium text-gray-500 mb-1.5 px-0.5">
                 {ko ? '어떤 크레딧을 사용할까요?' : 'Which credit should we use?'}
               </p>
               <div className="grid grid-cols-2 gap-1.5 p-1 rounded-xl bg-gray-100">
@@ -74,7 +74,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
                   type="button"
                   onClick={() => onSourceChange?.('pass')}
                   disabled={busy}
-                  className={`h-10 rounded-lg text-[12.5px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
+                  className={`h-10 rounded-lg text-[13px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                     source === 'pass' ? 'bg-white text-indigo-700 shadow-sm ring-1 ring-indigo-200' : 'text-gray-500'
                   }`}
                 >
@@ -85,7 +85,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
                   type="button"
                   onClick={() => onSourceChange?.('regular')}
                   disabled={busy}
-                  className={`h-10 rounded-lg text-[12.5px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
+                  className={`h-10 rounded-lg text-[13px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                     source === 'regular' ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' : 'text-gray-500'
                   }`}
                 >
@@ -102,7 +102,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
               type="button"
               onClick={onCancel}
               disabled={busy}
-              className="h-11 rounded-full bg-gray-100 text-gray-700 text-[13.5px] font-semibold active:scale-[0.98] disabled:opacity-60 transition-all"
+              className="h-11 rounded-full bg-gray-100 text-gray-700 text-[13px] font-semibold active:scale-[0.98] disabled:opacity-60 transition-all"
             >
               {ko ? '취소' : 'Cancel'}
             </button>
@@ -110,7 +110,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
               type="button"
               onClick={onConfirm}
               disabled={busy}
-              className="h-11 rounded-full bg-primary text-white text-[13.5px] font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-60 transition-all"
+              className="h-11 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-60 transition-all"
             >
               {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
               {confirmLabel ?? (ko ? '시작하기' : 'Start')}
@@ -150,10 +150,10 @@ export function NoCreditsSheet({ open, cost, ko, onCancel, description }: {
             <span className="w-11 h-11 rounded-full bg-amber-500/15 text-amber-600 flex items-center justify-center">
               <Coins className="w-5 h-5" />
             </span>
-            <p className="text-[16px] font-bold text-gray-900">
+            <p className="text-[17px] font-bold text-gray-900">
               {ko ? '크레딧이 부족해요' : 'Not enough credits'}
             </p>
-            <p className="text-[12.5px] text-gray-500 leading-relaxed">
+            <p className="text-[13px] text-gray-500 leading-relaxed">
               {description ?? (ko
                 ? `이 테스트에는 크레딧 ${cost}개가 필요해요. 크레딧을 구매하면 바로 시작할 수 있어요.`
                 : `This test needs ${cost} credit${cost === 1 ? '' : 's'}. Top up and you can start right away.`)}
@@ -163,13 +163,13 @@ export function NoCreditsSheet({ open, cost, ko, onCancel, description }: {
             <button
               type="button"
               onClick={onCancel}
-              className="h-11 rounded-full bg-gray-100 text-gray-700 text-[13.5px] font-semibold active:scale-[0.98] transition-all"
+              className="h-11 rounded-full bg-gray-100 text-gray-700 text-[13px] font-semibold active:scale-[0.98] transition-all"
             >
               {ko ? '취소' : 'Cancel'}
             </button>
             <Link
               href="/mobile/study/subscription"
-              className="h-11 rounded-full bg-primary text-white text-[13.5px] font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] inline-flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all"
+              className="h-11 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] inline-flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all"
             >
               <Coins className="w-4 h-4" />
               {ko ? '크레딧 구매' : 'Buy credits'}

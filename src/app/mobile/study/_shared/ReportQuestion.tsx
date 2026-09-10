@@ -72,7 +72,7 @@ export function ReportQuestion({
 
   if (status === 'done') {
     return (
-      <div className="mt-3 flex items-center gap-1.5 text-[12px] font-medium text-emerald-700">
+      <div className="mt-3 flex items-center gap-1.5 text-[13px] font-medium text-emerald-700">
         <CheckCircle2 className="w-3.5 h-3.5" />
         {t('study.report.thanks')}
       </div>
@@ -84,7 +84,7 @@ export function ReportQuestion({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-medium text-gray-400 hover:text-gray-600 transition-colors"
+        className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-400 hover:text-gray-600 transition-colors"
       >
         <Flag className="w-3.5 h-3.5" />
         {t('study.report.cta')}
@@ -94,14 +94,14 @@ export function ReportQuestion({
 
   return (
     <div className="mt-3 rounded-xl border border-gray-200 bg-gray-50/70 p-3">
-      <div className="text-[12px] font-semibold text-gray-700">{t('study.report.title')}</div>
+      <div className="text-[13px] font-semibold text-gray-700">{t('study.report.title')}</div>
       <div className="mt-2 flex flex-wrap gap-1.5">
         {REASONS.map(r => (
           <button
             key={r}
             type="button"
             onClick={() => setReason(r)}
-            className={`px-2.5 py-1 rounded-full text-[12px] font-medium ring-1 transition-colors ${
+            className={`px-2.5 py-1 rounded-full text-[13px] font-medium ring-1 transition-colors ${
               reason === r
                 ? 'bg-primary text-white ring-primary'
                 : 'bg-white text-gray-600 ring-gray-200 hover:ring-primary/40'
@@ -123,7 +123,7 @@ export function ReportQuestion({
         <button
           type="button"
           onClick={() => { setOpen(false); setReason(null); setNote('') }}
-          className="px-3 py-1.5 text-[12px] font-medium text-gray-500 hover:text-gray-700"
+          className="px-3 py-1.5 text-[13px] font-medium text-gray-500 hover:text-gray-700"
         >
           {t('study.report.cancel')}
         </button>
@@ -131,7 +131,7 @@ export function ReportQuestion({
           type="button"
           onClick={submit}
           disabled={!reason || status === 'saving'}
-          className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-[12px] font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-[13px] font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {status === 'saving' && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
           {t('study.report.submit')}

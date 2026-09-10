@@ -130,7 +130,7 @@ export function MistakeBankShelf() {
           {t('study.mistakes.title')}
         </h2>
         <Link href="/mobile/study/wrong-notebook"
-          className="inline-flex items-center gap-0.5 text-[12px] font-medium text-primary hover:text-primary/80 transition">
+          className="inline-flex items-center gap-0.5 text-[13px] font-medium text-primary hover:text-primary/80 transition">
           {rest > 0 ? (ko ? `전체 ${mistakes.length}개` : `See all ${mistakes.length}`) : String(t('study.mistakes.viewNotebook'))}
           <ArrowRight className="w-3 h-3" />
         </Link>
@@ -183,19 +183,19 @@ function MistakeCard({
       </div>
 
       {/* Question — truncated to 2 lines for layout consistency */}
-      <div className="text-[13.5px] text-gray-900 font-medium leading-relaxed line-clamp-2">
+      <div className="text-[13px] text-gray-900 font-medium leading-relaxed line-clamp-2">
         {mistake.question.prompt}
       </div>
 
       {/* Wrong / correct answers, stacked */}
       <div className="space-y-1.5 mt-auto">
-        <div className="flex items-start gap-2 text-[12.5px]">
+        <div className="flex items-start gap-2 text-[13px]">
           <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
           <span className="text-rose-700 line-through truncate flex-1" title={mistake.student_answer}>
             {mistake.student_answer}
           </span>
         </div>
-        <div className="flex items-start gap-2 text-[12.5px]">
+        <div className="flex items-start gap-2 text-[13px]">
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
           <span className="text-emerald-700 font-semibold truncate flex-1" title={mistake.question.correct_answer}>
             {mistake.question.correct_answer}
@@ -208,7 +208,7 @@ function MistakeCard({
         type="button"
         onClick={onRetry}
         disabled={creatingDisabled || !mistake.topic}
-        className="mt-1 inline-flex items-center justify-center gap-1.5 h-9 rounded-xl bg-white ring-1 ring-gray-200/80 text-[12.5px] font-semibold text-gray-700 hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+        className="mt-1 inline-flex items-center justify-center gap-1.5 h-9 rounded-xl bg-white ring-1 ring-gray-200/80 text-[13px] font-semibold text-gray-700 hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
       >
         {isCreating
           ? <Loader2 className="w-3.5 h-3.5 animate-spin" />

@@ -178,7 +178,7 @@ export function NavTour() {
           <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-gray-500 mb-1">
             {ko ? `${step + 1} / ${STEPS.length}` : `Step ${step + 1} of ${STEPS.length}`}
           </div>
-          <h2 className="text-[18px] font-semibold tracking-tight text-gray-900">
+          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
             {ko ? s.titleKo : s.titleEn}
           </h2>
           <p className="text-[13px] text-gray-600 leading-relaxed mt-2">

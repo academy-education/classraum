@@ -73,7 +73,7 @@ function SnapComingSoon() {
         </span>
       </div>
       <div>
-        <h1 className="text-[19px] font-semibold text-gray-900">
+        <h1 className="text-[20px] font-semibold text-gray-900">
           {ko ? '곧 만나요' : 'Coming soon'}
         </h1>
         <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs leading-relaxed">
@@ -290,7 +290,7 @@ function PickerStage({ ko, onCameraClick, onUploadClick, onOpenCapture }: {
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 text-white flex items-center justify-center mx-auto mb-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)]">
             <Camera className="w-5 h-5" />
           </div>
-          <div className="text-[14px] font-semibold text-gray-900">{ko ? '카메라로 찍기' : 'Use camera'}</div>
+          <div className="text-[15px] font-semibold text-gray-900">{ko ? '카메라로 찍기' : 'Use camera'}</div>
           <div className="text-[11px] text-gray-500 mt-1">{ko ? '바로 촬영' : 'Snap now'}</div>
         </button>
         <button type="button" onClick={onUploadClick}
@@ -298,7 +298,7 @@ function PickerStage({ ko, onCameraClick, onUploadClick, onOpenCapture }: {
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 text-white flex items-center justify-center mx-auto mb-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)]">
             <ImageIcon className="w-5 h-5" />
           </div>
-          <div className="text-[14px] font-semibold text-gray-900">{ko ? '갤러리에서 선택' : 'From library'}</div>
+          <div className="text-[15px] font-semibold text-gray-900">{ko ? '갤러리에서 선택' : 'From library'}</div>
           <div className="text-[11px] text-gray-500 mt-1">{ko ? '저장된 이미지' : 'Pick an image'}</div>
         </button>
       </div>
@@ -306,7 +306,7 @@ function PickerStage({ ko, onCameraClick, onUploadClick, onOpenCapture }: {
       </div>
       <div className="space-y-4 lg:col-span-5 min-w-0 lg:sticky lg:top-4">
 
-      <div className="rounded-xl bg-gray-50 ring-1 ring-gray-200 p-3 text-[12px] text-gray-600 leading-relaxed">
+      <div className="rounded-xl bg-gray-50 ring-1 ring-gray-200 p-3 text-[13px] text-gray-600 leading-relaxed">
         <span className="font-medium text-gray-800">{ko ? '팁: ' : 'Tips: '}</span>
         {ko ? '문제 전체가 잘 보이게, 흔들리지 않게 찍어주세요. 손글씨도 잘 인식돼요.' : 'Capture the full problem clearly without blur. Handwriting works too.'}
       </div>
@@ -340,7 +340,7 @@ function PickerStage({ ko, onCameraClick, onUploadClick, onOpenCapture }: {
                     </div>
                   )}
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-1.5">
-                    <div className="text-[9px] font-bold uppercase tracking-wider text-white truncate">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-white truncate">
                       {SUBJECT_LABEL[cap.subject_guess]?.[ko ? 1 : 0] ?? cap.subject_guess}
                     </div>
                   </div>
@@ -381,7 +381,7 @@ function ReviewStage({ previewUrl, onSolve, onRetake, ko }: { previewUrl: string
           <RefreshCw className="w-3.5 h-3.5" />{ko ? '다시 찍기' : 'Retake'}
         </button>
         <button type="button" onClick={onSolve}
-          className="flex-[1.4] h-11 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white text-[14px] font-semibold hover:opacity-95 transition inline-flex items-center justify-center gap-1.5">
+          className="flex-[1.4] h-11 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white text-[15px] font-semibold hover:opacity-95 transition inline-flex items-center justify-center gap-1.5">
           <Sparkles className="w-4 h-4" />{ko ? '풀이 보기' : 'Solve'}
         </button>
       </div>
@@ -393,8 +393,8 @@ function SolvingStage({ ko }: { ko: boolean }) {
   return (
     <div className="py-16 text-center">
       <div className="flex justify-center mb-3"><PathMascot state="thinking" size={96} /></div>
-      <p className="text-[14px] font-medium text-gray-900">{ko ? '문제를 읽고 푸는 중…' : 'Reading and solving the problem…'}</p>
-      <p className="text-[12px] text-gray-500 mt-1.5">{ko ? '보통 5–15초 걸려요.' : 'Typically 5–15 seconds.'}</p>
+      <p className="text-[15px] font-medium text-gray-900">{ko ? '문제를 읽고 푸는 중…' : 'Reading and solving the problem…'}</p>
+      <p className="text-[13px] text-gray-500 mt-1.5">{ko ? '보통 5–15초 걸려요.' : 'Typically 5–15 seconds.'}</p>
     </div>
   )
 }
@@ -481,7 +481,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
       <div className="space-y-4 lg:col-span-7 min-w-0">
       {/* Compact preview thumbnail of the captured image. */}
       <details className="rounded-xl bg-white ring-1 ring-gray-200/70 overflow-hidden">
-        <summary className="cursor-pointer px-3 py-2 text-[12px] font-medium text-gray-700 inline-flex items-center gap-1.5">
+        <summary className="cursor-pointer px-3 py-2 text-[13px] font-medium text-gray-700 inline-flex items-center gap-1.5">
           <ImageIcon className="w-3.5 h-3.5" />{ko ? '내가 찍은 사진' : 'My capture'}
         </summary>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -511,7 +511,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
           )}
         </div>
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-4">
-          <p className="text-[14px] text-gray-900 leading-relaxed whitespace-pre-line">{result.ocrText}</p>
+          <p className="text-[15px] text-gray-900 leading-relaxed whitespace-pre-line">{result.ocrText}</p>
           <div className="mt-3 flex items-center gap-2">
             <SubjectBadge subject={result.subjectGuess} ko={ko} />
             <ConfidenceBadge confidence={result.confidence} ko={ko} />
@@ -531,7 +531,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
               </span>
               <div className="min-w-0 flex-1">
                 <div className="text-[13px] font-semibold text-gray-900 mb-1">{s.label}</div>
-                <p className="text-[12.5px] text-gray-700 leading-relaxed whitespace-pre-line">{s.detail}</p>
+                <p className="text-[13px] text-gray-700 leading-relaxed whitespace-pre-line">{s.detail}</p>
               </div>
             </li>
           ))}
@@ -563,7 +563,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
       </StudyButton>
 
       <button type="button" onClick={onAnother}
-        className="w-full h-11 rounded-xl bg-white ring-1 ring-gray-200 text-gray-800 text-[14px] font-semibold inline-flex items-center justify-center gap-1.5 hover:bg-gray-50 transition">
+        className="w-full h-11 rounded-xl bg-white ring-1 ring-gray-200 text-gray-800 text-[15px] font-semibold inline-flex items-center justify-center gap-1.5 hover:bg-gray-50 transition">
         <Camera className="w-4 h-4" />{ko ? '다른 문제 찍기' : 'Snap another'}
       </button>
 
@@ -576,12 +576,12 @@ function ErrorStage({ message, ko, onRetry, onReset, upsell }: { message: string
   return (
     <div className="py-12 text-center">
       <AlertCircle className="w-7 h-7 text-rose-500 mx-auto mb-2" />
-      <p className="text-[14px] font-medium text-gray-900">
+      <p className="text-[15px] font-medium text-gray-900">
         {upsell
           ? (ko ? '오늘은 여기까지!' : 'That’s all for today!')
           : (ko ? '풀이를 가져오지 못했어요' : 'Could not get a solution')}
       </p>
-      <p className="text-[12px] text-gray-500 mt-1.5 max-w-xs mx-auto">{message ?? ''}</p>
+      <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs mx-auto">{message ?? ''}</p>
       <div className="mt-4 flex items-center justify-center gap-2">
         <button type="button" onClick={onReset}
           className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-white ring-1 ring-gray-200 text-gray-700 text-[13px] font-medium hover:bg-gray-50 transition">

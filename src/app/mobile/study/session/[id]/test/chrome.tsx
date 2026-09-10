@@ -46,7 +46,7 @@ export function SubmitConfirmModal({
           <h3 className="text-[17px] font-semibold tracking-tight text-gray-900">
             {title ?? String(t('study.test.submitConfirm.titleSubmit'))}
           </h3>
-          <p className="text-[13.5px] text-gray-600 mt-1.5 leading-relaxed">
+          <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
             {body ?? String(t(bodyKey, { count: unanswered, total: totalQuestions }))}
           </p>
         </div>
@@ -54,14 +54,14 @@ export function SubmitConfirmModal({
           <button
             type="button"
             onClick={onCancel}
-            className="flex-1 h-11 rounded-xl bg-gray-100 text-gray-900 text-sm font-semibold hover:bg-gray-200 active:scale-[0.98] transition-all"
+            className="flex-1 h-11 rounded-xl bg-gray-100 text-gray-900 text-[15px] font-semibold hover:bg-gray-200 active:scale-[0.98] transition-all"
           >
             {String(t('study.test.submitConfirm.cancel'))}
           </button>
           <button
             type="button"
             onClick={onConfirm}
-            className={`flex-1 h-11 rounded-xl text-white text-sm font-semibold active:scale-[0.98] transition-all ${
+            className={`flex-1 h-11 rounded-xl text-white text-[15px] font-semibold active:scale-[0.98] transition-all ${
               unanswered > 0
                 ? 'bg-amber-600 hover:bg-amber-700'
                 : 'bg-primary hover:bg-primary/90'
@@ -132,14 +132,14 @@ export function GenerationProgress({
               : 'study.test.progress.title'))}
           </h2>
           {!isLoadingOnly && (
-            <p className="text-[12.5px] text-gray-500 mt-1">
+            <p className="text-[13px] text-gray-500 mt-1">
               {String(t('study.test.progress.subtitle'))}
             </p>
           )}
         </div>
 
         {isResuming && (
-          <div className="mb-4 rounded-xl bg-amber-50 ring-1 ring-amber-200 px-3 py-2.5 text-[12.5px] text-amber-900 leading-relaxed">
+          <div className="mb-4 rounded-xl bg-amber-50 ring-1 ring-amber-200 px-3 py-2.5 text-[13px] text-amber-900 leading-relaxed">
             {String(t('study.test.progress.resuming'))}
           </div>
         )}
@@ -167,7 +167,7 @@ export function GenerationProgress({
                       ? <Loader2 className="w-3 h-3 text-primary animate-spin" />
                       : <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />}
                 </div>
-                <span className={`text-[13.5px] ${
+                <span className={`text-[13px] ${
                   done ? 'text-gray-500' : active ? 'text-gray-900 font-medium' : 'text-gray-400'
                 }`}>
                   {String(t(step.labelKey))}

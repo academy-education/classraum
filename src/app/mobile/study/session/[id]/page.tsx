@@ -141,10 +141,10 @@ function SessionInner({ id }: { id: string }) {
   if (!session) {
     return (
       <div className="max-w-3xl mx-auto px-5 py-14 text-center">
-        <p className="text-sm text-gray-500">{t('study.session.notFound')}</p>
+        <p className="text-[15px] text-gray-500">{t('study.session.notFound')}</p>
         <Link
           href="/mobile/study"
-          className="mt-4 inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary transition-colors"
+          className="mt-4 inline-flex items-center gap-1.5 text-[13px] text-gray-600 hover:text-primary transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />{t('study.topic.backToStudy')}
         </Link>
@@ -182,7 +182,7 @@ function SessionInner({ id }: { id: string }) {
           <div className="flex-1 px-5 py-8">
             <div className="rounded-2xl border border-dashed border-gray-200 bg-white p-6 text-center">
               <Sparkles className="w-6 h-6 text-primary mx-auto mb-2" />
-              <p className="text-sm font-medium text-gray-900">
+              <p className="text-[15px] font-medium text-gray-900">
                 {t('study.session.unknownMode')}
               </p>
             </div>

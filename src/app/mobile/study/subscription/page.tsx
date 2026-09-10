@@ -692,7 +692,7 @@ export default function SubscriptionPage() {
         {(error || successMessage) && (
           /* Full-bleed across both desktop columns — an error about the
              purchase you just attempted is not a sidebar item. */
-          <div className={`lg:col-span-2 rounded-2xl px-4 py-3 text-[13.5px] flex items-start gap-2.5 ring-1 ${
+          <div className={`lg:col-span-2 rounded-2xl px-4 py-3 text-[13px] flex items-start gap-2.5 ring-1 ${
             error ? 'bg-rose-50/80 ring-rose-200/60 text-rose-700' : 'bg-emerald-50/80 ring-emerald-200/60 text-emerald-700'
           }`}>
             {error ? <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" /> : <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />}
@@ -706,7 +706,7 @@ export default function SubscriptionPage() {
                   thing that can silently fail in a WebView, and reading
                   the URL aloud to a friend still works. */}
               {handoffUrl && (
-                <p className="mt-1.5 font-mono text-[11.5px] break-all select-all text-rose-800/90">
+                <p className="mt-1.5 font-mono text-[11px] break-all select-all text-rose-800/90">
                   {handoffUrl}
                 </p>
               )}
@@ -724,7 +724,7 @@ export default function SubscriptionPage() {
                   <Coins className="w-5 h-5" />
                 </span>
                 <div>
-                  <div className="text-[12px] font-medium text-gray-500">
+                  <div className="text-[13px] font-medium text-gray-500">
                     {ko ? '테스트 크레딧' : 'Test credits'}
                   </div>
                   <div className="text-[28px] leading-none font-bold tracking-tight text-gray-900 tabular-nums mt-1">
@@ -748,13 +748,13 @@ export default function SubscriptionPage() {
 
             {/* Breakdown — monthly grant vs never-expiring purchased. */}
             <div className="flex flex-wrap items-center gap-1.5 mt-4">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[12px] text-gray-600">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] text-gray-600">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                 {isFree ? (ko ? '가입 크레딧' : 'Starter') : (ko ? '이번 달' : 'Monthly')}
                 <b className="tabular-nums text-gray-900 font-semibold">{credits.grant}</b>
               </span>
               {credits.purchased > 0 && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[12px] text-gray-600">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] text-gray-600">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                   {ko ? '구매' : 'Purchased'}
                   <b className="tabular-nums text-gray-900 font-semibold">{credits.purchased}</b>
@@ -763,24 +763,24 @@ export default function SubscriptionPage() {
               {/* Test-scoped pass credits — one chip per pass, labelled with
                   the test so it's clear these only work on that test. */}
               {passCredits.map(pc => (
-                <span key={pc.test} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 ring-1 ring-indigo-200/70 text-[12px] text-indigo-700">
+                <span key={pc.test} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-50 ring-1 ring-indigo-200/70 text-[13px] text-indigo-700">
                   <GraduationCap className="w-3 h-3" />
                   {passCreditLabel(pc.test, ko)}
                   <b className="tabular-nums text-indigo-900 font-semibold">{pc.remaining}</b>
                 </span>
               ))}
-              <span className="text-[11.5px] text-gray-400 ml-auto">
+              <span className="text-[11px] text-gray-400 ml-auto">
                 {ko ? '모의고사 1회 = 크레딧 1~2개' : '1 mock test = 1–2 credits'}
               </span>
             </div>
             {passCredits.length > 0 && (
-              <p className="text-[11.5px] text-gray-400 mt-1.5">
+              <p className="text-[11px] text-gray-400 mt-1.5">
                 {ko
                   ? '패스 크레딧은 해당 시험에만 사용되며, 그 시험에서 먼저 차감돼요.'
                   : 'Pass credits work only on that test and are spent there first.'}
               </p>
             )}
-            <p className="text-[11.5px] text-gray-400 mt-1.5">
+            <p className="text-[11px] text-gray-400 mt-1.5">
               {/* What the routes actually do: credits are reserved at
                   start and refunded on every failure path (assemble /
                   generate → refundTestCredits). */}
@@ -826,8 +826,8 @@ export default function SubscriptionPage() {
                   <Coins className="w-4 h-4" />
                 </span>
                 <div>
-                  <p className="text-[14px] font-semibold text-gray-900">{ko ? '크레딧 충전' : 'Buy credits'}</p>
-                  <p className="text-[11.5px] text-gray-400">{ko ? '구매 크레딧은 만료 없음 · 테스트당 1~2개 사용' : 'Never expire · tests use 1–2 credits'}</p>
+                  <p className="text-[15px] font-semibold text-gray-900">{ko ? '크레딧 충전' : 'Buy credits'}</p>
+                  <p className="text-[11px] text-gray-400">{ko ? '구매 크레딧은 만료 없음 · 테스트당 1~2개 사용' : 'Never expire · tests use 1–2 credits'}</p>
                 </div>
               </div>
             </div>
@@ -842,7 +842,7 @@ export default function SubscriptionPage() {
                 [ko ? '스피킹' : 'Speaking', creditCostForTest('toefl', 'speaking')],
                 [ko ? '리스닝' : 'Listening', creditCostForTest('toefl', 'listening')],
               ] as [string, number][]).map(([label, cost]) => (
-                <span key={label} className="inline-flex items-baseline gap-1 text-[10.5px] text-gray-500">
+                <span key={label} className="inline-flex items-baseline gap-1 text-[10px] text-gray-500">
                   {label}
                   <span className="font-bold text-amber-600 tabular-nums">{cost}</span>
                 </span>
@@ -865,7 +865,7 @@ export default function SubscriptionPage() {
                     }`}
                   >
                     {best && (
-                      <span className="absolute top-0 inset-x-0 py-[3px] bg-amber-600/90 text-white text-[8.5px] font-bold uppercase tracking-wide text-center">
+                      <span className="absolute top-0 inset-x-0 py-[3px] bg-amber-600/90 text-white text-[10px] font-bold uppercase tracking-wide text-center">
                         {ko ? '최고 혜택' : 'Best value'}
                       </span>
                     )}
@@ -873,9 +873,9 @@ export default function SubscriptionPage() {
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
                       <>
-                        <span className="text-[16px] font-bold tabular-nums">+{p.credits}</span>
-                        <span className="text-[12px] font-semibold tabular-nums">{formatWon(p.priceWon)}</span>
-                        <span className={`text-[9.5px] tabular-nums ${best ? 'text-amber-100' : 'text-amber-600/70'}`}>
+                        <span className="text-[17px] font-bold tabular-nums">+{p.credits}</span>
+                        <span className="text-[13px] font-semibold tabular-nums">{formatWon(p.priceWon)}</span>
+                        <span className={`text-[10px] tabular-nums ${best ? 'text-amber-100' : 'text-amber-600/70'}`}>
                           {ko ? `개당 ₩${perCredit.toLocaleString()}` : `₩${perCredit.toLocaleString()}/ea`}
                         </span>
                       </>
@@ -888,7 +888,7 @@ export default function SubscriptionPage() {
                 price that opens a browser instead of a card sheet is a
                 surprise unless it is labelled. */}
             {isNative && (
-              <p className="mt-2.5 inline-flex items-center gap-1.5 text-[11.5px] text-gray-500">
+              <p className="mt-2.5 inline-flex items-center gap-1.5 text-[11px] text-gray-500">
                 <ExternalLink className="w-3.5 h-3.5" />
                 {t('study.subscription.payOnWeb')}
               </p>
@@ -917,7 +917,7 @@ export default function SubscriptionPage() {
                 pass entitlement is test-SCOPED (grantTestEntitlement /
                 canAccessTest): a SAT pass does not unlock TOEFL, so
                 "full Premium access" was too broad. */}
-            <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed">
+            <p className="text-[13px] text-gray-500 mt-3 leading-relaxed">
               {ko
                 ? `${formatDate(sub.current_period_end, ko)}까지 프리미엄 기능과 ${passTestLabel(activePass.id, ko)} 시험을 이용할 수 있어요. 이후 자동으로 무료 플랜으로 전환됩니다.`
                 : `Premium features and ${passTestLabel(activePass.id, ko)} tests until ${formatDate(sub.current_period_end, ko)}. You'll move to the free plan automatically after that.`}
@@ -938,8 +938,8 @@ export default function SubscriptionPage() {
                     <GraduationCap className="w-5 h-5" />
                   </span>
                   <div className="min-w-0">
-                    <div className="text-[14px] font-semibold text-gray-900 truncate">{ko ? hp.name_ko : hp.name_en}</div>
-                    <div className="text-[12px] text-gray-500">
+                    <div className="text-[15px] font-semibold text-gray-900 truncate">{ko ? hp.name_ko : hp.name_en}</div>
+                    <div className="text-[13px] text-gray-500">
                       {hp.credits > 0 && (
                         <span className="text-indigo-600 font-medium">
                           {ko ? `크레딧 ${hp.credits}개` : `${hp.credits} credits`}
@@ -966,7 +966,7 @@ export default function SubscriptionPage() {
         {passOffers.length > 0 && (
           <div className="space-y-2.5">
             {(onPass || heldPasses.length > 0 || isActive) && (
-              <p className="text-[12px] font-medium text-gray-500 px-1">
+              <p className="text-[13px] font-medium text-gray-500 px-1">
                 {ko ? '다른 시험도 추가할 수 있어요' : 'Add another test'}
               </p>
             )}
@@ -977,7 +977,7 @@ export default function SubscriptionPage() {
               onBuy={(id, name) => isNative ? void handoffToWeb('pass', id) : void buyPass(id, name)}
             />
             {isNative && (
-              <p className="inline-flex items-center gap-1.5 px-1 text-[11.5px] text-gray-500">
+              <p className="inline-flex items-center gap-1.5 px-1 text-[11px] text-gray-500">
                 <ExternalLink className="w-3.5 h-3.5" />
                 {t('study.subscription.payOnWeb')}
               </p>
@@ -1024,10 +1024,10 @@ export default function SubscriptionPage() {
                       </span>
                     )}
                   </div>
-                  <div className="text-2xl font-semibold tracking-tight text-gray-900">
+                  <div className="text-[24px] font-semibold tracking-tight text-gray-900">
                     {formatWon(plan.priceWon)}
                     {!isFreePlan && (
-                      <span className="text-sm font-normal text-gray-400"> / {durationUnit(plan.intervalDays, ko, t)}</span>
+                      <span className="text-[15px] font-normal text-gray-400"> / {durationUnit(plan.intervalDays, ko, t)}</span>
                     )}
                   </div>
                   {plan.intervalDays > 30 && monthlyPriceByTier[plan.tier] && (() => {
@@ -1035,7 +1035,7 @@ export default function SubscriptionPage() {
                     const equiv = monthlyPriceByTier[plan.tier]! * months
                     const saved = equiv - plan.priceWon
                     return saved > 0 ? (
-                      <div className="text-[12.5px] text-gray-500 mt-1">
+                      <div className="text-[13px] text-gray-500 mt-1">
                         <span className="line-through text-gray-400">{formatWon(equiv)}</span>
                         {' · '}
                         <span className="text-emerald-600 font-medium">
@@ -1092,7 +1092,7 @@ export default function SubscriptionPage() {
                 </ul>
 
                 {isFreePlan && !isCurrent ? (
-                  <div className="h-11 rounded-full bg-gray-50 ring-1 ring-gray-200/50 text-gray-400 text-[12.5px] font-medium inline-flex items-center justify-center text-center px-3">
+                  <div className="h-11 rounded-full bg-gray-50 ring-1 ring-gray-200/50 text-gray-400 text-[13px] font-medium inline-flex items-center justify-center text-center px-3">
                     {ko ? '유료 플랜이 없을 때 자동 적용돼요' : 'Applied automatically without a paid plan'}
                   </div>
                 ) : isNative ? (
@@ -1190,20 +1190,20 @@ export default function SubscriptionPage() {
                   return (
                   <div className={`rounded-2xl bg-white ring-1 p-4 space-y-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${isUpgrade ? 'ring-primary/25' : 'ring-amber-300/60'}`}>
                     {isUpgrade ? (
-                      <p className="text-[13.5px] text-gray-700 leading-relaxed">
+                      <p className="text-[13px] text-gray-700 leading-relaxed">
                         {ko
                           ? `등록된 카드로 지금 ${formatWon(plan.priceWon)}이 결제되고, 오늘부터 새 ${plan.intervalDays === 365 ? '1년' : '30일'} 기간이 시작돼요.`
                           : `Your saved card will be charged ${formatWon(plan.priceWon)} now, and a fresh ${plan.intervalDays === 365 ? '1-year' : '30-day'} period starts today.`}
                       </p>
                     ) : (
-                      <p className="text-[13.5px] text-gray-700 leading-relaxed">
+                      <p className="text-[13px] text-gray-700 leading-relaxed">
                         {ko
                           ? `${renewDate}부터 매달 크레딧이 ${cur?.monthlyCredits ?? 0}개에서 ${plan.monthlyCredits}개로 줄어요${lostFeatures.length > 0 ? `, 그리고 ${lostFeatures.join(', ')} 기능을 잃게 돼요` : ''}. 그 전까지는 현재 플랜이 그대로 유지돼요.`
                           : `From ${renewDate}, you'll get ${plan.monthlyCredits} monthly credits instead of ${cur?.monthlyCredits ?? 0}${lostFeatures.length > 0 ? `, and you'll lose ${lostFeatures.join(' and ')}` : ''}. Your current plan stays until then.`}
                       </p>
                     )}
                     {isUpgrade && (
-                      <p className="text-[12px] text-gray-400 leading-relaxed">
+                      <p className="text-[13px] text-gray-400 leading-relaxed">
                         {ko ? '남은 기간은 일할 계산되지 않아요. ' : 'Time left on your current period is not pro-rated. '}
                         <Link href="/mobile/study/refund-policy" className="text-primary underline underline-offset-2">
                           {ko ? '환불 정책 보기' : 'View refund policy'}
@@ -1236,7 +1236,7 @@ export default function SubscriptionPage() {
                   )
                 })()}
                 {!isNative && !isCurrent && isActive && !onPass && !cancelling && (
-                  <p className="text-[11.5px] text-gray-400 -mt-2 text-center leading-snug">
+                  <p className="text-[11px] text-gray-400 -mt-2 text-center leading-snug">
                     {isUpgrade
                       ? plan.intervalDays === 365
                         ? (ko ? '지금 결제되고 새 1년 기간이 시작돼요.' : 'Charged now — a fresh 1-year period starts.')
@@ -1264,12 +1264,12 @@ export default function SubscriptionPage() {
               // accidental tap. States what happens and when before the
               // destructive action goes through.
               <div className="rounded-2xl bg-white ring-1 ring-rose-200/70 p-4 space-y-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                <p className="text-[13.5px] text-gray-700 leading-relaxed">
+                <p className="text-[13px] text-gray-700 leading-relaxed">
                   {ko
                     ? `구독을 해지할까요? ${formatDate(sub.current_period_end, ko)}까지는 그대로 이용할 수 있고, 이후 무료 플랜으로 전환돼요.`
                     : `Cancel your subscription? You keep full access until ${formatDate(sub.current_period_end, ko)}, then you move to the free plan.`}
                 </p>
-                <p className="text-[12px] text-gray-400 leading-relaxed">
+                <p className="text-[13px] text-gray-400 leading-relaxed">
                   {ko ? '이미 결제된 요금은 환불되지 않을 수 있어요. ' : 'Charges already made may not be refundable. '}
                   <Link href="/mobile/study/refund-policy" className="text-primary underline underline-offset-2">
                     {ko ? '환불 정책 보기' : 'View refund policy'}
@@ -1301,7 +1301,7 @@ export default function SubscriptionPage() {
                 type="button"
                 onClick={() => setConfirmingCancel(true)}
                 disabled={acting !== null}
-                className="w-full h-12 rounded-full bg-white ring-1 ring-gray-200/70 text-rose-600 text-sm font-medium inline-flex items-center justify-center gap-1.5 hover:ring-rose-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] active:scale-[0.98] disabled:opacity-60 transition-all"
+                className="w-full h-12 rounded-full bg-white ring-1 ring-gray-200/70 text-rose-600 text-[15px] font-medium inline-flex items-center justify-center gap-1.5 hover:ring-rose-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] active:scale-[0.98] disabled:opacity-60 transition-all"
               >
                 <XCircle className="w-4 h-4" />
                 {t('study.subscription.cancel')}
@@ -1324,7 +1324,7 @@ export default function SubscriptionPage() {
                 {t('study.subscription.reactivate')}
               </StudyButton>
               {cancelling && (
-                <p className="text-[12px] text-gray-400 text-center leading-relaxed px-2">
+                <p className="text-[13px] text-gray-400 text-center leading-relaxed px-2">
                   {ko
                     ? `해지가 예약된 동안에는 플랜을 변경할 수 없어요. 지금 다시 활성화하거나, ${formatDate(sub.current_period_end, ko)}에 이용이 끝난 뒤 새로 가입할 수 있어요.`
                     : `Plan changes are paused while your cancellation is scheduled. Reactivate now, or subscribe again after your access ends on ${formatDate(sub.current_period_end, ko)}.`}
@@ -1340,7 +1340,7 @@ export default function SubscriptionPage() {
         <div className="pt-1 pb-2 text-center">
           <Link
             href="/mobile/study/refund-policy"
-            className="text-[12px] text-gray-400 underline underline-offset-2 hover:text-gray-600 transition-colors"
+            className="text-[13px] text-gray-400 underline underline-offset-2 hover:text-gray-600 transition-colors"
           >
             {ko ? '결제 및 환불 정책' : 'Billing & refund policy'}
           </Link>
@@ -1387,11 +1387,11 @@ function StatusPill({ status, state, switching }: {
   // switch is its own state with its own pill — it used to fall through
   // to "Cancelling" whenever the row (wrongly) carried both flags.
   if (state === 'cancelling') {
-    return <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 ring-1 ring-amber-200">{t('study.subscription.statusCancelling')}</span>
+    return <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[13px] font-semibold bg-amber-50 text-amber-700 ring-1 ring-amber-200">{t('study.subscription.statusCancelling')}</span>
   }
   if (state === 'pendingSwitch' && switching) {
     return (
-      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 ring-1 ring-amber-200 text-right">
+      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[13px] font-semibold bg-amber-50 text-amber-700 ring-1 ring-amber-200 text-right">
         {t('study.subscription.statusSwitching', switching)}
       </span>
     )
@@ -1405,7 +1405,7 @@ function StatusPill({ status, state, switching }: {
     expired:   { cls: 'bg-rose-50 text-rose-700 ring-rose-200',           label: t('study.subscription.statusExpired') as string },
   }
   const m = map[status]
-  return <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ring-1 ${m.cls}`}>{m.label}</span>
+  return <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[13px] font-semibold ring-1 ${m.cls}`}>{m.label}</span>
 }
 
 function planName(plans: CatalogPlan[], planId: string, ko: boolean): string {
@@ -1486,7 +1486,7 @@ function PassCard({ p, ko, acting, onBuy }: {
           </span>
         ) : null}
       </div>
-      <div className="mt-2 text-2xl font-bold tracking-tight">{formatWon(p.priceWon)}</div>
+      <div className="mt-2 text-[24px] font-bold tracking-tight">{formatWon(p.priceWon)}</div>
       {/* Pass credits land in a test-SCOPED bucket (study_pass_credits,
           spendable only on that family — see reserveTestCredits), so the
           card says which test they work on rather than "test credits". */}
@@ -1499,7 +1499,7 @@ function PassCard({ p, ko, acting, onBuy }: {
         type="button"
         onClick={() => onBuy(p.id, ko ? p.name_ko : p.name_en)}
         disabled={acting !== null}
-        className={`mt-3.5 w-full h-11 rounded-full bg-white ${theme.buttonText} text-[13.5px] font-bold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-70 transition-all`}
+        className={`mt-3.5 w-full h-11 rounded-full bg-white ${theme.buttonText} text-[13px] font-bold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-70 transition-all`}
       >
         {acting === 'pass' ? <Loader2 className="w-4 h-4 animate-spin" /> : <GraduationCap className="w-4 h-4" />}
         {ko ? '패스 구매하기' : 'Get the pass'}

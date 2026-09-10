@@ -25,7 +25,7 @@ export function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | nu
     if (rows.length === 0 && cells.length === 0) return null
     return (
       <figure className="my-3 mx-auto max-w-md">
-        <table className="w-full text-[12px] text-black border border-black border-collapse">
+        <table className="w-full text-[13px] text-black border border-black border-collapse">
           <thead>
             <tr>
               <th className="px-2 py-1.5 border border-black bg-white font-normal" />

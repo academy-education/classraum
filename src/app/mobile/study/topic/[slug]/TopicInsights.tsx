@@ -161,15 +161,15 @@ function TrendChart({
     <div className="p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-gray-400">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-400">
             {ko ? '점수 추이' : 'Score trend'}
           </div>
           <div className="flex items-baseline gap-2 mt-0.5">
-            <span className="text-[22px] font-bold text-gray-900 tabular-nums leading-none">
+            <span className="text-[20px] font-bold text-gray-900 tabular-nums leading-none">
               {latest.percent}<span className="text-[13px] text-gray-400 font-semibold">%</span>
             </span>
             {latest.band !== null && (
-              <span className="text-[11.5px] font-semibold text-gray-500 tabular-nums">
+              <span className="text-[11px] font-semibold text-gray-500 tabular-nums">
                 {ko ? '밴드' : 'band'} {latest.band.toFixed(1)}
               </span>
             )}
@@ -261,14 +261,14 @@ function TrendChart({
               : shownAt.x < W * 0.3 ? 'translateX(0)' : 'translateX(-50%)',
           }}
         >
-          <div className="rounded-lg bg-gray-900 text-white px-2 py-1 text-[10.5px] font-semibold whitespace-nowrap shadow-sm">
+          <div className="rounded-lg bg-gray-900 text-white px-2 py-1 text-[10px] font-semibold whitespace-nowrap shadow-sm">
             <span className="tabular-nums">{shown.percent}%</span>
             <span className="opacity-60 font-medium"> · {shown.earned}/{shown.max}</span>
           </div>
         </div>
       </div>
 
-      <div className="mt-1.5 flex items-center justify-between text-[10.5px] text-gray-400 tabular-nums">
+      <div className="mt-1.5 flex items-center justify-between text-[10px] text-gray-400 tabular-nums">
         {/* One session means both ends are the same date, which reads
             as a rendering bug rather than a one-point chart. */}
         <span>{points.length > 1 ? formatDay(points[0]!.at, ko) : ''}</span>
@@ -284,7 +284,7 @@ function TrendChart({
 
       <Link
         href={`/mobile/study/session/${shown.sessionId}/summary`}
-        className="mt-2.5 inline-flex items-center gap-1 text-[11.5px] font-semibold text-primary hover:opacity-80"
+        className="mt-2.5 inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:opacity-80"
       >
         <Sparkles className="w-3 h-3" />
         {/* Names the date, because tapping a point retargets this link

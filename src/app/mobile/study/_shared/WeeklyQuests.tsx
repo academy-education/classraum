@@ -48,7 +48,7 @@ function QuestRing({ pct, done }: { pct: number; done: boolean }) {
           strokeDashoffset={C * (1 - Math.max(0.03, pct / 100))}
         />
       </svg>
-      <span className="absolute inset-0 flex items-center justify-center text-[9px] font-bold tabular-nums text-gray-600">
+      <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold tabular-nums text-gray-600">
         {Math.round(pct)}
       </span>
     </span>
@@ -124,7 +124,7 @@ export function WeeklyQuests({ hideHeading = false }: { hideHeading?: boolean } 
             {ko ? '주간 퀘스트' : 'Weekly quests'}
           </h2>
         )}
-        <span className="text-[11.5px] font-medium text-gray-400 tabular-nums">
+        <span className="text-[11px] font-medium text-gray-400 tabular-nums">
           {resetLabel(data.resetsAt, ko)}
         </span>
       </div>
@@ -136,16 +136,16 @@ export function WeeklyQuests({ hideHeading = false }: { hideHeading?: boolean } 
             <div key={q.key} className={`px-4 py-3 flex items-center gap-3 ${q.done ? 'bg-emerald-50/60' : ''}`}>
               <QuestRing pct={pct} done={q.done} />
               <div className="flex-1 min-w-0">
-                <p className={`text-[13.5px] font-medium truncate ${q.done ? 'text-gray-400 line-through' : 'text-gray-900'}`}>
+                <p className={`text-[13px] font-medium truncate ${q.done ? 'text-gray-400 line-through' : 'text-gray-900'}`}>
                   {ko ? q.label_ko : q.label_en}
                 </p>
-                <p className="mt-0.5 text-[11.5px] tabular-nums text-gray-400">
+                <p className="mt-0.5 text-[11px] tabular-nums text-gray-400">
                   {q.done
                     ? (ko ? '완료!' : 'Done!')
                     : `${q.current}/${q.target}`}
                 </p>
               </div>
-              <span className={`flex-shrink-0 text-[11.5px] font-semibold tabular-nums ${q.done ? 'text-emerald-600' : 'text-gray-400'}`}>
+              <span className={`flex-shrink-0 text-[11px] font-semibold tabular-nums ${q.done ? 'text-emerald-600' : 'text-gray-400'}`}>
                 +{q.rewardXp} XP
               </span>
             </div>
@@ -154,7 +154,7 @@ export function WeeklyQuests({ hideHeading = false }: { hideHeading?: boolean } 
       </div>
 
       {allDone && (
-        <p className="mt-2 px-1 text-[12px] font-medium text-emerald-600">
+        <p className="mt-2 px-1 text-[13px] font-medium text-emerald-600">
           {ko ? ' 이번 주 퀘스트를 모두 완료했어요!' : ' All quests done for this week!'}
         </p>
       )}

@@ -134,7 +134,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
         <div className="relative flex items-end justify-between gap-3 lg:flex-1 lg:flex-col lg:items-start lg:justify-center lg:gap-3">
           <div className="min-w-0">
             <p className="text-[11px] font-medium text-white/70 tabular-nums">{dateStr}</p>
-            <h1 className="mt-1 text-[22px] leading-tight font-bold tracking-tight text-white">
+            <h1 className="mt-1 text-[20px] leading-tight font-bold tracking-tight text-white">
               {greeting}{firstName ? `,` : ''}
               {firstName && <span className="block text-white/95">{firstName}{ko ? '님' : ''}</span>}
             </h1>
@@ -147,7 +147,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
               className="flex-shrink-0 inline-flex items-baseline gap-1.5 rounded-full bg-white/15 backdrop-blur-sm ring-1 ring-white/20 px-3 py-1.5 hover:bg-white/25 transition"
             >
               <Flame className={`w-4 h-4 self-center ${streakActive ? 'text-orange-300' : 'text-white/55'}`} fill="currentColor" />
-              <span className="text-[14px] font-bold tabular-nums text-white">{streak}</span>
+              <span className="text-[15px] font-bold tabular-nums text-white">{streak}</span>
               <span className="text-[11px] text-white/80">{ko ? '일 연속' : 'day streak'}</span>
               {/* Streak freezes are disabled for now — the badge stays hidden
                   while the underlying freeze data continues to accrue. */}
@@ -175,7 +175,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
           <div className="rounded-2xl bg-white ring-1 ring-gray-200 shadow-[0_8px_24px_-12px_rgba(15,23,42,0.20)] p-5">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-gray-500">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-gray-500">
                   {ko ? '오늘의 학습' : "Today's study"}
                 </p>
                 <div className="mt-1.5 flex items-baseline gap-1.5">
@@ -211,7 +211,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
                 targeted goal. Uses the smallest still-useful hint:
                 minutes remaining today, or a streak/celebration line
                 once the daily goal is met. */}
-            <p className="mt-2 text-[11.5px] text-gray-500">
+            <p className="mt-2 text-[11px] text-gray-500">
               {goalMet ? (
                 <span className="text-emerald-700 font-medium">
                   {ko ? '오늘의 목표 달성!' : 'Daily goal met!'}
@@ -252,7 +252,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
           </div>
         ) : (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200 shadow-[0_8px_24px_-12px_rgba(15,23,42,0.20)] p-5 min-h-[120px] flex items-center">
-            <p className="text-[14px] text-gray-600">
+            <p className="text-[15px] text-gray-600">
               {ko ? '오늘 학습을 시작해 목표를 세워보세요.' : "Start studying today to set your goal."}
             </p>
           </div>
@@ -277,10 +277,10 @@ function MiniStat({
       : 'text-primary'
   return (
     <div className="text-center">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-500">
         {label}
       </div>
-      <div className={`mt-0.5 text-[18px] font-bold tabular-nums leading-tight ${accentClass}`}>
+      <div className={`mt-0.5 text-[17px] font-bold tabular-nums leading-tight ${accentClass}`}>
         {value}
         {unit && <span className="ml-0.5 text-[11px] font-medium text-gray-400">{unit}</span>}
       </div>

@@ -345,7 +345,7 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
   // not just that the button is missing.
   if (!micSupported) {
     return (
-      <div className="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-[12px] text-gray-600 text-center">
+      <div className="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2.5 text-[13px] text-gray-600 text-center">
         {ko ? '이 브라우저는 음성 녹음을 지원하지 않습니다. 아래에 답변을 입력하세요.' : 'Voice recording is unavailable in this browser. Type your answer below.'}
       </div>
     )
@@ -380,7 +380,7 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
           />
         )}
         {errorText && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-[12px] text-rose-800">
+          <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-[13px] text-rose-800">
             {errorText}
           </div>
         )}
@@ -404,7 +404,7 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
           <span className="text-[15px] font-semibold">
             {ko ? '녹음 중지' : 'Stop recording'}
           </span>
-          <span className="text-[14px] font-mono tabular-nums opacity-90 min-w-[3.2ch] text-right">
+          <span className="text-[15px] font-mono tabular-nums opacity-90 min-w-[3.2ch] text-right">
             {mmss(elapsedSec)}
           </span>
         </button>
@@ -434,7 +434,7 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
         </button>
       )}
       {errorText && (
-        <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-[12px] text-rose-800">
+        <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-[13px] text-rose-800">
           {errorText}
         </div>
       )}
@@ -529,7 +529,7 @@ export function SpeakingTimer({ active, paused, prepSec, responseSec, onPhaseCha
       'bg-amber-50 border-amber-200'
     }`}>
       <div className="flex items-baseline justify-between">
-        <span className={`text-[12px] font-semibold ${
+        <span className={`text-[13px] font-semibold ${
           phase === 'expired' ? 'text-rose-800' :
           phase === 'response' ? 'text-emerald-800' :
           'text-amber-800'

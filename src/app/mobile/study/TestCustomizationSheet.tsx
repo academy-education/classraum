@@ -214,7 +214,7 @@ export function TestCustomizationSheet({
             <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
               {String(t('study.testConfig.title'))}
             </h2>
-            <p className="text-[12.5px] text-gray-500 mt-0.5">
+            <p className="text-[13px] text-gray-500 mt-0.5">
               {ko ? '실제 시험 형식 그대로 — 난이도만 선택하세요' : 'Real test format — only difficulty is yours to choose'}
             </p>
           </div>
@@ -269,7 +269,7 @@ export function TestCustomizationSheet({
             </SettingGroup>
           )}
           {hideDifficulty && (
-            <p className="text-[12px] text-gray-500 leading-relaxed">
+            <p className="text-[13px] text-gray-500 leading-relaxed">
               {family === 'toefl'
                 ? (ko
                   ? '실제 TOEFL은 모듈 전체가 변별 수준으로 출제됩니다 — 가장 어려운 난이도로 고정됩니다.'
@@ -292,12 +292,12 @@ export function TestCustomizationSheet({
                   }`}
                 >
                   <div className="flex items-baseline justify-between">
-                    <div className="text-[13.5px] font-semibold text-gray-900">
+                    <div className="text-[13px] font-semibold text-gray-900">
                       {ko ? '텍스트 기반 (기본)' : 'Text-based (default)'}
                     </div>
                     <div className="text-[11px] text-gray-500 tabular-nums">~$0.02</div>
                   </div>
-                  <p className="text-[11.5px] text-gray-600 mt-1 leading-relaxed">
+                  <p className="text-[11px] text-gray-600 mt-1 leading-relaxed">
                     {ko
                       ? '녹취본 + 발화 속도·멈춤·명확도로 채점. 빠르고 저렴.'
                       : 'Grades the transcript + WPM/pause/clarity signals. Fast and cheap.'}
@@ -313,12 +313,12 @@ export function TestCustomizationSheet({
                   }`}
                 >
                   <div className="flex items-baseline justify-between">
-                    <div className="text-[13.5px] font-semibold text-gray-900">
+                    <div className="text-[13px] font-semibold text-gray-900">
                       {ko ? '실음성 (ETS급)' : 'Real audio (ETS-parity)'}
                     </div>
                     <div className="text-[11px] text-gray-500 tabular-nums">~$0.06–0.08</div>
                   </div>
-                  <p className="text-[11.5px] text-gray-600 mt-1 leading-relaxed">
+                  <p className="text-[11px] text-gray-600 mt-1 leading-relaxed">
                     {ko
                       ? 'AI가 녹음을 직접 듣고 발음·억양·리듬까지 채점. 실제 ETS 채점자와 유사한 결과. 답변 당 4-5초 추가 지연.'
                       : 'AI listens to the recording directly — grades pronunciation, intonation, and stress. Close to a real ETS rater. Adds 4-5 s per feedback request.'}
@@ -338,29 +338,29 @@ export function TestCustomizationSheet({
               <button
                 type="button"
                 onClick={() => setCreditSource('pass')}
-                className={`h-9 rounded-lg text-[12px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
+                className={`h-9 rounded-lg text-[13px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                   creditSource === 'pass' ? 'bg-white text-indigo-700 shadow-sm ring-1 ring-indigo-200' : 'text-gray-500'
                 }`}
               >
                 {passCreditLabel(family, ko)}
-                <span className="tabular-nums text-[10.5px] opacity-70">{passBalance}</span>
+                <span className="tabular-nums text-[10px] opacity-70">{passBalance}</span>
               </button>
               <button
                 type="button"
                 onClick={() => setCreditSource('regular')}
-                className={`h-9 rounded-lg text-[12px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
+                className={`h-9 rounded-lg text-[13px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                   creditSource === 'regular' ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' : 'text-gray-500'
                 }`}
               >
                 {ko ? '일반 크레딧' : 'Regular credit'}
                 {creditBalance != null && (
-                  <span className="tabular-nums text-[10.5px] opacity-70">{Math.max(0, creditBalance - passBalance)}</span>
+                  <span className="tabular-nums text-[10px] opacity-70">{Math.max(0, creditBalance - passBalance)}</span>
                 )}
               </button>
             </div>
           )}
           {/* Credit cost + balance — per-section cost from the catalog. */}
-          <div className="flex items-center justify-between gap-3 text-[12.5px]">
+          <div className="flex items-center justify-between gap-3 text-[13px]">
             <span className="inline-flex items-center gap-1.5 text-gray-500">
               <Coins className="w-4 h-4 text-amber-500" />
               {ko ? `테스트 크레딧 ${creditCost}개 사용` : `Uses ${creditCost} test credit${creditCost > 1 ? 's' : ''}`}
@@ -399,8 +399,8 @@ function FormatChip({ icon: Icon, value, label }: { icon: LucideIcon; value: str
     <div className="flex items-center gap-2.5 rounded-xl bg-gray-50 ring-1 ring-gray-200/70 px-3 py-2.5">
       <Icon className="w-4 h-4 text-gray-500" />
       <div className="min-w-0">
-        <div className="text-[16px] font-bold tabular-nums text-gray-900 leading-none">{value}</div>
-        <div className="text-[10px] uppercase tracking-[0.10em] text-gray-500 mt-0.5">{label}</div>
+        <div className="text-[17px] font-bold tabular-nums text-gray-900 leading-none">{value}</div>
+        <div className="text-[11px] uppercase tracking-[0.10em] text-gray-500 mt-0.5">{label}</div>
       </div>
     </div>
   )
@@ -462,7 +462,7 @@ function SettingGroup({
     <div>
       <div className="flex items-center gap-2 mb-2">
         <Icon className="w-4 h-4 text-gray-400" />
-        <span className="text-[12.5px] font-semibold uppercase tracking-[0.10em] text-gray-600">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600">
           {label}
         </span>
       </div>

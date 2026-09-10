@@ -192,7 +192,7 @@ function BuilderInner() {
       {errorToast}
       {/* Topic picker — dropdown opens a full topic list. */}
       <section>
-        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
           {String(t('study.builder.topicLabel'))}
         </h2>
         <div className="relative">
@@ -215,7 +215,7 @@ function BuilderInner() {
                     key={topic.id}
                     type="button"
                     onClick={() => { setTopicId(topic.id); setTopicPickerOpen(false) }}
-                    className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-[14px] text-left transition-colors ${
+                    className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-[15px] text-left transition-colors ${
                       selected ? 'bg-primary/[0.06] text-primary font-semibold' : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
@@ -231,7 +231,7 @@ function BuilderInner() {
 
       {/* Count */}
       <section>
-        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
           {String(t('study.builder.countLabel'))}
         </h2>
         <Segmented
@@ -243,7 +243,7 @@ function BuilderInner() {
 
       {/* Time */}
       <section>
-        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
           {String(t('study.builder.timeLabel'))}
         </h2>
         <Segmented
@@ -255,7 +255,7 @@ function BuilderInner() {
 
       {/* Difficulty */}
       <section>
-        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600 mb-2 px-1">
           {String(t('study.builder.difficultyLabel'))}
         </h2>
         <Segmented

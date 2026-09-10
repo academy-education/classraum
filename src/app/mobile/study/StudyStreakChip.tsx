@@ -91,7 +91,7 @@ export function StudyStreakChip() {
 
   return (
     <div
-      className="inline-flex items-center gap-1 pl-2 pr-2.5 h-9 rounded-full bg-gradient-to-b from-amber-400 to-orange-500 text-white text-[12px] font-bold tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_2px_4px_rgba(245,158,11,0.28),0_4px_12px_-4px_rgba(245,158,11,0.4)] ring-1 ring-orange-600/20"
+      className="inline-flex items-center gap-1 pl-2 pr-2.5 h-9 rounded-full bg-gradient-to-b from-amber-400 to-orange-500 text-white text-[13px] font-bold tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_2px_4px_rgba(245,158,11,0.28),0_4px_12px_-4px_rgba(245,158,11,0.4)] ring-1 ring-orange-600/20"
       title={String(t('study.streak.tooltip', { count: String(streak) }))}
     >
       <Flame className="w-3.5 h-3.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]" fill="currentColor" />

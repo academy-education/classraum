@@ -131,7 +131,7 @@ export function ResumableShelf() {
                 <Icon className="w-5 h-5" strokeWidth={2.25} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[14.5px] font-semibold text-gray-900 truncate leading-snug">
+                <div className="text-[15px] font-semibold text-gray-900 truncate leading-snug">
                   {title}
                 </div>
                 <div className="flex items-center gap-1.5 mt-1">
@@ -159,7 +159,7 @@ function ShelfHeader({ title, seeAllHref, seeAllLabel }: { title: string; seeAll
     <div className="flex items-baseline justify-between mb-3">
       <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">{title}</h2>
       {seeAllHref && (
-        <Link href={seeAllHref} className="inline-flex items-center gap-0.5 text-[12px] font-medium text-primary hover:text-primary/80 transition">
+        <Link href={seeAllHref} className="inline-flex items-center gap-0.5 text-[13px] font-medium text-primary hover:text-primary/80 transition">
           {seeAllLabel} <ArrowRight className="w-3 h-3" />
         </Link>
       )}

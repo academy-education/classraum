@@ -109,7 +109,7 @@ function LockedTopicView() {
         <Lock className="w-6 h-6 text-gray-500" />
       </div>
       <div>
-        <h1 className="text-[18px] font-semibold text-gray-900">Coming soon</h1>
+        <h1 className="text-[20px] font-semibold text-gray-900">Coming soon</h1>
         <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs leading-relaxed">
           This test isn&apos;t available yet. Currently the SAT and TOEFL are open.
         </p>
@@ -757,11 +757,11 @@ function TopicInner({ slug }: { slug: string }) {
 
   if (!topic) {
     return (
-      <div className="px-5 py-10 text-center text-sm text-gray-500 space-y-3">
+      <div className="px-5 py-10 text-center text-[15px] text-gray-500 space-y-3">
         <p>{t('study.topic.notFound')}</p>
         <Link
           href="/mobile/study"
-          className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary transition-colors"
+          className="inline-flex items-center gap-1.5 text-[13px] text-gray-600 hover:text-primary transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           {String(t('study.topic.backToStudy'))}
@@ -1063,7 +1063,7 @@ function TopicInner({ slug }: { slug: string }) {
                   role="tab"
                   aria-selected={tab === tabDef.key}
                   onClick={() => setTab(tabDef.key)}
-                  className={`inline-flex h-full flex-1 items-center justify-center gap-1.5 rounded-md px-2 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] ${
+                  className={`inline-flex h-full flex-1 items-center justify-center gap-1.5 rounded-md px-2 text-[15px] font-medium whitespace-nowrap transition-[color,box-shadow] ${
                     tab === tabDef.key
                       ? `bg-background shadow-sm ${tabDef.locked ? 'text-gray-400' : 'text-foreground'}`
                       : tabDef.locked
@@ -1280,7 +1280,7 @@ function CategoryPicker({
 
   return (
     <section>
-      <h2 className="text-[12px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-2.5 px-1">
+      <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-500 mb-2.5 px-1">
         {label}
       </h2>
       {/* Section chip carousel — a horizontally scrollable row of pill
@@ -1302,7 +1302,7 @@ function CategoryPicker({
               type="button"
               aria-pressed={isActive}
               onClick={() => onSelect(cat.id)}
-              className={`snap-start flex-shrink-0 inline-flex items-center gap-2 h-11 pl-3.5 pr-4 rounded-full text-[14px] font-semibold whitespace-nowrap transition-all duration-200 active:scale-[0.97] ${
+              className={`snap-start flex-shrink-0 inline-flex items-center gap-2 h-11 pl-3.5 pr-4 rounded-full text-[15px] font-semibold whitespace-nowrap transition-all duration-200 active:scale-[0.97] ${
                 isActive
                   ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_3px_10px_-2px_rgba(40,133,232,0.45)]'
                   : 'bg-white text-gray-700 ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:text-gray-900'
@@ -1389,7 +1389,7 @@ function FeaturedResponseCard({
               <Sparkles className="w-2.5 h-2.5" />Beta
             </span>
           </div>
-          <p className="text-[13.5px] text-gray-600 mt-1.5 leading-relaxed">
+          <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
             {String(t('study.modes.response.body'))}
           </p>
         </div>
@@ -1417,7 +1417,7 @@ function FullTestLockedCard({ family, ko }: { family: string; ko: boolean }) {
           <Lock className="w-5 h-5" />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-[16px] font-semibold text-gray-600 tracking-tight">
+          <div className="text-[17px] font-semibold text-gray-600 tracking-tight">
             {ko ? `${label} 패스가 필요해요` : `Requires the ${label} pass`}
           </div>
           <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
@@ -1479,7 +1479,7 @@ function FeaturedFullTestCard({
               {ko ? `크레딧 ${creditCost}개` : `${creditCost} credit${creditCost === 1 ? '' : 's'}`}
             </span>
           </div>
-          <p className="text-[13.5px] text-gray-600 mt-1.5 leading-relaxed">
+          <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
             {String(t('study.modes.full_test.body'))}
           </p>
         </div>
@@ -1503,7 +1503,7 @@ function MiniStat({ label, value, suffix, accent }: {
     'text-gray-700'
   return (
     <div className="text-center">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-500">
         {label}
       </div>
       <div className={`mt-0.5 text-[15px] font-bold tabular-nums leading-tight ${valueClass}`}>
@@ -1605,10 +1605,10 @@ function RecentTestsList({ topicIds, studentId, ko, scoreOverrides }: {
   return (
     <section>
       <div className="flex items-center justify-between mb-2 px-1">
-        <h2 className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600">
           {ko ? '내 모의고사' : 'My mock tests'}
         </h2>
-        <Link href="/mobile/study/tests" className="inline-flex items-center gap-1 text-[12px] font-medium text-gray-600 hover:text-primary transition-colors">
+        <Link href="/mobile/study/tests" className="inline-flex items-center gap-1 text-[13px] font-medium text-gray-600 hover:text-primary transition-colors">
           {ko ? '전체 보기' : 'View all'}<ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
@@ -1621,8 +1621,8 @@ function RecentTestsList({ topicIds, studentId, ko, scoreOverrides }: {
             <ClipboardList className="w-4 h-4" />
           </span>
           <div className="flex-1 min-w-0">
-            <p className="text-[13.5px] font-medium text-gray-800">{ko ? '지난 모의고사 보기' : 'See your past mock tests'}</p>
-            <p className="text-[12px] text-gray-500 mt-0.5">{ko ? '완료·진행 중인 시험을 모두 확인하세요' : 'Completed and in-progress tests, all in one place'}</p>
+            <p className="text-[13px] font-medium text-gray-800">{ko ? '지난 모의고사 보기' : 'See your past mock tests'}</p>
+            <p className="text-[13px] text-gray-500 mt-0.5">{ko ? '완료·진행 중인 시험을 모두 확인하세요' : 'Completed and in-progress tests, all in one place'}</p>
           </div>
           <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
         </Link>

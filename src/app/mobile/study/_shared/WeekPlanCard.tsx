@@ -61,7 +61,7 @@ export function WeekPlanCard({ hideHeading = false }: { hideHeading?: boolean } 
           </h2>
         )}
         {data.perWeekPoints != null && (
-          <span className="inline-flex items-center gap-1 text-[11.5px] font-semibold text-primary tabular-nums">
+          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary tabular-nums">
             <Flag className="w-3 h-3" />
             {ko ? `주당 +${data.perWeekPoints}점 목표` : `~${data.perWeekPoints} pts/wk`}
           </span>
@@ -96,7 +96,7 @@ export function WeekPlanCard({ hideHeading = false }: { hideHeading?: boolean } 
                 <span className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center ${v.gradientTile}`}>
                   <Icon className="w-4 h-4" />
                 </span>
-                <span className="flex-1 min-w-0 text-[13.5px] font-medium text-gray-900 truncate">
+                <span className="flex-1 min-w-0 text-[13px] font-medium text-gray-900 truncate">
                   {ko ? f.name_ko : f.name_en}
                 </span>
                 <span className="flex-shrink-0 px-2 py-0.5 rounded-full bg-gray-100 text-[11px] font-semibold tabular-nums text-gray-500">
@@ -115,7 +115,7 @@ export function WeekPlanCard({ hideHeading = false }: { hideHeading?: boolean } 
 function Stat({ color, value, label }: { color: string; value: number | string; label: string }) {
   return (
     <div className="flex flex-col items-center text-center px-1">
-      <span className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500">{label}</span>
+      <span className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-500">{label}</span>
       <span className={`mt-1 text-[20px] font-bold tabular-nums leading-none ${color}`}>{value}</span>
     </div>
   )

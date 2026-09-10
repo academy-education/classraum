@@ -120,7 +120,7 @@ function ReferralInner() {
             </>
           ) : loadFailed || !data ? (
             <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-              <p className="text-[13.5px] text-gray-600">
+              <p className="text-[13px] text-gray-600">
                 {ko ? '초대 정보를 불러오지 못했어요.' : "We couldn't load your invite info."}
               </p>
               <StudyButton
@@ -230,7 +230,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
             {code}
           </span>
         </div>
-        <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed">
+        <p className="text-[13px] text-gray-500 mt-3 leading-relaxed">
           {ko
             ? `친구가 가입하면 둘 다 ${signupReward}개, 프리미엄으로 업그레이드하면 각각 ${premiumReward}개를 더 받아요.`
             : `You both get ${signupReward} credit when they sign up, and ${premiumReward} more each when they go Premium.`}
@@ -271,7 +271,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
           <button
             type="button"
             onClick={() => void doShare()}
-            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500] text-[#191600] text-[14px] font-semibold ring-1 ring-[#FEE500] hover:brightness-95 active:scale-[0.99] transition"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500] text-[#191600] text-[15px] font-semibold ring-1 ring-[#FEE500] hover:brightness-95 active:scale-[0.99] transition"
           >
             <KakaoIcon className="w-[18px] h-[18px]" />
             {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
@@ -282,7 +282,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
             disabled
             aria-disabled="true"
             title={ko ? '곧 제공됩니다' : 'Coming soon'}
-            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500]/60 text-[#3C1E1E]/70 text-[14px] font-semibold ring-1 ring-[#FEE500]/70 cursor-not-allowed"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500]/60 text-[#3C1E1E]/70 text-[15px] font-semibold ring-1 ring-[#FEE500]/70 cursor-not-allowed"
           >
             <KakaoIcon className="w-[18px] h-[18px]" />
             {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
@@ -364,7 +364,7 @@ function RedeemBox({ ko, onRedeemed }: { ko: boolean; onRedeemed: () => void }) 
           {ko ? '친구 코드 입력' : 'Redeem a friend’s code'}
         </h2>
       </div>
-      <p className="text-[12.5px] text-gray-500 leading-relaxed">
+      <p className="text-[13px] text-gray-500 leading-relaxed">
         {ko
           ? '친구에게 받은 코드를 입력하면 둘 다 크레딧을 받아요.'
           : 'Enter a code a friend shared and you both get credits.'}
@@ -396,7 +396,7 @@ function RedeemBox({ ko, onRedeemed }: { ko: boolean; onRedeemed: () => void }) 
         </StudyButton>
       </div>
       {message && (
-        <p className={`text-[12.5px] font-medium ${message.kind === 'success' ? 'text-emerald-600' : 'text-rose-600'}`}>
+        <p className={`text-[13px] font-medium ${message.kind === 'success' ? 'text-emerald-600' : 'text-rose-600'}`}>
           {message.text}
         </p>
       )}

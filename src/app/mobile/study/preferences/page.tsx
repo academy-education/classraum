@@ -135,7 +135,7 @@ function PreferencesInner() {
     return (
       <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14">
         <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-10 text-center space-y-3">
-          <p className="text-[13.5px] text-gray-600">
+          <p className="text-[13px] text-gray-600">
             {ko ? '설정을 불러오지 못했어요.' : "We couldn't load your preferences."}
           </p>
           <StudyButton type="button" size="sm" onClick={() => setRetryKey(k => k + 1)}>
@@ -178,7 +178,7 @@ function PreferencesInner() {
       {/* Save-failure toast — the optimistic revert is invisible
           without it. Fixed above the bottom nav. */}
       {saveFailed && (
-        <div className="fixed left-1/2 -translate-x-1/2 bottom-[calc(var(--safe-area-bottom,0px)+76px)] z-50 rounded-full bg-gray-900/95 text-white text-[12.5px] font-medium px-4 py-2.5 shadow-lg animate-fade-in-up">
+        <div className="fixed left-1/2 -translate-x-1/2 bottom-[calc(var(--safe-area-bottom,0px)+76px)] z-50 rounded-full bg-gray-900/95 text-white text-[13px] font-medium px-4 py-2.5 shadow-lg animate-fade-in-up">
           {ko ? '저장하지 못했어요. 다시 시도해 주세요.' : "Couldn't save. Please try again."}
         </div>
       )}
@@ -253,7 +253,7 @@ function PreferencesInner() {
                     if (selected) { if (!focused) update('target_test', test.value) }
                     else update('target_tests', [...targeted, test.value])
                   }}
-                  className={`relative w-full h-11 rounded-xl text-[13.5px] font-semibold transition-all ${
+                  className={`relative w-full h-11 rounded-xl text-[13px] font-semibold transition-all ${
                     selected
                       ? focused
                         ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/30'
@@ -265,12 +265,12 @@ function PreferencesInner() {
                 >
                   {ko ? test.ko : test.en}
                   {focused && (
-                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[8px] font-bold uppercase tracking-[0.1em] text-white/80">
+                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-[0.1em] text-white/80">
                       {ko ? '주력' : 'Focus'}
                     </span>
                   )}
                   {locked && (
-                    <span className="absolute top-1 right-1.5 text-[8.5px] font-bold uppercase tracking-wide text-gray-400">
+                    <span className="absolute top-1 right-1.5 text-[10px] font-bold uppercase tracking-wide text-gray-400">
                       {ko ? '준비 중' : 'Soon'}
                     </span>
                   )}
@@ -321,7 +321,7 @@ function PreferencesInner() {
                         else next[test] = s
                         void update('goal_scores', next)
                       }}
-                      className={`h-11 rounded-xl text-[13.5px] font-semibold transition-all ${
+                      className={`h-11 rounded-xl text-[13px] font-semibold transition-all ${
                         selected
                           ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)]'
                           : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
@@ -350,7 +350,7 @@ function PreferencesInner() {
                 key={grade.value}
                 type="button"
                 onClick={() => update('grade_level', selected ? null : grade.value)}
-                className={`flex items-center justify-between h-11 px-4 rounded-xl text-[14px] font-semibold transition-all ${
+                className={`flex items-center justify-between h-11 px-4 rounded-xl text-[15px] font-semibold transition-all ${
                   selected
                     ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)]'
                     : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.99]'
@@ -408,7 +408,7 @@ function SettingGroup({
     <section>
       <div className="flex items-center gap-2 mb-2 px-1">
         <Icon className="w-4 h-4 text-gray-400" />
-        <span className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600">{label}</span>
+        <span className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-600">{label}</span>
         {saving && <Loader2 className="w-3 h-3 animate-spin text-gray-400 ml-auto" />}
       </div>
       {children}

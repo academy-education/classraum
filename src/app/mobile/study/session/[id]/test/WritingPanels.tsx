@@ -90,23 +90,23 @@ export function WritingScenario({ text, kind }: { text: string; kind: 'email' | 
     return (
       <div className="space-y-3">
         <div className="rounded-lg bg-primary/[0.04] border border-primary/15 px-3.5 py-3">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-primary mb-1.5">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-primary mb-1.5">
             {koUi ? '상황' : 'Situation'}
           </div>
-          <p className="text-[13.5px] text-gray-800 leading-relaxed whitespace-pre-wrap">
+          <p className="text-[13px] text-gray-800 leading-relaxed whitespace-pre-wrap">
             {situationText}
           </p>
         </div>
         <div className="rounded-lg bg-amber-50 border border-amber-200 px-3.5 py-3">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-amber-800 mb-2 flex items-center gap-1.5">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-amber-800 mb-2 flex items-center gap-1.5">
             <span>{koUi ? '이메일에 포함할 내용' : 'Include in your email'}</span>
-            <span className="inline-flex items-center px-1.5 py-0.5 rounded-full bg-amber-200 text-amber-900 text-[9px] font-bold">
+            <span className="inline-flex items-center px-1.5 py-0.5 rounded-full bg-amber-200 text-amber-900 text-[10px] font-bold">
               {bullets.length}
             </span>
           </div>
           <ul className="space-y-2">
             {bullets.map((body, i) => (
-              <li key={i} className="flex gap-2 text-[13.5px]">
+              <li key={i} className="flex gap-2 text-[13px]">
                 <span className="flex-shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500 text-white text-[11px] font-bold tabular-nums mt-0.5">
                   {i + 1}
                 </span>
@@ -133,7 +133,7 @@ export function WritingScenario({ text, kind }: { text: string; kind: 'email' | 
           const label = hm[1]
           const rest = line.slice(hm[0].length)
           return (
-            <div key={i} className="flex gap-2 text-[13.5px]">
+            <div key={i} className="flex gap-2 text-[13px]">
               <span className="font-bold text-gray-900 min-w-[68px]">{label}:</span>
               <span className="text-gray-800">{rest}</span>
             </div>
@@ -141,7 +141,7 @@ export function WritingScenario({ text, kind }: { text: string; kind: 'email' | 
         }
         if (/^\s*(?:write|please write|reply|in your email|be sure to)\b.*:\s*$/i.test(line)) {
           return (
-            <p key={i} className="mt-2 text-[13.5px] font-semibold text-primary underline underline-offset-4">
+            <p key={i} className="mt-2 text-[13px] font-semibold text-primary underline underline-offset-4">
               {line.trim()}
             </p>
           )
@@ -151,7 +151,7 @@ export function WritingScenario({ text, kind }: { text: string; kind: 'email' | 
           const marker = m[0].trim()
           const body = line.slice(m[0].length)
           return (
-            <div key={i} className="flex gap-2 text-[13.5px] pl-1">
+            <div key={i} className="flex gap-2 text-[13px] pl-1">
               <span className="font-bold text-primary tabular-nums">{marker}</span>
               <span className="text-gray-800">{body}</span>
             </div>
@@ -159,7 +159,7 @@ export function WritingScenario({ text, kind }: { text: string; kind: 'email' | 
         }
 
         return (
-          <p key={i} className="text-[13.5px] text-gray-800 whitespace-pre-wrap">
+          <p key={i} className="text-[13px] text-gray-800 whitespace-pre-wrap">
             {line}
           </p>
         )
@@ -189,7 +189,7 @@ export function DiscussionScenario({ normalized }: { normalized: string }) {
   const blocks = parseDiscussionSpeakers(normalized)
   if (blocks.length === 0) {
     return (
-      <div className="text-[13.5px] text-gray-800 leading-relaxed whitespace-pre-wrap">
+      <div className="text-[13px] text-gray-800 leading-relaxed whitespace-pre-wrap">
         {normalized}
       </div>
     )
@@ -222,11 +222,11 @@ export function DiscussionScenario({ normalized }: { normalized: string }) {
               >
                 {isProf ? 'Professor' : `Student ${studentIndex}`}
               </span>
-              <span className={`text-[13.5px] font-bold ${isProf ? 'text-primary' : 'text-emerald-800'}`}>
+              <span className={`text-[13px] font-bold ${isProf ? 'text-primary' : 'text-emerald-800'}`}>
                 {b.name}
               </span>
             </div>
-            <p className="text-[13.5px] text-gray-800 leading-relaxed whitespace-pre-wrap">
+            <p className="text-[13px] text-gray-800 leading-relaxed whitespace-pre-wrap">
               {b.body}
             </p>
           </div>
@@ -276,7 +276,7 @@ export function BlankLetterInput({ id, expectedLen, value, onChange, isFilled, k
       {/* Blank-number badge above the row */}
       <span
         aria-hidden
-        className={`absolute -top-0 left-1/2 -translate-x-1/2 inline-flex items-center justify-center text-[9.5px] font-bold h-3.5 min-w-3.5 px-1 rounded-full tabular-nums leading-none ${
+        className={`absolute -top-0 left-1/2 -translate-x-1/2 inline-flex items-center justify-center text-[10px] font-bold h-3.5 min-w-3.5 px-1 rounded-full tabular-nums leading-none ${
           isFilled ? 'bg-emerald-500 text-white' : 'bg-primary text-white'
         }`}
       >
@@ -369,7 +369,7 @@ function BandDial({ band, scaleMax }: { band: number; scaleMax: number }) {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">
         <span className="text-[15px] font-bold text-gray-900 tabular-nums">{band.toFixed(1)}</span>
-        <span className="text-[9px] text-gray-400 tabular-nums mt-0.5">/ {scaleMax}</span>
+        <span className="text-[10px] text-gray-400 tabular-nums mt-0.5">/ {scaleMax}</span>
       </div>
     </div>
   )
@@ -527,10 +527,10 @@ export function WritingFeedbackPanel({
         <div className="flex items-center gap-3.5 px-3 py-3 bg-gradient-to-br from-primary/[0.06] to-transparent">
           <BandDial band={grade.overallBand} scaleMax={scaleMax} />
           <div className="min-w-0">
-            <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] text-primary">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.10em] text-primary">
               {ko ? 'AI 루브릭 채점' : 'AI rubric grade'}
             </div>
-            <div className={`text-[12.5px] font-semibold ${TONE_CLASS[tone].text}`}>
+            <div className={`text-[13px] font-semibold ${TONE_CLASS[tone].text}`}>
               {BAND_WORD[tone][ko ? 'ko' : 'en']}
             </div>
             <div className="text-[11px] text-gray-500 mt-0.5">
@@ -552,7 +552,7 @@ export function WritingFeedbackPanel({
           )}
 
           {grade.summary && (
-            <p className="text-[12.5px] text-gray-700 leading-relaxed">{grade.summary}</p>
+            <p className="text-[13px] text-gray-700 leading-relaxed">{grade.summary}</p>
           )}
 
           {/* Per-criterion meters. Each row is label / score / bar, so
@@ -564,10 +564,10 @@ export function WritingFeedbackPanel({
               return (
                 <div key={c.key}>
                   <div className="flex items-baseline justify-between gap-2">
-                    <span className="text-[11.5px] font-semibold text-gray-800">
+                    <span className="text-[11px] font-semibold text-gray-800">
                       {criterionLabel(c.key)}
                     </span>
-                    <span className={`text-[11.5px] font-semibold tabular-nums ${TONE_CLASS[ct].text}`}>
+                    <span className={`text-[11px] font-semibold tabular-nums ${TONE_CLASS[ct].text}`}>
                       {c.score.toFixed(1)}
                       <span className="text-gray-400 font-medium"> / {scaleMax}</span>
                     </span>
@@ -588,10 +588,10 @@ export function WritingFeedbackPanel({
 
           {grade.modelRewrite && (
             <div className="rounded-lg bg-gray-50 ring-1 ring-gray-200/70 px-2.5 py-2">
-              <div className="text-[10.5px] font-semibold uppercase tracking-[0.08em] text-gray-500 mb-1">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 mb-1">
                 {ko ? '한 단계 위 표현 예시' : 'One-band-up rewrite'}
               </div>
-              <p className="text-[11.5px] text-gray-700 leading-relaxed italic">{grade.modelRewrite}</p>
+              <p className="text-[11px] text-gray-700 leading-relaxed italic">{grade.modelRewrite}</p>
             </div>
           )}
         </div>
@@ -652,7 +652,7 @@ export function WritingFeedbackPanel({
         type="button"
         onClick={requestGrade}
         disabled={state === 'loading'}
-        className="text-xs font-medium text-primary hover:underline disabled:opacity-60 disabled:cursor-wait"
+        className="text-[13px] font-medium text-primary hover:underline disabled:opacity-60 disabled:cursor-wait"
       >
         {state === 'loading'
           ? (ko ? 'AI가 채점 중...' : 'AI grading…')

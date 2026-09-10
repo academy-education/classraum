@@ -140,10 +140,10 @@ function SummaryInner({ id }: { id: string }) {
   if (!session) {
     return (
       <div className="max-w-3xl mx-auto px-5 py-14 text-center">
-        <p className="text-sm text-gray-500">{t('study.session.notFound')}</p>
+        <p className="text-[15px] text-gray-500">{t('study.session.notFound')}</p>
         <Link
           href="/mobile/study"
-          className="mt-4 inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary transition-colors"
+          className="mt-4 inline-flex items-center gap-1.5 text-[13px] text-gray-600 hover:text-primary transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />{t('study.topic.backToStudy')}
         </Link>
@@ -281,7 +281,7 @@ function SummaryInner({ id }: { id: string }) {
               Same sentence the post-submit screen showed. */}
           {session.ended_reason === 'app_exited' && (
             <div className="mx-4 mt-3 rounded-2xl bg-amber-50 ring-1 ring-amber-200/70 px-4 py-3">
-              <p className="text-[12.5px] text-amber-800 leading-relaxed">
+              <p className="text-[13px] text-amber-800 leading-relaxed">
                 {t('study.test.exitEndedNotice')}
               </p>
             </div>
@@ -370,7 +370,7 @@ function SummaryInner({ id }: { id: string }) {
               <h1 className={`text-[36px] font-bold leading-none tracking-tight tabular-nums ${hero.accent}`}>
                 <CountUp value={accuracy} /><span className="text-[24px] opacity-80">%</span>
               </h1>
-              <p className={`text-[14px] ${hero.accent} mt-1.5 opacity-90`}>
+              <p className={`text-[15px] ${hero.accent} mt-1.5 opacity-90`}>
                 {String(t('study.summary.accuracyLine', {
                   correct: String(correct),
                   total: String(totalItems),
@@ -401,10 +401,10 @@ function SummaryInner({ id }: { id: string }) {
             </>
           ) : (
             <>
-              <h1 className={`text-[26px] font-bold leading-tight tracking-tight ${hero.accent}`}>
+              <h1 className={`text-[24px] font-bold leading-tight tracking-tight ${hero.accent}`}>
                 {ko ? '기록된 답변이 없어요' : 'No attempts recorded'}
               </h1>
-              <p className={`text-[13.5px] ${hero.accent} mt-2 opacity-90 leading-relaxed`}>
+              <p className={`text-[13px] ${hero.accent} mt-2 opacity-90 leading-relaxed`}>
                 {ko
                   ? '이 세션은 답변 없이 종료됐어요. 지금 다시 시작해볼까요?'
                   : 'This session ended without any answers. Want to try again now?'}
@@ -420,10 +420,10 @@ function SummaryInner({ id }: { id: string }) {
           <BookOpen className="w-4 h-4" />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-[10px] uppercase tracking-[0.12em] text-gray-500 font-semibold leading-none">
+          <div className="text-[11px] uppercase tracking-[0.12em] text-gray-500 font-semibold leading-none">
             {modeLabel}
           </div>
-          <div className="text-[14.5px] font-semibold text-gray-900 truncate mt-1">
+          <div className="text-[15px] font-semibold text-gray-900 truncate mt-1">
             {topicName}
           </div>
         </div>
@@ -443,7 +443,7 @@ function SummaryInner({ id }: { id: string }) {
             </h2>
             <Link
               href="/mobile/study/wrong-notebook"
-              className="inline-flex items-center gap-0.5 text-[12px] font-medium text-primary hover:text-primary/80"
+              className="inline-flex items-center gap-0.5 text-[13px] font-medium text-primary hover:text-primary/80"
             >
               {ko ? '오답노트' : 'Wrong notebook'}<ArrowRight className="w-3 h-3" />
             </Link>
@@ -461,7 +461,7 @@ function SummaryInner({ id }: { id: string }) {
                 type="button"
                 onClick={() => setShowAllMistakes(v => !v)}
                 aria-expanded={showAllMistakes}
-                className="block w-full text-center text-[12.5px] text-primary hover:text-primary/80 py-2 font-medium"
+                className="block w-full text-center text-[13px] text-primary hover:text-primary/80 py-2 font-medium"
               >
                 {showAllMistakes
                   ? (ko ? '접기' : 'Show less')
@@ -527,7 +527,7 @@ function Stat({ icon: Icon, value, label }: {
         <Icon className="w-4 h-4" />
       </div>
       <div className="text-[20px] font-bold tracking-tight leading-none">{value}</div>
-      <div className="text-[10.5px] font-medium uppercase tracking-[0.10em] opacity-80 mt-0.5">{label}</div>
+      <div className="text-[11px] font-medium uppercase tracking-[0.10em] opacity-80 mt-0.5">{label}</div>
     </div>
   )
 }
@@ -604,13 +604,13 @@ function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
       <div className="text-[13px] text-gray-900 font-medium leading-relaxed line-clamp-2 mb-2">
         {attempt.question?.prompt}
       </div>
-      <div className="flex items-start gap-2 text-[12px] mb-1">
+      <div className="flex items-start gap-2 text-[13px] mb-1">
         <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
         <span className="text-rose-700 line-through flex-1 truncate" title={shownStudent ?? undefined}>
           {shownStudent || '—'}
         </span>
       </div>
-      <div className="flex items-start gap-2 text-[12px]">
+      <div className="flex items-start gap-2 text-[13px]">
         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
         <span className="text-emerald-700 font-semibold flex-1 truncate" title={correct}>
           {correct}
@@ -621,7 +621,7 @@ function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
         <button
           type="button"
           onClick={() => setExpanded(true)}
-          className="mt-3 inline-flex items-center gap-1 h-7 px-2.5 rounded-full bg-primary/10 hover:bg-primary/15 text-primary text-[11.5px] font-semibold transition"
+          className="mt-3 inline-flex items-center gap-1 h-7 px-2.5 rounded-full bg-primary/10 hover:bg-primary/15 text-primary text-[11px] font-semibold transition"
         >
           <RefreshCw className="w-3 h-3" />
           {ko ? '다시 풀어보기' : 'Try again'}
@@ -639,7 +639,7 @@ function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
                 'thinking'
               }
             />
-            <div className="flex-1 text-[12px] text-gray-600 leading-snug pt-1">
+            <div className="flex-1 text-[13px] text-gray-600 leading-snug pt-1">
               {picked === null
                 ? (ko ? '이번엔 답을 골라볼까요?' : 'Give it another shot — pick the right choice.')
                 : isCorrectPick
@@ -659,7 +659,7 @@ function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
                   type="button"
                   onClick={() => handlePick(choice)}
                   disabled={picked !== null}
-                  className={`w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-xl text-[12.5px] font-medium ring-1 transition-all ${
+                  className={`w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-xl text-[13px] font-medium ring-1 transition-all ${
                     showCorrect
                       ? 'bg-emerald-50 ring-emerald-300 text-emerald-800'
                       : showWrongPick
@@ -669,7 +669,7 @@ function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
                           : 'bg-white ring-gray-200 text-gray-800 hover:ring-primary/40 hover:bg-primary/[0.02] active:scale-[0.99]'
                   }`}
                 >
-                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full text-[10.5px] font-bold flex-shrink-0 ${
+                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-bold flex-shrink-0 ${
                     showCorrect
                       ? 'bg-emerald-500 text-white'
                       : showWrongPick

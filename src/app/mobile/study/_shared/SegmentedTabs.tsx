@@ -107,7 +107,7 @@ function RecommendedBadge() {
   return (
     <span
       aria-hidden
-      className="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 rounded-full bg-amber-500 text-white text-[9px] font-bold shadow ring-2 ring-white"
+      className="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 rounded-full bg-amber-500 text-white text-[10px] font-bold shadow ring-2 ring-white"
       title={language === 'korean' ? '추천' : 'Recommended'}
     >
       ★

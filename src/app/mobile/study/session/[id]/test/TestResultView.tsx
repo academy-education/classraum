@@ -283,13 +283,13 @@ export function TestResultView({
               <h2 className="text-[40px] font-bold leading-none tracking-tight tabular-nums">
                 <CountUp value={shownPercent} /><span className="text-[24px] opacity-80">%</span>
               </h2>
-              <p className="text-[14px] mt-1.5 opacity-90 tabular-nums">
+              <p className="text-[15px] mt-1.5 opacity-90 tabular-nums">
                 {pointsScore
                   ? (ko ? `${pointsScore.earned} / ${pointsScore.max}점`
                         : `${pointsScore.earned} of ${pointsScore.max} points`)
                   : `${model.correctCount} / ${model.totalScored} ${ko ? '정답' : 'correct'}`}
               </p>
-              <p className="text-[12.5px] mt-1 opacity-75 leading-snug max-w-[85%]">
+              <p className="text-[13px] mt-1 opacity-75 leading-snug max-w-[85%]">
                 {t(`study.test.resultMessage.${
                   shownPercent >= 85 ? 'excellent' :
                   shownPercent >= 65 ? 'solid' :
@@ -304,7 +304,7 @@ export function TestResultView({
             <div className="animate-pulse">
               <div className="h-[40px] w-[150px] rounded-xl bg-white/25" />
               <div className="h-[14px] w-[110px] rounded-md bg-white/20 mt-2.5" />
-              <p className="text-[12.5px] mt-2 opacity-90 leading-snug">
+              <p className="text-[13px] mt-2 opacity-90 leading-snug">
                 {ko ? '작성·녹음한 답변을 채점하는 중이에요…'
                     : 'Scoring the answers you wrote and recorded…'}
               </p>
@@ -400,13 +400,13 @@ export function TestResultView({
                   : (ko ? 'ISEE는 정답만 셉니다. 오답 감점이 없으니 모든 문항에 답하세요.'
                         : 'ISEE counts right answers only — no penalty, so answer everything.')}
               />
-              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[12.5px] text-white/80 tabular-nums">
+              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-white/80 tabular-nums">
                 <span>{ko ? '정답' : 'Correct'} {admission.correct}</span>
                 <span>{ko ? '오답' : 'Wrong'} {admission.wrong}</span>
                 <span>{ko ? '무응답' : 'Blank'} {admission.omitted}</span>
                 <span>{ko ? '정답률' : 'Accuracy'} {admission.percentCorrect}%</span>
               </div>
-              <p className="text-[12px] leading-relaxed text-white/70 max-w-prose">
+              <p className="text-[13px] leading-relaxed text-white/70 max-w-prose">
                 {admission.scaleNote}
               </p>
             </div>
@@ -424,13 +424,13 @@ export function TestResultView({
                 note={ko ? 'ACT는 정답만 셉니다. 오답 감점이 없으니 모든 문항에 답하세요.'
                          : 'ACT counts right answers only - no penalty, so answer everything.'}
               />
-              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[12.5px] text-white/80 tabular-nums">
+              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-white/80 tabular-nums">
                 <span>{ko ? '정답' : 'Correct'} {act.correct}</span>
                 <span>{ko ? '오답' : 'Wrong'} {act.wrong}</span>
                 <span>{ko ? '무응답' : 'Blank'} {act.omitted}</span>
                 <span>{ko ? '정답률' : 'Accuracy'} {act.percentCorrect}%</span>
               </div>
-              <p className="text-[12px] leading-relaxed text-white/70 max-w-prose">
+              <p className="text-[13px] leading-relaxed text-white/70 max-w-prose">
                 {ACT_SCALE_NOTE}
               </p>
             </div>
@@ -524,10 +524,10 @@ export function TestResultView({
               <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
                 {t('study.test.modules.eyebrow')}
               </div>
-              <div className="text-[14px] font-semibold text-gray-900 leading-tight">
+              <div className="text-[15px] font-semibold text-gray-900 leading-tight">
                 {t('study.test.modules.title')}
               </div>
-              <div className="text-[12px] text-gray-500 mt-0.5 leading-snug">
+              <div className="text-[13px] text-gray-500 mt-0.5 leading-snug">
                 {t('study.test.modules.note')}
               </div>
             </div>
@@ -573,10 +573,10 @@ export function TestResultView({
               <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
                 {t('study.test.passageSets.eyebrow')}
               </div>
-              <div className="text-[14px] font-semibold text-gray-900 leading-tight">
+              <div className="text-[15px] font-semibold text-gray-900 leading-tight">
                 {t('study.test.passageSets.title')}
               </div>
-              <div className="text-[12px] text-gray-500 mt-0.5 leading-snug tabular-nums">
+              <div className="text-[13px] text-gray-500 mt-0.5 leading-snug tabular-nums">
                 {t('study.test.passageSets.coverage', {
                   shown: String(passageSets.sets.length),
                   sets: String(passageSets.setsInTest),
@@ -635,7 +635,7 @@ export function TestResultView({
             <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
               {ko ? '채점 방식' : 'How it was counted'}
             </div>
-            <div className="text-[14px] font-semibold text-gray-900 leading-tight">
+            <div className="text-[15px] font-semibold text-gray-900 leading-tight">
               {/* The reconciliation lives HERE now. It used to be a separate
                   amber card directly above this one, saying "Scored on 35 of
                   the 48 questions you answered — the other 13 are
@@ -649,7 +649,7 @@ export function TestResultView({
                 : (ko ? `${model.deliveredTotal}문항 전부 반영`
                       : `All ${model.deliveredTotal} questions counted`)}
             </div>
-            <div className="text-[12px] text-gray-500 mt-0.5 leading-snug">
+            <div className="text-[13px] text-gray-500 mt-0.5 leading-snug">
               {ko ? '실제 시험처럼, 푼 문항이 모두 점수에 반영되지는 않아요.'
                   : 'Not everything you answer counts — the real exam works the same way.'}
             </div>
@@ -711,7 +711,7 @@ export function TestResultView({
           <div className="text-[13px] font-bold text-gray-900">
             {ko ? '점수는 이렇게 구성돼요' : 'How your score was built'}
           </div>
-          <div className="text-[11.5px] text-gray-500 leading-snug mt-0.5">
+          <div className="text-[11px] text-gray-500 leading-snug mt-0.5">
             {ko
               ? '이 시험은 두 가지 방식으로 채점됩니다. 위쪽 큰 점수는 정답 키로 채점한 문항만 반영해요.'
               : 'This section is scored two different ways. The big number above covers only the first of them.'}
@@ -755,8 +755,8 @@ export function TestResultView({
           aria-expanded={showDetail}
           className="w-full flex items-center justify-between gap-2 rounded-2xl ring-1 ring-gray-200/70 bg-white px-4 py-3 mb-2 text-left hover:ring-primary/40 active:scale-[0.995] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
         >
-          <span className="text-sm font-semibold text-gray-900">{t('study.test.reviewTitle')}</span>
-          <span className="flex items-center gap-1.5 text-[12px] font-medium text-gray-500 tabular-nums">
+          <span className="text-[15px] font-semibold text-gray-900">{t('study.test.reviewTitle')}</span>
+          <span className="flex items-center gap-1.5 text-[13px] font-medium text-gray-500 tabular-nums">
             {/* CARDS, not questions: a Complete-the-Words paragraph is one
                 row here and ten delivered questions in the counts above.
                 The noun is printed because the two numbers sit on one
@@ -849,10 +849,10 @@ function ScaleRow({ label, value, min, max, fraction, note, ko = false }: {
   return (
     <div className="rounded-2xl bg-white/12 ring-1 ring-white/20 backdrop-blur-sm px-3.5 py-3">
       <div className="flex items-baseline justify-between gap-3">
-        <span className="text-[10.5px] font-semibold uppercase tracking-[0.10em] opacity-90">{label}</span>
+        <span className="text-[11px] font-semibold uppercase tracking-[0.10em] opacity-90">{label}</span>
         <span className="tabular-nums">
-          <span className="text-[22px] font-bold leading-none">{value}</span>
-          <span className="text-[12px] opacity-70 ml-1">/ {max}</span>
+          <span className="text-[20px] font-bold leading-none">{value}</span>
+          <span className="text-[13px] opacity-70 ml-1">/ {max}</span>
         </span>
       </div>
       <div className="mt-2 h-1.5 rounded-full bg-white/20 overflow-hidden">
@@ -865,7 +865,7 @@ function ScaleRow({ label, value, min, max, fraction, note, ko = false }: {
           floor marker and a right-aligned note, which at 375px wrapped
           around each other into an L. The floor still has to be stated —
           TOEFL bands start at 1, not 0, so an empty meter is a 1.0. */}
-      <p className="text-[10.5px] opacity-75 leading-snug mt-2">
+      <p className="text-[10px] opacity-75 leading-snug mt-2">
         <span className="font-semibold opacity-90 tabular-nums">{min}–{max} {ko ? '점 척도.' : 'scale.'}</span>{' '}
         {note}
       </p>
@@ -885,8 +885,8 @@ function HeroStat({ icon: Icon, value, label, sub }: {
       <div className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/15 backdrop-blur ring-1 ring-white/25 mb-1.5">
         <Icon className="w-4 h-4" />
       </div>
-      <div className="text-[22px] font-bold tracking-tight leading-none tabular-nums">{value}</div>
-      <div className="text-[10.5px] font-semibold uppercase tracking-[0.10em] opacity-85 mt-1">{label}</div>
+      <div className="text-[20px] font-bold tracking-tight leading-none tabular-nums">{value}</div>
+      <div className="text-[11px] font-semibold uppercase tracking-[0.10em] opacity-85 mt-1">{label}</div>
       {sub && <div className="text-[10px] opacity-65 mt-0.5 leading-tight">{sub}</div>}
     </div>
   )
@@ -918,20 +918,20 @@ function ScoreBar({ label, detail, percent, tone, ko, headline = false, pending 
   return (
     <div>
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-[12.5px] font-semibold text-gray-900">
+        <span className="text-[13px] font-semibold text-gray-900">
           {label}
           {headline && (
-            <span className="ml-1.5 align-middle text-[10px] font-bold uppercase tracking-wide text-gray-400">
+            <span className="ml-1.5 align-middle text-[11px] font-bold uppercase tracking-wide text-gray-400">
               {ko ? '위 점수' : 'the big number'}
             </span>
           )}
         </span>
-        <span className={`text-[14px] font-bold tabular-nums ${text}`}>{percent}%</span>
+        <span className={`text-[15px] font-bold tabular-nums ${text}`}>{percent}%</span>
       </div>
       <div className="mt-1.5 h-1.5 rounded-full bg-gray-100 overflow-hidden">
         <div className={`h-full rounded-full ${bar}`} style={{ width: `${percent}%` }} />
       </div>
-      <div className="mt-1 text-[11.5px] text-gray-500 tabular-nums">
+      <div className="mt-1 text-[11px] text-gray-500 tabular-nums">
         {detail}
         {pending > 0 && (
           <span className="text-amber-700 font-semibold">
@@ -977,9 +977,9 @@ function TallyRow({ dot, count, unit, label, note, sub, subTone = 'warn' }: {
       <span className={`flex-shrink-0 w-2 h-2 rounded-full mt-1.5 ${empty ? 'bg-gray-300' : dot}`} />
       <div className="flex-1 min-w-0">
         <div className="text-[13px] font-semibold text-gray-900 leading-tight">{label}</div>
-        <div className="text-[11.5px] text-gray-500 leading-snug mt-0.5">{note}</div>
+        <div className="text-[11px] text-gray-500 leading-snug mt-0.5">{note}</div>
         {sub && (
-          <div className={`text-[11.5px] leading-snug mt-1 flex items-center gap-1.5 ${
+          <div className={`text-[11px] leading-snug mt-1 flex items-center gap-1.5 ${
             subTone === 'info' ? 'text-primary' : 'text-amber-700'}`}>
             {subTone === 'info' && (
               <span className="w-3 h-3 rounded-full border-2 border-primary/30 border-t-primary animate-spin flex-shrink-0" />
@@ -992,7 +992,7 @@ function TallyRow({ dot, count, unit, label, note, sub, subTone = 'warn' }: {
         <span className="block text-[15px] font-bold text-gray-900 tabular-nums tracking-tight leading-none">
           {count}
         </span>
-        <span className="block text-[10px] font-semibold uppercase tracking-[0.06em] text-gray-400 mt-1">
+        <span className="block text-[11px] font-semibold uppercase tracking-[0.06em] text-gray-400 mt-1">
           {unit}
         </span>
       </span>
@@ -1016,7 +1016,7 @@ function AnswerLine({ tone, text }: {
   return (
     <div className={`flex items-center gap-1.5 rounded-lg ring-1 px-2 py-1 ${spec.wrap}`}>
       <Icon className="w-3 h-3 flex-shrink-0" />
-      <span className="text-[11.5px] font-medium truncate">{text}</span>
+      <span className="text-[11px] font-medium truncate">{text}</span>
     </div>
   )
 }
@@ -1113,7 +1113,7 @@ function ResultCard({
             ) : null}
           </div>
 
-          <div className="text-[14px] font-semibold text-gray-900 leading-snug line-clamp-2">
+          <div className="text-[15px] font-semibold text-gray-900 leading-snug line-clamp-2">
             <PromptText text={q.prompt} />
           </div>
 
@@ -1140,7 +1140,7 @@ function ResultCard({
       </button>
 
       {isOpen && (
-        <div className="px-4 pb-4 space-y-2 border-t border-gray-100 pt-3 text-sm">
+        <div className="px-4 pb-4 space-y-2 border-t border-gray-100 pt-3 text-[15px]">
           {q.passage && (
             <div className="rounded-xl ring-1 ring-gray-200/70 bg-gray-50 px-3 py-2 text-[13px] text-gray-800">
               <PassageParagraphs text={q.passage} />
@@ -1163,7 +1163,7 @@ function ResultCard({
                   const accepted = [b.answer, ...(b.alternates ?? [])]
                   const ok = !!student && accepted.some(a => a.trim().toLowerCase() === student.toLowerCase())
                   return (
-                    <div key={b.id} className={`px-3 py-2 rounded-xl text-xs ring-1 flex items-center gap-2 ${
+                    <div key={b.id} className={`px-3 py-2 rounded-xl text-[13px] ring-1 flex items-center gap-2 ${
                       ok ? 'bg-emerald-50 ring-emerald-200/70 text-emerald-900'
                          : 'bg-rose-50 ring-rose-200/70 text-rose-900'
                     }`}>
@@ -1195,13 +1195,13 @@ function ResultCard({
                   failure red — an answer the grader had just given 5 out
                   of 5 read as wrong with the solution withheld. */}
               {!isRubricItem && (
-                <div className="px-3 py-2 rounded-xl bg-emerald-50 text-emerald-900 text-xs ring-1 ring-emerald-200/70">
+                <div className="px-3 py-2 rounded-xl bg-emerald-50 text-emerald-900 text-[13px] ring-1 ring-emerald-200/70">
                   <div className="font-semibold mb-0.5">{ko ? '정답' : 'Correct answer'}</div>
                   <div className="whitespace-pre-wrap">{normalizeDisplayText(row.correctAnswerDisplay)}</div>
                 </div>
               )}
               {studentAnswer != null ? (
-                <div className={`px-3 py-2 rounded-xl text-xs ring-1 ${
+                <div className={`px-3 py-2 rounded-xl text-[13px] ring-1 ${
                   // Neutral for rubric items whatever the band: red here
                   // would contradict the score sitting directly below it.
                   isRubricItem || row.correct
@@ -1214,7 +1214,7 @@ function ResultCard({
                   <div className="whitespace-pre-wrap">{normalizeDisplayText(studentAnswer)}</div>
                 </div>
               ) : (
-                <div className="px-3 py-2 rounded-xl bg-amber-50 text-amber-900 text-xs ring-1 ring-amber-200/70">
+                <div className="px-3 py-2 rounded-xl bg-amber-50 text-amber-900 text-[13px] ring-1 ring-amber-200/70">
                   {ko ? '답하지 않음' : 'Not answered'}
                 </div>
               )}
@@ -1247,7 +1247,7 @@ function ResultCard({
                   ? q.distractor_rationales?.find(d => d.choice === choice)?.reason
                   : undefined
                 return (
-                  <div key={choice} className={`px-3 py-2 rounded-xl text-xs ring-1 ${
+                  <div key={choice} className={`px-3 py-2 rounded-xl text-[13px] ring-1 ${
                     isCorrect ? 'bg-emerald-50 text-emerald-900 ring-emerald-200/70'
                       : isStudentPick ? 'bg-rose-50 text-rose-900 ring-rose-200/70'
                       : 'bg-gray-50 text-gray-700 ring-gray-200/50'
@@ -1267,7 +1267,7 @@ function ResultCard({
                 )
               })}
               {studentAnswer == null && (
-                <div className="px-3 py-2 rounded-xl bg-amber-50 text-amber-900 text-xs ring-1 ring-amber-200/70">
+                <div className="px-3 py-2 rounded-xl bg-amber-50 text-amber-900 text-[13px] ring-1 ring-amber-200/70">
                   {ko ? '답하지 않음' : 'Not answered'}
                 </div>
               )}
@@ -1276,11 +1276,11 @@ function ResultCard({
 
           {q.explanation && (
             <div className="rounded-xl bg-gradient-to-br from-primary/[0.05] to-transparent ring-1 ring-primary/15 px-3 py-2.5 mt-3">
-              <div className="flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-[0.10em] text-primary mb-1">
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.10em] text-primary mb-1">
                 <Sparkles className="w-3 h-3" />
                 {ko ? '해설' : 'Why'}
               </div>
-              <p className="text-[12.5px] text-gray-700 leading-relaxed">
+              <p className="text-[13px] text-gray-700 leading-relaxed">
                 {normalizeDisplayText(q.explanation)}
               </p>
             </div>

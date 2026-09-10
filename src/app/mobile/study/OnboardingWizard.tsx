@@ -273,10 +273,10 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {String(t('study.onboarding.step1Eyebrow'))}
                 </span>
               </div>
-              <h2 className="text-[22px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
                 {String(t('study.onboarding.step1Title'))}
               </h2>
-              <p className="text-[13.5px] text-gray-500 mt-1.5 leading-relaxed">
+              <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
                 {String(t('study.onboarding.step1Subtitle'))}
               </p>
               {/* Target test — MULTI-SELECT, identical in behaviour to the
@@ -309,7 +309,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                             targetTest: test.value,
                           }
                         })}
-                        className={`relative w-full h-12 rounded-2xl text-[14px] font-semibold transition-all ${
+                        className={`relative w-full h-12 rounded-2xl text-[15px] font-semibold transition-all ${
                           selected
                             ? focused
                               ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
@@ -321,12 +321,12 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       >
                         {ko ? test.label_ko : test.label_en}
                         {focused && (
-                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[8px] font-bold uppercase tracking-[0.1em] text-white/80">
+                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-[0.1em] text-white/80">
                             {ko ? '주력' : 'Focus'}
                           </span>
                         )}
                         {locked && (
-                          <span className="absolute top-1.5 right-1.5 rounded-full bg-gray-200/80 px-1.5 py-0.5 text-[8.5px] font-bold tracking-[0.08em] uppercase text-gray-500">
+                          <span className="absolute top-1.5 right-1.5 rounded-full bg-gray-200/80 px-1.5 py-0.5 text-[10px] font-bold tracking-[0.08em] uppercase text-gray-500">
                             {ko ? '준비 중' : 'Soon'}
                           </span>
                         )}
@@ -370,7 +370,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   single-target case stays uncluttered. */}
               {goalTestsFor(s1.targetTests, s1.targetTest).map((test, _i, all) => (
                 <div key={test} className="mt-5">
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-400 mb-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-400 mb-2">
                     {all.length > 1
                       ? `${test.toUpperCase()} ${ko ? '목표 점수' : 'goal'}`
                       : (ko ? '목표 점수' : 'Goal score')}
@@ -412,10 +412,10 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {String(t('study.onboarding.step2Eyebrow'))}
                 </span>
               </div>
-              <h2 className="text-[22px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
                 {String(t('study.onboarding.step2Title'))}
               </h2>
-              <p className="text-[13.5px] text-gray-500 mt-1.5 leading-relaxed">
+              <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
                 {String(t('study.onboarding.step2Subtitle'))}
               </p>
               <div className="grid grid-cols-1 gap-2 mt-5">
@@ -426,7 +426,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       key={grade.value}
                       type="button"
                       onClick={() => setS2({ gradeLevel: selected ? null : grade.value })}
-                      className={`flex items-center justify-between h-12 px-4 rounded-2xl text-[14.5px] font-semibold transition-all ${
+                      className={`flex items-center justify-between h-12 px-4 rounded-2xl text-[15px] font-semibold transition-all ${
                         selected
                           ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
                           : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.99]'
@@ -449,10 +449,10 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {String(t('study.onboarding.step3Eyebrow'))}
                 </span>
               </div>
-              <h2 className="text-[22px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
                 {String(t('study.onboarding.step3Title'))}
               </h2>
-              <p className="text-[13.5px] text-gray-500 mt-1.5 leading-relaxed">
+              <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
                 {String(t('study.onboarding.step3Subtitle'))}
               </p>
               <div className="grid grid-cols-2 gap-2 mt-5">
@@ -485,14 +485,14 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {ko ? '4 / 5 단계' : 'Step 4 of 5'}
                 </span>
               </div>
-              <h2 className="text-[22px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
                 {ko ? '기본값을 정해요' : 'Set your defaults'}
               </h2>
-              <p className="text-[13.5px] text-gray-500 mt-1.5 leading-relaxed">
+              <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
                 {ko ? '연습에 기본으로 쓸 언어와 난이도예요. 언제든 바꿀 수 있어요.' : 'The default language and difficulty for your practice. Change these anytime.'}
               </p>
 
-              <p className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-400 mt-5 mb-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-400 mt-5 mb-2">
                 {ko ? '언어' : 'Language'}
               </p>
               <div className="grid grid-cols-2 gap-2">
@@ -506,7 +506,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       key={o.value}
                       type="button"
                       onClick={() => setS4(prev => ({ ...prev, defaultLanguage: o.value }))}
-                      className={`h-12 rounded-2xl text-[14px] font-semibold transition-all ${
+                      className={`h-12 rounded-2xl text-[15px] font-semibold transition-all ${
                         selected
                           ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
                           : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
@@ -518,7 +518,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                 })}
               </div>
 
-              <p className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-400 mt-5 mb-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.10em] text-gray-400 mt-5 mb-2">
                 {ko ? '난이도' : 'Difficulty'}
               </p>
               <div className="grid grid-cols-3 gap-2">
@@ -533,7 +533,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       key={o.value}
                       type="button"
                       onClick={() => setS4(prev => ({ ...prev, defaultDifficulty: o.value }))}
-                      className={`h-12 rounded-2xl text-[13.5px] font-semibold transition-all ${
+                      className={`h-12 rounded-2xl text-[13px] font-semibold transition-all ${
                         selected
                           ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
                           : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
@@ -555,10 +555,10 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {ko ? '5 / 5 단계' : 'Step 5 of 5'}
                 </span>
               </div>
-              <h2 className="text-[22px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
                 {ko ? '프로필을 만들어요' : 'Make it yours'}
               </h2>
-              <p className="text-[13.5px] text-gray-500 mt-1.5 leading-relaxed">
+              <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
                 {ko ? '리더보드와 친구에게 보여요. 둘 다 나중에 바꿀 수 있어요. (선택)' : 'Shown on the leaderboard and to friends. Both can be changed later. (optional)'}
               </p>
 
@@ -605,7 +605,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                 {nickStatus === 'checking' && <Loader2 className="w-3.5 h-3.5 text-gray-400 animate-spin" />}
                 {nickStatus === 'available' && <Check className="w-3.5 h-3.5 text-emerald-600" />}
                 {(nickStatus === 'taken' || nickStatus === 'invalid') && <X className="w-3.5 h-3.5 text-rose-600" />}
-                <span className={`text-[12px] ${
+                <span className={`text-[13px] ${
                   nickStatus === 'available' ? 'text-emerald-600'
                   : nickStatus === 'taken' || nickStatus === 'invalid' ? 'text-rose-600'
                   : 'text-gray-400'
