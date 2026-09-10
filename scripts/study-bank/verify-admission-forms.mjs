@@ -54,6 +54,15 @@ async function rowsFor(family, section) {
       .select('id,passage_group_id,item')
       .eq('family', family).eq('section', section)
       .eq('archived', false).eq('verified', true)
+      // ORDER, not just RANGE. PostgREST's range() over an unordered query
+      // does not page: page 2 is not "the rows page 1 did not return". That
+      // defect inflated a live R&W count by 165 elsewhere in this repo, and
+      // the "never trust one page" comment below shows the paging was added
+      // without the ordering that makes it work. It does not bite today --
+      // the largest section this script reads is 283 rows -- but this is the
+      // script that certifies whether a full SSAT or ISEE form can be
+      // served, so a silent miscount here is the expensive kind.
+      .order('id', { ascending: true })
       .range(from, from + 999)
     if (error) throw new Error(error.message)
     out.push(...(data ?? []))

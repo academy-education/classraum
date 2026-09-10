@@ -40,7 +40,20 @@ const env = Object.fromEntries(readFileSync(join(HERE, '../../.env.local'), 'utf
   .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 
-const prompts = JSON.parse(readFileSync(join(HERE, 'essay-prompts-v1.json'), 'utf8'))
+/*
+ * Input file and cohort are arguments, defaulting to the originals.
+ *
+ * Both were hardcoded, so a second batch of essay prompts could not be read
+ * at all, and appending to essay-prompts-v1.json would have filed new items
+ * into the v1 cohort -- which defeats the cohort-based selection every other
+ * family relies on to select a batch back out. Found by an author who wrote
+ * the new prompts and then discovered the helper could not load them.
+ *
+ *   node essay-bank-helper.mjs <verb> [file.json] [cohort-suffix]
+ */
+const PROMPT_FILE = process.env.ESSAY_PROMPTS ?? 'essay-prompts-v1.json'
+const COHORT_SUFFIX = process.env.ESSAY_COHORT ?? 'essay-v1'
+const prompts = JSON.parse(readFileSync(join(HERE, PROMPT_FILE), 'utf8'))
 const norm = s => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 
 /** Group SSAT prompts into their delivered pairs: SW1a + SW1b -> SW1. */
@@ -112,7 +125,7 @@ async function insert() {
       difficulty: 'medium', topic_tag: r.task,
       item: r.item, content_hash, passage_group_id: null,
       word_count: null, verified: true, archived: false,
-      source: 'hand', cohort: `${r.family}-essay-v1`,
+      source: 'hand', cohort: `${r.family}-${COHORT_SUFFIX}`,
       verify_meta: {
         method: 'hand-authored prompts; UNSCORED on the real exam but sent to schools',
         localId: r.localId,
