@@ -4,7 +4,7 @@
   "baselines": [
     {
       "task": "choose_response",
-      "label": "ETS TOEFL Essentials — official",
+      "label": "ETS TOEFL Essentials \u2014 official",
       "source": "ets.org free practice test 1",
       "n": 30,
       "mean": 62.2,
@@ -34,7 +34,7 @@
     },
     {
       "task": "sat_rw",
-      "label": "College Board SAT R&W — official",
+      "label": "College Board SAT R&W \u2014 official",
       "source": "satsuitequestionbank.collegeboard.org",
       "n": 48,
       "mean": 71.6,
@@ -64,7 +64,7 @@
     },
     {
       "task": "listening_lecture",
-      "label": "ETS listening — lecture sets",
+      "label": "ETS listening \u2014 lecture sets",
       "source": "ets.org free practice (32 items)",
       "n": 32,
       "mean": 96.9,
@@ -75,7 +75,7 @@
     },
     {
       "task": "listening_conversation",
-      "label": "ETS listening — short conversations",
+      "label": "ETS listening \u2014 short conversations",
       "source": "ets.org free practice (23 items)",
       "n": 23,
       "mean": 47.8,
@@ -139,7 +139,7 @@
             }
           ],
           "passed": true,
-          "verdict": "margin 25.0 is at/below the choose_response ceiling (published +25.5, +4 tolerance). Under the ORIGINAL uncalibrated bar this read as a failure — recalibration against 183 published items reversed it."
+          "verdict": "margin 25.0 is at/below the choose_response ceiling (published +25.5, +4 tolerance). Under the ORIGINAL uncalibrated bar this read as a failure \u2014 recalibration against 183 published items reversed it."
         },
         "elimination": {
           "itemsWithRejectableOption": 3,
@@ -200,7 +200,7 @@
       "contentSha": "2820a98df26fa6f312a253e10da7c96be5130e1e34be724aa4f4c9cb8da58580",
       "status": "shipped",
       "cohort": "cr-v7",
-      "note": "Evidence detail in CRV7-RESULT.md. The blind attacks ran at pre-edit shas; the deltas since are documented there: the cohesion pass (39 items, distractors only, re-attacked +5.6 CLEAR) and the 2026-08-18 pre-ship repair of the two pre-existing two-defensible items (idx 59 crv7-b3-20, idx 60 crv7-b3-14 — one distractor each, keys/lines/positions untouched, structural checks re-run green). Shipped on Andy's explicit approval 2026-08-18.",
+      "note": "Evidence detail in CRV7-RESULT.md. The blind attacks ran at pre-edit shas; the deltas since are documented there: the cohesion pass (39 items, distractors only, re-attacked +5.6 CLEAR) and the 2026-08-18 pre-ship repair of the two pre-existing two-defensible items (idx 59 crv7-b3-20, idx 60 crv7-b3-14 \u2014 one distractor each, keys/lines/positions untouched, structural checks re-run green). Shipped on Andy's explicit approval 2026-08-18.",
       "stages": {
         "shape": {
           "passed": true,
@@ -208,7 +208,7 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "1,584 kill-quotes machine-verified at render (each world's line quotably kills the other three replies). Dedicated exclusivity checker (all 4 options WITH the line, key unmarked): sole-acceptable option matched the key 36/36 on clean items; the 3 defects it surfaced (crv7-b4-12, crv7-b3-20, crv7-b3-14) were all repaired — see note."
+          "verdict": "1,584 kill-quotes machine-verified at render (each world's line quotably kills the other three replies). Dedicated exclusivity checker (all 4 options WITH the line, key unmarked): sole-acceptable option matched the key 36/36 on clean items; the 3 defects it surfaced (crv7-b4-12, crv7-b3-20, crv7-b3-14) were all repaired \u2014 see note."
         },
         "nosource": {
           "passed": true,
@@ -249,7 +249,7 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "Key votes 3/3 unanimous on all 69 (15 voters in 5 chunks for the 59 + pilot QC for the 10). Grader (re-run after the chunk-1 instrument inverted passage_needed — its own notes contradicted its verdicts): all passage_needed=true, no sibling leak, no weak distractors."
+          "verdict": "Key votes 3/3 unanimous on all 69 (15 voters in 5 chunks for the 59 + pilot QC for the 10). Grader (re-run after the chunk-1 instrument inverted passage_needed \u2014 its own notes contradicted its verdicts): all passage_needed=true, no sibling leak, no weak distractors."
         },
         "nosource": {
           "passed": true,
@@ -313,12 +313,12 @@
       "contentSha": "3ddd89cb7797fe461b0ad7606f96498a9e6d1f6fffa3bd9961273a457c4736b9",
       "status": "shipped",
       "cohort": "cr-v8",
-      "note": "Pre-registration CRV8-PREREGISTERED.md; evidence CRV8-RESULT.md. 60 authored; 14 discarded whole as exclusivity-contested (single frozen-brief pass, no repair). Deviation recorded: b2/b3 were rendered before the b1 pilot verdict (pre-reg sequenced them after) — no integrity impact, attack solvers never saw b2/b3. Two metadata-only fixes within the cr-v7 precedent (kill-string comma, kill-label typo).",
+      "note": "Pre-registration CRV8-PREREGISTERED.md; evidence CRV8-RESULT.md. 60 authored; 14 discarded whole as exclusivity-contested (single frozen-brief pass, no repair). Deviation recorded: b2/b3 were rendered before the b1 pilot verdict (pre-reg sequenced them after) \u2014 no integrity impact, attack solvers never saw b2/b3. Two metadata-only fixes within the cr-v7 precedent (kill-string comma, kill-label typo).",
       "stages": {
         "shape": {
           "passed": true,
           "contentSha": "3ddd89cb7797fe461b0ad7606f96498a9e6d1f6fffa3bd9961273a457c4736b9",
-          "verdict": "render-crv7.mjs mechanical checks on all 3 batches: 720 kill-quotes anchor 2+-word verbatim spans of their own lines, letters dealt 5/5/5/5 per batch, one logged quota re-roll (20260828→20260829)."
+          "verdict": "render-crv7.mjs mechanical checks on all 3 batches: 720 kill-quotes anchor 2+-word verbatim spans of their own lines, letters dealt 5/5/5/5 per batch, one logged quota re-roll (20260828\u219220260829)."
         },
         "withsource": {
           "passed": true,
@@ -349,12 +349,12 @@
       "spec": {
         "n": 32,
         "authors": 12,
-        "method": "4-rung ladder (personal-with-fallback → preference → evaluate-claim → future) mirroring the 12 live sets; INTERVIEW-V2-PREREGISTERED.md"
+        "method": "4-rung ladder (personal-with-fallback \u2192 preference \u2192 evaluate-claim \u2192 future) mirroring the 12 live sets; INTERVIEW-V2-PREREGISTERED.md"
       },
       "contentSha": "60d0f584ecbd8dc1804fe2d620e5336a980353bfd0ad568a9a833f14634dceed",
       "status": "shipped",
       "cohort": "interview-v2",
-      "note": "12 sets authored across two rounds; 4 dropped on rung-1 answerability (campus-events, sustainability, travel-breaks) or topic duplication (sleep-schedules vs live wellbeing, 3/3). One instrument misfire recorded: reviewers stranded \"monolingual students\" on second-language — impossible in a TOEFL population; re-judged with the population stated, 3/3 answerable. A second misfire: the first re-judge ran against a payload file that was never written and the judges reviewed the wrong set; voided, re-run with the payload verified on disk.",
+      "note": "12 sets authored across two rounds; 4 dropped on rung-1 answerability (campus-events, sustainability, travel-breaks) or topic duplication (sleep-schedules vs live wellbeing, 3/3). One instrument misfire recorded: reviewers stranded \"monolingual students\" on second-language \u2014 impossible in a TOEFL population; re-judged with the population stated, 3/3 answerable. A second misfire: the first re-judge ran against a payload file that was never written and the judges reviewed the wrong set; voided, re-run with the payload verified on disk.",
       "stages": {
         "shape": {
           "passed": true,
@@ -400,11 +400,11 @@
         "nosource": {
           "passed": true,
           "n": 36,
-          "verdict": "Pilot attack margin -27.8 (mean 13.9% vs 41.7% control — lowest DL attack score recorded; the atypicality design inverts typicality heuristics). Stage-2 held-out 24-question attack margin -1.4 PASS. Caveat recorded: Stage-2 absolute 40.3% sits above the pilot; the best-fixed-letter control (41.7%, lumpy sample) prices in the skew, and the solver that explicitly ran the hunter's hyper-specificity exploit scored exactly control level."
+          "verdict": "Pilot attack margin -27.8 (mean 13.9% vs 41.7% control \u2014 lowest DL attack score recorded; the atypicality design inverts typicality heuristics). Stage-2 held-out 24-question attack margin -1.4 PASS. Caveat recorded: Stage-2 absolute 40.3% sits above the pilot; the best-fixed-letter control (41.7%, lumpy sample) prices in the skew, and the solver that explicitly ran the hunter's hyper-specificity exploit scored exactly control level."
         },
         "elimination": {
           "passed": true,
-          "verdict": "Cross-item pattern hunter ran on both attacks. Pilot: name-pool recycling found (exploit direction would have backfired; inverse learnable at scale) → Stage-2 name hygiene. Stage-2: hyper-specificity hypothesis, measured exploit value nil (specificity-solver at control)."
+          "verdict": "Cross-item pattern hunter ran on both attacks. Pilot: name-pool recycling found (exploit direction would have backfired; inverse learnable at scale) \u2192 Stage-2 name hygiene. Stage-2: hyper-specificity hypothesis, measured exploit value nil (specificity-solver at control)."
         },
         "tells": {
           "passed": true,
@@ -427,7 +427,7 @@
       "contentSha": "19f3fbdd23012825ec126ccf479be77bd1b5353ff4082f989032f674b30f7e6f",
       "status": "shipped",
       "cohort": "repeat-v3",
-      "note": "First authoring round converged across agents (13 of 36 dropped as exact/near dups — no per-author topic assignment; the top-up with disjoint topics had 0 drops). Reviewers blanket-flagged all spelled numbers as transcription hazards; decided by computing the actual >=85% token-overlap grader: one number per sentence passes worst-case (87.5-91.7%), two fails (83.3%) — the two 2-number sentences dropped, single-number sentences kept (live precedent: \"opens at six\" serves fine).",
+      "note": "First authoring round converged across agents (13 of 36 dropped as exact/near dups \u2014 no per-author topic assignment; the top-up with disjoint topics had 0 drops). Reviewers blanket-flagged all spelled numbers as transcription hazards; decided by computing the actual >=85% token-overlap grader: one number per sentence passes worst-case (87.5-91.7%), two fails (83.3%) \u2014 the two 2-number sentences dropped, single-number sentences kept (live precedent: \"opens at six\" serves fine).",
       "stages": {
         "shape": {
           "passed": true,
@@ -454,12 +454,12 @@
       "spec": {
         "n": 21,
         "authors": 4,
-        "method": "first SSAT bank content — Phase 2 Verbal pilot (PHASE2-PREREGISTERED.md)"
+        "method": "first SSAT bank content \u2014 Phase 2 Verbal pilot (PHASE2-PREREGISTERED.md)"
       },
       "contentSha": "5b2f7bb03f06bb5db496a0bea455efedc4e19658e4e11d76da23453f6ffc5467",
       "status": "shipped",
       "cohort": "ssat-verbal-v1",
-      "note": "24 authored; SY5/SY10/SY11 dropped as contested — with no part of speech on the stem, the OTHER sense's exact synonym sat among the options (HAMPER/basket, GRAVE/tomb, FLAG/banner). Stage-2 brief rule: a secondary-sense stem's primary-sense trap must be an ASSOCIATE, never an exact synonym of the other sense.",
+      "note": "24 authored; SY5/SY10/SY11 dropped as contested \u2014 with no part of speech on the stem, the OTHER sense's exact synonym sat among the options (HAMPER/basket, GRAVE/tomb, FLAG/banner). Stage-2 brief rule: a secondary-sense stem's primary-sense trap must be an ASSOCIATE, never an exact synonym of the other sense.",
       "stages": {
         "shape": {
           "passed": true,
@@ -468,7 +468,7 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "Key votes >=2/3 on every item (3 voters). Blind exclusivity audit: contested items dropped whole — the audit caught the bare-stem/second-sense defect class."
+          "verdict": "Key votes >=2/3 on every item (3 voters). Blind exclusivity audit: contested items dropped whole \u2014 the audit caught the bare-stem/second-sense defect class."
         },
         "nosource": {
           "passed": true,
@@ -476,7 +476,7 @@
         },
         "tells": {
           "passed": true,
-          "verdict": "Hunter: sound-alike distractors can reconstruct hidden stems on synonym items — noted for the stage-2 brief (look-alike traps should not be near-anagrams of the stem); measured margin stayed +6.9."
+          "verdict": "Hunter: sound-alike distractors can reconstruct hidden stems on synonym items \u2014 noted for the stage-2 brief (look-alike traps should not be near-anagrams of the stem); measured margin stayed +6.9."
         }
       }
     },
@@ -490,7 +490,7 @@
       "spec": {
         "n": 22,
         "authors": 4,
-        "method": "first ISEE bank content — Phase 2 Verbal pilot (PHASE2-PREREGISTERED.md)"
+        "method": "first ISEE bank content \u2014 Phase 2 Verbal pilot (PHASE2-PREREGISTERED.md)"
       },
       "contentSha": "1d427fa6de88f29c920a7e3bcce39d7fb20f9d08387e7731b19d88fe6872bb55",
       "status": "shipped",
@@ -504,7 +504,7 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "Key votes >=2/3 on every item (3 voters). Blind exclusivity audit: contested items dropped whole — the audit caught the bare-stem/second-sense defect class."
+          "verdict": "Key votes >=2/3 on every item (3 voters). Blind exclusivity audit: contested items dropped whole \u2014 the audit caught the bare-stem/second-sense defect class."
         },
         "nosource": {
           "passed": true,
@@ -512,7 +512,7 @@
         },
         "tells": {
           "passed": true,
-          "verdict": "Hunter: duplicated first-blank words across option pairs on the three hard two-blank items — real narrowing tell, margin still +7.2; banned in the stage-2 brief."
+          "verdict": "Hunter: duplicated first-blank words across option pairs on the three hard two-blank items \u2014 real narrowing tell, margin still +7.2; banned in the stage-2 brief."
         }
       }
     },
@@ -531,7 +531,7 @@
       "contentSha": "0a8eaec475433223865c55ae8ecf03e726fafeb996da12eb15ed7f39accfb969",
       "status": "shipped",
       "cohort": "eoi-v4",
-      "note": "THE FINDING: the frozen RS brief (one assigned corruption per distractor) mechanically manufactures a majority-consensus tell — every true element appears in 3 of 4 options; picking the option with fewest unique tokens scores 80% of decided items. Found by the pattern hunter, then confirmed by an exact checker run over the whole population: eoi-v4 RS 16/20 decided (killed), LIVE eoi-v3 RS 20/24 decided (83%) — the shipped 32 RS items are compromised and are slated replace-then-archive; v2 RS anti-predicts at 15%, proving brief-specificity; Transitions immune (all ties). The RS sampling attacks passed (+16.7/+18.1/+22.2) because no solver ran consensus-voting — the arithmetic-beats-sampling exception applies.",
+      "note": "THE FINDING: the frozen RS brief (one assigned corruption per distractor) mechanically manufactures a majority-consensus tell \u2014 every true element appears in 3 of 4 options; picking the option with fewest unique tokens scores 80% of decided items. Found by the pattern hunter, then confirmed by an exact checker run over the whole population: eoi-v4 RS 16/20 decided (killed), LIVE eoi-v3 RS 20/24 decided (83%) \u2014 the shipped 32 RS items are compromised and are slated replace-then-archive; v2 RS anti-predicts at 15%, proving brief-specificity; Transitions immune (all ties). The RS sampling attacks passed (+16.7/+18.1/+22.2) because no solver ran consensus-voting \u2014 the arithmetic-beats-sampling exception applies.",
       "stages": {
         "shape": {
           "passed": true,
@@ -540,12 +540,12 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "Key votes 3/3 on all 30 T items. Grader dq flags dropped T43/T64 (weak). ADJUDICATION RECORDED: graders marked passage_needed=false on most T items; the measured attack (T mean 11.1% vs 50% control) directly refutes that — third occurrence of the inverted-pn grader misfire; the direct measurement rules."
+          "verdict": "Key votes 3/3 on all 30 T items. Grader dq flags dropped T43/T64 (weak). ADJUDICATION RECORDED: graders marked passage_needed=false on most T items; the measured attack (T mean 11.1% vs 50% control) directly refutes that \u2014 third occurrence of the inverted-pn grader misfire; the direct measurement rules."
         },
         "nosource": {
           "passed": true,
           "n": 24,
-          "verdict": "Held-out 24-item attack, 3 solvers (one re-run after fabricating an id for a verified-24-item file): Transitions margin -38.9 CLEAN; RS +22.2 (moot — killed mechanically)."
+          "verdict": "Held-out 24-item attack, 3 solvers (one re-run after fabricating an id for a verified-24-item file): Transitions margin -38.9 CLEAN; RS +22.2 (moot \u2014 killed mechanically)."
         },
         "elimination": {
           "passed": true,
@@ -572,7 +572,7 @@
       "contentSha": "d352a38257bd4ab3dc0dca02a06f15a640721054c2af6fb6e62aa0ce6cc77ddd",
       "status": "shipped",
       "cohort": "eoi-v5",
-      "note": "60 authored; 3 dropped for duplicate option sets across the batch (T72~T92, T75~T95, T90~T110 — solving one leaks its twin; found by the pattern hunter), 15 dropped by accepts() as grader-weak or grader-easy. Hunter also proposed a \"rarest connective wins\" rule; joined against all 60 keys it scored 35% of decided (chance 25%) — reported as weak, not exploitable, and no single connective exceeded 43% key rate.",
+      "note": "60 authored; 3 dropped for duplicate option sets across the batch (T72~T92, T75~T95, T90~T110 \u2014 solving one leaks its twin; found by the pattern hunter), 15 dropped by accepts() as grader-weak or grader-easy. Hunter also proposed a \"rarest connective wins\" rule; joined against all 60 keys it scored 35% of decided (chance 25%) \u2014 reported as weak, not exploitable, and no single connective exceeded 43% key rate.",
       "stages": {
         "shape": {
           "passed": true,
@@ -594,7 +594,7 @@
         },
         "tells": {
           "passed": true,
-          "verdict": "Stored key slots 10/12/11/9 as authored — no rebalance needed."
+          "verdict": "Stored key slots 10/12/11/9 as authored \u2014 no rebalance needed."
         }
       }
     },
@@ -694,7 +694,7 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "With-notes voters 3/3 on all 11 — every item is sound against its own notes."
+          "verdict": "With-notes voters 3/3 on all 11 \u2014 every item is sound against its own notes."
         },
         "nosource": {
           "passed": true,
@@ -703,7 +703,7 @@
         },
         "elimination": {
           "passed": true,
-          "verdict": "Hunter exploitable=false — no rule at 3+ items; it found the goal-parity defect instead, which is a validity issue, not a guessability one."
+          "verdict": "Hunter exploitable=false \u2014 no rule at 3+ items; it found the goal-parity defect instead, which is a validity issue, not a guessability one."
         },
         "tells": {
           "passed": true,
@@ -726,7 +726,7 @@
       "contentSha": "53dd68efac522df532e6a4075ad9fc8044ae2255cf33e111044054a018d88797",
       "status": "shipped",
       "cohort": "cr-v9",
-      "note": "60 quads authored; 22 DROPPED WHOLE at the mechanical kill-map check (kills quoting nothing in their own line, or missing) — 44 failures is far past the 2-item metadata-fix precedent of cr-v8, so nothing was repaired. 2 more dropped so batch 3 was divisible by 4 (the renderer deals letters flat and requires it). Opus authoring produced better prose but markedly worse kill-map discipline than the earlier Sonnet runs — worth knowing before choosing an author model for quad work.",
+      "note": "60 quads authored; 22 DROPPED WHOLE at the mechanical kill-map check (kills quoting nothing in their own line, or missing) \u2014 44 failures is far past the 2-item metadata-fix precedent of cr-v8, so nothing was repaired. 2 more dropped so batch 3 was divisible by 4 (the renderer deals letters flat and requires it). Opus authoring produced better prose but markedly worse kill-map discipline than the earlier Sonnet runs \u2014 worth knowing before choosing an author model for quad work.",
       "stages": {
         "shape": {
           "passed": true,
@@ -735,7 +735,7 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "Frozen EXCLUSIVITY-GRADER-BRIEF.md over all 36, blind to key: 36 unique / 0 contested, and the grader's independently chosen sole-defensible option matched the RNG-picked key 36/36 — the cleanest exclusivity result of the three cr runs."
+          "verdict": "Frozen EXCLUSIVITY-GRADER-BRIEF.md over all 36, blind to key: 36 unique / 0 contested, and the grader's independently chosen sole-defensible option matched the RNG-picked key 36/36 \u2014 the cleanest exclusivity result of the three cr runs."
         },
         "nosource": {
           "passed": true,
@@ -767,7 +767,7 @@
       "contentSha": "dc3dff35eb9931509a214a17ad189a21e6971d0beac82f880e0a48e2a6afc98c",
       "status": "shipped",
       "cohort": "dl-fresh-v3",
-      "note": "Replaces the killed dl-fresh-v2 (48) and the archived dl-fresh-v1 sets (24). 72 authored, 6 whole sets dropped on grader flags (never a lone question — that would strand a sibling). check-batch-joins.mjs clean at preflight AND on the final keeper set.",
+      "note": "Replaces the killed dl-fresh-v2 (48) and the archived dl-fresh-v1 sets (24). 72 authored, 6 whole sets dropped on grader flags (never a lone question \u2014 that would strand a sibling). check-batch-joins.mjs clean at preflight AND on the final keeper set.",
       "stages": {
         "shape": {
           "passed": true,
@@ -808,7 +808,7 @@
       "contentSha": "f5fb7cf7601e9b29fb3fc45b6037d1cffc63cdbf0c6bd4820d7b75eb4eb0edd6",
       "status": "shipped",
       "cohort": "rsw2",
-      "note": "24 authored, 2 dropped by the NEW goal-parity reviewer (rsw2-04, rsw2-24) — the gate created after the pilot lost 4 of 11 to that defect, now catching it before insert instead of after. RS is fully operational under this design.",
+      "note": "24 authored, 2 dropped by the NEW goal-parity reviewer (rsw2-04, rsw2-24) \u2014 the gate created after the pilot lost 4 of 11 to that defect, now catching it before insert instead of after. RS is fully operational under this design.",
       "stages": {
         "shape": {
           "passed": true,
@@ -826,7 +826,7 @@
         },
         "elimination": {
           "passed": true,
-          "verdict": "Hunter exploitable=false after testing length, value ordering by slot, numeric density, per-slot lexis, punctuation and hedge density — no rule at 3+ items."
+          "verdict": "Hunter exploitable=false after testing length, value ordering by slot, numeric density, per-slot lexis, punctuation and hedge density \u2014 no rule at 3+ items."
         },
         "tells": {
           "passed": true,
@@ -921,7 +921,7 @@
       "contentSha": "7068869754c665376bae8e48a85e54cb1af5a1f5ea853482e34679e50bb66598",
       "status": "shipped",
       "cohort": "eoi-v6",
-      "note": "60 authored, 8 dropped (4 grader-easy, 6 weak-distractor, overlapping). No duplicate option sets this round — the eoi-v5 defect was designed out of the brief. Grader again marked most items passage_needed=false; the measured attack (−20.8) refutes it — FIFTH occurrence of that inverted-pn misfire, adjudicated by the measurement as standing policy.",
+      "note": "60 authored, 8 dropped (4 grader-easy, 6 weak-distractor, overlapping). No duplicate option sets this round \u2014 the eoi-v5 defect was designed out of the brief. Grader again marked most items passage_needed=false; the measured attack (\u221220.8) refutes it \u2014 FIFTH occurrence of that inverted-pn misfire, adjudicated by the measurement as standing policy.",
       "stages": {
         "shape": {
           "passed": true,
@@ -935,7 +935,7 @@
         "nosource": {
           "passed": true,
           "n": 24,
-          "verdict": "Held-out 24-item attack, 3 solvers, distinct pick-strings: mean 12.5% vs 33.3% control, margin −20.8 CLEAN."
+          "verdict": "Held-out 24-item attack, 3 solvers, distinct pick-strings: mean 12.5% vs 33.3% control, margin \u221220.8 CLEAN."
         },
         "elimination": {
           "passed": true,
@@ -976,7 +976,7 @@
         "nosource": {
           "passed": true,
           "n": 24,
-          "verdict": "Options-only attack (stems stripped): mean 19.4% vs 29.2% control, margin −9.7 PASS."
+          "verdict": "Options-only attack (stems stripped): mean 19.4% vs 29.2% control, margin \u22129.7 PASS."
         },
         "tells": {
           "passed": true,
@@ -999,7 +999,7 @@
       "contentSha": "7b6c5c924cab2d5a685adeb1b105d78622f5244a6a4de6f1ab257640c4e0e11d",
       "status": "shipped",
       "cohort": "ssat-math-s2",
-      "note": "60 authored, 12 grader-flagged dropped (mostly grader-easy — the no-calculator constraint pulls authors toward one-steppers; worth tightening the difficulty floor in the next brief).",
+      "note": "60 authored, 12 grader-flagged dropped (mostly grader-easy \u2014 the no-calculator constraint pulls authors toward one-steppers; worth tightening the difficulty floor in the next brief).",
       "stages": {
         "shape": {
           "passed": true,
@@ -1012,7 +1012,7 @@
         },
         "nosource": {
           "passed": true,
-          "verdict": "Options-only attack (stems stripped entirely): mean 15.3% vs 41.7% control, margin −26.4 PASS."
+          "verdict": "Options-only attack (stems stripped entirely): mean 15.3% vs 41.7% control, margin \u221226.4 PASS."
         },
         "tells": {
           "passed": true,
@@ -1035,7 +1035,7 @@
       "contentSha": "3d1cf8d684b5a0472083ef317cdc4b51fbf2db84e174527ddc58f1a03bfea92d",
       "status": "shipped",
       "cohort": "isee-math-s2",
-      "note": "60 authored, 20 grader-flagged dropped (mostly grader-easy — the no-calculator constraint pulls authors toward one-steppers; worth tightening the difficulty floor in the next brief).",
+      "note": "60 authored, 20 grader-flagged dropped (mostly grader-easy \u2014 the no-calculator constraint pulls authors toward one-steppers; worth tightening the difficulty floor in the next brief).",
       "stages": {
         "shape": {
           "passed": true,
@@ -1048,7 +1048,7 @@
         },
         "nosource": {
           "passed": true,
-          "verdict": "Options-only attack (stems stripped entirely): mean 26.4% vs 33.3% control, margin −6.9 PASS."
+          "verdict": "Options-only attack (stems stripped entirely): mean 26.4% vs 33.3% control, margin \u22126.9 PASS."
         },
         "tells": {
           "passed": true,
@@ -1084,7 +1084,7 @@
         },
         "nosource": {
           "passed": true,
-          "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 34.7% vs 37.5% control, margin −2.8 PASS."
+          "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 34.7% vs 37.5% control, margin \u22122.8 PASS."
         },
         "tells": {
           "passed": true,
@@ -1120,7 +1120,7 @@
         },
         "nosource": {
           "passed": true,
-          "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 33.3% vs 40.0% control, margin −6.7 PASS."
+          "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 33.3% vs 40.0% control, margin \u22126.7 PASS."
         },
         "tells": {
           "passed": true,
@@ -1143,7 +1143,7 @@
       "contentSha": "8ac97ea7a8f835a2f5afd9452471bb76bd28782da56b3c3696df23eb0083d43e",
       "status": "shipped",
       "cohort": "ssat-math-s3",
-      "note": "INSTRUMENT FAILURE RECORDED: the first attack on this batch reported a KILL (+43.3 SSAT / +47.2 ISEE math) because the blind-builder carried `prompt` through for any item that had one — correct for reading, where the stem is shown and the passage withheld, but fatal here, where the prompt IS the stem. The solver reporting it \"solved via direct calculation from the problem statements\" was telling the truth. Caught because a 97.2% options-only score is not physically possible. Blinds rebuilt, asserted stem-free, attack re-run; the corrected margins are recorded below.",
+      "note": "INSTRUMENT FAILURE RECORDED: the first attack on this batch reported a KILL (+43.3 SSAT / +47.2 ISEE math) because the blind-builder carried `prompt` through for any item that had one \u2014 correct for reading, where the stem is shown and the passage withheld, but fatal here, where the prompt IS the stem. The solver reporting it \"solved via direct calculation from the problem statements\" was telling the truth. Caught because a 97.2% options-only score is not physically possible. Blinds rebuilt, asserted stem-free, attack re-run; the corrected margins are recorded below.",
       "stages": {
         "shape": {
           "passed": true,
@@ -1152,11 +1152,11 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "Anchored grader with the difficulty floor stated: only 2 items flagged across both families (vs 32 last round — the floor worked)."
+          "verdict": "Anchored grader with the difficulty floor stated: only 2 items flagged across both families (vs 32 last round \u2014 the floor worked)."
         },
         "nosource": {
           "passed": true,
-          "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 21.7% vs 25.0% control, margin −3.3 PASS."
+          "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 21.7% vs 25.0% control, margin \u22123.3 PASS."
         },
         "tells": {
           "passed": true,
@@ -1179,7 +1179,7 @@
       "contentSha": "ad64f40e8438db7225afa49600583fd6f7cea989602841e203fe58eacb75bbb1",
       "status": "shipped",
       "cohort": "isee-math-s3",
-      "note": "INSTRUMENT FAILURE RECORDED: the first attack on this batch reported a KILL (+43.3 SSAT / +47.2 ISEE math) because the blind-builder carried `prompt` through for any item that had one — correct for reading, where the stem is shown and the passage withheld, but fatal here, where the prompt IS the stem. The solver reporting it \"solved via direct calculation from the problem statements\" was telling the truth. Caught because a 97.2% options-only score is not physically possible. Blinds rebuilt, asserted stem-free, attack re-run; the corrected margins are recorded below.",
+      "note": "INSTRUMENT FAILURE RECORDED: the first attack on this batch reported a KILL (+43.3 SSAT / +47.2 ISEE math) because the blind-builder carried `prompt` through for any item that had one \u2014 correct for reading, where the stem is shown and the passage withheld, but fatal here, where the prompt IS the stem. The solver reporting it \"solved via direct calculation from the problem statements\" was telling the truth. Caught because a 97.2% options-only score is not physically possible. Blinds rebuilt, asserted stem-free, attack re-run; the corrected margins are recorded below.",
       "stages": {
         "shape": {
           "passed": true,
@@ -1188,11 +1188,11 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "Anchored grader with the difficulty floor stated: only 2 items flagged across both families (vs 32 last round — the floor worked)."
+          "verdict": "Anchored grader with the difficulty floor stated: only 2 items flagged across both families (vs 32 last round \u2014 the floor worked)."
         },
         "nosource": {
           "passed": true,
-          "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 29.2% vs 50.0% control, margin −20.8 PASS."
+          "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 29.2% vs 50.0% control, margin \u221220.8 PASS."
         },
         "tells": {
           "passed": true,
@@ -1215,7 +1215,7 @@
       "contentSha": "151cf612c5b5b81c6ae1f02dfcfa9bfd86b5aae322321d94800d6ba6d1919428",
       "status": "shipped",
       "cohort": "isee-reading-worlds-v1",
-      "note": "FIRST Reading content for either test, after three authored-key briefs died at +58.3/+61.1/+61.1. 23 rendered, 4 dropped by the cross-variant validity reviewer. Ten questions were dropped at render for sharing more vocabulary with another variant passage than their own. SSAT could not render: N variants give exactly N options and SSAT is 5-choice, so it needs a 5-variant re-author. KNOWN CONSTRAINT: items within a topic are non-independent (one shown variant answers all of them) — assembly must draw at most ONE item per topic per form; see READING-WORLDS-RESULT.md.",
+      "note": "FIRST Reading content for either test, after three authored-key briefs died at +58.3/+61.1/+61.1. 23 rendered, 4 dropped by the cross-variant validity reviewer. Ten questions were dropped at render for sharing more vocabulary with another variant passage than their own. SSAT could not render: N variants give exactly N options and SSAT is 5-choice, so it needs a 5-variant re-author. KNOWN CONSTRAINT: items within a topic are non-independent (one shown variant answers all of them) \u2014 assembly must draw at most ONE item per topic per form; see READING-WORLDS-RESULT.md.",
       "stages": {
         "shape": {
           "passed": true,
@@ -1224,12 +1224,12 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "With-passage voters >=2/3 on every shipped item. Cross-variant validity reviewer: each answer fits its own passage only AND all four equally complete — 4 of 23 failed and were dropped."
+          "verdict": "With-passage voters >=2/3 on every shipped item. Cross-variant validity reviewer: each answer fits its own passage only AND all four equally complete \u2014 4 of 23 failed and were dropped."
         },
         "nosource": {
           "passed": true,
           "n": 23,
-          "verdict": "Blind attack, solvers explicitly armed with moderation, tension and specificity (the three rules that killed the previous briefs): mean 15.9% vs 30.4% control, margin −14.5 PASS. Solvers reported tension still fired loudly and scored below chance; one marked all 23 confident and got 4."
+          "verdict": "Blind attack, solvers explicitly armed with moderation, tension and specificity (the three rules that killed the previous briefs): mean 15.9% vs 30.4% control, margin \u221214.5 PASS. Solvers reported tension still fired loudly and scored below chance; one marked all 23 confident and got 4."
         },
         "elimination": {
           "passed": true,
@@ -1255,7 +1255,7 @@
       },
       "status": "shipped",
       "cohort": "ssat-reading-worlds-s3",
-      "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind −9.7 (ctl 20.0), set-attack −5.4, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together.",
+      "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind \u22129.7 (ctl 20.0), set-attack \u22125.4, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together.",
       "stages": {
         "shape": {
           "passed": true,
@@ -1264,7 +1264,7 @@
         "nosource": {
           "passed": true,
           "n": 44,
-          "verdict": "Blind attack, 3 differently-reasoning solvers, passage withheld: mean 15.3% vs 25.0% best-fixed-letter control, margin −9.7. A SECOND targeted attack tried the set-as-puzzle exploit explicitly and scored 20.5% overall (chance); its confidence was anti-correlated with correctness."
+          "verdict": "Blind attack, 3 differently-reasoning solvers, passage withheld: mean 15.3% vs 25.0% best-fixed-letter control, margin \u22129.7. A SECOND targeted attack tried the set-as-puzzle exploit explicitly and scored 20.5% overall (chance); its confidence was anti-correlated with correctness."
         },
         "elimination": {
           "passed": true,
@@ -1294,7 +1294,7 @@
       },
       "status": "shipped",
       "cohort": "isee-reading-worlds-s3",
-      "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind −6.7 (ctl 25.0), set-attack +5.0, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together.",
+      "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind \u22126.7 (ctl 25.0), set-attack +5.0, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together.",
       "stages": {
         "shape": {
           "passed": true,
@@ -1303,7 +1303,7 @@
         "nosource": {
           "passed": true,
           "n": 29,
-          "verdict": "Blind attack, 3 differently-reasoning solvers, passage withheld: mean 26.7% vs 33.3% best-fixed-letter control, margin −6.7. A SECOND targeted attack tried the set-as-puzzle exploit explicitly and scored 20.5% overall (chance); its confidence was anti-correlated with correctness."
+          "verdict": "Blind attack, 3 differently-reasoning solvers, passage withheld: mean 26.7% vs 33.3% best-fixed-letter control, margin \u22126.7. A SECOND targeted attack tried the set-as-puzzle exploit explicitly and scored 20.5% overall (chance); its confidence was anti-correlated with correctness."
         },
         "elimination": {
           "passed": true,
@@ -2133,12 +2133,12 @@
       "task": "sat_rw",
       "family": "mc_hidden_source",
       "cohort": "rw-v8-cs-hard",
-      "note": "Craft and Structure hard, 24 authored (8 words in context, 8 cross-text connections, 8 text structure and purpose). No-source attack 58.3% against a matched LIVE C&S control of 100.0% — three solvers, byte-identical 24/24 pick-strings on the control — so this batch is 41.7 points LESS guessable than what students draw today. THREE ITEMS DROPPED at the with-source grade, each named by ALL THREE graders independently: CS3-H-03 (D \"vernacular\" survives the same refutation as the key), CS3-H-07 (B \"discretionary\" is directly supported by \"seniors save it for the years in which nothing else will do\"), CS3-H-16 (C is a near-paraphrase of the key separated only by emphasis). FIVE MORE rejected by the accept rule: CS3-H-14 and -15 as not passage-dependent (2 of 3 graders each), CS3-H-04 on weak distractors, CS3-H-12 and -21 as easy. 16 insert. BANK_GATE_OVERRIDE used, reason recorded here. Two required stages are recorded FAILED and the batch was inserted anyway. Why: (1) the `elimination` stage had never been run on ANY SAT R&W cohort before today, because bank-helper.mjs never called gate.mjs at all until this session wired it — so this is a bar being applied for the first time, not a bar this batch fell below; its stated PASS (\"zero items with any confidently rejectable option\") is met by no cohort in this bank and arguably by no real SAT item. (2) The instrument that HAS ranked batches correctly is the no-source attack, and against a matched LIVE control this batch is far better than the cohort it joins. (3) The live alternative is not \"nothing\": students draw the v2 cohort, measured at 97.5-100% blind. Holding this would leave that in place. The failures are recorded rather than argued away, the cohort label is distinct so these rows can be selected out, and this override should be revisited when the v2 repair programme sets a real elimination bar for the family.",
-      "override": "BANK_GATE_OVERRIDE used, reason recorded here. Two required stages are recorded FAILED and the batch was inserted anyway. Why: (1) the `elimination` stage had never been run on ANY SAT R&W cohort before today, because bank-helper.mjs never called gate.mjs at all until this session wired it — so this is a bar being applied for the first time, not a bar this batch fell below; its stated PASS (\"zero items with any confidently rejectable option\") is met by no cohort in this bank and arguably by no real SAT item. (2) The instrument that HAS ranked batches correctly is the no-source attack, and against a matched LIVE control this batch is far better than the cohort it joins. (3) The live alternative is not \"nothing\": students draw the v2 cohort, measured at 97.5-100% blind. Holding this would leave that in place. The failures are recorded rather than argued away, the cohort label is distinct so these rows can be selected out, and this override should be revisited when the v2 repair programme sets a real elimination bar for the family.",
+      "note": "Craft and Structure hard, 24 authored (8 words in context, 8 cross-text connections, 8 text structure and purpose). No-source attack 58.3% against a matched LIVE C&S control of 100.0% \u2014 three solvers, byte-identical 24/24 pick-strings on the control \u2014 so this batch is 41.7 points LESS guessable than what students draw today. THREE ITEMS DROPPED at the with-source grade, each named by ALL THREE graders independently: CS3-H-03 (D \"vernacular\" survives the same refutation as the key), CS3-H-07 (B \"discretionary\" is directly supported by \"seniors save it for the years in which nothing else will do\"), CS3-H-16 (C is a near-paraphrase of the key separated only by emphasis). FIVE MORE rejected by the accept rule: CS3-H-14 and -15 as not passage-dependent (2 of 3 graders each), CS3-H-04 on weak distractors, CS3-H-12 and -21 as easy. 16 insert. BANK_GATE_OVERRIDE used, reason recorded here. Two required stages are recorded FAILED and the batch was inserted anyway. Why: (1) the `elimination` stage had never been run on ANY SAT R&W cohort before today, because bank-helper.mjs never called gate.mjs at all until this session wired it \u2014 so this is a bar being applied for the first time, not a bar this batch fell below; its stated PASS (\"zero items with any confidently rejectable option\") is met by no cohort in this bank and arguably by no real SAT item. (2) The instrument that HAS ranked batches correctly is the no-source attack, and against a matched LIVE control this batch is far better than the cohort it joins. (3) The live alternative is not \"nothing\": students draw the v2 cohort, measured at 97.5-100% blind. Holding this would leave that in place. The failures are recorded rather than argued away, the cohort label is distinct so these rows can be selected out, and this override should be revisited when the v2 repair programme sets a real elimination bar for the family.",
+      "override": "BANK_GATE_OVERRIDE used, reason recorded here. Two required stages are recorded FAILED and the batch was inserted anyway. Why: (1) the `elimination` stage had never been run on ANY SAT R&W cohort before today, because bank-helper.mjs never called gate.mjs at all until this session wired it \u2014 so this is a bar being applied for the first time, not a bar this batch fell below; its stated PASS (\"zero items with any confidently rejectable option\") is met by no cohort in this bank and arguably by no real SAT item. (2) The instrument that HAS ranked batches correctly is the no-source attack, and against a matched LIVE control this batch is far better than the cohort it joins. (3) The live alternative is not \"nothing\": students draw the v2 cohort, measured at 97.5-100% blind. Holding this would leave that in place. The failures are recorded rather than argued away, the cohort label is distinct so these rows can be selected out, and this override should be revisited when the v2 repair programme sets a real elimination bar for the family.",
       "stages": {
         "shape": {
           "passed": true,
-          "verdict": "24 items, 24 DISTINCT passages, key slots 6/6/6/6, key uniquely longest 1 / uniquely shortest 1, no option opens on punctuation. Four checkers were run and IGNORED the batch path, printing live-bank numbers instead (check-explanation-option-refs, check-explanation-ordinals, check-verbatim-key, check-vocab-ambiguity, plus check-svg-viewbox/check-graphic-leak on the maths batches) — the seventh through twelfth instances of the defect CLAUDE.md records; their output is NOT evidence about this file and the structural numbers here were computed directly."
+          "verdict": "24 items, 24 DISTINCT passages, key slots 6/6/6/6, key uniquely longest 1 / uniquely shortest 1, no option opens on punctuation. Four checkers were run and IGNORED the batch path, printing live-bank numbers instead (check-explanation-option-refs, check-explanation-ordinals, check-verbatim-key, check-vocab-ambiguity, plus check-svg-viewbox/check-graphic-leak on the maths batches) \u2014 the seventh through twelfth instances of the defect CLAUDE.md records; their output is NOT evidence about this file and the structural numbers here were computed directly."
         },
         "withsource": {
           "passed": true,
@@ -2154,11 +2154,11 @@
         },
         "elimination": {
           "passed": false,
-          "verdict": "FAILS the stated bar. One reader, options only: 16 of 24 items carry at least one CONFIDENTLY rejectable option, 19 options in total. All 8 words-in-context items scored ZERO — four bare adjectives are inert without the stem, which is why that third also measured below chance in the attack. The reader named the rules unprompted: an option that denies the text's own premise is disposable (8 items); an unhedged absolute among hedges is the outlier (5); a recommendation among characterisations answers a different question (3+). Also found: direct negation pairs (item 20 B/C) that halve the field before reading."
+          "verdict": "FAILS the stated bar. One reader, options only: 16 of 24 items carry at least one CONFIDENTLY rejectable option, 19 options in total. All 8 words-in-context items scored ZERO \u2014 four bare adjectives are inert without the stem, which is why that third also measured below chance in the attack. The reader named the rules unprompted: an option that denies the text's own premise is disposable (8 items); an unhedged absolute among hedges is the outlier (5); a recommendation among characterisations answers a different question (3+). Also found: direct negation pairs (item 20 B/C) that halve the field before reading."
         },
         "tells": {
           "passed": false,
-          "verdict": "Mechanical measures PASS (slots, length, per-set length heuristic, verify-answer-key-spread.ts clean on the inserted cohort). The SEMANTIC key-shape sub-measure FAILS: four readers — three with-source graders and the elimination reader, independently — described the correct-answer shape without being asked, as the single concede-then-qualify option among flat denials, over-attributions and unprompted recommendations, holding in 8 of the 16 non-vocabulary items. As the attack result says, the formula is in the DISTRACTOR FAMILY, not the key, so no re-lettering or key rewrite touches it; the fix is letting a flat denial sometimes be correct. Also recorded: the 24 stored keys fall as ABCD/BADC/CDAB/DCBA/ACBD/CADB — every group of four a complete permutation — an authoring artefact that is neutralised at serve time by shuffleDrawnChoices (applied on all 7 serve paths in assemble.ts) and that the existing per-group guard cannot see, because it only inspects passage-grouped sets and R&W items are ungrouped."
+          "verdict": "Mechanical measures PASS (slots, length, per-set length heuristic, verify-answer-key-spread.ts clean on the inserted cohort). The SEMANTIC key-shape sub-measure FAILS: four readers \u2014 three with-source graders and the elimination reader, independently \u2014 described the correct-answer shape without being asked, as the single concede-then-qualify option among flat denials, over-attributions and unprompted recommendations, holding in 8 of the 16 non-vocabulary items. As the attack result says, the formula is in the DISTRACTOR FAMILY, not the key, so no re-lettering or key rewrite touches it; the fix is letting a flat denial sometimes be correct. Also recorded: the 24 stored keys fall as ABCD/BADC/CDAB/DCBA/ACBD/CADB \u2014 every group of four a complete permutation \u2014 an authoring artefact that is neutralised at serve time by shuffleDrawnChoices (applied on all 7 serve paths in assemble.ts) and that the existing per-group guard cannot see, because it only inspects passage-grouped sets and R&W items are ungrouped."
         }
       },
       "createdAt": "2026-09-04",
@@ -2178,8 +2178,8 @@
       "task": "sat_rw",
       "family": "mc_hidden_source",
       "cohort": "rw-v8-sec-hard",
-      "note": "Standard English Conventions hard, 24 authored. No-source attack 61.1% against a matched LIVE SEC control of 72.2% (-11.1). 25% is NOT the control for this family: judging the option set IS the skill. TWO ITEMS DROPPED, both on unanimous grader flags: SEC-HD-V6-08 has TWO conforming options — A and C are punctuated identically and differ only by parallelism among nominals, which is a style preference and not a rule (\"recorded ... how the tide sets\" is standard) — and SEC-HD-V6-19 is resolved by \"that work\" two words after the blank, which the SEC brief forbids. 22 insert; the conventions carve-out in accepts() requires a UNANIMOUS 3/3 key and all 22 have it. Single-grader flags kept with the reason recorded: V6-04 (B \"reverted\" excluded on tense against a generic-present frame, the weakest exclusion in the batch) and V6-22 (A \"was falling\" excluded on the 1984 anchor). BANK_GATE_OVERRIDE used, reason recorded here. Two required stages are recorded FAILED and the batch was inserted anyway. Why: (1) the `elimination` stage had never been run on ANY SAT R&W cohort before today, because bank-helper.mjs never called gate.mjs at all until this session wired it — so this is a bar being applied for the first time, not a bar this batch fell below; its stated PASS (\"zero items with any confidently rejectable option\") is met by no cohort in this bank and arguably by no real SAT item. (2) The instrument that HAS ranked batches correctly is the no-source attack, and against a matched LIVE control this batch is far better than the cohort it joins. (3) The live alternative is not \"nothing\": students draw the v2 cohort, measured at 97.5-100% blind. Holding this would leave that in place. The failures are recorded rather than argued away, the cohort label is distinct so these rows can be selected out, and this override should be revisited when the v2 repair programme sets a real elimination bar for the family.",
-      "override": "BANK_GATE_OVERRIDE used, reason recorded here. Two required stages are recorded FAILED and the batch was inserted anyway. Why: (1) the `elimination` stage had never been run on ANY SAT R&W cohort before today, because bank-helper.mjs never called gate.mjs at all until this session wired it — so this is a bar being applied for the first time, not a bar this batch fell below; its stated PASS (\"zero items with any confidently rejectable option\") is met by no cohort in this bank and arguably by no real SAT item. (2) The instrument that HAS ranked batches correctly is the no-source attack, and against a matched LIVE control this batch is far better than the cohort it joins. (3) The live alternative is not \"nothing\": students draw the v2 cohort, measured at 97.5-100% blind. Holding this would leave that in place. The failures are recorded rather than argued away, the cohort label is distinct so these rows can be selected out, and this override should be revisited when the v2 repair programme sets a real elimination bar for the family.",
+      "note": "Standard English Conventions hard, 24 authored. No-source attack 61.1% against a matched LIVE SEC control of 72.2% (-11.1). 25% is NOT the control for this family: judging the option set IS the skill. TWO ITEMS DROPPED, both on unanimous grader flags: SEC-HD-V6-08 has TWO conforming options \u2014 A and C are punctuated identically and differ only by parallelism among nominals, which is a style preference and not a rule (\"recorded ... how the tide sets\" is standard) \u2014 and SEC-HD-V6-19 is resolved by \"that work\" two words after the blank, which the SEC brief forbids. 22 insert; the conventions carve-out in accepts() requires a UNANIMOUS 3/3 key and all 22 have it. Single-grader flags kept with the reason recorded: V6-04 (B \"reverted\" excluded on tense against a generic-present frame, the weakest exclusion in the batch) and V6-22 (A \"was falling\" excluded on the 1984 anchor). BANK_GATE_OVERRIDE used, reason recorded here. Two required stages are recorded FAILED and the batch was inserted anyway. Why: (1) the `elimination` stage had never been run on ANY SAT R&W cohort before today, because bank-helper.mjs never called gate.mjs at all until this session wired it \u2014 so this is a bar being applied for the first time, not a bar this batch fell below; its stated PASS (\"zero items with any confidently rejectable option\") is met by no cohort in this bank and arguably by no real SAT item. (2) The instrument that HAS ranked batches correctly is the no-source attack, and against a matched LIVE control this batch is far better than the cohort it joins. (3) The live alternative is not \"nothing\": students draw the v2 cohort, measured at 97.5-100% blind. Holding this would leave that in place. The failures are recorded rather than argued away, the cohort label is distinct so these rows can be selected out, and this override should be revisited when the v2 repair programme sets a real elimination bar for the family.",
+      "override": "BANK_GATE_OVERRIDE used, reason recorded here. Two required stages are recorded FAILED and the batch was inserted anyway. Why: (1) the `elimination` stage had never been run on ANY SAT R&W cohort before today, because bank-helper.mjs never called gate.mjs at all until this session wired it \u2014 so this is a bar being applied for the first time, not a bar this batch fell below; its stated PASS (\"zero items with any confidently rejectable option\") is met by no cohort in this bank and arguably by no real SAT item. (2) The instrument that HAS ranked batches correctly is the no-source attack, and against a matched LIVE control this batch is far better than the cohort it joins. (3) The live alternative is not \"nothing\": students draw the v2 cohort, measured at 97.5-100% blind. Holding this would leave that in place. The failures are recorded rather than argued away, the cohort label is distinct so these rows can be selected out, and this override should be revisited when the v2 repair programme sets a real elimination bar for the family.",
       "stages": {
         "shape": {
           "passed": true,
@@ -2187,7 +2187,7 @@
         },
         "withsource": {
           "passed": true,
-          "verdict": "THREE independent graders: 24/24 each, identical picks, so every key conforms. One item (V6-08) flagged by all three as having a second fully conforming option and one (V6-19) flagged by all three as resolved after the blank — BOTH DROPPED. Majority difficulty hard 8 / medium 13 / easy 3; distractors strong 9 / plausible 15."
+          "verdict": "THREE independent graders: 24/24 each, identical picks, so every key conforms. One item (V6-08) flagged by all three as having a second fully conforming option and one (V6-19) flagged by all three as resolved after the blank \u2014 BOTH DROPPED. Majority difficulty hard 8 / medium 13 / easy 3; distractors strong 9 / plausible 15."
         },
         "nosource": {
           "passed": true,
@@ -2199,11 +2199,11 @@
         },
         "elimination": {
           "passed": false,
-          "verdict": "FAILS the stated zero bar, but only just, and the failure is localised: 5 of 24 items carry a confidently rejectable option, 8 options in total, and 19 of 24 items yield NOTHING. The reader named exactly one mechanical rule — an option containing BOTH a subject noun and its verb kills the mismatched pairings without any sentence (items 11, 12) — plus semicolon-before-a-dependent-clause (8, 17) and finite-verb case (15). It explicitly declined five over-rejection temptations and recorded them. The actionable rule for the next batch: never put a co-varying noun+verb pair inside one option."
+          "verdict": "FAILS the stated zero bar, but only just, and the failure is localised: 5 of 24 items carry a confidently rejectable option, 8 options in total, and 19 of 24 items yield NOTHING. The reader named exactly one mechanical rule \u2014 an option containing BOTH a subject noun and its verb kills the mismatched pairings without any sentence (items 11, 12) \u2014 plus semicolon-before-a-dependent-clause (8, 17) and finite-verb case (15). It explicitly declined five over-rejection temptations and recorded them. The actionable rule for the next batch: never put a co-varying noun+verb pair inside one option."
         },
         "tells": {
           "passed": true,
-          "verdict": "All mechanical measures within tolerance; verify-answer-key-spread.ts clean. RECORDED, NOT COUNTED: the 24 stored keys run CBAD then BDAC five times — every group of four a complete ABCD permutation, and after item 05 fully periodic, which two graders spotted from the regularity of their OWN answer sequences. It is invisible to a student because choice order is randomised per session at draw time (shuffleDrawnChoices, all 7 serve paths in assemble.ts) and invisible to the existing per-group guard, which only inspects passage-grouped sets. It is still an authoring habit worth breaking. Also recorded: about half the batch turns on one underlying decision (is the blank the finite verb, and what is its number) — 13 items across two overlapping templates — and the passages cluster five-to-a-topic (bees, surveying, ocean biology, 19th-century medicine)."
+          "verdict": "All mechanical measures within tolerance; verify-answer-key-spread.ts clean. RECORDED, NOT COUNTED: the 24 stored keys run CBAD then BDAC five times \u2014 every group of four a complete ABCD permutation, and after item 05 fully periodic, which two graders spotted from the regularity of their OWN answer sequences. It is invisible to a student because choice order is randomised per session at draw time (shuffleDrawnChoices, all 7 serve paths in assemble.ts) and invisible to the existing per-group guard, which only inspects passage-grouped sets. It is still an authoring habit worth breaking. Also recorded: about half the batch turns on one underlying decision (is the blank the finite verb, and what is its number) \u2014 13 items across two overlapping templates \u2014 and the passages cluster five-to-a-topic (bees, surveying, ocean biology, 19th-century medicine)."
         }
       },
       "createdAt": "2026-09-04",
@@ -2277,6 +2277,43 @@
         "tells": {
           "passed": true,
           "verdict": "The 40.4% live control is also the evidence this instrument could fail today - three of six files sat at 25-27%, and a flat line across every file would have meant no verdict was available. Solvers confident-subset scored at chance."
+        }
+      }
+    },
+    {
+      "id": "rw-v9-cs-2026-09-12",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "sat_rw",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v9-cs",
+      "contentSha": "89d61b11d842541b1b8be08c4d8683a91b0556748059a2e09d300a7d6b8babf7",
+      "note": "Craft and Structure, 24 authored, 10 inserted. ALL 24 KEYS VERIFIED 3/3 by three independent with-source graders - nothing was dropped for being wrong. 14 dropped on difficulty (majority easy on a hard-routed section), weak distractors, one-grader second-defensible flags, and a NEW gate: passage_needed.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "Key letters 6/6/6/6; no sliding window of four a complete ABCD permutation (all 21 windows checked, not just the 6 aligned - the aligned-only check is what A24 records as too weak); no global period at 1,2,3,4,6,8,12. Key uniquely longest 6/24, uniquely shortest 3/24. Within-item longest/shortest ratio max 1.250, mean 1.111. Passages 40-110 words, no proper noun shared across items, 0 positional references in explanations."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Three independent graders, 24/24 keys agreed 3/3. Difficulty medians: easy 8-12, medium 8-12, hard 4-5 across the three - roughly half the batch is retrieval, which is what removed most of it. Survivors 9 medium, 1 hard. The graders CORRECTED the blind solvers in both directions: two independently refused the knowledge-key flags on CS5-10, -11 and -23 (on 23 the field standard claim is the DISTRACTOR; the key needs a two-clause split in the last sentence) and relocated the family to CS5-19 and CS5-20, which no blind solver had flagged."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 24,
+          "mean": 69.4,
+          "control": 88.9,
+          "margin": -19.4,
+          "verdict": "Options-only, three solvers per file, identical render, matched LIVE C&S control drawn fresh from items with no prior attack row. Candidate 69.4% (50/72) against live 88.9% (64/72). THE CONFIDENT SUBSET IS THE REAL NUMBER: live solvers went 55 of 55 confident, two of three returning byte-identical pick-strings, and 13 of 24 live items are decidable by the OPTION SET ALONE against 0 of 24 in the candidate. CS-V5-ATTACK-RESULT-2026-09-12.md. Recorded weakness: this comparison was run AFTER the author reported 66.7% against a 25% line, and was not pre-registered."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "A NEW GATE was added at this stage and it fired: passage_needed. Four independent authors today found that a key which is simply the standard true claim in its field is answerable with the source covered even when the option set is flawlessly parallel - so graders were asked per item whether the passage was genuinely required. It dropped 5 items, one of them unanimously (CS5-20, legume nitrogen). No structural check in this repo can see that defect."
+        },
+        "elimination": {
+          "passed": false,
+          "n": 24,
+          "verdict": "FAILS. Rule is PASS = zero items with any confidently rejectable option. Median legal options per item, from the three options-only solvers: 19 of 24 candidate items have at least one rejectable option (mean 3.00 legal). The matched LIVE C&S control measured the same way is 23 of 24 (mean 2.13), and 5 live items are fully DECIDED by their option set against 0 in the candidate. So the batch is better than the cohort it would join on every measure and still does not clear this bar. NOT OVERRIDDEN \u2014 the two R&W batches on 2026-09-04 failed this same stage and shipped under BANK_GATE_OVERRIDE, recorded there as \"a judgement call, not a clean pass\". Making that call twice by myself is how a bar becomes decorative."
         }
       }
     }
@@ -2539,9 +2576,9 @@
     }
   ],
   "gateVersion": 2,
-  "gateVersionNote": "v2 = 2026-08-01, when thresholds were calibrated against 183 published items. Any pass recorded under v1 is STALE, not Ready — the bar moved in both directions that day.",
+  "gateVersionNote": "v2 = 2026-08-01, when thresholds were calibrated against 183 published items. Any pass recorded under v1 is STALE, not Ready \u2014 the bar moved in both directions that day.",
   "gatesRunOnBank": [
     "nosource"
   ],
-  "coverageNote": "qualityTasks lists EVERY audited cohort making up the row. The two SAT rows each cover four College Board domains that were measured separately and disagree — judging the row by one of them counted 848 passing math items as failed. Cohort n values sum exactly to the row items, so readiness is attributed per cohort, not per row."
+  "coverageNote": "qualityTasks lists EVERY audited cohort making up the row. The two SAT rows each cover four College Board domains that were measured separately and disagree \u2014 judging the row by one of them counted 848 passing math items as failed. Cohort n values sum exactly to the row items, so readiness is attributed per cohort, not per row."
 }

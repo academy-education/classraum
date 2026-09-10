@@ -1,0 +1,632 @@
+[
+  {
+    "id": "IM9-01",
+    "domain": "Math",
+    "subskill": "units digit of a power found from the cycle of units digits",
+    "difficulty": "medium",
+    "prompt": "What is the units digit of 7 raised to the 23rd power?",
+    "choices": [
+      "7",
+      "3",
+      "9",
+      "1"
+    ],
+    "correct_answer": "3",
+    "explanation": "The units digits of the powers of 7 repeat in the block 7, 9, 3, 1 with period 4. Since 23 leaves a remainder of 3 when divided by 4, the units digit is the third entry of the block, which is 3. Taking the remainder 3 as a position counted from zero lands on 1, using the first entry of the block regardless of the exponent gives 7, and slipping to the 22nd power gives 9.",
+    "solve": "const cyc=[7,9,3,1]; const r=23%4; return cyc[(r===0?4:r)-1];",
+    "distractor_solve": {
+      "1": "const cyc=[7,9,3,1]; return cyc[23%4];",
+      "7": "const cyc=[7,9,3,1]; return cyc[0];",
+      "9": "const cyc=[7,9,3,1]; const r=22%4; return cyc[(r===0?4:r)-1];"
+    }
+  },
+  {
+    "id": "IM9-02",
+    "domain": "Math",
+    "subskill": "elapsed minutes between two clock times that cross midnight",
+    "difficulty": "easy",
+    "prompt": "A radio program begins at 10:50 P.M. and ends at 1:20 A.M. the next day. How many minutes long is the program?",
+    "choices": [
+      "230",
+      "90",
+      "150",
+      "210"
+    ],
+    "correct_answer": "150",
+    "explanation": "From 10:50 P.M. to midnight is 70 minutes, and from midnight to 1:20 A.M. is 80 more, for 150 minutes in all. Counting to midnight and then adding only the 20 minutes of 1:20 gives 90, adding a further hour for the change of day gives 210, and converting the correct 2 hours 30 minutes as though an hour held 100 minutes gives 230.",
+    "solve": "const s=22*60+50, e=25*60+20; return e-s;",
+    "distractor_solve": {
+      "90": "const toMid=24*60-(22*60+50); return toMid+20;",
+      "210": "const toMid=24*60-(22*60+50); return toMid+80+60;",
+      "230": "const h=2,m=30; return h*100+m;"
+    }
+  },
+  {
+    "id": "IM9-03",
+    "domain": "Math",
+    "subskill": "number of distinct pairs that can be formed from one group",
+    "difficulty": "medium",
+    "prompt": "Ten students attend a meeting, and each student shakes hands exactly once with each of the others. How many handshakes take place?",
+    "choices": [
+      "90",
+      "100",
+      "45",
+      "55"
+    ],
+    "correct_answer": "45",
+    "explanation": "Each of the 10 students shakes 9 hands, which counts 90 handshakes, but every handshake has been counted once from each side, so the true number is 90 divided by 2, or 45. Leaving the double count in place gives 90, letting each of the 10 shake all 10 hands including their own gives 100, and using the formula for the sum 1 through 10 rather than 1 through 9 gives 55.",
+    "solve": "const n=10; return n*(n-1)/2;",
+    "distractor_solve": {
+      "90": "const n=10; return n*(n-1);",
+      "100": "const n=10; return n*n;",
+      "55": "const n=10; return n*(n+1)/2;"
+    }
+  },
+  {
+    "id": "IM9-04",
+    "domain": "Math",
+    "subskill": "mean of a run of consecutive integers given by its endpoints",
+    "difficulty": "medium",
+    "prompt": "What is the average (arithmetic mean) of all the integers from 12 through 30, inclusive?",
+    "choices": [
+      "21",
+      "19",
+      "21.5",
+      "20.5"
+    ],
+    "correct_answer": "21",
+    "explanation": "For a run of consecutive integers the mean equals the average of the two endpoints, so it is 12 plus 30 divided by 2, or 21. Reading through 30 as stopping at 29 gives 20.5, dropping the first integer and averaging 13 with 30 gives 21.5, and 19 is how many integers are in the list rather than their average.",
+    "solve": "const a=12,b=30; return (a+b)/2;",
+    "distractor_solve": {
+      "20.5": "const a=12,b=29; return (a+b)/2;",
+      "21.5": "const a=13,b=30; return (a+b)/2;",
+      "19": "const a=12,b=30; return b-a+1;"
+    }
+  },
+  {
+    "id": "IM9-05",
+    "domain": "Math",
+    "subskill": "account balance after several years of simple interest",
+    "difficulty": "medium",
+    "prompt": "Marisol deposits $1,500 in an account that pays 4 percent simple interest per year. If she makes no other deposits or withdrawals, how many dollars are in the account at the end of 3 years?",
+    "choices": [
+      "1560",
+      "1687.30",
+      "1680",
+      "1500"
+    ],
+    "correct_answer": "1680",
+    "explanation": "Simple interest is 4 percent of 1500, or 60 dollars, each year, so 3 years add 180 dollars to the 1500 for a balance of 1680. Adding only one year of interest gives 1560, reporting the deposit itself and forgetting the interest gives 1500, and compounding the 4 percent each year rather than paying simple interest gives 1687.30.",
+    "solve": "const P=1500,r=0.04,t=3; return P+P*r*t;",
+    "distractor_solve": {
+      "1560": "const P=1500,r=0.04; return P+P*r;",
+      "1500": "const P=1500,r=0.04,t=3; return P;",
+      "1687.30": "const P=1500; return Math.round(P*Math.pow(1.04,3)*100)/100;"
+    }
+  },
+  {
+    "id": "IM9-06",
+    "domain": "Math",
+    "subskill": "evaluating a difference of two absolute values",
+    "difficulty": "easy",
+    "prompt": "What is the value of the absolute value of 6 minus 14, minus the absolute value of 3 minus 9?",
+    "choices": [
+      "14",
+      "2",
+      "-14",
+      "-2"
+    ],
+    "correct_answer": "2",
+    "explanation": "The absolute value of 6 minus 14 is 8 and the absolute value of 3 minus 9 is 6, so the expression equals 8 minus 6, or 2. Ignoring both absolute value bars gives negative 2, ignoring only the second gives 14, and ignoring only the first gives negative 14.",
+    "solve": "return Math.abs(6-14)-Math.abs(3-9);",
+    "distractor_solve": {
+      "-2": "return (6-14)-(3-9);",
+      "14": "return Math.abs(6-14)-(3-9);",
+      "-14": "return (6-14)-Math.abs(3-9);"
+    }
+  },
+  {
+    "id": "IM9-07",
+    "domain": "Math",
+    "subskill": "locating a square root between two consecutive integers",
+    "difficulty": "medium",
+    "prompt": "The square root of 150 lies between which two consecutive integers?",
+    "choices": [
+      "13 and 14",
+      "12 and 13",
+      "10 and 11",
+      "11 and 12"
+    ],
+    "correct_answer": "12 and 13",
+    "explanation": "Since 12 squared is 144 and 13 squared is 169, and 150 falls between them, the square root of 150 falls between 12 and 13. Rounding the root up before bracketing it gives 13 and 14, treating the nearby perfect square 144 as the upper end gives 11 and 12, and estimating the root by dividing 150 by 15 gives 10 and 11.",
+    "solve": "const n=150; const a=Math.floor(Math.sqrt(n)); return a+' and '+(a+1);",
+    "distractor_solve": {
+      "13 and 14": "const n=150; const a=Math.ceil(Math.sqrt(n)); return a+' and '+(a+1);",
+      "11 and 12": "const a=Math.floor(Math.sqrt(144)); return (a-1)+' and '+a;",
+      "10 and 11": "const n=150; const a=Math.floor(n/15); return a+' and '+(a+1);"
+    }
+  },
+  {
+    "id": "IM9-08",
+    "domain": "Math",
+    "subskill": "recovering the pre-tax price from a tax-inclusive total",
+    "difficulty": "hard",
+    "prompt": "A jacket sold for $63.00, a price that already includes a 5 percent sales tax. What was the price of the jacket, in dollars, before the tax was added?",
+    "choices": [
+      "59.85",
+      "58.00",
+      "60",
+      "57.27"
+    ],
+    "correct_answer": "60",
+    "explanation": "The $63.00 is 105 percent of the pre-tax price, so the pre-tax price is 63 divided by 1.05, which is 60 dollars. Taking 5 percent off the tax-inclusive total instead gives 59.85, because 5 percent of 63 is larger than 5 percent of 60. Reading the 5 percent as a flat five dollars gives 58.00, and dividing by 1.10 as though the tax were 10 percent gives 57.27.",
+    "solve": "const total=63.00,r=0.05; return Math.round(total/(1+r)*100)/100;",
+    "distractor_solve": {
+      "59.85": "const total=63.00,r=0.05; return Math.round((total-total*r)*100)/100;",
+      "58.00": "const total=63.00; return Math.round((total-5)*100)/100;",
+      "57.27": "const total=63.00; return Math.round(total/1.10*100)/100;"
+    }
+  },
+  {
+    "id": "IM9-09",
+    "domain": "Math",
+    "subskill": "circumference of a circle from its radius",
+    "difficulty": "easy",
+    "prompt": "A circular running track has a radius of 21 meters. Using 22/7 for pi, what is the circumference of the track, in meters?",
+    "choices": [
+      "147",
+      "264",
+      "168",
+      "132"
+    ],
+    "correct_answer": "132",
+    "explanation": "The circumference is 2 times pi times the radius, or 2 times 22/7 times 21, which is 132 meters. Reading 22/7 as 7/2 gives 147, using the diameter of 42 in place of the radius gives 264, and finding the perimeter of the square that just encloses the circle, 4 times 42, gives 168.",
+    "solve": "const r=21,pi=22/7; return 2*pi*r;",
+    "distractor_solve": {
+      "147": "const r=21,pi=7/2; return 2*pi*r;",
+      "264": "const r=21,pi=22/7; return 2*pi*(2*r);",
+      "168": "const r=21; return 4*(2*r);"
+    }
+  },
+  {
+    "id": "IM9-10",
+    "domain": "Math",
+    "subskill": "side of a square with the same area as a given rectangle",
+    "difficulty": "medium",
+    "prompt": "A rectangle measures 27 centimeters by 3 centimeters. A square has the same area as this rectangle. What is the length, in centimeters, of one side of the square?",
+    "choices": [
+      "15",
+      "30",
+      "40.5",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "The rectangle's area is 27 times 3, or 81 square centimeters, so the square has area 81 and its side is the square root of 81, which is 9. Averaging the two dimensions gives 15, adding them gives 30, and halving the area rather than taking its square root gives 40.5.",
+    "solve": "const A=27*3; return Math.sqrt(A);",
+    "distractor_solve": {
+      "15": "return (27+3)/2;",
+      "30": "return 27+3;",
+      "40.5": "const A=27*3; return A/2;"
+    }
+  },
+  {
+    "id": "IM9-11",
+    "domain": "Math",
+    "subskill": "angle between the hands of a clock at a given time",
+    "difficulty": "hard",
+    "prompt": "What is the measure, in degrees, of the smaller angle formed by the hour hand and the minute hand of a clock at 3:40?",
+    "choices": [
+      "150",
+      "130",
+      "120",
+      "90"
+    ],
+    "correct_answer": "130",
+    "explanation": "The minute hand is at 40 minutes, or 240 degrees from the 12. The hour hand has moved two thirds of the way from the 3 toward the 4, so it sits at 90 plus 20, or 110 degrees. The angle between them is 240 minus 110, or 130 degrees. Leaving the hour hand at the 3 gives 150, advancing it a full hour to the 4 gives 120, and moving the hour hand 6 degrees per minute like the minute hand gives 90.",
+    "solve": "const h=3,m=40; const min=m*6, hr=h*30+m*0.5; const d=Math.abs(min-hr); return Math.min(d,360-d);",
+    "distractor_solve": {
+      "150": "const h=3,m=40; return Math.abs(m*6-h*30);",
+      "120": "const h=3,m=40; return Math.abs(m*6-(h+1)*30);",
+      "90": "const h=3,m=40; const hr=h*30+m*6; const d=Math.abs(m*6-hr); return Math.min(d,360-d);"
+    }
+  },
+  {
+    "id": "IM9-12",
+    "domain": "Math",
+    "subskill": "effect on the mean of adding the same amount to every value",
+    "difficulty": "medium",
+    "prompt": "A set of 12 numbers has an average (arithmetic mean) of 47. If 8 is added to each of the 12 numbers, what is the average of the new set of numbers?",
+    "choices": [
+      "59",
+      "143",
+      "63",
+      "55"
+    ],
+    "correct_answer": "55",
+    "explanation": "Adding 8 to every one of the 12 numbers adds 96 to the total while the count stays at 12, so the mean rises by exactly 8, from 47 to 55. Adding the count 12 rather than the amount 8 gives 59, adding the amount 8 a second time gives 63, and adding the whole 96 increase to the mean instead of to the total gives 143.",
+    "solve": "const mean=47,add=8; return mean+add;",
+    "distractor_solve": {
+      "59": "const mean=47,n=12; return mean+n;",
+      "63": "const mean=47,add=8; return mean+add+add;",
+      "143": "const mean=47,n=12,add=8; return mean+n*add;"
+    }
+  },
+  {
+    "id": "IM9-13",
+    "domain": "Math",
+    "subskill": "finding an unknown digit from a divisibility rule",
+    "difficulty": "hard",
+    "prompt": "In the five-digit number 4, 1, K, 6, 3, the letter K stands for a single digit. If the number is divisible by 9, what is the value of K?",
+    "choices": [
+      "1",
+      "9",
+      "7",
+      "4"
+    ],
+    "correct_answer": "4",
+    "explanation": "A number is divisible by 9 exactly when its digits add to a multiple of 9. The known digits add to 4 plus 1 plus 6 plus 3, or 14, so K must make the total 18, which means K is 4. Testing divisibility by 3 instead of 9 gives 1, choosing the digit that matches the divisor gives 9, and leaving the 3 out of the digit sum gives 7.",
+    "solve": "for(let k=0;k<=9;k++){ if((4+1+k+6+3)%9===0) return k; } return -1;",
+    "distractor_solve": {
+      "1": "for(let k=0;k<=9;k++){ if((4+1+k+6+3)%3===0) return k; } return -1;",
+      "9": "const divisor=9; return divisor;",
+      "7": "for(let k=0;k<=9;k++){ if((4+1+k+6)%9===0) return k; } return -1;"
+    }
+  },
+  {
+    "id": "IM9-14",
+    "domain": "Math",
+    "subskill": "median of a data set with an even number of values",
+    "difficulty": "easy",
+    "prompt": "What is the median of the numbers 28, 9, 17, 11, 22, and 12?",
+    "choices": [
+      "14.5",
+      "19",
+      "17",
+      "16.5"
+    ],
+    "correct_answer": "14.5",
+    "explanation": "In order the numbers are 9, 11, 12, 17, 22, 28. With six values there is no single middle number, so the median is the average of the third and fourth, which is 12 plus 17 divided by 2, or 14.5. Taking only the upper of the two middle values gives 17, computing the mean of all six gives 16.5, and computing the range, 28 minus 9, gives 19.",
+    "solve": "const d=[28,9,17,11,22,12].sort((a,b)=>a-b); return (d[2]+d[3])/2;",
+    "distractor_solve": {
+      "17": "const d=[28,9,17,11,22,12].sort((a,b)=>a-b); return d[3];",
+      "16.5": "const d=[28,9,17,11,22,12]; return d.reduce((a,b)=>a+b,0)/d.length;",
+      "19": "const d=[28,9,17,11,22,12].sort((a,b)=>a-b); return d[5]-d[0];"
+    }
+  },
+  {
+    "id": "IM9-15",
+    "domain": "Math",
+    "subskill": "probability that a randomly chosen two-digit integer is a multiple of a given number",
+    "difficulty": "medium",
+    "prompt": "An integer is chosen at random from the two-digit integers 10 through 99, inclusive. What is the probability that the integer chosen is a multiple of 7?",
+    "choices": [
+      "13/90",
+      "1/7",
+      "12/90",
+      "13/99"
+    ],
+    "correct_answer": "13/90",
+    "explanation": "The multiples of 7 from 10 through 99 run from 14 to 98, and there are 13 of them, out of the 90 two-digit integers, so the probability is 13 over 90. Overlooking 98 as the last multiple gives 12 over 90, counting all the integers from 1 to 99 as the sample space gives 13 over 99, and assuming exactly one integer in every seven qualifies gives 1 over 7.",
+    "solve": "let c=0; for(let n=10;n<=99;n++) if(n%7===0) c++; return c+'/'+90;",
+    "distractor_solve": {
+      "12/90": "let c=0; for(let n=10;n<98;n++) if(n%7===0) c++; return c+'/'+90;",
+      "13/99": "let c=0; for(let n=10;n<=99;n++) if(n%7===0) c++; return c+'/'+99;",
+      "1/7": "const d=7; return '1/'+d;"
+    }
+  },
+  {
+    "id": "IM9-16",
+    "domain": "Math",
+    "subskill": "evaluating a quadratic expression at a negative value",
+    "difficulty": "medium",
+    "prompt": "If x equals negative 2, what is the value of 3x squared plus 4x minus 7?",
+    "choices": [
+      "-27",
+      "-3",
+      "21",
+      "13"
+    ],
+    "correct_answer": "-3",
+    "explanation": "Squaring negative 2 gives positive 4, so the expression is 3 times 4, plus 4 times negative 2, minus 7, which is 12 minus 8 minus 7, or negative 3. Treating the square of a negative number as negative gives negative 27, dropping the sign in the 4x term gives 13, and squaring the whole product 3x rather than only x gives 21.",
+    "solve": "const x=-2; return 3*x*x+4*x-7;",
+    "distractor_solve": {
+      "-27": "const x=-2; const sq=-(x*x); return 3*sq+4*x-7;",
+      "13": "const x=-2; return 3*x*x+4*Math.abs(x)-7;",
+      "21": "const x=-2; return Math.pow(3*x,2)+4*x-7;"
+    }
+  },
+  {
+    "id": "IM9-17",
+    "domain": "Math",
+    "subskill": "finding a number from the difference of two fractional parts of it",
+    "difficulty": "medium",
+    "prompt": "When two fifths of a number is subtracted from three fourths of that same number, the result is 21. What is the number?",
+    "choices": [
+      "60",
+      "84",
+      "52.5",
+      "28"
+    ],
+    "correct_answer": "60",
+    "explanation": "Three fourths minus two fifths is fifteen twentieths minus eight twentieths, or seven twentieths, so seven twentieths of the number is 21 and the number is 21 divided by 0.35, which is 60. Using only the three fourths gives 28, using only the two fifths gives 52.5, and forcing a common denominator by changing only the numerator, so that three fourths minus two fourths leaves one fourth, gives 84.",
+    "solve": "const diff=3/4-2/5; return 21/diff;",
+    "distractor_solve": {
+      "28": "return 21/(3/4);",
+      "52.5": "return 21/(2/5);",
+      "84": "const wrong=3/4-2/4; return 21/wrong;"
+    }
+  },
+  {
+    "id": "IM9-18",
+    "domain": "Math",
+    "subskill": "working backward through a chain of operations",
+    "difficulty": "medium",
+    "prompt": "Rosa thinks of a number, multiplies it by 4, subtracts 7 from the result, and then divides that result by 3. Her final answer is 11. What number did Rosa think of?",
+    "choices": [
+      "12.33",
+      "10",
+      "4.5",
+      "6.5"
+    ],
+    "correct_answer": "10",
+    "explanation": "Undoing the steps in reverse order, 11 times 3 is 33, then adding back the 7 gives 40, and dividing by 4 gives 10. Subtracting the 7 instead of adding it back gives 6.5, forgetting to undo the division by 3 gives 4.5, and running the operations forward on 11 rather than backward gives about 12.33.",
+    "solve": "return (11*3+7)/4;",
+    "distractor_solve": {
+      "6.5": "return (11*3-7)/4;",
+      "4.5": "return (11+7)/4;",
+      "12.33": "return Math.round((11*4-7)/3*100)/100;"
+    }
+  },
+  {
+    "id": "IM9-19",
+    "domain": "Math",
+    "subskill": "converting a mixed pound-and-ounce weight to ounces",
+    "difficulty": "easy",
+    "prompt": "A recipe calls for 3 pounds 6 ounces of flour. There are 16 ounces in 1 pound. How many ounces of flour does the recipe call for?",
+    "choices": [
+      "54",
+      "144",
+      "30",
+      "48"
+    ],
+    "correct_answer": "54",
+    "explanation": "Three pounds is 3 times 16, or 48 ounces, and adding the extra 6 ounces gives 54 ounces. Converting the pounds but forgetting the loose ounces gives 48, using 8 ounces to a pound gives 30, and adding the 3 and the 6 before converting gives 144.",
+    "solve": "return 3*16+6;",
+    "distractor_solve": {
+      "48": "return 3*16;",
+      "30": "return 3*8+6;",
+      "144": "return (3+6)*16;"
+    }
+  },
+  {
+    "id": "IM9-20",
+    "domain": "Math",
+    "subskill": "average speed required over the remainder of a trip",
+    "difficulty": "hard",
+    "prompt": "Devi must drive 240 miles and wants the whole trip to take 4 hours. She covers the first 90 miles in 2 hours. What average speed, in miles per hour, must she maintain for the rest of the trip in order to finish in 4 hours?",
+    "choices": [
+      "120",
+      "75",
+      "45",
+      "60"
+    ],
+    "correct_answer": "75",
+    "explanation": "She has 240 minus 90, or 150 miles left, and 4 minus 2, or 2 hours left, so she needs 150 divided by 2, or 75 miles per hour. Reporting the average needed over the whole trip gives 60, reporting the speed she has already driven gives 45, and dividing the whole 240 miles by the 2 remaining hours gives 120.",
+    "solve": "const D=240,T=4,d1=90,t1=2; return (D-d1)/(T-t1);",
+    "distractor_solve": {
+      "60": "const D=240,T=4; return D/T;",
+      "45": "const d1=90,t1=2; return d1/t1;",
+      "120": "const D=240,T=4,t1=2; return D/(T-t1);"
+    }
+  },
+  {
+    "id": "IM9-21",
+    "domain": "Math",
+    "subskill": "volume of a similar solid from the ratio of corresponding edges",
+    "difficulty": "medium",
+    "prompt": "Two cubes have edges in the ratio 2 to 3. The smaller cube has a volume of 40 cubic centimeters. What is the volume, in cubic centimeters, of the larger cube?",
+    "choices": [
+      "60",
+      "120",
+      "90",
+      "135"
+    ],
+    "correct_answer": "135",
+    "explanation": "When every edge is scaled by 3/2, the volume is scaled by 3/2 cubed, which is 27/8, so the larger volume is 40 times 27/8, or 135. Scaling the volume by the edge ratio itself gives 60, scaling it by the square of the edge ratio gives 90, and multiplying the volume by 3 gives 120.",
+    "solve": "const r=3/2; return 40*Math.pow(r,3);",
+    "distractor_solve": {
+      "60": "const r=3/2; return 40*r;",
+      "90": "const r=3/2; return 40*Math.pow(r,2);",
+      "120": "return 40*3;"
+    }
+  },
+  {
+    "id": "IM9-22",
+    "domain": "Math",
+    "subskill": "a two-digit number from its digit sum and the effect of reversing its digits",
+    "difficulty": "hard",
+    "prompt": "The two digits of a certain two-digit number add up to 12. When the two digits are reversed, the new two-digit number is 18 greater than the original number. What is the original number?",
+    "choices": [
+      "57",
+      "39",
+      "75",
+      "66"
+    ],
+    "correct_answer": "57",
+    "explanation": "Reversing the digits changes the number by 9 times the difference of the digits, so that difference is 18 divided by 9, or 2, with the units digit the larger. Digits adding to 12 and differing by 2 are 5 and 7, so the original number is 57. Making the tens digit the larger one gives 75, which is the reversed number rather than the original. Dividing 18 by 3 instead of 9 gives a digit difference of 6 and the number 39, and ignoring the reversal condition entirely and splitting 12 evenly gives 66.",
+    "solve": "for(let t=1;t<=9;t++){ const u=12-t; if(u>=0&&u<=9&&(10*u+t)-(10*t+u)===18) return 10*t+u; } return -1;",
+    "distractor_solve": {
+      "75": "for(let t=1;t<=9;t++){ const u=12-t; if(u>=0&&u<=9&&(10*t+u)-(10*u+t)===18) return 10*t+u; } return -1;",
+      "39": "const diff=18/3; for(let t=1;t<=9;t++){ const u=12-t; if(u>=0&&u<=9&&u-t===diff) return 10*t+u; } return -1;",
+      "66": "for(let t=1;t<=9;t++){ const u=12-t; if(u===t) return 10*t+u; } return -1;"
+    }
+  },
+  {
+    "id": "IM9-23",
+    "domain": "Math",
+    "subskill": "painted cube: counting unit cubes with paint on exactly two faces",
+    "difficulty": "hard",
+    "prompt": "A wooden cube 5 units on each edge is painted on all six of its outside faces and is then cut into 125 unit cubes. How many of the unit cubes have paint on exactly two faces?",
+    "choices": [
+      "36",
+      "12",
+      "8",
+      "27"
+    ],
+    "correct_answer": "36",
+    "explanation": "Two painted faces means a cube sits along an edge but not at a corner. A cube has 12 edges, and each edge holds 5 minus 2, or 3, such unit cubes, for 12 times 3, or 36. The 8 corner cubes have three painted faces, the 27 cubes strictly inside have none, and 12 is simply the number of edges, before counting the cubes along each one.",
+    "solve": "const n=5; return 12*(n-2);",
+    "distractor_solve": {
+      "8": "const n=5; let c=0; for(let x=0;x<n;x++) for(let y=0;y<n;y++) for(let z=0;z<n;z++){ const f=[x===0||x===n-1,y===0||y===n-1,z===0||z===n-1].filter(Boolean).length; if(f===3) c++; } return c;",
+      "27": "const n=5; let c=0; for(let x=0;x<n;x++) for(let y=0;y<n;y++) for(let z=0;z<n;z++){ const f=[x===0||x===n-1,y===0||y===n-1,z===0||z===n-1].filter(Boolean).length; if(f===0) c++; } return c;",
+      "12": "const edges=12; return edges;"
+    }
+  },
+  {
+    "id": "IM9-24",
+    "domain": "Math",
+    "subskill": "sum of the first n odd positive integers",
+    "difficulty": "easy",
+    "prompt": "What is the sum 1 plus 3 plus 5 plus 7 plus 9 plus 11 plus 13 plus 15 plus 17?",
+    "choices": [
+      "100",
+      "64",
+      "90",
+      "81"
+    ],
+    "correct_answer": "81",
+    "explanation": "The sum of the first n odd numbers is n squared, and this list holds the first 9 odd numbers, so the sum is 9 squared, or 81. Running the list one term too far, through 19, gives 100, stopping one term early at 15 gives 64, and multiplying 9 by 10 rather than by itself gives 90.",
+    "solve": "let s=0; for(let i=1;i<=17;i+=2) s+=i; return s;",
+    "distractor_solve": {
+      "100": "let s=0; for(let i=1;i<=19;i+=2) s+=i; return s;",
+      "64": "let s=0; for(let i=1;i<=15;i+=2) s+=i; return s;",
+      "90": "const n=9; return n*(n+1);"
+    }
+  },
+  {
+    "id": "IM9-25",
+    "domain": "Math",
+    "subskill": "converting a Fahrenheit temperature to Celsius with a given formula",
+    "difficulty": "medium",
+    "prompt": "Degrees Celsius can be found from degrees Fahrenheit using C equals five ninths times the quantity F minus 32. A temperature of 95 degrees Fahrenheit is how many degrees Celsius?",
+    "choices": [
+      "52.78",
+      "63",
+      "35",
+      "20.78"
+    ],
+    "correct_answer": "35",
+    "explanation": "Subtracting 32 from 95 leaves 63, and five ninths of 63 is 35. Applying five ninths to 95 without subtracting 32 first gives about 52.78, subtracting the 32 after scaling instead of before gives about 20.78, and stopping after the subtraction gives 63.",
+    "solve": "const F=95; return 5/9*(F-32);",
+    "distractor_solve": {
+      "52.78": "const F=95; return Math.round(5/9*F*100)/100;",
+      "63": "const F=95; return F-32;",
+      "20.78": "const F=95; return Math.round((5/9*F-32)*100)/100;"
+    }
+  },
+  {
+    "id": "IM9-26",
+    "domain": "Math",
+    "subskill": "new equal share when one contributor drops out",
+    "difficulty": "medium",
+    "prompt": "Five friends agreed to share the $180 cost of a gift equally. One of the five then decided not to contribute, and the remaining friends shared the full cost equally instead. How many dollars did each of the remaining friends pay?",
+    "choices": [
+      "45",
+      "54",
+      "90",
+      "60"
+    ],
+    "correct_answer": "45",
+    "explanation": "The full $180 is now divided among 4 friends rather than 5, so each pays 180 divided by 4, or 45 dollars. Dividing among 3 friends gives 60, dividing among only 2 gives 90, and adding the 9 dollar increase on top of the new 45 dollar share counts that increase twice and gives 54.",
+    "solve": "const C=180,n=5; return C/(n-1);",
+    "distractor_solve": {
+      "60": "const C=180,n=5; return C/(n-2);",
+      "90": "const C=180,n=5; return C/(n-3);",
+      "54": "const C=180,n=5; const nw=C/(n-1); return nw+(nw-C/n);"
+    }
+  },
+  {
+    "id": "IM9-27",
+    "domain": "Math",
+    "subskill": "rounding a quotient to the nearest hundredth",
+    "difficulty": "easy",
+    "prompt": "When 47 is divided by 6, what is the quotient rounded to the nearest hundredth?",
+    "choices": [
+      "7.8",
+      "7.5",
+      "7.83",
+      "7"
+    ],
+    "correct_answer": "7.83",
+    "explanation": "Dividing 47 by 6 gives 7.8333 and so on, and the digit after the hundredths place is a 3, so the quotient rounds down to 7.83. Rounding to the nearest tenth rather than the nearest hundredth gives 7.8, writing the whole-number quotient 7 with the remainder 5 after the decimal point gives 7.5, and reporting only the whole-number part of the quotient gives 7.",
+    "solve": "return Math.round(47/6*100)/100;",
+    "distractor_solve": {
+      "7.8": "return Math.round(47/6*10)/10;",
+      "7.5": "const q=Math.floor(47/6), r=47%6; return Number(q+'.'+r);",
+      "7": "return Math.floor(47/6);"
+    }
+  },
+  {
+    "id": "IM9-28",
+    "domain": "Math",
+    "subskill": "first term of an arithmetic sequence that exceeds a given value",
+    "difficulty": "medium",
+    "prompt": "A sequence begins 4, 10, 16, 22, and continues by adding 6 to each term to get the next. What is the first term of this sequence that is greater than 100?",
+    "choices": [
+      "100",
+      "112",
+      "106",
+      "94"
+    ],
+    "correct_answer": "106",
+    "explanation": "The terms are 4 more than a multiple of 6, and 100 is itself a term of the sequence, but 100 is not greater than 100, so the first term that qualifies is the next one, 106. Stopping at the first term that reaches 100 gives 100, going one term too far gives 112, and taking the last term below 100 gives 94.",
+    "solve": "let t=4; while(t<=100) t+=6; return t;",
+    "distractor_solve": {
+      "100": "let t=4; while(t<100) t+=6; return t;",
+      "112": "let t=4; while(t<=100) t+=6; return t+6;",
+      "94": "let t=4; while(t+6<100) t+=6; return t;"
+    }
+  },
+  {
+    "id": "IM9-29",
+    "domain": "Math",
+    "subskill": "cost of fencing a rectangle with a gap left for a gate",
+    "difficulty": "medium",
+    "prompt": "A rectangular garden measures 24 feet by 16 feet. A fence is to be built all the way around it except for one 4-foot gap left for a gate. Fencing costs $7 per foot. What is the total cost, in dollars, of the fencing?",
+    "choices": [
+      "560",
+      "504",
+      "546",
+      "532"
+    ],
+    "correct_answer": "532",
+    "explanation": "The perimeter is 2 times 24 plus 16, or 80 feet, and leaving out the 4-foot gate means fencing 76 feet at $7 per foot, for $532. Fencing the full perimeter and forgetting the gate gives 560, subtracting the 4 feet twice gives 504, and subtracting only half the gate gives 546.",
+    "solve": "const P=2*(24+16); return (P-4)*7;",
+    "distractor_solve": {
+      "560": "const P=2*(24+16); return P*7;",
+      "504": "const P=2*(24+16); return (P-8)*7;",
+      "546": "const P=2*(24+16); return (P-2)*7;"
+    }
+  },
+  {
+    "id": "IM9-30",
+    "domain": "Math",
+    "subskill": "possible length of the third side of a triangle",
+    "difficulty": "medium",
+    "prompt": "Two sides of a triangle have lengths 6 and 13. Which of the following could be the length of the third side?",
+    "choices": [
+      "7",
+      "19",
+      "5",
+      "15"
+    ],
+    "correct_answer": "15",
+    "explanation": "The third side must be longer than the difference of the two given sides and shorter than their sum, so it must lie strictly between 7 and 19. Of the choices only 15 lies in that range. The difference 7 and the sum 19 are the endpoints themselves, and a triangle with either of those third sides would collapse into a straight line, while 5 is shorter than the difference and cannot close the triangle at all.",
+    "solve": "const a=6,b=13; const opts=[7,19,5,15]; return opts.filter(x=>x>Math.abs(b-a)&&x<a+b)[0];",
+    "distractor_solve": {
+      "7": "const a=6,b=13; return Math.abs(b-a);",
+      "19": "const a=6,b=13; return a+b;",
+      "5": "const a=6; const opts=[7,19,5,15]; return opts.filter(x=>x<a).sort((p,q)=>q-p)[0];"
+    }
+  }
+]

@@ -216,10 +216,19 @@ function sandboxDistractors(item) {
   return { wrong, covered, expected }
 }
 
-// SAT items carry 4 options; SSAT and ISEE items carry 5. This was pinned at
-// exactly 4 until 2026-09-01, which meant `verify` reported SHAPE on every
+// SAT, ACT and ISEE items carry 4 options; SSAT items carry 5. This was pinned
+// at exactly 4 until 2026-09-01, which meant `verify` reported SHAPE on every
 // 5-option batch and printed "0/48 recompute to their key" — the sandbox never
-// ran on a single SSAT or ISEE math item. A gate that cannot pass is not a gate.
+// ran on a single SSAT math item. A gate that cannot pass is not a gate.
+//
+// THE LINE ABOVE SAID "SSAT AND ISEE ITEMS CARRY 5" UNTIL 2026-09-12 AND WAS
+// WRONG ABOUT ISEE. Measured over the whole live population that day:
+// sat 1087 items all 4-choice, act 229 all 4, isee 283 all 4, ssat 153 all 5.
+// Only SSAT is five-choice, which is what the real exams do. Nothing enforced
+// the bad claim — shapeOk accepts 4 or 5 — so it never broke an insert; it
+// broke a BRIEF. It was quoted to an ISEE author, who checked the bank instead
+// of believing it and reported back. The cost of a wrong comment is not a
+// failed run, it is 30 items authored to the wrong shape by whoever trusts it.
 function shapeOk(raw) {
   const n = Array.isArray(raw.choices) ? raw.choices.length : 0
   return raw.prompt && (n === 4 || n === 5)
