@@ -1,0 +1,1232 @@
+[
+  {
+    "id": "SM8-01",
+    "domain": "Math",
+    "subskill": "clock arithmetic across noon with a minute carry",
+    "difficulty": "easy",
+    "prompt": "A documentary begins at 10:45 a.m. and runs for 2 hours 40 minutes without a break. At what time does it end?",
+    "choices": [
+      "12:05 p.m.",
+      "12:25 p.m.",
+      "1:25 p.m.",
+      "12:45 p.m.",
+      "1:15 p.m."
+    ],
+    "correct_answer": "1:25 p.m.",
+    "explanation": "From 10:45 a.m., two hours brings the clock to 12:45 p.m. Another 40 minutes is 15 minutes to reach 1:00 p.m. and 25 minutes past, so the film ends at 1:25 p.m.",
+    "solve": "var F=function(m){var h=Math.floor(m/60)%24,q=m%60,ap=h<12?'a.m.':'p.m.',hh=h%12===0?12:h%12;return hh+':'+(q<10?'0'+q:q)+' '+ap;};return F(10*60+45+160);",
+    "distractor_solve": {
+      "12:05 p.m.": "var F=function(m){var h=Math.floor(m/60)%24,q=m%60,ap=h<12?'a.m.':'p.m.',hh=h%12===0?12:h%12;return hh+':'+(q<10?'0'+q:q)+' '+ap;};return F(10*60+45+120-40);",
+      "12:45 p.m.": "var F=function(m){var h=Math.floor(m/60)%24,q=m%60,ap=h<12?'a.m.':'p.m.',hh=h%12===0?12:h%12;return hh+':'+(q<10?'0'+q:q)+' '+ap;};return F(10*60+45+120);",
+      "1:15 p.m.": "var F=function(m){var h=Math.floor(m/60)%24,q=m%60,ap=h<12?'a.m.':'p.m.',hh=h%12===0?12:h%12;return hh+':'+(q<10?'0'+q:q)+' '+ap;};return F(10*60+45+150);",
+      "12:25 p.m.": "var F=function(m){var h=Math.floor(m/60)%24,q=m%60,ap=h<12?'a.m.':'p.m.',hh=h%12===0?12:h%12;return hh+':'+(q<10?'0'+q:q)+' '+ap;};return F(10*60+45+160-60);"
+    },
+    "distractor_steps": [
+      {
+        "choice": "12:05 p.m.",
+        "mis_step": "reached 12:45 p.m. after two hours and then subtracted the 40 minutes instead of adding them"
+      },
+      {
+        "choice": "12:45 p.m.",
+        "mis_step": "added only the two whole hours and stopped before the 40 minutes"
+      },
+      {
+        "choice": "1:15 p.m.",
+        "mis_step": "read 2 hours 40 minutes as 2.5 hours and added 2 hours 30 minutes"
+      },
+      {
+        "choice": "12:25 p.m.",
+        "mis_step": "wrote 12 hours 85 minutes and then dropped the extra hour when converting the 85 minutes to 1 hour 25 minutes"
+      }
+    ]
+  },
+  {
+    "id": "SM8-02",
+    "domain": "Math",
+    "subskill": "least multiple of 9 above a given number",
+    "difficulty": "easy",
+    "prompt": "What is the least multiple of 9 that is greater than 4127?",
+    "choices": [
+      "4131",
+      "4118",
+      "4141",
+      "4122",
+      "4128"
+    ],
+    "correct_answer": "4131",
+    "explanation": "The digits of 4127 add to 14, and 4127 = 9 x 458 + 5, so 4127 is 5 more than a multiple of 9 and 4 less than the next one. Adding 4 gives 4131, and 4131 = 9 x 459.",
+    "solve": "var n=4127,m=n+1;while(m%9!==0){m++;}return m;",
+    "distractor_solve": {
+      "4118": "return 4127-9;",
+      "4122": "var n=4127,m=n-1;while(m%9!==0){m--;}return m;",
+      "4128": "var n=4127,m=n+1;while(m%3!==0){m++;}return m;",
+      "4141": "var n=4127;var r=n%9;return n+9+r;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "4141",
+        "mis_step": "added 9 plus the remainder rather than 9 minus the remainder, a sign slip on the remainder"
+      },
+      {
+        "choice": "4122",
+        "mis_step": "found the greatest multiple of 9 below 4127 rather than the least one above it"
+      },
+      {
+        "choice": "4128",
+        "mis_step": "applied the divisibility test for 3 instead of 9 and took the next multiple of 3"
+      },
+      {
+        "choice": "4118",
+        "mis_step": "subtracted 9 from 4127 instead of adding the amount needed to reach the next multiple"
+      }
+    ]
+  },
+  {
+    "id": "SM8-03",
+    "domain": "Math",
+    "subskill": "converting a Fahrenheit temperature to Celsius",
+    "difficulty": "easy",
+    "prompt": "Celsius temperature C is related to Fahrenheit temperature F by C = (F - 32) x 5/9. A thermometer reads 77 degrees Fahrenheit. What is that reading in degrees Celsius, to the nearest tenth?",
+    "choices": [
+      "42.8",
+      "25.0",
+      "81.0",
+      "45.0",
+      "60.6"
+    ],
+    "correct_answer": "25.0",
+    "explanation": "Subtracting first gives 77 - 32 = 45, and 45 x 5/9 = 25, so the reading is 25.0 degrees Celsius.",
+    "solve": "return ((77-32)*5/9).toFixed(1);",
+    "distractor_solve": {
+      "42.8": "return (77*5/9).toFixed(1);",
+      "81.0": "return ((77-32)*9/5).toFixed(1);",
+      "45.0": "return (77-32).toFixed(1);",
+      "60.6": "return ((77+32)*5/9).toFixed(1);"
+    },
+    "distractor_steps": [
+      {
+        "choice": "42.8",
+        "mis_step": "scaled by 5/9 without subtracting the 32 first"
+      },
+      {
+        "choice": "81.0",
+        "mis_step": "used the factor 9/5, the Celsius-to-Fahrenheit direction, instead of 5/9"
+      },
+      {
+        "choice": "45.0",
+        "mis_step": "stopped after subtracting 32 and never applied the 5/9 factor"
+      },
+      {
+        "choice": "60.6",
+        "mis_step": "added 32 instead of subtracting it before scaling"
+      }
+    ]
+  },
+  {
+    "id": "SM8-04",
+    "domain": "Math",
+    "subskill": "reflecting a point across the x-axis",
+    "difficulty": "easy",
+    "prompt": "Point P has coordinates (-4, 7). Point P is reflected across the x-axis to give point Q. What are the coordinates of Q?",
+    "choices": [
+      "(4, 7)",
+      "(7, -4)",
+      "(4, -7)",
+      "(-4, -7)",
+      "(-7, 4)"
+    ],
+    "correct_answer": "(-4, -7)",
+    "explanation": "A reflection across the x-axis leaves the x-coordinate alone and changes the sign of the y-coordinate, so (-4, 7) becomes (-4, -7).",
+    "solve": "var x=-4,y=7;return '('+x+', '+(-y)+')';",
+    "distractor_solve": {
+      "(4, 7)": "var x=-4,y=7;return '('+(-x)+', '+y+')';",
+      "(7, -4)": "var x=-4,y=7;return '('+y+', '+x+')';",
+      "(4, -7)": "var x=-4,y=7;return '('+(-x)+', '+(-y)+')';",
+      "(-7, 4)": "var x=-4,y=7;return '('+(-y)+', '+(-x)+')';"
+    },
+    "distractor_steps": [
+      {
+        "choice": "(4, 7)",
+        "mis_step": "reflected across the y-axis, changing the x-coordinate's sign instead of the y-coordinate's"
+      },
+      {
+        "choice": "(7, -4)",
+        "mis_step": "reflected across the line y = x, swapping the two coordinates"
+      },
+      {
+        "choice": "(4, -7)",
+        "mis_step": "changed both signs, which is a half-turn about the origin rather than a reflection"
+      },
+      {
+        "choice": "(-7, 4)",
+        "mis_step": "reflected across the line y = -x, swapping the coordinates and changing both signs"
+      }
+    ]
+  },
+  {
+    "id": "SM8-05",
+    "domain": "Math",
+    "subskill": "solving for an exponent in a product of equal bases",
+    "difficulty": "easy",
+    "prompt": "If 3^3 x 3^n = 3^12, what is the value of n?",
+    "choices": [
+      "12",
+      "9",
+      "4",
+      "15",
+      "3"
+    ],
+    "correct_answer": "9",
+    "explanation": "Multiplying powers of the same base adds the exponents, so 3 + n = 12 and n = 9.",
+    "solve": "return 12-3;",
+    "distractor_solve": {
+      "3": "return 3;",
+      "4": "return 12/3;",
+      "12": "return 12;",
+      "15": "return 12+3;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "12",
+        "mis_step": "reported the exponent of the product itself rather than the missing exponent"
+      },
+      {
+        "choice": "4",
+        "mis_step": "divided the exponents, as if multiplying powers divided them"
+      },
+      {
+        "choice": "15",
+        "mis_step": "added the two known exponents instead of subtracting to find the missing one"
+      },
+      {
+        "choice": "3",
+        "mis_step": "assumed the two factors on the left must carry the same exponent"
+      }
+    ]
+  },
+  {
+    "id": "SM8-06",
+    "domain": "Math",
+    "subskill": "central angle of a circle-graph sector from a percent",
+    "difficulty": "easy",
+    "prompt": "On a circle graph, one sector represents 35 percent of the whole. How many degrees is the central angle of that sector?",
+    "choices": [
+      "126",
+      "108",
+      "35",
+      "63",
+      "90"
+    ],
+    "correct_answer": "126",
+    "explanation": "A full circle is 360 degrees, so the sector's angle is 0.35 x 360 = 126 degrees.",
+    "solve": "return 35*360/100;",
+    "distractor_solve": {
+      "35": "return 35;",
+      "63": "return 0.35*180;",
+      "90": "return 25*360/100;",
+      "108": "return 30*360/100;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "35",
+        "mis_step": "read the percent straight off as a number of degrees"
+      },
+      {
+        "choice": "63",
+        "mis_step": "took the percent of 180 degrees, treating a half circle as the whole"
+      },
+      {
+        "choice": "90",
+        "mis_step": "rounded 35 percent down to a quarter of the circle"
+      },
+      {
+        "choice": "108",
+        "mis_step": "rounded 35 percent down to 30 percent before multiplying"
+      }
+    ]
+  },
+  {
+    "id": "SM8-07",
+    "domain": "Math",
+    "subskill": "unit price from a total cost and a decimal mass",
+    "difficulty": "easy",
+    "prompt": "A 4.5-kilogram bag of rice costs 16.20 dollars. What is the cost per kilogram, in dollars?",
+    "choices": [
+      "4.05",
+      "1.80",
+      "2.70",
+      "3.24",
+      "3.60"
+    ],
+    "correct_answer": "3.60",
+    "explanation": "Dividing the cost by the mass gives 16.20 / 4.5 = 3.60 dollars per kilogram. Checking, 4.5 x 3.60 = 16.20.",
+    "solve": "return (16.20/4.5).toFixed(2);",
+    "distractor_solve": {
+      "4.05": "return (16.20/4).toFixed(2);",
+      "1.80": "return (16.20/4.5/2).toFixed(2);",
+      "3.24": "return (16.20/5).toFixed(2);",
+      "2.70": "return (16.20/6).toFixed(2);"
+    },
+    "distractor_steps": [
+      {
+        "choice": "4.05",
+        "mis_step": "rounded the mass down to 4 kilograms before dividing"
+      },
+      {
+        "choice": "1.80",
+        "mis_step": "gave the cost of half a kilogram rather than of one kilogram"
+      },
+      {
+        "choice": "3.24",
+        "mis_step": "rounded the mass up to 5 kilograms before dividing"
+      },
+      {
+        "choice": "2.70",
+        "mis_step": "rounded the mass up to 6 kilograms before dividing"
+      }
+    ]
+  },
+  {
+    "id": "SM8-08",
+    "domain": "Math",
+    "subskill": "a change in temperature spanning zero on a signed scale",
+    "difficulty": "easy",
+    "prompt": "At midnight the temperature was -7 degrees Celsius. By noon it had risen to 11 degrees Celsius. By how many degrees did the temperature rise?",
+    "choices": [
+      "7",
+      "4",
+      "25",
+      "18",
+      "11"
+    ],
+    "correct_answer": "18",
+    "explanation": "The rise is 11 - (-7) = 11 + 7 = 18 degrees: 7 degrees to climb to zero and 11 more above it.",
+    "solve": "return 11-(-7);",
+    "distractor_solve": {
+      "4": "return 11-7;",
+      "7": "return 0-(-7);",
+      "11": "return 11-0;",
+      "25": "return 11+7+7;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "7",
+        "mis_step": "counted only the climb from -7 up to zero"
+      },
+      {
+        "choice": "4",
+        "mis_step": "subtracted 7 rather than subtracting negative 7, dropping the sign"
+      },
+      {
+        "choice": "25",
+        "mis_step": "counted the 7 degrees below zero twice"
+      },
+      {
+        "choice": "11",
+        "mis_step": "counted only the part of the climb above zero"
+      }
+    ]
+  },
+  {
+    "id": "SM8-09",
+    "domain": "Math",
+    "subskill": "indirect measurement from shadow lengths",
+    "difficulty": "easy",
+    "prompt": "A vertical pole 6 feet tall casts a shadow 8 feet long. At the same moment a flagpole casts a shadow 36 feet long. How many feet tall is the flagpole?",
+    "choices": [
+      "30",
+      "48",
+      "36",
+      "34",
+      "27"
+    ],
+    "correct_answer": "27",
+    "explanation": "Height and shadow are in the same ratio for both objects, so height / 36 = 6 / 8. The height is 6 x 36 / 8 = 27 feet.",
+    "solve": "return 6*36/8;",
+    "distractor_solve": {
+      "30": "return 36-6;",
+      "34": "return 36+6-8;",
+      "36": "return 36;",
+      "48": "return 8*36/6;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "30",
+        "mis_step": "subtracted the pole's height from the flagpole's shadow"
+      },
+      {
+        "choice": "48",
+        "mis_step": "set the proportion up inverted, pairing the 8-foot shadow with the flagpole's shadow"
+      },
+      {
+        "choice": "36",
+        "mis_step": "assumed the flagpole is as tall as its own shadow is long"
+      },
+      {
+        "choice": "34",
+        "mis_step": "treated the 2-foot gap between the pole's height and shadow as an additive shift"
+      }
+    ]
+  },
+  {
+    "id": "SM8-10",
+    "domain": "Math",
+    "subskill": "multiplying numbers written in scientific notation",
+    "difficulty": "medium",
+    "prompt": "What is the product (3.0 x 10^4)(4.0 x 10^3), written in scientific notation?",
+    "choices": [
+      "7.0 x 10^12",
+      "1.2 x 10^7",
+      "1.2 x 10^8",
+      "7.0 x 10^7",
+      "1.2 x 10^12"
+    ],
+    "correct_answer": "1.2 x 10^8",
+    "explanation": "Multiply the front numbers and add the exponents: 3.0 x 4.0 = 12 and 10^4 x 10^3 = 10^7, giving 12 x 10^7. Since 12 is not between 1 and 10, rewrite it as 1.2 x 10^1, so the product is 1.2 x 10^8.",
+    "solve": "var m=3.0*4.0,e=4+3;while(m>=10){m=m/10;e=e+1;}return m.toFixed(1)+' x 10^'+e;",
+    "distractor_solve": {
+      "7.0 x 10^12": "var m=3.0+4.0,e=4*3;return m.toFixed(1)+' x 10^'+e;",
+      "1.2 x 10^7": "var m=3.0*4.0,e=4+3;return (m/10).toFixed(1)+' x 10^'+e;",
+      "7.0 x 10^7": "var m=3.0+4.0,e=4+3;return m.toFixed(1)+' x 10^'+e;",
+      "1.2 x 10^12": "var m=3.0*4.0,e=4*3;return (m/10).toFixed(1)+' x 10^'+e;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "7.0 x 10^12",
+        "mis_step": "added the front numbers and multiplied the exponents"
+      },
+      {
+        "choice": "1.2 x 10^7",
+        "mis_step": "rewrote 12 as 1.2 but did not raise the exponent from 7 to 8 to pay for it"
+      },
+      {
+        "choice": "7.0 x 10^7",
+        "mis_step": "added the front numbers instead of multiplying them"
+      },
+      {
+        "choice": "1.2 x 10^12",
+        "mis_step": "multiplied the exponents instead of adding them, then rewrote 12 without adjusting"
+      }
+    ]
+  },
+  {
+    "id": "SM8-11",
+    "domain": "Math",
+    "subskill": "base pay plus a percent commission",
+    "difficulty": "medium",
+    "prompt": "A salesperson is paid 480 dollars a week plus a commission of 6 percent of the value of the goods she sells. In one week she sold 7200 dollars worth of goods. How many dollars did she earn that week in total?",
+    "choices": [
+      "1392",
+      "432",
+      "912",
+      "940.80",
+      "480"
+    ],
+    "correct_answer": "912",
+    "explanation": "The commission is 0.06 x 7200 = 432 dollars. Added to the 480 dollars of base pay, the week's earnings are 480 + 432 = 912 dollars.",
+    "solve": "return 480+0.06*7200;",
+    "distractor_solve": {
+      "432": "return 0.06*7200;",
+      "480": "return 480;",
+      "1392": "return 480+480+0.06*7200;",
+      "940.80": "return (480+0.06*(7200+480)).toFixed(2);"
+    },
+    "distractor_steps": [
+      {
+        "choice": "1392",
+        "mis_step": "counted the 480 dollars of base pay twice, once on its own and once inside the total"
+      },
+      {
+        "choice": "432",
+        "mis_step": "gave the commission alone and never added the base pay"
+      },
+      {
+        "choice": "940.80",
+        "mis_step": "took the 6 percent on the sales plus the base pay rather than on the sales alone"
+      },
+      {
+        "choice": "480",
+        "mis_step": "gave the base pay alone, treating the commission as already included"
+      }
+    ]
+  },
+  {
+    "id": "SM8-12",
+    "domain": "Math",
+    "subskill": "volume of a right circular cylinder left in terms of pi",
+    "difficulty": "medium",
+    "prompt": "A closed cylindrical can has a radius of 5 centimetres and a height of 12 centimetres. What is its volume, in cubic centimetres?",
+    "choices": [
+      "170π",
+      "300π",
+      "60π",
+      "50π",
+      "120π"
+    ],
+    "correct_answer": "300π",
+    "explanation": "The volume of a cylinder is pi times the radius squared times the height: 25 x 12 = 300, so the volume is 300π cubic centimetres.",
+    "solve": "return (5*5*12)+'π';",
+    "distractor_solve": {
+      "170π": "return (2*5*5+2*5*12)+'π';",
+      "60π": "return (5*12)+'π';",
+      "50π": "return (2*5*5)+'π';",
+      "120π": "return (2*5*12)+'π';"
+    },
+    "distractor_steps": [
+      {
+        "choice": "170π",
+        "mis_step": "computed the total surface area of the can instead of its volume"
+      },
+      {
+        "choice": "60π",
+        "mis_step": "multiplied radius by height without squaring the radius"
+      },
+      {
+        "choice": "50π",
+        "mis_step": "gave the area of the two circular ends only"
+      },
+      {
+        "choice": "120π",
+        "mis_step": "used the lateral surface formula 2 pi r h in place of the volume formula"
+      }
+    ]
+  },
+  {
+    "id": "SM8-13",
+    "domain": "Math",
+    "subskill": "sum of the multiples of a number below a bound",
+    "difficulty": "medium",
+    "prompt": "What is the sum of all the multiples of 7 that are greater than 0 and less than 100?",
+    "choices": [
+      "749",
+      "637",
+      "840",
+      "735",
+      "742"
+    ],
+    "correct_answer": "735",
+    "explanation": "The multiples are 7, 14, ... , 98, which is 14 terms. Their sum is 14 x (7 + 98) / 2 = 14 x 52.5 = 735.",
+    "solve": "var s=0;for(var k=7;k<100;k+=7){s+=k;}return s;",
+    "distractor_solve": {
+      "637": "var s=0;for(var k=7;k<=91;k+=7){s+=k;}return s;",
+      "742": "var s=0;for(var k=7;k<100;k+=7){s+=k;}return s+7;",
+      "749": "return 14*(7+100)/2;",
+      "840": "var s=0;for(var k=7;k<=105;k+=7){s+=k;}return s;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "749",
+        "mis_step": "averaged 7 with the bound 100 rather than with the last multiple, 98"
+      },
+      {
+        "choice": "637",
+        "mis_step": "stopped the list at 91, counting only 13 of the 14 multiples"
+      },
+      {
+        "choice": "840",
+        "mis_step": "carried the list on to 105, which is not less than 100"
+      },
+      {
+        "choice": "742",
+        "mis_step": "counted the multiple 7 twice, once to open the list and once as a term"
+      }
+    ]
+  },
+  {
+    "id": "SM8-14",
+    "domain": "Math",
+    "subskill": "expected number of successes over repeated trials",
+    "difficulty": "medium",
+    "prompt": "A spinner is built so that the probability of landing on red is 3/8. The spinner is spun 240 times. How many red results should be expected?",
+    "choices": [
+      "30",
+      "150",
+      "120",
+      "80",
+      "90"
+    ],
+    "correct_answer": "90",
+    "explanation": "The expected count is the probability times the number of trials: 3/8 of 240 is 240 / 8 = 30, and 3 x 30 = 90.",
+    "solve": "return 240*3/8;",
+    "distractor_solve": {
+      "30": "return 240/8;",
+      "80": "return 240/3;",
+      "120": "return 240/2;",
+      "150": "return 240-240*3/8;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "30",
+        "mis_step": "found one eighth of the spins and stopped before multiplying by 3"
+      },
+      {
+        "choice": "150",
+        "mis_step": "gave the number of spins expected NOT to land on red"
+      },
+      {
+        "choice": "120",
+        "mis_step": "rounded the probability 3/8 to one half"
+      },
+      {
+        "choice": "80",
+        "mis_step": "divided by the numerator 3 instead of multiplying by it"
+      }
+    ]
+  },
+  {
+    "id": "SM8-15",
+    "domain": "Math",
+    "subskill": "area of a rectangle given its four vertices",
+    "difficulty": "medium",
+    "prompt": "A rectangle in the coordinate plane has vertices at (-3, 2), (5, 2), (5, -4) and (-3, -4). What is its area, in square units?",
+    "choices": [
+      "24",
+      "14",
+      "48",
+      "28",
+      "12"
+    ],
+    "correct_answer": "48",
+    "explanation": "The horizontal side runs from x = -3 to x = 5, a length of 8. The vertical side runs from y = -4 to y = 2, a length of 6. The area is 8 x 6 = 48 square units.",
+    "solve": "return (5-(-3))*(2-(-4));",
+    "distractor_solve": {
+      "12": "return (5-3)*(2-(-4));",
+      "14": "return (5-(-3))+(2-(-4));",
+      "24": "return (5-(-3))*(2-(-4))/2;",
+      "28": "return 2*((5-(-3))+(2-(-4)));"
+    },
+    "distractor_steps": [
+      {
+        "choice": "24",
+        "mis_step": "halved the product, as though the figure were a triangle on the same base and height"
+      },
+      {
+        "choice": "14",
+        "mis_step": "added the two side lengths instead of multiplying them"
+      },
+      {
+        "choice": "28",
+        "mis_step": "computed the perimeter rather than the area"
+      },
+      {
+        "choice": "12",
+        "mis_step": "dropped the sign on -3, making the horizontal side 2 units instead of 8"
+      }
+    ]
+  },
+  {
+    "id": "SM8-16",
+    "domain": "Math",
+    "subskill": "range of a data set after one value is corrected",
+    "difficulty": "medium",
+    "prompt": "Five test scores were recorded as 72, 85, 91, 68 and 79. The score of 68 was later found to be an error and was corrected to 94. What is the range of the five corrected scores?",
+    "choices": [
+      "26",
+      "15",
+      "19",
+      "22",
+      "23"
+    ],
+    "correct_answer": "22",
+    "explanation": "After the correction the scores are 72, 85, 91, 94 and 79. The greatest is 94 and the least is 72, so the range is 94 - 72 = 22.",
+    "solve": "var d=[72,85,91,94,79];return Math.max.apply(null,d)-Math.min.apply(null,d);",
+    "distractor_solve": {
+      "15": "return 94-79;",
+      "19": "return 91-72;",
+      "23": "var d=[72,85,91,68,79];return Math.max.apply(null,d)-Math.min.apply(null,d);",
+      "26": "return 94-68;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "26",
+        "mis_step": "gave the size of the correction, 94 - 68, rather than the range of the new set"
+      },
+      {
+        "choice": "15",
+        "mis_step": "took 79 as the least score, overlooking the 72"
+      },
+      {
+        "choice": "19",
+        "mis_step": "kept 91 as the greatest score, overlooking that 94 replaced the 68"
+      },
+      {
+        "choice": "23",
+        "mis_step": "computed the range of the original, uncorrected set"
+      }
+    ]
+  },
+  {
+    "id": "SM8-17",
+    "domain": "Math",
+    "subskill": "a required score when the last test carries double weight",
+    "difficulty": "medium",
+    "prompt": "In one course each of four quizzes counts once toward the course average and the final examination counts twice. A student's four quiz scores are 82, 88, 91 and 79. What score on the final examination would give the student a course average of exactly 86?",
+    "choices": [
+      "90",
+      "86",
+      "87",
+      "85",
+      "88"
+    ],
+    "correct_answer": "88",
+    "explanation": "The five results carry six weights in all, so the weighted total must be 6 x 86 = 516. The quizzes contribute 82 + 88 + 91 + 79 = 340, leaving 176 for the final, which counts twice. So the final score must be 176 / 2 = 88.",
+    "solve": "return (86*6-(82+88+91+79))/2;",
+    "distractor_solve": {
+      "85": "return (82+88+91+79)/4;",
+      "86": "return 86;",
+      "87": "return 2*86-(82+88+91+79)/4;",
+      "90": "return 86*5-(82+88+91+79);"
+    },
+    "distractor_steps": [
+      {
+        "choice": "90",
+        "mis_step": "counted the final only once, dividing the target by five weights instead of six"
+      },
+      {
+        "choice": "86",
+        "mis_step": "assumed a score equal to the target average would produce that average"
+      },
+      {
+        "choice": "85",
+        "mis_step": "gave the average of the four quizzes already taken"
+      },
+      {
+        "choice": "87",
+        "mis_step": "averaged the quiz average with the final score, giving the final half the weight rather than a third"
+      }
+    ]
+  },
+  {
+    "id": "SM8-18",
+    "domain": "Math",
+    "subskill": "still-water speed recovered from a downstream trip",
+    "difficulty": "medium",
+    "prompt": "A boat travels 36 kilometres downstream in 2 hours. The current flows at 3 kilometres per hour and the boat's engine drives it at a constant speed. What is the boat's speed in still water, in kilometres per hour?",
+    "choices": [
+      "15",
+      "33",
+      "18",
+      "12",
+      "21"
+    ],
+    "correct_answer": "15",
+    "explanation": "Going downstream the boat covers 36 / 2 = 18 kilometres per hour, and that 18 is the engine's speed plus the 3 from the current. So in still water the boat travels 18 - 3 = 15 kilometres per hour.",
+    "solve": "return 36/2-3;",
+    "distractor_solve": {
+      "12": "return 36/2-3-3;",
+      "18": "return 36/2;",
+      "21": "return 36/2+3;",
+      "33": "return 36-3;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "33",
+        "mis_step": "subtracted the current from the distance rather than from the speed"
+      },
+      {
+        "choice": "18",
+        "mis_step": "gave the downstream speed and never removed the current"
+      },
+      {
+        "choice": "12",
+        "mis_step": "removed the current twice, giving the upstream speed instead"
+      },
+      {
+        "choice": "21",
+        "mis_step": "added the current to the downstream speed instead of subtracting it"
+      }
+    ]
+  },
+  {
+    "id": "SM8-19",
+    "domain": "Math",
+    "subskill": "longest rod that fits inside a rectangular box",
+    "difficulty": "medium",
+    "prompt": "A rectangular box measures 3 centimetres by 4 centimetres by 12 centimetres. What is the length, in centimetres, of the longest straight rod that can be placed inside it?",
+    "choices": [
+      "17",
+      "19",
+      "5",
+      "13",
+      "12"
+    ],
+    "correct_answer": "13",
+    "explanation": "The diagonal of the 3 by 4 base is 5. That diagonal and the 12-centimetre height form a right triangle whose hypotenuse is the rod, so the rod is the square root of 5 squared plus 12 squared, which is the square root of 169, or 13.",
+    "solve": "return Math.sqrt(3*3+4*4+12*12);",
+    "distractor_solve": {
+      "5": "return Math.sqrt(3*3+4*4);",
+      "12": "return 12;",
+      "17": "return Math.sqrt(3*3+4*4)+12;",
+      "19": "return 3+4+12;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "19",
+        "mis_step": "added the three edge lengths instead of combining them as a diagonal"
+      },
+      {
+        "choice": "5",
+        "mis_step": "stopped at the diagonal of the 3 by 4 base and never used the height"
+      },
+      {
+        "choice": "12",
+        "mis_step": "took the longest edge, assuming no rod could exceed it"
+      },
+      {
+        "choice": "17",
+        "mis_step": "added the 5-unit base diagonal to the 12-unit height instead of combining them as legs of a right triangle"
+      }
+    ]
+  },
+  {
+    "id": "SM8-20",
+    "domain": "Math",
+    "subskill": "extrapolating a constant rate back to its starting value",
+    "difficulty": "medium",
+    "prompt": "A candle burns down at a constant rate. Three hours after it was lit it was 22 centimetres tall, and seven hours after it was lit it was 14 centimetres tall. How tall, in centimetres, was the candle when it was lit?",
+    "choices": [
+      "28",
+      "20",
+      "36",
+      "16",
+      "24"
+    ],
+    "correct_answer": "28",
+    "explanation": "The candle lost 22 - 14 = 8 centimetres over 7 - 3 = 4 hours, a rate of 2 centimetres per hour. Going back the 3 hours from the 22-centimetre reading adds 3 x 2 = 6 centimetres, so it was 28 centimetres tall when lit.",
+    "solve": "var r=(22-14)/(7-3);return 22+r*3;",
+    "distractor_solve": {
+      "16": "var r=(22-14)/(7-3);return 22-r*3;",
+      "20": "var r=(22-14)/(7-3);return 22-r;",
+      "24": "var r=(22-14)/(7-3);return 22+r*1;",
+      "36": "return 22+14;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "20",
+        "mis_step": "went back one hour instead of three from the 22-centimetre reading"
+      },
+      {
+        "choice": "36",
+        "mis_step": "added the two recorded heights together"
+      },
+      {
+        "choice": "16",
+        "mis_step": "burned the candle further down instead of running the rate backwards"
+      },
+      {
+        "choice": "24",
+        "mis_step": "went back one hour instead of the three since the candle was lit"
+      }
+    ]
+  },
+  {
+    "id": "SM8-21",
+    "domain": "Math",
+    "subskill": "concentration after part of a solution is drained and replaced with water",
+    "difficulty": "hard",
+    "prompt": "A 20-litre tank is completely full of a solution that is 40 percent acid by volume. Exactly 5 litres of the solution are drained off and replaced with 5 litres of pure water. What percent of the new 20 litres is acid?",
+    "choices": [
+      "35",
+      "30",
+      "15",
+      "40",
+      "32"
+    ],
+    "correct_answer": "30",
+    "explanation": "The tank starts with 0.40 x 20 = 8 litres of acid. The 5 litres drained off are themselves 40 percent acid, so they carry away 2 litres, leaving 6 litres of acid. The tank still holds 20 litres, so the new concentration is 6 / 20 = 30 percent.",
+    "solve": "var a=20*0.40;a=a-5*0.40;return a/20*100;",
+    "distractor_solve": {
+      "15": "var a=20*0.40-5;return a/20*100;",
+      "32": "var a=20*0.40;return a/25*100;",
+      "35": "return 40-5;",
+      "40": "return 40;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "35",
+        "mis_step": "subtracted 5 percentage points because 5 litres were replaced"
+      },
+      {
+        "choice": "15",
+        "mis_step": "assumed the 5 litres drained off were entirely acid"
+      },
+      {
+        "choice": "40",
+        "mis_step": "assumed draining and refilling the same volume leaves the concentration unchanged"
+      },
+      {
+        "choice": "32",
+        "mis_step": "kept all 8 litres of acid and divided by 25 litres, pouring the water into a tank that was already full"
+      }
+    ]
+  },
+  {
+    "id": "SM8-22",
+    "domain": "Math",
+    "subskill": "probability of at least one success by the complement rule",
+    "difficulty": "hard",
+    "prompt": "A fair coin is tossed three times. What is the probability that at least one toss lands heads?",
+    "choices": [
+      "3/8",
+      "1/2",
+      "1/8",
+      "3/4",
+      "7/8"
+    ],
+    "correct_answer": "7/8",
+    "explanation": "The only outcome with no heads at all is three tails, which has probability (1/2)^3 = 1/8. Every other outcome has at least one head, so the probability is 1 - 1/8 = 7/8.",
+    "solve": "return 1-Math.pow(1/2,3);",
+    "distractor_solve": {
+      "3/8": "return 3*Math.pow(1/2,3);",
+      "1/2": "return 1/2;",
+      "1/8": "return Math.pow(1/2,3);",
+      "3/4": "return 1-Math.pow(1/2,2);"
+    },
+    "distractor_steps": [
+      {
+        "choice": "3/8",
+        "mis_step": "gave the probability of exactly one head rather than of at least one"
+      },
+      {
+        "choice": "1/2",
+        "mis_step": "gave the probability of a head on a single toss, ignoring that there are three"
+      },
+      {
+        "choice": "1/8",
+        "mis_step": "gave the complement itself, the probability of no heads at all"
+      },
+      {
+        "choice": "3/4",
+        "mis_step": "worked the complement over two tosses instead of three"
+      }
+    ]
+  },
+  {
+    "id": "SM8-23",
+    "domain": "Math",
+    "subskill": "exponent of a prime in a product written in prime factors",
+    "difficulty": "hard",
+    "prompt": "The number 12^5 x 45^2 is written as a product of prime factors. What is the exponent of 3 in that product?",
+    "choices": [
+      "11",
+      "14",
+      "10",
+      "7",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "Since 12 = 2^2 x 3, the factor 12^5 contributes 3^5. Since 45 = 3^2 x 5, the factor 45^2 contributes 3^4. Together the exponent of 3 is 5 + 4 = 9.",
+    "solve": "var e=0;var v=Math.pow(12,5)*Math.pow(45,2);while(v%3===0){v=v/3;e++;}return e;",
+    "distractor_solve": {
+      "7": "return 5+2;",
+      "10": "var e=0;var v=Math.pow(12,5)*Math.pow(45,2);while(v%2===0){v=v/2;e++;}return e;",
+      "11": "return 5+4+2;",
+      "14": "return 10+4;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "11",
+        "mis_step": "added the exponent of 5 from 45^2 as well, counting a prime that is not 3"
+      },
+      {
+        "choice": "14",
+        "mis_step": "added the exponent of 2 from 12^5 to the exponent of 3 from 45^2"
+      },
+      {
+        "choice": "10",
+        "mis_step": "answered for the prime 2 instead of the prime 3"
+      },
+      {
+        "choice": "7",
+        "mis_step": "read 45^2 as contributing only 3^2, missing that 45 already carries 3^2"
+      }
+    ]
+  },
+  {
+    "id": "SM8-24",
+    "domain": "Math",
+    "subskill": "area of a square outside a triangle cut off by two midpoints",
+    "difficulty": "hard",
+    "prompt": "Square ABCD has sides of length 12. Point M is the midpoint of side AB and point N is the midpoint of side BC. Triangle MBN is cut away from the square. What is the area, in square units, of the piece that remains?",
+    "choices": [
+      "108",
+      "126",
+      "132",
+      "162",
+      "138"
+    ],
+    "correct_answer": "126",
+    "explanation": "MB and BN are each half of a side, so each is 6, and they meet at the right angle at B. Triangle MBN has area 0.5 x 6 x 6 = 18. The square's area is 144, so the remaining piece is 144 - 18 = 126.",
+    "solve": "return 12*12-0.5*6*6;",
+    "distractor_solve": {
+      "108": "return 12*12-6*6;",
+      "132": "return 12*12-12;",
+      "138": "return 12*12-6;",
+      "162": "return 12*12+0.5*6*6;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "108",
+        "mis_step": "multiplied the two half-sides but did not halve the product to get the triangle's area"
+      },
+      {
+        "choice": "132",
+        "mis_step": "subtracted the side length 12 as though it were the triangle's area"
+      },
+      {
+        "choice": "138",
+        "mis_step": "subtracted a single half-side, 6, rather than the triangle's area"
+      },
+      {
+        "choice": "162",
+        "mis_step": "added the triangle to the square instead of cutting it away"
+      }
+    ]
+  },
+  {
+    "id": "SM8-25",
+    "domain": "Math",
+    "subskill": "evaluating a defined operation with a nested argument",
+    "difficulty": "hard",
+    "prompt": "For all numbers a and b, the operation a # b is defined by a # b = a^2 - 2b. What is the value of 5 # (3 # 4)?",
+    "choices": [
+      "45",
+      "21",
+      "23",
+      "27",
+      "35"
+    ],
+    "correct_answer": "23",
+    "explanation": "Work the inner operation first: 3 # 4 = 3^2 - 2 x 4 = 9 - 8 = 1. Then 5 # 1 = 5^2 - 2 x 1 = 25 - 2 = 23.",
+    "solve": "var op=function(a,b){return a*a-2*b;};return op(5,op(3,4));",
+    "distractor_solve": {
+      "21": "var op=function(a,b){return a*a-2*b;};var inner=op(3,4);return 5*5-Math.pow(2*inner,2);",
+      "27": "var op=function(a,b){return a*a-2*b;};return 5*5+2*op(3,4);",
+      "35": "var bad=function(a,b){return a-2*b;};var op=function(a,b){return a*a-2*b;};return op(5,bad(3,4));",
+      "45": "var op=function(a,b){return a*a-2*b;};return op(5,2*3-4*4);"
+    },
+    "distractor_steps": [
+      {
+        "choice": "45",
+        "mis_step": "reversed the roles of a and b inside the brackets, computing 2 x 3 - 4^2 = -10"
+      },
+      {
+        "choice": "21",
+        "mis_step": "squared the whole 2b term in the outer step, subtracting (2 x 1)^2 instead of 2 x 1"
+      },
+      {
+        "choice": "35",
+        "mis_step": "did not square the 3 in the inner step, getting 3 - 8 = -5 instead of 1"
+      },
+      {
+        "choice": "27",
+        "mis_step": "added the 2b term in the outer step instead of subtracting it"
+      }
+    ]
+  },
+  {
+    "id": "SM8-26",
+    "domain": "Math",
+    "subskill": "value after repeated percent depreciation",
+    "difficulty": "hard",
+    "prompt": "A machine that cost 25000 dollars new loses 20 percent of its value at the end of each year, the loss each year being 20 percent of what the machine was worth at the start of that year. What is the machine worth, in dollars, at the end of the third year?",
+    "choices": [
+      "10240",
+      "12000",
+      "12800",
+      "8192",
+      "10000"
+    ],
+    "correct_answer": "12800",
+    "explanation": "Each year the machine keeps 80 percent of its value. After one year it is worth 20000 dollars, after two 16000 dollars, and after three 0.8 x 16000 = 12800 dollars.",
+    "solve": "return Math.round(25000*Math.pow(0.8,3));",
+    "distractor_solve": {
+      "8192": "return Math.round(25000*Math.pow(0.8,5));",
+      "10000": "return 25000-3*0.20*25000;",
+      "10240": "return Math.round(25000*Math.pow(0.8,4));",
+      "12000": "return 25000-0.2*25000-0.2*20000-0.2*20000;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "10240",
+        "mis_step": "applied the 20 percent loss a fourth time, counting the purchase as the end of year one"
+      },
+      {
+        "choice": "10000",
+        "mis_step": "took 20 percent of the original 25000 each year, a straight-line loss of 5000 a year"
+      },
+      {
+        "choice": "8192",
+        "mis_step": "kept applying the 20 percent loss out to the end of a fifth year"
+      },
+      {
+        "choice": "12000",
+        "mis_step": "took the third year loss from the first year value of 20000 a second time"
+      }
+    ]
+  },
+  {
+    "id": "SM8-27",
+    "domain": "Math",
+    "subskill": "recovering a side from a rectangle's perimeter and area together",
+    "difficulty": "hard",
+    "prompt": "A rectangle has a perimeter of 32 centimetres and an area of 60 square centimetres. What is the length, in centimetres, of its longer side?",
+    "choices": [
+      "10",
+      "15",
+      "6",
+      "8",
+      "16"
+    ],
+    "correct_answer": "10",
+    "explanation": "Half the perimeter is 16, so the two sides add to 16 and multiply to 60. The pair that does both is 10 and 6, so the longer side is 10.",
+    "solve": "var s=32/2,p=60;var d=Math.sqrt(s*s-4*p);return (s+d)/2;",
+    "distractor_solve": {
+      "6": "var s=32/2,p=60;var d=Math.sqrt(s*s-4*p);return (s-d)/2;",
+      "8": "return 32/4;",
+      "15": "return 60/4;",
+      "16": "return 32/2;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "15",
+        "mis_step": "divided the area by 4, as though the rectangle had four equal sides of that area"
+      },
+      {
+        "choice": "6",
+        "mis_step": "gave the shorter side of the pair rather than the longer one"
+      },
+      {
+        "choice": "8",
+        "mis_step": "assumed the rectangle is a square and divided the perimeter by 4"
+      },
+      {
+        "choice": "16",
+        "mis_step": "stopped at half the perimeter, the sum of the two sides"
+      }
+    ]
+  },
+  {
+    "id": "SM8-28",
+    "domain": "Math",
+    "subskill": "how many whole squares of a given side fit inside a rectangle",
+    "difficulty": "hard",
+    "prompt": "A rectangular sheet measures 20 centimetres by 14 centimetres. Squares of side 3 centimetres are cut from it, with every square whole and every cut parallel to a side of the sheet. What is the greatest number of such squares that can be cut?",
+    "choices": [
+      "31",
+      "24",
+      "35",
+      "28",
+      "30"
+    ],
+    "correct_answer": "24",
+    "explanation": "Along the 20-centimetre side only 6 whole squares fit, since 7 would need 21 centimetres. Along the 14-centimetre side only 4 fit, since 5 would need 15. So the sheet yields 6 x 4 = 24 squares, and the leftover strips are too narrow to use.",
+    "solve": "return Math.floor(20/3)*Math.floor(14/3);",
+    "distractor_solve": {
+      "28": "return Math.ceil(20/3)*Math.floor(14/3);",
+      "30": "return Math.floor(20/3)*Math.ceil(14/3);",
+      "31": "return Math.floor(20*14/(3*3));",
+      "35": "return Math.ceil(20/3)*Math.ceil(14/3);"
+    },
+    "distractor_steps": [
+      {
+        "choice": "31",
+        "mis_step": "divided the sheet's area by a square's area, which allows squares to be assembled from scraps"
+      },
+      {
+        "choice": "35",
+        "mis_step": "rounded both side counts up, letting squares hang over both edges"
+      },
+      {
+        "choice": "28",
+        "mis_step": "rounded the 20-centimetre side up to 7 squares"
+      },
+      {
+        "choice": "30",
+        "mis_step": "rounded the 14-centimetre side up to 5 squares"
+      }
+    ]
+  },
+  {
+    "id": "SM8-29",
+    "domain": "Math",
+    "subskill": "recovering a whole when a fraction is taken of a remainder",
+    "difficulty": "hard",
+    "prompt": "On Monday a student read 2/5 of a book. On Tuesday she read 1/3 of the pages that were still unread after Monday. She then had 120 pages left to read. How many pages are in the book?",
+    "choices": [
+      "300",
+      "180",
+      "200",
+      "360",
+      "240"
+    ],
+    "correct_answer": "300",
+    "explanation": "After Monday, 3/5 of the book is unread. Tuesday removes one third of that, leaving two thirds of 3/5, which is 2/5 of the book. So 2/5 of the book is 120 pages and the book has 120 / 0.4 = 300 pages.",
+    "solve": "var f=1-2/5;var left=f*(1-1/3);return 120/left;",
+    "distractor_solve": {
+      "180": "return 120/(2/3);",
+      "200": "return 120/(1-2/5);",
+      "240": "return 120/(1/2);",
+      "360": "return 120/(1/3);"
+    },
+    "distractor_steps": [
+      {
+        "choice": "200",
+        "mis_step": "ignored Tuesday and treated 120 pages as the 3/5 left after Monday"
+      },
+      {
+        "choice": "360",
+        "mis_step": "treated 120 pages as the third read on Tuesday"
+      },
+      {
+        "choice": "240",
+        "mis_step": "assumed the unread pages were half the book"
+      },
+      {
+        "choice": "180",
+        "mis_step": "took the two thirds left after Tuesday as a fraction of the whole book, leaving Monday out"
+      }
+    ]
+  },
+  {
+    "id": "SM8-30",
+    "domain": "Math",
+    "subskill": "counting perfect squares and perfect cubes below a bound",
+    "difficulty": "hard",
+    "prompt": "How many positive integers less than 200 are a perfect square, a perfect cube, or both?",
+    "choices": [
+      "18",
+      "21",
+      "14",
+      "17",
+      "19"
+    ],
+    "correct_answer": "17",
+    "explanation": "The perfect squares below 200 run from 1 to 196, which is 14 numbers. The perfect cubes are 1, 8, 27, 64 and 125, which is 5. Two numbers, 1 and 64, are on both lists and must not be counted twice, so the total is 14 + 5 - 2 = 17.",
+    "solve": "var s=new Set();for(var i=1;i*i<200;i++){s.add(i*i);}for(var j=1;j*j*j<200;j++){s.add(j*j*j);}return s.size;",
+    "distractor_solve": {
+      "14": "var c=0;for(var i=1;i*i<200;i++){c++;}return c;",
+      "18": "var a=0,b=0;for(var i=1;i*i<200;i++){a++;}for(var j=1;j*j*j<200;j++){b++;}return a+b-1;",
+      "19": "var a=0,b=0;for(var i=1;i*i<200;i++){a++;}for(var j=1;j*j*j<200;j++){b++;}return a+b;",
+      "21": "var a=0,b=0;for(var i=1;i*i<200;i++){a++;}for(var j=1;j*j*j<200;j++){b++;}return a+b+2;"
+    },
+    "distractor_steps": [
+      {
+        "choice": "18",
+        "mis_step": "removed only the overlap 1, missing that 64 is also both a square and a cube"
+      },
+      {
+        "choice": "21",
+        "mis_step": "added the two numbers on both lists instead of subtracting them"
+      },
+      {
+        "choice": "14",
+        "mis_step": "counted the perfect squares only"
+      },
+      {
+        "choice": "19",
+        "mis_step": "added the two counts without removing the numbers on both lists"
+      }
+    ]
+  }
+]
