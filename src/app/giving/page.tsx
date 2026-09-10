@@ -45,9 +45,19 @@ const ENTRIES: readonly Entry[] = [
   {
     key: "victree",
     href: "http://victree.or.kr/",
-    // Their own header wordmark from victree.or.kr, at native 269x54. Not
-    // upscaled: it is already small and enlarging it would only soften it.
-    // The ~5:1 shape against OCC's 1:1 is why OrgMark constrains height.
+    // Their own header wordmark from victree.or.kr, at native 269x54, used
+    // with Victree's permission — they confirmed to Andy on 2026-09-11 that
+    // this use is fine. No conditions were attached and no approved asset
+    // was supplied, so the mark stays as it is below: unmodified, unscaled,
+    // linked to victree.or.kr, and Victree is described only as an
+    // organisation we donated to, never as a sponsor or endorser.
+    //
+    // Recorded here for the same reason the Samaritan's Purse permission is:
+    // a permission nobody wrote down is one the next person has to ask for
+    // again.
+    //
+    // Not upscaled: it is already small and enlarging it would only soften
+    // it. The ~5:1 shape against OCC's 1:1 is why OrgMark constrains height.
     logo: "/giving/victree.png",
     monogram: "빅",
   },
