@@ -26,7 +26,9 @@
     "seed:demo": "npx tsx scripts/seed-demo.ts",
     "seed:demo:reset": "npx tsx scripts/seed-demo.ts --reset",
     "seed:demo:delete": "npx tsx scripts/seed-demo.ts --delete",
-    "dev:webpack": "next dev"
+    "dev:webpack": "next dev",
+    "android:build": "node scripts/android-gradle.mjs assembleDebug",
+    "android:clean": "node scripts/android-gradle.mjs clean"
   },
   "dependencies": {
     "@ai-sdk/openai": "^2.0.30",
