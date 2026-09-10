@@ -134,7 +134,6 @@ export function InviteLanding({ code }: { code: string }) {
           <StudyButton
             type="button"
             variant="primary"
-            size="lg"
             fullWidth
             square
             onClick={() => void copy()}
@@ -164,7 +163,7 @@ export function InviteLanding({ code }: { code: string }) {
           {platform === 'ios' && ios && (
             <a
               href={ios}
-              className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true, square: true })}
+              className={studyButtonClass({ variant: 'secondary', fullWidth: true, square: true })}
             >
               {ko ? 'App Store에서 다운로드' : 'Download on the App Store'}
             </a>
@@ -172,7 +171,7 @@ export function InviteLanding({ code }: { code: string }) {
           {platform === 'android' && (
             <a
               href={PLAY_STORE_URL}
-              className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true, square: true })}
+              className={studyButtonClass({ variant: 'secondary', fullWidth: true, square: true })}
             >
               {ko ? 'Google Play에서 받기' : 'Get it on Google Play'}
             </a>
@@ -185,14 +184,14 @@ export function InviteLanding({ code }: { code: string }) {
               {ios && (
                 <a
                   href={ios}
-                  className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true, square: true })}
+                  className={studyButtonClass({ variant: 'secondary', fullWidth: true, square: true })}
                 >
                   {ko ? 'App Store에서 다운로드' : 'Download on the App Store'}
                 </a>
               )}
               <a
                 href={PLAY_STORE_URL}
-                className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true, square: true })}
+                className={studyButtonClass({ variant: 'secondary', fullWidth: true, square: true })}
               >
                 {ko ? 'Google Play에서 받기' : 'Get it on Google Play'}
               </a>

@@ -13,6 +13,7 @@
  */
 import { render, screen, waitFor } from '@testing-library/react'
 import { InviteLanding } from '../InviteLanding'
+import { studyButtonClass } from '@/app/mobile/study/_shared/StudyButton'
 
 const replace = jest.fn()
 const push = jest.fn()
@@ -192,9 +193,16 @@ describe('store links use the shared button styling', () => {
     setUA(UA.android)
     render(<InviteLanding code="ABC234" />)
     const link = (await screen.findAllByRole('link'))[0]
-    // size="lg" === h-12 + text-[15px]; the hand-rolled version was
-    // h-12 + text-[14px], 8px away from a 15px button.
-    expect(link.className).toMatch(/h-12/)
+    // The point is that the store links and the copy button are the SAME
+    // height, not that they are any particular number -- this used to pin
+    // h-12 and broke when the shared button retired its 48px size. Assert
+    // the shared class instead, which is the thing that guarantees it.
+    // (The hand-rolled version this replaced was text-[14px] against a
+    // 15px button, which is the mismatch the test exists to catch.)
+    const shared = studyButtonClass({ variant: 'secondary' })
+    const heightClass = shared.match(/\bh-\d+\b/)?.[0]
+    expect(heightClass).toBeDefined()
+    expect(link.className).toMatch(new RegExp(`\\b${heightClass}\\b`))
     expect(link.className).toMatch(/text-\[15px\]/)
   })
 })

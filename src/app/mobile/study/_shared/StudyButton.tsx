@@ -21,7 +21,13 @@ import { cn } from '@/lib/utils'
  */
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'inverse'
-type Size = 'sm' | 'md' | 'lg'
+// 'lg' (48px) is retired. The primary action rendered at 48px on the call
+// sites that opted in and 44px everywhere else -- on /subscription both
+// showed at once, "Upgrade to Premium" at 44 beside "Cancel subscription"
+// at 48. 44px is the iOS minimum and was already the default here, so the
+// opt-in went rather than the default. Removing the union member means
+// re-adding it is a compile error rather than a quiet drift back.
+type Size = 'sm' | 'md'
 
 const VARIANTS: Record<Variant, string> = {
   // Solid brand gradient — the standard call to action.
@@ -46,7 +52,6 @@ const VARIANTS: Record<Variant, string> = {
 const SIZES: Record<Size, string> = {
   sm: 'h-9 px-4 text-[13px] gap-1.5',
   md: 'h-11 px-5 text-[15px] gap-2',
-  lg: 'h-12 px-6 text-[15px] gap-2',
 }
 
 /** The shared button className — use on a `<Link>`/`<a>` CTA so it matches

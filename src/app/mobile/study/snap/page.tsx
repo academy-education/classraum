@@ -555,7 +555,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
           questions on the same subject so the student converts a one-shot
           answer into actual learning. Visually loud because it's the
           highest-value next action after seeing the solution. */}
-      <StudyButton type="button" size="lg" fullWidth
+      <StudyButton type="button" fullWidth
         onClick={() => void startPracticeSimilar()}
         loading={practiceLoading}
         leftIcon={<ListChecks className="w-4 h-4" />}>

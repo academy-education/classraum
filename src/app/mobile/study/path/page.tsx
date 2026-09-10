@@ -284,7 +284,7 @@ function StudyPathInner() {
             </div>
             <Link
               href="/mobile/study/subscription"
-              className={studyButtonClass({ variant: 'primary', size: 'lg' })}
+              className={studyButtonClass({ variant: 'primary' })}
             >
               <Sparkles className="w-4 h-4" />
               {ko ? '플랜 보기' : 'See plans'}

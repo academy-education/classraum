@@ -606,7 +606,6 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
           </button>
         ) : (
           <StudyButton
-            size="lg"
             fullWidth
             onClick={next}
             rightIcon={<ArrowRight className="w-4 h-4" />}

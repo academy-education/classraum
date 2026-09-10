@@ -1314,7 +1314,6 @@ export default function SubscriptionPage() {
               <StudyButton
                 type="button"
                 variant="primary"
-                size="lg"
                 fullWidth
                 onClick={() => void act('reactivate')}
                 disabled={acting !== null}

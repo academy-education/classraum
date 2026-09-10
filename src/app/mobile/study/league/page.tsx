@@ -1186,7 +1186,7 @@ function CollectRewards({ ko }: { ko: boolean }) {
           ? `지난주 리그 보상 ${count}개, 크레딧 ${total}개가 기다리고 있어요.`
           : `${count} league reward${count === 1 ? '' : 's'} worth ${total} credit${total === 1 ? '' : 's'}.`}
       </p>
-      <StudyButton type="button" size="lg" fullWidth loading={busy} onClick={() => void collect()}>
+      <StudyButton type="button" fullWidth loading={busy} onClick={() => void collect()}>
         {ko ? '보상 받기' : 'Collect'}
       </StudyButton>
     </div>

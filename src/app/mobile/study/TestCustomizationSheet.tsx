@@ -379,7 +379,6 @@ export function TestCustomizationSheet({
           </div>
           <StudyButton
             type="button"
-            size="lg"
             fullWidth
             onClick={submit}
             loading={starting}

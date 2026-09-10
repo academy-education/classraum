@@ -273,7 +273,6 @@ function BuilderInner() {
       <StudyButton
         type="button"
         variant="primary"
-        size="lg"
         fullWidth
         square
         onClick={() => void start()}

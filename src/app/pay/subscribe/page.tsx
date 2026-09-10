@@ -287,7 +287,7 @@ function PaySubscribe() {
           )}
 
           <StudyButton
-            type="button" variant="primary" size="lg" fullWidth className="mt-5"
+            type="button" variant="primary" fullWidth className="mt-5"
             loading={busy} disabled={!ready || busy} onClick={pay}
           >
             {oneTime

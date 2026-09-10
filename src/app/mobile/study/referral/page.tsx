@@ -241,7 +241,6 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
         <StudyButton
           type="button"
           variant="primary"
-          size="lg"
           fullWidth
           square
           onClick={() => void copy(inviteLink)}
@@ -259,7 +258,6 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
           <StudyButton
             type="button"
             variant="primary"
-            size="lg"
             fullWidth
             square
             onClick={() => void doShare()}
@@ -385,7 +383,6 @@ function RedeemBox({ ko, onRedeemed }: { ko: boolean; onRedeemed: () => void }) 
         <StudyButton
           type="button"
           variant="primary"
-          size="lg"
           square
           onClick={() => void submit()}
           disabled={!code.trim() || state === 'submitting'}

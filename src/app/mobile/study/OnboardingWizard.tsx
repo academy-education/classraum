@@ -633,7 +633,6 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
           {step < TOTAL_STEPS ? (
             <StudyButton
               type="button"
-              size="lg"
               onClick={() => setStep((step + 1) as 1 | 2 | 3 | 4 | 5)}
               rightIcon={<ArrowRight className="w-4 h-4" />}
               className="flex-1"
@@ -643,7 +642,6 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
           ) : (
             <StudyButton
               type="button"
-              size="lg"
               onClick={() => void finish(false)}
               loading={saving}
               leftIcon={<Sparkles className="w-4 h-4" />}
