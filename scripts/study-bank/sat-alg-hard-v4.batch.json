@@ -1,0 +1,386 @@
+[
+  {
+    "id": "ALG-H4-01",
+    "domain": "Algebra",
+    "subskill": "the no-solution condition and the ratio of coefficients in a two-variable system",
+    "difficulty": "hard",
+    "prompt": "In the system of equations 3x + ky = 12 and 6x + 10y = 7, k is a constant. If the system has no solution, what is the value of k?",
+    "choices": [
+      "-5",
+      "2",
+      "5",
+      "20"
+    ],
+    "correct_answer": "5",
+    "explanation": "Two linear equations have no solution when the lines have the same slope but different y-intercepts. Matching slopes requires 3/6 = k/10, so 6k = 30 and k = 5. With k = 5 the left side of the second equation is exactly twice the left side of the first, while 7 is not twice 12, so the lines are parallel and distinct and the system truly has no solution. The value \"-5\" comes from a sign slip in solving 6k = 30. The value \"20\" comes from setting up the ratio upside down, as 6/3 = k/10. The value \"2\" is the ratio of the x-coefficients, 6/3, reported as k itself rather than used to scale the y-coefficient.",
+    "solve": "// no solution: 6x+10y must be a multiple of 3x+ky with different constant\nvar r=6/3;\nreturn 10/r;"
+  },
+  {
+    "id": "ALG-H4-02",
+    "domain": "Algebra",
+    "subskill": "a budget inequality combined with a whole-unit interpretation of the solution",
+    "difficulty": "hard",
+    "prompt": "A tutoring service charges a one-time registration fee of 45 dollars plus 18 dollars for each hour of tutoring. A family has budgeted 300 dollars for this service. What is the greatest number of whole hours of tutoring the family can purchase without exceeding the budget?",
+    "choices": [
+      "14",
+      "16",
+      "17",
+      "19"
+    ],
+    "correct_answer": "14",
+    "explanation": "If h is the number of hours, the cost is 45 + 18h, and 45 + 18h is at most 300 gives 18h at most 255, so h is at most 14.16, and the greatest whole number of hours is 14. The value \"16\" ignores the registration fee and takes the whole-number part of 300/18. The value \"17\" ignores the fee and rounds 16.67 up, which also exceeds the budget. The value \"19\" adds the registration fee to the budget instead of subtracting it, using 345/18.",
+    "solve": "return Math.floor((300-45)/18);"
+  },
+  {
+    "id": "ALG-H4-03",
+    "domain": "Algebra",
+    "subskill": "building a two-variable system from two combined weights and solving for the second quantity",
+    "difficulty": "hard",
+    "prompt": "Three crates of apples and two crates of pears together weigh 97 kilograms. Five crates of apples and four crates of pears together weigh 171 kilograms. Every crate of apples weighs the same amount, and every crate of pears weighs the same amount. What is the weight, in kilograms, of one crate of pears?",
+    "choices": [
+      "14",
+      "23",
+      "28",
+      "37"
+    ],
+    "correct_answer": "14",
+    "explanation": "Let a and p be the weights of one crate of apples and one crate of pears. Then 3a + 2p = 97 and 5a + 4p = 171. Doubling the first equation gives 6a + 4p = 194, and subtracting the second gives a = 23. Substituting back, 69 + 2p = 97, so 2p = 28 and p = 14. The value \"23\" is the weight of a crate of apples, the variable the question did not ask about. The value \"28\" is 2p, reported before the final division by 2. The value \"37\" is a + p, the combined weight of one crate of each.",
+    "solve": "var a1=3,b1=2,c1=97,a2=5,b2=4,c2=171;\nvar det=a1*b2-b1*a2;\nreturn (a1*c2-a2*c1)/det;"
+  },
+  {
+    "id": "ALG-H4-04",
+    "domain": "Algebra",
+    "subskill": "reading a constant rate of change from an interval statement and applying it over a different interval",
+    "difficulty": "hard",
+    "prompt": "The function f is linear, and f(x + 4) = f(x) + 14 for every value of x. If f(1) = 5, what is the value of f(9)?",
+    "choices": [
+      "19",
+      "33",
+      "61",
+      "117"
+    ],
+    "correct_answer": "33",
+    "explanation": "Each increase of 4 in the input increases the output by 14. Going from x = 1 to x = 9 is an increase of 8, which is two such steps, so f(9) = 5 + 14 + 14 = 33. The value \"19\" takes only one step of 14 and stops. The value \"61\" treats the input step as 2 rather than 4, giving four steps of 14. The value \"117\" treats 14 as the increase per unit of x, giving 5 + 8(14).",
+    "solve": "var slope=14/4;\nreturn 5+(9-1)*slope;"
+  },
+  {
+    "id": "ALG-H4-05",
+    "domain": "Algebra",
+    "subskill": "solving a system by elimination and then evaluating a combination of the variables",
+    "difficulty": "hard",
+    "prompt": "If (x, y) is the solution to the system of equations 2x + 3y = 16 and 5x - 2y = 2, what is the value of x + y?",
+    "choices": [
+      "-2",
+      "2",
+      "4",
+      "6"
+    ],
+    "correct_answer": "6",
+    "explanation": "Multiplying the first equation by 2 and the second by 3 gives 4x + 6y = 32 and 15x - 6y = 6. Adding them gives 19x = 38, so x = 2, and substituting gives 4 + 3y = 16, so y = 4. Therefore x + y = 6. The value \"2\" is x alone and the value \"4\" is y alone, each reported before the requested sum is formed. The value \"-2\" is x - y, the wrong combination of the two solutions.",
+    "solve": "var a1=2,b1=3,c1=16,a2=5,b2=-2,c2=2;\nvar det=a1*b2-b1*a2;\nvar x=(c1*b2-b1*c2)/det, y=(a1*c2-a2*c1)/det;\nreturn x+y;"
+  },
+  {
+    "id": "ALG-H4-06",
+    "domain": "Algebra",
+    "subskill": "the infinitely-many-solutions condition and the scale factor that must apply to the constant term",
+    "difficulty": "hard",
+    "prompt": "In the system of equations 3x - 4y = 8 and -9x + 12y = c, c is a constant. If the system has infinitely many solutions, what is the value of c?",
+    "choices": [
+      "-72",
+      "-32",
+      "-24",
+      "24"
+    ],
+    "correct_answer": "-24",
+    "explanation": "The system has infinitely many solutions only when one equation is a constant multiple of the other. Since -9 = -3 times 3 and 12 = -3 times -4, the multiplier is -3, and the same multiplier must apply to the constant: c = -3 times 8 = -24. The value \"24\" has the correct magnitude with the sign of the multiplier dropped. The value \"-72\" uses -9, the x-coefficient of the second equation, as the multiplier instead of the ratio of the coefficients. The value \"-32\" uses -4, a y-coefficient, as the multiplier.",
+    "solve": "var r=-9/3;\nreturn 8*r;"
+  },
+  {
+    "id": "ALG-H4-07",
+    "domain": "Algebra",
+    "subskill": "converting an absolute value inequality to a compound inequality and combining its two endpoints",
+    "difficulty": "hard",
+    "prompt": "The solution set of the inequality |2x - 9| <= 13 consists of all values of x with a <= x <= b. What is the value of a + b?",
+    "choices": [
+      "-2",
+      "9",
+      "11",
+      "13"
+    ],
+    "correct_answer": "9",
+    "explanation": "The inequality is equivalent to -13 <= 2x - 9 <= 13. Adding 9 throughout gives -4 <= 2x <= 22, and dividing by 2 gives -2 <= x <= 11, so a = -2, b = 11, and a + b = 9. The value \"-2\" is the lower endpoint alone and the value \"11\" is the upper endpoint alone. The value \"13\" is the length of the interval, b - a, which here coincides with the constant on the right of the original inequality.",
+    "solve": "var a=(9-13)/2, b=(9+13)/2;\nreturn a+b;"
+  },
+  {
+    "id": "ALG-H4-08",
+    "domain": "Algebra",
+    "subskill": "solving a system for both variables and then evaluating a new linear expression in them",
+    "difficulty": "hard",
+    "prompt": "If 3a - 2b = 14 and a + b = 3, what is the value of 5a - 4b?",
+    "choices": [
+      "-21",
+      "16",
+      "20",
+      "24"
+    ],
+    "correct_answer": "24",
+    "explanation": "From a + b = 3, b = 3 - a. Substituting into 3a - 2b = 14 gives 3a - 6 + 2a = 14, so 5a = 20 and a = 4, which makes b = -1. Then 5a - 4b = 20 - (-4) = 24. The value \"16\" evaluates 5a + 4b, a sign slip on the second term. The value \"20\" is 5a with the -4b term dropped entirely. The value \"-21\" evaluates 5b - 4a, with the two variables interchanged.",
+    "solve": "var a1=3,b1=-2,c1=14,a2=1,b2=1,c2=3;\nvar det=a1*b2-b1*a2;\nvar a=(c1*b2-b1*c2)/det, b=(a1*c2-a2*c1)/det;\nreturn 5*a-4*b;"
+  },
+  {
+    "id": "ALG-H4-09",
+    "domain": "Algebra",
+    "subskill": "a two-piece cost model where a fixed charge and an allowance must both be undone",
+    "difficulty": "hard",
+    "prompt": "A phone plan costs 30 dollars per month and includes 400 minutes of calling. Each minute of calling beyond the first 400 costs 0.12 dollars. One month a customer's bill was 63.60 dollars. How many minutes of calling did the customer use that month?",
+    "choices": [
+      "280",
+      "530",
+      "680",
+      "930"
+    ],
+    "correct_answer": "680",
+    "explanation": "Subtracting the monthly charge leaves 63.60 - 30 = 33.60 dollars of per-minute charges, which covers 33.60/0.12 = 280 minutes beyond the allowance. The total is therefore 400 + 280 = 680 minutes. The value \"280\" is the number of extra minutes, reported without adding back the 400 included minutes. The value \"530\" divides the entire bill by 0.12 without first removing the monthly charge. The value \"930\" makes that same error and then adds the 400 included minutes.",
+    "solve": "return 400+(63.60-30)/0.12;"
+  },
+  {
+    "id": "ALG-H4-10",
+    "domain": "Algebra",
+    "subskill": "converting two travel times to rates and separating a combined rate into its two parts",
+    "difficulty": "hard",
+    "prompt": "A boat traveling on a river covers 48 kilometers downstream in 3 hours and covers the same 48 kilometers upstream in 4 hours. The boat's speed in still water and the speed of the current are each constant. What is the speed of the current, in kilometers per hour?",
+    "choices": [
+      "2",
+      "4",
+      "14",
+      "28"
+    ],
+    "correct_answer": "2",
+    "explanation": "The downstream speed is 48/3 = 16 kilometers per hour and the upstream speed is 48/4 = 12 kilometers per hour. If b is the boat's speed in still water and c is the current's speed, then b + c = 16 and b - c = 12. Subtracting gives 2c = 4, so c = 2. The value \"4\" is 2c, the difference of the two speeds, reported without the final division by 2. The value \"14\" is b, the boat's speed in still water, which is the other variable. The value \"28\" is the sum of the two travel speeds, 16 + 12.",
+    "solve": "for(var c=0;c<=500;c++)for(var s=0;s<=500;s++){\n  if(Math.abs((s+c)*3-48)<1e-9 && Math.abs((s-c)*4-48)<1e-9) return c;\n}\nreturn null;"
+  },
+  {
+    "id": "ALG-H4-11",
+    "domain": "Algebra",
+    "subskill": "an at-least constraint combined with the requirement that one number stay the larger",
+    "difficulty": "hard",
+    "prompt": "The sum of two numbers is 60. Three times the smaller number is at least 12 more than the larger number. What is the greatest possible value of the larger number?",
+    "choices": [
+      "12",
+      "18",
+      "30",
+      "42"
+    ],
+    "correct_answer": "42",
+    "explanation": "Let s be the smaller number, so the larger is 60 - s. The constraint 3s >= (60 - s) + 12 gives 4s >= 72, so s >= 18 and the larger number, 60 - s, is at most 42. At s = 18 the constraint holds with equality, since 54 = 42 + 12, so 42 is attainable. The value \"18\" is the least possible value of the smaller number rather than the greatest value of the larger one. The value \"30\" is what both numbers equal when they are equal, which is the smallest the larger number can be, not the largest. The value \"12\" is the constant in the comparison, not a value either number takes.",
+    "solve": "var best=null;\nfor(var i=0;i<=6000;i++){var L=i/10, s=60-L;\n  if(L>=s && 3*s>=L+12) best=L;\n}\nreturn best;"
+  },
+  {
+    "id": "ALG-H4-12",
+    "domain": "Algebra",
+    "subskill": "distributing across a linear inequality and then reading off the least integer in the solution set",
+    "difficulty": "hard",
+    "prompt": "What is the least integer value of x that satisfies the inequality 3(2x - 5) >= 4x + 7?",
+    "choices": [
+      "-11",
+      "-4",
+      "6",
+      "11"
+    ],
+    "correct_answer": "11",
+    "explanation": "Distributing gives 6x - 15 >= 4x + 7. Subtracting 4x and adding 15 to both sides gives 2x >= 22, so x >= 11, and the least integer in the solution set is 11. The value \"-11\" comes from dividing by -2 instead of 2, which would also require reversing the inequality. The value \"-4\" comes from subtracting 15 from both sides instead of adding it, producing 2x >= -8. The value \"6\" comes from distributing the 3 only to the 2x term, producing 6x - 5 >= 4x + 7 and then 2x >= 12.",
+    "solve": "for(var x=-1000;x<=1000;x++) if(3*(2*x-5)>=4*x+7) return x;\nreturn null;"
+  },
+  {
+    "id": "ALG-H4-13",
+    "domain": "Algebra",
+    "subskill": "two half-plane constraints intersecting, with the boundary point deciding an extreme value",
+    "difficulty": "hard",
+    "prompt": "A point (x, y) satisfies both y >= 3x - 5 and y <= -2x + 20. What is the greatest possible value of x?",
+    "choices": [
+      "3",
+      "5",
+      "10",
+      "20"
+    ],
+    "correct_answer": "5",
+    "explanation": "For a point to satisfy both inequalities, the lower boundary must not exceed the upper one, so 3x - 5 <= -2x + 20. Adding 2x and 5 to both sides gives 5x <= 25, so x <= 5 and the greatest possible value of x is 5. The value \"10\" is the y-coordinate where the two boundary lines meet, which is the wrong variable. The value \"20\" is the constant in the second inequality, read off without solving. The value \"3\" comes from a sign error in moving the -5, solving 3x + 5 = -2x + 20 instead.",
+    "solve": "var best=null;\nfor(var i=-2000;i<=2000;i++){var x=i/10;\n  if(3*x-5<=-2*x+20) best=x;\n}\nreturn best;"
+  },
+  {
+    "id": "ALG-H4-14",
+    "domain": "Algebra",
+    "subskill": "a capacity inequality with two separate fixed loads before the per-item term",
+    "difficulty": "hard",
+    "prompt": "A delivery van can carry a maximum load of 1600 pounds. It is already carrying 340 pounds of equipment, and the driver must also load a dolly weighing 60 pounds. Each box to be loaded weighs 45 pounds. What is the greatest number of boxes the van can carry?",
+    "choices": [
+      "26",
+      "27",
+      "28",
+      "34"
+    ],
+    "correct_answer": "26",
+    "explanation": "The two fixed loads take up 340 + 60 = 400 pounds, leaving 1200 pounds for boxes. Since 1200/45 = 26.67 and a partial box cannot be loaded, the greatest number of boxes is 26. The value \"27\" rounds 26.67 up, which would exceed the maximum load. The value \"28\" omits the dolly, using 1260/45. The value \"34\" omits the 340 pounds of equipment, using 1540/45 and truncating.",
+    "solve": "return Math.floor((1600-340-60)/45);"
+  },
+  {
+    "id": "ALG-H4-15",
+    "domain": "Algebra",
+    "subskill": "finding a line from two points and then solving for an unknown x-coordinate on it",
+    "difficulty": "hard",
+    "prompt": "A line in the xy-plane passes through the points (-2, 5) and (4, -7). The point (k, -1) also lies on this line. What is the value of k?",
+    "choices": [
+      "-5",
+      "0.5",
+      "1",
+      "3"
+    ],
+    "correct_answer": "1",
+    "explanation": "The slope is (-7 - 5)/(4 - (-2)) = -12/6 = -2, so the line is y = -2x + 1, using the point (-2, 5) to find the intercept. Setting y = -1 gives -1 = -2k + 1, so -2k = -2 and k = 1. The value \"-5\" uses a slope of 2 instead of -2, giving the line y = 2x + 9. The value \"0.5\" drops the intercept and solves -1 = -2k. The value \"3\" treats -1 as the x-coordinate and evaluates the line there, interchanging the coordinates of the given point.",
+    "solve": "var m=(-7-5)/(4-(-2));\nreturn -2+((-1)-5)/m;"
+  },
+  {
+    "id": "ALG-H4-16",
+    "domain": "Algebra",
+    "subskill": "elimination in a system where the requested variable is the one eliminated first",
+    "difficulty": "hard",
+    "prompt": "If (x, y) is the solution to the system of equations 5x + 2y = 4 and 3x - 4y = 18, what is the value of y?",
+    "choices": [
+      "-6",
+      "-3",
+      "2",
+      "3"
+    ],
+    "correct_answer": "-3",
+    "explanation": "Multiplying the first equation by 2 gives 10x + 4y = 8. Adding this to 3x - 4y = 18 gives 13x = 26, so x = 2. Substituting into 5x + 2y = 4 gives 10 + 2y = 4, so 2y = -6 and y = -3. The value \"2\" is x, the variable the question did not ask about. The value \"-6\" is 2y, reported before the final division by 2. The value \"3\" has the correct magnitude with the negative sign dropped.",
+    "solve": "var a1=5,b1=2,c1=4,a2=3,b2=-4,c2=18;\nvar det=a1*b2-b1*a2;\nreturn (a1*c2-a2*c1)/det;"
+  },
+  {
+    "id": "ALG-H4-17",
+    "domain": "Algebra",
+    "subskill": "extracting a slope from standard form and using it with a point to locate an intercept",
+    "difficulty": "hard",
+    "prompt": "Line k is defined by the equation 6x - 2y = 9. Line m is parallel to line k and passes through the point (4, 6). At what y-coordinate does line m cross the y-axis?",
+    "choices": [
+      "-6",
+      "2",
+      "6",
+      "18"
+    ],
+    "correct_answer": "-6",
+    "explanation": "Solving 6x - 2y = 9 for y gives y = 3x - 4.5, so line k has slope 3 and line m has slope 3 as well. Using the point (4, 6), line m is y = 6 + 3(x - 4) = 3x - 6, so it crosses the y-axis at -6. The value \"2\" is where line m crosses the x-axis, the wrong axis. The value \"6\" is the y-coordinate of the given point, which is not on the y-axis. The value \"18\" comes from using a slope of -3, giving y = -3x + 18.",
+    "solve": "var slope=6/2;\nreturn 6-slope*4;"
+  },
+  {
+    "id": "ALG-H4-18",
+    "domain": "Algebra",
+    "subskill": "translating a comparison between a sum and a multiple, then returning to the requested member",
+    "difficulty": "hard",
+    "prompt": "The sum of three consecutive even integers is 2 less than four times the smallest of the three. What is the largest of the three integers?",
+    "choices": [
+      "-4",
+      "8",
+      "12",
+      "30"
+    ],
+    "correct_answer": "12",
+    "explanation": "Let the integers be n, n + 2, and n + 4. Their sum is 3n + 6, and the condition gives 3n + 6 = 4n - 2, so n = 8. The three integers are 8, 10, and 12, and the largest is 12. The value \"8\" is the smallest integer, the variable that was solved for rather than the one requested. The value \"30\" is the sum of the three integers. The value \"-4\" comes from reading the condition as four times the largest, giving 3n + 6 = 4(n + 4) - 2 and n = -8.",
+    "solve": "for(var n=-1000;n<=1000;n+=2){\n  if(n+(n+2)+(n+4) === 4*n-2) return n+4;\n}\nreturn null;"
+  },
+  {
+    "id": "ALG-H4-19",
+    "domain": "Algebra",
+    "subskill": "a count-and-revenue system where one count is expressed through the other",
+    "difficulty": "hard",
+    "prompt": "A museum sold 210 tickets in one day, some at the adult price of 12 dollars each and the rest at the child price of 7 dollars each, taking in 2020 dollars in total. How many adult tickets were sold?",
+    "choices": [
+      "100",
+      "105",
+      "110",
+      "404"
+    ],
+    "correct_answer": "110",
+    "explanation": "If a is the number of adult tickets, the number of child tickets is 210 - a, and 12a + 7(210 - a) = 2020. Expanding gives 5a + 1470 = 2020, so 5a = 550 and a = 110. The value \"100\" is the number of child tickets, the other variable. The value \"105\" assumes the two kinds of tickets sold in equal numbers, ignoring the revenue entirely. The value \"404\" divides the total revenue by 5, the difference in the two prices, treating that difference as if it were a price.",
+    "solve": "for(var a=0;a<=210;a++){var c=210-a;\n  if(Math.abs(12*a+7*c-2020)<1e-9) return a;\n}\nreturn null;"
+  },
+  {
+    "id": "ALG-H4-20",
+    "domain": "Algebra",
+    "subskill": "clearing a fraction in one equation before combining it with a difference equation",
+    "difficulty": "hard",
+    "prompt": "If (2a + b)/5 = 4 and a - b = 4, what is the value of a?",
+    "choices": [
+      "4",
+      "8",
+      "20",
+      "24"
+    ],
+    "correct_answer": "8",
+    "explanation": "Multiplying the first equation by 5 gives 2a + b = 20. Adding a - b = 4 eliminates b and gives 3a = 24, so a = 8. The value \"4\" is b, which here equals the given difference as well, and is not what the question asks for. The value \"20\" is 2a + b, the cleared numerator, reported as though it were a. The value \"24\" is 3a, reported before dividing by 3.",
+    "solve": "for(var i=-10000;i<=10000;i++){var a=i/10, b=a-4;\n  if(Math.abs((2*a+b)/5-4)<1e-9) return a;\n}\nreturn null;"
+  },
+  {
+    "id": "ALG-H4-21",
+    "domain": "Algebra",
+    "subskill": "a value equation in two counts where one count is offset from the other",
+    "difficulty": "hard",
+    "prompt": "A jar contains only dimes and quarters, worth 8.00 dollars in all. A dime is worth 0.10 dollars and a quarter is worth 0.25 dollars. The jar contains 4 more quarters than dimes. How many coins are in the jar?",
+    "choices": [
+      "20",
+      "24",
+      "40",
+      "44"
+    ],
+    "correct_answer": "44",
+    "explanation": "If d is the number of dimes, the number of quarters is d + 4, and 0.10d + 0.25(d + 4) = 8.00. Expanding gives 0.35d + 1.00 = 8.00, so 0.35d = 7.00 and d = 20. There are then 24 quarters, and the jar holds 20 + 24 = 44 coins. The value \"20\" is the number of dimes and the value \"24\" is the number of quarters, each a single part of the requested total. The value \"40\" doubles the number of dimes, forgetting that there are 4 more quarters than dimes.",
+    "solve": "for(var d=0;d<=1000;d++){var q=d+4;\n  if(Math.abs(0.10*d+0.25*q-8.00)<1e-9) return d+q;\n}\nreturn null;"
+  },
+  {
+    "id": "ALG-H4-22",
+    "domain": "Algebra",
+    "subskill": "comparing two linear cost models and counting the whole periods on one side of the crossing",
+    "difficulty": "hard",
+    "prompt": "One fitness club charges a one-time joining fee of 60 dollars plus 45 dollars per month. A second club charges 60 dollars per month and no joining fee. For how many whole months of membership is the total cost at the first club greater than the total cost at the second club?",
+    "choices": [
+      "3",
+      "4",
+      "15",
+      "60"
+    ],
+    "correct_answer": "3",
+    "explanation": "After m months the first club has cost 60 + 45m and the second has cost 60m. The first exceeds the second when 60 + 45m > 60m, that is when 60 > 15m, or m < 4. The whole-month values that satisfy this are 1, 2, and 3, so there are 3 such months. The value \"4\" is the month at which the two totals are equal, counted as though the first club were still the more expensive one. The value \"15\" is the difference between the two monthly rates. The value \"60\" is the joining fee, which is also the second club's monthly rate.",
+    "solve": "var n=0;\nfor(var m=1;m<=1000;m++) if(60+45*m > 60*m) n++;\nreturn n;"
+  },
+  {
+    "id": "ALG-H4-23",
+    "domain": "Algebra",
+    "subskill": "a sum condition combined with a multiple-and-offset comparison between the same two numbers",
+    "difficulty": "hard",
+    "prompt": "The sum of two numbers is 30. Twice the larger number is 10 more than three times the smaller number. What is the larger number?",
+    "choices": [
+      "10",
+      "15",
+      "16",
+      "20"
+    ],
+    "correct_answer": "20",
+    "explanation": "Let s be the smaller number, so the larger is 30 - s. The second condition gives 2(30 - s) = 3s + 10, so 60 - 2s = 3s + 10 and 5s = 50, making s = 10 and the larger number 20. Checking, twice 20 is 40, which is 10 more than three times 10. The value \"10\" is the smaller number, the variable solved for first. The value \"15\" assumes the two numbers are equal and ignores the second condition. The value \"16\" comes from attaching the 10 to the wrong side, solving 2(30 - s) + 10 = 3s instead.",
+    "solve": "for(var i=0;i<=6000;i++){var L=i/10, s=30-L;\n  if(L>=s && Math.abs(2*L-(3*s+10))<1e-9) return L;\n}\nreturn null;"
+  },
+  {
+    "id": "ALG-H4-24",
+    "domain": "Algebra",
+    "subskill": "evaluating a linear function at a scaled input and setting it against a scaled output",
+    "difficulty": "hard",
+    "prompt": "The function g is defined by g(x) = 4x - 6. If g(3c) = 2g(c) + 10, what is the value of c?",
+    "choices": [
+      "-4",
+      "1",
+      "2.5",
+      "4"
+    ],
+    "correct_answer": "1",
+    "explanation": "Substituting gives g(3c) = 12c - 6 and 2g(c) + 10 = 2(4c - 6) + 10 = 8c - 2. Setting them equal gives 12c - 6 = 8c - 2, so 4c = 4 and c = 1. The value \"2.5\" comes from multiplying only the 4c term by 2 and leaving the -6 undoubled, giving 12c - 6 = 8c - 6 + 10. The value \"-4\" comes from a sign slip that subtracts the 10 instead of adding it, giving 12c - 6 = 8c - 22. The value \"4\" comes from computing 3 times g(c) rather than g(3c), giving 12c - 18 = 8c - 2.",
+    "solve": "var g=function(x){return 4*x-6;};\nfor(var i=-10000;i<=10000;i++){var c=i/10;\n  if(Math.abs(g(3*c)-(2*g(c)+10))<1e-9) return c;\n}\nreturn null;"
+  }
+]

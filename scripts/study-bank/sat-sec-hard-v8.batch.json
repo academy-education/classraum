@@ -1,0 +1,410 @@
+[
+  {
+    "id": "SEC-HD-V8-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a singular head separated from its verb by a relative clause full of plurals, with the present perfect required by a span running to the present",
+    "difficulty": "hard",
+    "passage": "Stone tools are dated by the ground they come out of, not by themselves, which is why a mislaid label can move an assemblage by fifty thousand years. The shipment of blades that the 1911 expedition sent down from the highlands ______ across three museums on two continents since the war, and nothing in any of their catalogues records who opened the crates or in what order.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were scattered",
+      "have been scattered",
+      "was scattered",
+      "has been scattered"
+    ],
+    "correct_answer": "has been scattered",
+    "explanation": "The head of the subject is \"The shipment,\" a singular noun; \"of blades that the 1911 expedition sent down from the highlands\" only modifies it, and the plurals inside that modifier are what make \"were scattered\" and \"have been scattered\" sound right. The second requirement is aspect: the scattering is reported over a span that runs from the war to now, and a span introduced by \"since\" takes the present perfect, so \"was scattered\" cannot stand even though it has the number right.",
+    "topic_tag": "stone tool provenance"
+  },
+  {
+    "id": "SEC-HD-V8-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a comma closes with a comma rather than a dash, and the main verb answers to the head noun in front of the supplement",
+    "difficulty": "hard",
+    "passage": "An almshouse of 1614 was not one building but a row of them, and the row was rebuilt piecemeal for three hundred years. The east range, a single hall forty feet long that the wardens partitioned with wooden screens some time before 1700 ______ the only stretch of the original fabric still standing, though the screens themselves were sold off and now line the walls of a farm shed a mile away.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      ", remains",
+      "—remains",
+      ", remain",
+      "—remain"
+    ],
+    "correct_answer": ", remains",
+    "explanation": "The supplement opens with the comma before \"a single hall,\" so it has to close with a comma; \"—remains\" and \"—remain\" answer a comma with a dash, and mixed marks do not pair. The second requirement is agreement: the verb belongs to \"The east range,\" a singular noun standing well back from the blank, not to \"the wardens\" or \"wooden screens,\" which are the plurals nearest to it, so \", remain\" agrees with a word that is only passing through the supplement.",
+    "topic_tag": "almshouse fabric"
+  },
+  {
+    "id": "SEC-HD-V8-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form and boundaries: a relative pronoun that is the subject of an embedded clause takes the subjective case even across an interposed 'they believed', and a relative clause that picks one item out of a stated set is restrictive",
+    "difficulty": "hard",
+    "passage": "A Venetian counting house of the 1490s had four partners and no auditor, and the surviving letters of complaint are addressed to whichever partner happened to be in the city. The books were examined once, in March of 1494, and by that month the partner ______ was three months into a posting at Bruges, from which he wrote that the entries at issue had been copied out of a ledger the house itself had destroyed.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      ", whom the others believed had falsified the accounts,",
+      "who the others believed had falsified the accounts",
+      "whom the others believed had falsified the accounts",
+      ", who the others believed had falsified the accounts,"
+    ],
+    "correct_answer": "who the others believed had falsified the accounts",
+    "explanation": "The pronoun is the subject of \"had falsified,\" not the object of \"believed\"; \"the others believed\" is interposed between the pronoun and its verb and does not govern it, so the subjective \"who\" is required and \"whom the others believed had falsified the accounts\" puts an objective form in a subject position. The second requirement is punctuation: the house has four partners, so the clause is doing the work of saying which one is meant, and a restrictive clause takes no commas—which is what rules out \", who the others believed had falsified the accounts,\" even though its case is right.",
+    "topic_tag": "counting house partners"
+  },
+  {
+    "id": "SEC-HD-V8-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: an introductory participial phrase must modify the subject that follows it, and the tense must stay inside a closed past frame",
+    "difficulty": "hard",
+    "passage": "Photographs of a total eclipse are worthless unless the plate is exposed within a few seconds of totality, and in 1898 the exposure had to be timed by ear, from a countdown shouted across a field. Having lost the count at second contact and having no way to recover ______ the corona at all, and the expedition came home with eleven plates of the moon's limb and nothing of the thing it had traveled to photograph.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "it, the exposure has failed to record",
+      "it, the observer failed to record",
+      "it, the exposure failed to record",
+      "it, the observer has failed to record"
+    ],
+    "correct_answer": "it, the observer failed to record",
+    "explanation": "The opening phrase describes losing a count and having no way to recover it, which only a person can do, so the subject that follows has to be the person: \"it, the observer failed to record.\" \"it, the exposure failed to record\" and \"it, the exposure has failed to record\" hand those actions to the exposure, which cannot lose a count. The second requirement is tense: the sentence is anchored in 1898 and closes with \"the expedition came home,\" a finished past, so \"it, the observer has failed to record\" runs a finished episode up to the present.",
+    "topic_tag": "eclipse photography"
+  },
+  {
+    "id": "SEC-HD-V8-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'not only' is answered by 'but also' and by an element of the same kind as the one it introduced",
+    "difficulty": "hard",
+    "passage": "The rules of a sport are usually rewritten to make it faster; the 1925 change to the offside law in association football was rewritten to make it harder to defend. The committee reduced the number of defenders who had to stand between an attacker and the goal, a change that in a single season cut not only the number of stoppages ______, and the average score rose by almost a goal a game before defenses learned to push up the field.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "but also the tedium that the stoppages had produced",
+      "and also the tedium the stoppages had produced",
+      "but also reduced the tedium the stoppages produced",
+      "but it also reduced the tedium the stoppages produced"
+    ],
+    "correct_answer": "but also the tedium that the stoppages had produced",
+    "explanation": "\"not only\" has one partner in edited English, and it is \"but also,\" so \"and also the tedium the stoppages had produced\" abandons the correlative halfway through. The second requirement is that the two limbs match in kind: \"not only\" is followed by \"the number of stoppages,\" a noun phrase serving as the object of \"cut,\" so the second limb must be another noun phrase in that same slot. \"but also reduced the tedium the stoppages produced\" answers a noun phrase with a finite verb, and \"but it also reduced the tedium the stoppages produced\" answers it with a whole clause.",
+    "topic_tag": "offside law"
+  },
+  {
+    "id": "SEC-HD-V8-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'more than one' governs a singular verb despite its plural sense, with the present perfect blocked by a season that is over",
+    "difficulty": "hard",
+    "passage": "A tidal mill runs on the difference between two heights of water and stops twice a day whether or not there is grain waiting, which is why the surviving accounts are so full of arguments about scheduling. In the season the estuary silted, more than one of the twelve tenants who held grinding rights at the mouth ______ without any explanation being entered in the book, and the suits that followed ran for a decade.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been turned away",
+      "was turned away",
+      "were turned away",
+      "has been turned away"
+    ],
+    "correct_answer": "was turned away",
+    "explanation": "\"more than one\" takes a singular verb in edited English however many people it describes, and here it is followed by \"of the twelve tenants who held grinding rights at the mouth,\" a run of plurals that makes \"were turned away\" and \"have been turned away\" feel like the natural choices. The second requirement is aspect: the sentence sets the episode in \"the season the estuary silted\" and follows it with suits that \"ran for a decade,\" a closed past, so \"has been turned away\" reports as still current something the sentence has already finished with.",
+    "topic_tag": "tidal mill rights"
+  },
+  {
+    "id": "SEC-HD-V8-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form and boundaries: a possessive shared by two people takes the apostrophe after the plural, and a restrictive relative introduced by 'that' is never preceded by a comma",
+    "difficulty": "hard",
+    "passage": "Two surveyors were sent up the same valley in 1856 with instructions to work independently and compare results, and their disagreement about a single ridge line held up the boundary settlement for eleven years. The ______ survive in the same archive, and they record the same peaks in a different order, which is the strongest evidence anyone has that the two men were never within sight of each other.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "surveyors' notebooks that still",
+      "surveyor's notebooks that still",
+      "surveyors' notebooks, that still",
+      "surveyor's notebooks, that still"
+    ],
+    "correct_answer": "surveyors' notebooks that still",
+    "explanation": "Two surveyors were sent up the valley and the notebooks are theirs jointly, so the apostrophe follows the plural: \"surveyors'.\" \"surveyor's notebooks that still\" and \"surveyor's notebooks, that still\" assign the notebooks to a single man, which the sentence has already ruled out. The second requirement is that the relative clause narrows the notebooks to the ones that have not been lost, and a restrictive clause introduced by \"that\" takes no comma in front of it, so \"surveyors' notebooks, that still\" and \"surveyor's notebooks, that still\" both insert a mark the construction does not license.",
+    "topic_tag": "boundary survey"
+  },
+  {
+    "id": "SEC-HD-V8-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a verb of perception used as a linking verb takes a predicate adjective, and it agrees with a singular head standing behind a long modifier",
+    "difficulty": "hard",
+    "passage": "Cheesemakers judge a ripening room by smell long before they judge it by any instrument, and the smell they are after is one a chemist would find hard to name. A cellar in which the wheels have been turned on schedule and the drains kept clear ______ to anyone who has spent a season in a ripening room, and the same cellar three weeks later, its rinds spoiled by one warm night, smells of nothing anybody would praise.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "smell sweetly",
+      "smell sweet",
+      "smells sweet",
+      "smells sweetly"
+    ],
+    "correct_answer": "smells sweet",
+    "explanation": "\"smell\" here reports the quality the cellar has rather than an action it performs, so it is a linking verb and takes an adjective as its complement: \"smells sweet.\" \"smell sweetly\" and \"smells sweetly\" put an adverb after a linking verb, which would describe the manner in which the cellar goes about smelling something. The second requirement is agreement: the subject is \"A cellar,\" a singular noun, and \"in which the wheels have been turned on schedule and the drains kept clear\" only modifies it, so \"smell sweet\" answers to the plurals inside the modifier.",
+    "topic_tag": "cheese cellars"
+  },
+  {
+    "id": "SEC-HD-V8-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'each of' takes a singular verb, and 'already' at a stated past moment requires the past perfect",
+    "difficulty": "hard",
+    "passage": "A colliery viewer's plans were drawn to be shown in court rather than to be worked from, and the standard practice was to redraw them after every dispute. When the inspectorate finally asked for the originals in 1861, each of the four pits whose galleries ran under the river ______ at least twice, and the surviving versions do not agree about where the workings stopped.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were already resurveyed",
+      "have already been resurveyed",
+      "had already been resurveyed",
+      "was already resurveyed"
+    ],
+    "correct_answer": "had already been resurveyed",
+    "explanation": "\"each\" is the head of the subject and is singular whatever follows it, so \"were already resurveyed\" and \"have already been resurveyed\" take their number from \"the four pits\" or from \"whose galleries,\" neither of which governs the verb. The second requirement is where the resurveying sits in time: the sentence supplies a past moment, the inspectorate's request in 1861, and says the work had been done before it, so the past perfect is what \"already\" demands here. \"was already resurveyed\" has the number right and then puts the earlier work into the same past moment it is supposed to precede.",
+    "topic_tag": "colliery plans"
+  },
+  {
+    "id": "SEC-HD-V8-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a gerund phrase serving as subject is singular, and a frame closed in the past will not take the present perfect",
+    "difficulty": "hard",
+    "passage": "Two clerks kept the customs books at the same wharf, one recording goods landed and the other goods cleared, and the two totals were never meant to agree. In the years the wharf was in use, reconciling the entries the two of them made in the same week ______ either clerk's instructions, and the discrepancy that survives in the ledgers is therefore an artifact of the method rather than evidence of fraud.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have never been any part of",
+      "were never any part of",
+      "has never been any part of",
+      "was never any part of"
+    ],
+    "correct_answer": "was never any part of",
+    "explanation": "The subject is the gerund phrase \"reconciling the entries the two of them made in the same week,\" which names one activity and is therefore singular; \"were never any part of\" and \"have never been any part of\" agree instead with \"the entries\" or with \"the two of them,\" which sit inside the phrase rather than heading it. The second requirement is aspect: the sentence sets itself \"in the years the wharf was in use,\" a period that is over, so \"has never been any part of\" carries a closed stretch of the past forward into a present the sentence has no claim on.",
+    "topic_tag": "customs ledgers"
+  },
+  {
+    "id": "SEC-HD-V8-11",
+    "domain": "Standard English Conventions",
+    "subskill": "form: an 'as well as' phrase does not add to the number of the subject, and a completed past event is reported in the simple past",
+    "difficulty": "hard",
+    "passage": "A regimental band's music was copied out by hand until the 1880s, and the copies belonged to the bandmaster rather than to the regiment. The march that the battalion played at its last parade in Malta, as well as the two settings of it made for smaller ensembles, ______ in a private trunk when the bandmaster retired, and the regiment spent forty years trying to buy back music it had paid to have written.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "go out of the country",
+      "has gone out of the country",
+      "went out of the country",
+      "have gone out of the country"
+    ],
+    "correct_answer": "went out of the country",
+    "explanation": "A phrase introduced by \"as well as\" is a modifier and not a second subject, so the verb answers to \"The march\" alone and stays singular; \"go out of the country\" and \"have gone out of the country\" treat \"the two settings\" as though it had been joined to the subject by \"and.\" The second requirement is tense: the departure happened when the bandmaster retired, and the sentence goes on to report forty years that followed and ended, so \"has gone out of the country\" attaches a present perfect to an episode the sentence has already closed.",
+    "topic_tag": "regimental band"
+  },
+  {
+    "id": "SEC-HD-V8-12",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a plural head across an 'along with' phrase, and the voice fixed by the subject's role as the thing acted on",
+    "difficulty": "hard",
+    "passage": "A fire took the drawing office of a locomotive works in November 1911, and nobody has ever established how it started. The tracings for every engine the firm had built since 1847, along with the pattern books that went with them, ______, and what the works knew about its own products afterward came out of the heads of the men who had drawn them.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was losing that night",
+      "was lost that night",
+      "were losing that night",
+      "were lost that night"
+    ],
+    "correct_answer": "were lost that night",
+    "explanation": "The head of the subject is \"The tracings,\" a plural; \"for every engine the firm had built since 1847\" is a modifier, and the singulars in it—\"every engine,\" \"the firm\"—are what make \"was lost that night\" and \"was losing that night\" tempting. The second requirement is voice: tracings are what a fire destroys, not what does any destroying, and the sentence supplies no object for them to be losing, so \"were losing that night\" and \"was losing that night\" put the subject in the active role and leave the verb hanging.",
+    "topic_tag": "drawing office fire"
+  },
+  {
+    "id": "SEC-HD-V8-13",
+    "domain": "Standard English Conventions",
+    "subskill": "form: the members of a coordinated series must be of one kind, and a finite clause cannot be coordinated with infinitive phrases",
+    "difficulty": "hard",
+    "passage": "A national forest inventory is a statistical instrument disguised as a walk in the woods, and its design decides in advance which arguments about timber supply can be settled with it. The 1962 revision was drawn up to sample every county on the same cycle, to weight each plot by the area it stood for, and ______, which is the change the mills complained about for the next twenty years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "for recording the species of every stem over four inches",
+      "it recorded the species of every stem over four inches",
+      "to record the species of every stem over four inches",
+      "recording the species of every stem over four inches"
+    ],
+    "correct_answer": "to record the species of every stem over four inches",
+    "explanation": "The blank is the third of three things the revision was drawn up to do, and the first two are \"to sample every county on the same cycle\" and \"to weight each plot by the area it stood for,\" so the third has to be another infinitive phrase: \"to record the species of every stem over four inches.\" \"recording the species of every stem over four inches\" substitutes a participle for the infinitive the series has established, and \"for recording the species of every stem over four inches\" buries that participle inside a prepositional phrase, which is a third kind of thing again. The second requirement is that every member of the series is a complement of \"was drawn up,\" so none of them may be a clause with a subject and a finite verb of its own; that is what \"it recorded the species of every stem over four inches\" supplies.",
+    "topic_tag": "forest inventory"
+  },
+  {
+    "id": "SEC-HD-V8-14",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a possessive determiner takes its number from the antecedent rather than from the nearest noun, with the tense held inside a finished past",
+    "difficulty": "hard",
+    "passage": "A hand press is worth nothing without its type, and the type is worth nothing without the moulds it was cast from. The two presses that a mission carried up the river, together with the font of Cyrillic sorted for the language of the upper valley, were sold within a decade of the founder's death, and ______ recorded in the sale book as furniture rather than as anything a printer might want.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "their remaining type was",
+      "its remaining type has been",
+      "its remaining type was",
+      "their remaining type has been"
+    ],
+    "correct_answer": "their remaining type was",
+    "explanation": "The type belongs to \"The two presses,\" a plural antecedent, so the determiner is \"their\"; \"its remaining type was\" and \"its remaining type has been\" reach back instead to \"the font of Cyrillic,\" the singular noun standing nearest to the blank, which is a modifier inside the subject and not the thing the type belongs to. The second requirement is tense: the presses \"were sold within a decade of the founder's death,\" a span that closed long ago, so \"their remaining type has been\" and \"its remaining type has been\" carry a finished transaction into the present.",
+    "topic_tag": "mission press"
+  },
+  {
+    "id": "SEC-HD-V8-15",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: an interrupter between a verb and its object is enclosed by a pair of commas, and no mark stands between a noun and the prepositional phrase that completes it",
+    "difficulty": "hard",
+    "passage": "The best record of a nineteenth-century canal is often the compensation file rather than the engineering drawings, because a landowner who lost a field had to be paid and therefore had to be surveyed first. The file for one Midland cut contains, in the same wallet as the awards ______ of every hedge grubbed up between the two summits, and the drawings show none of them.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "themselves a list",
+      "themselves, a list",
+      "themselves, a list,",
+      "themselves a list,"
+    ],
+    "correct_answer": "themselves, a list",
+    "explanation": "\"in the same wallet as the awards themselves\" has been dropped in between \"contains\" and what it contains, and an interrupter that opens with a comma has to close with one, so \"themselves a list\" and \"themselves a list,\" leave the reader with no signal that the interruption has ended. The second requirement is that \"of every hedge grubbed up between the two summits\" completes \"a list\" and belongs to it, so nothing may be set between them; \"themselves, a list,\" closes the interrupter correctly and then cuts the noun off from the phrase that says what it is a list of.",
+    "topic_tag": "canal compensation"
+  },
+  {
+    "id": "SEC-HD-V8-16",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a comma must be closed with one, and a colon may not stand between a verb and the object that completes its clause",
+    "difficulty": "hard",
+    "passage": "A borough's charter chest was opened once a year in front of the whole corporation, and the inventory taken on that day is often the only description of what was inside it. The list that the town clerk entered in the minute book, a volume rebound so often that its earliest leaves are out of ______ three royal charters, a bond for a loan the borough never repaid, and a bushel measure that nobody present could account for.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "order: records",
+      "order, records",
+      "order records",
+      "order, records:"
+    ],
+    "correct_answer": "order, records",
+    "explanation": "The supplement opens with the comma before \"a volume\" and has to be closed with a comma before the sentence returns to its verb, so \"order records\" and \"order: records\" leave the interruption open. The second requirement concerns the colon: a colon can follow only a clause that is already complete, and \"The list that the town clerk entered in the minute book, a volume rebound so often that its earliest leaves are out of order, records\" is not complete until its object arrives, which is why \"order, records:\" and \"order: records\" both put the mark where the sentence is still waiting for a word.",
+    "topic_tag": "borough inventory"
+  },
+  {
+    "id": "SEC-HD-V8-17",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: two independent clauses cannot be joined by a comma, and an adverb opening the second clause is followed by a comma",
+    "difficulty": "hard",
+    "passage": "A lighthouse keeper's log is a weather record kept by somebody with no interest in the weather, which is why the entries are so consistent: the same six words, four times a day, for eighty years. The instruments were read at fixed hours and never moved for the observer's ______ the series is one of the few long records a climatologist can use without first correcting for the habits of the people who made it.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "convenience, consequently,",
+      "convenience. Consequently",
+      "convenience; consequently",
+      "convenience; consequently,"
+    ],
+    "correct_answer": "convenience; consequently,",
+    "explanation": "Independent clauses stand on either side of the blank, and \"consequently\" is an adverb rather than a conjunction, so it cannot hold them together: \"convenience, consequently,\" is a splice with an adverb dropped into it. The second requirement is that an adverb of this kind, when it opens a clause, is followed by a comma, which is what \"convenience; consequently\" and \"convenience. Consequently\" omit even though each divides the two clauses properly.",
+    "topic_tag": "lighthouse logs"
+  },
+  {
+    "id": "SEC-HD-V8-18",
+    "domain": "Standard English Conventions",
+    "subskill": "form: with subjects joined by 'not only...but also' the verb agrees with the nearer subject, and a decade that is over will not take the present perfect",
+    "difficulty": "hard",
+    "passage": "Insurance against hail was written in the German states a century before it was written anywhere else, for a reason that has nothing to do with piety and everything to do with evidence: a hailed field looks like nothing else on earth. In the decade after the first policies were sold, not only the loss adjusters but also the village schoolmaster ______ a form after every storm, and the forms survive in bundles nobody has counted.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been expected to file",
+      "were expected to file",
+      "has been expected to file",
+      "was expected to file"
+    ],
+    "correct_answer": "was expected to file",
+    "explanation": "When two subjects are joined by \"not only...but also,\" the verb agrees with whichever one stands nearer to it, and here that is \"the village schoolmaster,\" a singular, so \"were expected to file\" and \"have been expected to file\" agree with \"the loss adjusters\" instead. The second requirement is aspect: the sentence places the practice \"in the decade after the first policies were sold\" and then speaks of the forms as surviving, so the expectation belongs wholly to the past and \"has been expected to file\" reports it as a standing arrangement.",
+    "topic_tag": "hail insurance"
+  },
+  {
+    "id": "SEC-HD-V8-19",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a plural-only noun heading the subject governs the verb across a long singular modifier, and a fact the sentence treats as current is stated in the present",
+    "difficulty": "hard",
+    "passage": "A timber sea pier lasts about forty years unless the borers get into it, in which case it lasts about twelve. The remains of the pier a coasting company put up at the mouth of the estuary in 1863 ______ at low water on about a dozen days a year, and the photographs taken from the cliff in the 1890s show a structure twice the length of what is left.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are still visible",
+      "was still visible",
+      "were still visible",
+      "is still visible"
+    ],
+    "correct_answer": "are still visible",
+    "explanation": "The head of the subject is \"The remains,\" which takes a plural verb, and everything from \"of the pier\" to \"in 1863\" is a modifier whose singular nouns—\"the pier,\" \"a coasting company,\" \"the mouth\"—make \"is still visible\" and \"was still visible\" sound natural. The second requirement is tense: the sentence ends by contrasting the photographs with \"what is left,\" a present, and reports a thing that happens \"on about a dozen days a year,\" so \"were still visible\" and \"was still visible\" close off in the past a state the sentence is asserting now.",
+    "topic_tag": "sea pier remains"
+  },
+  {
+    "id": "SEC-HD-V8-20",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a plural head across a relative clause ending in a singular noun, with the tense fixed by a span that closed sixty years on",
+    "difficulty": "hard",
+    "passage": "A county's turnpike trusts were separate companies with separate books, and the only thing they had in common was the road. The clauses in the 1751 act that fixed the tolls a trust could charge on a wagon with wheels of a stated width ______ in every later act for sixty years, and no two counties copied them out in quite the same form.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been reproduced almost verbatim",
+      "were reproduced almost verbatim",
+      "was reproduced almost verbatim",
+      "have been reproduced almost verbatim"
+    ],
+    "correct_answer": "were reproduced almost verbatim",
+    "explanation": "The subject is \"The clauses,\" a plural, and the whole stretch from \"in the 1751 act\" to \"of a stated width\" modifies it; the words nearest the blank are the singular \"a wagon\" and \"a stated width,\" which is what makes \"was reproduced almost verbatim\" and \"has been reproduced almost verbatim\" look right. The second requirement is tense: the copying ran \"for sixty years\" from 1751 and the sentence reports what counties did with the text in the past, so \"have been reproduced almost verbatim\" runs a span that ended in the eighteenth century up to the present day.",
+    "topic_tag": "turnpike acts"
+  },
+  {
+    "id": "SEC-HD-V8-21",
+    "domain": "Standard English Conventions",
+    "subskill": "form: the antecedent of a counterfactual conditional takes the past perfect, and the modal belongs to the consequent alone",
+    "difficulty": "hard",
+    "passage": "A prize court did not try the crew of a captured ship; it tried the ship's papers. The master of a brig taken off the banks in 1799 got his manifest over the side before the boarding party was aboard, which is why the case turned in the end on the testimony of two hands who could not read. If that manifest ______, the case the owners brought in the vice-admiralty court would have collapsed inside a week instead of running for six years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "would have reached the court intact",
+      "has reached the court intact",
+      "reached the court intact",
+      "had reached the court intact"
+    ],
+    "correct_answer": "had reached the court intact",
+    "explanation": "The manifest went over the side, so the sentence is supposing something that did not happen; in a conditional of that kind the \"if\" clause carries the past perfect and the main clause carries the modal, which is why \"would have reached the court intact\" puts a second \"would have\" on the wrong side of the sentence and why \"reached the court intact\" states as ordinary past fact the very thing the passage has just said did not occur. The second requirement is that the episode is closed—a brig taken in 1799 and a suit that ran six years—so \"has reached the court intact\" attaches a present perfect to a case long since decided.",
+    "topic_tag": "prize court papers"
+  },
+  {
+    "id": "SEC-HD-V8-22",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: an introductory dependent clause is closed with a comma, and no comma stands between a noun and the relative clause that identifies it",
+    "difficulty": "hard",
+    "passage": "A hospital ship in the age of sail was a converted merchantman with her guns taken out, and the conversion was usually done by the yard that had built her rather than by anyone who had been to sea in her. Because the stores had to be got at in a hurry ______ in the orlop were rejected by the surgeon, and the medicines were stowed instead on an open shelf above the hatch.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the lockers, the yard had fitted,",
+      "the lockers the yard had fitted",
+      ", the lockers the yard had fitted",
+      ", the lockers, the yard had fitted,"
+    ],
+    "correct_answer": ", the lockers the yard had fitted",
+    "explanation": "The sentence opens with a dependent clause running from \"Because\" to \"in a hurry,\" and such a clause is closed with a comma before the main clause begins, so \"the lockers the yard had fitted\" and \"the lockers, the yard had fitted,\" mark no boundary at all. The second requirement lies inside the main clause: \"the yard had fitted\" says which lockers are meant rather than adding an aside about lockers already identified, and a clause doing that work is not set off, which is what \", the lockers, the yard had fitted,\" and \"the lockers, the yard had fitted,\" both get wrong.",
+    "topic_tag": "hospital ship fitting"
+  },
+  {
+    "id": "SEC-HD-V8-23",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a prediction reported after a past-tense verb is backshifted, and the voice follows from the subject's being the thing acted on",
+    "difficulty": "hard",
+    "passage": "A coal seam is not a fixed quantity but an estimate that moves with the price, and nineteenth-century predictions of exhaustion say more about the cost of raising a ton than about the geology of the field. A royal commission reported in 1889 that the deepest workable seam in the northern coalfield ______, and the same seam was still being worked, at a loss and under subsidy, a full century later.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "will be exhausted by 1910",
+      "would exhaust by 1910",
+      "would be exhausted by 1910",
+      "will exhaust by 1910"
+    ],
+    "correct_answer": "would be exhausted by 1910",
+    "explanation": "The reporting verb is \"reported,\" a past tense, and the prediction it introduces is one the sentence goes on to say was false, so the future in the reported clause is backshifted to \"would\"; \"will be exhausted by 1910\" and \"will exhaust by 1910\" leave a prediction standing as live that the same sentence has just falsified. The second requirement is voice: a seam is what mining exhausts, not what does the exhausting, and no object follows the verb, so \"would exhaust by 1910\" and \"will exhaust by 1910\" leave the verb without anything to act on.",
+    "topic_tag": "coalfield estimates"
+  },
+  {
+    "id": "SEC-HD-V8-24",
+    "domain": "Standard English Conventions",
+    "subskill": "form and boundaries: in a 'one of the few' frame the relative clause agrees with the plural noun rather than with 'one', and the clause identifies and so takes no comma",
+    "difficulty": "hard",
+    "passage": "Hand-colored botanical plates were colored by women working from a single master copy, and the colorists are almost never named anywhere in the book they made. The 1793 folio of grasses is one of the very few works of its kind ______ rather than the author, and the eleven names printed at the back of it are the only surviving record of a trade that employed hundreds.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "that credit the workshop",
+      "that credits the workshop",
+      ", that credits the workshop",
+      ", that credit the workshop"
+    ],
+    "correct_answer": "that credit the workshop",
+    "explanation": "\"that\" points back to \"the very few works of its kind,\" the group out of which the folio is being picked, and not to \"one,\" so the verb is plural: \"that credit the workshop.\" \"that credits the workshop\" and \", that credits the workshop\" take the number from the wrong word, which is the misreading the frame is built to invite. The second requirement is punctuation: the clause is what narrows the works to the few that name their colorists, and a clause doing that work is never preceded by a comma, so \", that credit the workshop\" and \", that credits the workshop\" both insert a mark the construction forbids.",
+    "topic_tag": "botanical plates"
+  }
+]
