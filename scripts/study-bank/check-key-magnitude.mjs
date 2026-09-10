@@ -45,7 +45,15 @@ export function keyRank(choices, key) {
 
 function report(label, rows) {
   const scored = rows.map(r => keyRank(r.choices, r.key)).filter(Boolean)
-  if (!scored.length) { console.log(`${label.padEnd(34)} no fully-numeric option sets`); return }
+  // Zero scorable sets is the ABSENCE of a measurement, not a clean result.
+  // Returning undefined here let the CLI fall through to exit 0, so a batch
+  // this checker could not read printed a calm line and passed an `&&` chain
+  // exactly like a flat 25/25/25/25. Same defect class as the six checkers in
+  // the CLAUDE.md corollary; check-math-hub was fixed for it and this was not.
+  if (!scored.length) {
+    console.log(`${label.padEnd(34)} NOT MEASURED — no fully-numeric option sets (0 scorable of ${rows.length})`)
+    return null
+  }
   const n = scored.length
   const hist = {}
   for (const s of scored) hist[s.rank] = (hist[s.rank] ?? 0) + 1
@@ -119,11 +127,18 @@ if (bankIdx >= 0) {
 } else if (RUN_AS_CLI) {
   const files = process.argv.slice(2).filter(a => !a.startsWith('--'))
   const every = []
+  const unmeasured = []
   for (const f of files) {
     const j = JSON.parse(readFileSync(f, 'utf8'))
     const items = Array.isArray(j) ? j : j.items
     const rows = items.filter(i => Array.isArray(i.choices)).map(i => ({ choices: i.choices, key: i.correct_answer }))
-    report(f.split('/').pop().replace('.batch.json', ''), rows); every.push(...rows)
+    // A file this checker could not measure must not exit 0. See report().
+    if (report(f.split('/').pop().replace('.batch.json', ''), rows) === null) unmeasured.push(f)
+    every.push(...rows)
   }
   if (files.length > 1) { console.log(); report('ALL', every) }
+  if (unmeasured.length) {
+    console.error(`\nNOT A PASS: ${unmeasured.length} file(s) had no scorable option sets — ${unmeasured.join(', ')}`)
+    process.exit(2)
+  }
 }
