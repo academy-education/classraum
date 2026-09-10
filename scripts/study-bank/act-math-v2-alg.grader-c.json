@@ -1,0 +1,308 @@
+{
+  "grader": "c",
+  "batch": "act-math-v2-alg",
+  "graded_on": "2026-09-11",
+  "items": {
+    "AM2A-01": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "note": "Three of three distractors fall without work. The stem says the integers are ODD, so 38 is eliminable by kind. The three sum to 111, so the mean is exactly 37 and the LARGEST must exceed 37 - which kills 35 and 37 by magnitude. Key is forced by inspection; this is the batch's clearest instance of the defect the brief names."
+    },
+    "AM2A-02": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "note": "'no more than 8,000' fixes the rounding convention, so 33 vs 34 is decidable and exclusive. 34 (ceiling) is the real trap and survives inspection; 55 and 22 both sit in a believable range. Only mild weakness: 55 exceeds any achievable count once the van's own weight is noticed, but noticing that IS the work."
+    },
+    "AM2A-03": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "Distractors are x alone, y alone, x-y - the 'other variable' family. Legitimate, but note the key equals the sum of two of the options (7 = 5 + 2), which a suspicious student can spot; measured batch-wide that rule fires once in 24, so it is not a batch tell."
+    },
+    "AM2A-04": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "7 (one branch only) and 14 (2x, the penultimate line) are both real errors. '9' is weak filler - it is just the right-hand side copied, derived from no work at all, and is the option a test-wise student discards first."
+    },
+    "AM2A-05": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "note": "A width cannot be negative, so -6.5 goes by kind; 13 and 6.5 are both larger than sqrt(65/2) ~ 5.7, so a one-line magnitude check on w(2w+3)=65 kills them too. The item is answerable with no algebra. The root-rejection construct is sound; the option set gives it away."
+    },
+    "AM2A-06": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "Period-counting errors (2 periods, 1 period) are the right distractor family and none is eliminable by kind or magnitude - 360 and 480 are entirely believable insect counts. Clean item."
+    },
+    "AM2A-07": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "note": "The pre-discount price must EXCEED the $68 sale price, so 57.80 is eliminable by kind, and 453.33 by magnitude (a 15% discount cannot cut a price by 85%). Only 78.20 needs thought. Separate defect worth fixing: the key is written '80' while the other three money options carry two decimals ('78.20', '57.80', '453.33') - a typographic singleton on the key, and inconsistent with AM2A-15's '20.00'."
+    },
+    "AM2A-08": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "note": "Genuinely late-form: square, factor, then test both roots against the original. The extraneous root 1 is the strongest distractor in the batch - it survives every check except substitution. 5 (the common value of both sides) and 10 (sum of candidate roots) are both post-work errors, not eliminable by inspection."
+    },
+    "AM2A-09": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "12 and 7 are one- and two-step-short walkbacks, 5 is the common difference. All four are believable first terms; nothing falls to kind or magnitude. Fine mid-form item."
+    },
+    "AM2A-10": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "note": "'Varies inversely' plus x doubling means y must DECREASE from 8, so 16 and 32 are eliminable by kind from the first clause of the stem. That leaves a coin flip between 4 and 2, and the distinction (inverse in x vs inverse in x^2) is the only work the item actually asks for."
+    },
+    "AM2A-11": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "540 (ignore the flat fee) and 300 (divide the fee) are strong. 1440 is weaker: the whole bill at $0.06 buys at most 540 messages, so it is above any reachable count and goes by magnitude. Two of three still require work."
+    },
+    "AM2A-12": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "note": "Options-level defect: three of the four options carry |13x| and only the key carries 7x, so the key is the unique middle coefficient. A student who computes ONLY the inner+outer sum, or who simply distrusts a 3-1 split, lands on it. Fix by giving at least one distractor a different middle coefficient (e.g. 2x^2 + 7x + 15 for the sign-of-constant error)."
+    },
+    "AM2A-13": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "Stem correctly excludes x = 3. 'x - 3' is the sharp distractor (cancel the wrong factor). 'x^2 - 3' is weak - dividing a quadratic by a linear cannot leave a quadratic, so it goes by degree. Note the key is the only option containing a '+'; measured across the batch the 'pick the format singleton' rule fires 4 of 17 (23.5%), so this is a local blemish, not a batch tell."
+    },
+    "AM2A-14": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "Common-base rewriting is late-form ACT. '1' (equate exponents without rewriting bases) is the strong distractor. -3 and 3/7 are sign/direction slips; neither is eliminable by kind since x is unconstrained. Clean."
+    },
+    "AM2A-15": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "Conversion supplied in the stem, so nothing is assumed. 3.75 is soft - 15 feet must cost more than the 8 feet that cost $6.00, so anything under 6 goes by magnitude. 33.75 (double conversion) and 20.00 (inverted rate) both survive inspection."
+    },
+    "AM2A-16": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "note": "Best-constructed option set in the batch: all four are plain counts in the same magnitude band, so nothing is eliminable by kind or magnitude, and 11/12/13 is a clean fence-post trio. Graded medium rather than hard: the algebra is one step and the only discriminator is the inclusive count."
+    },
+    "AM2A-17": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "1/12 (stop at 1/x) is the classic and is strong. -1 is weak: 1/x = 1/12 is positive, so a negative x is impossible once the first line is written. Graded medium, not hard - two fraction subtractions and a reciprocal is mid-form work."
+    },
+    "AM2A-18": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "note": "Concept is genuinely hard (parallel-but-distinct, and the constants 12 and 7 do keep it inconsistent, so exclusivity holds). But the option set is 10, 20, 30, 5: three multiples of ten and the key. The key is the only single-digit value and the only non-multiple of 10, so the set advertises itself. Replace 20 or 30 with a non-round competitor such as 2 (the ratio itself) or 12."
+    },
+    "AM2A-19": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "'Pure water' pins the acid amount, so the quantity is unambiguous. 18 (final volume, the penultimate line) is the intended trap and is strong; 3.6 (the acid) and 1.2 both require the student to have started work. Sound item."
+    },
+    "AM2A-20": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "7/4 (sum instead of product) is strong; 3/2 (dropped sign) and -6 (forgot to divide by a) are both genuine. A student who knows only that c/a is negative halves the set, but knowing that IS the content of the item."
+    },
+    "AM2A-21": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "note": "24 is stated in the options as the full-drain time, so the answer must be less than 24 - which eliminates 45 and 37.5 by magnitude, and 24 itself is the wrong answer to a different question. The remaining option is the key. Two of three distractors are free."
+    },
+    "AM2A-22": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "Routine two-sided distribute-and-solve; on a real form this sits in the first third. All three distractors are distinct distribution failures and none is eliminable by kind or magnitude."
+    },
+    "AM2A-23": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "note": "Graded medium rather than easy: dividing by a negative and reversing the inequality is a genuine mid-form discriminator, and '3' is exactly the student who forgets both. '6' (the un-divided right side) is the weakest of the three but still needs a line of work to reach."
+    },
+    "AM2A-24": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "note": "All three distractors fall to one sentence of reasoning: working together must be FASTER than the faster worker alone (6 hours), which kills 15 and 7.5 by magnitude, and 5/18 of an hour is under 17 minutes for a job that takes Maya 6 hours, so it goes too. The key is the only survivor without any arithmetic. Needs a distractor between 3 and 6 - e.g. 3.75 from 1/(1/6+1/9) mis-added, or 4.5."
+    }
+  },
+  "options_only_exceptions": {
+    "verdict": "No rule I could state fired above the 25% control across all 24. I report the negatives rather than the three items that look tell-ish in isolation.",
+    "rules_measured": [
+      {
+        "rule": "key is the largest option",
+        "hits": "5/24",
+        "rate": "20.8%",
+        "vs_control": "-4.2 pts",
+        "detail": "AM2A-01, 03, 06, 14, 17. Below chance."
+      },
+      {
+        "rule": "key is the smallest option",
+        "hits": "6/24",
+        "rate": "25.0%",
+        "vs_control": "0.0 pts",
+        "detail": "AM2A-04, 09, 10, 11, 18, 21. Exactly chance."
+      },
+      {
+        "rule": "key is an interior value (neither extreme)",
+        "hits": "13/24",
+        "rate": "54.2%",
+        "vs_control": "+4.2 pts against the correct 50% control for 4 options",
+        "detail": "Not significant on n=24."
+      },
+      {
+        "rule": "key is the unique integer / unique round value in a mixed set",
+        "hits": "1/4 sets where the rule can fire",
+        "rate": "25.0%",
+        "vs_control": "0.0 pts",
+        "detail": "Fires on AM2A-07 (key 80, correct), AM2A-15 (20.00, wrong), AM2A-20 (-6, wrong), AM2A-24 (15, wrong). Denominator is 4, not 24 - too small to be a finding either way, and it points the wrong way three times."
+      },
+      {
+        "rule": "key is the format/magnitude singleton - three options share a surface feature and one does not",
+        "hits": "4/17 sets where a clean singleton exists",
+        "rate": "23.5%",
+        "vs_control": "-1.5 pts",
+        "detail": "Correct on AM2A-06, 12, 13, 18; wrong on AM2A-01, 04, 08, 09, 11, 14, 15, 17, 20, 21, 22, 23. This is the rule that AM2A-12/13/18 tempt you into and it does not survive the other 21 items. NEGATIVE."
+      },
+      {
+        "rule": "key equals the sum of two other options",
+        "hits": "1/24",
+        "rate": "4.2%",
+        "vs_control": "-20.8 pts",
+        "detail": "Only AM2A-03 (7 = 5 + 2)."
+      },
+      {
+        "rule": "where the set contains a +/- pair, the key is (a) neither member or (b) the positive member",
+        "hits": "(a) 1/4, (b) 1/4",
+        "rate": "25.0%",
+        "vs_control": "0.0 pts",
+        "detail": "Pairs in AM2A-05 (key neither), 14 (key positive), 20 (key negative), 23 (key negative). The batch does not commit to a convention, which is the healthy outcome."
+      }
+    ],
+    "per_item_exceptions": [
+      {
+        "id": "AM2A-12",
+        "why": "Three of four options carry |13x| and only the key carries 7x. Covered-stem, a solver picks the 3-1 split's loner. The batch-wide singleton rule is at chance, so this is an authoring blemish on one item, not evidence of a batch brief."
+      },
+      {
+        "id": "AM2A-18",
+        "why": "10 / 20 / 30 / 5 - the key is the only non-multiple of ten and the only single-digit value. Same caveat."
+      },
+      {
+        "id": "AM2A-07",
+        "why": "Formatting, not value: the key is '80' while every other money option shows two decimals. A covered-stem solver picks the differently-formatted option. This one is free to fix - write '80.00'."
+      }
+    ],
+    "conclusion": "Bare numeric options behave as the clean stratum here. Three individual items leak a little through surface formatting or option-family imbalance; no rule generalises, and the correct read is 'fix those three', not 'the batch is guessable'."
+  },
+  "template_groups": {
+    "groups": [
+      {
+        "ids": ["AM2A-02", "AM2A-11", "AM2A-21"],
+        "fraction": "3/24 (12.5%)",
+        "shared": "Identical arithmetic skeleton: (total - fixed part) / rate, differing only in whether the result is floored. Solving one hands you the other two.",
+        "distractor_brief": "UNIFORM, and this is the batch's sharpest cross-item tell. Every one of the three offers (i) the same division with the fixed part NOT removed - 55, 540, 24 - and (ii) the fixed/removed part used alone - 22, 300, 45. Two of the three wrong slots are the same two roles in all three items."
+      },
+      {
+        "ids": ["AM2A-17", "AM2A-24"],
+        "fraction": "2/24 (8.3%)",
+        "shared": "Both are 'combine reciprocals, then take the reciprocal back' (1/3 - 1/4 and 1/6 + 1/9).",
+        "distractor_brief": "UNIFORM: both offer the un-reciprocated combined value as a distractor (1/12 and 5/18). A student who meets one learns 'the answer is never the fraction I just computed' and eliminates on the other without working."
+      },
+      {
+        "ids": ["AM2A-10", "AM2A-15"],
+        "fraction": "2/24 (8.3%)",
+        "shared": "Variation: find the constant from one (x, y) pair, evaluate at a new input. Inverse-square and direct.",
+        "distractor_brief": "Partly uniform: both offer the wrong power / wrong-direction application of the constant. Less mechanical than the group above."
+      },
+      {
+        "ids": ["AM2A-05", "AM2A-08", "AM2A-20"],
+        "fraction": "3/24 (12.5%)",
+        "shared": "Quadratic root handling: reject a root (05, 08) or aggregate the roots from coefficients (20).",
+        "distractor_brief": "UNIFORM in role: in each, one distractor is the rejected/other root or an aggregate of the roots (-6.5 and 6.5; 1 and 10; 7/4). Different enough in surface that the transfer is weaker."
+      },
+      {
+        "ids": ["AM2A-02", "AM2A-16", "AM2A-23"],
+        "fraction": "3/24 (12.5%)",
+        "shared": "Integer-boundary reasoning on an inequality: floor a quotient, count inclusive endpoints, take the greatest integer after a sign flip.",
+        "distractor_brief": "UNIFORM: each carries an off-by-one neighbour of the key (34; 11 and 12; and in 23 the un-divided 6). This is the healthy version of a shared brief - the off-by-one IS the construct."
+      },
+      {
+        "ids": ["AM2A-06", "AM2A-14"],
+        "fraction": "2/24 (8.3%)",
+        "shared": "Exponential: count the periods / equate exponents. Different enough in surface that solving one does not solve the other."
+      },
+      {
+        "ids": ["AM2A-12", "AM2A-13"],
+        "fraction": "2/24 (8.3%)",
+        "shared": "The only two items with algebraic rather than numeric options (expand, simplify). Grouped by option format rather than method."
+      },
+      {
+        "ids": ["AM2A-03", "AM2A-18"],
+        "fraction": "2/24 (8.3%)",
+        "shared": "Two-equation systems, but one asks for a combination of solutions and the other for a parameter making the system inconsistent. Not transferable."
+      }
+    ],
+    "singletons": ["AM2A-01", "AM2A-04", "AM2A-07", "AM2A-09", "AM2A-19", "AM2A-22"],
+    "distractor_brief_uniformity": {
+      "finding": "The dominant wrong-option role batch-wide is 'the last intermediate quantity on the correct solution path' - the number the student wrote one or two lines before the answer.",
+      "measured": "11 of 24 items (45.8%) offer at least one such distractor: AM2A-01 (35, 37), 03 (5, 2), 04 (14), 05 (13), 08 (5), 09 (5), 17 (1/12), 19 (18, 3.6), 21 (45), 23 (6), 24 (5/18).",
+      "control_note": "Comparable to the 42% figure the brief cites from the sibling batch, so treat it as the same defect at the same strength, not a milder one.",
+      "why_it_matters": "The heuristic 'the answer is never the number I had two lines ago' eliminates one option in nearly half the batch for free. In AM2A-05, AM2A-19, AM2A-21 and AM2A-24 that heuristic combined with a magnitude check leaves the key ALONE - those four items are solvable with no algebra at all.",
+      "recommendation": "In each of AM2A-05, 21 and 24, replace one intermediate-value distractor with a value that lies between the intermediate and the key, so magnitude cannot separate them. AM2A-24 is the most urgent: it needs an option strictly between 3.6 and 6."
+    }
+  },
+  "summary": {
+    "difficulty_histogram": { "easy": 6, "medium": 15, "hard": 3 },
+    "exclusive_false": 0,
+    "stem_incomplete": 0,
+    "distractor_quality": { "weak": 8, "plausible": 13, "strong": 3 },
+    "arithmetic_concerns": "None. Every key and stated derivation I spot-checked (01, 05, 08, 14, 16, 18, 20, 24) recomputes as written; AM2A-18 in particular really is inconsistent at k = 5 (12/7 is not 2), so the 'no solution' phrasing holds."
+  }
+}

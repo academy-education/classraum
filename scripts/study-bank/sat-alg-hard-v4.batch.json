@@ -166,14 +166,19 @@
     "difficulty": "hard",
     "prompt": "The sum of two numbers is 60. Three times the smaller number is at least 12 more than the larger number. What is the greatest possible value of the larger number?",
     "choices": [
-      "12",
-      "18",
       "30",
-      "42"
+      "42",
+      "48",
+      "54"
     ],
     "correct_answer": "42",
-    "explanation": "Let s be the smaller number, so the larger is 60 - s. The constraint 3s >= (60 - s) + 12 gives 4s >= 72, so s >= 18 and the larger number, 60 - s, is at most 42. At s = 18 the constraint holds with equality, since 54 = 42 + 12, so 42 is attainable. The value \"18\" is the least possible value of the smaller number rather than the greatest value of the larger one. The value \"30\" is what both numbers equal when they are equal, which is the smallest the larger number can be, not the largest. The value \"12\" is the constant in the comparison, not a value either number takes.",
-    "solve": "var best=null;\nfor(var i=0;i<=6000;i++){var L=i/10, s=60-L;\n  if(L>=s && 3*s>=L+12) best=L;\n}\nreturn best;"
+    "explanation": "Let s be the smaller number, so the larger is 60 - s. The constraint 3s >= (60 - s) + 12 gives 4s >= 72, so s >= 18 and the larger number, 60 - s, is at most 42. At s = 18 the constraint holds with equality, since 54 = 42 + 12, so 42 is attainable. The value \"48\" comes from attaching the 12 to the wrong side of the comparison, solving 3s + 12 >= 60 - s, which gives 4s >= 48, s >= 12, and a larger number of at most 48. The value \"54\" is the value of 3s at the boundary s = 18 - the quantity the constraint compares, reported in place of the larger number itself. The value \"30\" is what both numbers equal when they are equal, which is the smallest the larger number can be, not the largest.",
+    "solve": "var best=null;\nfor(var i=0;i<=6000;i++){var L=i/10, s=60-L;\n  if(L>=s && 3*s>=L+12) best=L;\n}\nreturn best;",
+    "distractor_solve": {
+      "30": "// minimizes the larger number instead of maximizing it: the smallest L\n// with L >= s that still satisfies 3s >= L + 12.\nvar best=null;\nfor(var i=6000;i>=0;i--){var L=i/10, s=60-L;\n  if(L>=s && 3*s>=L+12) best=L;\n}\nreturn best;",
+      "48": "// attaches the '12 more' to the smaller side: 3s + 12 >= L instead of\n// 3s >= L + 12. Largest L satisfying that.\nvar best=null;\nfor(var i=0;i<=6000;i++){var L=i/10, s=60-L;\n  if(L>=s && 3*s+12>=L) best=L;\n}\nreturn best;",
+      "54": "// solves for the boundary smaller number correctly, then reports the\n// compared quantity 3s rather than the larger number 60 - s.\nvar s=null;\nfor(var i=0;i<=6000;i++){var t=i/10;\n  if(3*t>=(60-t)+12){ s=t; break; }\n}\nreturn 3*s;"
+    }
   },
   {
     "id": "ALG-H4-12",
@@ -340,16 +345,21 @@
     "domain": "Algebra",
     "subskill": "comparing two linear cost models and counting the whole periods on one side of the crossing",
     "difficulty": "hard",
-    "prompt": "One fitness club charges a one-time joining fee of 60 dollars plus 45 dollars per month. A second club charges 60 dollars per month and no joining fee. For how many whole months of membership is the total cost at the first club greater than the total cost at the second club?",
+    "prompt": "One fitness club charges a one-time joining fee of 60 dollars plus 45 dollars per month. A second club charges 60 dollars per month and no joining fee. For how many whole-number values of m, where m is at least 1, is the total cost of an m-month membership at the first club greater than the total cost of an m-month membership at the second club?",
     "choices": [
+      "1",
+      "2",
       "3",
-      "4",
-      "15",
-      "60"
+      "4"
     ],
     "correct_answer": "3",
-    "explanation": "After m months the first club has cost 60 + 45m and the second has cost 60m. The first exceeds the second when 60 + 45m > 60m, that is when 60 > 15m, or m < 4. The whole-month values that satisfy this are 1, 2, and 3, so there are 3 such months. The value \"4\" is the month at which the two totals are equal, counted as though the first club were still the more expensive one. The value \"15\" is the difference between the two monthly rates. The value \"60\" is the joining fee, which is also the second club's monthly rate.",
-    "solve": "var n=0;\nfor(var m=1;m<=1000;m++) if(60+45*m > 60*m) n++;\nreturn n;"
+    "explanation": "For an m-month membership the first club costs 60 + 45m and the second costs 60m. The first exceeds the second when 60 + 45m > 60m, that is when 60 > 15m, or m < 4. The whole-number values of m with m >= 1 that satisfy this are 1, 2, and 3, so there are 3 such values. The value \"4\" comes from using 60 >= 15m instead of the strict inequality and counting m = 4, the month at which the two totals are equal and neither club is more expensive. The value \"2\" comes from reading the first month as the joining month and starting the count at m = 2, leaving only 2 and 3. The value \"1\" comes from dividing the joining fee by the second club's monthly rate rather than by the difference in the monthly rates, solving 60 > 45m to get m < 4/3 and counting only m = 1.",
+    "solve": "var n=0;\nfor(var m=1;m<=1000;m++) if(60+45*m > 60*m) n++;\nreturn n;",
+    "distractor_solve": {
+      "1": "// divides the joining fee by the second club's monthly rate instead of by\n// the difference of the rates: 60 > 45m rather than 60 > (60-45)m.\nvar n=0;\nfor(var m=1;m<=1000;m++) if(60 > 45*m) n++;\nreturn n;",
+      "2": "// treats month 1 as the joining month and starts counting at m = 2.\nvar n=0;\nfor(var m=2;m<=1000;m++) if(60+45*m > 60*m) n++;\nreturn n;",
+      "4": "// counts the crossing month too: uses >= where the stem says greater.\nvar n=0;\nfor(var m=1;m<=1000;m++) if(60+45*m >= 60*m) n++;\nreturn n;"
+    }
   },
   {
     "id": "ALG-H4-23",

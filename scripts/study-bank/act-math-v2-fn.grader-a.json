@@ -1,0 +1,286 @@
+{
+  "grader": "a",
+  "batch": "act-math-v2-fn.batch.json",
+  "graded": "2026-09-11",
+  "mode": "with-source",
+  "items": {
+    "AM2F-01": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Genuine function-notation item: the whole point is that the shift acts on the input. One substitution, well under a minute. All three distractors are the named misreadings of the shift (forget it, reverse it, apply it to the output) and none is eliminable by kind or size. The key is the only negative option, but nothing in the option set alone says the answer should be negative, so this is odd-one-out noise rather than a tell (measured batch-wide: the sign-unique rule is 1/5)."
+    },
+    "AM2F-02": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Two table lookups, 15 seconds. Author says medium; on a real form this sits in the first third. Stem correctly says the functions are defined ONLY for x = 1..4, which is what makes the composition well posed. Distractors are the three canonical composition errors (reversed order, g applied twice, inner value only) and all four options are values that actually appear in the tables, so nothing is eliminable without doing the lookup."
+    },
+    "AM2F-03": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Upgraded from the author's medium. Three separate obligations inside one minute: locate the vertex, confirm it lies inside [0,5], and test BOTH endpoints - and the closed interval makes the max an endpoint while the min is the vertex, so a solver who checks only one kind of critical point lands on a distractor. '5' (endpoint difference only) and '4' (vertex min but wrong endpoint) are exactly the two half-solutions. Well-posed: the range of a continuous quadratic on a closed interval really is [a,b]."
+    },
+    "AM2F-04": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "The load-bearing insight is that (3,-5) IS the vertex because the stem fixed h = 3, which collapses the first substitution; a solver who does not see that burns the minute setting up two equations in a and k. a != 0 is implied rather than stated but a = 0 is refuted by the second point, so nothing is missing. 75/80/85 sit five apart, which is realistic for the dropped-k and sign-flip errors rather than a spread designed to look tempting."
+    },
+    "AM2F-05": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Compose, then invert - two genuine function operations, and h is linear so the inverse exists without needing a stated restriction. Distractors cover reversed composition (7), undoing only the outer function (4), and a sign slip (-1). Real Functions content, not linear algebra in disguise: the reversed-order distractor only bites if you are actually reasoning about composition."
+    },
+    "AM2F-06": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Downgraded from medium: for a student who knows the equal-degree rule this is a ten-second recall item with no computation at all, and for one who does not, no amount of time helps. That is an easy item by ACT placement even though the miss rate will not be low. Distractors are the three standard misapplications of the asymptote rules (constants instead of leading coefficients, inverted ratio, y = 0). 0.5 and 1.5 are only 'plausible' rather than 'strong' because a solver who remembers the rule at all never considers them."
+    },
+    "AM2F-07": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "'and at no other point' is doing necessary work - without it k would not be unique - and it is present. Clean horizontal-scaling item; the 24/6 pair is the real conceptual split and 10/14 catch solvers who treat the 2 additively. One line of work."
+    },
+    "AM2F-08": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Brute force (list five terms and add) beats the formula here and fits in a minute, which caps the difficulty at medium. 486 (fifth term instead of the sum) and 2184 (six terms) are the right traps. '60' is the weakest option in the batch that I still called non-weak: it requires treating r as d, and a solver who has written down even two terms sees 60 is impossible - but that is one line of work, not zero, so it survives the strict test."
+    },
+    "AM2F-09": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "STRICT-TEST FAILURE. The stem fixes a $18,000 machine that LOSES value every year, which rules out 31,482 (above the purchase price) and 9 (absurd) by magnitude with literally no work. That leaves a straight 50/50 between 9,396 and 7,200, and the surviving distractor is the good one. Two of three distractors eliminable by kind is the pattern the sibling batch was penalised for. Fix by replacing 31,482 and 9 with values below 18,000 that are wrong for real reasons - e.g. 18,000(0.85)^3 and 18,000 - 18,000(0.15)^4-style slips. Rounding convention is stated ('to the nearest dollar'), so exclusivity is fine."
+    },
+    "AM2F-10": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "The best item in the batch. The t = 8 / t = 9 boundary is the whole question: the continuous crossing is at 8.13, so the log-and-floor solver gets 8 and is wrong, and only checking the two integers settles it. That is exactly the ACT's late-form flavour. t is implicitly a non-negative integer count of years; I checked that B < A for every negative t as well (the ratio (1.15/1.08)^t is monotone, so there is one crossing), so the unstated lower bound cannot create a second answer. Exclusive."
+    },
+    "AM2F-11": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": true,
+      "note": "STRICT-TEST FAILURE AND THE ONE OPTIONS-ONLY EXCEPTION. A sum of two absolute values cannot be negative, so -2 and -1 die by kind before any work, and 0 dies on the one-line observation that |x-3| and |x+5| cannot vanish together. 8 is the only survivor. Worse, this is the leak the repo records: the stem names an axis (minimum of a sum of absolute values) and the options differ precisely along it - three non-positive values and one positive - so the option set alone decides it for anyone who knows absolute values are non-negative, without reading the function. The mathematics is genuine and the item is worth keeping, but all three distractors must be replaced with positive values: 2 (3-(-5) mis-signed as |3|-|5|... use 8's neighbours), 6, and 15 are the kind of thing that would force real work."
+    },
+    "AM2F-12": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Four consecutive integers as options is the cleanest possible stratum - the option set carries zero magnitude information, so every off-by-one error has to be committed rather than guessed away, and all three distractors are genuine indexing slips. The question asks WHICH TERM, and every option is an index, so there is no value/index ambiguity. Mild domain note: the sequence machinery is real Functions content by ACT's reporting category, but the solving step itself is one linear equation."
+    },
+    "AM2F-13": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "DOMAIN FLAG: this is linear-equation algebra wearing function notation. Strip 'f(a)' and it reads 'solve 3a^2 - 5 = 103', a pure equation-solving item; f is never treated as an object (no composition, transformation, domain, range, or graph). If this batch exists to relieve the Functions quota, this item does not relieve it. As an item it is fine: 'positive value of a' removes the +-6 ambiguity, and 36/108 are the two natural premature stops."
+    },
+    "AM2F-14": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Genuinely about a property of quadratics (symmetry about the axis) rather than about algebra, which is what this domain should look like. 'a certain quadratic function' guarantees a non-zero leading coefficient, so f(2) = f(10) really does pin the axis at 6, and options being four close even numbers gives away nothing. The '6' distractor (reporting the axis instead of the reflected input) is the highest-yield wrong answer here."
+    },
+    "AM2F-15": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Two independent constraints plus an inclusive integer count is a genuine one-minute stretch, and the 17/16 pair is the whole item. Checked the magnitude test: the interval holds 21 integers and every option is at most 20, so no option is eliminable as exceeding the stated total. '9' is the soft one - restricting to positive integers is not an error a real solver makes - but it is not eliminable without work, so the item stands. Consider replacing 9 with 15 (also excluding x = -6 as if the radical were strict)."
+    },
+    "AM2F-16": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Two evaluations and a subtraction. The '0' distractor (assuming the squared term makes f even) and the '24' distractor (subtracting in the wrong order) are both real, and having both +-24 present means sign discipline is actually tested rather than guessed. Legitimate easy item; a form needs these."
+    },
+    "AM2F-17": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Standard vertex-of-a-model item. Two things I checked rather than assumed: the vertex falls at x = 24, an integer, so the implicit restriction to a whole number of items does not create a second answer - had it landed at 23.5 this item would not have been exclusive, and the stem never says x is an integer. '-400' is the soft distractor: a shop whose best possible day is a $400 loss is odd, but ruling it out still needs one evaluation, so it is not weak by the strict test. '24' (reporting the input instead of the output) is the strong one."
+    },
+    "AM2F-18": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Downgraded from the author's hard: the actual work is two lookups, and the three pieces tile the whole real line with no gap or overlap at -1 and 4, so once you read the boundaries correctly it is fast. What makes it non-easy is that the inner answer (5) lands in a different piece than the one a careless solver expects, and the '25' distractor punishes exactly that. Good item, correctly built; just not a hard one."
+    },
+    "AM2F-19": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "STRICT-TEST FAILURE, and a DOMAIN FLAG. Strict test: the options are candidate values of an EXPONENT, and 7(3^81) and 7(3^189) are astronomically larger than 567 - both die by magnitude with zero work, leaving 3 versus 4. Domain: like AM2F-13, this is equation-solving with an exponential rather than reasoning about a function. Fix the option set with other small exponents (2, 5, 6) so a solver has to actually recognise 81 = 3^4; the '81' distractor as written is doing no work anyway."
+    },
+    "AM2F-20": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Downgraded from hard - it is one constant of proportionality and one substitution, both mechanical once V = kT/P is written. DOMAIN FLAG (mild): joint variation is proportional reasoning; ACT more often files it outside Functions, so count it only weakly toward the quota. Two of the distractors (60, 36) come from applying one ratio and ignoring the other, which is the right error to model; deciding whether the net effect is an increase does require comparing 4/3 against 5/4, so nothing is eliminable for free."
+    },
+    "AM2F-21": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Downgraded from medium: once you know a positive vertical stretch preserves a minimum, the answer is a single line, 4(-2) - 7. 'no maximum value' is stated, which is what rules out the stretch turning a min into a max, so the stem is complete. '-36' (subtracting before multiplying) is the one distractor with real pull; '1' needs the solver to invent an absolute value, so it is close to dead weight."
+    },
+    "AM2F-22": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Clean asymptote-as-range item, one idea, no computation. The stem's phrasing ('the range IS the set of all real g(x) > c') is what makes c unique - 'the range is contained in g(x) > c' would have made every c <= -12 defensible, so the wording is load-bearing and correct. Sign-flip 12 and the g(0) = -9 distractor are fine; '0' is doing little. SANDBOX NOTE, not an item defect: the solve field is 3*2^(-108) - 12, which returns exactly -12 only because the first term underflows below float64 resolution next to 12. It happens to be right, but it is a limit dressed up as an evaluation and will mislead the next person who reads it; prefer a literal."
+    },
+    "AM2F-23": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "STRICT-TEST FAILURE, and it drags the difficulty down with it. With options 3, 9, 13, 36 the quartic term dominates so violently that 13 and 36 are visibly not zeros with no work at all, and the survivor 9 is then testable in about five seconds. Because the item is backsolvable from the option set, the intended skill (substituting u = x^2 and factoring) is entirely optional - which is why I graded this medium, not hard. To restore it, use zeros of nearby quartics as options (2, 3, 4, 6) so backsolving costs as much as factoring."
+    },
+    "AM2F-24": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Recursion indexed from a_1, three iterations, no ambiguity about where the count starts. 121 (squared but forgot the -5) and 11 (stopped at a_3) are the two errors this item exists to catch and both sit right next to the key in magnitude, so the option set gives nothing away. Solid medium."
+    }
+  },
+  "options_only_exceptions": ["AM2F-11"],
+  "options_only": {
+    "verdict": "No batch-wide rule beats the 25% control. One item, AM2F-11, is individually decidable from its options.",
+    "rules_measured_across_all_24": [
+      {
+        "rule": "key letter slot",
+        "result": "A 6, B 6, C 6, D 6",
+        "hit_rate": "25.0%",
+        "control": "25%",
+        "finding": false,
+        "comment": "Exactly uniform. Also checked the sibling batch's permutation tell: consecutive 4-item blocks are ACBA, BCBB, ACDD, ACCD, DCBB, DDAD - no block is a complete ABCD permutation, so the 6/6/6/6 is not being forced by a per-group constraint."
+      },
+      {
+        "rule": "key's magnitude rank among the four options (1 = smallest)",
+        "result": "rank1 6, rank2 6, rank3 6, rank4 6",
+        "hit_rate": "25.0%",
+        "control": "25%",
+        "finding": false,
+        "comment": "Also exactly uniform, which is the more important of the two - a numeric batch usually leaks here long before it leaks by letter. 'Avoid the extremes' (ranks 2 and 3) selects 12/24, i.e. 50% of a 2-of-4 narrowing, which is precisely chance."
+      },
+      {
+        "rule": "key is a member of the numerically closest pair (distractors cluster around the key)",
+        "result": "16/24",
+        "hit_rate": "66.7% raw",
+        "control": "64.6% (the selected set averages 2.58 of 4 options because of ties; expected hits = 62/4 = 15.5)",
+        "finding": false,
+        "comment": "The rule I most expected to fire, since derived distractors normally sit near the key. Observed 16 against an expected 15.5 - a difference of half an item. Reported as a negative; note that the honest control here is not 25%, and quoting the raw 66.7% against 25% would have manufactured a finding out of nothing."
+      },
+      {
+        "rule": "key is the option that is unique in its sign class (only negative, only positive, only zero)",
+        "result": "fires on 5 items (01, 05, 06, 17, 21), correct on 1",
+        "hit_rate": "20.0% of fires",
+        "control": "25%",
+        "finding": false,
+        "comment": "Below chance. The batch deliberately puts the odd-signed option on the key once and on a distractor four times."
+      },
+      {
+        "rule": "eliminate any option equal to 0",
+        "result": "0 appears in 4 option sets (06, 11, 16, 22) and is never the key: 4/4",
+        "hit_rate": "raises those 4 items from 25% to 33.3%; batch-wide 25% -> 26.4%",
+        "control": "3/4 expected",
+        "finding": false,
+        "comment": "One item above expectation. Real but negligible, and worth nothing as an exploit. Recorded so nobody re-derives it."
+      }
+    ],
+    "single_item_exception": {
+      "id": "AM2F-11",
+      "why": "Options -2, 0, -1, 8. A solver who knows only that the stem is about a minimum of absolute values picks 8 without reading the function, because three of four options are non-positive. This is the repo's leak condition literally - the options differ along the axis the stem names (sign/attainability of a minimum), and only one survives. It is not caught by any of the five rules above because it fires on one item, which is exactly why per-batch aggregates hid it."
+    }
+  },
+  "template_groups": {
+    "content_families": [
+      {"ids": ["AM2F-03", "AM2F-04", "AM2F-13", "AM2F-14", "AM2F-17", "AM2F-23"], "fraction": "6/24 (25%)", "label": "quadratic behaviour", "transfer": "Partial. AM2F-03 and AM2F-17 are the closest pair in the batch - both are 'find the vertex of a downward/upward parabola, then decide what to report' - and a student who does one has the method for the other. But 03 asks for a range width and 17 for a maximum value, and their distractor sets differ, so solving one does not hand over the other's answer."},
+      {"ids": ["AM2F-01", "AM2F-02", "AM2F-05", "AM2F-18"], "fraction": "4/24 (16.7%)", "label": "composition and nested evaluation", "transfer": "AM2F-02 and AM2F-05 share a distractor concept exactly (reversed order of composition), but the surface forms - table versus formula, direct value versus inverse - are different enough that the transfer is conceptual, not mechanical."},
+      {"ids": ["AM2F-09", "AM2F-10", "AM2F-19", "AM2F-22"], "fraction": "4/24 (16.7%)", "label": "exponential", "transfer": "Low. Decay model, model comparison, equation solving and range are four different tasks over one object."},
+      {"ids": ["AM2F-08", "AM2F-12", "AM2F-24"], "fraction": "3/24 (12.5%)", "label": "sequences", "transfer": "Low. Geometric sum, arithmetic index, quadratic recursion."},
+      {"ids": ["AM2F-01", "AM2F-07", "AM2F-21", "AM2F-22"], "fraction": "4/24 (16.7%)", "label": "transformations (inner shift, horizontal scale, vertical stretch+shift)", "transfer": "Moderate and healthy: the batch deliberately splits inside-versus-outside across these, which is the distinction the domain is supposed to test."},
+      {"ids": ["AM2F-06", "AM2F-11", "AM2F-15", "AM2F-16", "AM2F-20"], "fraction": "5/24 (20.8%)", "label": "singletons (asymptote, absolute value, domain count, evaluation, variation)", "transfer": "None."}
+    ],
+    "verdict_on_transfer": "No group is a template in the damaging sense - there is no pair where solving one yields the other's answer, and no pair shares a numeric skeleton. The families overlap because the domain is small, not because the items were stamped out.",
+    "distractor_brief_uniform": true,
+    "distractor_brief": {
+      "finding": "The 'reported the intermediate' distractor appears in 11 of 24 items (45.8%): AM2F-02, 03, 05, 08, 13 (twice), 14, 17, 18, 19, 23 (twice), 24. This is the same magnitude as the 42% the sibling batch was flagged for, and it is the single thing I would change about this batch.",
+      "why_it_matters": "In every one of those 11 items the number a solver holds two lines before the end is on the option list and is WRONG. The heuristic 'the answer is never the value I already have written down' is never once punished across all 24 items. It does not let a student skip the work, but it converts every near-miss into a correct answer and it kills the last step of the item, which is usually the step being tested (report b - a, not b; report the profit, not the number of items; report a_4, not a_3).",
+      "negatives_checked": [
+        "Slot: the intermediate-value distractors sit in A 2, B 3, C 4, D 4. Not slotted, so a student cannot learn a letter.",
+        "Magnitude: the intermediate is smaller than the key in 02, 03, 05, 08, 14, 17, 18, 24 and larger in 13, 19, 23. Mixed, so a student cannot learn a direction either.",
+        "So the tell is semantic only, exactly as the repo predicts, and no letter or spread check would ever see it - I only found it by reading all 24 explanations for the modelled error, not by any script."
+      ],
+      "recommendation": "Make the heuristic wrong somewhere. Three or four items should be built so that the natural intermediate IS the answer, and the trap is the extra step the student was primed to take. AM2F-22 is the only item in the batch that comes close (the key -12 is a constant visible in the function), and it is an easy item, so it does not test the reflex under load."
+    }
+  },
+  "batch_notes": {
+    "difficulty_histogram": {"easy": 8, "medium": 12, "hard": 4},
+    "author_histogram": {"easy": 5, "medium": 13, "hard": 6},
+    "disagreements": "Raised: 03 medium->hard, 02 medium->easy is a lowering, listing separately. Lowered: 02, 06, 21 medium->easy; 18, 20, 23 hard->medium. Raised: 03 medium->hard. The batch is genuinely mixed and the easy items are real easy items, which is right for a section that is not difficulty-routed.",
+    "hard_items_surviving": ["AM2F-03", "AM2F-04", "AM2F-10", "AM2F-15"],
+    "weak_distractor_items": ["AM2F-09", "AM2F-11", "AM2F-19", "AM2F-23"],
+    "domain_flags": {
+      "not_really_functions": ["AM2F-13", "AM2F-19"],
+      "weakly_functions": ["AM2F-20", "AM2F-09", "AM2F-12"],
+      "comment": "AM2F-13 and AM2F-19 are equation-solving with f() or an exponent painted on; they will not relieve a Functions quota. AM2F-20 is proportional reasoning. That is 2 clear and 3 soft out of 24."
+    },
+    "exclusivity": "All 24 exclusive. Two were close enough to check rather than assume: AM2F-17 (the vertex lands on the integer x = 24, so the unstated whole-items restriction does not create a second answer - it would have if the vertex were at a half-integer) and AM2F-10 (t is implicitly non-negative, and B < A for all negative t as well, so the unstated bound is harmless).",
+    "arithmetic": "Not re-checked per instructions, and nothing looked wrong. One sandbox artifact reported, not an item defect: AM2F-22's solve field computes 3*2^(-108) - 12 and returns -12 only by float64 underflow. It is a limit written as an evaluation."
+  }
+}

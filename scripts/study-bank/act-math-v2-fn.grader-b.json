@@ -1,0 +1,262 @@
+{
+  "grader": "b",
+  "batch": "act-math-v2-fn",
+  "graded": "2026-09-11",
+  "mode": "with-source",
+  "note": "Arithmetic not re-checked per instruction; nothing looked wrong. All 24 have BARE NUMERIC options, so the repo's options-differ-along-the-stem's-axis leak does not apply to any item: options_leak is false batch-wide, this is the clean stratum. difficulty is graded against a real 45q/50min ACT Math form and differs from the author's labels on 5 items.",
+  "items": {
+    "AM2F-01": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Genuine Functions (inner shift). One substitution; the concept is the whole item and the arithmetic is trivial - early-form easy. '6' (forget the shift) is a strong leg; '50' and '10' are honest. See options_only_exceptions: eliminating the two round options leaves a 2-way choice here."
+    },
+    "AM2F-02": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Genuine Functions. Domain is explicitly bounded to x=1..4, which closes the completeness hole. WEAK by the strict rule: f's range is {9,5,2,6} and the answer is an f-output, so '4' and '3' are eliminable BY KIND with no work - the item collapses to 9 vs 2 before any composition is done. Two of three legs dead. Also the one item in the batch whose key (9) appears verbatim in its own stem."
+    },
+    "AM2F-03": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Graded UP from the author's medium. Four steps under one minute: locate the vertex, confirm it is inside [0,5], evaluate both endpoints, subtract. '5' (endpoints only, never checks the vertex) is the best distractor in the batch. Genuine Functions (range on a restricted domain)."
+    },
+    "AM2F-04": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Graded DOWN from the author's hard. The given point (3,-5) sits exactly at the vertex named in the form, so k falls out with no work and only one equation remains. 80 and 85 are near-miss legs; nothing is eliminable by magnitude. Genuine Functions."
+    },
+    "AM2F-05": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Genuine Functions (composition then inverse). h(x)=2x-11 is invertible so h^-1(9) is unique. '-1' is not kind-eliminable: nothing in the stem forces a positive answer. '7' (wrong composition order) is the strong leg."
+    },
+    "AM2F-06": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Graded DOWN from the author's medium: single recall of the equal-degree rule, no computation. '0.5' (inverted ratio) is the strong leg; '0' is the soft one but it encodes the wrong-degree-rule misconception, so it earns its place. Only item with a non-integer option, which is not a tell (see options_only_exceptions - 0 is the free elimination, not 1.5)."
+    },
+    "AM2F-07": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "'and at no other point' is the right guard and makes k unique. Genuine Functions. Not weak by the strict rule - 10 and 14 are same-magnitude integers - but they encode add/subtract-2 errors nobody makes on a horizontal SCALING, so in practice the item is a 50/50 between 6 and 24. Consider replacing one with 12 (mistakes f(2x) for f(x) unchanged)."
+    },
+    "AM2F-08": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Sequences sit inside ACT's Functions category, so the quota use is legitimate. '486' (fifth term for the sum) and '2184' (six terms) are strong. '60' is the soft leg - a ratio-3 sequence from 6 has a fifth term of 486, so a sum of 60 is magnitude-absurd - but one soft leg out of three does not make the set weak."
+    },
+    "AM2F-09": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "'to the nearest dollar' fixes the rounding convention, so exclusive holds. WEAK, and this is the clearest case in the batch: the stem says the machine LOSES value, so 31,482 > 18,000 is eliminable by kind with zero work, and $9 after four years of 15% loss is eliminable by magnitude with zero work. Two of three legs dead; the item is a coin flip between 9,396 and 7,200. Replace 9 with 10,404 (three years) and 31,482 with 9,180 (linear 15%-of-current mis-stack)."
+    },
+    "AM2F-10": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "The one unambiguously hard item. t=8.13 means the floor is wrong and only a real test at t=8 and t=9 settles it; '8' is an excellent leg. t is years since opening so the least integer is unique. Genuine Functions (comparing two exponential models)."
+    },
+    "AM2F-11": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "WEAK: f is a SUM OF ABSOLUTE VALUES, so '-2' and '-1' are eliminable by kind with literally no work - a negative where the stem's own form forbids one. That leaves 0 vs 8, and 8 = 3-(-5) is the guessable one. The concept (total distance between 3 and -5) is genuinely medium-hard, but the option set gives it away. Both negative legs need replacing with e.g. 2 (|3-5| misread) and 16 (doubles the gap)."
+    },
+    "AM2F-12": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "21/22/23/24 are tightly clustered, so nothing is eliminable by magnitude and every leg is a distinct indexing error. Best-constructed option set in the batch alongside AM2F-24."
+    },
+    "AM2F-13": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "FLAG - this is linear-equation algebra wearing function notation. Strip f() and it is 'solve 3x^2-5=103'; the function machinery contributes nothing and it should not count against the Functions quota. Also WEAK: the stem fixes f(a)=103 with f=3x^2-5, so a is near sqrt(103/3) and 18, 36, 108 are ALL grossly outside that scale - three dead legs, eliminable by estimate with no work. 'positive value of a' correctly excludes -6, so exclusive holds."
+    },
+    "AM2F-14": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "'a certain quadratic function' guarantees a non-zero leading coefficient, so the axis and the reflected input are unique. Options 6/8/10/12 are clustered with no magnitude tell; '6' (reporting the axis itself) is the strong leg. Genuine Functions."
+    },
+    "AM2F-15": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Two independent domain conditions plus an inclusive integer count, which is where the errors live. x=-6 is in the domain (sqrt(0)/(-8)=0), and x=2 is the only exclusion, so 16 is unique. '17' (forgets to exclude 2) is a strong leg. Genuine Functions."
+    },
+    "AM2F-16": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Two evaluations. Nothing in the stem fixes a sign, so '24' (subtracting in the wrong order) is a legitimate strong leg and is not kind-eliminable. '0' is soft but encodes the real even-function misconception. See options_only_exceptions for the zero option."
+    },
+    "AM2F-17": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Small completeness nitpick: x is 'items', so it is implicitly a non-negative integer and the stem never says so. Harmless HERE because the vertex lands on x=24 exactly - but if this template is reused with a non-integer vertex the item breaks. '24' (reports x rather than P) is the strong leg; '-400' is soft since a student who tries any mid-range x sees the profit go positive."
+    },
+    "AM2F-18": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Graded DOWN from the author's hard. The pieces are stated with correct strict/non-strict boundaries and neither evaluation lands ON a boundary (-2 and 5 are both clearly interior to their pieces), so the hard part of piecewise work is absent - it is two clean substitutions. Option set is strong: 25 and 16 are both real boundary-abuse errors, 5 is the stop-at-the-inner-value leg."
+    },
+    "AM2F-19": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "FLAG - borderline: no function notation at all, this is exponential equation solving, thin as a Functions-quota item. WEAK: x sits in an EXPONENT, so 81 and 189 are eliminable by magnitude with zero work (3^81 against 567 is not a near miss). Two dead legs leave 3 vs 4. Replace with 5 (over-divides) and 2."
+    },
+    "AM2F-20": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Borderline domain fit - joint variation is proportional reasoning more than Functions, though it is defensible. Exclusive: k is determined by the given triple. '60' and '36' (each ratio applied alone) are strong legs. '27' is the soft one: a 40% drop when both changes are moderate is estimable away."
+    },
+    "AM2F-21": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Graded DOWN from the author's medium: once you know a positive vertical stretch preserves the minimum it is one substitution, 4(-2)-7. 'no maximum value' is a harmless extra guard. Genuine Functions (transformation of an abstract f) - shares its template with AM2F-01 and AM2F-07."
+    },
+    "AM2F-22": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Range is correctly stated as a strict inequality, so c=-12 is unique. Genuine Functions. Softness worth watching: one substitution, g(0)=-9, proves c<-9 and kills BOTH 0 and 12, halving the item to -9 vs -12. Not weak by the strict rule (it takes a substitution, not zero work), but it is the closest plausible call in the batch."
+    },
+    "AM2F-23": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "FLAG - polynomial equation solving in function clothing; genuine u-substitution skill, but thin as a Functions item. Graded DOWN from hard because the option set does most of the work. WEAK on two counts: (a) for a quartic with coefficients 13 and 36, any zero is small, so 9, 13 and 36 are all magnitude-absurd as zeros - test-free elimination of all three; (b) 13 and 36 are lifted VERBATIM from the polynomial and 9 = 3^2, so 3 is the only option not visibly copied out of the stem. Both routes converge on the key without factoring."
+    },
+    "AM2F-24": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "options_leak": false,
+      "note": "Recursion is well specified (a_1 and the rule for n>=1), so a_4 is unique. Option set is strong: 11 vs 16 and 116 vs 121 are two tight near-miss pairs with no magnitude tell. Best-constructed set alongside AM2F-12."
+    }
+  },
+  "options_only_exceptions": {
+    "verdict": "One real but MILD options-only tell, worth +4.2 EV points. The batch is not guessable.",
+    "rule_that_survived": {
+      "rule": "Eliminate any option that is a round multiple of 10; the key is almost never one.",
+      "measured_over": "all 24 items",
+      "hit_rate": "the key is a multiple of 10 in 1 of 24 items (AM2F-05, key 10). 14 of 24 items contain at least one round option; in 13 of those 14 the key is NOT the round one.",
+      "strategy_EV": "29.2% against the 25.0% four-choice control (+4.2 points), computed as sum over items of 1/|surviving candidates| when the key survives",
+      "sharpest_sub_case": "0 appears as an option in AM2F-06, -11, -16, -22 and is NEVER the key: 0/4. That is a free elimination on 4 of 24 items and is the cleanest part of the effect.",
+      "worst_single_item": "AM2F-01 - removing 10 and 50 leaves only -6 and 6, a 50/50 with no reading at all.",
+      "caveat": "Partly intrinsic: computed answers are non-round while wrong-operation trap values (7200, 60, 24, 20, 12, 0) tend to be round. The fix is not to make keys round, it is to stop parking 0 and bare multiples of 10 in the distractor slots.",
+      "affected_items": ["AM2F-01", "AM2F-06", "AM2F-11", "AM2F-16", "AM2F-22"]
+    },
+    "negatives_measured_and_reported": [
+      {"rule": "key = largest option", "result": "6/24 = 25.0%, exactly control. NEGATIVE."},
+      {"rule": "key = smallest option", "result": "6/24 = 25.0%, exactly control. NEGATIVE."},
+      {"rule": "key is one of the two middle values", "result": "12/24 = 50.0%, but a 2-candidate rule has a 50% control, so strategy EV is exactly 25.0%. NEGATIVE - and this is the trap: 50% reads like a finding until you look at the denominator."},
+      {"rule": "key is middle by ABSOLUTE value", "result": "15/24 in-candidates, strategy EV 28.5%. Same 2-candidate control. Weak/NEGATIVE."},
+      {"rule": "key = the unique-sign option", "result": "fires on 7 items, hits 2. EV 26.0%, n=7. NEGATIVE."},
+      {"rule": "key = closest to the mean of the four", "result": "8/24 = 33.3%, EV 33.3%, +8.3 points - the nearest miss. One-sided binomial p = 0.234 against the 25% control. NOT SIGNIFICANT at n=24; reported as unconfirmed, not as a finding."},
+      {"rule": "key = farthest from the mean", "result": "5/24 = 20.8%, BELOW control. NEGATIVE."},
+      {"rule": "key = the only non-integer", "result": "fires on 0 items. No measurement, so no verdict."},
+      {"rule": "key = the only negative-or-zero option", "result": "fires 4, hits 1. EV 25.0%. NEGATIVE."},
+      {"rule": "key = fewest / most digits", "result": "26.4% / 21.5%. NEGATIVE both directions."},
+      {"rule": "key = fewest / most derivational relations to the other options (the SAT-Math-hub shape: key is or is not reachable from a sibling by x2, /2, negation, squaring, or a sum/difference of the other pair)", "result": "27.4% / 24.0%. NEGATIVE. No derivational hub in this batch."},
+      {"rule": "eliminate any option appearing verbatim in the stem (NOT options-only - listed because it is the obvious next thing to try)", "result": "fires on 8 items, EV 27.8%, and it ELIMINATES THE KEY on AM2F-02 (key 9 = the stem's f(1)=9). Marginal and unsafe. Only AM2F-23 is really exposed to it."}
+    ],
+    "key_position_and_rank": {
+      "slot_counts": {"A": 6, "B": 6, "C": 6, "D": 6},
+      "magnitude_rank_counts": {"1_smallest": 6, "2": 6, "3": 6, "4_largest": 6},
+      "comment": "Both histograms are perfectly flat - the key letter AND the key's size-rank among its four options. That is deliberate and good. Two cautions: (1) a flat histogram is exactly what the sibling batch's forced-ABCD-permutation tell also produced, so I checked - the slot sequence ACBA BCBB ADDA ACCD CBCB DDAD contains no complete ABCD permutation in any consecutive group of four; (2) because both histograms are flat by construction, neither is evidence of anything else, and the key-spread verifier will pass this batch regardless of what else is wrong with it."
+    }
+  },
+  "template_groups": {
+    "verdict": "Real clustering, no group large enough to be a break. The DISTRACTOR brief is uniform in KIND across the whole batch but not in POSITION, which is the half that matters.",
+    "groups": [
+      {"name": "transformation of an abstract f", "ids": ["AM2F-01", "AM2F-07", "AM2F-21"], "fraction": "3/24 (12.5%)", "transfer": "HIGH. All three are 'given f and one fact, apply a transformation', and all three build the same three legs: right operation wrong direction, operation applied to the output instead of the input, wrong operation. Solving one teaches the reading of the other two."},
+      {"name": "quadratic vertex / axis of symmetry", "ids": ["AM2F-03", "AM2F-04", "AM2F-14", "AM2F-17"], "fraction": "4/24 (16.7%) - the largest group", "transfer": "MEDIUM. All four hinge on locating a vertex or axis, and three of them ship the same leg: report the x-coordinate (or an endpoint) instead of the y-value asked for. The surface tasks differ enough - range width, stretch factor, reflected input, maximum - that a student still has to do each one."},
+      {"name": "exponential model", "ids": ["AM2F-09", "AM2F-10", "AM2F-19", "AM2F-22"], "fraction": "4/24 (16.7%)", "transfer": "LOW-MEDIUM. 09 and 10 share compound-growth arithmetic and both ship a wrong-direction leg; 19 (solve an exponential equation) and 22 (asymptote) are genuinely different skills that only share the base."},
+      {"name": "sequence: find a later term or an index", "ids": ["AM2F-08", "AM2F-12", "AM2F-24"], "fraction": "3/24 (12.5%)", "transfer": "MEDIUM. Different sequence types (geometric sum, arithmetic index, quadratic recursion) but an identical distractor brief: every one of the three ships an off-by-one-in-n leg. A student who learns 'count the steps twice' banks all three."},
+      {"name": "solve f(x)=k / find a zero", "ids": ["AM2F-13", "AM2F-19", "AM2F-23"], "fraction": "3/24 (12.5%)", "transfer": "HIGH, and this is the group to fix. All three are 'solve, then do not stop early', all three are the thin-Functions flags, and ALL THREE carry the weak-distractor pattern: the wrong options are wrong-operation values that land far outside the scale the stem already fixes, so all three are solvable by estimating magnitude. This one group is 3 of my 6 weak grades."},
+      {"name": "evaluate or compose a non-formula f (table / piecewise)", "ids": ["AM2F-02", "AM2F-05", "AM2F-18"], "fraction": "3/24 (12.5%)", "transfer": "MEDIUM. Shared brief: a wrong-composition-order leg plus a stop-at-the-inner-value leg."},
+      {"name": "domain or range as the answer", "ids": ["AM2F-03", "AM2F-15", "AM2F-22"], "fraction": "3/24 (12.5%)", "transfer": "LOW. Overlaps the groups above (03 is also a vertex item, 22 also exponential); listed for completeness."}
+    ],
+    "overlap_note": "Groups are not disjoint: AM2F-03 sits in two, AM2F-19 in two, AM2F-22 in two. No item is untouched by some group, which is expected for a 24-item single-domain batch.",
+    "distractor_brief_uniformity": {
+      "uniform_in_kind": "YES. The batch is authored to a rigid three-leg spec: (i) the intermediate value you would have stopped at, (ii) the right operation run in the wrong direction or the wrong order, (iii) a wrong operation entirely. 13 of 24 items (54%) carry an explicit stop-short leg, and it is NEVER the key - 24/24.",
+      "uniform_in_position": "NO, and this is the finding that keeps it safe. I checked where the stop-short leg sits in each of those 13 items: slots 1,2,3,2,0,3,3,1,3,0,1,1,2 - spread across all four positions with no preference. The exploitable version of this tell is 'the answer is never the number in slot X', and it is absent.",
+      "residual_risk": "LOW-MODERATE. 'The answer is never the number I wrote two lines ago' holds on every item it applies to, but a student cannot USE it without first doing the work that produces the intermediate, so it does not function as a shortcut. It would become a real tell only if a course coached it explicitly. Contrast with the sibling batch's 42% positional tell, which needed no work at all - that shape is not present here.",
+      "the_actual_shared_defect": "Not positional and not the brief - it is SCALE. In 6 of 24 items the distractors are wrong-operation values that land far outside the range the stem itself fixes (AM2F-02, -09, -11, -13, -19, -23). Those six are solvable by estimating magnitude without engaging the tested concept, and three of them are the solve-for-x group above. That is one authoring habit, not six accidents, and it is the single change that would most improve this batch."
+    }
+  },
+  "difficulty_histogram": {"easy": 9, "medium": 12, "hard": 3},
+  "difficulty_disagreements_with_author": {
+    "AM2F-03": "author medium -> my hard",
+    "AM2F-04": "author hard -> my medium",
+    "AM2F-06": "author medium -> my easy",
+    "AM2F-18": "author hard -> my medium",
+    "AM2F-20": "author hard -> my medium (kept, borderline)",
+    "AM2F-21": "author medium -> my easy",
+    "AM2F-23": "author hard -> my medium"
+  }
+}
