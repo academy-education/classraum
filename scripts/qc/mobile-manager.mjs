@@ -3,6 +3,11 @@
 //
 //   npm run dev            # in another terminal, Turbopack
 //   node scripts/qc/mobile-manager.mjs
+//   QC_PORT=55019 node scripts/qc/mobile-manager.mjs   # non-default port
+//
+// The port is configurable because a stale dev server holding 3000 makes the
+// preview tool pick another one, and a run against the wrong port fails 14
+// checks that have nothing wrong with them. Twice that read as a regression.
 //
 // It mints its own Supabase session (service role, magic link for
 // manager@demo.classraum.com) because a hand-pasted token expires in an hour
@@ -34,7 +39,8 @@ const check=(name,pass,detail)=>{ results.push({name,pass,detail}); console.log(
 const b=await puppeteer.launch({headless:'new', protocolTimeout:180000})
 const mk=async(w,h,m)=>{const p=await b.newPage();await p.setViewport({width:w,height:h,isMobile:m,hasTouch:m});
   await p.evaluateOnNewDocument((k,v)=>{localStorage.setItem(k,v);localStorage.setItem('classraum:welcome_seen:813954a2-7405-478a-9c93-62bdc42c08ec','1')},`sb-${ref}-auth-token`,session);return p}
-const go=async(p,path,ms=9000)=>{ await p.goto('http://localhost:3000'+path,{waitUntil:'load',timeout:180000}).catch(()=>{}); await new Promise(r=>setTimeout(r,ms)) }
+const PORT=process.env.QC_PORT || '3000'
+const go=async(p,path,ms=9000)=>{ await p.goto(`http://localhost:${PORT}`+path,{waitUntil:'load',timeout:180000}).catch(()=>{}); await new Promise(r=>setTimeout(r,ms)) }
 const ph=await mk(390,844,true), dk=await mk(1440,900,false)
 
 console.log('\n== navigation ==')
@@ -43,11 +49,11 @@ const navClicked=await ph.evaluate(()=>{ const b=document.querySelector('nav but
 if(!navClicked) check('Home tab navigates to /dashboard','ERR','no bottom nav found')
 else { // dev compiles /dashboard on the first visit; poll rather than assume a fixed wait
   for(let i=0;i<40 && !ph.url().endsWith('/dashboard');i++) await new Promise(r=>setTimeout(r,500))
-  check('Home tab navigates to /dashboard', ph.url().endsWith('/dashboard'), ph.url().replace('http://localhost:3000','')) }
+  check('Home tab navigates to /dashboard', ph.url().endsWith('/dashboard'), ph.url().replace(`http://localhost:${PORT}`,'')) }
 await go(ph,'/students')
 const bellClicked=await ph.evaluate(()=>{ const bs=[...document.querySelectorAll('header button')]; if(bs.length<2) return false; bs[bs.length-1].click(); return true })
 if(!bellClicked) check('bell opens /notifications on phone','ERR','too few header buttons')
-else { await new Promise(r=>setTimeout(r,3500)); check('bell opens /notifications on phone', ph.url().endsWith('/notifications'), ph.url().replace('http://localhost:3000','')) }
+else { await new Promise(r=>setTimeout(r,3500)); check('bell opens /notifications on phone', ph.url().endsWith('/notifications'), ph.url().replace(`http://localhost:${PORT}`,'')) }
 
 console.log('\n== the two broken views ==')
 await go(ph,'/students',11000)

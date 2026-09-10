@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { db } from '@/lib/supabase'
 import { triggerWelcomeNotifications, triggerUserDeactivatedNotifications } from '@/lib/notification-triggers'
+import { reportClientError } from '@/lib/report-client-error'
 
 export interface StudentFormData {
   name: string
@@ -110,7 +111,7 @@ export function useStudentActions() {
 
       return { success: true, data: { user: userData, student: studentData } }
     } catch (error) {
-      console.error('Error creating student:', error)
+      reportClientError('useStudentActions.createStudent', error, { academyId })
       return { success: false, error: error as Error }
     }
   }, [])
@@ -151,7 +152,7 @@ export function useStudentActions() {
 
       return { success: true, data: studentData }
     } catch (error) {
-      console.error('Error updating student:', error)
+      reportClientError('useStudentActions.updateStudent', error, { academyId, studentId })
       return { success: false, error: error as Error }
     }
   }, [])
@@ -219,7 +220,7 @@ export function useStudentActions() {
 
       return { success: true }
     } catch (error) {
-      console.error('Error deleting student:', error)
+      reportClientError('useStudentActions.deleteStudent', error, { academyId, studentId })
       return { success: false, error: error as Error }
     }
   }, [])
@@ -261,7 +262,7 @@ export function useStudentActions() {
 
       return { success: true, data }
     } catch (error) {
-      console.error('Error enrolling student:', error)
+      reportClientError('useStudentActions.enrollStudent', error)
       return { success: false, error: error as Error }
     }
   }, [])
@@ -281,7 +282,7 @@ export function useStudentActions() {
 
       return { success: true }
     } catch (error) {
-      console.error('Error unenrolling student:', error)
+      reportClientError('useStudentActions.unenrollStudent', error)
       return { success: false, error: error as Error }
     }
   }, [])
@@ -314,7 +315,7 @@ export function useStudentActions() {
 
       return { success: true, data }
     } catch (error) {
-      console.error('Error toggling student status:', error)
+      reportClientError('useStudentActions.toggleStudentStatus', error, { academyId, studentId })
       return { success: false, error: error as Error }
     }
   }, [])
@@ -351,7 +352,7 @@ export function useStudentActions() {
 
       return { success: true }
     } catch (error) {
-      console.error('Error bulk updating students:', error)
+      reportClientError('useStudentActions.bulkUpdateStudents', error, { academyId, count: updates.length })
       return { success: false, error: error as Error }
     }
   }, [])

@@ -292,6 +292,14 @@ export const loggers = {
   assignment: new Logger('Assignment'),
   files: new Logger('Files'),
   study: new Logger('Study'),
+
+  /**
+   * Errors reported by the BROWSER through /api/client-error. Kept as its own
+   * service_name because the distinction matters when reading the dashboard:
+   * a Client row means the failure reached a real person's screen, and
+   * nothing else in this table can tell you that.
+   */
+  client: new Logger('Client'),
 };
 
 /**
