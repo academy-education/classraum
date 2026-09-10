@@ -11,16 +11,21 @@ import { dbAdmin } from '@/lib/supabase-admin'
  *
  * This is the interactive layer on top of the static grader explanation:
  * the student can ask for a step-by-step walkthrough, a simpler
- * re-explanation, or type their own follow-up ("why isn't C right?").
- * One short model call per tap — no session, no persistence.
+ * re-explanation. One short model call per tap.
  *
  * Modes:
  *   steps    → numbered worked solution
  *   simpler  → plain-language re-explanation, no jargon
- *   followup → answer the student's typed question about this item
+ *
+ * A third mode, a free-text "ask about this question" follow-up, shipped on
+ * 2026-07-14 and was switched off a week later in a3cbff44 ("hide the
+ * free-form follow-up for now"). Its server half outlived the input by two
+ * months and is removed here: nothing could reach it, and a branch that
+ * reads as working is one somebody eventually builds storage for. The
+ * prompts and the capped input JSX are both recoverable from that commit.
  */
 
-type Mode = 'steps' | 'simpler' | 'followup'
+type Mode = 'steps' | 'simpler'
 
 interface Body {
   prompt?: string
@@ -29,7 +34,6 @@ interface Body {
   studentAnswer?: string
   priorExplanation?: string
   mode?: Mode
-  followup?: string
   language?: 'en' | 'ko'
   /** When present, the generated steps/simpler text is persisted against
    *  this attempt so it survives a reload of the wrong-answer notebook. */
@@ -44,10 +48,6 @@ const MODE_INSTRUCTION: Record<Mode, { en: string; ko: string }> = {
   simpler: {
     en: 'Explain why the correct answer is right in the plainest language possible — as if to a younger student who just got it wrong and feels stuck. No jargon (or define it in plain words the moment you must use it). Use one short, concrete everyday analogy that maps cleanly onto the idea. Get to the "aha" in 2–4 short sentences; do not restate the whole question.',
     ko: '정답이 맞는 이유를 가능한 한 가장 쉬운 말로 설명하세요. 방금 틀려서 막막해하는 어린 학생에게 말하듯이요. 전문 용어는 쓰지 말고(꼭 써야 하면 바로 쉬운 말로 풀어주세요), 개념에 딱 들어맞는 짧고 구체적인 일상 비유 하나를 사용하세요. 문제 전체를 다시 말하지 말고, 2~4개의 짧은 문장으로 "아하" 하고 이해되게 하세요.',
-  },
-  followup: {
-    en: "Answer the student's follow-up question about this specific item directly and briefly.",
-    ko: '이 문항에 대한 학생의 추가 질문에 직접적이고 간결하게 답하세요.',
   },
 }
 
@@ -70,14 +70,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'bad json' }, { status: 400 })
   }
 
-  const mode: Mode = body.mode === 'simpler' || body.mode === 'followup' ? body.mode : 'steps'
+  const mode: Mode = body.mode === 'simpler' ? 'simpler' : 'steps'
   const ko = body.language === 'ko'
   const prompt = (body.prompt ?? '').slice(0, 4000)
   if (!prompt.trim()) {
     return NextResponse.json({ error: 'missing prompt' }, { status: 400 })
-  }
-  if (mode === 'followup' && !(body.followup ?? '').trim()) {
-    return NextResponse.json({ error: 'missing followup' }, { status: 400 })
   }
 
   const context = [
@@ -86,7 +83,6 @@ export async function POST(req: NextRequest) {
     body.correctAnswer ? `CORRECT ANSWER: ${body.correctAnswer}` : '',
     body.studentAnswer ? `STUDENT ANSWERED: ${body.studentAnswer}` : '',
     body.priorExplanation ? `EXPLANATION ALREADY SHOWN:\n${body.priorExplanation.slice(0, 1200)}` : '',
-    mode === 'followup' ? `STUDENT'S FOLLOW-UP QUESTION: ${(body.followup ?? '').slice(0, 500)}` : '',
   ].filter(Boolean).join('\n\n')
 
   const system = [
@@ -112,7 +108,7 @@ export async function POST(req: NextRequest) {
     // notebook can re-show them on reload (best-effort; a save failure
     // never blocks returning the explanation the student is waiting on).
     const attemptId = (body.attemptId ?? '').trim()
-    if (attemptId && (mode === 'steps' || mode === 'simpler') && clean) {
+    if (attemptId && clean) {
       try {
         const { data: attempt } = await dbAdmin
           .from('study_attempts')
@@ -125,36 +121,26 @@ export async function POST(req: NextRequest) {
           // The catch below can't see a rejected write (supabase-js
           // resolves with { error }), so a failed save silently cost the
           // student their explanation on the next notebook reload.
-          // Concrete keys, not [mode] / [`${mode}_lang`]. The computed form
-          // widened to an index signature, which hid that
-          // study_attempt_explanations has columns for exactly TWO modes:
-          // steps and simpler. 'followup' has never had one, so every
-          // follow-up save was rejected with
-          //   Could not find the 'followup' column ... in the schema cache
-          // and the student's follow-up was gone on the next notebook
-          // reload -- the precise failure the comment above was added to
-          // stop being silent. Written out, the compiler enforces it.
           //
-          // Follow-ups are deliberately not persisted rather than persisted
-          // into a column that does not exist. To keep them, add
-          // followup / followup_lang and extend this switch.
-          const columns =
-            mode === 'steps'   ? { steps: clean,   steps_lang: ko ? 'ko' : 'en' } :
-            mode === 'simpler' ? { simpler: clean, simpler_lang: ko ? 'ko' : 'en' } :
-            null
-          if (columns) {
-            const { error: saveErr } = await dbAdmin
-              .from('study_attempt_explanations')
-              .upsert(
-                {
-                  student_id: user.id, attempt_id: attemptId,
-                  ...columns,
-                  updated_at: new Date().toISOString(),
-                },
-                { onConflict: 'student_id,attempt_id' },
-              )
-            if (saveErr) console.error('[study/explain] save failed', { attemptId, mode, error: saveErr })
-          }
+          // Concrete keys, not [mode] / [`${mode}_lang`]. The computed form
+          // widened to an index signature, so the compiler could not tell
+          // that this table has columns for exactly the two modes above.
+          // Written out, adding a third mode without a column for it is a
+          // compile error rather than a runtime rejection nobody reads.
+          const columns = mode === 'steps'
+            ? { steps: clean,   steps_lang: ko ? 'ko' : 'en' }
+            : { simpler: clean, simpler_lang: ko ? 'ko' : 'en' }
+          const { error: saveErr } = await dbAdmin
+            .from('study_attempt_explanations')
+            .upsert(
+              {
+                student_id: user.id, attempt_id: attemptId,
+                ...columns,
+                updated_at: new Date().toISOString(),
+              },
+              { onConflict: 'student_id,attempt_id' },
+            )
+          if (saveErr) console.error('[study/explain] save failed', { attemptId, mode, error: saveErr })
         }
       } catch (e) {
         console.error('[study/explain] save failed', e)
