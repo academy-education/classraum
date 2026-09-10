@@ -1,0 +1,692 @@
+[
+  {
+    "id": "SV8-01",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "ABASH",
+    "choices": [
+      "embarrass",
+      "abolish",
+      "scold",
+      "flatter",
+      "punish"
+    ],
+    "correct_answer": "embarrass",
+    "explanation": "To ABASH someone is to make them self-conscious and ill at ease, i.e. to \"embarrass\" them.",
+    "distractor_rationales": [
+      "KEY",
+      "near-identical opening syllables; \"abolish\" is a sound-alike with no shared sense",
+      "\"scold\" is the reproof that might cause the feeling, not the feeling itself",
+      "\"flatter\" reverses it — flattery raises self-regard rather than deflating it",
+      "\"punish\" reads the social sting as a formal penalty"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV8-02",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "RIND is to ORANGE as",
+    "choices": [
+      "husk is to corn",
+      "corn is to husk",
+      "pit is to cherry",
+      "bark is to forest",
+      "lid is to jar"
+    ],
+    "correct_answer": "husk is to corn",
+    "explanation": "A rind is the natural outer covering that grows over and protects the orange; \"husk is to corn\" is the same natural-covering-to-thing-covered pair.",
+    "distractor_rationales": [
+      "KEY",
+      "the same two terms the other way about — the covering has to come first",
+      "\"pit is to cherry\" is an interior part, not an outer covering",
+      "\"bark is to forest\" pairs a covering with a collection of trees rather than with the individual thing it sheathes",
+      "\"lid is to jar\" is a manufactured, detachable cover rather than a covering the thing grows"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV8-03",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "RANCOR",
+    "choices": [
+      "candor",
+      "clamor",
+      "dread",
+      "spite",
+      "valor"
+    ],
+    "correct_answer": "spite",
+    "explanation": "RANCOR is long-held bitter ill will, which \"spite\" names most closely.",
+    "distractor_rationales": [
+      "a rhyme on the same -or ending, and frankness is not ill will",
+      "another -or rhyme; \"clamor\" is noise, not resentment",
+      "\"dread\" is fear directed forward, where rancor is grievance held backward",
+      "KEY",
+      "a third -or noun; \"valor\" shares only the ending"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV8-04",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "PARAGRAPH is to ESSAY as",
+    "choices": [
+      "play is to scene",
+      "index is to book",
+      "scene is to play",
+      "footnote is to page",
+      "novel is to chapter"
+    ],
+    "correct_answer": "scene is to play",
+    "explanation": "A paragraph is one of the structural divisions an essay is built from; \"scene is to play\" is the same division-to-whole pair.",
+    "distractor_rationales": [
+      "the whole placed before its part, which reverses the order the stem sets",
+      "\"index is to book\" is a supplementary apparatus, not one of the divisions the book is composed of",
+      "KEY",
+      "\"footnote is to page\" is a smaller element on a larger one, but a page is not divided into footnotes",
+      "\"novel is to chapter\" puts the whole first"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV8-05",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "WHIMSICAL",
+    "choices": [
+      "fanciful",
+      "wistful",
+      "gloomy",
+      "methodical",
+      "fleeting"
+    ],
+    "correct_answer": "fanciful",
+    "explanation": "WHIMSICAL describes playful, imaginative caprice, which \"fanciful\" captures.",
+    "distractor_rationales": [
+      "KEY",
+      "\"wistful\" is the adjacent mood of gentle longing, often confused with whimsy but quite different",
+      "\"gloomy\" takes the lightness out entirely",
+      "\"methodical\" is the opposite temper — system rather than caprice",
+      "\"fleeting\" borrows the changeability of whim and drops the imagination"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV8-06",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "BRUSQUE",
+    "choices": [
+      "brisk",
+      "courteous",
+      "curt",
+      "hesitant",
+      "robust"
+    ],
+    "correct_answer": "curt",
+    "explanation": "BRUSQUE means abrupt to the point of rudeness in manner or speech, i.e. \"curt\".",
+    "distractor_rationales": [
+      "\"brisk\" is the sound-alike and shares the speed while losing the rudeness",
+      "\"courteous\" is the manner brusqueness offends against",
+      "KEY",
+      "\"hesitant\" is the opposite tempo — brusqueness does not hang back",
+      "\"robust\" reads abruptness as vigour"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV8-07",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "CONSTELLATION is to STARS as",
+    "choices": [
+      "bees is to swarm",
+      "swarm is to bees",
+      "anthill is to ants",
+      "herd is to pasture",
+      "flock is to migration"
+    ],
+    "correct_answer": "swarm is to bees",
+    "explanation": "A constellation is a collective noun whose members are stars; \"swarm is to bees\" names a collective and then its members.",
+    "distractor_rationales": [
+      "the members placed before the collective, reversing the stem",
+      "KEY",
+      "\"anthill is to ants\" gives the dwelling rather than the group the creatures form",
+      "\"herd is to pasture\" pairs a collective with the place it stands in, not with its members",
+      "\"flock is to migration\" pairs a collective with what it does, not with what composes it"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV8-08",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "AUGMENT",
+    "choices": [
+      "predict",
+      "shorten",
+      "enlarge",
+      "borrow",
+      "repair"
+    ],
+    "correct_answer": "enlarge",
+    "explanation": "To AUGMENT is to make greater by addition, i.e. to \"enlarge\".",
+    "distractor_rationales": [
+      "pulled in by \"augur\" — the two words look related and are not",
+      "\"shorten\" is the opposite direction of change",
+      "KEY",
+      "\"borrow\" adds to a store temporarily and by the wrong mechanism",
+      "\"repair\" restores a thing to its size rather than increasing it"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV8-09",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "PARRY is to BLOW as",
+    "choices": [
+      "endure is to insult",
+      "hurl is to insult",
+      "provoke is to quarrel",
+      "concede is to point",
+      "rebut is to argument"
+    ],
+    "correct_answer": "rebut is to argument",
+    "explanation": "To parry a blow is to turn aside an attack; \"rebut is to argument\" is the same turning-aside of an attack, in words rather than blows.",
+    "distractor_rationales": [
+      "\"endure is to insult\" absorbs the attack instead of deflecting it",
+      "\"hurl is to insult\" delivers the attack rather than meeting it",
+      "\"provoke is to quarrel\" starts the hostility off",
+      "\"concede is to point\" yields to the attack, the reverse of parrying",
+      "KEY"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV8-10",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "TENACIOUS",
+    "choices": [
+      "tenuous",
+      "tense",
+      "flimsy",
+      "dogged",
+      "agreeable"
+    ],
+    "correct_answer": "dogged",
+    "explanation": "TENACIOUS describes a grip that will not let go, so \"dogged\" is the match.",
+    "distractor_rationales": [
+      "\"tenuous\" is the near-twin in spelling and close to the opposite in sense — thin rather than gripping",
+      "\"tense\" shares the first syllable and means strained, not persistent",
+      "\"flimsy\" is what a tenacious hold is not",
+      "KEY",
+      "\"agreeable\" is the yielding a tenacious person refuses"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV8-11",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "CONNOISSEUR is to DISCERNING as",
+    "choices": [
+      "novice is to eager",
+      "veteran is to grizzled",
+      "sentinel is to vigilant",
+      "recluse is to shy",
+      "athlete is to disciplined"
+    ],
+    "correct_answer": "sentinel is to vigilant",
+    "explanation": "A connoisseur is defined by discernment — take it away and the word no longer applies. \"Sentinel is to vigilant\" holds the same way: a sentinel who is not vigilant is not a sentinel.",
+    "distractor_rationales": [
+      "novices are often eager, but eagerness is not what makes someone a novice",
+      "a common picture of a veteran rather than the thing the word requires",
+      "KEY",
+      "a recluse must be solitary; \"shy\" is a frequent companion trait, not the definition",
+      "discipline is typical of athletes without being what the word means"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV8-12",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "CLANDESTINE",
+    "choices": [
+      "unlawful",
+      "destined",
+      "reckless",
+      "ancient",
+      "secret"
+    ],
+    "correct_answer": "secret",
+    "explanation": "CLANDESTINE means kept hidden, especially because it would not be permitted — \"secret\".",
+    "distractor_rationales": [
+      "clandestine dealings are often illegal, but concealment and illegality are different things",
+      "the -destine ending invites this; the two words are unrelated",
+      "secrecy is usually careful, not reckless — the association runs backwards",
+      "pulled in by the antique flavour of the word itself",
+      "KEY"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV8-13",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "FRESCO is to PLASTER as",
+    "choices": [
+      "sculpture is to marble",
+      "tapestry is to wool",
+      "mural is to gallery",
+      "etching is to copper",
+      "watercolor is to brush"
+    ],
+    "correct_answer": "etching is to copper",
+    "explanation": "A fresco is painted into wet plaster — plaster is the surface that receives it. \"Etching is to copper\" is the same: the copper plate is the surface the etching is cut into.",
+    "distractor_rationales": [
+      "\"sculpture is to marble\" gives the material the work is made OUT of, not the surface it is worked onto",
+      "\"tapestry is to wool\" is likewise the stuff of the work rather than a surface",
+      "\"mural is to gallery\" gives a location instead of a medium",
+      "KEY",
+      "\"watercolor is to brush\" gives the tool"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV8-14",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "ASSUAGE",
+    "choices": [
+      "persuade",
+      "enrage",
+      "assess",
+      "soothe",
+      "gauge"
+    ],
+    "correct_answer": "soothe",
+    "explanation": "To ASSUAGE is to ease or lessen something painful, i.e. to \"soothe\" it.",
+    "distractor_rationales": [
+      "a rhyme that also fits the register; persuasion changes a mind, not a pain",
+      "the exact reverse, and another -age rhyme",
+      "shares the opening \"ass-\" and nothing else",
+      "KEY",
+      "the bare rhyme, hiding inside the word itself"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV8-15",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "VERBOSE",
+    "choices": [
+      "verbal",
+      "morose",
+      "blunt",
+      "truthful",
+      "wordy"
+    ],
+    "correct_answer": "wordy",
+    "explanation": "VERBOSE means using more words than are needed — \"wordy\".",
+    "distractor_rationales": [
+      "the shared verb- root; spoken rather than long-winded",
+      "a rhyme on -ose with an unrelated sense",
+      "\"blunt\" is the opposite failing — too few words, not too many",
+      "pulled in by \"veracious\", a different word altogether",
+      "KEY"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV8-16",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "SCOWL is to DISPLEASURE as",
+    "choices": [
+      "pallor is to fear",
+      "contempt is to sneer",
+      "shiver is to blanket",
+      "laughter is to comedian",
+      "sneer is to contempt"
+    ],
+    "correct_answer": "sneer is to contempt",
+    "explanation": "A scowl is the outward sign of displeasure and of little else; \"sneer is to contempt\" is a sign that is equally specific to one feeling.",
+    "distractor_rationales": [
+      "pallor may follow fear, illness or shock — it does not point to one feeling the way a scowl does",
+      "the feeling put before its sign, reversing the stem",
+      "\"shiver is to blanket\" pairs a sign with a remedy rather than with a feeling",
+      "\"laughter is to comedian\" gives an external cause instead of the inner state",
+      "KEY"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV8-17",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "INDIGENT",
+    "choices": [
+      "native",
+      "needy",
+      "outraged",
+      "thrifty",
+      "idle"
+    ],
+    "correct_answer": "needy",
+    "explanation": "INDIGENT means impoverished, so \"needy\" is the match.",
+    "distractor_rationales": [
+      "\"indigenous\" is the near-twin word and means native-born, not poor",
+      "KEY",
+      "\"indignant\" is the other near-twin; outrage has nothing to do with poverty",
+      "thrift is a response to scarcity, not the condition of it",
+      "the old slander that poverty implies idleness"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV8-18",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "METRONOME is to TEMPO as",
+    "choices": [
+      "tuning fork is to pitch",
+      "odometer is to distance",
+      "compass is to bearing",
+      "hourglass is to duration",
+      "anchor is to drift"
+    ],
+    "correct_answer": "tuning fork is to pitch",
+    "explanation": "A metronome does not measure a tempo that already exists; it sounds a fixed reference for a player to follow. \"Tuning fork is to pitch\" is the same: it sounds the reference note.",
+    "distractor_rationales": [
+      "KEY",
+      "an odometer records distance already travelled rather than setting a standard",
+      "a compass reports the bearing that is the case; it does not fix one",
+      "an hourglass measures time as it runs out",
+      "an anchor prevents drift instead of setting a value for it"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV8-19",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "BULWARK",
+    "choices": [
+      "cargo",
+      "safeguard",
+      "burden",
+      "outburst",
+      "harbor"
+    ],
+    "correct_answer": "safeguard",
+    "explanation": "A BULWARK is a defensive wall, and so anything that protects — a \"safeguard\".",
+    "distractor_rationales": [
+      "the nautical company the word keeps: bulwarks are also a ship's side",
+      "KEY",
+      "\"bulk\" and \"burden\" pull the word toward weight rather than defence",
+      "the \"bul-\" opening read as an eruption",
+      "another nautical neighbour; a harbor shelters but is not a defence work"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV8-20",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "CALLOUS is to SYMPATHY as",
+    "choices": [
+      "reckless is to danger",
+      "vigilant is to attention",
+      "candid is to guile",
+      "timid is to fear",
+      "docile is to obedience"
+    ],
+    "correct_answer": "candid is to guile",
+    "explanation": "To be callous is precisely to be without sympathy. \"Candid is to guile\" works the same way: candour is the absence of guile.",
+    "distractor_rationales": [
+      "a reckless person lacks caution, not danger — danger is what they disregard",
+      "vigilance consists in having attention, not in lacking it",
+      "KEY",
+      "timidity is the presence of fear",
+      "docility is the presence of obedience"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV8-21",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "EBB",
+    "choices": [
+      "surge",
+      "drift",
+      "dwindle",
+      "linger",
+      "overflow"
+    ],
+    "correct_answer": "dwindle",
+    "explanation": "To EBB is to fall away or decline, i.e. to \"dwindle\".",
+    "distractor_rationales": [
+      "the tide word for the opposite movement",
+      "movement without the loss of quantity that ebbing carries",
+      "KEY",
+      "staying on rather than falling away",
+      "the opposite extreme of the same water imagery"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV8-22",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "PRUNE is to SHRUB as",
+    "choices": [
+      "water is to shrub",
+      "winnow is to grain",
+      "harvest is to grain",
+      "fertilize is to soil",
+      "sow is to field"
+    ],
+    "correct_answer": "winnow is to grain",
+    "explanation": "Pruning takes away part of the shrub so that what remains is better. \"Winnow is to grain\" is the same operation: the chaff goes so that the grain is improved.",
+    "distractor_rationales": [
+      "watering adds to the plant instead of cutting away from it",
+      "KEY",
+      "harvesting removes the crop entire; nothing is left behind improved",
+      "fertilising is an addition, and to the soil rather than the plant",
+      "sowing puts something in at the start rather than taking part of it out"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV8-23",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "HAUGHTY",
+    "choices": [
+      "naughty",
+      "hasty",
+      "cheerful",
+      "arrogant",
+      "modest"
+    ],
+    "correct_answer": "arrogant",
+    "explanation": "HAUGHTY describes an overbearing sense of one's own superiority — \"arrogant\".",
+    "distractor_rationales": [
+      "the rhyme, and a child's misbehaviour rather than an adult's pride",
+      "the near-rhyme; haste is not hauteur",
+      "a pleasant temper where the word names an unpleasant one",
+      "KEY",
+      "the direct opposite of a high opinion of oneself"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV8-24",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "QUARRY is to MARBLE as",
+    "choices": [
+      "reservoir is to water",
+      "well is to water",
+      "dairy is to milk",
+      "granary is to grain",
+      "kiln is to brick"
+    ],
+    "correct_answer": "well is to water",
+    "explanation": "A quarry is the place marble is taken out of the ground. \"Well is to water\" is the same: the place water is drawn up from.",
+    "distractor_rationales": [
+      "a reservoir holds water that has been put there; nothing is won from the ground",
+      "KEY",
+      "a dairy handles milk after it has been got",
+      "a granary stores grain rather than yielding it",
+      "a kiln makes brick rather than releasing something already there"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV8-25",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "VEX",
+    "choices": [
+      "amuse",
+      "examine",
+      "reject",
+      "soothe",
+      "annoy"
+    ],
+    "correct_answer": "annoy",
+    "explanation": "To VEX is to irritate or trouble someone, i.e. to \"annoy\" them.",
+    "distractor_rationales": [
+      "the pleasant reaction where the word names an unpleasant one",
+      "a vexed question is one under examination, which drags the sense sideways",
+      "refusal rather than irritation",
+      "the remedy for vexation, not vexation",
+      "KEY"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV8-26",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "HIBERNATE is to BEAR as",
+    "choices": [
+      "migrate is to goose",
+      "hunt is to wolf",
+      "molt is to snake",
+      "burrow is to mole",
+      "graze is to sheep"
+    ],
+    "correct_answer": "migrate is to goose",
+    "explanation": "Hibernating is what a bear does to get through the winter. \"Migrate is to goose\" is the same kind of behaviour: the seasonal answer to the cold.",
+    "distractor_rationales": [
+      "KEY",
+      "wolves hunt all year; nothing about it belongs to a season",
+      "moulting is periodic but is renewal of the skin, not a response to winter",
+      "a mole burrows to live, not to survive a particular season",
+      "grazing is a daily habit rather than a seasonal one"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV8-27",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "CACOPHONY",
+    "choices": [
+      "din",
+      "harmony",
+      "symphony",
+      "echo",
+      "chorus"
+    ],
+    "correct_answer": "din",
+    "explanation": "A CACOPHONY is a harsh, discordant racket, which \"din\" names.",
+    "distractor_rationales": [
+      "KEY",
+      "the exact opposite quality of sound",
+      "the shared -phony ending, attached to sound that is organised rather than harsh",
+      "a repetition of sound, with nothing said about harshness",
+      "many voices, but joined rather than clashing"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV8-28",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "ANTHOLOGY is to POEMS as",
+    "choices": [
+      "novel is to chapters",
+      "symphony is to movements",
+      "wall is to bricks",
+      "scrapbook is to clippings",
+      "menu is to dishes"
+    ],
+    "correct_answer": "scrapbook is to clippings",
+    "explanation": "The poems in an anthology existed separately first and were gathered. \"Scrapbook is to clippings\" is the same act of gathering things already made.",
+    "distractor_rationales": [
+      "a novel's chapters are written as parts of it; they never stood alone",
+      "movements are composed as parts of the symphony from the start",
+      "bricks are made to be built with rather than gathered after the fact",
+      "KEY",
+      "a menu lists the dishes; it is not made out of them"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV8-29",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "PILFER",
+    "choices": [
+      "filter",
+      "hoard",
+      "waste",
+      "scatter",
+      "steal"
+    ],
+    "correct_answer": "steal",
+    "explanation": "To PILFER is to take small things that are not yours, i.e. to \"steal\".",
+    "distractor_rationales": [
+      "the sound-alike, one letter away and unrelated in sense",
+      "what a pilferer might do afterwards, not the taking itself",
+      "the opposite use of what has been taken",
+      "\"pile\" heard inside the word, pulling toward spreading rather than taking",
+      "KEY"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV8-30",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "SCAFFOLD is to BUILDING as",
+    "choices": [
+      "trellis is to vine",
+      "crutch is to patient",
+      "foundation is to house",
+      "buttress is to wall",
+      "pedestal is to statue"
+    ],
+    "correct_answer": "crutch is to patient",
+    "explanation": "A scaffold holds things up only while the building is going up, and comes down when it can stand alone. \"Crutch is to patient\" is the same temporary support, laid aside once the patient can walk.",
+    "distractor_rationales": [
+      "a trellis stays with the vine for as long as the vine grows",
+      "KEY",
+      "a foundation is permanent and part of the house",
+      "a buttress remains in place holding the wall",
+      "a pedestal stays under the statue for good"
+    ],
+    "set_id": "SET-F"
+  }
+]
