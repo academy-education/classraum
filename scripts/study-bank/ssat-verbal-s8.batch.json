@@ -29,19 +29,19 @@
     "prompt": "RIND is to ORANGE as",
     "choices": [
       "husk is to corn",
-      "corn is to husk",
-      "pit is to cherry",
+      "lid is to jar",
       "bark is to forest",
-      "lid is to jar"
+      "pit is to cherry",
+      "wrapper is to parcel"
     ],
     "correct_answer": "husk is to corn",
     "explanation": "A rind is the natural outer covering that grows over and protects the orange; \"husk is to corn\" is the same natural-covering-to-thing-covered pair.",
     "distractor_rationales": [
       "KEY",
-      "the same two terms the other way about — the covering has to come first",
-      "\"pit is to cherry\" is an interior part, not an outer covering",
+      "\"lid is to jar\" is a manufactured, detachable cover rather than one the thing grows",
       "\"bark is to forest\" pairs a covering with a collection of trees rather than with the individual thing it sheathes",
-      "\"lid is to jar\" is a manufactured, detachable cover rather than a covering the thing grows"
+      "\"pit is to cherry\" is an interior part, not an outer covering",
+      "\"wrapper is to parcel\" is added round the thing afterwards rather than grown by it"
     ],
     "set_id": "SET-A"
   },
@@ -55,7 +55,7 @@
       "clamor",
       "dread",
       "spite",
-      "valor"
+      "envy"
     ],
     "correct_answer": "spite",
     "explanation": "RANCOR is long-held bitter ill will, which \"spite\" names most closely.",
@@ -64,7 +64,7 @@
       "another -or rhyme; \"clamor\" is noise, not resentment",
       "\"dread\" is fear directed forward, where rancor is grievance held backward",
       "KEY",
-      "a third -or noun; \"valor\" shares only the ending"
+      "\"envy\" is the adjacent bitter feeling — wanting what another has, rather than resenting a wrong"
     ],
     "set_id": "SET-A"
   },
@@ -74,20 +74,20 @@
     "difficulty": "easy",
     "prompt": "PARAGRAPH is to ESSAY as",
     "choices": [
-      "play is to scene",
       "index is to book",
-      "scene is to play",
       "footnote is to page",
-      "novel is to chapter"
+      "scene is to play",
+      "epilogue is to novel",
+      "margin is to page"
     ],
     "correct_answer": "scene is to play",
     "explanation": "A paragraph is one of the structural divisions an essay is built from; \"scene is to play\" is the same division-to-whole pair.",
     "distractor_rationales": [
-      "the whole placed before its part, which reverses the order the stem sets",
-      "\"index is to book\" is a supplementary apparatus, not one of the divisions the book is composed of",
-      "KEY",
+      "\"index is to book\" is a finding aid appended to the book, not one of the divisions it is built from",
       "\"footnote is to page\" is a smaller element on a larger one, but a page is not divided into footnotes",
-      "\"novel is to chapter\" puts the whole first"
+      "KEY",
+      "\"epilogue is to novel\" is an appended close rather than one of the constituent divisions",
+      "\"margin is to page\" is a region of the page rather than a division of the work"
     ],
     "set_id": "SET-A"
   },
@@ -143,7 +143,7 @@
     "difficulty": "easy",
     "prompt": "CONSTELLATION is to STARS as",
     "choices": [
-      "bees is to swarm",
+      "crowd is to people",
       "swarm is to bees",
       "anthill is to ants",
       "herd is to pasture",
@@ -152,7 +152,7 @@
     "correct_answer": "swarm is to bees",
     "explanation": "A constellation is a collective noun whose members are stars; \"swarm is to bees\" names a collective and then its members.",
     "distractor_rationales": [
-      "the members placed before the collective, reversing the stem",
+      "a crowd is people, but an unorganised mass rather than a named, recognised grouping",
       "KEY",
       "\"anthill is to ants\" gives the dwelling rather than the group the creatures form",
       "\"herd is to pasture\" pairs a collective with the place it stands in, not with its members",
@@ -214,7 +214,7 @@
     "choices": [
       "tenuous",
       "tense",
-      "flimsy",
+      "fickle",
       "dogged",
       "agreeable"
     ],
@@ -223,7 +223,7 @@
     "distractor_rationales": [
       "\"tenuous\" is the near-twin in spelling and close to the opposite in sense — thin rather than gripping",
       "\"tense\" shares the first syllable and means strained, not persistent",
-      "\"flimsy\" is what a tenacious hold is not",
+      "\"fickle\" lets go at the first change of mind, which is the opposite of holding on",
       "KEY",
       "\"agreeable\" is the yielding a tenacious person refuses"
     ],
@@ -305,7 +305,7 @@
     "prompt": "ASSUAGE",
     "choices": [
       "persuade",
-      "enrage",
+      "hasten",
       "assess",
       "soothe",
       "gauge"
@@ -314,7 +314,7 @@
     "explanation": "To ASSUAGE is to ease or lessen something painful, i.e. to \"soothe\" it.",
     "distractor_rationales": [
       "a rhyme that also fits the register; persuasion changes a mind, not a pain",
-      "the exact reverse, and another -age rhyme",
+      "another -age rhyme; hurrying a trouble along is not easing it",
       "shares the opening \"ass-\" and nothing else",
       "KEY",
       "the bare rhyme, hiding inside the word itself"
@@ -329,7 +329,7 @@
     "choices": [
       "verbal",
       "morose",
-      "blunt",
+      "hollow",
       "truthful",
       "wordy"
     ],
@@ -338,7 +338,7 @@
     "distractor_rationales": [
       "the shared verb- root; spoken rather than long-winded",
       "a rhyme on -ose with an unrelated sense",
-      "\"blunt\" is the opposite failing — too few words, not too many",
+      "\"hollow\" reads many words as empty ones; verbose speech may be perfectly substantial",
       "pulled in by \"veracious\", a different word altogether",
       "KEY"
     ],
@@ -351,7 +351,7 @@
     "prompt": "SCOWL is to DISPLEASURE as",
     "choices": [
       "pallor is to fear",
-      "contempt is to sneer",
+      "frown is to concentration",
       "shiver is to blanket",
       "laughter is to comedian",
       "sneer is to contempt"
@@ -360,7 +360,7 @@
     "explanation": "A scowl is the outward sign of displeasure and of little else; \"sneer is to contempt\" is a sign that is equally specific to one feeling.",
     "distractor_rationales": [
       "pallor may follow fear, illness or shock — it does not point to one feeling the way a scowl does",
-      "the feeling put before its sign, reversing the stem",
+      "a frown may mean concentration, worry or displeasure — it does not point to one feeling",
       "\"shiver is to blanket\" pairs a sign with a remedy rather than with a feeling",
       "\"laughter is to comedian\" gives an external cause instead of the inner state",
       "KEY"
@@ -465,20 +465,20 @@
     "difficulty": "easy",
     "prompt": "EBB",
     "choices": [
-      "surge",
       "drift",
-      "dwindle",
       "linger",
-      "overflow"
+      "dwindle",
+      "ripple",
+      "scatter"
     ],
     "correct_answer": "dwindle",
     "explanation": "To EBB is to fall away or decline, i.e. to \"dwindle\".",
     "distractor_rationales": [
-      "the tide word for the opposite movement",
       "movement without the loss of quantity that ebbing carries",
-      "KEY",
       "staying on rather than falling away",
-      "the opposite extreme of the same water imagery"
+      "KEY",
+      "surface movement of the same water, with nothing withdrawn",
+      "dispersal in all directions rather than a steady falling away"
     ],
     "set_id": "SET-E"
   },
@@ -490,7 +490,7 @@
     "choices": [
       "water is to shrub",
       "winnow is to grain",
-      "harvest is to grain",
+      "harvest is to orchard",
       "fertilize is to soil",
       "sow is to field"
     ],
@@ -499,7 +499,7 @@
     "distractor_rationales": [
       "watering adds to the plant instead of cutting away from it",
       "KEY",
-      "harvesting removes the crop entire; nothing is left behind improved",
+      "harvesting takes the crop away entire; nothing is left behind improved",
       "fertilising is an addition, and to the soil rather than the plant",
       "sowing puts something in at the start rather than taking part of it out"
     ],
@@ -515,7 +515,7 @@
       "hasty",
       "cheerful",
       "arrogant",
-      "modest"
+      "solemn"
     ],
     "correct_answer": "arrogant",
     "explanation": "HAUGHTY describes an overbearing sense of one's own superiority — \"arrogant\".",
@@ -524,7 +524,7 @@
       "the near-rhyme; haste is not hauteur",
       "a pleasant temper where the word names an unpleasant one",
       "KEY",
-      "the direct opposite of a high opinion of oneself"
+      "gravity of manner read as loftiness of self-regard"
     ],
     "set_id": "SET-E"
   },
@@ -534,7 +534,7 @@
     "difficulty": "medium",
     "prompt": "QUARRY is to MARBLE as",
     "choices": [
-      "reservoir is to water",
+      "reservoir is to rainfall",
       "well is to water",
       "dairy is to milk",
       "granary is to grain",
@@ -543,7 +543,7 @@
     "correct_answer": "well is to water",
     "explanation": "A quarry is the place marble is taken out of the ground. \"Well is to water\" is the same: the place water is drawn up from.",
     "distractor_rationales": [
-      "a reservoir holds water that has been put there; nothing is won from the ground",
+      "a reservoir collects rainfall that arrives on its own; nothing is won out of the ground",
       "KEY",
       "a dairy handles milk after it has been got",
       "a granary stores grain rather than yielding it",
@@ -557,19 +557,19 @@
     "difficulty": "easy",
     "prompt": "VEX",
     "choices": [
-      "amuse",
       "examine",
       "reject",
-      "soothe",
+      "excuse",
+      "postpone",
       "annoy"
     ],
     "correct_answer": "annoy",
     "explanation": "To VEX is to irritate or trouble someone, i.e. to \"annoy\" them.",
     "distractor_rationales": [
-      "the pleasant reaction where the word names an unpleasant one",
-      "a vexed question is one under examination, which drags the sense sideways",
+      "a \"vexed question\" is one long under examination, which drags the sense sideways",
       "refusal rather than irritation",
-      "the remedy for vexation, not vexation",
+      "letting someone off rather than troubling them",
+      "a vexed matter is often a long-delayed one; the delay is not the vexing",
       "KEY"
     ],
     "set_id": "SET-E"
@@ -607,7 +607,7 @@
       "harmony",
       "symphony",
       "echo",
-      "chorus"
+      "quarrel"
     ],
     "correct_answer": "din",
     "explanation": "A CACOPHONY is a harsh, discordant racket, which \"din\" names.",
@@ -616,7 +616,7 @@
       "the exact opposite quality of sound",
       "the shared -phony ending, attached to sound that is organised rather than harsh",
       "a repetition of sound, with nothing said about harshness",
-      "many voices, but joined rather than clashing"
+      "the noise of a dispute rather than a quality of sound"
     ],
     "set_id": "SET-F"
   },
