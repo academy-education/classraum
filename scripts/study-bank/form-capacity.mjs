@@ -69,6 +69,54 @@ const SAT_BLUEPRINT = {
     'Problem-Solving and Data Analysis': 0.15, 'Geometry and Trigonometry': 0.15,
   },
 }
+/* ACT per-domain share, copied from act-test.ts. These are PUBLISHED percentage
+ * ranges, so the per-form need is the range MINIMUM — a form may legally carry
+ * more, but it may not carry fewer. English has no published per-domain split,
+ * so it is deliberately absent and reported as unmodelled rather than guessed.
+ *
+ * These exist because the fallback below (assume the bank's own domain mix is
+ * the target) is CIRCULAR: need = perForm x have/total makes floor(have/need)
+ * collapse to floor(total/perForm) for every domain, so it reproduces the naive
+ * number and names an essentially arbitrary "binding domain". On 2026-09-11 it
+ * named ACT Math's binding domain as Geometry (47 items). Measured against the
+ * real quotas the binding domains are Algebra (25) and Functions (24) at three
+ * forms, and Geometry serves five. Authoring 20 Geometry items on the strength
+ * of that column would have moved the number by zero.
+ */
+const ACT_QUOTAS = {
+  math: {
+    'Number and Quantity': 0.10, 'Algebra': 0.17, 'Functions': 0.17,
+    'Geometry': 0.17, 'Statistics and Probability': 0.12,
+    'Integrating Essential Skills': 0.20,
+  },
+  reading: {
+    'Key Ideas and Details': 0.44, 'Craft and Structure': 0.26,
+    'Integration of Knowledge and Ideas': 0.19,
+  },
+  science: {
+    'Interpretation of Data': 0.38, 'Scientific Investigation': 0.18,
+    'Evaluation of Models, Inferences, and Experimental Results': 0.24,
+  },
+}
+
+const actSrc = readFileSync('src/lib/study/act-test.ts', 'utf8')
+for (const [section, quotas] of Object.entries(ACT_QUOTAS)) {
+  for (const [dom, share] of Object.entries(quotas)) {
+    // The domain must still be spelled this way, AND the range minimum must
+    // still be this number. Checking only the name would let a blueprint
+    // reweighting pass silently.
+    const m = actSrc.match(new RegExp(`'${dom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}':\\s*\\[(\\d+),`))
+    if (!m) {
+      console.error(`ACT_QUOTAS drift: act-test.ts no longer lists ${section}/${dom}. Fix this script before trusting it.`)
+      process.exit(2)
+    }
+    if (Number(m[1]) !== Math.round(share * 100)) {
+      console.error(`ACT_QUOTAS drift: ${section}/${dom} minimum is ${m[1]}% in act-test.ts, ${Math.round(share * 100)}% here.`)
+      process.exit(2)
+    }
+  }
+}
+
 const src = readFileSync('src/lib/study/assemble.ts', 'utf8')
 for (const dom of Object.keys(SAT_BLUEPRINT.reading_writing)) {
   if (!src.includes(`'${dom}'`)) {
@@ -113,7 +161,10 @@ for (const [family, section, label, perForm, hidden] of SECTIONS) {
   if (!b) { console.log(pad(label, 24) + num('—', 6) + '   no items'); continue }
   const naive = Math.floor(b.total / perForm)
   // Domain-aware: a form needs ceil(share x perForm) of each domain.
-  const weights = SAT_BLUEPRINT[section] && family === 'sat' ? SAT_BLUEPRINT[section] : null
+  const weights =
+    family === 'sat' ? (SAT_BLUEPRINT[section] ?? null)
+    : family === 'act' ? (ACT_QUOTAS[section] ?? null)
+    : null
   let byDomain = naive, binding = 'even split assumed'
   if (weights) {
     let worst = Infinity
@@ -135,6 +186,9 @@ for (const [family, section, label, perForm, hidden] of SECTIONS) {
       if (forms < worst) { worst = forms; binding = `${dom} (${have} / ~${need} per form)` }
     }
     byDomain = Math.min(naive, worst)
+    // Say so. This branch cannot see a real constraint, and a "binding domain"
+    // printed from it is a restatement of the total, not a measurement.
+    binding = `${binding}  [NO PUBLISHED QUOTA — circular, treat as the naive number]`
   }
   console.log(pad(label + (hidden ? ' (hidden)' : ''), 24) + num(b.total, 6) + num(naive, 7) + num(byDomain, 11) + '   ' + binding)
   if (hidden) notes.push(`${label}: drawable but the subtopic is hidden — no student can open it.`)

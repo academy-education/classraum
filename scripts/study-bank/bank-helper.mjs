@@ -74,10 +74,30 @@ function loadEnv() {
     .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
 }
 
-function renderBlind(batch) {
+/**
+ * BLIND=labelled (default) prints the subskill in each item header; BLIND=bare
+ * withholds it.
+ *
+ * This switch exists because the subskill label in this repo is not a category
+ * name — it is a sentence naming BOTH rules the item turns on, e.g. "'each of'
+ * takes a singular verb, and 'already' at a stated past moment requires the
+ * past perfect". Handed that, a solver is not deciding what the item tests;
+ * they are applying a rule they were given. Every SEC difficulty grade on file
+ * was collected in the labelled condition, so the recorded finding that solvers
+ * grade Claude-authored SEC as "medium" is confounded: a solver told the rule
+ * should find the item easier, and should also pick correctly more often.
+ *
+ * Which direction that bias runs, and how large it is, is measurable rather
+ * than arguable — run the same batch both ways and compare. Until it has been
+ * measured, `bare` is the honest condition for deciding a batch and `labelled`
+ * is the one comparable with the history.
+ */
+function renderBlind(batch, { labelled = true } = {}) {
   const out = []
   for (const it of batch) {
-    out.push(`### Item ${it.id}  (${it.domain} / ${it.subskill})`)
+    out.push(labelled
+      ? `### Item ${it.id}  (${it.domain} / ${it.subskill})`
+      : `### Item ${it.id}  (${it.domain})`)
     if (it.passage) out.push(`Passage: ${it.passage}`)
     out.push(`Question: ${it.prompt}`)
     it.choices.forEach((c, i) => out.push(`  (${LETTERS[i]}) ${c}`))
@@ -149,7 +169,14 @@ async function main() {
   const [cmd, batchPath, qcPath] = process.argv.slice(2)
   if (cmd === 'blind') {
     const batch = JSON.parse(readFileSync(batchPath, 'utf8'))
-    process.stdout.write(renderBlind(batch))
+    // BLIND=bare withholds the subskill label. See renderBlind's comment:
+    // the label names both rules the item turns on, which is most of the answer.
+    const mode = (process.env.BLIND ?? 'labelled').toLowerCase()
+    if (mode !== 'labelled' && mode !== 'bare') {
+      console.error(`BLIND must be 'labelled' or 'bare', got '${process.env.BLIND}'.`)
+      process.exit(2)
+    }
+    process.stdout.write(renderBlind(batch, { labelled: mode === 'labelled' }))
     return
   }
   if (cmd !== 'insert' || !batchPath || !qcPath) {
