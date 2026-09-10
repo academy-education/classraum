@@ -18,6 +18,12 @@ ACT had five; the repo's old generation prompt was corrected). Domains
 spelled as the quotas spell them. Same figure rules as SAT math; same
 derivational-hub rule.
 
+Every distractor needs a `distractor_solve` entry — a map from the exact
+option string to a JS body producing it. `verify` recomputes them. This
+exists because an ACT Functions item shipped 31484 where its own stated
+derivation gives 31482, invisible to the sandbox, to both hub checks and
+to the explanation alike. Round inside the body if the option is rounded.
+
 ## 2. QC and insert
 
 `verify` prints a **symbolic hub** line as well as the sandbox result: the
