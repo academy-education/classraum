@@ -244,16 +244,48 @@ function shapeOk(raw) {
     // short-circuits numeric pairs through `asNumber` and therefore treats
     // the distractor as the key. Same family as the normAnswer relation
     // collisions fixed the same morning, reached from the other side.
-    && numericallyDistinct(raw.choices)
+    && numericallyDistinct(raw.choices, raw.correct_answer)
     && typeof raw.solve === 'string'
 }
 
-/** Distinct as VALUES where every option is numeric; textual sets pass
- *  through, since `2x` and `2x ` are a different problem handled above. */
-function numericallyDistinct(choices) {
-  const nums = choices.map(c => asNumber(c))
-  if (nums.some(v => v === null)) return true
-  return new Set(nums).size === nums.length
+/**
+ * Distinct UNDER THE COMPARATOR THE GATE ACTUALLY USES.
+ *
+ * The string check above asks whether the options look different. This asks
+ * the only question that matters: can `answersMatch` tell them apart? If it
+ * cannot, the item has two correct answers and the sandbox will certify it,
+ * because it compares the key against each option with exactly this function.
+ *
+ * Two classes have now been found, a few hours apart, and the first fix only
+ * covered one of them:
+ *
+ *   numeric   `24` vs `24.0`        — asNumber folds them
+ *   symbolic  `x^(5/4)` vs `x^( 5/4 )` — normAnswer strips the parentheses
+ *                                        and collapses the spaces
+ *
+ * The second was found by an Advanced Math author testing the FIRST fix and
+ * reporting where it stopped, which is why this version asks the general
+ * question rather than patching the second case too. Distinctness has to be
+ * measured with the same instrument the comparison uses, or it is measuring
+ * something else.
+ */
+function numericallyDistinct(choices, key) {
+  /* KEY vs each distractor, NOT every pair.
+   *
+   * The defect is an item with TWO CORRECT ANSWERS, which needs a
+   * DISTRACTOR the comparator cannot tell from the KEY. Two distractors
+   * folding together is harmless: the sandbox only ever compares the
+   * computed value against `correct_answer`, and a student sees four
+   * distinct strings.
+   *
+   * The all-pairs version of this check was written first and would have
+   * REFUSED a sound live item: ssat-math-s4's `x^2 > x` question offers
+   * `x > 1` and `|x| > 1` as two different wrong answers, which normAnswer
+   * folds because it strips the pipes. Its key is `x != 0 and x != 1` and
+   * is distinct from both. Caught by measuring the live bank before
+   * trusting the check -- 1,752 maths items, that one hit, and reading it
+   * showed the checker was wrong rather than the item. */
+  return !choices.some(c => c !== key && answersMatch(c, key))
 }
 
 /*

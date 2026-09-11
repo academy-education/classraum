@@ -1,0 +1,506 @@
+[
+  {
+    "id": "ADV6-01",
+    "domain": "Advanced Math",
+    "subskill": "distinct real zeros of a polynomial given in factored form",
+    "difficulty": "easy",
+    "prompt": "The polynomial function p is defined by p(x) = (x − 5)²(x + 3)(x² + 4). How many distinct real zeros does p have?",
+    "choices": [
+      "4",
+      "3",
+      "2",
+      "5"
+    ],
+    "correct_answer": "2",
+    "explanation": "A product is zero exactly when one of its factors is zero. (x − 5)² = 0 gives x = 5, and x + 3 = 0 gives x = −3. The factor x² + 4 has discriminant 0² − 4(1)(4) = −16, which is negative, so it is never zero for a real x. The distinct real zeros are 5 and −3, so there are 2 of them. The answer 3 counts x = 5 once for each factor of (x − 5)², reporting zeros with multiplicity rather than distinct zeros; 4 treats x² + 4 as though it had two real zeros and adds them to the two genuine ones; 5 is the degree of p, the number of zeros counted with multiplicity over the complex numbers.",
+    "solve": "const disc = 0*0 - 4*1*4; const realRoots = [5, -3]; if (disc >= 0) { realRoots.push(2, -2); } return new Set(realRoots).size;",
+    "distractor_solve": {
+      "3": "return [5, 5, -3].length;",
+      "4": "return new Set([5, -3]).size + 2;",
+      "5": "return 2 + 1 + 2;"
+    }
+  },
+  {
+    "id": "ADV6-02",
+    "domain": "Advanced Math",
+    "subskill": "the degree of a product of polynomial factors",
+    "difficulty": "easy",
+    "prompt": "The polynomial function f is defined by f(x) = (2x³ − x + 7)(x² + 5)². What is the degree of f?",
+    "choices": [
+      "5",
+      "7",
+      "3",
+      "6"
+    ],
+    "correct_answer": "7",
+    "explanation": "The degree of a product is the sum of the degrees of its factors, and raising a factor to a power multiplies that factor's degree by the power. The first factor has degree 3, and (x² + 5)² has degree 2 · 2 = 4, so f has degree 3 + 4 = 7. The value 5 adds 3 and 2 and ignores the exponent on the second factor; 6 multiplies the two factors' degrees instead of adding them; 3 is the degree of the first factor alone.",
+    "solve": "const d1 = 3, d2 = 2, power = 2; return d1 + d2 * power;",
+    "distractor_solve": {
+      "3": "const firstFactor = [2, 0, -1, 7]; return firstFactor.length - 1;",
+      "5": "return 3 + 2;",
+      "6": "return 3 * 2;"
+    }
+  },
+  {
+    "id": "ADV6-03",
+    "domain": "Advanced Math",
+    "subskill": "adding two rational expressions with unlike denominators",
+    "difficulty": "medium",
+    "prompt": "For x ≠ 2 and x ≠ −1, which expression is equivalent to 3/(x − 2) + 5/(x + 1)?",
+    "choices": [
+      "(8x - 7)/(x^2 - x - 2)",
+      "(8x + 13)/(x^2 + x - 2)",
+      "(8x + 13)/(x^2 - x - 2)",
+      "(8x - 7)/(x^2 + x - 2)"
+    ],
+    "correct_answer": "(8x - 7)/(x^2 - x - 2)",
+    "explanation": "The common denominator is (x − 2)(x + 1) = x² − x − 2. Rewriting each fraction over it, 3/(x − 2) becomes 3(x + 1) over that denominator and 5/(x + 1) becomes 5(x − 2) over it. The numerator is 3(x + 1) + 5(x − 2) = 3x + 3 + 5x − 10 = 8x − 7, so the sum is (8x - 7)/(x^2 - x - 2). Distributing 5 over x − 2 as 5x + 10 gives the numerator 8x + 13; expanding (x − 2)(x + 1) as x² + x − 2 flips the sign of the middle term of the denominator. (8x + 13)/(x^2 - x - 2) makes the first slip only, (8x - 7)/(x^2 + x - 2) the second only, and (8x + 13)/(x^2 + x - 2) both.",
+    "solve": "const c1 = -2, c2 = 1, n1 = 3, n2 = 5; const a = n1 + n2; const b = n1 * c2 + n2 * c1; const p = c1 + c2; const q = c1 * c2; const term = (v, letter) => (v < 0 ? ' - ' : ' + ') + (letter && Math.abs(v) === 1 ? '' : Math.abs(v)) + (letter || ''); return '(' + a + 'x' + term(b, '') + ')/(x^2' + term(p, 'x') + term(q, '') + ')';",
+    "distractor_solve": {
+      "(8x + 13)/(x^2 - x - 2)": "const c1 = -2, c2 = 1, n1 = 3, n2 = 5; const a = n1 + n2; const b = n1 * c2 + n2 * (-c1); const p = c1 + c2; const q = c1 * c2; const term = (v, letter) => (v < 0 ? ' - ' : ' + ') + (letter && Math.abs(v) === 1 ? '' : Math.abs(v)) + (letter || ''); return '(' + a + 'x' + term(b, '') + ')/(x^2' + term(p, 'x') + term(q, '') + ')';",
+      "(8x - 7)/(x^2 + x - 2)": "const c1 = -2, c2 = 1, n1 = 3, n2 = 5; const a = n1 + n2; const b = n1 * c2 + n2 * c1; const p = -(c1 + c2); const q = c1 * c2; const term = (v, letter) => (v < 0 ? ' - ' : ' + ') + (letter && Math.abs(v) === 1 ? '' : Math.abs(v)) + (letter || ''); return '(' + a + 'x' + term(b, '') + ')/(x^2' + term(p, 'x') + term(q, '') + ')';",
+      "(8x + 13)/(x^2 + x - 2)": "const c1 = -2, c2 = 1, n1 = 3, n2 = 5; const a = n1 + n2; const b = n1 * c2 + n2 * (-c1); const p = -(c1 + c2); const q = c1 * c2; const term = (v, letter) => (v < 0 ? ' - ' : ' + ') + (letter && Math.abs(v) === 1 ? '' : Math.abs(v)) + (letter || ''); return '(' + a + 'x' + term(b, '') + ')/(x^2' + term(p, 'x') + term(q, '') + ')';"
+    }
+  },
+  {
+    "id": "ADV6-04",
+    "domain": "Advanced Math",
+    "subskill": "evaluating a negative rational exponent",
+    "difficulty": "medium",
+    "prompt": "What is the value of 16^(−3/4)?",
+    "choices": [
+      "1/12",
+      "1/8",
+      "1/64",
+      "1/2"
+    ],
+    "correct_answer": "1/8",
+    "explanation": "A negative exponent calls for the reciprocal, so 16^(−3/4) is 1 divided by 16^(3/4). The denominator 4 of the exponent calls for the fourth root, and 16^(1/4) = 2; the numerator 3 raises that to the third power, so 16^(3/4) = 2³ = 8 and the value is 1/8. Taking the fourth root but never cubing gives 1/2; multiplying the base by the exponent, 16 · (3/4) = 12, gives 1/12; cubing first and then taking a square root instead of a fourth root gives 1 divided by the square root of 4096, which is 1/64.",
+    "solve": "return '1/' + Math.round(Math.pow(16, 3/4));",
+    "distractor_solve": {
+      "1/12": "return '1/' + (16 * 3/4);",
+      "1/64": "return '1/' + Math.round(Math.sqrt(Math.pow(16, 3)));",
+      "1/2": "return '1/' + Math.round(Math.pow(16, 1/4));"
+    }
+  },
+  {
+    "id": "ADV6-05",
+    "domain": "Advanced Math",
+    "subskill": "the axis of symmetry recovered from two equal function values",
+    "difficulty": "medium",
+    "prompt": "For the quadratic function f, f(2) = f(10) = 13, and the graph of y = f(x) in the xy-plane opens upward. For what value of x does f attain its minimum value?",
+    "choices": [
+      "4",
+      "6",
+      "8",
+      "12"
+    ],
+    "correct_answer": "6",
+    "explanation": "The graph of a quadratic function is symmetric about the vertical line through its vertex, so two inputs with the same output lie the same distance from that line on opposite sides. The line of symmetry is therefore halfway between x = 2 and x = 10, at x = (2 + 10)/2 = 6, and the minimum of an upward-opening parabola occurs there. Adding the two inputs without halving gives 12; halving the distance between them, (10 − 2)/2, gives 4; the distance between them, 10 − 2, gives 8.",
+    "solve": "return (2 + 10) / 2;",
+    "distractor_solve": {
+      "4": "return (10 - 2) / 2;",
+      "8": "return 10 - 2;",
+      "12": "return 2 + 10;"
+    }
+  },
+  {
+    "id": "ADV6-06",
+    "domain": "Advanced Math",
+    "subskill": "matching coefficients in an equation true for all x",
+    "difficulty": "medium",
+    "prompt": "The equation (2x + a)(3x − 5) = 6x² + bx − 35 is true for all values of x, where a and b are constants. What is the value of b?",
+    "choices": [
+      "11",
+      "31",
+      "-11",
+      "21"
+    ],
+    "correct_answer": "11",
+    "explanation": "Expanding the left side gives 6x² − 10x + 3ax − 5a, that is, 6x² + (3a − 10)x − 5a. Because the equation holds for every x, the corresponding coefficients agree. Matching the constant terms, −5a = −35, so a = 7. Matching the x terms, b = 3a − 10 = 21 − 10 = 11. Stopping at 3a reports 21; adding 10 instead of subtracting it gives 31; computing 10 − 3a rather than 3a − 10 gives −11.",
+    "solve": "const a = 35 / 5; return 3 * a - 10;",
+    "distractor_solve": {
+      "21": "const a = 35 / 5; return 3 * a;",
+      "31": "const a = 35 / 5; return 3 * a + 10;",
+      "-11": "const a = 35 / 5; return 10 - 3 * a;"
+    }
+  },
+  {
+    "id": "ADV6-07",
+    "domain": "Advanced Math",
+    "subskill": "a rational equation that becomes a quadratic after clearing the denominator",
+    "difficulty": "medium",
+    "prompt": "In the equation 10/(x − 3) = x − 6, x ≠ 3. What is the positive difference between the two solutions of the equation?",
+    "choices": [
+      "9",
+      "8",
+      "3",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "Multiplying both sides by x − 3 gives 10 = (x − 6)(x − 3) = x² − 9x + 18. Subtracting 10 from both sides gives x² − 9x + 8 = 0, which factors as (x − 1)(x − 8) = 0, so x = 1 or x = 8; neither is 3, so both are solutions. The positive difference is 8 − 1 = 7. Factoring x² − 9x + 18 = 0 without first subtracting the 10 gives the solutions 3 and 6 and a difference of 3; 9 is the sum of the two solutions rather than their difference; 8 is the greater solution reported on its own.",
+    "solve": "const r = []; for (let x = -50; x <= 50; x++) { if (x !== 3 && Math.abs(10 / (x - 3) - (x - 6)) < 1e-9) r.push(x); } return Math.max.apply(null, r) - Math.min.apply(null, r);",
+    "distractor_solve": {
+      "3": "const r = []; for (let x = -50; x <= 50; x++) { if (x * x - 9 * x + 18 === 0) r.push(x); } return Math.max.apply(null, r) - Math.min.apply(null, r);",
+      "8": "const r = []; for (let x = -50; x <= 50; x++) { if (x * x - 9 * x + 8 === 0) r.push(x); } return Math.max.apply(null, r);",
+      "9": "const r = []; for (let x = -50; x <= 50; x++) { if (x * x - 9 * x + 8 === 0) r.push(x); } return r[0] + r[1];"
+    }
+  },
+  {
+    "id": "ADV6-08",
+    "domain": "Advanced Math",
+    "subskill": "a system of two quadratic equations",
+    "difficulty": "hard",
+    "prompt": "A system of equations consists of y = x² − 2x + 5 and y = −x² + 10x − 11. The system has two distinct solutions. What is the y-coordinate of the solution whose x-coordinate is greater?",
+    "choices": [
+      "5",
+      "8",
+      "4",
+      "13"
+    ],
+    "correct_answer": "13",
+    "explanation": "Setting the two expressions for y equal gives x² − 2x + 5 = −x² + 10x − 11, so 2x² − 12x + 16 = 0, or x² − 6x + 8 = 0, which factors as (x − 2)(x − 4) = 0. The greater x-coordinate is 4, and y = 4² − 2(4) + 5 = 13. The value 4 is that x-coordinate rather than the y-coordinate the question asks for; 5 is the y-coordinate at the other solution, x = 2; 8 comes from evaluating y = x² − 2x + 5 at x = 3, the midpoint of the two x-values, which is that parabola's axis of symmetry and not a point of intersection.",
+    "solve": "const f = x => x * x - 2 * x + 5; const g = x => -x * x + 10 * x - 11; const xs = []; for (let x = -20; x <= 20; x++) { if (Math.abs(f(x) - g(x)) < 1e-9) xs.push(x); } return f(Math.max.apply(null, xs));",
+    "distractor_solve": {
+      "4": "const f = x => x * x - 2 * x + 5; const g = x => -x * x + 10 * x - 11; const xs = []; for (let x = -20; x <= 20; x++) { if (Math.abs(f(x) - g(x)) < 1e-9) xs.push(x); } return Math.max.apply(null, xs);",
+      "5": "const f = x => x * x - 2 * x + 5; const g = x => -x * x + 10 * x - 11; const xs = []; for (let x = -20; x <= 20; x++) { if (Math.abs(f(x) - g(x)) < 1e-9) xs.push(x); } return f(Math.min.apply(null, xs));",
+      "8": "const f = x => x * x - 2 * x + 5; const g = x => -x * x + 10 * x - 11; const xs = []; for (let x = -20; x <= 20; x++) { if (Math.abs(f(x) - g(x)) < 1e-9) xs.push(x); } return f((xs[0] + xs[1]) / 2);"
+    }
+  },
+  {
+    "id": "ADV6-09",
+    "domain": "Advanced Math",
+    "subskill": "solving an exponential model for the time at a given value",
+    "difficulty": "medium",
+    "prompt": "The number of bacteria in a culture is modeled by P(t) = 4,000 · 2^(t/6), where t is the number of hours since the culture was prepared. After how many hours does the model predict that the culture contains 32,000 bacteria?",
+    "choices": [
+      "18",
+      "48",
+      "6",
+      "3"
+    ],
+    "correct_answer": "18",
+    "explanation": "Setting 4,000 · 2^(t/6) = 32,000 gives 2^(t/6) = 8. Since 8 = 2³, the exponents match when t/6 = 3, so t = 18 hours. The value 3 is the number of doublings, the exponent itself, and not the time; 6 is the length of one doubling period; 48 multiplies the growth factor 8 by the 6-hour period instead of multiplying the number of doublings by it.",
+    "solve": "const ratio = 32000 / 4000; const n = Math.log(ratio) / Math.log(2); return 6 * n;",
+    "distractor_solve": {
+      "3": "return Math.log(32000 / 4000) / Math.log(2);",
+      "6": "const model = t => 4000 * Math.pow(2, t / 6); let t = 0; while (model(t) < 2 * 4000) { t += 1; } return t;",
+      "48": "return (32000 / 4000) * 6;"
+    }
+  },
+  {
+    "id": "ADV6-10",
+    "domain": "Advanced Math",
+    "subskill": "the endpoints of the solution set of a quadratic inequality",
+    "difficulty": "medium",
+    "prompt": "What is the least value of x that satisfies x² + 3x − 40 ≤ 0?",
+    "choices": [
+      "5",
+      "-5",
+      "8",
+      "-8"
+    ],
+    "correct_answer": "-8",
+    "explanation": "Factoring gives (x + 8)(x − 5) ≤ 0. The two factors have opposite signs exactly between their zeros, so the product is negative or zero precisely when −8 ≤ x ≤ 5, and the least value in that interval is −8. The value 5 is the greatest value in the solution set rather than the least. Copying the constants out of the factors with the signs shown, as though x + 8 vanished at 8 and x − 5 at −5, produces the pair −5 and 8: reporting the smaller of that pair gives −5 and the larger gives 8.",
+    "solve": "const s = []; for (let x = -20; x <= 20; x++) { if (x * x + 3 * x - 40 <= 0) s.push(x); } return Math.min.apply(null, s);",
+    "distractor_solve": {
+      "5": "const s = []; for (let x = -20; x <= 20; x++) { if (x * x + 3 * x - 40 <= 0) s.push(x); } return Math.max.apply(null, s);",
+      "8": "const copied = [8, -5]; return Math.max.apply(null, copied);",
+      "-5": "const copied = [8, -5]; return Math.min.apply(null, copied);"
+    }
+  },
+  {
+    "id": "ADV6-11",
+    "domain": "Advanced Math",
+    "subskill": "factoring a quadratic whose leading coefficient is not 1",
+    "difficulty": "medium",
+    "prompt": "What is the positive solution to 6x² + 7x − 20 = 0?",
+    "choices": [
+      "3/4",
+      "5/2",
+      "2/5",
+      "4/3"
+    ],
+    "correct_answer": "4/3",
+    "explanation": "The expression factors as (3x − 4)(2x + 5), since 3x · 2x = 6x², 3x · 5 − 4 · 2x = 15x − 8x = 7x, and −4 · 5 = −20. Setting each factor equal to zero gives x = 4/3 and x = −5/2, so the positive solution is 4/3. The value 3/4 divides the coefficient by the constant instead of the constant by the coefficient in 3x − 4; 5/2 takes the solution from the other factor, 2x + 5, and drops its negative sign; 2/5 both takes the other factor and inverts it.",
+    "solve": "const a = 6, b = 7, c = -20; const d = Math.sqrt(b * b - 4 * a * c); return (-b + d) / (2 * a);",
+    "distractor_solve": {
+      "5/2": "const A = 2, B = 5; return B / A;",
+      "2/5": "const A = 2, B = 5; return A / B;",
+      "3/4": "const A = 3, B = -4; return A / (-B);"
+    }
+  },
+  {
+    "id": "ADV6-12",
+    "domain": "Advanced Math",
+    "subskill": "the constant that gives a quadratic equation exactly one real solution",
+    "difficulty": "hard",
+    "prompt": "The equation 2x² + 12x + c = 0 has exactly one real solution, where c is a constant. What is the value of c?",
+    "choices": [
+      "6",
+      "12",
+      "18",
+      "9"
+    ],
+    "correct_answer": "18",
+    "explanation": "A quadratic equation has exactly one real solution when its discriminant is zero: b² − 4ac = 12² − 4(2)c = 144 − 8c = 0, so c = 18. Dividing the equation by 2 first gives x² + 6x + c/2 = 0, which is a perfect square when c/2 = (6/2)² = 9; stopping there reports 9, the halved constant, rather than the c the question asks for. The value 12 copies the coefficient of x, and 6 is half of that coefficient.",
+    "solve": "const a = 2, b = 12; return (b * b) / (4 * a);",
+    "distractor_solve": {
+      "6": "const coeffs = [2, 12]; return coeffs[1] / 2;",
+      "9": "const halved = 12 / 2; return (halved / 2) * (halved / 2);",
+      "12": "const coeffs = [2, 12]; return coeffs[1];"
+    }
+  },
+  {
+    "id": "ADV6-13",
+    "domain": "Advanced Math",
+    "subskill": "solving a quadratic function equation for the value of x squared",
+    "difficulty": "easy",
+    "prompt": "The function f is defined by f(x) = 2x² − 7. If f(x) = 65, what is the value of x²?",
+    "choices": [
+      "144",
+      "72",
+      "36",
+      "58"
+    ],
+    "correct_answer": "36",
+    "explanation": "Substituting gives 2x² − 7 = 65, so 2x² = 72 and x² = 36. The value 72 is 2x², one step short of dividing by 2; 144 doubles that instead of halving it, multiplying by 2 where the equation calls for dividing; 58 moves the −7 across as −7 rather than +7 and also never divides, giving 65 − 7.",
+    "solve": "return (65 + 7) / 2;",
+    "distractor_solve": {
+      "58": "return 65 - 7;",
+      "72": "return 65 + 7;",
+      "144": "return 2 * (65 + 7);"
+    }
+  },
+  {
+    "id": "ADV6-14",
+    "domain": "Advanced Math",
+    "subskill": "solving a cubic equation by factoring by grouping",
+    "difficulty": "medium",
+    "prompt": "What is the least solution to the equation x³ + 3x² − 4x − 12 = 0?",
+    "choices": [
+      "2",
+      "-3",
+      "-2",
+      "3"
+    ],
+    "correct_answer": "-3",
+    "explanation": "Grouping gives x²(x + 3) − 4(x + 3) = (x + 3)(x² − 4) = (x + 3)(x − 2)(x + 2), so the solutions are −3, 2, and −2. The least of them is −3. The value −2 is the middle solution; 2 is the greatest solution rather than the least; 3 comes from reading the factor x + 3 as vanishing at x = 3, flipping the sign of the correct answer.",
+    "solve": "const p = x => x * x * x + 3 * x * x - 4 * x - 12; const r = []; for (let x = -20; x <= 20; x++) { if (p(x) === 0) r.push(x); } return Math.min.apply(null, r);",
+    "distractor_solve": {
+      "2": "const p = x => x * x * x + 3 * x * x - 4 * x - 12; const r = []; for (let x = -20; x <= 20; x++) { if (p(x) === 0) r.push(x); } return Math.max.apply(null, r);",
+      "3": "const p = x => x * x * x + 3 * x * x - 4 * x - 12; const r = []; for (let x = -20; x <= 20; x++) { if (p(x) === 0) r.push(x); } return -Math.min.apply(null, r);",
+      "-2": "const p = x => x * x * x + 3 * x * x - 4 * x - 12; const r = []; for (let x = -20; x <= 20; x++) { if (p(x) === 0) r.push(x); } r.sort((a, b) => a - b); return r[1];"
+    }
+  },
+  {
+    "id": "ADV6-15",
+    "domain": "Advanced Math",
+    "subskill": "the average rate of change of a quadratic function over an interval",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = x² − 3x. What is the average rate of change of f from x = 2 to x = 6?",
+    "choices": [
+      "20",
+      "4",
+      "10",
+      "5"
+    ],
+    "correct_answer": "5",
+    "explanation": "The average rate of change is the change in f divided by the change in x. Here f(6) = 36 − 18 = 18 and f(2) = 4 − 6 = −2, so the rate is [18 − (−2)]/(6 − 2) = 20/4 = 5. The value 20 is the change in f alone, before dividing by the change in x; 10 divides that change by 2, the number of endpoints, instead of by the change in x; 4 comes from taking f(2) to be 2 rather than −2, giving (18 − 2)/4.",
+    "solve": "const f = x => x * x - 3 * x; return (f(6) - f(2)) / (6 - 2);",
+    "distractor_solve": {
+      "4": "const f = x => x * x - 3 * x; return (f(6) - 2) / (6 - 2);",
+      "10": "const f = x => x * x - 3 * x; return (f(6) - f(2)) / 2;",
+      "20": "const f = x => x * x - 3 * x; return f(6) - f(2);"
+    }
+  },
+  {
+    "id": "ADV6-16",
+    "domain": "Advanced Math",
+    "subskill": "the constant that gives a quadratic function a required minimum value",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x² − 8x + c, where c is a constant. The minimum value of f is 5. What is the value of c?",
+    "choices": [
+      "9",
+      "11",
+      "21",
+      "13"
+    ],
+    "correct_answer": "21",
+    "explanation": "Completing the square, x² − 8x + c = (x − 4)² + c − 16. The square is never negative and is 0 at x = 4, so the minimum value of f is c − 16. Setting c − 16 = 5 gives c = 21. Using half the coefficient of x, 4, in place of its square gives 5 + 4 = 9; using the coefficient 8 itself gives 5 + 8 = 13; subtracting the minimum from the square rather than adding it gives 16 − 5 = 11.",
+    "solve": "const b = -8; return 5 + (b / 2) * (b / 2);",
+    "distractor_solve": {
+      "9": "const b = -8; return 5 + Math.abs(b / 2);",
+      "11": "const b = -8; return (b / 2) * (b / 2) - 5;",
+      "13": "const b = -8; return 5 + Math.abs(b);"
+    }
+  },
+  {
+    "id": "ADV6-17",
+    "domain": "Advanced Math",
+    "subskill": "a quadratic model solved for a specified output value",
+    "difficulty": "medium",
+    "prompt": "A ball is thrown upward from a platform. Its height above the ground, in feet, t seconds after it is thrown is modeled by h(t) = −16t² + 80t + 4. At what time is the ball first at a height of 100 feet?",
+    "choices": [
+      "3",
+      "6",
+      "2",
+      "5"
+    ],
+    "correct_answer": "2",
+    "explanation": "Setting h(t) = 100 gives −16t² + 80t + 4 = 100, so 16t² − 80t + 96 = 0, and dividing by 16 gives t² − 5t + 6 = 0, which factors as (t − 2)(t − 3) = 0. The ball passes 100 feet at t = 2 seconds on the way up and again at t = 3 seconds on the way down, so it is first there at 2 seconds. The value 3 is the later of the two times; 5 is the sum of the two times, read off the coefficient of t in t² − 5t + 6; 6 is the constant term of that equation, which is the product of the two times rather than a time.",
+    "solve": "const h = t => -16 * t * t + 80 * t + 4; const ts = []; for (let k = 0; k <= 40; k++) { const t = k / 2; if (Math.abs(h(t) - 100) < 1e-9) ts.push(t); } return Math.min.apply(null, ts);",
+    "distractor_solve": {
+      "3": "const h = t => -16 * t * t + 80 * t + 4; const ts = []; for (let k = 0; k <= 40; k++) { const t = k / 2; if (Math.abs(h(t) - 100) < 1e-9) ts.push(t); } return Math.max.apply(null, ts);",
+      "5": "const h = t => -16 * t * t + 80 * t + 4; const ts = []; for (let k = 0; k <= 40; k++) { const t = k / 2; if (Math.abs(h(t) - 100) < 1e-9) ts.push(t); } return ts[0] + ts[1];",
+      "6": "const h = t => -16 * t * t + 80 * t + 4; const ts = []; for (let k = 0; k <= 40; k++) { const t = k / 2; if (Math.abs(h(t) - 100) < 1e-9) ts.push(t); } return ts[0] * ts[1];"
+    }
+  },
+  {
+    "id": "ADV6-18",
+    "domain": "Advanced Math",
+    "subskill": "simplifying a complex fraction",
+    "difficulty": "hard",
+    "prompt": "For x ≠ 0 and x ≠ 3, which expression is equivalent to (1/x − 1/3)/(x − 3)?",
+    "choices": [
+      "1/(3x)",
+      "-1/x",
+      "1/x",
+      "-1/(3x)"
+    ],
+    "correct_answer": "-1/(3x)",
+    "explanation": "Combining the numerator over the common denominator 3x gives 1/x − 1/3 = (3 − x)/(3x). Dividing that by x − 3 means multiplying by 1/(x − 3), which puts 3 − x over 3x(x − 3). Since 3 − x = −(x − 3), the factor x − 3 cancels and what is left is -1/(3x). Cancelling 3 − x against x − 3 without picking up the negative sign gives 1/(3x). Using x rather than 3x as the common denominator, so that 1/x − 1/3 is written as (3 − x)/x, gives -1/x after the same cancellation, and making both slips at once gives 1/x.",
+    "solve": "const x = 6; const v = (1 / x - 1 / 3) / (x - 3); const k = Math.round(v * (3 * x)); return (k < 0 ? '-' : '') + Math.abs(k) + '/(3x)';",
+    "distractor_solve": {
+      "1/(3x)": "const x = 6; const v = (1 / x - 1 / 3) / (x - 3); const k = Math.abs(Math.round(v * (3 * x))); return k + '/(3x)';",
+      "-1/x": "const x = 6; const combined = (3 - x) / x; const v = combined / (x - 3); const k = Math.round(v * x); return (k < 0 ? '-' : '') + Math.abs(k) + '/x';",
+      "1/x": "const x = 6; const combined = (3 - x) / x; const v = combined / (x - 3); const k = Math.abs(Math.round(v * x)); return k + '/x';"
+    }
+  },
+  {
+    "id": "ADV6-19",
+    "domain": "Advanced Math",
+    "subskill": "extending an exponential function backward from listed values",
+    "difficulty": "medium",
+    "prompt": "The function f is exponential, and f(1) = 12, f(2) = 18, and f(3) = 27. What is the value of f(0)?",
+    "choices": [
+      "6",
+      "8",
+      "10.5",
+      "1.5"
+    ],
+    "correct_answer": "8",
+    "explanation": "Consecutive outputs of an exponential function have a constant ratio: 18/12 = 1.5 and 27/18 = 1.5. Stepping backward from f(1) divides by that ratio, so f(0) = 12/1.5 = 8. The value 1.5 is the common ratio itself rather than a value of the function; subtracting the first difference 18 − 12 = 6 from 12 treats the function as linear and gives 6; subtracting the ratio from f(1) gives 12 − 1.5 = 10.5.",
+    "solve": "const r = 18 / 12; return 12 / r;",
+    "distractor_solve": {
+      "6": "return 12 - (18 - 12);",
+      "10.5": "return 12 - 18 / 12;",
+      "1.5": "return 18 / 12;"
+    }
+  },
+  {
+    "id": "ADV6-20",
+    "domain": "Advanced Math",
+    "subskill": "a quadratic whose two solutions are in a given ratio",
+    "difficulty": "hard",
+    "prompt": "In the equation x² − bx + 18 = 0, b is a positive constant, and one solution of the equation is twice the other solution. What is the value of b?",
+    "choices": [
+      "18",
+      "9",
+      "6",
+      "3"
+    ],
+    "correct_answer": "9",
+    "explanation": "If the solutions are r and 2r, the equation can be written (x − r)(x − 2r) = x² − 3rx + 2r² = 0. Matching the constant terms, 2r² = 18, so r² = 9 and r = 3, taking the positive value because b = 3r is positive. The solutions are 3 and 6, and b is their sum, 3 + 6 = 9. The value 3 is the smaller solution and 6 the larger; 18 copies the constant term, treating it as the sum of the solutions when it is their product.",
+    "solve": "const r = Math.sqrt(18 / 2); return r + 2 * r;",
+    "distractor_solve": {
+      "3": "return Math.sqrt(18 / 2);",
+      "6": "return 2 * Math.sqrt(18 / 2);",
+      "18": "const constantTerm = 18; return constantTerm;"
+    }
+  },
+  {
+    "id": "ADV6-21",
+    "domain": "Advanced Math",
+    "subskill": "multiplying powers with rational exponents",
+    "difficulty": "medium",
+    "prompt": "For x > 0, which expression is equivalent to x^(3/4) · x^(1/2)?",
+    "choices": [
+      "x^(5/4)",
+      "x^(3/8)",
+      "x^(5/8)",
+      "x^(4/5)"
+    ],
+    "correct_answer": "x^(5/4)",
+    "explanation": "Multiplying powers with the same base adds the exponents: 3/4 + 1/2 = 3/4 + 2/4 = 5/4, so the product is x^(5/4). Converting the numerators to the common denominator 4 correctly but then writing the product of the two denominators, 4 · 2 = 8, underneath gives x^(5/8); multiplying the exponents instead of adding them gives (3/4)(1/2) = 3/8, so x^(3/8); x^(4/5) turns the correct exponent upside down.",
+    "solve": "const n1 = 3, d1 = 4, n2 = 1, d2 = 2; let n = n1 * d2 + n2 * d1, d = d1 * d2; const g = (a, b) => b ? g(b, a % b) : a; const k = g(n, d); return 'x^(' + (n / k) + '/' + (d / k) + ')';",
+    "distractor_solve": {
+      "x^(3/8)": "const n = 3 * 1, d = 4 * 2; return 'x^(' + n + '/' + d + ')';",
+      "x^(5/8)": "const n1 = 3, d1 = 4, n2 = 1, d2 = 2; const lcd = d1; const n = n1 * (lcd / d1) + n2 * (lcd / d2); const d = d1 * d2; return 'x^(' + n + '/' + d + ')';",
+      "x^(4/5)": "const n = 5, d = 4; return 'x^(' + d + '/' + n + ')';"
+    }
+  },
+  {
+    "id": "ADV6-22",
+    "domain": "Advanced Math",
+    "subskill": "the coefficient of one term of a polynomial product",
+    "difficulty": "medium",
+    "prompt": "What is the coefficient of x² when (2x − 3)(x² + 5x − 4) is expanded and written in standard form?",
+    "choices": [
+      "13",
+      "-3",
+      "7",
+      "10"
+    ],
+    "correct_answer": "7",
+    "explanation": "Only two of the products contribute an x² term: 2x · 5x = 10x² and −3 · x² = −3x². Adding them gives 10 − 3 = 7, so the coefficient is 7. The value 10 counts only the first of those two products; −3 counts only the second; 13 adds the two contributions as though both were positive, 10 + 3.",
+    "solve": "const A = [2, -3]; const B = [1, 5, -4]; return A[0] * B[1] + A[1] * B[0];",
+    "distractor_solve": {
+      "10": "const A = [2, -3]; const B = [1, 5, -4]; return A[0] * B[1];",
+      "13": "const A = [2, -3]; const B = [1, 5, -4]; return A[0] * B[1] + Math.abs(A[1]) * B[0];",
+      "-3": "const A = [2, -3]; const B = [1, 5, -4]; return A[1] * B[0];"
+    }
+  },
+  {
+    "id": "ADV6-23",
+    "domain": "Advanced Math",
+    "subskill": "direct variation with the square of a variable",
+    "difficulty": "medium",
+    "prompt": "The quantity y varies directly as the square of x. When x = 3, y = 45. What is the value of y when x = 5?",
+    "choices": [
+      "125",
+      "225",
+      "75",
+      "61"
+    ],
+    "correct_answer": "125",
+    "explanation": "Direct variation with the square means y = kx² for some constant k. From 45 = k(3²) = 9k, k = 5, so when x = 5, y = 5(5²) = 125. The value 75 treats y as directly proportional to x rather than to x², scaling 45 by 5/3; 225 scales 45 by the new value of x itself, 45 · 5; 61 treats the relationship as additive rather than multiplicative, keeping y − x² fixed and adding 25 − 9 to 45.",
+    "solve": "const k = 45 / (3 * 3); return k * 5 * 5;",
+    "distractor_solve": {
+      "61": "return 45 + (5 * 5 - 3 * 3);",
+      "75": "return 45 * (5 / 3);",
+      "225": "return 45 * 5;"
+    }
+  },
+  {
+    "id": "ADV6-24",
+    "domain": "Advanced Math",
+    "subskill": "evaluating a quadratic function at a shifted input",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x² − 6x. Which expression is equivalent to f(a + 3)?",
+    "choices": [
+      "a^2 - 9",
+      "a^2 - 6a + 9",
+      "a^2 + 9",
+      "a^2 - 6a - 9"
+    ],
+    "correct_answer": "a^2 - 9",
+    "explanation": "Substituting a + 3 for x gives (a + 3)² − 6(a + 3) = a² + 6a + 9 − 6a − 18 = a^2 - 9. Expanding (a + 3)² as a² + 9, without the middle term 6a, leaves a² + 9 − 6a − 18 = a^2 - 6a - 9. Distributing the −6 to the a but not to the 3 leaves a² + 6a + 9 − 6a = a^2 + 9. Making both slips at once — no middle term from the square, and no −18 from the distribution — leaves a² + 9 − 6a = a^2 - 6a + 9.",
+    "solve": "const sq = [9, 6, 1], lin = [-18, -6, 0]; const s = [0, 1, 2].map(i => sq[i] + lin[i]); let out = 'a^2'; if (s[1] !== 0) out += (s[1] < 0 ? ' - ' : ' + ') + Math.abs(s[1]) + 'a'; if (s[0] !== 0) out += (s[0] < 0 ? ' - ' : ' + ') + Math.abs(s[0]); return out;",
+    "distractor_solve": {
+      "a^2 - 6a + 9": "const sq = [9, 0, 1], lin = [0, -6, 0]; const s = [0, 1, 2].map(i => sq[i] + lin[i]); let out = 'a^2'; if (s[1] !== 0) out += (s[1] < 0 ? ' - ' : ' + ') + Math.abs(s[1]) + 'a'; if (s[0] !== 0) out += (s[0] < 0 ? ' - ' : ' + ') + Math.abs(s[0]); return out;",
+      "a^2 + 9": "const sq = [9, 6, 1], lin = [0, -6, 0]; const s = [0, 1, 2].map(i => sq[i] + lin[i]); let out = 'a^2'; if (s[1] !== 0) out += (s[1] < 0 ? ' - ' : ' + ') + Math.abs(s[1]) + 'a'; if (s[0] !== 0) out += (s[0] < 0 ? ' - ' : ' + ') + Math.abs(s[0]); return out;",
+      "a^2 - 6a - 9": "const sq = [9, 0, 1], lin = [-18, -6, 0]; const s = [0, 1, 2].map(i => sq[i] + lin[i]); let out = 'a^2'; if (s[1] !== 0) out += (s[1] < 0 ? ' - ' : ' + ') + Math.abs(s[1]) + 'a'; if (s[0] !== 0) out += (s[0] < 0 ? ' - ' : ' + ') + Math.abs(s[0]); return out;"
+    }
+  }
+]

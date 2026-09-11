@@ -1,0 +1,506 @@
+[
+  {
+    "id": "AM3N-01",
+    "domain": "Number and Quantity",
+    "subskill": "finding one share of a three-part ratio",
+    "difficulty": "easy",
+    "prompt": "A concrete mix contains cement, sand, and gravel in the ratio 2 : 3 : 7 by mass. A batch of this mix has a mass of 96 kilograms. How many kilograms of sand does the batch contain?",
+    "choices": [
+      "16",
+      "32",
+      "24",
+      "56"
+    ],
+    "correct_answer": "24",
+    "explanation": "The ratio has 2 + 3 + 7 = 12 parts, so one part is 96 / 12 = 8 kilograms and the sand is 3 parts, or 24 kilograms. Taking the cement's 2 parts instead of the sand's 3 gives 16. Taking the gravel's 7 parts gives 56. Dividing 96 by the 3 in the ratio, as though the batch were three equal shares, gives 32.",
+    "solve": "const parts = 2 + 3 + 7;\nreturn String(96 / parts * 3);",
+    "distractor_solve": {
+      "16": "const parts = 2 + 3 + 7;\nreturn String(96 / parts * 2);",
+      "56": "const parts = 2 + 3 + 7;\nreturn String(96 / parts * 7);",
+      "32": "return String(96 / 3);"
+    }
+  },
+  {
+    "id": "AM3N-02",
+    "domain": "Number and Quantity",
+    "subskill": "evaluating a negative exponent and a zero exponent",
+    "difficulty": "easy",
+    "prompt": "What is the value of 2^(-3) + 4^0 ?",
+    "choices": [
+      "9/8",
+      "1/8",
+      "7/8",
+      "7/6"
+    ],
+    "correct_answer": "9/8",
+    "explanation": "A negative exponent gives a reciprocal, so 2^(-3) = 1/8, and any nonzero base to the power 0 is 1, so 4^0 = 1. The sum is 1/8 + 1 = 9/8. Reading 4^0 as 0 leaves 1/8 alone. Reading the negative exponent as a negative value, 2^(-3) = -1/8, gives -1/8 + 1 = 7/8. Multiplying the base by the exponent, 2^(-3) = 1/(2*3) = 1/6, gives 1/6 + 1 = 7/6.",
+    "solve": "const a = Math.pow(2, -3), b = Math.pow(4, 0);\nreturn String(a + b);",
+    "distractor_solve": {
+      "1/8": "return String(Math.pow(2, -3) + 0);",
+      "7/8": "return String(-Math.pow(2, -3) + 1);",
+      "7/6": "return String(1 / (2 * 3) + 1);"
+    }
+  },
+  {
+    "id": "AM3N-03",
+    "domain": "Number and Quantity",
+    "subskill": "locating an irrational square root between consecutive integers",
+    "difficulty": "easy",
+    "prompt": "The number √250 lies between which two consecutive integers?",
+    "choices": [
+      "6 and 7",
+      "11 and 12",
+      "16 and 17",
+      "15 and 16"
+    ],
+    "correct_answer": "15 and 16",
+    "explanation": "Since 15^2 = 225 and 16^2 = 256, and 225 < 250 < 256, the number √250 lies between 15 and 16. Taking a cube root instead, ∛250 ≈ 6.3, gives 6 and 7. Halving the radicand first and taking √125 ≈ 11.2 gives 11 and 12. Rounding the radicand up to the nearest perfect square, 256, and then using its root 16 as the lower of the two integers gives 16 and 17.",
+    "solve": "const n = Math.floor(Math.sqrt(250));\nif (n * n > 250 || (n + 1) * (n + 1) < 250) throw new Error('not a bracket');\nreturn n + ' and ' + (n + 1);",
+    "distractor_solve": {
+      "6 and 7": "const n = Math.floor(Math.cbrt(250));\nreturn n + ' and ' + (n + 1);",
+      "11 and 12": "const n = Math.floor(Math.sqrt(250 / 2));\nreturn n + ' and ' + (n + 1);",
+      "16 and 17": "const n = Math.ceil(Math.sqrt(250));\nreturn n + ' and ' + (n + 1);"
+    }
+  },
+  {
+    "id": "AM3N-04",
+    "domain": "Number and Quantity",
+    "subskill": "mass from a density and a linear dimension",
+    "difficulty": "easy",
+    "prompt": "A solid cube of aluminum has an edge of length 5 centimeters. Aluminum has a density of 2.7 grams per cubic centimeter. What is the mass, in grams, of the cube?",
+    "choices": [
+      "46.3",
+      "67.5",
+      "405",
+      "337.5"
+    ],
+    "correct_answer": "337.5",
+    "explanation": "Density multiplies volume, and the volume of the cube is 5^3 = 125 cubic centimeters, so the mass is 125 * 2.7 = 337.5 grams. Multiplying the density by the area of one face, 2.7 * 25, gives 67.5. Multiplying it by the cube's total surface area, 2.7 * 150, gives 405. Dividing the volume by the density instead of multiplying, 125 / 2.7, gives about 46.3.",
+    "solve": "const v = Math.pow(5, 3);\nreturn String(v * 2.7);",
+    "distractor_solve": {
+      "67.5": "return String(2.7 * 5 * 5);",
+      "405": "return String(2.7 * 6 * 5 * 5);",
+      "46.3": "return String(Math.round(Math.pow(5, 3) / 2.7 * 10) / 10);"
+    }
+  },
+  {
+    "id": "AM3N-05",
+    "domain": "Number and Quantity",
+    "subskill": "a product in scientific notation that needs renormalizing",
+    "difficulty": "medium",
+    "prompt": "What is the value of (3.6 × 10^5)(4 × 10^-8), written in scientific notation?",
+    "choices": [
+      "1.44 × 10^-3",
+      "1.44 × 10^-2",
+      "7.6 × 10^-2",
+      "7.6 × 10^-3"
+    ],
+    "correct_answer": "1.44 × 10^-2",
+    "explanation": "Multiplying the front numbers gives 3.6 * 4 = 14.4 and the powers give 10^5 * 10^-8 = 10^-3, so the product is 14.4 × 10^-3. Scientific notation needs a front number between 1 and 10, so moving the point one place left raises the exponent by one: 1.44 × 10^-2. Writing the front number as 1.44 but leaving the exponent at the raw sum gives 1.44 × 10^-3. Adding the front numbers instead of multiplying, 3.6 + 4 = 7.6, with that same raw exponent gives 7.6 × 10^-3, and adding them and then also raising the exponent gives 7.6 × 10^-2.",
+    "solve": "const m = 3.6 * 4, e = 5 + (-8);\nconst m2 = m / 10, e2 = e + 1;\nreturn m2 + ' × 10^' + e2;",
+    "distractor_solve": {
+      "1.44 × 10^-3": "const m = 3.6 * 4 / 10, e = 5 + (-8);\nreturn m + ' × 10^' + e;",
+      "7.6 × 10^-3": "const m = 3.6 + 4, e = 5 + (-8);\nreturn m + ' × 10^' + e;",
+      "7.6 × 10^-2": "const m = 3.6 + 4, e = 5 + (-8) + 1;\nreturn m + ' × 10^' + e;"
+    }
+  },
+  {
+    "id": "AM3N-06",
+    "domain": "Number and Quantity",
+    "subskill": "the absolute value of a complex number",
+    "difficulty": "easy",
+    "prompt": "For i = √(-1), what is the value of |8 + 15i| ?",
+    "choices": [
+      "7",
+      "17",
+      "11.5",
+      "15"
+    ],
+    "correct_answer": "17",
+    "explanation": "The absolute value of a complex number a + bi is √(a^2 + b^2), so |8 + 15i| = √(64 + 225) = √289 = 17. Subtracting the two parts, 15 - 8, gives 7. Averaging them, (8 + 15)/2, gives 11.5. Reporting only the coefficient of i gives 15.",
+    "solve": "return String(Math.sqrt(8 * 8 + 15 * 15));",
+    "distractor_solve": {
+      "7": "return String(15 - 8);",
+      "11.5": "return String((8 + 15) / 2);",
+      "15": "return String(15);"
+    }
+  },
+  {
+    "id": "AM3N-07",
+    "domain": "Number and Quantity",
+    "subskill": "the dimensions of a matrix product",
+    "difficulty": "easy",
+    "prompt": "Matrix A has 3 rows and 5 columns. Matrix B has 5 rows and 2 columns. The product AB is defined. How many rows and how many columns does AB have?",
+    "choices": [
+      "3 rows and 2 columns",
+      "3 rows and 5 columns",
+      "5 rows and 2 columns",
+      "5 rows and 5 columns"
+    ],
+    "correct_answer": "3 rows and 2 columns",
+    "explanation": "A product takes its row count from the left factor and its column count from the right factor, so AB has 3 rows and 2 columns; the inner 5s must agree and then disappear. Reporting the dimensions of A itself gives 3 rows and 5 columns. Taking the row count from B rather than from A gives 5 rows and 2 columns. Keeping both of the inner 5s gives 5 rows and 5 columns.",
+    "solve": "const A = [3, 5], B = [5, 2];\nif (A[1] !== B[0]) throw new Error('not conformable');\nreturn A[0] + ' rows and ' + B[1] + ' columns';",
+    "distractor_solve": {
+      "3 rows and 5 columns": "const A = [3, 5];\nreturn A[0] + ' rows and ' + A[1] + ' columns';",
+      "5 rows and 2 columns": "const A = [3, 5], B = [5, 2];\nreturn B[0] + ' rows and ' + B[1] + ' columns';",
+      "5 rows and 5 columns": "const A = [3, 5], B = [5, 2];\nreturn A[1] + ' rows and ' + B[0] + ' columns';"
+    }
+  },
+  {
+    "id": "AM3N-08",
+    "domain": "Number and Quantity",
+    "subskill": "applying a map scale as a proportion",
+    "difficulty": "easy",
+    "prompt": "On a map, a distance of 3 centimeters represents an actual distance of 25 kilometers. Two towns are 12 centimeters apart on the map. What is the actual distance, in kilometers, between the towns?",
+    "choices": [
+      "36",
+      "75",
+      "300",
+      "100"
+    ],
+    "correct_answer": "100",
+    "explanation": "Twelve centimeters is 12 / 3 = 4 times the 3-centimeter unit of the scale, so the actual distance is 4 * 25 = 100 kilometers. Multiplying the map distance by the 3 of the scale instead of dividing by it gives 36. Multiplying the two numbers of the scale statement, 3 * 25, gives 75. Treating the scale as 1 centimeter to 25 kilometers, so that 12 * 25 is the answer, gives 300.",
+    "solve": "return String(12 / 3 * 25);",
+    "distractor_solve": {
+      "36": "return String(12 * 3);",
+      "75": "return String(3 * 25);",
+      "300": "return String(12 * 25);"
+    }
+  },
+  {
+    "id": "AM3N-09",
+    "domain": "Number and Quantity",
+    "subskill": "adding two numbers written in scientific notation",
+    "difficulty": "medium",
+    "prompt": "What is the value of (6.2 × 10^7) + (4.5 × 10^6), written in scientific notation?",
+    "choices": [
+      "6.65 × 10^7",
+      "1.07 × 10^7",
+      "1.07 × 10^8",
+      "6.65 × 10^8"
+    ],
+    "correct_answer": "6.65 × 10^7",
+    "explanation": "The two powers must match before the front numbers can be added. Writing the first term as 62 × 10^6 gives 62 × 10^6 + 4.5 × 10^6 = 66.5 × 10^6, which is 6.65 × 10^7. Adding the front numbers without matching the powers, 6.2 + 4.5 = 10.7, and attaching the smaller power gives 10.7 × 10^6, or 1.07 × 10^7; attaching the larger power gives 10.7 × 10^7, or 1.07 × 10^8. Matching on 10^8 instead gives 0.62 + 0.045 = 0.665, and writing that front number as 6.65 without lowering the power to 10^7 gives 6.65 × 10^8.",
+    "solve": "const m = 62 + 4.5, e = 6;\nconst m2 = m / 10, e2 = e + 1;\nreturn m2 + ' × 10^' + e2;",
+    "distractor_solve": {
+      "1.07 × 10^7": "const m = Math.round((6.2 + 4.5) * 10) / 100;\nreturn m + ' × 10^' + (6 + 1);",
+      "1.07 × 10^8": "const m = Math.round((6.2 + 4.5) * 10) / 100;\nreturn m + ' × 10^' + (7 + 1);",
+      "6.65 × 10^8": "const m = (0.62 + 0.045) * 10;\nreturn m + ' × 10^' + 8;"
+    }
+  },
+  {
+    "id": "AM3N-10",
+    "domain": "Number and Quantity",
+    "subskill": "comparing two quantities given in scientific notation",
+    "difficulty": "medium",
+    "prompt": "One dust particle has a mass of 2.4 × 10^-10 gram. One pollen grain has a mass of 3 × 10^-7 gram. The mass of the pollen grain is how many times the mass of the dust particle?",
+    "choices": [
+      "80",
+      "800",
+      "1250",
+      "125"
+    ],
+    "correct_answer": "1250",
+    "explanation": "The comparison is a quotient: (3 × 10^-7) / (2.4 × 10^-10) = (3 / 2.4) × 10^(-7 - (-10)) = 1.25 × 10^3 = 1250. Subtracting the exponents as -7 - (-10) = 2 instead of 3 gives 1.25 × 10^2 = 125. Dividing the front numbers in the wrong order, 2.4 / 3 = 0.8, with the correct power gives 0.8 × 10^3 = 800, and making both slips together gives 0.8 × 10^2 = 80.",
+    "solve": "const m = 3 / 2.4, e = -7 - (-10);\nreturn String(m * Math.pow(10, e));",
+    "distractor_solve": {
+      "125": "return String(3 / 2.4 * Math.pow(10, 2));",
+      "800": "return String(Math.round(2.4 / 3 * Math.pow(10, 3) * 1e6) / 1e6);",
+      "80": "return String(Math.round(2.4 / 3 * Math.pow(10, 2) * 1e6) / 1e6);"
+    }
+  },
+  {
+    "id": "AM3N-11",
+    "domain": "Number and Quantity",
+    "subskill": "two successive percent changes",
+    "difficulty": "medium",
+    "prompt": "The price of a jacket was first increased by 30%. The increased price was then reduced by 20%. The final price is what percent of the original price?",
+    "choices": [
+      "80%",
+      "110%",
+      "104%",
+      "130%"
+    ],
+    "correct_answer": "104%",
+    "explanation": "The increase multiplies the price by 1.30 and the reduction multiplies the result by 0.80, so the final price is 1.30 * 0.80 = 1.04 times the original, or 104%. Adding the two percent changes, 100 + 30 - 20, gives 110%. Applying only the increase gives 130%. Applying only the reduction gives 80%.",
+    "solve": "return String(100 * 1.30 * 0.80) + '%';",
+    "distractor_solve": {
+      "110%": "return String(100 + 30 - 20) + '%';",
+      "130%": "return String(100 * 1.30) + '%';",
+      "80%": "return String(100 * 0.80) + '%';"
+    }
+  },
+  {
+    "id": "AM3N-12",
+    "domain": "Number and Quantity",
+    "subskill": "inverse variation with the square of a quantity",
+    "difficulty": "medium",
+    "prompt": "The quantity y varies inversely as the square of x. When x = 3, y = 40. What is the value of y when x = 6?",
+    "choices": [
+      "10",
+      "20",
+      "80",
+      "160"
+    ],
+    "correct_answer": "10",
+    "explanation": "Inverse variation with the square means y = k / x^2, so k = 40 * 3^2 = 360 and y = 360 / 6^2 = 10. Treating the variation as inverse in x rather than in x^2 gives 40 * 3 / 6 = 20. Treating it as direct in x gives 40 * 6 / 3 = 80. Treating it as direct in x^2 gives 40 * (6/3)^2 = 160.",
+    "solve": "const k = 40 * Math.pow(3, 2);\nreturn String(k / Math.pow(6, 2));",
+    "distractor_solve": {
+      "20": "return String(40 * 3 / 6);",
+      "80": "return String(40 * 6 / 3);",
+      "160": "return String(40 * Math.pow(6 / 3, 2));"
+    }
+  },
+  {
+    "id": "AM3N-13",
+    "domain": "Number and Quantity",
+    "subskill": "counting divisors from a prime factorization",
+    "difficulty": "medium",
+    "prompt": "How many positive integer divisors does 600 have?",
+    "choices": [
+      "24",
+      "6",
+      "12",
+      "16"
+    ],
+    "correct_answer": "24",
+    "explanation": "Since 600 = 2^3 * 3 * 5^2, the number of divisors is (3 + 1)(1 + 1)(2 + 1) = 24, because each prime's exponent may be chosen from 0 up to its value. Multiplying the exponents themselves, 3 * 1 * 2, gives 6. Leaving out the prime 3 and using only (3 + 1)(2 + 1) gives 12. Reading 5^2 as 5^1, so that the count is (3 + 1)(1 + 1)(1 + 1), gives 16.",
+    "solve": "let n = 600, c = 0;\nfor (let d = 1; d <= n; d++) if (n % d === 0) c++;\nreturn String(c);",
+    "distractor_solve": {
+      "6": "return String(3 * 1 * 2);",
+      "12": "return String((3 + 1) * (2 + 1));",
+      "16": "return String((3 + 1) * (1 + 1) * (1 + 1));"
+    }
+  },
+  {
+    "id": "AM3N-14",
+    "domain": "Number and Quantity",
+    "subskill": "the units digit of a large power",
+    "difficulty": "medium",
+    "prompt": "What is the units digit of 7^45 ?",
+    "choices": [
+      "1",
+      "3",
+      "9",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "The units digits of the powers of 7 repeat in the block 7, 9, 3, 1. Since 45 leaves a remainder of 1 when divided by 4, the units digit of 7^45 is the first entry of the block, 7. Taking the remainder as 0 and using the fourth entry gives 1. Taking it as 2 and using the second entry, the units digit of 7^2 = 49, gives 9. Taking it as 3 and using the units digit of 7^3 = 343 gives 3.",
+    "solve": "let u = 1;\nfor (let i = 0; i < 45; i++) u = (u * 7) % 10;\nreturn String(u);",
+    "distractor_solve": {
+      "1": "let u = 1;\nfor (let i = 0; i < 4; i++) u = (u * 7) % 10;\nreturn String(u);",
+      "9": "return String(Math.pow(7, 2) % 10);",
+      "3": "return String(Math.pow(7, 3) % 10);"
+    }
+  },
+  {
+    "id": "AM3N-15",
+    "domain": "Number and Quantity",
+    "subskill": "finding the position of a given term in an arithmetic sequence",
+    "difficulty": "medium",
+    "prompt": "The first term of an arithmetic sequence is 6 and the common difference is 9. The value 105 appears in this sequence. It is which term of the sequence?",
+    "choices": [
+      "11",
+      "12",
+      "16",
+      "18"
+    ],
+    "correct_answer": "12",
+    "explanation": "The nth term is 6 + 9(n - 1), so 6 + 9(n - 1) = 105 gives 9(n - 1) = 99 and n - 1 = 11, which makes 105 the 12th term. Reporting the 11 without adding the 1 that counts from the first term gives 11. Swapping the roles of the two givens, so that the first term is 9 and the difference is 6, gives (105 - 9)/6 = 16. Dividing 105 by the first term and rounding up, 105/6 = 17.5, gives 18.",
+    "solve": "let t = 6, n = 1;\nwhile (t < 105) { t += 9; n++; }\nif (t !== 105) throw new Error('105 is not a term');\nreturn String(n);",
+    "distractor_solve": {
+      "11": "return String((105 - 6) / 9);",
+      "16": "return String((105 - 9) / 6);",
+      "18": "return String(Math.ceil(105 / 6));"
+    }
+  },
+  {
+    "id": "AM3N-16",
+    "domain": "Number and Quantity",
+    "subskill": "evaluating a recursively defined sequence",
+    "difficulty": "medium",
+    "prompt": "A sequence is defined by a(1) = 5 and a(n + 1) = 2 * a(n) - 3 for every integer n ≥ 1. What is the value of a(4)?",
+    "choices": [
+      "11",
+      "19",
+      "35",
+      "61"
+    ],
+    "correct_answer": "19",
+    "explanation": "Applying the rule gives a(2) = 2*5 - 3 = 7, then a(3) = 11, then a(4) = 19. Stopping one step early, at a(3), gives 11. Running one step too far, to a(5), gives 35. Adding 3 at each step instead of subtracting it produces 5, 13, 29, 61 and gives 61.",
+    "solve": "let a = 5;\nfor (let n = 1; n < 4; n++) a = 2 * a - 3;\nreturn String(a);",
+    "distractor_solve": {
+      "11": "let a = 5;\nfor (let n = 1; n < 3; n++) a = 2 * a - 3;\nreturn String(a);",
+      "35": "let a = 5;\nfor (let n = 1; n < 5; n++) a = 2 * a - 3;\nreturn String(a);",
+      "61": "let a = 5;\nfor (let n = 1; n < 4; n++) a = 2 * a + 3;\nreturn String(a);"
+    }
+  },
+  {
+    "id": "AM3N-17",
+    "domain": "Number and Quantity",
+    "subskill": "simplifying a cube root by extracting a perfect cube",
+    "difficulty": "medium",
+    "prompt": "The expression ∛1024 is equal to k∛2 for some positive integer k. What is the value of k?",
+    "choices": [
+      "8",
+      "2",
+      "4",
+      "32"
+    ],
+    "correct_answer": "8",
+    "explanation": "Since 1024 = 512 * 2 and 512 = 8^3, the cube root is 8∛2, so k = 8. Pulling out only the perfect cube 8, since 1024 = 8 * 128, leaves 2∛128 and gives k = 2. Pulling out 64, since 1024 = 64 * 16, leaves 4∛16 and gives k = 4. Taking a square root instead of a cube root, √1024 = 32, gives k = 32.",
+    "solve": "let k = 1;\nfor (let c = 1; c * c * c <= 1024; c++) if (1024 % (c * c * c) === 0 && 1024 / (c * c * c) === 2) k = c;\nif (k * k * k * 2 !== 1024) throw new Error('no such k');\nreturn String(k);",
+    "distractor_solve": {
+      "2": "return String(Math.cbrt(8));",
+      "4": "return String(Math.cbrt(64));",
+      "32": "return String(Math.sqrt(1024));"
+    }
+  },
+  {
+    "id": "AM3N-18",
+    "domain": "Number and Quantity",
+    "subskill": "rationalizing a denominator that contains a binomial radical",
+    "difficulty": "hard",
+    "prompt": "Which of the following is equal to 10 / (3 - √2) ?",
+    "choices": [
+      "(30 − 10√2)/7",
+      "(30 − 10√2)/11",
+      "(30 + 10√2)/7",
+      "(30 + 10√2)/11"
+    ],
+    "correct_answer": "(30 + 10√2)/7",
+    "explanation": "Multiplying numerator and denominator by the conjugate 3 + √2 gives a numerator of 10(3 + √2) = 30 + 10√2 and a denominator of 3^2 - (√2)^2 = 9 - 2 = 7, so the value is (30 + 10√2)/7. Multiplying by 3 - √2 instead, so the numerator keeps the minus sign, gives (30 − 10√2)/7. Adding the squares in the denominator, 9 + 2 = 11, gives (30 + 10√2)/11, and making both slips gives (30 − 10√2)/11.",
+    "solve": "const num = 10 * 3, r = 10, den = 3 * 3 - 2;\nreturn '(' + num + ' + ' + r + '√2)/' + den;",
+    "distractor_solve": {
+      "(30 − 10√2)/7": "const num = 10 * 3, r = 10, den = 3 * 3 - 2;\nreturn '(' + num + ' − ' + r + '√2)/' + den;",
+      "(30 + 10√2)/11": "const num = 10 * 3, r = 10, den = 3 * 3 + 2;\nreturn '(' + num + ' + ' + r + '√2)/' + den;",
+      "(30 − 10√2)/11": "const num = 10 * 3, r = 10, den = 3 * 3 + 2;\nreturn '(' + num + ' − ' + r + '√2)/' + den;"
+    }
+  },
+  {
+    "id": "AM3N-19",
+    "domain": "Number and Quantity",
+    "subskill": "components of a linear combination of two vectors",
+    "difficulty": "easy",
+    "prompt": "In the standard coordinate plane, u = (-3, 4) and v = (8, -1). What are the components of 3u - v ?",
+    "choices": [
+      "(−17, 11)",
+      "(−1, 11)",
+      "(−17, 13)",
+      "(−1, 13)"
+    ],
+    "correct_answer": "(−17, 13)",
+    "explanation": "Tripling u gives (-9, 12), and subtracting v subtracts each of its components: (-9 - 8, 12 - (-1)) = (−17, 13). Failing to negate the -1, so that the second component is 12 + (-1) = 11, gives (−17, 11). Adding v instead of subtracting it gives (-9 + 8, 12 + (-1)) = (−1, 11). Adding in the first component while subtracting in the second gives (−1, 13).",
+    "solve": "const u = [-3, 4], v = [8, -1];\nconst w = [3 * u[0] - v[0], 3 * u[1] - v[1]];\nreturn '(' + String(w[0]).replace('-', '−') + ', ' + w[1] + ')';",
+    "distractor_solve": {
+      "(−17, 11)": "const u = [-3, 4], v = [8, -1];\nconst w = [3 * u[0] - v[0], 3 * u[1] + v[1]];\nreturn '(' + String(w[0]).replace('-', '−') + ', ' + w[1] + ')';",
+      "(−1, 11)": "const u = [-3, 4], v = [8, -1];\nconst w = [3 * u[0] + v[0], 3 * u[1] + v[1]];\nreturn '(' + String(w[0]).replace('-', '−') + ', ' + w[1] + ')';",
+      "(−1, 13)": "const u = [-3, 4], v = [8, -1];\nconst w = [3 * u[0] + v[0], 3 * u[1] - v[1]];\nreturn '(' + String(w[0]).replace('-', '−') + ', ' + w[1] + ')';"
+    }
+  },
+  {
+    "id": "AM3N-20",
+    "domain": "Number and Quantity",
+    "subskill": "how scaling a 2x2 matrix scales its determinant",
+    "difficulty": "medium",
+    "prompt": "A and B are 2 × 2 matrices, and B = 3A, meaning every entry of B is 3 times the corresponding entry of A. The determinant of B is 63. What is the determinant of A?",
+    "choices": [
+      "21",
+      "63",
+      "189",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "Scaling both rows of a 2 × 2 matrix by 3 multiplies its determinant by 3^2 = 9, so det B = 9 * det A and det A = 63 / 9 = 7. Dividing by 3 rather than by 9 gives 21. Treating the determinant as unchanged by the scaling gives 63. Multiplying by 3 instead of dividing gives 189.",
+    "solve": "return String(63 / Math.pow(3, 2));",
+    "distractor_solve": {
+      "21": "return String(63 / 3);",
+      "63": "return String(63);",
+      "189": "return String(63 * 3);"
+    }
+  },
+  {
+    "id": "AM3N-21",
+    "domain": "Number and Quantity",
+    "subskill": "turning a seconds-per-item rate into an items-per-minute rate",
+    "difficulty": "medium",
+    "prompt": "A data logger records one reading every 2.4 seconds. At this rate, how many readings does it record in 1 minute?",
+    "choices": [
+      "144",
+      "25",
+      "1500",
+      "8640"
+    ],
+    "correct_answer": "25",
+    "explanation": "One minute is 60 seconds, and at one reading per 2.4 seconds the count is 60 / 2.4 = 25 readings. Multiplying the rate by 60 instead of dividing into it, 2.4 * 60, gives 144. Carrying on to a full hour, 3600 / 2.4, gives 1500. Using an hour's 3600 seconds and multiplying as well, 3600 * 2.4, gives 8640.",
+    "solve": "return String(60 / 2.4);",
+    "distractor_solve": {
+      "144": "return String(2.4 * 60);",
+      "1500": "return String(3600 / 2.4);",
+      "8640": "return String(3600 * 2.4);"
+    }
+  },
+  {
+    "id": "AM3N-22",
+    "domain": "Number and Quantity",
+    "subskill": "which fractions have terminating decimal expansions",
+    "difficulty": "medium",
+    "prompt": "Each of the following fractions is in lowest terms. Which one has a decimal expansion that terminates?",
+    "choices": [
+      "4/15",
+      "7/40",
+      "5/12",
+      "9/22"
+    ],
+    "correct_answer": "7/40",
+    "explanation": "A fraction in lowest terms terminates exactly when its denominator's only prime factors are 2 and 5. Since 40 = 2^3 * 5, the fraction 7/40 terminates, at 0.175. The denominator 12 = 2^2 * 3 keeps a factor of 3, so 5/12 = 0.41666... repeats; a solver whose rule is that a denominator divisible by 4 must terminate would wrongly accept it. The denominator 22 = 2 * 11 keeps a factor of 11, so 9/22 = 0.40909... repeats; a solver whose rule is that any even denominator terminates would wrongly accept it. The denominator 15 = 3 * 5 keeps a factor of 3, so 4/15 = 0.2666... repeats; a solver whose rule is that a denominator divisible by 5 terminates would wrongly accept it.",
+    "solve": "const opts = [[4, 15], [7, 40], [5, 12], [9, 22]];\nconst term = opts.filter(([n, d]) => { let x = d; while (x % 2 === 0) x /= 2; while (x % 5 === 0) x /= 5; return x === 1; });\nif (term.length !== 1) throw new Error('not a unique terminating option');\nreturn term[0][0] + '/' + term[0][1];",
+    "distractor_solve": {
+      "5/12": "const opts = [[4, 15], [7, 40], [5, 12], [9, 22]];\nconst p = opts.find(([n, d]) => d % 4 === 0 && d % 5 !== 0);\nreturn p[0] + '/' + p[1];",
+      "9/22": "const opts = [[4, 15], [7, 40], [5, 12], [9, 22]];\nconst p = opts.find(([n, d]) => d % 2 === 0 && d % 4 !== 0);\nreturn p[0] + '/' + p[1];",
+      "4/15": "const opts = [[4, 15], [7, 40], [5, 12], [9, 22]];\nconst p = opts.find(([n, d]) => d % 5 === 0 && d % 2 !== 0);\nreturn p[0] + '/' + p[1];"
+    }
+  },
+  {
+    "id": "AM3N-23",
+    "domain": "Number and Quantity",
+    "subskill": "recovering an integer from a greatest common factor and a least common multiple",
+    "difficulty": "hard",
+    "prompt": "Two positive integers have a greatest common factor of 12 and a least common multiple of 180. One of the integers is 36. What is the other integer?",
+    "choices": [
+      "12",
+      "144",
+      "60",
+      "180"
+    ],
+    "correct_answer": "60",
+    "explanation": "For any two positive integers, the product of the greatest common factor and the least common multiple equals the product of the integers, so the other integer is (12 * 180) / 36 = 60; indeed 36 and 60 have greatest common factor 12 and least common multiple 180. Answering with the greatest common factor itself gives 12. Answering with the least common multiple itself gives 180. Dividing the product 2160 by 180/12 = 15 rather than by the known integer 36 gives 144.",
+    "solve": "const gcd = (a, b) => b ? gcd(b, a % b) : a;\nfor (let n = 1; n <= 5000; n++) if (gcd(36, n) === 12 && 36 * n / gcd(36, n) === 180) return String(n);\nthrow new Error('no such integer');",
+    "distractor_solve": {
+      "12": "return String(12);",
+      "180": "return String(180);",
+      "144": "return String(12 * 180 / (180 / 12));"
+    }
+  },
+  {
+    "id": "AM3N-24",
+    "domain": "Number and Quantity",
+    "subskill": "counting the terminal zeros of a factorial",
+    "difficulty": "hard",
+    "prompt": "When the product 30! = 30 × 29 × 28 × ... × 2 × 1 is written out in full, how many zeros does it end with?",
+    "choices": [
+      "3",
+      "6",
+      "12",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "Each terminal zero comes from a factor of 10, that is, from a pair of a 2 and a 5, and 2s are far more plentiful than 5s, so the count is the number of factors of 5. The multiples of 5 up to 30 contribute 6 factors, and 25 = 5^2 contributes one more, for 7. Counting only the multiples of 5 and missing the second factor inside 25 gives 6. Counting the multiples of 10 up to 30 gives 3. Doubling the six multiples of 5, on the idea that each zero needs both a 2 and a 5 counted separately, gives 12.",
+    "solve": "let z = 0;\nfor (let p = 5; p <= 30; p *= 5) z += Math.floor(30 / p);\nreturn String(z);",
+    "distractor_solve": {
+      "6": "return String(Math.floor(30 / 5));",
+      "3": "return String(Math.floor(30 / 10));",
+      "12": "return String(2 * Math.floor(30 / 5));"
+    }
+  }
+]
