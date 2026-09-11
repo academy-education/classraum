@@ -109,6 +109,44 @@ every option is the image of another.
 
 Spend nothing on arranging authored option order. Spend it on the set.
 
+## 2c. The cure for a cross-item tell must not itself be a uniform rule
+
+Measured 2026-09-11, and it cost a whole 30-item batch.
+
+Subject recall is the dominant leak on prose-reading families (§6), and the
+prescribed cure was: choose subjects whose central claim is NOT a transferable
+principle — a local dispute, a contingent outcome, something a well-read solver
+cannot predict. `isee-reading-s6` did exactly that, on five invented subjects,
+and scored **80.0% blind against a 25.0% control — WORSE than the batch it was
+written to improve on (63.3%).**
+
+Six independent solvers, one per split file, converged on a mechanism none was
+told about: **the key is the option that declines to adjudicate.** "print both
+answers", "her refusal to name one of three causes", "can still only report",
+"has outlasted both of the things that might have decided it" — against
+distractors reading as verdicts a careful passage would not reach.
+
+That prior is a DIRECT CONSEQUENCE of the cure. If every passage's central
+claim is a non-resolution, then "pick the non-resolving option" names the key
+across the whole batch. The stratum split shows it exactly:
+
+    inference     7/7  = 100%      the three strata where the passage's
+    main idea     5/5  = 100%      stance IS the answer: 14/14
+    attitude      2/2  = 100%
+    vocabulary    4/5
+    detail        6/11 = 54.5%     the only stratum near usable
+
+**So the rule is one level up from the cure: vary the KIND of central claim.**
+Some passages must resolve, some must not; some must reach a verdict the
+evidence supports, some must decline. A batch in which every passage declines
+is as predictable as a batch in which every key is the hedged option — the
+same defect wearing the opposite costume.
+
+This is §3 ("vary the load-bearing element") applied to the SUBJECT rather
+than to the option set, and it is the case where the two collide: the fix for
+one leak was itself a rigid brief. When a cure is a rule you apply to every
+item, ask what a solver who knows the rule can do with it.
+
 ## 3. Vary the load-bearing element
 
 A rigid brief makes the answer predictable from the pattern ACROSS items

@@ -838,3 +838,17 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   Post-edit: sandbox 24/24, distractors 72/72, `check-option-pair-constant` 0 of 24, `check-stem-echo` 1/96 options and 1/24 keys. **A fresh blind grade is owed** and the 24/24-agreed result no longer describes this file — the render has been regenerated.
 
+- **2026-09-11** — **THE PRESCRIBED CURE FOR SUBJECT RECALL INSTALLED A WORSE TELL, AND THE BRIEF WAS MINE.** I told the `isee-reading-s6` author to choose subjects whose central claim is not a transferable principle — a local dispute, a contingent outcome — because three authors had established that day that subject recall dominates prose-reading families and no option rewrite reaches it. They did exactly that, on five invented subjects. **The batch scored 80.0% blind against a 25.0% control, worse than the 63.3% of the batch it was written to improve on.**
+
+  Six independent solvers, one per split file, converged on a mechanism none of them was told about: **the key is the option that declines to adjudicate.** "print both answers"; "her refusal to name one of three causes"; "can still only report"; "has outlasted both of the things that might have decided it" — against distractors reading as verdicts a careful passage would not reach.
+
+  It follows directly from the cure. If every passage's central claim is a non-resolution, "pick the non-resolving option" names the key across the whole batch. The stratum split is unambiguous: **inference 7/7, main idea 5/5, attitude 2/2 — 14 of 14 on the three strata where the passage's stance IS the answer.** Detail at 6/11 is the only stratum near usable, and two of those six fell to ordinary world knowledge anyway.
+
+  **`AUTHORING-BRIEF.md` §2c now carries the rule one level up: vary the KIND of central claim.** Some passages must resolve and some must not. A batch where every passage declines is as predictable as one where every key is the hedged option — the same defect in the opposite costume. And the general form, which is the part worth keeping: **when a cure is a rule applied to every item, ask what a solver who knows the rule can do with it.**
+
+  **Third independent demonstration today that `legal` is not a proxy for solvability.** The solvers rated **25 of 30 items fully undecidable** (mean 3.67 legal of 4) and the batch still scored 80.0%. The earlier two were the live Information & Ideas control (100% with zero `legal == 1` votes) and `ssat-verbal-s10`'s analogies (44.4% with `legal = 5` on 14 of 15).
+
+  Also recorded from the same run: the author reports the SPLIT attack is still not leakage-free — three solvers said they used the descriptive main-idea options of a DIFFERENT passage in the same file to decide a vocabulary item. So 80.0% is itself an upper bound and a one-item-per-file attack would read lower, though the 14/14 does not depend on that channel.
+
+  **Do not insert `isee-reading-s6`.** It is committed uninserted so the numbers exist and nobody rewrites this brief.
+
