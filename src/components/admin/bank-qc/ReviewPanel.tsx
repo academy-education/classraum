@@ -18,6 +18,7 @@ import React from 'react'
 import { CheckCircle2, HelpCircle, Loader2, ShieldQuestion, XCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useQcT } from './i18n'
+import { SLOTS, type Slot } from '@/lib/study/item-review'
 
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 
@@ -26,8 +27,12 @@ const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgb
 const LABEL = 'block text-sm font-medium text-gray-700 mb-1'
 const SELECT = 'w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm'
 const FIELD = 'w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm resize-y'
-const SLOTS = ['A', 'B', 'C', 'D'] as const
-type Slot = (typeof SLOTS)[number]
+/* SLOTS comes from the shared module rather than being redeclared here.
+ * It was a local four-letter list until 2026-09-12, so a five-option
+ * item rendered its fifth option labelled `undefined` and submitted
+ * `undefined` as the pick. No five-option item had ever reached this
+ * panel -- the draw filtered them out -- so the bug was unreachable
+ * rather than fixed, and generalising the draw is what exposed it. */
 
 type Verdict = 'unique' | 'alternative' | 'broken'
 type Realism = 'authentic' | 'artificial'

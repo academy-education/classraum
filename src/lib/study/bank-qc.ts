@@ -141,6 +141,16 @@ export function familyForTask(
     case 'build_a_sentence':
     case 'writing_email':
     case 'writing_discussion':
+    /* essay / essay_choice were added to gate-contract.json as
+     * 'production' when the essay helpers were wired to gateBatch, and
+     * this switch was not updated with it — so the contract said
+     * production while this function returned the mc_hidden_source
+     * default, and the gate would have demanded nosource and elimination
+     * stages of an item type that has no options at all. Exactly the
+     * maths failure described above, one task family over. Caught by
+     * gate-wiring.test.ts, which exists to hold these two in step. */
+    case 'essay':
+    case 'essay_choice':
       return 'production'
     default:
       // choose_response, conversation, announcement, academic_talk,

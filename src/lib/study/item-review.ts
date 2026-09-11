@@ -1,7 +1,7 @@
 /**
  * Human two-phase item review — the pure half.
  *
- * Phase 1 shows a reviewer four options with the stimulus withheld and
+ * Phase 1 shows a reviewer the item's options with the stimulus withheld and
  * asks which is the key. Phase 2 reveals the stimulus and asks whether
  * the key is uniquely right and whether the item reads authentic.
  *
@@ -18,8 +18,25 @@
  * sample allows for exactly that reason.
  */
 
-export const SLOTS = ['A', 'B', 'C', 'D'] as const
+/* Slot letters. The bank is NOT four-wide everywhere: measured
+ * 2026-09-12, 1,200 live items (18.6%) are five-choice or non-MC, and
+ * the whole SSAT bank -- 536 items across math, reading, verbal and
+ * writing -- is five-choice. Every piece of this pipeline assumed four,
+ * so none of those items had ever been reachable by the one instrument
+ * in this project that can return a negative. Hence a letter list long
+ * enough for the widths that exist, plus `slotsFor(width)` for the
+ * per-item alphabet. Anything reasoning about ONE item's options must
+ * use slotsFor(width), never SLOTS. */
+export const SLOTS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'] as const
 export type Slot = (typeof SLOTS)[number]
+
+/** The slot letters an item of this width actually presents. */
+export function slotsFor(width: number): Slot[] {
+  if (!Number.isInteger(width) || width < 2 || width > SLOTS.length) {
+    throw new Error(`slotsFor: width ${width} outside 2..${SLOTS.length}`)
+  }
+  return SLOTS.slice(0, width) as Slot[]
+}
 
 export type Verdict = 'unique' | 'alternative' | 'broken'
 export type Realism = 'authentic' | 'artificial'
@@ -40,9 +57,10 @@ export interface Dealt {
  * earlier run, so the target slots are dealt first and the rest of the
  * shuffle works around them.
  */
-export function dealSlots(n: number, rand: () => number): Slot[] {
+export function dealSlots(n: number, rand: () => number, width = 4): Slot[] {
+  const letters = slotsFor(width)
   const out: Slot[] = []
-  for (let i = 0; i < n; i++) out.push(SLOTS[i % 4])
+  for (let i = 0; i < n; i++) out.push(letters[i % width])
   // Fisher-Yates over the balanced multiset — order varies, counts don't.
   for (let i = out.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1))
@@ -63,19 +81,22 @@ export function dealSlots(n: number, rand: () => number): Slot[] {
  * not something to recompute.
  */
 export function dealItem(optionCount: number, keyIndex: number, keySlot: Slot, rand: () => number): Dealt {
-  if (optionCount !== 4) throw new Error(`dealItem: expected 4 options, got ${optionCount}`)
-  if (keyIndex < 0 || keyIndex > 3) throw new Error(`dealItem: keyIndex ${keyIndex} out of range`)
+  const letters = slotsFor(optionCount)
+  if (keyIndex < 0 || keyIndex >= optionCount) throw new Error(`dealItem: keyIndex ${keyIndex} out of range`)
+  const keyAt = letters.indexOf(keySlot)
+  // A slot the item does not present cannot hold its key. Silently
+  // accepting 'E' on a four-wide item would put the key nowhere.
+  if (keyAt < 0) throw new Error(`dealItem: slot ${keySlot} outside a ${optionCount}-option item`)
 
-  const others = [0, 1, 2, 3].filter(i => i !== keyIndex)
+  const others = Array.from({ length: optionCount }, (_, i) => i).filter(i => i !== keyIndex)
   for (let i = others.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1))
     ;[others[i], others[j]] = [others[j], others[i]]
   }
-  const keyAt = SLOTS.indexOf(keySlot)
   const shownOrder: number[] = []
-  for (let s = 0; s < 4; s++) shownOrder.push(s === keyAt ? keyIndex : others.pop()!)
+  for (let s = 0; s < optionCount; s++) shownOrder.push(s === keyAt ? keyIndex : others.pop()!)
 
-  if (new Set(shownOrder).size !== 4) throw new Error('dealItem: produced a duplicate option slot')
+  if (new Set(shownOrder).size !== optionCount) throw new Error('dealItem: produced a duplicate option slot')
   if (shownOrder[keyAt] !== keyIndex) throw new Error('dealItem: key did not land in its slot')
   return { shownOrder, keySlot }
 }

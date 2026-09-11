@@ -356,9 +356,13 @@ export async function POST(request: NextRequest) {
   // how a sample stops representing the cohort.
   const usable = (pool ?? []).filter((r) => {
     const it = (r as BankItem).item
-    return Array.isArray(it?.choices) && it.choices.length === 4
+    // Any width the slot alphabet covers. This read `=== 4` until
+    // 2026-09-12, which excluded every five-choice item in the bank --
+    // all 536 SSAT items among them -- from human review entirely.
+    return Array.isArray(it?.choices) && it.choices.length >= 2 && it.choices.length <= SLOTS.length
       && typeof it.correct_answer === 'string'
       && it.choices.indexOf(it.correct_answer) >= 0
+      && new Set(it.choices.map(c => String(c).trim())).size === it.choices.length
   }) as BankItem[]
 
   if (usable.length < size) {
@@ -375,13 +379,28 @@ export async function POST(request: NextRequest) {
     ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
   }
   const sample = shuffled.slice(0, size)
-  const slots = dealSlots(size, rand)
+  /* Slots are dealt PER WIDTH. A five-wide item cannot be given slot 'E'
+   * out of a four-wide deal, and mixing widths in one flat deal would
+   * also mis-state the control -- the best fixed-slot strategy is 1/4 on
+   * four-wide rows and 1/5 on five-wide ones. Each width gets its own
+   * balanced deal and the rows keep their own. */
+  const byWidth = new Map<number, number[]>()
+  sample.forEach((it, i) => {
+    const w = it.item.choices!.length
+    if (!byWidth.has(w)) byWidth.set(w, [])
+    byWidth.get(w)!.push(i)
+  })
+  const slots: Slot[] = new Array(sample.length)
+  for (const [w, idxs] of byWidth) {
+    const dealt = dealSlots(idxs.length, rand, w)
+    idxs.forEach((sampleIdx, k) => { slots[sampleIdx] = dealt[k] })
+  }
 
   const runId = String(body.runId || `${domain.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0, 10)}`)
 
   const rows = sample.map((it, i) => {
     const keyIndex = it.item.choices!.indexOf(it.item.correct_answer!)
-    const { shownOrder, keySlot } = dealItem(4, keyIndex, slots[i], rand)
+    const { shownOrder, keySlot } = dealItem(it.item.choices!.length, keyIndex, slots[i], rand)
     return {
       item_id: it.id,
       run_id: runId,

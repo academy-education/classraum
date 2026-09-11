@@ -1,4 +1,4 @@
-import { dealSlots, dealItem, scoreRun, readRun, groupRuns, reviewerAgreement, pooledAcrossReviewers, SLOTS, type ReviewRow, type Slot, type Verdict } from '../item-review'
+import { dealSlots, dealItem, scoreRun, readRun, groupRuns, reviewerAgreement, pooledAcrossReviewers, SLOTS, slotsFor, type ReviewRow, type Slot, type Verdict } from '../item-review'
 
 /** Deterministic rand so a failure is reproducible. */
 function rng(seed: number) {
@@ -25,7 +25,7 @@ describe('human item review', () => {
     for (const n of [8, 12, 16, 24, 40]) {
       const slots = dealSlots(n, rng(n * 7))
       expect(slots).toHaveLength(n)
-      const counts = SLOTS.map(s => slots.filter(x => x === s).length)
+      const counts = slotsFor(4).map(s => slots.filter(x => x === s).length)
       // Best achievable control for n items over 4 slots.
       expect(Math.max(...counts)).toBe(Math.ceil(n / 4))
       expect(Math.max(...counts) - Math.min(...counts)).toBeLessThanOrEqual(1)
@@ -35,7 +35,7 @@ describe('human item review', () => {
   it('puts the key in the slot it was told to, and loses no option', () => {
     const rand = rng(99)
     for (let keyIndex = 0; keyIndex < 4; keyIndex++) {
-      for (const slot of SLOTS) {
+      for (const slot of slotsFor(4)) {
         const { shownOrder } = dealItem(4, keyIndex, slot, rand)
         expect(new Set(shownOrder).size).toBe(4)
         expect(shownOrder[SLOTS.indexOf(slot)]).toBe(keyIndex)
@@ -44,8 +44,37 @@ describe('human item review', () => {
   })
 
   it('refuses a malformed item rather than presenting one', () => {
-    expect(() => dealItem(3, 0, 'A', rng(1))).toThrow(/expected 4 options/)
+    expect(() => dealItem(1, 0, 'A', rng(1))).toThrow(/outside 2\.\.8/)
     expect(() => dealItem(4, 7, 'A', rng(1))).toThrow(/out of range/)
+    expect(() => dealItem(4, 0, 'E', rng(1))).toThrow(/outside a 4-option item/)
+  })
+
+  /* FIVE-WIDE. Added 2026-09-12 after measuring that 1,200 live items --
+   * the entire SSAT bank among them -- are not four-wide and had never
+   * been drawable into a human sitting. These assertions fail against the
+   * pre-fix code: dealItem threw "expected 4 options" on every one. */
+  it('deals a five-option item into five slots, key in its slot', () => {
+    for (let keyIndex = 0; keyIndex < 5; keyIndex++) {
+      for (const slot of slotsFor(5)) {
+        const { shownOrder } = dealItem(5, keyIndex, slot, rng(keyIndex + 3))
+        expect(shownOrder).toHaveLength(5)
+        expect(new Set(shownOrder).size).toBe(5)
+        expect(shownOrder[slotsFor(5).indexOf(slot)]).toBe(keyIndex)
+      }
+    }
+  })
+
+  it('spreads five-wide slots evenly, so the control is 20% not 25%', () => {
+    const n = 40
+    const slots = dealSlots(n, rng(11), 5)
+    const counts = slotsFor(5).map(s => slots.filter(x => x === s).length)
+    expect(counts).toEqual([8, 8, 8, 8, 8])
+    // The best fixed-slot strategy on a flat five-wide deal is 1/5.
+    expect(Math.max(...counts) / n).toBeCloseTo(0.2, 10)
+  })
+
+  it('refuses a key slot the item does not present', () => {
+    expect(() => dealItem(5, 0, 'F', rng(1))).toThrow(/outside a 5-option item/)
   })
 
   /*
@@ -119,12 +148,12 @@ describe('human item review', () => {
     expect(readRun(bad, 25.5).reading).toBe('leaks')
 
     // Same clean margin, 12 answered → not yet a claim.
-    const thin = scoreRun(SLOTS.flatMap(s => [row(s, s), row(s, 'A'), row(s, 'B')]))
+    const thin = scoreRun(slotsFor(4).flatMap(s => [row(s, s), row(s, 'A'), row(s, 'B')]))
     expect(thin.answered).toBe(12)
     expect(readRun(thin, 25.5).reading).toBe('inconclusive')
 
     // Same margin, 24 answered → a claim.
-    const thick = scoreRun(SLOTS.flatMap(s => [
+    const thick = scoreRun(slotsFor(4).flatMap(s => [
       row(s, s), row(s, 'A'), row(s, 'B'), row(s, s), row(s, 'C'), row(s, 'D'),
     ]))
     expect(thick.answered).toBe(24)
@@ -139,7 +168,7 @@ describe('human item review', () => {
    */
   it('renders a negative margin without a stray plus', () => {
     // Every answer wrong, so the margin is the control's own -25.
-    const below = scoreRun(SLOTS.flatMap(s => Array(6).fill(0).map(() => (
+    const below = scoreRun(slotsFor(4).flatMap(s => Array(6).fill(0).map(() => (
       row(s, s === 'A' ? 'B' : 'A')
     ))))
     expect(below.answered).toBe(24)
@@ -163,8 +192,8 @@ describe('human item review', () => {
 
     // A picks the key every time; B never does. Same run, same items.
     const rows = [
-      ...SLOTS.map(s => mk('A', s, s)),
-      ...SLOTS.map(s => mk('B', s, s === 'A' ? 'B' : 'A')),
+      ...slotsFor(4).map(s => mk('A', s, s)),
+      ...slotsFor(4).map(s => mk('B', s, s === 'A' ? 'B' : 'A')),
     ]
 
     const grouped = groupRuns(rows)

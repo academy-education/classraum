@@ -52,7 +52,12 @@ if (!domains.length || !reviewerId || sizes.some(n => !Number.isFinite(n) || n <
 }
 const FAMILY = process.env.DRAW_FAMILY || null
 const offsets = sizes.reduce((acc, n) => (acc.push(acc[acc.length - 1] + n), acc), [0])
-const L = ['A', 'B', 'C', 'D']
+/* The full slot alphabet, mirroring src/lib/study/item-review.ts. The
+ * bank is not four-wide everywhere: 1,200 live items (18.6%), including
+ * every one of the 536 SSAT items, are five-choice or non-MC, and this
+ * script's `=== 4` filter silently excluded all of them from human
+ * review. Measured 2026-09-12. */
+const L = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
 const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8').split('\n')
   .filter(l => l.includes('=') && !l.startsWith('#'))
@@ -106,11 +111,14 @@ for (const [di, domain] of domains.entries()) {
   }
   const usable = pool.filter(r => {
     const it = r.item
+    const n = Array.isArray(it?.choices) ? it.choices.length : 0
     return !seen.has(r.id)
-      && Array.isArray(it?.choices) && it.choices.length === 4
+      && n >= 2 && n <= L.length
       && typeof it.correct_answer === 'string' && it.choices.indexOf(it.correct_answer) >= 0
-      && new Set(it.choices.map(c => String(c).trim())).size === 4
+      && new Set(it.choices.map(c => String(c).trim())).size === n
   })
+  const widths = [...new Set(usable.map(r => r.item.choices.length))].sort()
+  console.log(`  widths present: ${widths.map(w => `${w}-choice:${usable.filter(r => r.item.choices.length === w).length}`).join('  ')}`)
   console.log(`${domain}: ${pool.length} live, ${usable.length} reviewable (unseen)`)
   if (usable.length < size) { console.error(`only ${usable.length} reviewable in "${domain}", need ${size}`); process.exit(1) }
   sample.push(...sh(usable).slice(0, size))
@@ -134,20 +142,36 @@ for (const [di, domain] of domains.entries()) {
  * Per-cohort flatness is the fix, and the comment that asserted it is
  * exactly the kind this repo keeps catching: a claimed invariant nobody
  * had measured. */
-const slots = []
+/* Flat WITHIN each cohort AND within each option width. A five-wide
+ * item cannot take slot 'E' from a four-wide deal, and a mixed deal
+ * mis-states the control: the best fixed-slot strategy is 1/4 on
+ * four-wide rows and 1/5 on five-wide ones, so they are different
+ * instruments and must be dealt -- and later scored -- apart. */
+const slots = new Array(sample.length)
 for (const [ci] of domains.entries()) {
-  const seg = sample.slice(offsets[ci], offsets[ci + 1])
-  slots.push(...sh(seg.map((_, i) => L[i % 4])))
+  const lo = offsets[ci], hi = offsets[ci + 1]
+  const byWidth = new Map()
+  for (let i = lo; i < hi; i++) {
+    const w = sample[i].item.choices.length
+    if (!byWidth.has(w)) byWidth.set(w, [])
+    byWidth.get(w).push(i)
+  }
+  for (const [w, idxs] of byWidth) {
+    const dealt = sh(idxs.map((_, i) => L[i % w]))
+    idxs.forEach((sampleIdx, k) => { slots[sampleIdx] = dealt[k] })
+  }
 }
 
 const runId = runIdArg || `${domains[0].toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0, 10)}`
 const rows = sample.map((r, i) => {
+  const n = r.item.choices.length
   const ki = r.item.choices.indexOf(r.item.correct_answer)
-  const others = sh([0, 1, 2, 3].filter(x => x !== ki))
+  const others = sh(Array.from({ length: n }, (_, x) => x).filter(x => x !== ki))
   const keyAt = L.indexOf(slots[i])
+  if (keyAt < 0 || keyAt >= n) throw new Error(`item ${r.id}: slot ${slots[i]} outside a ${n}-option item`)
   const shown = []
-  for (let s = 0; s < 4; s++) shown.push(s === keyAt ? ki : others.pop())
-  if (new Set(shown).size !== 4) throw new Error(`item ${r.id}: duplicate slot`)
+  for (let s = 0; s < n; s++) shown.push(s === keyAt ? ki : others.pop())
+  if (new Set(shown).size !== n) throw new Error(`item ${r.id}: duplicate slot`)
   if (shown[keyAt] !== ki) throw new Error(`item ${r.id}: key misplaced`)
   return { item_id: r.id, run_id: runId, reviewer_id: reviewerId, shown_order: shown, key_slot: slots[i] }
 })
@@ -158,6 +182,10 @@ if (error) { console.error('insert failed:', error.message, error.code ?? ''); p
 domains.forEach((d, ci) => {
   const seg = rows.slice(offsets[ci], offsets[ci + 1])
   const c = L.map(x => seg.filter(r => r.key_slot === x).length)
+  /* Control = the best FIXED-SLOT strategy on these rows, derived from
+   * the deal rather than written as 25.0. On five-wide rows the honest
+   * line is 20%, and a hardcoded 25 would hand every reviewer five free
+   * points in the flattering direction. */
   const ctrl = (100 * Math.max(...c)) / seg.length
   console.log(`  ${d}: keys ${c.join('/')} -> control ${ctrl.toFixed(1)}%`)
 })
