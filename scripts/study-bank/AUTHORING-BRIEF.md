@@ -142,12 +142,23 @@ State the path in the explanation. Then:
 ## 5. Keys, letters, difficulty
 
 - `correct_answer` must be character-identical to one entry of `choices`.
-- Key letters even across slots. **Check all sliding windows of four, not just
-  the aligned ones** — the aligned-only check is recorded as too weak. No
-  window may be a complete permutation; no periodic sequence.
-- Key magnitude rank spread too, and **decorrelated from letter** — leave most
-  choice arrays unsorted. A flat letter histogram over a forced permutation
-  reads perfect and hides the tell.
+- **Key LETTERS: do nothing.** This bullet used to ask for an even spread and
+  for all sliding windows of four to be checked. **§2b supersedes that** — the
+  assembler re-deals every `multiple_choice` item's choices on every draw, so
+  the authored letter carries nothing to any student, and four graders in one
+  session wasted their reports calling an authored letter pattern a blocker.
+  If you are authoring one of the types that KEEPS its order
+  (`arrange_words`, `speaking_*`, `writing_*`, `fill_in_blanks`,
+  `numeric_entry`, `quant_comparison`) the old advice still applies — but none
+  of those is scored by picking among `choices`, so it almost never will.
+- **Key MAGNITUDE rank still matters**, because it is a property of the value
+  set and survives the shuffle. Read it against the live bank's own baseline,
+  not against zero: across 1,499 four-choice maths items the key sits at ranks
+  18.1 / 33.1 / 31.7 / 17.1, so "always eliminate the largest" is worth **+2.6
+  points** bank-wide and your batch is only interesting if it is well past
+  that. The middle-heaviness is inherent to building distractors from named
+  error paths — wrong arithmetic overshoots more often than it undershoots —
+  and flattening it by inventing pathless distractors is a worse trade.
 - **The control is 100/k, never a literal.** Five-choice items (SSAT, and SSAT
   only among the admissions tests) have a **20%** control. A hardcoded 25% on
   five-choice data handed batches five free points.
