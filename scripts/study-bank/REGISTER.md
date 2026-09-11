@@ -1363,3 +1363,25 @@ structural checks are pre-flight only. See CLAUDE.md.
   Rebuilt at one item per option pool (136 distinct pools exist, so there is room), with an assertion that refuses to write if a duplicate survives.
 
   **The procedural fix:** when a blind or grade render must be rebuilt, write it under a NEW tag rather than replacing the file in place, and let the old readers finish against the old bytes. The ledger already binds verdicts to a content hash for exactly this reason; the render files themselves had no such discipline.
+
+- **2026-09-11** — **THE ANALOGY DESIGN WORKED: 11.1% BLIND AGAINST A LIVE BANK AT 55.6%. AND SSAT VERBAL IS THE THIRD LEAKING LIVE POOL.**
+
+  Candidate `ssat-verbal-s13` against a stratum-matched, pool-deduped control of 30 shipped SSAT verbal items, three solvers each, 180 picks, chance 20.0%:
+
+        stratum      candidate      LIVE control     difference
+        analogy       11.1% (15)     55.6% (15)        -44.4
+        synonym       53.3% (15)     68.9% (15)        -15.6
+        OVERALL       32.2% (30)     62.2% (30)        -30.0
+
+  **The balanced incidence design is the first prose defence in this project that demonstrably worked.** Analogies measured 69.0% blind historically; this batch's analogies came in at **11.1%, BELOW the 20.0% chance line**, against live analogies at 55.6%. All three solvers reconstructed the 15-family design from the options alone, confirmed each family appears in exactly 5 of 15 items and is keyed once, and concluded a family-rate strategy returns 20.0% *by construction*. **All three filed ZERO confident picks and not one analogy was solved by all three.** Their predictions before scoring were 23.3%, 20.0% and 23.3% — and they were right.
+
+  **The synonym half is the weak one and the mechanism is named: the planted antonym.** The four items every solver got are all synonyms and all carry the key's own antonym as a distractor — `keen` beside `blunt`, `listless` beside `frantic`. That halves the item before anything is read. Dropped; 26 items kept (11 synonyms, 15 analogies).
+
+  **THE LIVE SSAT VERBAL BANK IS AT 62.2%, AND IT IS 180 ITEMS.** That is a third leaking live pool after SAT R&W `v2` (740 items, 82.8%) and alongside it. Two channels, both found independently by three solvers and both recorded in `AUTHORING-BRIEF` §3c-ter:
+
+  - **the sound-or-sense decoy** — a distractor built as a near-homophone of the headword names it, and naming it names the key (`tactful`→tacit→unspoken; `valiant`→vacant→empty; `sidewalk`→curb→restrain, a second sense rather than a sound). Five of fifteen live synonym items.
+  - **the mirrored analogy pair** — the same relation in both orders, in 8 of 15 live analogy items, which marks the stem's relation and collapses the item to a coin flip; plus **near-duplicate pairs** where two options carry the same relation in the same direction, so neither can be keyed and both are free eliminations.
+
+  One solver stated the trap inside the trap, and it inverts a rule solvers have used all day: **when the semantic outlier is a sound-alike, it is the decoy, not the key.** "Odd one out is the answer" picks it and is wrong.
+
+  **Two process failures of mine in this run, both caught by solvers rather than by me.** A control solver found my first control draw contained three identical option pools — my random draw had pulled several members of the same MATCHING SET, which handed the control a within-set elimination the candidate cannot offer and so biased the comparison in the candidate's favour. Rebuilt deduped. Then I replaced the blind file in place while a solver was still reading it; that solver reported the file changing underneath it rather than delivering the mixture silently, and its run was discarded. In cleaning up I then deleted a *valid* fresh run, mistaking the filename for the version. Three separate reminders that **a render must be rebuilt under a new tag, never in place** — the ledger binds verdicts to a content hash for exactly this reason and the render files had no such discipline.

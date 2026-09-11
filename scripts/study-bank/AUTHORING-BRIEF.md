@@ -339,6 +339,41 @@ The analogy half of the rule is why the balanced incidence design in
 `ssat-verbal-s13` uses five DISTINCT relation families per item: if two
 options shared a family, both would answer the stem equally.
 
+## 3c-ter. Never let a distractor name the withheld headword
+
+Two channels, both measured on the LIVE bank the same day, both invisible to
+every structural checker here, and both an authoring habit rather than a key
+problem.
+
+**1. The sound-or-sense decoy.** Three control solvers independently found,
+on shipped SSAT verbal items, that a distractor built as a near-homophone of
+the headword NAMES it — and naming it names the key:
+
+        tactful   -> tacit    -> key: unspoken
+        fragrant  -> fragile  -> key: delicate
+        valiant   -> vacant   -> key: empty
+        sidewalk  -> curb     -> key: restrain     (a second SENSE, not a sound)
+
+`sidewalk` is the clearest: a noun among four verbs, present only because the
+headword is *curb*. Five of fifteen live synonym items fall this way.
+
+One solver named the trap inside the trap: **when the semantic outlier is a
+sound-alike, it is the decoy, not the key.** The common "odd one out is the
+answer" rule picks it and is wrong, so the two rules point opposite ways and
+the phonetic one wins.
+
+**2. The planted antonym.** Do not put the key's own antonym in the option
+set. It halves the item before anything is read: a solver bets the key is one
+of the pair and is right. On `ssat-verbal-s13` the four items every solver got
+were all synonyms, and all carried it — `keen` beside `blunt`, `listless`
+beside `frantic`. Live items do it too (`unspoken`/`explicit`,
+`empty`/`occupied`, `delicate`/`sturdy`), where it CONFIRMS the decoy reading
+and turns a 50/50 into a solve.
+
+Both rules are semantic, so no checker covers them and none is coming. Read
+your own option sets aloud: does any distractor sound like the headword, mean
+its other sense, or mean its opposite? If so, replace it.
+
 ## 3d. Report the template census under a STATED rule, or it is not a number
 
 Report the census. Do NOT report a bare count — state the grouping rule first,
