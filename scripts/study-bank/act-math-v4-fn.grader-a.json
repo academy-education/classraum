@@ -1,0 +1,198 @@
+{
+  "AM4F-01": {
+    "pick": "-14",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Single substitution. Value set is a closed sign-by-magnitude quartet (+/-14, +/-6) with no run and no middle, which is the clean shape - a shuffle leaves nothing to read. '14' (reading the rule as x^2-5x) is the weakest path; the other two are real sign/substitution slips."
+  },
+  "AM4F-02": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Every distractor is a named composition error: inside-only (9), reverse order (-7), outside-only (-2). Note that 9 is the intermediate value f(2) - see the batch-level note on AM4F-27 about how often that role is filled and never keyed."
+  },
+  "AM4F-03": {
+    "pick": "-1",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "h^-1 notation is the only gate; the algebra is two steps. Value-set observation: the key is the only negative integer and 6.5 is the only non-integer, so the set is format-mixed, but no option is derivable from another in one step."
+  },
+  "AM4F-04": {
+    "pick": "-3",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Reachable value-set relation: -15 = 5 x (-3), so the total-change distractor and the key sit in an exact one-step divisor relation, and 3 is the key's negation. A solver who spots 'one of these is five times another' has the two-term pair that the stem's five steps point at. '4' (reporting a8 when asked for d) is not an error path a student who got d right would then take - that one is weak."
+  },
+  "AM4F-05": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Graded UP from the author's easy. Requires knowing cos ranges over [-1,1] and that a negative amplitude does not move the maximum - two facts, not one substitution; this sits mid-section on a real form. '12' (4+3+5, adding every constant in sight) is close to a number from nowhere and is the weak one; '1' and '8' are real."
+  },
+  "AM4F-06": {
+    "pick": "y = f(x - 3) - 2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC, judged by hand: the option set alone does NOT narrow it. The four options are the complete 2x2 sign matrix over {x-3, x+3} x {-2, +2} - every option is the image of another under a sign flip, so no option is distinguished and blind chance is exactly 25%. This is the closed-symmetric shape the brief asks for."
+  },
+  "AM4F-07": {
+    "pick": "-7/2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Full reciprocal-and-sign quartet (+/-7/2, +/-2/7): closed, no middle, nothing readable from the set. But two of the three distractors come from misreading 2x+7 as 7x+2, which is a transcription slip rather than a method error - one such option would be enough, three digit-swaps is padding."
+  },
+  "AM4F-08": {
+    "pick": "1/3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Closed reciprocal quartet {3, 1/3, 27, 1/27}; every option is the image of another under invert or cube, so the set is symmetric and gives nothing away. Each distractor is exactly one omitted or reversed step (skip the cube root, invert the ratio, both)."
+  },
+  "AM4F-09": {
+    "pick": "400(3)^(t/8)",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC, judged by hand: the option set alone does NOT narrow it. Complete 2x2 over {3,8} in the base x {3,8} in the exponent denominator, with 400 constant across all four - blind chance 25%. Solving it needs the stem's distinction between growth factor and period length, which is exactly the skill named. Clean."
+  },
+  "AM4F-10": {
+    "pick": "17",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Reachable derivational relation worth flagging: 51 generates both 17 (51/3) and 12.75 (51/4) in one step, so three of the four options hang off a single hub value. Both derivations are legitimate named paths, so I am not voting on it, but a solver who notices 51 is divisible by the interval width has the key without computing f(1). Consider replacing 12.75 with a value not derived from 51."
+  },
+  "AM4F-11": {
+    "pick": "60",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Branch conditions are strict and non-overlapping (x < 3, x >= 3) so the nesting is unambiguous. Distractors cover stop-at-inner (8), wrong branch on the second pass (22) and branch-by-written-order (0). '8' is again the intermediate value - see AM4F-27."
+  },
+  "AM4F-12": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Stem pins uniqueness ('exactly one number k, other than 1'), which closes the only reading that could have admitted a second answer. Set holds a sign pair (5, -5) and the axis value 3; no run, no hub."
+  },
+  "AM4F-13": {
+    "pick": "15",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Standard isolate-then-square. '5/3' comes from a genuine extraneous-root path (squaring a negative right-hand side) rather than from nowhere. No value-set relation among 15, 7, 0, 5/3."
+  },
+  "AM4F-14": {
+    "pick": "(-3, -10)",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC, judged by hand: the option set alone does NOT narrow it. Complete 2x2 over x in {3, -3} and y in {-10, 8}; both coordinates vary independently and each value appears twice, so neither half is decidable from the set. Blind chance 25%."
+  },
+  "AM4F-15": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'approach which of the following numbers' is the right phrasing - it avoids the limit-notation gate without loosening the answer. 3 and 1/3 are a reciprocal pair and 6/5 uses only numerator coefficients; no option restates a stem quantity outright."
+  },
+  "AM4F-16": {
+    "pick": "4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "'20' requires a solver to take 5 - a term inside the parentheses - as the logarithm's base, compute 25, and then subtract 5 anyway; that is two incompatible readings stapled together and is the weak option. '1' (multiplying base by exponent) and '14' (adding when undoing) are both real."
+  },
+  "AM4F-17": {
+    "pick": "10",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Graded DOWN from the author's medium. Two straight evaluations and one subtraction; the only friction is subtracting a negative, which puts it in the opening third of a real form. Value-set note: -14 is the sum of the two component values (-2 and -12) and 10/-10 is a sign pair, so the set is closed with no hub."
+  },
+  "AM4F-18": {
+    "pick": "14",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'or any part of an hour' / 'or part of an additional hour' is stated on both tiers, so the 25 minutes cannot be read as free and the ceiling is forced - no second defensible reading. This is the batch's best-shaped item: the reasoning is modelling rather than recall, and all three distractors (drop the partial unit, flat 5, flat 3) are errors students actually make."
+  },
+  "AM4F-19": {
+    "pick": "15/8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Two reachable value-set concerns. (1) 3.75 is exactly 2 x the key and 30 is exactly 16 x the key, so the key is the hub of its own option set - the three largest options are one-step multiples of it. (2) Format is mixed: the key is written as an improper fraction while a distractor is written as a decimal of the same kind of quantity. Write them all one way. The '30' path (treating z as a direct-square factor too) is the weak distractor."
+  },
+  "AM4F-20": {
+    "pick": "-6",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard confirmed, and hard for the right reason: it runs the vertex relation backwards from a stated minimum, which is reasoning rather than recall. 'b is a negative constant' is load-bearing and is stated, so the sign branch is closed. Closed sign quartet (+/-6, +/-3); the +6 trap punishes exactly the student who ignores that clause."
+  },
+  "AM4F-21": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard confirmed. Three chained ideas - compose, simplify, then invert - and the strongest distractor (12.5) is the order-of-undoing error, which is the actual conceptual content. '5' is the intermediate f^-1(9). No value-set relation among 8, 9.5, 12.5, 5."
+  },
+  "AM4F-22": {
+    "pick": "13",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard confirmed, but flag the margin: at t=12 the models give 12,590.85 against 12,600 - a gap of 0.07%. I checked that the answer survives sloppy rounding (1.08^12 rounded to 2.52 gives a tie, and a tie is not 'more than', so a rounder still lands on 13), so I am not voting exclusive:false. It does mean the item demands a real calculator evaluation rather than estimation, which is fine for a hard slot but is the one item in the batch that a mental-maths route cannot reach. '41' is an excellent distractor - the simple-interest misreading has its own clean crossing."
+  },
+  "AM4F-23": {
+    "pick": "6 < x <= 6.5",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC, judged by hand: the option set alone does NOT narrow it - all four endpoint-inclusion combinations over the same pair {6, 6.5} are present, so blind chance is 25%. BUT the set plus one line of the stem does: g(x) = 1/(x-6) is written out, so anyone who knows a denominator cannot vanish eliminates both options containing x = 6 without touching the inequality, cutting it to 1-in-2 for free. That is legitimate domain reasoning rather than a tell, and the remaining discrimination (radicand >= 0 vs > 0, i.e. whether 6.5 is in) is the real content, so I am voting exclusive true. Worth knowing that half the item is decidable from the easier half."
+  },
+  "AM4F-24": {
+    "pick": "7",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Graded DOWN from the author's hard. A two-branch absolute-value equation plus 'take the greater' is mid-form work, not last-third work - fiddly with the thirds, but one method and no reversal. Reachable value-set relation: 10/3 is exactly the sum of 7 and -11/3, so the set advertises its own root pair; a solver who tests which two options sum to a third recovers {7, -11/3} as the solution set and then only has to read 'greatest'. Replace the sum-of-roots distractor with something off that line."
+  },
+  "AM4F-25": {
+    "pick": "2/5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Graded DOWN from the author's hard. This is knowledge-gating rather than reasoning: recall a/(1-r), substitute two given numbers, solve a one-step linear equation. A student who knows the formula finds it easy and one who does not cannot start - that profile is a medium on a real form, not a hard. The distractors themselves are good (1-r, the inverted quotient, the sign-flipped formula)."
+  },
+  "AM4F-26": {
+    "pick": "(5, 7)",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC, judged by hand: the option set alone does NOT narrow it - complete 2x2 over x in {5, -2} and y in {0, 7}, each value appearing twice, blind chance 25%. Graded DOWN from hard: the stem does most of the conceptual work by stating outright that the graph 'is a line with one point missing', so the student never has to discover that the factor cancels - they factor, cancel, and evaluate. Without that sentence it would be a fair hard."
+  },
+  "AM4F-27": {
+    "pick": "19",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Graded DOWN from the author's hard - three iterations of doubling and subtracting 3, with an off-by-one trap; that is mid-form. CROSS-ITEM TELL, and this is the finding I would act on: in 13 of the 28 items a distractor is explicitly the intermediate value - the number the solver had one line before the end (9 in -02, -15 in -04, 1/27 in -08, 51 in -10, 8 in -11, 3 in -12, 7 in -13, -2 in -17, 5 in -19, 5 in -21, 12 in -22, 3/5 in -25, 11 and 35 here). In ZERO of the 28 is the key itself an intermediate or a one-step-derivable quantity. The authoring brief names exactly this: when the report-the-intermediate distractor is never the key, 'the answer is never the number I had two lines ago' is a free elimination across half the batch, and it survives the shuffle because it is a property of the values. It is invisible from inside any single item - each one is individually well built. Fix by making the intermediate value the correct answer on three or four items (an item that genuinely asks for k, for r^3, for the total change) rather than by removing the distractor."
+  },
+  "AM4F-28": {
+    "pick": "42",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Graded DOWN from the author's hard. One formula with a non-integer exponent and a calculator; the only real gate is knowing that 2.5 half-lives means (1/2)^2.5 rather than anything else, which is recall. 'To the nearest gram' is stated and 42.43 is not near a boundary, so the rounding convention cannot be read two ways. Distractors are all named (truncate to whole half-lives, divide instead of exponentiate, invert the exponent) and 182 in particular is a good trap."
+  }
+}

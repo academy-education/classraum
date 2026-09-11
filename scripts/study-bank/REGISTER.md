@@ -560,3 +560,25 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   Equal family sizes were chosen over a two-tier scheme deliberately: it makes any COARSENING safe (merging container/workplace/dwelling into one "place : occupant" family still leaves that family at 20.0%). The author counted the perfect matchings consistent with the bijection at **245,840**, so knowing the design gives essentially no leverage. Not every possible re-cut is safe, and they say so. No fresh attack has been run on the new items.
 
+- **2026-09-11** — **UNANIMITY AMONG SOLVERS WHO SHARE A PRIOR IS NOT EVIDENCE THE ITEM LEAKS. THIS REFINES A RULE I APPLIED EARLIER TODAY.** The repaired `sat-geo-h2` scored **34.7% options-only against 25.0%, margin +9.7**, with 4 of 24 items solved by all three solvers against a 0.38-item chance expectation. On the rule I used earlier today those 4 would be dropped. They should not be, and the reason matters.
+
+        pooled                                        34.7%   (+9.7)
+        CONFIDENT subset — the solvers stated rules   28.9%   (11 of 38)
+        GUESS subset                                  41.2%   (14 of 34)
+
+  **The solvers scored BETTER when they were not reasoning.** Their stated rules performed at chance; two of three bet heavily on "the middle of a three-term run is the key" across ten items each, and that tell measures **-2.1pts** on this batch against a constructed control — it is absent. Both said explicitly, unprompted, that their rules were DIRECTIONAL and constituted one bet rather than ten independent judgements. The repair had made keys untidy, so the bet flipped.
+
+  All four unanimous items have the key at an **interior** magnitude rank. The batch is 75.0% interior against the live bank's own 64.8% — and at n=24 that is **18 of 24 where 15.6 ± 2.3 is expected, one-sided p = 0.205. Not distinguishable from the bank it would join.** A solver picking uniformly among the two interior options scores 37.5%, which fully accounts for the observed 34.7%.
+
+  So the mechanism is a prior all three solvers share, and **unanimity among correlated solvers measures the correlation, not the item.** The unanimity test assumes independence; three solvers running the same heuristic violate that. The test still works where solvers name DIFFERENT mechanisms and converge anyway — which is what happened on the live Information & Ideas control, where byte-identical pick strings came with 24/24 correct.
+
+  Consequence: report the confident subset and the inter-solver agreement beside every unanimity count, and check whether the unanimous items share one measurable property before dropping them. The 10 maths items dropped earlier today on unanimity were dropped conservatively and stay dropped; three ISEE solvers had there named the same mechanism and it was item-specific (a run naming its own middle), not a bank-wide prior.
+
+  `sat-geo-h2` therefore keeps all 24 items on this evidence. It still owes a FRESH with-source grade: the repair changed 9 items, so the three grader files on record describe bytes that no longer exist, and the gate binds `withsource` to `contentSha`.
+
+- **2026-09-11** — **A SECOND GRADER, ON A DIFFERENT BATCH, FOUND THE SAME CROSS-ITEM TELL: THE KEY IS NEVER THE INTERMEDIATE VALUE.** On `act-math-v4-fn`, **13 of 28 items carry a distractor that is explicitly the intermediate value — the number you had one line before the end — and in ZERO of 28 is the key itself an intermediate or one-step-derivable quantity.** So "the answer is never the number I had two lines ago" is a free elimination across half the batch. It survives the draw shuffle because it is a property of the values, and it is invisible from inside any single item: each one is individually well built.
+
+  A `sat-geo-h2` grader reported the same shape independently — "in 13 of 24 items the key is never the natural intermediate quantity (half-chord, tower height, arc length, apex height, midsegment...), so *eliminate the option you would compute one step early* is broadly exploitable."
+
+  **The brief already asks for this and it is being under-delivered.** §3 requires the intermediate value to be the KEY on three or four items per batch. `isee-math-s11` did it on four and said so; `sat-geo-h2` did it on three and its author flagged being "at the bottom of that range"; `act-math-v4-fn` did it on **zero**. The fix is to key three or four items to the intermediate quantity — ask for k, for r-cubed, for the total change — not to strip the distractor, which is a good distractor.
+
