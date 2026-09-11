@@ -748,3 +748,54 @@ needs five band-specific item pools per subject, not one.
 practice test, still unrun — see §9). 2025 norms tables, growth norms, EISA
 rollout, Learning Continuum structure and the 50%-correct definition are all
 primary and quotable today.
+
+---
+
+## 11. 2026-09-12 — THE CO-FOUNDER CORRECTS THE MARKET QUESTION, AND §10 WAS WRONG TO LEAN ON A NEGATIVE
+
+§10 recorded that no named school publishes a MAP admissions requirement and
+treated the admissions premise as unconfirmed. **The co-founder states it
+directly: in Korea MAP is BOTH an entrance exam AND a periodic progress /
+evaluation test, taken by middle and high school students.**
+
+That is better evidence than the absence I was reasoning from. A school not
+publishing its entrance testing on a public page is unremarkable — Korean
+international-school admissions run through admissions offices and agencies, not
+marketing pages — and "no public cutoff found" was never evidence of no cutoff.
+**Recorded as a correction because the failure mode is one this file keeps
+catching in other forms: I read a silent source as a negative source.** §7's
+original reading was right and §10's doubt is withdrawn.
+
+**Both uses are now confirmed, and they are different products:**
+
+| use | when | what a customer wants | what we can honestly sell |
+|---|---|---|---|
+| **Entrance** | once, before applying | a higher score on a gate | format familiarity, stamina, band-targeted practice |
+| **Progress / evaluation** | every term, in school | to know where the child is and what to fix | a diagnostic — which skills miss, at which band |
+
+The second is the larger and the more defensible of the two, and it is the one
+this bank is actually built to serve. It is also the one where §10's growth
+finding stops being an obstacle: **a diagnostic does not have to move a RIT, it
+has to locate a student**, and locating a student is exactly what a
+band-targeted item pool does. Selling "we will raise your RIT" remains
+indefensible — 1-2 RIT of annual growth against ~4.9 RIT of measurement error —
+but that was never the only product available.
+
+### What this changes about scope
+
+- **Two subjects, not one.** §9 already weakened "Reading only" (seven of
+  thirteen captures were Language Usage). With the progress use confirmed,
+  Reading **and** Language Usage are both in scope; Math and Science are not,
+  yet.
+- **Grades 6-10, RIT roughly 200-250.** Middle and high school, which is where
+  both uses sit and where the reading scale is flattest.
+- **Four-option multiple choice is enough to start.** §4's "six of eight formats
+  unrepresentable" reads as fatal and the measurement in §9 says otherwise:
+  multiselect and drag-and-drop run at roughly **one item each per ~40-item
+  event**, so a 4-option MC practice test reproduces the large majority of a real
+  event. Note the provenance limit — that count may not be cited outside this
+  file, and the public practice test (§9, still unrun) is the citable route to
+  the same fact.
+- **Report a band with a range. Never a RIT, never a predicted score, never a
+  gain.** Unchanged and now more important, not less: an entrance exam is
+  precisely where a fabricated number does real harm to a real family.
