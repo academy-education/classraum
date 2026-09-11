@@ -1074,3 +1074,26 @@ structural checks are pre-flight only. See CLAUDE.md.
   The 25 items are not wasted — they are sound, gated, and deepen two domains that will bind later — but they were not what the bank needed today, and the brief that produced them was mine.
 
   **A second thing worth having asked earlier:** three independent graders each counted ZERO hard items in that batch, and three counted 0-2 hard in `sat-adv-h3` before it. The two `act-math-v7-*` briefs now name the difficulty distribution explicitly and restate the project's own rule — hard means two ideas interact, not longer arithmetic — because "author a batch in domain X" has now twice produced a batch that cannot supply the back third of a form.
+
+- **2026-09-11** — **120 LIVE SAT R&W ROWS HAVE A DOMAIN THAT CONTRADICTS THEIR OWN SUBSKILL, AND THE ASSEMBLER DRAWS TO THE DOMAIN.**
+
+  Found while building a stratum-matched control: a sample of 30 `Craft and Structure` rows came back holding `Inferences` and `Command of Evidence` items, which are Information-and-Ideas subskills on the real digital-SAT blueprint. Measured over the whole section rather than the sample:
+
+        sat/reading_writing rows                                   1,047
+        rows whose subskill is an exact blueprint term                804
+        ...whose DOMAIN contradicts that subskill                    120 = 14.9%
+
+            43   Craft and Structure   holding  Inferences
+            32   Craft and Structure   holding  Command of Evidence
+            23   Information and Ideas holding  Cross-Text Connections
+            22   Information and Ideas holding  Text Structure and Purpose
+
+  **All 120 are in cohort `v2`** — the legacy bulk cohort — and **zero** are in any hand-authored cohort (`rw-v7-cs-hard`, `rw-v8-cs-hard`, `rw-v7-ii-hard` are 36 for 36 consistent). Within `v2` it is 120 of 425, so roughly one in four of its blueprint-labelled rows.
+
+  **Why it matters:** `assemble.ts` fills a form's per-domain quotas from `domain`. Both fields are exact blueprint vocabulary and they disagree, so one of them is wrong on 120 live rows — and if the SUBSKILL is the truthful one, then a student's Craft-and-Structure section is being filled roughly 30% with Information-and-Ideas items, and vice versa.
+
+  **It also corrects a capacity number I quoted today.** `form-capacity.mjs` reports SAT R&W capped at 16 forms by Craft and Structure (244 items at ~15 per form). Reading the subskill instead: true C&S = 244 − 75 + 45 = **214**, which is ~14 forms, and true Information and Ideas rises from 250 to 280. **C&S is still the binding domain and it is thinner than reported, not fatter** — so commissioning `sat-cs-h4` against it was right, and more urgent than the 16 suggested.
+
+  **What I am NOT claiming:** which field is authoritative. The subskill terms are exact and look deliberate, which is why the correction above is computed that way, but `v2` is generated content and either field could be the one its generator got wrong. Deciding that is a call on live rows and it is not mine to make unasked. Until it is decided, quote the capacity number with this caveat attached rather than either figure alone.
+
+  Note also that `subskill` is NOT a controlled vocabulary across the section: the SEC cohorts carry free author prose in that field (85 distinct strings, several of them full sentences). So this check can only speak to rows whose subskill happens to be an exact blueprint term — 804 of 1,047. The other 243 are unmeasured, not clean.

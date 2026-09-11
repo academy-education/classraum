@@ -1,0 +1,386 @@
+[
+ {
+  "id": "CTL-CS-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "passage": "The essayist distrusted grand systems. He preferred to advance by increments, offering a modest observation, testing it against a single example, then adding a small qualification before moving cautiously to the next. Readers hoping for a bold thesis were often frustrated, but those willing to follow his patient accretions found the argument surprisingly hard to refute.",
+  "prompt": "As used in the text, what does the word \"accretions\" most nearly mean?",
+  "choices": [
+   "Sudden bursts of insight",
+   "Financial gains",
+   "Decorative flourishes",
+   "Gradual accumulations"
+  ],
+  "correct_answer": "Gradual accumulations",
+  "explanation": "The essayist builds 'by increments' through patient small additions, so 'accretions' means gradual accumulations; the traps contradict the slow method or take a monetary/ornamental sense."
+ },
+ {
+  "id": "CTL-CS-02",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "hard",
+  "passage": "Field biologists call the relationship between cleaner wrasse and the larger fish they service a textbook mutualism, and in the aggregate it is. What happens at a single cleaning station, though, is better described as an ongoing ______. A wrasse will crop parasites from a client's gills for a minute and then take a bite of the client's own mucus; the client punishes the theft by swimming off, and the wrasse chases it down and offers an unusually gentle service to win the client back, each partner testing what the other will tolerate on terms that neither fixes for long.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "open rivalry",
+   "negotiation",
+   "accommodation",
+   "imposition"
+  ],
+  "correct_answer": "negotiation",
+  "explanation": "The last clause supplies the test: each partner is \"testing what the other will tolerate on terms that neither fixes for long,\" and the cycle of cheating, sanction, and appeasement that precedes it is a bargain being revised in progress rather than a settled one, which is \"negotiation.\" \"Accommodation\" is the closest miss, but it names an arrangement each side has already conceded to, and the passage insists the terms are never fixed. \"Open rivalry\" fails because the two fish are not competing for the same thing; the wrasse is paid in food for a service the client wants. \"Imposition\" fails because the client can and does impose costs of its own by swimming away, which is why the wrasse must court it."
+ },
+ {
+  "id": "CTL-CS-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "passage": "The old bridge had a homely construction: rough timber, exposed bolts, and none of the graceful arches of its replacement. Yet locals mourned its removal. It had carried them to school and market for generations, and its very plainness felt like an honest reflection of the town.",
+  "prompt": "As used in the text, what does the word \"homely\" most nearly mean?",
+  "choices": [
+   "Plain and unadorned",
+   "Comfortable and inviting",
+   "Skilled in domestic tasks",
+   "Reminiscent of one's home"
+  ],
+  "correct_answer": "Plain and unadorned",
+  "explanation": "The rough timber and contrast with graceful arches, echoed by 'plainness,' fix 'homely' as unadorned."
+ },
+ {
+  "id": "CTL-CS-04",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "medium",
+  "passage": "The compact of 1922 divided the river between an upper and a lower group of states using an annual flow figure the negotiators took to be ______. The gauge record available to them then ran to eighteen years. Tree rings have since placed those eighteen years among the wettest of the past five centuries, and in no decade since the signing has the river carried the quantity the compact apportions.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "provisional",
+   "generous",
+   "representative",
+   "incontrovertible"
+  ],
+  "correct_answer": "representative",
+  "explanation": "The negotiators divided a fixed quantity on the assumption that their short record stood for the river's ordinary behavior, so they took the figure to be \"representative\": a fair sample of the whole. \"Generous\" describes what the figure turned out to be and is the reading the tree rings supply, not the one the negotiators held when they used it. \"Provisional\" would mean they expected to revise it, and a compact that apportions a fixed quantity treats the number as settled. And \"incontrovertible\" overshoots: what the negotiators needed was a figure typical of the river, not one beyond challenge, and nothing in the text says they thought the number could not be questioned."
+ },
+ {
+  "id": "CTL-CS-05",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "hard",
+  "passage": "The translator's preface promises a version that will be ______, and readers who set her English beside the original often complain that she has broken the promise: whole clauses are reordered, and a compound noun the poet coined is rendered by an ordinary phrase. The complaint mistakes the promise. What she undertook to preserve was the poem's argument, the order in which its claims become available to a reader, and every reordering in her text moves a clause to the position its function, rather than its syntax, occupies.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "literal",
+   "exacting",
+   "faithful",
+   "idiomatic"
+  ],
+  "correct_answer": "faithful",
+  "explanation": "The closing sentence explains that the translator kept what she had promised to keep, the poem's argument, by moving clauses to the positions their function requires; a promise that can be kept while the word order changes is a promise to be \"faithful\" to something other than the surface. \"Literal\" is the reading the readers are said to have imposed, and by that standard she has broken the promise, so it cannot be what the preface offered. \"Exacting\" fails for the same reason and adds a claim about the translator's care rather than her obligation to the text. \"Idiomatic\" fails because rendering a coined compound as an ordinary phrase satisfies it, and the passage requires a promise that readers could plausibly believe was broken."
+ },
+ {
+  "id": "CTL-CS-06",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "hard",
+  "passage": "Ore geologists once treated tourmaline in a granite as a ______ sign of a buried tin vein, and crews were sent into the field on nothing more. The reasoning was sound as far as it went: tourmaline crystallizes where boron-rich fluid moves through cooling rock, and that same fluid carries tin. But the fluid travels for kilometers and lays down tourmaline along its whole path, while the tin drops out only in the short stretch where the temperature falls fastest.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "ubiquitous",
+   "dispositive",
+   "premonitory",
+   "contested"
+  ],
+  "correct_answer": "dispositive",
+  "explanation": "Crews were dispatched on the strength of the mineral alone, so the sign was treated as settling the question rather than merely raising it, which is what \"dispositive\" says. \"Ubiquitous\" is the strongest trap because the passage does establish that tourmaline is laid down along the fluid's whole path, but that is the fact which undoes the old practice, not the property that justified it. \"Contested\" reverses the sentence, which reports a view geologists acted on without argument. And \"premonitory\" would make the mineral a warning of something still to come, whereas the vein it is supposed to indicate is already in the ground, laid down by the same fluid on the same passage."
+ },
+ {
+  "id": "CTL-CS-07",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "medium",
+  "passage": "Ecologists studying a burned watershed describe the composition of the recovering stand at year ten as largely ______, a characterization that surprises visitors who see only a uniform sheet of shrubs. The uniformity is at the surface. Beneath it, seedlings of a dozen species germinate in the same season and then thin one another out at different rates, and which species finally prevails is decided within the first three years by which of them happened to reach the burned ground before the others.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "predictable",
+   "accidental",
+   "gradual",
+   "reversible"
+  ],
+  "correct_answer": "accidental",
+  "explanation": "The final clause turns the outcome on which seedlings \"happened to reach the burned ground before the others,\" an order of arrival that no property of the site or the species determines, so the composition at year ten is \"accidental.\" \"Predictable\" is the reading the passage exists to overturn, since an outcome fixed by chance arrivals cannot be read off in advance. \"Gradual\" is contradicted by the same clause, which places the decision inside the first three years of a ten-year window. \"Reversible\" would require evidence that the stand can return to an earlier composition, and the thinning described runs in one direction only."
+ },
+ {
+  "id": "CTL-CS-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "passage": "For decades the composer's late quartets were dismissed as the difficult, ungainly output of a mind in decline. Only in the last century have performers begun to tell their qualities—to distinguish the deliberate roughness from mere error, the daring dissonance from failed harmony. What sounded to earlier ears like the fumbling of an exhausted talent reveals, to listeners willing to attend closely, an architecture of startling precision.",
+  "prompt": "As used in the text, what does the word \"tell\" most nearly mean?",
+  "choices": [
+   "discern",
+   "chronicle",
+   "publicize",
+   "instruct"
+  ],
+  "correct_answer": "discern",
+  "explanation": "The performers learn to \"distinguish\" deliberate roughness from error, so \"tell\" here means to perceive or discern differences, not to narrate or instruct."
+ },
+ {
+  "id": "CTL-CS-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "passage": "The negotiator's reputation rested on her address. Placed before hostile parties who had refused to sit at the same table, she could sense which concession to offer first, when to fall silent, and how to phrase a demand so that granting it felt like a victory to the other side. Colleagues marveled that difficulties which defeated blunter tacticians seemed, in her hands, merely to dissolve.",
+  "prompt": "As used in the text, what does the word \"address\" most nearly mean?",
+  "choices": [
+   "a formal speech to an audience",
+   "the location of a residence",
+   "skill in handling situations",
+   "the act of directing a letter"
+  ],
+  "correct_answer": "skill in handling situations",
+  "explanation": "Her sensing what to offer and how to phrase demands shows \"address\" means adroitness or tact in managing people, not a speech or a location."
+ },
+ {
+  "id": "CTL-CS-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "passage": "Reviewers of Marlowe's late string quartets often praise their emotional intensity, but the composer's manuscripts suggest a different priority. Where her early scores bristle with directions—crescendos, tempo shifts, expressive markings on nearly every bar—the late works are conspicuously bare. Marlowe strikes out her own annotations, leaving only the notes and a handful of terse instructions. To some this austerity reads as exhaustion or waning ambition. Yet her correspondence reveals a deliberate wager: that players, given fewer commands, would listen harder to one another and arrive at readings no single directive could dictate. The ______ of the late scores, then, was not a failure of invention but its fullest expression.",
+  "prompt": "As used in the text, what does the word \"economy\" most nearly mean? (The blank reads \"The economy of the late scores.\")",
+  "choices": [
+   "prosperity",
+   "spareness",
+   "frugality",
+   "machinery"
+  ],
+  "correct_answer": "spareness",
+  "explanation": "The passage defines the quality in question through the manuscripts' bareness—struck-out annotations, only the notes and \"terse\" instructions—framed as a deliberate use of minimal means. \"Economy\" here means that spareness. The intuitive misreading is the money sense: \"frugality\" (and \"prosperity\") treat \"economy\" as financial, which the passage never invokes; \"machinery\" misreads it as a system. Only \"spareness\" captures the restraint the text describes and praises."
+ },
+ {
+  "id": "CTL-CS-11",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "passage": "It is easy to dismiss medieval bestiaries as charming nonsense, since their descriptions of animals mix careful observation with claims that beavers bite off their own limbs to escape hunters. But the books were never meant as zoology. Each creature carried a moral lesson, and accuracy about the animal mattered less than the truth the animal was made to illustrate. Judged by the standard they set for themselves rather than the one we impose, the bestiaries are not failed science but successful sermons.",
+  "prompt": "What is the main purpose of the text?",
+  "choices": [
+   "To catalog the factual errors that appear throughout medieval bestiaries",
+   "To argue that medieval readers were incapable of accurate observation",
+   "To trace how bestiaries influenced the later development of scientific zoology",
+   "To reframe a body of texts by evaluating it against its own aims rather than modern ones"
+  ],
+  "correct_answer": "To reframe a body of texts by evaluating it against its own aims rather than modern ones",
+  "explanation": "The text sets aside the modern scientific standard and re-judges bestiaries by their intended moral purpose, concluding they succeed as sermons."
+ },
+ {
+  "id": "CTL-CS-12",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "hard",
+  "passage": "Critics have long read the Gothic novel as an escapist genre, a flight from Enlightenment rationalism into ruined abbeys and supernatural dread. Yet the form's obsessive machinery—wills, entailments, contested inheritances, imprisoned heiresses—betrays a preoccupation not with the irrational but with property law. The specter that haunts these narratives is rarely a ghost so much as a defective title deed. When Ann Radcliffe's heroines wander moonlit corridors, they are, tellingly, tracing the boundaries of estates they may or may not lawfully possess. The genre's terror, then, is bureaucratic before it is metaphysical: it dramatizes the anxiety of a propertied class uncertain whether its holdings would survive scrutiny. Far from fleeing reason, the Gothic obsessively rehearses the documentary logic of ownership, only to find that logic itself uncanny. Its innovation was not to abandon the Enlightenment's paperwork but to discover, within the deed and the codicil, a source of dread the ghost had merely personified.",
+  "prompt": "Which choice best describes the main rhetorical purpose of the passage?",
+  "choices": [
+   "To argue that the Gothic novel was more rationalist than its critics have acknowledged.",
+   "To trace the historical development of property law through its representation in fiction.",
+   "To correct a common view of a genre by relocating the source of its central effect.",
+   "To demonstrate that supernatural elements in Gothic fiction were purely decorative."
+  ],
+  "correct_answer": "To correct a common view of a genre by relocating the source of its central effect.",
+  "explanation": "The passage opens with the standard 'escapist' reading, then relocates the genre's terror from the supernatural to property/legal anxiety—correcting a common view by respecifying where the effect comes from. The tempting trap is that the genre is 'more rationalist,' but the passage says the documentary logic is 'itself uncanny,' not that the genre embraces reason. 'Historical development of property law' reverses the emphasis (law is the lens, not the subject), and 'purely decorative' overstates: the ghost 'personified' the dread rather than being mere decoration."
+ },
+ {
+  "id": "CTL-CS-13",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "hard",
+  "passage": "Historians of astronomy often attribute Johannes Kepler's discovery of elliptical planetary orbits to the unprecedented accuracy of Tycho Brahe's naked-eye observations, and it is true that Brahe's measurements of Mars were more precise than any before them. Yet precision alone had been available for a generation without yielding new orbital laws. What distinguished Kepler was not better data but a stranger disposition: an insistence on treating an eight-arcminute discrepancy—an error smaller than the instruments' acknowledged tolerance—as a fact demanding explanation rather than a blemish to be smoothed away. His contemporaries, confident that circular motion was a metaphysical necessity, would have dismissed so slight a residue. Kepler, by contrast, let the anomaly overturn a two-thousand-year commitment. The instruments made the discrepancy visible; but visibility is not the same as significance, and it was Kepler's refusal to excuse the anomaly, not the anomaly itself, that remade astronomy.",
+  "prompt": "Which choice best describes the main rhetorical function of the passage?",
+  "choices": [
+   "It corrects a common explanation by relocating the cause of a discovery from a technical advance to an interpretive disposition.",
+   "It traces how a decisive improvement in observational accuracy made a two-thousand-year commitment to circular motion impossible to sustain.",
+   "It argues that Brahe's measurements of Mars were less accurate than historians suppose, the eight-arcminute residue falling within their tolerance.",
+   "It shows that Kepler's contemporaries were right to treat so slight a residue as a blemish, given their instruments."
+  ],
+  "correct_answer": "It corrects a common explanation by relocating the cause of a discovery from a technical advance to an interpretive disposition.",
+  "explanation": "The passage concedes Brahe's unmatched precision but insists that such precision 'had been available for a generation without yielding new orbital laws'; what mattered was Kepler's refusal to excuse an eight-arcminute residue. So the passage corrects a common explanation by relocating the cause of a discovery from a technical advance to an interpretive disposition. The answer that traces how a decisive improvement in observational accuracy made a two-thousand-year commitment to circular motion impossible to sustain is the intuitive better-instruments story the passage explicitly rejects. The answer that Brahe's measurements of Mars were less accurate than historians suppose contradicts the concession that they were 'more precise than any before them'; the residue lying within instrument tolerance is what made dismissing it tempting, not a sign of sloppy work. And the answer that Kepler's contemporaries were right to treat so slight a residue as a blemish endorses the very dismissal the passage credits Kepler with refusing."
+ },
+ {
+  "id": "CTL-CS-14",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "passage": "Guardians of usage often defend their rules as bulwarks of logic and clarity, without which language would decay into confusion. The linguist's stock reply—that languages change constantly and communicate perfectly well throughout—is correct but incomplete, and when wielded carelessly it concedes too much to the other side's framing. Many celebrated 'rules' are neither logical nor ancient: the prohibition on splitting infinitives, for instance, was imported from Latin grammar by eighteenth-century writers and has no basis in English structure. Yet to expose a rule's arbitrary origin is not to show it useless. A shared standard, however accidental its content, can ease communication across dialects and lend prose a recognized authority. The sound conclusion is thus double-edged: prescriptive rules deserve neither the reverence their defenders demand nor the dismissal their critics sometimes offer, since their value lies not in the logic they claim but in the coordination they happen to provide.",
+  "prompt": "What is the main purpose of the passage?",
+  "choices": [
+   "To argue that prescriptive rules of grammar deserve the reverence their defenders demand, since a shared standard reflects the underlying logic of the language",
+   "To stake out a middle position that grants prescriptive rules a practical function while rejecting the rationale usually offered for them",
+   "To demonstrate that celebrated rules such as the ban on splitting infinitives were imported from Latin and are arbitrary impositions that ought to be abandoned",
+   "To trace the influence of eighteenth-century Latin grammar on English usage rules and on the standard that schools still teach to their students today"
+  ],
+  "correct_answer": "To stake out a middle position that grants prescriptive rules a practical function while rejecting the rationale usually offered for them",
+  "explanation": "The 'double-edged' conclusion denies rules the reverence of defenders and the dismissal of critics, crediting them a coordinating function while rejecting the logic they claim. Option one is the defenders' view the passage refutes. Option three is the critics' dismissal the passage also refuses, since it defends the coordination value. The Latin split-infinitive point is one example, not the purpose."
+ },
+ {
+  "id": "CTL-CS-15",
+  "domain": "Craft and Structure",
+  "subskill": "text structure and purpose",
+  "difficulty": "hard",
+  "passage": "The linotype is generally credited with making the daily newspaper thick. The credit has a mechanism behind it: a machine that cast a whole line at one stroke cut the cost of composition by about four fifths, and papers did grow in the decade after it spread. The growth, though, is not spread across the paper. Almost all of it falls in advertising, which was sold by the column inch and had been rationed by what it cost to set. The news columns grew by a tenth.",
+  "prompt": "Which choice best describes the overall structure of the text?",
+  "choices": [
+   "It reports a common credit, disputes the cost saving on which it rests, and offers a rival cause for the paper's growth.",
+   "It describes a machine, measures its effect on reporting, and predicts the decline of the daily paper.",
+   "It sets out two explanations of a change in newspapers and rejects the one more usually preferred.",
+   "It reports a common credit, allows the mechanism behind it, and then confines the effect to one part of the paper."
+  ],
+  "correct_answer": "It reports a common credit, allows the mechanism behind it, and then confines the effect to one part of the paper.",
+  "explanation": "The text credits the linotype, endorses the cost argument that supports the credit, and then shows that the growth landed almost entirely in advertising, which is the sequence in \"it reports a common credit, allows the mechanism behind it, and then confines the effect to one part of the paper.\" The option that has the text \"dispute the cost saving on which it rests\" is right about the first and third moves and wrong about the middle one, which is the load-bearing difference: the four-fifths saving is asserted by the text, not challenged. Nothing here \"predicts the decline of the daily paper,\" and the only measurement of reporting is the tenth in the last sentence, offered as a limit rather than as the subject. And the text \"sets out two explanations\" of nothing; one account is given and then bounded."
+ },
+ {
+  "id": "CTL-CS-16",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "passage": "It is tempting to regard the Ptolemaic astronomy that Copernicus overthrew as a monument to error, sustained by dogma against the plain evidence of the heavens. The history resists this verdict. Ptolemy's system, with its nested circles, predicted planetary positions with an accuracy sufficient for calendars, navigation, and astrology for well over a millennium. When Copernicus proposed his sun-centered alternative, it was not, at first, more accurate; it too required circular orbits and correcting devices, and it introduced difficulties—an unfelt, hurtling Earth—that his contemporaries were right to find troubling. The early case for heliocentrism rested less on superior prediction than on a claim to greater simplicity and coherence. To treat the shift as reason's triumph over superstition is thus to misdescribe it. What changed was not that one theory finally fit the data and another failed to, but that astronomers came to weigh a kind of explanatory elegance they had previously been willing to forgo.",
+  "prompt": "What is the main purpose of the passage?",
+  "choices": [
+   "To demonstrate that the Copernican model predicted planetary positions more accurately than the Ptolemaic model from the outset",
+   "To argue that scientific theories are never selected on the basis of evidence",
+   "To describe the system of nested circles Ptolemy used to predict planetary motion",
+   "To revise a familiar account of a scientific transition by showing it turned on values other than predictive accuracy"
+  ],
+  "correct_answer": "To revise a familiar account of a scientific transition by showing it turned on values other than predictive accuracy",
+  "explanation": "The passage rejects the 'reason over superstition' story and argues the shift hinged on simplicity and coherence rather than accuracy. Option one contradicts the passage, which says Copernicus was 'not, at first, more accurate.' Option two overgeneralizes into a claim about all theory choice the passage never makes. Option three is a supporting detail, not the purpose."
+ },
+ {
+  "id": "CTL-CS-17",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "passage": "Critics have long praised Virginia Woolf for abandoning plot, treating Mrs. Dalloway as proof that the modern novel could dispense with event entirely in favor of consciousness. Yet Woolf's essays complicate this tidy narrative. She objected not to plot as such but to the Edwardian convention of subordinating character to external incident—the cataloguing of houses, incomes, and marriages that, she felt, described a life without rendering it. Her own novels retain events, sometimes violent ones, but demote them to the margins of attention, where they register as tremors within a mind rather than as links in a causal chain. To read her as an enemy of story is thus to mistake a shift in emphasis for an act of abolition. What she pruned was not incident but the assumption that incident, faithfully enumerated, could substitute for the harder labor of representing how a self meets the world.",
+  "prompt": "What is the main rhetorical purpose of the passage?",
+  "choices": [
+   "To correct a common critical characterization by distinguishing Woolf's actual objection from the one usually attributed to her",
+   "To argue that Woolf eliminated plot entirely in order to concentrate the novel on consciousness",
+   "To claim that Edwardian novelists failed as artists because their works contained too much external detail",
+   "To trace how Woolf's views on fiction evolved over the course of her essays, from her early quarrel with Edwardian convention onward"
+  ],
+  "correct_answer": "To correct a common critical characterization by distinguishing Woolf's actual objection from the one usually attributed to her",
+  "explanation": "The passage sets up the standard reading (Woolf 'abandoned plot') and then dismantles it, arguing she objected to a particular use of incident, not to event itself. The tempting wrong answer restates exactly the view the passage calls a mistake. The Edwardian option overgeneralizes a supporting detail into the thesis, and the 'evolution of her essays' option describes a structure the passage never adopts."
+ },
+ {
+  "id": "CTL-CS-18",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "hard",
+  "passage": "The city banned cars from its historic center to cut congestion, and traffic on those streets did fall. But drivers, rerouted, simply thickened the ring roads just beyond the zone, where residents had no such protection. The policy had not dissolved the congestion so much as relocated it, exporting the burden to the neighborhoods least equipped to absorb it. A success measured only within the zone was a failure measured across the map.",
+  "prompt": "Which choice best states the main idea of the text?",
+  "choices": [
+   "Banning cars from a city's historic center is the single most effective way available to reduce congestion across an entire urban area.",
+   "Residents living along the ring roads supported the ban on cars in the historic center because it improved conditions on their own streets.",
+   "A policy that succeeded by a narrow measure displaced its costs onto others, undercutting that success on a wider view.",
+   "Congestion in a historic city center cannot be meaningfully reduced by any restriction placed on the private cars entering it."
+  ],
+  "correct_answer": "A policy that succeeded by a narrow measure displaced its costs onto others, undercutting that success on a wider view.",
+  "explanation": "The final sentence frames the ban as a local success but a map-wide failure because congestion was relocated, not removed, which none of the overstated or opposite options captures."
+ },
+ {
+  "id": "CTL-CS-19",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "difficulty": "medium",
+  "passage": "Text 1\nPaleontologists long maintained that feathers evolved for the purpose of flight. A feather's intricate, asymmetrical, aerodynamically tuned structure seemed explicable only as an adaptation for getting an animal airborne; nothing else, it was assumed, could account for so specialized a design. On this view, the appearance of feathers in the fossil record marks the approach of powered flight.\n\nText 2\nA wave of discoveries of plainly flightless feathered dinosaurs has reframed the question entirely. Feathers now turn up in the fossil record well before any evidence of flight, adorning the bodies of animals whose anatomy rules flight out and for which insulation or visual display is by far the likelier original function. Flight, on the current evidence, did not call feathers into being; it co-opted, and then elaborated, a structure that had already arisen to serve altogether different ends.",
+  "prompt": "Based on Text 2, the 'intricate... aerodynamically tuned structure' cited in Text 1 is best understood as",
+  "choices": [
+   "decisive proof that feathers must originally have evolved as an adaptation for flight, exactly as Text 1 concludes.",
+   "a structure that flight later exploited and refined, though it first arose to serve a purpose other than flight.",
+   "evidence that the earliest feathers, whatever their refinement, cannot have served for insulation or for visual display.",
+   "the reason that so many feathered dinosaurs in the fossil record turned out to be incapable of flight."
+  ],
+  "correct_answer": "a structure that flight later exploited and refined, though it first arose to serve a purpose other than flight.",
+  "explanation": "Text 2 states flight 'co-opted, and then elaborated, a structure that had already arisen to serve altogether different ends'—so from its standpoint the aerodynamic feather is a repurposed structure, later exploited by flight, which is B. A restates Text 1's flight-first conclusion that Text 2 dismantles (the tempting misread). C reverses Text 2, which names insulation or display as the 'likelier original function,' not something ruled out. D garbles causation: feathers did not cause flightlessness; the flightless species simply show feathers predating flight."
+ },
+ {
+  "id": "CTL-CS-20",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "difficulty": "hard",
+  "passage": "Text 1: Giving residents direct cash, rather than services, respects their judgment. People in poverty know their own needs better than distant agencies do, and studies find that recipients spend transfers prudently—on tools, school fees, medicine—rarely on the vices skeptics predict.\n\nText 2: Cash transfers do relieve immediate hardship, and recipients spend sensibly. But a lump sum cannot build a clinic or a road that a whole village needs. Some goods are collective, and no amount of individual spending will summon them. Cash helps households; it cannot substitute for shared infrastructure.",
+  "prompt": "How does the argument in Text 2 relate to the argument in Text 1?",
+  "choices": [
+   "It accepts Text 1's point about prudent individual spending but limits it by noting that cash cannot supply collective goods.",
+   "It rejects Text 1's evidence that recipients spend transfers responsibly, arguing the studies miss how the money is really used.",
+   "It restates Text 1's conclusion that direct cash is superior to services in every case, adding examples of prudent household spending.",
+   "It contends that residents in poverty cannot be trusted to judge their own needs and should be given services rather than cash."
+  ],
+  "correct_answer": "It accepts Text 1's point about prudent individual spending but limits it by noting that cash cannot supply collective goods.",
+  "explanation": "Text 2 explicitly concedes that recipients \"spend sensibly\" yet caveats that cash \"cannot substitute for shared infrastructure,\" an agree-with-limitation stance rather than a rejection, restatement, or attack on residents' judgment."
+ },
+ {
+  "id": "CTL-CS-21",
+  "domain": "Craft and Structure",
+  "subskill": "cross-text connections",
+  "difficulty": "medium",
+  "passage": "Text 1\n\nChildren raised with two languages outperform monolingual children on tasks that require ignoring a misleading cue, and the gap is present before school age. The most economical explanation is practice: a bilingual child suppresses one lexicon every time she speaks, thousands of times a day, and the machinery that does the suppressing is the machinery these tasks recruit.\n\nText 2\n\nThe effect is reported most often in samples recruited through university laboratories, where bilingual families differ from monolingual ones in immigration history, household income, and the number of adults at home. Where a sample is drawn instead from an entire school district, the difference shrinks toward zero. The studies that find the effect and the studies that do not use the same tasks.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the explanation offered in Text 1, that constant lexical suppression trains the machinery these tasks recruit?",
+  "choices": [
+   "By replying that the suppression account predicts an advantage on tasks where none has in fact been found.",
+   "By replying that differences among the tasks in use explain why the findings have been inconsistent.",
+   "By replying that the advantage is genuine but appears only after children have begun school.",
+   "By replying that the effect being explained may not survive samples not recruited through laboratories."
+  ],
+  "correct_answer": "By replying that the effect being explained may not survive samples not recruited through laboratories.",
+  "explanation": "Text 2 never engages the mechanism; it questions whether there is anything to explain, since the difference shrinks toward zero once a sample comes from a whole school district rather than a university laboratory. The apt response is therefore that \"the effect being explained may not survive samples not recruited through laboratories.\" The reply that \"differences among the tasks in use explain why the findings have been inconsistent\" is ruled out by Text 2's last sentence, which insists the two sets of studies use the same tasks. The reply that the advantage \"appears only after children have begun school\" reverses Text 1's report of a gap before school age and finds no support in Text 2. And Text 2 identifies no task on which the account predicts an advantage that is absent, so it would not reply that it \"predicts an advantage on tasks where none has in fact been found.\""
+ },
+ {
+  "id": "CTL-CS-22",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "difficulty": "medium",
+  "passage": "Text 1\nThe invention of linear perspective in fifteenth-century Florence marked painting's passage from symbol to science. By fixing a single vanishing point and a consistent horizon, Brunelleschi and Alberti gave artists a rule-governed method for projecting three-dimensional space onto a flat surface exactly as the eye receives it. Perspective was thus not a style but a discovery—a correct description of how vision works, available to any culture disciplined enough to find it.\n\nText 2\nIt is tempting to call perspective a discovery, but the eye does not in fact see the world as perspective renders it: our two curved retinas register no single vanishing point, and the visual field has no straight edges. Perspective is a construction that trades fidelity to perception for a particular kind of order—one a given society finds persuasive. That later ages accepted it as 'natural' testifies not to its truth but to the thoroughness with which a convention can disguise itself.",
+  "prompt": "How would the author of Text 2 most likely respond to the characterization of perspective in Text 1?",
+  "choices": [
+   "By agreeing that perspective reproduces retinal experience but denying that Florentines were the first to achieve it.",
+   "By insisting that perspective is aesthetically inferior to the symbolic art it displaced.",
+   "By arguing that only a culture possessing advanced optics could have developed perspective.",
+   "By contending that what Text 1 calls a discovery is a convention mistaken for a description of vision."
+  ],
+  "correct_answer": "By contending that what Text 1 calls a discovery is a convention mistaken for a description of vision.",
+  "explanation": "Text 2's whole argument is that perspective is a persuasive construction rather than a faithful record of vision, so its author would respond by contending that what Text 1 calls a discovery is 'a convention mistaken for a description of vision.' The strongest trap is the response 'agreeing that perspective reproduces retinal experience but denying that Florentines were the first' to achieve it, which seems to split the difference but concedes the one thing Text 2 denies — Text 2 says our curved retinas register no single vanishing point. The response 'insisting that perspective is aesthetically inferior to the symbolic art it displaced' invents a value judgment Text 2 never offers; its objection is epistemic, not aesthetic. And the response that 'only a culture possessing advanced optics' could have developed perspective raises a technical prerequisite that has no bearing on the convention-versus-discovery dispute."
+ },
+ {
+  "id": "CTL-CS-23",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "difficulty": "medium",
+  "passage": "Text 1: The Mona Lisa's fame is a testament to genius. Leonardo's mastery of soft shading and his sitter's elusive expression place the portrait in a class of its own; crowds gather before it because it is, quite simply, the finest painting ever made.\n\nText 2: For three centuries the picture drew little notice. Its celebrity dates from 1911, when its theft filled newspapers worldwide, and empty frame and manhunt made the image inescapable. The painting's quality never changed; what changed was a story that taught the public to see it as precious.",
+  "prompt": "Which choice best describes the central difference between the two texts?",
+  "choices": [
+   "They attribute the painting's fame to different sources, intrinsic quality versus a historical event.",
+   "They disagree about which of Leonardo's contemporaries actually painted the portrait known as the Mona Lisa.",
+   "They dispute whether the painting was ever actually stolen from the museum in 1911.",
+   "They disagree about whether the painting should be displayed to the public at all — given the crowds it draws."
+  ],
+  "correct_answer": "They attribute the painting's fame to different sources, intrinsic quality versus a historical event.",
+  "explanation": "Text 1 credits the painting's fame to its inherent excellence while Text 2 credits the 1911 theft, assigning the same fame to different causes."
+ },
+ {
+  "id": "CTL-CS-24",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "difficulty": "hard",
+  "passage": "Text 1: Automation will not produce lasting unemployment. History reassures us: mechanized looms and tractors destroyed particular jobs, yet each wave of technology created new kinds of work that no one had foreseen. Displaced laborers were absorbed, over time, into occupations the old economy could not have named.\n\nText 2: The historical comfort assumes displaced workers can move into the new jobs. But past transitions swapped one kind of manual labor for another. If machines now master the cognitive tasks that once absorbed the displaced, the escape route those earlier workers took may be the very thing being closed.",
+  "prompt": "How does Text 2 respond to the reasoning in Text 1?",
+  "choices": [
+   "It agrees that new technologies always generate enough new jobs to absorb displaced workers.",
+   "It questions whether the historical pattern will hold when machines take over the cognitive work that once absorbed displaced labor.",
+   "It denies that earlier technologies such as mechanized looms and tractors destroyed any particular jobs in the industries they transformed.",
+   "It claims that automation has already caused permanent mass unemployment."
+  ],
+  "correct_answer": "It questions whether the historical pattern will hold when machines take over the cognitive work that once absorbed displaced labor.",
+  "explanation": "Text 2 targets Text 1's assumption by noting that if machines master cognitive tasks, \"the escape route those earlier workers took may be...closed,\" challenging the analogy rather than affirming it, denying past disruption, or asserting present mass unemployment."
+ }
+]

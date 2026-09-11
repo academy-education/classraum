@@ -1,0 +1,962 @@
+[
+  {
+    "id": "SV12-01",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "BRITTLE",
+    "choices": [
+      "coarse",
+      "fragile",
+      "pliable",
+      "hollow",
+      "porous"
+    ],
+    "correct_answer": "fragile",
+    "explanation": "Something BRITTLE snaps rather than bending, which is what \"fragile\" names.",
+    "distractor_rationales": [
+      "\"coarse\" is a rough surface texture, which says nothing about whether the thing snaps",
+      "KEY",
+      "\"pliable\" bends under load instead of breaking, the opposite behavior",
+      "\"hollow\" is empty inside, a fact about the interior rather than about breaking",
+      "\"porous\" lets liquid through, a fact about the pores rather than about breaking"
+    ],
+    "set_id": "SET-A",
+    "construction": "all five are ordinary properties of a material; two are seven letters and three are six, and none is markedly rarer than the rest",
+    "options_only_legal": 5,
+    "options_only_note": "every option is a real property a dry stick could be said to have, so with the headword covered nothing narrows the set"
+  },
+  {
+    "id": "SV12-02",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "SPOKE is to WHEEL as",
+    "choices": [
+      "warden is to prison",
+      "ore is to steel",
+      "drizzle is to downpour",
+      "prong is to fork",
+      "blueprint is to building"
+    ],
+    "correct_answer": "prong is to fork",
+    "explanation": "A spoke is one of the rods a wheel is built from, so the pair is a piece and the object it is a piece of; \"prong is to fork\" is that same pair.",
+    "distractor_rationales": [
+      "\"warden is to prison\" is a worker and the place of work, which is not the relation SPOKE and WHEEL stand in",
+      "\"ore is to steel\" is a raw material and the product manufactured from it, which is not the relation SPOKE and WHEEL stand in",
+      "\"drizzle is to downpour\" is a lesser and a greater degree of one thing, which is not the relation SPOKE and WHEEL stand in",
+      "KEY",
+      "\"blueprint is to building\" is a preliminary version and the finished work, which is not the relation SPOKE and WHEEL stand in"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (worker : the place of work; raw material : the product made from it; lesser degree : greater degree of one thing; part : the whole it belongs to; preliminary version : the finished work); each is a tight, nameable relation of comparable specificity",
+    "relation": "part : the whole it belongs to",
+    "option_relations": [
+      "worker : the place of work",
+      "raw material : the product made from it",
+      "lesser degree : greater degree of one thing",
+      "part : the whole it belongs to",
+      "preliminary version : the finished work"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"part : the whole it belongs to\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-03",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "VIVID",
+    "choices": [
+      "bright",
+      "vague",
+      "faded",
+      "somber",
+      "glossy"
+    ],
+    "correct_answer": "bright",
+    "explanation": "A VIVID color or memory strikes the eye with full strength, which is what \"bright\" says.",
+    "distractor_rationales": [
+      "KEY",
+      "\"vague\" is indistinct, which is the opposite end of the clarity axis",
+      "\"faded\" has lost its intensity rather than holding it",
+      "\"somber\" is dark and grave, a matter of mood rather than of intensity",
+      "\"glossy\" is a shine on the surface, not strength of color"
+    ],
+    "set_id": "SET-A",
+    "construction": "five common adjectives of five or six letters that could all be said of a color; the key is neither the rarest nor the commonest",
+    "options_only_legal": 5,
+    "options_only_note": "each option is a live verdict on a color, and two of them (not the key) are the ones that pull hardest, so an options-only solver has no anchor"
+  },
+  {
+    "id": "SV12-04",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "OUTLINE is to ESSAY as",
+    "choices": [
+      "tourniquet is to hemorrhage",
+      "spatula is to cook",
+      "cocoa is to chocolate",
+      "howl is to wolf",
+      "sketch is to mural"
+    ],
+    "correct_answer": "sketch is to mural",
+    "explanation": "An outline is the rough plan an essay is built out from, so the pair is a preliminary version and the finished work; \"sketch is to mural\" is that same pair.",
+    "distractor_rationales": [
+      "\"tourniquet is to hemorrhage\" is a remedy and the ailment it is used against, which is not the relation OUTLINE and ESSAY stand in",
+      "\"spatula is to cook\" is an implement and the person who wields it, which is not the relation OUTLINE and ESSAY stand in",
+      "\"cocoa is to chocolate\" is a raw material and the product manufactured from it, which is not the relation OUTLINE and ESSAY stand in",
+      "\"howl is to wolf\" is a cry and the animal that utters it, which is not the relation OUTLINE and ESSAY stand in",
+      "KEY"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (remedy : the ailment it treats; tool : the worker who wields it; raw material : the product made from it; characteristic cry : the animal that makes it; preliminary version : the finished work); each is a tight, nameable relation of comparable specificity",
+    "relation": "preliminary version : the finished work",
+    "option_relations": [
+      "remedy : the ailment it treats",
+      "tool : the worker who wields it",
+      "raw material : the product made from it",
+      "characteristic cry : the animal that makes it",
+      "preliminary version : the finished work"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"preliminary version : the finished work\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-05",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "DRAB",
+    "choices": [
+      "damp",
+      "stiff",
+      "dull",
+      "loud",
+      "crisp"
+    ],
+    "correct_answer": "dull",
+    "explanation": "A DRAB coat is without brightness or interest, which is what \"dull\" says.",
+    "distractor_rationales": [
+      "\"damp\" is a degree of wetness, a different axis entirely",
+      "\"stiff\" resists bending, a property of the fabric rather than of its color",
+      "KEY",
+      "\"loud\" is color at full volume, the opposite complaint",
+      "\"crisp\" is fresh and sharp-edged, again about the state of the cloth"
+    ],
+    "set_id": "SET-A",
+    "construction": "five four-and-five-letter everyday adjectives, all of which could describe a coat; no register break",
+    "options_only_legal": 5,
+    "options_only_note": "the four wrong options are each a legitimate verdict on a coat and three of them are as common as the key, so the set cannot be narrowed without the headword"
+  },
+  {
+    "id": "SV12-06",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "ANVIL is to BLACKSMITH as",
+    "choices": [
+      "awl is to cobbler",
+      "curator is to museum",
+      "fawn is to deer",
+      "quartz is to mineral",
+      "vaccine is to smallpox"
+    ],
+    "correct_answer": "awl is to cobbler",
+    "explanation": "An anvil is the block a blacksmith works metal on, so the pair is an implement and the person who wields it; \"awl is to cobbler\" is that same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"curator is to museum\" is a worker and the place of work, which is not the relation ANVIL and BLACKSMITH stand in",
+      "\"fawn is to deer\" is the young animal and the adult it becomes, which is not the relation ANVIL and BLACKSMITH stand in",
+      "\"quartz is to mineral\" is a member and the class it falls under, which is not the relation ANVIL and BLACKSMITH stand in",
+      "\"vaccine is to smallpox\" is a remedy and the ailment it is used against, which is not the relation ANVIL and BLACKSMITH stand in"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (tool : the worker who wields it; worker : the place of work; young : the grown animal; member : the class it belongs to; remedy : the ailment it treats); each is a tight, nameable relation of comparable specificity",
+    "relation": "tool : the worker who wields it",
+    "option_relations": [
+      "tool : the worker who wields it",
+      "worker : the place of work",
+      "young : the grown animal",
+      "member : the class it belongs to",
+      "remedy : the ailment it treats"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"tool : the worker who wields it\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-07",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "HASTY",
+    "choices": [
+      "careful",
+      "awkward",
+      "hesitant",
+      "hurried",
+      "lengthy"
+    ],
+    "correct_answer": "hurried",
+    "explanation": "A HASTY decision is one taken in too much of a rush, which is what \"hurried\" names.",
+    "distractor_rationales": [
+      "\"careful\" takes the time to get it right, the opposite manner",
+      "\"awkward\" is clumsy, a matter of skill rather than of speed",
+      "\"hesitant\" holds back rather than rushing",
+      "KEY",
+      "\"lengthy\" is how long the thing lasted, not how fast it was done"
+    ],
+    "set_id": "SET-A",
+    "construction": "five adjectives of seven or eight letters, all describing the manner of a decision; the key is the same length as three of the distractors",
+    "options_only_legal": 5,
+    "options_only_note": "two distractors sit on the speed axis and two on neighboring axes, so no option is eliminable by kind and the key is not the length outlier"
+  },
+  {
+    "id": "SV12-08",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "BLEAT is to SHEEP as",
+    "choices": [
+      "keel is to boat",
+      "cackle is to hen",
+      "cygnet is to swan",
+      "quiver is to arrows",
+      "deafness is to hearing"
+    ],
+    "correct_answer": "cackle is to hen",
+    "explanation": "A bleat is the noise a sheep characteristically makes, so the pair is a cry and the animal that utters it; \"cackle is to hen\" is that same pair.",
+    "distractor_rationales": [
+      "\"keel is to boat\" is a piece and the object it is a piece of, which is not the relation BLEAT and SHEEP stand in",
+      "KEY",
+      "\"cygnet is to swan\" is the young animal and the adult it becomes, which is not the relation BLEAT and SHEEP stand in",
+      "\"quiver is to arrows\" is a container and what is kept inside it, which is not the relation BLEAT and SHEEP stand in",
+      "\"deafness is to hearing\" is an impairment and the faculty it disables, which is not the relation BLEAT and SHEEP stand in"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (part : the whole it belongs to; characteristic cry : the animal that makes it; young : the grown animal; container : what is kept in it; impairment : the faculty it disables); each is a tight, nameable relation of comparable specificity",
+    "relation": "characteristic cry : the animal that makes it",
+    "option_relations": [
+      "part : the whole it belongs to",
+      "characteristic cry : the animal that makes it",
+      "young : the grown animal",
+      "container : what is kept in it",
+      "impairment : the faculty it disables"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"characteristic cry : the animal that makes it\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-09",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "SCARCE",
+    "choices": [
+      "costly",
+      "hidden",
+      "shoddy",
+      "modest",
+      "meager"
+    ],
+    "correct_answer": "meager",
+    "explanation": "When timber is SCARCE there is very little of it to be had, which is what \"meager\" says.",
+    "distractor_rationales": [
+      "\"costly\" is what scarcity does to a price, not the scarcity itself",
+      "\"hidden\" is hard to find because it is concealed, not because there is little of it",
+      "\"shoddy\" is poor in quality rather than small in quantity",
+      "\"modest\" is unassuming in scale or manner rather than short in supply",
+      "KEY"
+    ],
+    "set_id": "SET-A",
+    "construction": "all five are six-letter adjectives of comparable frequency that could be said of a supply of timber",
+    "options_only_legal": 5,
+    "options_only_note": "\"costly\" is the consequence of the key and \"modest\" the near-miss on quantity, so the set holds two strong pulls that are not the key"
+  },
+  {
+    "id": "SV12-10",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "GOSLING is to GOOSE as",
+    "choices": [
+      "cane is to sugar",
+      "lodge is to beaver",
+      "foal is to horse",
+      "entomologist is to insects",
+      "loom is to weaver"
+    ],
+    "correct_answer": "foal is to horse",
+    "explanation": "A gosling is a goose that has not grown up, so the pair is the young animal and the adult it becomes; \"foal is to horse\" is that same pair.",
+    "distractor_rationales": [
+      "\"cane is to sugar\" is a raw material and the product manufactured from it, which is not the relation GOSLING and GOOSE stand in",
+      "\"lodge is to beaver\" is a dwelling and the animal housed in it, which is not the relation GOSLING and GOOSE stand in",
+      "KEY",
+      "\"entomologist is to insects\" is a specialist and the subject studied, which is not the relation GOSLING and GOOSE stand in",
+      "\"loom is to weaver\" is an implement and the person who wields it, which is not the relation GOSLING and GOOSE stand in"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (raw material : the product made from it; dwelling : the animal that lives in it; young : the grown animal; specialist : the subject studied; tool : the worker who wields it); each is a tight, nameable relation of comparable specificity",
+    "relation": "young : the grown animal",
+    "option_relations": [
+      "raw material : the product made from it",
+      "dwelling : the animal that lives in it",
+      "young : the grown animal",
+      "specialist : the subject studied",
+      "tool : the worker who wields it"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"young : the grown animal\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-11",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "BAFFLE",
+    "choices": [
+      "puzzle",
+      "scold",
+      "startle",
+      "mimic",
+      "soothe"
+    ],
+    "correct_answer": "puzzle",
+    "explanation": "A clue that BAFFLES the detectives leaves them unable to make sense of it, which is what \"puzzle\" says.",
+    "distractor_rationales": [
+      "KEY",
+      "\"scold\" is to rebuke someone, an act directed at a person rather than an effect on their understanding",
+      "\"startle\" is a jolt of surprise, which leaves the person understanding perfectly well",
+      "\"mimic\" is to copy, which is not an effect on anyone at all",
+      "\"soothe\" settles a person down, the opposite of leaving them at a loss"
+    ],
+    "set_id": "SET-B",
+    "construction": "five plain verbs of five to seven letters, every one of which a clue could be said to do to a detective",
+    "options_only_legal": 5,
+    "options_only_note": "each wrong option is a legal thing a clue can do to someone; the key is not the only mental effect, since \"startle\" and \"soothe\" are effects too"
+  },
+  {
+    "id": "SV12-12",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "SLOOP is to VESSEL as",
+    "choices": [
+      "hide is to leather",
+      "decanter is to wine",
+      "cello is to instrument",
+      "barometer is to pressure",
+      "purser is to ship"
+    ],
+    "correct_answer": "cello is to instrument",
+    "explanation": "A sloop is one particular kind of vessel, so the pair is a member and the class it falls under; \"cello is to instrument\" is that same pair.",
+    "distractor_rationales": [
+      "\"hide is to leather\" is a raw material and the product manufactured from it, which is not the relation SLOOP and VESSEL stand in",
+      "\"decanter is to wine\" is a container and what is kept inside it, which is not the relation SLOOP and VESSEL stand in",
+      "KEY",
+      "\"barometer is to pressure\" is an instrument and the quantity it measures, which is not the relation SLOOP and VESSEL stand in",
+      "\"purser is to ship\" is a worker and the place of work, which is not the relation SLOOP and VESSEL stand in"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (raw material : the product made from it; container : what is kept in it; member : the class it belongs to; instrument : the quantity it measures; worker : the place of work); each is a tight, nameable relation of comparable specificity",
+    "relation": "member : the class it belongs to",
+    "option_relations": [
+      "raw material : the product made from it",
+      "container : what is kept in it",
+      "member : the class it belongs to",
+      "instrument : the quantity it measures",
+      "worker : the place of work"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"member : the class it belongs to\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-13",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "RUSTIC",
+    "choices": [
+      "urban",
+      "noble",
+      "frantic",
+      "solemn",
+      "rural"
+    ],
+    "correct_answer": "rural",
+    "explanation": "A RUSTIC scene belongs to the countryside, which is what \"rural\" says.",
+    "distractor_rationales": [
+      "\"urban\" belongs to the city, the opposite setting",
+      "\"noble\" is high in rank or bearing, a matter of standing rather than of setting",
+      "\"frantic\" is frenzied, a matter of pace",
+      "\"solemn\" is grave in manner, again not a matter of setting",
+      "KEY"
+    ],
+    "set_id": "SET-B",
+    "construction": "five adjectives of five to seven letters that could all be applied to a scene; three are as common as the key",
+    "options_only_legal": 5,
+    "options_only_note": "\"urban\" is the direct antonym and is not the key, so the axis the headword names is represented twice among the options and once in the key"
+  },
+  {
+    "id": "SV12-14",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "SILO is to GRAIN as",
+    "choices": [
+      "murmur is to roar",
+      "cistern is to water",
+      "bellow is to bull",
+      "scale is to weight",
+      "scythe is to reaper"
+    ],
+    "correct_answer": "cistern is to water",
+    "explanation": "A silo is the structure grain is kept in, so the pair is a container and what is stored inside it; \"cistern is to water\" is that same pair.",
+    "distractor_rationales": [
+      "\"murmur is to roar\" is a lesser and a greater degree of one thing, which is not the relation SILO and GRAIN stand in",
+      "KEY",
+      "\"bellow is to bull\" is a cry and the animal that utters it, which is not the relation SILO and GRAIN stand in",
+      "\"scale is to weight\" is an instrument and the quantity it measures, which is not the relation SILO and GRAIN stand in",
+      "\"scythe is to reaper\" is an implement and the person who wields it, which is not the relation SILO and GRAIN stand in"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (lesser degree : greater degree of one thing; container : what is kept in it; characteristic cry : the animal that makes it; instrument : the quantity it measures; tool : the worker who wields it); each is a tight, nameable relation of comparable specificity",
+    "relation": "container : what is kept in it",
+    "option_relations": [
+      "lesser degree : greater degree of one thing",
+      "container : what is kept in it",
+      "characteristic cry : the animal that makes it",
+      "instrument : the quantity it measures",
+      "tool : the worker who wields it"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"container : what is kept in it\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-15",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "HAPHAZARD",
+    "choices": [
+      "urgent",
+      "formal",
+      "frequent",
+      "random",
+      "crowded"
+    ],
+    "correct_answer": "random",
+    "explanation": "A HAPHAZARD filing system follows no plan at all, which is what \"random\" says.",
+    "distractor_rationales": [
+      "\"urgent\" is a matter of how pressing the filing was, not of how it was ordered",
+      "\"formal\" keeps to an established convention, which is the opposite of keeping to no plan",
+      "\"frequent\" is how often the filing was done rather than by what plan",
+      "KEY",
+      "\"crowded\" is how full the drawer is, not whether anything governed the order"
+    ],
+    "set_id": "SET-B",
+    "construction": "five adjectives of six to eight letters, all of them ordinary verdicts on a filing system",
+    "options_only_legal": 5,
+    "options_only_note": "all four wrong options are true things a filing system can be, and none is eliminable by part of speech, register or length"
+  },
+  {
+    "id": "SV12-16",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "TELLER is to BANK as",
+    "choices": [
+      "bray is to donkey",
+      "etymologist is to word origins",
+      "salve is to burn",
+      "hive is to bee",
+      "usher is to theater"
+    ],
+    "correct_answer": "usher is to theater",
+    "explanation": "A teller is the employee whose working day is spent inside a bank, so the pair is a worker and the place of work; \"usher is to theater\" is that same pair.",
+    "distractor_rationales": [
+      "\"bray is to donkey\" is a cry and the animal that utters it, which is not the relation TELLER and BANK stand in",
+      "\"etymologist is to word origins\" is a specialist and the subject studied, which is not the relation TELLER and BANK stand in",
+      "\"salve is to burn\" is a remedy and the ailment it is used against, which is not the relation TELLER and BANK stand in",
+      "\"hive is to bee\" is a dwelling and the animal housed in it, which is not the relation TELLER and BANK stand in",
+      "KEY"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (characteristic cry : the animal that makes it; specialist : the subject studied; remedy : the ailment it treats; dwelling : the animal that lives in it; worker : the place of work); each is a tight, nameable relation of comparable specificity",
+    "relation": "worker : the place of work",
+    "option_relations": [
+      "characteristic cry : the animal that makes it",
+      "specialist : the subject studied",
+      "remedy : the ailment it treats",
+      "dwelling : the animal that lives in it",
+      "worker : the place of work"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"worker : the place of work\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-17",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "WARY",
+    "choices": [
+      "generous",
+      "cautious",
+      "trusting",
+      "stubborn",
+      "talkative"
+    ],
+    "correct_answer": "cautious",
+    "explanation": "A WARY traveler keeps an eye out for trouble, which is what \"cautious\" names.",
+    "distractor_rationales": [
+      "\"generous\" gives freely, which says nothing about watching for danger",
+      "KEY",
+      "\"trusting\" takes people at their word, the opposite disposition",
+      "\"stubborn\" will not be moved, a matter of will rather than of vigilance",
+      "\"talkative\" says a great deal, a matter of manner"
+    ],
+    "set_id": "SET-B",
+    "construction": "five dispositions of eight or nine letters, all of them things a traveler can be; the key is neither the rarest nor the shortest",
+    "options_only_legal": 5,
+    "options_only_note": "\"trusting\" is the antonym and sits in the option list beside the key, so the axis is present twice and cannot itself name the answer"
+  },
+  {
+    "id": "SV12-18",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "TREMOR is to EARTHQUAKE as",
+    "choices": [
+      "anemometer is to wind speed",
+      "lozenge is to sore throat",
+      "blindness is to sight",
+      "trickle is to torrent",
+      "tadpole is to frog"
+    ],
+    "correct_answer": "trickle is to torrent",
+    "explanation": "A tremor is a small movement of the ground and an earthquake is a large one, so the pair is a lesser and a greater degree of one thing; \"trickle is to torrent\" is that same pair.",
+    "distractor_rationales": [
+      "\"anemometer is to wind speed\" is an instrument and the quantity it measures, which is not the relation TREMOR and EARTHQUAKE stand in",
+      "\"lozenge is to sore throat\" is a remedy and the ailment it is used against, which is not the relation TREMOR and EARTHQUAKE stand in",
+      "\"blindness is to sight\" is an impairment and the faculty it disables, which is not the relation TREMOR and EARTHQUAKE stand in",
+      "KEY",
+      "\"tadpole is to frog\" is the young animal and the adult it becomes, which is not the relation TREMOR and EARTHQUAKE stand in"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (instrument : the quantity it measures; remedy : the ailment it treats; impairment : the faculty it disables; lesser degree : greater degree of one thing; young : the grown animal); each is a tight, nameable relation of comparable specificity",
+    "relation": "lesser degree : greater degree of one thing",
+    "option_relations": [
+      "instrument : the quantity it measures",
+      "remedy : the ailment it treats",
+      "impairment : the faculty it disables",
+      "lesser degree : greater degree of one thing",
+      "young : the grown animal"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"lesser degree : greater degree of one thing\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-19",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "DOCILE",
+    "choices": [
+      "obedient",
+      "restless",
+      "graceful",
+      "cunning",
+      "spirited"
+    ],
+    "correct_answer": "obedient",
+    "explanation": "A DOCILE pony does as it is told without resisting, which is what \"obedient\" names.",
+    "distractor_rationales": [
+      "KEY",
+      "\"restless\" cannot keep still, a matter of energy rather than of biddability",
+      "\"graceful\" moves well, a matter of how the animal looks in motion",
+      "\"cunning\" is sly, a matter of intelligence",
+      "\"spirited\" has a will of its own, the opposite of being easily led"
+    ],
+    "set_id": "SET-B",
+    "construction": "five seven-and-eight-letter adjectives of temperament, each a standard verdict on a pony",
+    "options_only_legal": 5,
+    "options_only_note": "four of the five, the key among them, describe temperament rather than build, so nothing marks the key off by category"
+  },
+  {
+    "id": "SV12-20",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "AMNESIA is to MEMORY as",
+    "choices": [
+      "stethoscope is to physician",
+      "hilt is to sword",
+      "muteness is to speech",
+      "den is to fox",
+      "chronometer is to time"
+    ],
+    "correct_answer": "muteness is to speech",
+    "explanation": "Amnesia is the condition in which memory no longer works, so the pair is an impairment and the faculty it disables; \"muteness is to speech\" is that same pair.",
+    "distractor_rationales": [
+      "\"stethoscope is to physician\" is an implement and the person who wields it, which is not the relation AMNESIA and MEMORY stand in",
+      "\"hilt is to sword\" is a piece and the object it is a piece of, which is not the relation AMNESIA and MEMORY stand in",
+      "KEY",
+      "\"den is to fox\" is a dwelling and the animal housed in it, which is not the relation AMNESIA and MEMORY stand in",
+      "\"chronometer is to time\" is an instrument and the quantity it measures, which is not the relation AMNESIA and MEMORY stand in"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (tool : the worker who wields it; part : the whole it belongs to; impairment : the faculty it disables; dwelling : the animal that lives in it; instrument : the quantity it measures); each is a tight, nameable relation of comparable specificity",
+    "relation": "impairment : the faculty it disables",
+    "option_relations": [
+      "tool : the worker who wields it",
+      "part : the whole it belongs to",
+      "impairment : the faculty it disables",
+      "dwelling : the animal that lives in it",
+      "instrument : the quantity it measures"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"impairment : the faculty it disables\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-21",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "AUSTERE",
+    "choices": [
+      "ornate",
+      "genial",
+      "supple",
+      "severe",
+      "candid"
+    ],
+    "correct_answer": "severe",
+    "explanation": "An AUSTERE manner is stern and stripped of all comfort, which is what \"severe\" says.",
+    "distractor_rationales": [
+      "\"ornate\" is richly decorated, the opposite of plain",
+      "\"genial\" is warm and friendly, the opposite of stern",
+      "\"supple\" bends easily, a physical property rather than a manner",
+      "KEY",
+      "\"candid\" speaks frankly, which a warm person may do as readily as a cold one"
+    ],
+    "set_id": "SET-C",
+    "construction": "all five are six-letter adjectives of the same literary register; the key is not the hardest word in the set",
+    "options_only_legal": 5,
+    "options_only_note": "two of the four wrong options are antonyms on the two senses of the headword, so the option list holds both ends of the axis and names neither"
+  },
+  {
+    "id": "SV12-22",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "SPLINT is to FRACTURE as",
+    "choices": [
+      "poultice is to swelling",
+      "vault is to bullion",
+      "sett is to badger",
+      "shower is to cloudburst",
+      "lapel is to jacket"
+    ],
+    "correct_answer": "poultice is to swelling",
+    "explanation": "A splint is what is applied to treat a fracture, so the pair is a remedy and the injury it is used against; \"poultice is to swelling\" is that same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"vault is to bullion\" is a container and what is kept inside it, which is not the relation SPLINT and FRACTURE stand in",
+      "\"sett is to badger\" is a dwelling and the animal housed in it, which is not the relation SPLINT and FRACTURE stand in",
+      "\"shower is to cloudburst\" is a lesser and a greater degree of one thing, which is not the relation SPLINT and FRACTURE stand in",
+      "\"lapel is to jacket\" is a piece and the object it is a piece of, which is not the relation SPLINT and FRACTURE stand in"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (remedy : the ailment it treats; container : what is kept in it; dwelling : the animal that lives in it; lesser degree : greater degree of one thing; part : the whole it belongs to); each is a tight, nameable relation of comparable specificity",
+    "relation": "remedy : the ailment it treats",
+    "option_relations": [
+      "remedy : the ailment it treats",
+      "container : what is kept in it",
+      "dwelling : the animal that lives in it",
+      "lesser degree : greater degree of one thing",
+      "part : the whole it belongs to"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"remedy : the ailment it treats\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-23",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "CAPRICIOUS",
+    "choices": [
+      "hostile",
+      "steadfast",
+      "fickle",
+      "thrifty",
+      "sullen"
+    ],
+    "correct_answer": "fickle",
+    "explanation": "A CAPRICIOUS patron changes his mind for no reason anyone can see, which is what \"fickle\" names.",
+    "distractor_rationales": [
+      "\"hostile\" is set against you, a fixed attitude rather than a shifting one",
+      "\"steadfast\" holds to one course, the opposite of changing without reason",
+      "KEY",
+      "\"thrifty\" is careful with money, a different matter entirely",
+      "\"sullen\" is silently resentful, a settled mood rather than a shifting one"
+    ],
+    "set_id": "SET-C",
+    "construction": "five adjectives of character, six to nine letters, all of them ordinary verdicts on a patron; the key is one of two six-letter options",
+    "options_only_legal": 5,
+    "options_only_note": "\"steadfast\" is the antonym and is a distractor, so the constancy axis appears twice among the options"
+  },
+  {
+    "id": "SV12-24",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "AERIE is to EAGLE as",
+    "choices": [
+      "cobra is to snake",
+      "hoot is to owl",
+      "rehearsal is to performance",
+      "leveret is to hare",
+      "warren is to rabbit"
+    ],
+    "correct_answer": "warren is to rabbit",
+    "explanation": "An aerie is the high nest an eagle lives in, so the pair is a dwelling and the animal housed in it; \"warren is to rabbit\" is that same pair.",
+    "distractor_rationales": [
+      "\"cobra is to snake\" is a member and the class it falls under, which is not the relation AERIE and EAGLE stand in",
+      "\"hoot is to owl\" is a cry and the animal that utters it, which is not the relation AERIE and EAGLE stand in",
+      "\"rehearsal is to performance\" is a preliminary version and the finished work, which is not the relation AERIE and EAGLE stand in",
+      "\"leveret is to hare\" is the young animal and the adult it becomes, which is not the relation AERIE and EAGLE stand in",
+      "KEY"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (member : the class it belongs to; characteristic cry : the animal that makes it; preliminary version : the finished work; young : the grown animal; dwelling : the animal that lives in it); each is a tight, nameable relation of comparable specificity",
+    "relation": "dwelling : the animal that lives in it",
+    "option_relations": [
+      "member : the class it belongs to",
+      "characteristic cry : the animal that makes it",
+      "preliminary version : the finished work",
+      "young : the grown animal",
+      "dwelling : the animal that lives in it"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"dwelling : the animal that lives in it\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-25",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "TRENCHANT",
+    "choices": [
+      "rambling",
+      "incisive",
+      "tentative",
+      "gracious",
+      "elaborate"
+    ],
+    "correct_answer": "incisive",
+    "explanation": "A TRENCHANT criticism cuts straight to the weak point, which is what \"incisive\" says.",
+    "distractor_rationales": [
+      "\"rambling\" wanders without getting to the point, the opposite of cutting straight to it",
+      "KEY",
+      "\"tentative\" holds back from committing, again the opposite of keenness",
+      "\"gracious\" is courteous, a matter of manners rather than of force",
+      "\"elaborate\" is worked out at length, which a blunt critic may also be"
+    ],
+    "set_id": "SET-C",
+    "construction": "five eight-and-nine-letter adjectives of the same literary register, all of them standard verdicts on a criticism",
+    "options_only_legal": 5,
+    "options_only_note": "no option is markedly commoner or rarer than the others, and two distractors sit on the same sharpness axis as the key"
+  },
+  {
+    "id": "SV12-26",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "FLAX is to LINEN as",
+    "choices": [
+      "sonnet is to poem",
+      "pond is to lake",
+      "pulp is to paper",
+      "philologist is to languages",
+      "paralysis is to movement"
+    ],
+    "correct_answer": "pulp is to paper",
+    "explanation": "Flax is the plant fiber linen is made out of, so the pair is a raw material and the product manufactured from it; \"pulp is to paper\" is that same pair.",
+    "distractor_rationales": [
+      "\"sonnet is to poem\" is a member and the class it falls under, which is not the relation FLAX and LINEN stand in",
+      "\"pond is to lake\" is a lesser and a greater degree of one thing, which is not the relation FLAX and LINEN stand in",
+      "KEY",
+      "\"philologist is to languages\" is a specialist and the subject studied, which is not the relation FLAX and LINEN stand in",
+      "\"paralysis is to movement\" is an impairment and the faculty it disables, which is not the relation FLAX and LINEN stand in"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (member : the class it belongs to; lesser degree : greater degree of one thing; raw material : the product made from it; specialist : the subject studied; impairment : the faculty it disables); each is a tight, nameable relation of comparable specificity",
+    "relation": "raw material : the product made from it",
+    "option_relations": [
+      "member : the class it belongs to",
+      "lesser degree : greater degree of one thing",
+      "raw material : the product made from it",
+      "specialist : the subject studied",
+      "impairment : the faculty it disables"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"raw material : the product made from it\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-27",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "LATENT",
+    "choices": [
+      "blatant",
+      "fleeting",
+      "harmful",
+      "chronic",
+      "dormant"
+    ],
+    "correct_answer": "dormant",
+    "explanation": "A LATENT fault is present but has not shown itself yet, which is what \"dormant\" says.",
+    "distractor_rationales": [
+      "\"blatant\" is obvious to everyone, the opposite of unshown",
+      "\"fleeting\" lasts only a moment, a matter of duration",
+      "\"harmful\" does damage, which a fault may do whether or not it has appeared",
+      "\"chronic\" keeps coming back, which means it has already shown itself",
+      "KEY"
+    ],
+    "set_id": "SET-C",
+    "construction": "five adjectives of seven or eight letters, all of them ordinary things a fault can be",
+    "options_only_legal": 5,
+    "options_only_note": "\"blatant\" rhymes with the headword and is a distractor, so surface resemblance pulls away from the key rather than toward it"
+  },
+  {
+    "id": "SV12-28",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "ODOMETER is to DISTANCE as",
+    "choices": [
+      "hygrometer is to humidity",
+      "ornithologist is to birds",
+      "prototype is to machine",
+      "nib is to pen",
+      "birch is to tree"
+    ],
+    "correct_answer": "hygrometer is to humidity",
+    "explanation": "An odometer is the device that registers distance traveled, so the pair is an instrument and the quantity it measures; \"hygrometer is to humidity\" is that same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"ornithologist is to birds\" is a specialist and the subject studied, which is not the relation ODOMETER and DISTANCE stand in",
+      "\"prototype is to machine\" is a preliminary version and the finished work, which is not the relation ODOMETER and DISTANCE stand in",
+      "\"nib is to pen\" is a piece and the object it is a piece of, which is not the relation ODOMETER and DISTANCE stand in",
+      "\"birch is to tree\" is a member and the class it falls under, which is not the relation ODOMETER and DISTANCE stand in"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (instrument : the quantity it measures; specialist : the subject studied; preliminary version : the finished work; part : the whole it belongs to; member : the class it belongs to); each is a tight, nameable relation of comparable specificity",
+    "relation": "instrument : the quantity it measures",
+    "option_relations": [
+      "instrument : the quantity it measures",
+      "specialist : the subject studied",
+      "preliminary version : the finished work",
+      "part : the whole it belongs to",
+      "member : the class it belongs to"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"instrument : the quantity it measures\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  },
+  {
+    "id": "SV12-29",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "SUCCINCT",
+    "choices": [
+      "murky",
+      "blunt",
+      "dense",
+      "terse",
+      "witty"
+    ],
+    "correct_answer": "terse",
+    "explanation": "A SUCCINCT reply says the thing in few words, which is what \"terse\" names.",
+    "distractor_rationales": [
+      null,
+      "\"blunt\" is direct in what it says, which a long statement can also be",
+      "\"dense\" is packed so tightly that it is hard to read, a different fault",
+      "KEY",
+      "\"witty\" is clever and amusing, a matter of wit rather than of length"
+    ],
+    "set_id": "SET-C",
+    "construction": "all five are five-letter adjectives of comparable frequency, every one of which could be said of a reply",
+    "options_only_legal": 5,
+    "options_only_note": "\"blunt\" is the strongest near-miss and is not the key; the five are the same length, so no option is marked by shape"
+  },
+  {
+    "id": "SV12-30",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "GEOLOGIST is to ROCKS as",
+    "choices": [
+      "draft is to treaty",
+      "numismatist is to coins",
+      "numbness is to sensation",
+      "vintner is to vineyard",
+      "hamper is to laundry"
+    ],
+    "correct_answer": "numismatist is to coins",
+    "explanation": "A geologist is the specialist whose subject is rocks, so the pair is a specialist and the field studied; \"numismatist is to coins\" is that same pair.",
+    "distractor_rationales": [
+      "\"draft is to treaty\" is a preliminary version and the finished work, which is not the relation GEOLOGIST and ROCKS stand in",
+      "KEY",
+      "\"numbness is to sensation\" is an impairment and the faculty it disables, which is not the relation GEOLOGIST and ROCKS stand in",
+      "\"vintner is to vineyard\" is a worker and the place of work, which is not the relation GEOLOGIST and ROCKS stand in",
+      "\"hamper is to laundry\" is a container and what is kept inside it, which is not the relation GEOLOGIST and ROCKS stand in"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (preliminary version : the finished work; specialist : the subject studied; impairment : the faculty it disables; worker : the place of work; container : what is kept in it); each is a tight, nameable relation of comparable specificity",
+    "relation": "specialist : the subject studied",
+    "option_relations": [
+      "preliminary version : the finished work",
+      "specialist : the subject studied",
+      "impairment : the faculty it disables",
+      "worker : the place of work",
+      "container : what is kept in it"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each of the five pairs is a true and tight relation that could be the intended one under some hidden stem; the keyed family \"specialist : the subject studied\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing"
+  }
+]

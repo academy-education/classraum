@@ -1,0 +1,632 @@
+[
+ {
+  "id": "IM12-01",
+  "domain": "Math",
+  "subskill": "counting all whole-number factors of a number from its prime factorization",
+  "difficulty": "medium",
+  "prompt": "How many whole-number factors does 60 have?",
+  "choices": [
+   "3",
+   "6",
+   "10",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "Writing 60 as 2 x 2 x 3 x 5, a factor is built by taking the 2 either zero, one or two times, the 3 either zero or one time, and the 5 either zero or one time, so there are 3 x 2 x 2 = 12 factors: 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30 and 60. \"3\" counts only the different primes that appear, 2, 3 and 5. \"6\" counts the pairs of factors whose product is 60, 1 x 60, 2 x 30, 3 x 20, 4 x 15, 5 x 12 and 6 x 10, which is half the number of factors. \"10\" comes from leaving out 1 and 60 on the grounds that they are not proper factors, which the question does not ask for.",
+  "solve": "let c=0; for(let d=1;d<=60;d++) if(60%d===0) c++; return c;",
+  "distractor_solve": {
+   "3": "return new Set([2,2,3,5]).size;",
+   "6": "let c=0; for(let d=1;d*d<=60;d++) if(60%d===0) c++; return c;",
+   "10": "let c=0; for(let d=1;d<=60;d++) if(60%d===0) c++; return c-2;"
+  }
+ },
+ {
+  "id": "IM12-02",
+  "domain": "Math",
+  "subskill": "order of operations across a subtraction and a division of fractions",
+  "difficulty": "hard",
+  "prompt": "What is the value of 3/5 - 2/3 divided by 2?",
+  "choices": [
+   "-1/30",
+   "1",
+   "4/15",
+   "14/15"
+  ],
+  "correct_answer": "4/15",
+  "explanation": "Division comes before subtraction, so the 2/3 is halved first: 2/3 divided by 2 is 1/3, and 3/5 - 1/3 = 9/15 - 5/15 = 4/15. \"-1/30\" comes from working strictly left to right, subtracting first to get -1/15 and then halving that. \"14/15\" comes from adding the halved fraction instead of subtracting it, 3/5 + 1/3. \"1\" comes from subtracting across the bars, treating 3/5 - 1/3 as (3 - 1)/(5 - 3).",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; let n=3*3-1*5, d=15; const k=g(Math.abs(n),d); return (n/k)+\"/\"+(d/k);",
+  "distractor_solve": {
+   "-1/30": "const g=(a,b)=>b?g(b,a%b):a; let n=3*3-2*5, d=15*2; const k=g(Math.abs(n),d); return (n/k)+\"/\"+(d/k);",
+   "14/15": "const g=(a,b)=>b?g(b,a%b):a; let n=3*3+1*5, d=15; const k=g(Math.abs(n),d); return (n/k)+\"/\"+(d/k);",
+   "1": "return (3-1)/(5-3);"
+  }
+ },
+ {
+  "id": "IM12-03",
+  "domain": "Math",
+  "subskill": "order of operations with signed integers and a subtracted negative",
+  "difficulty": "easy",
+  "prompt": "What is the value of -8 + 3 x (-4) - (-6)?",
+  "choices": [
+   "-26",
+   "-14",
+   "10",
+   "26"
+  ],
+  "correct_answer": "-14",
+  "explanation": "The multiplication is done first: 3 x (-4) = -12, so the expression is -8 - 12 + 6 = -14. \"26\" comes from working strictly left to right, -8 + 3 = -5, then -5 x (-4) = 20, then 20 + 6. \"-26\" comes from reading the last term as a subtraction of 6 rather than of -6, giving -8 - 12 - 6. \"10\" comes from treating 3 x (-4) as +12, giving -8 + 12 + 6.",
+  "solve": "return -8 + 3*(-4) - (-6);",
+  "distractor_solve": {
+   "26": "return (-8+3)*(-4) + 6;",
+   "-26": "return -8 - 12 - 6;",
+   "10": "return -8 + 12 + 6;"
+  }
+ },
+ {
+  "id": "IM12-04",
+  "domain": "Math",
+  "subskill": "a percent decrease followed by a percent increase on the reduced amount",
+  "difficulty": "medium",
+  "prompt": "A jacket with a list price of $80.00 is marked down 15 percent. A sales tax of 5 percent is then charged on the reduced price. What does a customer pay for the jacket?",
+  "choices": [
+   "$64.60",
+   "$68.00",
+   "$71.40",
+   "$72.00"
+  ],
+  "correct_answer": "$71.40",
+  "explanation": "The markdown leaves 85 percent of $80.00, which is $68.00, and the 5 percent tax on that reduced price adds $3.40, for $71.40. \"$68.00\" is the reduced price before the tax is charged. \"$72.00\" comes from combining the two percents into a single 10 percent decrease and taking 90 percent of the list price. \"$64.60\" comes from taking the 5 percent off the reduced price instead of adding it on, 68.00 x 0.95.",
+  "solve": "return \"$\" + (80*0.85*1.05).toFixed(2);",
+  "distractor_solve": {
+   "$68.00": "return \"$\" + (80*0.85).toFixed(2);",
+   "$72.00": "return \"$\" + (80*0.90).toFixed(2);",
+   "$64.60": "return \"$\" + (80*0.85*0.95).toFixed(2);"
+  }
+ },
+ {
+  "id": "IM12-05",
+  "domain": "Math",
+  "subskill": "units digit of a large power found from the repeating cycle of units digits",
+  "difficulty": "hard",
+  "prompt": "What is the units digit of 3^35?",
+  "choices": [
+   "1",
+   "3",
+   "7",
+   "9"
+  ],
+  "correct_answer": "7",
+  "explanation": "The units digits of the powers of 3 repeat in the cycle 3, 9, 7, 1 and then start again, so the units digit depends on where 35 falls in a cycle of length 4. Since 35 = 4 x 8 + 3, the exponent lands on the third place in the cycle, which is 7. \"3\" comes from landing on the first place, that is from taking the remainder as 1. \"9\" comes from landing on the second place, taking the remainder as 2. \"1\" comes from treating 35 as a multiple of 4 and landing on the last place in the cycle.",
+  "solve": "const cyc=[3,9,7,1]; return cyc[(35-1)%4];",
+  "distractor_solve": {
+   "3": "const cyc=[3,9,7,1]; return cyc[0];",
+   "9": "const cyc=[3,9,7,1]; return cyc[1];",
+   "1": "const cyc=[3,9,7,1]; return cyc[3];"
+  }
+ },
+ {
+  "id": "IM12-06",
+  "domain": "Math",
+  "subskill": "scaling a price to a new quantity through the unit price",
+  "difficulty": "easy",
+  "prompt": "Three pounds of apples cost $7.50. At that rate, what do 8 pounds of apples cost?",
+  "choices": [
+   "$12.50",
+   "$20.00",
+   "$22.50",
+   "$60.00"
+  ],
+  "correct_answer": "$20.00",
+  "explanation": "One pound costs 7.50 / 3 = $2.50, so 8 pounds cost 8 x 2.50 = $20.00. \"$12.50\" comes from adding the 5 extra pounds to the price as dollars, 7.50 + 5. \"$22.50\" comes from multiplying the given price by the given weight, 7.50 x 3, instead of dividing to reach the unit price. \"$60.00\" comes from treating $7.50 as the price of one pound and multiplying by 8.",
+  "solve": "return \"$\" + (7.50/3*8).toFixed(2);",
+  "distractor_solve": {
+   "$12.50": "return \"$\" + (7.50 + (8-3)).toFixed(2);",
+   "$22.50": "return \"$\" + (7.50*3).toFixed(2);",
+   "$60.00": "return \"$\" + (7.50*8).toFixed(2);"
+  }
+ },
+ {
+  "id": "IM12-07",
+  "domain": "Math",
+  "subskill": "recovering the smallest of three consecutive even integers from their sum",
+  "difficulty": "medium",
+  "prompt": "The sum of three consecutive even integers is 66. What is the smallest of the three integers?",
+  "choices": [
+   "20",
+   "21",
+   "22",
+   "24"
+  ],
+  "correct_answer": "20",
+  "explanation": "Calling the smallest n, the three integers are n, n + 2 and n + 4, so 3n + 6 = 66 and n = 20; the integers are 20, 22 and 24. \"22\" is the middle integer, which is also 66 / 3, the value reached on the way to the answer. \"24\" is the largest of the three. \"21\" comes from reading the integers as consecutive rather than consecutive even, which gives 21, 22 and 23.",
+  "solve": "return (66-6)/3;",
+  "distractor_solve": {
+   "22": "return 66/3;",
+   "24": "return (66-6)/3 + 4;",
+   "21": "return (66-3)/3;"
+  }
+ },
+ {
+  "id": "IM12-08",
+  "domain": "Math",
+  "subskill": "writing a repeating decimal as a fraction in lowest terms",
+  "difficulty": "hard",
+  "prompt": "The decimal 0.363636... repeats the digits 36 without end. Written as a fraction in lowest terms, what is this number?",
+  "choices": [
+   "1/3",
+   "4/11",
+   "9/25",
+   "11/30"
+  ],
+  "correct_answer": "4/11",
+  "explanation": "A two-digit block that repeats from the decimal point is that block over 99, so the number is 36/99, and dividing both parts by 9 gives 4/11. \"9/25\" comes from treating the decimal as the terminating 0.36 and writing 36/100 in lowest terms. \"11/30\" comes from letting only the 6 repeat, that is from writing 0.3666... as (36 - 3)/90. \"1/3\" comes from rounding the decimal to 0.33 before converting.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=36,d=99,k=g(n,d); return (n/k)+\"/\"+(d/k);",
+  "distractor_solve": {
+   "9/25": "const g=(a,b)=>b?g(b,a%b):a; const n=36,d=100,k=g(n,d); return (n/k)+\"/\"+(d/k);",
+   "11/30": "const g=(a,b)=>b?g(b,a%b):a; const n=36-3,d=90,k=g(n,d); return (n/k)+\"/\"+(d/k);",
+   "1/3": "const g=(a,b)=>b?g(b,a%b):a; const n=33,d=99,k=g(n,d); return (n/k)+\"/\"+(d/k);"
+  }
+ },
+ {
+  "id": "IM12-09",
+  "domain": "Math",
+  "subskill": "solving a linear equation that requires distributing over a parenthesis",
+  "difficulty": "medium",
+  "prompt": "If 2(x + 3) - 4 = 3x - 7, what is the value of x?",
+  "choices": [
+   "4",
+   "6",
+   "9",
+   "17"
+  ],
+  "correct_answer": "9",
+  "explanation": "Distributing gives 2x + 6 - 4 = 2x + 2, so 2x + 2 = 3x - 7, and subtracting 2x from both sides gives 2 = x - 7, so x = 9. \"6\" comes from multiplying only the x by the 2, leaving 2x + 3 - 4 = 3x - 7. \"17\" comes from moving the -4 across the equals sign by subtracting it, giving 2(x + 3) = 3x - 11, that is 2x + 6 = 3x - 11. \"4\" comes from dividing the whole left side by 2, as though the -4 were inside the parenthesis, giving x + 1 = 3x - 7.",
+  "solve": "return 6-4+7;",
+  "distractor_solve": {
+   "6": "return 3-4+7;",
+   "17": "return 6+11;",
+   "4": "return (7+1)/2;"
+  }
+ },
+ {
+  "id": "IM12-10",
+  "domain": "Math",
+  "subskill": "evaluating an expression with a negative value substituted into a squared term",
+  "difficulty": "easy",
+  "prompt": "If a = -2 and b = 5, what is the value of a^2 - 3b?",
+  "choices": [
+   "-19",
+   "-11",
+   "-4",
+   "-1"
+  ],
+  "correct_answer": "-11",
+  "explanation": "Squaring -2 gives 4, and 3b is 15, so the value is 4 - 15 = -11. \"-19\" comes from reading a^2 as -4, that is from squaring the 2 and keeping the minus sign outside. \"-4\" comes from reading 3b as 3 + 5 = 8, giving 4 - 8. \"-1\" comes from dropping the 3 altogether and computing 4 - 5.",
+  "solve": "const a=-2,b=5; return a*a - 3*b;",
+  "distractor_solve": {
+   "-19": "const b=5; return -(2*2) - 3*b;",
+   "-4": "const a=-2,b=5; return a*a - (3+b);",
+   "-1": "const a=-2,b=5; return a*a - b;"
+  }
+ },
+ {
+  "id": "IM12-11",
+  "domain": "Math",
+  "subskill": "solving a linear inequality in which dividing by a negative reverses the direction",
+  "difficulty": "medium",
+  "prompt": "If 5 - 2x > 11, which of the following describes every value of x that makes the statement true?",
+  "choices": [
+   "x < -3",
+   "x < 3",
+   "x > -3",
+   "x > 8"
+  ],
+  "correct_answer": "x < -3",
+  "explanation": "Subtracting 5 from both sides gives -2x > 6, and dividing both sides by -2 reverses the direction of the inequality, so x < -3. Checking with x = -4: 5 - 2(-4) = 13, which is greater than 11. \"x > -3\" keeps the direction unchanged when dividing by the negative. \"x < 3\" reverses the direction correctly but divides 6 by 2 rather than by -2, losing the sign. \"x > 8\" comes from adding 5 to 11 instead of subtracting it from both sides, giving 2x > 16.",
+  "solve": "const sat=n=>5-2*n>11; const F={\"x < -3\":n=>n<-3,\"x < 3\":n=>n<3,\"x > -3\":n=>n>-3,\"x > 8\":n=>n>8}; const hits=Object.keys(F).filter(k=>{for(let n=-30;n<=30;n++) if(F[k](n)!==sat(n)) return false; return true;}); if(hits.length!==1) throw new Error('ambiguous: '+hits.length); return hits[0];",
+  "distractor_solve": {
+   "x > -3": "const wrong=n=>n>6/-2; const F={\"x < -3\":n=>n<-3,\"x < 3\":n=>n<3,\"x > -3\":n=>n>-3,\"x > 8\":n=>n>8}; const hits=Object.keys(F).filter(k=>{for(let n=-30;n<=30;n++) if(F[k](n)!==wrong(n)) return false; return true;}); if(hits.length!==1) throw new Error('ambiguous'); return hits[0];",
+   "x < 3": "const wrong=n=>n<6/2; const F={\"x < -3\":n=>n<-3,\"x < 3\":n=>n<3,\"x > -3\":n=>n>-3,\"x > 8\":n=>n>8}; const hits=Object.keys(F).filter(k=>{for(let n=-30;n<=30;n++) if(F[k](n)!==wrong(n)) return false; return true;}); if(hits.length!==1) throw new Error('ambiguous'); return hits[0];",
+   "x > 8": "const wrong=n=>2*n>5+11; const F={\"x < -3\":n=>n<-3,\"x < 3\":n=>n<3,\"x > -3\":n=>n>-3,\"x > 8\":n=>n>8}; const hits=Object.keys(F).filter(k=>{for(let n=-30;n<=30;n++) if(F[k](n)!==wrong(n)) return false; return true;}); if(hits.length!==1) throw new Error('ambiguous'); return hits[0];"
+  }
+ },
+ {
+  "id": "IM12-12",
+  "domain": "Math",
+  "subskill": "solving a system by substitution and reporting the variable that was not solved for first",
+  "difficulty": "medium",
+  "prompt": "If 3x + y = 29 and y = x + 5, what is the value of y?",
+  "choices": [
+   "1",
+   "6",
+   "11",
+   "24"
+  ],
+  "correct_answer": "11",
+  "explanation": "Substituting x + 5 for y gives 3x + x + 5 = 29, so 4x = 24 and x = 6, and then y = 6 + 5 = 11. \"6\" is the value of x, the variable found on the way to the answer. \"1\" comes from reading the second equation as y = x - 5 and subtracting instead of adding. \"24\" comes from subtracting the 5 from 29 and reporting that difference, which is 4x rather than y.",
+  "solve": "const x=(29-5)/4; return x+5;",
+  "distractor_solve": {
+   "6": "return (29-5)/4;",
+   "1": "const x=(29-5)/4; return x-5;",
+   "24": "return 29-5;"
+  }
+ },
+ {
+  "id": "IM12-13",
+  "domain": "Math",
+  "subskill": "evaluating a grouped expression without solving for the variable inside it",
+  "difficulty": "medium",
+  "prompt": "If 5(2x - 3) = 35, what is the value of 2x - 3?",
+  "choices": [
+   "5",
+   "7",
+   "10",
+   "38"
+  ],
+  "correct_answer": "7",
+  "explanation": "The quantity 2x - 3 is multiplied by 5 to give 35, so 2x - 3 = 35 / 5 = 7. \"5\" is the value of x, found by continuing on from 2x - 3 = 7 to 2x = 10 and x = 5, which is one step further than the question asks. \"10\" is the value of 2x, the step in between. \"38\" comes from adding the 3 back to 35 without ever dividing by the 5, that is from reading the equation as 5(2x) - 3 = 35 and reporting 35 + 3.",
+  "solve": "return 35/5;",
+  "distractor_solve": {
+   "5": "return (35/5+3)/2;",
+   "10": "return 35/5+3;",
+   "38": "return 35+3;"
+  }
+ },
+ {
+  "id": "IM12-14",
+  "domain": "Math",
+  "subskill": "translating a two-sentence relationship into an equation and reporting the smaller quantity",
+  "difficulty": "hard",
+  "prompt": "One number is 4 more than 3 times a second number. The two numbers have a sum of 40. What is the smaller of the two numbers?",
+  "choices": [
+   "7",
+   "9",
+   "31",
+   "36"
+  ],
+  "correct_answer": "9",
+  "explanation": "Calling the second number n, the first is 3n + 4, so n + 3n + 4 = 40, giving 4n = 36 and n = 9; the two numbers are 9 and 31, and 9 is the smaller. \"31\" is the larger of the two numbers. \"36\" is the value of 4n, the total once the 4 has been removed, reported before dividing by 4. \"7\" comes from reading the first sentence as 3 times a number that is 4 more, that is as 3(n + 4), which gives n + 3n + 12 = 40.",
+  "solve": "return (40-4)/4;",
+  "distractor_solve": {
+   "31": "const n=(40-4)/4; return 3*n+4;",
+   "36": "return 40-4;",
+   "7": "return (40-12)/4;"
+  }
+ },
+ {
+  "id": "IM12-15",
+  "domain": "Math",
+  "subskill": "area of a border of uniform width surrounding a rectangle",
+  "difficulty": "medium",
+  "prompt": "A rectangular garden measures 12 feet by 16 feet. A walkway 2 feet wide is built all the way around the outside of the garden. What is the area of the walkway, in square feet?",
+  "choices": [
+   "60",
+   "112",
+   "128",
+   "320"
+  ],
+  "correct_answer": "128",
+  "explanation": "The walkway adds 2 feet on each of the two opposite sides, so the outer rectangle measures 16 feet by 20 feet and has an area of 320 square feet; taking away the garden's 12 x 16 = 192 square feet leaves 128 square feet of walkway. \"320\" is the area of the outer rectangle, counted before the garden is taken away. \"60\" comes from adding 2 feet to each dimension rather than 4, using 14 by 18 as the outer rectangle. \"112\" comes from multiplying the garden's perimeter of 56 feet by the 2-foot width, which leaves out the four corner squares.",
+  "solve": "return (12+4)*(16+4) - 12*16;",
+  "distractor_solve": {
+   "320": "return (12+4)*(16+4);",
+   "60": "return (12+2)*(16+2) - 12*16;",
+   "112": "return 2*(12+16)*2;"
+  }
+ },
+ {
+  "id": "IM12-16",
+  "domain": "Math",
+  "subskill": "finding a leg of a right triangle from the hypotenuse and the other leg",
+  "difficulty": "medium",
+  "prompt": "A ladder 25 feet long leans against a vertical wall, and the foot of the ladder is 7 feet from the base of the wall. How far up the wall, in feet, does the top of the ladder reach?",
+  "choices": [
+   "18",
+   "20",
+   "24",
+   "26"
+  ],
+  "correct_answer": "24",
+  "explanation": "The ladder is the hypotenuse, so the height h satisfies h^2 + 7^2 = 25^2, giving h^2 = 625 - 49 = 576 and h = 24. \"26\" comes from adding the squares instead of subtracting them, treating the ladder as a leg, and rounding the resulting 25.96 to the nearest foot. \"18\" comes from subtracting the lengths themselves rather than their squares, 25 - 7. \"20\" comes from assuming the familiar 15-20-25 right triangle because the ladder is 25 feet long, which ignores the 7-foot distance the question gives.",
+  "solve": "return Math.sqrt(25*25 - 7*7);",
+  "distractor_solve": {
+   "26": "return Math.round(Math.sqrt(25*25 + 7*7));",
+   "18": "return 25-7;",
+   "20": "return 25*(4/5);"
+  }
+ },
+ {
+  "id": "IM12-17",
+  "domain": "Math",
+  "subskill": "surface area of a cube recovered from its volume",
+  "difficulty": "medium",
+  "prompt": "A cube has a volume of 125 cubic centimeters. What is the total surface area of the cube, in square centimeters?",
+  "choices": [
+   "20",
+   "25",
+   "100",
+   "150"
+  ],
+  "correct_answer": "150",
+  "explanation": "The edge is the cube root of 125, which is 5 centimeters, so each of the six faces has an area of 25 square centimeters and the total surface area is 6 x 25 = 150. \"25\" is the area of a single face. \"100\" counts only the four side faces and leaves out the top and the bottom. \"20\" comes from multiplying the edge by the four side faces, 4 x 5, instead of multiplying the area of a face by the number of faces.",
+  "solve": "const s=Math.cbrt(125); return 6*s*s;",
+  "distractor_solve": {
+   "25": "const s=Math.cbrt(125); return s*s;",
+   "100": "const s=Math.cbrt(125); return 4*s*s;",
+   "20": "const s=Math.cbrt(125); return 4*s;"
+  }
+ },
+ {
+  "id": "IM12-18",
+  "domain": "Math",
+  "subskill": "distance between two points in the coordinate plane",
+  "difficulty": "easy",
+  "prompt": "In the coordinate plane, what is the distance between the points (-3, 2) and (5, 17)?",
+  "choices": [
+   "7",
+   "15",
+   "17",
+   "23"
+  ],
+  "correct_answer": "17",
+  "explanation": "The horizontal change is 5 - (-3) = 8 and the vertical change is 17 - 2 = 15, so the distance is the square root of 8^2 + 15^2 = 289, which is 17. \"23\" comes from adding the two changes, 8 + 15, instead of combining them through the square root. \"7\" comes from subtracting them, 15 - 8. \"15\" is the vertical change on its own, reported as though the points lay on the same vertical line.",
+  "solve": "return Math.sqrt(Math.pow(5-(-3),2)+Math.pow(17-2,2));",
+  "distractor_solve": {
+   "23": "return (5-(-3))+(17-2);",
+   "7": "return (17-2)-(5-(-3));",
+   "15": "return 17-2;"
+  }
+ },
+ {
+  "id": "IM12-19",
+  "domain": "Math",
+  "subskill": "side of a square recovered from a stated difference between two squares' areas",
+  "difficulty": "hard",
+  "prompt": "The area of one square is 96 square centimeters greater than the area of a second square whose side is 4 centimeters shorter. What is the length, in centimeters, of the side of the smaller square?",
+  "choices": [
+   "7",
+   "10",
+   "12",
+   "14"
+  ],
+  "correct_answer": "10",
+  "explanation": "Calling the larger side s, the smaller square has side s - 4, so s^2 - (s - 4)^2 = 96. Expanding gives 8s - 16 = 96, so 8s = 112, s = 14, and the smaller side is 14 - 4 = 10; checking, 14^2 - 10^2 = 196 - 100 = 96. \"14\" is the side of the larger square, the value solved for on the way to the answer. \"12\" comes from dropping the -16 and solving 8s = 96. \"7\" comes from dividing the 112 by the 16 rather than by the 8, that is by the constant term instead of by the coefficient.",
+  "solve": "return (96+16)/8 - 4;",
+  "distractor_solve": {
+   "14": "return (96+16)/8;",
+   "12": "return 96/8;",
+   "7": "return (96+16)/16;"
+  }
+ },
+ {
+  "id": "IM12-20",
+  "domain": "Math",
+  "subskill": "total of a data set recovered from a mean before and after a value is added",
+  "difficulty": "medium",
+  "prompt": "The mean of six numbers is 15. A seventh number is added to the group, and the mean of all seven numbers is 16. What is the total of all seven numbers?",
+  "choices": [
+   "90",
+   "96",
+   "105",
+   "112"
+  ],
+  "correct_answer": "112",
+  "explanation": "Seven numbers with a mean of 16 total 7 x 16 = 112. \"90\" is the total of the original six numbers, 6 x 15, which is the total before the seventh number joins them. \"105\" comes from keeping the old mean of 15 for all seven numbers, 7 x 15. \"96\" comes from applying the new mean of 16 to the original six numbers, 6 x 16, so that the seventh number is never counted.",
+  "solve": "return 7*16;",
+  "distractor_solve": {
+   "90": "return 6*15;",
+   "105": "return 7*15;",
+   "96": "return 6*16;"
+  }
+ },
+ {
+  "id": "IM12-21",
+  "domain": "Math",
+  "subskill": "probability of two successes drawn without replacement",
+  "difficulty": "medium",
+  "prompt": "A bag holds 4 red marbles and 6 blue marbles. Two marbles are drawn one after the other, and the first is not put back. What is the probability that both marbles are red?",
+  "choices": [
+   "2/15",
+   "4/25",
+   "8/45",
+   "2/5"
+  ],
+  "correct_answer": "2/15",
+  "explanation": "The first marble is red with probability 4/10, and if it is, 3 of the remaining 9 marbles are red, so the probability of red twice is (4/10) x (3/9) = 12/90 = 2/15. \"4/25\" comes from putting the first marble back, (4/10) x (4/10). \"8/45\" comes from reducing the total to 9 but leaving the red count at 4, (4/10) x (4/9). \"2/5\" is the probability that a single marble drawn is red, reported without the second draw.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=4*3,d=10*9,k=g(n,d); return (n/k)+\"/\"+(d/k);",
+  "distractor_solve": {
+   "4/25": "const g=(a,b)=>b?g(b,a%b):a; const n=4*4,d=10*10,k=g(n,d); return (n/k)+\"/\"+(d/k);",
+   "8/45": "const g=(a,b)=>b?g(b,a%b):a; const n=4*4,d=10*9,k=g(n,d); return (n/k)+\"/\"+(d/k);",
+   "2/5": "const g=(a,b)=>b?g(b,a%b):a; const n=4,d=10,k=g(n,d); return (n/k)+\"/\"+(d/k);"
+  }
+ },
+ {
+  "id": "IM12-22",
+  "domain": "Math",
+  "subskill": "mean of a data set presented as counts of each value",
+  "difficulty": "medium",
+  "prompt": "In a class of 20 students, 8 students earned 3 points on a quiz, 5 earned 4 points, 4 earned 5 points, and 3 earned 6 points. What is the mean number of points earned by a student in the class?",
+  "choices": [
+   "3",
+   "4",
+   "4.1",
+   "4.5"
+  ],
+  "correct_answer": "4.1",
+  "explanation": "The class earned 8(3) + 5(4) + 4(5) + 3(6) = 24 + 20 + 20 + 18 = 82 points in total, and 82 / 20 = 4.1 points per student. \"4.5\" comes from averaging the four different point values, 3, 4, 5 and 6, without weighting each by how many students earned it. \"3\" is the value earned by the most students, which is the mode. \"4\" is the value earned by the 10th and 11th students in order, which is the median.",
+  "solve": "const T=[[3,8],[4,5],[5,4],[6,3]]; return T.reduce((a,x)=>a+x[0]*x[1],0)/T.reduce((a,x)=>a+x[1],0);",
+  "distractor_solve": {
+   "4.5": "const V=[3,4,5,6]; return V.reduce((a,x)=>a+x,0)/V.length;",
+   "3": "const T=[[3,8],[4,5],[5,4],[6,3]]; return T.reduce((a,x)=>x[1]>a[1]?x:a)[0];",
+   "4": "const T=[[3,8],[4,5],[5,4],[6,3]]; const d=[]; for(const [v,n] of T) for(let i=0;i<n;i++) d.push(v); return (d[9]+d[10])/2;"
+  }
+ },
+ {
+  "id": "IM12-23",
+  "domain": "Math",
+  "subskill": "counting arrangements when no item may be reused",
+  "difficulty": "hard",
+  "prompt": "Using only the digits 1, 2, 3, 4 and 5, how many different three-digit whole numbers can be written if no digit may be used more than once in a number?",
+  "choices": [
+   "10",
+   "15",
+   "60",
+   "125"
+  ],
+  "correct_answer": "60",
+  "explanation": "There are 5 choices for the hundreds digit, then 4 for the tens digit because one digit is used up, then 3 for the units digit, so there are 5 x 4 x 3 = 60 numbers. \"125\" comes from allowing digits to repeat, 5 x 5 x 5. \"10\" counts the groups of three digits without regard to the order they are written in, which treats 123 and 321 as the same number. \"15\" comes from multiplying the 5 available digits by the 3 places rather than multiplying the choices place by place.",
+  "solve": "let c=0; for(let a=1;a<=5;a++)for(let b=1;b<=5;b++)for(let d=1;d<=5;d++) if(a!==b&&b!==d&&a!==d) c++; return c;",
+  "distractor_solve": {
+   "125": "return 5*5*5;",
+   "10": "let c=0; for(let a=1;a<=5;a++)for(let b=a+1;b<=5;b++)for(let d=b+1;d<=5;d++) c++; return c;",
+   "15": "return 5*3;"
+  }
+ },
+ {
+  "id": "IM12-24",
+  "domain": "Math",
+  "subskill": "finding a missing data value from a required mean",
+  "difficulty": "medium",
+  "prompt": "The five numbers 4, 7, 7, 10 and x have a mean of 8. What is the value of x?",
+  "choices": [
+   "7",
+   "8",
+   "12",
+   "40"
+  ],
+  "correct_answer": "12",
+  "explanation": "Five numbers with a mean of 8 total 5 x 8 = 40, and the four known numbers total 4 + 7 + 7 + 10 = 28, so x = 40 - 28 = 12. \"40\" is the total the five numbers must reach, the step before the four known numbers are taken away. \"7\" is the mean of the four known numbers, 28 / 4. \"8\" is the mean of the five numbers, which is given rather than asked for.",
+  "solve": "return 5*8 - (4+7+7+10);",
+  "distractor_solve": {
+   "40": "return 5*8;",
+   "7": "return (4+7+7+10)/4;",
+   "8": "return 8;"
+  }
+ },
+ {
+  "id": "IM12-25",
+  "domain": "Math",
+  "subskill": "weighted average where the two weights are unequal percents",
+  "difficulty": "hard",
+  "prompt": "In one course a student's grade is 40 percent of her homework average and 60 percent of her test average. Her homework average is 95 and her test average is 80. What is her grade in the course?",
+  "choices": [
+   "80",
+   "86",
+   "87.5",
+   "89"
+  ],
+  "correct_answer": "86",
+  "explanation": "The homework contributes 0.40 x 95 = 38 and the tests contribute 0.60 x 80 = 48, and 38 + 48 = 86. \"87.5\" comes from averaging 95 and 80 evenly, which ignores that the two parts are not weighted the same. \"89\" comes from attaching each weight to the wrong average, 0.60 x 95 + 0.40 x 80. \"80\" is the test average on its own, chosen on the reasoning that tests carry the larger share.",
+  "solve": "return 0.40*95 + 0.60*80;",
+  "distractor_solve": {
+   "87.5": "return (95+80)/2;",
+   "89": "return 0.60*95 + 0.40*80;",
+   "80": "return 80;"
+  }
+ },
+ {
+  "id": "IM12-26",
+  "domain": "Math",
+  "subskill": "area of a circle given its diameter, with a fractional value for pi",
+  "difficulty": "medium",
+  "prompt": "A circular garden has a diameter of 14 feet. Using 22/7 for pi, what is the area of the garden, in square feet?",
+  "choices": [
+   "22",
+   "44",
+   "154",
+   "616"
+  ],
+  "correct_answer": "154",
+  "explanation": "The radius is half the diameter, 7 feet, so the area is (22/7) x 7 x 7 = 154 square feet. \"44\" is the circumference of the garden, (22/7) x 14, which measures the distance around it rather than the surface inside. \"616\" comes from using the 14-foot diameter as the radius, (22/7) x 14 x 14. \"22\" comes from multiplying the value of pi by the radius only and never squaring, (22/7) x 7.",
+  "solve": "return (22/7)*7*7;",
+  "distractor_solve": {
+   "44": "return (22/7)*14;",
+   "616": "return (22/7)*14*14;",
+   "22": "return (22/7)*7;"
+  }
+ },
+ {
+  "id": "IM12-27",
+  "domain": "Math",
+  "subskill": "reading a recursive sequence rule and stopping at the requested term",
+  "difficulty": "hard",
+  "prompt": "The first term of a sequence is 3, and every term after the first is 1 less than twice the term before it. What is the fourth term of the sequence?",
+  "choices": [
+   "9",
+   "17",
+   "24",
+   "33"
+  ],
+  "correct_answer": "17",
+  "explanation": "The terms are 3, then 2(3) - 1 = 5, then 2(5) - 1 = 9, then 2(9) - 1 = 17, so the fourth term is 17. \"33\" is the fifth term, 2(17) - 1, which is one step past the one asked for. \"9\" is the third term, one step short. \"24\" comes from doubling three times and never subtracting the 1, 3 x 2 x 2 x 2.",
+  "solve": "let t=3; for(let i=1;i<4;i++) t=2*t-1; return t;",
+  "distractor_solve": {
+   "33": "let t=3; for(let i=1;i<5;i++) t=2*t-1; return t;",
+   "9": "let t=3; for(let i=1;i<3;i++) t=2*t-1; return t;",
+   "24": "return 3*Math.pow(2,3);"
+  }
+ },
+ {
+  "id": "IM12-28",
+  "domain": "Math",
+  "subskill": "taking a percent of a percent of a number",
+  "difficulty": "medium",
+  "prompt": "What number is 30 percent of 40 percent of 500?",
+  "choices": [
+   "12",
+   "60",
+   "150",
+   "200"
+  ],
+  "correct_answer": "60",
+  "explanation": "Forty percent of 500 is 200, and 30 percent of 200 is 60. \"200\" is 40 percent of 500, the inner value, reported before the 30 percent is taken. \"150\" is 30 percent of 500, which applies only the outer percent. \"12\" comes from combining the two percents into 12 percent and then reporting 12 rather than taking 12 percent of 500.",
+  "solve": "return 0.30*(0.40*500);",
+  "distractor_solve": {
+   "200": "return 0.40*500;",
+   "150": "return 0.30*500;",
+   "12": "return 30*40/100;"
+  }
+ },
+ {
+  "id": "IM12-29",
+  "domain": "Math",
+  "subskill": "combined working time from two individual rates",
+  "difficulty": "medium",
+  "prompt": "One pump can empty a full tank in 6 hours. A second pump can empty the same full tank in 3 hours. If both pumps run at the same time, how many hours do they take to empty the full tank?",
+  "choices": [
+   "2",
+   "4.5",
+   "9",
+   "18"
+  ],
+  "correct_answer": "2",
+  "explanation": "In one hour the first pump empties 1/6 of the tank and the second empties 1/3, so together they empty 1/6 + 1/3 = 1/2 of the tank each hour and need 2 hours for the whole tank. \"9\" comes from adding the two times, 6 + 3, which is longer than either pump takes alone. \"4.5\" comes from averaging the two times, (6 + 3) / 2, which is also longer than the faster pump takes by itself. \"18\" comes from multiplying the two times, 6 x 3, as though the pumps slowed each other down.",
+  "solve": "return 1/(1/6 + 1/3);",
+  "distractor_solve": {
+   "9": "return 6+3;",
+   "4.5": "return (6+3)/2;",
+   "18": "return 6*3;"
+  }
+ },
+ {
+  "id": "IM12-30",
+  "domain": "Math",
+  "subskill": "elapsed time across noon where the minutes require regrouping",
+  "difficulty": "easy",
+  "prompt": "A bus leaves a station at 9:40 a.m. and arrives at its destination at 1:15 p.m. the same day. How long does the trip take?",
+  "choices": [
+   "3 hours 25 minutes",
+   "3 hours 35 minutes",
+   "4 hours 25 minutes",
+   "4 hours 35 minutes"
+  ],
+  "correct_answer": "3 hours 35 minutes",
+  "explanation": "From 9:40 a.m. to 12:40 p.m. is 3 hours, and from 12:40 p.m. to 1:15 p.m. is a further 35 minutes, so the trip takes 3 hours 35 minutes. \"4 hours 35 minutes\" comes from writing the arrival as 13:15, taking the hours as 13 - 9 = 4, and then borrowing 60 minutes for the subtraction without reducing that hour count. \"3 hours 25 minutes\" comes from reducing the hour count correctly but subtracting the minutes in the wrong order, 40 - 15. \"4 hours 25 minutes\" comes from making both of those slips at once.",
+  "solve": "const t=(13*60+15)-(9*60+40); return Math.floor(t/60)+\" hours \"+(t%60)+\" minutes\";",
+  "distractor_solve": {
+   "4 hours 35 minutes": "const h=13-9, m=(60+15)-40; return h+\" hours \"+m+\" minutes\";",
+   "3 hours 25 minutes": "const h=13-9-1, m=40-15; return h+\" hours \"+m+\" minutes\";",
+   "4 hours 25 minutes": "const h=13-9, m=40-15; return h+\" hours \"+m+\" minutes\";"
+  }
+ }
+]

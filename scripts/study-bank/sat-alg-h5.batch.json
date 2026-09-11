@@ -1,0 +1,506 @@
+[
+  {
+    "id": "ALG-H5-01",
+    "domain": "Algebra",
+    "subskill": "the infinitely-many-solutions condition, then combining the two constants it pins",
+    "difficulty": "hard",
+    "prompt": "In the system of equations 3x - 5y = 12 and ax - 15y = b, a and b are constants. If the system has infinitely many solutions, what is the value of a + b?",
+    "choices": [
+      "21",
+      "36",
+      "39",
+      "45"
+    ],
+    "correct_answer": "45",
+    "explanation": "Two linear equations have infinitely many solutions exactly when one is a constant multiple of the other, coefficients and constant alike. The y-coefficients fix the multiple: -15 divided by -5 is 3. Every part of the first equation must therefore be scaled by 3, so a = 3 times 3 = 9 and b = 3 times 12 = 36, and a + b = 45. \"36\" is b on its own, correct as far as it goes but only half of what the question asks for. \"21\" scales the x-coefficient to 9 but leaves the constant unscaled at 12, which would make the second equation parallel to the first rather than identical to it. \"39\" scales the constant correctly to 36 but copies the first equation's x-coefficient 3 straight into a.",
+    "solve": "var s = 15 / 5;\nreturn 3 * s + 12 * s;",
+    "distractor_solve": {
+      "21": "var s = 15 / 5;\nreturn 3 * s + 12;",
+      "36": "var s = 15 / 5;\nreturn 12 * s;",
+      "39": "var s = 15 / 5;\nreturn 3 + 12 * s;"
+    }
+  },
+  {
+    "id": "ALG-H5-02",
+    "domain": "Algebra",
+    "subskill": "two linear cost models compared by a strict inequality with a whole-number answer",
+    "difficulty": "hard",
+    "prompt": "Plan A charges a one-time fee of 240 dollars plus 12 dollars for each session. Plan B charges no fee and 27 dollars for each session. What is the least number of sessions for which Plan A's total cost is less than Plan B's total cost?",
+    "choices": [
+      "7",
+      "9",
+      "16",
+      "17"
+    ],
+    "correct_answer": "17",
+    "explanation": "Plan A costs 240 + 12n dollars for n sessions and Plan B costs 27n dollars, so Plan A is cheaper when 240 + 12n is less than 27n, that is when 240 is less than 15n, that is when n is greater than 16. The least whole number greater than 16 is 17. \"16\" is the session count at which the two plans cost the same, 432 dollars each, so Plan A is not yet cheaper there. \"9\" divides the 240-dollar fee by Plan B's rate alone and rounds up, which ignores that Plan A keeps charging 12 dollars a session while the fee is being made up. \"7\" divides the fee by the sum of the two rates, 39, instead of by the 15-dollar gap between them.",
+    "solve": "return Math.floor(240 / (27 - 12)) + 1;",
+    "distractor_solve": {
+      "7": "return Math.ceil(240 / (27 + 12));",
+      "9": "return Math.ceil(240 / 27);",
+      "16": "return 240 / (27 - 12);"
+    }
+  },
+  {
+    "id": "ALG-H5-03",
+    "domain": "Algebra",
+    "subskill": "rate of change from two points, then evaluation at a third x-value",
+    "difficulty": "medium",
+    "prompt": "A line in the xy-plane passes through the points (-3, 14) and (5, -10). What is the y-coordinate of the point on this line whose x-coordinate is 2?",
+    "choices": [
+      "-16",
+      "-1",
+      "8",
+      "29"
+    ],
+    "correct_answer": "-1",
+    "explanation": "The rate of change is (-10 - 14) divided by (5 - (-3)), which is -24 over 8, or -3 per unit. From (-3, 14) the point with x = 2 is 5 units to the right, so its y-coordinate is 14 + (-3)(5) = -1. \"29\" uses a rate of +3, dropping the sign of the -24 in the numerator. \"8\" uses the correct rate but multiplies it by 2, treating the target x-coordinate as the horizontal change rather than subtracting the starting x-coordinate from it. \"-16\" makes the same horizontal-change mistake while starting from the other given point, computing -10 + (-3)(2).",
+    "solve": "var m = (-10 - 14) / (5 - (-3));\nreturn 14 + m * (2 - (-3));",
+    "distractor_solve": {
+      "-16": "var m = (-10 - 14) / (5 - (-3));\nreturn -10 + m * 2;",
+      "8": "var m = (-10 - 14) / (5 - (-3));\nreturn 14 + m * 2;",
+      "29": "var m = -((-10 - 14) / (5 - (-3)));\nreturn 14 + m * (2 - (-3));"
+    }
+  },
+  {
+    "id": "ALG-H5-04",
+    "domain": "Algebra",
+    "subskill": "an absolute value equation whose two cases must be tested against the right side",
+    "difficulty": "hard",
+    "prompt": "If |x - 10| = 2x - 8, what is the value of x?",
+    "choices": [
+      "-2",
+      "6",
+      "9",
+      "18"
+    ],
+    "correct_answer": "6",
+    "explanation": "An absolute value equals 2x - 8 only where 2x - 8 is not negative, so any candidate has to be checked. The case 10 - x = 2x - 8 gives 18 = 3x, so x = 6, and there both sides equal 4. \"-2\" comes from the other case, x - 10 = 2x - 8, and it fails the check: at x = -2 the left side is 12 while the right side is -12, so it is extraneous. \"18\" is the 3x reached one line before the division. \"9\" divides that 18 by 2, the coefficient of x on the right side, rather than by the 3 that collecting the x-terms actually produces.",
+    "solve": "return (10 + 8) / 3;",
+    "distractor_solve": {
+      "-2": "return -(10 - 8);",
+      "9": "return (10 + 8) / 2;",
+      "18": "return 10 + 8;"
+    }
+  },
+  {
+    "id": "ALG-H5-05",
+    "domain": "Algebra",
+    "subskill": "a mixture system in which the percents and the total volume interact",
+    "difficulty": "hard",
+    "prompt": "A chemist combines a 25% acid solution with a 55% acid solution to make 60 liters of a solution that is 35% acid. How many liters of the 55% solution does the mixture contain?",
+    "choices": [
+      "15",
+      "20",
+      "21",
+      "24"
+    ],
+    "correct_answer": "20",
+    "explanation": "The finished mixture holds 35% of 60 liters, or 21 liters of acid. If all 60 liters were the 25% solution there would be only 15 liters of acid, so the mixture is 6 liters of acid short. Every liter of the 25% solution replaced by a liter of the 55% solution adds 0.30 of a liter of acid, so 0.30v = 6 and v = 20. \"21\" is the liters of acid in the finished mixture rather than the liters of liquid the question asks for. \"15\" is the acid the 25% solution alone would supply across all 60 liters, the starting point of the same comparison. \"24\" divides the 6-liter shortfall by 0.25, the first solution's strength, instead of by the 0.30 gap between the two strengths.",
+    "solve": "return (35 * 60 - 25 * 60) / (55 - 25);",
+    "distractor_solve": {
+      "15": "return 25 * 60 / 100;",
+      "21": "return 35 * 60 / 100;",
+      "24": "return (35 * 60 / 100 - 25 * 60 / 100) / 0.25;"
+    }
+  },
+  {
+    "id": "ALG-H5-06",
+    "domain": "Algebra",
+    "subskill": "two strict inequalities bounding an integer from both sides",
+    "difficulty": "hard",
+    "prompt": "The integer x satisfies both 5x - 8 is greater than 17 and 2x + 1 is less than 41. What is the greatest possible value of x?",
+    "choices": [
+      "6",
+      "14",
+      "19",
+      "20"
+    ],
+    "correct_answer": "19",
+    "explanation": "The first inequality gives 5x greater than 25, so x is greater than 5. The second gives 2x less than 40, so x is less than 20. Because 20 itself is excluded, the greatest integer available is 19. \"20\" is the upper bound, which the strict inequality keeps out of the solution set. \"6\" is the least integer in the same range, the other end of it. \"14\" is how many integers the range contains, from 6 through 19, rather than the largest of them.",
+    "solve": "var ub = (41 - 1) / 2;\nreturn ub - 1;",
+    "distractor_solve": {
+      "6": "var lb = (17 + 8) / 5;\nreturn lb + 1;",
+      "14": "var lb = (17 + 8) / 5;\nvar ub = (41 - 1) / 2;\nreturn (ub - 1) - (lb + 1) + 1;",
+      "20": "return (41 - 1) / 2;"
+    }
+  },
+  {
+    "id": "ALG-H5-07",
+    "domain": "Algebra",
+    "subskill": "two linear models moving in opposite directions, crossed at a whole-year boundary",
+    "difficulty": "hard",
+    "prompt": "Town A has a population of 8,400 that decreases by 120 people each year. Town B has a population of 5,600 that increases by 200 people each year. Both rates continue unchanged. After how many whole years will Town B's population first be greater than Town A's?",
+    "choices": [
+      "8",
+      "9",
+      "14",
+      "24"
+    ],
+    "correct_answer": "9",
+    "explanation": "Town B overtakes Town A when 5,600 + 200t is greater than 8,400 - 120t, that is when 320t is greater than 2,800, that is when t is greater than 8.75. The first whole year after that is 9. \"8\" rounds 8.75 down, and after 8 years Town B still trails, 7,200 to 7,440. \"14\" divides the 2,800-person gap by Town B's growth alone, ignoring that Town A is shrinking toward it at the same time. \"24\" makes the mirror-image mistake, dividing the gap by Town A's decline of 120 and ignoring Town B's growth.",
+    "solve": "return Math.floor((8400 - 5600) / (200 + 120)) + 1;",
+    "distractor_solve": {
+      "8": "return Math.floor((8400 - 5600) / (200 + 120));",
+      "14": "return (8400 - 5600) / 200;",
+      "24": "return Math.ceil((8400 - 5600) / 120);"
+    }
+  },
+  {
+    "id": "ALG-H5-08",
+    "domain": "Algebra",
+    "subskill": "distributing over a difference of two variables before substituting a value",
+    "difficulty": "medium",
+    "prompt": "If 3(a - 2b) = 4b + 9 and b = 3, what is the value of a?",
+    "choices": [
+      "7",
+      "9",
+      "13",
+      "39"
+    ],
+    "correct_answer": "13",
+    "explanation": "Distributing gives 3a - 6b = 4b + 9, so 3a = 10b + 9. With b = 3 that is 3a = 39 and a = 13. \"39\" is the 3a reached just before dividing by 3. \"9\" comes from distributing the 3 over a only, so that the equation reads 3a - 2b = 4b + 9 and 3a = 6b + 9 = 27. \"7\" keeps the correct distribution but moves the 9 across the equals sign without changing its sign, giving 3a = 10b - 9 = 21.",
+    "solve": "var b = 3;\nreturn (10 * b + 9) / 3;",
+    "distractor_solve": {
+      "7": "var b = 3;\nreturn (10 * b - 9) / 3;",
+      "9": "var b = 3;\nreturn (6 * b + 9) / 3;",
+      "39": "var b = 3;\nreturn 10 * b + 9;"
+    }
+  },
+  {
+    "id": "ALG-H5-09",
+    "domain": "Algebra",
+    "subskill": "scaling a whole linear expression, then adjusting by a constant",
+    "difficulty": "hard",
+    "prompt": "If 2x + 5y = 17, what is the value of 6x + 15y - 8?",
+    "choices": [
+      "9",
+      "27",
+      "43",
+      "51"
+    ],
+    "correct_answer": "43",
+    "explanation": "The expression 6x + 15y is exactly 3 times 2x + 5y, so it equals 3 times 17, or 51, no matter what x and y are individually. Subtracting the 8 gives 43. \"51\" is that 3 times 17 with the subtraction never carried out. \"9\" subtracts the 8 from 17 and never scales, as though 6x + 15y - 8 were 2x + 5y - 8. \"27\" subtracts first and scales afterward, computing 3 times 9, which triples the 8 as well as the rest.",
+    "solve": "return 3 * 17 - 8;",
+    "distractor_solve": {
+      "9": "return 17 - 8;",
+      "27": "return 3 * (17 - 8);",
+      "51": "return 3 * 17;"
+    }
+  },
+  {
+    "id": "ALG-H5-10",
+    "domain": "Algebra",
+    "subskill": "a perpendicular slope combined with a point to locate an intercept",
+    "difficulty": "hard",
+    "prompt": "Line k is perpendicular to the line with equation 4x + 10y = 15 and passes through the point (10, -1). What is the y-coordinate of the y-intercept of line k?",
+    "choices": [
+      "-26",
+      "-5",
+      "3",
+      "24"
+    ],
+    "correct_answer": "-26",
+    "explanation": "Solving 4x + 10y = 15 for y gives a slope of -4/10, or -2/5. A perpendicular line has the opposite reciprocal slope, 5/2. Starting from (10, -1) and moving 10 units left to the y-axis lowers the height by (5/2)(10) = 25, so the intercept is -1 - 25 = -26. \"3\" uses -2/5 itself, which produces a line parallel to the given one rather than perpendicular to it. \"24\" takes the reciprocal but keeps the negative sign, using -5/2. \"-5\" flips the sign but never takes the reciprocal, using 2/5.",
+    "solve": "var m = -4 / 10;\nvar p = -1 / m;\nreturn -1 - p * 10;",
+    "distractor_solve": {
+      "-5": "var m = -4 / 10;\nvar p = -m;\nreturn -1 - p * 10;",
+      "3": "var m = -4 / 10;\nreturn -1 - m * 10;",
+      "24": "var m = -4 / 10;\nvar p = 1 / m;\nreturn -1 - p * 10;"
+    }
+  },
+  {
+    "id": "ALG-H5-11",
+    "domain": "Algebra",
+    "subskill": "a two-stage rate problem where the first stage is fixed and the second is solved for",
+    "difficulty": "hard",
+    "prompt": "A printer prints 12 pages per minute for its first 8 minutes of operation and 20 pages per minute after that. How many minutes does the printer take to print 396 pages?",
+    "choices": [
+      "15",
+      "23",
+      "33",
+      "41"
+    ],
+    "correct_answer": "23",
+    "explanation": "The first 8 minutes produce 12 times 8 = 96 pages, leaving 300 pages at 20 pages per minute, which takes 15 minutes. The total is 8 + 15 = 23 minutes. \"15\" is that second stage alone, with the first 8 minutes never added back. \"33\" divides all 396 pages by the slower rate, as though the printer never sped up. \"41\" makes the same slow-rate mistake and then adds the 8 minutes on top, counting the opening stretch twice.",
+    "solve": "return 8 + (396 - 12 * 8) / 20;",
+    "distractor_solve": {
+      "15": "return (396 - 12 * 8) / 20;",
+      "33": "return 396 / 12;",
+      "41": "return 8 + 396 / 12;"
+    }
+  },
+  {
+    "id": "ALG-H5-12",
+    "domain": "Algebra",
+    "subskill": "the no-solution condition for a linear equation in one variable with two parameters",
+    "difficulty": "hard",
+    "prompt": "In the equation 5(3x - 2) + a = bx + 6, a and b are constants. If the equation has no solution, what is the value of b?",
+    "choices": [
+      "-10",
+      "3",
+      "15",
+      "16"
+    ],
+    "correct_answer": "15",
+    "explanation": "Expanding the left side gives 15x - 10 + a. An equation in one variable has no solution exactly when the x-terms on the two sides match while the constants do not, so b must equal 15 and a must be anything other than 16. \"3\" is the coefficient of x inside the parentheses, which the factor of 5 outside still has to multiply. \"-10\" multiplies that 5 by the constant -2 inside the parentheses rather than by the 3x, so it reports the distributed constant as though it were the coefficient. \"16\" is the value a would have to take for the constants to match as well, which is the one case that gives infinitely many solutions rather than none.",
+    "solve": "return 5 * 3;",
+    "distractor_solve": {
+      "-10": "return 5 * (-2);",
+      "3": "var inside = 3;\nreturn inside;",
+      "16": "return 6 - 5 * (-2);"
+    }
+  },
+  {
+    "id": "ALG-H5-13",
+    "domain": "Algebra",
+    "subskill": "undoing a percent decrease, then applying it to a shifted second price",
+    "difficulty": "hard",
+    "prompt": "A store reduces the price of every item by 15%. A shirt's reduced price is 102 dollars. A jacket's original price is 40 dollars more than the shirt's original price. What is the jacket's reduced price, in dollars?",
+    "choices": [
+      "136",
+      "142",
+      "160",
+      "184"
+    ],
+    "correct_answer": "136",
+    "explanation": "A 15% reduction leaves 85% of the original, so the shirt's original price is 102 divided by 0.85, which is 120 dollars. The jacket's original price is 160 dollars, and 85% of 160 is 136. \"160\" is the jacket's original price, before the store's reduction is applied to it. \"142\" adds the 40-dollar difference to the shirt's reduced price, which leaves that 40 dollars undiscounted. \"184\" raises 160 by 15% instead of lowering it by 15%.",
+    "solve": "var so = 102 * 100 / 85;\nreturn (so + 40) * 85 / 100;",
+    "distractor_solve": {
+      "142": "return 102 + 40;",
+      "160": "var so = 102 * 100 / 85;\nreturn so + 40;",
+      "184": "var so = 102 * 100 / 85;\nreturn (so + 40) * 115 / 100;"
+    }
+  },
+  {
+    "id": "ALG-H5-14",
+    "domain": "Algebra",
+    "subskill": "a sum condition and a multiplicative comparison solved together",
+    "difficulty": "hard",
+    "prompt": "The sum of two numbers is 54, and three times the smaller number exceeds the larger number by 14. What is the larger number?",
+    "choices": [
+      "37",
+      "44",
+      "51",
+      "68"
+    ],
+    "correct_answer": "37",
+    "explanation": "Let s be the smaller number, so the larger is 54 - s. Then 3s = (54 - s) + 14, which gives 4s = 68 and s = 17, so the larger number is 54 - 17 = 37. \"68\" is that 4s, one step before the division. \"51\" is three times the smaller number, the quantity the comparison in the question is about rather than the number itself. \"44\" comes from writing 3s = 54 - s - 14, subtracting the 14 instead of adding it, which gives 4s = 40 and a larger number of 44.",
+    "solve": "var s = (54 + 14) / 4;\nreturn 54 - s;",
+    "distractor_solve": {
+      "44": "var s = (54 - 14) / 4;\nreturn 54 - s;",
+      "51": "var s = (54 + 14) / 4;\nreturn 3 * s;",
+      "68": "return 54 + 14;"
+    }
+  },
+  {
+    "id": "ALG-H5-15",
+    "domain": "Algebra",
+    "subskill": "a budget inequality narrowed further by a whole-week constraint",
+    "difficulty": "hard",
+    "prompt": "Renting a machine costs 180 dollars plus 45 dollars for each day of the rental. A customer has 2,300 dollars to spend and must rent the machine for a whole number of weeks. What is the greatest number of days the customer can rent the machine?",
+    "choices": [
+      "6",
+      "42",
+      "47",
+      "49"
+    ],
+    "correct_answer": "42",
+    "explanation": "The budget allows 180 + 45d to be at most 2,300, so 45d is at most 2,120 and d is at most 47.1, giving 47 days. But the rental must be a whole number of weeks, and 47 days is 6 weeks and 5 days, so the longest permitted rental is 6 whole weeks, or 42 days, costing 2,070 dollars. \"47\" is the day count before the whole-week requirement is applied. \"49\" rounds the week count up to 7, which costs 2,385 dollars and breaks the budget. \"6\" is the number of weeks rather than the number of days the question asks for.",
+    "solve": "var d = Math.floor((2300 - 180) / 45);\nreturn Math.floor(d / 7) * 7;",
+    "distractor_solve": {
+      "6": "var d = Math.floor((2300 - 180) / 45);\nreturn Math.floor(d / 7);",
+      "47": "return Math.floor((2300 - 180) / 45);",
+      "49": "var d = Math.floor((2300 - 180) / 45);\nreturn Math.ceil(d / 7) * 7;"
+    }
+  },
+  {
+    "id": "ALG-H5-16",
+    "domain": "Algebra",
+    "subskill": "a vertical translation of a line and the x-intercept it moves",
+    "difficulty": "hard",
+    "prompt": "The graph of the line y = -4x + 20 is translated 8 units up. At what value of x does the resulting line cross the x-axis?",
+    "choices": [
+      "3",
+      "5",
+      "7",
+      "13"
+    ],
+    "correct_answer": "7",
+    "explanation": "Translating up 8 units adds 8 to every output, so the new line is y = -4x + 28. Setting -4x + 28 = 0 gives x = 7. \"5\" is where the original line crosses the x-axis, with the translation never applied. \"3\" translates the line down 8 units instead of up, solving -4x + 12 = 0. \"13\" adds the 8 to the original x-intercept, which would be a horizontal shift rather than the vertical one described.",
+    "solve": "return (20 + 8) / 4;",
+    "distractor_solve": {
+      "3": "return (20 - 8) / 4;",
+      "5": "return 20 / 4;",
+      "13": "return 20 / 4 + 8;"
+    }
+  },
+  {
+    "id": "ALG-H5-17",
+    "domain": "Algebra",
+    "subskill": "two pay rates and a total, solved through the difference between the rates",
+    "difficulty": "hard",
+    "prompt": "A worker is paid 20 dollars for each weekday hour and 35 dollars for each weekend hour. Last month she worked 80 hours and was paid 2,020 dollars. How many weekend hours did she work?",
+    "choices": [
+      "12",
+      "28",
+      "37",
+      "58"
+    ],
+    "correct_answer": "28",
+    "explanation": "If all 80 hours had been weekday hours the pay would have been 1,600 dollars, so the extra 420 dollars comes from hours paid at the weekend rate. Each such hour adds 35 - 20 = 15 dollars, so there are 420 divided by 15 = 28 weekend hours. \"12\" divides that 420 by 35 rather than by the 15-dollar difference, which double-counts the 20 dollars those hours would have earned anyway. \"58\" divides the whole 2,020 dollars by 35, as though every hour were a weekend hour, which contradicts the 80-hour total. \"37\" divides the pay by the sum of the two rates, 55, treating each weekend hour as if it came paired with a weekday hour.",
+    "solve": "return (2020 - 20 * 80) / (35 - 20);",
+    "distractor_solve": {
+      "12": "return (2020 - 20 * 80) / 35;",
+      "37": "return Math.round(2020 / (20 + 35));",
+      "58": "return Math.round(2020 / 35);"
+    }
+  },
+  {
+    "id": "ALG-H5-18",
+    "domain": "Algebra",
+    "subskill": "a fixed item count and a spending cap interacting in one inequality",
+    "difficulty": "hard",
+    "prompt": "A vendor buys exactly 40 items. Small items cost 8 dollars each, large items cost 15 dollars each, and the vendor spends no more than 500 dollars in total. What is the greatest number of large items the vendor can buy?",
+    "choices": [
+      "22",
+      "25",
+      "26",
+      "33"
+    ],
+    "correct_answer": "25",
+    "explanation": "Forty small items would cost 320 dollars, leaving 180 dollars of the budget. Upgrading one item from small to large adds 15 - 8 = 7 dollars, so the number of upgrades is at most 180 divided by 7, which is 25.7, and the vendor can buy 25 large items for a total of 495 dollars. \"26\" rounds 25.7 up, and 26 large items cost 502 dollars, over the cap. \"22\" divides the remaining 180 dollars by the small price of 8 instead of by the 7-dollar upgrade cost. \"33\" divides the whole 500 dollars by 15, ignoring that the 40 items must all be paid for.",
+    "solve": "return Math.floor((500 - 8 * 40) / (15 - 8));",
+    "distractor_solve": {
+      "22": "return Math.floor((500 - 8 * 40) / 8);",
+      "26": "return Math.ceil((500 - 8 * 40) / (15 - 8));",
+      "33": "return Math.floor(500 / 15);"
+    }
+  },
+  {
+    "id": "ALG-H5-19",
+    "domain": "Algebra",
+    "subskill": "evaluating a linear function at a shifted argument",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 3x - 7. If f(a - 2) = 26, what is the value of a?",
+    "choices": [
+      "9",
+      "11",
+      "13",
+      "39"
+    ],
+    "correct_answer": "13",
+    "explanation": "Substituting gives 3(a - 2) - 7 = 26, so 3a - 6 - 7 = 26 and 3a = 39, which makes a = 13. \"11\" solves f(a) = 26 instead, so the shift of 2 in the input is never accounted for. \"9\" handles the shift but in the wrong direction, subtracting 2 from 11 rather than adding it. \"39\" is the 3a reached just before the final division.",
+    "solve": "return (26 + 7) / 3 + 2;",
+    "distractor_solve": {
+      "9": "return (26 + 7) / 3 - 2;",
+      "11": "return (26 + 7) / 3;",
+      "39": "return 3 * ((26 + 7) / 3 + 2);"
+    }
+  },
+  {
+    "id": "ALG-H5-20",
+    "domain": "Algebra",
+    "subskill": "a ratio that changes when one part is increased",
+    "difficulty": "hard",
+    "prompt": "In a crate, the ratio of pears to apples is 4 to 7. After 12 more apples are put into the crate, the ratio of pears to apples is 4 to 9. How many apples were in the crate before the 12 apples were added?",
+    "choices": [
+      "6",
+      "24",
+      "42",
+      "54"
+    ],
+    "correct_answer": "42",
+    "explanation": "Write the original counts as 4k pears and 7k apples. After the addition the ratio gives 9 times 4k = 4 times (7k + 12), so 36k = 28k + 48 and k = 6. The original number of apples is 7 times 6 = 42. \"24\" is the number of pears, which the ratio pins at the same time but which the question does not ask for. \"54\" is the number of apples after the 12 are added, the count the second ratio describes. \"6\" is the multiplier k, one step before multiplying by 7.",
+    "solve": "var k = (4 * 12) / (9 * 4 - 4 * 7);\nreturn 7 * k;",
+    "distractor_solve": {
+      "6": "return (4 * 12) / (9 * 4 - 4 * 7);",
+      "24": "var k = (4 * 12) / (9 * 4 - 4 * 7);\nreturn 4 * k;",
+      "54": "var k = (4 * 12) / (9 * 4 - 4 * 7);\nreturn 7 * k + 12;"
+    }
+  },
+  {
+    "id": "ALG-H5-21",
+    "domain": "Algebra",
+    "subskill": "two absolute value tolerances combined to extremise a difference",
+    "difficulty": "hard",
+    "prompt": "One machine fills bottles so that the amount a, in milliliters, in a bottle satisfies |a - 480| is at most 12. A second machine fills bottles so that the amount b, in milliliters, satisfies |b - 450| is at most 14. What is the greatest possible value of a - b?",
+    "choices": [
+      "4",
+      "28",
+      "30",
+      "56"
+    ],
+    "correct_answer": "56",
+    "explanation": "The first condition puts a between 468 and 492, and the second puts b between 436 and 464. A difference is greatest when the first quantity is as large as possible and the second as small as possible, so the greatest value of a - b is 492 - 436 = 56. \"30\" subtracts the two target amounts, 480 - 450, using neither tolerance. \"28\" takes a at its greatest but b at its greatest too, computing 492 - 464. \"4\" pushes both quantities the wrong way, taking a at its least and b at its greatest, which gives the smallest difference rather than the largest.",
+    "solve": "return (480 + 12) - (450 - 14);",
+    "distractor_solve": {
+      "4": "return (480 - 12) - (450 + 14);",
+      "28": "return (480 + 12) - (450 + 14);",
+      "30": "return 480 - 450;"
+    }
+  },
+  {
+    "id": "ALG-H5-22",
+    "domain": "Algebra",
+    "subskill": "a two-leg distance problem in which the second speed is defined from the first",
+    "difficulty": "hard",
+    "prompt": "A cyclist rides for 3 hours at a constant speed of r kilometers per hour and then for 2 hours at a constant speed that is 10 kilometers per hour greater than r. The ride covers 95 kilometers in total. What is the value of r?",
+    "choices": [
+      "15",
+      "19",
+      "23",
+      "25"
+    ],
+    "correct_answer": "15",
+    "explanation": "The two legs cover 3r and 2(r + 10) kilometers, so 3r + 2r + 20 = 95. That gives 5r = 75 and r = 15. \"25\" is r + 10, the speed of the second leg rather than the first. \"23\" adds the 20 extra kilometers instead of subtracting them, solving 5r = 115. \"19\" divides the whole 95 kilometers by the 5 hours, which is the average speed for the ride and would only equal r if the cyclist never sped up.",
+    "solve": "return (95 - 2 * 10) / 5;",
+    "distractor_solve": {
+      "19": "return 95 / 5;",
+      "23": "return (95 + 2 * 10) / 5;",
+      "25": "return (95 - 2 * 10) / 5 + 10;"
+    }
+  },
+  {
+    "id": "ALG-H5-23",
+    "domain": "Algebra",
+    "subskill": "equating two linear functions, then evaluating one of them there",
+    "difficulty": "hard",
+    "prompt": "The functions f and g are defined by f(x) = 5x + 8 and g(x) = 2x + 29. At the value of x where f(x) = g(x), what is the value of f(x)?",
+    "choices": [
+      "-27",
+      "7",
+      "21",
+      "43"
+    ],
+    "correct_answer": "43",
+    "explanation": "Setting 5x + 8 = 2x + 29 gives 3x = 21, so x = 7, and f(7) = 5 times 7 + 8 = 43. \"7\" is that x-value, the input at which the two functions agree rather than the value they share there. \"21\" is the 3x reached before dividing. \"-27\" comes from subtracting the constants in the wrong order, taking 3x = 8 - 29 = -21 and evaluating f at -7.",
+    "solve": "var x = (29 - 8) / (5 - 2);\nreturn 5 * x + 8;",
+    "distractor_solve": {
+      "-27": "var x = (8 - 29) / (5 - 2);\nreturn 5 * x + 8;",
+      "7": "return (29 - 8) / (5 - 2);",
+      "21": "return 29 - 8;"
+    }
+  },
+  {
+    "id": "ALG-H5-24",
+    "domain": "Algebra",
+    "subskill": "an inequality with the variable on both sides and a direction reversal",
+    "difficulty": "hard",
+    "prompt": "If -3(x - 4) is greater than or equal to 5x + 20, what is the greatest possible value of x?",
+    "choices": [
+      "-8",
+      "-4",
+      "-1",
+      "1"
+    ],
+    "correct_answer": "-1",
+    "explanation": "Distributing gives -3x + 12 greater than or equal to 5x + 20. Collecting the x-terms on the right gives -8 greater than or equal to 8x, so x is at most -1 and the greatest possible value is -1. \"-4\" comes from distributing -3 over -4 as -12 rather than +12, which leaves -32 greater than or equal to 8x. \"-8\" is the -8 reached before dividing by 8. \"1\" divides -8 by 8 and then reports the result without its sign, which would also reverse the meaning of the inequality.",
+    "solve": "return (12 - 20) / 8;",
+    "distractor_solve": {
+      "-8": "return 12 - 20;",
+      "-4": "return (-12 - 20) / 8;",
+      "1": "return -((12 - 20) / 8);"
+    }
+  }
+]
