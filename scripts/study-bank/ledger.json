@@ -2417,6 +2417,41 @@
      "verdict": "The singleton inversion was MEASURED rather than argued. The three elimination solvers deliberately bet against the singleton on every item and scored 26/90 = 28.9%, against the original singleton rule at 16.7% and a 33.3% ceiling for picking uniformly from the three cluster members. So the axis carries real information — inverting gains 12.2 points over the singleton rule — but a student who learns the inversion gains only +3.9 over chance and lands well short of the ceiling, meaning that within the cluster there is no signal at all. Recorded as a batch-level shape with no automated guard, of the same family as the \"identical key prose across lectures\" case, and fed forward to s11: the inversion should not be this consistent across a whole form."
     }
    }
+  },
+  {
+   "id": "act-reading-v7-2026-09-11",
+   "targetTest": "act",
+   "section": "reading",
+   "task": "natural_science",
+   "family": "mc_hidden_source",
+   "cohort": "act-reading-v7",
+   "contentSha": "aff2e8a969926c1f152d40e1022051eb3f9873f18b942da087939f7961317048",
+   "note": "ACT Reading, 18 items in 2 passages (a PAIRED natural_science pair — the first paired items in that genre, which previously held 0 of the bank's 36 — and a literary_narrative). STAGED verified=false, following act-reading-v4. The assembler ignores it until a human sitting flips it.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "act-bank-helper check reading: 18 items in 2 passages, 9 and 9 against PER_PASSAGE.reading = 9, structure OK. Domain mix KID 9 (50.0%) / CS 5 (27.8%) / IKI 4 (22.2%), all three inside the blueprint bands 44-52 / 26-33 / 19-26. Genre choice was driven by measured gaps, not taste: natural_science was the ONLY genre with zero paired items, so no form could ever pair its natural-science slot; literary_narrative was the only genre whose Integration share (16.7%) sat below the 19-26% band. Author ran 28 break-tests, 12 planted defects refused and 4 benign controls passed, and attacking the harness found two real defects in the author's own checker — a 5-choice item passing silently against an assumed 4-option control, and a key absent from choices \"caught\" via undefined incrementing a NaN bucket that fails every threshold. Both now exit 2 without returning a number."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three independent graders, all three reporting the SAME file hash (aff2e8a96992) before and after. 18 of 18 keys agreed 3/3. ZERO non-exclusive votes from any grader — one explicitly tried to spend a drop on P1-Q9 and could not justify it. Difficulty medians 4 easy / 12 medium / 2 hard against the author's 4/9/5: all three read the batch easier than authored, and all three named P2-Q9 as the item to rewrite if the form needs another hard, because its key paraphrases the final paragraph nearly word for word."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 18,
+     "mean": null,
+     "control": null,
+     "verdict": "NOT RUN, AND DELIBERATELY SO — recorded as a non-measurement rather than a pass. On ACT Reading this instrument cannot discriminate: the model floor is about 83% and a human-CLEARED form scored 83.3%, so a number here separates nothing. Tuning to it would be fitting to noise. The gate is the human sitting, which is why this cohort stages verified=false. Do not read this stage as evidence."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Author ran an exhaustive promotion sweep over all 72 option positions — 18 keys and 54 distractor promotions — against the option-set proxies: real keys flagged 0/18, distractor promotions flagged 0/54. The SYMMETRY is the load-bearing part: if keys never fired while distractors often did, then \"the key is the one that is NOT the odd one out\" would be a free rule. Per-item legality was rebuilt to 4-of-4 on all 18 across three repair rounds; eight items were not 4/4 on first draft and were redesigned, including one whose key was the only option naming both disputed quantities (an axis-alignment leak) and one whose key was an act of judgment among three named sounds (a kind-singleton)."
+    },
+    "tells": {
+     "passed": false,
+     "verdict": "FAILS, on a defect no structural check can see and the attack cannot reach: SUBJECT RECALL. All three graders volunteered it unprompted and independently. The author chose booming dunes because there is no scientific consensus to recall, and all three confirmed that premise is CORRECT and is not what protects an item — what protects it is whether the key coincides with the prior. The two rival accounts (a dry-layer acoustic waveguide over a denser substrate; shear-rate x grain-diameter collision synchronisation) are each well documented, and the batch assigns one camp per passage, so recognition routes by camp without any consensus existing. Counts: grader A 3 of 9 outright plus 2 partly, grader B 3 of 9, grader C 2 decisive plus 2 assisted. All three name P1-Q4 and P1-Q9 in the cluster. One grader notes that P1-Q9s option set is the CLEAN shape — four parallel \"Sound is produced only while X\" frames varying one term — so the leak there is recall, not axis-alignment, and a cheap structural check would never see it. Two graders also named the same single wording fix, independently: P1-Q9s key says \"only while an AVALANCHE is in motion\" while Passage Bs opening produces booming with no dune and no avalanche at all, eight centimetres of poured sand sheared in a chute; the explanations own parenthetical concedes the gap. \"while the sand is in motion\" costs nothing. Also flagged: P1-Q8s three non-keys describe concessions Passage A never makes anywhere, collapsing a cross-passage task into locate-the-detail."
+    }
+   }
   }
  ],
  "auditedCohorts": [

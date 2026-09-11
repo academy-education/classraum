@@ -516,3 +516,21 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **Consequence:** the with-source 18/18 is not clearance on this family. The human sitting should be asked a targeted question — *did you recognise the subject, and did that decide any pick?* — rather than being handed the batch cold.
 
+- **2026-09-11** — **`act-reading-v7` STAGED UNVERIFIED (18 items, 2 passages), AND ITS `tells` STAGE IS RECORDED AS A FAIL.** Three graders, all reporting the same file hash before and after, agreed 3/3 with **all 18 keys and cast zero non-exclusive votes** — one explicitly tried to spend a drop and could not justify it. Structure exact: 9 + 9 against `PER_PASSAGE.reading = 9`, domain mix inside all three blueprint bands. Difficulty relabelled to the grader medians (4 easy / 12 medium / 2 hard, against the author's 4/9/5) — all three read it easier than authored.
+
+  **It is staged `verified=false` anyway, and the ledger records `tells: passed = false`.** Confirmed rather than assumed: 18 rows at `verified=false`, and ACT reading drawable is unchanged at 108, so the assembler ignores them.
+
+  Two stages are honest non-clearances and are written that way. `nosource` is recorded as **NOT RUN, deliberately** — on ACT Reading the model floor is ~83% and a human-CLEARED form scored 83.3%, so a number there separates nothing and tuning to it is fitting noise. And `tells` FAILS on **subject recall**, which all three graders volunteered unprompted and independently: 3 of 9, 3 of 9, and 2-decisive-plus-2-assisted of the paired items are answerable without the passages. The author's premise — booming dunes have no consensus to recall — is **correct, and all three said it is not what protects an item**: what protects it is whether the key coincides with the prior, and the two rival accounts are each well documented, so recognition routes by camp even with no consensus. One grader notes P1-Q9's option set is the CLEAN shape (four parallel "Sound is produced only while X" frames varying one term), so the leak there is recall, not axis-alignment, and no cheap structural check could ever see it.
+
+  Two graders independently named the same one-word fix: P1-Q9's key says "only while an **avalanche** is in motion" while Passage B's opening produces booming with **no dune and no avalanche** — eight centimetres of poured sand sheared in a chute — and the explanation's own parenthetical concedes the gap. "while the sand is in motion" costs nothing.
+
+  Genre choice was driven by measured gaps: natural_science was the **only genre with zero paired items**, so no form could ever pair its natural-science slot; literary_narrative was the only genre whose Integration share (16.7%) sat below the 19-26% band.
+
+- **2026-09-11** — **THE RUN-MIDDLE TELL NOW HAS AN EXACT CHECKER WITH A CONSTRUCTED CONTROL, AND IT FOUND FOUR ITEMS THREE GRADERS MISSED.** `check-key-at-run-middle.mjs` enumerates every C(5,3) subset of an item's options (parsing pi-coefficients, fractions and mixed numbers so all 30 scored), flags arithmetic and geometric triples at 1e-9, and asks whether the key is a middle.
+
+  **The control is CONSTRUCTED, not a literal.** For each item it counts how many options are the middle of *some* run, so the null "the key is a uniformly random one of the k options" gives m/k, and the control is the mean. A run-free set constructs **0.0%**, not 20% — which is the whole point, since a hardcoded chance line would have called a clean set a 20-point pass. On `ssat-math-s5`: **before 10/30 = 33.3% against a constructed 20.7% (+12.7); after 0/30 = 0.0% against 13.3% (-13.3).**
+
+  It found SM5-09 (a double hit — `90,180,270` and `120,180,270`), SM5-16, SM5-17 and SM5-23, none of which the three graders named. And its **self-test caught the author's own error**: they hand-wrote a fixture as holding one run, the checker said two, and the checker was right (`4,6,9` is geometric, ratio 1.5). They corrected the fixture rather than the code and left the note in the file.
+
+  SM5-07's rounding tie is gone — the bill moved `$37.46 -> $37.48`, so 3748/4 = 937 cents exactly and four payments balance. The author then **declined to extend the option family to n=6**, because `6.25, 9.37, 12.49` is itself an arithmetic run with the key at its middle. That is the repair discipline working: not trading one tell for another.
+

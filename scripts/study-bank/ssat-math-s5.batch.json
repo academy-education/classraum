@@ -1,0 +1,751 @@
+[
+ {
+  "id": "SM5-01",
+  "domain": "Math",
+  "subskill": "mean of a list of temperatures that includes negative values",
+  "difficulty": "easy",
+  "prompt": "The midday temperature in a town was recorded on five days as -6 °C, 2 °C, -1 °C, 8 °C and 2 °C. What was the mean of these five temperatures, in degrees Celsius?",
+  "choices": [
+   "3.8",
+   "1",
+   "4",
+   "-3.5",
+   "2.4"
+  ],
+  "correct_answer": "1",
+  "explanation": "The five readings total -6 + 2 - 1 + 8 + 2 = 5, and 5 divided by 5 days is a mean of 1 degree. The option \"3.8\" drops the minus signs and averages 6, 2, 1, 8 and 2. The option \"4\" averages only the three readings above zero, (2 + 8 + 2) / 3. The option \"2.4\" adds only the readings above zero but still divides by all five days, 12 / 5. The option \"-3.5\" averages only the two readings below zero, (-6 - 1) / 2.",
+  "solve": "var t=[-6,2,-1,8,2];var s=0;for(var i=0;i<t.length;i++)s+=t[i];return s/t.length;",
+  "distractor_solve": {
+   "4": "var p=[2,8,2];var s=0;for(var i=0;i<p.length;i++)s+=p[i];return s/p.length;",
+   "3.8": "var t=[-6,2,-1,8,2];var s=0;for(var i=0;i<t.length;i++)s+=Math.abs(t[i]);return s/t.length;",
+   "2.4": "var p=[2,8,2];var s=0;for(var i=0;i<p.length;i++)s+=p[i];return s/5;",
+   "-3.5": "var n=[-6,-1];var s=0;for(var i=0;i<n.length;i++)s+=n[i];return s/n.length;"
+  }
+ },
+ {
+  "id": "SM5-02",
+  "domain": "Math",
+  "subskill": "largest share when an amount is divided in a three-part ratio",
+  "difficulty": "easy",
+  "prompt": "Three cousins share $1,260 in the ratio 2 : 3 : 4. How many dollars does the cousin with the largest share receive?",
+  "choices": [
+   "420",
+   "560",
+   "140",
+   "720",
+   "280"
+  ],
+  "correct_answer": "560",
+  "explanation": "The ratio has 2 + 3 + 4 = 9 parts, so one part is 1260 / 9 = 140 dollars and the largest share is 4 parts, 4 x 140 = 560 dollars. The option \"720\" shares the money between only the two larger parts, taking 1260 x 4/(3 + 4) and leaving the cousin with 2 parts out. The option \"420\" gives the middle share of 3 parts. The option \"280\" gives the smallest share of 2 parts. The option \"140\" stops at the value of a single part.",
+  "solve": "var total=1260,parts=2+3+4;return total/parts*4;",
+  "distractor_solve": {
+   "140": "var total=1260,parts=2+3+4;return total/parts;",
+   "280": "var total=1260,parts=2+3+4;return total/parts*2;",
+   "420": "var total=1260,parts=2+3+4;return total/parts*3;",
+   "720": "return 1260*4/(3+4);"
+  }
+ },
+ {
+  "id": "SM5-03",
+  "domain": "Math",
+  "subskill": "area of a circle left in terms of pi",
+  "difficulty": "easy",
+  "prompt": "A circular tabletop has a radius of 9 inches. What is its area, in square inches?",
+  "choices": [
+   "18π",
+   "324π",
+   "81π",
+   "40.5π",
+   "9π"
+  ],
+  "correct_answer": "81π",
+  "explanation": "The area of a circle is pi times the square of the radius, so the area is 9 x 9 x pi = 81π square inches. The option \"324π\" squares the diameter 18 instead of the radius. The option \"18π\" uses the circumference rule 2 x pi x r. The option \"9π\" uses the radius itself in place of its square. The option \"40.5π\" halves the square of the radius, as if the tabletop were a triangle.",
+  "solve": "return (9*9)+\"π\";",
+  "distractor_solve": {
+   "324π": "return (18*18)+\"π\";",
+   "18π": "return (2*9)+\"π\";",
+   "9π": "return 9+\"π\";",
+   "40.5π": "return (9*9/2)+\"π\";"
+  }
+ },
+ {
+  "id": "SM5-04",
+  "domain": "Math",
+  "subskill": "amount still owed after a percent deposit",
+  "difficulty": "easy",
+  "prompt": "A jacket costs $84. A customer pays a deposit of 25% of the price and will pay the rest later. How many dollars are still owed?",
+  "choices": [
+   "63",
+   "21",
+   "67.20",
+   "42",
+   "56"
+  ],
+  "correct_answer": "63",
+  "explanation": "A deposit of 25% leaves 75% of the price to pay, and 0.75 x 84 = 63 dollars. The option \"21\" is the deposit itself, 0.25 x 84, rather than what is left to pay. The option \"67.20\" takes a 20% deposit, leaving 0.8 x 84. The option \"42\" treats the deposit as half the price. The option \"56\" treats the deposit as a third of the price, leaving 84 x 2/3.",
+  "solve": "return 84*(1-0.25);",
+  "distractor_solve": {
+   "21": "return 84*0.25;",
+   "42": "return 84*(1-0.5);",
+   "56": "return 84*(1-1/3);",
+   "67.20": "return 84*(1-0.20);"
+  }
+ },
+ {
+  "id": "SM5-05",
+  "domain": "Math",
+  "subskill": "difference between two bars read from a bar graph",
+  "difficulty": "easy",
+  "prompt": "The graph shows how many bottles of water each of five stalls sold on Saturday. How many more bottles did Priya's stall sell than Rafi's stall?",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Stall",
+   "yLabel": "Bottles sold",
+   "bars": [
+    {
+     "label": "Nia",
+     "value": 12
+    },
+    {
+     "label": "Omar",
+     "value": 8
+    },
+    {
+     "label": "Priya",
+     "value": 15
+    },
+    {
+     "label": "Quinn",
+     "value": 10
+    },
+    {
+     "label": "Rafi",
+     "value": 6
+    }
+   ],
+   "caption": "Figure 1. Bottles of water sold on Saturday, by stall."
+  },
+  "choices": [
+   "7",
+   "3",
+   "9",
+   "6",
+   "5"
+  ],
+  "correct_answer": "9",
+  "explanation": "Priya's bar reaches 15 bottles and Rafi's reaches 6, so Priya's stall sold 15 - 6 = 9 more. The option \"7\" compares Priya with Omar's 8 bottles. The option \"5\" compares Priya with Quinn's 10 bottles. The option \"3\" compares Priya with Nia's 12 bottles. The option \"6\" reports Rafi's own total instead of the difference.",
+  "solve": "var b={Nia:12,Omar:8,Priya:15,Quinn:10,Rafi:6};return b.Priya-b.Rafi;",
+  "distractor_solve": {
+   "3": "var b={Nia:12,Omar:8,Priya:15,Quinn:10,Rafi:6};return b.Priya-b.Nia;",
+   "5": "var b={Nia:12,Omar:8,Priya:15,Quinn:10,Rafi:6};return b.Priya-b.Quinn;",
+   "6": "var b={Nia:12,Omar:8,Priya:15,Quinn:10,Rafi:6};return b.Rafi;",
+   "7": "var b={Nia:12,Omar:8,Priya:15,Quinn:10,Rafi:6};return b.Priya-b.Omar;"
+  }
+ },
+ {
+  "id": "SM5-06",
+  "domain": "Math",
+  "subskill": "subtracting a mixed number from a whole number",
+  "difficulty": "easy",
+  "prompt": "A plank 5 metres long has a piece 2 3/8 metres long cut from one end. How long, in metres, is the piece that remains?",
+  "choices": [
+   "3 3/8",
+   "2 5/8",
+   "3",
+   "2 3/8",
+   "2 1/2"
+  ],
+  "correct_answer": "2 5/8",
+  "explanation": "Writing 5 as 4 8/8 and subtracting 2 3/8 leaves 2 5/8 metres. The option \"3 3/8\" subtracts only the whole number 2 and leaves the 3/8 attached to the answer. The option \"2 3/8\" takes 3 metres first and then removes 5/8 rather than 3/8, using the wrong part of the fraction. The option \"3\" ignores the fractional part of the piece cut off. The option \"2 1/2\" rounds 2 3/8 up to 2 1/2 before subtracting.",
+  "solve": "var e=5*8-19;return Math.floor(e/8)+\" \"+(e%8)+\"/8\";",
+  "distractor_solve": {
+   "3": "return 5-2;",
+   "3 3/8": "return (5-2)+\" 3/8\";",
+   "2 3/8": "var e=3*8-5;return Math.floor(e/8)+\" \"+(e%8)+\"/8\";",
+   "2 1/2": "var e=5*2-5;return Math.floor(e/2)+\" \"+(e%2)+\"/2\";"
+  }
+ },
+ {
+  "id": "SM5-07",
+  "domain": "Math",
+  "subskill": "splitting a bill equally between four and giving the answer in dollars and cents",
+  "difficulty": "easy",
+  "prompt": "Four friends share a restaurant bill of $37.48 equally. To the nearest cent, how many dollars does each friend pay?",
+  "choices": [
+   "12.49",
+   "18.74",
+   "9.37",
+   "7.50",
+   "9.40"
+  ],
+  "correct_answer": "9.37",
+  "explanation": "Sharing 3,748 cents between four gives exactly 937 cents each, or 9.37 dollars. The option \"18.74\" splits the bill between two people instead of four. The option \"12.49\" splits it between three, and the option \"7.50\" between five. The option \"9.40\" works out the 9.37 correctly but then rounds it to the nearest ten cents instead of leaving it at the nearest cent.",
+  "solve": "return (Math.round(3748/4)/100).toFixed(2);",
+  "distractor_solve": {
+   "9.40": "return (Math.round(3748/4/10)*10/100).toFixed(2);",
+   "12.49": "return (Math.round(3748/3)/100).toFixed(2);",
+   "18.74": "return (Math.round(3748/2)/100).toFixed(2);",
+   "7.50": "return (Math.round(3748/5)/100).toFixed(2);"
+  }
+ },
+ {
+  "id": "SM5-08",
+  "domain": "Math",
+  "subskill": "fourth angle of a quadrilateral",
+  "difficulty": "easy",
+  "prompt": "Three of the angles of a quadrilateral measure 95°, 100° and 42°. What is the measure, in degrees, of the fourth angle?",
+  "choices": [
+   "237",
+   "57",
+   "123",
+   "303",
+   "79"
+  ],
+  "correct_answer": "123",
+  "explanation": "The four angles of a quadrilateral total 360 degrees, and 95 + 100 + 42 = 237, so the fourth angle is 360 - 237 = 123 degrees. The option \"237\" stops at the total of the three angles given. The option \"303\" uses 540 degrees, which is the angle total of a pentagon. The option \"57\" uses the 180-degree total of a triangle, taking 237 - 180. The option \"79\" assumes the fourth angle equals the mean of the other three, 237 / 3.",
+  "solve": "return 360-(95+100+42);",
+  "distractor_solve": {
+   "57": "return (95+100+42)-180;",
+   "79": "return (95+100+42)/3;",
+   "237": "return 95+100+42;",
+   "303": "return 540-(95+100+42);"
+  }
+ },
+ {
+  "id": "SM5-09",
+  "domain": "Math",
+  "subskill": "a fraction of a fraction of a group, taken in two stages",
+  "difficulty": "easy",
+  "prompt": "A club has 450 members. Two thirds of the members attended the summer picnic, and three fifths of those who attended also entered the raffle. How many members entered the raffle?",
+  "choices": [
+   "300",
+   "120",
+   "180",
+   "90",
+   "150"
+  ],
+  "correct_answer": "180",
+  "explanation": "Two thirds of 450 is 300 members at the picnic, and three fifths of those 300 is 180 members in the raffle. The option \"300\" stops at the number who attended the picnic. The option \"150\" gives the one third of the club who stayed away from the picnic altogether. The option \"120\" takes the two fifths of the picnic crowd who did not enter the raffle. The option \"90\" works from the one third who stayed away, taking three fifths of 150.",
+  "solve": "return 450*(2/3)*(3/5);",
+  "distractor_solve": {
+   "90": "return 450*(1/3)*(3/5);",
+   "120": "return 450*(2/3)*(2/5);",
+   "150": "return 450*(1/3);",
+   "300": "return 450*(2/3);"
+  }
+ },
+ {
+  "id": "SM5-10",
+  "domain": "Math",
+  "subskill": "smallest of five consecutive whole numbers with a given mean",
+  "difficulty": "medium",
+  "prompt": "The mean of five consecutive whole numbers is 23. What is the smallest of the five numbers?",
+  "choices": [
+   "22",
+   "21",
+   "27",
+   "19",
+   "25"
+  ],
+  "correct_answer": "21",
+  "explanation": "For five consecutive numbers the mean is the middle number, so the five are 21, 22, 23, 24 and 25, and the smallest is 21. The option \"22\" counts one step down from the middle instead of two. The option \"19\" treats 23 as the largest of the five and counts four steps back from it. The option \"25\" gives the largest of the five. The option \"27\" treats 23 as the first number and counts four steps up from it.",
+  "solve": "return 23-2;",
+  "distractor_solve": {
+   "19": "return 23-4;",
+   "22": "return 23-1;",
+   "25": "return 23+2;",
+   "27": "return 23+4;"
+  }
+ },
+ {
+  "id": "SM5-11",
+  "domain": "Math",
+  "subskill": "a percent discount followed by a fixed-dollar voucher",
+  "difficulty": "medium",
+  "prompt": "A coat is priced at $180. A shop takes 30% off the price, and a $15 voucher is then subtracted from the reduced price. How many dollars does the customer pay?",
+  "choices": [
+   "126",
+   "111",
+   "136.50",
+   "135",
+   "115.50"
+  ],
+  "correct_answer": "111",
+  "explanation": "Taking 30% off 180 leaves 0.7 x 180 = 126 dollars, and the voucher brings that down to 126 - 15 = 111 dollars. The option \"126\" applies the discount but never subtracts the voucher. The option \"115.50\" subtracts the voucher first and takes 30% off what is left. The option \"136.50\" adds the voucher to the price before discounting, 0.7 x 195. The option \"135\" reads the 30% as a flat 30 dollars and subtracts 30 and 15 from 180.",
+  "solve": "return 180*0.7-15;",
+  "distractor_solve": {
+   "126": "return 180*0.7;",
+   "135": "return 180-30-15;",
+   "115.50": "return (180-15)*0.7;",
+   "136.50": "return (180+15)*0.7;"
+  }
+ },
+ {
+  "id": "SM5-12",
+  "domain": "Math",
+  "subskill": "counting square tiles on a wall measured in different units",
+  "difficulty": "medium",
+  "prompt": "A wall measures 3 metres by 2.4 metres. It is to be covered exactly by square tiles with sides of 20 centimetres. How many tiles are needed?",
+  "choices": [
+   "27",
+   "36",
+   "180",
+   "225",
+   "150"
+  ],
+  "correct_answer": "180",
+  "explanation": "The wall is 300 cm by 240 cm, so it takes 300 / 20 = 15 tiles across and 240 / 20 = 12 tiles down, which is 15 x 12 = 180 tiles. The option \"225\" uses 3 metres for both sides of the wall, 15 x 15. The option \"27\" adds the 15 tiles across to the 12 tiles down instead of multiplying them. The option \"36\" divides the wall's area in square metres by the tile's side in metres, 7.2 / 0.2. The option \"150\" rounds the 2.4-metre side down to 2 metres, giving 15 x 10.",
+  "solve": "return (300/20)*(240/20);",
+  "distractor_solve": {
+   "27": "return (300/20)+(240/20);",
+   "36": "return (3*2.4)/0.2;",
+   "150": "return (300/20)*(200/20);",
+   "225": "return (300/20)*(300/20);"
+  }
+ },
+ {
+  "id": "SM5-13",
+  "domain": "Math",
+  "subskill": "distance covered by one of two bodies approaching each other",
+  "difficulty": "medium",
+  "prompt": "Two cyclists set off at the same moment from opposite ends of a 90-kilometre trail and ride towards each other, one at 12 km/h and the other at 18 km/h. How many kilometres has the slower cyclist ridden when they meet?",
+  "choices": [
+   "54",
+   "36",
+   "45",
+   "30",
+   "60"
+  ],
+  "correct_answer": "36",
+  "explanation": "The gap closes at 12 + 18 = 30 km/h, so they meet after 90 / 30 = 3 hours, and the slower cyclist has ridden 12 x 3 = 36 kilometres. The option \"54\" gives the faster cyclist's distance, 18 x 3. The option \"45\" assumes they meet at the midpoint of the trail. The option \"60\" assumes the meeting happens only once the faster cyclist has covered the whole trail, after 90 / 18 = 5 hours. The option \"30\" stops at the closing speed of 30 km/h.",
+  "solve": "var t=90/(12+18);return 12*t;",
+  "distractor_solve": {
+   "30": "return 12+18;",
+   "45": "return 90/2;",
+   "54": "var t=90/(12+18);return 18*t;",
+   "60": "return 12*(90/18);"
+  }
+ },
+ {
+  "id": "SM5-14",
+  "domain": "Math",
+  "subskill": "median of a data set presented as a frequency table",
+  "difficulty": "medium",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "colLabels": [
+    "Number of players"
+   ],
+   "cells": [
+    [
+     3
+    ],
+    [
+     5
+    ],
+    [
+     4
+    ],
+    [
+     6
+    ],
+    [
+     2
+    ]
+   ],
+   "caption": "Table 1. Goals scored last season (rows) and the number of players scoring that many."
+  },
+  "prompt": "The table shows how many goals each player in a squad scored last season. What is the median number of goals scored by a player in this squad?",
+  "choices": [
+   "1.95",
+   "3",
+   "2",
+   "4",
+   "1.5"
+  ],
+  "correct_answer": "2",
+  "explanation": "The squad has 3 + 5 + 4 + 6 + 2 = 20 players, so the median sits between the 10th and 11th values. The first 3 players scored 0, the next 5 take the count to 8, and the next 4 take it to 12, so both the 10th and the 11th player scored 2 goals and the median is 2. The option \"1.95\" is the mean, 39 goals shared between 20 players. The option \"3\" is the mode, the number of goals scored by the largest group of players. The option \"1.5\" assumes the 10th and 11th players scored 1 and 2 and averages them. The option \"4\" is the median of the numbers in the \"Number of players\" column rather than of the goals.",
+  "solve": "var g=[0,1,2,3,4],f=[3,5,4,6,2],d=[];for(var i=0;i<5;i++)for(var j=0;j<f[i];j++)d.push(g[i]);d.sort(function(a,b){return a-b});var n=d.length;return (d[n/2-1]+d[n/2])/2;",
+  "distractor_solve": {
+   "3": "var g=[0,1,2,3,4],f=[3,5,4,6,2],b=0;for(var i=0;i<5;i++)if(f[i]>f[b])b=i;return g[b];",
+   "4": "var f=[3,5,4,6,2].slice().sort(function(a,b){return a-b});return f[2];",
+   "1.95": "var g=[0,1,2,3,4],f=[3,5,4,6,2],s=0,n=0;for(var i=0;i<5;i++){s+=g[i]*f[i];n+=f[i];}return s/n;",
+   "1.5": "return (1+2)/2;"
+  }
+ },
+ {
+  "id": "SM5-15",
+  "domain": "Math",
+  "subskill": "recovering an annual simple-interest rate from the final value",
+  "difficulty": "medium",
+  "prompt": "A deposit of $2,500 earns simple interest and is worth $2,950 at the end of 3 years. What is the annual rate of interest, as a percent, correct to one decimal place?",
+  "choices": [
+   "18.0",
+   "5.1",
+   "6.0",
+   "15.3",
+   "5.7"
+  ],
+  "correct_answer": "6.0",
+  "explanation": "The interest earned is 2950 - 2500 = 450 dollars, which is 150 dollars a year, and 150 is 6.0 percent of the 2,500 deposited. The option \"18.0\" gives the whole 450 dollars as a percent of the deposit, treating three years of interest as one. The option \"15.3\" makes the same mistake and also measures the 450 dollars against the final 2,950 rather than the 2,500 deposited. The option \"5.1\" measures the yearly 150 dollars against the final 2,950 rather than the original 2,500. The option \"5.7\" treats the interest as compounded each year, taking the cube root of 2950 / 2500.",
+  "solve": "return (((2950-2500)/3)/2500*100).toFixed(1);",
+  "distractor_solve": {
+   "18.0": "return ((2950-2500)/2500*100).toFixed(1);",
+   "5.1": "return (((2950-2500)/3)/2950*100).toFixed(1);",
+   "5.7": "return ((Math.pow(2950/2500,1/3)-1)*100).toFixed(1);",
+   "15.3": "return ((2950-2500)/2950*100).toFixed(1);"
+  }
+ },
+ {
+  "id": "SM5-16",
+  "domain": "Math",
+  "subskill": "a fraction taken of a remainder rather than of the whole",
+  "difficulty": "medium",
+  "prompt": "A tank is full of water. On Monday half of the water in the tank is used. On Tuesday one third of the water that remains is used. What fraction of the tank's water is left after Tuesday?",
+  "choices": [
+   "1/6",
+   "5/6",
+   "1/3",
+   "1/4",
+   "3/4"
+  ],
+  "correct_answer": "1/3",
+  "explanation": "Monday leaves 1/2 of the water, and Tuesday uses a third of that half, leaving two thirds of a half, which is 1/3 of the tank. The option \"1/6\" subtracts a third of the whole tank instead of a third of what remains, 1 - 1/2 - 1/3. The option \"1/4\" treats Tuesday's use as another half of what remains. The option \"3/4\" makes that same halving mistake and then takes the quarter off the full tank rather than off what Monday left. The option \"5/6\" works out Tuesday's use correctly as a sixth of a tank but takes it off the full tank, forgetting Monday.",
+  "solve": "var left=1-1/2;return left*(1-1/3);",
+  "distractor_solve": {
+   "5/6": "return 1-(1/3)*(1/2);",
+   "1/4": "var left=1-1/2;return left*(1-1/2);",
+   "1/6": "return 1-1/2-1/3;",
+   "3/4": "var left=1-1/2;var used=left*(1/2);return 1-used;"
+  }
+ },
+ {
+  "id": "SM5-17",
+  "domain": "Math",
+  "subskill": "translating a point and then reflecting the image in an axis",
+  "difficulty": "medium",
+  "prompt": "The point A(-3, 5) is translated 6 units to the right and 9 units down. The image is then reflected in the x-axis. What is the sum of the coordinates of the final point?",
+  "choices": [
+   "-7",
+   "7",
+   "1",
+   "-1",
+   "-8"
+  ],
+  "correct_answer": "7",
+  "explanation": "The translation sends A(-3, 5) to (3, -4), and reflecting in the x-axis changes the sign of the y-coordinate only, giving (3, 4), whose coordinates total 7. The option \"-1\" stops at (3, -4), before the reflection. The option \"-7\" reflects in the y-axis instead, giving (-3, -4). The option \"1\" reflects (3, -4) in the origin, changing the sign of both coordinates to reach (-3, 4). The option \"-8\" reflects the original point without translating it first, giving (-3, -5).",
+  "solve": "var x=-3+6,y=5-9;y=-y;return x+y;",
+  "distractor_solve": {
+   "1": "var x=-3+6,y=5-9;x=-x;y=-y;return x+y;",
+   "-1": "var x=-3+6,y=5-9;return x+y;",
+   "-7": "var x=-3+6,y=5-9;x=-x;return x+y;",
+   "-8": "var x=-3,y=5;y=-y;return x+y;"
+  }
+ },
+ {
+  "id": "SM5-18",
+  "domain": "Math",
+  "subskill": "counting three-digit numbers that read the same in both directions",
+  "difficulty": "medium",
+  "prompt": "How many whole numbers from 100 to 999 inclusive read the same forwards as backwards?",
+  "choices": [
+   "72",
+   "9",
+   "90",
+   "19",
+   "81"
+  ],
+  "correct_answer": "90",
+  "explanation": "Such a number is fixed by its first two digits: the first digit has 9 choices, since it cannot be 0, the middle digit has 10, and the last digit must repeat the first, giving 9 x 10 = 90 numbers. The option \"81\" bars 0 from the middle digit as well, counting 9 x 9. The option \"72\" also requires the middle digit to differ from the outer two, counting 9 x 8. The option \"19\" adds the 9 choices and the 10 choices instead of multiplying them. The option \"9\" counts only the numbers whose three digits are all the same.",
+  "solve": "var c=0;for(var n=100;n<=999;n++){var s=String(n);if(s===s.split('').reverse().join(''))c++;}return c;",
+  "distractor_solve": {
+   "9": "var c=0;for(var n=100;n<=999;n++){var s=String(n);if(s[0]===s[1]&&s[1]===s[2])c++;}return c;",
+   "19": "return 9+10;",
+   "72": "return 9*8;",
+   "81": "return 9*9;"
+  }
+ },
+ {
+  "id": "SM5-19",
+  "domain": "Math",
+  "subskill": "a term far along a growing pattern of tiles",
+  "difficulty": "medium",
+  "prompt": "A pattern of tiles is built in figures. Figure 1 uses 5 tiles, Figure 2 uses 9 tiles and Figure 3 uses 13 tiles, and each later figure uses 4 more tiles than the one before. How many tiles does Figure 20 use?",
+  "choices": [
+   "93",
+   "100",
+   "81",
+   "85",
+   "80"
+  ],
+  "correct_answer": "81",
+  "explanation": "Figure 1 starts at 5 tiles and every step after it adds 4, so Figure 20 uses 5 + 19 x 4 = 81 tiles. The option \"80\" takes 4 x 20 and leaves out the single tile the pattern starts with. The option \"85\" adds 4 twenty times rather than nineteen, running one figure past Figure 20. The option \"93\" starts again from Figure 3's 13 tiles and adds 4 twenty more times, instead of the seventeen times it takes to reach Figure 20. The option \"100\" multiplies Figure 1's 5 tiles by 20.",
+  "solve": "return 5+(20-1)*4;",
+  "distractor_solve": {
+   "80": "return 4*20;",
+   "85": "return 5+20*4;",
+   "93": "return 13+20*4;",
+   "100": "return 5*20;"
+  }
+ },
+ {
+  "id": "SM5-20",
+  "domain": "Math",
+  "subskill": "fuel cost of a trip from a consumption rate and a price per litre",
+  "difficulty": "medium",
+  "prompt": "A car uses 7 litres of fuel for every 100 kilometres it travels. Fuel costs $1.60 per litre. How many dollars does the fuel for a 450-kilometre trip cost?",
+  "choices": [
+   "31.50",
+   "11.20",
+   "50.40",
+   "7.20",
+   "44.80"
+  ],
+  "correct_answer": "50.40",
+  "explanation": "The trip needs 4.5 x 7 = 31.5 litres, and 31.5 litres at 1.60 dollars a litre costs 50.40 dollars. The option \"31.50\" stops at the number of litres the trip needs. The option \"11.20\" gives the cost of the 7 litres used over a single 100-kilometre stretch. The option \"44.80\" rounds the trip down to 400 kilometres, costing 28 litres. The option \"7.20\" multiplies the 4.5 hundred-kilometre stretches by the price per litre and never uses the consumption rate.",
+  "solve": "return (450/100*7*1.60).toFixed(2);",
+  "distractor_solve": {
+   "31.50": "return (450/100*7).toFixed(2);",
+   "11.20": "return (7*1.60).toFixed(2);",
+   "44.80": "return (400/100*7*1.60).toFixed(2);",
+   "7.20": "return (450/100*1.60).toFixed(2);"
+  }
+ },
+ {
+  "id": "SM5-21",
+  "domain": "Math",
+  "subskill": "area of a sector from its central angle",
+  "difficulty": "medium",
+  "prompt": "A circle has a radius of 10 centimetres. A sector of this circle has a central angle of 72°. What is the area of the sector, in square centimetres? (Use π = 3.14.)",
+  "choices": [
+   "314",
+   "62.8",
+   "125.6",
+   "20",
+   "32.56"
+  ],
+  "correct_answer": "62.8",
+  "explanation": "The whole circle has area 3.14 x 10 x 10 = 314 square centimetres, and the sector is 72/360 of that, which is 62.8 square centimetres. The option \"314\" gives the area of the whole circle. The option \"32.56\" gives the distance round the outside of the sector — its arc of 12.56 plus the two radii of 10 — rather than the area inside it. The option \"20\" leaves pi out altogether, taking 72/360 of 100. The option \"125.6\" measures the angle against 180 degrees instead of 360.",
+  "solve": "return 3.14*10*10*72/360;",
+  "distractor_solve": {
+   "20": "return 10*10*72/360;",
+   "314": "return 3.14*10*10;",
+   "125.6": "return 3.14*10*10*72/180;",
+   "32.56": "return 2*3.14*10*72/360 + 2*10;"
+  }
+ },
+ {
+  "id": "SM5-22",
+  "domain": "Math",
+  "subskill": "changing money into a currency and part of it back again",
+  "difficulty": "medium",
+  "prompt": "A traveller changes $600 into euros at 0.85 euros to the dollar, spends 300 euros, and changes the euros she has left back into dollars at 1.10 dollars to the euro. How many dollars does she receive?",
+  "choices": [
+   "510",
+   "190.91",
+   "231",
+   "330",
+   "210"
+  ],
+  "correct_answer": "231",
+  "explanation": "She receives 600 x 0.85 = 510 euros, spends 300 of them and has 210 euros left, which change back into 210 x 1.10 = 231 dollars. The option \"210\" stops at the number of euros left. The option \"510\" stops at the euros she received at the start. The option \"330\" changes back the 300 euros she spent instead of the 210 she still has. The option \"190.91\" divides the 210 euros by 1.10 instead of multiplying.",
+  "solve": "return (600*0.85-300)*1.10;",
+  "distractor_solve": {
+   "210": "return 600*0.85-300;",
+   "330": "return 300*1.10;",
+   "510": "return 600*0.85;",
+   "190.91": "return ((600*0.85-300)/1.10).toFixed(2);"
+  }
+ },
+ {
+  "id": "SM5-23",
+  "domain": "Math",
+  "subskill": "angle between the hands of a clock at a given time",
+  "difficulty": "hard",
+  "prompt": "What is the measure, in degrees, of the smaller angle between the hour hand and the minute hand of a clock at 4:20?",
+  "choices": [
+   "110",
+   "10",
+   "130",
+   "30",
+   "20"
+  ],
+  "correct_answer": "10",
+  "explanation": "At 4:20 the minute hand is at 120 degrees from the 12, while the hour hand has moved a third of the way from the 4 to the 5, reaching 120 + 20 x 0.5 = 130 degrees, so the hands are 10 degrees apart. The option \"110\" places the hour hand correctly at 130 degrees but reads the minute hand as 20 degrees, one degree for each minute, instead of 120. The option \"20\" moves the hour hand a whole degree a minute instead of half a degree, putting it at 140 degrees. The option \"30\" advances the hour hand all the way to the 5. The option \"130\" gives the hour hand's position measured from the 12 rather than the angle between the hands.",
+  "solve": "var m=20*6,h=4*30+20*0.5;return Math.abs(h-m);",
+  "distractor_solve": {
+   "20": "var m=20*6,h=4*30+20*1;return Math.abs(h-m);",
+   "30": "var m=20*6,h=5*30;return Math.abs(h-m);",
+   "110": "var m=20,h=4*30+20*0.5;return Math.abs(h-m);",
+   "130": "return 4*30+20*0.5;"
+  }
+ },
+ {
+  "id": "SM5-24",
+  "domain": "Math",
+  "subskill": "the coefficient of a radical in the area of an equilateral triangle",
+  "difficulty": "hard",
+  "prompt": "An equilateral triangle has sides of length 10 centimetres. Its area can be written as k√3 square centimetres. What is the value of k?",
+  "choices": [
+   "8.7",
+   "25",
+   "43.3",
+   "33.3",
+   "30"
+  ],
+  "correct_answer": "25",
+  "explanation": "Dropping a perpendicular from one vertex splits the triangle into two right triangles with a base of 5 and a height of 5√3, so the area is 1/2 x 10 x 5√3 = 25√3 and k is 25. The option \"43.3\" gives the area itself, 25√3 to one decimal place, rather than the value of k. The option \"8.7\" gives the triangle's height, 5√3 to one decimal place. The option \"30\" gives the perimeter of the triangle. The option \"33.3\" divides the square of the side by 3 instead of by 4.",
+  "solve": "return 10*10/4;",
+  "distractor_solve": {
+   "30": "return 3*10;",
+   "43.3": "return (10*10/4*Math.sqrt(3)).toFixed(1);",
+   "8.7": "return (5*Math.sqrt(3)).toFixed(1);",
+   "33.3": "return (10*10/3).toFixed(1);"
+  }
+ },
+ {
+  "id": "SM5-25",
+  "domain": "Math",
+  "subskill": "greatest three-digit number divisible by two given numbers",
+  "difficulty": "hard",
+  "prompt": "What is the greatest three-digit whole number that is divisible by both 7 and 12?",
+  "choices": [
+   "996",
+   "840",
+   "924",
+   "994",
+   "988"
+  ],
+  "correct_answer": "924",
+  "explanation": "A number divisible by both 7 and 12 is a multiple of 84, and the greatest multiple of 84 below 1,000 is 84 x 11 = 924. The option \"996\" is the greatest three-digit multiple of 12 alone. The option \"994\" is the greatest three-digit multiple of 7 alone. The option \"988\" adds 7 and 12 and takes the greatest three-digit multiple of 19. The option \"840\" stops at 84 x 10 instead of going on to 84 x 11.",
+  "solve": "for(var n=999;n>=100;n--)if(n%7===0&&n%12===0)return n;",
+  "distractor_solve": {
+   "840": "return 84*10;",
+   "988": "for(var n=999;n>=100;n--)if(n%(7+12)===0)return n;",
+   "994": "for(var n=999;n>=100;n--)if(n%7===0)return n;",
+   "996": "for(var n=999;n>=100;n--)if(n%12===0)return n;"
+  }
+ },
+ {
+  "id": "SM5-26",
+  "domain": "Math",
+  "subskill": "least possible overlap of two subgroups of a group",
+  "difficulty": "hard",
+  "prompt": "In a group of 40 students, 27 study French and 22 study Spanish. What is the least possible number of students who study both languages?",
+  "choices": [
+   "22",
+   "9",
+   "18",
+   "15",
+   "13"
+  ],
+  "correct_answer": "9",
+  "explanation": "The two subjects account for 27 + 22 = 49 places among only 40 students, so at least 49 - 40 = 9 students must be counted twice, and 9 is reached when every student studies at least one language. The option \"22\" gives the greatest possible overlap, where the whole Spanish group also studies French. The option \"15\" assumes the two choices are unrelated, so that the 27 out of 40 who study French take the same share of the 22 Spanish students, 27 x 22 / 40 = 14.85. The option \"13\" gives the 40 - 27 students who do not study French. The option \"18\" gives the 40 - 22 who do not study Spanish.",
+  "solve": "return 27+22-40;",
+  "distractor_solve": {
+   "13": "return 40-27;",
+   "15": "return Math.round(27*22/40);",
+   "18": "return 40-22;",
+   "22": "return Math.min(27,22);"
+  }
+ },
+ {
+  "id": "SM5-27",
+  "domain": "Math",
+  "subskill": "how far the foot of a ladder moves when its top slides down",
+  "difficulty": "hard",
+  "prompt": "A ladder 25 feet long leans against a vertical wall, with its foot 7 feet from the base of the wall. The top of the ladder slides 4 feet down the wall, and the foot slides out along level ground. How many feet farther from the wall is the foot of the ladder now?",
+  "choices": [
+   "15",
+   "4",
+   "8",
+   "17",
+   "11"
+  ],
+  "correct_answer": "8",
+  "explanation": "At first the top is at a height of 24 feet, since 7 and 24 and 25 form a right triangle. After the slide the top is at 20 feet, so the foot is now 15 feet out, because 15 and 20 and 25 form a right triangle, and the foot has moved 15 - 7 = 8 feet. The option \"15\" gives the foot's new distance from the wall rather than how much farther out it is. The option \"4\" assumes the foot slides out as far as the top slides down. The option \"11\" subtracts the 4-foot slide from the new distance of 15 feet. The option \"17\" subtracts the original 7-foot distance from the original height of 24 feet.",
+  "solve": "var h1=Math.sqrt(25*25-7*7);var h2=h1-4;var b2=Math.sqrt(25*25-h2*h2);return b2-7;",
+  "distractor_solve": {
+   "4": "return 4;",
+   "11": "var h2=Math.sqrt(25*25-7*7)-4;return Math.sqrt(25*25-h2*h2)-4;",
+   "15": "var h2=Math.sqrt(25*25-7*7)-4;return Math.sqrt(25*25-h2*h2);",
+   "17": "return Math.sqrt(25*25-7*7)-7;"
+  }
+ },
+ {
+  "id": "SM5-28",
+  "domain": "Math",
+  "subskill": "smallest multiplier that turns a number into a perfect square",
+  "difficulty": "hard",
+  "prompt": "What is the smallest positive whole number by which 540 must be multiplied so that the product is a perfect square?",
+  "choices": [
+   "30",
+   "15",
+   "60",
+   "135",
+   "3"
+  ],
+  "correct_answer": "15",
+  "explanation": "Since 540 = 2 x 2 x 3 x 3 x 3 x 5, the factors 2 and 2 and the pair of 3s are already matched, and only one 3 and one 5 are unpaired, so multiplying by 3 x 5 = 15 gives 8,100, which is 90 squared. The option \"3\" pairs the spare 3 but forgets the spare 5, leaving 1,620, which is not a square. The option \"30\" pairs the 2 as well, although it is already paired. The option \"60\" pairs both the 2 and the 3 that need no partner. The option \"135\" removes the square part by taking 540 / 4 and does give a perfect square, but a far larger multiplier than is needed.",
+  "solve": "for(var m=1;;m++){var p=540*m;var r=Math.round(Math.sqrt(p));if(r*r===p)return m;}",
+  "distractor_solve": {
+   "3": "return 3;",
+   "30": "return 2*3*5;",
+   "60": "return 2*2*3*5;",
+   "135": "return 540/4;"
+  }
+ },
+ {
+  "id": "SM5-29",
+  "domain": "Math",
+  "subskill": "percent change in an area after two dimensions change",
+  "difficulty": "hard",
+  "prompt": "The length of a rectangle is increased by 20% and its width is decreased by 15%. By what percent does the area of the rectangle change? Give a decrease as a negative number.",
+  "choices": [
+   "5",
+   "2",
+   "-8",
+   "35",
+   "-5"
+  ],
+  "correct_answer": "2",
+  "explanation": "The new area is 1.20 x 0.85 = 1.02 times the old area, which is an increase of 2 percent. The option \"5\" subtracts the two percents, 20 - 15. The option \"-5\" subtracts them the other way round, 15 - 20. The option \"35\" adds the two percents. The option \"-8\" swaps which dimension changes which way, decreasing by 20% and increasing by 15%, and 0.80 x 1.15 = 0.92.",
+  "solve": "return Math.round((1.20*0.85-1)*1000)/10;",
+  "distractor_solve": {
+   "5": "return 20-15;",
+   "35": "return 20+15;",
+   "-5": "return 15-20;",
+   "-8": "return Math.round((0.80*1.15-1)*1000)/10;"
+  }
+ },
+ {
+  "id": "SM5-30",
+  "domain": "Math",
+  "subskill": "turns of meshed gears with different numbers of teeth",
+  "difficulty": "hard",
+  "prompt": "Two meshed gears turn together. The larger gear has 48 teeth and the smaller gear has 18 teeth. The larger gear makes 12 turns in one minute. How many turns does the smaller gear make in one minute?",
+  "choices": [
+   "4.5",
+   "36",
+   "32",
+   "12",
+   "30"
+  ],
+  "correct_answer": "32",
+  "explanation": "Meshed gears pass the same number of teeth, so the smaller gear turns 48 x 12 = 576 teeth past the mesh and makes 576 / 18 = 32 turns. The option \"4.5\" uses the ratio the wrong way up, 12 x 18/48. The option \"36\" rounds the 48 : 18 ratio to 3 : 1 and multiplies 12 by 3. The option \"30\" uses the difference between the teeth counts, 48 - 18. The option \"12\" reports the larger gear's own rate of turning.",
+  "solve": "return 48*12/18;",
+  "distractor_solve": {
+   "12": "return 12;",
+   "30": "return 48-18;",
+   "36": "return 12*3;",
+   "4.5": "return 12*18/48;"
+  }
+ }
+]
