@@ -438,6 +438,32 @@ An author claiming "I built N of these deliberately" is not evidence either.
 Three solvers tested exactly such a claim, found the author's count correct and
 the channel still at its noise floor, and declined to bet in either direction.
 
+**THE NULL MUST SHARE THE DATA'S TEXTURE, NOT JUST ITS RANGE.** This rule was
+written with "resample uniformly from the item's own range", and a solver
+refuted that within the hour, on a five-choice SSAT maths batch:
+
+        uniform-range null      13 runs observed vs  3.57 expected   "3.6x, REAL"
+        strict null (multiples  13 runs observed vs  8.26 expected   p = 0.010,
+        of the item's own gcd)                                        weakly real
+
+Their words: *"Real option sets are not uniform over a range; they are round
+numbers sharing a unit. Once the null shares that texture, the run expectation
+triples."* A uniform null is too rough — it under-predicts the coincidental
+structure that round, unit-sharing numbers fall into on their own, so it
+manufactures findings.
+
+So resample from the multiples of the item's own gcd, within its own range, at
+its own decimal precision. **Every null quoted before this was measured the
+loose way, so treat those expectations as lower bounds and the channels they
+cleared as weaker than stated** — the geometric-run and product findings are
+rare enough to survive, the arithmetic-run ones are the ones to re-check.
+
+And the reason to decline a bet can be arithmetic rather than epistemic. The
+same solver laid it out: betting against a run middle across 13 items lifts
+each from 20% to 25% if the author is right, worth +0.65 items; if the author
+is wrong those 13 go to zero, costing 2.6. **A quarter-item of upside against
+four times that in downside is a bad bet whoever is right.**
+
 ## 3c. A 2x2 option grid protects an item only when BOTH axes are arbitrary
 
 The grid is recommended above and it works — but two options-only solvers

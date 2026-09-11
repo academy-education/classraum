@@ -1385,3 +1385,20 @@ structural checks are pre-flight only. See CLAUDE.md.
   One solver stated the trap inside the trap, and it inverts a rule solvers have used all day: **when the semantic outlier is a sound-alike, it is the decoy, not the key.** "Odd one out is the answer" picks it and is wrong.
 
   **Two process failures of mine in this run, both caught by solvers rather than by me.** A control solver found my first control draw contained three identical option pools — my random draw had pulled several members of the same MATCHING SET, which handed the control a within-set elimination the candidate cannot offer and so biased the comparison in the candidate's favour. Rebuilt deduped. Then I replaced the blind file in place while a solver was still reading it; that solver reported the file changing underneath it rather than delivering the mixture silently, and its run was discarded. In cleaning up I then deleted a *valid* fresh run, mistaking the filename for the version. Three separate reminders that **a render must be rebuilt under a new tag, never in place** — the ledger binds verdicts to a content hash for exactly this reason and the render files had no such discipline.
+
+- **2026-09-11** — **THE NULL I WROTE INTO THE BRIEF AN HOUR AGO WAS TOO LOOSE, AND A SOLVER REFUTED IT ON THE NEXT BATCH.**
+
+  §3e said to measure a channel against a null built by resampling each item's options uniformly from that item's own range. A solver on `ssat-math-s13` ran that null and a stricter one side by side:
+
+        uniform-range null       13 runs observed vs 3.57 expected    reads as 3.6x, "REAL"
+        multiples-of-the-gcd     13 runs observed vs 8.26 expected    p = 0.010, weakly real
+
+  Their reason: *"Real option sets are not uniform over a range; they are round numbers sharing a unit. Once the null shares that texture, the run expectation triples."* A uniform null under-predicts the structure round unit-sharing numbers fall into by themselves, so it manufactures findings — and they said outright that reporting off the first null *"would have made the run channel look like a 3.6x finding."*
+
+  **Every null quoted earlier today used the loose form.** Those expectations are lower bounds and the channels they cleared are weaker than stated. The geometric-run (4 vs 0.17-0.31) and product (2 vs 0.13-0.34) findings are rare enough to survive a tripling; the **arithmetic-run** verdicts are the ones to re-check, and they were already being called noise, so the correction pushes in the direction already taken.
+
+  §3e now specifies the strict null and says plainly that the earlier numbers were measured the loose way.
+
+  **A second thing from the same solver worth keeping: the decision to decline a bet can be arithmetic rather than epistemic.** On whether to bet against the run middle across 13 items — *"Betting against the middle, if the author is right, lifts 13 items from 20% to 25% — expected +0.65 items. If the author is wrong, those 13 items go to 0% — minus 2.6. I am being offered a quarter-item of upside against four times that in downside."* They filed **zero confident picks** and cycled their guesses A–E deliberately so an implicit letter preference could not decide the run.
+
+  They also found the batch is visibly run-scrubbed in the other direction: item 27 has a 72% strict-null run rate and contains no run at all. That is the author having built against the channel, and it is not itself a tell.

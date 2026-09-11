@@ -1,0 +1,654 @@
+[
+  {
+    "id": "S13-01",
+    "domain": "Math",
+    "subskill": "solving a two-step linear equation",
+    "difficulty": "easy",
+    "prompt": "If x/3 + 4 = 10, what is the value of x?",
+    "choices": [
+      "18",
+      "2",
+      "42",
+      "6",
+      "14"
+    ],
+    "correct_answer": "18",
+    "explanation": "Subtracting 4 from both sides gives x/3 = 6, and multiplying by 3 gives x = 18. The option \"6\" stops at x/3 = 6 and reports that value instead of x. The option \"2\" divides the 6 by 3 rather than multiplying, undoing the division the wrong way. The option \"42\" adds the 4 to the 10 before multiplying by 3, (10 + 4) x 3. The option \"14\" adds the 4 to the 10 and never multiplies by 3 at all.",
+    "solve": "return (10-4)*3;",
+    "distractor_solve": {
+      "6": "return 10-4;",
+      "2": "return (10-4)/3;",
+      "42": "return (10+4)*3;",
+      "14": "return 10+4;"
+    }
+  },
+  {
+    "id": "S13-02",
+    "domain": "Math",
+    "subskill": "finding a triangle's height from its area and base",
+    "difficulty": "easy",
+    "prompt": "A triangle has a base of 10 centimetres and an area of 35 square centimetres. What is the height of the triangle, in centimetres?",
+    "choices": [
+      "7",
+      "3.5",
+      "350",
+      "17.5",
+      "25"
+    ],
+    "correct_answer": "7",
+    "explanation": "The area of a triangle is half the base times the height, so 35 = (1/2) x 10 x h, giving 5h = 35 and h = 7. The option \"3.5\" divides the area by the base and forgets that the formula carries a factor of one half. The option \"350\" multiplies the area by the base instead of dividing. The option \"17.5\" halves the area but never divides by the base. The option \"25\" subtracts the base from the area, combining square centimetres with centimetres.",
+    "solve": "return 35/(0.5*10);",
+    "distractor_solve": {
+      "3.5": "return 35/10;",
+      "350": "return 35*10;",
+      "17.5": "return 35/2;",
+      "25": "return 35-10;"
+    }
+  },
+  {
+    "id": "S13-03",
+    "domain": "Math",
+    "subskill": "finding a missing value from a stated mean",
+    "difficulty": "easy",
+    "prompt": "The mean of the five numbers 11, 16, 9, 14 and n is 13. What is the value of n?",
+    "choices": [
+      "15",
+      "13",
+      "12.5",
+      "16.25",
+      "65"
+    ],
+    "correct_answer": "15",
+    "explanation": "Five numbers with a mean of 13 total 5 x 13 = 65. The four listed numbers total 50, so n = 65 - 50 = 15. The option \"13\" assumes the missing number must equal the mean. The option \"12.5\" is the mean of the four listed numbers, 50 / 4. The option \"16.25\" divides the correct total of 65 by 4, the count of the numbers already known. The option \"65\" is the total of all five numbers and is never reduced by the 50 already accounted for.",
+    "solve": "return 5*13-(11+16+9+14);",
+    "distractor_solve": {
+      "13": "return 13;",
+      "12.5": "return (11+16+9+14)/4;",
+      "16.25": "return 5*13/4;",
+      "65": "return 5*13;"
+    }
+  },
+  {
+    "id": "S13-04",
+    "domain": "Math",
+    "subskill": "order of operations with negative numbers",
+    "difficulty": "easy",
+    "prompt": "What is the value of -7 + 3 x (-4)?",
+    "choices": [
+      "-19",
+      "16",
+      "5",
+      "-5",
+      "-12"
+    ],
+    "correct_answer": "-19",
+    "explanation": "Multiplication comes before addition: 3 x (-4) = -12, and -7 + (-12) = -19. The option \"16\" works left to right, computing -7 + 3 = -4 and then -4 x (-4) = 16. The option \"5\" drops the negative sign on the 4, giving -7 + 12. The option \"-5\" drops the negative sign on the 7, giving 7 - 12. The option \"-12\" is the product 3 x (-4) on its own, with the -7 never added.",
+    "solve": "return -7+3*(-4);",
+    "distractor_solve": {
+      "16": "return (-7+3)*(-4);",
+      "5": "return -7+3*4;",
+      "-5": "return 7+3*(-4);",
+      "-12": "return 3*(-4);"
+    }
+  },
+  {
+    "id": "S13-05",
+    "domain": "Math",
+    "subskill": "average speed from a distance and a time",
+    "difficulty": "easy",
+    "prompt": "A car travels 252 kilometres in 3.5 hours. What is its average speed, in kilometres per hour?",
+    "choices": [
+      "72",
+      "84",
+      "63",
+      "882",
+      "36"
+    ],
+    "correct_answer": "72",
+    "explanation": "Average speed is distance divided by time: 252 / 3.5 = 72 kilometres per hour. The option \"84\" divides by 3, dropping the half hour. The option \"63\" divides by 4, rounding the time up to a whole number of hours. The option \"882\" multiplies the distance by the time instead of dividing. The option \"36\" divides by 7, the number of half-hours in 3.5 hours, which gives the distance per half hour rather than per hour.",
+    "solve": "return 252/3.5;",
+    "distractor_solve": {
+      "84": "return 252/3;",
+      "63": "return 252/4;",
+      "882": "return 252*3.5;",
+      "36": "return 252/7;"
+    }
+  },
+  {
+    "id": "S13-06",
+    "domain": "Math",
+    "subskill": "taking a fraction of a fraction of a quantity",
+    "difficulty": "easy",
+    "prompt": "What is 3/4 of 2/5 of 160?",
+    "choices": [
+      "48",
+      "64",
+      "120",
+      "184",
+      "56"
+    ],
+    "correct_answer": "48",
+    "explanation": "Two fifths of 160 is 64, and three quarters of 64 is 48. The option \"64\" stops at 2/5 of 160 and never takes the three quarters. The option \"120\" applies only the 3/4, giving 3/4 of 160. The option \"184\" adds the two fractions, treating the phrase as (3/4 + 2/5) of 160 = 23/20 of 160. The option \"56\" subtracts them instead, taking (3/4 - 2/5) of 160 = 7/20 of 160.",
+    "solve": "return 160*(2/5)*(3/4);",
+    "distractor_solve": {
+      "64": "return 160*(2/5);",
+      "120": "return 160*(3/4);",
+      "184": "return 160*(3/4+2/5);",
+      "56": "return 160*(3/4-2/5);"
+    }
+  },
+  {
+    "id": "S13-07",
+    "domain": "Math",
+    "subskill": "expressing a part of a group as a percent",
+    "difficulty": "easy",
+    "prompt": "In a class of 25 students, 4 are absent. What percent of the class is absent?",
+    "choices": [
+      "16",
+      "4",
+      "6.25",
+      "21",
+      "0.16"
+    ],
+    "correct_answer": "16",
+    "explanation": "The fraction absent is 4/25, and 4/25 = 0.16, which is 16 percent. The option \"0.16\" is that fraction written as a decimal and never converted to a percent. The option \"4\" reports the number of absent students rather than a percent. The option \"6.25\" divides the wrong way, 25 / 4. The option \"21\" is the number of students present, 25 - 4.",
+    "solve": "return 4/25*100;",
+    "distractor_solve": {
+      "0.16": "return 4/25;",
+      "4": "return 4;",
+      "6.25": "return 25/4;",
+      "21": "return 25-4;"
+    }
+  },
+  {
+    "id": "S13-08",
+    "domain": "Math",
+    "subskill": "scaling a price from a multi-item deal",
+    "difficulty": "easy",
+    "prompt": "A shop sells pens at 3 for $2.40. At this rate, what is the cost of 7 pens, in dollars?",
+    "choices": [
+      "5.6",
+      "0.8",
+      "16.8",
+      "7.2",
+      "8.4"
+    ],
+    "correct_answer": "5.6",
+    "explanation": "One pen costs 2.40 / 3 = $0.80, so 7 pens cost 7 x 0.80 = $5.60. The option \"0.8\" is the price of a single pen and stops one step short of the seven. The option \"16.8\" multiplies the $2.40 by 7 as though $2.40 were the price of one pen. The option \"7.2\" multiplies $2.40 by 3, pricing three groups of three. The option \"8.4\" divides the $2.40 by 2 rather than by 3 before multiplying by 7.",
+    "solve": "return 7*(2.40/3);",
+    "distractor_solve": {
+      "0.8": "return 2.40/3;",
+      "16.8": "return 2.40*7;",
+      "7.2": "return 2.40*3;",
+      "8.4": "return 7*(2.40/2);"
+    }
+  },
+  {
+    "id": "S13-09",
+    "domain": "Math",
+    "subskill": "scaling a recipe to a different number of servings",
+    "difficulty": "medium",
+    "prompt": "A recipe for 4 people uses 300 grams of rice. How many grams of rice are needed for 10 people?",
+    "choices": [
+      "750",
+      "75",
+      "3000",
+      "120",
+      "30"
+    ],
+    "correct_answer": "750",
+    "explanation": "One person needs 300 / 4 = 75 grams, so 10 people need 10 x 75 = 750 grams. The option \"75\" is the amount for one person and is never multiplied up to ten. The option \"3000\" multiplies 300 by 10 without first dividing by the 4 people the recipe serves. The option \"120\" inverts the scaling, taking 300 x 4/10. The option \"30\" divides the 300 grams by the 10 people rather than by the 4 the recipe serves.",
+    "solve": "return 300/4*10;",
+    "distractor_solve": {
+      "75": "return 300/4;",
+      "3000": "return 300*10;",
+      "120": "return 300*4/10;",
+      "30": "return 300/10;"
+    }
+  },
+  {
+    "id": "S13-10",
+    "domain": "Math",
+    "subskill": "multiplying powers with the same base",
+    "difficulty": "medium",
+    "prompt": "What is the value of 2^5 x 2^3?",
+    "choices": [
+      "256",
+      "32768",
+      "4",
+      "40",
+      "30"
+    ],
+    "correct_answer": "256",
+    "explanation": "Powers of the same base are multiplied by adding the exponents: 2^5 x 2^3 = 2^8 = 256. The option \"32768\" multiplies the exponents instead of adding them, giving 2^15. The option \"4\" subtracts them, giving 2^2. The option \"40\" adds the two values, 32 + 8, instead of multiplying them. The option \"30\" multiplies the base by both exponents, 2 x 5 x 3, treating the powers as products.",
+    "solve": "return Math.pow(2,5)*Math.pow(2,3);",
+    "distractor_solve": {
+      "32768": "return Math.pow(2,15);",
+      "4": "return Math.pow(2,2);",
+      "40": "return Math.pow(2,5)+Math.pow(2,3);",
+      "30": "return 2*5*3;"
+    }
+  },
+  {
+    "id": "S13-11",
+    "domain": "Math",
+    "subskill": "finding a term of an arithmetic sequence",
+    "difficulty": "medium",
+    "prompt": "The first term of a sequence is 6, and each term after the first is 4 more than the term before it. What is the 12th term?",
+    "choices": [
+      "50",
+      "54",
+      "48",
+      "44",
+      "72"
+    ],
+    "correct_answer": "50",
+    "explanation": "Getting from the 1st term to the 12th takes 11 steps of 4, so the 12th term is 6 + 11 x 4 = 50. The option \"54\" uses 12 steps rather than 11, giving 6 + 12 x 4. The option \"48\" is 12 x 4 and leaves out the first term entirely. The option \"44\" is the 11 steps of 4 on their own, again without the starting 6. The option \"72\" multiplies the first term by the position, 6 x 12, as though the sequence were a multiplication table.",
+    "solve": "return 6+11*4;",
+    "distractor_solve": {
+      "54": "return 6+12*4;",
+      "48": "return 12*4;",
+      "44": "return 11*4;",
+      "72": "return 6*12;"
+    }
+  },
+  {
+    "id": "S13-12",
+    "domain": "Math",
+    "subskill": "distance between two points in the coordinate plane",
+    "difficulty": "medium",
+    "prompt": "In the coordinate plane, point A is at (-2, 3) and point B is at (6, -12). What is the distance from A to B?",
+    "choices": [
+      "17",
+      "8",
+      "15",
+      "289",
+      "23"
+    ],
+    "correct_answer": "17",
+    "explanation": "The horizontal separation is 6 - (-2) = 8 and the vertical separation is 3 - (-12) = 15, so the distance is the square root of 8^2 + 15^2 = 289, which is 17. The option \"289\" is that sum of squares with the square root never taken. The option \"8\" reports the horizontal separation alone. The option \"15\" reports the vertical separation alone. The option \"23\" adds the two separations, 8 + 15, instead of combining them through the Pythagorean relation.",
+    "solve": "return Math.sqrt(Math.pow(6-(-2),2)+Math.pow(3-(-12),2));",
+    "distractor_solve": {
+      "289": "return Math.pow(8,2)+Math.pow(15,2);",
+      "8": "return 6-(-2);",
+      "15": "return 3-(-12);",
+      "23": "return 8+15;"
+    }
+  },
+  {
+    "id": "S13-13",
+    "domain": "Math",
+    "subskill": "angles of a triangle given in a ratio",
+    "difficulty": "medium",
+    "prompt": "In a triangle, one angle measures 30 degrees. Of the other two angles, the larger is twice the smaller. What is the measure, in degrees, of the largest angle of the triangle?",
+    "choices": [
+      "100",
+      "50",
+      "75",
+      "60",
+      "130"
+    ],
+    "correct_answer": "100",
+    "explanation": "The other two angles total 180 - 30 = 150 degrees, and since one is twice the other they are 50 and 100 degrees. The largest angle measures 100 degrees. The option \"50\" is the smaller of the two unknown angles. The option \"75\" splits the remaining 150 degrees evenly instead of in the ratio 2 to 1. The option \"60\" divides the full 180 degrees by 3, as though all three angles were equal. The option \"130\" subtracts only the smaller unknown angle from 180 and never accounts for the 30-degree angle.",
+    "solve": "return 2*(150/3);",
+    "distractor_solve": {
+      "50": "return 150/3;",
+      "75": "return 150/2;",
+      "60": "return 180/3;",
+      "130": "return 180-50;"
+    }
+  },
+  {
+    "id": "S13-14",
+    "domain": "Math",
+    "subskill": "side of a square from its perimeter",
+    "difficulty": "medium",
+    "prompt": "A square has a perimeter of 48 centimetres. What is the length of one side, in centimetres?",
+    "choices": [
+      "12",
+      "144",
+      "16",
+      "192",
+      "2304"
+    ],
+    "correct_answer": "12",
+    "explanation": "A square has four equal sides, so one side is 48 / 4 = 12 centimetres. The option \"144\" is the area of the square, 12 x 12, which is the answer to the question of how much floor the square covers rather than how long a side is. The option \"16\" divides the perimeter by 3, as though the figure were an equilateral triangle. The option \"192\" multiplies the perimeter by 4 instead of dividing by it. The option \"2304\" squares the perimeter, 48 x 48.",
+    "solve": "return 48/4;",
+    "distractor_solve": {
+      "144": "return Math.pow(48/4,2);",
+      "16": "return 48/3;",
+      "192": "return 48*4;",
+      "2304": "return 48*48;"
+    }
+  },
+  {
+    "id": "S13-15",
+    "domain": "Math",
+    "subskill": "finding a number from a stated percent of it",
+    "difficulty": "medium",
+    "prompt": "Thirty percent of a number is 42. What is the number?",
+    "choices": [
+      "140",
+      "12.6",
+      "72",
+      "1.4",
+      "126"
+    ],
+    "correct_answer": "140",
+    "explanation": "If 0.30n = 42 then n = 42 / 0.30 = 140. The option \"12.6\" takes 30 percent of 42 instead, running the percentage the wrong way. The option \"72\" adds the 30 to the 42, treating the percent as an amount. The option \"1.4\" divides 42 by 30 and stops, leaving the answer a hundred times too small. The option \"126\" multiplies 42 by 3, treating 30 percent as one third.",
+    "solve": "return 42/0.30;",
+    "distractor_solve": {
+      "12.6": "return 42*0.30;",
+      "72": "return 42+30;",
+      "1.4": "return 42/30;",
+      "126": "return 42*3;"
+    }
+  },
+  {
+    "id": "S13-16",
+    "domain": "Math",
+    "subskill": "converting a rate to a per-minute figure",
+    "difficulty": "medium",
+    "prompt": "A tap delivers 1,260 litres of water in 45 minutes. How many litres does it deliver per minute?",
+    "choices": [
+      "28",
+      "1680",
+      "21",
+      "315",
+      "1215"
+    ],
+    "correct_answer": "28",
+    "explanation": "Litres per minute is 1,260 / 45 = 28. The option \"1680\" is the number of litres delivered in an hour, 28 x 60, rather than in a minute. The option \"21\" divides by 60 instead of by the 45 minutes the stem gives. The option \"315\" divides by 4, giving the litres delivered in each quarter of the 45 minutes rather than in a minute. The option \"1215\" subtracts the 45 minutes from the 1,260 litres, combining a time with a volume.",
+    "solve": "return 1260/45;",
+    "distractor_solve": {
+      "1680": "return 1260/45*60;",
+      "21": "return 1260/60;",
+      "315": "return 1260/4;",
+      "1215": "return 1260-45;"
+    }
+  },
+  {
+    "id": "S13-17",
+    "domain": "Math",
+    "subskill": "identifying which total a question asks for",
+    "difficulty": "medium",
+    "prompt": "Each of the 24 students in a club raised $18 for charity. The school then added a bonus equal to 25 percent of the amount the students raised. How many dollars did the students themselves raise?",
+    "choices": [
+      "432",
+      "540",
+      "576",
+      "135",
+      "42"
+    ],
+    "correct_answer": "432",
+    "explanation": "The students raised 24 x 18 = $432; the bonus and the grand total are not what is asked for. The option \"540\" is the grand total after the school adds its 25 percent bonus, 432 + 108. The option \"576\" multiplies 24 by 24, using the number of students in place of the amount each raised. The option \"135\" is 25 percent of that grand total of 540, a bonus computed from the wrong base. The option \"42\" adds 24 and 18 instead of multiplying them.",
+    "solve": "return 24*18;",
+    "distractor_solve": {
+      "540": "return 24*18*1.25;",
+      "576": "return 24*24;",
+      "135": "return 24*18*1.25*0.25;",
+      "42": "return 24+18;"
+    }
+  },
+  {
+    "id": "S13-18",
+    "domain": "Math",
+    "subskill": "mean of a group made of two unequal subgroups",
+    "difficulty": "medium",
+    "prompt": "In a class of 20 students, 12 students each scored 80 points on a test and the other 8 students each scored 95 points. What is the mean score of the class?",
+    "choices": [
+      "86",
+      "87.5",
+      "89",
+      "1720",
+      "80"
+    ],
+    "correct_answer": "86",
+    "explanation": "The class total is 12 x 80 + 8 x 95 = 960 + 760 = 1,720 points across 20 students, so the mean is 86. The option \"87.5\" averages 80 and 95, ignoring that more students scored 80 than 95. The option \"89\" attaches the counts to the wrong scores, computing (12 x 95 + 8 x 80) / 20. The option \"1720\" is the class total, never divided by the number of students. The option \"80\" reports the score the largest group achieved.",
+    "solve": "return (12*80+8*95)/20;",
+    "distractor_solve": {
+      "87.5": "return (80+95)/2;",
+      "89": "return (12*95+8*80)/20;",
+      "1720": "return 12*80+8*95;",
+      "80": "return 80;"
+    }
+  },
+  {
+    "id": "S13-19",
+    "domain": "Math",
+    "subskill": "counting arrangements by enumerating the choices",
+    "difficulty": "medium",
+    "prompt": "Ann, Ben, Carla and Dev are to sit in a row of four seats, one person to a seat. In how many different orders can they be seated?",
+    "choices": [
+      "24",
+      "12",
+      "10",
+      "16",
+      "256"
+    ],
+    "correct_answer": "24",
+    "explanation": "The first seat can be filled 4 ways, then the second 3 ways, the third 2 ways and the last 1 way: 4 x 3 x 2 x 1 = 24 orders. The option \"12\" is 4 x 3 and fills only the first two seats. The option \"10\" adds the choices, 4 + 3 + 2 + 1, instead of multiplying them. The option \"16\" is 4 x 4, allowing the same person to be seated twice. The option \"256\" is 4 x 4 x 4 x 4, allowing a repeat in every one of the four seats.",
+    "solve": "return 4*3*2*1;",
+    "distractor_solve": {
+      "12": "return 4*3;",
+      "10": "return 4+3+2+1;",
+      "16": "return 4*4;",
+      "256": "return Math.pow(4,4);"
+    }
+  },
+  {
+    "id": "S13-20",
+    "domain": "Math",
+    "subskill": "area with the two dimensions given in different units",
+    "difficulty": "medium",
+    "prompt": "A rectangular floor measures 3 metres by 250 centimetres. What is the area of the floor, in square metres?",
+    "choices": [
+      "7.5",
+      "750",
+      "253",
+      "11",
+      "5.5"
+    ],
+    "correct_answer": "7.5",
+    "explanation": "Since 250 centimetres is 2.5 metres, the area is 3 x 2.5 = 7.5 square metres. The option \"750\" multiplies 3 by 250 with no conversion, mixing metres with centimetres. The option \"253\" adds the two measurements as they are printed. The option \"11\" is the perimeter in metres, 2 x (3 + 2.5). The option \"5.5\" adds the two converted side lengths, 3 + 2.5, rather than multiplying them.",
+    "solve": "return 3*2.5;",
+    "distractor_solve": {
+      "750": "return 3*250;",
+      "253": "return 3+250;",
+      "11": "return 2*(3+2.5);",
+      "5.5": "return 3+2.5;"
+    }
+  },
+  {
+    "id": "S13-21",
+    "domain": "Math",
+    "subskill": "average speed over two legs covered at different rates",
+    "difficulty": "hard",
+    "prompt": "A cyclist rides 30 kilometres from her home to a lake at 15 kilometres per hour, and then rides the same 30 kilometres home at 10 kilometres per hour. What is her average speed for the whole ride, in kilometres per hour?",
+    "choices": [
+      "12",
+      "12.5",
+      "25",
+      "20",
+      "5"
+    ],
+    "correct_answer": "12",
+    "explanation": "Average speed is the total distance divided by the total time, not the average of the two rates. The outward leg takes 30 / 15 = 2 hours and the return leg takes 30 / 10 = 3 hours, so 60 kilometres take 5 hours and the average speed is 12 kilometres per hour. The option \"12.5\" averages the two rates, which would only be right if the two legs took equal times, and the slower leg takes longer. The option \"25\" adds the two rates. The option \"20\" divides the 60 kilometres by 3 hours, the time of the return leg alone. The option \"5\" subtracts the two rates.",
+    "solve": "return (30+30)/(30/15+30/10);",
+    "distractor_solve": {
+      "12.5": "return (15+10)/2;",
+      "25": "return 15+10;",
+      "20": "return 60/3;",
+      "5": "return 15-10;"
+    },
+    "hard_withholds": "The stem never says that the two legs take different amounts of time, and it prints the two rates side by side, which invites averaging them. The student has to notice that the slower leg occupies more of the ride, so the average speed must lie below the midpoint of 15 and 10."
+  },
+  {
+    "id": "S13-22",
+    "domain": "Math",
+    "subskill": "two workers with different rates finishing one job together",
+    "difficulty": "hard",
+    "prompt": "One pipe can fill an empty tank in 6 hours. A second pipe can fill the same tank in 3 hours. If both pipes are opened at the same time, how many hours will they take to fill the empty tank?",
+    "choices": [
+      "2",
+      "4.5",
+      "9",
+      "18",
+      "1.5"
+    ],
+    "correct_answer": "2",
+    "explanation": "Rates add, times do not. In one hour the first pipe fills 1/6 of the tank and the second fills 1/3, together 1/2 of the tank each hour, so the tank fills in 2 hours. The option \"4.5\" averages the two times. The option \"9\" adds the two times, which would describe the pipes running one after the other. The option \"18\" multiplies them, 6 x 3. The option \"1.5\" halves the faster pipe's 3 hours, as though the slower pipe simply doubled the faster pipe's speed.",
+    "solve": "return 1/(1/6+1/3);",
+    "distractor_solve": {
+      "4.5": "return (6+3)/2;",
+      "9": "return 6+3;",
+      "18": "return 6*3;",
+      "1.5": "return 3/2;"
+    },
+    "hard_withholds": "The stem gives two times and asks for a time, so nothing in it signals that the quantity to be added is the reciprocal. The student also has to notice the bound the stem does not state: two pipes together must beat the faster pipe alone, which rules out every answer of 3 hours or more before any arithmetic is done."
+  },
+  {
+    "id": "S13-23",
+    "domain": "Math",
+    "subskill": "two successive percent changes taken on different bases",
+    "difficulty": "hard",
+    "prompt": "The price of a lamp is $90. In March the price rises by 20 percent, and in April the new price falls by 25 percent. What is the price of the lamp, in dollars, at the end of April?",
+    "choices": [
+      "81",
+      "90",
+      "108",
+      "67.5",
+      "85.5"
+    ],
+    "correct_answer": "81",
+    "explanation": "The March price is 90 x 1.20 = $108, and April's fall of 25 percent is taken on that $108, not on the original $90: 108 x 0.75 = $81. The option \"108\" stops at the March price. The option \"67.5\" applies only the 25 percent fall, to the original $90. The option \"85.5\" combines the two percentages into a single 5 percent fall of the original price, 90 x 0.95. The option \"90\" treats a 20 percent rise and a 25 percent fall as cancelling, leaving the price where it started.",
+    "solve": "return 90*1.20*0.75;",
+    "distractor_solve": {
+      "108": "return 90*1.20;",
+      "67.5": "return 90*0.75;",
+      "85.5": "return 90*0.95;",
+      "90": "return 90;"
+    },
+    "hard_withholds": "The stem prints two percentages in sequence and never says that the second is taken on a larger base than the first. The student must notice that 20 percent of $90 and 25 percent of $108 are different amounts of money, so the two changes can neither be added nor cancelled."
+  },
+  {
+    "id": "S13-24",
+    "domain": "Math",
+    "subskill": "how a volume responds when every edge is scaled",
+    "difficulty": "hard",
+    "prompt": "A rectangular box measures 2 centimetres by 3 centimetres by 8 centimetres. A larger box is built by doubling the length of every edge of the first box. What is the volume of the larger box, in cubic centimetres?",
+    "choices": [
+      "384",
+      "48",
+      "96",
+      "144",
+      "192"
+    ],
+    "correct_answer": "384",
+    "explanation": "The first box has a volume of 2 x 3 x 8 = 48 cubic centimetres, and the larger box measures 4 by 6 by 16, a volume of 384 cubic centimetres. Doubling all three edges multiplies the volume by 2 x 2 x 2 = 8. The option \"48\" is the volume of the original box, with the doubling never applied. The option \"96\" doubles the volume once, as though a single edge had changed. The option \"144\" multiplies the original volume by 3, once for each edge that was doubled. The option \"192\" multiplies it by 4, which is what doubling two of the three edges would give.",
+    "solve": "return 4*6*16;",
+    "distractor_solve": {
+      "48": "return 2*3*8;",
+      "96": "return 2*3*8*2;",
+      "144": "return 2*3*8*3;",
+      "192": "return 2*3*8*4;"
+    },
+    "hard_withholds": "The stem gives the edges and the word doubling, and says nothing about what happens to the volume. The student has to see that the factor of 2 enters three times over, and the distractors are the answers reached by letting it enter once, twice or three times additively."
+  },
+  {
+    "id": "S13-25",
+    "domain": "Math",
+    "subskill": "a ratio that is changed by adding to one part",
+    "difficulty": "hard",
+    "prompt": "In a box, the ratio of red pens to blue pens is 3 to 5. When 12 more red pens are put into the box, the box then holds equal numbers of red and blue pens. How many blue pens are in the box?",
+    "choices": [
+      "30",
+      "18",
+      "6",
+      "60",
+      "20"
+    ],
+    "correct_answer": "30",
+    "explanation": "Write the counts as 3k red and 5k blue. After the 12 red pens are added, 3k + 12 = 5k, so 2k = 12 and k = 6. The blue pens number 5k = 30. The option \"18\" is the number of red pens the box started with, 3k. The option \"6\" is the value of k, one share of the ratio. The option \"60\" is the total number of pens after the 12 are added. The option \"20\" scales the 12 by the ratio, 12 x 5/3, as though the 12 pens filled a single share.",
+    "solve": "var k=12/(5-3);return 5*k;",
+    "distractor_solve": {
+      "18": "var k=12/(5-3);return 3*k;",
+      "6": "return 12/(5-3);",
+      "60": "var k=12/(5-3);return 3*k+12+5*k;",
+      "20": "return 12*5/3;"
+    },
+    "hard_withholds": "The stem gives the gap in pens, 12, but the gap in shares is 2 rather than 1, and it never says so. A student who divides 12 by the difference of the ratio numbers reaches one share; a student who reads 12 as one share reaches an answer that is on the list."
+  },
+  {
+    "id": "S13-26",
+    "domain": "Math",
+    "subskill": "a repeated payment that must reach a target",
+    "difficulty": "hard",
+    "prompt": "A club has saved $110 towards a projector costing $475 and adds $40 to its savings at the end of each week. After how many weeks will the club first have enough money to buy the projector?",
+    "choices": [
+      "10",
+      "9",
+      "9.125",
+      "12",
+      "15"
+    ],
+    "correct_answer": "10",
+    "explanation": "The club still needs 475 - 110 = $365, and 365 / 40 = 9.125. Nine weeks leave the club at $470, five dollars short, so the tenth week is the first at which it can buy the projector. The option \"9.125\" reports that quotient, which is not a number of weeks because the money arrives only at the end of a week. The option \"9\" takes the whole-number part of the quotient and leaves the club short. The option \"12\" divides the full $475 by 40 and rounds up, forgetting the $110 already saved. The option \"15\" adds the savings to the price instead of subtracting, rounding 585 / 40 up.",
+    "solve": "return Math.ceil((475-110)/40);",
+    "distractor_solve": {
+      "9.125": "return (475-110)/40;",
+      "9": "return Math.floor((475-110)/40);",
+      "12": "return Math.ceil(475/40);",
+      "15": "return Math.ceil((475+110)/40);"
+    },
+    "hard_withholds": "The stem asks a question whose answer must be a whole number of weeks and never says so, and the quotient it leads to is not one. The student must notice that money arriving at the END of a week makes nine weeks insufficient, so the division has to be rounded up rather than to the nearest whole number."
+  },
+  {
+    "id": "S13-27",
+    "domain": "Math",
+    "subskill": "a remainder carried through a multiplication",
+    "difficulty": "hard",
+    "prompt": "When a positive integer n is divided by 7, the remainder is 4. What is the remainder when 3n is divided by 7?",
+    "choices": [
+      "5",
+      "12",
+      "4",
+      "11",
+      "33"
+    ],
+    "correct_answer": "5",
+    "explanation": "Take the smallest such n, which is 11. Then 3n = 33, and 33 = 4 x 7 + 5, so the remainder is 5. Any other n leaves the same remainder, since tripling n adds a multiple of 7 to 33. The option \"12\" is 3 x 4, the product of the multiplier and the first remainder, left unreduced even though 12 is larger than the divisor. The option \"4\" reports the original remainder unchanged. The option \"11\" is the smallest value of n itself. The option \"33\" is the value of 3n for that n, with no division by 7 carried out.",
+    "solve": "return (3*11)%7;",
+    "distractor_solve": {
+      "12": "return 3*4;",
+      "4": "return 4;",
+      "11": "return 7+4;",
+      "33": "return 3*(7+4);"
+    },
+    "hard_withholds": "The stem gives a remainder and asks for a remainder, so nothing in it says that the natural first answer, 3 x 4, has to be reduced a second time because it exceeds the divisor. The student must also see that the answer does not depend on which n is chosen, which the stem leaves completely open."
+  },
+  {
+    "id": "S13-28",
+    "domain": "Math",
+    "subskill": "two groups that overlap within a fixed total",
+    "difficulty": "hard",
+    "prompt": "Every one of the 30 students in a class studies French, Spanish, or both. In the class, 18 students study French and 20 students study Spanish. How many students study both languages?",
+    "choices": [
+      "8",
+      "38",
+      "12",
+      "2",
+      "48"
+    ],
+    "correct_answer": "8",
+    "explanation": "Adding 18 and 20 gives 38, which counts every student who studies both languages twice. Since the class holds 30 students and everyone studies at least one language, the excess 38 - 30 = 8 is the number counted twice, so 8 students study both. The option \"38\" is that sum, with the double counting never removed. The option \"12\" is 30 - 18, the students who do not study French. The option \"2\" is 20 - 18, the difference between the two subject counts. The option \"48\" adds the French count to the class size, 18 + 30.",
+    "solve": "return 18+20-30;",
+    "distractor_solve": {
+      "38": "return 18+20;",
+      "12": "return 30-18;",
+      "2": "return 20-18;",
+      "48": "return 18+30;"
+    },
+    "hard_withholds": "The stem prints three numbers that do not fit together on their face, since 18 and 20 total more than the 30 students there are, and it never explains why. The student has to notice that the excess exists only because the students taking both languages have been counted in each subject, which makes the excess itself the answer."
+  }
+]

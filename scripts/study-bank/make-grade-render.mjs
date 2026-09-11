@@ -82,8 +82,22 @@ import { createHash } from 'node:crypto'
  * mechanism every time; the content guard stays as the backstop for the next
  * convention nobody anticipates.
  */
-const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill|distractor|options_only|construction|relation|^domain$/i
+const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill|distractor|options_only|construction|relation|withhold|^domain$/i
 /** Fields that match SENSITIVE but are structural and safe to keep. */
+/*
+ * `withhold` was added minutes after `options_only`, from the SAME render run.
+ *
+ * An author wrote `hard_withholds` on every hard item — one line naming
+ * exactly what the stem withholds, which IS the solution insight and is the
+ * whole basis of the difficulty judgement a grader is asked to make
+ * independently. The content guard did not refuse it, because it names no
+ * options. It surfaced only on the "kept, unrecognised" line.
+ *
+ * That line is the third layer of this file's defence and it is the one that
+ * worked here. Worth remembering: it is also the line I once filtered out of
+ * my own terminal output while checking something else, on the day
+ * `distractor_steps` leaked the key on all 24 items of a batch.
+ */
 const KEEP_ANYWAY = new Set(['passage_group_id', 'topic_id', 'set_id'])
 /** Fields the with-source grader is MEANT to read. optionLeak skips these;
  *  see its comment. Declared here, not next to optionLeak, because --selftest
