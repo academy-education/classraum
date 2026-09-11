@@ -2680,6 +2680,62 @@
      "verdict": "check-run-middle: 4 items carry the shape, key is the middle on 0 = 0.0% vs 20.0%. check-option-pair-constant: 0 items. check-key-is-sum: 1 item, key in it 0. Denominators read: 23 of 24 scorable (the inequality-option item is correctly unscorable, not silently counted). Two graders separately flagged S12-21/S12-24 and S12-08/S12-09 as near-duplicate mechanisms; S12-21 is gone with the attack drop, and the other pairs are recorded rather than repaired."
     }
    }
+  },
+  {
+   "id": "act-math-v7-alg-kept-2026-09-11",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v7-alg",
+   "contentSha": "5e32cedce50eaa74a32316931f225996eaf505e68218bca8a0e668844d13b754",
+   "note": "21 items, the survivors of act-math-v7-alg.batch.json. Seven dropped: five the attack solved unanimously (AM7-04, -11, -14, -19, -23), plus AM7-12 and AM7-21. AM7-12 has a stem defect two graders named — (-13)(-11)=143 too, so \"two consecutive odd integers\" admits a second pair, and two of its four options are EVEN and die on the word \"odd\" with no work. AM7-21 is AM7-15 in other clothes: three graders said so independently and it checks out — x+y=9, xy=14 and x+1/x=5 are both (sum)^2 - 2(product). Inserted at BANK_BAND=mixed; ACT Math is a rising 45-question form that opens easy.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "21/21 recompute; 63 of 63 distractor_solve entries recomputed, 0 mismatches. The author caught three defects their own checks found and verify did not, including an option authored 0.58 where (46/80).toFixed(2) is 0.57."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on the sanitized render, all reporting sha 3ddf10185f5be2ac before and after. 28 of 28 keys agreed 3/3, ZERO non-exclusive votes. DIFFICULTY: author claimed 8 hard of 28; graders found 3, 4 and 4 — the first ACT Math batch to clear zero (the previous two were 0/28 each) but half the claim. All three named the same cause and it is NOT the author aiming low: 15-21 of 28 items sit on four or five templates. Three share not just a method but an identical 2x2 option grid; AM7-19 is AM7-11 with a square root added. One grader: the batch is 28 items but roughly 18-19 distinct problems, and the templating concentrates in exactly the medium band where the hard items were supposed to be."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 3 solvers: 33.3% vs 25.0%, margin +8.3. 5 items solved by all three, all dropped. A NEW CHANNEL was found here and it is the reason two of those five are gone — see tells."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "check-run-middle: 4 items carry the shape, key is the middle on 0 = 0.0% vs 25.0%. check-option-pair-constant and check-key-is-sum: 0 items carry the shape. NEW: check-formula-options.mjs, written today because TWO solvers independently and CONFIDENTLY solved AM7-19 and AM7-11 from the option strings alone — 4 of 4 correct. The options carry s/a/t and A/h/b1/b2, so they ARE the kinematics and trapezoid-area formulas and the correct rearrangement follows with no stem. Both items formed tidy 2x2 grids, which is the shape the brief recommends: the finding is that completing a grid protects an item only when BOTH axes are arbitrary, and here one axis was correct-versus-incorrect algebra over letters the reader can name. Measured against the whole live bank: 0 of 1,927 live maths items carry the shape (the single rearrangement-shaped set that exists uses generic letters, which is the fix), so this is an AUTHORING RULE, not a repair programme. Both items dropped; the kept 21 report a zero population."
+    }
+   }
+  },
+  {
+   "id": "act-math-v7-ies-kept-2026-09-11",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v7-ies",
+   "contentSha": "54256e8039eedfee1765a310fd33b0530aab240f11f75e1fba307305649b3e8e",
+   "note": "27 items, the survivors of act-math-v7-ies.batch.json, one dropped (AM7I-03, solved by all three). Inserted at BANK_BAND=mixed. 25 of the 27 carry a grade; 2 kept items had no majority difficulty and are therefore not in the qc file, so the inserter drops them — a missing qc row is a drop, not a pass.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "27/27 recompute; 81 of 81 distractor_solve entries recomputed, 0 mismatches. One figure (a frequency table) and all three graders independently verified it against its own labels: frequencies 2/5/6/8 sum to 21 matching the stem, and two graders checked the SVG column geometry rather than reading order to confirm no value renders under the wrong column. No false not-to-scale caption."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on the sanitized render, all reporting sha b1a8fc6f5a76f114 before and after. 28 of 28 keys agreed 3/3, ZERO non-exclusive votes. DIFFICULTY: author claimed 8 hard; graders found 4, 6 and 4. All three named the same four as genuinely hard (average speed over two legs, the cashew mixture, the reversed percent chain, and the scale-area item). THE DIAGNOSIS IS THE VALUABLE PART and two graders reached it independently: the batch names a hard structure and then orders the stem so the student never has to see it. AM7I-19 IS literally \"a rate that changes partway\" — the briefs own example of hard — and is not hard, because the stem gives the legs in order so it decomposes into three one-line steps. The difference between it and the item everyone graded hard is one sentence of scaffolding."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 3 solvers: 20.2% vs 25.0%, margin MINUS 4.8 — BELOW CHANCE, the cleanest maths result of the session. 1 item solved by all three against 0.23 expected at the batch own rate. THE CHANNEL THIS BATCH WAS COMMISSIONED AGAINST IS CONFIRMED CLOSED: all three solvers swept all 168 option pairs against 90/180/360/100/1 and all three report ZERO exact hits, on a 28-item percentages-and-rates batch, which is the natural home of the strongest live tell (79.0% vs a 50.0% control). Nearest approach is 98, two off 100. Two solvers noted the author put 100 itself in an option set without ever placing its complement."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "check-run-middle: 4 items carry the shape, key is the middle on 0 = 0.0% vs 25.0%. check-option-pair-constant: 0 items. check-key-is-sum: 2 items carry the shape, key in it 0 = 0.0%. check-formula-options: zero population. Two solvers independently proposed a channel the brief does not list — a 2x2 ADDITIVE ERROR LATTICE, where the four options are the corners of two independent one-step errors — and one bet on it. Recorded as an untested hypothesis, not a finding. Both also reported that the intermediate-value channel is IDENTIFIABLE but not DIRECTIONAL: they can name the ~9 items carrying a part-of-a-whole option, matching the author count, but nothing in the values says which end the stem asked for, so being small is not being wrong. That is a clean negative on a channel that looked promising."
+    }
+   }
   }
  ],
  "auditedCohorts": [

@@ -273,6 +273,66 @@ There are 163 live TOEFL Daily Life items sitting at `passage_group_id =
 NULL` for this reason, out of 232 that are undrawable. That is the cost of
 this defect, already paid once.
 
+## 3b. Hard is an INTERACTION, and stem order can dissolve it
+
+Four consecutive maths batches have been commissioned hard or with a hard
+quota and graded at 0, 0, 1 and 4 hard by three independent graders each.
+The authors were not aiming low. Two separate graders, on two different
+batches, reached the same diagnosis independently:
+
+> the batch names a hard structure and then orders the stem so the student
+> never has to see it
+
+The worked example is exact. `AM7I-19` is *"a rate that changes partway"* —
+this brief's own example of a hard structure — and all three graders called
+it medium, because the stem hands over the legs in order, so it decomposes
+into three one-line steps. `AM7I-10` is average speed over two legs and all
+three called it hard, because the student has to **reject** averaging the
+rates and nothing in the stem says so. **The difference between them is one
+sentence of scaffolding.**
+
+So the test is not "does this item contain two ideas". It is:
+
+- Can the student reach the answer by executing the stem's own sentences in
+  the order they are written? Then it is medium, however long the working.
+- Must the student notice something the stem does not say — that rates do not
+  average, that the added ingredient moves the denominator too, that the
+  floor of the budget bound is not the answer because the weeks must divide?
+  Then it is hard.
+
+An inequality is not a second idea when the boundary value **is** the answer;
+a grader called that one "decorative" and they were right. A percentage of a
+percentage taken in the stated order is one multiplication twice.
+
+**And do not reach for difficulty by adding steps to a habit.** The same
+graders counted 15 to 25 of 28 items sitting on four to seven templates, and
+the damage is specific: on one batch a single learned line (`sum = mean x n`,
+subtract the known part) answered five items *including one of the four
+graded hard*. A prepared student meets that batch with less difficulty than
+the histogram claims. If one hard item is wanted from a family, replace the
+other members rather than making that one longer.
+
+## 3c. A 2x2 option grid protects an item only when BOTH axes are arbitrary
+
+The grid is recommended above and it works — but two options-only solvers
+independently and **confidently** solved these with no stem, and both were
+right:
+
+    t = s/(2a)  |  t = sqrt(2s/a)  |  t = sqrt(s/(2a))  |  t = 2s/a
+    b1 = A/h + b2 | b1 = 2A/h - b2 | b1 = 2A/h + b2 | b1 = A/h - b2
+
+Both are perfect 2x2 grids. Neither is protected, because the letters are not
+placeholders: `s`, `a`, `t` say kinematics, `A`, `h`, `b1`, `b2` say
+trapezoid. The option set **is** the formula, and the correct rearrangement
+follows from recognising it. One axis of each grid is not a formatting flip
+but correct-versus-incorrect algebra over a relation the reader can name.
+
+For a literal-equation or rearrangement item, either use generic unknowns
+(`x`, `y`, `z`) or build it on a relation that is not standard. `check-formula-options.mjs`
+finds the shape; it cannot decide whether a reader knows the formula, so read
+a hit as a question and answer it per item. The live bank has **zero** of
+these, so this is a rule for the next batch rather than a backlog.
+
 ## 7. Before you report
 
 Run your section's verify. **Read the denominators, not the verdicts** — if

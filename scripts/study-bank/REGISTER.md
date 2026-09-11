@@ -1169,3 +1169,26 @@ structural checks are pre-flight only. See CLAUDE.md.
   Caught before either was rendered or graded, so nothing downstream was bound to an ambiguous id; had it survived to the ledger, two batches would have shared a key namespace and a qc file keyed by id would have silently graded the wrong items. The IES batch is renamed `AM7I-xx`, with the rename script asserting no duplicate remains and no collision survives, and `verify` re-run afterwards (28/28, 84 of 84 distractors).
 
   **The cause is mine: I gave both briefs the same worked example and never assigned an id prefix.** When commissioning parallel batches in one family, name the prefix in the brief.
+
+- **2026-09-11** — **ACT MATH 299 -> 345, AND FORMS 4 -> 6, BECAUSE THIS TIME THE BRIEF READ THE BINDING DOMAIN FIRST.**
+
+  Earlier today a 25-item ACT Geometry/Statistics batch bought **zero** forms, because the binding domain was Algebra. The two replacement batches were commissioned against the actual constraint, and: Algebra 39 -> 60, Integrating Essential Skills 48 -> 74, **forms 4 -> 6**, with the cap now moved off Algebra onto Functions (49). 45 of 45 still draws. That is the difference between adding items and adding capacity, measured rather than assumed.
+
+  **`act-math-v7-ies` measured 20.2% blind against a 25.0% chance line — BELOW CHANCE**, the cleanest maths result of the session. The channel it was commissioned against is confirmed closed by four instruments: all three solvers swept all 168 option pairs against 90/180/360/100/1 and all three report **zero exact hits**, on a 28-item percentages-and-rates batch, which is the natural home of the strongest live tell (79.0% vs a 50.0% control). Nearest approach 98, two off 100. Two solvers separately noticed the author placed 100 itself in an option set without ever placing its complement.
+
+  **A NEW CHANNEL, found by two solvers and then measured against the population.** Both independently and confidently solved two `act-math-v7-alg` items from the option strings alone — 4 of 4 correct:
+
+        t = s/(2a) | t = sqrt(2s/a) | t = sqrt(s/(2a)) | t = 2s/a
+        b1 = A/h + b2 | b1 = 2A/h - b2 | b1 = 2A/h + b2 | b1 = A/h - b2
+
+  The stem is withheld and it does not matter: `s, a, t` say kinematics, `A, h, b1, b2` say trapezoid, so the option set IS the formula. **Both are perfect 2x2 grids** — the shape this brief recommends — which is the finding: a grid protects an item only when BOTH axes are arbitrary, and here one axis was correct-versus-incorrect algebra over letters the reader can name. `check-formula-options.mjs` is in the repo with a self-test that deliberately does NOT flag the recommended fix, so the checker cannot punish the cure.
+
+  **Measured across the whole live bank: 0 of 1,927 live maths items carry the shape.** The one rearrangement-shaped set that exists uses generic letters. So this is an authoring rule (now brief §3c), not a repair programme — the fifth channel this session taken to the population before being believed, and the fourth that turned out not to be a backlog.
+
+  **THE DIFFICULTY DIAGNOSIS, which is the most useful thing to come out of today.** Four consecutive maths batches commissioned hard have graded 0, 0, 1 and 4 hard. Two graders on two different batches reached the same explanation independently, and it is not that authors aim low:
+
+  > the batch names a hard structure and then orders the stem so the student never has to see it
+
+  `AM7I-19` **is** "a rate that changes partway" — this brief's own example of hard — and graded medium by all three, because the stem hands over the legs in order and it decomposes into three one-line steps. `AM7I-10` is average speed over two legs and graded hard by all three, because the student must *reject* averaging the rates and nothing says so. **One sentence of scaffolding is the whole difference.** Now brief §3b, together with the template finding that accompanies it: 15 to 25 of 28 items per batch sit on four to seven templates, and on one batch a single learned line answered five items *including one of the four graded hard*.
+
+  Two items were dropped on grader testimony that I then checked myself rather than taking on trust: `AM7-21` is `AM7-15` in other clothes (three graders said so; both are (sum)^2 - 2(product), verified), and `AM7-12`'s stem admits (-13, -11) while two of its four options are EVEN and die on the word "odd".

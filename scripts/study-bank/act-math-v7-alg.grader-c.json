@@ -1,0 +1,254 @@
+{
+  "AM7-01": {
+    "pick": "C",
+    "solved": "2y = 12 - 3x, so y = 6 - (3/2)x.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Option set is the 2x2 grid {12,6} x {+,-}. Legitimate ACT convention, but see template group 1: this is the same 'isolate the named variable' habit as AM7-11 and AM7-19."
+  },
+  "AM7-02": {
+    "pick": "A",
+    "solved": "-3x > 12, divide by -3 and flip: x < -4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Options are {<,>} x {-4,4}; the sign-flip trap is the whole item."
+  },
+  "AM7-03": {
+    "pick": "C",
+    "solved": "12 cm / 2 cm = 6 map units; 6 x 3 km = 18 km.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "8 = inverted ratio (12 x 2/3), 24 = 12 x 2. 15 is the weakest option - hard to name the wrong path that produces it."
+  },
+  "AM7-04": {
+    "pick": "D",
+    "solved": "3x4 = 12; x^4 * x^3 = x^7; y^2 * y = y^3. 12x^7y^3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "2x2 grid: {12,7} (multiply vs add coefficients) x {x^12y^2, x^7y^3} (multiply vs add exponents)."
+  },
+  "AM7-05": {
+    "pick": "B",
+    "solved": "(3 - 7)/(5 - (-3)) = -4/8 = -1/2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Options are {2, 1/2} x {+,-}: reciprocal error and sign error, both real."
+  },
+  "AM7-06": {
+    "pick": "B",
+    "solved": "3x/4 = 9, so 3x = 36, x = 12.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "36 and 9 are both intermediate values a student stops at; 17 is 14+5-... (adds instead of subtracts). Good."
+  },
+  "AM7-07": {
+    "pick": "D",
+    "solved": "10x - 15 - 2x - 8 = 8x - 23.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "2x2 grid: {8x,12x} (sign on 2x) x {-23,-11} (sign on 8)."
+  },
+  "AM7-08": {
+    "pick": "A",
+    "solved": "39 - 18 = 21; 21/0.06 = 350.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "300 = 18/0.06, 950 = 57/0.06 (added the fee), 632 = 650 - 18. Every option traceable."
+  },
+  "AM7-09": {
+    "pick": "A",
+    "solved": "Total 60 mi; time = 30/12 + 30/20 = 2.5 + 1.5 = 4 h; 60/4 = 15 mph.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "16 = (12+20)/2, the intended trap, and it is a good one. Still medium, not hard: harmonic-mean average speed is a single learned habit, not two ideas interacting."
+  },
+  "AM7-10": {
+    "pick": "D",
+    "solved": "(x-3)(x+3)/(x-3)^2 = (x+3)/(x-3) = 4 -> x + 3 = 4x - 12 -> x = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "x != 3 is correctly excluded in the stem. Factoring both pieces is two recognitions but they do not interact - it is sequential, so medium."
+  },
+  "AM7-11": {
+    "pick": "B",
+    "solved": "2A = h(b1+b2) -> 2A/h = b1 + b2 -> b1 = 2A/h - b2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Template group 1 with AM7-01 and AM7-19: same habit, same 2x2 option grid ({2A/h, A/h} x {+,-}). A student who learns this once answers all three."
+  },
+  "AM7-12": {
+    "pick": "C",
+    "solved": "143 = 11 x 13, consecutive odd. Smaller is 11.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "STEM DEFECT (not fatal): (-13)(-11) = 143 too, and the smaller of those is -13. The stem should say 'two consecutive positive odd integers'. -13 is not an option so exclusivity holds, but a careful student is briefly stuck. 12 and 14 read as consecutive-EVEN confusion."
+  },
+  "AM7-13": {
+    "pick": "A",
+    "solved": "12800/400 = 32 = 2^5, so 5 doublings x 5 h = 25 h.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "32 (the ratio itself) and 20 (four doublings) are both real wrong paths."
+  },
+  "AM7-14": {
+    "pick": "C",
+    "solved": "4^(3/2) = 8; (x^6)^(3/2) = x^9. 8x^9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2x2 grid {6,8} x {x^9,x^4}: 6 = 4 x 3/2, x^4 = 6 x 2/3. Template group 3 with AM7-04 and AM7-23."
+  },
+  "AM7-15": {
+    "pick": "B",
+    "solved": "x^2 + y^2 = (x+y)^2 - 2xy = 81 - 28 = 53.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "NEAR-DUPLICATE of AM7-21 - identical move ((sum)^2 - 2(product)) in different clothes. 81 (forgot the subtraction) and 95 (subtracted xy once) are good. One of these two items should be replaced."
+  },
+  "AM7-16": {
+    "pick": "D",
+    "solved": "Multiply numerator and denominator by 3x: (3 + x)/(3 - x) = (x+3)/(3-x).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Sign-of-denominator trap is well built: C is the same expression with the denominator negated."
+  },
+  "AM7-17": {
+    "pick": "B",
+    "solved": "L = 2w + 4; 2(L + w) = 56 -> L + w = 28 -> 3w + 4 = 28 -> w = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "20 = the length (answered the wrong quantity), which is the intended trap. 13 and 16 are thinner. Template group 2 with AM7-18 and AM7-20."
+  },
+  "AM7-18": {
+    "pick": "B",
+    "solved": "n + p = 12, 3n + 2p = 29 -> 3n + 24 - 2n = 29 -> n = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "7 = the pens (wrong quantity). Same structure and same trap as AM7-17 and AM7-20."
+  },
+  "AM7-19": {
+    "pick": "C",
+    "solved": "t^2 = 2s/a, so t = sqrt(2s/a) (t > 0).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "This is AM7-11 with a square root added: same isolate-the-variable habit, same {2s/a, s/(2a)} x {root, no root} grid. Stem does not state t > 0, but the physical reading forces it; not a real ambiguity."
+  },
+  "AM7-20": {
+    "pick": "C",
+    "solved": "2s = L + 3 and s + L = 36 -> 2s = 39 - s -> s = 13 (L = 23, 26 = 23 + 3).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "23 = the larger number, 18 = half the sum. Third member of template group 2."
+  },
+  "AM7-21": {
+    "pick": "A",
+    "solved": "(x + 1/x)^2 = x^2 + 2 + 1/x^2 = 25, so x^2 + 1/x^2 = 23.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Same identity as AM7-15. 25 (forgot the 2) and 27 (added instead of subtracted) are both genuine."
+  },
+  "AM7-22": {
+    "pick": "D",
+    "solved": "-22 <= 3n - 5 <= 22 -> -17 <= 3n <= 27 -> -17/3 <= n <= 9. Even integers: -4,-2,0,2,4,6,8 = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Genuinely hard: the absolute-value bound and the parity count interact - the fractional lower endpoint (-5.67) and whether 0 counts both decide the answer. 15 = every integer in range, 4 = positive evens only. Best-built item in the batch."
+  },
+  "AM7-23": {
+    "pick": "B",
+    "solved": "2^(3x+3) * 2^(2x-4) = 2^(4x+12) -> 5x - 1 = 4x + 12 -> x = 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Rewriting to a common base is one habit and the rest is a five-line linear solve - medium, not hard. 4 and 7 are thin."
+  },
+  "AM7-24": {
+    "pick": "A",
+    "solved": "Infinitely many means the equations are proportional: 6/3 = 2, so k = 10/2 = 5 and c = 2 x 12 = 24. k + c = 29.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "One recognition (proportional coefficients) applied twice, not two ideas interacting. Authored-hard items like this are why the band inflates. 17 = 5 + 12, 11 = 5 + 6 are real slips."
+  },
+  "AM7-25": {
+    "pick": "C",
+    "solved": "(x+3 + x-3)/((x-3)(x+3)) = 1 -> 2x = x^2 - 9 -> x^2 - 2x - 9 = 0. Product of roots = -9 (discriminant 40 > 0, neither root is +-3).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard and correctly so: the quadratic does not factor, so the student must either use Vieta or multiply two irrational roots. 2 = the SUM of the roots, which is the exact right trap. Second of only four real hard items."
+  },
+  "AM7-26": {
+    "pick": "D",
+    "solved": "(2.4 + 0.4x)/(24 + x) >= 0.30 -> 2.4 + 0.4x >= 7.2 + 0.3x -> 0.1x >= 4.8 -> x >= 48. Least is 48 (check: 21.6/72 = 30%).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "AUTHORED HARD, GRADED MEDIUM - the closest call in the batch. The 'at least' adds no second idea: it is solved exactly like an equation and the answer is the boundary. Mixture setup is one learned template. 72 = the resulting total volume, which is the one strong option."
+  },
+  "AM7-27": {
+    "pick": "A",
+    "solved": "Roots multiply to 36 and differ by 5: factor pairs (1,36),(2,18),(3,12),(4,9),(6,6) -> (4,9). k = sum = 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Two constraints (Vieta product and the difference) have to be satisfied together, then converted to the sum - that is real interaction. 37 and 20 are the sums of the (1,36) and (2,18) pairs, i.e. exactly what you get by dropping the difference condition; 9 is the larger root. Distractors are the best-derived set here."
+  },
+  "AM7-28": {
+    "pick": "D",
+    "solved": "a + 3d = 32; 6a + 15d = 165 -> 2a + 5d = 55. Substitute a = 32 - 3d: 64 - d = 55 -> d = 9, a = 5. Check 5+14+23+32+41+50 = 165.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard: the nth-term formula and the sum formula must be used simultaneously as a system - neither alone gets there. 27.5 = 165/6 (the mean), 23 = the 3rd term, 9 = the common difference. Every option is a real stopping point."
+  }
+}

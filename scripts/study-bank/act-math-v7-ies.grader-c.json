@@ -1,0 +1,254 @@
+{
+  "AM7I-01": {
+    "pick": "C",
+    "solved": "0.15 x 80 = 12. Stem asks for the reduction, not the sale price.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "92 = 80+12, 68 = sale price, 15 = the percent numeral. Magnitude alone rules out 92 and 68 (a reduction must be under 80), so the field narrows to 12/15 without arithmetic."
+  },
+  "AM7I-02": {
+    "pick": "B",
+    "solved": "72+90+86+78+94 = 420; 420/5 = 84.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "86 is the median of the same list, which makes it a real wrong path; 83 and 87 are near-miss filler."
+  },
+  "AM7I-03": {
+    "pick": "A",
+    "solved": "60 x 1.40 = 84.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "24 = the markup only, 36 = 60x0.6, 100 = 60+40 (percent read as dollars). Same one-step template as 01/04/09."
+  },
+  "AM7I-04": {
+    "pick": "D",
+    "solved": "0.40 x 240 = 96.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "144 = the 60% complement, 40 = the percent numeral, 200 = 240-40."
+  },
+  "AM7I-05": {
+    "pick": "C",
+    "solved": "6 x 14 = 84; 7 x 15 = 105; 105 - 84 = 21.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Template shared with 13, 23 and 28: total = mean x count, then subtract what is known. 20 and 29 are not products of any clean wrong path."
+  },
+  "AM7I-06": {
+    "pick": "C",
+    "solved": "4 x 6 = 24 sq ft; 24 x 8 = 192.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "160 = perimeter (20) x 8, a genuine confusion; 24 = the bare area; 80 is filler."
+  },
+  "AM7I-07": {
+    "pick": "B",
+    "solved": "0.60 x 500 = 300 take a language; 0.35 x 300 = 105.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "A percentage of a percentage, but taken forward in the order given, so it is a chain rather than an interaction. 175 = 35% of 500, 300 = the intermediate value, both strong. This is the easy direction of the 21 template."
+  },
+  "AM7I-08": {
+    "pick": "A",
+    "solved": "Eight values already ordered; median = (6+8)/2 = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "7.5 is the strongest distractor (averaging the wrong pair / miscounting); 5 is the mode."
+  },
+  "AM7I-09": {
+    "pick": "A",
+    "solved": "36.00 x 1.07 = 38.52.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "2.52 = the tax alone, 33.48 = subtracting it. Direction-of-effect elimination leaves only 38.52 and 43, and 43 is an implausible 19% tax - solvable without computing."
+  },
+  "AM7I-10": {
+    "pick": "B",
+    "solved": "30/15 = 2 h and 30/10 = 3 h, so 60 miles in 5 h; 60/5 = 12 mph.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Genuinely hard by the stated bar: total distance and total time have to be recovered together, and averaging the rates is wrong. 12.5 is the naive (15+10)/2, 5 is the total time, 25 the sum of rates. Best-constructed item in the batch."
+  },
+  "AM7I-11": {
+    "pick": "D",
+    "solved": "4 x 27 = 108.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "81 = 27x3, 12 = 4x3 (linear factor), 31 = 27+4."
+  },
+  "AM7I-12": {
+    "pick": "B",
+    "solved": "27+18+45 = 90; 18/90 = 0.20 = 20%.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Wrong denominators give 25% (18/72) and 40%, so the distractors are real, but the arithmetic is one division."
+  },
+  "AM7I-13": {
+    "pick": "B",
+    "solved": "25 x 78 = 1950; 10 x 90 = 900; (1950-900)/15 = 1050/15 = 70.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "An average recovered from a weighted total - hard by the stated definition, though it is the same mean-recovery habit as 05/23/28 and a student who has drilled that habit gets it for free. 66 = 78-12, 84 = the unweighted mean of 78 and 90."
+  },
+  "AM7I-14": {
+    "pick": "C",
+    "solved": "3+5 = 8 parts; 56/8 = 7 per part; blue = 5 x 7 = 35.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "21 = the red count, 7 = one part. Both are what a student actually produces, so the distractors are sound; the item is still one proportion."
+  },
+  "AM7I-15": {
+    "pick": "D",
+    "solved": "250 x 0.80 = 200; 200 - 15 = 185.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Two steps, but strictly sequential in the order the stem states them - no interaction. 200 and 235 are the two half-done answers; 188 = taking the $15 off first."
+  },
+  "AM7I-16": {
+    "pick": "B",
+    "solved": "Cashews 10 oz, non-cashews 40 oz and that 40 never changes. (10+x)/(50+x) = 1/2 -> 20+2x = 50+x -> x = 30. Check: 40/80 = 50%.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard for the right reason: the quantity added changes both numerator and denominator, and the invariant is the part NOT mentioned. 15 = 30% of 50 (treating the change as additive), 25 = half the batch, 10 = the starting cashews."
+  },
+  "AM7I-17": {
+    "pick": "D",
+    "solved": "5^3 = 125.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "weak",
+    "note": "15 = 3x5 and 25 = one face are real errors; 60 corresponds to no path I can construct (surface area is 150), so one option is dead."
+  },
+  "AM7I-18": {
+    "pick": "A",
+    "solved": "9 x 15 = 135; 195 - 135 = 60 spent on student tickets.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "The stem says dollars, so 6 (the ticket count) is cleanly excluded. 135 = the adult total, 90 = filler."
+  },
+  "AM7I-19": {
+    "pick": "C",
+    "solved": "8 x 25 = 200 gal; 700-200 = 500 remaining; 500/10 = 50 min.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "A rate that changes partway, but the two rates never have to be reconciled - subtract the fixed part, divide by the second rate. Same three-move habit as 18 and 24. 70 = 700/10 ignoring phase one, 58 = 50+8 (total run time)."
+  },
+  "AM7I-20": {
+    "pick": "C",
+    "solved": "64/4 = 16 batches; 16 x 3 = 48 tbsp; 48/16 = 3 cups.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "48 = tablespoons (unit not converted) and is the trap; 4 and 12 are weaker. Two multiplications in the stated order."
+  },
+  "AM7I-21": {
+    "pick": "A",
+    "solved": "x(1.20)(0.85) = 1020 -> 1.02x = 1020 -> x = 1000.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard: the two percents compose multiplicatively AND the chain runs backwards, so +20%-15% != +5% and the base differs at each step. 1200 = forgetting the shrink, 850 = applying -15% to the answer, 969 = running the chain forward from 1020."
+  },
+  "AM7I-22": {
+    "pick": "A",
+    "solved": "Frequencies 2,5,6,8 sum to 21, so the median is the 11th value. Cumulative: 2 students at 0, 7 through 1, 13 through 2. The 11th lies in the 2-sibling group, so the median is 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "TABLE CHECKED AGAINST ITS OWN LABELS AND IT AGREES. Frequencies 2+5+6+8 = 21, matching both the stem's '21 students' and the caption; the column separators (x=170/209/248/287/328) centre each header over its own frequency, so 0->2, 1->5, 2->6, 3->8 with no off-by-one. 1.95 is the mean (41/21 = 1.952), 3 is the modal value, 1.5 is the median of the four frequencies-as-labels. Good distractors."
+  },
+  "AM7I-23": {
+    "pick": "D",
+    "solved": "Sum = 5 x 14 = 70; 6+9+13+20 = 48; x = 22. Ordered: 6,9,13,20,22 -> median 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Two named statistics, but sequential: recover x by the same mean-recovery move as 05/13/28, then read the middle. 22 = stopping at x, 14 = answering with the mean, 16.5 = averaging the middle pair of four."
+  },
+  "AM7I-24": {
+    "pick": "B",
+    "solved": "640-500 = 140 overage minutes; 140 x 0.12 = 16.80; 35.00 + 16.80 = 51.80.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "16.80 = overage only, 76.80 = charging all 640 minutes at $0.12, 111.80 = 35 + 76.80. Well-built distractors, but the same subtract-then-apply-unit-rate habit as 18 and 19."
+  },
+  "AM7I-25": {
+    "pick": "D",
+    "solved": "2 cm : 6 m, so 1 cm = 3 m. 7 cm -> 21 m, 9 cm -> 27 m; area = 21 x 27 = 567.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The area-scale trap is real (63 = drawing area, 126 = scaled by 2 instead of 9, 96 is filler), but converting each side first is the natural route and is routine, so it is not two ideas interacting. Borderline medium/hard; I would not count it as hard."
+  },
+  "AM7I-26": {
+    "pick": "C",
+    "solved": "2(70+w) = 240 -> w = 50; area = 70 x 50 = 3500.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "8400 = 70 x 120 (using half the perimeter as the width), the exact error this item exists to catch. 4200 = half of that."
+  },
+  "AM7I-27": {
+    "pick": "A",
+    "solved": "(20.35-18.50)/18.50 = 1.85/18.50 = 0.10 = 10%.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "9.09 = dividing by the NEW wage, the standard percent-change error, and worth having. The numbers are chosen so the division is exact, which drops the difficulty."
+  },
+  "AM7I-28": {
+    "pick": "D",
+    "solved": "Sum = 3 x 3.40 = 10.20; 2.60+3.20 = 5.80; large = 10.20-5.80 = 4.40.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "5.80 = the partial sum, 3.40 = the mean itself, 4.00 = filler. Fourth appearance of the mean-recovery template (05, 13, 23, 28)."
+  }
+}

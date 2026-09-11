@@ -1,0 +1,574 @@
+[
+ {
+  "id": "AM7I-01",
+  "domain": "Integrating Essential Skills",
+  "subskill": "percent of a number in a discount setting",
+  "difficulty": "easy",
+  "prompt": "A jacket is priced at $80. During a sale the price is reduced by 15%. By how many dollars is the price of the jacket reduced?",
+  "choices": [
+   "12",
+   "68",
+   "92",
+   "15"
+  ],
+  "correct_answer": "12",
+  "explanation": "15% of $80 is 0.15 x 80 = $12, so the price is reduced by $12. \"68\" is the sale price, 80 - 12, which answers a question the item does not ask. \"92\" comes from a solver who adds 15% instead of subtracting it, 80 x 1.15. \"15\" comes from a solver who reads the 15 in \"15%\" as a number of dollars.",
+  "solve": "return 0.15*80;",
+  "distractor_solve": {
+   "15": "return 15;",
+   "68": "return 80-0.15*80;",
+   "92": "return 80*1.15;"
+  }
+ },
+ {
+  "id": "AM7I-02",
+  "domain": "Integrating Essential Skills",
+  "subskill": "mean of a small data set",
+  "difficulty": "easy",
+  "prompt": "The scores Dara earned on her five science quizzes were 72, 90, 86, 78, and 94. What was her mean quiz score?",
+  "choices": [
+   "86",
+   "84",
+   "83",
+   "87"
+  ],
+  "correct_answer": "84",
+  "explanation": "The five scores total 72 + 90 + 86 + 78 + 94 = 420, and 420/5 = 84. \"86\" is the median: in order the scores are 72, 78, 86, 90, 94, and a solver who sorts the list and stops has found the middle value, not the mean. \"83\" is the mean of only the least and greatest scores, (72 + 94)/2. \"87\" is the mean of the four highest scores, (90 + 86 + 78 + 94)/4, from a solver who discards 72 as an outlier.",
+  "solve": "return (72+90+86+78+94)/5;",
+  "distractor_solve": {
+   "83": "return (72+94)/2;",
+   "86": "var a=[72,90,86,78,94].sort(function(p,q){return p-q;}); return a[2];",
+   "87": "return (90+86+78+94)/4;"
+  }
+ },
+ {
+  "id": "AM7I-04",
+  "domain": "Integrating Essential Skills",
+  "subskill": "percent of a total, as a count",
+  "difficulty": "easy",
+  "prompt": "A theater has 240 seats, and 40% of the seats are in the balcony. How many of the seats are in the balcony?",
+  "choices": [
+   "200",
+   "40",
+   "96",
+   "144"
+  ],
+  "correct_answer": "96",
+  "explanation": "40% of 240 is 0.40 x 240 = 96 seats. \"200\" comes from a solver who subtracts 40 from 240 instead of taking 40% of it. \"40\" comes from a solver who reads the 40 in \"40%\" as a number of seats. \"144\" is the number of seats that are NOT in the balcony, 240 - 96, which answers the complementary question.",
+  "solve": "return 0.40*240;",
+  "distractor_solve": {
+   "40": "return 40;",
+   "144": "return 240-0.40*240;",
+   "200": "return 240-40;"
+  }
+ },
+ {
+  "id": "AM7I-05",
+  "domain": "Integrating Essential Skills",
+  "subskill": "recovering a value from a total implied by two means",
+  "difficulty": "medium",
+  "prompt": "The mean of a list of 6 numbers is 14. When one more number is added to the list, the mean of the 7 numbers is 15. What is the number that was added?",
+  "choices": [
+   "15",
+   "20",
+   "21",
+   "29"
+  ],
+  "correct_answer": "21",
+  "explanation": "The 6 numbers total 6 x 14 = 84 and the 7 numbers total 7 x 15 = 105, so the added number is 105 - 84 = 21. \"15\" is the new mean, from a solver who assumes the added number must equal the mean it produces. \"20\" comes from a solver who adds the count of the original list to the original mean, 14 + 6. \"29\" comes from a solver who adds the two means, 14 + 15.",
+  "solve": "return 7*15-6*14;",
+  "distractor_solve": {
+   "15": "return 15;",
+   "20": "return 14+6;",
+   "29": "return 14+15;"
+  }
+ },
+ {
+  "id": "AM7I-06",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a rectangular region priced by the square foot",
+  "difficulty": "easy",
+  "prompt": "A rectangular rug measures 4 feet by 6 feet. Padding for the rug costs $8 per square foot. What is the total cost of the padding needed to cover the rug, in dollars?",
+  "choices": [
+   "160",
+   "192",
+   "24",
+   "80"
+  ],
+  "correct_answer": "192",
+  "explanation": "The rug covers 4 x 6 = 24 square feet, and 24 square feet at $8 per square foot costs 24 x 8 = $192. \"160\" comes from a solver who uses the perimeter, 2(4 + 6) = 20, in place of the area. \"24\" is the area in square feet, the value one step before the cost. \"80\" comes from a solver who adds the two dimensions, 4 + 6 = 10, instead of multiplying them, and then multiplies by 8.",
+  "solve": "return 4*6*8;",
+  "distractor_solve": {
+   "24": "return 4*6;",
+   "80": "return (4+6)*8;",
+   "160": "return 2*(4+6)*8;"
+  }
+ },
+ {
+  "id": "AM7I-07",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a percent taken of a percent of a total",
+  "difficulty": "hard",
+  "prompt": "At a school, 60% of the 500 students take a world language. Of the students who take a world language, 35% take Spanish. How many of the 500 students take Spanish?",
+  "choices": [
+   "300",
+   "105",
+   "175",
+   "125"
+  ],
+  "correct_answer": "105",
+  "explanation": "First, 60% of 500 is 300 students who take a world language. Then 35% of those 300 students is 0.35 x 300 = 105 students who take Spanish. \"300\" is the number who take a world language, the value one step before the answer. \"175\" comes from a solver who applies the 35% to all 500 students rather than to the 300, 0.35 x 500. \"125\" comes from a solver who subtracts the two percents of the whole school, 0.60 x 500 - 0.35 x 500.",
+  "solve": "return 0.35*(0.60*500);",
+  "distractor_solve": {
+   "125": "return 0.60*500-0.35*500;",
+   "175": "return 0.35*500;",
+   "300": "return 0.60*500;"
+  }
+ },
+ {
+  "id": "AM7I-08",
+  "domain": "Integrating Essential Skills",
+  "subskill": "median of an even-sized data set",
+  "difficulty": "easy",
+  "prompt": "The numbers of books that eight students read last month were 2, 5, 5, 6, 8, 9, 11, and 14. What is the median number of books read by these students?",
+  "choices": [
+   "5",
+   "7.5",
+   "7",
+   "6"
+  ],
+  "correct_answer": "7",
+  "explanation": "With eight values in order, the median is the mean of the fourth and fifth values, (6 + 8)/2 = 7. \"5\" is the value that occurs most often, the mode rather than the median. \"6\" is the lower of the two middle values, reported alone instead of averaged with 8. \"7.5\" is the mean of the eight values, 60/8, rather than the median.",
+  "solve": "var a=[2,5,5,6,8,9,11,14]; return (a[3]+a[4])/2;",
+  "distractor_solve": {
+   "5": "var a=[2,5,5,6,8,9,11,14],c={},b=null; for(var i=0;i<a.length;i++){c[a[i]]=(c[a[i]]||0)+1; if(b===null||c[a[i]]>c[b])b=a[i];} return b;",
+   "6": "var a=[2,5,5,6,8,9,11,14]; return a[3];",
+   "7.5": "var a=[2,5,5,6,8,9,11,14],s=0; for(var i=0;i<a.length;i++)s+=a[i]; return s/a.length;"
+  }
+ },
+ {
+  "id": "AM7I-09",
+  "domain": "Integrating Essential Skills",
+  "subskill": "adding a percent tax to a stated amount",
+  "difficulty": "medium",
+  "prompt": "A meal at a restaurant costs $36.00 before tax. A sales tax of 7% of the cost of the meal is added. What is the total cost of the meal, including tax, in dollars?",
+  "choices": [
+   "2.52",
+   "43",
+   "38.52",
+   "33.48"
+  ],
+  "correct_answer": "38.52",
+  "explanation": "The tax is 0.07 x 36.00 = $2.52, so the total is 36.00 + 2.52 = $38.52. \"2.52\" is the tax alone, the value one step before the total. \"43\" comes from a solver who reads the 7 in \"7%\" as dollars and computes 36 + 7. \"33.48\" comes from a solver who subtracts the tax instead of adding it, 36.00 - 2.52.",
+  "solve": "return (36*1.07).toFixed(2);",
+  "distractor_solve": {
+   "43": "return 36+7;",
+   "2.52": "return (36*0.07).toFixed(2);",
+   "33.48": "return (36-36*0.07).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM7I-10",
+  "domain": "Integrating Essential Skills",
+  "subskill": "average rate over two legs travelled at different rates",
+  "difficulty": "hard",
+  "prompt": "A cyclist rode 30 miles at an average speed of 15 miles per hour and then rode another 30 miles at an average speed of 10 miles per hour. What was her average speed for the entire 60 miles, in miles per hour?",
+  "choices": [
+   "12.5",
+   "5",
+   "25",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "The first leg took 30/15 = 2 hours and the second took 30/10 = 3 hours, so 60 miles took 5 hours and the average speed is 60/5 = 12 miles per hour. \"12.5\" comes from a solver who averages the two speeds, (15 + 10)/2, which would be correct only if equal TIMES were spent at each speed rather than equal distances. \"25\" is the sum of the two speeds, 15 + 10. \"5\" is the total time in hours, 2 + 3, reported where a speed is asked.",
+  "solve": "return 60/(30/15+30/10);",
+  "distractor_solve": {
+   "5": "return 30/15+30/10;",
+   "25": "return 15+10;",
+   "12.5": "return (15+10)/2;"
+  }
+ },
+ {
+  "id": "AM7I-11",
+  "domain": "Integrating Essential Skills",
+  "subskill": "converting a volume between cubic units",
+  "difficulty": "easy",
+  "prompt": "A bin holds 4 cubic yards of gravel. There are 27 cubic feet in 1 cubic yard. How many cubic feet of gravel does the bin hold?",
+  "choices": [
+   "12",
+   "108",
+   "31",
+   "81"
+  ],
+  "correct_answer": "108",
+  "explanation": "Each cubic yard is 27 cubic feet, so 4 cubic yards is 4 x 27 = 108 cubic feet. \"12\" comes from a solver who converts as though the measure were a length, using the 3 feet in a yard and computing 4 x 3. \"31\" comes from a solver who adds the two given numbers, 4 + 27. \"81\" comes from a solver who multiplies 27 by 3, the number of feet in a yard, instead of by the 4 cubic yards.",
+  "solve": "return 4*27;",
+  "distractor_solve": {
+   "12": "return 4*3;",
+   "31": "return 4+27;",
+   "81": "return 27*3;"
+  }
+ },
+ {
+  "id": "AM7I-12",
+  "domain": "Integrating Essential Skills",
+  "subskill": "expressing a part of a whole as a percent",
+  "difficulty": "medium",
+  "prompt": "A jar contains 27 red marbles, 18 blue marbles, and 45 green marbles and no other marbles. What percent of the marbles in the jar are blue?",
+  "choices": [
+   "40",
+   "20",
+   "30",
+   "25"
+  ],
+  "correct_answer": "20",
+  "explanation": "The jar holds 27 + 18 + 45 = 90 marbles, and 18 of 90 is 18/90 = 0.20, or 20%. \"40\" comes from a solver who leaves the green marbles out of the whole, comparing blue to the red and blue marbles only, 18/45. \"25\" comes from a solver who uses the marbles that are NOT blue as the whole, 18/72. \"30\" is the percent of the marbles that are red, 27/90, which answers the question for the wrong color.",
+  "solve": "return 100*18/(27+18+45);",
+  "distractor_solve": {
+   "25": "return 100*18/(27+45);",
+   "30": "return 100*27/(27+18+45);",
+   "40": "return 100*18/(27+18);"
+  }
+ },
+ {
+  "id": "AM7I-13",
+  "domain": "Integrating Essential Skills",
+  "subskill": "recovering a subgroup mean from a whole-group total",
+  "difficulty": "hard",
+  "prompt": "The 25 students in a class have a mean score of 78 on a test. The 10 students in the morning section have a mean score of 90 on that test. What is the mean score of the 15 students in the afternoon section?",
+  "choices": [
+   "84",
+   "70",
+   "66",
+   "60"
+  ],
+  "correct_answer": "70",
+  "explanation": "The 25 students scored 25 x 78 = 1950 points in total and the morning section scored 10 x 90 = 900 of them, leaving 1050 points for 15 students, so their mean is 1050/15 = 70. \"84\" comes from a solver who averages the two means, (78 + 90)/2, ignoring that the sections are not the same size. \"66\" comes from a solver who takes the morning section's 12-point advantage and subtracts it from the class mean, 78 - (90 - 78). \"60\" comes from a solver who swaps the two section sizes, computing (25 x 78 - 15 x 90)/10.",
+  "solve": "return (25*78-10*90)/15;",
+  "distractor_solve": {
+   "60": "return (25*78-15*90)/10;",
+   "66": "return 78-(90-78);",
+   "84": "return (78+90)/2;"
+  }
+ },
+ {
+  "id": "AM7I-14",
+  "domain": "Integrating Essential Skills",
+  "subskill": "dividing a total in a given ratio",
+  "difficulty": "easy",
+  "prompt": "A bracelet is strung with red beads and blue beads in the ratio 3:5. The bracelet has 56 beads in all and no beads of any other color. How many of the beads are blue?",
+  "choices": [
+   "21",
+   "35",
+   "7",
+   "15"
+  ],
+  "correct_answer": "35",
+  "explanation": "The ratio splits the beads into 3 + 5 = 8 equal parts, so each part is 56/8 = 7 beads and the 5 blue parts account for 5 x 7 = 35 beads. \"21\" is the number of red beads, 3 x 7, which answers the other half of the split. \"7\" is the size of one part, the value one step before the answer. \"15\" comes from a solver who multiplies the two numbers in the ratio, 3 x 5, and never uses the total at all.",
+  "solve": "return 5*(56/8);",
+  "distractor_solve": {
+   "7": "return 56/8;",
+   "15": "return 3*5;",
+   "21": "return 3*(56/8);"
+  }
+ },
+ {
+  "id": "AM7I-15",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a percent discount and a fixed discount applied in a stated order",
+  "difficulty": "medium",
+  "prompt": "A bicycle listed at $250 is first marked down 20%. A coupon then takes $15 off the marked-down price. What does a customer pay for the bicycle, in dollars?",
+  "choices": [
+   "235",
+   "188",
+   "185",
+   "200"
+  ],
+  "correct_answer": "185",
+  "explanation": "The 20% markdown gives 0.80 x 250 = $200, and the coupon takes $15 off that, leaving 200 - 15 = $185. \"200\" is the marked-down price, the value one step before the answer. \"188\" comes from a solver who applies the two discounts in the other order, taking $15 off first and then 20% off, 0.80(250 - 15). \"235\" comes from a solver who takes only the $15 off, 250 - 15.",
+  "solve": "return 0.80*250-15;",
+  "distractor_solve": {
+   "188": "return 0.80*(250-15);",
+   "200": "return 0.80*250;",
+   "235": "return 250-15;"
+  }
+ },
+ {
+  "id": "AM7I-16",
+  "domain": "Integrating Essential Skills",
+  "subskill": "changing a percent concentration by adding one ingredient",
+  "difficulty": "hard",
+  "prompt": "A 50-ounce batch of trail mix is 20% cashews by weight. How many ounces of cashews must be added to the batch so that the new batch is 50% cashews by weight?",
+  "choices": [
+   "10",
+   "25",
+   "30",
+   "15"
+  ],
+  "correct_answer": "30",
+  "explanation": "The batch starts with 0.20 x 50 = 10 ounces of cashews. Adding x ounces of cashews makes the batch weigh 50 + x ounces, of which 10 + x are cashews, so 10 + x = 0.50(50 + x) gives 0.5x = 15 and x = 30 ounces. \"15\" comes from a solver who compares 10 ounces with half of the ORIGINAL 50 ounces, 25 - 10, forgetting that the cashews added also increase the total weight. \"25\" is half the original weight, 0.50 x 50, the target amount of cashews under that same mistake. \"10\" is the weight of cashews already in the batch, the value one step before the answer.",
+  "solve": "return (0.50*50-0.20*50)/0.50;",
+  "distractor_solve": {
+   "10": "return 0.20*50;",
+   "15": "return 0.50*50-0.20*50;",
+   "25": "return 0.50*50;"
+  }
+ },
+ {
+  "id": "AM7I-17",
+  "domain": "Integrating Essential Skills",
+  "subskill": "volume of a cube",
+  "difficulty": "easy",
+  "prompt": "A wooden block is a cube with each edge 5 inches long. What is the volume of the block, in cubic inches?",
+  "choices": [
+   "25",
+   "60",
+   "125",
+   "15"
+  ],
+  "correct_answer": "125",
+  "explanation": "The volume of a cube is the cube of its edge length, 5 x 5 x 5 = 125 cubic inches. \"25\" is the area of one face, 5 x 5, from a solver who multiplies only two of the three dimensions. \"60\" is the total length of the cube's 12 edges, 12 x 5, a length rather than a volume. \"15\" comes from a solver who adds the three edge lengths meeting at a corner, 5 + 5 + 5, instead of multiplying them.",
+  "solve": "return 5*5*5;",
+  "distractor_solve": {
+   "15": "return 5+5+5;",
+   "25": "return 5*5;",
+   "60": "return 12*5;"
+  }
+ },
+ {
+  "id": "AM7I-18",
+  "domain": "Integrating Essential Skills",
+  "subskill": "removing a known part of a total before dividing",
+  "difficulty": "medium",
+  "prompt": "At a school play, adult tickets cost $15 each and student tickets cost $10 each. A family bought 9 adult tickets and some student tickets, paying $195 in all. How many dollars did the family spend on student tickets?",
+  "choices": [
+   "135",
+   "90",
+   "60",
+   "6"
+  ],
+  "correct_answer": "60",
+  "explanation": "The 9 adult tickets cost 9 x 15 = $135, so the student tickets accounted for 195 - 135 = $60. \"135\" is what the adult tickets cost, the other part of the total. \"6\" is the number of student tickets, 60/10, which is one step past the dollar amount the question asks for. \"90\" comes from a solver who uses the student price with the adult count, 9 x 10.",
+  "solve": "return 195-9*15;",
+  "distractor_solve": {
+   "6": "return (195-9*15)/10;",
+   "90": "return 9*10;",
+   "135": "return 9*15;"
+  }
+ },
+ {
+  "id": "AM7I-19",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a filling rate that changes partway through",
+  "difficulty": "hard",
+  "prompt": "A tank holds 700 gallons of water when full. Starting from empty, a pump fills the tank at 25 gallons per minute for the first 8 minutes and then at 10 gallons per minute until the tank is full. For how many minutes does the pump run at the slower rate?",
+  "choices": [
+   "28",
+   "58",
+   "50",
+   "70"
+  ],
+  "correct_answer": "50",
+  "explanation": "In the first 8 minutes the pump delivers 25 x 8 = 200 gallons, leaving 700 - 200 = 500 gallons, which at 10 gallons per minute takes 500/10 = 50 minutes. \"58\" is the total filling time, 8 + 50, rather than the time spent at the slower rate. \"70\" comes from a solver who fills the whole tank at 10 gallons per minute, 700/10, ignoring the first 8 minutes. \"28\" comes from a solver who fills the whole tank at 25 gallons per minute, 700/25.",
+  "solve": "return (700-25*8)/10;",
+  "distractor_solve": {
+   "28": "return 700/25;",
+   "58": "return 8+(700-25*8)/10;",
+   "70": "return 700/10;"
+  }
+ },
+ {
+  "id": "AM7I-20",
+  "domain": "Integrating Essential Skills",
+  "subskill": "scaling a recipe and converting the result to a larger unit",
+  "difficulty": "medium",
+  "prompt": "A recipe uses 3 tablespoons of oil for every 4 servings. There are 16 tablespoons in 1 cup. How many cups of oil are needed for 64 servings?",
+  "choices": [
+   "12",
+   "3",
+   "48",
+   "4"
+  ],
+  "correct_answer": "3",
+  "explanation": "There are 64/4 = 16 batches of 4 servings, so 16 x 3 = 48 tablespoons of oil are needed, and 48/16 = 3 cups. \"48\" is the amount of oil in tablespoons, the value one step before the conversion to cups. \"12\" comes from a solver who multiplies the two numbers in the recipe, 3 x 4, and never uses the 64 servings. \"4\" comes from a solver who divides the servings by the tablespoons in a cup, 64/16, applying the conversion factor to the wrong quantity.",
+  "solve": "return (64/4)*3/16;",
+  "distractor_solve": {
+   "4": "return 64/16;",
+   "12": "return 3*4;",
+   "48": "return (64/4)*3;"
+  }
+ },
+ {
+  "id": "AM7I-21",
+  "domain": "Integrating Essential Skills",
+  "subskill": "undoing two successive percent changes",
+  "difficulty": "hard",
+  "prompt": "A colony of bees grew by 20% during its first year and then shrank by 15% during its second year, ending the second year with 1020 bees. How many bees were in the colony at the beginning of the first year?",
+  "choices": [
+   "1200",
+   "850",
+   "1000",
+   "969"
+  ],
+  "correct_answer": "1000",
+  "explanation": "Starting from b bees, the first year gives 1.20b and the second gives 0.85(1.20b) = 1.02b, so 1.02b = 1020 and b = 1000 bees. \"1200\" is the size of the colony at the end of the first year, 1020/0.85, which undoes only the second year's change. \"850\" comes from a solver who undoes only the first year's growth, 1020/1.20. \"969\" comes from a solver who treats the two changes as a net 5% gain and removes 5% of the final count, 1020 x 0.95.",
+  "solve": "return 1020/(1.20*0.85);",
+  "distractor_solve": {
+   "850": "return 1020/1.20;",
+   "969": "return 1020*0.95;",
+   "1200": "return 1020/0.85;"
+  }
+ },
+ {
+  "id": "AM7I-22",
+  "domain": "Integrating Essential Skills",
+  "subskill": "median read from a frequency table",
+  "difficulty": "medium",
+  "prompt": "The table below shows how many of the 21 students in a class reported each number of siblings. What is the median number of siblings reported by these 21 students?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 340 150\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><rect x=\"12\" y=\"12\" width=\"316\" height=\"126\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"12\" y1=\"75\" x2=\"328\" y2=\"75\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><line x1=\"170\" y1=\"12\" x2=\"170\" y2=\"138\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><line x1=\"209\" y1=\"12\" x2=\"209\" y2=\"138\" stroke=\"#2B3A8C\" stroke-width=\"1\"/><line x1=\"248\" y1=\"12\" x2=\"248\" y2=\"138\" stroke=\"#2B3A8C\" stroke-width=\"1\"/><line x1=\"287\" y1=\"12\" x2=\"287\" y2=\"138\" stroke=\"#2B3A8C\" stroke-width=\"1\"/><text x=\"24\" y=\"48\">Number of siblings</text><text x=\"189.5\" y=\"48\" text-anchor=\"middle\">0</text><text x=\"228.5\" y=\"48\" text-anchor=\"middle\">1</text><text x=\"267.5\" y=\"48\" text-anchor=\"middle\">2</text><text x=\"307.5\" y=\"48\" text-anchor=\"middle\">3</text><text x=\"24\" y=\"111\">Number of students</text><text x=\"189.5\" y=\"111\" text-anchor=\"middle\">2</text><text x=\"228.5\" y=\"111\" text-anchor=\"middle\">5</text><text x=\"267.5\" y=\"111\" text-anchor=\"middle\">6</text><text x=\"307.5\" y=\"111\" text-anchor=\"middle\">8</text></svg>",
+   "caption": "Siblings reported by the 21 students in the class."
+  },
+  "choices": [
+   "1.5",
+   "3",
+   "2",
+   "1.95"
+  ],
+  "correct_answer": "2",
+  "explanation": "The 21 reported values in order are two 0s, five 1s, six 2s, and eight 3s, so the cumulative counts are 2, 7, 13, and 21. The median is the 11th value, which falls among the six 2s, so the median is 2 siblings. \"3\" is the number of siblings reported most often, by 8 students, which is the mode rather than the median. \"1.95\" is the mean, (0 x 2 + 1 x 5 + 2 x 6 + 3 x 8)/21, rounded to the nearest hundredth. \"1.5\" comes from a solver who averages the four sibling numbers listed, (0 + 1 + 2 + 3)/4, ignoring how many students reported each.",
+  "solve": "var v=[0,1,2,3],f=[2,5,6,8],d=[]; for(var i=0;i<4;i++){for(var j=0;j<f[i];j++)d.push(v[i]);} return d[10];",
+  "distractor_solve": {
+   "3": "var v=[0,1,2,3],f=[2,5,6,8],b=0; for(var i=1;i<4;i++){if(f[i]>f[b])b=i;} return v[b];",
+   "1.95": "var v=[0,1,2,3],f=[2,5,6,8],s=0,n=0; for(var i=0;i<4;i++){s+=v[i]*f[i]; n+=f[i];} return (s/n).toFixed(2);",
+   "1.5": "return (0+1+2+3)/4;"
+  }
+ },
+ {
+  "id": "AM7I-23",
+  "domain": "Integrating Essential Skills",
+  "subskill": "using a mean to recover a missing value, then finding the median",
+  "difficulty": "hard",
+  "prompt": "The mean of the five numbers 6, 9, 13, 20, and x is 14. What is the median of these five numbers?",
+  "choices": [
+   "16.5",
+   "14",
+   "13",
+   "22"
+  ],
+  "correct_answer": "13",
+  "explanation": "The five numbers total 5 x 14 = 70, and 6 + 9 + 13 + 20 = 48, so x = 22. In order the numbers are 6, 9, 13, 20, 22, and the middle one is 13. \"22\" is the value of x, the value one step before the median. \"14\" is the mean, reported as though the mean and the median had to agree. \"16.5\" comes from a solver who averages the third and fourth numbers, (13 + 20)/2, as though there were an even number of values.",
+  "solve": "var x=5*14-(6+9+13+20),a=[6,9,13,20,x].sort(function(p,q){return p-q;}); return a[2];",
+  "distractor_solve": {
+   "14": "return 14;",
+   "22": "return 5*14-(6+9+13+20);",
+   "16.5": "var x=5*14-(6+9+13+20),a=[6,9,13,20,x].sort(function(p,q){return p-q;}); return (a[2]+a[3])/2;"
+  }
+ },
+ {
+  "id": "AM7I-24",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a fixed monthly charge plus a per-minute rate",
+  "difficulty": "medium",
+  "prompt": "A phone plan costs $35.00 per month and includes 500 minutes of calls. Each minute used beyond the 500 included minutes costs an additional $0.12. What is the cost for a month in which 640 minutes are used?",
+  "choices": [
+   "76.80",
+   "51.80",
+   "111.80",
+   "16.80"
+  ],
+  "correct_answer": "51.80",
+  "explanation": "The 640 minutes exceed the included 500 by 140 minutes, which cost 140 x 0.12 = $16.80, so the month costs 35.00 + 16.80 = $51.80. \"16.80\" is the charge for the extra minutes alone, without the monthly fee. \"111.80\" comes from a solver who charges $0.12 for all 640 minutes and adds the fee, 35 + 640 x 0.12. \"76.80\" is 640 x 0.12, charging every minute and omitting the monthly fee as well.",
+  "solve": "return (35+(640-500)*0.12).toFixed(2);",
+  "distractor_solve": {
+   "16.80": "return ((640-500)*0.12).toFixed(2);",
+   "111.80": "return (35+640*0.12).toFixed(2);",
+   "76.80": "return (640*0.12).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM7I-25",
+  "domain": "Integrating Essential Skills",
+  "subskill": "actual area from a scale drawing",
+  "difficulty": "hard",
+  "prompt": "On a scale drawing of a rectangular garden, 2 centimeters represents 6 meters. On the drawing the garden measures 7 centimeters by 9 centimeters. What is the actual area of the garden, in square meters?",
+  "choices": [
+   "63",
+   "567",
+   "126",
+   "96"
+  ],
+  "correct_answer": "567",
+  "explanation": "The scale is 6 meters per 2 centimeters, or 3 meters per centimeter, so the garden is actually 7 x 3 = 21 meters by 9 x 3 = 27 meters, an area of 21 x 27 = 567 square meters. \"63\" is the area of the drawing in square centimeters, 7 x 9, with no scaling at all. \"126\" comes from a solver who scales the drawing's area by 2, the number of centimeters in the scale statement, computing 7 x 9 x 2. \"96\" is the perimeter of the actual garden, 2(21 + 27), a length rather than an area.",
+  "solve": "return (7*3)*(9*3);",
+  "distractor_solve": {
+   "63": "return 7*9;",
+   "96": "return 2*(7*3+9*3);",
+   "126": "return 7*9*2;"
+  }
+ },
+ {
+  "id": "AM7I-26",
+  "domain": "Integrating Essential Skills",
+  "subskill": "finding a missing dimension from a perimeter, then the area",
+  "difficulty": "medium",
+  "prompt": "A rectangular field has a perimeter of 240 meters and a length of 70 meters. What is the area of the field, in square meters?",
+  "choices": [
+   "8400",
+   "3500",
+   "1750",
+   "4200"
+  ],
+  "correct_answer": "3500",
+  "explanation": "Half the perimeter is the length plus the width, so the width is 240/2 - 70 = 50 meters and the area is 70 x 50 = 3500 square meters. \"4200\" comes from a solver who takes the width to be a quarter of the perimeter, 240/4 = 60, as though the field were a square. \"8400\" comes from a solver who uses half the perimeter, 120, as the width. \"1750\" comes from a solver who halves the product of the two dimensions, 70 x 50/2, as though the field were a triangle.",
+  "solve": "return 70*(240/2-70);",
+  "distractor_solve": {
+   "1750": "return 70*(240/2-70)/2;",
+   "4200": "return 70*(240/4);",
+   "8400": "return 70*(240/2);"
+  }
+ },
+ {
+  "id": "AM7I-27",
+  "domain": "Integrating Essential Skills",
+  "subskill": "percent increase, with the base to be chosen",
+  "difficulty": "medium",
+  "prompt": "A worker's hourly wage increased from $18.50 to $20.35. By what percent did the hourly wage increase?",
+  "choices": [
+   "110",
+   "10",
+   "1.85",
+   "9.09"
+  ],
+  "correct_answer": "10",
+  "explanation": "The increase is 20.35 - 18.50 = $1.85, and as a percent of the original wage that is 1.85/18.50 = 0.10, or 10%. \"1.85\" is the increase in dollars, reported where a percent is asked. \"9.09\" comes from a solver who divides the increase by the NEW wage, 1.85/20.35, rather than by the original. \"110\" comes from a solver who reports the new wage as a percent of the old one, 20.35/18.50, which is the ratio rather than the increase.",
+  "solve": "return Number((100*(20.35-18.50)/18.50).toFixed(4));",
+  "distractor_solve": {
+   "110": "return (100*20.35/18.50).toFixed(0);",
+   "1.85": "return (20.35-18.50).toFixed(2);",
+   "9.09": "return (100*(20.35-18.50)/20.35).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM7I-28",
+  "domain": "Integrating Essential Skills",
+  "subskill": "recovering one value from a mean and the other values",
+  "difficulty": "medium",
+  "prompt": "A cafe sells coffee in three sizes. The mean of the three prices is $3.40. The small costs $2.60 and the medium costs $3.20. What does the large cost, in dollars?",
+  "choices": [
+   "3.40",
+   "5.80",
+   "4.40",
+   "4.00"
+  ],
+  "correct_answer": "4.40",
+  "explanation": "The three prices total 3 x 3.40 = $10.20, and the small and medium account for 2.60 + 3.20 = $5.80, so the large costs 10.20 - 5.80 = $4.40. \"5.80\" is the combined cost of the small and the medium, the value one step before the answer. \"3.40\" is the mean itself, from a solver who assumes the largest size is priced at the average. \"4.00\" comes from a solver who adds the gap between the two known prices to the mean, 3.40 + (3.20 - 2.60).",
+  "solve": "return (3*3.40-2.60-3.20).toFixed(2);",
+  "distractor_solve": {
+   "5.80": "return (2.60+3.20).toFixed(2);",
+   "3.40": "return (3*3.40/3).toFixed(2);",
+   "4.00": "return (3.40+(3.20-2.60)).toFixed(2);"
+  }
+ }
+]
