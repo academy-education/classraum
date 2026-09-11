@@ -9,11 +9,14 @@ import {
   Check,
   AlertCircle,
   LogOut,
+  Languages,
 } from 'lucide-react';
 import { db } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { languageNames, type SupportedLanguage } from '@/locales';
 import { performLogout } from '@/lib/logout';
 import { useRouter } from 'next/navigation';
 import { AdminPageHeader } from '../AdminPageHeader';
@@ -48,7 +51,7 @@ interface AdminProfile {
  * add them here as proper sections with proper API calls.
  */
 export function SettingsDashboard() {
-  const { t, language } = useTranslation()
+  const { t, language, setLanguage } = useTranslation()
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [profile, setProfile] = useState<AdminProfile | null>(null)
@@ -251,6 +254,36 @@ export function SettingsDashboard() {
             </div>
             <p className="text-[11px] text-gray-500 mt-1">
               {String(t('admin.settings.emailChangeNote'))}
+            </p>
+          </div>
+
+          {/* Language. Writes through LanguageContext.setLanguage, which sets
+              local state and the cookie immediately and then persists to
+              user_preferences — the same path the student/teacher settings
+              page uses, so an admin's choice follows them onto the app side
+              rather than being an admin-only override. No spinner: the whole
+              page re-renders in the new language, which IS the confirmation. */}
+          <div>
+            <Label htmlFor="admin-language" className="text-xs font-medium text-gray-700 tracking-wide">
+              {String(t('admin.settings.language'))}
+            </Label>
+            <div className="relative mt-1.5">
+              <Languages className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none z-10" />
+              <Select
+                value={language}
+                onValueChange={(value: SupportedLanguage) => { void setLanguage(value) }}
+              >
+                <SelectTrigger id="admin-language" className="pl-10 h-10">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="english">🇺🇸 {languageNames.english}</SelectItem>
+                  <SelectItem value="korean">🇰🇷 {languageNames.korean}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <p className="text-[11px] text-gray-500 mt-1">
+              {String(t('admin.settings.languageNote'))}
             </p>
           </div>
         </div>
