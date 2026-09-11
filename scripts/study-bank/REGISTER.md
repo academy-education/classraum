@@ -582,3 +582,31 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **The brief already asks for this and it is being under-delivered.** §3 requires the intermediate value to be the KEY on three or four items per batch. `isee-math-s11` did it on four and said so; `sat-geo-h2` did it on three and its author flagged being "at the bottom of that range"; `act-math-v4-fn` did it on **zero**. The fix is to key three or four items to the intermediate quantity — ask for k, for r-cubed, for the total change — not to strip the distractor, which is a good distractor.
 
+- **2026-09-11** — **SUBJECT RECALL IS THE DOMINANT LEAK ON EVERY READING FAMILY, IT CANNOT BE REWRITTEN OUT, AND THE ONE TRICK THAT BEATS IT IS UNAVAILABLE TO PROSE PASSAGES.** Three independent authors, three different families, one day, converging without contact:
+
+        toefl-ap-v6 (academic passage)  split attack 94.4%; graders judge
+                                        20 of 36 items answerable with the
+                                        passage covered
+        act-reading-v7 (paired science) 3 of 9 paired items, named by all
+                                        three graders unprompted
+        isee-reading-s5                 6 of 9 solvers recognised the real
+                                        subject; 3 said recognition decided
+                                        the pick
+
+  On the TOEFL batch all three solvers agreed on **every item in every split file**, and the cue they named was near-unanimously recall, not option shape: ogives and Forbes bands, the gridiron pendulum, a tontine share dying with the subscriber, plinthite hardening irreversibly, ferric meaning oxidised meaning excess air. One solver said the bare `[Academic — Ceramics]` tag alone decided a vocabulary item. The author had deliberately chosen eight narrow, non-canonical fields — glaciology, horology, celadon kiln atmosphere, tontines, qanat gradient, S/Z twist, plinthite, Vitruvian echeia — against a live bank that repeats nine canonical topics. **Narrow subject choice is not enough against a model that knows all eight fields.**
+
+  **The ACT Science route does not transfer.** `act-science-v6` and `v7` beat recall by INVENTING the subject — v7 never even names the suspended solid chemically, describing it only by relation. That is available because a science passage may describe a fictional experiment. **It is not available to a passage that must stay factually true**, which is every TOEFL, SAT and ACT Reading passage. So the two families split: invented-stimulus families can author recall away, prose-passage families cannot.
+
+  Consequence, and it is a scheduling fact rather than an authoring one: on prose-passage families the model attack measures the model's world knowledge, and the only instrument that separates that from a student's is a human sitting. This is the register's seven TOEFL cohorts at 83-100% model against 13-27% human, now with a named mechanism.
+
+- **2026-09-11** — **THE WITH-SOURCE GRADE FOUND FACTUAL ERRORS IN THREE SHIPPED-QUALITY PASSAGES, WHICH NO STRUCTURAL CHECK CAN REACH.** On `toefl-ap-v6`, eight graders (one per passage set) hunting second acceptable answers turned up four classes of defect the harness could not see:
+
+  1. **A broken item** — a vocabulary stem asked for the sense of a word that was **not in its own passage**. Now gated: the preflight refuses any `The word 'X'` stem whose X is absent from the passage it cites.
+  2. **Two acceptable answers** — 'remedy' to 'treatment' was as defensible as 'solution'.
+  3. **Factual errors in three passages**: "for a century" where the interval is ~70 years (pendulum clock 1656, gridiron 1726); a barometric error described as "not identified until much later"; a flat child/grandfather price stated of tontines generally when it holds only of early flat-rate schemes; plinthite iron described as washed down from the surface rather than delivered by a fluctuating water table; and an absolute "will not soften again whatever it is afterwards exposed to".
+  4. **The repair caused a regression** — the plinthite fix introduced a seasonal cue that made a distractor defensible, caught only because the author re-graded AFTER repairing rather than declaring victory.
+
+  Also found, and it is the familiar class: the harness's **sibling-restatement check counted and never failed** — a number nobody gated on. It fails now.
+
+  And the honest structural limit, stated by the author: **the exhaustive promotion break-test does not exist for prose reading.** For maths, promoting a distractor to key is mechanical and the sandbox refuses it. For reading MC nothing in a harness knows which option is right, so §7's promotion sweep has no analogue and the with-source exclusivity grade is the only substitute — one model per set, not three.
+
