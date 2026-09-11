@@ -1,0 +1,386 @@
+[
+ {
+  "id": "CTL-V2-SEC-01",
+  "domain": "Standard English Conventions",
+  "subskill": "Form, Structure, and Sense",
+  "difficulty": "easy",
+  "passage": "The collection of rare medieval manuscripts, along with several first-edition novels and a set of handwritten letters from prominent nineteenth-century authors, ______ housed in a climate-controlled vault beneath the main reading room of the library.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "are",
+   "is",
+   "were",
+   "have been"
+  ],
+  "correct_answer": "is",
+  "explanation": "The subject is the singular noun 'collection'; the long modifier beginning with 'along with' does not change the subject's number, so a singular verb is required. 'is' is the only singular option. 'are,' 'were,' and 'have been' are all plural and are traps set by the nearby plural nouns 'manuscripts,' 'novels,' 'letters,' and 'authors.'"
+ },
+ {
+  "id": "CTL-V2-SEC-02",
+  "domain": "Standard English Conventions",
+  "subskill": "Form, Structure, and Sense",
+  "difficulty": "hard",
+  "passage": "Having studied the region's fault lines for more than a decade, ______",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "Dr. Halloran was not surprised when the earthquake finally struck.",
+   "the earthquake did not surprise Dr. Halloran when it finally struck.",
+   "it was not surprising to Dr. Halloran that the earthquake struck.",
+   "the seismic data gathered by Dr. Halloran had predicted the earthquake."
+  ],
+  "correct_answer": "Dr. Halloran was not surprised when the earthquake finally struck.",
+  "explanation": "The opening phrase \"Having studied the region's fault lines for more than a decade\" must attach to the person who did the studying, namely Dr. Halloran, so the main clause must begin with \"Dr. Halloran.\" The other options begin with \"the earthquake,\" \"it,\" or \"the seismic data,\" none of which can study fault lines, producing a dangling modifier."
+ },
+ {
+  "id": "CTL-V2-SEC-03",
+  "domain": "Standard English Conventions",
+  "subskill": "Form, Structure, and Sense",
+  "difficulty": "easy",
+  "passage": "The flock of geese that had descended on the golf course every morning for weeks finally abandoned ______ makeshift roost near the eighteenth hole once the automated sprinklers were switched back on.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "its",
+   "their",
+   "it's",
+   "there"
+  ],
+  "correct_answer": "its",
+  "explanation": "The antecedent is the singular collective noun 'flock,' which takes the singular possessive pronoun 'its.' 'Their' is plural and wrongly agrees with the nearby noun 'geese' rather than with 'flock.' 'It's' is the contraction of 'it is,' not a possessive, and 'there' is an adverb or expletive, neither of which can show possession of the roost."
+ },
+ {
+  "id": "CTL-V2-SEC-04",
+  "domain": "Standard English Conventions",
+  "subskill": "Form, Structure, and Sense",
+  "difficulty": "medium",
+  "passage": "Among the countless factors that sustain the region's remarkable biodiversity ______ a vast network of underground rivers that keeps the limestone caves humid throughout the year.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is",
+   "are",
+   "were",
+   "have been"
+  ],
+  "correct_answer": "is",
+  "explanation": "This is an inverted sentence in which the subject follows the verb: the subject is the singular 'network,' so the singular 'is' is required. The plural options ('are,' 'were,' 'have been') are traps triggered by the plurals that precede the verb—'factors' and 'rivers'—neither of which is the actual subject."
+ },
+ {
+  "id": "CTL-V2-SEC-05",
+  "domain": "Standard English Conventions",
+  "subskill": "Form, Structure, and Sense",
+  "difficulty": "medium",
+  "passage": "For the past three years, the small neighborhood nonprofit ______ hot meals to families in need every single weekend, relying almost entirely on private donations and volunteer labor to do so.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "distributed",
+   "has distributed",
+   "distributes",
+   "will distribute"
+  ],
+  "correct_answer": "has distributed",
+  "explanation": "The phrase 'For the past three years' describes an action that began in the past and continues into the present, which calls for the present perfect: 'has distributed.' 'distributed' (simple past) implies the action is finished, 'distributes' (simple present) ignores the three-year span, and 'will distribute' points to the future."
+ },
+ {
+  "id": "CTL-V2-SEC-06",
+  "domain": "Standard English Conventions",
+  "subskill": "Form, Structure, and Sense",
+  "difficulty": "medium",
+  "passage": "Painted across an entire city block in vivid ochres and crimsons, ______.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "the enormous mural drew visitors from across the district",
+   "visitors from across the district admired the enormous mural",
+   "the enormous mural's colors drew visitors from across the district",
+   "there was an enormous mural that drew visitors from across the district"
+  ],
+  "correct_answer": "the enormous mural drew visitors from across the district",
+  "explanation": "The introductory participial phrase 'Painted across an entire city block' describes the thing that was painted—the mural—so 'the enormous mural' must directly follow it. Making 'visitors,' 'the mural's colors,' or 'there' the subject creates a dangling modifier: the visitors were not painted, the colors are not what was painted across the block (the mural is), and 'there' gives the modifier nothing to attach to."
+ },
+ {
+  "id": "CTL-V2-SEC-07",
+  "domain": "Standard English Conventions",
+  "subskill": "Form, Structure, and Sense",
+  "difficulty": "medium",
+  "passage": "When one has trained for years to compete at the Olympic level, ______ cannot help but feel a profound disappointment when a single misstep costs the gold medal.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "they",
+   "you",
+   "one",
+   "he"
+  ],
+  "correct_answer": "one",
+  "explanation": "The pronoun must be consistent with the antecedent already established in the sentence, 'one.' Shifting to 'you,' 'they,' or 'he' creates an inconsistent pronoun reference (and 'they' also disagrees in number). Only 'one' maintains agreement with the earlier pronoun."
+ },
+ {
+  "id": "CTL-V2-SEC-08",
+  "domain": "Standard English Conventions",
+  "subskill": "Form, Structure, and Sense",
+  "difficulty": "medium",
+  "passage": "Designing bridges that can withstand both violent earthquakes and decades of heavy traffic ______ a mastery of physics that few engineers achieve early in their careers.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "require",
+   "requires",
+   "have required",
+   "were requiring"
+  ],
+  "correct_answer": "requires",
+  "explanation": "The subject is the singular gerund phrase 'Designing bridges...,' which functions as one unit despite the plural nouns 'bridges,' 'earthquakes,' and 'engineers.' A singular subject takes 'requires.' 'Require,' 'have required,' and 'were requiring' are plural and mismatch."
+ },
+ {
+  "id": "CTL-V2-SEC-09",
+  "domain": "Standard English Conventions",
+  "subskill": "Form, Structure, and Sense",
+  "difficulty": "easy",
+  "passage": "Although the multinational corporation had publicly pledged to cut its carbon emissions in half within a decade, ______ quietly continued to expand operations at three of its most heavily polluting plants.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "they",
+   "it",
+   "which",
+   "and it"
+  ],
+  "correct_answer": "it",
+  "explanation": "The antecedent 'corporation' is a singular noun, so the pronoun that refers to it must be singular: 'it.' 'they' is plural and mismatches the antecedent even though corporations are often referred to loosely as 'they.' 'which quietly continued' leaves the main clause without a subject, and 'and it' produces an ungrammatical string after the introductory 'Although' clause."
+ },
+ {
+  "id": "CTL-V2-SEC-10",
+  "domain": "Standard English Conventions",
+  "subskill": "Subject-Verb Agreement",
+  "difficulty": "medium",
+  "passage": "Neither the district's veteran superintendent nor the newly elected board members ___ willing to endorse the proposed changes to the curriculum without a further round of public review.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is",
+   "are",
+   "was",
+   "has been"
+  ],
+  "correct_answer": "are",
+  "explanation": "In a 'neither...nor' construction the verb agrees with the nearer subject, here the plural 'board members,' so the verb must be plural. 'is,' 'was,' and 'has been' are all singular; only the plural present 'are' satisfies the proximity rule."
+ },
+ {
+  "id": "CTL-V2-SEC-11",
+  "domain": "Standard English Conventions",
+  "subskill": "Subject-Verb Agreement",
+  "difficulty": "easy",
+  "passage": "Each of the fifteen research assistants who contributed to the multiyear ecological survey ___ required to sign a confidentiality agreement before accessing the raw data.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "are",
+   "is",
+   "were",
+   "have been"
+  ],
+  "correct_answer": "is",
+  "explanation": "'Each' is grammatically singular and is the subject; 'of the fifteen research assistants' is a prepositional phrase and the intervening relative clause 'who contributed...' modifies 'assistants,' not the subject. The verb must be singular and present, so only 'is' works; 'are,' 'were,' and 'have been' are plural."
+ },
+ {
+  "id": "CTL-V2-SEC-12",
+  "domain": "Standard English Conventions",
+  "subskill": "Subject-Verb Agreement",
+  "difficulty": "medium",
+  "passage": "",
+  "prompt": "There _____ numerous factual inconsistencies in the final draft that the editor had to correct overnight. Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was",
+   "were",
+   "is",
+   "has been"
+  ],
+  "correct_answer": "were",
+  "explanation": "Existential 'there' agreement: the verb agrees with the postposed subject 'inconsistencies,' which is plural, so the plural 'were' is required."
+ },
+ {
+  "id": "CTL-V2-SEC-13",
+  "domain": "Standard English Conventions",
+  "subskill": "Boundaries",
+  "difficulty": "easy",
+  "passage": "The recipe calls for just three ingredients that most bakers already keep on hand______ flour, sugar, and butter.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "hand, flour",
+   "hand: flour",
+   "hand; and flour",
+   "hand, being flour"
+  ],
+  "correct_answer": "hand: flour",
+  "explanation": "A complete independent clause precedes the list, and a colon is the correct mark to introduce that list. A semicolon is wrong because what follows is not an independent clause; a comma blurs 'hand' into the list itself; and omitting punctuation creates a run-on."
+ },
+ {
+  "id": "CTL-V2-SEC-14",
+  "domain": "Standard English Conventions",
+  "subskill": "Boundaries",
+  "difficulty": "easy",
+  "passage": "Students who complete all three tiers of the laboratory-safety certification and log at least forty supervised hours in the cleanroom ______ eligible to apply for the advanced research track.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   " are",
+   ", are",
+   "; are",
+   ": are"
+  ],
+  "correct_answer": " are",
+  "explanation": "The long noun phrase 'Students who complete all three tiers... and log at least forty supervised hours in the cleanroom' is the subject, and 'are eligible' is its verb. No punctuation should ever separate a subject from its verb, so the version with no mark is correct. The comma, semicolon, and colon each wrongly interrupt the subject-verb boundary; the semicolon and colon additionally require a full independent clause on at least one side."
+ },
+ {
+  "id": "CTL-V2-SEC-15",
+  "domain": "Standard English Conventions",
+  "subskill": "Parallel Structure",
+  "difficulty": "medium",
+  "passage": "Historians increasingly recognize that negotiating the armistice was as much about managing volatile domestic public opinion as ___ the concrete territorial demands of foreign powers.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "satisfying",
+   "about satisfying",
+   "to satisfy",
+   "it was satisfying"
+  ],
+  "correct_answer": "about satisfying",
+  "explanation": "The 'as much...as' comparison must balance parallel phrases. The first half is 'about managing...,' so the second half must repeat the preposition to stay parallel: 'about satisfying...' Dropping 'about' ('satisfying'), switching to an infinitive ('to satisfy'), or inserting a new clause ('it was satisfying') all break the parallel structure."
+ },
+ {
+  "id": "CTL-V2-SEC-16",
+  "domain": "Standard English Conventions",
+  "subskill": "Parallel Structure",
+  "difficulty": "easy",
+  "passage": "During the three-week expedition, the research team mapped the flooded cave system, cataloged dozens of previously unknown species, and ______ water samples for later laboratory analysis.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "collected",
+   "collecting",
+   "had been collecting",
+   "would collect"
+  ],
+  "correct_answer": "collected",
+  "explanation": "The three coordinated actions share the subject 'team' and must be parallel simple-past verbs ('mapped,' 'cataloged,' 'collected'). The participle 'collecting,' the past-perfect-progressive 'had been collecting,' and the conditional 'would collect' all break the parallel simple-past pattern of the series."
+ },
+ {
+  "id": "CTL-V2-SEC-17",
+  "domain": "Standard English Conventions",
+  "subskill": "Verb Tense and Aspect",
+  "difficulty": "medium",
+  "passage": "If the delayed shipment finally arrives on schedule tomorrow morning, the warehouse crew ______ the entire backlog of orders before the weekend begins.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "will have cleared",
+   "would have cleared",
+   "had cleared",
+   "cleared"
+  ],
+  "correct_answer": "will have cleared",
+  "explanation": "The condition uses the present 'arrives' to describe a real future possibility ('tomorrow'), so the main clause takes a future form; 'will have cleared' correctly places the completion before the future point 'before the weekend begins.' 'Would have cleared' and 'had cleared' belong to unreal or earlier-past constructions, and the simple past 'cleared' contradicts the future time frame."
+ },
+ {
+  "id": "CTL-V2-SEC-18",
+  "domain": "Standard English Conventions",
+  "subskill": "Modifier Placement",
+  "difficulty": "medium",
+  "passage": "Having reviewed the young applicant's portfolio and letters of recommendation in meticulous detail over the course of two long meetings, ____",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "the committee offered her the fellowship without hesitation.",
+   "the decision to offer her the fellowship was reached without hesitation.",
+   "her fellowship was awarded to her without any further hesitation.",
+   "it was quickly decided that she should be offered the fellowship."
+  ],
+  "correct_answer": "the committee offered her the fellowship without hesitation.",
+  "explanation": "The introductory phrase 'Having reviewed ... the portfolio' is a modifier that must be immediately followed by the noun performing that action, that is, whoever did the reviewing. Only the committee could have reviewed the portfolio. The other options place 'the decision,' 'her fellowship,' or the dummy subject 'it' right after the comma, none of which reviewed anything, creating a dangling modifier. Only 'the committee' correctly resolves the modifier."
+ },
+ {
+  "id": "CTL-V2-SEC-19",
+  "domain": "Standard English Conventions",
+  "subskill": "Pronoun-Antecedent Agreement",
+  "difficulty": "easy",
+  "passage": "After nearly three years of closed-door deliberation, the federal agency finally released ____ findings to the public, prompting immediate debate among lawmakers.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "its",
+   "their",
+   "it's",
+   "they're"
+  ],
+  "correct_answer": "its",
+  "explanation": "The antecedent 'agency' is a singular noun and takes the singular possessive pronoun 'its.' 'Their' is plural; 'it's' is the contraction of 'it is'; and 'they're' is the contraction of 'they are' and is not even possessive."
+ },
+ {
+  "id": "CTL-V2-SEC-20",
+  "domain": "Standard English Conventions",
+  "subskill": "Punctuation (comma/semicolon/colon/dash)",
+  "difficulty": "medium",
+  "passage": "",
+  "prompt": "The committee reached its decision after considering three factors _____ cost, safety, and long-term maintenance. Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   ";",
+   ",",
+   ":",
+   " that is"
+  ],
+  "correct_answer": ":",
+  "explanation": "Colon usage: a colon follows an independent clause and introduces the list that elaborates 'three factors.'"
+ },
+ {
+  "id": "CTL-V2-SEC-21",
+  "domain": "Standard English Conventions",
+  "subskill": "Sentence Boundaries",
+  "difficulty": "medium",
+  "passage": "",
+  "prompt": "The recipe called for fresh basil _____ the only herb available at the market that day was dried oregano. Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   ", ",
+   "; but",
+   " but,",
+   ", but"
+  ],
+  "correct_answer": ", but",
+  "explanation": "Comma before a coordinating conjunction: two independent clauses joined by 'but' require a comma before the conjunction, not a comma alone (comma splice) or a semicolon plus conjunction."
+ },
+ {
+  "id": "CTL-V2-SEC-22",
+  "domain": "Standard English Conventions",
+  "subskill": "Verb Tense/Form",
+  "difficulty": "medium",
+  "passage": "",
+  "prompt": "By the time the negotiators signed the treaty, the two nations _____ for nearly a decade. Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "have fought",
+   "fought",
+   "had fought",
+   "are fighting"
+  ],
+  "correct_answer": "had fought",
+  "explanation": "The past perfect 'had fought' marks an action completed before another past event, signaled by 'By the time.'"
+ },
+ {
+  "id": "CTL-V2-SEC-23",
+  "domain": "Standard English Conventions",
+  "subskill": "Possessives/Apostrophes",
+  "difficulty": "medium",
+  "passage": "",
+  "prompt": "The _____ lounge was renovated to include quiet workspaces and a small library for those on overnight shifts. Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "nurses'",
+   "nurse's",
+   "nurses",
+   "nurses's"
+  ],
+  "correct_answer": "nurses'",
+  "explanation": "The lounge belongs to multiple nurses, so the plural possessive adds an apostrophe after the -s."
+ },
+ {
+  "id": "CTL-V2-SEC-24",
+  "domain": "Standard English Conventions",
+  "subskill": "Modifiers",
+  "difficulty": "medium",
+  "passage": "",
+  "prompt": "_____ the ancient scroll revealed a trade route that historians had long doubted existed. Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "Carefully unrolling the archaeologist,",
+   "Having carefully unrolled it,",
+   "After carefully unrolling,",
+   "Carefully unrolled by the archaeologist,"
+  ],
+  "correct_answer": "Carefully unrolled by the archaeologist,",
+  "explanation": "The introductory modifier must describe 'the scroll'; only the passive participial phrase attaches to it correctly, avoiding a dangling modifier."
+ }
+]

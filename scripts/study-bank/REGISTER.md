@@ -1192,3 +1192,43 @@ structural checks are pre-flight only. See CLAUDE.md.
   `AM7I-19` **is** "a rate that changes partway" — this brief's own example of hard — and graded medium by all three, because the stem hands over the legs in order and it decomposes into three one-line steps. `AM7I-10` is average speed over two legs and graded hard by all three, because the student must *reject* averaging the rates and nothing says so. **One sentence of scaffolding is the whole difference.** Now brief §3b, together with the template finding that accompanies it: 15 to 25 of 28 items per batch sit on four to seven templates, and on one batch a single learned line answered five items *including one of the four graded hard*.
 
   Two items were dropped on grader testimony that I then checked myself rather than taking on trust: `AM7-21` is `AM7-15` in other clothes (three graders said so; both are (sum)^2 - 2(product), verified), and `AM7-12`'s stem admits (-13, -11) while two of its four options are EVEN and die on the word "odd".
+
+- **2026-09-11** — **ALL FOUR v2 SAT R&W DOMAINS ARE SOLVABLE FROM THE OPTIONS ALONE. 740 LIVE ITEMS, 71% OF THE SECTION, WEIGHTED 82.8%.**
+
+  Four matched live controls, 24 items each, drawn v2-only and proportional to each domain's own live subskill mix. Passage and stem both withheld; three solvers each; 288 picks against a 25.0% chance line.
+
+        domain                          blind    live items in v2
+        Information and Ideas           93.1%          240
+        Craft and Structure             88.2%          210   (measured earlier today)
+        Expression of Ideas             73.6%           66
+        Standard English Conventions    69.4%          224
+        ------------------------------------------------------
+        weighted                        82.8%          740
+        (hand-authored cs-hard cohorts) 33.3%           34
+
+  **The problem is the cohort, not any domain.** Every hand-authored cohort measured today sits near chance; every `v2` domain sits far above it. `v2` is 71% of the live SAT R&W bank.
+
+  **Each domain leaks through a DIFFERENT mechanism, which is why no single checker would have found this.** The solvers named all four independently, before scoring, and each was right about its own domain:
+
+  - **Information and Ideas** — the key states a *bounded* claim (concedes a scope, names a condition, corrects a naive reading); distractors state the same territory without limits. An absolute quantifier ("always", "in every case", "no relationship at all") appears in over half the file and never in a key. A second formula runs alongside it on command-of-evidence items, where hedging is *not* the tell and the key is instead the option carrying a matched control or a removed confound.
+  - **Craft and Structure** — the key performs a corrective/reframing act; distractors are absolutes, flat rejections, or the generic survey purpose ("to trace how X developed").
+  - **Expression of Ideas** — *asymmetric completeness*: three options are single retrieved notes, one binds two or more under an explicit connective. A rhetorical-synthesis stem always names a goal requiring combination, so a bare note cannot satisfy ANY goal and three options die before the goal is known.
+  - **Standard English Conventions** — three separate mechanical tells, and the numbers are absolute.
+
+  **SEC IS THE MOST DAMNING BECAUSE IT IS MECHANICAL, AND A PRE-REGISTERED TEST PROVED IT.**
+
+        the 4 dangling-modifier items    12 of 12 picks correct, all three solvers
+        the 4 punctuation items          12 of 12 picks correct, all three solvers
+        the 6 agreement items            solver a 0/6   solver b 6/6   solver c 6/6
+
+  The agreement split is not noise, it is a designed experiment that happened by luck: solvers b and c bet "the key is the option whose grammatical number is UNIQUE in the set"; solver a reasoned themselves into the opposite and said so in advance. Solver c also wrote, before scoring, *"a 4/7 on R2 means clean, a 0/7 or 7/7 means the tell is real and I merely guessed its sign."* It came back **6/6 against 0/6**. The tell is real and total: **every agreement item puts three foils at one grammatical number and the key at the other**, so the key is identifiable with the sentence deleted. Solver a scored 50.0% while getting modifier and punctuation 8 of 8 — their entire deficit is that one inverted sign.
+
+  So 14 of 24 SEC items are fully determined by option shape. The bare inflection ladders (`is / were / have been / are`) and the pronoun sets are genuinely clean, which is why SEC's total is 69.4% rather than 93% — **not because the authoring is better, but because a third of its items have nothing to leak into.**
+
+  **THE POSITIVE CONTROL REFUTED A NUMBER IN CLAUDE.md.** The EoI run was commissioned as a check on the instrument, because this file records `v2` rhetorical synthesis at **100.0%** blind. Three fresh solvers predicted 70%, 62% and 70% before scoring and measured **73.6%**. They were right and the recorded figure did not replicate. All three named items they genuinely could not decide — the recorded 100.0% implies there should be none — and one called item 17 outright clean ("four co-equal facts, no integrative option at all").
+
+  **What survives and what does not.** The QUALITATIVE finding in CLAUDE.md stands and is if anything strengthened: rhetorical synthesis still splits enormously by cohort, `v2` at 73.6% against `rsw-v1` at 19.0% fully enumerated. The MAGNITUDE was overstated — an 81-point split, not 55. Anyone quoting the 100.0% should quote 73.6% and this run instead. The instrument is validated: it returned 21.1% on shipped SSAT reading, 93.1% here, and 33.3% on hand-authored cohorts, so it discriminates rather than condemning everything pointed at it.
+
+  **What this means for capacity, stated so it is not discovered later.** SAT R&W reports 16 complete forms (14 after today's domain-label correction). Both figures assume the `v2` items are sound. They are 740 of 1,047. What the hand-authored cohorts alone can supply is **34 Craft and Structure, 40+23+22 SEC, 149 Expression of Ideas, 10 Information and Ideas** — the binding domain would be Information and Ideas at 10 items, i.e. **zero complete forms**.
+
+  **Still not acted on, and still the user's call.** Nothing has been archived, unverified or rewritten. The decision is now about 740 items rather than 210, and it is the same decision: archive, rebuild, or keep serving while a replacement is authored. What IS settled without needing anyone's permission: **no new R&W batch should imitate `v2`, and `sat-cs-h4` still does not insert** — it beats the live bank on every stratum and still runs 87.5% on text structure, and beating a broken baseline is not a pass.
