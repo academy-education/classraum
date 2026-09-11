@@ -94,6 +94,23 @@ for (const it of batch) {
   if (!DOMAINS[section].includes(it.domain)) problems.push(`${tag}: domain "${it.domain}" is not one of ${DOMAINS[section].join(' | ')}`)
   if (!['easy', 'medium', 'hard'].includes(it.difficulty)) problems.push(`${tag}: difficulty "${it.difficulty}"`)
   if (/\b(option|choice|answer)\s*\(?[A-J]\)?(?![a-z])|\b(first|second|third|fourth|last) (option|choice|answer)\b/i.test(it.explanation ?? '')) problems.push(`${tag}: explanation names an option position`)
+  /* Line numbers are forbidden BANK-WIDE — text reflows on a phone, so
+   * "line 26" is a lie in every section, not just the two that happened to
+   * check for it. This lived only inside the `reading` and `science`
+   * branches until 2026-09-12, when an author mutation-testing this helper
+   * fed it an English stem reading `In line 4, which choice ...` and the
+   * helper ACCEPTED it: the quoted span satisfied the located-ness test and
+   * nothing else looked. Found by attacking the green rather than reading
+   * it — 21 mutations, 20 refused as expected, this one not.
+   *
+   * MATHS IS EXEMPT, and that exemption is measured rather than assumed.
+   * Run over all 5,973 live items the regex matched 10 stems — and every
+   * one is a GEOMETRIC line: "parallel to the line 3x - 2y = 8",
+   * "perpendicular to the line 4x - 6y = 9". Zero real defects, and a
+   * check that fired on those would refuse correct maths items forever
+   * after. The prose sections are where a line number can only mean a line
+   * of text. */
+  if (section !== 'math' && /\blines?\s+\d+/i.test(it.prompt ?? '')) problems.push(`${tag}: stem cites a line number — cite the paragraph or quote the phrase`)
   if (section === 'reading') {
     if (!GENRES.includes(it.genre)) problems.push(`${tag}: genre "${it.genre}" is not one of ${GENRES.join(' | ')}`)
     if (/\blines?\s+\d+/i.test(it.prompt)) problems.push(`${tag}: stem cites a line number — cite the paragraph or quote the phrase`)
