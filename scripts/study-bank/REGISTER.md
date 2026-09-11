@@ -981,3 +981,38 @@ structural checks are pre-flight only. See CLAUDE.md.
   Neither `AUTHORING-BRIEF.md` nor `RUNBOOK.md` documented the field at all, which is how a wrong name survived being written into a commission. Now §6b of the brief, with the mapping quoted and the silent-failure path spelled out. The second reading batch is checked and corrected before it goes near an inserter.
 
   The general lesson is not about this field. **An instruction I wrote is not evidence about the code**, and a subagent following my brief exactly will reproduce my error at scale — eight at a time, in this session's case. The cheap guard is the one that author used: diff your field set against the nearest existing batch in the family before writing 30 items to it.
+
+- **2026-09-11** — **THE OPTIONS-ONLY ATTACK HAS A FLOOR ON VOCABULARY, AND COMPARING A VERBAL BATCH AGAINST A BARE 25.0% CONDEMNS SOUND ITEMS.**
+
+  `isee-verbal-s12` measured 36.7% blind against a 25.0% chance line, +11.7, with 6 of 30 items solved by all three solvers. That reads as a leak, and it is not.
+
+  What made me check: four of the six unanimously-solved items had solver `why` fields reading **"bare guess"** and **"no structural tell"**. Three solvers guessing independently do not converge on the right answer six times. They are not independent — same model, same prior over which of four words a test would key. On bare numerals that prior carries nothing, which is exactly why maths measures clean; on vocabulary it carries a great deal, and **it is partly the construct the item is trying to test.**
+
+  So: 30 ALREADY-SHIPPED ISEE verbal items, drawn from five live cohorts, excluding the cohort under test, through the identical render.
+
+        run                         n    mean    chance   margin   unanimous
+        LIVE SHIPPED (control)     30   40.0%    25.0%    +15.0        7
+        isee-verbal-s12            30   36.7%    25.0%    +11.7        6
+
+  **The candidate scores BELOW the live bank.** The +11.7 is an instrument floor, not a property of the batch. Acting on it would have started a rewrite of a batch that is better than what students are already being served — the `measure the population before believing the backlog` failure, arriving through a new door.
+
+  **Consequence, and it is not small: every verbal/prose margin this project has quoted against a 25.0% or 20.0% literal is suspect.** The numbers in the CLAUDE.md leaky/clean table (analogies 69.0%, words-in-context 12.5%/33.3%, and the rest) were computed that way. The clean ones stay clean — a floor only pushes up — but the leaky ones are overstated by an unknown amount, and the right comparator is a matched live control of the same section, same width, same render. **`ctl-isee-verbal.batch.json` is in the repo as the first one.**
+
+  Maths is unaffected: the same argument predicts no floor there, and the four maths runs the same day came in at +2.4, +8.3, +11.7 and +13.3 with the leaks traced to exact, mechanically checkable shapes.
+
+- **2026-09-11** — **SHARED OPTION POOLS: A FOURTH CHANNEL THAT DISSOLVED AGAINST THE POPULATION, AND THE SPLIT THAT DID IT.** `check-shared-pool.mjs` is in the repo, negative result and all.
+
+  Two control solvers, independently, reading shipped ISEE verbal items with the stems withheld, reported the same two pairs of items sharing an identical option pool and called it an authoring artifact. It is decidable, so it was measured over the whole bank rather than the 30 items it was noticed in.
+
+        multiple-choice rows                                5,615
+        items sharing a pool with another item                295  (5.25%)
+        ...of those, same key (near-duplicates)               143
+        ...of those, DIFFERENT key (the exploitable shape)     152
+
+  152 looked like a finding. **Two splits killed it.**
+
+  First: **prose versus numeric.** A maths pool of `{4, 5, 6, 7}` collides with another item's constantly and by pure coincidence — short options from a tiny alphabet. Four prose definitions do not collide by accident. 152 splits into **77 prose** and **75 numeric**, and reporting the combined rate would have inflated a real defect roughly twofold with arithmetic coincidence. Same shape as the conditional-rate-versus-population-rate error already in this file.
+
+  Second, and it finished the job: **72 of the 77 prose items sit in ONE `passage_group_id` each.** They are deliberate matching sets — five analogies sharing five options, each keyed to a different one — drawn and served together, which is a legitimate psychometric format and the thing `insert-verbal-sets.mjs` exists to enforce. Only **5 items** are ungrouped, and 3 of those are ACT Science trend questions where "increases steadily" recurs across unrelated figures.
+
+  **Real cases: effectively zero.** The channel joins stem-echo, key-is-sum and key-magnitude on the dissolved list. It is worth recording precisely because two capable readers flagged it in good faith from a 30-item sample, and the population said no.
