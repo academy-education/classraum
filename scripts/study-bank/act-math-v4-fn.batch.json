@@ -92,15 +92,15 @@
   "choices": [
    "9",
    "1",
-   "8",
+   "17",
    "12"
   ],
   "correct_answer": "9",
-  "explanation": "cos(3x) ranges from -1 to 1, so -4cos(3x) ranges from -4 to 4 and the greatest output is 4 + 5 = 9. The option \"1\" comes from a solver who adds the coefficient as written and reports 5 + (-4), which is the minimum. The option \"8\" comes from a solver who treats the coefficient of x inside the cosine as the amplitude and computes 3 + 5. The option \"12\" comes from a solver who adds all three constants, 4 + 3 + 5.",
+  "explanation": "cos(3x) ranges from -1 to 1, so -4cos(3x) ranges from -4 to 4 and the greatest output is 4 + 5 = 9. The option \"1\" comes from a solver who adds the coefficient as written and reports 5 + (-4), which is the minimum. The option \"17\" comes from a solver who treats the 3 inside the cosine as a second factor on the amplitude, computing 4(3) + 5. The option \"12\" comes from a solver who adds all three constants, 4 + 3 + 5.",
   "solve": "var amp = Math.abs(-4); return amp + 5;",
   "distractor_solve": {
    "1": "return -4 + 5;",
-   "8": "return 3 + 5;",
+   "17": "return 4 * 3 + 5;",
    "12": "return Math.abs(-4) + 3 + 5;"
   }
  },
@@ -149,22 +149,22 @@
  {
   "id": "AM4F-08",
   "domain": "Functions",
-  "subskill": "common ratio of a geometric sequence from two terms three places apart",
+  "subskill": "the multiplier between two terms three places apart in a geometric sequence",
   "difficulty": "medium",
-  "prompt": "In a geometric sequence, the 2nd term is 45 and the 5th term is 5/3. What is the common ratio of this sequence?",
+  "prompt": "In a geometric sequence, the 2nd term is 45 and the 5th term is 5/3. If r is the common ratio of this sequence, what is the value of r cubed?",
   "choices": [
    "1/3",
    "27",
    "1/27",
    "3"
   ],
-  "correct_answer": "1/3",
-  "explanation": "Three steps carry the 2nd term to the 5th, so r^3 = (5/3)/45 = 1/27 and r = 1/3. The option \"1/27\" comes from a solver who finds r^3 correctly and reports it without taking the cube root. The option \"3\" comes from a solver who divides the earlier term by the later one, getting 27, and then takes the cube root. The option \"27\" comes from a solver who both divides in the wrong order and skips the cube root.",
-  "solve": "var r3 = (5 / 3) / 45; return Math.cbrt(r3);",
+  "correct_answer": "1/27",
+  "explanation": "Three steps carry the 2nd term to the 5th, so r cubed = (5/3)/45 = 1/27. The option \"1/3\" is the common ratio r itself, which a solver reports after taking a cube root the question does not ask for. The option \"27\" comes from a solver who divides the earlier term by the later one. The option \"3\" comes from a solver who both divides in the wrong order and takes the cube root.",
+  "solve": "return (5 / 3) / 45;",
   "distractor_solve": {
-   "1/27": "return (5 / 3) / 45;",
-   "3": "return Math.cbrt(45 / (5 / 3));",
-   "27": "return 45 / (5 / 3);"
+   "1/3": "var r3 = (5 / 3) / 45; return Math.cbrt(r3);",
+   "27": "return 45 / (5 / 3);",
+   "3": "return Math.cbrt(45 / (5 / 3));"
   }
  },
  {
@@ -191,22 +191,22 @@
  {
   "id": "AM4F-10",
   "domain": "Functions",
-  "subskill": "average rate of change of a cubic over an interval",
+  "subskill": "total change of a cubic over an interval",
   "difficulty": "medium",
-  "prompt": "The function f is defined by f(x) = x^3 - 4x. What is the average rate of change of f from x = 1 to x = 4?",
+  "prompt": "The function f is defined by f(x) = x^3 - 4x. What is the total change in the value of f from x = 1 to x = 4?",
   "choices": [
-   "17",
    "51",
-   "15",
-   "12.75"
+   "17",
+   "48",
+   "63"
   ],
-  "correct_answer": "17",
-  "explanation": "f(4) = 64 - 16 = 48 and f(1) = 1 - 4 = -3, so the average rate of change is (48 - (-3))/(4 - 1) = 51/3 = 17. The option \"51\" is the total change in f over the interval, reported without dividing by the change in x. The option \"15\" comes from a solver who takes f(1) as 3 rather than -3 and computes (48 - 3)/3. The option \"12.75\" comes from a solver who divides the change in f by the endpoint 4 rather than by the width of the interval.",
-  "solve": "var f = function (x) { return x * x * x - 4 * x; }; return (f(4) - f(1)) / (4 - 1);",
+  "correct_answer": "51",
+  "explanation": "f(4) = 64 - 16 = 48 and f(1) = 1 - 4 = -3, so the total change is 48 - (-3) = 51. The option \"17\" is the average rate of change, 51/3, which a solver reports after dividing by the width of the interval the question does not ask about. The option \"48\" is f(4) alone, reported before f(1) is subtracted. The option \"63\" comes from a solver who evaluates f(4) as 4^3 - 4 = 60, applying the -4 to the constant rather than to 4x, and then computes 60 - (-3).",
+  "solve": "var f = function (x) { return x * x * x - 4 * x; }; return f(4) - f(1);",
   "distractor_solve": {
-   "51": "var f = function (x) { return x * x * x - 4 * x; }; return f(4) - f(1);",
-   "15": "var f = function (x) { return x * x * x - 4 * x; }; return (f(4) - 3) / (4 - 1);",
-   "12.75": "var f = function (x) { return x * x * x - 4 * x; }; return (f(4) - f(1)) / 4;"
+   "17": "var f = function (x) { return x * x * x - 4 * x; }; return (f(4) - f(1)) / (4 - 1);",
+   "48": "var f = function (x) { return x * x * x - 4 * x; }; return f(4);",
+   "63": "var f = function (x) { return x * x * x - 4 * x; }; var wrong4 = 4 * 4 * 4 - 4; return wrong4 - f(1);"
   }
  },
  {
@@ -359,43 +359,43 @@
  {
   "id": "AM4F-18",
   "domain": "Functions",
-  "subskill": "step-function cost model in which part of a unit is charged as a whole unit",
+  "subskill": "the additional-unit part of a step-function charge, where part of a unit is charged as a whole unit",
   "difficulty": "medium",
-  "prompt": "A parking garage charges $5 for the first hour or any part of an hour, and $3 for each additional hour or part of an additional hour. What is the total charge, in dollars, for a car that is parked for 3 hours and 25 minutes?",
+  "prompt": "A parking garage charges $5 for the first hour or any part of an hour, and $3 for each additional hour or part of an additional hour. A car is parked for 3 hours and 25 minutes. How many dollars of the total charge are for the time after the first hour?",
   "choices": [
+   "9",
+   "6",
    "14",
-   "11",
-   "20",
-   "12"
+   "20"
   ],
-  "correct_answer": "14",
-  "explanation": "The first hour costs $5. The remaining 2 hours 25 minutes is charged as 3 additional units at $3 each, so the total is 5 + 9 = 14. The option \"11\" comes from a solver who drops the extra 25 minutes and charges only 2 additional hours. The option \"20\" comes from a solver who charges the first-hour rate of $5 for all four units. The option \"12\" comes from a solver who charges $3 for all four units, missing the higher rate on the first one.",
-  "solve": "var extraUnits = Math.ceil((3 + 25 / 60) - 1); return 5 + 3 * extraUnits;",
+  "correct_answer": "9",
+  "explanation": "After the first hour, 2 hours 25 minutes remain, and any part of an additional hour is charged as a whole one, so that time is 3 additional units at $3 each, or $9. The option \"6\" comes from a solver who drops the extra 25 minutes and charges only 2 additional units. The option \"14\" is the total charge for the whole stay, 5 + 9, reported without separating out the first hour the question excludes. The option \"20\" comes from a solver who charges the first-hour rate of $5 for all four units of the stay.",
+  "solve": "var extraUnits = Math.ceil((3 + 25 / 60) - 1); return 3 * extraUnits;",
   "distractor_solve": {
-   "11": "var extraUnits = Math.floor((3 + 25 / 60) - 1); return 5 + 3 * extraUnits;",
-   "20": "var units = Math.ceil(3 + 25 / 60); return 5 * units;",
-   "12": "var units = Math.ceil(3 + 25 / 60); return 3 * units;"
+   "6": "var extraUnits = Math.floor((3 + 25 / 60) - 1); return 3 * extraUnits;",
+   "14": "var extraUnits = Math.ceil((3 + 25 / 60) - 1); return 5 + 3 * extraUnits;",
+   "20": "var units = Math.ceil(3 + 25 / 60); return 5 * units;"
   }
  },
  {
   "id": "AM4F-19",
   "domain": "Functions",
-  "subskill": "a quantity varying directly with one variable and inversely with the square of another",
+  "subskill": "the constant of variation in a joint direct-and-inverse relationship",
   "difficulty": "medium",
-  "prompt": "The quantity y varies directly with x and inversely with the square of z. When x = 12 and z = 2, y = 15. What is the value of y when x = 6 and z = 4?",
+  "prompt": "The quantity y varies directly with x and inversely with the square of z. When x = 12 and z = 2, y = 15. To find the value of y when x = 6 and z = 4, a student first finds the constant of variation. What is that constant?",
   "choices": [
-   "15/8",
    "5",
-   "3.75",
-   "30"
+   "1.875",
+   "2.5",
+   "45"
   ],
-  "correct_answer": "15/8",
-  "explanation": "y = kx/z^2, so 15 = k(12)/4 gives k = 5, and then y = 5(6)/16 = 15/8. The option \"5\" is the constant of variation k, reported before it is used. The option \"3.75\" comes from a solver who divides by z rather than by z^2 throughout, getting k = 2.5 and then 2.5(6)/4. The option \"30\" comes from a solver who treats y as varying directly with the square of z as well as with x, computing 15(6/12)(16/4).",
-  "solve": "var k = 15 * (2 * 2) / 12; return k * 6 / (4 * 4);",
+  "correct_answer": "5",
+  "explanation": "Varying directly with x and inversely with the square of z means y = kx/z^2, so 15 = k(12)/2^2 = 3k and the constant is k = 5. The option \"1.875\" is the value of y the student is working toward, 5(6)/4^2, which is one step past the constant the question asks for. The option \"2.5\" comes from a solver who divides by z rather than by the square of z, solving 15 = k(12)/2. The option \"45\" comes from a solver who solves 15 = 12k/4 by multiplying by 12 and dividing by 4 rather than the other way round, computing 15(12)/4.",
+  "solve": "return 15 * (2 * 2) / 12;",
   "distractor_solve": {
-   "5": "return 15 * (2 * 2) / 12;",
-   "3.75": "var k = 15 * 2 / 12; return k * 6 / 4;",
-   "30": "return 15 * (6 / 12) * (16 / 4);"
+   "1.875": "var k = 15 * (2 * 2) / 12; return k * 6 / (4 * 4);",
+   "2.5": "return 15 * 2 / 12;",
+   "45": "return 15 * 12 / (2 * 2);"
   }
  },
  {
@@ -486,41 +486,41 @@
   "id": "AM4F-24",
   "domain": "Functions",
   "subskill": "the greater solution of an absolute-value equation",
-  "difficulty": "hard",
-  "prompt": "The function f is defined by f(x) = |3x - 5|. What is the greatest value of x for which f(x) = 16?",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = |3x - 9|. What is the greatest value of x for which f(x) = 15?",
   "choices": [
-   "7",
-   "10/3",
-   "-11/3",
-   "16/3"
+   "8",
+   "-2",
+   "2",
+   "24"
   ],
-  "correct_answer": "7",
-  "explanation": "The equation splits into 3x - 5 = 16, giving x = 7, and 3x - 5 = -16, giving x = -11/3. The greater of the two is 7. The option \"-11/3\" is the lesser solution. The option \"10/3\" is the sum of the two solutions, which a solver reports after combining them instead of choosing between them. The option \"16/3\" comes from a solver who drops the -5 and solves 3x = 16.",
-  "solve": "var a = (16 + 5) / 3, b = (-16 + 5) / 3; return Math.max(a, b);",
+  "correct_answer": "8",
+  "explanation": "The equation splits into 3x - 9 = 15, giving x = 8, and 3x - 9 = -15, giving x = -2. The greater of the two is 8. The option \"-2\" is the lesser solution. The option \"2\" comes from a solver who moves the 9 to the wrong side, solving 3x = 15 - 9. The option \"24\" comes from a solver who drops the coefficient 3 and solves x - 9 = 15.",
+  "solve": "var a = (15 + 9) / 3, b = (-15 + 9) / 3; return Math.max(a, b);",
   "distractor_solve": {
-   "-11/3": "return (-16 + 5) / 3;",
-   "10/3": "return (16 + 5) / 3 + (-16 + 5) / 3;",
-   "16/3": "return 16 / 3;"
+   "-2": "return (-15 + 9) / 3;",
+   "2": "return (15 - 9) / 3;",
+   "24": "return 15 + 9;"
   }
  },
  {
   "id": "AM4F-25",
   "domain": "Functions",
   "subskill": "common ratio of an infinite geometric series from its first term and its sum",
-  "difficulty": "hard",
+  "difficulty": "medium",
   "prompt": "An infinite geometric series has first term 12 and sum 20. What is the common ratio of this series?",
   "choices": [
    "2/5",
    "3/5",
-   "5/3",
-   "-2/5"
+   "-2/5",
+   "-2/3"
   ],
   "correct_answer": "2/5",
-  "explanation": "The sum of an infinite geometric series is a/(1 - r), so 20 = 12/(1 - r) gives 1 - r = 3/5 and r = 2/5. The option \"3/5\" is the value of 1 - r, the step before solving for r. The option \"5/3\" comes from a solver who divides the sum by the first term and reports that quotient. The option \"-2/5\" comes from a solver who writes the sum as a/(1 + r) and solves 20 = 12/(1 + r).",
+  "explanation": "The sum of an infinite geometric series is a/(1 - r), so 20 = 12/(1 - r) gives 1 - r = 3/5 and r = 2/5. The option \"3/5\" is the value of 1 - r, the step before solving for r. The option \"-2/3\" comes from a solver who divides the two given numbers the wrong way round, computing 1 - 20/12. The option \"-2/5\" comes from a solver who writes the sum as a/(1 + r) and solves 20 = 12/(1 + r).",
   "solve": "return 1 - 12 / 20;",
   "distractor_solve": {
    "3/5": "return 12 / 20;",
-   "5/3": "return 20 / 12;",
+   "-2/3": "return 1 - 20 / 12;",
    "-2/5": "return 12 / 20 - 1;"
   }
  },
@@ -528,41 +528,41 @@
   "id": "AM4F-26",
   "domain": "Functions",
   "subskill": "locating the hole in the graph of a rational function with a common factor",
-  "difficulty": "hard",
+  "difficulty": "medium",
   "prompt": "The function f is defined by f(x) = (x^2 - 3x - 10)/(x - 5). The graph of f in the standard (x, y) coordinate plane is a line with one point missing. What are the coordinates of the missing point?",
   "choices": [
    "(5, 7)",
-   "(-2, 0)",
-   "(5, 0)",
-   "(-2, 7)"
+   "(-2, 7)",
+   "(5, 3)",
+   "(-2, 0)"
   ],
   "correct_answer": "(5, 7)",
-  "explanation": "x^2 - 3x - 10 = (x - 5)(x + 2), so f(x) = x + 2 everywhere except at x = 5, and the missing point sits at height 5 + 2 = 7, giving (5, 7). The option \"(5, 0)\" comes from a solver who locates the gap correctly but assumes a missing point must lie on the x-axis. The option \"(-2, 0)\" is where the line actually crosses the x-axis, which is a point of the graph rather than the gap in it. The option \"(-2, 7)\" comes from a solver who takes the other factor's zero as the location while computing the height from the correct one.",
+  "explanation": "x^2 - 3x - 10 = (x - 5)(x + 2), so f(x) = x + 2 everywhere except at x = 5, and the missing point sits at height 5 + 2 = 7, giving (5, 7). The option \"(5, 3)\" comes from a solver who cancels the wrong factor, reducing f to x - 2, and evaluates that at 5. The option \"(-2, 7)\" comes from a solver who takes the other factor's zero as the location while computing the height from the correct one. The option \"(-2, 0)\" comes from a solver who takes -2 as the location and evaluates the reduced form x + 2 there, landing on the point where the line crosses the x-axis rather than on the gap in it.",
   "solve": "var xHole = 5; var y = xHole + 2; return '(' + xHole + ', ' + y + ')';",
   "distractor_solve": {
-   "(5, 0)": "var xHole = 5; return '(' + xHole + ', ' + 0 + ')';",
-   "(-2, 0)": "var xCross = -2; return '(' + xCross + ', ' + 0 + ')';",
-   "(-2, 7)": "var xWrong = -2; var y = 5 + 2; return '(' + xWrong + ', ' + y + ')';"
+   "(5, 3)": "var xHole = 5; return '(' + xHole + ', ' + (xHole - 2) + ')';",
+   "(-2, 7)": "var xWrong = -2; var y = 5 + 2; return '(' + xWrong + ', ' + y + ')';",
+   "(-2, 0)": "var xWrong = -2; return '(' + xWrong + ', ' + (xWrong + 2) + ')';"
   }
  },
  {
   "id": "AM4F-27",
   "domain": "Functions",
   "subskill": "a term of a sequence defined by a linear recursion",
-  "difficulty": "hard",
+  "difficulty": "easy",
   "prompt": "A sequence is defined by a(1) = 5 and a(n + 1) = 2a(n) - 3 for every integer n >= 1. What is the value of a(4)?",
   "choices": [
    "19",
-   "35",
+   "11",
    "-2",
-   "11"
+   "37"
   ],
   "correct_answer": "19",
-  "explanation": "The terms are 5, 7, 11, 19, so a(4) = 19. The option \"35\" is a(5), which a solver reports after applying the rule one time too many. The option \"11\" is a(3), which a solver reports after applying the rule one time too few. The option \"-2\" comes from a solver who subtracts 3 before doubling rather than after, generating 5, 4, 2, -2.",
+  "explanation": "The terms are 5, 7, 11, 19, so a(4) = 19. The option \"11\" is a(3), which a solver reports after applying the rule one time too few. The option \"37\" comes from a solver who doubles three times and subtracts 3 only once, computing 8(5) - 3. The option \"-2\" comes from a solver who subtracts 3 before doubling rather than after, generating 5, 4, 2, -2.",
   "solve": "var a = 5; for (var i = 1; i < 4; i++) a = 2 * a - 3; return a;",
   "distractor_solve": {
-   "35": "var a = 5; for (var i = 1; i < 5; i++) a = 2 * a - 3; return a;",
    "11": "var a = 5; for (var i = 1; i < 3; i++) a = 2 * a - 3; return a;",
+   "37": "var a = 5; for (var i = 1; i < 4; i++) a = 2 * a; return a - 3;",
    "-2": "var a = 5; for (var i = 1; i < 4; i++) a = 2 * (a - 3); return a;"
   }
  },
@@ -570,7 +570,7 @@
   "id": "AM4F-28",
   "domain": "Functions",
   "subskill": "exponential decay over an elapsed time that is not a whole number of half-lives",
-  "difficulty": "hard",
+  "difficulty": "medium",
   "prompt": "A 240-gram sample of a substance decays so that its mass is halved every 6 years. To the nearest gram, what is the mass of the sample 15 years from now?",
   "choices": [
    "42",

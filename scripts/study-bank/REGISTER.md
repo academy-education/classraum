@@ -677,3 +677,24 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **Note the inversion.** CLAUDE.md records a past tell where "the key was longest in 74.3%", caught and guarded. SEC now sits at 6.0% longest. That is what over-correction looks like, and it is the rewrite-inverts-the-tell pattern operating across months rather than within one batch.
 
+- **2026-09-11** — **THE "KEY IS NEVER THE INTERMEDIATE VALUE" TELL NOW HAS AN EXACT INSTRUMENT THAT READS THE DERIVATIONS, NOT THE PROSE.** Two graders on two different batches had found it by hand. `check-intermediate-key.mjs` instruments every Binary/Unary/Call node of each option's own `solve` / `distractor_solve` with **acorn** and records the values actually COMPUTED: *X is an intermediate iff value(X) is computed-but-not-returned by another option's derivation.* The control is derived per item — if m of n options are intermediates, a randomly placed key is one with probability m/n.
+
+        act-math-v4-fn, scorable 23 of 28      before      after
+        KEY is an intermediate                17.4%       26.1%
+        control (derived)                     25.0%       26.1%
+        margin                                -7.6pts     0.0pts
+
+  Four items were re-keyed to the intermediate quantity, in **four different flavours** so the repair is not itself a template — a power (r cubed), a difference (total change), a part of a total (the charge after the first hour), and a constant of variation. Each old key is retained as the "kept going one step" distractor.
+
+  **The checker's self-test is the part worth copying.** It runs three fixtures with hand-known answers, including a trap whose key value appears only as a LITERAL in a distractor's source rather than as a computed value. Re-run with the defect deliberately reintroduced (`--record-literals`), the same fixtures **FAIL 5 of 6 assertions** — so the self-test demonstrably catches the thing it exists to catch, rather than passing because nothing is wrong.
+
+  **And the author separated the machine number from the human one rather than letting the machine win.** The graders had said "the key is an intermediate on ZERO of 28"; the instrument says 4 of 28 were already. Both are right about different things: the instrument measures *any* derivation that runs past the key, while §3 asks whether the STEM requests the intermediate — a distinction that lives in the prose and no AST can see. By the §3 criterion it is 0 before and 4 after. Reported as both numbers, which is the correct handling.
+
+- **2026-09-11** — **`sat-sec-h8`: THE GRADES ARE STALE AND THE FILE IS NOW RECONCILED.** Three versions of this batch existed today. Both graders independently caught the file changing under them — one via a key-length script disagreeing with a dump read minutes earlier, the other via a `pick` validation failing — snapshotted, and converged on grading `8944d44f`. The author's final bytes are `e1924679`, now at HEAD and matching the working tree.
+
+  So **`sat-sec-h8.grader-a.json` and `-b.json` describe bytes that no longer exist** and must not be aggregated: between the graded version and the final, `SEC-H8-07` was replaced outright (it was a 100% blind solve — the whoever/whomever × number cross leaves exactly one internally grammatical option, so the passage was decorative), `SEC-H8-19` was rebuilt, and `SEC-H8-01`/`-05` had their keys flipped from singular to plural.
+
+  The blind `*.grade.json` render has been regenerated from `e1924679`. A fresh three-grader pass on that render is what this batch owes — and it will be the first grade in the project run on a render that withholds the key, the difficulty and the explanation.
+
+  Worth recording from the author, because it is a real trade and not a mistake: they **removed the batch's hardest item** because it was answerable with the source covered. The with-passage grader had called it "the best item in the batch". That is the standard working correctly.
+
