@@ -1,0 +1,632 @@
+[
+  {
+    "id": "IM10-01",
+    "domain": "Math",
+    "subskill": "sum of the distinct prime factors of a whole number",
+    "difficulty": "easy",
+    "prompt": "What is the sum of the distinct prime factors of 180?",
+    "choices": [
+      "10",
+      "30",
+      "15",
+      "11"
+    ],
+    "correct_answer": "10",
+    "explanation": "180 factors as 2 x 2 x 3 x 3 x 5, so its distinct prime factors are 2, 3 and 5 and their sum is 10. \"15\" comes from adding every prime factor with its repetition, 2 + 2 + 3 + 3 + 5; \"11\" comes from counting 1 as a prime factor and adding 1 + 2 + 3 + 5; \"30\" comes from multiplying the distinct prime factors instead of adding them.",
+    "solve": "return 2+3+5;",
+    "distractor_solve": {
+      "11": "return 1+2+3+5;",
+      "15": "return 2+2+3+3+5;",
+      "30": "return 2*3*5;"
+    }
+  },
+  {
+    "id": "IM10-02",
+    "domain": "Math",
+    "subskill": "number of diagonals of a convex polygon",
+    "difficulty": "hard",
+    "prompt": "A convex polygon has 12 sides. How many diagonals does it have?",
+    "choices": [
+      "60",
+      "108",
+      "66",
+      "54"
+    ],
+    "correct_answer": "54",
+    "explanation": "Each of the 12 vertices joins to the 9 vertices that are neither itself nor either of its two neighbours, and every diagonal is counted once from each end, so the count is 12 x 9 / 2 = 54. \"108\" stops at 12 x 9 and never halves; \"66\" counts every segment joining two vertices, which includes the 12 sides; \"60\" excludes only one neighbour per vertex instead of two, using 12 x 10 / 2.",
+    "solve": "const n=12; return n*(n-3)/2;",
+    "distractor_solve": {
+      "60": "const n=12; return n*(n-2)/2;",
+      "66": "const n=12; return n*(n-1)/2;",
+      "108": "const n=12; return n*(n-3);"
+    }
+  },
+  {
+    "id": "IM10-03",
+    "domain": "Math",
+    "subskill": "product of two numbers written in scientific notation",
+    "difficulty": "medium",
+    "prompt": "What is the value of (2.5 x 10^3)(4 x 10^2)?",
+    "choices": [
+      "1000000",
+      "650000",
+      "100000",
+      "10000"
+    ],
+    "correct_answer": "1000000",
+    "explanation": "The coefficients multiply to 2.5 x 4 = 10 and the powers combine to 10^5, giving 10 x 10^5, which is rewritten as 1 x 10^6 = 1000000. \"100000\" comes from reducing the coefficient 10 to 1 and leaving the exponent at 5; \"10000\" comes from reducing the coefficient and moving the exponent the wrong way, to 1 x 10^4; \"650000\" comes from adding the coefficients, 2.5 + 4, instead of multiplying them.",
+    "solve": "return 2.5*Math.pow(10,3)*4*Math.pow(10,2);",
+    "distractor_solve": {
+      "10000": "const coeff=2.5*4, exp=3+2; return (coeff/10)*Math.pow(10,exp-1);",
+      "100000": "const coeff=2.5*4, exp=3+2; return (coeff/10)*Math.pow(10,exp);",
+      "650000": "return (2.5+4)*Math.pow(10,3+2);"
+    }
+  },
+  {
+    "id": "IM10-04",
+    "domain": "Math",
+    "subskill": "mode of a data set presented as a frequency table",
+    "difficulty": "easy",
+    "prompt": "The table shows how many books each student in a small class read last month.\n\nBooks read | Number of students\n2 | 2\n3 | 5\n4 | 4\n5 | 3\n\nWhat is the mode of the number of books read?",
+    "choices": [
+      "5",
+      "3",
+      "2",
+      "4"
+    ],
+    "correct_answer": "3",
+    "explanation": "The mode is the number of books that the most students read. Five students read 3 books, more than any other row, so the mode is 3. \"5\" is the number of students in that row rather than the number of books; \"4\" is the number of books in the row with the second largest number of students; \"2\" is the number of books in the row with the fewest students.",
+    "solve": "const v=[2,3,4,5], f=[2,5,4,3]; return v[f.indexOf(Math.max(...f))];",
+    "distractor_solve": {
+      "2": "const v=[2,3,4,5], f=[2,5,4,3]; return v[f.indexOf(Math.min(...f))];",
+      "4": "const v=[2,3,4,5], f=[2,5,4,3]; const s=[...f].sort((a,b)=>b-a); return v[f.indexOf(s[1])];",
+      "5": "const f=[2,5,4,3]; return Math.max(...f);"
+    }
+  },
+  {
+    "id": "IM10-05",
+    "domain": "Math",
+    "subskill": "central angle of a circle-graph sector from its percent",
+    "difficulty": "easy",
+    "prompt": "In a circle graph, the sector representing students who walk to school is 35% of the whole circle. What is the measure, in degrees, of the central angle of that sector?",
+    "choices": [
+      "105",
+      "35",
+      "63",
+      "126"
+    ],
+    "correct_answer": "126",
+    "explanation": "A full circle is 360 degrees, so the sector's central angle is 0.35 x 360 = 126 degrees. \"35\" comes from reading the percent itself as a number of degrees; \"63\" comes from taking 35% of 180 degrees, as though the graph were a half circle; \"105\" comes from allowing 3 degrees for each percent instead of the correct 3.6.",
+    "solve": "return 0.35*360;",
+    "distractor_solve": {
+      "35": "return 35;",
+      "63": "return 0.35*180;",
+      "105": "return 35*3;"
+    }
+  },
+  {
+    "id": "IM10-06",
+    "domain": "Math",
+    "subskill": "converting an area between units, where the linear conversion applies twice",
+    "difficulty": "medium",
+    "prompt": "A rectangular rug measures 9 feet by 12 feet. Given that 1 yard = 3 feet, what is the area of the rug in square yards?",
+    "choices": [
+      "36",
+      "16",
+      "108",
+      "12"
+    ],
+    "correct_answer": "12",
+    "explanation": "The rug is 3 yards by 4 yards, so its area is 12 square yards. \"108\" is the area left in square feet; \"36\" comes from dividing the 108 square feet by 3 rather than by the 9 square feet that make one square yard; \"16\" comes from converting only the 12-foot side, to 4 yards, and using it for both dimensions.",
+    "solve": "return (9/3)*(12/3);",
+    "distractor_solve": {
+      "16": "return (12/3)*(12/3);",
+      "36": "return 9*12/3;",
+      "108": "return 9*12;"
+    }
+  },
+  {
+    "id": "IM10-07",
+    "domain": "Math",
+    "subskill": "balance after two years of annual compound interest",
+    "difficulty": "medium",
+    "prompt": "An account pays 10% interest compounded annually. $2,000 is deposited and nothing is added or withdrawn afterward. What is the balance, in dollars, after 2 years?",
+    "choices": [
+      "2662",
+      "2420",
+      "2200",
+      "2400"
+    ],
+    "correct_answer": "2420",
+    "explanation": "After one year the balance is 2000 x 1.1 = 2200, and the second year's interest is 10% of 2200, giving 2000 x 1.1^2 = 2420. \"2200\" stops after a single year; \"2400\" adds $200 of interest for each of the two years, which is simple interest rather than compound; \"2662\" carries the compounding through a third year.",
+    "solve": "return 2000*Math.pow(1.1,2);",
+    "distractor_solve": {
+      "2200": "return 2000*1.1;",
+      "2400": "return 2000+2*200;",
+      "2662": "return 2000*Math.pow(1.1,3);"
+    }
+  },
+  {
+    "id": "IM10-08",
+    "domain": "Math",
+    "subskill": "total surface area of a right circular cylinder",
+    "difficulty": "hard",
+    "prompt": "A closed can is a right circular cylinder with radius 5 centimeters and height 10 centimeters. Using pi = 3.14, what is its total surface area, in square centimeters?",
+    "choices": [
+      "785",
+      "314",
+      "392.5",
+      "471"
+    ],
+    "correct_answer": "471",
+    "explanation": "The two circular ends contribute 2 x 3.14 x 25 = 157 and the curved side contributes 2 x 3.14 x 5 x 10 = 314, for a total of 471. \"314\" counts the curved side alone and leaves out both ends; \"392.5\" counts the curved side and only one end; \"785\" comes from using the volume formula pi x r^2 x h instead of a surface-area formula.",
+    "solve": "const p=3.14,r=5,h=10; return 2*p*r*r+2*p*r*h;",
+    "distractor_solve": {
+      "314": "const p=3.14,r=5,h=10; return 2*p*r*h;",
+      "785": "const p=3.14,r=5,h=10; return p*r*r*h;",
+      "392.5": "const p=3.14,r=5,h=10; return p*r*r+2*p*r*h;"
+    }
+  },
+  {
+    "id": "IM10-09",
+    "domain": "Math",
+    "subskill": "sum of the coordinates of a point after a reflection and a translation",
+    "difficulty": "medium",
+    "prompt": "Point P(-3, 5) is reflected across the x-axis, and the image is then translated 4 units to the right, producing point Q. What is the sum of the coordinates of Q?",
+    "choices": [
+      "12",
+      "-4",
+      "2",
+      "-12"
+    ],
+    "correct_answer": "-4",
+    "explanation": "Reflecting P(-3, 5) across the x-axis gives (-3, -5), and moving 4 units right gives Q(1, -5), whose coordinates sum to -4. \"-12\" comes from moving 4 units to the left after reflecting, landing on (-7, -5); \"12\" comes from reflecting across the y-axis instead, landing on (7, 5); \"2\" comes from reflecting the point through the origin, landing on (7, -5).",
+    "solve": "const x=-3,y=5; return (x+4)+(-y);",
+    "distractor_solve": {
+      "2": "const x=-3,y=5; return (-x+4)+(-y);",
+      "12": "const x=-3,y=5; return (-x+4)+y;",
+      "-12": "const x=-3,y=5; return (x-4)+(-y);"
+    }
+  },
+  {
+    "id": "IM10-10",
+    "domain": "Math",
+    "subskill": "slope of the line through two given points",
+    "difficulty": "medium",
+    "prompt": "What is the slope of the line that passes through the points (-2, 7) and (4, -5)?",
+    "choices": [
+      "0.5",
+      "-0.5",
+      "-2",
+      "2"
+    ],
+    "correct_answer": "-2",
+    "explanation": "The change in y is -5 - 7 = -12 and the change in x is 4 - (-2) = 6, so the slope is -12/6 = -2. \"2\" comes from subtracting the y-values in one order and the x-values in the other; \"-0.5\" comes from dividing the change in x by the change in y; \"0.5\" comes from making both of those errors at once.",
+    "solve": "return (-5-7)/(4-(-2));",
+    "distractor_solve": {
+      "2": "return (7-(-5))/(4-(-2));",
+      "0.5": "return (4-(-2))/(7-(-5));",
+      "-0.5": "return (4-(-2))/(-5-7);"
+    }
+  },
+  {
+    "id": "IM10-11",
+    "domain": "Math",
+    "subskill": "sum of the coordinates of the unknown endpoint given one endpoint and the midpoint",
+    "difficulty": "hard",
+    "prompt": "The midpoint of segment AB is M(2, -1). Endpoint A is (-4, 3). What is the sum of the coordinates of endpoint B?",
+    "choices": [
+      "-2",
+      "0",
+      "3",
+      "2"
+    ],
+    "correct_answer": "3",
+    "explanation": "Each coordinate of M is the average of the matching coordinates of A and B, so B is (2 x 2 - (-4), 2 x (-1) - 3) = (8, -5) and its coordinates sum to 3. \"2\" comes from subtracting A from M and stopping there, at (6, -4); \"-2\" comes from subtracting M from A, at (-6, 4); \"0\" comes from finding the midpoint of A and M instead, at (-1, 1).",
+    "solve": "const ax=-4,ay=3,mx=2,my=-1; return (2*mx-ax)+(2*my-ay);",
+    "distractor_solve": {
+      "0": "const ax=-4,ay=3,mx=2,my=-1; return (ax+mx)/2+(ay+my)/2;",
+      "2": "const ax=-4,ay=3,mx=2,my=-1; return (mx-ax)+(my-ay);",
+      "-2": "const ax=-4,ay=3,mx=2,my=-1; return (ax-mx)+(ay-my);"
+    }
+  },
+  {
+    "id": "IM10-12",
+    "domain": "Math",
+    "subskill": "volume of a right circular cone",
+    "difficulty": "hard",
+    "prompt": "A cone has a radius of 6 centimeters and a height of 10 centimeters. Using V = (1/3) x pi x r^2 x h and pi = 3.14, what is its volume, in cubic centimeters?",
+    "choices": [
+      "1507.2",
+      "376.8",
+      "904.32",
+      "1130.4"
+    ],
+    "correct_answer": "376.8",
+    "explanation": "With r = 6 and h = 10 the volume is (1/3) x 3.14 x 36 x 10 = 376.8. \"1130.4\" leaves out the factor of one third; \"1507.2\" uses the diameter, 12, in place of the radius; \"904.32\" comes from using the volume of a sphere of radius 6, (4/3) x pi x r^3, instead of a cone.",
+    "solve": "const p=3.14; return (1/3)*p*36*10;",
+    "distractor_solve": {
+      "1507.2": "const p=3.14; return (1/3)*p*144*10;",
+      "904.32": "const p=3.14; return (4/3)*p*Math.pow(6,3);",
+      "1130.4": "const p=3.14; return p*36*10;"
+    }
+  },
+  {
+    "id": "IM10-13",
+    "domain": "Math",
+    "subskill": "sum of the two solutions of an absolute-value equation",
+    "difficulty": "medium",
+    "prompt": "If |2x - 5| = 11, what is the sum of the two values of x that satisfy the equation?",
+    "choices": [
+      "5",
+      "16",
+      "2.5",
+      "8"
+    ],
+    "correct_answer": "5",
+    "explanation": "2x - 5 = 11 gives x = 8 and 2x - 5 = -11 gives x = -3, so the two solutions sum to 5. \"8\" reports only the solution that comes from 2x - 5 = 11; \"16\" reports the value of 2x on that branch, without dividing by 2; \"2.5\" averages the two solutions rather than adding them.",
+    "solve": "return ((11+5)/2)+((-11+5)/2);",
+    "distractor_solve": {
+      "8": "return (11+5)/2;",
+      "16": "return 11+5;",
+      "2.5": "return (((11+5)/2)+((-11+5)/2))/2;"
+    }
+  },
+  {
+    "id": "IM10-14",
+    "domain": "Math",
+    "subskill": "least integer satisfying a two-step linear inequality",
+    "difficulty": "medium",
+    "prompt": "What is the least integer value of n for which 4n - 15 > 41?",
+    "choices": [
+      "28",
+      "11",
+      "15",
+      "14"
+    ],
+    "correct_answer": "15",
+    "explanation": "Adding 15 gives 4n > 56, so n > 14 and the least integer is 15. \"14\" treats n > 14 as allowing n = 14 itself; \"11\" drops the -15 and solves 4n > 41; \"28\" divides the 56 by 2 instead of by 4.",
+    "solve": "return Math.floor((41+15)/4)+1;",
+    "distractor_solve": {
+      "11": "return Math.floor(41/4)+1;",
+      "14": "return (41+15)/4;",
+      "28": "return (41+15)/2;"
+    }
+  },
+  {
+    "id": "IM10-15",
+    "domain": "Math",
+    "subskill": "expected number in a population from a given ratio",
+    "difficulty": "easy",
+    "prompt": "In a certain town, 3 out of every 8 households own a dog. If the town has 1,200 households, how many of them would be expected to own a dog?",
+    "choices": [
+      "450",
+      "150",
+      "400",
+      "360"
+    ],
+    "correct_answer": "450",
+    "explanation": "Three eighths of 1200 households is 1200 x 3 / 8 = 450. \"150\" finds one eighth of the households and stops there; \"400\" divides the households by 3 instead of using the ratio 3 to 8; \"360\" splits the households into ten groups rather than eight and takes three of them.",
+    "solve": "return 1200*3/8;",
+    "distractor_solve": {
+      "150": "return 1200/8;",
+      "360": "return 1200*3/10;",
+      "400": "return 1200/3;"
+    }
+  },
+  {
+    "id": "IM10-16",
+    "domain": "Math",
+    "subskill": "the day of the week a given number of days later",
+    "difficulty": "medium",
+    "prompt": "Today is Tuesday. What day of the week will it be 45 days from today?",
+    "choices": [
+      "Monday",
+      "Saturday",
+      "Friday",
+      "Thursday"
+    ],
+    "correct_answer": "Friday",
+    "explanation": "45 days is 6 whole weeks and 3 days, and 3 days after Tuesday is Friday. \"Thursday\" comes from counting today as the first of the 45 days and so shifting only 44; \"Saturday\" comes from counting the 3 extra days backward instead of forward; \"Monday\" comes from using the quotient 6 from 45 divided by 7 as the shift instead of the remainder 3.",
+    "solve": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']; return d[(2+45%7)%7];",
+    "distractor_solve": {
+      "Monday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']; return d[(2+Math.floor(45/7))%7];",
+      "Saturday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']; return d[(2-45%7+7)%7];",
+      "Thursday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']; return d[(2+44%7)%7];"
+    }
+  },
+  {
+    "id": "IM10-17",
+    "domain": "Math",
+    "subskill": "change in the range of a data set when its largest value is replaced",
+    "difficulty": "medium",
+    "prompt": "A data set consists of the values 14, 9, 21, 6, and 17. The value 21 is then replaced by 30. By how much does the range of the data set increase?",
+    "choices": [
+      "24",
+      "9",
+      "21",
+      "15"
+    ],
+    "correct_answer": "9",
+    "explanation": "The original range is 21 - 6 = 15 and the new range is 30 - 6 = 24, so the range grows by 9. \"15\" reports the original range; \"24\" reports the new range instead of the increase; \"21\" comes from taking 9 as the least value in the new set and reporting 30 - 9.",
+    "solve": "const o=[14,9,21,6,17], n=[14,9,30,6,17]; return (Math.max(...n)-Math.min(...n))-(Math.max(...o)-Math.min(...o));",
+    "distractor_solve": {
+      "15": "const o=[14,9,21,6,17]; return Math.max(...o)-Math.min(...o);",
+      "21": "return 30-9;",
+      "24": "const n=[14,9,30,6,17]; return Math.max(...n)-Math.min(...n);"
+    }
+  },
+  {
+    "id": "IM10-18",
+    "domain": "Math",
+    "subskill": "range of a data set displayed in a stem-and-leaf plot",
+    "difficulty": "medium",
+    "prompt": "The stem-and-leaf plot shows the quiz scores of nine students. A stem of 3 with a leaf of 2 represents the score 32.\n\nStem | Leaf\n3 | 2 5 8\n4 | 1 4 4 7\n5 | 0 3\n\nWhat is the range of the nine scores?",
+    "choices": [
+      "2",
+      "15",
+      "21",
+      "9"
+    ],
+    "correct_answer": "21",
+    "explanation": "The scores run from 32 up to 53, so the range is 53 - 32 = 21. \"2\" comes from subtracting the smallest stem from the largest, 5 - 3, rather than working with the scores themselves; \"15\" comes from subtracting the last score in the first row, 38, from 53 instead of the first; \"9\" reports how many scores there are.",
+    "solve": "const v=[32,35,38,41,44,44,47,50,53]; return Math.max(...v)-Math.min(...v);",
+    "distractor_solve": {
+      "2": "return 5-3;",
+      "9": "const v=[32,35,38,41,44,44,47,50,53]; return v.length;",
+      "15": "return 53-38;"
+    }
+  },
+  {
+    "id": "IM10-19",
+    "domain": "Math",
+    "subskill": "the largest angle of a triangle from the ratio of its three angles",
+    "difficulty": "hard",
+    "prompt": "The measures of the three angles of a triangle are in the ratio 2 : 3 : 7. What is the measure, in degrees, of the largest angle?",
+    "choices": [
+      "126",
+      "75",
+      "84",
+      "105"
+    ],
+    "correct_answer": "105",
+    "explanation": "The 12 equal parts share 180 degrees, so one part is 15 degrees and the largest angle is 7 x 15 = 105. \"126\" adds the parts as 10 instead of 12, dropping the 2; \"84\" interchanges the 12 parts with the 15 degrees in a part and computes 7 x 12; \"75\" gives the combined measure of the two smaller angles.",
+    "solve": "return 180*7/12;",
+    "distractor_solve": {
+      "75": "return 180*(2+3)/12;",
+      "84": "return 7*12;",
+      "126": "return 180*7/10;"
+    }
+  },
+  {
+    "id": "IM10-20",
+    "domain": "Math",
+    "subskill": "evaluating a sum of two terms with negative exponents",
+    "difficulty": "hard",
+    "prompt": "What is the value of 2^(-3) + 3^(-1)?",
+    "choices": [
+      "1/11",
+      "11/24",
+      "1/24",
+      "5/6"
+    ],
+    "correct_answer": "11/24",
+    "explanation": "2^(-3) is 1/8 and 3^(-1) is 1/3, and 3/24 + 8/24 = 11/24. \"1/24\" comes from multiplying the two terms instead of adding them; \"1/11\" comes from adding 2^3 and 3^1 first and then taking the reciprocal of the sum; \"5/6\" comes from reading 2^(-3) as 1/2 and adding 1/2 + 1/3.",
+    "solve": "const a=Math.pow(2,-3), b=Math.pow(3,-1); return Math.round((a+b)*24)+'/24';",
+    "distractor_solve": {
+      "1/11": "return '1/'+(Math.pow(2,3)+Math.pow(3,1));",
+      "1/24": "const a=1/8,b=1/3; return '1/'+Math.round(1/(a*b));",
+      "5/6": "const a=1/2,b=1/3; return Math.round((a+b)*6)+'/6';"
+    }
+  },
+  {
+    "id": "IM10-21",
+    "domain": "Math",
+    "subskill": "distance between two points on a number line with negative coordinates",
+    "difficulty": "easy",
+    "prompt": "On a number line, point A is at -13 and point B is at 8. What is the distance between A and B?",
+    "choices": [
+      "26",
+      "16",
+      "21",
+      "22"
+    ],
+    "correct_answer": "21",
+    "explanation": "The distance is the absolute value of the difference, |8 - (-13)| = 21. \"26\" comes from measuring from -13 to 13, treating B as the mirror image of A; \"16\" comes from measuring from -8 to 8, treating A as the mirror image of B; \"22\" comes from counting the integers from -13 to 8 inclusive instead of measuring the gap.",
+    "solve": "return Math.abs(8-(-13));",
+    "distractor_solve": {
+      "16": "return Math.abs(8-(-8));",
+      "22": "return 8-(-13)+1;",
+      "26": "return Math.abs(13-(-13));"
+    }
+  },
+  {
+    "id": "IM10-22",
+    "domain": "Math",
+    "subskill": "probability of a spinner region from its central angle",
+    "difficulty": "medium",
+    "prompt": "A spinner is divided into three sectors whose central angles measure 90 degrees, 126 degrees, and 144 degrees. What is the probability that one spin lands in the sector whose central angle is 126 degrees?",
+    "choices": [
+      "7/40",
+      "2/5",
+      "1/3",
+      "7/20"
+    ],
+    "correct_answer": "7/20",
+    "explanation": "The sector takes up 126 of the circle's 360 degrees, and 126/360 reduces to 7/20. \"1/3\" comes from assuming the three sectors are equally likely; \"2/5\" is the probability for the 144 degree sector; \"7/40\" comes from dividing by 720 degrees rather than the 360 in a full circle.",
+    "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=126,d=360,k=g(n,d); return (n/k)+'/'+(d/k);",
+    "distractor_solve": {
+      "7/40": "const g=(a,b)=>b?g(b,a%b):a; const n=126,d=720,k=g(n,d); return (n/k)+'/'+(d/k);",
+      "2/5": "const g=(a,b)=>b?g(b,a%b):a; const n=144,d=360,k=g(n,d); return (n/k)+'/'+(d/k);",
+      "1/3": "const sectors=3; return '1/'+sectors;"
+    }
+  },
+  {
+    "id": "IM10-23",
+    "domain": "Math",
+    "subskill": "median of a data set after one value is added",
+    "difficulty": "medium",
+    "prompt": "The five numbers 3, 12, 8, 20, and 5 have a median of 8. The number 30 is then added to the list. What is the median of the six numbers?",
+    "choices": [
+      "12",
+      "14",
+      "10",
+      "8"
+    ],
+    "correct_answer": "10",
+    "explanation": "In order the six numbers are 3, 5, 8, 12, 20, 30, so the median is the average of 8 and 12, which is 10. \"8\" keeps the median of the original five numbers; \"12\" takes the higher of the two middle values instead of averaging them; \"14\" averages the third and fourth numbers in the order given, 8 and 20, without sorting first.",
+    "solve": "const a=[3,12,8,20,5,30].sort((x,y)=>x-y); return (a[2]+a[3])/2;",
+    "distractor_solve": {
+      "8": "const a=[3,12,8,20,5].sort((x,y)=>x-y); return a[2];",
+      "12": "const a=[3,12,8,20,5,30].sort((x,y)=>x-y); return a[3];",
+      "14": "const a=[3,12,8,20,5,30]; return (a[2]+a[3])/2;"
+    }
+  },
+  {
+    "id": "IM10-24",
+    "domain": "Math",
+    "subskill": "perimeter of a square from its area",
+    "difficulty": "easy",
+    "prompt": "A square has an area of 121 square inches. What is its perimeter, in inches?",
+    "choices": [
+      "121",
+      "44",
+      "11",
+      "22"
+    ],
+    "correct_answer": "44",
+    "explanation": "A square of area 121 has sides of 11 inches, so its perimeter is 4 x 11 = 44. \"11\" reports the length of one side; \"22\" doubles the side instead of multiplying it by 4; \"121\" reports the area again.",
+    "solve": "return 4*Math.sqrt(121);",
+    "distractor_solve": {
+      "11": "return Math.sqrt(121);",
+      "22": "return 2*Math.sqrt(121);",
+      "121": "return 121;"
+    }
+  },
+  {
+    "id": "IM10-25",
+    "domain": "Math",
+    "subskill": "same-side interior angles formed by parallel lines and a transversal",
+    "difficulty": "medium",
+    "prompt": "Parallel lines l and m are cut by transversal t. Two same-side interior angles have measures of (3x + 10) degrees and 2x degrees. What is the value of x?",
+    "choices": [
+      "16",
+      "38",
+      "34",
+      "36"
+    ],
+    "correct_answer": "34",
+    "explanation": "Same-side interior angles between parallel lines are supplementary, so (3x + 10) + 2x = 180, which gives 5x = 170 and x = 34. \"36\" drops the +10 and solves 5x = 180; \"38\" adds the 10 to 180 instead of subtracting it, solving 5x = 190; \"16\" treats the pair as complementary and solves 5x + 10 = 90.",
+    "solve": "return (180-10)/5;",
+    "distractor_solve": {
+      "16": "return (90-10)/5;",
+      "36": "return 180/5;",
+      "38": "return (180+10)/5;"
+    }
+  },
+  {
+    "id": "IM10-26",
+    "domain": "Math",
+    "subskill": "how many perfect squares lie between two given numbers",
+    "difficulty": "medium",
+    "prompt": "How many perfect squares are there between 30 and 300?",
+    "choices": [
+      "12",
+      "18",
+      "11",
+      "17"
+    ],
+    "correct_answer": "12",
+    "explanation": "The squares in range run from 6 squared, 36, up to 17 squared, 289, so there are 17 - 6 + 1 = 12 of them. \"11\" subtracts the two end values without adding one; \"17\" reports the largest integer whose square is in range rather than how many there are; \"18\" reports the smallest integer whose square is above 300.",
+    "solve": "let c=0; for(let n=1;n<=30;n++){const s=n*n; if(s>30&&s<300)c++;} return c;",
+    "distractor_solve": {
+      "11": "return 17-6;",
+      "17": "let m=0; for(let n=1;n<=30;n++){if(n*n>30&&n*n<300)m=n;} return m;",
+      "18": "let n=1; while(n*n<300)n++; return n;"
+    }
+  },
+  {
+    "id": "IM10-27",
+    "domain": "Math",
+    "subskill": "greatest change between consecutive entries of a table",
+    "difficulty": "medium",
+    "prompt": "A town's population at the end of each year was: 2019, 4,200; 2020, 4,650; 2021, 5,380; 2022, 5,910; 2023, 6,200. What was the greatest increase in population from one year to the next?",
+    "choices": [
+      "730",
+      "450",
+      "820",
+      "530"
+    ],
+    "correct_answer": "730",
+    "explanation": "The year-to-year increases are 450, 730, 530 and 290, and the greatest of them is the 730 from 2020 to 2021. \"450\" uses only the first pair of years listed; \"530\" uses the increase from 2021 to 2022; \"820\" measures from 2021 to 2023, a two-year span rather than one year.",
+    "solve": "const p=[4200,4650,5380,5910,6200]; let m=0; for(let i=1;i<p.length;i++) m=Math.max(m,p[i]-p[i-1]); return m;",
+    "distractor_solve": {
+      "450": "const p=[4200,4650,5380,5910,6200]; return p[1]-p[0];",
+      "530": "const p=[4200,4650,5380,5910,6200]; return p[3]-p[2];",
+      "820": "const p=[4200,4650,5380,5910,6200]; return p[4]-p[2];"
+    }
+  },
+  {
+    "id": "IM10-28",
+    "domain": "Math",
+    "subskill": "least three-digit integer divisible by each of two given numbers",
+    "difficulty": "medium",
+    "prompt": "What is the least three-digit integer that is a multiple of both 4 and 6?",
+    "choices": [
+      "120",
+      "108",
+      "100",
+      "102"
+    ],
+    "correct_answer": "108",
+    "explanation": "A number divisible by both 4 and 6 is a multiple of 12, and the first multiple of 12 with three digits is 108. \"100\" is the least three-digit multiple of 4, found by checking only the 4; \"102\" is the least three-digit multiple of 6, found by checking only the 6; \"120\" comes from using the product 24 rather than the least common multiple 12 and taking 24 x 5.",
+    "solve": "let n=100; while(n%4||n%6)n++; return n;",
+    "distractor_solve": {
+      "100": "let n=100; while(n%4)n++; return n;",
+      "102": "let n=100; while(n%6)n++; return n;",
+      "120": "return 4*6*5;"
+    }
+  },
+  {
+    "id": "IM10-29",
+    "domain": "Math",
+    "subskill": "degrees turned by the minute hand of a clock over an interval",
+    "difficulty": "medium",
+    "prompt": "How many degrees does the minute hand of a clock turn in 25 minutes?",
+    "choices": [
+      "150",
+      "12.5",
+      "90",
+      "25"
+    ],
+    "correct_answer": "150",
+    "explanation": "The minute hand sweeps 360 degrees in 60 minutes, which is 6 degrees per minute, so in 25 minutes it turns 150 degrees. \"25\" reports the number of minutes as a number of degrees; \"12.5\" uses the hour hand's rate of 0.5 degrees per minute; \"90\" comes from calling 25 minutes a quarter of the dial and taking a quarter of 360 degrees.",
+    "solve": "return 25*6;",
+    "distractor_solve": {
+      "25": "return 25;",
+      "90": "return 360/4;",
+      "12.5": "return 25*0.5;"
+    }
+  },
+  {
+    "id": "IM10-30",
+    "domain": "Math",
+    "subskill": "a leg of a right triangle from the hypotenuse and the other leg",
+    "difficulty": "hard",
+    "prompt": "In a right triangle, the hypotenuse measures 25 centimeters and one leg measures 7 centimeters. What is the length, in centimeters, of the other leg?",
+    "choices": [
+      "18",
+      "12.5",
+      "20",
+      "24"
+    ],
+    "correct_answer": "24",
+    "explanation": "The other leg satisfies 25^2 - 7^2 = 625 - 49 = 576, and the square root of 576 is 24. \"18\" comes from subtracting the leg from the hypotenuse instead of working with the squares; \"20\" comes from assuming a 3-4-5 triangle scaled by 5 and ignoring the given 7; \"12.5\" comes from taking half the hypotenuse.",
+    "solve": "return Math.sqrt(25*25-7*7);",
+    "distractor_solve": {
+      "18": "return 25-7;",
+      "20": "return 4*5;",
+      "12.5": "return 25/2;"
+    }
+  }
+]

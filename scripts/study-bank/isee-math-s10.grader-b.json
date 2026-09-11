@@ -1,0 +1,212 @@
+{
+  "IM10-01": {
+    "pick": "10",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "\"Distinct\" is doing real work and the batch says so in the stem, so the 15 (repetition) path is fairly punished rather than ambiguous. 30 (product instead of sum) and 11 (counting 1 as prime) are both errors real ISEE candidates make. Key is the smallest option here and in IM10-02 and IM10-06, but the batch as a whole does not keep that up."
+  },
+  "IM10-02": {
+    "pick": "54",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "n(n-3)/2 is an Upper Level topic and a student without the formula has to reason it out; genuinely hard for this exam. Every distractor is a named endpoint: forgot to halve (108), counted sides too (66), excluded one neighbour instead of two (60)."
+  },
+  "IM10-03": {
+    "pick": "1000000",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The interesting step is that 2.5 x 4 = 10 forces a renormalisation to 1 x 10^6, which is exactly where students slip. 10000 is the weakest of the three (it needs two compounded errors) but it is the standard 'lost track of the carry' landing spot. Options are written as plain integers rather than scientific notation, which is a small mismatch with how the real ISEE prints this item type but creates no ambiguity."
+  },
+  "IM10-04": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "The mode/frequency confusion is the whole point and the 5 distractor captures it precisely (5 is both the peak frequency and a legal value of the variable). Stem asks for the mode of books read, not of students, so there is no second defensible reading."
+  },
+  "IM10-05": {
+    "pick": "126",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Single-step percent-of-360. 105 (3 degrees per percent) is the best distractor because it is the error of someone who knows the method but rounds 3.6 to 3."
+  },
+  "IM10-06": {
+    "pick": "12",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Squared-conversion item, and 36 (dividing the square footage by the linear factor 3) is precisely the classic error; 108 catches the student who never converts at all. The conversion 1 yard = 3 feet is supplied, which is right for this exam."
+  },
+  "IM10-07": {
+    "pick": "2420",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "\"Compounded annually\", \"nothing added or withdrawn\" and \"after 2 years\" close every reading. 2400 (simple interest) is the load-bearing distractor and is the one an ISEE student actually picks."
+  },
+  "IM10-08": {
+    "pick": "471",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "No formula is supplied (unlike IM10-12), so the student must recall 2*pi*r^2 + 2*pi*r*h; that recall is what makes it hard on this exam rather than the arithmetic. \"Closed can\" and \"total\" both rule out the lateral-only reading, so 314 is a trap and not an alternative answer. 392.5 (one end only) is the sharpest distractor."
+  },
+  "IM10-09": {
+    "pick": "-4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Order of the two transformations is stated explicitly and the transformations commute here anyway, so no ambiguity. Each distractor is a single named substitution: wrong axis (12), wrong translation direction (-12), origin reflection (2)."
+  },
+  "IM10-10": {
+    "pick": "-2",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The four options are the full sign/reciprocal group, which is the right distractor family for slope. Minor presentation point, not an exclusivity one: the real ISEE prints these as fractions (1/2, -1/2) rather than 0.5 and -0.5."
+  },
+  "IM10-11": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Graded medium, not hard: reverse-midpoint with a sum-of-coordinates wrapper is a routine Upper Level item, and the negatives are the only real friction. The 0 distractor (midpoint of A and M) is a good trap for a student who applies the formula forwards."
+  },
+  "IM10-12": {
+    "pick": "376.8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Graded medium rather than hard because the cone formula AND pi are both handed to the student; what is left is substitution and arithmetic. 1507.2 (diameter for radius) is the strongest distractor; 904.32 (sphere) only catches someone who ignores the printed formula."
+  },
+  "IM10-13": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Asking for the SUM rather than the solutions is what forces both branches to be found, and 8 punishes taking only the positive branch. 2.5 (averaging) and 16 (forgetting to divide by 2) are both real. No ambiguity in \"the two values\"."
+  },
+  "IM10-14": {
+    "pick": "15",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The strict inequality plus \"least integer\" is the discriminating step and 14 is exactly the error. 28 (dividing 56 by 2) is the weak member of the set - a student who has isolated 4n > 56 is unlikely to then divide by 2 - but it is not outside the range the stem pins."
+  },
+  "IM10-15": {
+    "pick": "450",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Clean proportional-reasoning item. 150 (one eighth) is strong; 400 (dividing by the 3) and 360 (three tenths) are looser but both correspond to misreading the ratio, which is the common failure here."
+  },
+  "IM10-16": {
+    "pick": "Friday",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "\"45 days from today\" is the standard phrasing and means today + 45, so the Thursday (inclusive-counting) reading is a mistake rather than a defensible alternative. Distractors cover remainder-vs-quotient, direction, and off-by-one - the three real failure modes of a calendar item."
+  },
+  "IM10-17": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The item is well built because both the before-range (15) and after-range (24) sit in the option set, so answering the wrong question is punished. 21 is the weakest: its stated path (treating 9 as the new minimum) requires overlooking the 6 that is still in the set, though 21 is also the discarded original value, which gives it a second, better reason to attract."
+  },
+  "IM10-18": {
+    "pick": "21",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "The stem decodes the plot for the student (\"a stem of 3 with a leaf of 2 represents 32\"), which removes most of the difficulty; once decoded this is max minus min. 2 (stem subtraction) is a strong distractor; 9 (the count) is weak on its own but is the standard range/sample-size confusion."
+  },
+  "IM10-19": {
+    "pick": "105",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Graded medium, not hard: ratio-of-angles with the 180 constraint is a staple Upper Level item and 2:3:7 gives a whole-number part. 126 and 75 are good; 84 (7 x 12, multiplying by the number of parts instead of the size of a part) is the contrived one, though unit-confusion of exactly that shape does happen under time pressure."
+  },
+  "IM10-20": {
+    "pick": "11/24",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Negative exponents combined with unlike-denominator addition is at the top of the ISEE Upper Level range, and there is no calculator. 1/24 (multiplying), 1/11 (reciprocal of the sum) and 5/6 (reading 2^-3 as 1/2) are three distinct named errors and all four options are in lowest terms, so form gives nothing away."
+  },
+  "IM10-21": {
+    "pick": "21",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Distance on a number line across zero. 22 (counting integers inclusive, the fencepost error) is the best distractor; 26 and 16 both come from mirroring one point, which is the same error twice and slightly thins the set."
+  },
+  "IM10-22": {
+    "pick": "7/20",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The three angles sum to exactly 360, so the stem is internally consistent and there is no room to argue about the sample space. 1/3 (assuming equal sectors) is the key distractor for this item type and 2/5 punishes reading the wrong sector."
+  },
+  "IM10-23": {
+    "pick": "10",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Even-count median forces the average of two middles, and 14 (averaging positions 3 and 4 of the UNSORTED list) is an excellent distractor because the list is deliberately given out of order. 8 (stale median) and 12 (upper middle) are both real."
+  },
+  "IM10-24": {
+    "pick": "44",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Area to side to perimeter, two steps, with a friendly perfect square. 11 (stopping at the side) is strong and 22 (doubling) is real; 121 (echoing the given area) is a weak option that only catches a student who has done nothing at all."
+  },
+  "IM10-25": {
+    "pick": "34",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "\"Same-side interior\" is named explicitly, so supplementary is forced and there is no second reading via alternate/corresponding angles. 36 (dropping the +10), 38 (sign slip on the 10) and 16 (complementary instead of supplementary) are each a single clean error."
+  },
+  "IM10-26": {
+    "pick": "12",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Neither endpoint is itself a perfect square, so the usual inclusive/exclusive ambiguity of \"between\" cannot bite here - that is what keeps the item exclusive, and it looks deliberate. 11 is the fencepost error, 17 answers the wrong question, 18 is the first square out of range."
+  },
+  "IM10-27": {
+    "pick": "730",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Graded easy: four subtractions and a maximum, no concept beyond reading the list. \"From one year to the next\" rules out the two-year span, so 820 is a trap rather than an alternative. 450 (first pair only) and 530 (wrong pair) are thin but standard."
+  },
+  "IM10-28": {
+    "pick": "108",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The distractor set is the best-designed in the batch: 100 is the least three-digit multiple of 4, 102 of 6, and 120 comes from using the product 24 instead of the LCM 12. Checking only one of the two divisors is the actual error and both of its endpoints are present."
+  },
+  "IM10-29": {
+    "pick": "150",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "6 degrees per minute has to be derived, which is what lifts this above easy. 12.5 (hour-hand rate) is a good distractor and 25 catches the unit confusion; 90 is the weak one, since 25 minutes is not close enough to a quarter of the dial for that error to feel natural."
+  },
+  "IM10-30": {
+    "pick": "24",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Graded medium, not hard: solving for a leg with the 7-24-25 triple is squarely in the Upper Level mainstream, and 625 - 49 = 576 is friendly arithmetic. 18 (subtracting rather than working with squares) is the strong distractor; 12.5 (half the hypotenuse) corresponds to no error a student who has read \"right triangle\" would make."
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "AM3S-01": {
+    "pick": "6",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Mode is unique (6 appears 3x vs 13 twice), so no second defensible reading. 13 is the strong distractor - a solver who stops at 'something repeats' takes it. 10-as-median is a real confusion of the three centre measures. 16 (the max) is the weak member: nobody who knows the word 'mode' reaches it. Sits in the first quarter of a real 45-question section. CROSS-ITEM: key letters are 6/6/6/6 across A-D - a suspiciously exact balance, but I checked for the per-group permutation tell flagged in the repo history and consecutive 4-item groups are NOT complete ABCD permutations (items 1-4 are B,C,D,B), so the balance is not exploitable. I also ranked each key by numeric size within its own option set: smallest 7, second 7, third 6, largest 4 - no positional-by-value tell. No shared key-prose tell is possible in a numeric batch. Two authoring patterns are worth naming: (a) a complement-of-the-key option appears in 8 items (05, 08, 10, 13, 15, 20, 21, 22) and the key is sometimes the smaller and sometimes the larger member, so it does not leak; (b) in 05, 08 and 22 the four options split into two denominator families and the correct family is identifiable from the method alone, halving the field without solving - ordinary for this exam but it is why those three are plausible rather than strong. Batch difficulty grades softer than commissioned: I make it 9 easy / 11 medium / 4 hard against a real 45-question, 50-minute section, moving 16 and 19 and 21 down. Items 19, 21 and 24 were labelled hard; only 24 is clearly hard, and 24 may be above scope."
+  },
+  "AM3S-02": {
+    "pick": "11",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Depends entirely on the dot plot rendering the lone dot at 3; if that dot were clipped or ambiguous the item would silently become 9, so the render is load-bearing here in a way it is not for the other two graphic items. Distractors are the mode (6), the max alone (14) and skip-the-outlier (9) - all named, though 14 is thin. Graded against a real ACT this is an early item."
+  },
+  "AM3S-03": {
+    "pick": "7/12",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Factors of 24 in 1-12 are 1,2,3,4,6,8,12 = 7, unambiguous; 'factor' is not a word with two readings here. 6/12 (factors of 12 instead of 24) is the strong distractor and 5/12 (dropping the endpoints 1 and 12) is real. 3/12 is weak - 'only the factors greater than 4' is not an error any student commits, it is a number chosen to fill a slot. Common /12 display across all four options, so the two reducible options are not an eliminable tell."
+  },
+  "AM3S-04": {
+    "pick": "2/5",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Every distractor is the endpoint of a misconception that is documented in real classrooms: 1 counted as prime (9/20), 2 rejected because it is even (7/20), odd treated as prime (1/2). Note the key is displayed reduced while two distractors sit over 20; a very test-wise student knows ACT reduces, but 1/2 is reduced too, so there is no clean elimination."
+  },
+  "AM3S-05": {
+    "pick": "8/25",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Independence is stated by construction (two separate bags), so there is no second reading. Partial-credit leak: the options split 2-2 by denominator, and a student who only knows 'multiply the two fractions' lands in the /25 family without solving, halving the field. That is ordinary ACT behaviour rather than a defect, but it is why I am not calling these strong. 17/25 (the complement) is the best of the three."
+  },
+  "AM3S-06": {
+    "pick": "5/8",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Inclusive OR is the standard mathematical reading and the enumeration {2,4,6,7,8} is forced. 7/8 is the textbook double-count (4+3 with 6 and 8 not removed) and is exactly what a student who skips inclusion-exclusion produces; 3/8 and 1/2 are the two single events. All four options are the endpoint of a named path."
+  },
+  "AM3S-07": {
+    "pick": "60",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "'exactly one of each' closes off the empty-choice reading, so exclusive. 12 (adding) and 20 (stopping after two factors) are both real; 27 = (5+4)x3 is a defensible order-of-operations slip but the least travelled of the three. Straightforward counting-principle item, early-section on the real exam."
+  },
+  "AM3S-08": {
+    "pick": "4/25",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "'lands at a random point' pins the uniform-area model, and the shaded square is stated to lie entirely inside, so no second reading. Same 2-2 denominator split as AM3S-05: squaring the ratio puts you in the /25 family for free. 2/5 (side ratio instead of area ratio) is the strong distractor; 3/5 = (10-4)/10 is a stretch of a path."
+  },
+  "AM3S-09": {
+    "pick": "77",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The total-then-mean route is forced and the wording ('recorded as', 'actually weighed', 'all other entries correct') leaves nothing open. 104 (adding the whole 30 to the mean) and 71 (right magnitude, wrong sign) are both real. 74 is the weakest - it is a no-work trap rather than the endpoint of a computation, though it does catch the student who thinks one entry cannot move a ten-value mean."
+  },
+  "AM3S-10": {
+    "pick": "8/15",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Best-built item in the batch. 'without replacement' is explicit, so 12/25 is a genuine with-replacement trap rather than a second legal reading; 7/15 is the exact complement (match); 1/3 is one of the two matching cases. Every distractor is reachable by a student who does real work and takes one wrong turn, which is the definition of strong."
+  },
+  "AM3S-11": {
+    "pick": "2/3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'exactly one of the two sports' is unambiguous and the counts are consistent (12 + 8 + 6 + 4 = 30). The three distractors are neither, both, and soccer-only - the full set of wrong regions of the Venn diagram, each one a stopping point a student actually reaches. 2/15 requires computing 26 at least one first, so even it is earned."
+  },
+  "AM3S-12": {
+    "pick": "2/3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Borderline medium/hard: law-of-total-probability is thinner ACT territory than the rest of this batch, and 3/4 (averaging the two coin TYPES rather than weighting by the 2-to-1 count) is the error most students make, so the item discriminates well. 5/6 is the additive slip, 1/2 the ignore-the-trick answer. No second reading - the box contents and the single flip are both pinned."
+  },
+  "AM3S-13": {
+    "pick": "43.75%",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'3 or more' is explicit, which is what makes the three inequality-shift distractors (more than 3, fewer than 3, 3 or fewer) legitimate traps instead of ambiguity. All three are exact and each corresponds to one specific misreading. Minor realism point, not a defect: 48 students in 'one class' is large for the scenario."
+  },
+  "AM3S-14": {
+    "pick": "1/4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The table is over-determined - the missing cell drops out of the row margin (120-70) and the column margin (80-30) alike, both giving 50 - so the recovery step is easier than the subskill label implies; the real work is joint vs conditional. 5/12 is the strong distractor (conditions on adults instead of everyone) and is the error this item exists to catch. 2/5 is the marginal, 7/20 the wrong cell."
+  },
+  "AM3S-15": {
+    "pick": "15/36",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'8 or more' is explicit so the boundary is closed, and all four options share the /36 display, so there is no reduction tell to exploit. 26/36 (8 or less) and 21/36 (7 or less) differ by exactly the five ways to make 8, so a student who miscounts only the boundary lands on a real option. Standard late-middle ACT probability."
+  },
+  "AM3S-16": {
+    "pick": "26",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Graded DOWN from the batch's medium: the evenly-spaced shortcut (first+last)/2 is taught alongside the definition of mean, and nothing else in the stem adds a step. 32 (halving only the 40) is a genuine order-of-operations slip. 28 and 29 are the range and the count - correct answers to questions that were not asked, which makes them weaker than the label suggests, though 29 does catch inclusive-counting confusion."
+  },
+  "AM3S-17": {
+    "pick": "8%",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'percent of ALL the motors' pins the denominator at 400, closing the only reading that could compete. 10% is the classic unweighted average of 15% and 5% and is the whole point of the item; 20% adds the rates; 4.5% uses one supplier's defects over the full population. Every distractor is the endpoint of a named averaging error."
+  },
+  "AM3S-18": {
+    "pick": "11",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Only one value equals the mean, so the answer is unique; brute force (four divisions) reaches it too, which caps the difficulty. The distractors are the other data values rather than the endpoints of distinct error paths - appropriate for a which-one item, but it means a solver who spots 'the mean is 11 and 11 is in the list' answers instantly. 9 as the median is the one distractor doing real work."
+  },
+  "AM3S-19": {
+    "pick": "26.75",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Graded DOWN from hard. The stem supplies the full definition of Q1, Q3, IQR and the 1.5 rule, and n=8 splits evenly, so the usual quartile-convention ambiguity (does the median belong to a half?) never arises - that spelled-out definition is exactly what makes this exclusive, and it also reduces the item to careful execution. 29.5 (quartiles read as data values), 34.25 and 69.5 (range substituted for IQR) are all exact and all real."
+  },
+  "AM3S-20": {
+    "pick": "18/125",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Genuinely hard for this exam: first-success/geometric waiting time is rare on the ACT and the phrase 'the first flip to land heads up is the third flip' requires recognising that flips one and two are constrained, not free. 50/125 is written as an unreduced 2/5 precisely to catch the student who answers only about the third flip - a good trap. 27/125 (no heads in three) and 98/125 (at least one head) are both exact."
+  },
+  "AM3S-21": {
+    "pick": "11/16",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Borderline medium/hard - only 16 outcomes, and 'at least 2' is a standard complement exercise, so an average prepared student gets there; I would not call it hard against a 45-question section. 5/16 is the strongest distractor: it is the complement computed correctly and then not subtracted, which is the single most common way this item is missed. 15/16 answers the at-least-1 version, 4/16 is exactly 3."
+  },
+  "AM3S-22": {
+    "pick": "3/10",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "Exclusive despite the net/gross wording risk: both readings converge. Net framing gives 7p - 3(1-p) = 0 and gross framing gives 10p = 3, and both yield 3/10, so a student who models 'expected winnings equal the cost' is not punished. The option set is a mechanical 2x2 grid of {3,7} over {10,13}, which reads as authored-by-formula: the two /13 options correspond to no error a student makes (dividing by cost-plus-prize is not a path anyone walks), so half the set is filler and the live discrimination is only 3/10 vs 7/10."
+  },
+  "AM3S-23": {
+    "pick": "74",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "'Committee' fixes the selection as unordered, so no second reading. The distractor set is internally consistent in a way I checked: 40 (exactly 1) + 30 (exactly 2) + 4 (exactly 3) = 74, so the two case-count distractors are exactly what a student who tries the direct route and drops a case produces, and 84 is the ignore-the-restriction total. Hard for the ACT mainly because complement counting is the only fast route."
+  },
+  "AM3S-24": {
+    "pick": "35",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "Hardest item here and arguably above ACT scope - the gaps/stars-and-bars argument (C(7,4)) is a competition technique, not a tested one, and a student without it has no tractable route in a 67-second average. Exclusive: chairs in a row are distinguishable positions and 'chosen' is unordered. 15 = C(6,4) is the right idea with the off-by-one, so it is the one strong distractor; 126 and 210 are generic binomials that a student reaches only by giving up on the restriction."
+  }
+}

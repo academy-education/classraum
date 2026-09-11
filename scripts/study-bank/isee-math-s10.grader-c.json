@@ -1,0 +1,212 @@
+{
+  "IM10-01": {
+    "pick": "10",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "\"distinct\" is explicit in the stem, so the 15 path is closed off as a defensible reading and only as a misread. Cross-item check for the batch as a whole: I tabulated the key's slot index across all 30 items and got 7/8/8/7 over slots 1-4, with no run longer than two, so there is no letter tell; the key is also not consistently the largest or smallest option (smallest on 01/02/06/10, largest on 03/05, middle elsewhere). Options here are bare integers, so the option set alone cannot decide the item."
+  },
+  "IM10-02": {
+    "pick": "54",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "n(n-3)/2 is upper-band ISEE; a student without the formula has to reason the double-count out. All three distractors are the named endpoints of the three ways the derivation breaks (forget to halve, count sides too, drop only one neighbour)."
+  },
+  "IM10-03": {
+    "pick": "1000000",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The real content is the renormalisation of the coefficient 10 to 1 x 10^6, which the two middle distractors both attack. 650000 (adding coefficients) is the weakest of the three but still a path students take."
+  },
+  "IM10-04": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "The mode-vs-frequency confusion is well set up because 5 appears both as a frequency and as a value, which is the whole point of the item. 2 and 4 are closer to positional filler than to named error paths."
+  },
+  "IM10-05": {
+    "pick": "126",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "One-step percent-of-360. The 105 distractor (3 degrees per percent) is a bit contrived but is a real rounding slip; 35 and 63 are both standard."
+  },
+  "IM10-06": {
+    "pick": "12",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The conversion factor is supplied, so the item tests only that the linear factor applies twice, and 36 is exactly the student who applied it once. Every distractor is a named wrong path."
+  },
+  "IM10-07": {
+    "pick": "2420",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "\"nothing is added or withdrawn\" closes the only ambiguity. 2400 as simple interest and 2200 as one year are the two errors this item exists to catch; 2662 catches an off-by-one on the exponent."
+  },
+  "IM10-08": {
+    "pick": "471",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "\"closed can\" pins both ends, so 392.5 and 314 are errors rather than defensible readings. The surface-area formula is NOT given (contrast IM10-12, where the cone formula is), which is what makes this genuinely hard rather than computational; 785 catching the volume formula is a strong trap."
+  },
+  "IM10-09": {
+    "pick": "-4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Order of operations is fixed by the stem (reflect, then translate) and the sum-of-coordinates ask prevents a coordinate-pair near miss from being defensible. The three distractors cover wrong axis, wrong direction, and point reflection."
+  },
+  "IM10-10": {
+    "pick": "-2",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Routine slope formula, pushed to medium only by the sign handling. The four options are exactly {m, -m, 1/m, -1/m}, which is the ideal distractor set for this skill."
+  },
+  "IM10-11": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Graded down from the batch's \"hard\": reverse-midpoint is a standard ISEE Upper item and the arithmetic is small. The 2 distractor (M - A, the displacement rather than the endpoint) is the error most students actually make here."
+  },
+  "IM10-12": {
+    "pick": "376.8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Graded down from \"hard\": the stem hands over V = (1/3)pi r^2 h and pi = 3.14, which reduces the item to substitution and the one-third. The sphere-volume distractor 904.32 is the weak one - a student handed the cone formula in the stem has no route to a sphere; 1130.4 and 1507.2 are real paths."
+  },
+  "IM10-13": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "\"the sum of the two values\" is unambiguous and forecloses reporting a single root, which is precisely what the 8 distractor punishes. 2.5 (averaging) and 16 (forgetting to divide) are both named."
+  },
+  "IM10-14": {
+    "pick": "15",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Strict inequality plus \"least integer\" makes 14 the single most tempting wrong answer, and it is present. No rounding convention is left unstated."
+  },
+  "IM10-15": {
+    "pick": "450",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Direct proportion, one step. 400 (dividing by 3) and 360 (eighths read as tenths) are ordinary slips; 150 is the strongest distractor since stopping at one eighth is the common half-finish."
+  },
+  "IM10-16": {
+    "pick": "Friday",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "45 mod 7 = 3, Tuesday + 3 = Friday. \"45 days from today\" is the standard phrasing and does not admit an inclusive count, though Thursday is there for the student who makes one. Using the quotient instead of the remainder (Monday) is the other real path."
+  },
+  "IM10-17": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The ask is the increase, not the range, and 24 and 15 catch both halves of that misread. 21 (= 30 - 9) depends on mistaking 9 for the minimum when 6 is present and visible; it is the weakest of the three but not a number from nowhere."
+  },
+  "IM10-18": {
+    "pick": "21",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Graded easier than the batch: the plot key is spelled out in the stem and range is a one-subtraction skill, so the only real work is reading the display. 9 (the count) is weak as an error path; 2 (stems only) and 15 are both genuine."
+  },
+  "IM10-19": {
+    "pick": "105",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Graded down from \"hard\": ratio-parts on a 180-degree total is a core ISEE Upper skill and 12 parts into 180 is clean. 126 (parts summed as 10) and 75 (the other two angles) are strong; 84 = 7 x 12 is contrived - no student who has found 12 parts then multiplies by the part count."
+  },
+  "IM10-20": {
+    "pick": "11/24",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Negative exponents plus unlike-denominator addition in one item is top-band for this exam, and all options are in lowest terms so no answer is reachable twice. 1/11 (reciprocal of the sum of the positive powers) is the classic and is present."
+  },
+  "IM10-21": {
+    "pick": "21",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "One absolute difference. 22 (counting integers inclusive) is the strongest distractor; 26 and 16 both assume a symmetry the stem does not give, which is a real but less common slip."
+  },
+  "IM10-22": {
+    "pick": "7/20",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The three angles sum to exactly 360, so the sector model is consistent and the fair-spinner assumption is the standard one - not an ambiguity. 2/5 (the wrong sector) and 1/3 (equal sectors) are both first-rate traps."
+  },
+  "IM10-23": {
+    "pick": "10",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Even-count median must be averaged, and 12 (taking the upper middle) plus 14 (not sorting first) are exactly the two ways that fails. Handing the student the original median of 8 in the stem makes the 8 distractor live."
+  },
+  "IM10-24": {
+    "pick": "44",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Perfect square with a familiar root; a one-step item. 11 (the side) is strong, 22 and 121 are careless-answer catchers rather than distinct method errors."
+  },
+  "IM10-25": {
+    "pick": "34",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "\"Same-side interior\" is named in the stem, so the supplementary relation is given and the item is about executing it; treating the pair as congruent yields x = -10, which is not an option, so there is no second defensible answer. 36, 38 and 16 are all named algebraic slips."
+  },
+  "IM10-26": {
+    "pick": "12",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "Neither 30 nor 300 is a perfect square, so the usual inclusive/exclusive ambiguity in \"between\" does not bite here and the item is exclusive. Hard because it needs both the 6-to-17 bracket and the inclusive count. 11 (off-by-one) is the strong distractor; 17 and 18 are answers to a different question."
+  },
+  "IM10-27": {
+    "pick": "730",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "\"from one year to the next\" pins consecutive years, which is what makes 820 a wrong answer rather than a defensible one - without that phrase the item would not be exclusive. Graded easy: four subtractions and a maximum, no concept beyond reading the list."
+  },
+  "IM10-28": {
+    "pick": "108",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "LCM rather than product is the point, and 120 is the endpoint of using 24. 100 and 102 catch the student who checks only one of the two divisors, which is the most common failure here."
+  },
+  "IM10-29": {
+    "pick": "150",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "6 degrees per minute, one multiplication. 12.5 (hour-hand rate) is a good trap; 90 requires believing 25 minutes is a quarter turn, which is a weaker path since the dial is 60."
+  },
+  "IM10-30": {
+    "pick": "24",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Graded down from \"hard\": 7-24-25 is one of the two triples ISEE students memorise, and even computed out it is 625 - 49 = 576. 18 (subtracting instead of squaring) is the strong one; 20 requires importing a 3-4-5 scaling that contradicts the given leg of 7, and 12.5 is close to a number from nowhere."
+  }
+}
