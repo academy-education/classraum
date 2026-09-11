@@ -2792,6 +2792,34 @@
      "verdict": "The exact checkers report: run-middle 5 items carry the shape with the key at the middle on 0; pair-constant 0 of 25 scorable; key-is-sum 2 sum nodes with the key in 0; formula-options zero population. THE NON-NUMERIC SETS SPLIT, and all three solvers reached the same reading independently. AM8N-07 {1, i, -1, -i} is the COMPLETE CLOSED SET of the powers of i — every member equally reachable, nothing distinguished by form — and all three called it the model shape for this domain. AM8N-24 {3+i, 1-3i, 1+3i, 2+6i} is NOT closed, and two solvers called it a derivational hub in complex form: 1+3i has its conjugate, its double and its component-swap as the other three, so all three distractors are visibly manufactured from one option. It is one of the two items solved by all three. AM8N-21 (matrix dimensions in words) puts a transpose pair adjacent, which narrows four options to two for free; two solvers declined to call that confidence and marked it a guess. Both leaking items are recorded as REPAIR CANDIDATES rather than dropped: at +6.0 with every exact channel clean, the uniform drop rule selects nothing."
     }
    }
+  },
+  {
+   "id": "ssat-math-s13-2026-09-11",
+   "targetTest": "ssat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "ssat-math-s13",
+   "contentSha": "31b60c4795a40feece01ceb8d401dd49e762366c965710db7a78052b9a487604",
+   "note": "28 items, SSAT Upper Level Quantitative, FIVE choices. NOTHING DROPPED. The attack came in at +6.2 with two items solved by all three solvers — but all three filed ZERO confident picks and both items are declared guesses in their own words (neutral rotation pick; nothing fires; guess), against 0.50 expected at the run rate, p ~ 0.09. Per the clause this run added to the brief (3d-bis), unanimity among declared guesses is not evidence and triggers no drop. Every exact checker is clean. BANK_BAND=mixed.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "28/28 recompute; 112 of 112 distractor_solve entries recomputed, 0 mismatches. Exhaustive break-test: 112 promotions, 0 survivors, and the harness was attacked afterwards — a promotion made genuinely consistent is reported as OK, so the refusals are refusals. Three earlier drafts were repaired by the hub check reading +11.3pts before it read 0.0."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on the sanitized render, all reporting sha 076456f976dfefb9 before and after. 28 of 28 keys agreed 3/3, ZERO non-exclusive votes, none guessed, and all three confirmed every item is hand-sized without a calculator. DIFFICULTY: author claimed 8 hard, graders found 4, 4 and 3 — the eighth consecutive cut, and all three named S13-21 and S13-27 as genuinely hard and worth keeping. THE TEMPLATE CENSUS REPRODUCED: with the rule stated per brief 3d, LOOSE came back 17 / 17 / 18 of 28, against 15 / 21 / 18 when the rule was left unstated on the previous batch. STRICT was 4 / 7 / 4, and one grader flagged their own cliff — their strict group of 4 breaks to 0 if find-a-rate and scale-to-n-units count as distinct procedures, which they reported rather than hid. Both previous-batch defects confirmed ABSENT: no mathematics spelled out in prose without grouping (all three attacked the candidate expressions and found no second reading landing on a listed option), and no combinations by formula."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 3 solvers, FIVE-wide against a 20.0% line: 26.2%, margin +6.2. ALL THREE FILED ZERO CONFIDENT PICKS. Each measured the null twice and one of them corrected the project method in the process: a uniform-range null made the run channel read 13 observed against 3.57 expected, a 3.6x finding, while a null resampling from the multiples of the item own gcd gave 8.26 expected and p = 0.010 — because real option sets are round numbers sharing a unit, not uniform draws. Under the correct null the pair-sum and key-as-sum channels sit BELOW chance. Two solvers independently agreed the author count of 11 run middles is right and both declined to bet either direction, one on decision-theoretic grounds: betting against the middle across 11-13 items is worth +0.65 expected items if right and -2.6 if wrong."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "check-run-middle: key is the middle on 0. check-option-pair-constant: key in the pair on 0 (control 50.0%). check-key-is-sum: key is a sum node on 0, product nodes 0. A solver attacked the hub channel rather than reporting it — it was the largest gap at 12 fired against 2.63 expected, but widening the simple-ratio list from 12 ratios to 38 kept the elevation while CHANGING WHICH OPTION IT NAMES on nearly every item, so a channel whose named option is a function of a free parameter cannot support a pick. What the elevation measures is that this author builds distractors as simple multiples of the key, which is sound practice. RECORDED FOR REPAIR, NOT DROPPED: one grader found four items with options eliminable by magnitude without doing the work — S13-09 (three of five exceed what more than 4 people must need), S13-14 (three exceed the perimeter), S13-28 (two exceed the stated class of 30), S13-18 (two impossible for a mean of 80-95). The pattern concentrates in easy items where a raw intermediate value was reached for as a fifth option."
+    }
+   }
   }
  ],
  "auditedCohorts": [

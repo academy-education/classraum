@@ -414,6 +414,33 @@ a habit as an inner step but wraps it in something else is templated under the
 loose rule and not under the strict one. Two graders noted that the wrapping is
 exactly what makes such an item hard.
 
+## 3d-bis. Unanimity among declared GUESSES is not evidence
+
+The drop rule is: an item goes if all three solvers got it, OR an exact checker
+puts the key inside the exploitable shape. That rule was written when solvers
+picked from stated mechanisms. It needs one more clause.
+
+On `ssat-math-s13` all three solvers filed **zero confident picks** — one
+cycled letters A-E deliberately so no implicit preference could decide the run
+— and two items still came back "solved by all three". Their own reasons:
+
+        S13-21   "neutral rotation pick" / "no channel survived" / "strict null gives 33%"
+        S13-03   "neutral rotation pick" / "no structural separation" / "nothing fires; guess"
+
+Two unanimous against 0.50 expected at the run's own rate is p ~ 0.09. Dropping
+those items would have discarded sound work because three letter-cycling
+guessers coincided.
+
+**So: drop on unanimity only when at least one solver marked the item
+`confident`, or an exact checker independently names it.** Three agreeing
+guesses are three coins landing the same way, and the whole point of asking
+solvers to declare `basis` is so that this distinction can be made after the
+fact rather than assumed away.
+
+The converse still holds and is the more common case: where solvers DO mark an
+item confident and all three land on it, that is a mechanism firing, and the
+item goes.
+
 ## 3e. Measure the null before reporting any options-only channel
 
 A raw count is not a finding. Resample each item's options from that item's own

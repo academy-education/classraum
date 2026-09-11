@@ -1429,3 +1429,18 @@ structural checks are pre-flight only. See CLAUDE.md.
   Held, not inserted. That is now 96 reading items held across three batches (`ssat-reading-s11` 30, `isee-reading-s10` 36, `ssat-reading-s12` 30).
 
   **The instrument is not in doubt here.** The same render on 30 already-shipped SSAT reading items scored 21.1% with three solvers — essentially chance — so there is no floor to explain this away, and the 83.3% is the batch's.
+
+- **2026-09-11** — **ssat-math-s13 INSERTED, 28 ITEMS, NOTHING DROPPED. ssat/math 186 -> 214.** Attack +6.2, every exact channel clean, and the drop rule gained a clause rather than firing.
+
+  **All three solvers filed ZERO confident picks**, and two items still came back "solved by all three". Their own words on those items: *"neutral rotation pick"*, *"no structural separation"*, *"nothing fires; guess"*. Two unanimous against 0.50 expected is p ~ 0.09, and one solver had deliberately cycled letters A-E so no implicit preference could decide the run. **Dropping them would have discarded sound items because three letter-cycling guessers coincided.** Now `AUTHORING-BRIEF` §3d-bis: drop on unanimity only when at least one solver marked the item `confident`, or an exact checker independently names it. Asking solvers to declare `basis` exists precisely so this distinction can be made afterwards instead of assumed away.
+
+  **The template census reproduced under the stated rule**, which settles the question left open two batches ago:
+
+        rule stated   (this batch)   LOOSE  17 / 17 / 18 of 28
+        rule unstated (previous)     LOOSE  15 / 21 / 18 of 28
+
+  One grader flagged their own cliff rather than hiding it: their STRICT count of 4 collapses to 0 if "find a per-unit rate" and "scale to n units" are counted as distinct procedures. That is the right way to report a metric with a free parameter.
+
+  **A solver attacked a channel instead of reporting it, and killed it.** The derivational hub was the largest gap in the file — 12 items firing against 2.63 expected — so rather than bank it they widened the simple-ratio list from 12 ratios to 38. The elevation survived; **the option it names changed on nearly every item** (item 5 B→E, item 16 E→D, item 20 A→C). A channel whose named option is a function of a parameter the analyst chose cannot support a pick. What the elevation actually measures is that this author builds distractors as simple multiples of the key, which is sound SSAT practice.
+
+  **Recorded for repair, not dropped:** one grader found four items whose options are eliminable by magnitude with no work — `S13-09` (three of five exceed what more than four people must need), `S13-14` (three exceed the perimeter; a side cannot), `S13-28` (two exceed the stated class of 30), `S13-18` (two impossible for a mean of scores between 80 and 95). The pattern concentrates in the EASY items, where a raw intermediate value was reached for as a fifth option. That is brief §1 and it is a cheap fix.

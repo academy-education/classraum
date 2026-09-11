@@ -1,0 +1,142 @@
+{
+ "1": {
+  "pick": "A",
+  "basis": "guess",
+  "why": "lone decimal 12.5 is also the unique arithmetic middle of 5/12.5/20; no channel survived its null, so flat guess avoiding the run middle"
+ },
+ "2": {
+  "pick": "B",
+  "basis": "guess",
+  "why": "350 is a >=4x magnitude blowout and 3.5 the hub under a narrow ratio list only; neither direction is established, flat guess"
+ },
+ "3": {
+  "pick": "D",
+  "basis": "guess",
+  "why": "1720 is a magnitude blowout and 87.5 the unique run middle of 86/87.5/89; both excluded, otherwise nothing separates the values"
+ },
+ "4": {
+  "pick": "B",
+  "basis": "guess",
+  "why": "9.125 is the lone decimal and 12 the unique run middle of 9/12/15; no directional rule, flat guess"
+ },
+ "5": {
+  "pick": "C",
+  "basis": "guess",
+  "why": "3000 is a blowout and 75 the unique run middle of 30/75/120; flat guess among the rest"
+ },
+ "6": {
+  "pick": "A",
+  "basis": "guess",
+  "why": "65 is a magnitude blowout; the remaining four values carry no structural separation"
+ },
+ "7": {
+  "pick": "E",
+  "basis": "guess",
+  "why": "576 is the lone perfect square but lone-squareness fires on 13 of 28 items and has no established direction; flat guess"
+ },
+ "8": {
+  "pick": "C",
+  "basis": "guess",
+  "why": "no channel fires on this set; pure guess"
+ },
+ "9": {
+  "pick": "D",
+  "basis": "guess",
+  "why": "no channel fires; the odd forms 0.16 and 6.25 are not directional; pure guess"
+ },
+ "10": {
+  "pick": "B",
+  "basis": "guess",
+  "why": "no channel fires; 1.4/12.6/126 are decimal shifts of one another but that names no key; pure guess"
+ },
+ "11": {
+  "pick": "D",
+  "basis": "guess",
+  "why": "1.5 is the unique geometric middle of 1.5/4.5 ... and 9/18 pair off; geometric middles are elevated but undirected, so guess off the middle"
+ },
+ "12": {
+  "pick": "E",
+  "basis": "guess",
+  "why": "2304 is a blowout and 192 the unique geometric middle of 12/192/... ; flat guess among the rest"
+ },
+ "13": {
+  "pick": "A",
+  "basis": "guess",
+  "why": "no channel fires; 253 and 750 are unrelated outliers; pure guess"
+ },
+ "14": {
+  "pick": "B",
+  "basis": "guess",
+  "why": "289 is both the lone perfect square and a 12x blowout, the classic un-rooted bait, but bait-elimination names no key; guess among the remaining four"
+ },
+ "15": {
+  "pick": "C",
+  "basis": "guess",
+  "why": "882 is a magnitude blowout; no channel separates 36/84/72/63"
+ },
+ "16": {
+  "pick": "D",
+  "basis": "guess",
+  "why": "256 is a blowout; narrow and wide ratio lists disagree on which of the rest is the hub, so no pick basis"
+ },
+ "17": {
+  "pick": "E",
+  "basis": "guess",
+  "why": "30+60=90 looked like an angle pair-sum but that channel sits BELOW its null; 18 is the unique run middle; flat guess"
+ },
+ "18": {
+  "pick": "A",
+  "basis": "guess",
+  "why": "two run middles (C,D) so no unique middle, and the sum/difference channels are below null here; pure guess"
+ },
+ "19": {
+  "pick": "B",
+  "basis": "guess",
+  "why": "no channel fires on 1215/28/1680/21/315; pure guess"
+ },
+ "20": {
+  "pick": "D",
+  "basis": "guess",
+  "why": "50+130=180 is the other apparent angle pair-sum, also below null; 75 is the unique run middle; flat guess"
+ },
+ "21": {
+  "pick": "E",
+  "basis": "guess",
+  "why": "all five are multiples of 0.8 so the hub test is degenerate here and names nothing; pure guess"
+ },
+ "22": {
+  "pick": "C",
+  "basis": "guess",
+  "why": "no channel fires; pure guess"
+ },
+ "23": {
+  "pick": "A",
+  "basis": "guess",
+  "why": "32768 is an extreme blowout and 256 relates to it, but neither is a key-naming channel; guess among the small values"
+ },
+ "24": {
+  "pick": "B",
+  "basis": "guess",
+  "why": "densest set in the batch - runs, sums, differences and hubs all fire and all name different options, which is the signature of a doubling family, not a leak"
+ },
+ "25": {
+  "pick": "E",
+  "basis": "guess",
+  "why": "85.5 is the unique run middle of 81/85.5/90 and the lone decimal; excluded, flat guess among the rest"
+ },
+ "26": {
+  "pick": "C",
+  "basis": "guess",
+  "why": "6 is the unique geometric middle of 2/6/18; guess off the middle"
+ },
+ "27": {
+  "pick": "D",
+  "basis": "guess",
+  "why": "no channel fires on 48/72/50/54/44; pure guess"
+ },
+ "28": {
+  "pick": "B",
+  "basis": "guess",
+  "why": "only item with negatives, but negatives are spread across three options; -12 is the unique run middle of -19/-12/-5; flat guess"
+ }
+}
