@@ -1,0 +1,517 @@
+[
+  {
+    "id": "GEO3-01",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "circles: an inscribed angle and the central angle on the same arc",
+    "difficulty": "easy",
+    "prompt": "In the circle with center O shown, points A, B, and P lie on the circle. What is the value of x?",
+    "choices": [
+      "58",
+      "116",
+      "32",
+      "64"
+    ],
+    "correct_answer": "58",
+    "explanation": "An inscribed angle is half the central angle that intercepts the same arc, so x = 116/2 = 58. Choice 116 repeats the central angle without halving it. Choice 64 treats the inscribed angle as the supplement of the central angle, 180 - 116. Choice 32 gives the base angle of isosceles triangle OAB, (180 - 116)/2, which is the angle OAB rather than the angle at P.",
+    "solve": "const c=116; return c/2;",
+    "distractor_solve": {
+      "32": "const c=116; return (180-c)/2;",
+      "64": "const c=116; return 180-c;",
+      "116": "const c=116; return c;"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"175\" cy=\"128\" r=\"92\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"175\" y1=\"128\" x2=\"95.33\" y2=\"174\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"175\" y1=\"128\" x2=\"251.27\" y2=\"179.45\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"194.13\" y1=\"38.01\" x2=\"95.33\" y2=\"174\" stroke=\"#0E7A5F\" stroke-width=\"2\"/><line x1=\"194.13\" y1=\"38.01\" x2=\"251.27\" y2=\"179.45\" stroke=\"#0E7A5F\" stroke-width=\"2\"/><path d=\"M 152.48 141 A 26 26 0 0 0 196.55 142.54\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><path d=\"M 180.02 57.43 A 24 24 0 0 0 203.12 60.26\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><text x=\"79.33\" y=\"180\" >A</text><text x=\"257.27\" y=\"185.45\" >B</text><text x=\"198.13\" y=\"32.01\" >P</text><text x=\"181\" y=\"124\" >O</text><text x=\"159.6\" y=\"179.98\" >116°</text><text x=\"179.99\" y=\"75.76\" >x°</text><text x=\"206\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  {
+    "id": "GEO3-02",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "circles: two chords meeting inside a circle",
+    "difficulty": "hard",
+    "prompt": "In the circle shown, chords AC and BD intersect at point P. All lengths are in centimeters. What is the length of PD, in centimeters?",
+    "choices": [
+      "16",
+      "4",
+      "9",
+      "10"
+    ],
+    "correct_answer": "9",
+    "explanation": "For two chords meeting inside a circle, PA x PC = PB x PD, so 6 x 12 = 8 x PD and PD = 9. Choice 16 pairs the wrong segments, solving 12 x 8 = 6 x PD. Choice 4 pairs the two segments that meet at P on different chords, 6 x 8 = 12 x PD. Choice 10 treats the four segments additively, 6 + 12 - 8.",
+    "solve": "const AP=6,PC=12,BP=8; return AP*PC/BP;",
+    "distractor_solve": {
+      "4": "const AP=6,PC=12,BP=8; return AP*BP/PC;",
+      "10": "const AP=6,PC=12,BP=8; return AP+PC-BP;",
+      "16": "const AP=6,PC=12,BP=8; return PC*BP/AP;"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"180\" cy=\"120\" r=\"92\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"88.52\" y1=\"110.26\" x2=\"246.26\" y2=\"183.82\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"125.37\" y1=\"194.02\" x2=\"232.34\" y2=\"44.34\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><circle cx=\"148\" cy=\"138\" r=\"3\" fill=\"#0E7A5F\"/><text x=\"72.52\" y=\"110.26\" >A</text><text x=\"251.26\" y=\"187.82\" >C</text><text x=\"121.37\" y=\"210.02\" >B</text><text x=\"236.34\" y=\"40.34\" >D</text><text x=\"132\" y=\"152\" >P</text><text x=\"114.26\" y=\"118.13\" fill=\"#0E7A5F\">6</text><text x=\"195.13\" y=\"153.91\" fill=\"#0E7A5F\">12</text><text x=\"122.69\" y=\"170.01\" fill=\"#0E7A5F\">8</text><text x=\"174.17\" y=\"89.17\" fill=\"#0E7A5F\">?</text><text x=\"198\" y=\"228\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  {
+    "id": "GEO3-03",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "polygons: the number of sides from the interior angle sum",
+    "difficulty": "medium",
+    "prompt": "The measures of the interior angles of a convex polygon sum to 2,880 degrees. How many sides does the polygon have?",
+    "choices": [
+      "14",
+      "10",
+      "16",
+      "18"
+    ],
+    "correct_answer": "18",
+    "explanation": "The interior angles of an n-sided convex polygon sum to (n - 2)180, so n - 2 = 2880/180 = 16 and n = 18. Choice 16 stops at n - 2 and reports it as n. Choice 14 subtracts 2 instead of adding it. Choice 10 divides by 360, the exterior-angle sum, rather than by 180.",
+    "solve": "return 2880/180 + 2;",
+    "distractor_solve": {
+      "10": "return 2880/360 + 2;",
+      "14": "return 2880/180 - 2;",
+      "16": "return 2880/180;"
+    }
+  },
+  {
+    "id": "GEO3-04",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "quadrilaterals: the side of a rhombus from its two diagonals",
+    "difficulty": "hard",
+    "prompt": "The diagonals of a rhombus have lengths 16 inches and 30 inches. What is the perimeter of the rhombus, in inches?",
+    "choices": [
+      "240",
+      "92",
+      "136",
+      "68"
+    ],
+    "correct_answer": "68",
+    "explanation": "The diagonals of a rhombus bisect each other at right angles, so each side is the hypotenuse of a right triangle with legs 8 and 15, giving 17, and the perimeter is 4(17) = 68. Choice 136 uses the whole diagonals as the legs, 4 x 34. Choice 92 treats the diagonals as a length and a width, 2(16 + 30). Choice 240 reports the area of the rhombus, (16 x 30)/2, instead of the perimeter.",
+    "solve": "const p=16,q=30; return 4*Math.sqrt((p/2)*(p/2)+(q/2)*(q/2));",
+    "distractor_solve": {
+      "92": "const p=16,q=30; return 2*(p+q);",
+      "136": "const p=16,q=30; return 4*Math.sqrt(p*p+q*q);",
+      "240": "const p=16,q=30; return p*q/2;"
+    }
+  },
+  {
+    "id": "GEO3-05",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "lines and angles: solving for x from a pair of vertical angles",
+    "difficulty": "medium",
+    "prompt": "In the figure shown, two lines intersect. What is the value of x?",
+    "choices": [
+      "2",
+      "10",
+      "5",
+      "60"
+    ],
+    "correct_answer": "10",
+    "explanation": "The two marked angles are vertical angles, so they are equal: 4x + 20 = 6x, giving 2x = 20 and x = 10. Choice 60 solves for x correctly and then reports the angle measure 6x rather than x. Choice 2 collects the x-terms by adding rather than subtracting, solving 10x = 20. Choice 5 drops the 6x term altogether and solves 4x = 20.",
+    "solve": "return 20/(6-4);",
+    "distractor_solve": {
+      "2": "return 20/(6+4);",
+      "5": "return 20/4;",
+      "60": "const x=20/(6-4); return 6*x;"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><line x1=\"304\" y1=\"126\" x2=\"40\" y2=\"126\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"238\" y1=\"11.68\" x2=\"106\" y2=\"240.32\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><path d=\"M 202 126 A 30 30 0 0 0 187 100.02\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><path d=\"M 142 126 A 30 30 0 0 0 157 151.98\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><text x=\"211.69\" y=\"99\" fill=\"#0E7A5F\">(4x + 20)°</text><text x=\"84.31\" y=\"161\" fill=\"#0E7A5F\">6x°</text><text x=\"206\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  {
+    "id": "GEO3-06",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "solids: the volume of a sphere from its surface area",
+    "difficulty": "medium",
+    "prompt": "A sphere has a surface area of 144π square inches. What is the volume of the sphere, in cubic inches?",
+    "choices": [
+      "48π",
+      "288π",
+      "216π",
+      "864π"
+    ],
+    "correct_answer": "288π",
+    "explanation": "From 4πr² = 144π the radius is 6, and the volume is (4/3)π(6)³ = 288π. Choice 864π omits the factor 1/3. Choice 216π uses πr³, dropping the 4/3 entirely. Choice 48π squares the radius instead of cubing it, (4/3)π(36).",
+    "solve": "const r=Math.sqrt(144/4); return (4*Math.pow(r,3)/3) + \"π\";",
+    "distractor_solve": {
+      "48π": "const r=6; return (4*r*r/3) + \"π\";",
+      "216π": "const r=6; return Math.pow(r,3) + \"π\";",
+      "864π": "const r=6; return (4*Math.pow(r,3)) + \"π\";"
+    }
+  },
+  {
+    "id": "GEO3-07",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "circles: a tangent segment and a secant from the same external point",
+    "difficulty": "hard",
+    "prompt": "In the figure shown, PT is tangent to the circle at T, and the line through P meets the circle at A and then at B. All lengths are in meters. What is the length of PT, in meters?",
+    "choices": [
+      "15",
+      "12",
+      "20",
+      "17"
+    ],
+    "correct_answer": "15",
+    "explanation": "For a tangent and a secant from the same external point, PT² = PA x PB. Here PB = 9 + 16 = 25, so PT² = 9(25) = 225 and PT = 15. Choice 12 uses the chord AB in place of the whole secant PB, giving the square root of 9(16). Choice 20 uses AB x PB instead of PA x PB. Choice 17 averages PA and PB rather than taking a geometric mean.",
+    "solve": "const PA=9,AB=16; return Math.sqrt(PA*(PA+AB));",
+    "distractor_solve": {
+      "12": "const PA=9,AB=16; return Math.sqrt(PA*AB);",
+      "17": "const PA=9,AB=16; return (PA+(PA+AB))/2;",
+      "20": "const PA=9,AB=16; return Math.sqrt(AB*(PA+AB));"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"215\" cy=\"118\" r=\"74\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"40\" y1=\"196\" x2=\"161.11\" y2=\"67.29\" stroke=\"#0E7A5F\" stroke-width=\"2\"/><line x1=\"40\" y1=\"196\" x2=\"288.94\" y2=\"115\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><circle cx=\"40\" cy=\"196\" r=\"3\" fill=\"#12151C\"/><circle cx=\"153.45\" cy=\"159.09\" r=\"3\" fill=\"#2B3A8C\"/><circle cx=\"288.94\" cy=\"115\" r=\"3\" fill=\"#2B3A8C\"/><circle cx=\"161.11\" cy=\"67.29\" r=\"3\" fill=\"#0E7A5F\"/><text x=\"26\" y=\"202\" >P</text><text x=\"147.45\" y=\"177.09\" >A</text><text x=\"293.94\" y=\"129\" >B</text><text x=\"155.11\" y=\"59.29\" >T</text><text x=\"92.73\" y=\"193.55\" fill=\"#2B3A8C\">9</text><text x=\"213.2\" y=\"155.05\" fill=\"#2B3A8C\">16</text><text x=\"88.56\" y=\"125.65\" fill=\"#0E7A5F\">?</text><text x=\"198\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  {
+    "id": "GEO3-08",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "coordinate geometry: the center of a circle from the endpoints of a diameter",
+    "difficulty": "easy",
+    "prompt": "In the xy-plane, the points (-3, 8) and (7, -2) are the endpoints of a diameter of a circle. What are the coordinates of the center of the circle?",
+    "choices": [
+      "(-5, 5)",
+      "(2, 5)",
+      "(2, 3)",
+      "(-5, 3)"
+    ],
+    "correct_answer": "(2, 3)",
+    "explanation": "The center of a circle is the midpoint of any diameter: ((-3 + 7)/2, (8 + (-2))/2) = (2, 3). Choice (2, 5) subtracts in the y-coordinate instead of adding. Choice (-5, 3) subtracts in the x-coordinate instead of adding. Choice (-5, 5) subtracts in both, halving each difference rather than averaging.",
+    "solve": "const x1=-3,y1=8,x2=7,y2=-2; return \"(\" + ((x1+x2)/2) + \", \" + ((y1+y2)/2) + \")\";",
+    "distractor_solve": {
+      "(-5, 5)": "const x1=-3,y1=8,x2=7,y2=-2; return \"(\" + ((x1-x2)/2) + \", \" + ((y1-y2)/2) + \")\";",
+      "(2, 5)": "const x1=-3,y1=8,x2=7,y2=-2; return \"(\" + ((x1+x2)/2) + \", \" + ((y1-y2)/2) + \")\";",
+      "(-5, 3)": "const x1=-3,y1=8,x2=7,y2=-2; return \"(\" + ((x1-x2)/2) + \", \" + ((y1+y2)/2) + \")\";"
+    }
+  },
+  {
+    "id": "GEO3-09",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "triangles: the exterior angle and the two remote interior angles",
+    "difficulty": "easy",
+    "prompt": "In the figure shown, side BC of triangle ABC is extended to point D. What is the value of x?",
+    "choices": [
+      "21",
+      "65",
+      "115",
+      "112"
+    ],
+    "correct_answer": "115",
+    "explanation": "An exterior angle of a triangle equals the sum of the two remote interior angles, so x = 47 + 68 = 115. Choice 65 gives the interior angle at C, 180 - 47 - 68, rather than the exterior angle. Choice 112 takes the supplement of the wrong angle, 180 - 68. Choice 21 subtracts the two remote interior angles instead of adding them.",
+    "solve": "return 47+68;",
+    "distractor_solve": {
+      "21": "return 68-47;",
+      "65": "return 180-47-68;",
+      "112": "return 180-68;"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"124.35,52.63 64,202 194,202\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"194\" y1=\"202\" x2=\"292\" y2=\"202\" stroke=\"#2B3A8C\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><path d=\"M 94 202 A 30 30 0 0 0 75.24 174.18\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><path d=\"M 114.61 76.74 A 26 26 0 0 0 135.34 76.19\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><path d=\"M 222 202 A 28 28 0 0 0 182.17 176.62\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><text x=\"118.35\" y=\"44.63\" >A</text><text x=\"48\" y=\"210\" >B</text><text x=\"190\" y=\"220\" >C</text><text x=\"296\" y=\"207\" >D</text><text x=\"94\" y=\"190\" fill=\"#0E7A5F\">68°</text><text x=\"118.35\" y=\"92.63\" fill=\"#0E7A5F\">47°</text><text x=\"206\" y=\"186\" fill=\"#0E7A5F\">x°</text><text x=\"24\" y=\"238\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  {
+    "id": "GEO3-10",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "trigonometry: converting a tangent ratio into a cosine",
+    "difficulty": "medium",
+    "prompt": "In a right triangle, the tangent of acute angle A is 8/15. What is the cosine of angle A?",
+    "choices": [
+      "15/17",
+      "8/15",
+      "15/23",
+      "8/17"
+    ],
+    "correct_answer": "15/17",
+    "explanation": "A tangent of 8/15 puts the leg opposite A at 8 and the leg adjacent at 15, so the hypotenuse is the square root of 64 + 225 = 17, and cos A = 15/17. Choice 8/17 gives sin A, using the opposite leg over the hypotenuse. Choice 8/15 simply repeats the tangent. Choice 15/23 adds the two legs to get a hypotenuse of 23 instead of using the Pythagorean theorem.",
+    "solve": "const o=8,a=15; const h=Math.sqrt(o*o+a*a); return a+\"/\"+h;",
+    "distractor_solve": {
+      "8/15": "const o=8,a=15; return o+\"/\"+a;",
+      "15/23": "const o=8,a=15; const h=o+a; return a+\"/\"+h;",
+      "8/17": "const o=8,a=15,h=17; return o+\"/\"+h;"
+    }
+  },
+  {
+    "id": "GEO3-11",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "coordinate geometry: the region a line cuts from the first quadrant",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the line 3x + 4y = 24 forms a triangle with the x-axis and the y-axis. What is the area of that triangle, in square units?",
+    "choices": [
+      "24",
+      "10",
+      "14",
+      "48"
+    ],
+    "correct_answer": "24",
+    "explanation": "The line meets the axes at (8, 0) and (0, 6), so the triangle has legs 8 and 6 and area (1/2)(8)(6) = 24. Choice 48 multiplies the intercepts without halving. Choice 14 adds the intercepts. Choice 10 gives the length of the segment between the intercepts, the square root of 64 + 36, rather than an area.",
+    "solve": "const a=24/3,b=24/4; return a*b/2;",
+    "distractor_solve": {
+      "10": "return Math.sqrt(8*8+6*6);",
+      "14": "return 8+6;",
+      "48": "return 8*6;"
+    }
+  },
+  {
+    "id": "GEO3-12",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "triangles: a base angle of an isosceles triangle from its vertex angle",
+    "difficulty": "easy",
+    "prompt": "In triangle ABC shown, the two marked sides are congruent. What is the value of x?",
+    "choices": [
+      "23",
+      "67",
+      "46",
+      "88"
+    ],
+    "correct_answer": "67",
+    "explanation": "Sides AB and AC are congruent, so the base angles at B and C are equal. The three angles sum to 180, so each base angle is (180 - 46)/2 = 67. Choice 46 repeats the labelled vertex angle as though the marked angle were congruent to it. Choice 88 reads the 46-degree label as a base angle and solves for the vertex instead, 180 - 2(46). Choice 23 halves the vertex angle, which is the angle the altitude from A makes with side AB rather than a base angle.",
+    "solve": "return (180-46)/2;",
+    "distractor_solve": {
+      "23": "return 46/2;",
+      "46": "return 46;",
+      "88": "return 180-2*46;"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"175,48 117.17,184.23 232.83,184.23\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"152.53\" y1=\"118.85\" x2=\"139.64\" y2=\"113.38\" stroke=\"#0E7A5F\" stroke-width=\"2\"/><line x1=\"210.36\" y1=\"113.38\" x2=\"197.47\" y2=\"118.85\" stroke=\"#0E7A5F\" stroke-width=\"2\"/><path d=\"M 161.72 79.3 A 34 34 0 0 0 188.28 79.3\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><path d=\"M 145.17 184.23 A 28 28 0 0 0 128.11 158.46\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><text x=\"167\" y=\"38\" >A</text><text x=\"99.17\" y=\"192.23\" >B</text><text x=\"238.83\" y=\"192.23\" >C</text><text x=\"162\" y=\"98\" fill=\"#0E7A5F\">46°</text><text x=\"149.17\" y=\"172.23\" fill=\"#0E7A5F\">x°</text><text x=\"202\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  {
+    "id": "GEO3-13",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "solids: the volume of a square pyramid from its slant height",
+    "difficulty": "hard",
+    "prompt": "A right pyramid has a square base with edges of length 24 feet, and the slant height of each triangular face is 15 feet. What is the volume of the pyramid, in cubic feet?",
+    "choices": [
+      "2592",
+      "2880",
+      "5184",
+      "1728"
+    ],
+    "correct_answer": "1728",
+    "explanation": "The slant height, half the base edge, and the pyramid height form a right triangle, so the height is the square root of 225 - 144 = 9, and the volume is (1/3)(24²)(9) = 1,728. Choice 2880 uses the slant height 15 as the pyramid height. Choice 5184 finds the height correctly but omits the factor 1/3 entirely. Choice 2592 finds the height correctly but uses the factor 1/2, the area formula for a triangle, in place of 1/3.",
+    "solve": "const s=24,l=15; const h=Math.sqrt(l*l-(s/2)*(s/2)); return s*s*h/3;",
+    "distractor_solve": {
+      "2592": "const s=24,l=15; const h=Math.sqrt(l*l-(s/2)*(s/2)); return s*s*h/2;",
+      "2880": "const s=24,l=15; return s*s*l/3;",
+      "5184": "const s=24,l=15; const h=Math.sqrt(l*l-(s/2)*(s/2)); return s*s*h;"
+    }
+  },
+  {
+    "id": "GEO3-14",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "solids: the surface area of a cube from its volume",
+    "difficulty": "medium",
+    "prompt": "A cube has a volume of 512 cubic centimeters. What is the total surface area of the cube, in square centimeters?",
+    "choices": [
+      "384",
+      "64",
+      "512",
+      "256"
+    ],
+    "correct_answer": "384",
+    "explanation": "The edge is the cube root of 512, which is 8, and a cube has six faces, so the surface area is 6(8²) = 384. Choice 64 gives the area of a single face. Choice 256 counts only the four lateral faces. Choice 512 repeats the volume as though the two quantities were the same number.",
+    "solve": "const e=Math.round(Math.cbrt(512)); return 6*e*e;",
+    "distractor_solve": {
+      "64": "const e=8; return e*e;",
+      "256": "const e=8; return 4*e*e;",
+      "512": "return 512;"
+    }
+  },
+  {
+    "id": "GEO3-15",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "lines and angles: a bisected angle with algebraic parts",
+    "difficulty": "hard",
+    "prompt": "In the figure shown, ray BD bisects angle ABC. What is the measure, in degrees, of angle ABC?",
+    "choices": [
+      "10",
+      "114",
+      "38",
+      "76"
+    ],
+    "correct_answer": "76",
+    "explanation": "A bisector makes the two parts equal, so 3x + 8 = 5x - 12, giving x = 10 and each part 38 degrees; angle ABC is 2(38) = 76. Choice 10 reports x instead of an angle measure. Choice 38 gives one half of angle ABC. Choice 114 treats BD as one of two trisecting rays and multiplies the part by 3.",
+    "solve": "const x=(8+12)/(5-3); return 2*(3*x+8);",
+    "distractor_solve": {
+      "10": "return (8+12)/(5-3);",
+      "38": "const x=10; return 3*x+8;",
+      "114": "const x=10; return 3*(3*x+8);"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><line x1=\"58\" y1=\"206\" x2=\"100.58\" y2=\"35.23\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"58\" y1=\"206\" x2=\"288\" y2=\"206\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"58\" y1=\"206\" x2=\"184.08\" y2=\"107.49\" stroke=\"#0E7A5F\" stroke-width=\"2\"/><path d=\"M 92.67 178.91 A 44 44 0 0 0 68.64 163.31\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><path d=\"M 118 206 A 60 60 0 0 0 105.28 169.06\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><text x=\"104.58\" y=\"39.23\" >A</text><text x=\"189.08\" y=\"111.49\" >D</text><text x=\"292\" y=\"211\" >C</text><text x=\"42\" y=\"212\" >B</text><text x=\"104.29\" y=\"119.49\" fill=\"#0E7A5F\">(3x + 8)°</text><text x=\"158.01\" y=\"184.19\" fill=\"#0E7A5F\">(5x - 12)°</text><text x=\"150\" y=\"222\" font-size=\"11\" fill=\"#5A6474\">BD bisects angle ABC.</text><text x=\"150\" y=\"238\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  {
+    "id": "GEO3-16",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "trigonometry: radian measure from an arc length",
+    "difficulty": "hard",
+    "prompt": "A circle has a radius of 12 inches. An arc of this circle has a length of 9π inches. What is the radian measure of the central angle that intercepts this arc?",
+    "choices": [
+      "4π/3",
+      "3π/2",
+      "3π/4",
+      "3π/8"
+    ],
+    "correct_answer": "3π/4",
+    "explanation": "Arc length is s = rθ with θ in radians, so θ = 9π/12 = 3π/4. Choice 3π/8 divides by the diameter 24 rather than the radius. Choice 4π/3 inverts the ratio, dividing the radius by the arc length. Choice 3π/2 halves the radius first, treating the given 12 as a diameter.",
+    "solve": "const r=12,s=9; const g=(a,b)=>b?g(b,a%b):a; const k=g(s,r); return (s/k)+\"π/\"+(r/k);",
+    "distractor_solve": {
+      "4π/3": "const r=12,s=9; const g=(a,b)=>b?g(b,a%b):a; const k=g(r,s); return (r/k)+\"π/\"+(s/k);",
+      "3π/2": "const r=12,s=9; const rr=r/2; const g=(a,b)=>b?g(b,a%b):a; const k=g(s,rr); return (s/k)+\"π/\"+(rr/k);",
+      "3π/8": "const r=12,s=9; const d=2*r; const g=(a,b)=>b?g(b,a%b):a; const k=g(s,d); return (s/k)+\"π/\"+(d/k);"
+    }
+  },
+  {
+    "id": "GEO3-17",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "area: a composite rectilinear region with a corner removed",
+    "difficulty": "medium",
+    "prompt": "The figure shown is a rectangle with a smaller rectangle removed from one corner. All lengths are in centimeters. What is the area of the figure, in square centimeters?",
+    "choices": [
+      "198",
+      "282",
+      "222",
+      "252"
+    ],
+    "correct_answer": "222",
+    "explanation": "The figure is an 18 by 14 rectangle with a 6 by 5 corner removed, so the area is 252 - 30 = 222. Choice 252 ignores the removed corner. Choice 282 adds the removed corner instead of subtracting it. Choice 198 splits the figure into a 12 by 14 piece and a right-hand piece, but uses the removed corner’s height 5 for that piece instead of the remaining height 9.",
+    "solve": "const W=18,H=14,nw=6,nh=5; return W*H - nw*nh;",
+    "distractor_solve": {
+      "198": "const H=14,nw=6,nh=5; const left=(18-nw)*H; const right=nw*nh; return left+right;",
+      "252": "const W=18,H=14; return W*H;",
+      "282": "const W=18,H=14,nw=6,nh=5; return W*H + nw*nh;"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><path d=\"M 60 40 H 180 V 90 H 240 V 180 H 60 Z\" fill=\"#C9D3F2\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><text x=\"112\" y=\"32\" >12</text><text x=\"186\" y=\"69\" >5</text><text x=\"206\" y=\"106\" >6</text><text x=\"246\" y=\"135\" >9</text><text x=\"142\" y=\"200\" >18</text><text x=\"38\" y=\"110\" >14</text><text x=\"56\" y=\"220\" font-size=\"11\" fill=\"#5A6474\">All lengths are in centimeters.</text></svg>"
+  },
+  {
+    "id": "GEO3-18",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "solids: the height of a cone from its volume",
+    "difficulty": "medium",
+    "prompt": "A right circular cone has a volume of 100π cubic inches and a base radius of 5 inches. What is the height of the cone, in inches?",
+    "choices": [
+      "60",
+      "4",
+      "13",
+      "12"
+    ],
+    "correct_answer": "12",
+    "explanation": "From V = (1/3)πr²h, 100π = (1/3)π(25)h, so h = 300/25 = 12. Choice 4 uses the cylinder formula πr²h and omits the factor 3. Choice 60 divides by the radius instead of by the radius squared. Choice 13 gives the slant height, the square root of 25 + 144, rather than the height.",
+    "solve": "const V=100,r=5; return 3*V/(r*r);",
+    "distractor_solve": {
+      "4": "const V=100,r=5; return V/(r*r);",
+      "13": "const r=5,h=12; return Math.sqrt(r*r+h*h);",
+      "60": "const V=100,r=5; return 3*V/r;"
+    }
+  },
+  {
+    "id": "GEO3-19",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "coordinate geometry: reflecting a point across the line y = x",
+    "difficulty": "easy",
+    "prompt": "In the xy-plane, the point (3, 7) is reflected across the line y = x. What are the coordinates of its image?",
+    "choices": [
+      "(3, -7)",
+      "(-3, 7)",
+      "(7, 3)",
+      "(-7, -3)"
+    ],
+    "correct_answer": "(7, 3)",
+    "explanation": "Reflecting across y = x exchanges the coordinates, so (3, 7) maps to (7, 3). Choice (3, -7) reflects across the x-axis, negating y. Choice (-3, 7) reflects across the y-axis, negating x. Choice (-7, -3) reflects across the line y = -x, exchanging the coordinates and negating both.",
+    "solve": "const x=3,y=7; return \"(\"+y+\", \"+x+\")\";",
+    "distractor_solve": {
+      "(3, -7)": "const x=3,y=7; return \"(\"+x+\", \"+(-y)+\")\";",
+      "(-3, 7)": "const x=3,y=7; return \"(\"+(-x)+\", \"+y+\")\";",
+      "(-7, -3)": "const x=3,y=7; return \"(\"+(-y)+\", \"+(-x)+\")\";"
+    }
+  },
+  {
+    "id": "GEO3-20",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "circles: reading a circle’s equation from its graph",
+    "difficulty": "medium",
+    "prompt": "Which equation represents the circle shown in the xy-plane?",
+    "choices": [
+      "(x - 4)² + (y + 3)² = 5",
+      "(x + 4)² + (y - 3)² = 25",
+      "(x + 4)² + (y - 3)² = 5",
+      "(x - 4)² + (y + 3)² = 25"
+    ],
+    "correct_answer": "(x + 4)² + (y - 3)² = 25",
+    "explanation": "The circle is centered at (-4, 3) with radius 5, and the standard form is (x - h)² + (y - k)² = r², so it is (x + 4)² + (y - 3)² = 25. The choices with (x - 4) and (y + 3) read the center as (4, -3), reversing both signs. The choices ending in 5 put the radius itself on the right side rather than the radius squared.",
+    "solve": "const h=-4,k=3,r=5; const t=(v)=>(v<0? \"+ \"+(-v) : \"- \"+v); return \"(x \" + t(h) + \")² + (y \" + t(k) + \")² = \" + (r*r);",
+    "distractor_solve": {
+      "(x - 4)² + (y + 3)² = 5": "const h=4,k=-3,r=5; const t=(v)=>(v<0? \"+ \"+(-v) : \"- \"+v); return \"(x \" + t(h) + \")² + (y \" + t(k) + \")² = \" + r;",
+      "(x + 4)² + (y - 3)² = 5": "const h=-4,k=3,r=5; const t=(v)=>(v<0? \"+ \"+(-v) : \"- \"+v); return \"(x \" + t(h) + \")² + (y \" + t(k) + \")² = \" + r;",
+      "(x - 4)² + (y + 3)² = 25": "const h=4,k=-3,r=5; const t=(v)=>(v<0? \"+ \"+(-v) : \"- \"+v); return \"(x \" + t(h) + \")² + (y \" + t(k) + \")² = \" + (r*r);"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><line x1=\"26\" y1=\"8\" x2=\"26\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"38\" y1=\"8\" x2=\"38\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"50\" y1=\"8\" x2=\"50\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"62\" y1=\"8\" x2=\"62\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"74\" y1=\"8\" x2=\"74\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"86\" y1=\"8\" x2=\"86\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"98\" y1=\"8\" x2=\"98\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"110\" y1=\"8\" x2=\"110\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"122\" y1=\"8\" x2=\"122\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"134\" y1=\"8\" x2=\"134\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"146\" y1=\"8\" x2=\"146\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"158\" y1=\"8\" x2=\"158\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"170\" y1=\"8\" x2=\"170\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"182\" y1=\"8\" x2=\"182\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"194\" y1=\"8\" x2=\"194\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"206\" y1=\"8\" x2=\"206\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"218\" y1=\"8\" x2=\"218\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"230\" y1=\"8\" x2=\"230\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"242\" y1=\"8\" x2=\"242\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"254\" y1=\"8\" x2=\"254\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"266\" y1=\"8\" x2=\"266\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"278\" y1=\"8\" x2=\"278\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"290\" y1=\"8\" x2=\"290\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"302\" y1=\"8\" x2=\"302\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"314\" y1=\"8\" x2=\"314\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"326\" y1=\"8\" x2=\"326\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"338\" y1=\"8\" x2=\"338\" y2=\"242\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"236\" x2=\"344\" y2=\"236\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"224\" x2=\"344\" y2=\"224\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"212\" x2=\"344\" y2=\"212\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"200\" x2=\"344\" y2=\"200\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"188\" x2=\"344\" y2=\"188\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"176\" x2=\"344\" y2=\"176\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"164\" x2=\"344\" y2=\"164\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"152\" x2=\"344\" y2=\"152\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"140\" x2=\"344\" y2=\"140\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"128\" x2=\"344\" y2=\"128\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"116\" x2=\"344\" y2=\"116\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"104\" x2=\"344\" y2=\"104\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"92\" x2=\"344\" y2=\"92\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"80\" x2=\"344\" y2=\"80\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"68\" x2=\"344\" y2=\"68\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"56\" x2=\"344\" y2=\"56\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"44\" x2=\"344\" y2=\"44\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"32\" x2=\"344\" y2=\"32\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"20\" x2=\"344\" y2=\"20\" stroke=\"#E3E7F0\" stroke-width=\"1\"/><line x1=\"8\" y1=\"128\" x2=\"344\" y2=\"128\" stroke=\"#12151C\" stroke-width=\"1.5\"/><line x1=\"206\" y1=\"8\" x2=\"206\" y2=\"242\" stroke=\"#12151C\" stroke-width=\"1.5\"/><text x=\"56\" y=\"142\" font-size=\"10\" fill=\"#5A6474\">-12</text><text x=\"104\" y=\"142\" font-size=\"10\" fill=\"#5A6474\">-8</text><text x=\"152\" y=\"142\" font-size=\"10\" fill=\"#5A6474\">-4</text><text x=\"248\" y=\"142\" font-size=\"10\" fill=\"#5A6474\">4</text><text x=\"296\" y=\"142\" font-size=\"10\" fill=\"#5A6474\">8</text><text x=\"190\" y=\"228\" font-size=\"10\" fill=\"#5A6474\">-8</text><text x=\"190\" y=\"180\" font-size=\"10\" fill=\"#5A6474\">-4</text><text x=\"190\" y=\"84\" font-size=\"10\" fill=\"#5A6474\">4</text><text x=\"190\" y=\"36\" font-size=\"10\" fill=\"#5A6474\">8</text><text x=\"210\" y=\"142\" font-size=\"10\" fill=\"#5A6474\">O</text><circle cx=\"158\" cy=\"92\" r=\"60\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><text x=\"330\" y=\"122\" font-size=\"11\" fill=\"#5A6474\">x</text><text x=\"211\" y=\"18\" font-size=\"11\" fill=\"#5A6474\">y</text></svg>"
+  },
+  {
+    "id": "GEO3-21",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "circles: the area of a circle from its circumference",
+    "difficulty": "easy",
+    "prompt": "A circle has a circumference of 36π meters. What is the area of the circle, in square meters?",
+    "choices": [
+      "1296π",
+      "324π",
+      "36π",
+      "81π"
+    ],
+    "correct_answer": "324π",
+    "explanation": "From 2πr = 36π the radius is 18, so the area is π(18)² = 324π. Choice 1296π uses the 36 from the circumference as the radius, π(36)². Choice 81π finds 18 and then treats it as a diameter, halving again to a radius of 9. Choice 36π applies πd rather than πr², returning the given number with the wrong formula attached.",
+    "solve": "const C=36; const r=C/2; return (r*r)+\"π\";",
+    "distractor_solve": {
+      "1296π": "const C=36; return (C*C)+\"π\";",
+      "36π": "const C=36; const r=C/2; return (2*r)+\"π\";",
+      "81π": "const C=36; const r=C/2; const rr=r/2; return (rr*rr)+\"π\";"
+    }
+  },
+  {
+    "id": "GEO3-22",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "solids: the volume of a cylinder read from a labelled figure",
+    "difficulty": "medium",
+    "prompt": "The right circular cylinder shown is labelled with two of its measurements. All lengths are in inches. What is the volume of the cylinder, in cubic inches?",
+    "choices": [
+      "360π",
+      "1440π",
+      "120π",
+      "192π"
+    ],
+    "correct_answer": "360π",
+    "explanation": "The figure gives a diameter of 12, so the radius is 6, and the volume is π(6)²(10) = 360π. Choice 1440π uses the diameter 12 in place of the radius. Choice 120π applies the cone formula, multiplying by 1/3. Choice 192π gives the total surface area, 2πrh + 2πr², rather than the volume.",
+    "solve": "const d=12,h=10; const r=d/2; return (r*r*h)+\"π\";",
+    "distractor_solve": {
+      "1440π": "const d=12,h=10; return (d*d*h)+\"π\";",
+      "120π": "const d=12,h=10; const r=d/2; return (r*r*h/3)+\"π\";",
+      "192π": "const d=12,h=10; const r=d/2; return (2*r*h + 2*r*r)+\"π\";"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><path d=\"M 104 62 V 186 A 68 21 0 0 0 240 186 V 62\" fill=\"#EEF1FA\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><path d=\"M 104 186 A 68 21 0 0 1 240 186\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"1\" stroke-dasharray=\"4 4\"/><ellipse cx=\"172\" cy=\"62\" rx=\"68\" ry=\"21\" fill=\"#F7F8FC\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"104\" y1=\"62\" x2=\"240\" y2=\"62\" stroke=\"#0E7A5F\" stroke-width=\"1.5\" stroke-dasharray=\"5 3\"/><text x=\"164\" y=\"54\" fill=\"#0E7A5F\">12</text><line x1=\"266\" y1=\"62\" x2=\"266\" y2=\"186\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><line x1=\"260\" y1=\"62\" x2=\"272\" y2=\"62\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><line x1=\"260\" y1=\"186\" x2=\"272\" y2=\"186\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><text x=\"276\" y=\"128\" fill=\"#0E7A5F\">10</text><text x=\"40\" y=\"226\" font-size=\"11\" fill=\"#5A6474\">All lengths are in inches.</text></svg>"
+  },
+  {
+    "id": "GEO3-23",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "trigonometry: the area of a triangle from two sides and the included angle",
+    "difficulty": "medium",
+    "prompt": "In triangle WXY shown, the lengths of two sides and the measure of the angle between them are given. What is the area of triangle WXY, in square centimeters?",
+    "choices": [
+      "180",
+      "45",
+      "50",
+      "90"
+    ],
+    "correct_answer": "45",
+    "explanation": "The height to base WX is 10 sin 30 = 5, so the area is (1/2)(18)(5) = 45. Choice 90 finds that same height but omits the factor 1/2. Choice 180 uses the side WY = 10 as though it were the height and also omits the 1/2, giving 18 x 10. Choice 50 pairs the height 5 with the wrong base, multiplying it by WY = 10 and omitting the 1/2.",
+    "solve": "const b=18,s=10,th=30*Math.PI/180; return b*s*Math.sin(th)/2;",
+    "distractor_solve": {
+      "50": "const s=10,th=30*Math.PI/180; const h=s*Math.sin(th); return s*h;",
+      "90": "const b=18,s=10,th=30*Math.PI/180; return b*s*Math.sin(th);",
+      "180": "const b=18,s=10; return b*s;"
+    },
+    "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"40,208 226,208 130.07,156\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><path d=\"M 76 208 A 36 36 0 0 0 71.18 190\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.5\"/><text x=\"24\" y=\"214\" >W</text><text x=\"230\" y=\"214\" >X</text><text x=\"135.07\" y=\"152\" >Y</text><text x=\"125\" y=\"228\" >18</text><text x=\"66\" y=\"178\" >10</text><text x=\"82\" y=\"202\" fill=\"#0E7A5F\">30°</text><text x=\"186\" y=\"242\" font-size=\"11\" fill=\"#5A6474\">All lengths are in centimeters.</text></svg>"
+  },
+  {
+    "id": "GEO3-24",
+    "domain": "Geometry and Trigonometry",
+    "subskill": "right triangles: a missing leg from the area and one leg",
+    "difficulty": "medium",
+    "prompt": "A right triangle has an area of 54 square inches, and one of its legs has a length of 9 inches. What is the length of the other leg, in inches?",
+    "choices": [
+      "36",
+      "6",
+      "15",
+      "12"
+    ],
+    "correct_answer": "12",
+    "explanation": "The legs of a right triangle are its base and height, so (1/2)(9)(b) = 54 and b = 12. Choice 6 uses area = leg x leg without the factor 1/2. Choice 15 gives the hypotenuse, the square root of 81 + 144. Choice 36 gives the perimeter 9 + 12 + 15 rather than the missing leg.",
+    "solve": "const A=54,l=9; return 2*A/l;",
+    "distractor_solve": {
+      "6": "const A=54,l=9; return A/l;",
+      "15": "const l=9,b=12; return Math.sqrt(l*l+b*b);",
+      "36": "const l=9,b=12,h=15; return l+b+h;"
+    }
+  }
+]
