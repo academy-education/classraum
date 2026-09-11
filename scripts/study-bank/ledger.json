@@ -2564,6 +2564,66 @@
      "verdict": "run-middle: 0 shapes. option-pair-constant: 1 shape, key in 0 (vs 50.0%). key-is-sum: 0 shapes. Before the drop, pair-constant named AH3-17 (48.8+51.2=100) and all three solvers named that exact pair. One grader reports mild residual narrowing on AH3-21 (81 the only perfect fourth power in its set) — recorded, not acted on, since it is one item and no checker covers it."
     }
    }
+  },
+  {
+   "id": "act-math-v6-geo-kept-2026-09-11",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v6-geo",
+   "contentSha": "6fcace0272ca55551e36fb790d8cc260d08b71b3d3a95ce9e093fa3d743e1120",
+   "note": "25 items (15 Geometry, 13 Statistics & Probability authored; 25 kept), the survivors of act-math-v6-geo.batch.json. TWO changes from the graded bytes, and a script proves nothing else moved: (1) the three items all three options-only solvers got were dropped; (2) the false \"Figure not drawn to scale\" caption was removed from AM6-23 (a data table, where it is meaningless) and AM6-28 (a bar graph that IS to scale at 8px per book, where it told a student to distrust the one thing the item asks them to read). All three graders flagged both captions independently. The rebuild compared 255 fields across the 25 kept items against the graded bytes and refused on any difference other than `graphic` on those two ids: no correct_answer, choices, prompt, solve or distractor_solve changed. Inserted at BANK_BAND=mixed.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "25/25 recompute to their key in the sandbox; 75 of 75 distractor_solve entries recomputed, 0 mismatches. Both hub lines read \"no derivational structure in any option set\" — a ZERO-POPULATION line, not a low rate, and it is recorded as such: the author independently re-ran the same operation list over all 27 numeric sets and found max reach 1, key-is-hub 0. Render dealt key slots 7/7/7/7, spread 0. Three figures keep the not-to-scale caption because they genuinely are not to scale."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three independent graders on the sanitized render (make-grade-render.mjs), all reporting sha f625e25908ba1079 before and after. 28 of 28 keys agreed 3/3, ZERO non-exclusive votes. All three checked each of the five figures against its own labels and all three found no figure disagreeing with its labels — the two-way table reconciles on both margins, and the bar graph measures exactly 8px per book against its axis. Two graders separately flagged label crowding on AM6-05, where the height `6` and the leg `8` sit ~30px apart and swapping them yields 112, which is a listed option; the right-angle marker disambiguates and all three still called it exclusive, but it is worth moving before the next render. DIFFICULTY: all three counted ZERO hard items (12/16/0, 15/13/0, 16/12/0 easy/medium/hard). This batch covers the opening and middle of a form and cannot supply the back third; it inserts at band=mixed because it was commissioned as a domain batch, not as a hard batch, and ACT Math genuinely opens easy."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 3 solvers, values with no stems: 29.8% vs a 25.0% chance line derived from the render width, margin +4.8, p=0.19 — NOT significant at the mean. 3 items solved by all three against 0.74 expected at the batch's own rate, p=0.037 — concentrated, the same shape as sat-adv-h3, and those three were dropped. THE BATCH WAS AUTHORED TO DEFEAT THREE MEASURED CHANNELS AND IT DID: two solvers swept exhaustively by script (one break-testing the sweep against a fixture with all three tells planted, which fired on every one) and both report ZERO pair-sums to an unprinted 90/180/360/100/1 across 28 items, ZERO arithmetic runs and ZERO geometric runs. That is in a batch 15/28 geometry, which is exactly where the pair-to-constant tell lives."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "check-run-middle, check-option-pair-constant and check-key-is-sum all report 0 items carrying the shape, over a read denominator of 26 of 28 scorable (the 2 unscorable are the coordinate-pair and the pi-valued sets — recorded, not hidden). TWO FINDINGS FROM THE SOLVERS, one real and one refuted. REAL: check-run-middle is SCALAR-ONLY and cannot see coordinate options at all; AM6-03 carries a genuine componentwise run, (1,2) being exactly the midpoint of (10,-7) and (-8,11). It is NOT a leak here because the key is a third option, but the channel is unmeasured bank-wide and the checker should be extended componentwise. REFUTED: one solver proposed that the near-misses clustering just off the constants (91, 179.2, 184, 0.99, 1.02) are a de-tuning fingerprint and therefore a new channel. Another Monte-Carlo'd it on resampled sets of the same magnitude: 14 observed near-misses against 16.1 expected, at or below chance. Recorded as a negative so nobody rebuilds it."
+    }
+   }
+  },
+  {
+   "id": "isee-verbal-s12-kept-2026-09-11",
+   "targetTest": "isee",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "cohort": "isee-verbal-s12",
+   "contentSha": "a7574b62de4a897733955a2c248369afa163826f1f2fc14fc159fb12d11251bc",
+   "note": "25 items (synonyms and sentence completions), the survivors of isee-verbal-s12.batch.json. Five dropped: IV12-18 and IV12-28 on a non-exclusive vote, and IV12-14, IV12-19 and IV12-20 because all three graders independently named a MECHANISM rather than a preference — the key as the only rare word in its set, the key as the only negative polarity, and the key as the only option on the axis the stem names (the CLAUDE.md axis-alignment rule verbatim). Inserted at BANK_BAND=mixed: the ISEE Upper Level form genuinely opens easy.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "25 items, four choices each (width confirmed from isee-verbal-s11 and from the live pool, all 4-choice). Render dealt key slots 7/6/6/6, spread 1. No headword repeats within the batch or against the 139 synonym headwords already live in isee-verbal-*; no option string reused across items; American spelling."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three independent graders on the sanitized render, all reporting sha 77f0a0331aa6018a before and after. 30 of 30 keys agreed 3/3 on the full batch, with 2 items carrying a non-exclusive vote (both dropped). All three graders converged on the same three defects by mechanism, which is why those three items are also gone: IV12-14 CAPRICIOUS keys \"inconstant\", the only literary word against three everyday adjectives, so a student who has learned that hard headwords take hard answers picks it without knowing the word; IV12-19 keys the only deflating option against three neutral-to-positive ones; IV12-20 is wholly about an amendment clause and only the key mentions amending. Graders also agree the completion half is thin at the easy end and that several late completions test reasoning about records and selection effects rather than vocabulary, which is above the ISEE band — recorded for the next brief, not repaired here."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "THE MARGIN HERE IS AN INSTRUMENT FLOOR, NOT A LEAK, AND IT TOOK A MATCHED LIVE CONTROL TO ESTABLISH THAT. Candidate: 36.7% on the 30-item render, +11.7 over a 25.0% literal; 36.0% restricted to the kept 25. Control: 30 ALREADY-SHIPPED ISEE verbal items drawn from five live cohorts, excluding the cohort under test, through the identical render — 40.0%, +15.0. THE CANDIDATE SCORES BELOW THE LIVE BANK. What prompted the control: four of the six unanimously-solved items had solver `why` fields reading \"bare guess\" and \"no structural tell\", and three solvers do not converge on the right answer six times by chance — they are not independent, being one model with one prior over which of four words a test would key. On bare numerals that prior is worth nothing, which is why the four maths batches the same day measured clean; on vocabulary it is worth about fifteen points and is partly the construct the item exists to test. Dropping five items barely moved the number (36.7 to 36.0), which is itself consistent with a floor rather than a concentrated leak."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Three independent runs on the kept 25-item options-only render, all three reporting sha 956d5dd478eb9627. Mean legal options 3.96 of 4. Elimination DECIDED ZERO of 75 picks — every pick came back basis=guess, which is the healthy result: no option set collapses toward a single legal candidate once the source is hidden. All three independently found the SAME single illegal option, and agreed exactly (legal=3 from each): on the item whose set is totals/means/cost/replaced, \"replaced\" is a past participle where the other three take a present-tense or bare-noun slot. That is a construction defect worth an author fix — a real ISEE would not ship a grammatically non-parallel distractor — but it is NOT a leak: it eliminates one option and leaves three live, naming no key. All three graders volunteered, unprompted, that `legal` is not a proxy for solvability and that this stage must not be read as clearing the batch."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key letters re-dealt at draw time so authored order is unreachable (AUTHORING-BRIEF 2b); the render deals flat at 7/6/6/6. The three cross-item tells the graders found are gone with the three dropped items. Two residual shapes recorded and NOT acted on, both single-item: one set puts \"uncorroborated\" (GRE-band) against three ordinary un- words, but it is a DISTRACTOR, so odd-one-out does not find the key; and two synonym items use an all-un- prefix frame, which the elimination runs independently judged helps rather than leaks, since the shared morphology gives no way to prefer one member."
+    }
+   }
   }
  ],
  "auditedCohorts": [

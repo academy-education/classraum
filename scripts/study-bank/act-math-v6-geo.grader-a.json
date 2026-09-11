@@ -1,0 +1,254 @@
+{
+  "AM6-01": {
+    "pick": "B",
+    "solved": "Area of rectangle = 14 x 6 = 84 sq ft.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "20 = half-perimeter, 40 = perimeter, 42 = 14x6/2. Correct opener for an ACT form."
+  },
+  "AM6-02": {
+    "pick": "D",
+    "solved": "Angles of a triangle sum to 180: 180 - 34 - 71 = 75.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "146 = 180-34 and 109 = 180-71 are real slips; 19 is thin (no natural wrong path produces it)."
+  },
+  "AM6-03": {
+    "pick": "B",
+    "solved": "Q = 2M - P = (2*4 - (-2), 2*(-1) - 5) = (10, -7). Check midpoint of (-2,5),(10,-7) = (4,-1).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "(1,2) is the midpoint of P and M, (-8,11) is 2P-M, (6,-6) is M-P. Every wrong option is a real procedure."
+  },
+  "AM6-04": {
+    "pick": "C",
+    "solved": "Similar triangles: 6/9 = h/42, so h = 42 * 2/3 = 28 ft.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "63 = 42 * 9/6, the inverted ratio; 33 = 42-9; 39 = 42-9+6."
+  },
+  "AM6-05": {
+    "pick": "D",
+    "solved": "Trapezoid area = (b1+b2)/2 * h. Bases 18 (AD) and 10 (BC), height 6 (the dashed segment from B to AD, with the right-angle mark). (18+10)/2 * 6 = 14*6 = 84.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "FIGURE CHECK: labels are internally consistent and the labelled quantities agree with what the drawing depicts. The dashed green segment carries the right-angle polyline and meets AD, so '6' unambiguously labels the height; '8' sits outside the slanted side AB and is deliberate unused data (112 = 14*8 is choice C, the trap). No contradiction: with h=6 and leg AB=8 the horizontal offset is sqrt(28) ~ 5.3, which is compatible with bases 18 and 10. The drawn proportions are off (drawn height 90px vs drawn base 260px, i.e. a visual h/b of ~0.35 against the true 6/18 = 0.33 - actually close) but the figure is captioned not to scale, so this is fine. Choice B 168 = (18+10)*6, the forgotten halving."
+  },
+  "AM6-06": {
+    "pick": "C",
+    "solved": "Interior 140 => exterior 40 => n = 360/40 = 9. Sum = (9-2)*180 = 1260.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "1080 is n=8, 1620 is n=11 - both off-by-one style slips. 1400 = 140*10 is the weakest but a student who guesses n=10 from '140' would land there."
+  },
+  "AM6-07": {
+    "pick": "C",
+    "solved": "Lateral area of a cylinder = 2*pi*r*h = 2*pi*6*10 = 120pi.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "192pi is the TOTAL surface area (2pi*6*16), 360pi is the volume, 36pi is one end. The stem explicitly excludes the ends, so 192pi is fairly excluded - the item is exclusive, but only because that clause is there."
+  },
+  "AM6-08": {
+    "pick": "D",
+    "solved": "Right angle at C so AB=25 is the hypotenuse; AC = sqrt(25^2-7^2) = 24. cos A = adjacent/hyp = AC/AB = 24/25.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "7/25 = sin A, 7/24 = tan A, 25/24 = sec A. Textbook distractor set."
+  },
+  "AM6-09": {
+    "pick": "D",
+    "solved": "Height = s*sqrt(3)/2 = 12*0.8660 = 10.392 -> 10.4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "6.0 = half the side, 8.5 = 12/sqrt(2) (45-45-90 confusion), 13.9 = 12*2/sqrt(3) (the 30-60-90 ratio applied in the wrong direction). All three are reachable."
+  },
+  "AM6-10": {
+    "pick": "C",
+    "solved": "Complete the square: (x-2)^2 - 4 + (y+5)^2 - 25 = 20 => (x-2)^2 + (y+5)^2 = 49, r = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "49 = r^2 (forgetting the square root) is the strong one; 20 = the untouched RHS. 3 is weak - I cannot construct a wrong path that yields 3 (sqrt(20+4-25) is imaginary)."
+  },
+  "AM6-11": {
+    "pick": "A",
+    "solved": "SA = 2(5*8 + 8*3 + 5*3) = 2(40+24+15) = 2*79 = 158.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "79 = three faces only (forgot the factor 2), 120 = the volume. 64 is weak - no clean derivation."
+  },
+  "AM6-12": {
+    "pick": "A",
+    "solved": "Square = 14^2 = 196. Quarter circle = (1/4)(22/7)(14^2) = (1/4)(22/7)(196) = 154. Remaining = 196 - 154 = 42.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "154 is the piece removed rather than the piece remaining - the intended trap, and the stem is explicit enough ('the piece that remains') that it is fair. 350 = 196+154."
+  },
+  "AM6-13": {
+    "pick": "D",
+    "solved": "Corresponding angles are equal: 3x + 20 = 5x - 40 => 2x = 60 => x = 30. (Check: both angles measure 110.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "FIGURE CHECK: the two labels sit in the upper-right region of each intersection (transversal crosses l at x~130 and m at x~230; labels at x=142 and x=242, both above their line), so they ARE corresponding angles as the stem states - figure and claim agree. One soft mismatch: the transversal is drawn at 45 degrees, making the drawn upper-right angle ~135 degrees while the solved value is 110. The figure is captioned 'not drawn to scale' so this does not break the item, but it is a 25-degree visual disagreement and a student eyeballing would not be helped. Choice C (25) comes from treating the pair as supplementary - a genuinely good distractor; B (110) is the angle instead of x; A (10) is weak."
+  },
+  "AM6-14": {
+    "pick": "B",
+    "solved": "Similar figures: area ratio = (3/5)^2 = 9/25. 45 * 25/9 = 125.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "75 = 45*5/3 (linear ratio applied), 27 = 45*3/5, 81 = 45*9/5. Four distinct real errors."
+  },
+  "AM6-15": {
+    "pick": "B",
+    "solved": "Right angle at R, angle P = 35, hypotenuse PQ = 18. PR is adjacent to P: PR = 18*cos(35) = 18*0.8192 = 14.74 -> 14.7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "FIGURE CHECK: '18' is placed at (128,116), which lies on the hypotenuse PQ (midpoint ~(145,125)) and nowhere near the vertical leg QR at x=250 - so the label is unambiguous. The right-angle mark is at R and the arc is at P, both matching the stem. Minor scale mismatch: the drawn angle at P is atan(130/210) = 31.7 degrees against the labelled 35, within not-to-scale tolerance. Distractors: 10.3 = 18*sin(35) = QR, 12.6 = 18*tan(35), 22.0 = 18/cos(35) (treating PR as the hypotenuse). Excellent set."
+  },
+  "AM6-16": {
+    "pick": "C",
+    "solved": "(82+91+76+88+93)/5 = 430/5 = 86.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "71.7 = 430/6, 107.5 = 430/4, 88 = the median. Fine."
+  },
+  "AM6-17": {
+    "pick": "B",
+    "solved": "Sorted: 7, 7, 9, 12, 15, 20. Median = (9+12)/2 = 10.5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "7 = the mode, 11.7 = the mean (70/6), 9 = the third value of the sorted list (a student who picks a single middle element rather than averaging the pair). The mode and mean traps are the real ones."
+  },
+  "AM6-18": {
+    "pick": "A",
+    "solved": "Total 4+7+9 = 20. P(blue) = 7/20 = 0.35.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "0.20 = 4/20 (red), 0.45 = 9/20 (green), 0.54 ~ 7/13 (blue against non-blue as odds). The colour-swap distractors are the workhorses."
+  },
+  "AM6-19": {
+    "pick": "A",
+    "solved": "Without replacement: (5/8)(4/7) = 20/56 = 5/14.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "25/64 = with replacement, 15/56 = (5/8)(3/7) (wrong second numerator), 3/28 = both white. All four fractions are unreduced-vs-reduced distinct so no formatting tell."
+  },
+  "AM6-20": {
+    "pick": "C",
+    "solved": "Weighted mean: (15*76 + 5*96)/20 = (1140+480)/20 = 1620/20 = 81.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "86 = the unweighted average of 76 and 96 - the intended trap and a strong one. 108 and 57 are thin."
+  },
+  "AM6-21": {
+    "pick": "A",
+    "solved": "Fundamental counting principle: 4*6*5 = 120.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "24 = 4*6, 30 = 6*5, 15 = 4+6+5. Pairwise-product and sum errors; standard."
+  },
+  "AM6-22": {
+    "pick": "A",
+    "solved": "Order does not matter: C(8,3) = 8*7*6/6 = 56.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "336 = P(8,3) (permutation - the key trap), 168 = 8*7*3, 21 = C(7,2). Good set."
+  },
+  "AM6-23": {
+    "pick": "B",
+    "solved": "Conditional on tea: tea total = 68, of which evening = 46. 46/68 = 0.6765 -> 0.68.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "FIGURE CHECK: the table is arithmetically closed and correct - 48+22=70, 34+46=80, 48+34=82, 22+46=68, 70+80=150=82+68. No row/column disagrees with a margin. Row and column headers are placed in the right cells. One cosmetic defect: the graphic carries the caption 'Figure not drawn to scale', which is meaningless on a two-way frequency table and should be dropped. Distractors: 0.57 = 46/80 (conditioning on evening instead of tea - the correct trap for a conditional-probability item), 0.31 = 46/150 (joint), 0.45 = 68/150 (marginal)."
+  },
+  "AM6-24": {
+    "pick": "C",
+    "solved": "Five equal-area sections, so E = (2+4+4+6+9)/5 = 25/5 = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "5.25 = 21/4, averaging the four DISTINCT values and ignoring that 4 occupies two sections - the intended and genuinely good trap. 4 = the mode/median. 7 is thin. Stem says 'sections of equal area', which closes the only ambiguity."
+  },
+  "AM6-25": {
+    "pick": "D",
+    "solved": "P(at least one head) = 1 - P(no heads) = 1 - (1/2)^3 = 7/8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "3/4 is the same computation for two flips; 1/2 is P(exactly one head is first) type reasoning. Complement items are standard early-to-mid ACT."
+  },
+  "AM6-26": {
+    "pick": "B",
+    "solved": "Lower half 3,7,8,12 -> Q1 = 7.5. Upper half 14,18,21,25 -> Q3 = 19.5. IQR = 19.5 - 7.5 = 12.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "22 = the full range, 19.5 = Q3 alone. 13 is the weakest but could come from 25-12. No ambiguity in quartile method here: with n=8 the median splits cleanly into two four-value halves, so the inclusive and exclusive conventions agree. That is worth saying - for n odd this item would NOT be exclusive."
+  },
+  "AM6-27": {
+    "pick": "D",
+    "solved": "1240 * 3/8 = 1240/8 * 3 = 155 * 3 = 465.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "155 = 1240/8 (stopping one step early - the strong one), 413 ~ 1240/3, 372 = 1240*0.3."
+  },
+  "AM6-28": {
+    "pick": "A",
+    "solved": "Total = 12+18+9+15+6 = 60. March + May = 9+6 = 15. 15/60 = 25%.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "FIGURE CHECK: the bars agree exactly with their printed value labels. Axis is 40px per 5 books (0 at y=200), i.e. 8px per book; bar heights are 96, 144, 72, 120, 48 px = 12, 18, 9, 15, 6 books. Every bar matches its label. Same cosmetic defect as AM6-23: the caption reads 'Figure not drawn to scale' on a graph that IS drawn to scale and whose scale a student may legitimately read off the axis - this caption is actively misleading here and should be removed. Distractors: 15% quotes the raw count as a percent, 50% = 15/30, 30% is thin."
+  }
+}

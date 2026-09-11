@@ -1,0 +1,550 @@
+[
+ {
+  "id": "AM6-01",
+  "domain": "Geometry",
+  "subskill": "area of a rectangle, with perimeter available",
+  "difficulty": "easy",
+  "prompt": "A rectangular patio is 14 feet long and 6 feet wide. What is the area of the patio, in square feet?",
+  "choices": [
+   "84",
+   "40",
+   "42",
+   "20"
+  ],
+  "correct_answer": "84",
+  "explanation": "The area of a rectangle is length times width, 14 x 6 = 84 square feet. \"40\" is the perimeter, 2(14 + 6), which is a length rather than an area. \"42\" comes from a solver who uses the triangle formula and takes half the product, (1/2)(14)(6). \"20\" comes from a solver who adds the two dimensions, 14 + 6, instead of multiplying them.",
+  "solve": "return 14*6;",
+  "distractor_solve": {
+   "20": "return 14+6;",
+   "40": "return 2*(14+6);",
+   "42": "return 0.5*14*6;"
+  }
+ },
+ {
+  "id": "AM6-02",
+  "domain": "Geometry",
+  "subskill": "third angle of a triangle from two given angles",
+  "difficulty": "easy",
+  "prompt": "In triangle ABC, the measure of angle A is 34° and the measure of angle B is 71°. What is the measure, in degrees, of angle C?",
+  "choices": [
+   "75",
+   "146",
+   "109",
+   "19"
+  ],
+  "correct_answer": "75",
+  "explanation": "The three angle measures of a triangle add to 180°, so angle C measures 180 - 34 - 71 = 75 degrees. \"146\" is 180 - 34, from a solver who subtracts only angle A. \"109\" is 180 - 71, from a solver who subtracts only angle B. \"19\" is 180 - 90 - 71, from a solver who assumes the triangle has a right angle and then discards the 34°.",
+  "solve": "return 180-34-71;",
+  "distractor_solve": {
+   "19": "return 180-90-71;",
+   "109": "return 180-71;",
+   "146": "return 180-34;"
+  }
+ },
+ {
+  "id": "AM6-03",
+  "domain": "Geometry",
+  "subskill": "finding an endpoint from a midpoint and the other endpoint",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, M(4,−1) is the midpoint of segment PQ, and point P has coordinates (−2,5). What are the coordinates of point Q?",
+  "choices": [
+   "(10, -7)",
+   "(1, 2)",
+   "(6, -6)",
+   "(-8, 11)"
+  ],
+  "correct_answer": "(10, -7)",
+  "explanation": "Each coordinate of the midpoint is the average of the corresponding coordinates, so Q = (2(4) - (-2), 2(-1) - 5) = (10, -7). \"(1, 2)\" is the midpoint of P and M, from a solver who averages the two points given instead of extending past M. \"(6, -6)\" is M - P, the change from P to M, reported as though it were a location. \"(-8, 11)\" reverses the roles of P and M, computing 2P - M.",
+  "solve": "var mx=4,my=-1,px=-2,py=5; return \"(\" + (2*mx-px) + \", \" + (2*my-py) + \")\";",
+  "distractor_solve": {
+   "(1, 2)": "return \"(\" + ((4+(-2))/2) + \", \" + (((-1)+5)/2) + \")\";",
+   "(6, -6)": "return \"(\" + (4-(-2)) + \", \" + ((-1)-5) + \")\";",
+   "(-8, 11)": "return \"(\" + (2*(-2)-4) + \", \" + (2*5-(-1)) + \")\";"
+  }
+ },
+ {
+  "id": "AM6-04",
+  "domain": "Geometry",
+  "subskill": "similar triangles in a shadow proportion",
+  "difficulty": "medium",
+  "prompt": "A person 6 feet tall casts a shadow 9 feet long. At the same moment, a nearby flagpole casts a shadow 42 feet long. How tall is the flagpole, in feet?",
+  "choices": [
+   "28",
+   "63",
+   "39",
+   "33"
+  ],
+  "correct_answer": "28",
+  "explanation": "The two triangles are similar, so height/shadow is the same for both: the flagpole is 42 x (6/9) = 28 feet tall. \"63\" inverts the ratio, computing 42 x (9/6). \"39\" comes from a solver who reasons additively, taking the extra 33 feet of shadow and adding the person's 6 feet, 42 - 9 + 6. \"33\" is 42 - 9, the difference of the two shadow lengths reported as a height.",
+  "solve": "return 6*42/9;",
+  "distractor_solve": {
+   "33": "return 42-9;",
+   "39": "return 42-9+6;",
+   "63": "return 9*42/6;"
+  }
+ },
+ {
+  "id": "AM6-05",
+  "domain": "Geometry",
+  "subskill": "area of a trapezoid, with a slant side offered for the height",
+  "difficulty": "medium",
+  "prompt": "The figure below shows trapezoid ABCD, in which BC is parallel to AD. A dashed segment marks the height. All lengths are in centimeters. What is the area of ABCD, in square centimeters?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 360 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"40,200 300,200 230,110 90,110\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"90\" y1=\"110\" x2=\"90\" y2=\"200\" stroke=\"#0A5C48\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/><polyline points=\"90,188 102,188 102,200\" fill=\"none\" stroke=\"#0A5C48\" stroke-width=\"1.5\"/><text x=\"30\" y=\"216\">A</text><text x=\"302\" y=\"216\">D</text><text x=\"82\" y=\"103\">B</text><text x=\"232\" y=\"103\">C</text><text x=\"162\" y=\"222\">18</text><text x=\"155\" y=\"103\">10</text><text x=\"74\" y=\"160\">6</text><text x=\"44\" y=\"150\">8</text><text x=\"16\" y=\"238\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "84",
+   "168",
+   "108",
+   "112"
+  ],
+  "correct_answer": "84",
+  "explanation": "The area of a trapezoid is half the sum of the parallel sides times the height: (1/2)(18 + 10)(6) = 84 square centimeters. \"168\" is (18 + 10)(6), from a solver who omits the factor of one half. \"108\" is 18 x 6, treating the figure as a rectangle on the longer base. \"112\" uses the slant side 8 in place of the height 6, giving (1/2)(18 + 10)(8).",
+  "solve": "return 0.5*(18+10)*6;",
+  "distractor_solve": {
+   "108": "return 18*6;",
+   "112": "return 0.5*(18+10)*8;",
+   "168": "return (18+10)*6;"
+  }
+ },
+ {
+  "id": "AM6-07",
+  "domain": "Geometry",
+  "subskill": "lateral surface area of a cylinder, with volume available",
+  "difficulty": "medium",
+  "prompt": "A cylindrical tank has a radius of 6 feet and a height of 10 feet. What is the lateral surface area of the tank — the curved side only, not the two circular ends — in square feet, in terms of π?",
+  "choices": [
+   "120π",
+   "360π",
+   "192π",
+   "36π"
+  ],
+  "correct_answer": "120π",
+  "explanation": "The curved side unrolls into a rectangle whose width is the circumference and whose height is the height of the tank: 2π(6)(10) = 120π square feet. \"360π\" is the volume, π(6²)(10), a different quantity. \"192π\" is the total surface area, 2π(6)(10) + 2π(6²), which includes the two ends the question excludes. \"36π\" is π(6²), the area of one circular end.",
+  "solve": "return (2*6*10) + \"π\";",
+  "distractor_solve": {
+   "360π": "return (6*6*10) + \"π\";",
+   "192π": "return (2*6*10 + 2*6*6) + \"π\";",
+   "36π": "return (6*6) + \"π\";"
+  }
+ },
+ {
+  "id": "AM6-08",
+  "domain": "Geometry",
+  "subskill": "cosine of an acute angle in a right triangle",
+  "difficulty": "medium",
+  "prompt": "In right triangle ABC, the right angle is at C, AB = 25, and BC = 7. What is the value of cos A?",
+  "choices": [
+   "24/25",
+   "7/25",
+   "7/24",
+   "25/24"
+  ],
+  "correct_answer": "24/25",
+  "explanation": "The leg adjacent to angle A is AC, and AC = √(25² - 7²) = 24, so cos A = 24/25. \"7/25\" is sin A, the leg opposite angle A over the hypotenuse. \"7/24\" is tan A, opposite over adjacent. \"25/24\" is the reciprocal of the correct ratio, from a solver who writes hypotenuse over adjacent.",
+  "solve": "var ac=Math.sqrt(25*25-7*7); return ac + \"/\" + 25;",
+  "distractor_solve": {
+   "7/25": "var opp=7, hyp=25; return opp + \"/\" + hyp;",
+   "7/24": "var adj=Math.sqrt(25*25-7*7); return 7 + \"/\" + adj;",
+   "25/24": "var adj=Math.sqrt(25*25-7*7); return 25 + \"/\" + adj;"
+  }
+ },
+ {
+  "id": "AM6-11",
+  "domain": "Geometry",
+  "subskill": "total surface area of a rectangular solid",
+  "difficulty": "medium",
+  "prompt": "A closed rectangular box measures 5 inches by 8 inches by 3 inches. What is the total surface area of the box, in square inches?",
+  "choices": [
+   "158",
+   "79",
+   "120",
+   "64"
+  ],
+  "correct_answer": "158",
+  "explanation": "The six faces pair up, so the surface area is 2(5x8 + 5x3 + 8x3) = 2(40 + 15 + 24) = 158 square inches. \"79\" is 40 + 15 + 24, the area of three faces only, from a solver who omits the factor of 2. \"120\" is 5 x 8 x 3, the volume rather than a surface area. \"64\" is 4(5 + 8 + 3), the total length of the twelve edges.",
+  "solve": "return 2*(5*8+5*3+8*3);",
+  "distractor_solve": {
+   "64": "return 4*(5+8+3);",
+   "79": "return 5*8+5*3+8*3;",
+   "120": "return 5*8*3;"
+  }
+ },
+ {
+  "id": "AM6-12",
+  "domain": "Geometry",
+  "subskill": "area remaining after a quarter circle is removed from a square",
+  "difficulty": "hard",
+  "prompt": "A square pane of glass measures 14 inches on each side. A quarter circle of radius 14 inches, centered at one corner of the square, is cut out and removed. Using 22/7 for π, what is the area of the piece that remains, in square inches?",
+  "choices": [
+   "42",
+   "154",
+   "350",
+   "49"
+  ],
+  "correct_answer": "42",
+  "explanation": "The square has area 14² = 196, and the quarter circle has area (1/4)(22/7)(14²) = 154, so 196 - 154 = 42 square inches remain. \"154\" is the area of the piece that was removed rather than the piece that remains. \"350\" adds the two areas instead of subtracting, 196 + 154. \"49\" is 196/4, from a solver who removes a quarter of the square rather than a quarter of a circle.",
+  "solve": "return 14*14 - 0.25*(22/7)*14*14;",
+  "distractor_solve": {
+   "49": "return 14*14/4;",
+   "154": "return 0.25*(22/7)*14*14;",
+   "350": "return 14*14 + 0.25*(22/7)*14*14;"
+  }
+ },
+ {
+  "id": "AM6-13",
+  "domain": "Geometry",
+  "subskill": "solving for x from corresponding angles on parallel lines",
+  "difficulty": "medium",
+  "prompt": "In the figure below, lines l and m are parallel and are cut by transversal t. The two marked angles are corresponding angles. What is the value of x?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 360 260\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><line x1=\"30\" y1=\"80\" x2=\"330\" y2=\"80\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"30\" y1=\"180\" x2=\"330\" y2=\"180\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"90\" y1=\"40\" x2=\"270\" y2=\"220\" stroke=\"#0A5C48\" stroke-width=\"2\"/><polyline points=\"170,72 178,80 170,88\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><polyline points=\"170,172 178,180 170,188\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><text x=\"336\" y=\"76\">l</text><text x=\"334\" y=\"176\">m</text><text x=\"276\" y=\"232\">t</text><text x=\"142\" y=\"68\">(3x + 20)°</text><text x=\"242\" y=\"170\">(5x − 40)°</text><text x=\"16\" y=\"248\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "30",
+   "25",
+   "110",
+   "10"
+  ],
+  "correct_answer": "30",
+  "explanation": "Corresponding angles on parallel lines are congruent, so 3x + 20 = 5x - 40, which gives 2x = 60 and x = 30. \"25\" comes from a solver who treats the two angles as supplementary and solves 3x + 20 + 5x - 40 = 180. \"110\" is the measure of each marked angle, 3(30) + 20, which answers a question the item did not ask. \"10\" comes from a solver who subtracts in the wrong direction, solving 2x = 40 - 20.",
+  "solve": "var x=(20+40)/(5-3); return x;",
+  "distractor_solve": {
+   "10": "return (40-20)/(5-3);",
+   "25": "return (180-20+40)/(3+5);",
+   "110": "var x=(20+40)/(5-3); return 3*x+20;"
+  }
+ },
+ {
+  "id": "AM6-14",
+  "domain": "Geometry",
+  "subskill": "area of similar figures from a ratio of perimeters",
+  "difficulty": "hard",
+  "prompt": "Two regular hexagons are similar. The ratio of the perimeter of the smaller hexagon to the perimeter of the larger hexagon is 3 to 5. The area of the smaller hexagon is 45 square inches. What is the area of the larger hexagon, in square inches?",
+  "choices": [
+   "125",
+   "75",
+   "27",
+   "81"
+  ],
+  "correct_answer": "125",
+  "explanation": "Areas of similar figures are in the ratio of the squares of corresponding lengths, so the larger area is 45(5²/3²) = 45(25/9) = 125 square inches. \"75\" is 45(5/3), which scales by the ratio of lengths instead of by its square. \"27\" is 45(3/5), which applies the length ratio in the wrong direction as well. \"81\" is 45(9/5), from a solver who squares the 3 but leaves the 5 unsquared.",
+  "solve": "return 45*25/9;",
+  "distractor_solve": {
+   "27": "return 45*3/5;",
+   "75": "return 45*5/3;",
+   "81": "return 45*9/5;"
+  }
+ },
+ {
+  "id": "AM6-15",
+  "domain": "Geometry",
+  "subskill": "using cosine to find a leg from the hypotenuse and an acute angle",
+  "difficulty": "medium",
+  "prompt": "The figure below shows right triangle PQR, with the right angle at R. What is the length of PR, to the nearest tenth?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 340 240\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"40,190 250,190 250,60\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><polyline points=\"238,190 238,178 250,178\" fill=\"none\" stroke=\"#0A5C48\" stroke-width=\"1.5\"/><path d=\"M 70 190 A 30 30 0 0 0 66 176\" fill=\"none\" stroke=\"#0A5C48\" stroke-width=\"1.5\"/><text x=\"30\" y=\"206\">P</text><text x=\"256\" y=\"206\">R</text><text x=\"256\" y=\"58\">Q</text><text x=\"74\" y=\"182\">35°</text><text x=\"128\" y=\"116\">18</text><text x=\"16\" y=\"226\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "14.7",
+   "10.3",
+   "12.6",
+   "22.0"
+  ],
+  "correct_answer": "14.7",
+  "explanation": "PR is the leg adjacent to the 35° angle and PQ is the hypotenuse, so PR = 18 cos 35° ≈ 14.7. \"10.3\" is 18 sin 35°, the length of the opposite leg QR. \"12.6\" is 18 tan 35°, from a solver who uses the tangent ratio with the hypotenuse in place of the adjacent leg. \"22.0\" is 18/cos 35°, from a solver who divides by the cosine rather than multiplying.",
+  "solve": "return (18*Math.cos(35*Math.PI/180)).toFixed(1);",
+  "distractor_solve": {
+   "10.3": "return (18*Math.sin(35*Math.PI/180)).toFixed(1);",
+   "12.6": "return (18*Math.tan(35*Math.PI/180)).toFixed(1);",
+   "22.0": "return (18/Math.cos(35*Math.PI/180)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM6-16",
+  "domain": "Statistics and Probability",
+  "subskill": "mean of a small data set, with the median available",
+  "difficulty": "easy",
+  "prompt": "A basketball player scored 82, 91, 76, 88, and 93 points in five games. What was the mean number of points she scored per game?",
+  "choices": [
+   "86",
+   "88",
+   "107.5",
+   "71.7"
+  ],
+  "correct_answer": "86",
+  "explanation": "The five scores total 430, and 430/5 = 86 points per game. \"88\" is the median, the middle value once the scores are ordered, not the mean. \"107.5\" is 430/4, from a solver who divides by one fewer game than were played. \"71.7\" is 430/6, from a solver who divides by one more game than were played.",
+  "solve": "return (82+91+76+88+93)/5;",
+  "distractor_solve": {
+   "88": "var a=[76,82,88,91,93]; return a[2];",
+   "107.5": "return (82+91+76+88+93)/4;",
+   "71.7": "return ((82+91+76+88+93)/6).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM6-17",
+  "domain": "Statistics and Probability",
+  "subskill": "median of an even-sized list containing a repeated value",
+  "difficulty": "easy",
+  "prompt": "Six students reported the number of books they read last month: 12, 7, 15, 9, 7, and 20. What is the median of these six numbers?",
+  "choices": [
+   "10.5",
+   "11.7",
+   "9",
+   "7"
+  ],
+  "correct_answer": "10.5",
+  "explanation": "In order the values are 7, 7, 9, 12, 15, 20. With six values the median is the average of the third and fourth, (9 + 12)/2 = 10.5. \"11.7\" is the mean, 70/6, rounded to the nearest tenth. \"9\" is the third value, from a solver who takes a single middle value even though the count is even. \"7\" is the mode, the value that occurs most often, not the median.",
+  "solve": "var a=[7,7,9,12,15,20]; return (a[2]+a[3])/2;",
+  "distractor_solve": {
+   "7": "var a=[12,7,15,9,7,20],best=a[0],bc=0; for(var i=0;i<a.length;i++){var c=0; for(var j=0;j<a.length;j++){ if(a[j]===a[i]) c++; } if(c>bc){bc=c;best=a[i];}} return best;",
+   "9": "var a=[7,7,9,12,15,20]; return a[2];",
+   "11.7": "return ((12+7+15+9+7+20)/6).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM6-18",
+  "domain": "Statistics and Probability",
+  "subskill": "probability of a single draw from a three-colour set",
+  "difficulty": "easy",
+  "prompt": "A bag contains 4 red marbles, 7 blue marbles, and 9 green marbles. One marble is drawn at random. What is the probability that the marble drawn is blue, to the nearest hundredth?",
+  "choices": [
+   "0.35",
+   "0.45",
+   "0.54",
+   "0.20"
+  ],
+  "correct_answer": "0.35",
+  "explanation": "There are 20 marbles in all and 7 of them are blue, so the probability is 7/20 = 0.35. \"0.45\" is 9/20, the probability of drawing green. \"0.54\" is 7/13, which compares the blue marbles to the 13 marbles that are not blue rather than to all 20. \"0.20\" is 4/20, the probability of drawing red.",
+  "solve": "return (7/20).toFixed(2);",
+  "distractor_solve": {
+   "0.45": "return (9/20).toFixed(2);",
+   "0.54": "return (7/13).toFixed(2);",
+   "0.20": "return (4/20).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM6-19",
+  "domain": "Statistics and Probability",
+  "subskill": "probability of two draws without replacement",
+  "difficulty": "medium",
+  "prompt": "A drawer contains 5 black socks and 3 white socks. Two socks are drawn at random without replacement. What is the probability that both socks drawn are black?",
+  "choices": [
+   "5/14",
+   "25/64",
+   "3/28",
+   "15/56"
+  ],
+  "correct_answer": "5/14",
+  "explanation": "The first sock is black with probability 5/8, and then 4 of the remaining 7 socks are black, so the probability is (5/8)(4/7) = 20/56 = 5/14. \"25/64\" is (5/8)(5/8), which treats the first sock as replaced. \"3/28\" is (3/8)(2/7), the probability that both socks are white. \"15/56\" is (5/8)(3/7), the probability of drawing a black sock and then a white one.",
+  "solve": "var num=5*4, den=8*7, g=4; return (num/g) + \"/\" + (den/g);",
+  "distractor_solve": {
+   "25/64": "var num=5*5, den=8*8; return num + \"/\" + den;",
+   "3/28": "var num=3*2, den=8*7, g=2; return (num/g) + \"/\" + (den/g);",
+   "15/56": "var num=5*3, den=8*7; return num + \"/\" + den;"
+  }
+ },
+ {
+  "id": "AM6-20",
+  "domain": "Statistics and Probability",
+  "subskill": "weighted mean of two unequal groups",
+  "difficulty": "medium",
+  "prompt": "A shop sold 15 shirts at an average price of $76 and 5 jackets at an average price of $96. What was the average price, in dollars, of the 20 items sold?",
+  "choices": [
+   "81",
+   "86",
+   "108",
+   "57"
+  ],
+  "correct_answer": "81",
+  "explanation": "The 20 items brought in 15(76) + 5(96) = 1,140 + 480 = 1,620 dollars, so the average price is 1,620/20 = 81 dollars. \"86\" is (76 + 96)/2, which averages the two group averages as though the groups were the same size. \"108\" is 1,620/15, from a solver who divides the full total by the number of shirts only. \"57\" is 1,140/20, from a solver who spreads only the shirt revenue over all 20 items.",
+  "solve": "return (15*76+5*96)/20;",
+  "distractor_solve": {
+   "57": "return (15*76)/20;",
+   "86": "return (76+96)/2;",
+   "108": "return (15*76+5*96)/15;"
+  }
+ },
+ {
+  "id": "AM6-21",
+  "domain": "Statistics and Probability",
+  "subskill": "fundamental counting principle over three choices",
+  "difficulty": "easy",
+  "prompt": "A sandwich shop offers 4 kinds of bread, 6 fillings, and 5 sauces. How many different sandwiches can be made using exactly one bread, one filling, and one sauce?",
+  "choices": [
+   "120",
+   "15",
+   "24",
+   "30"
+  ],
+  "correct_answer": "120",
+  "explanation": "Each choice is made independently, so the count is 4 x 6 x 5 = 120 sandwiches. \"15\" is 4 + 6 + 5, from a solver who adds the three menus instead of multiplying them. \"24\" is 4 x 6, which counts bread-and-filling pairs and never reaches the sauces. \"30\" is 6 x 5, which counts filling-and-sauce pairs and never reaches the breads.",
+  "solve": "return 4*6*5;",
+  "distractor_solve": {
+   "15": "return 4+6+5;",
+   "24": "return 4*6;",
+   "30": "return 6*5;"
+  }
+ },
+ {
+  "id": "AM6-22",
+  "domain": "Statistics and Probability",
+  "subskill": "combinations, with the ordered count available",
+  "difficulty": "medium",
+  "prompt": "A committee of 3 people is to be chosen from a group of 8 people. How many different committees are possible?",
+  "choices": [
+   "56",
+   "336",
+   "168",
+   "21"
+  ],
+  "correct_answer": "56",
+  "explanation": "There are 8 x 7 x 6 = 336 ordered ways to pick three people, and each committee is counted 3! = 6 times, so there are 336/6 = 56 committees. \"336\" is that ordered count, which treats two committees with the same members in a different order as different. \"168\" is 336/2, from a solver who divides by 2 rather than by 3!. \"21\" is 8 + 7 + 6, from a solver who adds the three factors instead of multiplying them.",
+  "solve": "return 8*7*6/(3*2*1);",
+  "distractor_solve": {
+   "21": "return 8+7+6;",
+   "168": "return 8*7*6/2;",
+   "336": "return 8*7*6;"
+  }
+ },
+ {
+  "id": "AM6-23",
+  "domain": "Statistics and Probability",
+  "subskill": "conditional probability read from a two-way table",
+  "difficulty": "medium",
+  "prompt": "The table below shows the drink preference of the people who attended a book club, by session. Among the people who prefer tea, what is the probability that a randomly chosen one of them attends the evening session? Round to the nearest hundredth.",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 380 210\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><text x=\"20\" y=\"24\" font-size=\"12\" fill=\"#5A6474\">Drink preference, by session</text><rect x=\"20\" y=\"36\" width=\"340\" height=\"130\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><line x1=\"20\" y1=\"66\" x2=\"360\" y2=\"66\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><line x1=\"20\" y1=\"136\" x2=\"360\" y2=\"136\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><line x1=\"130\" y1=\"36\" x2=\"130\" y2=\"166\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><line x1=\"290\" y1=\"36\" x2=\"290\" y2=\"166\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><text x=\"150\" y=\"58\">Coffee</text><text x=\"228\" y=\"58\">Tea</text><text x=\"303\" y=\"58\">Total</text><text x=\"32\" y=\"90\">Morning</text><text x=\"160\" y=\"90\">48</text><text x=\"234\" y=\"90\">22</text><text x=\"312\" y=\"90\">70</text><text x=\"32\" y=\"122\">Evening</text><text x=\"160\" y=\"122\">34</text><text x=\"234\" y=\"122\">46</text><text x=\"312\" y=\"122\">80</text><text x=\"32\" y=\"156\">Total</text><text x=\"160\" y=\"156\">82</text><text x=\"234\" y=\"156\">68</text><text x=\"308\" y=\"156\">150</text></svg>"
+  },
+  "choices": [
+   "0.68",
+   "0.31",
+   "0.57",
+   "0.45"
+  ],
+  "correct_answer": "0.68",
+  "explanation": "The condition restricts the group to the 68 people who prefer tea, of whom 46 attend the evening session, so the probability is 46/68 ≈ 0.68. \"0.31\" is 46/150, which divides by everyone surveyed instead of by the tea drinkers. \"0.57\" is 46/80, which conditions on the evening session rather than on tea. \"0.45\" is 68/150, the share of everyone surveyed who prefers tea, which answers a different question.",
+  "solve": "return (46/68).toFixed(2);",
+  "distractor_solve": {
+   "0.31": "return (46/150).toFixed(2);",
+   "0.57": "return (46/80).toFixed(2);",
+   "0.45": "return (68/150).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM6-24",
+  "domain": "Statistics and Probability",
+  "subskill": "expected value of a spinner with a repeated outcome",
+  "difficulty": "medium",
+  "prompt": "A spinner has five sections of equal area, showing $2, $4, $4, $6, and $9. The spinner is spun once. What is the expected value, in dollars, of the amount shown?",
+  "choices": [
+   "5",
+   "4",
+   "7",
+   "5.25"
+  ],
+  "correct_answer": "5",
+  "explanation": "Every section is equally likely, so the expected value is the mean of the five amounts: (2 + 4 + 4 + 6 + 9)/5 = 25/5 = 5 dollars. \"4\" is the median amount, and also the amount that appears most often, neither of which is the expected value. \"7\" is 9 - 2, the range of the amounts. \"5.25\" is (2 + 4 + 6 + 9)/4, from a solver who averages the four distinct amounts and so counts the repeated $4 section only once.",
+  "solve": "return (2+4+4+6+9)/5;",
+  "distractor_solve": {
+   "4": "var a=[2,4,4,6,9]; return a[2];",
+   "7": "return 9-2;",
+   "5.25": "return (2+4+6+9)/4;"
+  }
+ },
+ {
+  "id": "AM6-25",
+  "domain": "Statistics and Probability",
+  "subskill": "probability of at least one success over three trials",
+  "difficulty": "hard",
+  "prompt": "A fair coin is flipped 3 times. What is the probability that at least one of the flips lands heads?",
+  "choices": [
+   "7/8",
+   "1/2",
+   "3/4",
+   "2/3"
+  ],
+  "correct_answer": "7/8",
+  "explanation": "There are 8 equally likely sequences of three flips, and only TTT has no heads, so 7 of the 8 sequences contain at least one head and the probability is 7/8. \"1/2\" comes from a solver who answers for a single flip and ignores that there are three. \"3/4\" comes from a solver who lists only HHH, HHT, HTT, and TTT as the possibilities and counts 3 of those 4. \"2/3\" comes from a solver who takes the probability of no heads to be 1/3 — one chance among the three flips — and subtracts that from 1.",
+  "solve": "var tot=8, none=1; return (tot-none) + \"/\" + tot;",
+  "distractor_solve": {
+   "1/2": "var heads=1, faces=2; return heads + \"/\" + faces;",
+   "3/4": "var fav=3, listed=4; return fav + \"/\" + listed;",
+   "2/3": "var num=3-1, den=3; return num + \"/\" + den;"
+  }
+ },
+ {
+  "id": "AM6-26",
+  "domain": "Statistics and Probability",
+  "subskill": "interquartile range of an eight-value list",
+  "difficulty": "medium",
+  "prompt": "The eight values below are listed in increasing order: 3, 7, 8, 12, 14, 18, 21, 25. What is the interquartile range of these values?",
+  "choices": [
+   "12",
+   "22",
+   "13",
+   "19.5"
+  ],
+  "correct_answer": "12",
+  "explanation": "The lower half is 3, 7, 8, 12, so Q1 = (7 + 8)/2 = 7.5; the upper half is 14, 18, 21, 25, so Q3 = (18 + 21)/2 = 19.5. The interquartile range is 19.5 - 7.5 = 12. \"22\" is 25 - 3, the full range rather than the interquartile range. \"13\" is (12 + 14)/2, the median of all eight values. \"19.5\" is Q3 by itself, reported before subtracting Q1.",
+  "solve": "return (18+21)/2 - (7+8)/2;",
+  "distractor_solve": {
+   "13": "return (12+14)/2;",
+   "22": "return 25-3;",
+   "19.5": "return (18+21)/2;"
+  }
+ },
+ {
+  "id": "AM6-27",
+  "domain": "Statistics and Probability",
+  "subskill": "scaling a sample rate to a population",
+  "difficulty": "medium",
+  "prompt": "A survey found that 3 out of every 8 students at a school ride the bus. At that rate, how many of the school's 1,240 students ride the bus?",
+  "choices": [
+   "465",
+   "155",
+   "372",
+   "413"
+  ],
+  "correct_answer": "465",
+  "explanation": "Three eighths of the students ride the bus, and 1,240(3/8) = 465 students. \"155\" is 1,240/8, the size of one eighth, reported before multiplying by 3. \"372\" is 1,240(0.30), from a solver who reads \"3 out of every 8\" as 30 percent. \"413\" is 1,240/3 rounded, from a solver who divides by the 3 instead of by the 8.",
+  "solve": "return 1240*3/8;",
+  "distractor_solve": {
+   "155": "return 1240/8;",
+   "372": "return 1240*0.30;",
+   "413": "return Math.round(1240/3);"
+  }
+ },
+ {
+  "id": "AM6-28",
+  "domain": "Statistics and Probability",
+  "subskill": "a two-category share of a total read from a bar graph",
+  "difficulty": "medium",
+  "prompt": "The bar graph below shows the number of books a library club read in each of five months. Together, March and May account for what percent of the books the club read over those five months?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 360 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><text x=\"20\" y=\"30\" font-size=\"12\" fill=\"#5A6474\">Books read</text><line x1=\"45\" y1=\"40\" x2=\"45\" y2=\"200\" stroke=\"#5A6474\" stroke-width=\"1.5\"/><line x1=\"45\" y1=\"200\" x2=\"330\" y2=\"200\" stroke=\"#5A6474\" stroke-width=\"1.5\"/><line x1=\"39\" y1=\"200\" x2=\"45\" y2=\"200\" stroke=\"#5A6474\" stroke-width=\"1\"/><text x=\"36\" y=\"204\" font-size=\"11\" fill=\"#5A6474\" text-anchor=\"end\">0</text><line x1=\"39\" y1=\"160\" x2=\"45\" y2=\"160\" stroke=\"#5A6474\" stroke-width=\"1\"/><text x=\"36\" y=\"164\" font-size=\"11\" fill=\"#5A6474\" text-anchor=\"end\">5</text><line x1=\"39\" y1=\"120\" x2=\"45\" y2=\"120\" stroke=\"#5A6474\" stroke-width=\"1\"/><text x=\"36\" y=\"124\" font-size=\"11\" fill=\"#5A6474\" text-anchor=\"end\">10</text><line x1=\"39\" y1=\"80\" x2=\"45\" y2=\"80\" stroke=\"#5A6474\" stroke-width=\"1\"/><text x=\"36\" y=\"84\" font-size=\"11\" fill=\"#5A6474\" text-anchor=\"end\">15</text><line x1=\"39\" y1=\"40\" x2=\"45\" y2=\"40\" stroke=\"#5A6474\" stroke-width=\"1\"/><text x=\"36\" y=\"44\" font-size=\"11\" fill=\"#5A6474\" text-anchor=\"end\">20</text><rect x=\"60\" y=\"104\" width=\"34\" height=\"96\" fill=\"#C7D0F2\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><text x=\"77\" y=\"97\" text-anchor=\"middle\">12</text><text x=\"77\" y=\"218\" text-anchor=\"middle\">Jan</text><rect x=\"115\" y=\"56\" width=\"34\" height=\"144\" fill=\"#C7D0F2\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><text x=\"132\" y=\"49\" text-anchor=\"middle\">18</text><text x=\"132\" y=\"218\" text-anchor=\"middle\">Feb</text><rect x=\"170\" y=\"128\" width=\"34\" height=\"72\" fill=\"#C7D0F2\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><text x=\"187\" y=\"121\" text-anchor=\"middle\">9</text><text x=\"187\" y=\"218\" text-anchor=\"middle\">Mar</text><rect x=\"225\" y=\"80\" width=\"34\" height=\"120\" fill=\"#C7D0F2\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><text x=\"242\" y=\"73\" text-anchor=\"middle\">15</text><text x=\"242\" y=\"218\" text-anchor=\"middle\">Apr</text><rect x=\"280\" y=\"152\" width=\"34\" height=\"48\" fill=\"#C7D0F2\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><text x=\"297\" y=\"145\" text-anchor=\"middle\">6</text><text x=\"297\" y=\"218\" text-anchor=\"middle\">May</text></svg>"
+  },
+  "choices": [
+   "25%",
+   "15%",
+   "30%",
+   "50%"
+  ],
+  "correct_answer": "25%",
+  "explanation": "March and May account for 9 + 6 = 15 books out of 12 + 18 + 9 + 15 + 6 = 60 books, and 15/60 = 25%. \"15%\" reports the combined count of 15 books as though the count were already a percent. \"30%\" is 18/60, the share belonging to February, the tallest bar. \"50%\" is 15/30, from a solver who divides by the 30 books of January and February rather than by the five-month total.",
+  "solve": "return ((9+6)/(12+18+9+15+6)*100) + \"%\";",
+  "distractor_solve": {
+   "15%": "return (9+6) + \"%\";",
+   "30%": "return (18/(12+18+9+15+6)*100) + \"%\";",
+   "50%": "return ((9+6)/(12+18)*100) + \"%\";"
+  }
+ }
+]

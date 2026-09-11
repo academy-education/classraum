@@ -1058,3 +1058,19 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Noticed while break-testing the new gate and recorded rather than fixed:** `act-reading-v7.batch.json` now hashes to `11540242c4db` while its ledger entry is bound to `aff2e8a96992`. The batch is staged `verified=false` so nothing reached a student, but the file has moved since it was graded and the entry is stale. It needs a fresh grade or an explanation before it is flipped.
 
   The general form, and it is the third time this exact shape has appeared here: **a sweep scoped to the things you can already name is not a population measurement.** The instruction was "wire the inserters"; the check that works is "enumerate everything that writes to the table, then ask of each whether it should be gated."
+
+- **2026-09-11** — **+50 MORE ITEMS, AND 25 OF THEM BOUGHT ZERO FORMS BECAUSE I COMMISSIONED THE WRONG DOMAIN.**
+
+        family        before  after   inserted   forms before -> after
+        act/math        274    299      +25        4 -> 4      (no change)
+        isee/verbal     155    180      +25        3 -> 4
+
+  Counts from `bank-state.mjs`; forms from `form-capacity.mjs`. Both inserted through the newly gated path, and both gate lines were logged at the content hash.
+
+  **The ACT Math batch was commissioned as Geometry + Statistics & Probability. The binding domain is ALGEBRA** — 39 items against ~8 needed per form, where Geometry had 47 and Statistics 56 before this batch. So the 25 items took Geometry to 59 and Statistics to 69 and left the cap exactly where it was, at 4 forms. The cap does not move until Algebra does.
+
+  This is the `form capacity is not total / form size` rule failing at the COMMISSIONING end rather than the reporting end. The existing note says to quote the route-aware number when asked how many tests a student can take; the corollary it did not say, and now does: **read the binding domain BEFORE writing the brief, not after reading the result.** Two batches (`act-math-v7-alg`, `act-math-v7-ies`) are now commissioned against the actual constraint — Algebra because it binds, Integrating Essential Skills because at 48 items against the largest per-form quota of any ACT Math domain it is where the cap would move to next.
+
+  The 25 items are not wasted — they are sound, gated, and deepen two domains that will bind later — but they were not what the bank needed today, and the brief that produced them was mine.
+
+  **A second thing worth having asked earlier:** three independent graders each counted ZERO hard items in that batch, and three counted 0-2 hard in `sat-adv-h3` before it. The two `act-math-v7-*` briefs now name the difficulty distribution explicitly and restate the project's own rule — hard means two ideas interact, not longer arithmetic — because "author a batch in domain X" has now twice produced a batch that cannot supply the back third of a form.
