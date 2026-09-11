@@ -1,0 +1,590 @@
+[
+ {
+  "id": "AM8F-01",
+  "domain": "Functions",
+  "subskill": "evaluating a polynomial function at a negative input",
+  "difficulty": "easy",
+  "prompt": "If f(x) = 4x^2 - 3x + 1, what is the value of f(-2)?",
+  "choices": [
+   "-9",
+   "-1",
+   "11",
+   "23"
+  ],
+  "correct_answer": "23",
+  "explanation": "f(-2) = 4(-2)^2 - 3(-2) + 1 = 16 + 6 + 1 = 23. \"11\" is f(2) rather than f(-2): 4(2)^2 - 3(2) + 1 = 16 - 6 + 1. \"-9\" comes from a solver who reads (-2)^2 as -4, giving 4(-4) + 6 + 1. \"-1\" comes from a solver who never squares, computing 4(-2) - 3(-2) + 1.",
+  "solve": "return 4*(-2)*(-2)-3*(-2)+1;",
+  "distractor_solve": {
+   "11": "return 4*2*2-3*2+1;",
+   "-9": "return 4*(-4)-3*(-2)+1;",
+   "-1": "return 4*(-2)-3*(-2)+1;"
+  }
+ },
+ {
+  "id": "AM8F-02",
+  "domain": "Functions",
+  "subskill": "reading two values from a function table",
+  "difficulty": "easy",
+  "prompt": "The table below gives five values of the function g.\n\n  x    |  1 |  2 |  3 |  4 |  5\n  g(x) |  7 | 11 | 19 | 35 | 67\n\nWhat is the value of g(4) - g(2)?",
+  "choices": [
+   "16",
+   "24",
+   "56",
+   "46"
+  ],
+  "correct_answer": "24",
+  "explanation": "g(4) = 35 and g(2) = 11, so g(4) - g(2) = 35 - 11 = 24. \"16\" is 35 - 19, from a solver who subtracts the value in the column to the left of g(4) instead of g(2). \"56\" is 67 - 11, which uses g(5) in place of g(4). \"46\" is 35 + 11, from a solver who adds the two values instead of subtracting.",
+  "solve": "return 35-11;",
+  "distractor_solve": {
+   "16": "return 35-19;",
+   "56": "return 67-11;",
+   "46": "return 35+11;"
+  }
+ },
+ {
+  "id": "AM8F-03",
+  "domain": "Functions",
+  "subskill": "solving a linear function model for the input",
+  "difficulty": "easy",
+  "prompt": "A candle is 30 centimeters tall and burns at a constant rate, so that its height, in centimeters, after t hours of burning is h(t) = 30 - 2.5t. After how many hours of burning is the candle 7.5 centimeters tall?",
+  "choices": [
+   "3",
+   "9",
+   "11.25",
+   "22.5"
+  ],
+  "correct_answer": "9",
+  "explanation": "Setting 30 - 2.5t = 7.5 gives 2.5t = 22.5, so t = 9 hours. \"3\" is 7.5 divided by 2.5, from a solver who divides the target height by the rate without first subtracting it from 30. \"22.5\" is 30 - 7.5, the number of centimeters burned away, reported as a number of hours. \"11.25\" is h(7.5) = 30 - 2.5(7.5), from a solver who substitutes 7.5 for t instead of for h(t).",
+  "solve": "return (30-7.5)/2.5;",
+  "distractor_solve": {
+   "3": "return 7.5/2.5;",
+   "22.5": "return 30-7.5;",
+   "11.25": "return 30-2.5*7.5;"
+  }
+ },
+ {
+  "id": "AM8F-04",
+  "domain": "Functions",
+  "subskill": "y-intercept of a function given by a rule",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 7x + 5. The graph of y = f(x) in the standard (x,y) coordinate plane crosses the y-axis at what y-coordinate?",
+  "choices": [
+   "5",
+   "2",
+   "-7",
+   "1"
+  ],
+  "correct_answer": "5",
+  "explanation": "The graph crosses the y-axis where x = 0, and f(0) = 2(0)^2 - 7(0) + 5 = 5. \"2\" is the coefficient of x^2, reported by a solver who reads off the leading coefficient. \"-7\" is the coefficient of x. \"1\" is an x-coordinate where the graph crosses the x-axis, since 2(1)^2 - 7(1) + 5 = 0, so it answers a question about the other axis.",
+  "solve": "return 2*0*0-7*0+5;",
+  "distractor_solve": {
+   "2": "return 2;",
+   "-7": "return -7;",
+   "1": "var x=1; if (2*x*x-7*x+5===0) return x; return NaN;"
+  }
+ },
+ {
+  "id": "AM8F-05",
+  "domain": "Functions",
+  "subskill": "a term of an arithmetic sequence",
+  "difficulty": "easy",
+  "prompt": "The first term of an arithmetic sequence is 8, and each term after the first is 5 greater than the term before it. What is the 10th term of the sequence?",
+  "choices": [
+   "45",
+   "48",
+   "50",
+   "53"
+  ],
+  "correct_answer": "53",
+  "explanation": "Going from the 1st term to the 10th takes 9 steps of 5, so the 10th term is 8 + 5(9) = 53. \"45\" is 5(9), the total increase alone, from a solver who forgets to add the first term. \"48\" is 8 + 5(8), from a solver who takes 8 steps rather than 9. \"50\" is 5(10), from a solver who multiplies the common difference by the term number and stops.",
+  "solve": "return 8+5*9;",
+  "distractor_solve": {
+   "45": "return 5*9;",
+   "48": "return 8+5*8;",
+   "50": "return 5*10;"
+  }
+ },
+ {
+  "id": "AM8F-06",
+  "domain": "Functions",
+  "subskill": "comparing two outputs of a linear cost function",
+  "difficulty": "easy",
+  "prompt": "The cost, in dollars, of a printing job of n pages is given by C(n) = 25 + 0.4n. How many more dollars does a job of 150 pages cost than a job of 90 pages?",
+  "choices": [
+   "24",
+   "49",
+   "60",
+   "85"
+  ],
+  "correct_answer": "24",
+  "explanation": "C(150) = 25 + 60 = 85 and C(90) = 25 + 36 = 61, so the difference is 85 - 61 = 24 dollars. \"60\" is 150 - 90, the difference in pages rather than in dollars. \"49\" is 25 + 0.4(60), from a solver who charges the $25 setup fee a second time on the extra pages. \"85\" is C(150), the cost of the larger job rather than the amount by which it is greater.",
+  "solve": "return (25+0.4*150)-(25+0.4*90);",
+  "distractor_solve": {
+   "60": "return 150-90;",
+   "49": "return 25+0.4*(150-90);",
+   "85": "return 25+0.4*150;"
+  }
+ },
+ {
+  "id": "AM8F-07",
+  "domain": "Functions",
+  "subskill": "composition of two functions at a value",
+  "difficulty": "easy",
+  "prompt": "If f(x) = x + 4 and g(x) = x^2, what is the value of g(f(3))?",
+  "choices": [
+   "13",
+   "14",
+   "25",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "f(3) = 3 + 4 = 7, and g(7) = 7^2 = 49. \"13\" is f(g(3)) = 3^2 + 4, which applies the two functions in the other order. \"14\" is 2(7), from a solver who doubles f(3) instead of squaring it. \"25\" is 3^2 + 4^2, from a solver who squares the two terms of x + 4 separately.",
+  "solve": "return (3+4)*(3+4);",
+  "distractor_solve": {
+   "13": "return 3*3+4;",
+   "14": "return 2*(3+4);",
+   "25": "return 3*3+4*4;"
+  }
+ },
+ {
+  "id": "AM8F-08",
+  "domain": "Functions",
+  "subskill": "minimum value of a quadratic in vertex form",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = (x - 3)^2 + 5. What is the minimum value of f(x)?",
+  "choices": [
+   "-3",
+   "3",
+   "5",
+   "14"
+  ],
+  "correct_answer": "5",
+  "explanation": "The square (x - 3)^2 is never negative and equals 0 when x = 3, so the least value f can take is 0 + 5 = 5. \"3\" is the x-coordinate at which that minimum occurs, not the minimum value itself. \"14\" is f(0) = (0 - 3)^2 + 5, the value at the y-intercept. \"-3\" comes from a solver who reads the minimum off the -3 printed inside the parentheses.",
+  "solve": "var m=Infinity; for(var i=0;i<=2000;i++){var x=(i-1000)/100; var v=(x-3)*(x-3)+5; if(v<m)m=v;} return m;",
+  "distractor_solve": {
+   "3": "return 3;",
+   "14": "return (0-3)*(0-3)+5;",
+   "-3": "return -3;"
+  }
+ },
+ {
+  "id": "AM8F-09",
+  "domain": "Functions",
+  "subskill": "using a function value to find another function value",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 2x - 7. If f(c) = 15, what is the value of f(c + 3)?",
+  "choices": [
+   "11",
+   "14",
+   "18",
+   "21"
+  ],
+  "correct_answer": "21",
+  "explanation": "f(c) = 15 gives 2c - 7 = 15, so c = 11, and f(c + 3) = f(14) = 2(14) - 7 = 21. \"11\" is the value of c itself. \"14\" is c + 3, the input to f rather than the output. \"18\" is 15 + 3, from a solver who adds 3 to the output instead of to the input.",
+  "solve": "var c=(15+7)/2; return 2*(c+3)-7;",
+  "distractor_solve": {
+   "11": "return (15+7)/2;",
+   "14": "return (15+7)/2+3;",
+   "18": "return 15+3;"
+  }
+ },
+ {
+  "id": "AM8F-10",
+  "domain": "Functions",
+  "subskill": "value of an inverse function",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (3x + 2)/5. What is the value of f^-1(4)?",
+  "choices": [
+   "2.8",
+   "6",
+   "6.67",
+   "22"
+  ],
+  "correct_answer": "6",
+  "explanation": "f^-1(4) is the input whose output is 4, so (3x + 2)/5 = 4 gives 3x + 2 = 20 and x = 6. \"2.8\" is f(4) = (3(4) + 2)/5, from a solver who evaluates f at 4 rather than undoing it. \"22\" is 5(4) + 2, from a solver who adds 2 while undoing instead of subtracting it. \"6.67\" is 5(4)/3, from a solver who undoes the division by 5 and the multiplication by 3 but never removes the 2.",
+  "solve": "return (4*5-2)/3;",
+  "distractor_solve": {
+   "2.8": "return (3*4+2)/5;",
+   "22": "return 5*4+2;",
+   "6.67": "return Number((4*5/3).toFixed(2));"
+  }
+ },
+ {
+  "id": "AM8F-11",
+  "domain": "Functions",
+  "subskill": "average rate of change from a table",
+  "difficulty": "medium",
+  "prompt": "The table below gives four values of the function f.\n\n  x    |  0 |  2 |  5 |  9\n  f(x) | 12 | 20 | 26 | 48\n\nWhat is the average rate of change of f from x = 2 to x = 9?",
+  "choices": [
+   "4",
+   "6",
+   "7",
+   "28"
+  ],
+  "correct_answer": "4",
+  "explanation": "The average rate of change is the change in f divided by the change in x: (48 - 20)/(9 - 2) = 28/7 = 4. \"28\" is the change in f alone, with no division. \"7\" is (48 - 20)/(9 - 5), from a solver who divides by the width of the last interval instead of the whole interval. \"6\" is 26 - 20, the change in f over the first part of the interval, reported as a rate.",
+  "solve": "return (48-20)/(9-2);",
+  "distractor_solve": {
+   "28": "return 48-20;",
+   "7": "return (48-20)/(9-5);",
+   "6": "return 26-20;"
+  }
+ },
+ {
+  "id": "AM8F-12",
+  "domain": "Functions",
+  "subskill": "the variable piece of a piecewise cost function",
+  "difficulty": "medium",
+  "prompt": "A phone plan costs $25 per month, which includes the first 300 minutes of calls, plus $0.04 for each minute used beyond 300. In a month in which 800 minutes of calls were used, what was the charge, in dollars, for the minutes used beyond 300?",
+  "choices": [
+   "20",
+   "32",
+   "45",
+   "57"
+  ],
+  "correct_answer": "20",
+  "explanation": "The minutes beyond 300 number 800 - 300 = 500, and each costs $0.04, so the charge for them is 0.04(500) = $20. \"32\" is 0.04(800), from a solver who charges the per-minute rate on all 800 minutes. \"45\" is 25 + 0.04(500), the entire monthly bill rather than the part the question asks for. \"57\" is 25 + 0.04(800), which makes both slips at once.",
+  "solve": "return 0.04*(800-300);",
+  "distractor_solve": {
+   "32": "return 0.04*800;",
+   "45": "return 25+0.04*(800-300);",
+   "57": "return 25+0.04*800;"
+  }
+ },
+ {
+  "id": "AM8F-13",
+  "domain": "Functions",
+  "subskill": "a term of a geometric sequence",
+  "difficulty": "medium",
+  "prompt": "In a geometric sequence in which every term is positive, the 2nd term is 18 and the 4th term is 162. What is the 5th term?",
+  "choices": [
+   "54",
+   "180",
+   "324",
+   "486"
+  ],
+  "correct_answer": "486",
+  "explanation": "Two steps multiply 18 by 162/18 = 9, so the common ratio r satisfies r^2 = 9 and r = 3 because the terms are positive. The 5th term is 162(3) = 486. \"54\" is the 3rd term, 18(3), which is the value a solver reaches one step into the work. \"324\" is 162(2), from a solver who doubles rather than applies the ratio. \"180\" is 162 + 18, from a solver who treats the sequence as though the terms were added.",
+  "solve": "var r=Math.sqrt(162/18); return 162*r;",
+  "distractor_solve": {
+   "54": "var r=Math.sqrt(162/18); return 18*r;",
+   "324": "return 162*2;",
+   "180": "return 162+18;"
+  }
+ },
+ {
+  "id": "AM8F-14",
+  "domain": "Functions",
+  "subskill": "x-intercepts from factored form",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (2x - 6)(x + 5). What is the sum of the x-coordinates of the two points at which the graph of y = f(x) crosses the x-axis?",
+  "choices": [
+   "-15",
+   "-2",
+   "8",
+   "15"
+  ],
+  "correct_answer": "-2",
+  "explanation": "f(x) = 0 when 2x - 6 = 0 or x + 5 = 0, that is at x = 3 and x = -5, and 3 + (-5) = -2. \"-15\" is 3(-5), the product of those two x-coordinates rather than their sum. \"15\" is 3(5), the product with the sign of the second root dropped. \"8\" is 3 + 5, from a solver who reads the root of x + 5 as 5 rather than -5.",
+  "solve": "return 3+(-5);",
+  "distractor_solve": {
+   "-15": "return 3*(-5);",
+   "15": "return 3*5;",
+   "8": "return 3+5;"
+  }
+ },
+ {
+  "id": "AM8F-15",
+  "domain": "Functions",
+  "subskill": "evaluating an exponential growth model",
+  "difficulty": "medium",
+  "prompt": "A culture begins with 400 cells, and the number of cells triples every 5 hours. How many cells are in the culture 20 hours after it begins?",
+  "choices": [
+   "3600",
+   "4800",
+   "32400",
+   "97200"
+  ],
+  "correct_answer": "32400",
+  "explanation": "There are 20/5 = 4 tripling periods in 20 hours, so the count is 400(3^4) = 400(81) = 32,400 cells. \"97200\" is 400(3^5), from a solver who counts five periods by including the starting moment as one. \"4800\" is 400(3)(4), from a solver who multiplies by 3 once and then by the 4 periods instead of raising 3 to the 4th power. \"3600\" is 400(3^2), from a solver who reads the tripling as happening every 10 hours.",
+  "solve": "return 400*Math.pow(3,20/5);",
+  "distractor_solve": {
+   "97200": "return 400*Math.pow(3,5);",
+   "4800": "return 400*3*4;",
+   "3600": "return 400*Math.pow(3,20/10);"
+  }
+ },
+ {
+  "id": "AM8F-16",
+  "domain": "Functions",
+  "subskill": "solving an exponential decay model for the input",
+  "difficulty": "medium",
+  "prompt": "The concentration of a drug in a patient's blood, in milligrams per liter, h hours after a dose is c(h) = 80(0.5)^(h/6). After how many hours is the concentration 10 milligrams per liter?",
+  "choices": [
+   "3",
+   "18",
+   "24",
+   "48"
+  ],
+  "correct_answer": "18",
+  "explanation": "Going from 80 to 10 means halving three times, since 80, 40, 20, 10. Each halving takes 6 hours, so the concentration reaches 10 after 3(6) = 18 hours. \"3\" is the number of halvings, a count of steps rather than a number of hours. \"24\" is 4(6), from a solver who counts the starting concentration of 80 as one of the halvings and so counts four of them. \"48\" is (80/10)(6), from a solver who divides the two concentrations and multiplies that quotient by 6 instead of counting halvings.",
+  "solve": "return 6*Math.log(80/10)/Math.log(2);",
+  "distractor_solve": {
+   "3": "return Math.log(80/10)/Math.log(2);",
+   "24": "return 6*(Math.log(80/10)/Math.log(2)+1);",
+   "48": "return (80/10)*6;"
+  }
+ },
+ {
+  "id": "AM8F-17",
+  "domain": "Functions",
+  "subskill": "translating the graph of a function",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, the lowest point on the graph of y = f(x) is (2,-5). Which of the following is the lowest point on the graph of y = f(x - 3) + 4 ?",
+  "choices": [
+   "(-1, -9)",
+   "(-1, -1)",
+   "(5, -9)",
+   "(5, -1)"
+  ],
+  "correct_answer": "(5, -1)",
+  "explanation": "Replacing x by x - 3 moves every point 3 units to the right, and adding 4 moves every point 4 units up, so (2,-5) moves to (2 + 3, -5 + 4) = (5,-1). \"(-1, -1)\" moves 3 units left, from a solver who follows the sign printed in x - 3. \"(5, -9)\" moves 4 units down, from a solver who subtracts the 4. \"(-1, -9)\" makes both of those slips.",
+  "solve": "return \"(\" + (2+3) + \", \" + (-5+4) + \")\";",
+  "distractor_solve": {
+   "(-1, -1)": "return \"(\" + (2-3) + \", \" + (-5+4) + \")\";",
+   "(5, -9)": "return \"(\" + (2+3) + \", \" + (-5-4) + \")\";",
+   "(-1, -9)": "return \"(\" + (2-3) + \", \" + (-5-4) + \")\";"
+  }
+ },
+ {
+  "id": "AM8F-18",
+  "domain": "Functions",
+  "subskill": "where a rational function is undefined",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (x + 5)/(x^2 - 9). For which of the following values of x is f(x) undefined?",
+  "choices": [
+   "-9",
+   "-5",
+   "3",
+   "9"
+  ],
+  "correct_answer": "3",
+  "explanation": "f(x) is undefined exactly where the denominator is 0, and 3^2 - 9 = 0. \"9\" comes from a solver who reads x^2 - 9 = 0 as x = 9 rather than x^2 = 9. \"-9\" comes from the same reading with the sign moved instead. \"-5\" is where the numerator is 0, which makes f(-5) = 0 rather than undefined.",
+  "solve": "var x=3; return (x*x-9)===0 ? x : NaN;",
+  "distractor_solve": {
+   "9": "return 9;",
+   "-9": "return -9;",
+   "-5": "var x=-5; return (x+5)===0 ? x : NaN;"
+  }
+ },
+ {
+  "id": "AM8F-19",
+  "domain": "Functions",
+  "subskill": "least value of a sinusoidal function",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 4 sin x + 3, where x is measured in radians. What is the least value of f(x)?",
+  "choices": [
+   "-7",
+   "-4",
+   "-1",
+   "7"
+  ],
+  "correct_answer": "-1",
+  "explanation": "The least value of sin x is -1, so the least value of f is 4(-1) + 3 = -1. \"7\" is 4(1) + 3, the greatest value of f rather than the least. \"-4\" is 4(-1), the least value of 4 sin x alone, with the 3 never added. \"-7\" is 4(-1) - 3, from a solver who subtracts the 3 instead of adding it.",
+  "solve": "return 4*(-1)+3;",
+  "distractor_solve": {
+   "7": "return 4*1+3;",
+   "-4": "return 4*(-1);",
+   "-7": "return 4*(-1)-3;"
+  }
+ },
+ {
+  "id": "AM8F-23",
+  "domain": "Functions",
+  "subskill": "a second input with the same output as a given one",
+  "difficulty": "medium",
+  "prompt": "For the function f(x) = x^2 - 10x + 7, f(3) = f(k) for some number k that is not equal to 3. What is the value of k?",
+  "choices": [
+   "-3",
+   "5",
+   "7",
+   "13"
+  ],
+  "correct_answer": "7",
+  "explanation": "f(3) = 9 - 30 + 7 = -14, so k satisfies k^2 - 10k + 7 = -14, that is k^2 - 10k + 21 = 0, which factors as (k - 3)(k - 7) = 0. Since k is not 3, k = 7. \"5\" is the x-coordinate of the vertex, halfway between the two inputs, not an input itself. \"-3\" comes from a solver who reflects 3 across the y-axis rather than across the vertex. \"13\" is 10 + 3, from a solver who adds the coefficient 10 to the given input.",
+  "solve": "var t=3*3-10*3+7; for(var x=-50;x<=50;x++){ if(x!==3 && x*x-10*x+7===t) return x; } return NaN;",
+  "distractor_solve": {
+   "5": "return 10/2;",
+   "-3": "return -3;",
+   "13": "return 10+3;"
+  }
+ },
+ {
+  "id": "AM8F-20",
+  "domain": "Functions",
+  "subskill": "recovering the inner function of a composition",
+  "difficulty": "hard",
+  "prompt": "The functions f and h are defined by f(x) = 2x + 5 and h(x) = f(g(x)), and h(x) = 6x - 1 for every value of x. What is the value of g(4)?",
+  "choices": [
+   "9",
+   "13",
+   "23",
+   "51"
+  ],
+  "correct_answer": "9",
+  "explanation": "h(4) = f(g(4)) = 2g(4) + 5, and h(4) = 6(4) - 1 = 23, so 2g(4) + 5 = 23 and g(4) = 9. \"23\" is h(4), the output of the composition rather than the input handed to f. \"13\" is f(4) = 2(4) + 5, which evaluates the outer function at 4 instead. \"51\" is f(h(4)) = 2(23) + 5, from a solver who applies f to h(4) rather than undoing it.",
+  "solve": "return (6*4-1-5)/2;",
+  "distractor_solve": {
+   "23": "return 6*4-1;",
+   "13": "return 2*4+5;",
+   "51": "return 2*(6*4-1)+5;"
+  }
+ },
+ {
+  "id": "AM8F-21",
+  "domain": "Functions",
+  "subskill": "an input chosen from two that share an output",
+  "difficulty": "hard",
+  "prompt": "The table below gives every value of the function f.\n\n  x    | -3 | -1 |  0 |  2 |  5\n  f(x) | 10 |  2 |  1 | 10 | 19\n\nThe function g is defined by g(x) = f(x) - 10. What is the greatest value of x for which g(x) = 0 ?",
+  "choices": [
+   "-3",
+   "2",
+   "10",
+   "19"
+  ],
+  "correct_answer": "2",
+  "explanation": "g(x) = 0 means f(x) = 10, and the table shows f(x) = 10 at both x = -3 and x = 2. The greater of those is 2. \"-3\" is the other input with that same output, which a solver takes by stopping at the first row that works. \"10\" comes from reading g(x) = 0 as x - 10 = 0. \"19\" is the greatest value in the f(x) row, an output rather than an input.",
+  "solve": "var xs=[-3,-1,0,2,5], fs=[10,2,1,10,19], best=-Infinity; for(var i=0;i<xs.length;i++){ if(fs[i]-10===0 && xs[i]>best) best=xs[i]; } return best;",
+  "distractor_solve": {
+   "-3": "var xs=[-3,-1,0,2,5], fs=[10,2,1,10,19], b=Infinity; for(var i=0;i<xs.length;i++){ if(fs[i]-10===0 && xs[i]<b) b=xs[i]; } return b;",
+   "10": "return 10;",
+   "19": "var fs=[10,2,1,10,19]; return Math.max.apply(null,fs);"
+  }
+ },
+ {
+  "id": "AM8F-22",
+  "domain": "Functions",
+  "subskill": "the first term of an arithmetic sequence from a sum of two terms",
+  "difficulty": "hard",
+  "prompt": "In an arithmetic sequence, each term after the first is 4 greater than the term before it. The sum of the 3rd term and the 7th term is 50. What is the first term of the sequence?",
+  "choices": [
+   "5",
+   "9",
+   "17",
+   "25"
+  ],
+  "correct_answer": "9",
+  "explanation": "If the first term is a, the 3rd term is a + 4(2) = a + 8 and the 7th term is a + 4(6) = a + 24. Their sum is 2a + 32 = 50, so a = 9. \"25\" is 50/2, the 5th term, which is the average of the two given terms rather than the first term. \"17\" is the 3rd term, a + 8, the value a solver reaches just before answering. \"5\" comes from using a + 4(3) and a + 4(7) for the 3rd and 7th terms, multiplying 4 by the term number instead of by one less.",
+  "solve": "return (50-(4*2+4*6))/2;",
+  "distractor_solve": {
+   "25": "return 50/2;",
+   "17": "var a=(50-32)/2; return a+4*2;",
+   "5": "return (50-(4*3+4*7))/2;"
+  }
+ },
+ {
+  "id": "AM8F-24",
+  "domain": "Functions",
+  "subskill": "a midpoint value of an exponential model",
+  "difficulty": "hard",
+  "prompt": "The population of a town grows by the same percent each year. The population was 5,000 in 2010 and 45,000 in 2014. What was the population in 2012?",
+  "choices": [
+   "11250",
+   "15000",
+   "22500",
+   "25000"
+  ],
+  "correct_answer": "15000",
+  "explanation": "Over 4 years the population is multiplied by 45,000/5,000 = 9, so over 2 years it is multiplied by the number whose square is 9, namely 3. The 2012 population is 5,000(3) = 15,000. \"25000\" is (5,000 + 45,000)/2, the average of the two populations, which would be right only if the growth were by a fixed amount each year. \"22500\" is 5,000(9/2), from a solver who halves the four-year multiplier instead of taking its square root. \"11250\" is 5,000(9/4), from a solver who divides that multiplier by the four years and applies it once.",
+  "solve": "return 5000*Math.sqrt(45000/5000);",
+  "distractor_solve": {
+   "25000": "return (5000+45000)/2;",
+   "22500": "return 5000*(45000/5000)/2;",
+   "11250": "return 5000*(45000/5000)/4;"
+  }
+ },
+ {
+  "id": "AM8F-25",
+  "domain": "Functions",
+  "subskill": "an x-intercept of a horizontally transformed graph",
+  "difficulty": "hard",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = f(x) crosses the x-axis only at x = 9. At what value of x does the graph of y = f(3x - 6) cross the x-axis?",
+  "choices": [
+   "1",
+   "5",
+   "15",
+   "27"
+  ],
+  "correct_answer": "5",
+  "explanation": "The new graph is at the x-axis when f(3x - 6) = 0, which happens when the quantity 3x - 6 equals 9, the only input at which f is 0. Then 3x = 15 and x = 5. \"15\" is the value of 3x, from a solver who stops before dividing. \"1\" is (9 - 6)/3, from a solver who subtracts the 6 instead of adding it. \"27\" is 9(3), from a solver who multiplies the old intercept by 3 rather than undoing the multiplication.",
+  "solve": "return (9+6)/3;",
+  "distractor_solve": {
+   "15": "return 9+6;",
+   "1": "return (9-6)/3;",
+   "27": "return 9*3;"
+  }
+ },
+ {
+  "id": "AM8F-26",
+  "domain": "Functions",
+  "subskill": "counting inputs that give integer outputs",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = 12/(x - 4) for every x except x = 4. For how many integer values of x with 0 <= x <= 10 is f(x) an integer?",
+  "choices": [
+   "5",
+   "6",
+   "9",
+   "10"
+  ],
+  "correct_answer": "9",
+  "explanation": "f(x) is an integer exactly when x - 4 divides 12. For x from 0 to 10 other than 4, x - 4 runs through -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, and every one of those divides 12 except 5, so 9 values of x work. \"5\" counts only the values with x greater than 4, from a solver who never tries the negative divisors. \"6\" is the number of positive divisors of 12, which are 1, 2, 3, 4, 6 and 12, counted without checking which of them x - 4 can actually reach. \"10\" counts every integer from 0 to 10 except 4, from a solver who never checks divisibility at all.",
+  "solve": "var c=0; for(var x=0;x<=10;x++){ if(x===4) continue; if(12 % (x-4) === 0) c++; } return c;",
+  "distractor_solve": {
+   "5": "var c=0; for(var x=5;x<=10;x++){ if(12 % (x-4) === 0) c++; } return c;",
+   "6": "var c=0; for(var d=1;d<=12;d++){ if(12 % d === 0) c++; } return c;",
+   "10": "var c=0; for(var x=0;x<=10;x++){ if(x!==4) c++; } return c;"
+  }
+ },
+ {
+  "id": "AM8F-27",
+  "domain": "Functions",
+  "subskill": "using a period to evaluate a function far from the given inputs",
+  "difficulty": "hard",
+  "prompt": "The function g satisfies g(x + 6) = g(x) for every value of x. If g(2) = 9 and g(4) = -6, what is the value of g(50) + g(-2) ?",
+  "choices": [
+   "3",
+   "9",
+   "15",
+   "18"
+  ],
+  "correct_answer": "3",
+  "explanation": "Since 50 = 2 + 8(6), g(50) = g(2) = 9. Since -2 + 6 = 4, g(-2) = g(4) = -6. The sum is 9 + (-6) = 3. \"18\" is 9 + 9, from a solver who treats g(-2) as g(2) by reflecting the input rather than shifting it by 6. \"15\" is 9 - (-6), from a solver who subtracts the two values instead of adding them. \"9\" is g(50) alone, with the second term never added.",
+  "solve": "return 9+(-6);",
+  "distractor_solve": {
+   "18": "return 9+9;",
+   "15": "return 9-(-6);",
+   "9": "var g={2:9,4:-6}; return g[50-8*6];"
+  }
+ },
+ {
+  "id": "AM8F-28",
+  "domain": "Functions",
+  "subskill": "greatest input consistent with a step-function output",
+  "difficulty": "hard",
+  "prompt": "A shipping company charges $8.00 for the first 3 pounds of a package and $1.25 for each additional pound or part of a pound. The charge for a certain package was $19.25. What is the greatest possible weight of the package, in pounds?",
+  "choices": [
+   "9",
+   "11.25",
+   "12",
+   "15.4"
+  ],
+  "correct_answer": "12",
+  "explanation": "Beyond the $8.00, the package was charged 19.25 - 8.00 = $11.25, which is 11.25/1.25 = 9 charges of $1.25. Because a part of a pound costs a full $1.25, those 9 charges cover any weight above 3 + 8 = 11 pounds up to and including 3 + 9 = 12 pounds, so the greatest possible weight is 12 pounds. \"9\" is the number of additional charges, which counts pounds beyond the first 3 rather than the whole package. \"11.25\" is 19.25 - 8.00, an amount of money reported as a weight. \"15.4\" is 19.25/1.25, from a solver who divides the entire charge by the per-pound rate and never separates out the $8.00.",
+  "solve": "return 3 + (19.25-8)/1.25;",
+  "distractor_solve": {
+   "9": "return (19.25-8)/1.25;",
+   "11.25": "return 19.25-8;",
+   "15.4": "return 19.25/1.25;"
+  }
+ }
+]

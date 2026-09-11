@@ -1,0 +1,254 @@
+{
+  "AM8F-01": {
+    "pick": "C",
+    "solved": "f(-2) = 4(4) - 3(-2) + 1 = 16 + 6 + 1 = 23.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-9 is the (-2)^2 sign error 4(-4)+6+1; standard opener."
+  },
+  "AM8F-02": {
+    "pick": "D",
+    "solved": "g(4)=35, g(2)=11, difference 24.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "46 = 35+11 (sum instead of difference); 56 = 67-11 (wrong row). Pure lookup."
+  },
+  "AM8F-03": {
+    "pick": "B",
+    "solved": "30 - 2.5t = 7.5 -> 2.5t = 22.5 -> t = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "22.5 is the un-divided intermediate, which is the standard ACT trap here."
+  },
+  "AM8F-04": {
+    "pick": "D",
+    "solved": "y-intercept is f(0) = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-7 is the linear coefficient, 2 the leading coefficient. One-step."
+  },
+  "AM8F-05": {
+    "pick": "D",
+    "solved": "a10 = 8 + 9(5) = 53.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "48 is the off-by-one 8+8(5); 50 = 10(5). Textbook arithmetic-sequence opener."
+  },
+  "AM8F-06": {
+    "pick": "C",
+    "solved": "C(150)-C(90) = 0.4(150-90) = 0.4(60) = 24; the 25 cancels.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "85 = C(150), 60 = the page difference itself."
+  },
+  "AM8F-07": {
+    "pick": "C",
+    "solved": "f(3)=7, g(7)=49.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "13 = f(g(3)) (order reversed), 25 = (3+4)^2 mis-set as 3^2+4^2? nearer f(g(3)) variants. Order-of-composition item, the most common form of it."
+  },
+  "AM8F-08": {
+    "pick": "C",
+    "solved": "Vertex form: the square is >= 0, so the minimum of f is 5 at x = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "3 is the x-coordinate of the vertex, 14 is f(0). Reading a feature straight off vertex form."
+  },
+  "AM8F-09": {
+    "pick": "B",
+    "solved": "2c-7=15 -> c=11; f(14) = 28-7 = 21. (Or: slope 2, so f(c+3)=15+6=21.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "18 = 15+3 (adding 3 to the output instead of the input) is the intended miss and is good."
+  },
+  "AM8F-10": {
+    "pick": "D",
+    "solved": "(3x+2)/5 = 4 -> 3x+2 = 20 -> x = 6.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "2.8 = f(4), the classic inverse-vs-evaluate confusion; 22 = 5(4)+2. Good set."
+  },
+  "AM8F-11": {
+    "pick": "B",
+    "solved": "(48-20)/(9-2) = 28/7 = 4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "28 is the numerator alone; 6 uses the x=0 row. Table-lookup plus one formula."
+  },
+  "AM8F-12": {
+    "pick": "A",
+    "solved": "800-300 = 500 overage minutes, 500(0.04) = $20.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "45 = total bill, which is the right trap since the stem asks only for the overage charge. The stem's final clause names exactly what to compute, so it is not hard."
+  },
+  "AM8F-13": {
+    "pick": "A",
+    "solved": "r^2 = 162/18 = 9; terms positive so r = 3; 5th term = 162(3) = 486.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The 'every term is positive' clause is doing the r = -3 exclusion, so the stem hands the student the one thing that could have been withheld. 324 = 2*162, 54 = 18*3."
+  },
+  "AM8F-14": {
+    "pick": "A",
+    "solved": "Zeros at x = 3 and x = -5; sum = -2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "8 = 3+5 (sign error on the second root), -15 and 15 are the constants. Already factored, so it is one step."
+  },
+  "AM8F-15": {
+    "pick": "B",
+    "solved": "20/5 = 4 triplings; 400(3^4) = 400(81) = 32,400.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "97200 = one tripling too many (5 periods); 3600 = 400(9). Counting the periods is the whole task."
+  },
+  "AM8F-16": {
+    "pick": "B",
+    "solved": "80(0.5)^(h/6) = 10 -> (0.5)^(h/6) = 1/8 = (0.5)^3 -> h/6 = 3 -> h = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "3 is h/6 left undivided; 48 = 8*6. Executing the given formula; the /6 is written in the stem."
+  },
+  "AM8F-17": {
+    "pick": "D",
+    "solved": "y = f(x-3)+4 shifts right 3 and up 4: (2+3, -5+4) = (5,-1).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "All four options are the sign-combination grid (+-3, +-4), which is the right distractor family here."
+  },
+  "AM8F-18": {
+    "pick": "A",
+    "solved": "Undefined where x^2-9 = 0, i.e. x = 3 or x = -3; 3 is offered.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-5 zeroes the numerator (defined); 9 and -9 target students who read x^2-9 as x-9. Only one root appears among the options, so there is no ambiguity."
+  },
+  "AM8F-19": {
+    "pick": "B",
+    "solved": "sin x ranges over [-1,1], so 4 sin x + 3 ranges over [-1,7]; least value -1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "-7 = -(4+3), 7 is the maximum, -4 is the amplitude alone. Standard range-of-sinusoid item."
+  },
+  "AM8F-20": {
+    "pick": "A",
+    "solved": "h(x) = f(g(x)) = 2g(x)+5 = 6x-1 -> g(x) = 3x-3 -> g(4) = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Disagree if this was labelled hard. 'h(x) = f(g(x)), and h(x) = 6x-1 for every value of x' is the whole method stated in one sentence: set the two expressions equal and solve. 13 = f(4), 23 = h(4), 51 = f(h(4)) are a well-built set, but the route is the stem read left to right."
+  },
+  "AM8F-21": {
+    "pick": "B",
+    "solved": "g(x)=0 means f(x)=10, which the table gives at x=-3 and x=2; greatest is 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Disagree if labelled hard. The stem's own word 'greatest' announces that more than one x qualifies, and 'every value of the function f' guarantees the table is exhaustive. Both of the things a student would otherwise have to notice are written down. 10 and 19 are output-for-input swaps."
+  },
+  "AM8F-22": {
+    "pick": "D",
+    "solved": "a3 = a1+8, a7 = a1+24; sum 2a1+32 = 50 -> a1 = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "25 = 50/2 (treating the two terms as equal), 17 = the 3rd term, 5 = a1 with an off-by-one on d. Longer than item 05 but the same learned line."
+  },
+  "AM8F-23": {
+    "pick": "C",
+    "solved": "f(3) = 9-30+7 = -14; x^2-10x+7 = -14 -> x^2-10x+21 = 0 -> (x-3)(x-7) -> k = 7. (Symmetry about x=5 gives the same.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Disagree if labelled hard. The symmetry insight is optional: 'f(3) = f(k)' is an equation the student can write down and solve by brute factoring, which is the route most will take. An item is only hard if the unstated idea is the ONLY road. 5 (the axis) and 13 are good distractors."
+  },
+  "AM8F-24": {
+    "pick": "A",
+    "solved": "Constant percent growth: r^4 = 45000/5000 = 9, so r^2 = 3; 2012 is 2 years on: 5000(3) = 15,000.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Agree hard. Nothing in the stem says the midpoint year is not the average of the endpoints; the student has to supply that a geometric process needs the geometric mean. 25000 is exactly the arithmetic-mean answer and is the strongest distractor in the batch."
+  },
+  "AM8F-25": {
+    "pick": "D",
+    "solved": "y = f(3x-6) is zero when the inner argument equals 9: 3x-6 = 9 -> x = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Disagree if labelled hard. 'crosses the x-axis only at x = 9' gives the input value, and 'y = f(3x-6)' gives the expression to set equal to it; the substitution is mechanical once you accept the argument is the thing that must be 9. 27 = 3(9), 15 = 9+6 are the two natural slips."
+  },
+  "AM8F-26": {
+    "pick": "C",
+    "solved": "Need (x-4) | 12. For x = 0..10, x != 4, x-4 runs over -4,-3,-2,-1,1,2,3,4,5,6; all divide 12 except 5. That is 9 values (x = 0,1,2,3,5,6,7,8,10).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Agree hard. The withheld idea is that negative divisors also give integer quotients, so the four values below x=4 count. 5 is precisely the positive-divisors-only answer, which is what a student who does not notice will produce. Two ideas interact: divisibility and the sign of the denominator."
+  },
+  "AM8F-27": {
+    "pick": "A",
+    "solved": "g has period 6. 50 = 2 + 6(8) so g(50) = g(2) = 9; -2 + 6 = 4 so g(-2) = g(4) = -6. Sum = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Disagree if labelled hard. 'g(x+6) = g(x) for every value of x' IS the instruction; stepping by 6 until you land on 2 and on 4 is executing that sentence, forwards and backwards. It is long, not deep. 15 = 9+6, 3 vs 18 punish sign errors on g(4)."
+  },
+  "AM8F-28": {
+    "pick": "C",
+    "solved": "19.25 - 8.00 = 11.25 of additional charge = 9 units at $1.25. Nine units cover any weight above 11 up to and including 12, so the greatest possible weight is 12 pounds.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Agree hard. Two things are withheld: that 'or part of a pound' makes the charge a ceiling function, so the weight is an interval rather than a number, and that 'greatest possible' therefore asks for the top of that interval. 9 (additional pounds) and 11.25 (the remainder in dollars) are both live wrong answers a real student produces."
+  }
+}

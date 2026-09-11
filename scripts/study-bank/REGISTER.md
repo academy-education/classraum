@@ -1232,3 +1232,41 @@ structural checks are pre-flight only. See CLAUDE.md.
   **What this means for capacity, stated so it is not discovered later.** SAT R&W reports 16 complete forms (14 after today's domain-label correction). Both figures assume the `v2` items are sound. They are 740 of 1,047. What the hand-authored cohorts alone can supply is **34 Craft and Structure, 40+23+22 SEC, 149 Expression of Ideas, 10 Information and Ideas** — the binding domain would be Information and Ideas at 10 items, i.e. **zero complete forms**.
 
   **Still not acted on, and still the user's call.** Nothing has been archived, unverified or rewritten. The decision is now about 740 items rather than 210, and it is the same decision: archive, rebuild, or keep serving while a replacement is authored. What IS settled without needing anyone's permission: **no new R&W batch should imitate `v2`, and `sat-cs-h4` still does not insert** — it beats the live bank on every stratum and still runs 87.5% on text structure, and beating a broken baseline is not a pass.
+
+- **2026-09-11** — **act-math-v8-fn: 16.7% BLIND, BELOW CHANCE, ZERO ITEMS DROPPED. THE CLEANEST BATCH THIS PROJECT HAS MEASURED.** ACT Math 345 -> 373, forms 6 -> 7, cap now Number and Quantity at 35. 45 of 45 still draws.
+
+  Options-only attack, three solvers: **16.7% against a 25.0% line, margin -8.3, ZERO items solved by all three, and every confident pick any solver filed was WRONG** (0/1, 0/6, and one solver filed none at all). The uniform drop rule selects nothing, so all 28 items inserted.
+
+  **The interesting part is how the three solvers behaved, because it is what this whole session was trying to install.** All three independently measured the NULL per channel — resampling each item's four options from its own observed range, 20k-200k draws per item — rather than reporting raw counts:
+
+        channel                      observed    expected under null
+        arithmetic run                    5          6.45 - 7.76
+        pair sums to 90/180/360/100/1     0          2.86
+        key = sum of two others           1          4.88
+        derivational hub                  0          0.39
+        geometric run                     0          0.43
+
+  Every channel at or below its noise floor, two suppressed *below* it. Two solvers read that as the signature of a batch genuinely swept during authoring rather than one that happened to avoid the tells.
+
+  **The author's run claim was tested rather than believed.** They stated five items carry an arithmetic run with a distractor at the middle. All three solvers found exactly those five — and all three declined to bet either direction, because 5 observed against ~6.5 expected is below the floor. One: *"both directions are bets on noise."* Another built a rule that would have decided 27 of 28 items and **refused to fire it**, writing that an untested coin flip applied batch-wide reads as a 50% leak when it lands well. That is the correct instinct and it arrived unprompted.
+
+  The only structure standing above the floor was item 21, where one option is the exact product of two others (pNull 0.002, ~0.054 Bonferroni over 27 items). Two solvers bet it confidently. **Both were wrong.**
+
+  **Brief §3b worked at the authoring end and did not close the gap.** The author demoted an item they had drafted as hard, writing that the stem states the equation so a student never has to notice symmetry — *"exactly the AM7I-19 shape"* — which is the rule being applied by an author rather than discovered by a grader afterwards. And yet all three graders still found **3 hard against a claimed 8**. Six consecutive maths batches have now had their hard count fail independent grading. The rule improves items; it has not yet made an author's own count trustworthy, and the grader's label remains the one that banks.
+
+- **2026-09-11** — **THE TEMPLATE CENSUS IS A JUDGEMENT CALL DRESSED AS A COUNT, AND I NEARLY WROTE IT INTO THE BRIEF AS A GATE.**
+
+  Three graders, the same 28 items, the same question:
+
+        grader   items in a group of 3+   largest group   is a HARD item templated?
+        a              15 of 28                 3          NO - none of the 3 hard items is in any group
+        b              21 of 28                 5          YES - AM8F-28, inside the fee+rate group
+        c              18 of 28                 6          YES - AM8F-24, inside the ratio group
+
+  Graders b and c both reported the earlier failure mode recurring — a hard item reachable by drilling the easy members of its template — and **named different items**. Grader a reports the opposite, and specifically that none of the hard items belongs to any group, calling that the batch's best structural property.
+
+  They disagree because the unit is undefined: whether "word-problem linear model" is the same learned habit as "bare evaluation" is a reading, not a measurement, and grader c said so outright ("count it as 12 of 28 if you grade strictly by habit").
+
+  **I had already told the user that if two graders agreed I would add a second clause to §3b — no hard item may share a template with an easy one — and the third grader refuted it.** Waiting for the third is the only reason that clause is not now in the brief being applied to every future batch. The finding is real *within* a grader and does not survive between them.
+
+  So: the census stays a diagnostic an author reports and a grader may dispute. It does NOT become a gate, because gating on it means gating on which grader was drawn. This is the sixth structural proxy this project has taken seriously and the sixth to fail the same way — the difference is that this one announced itself in a single run, because three people were asked the same question instead of one.

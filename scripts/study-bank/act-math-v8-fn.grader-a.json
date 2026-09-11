@@ -1,0 +1,254 @@
+{
+  "AM8F-01": {
+    "pick": "C",
+    "solved": "4(-2)^2 - 3(-2) + 1 = 16 + 6 + 1 = 23.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "11 is the squaring-the-sign error (4*4 - 6 + 1); -9 drops the square. Standard opener."
+  },
+  "AM8F-02": {
+    "pick": "D",
+    "solved": "g(4) = 35, g(2) = 11, difference 24.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "16 = g(4)-g(3), 46 = g(4)+g(2), 56 = g(5)-g(2). All off-by-one-column reads."
+  },
+  "AM8F-03": {
+    "pick": "B",
+    "solved": "30 - 2.5t = 7.5 -> 2.5t = 22.5 -> t = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "22.5 is the amount burned rather than the time; 3 = 7.5/2.5."
+  },
+  "AM8F-04": {
+    "pick": "D",
+    "solved": "y-intercept is f(0) = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-7 is the linear coefficient, i.e. the student who reaches for the wrong term."
+  },
+  "AM8F-05": {
+    "pick": "D",
+    "solved": "a10 = 8 + 9(5) = 53.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "48 = 8 + 8(5) is the classic n-1 slip and is present. Same habit as AM8F-22."
+  },
+  "AM8F-06": {
+    "pick": "C",
+    "solved": "C(150) - C(90) = 0.4(150-90) = 24; the 25 cancels.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "49 = 25 + 24 keeps the fixed fee, which is the intended miss. 85 = C(150)."
+  },
+  "AM8F-07": {
+    "pick": "C",
+    "solved": "f(3) = 7, g(7) = 49.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "13 = f(g(3)) is the order-reversal and is offered. Good set for an early item."
+  },
+  "AM8F-08": {
+    "pick": "C",
+    "solved": "(x-3)^2 >= 0, so the minimum of f is 5 at x = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "3 is the x-coordinate of the vertex reported as the value; 14 = f(0)."
+  },
+  "AM8F-09": {
+    "pick": "B",
+    "solved": "2c - 7 = 15 -> c = 11; f(14) = 28 - 7 = 21. (Or: f(c+3) = f(c) + 6 = 21.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "11 is c itself - the stop-too-early answer - and is offered."
+  },
+  "AM8F-10": {
+    "pick": "D",
+    "solved": "(3x+2)/5 = 4 -> 3x + 2 = 20 -> x = 6.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2.8 = f(4), the inverse-means-evaluate error; 22 = 5(4)+2 mis-ordered; 6.67 = 20/3."
+  },
+  "AM8F-11": {
+    "pick": "B",
+    "solved": "(f(9) - f(2))/(9 - 2) = (48 - 20)/7 = 4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "28 is the numerator alone; 6 = (48-12)/6 uses the x=0 row."
+  },
+  "AM8F-12": {
+    "pick": "A",
+    "solved": "800 - 300 = 500 excess minutes at $0.04 = $20.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "45 is the total bill and 32 = 800(0.04); the stem says 'for the minutes used beyond 300', so 20 is unambiguous."
+  },
+  "AM8F-13": {
+    "pick": "A",
+    "solved": "r^2 = 162/18 = 9, r = 3 (all terms positive), 5th = 162(3) = 486.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The 'every term is positive' clause is what closes off r = -3, and it is stated - so the ratio sign is given, not withheld."
+  },
+  "AM8F-14": {
+    "pick": "A",
+    "solved": "Roots x = 3 and x = -5; sum = -2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Already factored, so this is one step. 8 = 3+5 sign slip, -15/15 are the constant-term reads."
+  },
+  "AM8F-15": {
+    "pick": "B",
+    "solved": "20/5 = 4 triplings: 400 * 3^4 = 400 * 81 = 32,400.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "4800 = 400*3*4 (multiply instead of exponentiate); 97,200 = 5 triplings. Same habit as AM8F-16 and AM8F-24."
+  },
+  "AM8F-16": {
+    "pick": "B",
+    "solved": "80(0.5)^(h/6) = 10 -> (0.5)^(h/6) = 1/8 -> h/6 = 3 -> h = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "3 is the number of halvings reported as hours; 48 = 8*6. Clean."
+  },
+  "AM8F-17": {
+    "pick": "D",
+    "solved": "f(x-3) shifts right 3; +4 shifts up 4. (2,-5) -> (5,-1).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The option set is the full 2x2 of both sign choices, which is the right way to build this."
+  },
+  "AM8F-18": {
+    "pick": "A",
+    "solved": "Undefined where x^2 - 9 = 0, i.e. x = 3 or x = -3. Only 3 is offered.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-5 zeroes the numerator, which is the intended miss. -9 and 9 are weakish - nothing produces them but 'the 9 in the formula'."
+  },
+  "AM8F-19": {
+    "pick": "B",
+    "solved": "sin x ranges over [-1,1], so least value is 4(-1) + 3 = -1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "-7 = -4-3 (sign applied to the constant too); 7 is the maximum; -4 is the amplitude alone."
+  },
+  "AM8F-20": {
+    "pick": "A",
+    "solved": "2g(x) + 5 = 6x - 1 -> g(x) = 3x - 3 -> g(4) = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "23 = h(4) is the answer-the-wrong-function trap; 51 = f(h(4))."
+  },
+  "AM8F-21": {
+    "pick": "B",
+    "solved": "g(x) = 0 means f(x) = 10, which happens at x = -3 and x = 2. Greatest is 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'gives EVERY value of the function f' is doing real work here and is correctly stated; without it the item would be broken. -3 is the other solution, 10 is the f-value."
+  },
+  "AM8F-22": {
+    "pick": "D",
+    "solved": "a3 + a7 = (a1 + 8) + (a1 + 24) = 2a1 + 32 = 50 -> a1 = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "25 = 50/2 (treating the two terms as equal), 17 = a3. Near-neighbour of AM8F-05."
+  },
+  "AM8F-23": {
+    "pick": "C",
+    "solved": "f(3) = 9 - 30 + 7 = -14. x^2 - 10x + 7 = -14 -> x^2 - 10x + 21 = 0 -> (x-3)(x-7), so k = 7. (Or symmetry about x = 5: 5 + 2 = 7.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "5 (the axis of symmetry) is the trap. Not hard: the stem's own sentence 'f(3) = f(k)' is a solvable equation as written, so no symmetry insight is required."
+  },
+  "AM8F-24": {
+    "pick": "A",
+    "solved": "r^4 = 45000/5000 = 9, so r^2 = 3; 2012 is two years on: 5000 * 3 = 15,000.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "25,000 is the arithmetic midpoint and 22,500 is half of 45,000 - both good. 'grows by the same percent each year' names the geometric model outright, which is why I do not read this as hard."
+  },
+  "AM8F-25": {
+    "pick": "D",
+    "solved": "f is zero only at 9, so f(3x-6) = 0 requires 3x - 6 = 9 -> x = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Closest of the non-hard items to hard: 'only at x = 9' hands the student the uniqueness, so what remains is the standard set-the-argument-equal move. 27, 15, 1 cover the three wrong directions."
+  },
+  "AM8F-26": {
+    "pick": "C",
+    "solved": "12/(x-4) is an integer when (x-4) divides 12. For 0 <= x <= 10, x-4 runs over -4..6 excluding 0, and -4,-3,-2,-1,1,2,3,4,6 all divide 12 (5 does not). That is 9 values of x: 0,1,2,3,5,6,7,8,10.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, and the withheld notice is real: 'divides 12' includes the negative divisors, which the stem never hints at. The habit answer - list 1,2,3,4,6,12 - gives 5, and 5 is offered as B. 10 is the forgot-to-drop-x=9 count."
+  },
+  "AM8F-27": {
+    "pick": "A",
+    "solved": "Period 6. 50 = 6(8) + 2 so g(50) = g(2) = 9. -2 + 6 = 4 so g(-2) = g(4) = -6. Sum = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD. The stem gives only the recurrence g(x+6) = g(x); that periodicity lets you reduce 50 mod 6, and that it runs BACKWARD as well as forward for g(-2), are both unsaid. 18 = 9+9 is the answer of a student who maps both arguments to 2."
+  },
+  "AM8F-28": {
+    "pick": "C",
+    "solved": "19.25 - 8.00 = 11.25; 11.25/1.25 = 9 charged increments. Nine increments cover any weight in (11, 12], so the greatest possible weight is 12.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, and the best item in the batch. 'or part of a pound' makes the charge a ceiling function, and 'greatest possible' asks for the top of an interval - neither step is named. Executing the stem linearly gives 3 + 9 = 12 only if you notice the ceiling; the plain arithmetic gives 9, which is offered as D. This is the one item whose template-habit answer is a distractor."
+  }
+}

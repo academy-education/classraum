@@ -2736,6 +2736,34 @@
      "verdict": "check-run-middle: 4 items carry the shape, key is the middle on 0 = 0.0% vs 25.0%. check-option-pair-constant: 0 items. check-key-is-sum: 2 items carry the shape, key in it 0 = 0.0%. check-formula-options: zero population. Two solvers independently proposed a channel the brief does not list — a 2x2 ADDITIVE ERROR LATTICE, where the four options are the corners of two independent one-step errors — and one bet on it. Recorded as an untested hypothesis, not a finding. Both also reported that the intermediate-value channel is IDENTIFIABLE but not DIRECTIONAL: they can name the ~9 items carrying a part-of-a-whole option, matching the author count, but nothing in the values says which end the stem asked for, so being small is not being wrong. That is a clean negative on a channel that looked promising."
     }
    }
+  },
+  {
+   "id": "act-math-v8-fn-2026-09-11",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v8-fn",
+   "contentSha": "80c19bda6e7117fa3521cc08aa4b10f9b9171f30d82743c01db5b2b9207abbd3",
+   "note": "28 items, ACT Math Functions. NO ITEMS DROPPED — the options-only attack came in BELOW chance with zero items solved by all three solvers, so the uniform drop rule (unanimous, or an exact checker puts the key in the exploitable shape) selects nothing. Commissioned against the binding domain: Functions capped ACT Math at 6 forms with 49 live items. Inserted at BANK_BAND=mixed.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "28/28 recompute to their key; 84 of 84 distractor_solve entries recomputed, 0 mismatches. The author exhaustively promoted all 84 distractors to key with 0 survivors, and attacked that harness two ways — a planted 12.0-vs-12 survivor is reported, and a rigged copy through the shipped helper gives Sandbox 27/28. They also found and fixed two defects no repo checker covers: on two items the key was the exact PRODUCT of two other options, which in a decay item is structural because the answer is halvings x period and both factors were on offer."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on the sanitized render, all reporting sha 3f08d74feb5f6200 before and after. 28 of 28 keys agreed 3/3, ZERO non-exclusive votes, and all three solved every item without guessing. All three independently credited the same two stems for closing loopholes that would otherwise break the item: AM8F-13 \"every term is positive\" (kills r = -3) and AM8F-21 \"every value of the function f\" (makes the table exhaustive). DIFFICULTY: author claimed 8 hard; all three graders found exactly 3. That is six consecutive maths batches where an author hard count did not survive independent grading. The author had already demoted one item themselves on the right grounds, writing that the stem states the equation so a student never has to notice symmetry — \"exactly the AM7I-19 shape\" — which is brief section 3b being applied by an author rather than discovered by a grader."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 3 solvers: 16.7% vs a 25.0% chance line, margin MINUS 8.3. ZERO items solved by all three. Every confident pick made by any solver was WRONG (0/1, 0/6, and one solver filed 0 confident picks on principle). The cleanest maths result measured in this project. All three solvers independently measured the NULL per channel by resampling each item options from its own range: arithmetic runs observed 5 against 6.45-7.76 expected, pair-sums 0 against 2.86, hub 0 against 0.39 — every channel at or BELOW its noise floor, with two suppressed below it, which two solvers read as the signature of a batch genuinely swept during authoring rather than one that happened to avoid the tells."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "check-run-middle: 5 items carry the shape, key is the middle on 0 = 0.0% vs 25.0%. check-option-pair-constant: 0 of 27 scorable carry the shape. check-key-is-sum: 1 item, key in it 0. check-formula-options: zero population (no rearrangement item was authored at all, which is brief section 3c applied deliberately). THE RUN CLAIM WAS TESTED RATHER THAN BELIEVED: the author stated five items carry an arithmetic run with a DISTRACTOR at the middle, and all three solvers independently found exactly those five, measured the null, and DECLINED TO BET EITHER DIRECTION because 5 observed against ~6.5 expected is below the noise floor. One solver: \"both directions are bets on noise.\" Another built a rule that would have decided 27 of 28 items and refused to fire it, on the grounds that an untested coin flip applied batch-wide reads as a 50% leak when it lands well. The only structure above the floor was item 21 (one option the exact product of two others, pNull 0.002, ~0.054 Bonferroni) — two solvers bet it confidently and BOTH WERE WRONG."
+    }
+   }
   }
  ],
  "auditedCohorts": [

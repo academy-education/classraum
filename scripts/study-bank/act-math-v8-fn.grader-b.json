@@ -1,0 +1,254 @@
+{
+  "AM8F-01": {
+    "pick": "C",
+    "solved": "f(-2) = 4(4) - 3(-2) + 1 = 16 + 6 + 1 = 23.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-9 is the (-2)^2 -> -4 sign slip, 11 is the -3x sign slip. Correct opener for a form that rises."
+  },
+  "AM8F-02": {
+    "pick": "D",
+    "solved": "35 - 11 = 24.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "weak",
+    "note": "56 = g(5)-g(2) (index slip, fine). 46 maps to no wrong path I can construct - g(5)-g(3) is 48, g(4)-g(1) is 28. Weak option."
+  },
+  "AM8F-03": {
+    "pick": "B",
+    "solved": "30 - 2.5t = 7.5 -> 2.5t = 22.5 -> t = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "22.5 is the unfinished subtraction; 3 is 7.5/2.5."
+  },
+  "AM8F-04": {
+    "pick": "D",
+    "solved": "y-intercept is f(0) = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": ""
+  },
+  "AM8F-05": {
+    "pick": "D",
+    "solved": "a10 = 8 + 9(5) = 53.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "48 is the classic 8 + 10(5) - 10 off-by-one; 45 and 50 cover the other two index errors. Good set."
+  },
+  "AM8F-06": {
+    "pick": "C",
+    "solved": "Difference is 0.4(150-90) = 0.4(60) = 24; the 25 cancels.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "85 = C(150), 49 = 25 + 24 (the student who adds the fixed fee back). Both real."
+  },
+  "AM8F-07": {
+    "pick": "C",
+    "solved": "f(3) = 7, g(7) = 49.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "13 = f(g(3)) is the order-reversal, the one distractor that matters here."
+  },
+  "AM8F-08": {
+    "pick": "C",
+    "solved": "(x-3)^2 >= 0, so the minimum is 5 at x = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "3 (the x-coordinate offered as the value) is the live trap."
+  },
+  "AM8F-09": {
+    "pick": "B",
+    "solved": "2c - 7 = 15 -> c = 11; f(14) = 28 - 7 = 21. (Or: slope 2 over a run of 3 adds 6 to 15.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "18 = 15 + 3 (adds the run, not slope*run); 11 = c itself. Both real paths."
+  },
+  "AM8F-10": {
+    "pick": "D",
+    "solved": "(3x+2)/5 = 4 -> 3x + 2 = 20 -> x = 6.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2.8 = f(4), the student who reads f^-1 as 'just evaluate'. 6.67 = 20/3 (drops the +2). Strong set."
+  },
+  "AM8F-11": {
+    "pick": "B",
+    "solved": "(48 - 20)/(9 - 2) = 28/7 = 4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "28 = numerator only, 7 = denominator only. 6 I cannot source to a clean wrong path."
+  },
+  "AM8F-12": {
+    "pick": "A",
+    "solved": "800 - 300 = 500 overage minutes; 500(0.04) = $20.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "45 = the total bill, and the stem's final clause ('for the minutes used beyond 300') is what keeps it from being defensible. 32 = 800(0.04). Strong."
+  },
+  "AM8F-13": {
+    "pick": "A",
+    "solved": "r^2 = 162/18 = 9; every term positive so r = 3; a5 = 162(3) = 486.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The 'every term is positive' clause is load-bearing - without it r = -3 gives -486, not an option, so exclusivity holds either way. 180 = 162 + 18 (treats it as arithmetic)."
+  },
+  "AM8F-14": {
+    "pick": "A",
+    "solved": "Roots x = 3 and x = -5; sum = -2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "8 = 3 + 5 (sign dropped), -15 = the product. Fine."
+  },
+  "AM8F-15": {
+    "pick": "B",
+    "solved": "20/5 = 4 triplings; 400(3^4) = 400(81) = 32,400.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "97,200 = 3^5 (off-by-one triplings), 3,600 = 3^2, 4,800 = 400 x 3 x 4 (multiplies instead of exponentiates). All three are real student paths."
+  },
+  "AM8F-16": {
+    "pick": "B",
+    "solved": "80(0.5)^(h/6) = 10 -> (0.5)^(h/6) = 1/8 = (0.5)^3 -> h/6 = 3 -> h = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "3 = h/6 left unmultiplied, 48 = 6 x 8. 24 is the fourth halving. Reasonable."
+  },
+  "AM8F-17": {
+    "pick": "D",
+    "solved": "x - 3 inside shifts right 3; +4 outside shifts up 4. (2,-5) -> (5,-1).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The options are the full 2x2 sign grid, which is exactly right for this item type."
+  },
+  "AM8F-18": {
+    "pick": "A",
+    "solved": "x^2 - 9 = 0 at x = 3 and x = -3; only 3 is offered.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-5 (numerator zero, confuses undefined with zero) is the good one; -9 and 9 are filler."
+  },
+  "AM8F-19": {
+    "pick": "B",
+    "solved": "sin x has minimum -1, so f min = 4(-1) + 3 = -1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "-7 = -4 - 3 (sign slip on the +3), -4 = amplitude alone, 7 = the maximum. Solid."
+  },
+  "AM8F-20": {
+    "pick": "A",
+    "solved": "h(x) = 2g(x) + 5 = 6x - 1 -> g(x) = 3x - 3 -> g(4) = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Stem says 'The functions f and h are defined by' and then introduces g mid-sentence without declaring it - sloppy but not ambiguous. 23 = h(4), 13 = f(4)."
+  },
+  "AM8F-21": {
+    "pick": "B",
+    "solved": "g(x) = 0 means f(x) = 10, true at x = -3 and x = 2; greatest is 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "'every value of the function f' is doing necessary work - it closes the domain so 2 is provably the greatest. -3 (the other preimage) is the intended trap; 10 and 19 are outputs offered as inputs, weak."
+  },
+  "AM8F-22": {
+    "pick": "D",
+    "solved": "a3 = a1 + 8, a7 = a1 + 24; 2a1 + 32 = 50 -> a1 = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "25 = 50/2 (treats the two terms as equal), 17 = a3, 5 = an off-by-one on the index offsets. Good."
+  },
+  "AM8F-23": {
+    "pick": "C",
+    "solved": "f(3) = 9 - 30 + 7 = -14; x^2 - 10x + 21 = 0 -> (x-3)(x-7) -> k = 7. (Axis at x = 5, so 3 and 7 are the pair.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Ordering oddity: AM8F-23 sits between -19 and -20 in the render. On a form that rises, the id order and the position order should agree. 5 = the axis itself, the best distractor here."
+  },
+  "AM8F-24": {
+    "pick": "A",
+    "solved": "r^4 = 45000/5000 = 9, so r^2 = 3; 2012 is two years on: 5000(3) = 15,000.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "25,000 is the arithmetic midpoint and is the whole point of the item; 22,500 = half of 45,000. Strong set - this is the best-distractored item in the batch."
+  },
+  "AM8F-25": {
+    "pick": "D",
+    "solved": "Need 3x - 6 = 9 -> x = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "27 = 3(9), 1 = (9-6)/3 with the sign flipped, 15 = 9 + 6. All three are the standard direction errors."
+  },
+  "AM8F-26": {
+    "pick": "C",
+    "solved": "Need x - 4 to divide 12. Over integer x in [0,10] with x != 4, x-4 runs -4,-3,-2,-1,1,2,3,4,5,6; of these all but 5 divide 12. That is 9 values (x = 0,1,2,3,5,6,7,8,10).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Genuinely hard by the stated rule: nothing in the stem says the divisors may be negative, and a student who lists only the positive divisors of 12 lands exactly on option B (5). 10 is 'all of them but x=4'. This is the strongest item in the batch."
+  },
+  "AM8F-27": {
+    "pick": "A",
+    "solved": "Period 6. 50 = 8(6) + 2 so g(50) = g(2) = 9. -2 + 6 = 4 so g(-2) = g(4) = -6. Sum = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "Hard, but the weakest of the three I grade hard: the unstated noticing is only that a negative argument wraps FORWARD by a period, and a student who reduces mod 6 mechanically gets there without noticing anything. 15 = 9 + 6 (sign lost on g(4)); 9 = g(50) with g(-2) read as 0."
+  },
+  "AM8F-28": {
+    "pick": "C",
+    "solved": "19.25 - 8.00 = 11.25 charged in additional-pound units; 11.25/1.25 = 9 units. Because a part of a pound is billed as a whole one, 9 units cover any weight above 3+8 = 11 up to and including 3+9 = 12. Greatest possible weight = 12.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard and correctly so: the stem never says the charge is a step function, so 'greatest possible' has to be recognised as inverting a ceiling. Option D (9) is where a student who does the arithmetic and stops lands; 11.25 is the remainder; 15.4 = 19.25/1.25. Note this shares its whole shell with -06 and -12 (fixed fee plus per-unit rate) and is the only one of the three with an idea in it."
+  }
+}

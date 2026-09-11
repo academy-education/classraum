@@ -1,0 +1,142 @@
+{
+  "1": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "cycle; only D=50 is round but lone-round fires 6x vs 7.67 expected under null, so it is not a tell"
+  },
+  "2": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "arithmetic run B,D,C exists but runs are BELOW the null rate in this batch; not betting the run either way"
+  },
+  "3": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "nothing separates 3/18/48/24; no hub, no pair-sum, no product"
+  },
+  "4": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "lone perfect square 9, but lone-square is a near-universal artifact of small-integer sets (13 obs vs 9.89 null)"
+  },
+  "5": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "5,6,9,10 is a tight cluster; no channel fires above null"
+  },
+  "6": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "lone negative -7 and lone square 1 point opposite ways; neither channel beats its null"
+  },
+  "7": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "13,14,25,49 shows no run, no derivational relation, no product"
+  },
+  "8": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "lone negative -3 only; lone-negative is not a measured channel above null"
+  },
+  "9": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "run C,B,D with middle B, and A=C+D; both channels sit below their null rates here, so I take neither"
+  },
+  "10": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "lone negative and lone round disagree; no channel above null"
+  },
+  "11": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "run A,D,B middle D=11 exists; declining the run bet per the null measurement"
+  },
+  "12": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "3600/32400/97200 form a coherent x3^k family and 4800 sits outside it; betting the key is inside the family, not the lone outsider"
+  },
+  "13": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "11,14,18,21 has no exact run (gaps 3,4,3) and no other relation"
+  },
+  "14": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "run C,A,D middle A=17; declining the run bet"
+  },
+  "15": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "9,13,23,51 - no relation survives; lone square 9 is incidental"
+  },
+  "16": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "options are a complete 2x2 grid of x in {-1,5} by y in {-9,-1}, perfectly balanced, so no coordinate leaks; D is the only repeated-coordinate pair but that direction is untested"
+  },
+  "17": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "two decimals and two integers, a 2-2 split with no lone form"
+  },
+  "18": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "20,32,45,57 - gaps 12,13,12, near but not an exact run; no channel fires"
+  },
+  "19": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "54,180,324,486 - 54,324,486 share factor 54 but no exact geometric run; 180 outside it, direction untested on n=1"
+  },
+  "20": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "two decimals, two integers; same balanced 2-2 form split as item 17"
+  },
+  "21": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "B=28 is both the product of C and D and the magnitude outlier; leaning against it, though one product in 27 items is the noise floor (null 0.38)"
+  },
+  "22": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "1,5,15,27 - no run, no hub, no product"
+  },
+  "23": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "8,-2,15,-15; the plus/minus 15 pair is symmetric so neither member is distinguished"
+  },
+  "24": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "6.67 is the only rounded repeating decimal, but lone-form direction is untested; 22 is the magnitude outlier"
+  },
+  "25": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "15000 is a weak multiplicative centre (x0.75, x1.5, x5/3) but not a hub under exact factors; no channel fires"
+  },
+  "26": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "run B,D,C middle D=5; declining the run bet"
+  },
+  "27": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "16,24,46,56 - no exact run, no product, no hub"
+  },
+  "28": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "24,49,60,85 - no relation; lone square 49 is incidental"
+  }
+}

@@ -1,0 +1,282 @@
+[
+ {
+  "id": "AM8F-01",
+  "prompt": "If f(x) = 4x^2 - 3x + 1, what is the value of f(-2)?",
+  "choices": [
+   "11",
+   "-9",
+   "23",
+   "-1"
+  ]
+ },
+ {
+  "id": "AM8F-02",
+  "prompt": "The table below gives five values of the function g.\n\n  x    |  1 |  2 |  3 |  4 |  5\n  g(x) |  7 | 11 | 19 | 35 | 67\n\nWhat is the value of g(4) - g(2)?",
+  "choices": [
+   "16",
+   "56",
+   "46",
+   "24"
+  ]
+ },
+ {
+  "id": "AM8F-03",
+  "prompt": "A candle is 30 centimeters tall and burns at a constant rate, so that its height, in centimeters, after t hours of burning is h(t) = 30 - 2.5t. After how many hours of burning is the candle 7.5 centimeters tall?",
+  "choices": [
+   "22.5",
+   "9",
+   "3",
+   "11.25"
+  ]
+ },
+ {
+  "id": "AM8F-04",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 7x + 5. The graph of y = f(x) in the standard (x,y) coordinate plane crosses the y-axis at what y-coordinate?",
+  "choices": [
+   "1",
+   "2",
+   "-7",
+   "5"
+  ]
+ },
+ {
+  "id": "AM8F-05",
+  "prompt": "The first term of an arithmetic sequence is 8, and each term after the first is 5 greater than the term before it. What is the 10th term of the sequence?",
+  "choices": [
+   "48",
+   "45",
+   "50",
+   "53"
+  ]
+ },
+ {
+  "id": "AM8F-06",
+  "prompt": "The cost, in dollars, of a printing job of n pages is given by C(n) = 25 + 0.4n. How many more dollars does a job of 150 pages cost than a job of 90 pages?",
+  "choices": [
+   "60",
+   "85",
+   "24",
+   "49"
+  ]
+ },
+ {
+  "id": "AM8F-07",
+  "prompt": "If f(x) = x + 4 and g(x) = x^2, what is the value of g(f(3))?",
+  "choices": [
+   "14",
+   "13",
+   "49",
+   "25"
+  ]
+ },
+ {
+  "id": "AM8F-08",
+  "prompt": "The function f is defined by f(x) = (x - 3)^2 + 5. What is the minimum value of f(x)?",
+  "choices": [
+   "14",
+   "-3",
+   "5",
+   "3"
+  ]
+ },
+ {
+  "id": "AM8F-09",
+  "prompt": "The function f is defined by f(x) = 2x - 7. If f(c) = 15, what is the value of f(c + 3)?",
+  "choices": [
+   "18",
+   "21",
+   "14",
+   "11"
+  ]
+ },
+ {
+  "id": "AM8F-10",
+  "prompt": "The function f is defined by f(x) = (3x + 2)/5. What is the value of f^-1(4)?",
+  "choices": [
+   "22",
+   "6.67",
+   "2.8",
+   "6"
+  ]
+ },
+ {
+  "id": "AM8F-11",
+  "prompt": "The table below gives four values of the function f.\n\n  x    |  0 |  2 |  5 |  9\n  f(x) | 12 | 20 | 26 | 48\n\nWhat is the average rate of change of f from x = 2 to x = 9?",
+  "choices": [
+   "6",
+   "4",
+   "7",
+   "28"
+  ]
+ },
+ {
+  "id": "AM8F-12",
+  "prompt": "A phone plan costs $25 per month, which includes the first 300 minutes of calls, plus $0.04 for each minute used beyond 300. In a month in which 800 minutes of calls were used, what was the charge, in dollars, for the minutes used beyond 300?",
+  "choices": [
+   "20",
+   "45",
+   "32",
+   "57"
+  ]
+ },
+ {
+  "id": "AM8F-13",
+  "prompt": "In a geometric sequence in which every term is positive, the 2nd term is 18 and the 4th term is 162. What is the 5th term?",
+  "choices": [
+   "486",
+   "54",
+   "324",
+   "180"
+  ]
+ },
+ {
+  "id": "AM8F-14",
+  "prompt": "The function f is defined by f(x) = (2x - 6)(x + 5). What is the sum of the x-coordinates of the two points at which the graph of y = f(x) crosses the x-axis?",
+  "choices": [
+   "-2",
+   "15",
+   "-15",
+   "8"
+  ]
+ },
+ {
+  "id": "AM8F-15",
+  "prompt": "A culture begins with 400 cells, and the number of cells triples every 5 hours. How many cells are in the culture 20 hours after it begins?",
+  "choices": [
+   "97200",
+   "32400",
+   "4800",
+   "3600"
+  ]
+ },
+ {
+  "id": "AM8F-16",
+  "prompt": "The concentration of a drug in a patient's blood, in milligrams per liter, h hours after a dose is c(h) = 80(0.5)^(h/6). After how many hours is the concentration 10 milligrams per liter?",
+  "choices": [
+   "48",
+   "18",
+   "3",
+   "24"
+  ]
+ },
+ {
+  "id": "AM8F-17",
+  "prompt": "In the standard (x,y) coordinate plane, the lowest point on the graph of y = f(x) is (2,-5). Which of the following is the lowest point on the graph of y = f(x - 3) + 4 ?",
+  "choices": [
+   "(-1, -9)",
+   "(5, -9)",
+   "(-1, -1)",
+   "(5, -1)"
+  ]
+ },
+ {
+  "id": "AM8F-18",
+  "prompt": "The function f is defined by f(x) = (x + 5)/(x^2 - 9). For which of the following values of x is f(x) undefined?",
+  "choices": [
+   "3",
+   "-9",
+   "-5",
+   "9"
+  ]
+ },
+ {
+  "id": "AM8F-19",
+  "prompt": "The function f is defined by f(x) = 4 sin x + 3, where x is measured in radians. What is the least value of f(x)?",
+  "choices": [
+   "-7",
+   "-1",
+   "7",
+   "-4"
+  ]
+ },
+ {
+  "id": "AM8F-23",
+  "prompt": "For the function f(x) = x^2 - 10x + 7, f(3) = f(k) for some number k that is not equal to 3. What is the value of k?",
+  "choices": [
+   "-3",
+   "5",
+   "7",
+   "13"
+  ]
+ },
+ {
+  "id": "AM8F-20",
+  "prompt": "The functions f and h are defined by f(x) = 2x + 5 and h(x) = f(g(x)), and h(x) = 6x - 1 for every value of x. What is the value of g(4)?",
+  "choices": [
+   "9",
+   "51",
+   "13",
+   "23"
+  ]
+ },
+ {
+  "id": "AM8F-21",
+  "prompt": "The table below gives every value of the function f.\n\n  x    | -3 | -1 |  0 |  2 |  5\n  f(x) | 10 |  2 |  1 | 10 | 19\n\nThe function g is defined by g(x) = f(x) - 10. What is the greatest value of x for which g(x) = 0 ?",
+  "choices": [
+   "10",
+   "2",
+   "-3",
+   "19"
+  ]
+ },
+ {
+  "id": "AM8F-22",
+  "prompt": "In an arithmetic sequence, each term after the first is 4 greater than the term before it. The sum of the 3rd term and the 7th term is 50. What is the first term of the sequence?",
+  "choices": [
+   "25",
+   "17",
+   "5",
+   "9"
+  ]
+ },
+ {
+  "id": "AM8F-24",
+  "prompt": "The population of a town grows by the same percent each year. The population was 5,000 in 2010 and 45,000 in 2014. What was the population in 2012?",
+  "choices": [
+   "15000",
+   "25000",
+   "11250",
+   "22500"
+  ]
+ },
+ {
+  "id": "AM8F-25",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = f(x) crosses the x-axis only at x = 9. At what value of x does the graph of y = f(3x - 6) cross the x-axis?",
+  "choices": [
+   "27",
+   "1",
+   "15",
+   "5"
+  ]
+ },
+ {
+  "id": "AM8F-26",
+  "prompt": "The function f is defined by f(x) = 12/(x - 4) for every x except x = 4. For how many integer values of x with 0 <= x <= 10 is f(x) an integer?",
+  "choices": [
+   "10",
+   "5",
+   "9",
+   "6"
+  ]
+ },
+ {
+  "id": "AM8F-27",
+  "prompt": "The function g satisfies g(x + 6) = g(x) for every value of x. If g(2) = 9 and g(4) = -6, what is the value of g(50) + g(-2) ?",
+  "choices": [
+   "3",
+   "9",
+   "18",
+   "15"
+  ]
+ },
+ {
+  "id": "AM8F-28",
+  "prompt": "A shipping company charges $8.00 for the first 3 pounds of a package and $1.25 for each additional pound or part of a pound. The charge for a certain package was $19.25. What is the greatest possible weight of the package, in pounds?",
+  "choices": [
+   "15.4",
+   "11.25",
+   "12",
+   "9"
+  ]
+ }
+]
