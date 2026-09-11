@@ -872,3 +872,30 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   The lesson is the standing one and it earned its keep twice in one report: **a subagent's confident number is a claim, not a measurement.** Both blockers dissolved on checking, and the real defect was three layers under them.
 
+- **2026-09-11** — **THE RUN-MIDDLE TELL IS REAL BANK-WIDE (+6.5 pts, p = 5.2e-4), AND THREE BLIND GRADERS MISSED AN INSTANCE OF IT.** An author writing `act-math-v5-fn` built a run checker, reported **0 of 19** on their own batch, and then — correctly — pointed it at a sibling to prove the instrument was not inert. It fired on 3 of 23 items in `act-math-v4-fn`, and one lands on the key: **AM4F-05's options are `9, 1, 17, 12`, and `1, 9, 17` is an arithmetic run whose middle 9 IS the key**, with 12 as the outlier that makes the run identifiable. Confirmed independently.
+
+  That batch had just been through three BLIND grades — 28/28 keys agreed, 28/28 exclusive, zero drops. **None of the three named it.** The blind render fixes anchoring; it does not give a grader an exhaustive arithmetic sweep, and this is the shape a script finds and a reader does not.
+
+  Measured across the live bank rather than assumed:
+
+        scorable items                       1,639
+        items with EXACTLY ONE run middle      517  (31.6% of scorable)
+        ...and it IS the key                   160 = 30.9%
+        control (derived from option counts)         24.5%
+        margin                                       +6.5 pts,  P = 5.2e-4
+
+  **The tally for the day, seven channels each measured against the population and not one batch:**
+
+        channel                          margin        verdict
+        stem-echo                        -2.8 pts      dissolved
+        key is the sum of two options    +0.8 pts      dissolved
+        key-magnitude (interior)         +2.6 pts      dissolved
+        authored option order          unreachable     dissolved
+        run names its own middle         +6.5 pts      REAL, p = 5.2e-4
+        pick the SHORTEST option (SEC)  +10.6 pts      REAL, p = 2.2e-5
+        pair sums to a config constant  +29.0 pts      REAL, p = 2.1e-9
+
+  **Four of seven dissolved.** Every one of the four looked like a finding at batch level, was named by a grader or an author in good faith, and would have started a rewrite of sound items. The three that survived did so because 1,600-odd live items said so — and two of the three were found by hand before any script existed, which is the argument for keeping both instruments rather than choosing one.
+
+  **Consequence for the three that are real:** `check-key-length-extreme` and `check-option-pair-constant` are in the repo. The run checker is not — four agents have now written private versions. It belongs in `scripts/study-bank/`, and its control must be CONSTRUCTED (count how many options are the middle of some run, per item) rather than assumed, which is the form the `ssat-math-s5` repairer already worked out: a run-free set must construct 0.0%, not 25%.
+

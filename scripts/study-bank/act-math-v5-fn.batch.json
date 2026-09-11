@@ -1,0 +1,506 @@
+[
+ {
+  "id": "AM5F-01",
+  "domain": "Functions",
+  "subskill": "sum of a fixed number of terms of an arithmetic sequence",
+  "difficulty": "easy",
+  "prompt": "In an arithmetic sequence, the first term is 7 and the common difference is 5. What is the sum of the first 10 terms of the sequence?",
+  "choices": [
+   "295",
+   "243",
+   "320",
+   "57"
+  ],
+  "correct_answer": "295",
+  "explanation": "The sum of the first n terms is (n/2)(2a + (n - 1)d). With a = 7, d = 5 and n = 10 this is 5(14 + 45) = 5(59) = 295. The option \"243\" comes from a solver who sums only nine terms, using (9/2)(14 + 40). The option \"320\" comes from a solver who applies the common difference ten times rather than nine, computing 5(14 + 50). The option \"57\" comes from a solver who reports a single term rather than a sum, and computes that term as 7 + 10(5) instead of 7 + 9(5).",
+  "solve": "var n = 10, a = 7, d = 5; return (n / 2) * (2 * a + (n - 1) * d);",
+  "distractor_solve": {
+   "243": "var n = 9, a = 7, d = 5; return (n / 2) * (2 * a + (n - 1) * d);",
+   "320": "var n = 10, a = 7, d = 5; return (n / 2) * (2 * a + n * d);",
+   "57": "var a = 7, d = 5, n = 10; return a + n * d;"
+  }
+ },
+ {
+  "id": "AM5F-02",
+  "domain": "Functions",
+  "subskill": "the change in a quadratic's output over one step of its input",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = x^2 - 3x for all real numbers x. What is the value of f(n + 1) - f(n) when n = 6?",
+  "choices": [
+   "10",
+   "9",
+   "13",
+   "28"
+  ],
+  "correct_answer": "10",
+  "explanation": "f(7) = 49 - 21 = 28 and f(6) = 36 - 18 = 18, so the difference is 28 - 18 = 10. The option \"9\" comes from a solver who simplifies f(n + 1) - f(n) to 2n - 3 instead of 2n - 2, dropping one of the two units contributed by expanding (n + 1)^2 against the -3x term. The option \"13\" comes from a solver who ignores the -3x term entirely and computes 7^2 - 6^2. The option \"28\" comes from a solver who evaluates f(n + 1) and stops there.",
+  "solve": "var f = function (x) { return x * x - 3 * x; }; var n = 6; return f(n + 1) - f(n);",
+  "distractor_solve": {
+   "9": "var n = 6; return 2 * n - 3;",
+   "13": "var n = 6; return (n + 1) * (n + 1) - n * n;",
+   "28": "var f = function (x) { return x * x - 3 * x; }; var n = 6; return f(n + 1);"
+  }
+ },
+ {
+  "id": "AM5F-03",
+  "domain": "Functions",
+  "subskill": "the lesser of a quadratic function's two zeros",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 5x - 12. What is the LESSER of the two values of x for which f(x) = 0?",
+  "choices": [
+   "-3/2",
+   "4",
+   "3/2",
+   "-4"
+  ],
+  "correct_answer": "-3/2",
+  "explanation": "2x^2 - 5x - 12 factors as (2x + 3)(x - 4), so the zeros are -3/2 and 4, and the lesser of the two is -3/2. The option \"4\" is the greater zero, which the word LESSER excludes. The option \"3/2\" comes from a solver who factors as (2x - 3)(x + 4), reversing both signs, and then takes the greater of the resulting values 3/2 and -4. The option \"-4\" comes from the same reversed factoring, taking the lesser of that pair.",
+  "solve": "var a = 2, b = -5, c = -12; var d = Math.sqrt(b * b - 4 * a * c); return Math.min((-b + d) / (2 * a), (-b - d) / (2 * a));",
+  "distractor_solve": {
+   "4": "var a = 2, b = -5, c = -12; var d = Math.sqrt(b * b - 4 * a * c); return Math.max((-b + d) / (2 * a), (-b - d) / (2 * a));",
+   "3/2": "var a = 2, b = 5, c = -12; var d = Math.sqrt(b * b - 4 * a * c); return Math.max((-b + d) / (2 * a), (-b - d) / (2 * a));",
+   "-4": "var a = 2, b = 5, c = -12; var d = Math.sqrt(b * b - 4 * a * c); return Math.min((-b + d) / (2 * a), (-b - d) / (2 * a));"
+  }
+ },
+ {
+  "id": "AM5F-04",
+  "domain": "Functions",
+  "subskill": "average rate of change of a quadratic over an interval",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 + 2x. What is the average rate of change of f from x = 1 to x = 9?",
+  "choices": [
+   "12",
+   "51",
+   "96",
+   "99"
+  ],
+  "correct_answer": "12",
+  "explanation": "f(9) = 81 + 18 = 99 and f(1) = 1 + 2 = 3, so the average rate of change is (99 - 3)/(9 - 1) = 96/8 = 12. The option \"96\" is the total change in f across the interval, reported by a solver who never divides by the change in x. The option \"51\" comes from a solver who averages the two output values, (99 + 3)/2, instead of finding a rate. The option \"99\" is f(9), the output at the right endpoint.",
+  "solve": "var f = function (x) { return x * x + 2 * x; }; return (f(9) - f(1)) / (9 - 1);",
+  "distractor_solve": {
+   "51": "var f = function (x) { return x * x + 2 * x; }; return (f(9) + f(1)) / 2;",
+   "96": "var f = function (x) { return x * x + 2 * x; }; return f(9) - f(1);",
+   "99": "var f = function (x) { return x * x + 2 * x; }; return f(9);"
+  }
+ },
+ {
+  "id": "AM5F-05",
+  "domain": "Functions",
+  "subskill": "the set of output values of a downward-opening quadratic",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = -2x^2 + 8x - 1 for all real numbers x. If y = f(x), which of the following describes the set of all possible values of y?",
+  "choices": [
+   "y <= 7",
+   "y >= 7",
+   "y <= 2",
+   "y >= 2"
+  ],
+  "correct_answer": "y <= 7",
+  "explanation": "The vertex is at x = -8/(2(-2)) = 2, where f(2) = -8 + 16 - 1 = 7. Because the leading coefficient is negative the parabola opens downward, so 7 is a maximum and the outputs are y <= 7. The option \"y >= 7\" comes from a solver who finds the vertex value correctly but treats it as a minimum, ignoring the sign of the leading coefficient. The option \"y <= 2\" comes from a solver who reports the vertex's x-coordinate as the bound on y. The option \"y >= 2\" combines both errors.",
+  "solve": "var a = -2, b = 8, c = -1; var xv = -b / (2 * a); var yv = a * xv * xv + b * xv + c; return (a < 0 ? 'y <= ' : 'y >= ') + yv;",
+  "distractor_solve": {
+   "y >= 7": "var a = -2, b = 8, c = -1; var xv = -b / (2 * a); var yv = a * xv * xv + b * xv + c; return 'y >= ' + yv;",
+   "y <= 2": "var a = -2, b = 8; var xv = -b / (2 * a); return 'y <= ' + xv;",
+   "y >= 2": "var a = -2, b = 8; var xv = -b / (2 * a); return 'y >= ' + xv;"
+  }
+ },
+ {
+  "id": "AM5F-06",
+  "domain": "Functions",
+  "subskill": "period of a sinusoid from the coefficient of its input",
+  "difficulty": "easy",
+  "prompt": "The function g is defined by g(x) = 2sin(3x) + 5 for all real numbers x. What is the period of g?",
+  "choices": [
+   "2pi/3",
+   "pi/6",
+   "2pi",
+   "3pi/2"
+  ],
+  "correct_answer": "2pi/3",
+  "explanation": "The sine function completes one cycle as its input runs through an interval of length 2pi, so g completes one cycle as 3x runs through 2pi, that is, as x runs through 2pi/3. The option \"pi/6\" comes from a solver who uses pi rather than 2pi as the length of one cycle and then divides by both constants in the rule, the 2 and the 3. The option \"2pi\" comes from a solver who ignores the coefficient 3 and reports the period of sin(x) itself. The option \"3pi/2\" comes from a solver who divides the coefficient by 2 instead of dividing 2pi by the coefficient.",
+  "solve": "var b = 3; var gcd = function (p, q) { return q ? gcd(q, p % q) : p; }; var d = gcd(2, b); var num = 2 / d, den = b / d; return (num === 1 ? '' : String(num)) + 'pi' + (den === 1 ? '' : '/' + den);",
+  "distractor_solve": {
+   "pi/6": "var amp = 2, b = 3; var gcd = function (p, q) { return q ? gcd(q, p % q) : p; }; var den = amp * b; var d = gcd(1, den); var num = 1 / d; return (num === 1 ? '' : String(num)) + 'pi' + (den / d === 1 ? '' : '/' + (den / d));",
+   "2pi": "var b = 1; var gcd = function (p, q) { return q ? gcd(q, p % q) : p; }; var d = gcd(2, b); var num = 2 / d, den = b / d; return (num === 1 ? '' : String(num)) + 'pi' + (den === 1 ? '' : '/' + den);",
+   "3pi/2": "var b = 3; return String(b) + 'pi/' + 2;"
+  }
+ },
+ {
+  "id": "AM5F-07",
+  "domain": "Functions",
+  "subskill": "composing two functions given only by a table of values",
+  "difficulty": "medium",
+  "prompt": "The table gives every value of the functions f and g.\n\n  x     : 1   2   3   4\n  f(x)  : 7   5   4   9\n  g(x)  : 6   3   2   11\n\nWhat is the value of f(g(3))?",
+  "choices": [
+   "5",
+   "11",
+   "2",
+   "4"
+  ],
+  "correct_answer": "5",
+  "explanation": "g(3) = 2, and f(2) = 5. The option \"11\" comes from a solver who composes in the other order, computing g(f(3)) = g(4) = 11. The option \"2\" is g(3), the inner value, reported without applying f to it. The option \"4\" is f(3), from a solver who applies f to the number printed inside the parentheses rather than to g(3).",
+  "solve": "var f = { 1: 7, 2: 5, 3: 4, 4: 9 }, g = { 1: 6, 2: 3, 3: 2, 4: 11 }; return f[g[3]];",
+  "distractor_solve": {
+   "11": "var f = { 1: 7, 2: 5, 3: 4, 4: 9 }, g = { 1: 6, 2: 3, 3: 2, 4: 11 }; return g[f[3]];",
+   "2": "var g = { 1: 6, 2: 3, 3: 2, 4: 11 }; return g[3];",
+   "4": "var f = { 1: 7, 2: 5, 3: 4, 4: 9 }; return f[3];"
+  }
+ },
+ {
+  "id": "AM5F-08",
+  "domain": "Functions",
+  "subskill": "sum of the inputs at which two functions are equal",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = x^2 - 3x - 6 and g(x) = 2x + 9. What is the sum of all values of x for which f(x) = g(x)?",
+  "choices": [
+   "5",
+   "-5",
+   "-15",
+   "15"
+  ],
+  "correct_answer": "5",
+  "explanation": "Setting the rules equal gives x^2 - 3x - 6 = 2x + 9, so x^2 - 5x - 15 = 0. The sum of the solutions of a quadratic is -B/A, which here is 5. The option \"-5\" comes from a solver who reports B/A rather than -B/A. The option \"-15\" is C/A, the PRODUCT of the two solutions rather than their sum. The option \"15\" is that same product reported with a sign slip.",
+  "solve": "var A = 1, B = -3 - 2, C = -6 - 9; return -B / A;",
+  "distractor_solve": {
+   "-5": "var A = 1, B = -3 - 2; return B / A;",
+   "-15": "var A = 1, C = -6 - 9; return C / A;",
+   "15": "var A = 1, C = -6 - 9; return -C / A;"
+  }
+ },
+ {
+  "id": "AM5F-09",
+  "domain": "Functions",
+  "subskill": "locating a point after a reflection and a vertical shift",
+  "difficulty": "easy",
+  "prompt": "The graph of y = f(x) in the standard (x, y) coordinate plane passes through the point (3, -8). Through which of the following points must the graph of y = -f(x) + 5 pass?",
+  "choices": [
+   "(3, 13)",
+   "(3, -3)",
+   "(-3, 13)",
+   "(-3, -3)"
+  ],
+  "correct_answer": "(3, 13)",
+  "explanation": "Replacing f(x) by -f(x) negates the output but leaves the input alone, and adding 5 raises the output, so the point (3, -8) moves to (3, -(-8) + 5) = (3, 13). The option \"(3, -3)\" comes from a solver who applies the shift but not the reflection, computing -8 + 5. The option \"(-3, 13)\" comes from a solver who negates the x-coordinate, treating -f(x) as f(-x). The option \"(-3, -3)\" combines both errors.",
+  "solve": "var x = 3, y = -8; return '(' + x + ', ' + (-y + 5) + ')';",
+  "distractor_solve": {
+   "(3, -3)": "var x = 3, y = -8; return '(' + x + ', ' + (y + 5) + ')';",
+   "(-3, 13)": "var x = 3, y = -8; return '(' + (-x) + ', ' + (-y + 5) + ')';",
+   "(-3, -3)": "var x = 3, y = -8; return '(' + (-x) + ', ' + (y + 5) + ')';"
+  }
+ },
+ {
+  "id": "AM5F-10",
+  "domain": "Functions",
+  "subskill": "recovering the constant of proportionality in a square relationship",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = kx^2, where k is a constant. If f(6) = 90, what is the value of k?",
+  "choices": [
+   "5/2",
+   "15",
+   "2/5",
+   "54"
+  ],
+  "correct_answer": "5/2",
+  "explanation": "f(6) = k(36) = 90, so k = 90/36 = 5/2. The option \"15\" comes from a solver who divides 90 by 6 rather than by 6^2. The option \"2/5\" comes from a solver who divides in the wrong direction, computing 36/90. The option \"54\" comes from a solver who subtracts 36 from 90 instead of dividing.",
+  "solve": "var x = 6, y = 90; return y / (x * x);",
+  "distractor_solve": {
+   "15": "var x = 6, y = 90; return y / x;",
+   "2/5": "var x = 6, y = 90; return (x * x) / y;",
+   "54": "var x = 6, y = 90; return y - x * x;"
+  }
+ },
+ {
+  "id": "AM5F-11",
+  "domain": "Functions",
+  "subskill": "the multi-year growth factor of an exponential model, before extracting the annual rate",
+  "difficulty": "hard",
+  "prompt": "The value of an account is modelled by V(t) = 4,000b^t dollars, where t is the number of years since the account was opened and b is a constant. The account is worth $13,500 after 3 years. What is the value of b^3?",
+  "choices": [
+   "27/8",
+   "19/8",
+   "3/2",
+   "9/8"
+  ],
+  "correct_answer": "27/8",
+  "explanation": "V(3) = 4,000b^3 = 13,500, so b^3 = 13,500/4,000 = 27/8. The option \"19/8\" comes from a solver who reports the three-year growth RATE, 27/8 - 1, rather than the growth factor. The option \"3/2\" is b itself, the annual growth factor, which is one cube root further along than the question asks for. The option \"9/8\" comes from a solver who models the growth as 4,000 multiplied by t rather than by b^t, computing 13,500/(4,000 x 3).",
+  "solve": "var V0 = 4000, V3 = 13500; return V3 / V0;",
+  "distractor_solve": {
+   "19/8": "var V0 = 4000, V3 = 13500; return V3 / V0 - 1;",
+   "3/2": "var V0 = 4000, V3 = 13500; return Math.cbrt(V3 / V0);",
+   "9/8": "var V0 = 4000, V3 = 13500, t = 3; return V3 / (V0 * t);"
+  }
+ },
+ {
+  "id": "AM5F-12",
+  "domain": "Functions",
+  "subskill": "the input at which a quadratic model attains its maximum, not the maximum itself",
+  "difficulty": "medium",
+  "prompt": "A ball is thrown upward from a platform. Its height, in feet, t seconds after it is thrown is given by h(t) = -16t^2 + 96t + 4. At what value of t does the ball reach its greatest height?",
+  "choices": [
+   "3",
+   "6",
+   "48",
+   "148"
+  ],
+  "correct_answer": "3",
+  "explanation": "The graph of h is a downward-opening parabola with vertex at t = -96/(2(-16)) = 3. The option \"148\" is the greatest HEIGHT, h(3) = -144 + 288 + 4, which answers a question the stem does not ask. The option \"6\" comes from a solver who solves -16t^2 + 96t = 0 and takes the nonzero root, the time at which the ball returns to the platform's height. The option \"48\" comes from a solver who halves the coefficient 96 without dividing by the leading coefficient.",
+  "solve": "var a = -16, b = 96; return -b / (2 * a);",
+  "distractor_solve": {
+   "6": "var a = -16, b = 96; return -b / a;",
+   "48": "var b = 96; return b / 2;",
+   "148": "var a = -16, b = 96, c = 4; var t = -b / (2 * a); return a * t * t + b * t + c;"
+  }
+ },
+ {
+  "id": "AM5F-13",
+  "domain": "Functions",
+  "subskill": "the constant that makes a two-piece function continuous at the break point",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 5x + c when x < 3 and by f(x) = x^2 - 4 when x >= 3, where c is a constant. The graph of f has no break in it. What is the value of c?",
+  "choices": [
+   "-10",
+   "10",
+   "5",
+   "-6"
+  ],
+  "correct_answer": "-10",
+  "explanation": "For the two pieces to meet, 5(3) + c must equal 3^2 - 4 = 5, so 15 + c = 5 and c = -10. The option \"10\" comes from a solver who subtracts in the wrong direction, computing 5(3) - 5. The option \"5\" is the common output value at x = 3, reported instead of the constant the stem asks for. The option \"-6\" comes from a solver who drops the -4, setting 15 + c equal to 3^2.",
+  "solve": "var x = 3; return (x * x - 4) - 5 * x;",
+  "distractor_solve": {
+   "10": "var x = 3; return 5 * x - (x * x - 4);",
+   "5": "var x = 3; return x * x - 4;",
+   "-6": "var x = 3; return x * x - 5 * x;"
+  }
+ },
+ {
+  "id": "AM5F-14",
+  "domain": "Functions",
+  "subskill": "the index of a stated term of an arithmetic sequence",
+  "difficulty": "easy",
+  "prompt": "In an arithmetic sequence, the first term is 4 and each term after the first is 6 more than the term before it. One of the terms of the sequence is 106. Which term is it?",
+  "choices": [
+   "18",
+   "17",
+   "102",
+   "26"
+  ],
+  "correct_answer": "18",
+  "explanation": "The nth term is 4 + 6(n - 1). Setting that equal to 106 gives 6(n - 1) = 102, so n - 1 = 17 and n = 18. The option \"17\" comes from a solver who uses 4 + 6n as the nth term, which is off by one place. The option \"102\" is the total increase from the first term to 106, not a term number. The option \"26\" comes from a solver who swaps the first term and the common difference, solving 6 + 4(n - 1) = 106.",
+  "solve": "var a = 4, d = 6, t = 106; return (t - a) / d + 1;",
+  "distractor_solve": {
+   "17": "var a = 4, d = 6, t = 106; return (t - a) / d;",
+   "102": "var a = 4, t = 106; return t - a;",
+   "26": "var a = 4, d = 6, t = 106; return (t - d) / a + 1;"
+  }
+ },
+ {
+  "id": "AM5F-15",
+  "domain": "Functions",
+  "subskill": "evaluating an exponential function at a shifted input from a known value",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 2^x for all real numbers x. For some number a, f(a) = 5. What is the value of f(a + 3)?",
+  "choices": [
+   "40",
+   "8",
+   "15",
+   "125"
+  ],
+  "correct_answer": "40",
+  "explanation": "f(a + 3) = 2^(a + 3) = 2^a x 2^3 = 5 x 8 = 40. The option \"8\" is 2^3, the factor by which the output grows, reported without multiplying by f(a). The option \"15\" comes from a solver who adds 3 to the exponent by multiplying the output by 3. The option \"125\" comes from a solver who raises the output to the third power instead of multiplying it by 2^3.",
+  "solve": "var fa = 5; return fa * Math.pow(2, 3);",
+  "distractor_solve": {
+   "8": "return Math.pow(2, 3);",
+   "15": "var fa = 5; return fa * 3;",
+   "125": "var fa = 5; return Math.pow(fa, 3);"
+  }
+ },
+ {
+  "id": "AM5F-16",
+  "domain": "Functions",
+  "subskill": "reading values of an inverse function off stated values of the function",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are inverses of each other. It is known that f(3) = 8 and f(8) = 20. What is the value of g(8) + g(20)?",
+  "choices": [
+   "11",
+   "28",
+   "5",
+   "23"
+  ],
+  "correct_answer": "11",
+  "explanation": "Because g undoes f, g(8) = 3 and g(20) = 8, so the sum is 3 + 8 = 11. The option \"28\" comes from a solver who adds the two OUTPUTS of f, 8 + 20, instead of the inputs that produced them. The option \"5\" comes from a solver who subtracts, computing g(20) - g(8). The option \"23\" comes from a solver who inverts the first value correctly but leaves the second alone, computing 3 + 20.",
+  "solve": "var f = { 3: 8, 8: 20 }; var g = {}; for (var k in f) { g[f[k]] = Number(k); } return g[8] + g[20];",
+  "distractor_solve": {
+   "28": "var f = { 3: 8, 8: 20 }; return f[3] + f[8];",
+   "5": "var f = { 3: 8, 8: 20 }; var g = {}; for (var k in f) { g[f[k]] = Number(k); } return g[20] - g[8];",
+   "23": "var f = { 3: 8, 8: 20 }; var g = {}; for (var k in f) { g[f[k]] = Number(k); } return g[8] + 20;"
+  }
+ },
+ {
+  "id": "AM5F-17",
+  "domain": "Functions",
+  "subskill": "the constant term that gives a quadratic exactly one zero",
+  "difficulty": "hard",
+  "prompt": "In the standard (x, y) coordinate plane, the graph of y = 2x^2 - 12x + c touches the x-axis at exactly one point. What is the value of c?",
+  "choices": [
+   "18",
+   "3",
+   "144",
+   "9"
+  ],
+  "correct_answer": "18",
+  "explanation": "A parabola meets the x-axis exactly once when B^2 - 4AC = 0, so 144 - 8c = 0 and c = 18. The option \"3\" is the x-coordinate of the vertex, -B/(2A), which locates the point of contact rather than giving c. The option \"144\" is B^2, the intermediate quantity, reported before dividing by 4A. The option \"9\" comes from a solver who divides B by A first and then squares and divides by 4, computing (-12/2)^2/4 instead of (-12)^2/(4 x 2).",
+  "solve": "var a = 2, b = -12; return (b * b) / (4 * a);",
+  "distractor_solve": {
+   "3": "var a = 2, b = -12; return -b / (2 * a);",
+   "144": "var b = -12; return b * b;",
+   "9": "var a = 2, b = -12; var r = b / a; return (r * r) / 4;"
+  }
+ },
+ {
+  "id": "AM5F-18",
+  "domain": "Functions",
+  "subskill": "using symmetry of an even function to evaluate it at unlisted inputs",
+  "difficulty": "medium",
+  "prompt": "The function h satisfies h(-x) = h(x) for every real number x. The graph of h passes through the points (-5, 12) and (2, -3). What is the value of h(5) + h(-2)?",
+  "choices": [
+   "9",
+   "-15",
+   "15",
+   "-9"
+  ],
+  "correct_answer": "9",
+  "explanation": "Because h(-x) = h(x), the graph is symmetric about the y-axis, so h(5) = h(-5) = 12 and h(-2) = h(2) = -3. The sum is 12 + (-3) = 9. The option \"-15\" comes from a solver who treats h as satisfying h(-x) = -h(x) at the first point, taking h(5) = -12. The option \"15\" comes from the same slip made at the second point, taking h(-2) = 3. The option \"-9\" comes from a solver who makes that slip at both points.",
+  "solve": "var known = { 5: 12, 2: -3 }; var h = function (x) { return known[Math.abs(x)]; }; return h(5) + h(-2);",
+  "distractor_solve": {
+   "-15": "var a = 12, b = -3; return -a + b;",
+   "15": "var a = 12, b = -3; return a - b;",
+   "-9": "var a = 12, b = -3; return -a - b;"
+  }
+ },
+ {
+  "id": "AM5F-19",
+  "domain": "Functions",
+  "subskill": "the extreme input value in the domain of a square-root function",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = sqrt(20 - 4x). What is the greatest value of x in the domain of f?",
+  "choices": [
+   "5",
+   "-5",
+   "16",
+   "24"
+  ],
+  "correct_answer": "5",
+  "explanation": "A square root is defined when what is under it is not negative, so 20 - 4x >= 0, giving 4x <= 20 and x <= 5. The greatest such x is 5. The option \"-5\" comes from a solver who moves the 20 across and divides by -4 without reversing anything, reading the bound as -20/4. The option \"16\" comes from a solver who subtracts 4 from 20 rather than dividing. The option \"24\" comes from a solver who adds instead.",
+  "solve": "var A = 20, B = 4; return A / B;",
+  "distractor_solve": {
+   "-5": "var A = 20, B = 4; return -A / B;",
+   "16": "var A = 20, B = 4; return A - B;",
+   "24": "var A = 20, B = 4; return A + B;"
+  }
+ },
+ {
+  "id": "AM5F-20",
+  "domain": "Functions",
+  "subskill": "solving an absolute-value inequality built from a function rule",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = |2x - 6| + 1. For which values of x is f(x) < 9?",
+  "choices": [
+   "-1 < x < 7",
+   "-2 < x < 14",
+   "-1 < x < 14",
+   "-2 < x < 7"
+  ],
+  "correct_answer": "-1 < x < 7",
+  "explanation": "f(x) < 9 means |2x - 6| < 8, so -8 < 2x - 6 < 8. Adding 6 throughout gives -2 < 2x < 14, and dividing throughout by 2 gives -1 < x < 7. The option \"-2 < x < 14\" comes from a solver who stops at -2 < 2x < 14 and reads those numbers as the bounds on x, never dividing by 2. The options \"-1 < x < 14\" and \"-2 < x < 7\" come from a solver who divides only one of the two endpoints by 2.",
+  "solve": "var lo = (-8 + 6) / 2, hi = (8 + 6) / 2; return lo + ' < x < ' + hi;",
+  "distractor_solve": {
+   "-2 < x < 14": "var lo = -8 + 6, hi = 8 + 6; return lo + ' < x < ' + hi;",
+   "-1 < x < 14": "var lo = (-8 + 6) / 2, hi = 8 + 6; return lo + ' < x < ' + hi;",
+   "-2 < x < 7": "var lo = -8 + 6, hi = (8 + 6) / 2; return lo + ' < x < ' + hi;"
+  }
+ },
+ {
+  "id": "AM5F-21",
+  "domain": "Functions",
+  "subskill": "choosing the rule that generates a given table of exponential values",
+  "difficulty": "medium",
+  "prompt": "A function f takes these values: f(0) = 3, f(1) = 12, f(2) = 48, and f(3) = 192. Which of the following defines f?",
+  "choices": [
+   "f(x) = 3(4)^x",
+   "f(x) = 3(3)^x",
+   "f(x) = 12(4)^x",
+   "f(x) = 12(3)^x"
+  ],
+  "correct_answer": "f(x) = 3(4)^x",
+  "explanation": "Each value is 4 times the one before it, so f is exponential with growth factor 4, and f(0) = 3 is the initial value: f(x) = 3(4)^x. The option \"f(x) = 3(3)^x\" keeps the correct initial value but reuses that same 3 as the growth factor instead of computing 12/3. The option \"f(x) = 12(4)^x\" has the right growth factor but takes f(1) = 12 as the initial value rather than f(0) = 3. The option \"f(x) = 12(3)^x\" makes both of those substitutions at once.",
+  "solve": "var v = [3, 12, 48, 192]; var a = v[0], b = v[1] / v[0]; return 'f(x) = ' + a + '(' + b + ')^x';",
+  "distractor_solve": {
+   "f(x) = 3(3)^x": "var v = [3, 12, 48, 192]; var a = v[0]; return 'f(x) = ' + a + '(' + a + ')^x';",
+   "f(x) = 12(4)^x": "var v = [3, 12, 48, 192]; var b = v[1] / v[0]; return 'f(x) = ' + v[1] + '(' + b + ')^x';",
+   "f(x) = 12(3)^x": "var v = [3, 12, 48, 192]; return 'f(x) = ' + v[1] + '(' + v[0] + ')^x';"
+  }
+ },
+ {
+  "id": "AM5F-22",
+  "domain": "Functions",
+  "subskill": "the first whole-number input at which a decreasing linear model crosses a threshold",
+  "difficulty": "medium",
+  "prompt": "The number of litres of water in a tank after t minutes of draining is given by L(t) = 500 - 26t. After how many COMPLETE minutes of draining is the tank first holding less than 100 litres?",
+  "choices": [
+   "16",
+   "15",
+   "19",
+   "20"
+  ],
+  "correct_answer": "16",
+  "explanation": "L(15) = 500 - 390 = 110, which is not less than 100, while L(16) = 500 - 416 = 84, which is. So 16 complete minutes are needed. The option \"15\" is what a solver gets by solving 500 - 26t < 100 for t > 400/26 and rounding down; 15 complete minutes leave 110 litres, which the word COMPLETE together with the 100-litre threshold excludes. The option \"19\" is the number of complete minutes before the tank is EMPTY, the whole part of 500/26. The option \"20\" is that same emptying time rounded up.",
+  "solve": "var t = 0; while (500 - 26 * t >= 100) { t++; } return t;",
+  "distractor_solve": {
+   "15": "return Math.floor((500 - 100) / 26);",
+   "19": "return Math.floor(500 / 26);",
+   "20": "return Math.ceil(500 / 26);"
+  }
+ },
+ {
+  "id": "AM5F-23",
+  "domain": "Functions",
+  "subskill": "the output value a rational function never attains",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (6x - 1)/(2x + 10). Which of the following values does f(x) NEVER equal, no matter what x is?",
+  "choices": [
+   "3",
+   "-5",
+   "1/6",
+   "-1/10"
+  ],
+  "correct_answer": "3",
+  "explanation": "Setting (6x - 1)/(2x + 10) = 3 gives 6x - 1 = 6x + 30, which is impossible, so 3 is the one value f never takes; it is the ratio of the leading coefficients, 6/2. The option \"-5\" is the value excluded from the DOMAIN of f, where the denominator is 0, rather than from its outputs. The option \"1/6\" is the input at which f is 0, from a solver who reads the question as asking for a zero. The option \"-1/10\" is f(0), a value f certainly does take.",
+  "solve": "var a = 6, c = 2; return a / c;",
+  "distractor_solve": {
+   "-5": "var c = 2, d = 10; return -d / c;",
+   "1/6": "var a = 6, b = -1; return -b / a;",
+   "-1/10": "var b = -1, d = 10; return b / d;"
+  }
+ },
+ {
+  "id": "AM5F-24",
+  "domain": "Functions",
+  "subskill": "iterating a functional equation that doubles the output every three units",
+  "difficulty": "hard",
+  "prompt": "A function f satisfies f(x + 3) = 2f(x) for every real number x, and f(1) = 6. What is the value of f(13)?",
+  "choices": [
+   "96",
+   "48",
+   "78",
+   "14"
+  ],
+  "correct_answer": "96",
+  "explanation": "Applying the rule from x = 1 gives f(4) = 12, f(7) = 24, f(10) = 48, and f(13) = 96 - four doublings, one for each step of 3 from 1 to 13. The option \"48\" is f(10), from a solver who takes only three steps. The option \"78\" comes from a solver who multiplies the starting value by 13 as though f were proportional to x. The option \"14\" comes from a solver who reads 2f(x) as f(x) + 2 and adds 2 at each of the four steps.",
+  "solve": "var v = 6; for (var x = 1; x < 13; x += 3) { v *= 2; } return v;",
+  "distractor_solve": {
+   "48": "var v = 6; for (var x = 1; x < 10; x += 3) { v *= 2; } return v;",
+   "78": "var v = 6; return v * 13;",
+   "14": "var v = 6; for (var x = 1; x < 13; x += 3) { v += 2; } return v;"
+  }
+ }
+]
