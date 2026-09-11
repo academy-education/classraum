@@ -899,3 +899,13 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **Consequence for the three that are real:** `check-key-length-extreme` and `check-option-pair-constant` are in the repo. The run checker is not — four agents have now written private versions. It belongs in `scripts/study-bank/`, and its control must be CONSTRUCTED (count how many options are the middle of some run, per item) rather than assumed, which is the form the `ssat-math-s5` repairer already worked out: a run-free set must construct 0.0%, not 25%.
 
+- **2026-09-11** — **`check-run-middle.mjs` IS IN THE REPO, AND ITS OWN FIRST RUN CARRIED THE DENOMINATOR BUG ITS HEADER WARNS ABOUT.** Four agents had written private versions; this is the one that stays. It self-tests on the item three blind graders cleared (`AM4F-05`, options `9, 1, 17, 12`, run `1, 9, 17`, key at the middle), on both geometric runs an author said they had not thought to look for, and on the two clean shapes — a COMPLETE four-term run has two middles and so names nothing uniquely, and a run-free set constructs a **0.0%** control rather than 25%.
+
+  **It shipped with the chance line averaged over every row instead of the scored ones**, mixing 4,377 unscorable rows — five-choice SSAT and non-numeric sets — into a four-choice population. Printed chance 26.4% instead of 24.5%, understating the margin by 1.9 points. Caught by comparing it against the ad-hoc measurement it was meant to replace, and fixed. That is the "read the denominator" rule failing inside the file whose header cites it.
+
+  Corrected live figures: **529 of 1,667 scorable items have exactly one run middle; it is the key on 164 = 31.0% against a 24.5% chance line, +6.5 pts.**
+
+  The two batches authored AFTER the tell was named both come back at **0 items with exactly one run middle**, against `act-math-v4-fn` (authored before) at 3, one of them on the key. The `sat-alg-h4` author reports the cost: *"the natural ceiling-item distractor trio is inherently an AP"* — (correct, ignore-the-fixed-term, add-instead-of-subtract) is an arithmetic progression by construction, as is (both numbers, their midpoint). They dropped one member of each such trio rather than keep it.
+
+  **That caveat is now in the checker's header, because it decides whether a hit is repairable.** A run that follows from the error paths is not the same defect as one that follows from the chosen numbers — the structural-versus-numerical distinction the geometry repair had to make. **Do not read the 529 as 529 broken items**, and do not start a repair programme on them without asking that question per item.
+

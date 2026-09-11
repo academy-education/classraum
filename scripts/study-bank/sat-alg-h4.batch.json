@@ -1,0 +1,506 @@
+[
+  {
+    "id": "ALG-H4-01",
+    "domain": "Algebra",
+    "subskill": "the no-solution condition for a two-variable linear system",
+    "difficulty": "hard",
+    "prompt": "In the system of equations 2x + 9y = 5 and 8x + ky = 3, k is a constant. If the system has no solution, what is the value of k?",
+    "choices": [
+      "15",
+      "20",
+      "34",
+      "36"
+    ],
+    "correct_answer": "36",
+    "explanation": "Two linear equations have no solution exactly when one equation's left side is a nonzero multiple of the other's while the constants do not match that multiple. The x-coefficients give the multiple: 8 divided by 2 is 4, so the y-coefficient must satisfy k = 4 times 9 = 36. The constants then confirm it, since 4 times 5 is 20 and the second equation's constant is 3, so the lines are parallel and distinct. \"15\" comes from adding the gap between the x-coefficients, 8 minus 2, to the y-coefficient 9 instead of scaling by their ratio. \"20\" is the scaled constant 4 times 5 reported in place of the scaled coefficient. \"34\" comes from scaling 9 correctly to 36 and then subtracting the difference of the two constants, 5 minus 3.",
+    "solve": "var scale = 8 / 2;\nreturn 9 * scale;",
+    "distractor_solve": {
+      "15": "return 9 + (8 - 2);",
+      "20": "return (8 / 2) * 5;",
+      "34": "return 9 * (8 / 2) - (5 - 3);"
+    }
+  },
+  {
+    "id": "ALG-H4-02",
+    "domain": "Algebra",
+    "subskill": "a linear inequality whose solution must be reported as a whole count",
+    "difficulty": "medium",
+    "prompt": "A shuttle can carry a total load of at most 1,500 kilograms. The driver and the onboard equipment together account for 260 kilograms of that load, and each passenger with luggage accounts for 88 kilograms. What is the greatest number of passengers the shuttle can carry without exceeding the limit?",
+    "choices": [
+      "11",
+      "14",
+      "15",
+      "20"
+    ],
+    "correct_answer": "14",
+    "explanation": "If p is the number of passengers, then 260 + 88p is at most 1,500, so 88p is at most 1,240 and p is at most 14.09. Since passengers are whole, the greatest number is 14. \"15\" rounds 14.09 up, and 15 passengers weigh 1,320 kilograms, which together with the 260 kilograms exceeds the limit. \"20\" adds the 260 kilograms to the limit instead of subtracting it, dividing 1,760 by 88. \"11\" subtracts the 260 kilograms twice, dividing 980 by 88.",
+    "solve": "return Math.floor((1500 - 260) / 88);",
+    "distractor_solve": {
+      "11": "return Math.floor((1500 - 260 - 260) / 88);",
+      "15": "return Math.ceil((1500 - 260) / 88);",
+      "20": "return Math.floor((1500 + 260) / 88);"
+    }
+  },
+  {
+    "id": "ALG-H4-03",
+    "domain": "Algebra",
+    "subskill": "building and solving a two-variable system from two combined purchases",
+    "difficulty": "medium",
+    "prompt": "Three tablets and four cases cost 78 dollars. Five tablets and seven cases cost 133 dollars. Every tablet costs the same amount and every case costs the same amount. What is the cost, in dollars, of one case?",
+    "choices": [
+      "9",
+      "11",
+      "14",
+      "55"
+    ],
+    "correct_answer": "9",
+    "explanation": "Let t be the cost of a tablet and c the cost of a case. Then 3t + 4c = 78 and 5t + 7c = 133. Multiplying the first equation by 5 and the second by 3 gives 15t + 20c = 390 and 15t + 21c = 399, so c = 9, and back-substitution gives t = 14. \"14\" is the cost of one tablet, which is what eliminating c rather than t produces. \"11\" comes from subtracting the two totals, 133 minus 78 = 55, and dividing by the five extra items in the second purchase, which would only be right if tablets and cases cost the same. \"55\" is that difference itself, which is the combined cost of two extra tablets and three extra cases, not of one case.",
+    "solve": "var det = 3 * 7 - 4 * 5;\nreturn (3 * 133 - 5 * 78) / det;",
+    "distractor_solve": {
+      "11": "return (133 - 78) / 5;",
+      "14": "var det = 3 * 7 - 4 * 5;\nreturn (7 * 78 - 4 * 133) / det;",
+      "55": "return 133 - 78;"
+    }
+  },
+  {
+    "id": "ALG-H4-04",
+    "domain": "Algebra",
+    "subskill": "an absolute value inequality and the endpoint the question asks for",
+    "difficulty": "medium",
+    "prompt": "If |4x - 12| is less than or equal to 40, what is the greatest possible value of x?",
+    "choices": [
+      "-7",
+      "10",
+      "13",
+      "22"
+    ],
+    "correct_answer": "13",
+    "explanation": "The inequality is equivalent to -40 is at most 4x - 12, which is at most 40. Adding 12 throughout gives -28 is at most 4x, which is at most 52, so x runs from -7 to 13, and the greatest value is 13. \"-7\" is the least value of x, the other endpoint of the same solution set. \"10\" drops the -12 entirely and divides 40 by 4. \"22\" divides 40 by 4 first and only then adds the 12, so the 12 is never divided by 4.",
+    "solve": "return (40 + 12) / 4;",
+    "distractor_solve": {
+      "-7": "return (-40 + 12) / 4;",
+      "10": "return 40 / 4;",
+      "22": "return 40 / 4 + 12;"
+    }
+  },
+  {
+    "id": "ALG-H4-05",
+    "domain": "Algebra",
+    "subskill": "recovering the initial value of a linear function from two of its values",
+    "difficulty": "medium",
+    "prompt": "The function f is linear. If f(2) = 23 and f(9) = 2, what is the value of f(0)?",
+    "choices": [
+      "17",
+      "26",
+      "29",
+      "50"
+    ],
+    "correct_answer": "29",
+    "explanation": "The rate of change is (2 - 23) divided by (9 - 2), which is -3 per unit. Going from x = 2 back to x = 0 is two units in the negative direction, so f(0) = 23 - (-3)(2) = 29. \"17\" applies the rate in the wrong direction, computing 23 + (-3)(2). \"26\" moves back only one unit instead of two. \"50\" moves back nine units from f(2), using the other point's x-value as the distance.",
+    "solve": "var m = (2 - 23) / (9 - 2);\nreturn 23 - m * 2;",
+    "distractor_solve": {
+      "17": "var m = (2 - 23) / (9 - 2);\nreturn 23 + m * 2;",
+      "26": "var m = (2 - 23) / (9 - 2);\nreturn 23 - m * 1;",
+      "50": "var m = (2 - 23) / (9 - 2);\nreturn 23 - m * 9;"
+    }
+  },
+  {
+    "id": "ALG-H4-06",
+    "domain": "Algebra",
+    "subskill": "elimination in a system where the quantity asked for is the one elimination produces",
+    "difficulty": "hard",
+    "prompt": "If 4x - 9y = 50 and 4x + 3y = 26, what is the value of y?",
+    "choices": [
+      "-8",
+      "-2",
+      "2",
+      "8"
+    ],
+    "correct_answer": "-2",
+    "explanation": "Subtracting the second equation from the first eliminates x and gives -12y = 24, so y = -2. \"2\" comes from subtracting in the opposite order on one side only, treating -12y = 24 as 12y = 24. \"8\" is the value of x, which follows from substituting y = -2 into 4x + 3y = 26. \"-8\" divides the -24 by 3, the y-coefficient of the second equation, instead of by the -12 that elimination actually produced.",
+    "solve": "return (50 - 26) / (-9 - 3);",
+    "distractor_solve": {
+      "-8": "return (26 - 50) / 3;",
+      "2": "return (26 - 50) / (-9 - 3);",
+      "8": "var y = (50 - 26) / (-9 - 3);\nreturn (26 - 3 * y) / 4;"
+    }
+  },
+  {
+    "id": "ALG-H4-07",
+    "domain": "Algebra",
+    "subskill": "extending a line through two given points to a third x-value",
+    "difficulty": "hard",
+    "prompt": "A line in the xy-plane passes through the points (-3, 9) and (7, -11). What is the y-coordinate of the point on this line whose x-coordinate is 12?",
+    "choices": [
+      "-35",
+      "-21",
+      "-15",
+      "-1"
+    ],
+    "correct_answer": "-21",
+    "explanation": "The slope is (-11 - 9) divided by (7 - (-3)), which is -20/10 = -2. From (7, -11), moving 5 units in the x-direction changes y by -10, so the y-coordinate is -11 - 10 = -21. \"-1\" applies the slope in the wrong direction, computing -11 + 10. \"-35\" multiplies the slope by 12 rather than by the 5-unit change from x = 7 to x = 12. \"-15\" treats the given value 9 as the y-intercept, computing -2(12) + 9 instead of finding the intercept 3.",
+    "solve": "var m = (-11 - 9) / (7 - (-3));\nreturn -11 + m * (12 - 7);",
+    "distractor_solve": {
+      "-35": "var m = (-11 - 9) / (7 - (-3));\nreturn -11 + m * 12;",
+      "-15": "var m = (-11 - 9) / (7 - (-3));\nreturn m * 12 + 9;",
+      "-1": "var m = (-11 - 9) / (7 - (-3));\nreturn -11 - m * (12 - 7);"
+    }
+  },
+  {
+    "id": "ALG-H4-08",
+    "domain": "Algebra",
+    "subskill": "the condition for a two-variable system to have infinitely many solutions",
+    "difficulty": "hard",
+    "prompt": "In the system of equations ax + 12y = 30 and 5x + 4y = 10, a is a constant. If the system has infinitely many solutions, what is the value of a?",
+    "choices": [
+      "3",
+      "8",
+      "15",
+      "36"
+    ],
+    "correct_answer": "15",
+    "explanation": "Infinitely many solutions means the first equation is a multiple of the second throughout. The y-coefficients fix the multiple at 12 divided by 4 = 3, and the constants agree with it, since 3 times 10 is 30. The x-coefficient must be scaled the same way, so a = 3 times 5 = 15. \"3\" is the scale factor itself rather than the scaled coefficient. \"36\" scales the y-coefficient 12 a second time instead of scaling the x-coefficient. \"8\" adds the scale factor 3 to the x-coefficient 5 rather than multiplying.",
+    "solve": "var s = 12 / 4;\nreturn 5 * s;",
+    "distractor_solve": {
+      "3": "return 12 / 4;",
+      "8": "return 5 + (30 / 10);",
+      "36": "return 12 * (12 / 4);"
+    }
+  },
+  {
+    "id": "ALG-H4-09",
+    "domain": "Algebra",
+    "subskill": "the constant that turns a one-variable equation into an identity",
+    "difficulty": "hard",
+    "prompt": "In the equation 5(x + 3) - 2(x - 4) = 3x + k, k is a constant. If the equation has infinitely many solutions, what is the value of k?",
+    "choices": [
+      "-7",
+      "7",
+      "11",
+      "23"
+    ],
+    "correct_answer": "23",
+    "explanation": "Expanding the left side gives 5x + 15 - 2x + 8 = 3x + 23. The equation holds for every x exactly when the two sides are identical, so k = 23. \"7\" comes from distributing -2 across -4 as -8 rather than +8, giving 15 - 8. \"11\" comes from failing to distribute the 5 across the 3, leaving 3 + 8. \"-7\" makes both sign errors at once, taking -15 + 8.",
+    "solve": "return 5 * 3 + 2 * 4;",
+    "distractor_solve": {
+      "-7": "return -(5 * 3) + 2 * 4;",
+      "7": "return 5 * 3 - 2 * 4;",
+      "11": "return 3 + 2 * 4;"
+    }
+  },
+  {
+    "id": "ALG-H4-10",
+    "domain": "Algebra",
+    "subskill": "a strict linear inequality where the boundary value itself is not a solution",
+    "difficulty": "medium",
+    "prompt": "The number of members of a club is modeled by M = 18 + 7w, where w is the number of whole weeks since the club opened. After how many weeks will the club first have more than 200 members?",
+    "choices": [
+      "11",
+      "26",
+      "27",
+      "29"
+    ],
+    "correct_answer": "27",
+    "explanation": "Solving 18 + 7w is greater than 200 gives 7w greater than 182, so w greater than 26. At w = 26 the model gives exactly 200 members, which is not more than 200, so the first week with more than 200 members is 27. \"26\" is that boundary week, where membership equals 200 rather than exceeding it. \"29\" ignores the 18 starting members and rounds 200 divided by 7 up. \"11\" swaps the roles of the two constants, dividing 200 - 7 by 18.",
+    "solve": "var w = (200 - 18) / 7;\nreturn Math.floor(w) + 1;",
+    "distractor_solve": {
+      "11": "return Math.ceil((200 - 7) / 18);",
+      "26": "return (200 - 18) / 7;",
+      "29": "return Math.ceil(200 / 7);"
+    }
+  },
+  {
+    "id": "ALG-H4-11",
+    "domain": "Algebra",
+    "subskill": "an equation solved for a multiple of the variable rather than for the variable",
+    "difficulty": "hard",
+    "prompt": "If 4(2x - 5) + 3 = 6x + 9, what is the value of 2x?",
+    "choices": [
+      "-14",
+      "11",
+      "13",
+      "26"
+    ],
+    "correct_answer": "26",
+    "explanation": "The left side expands to 8x - 20 + 3, that is 8x - 17. Subtracting 6x from both sides gives 2x - 17 = 9, so 2x = 26. \"13\" is the value of x, one step further than the question asks for. \"11\" comes from failing to distribute the 4 across the -5, leaving 8x - 5 + 3 and therefore 2x = 9 + 2. \"-14\" adds the 20 instead of subtracting it, giving 2x = 9 - 23.",
+    "solve": "var lhsConst = -4 * 5 + 3;\nreturn 9 - lhsConst;",
+    "distractor_solve": {
+      "-14": "return 9 - (4 * 5 + 3);",
+      "11": "return 9 - (-5 + 3);",
+      "13": "return (9 - (-4 * 5 + 3)) / 2;"
+    }
+  },
+  {
+    "id": "ALG-H4-12",
+    "domain": "Algebra",
+    "subskill": "the two branches of an absolute value equation and which one the question selects",
+    "difficulty": "hard",
+    "prompt": "If |2x - 7| = 23, what is the smaller of the two possible values of x?",
+    "choices": [
+      "-15",
+      "-8",
+      "8",
+      "15"
+    ],
+    "correct_answer": "-8",
+    "explanation": "The equation splits into 2x - 7 = 23 and 2x - 7 = -23, giving x = 15 and x = -8. The smaller of the two is -8. \"15\" is the larger solution, which the word smaller excludes. \"8\" comes from moving the -7 to the other side as an addition, solving 2x = 23 - 7. \"-15\" assumes the two solutions must be opposites and negates 15.",
+    "solve": "var a = (7 + 23) / 2, b = (7 - 23) / 2;\nreturn Math.min(a, b);",
+    "distractor_solve": {
+      "-15": "return -((7 + 23) / 2);",
+      "8": "return (23 - 7) / 2;",
+      "15": "var a = (7 + 23) / 2, b = (7 - 23) / 2;\nreturn Math.max(a, b);"
+    }
+  },
+  {
+    "id": "ALG-H4-13",
+    "domain": "Algebra",
+    "subskill": "clearing two denominators in a linear equation",
+    "difficulty": "hard",
+    "prompt": "If (x + 4)/3 - (2x - 1)/5 = 2, what is the value of x?",
+    "choices": [
+      "-13",
+      "-7",
+      "7",
+      "23"
+    ],
+    "correct_answer": "-7",
+    "explanation": "Multiplying through by 15 gives 5(x + 4) - 3(2x - 1) = 30, that is 5x + 20 - 6x + 3 = 30, so -x + 23 = 30 and x = -7. \"7\" collects the same 23 but then divides by +1 instead of -1 when isolating x. \"-13\" distributes -3 across -1 as -3 rather than +3, giving 5x + 20 - 6x - 3 = 30. \"23\" is the constant collected on the left side, reported before the equation is finished.",
+    "solve": "var c = 5 * 4 + 3 * 1;\nreturn (30 - c) / (5 - 6);",
+    "distractor_solve": {
+      "-13": "var c = 5 * 4 - 3 * 1;\nreturn (30 - c) / (5 - 6);",
+      "7": "var c = 5 * 4 + 3 * 1;\nreturn (30 - c) / (6 - 5);",
+      "23": "return 5 * 4 + 3 * 1;"
+    }
+  },
+  {
+    "id": "ALG-H4-14",
+    "domain": "Algebra",
+    "subskill": "choosing which variable elimination should remove",
+    "difficulty": "hard",
+    "prompt": "If 3x + 5y = 41 and 3x - 3y = 9, what is the value of y?",
+    "choices": [
+      "4",
+      "7",
+      "20",
+      "32"
+    ],
+    "correct_answer": "4",
+    "explanation": "Subtracting the second equation from the first eliminates x and gives 8y = 32, so y = 4. \"32\" is that difference of the two constants, reported before dividing by the 8. \"20\" is 5y, the value of the y-term in the first equation rather than of y itself. \"7\" is the value of x, obtained by substituting y = 4 back into 3x + 5y = 41.",
+    "solve": "return (41 - 9) / (5 - (-3));",
+    "distractor_solve": {
+      "7": "var y = (41 - 9) / (5 - (-3));\nreturn (41 - 5 * y) / 3;",
+      "20": "var y = (41 - 9) / (5 - (-3));\nreturn 5 * y;",
+      "32": "return 41 - 9;"
+    }
+  },
+  {
+    "id": "ALG-H4-15",
+    "domain": "Algebra",
+    "subskill": "substituting one linear expression into another",
+    "difficulty": "medium",
+    "prompt": "If y = 4x - 7 and z = 3y + 2, which of the following expresses z in terms of x?",
+    "choices": [
+      "12x - 23",
+      "12x - 19",
+      "12x - 5",
+      "7x - 5"
+    ],
+    "correct_answer": "12x - 19",
+    "explanation": "Substituting gives z = 3(4x - 7) + 2 = 12x - 21 + 2 = 12x - 19. \"12x - 23\" subtracts the 2 instead of adding it, giving -21 - 2. \"12x - 5\" combines -7 with the +2 before distributing the 3, so the 3 never reaches the -7. \"7x - 5\" adds the two right-hand sides, 4x - 7 and 3x + 2, instead of substituting one into the other.",
+    "solve": "return \"12x - \" + (3 * 7 - 2);",
+    "distractor_solve": {
+      "12x - 23": "return \"12x - \" + (3 * 7 + 2);",
+      "12x - 5": "return \"12x - \" + (7 - 2);",
+      "7x - 5": "return (4 + 3) + \"x - \" + (7 - 2);"
+    }
+  },
+  {
+    "id": "ALG-H4-16",
+    "domain": "Algebra",
+    "subskill": "dividing a compound inequality by a negative number",
+    "difficulty": "hard",
+    "prompt": "Which of the following gives all values of x for which -4 < 3 - 2x is true and 3 - 2x is less than or equal to 9?",
+    "choices": [
+      "-3.5 <= x < 3",
+      "-3.5 < x <= 3",
+      "-3 <= x < 3.5",
+      "-3 < x <= 3.5"
+    ],
+    "correct_answer": "-3 <= x < 3.5",
+    "explanation": "Subtracting 3 throughout gives -7 < -2x and -2x is at most 6. Dividing by -2 reverses both relations and also swaps which end each one describes: -2x at most 6 becomes x at least -3, and -7 < -2x becomes x < 3.5. So the solution is -3 <= x < 3.5. \"-3 < x <= 3.5\" keeps each relation's strictness attached to the number it started beside instead of carrying it through the reversal. \"-3.5 < x <= 3\" divides by 2 rather than -2, which loses the reversal and pairs the endpoints the other way round. \"-3.5 <= x < 3\" makes that same division error and also flips the strictness.",
+    "solve": "var upper = (-4 - 3) / -2, lower = (9 - 3) / -2;\nreturn lower + \" <= x < \" + upper;",
+    "distractor_solve": {
+      "-3.5 <= x < 3": "var a = (-4 - 3) / 2, b = (9 - 3) / 2;\nreturn a + \" <= x < \" + b;",
+      "-3.5 < x <= 3": "var a = (-4 - 3) / 2, b = (9 - 3) / 2;\nreturn a + \" < x <= \" + b;",
+      "-3 < x <= 3.5": "var a = (9 - 3) / -2, b = (-4 - 3) / -2;\nreturn a + \" < x <= \" + b;"
+    }
+  },
+  {
+    "id": "ALG-H4-17",
+    "domain": "Algebra",
+    "subskill": "a system in which one quantity is given as a multiple of the other",
+    "difficulty": "medium",
+    "prompt": "A theater sold 3 times as many balcony seats as box seats for a concert. Balcony seats cost 22 dollars each and box seats cost 58 dollars each, and the concert brought in 5,704 dollars in total. How many box seats were sold?",
+    "choices": [
+      "29",
+      "46",
+      "98",
+      "138"
+    ],
+    "correct_answer": "46",
+    "explanation": "Let b be the number of box seats; then 3b balcony seats were sold. The revenue is 22(3b) + 58b = 66b + 58b = 124b, and 5,704 divided by 124 is 46. \"138\" is the number of balcony seats, 3 times 46. \"29\" reverses the multiple, pricing 3 box seats for every balcony seat and dividing 5,704 by 22 + 174 = 196. \"98\" divides the whole 5,704 by the box-seat price alone, as if no balcony seats had been sold.",
+    "solve": "return 5704 / (3 * 22 + 58);",
+    "distractor_solve": {
+      "29": "return Math.round(5704 / (22 + 3 * 58));",
+      "98": "return Math.round(5704 / 58);",
+      "138": "return 3 * (5704 / (3 * 22 + 58));"
+    }
+  },
+  {
+    "id": "ALG-H4-18",
+    "domain": "Algebra",
+    "subskill": "the constant that makes a one-variable equation have no solution",
+    "difficulty": "hard",
+    "prompt": "In the equation 3(kx - 2) = 12x + 9, k is a constant. If the equation has no solution, what is the value of k?",
+    "choices": [
+      "4",
+      "6",
+      "7",
+      "21"
+    ],
+    "correct_answer": "4",
+    "explanation": "Expanding gives 3kx - 6 = 12x + 9. An equation in this form has no solution when the x-terms match but the constants do not, so 3k = 12 and k = 4; the constants -6 and 9 then disagree, as required. \"7\" sets 3k equal to 12 + 9, folding the constants into the coefficient. \"6\" solves 3k - 6 = 12, carrying the -6 into the coefficient comparison. \"21\" is that 12 + 9, reported as 3k without the final division by 3.",
+    "solve": "return 12 / 3;",
+    "distractor_solve": {
+      "6": "return (12 + 3 * 2) / 3;",
+      "7": "return (12 + 9) / 3;",
+      "21": "return 12 + 9;"
+    }
+  },
+  {
+    "id": "ALG-H4-19",
+    "domain": "Algebra",
+    "subskill": "reporting a multiple of the variable that the solution process produces directly",
+    "difficulty": "hard",
+    "prompt": "If 7(x - 4) = 3x + 16, what is the value of 4x?",
+    "choices": [
+      "-12",
+      "11",
+      "20",
+      "44"
+    ],
+    "correct_answer": "44",
+    "explanation": "Expanding gives 7x - 28 = 3x + 16. Subtracting 3x and adding 28 to both sides gives 4x = 44. \"11\" is the value of x, one division past what the question asks for. \"-12\" subtracts the 28 instead of adding it, giving 16 - 28. \"20\" distributes the 7 to x only, treating the left side as 7x - 4 and reaching 4x = 16 + 4.",
+    "solve": "return 16 + 7 * 4;",
+    "distractor_solve": {
+      "-12": "return 16 - 7 * 4;",
+      "11": "return (16 + 7 * 4) / (7 - 3);",
+      "20": "return 16 + 4;"
+    }
+  },
+  {
+    "id": "ALG-H4-20",
+    "domain": "Algebra",
+    "subskill": "testing an ordered pair against both parts of a system of linear inequalities",
+    "difficulty": "hard",
+    "prompt": "Which of the following ordered pairs (x, y) satisfies both y > 2x - 5 and 3x + y < 12?",
+    "choices": [
+      "(0, -6)",
+      "(1, 4)",
+      "(2, 8)",
+      "(4, 3)"
+    ],
+    "correct_answer": "(1, 4)",
+    "explanation": "For (1, 4): 2(1) - 5 = -3 and 4 > -3, so the first inequality holds; 3(1) + 4 = 7 and 7 < 12, so the second holds as well. \"(4, 3)\" fails the first inequality at the boundary, since 2(4) - 5 = 3 and 3 is not greater than 3, though 3(4) + 3 = 15 also fails the second. \"(2, 8)\" satisfies the first inequality but gives 3(2) + 8 = 14, which is not less than 12. \"(0, -6)\" satisfies the second inequality but gives 2(0) - 5 = -5, and -6 is not greater than -5.",
+    "solve": "var pairs = [[0, -6], [1, 4], [2, 8], [4, 3]], ok = [];\nfor (var i = 0; i < pairs.length; i++) {\n  var x = pairs[i][0], y = pairs[i][1];\n  if (y > 2 * x - 5 && 3 * x + y < 12) ok.push(\"(\" + x + \", \" + y + \")\");\n}\nreturn ok.length === 1 ? ok[0] : \"NOT UNIQUE: \" + ok.length;",
+    "distractor_solve": {
+      "(0, -6)": "var x = 0, y = -6;\nif (y > 2 * x - 5) return \"first inequality holds\";\nreturn \"(\" + x + \", \" + y + \")\";",
+      "(2, 8)": "var x = 2, y = 8;\nif (3 * x + y < 12) return \"second inequality holds\";\nreturn \"(\" + x + \", \" + y + \")\";",
+      "(4, 3)": "var x = 4, y = 3;\nif (y > 2 * x - 5) return \"first inequality holds\";\nreturn \"(\" + x + \", \" + y + \")\";"
+    }
+  },
+  {
+    "id": "ALG-H4-21",
+    "domain": "Algebra",
+    "subskill": "working backward along a constant rate of change to an initial value",
+    "difficulty": "medium",
+    "prompt": "A candle burns at a constant rate. Three hours after it was lit it was 26 centimeters tall, and seven hours after it was lit it was 14 centimeters tall. What was the candle's height, in centimeters, when it was lit?",
+    "choices": [
+      "17",
+      "29",
+      "35",
+      "38"
+    ],
+    "correct_answer": "35",
+    "explanation": "The candle loses (26 - 14) = 12 centimeters over (7 - 3) = 4 hours, so it burns 3 centimeters per hour. Three hours before the 26-centimeter reading it was 26 + 3(3) = 35 centimeters tall. \"17\" burns forward from the 26-centimeter reading instead of back, computing 26 - 9. \"29\" goes back only one hour rather than three. \"38\" works back from the seven-hour reading but counts eight hours instead of seven, computing 14 + 24.",
+    "solve": "var m = (14 - 26) / (7 - 3);\nreturn 26 - m * 3;",
+    "distractor_solve": {
+      "17": "var m = (14 - 26) / (7 - 3);\nreturn 26 + m * 3;",
+      "29": "var m = (14 - 26) / (7 - 3);\nreturn 26 - m * 1;",
+      "38": "var m = (14 - 26) / (7 - 3);\nreturn 14 - m * 8;"
+    }
+  },
+  {
+    "id": "ALG-H4-22",
+    "domain": "Algebra",
+    "subskill": "translating a comparative description into a linear equation",
+    "difficulty": "medium",
+    "prompt": "The perimeter of a rectangle is 96 centimeters. Its length is 6 centimeters more than twice its width. What is the length, in centimeters, of the rectangle?",
+    "choices": [
+      "14",
+      "28",
+      "34",
+      "84"
+    ],
+    "correct_answer": "34",
+    "explanation": "If w is the width, the length is 2w + 6 and the perimeter is 2(w + 2w + 6) = 6w + 12. Setting 6w + 12 = 96 gives w = 14, so the length is 2(14) + 6 = 34. \"14\" is the width rather than the length. \"28\" doubles the width but never adds the 6. \"84\" is 6w, the value reached after subtracting the 12 and before dividing by 6.",
+    "solve": "var w = (96 - 12) / 6;\nreturn 2 * w + 6;",
+    "distractor_solve": {
+      "14": "return (96 - 12) / 6;",
+      "28": "var w = (96 - 12) / 6;\nreturn 2 * w;",
+      "84": "return 96 - 12;"
+    }
+  },
+  {
+    "id": "ALG-H4-23",
+    "domain": "Algebra",
+    "subskill": "an absolute value equation with a sign restriction and a scaled answer",
+    "difficulty": "hard",
+    "prompt": "If |k - 7| = 12 and k < 0, what is the value of 2k?",
+    "choices": [
+      "-10",
+      "-5",
+      "19",
+      "38"
+    ],
+    "correct_answer": "-10",
+    "explanation": "The equation gives k - 7 = 12 or k - 7 = -12, so k = 19 or k = -5. The condition k < 0 selects k = -5, and 2k = -10. \"-5\" is k itself rather than 2k. \"38\" doubles the solution 19, which the condition k < 0 rules out. \"19\" is that excluded solution, reported without doubling.",
+    "solve": "var a = 7 + 12, b = 7 - 12;\nvar k = a < 0 ? a : b;\nreturn 2 * k;",
+    "distractor_solve": {
+      "-5": "return 7 - 12;",
+      "19": "return 7 + 12;",
+      "38": "return 2 * (7 + 12);"
+    }
+  },
+  {
+    "id": "ALG-H4-24",
+    "domain": "Algebra",
+    "subskill": "a coin-count system solved by substitution",
+    "difficulty": "medium",
+    "prompt": "A jar holds 50 coins, each of which is either a nickel worth 5 cents or a dime worth 10 cents. The coins are worth 410 cents in all. How many of the coins are dimes?",
+    "choices": [
+      "32",
+      "41",
+      "82",
+      "160"
+    ],
+    "correct_answer": "32",
+    "explanation": "If d is the number of dimes, there are 50 - d nickels, and 10d + 5(50 - d) = 410. That simplifies to 5d + 250 = 410, so 5d = 160 and d = 32. \"160\" is that 5d, the value reached one step before the division. \"41\" divides the 410 cents by 10, treating every coin as a dime. \"82\" divides by 5, treating every coin as a nickel.",
+    "solve": "return (410 - 5 * 50) / (10 - 5);",
+    "distractor_solve": {
+      "41": "return 410 / 10;",
+      "82": "return 410 / 5;",
+      "160": "return 410 - 5 * 50;"
+    }
+  }
+]
