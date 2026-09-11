@@ -1,0 +1,410 @@
+[
+  {
+    "id": "SEC9-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: two independent clauses may be joined by a comma plus a coordinating conjunction, and by nothing weaker",
+    "difficulty": "easy",
+    "passage": "Reading rooms and photography desks are budgeted separately, which is why the prices of the two often move in opposite directions. The cathedral archive at Vic charges nothing at all for a reader's ______ by the exposure for every photograph a reader takes, and the fees collected at the camera desk now cover most of the salary of the archivist who supervises both rooms.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "seat, it charges",
+      "seat it charges",
+      "seat, but it charges",
+      "seat, however, it charges"
+    ],
+    "correct_answer": "seat, but it charges",
+    "explanation": "What stands on either side of the blank is a complete sentence: the archive charges nothing for a seat, and it charges by the exposure for photographs. Two independent clauses may be joined by a comma only when a coordinating conjunction follows the comma, which is what \"seat, but it charges\" supplies. \"seat, it charges\" leaves the two clauses joined by a bare comma, a comma splice. \"seat it charges\" runs them together with no mark at all. \"seat, however, it charges\" adds an adverb, and an adverb cannot do a conjunction's work, so the two clauses are still joined by only a comma.",
+    "topic_tag": "archive fees"
+  },
+  {
+    "id": "SEC9-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a singular head noun governs the verb across a long plural prepositional modifier",
+    "difficulty": "easy",
+    "passage": "A tide gauge is only as good as the benchmark its readings are referred to, and benchmarks move. The accuracy of the sea-level records collected at the older Atlantic ______ on a network of survey marks that were set into harbor walls in the 1840s and have been settling, at different rates, ever since.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "stations depends",
+      "stations depend",
+      "stations depending",
+      "stations to depend"
+    ],
+    "correct_answer": "stations depends",
+    "explanation": "The head of the subject is \"The accuracy,\" a singular noun; everything from \"of the sea-level records\" through \"stations\" only describes it, so the verb must be the singular \"stations depends.\" \"stations depend\" agrees with the nearest plural nouns rather than with the word that actually heads the subject. \"stations depending\" and \"stations to depend\" are not finite verbs at all, so either one leaves the sentence with a subject and no main verb.",
+    "topic_tag": "tide gauges"
+  },
+  {
+    "id": "SEC9-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a plural noun shows possession with an apostrophe after the s",
+    "difficulty": "easy",
+    "passage": "Eleven men slept in the forecastle of a coasting vessel that size, and every one of them owned a chest of his own. The ______ sea chests were stacked three deep along the bulkhead, and the surviving inventory lists each of them by the owner's initials rather than by any mark of the maker.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "sailor's",
+      "sailors",
+      "sailors'",
+      "sailor"
+    ],
+    "correct_answer": "sailors'",
+    "explanation": "The preceding sentence establishes eleven owners, each with a chest, so the chests belong to more than one sailor. A plural noun that already ends in s takes the apostrophe after the s, which gives \"sailors'.\" \"sailor's\" marks a single owner and contradicts the count the passage has just given. \"sailors\" and \"sailor\" carry no possessive marking at all, and a bare noun cannot modify \"sea chests\" in the sense the sentence needs.",
+    "topic_tag": "forecastle chests"
+  },
+  {
+    "id": "SEC9-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a dash must be closed with a dash",
+    "difficulty": "medium",
+    "passage": "A guild's records tend to survive better than a household's, because a guild outlives the people who keep its books. The wage rolls of the Antwerp coopers—three folio volumes bound in ______ the only continuous record of what a skilled man earned in that city between 1540 and 1690.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "vellum, are",
+      "vellum—are",
+      "vellum) are",
+      "vellum—they are"
+    ],
+    "correct_answer": "vellum—are",
+    "explanation": "The interruption that begins after \"coopers\" is opened with a dash, so it has to be closed with a matching dash before the sentence returns to its main verb, which is what \"vellum—are\" does. \"vellum, are\" closes a dash with a comma, and a supplement cannot be bracketed by two different marks. \"vellum) are\" closes it with a parenthesis that was never opened. \"vellum—they are\" closes the pair correctly but then supplies a second subject, so the sentence has \"The wage rolls\" and \"they\" both waiting on one verb.",
+    "topic_tag": "guild wage rolls"
+  },
+  {
+    "id": "SEC9-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a date that closes the event fixes the simple past",
+    "difficulty": "easy",
+    "passage": "Railway companies pushed their lines forward in the order that the terrain allowed, not in the order that the towns along the route wanted. In 1863 the Vale company ______ the track as far as the ridge above the parish church and no farther, and the four miles of embankment beyond the ridge were not finished for another nineteen years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has extended",
+      "extended",
+      "extends",
+      "is extending"
+    ],
+    "correct_answer": "extended",
+    "explanation": "The sentence places the event in 1863, a year that is over and that the sentence does not connect to the present, so the finished past of \"extended\" is what the time expression calls for. \"has extended\" is the present perfect, which reports a past event as bearing on now and will not stand with a bare completed date. \"extends\" and \"is extending\" put a nineteenth-century act of construction into the present, which the surrounding past-tense clause about the embankment contradicts.",
+    "topic_tag": "branch line construction"
+  },
+  {
+    "id": "SEC9-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: an introductory participial phrase must modify the subject of the clause that follows it",
+    "difficulty": "easy",
+    "passage": "The east front of the abbey came down in 1889 and had been photographed the week before, once, by an amateur. Working from that single glass plate and from a builder's measurements taken for an unrelated ______ the vanished front brick by brick, a reconstruction that took nine years and is now the only version anyone under a century old has ever seen.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "purpose, the restorers of the 1970s rebuilt",
+      "purpose, it was possible for the team to rebuild",
+      "purpose, the notebooks record the rebuilding of",
+      "purpose, rebuilding proceeded on"
+    ],
+    "correct_answer": "purpose, the restorers of the 1970s rebuilt",
+    "explanation": "\"Working from that single glass plate\" describes whoever did the working, and that phrase attaches to whatever subject opens the main clause. Only \"purpose, the restorers of the 1970s rebuilt\" supplies a subject that can work from a photograph. In \"purpose, it was possible for the team to rebuild\" the subject is \"it,\" which did no working. \"purpose, the notebooks record the rebuilding of\" makes notebooks the worker, and \"purpose, rebuilding proceeded on\" makes the process its own agent.",
+    "topic_tag": "abbey reconstruction"
+  },
+  {
+    "id": "SEC9-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark stands between a subject and its verb or between a linking verb and the complement that completes it",
+    "difficulty": "medium",
+    "passage": "Museum registrars distinguish between what an object is and what it was used for, and the second claim is usually the harder of the two to defend. The one find that the excavation report lists as a ritual ______ a copper bowl with a pierced rim, a vessel that shows none of the wear that daily handling leaves behind.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "object is:",
+      "object, is",
+      "object; is",
+      "object is"
+    ],
+    "correct_answer": "object is",
+    "explanation": "The subject is \"The one find\" and the verb is \"is\"; what follows the verb is the complement that names the find. Nothing belongs between those parts, which is why \"object is\" is the only version that works. \"object is:\" puts a colon between a linking verb and its complement, and a colon must follow words that could stand as a sentence on their own. \"object, is\" cuts the subject off from its verb with a comma. \"object; is\" does the same with a mark that can join only two full clauses.",
+    "topic_tag": "excavation report"
+  },
+  {
+    "id": "SEC9-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a subject headed by 'the number of' takes a singular verb",
+    "difficulty": "medium",
+    "passage": "Recovery plans set numerical targets because a number can be tested against a count and an impression cannot. The number of nesting pairs recorded on the three outer ______ the figure that the plan adopted as its threshold for reopening the cliffs to visitors, though the threshold was cleared in only two of the last nine seasons.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "islands exceed",
+      "islands exceeds",
+      "islands have exceeded",
+      "islands exceeding"
+    ],
+    "correct_answer": "islands exceeds",
+    "explanation": "The subject is headed by \"The number,\" a singular noun naming one quantity, so it takes the singular \"islands exceeds.\" \"islands exceed\" and \"islands have exceeded\" both agree with the plural nouns inside the modifier, \"pairs\" and \"islands,\" rather than with the noun that heads the subject. \"islands exceeding\" is a participle rather than a finite verb, so it cannot serve as the main verb the sentence still lacks.",
+    "topic_tag": "seabird counts"
+  },
+  {
+    "id": "SEC9-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a span running from a past point to the present takes the present perfect",
+    "difficulty": "medium",
+    "passage": "Counting migrating birds is easier than counting resident ones, because migrants pass a fixed point and can be tallied there. Since the first systematic season at the headland station in 1979, the autumn count ______ by roughly two-thirds, and the decline holds even after the observers correct for the number of hours spent watching.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has fallen",
+      "fell",
+      "falls",
+      "had fallen"
+    ],
+    "correct_answer": "has fallen",
+    "explanation": "The sentence opens with \"Since\" and a point in the past, which sets a span running from 1979 up to the moment of writing, and a span of that shape takes the present perfect: \"has fallen.\" \"fell\" reports a single completed event and cannot cover a stretch that reaches the present, which is what the following clause, in the present tense, confirms the sentence is describing. \"falls\" describes a present habit rather than a change accumulated across the span. \"had fallen\" is the past perfect, which needs a later past reference point that the sentence never supplies.",
+    "topic_tag": "migration counts"
+  },
+  {
+    "id": "SEC9-10",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a comma must be closed with a comma",
+    "difficulty": "medium",
+    "passage": "Timber from a broken-up ship was rarely wasted; it went into barns, into fences, and now and then into another hull. The deck beams in the granary at Otterton, salvaged from a naval vessel condemned at ______ still carry the tally marks that the original shipwright cut into them before the first launch.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "Deptford in 1697—",
+      "Deptford in 1697,",
+      "Deptford in 1697",
+      "Deptford in 1697;"
+    ],
+    "correct_answer": "Deptford in 1697,",
+    "explanation": "The phrase beginning \"salvaged from a naval vessel\" is a supplement set off from the subject by a comma, so it has to be closed by the same mark before the sentence reaches its verb; \"Deptford in 1697,\" supplies it. \"Deptford in 1697—\" closes a comma with a dash, and the two marks cannot be paired with each other. \"Deptford in 1697\" leaves the supplement open, so the subject runs into the verb with no boundary. \"Deptford in 1697;\" uses a mark that joins full clauses and here splits the subject from its verb.",
+    "topic_tag": "ship timber reuse"
+  },
+  {
+    "id": "SEC9-11",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a singular noun shows possession with an apostrophe before the s",
+    "difficulty": "medium",
+    "passage": "The workshop was run by one man throughout the period in question, though the town's guild lists, which record apprentices as well as masters, sometimes give the impression of a partnership. Fourteen surviving clocks carry the ______ name on the dial, and the two that carry a second name were finished by an apprentice after the master died in 1744.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "clockmaker's",
+      "clockmakers'",
+      "clockmakers",
+      "clockmaker"
+    ],
+    "correct_answer": "clockmaker's",
+    "explanation": "The passage states that one man ran the workshop, so the name on the dial belongs to a single clockmaker, and a singular noun takes the apostrophe before the s: \"clockmaker's.\" \"clockmakers'\" marks a plural possessor, which the first sentence rules out. \"clockmakers\" is a plural with no possessive marking, and \"clockmaker\" is a bare singular; neither can carry the possessive relation that \"name on the dial\" calls for.",
+    "topic_tag": "provincial clockmaking"
+  },
+  {
+    "id": "SEC9-12",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a plural head noun governs the verb across a singular supplement",
+    "difficulty": "medium",
+    "passage": "Rope and cable were tested to destruction because nothing short of destruction showed where they would fail. The steel cables that carry the walkway across the gorge, each of them thinner than a wrist, ______ a load of eleven tons apiece, a figure the builders reached by breaking three cables in a yard and averaging the results.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are rated for",
+      "is rated for",
+      "being rated for",
+      "and are rated for"
+    ],
+    "correct_answer": "are rated for",
+    "explanation": "The head of the subject is \"The steel cables,\" a plural noun, and the supplement \"each of them thinner than a wrist\" does not change what the verb answers to, so \"are rated for\" is correct. \"is rated for\" agrees with the singular \"each\" inside the supplement rather than with the noun heading the subject. \"being rated for\" is not a finite verb and leaves the sentence without a main verb. \"and are rated for\" adds a conjunction that has nothing before it to join, so the sentence never reaches an independent clause.",
+    "topic_tag": "footbridge cables"
+  },
+  {
+    "id": "SEC9-13",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: an introductory dependent clause is closed with a comma, and nothing separates the subject that follows from its verb",
+    "difficulty": "easy",
+    "passage": "Sailors on that coast learn early that wind and tide are not independent of each other. When a spring ebb runs out of the narrows against a strong southwesterly ______ steep enough within twenty minutes to stop a boat that had been making good headway on the same water an hour earlier.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the sea turns",
+      ", the sea, turns",
+      "; the sea turns",
+      ", the sea turns"
+    ],
+    "correct_answer": ", the sea turns",
+    "explanation": "The sentence opens with a dependent clause introduced by \"When,\" and a clause of that length is closed with a comma before the main clause begins, which is what \", the sea turns\" provides. \"the sea turns\" omits the comma and lets the two clauses run together. \", the sea, turns\" closes the introductory clause correctly but then cuts the subject off from its verb with a second comma. \"; the sea turns\" uses a mark reserved for joining two independent clauses, and what precedes it cannot stand alone.",
+    "topic_tag": "tidal narrows"
+  },
+  {
+    "id": "SEC9-14",
+    "domain": "Standard English Conventions",
+    "subskill": "form: the members of a coordinated series must be of the same kind",
+    "difficulty": "medium",
+    "passage": "A bell founder's trade is mostly not casting. The work divides into three parts: mixing the metal to a formula that each shop guards, lifting the finished bell into a tower without cracking it, and ______, and it is the last of the three that ends careers, since a bell that will not come to pitch cannot be sold.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "tuning the casting on a lathe",
+      "to tune the casting on a lathe",
+      "the casting is tuned on a lathe",
+      "a lathe tunes the casting"
+    ],
+    "correct_answer": "tuning the casting on a lathe",
+    "explanation": "The series names three parts of the work, and the first two are given as \"mixing the metal\" and \"lifting the finished bell,\" so the third must take the same form; \"tuning the casting on a lathe\" does. \"to tune the casting on a lathe\" switches to an infinitive partway through the series. \"the casting is tuned on a lathe\" and \"a lathe tunes the casting\" are full clauses, and a clause cannot be coordinated with two phrases naming activities.",
+    "topic_tag": "bell founding"
+  },
+  {
+    "id": "SEC9-15",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'by the time' plus a past-tense clause fixes the past perfect in the other clause",
+    "difficulty": "medium",
+    "passage": "A river meandering across a flood plain can abandon a town without the town having moved an inch. By the time the boundary commissioners reached the lower valley in 1791, the channel ______ nearly a mile to the east, leaving the stone quay they had been sent to survey standing in the middle of a dry meadow.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "shifted",
+      "has shifted",
+      "shifts",
+      "had shifted"
+    ],
+    "correct_answer": "had shifted",
+    "explanation": "\"By the time the commissioners reached the lower valley\" fixes a moment in the past, and the movement of the channel was already complete when that moment arrived; an event finished before a stated past point takes the past perfect, so \"had shifted\" is correct. \"shifted\" puts the two events on the same footing and loses the order the sentence depends on. \"has shifted\" ties the change to the present, which the 1791 frame excludes. \"shifts\" is a present tense inside a sentence that is entirely past.",
+    "topic_tag": "river meanders"
+  },
+  {
+    "id": "SEC9-16",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a parenthesis must be closed with a parenthesis",
+    "difficulty": "easy",
+    "passage": "A catalogue entry is a promise about what a reader will find on the shelf, so the conventions governing what an entry may contain are strict. Each entry in the hand-list gives a shelfmark, a date of acquisition, and (where the binder happened to sign his ______ a name, though fewer than one entry in thirty carries that last element at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "work,",
+      "work",
+      "work)",
+      "work—"
+    ],
+    "correct_answer": "work)",
+    "explanation": "The phrase beginning \"where the binder happened to sign\" is opened with a parenthesis, and a parenthesis is closed by its own partner, so \"work)\" is required. \"work,\" and \"work—\" try to close the parenthesis with a different mark, and the two halves of a bracketing pair must match. \"work\" leaves the parenthesis open, so the rest of the sentence is never released from the aside.",
+    "topic_tag": "manuscript hand-list"
+  },
+  {
+    "id": "SEC9-17",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a relative pronoun that serves as the subject of an embedded clause takes the subjective case, and 'agree' does not take an object plus an infinitive",
+    "difficulty": "hard",
+    "passage": "A commission of inquiry can name a cause without naming a person, and the 1908 report on the collapse of the coffer dam does exactly that. The engineer ______ the disputed line on the lower drawing had left the firm two years before the inquiry opened, and the commissioners never established which of his successors approved the change.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "whom the commissioners agreed had drawn",
+      "who the commissioners agreed to have drawn",
+      "whom the commissioners agreed to have drawn",
+      "who the commissioners agreed had drawn"
+    ],
+    "correct_answer": "who the commissioners agreed had drawn",
+    "explanation": "The relative pronoun is the subject of \"had drawn\" inside the clause \"the commissioners agreed ___ had drawn the disputed line,\" and a subject takes the subjective case even when a phrase such as \"the commissioners agreed\" is interposed, so \"who the commissioners agreed had drawn\" is correct. \"whom the commissioners agreed had drawn\" treats the pronoun as an object of \"agreed,\" which it is not. The two versions built on \"agreed to have drawn\" fail on a second count: \"agree\" does not take an object followed by an infinitive, so no case of the pronoun can rescue that frame.",
+    "topic_tag": "coffer dam inquiry"
+  },
+  {
+    "id": "SEC9-18",
+    "domain": "Standard English Conventions",
+    "subskill": "form and boundaries: a compound subject takes a plural verb across a 'neither of which' supplement, which must itself be closed with a comma",
+    "difficulty": "hard",
+    "passage": "Fatigue in a steel structure is counted in loading cycles rather than in years, which is why two parts of one bridge can be the same age without being in the same condition. The deck plates and the riveted trusses beneath them, neither of which showed any damage at the last ______ the same number of cycles since the bridge opened in 1931, and an inspector who looks only for cracks will find nothing on either.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "inspection, has accumulated",
+      "inspection have accumulated",
+      "inspection has accumulated",
+      "inspection, have accumulated"
+    ],
+    "correct_answer": "inspection, have accumulated",
+    "explanation": "Two things have to be right at once. The subject is \"The deck plates and the riveted trusses,\" two elements joined by \"and,\" which takes a plural verb; the singular \"neither\" belongs to the supplement and not to the subject, so \"has accumulated\" is wrong wherever it appears. The supplement itself is opened with the comma after \"them,\" so it must be closed with a comma after \"inspection\" before the sentence reaches its verb. Only \"inspection, have accumulated\" satisfies both requirements.",
+    "topic_tag": "bridge fatigue"
+  },
+  {
+    "id": "SEC9-19",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark separates a verb from the clause that serves as its object",
+    "difficulty": "easy",
+    "passage": "Engineers investigating a collapse work backward from the debris, and the sequence they recover is often at odds with what the witnesses remember. The commission that examined the grandstand concluded ______ the failure had begun in a weld that was already months old, long before the crowd arrived on the afternoon the structure came down.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      ", that",
+      "that",
+      "; that",
+      ": that"
+    ],
+    "correct_answer": "that",
+    "explanation": "The clause beginning \"the failure had begun\" is the object of \"concluded,\" and nothing stands between a verb and its own object, so the bare \"that\" is correct. \", that\" inserts a comma at that junction. \"; that\" uses a mark that joins two independent clauses, and the words after it do not form one. \": that\" uses a colon, which must introduce something announced by a complete statement rather than complete the verb that precedes it.",
+    "topic_tag": "grandstand collapse"
+  },
+  {
+    "id": "SEC9-20",
+    "domain": "Standard English Conventions",
+    "subskill": "form: the 'if' clause of a past counterfactual takes the past perfect and never the modal",
+    "difficulty": "hard",
+    "passage": "Boundary disputes are settled by documents rather than by argument, which is what makes the loss of a single document expensive. If the manor's field ledger ______ in the warehouse fire of 1834, the question of where the common land ended could have been answered in a single morning instead of occupying two courts for eleven years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "did not burn",
+      "has not burned",
+      "had not burned",
+      "would not have burned"
+    ],
+    "correct_answer": "had not burned",
+    "explanation": "The main clause reads \"could have been answered,\" which marks the sentence as a counterfactual about the past, and the \"if\" clause of such a sentence takes the past perfect: \"had not burned.\" \"did not burn\" is the simple past, which states a plain past condition rather than a contrary-to-fact one. \"has not burned\" is the present perfect and carries the fire forward to the present, though the sentence dates it to 1834. \"would not have burned\" moves the modal into the \"if\" clause, where it does not belong, since the modal is already doing its work in the other half of the sentence.",
+    "topic_tag": "manorial records"
+  },
+  {
+    "id": "SEC9-21",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: an interrupter standing between a verb and its object is enclosed by a pair of commas",
+    "difficulty": "medium",
+    "passage": "Honeybee foragers report distance and direction in one performance, and the two are carried by different features of it. A returning forager ______ a dance in the shape of a figure eight whose long axis points toward the food, rather than the simple circling that a find close to the hive produces.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "gives, if the source lies more than about eighty meters from the hive",
+      "gives if the source lies more than about eighty meters from the hive,",
+      "gives, if the source lies more than about eighty meters from the hive,",
+      "gives if the source lies more than about eighty meters from the hive"
+    ],
+    "correct_answer": "gives, if the source lies more than about eighty meters from the hive,",
+    "explanation": "The condition about distance interrupts the verb \"gives\" and its object \"a dance,\" and an interrupter in that position is enclosed by commas on both sides, which only \"gives, if the source lies more than about eighty meters from the hive,\" does. The version with an opening comma and no closing one leaves the interrupter running into the object. The version with a closing comma and no opening one does the reverse. The version with no commas at all attaches the condition to nothing.",
+    "topic_tag": "forager dances"
+  },
+  {
+    "id": "SEC9-22",
+    "domain": "Standard English Conventions",
+    "subskill": "form: the two limbs of a 'both ... and' correlative must be of the same kind",
+    "difficulty": "medium",
+    "passage": "A canal company's obligations outlived the traffic that paid for them, which is why the receivers spent longer in court than the company had spent carrying coal. The 1911 charter required the company both to maintain the towpath along its whole length and ______, obligations that the receivers argued had lapsed when the canal closed to commercial traffic.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "keeping the locks in working order",
+      "that the locks be kept in working order",
+      "the locks in working order",
+      "to keep the locks in working order"
+    ],
+    "correct_answer": "to keep the locks in working order",
+    "explanation": "\"both\" introduces \"to maintain the towpath,\" an infinitive phrase, so the limb after \"and\" must be another infinitive phrase: \"to keep the locks in working order.\" \"keeping the locks in working order\" answers an infinitive with a participial phrase. \"that the locks be kept in working order\" answers it with a subordinate clause. \"the locks in working order\" supplies only a noun phrase, leaving \"required the company both to maintain the towpath and the locks\" with two limbs that do not match.",
+    "topic_tag": "canal charter"
+  },
+  {
+    "id": "SEC9-23",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a pronoun in a compound object of a preposition takes the objective case",
+    "difficulty": "medium",
+    "passage": "Two people did the fieldwork for the survey of the eastern basin and only one of them wrote it up, a division of labor that the prize committee decided not to honor. The medal was awarded jointly to the expedition's director and ______, who had spent four seasons running the instruments while he wrote from the base camp.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "she",
+      "hers",
+      "her",
+      "herself"
+    ],
+    "correct_answer": "her",
+    "explanation": "The pronoun is the second element of the compound object of \"to,\" and an object takes the objective case, which gives \"her.\" \"she\" is the subjective form and would be wrong in that slot whether or not another noun shared it. \"hers\" is a possessive and names a thing owned rather than a person awarded a medal. \"herself\" is a reflexive, and a reflexive requires an antecedent in the same clause referring to the same person, which the sentence does not supply.",
+    "topic_tag": "survey medal"
+  },
+  {
+    "id": "SEC9-24",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'neither' is answered by 'nor', and a verb after 'neither ... nor' agrees with the nearer subject",
+    "difficulty": "hard",
+    "passage": "A medieval grant survives in several forms at once, and the forms do not always agree with one another. Neither the seals still attached to the charter ______ the abbey's own account of what the grant contained, and the discrepancy has been read both as evidence of forgery and as an ordinary lapse in a busy scriptorium.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "or the witness list supports",
+      "nor the witness list supports",
+      "nor the witness list support",
+      "or the witness list support"
+    ],
+    "correct_answer": "nor the witness list supports",
+    "explanation": "Two things are at issue. \"Neither\" has one partner in edited English and it is \"nor,\" so every version built on \"or the witness list\" abandons the correlative halfway through. With subjects joined by \"neither ... nor,\" the verb agrees with the subject nearer to it, and the nearer subject here is the singular \"the witness list,\" so the verb is \"supports\" rather than \"support\" even though \"the seals\" is plural. Only \"nor the witness list supports\" gets both right.",
+    "topic_tag": "charter seals"
+  }
+]
