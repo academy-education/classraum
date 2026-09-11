@@ -2624,6 +2624,62 @@
      "verdict": "Key letters re-dealt at draw time so authored order is unreachable (AUTHORING-BRIEF 2b); the render deals flat at 7/6/6/6. The three cross-item tells the graders found are gone with the three dropped items. Two residual shapes recorded and NOT acted on, both single-item: one set puts \"uncorroborated\" (GRE-band) against three ordinary un- words, but it is a DISTRACTOR, so odd-one-out does not find the key; and two synonym items use an all-un- prefix frame, which the elimination runs independently judged helps rather than leaks, since the shared morphology gives no way to prefer one member."
     }
    }
+  },
+  {
+   "id": "sat-alg-h5-kept-2026-09-11",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-alg-h5",
+   "contentSha": "f579ecae56434418c4fc53ef8f05467504a06c7ba8d3b7d0b99dca75e060f20a",
+   "note": "22 items, the survivors of sat-alg-h5.batch.json after dropping the two items all three options-only solvers got. Inserted at the DEFAULT band=hard, so the majority-easy items are rejected at insert rather than relabelled — the batch was commissioned hard and the graders say it is not.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "22/22 recompute to their key in the sandbox; 66 of 66 distractor_solve entries recomputed, 0 mismatches. The author exhaustively promoted all 72 distractors to key and none survived — and attacked that harness first: its FIRST version swapped `solve` along with the key, so every promotion recomputed by construction and it reported 72 survivors. Built to pass, proving nothing. Corrected, then rigged so one key is genuinely wrong, and it reported exactly 1 survivor. The 0 is a measurement."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three independent graders on the sanitized render, all reporting sha c277a2f5a544ac11 before and after. 24 of 24 keys agreed 3/3, ZERO non-exclusive votes. THE BATCH WAS COMMISSIONED HARD AND IS NOT: the author labelled 21 of 24 hard; the three graders found 1, 2 and 1. All three named ALG-H5-15 as the single genuinely hard item (a budget bound whose answer is NOT its floor — divisibility by 7 pulls 47 back to 42) and two independently named ALG-H5-18 as its defanged twin. One grader noted they solved every item without a retry and reached the count before weighting the precedent. This is the THIRD consecutive hard-commissioned SAT Math batch graded at 1-2 hard."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 3 solvers: 26.4% vs 25.0%, margin +1.4 — AT CHANCE. 2 items solved by all three. CLEAN. The interesting part is the run channel: the author built 8 three-term arithmetic runs with a DISTRACTOR at the middle, deliberately, to mislead a run-middle solver, and disclosed it. Two solvers took the bait-inverted direction (bet the outlier); one refused both directions and measured the null instead — resampling each item's options from its own range over 20k trials gives 6.31 expected runs per 24, sd 2.1, against 8 observed. HALF A STANDARD DEVIATION. The 8 runs are what four smallish integers produce by accident, not 8 planted structures, and the author's account of their own batch was not evidence either way."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "check-run-middle: 8 items carry the shape, key is the middle on 0 = 0.0% vs 25.0%. check-option-pair-constant: 0 items carry the shape. check-key-is-sum: 2 items carry the shape, key in it 0 = 0.0% vs 25.0%. Denominators read: 24 of 24 scorable on all three. THE REAL FINDING IS NOT A CHANNEL BUT A TEMPLATE: all three graders independently counted 9 of 24 items on three templates, six of them \"solve a linear inequality, take the boundary integer\" with the off-by-one planted each time. A student who learns one rounding habit gets a quarter of the batch. That is CLAUDE.md corollary 3 — the rigid brief making the answer predictable from the spec — arriving in a maths batch, and it is a better explanation of the difficulty shortfall than the author aiming low."
+    }
+   }
+  },
+  {
+   "id": "ssat-math-s12-kept-2026-09-11",
+   "targetTest": "ssat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "ssat-math-s12",
+   "contentSha": "ad27f56e2c134b7a7af91ff88a11cfae8613924a096342f8a99b60f03d3b72c3",
+   "note": "20 items, the survivors of ssat-math-s12.batch.json. Four dropped: S12-21 (all three solvers got it), S12-12 (NOT EXCLUSIVE — see withsource), S12-07 (the same ungrouped-prose defect, exclusive only because the alternative parse hits no listed option, which two graders called luck rather than design), and S12-23 (combinations, which two of three graders placed outside the SSAT Upper Level format). Inserted at BANK_BAND=mixed: a real SSAT Upper Level form is mixed and opens easy.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "20/20 recompute to their key; 80 of 80 distractor_solve entries recomputed, 0 mismatches. FIVE choices throughout, confirmed from ADMISSION_BLUEPRINT.ssat rather than assumed, so the control is 20.0%. The author reports 8 hub-shaped sets, 5 runs and 8 key-is-sum shapes caught and repaired during drafting."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three independent graders on the sanitized render, all reporting sha d1963e74c42f1c0b before and after, and all three produced IDENTICAL pick strings. All three independently caught the same broken item: S12-12 asks for \"3 raised to the power x + 2\" with no grouping, and 83 = 81 + 2 sits in the option set beside 729. Two defensible readings of the English land on two different listed letters — a student can be right about the mathematics and wrong about the item. Two graders flagged S12-07 as the same disease surviving on luck. I checked whether the render had flattened the notation: the prompt is BYTE-IDENTICAL to the batch, so the defect is the item's, not the instrument's. I then scanned the whole batch rather than fixing the two I tripped over — exactly 2 of 24 spell out maths in prose without forced grouping, both already flagged. Both dropped. No calculator is allowed on this section and all three graders confirmed every item resolves in exact arithmetic by hand."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 3 solvers, FIVE-wide against a 20.0% line derived from the render: 27.8%, margin +7.8. 1 item solved by all three, dropped. The channel that paid on ssat-math-s10 — key is the sum of two other options — did NOT recur: all three solvers swept for it exhaustively and found exactly one candidate item between them, and the exact checker agrees (1 item carries the shape, key in it 0 of 1)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "check-run-middle: 4 items carry the shape, key is the middle on 0 = 0.0% vs 20.0%. check-option-pair-constant: 0 items. check-key-is-sum: 1 item, key in it 0. Denominators read: 23 of 24 scorable (the inequality-option item is correctly unscorable, not silently counted). Two graders separately flagged S12-21/S12-24 and S12-08/S12-09 as near-duplicate mechanisms; S12-21 is gone with the attack drop, and the other pairs are recorded rather than repaired."
+    }
+   }
   }
  ],
  "auditedCohorts": [

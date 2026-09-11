@@ -1,0 +1,462 @@
+[
+ {
+  "id": "S12-01",
+  "domain": "Math",
+  "subskill": "finding the part of a quantity that remains after a fraction is removed",
+  "difficulty": "easy",
+  "prompt": "A container holds 3/4 of a litre of soup. If 2/3 of the soup is poured out, how many litres of soup remain in the container?",
+  "choices": [
+   "1/4",
+   "1/2",
+   "1/12",
+   "17/12",
+   "3/8"
+  ],
+  "correct_answer": "1/4",
+  "explanation": "Two thirds is poured out, so one third stays behind: 3/4 x 1/3 = 1/4 of a litre. The option \"1/2\" is the amount poured OUT, 3/4 x 2/3. The option \"1/12\" subtracts the two fractions, 3/4 - 2/3, treating \"2/3 of the soup\" as 2/3 of a litre. The option \"17/12\" adds them instead. The option \"3/8\" reads \"2 of 3 parts poured\" as leaving half, giving 3/4 x 1/2.",
+  "solve": "return 3/4*(1/3);",
+  "distractor_solve": {
+   "1/2": "return 3/4*(2/3);",
+   "1/12": "return 3/4-2/3;",
+   "17/12": "return 3/4+2/3;",
+   "3/8": "return 3/4*(1/2);"
+  }
+ },
+ {
+  "id": "S12-02",
+  "domain": "Math",
+  "subskill": "dividing an amount in a given ratio",
+  "difficulty": "easy",
+  "prompt": "A sum of $84 is shared between Mia and Noah in the ratio 3 : 4, with Mia taking the smaller share. How many dollars does Noah receive?",
+  "choices": [
+   "48",
+   "36",
+   "63",
+   "28",
+   "21"
+  ],
+  "correct_answer": "48",
+  "explanation": "The ratio has 3 + 4 = 7 parts, and Noah takes 4 of them: 84 x 4/7 = 48 dollars. The option \"36\" is Mia's share, 84 x 3/7. The option \"63\" reads the 3 : 4 as the fraction 3/4 and takes 84 x 3/4. The option \"28\" divides $84 by the 3 in the ratio. The option \"21\" divides $84 by the 4 in the ratio; both treat one number of the ratio as the number of shares.",
+  "solve": "return 84*4/7;",
+  "distractor_solve": {
+   "21": "return 84/4;",
+   "28": "return 84/3;",
+   "36": "return 84*3/7;",
+   "63": "return 84*3/4;"
+  }
+ },
+ {
+  "id": "S12-03",
+  "domain": "Math",
+  "subskill": "least common multiple of three numbers",
+  "difficulty": "medium",
+  "prompt": "What is the least positive integer that is divisible by 8, by 12, and by 18?",
+  "choices": [
+   "72",
+   "2",
+   "24",
+   "144",
+   "1728"
+  ],
+  "correct_answer": "72",
+  "explanation": "A number divisible by all three needs three factors of 2 and two factors of 3, so the least one is 8 x 9 = 72. The option \"2\" is the greatest common factor of 8, 12 and 18 rather than their least common multiple. The option \"24\" is the least common multiple of 8 and 12 alone and is not divisible by 18. The option \"144\" multiplies 8 by 18, which is a common multiple but not the least. The option \"1728\" multiplies all three numbers together.",
+  "solve": "var g=function(a,b){return b?g(b,a%b):a;};var l=function(a,b){return a/g(a,b)*b;};return l(l(8,12),18);",
+  "distractor_solve": {
+   "2": "var g=function(a,b){return b?g(b,a%b):a;};return g(g(8,12),18);",
+   "24": "var g=function(a,b){return b?g(b,a%b):a;};return 8/g(8,12)*12;",
+   "144": "return 8*18;",
+   "1728": "return 8*12*18;"
+  }
+ },
+ {
+  "id": "S12-04",
+  "domain": "Math",
+  "subskill": "composing two successive percent changes",
+  "difficulty": "medium",
+  "prompt": "A coat priced at $300 is reduced by 30 percent for a sale. When the sale ends, the reduced price is raised by 10 percent. What is the price of the coat, in dollars, after both changes?",
+  "choices": [
+   "231",
+   "240",
+   "210",
+   "330",
+   "189"
+  ],
+  "correct_answer": "231",
+  "explanation": "The sale price is 300 x 0.70 = $210, and raising that by 10 percent gives 210 x 1.10 = $231. The option \"240\" treats the two changes as a single 20 percent reduction of the original price. The option \"210\" stops at the sale price. The option \"330\" raises the original $300 by 10 percent and never applies the reduction. The option \"189\" lowers the sale price by a further 10 percent instead of raising it.",
+  "solve": "return 300*0.7*1.1;",
+  "distractor_solve": {
+   "189": "return 300*0.7*0.9;",
+   "210": "return 300*0.7;",
+   "240": "return 300*0.8;",
+   "330": "return 300*1.1;"
+  }
+ },
+ {
+  "id": "S12-05",
+  "domain": "Math",
+  "subskill": "consecutive even integers with a given sum",
+  "difficulty": "medium",
+  "prompt": "The sum of five consecutive even integers is 310. What is the largest of the five integers?",
+  "choices": [
+   "66",
+   "62",
+   "58",
+   "64",
+   "72"
+  ],
+  "correct_answer": "66",
+  "explanation": "The five integers are evenly spaced, so the middle one is 310 / 5 = 62 and the list runs 58, 60, 62, 64, 66. The largest is two steps of 2 above the middle, or 66. The option \"62\" is the middle integer, the value the division produces. The option \"58\" is the smallest. The option \"64\" moves only one step of 2 above the middle instead of two. The option \"72\" adds a step of 2 once for each of the five integers rather than for the two above the middle.",
+  "solve": "var m=310/5;return m+2*2;",
+  "distractor_solve": {
+   "58": "var m=310/5;return m-2*2;",
+   "62": "return 310/5;",
+   "64": "var m=310/5;return m+2;",
+   "72": "var m=310/5;return m+5*2;"
+  }
+ },
+ {
+  "id": "S12-06",
+  "domain": "Math",
+  "subskill": "unit price from a weight and a total cost",
+  "difficulty": "easy",
+  "prompt": "A 3.2 kilogram bag of rice costs $8.00. What is the cost of the rice per kilogram, in dollars?",
+  "choices": [
+   "2.5",
+   "0.4",
+   "25.6",
+   "4.8",
+   "2.67"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "Cost per kilogram is the cost divided by the weight: 8.00 / 3.2 = $2.50. The option \"0.4\" divides the weight by the cost, giving kilograms per dollar. The option \"25.6\" multiplies the two numbers. The option \"4.8\" subtracts the weight from the cost, which combines dollars with kilograms. The option \"2.67\" rounds the 3.2 kilograms down to 3 before dividing.",
+  "solve": "return 8/3.2;",
+  "distractor_solve": {
+   "0.4": "return 3.2/8;",
+   "25.6": "return 8*3.2;",
+   "4.8": "return 8-3.2;",
+   "2.67": "return Math.round(8/3*100)/100;"
+  }
+ },
+ {
+  "id": "S12-08",
+  "domain": "Math",
+  "subskill": "solving a linear equation with the variable on both sides",
+  "difficulty": "easy",
+  "prompt": "If 5x - 3 = 2x + 12, what is the value of x?",
+  "choices": [
+   "5",
+   "3",
+   "15",
+   "15/7",
+   "7.5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Collecting terms gives 3x = 15, so x = 5. The option \"3\" subtracts the 3 from 12 instead of adding it, giving 3x = 9. The option \"15\" stops at 3x = 15 and reports 15. The option \"15/7\" adds the coefficients 5 and 2 rather than subtracting them, dividing 15 by 7. The option \"7.5\" divides 15 by the 2 from the right-hand side.",
+  "solve": "return (12+3)/(5-2);",
+  "distractor_solve": {
+   "3": "return (12-3)/(5-2);",
+   "15": "return 12+3;",
+   "15/7": "return (12+3)/(5+2);",
+   "7.5": "return (12+3)/2;"
+  }
+ },
+ {
+  "id": "S12-09",
+  "domain": "Math",
+  "subskill": "translating a sentence into an equation",
+  "difficulty": "medium",
+  "prompt": "Five more than three times a number is equal to that number increased by 19. What is the number?",
+  "choices": [
+   "7",
+   "12",
+   "24",
+   "3.5",
+   "4.75"
+  ],
+  "correct_answer": "7",
+  "explanation": "The sentence says 3n + 5 = n + 19, so 2n = 14 and n = 7. The option \"12\" adds the 5 to the 19 instead of subtracting it, giving 2n = 24. The option \"24\" reports that 24 without dividing by the 2. The option \"3.5\" moves the n to the left as an addition, giving 4n = 14. The option \"4.75\" drops the 5 altogether and divides 19 by 4.",
+  "solve": "return (19-5)/(3-1);",
+  "distractor_solve": {
+   "12": "return (19+5)/(3-1);",
+   "24": "return 19+5;",
+   "3.5": "return (19-5)/(3+1);",
+   "4.75": "return 19/(3+1);"
+  }
+ },
+ {
+  "id": "S12-10",
+  "domain": "Math",
+  "subskill": "solving an inequality that requires dividing by a negative number",
+  "difficulty": "medium",
+  "prompt": "If 4 - 2x > 10, which of the following describes all the values of x?",
+  "choices": [
+   "x < -3",
+   "x > -3",
+   "x < 3",
+   "x > 3",
+   "x < 7"
+  ],
+  "correct_answer": "x < -3",
+  "explanation": "Subtracting 4 from both sides gives -2x > 6, and dividing by -2 reverses the inequality, so x < -3. The option \"x > -3\" divides by -2 without reversing the direction. The option \"x < 3\" moves the terms so as to read 2x < 6, losing the negative sign but keeping the direction. The option \"x > 3\" makes both of those errors at once. The option \"x < 7\" adds the 4 to the 10 instead of subtracting it and then divides the 14 by 2 rather than by -2.",
+  "solve": "var b=(10-4)/(-2);return 'x < ' + b;",
+  "distractor_solve": {
+   "x > -3": "var b=(10-4)/(-2);return 'x > ' + b;",
+   "x < 3": "var b=(10-4)/2;return 'x < ' + b;",
+   "x > 3": "var b=(10-4)/2;return 'x > ' + b;",
+   "x < 7": "var b=(10+4)/2;return 'x < ' + b;"
+  }
+ },
+ {
+  "id": "S12-11",
+  "domain": "Math",
+  "subskill": "adding two equations to reach a combined quantity",
+  "difficulty": "hard",
+  "prompt": "If 2x + 3y = 17 and 3x + 2y = 13, what is the value of x + y?",
+  "choices": [
+   "6",
+   "30",
+   "15",
+   "4",
+   "1"
+  ],
+  "correct_answer": "6",
+  "explanation": "Adding the two equations gives 5x + 5y = 30, so x + y = 6 without ever solving for either letter. The option \"30\" reports that sum before dividing by 5. The option \"15\" divides the 30 by 2, the number of equations, instead of by the 5 that multiplies x + y. The option \"4\" comes from subtracting the equations, which gives y - x = 4 rather than the sum. The option \"1\" is the value of x alone.",
+  "solve": "return (17+13)/5;",
+  "distractor_solve": {
+   "1": "return ((17+13)/5-(17-13))/2;",
+   "4": "return 17-13;",
+   "15": "return (17+13)/2;",
+   "30": "return 17+13;"
+  }
+ },
+ {
+  "id": "S12-13",
+  "domain": "Math",
+  "subskill": "applying an area ratio to a length measurement",
+  "difficulty": "hard",
+  "prompt": "The areas of two squares are in the ratio 9 : 25. The perimeter of the smaller square is 36 cm. What is the perimeter of the larger square, in centimetres?",
+  "choices": [
+   "60",
+   "100",
+   "21.6",
+   "12.96",
+   "225"
+  ],
+  "correct_answer": "60",
+  "explanation": "Areas in the ratio 9 : 25 mean sides in the ratio 3 : 5, and perimeter scales with side, so the larger perimeter is 36 x 5/3 = 60 cm. The option \"100\" applies the area ratio 25/9 straight to the perimeter. The option \"21.6\" uses the side ratio upside down, 36 x 3/5, and shrinks the larger square. The option \"12.96\" uses the area ratio upside down, 36 x 9/25. The option \"225\" gives the area of the larger square, whose side is 15, rather than its perimeter.",
+  "solve": "return 36*5/3;",
+  "distractor_solve": {
+   "100": "return 36*25/9;",
+   "225": "var s=36*5/3/4;return s*s;",
+   "21.6": "return 36*3/5;",
+   "12.96": "return 36*9/25;"
+  }
+ },
+ {
+  "id": "S12-14",
+  "domain": "Math",
+  "subskill": "area of a rectangle recovered from its perimeter and a side ratio",
+  "difficulty": "easy",
+  "prompt": "A rectangle is 3 times as long as it is wide, and its perimeter is 64 cm. What is its area, in square centimetres?",
+  "choices": [
+   "192",
+   "24",
+   "32",
+   "48",
+   "96"
+  ],
+  "correct_answer": "192",
+  "explanation": "The perimeter is 2 x (w + 3w) = 8w, so w = 8 cm, the length is 24 cm, and the area is 8 x 24 = 192 square centimetres. The option \"24\" is the length, the value found one step before the area. The option \"32\" is half the perimeter, which is the sum of a length and a width, not a product. The option \"48\" applies the 3-to-1 ratio to the perimeter itself, taking 3/4 of 64. The option \"96\" halves the product, using the formula for a triangle.",
+  "solve": "var w=64/8;return w*3*w;",
+  "distractor_solve": {
+   "24": "return 3*(64/8);",
+   "32": "return 64/2;",
+   "48": "return 64*3/4;",
+   "96": "var w=64/8;return w*3*w/2;"
+  }
+ },
+ {
+  "id": "S12-15",
+  "domain": "Math",
+  "subskill": "angles of a triangle described in terms of one another",
+  "difficulty": "medium",
+  "prompt": "In a triangle, the second angle measures twice the first, and the third measures 12 degrees more than the first. What is the measure, in degrees, of the smallest angle?",
+  "choices": [
+   "42",
+   "84",
+   "54",
+   "90",
+   "45"
+  ],
+  "correct_answer": "42",
+  "explanation": "Calling the first angle x, the three angles are x, 2x and x + 12, and they total 180 degrees, so 4x = 168 and x = 42. Since 42 is less than both 84 and 54, the first angle is the smallest. The option \"84\" is the second angle, twice the first. The option \"54\" is the third angle. The option \"90\" drops the 12 degrees, solving 4x = 180 and then doubling the 45 that results. The option \"45\" is that same 4x = 180 solution left undoubled.",
+  "solve": "return (180-12)/4;",
+  "distractor_solve": {
+   "45": "return 180/4;",
+   "54": "return (180-12)/4+12;",
+   "84": "return 2*((180-12)/4);",
+   "90": "return 2*(180/4);"
+  }
+ },
+ {
+  "id": "S12-16",
+  "domain": "Math",
+  "subskill": "volume of a cube from its surface area",
+  "difficulty": "medium",
+  "prompt": "A cube has a total surface area of 150 square centimetres. What is its volume, in cubic centimetres?",
+  "choices": [
+   "125",
+   "25",
+   "3375",
+   "750",
+   "30"
+  ],
+  "correct_answer": "125",
+  "explanation": "A cube has 6 faces, so one face has area 150 / 6 = 25 square centimetres and the edge is 5 cm, giving a volume of 5 x 5 x 5 = 125 cubic centimetres. The option \"25\" stops at the area of one face. The option \"3375\" divides the surface area by 10 to get an edge of 15 and cubes that. The option \"750\" multiplies the surface area by the edge. The option \"30\" divides the surface area by the edge.",
+  "solve": "var f=150/6;var s=Math.sqrt(f);return s*s*s;",
+  "distractor_solve": {
+   "25": "return 150/6;",
+   "30": "return 150/5;",
+   "750": "return 150*5;",
+   "3375": "var s=150/10;return s*s*s;"
+  }
+ },
+ {
+  "id": "S12-17",
+  "domain": "Math",
+  "subskill": "area of a triangle placed on the coordinate plane",
+  "difficulty": "medium",
+  "prompt": "In the coordinate plane, a triangle has vertices at (0, 0), (6, 0) and (2, 5). What is its area, in square units?",
+  "choices": [
+   "15",
+   "30",
+   "11",
+   "6",
+   "5"
+  ],
+  "correct_answer": "15",
+  "explanation": "The side from (0, 0) to (6, 0) lies along the x-axis and is 6 units long, and the third vertex is 5 units above that axis, so the area is 6 x 5 / 2 = 15 square units. The option \"30\" multiplies the base by the height and never halves. The option \"11\" adds the base and the height instead of multiplying them. The option \"6\" reports the base alone. The option \"5\" reports the height alone.",
+  "solve": "return 6*5/2;",
+  "distractor_solve": {
+   "5": "return Math.abs(5-0);",
+   "6": "return Math.abs(6-0);",
+   "11": "return 6+5;",
+   "30": "return 6*5;"
+  }
+ },
+ {
+  "id": "S12-18",
+  "domain": "Math",
+  "subskill": "area of a square remaining outside a quarter circle",
+  "difficulty": "hard",
+  "prompt": "A square has sides of 10 cm. A quarter circle of radius 10 cm is drawn inside the square, centred on one of its corners. The region inside the square but outside the quarter circle has an area of 100 - k times pi square centimetres. What is the value of k?",
+  "choices": [
+   "25",
+   "100",
+   "50",
+   "20",
+   "10"
+  ],
+  "correct_answer": "25",
+  "explanation": "A full circle of radius 10 has area 100 times pi, and a quarter of it is 25 times pi, so k is 25. The option \"100\" uses the whole circle rather than a quarter of it. The option \"50\" uses half the circle. The option \"20\" uses 2 times the radius, the coefficient that belongs to a circumference rather than to an area. The option \"10\" reports the radius itself.",
+  "solve": "return 10*10/4;",
+  "distractor_solve": {
+   "10": "return Math.sqrt(10*10);",
+   "20": "return 2*10;",
+   "50": "return 10*10/2;",
+   "100": "return 10*10;"
+  }
+ },
+ {
+  "id": "S12-19",
+  "domain": "Math",
+  "subskill": "two right triangles sharing a hypotenuse",
+  "difficulty": "medium",
+  "prompt": "A ladder 25 feet long leans against a vertical wall with its foot 7 feet from the base of the wall. The foot of the ladder is then pulled 8 feet further from the wall. How many feet does the top of the ladder slide down the wall?",
+  "choices": [
+   "4",
+   "8",
+   "20",
+   "15",
+   "9"
+  ],
+  "correct_answer": "4",
+  "explanation": "At first the top is at a height of the square root of 625 - 49, which is 24 feet. After the move the foot is 15 feet out and the height is the square root of 625 - 225, which is 20 feet, so the top slides 24 - 20 = 4 feet. The option \"8\" assumes the top slides exactly as far as the foot was pulled. The option \"20\" is the new height rather than the drop. The option \"15\" is the new distance from the wall. The option \"9\" subtracts the new distance from the wall, 15, from the original height of 24.",
+  "solve": "var L=25,a=7,b=15;return Math.sqrt(L*L-a*a)-Math.sqrt(L*L-b*b);",
+  "distractor_solve": {
+   "8": "return 15-7;",
+   "9": "return Math.sqrt(25*25-7*7)-15;",
+   "15": "return 7+8;",
+   "20": "return Math.sqrt(25*25-15*15);"
+  }
+ },
+ {
+  "id": "S12-20",
+  "domain": "Math",
+  "subskill": "volume of water in a partly filled tank, converted to litres",
+  "difficulty": "medium",
+  "prompt": "A rectangular tank measures 40 cm long, 25 cm wide and 30 cm deep. Water is poured in to a depth of 18 cm. How many litres of water are in the tank? (1 litre = 1000 cubic centimetres.)",
+  "choices": [
+   "18",
+   "30",
+   "18000",
+   "1.8",
+   "13.5"
+  ],
+  "correct_answer": "18",
+  "explanation": "The water forms a box 40 by 25 by 18, which is 18,000 cubic centimetres, or 18 litres. The option \"30\" uses the tank's full depth of 30 cm and so reports the volume of a full tank. The option \"18000\" is the volume in cubic centimetres, never converted to litres. The option \"1.8\" divides by 10,000 instead of by 1,000. The option \"13.5\" uses the 30 cm depth in place of the 40 cm length, multiplying 30 by 25 by 18.",
+  "solve": "return 40*25*18/1000;",
+  "distractor_solve": {
+   "30": "return 40*25*30/1000;",
+   "18000": "return 40*25*18;",
+   "1.8": "return 40*25*18/10000;",
+   "13.5": "return 30*25*18/1000;"
+  }
+ },
+ {
+  "id": "S12-22",
+  "domain": "Math",
+  "subskill": "probability on a second draw without replacement",
+  "difficulty": "medium",
+  "prompt": "A bag holds 4 red marbles, 6 green marbles and 5 yellow marbles. One marble is drawn at random and kept out of the bag; it is green. A second marble is then drawn at random. What is the probability that the second marble is also green?",
+  "choices": [
+   "5/14",
+   "6/15",
+   "6/14",
+   "1/3",
+   "5/13"
+  ],
+  "correct_answer": "5/14",
+  "explanation": "After a green marble is kept out, 5 of the 14 marbles left in the bag are green, so the probability is 5/14. The option \"6/15\" ignores the first draw entirely and uses the bag's original contents. The option \"6/14\" removes the marble from the total but forgets that the marble removed was green. The option \"1/3\" does the reverse, removing the green from the count of greens but not from the total of 15. The option \"5/13\" removes two marbles from the total, as though both draws had already happened.",
+  "solve": "var g=6,t=15;return (g-1)/(t-1);",
+  "distractor_solve": {
+   "6/15": "var g=6,t=15;return g/t;",
+   "6/14": "var g=6,t=15;return g/(t-1);",
+   "1/3": "var g=6,t=15;return (g-1)/t;",
+   "5/13": "var g=6,t=15;return (g-1)/(t-2);"
+  }
+ },
+ {
+  "id": "S12-24",
+  "domain": "Math",
+  "subskill": "effect on the mean of removing one value",
+  "difficulty": "medium",
+  "prompt": "The mean of six numbers is 12. One of the numbers, 20, is removed from the list. What is the mean of the five numbers that remain?",
+  "choices": [
+   "10.4",
+   "12",
+   "52",
+   "8.67",
+   "18.4"
+  ],
+  "correct_answer": "10.4",
+  "explanation": "The six numbers total 6 x 12 = 72, and removing 20 leaves a total of 52 across five numbers, so the mean is 52 / 5 = 10.4. The option \"12\" assumes removing a number leaves the mean unchanged. The option \"52\" is the remaining total, not divided by anything. The option \"8.67\" divides that remaining total by 6, the original count, instead of by 5. The option \"18.4\" adds the 20 to the total rather than removing it before dividing by 5.",
+  "solve": "return (6*12-20)/5;",
+  "distractor_solve": {
+   "12": "return 6*12/6;",
+   "52": "return 6*12-20;",
+   "8.67": "return Math.round((6*12-20)/6*100)/100;",
+   "18.4": "return (6*12+20)/5;"
+  }
+ }
+]

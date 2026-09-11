@@ -1,0 +1,590 @@
+[
+ {
+  "id": "AM7-01",
+  "domain": "Algebra",
+  "subskill": "solving a two-variable linear equation for one variable",
+  "difficulty": "easy",
+  "prompt": "If 3x + 2y = 12, which of the following gives y in terms of x ?",
+  "choices": [
+   "y = 6 - (3/2)x",
+   "y = 6 + (3/2)x",
+   "y = 12 - (3/2)x",
+   "y = 12 + (3/2)x"
+  ],
+  "correct_answer": "y = 6 - (3/2)x",
+  "explanation": "Subtracting 3x from both sides gives 2y = 12 - 3x, and dividing every term by 2 gives y = 6 - (3/2)x. \"y = 6 + (3/2)x\" comes from a solver who moves 3x across the equals sign without changing its sign. \"y = 12 - (3/2)x\" comes from a solver who divides the x-term by 2 but leaves the constant 12 undivided. \"y = 12 + (3/2)x\" makes both of those slips at once.",
+  "solve": "var c = 12/2, n = 3, d = 2; return \"y = \" + c + \" - (\" + n + \"/\" + d + \")x\";",
+  "distractor_solve": {
+   "y = 6 + (3/2)x": "var c = 12/2; return \"y = \" + c + \" + (3/2)x\";",
+   "y = 12 - (3/2)x": "var c = 12; return \"y = \" + c + \" - (3/2)x\";",
+   "y = 12 + (3/2)x": "var c = 12; return \"y = \" + c + \" + (3/2)x\";"
+  }
+ },
+ {
+  "id": "AM7-02",
+  "domain": "Algebra",
+  "subskill": "linear inequality requiring division by a negative number",
+  "difficulty": "easy",
+  "prompt": "What is the solution set of the inequality 5 - 3x > 17 ?",
+  "choices": [
+   "x < -4",
+   "x > -4",
+   "x < 4",
+   "x > 4"
+  ],
+  "correct_answer": "x < -4",
+  "explanation": "Subtracting 5 from both sides gives -3x > 12. Dividing by -3 reverses the inequality, so x < -4. \"x > -4\" comes from a solver who divides by -3 and keeps the direction of the inequality. \"x < 4\" comes from a solver who reverses the inequality but divides by 3 rather than by -3. \"x > 4\" divides by 3 and keeps the direction, making both slips.",
+  "solve": "return \"x < \" + (12/(-3));",
+  "distractor_solve": {
+   "x > -4": "return \"x > \" + (12/(-3));",
+   "x < 4": "return \"x < \" + (12/3);",
+   "x > 4": "return \"x > \" + (12/3);"
+  }
+ },
+ {
+  "id": "AM7-03",
+  "domain": "Algebra",
+  "subskill": "setting up and solving a proportion from a stated scale",
+  "difficulty": "easy",
+  "prompt": "On a map, 2 centimeters represents 3 kilometers. Two towns are 12 centimeters apart on this map. How many kilometers apart are the two towns?",
+  "choices": [
+   "18",
+   "8",
+   "24",
+   "15"
+  ],
+  "correct_answer": "18",
+  "explanation": "Each centimeter on the map is 3/2 kilometers, so 12 centimeters is 12 x (3/2) = 18 kilometers. \"8\" comes from a solver who sets up the proportion upside down and computes 12 x (2/3). \"24\" comes from multiplying the map distance by the 2 centimeters rather than by the scale factor. \"15\" comes from a solver who adds the 3 kilometers to the 12 centimeters instead of scaling.",
+  "solve": "return 12*3/2;",
+  "distractor_solve": {
+   "8": "return 12*2/3;",
+   "24": "return 12*2;",
+   "15": "return 12+3;"
+  }
+ },
+ {
+  "id": "AM7-04",
+  "domain": "Algebra",
+  "subskill": "multiplying monomials with the laws of exponents",
+  "difficulty": "easy",
+  "prompt": "Which of the following expressions is equivalent to (3x^4y^2)(4x^3y) ?",
+  "choices": [
+   "12x^7y^3",
+   "7x^7y^3",
+   "12x^12y^2",
+   "7x^12y^2"
+  ],
+  "correct_answer": "12x^7y^3",
+  "explanation": "Multiply the coefficients and add the exponents on each matching base: 3 x 4 = 12, x^(4+3) = x^7, and y^(2+1) = y^3, giving 12x^7y^3. \"7x^7y^3\" comes from a solver who adds the coefficients instead of multiplying them. \"12x^12y^2\" comes from a solver who multiplies the exponents instead of adding them. \"7x^12y^2\" makes both of those slips.",
+  "solve": "return (3*4) + \"x^\" + (4+3) + \"y^\" + (2+1);",
+  "distractor_solve": {
+   "7x^7y^3": "return (3+4) + \"x^\" + (4+3) + \"y^\" + (2+1);",
+   "12x^12y^2": "return (3*4) + \"x^\" + (4*3) + \"y^\" + (2*1);",
+   "7x^12y^2": "return (3+4) + \"x^\" + (4*3) + \"y^\" + (2*1);"
+  }
+ },
+ {
+  "id": "AM7-05",
+  "domain": "Algebra",
+  "subskill": "slope of a line through two given points",
+  "difficulty": "easy",
+  "prompt": "In the standard (x,y) coordinate plane, what is the slope of the line that passes through (-3, 7) and (5, 3) ?",
+  "choices": [
+   "-1/2",
+   "1/2",
+   "-2",
+   "2"
+  ],
+  "correct_answer": "-1/2",
+  "explanation": "The slope is the change in y over the change in x: (3 - 7)/(5 - (-3)) = -4/8 = -1/2. \"1/2\" comes from a solver who subtracts the y-coordinates in one order and the x-coordinates in the other, losing the sign. \"-2\" comes from dividing the change in x by the change in y. \"2\" makes both slips, inverting the ratio and losing the sign.",
+  "solve": "var dy = 3-7, dx = 5-(-3), g = 4; return (dy/g) + \"/\" + (dx/g);",
+  "distractor_solve": {
+   "1/2": "var dy = 7-3, dx = 5-(-3), g = 4; return (dy/g) + \"/\" + (dx/g);",
+   "-2": "var dy = 3-7, dx = 5-(-3); return String(dx/dy);",
+   "2": "var dy = 7-3, dx = 5-(-3); return String(dx/dy);"
+  }
+ },
+ {
+  "id": "AM7-06",
+  "domain": "Algebra",
+  "subskill": "linear equation with a fractional coefficient",
+  "difficulty": "easy",
+  "prompt": "If (3x)/4 + 5 = 14, what is the value of x ?",
+  "choices": [
+   "12",
+   "9",
+   "17",
+   "36"
+  ],
+  "correct_answer": "12",
+  "explanation": "Subtracting 5 gives (3x)/4 = 9, multiplying by 4 gives 3x = 36, and dividing by 3 gives x = 12. \"9\" is the value of (3x)/4, reported two steps before the end. \"17\" comes from multiplying both sides by 4 while forgetting to multiply the 5, giving 3x + 5 = 56. \"36\" is the value of 3x, reported before the final division by 3.",
+  "solve": "return (14-5)*4/3;",
+  "distractor_solve": {
+   "9": "return 14-5;",
+   "17": "return (14*4-5)/3;",
+   "36": "return (14-5)*4;"
+  }
+ },
+ {
+  "id": "AM7-07",
+  "domain": "Algebra",
+  "subskill": "distributing a negative across a binomial and collecting terms",
+  "difficulty": "easy",
+  "prompt": "Which of the following expressions is equivalent to 5(2x - 3) - 2(x + 4) ?",
+  "choices": [
+   "8x - 23",
+   "8x - 11",
+   "12x - 23",
+   "12x - 11"
+  ],
+  "correct_answer": "8x - 23",
+  "explanation": "Distributing gives 10x - 15 - 2x - 8, and collecting like terms gives 8x - 23. \"8x - 11\" comes from a solver who multiplies 5 by 2x but not by 3, leaving 10x - 3 - 2x - 8. \"12x - 23\" comes from a solver who applies the -2 to the 4 but adds 2x, giving 10x + 2x - 15 - 8. \"12x - 11\" makes both of those slips.",
+  "solve": "return (5*2-2) + \"x - \" + (5*3+2*4);",
+  "distractor_solve": {
+   "8x - 11": "return (5*2-2) + \"x - \" + (3+2*4);",
+   "12x - 23": "return (5*2+2) + \"x - \" + (5*3+2*4);",
+   "12x - 11": "return (5*2+2) + \"x - \" + (3+2*4);"
+  }
+ },
+ {
+  "id": "AM7-08",
+  "domain": "Algebra",
+  "subskill": "solving a linear cost model for the number of units",
+  "difficulty": "easy",
+  "prompt": "A phone plan costs $18.00 per month plus $0.06 for each minute of calling. In a month when the total charge was $39.00, how many minutes of calling were there?",
+  "choices": [
+   "350",
+   "950",
+   "300",
+   "632"
+  ],
+  "correct_answer": "350",
+  "explanation": "The calling charge was 3900 - 1800 = 2100 cents, and at 6 cents per minute that is 2100/6 = 350 minutes. \"950\" comes from a solver who adds the monthly fee to the bill instead of subtracting it, dividing 5700 cents by 6. \"300\" comes from dividing the $18.00 monthly fee by the per-minute rate, using the wrong part of the bill. \"632\" comes from a solver who divides the whole $39.00 by the rate and then subtracts 18, taking dollars away from a count of minutes.",
+  "solve": "return (3900-1800)/6;",
+  "distractor_solve": {
+   "950": "return (3900+1800)/6;",
+   "300": "return 1800/6;",
+   "632": "return 3900/6 - 18;"
+  }
+ },
+ {
+  "id": "AM7-09",
+  "domain": "Algebra",
+  "subskill": "average speed over a round trip at two different rates",
+  "difficulty": "medium",
+  "prompt": "A cyclist rides 30 miles from her home to a lake at an average speed of 12 miles per hour, then returns home along the same route at an average speed of 20 miles per hour. What is her average speed, in miles per hour, for the entire round trip?",
+  "choices": [
+   "15",
+   "16",
+   "32",
+   "24"
+  ],
+  "correct_answer": "15",
+  "explanation": "The trip is 60 miles in 30/12 + 30/20 = 2.5 + 1.5 = 4 hours, so the average speed is 60/4 = 15 miles per hour. \"16\" is the average of the two speeds, which would be right only if equal TIMES were spent at each speed rather than equal distances. \"32\" is the sum of the two speeds. \"24\" comes from dividing the full 60 miles by the 2.5-hour outbound time alone.",
+  "solve": "return 60/(30/12 + 30/20);",
+  "distractor_solve": {
+   "16": "return (12+20)/2;",
+   "32": "return 12+20;",
+   "24": "return 60/(30/12);"
+  }
+ },
+ {
+  "id": "AM7-10",
+  "domain": "Algebra",
+  "subskill": "rational equation solved after factoring both parts of the fraction",
+  "difficulty": "medium",
+  "prompt": "If (x^2 - 9)/(x^2 - 6x + 9) = 4 and x is not equal to 3, what is the value of x ?",
+  "choices": [
+   "5",
+   "-3",
+   "-5",
+   "1"
+  ],
+  "correct_answer": "5",
+  "explanation": "Factoring gives (x - 3)(x + 3)/(x - 3)^2 = (x + 3)/(x - 3), so (x + 3)/(x - 3) = 4 and x + 3 = 4x - 12, giving 3x = 15 and x = 5. \"-3\" comes from a solver who cross-multiplies to x + 3 = 4x + 12, mishandling the sign inside the denominator. \"-5\" comes from a solver who inverts the simplified fraction and solves (x - 3)/(x + 3) = 4. \"1\" comes from a solver who cancels the whole denominator (x - 3)^2 against the single factor (x - 3) in the numerator, leaving x + 3 = 4.",
+  "solve": "return (3 + 4*3)/(4 - 1);",
+  "distractor_solve": {
+   "-3": "return (3 - 4*3)/(4 - 1);",
+   "-5": "return (-3 - 4*3)/(4 - 1);",
+   "1": "return 4 - 3;"
+  }
+ },
+ {
+  "id": "AM7-11",
+  "domain": "Algebra",
+  "subskill": "rearranging a formula that contains both a factor and a sum",
+  "difficulty": "medium",
+  "prompt": "The area A of a trapezoid is given by A = (1/2)h(b1 + b2), where h is the height and b1 and b2 are the lengths of the two parallel sides. Which of the following gives b1 in terms of A, h, and b2 ?",
+  "choices": [
+   "b1 = 2A/h - b2",
+   "b1 = 2A/h + b2",
+   "b1 = A/h - b2",
+   "b1 = A/h + b2"
+  ],
+  "correct_answer": "b1 = 2A/h - b2",
+  "explanation": "Multiplying both sides by 2 gives 2A = h(b1 + b2), dividing by h gives 2A/h = b1 + b2, and subtracting b2 gives b1 = 2A/h - b2. \"b1 = 2A/h + b2\" comes from a solver who adds b2 instead of subtracting it in the last step. \"b1 = A/h - b2\" comes from a solver who divides by h but never clears the factor of one half. \"b1 = A/h + b2\" makes both of those slips.",
+  "solve": "var f = 2; return \"b1 = \" + f + \"A/h - b2\";",
+  "distractor_solve": {
+   "b1 = 2A/h + b2": "var f = 2; return \"b1 = \" + f + \"A/h + b2\";",
+   "b1 = A/h - b2": "var f = 1; return \"b1 = \" + (f === 1 ? \"\" : f) + \"A/h - b2\";",
+   "b1 = A/h + b2": "var f = 1; return \"b1 = \" + (f === 1 ? \"\" : f) + \"A/h + b2\";"
+  }
+ },
+ {
+  "id": "AM7-12",
+  "domain": "Algebra",
+  "subskill": "quadratic relation between two consecutive odd integers",
+  "difficulty": "medium",
+  "prompt": "The product of two consecutive odd integers is 143. What is the smaller of the two integers?",
+  "choices": [
+   "11",
+   "13",
+   "12",
+   "14"
+  ],
+  "correct_answer": "11",
+  "explanation": "If the smaller integer is n, then n(n + 2) = 143, so n^2 + 2n + 1 = 144 and (n + 1)^2 = 144. Then n + 1 = 12 and n = 11, giving the pair 11 and 13. \"13\" is the larger of the two integers rather than the smaller. \"12\" is the even integer that sits between them, the square root of 144, reported as though it were one of the two odd integers. \"14\" comes from a solver who finds that middle value 12 and then adds 2 to IT rather than to the smaller integer.",
+  "solve": "return Math.sqrt(143+1) - 1;",
+  "distractor_solve": {
+   "13": "return Math.sqrt(143+1) + 1;",
+   "12": "return Math.sqrt(143+1);",
+   "14": "return Math.sqrt(143+1) + 2;"
+  }
+ },
+ {
+  "id": "AM7-13",
+  "domain": "Algebra",
+  "subskill": "counting doubling periods and converting them to elapsed time",
+  "difficulty": "medium",
+  "prompt": "A bacterial culture doubles in number every 5 hours. A sample starts with 400 bacteria. After how many hours will the sample contain 12,800 bacteria?",
+  "choices": [
+   "25",
+   "32",
+   "20",
+   "6"
+  ],
+  "correct_answer": "25",
+  "explanation": "The count grows by a factor of 12,800/400 = 32, and 32 = 2^5, so 5 doublings are needed. At 5 hours each, that is 5 x 5 = 25 hours. \"32\" is the growth factor itself, reported as though the factor were a number of hours. \"20\" comes from a solver who counts only the doublings after the first one, using 4 periods. \"6\" comes from counting the six population values 400, 800, 1600, 3200, 6400, 12800 and reporting that count.",
+  "solve": "var n = 0, v = 400; while (v < 12800) { v *= 2; n++; } return 5*n;",
+  "distractor_solve": {
+   "32": "return 12800/400;",
+   "20": "var n = 0, v = 400; while (v < 12800) { v *= 2; n++; } return 5*(n-1);",
+   "6": "var n = 0, v = 400; while (v < 12800) { v *= 2; n++; } return n + 1;"
+  }
+ },
+ {
+  "id": "AM7-14",
+  "domain": "Algebra",
+  "subskill": "raising a monomial to a rational power",
+  "difficulty": "medium",
+  "prompt": "For x > 0, which of the following expressions is equivalent to (4x^6)^(3/2) ?",
+  "choices": [
+   "8x^9",
+   "6x^9",
+   "8x^4",
+   "6x^4"
+  ],
+  "correct_answer": "8x^9",
+  "explanation": "The exponent applies to both factors: 4^(3/2) is the cube of the square root of 4, which is 8, and (x^6)^(3/2) = x^(6 x 3/2) = x^9. \"6x^9\" comes from a solver who multiplies the coefficient 4 by 3/2 instead of raising it to that power. \"8x^4\" comes from a solver who applies 2/3 to the exponent, inverting the fraction. \"6x^4\" makes both of those slips.",
+  "solve": "return Math.pow(4, 3/2) + \"x^\" + (6*3/2);",
+  "distractor_solve": {
+   "6x^9": "return (4*3/2) + \"x^\" + (6*3/2);",
+   "8x^4": "return Math.pow(4, 3/2) + \"x^\" + (6*2/3);",
+   "6x^4": "return (4*3/2) + \"x^\" + (6*2/3);"
+  }
+ },
+ {
+  "id": "AM7-15",
+  "domain": "Algebra",
+  "subskill": "using a squared sum to evaluate a symmetric expression",
+  "difficulty": "medium",
+  "prompt": "If x + y = 9 and xy = 14, what is the value of x^2 + y^2 ?",
+  "choices": [
+   "53",
+   "81",
+   "109",
+   "95"
+  ],
+  "correct_answer": "53",
+  "explanation": "Since (x + y)^2 = x^2 + 2xy + y^2, we get x^2 + y^2 = 9^2 - 2(14) = 81 - 28 = 53. \"81\" is (x + y)^2 itself, from a solver who never removes the 2xy term. \"109\" comes from adding 2xy instead of subtracting it. \"95\" comes from subtracting nothing and adding a single xy, 81 + 14.",
+  "solve": "return 9*9 - 2*14;",
+  "distractor_solve": {
+   "81": "return 9*9;",
+   "109": "return 9*9 + 2*14;",
+   "95": "return 9*9 + 14;"
+  }
+ },
+ {
+  "id": "AM7-16",
+  "domain": "Algebra",
+  "subskill": "simplifying a complex fraction by clearing the inner denominators",
+  "difficulty": "medium",
+  "prompt": "For x not equal to 0 and x not equal to 3, which of the following expressions is equivalent to (1/x + 1/3)/(1/x - 1/3) ?",
+  "choices": [
+   "(x + 3)/(3 - x)",
+   "(3 - x)/(x + 3)",
+   "(x - 3)/(x + 3)",
+   "(x + 3)/(x - 3)"
+  ],
+  "correct_answer": "(x + 3)/(3 - x)",
+  "explanation": "Multiplying the top and the bottom by 3x turns 1/x + 1/3 into 3 + x and 1/x - 1/3 into 3 - x, giving (x + 3)/(3 - x). \"(3 - x)/(x + 3)\" is the reciprocal of the correct expression, from a solver who divides the top into the bottom. \"(x + 3)/(x - 3)\" comes from a solver who writes 1/x - 1/3 as (x - 3)/(3x), reversing the subtraction in the numerator of that difference. \"(x - 3)/(x + 3)\" makes both of those slips.",
+  "solve": "return \"(x + 3)/(3 - x)\";",
+  "distractor_solve": {
+   "(3 - x)/(x + 3)": "return \"(3 - x)/(x + 3)\";",
+   "(x - 3)/(x + 3)": "return \"(x - 3)/(x + 3)\";",
+   "(x + 3)/(x - 3)": "return \"(x + 3)/(x - 3)\";"
+  }
+ },
+ {
+  "id": "AM7-17",
+  "domain": "Algebra",
+  "subskill": "setting up a perimeter equation from a stated relationship",
+  "difficulty": "medium",
+  "prompt": "The length of a rectangle is 4 inches more than twice its width. The perimeter of the rectangle is 56 inches. What is the width of the rectangle, in inches?",
+  "choices": [
+   "8",
+   "20",
+   "16",
+   "13"
+  ],
+  "correct_answer": "8",
+  "explanation": "With width w, the length is 2w + 4, so the perimeter is 2(w + 2w + 4) = 6w + 8 = 56, giving 6w = 48 and w = 8. \"20\" is the length, 2(8) + 4, rather than the width. \"16\" is twice the width, the length as a solver writes it after dropping the extra 4 inches. \"13\" comes from a solver who counts the length only once, solving w + w + (2w + 4) = 56.",
+  "solve": "return (56-8)/6;",
+  "distractor_solve": {
+   "20": "return 2*((56-8)/6) + 4;",
+   "16": "return 2*((56-8)/6);",
+   "13": "return (56-4)/4;"
+  }
+ },
+ {
+  "id": "AM7-18",
+  "domain": "Algebra",
+  "subskill": "a two-variable purchase system with a fixed total number of items",
+  "difficulty": "medium",
+  "prompt": "A store sells notebooks for $3.00 each and pens for $2.00 each. A customer bought 12 of these items, with no tax, for a total of $29.00. How many notebooks did the customer buy?",
+  "choices": [
+   "5",
+   "7",
+   "6",
+   "9"
+  ],
+  "correct_answer": "5",
+  "explanation": "If n is the number of notebooks, the customer bought 12 - n pens, so 3n + 2(12 - n) = 29. That simplifies to n + 24 = 29, so n = 5 notebooks and 7 pens. \"7\" is the number of pens rather than the number of notebooks. \"6\" comes from a solver who splits the 12 items evenly and never uses the $29.00 total. \"9\" comes from dividing the $29.00 by the $3.00 notebook price alone, ignoring the pens.",
+  "solve": "return 29 - 2*12;",
+  "distractor_solve": {
+   "7": "return 12 - (29 - 2*12);",
+   "6": "return 12/2;",
+   "9": "return Math.floor(29/3);"
+  }
+ },
+ {
+  "id": "AM7-19",
+  "domain": "Algebra",
+  "subskill": "rearranging a formula in which the target variable is squared",
+  "difficulty": "medium",
+  "prompt": "The distance s that an object falls from rest in time t is given by s = (1/2)at^2, where a is the acceleration. For positive s and a, which of the following gives t in terms of s and a ?",
+  "choices": [
+   "t = sqrt(2s/a)",
+   "t = sqrt(s/(2a))",
+   "t = 2s/a",
+   "t = s/(2a)"
+  ],
+  "correct_answer": "t = sqrt(2s/a)",
+  "explanation": "Multiplying by 2 gives 2s = at^2, dividing by a gives t^2 = 2s/a, and taking the positive square root gives t = sqrt(2s/a). \"t = sqrt(s/(2a))\" comes from a solver who divides by 2 instead of multiplying by it, putting the 2 under s. \"t = 2s/a\" comes from a solver who isolates t^2 correctly and then forgets to take the square root. \"t = s/(2a)\" makes both of those slips.",
+  "solve": "return \"t = sqrt(2s/a)\";",
+  "distractor_solve": {
+   "t = sqrt(s/(2a))": "return \"t = sqrt(s/(2a))\";",
+   "t = 2s/a": "return \"t = 2s/a\";",
+   "t = s/(2a)": "return \"t = s/(2a)\";"
+  }
+ },
+ {
+  "id": "AM7-20",
+  "domain": "Algebra",
+  "subskill": "translating two sentences into a system and solving it",
+  "difficulty": "medium",
+  "prompt": "Twice the smaller of two numbers is 3 more than the larger number. The sum of the two numbers is 36. What is the smaller number?",
+  "choices": [
+   "13",
+   "23",
+   "11",
+   "18"
+  ],
+  "correct_answer": "13",
+  "explanation": "If the smaller number is s and the larger is 36 - s, then 2s = (36 - s) + 3, so 3s = 39 and s = 13, with the larger number 23. \"23\" is the larger number rather than the smaller one. \"11\" comes from reading the first sentence as \"twice the smaller is 3 LESS than the larger\", giving 2s = 33 - s. \"18\" comes from a solver who splits the sum of 36 evenly and ignores the first sentence entirely.",
+  "solve": "return (36+3)/3;",
+  "distractor_solve": {
+   "23": "return 36 - (36+3)/3;",
+   "11": "return (36-3)/3;",
+   "18": "return 36/2;"
+  }
+ },
+ {
+  "id": "AM7-21",
+  "domain": "Algebra",
+  "subskill": "squaring a sum of reciprocals, where the cross term collapses to a constant",
+  "difficulty": "hard",
+  "prompt": "For a nonzero real number x, x + 1/x = 5. What is the value of x^2 + 1/x^2 ?",
+  "choices": [
+   "23",
+   "25",
+   "27",
+   "15"
+  ],
+  "correct_answer": "23",
+  "explanation": "Squaring both sides gives (x + 1/x)^2 = x^2 + 2(x)(1/x) + 1/x^2, and the middle term is exactly 2 because x times 1/x is 1. So 25 = x^2 + 1/x^2 + 2, and x^2 + 1/x^2 = 23. \"25\" is 5^2, from a solver who squares each term separately and never accounts for the middle term. \"27\" comes from adding the middle term to 25 instead of subtracting it. \"15\" comes from a solver who treats the middle term as 2x and subtracts 2(5).",
+  "solve": "return 5*5 - 2;",
+  "distractor_solve": {
+   "25": "return 5*5;",
+   "27": "return 5*5 + 2;",
+   "15": "return 5*5 - 2*5;"
+  }
+ },
+ {
+  "id": "AM7-22",
+  "domain": "Algebra",
+  "subskill": "an absolute value inequality intersected with a parity condition",
+  "difficulty": "hard",
+  "prompt": "How many even integers n satisfy the inequality |3n - 5| <= 22 ?",
+  "choices": [
+   "7",
+   "15",
+   "4",
+   "6"
+  ],
+  "correct_answer": "7",
+  "explanation": "The inequality is equivalent to -22 <= 3n - 5 <= 22, so -17 <= 3n <= 27 and -17/3 <= n <= 9. The integers in that range run from -5 through 9, and the even ones are -4, -2, 0, 2, 4, 6, and 8 - seven values, counting 0, which is even. \"15\" is the count of ALL integers in the range, not just the even ones. \"6\" comes from a solver who lists the even values but does not count 0 as one of them. \"4\" counts only the positive even values 2, 4, 6, and 8, dropping the negatives and 0.",
+  "solve": "var c = 0; for (var n = -60; n <= 60; n++) { if (n % 2 === 0 && Math.abs(3*n - 5) <= 22) c++; } return c;",
+  "distractor_solve": {
+   "15": "var c = 0; for (var n = -60; n <= 60; n++) { if (Math.abs(3*n - 5) <= 22) c++; } return c;",
+   "6": "var c = 0; for (var n = -60; n <= 60; n++) { if (n !== 0 && n % 2 === 0 && Math.abs(3*n - 5) <= 22) c++; } return c;",
+   "4": "var c = 0; for (var n = 1; n <= 60; n++) { if (n % 2 === 0 && Math.abs(3*n - 5) <= 22) c++; } return c;"
+  }
+ },
+ {
+  "id": "AM7-23",
+  "domain": "Algebra",
+  "subskill": "three different powers of 2 rewritten on a common base, then a linear equation",
+  "difficulty": "hard",
+  "prompt": "If 8^(x+1) * 4^(x-2) = 16^(x+3), what is the value of x ?",
+  "choices": [
+   "13",
+   "15",
+   "4",
+   "7"
+  ],
+  "correct_answer": "13",
+  "explanation": "Writing every base as a power of 2 gives 2^(3x+3) * 2^(2x-4) = 2^(4x+12). Adding the exponents on the left gives 5x - 1 = 4x + 12, so x = 13. \"15\" comes from a solver who writes 8^(x+1) as 2^(3x+1), multiplying 3 by x but not by 1. \"4\" comes from a solver who writes 16^(x+3) as 2^(4x+3), failing to distribute the 4 on the right. \"7\" comes from a solver who multiplies the two left bases into 32 and writes 32^(x+1), which forces the exponents 5x + 5 = 4x + 12.",
+  "solve": "var left = 3 + 2, lc = 3*1 + 2*(-2), rc = 4*3, right = 4; return (rc - lc)/(left - right);",
+  "distractor_solve": {
+   "15": "var left = 3 + 2, lc = 1 + 2*(-2), rc = 4*3, right = 4; return (rc - lc)/(left - right);",
+   "4": "var left = 3 + 2, lc = 3*1 + 2*(-2), rc = 3, right = 4; return (rc - lc)/(left - right);",
+   "7": "var left = 5, lc = 5*1, rc = 4*3, right = 4; return (rc - lc)/(left - right);"
+  }
+ },
+ {
+  "id": "AM7-24",
+  "domain": "Algebra",
+  "subskill": "the coefficient and the constant conditions that together give infinitely many solutions",
+  "difficulty": "hard",
+  "prompt": "The system of equations 3x + ky = 12 and 6x + 10y = c has infinitely many solutions. What is the value of k + c ?",
+  "choices": [
+   "29",
+   "17",
+   "44",
+   "11"
+  ],
+  "correct_answer": "29",
+  "explanation": "Infinitely many solutions means the second equation is a multiple of the first. Since 6 = 2(3), the multiplier is 2, so 10 = 2k gives k = 5, and c = 2(12) = 24. Then k + c = 29. \"17\" comes from a solver who gets k = 5 but sets c = 12, matching the constants without applying the multiplier. \"44\" uses k = 2(10) = 20, applying the multiplier in the wrong direction on the y-coefficient. \"11\" uses k = 5 with c = 12/2 = 6, dividing the constant where it should be multiplied.",
+  "solve": "var m = 6/3, k = 10/m, c = 12*m; return k + c;",
+  "distractor_solve": {
+   "17": "var m = 6/3, k = 10/m, c = 12; return k + c;",
+   "44": "var m = 6/3, k = 10*m, c = 12*m; return k + c;",
+   "11": "var m = 6/3, k = 10/m, c = 12/m; return k + c;"
+  }
+ },
+ {
+  "id": "AM7-25",
+  "domain": "Algebra",
+  "subskill": "clearing denominators to a quadratic, then reading the product of the roots off the coefficients",
+  "difficulty": "hard",
+  "prompt": "The equation 1/(x - 3) + 1/(x + 3) = 1 has two real solutions. What is the product of those two solutions?",
+  "choices": [
+   "-9",
+   "9",
+   "2",
+   "-2"
+  ],
+  "correct_answer": "-9",
+  "explanation": "Multiplying through by (x - 3)(x + 3) gives (x + 3) + (x - 3) = x^2 - 9, so 2x = x^2 - 9 and x^2 - 2x - 9 = 0. For a quadratic ax^2 + bx + c, the product of the roots is c/a, which here is -9/1 = -9. (The roots are 1 + sqrt(10) and 1 - sqrt(10), and neither is 3 or -3, so both are genuine solutions.) \"9\" comes from a solver who moves the constant to the wrong side and uses +9 as c. \"2\" is the SUM of the two solutions, -b/a, rather than the product. \"-2\" comes from reading the sum as b/a without changing the sign.",
+  "solve": "var a = 1, b = -2, c = -9; return c/a;",
+  "distractor_solve": {
+   "9": "var a = 1, c = -9; return -c/a;",
+   "2": "var a = 1, b = -2; return -b/a;",
+   "-2": "var a = 1, b = -2; return b/a;"
+  }
+ },
+ {
+  "id": "AM7-26",
+  "domain": "Algebra",
+  "subskill": "a mixture equation in which the added volume changes both the acid and the total",
+  "difficulty": "hard",
+  "prompt": "A chemist has 24 liters of a solution that is 10% acid. What is the least number of liters of a 40% acid solution she must add so that the resulting mixture is at least 30% acid?",
+  "choices": [
+   "48",
+   "12",
+   "72",
+   "16"
+  ],
+  "correct_answer": "48",
+  "explanation": "Adding x liters gives 0.10(24) + 0.40x liters of acid in 24 + x liters of solution, so the requirement is 0.10(24) + 0.40x >= 0.30(24 + x). That is 2.4 + 0.4x >= 7.2 + 0.3x, so 0.1x >= 4.8 and x >= 48 liters. \"12\" comes from a solver who requires 0.10(24) + 0.40x >= 0.30(24), forgetting that the liters added also raise the total volume. \"72\" is the volume of the FINAL mixture, 24 + 48, rather than the amount added. \"16\" comes from dividing the 4.8-liter acid shortfall by the target 30% instead of by the 10% difference between the target and the added solution.",
+  "solve": "return (30*24 - 10*24)/(40 - 30);",
+  "distractor_solve": {
+   "12": "return (30*24 - 10*24)/40;",
+   "72": "return (30*24 - 10*24)/(40 - 30) + 24;",
+   "16": "return (30*24 - 10*24)/30;"
+  }
+ },
+ {
+  "id": "AM7-27",
+  "domain": "Algebra",
+  "subskill": "the product of the roots combined with a stated difference between them",
+  "difficulty": "hard",
+  "prompt": "The two solutions of x^2 - kx + 36 = 0 are positive integers that differ by 5. What is the value of k ?",
+  "choices": [
+   "13",
+   "9",
+   "20",
+   "37"
+  ],
+  "correct_answer": "13",
+  "explanation": "For x^2 - kx + 36, the two solutions multiply to 36 and add to k. The positive factor pairs of 36 are 1 and 36, 2 and 18, 3 and 12, 4 and 9, and 6 and 6; the only pair differing by 5 is 4 and 9, so k = 4 + 9 = 13. \"9\" is the larger of the two solutions rather than their sum. \"20\" comes from choosing the pair 2 and 18, which multiplies to 36 but differs by 16. \"37\" comes from choosing the pair 1 and 36, which also ignores the stated difference.",
+  "solve": "var r = 0; for (var i = 1; i <= 36; i++) { if (36 % i === 0 && (36/i - i) === 5) r = i; } return r + 36/r;",
+  "distractor_solve": {
+   "9": "var r = 0; for (var i = 1; i <= 36; i++) { if (36 % i === 0 && (36/i - i) === 5) r = i; } return 36/r;",
+   "20": "var i = 2; return i + 36/i;",
+   "37": "var i = 1; return i + 36/i;"
+  }
+ },
+ {
+  "id": "AM7-28",
+  "domain": "Algebra",
+  "subskill": "a term formula and a sum formula solved together as a system",
+  "difficulty": "hard",
+  "prompt": "In an arithmetic sequence, the 4th term is 32 and the sum of the first 6 terms is 165. What is the 1st term?",
+  "choices": [
+   "5",
+   "9",
+   "27.5",
+   "23"
+  ],
+  "correct_answer": "5",
+  "explanation": "With first term a and common difference d, the 4th term gives a + 3d = 32 and the sum of the first six terms gives 6a + 15d = 165, which reduces to 2a + 5d = 55. Substituting a = 32 - 3d gives 64 - 6d + 5d = 55, so d = 9 and a = 32 - 27 = 5. (The sequence is 5, 14, 23, 32, 41, 50.) \"9\" is the common difference, not the first term. \"27.5\" is 165/6, the average of the six terms, which is the value halfway between the 3rd and 4th terms. \"23\" comes from using the sum formula with the 4th term as if it were the last term, solving 3(a + 32) = 165.",
+  "solve": "var d = (2*32 - 55)/(6 - 5); return 32 - 3*d;",
+  "distractor_solve": {
+   "9": "return (2*32 - 55)/(6 - 5);",
+   "27.5": "return 165/6;",
+   "23": "return 165/3 - 32;"
+  }
+ }
+]
