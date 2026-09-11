@@ -1349,3 +1349,17 @@ structural checks are pre-flight only. See CLAUDE.md.
   §6b cited `verbal-bank-helper.mjs:113,126` for the `topic_id` → `passage_group_id` mapping. Wiring the gate into that file this morning inserted ~33 lines above it, so the mapping now sits at 146 and 159. An author writing `ssat-reading-s12` checked the code rather than the brief, found the cite wrong and the field name right, and said so.
 
   The citation is now "grep for `raw.topic_id`, do not trust a line number", with the reason recorded inline. **A line number is a fact with a short half-life in a file anyone edits, and the thing that made it stale was the same session that wrote it.** Prefer a symbol to a line whenever the point is "this behaviour exists here".
+
+- **2026-09-11** — **I REBUILT A BLIND FILE WHILE A SOLVER WAS STILL READING IT, AND THE SOLVER CAUGHT ME.**
+
+  Its report opens: *"the blind file changed on disk mid-run. I solved the original 30 items, then the file was replaced with a different 30... The delivered file is solved against the current contents. If you intended me to see the first version, re-run."*
+
+  That is a run which read two different files, so it measures neither. Discarded, along with a second first-wave run whose file had also been replaced under it. The register already carries this rule — *do not run checks against files while their author is still running* — and I broke it in the other direction: I was the one editing while a reader was live.
+
+  **What made the rebuild necessary is worth keeping**, because it was itself a good catch by a different control solver. My first `ctl-ssat-verbal` draw took 15 synonyms and 15 analogies at random from the live pool, and **44 of the 180 live SSAT verbal items share an option pool with a sibling** — they are MATCHING SETS, in one `passage_group` each, drawn and served together. So the random draw pulled several members of the same set: three identical pools, letter-shuffled, effective n of 27 rather than 30.
+
+  That had to be fixed rather than noted, and the direction is the point. **Within a matching set, knowing one key eliminates it from the siblings. The candidate batch cannot offer that** — its 75 option pairs are all distinct by design — so the control was getting a cross-item aid the candidate does not have. An inflated control raises the floor the candidate is measured against, which biases the comparison IN THE CANDIDATE'S FAVOUR. That is the direction that lets a leaking batch through, which is why it was worth a rebuild and three fresh solvers rather than a footnote.
+
+  Rebuilt at one item per option pool (136 distinct pools exist, so there is room), with an assertion that refuses to write if a duplicate survives.
+
+  **The procedural fix:** when a blind or grade render must be rebuilt, write it under a NEW tag rather than replacing the file in place, and let the old readers finish against the old bytes. The ledger already binds verdicts to a content hash for exactly this reason; the render files themselves had no such discipline.
