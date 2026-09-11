@@ -1270,3 +1270,29 @@ structural checks are pre-flight only. See CLAUDE.md.
   **I had already told the user that if two graders agreed I would add a second clause to §3b — no hard item may share a template with an easy one — and the third grader refuted it.** Waiting for the third is the only reason that clause is not now in the brief being applied to every future batch. The finding is real *within* a grader and does not survive between them.
 
   So: the census stays a diagnostic an author reports and a grader may dispute. It does NOT become a gate, because gating on it means gating on which grader was drawn. This is the sixth structural proxy this project has taken seriously and the sixth to fail the same way — the difference is that this one announced itself in a single run, because three people were asked the same question instead of one.
+
+- **2026-09-11** — **THIRTEEN CHECKERS RAN THEIR CLI ON IMPORT, SO ANY SCRIPT THAT IMPORTED ONE MEASURED NOTHING WHILE PRINTING SOMETHING THAT LOOKED LIKE OUTPUT.**
+
+  Found for the third time in one session, and only then swept. `import { productNodes } from './check-key-is-sum.mjs'` executed that file's CLI, printed `usage: ...`, and exited 2 — so the live measurement I was building returned a usage string and no number. Earlier the same shape cost me a break-test that "passed" while the reverted program never ran (a copy in `/tmp` could not resolve its imports, node exited non-zero, and `grep -c` counted 0 matches in an empty stream), and a live control script that failed identically.
+
+  **The fix was not to patch the file I tripped over.** Enumerating every checker that exports anything: 28 are importable, 9 were guarded, **19 were not**. Thirteen shared a recognisable CLI entry (`const args = process.argv.slice(2)`) and are now wrapped in `if (RUN_AS_CLI)`; all 13 re-verified — they parse, their self-tests still pass, and they still produce identical output on a real batch. **The remaining 8 were left alone rather than guessed at**, because their CLI boundary is not mechanically identifiable and a wrong wrap would silently disable a checker, which is worse than the defect.
+
+  This is the file's own first corollary — *a check that cannot process its input must not return a number* — applied to the checkers themselves rather than to what they check.
+
+- **2026-09-11** — **`check-key-is-sum` COULD NOT SEE PRODUCTS, AND THE PRODUCT CHANNEL IS REAL ON THE LIVE BANK.**
+
+  Two authors hit it independently on the same day. `act-math-v8-fn` had two items whose key was the exact product of two options — structural, not a slip, since the item asks for *halvings x period* and both factors were on offer. `act-math-v8-nq` had key 54 with 6 and 9 both present; that author caught it by hand and wrote *"54 = 6 x 9, which check-key-is-sum cannot see (it tests sums only)."* Three real defects, two batches, no checker.
+
+  Note what was NOT missing: the sum test already covers differences implicitly, since `k = i + j` means `i = k - j`. Only the multiplicative case had no coverage.
+
+  Measured over the live maths bank through the now-importable checker:
+
+        scorable for products                          1,839 of 2,001
+        items with EXACTLY ONE product node              135
+        ...and it IS the key                              44 = 32.6%
+        CONSTRUCTED control (mean 1/k over those items)        24.2%
+        margin                                          +8.4 pts,  p = 1.7e-2
+
+  Real, and comparable to the run-middle channel (+6.5, p=5.2e-4). Reported on its **own denominator** rather than folded into the sum count, because mixing them would change what the existing number means. Trivial factors are excluded — `x = x * 1` is arithmetic, not authoring, and a solver reading the raw relation had already said so ("item 2's products are artifacts of C = -1"); the self-test pins that, and reverting the exclusion floods the detector.
+
+  **Caveat carried from the run checker, and it applies with equal force here:** a hit is a question, not a verdict. On an item that asks for a product, having both factors on offer is the natural distractor pair, not a defect. Do not read 135 as 135 broken items, and ask per item whether the relation follows from the error paths or from the chosen numbers before repairing anything.

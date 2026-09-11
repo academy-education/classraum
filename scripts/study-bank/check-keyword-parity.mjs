@@ -145,12 +145,20 @@ function selftest() {
   console.log('selftest OK — catches lone and inverted option keywords, passes a parity-clean topic')
 }
 
-const args = process.argv.slice(2)
-if (args[0] === '--selftest') { selftest(); process.exit(0) }
-if (!args.length) { console.error('usage: check-keyword-parity.mjs <topics.json> [...] | --selftest'); process.exit(1) }
-const topics = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
-const { lone, inverted, checked } = run(topics)
-console.log(`${checked} option words checked across ${topics.length} topics`)
-if (inverted.length) { console.log(`\n${inverted.length} INVERTED (option word absent only from its own passage):`); for (const x of inverted.slice(0, 20)) console.log('  - ' + x) }
-if (lone.length) { console.log(`\n${lone.length} LONE (option word in one passage only):`); for (const x of lone.slice(0, 20)) console.log('  - ' + x) }
-if (!lone.length && !inverted.length) console.log('keyword parity clean — no option is re-homeable by a rare word')
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-keyword-parity.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-keyword-parity.mjs')
+if (RUN_AS_CLI) {
+  const args = process.argv.slice(2)
+  if (args[0] === '--selftest') { selftest(); process.exit(0) }
+  if (!args.length) { console.error('usage: check-keyword-parity.mjs <topics.json> [...] | --selftest'); process.exit(1) }
+  const topics = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
+  const { lone, inverted, checked } = run(topics)
+  console.log(`${checked} option words checked across ${topics.length} topics`)
+  if (inverted.length) { console.log(`\n${inverted.length} INVERTED (option word absent only from its own passage):`); for (const x of inverted.slice(0, 20)) console.log('  - ' + x) }
+  if (lone.length) { console.log(`\n${lone.length} LONE (option word in one passage only):`); for (const x of lone.slice(0, 20)) console.log('  - ' + x) }
+  if (!lone.length && !inverted.length) console.log('keyword parity clean — no option is re-homeable by a rare word')
+}

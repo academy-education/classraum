@@ -103,13 +103,21 @@ function selftest() {
   console.log('selftest OK — catches family skew and duplicate option sets, passes a balanced batch')
 }
 
-const arg = process.argv[2]
-if (arg === '--selftest') { selftest(); process.exit(0) }
-if (!arg) { console.error('usage: check-batch-joins.mjs <items.json> [--live <live.json>] | --selftest'); process.exit(1) }
-const items = JSON.parse(readFileSync(arg, 'utf8'))
-const li = process.argv.indexOf('--live')
-const live = li > -1 ? JSON.parse(readFileSync(process.argv[li + 1], 'utf8')) : []
-const { fails, warns } = run(items, live)
-for (const w of warns) console.log(`  ok  ${w}`)
-if (fails.length) { console.error('\nFAIL:'); for (const f of fails) console.error('  - ' + f); process.exit(1) }
-console.log(`\nbatch joins clean over ${items.length} items`)
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-batch-joins.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-batch-joins.mjs')
+if (RUN_AS_CLI) {
+  const arg = process.argv[2]
+  if (arg === '--selftest') { selftest(); process.exit(0) }
+  if (!arg) { console.error('usage: check-batch-joins.mjs <items.json> [--live <live.json>] | --selftest'); process.exit(1) }
+  const items = JSON.parse(readFileSync(arg, 'utf8'))
+  const li = process.argv.indexOf('--live')
+  const live = li > -1 ? JSON.parse(readFileSync(process.argv[li + 1], 'utf8')) : []
+  const { fails, warns } = run(items, live)
+  for (const w of warns) console.log(`  ok  ${w}`)
+  if (fails.length) { console.error('\nFAIL:'); for (const f of fails) console.error('  - ' + f); process.exit(1) }
+  console.log(`\nbatch joins clean over ${items.length} items`)
+}

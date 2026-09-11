@@ -1,0 +1,590 @@
+[
+ {
+  "id": "AM8N-01",
+  "domain": "Number and Quantity",
+  "subskill": "integer exponents: a power of a power, then a further factor",
+  "difficulty": "easy",
+  "prompt": "What is the value of (2^3)^2 x 2 ?",
+  "choices": [
+   "128",
+   "32",
+   "66",
+   "256"
+  ],
+  "correct_answer": "128",
+  "explanation": "A power raised to a power multiplies the exponents, so (2^3)^2 = 2^6 = 64, and 64 x 2 = 128. \"32\" comes from a solver who ADDS the exponents instead of multiplying them, 2^(3+2) = 32, and then stops there. \"66\" comes from a solver who reaches 2^6 = 64 correctly and then ADDS the final factor rather than multiplying, 64 + 2. \"256\" comes from a solver who folds the trailing factor into the exponent as a second 2, computing 2^(3x2+2) = 2^8.",
+  "solve": "return Math.pow(2,3*2)*2;",
+  "distractor_solve": {
+   "32": "return Math.pow(2,3+2);",
+   "66": "return Math.pow(2,3*2)+2;",
+   "256": "return Math.pow(2,3*2+2);"
+  }
+ },
+ {
+  "id": "AM8N-02",
+  "domain": "Number and Quantity",
+  "subskill": "absolute value equation, greatest solution",
+  "difficulty": "easy",
+  "prompt": "If |x - 3| = 8, what is the greatest possible value of x ?",
+  "choices": [
+   "11",
+   "-5",
+   "5",
+   "24"
+  ],
+  "correct_answer": "11",
+  "explanation": "The equation splits into x - 3 = 8 and x - 3 = -8, giving x = 11 and x = -5. The greater of the two is 11. \"-5\" is the other solution, which is a value of x but not the greatest one. \"5\" comes from a solver who subtracts instead of adding, 8 - 3. \"24\" comes from a solver who reads the equation as a product, 3 x 8.",
+  "solve": "return 3+8;",
+  "distractor_solve": {
+   "-5": "return 3-8;",
+   "5": "return 8-3;",
+   "24": "return 3*8;"
+  }
+ },
+ {
+  "id": "AM8N-03",
+  "domain": "Number and Quantity",
+  "subskill": "adding radicals after simplifying each one",
+  "difficulty": "medium",
+  "prompt": "The sum sqrt(50) + sqrt(18) can be written in the form k x sqrt(2), where k is a positive integer. What is the value of k ?",
+  "choices": [
+   "8",
+   "15",
+   "4",
+   "68"
+  ],
+  "correct_answer": "8",
+  "explanation": "sqrt(50) = 5 x sqrt(2) and sqrt(18) = 3 x sqrt(2), so the sum is (5 + 3) x sqrt(2) and k = 8. \"15\" comes from a solver who MULTIPLIES the two simplified coefficients, 5 x 3, instead of adding them. \"4\" comes from a solver who subtracts the radicands first, sqrt(50 - 18) = sqrt(32) = 4 x sqrt(2). \"68\" comes from a solver who adds under the radical sign, treating the sum as sqrt(50 + 18) and reporting the radicand 68.",
+  "solve": "return Math.sqrt(50/2)+Math.sqrt(18/2);",
+  "distractor_solve": {
+   "15": "return Math.sqrt(50/2)*Math.sqrt(18/2);",
+   "4": "return Math.sqrt((50-18)/2);",
+   "68": "return 50+18;"
+  }
+ },
+ {
+  "id": "AM8N-04",
+  "domain": "Number and Quantity",
+  "subskill": "nth term of an arithmetic sequence",
+  "difficulty": "easy",
+  "prompt": "The first term of an arithmetic sequence is 7 and the common difference is 4. What is the 10th term of the sequence?",
+  "choices": [
+   "43",
+   "47",
+   "36",
+   "28"
+  ],
+  "correct_answer": "43",
+  "explanation": "Getting from the 1st term to the 10th takes 9 steps of 4, so the 10th term is 7 + 9 x 4 = 43. \"47\" comes from a solver who takes 10 steps instead of 9, 7 + 10 x 4. \"36\" is 9 x 4, the total of the steps, from a solver who never adds the first term back. \"28\" comes from a solver who multiplies the first term by the common difference, 7 x 4.",
+  "solve": "return 7+9*4;",
+  "distractor_solve": {
+   "47": "return 7+10*4;",
+   "36": "return 9*4;",
+   "28": "return 7*4;"
+  }
+ },
+ {
+  "id": "AM8N-05",
+  "domain": "Number and Quantity",
+  "subskill": "a missing interior term of a geometric sequence",
+  "difficulty": "medium",
+  "prompt": "In a geometric sequence with all positive terms, the 2nd term is 12 and the 4th term is 27. What is the 3rd term?",
+  "choices": [
+   "18",
+   "19.5",
+   "39",
+   "13.5"
+  ],
+  "correct_answer": "18",
+  "explanation": "Two steps of the common ratio take 12 to 27, so r^2 = 27/12 and the 3rd term is 12 x r = sqrt(12 x 27) = sqrt(324) = 18. \"19.5\" is the average of 12 and 27, which would be the 3rd term of an ARITHMETIC sequence, not a geometric one. \"39\" is 12 + 27, from a solver who adds the two known terms. \"13.5\" is 27/2, from a solver who assumes the common ratio is 2 and halves the 4th term.",
+  "solve": "return Math.sqrt(12*27);",
+  "distractor_solve": {
+   "19.5": "return (12+27)/2;",
+   "39": "return 12+27;",
+   "13.5": "return 27/2;"
+  }
+ },
+ {
+  "id": "AM8N-06",
+  "domain": "Number and Quantity",
+  "subskill": "the multiplication principle over independent choices",
+  "difficulty": "easy",
+  "prompt": "A restaurant offers 4 appetizers, 6 main courses, and 3 desserts. A meal consists of one appetizer, one main course, and one dessert. How many different meals are possible?",
+  "choices": [
+   "72",
+   "13",
+   "24",
+   "18"
+  ],
+  "correct_answer": "72",
+  "explanation": "The three choices are made independently, so the number of meals is 4 x 6 x 3 = 72. \"13\" comes from a solver who adds the three counts, 4 + 6 + 3. \"24\" is 4 x 6, from a solver who pairs appetizers with main courses and forgets the dessert. \"18\" is 6 x 3, from a solver who pairs main courses with desserts and forgets the appetizer.",
+  "solve": "return 4*6*3;",
+  "distractor_solve": {
+   "13": "return 4+6+3;",
+   "24": "return 4*6;",
+   "18": "return 6*3;"
+  }
+ },
+ {
+  "id": "AM8N-07",
+  "domain": "Number and Quantity",
+  "subskill": "counting arrangements when one position is restricted",
+  "difficulty": "hard",
+  "prompt": "How many different 3-digit integers can be formed using the digits 0, 2, 5, and 7 if no digit may be used more than once in an integer?",
+  "choices": [
+   "18",
+   "24",
+   "64",
+   "48"
+  ],
+  "correct_answer": "18",
+  "explanation": "A 3-digit integer cannot begin with 0, so the hundreds digit has only 3 choices. After that digit is used, the tens digit has 3 of the remaining digits available and the units digit has 2, giving 3 x 3 x 2 = 18. \"24\" is 4 x 3 x 2, the count when every digit is allowed in the leading position, which includes strings such as 027 that are not 3-digit integers. \"64\" is 4^3, the count when digits may repeat and 0 may lead. \"48\" is 3 x 4 x 4, from a solver who applies the leading-digit restriction but then allows repeats in the last two places.",
+  "solve": "return 3*3*2;",
+  "distractor_solve": {
+   "24": "return 4*3*2;",
+   "64": "return Math.pow(4,3);",
+   "48": "return 3*4*4;"
+  }
+ },
+ {
+  "id": "AM8N-08",
+  "domain": "Number and Quantity",
+  "subskill": "a single entry of a matrix product",
+  "difficulty": "medium",
+  "prompt": "Matrix A has first row (3, -1) and second row (2, 4). Matrix B has first row (5, 0) and second row (-2, 7). In the product AB, what is the entry in the 1st row and 2nd column?",
+  "choices": [
+   "-7",
+   "17",
+   "0",
+   "-5"
+  ],
+  "correct_answer": "-7",
+  "explanation": "The entry in row 1, column 2 of AB is row 1 of A paired with column 2 of B: 3 x 0 + (-1) x 7 = -7. \"17\" is the entry in row 1, column 1, 3 x 5 + (-1) x (-2), from a solver who reads down the wrong column of B. \"0\" is (-1) x 0, from a solver who multiplies the matrices entry by entry instead of row by column. \"-5\" is the row 1, column 2 entry of BA, 5 x (-1) + 0 x 4, from a solver who multiplies in the other order.",
+  "solve": "return 3*0+(-1)*7;",
+  "distractor_solve": {
+   "17": "return 3*5+(-1)*(-2);",
+   "0": "return (-1)*0;",
+   "-5": "return 5*(-1)+0*4;"
+  }
+ },
+ {
+  "id": "AM8N-09",
+  "domain": "Number and Quantity",
+  "subskill": "powers of i and the cycle of length 4",
+  "difficulty": "easy",
+  "prompt": "For i = sqrt(-1), what is the value of i^47 ?",
+  "choices": [
+   "-i",
+   "1",
+   "i",
+   "-1"
+  ],
+  "correct_answer": "-i",
+  "explanation": "The powers of i repeat with period 4: i^0 = 1, i^1 = i, i^2 = -1, i^3 = -i. Since 47 = 4 x 11 + 3, the remainder is 3 and i^47 = i^3 = -i. \"1\" comes from a solver who rounds 47 up to the nearest multiple of 4 and evaluates i^48. \"i\" comes from a solver who counts backwards from 4, using 4 - 3 = 1 as the position in the cycle. \"-1\" comes from a solver who reduces the exponent modulo 2 rather than modulo 4, treating i^47 as i^2 because 47 is odd.",
+  "solve": "var c=['1','i','-1','-i']; return c[47%4];",
+  "distractor_solve": {
+   "1": "var c=['1','i','-1','-i']; return c[48%4];",
+   "i": "var c=['1','i','-1','-i']; return c[4-47%4];",
+   "-1": "var c=['1','i','-1','-i']; return c[2*(47%2)];"
+  }
+ },
+ {
+  "id": "AM8N-10",
+  "domain": "Number and Quantity",
+  "subskill": "counting multiples in a range with an exclusion",
+  "difficulty": "hard",
+  "prompt": "How many positive integers less than 300 are multiples of 4 but are NOT multiples of 6 ?",
+  "choices": [
+   "50",
+   "62",
+   "74",
+   "99"
+  ],
+  "correct_answer": "50",
+  "explanation": "There are 74 multiples of 4 below 300 (4 through 296). The ones to remove are those that are also multiples of 6, and an integer is a multiple of both 4 and 6 exactly when it is a multiple of 12, not of 24: there are 24 of those below 300 (12 through 288). So the count is 74 - 24 = 50. \"62\" comes from a solver who removes the multiples of 4 x 6 = 24, of which there are 12, giving 74 - 12. \"74\" is the number of multiples of 4 below 300, with no exclusion applied at all. \"99\" is the number of integers below 300 that are multiples of 4 OR of 6, which answers the union rather than the difference.",
+  "solve": "var a=0,b=0; for(var n=1;n<300;n++){ if(n%4===0){a++; if(n%6===0)b++;} } return a-b;",
+  "distractor_solve": {
+   "62": "var a=0,b=0; for(var n=1;n<300;n++){ if(n%4===0)a++; if(n%24===0)b++; } return a-b;",
+   "74": "var a=0; for(var n=1;n<300;n++) if(n%4===0)a++; return a;",
+   "99": "var a=0; for(var n=1;n<300;n++) if(n%4===0||n%6===0)a++; return a;"
+  }
+ },
+ {
+  "id": "AM8N-11",
+  "domain": "Number and Quantity",
+  "subskill": "a rational exponent as a root and a power",
+  "difficulty": "medium",
+  "prompt": "What is the value of 16^(3/4) ?",
+  "choices": [
+   "8",
+   "12",
+   "2",
+   "64"
+  ],
+  "correct_answer": "8",
+  "explanation": "The denominator of the exponent is the root and the numerator is the power: 16^(3/4) = (the fourth root of 16)^3 = 2^3 = 8. \"12\" comes from a solver who multiplies the base by the exponent, 16 x 3/4. \"2\" is the fourth root of 16, the value one step before the cubing. \"64\" comes from a solver who takes the SQUARE root instead of the fourth root, computing 4^3.",
+  "solve": "return Math.pow(16,3/4);",
+  "distractor_solve": {
+   "12": "return 16*3/4;",
+   "2": "return Math.pow(16,1/4);",
+   "64": "return Math.pow(Math.pow(16,1/2),3);"
+  }
+ },
+ {
+  "id": "AM8N-12",
+  "domain": "Number and Quantity",
+  "subskill": "recovering a radicand from a simplified radical",
+  "difficulty": "medium",
+  "prompt": "If sqrt(x) = 3 x sqrt(5) and x > 0, what is the value of x ?",
+  "choices": [
+   "45",
+   "15",
+   "8",
+   "225"
+  ],
+  "correct_answer": "45",
+  "explanation": "Squaring both sides gives x = (3 x sqrt(5))^2 = 3^2 x 5 = 45. \"15\" is 3 x 5, from a solver who multiplies the coefficient into the radicand without squaring it. \"8\" is 3 + 5, from a solver who adds the two numbers. \"225\" is (3 x 5)^2, from a solver who multiplies first and then squares the whole product, squaring the 5 as well.",
+  "solve": "return Math.pow(3,2)*5;",
+  "distractor_solve": {
+   "15": "return 3*5;",
+   "8": "return 3+5;",
+   "225": "return Math.pow(3*5,2);"
+  }
+ },
+ {
+  "id": "AM8N-13",
+  "domain": "Number and Quantity",
+  "subskill": "the least value common to two arithmetic sequences",
+  "difficulty": "hard",
+  "prompt": "One arithmetic sequence begins 4, 11, 18, 25, ... . A second arithmetic sequence begins 9, 14, 19, 24, ... . What is the least number that is a term of both sequences?",
+  "choices": [
+   "39",
+   "4",
+   "12",
+   "44"
+  ],
+  "correct_answer": "39",
+  "explanation": "The first sequence is the numbers that leave a remainder of 4 when divided by 7; the second is the numbers that leave a remainder of 4 when divided by 5, beginning at 9. Values shared by the two patterns repeat every 35, and the shared values are 4, 39, 74, ... . The first of those that is actually a term of the SECOND sequence is 39, because that sequence starts at 9 and never contains 4. \"4\" fits the remainder pattern of both sequences but is smaller than the second sequence's first term, so it is not a term of it. \"12\" is 7 + 5, the sum of the two common differences. \"44\" comes from a solver who adds the repeat length 35 to the second sequence's first term, 9 + 35, rather than to a shared value.",
+  "solve": "var s={}; for(var i=0;i<400;i++) s[4+7*i]=1; for(var j=0;j<400;j++){ var t=9+5*j; if(s[t]) return t; } return -1;",
+  "distractor_solve": {
+   "4": "return 4+7*0;",
+   "12": "return 7+5;",
+   "44": "return 9+35;"
+  }
+ },
+ {
+  "id": "AM8N-14",
+  "domain": "Number and Quantity",
+  "subskill": "how a scalar multiple changes a 2x2 determinant",
+  "difficulty": "medium",
+  "prompt": "For a 2 x 2 matrix A, the determinant of A is 6. What is the determinant of 3A, the matrix whose every entry is 3 times the corresponding entry of A ?",
+  "choices": [
+   "54",
+   "18",
+   "6",
+   "27"
+  ],
+  "correct_answer": "54",
+  "explanation": "Every entry of a 2 x 2 determinant's two products carries one factor from each row, so multiplying all four entries by 3 multiplies the determinant by 3^2 = 9, giving 9 x 6 = 54. \"18\" is 3 x 6, from a solver who scales the determinant by 3 once. \"6\" comes from a solver who takes the determinant to be unchanged by scaling. \"27\" is 3^3, from a solver who takes the exponent from the scalar 3 itself rather than from the 2 rows of the matrix, and reports that factor.",
+  "solve": "return Math.pow(3,2)*6;",
+  "distractor_solve": {
+   "18": "return 3*6;",
+   "6": "return 6;",
+   "27": "return Math.pow(3,3);"
+  }
+ },
+ {
+  "id": "AM8N-15",
+  "domain": "Number and Quantity",
+  "subskill": "greatest common factor from prime factorizations",
+  "difficulty": "easy",
+  "prompt": "What is the greatest common factor of 84 and 126 ?",
+  "choices": [
+   "42",
+   "252",
+   "6",
+   "14"
+  ],
+  "correct_answer": "42",
+  "explanation": "84 = 2^2 x 3 x 7 and 126 = 2 x 3^2 x 7, so the shared factors are 2, 3 and 7 and the greatest common factor is 2 x 3 x 7 = 42. \"252\" is the LEAST COMMON MULTIPLE of 84 and 126, which answers the opposite question. \"6\" is 2 x 3, from a solver who stops after the small shared primes and never notices the shared 7. \"14\" is 2 x 7, from a solver who misses the shared factor of 3.",
+  "solve": "var a=84,b=126,t; while(b){t=a%b;a=b;b=t;} return a;",
+  "distractor_solve": {
+   "252": "var x=84,y=126,t; while(y){t=x%y;x=y;y=t;} return 84*126/x;",
+   "6": "return 2*3;",
+   "14": "return 2*7;"
+  }
+ },
+ {
+  "id": "AM8N-16",
+  "domain": "Number and Quantity",
+  "subskill": "the remainder of a square from the remainder of the number",
+  "difficulty": "hard",
+  "prompt": "When the positive integer n is divided by 12, the remainder is 5. What is the remainder when n^2 is divided by 12 ?",
+  "choices": [
+   "1",
+   "25",
+   "5",
+   "13"
+  ],
+  "correct_answer": "1",
+  "explanation": "Write n = 12k + 5. Then n^2 = 144k^2 + 120k + 25, and the first two terms are multiples of 12, so the remainder is whatever 25 leaves on division by 12. Since 25 = 2 x 12 + 1, the remainder is 1. \"25\" is the square of the remainder, reported without dividing by 12 again. \"5\" comes from a solver who takes the remainder to be unchanged by squaring. \"13\" comes from a solver who subtracts 12 from 25 once and stops, without noticing that 13 is still at least 12.",
+  "solve": "return (5*5)%12;",
+  "distractor_solve": {
+   "25": "return 5*5;",
+   "5": "return 5;",
+   "13": "return 5*5-12;"
+  }
+ },
+ {
+  "id": "AM8N-17",
+  "domain": "Number and Quantity",
+  "subskill": "choosing a subset when order does not matter",
+  "difficulty": "medium",
+  "prompt": "A committee of 3 people is to be chosen from a group of 8 people. How many different committees are possible?",
+  "choices": [
+   "56",
+   "336",
+   "24",
+   "512"
+  ],
+  "correct_answer": "56",
+  "explanation": "Order does not matter on a committee, so the count is (8 x 7 x 6)/(3 x 2 x 1) = 336/6 = 56. \"336\" is 8 x 7 x 6, the number of ORDERED selections, which counts each committee 6 times. \"24\" is 8 x 3, from a solver who multiplies the group size by the committee size. \"512\" is 8^3, the count if each of the 3 seats were filled from all 8 people with repetition allowed.",
+  "solve": "return 8*7*6/(3*2*1);",
+  "distractor_solve": {
+   "336": "return 8*7*6;",
+   "24": "return 8*3;",
+   "512": "return Math.pow(8,3);"
+  }
+ },
+ {
+  "id": "AM8N-18",
+  "domain": "Number and Quantity",
+  "subskill": "a product of complex conjugates",
+  "difficulty": "medium",
+  "prompt": "For a positive real number k, (2 + ki)(2 - ki) = 29, where i = sqrt(-1). What is the value of k^2 ?",
+  "choices": [
+   "25",
+   "5",
+   "33",
+   "27"
+  ],
+  "correct_answer": "25",
+  "explanation": "Expanding gives 4 - (ki)^2 = 4 - k^2 x i^2 = 4 + k^2, so 4 + k^2 = 29 and k^2 = 25. \"5\" is k itself, which is one step past the value the question asks for. \"33\" comes from a solver who adds the 4 across instead of subtracting it, 29 + 4. \"27\" comes from a solver who treats the 2 in each factor as contributing 2 rather than 2^2, computing 29 - 2.",
+  "solve": "return 29-Math.pow(2,2);",
+  "distractor_solve": {
+   "5": "return Math.sqrt(29-Math.pow(2,2));",
+   "33": "return 29+Math.pow(2,2);",
+   "27": "return 29-2;"
+  }
+ },
+ {
+  "id": "AM8N-19",
+  "domain": "Number and Quantity",
+  "subskill": "nth term of a geometric sequence",
+  "difficulty": "medium",
+  "prompt": "The first term of a geometric sequence is 6 and the common ratio is 2. What is the 5th term of the sequence?",
+  "choices": [
+   "96",
+   "192",
+   "14",
+   "16"
+  ],
+  "correct_answer": "96",
+  "explanation": "Getting from the 1st term to the 5th takes 4 multiplications by 2, so the 5th term is 6 x 2^4 = 6 x 16 = 96. \"192\" comes from a solver who multiplies five times instead of four, 6 x 2^5. \"14\" is 6 + 2 x 4, from a solver who treats the sequence as arithmetic with a common difference of 2. \"16\" is 2^4, the growth factor alone, from a solver who never multiplies by the first term.",
+  "solve": "return 6*Math.pow(2,4);",
+  "distractor_solve": {
+   "192": "return 6*Math.pow(2,5);",
+   "14": "return 6+2*4;",
+   "16": "return Math.pow(2,4);"
+  }
+ },
+ {
+  "id": "AM8N-20",
+  "domain": "Number and Quantity",
+  "subskill": "an equation between two absolute values",
+  "difficulty": "hard",
+  "prompt": "If |x - 3| = |x + 7|, what is the value of x ?",
+  "choices": [
+   "-2",
+   "5",
+   "-5",
+   "10"
+  ],
+  "correct_answer": "-2",
+  "explanation": "Each side is a distance on the number line: the left is the distance from x to 3 and the right is the distance from x to -7. A point equally far from 3 and from -7 is the midpoint of the two, x = (3 + (-7))/2 = -2. Working by cases gives the same thing: x - 3 = x + 7 has no solution, and x - 3 = -(x + 7) gives 2x = -4. \"5\" is the average of 3 and 7, from a solver who averages the two constants as printed instead of the two points 3 and -7. \"-5\" is (-7 - 3)/2, from a solver who averages the constants with both signs made negative. \"10\" is 3 + 7, the distance between the two points, from a solver who reports the separation rather than the midpoint.",
+  "solve": "return (3+(-7))/2;",
+  "distractor_solve": {
+   "5": "return (3+7)/2;",
+   "-5": "return (-7-3)/2;",
+   "10": "return 3+7;"
+  }
+ },
+ {
+  "id": "AM8N-21",
+  "domain": "Number and Quantity",
+  "subskill": "dimensions of a matrix product",
+  "difficulty": "easy",
+  "prompt": "Matrix A has 2 rows and 3 columns. Matrix B has 3 rows and 4 columns. The product AB is defined. How many rows and columns does AB have?",
+  "choices": [
+   "2 rows and 4 columns",
+   "3 rows and 3 columns",
+   "4 rows and 2 columns",
+   "2 rows and 3 columns"
+  ],
+  "correct_answer": "2 rows and 4 columns",
+  "explanation": "A product takes its row count from the first matrix and its column count from the second, so AB has 2 rows and 4 columns. \"3 rows and 3 columns\" uses the two INNER numbers, the ones that must agree for the product to exist and that disappear from the answer. \"4 rows and 2 columns\" comes from a solver who reads the outer numbers in the wrong order, as though the product were BA. \"2 rows and 3 columns\" comes from a solver who reports the size of A unchanged.",
+  "solve": "var A=[2,3],B=[3,4]; return A[0]+' rows and '+B[1]+' columns';",
+  "distractor_solve": {
+   "3 rows and 3 columns": "var A=[2,3],B=[3,4]; return A[1]+' rows and '+B[0]+' columns';",
+   "4 rows and 2 columns": "var A=[2,3],B=[3,4]; return B[1]+' rows and '+A[0]+' columns';",
+   "2 rows and 3 columns": "var A=[2,3]; return A[0]+' rows and '+A[1]+' columns';"
+  }
+ },
+ {
+  "id": "AM8N-22",
+  "domain": "Number and Quantity",
+  "subskill": "counting digits used across a list of numbers",
+  "difficulty": "hard",
+  "prompt": "The first 40 positive multiples of 3 are written out in order: 3, 6, 9, 12, ... . How many digits are used altogether in writing these 40 numbers?",
+  "choices": [
+   "84",
+   "80",
+   "120",
+   "40"
+  ],
+  "correct_answer": "84",
+  "explanation": "The numbers are 3 through 120. Three of them (3, 6, 9) use one digit each, for 3 digits. Thirty of them (12 through 99) use two digits each, for 60 digits. The remaining seven (102 through 120) use three digits each, for 21 digits. Altogether 3 + 60 + 21 = 84 digits. \"80\" is 40 x 2, from a solver who takes every one of the 40 numbers to have two digits. \"120\" is the 40th multiple of 3 itself, 3 x 40, not a count of digits. \"40\" is the number of multiples written, from a solver who counts the numbers rather than their digits.",
+  "solve": "var d=0; for(var i=1;i<=40;i++) d+=String(3*i).length; return d;",
+  "distractor_solve": {
+   "80": "return 40*2;",
+   "120": "return 3*40;",
+   "40": "return 40;"
+  }
+ },
+ {
+  "id": "AM8N-23",
+  "domain": "Number and Quantity",
+  "subskill": "counting the multiples of an integer in an interval",
+  "difficulty": "medium",
+  "prompt": "How many multiples of 7 are there between 20 and 150 ?",
+  "choices": [
+   "19",
+   "18",
+   "21",
+   "147"
+  ],
+  "correct_answer": "19",
+  "explanation": "The least multiple of 7 above 20 is 21 and the greatest below 150 is 147. Counting 21, 28, ..., 147 gives (147 - 21)/7 + 1 = 18 + 1 = 19 multiples. \"18\" is (147 - 21)/7, the number of STEPS from the first multiple to the last, which is one less than the number of multiples. \"21\" is 147/7, the count of multiples of 7 from 7 up to 147, which includes 7 and 14, both below 20. \"147\" is the greatest multiple of 7 in the interval, not how many there are.",
+  "solve": "var c=0; for(var n=21;n<=147;n++) if(n%7===0)c++; return c;",
+  "distractor_solve": {
+   "18": "return 147/7-21/7;",
+   "21": "return 147/7;",
+   "147": "return 7*21;"
+  }
+ },
+ {
+  "id": "AM8N-24",
+  "domain": "Number and Quantity",
+  "subskill": "dividing complex numbers using the conjugate",
+  "difficulty": "medium",
+  "prompt": "For i = sqrt(-1), which of the following is equal to (4 + 2i)/(1 - i) ?",
+  "choices": [
+   "1 + 3i",
+   "3 + i",
+   "1 - 3i",
+   "2 + 6i"
+  ],
+  "correct_answer": "1 + 3i",
+  "explanation": "Multiplying numerator and denominator by the conjugate 1 + i gives (4 + 2i)(1 + i) = 4 + 4i + 2i + 2i^2 = 2 + 6i on top and (1 - i)(1 + i) = 1 + 1 = 2 on the bottom, so the quotient is (2 + 6i)/2 = 1 + 3i. \"3 + i\" has the real and imaginary parts exchanged. \"1 - 3i\" comes from a solver who multiplies by the conjugate of the NUMERATOR instead, flipping the sign of the imaginary part. \"2 + 6i\" is the numerator after multiplying by the conjugate, the value one step before dividing by 2.",
+  "solve": "var ar=4,ai=2,br=1,bi=-1; var d=br*br+bi*bi; var rr=(ar*br+ai*bi)/d, ri=(ai*br-ar*bi)/d; return rr+' + '+ri+'i';",
+  "distractor_solve": {
+   "3 + i": "var ar=4,ai=2,br=1,bi=-1; var d=br*br+bi*bi; var rr=(ar*br+ai*bi)/d, ri=(ai*br-ar*bi)/d; return ri+' + '+(rr===1?'':rr)+'i';",
+   "1 - 3i": "var ar=4,ai=2,br=1,bi=-1; var d=br*br+bi*bi; var rr=(ar*br+ai*bi)/d, ri=(ar*bi-ai*br)/d; return rr+' - '+Math.abs(ri)+'i';",
+   "2 + 6i": "var ar=4,ai=2,br=1,bi=-1; var rr=ar*br+ai*bi, ri=ai*br-ar*bi; return rr+' + '+ri+'i';"
+  }
+ },
+ {
+  "id": "AM8N-25",
+  "domain": "Number and Quantity",
+  "subskill": "solving an exponential equation by writing both sides on one base",
+  "difficulty": "medium",
+  "prompt": "If 8^x = 32, what is the value of x ?",
+  "choices": [
+   "5/3",
+   "4",
+   "3/5",
+   "24"
+  ],
+  "correct_answer": "5/3",
+  "explanation": "Both sides are powers of 2: 8^x = 2^(3x) and 32 = 2^5, so 3x = 5 and x = 5/3. \"4\" is 32/8, from a solver who divides the two numbers as though the equation were 8x = 32. \"3/5\" has the two exponents in the wrong order, from a solver who writes x = 3/5 after reaching 3x = 5. \"24\" is 32 - 8, from a solver who subtracts.",
+  "solve": "var e=Math.round(Math.log(32)/Math.log(2)), b=Math.round(Math.log(8)/Math.log(2)); return e+'/'+b;",
+  "distractor_solve": {
+   "4": "return 32/8;",
+   "3/5": "var e=Math.round(Math.log(32)/Math.log(2)), b=Math.round(Math.log(8)/Math.log(2)); return b+'/'+e;",
+   "24": "return 32-8;"
+  }
+ },
+ {
+  "id": "AM8N-26",
+  "domain": "Number and Quantity",
+  "subskill": "distance between two points on the number line",
+  "difficulty": "easy",
+  "prompt": "On the number line, what is the distance between the point at -7 and the point at 5 ?",
+  "choices": [
+   "12",
+   "-2",
+   "35",
+   "7"
+  ],
+  "correct_answer": "12",
+  "explanation": "The distance between two points on the number line is the absolute value of their difference: |5 - (-7)| = |12| = 12. \"-2\" is -7 + 5, from a solver who adds the two coordinates instead of subtracting them. \"35\" is |(-7) x 5|, from a solver who multiplies the coordinates. \"7\" is the distance from 0 to -7, which answers a different question about the same picture.",
+  "solve": "return Math.abs(5-(-7));",
+  "distractor_solve": {
+   "-2": "return -7+5;",
+   "35": "return Math.abs(-7*5);",
+   "7": "return Math.abs(-7);"
+  }
+ },
+ {
+  "id": "AM8N-27",
+  "domain": "Number and Quantity",
+  "subskill": "least value satisfying a divisibility condition on a square",
+  "difficulty": "hard",
+  "prompt": "The positive integer n is a multiple of 21, and n^2 is a multiple of 8. What is the least possible value of n ?",
+  "choices": [
+   "84",
+   "42",
+   "21",
+   "56"
+  ],
+  "correct_answer": "84",
+  "explanation": "Write the number of factors of 2 in n as a. Then n^2 has 2a factors of 2, and 8 = 2^3 requires 2a to be at least 3. Since a is a whole number, a must be at least 2, so n must be a multiple of 4 as well as of 21, and the least such n is 4 x 21 = 84. Checking confirms it: 84^2 = 7056 = 8 x 882. \"42\" comes from a solver who reasons that n only needs to be even, taking a = 1; but 42^2 = 1764 leaves a remainder of 4 on division by 8. \"21\" ignores the condition on n^2 altogether. \"56\" comes from a solver who concludes that n itself must be a multiple of 8 and then keeps only the factor 7 of 21, reporting 8 x 7.",
+  "solve": "var n=21; while(!((n*n)%8===0)) n+=21; return n;",
+  "distractor_solve": {
+   "42": "return 2*21;",
+   "21": "return 21;",
+   "56": "return 8*7;"
+  }
+ },
+ {
+  "id": "AM8N-28",
+  "domain": "Number and Quantity",
+  "subskill": "counting selections described by at least one",
+  "difficulty": "hard",
+  "prompt": "A bag contains 6 red marbles and 4 blue marbles. Three marbles are to be selected from the bag at the same time. In how many of the possible selections is at least 1 of the 3 marbles blue?",
+  "choices": [
+   "100",
+   "20",
+   "60",
+   "36"
+  ],
+  "correct_answer": "100",
+  "explanation": "There are (10 x 9 x 8)/(3 x 2 x 1) = 120 selections of 3 marbles from the 10. The selections with NO blue marble are the ones drawn entirely from the 6 red marbles, and there are (6 x 5 x 4)/(3 x 2 x 1) = 20 of those. Everything else has at least 1 blue, so the count is 120 - 20 = 100. \"20\" is the number of all-red selections, which is the group being excluded rather than the group being counted. \"60\" counts the selections with EXACTLY 1 blue marble, 4 x 15. \"36\" counts the selections with exactly 2 blue marbles, 6 x 6.",
+  "solve": "function C(n,k){var r=1; for(var i=0;i<k;i++) r=r*(n-i)/(i+1); return Math.round(r);} return C(10,3)-C(6,3);",
+  "distractor_solve": {
+   "20": "function C(n,k){var r=1; for(var i=0;i<k;i++) r=r*(n-i)/(i+1); return Math.round(r);} return C(6,3);",
+   "60": "function C(n,k){var r=1; for(var i=0;i<k;i++) r=r*(n-i)/(i+1); return Math.round(r);} return C(4,1)*C(6,2);",
+   "36": "function C(n,k){var r=1; for(var i=0;i<k;i++) r=r*(n-i)/(i+1); return Math.round(r);} return C(4,2)*C(6,1);"
+  }
+ }
+]

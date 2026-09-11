@@ -219,32 +219,40 @@ function report(label, rows) {
   return { scorable, fired: fired.length }
 }
 
-const args = process.argv.slice(2)
-if (args.includes('--selftest')) selftest()
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-option-pair-constant.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-option-pair-constant.mjs')
+if (RUN_AS_CLI) {
+  const args = process.argv.slice(2)
+  if (args.includes('--selftest')) selftest()
 
-if (args.includes('--bank')) {
-  const argOf = f => { const i = args.indexOf(f); return i === -1 ? null : args[i + 1] }
-  const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8')
-    .split('\n').filter(l => l.includes('=') && !l.startsWith('#'))
-    .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
-  const { createClient } = await import('@supabase/supabase-js')
-  const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
-  const rows = []
-  for (let from = 0; ; from += 1000) {
-    let q = db.from('study_item_bank').select('id, family, section, item').eq('archived', false).eq('verified', true)
-    if (argOf('--family')) q = q.eq('family', argOf('--family'))
-    if (argOf('--section')) q = q.eq('section', argOf('--section'))
-    const { data, error } = await q.order('id').range(from, from + 999)
-    if (error) { console.error(error.message); process.exit(1) }
-    rows.push(...(data ?? [])); if (!data || data.length < 1000) break
+  if (args.includes('--bank')) {
+    const argOf = f => { const i = args.indexOf(f); return i === -1 ? null : args[i + 1] }
+    const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8')
+      .split('\n').filter(l => l.includes('=') && !l.startsWith('#'))
+      .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
+    const { createClient } = await import('@supabase/supabase-js')
+    const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+    const rows = []
+    for (let from = 0; ; from += 1000) {
+      let q = db.from('study_item_bank').select('id, family, section, item').eq('archived', false).eq('verified', true)
+      if (argOf('--family')) q = q.eq('family', argOf('--family'))
+      if (argOf('--section')) q = q.eq('section', argOf('--section'))
+      const { data, error } = await q.order('id').range(from, from + 999)
+      if (error) { console.error(error.message); process.exit(1) }
+      rows.push(...(data ?? [])); if (!data || data.length < 1000) break
+    }
+    report(`LIVE BANK family=${argOf('--family') ?? 'all'} section=${argOf('--section') ?? 'all'}`,
+      rows.map(r => ({ id: r.id, choices: r.item?.choices ?? [], key: r.item?.correct_answer, stem: r.item?.prompt ?? '' })))
+  } else {
+    const path = args.find(a => a.endsWith('.json'))
+    if (!path) { console.error('usage: check-option-pair-constant.mjs <batch.json> | --bank | --selftest'); process.exit(2) }
+    const batch = JSON.parse(readFileSync(path, 'utf8'))
+    if (!Array.isArray(batch) || !batch.length) { console.error(`REFUSING: ${path} holds no items.`); process.exit(2) }
+    const r = report(path, batch.map(i => ({ id: i.id, choices: i.choices, key: i.correct_answer, stem: i.prompt ?? '' })))
+    if (r === null) process.exit(2)
   }
-  report(`LIVE BANK family=${argOf('--family') ?? 'all'} section=${argOf('--section') ?? 'all'}`,
-    rows.map(r => ({ id: r.id, choices: r.item?.choices ?? [], key: r.item?.correct_answer, stem: r.item?.prompt ?? '' })))
-} else {
-  const path = args.find(a => a.endsWith('.json'))
-  if (!path) { console.error('usage: check-option-pair-constant.mjs <batch.json> | --bank | --selftest'); process.exit(2) }
-  const batch = JSON.parse(readFileSync(path, 'utf8'))
-  if (!Array.isArray(batch) || !batch.length) { console.error(`REFUSING: ${path} holds no items.`); process.exit(2) }
-  const r = report(path, batch.map(i => ({ id: i.id, choices: i.choices, key: i.correct_answer, stem: i.prompt ?? '' })))
-  if (r === null) process.exit(2)
 }

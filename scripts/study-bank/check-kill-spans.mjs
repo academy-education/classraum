@@ -178,12 +178,20 @@ function selftest() {
   console.log('selftest OK — catches invented spans, META-textual non-assertions and missing kills; passes clean topics, whitespace reflow and IN-WORLD negations')
 }
 
-const args = process.argv.slice(2)
-if (args[0] === '--selftest') { selftest(); process.exit(0) }
-if (!args.length) { console.error('usage: check-kill-spans.mjs <topics.json> [...] | --selftest'); process.exit(1) }
-const topics = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
-const { fails, warns, spans, checked } = run(topics)
-for (const w of warns) console.log(`  ok  ${w}`)
-console.log(`\n${spans} kill spans across ${checked} answers in ${topics.length} topics`)
-if (fails.length) { console.error('\nFAIL:'); for (const f of fails) console.error('  - ' + f); process.exit(1) }
-console.log('all kill spans verbatim')
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-kill-spans.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-kill-spans.mjs')
+if (RUN_AS_CLI) {
+  const args = process.argv.slice(2)
+  if (args[0] === '--selftest') { selftest(); process.exit(0) }
+  if (!args.length) { console.error('usage: check-kill-spans.mjs <topics.json> [...] | --selftest'); process.exit(1) }
+  const topics = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
+  const { fails, warns, spans, checked } = run(topics)
+  for (const w of warns) console.log(`  ok  ${w}`)
+  console.log(`\n${spans} kill spans across ${checked} answers in ${topics.length} topics`)
+  if (fails.length) { console.error('\nFAIL:'); for (const f of fails) console.error('  - ' + f); process.exit(1) }
+  console.log('all kill spans verbatim')
+}

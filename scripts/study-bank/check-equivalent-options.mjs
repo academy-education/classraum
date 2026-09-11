@@ -128,32 +128,40 @@ function selftest() {
   console.log('selftest OK — catches equal ratios, fractions and decimals; leaves distinct values, prose and percent-vs-decimal alone')
 }
 
-const args = process.argv.slice(2)
-if (args[0] === '--selftest') { selftest(); process.exit(0) }
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-equivalent-options.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-equivalent-options.mjs')
+if (RUN_AS_CLI) {
+  const args = process.argv.slice(2)
+  if (args[0] === '--selftest') { selftest(); process.exit(0) }
 
-let items
-if (args[0] === '--bank') {
-  const { createClient } = await import('@supabase/supabase-js')
-  const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
-    .filter(l => l.includes('=') && !l.startsWith('#'))
-    .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
-  const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
-  items = []
-  for (let from = 0; ; from += 1000) {
-    const { data, error } = await db.from('study_item_bank')
-      .select('id, family, section, item').eq('archived', false).eq('verified', true)
-      .range(from, from + 999)
-    if (error) throw new Error(error.message)
-    items.push(...(data ?? []).map(r => ({ id: `${r.family}/${r.section}/${r.id}`, choices: r.item?.choices })))
-    if (!data || data.length < 1000) break   // never trust one page
+  let items
+  if (args[0] === '--bank') {
+    const { createClient } = await import('@supabase/supabase-js')
+    const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
+      .filter(l => l.includes('=') && !l.startsWith('#'))
+      .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
+    const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+    items = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await db.from('study_item_bank')
+        .select('id, family, section, item').eq('archived', false).eq('verified', true)
+        .range(from, from + 999)
+      if (error) throw new Error(error.message)
+      items.push(...(data ?? []).map(r => ({ id: `${r.family}/${r.section}/${r.id}`, choices: r.item?.choices })))
+      if (!data || data.length < 1000) break   // never trust one page
+    }
+  } else {
+    items = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
   }
-} else {
-  items = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
-}
 
-const { hits, checked } = run(items)
-console.log(`${checked} items with comparable option sets, of ${items.length} read`)
-if (!hits.length) { console.log('no two options share a value'); process.exit(0) }
-console.log(`\n${hits.length} item(s) where two options are the SAME VALUE:`)
-for (const h of hits.slice(0, 40)) console.log(`  ${h.id}: "${h.a}" == "${h.b}"  (${h.canonical})`)
-process.exit(1)
+  const { hits, checked } = run(items)
+  console.log(`${checked} items with comparable option sets, of ${items.length} read`)
+  if (!hits.length) { console.log('no two options share a value'); process.exit(0) }
+  console.log(`\n${hits.length} item(s) where two options are the SAME VALUE:`)
+  for (const h of hits.slice(0, 40)) console.log(`  ${h.id}: "${h.a}" == "${h.b}"  (${h.canonical})`)
+  process.exit(1)
+}

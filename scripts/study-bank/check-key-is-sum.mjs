@@ -61,11 +61,69 @@ export function sumNodes(choices) {
   return { nodes: [...new Set(out)], n: v.length, vals: v }
 }
 
+/*
+ * PRODUCTS ARE A SEPARATE CHANNEL AND THIS FILE COULD NOT SEE THEM — added
+ * 2026-09-11 after two authors hit it independently on the same day.
+ *
+ *   act-math-v8-fn  two items whose key was the exact product of two options.
+ *                   Structural, not a slip: the item asks for halvings x period
+ *                   and both factors were on offer.
+ *   act-math-v8-nq  key 54 with 6 and 9 both present. The author caught it by
+ *                   hand and wrote: "54 = 6 x 9, which check-key-is-sum cannot
+ *                   see (it tests sums only)."
+ *
+ * Three real defects across two batches, on a channel with no checker. Note
+ * the sum test already covers DIFFERENCES implicitly — if k = i + j then
+ * i = k - j — so only the multiplicative case was missing.
+ *
+ * Reported SEPARATELY rather than folded into the sum count, because mixing
+ * them would change what the existing number means and this file's whole
+ * argument is that a rate is only as good as its denominator.
+ *
+ * Factors of 1 and -1 are excluded: x = x * 1 is arithmetic, not authoring,
+ * and a solver reading the raw relation said so — "item 2's products are
+ * artifacts of C = -1".
+ */
+export function productNodes(choices) {
+  const v = choices.map(num)
+  if (v.filter(x => x !== null).length < 3) return null      // unscorable
+  const out = []
+  for (let k = 0; k < v.length; k++) {
+    if (v[k] === null) continue
+    for (let i = 0; i < v.length; i++) for (let j = i + 1; j < v.length; j++) {
+      if (i === k || j === k || v[i] === null || v[j] === null) continue
+      if (Math.abs(v[i]) === 1 || Math.abs(v[j]) === 1) continue   // trivial
+      if (v[i] === 0 || v[j] === 0) continue                       // 0 * x = 0
+      const tol = Math.max(1e-9, Math.abs(v[k]) * 1e-9)
+      if (Math.abs(v[i] * v[j] - v[k]) < tol) { out.push(k); i = j = v.length }
+    }
+  }
+  return { nodes: [...new Set(out)], n: v.length, vals: v }
+}
+
 function selftest() {
   let bad = 0
   const ok = (name, cond, got) => {
     console.log(`${cond ? 'ok   ' : 'FAIL '} ${name}${cond ? '' : `  -> ${JSON.stringify(got)}`}`); if (!cond) bad++
   }
+  // The PRODUCT cases, from the two batches that exposed the gap.
+  let p = productNodes(['54', '6', '9', '27'])
+  ok('AM8N-14: 54 = 6 x 9 is found as a product node', p.nodes.includes(0), p && p.nodes)
+  p = productNodes(['6', '28', '7', '4'])
+  ok('AM8F-21: 28 = 7 x 4 is found', p.nodes.includes(1), p && p.nodes)
+  // ...and the trivial cases must NOT fire, or every set with a 1 in it reports.
+  p = productNodes(['5', '1', '5', '9'])
+  ok('x = x * 1 is NOT a product node (arithmetic, not authoring)', p.nodes.length === 0, p.nodes)
+  p = productNodes(['-7', '-1', '7', '3'])
+  ok('x = x * -1 is NOT a product node', p.nodes.length === 0, p.nodes)
+  p = productNodes(['0', '0', '5', '9'])
+  ok('0 = 0 * x is NOT a product node', p.nodes.length === 0, p.nodes)
+  // A sum must not be reported as a product, or the two channels double-count.
+  p = productNodes(['13', '14', '27', '9'])
+  ok('a pure SUM set reports no product node', p.nodes.length === 0, p.nodes)
+  ok('mostly non-numeric options are UNSCORABLE for products',
+    productNodes(['red', 'blue', 'green', 'grey']) === null)
+
   // The two relations a repairer proved check-math-hub misses.
   let r = sumNodes(['13', '14', '27', '9'])
   ok('13 + 14 = 27 is found', r.nodes.length === 1 && r.vals[r.nodes[0]] === 27, r)
@@ -108,36 +166,65 @@ function report(label, rows) {
   const control = 100 / (wsum / scorable)
   const rate = 100 * uniqKey / uniq
   console.log(`  items with EXACTLY ONE sum node: ${uniq}   <- the exploitable shape`)
+  {
+    /* The product channel, reported on its own denominator. */
+    let pScorable = 0, pUniq = 0, pUniqKey = 0
+    for (const it of rows) {
+      const ch = it.choices ?? it.item?.choices
+      const pn = Array.isArray(ch) ? productNodes(ch) : null
+      if (!pn) continue
+      pScorable++
+      if (pn.nodes.length !== 1) continue
+      pUniq++
+      const key = it.correct_answer ?? it.item?.correct_answer
+      if (ch[pn.nodes[0]] === key) pUniqKey++
+    }
+    console.log(`  --- products (a separate channel; sums already cover differences) ---`)
+    console.log(`  scorable for products: ${pScorable}`)
+    if (!pUniq) console.log('  items with EXACTLY ONE product node: 0 — NOT MEASURED on the decidable statistic.')
+    else {
+      console.log(`  items with EXACTLY ONE product node: ${pUniq}   <- the exploitable shape`)
+      console.log(`    ...and it IS the key: ${pUniqKey} = ${(100 * pUniqKey / pUniq).toFixed(1)}%`)
+    }
+  }
   console.log(`    ...and it IS the key: ${uniqKey} = ${rate.toFixed(1)}%   control ${control.toFixed(1)}%   margin ${(rate - control >= 0 ? '+' : '')}${(rate - control).toFixed(1)}pts`)
   if (fired.length) console.log(`    ids: ${fired.slice(0, 15).join(' ')}${fired.length > 15 ? ` ... and ${fired.length - 15} more` : ''}`)
   return { scorable, uniq, uniqKey }
 }
 
-const args = process.argv.slice(2)
-if (args.includes('--selftest')) selftest()
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-key-is-sum.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-key-is-sum.mjs')
+if (RUN_AS_CLI) {
+  const args = process.argv.slice(2)
+  if (args.includes('--selftest')) selftest()
 
-if (args.includes('--bank')) {
-  const argOf = f => { const i = args.indexOf(f); return i === -1 ? null : args[i + 1] }
-  const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8')
-    .split('\n').filter(l => l.includes('=') && !l.startsWith('#'))
-    .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
-  const { createClient } = await import('@supabase/supabase-js')
-  const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
-  const rows = []
-  for (let from = 0; ; from += 1000) {
-    let q = db.from('study_item_bank').select('id, item').eq('archived', false).eq('verified', true)
-    if (argOf('--family')) q = q.eq('family', argOf('--family'))
-    if (argOf('--section')) q = q.eq('section', argOf('--section'))
-    const { data, error } = await q.order('id').range(from, from + 999)
-    if (error) { console.error(error.message); process.exit(1) }
-    rows.push(...(data ?? [])); if (!data || data.length < 1000) break
+  if (args.includes('--bank')) {
+    const argOf = f => { const i = args.indexOf(f); return i === -1 ? null : args[i + 1] }
+    const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8')
+      .split('\n').filter(l => l.includes('=') && !l.startsWith('#'))
+      .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
+    const { createClient } = await import('@supabase/supabase-js')
+    const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+    const rows = []
+    for (let from = 0; ; from += 1000) {
+      let q = db.from('study_item_bank').select('id, item').eq('archived', false).eq('verified', true)
+      if (argOf('--family')) q = q.eq('family', argOf('--family'))
+      if (argOf('--section')) q = q.eq('section', argOf('--section'))
+      const { data, error } = await q.order('id').range(from, from + 999)
+      if (error) { console.error(error.message); process.exit(1) }
+      rows.push(...(data ?? [])); if (!data || data.length < 1000) break
+    }
+    report(`LIVE BANK family=${argOf('--family') ?? 'all'} section=${argOf('--section') ?? 'all'}`,
+      rows.map(r => ({ id: r.id, choices: r.item?.choices ?? [], key: r.item?.correct_answer })))
+  } else {
+    const path = args.find(a => a.endsWith('.json'))
+    if (!path) { console.error('usage: check-key-is-sum.mjs <batch.json> | --bank | --selftest'); process.exit(2) }
+    const batch = JSON.parse(readFileSync(path, 'utf8'))
+    if (!Array.isArray(batch) || !batch.length) { console.error(`REFUSING: ${path} holds no items.`); process.exit(2) }
+    if (report(path, batch.map(i => ({ id: i.id, choices: i.choices, key: i.correct_answer }))) === null) process.exit(2)
   }
-  report(`LIVE BANK family=${argOf('--family') ?? 'all'} section=${argOf('--section') ?? 'all'}`,
-    rows.map(r => ({ id: r.id, choices: r.item?.choices ?? [], key: r.item?.correct_answer })))
-} else {
-  const path = args.find(a => a.endsWith('.json'))
-  if (!path) { console.error('usage: check-key-is-sum.mjs <batch.json> | --bank | --selftest'); process.exit(2) }
-  const batch = JSON.parse(readFileSync(path, 'utf8'))
-  if (!Array.isArray(batch) || !batch.length) { console.error(`REFUSING: ${path} holds no items.`); process.exit(2) }
-  if (report(path, batch.map(i => ({ id: i.id, choices: i.choices, key: i.correct_answer }))) === null) process.exit(2)
 }

@@ -88,11 +88,19 @@ function selftest() {
   console.log('selftest OK — catches one-corruption symmetry, blind to paired corruption')
 }
 
-const arg = process.argv[2]
-if (arg === '--selftest') { selftest(); process.exit(0) }
-if (!arg) { console.error('usage: check-consensus-tell.mjs <items.json> | --selftest'); process.exit(1) }
-const items = JSON.parse(readFileSync(arg, 'utf8'))
-const r = run(items)
-console.log(`n=${r.n} decided=${r.decided} hits=${r.hits} ties=${r.ties}`)
-console.log(`expected blind score ${(r.expectedBlind * 100).toFixed(0)}% (chance 25%) — ${r.expectedBlind >= 0.40 ? 'KILLED (>=40%)' : r.expectedBlind >= 0.30 ? 'INCONCLUSIVE (30-40%)' : 'clean (<30%)'}`)
-console.log(r.rows.map(x => x.join(':')).join(' '))
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-consensus-tell.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-consensus-tell.mjs')
+if (RUN_AS_CLI) {
+  const arg = process.argv[2]
+  if (arg === '--selftest') { selftest(); process.exit(0) }
+  if (!arg) { console.error('usage: check-consensus-tell.mjs <items.json> | --selftest'); process.exit(1) }
+  const items = JSON.parse(readFileSync(arg, 'utf8'))
+  const r = run(items)
+  console.log(`n=${r.n} decided=${r.decided} hits=${r.hits} ties=${r.ties}`)
+  console.log(`expected blind score ${(r.expectedBlind * 100).toFixed(0)}% (chance 25%) — ${r.expectedBlind >= 0.40 ? 'KILLED (>=40%)' : r.expectedBlind >= 0.30 ? 'INCONCLUSIVE (30-40%)' : 'clean (<30%)'}`)
+  console.log(r.rows.map(x => x.join(':')).join(' '))
+}

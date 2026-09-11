@@ -180,39 +180,47 @@ function report(label, rows) {
   return { scorable, anyEcho }
 }
 
-const args = process.argv.slice(2)
-if (args.includes('--selftest')) selftest()
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-stem-echo.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-stem-echo.mjs')
+if (RUN_AS_CLI) {
+  const args = process.argv.slice(2)
+  if (args.includes('--selftest')) selftest()
 
-if (args.includes('--bank')) {
-  const argOf = f => { const i = args.indexOf(f); return i === -1 ? null : args[i + 1] }
-  const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8')
-    .split('\n').filter(l => l.includes('=') && !l.startsWith('#'))
-    .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
-  const { createClient } = await import('@supabase/supabase-js')
-  const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
-  const rows = []
-  // Paged AND ordered — range() over an unordered relation repeats rows on
-  // one page and never returns others, which would quietly shrink the
-  // population this whole measurement rests on.
-  for (let from = 0; ; from += 1000) {
-    let q = db.from('study_item_bank').select('id, item, cohort').eq('archived', false)
-    if (argOf('--family')) q = q.eq('family', argOf('--family'))
-    if (argOf('--section')) q = q.eq('section', argOf('--section'))
-    const { data, error } = await q.order('id').range(from, from + 999)
-    if (error) { console.error(error.message); process.exit(1) }
-    rows.push(...(data ?? [])); if (!data || data.length < 1000) break
+  if (args.includes('--bank')) {
+    const argOf = f => { const i = args.indexOf(f); return i === -1 ? null : args[i + 1] }
+    const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8')
+      .split('\n').filter(l => l.includes('=') && !l.startsWith('#'))
+      .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
+    const { createClient } = await import('@supabase/supabase-js')
+    const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+    const rows = []
+    // Paged AND ordered — range() over an unordered relation repeats rows on
+    // one page and never returns others, which would quietly shrink the
+    // population this whole measurement rests on.
+    for (let from = 0; ; from += 1000) {
+      let q = db.from('study_item_bank').select('id, item, cohort').eq('archived', false)
+      if (argOf('--family')) q = q.eq('family', argOf('--family'))
+      if (argOf('--section')) q = q.eq('section', argOf('--section'))
+      const { data, error } = await q.order('id').range(from, from + 999)
+      if (error) { console.error(error.message); process.exit(1) }
+      rows.push(...(data ?? [])); if (!data || data.length < 1000) break
+    }
+    const mapped = rows.map(r => ({ id: r.id, cohort: r.cohort, stem: r.item?.prompt,
+      choices: r.item?.choices ?? [], key: r.item?.correct_answer }))
+      .filter(r => Array.isArray(r.choices) && r.choices.length >= 3)
+    report(`LIVE BANK  family=${argOf('--family') ?? 'all'} section=${argOf('--section') ?? 'all'}  (${rows.length} rows read)`, mapped)
+  } else {
+    const path = args.find(a => a.endsWith('.json'))
+    if (!path) { console.error('usage: check-stem-echo.mjs <batch.json> | --bank | --selftest'); process.exit(2) }
+    const batch = JSON.parse(readFileSync(path, 'utf8'))
+    if (!Array.isArray(batch) || !batch.length) {
+      console.error(`REFUSING: ${path} holds no items.`); process.exit(2)
+    }
+    const r = report(path, batch.map(i => ({ id: i.id, stem: i.prompt, choices: i.choices, key: i.correct_answer })))
+    if (r.anyEcho.length) console.log(`  ids: ${r.anyEcho.join(' ')}`)
   }
-  const mapped = rows.map(r => ({ id: r.id, cohort: r.cohort, stem: r.item?.prompt,
-    choices: r.item?.choices ?? [], key: r.item?.correct_answer }))
-    .filter(r => Array.isArray(r.choices) && r.choices.length >= 3)
-  report(`LIVE BANK  family=${argOf('--family') ?? 'all'} section=${argOf('--section') ?? 'all'}  (${rows.length} rows read)`, mapped)
-} else {
-  const path = args.find(a => a.endsWith('.json'))
-  if (!path) { console.error('usage: check-stem-echo.mjs <batch.json> | --bank | --selftest'); process.exit(2) }
-  const batch = JSON.parse(readFileSync(path, 'utf8'))
-  if (!Array.isArray(batch) || !batch.length) {
-    console.error(`REFUSING: ${path} holds no items.`); process.exit(2)
-  }
-  const r = report(path, batch.map(i => ({ id: i.id, stem: i.prompt, choices: i.choices, key: i.correct_answer })))
-  if (r.anyEcho.length) console.log(`  ids: ${r.anyEcho.join(' ')}`)
 }

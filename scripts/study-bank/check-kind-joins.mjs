@@ -126,10 +126,18 @@ function selftest() {
   console.log('selftest OK — catches within-kind key-shape skew, passes a balanced set')
 }
 
-const arg = process.argv[2]
-if (arg === '--selftest') { selftest(); process.exit(0) }
-if (!arg) { console.error('usage: check-kind-joins.mjs <items.json> | --selftest'); process.exit(1) }
-const { fails, warns } = run(JSON.parse(readFileSync(arg, 'utf8')))
-for (const w of warns) console.log(`  ok  ${w}`)
-if (fails.length) { console.error('\nFAIL:'); for (const f of fails) console.error('  - ' + f); process.exit(1) }
-console.log('\nper-kind joins clean')
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-kind-joins.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-kind-joins.mjs')
+if (RUN_AS_CLI) {
+  const arg = process.argv[2]
+  if (arg === '--selftest') { selftest(); process.exit(0) }
+  if (!arg) { console.error('usage: check-kind-joins.mjs <items.json> | --selftest'); process.exit(1) }
+  const { fails, warns } = run(JSON.parse(readFileSync(arg, 'utf8')))
+  for (const w of warns) console.log(`  ok  ${w}`)
+  if (fails.length) { console.error('\nFAIL:'); for (const f of fails) console.error('  - ' + f); process.exit(1) }
+  console.log('\nper-kind joins clean')
+}

@@ -124,47 +124,55 @@ function selftest() {
  * effects on import is a trap for the next caller.
  */
 const RUN_DIRECTLY = import.meta.url === `file://${process.argv[1]}`
-const args = process.argv.slice(2)
-if (!RUN_DIRECTLY) { /* imported for its helpers; do nothing */ }
-else if (args[0] === '--selftest') { selftest(); process.exit(0) }
-else {
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-key-rank-spread.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-key-rank-spread.mjs')
+if (RUN_AS_CLI) {
+  const args = process.argv.slice(2)
+  if (!RUN_DIRECTLY) { /* imported for its helpers; do nothing */ }
+  else if (args[0] === '--selftest') { selftest(); process.exit(0) }
+  else {
 
-let items
-if (args[0] === '--bank') {
-  const { createClient } = await import('@supabase/supabase-js')
-  const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
-    .filter(l => l.includes('=') && !l.startsWith('#'))
-    .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
-  const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
-  items = []
-  for (let from = 0; ; from += 1000) {
-    const { data, error } = await db.from('study_item_bank')
-      .select('family, section, cohort, item').eq('archived', false).eq('verified', true)
-      .in('section', ['math']).range(from, from + 999)
-    if (error) throw new Error(error.message)
-    items.push(...(data ?? []).map(r => ({ group: `${r.family}/${r.cohort}`, ...r.item })))
-    if (!data || data.length < 1000) break
+  let items
+  if (args[0] === '--bank') {
+    const { createClient } = await import('@supabase/supabase-js')
+    const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
+      .filter(l => l.includes('=') && !l.startsWith('#'))
+      .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
+    const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+    items = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await db.from('study_item_bank')
+        .select('family, section, cohort, item').eq('archived', false).eq('verified', true)
+        .in('section', ['math']).range(from, from + 999)
+      if (error) throw new Error(error.message)
+      items.push(...(data ?? []).map(r => ({ group: `${r.family}/${r.cohort}`, ...r.item })))
+      if (!data || data.length < 1000) break
+    }
+  } else {
+    items = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')).map(x => ({ group: f.split('/').pop(), ...x })))
   }
-} else {
-  items = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')).map(x => ({ group: f.split('/').pop(), ...x })))
-}
 
-const rows = run(items)
-console.log(`${rows.reduce((a, r) => a + r.n, 0)} items with all-numeric option sets\n`)
-let failed = false
-for (const r of rows) {
-  const dist = Array.from({ length: r.width }, (_, i) => `${(100 * (r.ranks[i] ?? 0) / r.n).toFixed(0)}%`).join(' ')
-  /* Only a skewed AND sorted cohort is exposed. A skewed cohort whose
-     options are unsorted cannot turn rank into letter. */
-  const skewed = r.n >= 20 && Math.abs(r.worst) > BAR
-  const sorted = r.ascPct >= 60
-  const flag = skewed && sorted
-  if (flag) failed = true
-  const tag = flag ? '   EXPOSED' : skewed ? '   skewed but unsorted' : ''
-  console.log(`  ${r.name.padEnd(28)} n=${String(r.n).padStart(3)}  ranks ${dist}  worst ${r.worst >= 0 ? '+' : ''}${r.worst.toFixed(1)}  asc ${r.ascPct.toFixed(0)}%${tag}`)
-}
-console.log(failed
-  ? `\nFAIL — a cohort is both rank-skewed and printed in order, so its option LETTER is its magnitude RANK. The serve-time shuffle is the only thing hiding it; do NOT preserve ascending order for these until they are flat.`
-  : `\nNo cohort is both skewed and sorted.`)
-process.exit(failed ? 1 : 0)
+  const rows = run(items)
+  console.log(`${rows.reduce((a, r) => a + r.n, 0)} items with all-numeric option sets\n`)
+  let failed = false
+  for (const r of rows) {
+    const dist = Array.from({ length: r.width }, (_, i) => `${(100 * (r.ranks[i] ?? 0) / r.n).toFixed(0)}%`).join(' ')
+    /* Only a skewed AND sorted cohort is exposed. A skewed cohort whose
+       options are unsorted cannot turn rank into letter. */
+    const skewed = r.n >= 20 && Math.abs(r.worst) > BAR
+    const sorted = r.ascPct >= 60
+    const flag = skewed && sorted
+    if (flag) failed = true
+    const tag = flag ? '   EXPOSED' : skewed ? '   skewed but unsorted' : ''
+    console.log(`  ${r.name.padEnd(28)} n=${String(r.n).padStart(3)}  ranks ${dist}  worst ${r.worst >= 0 ? '+' : ''}${r.worst.toFixed(1)}  asc ${r.ascPct.toFixed(0)}%${tag}`)
+  }
+  console.log(failed
+    ? `\nFAIL — a cohort is both rank-skewed and printed in order, so its option LETTER is its magnitude RANK. The serve-time shuffle is the only thing hiding it; do NOT preserve ascending order for these until they are flat.`
+    : `\nNo cohort is both skewed and sorted.`)
+  process.exit(failed ? 1 : 0)
+  }
 }

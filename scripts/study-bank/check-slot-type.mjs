@@ -159,16 +159,24 @@ function selftest() {
   console.log('selftest OK — catches a desire among facts and a null among causes; leaves a uniform slot alone')
 }
 
-const args = process.argv.slice(2)
-if (args[0] === '--selftest') { selftest(); process.exit(0) }
-if (!args.length) { console.error('usage: check-slot-type.mjs <topics.json> [...] | --selftest'); process.exit(1) }
-const topics = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
-const { hits, checked } = run(topics)
-console.log(`${checked} questions typed across ${topics.length} topics`)
-if (!hits.length) { console.log('no odd-category slots'); process.exit(0) }
-console.log(`\n${hits.length} question(s) where ONE answer is a different kind from the other four:`)
-for (const h of hits) {
-  console.log(`  ${h.qid} ${h.variant}: ${h.oddCategory} among ${h.majority} — "${h.answer}…"`)
+/* The CLI runs ONLY when this file is the entry point. Without this guard,
+ * `import { ... } from './check-slot-type.mjs'` executes the CLI, prints usage and exits —
+ * so a script importing this checker to measure the live bank measures
+ * NOTHING while printing something that looks like output. Added 2026-09-11
+ * after exactly that happened twice in one session. */
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-slot-type.mjs')
+if (RUN_AS_CLI) {
+  const args = process.argv.slice(2)
+  if (args[0] === '--selftest') { selftest(); process.exit(0) }
+  if (!args.length) { console.error('usage: check-slot-type.mjs <topics.json> [...] | --selftest'); process.exit(1) }
+  const topics = args.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
+  const { hits, checked } = run(topics)
+  console.log(`${checked} questions typed across ${topics.length} topics`)
+  if (!hits.length) { console.log('no odd-category slots'); process.exit(0) }
+  console.log(`\n${hits.length} question(s) where ONE answer is a different kind from the other four:`)
+  for (const h of hits) {
+    console.log(`  ${h.qid} ${h.variant}: ${h.oddCategory} among ${h.majority} — "${h.answer}…"`)
+  }
+  console.log('\nAdvisory. Hand these to the semantic reviewer; a kill that denies a')
+  console.log('fact does not refute a desire, and may even affirm it.')
 }
-console.log('\nAdvisory. Hand these to the semantic reviewer; a kill that denies a')
-console.log('fact does not refute a desire, and may even affirm it.')
