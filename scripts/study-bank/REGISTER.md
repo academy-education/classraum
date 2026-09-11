@@ -460,3 +460,23 @@ structural checks are pre-flight only. See CLAUDE.md.
 
 - **2026-09-11** — **`check-symbolic-hub.mjs` HARDCODED A 25.0% CONTROL, AND AN AUTHOR FOUND IT.** Same defect CLAUDE.md already records in `math-bank-helper` ("a hardcoded 25% control on five-choice data — five free points, always in the flattering direction"), in a second file. The sweep that caught the first one missed this because it searched for checkers and this reads as an author tool. The control is now derived from the population's own modal option count, a mixed-width population is refused, and **zero structured sets now print `NOT MEASURED` instead of a margin** — previously an empty population printed a clean-looking `0.0% vs 25.0%, margin -25.0pts`, which reads as a strong pass.
 
+- **2026-09-11** — **AN INTERLEAVED ATTACK ON A PASSAGE BATCH READS ~25 POINTS TOO HIGH, AND THAT IS NOW MEASURED TWICE.** `isee-reading-s5` scored **90.0%** with all 30 items in one file and **63.3%** under a leakage-free split (6 files x 5 items, one item per passage, a fresh solver each). `ACT-ATTACK-RESULT.md` records the same shape, 90 -> 76. The mechanism is sibling leakage: six items about one passage reconstruct the passage between them, so the solver is not working options-only at all.
+
+  **Consequence for every future passage-family run:** an interleaved number is an UPPER BOUND and must be labelled as one. Use `attack-split.mjs`. This does not touch the three live R&W controls run earlier today (`ctrl-cs`, `ctrl-eoi-d`, `ctrl-ii-c`) — those sampled unrelated single items from the bank, so there were no siblings to leak — but it does mean a candidate passage batch and a live control must be rendered the same way or the comparison is meaningless.
+
+  `isee-reading-s5` itself does NOT insert: composite 66.7% over the shipped bytes, +41.7 against a 25.0% control. One redesign pass was run and failed in the way CLAUDE.md predicts — the author rebuilt all five main-idea sets and inverted both attitude keys after four solvers independently named "one option is a claim-plus-consequence thesis, three are topic labels", and fresh solvers then scored **8/8 on the redesigned items while rating 6 of the 8 fully undecidable**. Third brief, third tell, no movement. The author stopped rather than start a fourth pass, which is the correct call.
+
+  The residual they named is **subject recall, not an option-set leak**: six of nine solvers recognised the real-world subject (Sanborn-style fire-insurance maps, eelgrass donor-meadow restoration, night acoustic leak survey) and three said recognition decided the pick. No option rewrite reaches that. It needs passages whose central claim is not a transferable principle — a re-author, not an edit.
+
+- **2026-09-11** — **`ssat-verbal-s10` SPLITS BY STRATUM: THE 15 SYNONYMS ARE ATTACK-CLEAN, THE 15 ANALOGIES ARE NOT.** Two independent rounds, three solvers each, 5-choice so the control is 20.0%:
+
+        stratum     round 1              round 2 (after repair)
+        analogy     28/45 = 62.2%        20/45 = 44.4%   (+24.4)
+        synonym      5/45 = 11.1%         6/45 = 13.3%   (-6.7)
+
+  Synonyms sit at or below chance in both rounds and no solver could name a mechanism for them. Analogies remain +24.4 after a repair round.
+
+  **The analogy leak is CROSS-ITEM and per-item legality could not see it.** All three round-2 solvers put `legal = 5` on 14 of 15 analogies — every option is a clean nameable relation that could be the key under some hidden stem — and still scored 44.4%. The mechanism, named independently by all three solvers and the key grader: the distractor cast reuses four relation families (young:adult 6x, member:class 8x, tool:user 8x, part:whole 6x), and a solver who notices those are almost never keyed strikes them and takes what remains. The author's own round-1 repair INSTALLED it. This is CLAUDE.md's "a batch built to one brief develops a cross-item tell", now with the load-bearing detail that **the per-item `legal` count is blind to it** — the second independent demonstration today that `legal` is not a proxy for solvability.
+
+  Counter-examples the author planted held: keying one item to tool:user and another to part:whole scored 0/3 and 1/3. So the named fix is real — key several items TO the filler families and vary the cast — but it needs another authoring round plus a fresh attack. Disposition: synonyms to the normal gate, analogies held.
+
