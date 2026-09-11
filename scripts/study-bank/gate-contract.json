@@ -1,48 +1,56 @@
 {
-  "_comment": "SINGLE SOURCE for which gates each item family must clear. Read by src/lib/study/bank-qc.ts (typed) AND by scripts/study-bank/gate.mjs (the insert path). A .ts file cannot be imported by the .mjs helper without a build step, and a second hand-written copy is exactly the drift that let the dashboard lose the tells gate — so the data lives here and both sides read it.",
-  "familyStages": {
-    "mc_hidden_source": [
-      "shape",
-      "withsource",
-      "nosource",
-      "elimination",
-      "tells"
-    ],
-    "mc_stem_source": [
-      "shape",
-      "withsource",
-      "nosource",
-      "tells"
-    ],
-    "cloze": [
-      "shape",
-      "withsource",
-      "nosource",
-      "tells"
-    ],
-    "production": [
-      "shape",
-      "withsource",
-      "tells"
-    ]
-  },
-  "taskFamily": {
-    "choose_response": "mc_hidden_source",
-    "conversation": "mc_hidden_source",
-    "announcement": "mc_hidden_source",
-    "academic_talk": "mc_hidden_source",
-    "daily_life": "mc_hidden_source",
-    "academic_passage": "mc_hidden_source",
-    "fill_in_blanks": "cloze",
-    "speaking_repeat": "production",
-    "speaking_interview": "production",
-    "arrange_words": "production",
-    "writing_email": "production",
-    "writing_discussion": "production",
-    "sat_rw": "mc_hidden_source",
-    "sat_math": "mc_stem_source",
-    "build_a_sentence": "production",
-    "interview": "production",
-    "listen_and_repeat": "production"
-  }
+ "_comment": "SINGLE SOURCE for which gates each item family must clear. Read by src/lib/study/bank-qc.ts (typed) AND by scripts/study-bank/gate.mjs (the insert path). A .ts file cannot be imported by the .mjs helper without a build step, and a second hand-written copy is exactly the drift that let the dashboard lose the tells gate \u2014 so the data lives here and both sides read it.",
+ "familyStages": {
+  "mc_hidden_source": [
+   "shape",
+   "withsource",
+   "nosource",
+   "elimination",
+   "tells"
+  ],
+  "mc_stem_source": [
+   "shape",
+   "withsource",
+   "nosource",
+   "tells"
+  ],
+  "cloze": [
+   "shape",
+   "withsource",
+   "nosource",
+   "tells"
+  ],
+  "production": [
+   "shape",
+   "withsource",
+   "tells"
+  ]
+ },
+ "taskFamily": {
+  "choose_response": "mc_hidden_source",
+  "conversation": "mc_hidden_source",
+  "announcement": "mc_hidden_source",
+  "academic_talk": "mc_hidden_source",
+  "daily_life": "mc_hidden_source",
+  "academic_passage": "mc_hidden_source",
+  "fill_in_blanks": "cloze",
+  "speaking_repeat": "production",
+  "speaking_interview": "production",
+  "arrange_words": "production",
+  "writing_email": "production",
+  "writing_discussion": "production",
+  "sat_rw": "mc_hidden_source",
+  "sat_math": "mc_stem_source",
+  "build_a_sentence": "production",
+  "interview": "production",
+  "listen_and_repeat": "production",
+  "research_summaries": "mc_hidden_source",
+  "conflicting_viewpoints": "mc_hidden_source",
+  "data_representation": "mc_hidden_source",
+  "humanities": "mc_hidden_source",
+  "social_science": "mc_hidden_source",
+  "literary_narrative": "mc_hidden_source",
+  "natural_science": "mc_hidden_source"
+ },
+ "taskFamilyNote": "The seven ACT reading/science tasks above were resolving by FALLTHROUGH to the mc_hidden_source default, not by declaration. The default happened to be right for all of them \u2014 an ACT passage or figure is a real withheld source, so `elimination` is a stage that can actually be run \u2014 but gate.mjs already carries the story of the same fallthrough silently demanding `elimination` of every non-SAT MATHS batch, where the stem IS the source and the stage is impossible. Declaring them makes the next reader see a decision instead of an absence. Adding these changed no batch's resolved family: verified by resolving all nine live ACT (section, task) pairs before and after."
 }
