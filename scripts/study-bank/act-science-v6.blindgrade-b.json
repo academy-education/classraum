@@ -1,0 +1,64 @@
+{
+  "ACT-SC6-P1-Q1": {
+    "pick": "16 min",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "M is the dash-dot/open-diamond series (label M at the right end, x=20). At 5 mg/L its marker sits one minor division above the 15-min gridline => 16 min. RESOLVABLE: comfortably. The three distractors are the 5 mg/L values of J (30), L (9) and K (21), so the read only has to separate values 5-14 min apart (11-31 px at the served 260 width); the fine 16-vs-15 distinction is never required. Every distractor is the endpoint of a real error (traced the wrong line back from the right-edge labels), which is the dominant error on this item type since J and M cross between 10 and 15 mg/L. Marker shapes disambiguate the crossing, so tracing is safe. One coincidence worth recording, not enough to drop the item: 9 + 21 = 30, leaving 16 as the only option not in that relation; a test-wise student could notice the odd-one-out. I would re-deal the numbers so no two distractors sum to a third.",
+    "figure_read": "M@5 = 16 min (y=92.8; 1 unit = 1 px, 2.2 px/min)"
+  },
+  "ACT-SC6-P1-Q2": {
+    "pick": "Additive J gave its greatest clearing time of the concentrations tested",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Experiment 2 used 10 mg/L (stated in the passage, not in the stem - that is the work). At 10 mg/L: J = 47, which is J's maximum (J runs 12, 30, 47, 36, 21 and is the only series that peaks anywhere but 20 mg/L). K (12,21,27,29,33), L (12,9,8,18,27) and M (12,16,40,42,46) all rise monotonically to their maximum at 20 mg/L. RESOLVABLE: comfortably, and it does not turn on a tight read. M is the only near-call numerically (40 at 10 vs 42 at 15, a 4.4 px difference between two open diamonds) but M keeps climbing to 46 at 20, so the shape of the curve settles it without measuring the 40/42 gap. Mild option-set weakness: three of the four options are false for the identical reason (peak at 20 mg/L), so a student who spots that pattern disposes of them together - but only after reading the figure, so it is not a shortcut to the key.",
+    "figure_read": "at 10 mg/L: J 47, K 27, L 8, M 40"
+  },
+  "ACT-SC6-P1-Q3": {
+    "pick": "Additive K",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Figure 2: K unstirred 27, stirred 32 - the only pair whose open bar is taller. J 47 -> 17, L 8 -> 4, M 40 -> 36. RESOLVABLE: yes, and this is the repair working. The K bar tops differ by 11 px at the served width (5 min at 2.2 px/min), against the 2.4 px reported before the redraw; it reads as a taller white bar at native 260 with no magnification. The next-closest pairs, L and M, are 8.8 px apart and also read directly. Both bar types carry the same 1 px black stroke, so the white bar's top edge is as locatable as the black one's - confirmed in the rendered raster, not only in the source. Distractors: M is the honest near-miss (only 4 min lower, and the tallest pair on the chart), L is the other 4-min drop, J is the blowout a careless reader picks if they invert the legend.",
+    "figure_read": "unstirred/stirred: J 47/17, K 27/32, L 8/4, M 40/36"
+  },
+  "ACT-SC6-P1-Q4": {
+    "pick": "36 min",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Two steps: Figure 2 identifies the additive (J drops 47 -> 17, i.e. 30 min; the next largest drops are L and M at 4 min each, and K rises), then Figure 1 gives J at 15 mg/L = 36. 'By far more' is unambiguous on both absolute (30 vs 4) and proportional (64% vs 50%) readings, so there is no second defense. RESOLVABLE: comfortably. Step 1 is a 66 px bar difference. Step 2 lands one minor division above the 35-min gridline; the options are 7+ min apart (18, 29, 42, 36), so the exact 36-vs-35 reading is not load-bearing. Distractors are the 15 mg/L values of L (18), K (29) and M (42) - each the endpoint of picking the wrong series in step 1 or tracing the wrong line in step 2. Best-constructed item in the set.",
+    "figure_read": "J@15 = 36 min (y=48.8)"
+  },
+  "ACT-SC6-P1-Q5": {
+    "pick": "24 min",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "K@5 = 21, K@10 = 27, so 7.5 mg/L interpolates to 24. RESOLVABLE: comfortably, and robustly - the two bracketing points are 13.2 px apart, and the answer survives a sloppy read (20 and 28 still give 24 as the closest option). Distractors: 21 is the failure to interpolate at all (reads the lower endpoint), 12 is the additive-free control at 0 mg/L, 16 is M@5, i.e. the wrong series. Not reachable without solving: no option is the sum or difference of two others, and nothing in the configuration supplies the value. Partial shortcut worth noting - the key is the only option greater than 21, so a student who reads K@5 = 21 and knows only that the curve rises can skip the midpoint arithmetic; that still requires the figure, so it does not break the item, but it means the interpolation is softer than it looks.",
+    "figure_read": "K@5 = 21, K@10 = 27, midpoint 24"
+  },
+  "ACT-SC6-P1-Q6": {
+    "pick": "Additive L",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The comparison standard is the additive-free mean plotted at 0 mg/L = 12 min (the passage says so, and it is drawn as a distinct larger open circle where all four series begin). L is the only additive that goes below it: 9 at 5 mg/L and 8 at 10 mg/L. J (30,47,36,21), K (21,27,29,33) and M (16,40,42,46) are above 12 at every tested concentration. RESOLVABLE: yes, but this is the tightest comparison remaining in the batch and the one I would name if anything were to be tightened further. The decisive gaps are 6.6 px (control 12 vs L@5 9) and 8.8 px (control vs L@10 8) between a filled triangle and the open control circle. What rescues it is the gridline: the control sits one minor division ABOVE the 10-min major and both L points sit below it, so the reader compares each to a printed line rather than to each other. Verified in the 260-px raster without magnification. Distractors are plausible - the natural error is comparing the curves to one another (L is lowest everywhere, J is highest at 10) or forgetting that the 0 mg/L point is the control at all.",
+    "figure_read": "control (0 mg/L) = 12; L = 9 at 5 and 8 at 10"
+  },
+  "_meta": {
+    "file_graded": "scripts/study-bank/act-science-v6.grade.json",
+    "sha256": "9bc25d1ecdb7006457715bd944cd373508c517b662b4708d4b16fac08aa45898",
+    "cross_figure_invariant": "VERIFIED INDEPENDENTLY, EXACT. Figure 2's unstirred bars decode to J 47, K 27, L 8, M 40 (bar top to baseline y=282, 2.2 px/min); Figure 1 at 10 mg/L decodes to J 47, K 27, L 8, M 40 (y from baseline 128, 2.2 px/min). All four agree to zero error, not to within a rounding tolerance. Q3 and Q4 depend on it and are safe; Q2 depends on Experiment 2's concentration being 10 mg/L, which the passage states.",
+    "figure_repair": "CONFIRMED on the rendered raster at the served width, not from the source alone. viewBox 0 0 260 296 with width=260 gives 1 user unit = 1 CSS px at any container at or above 260. Both panels are 110 px for 50 min = 2.2 px/min; majors every 10 min (tick length 4) and minors every 5 min (tick length 2.5) on all four axes; every bar in Figure 2, filled and open alike, carries stroke #000 at width 1. Q3's key comparison is now 11 px (was 2.4). I read every item from a 260-px render with no magnification.",
+    "hard_to_read": [
+      "Q6, the only one I would flag: control 12 vs L 9 / L 8 is 6.6-8.8 px between a small filled triangle and the open control circle. Legible only because the 10-min major gridline falls between them. If any future edit moves that series or drops the major, this item stops being readable.",
+      "Minor, no item depends on it: the 0 mg/L control circle is the shared origin of all four polylines, so four line stubs radiate from one marker. The value is unambiguous but the point is the busiest spot on the chart.",
+      "Minor: Figure 2 pairs are separated by a 2 px white gutter (e.g. bars at x=38.5+21 and x=61.5). The strokes keep the boundary visible at 260, but it is the first thing that would fuse if the figure is ever scaled below 260."
+    ],
+    "leak_check": "No key or difficulty leak found in the render. Fields present are id, passage_id, passage_title, format, passage, graphic, prompt, choices, domain - correct_answer, difficulty, explanation, solve, distractor_solve and subskill are all absent. domain is an ACT reporting category and does not narrow the key. Key positions after the re-deal are index 2,3,0,3,2,0 - two each in slots 1, 3 and 4 and none in slot 2, which is unremarkable at n=6. Two things the render does that are not leaks but are worth passing on: (1) the re-deal leaves numeric options unsorted (Q1 '30, 9, 16, 21'; Q4 '18, 29, 42, 36'; Q5 '12, 21, 24, 16'), whereas the real ACT orders numeric choices monotonically - the shipped order should be restored to ascending, since a scrambled numeric ballot is itself an off-exam tell; (2) Q1's distractors contain the arithmetic coincidence 9 + 21 = 30, which makes the key the odd one out.",
+    "difficulty_calibration": "Against the enhanced ACT Science section (40 questions in 40 min, 6 passages), this set grades two easy and four medium, with no hard item. Every question is a locate-and-read or a two-step locate-then-read; none requires reconciling a conflict between the two experiments, extending a trend past the plotted range, or evaluating a design choice. Q6 is the closest to the section's harder end because it makes the student notice that 0 mg/L is the control rather than a data point. That is a reasonable profile for one research-summaries set and I am not calling it a failure, but if this set was commissioned to supply hard items, it does not.",
+    "protocol": "Graded blind from the grade.json alone. I did not open act-science-v6.batch.json, any gradekey, or any other grader's output. Picks were solved from the stem and the figure; the figure was decoded from the SVG coordinates and then independently checked against a 260-px raster render."
+  }
+}

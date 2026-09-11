@@ -1,0 +1,60 @@
+{
+  "ACT-SC6-P1-Q1": {
+    "pick": "16 min",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "M (dash-dot / open diamond) at 5 mg/L sits at y=92.8; axis is 2.2 px/min with 0 at y=128, so 16 min exactly. The diamond's centre is 2.2 px above the 15-min minor gridline, but that fine read is not load-bearing: the nearest option (21 min) is 11 px away, so the discrimination is comfortable at any width. FIGURE: comfortably resolvable. The whole option set is the column of values at 5 mg/L (J=30, L=9, K=21, M=16), so every distractor is the endpoint of tracing the wrong dash pattern - the real error this item catches. Minor structural note, low severity: 9 + 21 = 30, so three options form a sum triple and the key is the odd one out; it also happens to be the only option that is not a multiple of 3. That is incidental to a correctly built column of four readings, but a test-wise student could notice it."
+  },
+  "ACT-SC6-P1-Q2": {
+    "pick": "Additive J gave its greatest clearing time of the concentrations tested",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Exp 2 used 10 mg/L (passage, not the stem - the retrieval is part of the work). Per-additive maxima across 0/5/10/15/20: J 12,30,47,36,21 -> max at 10; K 12,21,27,29,33 -> max at 20; L 12,9,8,18,27 -> max at 20; M 12,16,40,42,46 -> max at 20. Only J peaks at 10, so no second option is defensible. FIGURE: comfortably resolvable - J's peak at 47 stands 24.2 px above its own 15 mg/L value and the other three curves are still climbing at the right edge, which is a shape judgement, not a pixel one. BUT the key is reachable without solving, and this is the item's real weakness: J is ALSO the highest curve of all four at 10 mg/L, so a student who misreads the stem as 'which additive had the greatest clearing time at that concentration' - the far more common reading of that sentence - lands on J without ever comparing any curve to itself. The distinction the item was built to test (own maximum vs highest overall) therefore never has to be made, and no distractor is the endpoint of that misreading. Fixable by moving the item to a concentration where the two readings diverge, or by making one other additive peak at 10 while J stays highest."
+  },
+  "ACT-SC6-P1-Q3": {
+    "pick": "Additive K",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Fig 2 at 2.2 px/min: J 47->17, K 27->32, L 8->4, M 40->36. K is the only pair where the open bar tops out above the filled bar. FIGURE: comfortably resolvable, and the repair is real. The K pair differs by 11.0 px (5 min) and the two near-miss pairs, L and M, by 8.8 px each (4 min) - so the smallest gap a student must judge on this item is 8.8 px at the served width, not 2.4. I could read all three directions at 1:1 without magnifying. Both bar types carry stroke-width 1 in #000, so the filled and open tops are drawn identically and neither is systematically half a pixel taller; I checked, and every bar bottom is exactly y=282, so no bar is floating or clipped. M is the right near-miss distractor (stirred lower by only 4 min, easy to flip); L is the second; J's 30-min collapse is the obvious non-answer and is the weakest of the three."
+  },
+  "ACT-SC6-P1-Q4": {
+    "pick": "36 min",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Stirring deltas: J -30, L -4, M -4, K +5. J's drop is 7.5x the next largest, and in pixels it is a 66.0 px fall against 8.8 px - no judgement call at all, which is the right way to build the 'by far more' clause. Then J at 15 mg/L = 36 min (y=48.8). FIGURE: comfortably resolvable; the J marker sits 2.2 px above the 35-min minor gridline, but the nearest competing option (42 min) is 13.2 px away. The three distractors are L, K and M at 15 mg/L (18, 29, 42), i.e. exactly where you land if you pick the wrong additive in step one - the strongest distractor set in the batch. Checked for reachability: no option is the sum or difference of two others and none is a quantity the stem prints; 18 is half of 36, which is the only relation present and not one a guesser can act on."
+  },
+  "ACT-SC6-P1-Q5": {
+    "pick": "24 min",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "K (dashed / open square) is 21 at 5 mg/L and 27 at 10 mg/L; 7.5 is the midpoint of a segment the figure draws as a straight line, so 24 min. 21 is not defensible as 'closest' with 24 on the ballot, so exclusive holds - and note the disambiguating work is being done: 21 (round back to the nearest plotted point) is ON the ballot rather than deleted, which is what makes the interpolation actually count. FIGURE: this is the tightest read in the batch, 6.6 px between the 21 and 24 positions, but it is arithmetic rather than pixel discrimination - you read two plotted squares 13.2 px apart and halve the interval. Distractors: 12 = the additive-free value at 0 mg/L, 21 = the nearest plotted point, 16 = M at 5 mg/L (wrong curve). All three are endpoints of errors students actually make."
+  },
+  "ACT-SC6-P1-Q6": {
+    "pick": "Additive L",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Additive-free control = 12 min (open circle at 0 mg/L, y=101.6). L falls to 9 at 5 mg/L and 8 at 10 mg/L, the only additive ever below 12; J's minimum is 21, K's 21, M's 16. Exclusive. FIGURE: resolvable, and the 10-min major gridline does the work - the control circle sits above it and both L points sit below it, so the 6.6 px difference never has to be eyeballed directly. HARDEST MARKER IN THE FIGURE, and it is on this item: the filled triangles are the only asymmetric marker, apex 2.6 px above the datum and base 1.3 px below, so L's 5 mg/L triangle has its apex at y=105.6 - poking just above the 10-min gridline while the datum is 9. A student reading the apex instead of the centroid reads both L points as ~10 rather than 9 and 8. It does not change the answer here (still below 12), but it is the one marker whose centre is not self-evident, and any future item turning on an exact triangle read would be in trouble. Second-hardest: the 0 mg/L open circle itself is unlabelled by series, sits under four coincident polyline origins, and its value (12) falls between gridlines with no tick - 'about 12' is an interpolated read that two items lean on."
+  },
+  "_report": {
+    "file": "scripts/study-bank/act-science-v6.grade.json",
+    "sha256": "9bc25d1ecdb7006457715bd944cd373508c517b662b4708d4b16fac08aa45898",
+    "figure_geometry_decoded": "Fig 1: y=128 is 0 min, y=18 is 50 min, 2.2 px/min. J 12/30/47/36/21, K 12/21/27/29/33, L 12/9/8/18/27, M 12/16/40/42/46 at 0/5/10/15/20 mg/L. Fig 2: y=282 is 0, y=172 is 50, 2.2 px/min. J 47->17, K 27->32, L 8->4, M 40->36. Every plotted value is a whole minute, and every marker centre matches its polyline vertex (checked all 16 markers in each series against the polyline points, plus the four right-edge series letters against their 20 mg/L endpoints - all correct).",
+    "cross_figure_invariant": "VERIFIED INDEPENDENTLY, not accepted. Fig 2's four unstirred bars decode to J 47.0, K 27.0, L 8.0, M 40.0; Fig 1 at 10 mg/L decodes to J 47.0, K 27.0, L 8.0, M 40.0. Exact match on all four. Q2 and Q4 depend on it and both are safe.",
+    "repair_checked": "Claims confirmed against the SVG rather than taken on trust. viewBox is 0 0 260 296 with width=260, so 1 unit = 1 px at any container width >= 260 (a 320 px phone viewport with 20 px padding leaves 280 - still 1:1). Fig 2 is 2.2 px/min. Both bar types carry stroke #000 width 1, identical. Both panels have majors every 10 min (y 128/106/84/62/40/18 and 282/260/238/216/194/172) with minors every 5 (117/95/73/51/29 and 271/249/227/205/183), each with its own axis tick. Q3's key comparison is now 11.0 px with the two near-misses at 8.8 px; I resolved all of them at 1:1 with no magnification. Residual risk: if a wrapper forces width:100% into a column narrower than 260 the whole figure scales down proportionally - at 0.85 the smallest load-bearing gaps (8.8 px on Q3, 6.6 px on Q5/Q6) become 7.5 and 5.6 px, still readable, but that is the margin left.",
+    "figure_legibility_complaints": [
+      "Filled triangles (Additive L) are the only asymmetric marker: apex sits 2.6 px above the datum, base 1.3 px below. At 5 mg/L the apex crosses the 10-min gridline while the value is 9. Harmless for Q6, but it is the one marker whose centre must be inferred, and it should not be used for an exact read.",
+      "The 0 mg/L open circle reads 12 min, a value with no tick and no gridline, under four overlapping polyline origins. Two items lean on it.",
+      "Fig 1 minor gridlines are #e2e2e2 at 0.5 px - effectively invisible on a low-DPI display. The 0.6 px axis minor ticks are the usable cue. Not load-bearing for any item in this set, but the minors are not really doing the job the repair note credits them with inside the plot area.",
+      "Series letters J/K/L/M sit at x=250 against the plot edge at x=246, so 'M' is ~4 px from a diamond at (246, 26.8). Readable, but tight."
+    ],
+    "leak_check": "No key or difficulty leaks found in the render. Key positions across the six items are 3, 4, 1, 4, 3, 1 - no slot bias and no ABCD permutation. No option is the sum or difference of two others in any item except the incidental 9+21=30 in Q1 (see that note), and no configuration constant (90/180/360/1/100) is in play. No option restates a quantity the stem prints. One thing the render does retain that a student never sees: the `domain` field. 'Evaluation of Models, Inferences, and Experimental Results' on Q6 announces that the item is a claim-contradiction before you read the stem, and 'Scientific Investigation' on Q2 signals a design question. That is item-type metadata, not a key or a difficulty label, so it is a weak leak - but it is a leak, and removing it would cost nothing.",
+    "difficulty_against_real_exam": "Two easy, four medium, no hard. Measured against an enhanced ACT Science section this is an honest but soft opener-to-middle Research Summaries set: Q1 and Q3 are single-point lookups, Q5 is standard interpolation, Q2/Q4/Q6 are the two-step items. Q4 is the strongest item here - genuine cross-figure chaining with distractors at the right endpoints. Nothing in the set reaches the difficulty of a real end-of-section item, which usually requires a conflicting-hypothesis judgement or an extrapolation beyond the plotted range. That is information, not a failure, but do not label any of these hard.",
+    "single_substantive_concern": "Q2. It grades exclusive:true because no second option is defensible, but the key is reachable by the wrong reading: J is simultaneously the additive whose own maximum is at 10 mg/L and the additive with the highest clearing time at 10 mg/L, so the intended comparison never has to be performed and no distractor punishes skipping it. If one item in this batch should be reworked before a sitting, it is that one - and reworking it is an authoring change, not a figure change."
+  }
+}

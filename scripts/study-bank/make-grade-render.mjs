@@ -54,9 +54,16 @@ import { createHash } from 'node:crypto'
  * difficulty label in prose as well. One grader said flatly that it "biases
  * every grader's difficulty rating downward, mine included".
  *
- * `domain` stays: it is a one-word blueprint label, not a method.
+ * `domain` is withheld too, and my reasoning for keeping it was wrong. I kept
+ * it as "a one-word blueprint label, not a method" — true for maths, where it
+ * reads "Functions" or "Algebra". It is FALSE for ACT Science and ACT Reading,
+ * where the blueprint domains are full descriptive phrases: a grader found
+ * that "Evaluation of Models, Inferences, and Experimental Results" announces
+ * an item as a claim-contradiction before the stem is read. Their words:
+ * "weak, but free to remove." A grader judges against the real exam, not
+ * against the blueprint, so nothing is lost.
  */
-const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill/i
+const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill|distractor|^domain$/i
 /** Fields that match SENSITIVE but are structural and safe to keep. */
 const KEEP_ANYWAY = new Set(['passage_group_id', 'topic_id', 'set_id'])
 
@@ -71,9 +78,21 @@ const KEEP_ANYWAY = new Set(['passage_group_id', 'topic_id', 'set_id'])
  *
  * That pattern reaches no STUDENT (the assembler re-deals every draw, §2b).
  * It absolutely reaches a GRADER reading the render, which is the whole
- * population this file serves. So the render deals like the draw does: a
- * per-item seeded shuffle, deterministic so two graders and a re-run see the
- * same deal and their disagreement means something.
+ * population this file serves. So the render deals like the draw does:
+ * deterministic, so two graders and a re-run see the same deal and their
+ * disagreement means something.
+ *
+ * AND FROM A DECK, not independently per item — corrected the same day, by
+ * a grader who read the first version. A per-item seed is deterministic but
+ * BINOMIAL, so slot counts drift and clump. On isee-math-s11 it produced
+ * A7/B6/C12/D5, and worse, `items 15-19 read D,D,D,C,D` — four of the
+ * batch's five D keys inside one five-item window. Their words: "I would
+ * still re-shuffle rather than ship a file where every D in the batch sits
+ * in one five-item window."
+ *
+ * math-bank-helper's renderBlind had exactly this and was fixed the same
+ * morning; this file did not get the fix. Dealing round-robin from a
+ * shuffled deck makes the counts as even as the item count allows.
  */
 function dealSeed(s) {
   let h = 2166136261
@@ -81,11 +100,35 @@ function dealSeed(s) {
   return () => { h += 0x6D2B79F5; let t = h; t = Math.imul(t ^ (t >>> 15), t | 1)
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296 }
 }
-function reDeal(choices, id) {
+/** Key slot for every item, dealt flat from a shuffled deck over the WHOLE
+ *  batch. Stable for a given file and independent of authored order. */
+function keySlots(batch) {
+  const widths = [...new Set(batch.map(i => (i.choices ?? []).length).filter(Boolean))]
+  const w = widths.length === 1 ? widths[0] : 4
+  const rand = dealSeed(batch.map(i => String(i.id)).join('|') + ':deck')
+  const deck = batch.map((_, i) => i % w)
+  for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [deck[i], deck[j]] = [deck[j], deck[i]] }
+  return new Map(batch.map((it, i) => [String(it.id), deck[i]]))
+}
+
+function reDeal(choices, id, slot) {
   const rand = dealSeed(String(id) + ':grade')
-  const a = [...choices]
-  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]] }
-  return a
+  if (slot === undefined) {             // selftest path: plain shuffle
+    const a = [...choices]
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]] }
+    return a
+  }
+  return choices                         // placeholder; real deal happens in dealWithKey
+}
+
+/** Place the key at `slot` and shuffle the rest around it. */
+function dealWithKey(choices, key, id, slot) {
+  const rand = dealSeed(String(id) + ':grade')
+  const rest = choices.filter(c => c !== key)
+  for (let i = rest.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [rest[i], rest[j]] = [rest[j], rest[i]] }
+  const out = []; let k = 0
+  for (let j = 0; j < choices.length; j++) out.push(j === slot ? key : rest[k++])
+  return out
 }
 
 export function splitItem(raw) {
@@ -115,7 +158,8 @@ function selftest() {
   ok('solve and distractor_solve are withheld', !('solve' in shown) && !('distractor_solve' in shown))
   ok('prompt, choices and passage are KEPT', ['prompt', 'choices', 'passage'].every(k => k in shown))
   ok('passage_group_id survives the regex', 'passage_group_id' in shown)
-  ok('domain is kept (a one-word blueprint label, not a method)', 'domain' in shown)
+  ok('domain is WITHHELD — on ACT Science and Reading it is a descriptive phrase that names the item type',
+    !('domain' in shown))
   ok('subskill is WITHHELD — it is author prose naming the solution path',
     !('subskill' in shown))
   /* The re-deal must actually permute, and must preserve the key's presence.
@@ -146,6 +190,16 @@ function selftest() {
   // A NEW sensitive-looking field must be caught without anyone editing this file.
   const t = splitItem({ id: 'X', prompt: 'p', choices: [], answer_notes: 'secret' })
   ok('an unseen field named *answer* is withheld automatically', !('answer_notes' in t.shown))
+  /* The structural guard, which is what actually catches the next unknown
+   * field name. This is the sat-adv-h3 shape exactly. */
+  const choices4 = ['324', '81', '18', '-18']
+  ok('a kept field naming ALL BUT ONE option is detected (the set-complement leak)',
+    optionLeak({ notes: 'wrong: 324, 81, -18' }, choices4) !== null)
+  ok('a kept field naming EVERY option is detected',
+    optionLeak({ notes: '324 81 18 -18' }, choices4) !== null)
+  ok('a kept field naming ONE option is NOT flagged (a passage may repeat a word)',
+    optionLeak({ passage: 'the value 324 appeared once' }, choices4) === null)
+  ok('the choices array itself is exempt', optionLeak({ choices: choices4 }, choices4) === null)
   console.log(bad ? `\nSELF-TEST FAILED (${bad})` : '\nself-test passed.')
   process.exit(bad ? 1 : 0)
 }
@@ -164,13 +218,22 @@ const sha = createHash('sha256').update(readFileSync(path)).digest('hex')
 
 const shownAll = [], keyAll = {}
 const withheldFields = new Set(), keptUnknown = new Set()
-const KNOWN = new Set(['id', 'domain', 'subskill', 'prompt', 'choices', 'passage', 'graphic',
+const KNOWN = new Set(['id', 'prompt', 'choices', 'passage', 'graphic',
   'passage_group_id', 'topic_id', 'set_id', 'topic_tag', 'format', 'kind', 'task'])
+const slotMap = keySlots(batch)
 for (const raw of batch) {
   const { shown, withheld } = splitItem(raw)
   for (const k of Object.keys(withheld)) withheldFields.add(k)
   for (const k of Object.keys(shown)) if (!KNOWN.has(k)) keptUnknown.add(k)
-  if (Array.isArray(shown.choices)) shown.choices = reDeal(shown.choices, raw.id)
+  if (Array.isArray(shown.choices) && raw.correct_answer != null && shown.choices.includes(raw.correct_answer))
+    shown.choices = dealWithKey(shown.choices, raw.correct_answer, raw.id, slotMap.get(String(raw.id)))
+  const leak = optionLeak(shown, raw.choices)
+  if (leak) {
+    console.error(`REFUSING to write a render that is not blind.`)
+    console.error(`  item ${raw.id}: kept field '${leak.field}' names ${leak.named} of this item's ${leak.of} options.`)
+    console.error(`  Naming all but one makes the key the set complement. Withhold that field.`)
+    process.exit(2)
+  }
   shownAll.push(shown)
   keyAll[String(raw.id)] = { correct_answer: raw.correct_answer, difficulty: raw.difficulty,
     dealt_index: Array.isArray(shown.choices) ? shown.choices.indexOf(raw.correct_answer) : null }
@@ -178,9 +241,48 @@ for (const raw of batch) {
 
 /* Report the dealt key-slot sequence so the next reader can see for themselves
  * that it carries no pair structure, rather than taking this comment for it. */
-const dealtSlots = batch.map(r => (Array.isArray(r.choices) ? reDeal(r.choices, r.id).indexOf(r.correct_answer) : -1))
+const dealtSlots = batch.map(r => slotMap.get(String(r.id)) ?? -1)
+{ const c = {}; for (const s2 of dealtSlots) c[s2] = (c[s2] ?? 0) + 1
+  const vals = Object.values(c)
+  console.log(`  slot counts: ${JSON.stringify(c)}   spread ${Math.max(...vals) - Math.min(...vals)} (0 or 1 means a flat deck deal)`) }
 let pairHits = 0, pairTot = 0
 for (let i = 0; i + 1 < dealtSlots.length; i += 2) { pairTot++; if (dealtSlots[i] === dealtSlots[i + 1]) pairHits++ }
+
+/*
+ * ── THE DENY LIST IS ALWAYS ONE FIELD BEHIND. CHECK THE CONTENT. ─────
+ *
+ * `sat-adv-h3` stored its per-option derivations under `distractor_steps`
+ * rather than `distractor_solve`. The name matched nothing in the regex, so
+ * it was KEPT — and it names exactly the three wrong options per item, which
+ * makes the key the set complement on all 24 items with no solving at all.
+ * Its prose leaked the solve path too ("Solves k^2 = 324 correctly but
+ * reports the negative root", where the key is +18).
+ *
+ * TWO GRADERS FOUND IT INDEPENDENTLY AND BOTH SAID THEIR KEY AGREEMENT ON
+ * THAT FILE MUST NOT BE COUNTED. The tool had in fact printed the field as
+ * "kept, unrecognised" — and I filtered that line out of my own terminal
+ * output while checking something else. The warning worked; I hid it.
+ *
+ * So the name check is now only the cheap first pass. The real guard is
+ * structural and it REFUSES rather than warns: if any kept field other than
+ * `choices` mentions option strings, the render is not blind and must not be
+ * written. A deny-list of names cannot anticipate the next author's field
+ * name; a content check does not have to.
+ */
+function optionLeak(shown, choices) {
+  if (!Array.isArray(choices) || !choices.length) return null
+  for (const [k, v] of Object.entries(shown)) {
+    if (k === 'choices') continue
+    const text = typeof v === 'string' ? v : JSON.stringify(v ?? '')
+    if (!text) continue
+    const named = choices.filter(c => String(c).length >= 1 && text.includes(String(c)))
+    /* Naming ONE option can be innocent (a passage repeating a word). Naming
+     * all but one is the set-complement leak, and naming every one hands over
+     * the whole ballot. Either is fatal. */
+    if (named.length >= choices.length - 1) return { field: k, named: named.length, of: choices.length }
+  }
+  return null
+}
 
 /* A final guard, because a deny-list can still be defeated by a key string
  * that happens to appear in a kept field. Report it rather than fail: on a

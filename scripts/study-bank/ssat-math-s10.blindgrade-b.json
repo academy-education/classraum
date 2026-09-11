@@ -1,0 +1,107 @@
+{
+  "SM10-01": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2/7 = 0.(285714); 50 = 6*8 + 2, so the 50th digit is the 2nd of the block, 8. Stem hands over the period length, which removes the only discovery step and makes this modular arithmetic on a given cycle. The four wrong options are all genuine cycle-position slips: 4 is the block-END digit (remainder 0 / off-by-one the other way), 2 is position 1, 5 is position 3, 1 is position 5. 7 is correctly left off since no natural slip lands there. Single digits, so the arithmetic-relation scan is meaningless here; nothing reachable without solving."
+  },
+  "SM10-02": {
+    "pick": "28.80",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "12 notebooks = 4 groups of 3, pay for 8 at $3.60 = $28.80. 'leaves with 12' is unambiguous (it is not 12 paid for plus 6 free), so no second defense. Every distractor is a count of notebooks paid for times 3.60: 43.20 = 12 (no offer), 39.60 = 11, 32.40 = 9 (one free per dozen), 21.60 = 6 (halving). Key is not a hub: the only multiplicative relation is 43.20 = 2 x 21.60, between two distractors."
+  },
+  "SM10-03": {
+    "pick": "25",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "(45-36)/36 = 9/36 = 25%. 'greater than the price of the hat' fixes the base, so exclusive. 20 = the same difference over the wrong base (9/45), 125 and 80 = the two ratios reported instead of the increase, 9 = the raw difference read as a percent. Structural note, not a leak: 20 + 80 = 100, a constant this configuration supplies and the stem never prints. It points at a distractor pair rather than the key, so it is harmless here, but it is the exact shape that would be fatal if the key were one of them."
+  },
+  "SM10-04": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Sum 84, mean 12; sorted 2,4,5,7,8,28,30 so median 7; 12-7 = 5. 7 is the median itself (a stated intermediate, and the endpoint of stopping one step early), 8 comes from not sorting (middle of the printed list is 4, 12-4 = 8), 6 from averaging the two central values of an odd list ((5+7)/2), 4.5 from the same slip one slot over. The geometric run 8, 6, 4.5 has a DISTRACTOR at its middle, which is the right way round. 5 + 7 = 12 is the mean, but the mean is not printed and the relation does not orient a blind solver."
+  },
+  "SM10-05": {
+    "pick": "1/4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Apex on the opposite 12 cm side forces height 8 wherever it sits, so area = 24 against the rectangle's 96, giving 1/4. QUALIFIER CHECK, the 'outside the triangle' one: 3/4 is on the ballot and 'the probability that the point is INSIDE the triangle' is what excludes it. The clause is doing real work - complement confusion is a top-three probability error and a student who reads past 'inside' has a wrong answer waiting. The cost is that 1/4 + 3/4 = 1, a constant the configuration supplies, so a blind solver gets a complementary pair for free. It narrows five options to two but does not decide between them, and separating 1/4 from 3/8 and 3/16 still requires the area. Keep it. The repair also lands: 1/2 (forgot the half) is present, 1/8 (halved twice) is gone, so the key is no longer the centre of a doubling star. 3/8 = wrong height 12, 3/16 = base used as height."
+  },
+  "SM10-06": {
+    "pick": "450",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "1 cm = 5 km so 1 cm^2 = 25 km^2; 18 x 25 = 450. The flagged geometric run is genuinely fixed in the sense that matters - 2250 is gone and the key is at the END of the chain, not its middle. But look at what is left: 0.72, 3.6, (18 from the stem), 90, 450 is one unbroken x5 chain, four of the five options sitting on it with only 180 off it. That is a weaker signature than a centred run, but it is still a signature, and 180 is the item's soft spot: it answers to 18 x 5 x 2, which is not an error I can name a student making. If one option is to be redrawn it is 180 - something like 23 (18 + 5, the additive slip) or 900 would carry more error-traffic."
+  },
+  "SM10-07": {
+    "pick": "13",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "(2n+7)/3 = 11 -> 2n = 26 -> n = 13. Two options are intermediates on the solve path (33 = 11x3, 26 = 2n) and both are legitimate stop-early endpoints rather than padding; 16.5 = 33/2 (skipping the subtraction), 20 = (33+7)/2 (inverting it). The relation 33 = 13 + 20 exists but reads as a distractor property, not a route to the key, and 26 = 2 x 13 has no 6.5 partner, so the key is not starred."
+  },
+  "SM10-08": {
+    "pick": "16",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "x+y = 28, y+z = 44, so z-x = 16 regardless of y - the cancellation is the whole item. 8 = 22-14, the difference of the AVERAGES, which is the error this item is built to catch and is strong. 36 = 22+14. But 30 and 18 answer to no procedure I can reconstruct, and both are within a plausible-looking distance of the key, so they are filling slots. Weakest option set in the form on this count; 44 (the second sum, unhalved) and 72 would both carry real traffic."
+  },
+  "SM10-09": {
+    "pick": "27",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Base (2,1)-(11,1) = 9, height 7-1 = 6, area 27. Horizontal base means no shoelace needed, which is why I grade this easy rather than medium despite the coordinate dressing. Repair confirmed: 54 (forgot the half) is present and 13.5 (halved twice) is absent, so the key sits at the end of the relation and not its centre. 54 is strong; 22.5 and 18 read as height-misreads (5 and 4 instead of 6) and are acceptable; 15 corresponds to nothing."
+  },
+  "SM10-10": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "30+4h = 54+h -> 3h = 24 -> h = 8. QUALIFIER CHECK, the 'dollars rather than hours' one: 62 is the common cost at the crossover and 'After how many HOURS of use' is what excludes it. This is the cleanest of the three kept discriminators - the unit is named in the interrogative itself, so the clause cannot be read as decorative, and answering the equation's other output is one of the most common ways students lose this exact item. Keep it unchanged. 24 = the fixed-cost gap (stop one step early), 4.8 = 24/5 (adding the rates), 6 = 24/4 (using only Plan A's rate). No relation orients the key: 24 = 3 x 8 runs away from it."
+  },
+  "SM10-11": {
+    "pick": "360",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "'Two shorter sides' of a right triangle can only be the legs (with 8 as hypotenuse the third side would be ~5.3 and 8 would not be among the two shortest), so area 24, volume 360. That qualifier is load-bearing and correctly written. The half-repair holds - 720 present, 180 absent. BUT this is the one item where the hub is not fully gone: 360 = 240 + 120 AND 360 = 3 x 120 AND 720 = 2 x 360, so the key is the most-connected node in a four-option lattice {120, 240, 360, 720}, and 'the option that is the sum of two others' is precisely the heuristic a blind solver reaches for. The doubling star was removed and an additive one was left behind. 720 = forgot the half (strong), 240 = 24 x 10, using the hypotenuse as the length (strong), 120 = a face area (weak-plausible), 270 = nothing I can derive. Redrawing 270 and 120 to values off the {120,240,360,720} lattice - e.g. 180 is out for other reasons, but 400 or 105 - would close it."
+  },
+  "SM10-12": {
+    "pick": "6",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "floor(25/5) + floor(25/25) = 5 + 1 = 6. Distractors are the best in the form: 5 is the near-universal error (forgetting that 25 contributes a second factor of 5), 22 is the count of 2s (floor sums 12+6+3+1) by a student who counted the wrong prime, 10 double-counts. Difficulty flag for the form builder, not a defect: trailing zeros of 25! sits above the SSAT Upper Level's normal ceiling - it is a competition-flavoured number-theory item, and a student who has not been shown the technique does not derive it under 30 seconds. It is the hardest thing here by a distance. Fine as the form's single stretch item; it should not be labelled medium."
+  },
+  "SM10-13": {
+    "pick": "18",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "18 + 0.2x = 0.45(30+x) -> 4.5 = 0.25x -> x = 18. QUALIFIER CHECK, the 'finished mixture' one: 48 is 30+18, the final volume, and 'How many litres ... must be ADDED' excludes it. Real work, and the error is the single most common way mixture problems are missed - the student solves correctly and reports the wrong quantity. Keep it. 72 is also strong and I would have guessed it was accidental: it is what you get from 18 + 0.2x = 0.45x, i.e. forgetting the original 30 L in the new total. 13.5 = 0.45 x 30. The flagged run 4.5, 18, 72 is fixed by removing 4.5; 18 and 72 survive as a x4 pair with the key at the low end. 72 + 18 = 90 is a coincidence, not a constant this configuration supplies."
+  },
+  "SM10-14": {
+    "pick": "30",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "16 + 9 + 4 + 1 = 30. 'Traced along the ruled lines' correctly kills the tilted-square reading, so exclusive. 16 is the classic answer (unit squares only) and strong; 17 = 16 plus the whole board, also strong; 25 = the lattice points. 14 corresponds to no error. Watch this one: 30 = 14 + 16 makes the key the sum of two options, and since the key is also the largest value, the two cheapest blind heuristics agree on it. The additive relation exists only because 14 is arbitrary - replacing 14 with a motivated value (e.g. 20, from 16+4) breaks it at no cost."
+  },
+  "SM10-15": {
+    "pick": "45",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "54 - 9 = 45. 54 (no subtraction) and 51 (subtracting the SIDE 3 rather than the area 9) are both real and well chosen. 18 and 42 are slot-filler - 18 is a third of the rectangle and 42 is 54-12, neither the endpoint of a procedure a student runs. Easiest item in the form and correctly placed as such."
+  }
+}

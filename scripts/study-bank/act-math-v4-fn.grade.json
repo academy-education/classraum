@@ -1,0 +1,310 @@
+[
+ {
+  "id": "AM4F-01",
+  "domain": "Functions",
+  "prompt": "The function f is defined by f(x) = 5x - x^2. What is the value of f(-2)?",
+  "choices": [
+   "14",
+   "-14",
+   "6",
+   "-6"
+  ]
+ },
+ {
+  "id": "AM4F-02",
+  "domain": "Functions",
+  "prompt": "The functions f and g are defined by f(x) = 4x + 1 and g(x) = x - 4. What is the value of g(f(2))?",
+  "choices": [
+   "9",
+   "5",
+   "-7",
+   "-2"
+  ]
+ },
+ {
+  "id": "AM4F-03",
+  "domain": "Functions",
+  "prompt": "The function h is defined by h(x) = (x + 9)/2. What is the value of h^-1(4)?",
+  "choices": [
+   "17",
+   "-1",
+   "-5",
+   "6.5"
+  ]
+ },
+ {
+  "id": "AM4F-04",
+  "domain": "Functions",
+  "prompt": "In an arithmetic sequence, the 2nd term is 22 and the 7th term is 7. What is the common difference of this sequence?",
+  "choices": [
+   "-3",
+   "3",
+   "-15",
+   "4"
+  ]
+ },
+ {
+  "id": "AM4F-05",
+  "domain": "Functions",
+  "prompt": "The function g is defined by g(x) = -4cos(3x) + 5 for all real numbers x. What is the maximum value of g(x)?",
+  "choices": [
+   "9",
+   "17",
+   "12",
+   "1"
+  ]
+ },
+ {
+  "id": "AM4F-06",
+  "domain": "Functions",
+  "prompt": "The graph of y = f(x) is shifted 3 units to the right and 2 units down. Which of the following is an equation of the resulting graph?",
+  "choices": [
+   "y = f(x - 3) + 2",
+   "y = f(x + 3) + 2",
+   "y = f(x - 3) - 2",
+   "y = f(x + 3) - 2"
+  ]
+ },
+ {
+  "id": "AM4F-07",
+  "domain": "Functions",
+  "prompt": "The function r is defined by r(x) = (x - 1)/(2x + 7). For what value of x is r(x) undefined?",
+  "choices": [
+   "2/7",
+   "-7/2",
+   "-2/7",
+   "7/2"
+  ]
+ },
+ {
+  "id": "AM4F-08",
+  "domain": "Functions",
+  "prompt": "In a geometric sequence, the 2nd term is 45 and the 5th term is 5/3. If r is the common ratio of this sequence, what is the value of r cubed?",
+  "choices": [
+   "1/27",
+   "27",
+   "1/3",
+   "3"
+  ]
+ },
+ {
+  "id": "AM4F-09",
+  "domain": "Functions",
+  "prompt": "A bacterial culture starts with 400 cells and triples in number every 8 hours. Which of the following expressions gives the number of cells present t hours after the start?",
+  "choices": [
+   "400(8)^(t/3)",
+   "400(8)^(t/8)",
+   "400(3)^(t/8)",
+   "400(3)^(t/3)"
+  ]
+ },
+ {
+  "id": "AM4F-10",
+  "domain": "Functions",
+  "prompt": "The function f is defined by f(x) = x^3 - 4x. What is the total change in the value of f from x = 1 to x = 4?",
+  "choices": [
+   "48",
+   "51",
+   "17",
+   "63"
+  ]
+ },
+ {
+  "id": "AM4F-11",
+  "domain": "Functions",
+  "prompt": "The function f is defined by f(x) = 2x + 6 when x < 3, and f(x) = x^2 - 4 when x >= 3. What is the value of f(f(1))?",
+  "choices": [
+   "0",
+   "22",
+   "60",
+   "8"
+  ]
+ },
+ {
+  "id": "AM4F-12",
+  "domain": "Functions",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 12x + 7. There is exactly one number k, other than 1, for which f(k) = f(1). What is the value of k?",
+  "choices": [
+   "-1",
+   "-5",
+   "5",
+   "3"
+  ]
+ },
+ {
+  "id": "AM4F-13",
+  "domain": "Functions",
+  "prompt": "The function g is defined by g(x) = sqrt(3x + 4) - 5. For what value of x does g(x) = 2?",
+  "choices": [
+   "7",
+   "0",
+   "5/3",
+   "15"
+  ]
+ },
+ {
+  "id": "AM4F-14",
+  "domain": "Functions",
+  "prompt": "The function f is defined by f(x) = x^2 + 6x - 1. What is the vertex of the graph of f in the standard (x, y) coordinate plane?",
+  "choices": [
+   "(3, 8)",
+   "(-3, -10)",
+   "(-3, 8)",
+   "(3, -10)"
+  ]
+ },
+ {
+  "id": "AM4F-15",
+  "domain": "Functions",
+  "prompt": "The function f is defined by f(x) = (6x^2 + 5x)/(2x^2 + 1). As x increases without bound, the values of f(x) approach which of the following numbers?",
+  "choices": [
+   "6/5",
+   "0",
+   "1/3",
+   "3"
+  ]
+ },
+ {
+  "id": "AM4F-16",
+  "domain": "Functions",
+  "prompt": "If log base 3 of (x + 5) equals 2, what is the value of x?",
+  "choices": [
+   "14",
+   "1",
+   "4",
+   "20"
+  ]
+ },
+ {
+  "id": "AM4F-17",
+  "domain": "Functions",
+  "prompt": "The functions f and g are defined by f(x) = x^2 + 3x and g(x) = 5x - 2. What is the value of (f - g)(-2)?",
+  "choices": [
+   "-14",
+   "-2",
+   "10",
+   "-10"
+  ]
+ },
+ {
+  "id": "AM4F-18",
+  "domain": "Functions",
+  "prompt": "A parking garage charges $5 for the first hour or any part of an hour, and $3 for each additional hour or part of an additional hour. A car is parked for 3 hours and 25 minutes. How many dollars of the total charge are for the time after the first hour?",
+  "choices": [
+   "6",
+   "9",
+   "14",
+   "20"
+  ]
+ },
+ {
+  "id": "AM4F-19",
+  "domain": "Functions",
+  "prompt": "The quantity y varies directly with x and inversely with the square of z. When x = 12 and z = 2, y = 15. To find the value of y when x = 6 and z = 4, a student first finds the constant of variation. What is that constant?",
+  "choices": [
+   "45",
+   "1.875",
+   "2.5",
+   "5"
+  ]
+ },
+ {
+  "id": "AM4F-20",
+  "domain": "Functions",
+  "prompt": "The function f is defined by f(x) = x^2 + bx + 11, where b is a negative constant. The minimum value of f(x) is 2. What is the value of b?",
+  "choices": [
+   "-6",
+   "3",
+   "-3",
+   "6"
+  ]
+ },
+ {
+  "id": "AM4F-21",
+  "domain": "Functions",
+  "prompt": "The functions f and g are defined by f(x) = 2x - 1 and g(x) = x/4 + 3. The function h is defined by h(x) = f(g(x)). What is the value of h^-1(9)?",
+  "choices": [
+   "8",
+   "9.5",
+   "5",
+   "12.5"
+  ]
+ },
+ {
+  "id": "AM4F-22",
+  "domain": "Functions",
+  "prompt": "The number of members of club A is modelled by 5,000(1.08)^t, where t is the number of years from today. The number of members of club B is modelled by 9,000 + 300t. What is the least whole number of years t for which club A has more members than club B?",
+  "choices": [
+   "13",
+   "12",
+   "41",
+   "8"
+  ]
+ },
+ {
+  "id": "AM4F-23",
+  "domain": "Functions",
+  "prompt": "The functions f and g are defined by f(x) = sqrt(x - 2) and g(x) = 1/(x - 6). What is the domain of the composite function f(g(x))?",
+  "choices": [
+   "6 <= x < 6.5",
+   "6 < x < 6.5",
+   "6 <= x <= 6.5",
+   "6 < x <= 6.5"
+  ]
+ },
+ {
+  "id": "AM4F-24",
+  "domain": "Functions",
+  "prompt": "The function f is defined by f(x) = |3x - 9|. What is the greatest value of x for which f(x) = 15?",
+  "choices": [
+   "24",
+   "-2",
+   "2",
+   "8"
+  ]
+ },
+ {
+  "id": "AM4F-25",
+  "domain": "Functions",
+  "prompt": "An infinite geometric series has first term 12 and sum 20. What is the common ratio of this series?",
+  "choices": [
+   "3/5",
+   "2/5",
+   "-2/5",
+   "-2/3"
+  ]
+ },
+ {
+  "id": "AM4F-26",
+  "domain": "Functions",
+  "prompt": "The function f is defined by f(x) = (x^2 - 3x - 10)/(x - 5). The graph of f in the standard (x, y) coordinate plane is a line with one point missing. What are the coordinates of the missing point?",
+  "choices": [
+   "(5, 3)",
+   "(-2, 7)",
+   "(-2, 0)",
+   "(5, 7)"
+  ]
+ },
+ {
+  "id": "AM4F-27",
+  "domain": "Functions",
+  "prompt": "A sequence is defined by a(1) = 5 and a(n + 1) = 2a(n) - 3 for every integer n >= 1. What is the value of a(4)?",
+  "choices": [
+   "-2",
+   "11",
+   "19",
+   "37"
+  ]
+ },
+ {
+  "id": "AM4F-28",
+  "domain": "Functions",
+  "prompt": "A 240-gram sample of a substance decays so that its mass is halved every 6 years. To the nearest gram, what is the mass of the sample 15 years from now?",
+  "choices": [
+   "60",
+   "42",
+   "96",
+   "182"
+  ]
+ }
+]

@@ -1,0 +1,107 @@
+{
+  "SM10-01": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2/7 = 0.(285714); 50 mod 6 = 2 -> second digit of the block = 8. The five options are five of the six digits of the repeating block, so every wrong option is the endpoint of a specific off-by-n index error (49th, 51st, 1-indexed vs 0-indexed, counting the leading 0). No option is the sum/difference of two others in any meaningful sense and no stated quantity is on the ballot. The stem hands over 'a block of six', which removes the only step a weak student would fail; that is why this grades medium and not hard."
+  },
+  "SM10-02": {
+    "pick": "28.80",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "12 notebooks = 4 groups of 3 -> pay for 8 -> 8 x 3.60 = 28.80. 43.20 = all 12 at full price, 39.60 = 11 paid (one free), 32.40 = 9 paid (one in four free), 21.60 = 6 paid (half free). Four distinct grouping errors, all real. No 2x (57.60) or half (14.40) of the key on the ballot. No sum relation: no option equals the sum of two others."
+  },
+  "SM10-03": {
+    "pick": "25",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "(45-36)/36 = 25%. 20 = 9/45 (wrong base), 125 = 45/36 (ratio reported instead of excess), 80 = 36/45 (inverted), 9 = the raw dollar difference read as a percent. All four are live errors and the wrong-base pair (20 vs 25) is the one that decides the item. Key is neither largest nor smallest; 2x (50) and half (12.5) both absent."
+  },
+  "SM10-04": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Sum 84, mean 12; sorted 2,4,5,7,8,28,30 -> median 7; 12-7 = 5. The qualifier 'exceed their median' is doing real work and the option it exists to exclude IS on the ballot: 7, the median itself, answers the wrong question. 8 = 12 - 4, the classic unsorted-median error (4th value as listed); 4.5 = 12 - 7.5 (mis-sorted even-count median). Note 4.5 is the only non-integer option in this item and it is a distractor - see the cross-item remark in the report."
+  },
+  "SM10-05": {
+    "pick": "1/4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The apex lies on the opposite 12 cm side, so the height is 8 whatever its position: area = 6*8/2 = 24 of 96 = 1/4. The kept discriminator 3/4 is genuinely load-bearing - it is P(outside), and 'inside the triangle' is the only thing excluding it. 1/2 = forgot the half (2x the key); its mirror 1/8 is NOT on the ballot, so the key is not the centre of a star. One residual: 1/4 + 3/4 = 1, a constant the configuration supplies and the stem never prints, so a test-wise blind guesser who spots the complementary pair is at 50% rather than 20%. I would keep 3/4 anyway (the qualifier earns it) but this is the one item where the protocol's sum-to-a-supplied-constant flag actually fires."
+  },
+  "SM10-06": {
+    "pick": "450",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Linear 1:5 means areal 1:25; 18 x 25 = 450. 90 = x5 applied once (the dominant error), 3.6 = /5, 0.72 = /25, 180 = x10 (doubling the scale instead of squaring). The old geometric run 90, 450, 2250 is gone - 2250 is absent and 450 is the top of a pair, not the middle of a run. Residual worth naming: the full ballot 0.72, 3.6, [18], 90, 450 is a ratio-5 chain hinged on the stem's own 18, with 18 itself removed. The chain is visible, but reading it still requires knowing the scale squares, so it does not hand over the key."
+  },
+  "SM10-07": {
+    "pick": "13",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "(2n+7)/3 = 11 -> 2n+7 = 33 -> n = 13. 33 = stopping at the intermediate, 26 = 2n, 20 = (33+7)/2 (added 7 instead of subtracting), 16.5 = 33/2 on the wrong quantity. Sum relation present but harmless: 13 + 20 = 33. That makes a non-key the sum of two others, and the intermediate 33 is the option a guesser is most likely to be drawn to, so the relation points away from the key. 2x of the key (26) is on the ballot but half (6.5) is not - one-sided, star broken. 16.5 is the lone non-integer and is a distractor."
+  },
+  "SM10-08": {
+    "pick": "16",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "x+y = 28, y+z = 44, z-x = 16. 8 = 22-14, differencing the averages without doubling - that one is strong and is the item's real decision. 36 = (28+44)/2, averaging the sums. 30 and 18 I cannot attach to a clean error path (30 = 44-14 mixes a sum with an average; 18 corresponds to nothing I can name), so two of the four are closer to numeric filler. Note 8 = key/2 is on the ballot while 32 = 2x key is not: one-sided, so the hub repair holds here too."
+  },
+  "SM10-09": {
+    "pick": "27",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Base 9 on y=1, height 6, area 27. 54 = forgot the half, and critically 13.5 (half the key) is NOT present - the repaired one-sided star. 22.5 = 9*5/2 with the height read off by one. 18 and 15 I cannot map to a specific student error; 15 in particular reads as filler. No geometric middle: there is no pair on the ballot whose product is 27^2 (54 x 13.5 would have been it, and 13.5 was removed)."
+  },
+  "SM10-10": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "30+4h = 54+h -> 3h = 24 -> h = 8. The kept discriminator 62 is doing real work: it is the dollar cost at the break-even point, and 'After how many hours' is the only thing excluding it - a student who solved correctly but answered the wrong question lands exactly there. 24 = the intermediate, 4.8 = 24/5 (rates added instead of differenced), 6 = 24/4. Neither 16 nor 4 is present, so no 2x/half star. 4.8 is the lone non-integer and is a distractor."
+  },
+  "SM10-11": {
+    "pick": "360",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Cross-section 6*8/2 = 24, x 15 = 360. 720 = forgot the half; 180 (half the key) is absent, so one-sided as intended. 120 = 8 x 15, one leg used as the whole face. 240 = 24 x 10, the hypotenuse used as the length - plausible. 270 I cannot reach by any error I can write down; it is the weakest option in the batch. One residual relation the hub check would not catch: the key is the SUM of two other options, 360 = 240 + 120. I do not think that is exploitable blind (a guesser has no prior favouring the sum), but it is the relation to watch if more items acquire it. Aside: perimeter(24) x length(15) also gives 360, so one wrong method reaches the key - worth knowing, not a leak."
+  },
+  "SM10-12": {
+    "pick": "6",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "floor(25/5) + floor(25/25) = 5 + 1 = 6. 5 = missing the second factor of 5 in 25 (the error the item is built on), 22 = the exponent of 2 in 25! (counted the wrong prime - excellent, and a real student endpoint), 10 = multiples of 5 double-counted, 4 = off-by-one. Genuinely hard for Upper Level and hard for the right reason - it gates on a method, not on arithmetic fiddliness. No sum/difference relation touching the key (10 = 4+6 involves the key as an addend, not as the sum)."
+  },
+  "SM10-13": {
+    "pick": "18",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "18 + 0.2x = 0.45(30+x) -> 4.5 = 0.25x -> x = 18. Check: 48 L at 21.6 acid = 45%. The kept discriminator 48 is doing real work - it is the finished mixture, and 'must be added' is the only thing excluding it; this is the single most common way a correct solve is thrown away. 72 = solving 18 = 0.25x with the 30 dropped from the denominator, also a real error. 13.5 = 0.45 x 30. 6 is thinner. The old geometric run 4.5, 18, 72 is broken: 4.5 is gone and 13.5 replaces it, and 13.5/18/72 is not a run. No pair multiplies to 18^2."
+  },
+  "SM10-14": {
+    "pick": "30",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "16 + 9 + 4 + 1 = 30. 16 = unit squares only, which is precisely what 'of any size' exists to exclude and it is on the ballot - the qualifier is live. 17 = 16 + the whole board, 25 = 5x5 lattice points or grid-lines confusion. 14 corresponds to no error I can construct and is weak. Mild reachability concern: 'squares of ANY size' tells the student the answer must exceed the obvious 16, which eliminates 14 and 16 for free and leaves a 1-in-3 guess; and the key is the largest option. Also 30 = 14 + 16, the key as the sum of two others again (see SM10-11). Replacing 14 with a value above 30 (e.g. 36, counting 6x6 lattice-style, or 40) would fix both the weak option and the 'answer is the top one' shape."
+  },
+  "SM10-15": {
+    "pick": "45",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "9*6 = 54 minus 3*3 = 9 -> 45. 54 = the uncut rectangle (the computed intermediate, correctly on the ballot), 51 = subtracted the side 3 instead of the area 9, 42 = subtracted 12 (perimeter of the alcove), 18 = the alcove treated as the answer scale. 2x (90) and half (22.5) both absent. No arithmetic or geometric middle around 45."
+  }
+}

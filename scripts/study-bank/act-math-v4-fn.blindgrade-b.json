@@ -1,0 +1,198 @@
+{
+  "AM4F-01": {
+    "pick": "-14",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "5(-2)-(-2)^2 = -10-4 = -14. Options are two sign-pairs (14/-14, 6/-6), so no option is the sum or difference of others and nothing in the set narrows it. 6 and -6 are the (-2)^2 = -4 sign error; 14 is the full sign flip. One-step; opens the section."
+  },
+  "AM4F-02": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "f(2)=9, g(9)=5. Both intermediates are ON the ballot as distractors (9 = f(2), -2 = g(2), -7 = f(g(2)) reversed order) and the key is not an intermediate, which is the right shape. Standard ACT composition item."
+  },
+  "AM4F-03": {
+    "pick": "-1",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "(x+9)/2 = 4 -> x = -1. 6.5 = h(4) (inverse ignored), 17 = 2(4)+9 (order of operations reversed), -5 = 4-9 (halving dropped). Every wrong option is a named student error."
+  },
+  "AM4F-04": {
+    "pick": "-3",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "5d = 7-22 = -15, d = -3. The intermediate total change -15 is a distractor and the key is the per-step value - correct direction. 3 is the sign flip; 4 (dividing by 4 terms instead of 5) is the off-by-one gap error, decent. No option is the sum or difference of two others."
+  },
+  "AM4F-05": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "cos ranges to -1, so max = -4(-1)+5 = 9. 1 is the minimum and is a genuine error endpoint. 17 (= 4*3+5, reading the period coefficient as amplitude) is a stretch and 12 corresponds to no error I can name - weak. Worth flagging: 9 and 1 are the true max and min, and (17+1)/2 = 9, but that is not reachable blind."
+  },
+  "AM4F-06": {
+    "pick": "y = f(x - 3) - 2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC - judged by hand. The four options are the complete 2x2 sign cross product, so the option set alone narrows NOTHING: no option is odd-one-out in length, form or sign balance. The whole item is the inside/outside sign convention, which is exactly the tested skill. Clean."
+  },
+  "AM4F-07": {
+    "pick": "-7/2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "2x+7 = 0. Options are the sign x reciprocal cross (+/-7/2, +/-2/7); 2/7 and -2/7 are the numerator/denominator inversion, 7/2 the sign slip. Balanced set, no narrowing."
+  },
+  "AM4F-08": {
+    "pick": "1/27",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "RE-KEYED ITEM. a5 = a2 * r^3, so r^3 = (5/3)/45 = 1/27. The re-key reads only MILDLY forced: the stem defines r and then asks for r cubed, which is not how the ACT usually phrases it (it asks for the common ratio or for a term), but it is not contrived - r^3 is the quantity the a2->a5 gap actually produces, so the natural solution path ENDS on the key rather than passing through it. Good consequence: r = 1/3 is now a distractor, and it is the strongest one in the set. 27 and 3 are the reciprocal errors."
+  },
+  "AM4F-09": {
+    "pick": "400(3)^(t/8)",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC - judged by hand. Full 2x2 cross of base {3,8} against exponent divisor {3,8}, so the option set alone narrows NOTHING; you must know which number is the growth factor and which is the period. Swapping base and divisor is the exact error the item targets."
+  },
+  "AM4F-10": {
+    "pick": "51",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "RE-KEYED ITEM. f(4) = 48, f(1) = -3, change = 51. This re-key reads completely NATURAL - 'total change in the value of f from x=1 to x=4' is standard exam phrasing, not a bolted-on extra step. 48 (stopping at f(4), forgetting f(1) is negative) is now the trap, and 17 is the average rate of change 51/3, a real student endpoint; 63 is cubes-only. Note the key is a difference of a listed option and an unlisted value, not of two options."
+  },
+  "AM4F-11": {
+    "pick": "60",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "1 < 3 so f(1) = 8; 8 >= 3 so f(8) = 60. Distractors are the full branch-error tree: 8 = the intermediate, 22 = staying on the linear branch for the outer call, 0 = using the quadratic branch for x=1 (giving -3) then the linear branch. Branch selection at the boundary is the real skill; nothing in the option set gives it away."
+  },
+  "AM4F-12": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Axis of symmetry x = 3, so k = 2(3)-1 = 5. 3 is the intermediate (axis) and is correctly a distractor. -1 and -5 are sign guesses rather than specific error endpoints, which softens the set. 'other than 1' is doing real work and the excluded value 1 is not on the ballot - acceptable here because 1 is given in the stem, so a student who ignored the clause has nothing to pick."
+  },
+  "AM4F-13": {
+    "pick": "15",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "sqrt(3x+4) = 7, 3x+4 = 49, x = 15. 7 is the intermediate radicand-root and a strong trap. 5/3 comes from squaring 2 instead of 7 (3x+4 = 9), fair. 0 corresponds to no error I can construct - weak."
+  },
+  "AM4F-14": {
+    "pick": "(-3, -10)",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC (coordinate pair) - judged by hand. x = -b/2a = -3, y = 9-18-1 = -10. Options are the full 2x2 cross of x in {3,-3} against y in {8,-10}, so the option set alone narrows NOTHING - neither coordinate is modal. 3 is the dropped-negative error; 8 is the sign slip on the constant."
+  },
+  "AM4F-15": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Equal degrees, so the limit is the leading-coefficient ratio 6/2 = 3. 1/3 is the inverted ratio, 6/5 is reading the wrong pair of coefficients, 0 is the misapplied 'denominator wins' rule. All three are rules students actually confuse."
+  },
+  "AM4F-16": {
+    "pick": "4",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "x+5 = 3^2 = 9, x = 4. 14 = 3^2+5 (sign of the shift), 20 = 25-5 (base and exponent swapped). 1 is the weakest of the three but survives as an arithmetic slip. Nothing in the set narrows it."
+  },
+  "AM4F-17": {
+    "pick": "10",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "f(-2) = -2, g(-2) = -12, difference = 10. -14 is (f+g)(-2) - the operation error the item exists to catch - and -2 is the intermediate f(-2). -10 is the subtraction order flip. Key is not an intermediate and is not the sum or difference of two listed options."
+  },
+  "AM4F-18": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "RE-KEYED ITEM. 3h25m = first hour plus 2 full additional hours plus a part of a third, so 3 x $3 = $9 after the first hour; total would be $14. The re-key reads NATURAL - 'how many dollars of the total charge are for the time after the first hour' is a plain question, not a narrated method - and it converts the old key ($14) into the strongest distractor in the set. 6 undercounts the partial hour, 20 over-applies the $5. 'or part of an additional hour' is load-bearing and the option it excludes (6) is on the ballot, as it should be."
+  },
+  "AM4F-19": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "RE-KEYED ITEM, and the one that reads FORCED. k = y z^2 / x = 15*4/12 = 5, unambiguous. But the stem narrates a student's solution method ('a student first finds the constant of variation') to justify stopping early, which no ACT stem does, and it leaves x=6 and z=4 as data the question never uses - dangling givens are a tell that the key was moved backwards along the solution path. The payoff is real: 1.875, the y the original question asked for, is now an excellent distractor, and 45 = 15*12/4 is the k formula inverted. I would keep the key and rewrite the stem to ask for k directly without the extraneous second condition."
+  },
+  "AM4F-20": {
+    "pick": "-6",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Minimum = 11 - b^2/4 = 2, b^2 = 36, b = +/-6, negative so -6. The disambiguating clause 'b is a negative constant' is doing real work AND the option it exists to exclude (6) is on the ballot - this is the good case. -3 and 3 come from using b/2 rather than b^2/4, a real but less common error."
+  },
+  "AM4F-21": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "h(x) = 2(x/4+3)-1 = x/2+5; x/2+5 = 9 gives x = 8. 5 = f^-1(9), the genuine intermediate if you invert in stages, and 9.5 = h(9), inverse ignored - both strong. 12.5 I cannot trace to an error path; weak. Two composition steps plus an inverse makes this the upper end of medium for 67 seconds per question."
+  },
+  "AM4F-22": {
+    "pick": "13",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "t=12: 5000(1.08)^12 = 12,590.9 vs 12,600 - A still behind. t=13: 13,598 vs 12,900 - A ahead. So 13. CAUTION, not an exclusivity failure but a fragility: the t=12 margin is 9 members out of 12,600, under 0.1%. A student who rounds 1.08^12 to 2.52 gets 12,600 exactly and a student who rounds to 2.53 gets 12,650 and answers 12. The item is correct but it rewards calculator precision rather than the modelling insight it is testing; I would shift a coefficient to widen the crossing. 12 is a strong distractor for the right reason as well (the year the lines cross is not the first year A leads). 41 and 8 are weak."
+  },
+  "AM4F-23": {
+    "pick": "6 < x <= 6.5",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC (interval) - judged by hand. Need x != 6 and 1/(x-6) - 2 >= 0; for x < 6 the reciprocal is negative so only x > 6 survives, and 1/(x-6) >= 2 gives x <= 6.5. Open at 6 (undefined), closed at 6.5 (radicand 0 is legal). The option set is the full 2x2 inclusivity cross on identical endpoints, so it narrows NOTHING - the entire item is the two endpoint decisions, and each wrong option is one specific misjudgement. Hardest item in the batch and the one where the four options are best matched."
+  },
+  "AM4F-24": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "3x-9 = +/-15 gives x = 8 or x = -2. 'Greatest' is load-bearing and the option it exists to exclude (-2) IS on the ballot - the good case again. 24 = 15+9 (division dropped) and 2 = (15-9)/3 are ordinary arithmetic slips rather than conceptual errors."
+  },
+  "AM4F-25": {
+    "pick": "2/5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "12/(1-r) = 20, 1-r = 3/5, r = 2/5. STRUCTURAL NOTE worth recording: 3/5 and 2/5 sum to 1, and 1 is a constant this configuration supplies (r and 1-r) that the stem never prints, so a blind solver who spots the complementary pair narrows four options to two. This is also just standard distractor design - 1-r is the error you must offer - so I would not change it, but it is the one place in the batch where the option set alone halves the field."
+  },
+  "AM4F-26": {
+    "pick": "(5, 7)",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC (coordinate pair) - judged by hand. Factors to (x-5)(x+2)/(x-5) = x+2 with a hole at x=5, y=7. The option set narrows only WEAKLY: y=7 appears twice and x=5 twice, so a blind guesser leaning on the modal coordinate is still left choosing between (5,7) and (-2,7) at 50/50 - no decisive tell, but less evenly dealt than 06, 09, 14 and 23. (-2,0) is the zero of the numerator, the most common confusion; (5,3) is x+2 evaluated as x-2."
+  },
+  "AM4F-27": {
+    "pick": "19",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "5, 7, 11, 19. Both neighbouring terms are distractors - 11 = a(3) (off by one iteration) and 37 = a(5) (one too many) - which is exactly the error set for a recursive definition. -2 is weaker. Pure execution, fast."
+  },
+  "AM4F-28": {
+    "pick": "42",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "240 * (1/2)^(15/6) = 240 * 2^-2.5 = 42.43 -> 42. 60 (two halvings, treating 15 years as 12) is a strong distractor and the reason the item works. 96 and 182 I cannot attach to a specific error - 182 is roughly one halving plus change, 96 is arbitrary; both weak. 'To the nearest gram' is real work since the exact value is non-integer."
+  }
+}

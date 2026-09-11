@@ -1,0 +1,44 @@
+{
+  "ACT-SC6-P1-Q1": {
+    "pick": "16 min",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "M is the dash-dot curve (letter M sits on its 20 mg/L marker); at 5 mg/L it is y=92.8 = 16 min. Resolvable: the point sits 2.2 px above the 15-min minor tick, and the four candidate reads at x=5 are 9/16/21/30, separated by 11-31 px, so no fine reading is needed. The only fiddly bit in this column is telling K's open square (3.6 px) from M's open diamond (4.8 px across) - that is the least distinct marker pair in the figure at 1:1 - but line style plus the right-edge letters disambiguate without the markers. Distractors are the other three curves read at the same x: 30=J, 21=K, 9=L, each the endpoint of a curve-tracing slip. Reachability flag: 9+21=30, so a test-wise student noticing the sum trio could pick 16 as the odd value out and be right. It reads coincidental (all four are genuine x=5 values) and I would not drop the item for it, but it is the one numeric relation in this batch."
+  },
+  "ACT-SC6-P1-Q2": {
+    "pick": "Additive J gave its greatest clearing time of the concentrations tested",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Exp 2 used 10 mg/L (stated in the passage). At 10 mg/L: J=47, which is J's maximum across 0/5/10/15/20 (12,30,47,36,21). K peaks at 20 (33, vs 27 at 10), L peaks at 20 (27, vs 8), M peaks at 20 (46, vs 40). Exclusive on the data. Two soft spots. (a) The stem is ambiguous between 'this additive's own maximum' and 'the greatest of the four at 10 mg/L' - both readings return J, so it cannot mis-score, but it means the item can be answered by finding the highest point at x=10 without ever comparing concentrations, which is a discrimination loss rather than a defect. (b) The natural error - misremembering the Exp 2 concentration as 20 mg/L - makes K, L and M ALL true simultaneously, so that error maps to no single distractor and the student is bounced back rather than caught. Hence plausible, not strong. Figure legibility is not in play: J's peak at 10 mg/L (y=24.6) is 15 px clear of the next curve."
+  },
+  "ACT-SC6-P1-Q3": {
+    "pick": "Additive K",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "This is the item the redraw was for, and it is fixed. Fig 2: K unstirred 27 (bar top y=222.6) vs stirred 32 (y=211.6) - an 11 px gap at the served width, the only pair where white exceeds black. The other three go the other way by 30 (J), 4 (L) and 4 (M) min = 66, 8.8 and 8.8 px. I read it correctly from the 1:1 260 px raster with no magnification, and it still reads correctly at 240 px (8% below the design width), where the K gap is ~10 px. The identical 1 px stroke on both bar types removes the old fill/outline confusion, and the legend swatches carry the same stroke. No tick, bar top or marker in Fig 2 was hard for me to read. Distractors: J is the endpoint of the legend-inversion error (if black were read as stirred, J's 30-min gap is the one a student would grab) and of 'changed the most'; M is the endpoint of 'tallest stirred bar'; L is the endpoint of a same-direction-but-tiny misread. Reachability: no - the superlative GREATER does not pick a name by itself, and every additive appears on the ballot."
+  },
+  "ACT-SC6-P1-Q4": {
+    "pick": "36 min",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Two figures. Fig 2 drops: J -30, L -4, M -4, K +5. J's drop is 7.5x the next largest, so 'by far more' is unambiguous and not a judgement call. Then Fig 1, J at 15 mg/L: y=48.8 = 36 min, sitting 2.2 px above the 35-min minor tick with the filled circle 13 px clear of M's diamond and the 'J' label on the curve two ticks to the right. Comfortably resolvable. Hardest item here by a wide margin - cross-figure synthesis, four differences to compute, then a read - and legitimately hard rather than fiddly. Distractors are the same-x other-curve reads: 42=M@15 (also what you get if you decide M changed most, since M has the second-tallest pair), 29=K@15, 18=L@15. No sum or difference relation among 18/29/36/42, and the key is not the extreme value (42 is). One gap worth naming: 47 - J at 10 mg/L, i.e. what you get if you read Fig 2's bar or the wrong x - is NOT on the ballot, so the wrong-concentration error is uncaught. Not a scoring risk, just an unused distractor slot."
+  },
+  "ACT-SC6-P1-Q5": {
+    "pick": "24 min",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "K at 5 = 21, at 10 = 27, drawn as a straight segment; 7.5 interpolates to 24. Exclusive: defending 21 would require asserting the segment is flat to 10 mg/L, which the drawn line refuses, and K is monotone increasing throughout so nothing supports a value below 21. The disambiguating clause is doing work and the option it exists to exclude IS on the ballot - 21, the nearer plotted point - which is the right construction. The far endpoint 27 is not on the ballot, so only half of the 'snap to a plotted point' error is caught. 16 is M at 5 mg/L (curve slip); 12 is the additive-free baseline, the weakest of the three since it corresponds to reading the y-intercept rather than an error a student makes at 7.5 mg/L. Figure: K's square markers at 5 and 10 are 13.2 px apart vertically with the 20-min major gridline between them, so the endpoints of the interpolation are easy to fix. Nothing hard to read."
+  },
+  "ACT-SC6-P1-Q6": {
+    "pick": "Additive L",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Additive-free mean = 12 min (the open circle at 0 mg/L). Only L goes below it: 9 at 5 mg/L and 8 at 10. Minima elsewhere are J 21, K 21, M 16 - all above 12, so exclusive, and the margin survives the passage's stated control spread of +/-1 min (L is 3-4 min below, not 1). I checked the rule the item turns on rather than the verdict: 'shortened relative to additive-free at ANY concentration tested' needs one dip, and L supplies two, so L's rise to 18 and 27 at 15 and 20 mg/L does not rescue the student's claim. Figure: this is the tightest comparison in the batch - control 12 (y=101.6) vs L's 9 (y=108.2) is 6.6 px - but it is not a bare pixel comparison, because the 10-min MAJOR gridline runs between them, the control is a distinctly larger open circle, and L's second point at 8 is 8.8 px down. I resolved it at 1:1 without magnifying. The one marker I found imprecise anywhere in the figure is L's filled triangle: it spans y=105.6-109.5, about 1.8 min of apex-vs-centroid ambiguity, so a reader taking the apex gets 10.2 rather than 9. Still below 12, so it does not reach this item, but it is the marker to fix if any is fixed. Reachability flag: 'which line is lowest overall' returns L without ever locating the additive-free baseline, so the baseline clause - the actual science of the item - is skippable. That is a discrimination loss, not an exclusivity failure, and it is why I graded this medium rather than hard."
+  }
+}

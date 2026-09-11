@@ -70,12 +70,27 @@
  */
 import { readFileSync } from 'node:fs'
 
+/*
+ * GATED BY WHAT THE STEM IS ABOUT — a grader's false positive, 2026-09-11.
+ *
+ * The first version fired on `81 + 9 = 90` in an SAT Advanced Math item with
+ * no angle anywhere in it. Their verdict, which is right: "there is no angle
+ * in that item, so 90 is not a constant the configuration supplies and the
+ * pair carries no information. The 90/180/360 test is too coarse for
+ * non-geometry domains."
+ *
+ * A constant only counts when the CONFIGURATION could supply it. So the
+ * angle constants require the stem to be about angles, and the percentage
+ * constant requires a percent. 1 stays ungated: a pair summing to 1 is a
+ * complement wherever probabilities or proportions appear, and those are not
+ * reliably signposted by a keyword.
+ */
 const CONSTANTS = [
-  { v: 90, why: 'complementary angles' },
-  { v: 180, why: 'supplementary angles, or a triangle\'s angle sum' },
-  { v: 360, why: 'angles about a point, or a polygon\'s exterior angles' },
-  { v: 1, why: 'complementary probabilities or proportions' },
-  { v: 100, why: 'complementary percentages' },
+  { v: 90, why: 'complementary angles', needs: /angle|degree|triangle|parallel|perpendicular|transversal|polygon|quadrilateral/i },
+  { v: 180, why: 'supplementary angles, or a triangle\'s angle sum', needs: /angle|degree|triangle|parallel|perpendicular|transversal|polygon|quadrilateral/i },
+  { v: 360, why: 'angles about a point, or a polygon\'s exterior angles', needs: /angle|degree|triangle|circle|polygon|rotat|revolution/i },
+  { v: 1, why: 'complementary probabilities or proportions', needs: null },
+  { v: 100, why: 'complementary percentages', needs: /percent|%/i },
 ]
 
 const num = s => {
@@ -88,12 +103,13 @@ const num = s => {
 
 /** Every option pair hitting a constant, key membership ignored — needed for
  *  the uniqueness test, which is the statistic that actually decides. */
-export function allPairs(choices) {
+export function allPairs(choices, stem = '') {
   const vals = choices.map(num)
   const out = []
   for (let i = 0; i < vals.length; i++) for (let j = i + 1; j < vals.length; j++) {
     if (vals[i] === null || vals[j] === null) continue
     for (const c of CONSTANTS) {
+      if (c.needs && !c.needs.test(String(stem))) continue
       const tol = Math.max(1e-9, Math.abs(c.v) * 1e-9)
       if (Math.abs(vals[i] + vals[j] - c.v) < tol) out.push([vals[i], vals[j], c.v])
     }
@@ -101,7 +117,7 @@ export function allPairs(choices) {
   return out
 }
 
-export function pairConstantVerdict(choices, key) {
+export function pairConstantVerdict(choices, key, stem = '') {
   const vals = choices.map(num)
   if (vals.filter(v => v !== null).length < 3) return null   // unscorable
   const kv = num(key)
@@ -113,6 +129,7 @@ export function pairConstantVerdict(choices, key) {
       // only interesting when the key is one of the two
       if (vals[i] !== kv && vals[j] !== kv) continue
       for (const c of CONSTANTS) {
+        if (c.needs && !c.needs.test(String(stem))) continue
         const tol = Math.max(1e-9, Math.abs(c.v) * 1e-9)
         if (Math.abs(vals[i] + vals[j] - c.v) < tol)
           hits.push({ a: choices[i], b: choices[j], c: c.v, why: c.why })
@@ -129,19 +146,19 @@ function selftest() {
   }
   // The motivating case. A checker that reads green on its own motivating
   // case is measuring nothing — this repo learned that today.
-  let v = pairConstantVerdict(['58', '98', '22', '82'], '82')
+  let v = pairConstantVerdict(['58', '98', '22', '82'], '82', 'the acute angle formed by the transversal')
   ok('GEOH2-18 fires (98 + 82 = 180, key is one of the pair)', v.hits.length === 1 && v.hits[0].c === 180, v.hits)
   // A pair of two DISTRACTORS summing to 180 must NOT fire.
-  v = pairConstantVerdict(['58', '98', '82', '30'], '30')
+  v = pairConstantVerdict(['58', '98', '82', '30'], '30', 'the acute angle formed by the transversal')
   ok('two distractors summing to 180 do NOT fire (tells the solver nothing)', v.hits.length === 0, v.hits)
   // Complementary probabilities.
   v = pairConstantVerdict(['1/4', '3/4', '1/2', '1/3'], '1/4')
   ok('complementary probabilities fire (1/4 + 3/4 = 1)', v.hits.length === 1 && v.hits[0].c === 1, v.hits)
   // Percentages written with a sign.
-  v = pairConstantVerdict(['35%', '65%', '40%', '20%'], '35%')
+  v = pairConstantVerdict(['35%', '65%', '40%', '20%'], '35%', 'what percent of the total')
   ok('complementary percentages fire (35% + 65% = 1)', v.hits.length === 1, v.hits)
   // A near miss must not fire: 89 + 90 = 179, one off 180.
-  v = pairConstantVerdict(['89', '90', '40', '12'], '89')
+  v = pairConstantVerdict(['89', '90', '40', '12'], '89', 'the angle measure in degrees')
   ok('a near miss at 179 does NOT fire', v.hits.length === 0, v.hits)
   // Non-numeric options are unscorable, not clean.
   ok('mostly non-numeric options are UNSCORABLE (null)',
@@ -153,6 +170,17 @@ function selftest() {
   for (let i = 0; i < vals.length; i++) for (let j = i + 1; j < vals.length; j++)
     if (Math.abs(vals[i] + vals[j] - 180) < 1e-9) wouldFire++
   ok('without the key-membership rule that same set WOULD fire — so the rule is load-bearing', wouldFire === 1, wouldFire)
+  // The grader's false positive: 81 + 9 = 90 in an item with no angle in it.
+  const fp = pairConstantVerdict(['81', '9', '3', '27'], '3', 'If x^(3/4) = 27 and x > 0, what is the value of the cube root of x?')
+  ok('81 + 9 = 90 does NOT fire when the stem has no angle in it', fp.hits.length === 0, fp.hits)
+  /* The paired positive control needs the KEY inside the pair — with key '3'
+   * the 81+9 pair correctly never fires, because this checker only reports a
+   * pair one of whose members is the key. My first version of this fixture
+   * used '3' and the self-test failed on correct code. Third fixture error of
+   * the day; fix the fixture, not the code. */
+  const tp = pairConstantVerdict(['81', '9', '3', '27'], '81', 'In the figure two angles are complementary. What is the larger angle measure in degrees?')
+  ok('...and the same option set DOES fire when the stem is about angles and the key is in the pair',
+    tp.hits.length === 1, tp.hits)
   console.log(bad ? `\nSELF-TEST FAILED (${bad})` : '\nself-test passed.')
   process.exit(bad ? 1 : 0)
 }
@@ -161,7 +189,7 @@ function report(label, rows) {
   let scorable = 0, unscorable = 0
   const fired = []
   for (const r of rows) {
-    const v = pairConstantVerdict(r.choices, r.key)
+    const v = pairConstantVerdict(r.choices, r.key, r.stem)
     if (!v) { unscorable++; continue }
     scorable++
     if (v.hits.length) fired.push({ id: r.id, h: v.hits[0] })
@@ -172,9 +200,9 @@ function report(label, rows) {
   /* Report the decidable statistic, not the raw rate — see the header. */
   let uniq = 0, uniqKey = 0
   for (const r of rows) {
-    const v = pairConstantVerdict(r.choices, r.key)
+    const v = pairConstantVerdict(r.choices, r.key, r.stem)
     if (!v) continue
-    const all = allPairs(r.choices)
+    const all = allPairs(r.choices, r.stem)
     if (all.length === 1) { uniq++; if (v.hits.length) uniqKey++ }
   }
   console.log(`  key pairs to a constant at all: ${fired.length} of ${scorable} = ${(100 * fired.length / scorable).toFixed(1)}%   <- NOT a defect rate; the supplement is usually a good distractor`)
@@ -211,12 +239,12 @@ if (args.includes('--bank')) {
     rows.push(...(data ?? [])); if (!data || data.length < 1000) break
   }
   report(`LIVE BANK family=${argOf('--family') ?? 'all'} section=${argOf('--section') ?? 'all'}`,
-    rows.map(r => ({ id: r.id, choices: r.item?.choices ?? [], key: r.item?.correct_answer })))
+    rows.map(r => ({ id: r.id, choices: r.item?.choices ?? [], key: r.item?.correct_answer, stem: r.item?.prompt ?? '' })))
 } else {
   const path = args.find(a => a.endsWith('.json'))
   if (!path) { console.error('usage: check-option-pair-constant.mjs <batch.json> | --bank | --selftest'); process.exit(2) }
   const batch = JSON.parse(readFileSync(path, 'utf8'))
   if (!Array.isArray(batch) || !batch.length) { console.error(`REFUSING: ${path} holds no items.`); process.exit(2) }
-  const r = report(path, batch.map(i => ({ id: i.id, choices: i.choices, key: i.correct_answer })))
+  const r = report(path, batch.map(i => ({ id: i.id, choices: i.choices, key: i.correct_answer, stem: i.prompt ?? '' })))
   if (r === null) process.exit(2)
 }

@@ -1,0 +1,332 @@
+[
+ {
+  "id": "IM11-01",
+  "domain": "Math",
+  "prompt": "The greatest common factor of 24 and a second whole number is 6, and the least common multiple of the two numbers is 360. What is the second number?",
+  "choices": [
+   "90",
+   "144",
+   "15",
+   "60"
+  ]
+ },
+ {
+  "id": "IM11-02",
+  "domain": "Math",
+  "prompt": "In a group of 40 students, 22 study history, 20 study biology, and 18 study art. Ten students study both history and biology, 9 study both history and art, and 8 study both biology and art. Five students study all three subjects. How many of the 40 students study none of the three subjects?",
+  "choices": [
+   "7",
+   "12",
+   "2",
+   "5"
+  ]
+ },
+ {
+  "id": "IM11-03",
+  "domain": "Math",
+  "prompt": "If 3x + 5y = 31 and 5x + 3y = 41, what is the value of x + y?",
+  "choices": [
+   "9",
+   "5",
+   "36",
+   "72"
+  ]
+ },
+ {
+  "id": "IM11-04",
+  "domain": "Math",
+  "prompt": "For all numbers a and b, let a # b = a^2 - 2b. What is the value of 3 # (1 # 4)?",
+  "choices": [
+   "17",
+   "41",
+   "23",
+   "-5"
+  ]
+ },
+ {
+  "id": "IM11-05",
+  "domain": "Math",
+  "prompt": "The diagonal of a square measures 10 centimeters. What is the area of the square, in square centimeters?",
+  "choices": [
+   "100",
+   "50",
+   "200",
+   "48"
+  ]
+ },
+ {
+  "id": "IM11-06",
+  "domain": "Math",
+  "prompt": "A square target measures 12 inches on each side. Printed at its center is a square bull's-eye measuring 4 inches on each side. The bull's-eye covers what percent of the area of the whole target, to the nearest tenth of a percent?",
+  "choices": [
+   "88.9",
+   "2.8",
+   "11.1",
+   "33.3"
+  ]
+ },
+ {
+  "id": "IM11-07",
+  "domain": "Math",
+  "prompt": "What is the value of (-3)^3 + (-2)^4?",
+  "choices": [
+   "-11",
+   "43",
+   "-43",
+   "11"
+  ]
+ },
+ {
+  "id": "IM11-08",
+  "domain": "Math",
+  "prompt": "A coach recorded the number of goals scored by each of the 15 players on a team during a season: 5 players scored 0 goals, 2 players scored 1 goal, 3 players scored 2 goals, 4 players scored 3 goals, and 1 player scored 5 goals. What is the median number of goals scored by a player?",
+  "choices": [
+   "0",
+   "1.5",
+   "2",
+   "1"
+  ]
+ },
+ {
+  "id": "IM11-09",
+  "domain": "Math",
+  "prompt": "The figures in a pattern are built from small squares. Figure 1 uses 5 squares, figure 2 uses 8 squares, figure 3 uses 11 squares, and figure 4 uses 14 squares. If the pattern continues in the same way, how many small squares does figure 50 use?",
+  "choices": [
+   "150",
+   "152",
+   "149",
+   "147"
+  ]
+ },
+ {
+  "id": "IM11-10",
+  "domain": "Math",
+  "prompt": "In the coordinate plane, the line through the points (2, 8) and (5, 2) crosses the x-axis at the point (k, 0). What is the value of k?",
+  "choices": [
+   "6",
+   "-2",
+   "4",
+   "3.5"
+  ]
+ },
+ {
+  "id": "IM11-11",
+  "domain": "Math",
+  "prompt": "Two cyclists start at the same moment from towns that are 84 miles apart and ride toward each other along the same road. One rides at a steady 16 miles per hour and the other at a steady 12 miles per hour. How many hours after they start do they meet?",
+  "choices": [
+   "3",
+   "21",
+   "7",
+   "5.25"
+  ]
+ },
+ {
+  "id": "IM11-12",
+  "domain": "Math",
+  "prompt": "In 8 years Marta will be exactly twice as old as her brother will be at that time. Marta is now 22 years old. How old is her brother now?",
+  "choices": [
+   "3",
+   "7",
+   "15",
+   "11"
+  ]
+ },
+ {
+  "id": "IM11-13",
+  "domain": "Math",
+  "prompt": "The number 6 x 10^8 is how many times as great as the number 3 x 10^5?",
+  "choices": [
+   "3000",
+   "200",
+   "2000",
+   "18000"
+  ]
+ },
+ {
+  "id": "IM11-14",
+  "domain": "Math",
+  "prompt": "The three edge lengths of a rectangular box are in the ratio 1 : 2 : 3, and the volume of the box is 48 cubic inches. What is the length, in inches, of the shortest edge?",
+  "choices": [
+   "8",
+   "6",
+   "2",
+   "4"
+  ]
+ },
+ {
+  "id": "IM11-15",
+  "domain": "Math",
+  "prompt": "In a geometric sequence of positive numbers, the third term is 18 and the fifth term is 162. What is the common ratio of the sequence?",
+  "choices": [
+   "9",
+   "54",
+   "4.5",
+   "3"
+  ]
+ },
+ {
+  "id": "IM11-16",
+  "domain": "Math",
+  "prompt": "A set of five positive integers, not necessarily different, has a mean of 10 and a median of 12. What is the greatest possible value of the largest integer in the set?",
+  "choices": [
+   "12",
+   "36",
+   "26",
+   "24"
+  ]
+ },
+ {
+  "id": "IM11-17",
+  "domain": "Math",
+  "prompt": "In the coordinate plane, ABCD is a parallelogram whose vertices in order are A(1, 2), B(5, 2), C(7, 6) and D. What are the coordinates of D?",
+  "choices": [
+   "(11, 2)",
+   "(3, 2)",
+   "(11, 6)",
+   "(3, 6)"
+  ]
+ },
+ {
+  "id": "IM11-18",
+  "domain": "Math",
+  "prompt": "How many two-digit whole numbers have two digits whose sum is 9?",
+  "choices": [
+   "8",
+   "10",
+   "9",
+   "4"
+  ]
+ },
+ {
+  "id": "IM11-19",
+  "domain": "Math",
+  "prompt": "A car travels 28 miles on each gallon of gasoline. If gasoline costs $3.60 per gallon, what is the cost of the gasoline used on a 350-mile trip?",
+  "choices": [
+   "$12.50",
+   "$46.80",
+   "$100.80",
+   "$45.00"
+  ]
+ },
+ {
+  "id": "IM11-20",
+  "domain": "Math",
+  "prompt": "A clerk is paid $14 per hour for the first 40 hours she works in a week and $21 per hour for each hour she works beyond 40. Last week she earned $686. How many hours of overtime did she work?",
+  "choices": [
+   "46",
+   "6",
+   "49",
+   "9"
+  ]
+ },
+ {
+  "id": "IM11-21",
+  "domain": "Math",
+  "prompt": "What is the sum of all the multiples of 4 that lie between 50 and 150?",
+  "choices": [
+   "2448",
+   "2400",
+   "2500",
+   "2652"
+  ]
+ },
+ {
+  "id": "IM11-22",
+  "domain": "Math",
+  "prompt": "At 6 p.m. the temperature outside was -4 degrees Fahrenheit. The temperature then fell 3 degrees each hour for the next 5 hours. What was the temperature, in degrees Fahrenheit, at 11 p.m.?",
+  "choices": [
+   "-15",
+   "-19",
+   "-22",
+   "11"
+  ]
+ },
+ {
+  "id": "IM11-23",
+  "domain": "Math",
+  "prompt": "In the number 3.0472, what is the value of the digit 7?",
+  "choices": [
+   "0.0007",
+   "0.7",
+   "0.007",
+   "0.07"
+  ]
+ },
+ {
+  "id": "IM11-24",
+  "domain": "Math",
+  "prompt": "A basketball team won 18 of the 30 games it played and lost the rest. What is the ratio of the games it won to the games it lost, in lowest terms?",
+  "choices": [
+   "3 to 5",
+   "5 to 3",
+   "3 to 2",
+   "2 to 3"
+  ]
+ },
+ {
+  "id": "IM11-25",
+  "domain": "Math",
+  "prompt": "How many sixths are there in 2 1/3?",
+  "choices": [
+   "42",
+   "14",
+   "7",
+   "12"
+  ]
+ },
+ {
+  "id": "IM11-26",
+  "domain": "Math",
+  "prompt": "A parallelogram has a base 10 centimeters long. The side that meets that base is 8 centimeters long, and the height drawn to the 10-centimeter base is 6 centimeters. What is the area of the parallelogram, in square centimeters?",
+  "choices": [
+   "30",
+   "80",
+   "60",
+   "48"
+  ]
+ },
+ {
+  "id": "IM11-27",
+  "domain": "Math",
+  "prompt": "A spinner is divided into 5 regions of equal size, 2 of which are red. The spinner is spun twice, and the spins do not affect each other. What is the probability that it lands on red both times?",
+  "choices": [
+   "4/25",
+   "2/5",
+   "4/5",
+   "1/10"
+  ]
+ },
+ {
+  "id": "IM11-28",
+  "domain": "Math",
+  "prompt": "When a certain number is increased by 20 percent, the result is 6 more than the number. What is the number?",
+  "choices": [
+   "30",
+   "120",
+   "36",
+   "5"
+  ]
+ },
+ {
+  "id": "IM11-29",
+  "domain": "Math",
+  "prompt": "The sum of five consecutive integers is S. In terms of S, what is the least of the five integers?",
+  "choices": [
+   "S/5 + 2",
+   "(S - 2)/5",
+   "S/5",
+   "S/5 - 2"
+  ]
+ },
+ {
+  "id": "IM11-30",
+  "domain": "Math",
+  "prompt": "In a class of 32 students the ratio of boys to girls is 5 to 3. One fourth of the boys and one third of the girls play a musical instrument. How many students in the class play a musical instrument?",
+  "choices": [
+   "8",
+   "5",
+   "9",
+   "23"
+  ]
+ }
+]

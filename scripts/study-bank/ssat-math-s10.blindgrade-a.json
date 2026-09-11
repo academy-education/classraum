@@ -1,0 +1,107 @@
+{
+  "SM10-01": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2/7 = 0.285714 repeating; 50 = 6*8 + 2, so the 50th digit is the 2nd of the block, 8. Every option is a digit of the actual block (2,8,5,7,1,4) except that 7 is withheld, so the four wrong options are the four neighbouring cycle positions: 2 is the 49th digit, 5 the 51st. Off-by-one on the modulus is exactly how this is missed, so all four are endpoints of a real error. Nothing arithmetic to exploit - options are bare digits, no sum/difference structure is meaningful. The stem handing over 'a block of six' is a genuine gift (it removes the discovery step) but the expansion still has to be produced."
+  },
+  "SM10-02": {
+    "pick": "28.80",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "12 notebooks = 4 groups of 3, pay for 8: 8 * 3.60 = 28.80. Every option is 3.60 * an integer count - 11, 8, 9, 12, 6 - so each is the endpoint of a specific miscount: 43.20 pays for all 12, 32.40 pays for 9 (counts the free ones as 1-in-4 wrong), 21.60 pays for 6 (buys 12 and gets 6 free, misreading 'leaves with'), 39.60 pays for 11. No option is the sum or difference of two others; the key is not 2x or half of anything on the ballot. Clean."
+  },
+  "SM10-03": {
+    "pick": "25",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "(45-36)/36 = 9/36 = 25%. 20 is the same difference over the wrong base (9/45), 125 and 80 are the two ratios reported instead of the increase, 9 is the raw dollar difference. All four are live errors. One thing to note: 20 + 80 = 100, a constant the percent configuration supplies and the stem never prints. Neither of those is the key, so it does not point at 25 - but it is the shape the protocol asks about, and it lets a test-wise student see 20 and 80 as a manufactured pair. Not disqualifying."
+  },
+  "SM10-04": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Sum 84, mean 12; sorted 2,4,5,7,8,28,30 gives median 7; 12 - 7 = 5. Strong: 7 is the median itself (answering the wrong question) and 8 = 12 - 4, taking the middle of the UNSORTED list, which is the single commonest median error. Weaker: 6 and 4.5 do not map cleanly onto an error I can name - 4.5 looks like it exists only to be the one non-integer. Two strong distractors carry the item. No arithmetic relation among the options produces 5."
+  },
+  "SM10-05": {
+    "pick": "1/4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The apex lies on the opposite 12cm side, so the height is the full 8 whatever its position - that is the real insight and it is worth a medium. Triangle 1/2*6*8 = 24 over rectangle 96 = 1/4. On the author's kept distractor: 3/4 is the probability of landing OUTSIDE the triangle. It is a real error (students compute complements) but I would not credit the stem's qualifier with much work here - 'inside the triangle' is the question itself, not a disambiguating clause a solver could reasonably skim past, unlike 'the shorter segment' or 'must be added'. And it costs something: 1/4 + 3/4 = 1 is the only complement pair on a five-option probability ballot, which hands a non-solver a 1-in-2 narrowing on the standard heuristic that the key is one of the pair that sums to 1. Separately 3/4 - 1/2 = 1/4, so the key is also the difference of two other options. 1/2 alone is fine (forgot the half; 1/8 is correctly absent, so the star is broken). If one option is to be traded, trade 3/4 - it is the weakest of the three kept discriminators and the only one that buys the guesser anything."
+  },
+  "SM10-06": {
+    "pick": "450",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Linear scale 5 means area scale 25; 18 * 25 = 450. 90 is the classic failure to square the scale factor, 3.6 and 0.72 divide instead of multiply (once and twice). 180 maps to no error I can construct - 18*10 is not a mistake anyone makes - and is the weak one. Structural note the author should want: 0.72, 3.6 and 90, 450 form a ratio-5 ladder with the rung at 18 missing. The key sits at the TOP of that ladder, not its middle, so the geometric-middle defect they repaired has not recurred here. It does leave 450 as the uniquely largest option, which a student who knows only 'area scales up' can reach without computing 25; that is a smaller edge than the middle-of-the-run tell but it is the same family."
+  },
+  "SM10-07": {
+    "pick": "13",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "(2n+7)/3 = 11 gives 2n+7 = 33, 2n = 26, n = 13. 33 and 26 are both intermediates on the solve path - that is correct distractor design (stopping one step early), not a leak, and they are the two strongest options. 16.5 is 33/2, halving before subtracting. 20 corresponds to no error I can reconstruct in either operation order, and is weak. One relation survives: 33 - 20 = 13, so the key is the difference of two other options, and 26 = 2 * key is on the ballot (13/2 = 6.5 correctly is not, so the two-sided star is broken). Replacing 20 - which earns nothing as a distractor anyway - with 9.5 (the (2(n+7))/3 misparse) kills the difference relation and adds a real error."
+  },
+  "SM10-08": {
+    "pick": "16",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "x+y = 28, y+z = 44, so z-x = 16 with y cancelling. All four wrong options are real: 8 = 22-14 (differencing the averages without doubling, the dominant error), 36 = 14+22, 18 = the average of the averages, 30 = 44-14 (subtracting the wrong pair). Only relation present is 8 = key/2; 32 is correctly absent, so the key is not centred. No option is the sum or difference of two others. This is the cleanest item in the file."
+  },
+  "SM10-09": {
+    "pick": "27",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Base from (2,1) to (11,1) is 9, height to y=7 is 6, area 27. 54 is the forgot-the-half endpoint and is strong. 13.5 is correctly ABSENT - this is exactly the repair the author made and it held: the key is not the centre of its own 54/27/13.5 star, and 54,27,13.5 would also have been a ratio-2 geometric run with the key as its middle. Of the rest, 22.5 reads as 1/2*9*5 (taking the apex x-coordinate as the height) and 18 as 1/2*6*6, both defensible; 15 maps to nothing I can name. No sum or difference among the wrong options reaches 27."
+  },
+  "SM10-10": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "30+4h = 54+h gives 3h = 24, h = 8. On the author's kept distractor: 62 is the shared COST at the crossover, and here the qualifier is doing real work - the stem says 'after how many HOURS', the two quantities have different units, and 62 is the number a student lands on if they solve correctly and then read back the wrong side of the equation. This is the strongest of the three kept discriminators: unlike SM10-05 the excluded quantity is not the complement of the key but a genuinely different dimension, and a solver who ignores the unit word is wrong for a reason worth measuring. The other three are also live: 24 stops at 3h, 6 divides 24 by 4, 4.8 divides 24 by 4+1 instead of 4-1. No option is the sum or difference of two others and neither 4 nor 16 is present. Clean."
+  },
+  "SM10-11": {
+    "pick": "360",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "FLAG - this is the one item where the repaired defect has come back in a different form. Cross-section 1/2*6*8 = 24, volume 24*15 = 360. 720 is forgot-the-half and 180 is correctly absent, so the 2x/half star the author dismantled is gone. But 240 + 120 = 360: the key is the exact sum of two other options, which puts it back at the centre of a derivational relation by addition rather than by halving. It is worse than it looks because those two are also the weakest options - 240 needs 24 * 10 (hypotenuse as the length) and 120 needs 8 * 15 (one leg, no triangle at all), and 270 maps to nothing at all. So the three weakest options include the two that manufacture the sum. Suggest replacing 240 with 400 (1/2 * 10 * 8 * 10, hypotenuse-as-leg) or 300, which breaks the relation and costs nothing. Difficulty is easy on the real exam - two formula applications, no insight step."
+  },
+  "SM10-12": {
+    "pick": "6",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Trailing zeros of 25! = floor(25/5) + floor(25/25) = 5 + 1 = 6. Genuinely hard for SSAT Upper Level and hard for the right reason - the second contribution from 25 is a real insight, not a fiddly computation, and 5 is the near-miss that makes the item discriminate. 22 is the count of factors of 2 (12+6+3+1), a knowledgeable student's wrong pairing choice. 10 and 4 are thinner. One relation: 10 - 4 = 6, key as the difference of two others; given that 4 is the weakest option on the ballot I would swap it for 7 or 12 and the relation disappears."
+  },
+  "SM10-13": {
+    "pick": "18",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "0.6*30 + 0.2x = 0.45(30+x) gives 4.5 = 0.25x, x = 18. On the author's kept distractor: 48 is the FINISHED mixture (30+18) and the qualifier is doing real work - 'how many litres ... must be ADDED' is a clause that a student who has set up and solved the equation correctly can still misread, because the natural endpoint of a mixture computation is the final volume. This is the second of the three I would defend without reservation. 13.5 = 0.45*30 is a live intermediate; 72 is 18/0.25, dropping the 13.5 term from the right side, which is a real algebra slip. 6 maps to nothing. Note 72 + 18 = 90, which my sweep flags as a configuration constant, but 90 has no meaning in this configuration so I read that as coincidence, not a channel. The key is neither 2x nor half of anything present and is not a sum or difference of two others - 4.5 (the run the author caught) is correctly gone and 13.5 does not reconstruct it."
+  },
+  "SM10-14": {
+    "pick": "30",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "16 + 9 + 4 + 1 = 30. 16 (unit squares only) and 17 (unit squares plus the whole board) are excellent - they are the two places a student actually stops - and 25 is the 5x5 lattice-point count, a real confusion. 14 is the problem: it corresponds to no counting error I can construct, and 14 + 16 = 30 makes the key the sum of two other options, with the manufactured half of the pair being the one option that earns nothing. Replace 14 with 20 (16 unit squares + 4 of the 2x2s, a student who counts only the non-overlapping larger squares) and both defects go at once. Medium, not hard: the enumeration is available to a student who has never seen the item, so this is not the knowledge-gated trick it can look like."
+  },
+  "SM10-15": {
+    "pick": "45",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "9*6 = 54 minus 3*3 = 9 gives 45. 54 (forgot the cut) and 51 (subtracted 3 rather than 3 squared) are both real and 51 is the good one. 42 would be subtracting 12, which I cannot map to a specific slip, and 18 maps to nothing - it is also a visible outlier against a 42/45/51/54 cluster, so it is effectively a four-option item for anyone eyeballing the ballot. No arithmetic relation reaches 45 from two other options and neither 22.5 nor 90 is present. Clean structurally, thin on distractors."
+  }
+}

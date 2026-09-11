@@ -1,0 +1,212 @@
+{
+  "IM11-01": {
+    "pick": "90",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "gcd*lcm = product, so n = 6*360/24 = 90; unique. 60 (gcd 12), 144 (gcd 24), 15 (gcd 3) all fail the stated GCF, so a student who only checks GCF still lands on 90 - but checking is itself the work. Needs the product identity or systematic prime-factor reasoning; genuinely hard for Upper Level. No stem formula."
+  },
+  "IM11-02": {
+    "pick": "2",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "22+20+18-10-9-8+5 = 38; 40-38 = 2. 7 is the endpoint of omitting the +5 add-back, 5 is the triple-overlap echoed back, 12 is 40-28. Three-set inclusion-exclusion is at the very top of the Upper Level range. Formula not supplied."
+  },
+  "IM11-03": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Add: 8x+8y=72, x+y=9. 72 is the intermediate sum and 36 its half - both real stopping points; 5 is x-y from subtracting. Note the ballot contains the intermediate (72) and half of it; that is good distractor design, not a leak, since nothing marks which is terminal."
+  },
+  "IM11-04": {
+    "pick": "23",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "1#4 = 1-8 = -7; 3#(-7) = 9+14 = 23. 41 is the left-to-right association (3#1)#4 = 7#4 = 41 - the exact error the parentheses exist to punish, and it is on the ballot, which is the right call. -5 uses +7."
+  },
+  "IM11-05": {
+    "pick": "50",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "d^2/2 = 50, or side = 10/sqrt2, side^2 = 50. 100 treats the diagonal as a side, 200 is d^2. No formula printed and no value of sqrt2 given - the s10 failure mode is absent here."
+  },
+  "IM11-06": {
+    "pick": "11.1",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "16/144 = 11.1%. 88.9 is the complement (the region outside), 33.3 is the LINEAR ratio 4/12 - the signature area-vs-length error - and 2.8 is 4/144. Flag under the protocol's sum test: 11.1 + 88.9 = 100, a constant the configuration supplies and the stem never prints, so the key sits in a complementary pair. It does not decide the item (a guesser still has to know the bull's-eye is the small piece) but it halves the field for free."
+  },
+  "IM11-07": {
+    "pick": "-11",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "-27 + 16 = -11. All three wrong options are exact sign/parity errors on the exponents (43 = 27+16, -43 = -(27+16), 11 = 27-16). Well built, but this is Middle Level arithmetic; easy against the real Upper Level."
+  },
+  "IM11-08": {
+    "pick": "2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "15 values, 8th sorted value = 2. 0 is the mode, 1 is near the mean (1.67, not an exact endpoint), 1.5 is an even-count midpoint applied to an odd list. 1 corresponds to no clean error, so the set is plausible rather than strong. Reading a frequency list is Upper Level entry level."
+  },
+  "IM11-09": {
+    "pick": "152",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "3n+2 at n=50 = 152. 150 = 3*50 (dropping the constant), 149 = 3*49+2 (off-by-one on the index), 147 = 3*49. Both classic sequence errors are on the ballot."
+  },
+  "IM11-10": {
+    "pick": "6",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "slope -2, y = 12-2x, x-intercept 6. -2 is the slope itself - an intermediate on the ballot, which is a legitimate 'answered the wrong question' endpoint. 3.5 is the midpoint x, 4 corresponds to nothing I can name; that one is weak and pulls the set to plausible."
+  },
+  "IM11-11": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Closing speed 28, 84/28 = 3. 21 = 84/4, 7 = 84/12, 5.25 = 84/16 - each is the endpoint of dividing by the wrong rate. Good distractors on an easy item."
+  },
+  "IM11-12": {
+    "pick": "7",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "30 = 2(b+8), b+8 = 15, b = 7. 15 is the brother's FUTURE age - the intermediate, and the one most students stop on; 11 = 22/2 (ignoring the shift), 3 = 11-8. The disambiguator 'now' is doing real work and the option it exists to exclude (15) is on the ballot, as the protocol asks."
+  },
+  "IM11-13": {
+    "pick": "2000",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "2 x 10^3. 200 and 3000 are exponent/mantissa slips, 18000 multiplies instead of divides. Straightforward scientific-notation division."
+  },
+  "IM11-14": {
+    "pick": "2",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "6x^3 = 48, x = 2. 8 is x^3 (stopping one step early), 4 is 2x (the middle edge), 6 is the coefficient. The 'shortest' qualifier is load-bearing and the other two edges (4 and 6... 6 doubles as the coefficient) are on the ballot. Volume formula not supplied."
+  },
+  "IM11-15": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "r^2 = 162/18 = 9, r = 3; positivity stated so r = -3 is excluded cleanly. 9 is r^2 (the near-universal stop), 54 is the fourth term, 4.5 is 162/36. Good."
+  },
+  "IM11-16": {
+    "pick": "24",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Sum 50, median 12 fixes the third value; minimise the two below at 1 each, so d+e = 36 with d >= 12, giving e <= 24. {1,1,12,12,24} realises it. 26 is the answer if you let the two small values be 0 - i.e. it is precisely the endpoint of ignoring 'positive', and that word is therefore doing real work with its trap on the ballot. 36 is d+e. The strongest item in the batch."
+  },
+  "IM11-17": {
+    "pick": "(3, 6)",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "D = A + C - B = (3,6); the labelling 'in order' makes it unique. (11,6) = B+C-A is the answer for the wrong vertex order - the single most common error and the one the 'in order' clause excludes, correctly present. (3,2) and (11,2) keep A's y."
+  },
+  "IM11-18": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "18,27,36,45,54,63,72,81,90 = 9. 8 drops 90 (the digit-sum-with-zero case), 10 admits 09 as two-digit. Both wrong options are named misreadings of 'two-digit'; 4 is weak filler."
+  },
+  "IM11-19": {
+    "pick": "$45.00",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "350/28 = 12.5 gal, x $3.60 = $45.00. $12.50 is the gallon count dressed as dollars (intermediate), $100.80 is 28 x 3.60 (miles-per-gallon mistaken for gallons), $46.80 is 13 x 3.60 (rounding 12.5 up). Two-step rate work, easy for Upper Level."
+  },
+  "IM11-20": {
+    "pick": "6",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "560 base, 126 remaining, 126/21 = 6 overtime hours. 46 is total hours - the question-misread endpoint, correctly on the ballot for 'hours of overtime'. Partial reachability worth recording: 46 and 49 are each 40 plus one of the other two options, so a student who reads the question carefully but cannot solve narrows to {6, 9} for free. Not enough to make it non-exclusive."
+  },
+  "IM11-21": {
+    "pick": "2500",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "52..148, 25 terms, mean 100, sum 2500. No endpoint ambiguity since neither 50 nor 150 is a multiple of 4 - 'between' is safe here, deliberately or not. 2448 = 2500-52 and 2652 = 2500+152 are the inclusive/exclusive boundary errors. 2400 (24 terms) corresponds to a vaguer miscount, so plausible rather than strong. Note 2448 and 2652 straddle the key symmetrically-ish; 2500 is also the roundest value, a mild aesthetic tell on an item where the true sum happens to be round."
+  },
+  "IM11-22": {
+    "pick": "-19",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "-4 - 15 = -19. -19 vs -22 is the 5-hours vs 6-hours-of-clock-time count (6pm to 11pm), which is the real trap; 11 drops the signs, -15 drops the start. Easy but honestly built."
+  },
+  "IM11-23": {
+    "pick": "0.007",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Thousandths place. The three wrong options are the adjacent places in both directions. This is Lower/Middle Level place value; easy against the real Upper Level."
+  },
+  "IM11-24": {
+    "pick": "3 to 2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "18 won, 12 lost, 3:2. 2 to 3 is the reversal, 3 to 5 is won-to-total, 5 to 3 is total-to-won. Every wrong option is a named part/whole or order error. Easy."
+  },
+  "IM11-25": {
+    "pick": "14",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "7/3 = 14/6. 7 is the numerator of the improper fraction (stopping early), 42 multiplies by 6 without converting, 12 is 2x6 (ignoring the third). Easy."
+  },
+  "IM11-26": {
+    "pick": "60",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "base x height = 10 x 6 = 60. The 8 cm slant side is the intended trap and 80 = 10 x 8 is on the ballot; 48 = 8 x 6, 30 halves it as if a triangle. Geometry is consistent (sin = 6/8 is legal), so the extra datum is a genuine discriminator rather than an error. This is the clearest test of the author's claim: the stem hands over three lengths and NO formula, so the student must know which two multiply."
+  },
+  "IM11-27": {
+    "pick": "4/25",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "(2/5)^2 = 4/25. 2/5 is one spin, 4/5 adds instead of multiplying (and is the sum-of-two-events error), 1/10 is 2/5 x 1/4. Independence is stated plainly, so this is a one-step multiplication."
+  },
+  "IM11-28": {
+    "pick": "30",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "1.2n = n+6, 0.2n = 6, n = 30. 36 is the RESULT rather than the number - the intermediate/wrong-question endpoint, and note 30 and 36 differ by the stated 6, so a pair of options is linked by a printed quantity. 120 reads 6 as the 20 percent of... it is 6/0.05; 5 is 6/1.2. The 30/36 pairing is visible but does not resolve which is 'the number'."
+  },
+  "IM11-29": {
+    "pick": "S/5 - 2",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Middle term S/5, least = S/5 - 2. S/5 + 2 is the GREATEST - the sign-flip that 'least' exists to exclude, present as required. S/5 is the middle, (S-2)/5 is the misplaced-parenthesis version. The only symbolic item in the batch and the distractors are exactly the three errors."
+  },
+  "IM11-30": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "20 boys, 12 girls; 5 + 4 = 9. 5 is the boys' count alone (stopping early), 23 is 32-9 (the complement). 8 = 32/4, i.e. applying one fraction to the whole class, which is a real but thin error; the absence of 4 (girls alone) as an option is a small gap. Three-step but each step is routine."
+  }
+}

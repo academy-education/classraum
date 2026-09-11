@@ -1,0 +1,170 @@
+{
+ "AH3-01": {
+  "pick": "18",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "k^2=4ac=324, k=+/-18, greatest 18. Value-set clean: no option is a sum or difference of two others (324,-18,18,81 -> pairwise sums/diffs 306,342,405,0,63,99,243,-36,-99 hit nothing). No arithmetic run. Stem prints 3 and 27; no option echoes either. 'Greatest' clause is doing work because -18 is on the ballot. 81 (=ac) is a compound error, dropping both the 4 and the root, which is the weakest of the three."
+ },
+ "AH3-02": {
+  "pick": "5",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Synthetic division by 3 gives x^2-3x-10=(x-5)(x+2); zeros 5 and -2, greatest 5. 'Other two' and 'greatest' both do work: -2 is on the ballot. Key is not a sum or difference of two other options (-2+-10=-12, 10+-10=0, 10+-2=8, -2--10=8, 10--10=20). Note a partial back door: product of all three roots is -30, so the other two multiply to -10, and 5 x -2 is the only option pair that does it -- but that still requires the cubic's coefficient relation, so it is work, not a tell. '10' is the weakest distractor, resting on a guess-and-do-not-check step."
+ },
+ "AH3-03": {
+  "pick": "7",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "x^2-7x+10=0, sum of roots 7. One subtraction then Vieta; a student on the module-2 hard route does this without pausing, so easy rather than medium despite the commission. Value-set clean (-7,25,10,7: no sum/diff hits an option). 25 is the y-coordinate sum (8+17), a real error endpoint. -7/7 is a sign pair, so a coin-flip narrows to two, but that is inherent to a signed-sum question."
+ },
+ "AH3-04": {
+  "pick": "20",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "sqrt(1.44)=1.2, so 20 percent per half hour. All three distractors are endpoints of errors students actually make (quoting the hourly rate, halving the percent rather than rooting the factor, reporting the factor as the increase). Soft stem echo: the stem prints 1.44 and 44 is an option, but 44 is the genuine hourly-increase trap, so the echo is earned rather than decorative. Value-set clean; note 120-20=100 but 100 is not an option and the pair is not complementary."
+ },
+ "AH3-05": {
+  "pick": "1",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Squaring gives x^2+5x-6=0, roots 1 and -6; -6 makes the right side -2 and is extraneous. The extraneous root IS on the ballot, so the item's own check step is load-bearing -- this is the right shape. Options are two sign pairs (+/-6, +/-1), which is clean on the sum/difference test but means a guesser who spots the pairing is choosing among two magnitudes. '6' is the weak one: 'treats the rejection as a sign error to be repaired' is a contrived recovery, not an error I have seen students make."
+ },
+ "AH3-06": {
+  "pick": "13",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "3x^2-11x-4=(3x+1)(x-4), so f reduces to 3x+1 and continuity forces g(4)=13. The 'no break in it' phrasing is the whole item and it is fair. Value-set: only relation is the trivial 12=12+0 that the presence of a 0 option creates; no real sum/difference tell. '12' (evaluating 3x and forgetting +1) is the weak distractor -- it is an error of transcription rather than of method, and 12 sitting one unit from the key makes it look like a rounding artifact."
+ },
+ "AH3-07": {
+  "pick": "(-1, -9)",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "NON-NUMERIC SET, judged by hand. x+3=2 gives x=-1; -5-4=-9. The four options are the complete 2x2 grid {-1,5} x {-1,-9}, which is the correct construction: each of the two independent errors (horizontal direction, vertical direction) is separately observable and no combination tell exists, because every combination is present. No option is a stem quantity; -5 and 2 do not appear. Nothing here is reachable without performing both transformations."
+ },
+ "AH3-08": {
+  "pick": "7",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "Vertex at x=3, f(3)=18-36+25=7. Single standard technique; easy for this route. 3 is an intermediate you compute on the way and is on the ballot as a distractor -- that is legitimate here (it is the classic 'answered the wrong question' error) and it does not make the key reachable. 79=f(-3) checks out, so the -b/2a sign distractor is exact rather than invented. Value-set clean (3,7,16,79)."
+ },
+ "AH3-09": {
+  "pick": "-4",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(2a+1)^2=49, 2a+1=+/-7, a=3 or a=-4; least is -4. BOTH real solutions are on the ballot, so 'least' is doing work rather than decorating -- this is the case the protocol warns gets repaired away, and it survived here. Options are two sign pairs; value-set clean (differences 6,1,1,-1 hit no option). '4' (reading least as smallest magnitude) is the weakest, but it is a real misreading."
+ },
+ "AH3-10": {
+  "pick": "8000(1.06)^(m/12)",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "NON-NUMERIC SET, judged by hand. t=m/12. Two options attack the base and two the exponent, and 12 appears in three of the four, so there is no 'the one with a /12 in it' shortcut. 8000(1+0.06/12)^m is the strongest distractor -- it is a coherent alternative financial model, not a slip, and a student who has been drilled on monthly compounding will reach for it. Nothing in the option set decides the item without reading the stem's 'm months'."
+ },
+ "AH3-11": {
+  "pick": "9",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "x^2+4x+(c-5)=0, discriminant 16-4(c-5)=0 gives c=9. Two genuine steps (form the difference, then tangency), so this is the upper end of medium; it is not hard because both steps are single-move standards. Value-set clean (-2,-1,9,25: no sum or difference lands on an option). -2 is the intersection's x-coordinate, an on-the-way intermediate correctly used as a distractor. 25 (forgetting to subtract the line at all) is the one most students will actually hit."
+ },
+ "AH3-12": {
+  "pick": "1",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Clearing (x-2)(x+2) gives x+8=3x+6, x=1, and x=1 violates no restriction. The excluded value 2 is ON THE BALLOT, so the domain check is load-bearing. Soft stem echo: 2 appears in the stem (x^2-4, x-2) and as an option, but that is exactly the point of the distractor. Value-set clean apart from the self-referential 2-1=1. 7 (mis-factoring x^2-4 as a perfect square) is a sharp, common error."
+ },
+ "AH3-13": {
+  "pick": "9",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "p(3)=27-36+3k-6=3k-15=12, k=9. One application of the remainder theorem; easy for this route. All three distractors verify exactly: p(3)=0 gives k=5, stopping at 3k=27 gives 27, and p(-3)=-69-3k=12 gives k=-27. Value-set clean; 27/-27 is a sign pair but the key is neither."
+ },
+ "AH3-14": {
+  "pick": "5",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "(x^2-4)(x^2-9)=0, roots +/-2 and +/-3, positive sum 5. 'Positive' is doing work: 0, the sum of all four, is on the ballot. 9 (the larger u-value) and 6 (the product) are both real stopping points. Value-set: only trivial relations through the 0 option (5=5+0); no genuine sum/difference tell."
+ },
+ "AH3-15": {
+  "pick": "(12, 10)",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "NON-NUMERIC SET, judged by hand. Solve x/2=6, x=12; the output is untouched, y=10. Full 2x2 grid {3,12} x {5,10}, so both the input-direction error and the spurious output-halving are independently observable with no leftover combination. 'must lie on' is correct phrasing -- (12,10) is forced, the others are not. Single transformation, so easy."
+ },
+ "AH3-16": {
+  "pick": "x < -2 or x > 8",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "NON-NUMERIC SET, judged by hand. (x-8)(x+2)>0, so the exterior of -2 and 8. Full 2x2 grid: zeros {-2,8} vs {-8,2} crossed with interior vs exterior. Neither axis can be settled by inspection -- the sign assignment on the factors is a real decision and the interior/exterior choice is a second one -- so there is no option-set shortcut. Standard technique though, hence easy. Options do not echo the stem's 6 or 16."
+ },
+ "AH3-17": {
+  "pick": "51.2",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "RESIDUAL TELL, and I think the checkers missed it. 0.8^3=0.512 so 51.2 percent remains. But 48.8 + 51.2 = 100 exactly -- a complementary pair summing to a constant the CONFIGURATION supplies (percent) that the stem never prints. A test-wise student who notices the pair discards 64 and 40 without computing anything and is at 50 percent on a four-choice item, and the survivor-vs-lost reading of 'remains' then points at the one above 50. This is precisely the class the value-set checker exists to catch, and a checker keyed on constants printed in the stem would skip it by construction, which is likely why the repair pass cleared it. Fix by moving 48.8 off the complement (e.g. replace it with 38.4, the percent lost under the two-year error) or by rescaling. Distractors are otherwise strong: 64=0.8^2 and 40=100-3(20) are both real."
+ },
+ "AH3-18": {
+  "pick": "(x + 3)/(x + 2)",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "NON-NUMERIC SET, judged by hand. (x-3)(x+3)/((x-3)(x+2)) = (x+3)/(x+2). Full 2x2 grid {x-3,x+3} x {x-2,x+2}. One caveat worth recording: the stem's own exclusions, x != 3 and x != -2, name the denominator's zeros, so a student can read the denominator's factorisation straight off the restriction and is down to two options before factoring anything. The exclusions are mathematically required, so this is not a defect to repair, but it is the reason I grade this easy rather than medium -- half the work is stated."
+ },
+ "AH3-19": {
+  "pick": "3",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "h(6)=a(6-4)^2-5=4a-5=7, so 4a=12, a=3. Value-set clean for the key: 3 is not a sum or difference of 24, 1/3 or 12. There is a cosmetic relation among the distractors (24=12+12) but it does not touch the key. 12 (stopping at 4a=12) is the error most students make; 1/3 (inverting the division) and 3 sit as a reciprocal pair, which is a mild narrowing but only for a student who already knows the division is the last step."
+ },
+ "AH3-20": {
+  "pick": "9",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "3(5)-2(3)=15-6=9. Direct application of two log rules; easy for this route. 6 is the subtrahend, an on-the-way intermediate, correctly used as the stop-too-early distractor; 15, the other intermediate, is deliberately NOT on the ballot, which keeps 21=15+6 from being reconstructible from the options. Value-set clean (6,9,21,2.5: no sum or difference lands on an option)."
+ },
+ "AH3-21": {
+  "pick": "81",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x=27^(4/3)=3^4=81. Two soft issues, neither fatal. First, three of four options (3, 9, 81) are powers of 3 and the fourth (36) is the arithmetic-slip endpoint, so a student who knows only that the answer should be a clean power of 3 is choosing among three, and 'raise, do not multiply' pushes toward the largest. Second, the stem's 'x > 0' clause is decorative: x^(3/4) already forces x >= 0 over the reals and no negative option is on the ballot, so nothing is excluded by it. That is the inverse failure the protocol names, in its mild form. Value-set clean otherwise (36-9=27 is the stem constant, not an option)."
+ },
+ "AH3-22": {
+  "pick": "-32",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "The one item in this batch I will call hard, and it earns it on step count rather than trickery: h=(-1+7)/2=3 from the roots, then a from y=a(x+1)(x-7) at (1,-24) giving -12a=-24, a=2, then k=2(4)(-4)=-32. Three chained results with a form change in the middle. Every distractor is a genuine intermediate of the correct solve -- a=2, h=3, and |k|=32 -- which is the right way to build a hard item: you cannot recognise the key by noticing it is the only unmotivated number, because all four are motivated. Value-set clean; 32/-32 is a sign pair and the sign is the actual final decision (the vertex is below the axis), so the pair is the item, not a leak."
+ },
+ "AH3-23": {
+  "pick": "1200",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "3^(4x+1) = (3^(2x))^2 * 3 = 400 * 3 = 1200. Value-set clean: 403=400+3 but 3 is not an option, so the additive relation is not reconstructible from the ballot -- that is a deliberate and correct choice. 400 (dropping the +1) and 403 (adding instead of multiplying) are both high-frequency errors; 120 is the weaker third but corresponds to a real misconception about doubling exponents."
+ },
+ "AH3-24": {
+  "pick": "64",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "(x+y)^2 = x^2+2xy+y^2 = 34+30 = 64. Consistent: x=5,y=3 satisfies both constraints, so the premise is real and the item is well posed. 4 is exactly (x-y)^2 and 8 is x+y itself -- both are correct quantities answering the wrong question, which is the strongest distractor family there is. 49=34+15 is derivable from the stem constants, but it is the exact endpoint of the named single-xy expansion error, so it is earned. Value-set clean for the key: 49+4=53, 49+8=57, 49-8=41, 8+4=12 -- none is 64."
+ }
+}

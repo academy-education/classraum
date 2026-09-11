@@ -786,3 +786,24 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   The blind grades also dropped 4 of 24 geometry items, all on **majority-weak distractors** and none on exclusivity — GEOH2-03, -10, -17, -21, which are precisely the items the de-relationing repair had stripped of their trap distractor.
 
+- **2026-09-11** — **THE BLIND RENDER LEAKED THE KEY ON ALL 24 ITEMS OF A BATCH, THE TOOL WARNED ME, AND I FILTERED THE WARNING OUT OF MY OWN TERMINAL.** `sat-adv-h3` stores its per-option derivations under `distractor_steps` rather than `distractor_solve`. The name matched nothing in the deny regex, so it was kept — and it names **exactly three of the four options per item**, making the key the set complement on 24 of 24 with no solving at all. Its prose leaked the solve path too ("Solves k^2 = 324 correctly but reports the negative root", where the key is +18).
+
+  **All three blind graders found it independently and all three said their key agreement on that file must not be counted.** Each solved every item from the stem anyway and one verified all 24 keys mechanically, but they were right to refuse the credit: *"a grader who did nothing would also match."*
+
+  `make-grade-render.mjs` had in fact printed `distractor_steps` on its `kept, unrecognised` line. **I grepped its output for `items rendered|WITHHELD|pairs sharing` and dropped the one line that mattered.** The warning worked; I hid it.
+
+  **The fix is structural, because a deny-list of names is always one field behind.** The name check is now only the cheap first pass. The real guard reads the CONTENT: if any kept field other than `choices` mentions all-but-one of an item's options, the render is refused outright and the field is named. Naming one option can be innocent — a passage repeating a word — but naming all but one IS the set-complement leak. Self-tested on the exact shape, plus the innocent single-mention case and the exemption for `choices` itself.
+
+  Also withheld now: **`domain`**. I had kept it as "a one-word blueprint label, not a method" — true for maths, false for ACT Science and Reading, where a grader found "Evaluation of Models, Inferences, and Experimental Results" announcing an item as a claim-contradiction before the stem is read. And the render now deals key slots **from a deck rather than per-item**, after a grader observed that independent per-item seeding is binomial and had put four of a batch's five D keys inside one five-item window. `renderBlind` had that same fix the same morning; this file had not received it.
+
+- **2026-09-11** — **A GRADER'S FALSE POSITIVE MADE THE PAIR-CONSTANT CHECKER BETTER, NOT JUST QUIETER.** It fired on `81 + 9 = 90` in an SAT Advanced Math item with no angle in it. Their verdict: *"there is no angle in that item, so 90 is not a constant the configuration supplies and the pair carries no information. The 90/180/360 test is too coarse for non-geometry domains."*
+
+  Correct, and the fix is to gate each constant on what the stem is about — the angle constants require angle/degree/triangle/parallel/polygon language, the percentage constant requires a percent. `1` stays ungated, because a pair summing to 1 is a complement wherever proportions appear and those are not reliably signposted. Re-measured on the live bank, the gating **improved the signal rather than merely trimming it**:
+
+        ungated     157 raw hits, 173 unique-pair items, key in it 72.3%   (+22.3)
+        gated        94 raw hits, 100 unique-pair items, key in it 79.0%   (+29.0)
+
+  A solver finding the unique pair and guessing between its members now scores 39.5% against 25.0% on those 100 items.
+
+  Its self-test failed on correct code first, because my positive-control fixture used a key that was not in the pair — and this checker only reports a pair one of whose members is the key. **Third fixture error of the day** (the others: a 12-field fixture hand-counted as 10, and a hand-written run fixture that claimed one run where the checker correctly found two). All three were fixed in the fixture, not the code. The pattern is worth naming: when a self-test fails, suspect the fixture first — it is the part nobody checked.
+
