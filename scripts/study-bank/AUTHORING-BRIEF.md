@@ -242,6 +242,37 @@ State the path in the explanation. Then:
   answerable with the source covered even when the option set is flawless.
   Prefer narrow, non-canonical subject matter.
 
+## 6b. The passage-group field is `topic_id`, and getting it wrong is silent
+
+A reading batch groups its items into passages with **`topic_id`**, never
+`passage_group_id`. The inserter does the mapping itself:
+
+    // verbal-bank-helper.mjs:113,126
+    passage_group_id: raw.topic_id ? `rw-${raw.topic_id}` : null
+
+So a batch file that writes `passage_group_id` directly lands **every row with
+`passage_group_id = NULL`**. Nothing errors. The items insert, `bank-state`
+counts them as drawable, and then the assembler drops each one: `groupKeyOf`
+turns a null group id into `'__solo:' + id`, every item becomes a singleton
+set, and a singleton is not a passage. You get rows you have paid for and no
+student can ever be served.
+
+**This is written down because the instruction that went out was wrong.** On
+2026-09-11 two reading authors were briefed to use `passage_group_id`. One
+followed the brief; one read `verbal-bank-helper.mjs` first, found the
+mapping, used `topic_id`, and said so. Neither the brief nor the RUNBOOK
+mentioned the field at all, which is why the wrong name survived being
+written down.
+
+Copy the field set from the nearest existing batch in your family and diff
+against it — `isee-reading-s9.batch.json` and `ssat-reading-s10.batch.json`
+are the reference shapes. **When a brief and the code disagree, the code is
+what runs.** Check it and say so, the way that author did.
+
+There are 163 live TOEFL Daily Life items sitting at `passage_group_id =
+NULL` for this reason, out of 232 that are undrawable. That is the cost of
+this defect, already paid once.
+
 ## 7. Before you report
 
 Run your section's verify. **Read the denominators, not the verdicts** — if

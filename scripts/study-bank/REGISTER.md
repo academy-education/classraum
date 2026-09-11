@@ -971,3 +971,13 @@ structural checks are pre-flight only. See CLAUDE.md.
   Two content flags from graders, recorded and NOT acted on because each is one item and no checker covers it: **AH3-20 may be off-blueprint** (log properties are not in the Digital SAT Advanced Math specification — flagged independently by two graders; it was rejected on difficulty anyway, so the scope question is deferred, not answered), and **IM11-02's stem should read "including those who study all three"** (exclusivity holds as dealt because the alternative reading gives 17, which is not an option — safe by arithmetic accident, not by wording).
 
   The gate was break-tested before it was trusted: it passes at each kept file's real hash and blocks on a **single changed byte**, reporting the stale hash rather than the missing stage.
+
+- **2026-09-11** — **MY BRIEF TOLD TWO READING AUTHORS THE WRONG FIELD NAME, AND THE FAILURE IS SILENT.** I instructed them to group items by `passage_group_id`. The batch-file field is **`topic_id`**; `verbal-bank-helper.mjs:113,126` maps it to `passage_group_id: raw.topic_id ? 'rw-'+raw.topic_id : null`.
+
+  A batch written to my instruction lands every row at `passage_group_id = NULL`. Nothing errors, nothing warns, and `bank-state` counts the rows as drawable — then the assembler drops every one of them, because `groupKeyOf` turns a null group id into `'__solo:' + id` and a singleton is not a passage. Paid-for rows no student can reach. **This is the exact defect already sitting on 163 live TOEFL Daily Life items.**
+
+  **One of the two authors caught it and the other did not have to, because the first said so in their report.** They went to `verbal-bank-helper.mjs` before trusting the brief, found the mapping, used `topic_id`, and wrote: *"Had I written `passage_group_id`, every row would have landed null and been dropped as a singleton set."* That is the behaviour the brief asks for and it is worth naming: **when a brief and the code disagree, the code is what runs.**
+
+  Neither `AUTHORING-BRIEF.md` nor `RUNBOOK.md` documented the field at all, which is how a wrong name survived being written into a commission. Now §6b of the brief, with the mapping quoted and the silent-failure path spelled out. The second reading batch is checked and corrected before it goes near an inserter.
+
+  The general lesson is not about this field. **An instruction I wrote is not evidence about the code**, and a subagent following my brief exactly will reproduce my error at scale — eight at a time, in this session's case. The cheap guard is the one that author used: diff your field set against the nearest existing batch in the family before writing 30 items to it.
