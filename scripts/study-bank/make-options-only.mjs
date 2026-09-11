@@ -59,7 +59,13 @@ order.forEach((it, i) => {
   const slot = L.indexOf(deck[i])
   const choices = []; let k = 0
   for (let j = 0; j < W; j++) choices.push(j === slot ? it.correct_answer : rest[k++])
-  blind.push({ id, question: 'Which of these four values is the answer? (the question itself is withheld)', options: Object.fromEntries(choices.map((c, x) => [L[x], c])) })
+  // The placeholder said "these four values" on EVERY render, including the
+  // five-choice SSAT ones, where it is simply false. Harmless so far - every
+  // solver counted the options themselves and used the right control - but a
+  // hardcoded width in a render is the exact family of defect this file's
+  // header exists to record, and telling a solver the wrong option count is
+  // not a thing to leave in because it happened not to bite.
+  blind.push({ id, question: `Which of these ${choices.length} values is the answer? (the question itself is withheld)`, options: Object.fromEntries(choices.map((c, x) => [L[x], c])) })
   key[id] = { letter: L[slot], localId: it.id, group: null }
 })
 writeFileSync(`scripts/study-bank/${tag}.blind.json`, JSON.stringify(blind, null, 2))

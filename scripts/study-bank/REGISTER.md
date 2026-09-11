@@ -1145,3 +1145,27 @@ structural checks are pre-flight only. See CLAUDE.md.
   **A negative result worth keeping.** The author built 8 three-term arithmetic runs with a DISTRACTOR at the middle, deliberately, and disclosed it. Two solvers accepted the disclosure and bet the inverted direction. The third refused both directions and measured the null: resampling each item's four options from its own observed range, 20k trials, **6.31 runs expected per 24 against 8 observed — half a standard deviation.** The 8 runs are what four smallish integers produce by accident. So the "deliberately inverted trap" was not a trap and not deliberate, and an author's account of their own batch is not evidence about it in either direction.
 
   `ssat-math-s12` banked 20 of 24. All three graders returned identical pick strings and all three independently caught S12-12, where "3 raised to the power x + 2" has no grouping and `83 = 81 + 2` sits in the option set beside `729` — two defensible readings of the English landing on two different listed letters. **I checked whether my own render had flattened the notation before blaming the item: the prompt is byte-identical to the batch.** Then scanned the whole batch rather than repairing the two I had tripped over — exactly 2 of 24 spell out maths in prose without forced grouping, both already flagged, both dropped.
+
+- **2026-09-11** — **THE TWO BLIND INSTRUMENTS DISAGREED ABOUT WHAT "BLIND" MEANS, AND AN AUTHOR CAUGHT IT BY READING THEIR OWN RENDER.**
+
+  `math-bank-helper.mjs renderBlind` printed `(${it.domain} / ${it.subskill})` on every item. An ACT author read their own blind render and saw this:
+
+        percent of a number, reporting the discount rather than the price
+
+  That is author prose **naming the error family**, on an item whose entire difficulty is choosing between the discount and the price. They sanitised six subskill strings in their own batch and flagged the tool, which is the right instinct — the tool is where it belongs.
+
+  **`make-grade-render.mjs` already withheld both fields and carries the argument at length**: two graders reported `subskill` independently and unprompted as naming the solution path, and one said it "biases every grader's difficulty rating downward, mine included". `renderBlind` never got that fix, so the project had two blind instruments that did not agree about what is withheld. Now fixed, with the reasoning copied across so the next reader sees a decision rather than an absence.
+
+  **A blind grade taken through `renderBlind` before today saw both fields.** That does not touch the SANDBOX result, which is arithmetic, but any *margin* from such a run is an upper bound on cleanliness rather than a measurement of it. The `<tag>.blindgrade-*` files on the four maths batches are in that category.
+
+  Second, smaller, same family: `make-options-only.mjs` hardcoded *"Which of these **four** values is the answer?"* into every render including the FIVE-choice SSAT ones. Every solver counted the options themselves and used the right control, so nothing was harmed — but a hardcoded width in a render is exactly the defect that file's own header was written to record, and telling a solver the wrong option count is not something to leave in because it happened not to bite. Now derived from the data.
+
+  **AND THE BREAK-TEST FAILED OPEN TWICE BEFORE IT WORKED, THE SAME WAY BOTH TIMES.** I reverted the fix into `/tmp/mbh-reverted.mjs` and grepped its output for the leak: **0 occurrences**, which reads exactly like "the fix works". It was not running at all — a file in `/tmp` cannot resolve `@supabase/supabase-js`, so node exited non-zero and printed nothing, and `grep -c` faithfully counted zero matches in an empty stream. I had asserted that the revert changed the bytes, which it had; I had not asserted that the reverted program *ran*. Moving the copy inside the project gave the real answer immediately: reverted prints `(D / LEAKY-SUBSKILL-STRING)`, fixed prints nothing.
+
+  This is the file's own corollary — **a check that cannot process its input must not return a number** — reappearing in the break-test built to satisfy that corollary. It happened twice in one session (the live Craft-and-Structure control script failed identically from `/tmp` earlier). The specific lesson is narrow and worth having: **a scratch copy of a project script must live in the project, or its silence is indistinguishable from success.**
+
+- **2026-09-11** — **THE TWO NEW ACT MATH BATCHES SHIPPED WITH IDENTICAL IDS.** `act-math-v7-alg` and `act-math-v7-ies` were commissioned in the same message, against different domains, by different agents — and both numbered their items `AM7-01` .. `AM7-28`. All 28 collide. Neither author could have seen the other's file.
+
+  Caught before either was rendered or graded, so nothing downstream was bound to an ambiguous id; had it survived to the ledger, two batches would have shared a key namespace and a qc file keyed by id would have silently graded the wrong items. The IES batch is renamed `AM7I-xx`, with the rename script asserting no duplicate remains and no collision survives, and `verify` re-run afterwards (28/28, 84 of 84 distractors).
+
+  **The cause is mine: I gave both briefs the same worked example and never assigned an id prefix.** When commissioning parallel batches in one family, name the prefix in the brief.

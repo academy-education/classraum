@@ -396,11 +396,36 @@ function dealtChoices(it, slot) {
   return out
 }
 
+/*
+ * `domain` and `subskill` are WITHHELD — fixed 2026-09-11.
+ *
+ * This printed `(${it.domain} / ${it.subskill})` on every item, and an ACT
+ * author reading their own blind render caught what that costs. Their
+ * subskills read like this:
+ *
+ *     "percent of a number, reporting the discount rather than the price"
+ *
+ * That is author prose NAMING THE ERROR FAMILY. A solver with no stem is
+ * told which option family is wrong, on an item whose whole difficulty is
+ * choosing between the discount and the price. They sanitised six strings in
+ * their own batch and flagged the tool; the tool is the right place to fix it.
+ *
+ * `make-grade-render.mjs` already withholds both fields for exactly this
+ * reason and carries the argument at length — two graders reported subskill
+ * independently as naming the solution path, and one said it "biases every
+ * grader's difficulty rating downward, mine included". renderBlind never got
+ * that fix, so the two blind instruments disagreed about what blind means.
+ *
+ * A blind grade taken through this function before today saw both fields.
+ * That does not invalidate the SANDBOX (which is arithmetic) but it does mean
+ * any margin from such a run is an upper bound on cleanliness, not a
+ * measurement of it.
+ */
 function renderBlind(batch) {
   const slots = keySlots(batch)
   const out = []
   for (const it of batch) {
-    out.push(`### Item ${it.id}  (${it.domain} / ${it.subskill})`)
+    out.push(`### Item ${it.id}`)
     out.push(`Question: ${it.prompt}`)
     dealtChoices(it, slots.get(String(it.id))).forEach((c, i) => out.push(`  (${LETTERS[i]}) ${c}`))
     out.push('')
