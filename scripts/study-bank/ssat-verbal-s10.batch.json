@@ -1,0 +1,692 @@
+[
+  {
+    "id": "SV10-01",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "CLUTTER",
+    "choices": [
+      "silence",
+      "mess",
+      "shortage",
+      "delay",
+      "stain"
+    ],
+    "correct_answer": "mess",
+    "explanation": "CLUTTER is a heap of things lying where they do not belong, which is what \"mess\" names.",
+    "distractor_rationales": [
+      "\"silence\" is an absence of sound, not a disorder of objects",
+      "KEY",
+      "\"shortage\" is a want of things, the opposite of having too many of them lying about",
+      "\"delay\" is a disorder in time rather than in a space",
+      "\"stain\" is one mark on a surface rather than a scattering of objects"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV10-02",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "POTTER is to CLAY as",
+    "choices": [
+      "baker is to oven",
+      "sculptor is to statue",
+      "weaver is to yarn",
+      "tailor is to customer",
+      "carpenter is to workbench"
+    ],
+    "correct_answer": "weaver is to yarn",
+    "explanation": "A potter begins with clay and works it into the finished piece, so the pair is a craftsman and the raw stuff he shapes; \"weaver is to yarn\" is that same pair.",
+    "distractor_rationales": [
+      "\"baker is to oven\" gives the equipment the work is done in, not the substance that becomes the loaf",
+      "\"sculptor is to statue\" names the finished work rather than the material it came from",
+      "KEY",
+      "\"tailor is to customer\" names the person served rather than anything the tailor works",
+      "\"carpenter is to workbench\" names the surface the work is done on rather than the material worked"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV10-03",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "DRENCH",
+    "choices": [
+      "scatter",
+      "polish",
+      "freeze",
+      "stir",
+      "soak"
+    ],
+    "correct_answer": "soak",
+    "explanation": "To DRENCH something is to wet it right through, which is to \"soak\" it.",
+    "distractor_rationales": [
+      "\"scatter\" spreads things apart rather than wetting one thing through",
+      "\"polish\" works on a surface to brighten it, not to saturate it",
+      "\"freeze\" hardens what is already wet instead of wetting it",
+      "\"stir\" moves a liquid about without putting anything into it",
+      "KEY"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV10-04",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "LID is to JAR as",
+    "choices": [
+      "cork is to bottle",
+      "spout is to kettle",
+      "label is to can",
+      "crate is to fruit",
+      "shelf is to cupboard"
+    ],
+    "correct_answer": "cork is to bottle",
+    "explanation": "A lid is the piece fitted into the mouth of the jar to close it and keep the contents in; \"cork is to bottle\" is the same closure and the vessel it shuts.",
+    "distractor_rationales": [
+      "KEY",
+      "\"spout is to kettle\" is the part that lets the contents out rather than the part that keeps them in",
+      "\"label is to can\" is a marking stuck on the outside, which closes nothing",
+      "\"crate is to fruit\" is a container and what is put inside it, not a container and its stopper",
+      "\"shelf is to cupboard\" is an interior part of the vessel rather than the thing that seals it"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV10-05",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "VANISH",
+    "choices": [
+      "wander",
+      "tumble",
+      "disappear",
+      "hesitate",
+      "gather"
+    ],
+    "correct_answer": "disappear",
+    "explanation": "To VANISH is to pass out of sight altogether, which is to \"disappear\".",
+    "distractor_rationales": [
+      "\"wander\" is to move about without a fixed course, and the wanderer remains in view",
+      "\"tumble\" is a manner of falling, which leaves the thing where it can be seen",
+      "KEY",
+      "\"hesitate\" is a pause before acting rather than a passing from sight",
+      "\"gather\" brings things together instead of taking them away"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV10-06",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "CATERPILLAR is to BUTTERFLY as",
+    "choices": [
+      "calf is to herd",
+      "cocoon is to silk",
+      "fledgling is to nest",
+      "tadpole is to frog",
+      "swarm is to locust"
+    ],
+    "correct_answer": "tadpole is to frog",
+    "explanation": "A caterpillar is the earlier form of the very creature that later goes about as a butterfly; \"tadpole is to frog\" is the same earlier form and the grown animal it becomes.",
+    "distractor_rationales": [
+      "\"calf is to herd\" sets a young animal beside the group it lives among, not beside its own later self",
+      "\"cocoon is to silk\" sets a case beside the material it is spun from",
+      "\"fledgling is to nest\" sets a young bird beside the place it is raised in",
+      "KEY",
+      "\"swarm is to locust\" sets a mass beside one of the creatures composing it"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV10-07",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "STERN",
+    "choices": [
+      "strict",
+      "clumsy",
+      "curious",
+      "generous",
+      "restless"
+    ],
+    "correct_answer": "strict",
+    "explanation": "A STERN teacher allows no easing of the rule, which is to be \"strict\".",
+    "distractor_rationales": [
+      "KEY",
+      "\"clumsy\" concerns how a person handles things, not how hard a line the person holds",
+      "\"curious\" is an appetite for finding out, which says nothing about severity",
+      "\"generous\" is a readiness to give, and if anything the opposite of holding a hard line",
+      "\"restless\" is an inability to stay still rather than a firmness of temper"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV10-08",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "NEST is to BIRD as",
+    "choices": [
+      "hive is to honey",
+      "swarm is to bee",
+      "pasture is to fence",
+      "saddle is to horse",
+      "burrow is to rabbit"
+    ],
+    "correct_answer": "burrow is to rabbit",
+    "explanation": "A nest is the shelter a bird makes for itself and lives in; \"burrow is to rabbit\" is the same dwelling and the animal that dwells in it.",
+    "distractor_rationales": [
+      "\"hive is to honey\" sets a dwelling beside what is made inside it rather than beside its occupant",
+      "\"swarm is to bee\" sets a mass of creatures beside one of its members",
+      "\"pasture is to fence\" sets a place beside the boundary that encloses it",
+      "\"saddle is to horse\" sets a piece of gear beside the animal it is strapped to",
+      "KEY"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV10-09",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "GLEAM",
+    "choices": [
+      "shine",
+      "crack",
+      "float",
+      "echo",
+      "melt"
+    ],
+    "correct_answer": "shine",
+    "explanation": "To GLEAM is to give off a steady light from a surface, which is to \"shine\".",
+    "distractor_rationales": [
+      "KEY",
+      "\"crack\" is a splitting of a surface rather than anything it does with light",
+      "\"float\" is a way of resting on water or air",
+      "\"echo\" is a returning of sound rather than of light",
+      "\"melt\" is a change of state brought on by heat, not an appearance of brightness"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV10-10",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "SUGAR is to SWEET as",
+    "choices": [
+      "salt is to preserve",
+      "vinegar is to sour",
+      "honey is to bee",
+      "pepper is to sneeze",
+      "lemon is to fruit"
+    ],
+    "correct_answer": "vinegar is to sour",
+    "explanation": "Sugar is the substance whose own taste is sweetness; \"vinegar is to sour\" likewise sets a substance beside the taste that belongs to it.",
+    "distractor_rationales": [
+      "\"salt is to preserve\" sets a substance beside a use it is put to rather than a taste it has",
+      "KEY",
+      "\"honey is to bee\" sets a substance beside the creature that produces it",
+      "\"pepper is to sneeze\" sets a substance beside an effect it causes in a person",
+      "\"lemon is to fruit\" sets a member beside the class it belongs to"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV10-11",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "BLEAK",
+    "choices": [
+      "hollow",
+      "narrow",
+      "dreary",
+      "fragile",
+      "hasty"
+    ],
+    "correct_answer": "dreary",
+    "explanation": "A BLEAK stretch of coast offers nothing to cheer the eye, which is to be \"dreary\".",
+    "distractor_rationales": [
+      "\"hollow\" describes a thing empty inside rather than a scene empty of cheer",
+      "\"narrow\" is a measure of width and carries no gloom with it",
+      "KEY",
+      "\"fragile\" is a readiness to break, which is a property of an object rather than a mood of a place",
+      "\"hasty\" describes the speed of an action, not the look of a place"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV10-12",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "LULLABY is to SLEEP as",
+    "choices": [
+      "sermon is to congregation",
+      "joke is to laughter",
+      "riddle is to answer",
+      "anthem is to nation",
+      "whisper is to secret"
+    ],
+    "correct_answer": "joke is to laughter",
+    "explanation": "A lullaby is sung for the sake of bringing sleep on, so the pair is an utterance and the response it exists to produce; \"joke is to laughter\" is that same pair.",
+    "distractor_rationales": [
+      "\"sermon is to congregation\" sets an utterance beside the people it is addressed to",
+      "KEY",
+      "\"riddle is to answer\" sets an utterance beside the reply it demands, which the hearer must supply by work rather than yield up involuntarily",
+      "\"anthem is to nation\" sets a song beside what it honors",
+      "\"whisper is to secret\" sets a manner of speaking beside the sort of thing usually said that way"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV10-13",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "OMINOUS",
+    "choices": [
+      "exhausting",
+      "bewildering",
+      "flattering",
+      "threatening",
+      "refreshing"
+    ],
+    "correct_answer": "threatening",
+    "explanation": "An OMINOUS sky is one that gives warning of harm to come, which is to be \"threatening\".",
+    "distractor_rationales": [
+      "\"exhausting\" is what wears a person out, not what warns of harm",
+      "\"bewildering\" is what confuses, and a thing may be perfectly clear and still forbode trouble",
+      "\"flattering\" gives pleasure rather than warning",
+      "KEY",
+      "\"refreshing\" restores, which is the opposite of what a forbidding sign does"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV10-14",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "RUST is to IRON as",
+    "choices": [
+      "polish is to silver",
+      "kiln is to pottery",
+      "mildew is to fabric",
+      "erosion is to wind",
+      "tarnish is to shine"
+    ],
+    "correct_answer": "mildew is to fabric",
+    "explanation": "Rust is the decay that settles on iron and eats the metal away; \"mildew is to fabric\" is the same decay set beside the material it spoils.",
+    "distractor_rationales": [
+      "\"polish is to silver\" is a treatment that keeps the metal sound rather than a decay that ruins it",
+      "\"kiln is to pottery\" sets equipment beside the ware fired in it",
+      "KEY",
+      "\"erosion is to wind\" names the wearing agent rather than the material worn",
+      "\"tarnish is to shine\" names the quality destroyed rather than the substance attacked"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV10-15",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "COMPILE",
+    "choices": [
+      "memorize",
+      "translate",
+      "abbreviate",
+      "assemble",
+      "distribute"
+    ],
+    "correct_answer": "assemble",
+    "explanation": "To COMPILE a list is to gather material from many places and put it together into one, which is to \"assemble\" it.",
+    "distractor_rationales": [
+      "\"memorize\" takes material into the mind rather than bringing it together on the page",
+      "\"translate\" carries material from one language into another without adding to it",
+      "\"abbreviate\" cuts material down, the reverse of drawing more of it together",
+      "KEY",
+      "\"distribute\" sends material out to many places, the reverse of drawing it in from them"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV10-16",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "PASTEURIZE is to MILK as",
+    "choices": [
+      "churn is to butter",
+      "grind is to mill",
+      "brew is to kettle",
+      "knead is to bread",
+      "tan is to hide"
+    ],
+    "correct_answer": "tan is to hide",
+    "explanation": "To pasteurize is to work on milk, the raw stuff that goes in, so that it will keep; \"tan is to hide\" sets a treatment beside the raw material it is performed on.",
+    "distractor_rationales": [
+      "\"churn is to butter\" names what comes out of the process rather than the cream that goes in",
+      "\"grind is to mill\" names the machine that performs the work",
+      "\"brew is to kettle\" names the vessel the work is carried out in",
+      "\"knead is to bread\" names the finished loaf rather than the dough that is worked",
+      "KEY"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV10-17",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "SPRAWL",
+    "choices": [
+      "settle down",
+      "break apart",
+      "close in",
+      "spread out",
+      "wear away"
+    ],
+    "correct_answer": "spread out",
+    "explanation": "A town that SPRAWLS straggles loosely over more and more ground, which is to \"spread out\".",
+    "distractor_rationales": [
+      "\"settle down\" is to come to rest in one place rather than to reach over more of it",
+      "\"break apart\" divides a thing into pieces, whereas what straggles remains one thing",
+      "\"close in\" draws the edges inward, the reverse of reaching outward",
+      "KEY",
+      "\"wear away\" loses substance at the edges rather than gaining ground"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV10-18",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "GRAIN is to WOOD as",
+    "choices": [
+      "vein is to marble",
+      "knot is to rope",
+      "bark is to tree",
+      "resin is to pine",
+      "mortar is to brick"
+    ],
+    "correct_answer": "vein is to marble",
+    "explanation": "The grain is the natural patterning running through the wood itself, which any cut lays bare; \"vein is to marble\" is the same natural marking within a material.",
+    "distractor_rationales": [
+      "KEY",
+      "\"knot is to rope\" is a feature put in by hand rather than one the material carries of itself",
+      "\"bark is to tree\" is the covering on the outside of a living plant, not a figure running through a material",
+      "\"resin is to pine\" is a substance the tree gives off rather than a marking within its body",
+      "\"mortar is to brick\" is a second material laid between pieces of the first"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV10-19",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "ARDUOUS",
+    "choices": [
+      "tedious",
+      "hazardous",
+      "ingenious",
+      "spontaneous",
+      "laborious"
+    ],
+    "correct_answer": "laborious",
+    "explanation": "An ARDUOUS climb demands sustained hard effort, which is what \"laborious\" names.",
+    "distractor_rationales": [
+      "\"tedious\" names the dullness of a task, and a dull task may cost no effort at all",
+      "\"hazardous\" names the danger in a task rather than the labor it costs",
+      "\"ingenious\" praises the cleverness of a contrivance rather than the toil of a job",
+      "\"spontaneous\" describes an act done on the moment's impulse, which says nothing of its difficulty",
+      "KEY"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV10-20",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "SILT is to RIVER as",
+    "choices": [
+      "dune is to wind",
+      "glacier is to ice",
+      "wave is to shore",
+      "pebble is to beach",
+      "crater is to moon"
+    ],
+    "correct_answer": "dune is to wind",
+    "explanation": "Silt is the matter a river carries along and lays down where it slows, so the pair is a deposit and the moving agent that piled it there; \"dune is to wind\" is that same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"glacier is to ice\" sets a body beside the material it consists of",
+      "\"wave is to shore\" sets a motion beside the place it breaks against",
+      "\"pebble is to beach\" sets a single fragment beside the mass of like fragments it lies among",
+      "\"crater is to moon\" sets a feature beside the body that bears it"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV10-21",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "BRAZEN",
+    "choices": [
+      "tactless",
+      "shameless",
+      "reckless",
+      "listless",
+      "spotless"
+    ],
+    "correct_answer": "shameless",
+    "explanation": "A BRAZEN denial is made in the open with no blush at being caught, which is to be \"shameless\".",
+    "distractor_rationales": [
+      "\"tactless\" is a failure to see what will give offense, whereas the bold offender sees it and proceeds",
+      "KEY",
+      "\"reckless\" is a disregard of danger rather than of disgrace",
+      "\"listless\" is a want of spirit, the opposite of the effrontery in question",
+      "\"spotless\" is freedom from any fault at all rather than indifference to having one seen"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV10-22",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "CURATOR is to EXHIBITION as",
+    "choices": [
+      "usher is to theater",
+      "critic is to painting",
+      "editor is to anthology",
+      "archivist is to records",
+      "patron is to gallery"
+    ],
+    "correct_answer": "editor is to anthology",
+    "explanation": "A curator picks among many works and arranges the chosen few into one exhibition, so the pair is a selector and the made collection that results; \"editor is to anthology\" is that same pair.",
+    "distractor_rationales": [
+      "\"usher is to theater\" sets a person beside the building worked in rather than beside anything assembled",
+      "\"critic is to painting\" sets a person beside a single work judged, not beside a collection put together",
+      "KEY",
+      "\"archivist is to records\" sets a person beside material kept as it arrives rather than chosen and arranged into a new whole",
+      "\"patron is to gallery\" sets a person beside the institution paid for"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV10-23",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "OSTENTATIOUS",
+    "choices": [
+      "surly",
+      "wasteful",
+      "stubborn",
+      "talkative",
+      "showy"
+    ],
+    "correct_answer": "showy",
+    "explanation": "An OSTENTATIOUS display is got up to be admired by onlookers, which is to be \"showy\".",
+    "distractor_rationales": [
+      "\"surly\" is ill temper shown to others, whereas what is paraded for admiration is meant to please them",
+      "\"wasteful\" is spending to no purpose, and a great deal may be wasted where nobody is invited to look",
+      "\"stubborn\" is a refusal to be moved, which concerns will rather than display",
+      "\"talkative\" is readiness to speak, and a quiet person may still parade wealth",
+      "KEY"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV10-24",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "EULOGY is to PRAISE as",
+    "choices": [
+      "elegy is to funeral",
+      "diatribe is to censure",
+      "sonnet is to rhyme",
+      "satire is to novelist",
+      "epitaph is to stone"
+    ],
+    "correct_answer": "diatribe is to censure",
+    "explanation": "A eulogy is a set piece whose whole business is to praise, so the pair is a form of address and the act it is delivered to perform; \"diatribe is to censure\" is that same pair.",
+    "distractor_rationales": [
+      "\"elegy is to funeral\" sets a form beside the occasion it is used at rather than the act it performs",
+      "KEY",
+      "\"sonnet is to rhyme\" sets a form beside a device it employs",
+      "\"satire is to novelist\" sets a form beside one sort of person who writes it",
+      "\"epitaph is to stone\" sets a form beside the surface it is cut into"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV10-25",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "INDOLENT",
+    "choices": [
+      "greedy",
+      "clumsy",
+      "rude",
+      "stingy",
+      "lazy"
+    ],
+    "correct_answer": "lazy",
+    "explanation": "An INDOLENT heir shrinks from any exertion at all, which is to be \"lazy\".",
+    "distractor_rationales": [
+      "\"greedy\" is wanting more than one's share, and the grasping often work hard to get it",
+      "\"clumsy\" is handling things badly, which is a failure of skill rather than of effort",
+      "\"rude\" is roughness toward other people, which has nothing to do with shirking exertion",
+      "\"stingy\" is parting with money unwillingly rather than parting with effort unwillingly",
+      "KEY"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV10-26",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "ARID is to MOISTURE as",
+    "choices": [
+      "insipid is to flavor",
+      "opaque is to glass",
+      "brittle is to snap",
+      "sterile is to clinic",
+      "luminous is to lamp"
+    ],
+    "correct_answer": "insipid is to flavor",
+    "explanation": "To call ground arid is to say that the moisture one might expect in it is simply absent, so the pair is a quality and the thing whose want constitutes it; \"insipid is to flavor\" is that same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"opaque is to glass\" sets a quality beside a material that may happen to have it",
+      "\"brittle is to snap\" sets a quality beside the behavior it invites",
+      "\"sterile is to clinic\" sets a quality beside a place where it is required",
+      "\"luminous is to lamp\" sets a quality beside a thing that possesses it rather than lacks it"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV10-27",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "RESCIND",
+    "choices": [
+      "postpone",
+      "endorse",
+      "amend",
+      "repeal",
+      "enforce"
+    ],
+    "correct_answer": "repeal",
+    "explanation": "To RESCIND an order is to take it back so that it stands no longer, which is to \"repeal\" it.",
+    "distractor_rationales": [
+      "\"postpone\" puts the order off to a later date while leaving it in force",
+      "\"endorse\" gives the order one's backing, the reverse of withdrawing it",
+      "\"amend\" alters the terms of the order but keeps it standing",
+      "KEY",
+      "\"enforce\" presses the order upon those bound by it, which presumes it still holds"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV10-28",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "MAVERICK is to CONFORMITY as",
+    "choices": [
+      "hermit is to solitude",
+      "iconoclast is to custom",
+      "patriot is to country",
+      "apprentice is to guild",
+      "arbiter is to dispute"
+    ],
+    "correct_answer": "iconoclast is to custom",
+    "explanation": "A maverick is known by refusing the conformity everyone about him accepts, so the pair is a person and the thing that person is defined by rejecting; \"iconoclast is to custom\" is that same pair.",
+    "distractor_rationales": [
+      "\"hermit is to solitude\" names what the person seeks out rather than what the person refuses",
+      "KEY",
+      "\"patriot is to country\" names what the person is devoted to",
+      "\"apprentice is to guild\" names a body the person is entering rather than one being defied",
+      "\"arbiter is to dispute\" names what the person is called in to settle"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV10-29",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "INCESSANT",
+    "choices": [
+      "unwelcome",
+      "unrivaled",
+      "unwieldy",
+      "unceasing",
+      "unfounded"
+    ],
+    "correct_answer": "unceasing",
+    "explanation": "An INCESSANT hammering goes on without a break from beginning to end, which is what \"unceasing\" names.",
+    "distractor_rationales": [
+      "\"unwelcome\" reports how a thing is received, and a welcome noise may run on just as long",
+      "\"unrivaled\" claims that nothing equals the thing, which is a comparison rather than a duration",
+      "\"unwieldy\" describes something awkward to handle because of its bulk",
+      "KEY",
+      "\"unfounded\" says a claim rests on nothing, which concerns evidence rather than continuance"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV10-30",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "BUTTRESS is to WALL as",
+    "choices": [
+      "girder is to steel",
+      "awning is to shade",
+      "trellis is to vine",
+      "banister is to staircase",
+      "quarry is to stone"
+    ],
+    "correct_answer": "trellis is to vine",
+    "explanation": "A buttress is raised against a wall for the one purpose of holding it up, so the pair is a support and the thing it keeps standing; \"trellis is to vine\" is that same pair.",
+    "distractor_rationales": [
+      "\"girder is to steel\" sets a member beside the metal it is made of",
+      "\"awning is to shade\" sets a structure beside the benefit it affords",
+      "KEY",
+      "\"banister is to staircase\" sets a part beside the whole it belongs to rather than a prop beside what it holds up",
+      "\"quarry is to stone\" sets a place beside the material taken out of it"
+    ],
+    "set_id": "SET-F"
+  }
+]

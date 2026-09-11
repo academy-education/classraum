@@ -415,3 +415,19 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **A grader finding recorded and deliberately NOT acted on:** in 13 of 24 ACT items the key was the single option breaking the other three's ascending run — decidable, worth ~59% blind, and invisible to `verify-answer-key-spread.ts`, which saw a flat 6/6/6/6. It is unreachable. `shuffleDrawnChoices` re-deals every `multiple_choice` item per session (all 1,752 maths rows are `multiple_choice`), and over 300 seeded draws of that exact shape the non-key options come back ascending 17.0% against the 16.7% a uniform shuffle of three gives. Repairing it would have been another rewrite of sound items. The same discovery did expose a real defect in the instrument, fixed separately: `renderBlind` was dealing maths options in AUTHORED order, so every maths attack ever run through it measured a permutation no student is served.
 
+- **2026-09-11** — **AGREEMENT IS NOT THE SIGNAL; AGREEMENT x CORRECTNESS IS. THE SAME DAY PRODUCED BOTH POLES.** Two runs, hours apart, same three-solver options-only protocol:
+
+        run                         agreement      score      reading
+        LIVE Information & Ideas    byte-identical 100.0%     the option sets decide the item
+        isee-verbal-s10 candidate   21-25 of 30     16.7%     the option sets MISLEAD, in unison
+
+  On `isee-verbal-s10` all three solvers converge on the same picks and score **below chance** (16.7% against 25.0%), with a pooled confident subset of **6 of 40 = 15.0%**. They agreed, and they were agreeing on the wrong option. Every one of them named the same heuristic — *three options cluster on one axis and the odd one out is the key* — and the batch is built the other way round: the attractive singleton is a DISTRACTOR. A solver applying the standard option-set rule is actively punished. That is the strongest authoring result measured in this repo, and it is invisible to a rate read on its own, because 16.7% alone looks like noise around chance rather than a designed inversion.
+
+  So high inter-solver agreement means the option sets are DETERMINATE, not that they are leaky. Which of the two it is comes from the score. Report both, always — this is the rule recorded earlier this week ("report inter-solver agreement alongside every attack rate") now given its second, opposite worked example.
+
+- **2026-09-11** — **`ssat-verbal-s10` IS UNDECIDED AND THE POOLED MEAN HIDES WHY.** 28.9% against a 20.0% chance line (5-choice) looks like a +8.9 leak. It is one solver: **50.0 / 16.7 / 20.0**, inter-solver agreement 8, 12 and 18 of 30 against a ~6.0 chance floor, and the pooled **confident subset is 6 of 31 = 19.4%, dead on the 20.0% chance line.** Every structural rule the three solvers stated — relation-class singleton in the analogies, valence outlier under a shared affix, register break — produced picks no better than guessing. Solver a reached 15 of 30 with only **3** confident picks, i.e. from unstated intuition on items it had itself called coin flips.
+
+  Disposition: 4 items solved by all three (chance expectation 0.24) are dropped; the rest go to a with-source grade, and the batch does not insert on this evidence alone. A pooled mean carried by one of three solvers is the shape CLAUDE.md already records ("solver spread is larger than the effect" — 2/5/20 rejections on one C&S render, three SSAT solvers agreeing on 8 of 30).
+
+  Both verbal runs were scored through the width fixes committed the same day; before them, this SSAT run would have been compared to a 25.0% line it never faced and read as **margin +3.9 instead of +8.9**.
+
