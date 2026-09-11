@@ -1097,3 +1097,41 @@ structural checks are pre-flight only. See CLAUDE.md.
   **What I am NOT claiming:** which field is authoritative. The subskill terms are exact and look deliberate, which is why the correction above is computed that way, but `v2` is generated content and either field could be the one its generator got wrong. Deciding that is a call on live rows and it is not mine to make unasked. Until it is decided, quote the capacity number with this caveat attached rather than either figure alone.
 
   Note also that `subskill` is NOT a controlled vocabulary across the section: the SEC cohorts carry free author prose in that field (85 distinct strings, several of them full sentences). So this check can only speak to rows whose subskill happens to be an exact blueprint term — 804 of 1,047. The other 243 are unmeasured, not clean.
+
+- **2026-09-11** — **THE LIVE SAT R&W CRAFT-AND-STRUCTURE BANK IS SOLVABLE FROM THE OPTIONS ALONE. 210 LIVE ITEMS. THIS IS THE LARGEST FINDING IN THIS FILE.**
+
+  A stratum-matched control of 24 ALREADY-SHIPPED Craft-and-Structure items — drawn to match a candidate's 10 words-in-context / 8 text-structure / 6 cross-text mix, passage and stem both withheld, three independent solvers:
+
+        stratum                      LIVE control      candidate (sat-cs-h4)
+        text structure and purpose      95.8%  (8)          87.5%
+        cross-text connections          88.9%  (6)          61.1%
+        words in context                43.3% (10)          33.3%
+        OVERALL                         72.2% (24)          58.3%
+
+        52 of 72 picks vs a 25.0% chance line.  p = 5.6e-17.
+        14 of 24 items solved by ALL THREE solvers.
+
+  **Text structure at 95.8% means a solver shown four option strings and nothing else gets 23 of 24 right.** Not the passage, not the stem, not the question. These items are in front of students now.
+
+  **It is one cohort.** Mapping every control item back to its bank row on prompt+passage (never prompt alone — this file already records a prompt-keyed lookup silently returning a sibling's row):
+
+        v2                 17 items   88.2%   (45/51 picks)
+        rw-v7-cs-hard       4 items   33.3%   ( 4/12)
+        rw-v8-cs-hard       3 items   33.3%   ( 3/9)
+
+  The hand-authored hard cohorts sit near chance. The generated `v2` cohort is at 88.2%. **`v2` holds 210 of the 244 live Craft-and-Structure items**, and the 17 sampled are a random draw from those 210, so the population estimate carries n=51 picks of uncertainty (roughly a 76-95% interval) — but the direction is not in doubt at p=5.6e-17.
+
+  **THE MECHANISM IS NAMED, AND ALL THREE SOLVERS NAMED IT INDEPENDENTLY.** It is a distractor-family tell, so it is exactly the kind no key rewrite or letter shuffle can reach:
+
+  - The key is the option performing a legitimate scholarly act — *"corrects a common view by relocating the source"*, *"revises a familiar account"*, *"reframes"*, or a concede-then-qualify two-clause option.
+  - The distractors are drawn from a tiny cast: an **absolute** ("in every case", "entirely", "always", "cannot", "decisive proof"), a **flat rejection**, or the **generic survey purpose** ("to trace how X developed", "to catalog").
+  - One solver: twelve of fourteen prose items contain an absolute, and *no option they picked as key contained one*. Another listed five items whose keys share near-identical corrective prose.
+
+  This is CLAUDE.md's third corollary — **identical key PROSE across a cohort authored to one rigid brief** — the TOEFL-lecture defect, in SAT R&W, at four times the scale. Letters are spread, so `verify-answer-key-spread.ts` passes. Every structural proxy passes. Only the attack sees it.
+
+  **Consequences, none of which I have acted on:**
+  1. Craft and Structure is the BINDING domain for SAT R&W form capacity (16 forms, and ~14 after today's domain-label correction). If these 210 cannot be trusted, capacity is not 14 forms, it is what `rw-v7/v8-cs-hard` alone can supply — **34 items**.
+  2. `v2` is also the cohort holding all 120 domain/subskill contradictions recorded earlier today. Two independent defects, one generated cohort.
+  3. The other `v2` domains are **unmeasured, not clean**: 240 Information and Ideas, 224 Standard English Conventions, 66 Expression of Ideas. The same brief produced them. Measuring them is the obvious next move and it is three more controls.
+
+  **This is a live-data decision and it is not mine.** Archiving or rebuilding 210 served items is the user's call, and so is whether to keep serving them meanwhile. What is decided is that no further Craft-and-Structure authoring should imitate `v2`, and that `sat-cs-h4` — which beats the live bank on every stratum and still runs 87.5% on text structure — **does not insert either**. Beating a broken baseline is not a pass.

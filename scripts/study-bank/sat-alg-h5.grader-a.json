@@ -1,0 +1,218 @@
+{
+  "ALG-H5-01": {
+    "pick": "C",
+    "solved": "Infinitely many solutions => second equation is a multiple of the first. y-coeff -15 / -5 = 3, so a = 3*3 = 9 and b = 3*12 = 36; a + b = 45.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "21 = 9 + 12 (forgot to scale b), 36 = b alone, 39 = 3 + 36 (used the scale factor as a). Textbook module-1 item; one idea only. BATCH-LEVEL: my 24 picks fall exactly 6/6/6/6 across A/B/C/D. An exact-uniform histogram is not evidence of a shuffle - it is the signature of deliberate balancing, and per this project's history (the complete-ABCD-permutation cohort) a perfect histogram has hidden a tell before. I checked consecutive groups of four and found no repeating permutation (1-4 is C,A,B,D but 5-8 is A,C,D,D), so the group-level version of that tell is absent here."
+  },
+  "ALG-H5-02": {
+    "pick": "A",
+    "solved": "240 + 12s < 27s => 240 < 15s => s > 16, least integer 17.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "16 is the strict-boundary error and is the only strong distractor; 7 and 9 (240/27 rounded) are reachable but thin."
+  },
+  "ALG-H5-03": {
+    "pick": "B",
+    "solved": "slope = (-10 - 14)/(5 - (-3)) = -24/8 = -3. y = 14 - 3(x + 3); at x = 2, y = 14 - 15 = -1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "29 = sign error on the slope, 8 = slope used as -2. Pure two-point slope recall."
+  },
+  "ALG-H5-04": {
+    "pick": "D",
+    "solved": "Case x >= 10: x - 10 = 2x - 8 => x = -2, contradicts the case and makes RHS negative, reject. Case x < 10: 10 - x = 2x - 8 => 3x = 18 => x = 6; check |6-10| = 4 = 2(6)-8. So x = 6.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "-2 is the extraneous root and is a genuinely strong trap; 18 comes from 3x = 18 mis-solved. Case split plus an extraneous check is the closest this batch gets to two interacting ideas, but it is a standard SAT medium, not hard."
+  },
+  "ALG-H5-05": {
+    "pick": "A",
+    "solved": "Let x = litres of 55%. 0.25(60 - x) + 0.55x = 0.35(60) = 21 => 15 + 0.30x = 21 => x = 20.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Routine two-variable mixture; 24 and 21 are near-miss arithmetic, 15 is the 25%-solution answer mis-assigned? not cleanly derivable. Standard."
+  },
+  "ALG-H5-06": {
+    "pick": "C",
+    "solved": "5x - 8 > 17 => x > 5; 2x + 1 < 41 => x < 20. Integer x in (5, 20), greatest is 19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "20 is the strict/non-strict slip, 6 answers the wrong end of the interval, 14 is weak."
+  },
+  "ALG-H5-07": {
+    "pick": "D",
+    "solved": "5600 + 200n > 8400 - 120n => 320n > 2800 => n > 8.75 => first whole year is 9 (B = 7400 > A = 7320).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "8 is the floor-instead-of-ceiling error and is strong; 14 and 24 are thin. Wording 'first be greater' is unambiguous."
+  },
+  "ALG-H5-08": {
+    "pick": "D",
+    "solved": "3a - 6b = 4b + 9 => 3a = 10b + 9 = 30 + 9 = 39 => a = 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "39 is the un-divided 3a and is the one strong trap. Single-step substitution."
+  },
+  "ALG-H5-09": {
+    "pick": "B",
+    "solved": "6x + 15y = 3(2x + 5y) = 3(17) = 51; 51 - 8 = 43.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "51 (stopping before the -8) is exactly the intended slip and is well placed. Still a one-move item."
+  },
+  "ALG-H5-10": {
+    "pick": "A",
+    "solved": "4x + 10y = 15 has slope -2/5, so line k has slope 5/2. y + 1 = (5/2)(x - 10); at x = 0, y = -1 - 25 = -26.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "24 comes from slope +5/2 with a sign slip on the point, 3 from using slope -2/5. Two steps but they are sequential, not interacting."
+  },
+  "ALG-H5-11": {
+    "pick": "B",
+    "solved": "First 8 min print 96 pages; 396 - 96 = 300 remaining at 20/min = 15 min; total 8 + 15 = 23.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "15 = forgetting the first 8 minutes (strong), 33 = 396/12, 41 thin."
+  },
+  "ALG-H5-12": {
+    "pick": "C",
+    "solved": "15x - 10 + a = bx + 6. No solution requires equal slopes and unequal constants: b = 15 (with a != 16).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "16 is the a-value that would instead give infinitely many solutions - a genuinely strong distractor for a student who answers the wrong constant. The stem is clean about asking for b."
+  },
+  "ALG-H5-13": {
+    "pick": "B",
+    "solved": "Shirt original = 102/0.85 = 120. Jacket original = 160. Jacket reduced = 0.85(160) = 136.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "160 = jacket original (stopping one step early), 142 = 102 + 40 (discounting the wrong quantity), 184 = 0.85 applied backwards. Three real wrong paths. Chained but each link is routine."
+  },
+  "ALG-H5-14": {
+    "pick": "B",
+    "solved": "s + L = 54 and 3s = L + 14. Substituting L = 54 - s: 3s = 68 - s => s = 17, L = 37.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "51 = 3s, 68 = an intermediate. 'Exceeds ... by 14' is standard phrasing and reads unambiguously."
+  },
+  "ALG-H5-15": {
+    "pick": "C",
+    "solved": "180 + 45d <= 2300 => 45d <= 2120 => d <= 47.1, so at most 47 days; but d must be a whole number of weeks, so d is a multiple of 7 and the greatest such value <= 47 is 42.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "The one item in the batch where two constraints genuinely interact: the budget cap alone gives 47, and the divisibility condition alone gives no bound - you need both. 47 is the strongest distractor in the whole file; 6 answers in weeks; 49 is the 'round the weeks up' slip. Even so this sits at the lower edge of module-2 hard."
+  },
+  "ALG-H5-16": {
+    "pick": "C",
+    "solved": "Translation 8 up gives y = -4x + 28; 0 = -4x + 28 => x = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "3 = translating down instead of up, 5 = original x-intercept. One idea."
+  },
+  "ALG-H5-17": {
+    "pick": "D",
+    "solved": "w + e = 80 and 20w + 35e = 2020 => 20(80 - e) + 35e = 2020 => 1600 + 15e = 420 + 1600 => 15e = 420 => e = 28.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "58 ~ 2020/35 rounded; 12 and 37 have no clean wrong path I can reconstruct. Note the complementary answer (52 weekday hours) is NOT among the options, which removes the most natural trap - a missed opportunity rather than a defect."
+  },
+  "ALG-H5-18": {
+    "pick": "A",
+    "solved": "s + L = 40, 8s + 15L <= 500 => 8(40 - L) + 15L = 320 + 7L <= 500 => 7L <= 180 => L <= 25.71 => 25.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "26 is the round-up error (strong), 22 a near-miss, 33 = 500/15. Substitution plus a floor - close to 15 in shape but the integer step here is just rounding down, not a second constraint. Near-duplicate structure with ALG-H5-15."
+  },
+  "ALG-H5-19": {
+    "pick": "D",
+    "solved": "3(a - 2) - 7 = 26 => 3a - 13 = 26 => 3a = 39 => a = 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "39 = 3a left undivided, 11 = solving f(a) = 26 then subtracting 2 wrongly, 9 = ignoring the -2 shift. Single composition step."
+  },
+  "ALG-H5-20": {
+    "pick": "B",
+    "solved": "Pears = 4k, apples = 7k. 4k/(7k + 12) = 4/9 => 36k = 28k + 48 => k = 6, so apples before = 7(6) = 42.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "54 = apples after (42 + 12), 24 = pears, 6 = the multiplier k. All three are real stopping points. Good item, but one equation."
+  },
+  "ALG-H5-21": {
+    "pick": "A",
+    "solved": "a in [468, 492], b in [436, 464]. a - b is greatest at a = 492, b = 436: 492 - 436 = 56.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "30 = 480 - 450 (centres only), 4 = 480 - 450 - 26, 28 thin. The only conceptual step is 'maximise the first, minimise the second' - one idea applied twice, so medium rather than hard. Closest runner-up to 15."
+  },
+  "ALG-H5-22": {
+    "pick": "A",
+    "solved": "3r + 2(r + 10) = 95 => 5r + 20 = 95 => r = 15.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "19 = 95/5, 25 = r + 10 for the wrong r. One-equation setup."
+  },
+  "ALG-H5-23": {
+    "pick": "C",
+    "solved": "5x + 8 = 2x + 29 => 3x = 21 => x = 7; f(7) = 43.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "7 is x rather than f(x) and is the intended and effective trap; 21 = 3x. The stem's 'what is the value of f(x)' is explicit enough that the trap is fair."
+  },
+  "ALG-H5-24": {
+    "pick": "D",
+    "solved": "-3x + 12 >= 5x + 20 => -8 >= 8x => x <= -1; greatest value -1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "1 = sign dropped on the division, -4 = from the (x - 4) factor. Near-duplicate of ALG-H5-06 in skill tested."
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "ALG-H5-01": {
+    "pick": "C",
+    "solved": "Infinitely many solutions means the second equation is a multiple of the first. -15y = 3(-5y), so the factor is 3: a = 9, b = 3(12) = 36. a + b = 45.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "36 catches a student who reports b alone; 21 = 9 + 12. One idea (proportionality of coefficients) applied once."
+  },
+  "ALG-H5-02": {
+    "pick": "A",
+    "solved": "240 + 12s < 27s -> 240 < 15s -> s > 16, so least integer s = 17.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "16 is the boundary (costs are equal there, 432 = 432) and is the one real trap; 7 and 9 correspond to no path I can construct."
+  },
+  "ALG-H5-03": {
+    "pick": "B",
+    "solved": "slope = (-10 - 14)/(5 - (-3)) = -24/8 = -3. From (5, -10): y = -10 + (-3)(2 - 5) = -10 + 9 = -1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Pure two-point-slope computation, no second idea."
+  },
+  "ALG-H5-04": {
+    "pick": "D",
+    "solved": "Need 2x - 8 >= 0, so x >= 4. Case x - 10 = 2x - 8 gives x = -2, rejected. Case 10 - x = 2x - 8 gives 3x = 18, x = 6. Check: |6-10| = 4 = 2(6)-8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "-2 is the genuine extraneous root, the best distractor in the batch. Still a standard SAT medium: absolute-value casework with a validity check is the single routine taught for this item type."
+  },
+  "ALG-H5-05": {
+    "pick": "A",
+    "solved": "Let x = liters of 55%. 0.25(60 - x) + 0.55x = 0.35(60) = 21 -> 15 + 0.30x = 21 -> x = 20.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Textbook mixture setup. 40 (the other solution's volume) is notably absent from the options, which is the distractor a real mixture item would carry."
+  },
+  "ALG-H5-06": {
+    "pick": "C",
+    "solved": "5x - 8 > 17 -> x > 5. 2x + 1 < 41 -> x < 20. x integer, so greatest is 19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "20 is the non-strict-inequality slip, 6 the least value. Two inequalities but they do not interact - each is solved independently and only one bound is read."
+  },
+  "ALG-H5-07": {
+    "pick": "D",
+    "solved": "8400 - 120t < 5600 + 200t -> 2800 < 320t -> t > 8.75, so first whole year is 9. Check t=9: A = 7320, B = 7400.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "8 is the floor/boundary trap. Same crossover structure as ALG-H5-02; the two are near-duplicates in method."
+  },
+  "ALG-H5-08": {
+    "pick": "D",
+    "solved": "b = 3: 3(a - 6) = 12 + 9 = 21 -> a - 6 = 7 -> a = 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Substitute and solve, three lines. 39 catches failing to divide by 3. This is an easy item by any module's standard."
+  },
+  "ALG-H5-09": {
+    "pick": "B",
+    "solved": "6x + 15y = 3(2x + 5y) = 3(17) = 51; 51 - 8 = 43.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "51 (forgetting the -8) is a strong distractor, but recognizing the multiple is a single standard move."
+  },
+  "ALG-H5-10": {
+    "pick": "A",
+    "solved": "4x + 10y = 15 -> slope -2/5; perpendicular slope 5/2. Through (10, -1): y = -1 + (5/2)(x - 10); at x = 0, y = -1 - 25 = -26.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "24 is the sign slip on the intercept. Two steps (perpendicular slope, then intercept) but they chain rather than interact."
+  },
+  "ALG-H5-11": {
+    "pick": "B",
+    "solved": "First 8 minutes: 96 pages. Remaining 396 - 96 = 300 pages at 20/min = 15 min. Total 8 + 15 = 23.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "15 (reporting only the second phase) and 33 (= 396/12) are both real wrong paths."
+  },
+  "ALG-H5-12": {
+    "pick": "C",
+    "solved": "15x - 10 + a = bx + 6. No solution requires equal x-coefficients and unequal constants: b = 15 (with a != 16).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "16 is the value of a that would instead give infinitely many solutions - a good distractor. The item asks only for b, so the a-condition never has to be stated; that is what keeps it from being hard."
+  },
+  "ALG-H5-13": {
+    "pick": "B",
+    "solved": "Shirt original = 102/0.85 = 120. Jacket original = 160. Reduced = 0.85(160) = 136.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "160 (stopping at the original) and 142 (= 102 + 40, applying the offset to the reduced price) are both natural. Multi-step but each step is routine percent work."
+  },
+  "ALG-H5-14": {
+    "pick": "B",
+    "solved": "s + l = 54 and 3s = l + 14. Substituting l = 54 - s: 3s = 68 - s -> s = 17, l = 37.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Standard two-equation word problem; 'exceeds by' is the only wrinkle."
+  },
+  "ALG-H5-15": {
+    "pick": "C",
+    "solved": "180 + 45d <= 2300 -> 45d <= 2120 -> d <= 47.1, so at most 47 days. But d must be a multiple of 7: 42 (cost 2070). 49 days would cost 2385 > 2300.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "The one item in the batch where two constraints genuinely interact: the budget bound and the whole-weeks divisibility must be combined, and the answer is not the floor of the budget bound. 47 is exactly the one-idea answer and 49 the round-up-to-the-next-week answer; both are strong. Low-end hard, but hard."
+  },
+  "ALG-H5-16": {
+    "pick": "C",
+    "solved": "Translated up 8: y = -4x + 28. Zero: 4x = 28, x = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "5 is the original x-intercept, 3 the translate-down slip. One-step transformation."
+  },
+  "ALG-H5-17": {
+    "pick": "D",
+    "solved": "w + e = 80, 20w + 35e = 2020 -> 20(80 - e) + 35e = 1600 + 15e = 2020 -> e = 28.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Same system-substitution shape as ALG-H5-05 and ALG-H5-14; the batch reuses this template three times."
+  },
+  "ALG-H5-18": {
+    "pick": "A",
+    "solved": "s + l = 40, 8(40 - l) + 15l <= 500 -> 320 + 7l <= 500 -> l <= 25.71, so 25 (cost 495).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "26 (rounding up; 502 > 500) is the real trap. The integer constraint is only a floor, so the two conditions chain rather than interact - this is the medium version of what ALG-H5-15 does properly."
+  },
+  "ALG-H5-19": {
+    "pick": "D",
+    "solved": "f(a - 2) = 3(a - 2) - 7 = 3a - 13 = 26 -> 3a = 39 -> a = 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "11 is the answer if you solve for the input a - 2 and stop; 39 skips the division. Strong options, easy item."
+  },
+  "ALG-H5-20": {
+    "pick": "B",
+    "solved": "Let pears = 4k, apples = 7k. 4k/(7k + 12) = 4/9 -> 36k = 28k + 48 -> k = 6. Apples before = 42.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "24 = pears, 54 = apples after, 6 = k. Every distractor is a quantity the student actually computes - the best-built option set in the batch."
+  },
+  "ALG-H5-21": {
+    "pick": "A",
+    "solved": "a in [468, 492], b in [436, 464]. a - b is greatest at a = 492, b = 436: 56.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Requires taking the extremes in opposite directions, which is the closest any other item comes to two interacting ideas. 30 (the centers' difference) and 4 (the minimum) are reasonable. Still a single standard interval-arithmetic move; upper medium."
+  },
+  "ALG-H5-22": {
+    "pick": "A",
+    "solved": "3r + 2(r + 10) = 95 -> 5r + 20 = 95 -> r = 15.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "19 = 95/5 (ignoring the +10 offset) is the only live wrong path."
+  },
+  "ALG-H5-23": {
+    "pick": "C",
+    "solved": "5x + 8 = 2x + 29 -> 3x = 21 -> x = 7; f(7) = 43.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "7 (answering with x instead of f(x)) is the whole point of the item and a strong distractor. The algebra itself is easy."
+  },
+  "ALG-H5-24": {
+    "pick": "D",
+    "solved": "-3x + 12 >= 5x + 20 -> -8 >= 8x -> x <= -1. Greatest value -1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Fourth 'greatest value under an inequality' item in the batch (with 06, 15, 18). This one is the bare one-line version."
+  }
+}

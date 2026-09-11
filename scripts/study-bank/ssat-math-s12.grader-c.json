@@ -1,0 +1,218 @@
+{
+  "S12-01": {
+    "pick": "E",
+    "solved": "2/3 poured out leaves 1/3 of the soup; (1/3)(3/4) = 1/4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "1/12 is 3/4 - 2/3 and 17/12 is the sum, both real wrong paths. 3/8 is the weakest option here (halving rather than taking a third)."
+  },
+  "S12-02": {
+    "pick": "E",
+    "solved": "7 parts, 84/7 = 12 per part; Noah has the larger 4 parts = 48.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "36 is Mia's share, the standard swap error. 63/21 come from reading the ratio as 3:1."
+  },
+  "S12-03": {
+    "pick": "B",
+    "solved": "8 = 2^3, 12 = 2^2*3, 18 = 2*3^2; LCM = 2^3*3^2 = 72.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "24 = LCM(8,12) only; 144 = LCM(8,18)*... a plausible over-count; 1728 the product; 2 the GCD. Good spread."
+  },
+  "S12-04": {
+    "pick": "A",
+    "solved": "300 x 0.70 = 210; 210 x 1.10 = 231.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "189 is 210 reduced by a further 10%, 210 is stopping after the sale, 330 applies +10% to the original. All are live errors."
+  },
+  "S12-05": {
+    "pick": "D",
+    "solved": "Middle term = 310/5 = 62, so the five are 58,60,62,64,66; largest 66.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "58 smallest, 62 the middle, 64 off-by-one-step. 72 is the weakest."
+  },
+  "S12-06": {
+    "pick": "B",
+    "solved": "8.00 / 3.2 = 2.50 dollars per kg.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "0.4 is the reciprocal (kg per dollar), 25.6 the product, 2.67 = 8/3 from dropping the .2. Arithmetic is fine by hand."
+  },
+  "S12-07": {
+    "pick": "D",
+    "solved": "(x + 1/x)^2 = x^2 + 2 + 1/x^2 = 25, so x^2 + 1/x^2 = 23.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "RENDERING DEFECT: 'x squared plus 1 divided by x squared' is literally ambiguous - it can be read as (x^2 + 1)/x^2. That reading gives about 1.04, which is not on the list, so the item is still uniquely answerable, but the prose must be repaired to 'x^2 + 1/x^2'. 25 = the square of the given sum, the intended trap. This identity is at the very top of SSAT Upper Level scope; it is the hardest item in the set."
+  },
+  "S12-08": {
+    "pick": "C",
+    "solved": "5x - 3 = 2x + 12 -> 3x = 15 -> x = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "15 = forgetting to divide; 15/7 = adding instead of subtracting 2x; 7.5 = 15/2. Clean."
+  },
+  "S12-09": {
+    "pick": "C",
+    "solved": "3n + 5 = n + 19 -> 2n = 14 -> n = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Mechanically the same one-variable linear solve as S12-08 and it lands on the same letter and a near-identical arithmetic size (x=5, n=7). Adjacent near-duplicate; one of the two should move or be re-skinned."
+  },
+  "S12-10": {
+    "pick": "E",
+    "solved": "4 - 2x > 10 -> -2x > 6 -> dividing by -2 flips: x < -3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The option set is the full cross of sign-flip and sign-of-3 errors; every wrong answer is a named mistake. Good item."
+  },
+  "S12-11": {
+    "pick": "B",
+    "solved": "Add the equations: 5x + 5y = 30, so x + y = 6.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "30 is the un-divided sum, 4 is x - y (from subtracting), both real. Rewards the shortcut rather than full elimination, which is on-format for SSAT."
+  },
+  "S12-12": {
+    "pick": "D",
+    "solved": "3^x = 81 = 3^4, so x = 4 and 3^(x+2) = 3^6 = 729.",
+    "exclusive": false,
+    "second_defensible": "A - read as (3^x) + 2 = 81 + 2 = 83, which is offered as an option.",
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "RENDERING DEFECT, and this one is load-bearing: 'What is the value of 3 raised to the power x + 2' does not disambiguate 3^(x+2) from 3^x + 2, and the file OFFERS 83 as a choice. A student who parses it the second way lands on a listed letter and has no way to know they were wrong. Because two options are reachable from two defensible parses of the same English, I am marking this not exclusive. Fix the stem (e.g. 'the value of 3^(x+2)') and it becomes a clean medium item; 243, 162 and 6561 are all good distractors."
+  },
+  "S12-13": {
+    "pick": "A",
+    "solved": "Area ratio 9:25 means side ratio 3:5, so perimeter ratio is also 3:5; 36 x 5/3 = 60.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "100 = applying the area ratio to the perimeter (36 x 25/9), exactly the error the item is built to catch."
+  },
+  "S12-14": {
+    "pick": "C",
+    "solved": "Width w, length 3w; 8w = 64 so w = 8, length 24, area = 192.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "96 is half the area (using w and 3w with perimeter mis-set), 32 is the length+width. 24 and 48 are the weaker two."
+  },
+  "S12-15": {
+    "pick": "C",
+    "solved": "a + 2a + (a + 12) = 180 -> 4a = 168 -> a = 42; the three angles are 42, 84, 54, so the smallest is 42.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "54 and 84 are the other two angles of the same triangle - the best kind of distractor, since 'smallest' is the only thing separating them. 45 comes from dropping the 12."
+  },
+  "S12-16": {
+    "pick": "E",
+    "solved": "6s^2 = 150 -> s^2 = 25 -> s = 5; volume = 125.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "25 stops at s^2, 30 is 150/5, 3375 is s = 15 (skipping the division by 6). Numbers are hand-sized."
+  },
+  "S12-17": {
+    "pick": "A",
+    "solved": "Base along the x-axis from (0,0) to (6,0) is 6; the height is the y-coordinate of (2,5), i.e. 5. Area = (1/2)(6)(5) = 15.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "30 is forgetting the half - the main error. 11, 5 and 6 are weak fillers; 11 in particular corresponds to no path I can construct."
+  },
+  "S12-18": {
+    "pick": "D",
+    "solved": "Square area 100; quarter circle = (1/4)pi(10^2) = 25pi. Remaining = 100 - 25pi, so k = 25.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "100 = whole circle, 50 = half, 10 = confusing radius for k. No figure is supplied, but the description (quarter circle of radius 10 centred on a corner of a 10 cm square) is unambiguous without one."
+  },
+  "S12-19": {
+    "pick": "B",
+    "solved": "First: height = sqrt(625 - 49) = sqrt(576) = 24. After moving, foot is 15 ft out: height = sqrt(625 - 225) = sqrt(400) = 20. Slide = 24 - 20 = 4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Two Pythagorean computations plus a difference, but both land on perfect squares so it is hand-safe. 20 is the new height, 15 the new foot distance, 8 the distance the foot moved - all the intermediate quantities are offered, which is what makes this work."
+  },
+  "S12-20": {
+    "pick": "C",
+    "solved": "40 x 25 x 18 = 18000 cm^3 = 18 litres.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "18000 is the un-converted volume, 30 is filling to the full 30 cm depth, 1.8 a decimal slip. Conversion factor is given in the stem, correctly."
+  },
+  "S12-21": {
+    "pick": "B",
+    "solved": "5 x 14 = 70; 6 x 15 = 90; sixth number = 90 - 70 = 20.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "90 is the new total, 19 and 29 are near-miss arithmetic. Pairs with S12-24 as the same mean-total idea run forwards and backwards; two mean items in 24 is on the high side but they are genuinely different directions."
+  },
+  "S12-22": {
+    "pick": "A",
+    "solved": "After a green is removed and kept out: 5 greens remain of 14 marbles. P = 5/14.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "6/14 forgets to decrement the greens, 5/13 over-decrements the total, 6/15 ignores the removal entirely, 1/3 = 5/15. Every option is a specific bookkeeping slip. The stem correctly states the first marble is kept out."
+  },
+  "S12-23": {
+    "pick": "A",
+    "solved": "C(7,3) = 35 total committees; all-girl committees = C(4,3) = 4; 35 - 4 = 31.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "SCOPE FLAG: this needs combinations and a complement argument. SSAT Upper Level quantitative does not test nCr; a student without outside training has no route to it other than exhaustive listing of 35 committees. It is the most out-of-format item in the batch - I would hold it or reframe it with small enough numbers to enumerate. 35 (total, ignoring the constraint) and 34 (subtracting one instead of four) are good; 12 and 18 are weak."
+  },
+  "S12-24": {
+    "pick": "D",
+    "solved": "Total = 6 x 12 = 72; remove 20 -> 52; 52/5 = 10.4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "8.67 = 52/6 (right numerator, stale denominator), 18.4 = 92/5 (added instead of removed), 52 the bare total. Division is hand-reasonable."
+  }
+}
