@@ -1,0 +1,107 @@
+{
+ "1": {
+  "pick": "A",
+  "basis": "confident",
+  "reason": "autoclaving kills the microbes, so added glucose can only raise flux in live cores"
+ },
+ "2": {
+  "pick": "B",
+  "basis": "guess",
+  "reason": "no data; loam >> clay so picked a large ratio between the extremes"
+ },
+ "3": {
+  "pick": "A",
+  "basis": "confident",
+  "reason": "recrystallization needs solubility that rises steeply with temperature"
+ },
+ "4": {
+  "pick": "C",
+  "basis": "guess",
+  "reason": "no figure; 45% chosen arbitrarily from the two mid values"
+ },
+ "5": {
+  "pick": "A",
+  "basis": "guess",
+  "reason": "only option asserting great age; the other three are trivial parameter tweaks"
+ },
+ "6": {
+  "pick": "C",
+  "basis": "confident",
+  "reason": "68 kOhm exceeds the largest tabulated resistance, and t_d rises with R"
+ },
+ "7": {
+  "pick": "C",
+  "basis": "guess",
+  "reason": "pure table lookup with the table withheld"
+ },
+ "8": {
+  "pick": "B",
+  "basis": "guess",
+  "reason": "a transit of a few hours in an 11.3-day period is ~2%"
+ },
+ "9": {
+  "pick": "A",
+  "basis": "guess",
+  "reason": "summer stratification puts 12 m below the thermocline; 9 C picked among cold values"
+ },
+ "10": {
+  "pick": "D",
+  "basis": "confident",
+  "reason": "higher temperature dissolves faster, so below the fastest tabulated time"
+ },
+ "11": {
+  "pick": "A",
+  "basis": "confident",
+  "reason": "dating basal silt only bounds the depression's age if silt accumulation began right away"
+ },
+ "12": {
+  "pick": "D",
+  "basis": "confident",
+  "reason": "vesicles are the signature of gas-rich magma, i.e. the volcanic viewpoint"
+ },
+ "13": {
+  "pick": "C",
+  "basis": "guess",
+  "reason": "pure figure read; 5.6 mg/L picked as a plausible mid value"
+ },
+ "14": {
+  "pick": "A",
+  "basis": "guess",
+  "reason": "interpolation question with both experiments withheld"
+ },
+ "15": {
+  "pick": "B",
+  "basis": "confident",
+  "reason": "a no-glucose flask is the control for endogenous CO2 production"
+ },
+ "16": {
+  "pick": "B",
+  "basis": "guess",
+  "reason": "steel vs pine transmission loss gap of roughly 20 dB"
+ },
+ "17": {
+  "pick": "A",
+  "basis": "confident",
+  "reason": "only option whose mechanism is coherent: a warm tube stops the mixture re-cooling and thickening"
+ },
+ "18": {
+  "pick": "B",
+  "basis": "guess",
+  "reason": "shared ground is usually the observed fact, not any one transmission route"
+ },
+ "19": {
+  "pick": "B",
+  "basis": "confident",
+  "reason": "low absorbance reads as less dye left, overstating removal, so the true removal is lower"
+ },
+ "20": {
+  "pick": "A",
+  "basis": "guess",
+  "reason": "pure passage lookup; 11 C picked from the plausible mid values"
+ },
+ "21": {
+  "pick": "C",
+  "basis": "guess",
+  "reason": "enzyme-style optimum assumed near 50 C; no figure"
+ }
+}
