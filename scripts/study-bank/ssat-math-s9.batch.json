@@ -1,0 +1,692 @@
+[
+  {
+    "id": "SM9-01",
+    "domain": "Math",
+    "subskill": "dividing a whole number by a fraction to count equal pieces",
+    "difficulty": "easy",
+    "prompt": "A ribbon 12 metres long is cut into pieces that are each 3/4 of a metre long, with none left over. How many pieces are there?",
+    "choices": [
+      "9",
+      "4",
+      "16",
+      "48",
+      "36"
+    ],
+    "correct_answer": "16",
+    "explanation": "Counting how many 3/4-metre pieces fit in 12 metres is a division: 12 divided by 3/4 is 12 x 4/3, which is 16. The option \"9\" multiplies by 3/4 instead of dividing by it. The option \"4\" divides 12 by the numerator 3 alone. The option \"48\" divides by the denominator alone, giving 12 x 4. The option \"36\" multiplies by the numerator alone, giving 12 x 3.",
+    "solve": "return 12/(3/4);",
+    "distractor_solve": {
+      "9": "return 12*(3/4);",
+      "4": "return 12/3;",
+      "48": "return 12*4;",
+      "36": "return 12*3;"
+    }
+  },
+  {
+    "id": "SM9-02",
+    "domain": "Math",
+    "subskill": "sum of the first n terms of an arithmetic sequence",
+    "difficulty": "medium",
+    "prompt": "The first term of an arithmetic sequence is 7, and each term after the first is 5 greater than the term before it. What is the sum of the first 20 terms?",
+    "choices": [
+      "988",
+      "1050",
+      "1090",
+      "2180",
+      "1140"
+    ],
+    "correct_answer": "1090",
+    "explanation": "The 20th term is 7 + 19 x 5 = 102, and the sum of 20 terms is 20 x (7 + 102) / 2 = 1090. The option \"988\" sums only 19 terms, ending at 97. The option \"1050\" starts the sequence at 5, the common difference, rather than at 7. The option \"1140\" takes the last term as 7 + 20 x 5 = 107, multiplying the difference by 20 instead of 19. The option \"2180\" pairs the terms correctly but never halves the product.",
+    "solve": "var a=7,d=5,n=20;var last=a+(n-1)*d;return n*(a+last)/2;",
+    "distractor_solve": {
+      "988": "var a=7,d=5,n=19;var last=a+(n-1)*d;return n*(a+last)/2;",
+      "1050": "var a=5,d=5,n=20;var last=a+(n-1)*d;return n*(a+last)/2;",
+      "1140": "var a=7,d=5,n=20;var last=a+n*d;return n*(a+last)/2;",
+      "2180": "var a=7,d=5,n=20;var last=a+(n-1)*d;return n*(a+last);"
+    }
+  },
+  {
+    "id": "SM9-03",
+    "domain": "Math",
+    "subskill": "converting a length given in feet and inches to inches",
+    "difficulty": "easy",
+    "prompt": "A bookshelf is 4 feet 7 inches tall. What is its height in inches?",
+    "choices": [
+      "55",
+      "48",
+      "67",
+      "41",
+      "47"
+    ],
+    "correct_answer": "55",
+    "explanation": "Four feet is 4 x 12 = 48 inches, and the extra 7 inches brings the height to 55 inches. The option \"48\" converts the feet and then drops the 7 inches. The option \"67\" rounds 4 feet 7 inches up to 5 feet and then adds the 7 inches a second time. The option \"41\" subtracts the 7 inches instead of adding them. The option \"47\" treats 4 feet as 40 inches, using ten inches to a foot.",
+    "solve": "return 4*12+7;",
+    "distractor_solve": {
+      "48": "return 4*12;",
+      "67": "return 5*12+7;",
+      "47": "return 4*10+7;",
+      "41": "return 4*12-7;"
+    }
+  },
+  {
+    "id": "SM9-04",
+    "domain": "Math",
+    "subskill": "area of the ring between two concentric circles",
+    "difficulty": "medium",
+    "prompt": "Two circles share the same centre. The larger has radius 10 cm and the smaller has radius 6 cm. The area of the ring between them is k times pi square centimetres. What is the value of k?",
+    "choices": [
+      "36",
+      "8",
+      "136",
+      "16",
+      "64"
+    ],
+    "correct_answer": "64",
+    "explanation": "The ring is the large disc minus the small one: 10 squared minus 6 squared is 100 - 36 = 64. The option \"36\" gives the area of the smaller circle alone. The option \"136\" adds the two areas instead of subtracting. The option \"16\" subtracts the radii first and then squares, giving (10 - 6) squared. The option \"8\" uses circumference rather than area, giving 2 x (10 - 6).",
+    "solve": "return 10*10-6*6;",
+    "distractor_solve": {
+      "36": "return 6*6;",
+      "136": "return 10*10+6*6;",
+      "16": "return (10-6)*(10-6);",
+      "8": "return 2*(10-6);"
+    }
+  },
+  {
+    "id": "SM9-05",
+    "domain": "Math",
+    "subskill": "the mode of a small data set",
+    "difficulty": "easy",
+    "prompt": "A player scored 5, 9, 6, 9, 8, 9, 6, and 12 points in eight games. What is the mode of these scores?",
+    "choices": [
+      "9",
+      "8",
+      "5",
+      "12",
+      "6"
+    ],
+    "correct_answer": "9",
+    "explanation": "The mode is the value that occurs most often, and 9 appears three times while 6 appears twice and every other score appears once. The option \"8\" is the mean, 64 divided by 8. The option \"6\" is the runner-up in frequency, appearing twice. The option \"5\" is the lowest score and the option \"12\" is the highest; each is a score that was actually recorded, but neither says anything about how often a score occurs.",
+    "solve": "var d=[5,9,6,9,8,9,6,12];var c={},b=null;for(var i=0;i<d.length;i++){c[d[i]]=(c[d[i]]||0)+1;if(b===null||c[d[i]]>c[b])b=d[i];}return Number(b);",
+    "distractor_solve": {
+      "8": "var d=[5,9,6,9,8,9,6,12];var s=0;for(var i=0;i<d.length;i++)s+=d[i];return s/d.length;",
+      "6": "var d=[5,9,6,9,8,9,6,12];var c={};for(var i=0;i<d.length;i++)c[d[i]]=(c[d[i]]||0)+1;var b=null;for(var k in c){if(c[k]===2&&(b===null||Number(k)<b))b=Number(k);}return b;",
+      "5": "var d=[5,9,6,9,8,9,6,12];return Math.min.apply(null,d);",
+      "12": "var d=[5,9,6,9,8,9,6,12];return Math.max.apply(null,d);"
+    }
+  },
+  {
+    "id": "SM9-06",
+    "domain": "Math",
+    "subskill": "slope of a line from a table of values",
+    "difficulty": "medium",
+    "prompt": "A line contains the points listed in this table: when x is 2, y is 13; when x is 5, y is 7; when x is 8, y is 1; and when x is 11, y is -5. What is the slope of the line?",
+    "choices": [
+      "3",
+      "2",
+      "-6",
+      "-2",
+      "-18"
+    ],
+    "correct_answer": "-2",
+    "explanation": "Slope is the change in y divided by the change in x. From the first pair to the second, y falls by 6 while x rises by 3, so the slope is -6/3 = -2. The option \"-6\" reports the change in y alone. The option \"3\" reports the change in x alone. The option \"2\" drops the sign of the fall in y. The option \"-18\" multiplies the change in y by the change in x instead of dividing.",
+    "solve": "return (7-13)/(5-2);",
+    "distractor_solve": {
+      "-6": "return 7-13;",
+      "3": "return 5-2;",
+      "2": "return -((7-13)/(5-2));",
+      "-18": "return (7-13)*(5-2);"
+    }
+  },
+  {
+    "id": "SM9-07",
+    "domain": "Math",
+    "subskill": "perimeter of a square from its area",
+    "difficulty": "easy",
+    "prompt": "A square garden has an area of 196 square metres. What is its perimeter, in metres?",
+    "choices": [
+      "98",
+      "56",
+      "14",
+      "49",
+      "28"
+    ],
+    "correct_answer": "56",
+    "explanation": "The side is the square root of 196, which is 14, and the perimeter is 4 x 14 = 56. The option \"14\" stops at the side length. The option \"28\" doubles the side instead of quadrupling it. The option \"49\" divides the area by 4 as though that produced the perimeter. The option \"98\" halves the area instead of taking its square root.",
+    "solve": "return 4*Math.sqrt(196);",
+    "distractor_solve": {
+      "14": "return Math.sqrt(196);",
+      "28": "return 2*Math.sqrt(196);",
+      "49": "return 196/4;",
+      "98": "return 196/2;"
+    }
+  },
+  {
+    "id": "SM9-08",
+    "domain": "Math",
+    "subskill": "a flat fee plus a per-item charge",
+    "difficulty": "easy",
+    "prompt": "A print shop charges a flat setup fee of $12 plus $0.75 for each poster. What is the total charge for 24 posters?",
+    "choices": [
+      "36",
+      "30",
+      "29.25",
+      "24.75",
+      "18"
+    ],
+    "correct_answer": "30",
+    "explanation": "The posters cost 24 x $0.75 = $18, and the setup fee brings the total to $30. The option \"18\" leaves out the setup fee. The option \"36\" adds the number of posters to the fee instead of the cost of the posters. The option \"29.25\" reads the $12 as the price of the first poster and charges the remaining 23 at $0.75 each. The option \"24.75\" adds the rate to the count of posters.",
+    "solve": "return 12+0.75*24;",
+    "distractor_solve": {
+      "18": "return 0.75*24;",
+      "36": "return 12+24;",
+      "24.75": "return 24+0.75;",
+      "29.25": "return 12+23*0.75;"
+    }
+  },
+  {
+    "id": "SM9-09",
+    "domain": "Math",
+    "subskill": "finding a number when a percent of it is given",
+    "difficulty": "easy",
+    "prompt": "Thirty percent of a number is 42. What is the number?",
+    "choices": [
+      "126",
+      "105",
+      "84",
+      "72",
+      "140"
+    ],
+    "correct_answer": "140",
+    "explanation": "If 0.3n = 42 then n = 42 x 10/3 = 140. The option \"105\" divides by 40 percent instead of 30 percent. The option \"72\" adds 30 to 42. The option \"84\" doubles 42, treating 30 percent as one half. The option \"126\" triples 42, treating 30 percent as one third.",
+    "solve": "return 42*10/3;",
+    "distractor_solve": {
+      "72": "return 42+30;",
+      "84": "return 42*2;",
+      "126": "return 42*3;",
+      "105": "return 42/0.4;"
+    }
+  },
+  {
+    "id": "SM9-10",
+    "domain": "Math",
+    "subskill": "evaluating an expression with nested parentheses",
+    "difficulty": "easy",
+    "prompt": "What is the value of 4 x (9 - (6 / 2 + 1))?",
+    "choices": [
+      "28",
+      "32",
+      "20",
+      "10",
+      "25"
+    ],
+    "correct_answer": "20",
+    "explanation": "Inside the inner parentheses, 6 / 2 + 1 = 4; then 9 - 4 = 5 and 4 x 5 = 20. The option \"28\" drops the inner parentheses and evaluates 4 x (9 - 3 + 1). The option \"32\" ignores the outer parentheses and computes 4 x 9 first, then subtracts 4. The option \"25\" attaches the + 1 outside the whole product, giving 4 x (9 - 3) + 1. The option \"10\" groups 9 - 6 first, giving 4 x ((9 - 6) / 2 + 1).",
+    "solve": "return 4*(9-(6/2+1));",
+    "distractor_solve": {
+      "28": "return 4*(9-6/2+1);",
+      "32": "return 4*9-(6/2+1);",
+      "25": "return 4*(9-(6/2))+1;",
+      "10": "return 4*((9-6)/2+1);"
+    }
+  },
+  {
+    "id": "SM9-11",
+    "domain": "Math",
+    "subskill": "recovering an endpoint's x-coordinate from a midpoint",
+    "difficulty": "medium",
+    "prompt": "Point M with coordinates (3, -1) is the midpoint of segment AB, and point A has coordinates (-2, 5). What is the x-coordinate of point B?",
+    "choices": [
+      "1",
+      "-7",
+      "0.5",
+      "8",
+      "5"
+    ],
+    "correct_answer": "8",
+    "explanation": "The midpoint's x-coordinate is the average of the endpoints', so 3 = (-2 + b)/2 and b = 2 x 3 - (-2) = 8. The option \"5\" subtracts A's x-coordinate from the midpoint's instead of doubling first. The option \"1\" adds A's x-coordinate to the midpoint's. The option \"0.5\" averages A's x-coordinate with the midpoint's, finding a midpoint rather than an endpoint. The option \"-7\" carries out the correct steps on the y-coordinates instead.",
+    "solve": "return 2*3-(-2);",
+    "distractor_solve": {
+      "5": "return 3-(-2);",
+      "1": "return 3+(-2);",
+      "0.5": "return (-2+3)/2;",
+      "-7": "return 2*(-1)-5;"
+    }
+  },
+  {
+    "id": "SM9-12",
+    "domain": "Math",
+    "subskill": "what percent one number is of another",
+    "difficulty": "medium",
+    "prompt": "A team won 21 of the 28 games it played. What percent of its games did it win?",
+    "choices": [
+      "70",
+      "84",
+      "25",
+      "75",
+      "33"
+    ],
+    "correct_answer": "75",
+    "explanation": "The fraction won is 21/28 = 3/4, which is 75 percent. The option \"25\" gives the percent of games lost rather than won. The option \"70\" divides by 30 instead of by the 28 games actually played. The option \"84\" divides by 25 instead of 28. The option \"33\" compares the 7 losses with the 21 wins rather than with the games played, rounded to the nearest percent.",
+    "solve": "return 100*21/28;",
+    "distractor_solve": {
+      "25": "return 100-100*21/28;",
+      "70": "return 100*21/30;",
+      "84": "return 100*21/25;",
+      "33": "return Math.round(100*(28-21)/21);"
+    }
+  },
+  {
+    "id": "SM9-13",
+    "domain": "Math",
+    "subskill": "lateral surface area of a right circular cylinder",
+    "difficulty": "medium",
+    "prompt": "A right circular cylinder has radius 5 cm and height 12 cm. The area of its curved side, not counting the two circular ends, is k times pi square centimetres. What is the value of k?",
+    "choices": [
+      "120",
+      "300",
+      "60",
+      "25",
+      "170"
+    ],
+    "correct_answer": "120",
+    "explanation": "Unrolled, the curved side is a rectangle whose width is the circumference and whose height is 12, so its area is 2 x 5 x 12 = 120 times pi. The option \"60\" leaves out the factor of 2 in the circumference. The option \"170\" adds the two circular ends, which the question excludes. The option \"300\" uses the volume formula, radius squared times height. The option \"25\" gives the area of one circular end, which the question excludes altogether.",
+    "solve": "return 2*5*12;",
+    "distractor_solve": {
+      "60": "return 5*12;",
+      "170": "return 2*5*12+2*5*5;",
+      "300": "return 5*5*12;",
+      "25": "return 5*5;"
+    }
+  },
+  {
+    "id": "SM9-14",
+    "domain": "Math",
+    "subskill": "counting the terms in an arithmetic list",
+    "difficulty": "medium",
+    "prompt": "The numbers 6, 13, 20, 27, and so on up to 132 form a list in which each number is 7 more than the one before it. How many numbers are in the list?",
+    "choices": [
+      "17",
+      "22",
+      "18",
+      "21",
+      "19"
+    ],
+    "correct_answer": "19",
+    "explanation": "The gaps between consecutive numbers are (132 - 6)/7 = 18, and a list with 18 gaps holds 19 numbers. The option \"18\" counts the gaps and forgets that both ends are numbers. The option \"17\" subtracts one from the gap count instead of adding one. The option \"21\" divides by the first term 6 rather than by the common difference 7, and does not add one. The option \"22\" divides by the first term 6 rather than by the common difference 7 before adding one.",
+    "solve": "return (132-6)/7+1;",
+    "distractor_solve": {
+      "18": "return (132-6)/7;",
+      "17": "return (132-6)/7-1;",
+      "22": "return (132-6)/6+1;",
+      "21": "return (132-6)/6;"
+    }
+  },
+  {
+    "id": "SM9-15",
+    "domain": "Math",
+    "subskill": "probability read off a two-category classification of a group",
+    "difficulty": "medium",
+    "prompt": "In a group of 60 students, 35 play an instrument, and 20 of those 35 also sing in the choir. Ten of the 60 students neither play an instrument nor sing in the choir. If one student is chosen at random, what is the probability that the student sings in the choir but does not play an instrument?",
+    "choices": [
+      "1/3",
+      "1/4",
+      "7/12",
+      "1/6",
+      "5/12"
+    ],
+    "correct_answer": "1/4",
+    "explanation": "The 25 students who do not play an instrument split into the 10 who do neither and 15 who only sing, so the probability is 15/60 = 1/4. The option \"1/3\" is the chance of a student who both plays and sings, 20 of 60. The option \"7/12\" is the chance of playing an instrument at all, 35 of 60. The option \"5/12\" is the chance of not playing an instrument, 25 of 60, without removing the 10 who do neither. The option \"1/6\" is the chance of doing neither, 10 of 60.",
+    "solve": "var t=60,p=35,n=10;return (t-p-n)/t;",
+    "distractor_solve": {
+      "1/3": "return 20/60;",
+      "7/12": "return 35/60;",
+      "5/12": "return (60-35)/60;",
+      "1/6": "return 10/60;"
+    }
+  },
+  {
+    "id": "SM9-16",
+    "domain": "Math",
+    "subskill": "recovering a pre-tax price from a tax-inclusive total",
+    "difficulty": "medium",
+    "prompt": "A shopper pays $63.60 for a lamp. That total includes a 6 percent sales tax on the price of the lamp. What was the price of the lamp before tax?",
+    "choices": [
+      "60.00",
+      "57.60",
+      "39.75",
+      "59.78",
+      "56.20"
+    ],
+    "correct_answer": "60.00",
+    "explanation": "The total is 1.06 times the pre-tax price, so the price is 63.60 / 1.06 = $60.00, and 6 percent of 60 is indeed 3.60. The option \"57.60\" subtracts 6 dollars rather than 6 percent. The option \"59.78\" takes 94 percent of the total, which removes 6 percent of the wrong base. The option \"56.20\" removes 6 percent of the total twice. The option \"39.75\" divides by 1.6 instead of 1.06, a misplaced decimal point.",
+    "solve": "return Math.round(100*63.60/1.06)/100;",
+    "distractor_solve": {
+      "57.60": "return Math.round(100*(63.60-6))/100;",
+      "59.78": "return Math.round(100*63.60*0.94)/100;",
+      "56.20": "return Math.round(100*63.60*0.94*0.94)/100;",
+      "39.75": "return Math.round(100*63.60/1.6)/100;"
+    }
+  },
+  {
+    "id": "SM9-17",
+    "domain": "Math",
+    "subskill": "converting a speed from kilometres per hour to metres per second",
+    "difficulty": "medium",
+    "prompt": "An object moves 180 kilometres in 2.5 hours at a constant speed. What is its speed in metres per second?",
+    "choices": [
+      "72",
+      "120",
+      "20",
+      "200",
+      "43.2"
+    ],
+    "correct_answer": "20",
+    "explanation": "The trip is 180,000 metres in 2.5 x 3600 = 9,000 seconds, so the speed is 20 metres per second. The option \"72\" stops at kilometres per hour and never converts. The option \"200\" uses 900 seconds for 2.5 hours, losing a factor of ten. The option \"120\" multiplies the kilometres per hour by 5/3 instead of by 5/18. The option \"43.2\" multiplies by 0.6 instead of dividing by 3.6.",
+    "solve": "return 180*1000/(2.5*3600);",
+    "distractor_solve": {
+      "72": "return 180/2.5;",
+      "200": "return 180*1000/900;",
+      "120": "return (180/2.5)*5/3;",
+      "43.2": "return Math.round((180/2.5)*0.6*10)/10;"
+    }
+  },
+  {
+    "id": "SM9-18",
+    "domain": "Math",
+    "subskill": "area of an isosceles triangle found by dropping an altitude",
+    "difficulty": "medium",
+    "prompt": "An isosceles triangle has two sides of length 13 cm and a base of length 10 cm. What is its area, in square centimetres?",
+    "choices": [
+      "130",
+      "65",
+      "60",
+      "120",
+      "84.5"
+    ],
+    "correct_answer": "60",
+    "explanation": "The altitude to the base splits it into two halves of 5, and 13 squared minus 5 squared is 144, so the height is 12 and the area is 10 x 12 / 2 = 60. The option \"120\" finds the height correctly but never halves the product. The option \"65\" uses a slanted side of 13 as though it were the height. The option \"84.5\" treats the two equal sides as base and height. The option \"130\" multiplies the base by a slanted side and does not halve.",
+    "solve": "return 10*Math.sqrt(13*13-5*5)/2;",
+    "distractor_solve": {
+      "120": "return 10*Math.sqrt(13*13-5*5);",
+      "65": "return 13*10/2;",
+      "84.5": "return 13*13/2;",
+      "130": "return 13*10;"
+    }
+  },
+  {
+    "id": "SM9-19",
+    "domain": "Math",
+    "subskill": "overtime pay at time and a half past a threshold",
+    "difficulty": "medium",
+    "prompt": "A technician is paid $18 per hour for the first 40 hours of a week and one and a half times that rate for each hour beyond 40. Last week she worked 46 hours. How much did she earn?",
+    "choices": [
+      "936",
+      "1242",
+      "909",
+      "882",
+      "1080"
+    ],
+    "correct_answer": "882",
+    "explanation": "The first 40 hours pay 40 x $18 = $720, and the 6 extra hours pay 6 x $27 = $162, for $882. The option \"909\" counts 7 overtime hours by including the fortieth hour twice. The option \"936\" pays the extra hours at double time, $36, instead of time and a half. The option \"1080\" applies the overtime rate to the 40 base hours and drops the extra 6. The option \"1242\" pays all 46 hours at the overtime rate.",
+    "solve": "return 40*18+6*18*1.5;",
+    "distractor_solve": {
+      "909": "return 40*18+7*18*1.5;",
+      "936": "return 40*18+6*18*2;",
+      "1080": "return 40*18*1.5;",
+      "1242": "return 46*18*1.5;"
+    }
+  },
+  {
+    "id": "SM9-20",
+    "domain": "Math",
+    "subskill": "total distance travelled by a ball rebounding to a fixed fraction of its height",
+    "difficulty": "hard",
+    "prompt": "A ball is dropped from a height of 64 cm. Each time it hits the floor it rebounds to exactly half the height from which it fell. What is the total distance, in centimetres, that the ball has travelled at the moment it hits the floor for the fourth time?",
+    "choices": [
+      "120",
+      "240",
+      "160",
+      "180",
+      "176"
+    ],
+    "correct_answer": "176",
+    "explanation": "The ball falls 64, then rises and falls 32, then 16, then 8, so the total is 64 + 2 x 32 + 2 x 16 + 2 x 8 = 176. The option \"120\" counts each rebound height once instead of twice, as a rise and a fall. The option \"160\" stops at the third contact with the floor. The option \"180\" adds the 4 cm rise that happens after the fourth contact. The option \"240\" doubles the opening drop as well as the rebounds.",
+    "solve": "var h=64,t=h;for(var i=1;i<4;i++){h=h/2;t+=2*h;}return t;",
+    "distractor_solve": {
+      "120": "var h=64,t=h;for(var i=1;i<4;i++){h=h/2;t+=h;}return t;",
+      "160": "var h=64,t=h;for(var i=1;i<3;i++){h=h/2;t+=2*h;}return t;",
+      "180": "var h=64,t=h;for(var i=1;i<4;i++){h=h/2;t+=2*h;}return t+h/2;",
+      "240": "var h=64,t=2*h;for(var i=1;i<4;i++){h=h/2;t+=2*h;}return t;"
+    }
+  },
+  {
+    "id": "SM9-21",
+    "domain": "Math",
+    "subskill": "counting shortest routes on a rectangular street grid",
+    "difficulty": "hard",
+    "prompt": "A courier starts at one corner of a grid of streets and must reach a corner that is 4 blocks east and 2 blocks north. She only ever walks east or north, one block at a time. How many different routes can she take?",
+    "choices": [
+      "24",
+      "15",
+      "64",
+      "20",
+      "30"
+    ],
+    "correct_answer": "15",
+    "explanation": "Every route is a sequence of 6 blocks of which exactly 2 are north, so the count is 6 x 5 / 2 = 15. The option \"30\" counts the two north blocks as distinguishable, giving 6 x 5. The option \"20\" chooses 3 of the 6 blocks instead of 2. The option \"64\" allows a free choice of east or north at each of the 6 steps, ignoring that the totals are fixed. The option \"24\" arranges only the 4 east blocks among themselves.",
+    "solve": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;};return f(6)/(f(4)*f(2));",
+    "distractor_solve": {
+      "30": "return 6*5;",
+      "20": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;};return f(6)/(f(3)*f(3));",
+      "64": "return Math.pow(2,6);",
+      "24": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;};return f(4);"
+    }
+  },
+  {
+    "id": "SM9-22",
+    "domain": "Math",
+    "subskill": "fewest draws needed to guarantee a matching pair",
+    "difficulty": "hard",
+    "prompt": "A drawer holds 8 black socks, 12 blue socks, and 6 grey socks, all mixed together. In a dark room a person takes socks out one at a time without looking. What is the fewest number of socks that must be taken to be certain of having two socks of the same colour?",
+    "choices": [
+      "13",
+      "4",
+      "3",
+      "7",
+      "2"
+    ],
+    "correct_answer": "4",
+    "explanation": "Three socks can be one of each colour, but a fourth sock must repeat a colour, so 4 is certain. The option \"3\" is the number of colours and is exactly the case that can still fail. The option \"2\" subtracts one from the number of colours instead of adding one. The option \"7\" adds one to the smallest colour group, 6 grey. The option \"13\" adds one to the largest colour group, 12 blue.",
+    "solve": "var c=[8,12,6];return c.length+1;",
+    "distractor_solve": {
+      "3": "var c=[8,12,6];return c.length;",
+      "2": "var c=[8,12,6];return c.length-1;",
+      "7": "var c=[8,12,6];return Math.min.apply(null,c)+1;",
+      "13": "var c=[8,12,6];return Math.max.apply(null,c)+1;"
+    }
+  },
+  {
+    "id": "SM9-23",
+    "domain": "Math",
+    "subskill": "effect on the mean of transforming every value in a list",
+    "difficulty": "medium",
+    "prompt": "A list of 12 numbers has a mean of 8. Every number in the list is multiplied by 3 and then decreased by 5. What is the mean of the new list?",
+    "choices": [
+      "19",
+      "24",
+      "3",
+      "29",
+      "9"
+    ],
+    "correct_answer": "19",
+    "explanation": "Multiplying every value by 3 multiplies the mean by 3, and subtracting 5 from every value lowers the mean by 5, so the new mean is 3 x 8 - 5 = 19. The option \"24\" applies the multiplication and forgets the subtraction. The option \"3\" applies the subtraction and forgets the multiplication. The option \"9\" subtracts 5 before multiplying, reversing the order given. The option \"29\" adds 5 rather than subtracting it.",
+    "solve": "return 3*8-5;",
+    "distractor_solve": {
+      "24": "return 3*8;",
+      "3": "return 8-5;",
+      "9": "return 3*(8-5);",
+      "29": "return 3*8+5;"
+    }
+  },
+  {
+    "id": "SM9-24",
+    "domain": "Math",
+    "subskill": "chaining two percent relationships between three quantities",
+    "difficulty": "hard",
+    "prompt": "A is 40 percent of B, and B is 25 percent of C. A is what percent of C?",
+    "choices": [
+      "65",
+      "10",
+      "62.5",
+      "6.25",
+      "15"
+    ],
+    "correct_answer": "10",
+    "explanation": "A is 0.40 x 0.25 = 0.10 of C, which is 10 percent. The option \"65\" adds the two percents. The option \"15\" subtracts them. The option \"62.5\" divides 25 by 40, chaining the relationships in the wrong direction. The option \"6.25\" multiplies 25 percent by itself, using the second relationship twice.",
+    "solve": "return 40*25/100;",
+    "distractor_solve": {
+      "65": "return 40+25;",
+      "15": "return 40-25;",
+      "62.5": "return 100*25/40;",
+      "6.25": "return 25*25/100;"
+    }
+  },
+  {
+    "id": "SM9-25",
+    "domain": "Math",
+    "subskill": "greatest number of intersection points of several lines in a plane",
+    "difficulty": "hard",
+    "prompt": "Five distinct straight lines are drawn in a plane. What is the greatest possible number of points at which two or more of them cross?",
+    "choices": [
+      "20",
+      "4",
+      "25",
+      "15",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "Each pair of lines can cross at most once, and five lines form 5 x 4 / 2 = 10 pairs. The option \"20\" counts each pair twice, giving 5 x 4. The option \"25\" pairs every line with every line including itself, giving 5 squared. The option \"15\" counts six lines rather than the five the question gives. The option \"4\" counts only the crossings made by one line with the other four.",
+    "solve": "var n=5;return n*(n-1)/2;",
+    "distractor_solve": {
+      "20": "var n=5;return n*(n-1);",
+      "25": "var n=5;return n*n;",
+      "4": "var n=5;return n-1;",
+      "15": "var n=6;return n*(n-1)/2;"
+    }
+  },
+  {
+    "id": "SM9-26",
+    "domain": "Math",
+    "subskill": "cutting several lengths into equal pieces using the greatest common factor",
+    "difficulty": "hard",
+    "prompt": "Three ribbons are 84 cm, 126 cm, and 210 cm long. Each ribbon is cut into pieces that are all the same whole number of centimetres long, with no ribbon left over, and the pieces are made as long as possible. How many pieces are there altogether?",
+    "choices": [
+      "42",
+      "60",
+      "20",
+      "10",
+      "30"
+    ],
+    "correct_answer": "10",
+    "explanation": "The greatest common factor of 84, 126, and 210 is 42, giving 2 + 3 + 5 = 10 pieces. The option \"42\" reports the length of a piece rather than the number of pieces. The option \"20\" uses a piece length of 21, which is a common factor but not the greatest. The option \"30\" uses a piece length of 14. The option \"60\" uses a piece length of 7.",
+    "solve": "var g=function(a,b){return b?g(b,a%b):a;};var d=g(g(84,126),210);return 84/d+126/d+210/d;",
+    "distractor_solve": {
+      "42": "var g=function(a,b){return b?g(b,a%b):a;};return g(g(84,126),210);",
+      "20": "var d=21;return 84/d+126/d+210/d;",
+      "30": "var d=14;return 84/d+126/d+210/d;",
+      "60": "var d=7;return 84/d+126/d+210/d;"
+    }
+  },
+  {
+    "id": "SM9-27",
+    "domain": "Math",
+    "subskill": "greatest perimeter of a rectangle with whole-number sides and a fixed area",
+    "difficulty": "hard",
+    "prompt": "A rectangle has an area of 48 square units, and the lengths of its sides are whole numbers of units. What is the greatest perimeter the rectangle could have?",
+    "choices": [
+      "52",
+      "28",
+      "96",
+      "98",
+      "48"
+    ],
+    "correct_answer": "98",
+    "explanation": "The longest, thinnest rectangle with whole sides is 1 by 48, whose perimeter is 2 x (1 + 48) = 98. The option \"28\" gives the least perimeter instead of the greatest, from the 6 by 8 rectangle. The option \"52\" uses the 2 by 24 rectangle, stopping one factor short of the thinnest. The option \"96\" doubles the area. The option \"48\" restates the area as though it were the perimeter.",
+    "solve": "var a=48,best=0;for(var w=1;w<=a;w++){if(a%w===0){var p=2*(w+a/w);if(p>best)best=p;}}return best;",
+    "distractor_solve": {
+      "28": "var a=48,best=1e9;for(var w=1;w<=a;w++){if(a%w===0){var p=2*(w+a/w);if(p<best)best=p;}}return best;",
+      "52": "return 2*(2+48/2);",
+      "96": "return 2*48;",
+      "48": "var a=48;return a;"
+    }
+  },
+  {
+    "id": "SM9-28",
+    "domain": "Math",
+    "subskill": "area of a parallelogram given a slant side as well as the height",
+    "difficulty": "easy",
+    "prompt": "A parallelogram has a base of 14 cm, a slanted side of 10 cm, and a height of 8 cm measured perpendicular to the base. What is its area, in square centimetres?",
+    "choices": [
+      "140",
+      "56",
+      "112",
+      "48",
+      "80"
+    ],
+    "correct_answer": "112",
+    "explanation": "The area of a parallelogram is the base times the perpendicular height, 14 x 8 = 112. The option \"140\" multiplies the base by the slanted side of 10 instead of by the height. The option \"56\" halves the product, using the formula for a triangle. The option \"48\" gives the perimeter, 2 x (14 + 10). The option \"80\" multiplies the slanted side by the height, leaving out the base.",
+    "solve": "return 14*8;",
+    "distractor_solve": {
+      "140": "return 14*10;",
+      "56": "return 14*8/2;",
+      "48": "return 2*(14+10);",
+      "80": "return 10*8;"
+    }
+  },
+  {
+    "id": "SM9-29",
+    "domain": "Math",
+    "subskill": "area of a right triangle after recovering a leg with the Pythagorean theorem",
+    "difficulty": "medium",
+    "prompt": "A right triangle has a hypotenuse of 26 cm and one leg of 10 cm. What is its area, in square centimetres?",
+    "choices": [
+      "120",
+      "240",
+      "80",
+      "139.3",
+      "130"
+    ],
+    "correct_answer": "120",
+    "explanation": "The missing leg satisfies 26 squared minus 10 squared = 576, so it is 24, and the area is 10 x 24 / 2 = 120. The option \"240\" finds the missing leg correctly but never halves the product. The option \"130\" uses the hypotenuse as though it were the second leg. The option \"139.3\" adds the squares instead of subtracting them before taking the root. The option \"80\" subtracts the leg from the hypotenuse, 26 - 10 = 16, and uses 16 as the second leg.",
+    "solve": "return 10*Math.sqrt(26*26-10*10)/2;",
+    "distractor_solve": {
+      "240": "return 10*Math.sqrt(26*26-10*10);",
+      "130": "return 10*26/2;",
+      "139.3": "return Math.round(10*Math.sqrt(26*26+10*10)/2*10)/10;",
+      "80": "return 10*(26-10)/2;"
+    }
+  },
+  {
+    "id": "SM9-30",
+    "domain": "Math",
+    "subskill": "change from a purchase of several identical items",
+    "difficulty": "easy",
+    "prompt": "Ben pays with a $50 note for 3 shirts that cost $12.75 each. How much change does he receive?",
+    "choices": [
+      "38.25",
+      "45.75",
+      "24.50",
+      "14.00",
+      "11.75"
+    ],
+    "correct_answer": "11.75",
+    "explanation": "The shirts cost 3 x $12.75 = $38.25, so the change is $50.00 - $38.25 = $11.75. The option \"38.25\" reports the cost of the shirts rather than the change. The option \"24.50\" pays for only two shirts. The option \"14.00\" rounds the price down to $12 before multiplying. The option \"45.75\" divides $12.75 by 3 instead of multiplying.",
+    "solve": "return Math.round(100*(50-3*12.75))/100;",
+    "distractor_solve": {
+      "38.25": "return 3*12.75;",
+      "24.50": "return Math.round(100*(50-2*12.75))/100;",
+      "14.00": "return 50-3*12;",
+      "45.75": "return Math.round(100*(50-12.75/3))/100;"
+    }
+  }
+]
