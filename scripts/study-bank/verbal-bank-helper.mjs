@@ -23,6 +23,8 @@
 import { createClient } from '@supabase/supabase-js'
 // One difficulty rule for all four inserters — see difficulty-policy.mjs.
 import { acceptsDifficulty } from './difficulty-policy.mjs'
+// The insert gate. See the block in insert() for why this import is new.
+import { gateBatch, overrideReason } from './gate.mjs'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -66,6 +68,37 @@ async function insert(family, batchPath, qcPath) {
    * ISEE is at 560 rows and climbing on a day that added 24 maths and 27
    * verbal items. Waiting for the failure is not a plan.
    */
+  /*
+   * THE QC GATE, WIRED 2026-09-11 — AND IT WAS THE LAST INSERTER WITHOUT IT.
+   *
+   * On 2026-09-04 the gate was wired into math-bank-helper.mjs and
+   * bank-helper.mjs, with a comment recording that "the only inserter that
+   * consulted any of them was the TOEFL one" and that the bank-gate skill's
+   * claim — "the inserters refuse a batch with no ledger entry" — was simply
+   * false for maths and SAT R&W. Two of the four were fixed that day. THIS
+   * ONE WAS NOT, and nobody noticed, because the sweep went looking for the
+   * inserters it already knew about.
+   *
+   * So for a week every SSAT and ISEE verbal and reading batch inserted with
+   * no gate at all: no ledger entry required, no content-hash binding, and an
+   * edit after review could not make anything stale because nothing was bound.
+   * Found on 2026-09-11 while trying to insert isee-verbal-s12 through it.
+   *
+   * The family resolves through the same contract as everywhere else, so a
+   * verbal batch needs shape/withsource/nosource/elimination/tells, and a
+   * reading batch the same. That is the correct requirement and it is why
+   * ssat-reading-s11 — which failed its attack at 66.7% — could not have been
+   * stopped here yesterday.
+   */
+  const g = gateBatch({ task: 'multiple_choice', family, section: SECTION, itemFiles: [batchPath] })
+  if (!g.canInsert) {
+    const why = overrideReason()
+    if (!why) { console.error(`REFUSING to insert ${batchPath}: ${g.reason}`); process.exit(1) }
+    console.log(`GATE OVERRIDDEN (BANK_GATE_OVERRIDE): ${why}\n  the gate said: ${g.reason}`)
+  } else {
+    console.log(`gate: ${g.batch} — ${g.reason}`)
+  }
+
   const existing = []
   for (let from = 0; ; from += 1000) {
     const { data, error } = await db.from('study_item_bank')

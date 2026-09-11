@@ -1,5 +1,5 @@
 {
- "_comment": "SINGLE SOURCE for which gates each item family must clear. Read by src/lib/study/bank-qc.ts (typed) AND by scripts/study-bank/gate.mjs (the insert path). A .ts file cannot be imported by the .mjs helper without a build step, and a second hand-written copy is exactly the drift that let the dashboard lose the tells gate \u2014 so the data lives here and both sides read it.",
+ "_comment": "SINGLE SOURCE for which gates each item family must clear. Read by src/lib/study/bank-qc.ts (typed) AND by scripts/study-bank/gate.mjs (the insert path). A .ts file cannot be imported by the .mjs helper without a build step, and a second hand-written copy is exactly the drift that let the dashboard lose the tells gate — so the data lives here and both sides read it.",
  "familyStages": {
   "mc_hidden_source": [
    "shape",
@@ -50,7 +50,9 @@
   "humanities": "mc_hidden_source",
   "social_science": "mc_hidden_source",
   "literary_narrative": "mc_hidden_source",
-  "natural_science": "mc_hidden_source"
+  "natural_science": "mc_hidden_source",
+  "essay": "production",
+  "essay_choice": "production"
  },
- "taskFamilyNote": "The seven ACT reading/science tasks above were resolving by FALLTHROUGH to the mc_hidden_source default, not by declaration. The default happened to be right for all of them \u2014 an ACT passage or figure is a real withheld source, so `elimination` is a stage that can actually be run \u2014 but gate.mjs already carries the story of the same fallthrough silently demanding `elimination` of every non-SAT MATHS batch, where the stem IS the source and the stage is impossible. Declaring them makes the next reader see a decision instead of an absence. Adding these changed no batch's resolved family: verified by resolving all nine live ACT (section, task) pairs before and after."
+ "taskFamilyNote": "The seven ACT reading/science tasks above were resolving by FALLTHROUGH to the mc_hidden_source default, not by declaration. The default happened to be right for all of them — an ACT passage or figure is a real withheld source, so `elimination` is a stage that can actually be run — but gate.mjs already carries the story of the same fallthrough silently demanding `elimination` of every non-SAT MATHS batch, where the stem IS the source and the stage is impossible. Declaring them makes the next reader see a decision instead of an absence. Adding these changed no batch's resolved family: verified by resolving all nine live ACT (section, task) pairs before and after. ADDED 2026-09-11: 'essay' and 'essay_choice'. They were absent, so they fell through to the mc_hidden_source default and the gate would have demanded `nosource` and `elimination` of an essay - stages that cannot be run on a prompt with no options, exactly the failure this file already records for non-SAT maths. Found while wiring essay-bank-helper.mjs to the gate; it had never called it, so the impossible requirement had never been reached."
 }

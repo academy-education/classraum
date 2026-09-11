@@ -18,8 +18,26 @@
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { createClient } from '@supabase/supabase-js'
+import { gateBatch, overrideReason } from './gate.mjs'
 
 const [file, family, cohort] = process.argv.slice(2)
+
+/*
+ * THE QC GATE — wired 2026-09-11. See the block in act-bank-helper.mjs: this
+ * was one of four inserters the 2026-09-04 wiring missed. Verbal set items are
+ * ordinary multiple choice, so they resolve through the same contract as
+ * verbal-bank-helper's.
+ */
+if (file && family) {
+  const g = gateBatch({ task: 'multiple_choice', family, section: 'verbal', itemFiles: [file] })
+  if (!g.canInsert) {
+    const why = overrideReason()
+    if (!why) { console.error(`REFUSING to insert ${file}: ${g.reason}`); process.exit(1) }
+    console.log(`GATE OVERRIDDEN (BANK_GATE_OVERRIDE): ${why}\n  the gate said: ${g.reason}`)
+  } else {
+    console.log(`gate: ${g.batch} — ${g.reason}`)
+  }
+}
 const APPLY = process.argv.includes('--apply')
 if (!file || !family || !cohort) { console.error('usage: <batch.json> <family> <cohort> [--apply]'); process.exit(1) }
 

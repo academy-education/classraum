@@ -44,8 +44,46 @@
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { createClient } from '@supabase/supabase-js'
+import { gateBatch, overrideReason, familyFor } from './gate.mjs'
 
 const [cmd, section, file, cohort] = process.argv.slice(2)
+
+/*
+ * THE QC GATE — WIRED 2026-09-11, AND THIS WAS THE LARGEST HOLE.
+ *
+ * When the gate was wired into math-bank-helper.mjs and bank-helper.mjs on
+ * 2026-09-04, the note recorded that "the only inserter that consulted any of
+ * them was the TOEFL one". Two were fixed. act-bank-helper, essay-bank-helper,
+ * insert-verbal-sets and verbal-bank-helper were not, and the sweep missed
+ * them because it searched for the inserters it already knew about. Every ACT
+ * English, Reading and Science batch shipped through here with no ledger
+ * entry required and no content-hash binding, so an edit after review could
+ * not make a grade stale - nothing was bound to make stale.
+ *
+ * ACT reading and science carry a per-ITEM task (the genre / the figure
+ * format), so this refuses a batch whose items do not all resolve to one gate
+ * family rather than gating on whichever task happened to be first.
+ */
+function gateOrDie(section, file) {
+  const items = JSON.parse(readFileSync(file, 'utf8'))
+  const list = Array.isArray(items) ? items : (items.items ?? items.questions ?? [])
+  if (!list.length) { console.error(`REFUSING: ${file} holds no items.`); process.exit(2) }
+  const tasks = [...new Set(list.map(it =>
+    section === 'reading' ? it.genre : section === 'science' ? it.format : 'multiple_choice'))]
+  const fams = [...new Set(tasks.map(t => familyFor(t, 'act', section)))]
+  if (fams.length > 1) {
+    console.error(`REFUSING: ${file} mixes gate families (${fams.join(', ')}) across tasks ${tasks.join(', ')}. One batch, one contract.`)
+    process.exit(2)
+  }
+  const g = gateBatch({ task: tasks[0], family: 'act', section, itemFiles: [file] })
+  if (!g.canInsert) {
+    const why = overrideReason()
+    if (!why) { console.error(`REFUSING to insert ${file}: ${g.reason}`); process.exit(1) }
+    console.log(`GATE OVERRIDDEN (BANK_GATE_OVERRIDE): ${why}\n  the gate said: ${g.reason}`)
+  } else {
+    console.log(`gate: ${g.batch} — ${g.reason}`)
+  }
+}
 const APPLY = process.argv.includes('--apply')
 if (!cmd || !section || !file || (cmd === 'insert' && !cohort)) {
   console.error('usage: act-bank-helper.mjs check|insert english|reading <batch.json> [cohort] [--apply]')
@@ -208,6 +246,11 @@ if (cmd === 'check') process.exit(0)
 if (!APPLY && cmd !== 'update') { console.log('DRY RUN — pass --apply to write'); process.exit(0) }
 
 /* ---- insert ---- */
+// The gate runs BEFORE any credential is read or any row is written, so a
+// refusal costs nothing and cannot half-apply. `check` and dry runs have
+// already exited above; this is the only path that writes.
+gateOrDie(section, file)
+
 const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
   .filter(l => l.includes('=') && !l.startsWith('#'))
   .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))

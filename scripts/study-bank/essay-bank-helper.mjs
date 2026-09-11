@@ -29,6 +29,7 @@
  *   node scripts/study-bank/essay-bank-helper.mjs verify
  */
 import { createClient } from '@supabase/supabase-js'
+import { gateBatch, overrideReason } from './gate.mjs'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -106,11 +107,49 @@ function buildRows() {
   return rows
 }
 
+function gateOne(task, family, itemFile) {
+  const g = gateBatch({ task, family, section: 'writing', itemFiles: [itemFile] })
+  if (!g.canInsert) {
+    const why = overrideReason()
+    if (!why) { console.error(`REFUSING to insert ${itemFile} (${family}/${task}): ${g.reason}`); process.exit(1) }
+    console.log(`GATE OVERRIDDEN (BANK_GATE_OVERRIDE): ${why}\n  the gate said: ${g.reason}`)
+  } else {
+    console.log(`gate: ${family}/${task} — ${g.reason}`)
+  }
+}
+
 const hashOf = it => createHash('md5')
   .update([norm(it.prompt), norm(it.passage)].join('~~')).digest('hex')
 
 async function insert() {
   const rows = buildRows()
+  /*
+   * THE QC GATE — wired 2026-09-11, the last of four inserters the
+   * 2026-09-04 wiring missed (see act-bank-helper.mjs for the full note).
+   *
+   * This one does not take a batch argument: it BUILDS rows from
+   * PROMPT_FILE, so the hash the ledger binds to is that source file's, and
+   * it is the file a reviewer would actually have read.
+   *
+   * `essay` and `essay_choice` were also absent from gate-contract.json, so
+   * they fell through to the mc_hidden_source default and the gate would have
+   * demanded `nosource` and `elimination` of a prompt that has no options at
+   * all - impossible stages, the same trap the contract already records for
+   * non-SAT maths. They are declared as `production` now, which needs
+   * shape/withsource/tells. Nobody had hit it because nothing called the gate.
+   */
+  const tasks = [...new Set(rows.map(r => r.task))]
+  const fams = [...new Set(rows.map(r => r.family))]
+  if (tasks.length !== 1 || fams.length !== 1) {
+    // Two families really do ship from one prompt file, so gate each in turn
+    // rather than gating on whichever row happened to be first.
+    for (const f of fams) for (const t of tasks) {
+      if (!rows.some(r => r.family === f && r.task === t)) continue
+      gateOne(t, f, join(HERE, PROMPT_FILE))
+    }
+  } else {
+    gateOne(tasks[0], fams[0], join(HERE, PROMPT_FILE))
+  }
   const { data: existing } = await db.from('study_item_bank')
     .select('content_hash').in('family', ['ssat', 'isee']).eq('section', 'writing')
   const seen = new Set((existing ?? []).map(r => r.content_hash))

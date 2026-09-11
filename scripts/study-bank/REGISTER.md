@@ -1036,3 +1036,25 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Neither batch inserts.** 66 authored items held. The three maths batches from the same wave are unaffected.
 
   **Limitation, stated so nobody over-reads the control:** the 30 shipped reading items come from only two cohorts (`ssat-reading-worlds-s3/s4`) — the only ones holding five-choice items in groups of five or more. A floor measured on two cohorts is a floor for those two cohorts. It is still an enormous improvement on a bare 20.0% literal, and the gap it has to explain away here is 45 points.
+
+- **2026-09-11** — **FOUR OF THE TEN ITEM-INSERTERS HAD NEVER CALLED THE GATE, AND THE SWEEP THAT WAS MEANT TO FIND THEM MISSED THEM BY LOOKING FOR THE ONES IT ALREADY KNEW ABOUT.**
+
+  On 2026-09-04 the gate was wired into `math-bank-helper.mjs` and `bank-helper.mjs`, and the note recorded in this file said the bank-gate skill's claim — *"the inserters refuse a batch with no ledger entry"* — was false for maths and SAT R&W. Two were fixed. The sentence stayed false for four more, for another week:
+
+        act-bank-helper.mjs      every ACT English, Reading and Science batch
+        verbal-bank-helper.mjs   every SSAT and ISEE verbal and reading batch
+        insert-verbal-sets.mjs   the matched-pool verbal sets
+        essay-bank-helper.mjs    SSAT and ISEE writing
+
+  Found by trying to insert `isee-verbal-s12` and noticing `verbal-bank-helper.mjs` imports `difficulty-policy.mjs` but not `gate.mjs`. **The fix was then not to patch that one file but to enumerate every writer to `study_item_bank`** — which is how the other three surfaced. Ten inserters write items; three more scripts (`attack-cohort`, `draw-review-run`, `draw-adjudication-run`) touch the table but write to `study_item_attacks` / `study_item_reviews`, and are correctly ungated. All ten now call `gateBatch` and refuse on a missing or stale ledger entry.
+
+  **What it meant in practice:** those batches inserted with no ledger entry required and **no content-hash binding at all**, so editing an item after review could not make its grade stale — nothing was bound to make stale. `ssat-reading-s11`, which failed its attack at 66.7% against a measured 21.1% floor, could not have been stopped at this gate yesterday.
+
+  Two real defects fell out of the wiring rather than out of the audit:
+
+  1. **`essay` and `essay_choice` were absent from `gate-contract.json`.** They fell through to the `mc_hidden_source` default, so the gate would have demanded `nosource` and `elimination` of a writing prompt that has no options — impossible stages, and precisely the trap the contract already records for non-SAT maths. Nobody had ever hit it because nothing called the gate. Declared `production` now (shape/withsource/tells).
+  2. **ACT reading and science carry a per-ITEM task** (the genre, the figure format), so `act-bank-helper` now refuses a batch whose items do not all resolve to one gate family, rather than gating on whichever task happened to be first. `essay-bank-helper` takes no batch argument — it BUILDS rows from `PROMPT_FILE` — so it binds to that source file's hash, which is the file a reviewer would actually have read.
+
+  **Noticed while break-testing the new gate and recorded rather than fixed:** `act-reading-v7.batch.json` now hashes to `11540242c4db` while its ledger entry is bound to `aff2e8a96992`. The batch is staged `verified=false` so nothing reached a student, but the file has moved since it was graded and the entry is stale. It needs a fresh grade or an explanation before it is flipped.
+
+  The general form, and it is the third time this exact shape has appeared here: **a sweep scoped to the things you can already name is not a population measurement.** The instruction was "wire the inserters"; the check that works is "enumerate everything that writes to the table, then ask of each whether it should be gated."
