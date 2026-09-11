@@ -884,3 +884,78 @@ material we own. **It is: author the bottom of the range, and author Mechanics.*
 RIT, no predicted score, no gain claim. The product locates a student in a band
 and names what they missed. That is both the honest claim and, per §11, the one
 the recurring progress use actually wants.
+
+---
+
+## 13. 2026-09-12 — SCOPED TO GRADES 5-11: WHAT IS ACTUALLY READY
+
+Scope set by Andy: **grades 5-11, Reading and Language Usage.**
+
+**One simplification, confirmed from the CCSS instructional-areas PDF:** MAP
+Reading ships as two tests (2-5 and 6+) and grade 5 sits in the lower one — but
+**their instructional areas are IDENTICAL**, Literary Text / Informational Text
+/ Vocabulary with the same five sub-strands. Language Usage is a single 2+ test.
+So grades 5-11 needs **one strand model per subject**, not two. The tests differ
+in difficulty, not in structure.
+
+**The range, from the 2025 norms.** Taking each grade's mean ±2SD and unioning
+grades 5 through 11: **RIT 170-260 for both subjects — nine ten-point bands.**
+Grade medians (fall) run Reading 204 → 218 and Language Usage 202 → 218 across
+those seven grades, which is the flat top of the vertical scale doing what §10
+described.
+
+Nine bands × six strands = **54 band-strand cells** a full diagnostic would
+eventually want.
+
+### READY — usable with re-banding, no authoring
+
+| strand | items | where it sits |
+|---|---|---|
+| Informational Text | ~591 | top of the range |
+| Grammar and Usage | ~378 | top of the range |
+| Writing: Purpose and Audience | ~319 | top of the range |
+| Mechanics · Punctuation | ~56 | top of the range |
+| **total** | **~1,344** | |
+
+### NOT READY — and the reason is one fact
+
+**Every item we own was authored for SAT, ACT, ISEE Upper Level or SSAT Upper
+Level. The bank has no material written below grade 8.**
+
+"Easy" in this bank means *easy for a grade-11 test-taker*, which is not
+grade-5 material and must never be relabelled as if it were. Our floor lands
+around **RIT 210-215**. The grade-5 median is **204** and the grade-7 median is
+**212**.
+
+**So the bottom four bands (170-209) are empty, and they are not the "weak
+student" bands — for grades 5, 6 and 7 they are where the TYPICAL student
+sits.** We currently have nothing at the grade-5 median.
+
+Plus the strand holes already recorded in §12, which apply at every band:
+Literary Text 45, Vocabulary 55, **Capitalization 0, Spelling 0.**
+
+### The honest one-line answer
+
+**Ready for roughly the top five of nine bands and for grades 9-11 — about a
+third of the stated scope. Grades 5-8 are the product, and they do not exist
+yet.**
+
+### What that makes the first authoring brief
+
+Not "author a MAP bank". In order:
+
+1. **Grades 5-7 Reading and Language Usage, RIT 170-209.** Four bands, six
+   strands. This is the whole gap and the whole product; everything else is
+   trimming. It is also material this project has never written — every brief on
+   file targets an admissions test for 11th-graders.
+2. **Capitalization and Spelling, all bands.** Zero coverage, cheap items, and
+   the only strands no borrowing can reach.
+3. **Literary Text and Vocabulary top-up**, which are thin rather than absent.
+4. **Re-band the ~1,344 we already own** into the top bands — assignment work,
+   not authoring, and per §10 it ships as "targeted at" and never as a measured
+   RIT.
+
+**A caution that belongs in the brief itself:** authoring below grade 8 is new
+ground for this bank, and CLAUDE.md's standing lesson is that a batch built to
+one brief develops a cross-item tell. The first grade-5 batch should be small
+and attacked before a second is commissioned.
