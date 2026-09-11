@@ -42,9 +42,51 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 
-const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve/i
+/*
+ * `subskill` is withheld — added 2026-09-11 after the first two blind grades.
+ *
+ * Both graders reported it independently and unprompted. It is AUTHOR PROSE
+ * NAMING THE SOLUTION PATH: "the altitude to the hypotenuse and the segments
+ * it makes", "the segment parallel to the bases that halves the area", "the
+ * cross section cut from a cube by a plane through three vertices". On
+ * several items it removes the only identification step there is — and a
+ * subskill worded as a multi-stage procedure reads as "hard", so it is a
+ * difficulty label in prose as well. One grader said flatly that it "biases
+ * every grader's difficulty rating downward, mine included".
+ *
+ * `domain` stays: it is a one-word blueprint label, not a method.
+ */
+const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill/i
 /** Fields that match SENSITIVE but are structural and safe to keep. */
 const KEEP_ANYWAY = new Set(['passage_group_id', 'topic_id', 'set_id'])
+
+/*
+ * OPTIONS ARE RE-DEALT — added 2026-09-11, same two reports.
+ *
+ * The render kept authored option order, and on sat-geo-h2 the authored key
+ * slots ran 2,2 0,0 3,3 1,1 ... — TWELVE consecutive pairs sharing a slot,
+ * behind a perfect 6/6/6/6 histogram. Both graders derived it from their own
+ * picks before computing any index, and both said the same thing: solve one
+ * item of a pair and its partner is free.
+ *
+ * That pattern reaches no STUDENT (the assembler re-deals every draw, §2b).
+ * It absolutely reaches a GRADER reading the render, which is the whole
+ * population this file serves. So the render deals like the draw does: a
+ * per-item seeded shuffle, deterministic so two graders and a re-run see the
+ * same deal and their disagreement means something.
+ */
+function dealSeed(s) {
+  let h = 2166136261
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) }
+  return () => { h += 0x6D2B79F5; let t = h; t = Math.imul(t ^ (t >>> 15), t | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296 }
+}
+function reDeal(choices, id) {
+  const rand = dealSeed(String(id) + ':grade')
+  const a = [...choices]
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]] }
+  return a
+}
 
 export function splitItem(raw) {
   const shown = {}, withheld = {}
@@ -73,7 +115,21 @@ function selftest() {
   ok('solve and distractor_solve are withheld', !('solve' in shown) && !('distractor_solve' in shown))
   ok('prompt, choices and passage are KEPT', ['prompt', 'choices', 'passage'].every(k => k in shown))
   ok('passage_group_id survives the regex', 'passage_group_id' in shown)
-  ok('domain and subskill are kept', 'domain' in shown && 'subskill' in shown)
+  ok('domain is kept (a one-word blueprint label, not a method)', 'domain' in shown)
+  ok('subskill is WITHHELD — it is author prose naming the solution path',
+    !('subskill' in shown))
+  /* The re-deal must actually permute, and must preserve the key's presence.
+   * Break it both ways: a deal that returned the input unchanged, or that
+   * dropped an option, would pass a naive "is it an array" check. */
+  const src = ['w', 'x', 'y', 'z']
+  const dealt = reDeal(src, 'FIXTURE-1')
+  ok('re-deal keeps every option exactly once',
+    [...dealt].sort().join('') === [...src].sort().join(''), dealt)
+  let moved = 0
+  for (let i = 0; i < 50; i++) if (reDeal(src, 'FX-' + i).join('') !== src.join('')) moved++
+  ok(`re-deal actually permutes (${moved}/50 differ from authored order)`, moved >= 40, moved)
+  ok('re-deal is deterministic for a given id',
+    reDeal(src, 'FIXTURE-1').join('') === dealt.join(''))
   // Break it: the rendered JSON must not contain the key string anywhere.
   const leaked = JSON.stringify(shown).includes('because a')
   ok('no withheld text appears anywhere in the shown object', !leaked)
@@ -114,9 +170,17 @@ for (const raw of batch) {
   const { shown, withheld } = splitItem(raw)
   for (const k of Object.keys(withheld)) withheldFields.add(k)
   for (const k of Object.keys(shown)) if (!KNOWN.has(k)) keptUnknown.add(k)
+  if (Array.isArray(shown.choices)) shown.choices = reDeal(shown.choices, raw.id)
   shownAll.push(shown)
-  keyAll[String(raw.id)] = { correct_answer: raw.correct_answer, difficulty: raw.difficulty }
+  keyAll[String(raw.id)] = { correct_answer: raw.correct_answer, difficulty: raw.difficulty,
+    dealt_index: Array.isArray(shown.choices) ? shown.choices.indexOf(raw.correct_answer) : null }
 }
+
+/* Report the dealt key-slot sequence so the next reader can see for themselves
+ * that it carries no pair structure, rather than taking this comment for it. */
+const dealtSlots = batch.map(r => (Array.isArray(r.choices) ? reDeal(r.choices, r.id).indexOf(r.correct_answer) : -1))
+let pairHits = 0, pairTot = 0
+for (let i = 0; i + 1 < dealtSlots.length; i += 2) { pairTot++; if (dealtSlots[i] === dealtSlots[i + 1]) pairHits++ }
 
 /* A final guard, because a deny-list can still be defeated by a key string
  * that happens to appear in a kept field. Report it rather than fail: on a
@@ -136,4 +200,6 @@ console.log(`  WITHHELD      : ${[...withheldFields].sort().join(', ') || '(noth
 console.log(`  kept, unrecognised: ${[...keptUnknown].sort().join(', ') || '(none)'}   <- verify none of these leaks the key`)
 if (suspicious.length) console.log(`  WARNING: explanation text appears inside the shown fields of: ${suspicious.join(' ')}`)
 console.log(`  wrote scripts/study-bank/${tag}.grade.json  (give the grader THIS, not the batch)`)
+console.log(`  dealt key slots : ${dealtSlots.join(',')}`)
+console.log(`  consecutive pairs sharing a slot: ${pairHits} of ${pairTot}   (chance ~${(pairTot / (batch[0]?.choices?.length ?? 4)).toFixed(1)})`)
 console.log(`  wrote scripts/study-bank/${tag}.gradekey.json  (scoring only — never give this to a grader)`)

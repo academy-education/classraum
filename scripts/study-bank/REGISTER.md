@@ -740,3 +740,29 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **GEOH2-18 is the same defect class and was outside the repair brief.** Same-side interior angles are supplementary by construction, so `98 + 82 = 180` holds at every numbering, and the stem then asks for "the acute angle", which picks between them with no algebra. `22` is also the value of x, so the set is again a roster of intermediates. **Both earlier regraders cleared this item.** Three blind graders are now being asked to rule on it independently.
 
+- **2026-09-11** — **THE BLIND RENDER PAID FOR ITSELF ON ITS FIRST RUN: TWO BLIND GRADERS FLAGGED AN ITEM THAT TWO UNBLINDED GRADERS HAD CLEARED.** `GEOH2-18` asks for "the acute angle" formed by a transversal. Same-side interior angles are supplementary **by construction**, so the option pair `98 + 82 = 180` holds at every numbering; exactly one pair in the set sums to 180, and the stem's own words then select between them. The two expressions `(5x-12)` and `(3x+16)` are never read. `22` is additionally the value of x, so the set hands back its own intermediate.
+
+  **Two earlier regraders cleared this item.** Both blind graders independently named the same reason why: a grader holding `correct_answer: 82` has no occasion to ask whether 82 is REACHABLE WITHOUT SOLVING. One put it exactly — *"the two prior clears are the exact failure this blind render exists to catch."* That is the first direct evidence that the unblinding changes verdicts rather than merely being tidier.
+
+- **2026-09-11** — **THE BLIND RENDER LEAKED TWO WAYS, AND BOTH GRADERS FOUND BOTH, UNPROMPTED.** I had asked them to say whether anything still leaked rather than assume it did not. It did.
+
+  1. **`subskill` is author prose naming the solution path** — "the altitude to the hypotenuse and the segments it makes", "the segment parallel to the bases that halves the area", "the cross section cut from a cube by a plane through three vertices". On several items it removes the only identification step there is, and a subskill worded as a multi-stage procedure reads as "hard", so it is a difficulty label in prose too. One grader: *"it biases every grader's difficulty rating downward, mine included."* Now withheld; `domain` stays, being a one-word blueprint label rather than a method.
+
+  2. **The render kept AUTHORED option order, and the authored key slots on this batch run `2,2 0,0 3,3 1,1 ...` — TWELVE of twelve consecutive pairs sharing a slot**, behind a perfect 6/6/6/6 histogram that `verify-answer-key-spread.ts` passes cleanly. Both graders derived it from their own picks before computing any index. That pattern reaches no STUDENT — the assembler re-deals every draw (§2b) — but it absolutely reaches a GRADER reading the render, which is the entire population this file serves. **The render now deals like the draw does**, per-item seeded so two graders and a re-run see the same deal. It prints the dealt slot sequence and the pair count so the next reader can check rather than trust the comment, and the gradekey records the dealt index.
+
+  The self-test caught its own stale assertion when `subskill` moved sides, and now additionally proves the re-deal permutes (50/50 differ from authored order), keeps every option exactly once, and is deterministic per id.
+
+  **And I mis-quoted a hash to three graders.** I gave them `acd0ca61` as the render's sha; that is the sha of the SOURCE BATCH, which is what the tool prints as `source sha256`. One grader refused to match it and said so; another resolved it correctly by hashing the batch separately. Quote both, or quote the one you mean.
+
+- **2026-09-11** — **THE DE-RELATIONING REPAIR OVERSHOT: IT DELETED THE SIBLING ROOT FROM EVERY TWO-ROOT ITEM, MAKING EACH ITEM'S OWN DISAMBIGUATING CLAUSE DECORATIVE.** Both blind graders found this independently and neither was asked to look for it.
+
+        GEOH2-03   12.0 (the other root) absent   -> "greater than 2 radians" now does nothing
+        GEOH2-12   15 (the longer segment) absent -> "CP is shorter than PD" now does nothing
+        GEOH2-05   18 absent                      -> "the shorter of the two segments" now does nothing
+        GEOH2-10   40.2 absent                    -> the item's only conceptual trap has no landing spot
+        GEOH2-21   3.9 and 4.68 absent            -> the two values a real student produces are both gone
+
+  A student who solves correctly and then picks EITHER root still scores. The repair removed those options because they formed a sum or product relation with the key — which was true — without noticing that the same option was **what the stem's qualifier existed to exclude**. One grader called GEOH2-03 the worst case: its three wrong options now satisfy only the area equation, and no human lands on 6.2.
+
+  **The rule this yields, and it belongs in any future repair brief:** before deleting an option that forms a relation with the key, check whether the stem contains a clause whose only job is to rule that option out. If it does, the option is load-bearing and the relation has to be broken some other way — by renumbering if it is numerical, or by re-designing the item if it is structural. This is rewrite-inverts-the-tell in a form the previous instances did not have: the repair did not create a new tell, it destroyed the item's own discrimination.
+
