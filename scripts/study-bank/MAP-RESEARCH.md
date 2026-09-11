@@ -799,3 +799,88 @@ but that was never the only product available.
 - **Report a band with a range. Never a RIT, never a predicted score, never a
   gain.** Unchanged and now more important, not less: an entrance exam is
   precisely where a fabricated number does real harm to a real family.
+
+---
+
+## 12. 2026-09-12 — THE COVERAGE MAP: WHAT WE ALREADY HOLD AGAINST MAP'S REAL STRANDS
+
+The strand list below is **primary and citable**: NWEA's own
+[CCSS instructional areas](https://www.nwea.org/uploads/CCSS_2024.pdf)
+(dated 2024-10-08). This replaces the guesswork in §"The minimum honest
+product", which named three Reading strands from a third-party correlation page.
+
+**MAP Growth Reading 6+ — 3 areas, 5 sub-strands**
+- Literary Text → *Analyze Theme and Literary Elements; Summarize* · *Analyze Point of View, Features, and Structure*
+- Informational Text → *Analyze Central Idea, Concepts, and Events; Summarize* · *Analyze Point of View, Purpose, Features, and Structure*
+- Vocabulary → *Vocabulary*
+
+**MAP Growth Language 2+ — 3 areas, 8 sub-strands**
+- Writing: Write, Revise Texts for Purpose and Audience → *Plan, Organize; Create Cohesion, Use Transitions* · *Provide Support; Develop Topics; Conduct Research* · *Establish and Maintain Style; Use Precise Language*
+- Language: Understand, Edit for Grammar, Usage → *Parts of Speech* · *Phrases, Clauses, Agreement, Sentences*
+- Language: Understand, Edit for Mechanics → *Capitalization* · *Punctuation* · *Spelling*
+
+### What we hold, measured
+
+Pool: live, unarchived, **four-choice** (MAP's MC width) items in SAT/ACT/ISEE
+reading, writing and verbal sections. **1,706 items.** The mapping from our
+domains to MAP strands is a JUDGEMENT and is written out so it can be argued
+with; the counts under it are exact.
+
+| MAP strand | our nearest material | items | verdict |
+|---|---|---|---|
+| Informational Text | SAT Information and Ideas 250, SAT Craft & Structure ~224, ACT natural science 45 / humanities 36 / social science 36 | **~591** | **covered, richly** |
+| Writing: Purpose and Audience | SAT Expression of Ideas 244 (Transitions 150, Rhetorical Synthesis 94), ACT Production of Writing 75 | **~319** | **covered** |
+| Grammar, Usage | SAT Standard English Conventions (non-boundary portion) ~253, ACT Conventions 87, ACT Knowledge of Language 38 | **~378** | **covered** |
+| Mechanics · Punctuation | SAT SEC boundary/punctuation subskills ~56, plus ACT punctuation | **~56+** | thin but real |
+| Literary Text | ACT literary narrative 45; part of ISEE Reading Comprehension 117 | **45 firm** | **thin** |
+| Vocabulary | SAT Words in Context 55; ISEE Verbal 180 is adjacent, not the same construct (isolated synonyms and completions, not vocabulary in a passage) | **55 direct** | **thin** |
+| Mechanics · Capitalization | — | **0** | **ABSENT** |
+| Mechanics · Spelling | — | **0** | **ABSENT** |
+
+**The two zeros are real and were checked, not assumed**: a scan of subskill and
+prompt text across all 1,706 items returns **0 spelling items and 0
+capitalization items.** Neither the SAT nor the ACT tests either one, so no
+amount of borrowing from those banks can cover them. MAP does test both — they
+are two of the three Mechanics sub-strands. **Any Language Usage product has to
+author these from scratch**, and they are the cheapest items in the whole plan
+to write.
+
+### THE REAL CONSTRAINT IS DIFFICULTY, NOT COVERAGE
+
+    the 1,706-item pool:   easy 291 (17.1%)   medium 1,070   hard 345
+
+Our reading and language material was authored for the **SAT and the ACT** —
+grade 11-12 entrance tests. MAP Growth 6+ has to serve **RIT ~200-250, roughly
+grade 5 through 11**, and a diagnostic's whole job is to place a student
+anywhere in that range. We are top-heavy for this audience: SAT Craft and
+Structure holds **zero** easy items out of 244, and Information and Ideas holds
+**four** out of 250.
+
+So the honest shape of the build is the opposite of the intuition. It is not
+"author a MAP bank" — the upper-middle of the range is already well covered by
+material we own. **It is: author the bottom of the range, and author Mechanics.**
+
+### Recommended first build, in order
+
+1. **Run the public practice test** (§9, ten minutes, still unrun). Citable
+   confirmation of option count and format mix. Do this before any authoring so
+   the brief can cite something.
+2. **Author Capitalization and Spelling.** Zero coverage, three sub-strands
+   between them with Punctuation, and they are short, cheap, band-scalable
+   items. This is the only place where a MAP product needs material that cannot
+   be adapted from anything we own.
+3. **Author easy-band Reading.** 291 easy items across all reading and language
+   is thin for five RIT bands across two subjects, and it is exactly where a
+   grade-6 student is placed.
+4. **Re-band, do not re-author, the middle and top.** ~591 Informational Text
+   and ~378 Grammar items already exist. The work there is assigning RIT bands,
+   not writing items — and per §10 those band assignments are unvalidated until
+   response data exists, so they ship as "targeted at" and never as a measured
+   level.
+5. **Literary Text and Vocabulary need topping up** — 45 and 55 firm items are
+   real but will not carry a strand across five bands.
+
+**What NOT to do, restated because it survives every version of this plan:** no
+RIT, no predicted score, no gain claim. The product locates a student in a band
+and names what they missed. That is both the honest claim and, per §11, the one
+the recurring progress use actually wants.
