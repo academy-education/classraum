@@ -7,6 +7,8 @@
  * unpinned by any test for their whole life. One of them had silently
  * widened past what its own comment claimed.
  */
+import { acceptsDifficulty } from './difficulty-policy.mjs'
+
 export function accepts(qc, domain, subskill) {
   if (!qc) return { ok: false, why: 'no qc row' }
   const kv = Number(qc.key_votes)
@@ -21,7 +23,11 @@ export function accepts(qc, domain, subskill) {
     return { ok: true }
   }
   if (!(kv >= 2)) return { ok: false, why: `key_votes ${kv}<2 (contested/mis-keyed)` }
-  if (!['hard', 'medium'].includes(qc.difficulty)) return { ok: false, why: `difficulty ${qc.difficulty}` }
+  // One shared rule, keyed on the band the batch was COMMISSIONED for and
+  // never on the family. See difficulty-policy.mjs: four inserters disagreed
+  // about this and none of them said so.
+  const d = acceptsDifficulty(qc.difficulty)
+  if (!d.ok) return { ok: false, why: d.why }
   // Rhetorical Synthesis carve-out — NARROWED 2026-08-09 to the one lens
   // it actually argues for.
   //

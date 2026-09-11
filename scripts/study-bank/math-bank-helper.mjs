@@ -29,6 +29,7 @@ import { createClient } from '@supabase/supabase-js'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { gateBatch, overrideReason } from './gate.mjs'
+import { acceptsDifficulty } from './difficulty-policy.mjs'
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E']
 const normHash = s => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
@@ -446,7 +447,15 @@ async function main() {
     if (!shapeOk(raw)) { console.log(`SKIP   ${label} — bad shape`); continue }
     const r = sandbox(raw)                                   // hard gate: code must recompute the key
     if (!r.ok) { console.log(`REJECT ${label} — sandbox mismatch (computed ${r.computed}, key ${raw.correct_answer})`); continue }
-    if (q.difficulty && !['hard', 'medium'].includes(q.difficulty)) { console.log(`REJECT ${label} — difficulty ${q.difficulty}`); continue }
+    // Shared rule — see difficulty-policy.mjs. Was a hardcoded reject of
+    // easy for ALL FOUR families, which is right for a batch commissioned
+    // hard and wrong for ACT, SSAT and ISEE, whose real forms are mixed and
+    // open easy, and wrong for the SAT LOWER module, which assemble.ts
+    // selects by asking for difficulties: ['easy'].
+    if (q.difficulty) {
+      const d = acceptsDifficulty(q.difficulty)
+      if (!d.ok) { console.log(`REJECT ${label} — ${d.why}`); continue }
+    }
     const difficulty = difficultyOf(raw, q)
     const it = toItem(raw, difficulty)
     const content_hash = hashOf(it)
