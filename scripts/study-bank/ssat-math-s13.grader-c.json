@@ -1,0 +1,254 @@
+{
+  "S13-01": {
+    "pick": "B",
+    "solved": "x/3 = 10 - 4 = 6, so x = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Prose grouping check: 'x/3 + 4 = 10' read as x/(3+4)=10 gives x=70, which is not an option, so the alternate reading is not rewarded. Clean. Note this item uses x as the unknown while S13-04 and S13-10 use 'x' as a multiplication sign; the glyph collision is worth fixing batch-wide."
+  },
+  "S13-02": {
+    "pick": "D",
+    "solved": "(1/2)(10)h = 35, so 5h = 35 and h = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "350 is a magnitude outlier (a height of 350 cm on a base of 10 cm with area 35) and is eliminable without work."
+  },
+  "S13-03": {
+    "pick": "E",
+    "solved": "Sum must be 5 x 13 = 65; 11+16+9+14 = 50; n = 15.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "65 (the sum) and 13 (the mean itself) are the two real wrong paths."
+  },
+  "S13-04": {
+    "pick": "A",
+    "solved": "3 x (-4) = -12; -7 + (-12) = -19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "16 is the left-to-right reading (-7+3 = -4, times -4). That is an order-of-operations error, not an ambiguity: PEMDAS fixes the reading, and the multiplicand is parenthesised. Passes the prose-grouping check."
+  },
+  "S13-05": {
+    "pick": "D",
+    "solved": "252 / 3.5 = 72 km/h.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "252/3.5 is hand-reasonable (2520/35). 882 = 252 x 3.5 is a magnitude outlier for a car's speed."
+  },
+  "S13-06": {
+    "pick": "C",
+    "solved": "(2/5)(160) = 64; (3/4)(64) = 48.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "64 and 120 are the two single-step stopping points. Good set."
+  },
+  "S13-07": {
+    "pick": "E",
+    "solved": "4/25 = 0.16 = 16 percent.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "0.16 is the decimal answer offered where a percent is asked; 6.25 = 25/4. Both are real wrong paths."
+  },
+  "S13-08": {
+    "pick": "B",
+    "solved": "2.40/3 = 0.80 per pen; 7 x 0.80 = 5.60.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": ""
+  },
+  "S13-09": {
+    "pick": "C",
+    "solved": "300/4 = 75 g per person; 10 x 75 = 750.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "AUTHORING-BRIEF s1 violation, the worst in the batch. More people than 4 must need more than 300 g, so 30, 75 and 120 are eliminable by magnitude without any work; that leaves 750 and 3000, and 3000 is an order-of-magnitude outlier. An options-only solver can very likely crack this item. Replace 30/75/120 with values above 300 (e.g. 500, 900, 1200)."
+  },
+  "S13-10": {
+    "pick": "D",
+    "solved": "2^5 x 2^3 = 2^8 = 256.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Prose-grouping check: the carets bind tightly and the spaces separate the factors; there is no second reading that lands on a listed option (reading the middle 'x' as a variable produces no option). 32768 = 2^15 is the multiply-the-exponents error, which is the useful distractor; 4 and 30 and 40 come from operating on 5 and 3 directly."
+  },
+  "S13-11": {
+    "pick": "B",
+    "solved": "12th term = 6 + 11(4) = 50.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "54 = 6 + 12(4) is the off-by-one, and it is the whole point of the item. Still medium: the stem states the rule and the student executes it."
+  },
+  "S13-12": {
+    "pick": "D",
+    "solved": "dx = 8, dy = -15; sqrt(64 + 225) = sqrt(289) = 17.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "8-15-17 keeps the arithmetic hand-sized. 289 (the square, forgetting the root) and 23 (8+15) are the two genuine errors; 289 is also a magnitude outlier."
+  },
+  "S13-13": {
+    "pick": "E",
+    "solved": "30 + s + 2s = 180, so 3s = 150, s = 50 and 2s = 100. Largest angle is 100.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "'largest angle of the triangle' is unambiguous and correctly rules out reading 50 as the answer. 130 = 30 + 100 is the weakest option."
+  },
+  "S13-14": {
+    "pick": "A",
+    "solved": "48/4 = 12.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "AUTHORING-BRIEF s1 violation: a side of a square must be less than its perimeter, yet 2304 (=48^2), 192 (=48x4) and 144 (=48x3) all exceed 48. Three of five options fall to one sentence of reasoning, leaving 12 and 16. Replace with values under 48."
+  },
+  "S13-15": {
+    "pick": "E",
+    "solved": "0.30n = 42, n = 140.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Mild s1 issue: the number must exceed 42, so 12.6 and 1.4 are eliminable by magnitude. 126 (x3) and 72 (+30) are the good ones."
+  },
+  "S13-16": {
+    "pick": "B",
+    "solved": "1260/45 = 28.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "1260/45 by hand is fine (1260/45 = 252/9 = 28). 1680 exceeds the 45-minute total and is eliminable; 21 = 1260/60 is the good distractor (wrong time unit)."
+  },
+  "S13-17": {
+    "pick": "A",
+    "solved": "24 x 18 = 432. The bonus sentence does not enter: the question asks what the students themselves raised.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Near-miss on exclusivity but I land on exclusive: 'the students themselves' names the quantity explicitly, so 540 (the total with bonus) is a misread rather than a defensible second answer. 576 = 24^2 is a nice trap. I would keep this item and would not call it hard - the decoy is disclosed by the stem's own wording."
+  },
+  "S13-18": {
+    "pick": "B",
+    "solved": "(12 x 80 + 8 x 95)/20 = (960 + 760)/20 = 1720/20 = 86.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "87.5 (the unweighted mean of 80 and 95) is the item's purpose and is strong. 1720 is the raw sum and is weak - a mean of scores between 80 and 95 cannot be 1720, so it is eliminable by kind; 80 is likewise eliminable since 8 students scored higher. Swapping those two for values in the 82-94 band would tighten it."
+  },
+  "S13-19": {
+    "pick": "C",
+    "solved": "4 x 3 x 2 x 1 = 24.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "FORMAT CHECK (the previous batch's combinations defect): this is NOT a combinations-by-formula item. It is solvable entirely by the fundamental counting principle - four choices for the first seat, three for the second, and so on - which is within SSAT Upper Level scope, and can even be brute-forced. No nCr or nPr appears anywhere in the batch. I would let it stand, but it is the item nearest the line, and I would not add a second counting item to this form."
+  },
+  "S13-20": {
+    "pick": "C",
+    "solved": "250 cm = 2.5 m; 3 x 2.5 = 7.5 square metres.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "750 (multiplying without converting, i.e. square centimetres reported as square metres) is the intended trap and is strong. Medium, not hard: the stem hands over both dimensions and the target unit, so the conversion is an executed step."
+  },
+  "S13-21": {
+    "pick": "A",
+    "solved": "Time out = 30/15 = 2 h; time back = 30/10 = 3 h. Total 60 km in 5 h, so 12 km/h.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, and I agree with the author if this is one of their eight. The stem never says the two legs take different times; the student has to notice that averaging 15 and 10 is illegitimate because the slower leg occupies more of the ride. 12.5 is exactly that error and is sitting in the option set. This is the cleanest hard item in the batch."
+  },
+  "S13-22": {
+    "pick": "A",
+    "solved": "Rates 1/6 + 1/3 = 1/2 tank per hour, so 2 hours.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "DISAGREE if authored hard. The giveaway sentence is 'If both pipes are opened at the same time' - it names the combined-work situation outright, and from there the rehearsed one-sentence procedure (add the reciprocals, invert) runs straight through with no step the stem does not imply. 4.5 (the mean of 6 and 3) and 9 (the sum) are excellent distractors, but a good distractor set does not make a hard item. Medium."
+  },
+  "S13-23": {
+    "pick": "E",
+    "solved": "90 x 1.2 = 108; 108 x 0.75 = 81.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "DISAGREE if authored hard. The giveaway sentence is 'in April THE NEW PRICE falls by 25 percent' - the stem itself tells the student which base the second percentage acts on, which is the only thing that would have needed noticing. Executing the two sentences in the order written gives 81. The 90 option (the naive +20-25 = -5 cancellation) is a strong distractor; that is what keeps it medium rather than easy."
+  },
+  "S13-24": {
+    "pick": "D",
+    "solved": "New edges 4, 6, 16; volume 4 x 6 x 16 = 384. (Equivalently 48 x 2^3.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "DISAGREE if authored hard. The giveaway sentence is 'built by doubling the length of every edge of the first box' - the student never needs the cube-of-the-scale-factor idea, because doubling three stated numbers and multiplying them is executing the stem verbatim. It would be hard if the stem gave only the original volume and the scale factor. 96 (volume doubled) and 192 (x4) are strong."
+  },
+  "S13-25": {
+    "pick": "C",
+    "solved": "Let red = 3k, blue = 5k. 3k + 12 = 5k, so k = 6, blue = 30. Check: 18 red, 30 blue, 18+12 = 30.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "DISAGREE if authored hard. Introducing the common multiplier k from a stated ratio is the rehearsed move for every ratio item at this level, and the stem supplies both the ratio and the equalising condition in the order needed. 18 is the red count and is the one distractor a careless solver actually produces; 60 and 6 are weaker."
+  },
+  "S13-26": {
+    "pick": "A",
+    "solved": "Needs 475 - 110 = 365 more; 365/40 = 9.125, so 9 weeks leaves 110 + 360 = 470, still short. 10 weeks.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, mildly. The stem's 'first have enough' signals a threshold but never says that a part-week pays nothing, and both wrong roundings (9.125 and 9) are in the set. The deposit is stated as arriving 'at the end of each week', which is what makes 9 genuinely insufficient rather than arguable - good authoring, and it is what keeps the item exclusive. I would rank it below S13-21 in hardness because the noticing is arithmetic housekeeping rather than a second idea. Note 9.125 is eliminable by kind (weeks are whole), but here that is the point of the item rather than a leak."
+  },
+  "S13-27": {
+    "pick": "C",
+    "solved": "n = 7q + 4, so 3n = 21q + 12 = 7(3q+1) + 5; remainder 5. (Check with n = 11: 33 = 28 + 5.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, and I agree. The stem never says the answer must be less than 7; a student who triples the remainder stops at 12, which is listed, and 4 (unchanged remainder) and 33 (3n for n=11, ungraded) are also there. The substitute-a-concrete-n route is itself a step outside the stem's sentences. Arithmetic is trivially hand-sized either way."
+  },
+  "S13-28": {
+    "pick": "B",
+    "solved": "18 + 20 = 38 counts the bilingual students twice; 38 - 30 = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Borderline hard/medium; I land on medium because 'studies French, Spanish, or both' plus a total that is smaller than the two counts summed is the standard two-set cue at this level, and once the type is recognised the work is one subtraction. Recognising a taught type is not, to my reading, noticing something the stem does not say. AUTHORING-BRIEF s1 violation though: 48 and 38 both exceed the stated class of 30, which is the exact 'a count exceeding a stated sample' case the brief lists, so two of five options fall away for free. Replace with values at or below 30 (e.g. 10, 6)."
+  }
+}

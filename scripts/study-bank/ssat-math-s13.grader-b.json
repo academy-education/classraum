@@ -1,0 +1,254 @@
+{
+  "S13-01": {
+    "pick": "B",
+    "solved": "x/3 = 10 - 4 = 6, so x = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "42 = (10+4)*3 (subtracting on the wrong side), 6 = x/3, 2 = 6/3. Clean opener. Only item that uses x as an unknown; items 04 and 10 use a bare ASCII 'x' as a multiplication sign."
+  },
+  "S13-02": {
+    "pick": "D",
+    "solved": "(1/2)(10)h = 35, 5h = 35, h = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "3.5 = 35/10 (forgot the 1/2), 17.5 = 35/2, 350 = 10*35. 350 is the order-of-magnitude blowup option and is a free elimination."
+  },
+  "S13-03": {
+    "pick": "E",
+    "solved": "Sum must be 5*13 = 65; 11+16+9+14 = 50; n = 15.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "65 = the required sum left unreduced; 16.25 = 65/4; 12.5 = mean of the four given. Good distractor set for an easy item."
+  },
+  "S13-04": {
+    "pick": "A",
+    "solved": "3*(-4) = -12; -7 + (-12) = -19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-12 is the product alone, 5 is (-7+3)*(-4)/... more precisely -5 = -7+3 and 16 = (-7+3)*(-4), the left-to-right reading. That left-to-right path is on the answer list, which is the point of the item. Notation: ' x ' as a multiplication sign in ASCII. Unambiguous here because no variable appears in this stem, but see S13-10."
+  },
+  "S13-05": {
+    "pick": "D",
+    "solved": "252/3.5 = 504/7 = 72 km/h.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "882 = 252*3.5 (the blowup), 63 = 252/4, 84 = 252/3. Arithmetic is fine by hand (double both to 504/7)."
+  },
+  "S13-06": {
+    "pick": "C",
+    "solved": "2/5 of 160 = 64; 3/4 of 64 = 48.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Checked for the prose-grouping defect: 'of ... of' chains unambiguously, and multiplication commutes, so both readings give 48. 64 is the intermediate value, which is the right trap."
+  },
+  "S13-07": {
+    "pick": "E",
+    "solved": "4/25 = 0.16 = 16 percent.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "0.16 is the decimal not converted, 21 is the number present, 6.25 = 25/4. '0.16' is a decoy, not a second defensible answer: the stem asks 'what percent'."
+  },
+  "S13-08": {
+    "pick": "B",
+    "solved": "2.40/3 = 0.80 per pen; 7 * 0.80 = 5.60.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "0.8 is the unit rate, 16.8 = 2.40*7, 7.2 = 2.40*3. Standard unit-rate item."
+  },
+  "S13-09": {
+    "pick": "C",
+    "solved": "300/4 = 75 g per person; 75*10 = 750.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "75 is the unit rate, 3000 = 300*10 (the blowup), 120 = 300*4/10. Near-duplicate of S13-08 at move level - same two sentences, different nouns."
+  },
+  "S13-10": {
+    "pick": "D",
+    "solved": "2^5 * 2^3 = 2^8 = 256.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "32768 = 2^15 (exponents multiplied), 40 = 2^5+2^3, 30 = 2*15. NOTATION RISK, reported because the last batch died of this: the stem ships as ASCII '2^5 x 2^3'. There is no second reading that lands on a listed option (a renderer that ate the carets gives 25*23 = 575, not listed), so this is NOT the previous defect - but it is the same fragile channel, and it should be checked in the student renderer rather than trusted here."
+  },
+  "S13-11": {
+    "pick": "B",
+    "solved": "12th term = 6 + 11*4 = 50.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "54 = 6 + 12*4 (the off-by-one) and 44 = 11*4 are both on the list. The off-by-one is a real trap but the stem's own sentence ('each term after the first') states the structure, so this is medium."
+  },
+  "S13-12": {
+    "pick": "D",
+    "solved": "dx = 8, dy = -15, distance = sqrt(64+225) = sqrt(289) = 17.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "289 = the square root not taken, 23 = 8+15, 8 and 15 are the legs. 8-15-17 keeps the arithmetic hand-sized. Recall of the distance formula is required but the stem supplies every number in order."
+  },
+  "S13-13": {
+    "pick": "E",
+    "solved": "30 + s + 2s = 180, s = 50, so the angles are 30, 50, 100; the largest is 100.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "50 (the smaller of the pair) and 75 (150/2, forgetting the doubling) are the live traps. 130 is weak."
+  },
+  "S13-14": {
+    "pick": "A",
+    "solved": "48/4 = 12.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "weak",
+    "note": "2304 = 48^2 and 192 = 48*4 are not products of any path a student takes from a perimeter; 144 = 12^2 is the only one that is. Three of the four distractors here are magnitude filler."
+  },
+  "S13-15": {
+    "pick": "E",
+    "solved": "0.30n = 42, n = 140.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "12.6 = 30 percent of 42 (the reversal), 126 = 42*3, 1.4 = 42/30. The reversal trap is the right one."
+  },
+  "S13-16": {
+    "pick": "B",
+    "solved": "1260/45 = 28.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "weak",
+    "note": "1215 = 1260-45 and 1680 are not paths a student walks; 21 = 1260/60 (wrong divisor) is the only real one. Third unit-rate divide in the batch (05, 09, 16)."
+  },
+  "S13-17": {
+    "pick": "A",
+    "solved": "24*18 = 432. The bonus sentence is not asked about.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "540 = 432*1.25 and 108 (the bonus) are exactly right as traps. DISAGREEMENT IF THIS IS AUTHORED HARD: the giveaway sentence is the stem's own last one, 'How many dollars did the students themselves raise?' - the word 'themselves' does the noticing for the student. Distractor-avoidance is not the same as an unstated step."
+  },
+  "S13-18": {
+    "pick": "B",
+    "solved": "(12*80 + 8*95)/20 = (960+760)/20 = 1720/20 = 86.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "87.5 = the unweighted mean of 80 and 95, which is the live trap; 1720 = the sum left undivided. DISAGREEMENT IF AUTHORED HARD: 'In a class of 20 students, 12 students each scored ... and the other 8 students each scored ...' hands over both weights and the total, so weighting is executing the stem, not noticing past it."
+  },
+  "S13-19": {
+    "pick": "C",
+    "solved": "4*3*2*1 = 24.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "PREVIOUS-BATCH DEFECT CHECK (combinations by formula): this is the nearest miss in the batch and I judge it INSIDE format. It is a permutation of 4 distinct people into 4 seats, reachable by the multiplication principle or by enumeration, with no nCr and no factorial notation in the stem or options. 256 = 4^4 (repetition allowed) and 16 = 4^2 are the wrong-model distractors. If a second grader wants it cut, the argument would be that 4! is a formula for most students in practice - but nothing in the item requires it."
+  },
+  "S13-20": {
+    "pick": "C",
+    "solved": "250 cm = 2.5 m; 3 * 2.5 = 7.5 square metres.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "750 = 300*250/100 mishandled, i.e. the un-converted product, and 5.5/11 come from perimeter paths. DISAGREEMENT IF AUTHORED HARD: 'measures 3 metres by 250 centimetres ... in square metres' names both units in the stem and names the output unit. The conversion is signposted, so medium."
+  },
+  "S13-21": {
+    "pick": "A",
+    "solved": "Out 30/15 = 2 h, back 30/10 = 3 h; 60 km in 5 h = 12 km/h.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, agreed. The direct execution of the stem's sentences - average the two speeds - gives 12.5, and 12.5 is on the answer list. The unstated step is that average speed is total distance over total time, which the stem never says. 5 (total time) and 25 (sum of speeds) are also live. Best item in the batch."
+  },
+  "S13-22": {
+    "pick": "A",
+    "solved": "Rates 1/6 and 1/3 of a tank per hour; together 1/2 per hour; 2 hours.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, but this is the batch's closest call and I want that on the record. Nothing in the stem tells the student to invert the times, and every naive combination of 6 and 3 is on the list (9 = sum, 4.5 = mean, 18 = product, 1.5 = half the mean). Against that: two-pipe work is the single most rehearsed word problem in SSAT prep, so for a prepped student it is a recalled template rather than a noticing. I grade hard on the rule as stated; a grader who marks it medium on the rehearsal argument is not wrong."
+  },
+  "S13-23": {
+    "pick": "E",
+    "solved": "90*1.2 = 108; 108*0.75 = 81.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "85.5 = 90 reduced by a net 5 percent (adding the percentages) and 90 = 'they cancel' are both on the list, and 108 is the intermediate. DISAGREEMENT IF AUTHORED HARD: 'In March the price rises by 20 percent, and in April THE NEW PRICE falls by 25 percent' - 'the new price' states the base for the second step. Remove those three words and it would be hard."
+  },
+  "S13-24": {
+    "pick": "D",
+    "solved": "New box 4 by 6 by 16 = 384. (Or 48*2^3.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "96 = 48*2 is the trap and it is a good one. DISAGREEMENT IF AUTHORED HARD: 'doubling the length of EVERY edge' lets the student double 2, 3 and 8 and multiply - the whole item executes in the order written with no scale-factor insight needed. The cubing shortcut is optional, and an item is not hard because there exists a clever route past it."
+  },
+  "S13-25": {
+    "pick": "C",
+    "solved": "Red 3k, blue 5k; 3k+12 = 5k, k = 6; blue = 30. Check: 18 red + 12 = 30 = blue.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "18 = the red count (answering the wrong colour), 6 = k, 20 = a 12/(5-3)*... path, 60 = 5*12. DISAGREEMENT IF AUTHORED HARD: introducing the multiplier k for a stated ratio is the standard rehearsed move for every SSAT ratio item, and the stem states the ratio, the addition and the resulting equality in that order. Medium."
+  },
+  "S13-26": {
+    "pick": "A",
+    "solved": "475-110 = 365 still needed; 365/40 = 9.125 weeks of saving, so the club first has enough at the end of week 10.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "9.125 and 9 are both listed, which is exactly right. DISAGREEMENT IF AUTHORED HARD: 'After how many weeks will the club FIRST have enough money' states the rounding direction, and 'adds $40 at the END of each week' rules out partial weeks. Both are in the stem, so the student is executing, not noticing. This is the best-built medium in the batch."
+  },
+  "S13-27": {
+    "pick": "C",
+    "solved": "n = 7k+4, so 3n = 21k+12 = 7(3k+1)+5; remainder 5. (Check n=11: 33 = 28+5.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, agreed. Executing the stem gives 3*4 = 12 and stops; 12 is option D. The unstated step is that 12 exceeds the divisor and must be reduced again. 11 and 33 are the smallest n and 3n, also listed. Every wrong path lands somewhere."
+  },
+  "S13-28": {
+    "pick": "B",
+    "solved": "18+20 = 38 counts the both-language students twice; 38-30 = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, agreed, though less clearly than 21 and 27. Adding the two figures as the stem presents them gives 38, which is listed, and the overlap principle is nowhere in the stem; 'French, Spanish, or both' is the only hint and it is easy to read as flavour. 12 = 30-18 and 2 = 20-18 are both natural wrong subtractions. A grader could call this medium on the grounds that a two-set Venn is a rehearsed SSAT template."
+  }
+}

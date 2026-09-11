@@ -1402,3 +1402,30 @@ structural checks are pre-flight only. See CLAUDE.md.
   **A second thing from the same solver worth keeping: the decision to decline a bet can be arithmetic rather than epistemic.** On whether to bet against the run middle across 13 items — *"Betting against the middle, if the author is right, lifts 13 items from 20% to 25% — expected +0.65 items. If the author is wrong, those 13 items go to 0% — minus 2.6. I am being offered a quarter-item of upside against four times that in downside."* They filed **zero confident picks** and cycled their guesses A–E deliberately so an implicit letter preference could not decide the run.
 
   They also found the batch is visibly run-scrubbed in the other direction: item 27 has a 72% strict-null run rate and contains no run at all. That is the author having built against the channel, and it is not itself a tell.
+
+- **2026-09-11** — **THE READING REWRITE MADE IT WORSE: 83.3% AGAINST THE 66.7% IT REPLACED, AND ALL THREE SOLVERS SAY THE AUTHOR FIXED THE WRONG THING.**
+
+        live shipped SSAT reading (measured floor)   21.1%
+        ssat-reading-s11 (the failed batch)          66.7%
+        ssat-reading-s12 (the rewrite)               83.3%   <- 25 of 30 solved by ALL THREE
+
+  `ssat-reading-s12` was commissioned specifically against s11's three named failures. **Two of the three were genuinely repaired, and it did not matter.**
+
+  - **The hedging tell IS fixed**, confirmed independently by two solvers. In s11 the refusal option was the only compound one, so it was identifiable by shape; here every tone item gives all five options a two-clause stance, and one solver singled item 6 out as well built — three options share the identical first clause and differ only in the second, forcing a read. One noted the cure only moved the tell one step in ("don't eliminate the refusal, eliminate the option that refuses on *both* axes"), which is §2c again, but the crude exploit is dead.
+  - **The option-shape tells are mostly fixed.** "Only one option holds two feelings at once" fires on nothing.
+
+  **The defect that actually decides the batch is cross-item leakage, and it is untouched.** All three solvers reassembled all six passages from option text alone, five items each, no residue — proper nouns do most of it — and then answered items from their siblings:
+
+  - **All five vocabulary items are free.** `dressed`, `body`, `draws`, `going`, `bed` are each decided the moment you know which passage the item sits in, and the partition comes free from the other twenty-five option sets. A vocabulary-in-context item answerable by clustering its siblings is not testing vocabulary in context.
+  - **One proposition in two wordings:** item 16 asks whether the weights still had the fall the clock was built for; item 28's key states the fall had been shortened by seven feet. Either one hands you the other.
+  - **A three-item cluster off one finding:** items 6, 20 and 23 are one causal argument split three ways, and all three keys fall out of reconstructing it.
+  - **A DISTRACTOR leaking fact across items:** item 3's *wrong* option A names the chapel the date-stone was cut for, which settles item 30. A wrong option in one item is load-bearing evidence in another.
+  - **The rigid-brief repeat:** two different passages feature a woman who kept a professional rule and later regretted it (items 15 and 24), so one motif answers both.
+
+  Solver counts of sibling-derived picks: 11, 9, and 14 of 30. One wrote: *"Fixing the hedging tell and the shape tells has not touched that."* Another: *"the fix is not the key — it is making sibling items stop naming each other's content."*
+
+  **This is the sixth reading rewrite that has failed to move the tell**, and the first where the author demonstrably fixed what they were asked to fix. That is the useful part: the brief was wrong, not the execution. **The unit of repair for reading is the PASSAGE SET, not the item** — five questions whose option sets collectively reconstruct the passage will leak however carefully each individual item is built, and no per-item review can see it because no per-item review reads the siblings.
+
+  Held, not inserted. That is now 96 reading items held across three batches (`ssat-reading-s11` 30, `isee-reading-s10` 36, `ssat-reading-s12` 30).
+
+  **The instrument is not in doubt here.** The same render on 30 already-shipped SSAT reading items scored 21.1% with three solvers — essentially chance — so there is no floor to explain this away, and the 83.3% is the batch's.

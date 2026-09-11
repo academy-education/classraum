@@ -1,0 +1,142 @@
+{
+  "1": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "run middle E (5,12.5,20) and C=sum, but strict null gives this multiples-of-0.5 set a 33% chance of a run anyway; no direction, guess"
+  },
+  "2": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "no channel fires and none is expected to (strict-null run rate 2%); clean item, guess"
+  },
+  "3": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "run middle A (89,87.5,86) plus a lone outlier C=1720; run direction unknown, outlier direction unknown, guess"
+  },
+  "4": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "run middle D (9,12,15) with C=9.125 the lone odd form; both channels are non-directional, guess"
+  },
+  "5": {
+    "pick": "E",
+    "basis": "guess",
+    "why": "run middle D (120,75,30) with A=3000 an outlier; strict null 7% so the run is real structure but points nowhere, guess"
+  },
+  "6": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "nothing fires; guess"
+  },
+  "7": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "nothing fires; guess"
+  },
+  "8": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "C=12 is the only derivational hub, but this is a tight multiples-of-2 set (53% strict-null run rate) so the hub is not separable from ordinary roundness, guess"
+  },
+  "9": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "B=0.16 is the lone sub-1 value; form-outlier direction is unknown and applying one direction would be a single bet, guess"
+  },
+  "10": {
+    "pick": "E",
+    "basis": "guess",
+    "why": "C=1.4 and D=12.6 are decimal echoes of A=126; no channel isolates one, guess"
+  },
+  "11": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "geometric run middle A (18,9,4.5), and both A and B are products of two others - the product channel fires but non-uniquely, guess"
+  },
+  "12": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "geometric run middle B (2304,192,16), and B and C are both products; product channel fires non-uniquely, guess"
+  },
+  "13": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "nothing fires (strict-null run rate 1%); clean item, guess"
+  },
+  "14": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "E=289=17^2 is the lone perfect square and D=15+8 is a sum; neither is directional, guess"
+  },
+  "15": {
+    "pick": "E",
+    "basis": "guess",
+    "why": "nothing fires; guess"
+  },
+  "16": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "A=256 is the lone outlier and lone perfect square; direction unknown, guess"
+  },
+  "17": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "A+B=90 and run middle C (30,18,6); the 90 is at/below the strict null for pair-sums, so it is noise, guess"
+  },
+  "18": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "two run middles (C in 48,56,64 and D in 56,120,184) but strict null is 63% for this multiples-of-8 set; no information, guess"
+  },
+  "19": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "nothing fires; guess"
+  },
+  "20": {
+    "pick": "E",
+    "basis": "guess",
+    "why": "A+B=180 and run middle C (50,75,100); pair-sum is below its null and the run is 66% likely by chance here, guess"
+  },
+  "21": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "C=0.8 is the lone sub-1 value; no directional rule, guess"
+  },
+  "22": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "nothing fires; guess"
+  },
+  "23": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "C=32768 and E=256 are powers of two, A/B/D are not; no channel isolates one, guess"
+  },
+  "24": {
+    "pick": "D",
+    "basis": "guess",
+    "why": "multiple runs, products and hubs all fire, but the five options are multiples of 48 in an 8-wide pool where the strict null fires a run 100% of the time - this item carries no signal at all"
+  },
+  "25": {
+    "pick": "E",
+    "basis": "guess",
+    "why": "run middle D (90,85.5,81); strict null 90% for this multiples-of-4.5 set, so the run is a by-product of the option spacing, guess"
+  },
+  "26": {
+    "pick": "A",
+    "basis": "guess",
+    "why": "geometric run middle E (2,6,18) plus hub C/E; strict null 60%, guess"
+  },
+  "27": {
+    "pick": "B",
+    "basis": "guess",
+    "why": "nothing fires despite a 72% strict-null run rate - this set is deliberately run-free, which is the reverse of a leak, guess"
+  },
+  "28": {
+    "pick": "C",
+    "basis": "guess",
+    "why": "run middle D (-5,-12,-19); B=5 and E=16 are the only positives; sign-outlier direction unknown, guess"
+  }
+}

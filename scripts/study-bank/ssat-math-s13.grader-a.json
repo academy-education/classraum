@@ -1,0 +1,254 @@
+{
+  "S13-01": {
+    "pick": "B",
+    "solved": "x/3 = 10-4 = 6, so x = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Opener at the right level. 'x' is a variable here and is used as the MULTIPLICATION sign in S13-04 and S13-10 of the same batch; see the note on those."
+  },
+  "S13-02": {
+    "pick": "D",
+    "solved": "35 = (1/2)(10)h, so 5h = 35, h = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": ""
+  },
+  "S13-03": {
+    "pick": "E",
+    "solved": "Sum must be 5x13 = 65; 11+16+9+14 = 50; n = 15.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "'65' as an option is the report-the-intermediate-value distractor and it is well placed here."
+  },
+  "S13-04": {
+    "pick": "A",
+    "solved": "Multiply first: 3x(-4) = -12; -7 + (-12) = -19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "NOTATION: multiplication is a bare ASCII lowercase 'x' ('3 x (-4)'), in a batch whose first item uses x as a variable. It does not create a second landing option here (no value of x is given), so exclusivity holds, but this is the same presentational family as the previous batch's defect and should be a multiplication glyph, not the letter."
+  },
+  "S13-05": {
+    "pick": "D",
+    "solved": "252 / 3.5 = 504/7 = 72 km/h.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": ""
+  },
+  "S13-06": {
+    "pick": "C",
+    "solved": "2/5 of 160 = 64; 3/4 of 64 = 48.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "'64' is the stop-one-step-early distractor and is the strongest option here."
+  },
+  "S13-07": {
+    "pick": "E",
+    "solved": "4/25 = 0.16 = 16 percent.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "'0.16' (decimal not converted) and '21' (25-4) are both real paths."
+  },
+  "S13-08": {
+    "pick": "B",
+    "solved": "2.40/3 = 0.80 per pen; 7 x 0.80 = 5.60.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "The option reads '5.6' rather than '5.60'. A dollars answer that is a price should carry two decimal places; the other money options in the batch ('8.4', '0.8', '16.8', '7.2') have the same shape, so it is consistent and not a tell, but it is not how a price is written."
+  },
+  "S13-09": {
+    "pick": "C",
+    "solved": "300/4 = 75 g per person; 75 x 10 = 750.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "'75' (the unit rate) is the intermediate-value distractor."
+  },
+  "S13-10": {
+    "pick": "D",
+    "solved": "Same base, add exponents: 2^(5+3) = 2^8 = 256.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "NOTATION: caret exponents in plain text ('2^5 x 2^3') with the letter x for times. The carets bind to single digits so I find no second READING that lands on a listed option -- '32768' is 2^15, i.e. the multiply-the-exponents ERROR path, not a parse of the string. So the previous batch's ambiguity defect does not recur here, but the item depends on the renderer showing '^' literally or as a superscript; if it ever strips the caret, '25 x 23' is a different question. Option '30' is the one option in the batch I cannot attach to a named path (5x3x2?) and reads weak."
+  },
+  "S13-11": {
+    "pick": "B",
+    "solved": "Term n = 6 + 4(n-1); 12th = 6 + 44 = 50.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'54' is the 6+4x12 off-by-one and is the correct trap for this item."
+  },
+  "S13-12": {
+    "pick": "D",
+    "solved": "dx = 8, dy = -15; sqrt(64+225) = sqrt(289) = 17.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "8-15-17 keeps the arithmetic exact by hand. '289' (forgot the root) and '23' (added the legs) are both named paths."
+  },
+  "S13-13": {
+    "pick": "E",
+    "solved": "30 + s + 2s = 180, s = 50, so the angles are 30, 50, 100; the largest is 100.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The stem asks for the largest angle 'of the triangle' after describing the other two, which closes the gap the earlier wording would have left. '75' (splitting the remaining 150 evenly) is the best distractor."
+  },
+  "S13-14": {
+    "pick": "A",
+    "solved": "48/4 = 12.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "'2304' (48 squared) and '144' (12 squared) are area-for-length paths; '192' is 48x4."
+  },
+  "S13-15": {
+    "pick": "E",
+    "solved": "0.30n = 42, n = 140.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": ""
+  },
+  "S13-16": {
+    "pick": "B",
+    "solved": "1260/45 = 28 litres per minute.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "1260/45 is clean by hand (45x28)."
+  },
+  "S13-17": {
+    "pick": "A",
+    "solved": "The students raised 24 x 18 = 432. The bonus is not theirs.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Reads as a designed hard item but is not one: the question sentence says 'did the students THEMSELVES raise', which names the exclusion outright, so the item executes in the order written and stops. '540' (432 + 25 percent) and '135' (the bonus alone) are strong. Medium."
+  },
+  "S13-18": {
+    "pick": "B",
+    "solved": "(12x80 + 8x95)/20 = (960+760)/20 = 1720/20 = 86.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'89' is the weights-swapped value and '87.5' the unweighted mean -- two independent, well-chosen paths. '1720' is the un-divided total."
+  },
+  "S13-19": {
+    "pick": "C",
+    "solved": "4 x 3 x 2 x 1 = 24 orders.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "CHECKED AGAINST THE FLAGGED DEFECT: this is an ARRANGEMENT of four named people solved by the fundamental counting principle, not a combination by nCr formula. It is inside SSAT Upper Level scope and does not repeat the previous batch's second defect. It is the only counting item in the batch, and it is the one to watch if the family grows."
+  },
+  "S13-20": {
+    "pick": "C",
+    "solved": "250 cm = 2.5 m; 3 x 2.5 = 7.5 square metres.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'750' (3 x 250, units never reconciled) is the intended miss; '11' is the perimeter."
+  },
+  "S13-21": {
+    "pick": "A",
+    "solved": "Total distance 60 km; time = 30/15 + 30/10 = 2 + 3 = 5 h; 60/5 = 12 km/h.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Genuinely hard under the stated rule: nothing in the stem says the two speeds may not be averaged, and '12.5' is exactly there to be reached by executing the sentences as written. The student must supply 'average speed is total distance over total time' from outside the stem."
+  },
+  "S13-22": {
+    "pick": "A",
+    "solved": "Rates 1/6 + 1/3 = 1/2 tank per hour, so 2 hours.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard for the same structural reason as S13-21: the stem gives times, and the idea that times must be inverted into rates before they can be combined is not in it. '9' (6+3) and '4.5' (the mean) are the naive executions. OPTIONS-ONLY OBSERVATION, single item, no null run: a student who knows only that two pipes must beat the faster pipe alone is down to '2' and '1.5', a 1-in-2 guess against the 20 percent control. I am not claiming a batch-level channel from one item -- I did not resample -- but if the family grows, put at least one sub-3 distractor more in these sets."
+  },
+  "S13-23": {
+    "pick": "E",
+    "solved": "90 x 1.20 = 108; 108 x 0.75 = 81.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Not hard. The sentence 'in April the NEW price falls by 25 percent' names the base for the second step, so both steps execute in the order written; the only trap left is stopping at 108, which the batch already uses elsewhere. '85.5' (90 x 0.95, treating the changes as -5 percent net) is the best option here."
+  },
+  "S13-24": {
+    "pick": "D",
+    "solved": "Doubling every edge gives 4 x 6 x 16 = 384.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Not hard. 'doubling the length of every edge of the first box' hands the student the new edges; the volume-scales-by-8 insight is a shortcut, not a requirement, so the item is solvable straight down the page. '48' (original volume), '96' (x2) and '192' (x4) are the scale-factor errors and are correctly built."
+  },
+  "S13-25": {
+    "pick": "C",
+    "solved": "Let red = 3k, blue = 5k. 3k + 12 = 5k, k = 6, so blue = 5k = 30.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Not hard. 'the box THEN holds equal numbers of red and blue pens' states the equation to be written. '60' (the new total), '18' (the original red count) and '6' (k) are all live. Blue is unchanged by the addition, which is the one place a careless student loses it."
+  },
+  "S13-26": {
+    "pick": "A",
+    "solved": "475 - 110 = 365 needed; 365/40 = 9.125, so the 10th week is the first with enough.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Not hard. 'after how many weeks will the club FIRST have enough' is the round-up instruction, stated in the stem. '9.125' and '9' are the two floors and '12' ignores the $110 -- good paths. '15' is the one option I cannot source and reads weak."
+  },
+  "S13-27": {
+    "pick": "C",
+    "solved": "n = 7q + 4, so 3n = 21q + 12; 12 = 7 + 5, remainder 5. (Check n = 11: 33 = 28 + 5.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard, and correctly so: the stem's arithmetic delivers 12, and the student has to supply the rule that a remainder must be reduced below the divisor. '12' being a listed option is the whole item. '4' (remainder assumed unchanged) is the second real path."
+  },
+  "S13-28": {
+    "pick": "B",
+    "solved": "18 + 20 = 38 counts the both-languages students twice; 38 - 30 = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Hard: the stem never says the two counts overlap, only that every student studies one 'or both'. The student must notice 38 > 30 and interpret the excess. '12' (30-18) and '2' (20-18) are the two natural misfires; '48' I cannot source and reads weak."
+  }
+}
