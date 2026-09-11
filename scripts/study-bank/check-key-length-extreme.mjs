@@ -30,6 +30,27 @@
  * order, so `shuffleDrawnChoices` does not touch it. Contrast §2b of
  * AUTHORING-BRIEF.
  *
+ * ── THREE DEFENSIBLE STATISTICS GIVE 29% / 48% / 65% ON ONE FILE ─────
+ *
+ * Measured on sat-sec-h8, 23 scorable items, the same bytes:
+ *
+ *     29%   key's RANK is 1 after sorting the four lengths   (an author)
+ *     48%   expected value, ties split 1/t                   (this file)
+ *     65%   key is AT the minimum length, ties counted whole
+ *
+ * They are not contradictory; they answer different questions, and the
+ * spread comes entirely from the 8 of 23 items where the key TIES another
+ * option for shortest. A rank sort breaks those ties by accident of sort
+ * order, so a tied key lands in rank 1 about half the time for no reason.
+ * The naive count credits a tie as a full hit, which overstates the channel:
+ * two equally-short options do not hand a solver the answer.
+ *
+ * The question that decides anything is what a solver PLAYING the rule
+ * actually scores, and that is the expected value. This is the "read the
+ * denominator" rule one level in — here the denominator is fine and it is
+ * the ESTIMATOR that has to be named, because a 36-point spread is enough
+ * to start or stop a rewrite programme on its own.
+ *
  * ── Ties, and why expected value rather than a count ─────────────────
  *
  * Two options of equal shortest length do not give a solver the answer; they
