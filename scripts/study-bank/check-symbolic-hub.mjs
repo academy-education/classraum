@@ -161,7 +161,32 @@ function report(label, rows) {
     if (r.keyIsHub) hubs.push(`${id} (deg ${r.best}, ties ${r.ties})`)
   }
   const pct = structured ? (100 * credit / structured) : 0
-  console.log(`${label.padEnd(34)} ${String(structured).padStart(4)} structured of ${rows.length}   key-is-hub ${pct.toFixed(1)}%   control 25.0%   margin ${(pct - 25).toFixed(1)}pts`)
+  /*
+   * CONTROL DERIVED FROM THE DATA — fixed 2026-09-11, reported by an author.
+   *
+   * This printed `control 25.0%` unconditionally. SSAT is FIVE choices, so
+   * every five-choice symbolic batch was handed five free points, always in
+   * the flattering direction. It is the same defect CLAUDE.md already records
+   * in math-bank-helper ("a hardcoded 25% control on five-choice data"), in a
+   * file the sweep for it missed because the sweep searched for checkers and
+   * this reads as an author tool.
+   *
+   * Width comes from the modal option count of the rows actually scored. A
+   * mixed-width population is REFUSED rather than averaged: two chance lines
+   * cannot share one margin.
+   */
+  const widths = [...new Set(rows.map(r => r.choices.length).filter(Boolean))]
+  if (widths.length > 1) {
+    console.error(`REFUSING: ${label} mixes option counts (${widths.sort().join(', ')}). One population, one chance line.`)
+    process.exit(2)
+  }
+  const w = widths[0] ?? 4
+  const control = 100 / w
+  if (structured === 0) {
+    console.log(`${label.padEnd(34)}    0 structured of ${rows.length}   NOT MEASURED — a rate over zero structured sets is not a pass.`)
+    return { structured: 0, pct: null }
+  }
+  console.log(`${label.padEnd(34)} ${String(structured).padStart(4)} structured of ${rows.length}   key-is-hub ${pct.toFixed(1)}%   control ${control.toFixed(1)}%   margin ${(pct - control).toFixed(1)}pts`)
   if (hubs.length) console.log(`   hubs: ${hubs.join(', ')}`)
   return { structured, pct }
 }
@@ -194,7 +219,7 @@ else if (args[0] === '--bank') {
   for (const [d, rows] of Object.entries(byDomain).sort()) {
     const { structured, pct } = report(d, rows); S += structured; C += structured * pct / 100
   }
-  console.log(`\n${'ALL'.padEnd(34)} ${String(S).padStart(4)} structured   key-is-hub ${(100 * C / S).toFixed(1)}%   control 25.0%   margin ${(100 * C / S - 25).toFixed(1)}pts`)
+  console.log(`\n${'ALL'.padEnd(34)} ${String(S).padStart(4)} structured   key-is-hub ${S ? (100 * C / S).toFixed(1) : 'n/a'}%   control derived per-population above`)
 } else {
   for (const f of args) {
     const b = JSON.parse(readFileSync(f, 'utf8'))

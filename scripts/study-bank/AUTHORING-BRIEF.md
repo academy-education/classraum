@@ -65,6 +65,50 @@ dimensions are recoverable from the option list alone. One such item measured
 100% solvable blind. Prefer bare numeric options; where a composite is
 unavoidable, make sure no option is internally checkable against another.
 
+## 2b. Order tells are unreachable; VALUE-SET tells are the real ones
+
+Measured 2026-09-11, after four separate graders in one session each reported
+an authored key-slot pattern as a batch-blocker, and all four were wrong.
+
+**The assembler re-deals every `multiple_choice` item's choices on every
+draw** (`shuffleDrawnChoices`, `src/lib/study/assemble.ts`), seeded per
+session. 5,451 of the live bank's 6,107 items — **89.3%** — are re-dealt.
+Only `arrange_words`, `speaking_*`, `writing_*`, `fill_in_blanks`,
+`numeric_entry` and `quant_comparison` keep authored order, and none of those
+is scored by picking among `choices`.
+
+So sort every tell you find into two kinds before spending an hour on it.
+
+**UNREACHABLE — a property of the ORDER.** Do not repair, do not report as a
+blocker. Each of these was measured, not assumed:
+
+    key always in slot B                 the slot is re-rolled every session
+    key slots repeat in adjacent pairs   sat-geo-h2: 12 of 23 pairs matched in
+                                         the file; over 400 real draws the mean
+                                         is 5.19 against a 5.75 chance floor
+    key breaks the others' ascending run act-math-v3-sp: 13 of 24 in the file;
+                                         after the draw 17.0% vs 16.7% chance
+    every 4-window a permutation; key longest; key-letter spread
+
+**REACHABLE — a property of the VALUE SET.** A shuffle permutes options; it
+does not change which values are present. Fix these:
+
+    a three-term arithmetic or geometric run plus one outlier — the run names
+      its own middle, and the outlier says which three are the run
+    the key is the difference, sum or product of two other options
+    an option restates a quantity the stem handed over
+    an option lies outside a range the stem pins, or is the unrestricted total
+    the derivational hub: one value generates the others in a single step
+
+The first keeps landing, because it comes from building distractors as "key
+plus or minus one step, plus a blunder value" — a natural and otherwise good
+habit. The clean shapes, named independently by six solvers across three
+batches: an **even-count** run with no middle, or a closed symmetric set
+(sign x magnitude, a full reciprocal quartet, a complete cross-product) where
+every option is the image of another.
+
+Spend nothing on arranging authored option order. Spend it on the set.
+
 ## 3. Vary the load-bearing element
 
 A rigid brief makes the answer predictable from the pattern ACROSS items

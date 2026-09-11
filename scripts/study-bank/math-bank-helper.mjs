@@ -350,6 +350,19 @@ function toItem(raw, difficulty) {
  * re-run see the same deal and their disagreement means something, and
  * unrelated to authored order, so a tell that dies at the draw does not
  * show up in an attack score.
+ *
+ * AND THE KEY SLOTS ARE DEALT FROM A DECK, not drawn independently per
+ * item — added 2026-09-11 after an author measured the first version.
+ * Shuffling each item on its own id is deterministic but BINOMIAL: on
+ * sat-geo-h2 it put the key in slot B on 10 of 24 items, +1.9 sigma. A
+ * grader or solver who simply answers B then scores 41.7% on a render
+ * whose chance line everyone will quote as 25.0%, and the excess reads as
+ * a tell. make-options-only.mjs already deals from a deck for exactly
+ * this reason; this render did not, and the two disagreed.
+ *
+ * Dealing round-robin from a shuffled deck makes the slot counts as even
+ * as the item count allows, so a constant-letter solver scores 1/W by
+ * construction rather than by luck.
  */
 function blindSeed(s) {
   let h = 2166136261
@@ -358,19 +371,38 @@ function blindSeed(s) {
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296 }
 }
 
-function dealtChoices(it) {
+/** Key slot for every item, dealt flat from a shuffled deck. Computed over
+ *  the WHOLE batch, so it is stable for a given file and independent of
+ *  authored order. */
+function keySlots(batch) {
+  const w = batch[0]?.choices?.length ?? 4
+  const widths = [...new Set(batch.map(i => i.choices.length))]
+  if (widths.length !== 1) {
+    console.error(`REFUSING to render: mixed option counts (${widths.sort().join(', ')}). One render, one chance line.`)
+    process.exit(2)
+  }
+  const rand = blindSeed(batch.map(i => String(i.id)).join('|') + ':deck')
+  const deck = batch.map((_, i) => i % w)
+  for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [deck[i], deck[j]] = [deck[j], deck[i]] }
+  return new Map(batch.map((it, i) => [String(it.id), deck[i]]))
+}
+
+function dealtChoices(it, slot) {
   const rand = blindSeed(String(it.id))
-  const a = [...it.choices]
-  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]] }
-  return a
+  const rest = it.choices.filter(c => c !== it.correct_answer)
+  for (let i = rest.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [rest[i], rest[j]] = [rest[j], rest[i]] }
+  const out = []; let k = 0
+  for (let j = 0; j < it.choices.length; j++) out.push(j === slot ? it.correct_answer : rest[k++])
+  return out
 }
 
 function renderBlind(batch) {
+  const slots = keySlots(batch)
   const out = []
   for (const it of batch) {
     out.push(`### Item ${it.id}  (${it.domain} / ${it.subskill})`)
     out.push(`Question: ${it.prompt}`)
-    dealtChoices(it).forEach((c, i) => out.push(`  (${LETTERS[i]}) ${c}`))
+    dealtChoices(it, slots.get(String(it.id))).forEach((c, i) => out.push(`  (${LETTERS[i]}) ${c}`))
     out.push('')
   }
   return out.join('\n')
@@ -378,8 +410,11 @@ function renderBlind(batch) {
 
 /** The key's letter in the dealt order, so a solver's pick can be scored
  *  without the caller re-deriving the permutation and getting it wrong. */
-function blindKeyLetter(it) {
-  return LETTERS[dealtChoices(it).indexOf(it.correct_answer)]
+function blindKeys(batch) {
+  const slots = keySlots(batch)
+  const k = {}
+  for (const it of batch) k[String(it.id)] = { letter: LETTERS[slots.get(String(it.id))] }
+  return k
 }
 
 async function main() {
@@ -391,9 +426,7 @@ async function main() {
   // The key file for the render above. Hand-building one from authored
   // order would score every solver against the wrong letters.
   if (cmd === 'blind-keys') {
-    const k = {}
-    for (const it of batch) k[String(it.id)] = { letter: blindKeyLetter(it) }
-    process.stdout.write(JSON.stringify(k, null, 1))
+    process.stdout.write(JSON.stringify(blindKeys(batch), null, 1))
     return
   }
 
