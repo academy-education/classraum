@@ -431,3 +431,14 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   Both verbal runs were scored through the width fixes committed the same day; before them, this SSAT run would have been compared to a 25.0% line it never faced and read as **margin +3.9 instead of +8.9**.
 
+- **2026-09-11** — **"ELIMINATE THE LARGEST OPTION" IS WORTH 2.6 POINTS BANK-WIDE, AND THAT IS THE CEILING, NOT A DEFECT.** The `isee-math-s11` author reported, honestly and unprompted, that their key magnitude rank was 5/14/7/3 over 29 numeric items — the key is the largest option on only 3 — giving a blind solver who always drops the largest a **+4.9pt** edge. Measured against the population before treating it as theirs:
+
+        LIVE MATHS BANK, key rank by magnitude among its own options
+          4-choice  n=1,499   rank 1-4:  18.1%  33.1%  31.7%  17.1%   chance 25.0%
+          5-choice  n=149     rank 1-5:  12.8%  26.2%  27.5%  23.5%  10.1%   chance 20.0%
+          "always eliminate the largest" gains  +2.6pts (4-choice)  +2.5pts (5-choice)
+
+  The whole bank already has this shape, in both widths, and the batch sits ~2.3 points above it on a sample of 29 — inside noise at that n. The cause is the one the author named: **wrong arithmetic paths overshoot far more often than they undershoot**, so the extremes are disproportionately distractors. That is inherent to building distractors from named error paths, which is the thing we most want authors to do. Flattening it would mean inventing distractors with no named path behind them — a strictly worse trade, and every touched item is a chance to introduce a new tell.
+
+  Third structural proxy measured today to come back real-but-tiny (stem-echo -2.8pts, authored-order sort-break unreachable at 17.0% vs 16.7%, key-magnitude +2.6pts). The pattern is consistent and worth stating plainly: **the cheap arithmetic channels in maths are all worth a couple of points and none of them is worth a repair programme.** `check-key-magnitude.mjs` already reports this per batch; read it against 2.6, not against 0.
+

@@ -1,0 +1,632 @@
+[
+ {
+  "id": "IM11-01",
+  "domain": "Math",
+  "subskill": "recovering one of two numbers from their greatest common factor and least common multiple",
+  "difficulty": "hard",
+  "prompt": "The greatest common factor of 24 and a second whole number is 6, and the least common multiple of the two numbers is 360. What is the second number?",
+  "choices": [
+   "15",
+   "90",
+   "60",
+   "144"
+  ],
+  "correct_answer": "90",
+  "explanation": "For any two whole numbers, the product of the greatest common factor and the least common multiple equals the product of the numbers themselves, so 6 x 360 = 24 x n and n = 90. Checking: the greatest common factor of 24 and 90 is 6 and their least common multiple is 360. \"15\" comes from treating the least common multiple as the product of the two numbers and dividing 360 by 24. \"60\" comes from dividing the least common multiple by the greatest common factor, 360 / 6, which gives the product of the two co-factors rather than the missing number. \"144\" comes from multiplying the known number by the greatest common factor, 24 x 6.",
+  "solve": "return 6*360/24;",
+  "distractor_solve": {
+   "15": "return 360/24;",
+   "60": "return 360/6;",
+   "144": "return 24*6;"
+  }
+ },
+ {
+  "id": "IM11-02",
+  "domain": "Math",
+  "subskill": "three overlapping groups, counting the members in none of them",
+  "difficulty": "hard",
+  "prompt": "In a group of 40 students, 22 study history, 20 study biology, and 18 study art. Ten students study both history and biology, 9 study both history and art, and 8 study both biology and art. Five students study all three subjects. How many of the 40 students study none of the three subjects?",
+  "choices": [
+   "7",
+   "2",
+   "12",
+   "5"
+  ],
+  "correct_answer": "2",
+  "explanation": "Adding the three subject counts gives 60, which counts each student in two subjects twice and each student in all three three times. Subtracting the three pairwise counts, 60 - 10 - 9 - 8 = 33, removes the doubly counted students but also removes the five triple students one time too many, so adding them back gives 38 students in at least one subject and 40 - 38 = 2 in none. \"7\" comes from stopping at 33 and never adding the five triple students back. \"12\" comes from subtracting the five triple students along with the pairwise counts, 60 - 10 - 9 - 8 - 5 = 28, which leaves 40 - 28 = 12. \"5\" comes from reading the last sentence as the answer and reporting the number who study all three.",
+  "solve": "return 40-(22+20+18-10-9-8+5);",
+  "distractor_solve": {
+   "7": "return 40-(22+20+18-10-9-8);",
+   "12": "return 40-(22+20+18-10-9-8-5);",
+   "5": "return 5;"
+  }
+ },
+ {
+  "id": "IM11-03",
+  "domain": "Math",
+  "subskill": "value of a combined expression found by adding two equations rather than solving each variable",
+  "difficulty": "medium",
+  "prompt": "If 3x + 5y = 31 and 5x + 3y = 41, what is the value of x + y?",
+  "choices": [
+   "9",
+   "5",
+   "36",
+   "72"
+  ],
+  "correct_answer": "9",
+  "explanation": "Adding the two equations gives 8x + 8y = 72, so x + y = 9. \"72\" comes from adding the two equations and stopping at the total before dividing by 8. \"36\" comes from dividing that total by 2 instead of by 8, as though the two equations had been averaged. \"5\" is the value of x - y, obtained by subtracting the equations instead of adding them, 2x - 2y = 10.",
+  "solve": "return (31+41)/8;",
+  "distractor_solve": {
+   "72": "return 31+41;",
+   "36": "return (31+41)/2;",
+   "5": "return (41-31)/2;"
+  }
+ },
+ {
+  "id": "IM11-04",
+  "domain": "Math",
+  "subskill": "evaluating a nested expression built on a newly defined operation",
+  "difficulty": "medium",
+  "prompt": "For all numbers a and b, let a # b = a^2 - 2b. What is the value of 3 # (1 # 4)?",
+  "choices": [
+   "17",
+   "23",
+   "-5",
+   "41"
+  ],
+  "correct_answer": "23",
+  "explanation": "The inner expression is 1 # 4 = 1^2 - 2(4) = -7, and then 3 # (-7) = 3^2 - 2(-7) = 9 + 14 = 23. \"41\" comes from working left to right instead of from the parentheses outward, computing (3 # 1) # 4 = 7 # 4 = 49 - 8. \"17\" comes from failing to square the first number in the outer step, 3 - 2(-7). \"-5\" comes from losing the sign of the inner result and computing 3^2 - 2(7).",
+  "solve": "const op=(a,b)=>a*a-2*b; return op(3,op(1,4));",
+  "distractor_solve": {
+   "41": "const op=(a,b)=>a*a-2*b; return op(op(3,1),4);",
+   "17": "return 3-2*(1-2*4);",
+   "-5": "return 3*3-2*7;"
+  }
+ },
+ {
+  "id": "IM11-05",
+  "domain": "Math",
+  "subskill": "area of a square given only its diagonal",
+  "difficulty": "medium",
+  "prompt": "The diagonal of a square measures 10 centimeters. What is the area of the square, in square centimeters?",
+  "choices": [
+   "100",
+   "50",
+   "200",
+   "48"
+  ],
+  "correct_answer": "50",
+  "explanation": "If s is the side, the diagonal satisfies s^2 + s^2 = 10^2, so 2s^2 = 100 and the area s^2 is 50. \"100\" comes from treating the diagonal as a side and squaring it. \"200\" comes from doubling 10^2 instead of halving it, that is from writing s^2 = 2(10^2). \"48\" comes from assuming that the two sides and the diagonal form the familiar 6-8-10 right triangle and multiplying 6 by 8, which describes a rectangle rather than a square.",
+  "solve": "return 10*10/2;",
+  "distractor_solve": {
+   "100": "return 10*10;",
+   "200": "return 2*10*10;",
+   "48": "return 6*8;"
+  }
+ },
+ {
+  "id": "IM11-06",
+  "domain": "Math",
+  "subskill": "comparing the areas of two nested squares as a percent of the larger",
+  "difficulty": "medium",
+  "prompt": "A square target measures 12 inches on each side. Printed at its center is a square bull's-eye measuring 4 inches on each side. The bull's-eye covers what percent of the area of the whole target, to the nearest tenth of a percent?",
+  "choices": [
+   "33.3",
+   "11.1",
+   "88.9",
+   "2.8"
+  ],
+  "correct_answer": "11.1",
+  "explanation": "The bull's-eye covers 4 x 4 = 16 square inches of the 12 x 12 = 144 square inches of the target, and 16 / 144 = 0.111, or 11.1 percent. \"33.3\" compares the side lengths, 4 to 12, instead of the areas. \"2.8\" compares the side of the bull's-eye with the area of the target, 4 to 144. \"88.9\" is the percent of the target that the bull's-eye does not cover.",
+  "solve": "return ((4*4)/(12*12)*100).toFixed(1);",
+  "distractor_solve": {
+   "33.3": "return (4/12*100).toFixed(1);",
+   "2.8": "return (4/144*100).toFixed(1);",
+   "88.9": "return ((144-16)/144*100).toFixed(1);"
+  }
+ },
+ {
+  "id": "IM11-07",
+  "domain": "Math",
+  "subskill": "sum of two powers of negative bases with different parities of exponent",
+  "difficulty": "easy",
+  "prompt": "What is the value of (-3)^3 + (-2)^4?",
+  "choices": [
+   "-43",
+   "11",
+   "-11",
+   "43"
+  ],
+  "correct_answer": "-11",
+  "explanation": "A negative base raised to an odd power is negative and raised to an even power is positive, so (-3)^3 = -27 and (-2)^4 = 16, and the sum is -11. \"-43\" comes from giving the even power a negative value as well, -27 - 16. \"43\" comes from giving the odd power a positive value as well, 27 + 16. \"11\" comes from getting both signs backwards at once, 27 - 16.",
+  "solve": "return Math.pow(-3,3)+Math.pow(-2,4);",
+  "distractor_solve": {
+   "11": "return 27-16;",
+   "-43": "return -27-16;",
+   "43": "return 27+16;"
+  }
+ },
+ {
+  "id": "IM11-08",
+  "domain": "Math",
+  "subskill": "median of a data set given as counts of each value",
+  "difficulty": "medium",
+  "prompt": "A coach recorded the number of goals scored by each of the 15 players on a team during a season: 5 players scored 0 goals, 2 players scored 1 goal, 3 players scored 2 goals, 4 players scored 3 goals, and 1 player scored 5 goals. What is the median number of goals scored by a player?",
+  "choices": [
+   "1.5",
+   "0",
+   "2",
+   "1"
+  ],
+  "correct_answer": "2",
+  "explanation": "With 15 values the median is the 8th value in order. The first 5 values are 0, the next 2 are 1 so the running total reaches 7, and the next 3 are 2, so the 8th value is 2. \"0\" is the most common score rather than the middle one, so it reports the mode. \"1\" comes from taking the 7th value, which is what halving 15 and rounding down gives. \"1.5\" comes from treating the 15 values as an even-sized set and averaging the 7th and 8th values.",
+  "solve": "const d=[];for(const [v,n] of [[0,5],[1,2],[2,3],[3,4],[5,1]])for(let i=0;i<n;i++)d.push(v);d.sort((a,b)=>a-b);return d[(d.length-1)/2];",
+  "distractor_solve": {
+   "0": "const T=[[0,5],[1,2],[2,3],[3,4],[5,1]]; return T.reduce((a,x)=>x[1]>a[1]?x:a)[0];",
+   "1": "const d=[];for(const [v,n] of [[0,5],[1,2],[2,3],[3,4],[5,1]])for(let i=0;i<n;i++)d.push(v);d.sort((a,b)=>a-b);return d[Math.floor(d.length/2)-1];",
+   "1.5": "const d=[];for(const [v,n] of [[0,5],[1,2],[2,3],[3,4],[5,1]])for(let i=0;i<n;i++)d.push(v);d.sort((a,b)=>a-b);return (d[6]+d[7])/2;"
+  }
+ },
+ {
+  "id": "IM11-09",
+  "domain": "Math",
+  "subskill": "extending a linear figure pattern to a distant term by finding its rule",
+  "difficulty": "medium",
+  "prompt": "The figures in a pattern are built from small squares. Figure 1 uses 5 squares, figure 2 uses 8 squares, figure 3 uses 11 squares, and figure 4 uses 14 squares. If the pattern continues in the same way, how many small squares does figure 50 use?",
+  "choices": [
+   "152",
+   "150",
+   "147",
+   "149"
+  ],
+  "correct_answer": "152",
+  "explanation": "Each figure adds 3 squares to the one before, so a figure numbered n uses 3n + 2 squares, and figure 50 uses 3(50) + 2 = 152. \"150\" comes from multiplying by 3 and forgetting the 2 squares the pattern starts with. \"149\" comes from evaluating the rule one figure early, 3(49) + 2. \"147\" comes from making both of those slips at once, 3(49).",
+  "solve": "return 3*50+2;",
+  "distractor_solve": {
+   "150": "return 3*50;",
+   "149": "return 3*49+2;",
+   "147": "return 3*49;"
+  }
+ },
+ {
+  "id": "IM11-10",
+  "domain": "Math",
+  "subskill": "x-intercept of the line determined by two given points",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, the line through the points (2, 8) and (5, 2) crosses the x-axis at the point (k, 0). What is the value of k?",
+  "choices": [
+   "6",
+   "-2",
+   "4",
+   "3.5"
+  ],
+  "correct_answer": "6",
+  "explanation": "The slope is (2 - 8) / (5 - 2) = -2, so the line is y = 8 - 2(x - 2). Setting y = 0 gives 2x = 12 and k = 6. \"4\" comes from writing the line as y = 8 - 2x, as though the point (2, 8) sat on the y-axis, and solving 0 = 8 - 2x. \"-2\" comes from using a slope of +2 instead of -2 and solving 0 = 8 + 2(x - 2). \"3.5\" is the average of the two given x-coordinates, the x-coordinate of the midpoint of the segment rather than of the x-intercept.",
+  "solve": "const m=(2-8)/(5-2); return (0-8)/m + 2;",
+  "distractor_solve": {
+   "4": "const m=(2-8)/(5-2); return (0-8)/m;",
+   "-2": "const m=2; return (0-8)/m + 2;",
+   "3.5": "return (2+5)/2;"
+  }
+ },
+ {
+  "id": "IM11-11",
+  "domain": "Math",
+  "subskill": "time until two objects travelling toward each other meet",
+  "difficulty": "medium",
+  "prompt": "Two cyclists start at the same moment from towns that are 84 miles apart and ride toward each other along the same road. One rides at a steady 16 miles per hour and the other at a steady 12 miles per hour. How many hours after they start do they meet?",
+  "choices": [
+   "5.25",
+   "3",
+   "7",
+   "21"
+  ],
+  "correct_answer": "3",
+  "explanation": "The gap between the cyclists closes at 16 + 12 = 28 miles per hour, so the 84-mile gap closes in 84 / 28 = 3 hours. \"7\" comes from dividing the whole distance by the slower rate alone, 84 / 12, as though one cyclist had to cover all of it. \"5.25\" comes from the same mistake with the faster rate, 84 / 16. \"21\" comes from using the difference of the rates, 84 / (16 - 12), which is the closing rate for two objects moving in the same direction rather than toward each other.",
+  "solve": "return 84/(16+12);",
+  "distractor_solve": {
+   "7": "return 84/12;",
+   "5.25": "return 84/16;",
+   "21": "return 84/(16-12);"
+  }
+ },
+ {
+  "id": "IM11-12",
+  "domain": "Math",
+  "subskill": "present age recovered from a stated relationship between two future ages",
+  "difficulty": "medium",
+  "prompt": "In 8 years Marta will be exactly twice as old as her brother will be at that time. Marta is now 22 years old. How old is her brother now?",
+  "choices": [
+   "15",
+   "7",
+   "11",
+   "3"
+  ],
+  "correct_answer": "7",
+  "explanation": "In 8 years Marta will be 30, so her brother will be 15 then, and his present age is 15 - 8 = 7. \"15\" is the brother's age in 8 years, the value of the halving step reported before subtracting the 8 years. \"11\" comes from halving Marta's present age instead of her future age. \"3\" comes from halving Marta's present age and then subtracting the 8 years from that, 22 / 2 - 8.",
+  "solve": "return (22+8)/2 - 8;",
+  "distractor_solve": {
+   "15": "return (22+8)/2;",
+   "11": "return 22/2;",
+   "3": "return 22/2 - 8;"
+  }
+ },
+ {
+  "id": "IM11-13",
+  "domain": "Math",
+  "subskill": "how many times as great one number in scientific notation is than another",
+  "difficulty": "medium",
+  "prompt": "The number 6 x 10^8 is how many times as great as the number 3 x 10^5?",
+  "choices": [
+   "200",
+   "2000",
+   "3000",
+   "18000"
+  ],
+  "correct_answer": "2000",
+  "explanation": "Dividing gives (6 / 3) x 10^(8-5) = 2 x 10^3 = 2000. \"200\" comes from subtracting the exponents incorrectly and using 10^2. \"3000\" comes from subtracting the coefficients, 6 - 3, instead of dividing them. \"18000\" comes from multiplying the coefficients, 6 x 3, instead of dividing them.",
+  "solve": "return (6e8)/(3e5);",
+  "distractor_solve": {
+   "200": "return 2*Math.pow(10,2);",
+   "3000": "return (6-3)*Math.pow(10,3);",
+   "18000": "return (6*3)*Math.pow(10,3);"
+  }
+ },
+ {
+  "id": "IM11-14",
+  "domain": "Math",
+  "subskill": "shortest edge of a rectangular box whose edges are in a given ratio and whose volume is known",
+  "difficulty": "hard",
+  "prompt": "The three edge lengths of a rectangular box are in the ratio 1 : 2 : 3, and the volume of the box is 48 cubic inches. What is the length, in inches, of the shortest edge?",
+  "choices": [
+   "8",
+   "2",
+   "6",
+   "4"
+  ],
+  "correct_answer": "2",
+  "explanation": "Writing the edges as x, 2x and 3x gives a volume of 6x^3 = 48, so x^3 = 8 and x = 2, and the shortest edge is x itself. \"4\" is the middle edge, 2x. \"6\" is the longest edge, 3x. \"8\" comes from stopping at 48 / 6 = 8 and reporting that value as an edge rather than recognising it as the cube of the shortest edge.",
+  "solve": "return Math.cbrt(48/6);",
+  "distractor_solve": {
+   "4": "return 2*Math.cbrt(48/6);",
+   "6": "return 3*Math.cbrt(48/6);",
+   "8": "return 48/6;"
+  }
+ },
+ {
+  "id": "IM11-15",
+  "domain": "Math",
+  "subskill": "common ratio of a geometric sequence from two terms two places apart",
+  "difficulty": "medium",
+  "prompt": "In a geometric sequence of positive numbers, the third term is 18 and the fifth term is 162. What is the common ratio of the sequence?",
+  "choices": [
+   "9",
+   "3",
+   "54",
+   "4.5"
+  ],
+  "correct_answer": "3",
+  "explanation": "Two steps separate the third term from the fifth, so 18 multiplied by the ratio twice gives 162, the ratio squared is 9, and the ratio is 3. \"9\" is the ratio of the two given terms, 162 / 18, which covers two steps rather than one. \"4.5\" comes from halving that value instead of taking its square root. \"54\" is the fourth term of the sequence, 18 x 3, reported in place of the ratio.",
+  "solve": "return Math.sqrt(162/18);",
+  "distractor_solve": {
+   "9": "return 162/18;",
+   "4.5": "return (162/18)/2;",
+   "54": "return Math.sqrt(18*162);"
+  }
+ },
+ {
+  "id": "IM11-16",
+  "domain": "Math",
+  "subskill": "greatest possible value of one member of a data set constrained by its mean and median",
+  "difficulty": "hard",
+  "prompt": "A set of five positive integers, not necessarily different, has a mean of 10 and a median of 12. What is the greatest possible value of the largest integer in the set?",
+  "choices": [
+   "36",
+   "24",
+   "12",
+   "26"
+  ],
+  "correct_answer": "24",
+  "explanation": "The five integers total 5 x 10 = 50, and in increasing order the third is 12. To make the largest as big as possible the other four must be as small as the conditions allow: the two below the median can each be 1, and the fourth integer cannot be less than the median, so it is 12. That leaves 50 - 1 - 1 - 12 - 12 = 24. \"36\" comes from forgetting that the fourth integer must also be at least the median and setting it to 1 as well. \"26\" comes from allowing the two smallest integers to be 0, which the word positive rules out. \"12\" reports the median itself.",
+  "solve": "return 50-1-1-12-12;",
+  "distractor_solve": {
+   "36": "return 50-1-1-12;",
+   "26": "return 50-12-12;",
+   "12": "return 12;"
+  }
+ },
+ {
+  "id": "IM11-17",
+  "domain": "Math",
+  "subskill": "fourth vertex of a parallelogram given the other three in order",
+  "difficulty": "medium",
+  "prompt": "In the coordinate plane, ABCD is a parallelogram whose vertices in order are A(1, 2), B(5, 2), C(7, 6) and D. What are the coordinates of D?",
+  "choices": [
+   "(11, 6)",
+   "(3, 6)",
+   "(3, 2)",
+   "(11, 2)"
+  ],
+  "correct_answer": "(3, 6)",
+  "explanation": "In parallelogram ABCD the side AD is parallel to and the same length as the side BC, so D is reached from A by the same change that carries B to C, which is 2 to the right and 4 up: D = (1 + 2, 2 + 4) = (3, 6). \"(11, 6)\" comes from pairing the wrong vertices and applying the change from A to B to the point C instead, giving B + C - A. \"(3, 2)\" has the correct horizontal position but assumes the fourth vertex sits on the same horizontal line as A and B. \"(11, 2)\" combines both of those mistakes.",
+  "solve": "return \"(\" + (1+(7-5)) + \", \" + (2+(6-2)) + \")\";",
+  "distractor_solve": {
+   "(11, 6)": "return \"(\" + (5+7-1) + \", \" + (2+6-2) + \")\";",
+   "(3, 2)": "return \"(\" + (1+(7-5)) + \", \" + 2 + \")\";",
+   "(11, 2)": "return \"(\" + (5+7-1) + \", \" + 2 + \")\";"
+  }
+ },
+ {
+  "id": "IM11-18",
+  "domain": "Math",
+  "subskill": "counting the two-digit integers whose digits have a given sum",
+  "difficulty": "medium",
+  "prompt": "How many two-digit whole numbers have two digits whose sum is 9?",
+  "choices": [
+   "10",
+   "9",
+   "8",
+   "4"
+  ],
+  "correct_answer": "9",
+  "explanation": "The tens digit can be any of 1 through 9, and the units digit is then determined: 18, 27, 36, 45, 54, 63, 72, 81 and 90, which is 9 numbers. \"10\" comes from also counting 09, which is not a two-digit number. \"8\" comes from dropping 90 on the grounds that one of its digits is 0, although 9 + 0 = 9. \"4\" comes from listing the digit pairs 1 and 8, 2 and 7, 3 and 6, 4 and 5 and stopping there, without counting each pair in both orders or including 90.",
+  "solve": "let c=0; for(let n=10;n<=99;n++){ if(Math.floor(n/10)+n%10===9) c++; } return c;",
+  "distractor_solve": {
+   "10": "let c=0; for(let n=9;n<=99;n++){ if(Math.floor(n/10)+n%10===9) c++; } return c;",
+   "8": "let c=0; for(let n=10;n<=99;n++){ if(Math.floor(n/10)+n%10===9 && n%10!==0) c++; } return c;",
+   "4": "let c=0; for(let a=1;a<=9;a++){ const b=9-a; if(b>=1 && a<b) c++; } return c;"
+  }
+ },
+ {
+  "id": "IM11-19",
+  "domain": "Math",
+  "subskill": "cost of fuel for a trip from a mileage rate and a price per gallon",
+  "difficulty": "medium",
+  "prompt": "A car travels 28 miles on each gallon of gasoline. If gasoline costs $3.60 per gallon, what is the cost of the gasoline used on a 350-mile trip?",
+  "choices": [
+   "$12.50",
+   "$45.00",
+   "$100.80",
+   "$46.80"
+  ],
+  "correct_answer": "$45.00",
+  "explanation": "The trip uses 350 / 28 = 12.5 gallons, and 12.5 gallons at $3.60 each cost $45.00. \"$12.50\" is the number of gallons the trip uses, reported as though it were the cost. \"$100.80\" comes from multiplying the mileage rate by the price, 28 x 3.60, which are two rates and not a quantity times a price. \"$46.80\" comes from rounding the 12.5 gallons up to 13 whole gallons before multiplying, which the question does not ask for.",
+  "solve": "return \"$\" + (350/28*3.60).toFixed(2);",
+  "distractor_solve": {
+   "$12.50": "return \"$\" + (350/28).toFixed(2);",
+   "$100.80": "return \"$\" + (28*3.60).toFixed(2);",
+   "$46.80": "return \"$\" + (Math.ceil(350/28)*3.60).toFixed(2);"
+  }
+ },
+ {
+  "id": "IM11-20",
+  "domain": "Math",
+  "subskill": "overtime hours recovered from a total wage with two pay rates",
+  "difficulty": "medium",
+  "prompt": "A clerk is paid $14 per hour for the first 40 hours she works in a week and $21 per hour for each hour she works beyond 40. Last week she earned $686. How many hours of overtime did she work?",
+  "choices": [
+   "46",
+   "6",
+   "9",
+   "49"
+  ],
+  "correct_answer": "6",
+  "explanation": "The first 40 hours pay 40 x 14 = $560, leaving 686 - 560 = $126 earned at the overtime rate, and 126 / 21 = 6 overtime hours. \"9\" comes from dividing that $126 remainder by the regular rate of 14 instead of the overtime rate. \"46\" is the total number of hours she worked, 40 plus the 6 overtime hours, rather than the overtime hours the question asks for. \"49\" comes from dividing the whole $686 by the regular rate, ignoring that some of the hours were paid at the higher rate.",
+  "solve": "return (686 - 40*14)/21;",
+  "distractor_solve": {
+   "9": "return (686 - 40*14)/14;",
+   "46": "return 40 + (686 - 40*14)/21;",
+   "49": "return 686/14;"
+  }
+ },
+ {
+  "id": "IM11-21",
+  "domain": "Math",
+  "subskill": "sum of the multiples of a number lying strictly between two values",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all the multiples of 4 that lie between 50 and 150?",
+  "choices": [
+   "2652",
+   "2500",
+   "2400",
+   "2448"
+  ],
+  "correct_answer": "2500",
+  "explanation": "The multiples of 4 in that range run from 52 to 148. There are (148 - 52) / 4 + 1 = 25 of them, and their average is (52 + 148) / 2 = 100, so the sum is 25 x 100 = 2500. \"2400\" comes from counting the terms as (148 - 52) / 4 = 24, the fencepost slip, and multiplying 24 x 100. \"2448\" comes from starting the list at 56 and leaving out 52. \"2652\" comes from continuing the list past 150 to 152.",
+  "solve": "let s=0; for(let n=51;n<150;n++) if(n%4===0) s+=n; return s;",
+  "distractor_solve": {
+   "2400": "return ((148-52)/4)*((52+148)/2);",
+   "2448": "let s=0; for(let n=53;n<150;n++) if(n%4===0) s+=n; return s;",
+   "2652": "let s=0; for(let n=51;n<=152;n++) if(n%4===0) s+=n; return s;"
+  }
+ },
+ {
+  "id": "IM11-22",
+  "domain": "Math",
+  "subskill": "a repeated decrease applied to a negative starting value over a counted interval",
+  "difficulty": "easy",
+  "prompt": "At 6 p.m. the temperature outside was -4 degrees Fahrenheit. The temperature then fell 3 degrees each hour for the next 5 hours. What was the temperature, in degrees Fahrenheit, at 11 p.m.?",
+  "choices": [
+   "-22",
+   "-19",
+   "11",
+   "-15"
+  ],
+  "correct_answer": "-19",
+  "explanation": "Falling 3 degrees an hour for 5 hours is a drop of 15 degrees, and -4 - 15 = -19. \"11\" comes from adding the 15-degree change instead of subtracting it. \"-15\" comes from reporting the size of the drop and forgetting the -4 the temperature started from. \"-22\" comes from counting the hours 6, 7, 8, 9, 10 and 11 as six hours rather than counting the five one-hour intervals between them, giving -4 - 18.",
+  "solve": "return -4 - 3*5;",
+  "distractor_solve": {
+   "11": "return -4 + 3*5;",
+   "-15": "return -3*5;",
+   "-22": "return -4 - 3*6;"
+  }
+ },
+ {
+  "id": "IM11-23",
+  "domain": "Math",
+  "subskill": "place value of a digit in a decimal numeral",
+  "difficulty": "easy",
+  "prompt": "In the number 3.0472, what is the value of the digit 7?",
+  "choices": [
+   "0.07",
+   "0.007",
+   "0.7",
+   "0.0007"
+  ],
+  "correct_answer": "0.007",
+  "explanation": "Reading the places to the right of the decimal point, 0 is in the tenths place, 4 is in the hundredths place, 7 is in the thousandths place and 2 is in the ten-thousandths place, so the 7 is worth 7 thousandths, or 0.007. \"0.07\" places the 7 one column to the left, in the hundredths. \"0.0007\" places it one column to the right, in the ten-thousandths. \"0.7\" reads the 7 as the first digit after the decimal point, ignoring the 0 and the 4 that come before it.",
+  "solve": "const n=3.0472; return (Math.floor(n*1000)%10)*0.001;",
+  "distractor_solve": {
+   "0.07": "const n=3.0472; return (Math.floor(n*1000)%10)*0.01;",
+   "0.0007": "const n=3.0472; return (Math.floor(n*1000)%10)*0.0001;",
+   "0.7": "const n=3.0472; return (Math.floor(n*1000)%10)*0.1;"
+  }
+ },
+ {
+  "id": "IM11-24",
+  "domain": "Math",
+  "subskill": "ratio of a part to the other part, written in lowest terms, from a part and a total",
+  "difficulty": "easy",
+  "prompt": "A basketball team won 18 of the 30 games it played and lost the rest. What is the ratio of the games it won to the games it lost, in lowest terms?",
+  "choices": [
+   "3 to 5",
+   "3 to 2",
+   "5 to 3",
+   "2 to 3"
+  ],
+  "correct_answer": "3 to 2",
+  "explanation": "The team lost 30 - 18 = 12 games, so the ratio of games won to games lost is 18 to 12, and dividing both by 6 gives \"3 to 2\". \"3 to 5\" compares the games won with the games played, that is the part with the whole, instead of with the other part. \"2 to 3\" gives games lost to games won, the correct pair in the wrong order. \"5 to 3\" compares the games played with the games won, using the whole again and in the reverse order.",
+  "solve": "const w=18,l=30-18; let a=w,b=l; while(b){const t=b;b=a%b;a=t;} return (w/a)+\" to \"+(l/a);",
+  "distractor_solve": {
+   "3 to 5": "const w=18,t=30; let a=w,b=t; while(b){const q=b;b=a%b;a=q;} return (w/a)+\" to \"+(t/a);",
+   "2 to 3": "const w=18,l=30-18; let a=w,b=l; while(b){const t=b;b=a%b;a=t;} return (l/a)+\" to \"+(w/a);",
+   "5 to 3": "const w=18,t=30; let a=w,b=t; while(b){const q=b;b=a%b;a=q;} return (t/a)+\" to \"+(w/a);"
+  }
+ },
+ {
+  "id": "IM11-25",
+  "domain": "Math",
+  "subskill": "dividing a mixed number by a unit fraction",
+  "difficulty": "easy",
+  "prompt": "How many sixths are there in 2 1/3?",
+  "choices": [
+   "7",
+   "14",
+   "12",
+   "42"
+  ],
+  "correct_answer": "14",
+  "explanation": "The mixed number 2 1/3 is 7/3, and dividing by 1/6 is the same as multiplying by 6, so 7/3 x 6 = 14. \"12\" counts the sixths in the 2 whole units only and drops the extra third. \"7\" stops at the improper fraction 7/3 and reports its numerator. \"42\" multiplies that numerator by 6 without dividing by the 3, that is 7 x 6.",
+  "solve": "return (7/3)/(1/6);",
+  "distractor_solve": {
+   "12": "return 2/(1/6);",
+   "7": "return 2*3+1;",
+   "42": "return (2*3+1)*6;"
+  }
+ },
+ {
+  "id": "IM11-26",
+  "domain": "Math",
+  "subskill": "area of a parallelogram where a slant side is given alongside the height",
+  "difficulty": "medium",
+  "prompt": "A parallelogram has a base 10 centimeters long. The side that meets that base is 8 centimeters long, and the height drawn to the 10-centimeter base is 6 centimeters. What is the area of the parallelogram, in square centimeters?",
+  "choices": [
+   "80",
+   "60",
+   "48",
+   "30"
+  ],
+  "correct_answer": "60",
+  "explanation": "The area of a parallelogram is the base times the height drawn to that base, 10 x 6 = 60. \"80\" multiplies the base by the slant side, 10 x 8, which overstates the area because the side is longer than the height. \"48\" multiplies the slant side by the height, 8 x 6, using two lengths neither of which is the base. \"30\" halves the correct product, treating the figure as a triangle.",
+  "solve": "return 10*6;",
+  "distractor_solve": {
+   "80": "return 10*8;",
+   "48": "return 8*6;",
+   "30": "return 10*6/2;"
+  }
+ },
+ {
+  "id": "IM11-27",
+  "domain": "Math",
+  "subskill": "probability of the same outcome on two independent spins",
+  "difficulty": "medium",
+  "prompt": "A spinner is divided into 5 regions of equal size, 2 of which are red. The spinner is spun twice, and the spins do not affect each other. What is the probability that it lands on red both times?",
+  "choices": [
+   "2/5",
+   "4/25",
+   "1/10",
+   "4/5"
+  ],
+  "correct_answer": "4/25",
+  "explanation": "Each spin lands on red with probability 2/5, and because the spins are independent the probability of red twice is 2/5 x 2/5 = 4/25. \"2/5\" is the probability for a single spin, reported without accounting for the second. \"4/5\" comes from adding the two probabilities instead of multiplying them. \"1/10\" comes from treating the second spin as though a red region had been used up, 2/5 x 1/4.",
+  "solve": "return (2/5)*(2/5);",
+  "distractor_solve": {
+   "2/5": "return 2/5;",
+   "4/5": "return 2/5 + 2/5;",
+   "1/10": "return (2/5)*(1/4);"
+  }
+ },
+ {
+  "id": "IM11-28",
+  "domain": "Math",
+  "subskill": "finding a number when a percent increase of it is given as a fixed amount",
+  "difficulty": "medium",
+  "prompt": "When a certain number is increased by 20 percent, the result is 6 more than the number. What is the number?",
+  "choices": [
+   "36",
+   "30",
+   "5",
+   "120"
+  ],
+  "correct_answer": "30",
+  "explanation": "Increasing a number by 20 percent adds 20 percent of it, so 0.20 times the number is 6 and the number is 30. \"36\" is the result after the increase, 30 + 6, reported instead of the original number. \"5\" comes from dividing 6 by 1.20 rather than by 0.20, that is from treating 6 as the whole increased amount instead of the increase. \"120\" comes from multiplying 6 by 20 instead of dividing by 0.20.",
+  "solve": "return 6/0.20;",
+  "distractor_solve": {
+   "36": "return 6/0.20 + 6;",
+   "5": "return 6/1.20;",
+   "120": "return 6*20;"
+  }
+ },
+ {
+  "id": "IM11-29",
+  "domain": "Math",
+  "subskill": "expressing the least of five consecutive integers in terms of their sum",
+  "difficulty": "hard",
+  "prompt": "The sum of five consecutive integers is S. In terms of S, what is the least of the five integers?",
+  "choices": [
+   "S/5",
+   "S/5 - 2",
+   "(S - 2)/5",
+   "S/5 + 2"
+  ],
+  "correct_answer": "S/5 - 2",
+  "explanation": "Writing the five integers as n, n + 1, n + 2, n + 3 and n + 4, their sum is 5n + 10 = S, so n = (S - 10)/5 = S/5 - 2. \"S/5\" is the middle of the five integers, which is their mean, not the least. \"S/5 + 2\" is the greatest of the five. \"(S - 2)/5\" comes from subtracting 2 before dividing rather than after, which corresponds to a sum of 5n + 2 and so to a different set of numbers.",
+  "solve": "const F={\"S/5\":S=>S/5,\"S/5 - 2\":S=>S/5-2,\"(S - 2)/5\":S=>(S-2)/5,\"S/5 + 2\":S=>S/5+2}; const hits=Object.keys(F).filter(k=>[6,-3].every(n=>Math.abs(F[k](5*n+10)-n)<1e-9)); if(hits.length!==1) throw new Error('ambiguous: '+hits.length); return hits[0];",
+  "distractor_solve": {
+   "S/5": "const F={\"S/5\":S=>S/5,\"S/5 - 2\":S=>S/5-2,\"(S - 2)/5\":S=>(S-2)/5,\"S/5 + 2\":S=>S/5+2}; const hits=Object.keys(F).filter(k=>[6,-3].every(n=>Math.abs(F[k](5*n+10)-(n+2))<1e-9)); if(hits.length!==1) throw new Error('ambiguous'); return hits[0];",
+   "S/5 + 2": "const F={\"S/5\":S=>S/5,\"S/5 - 2\":S=>S/5-2,\"(S - 2)/5\":S=>(S-2)/5,\"S/5 + 2\":S=>S/5+2}; const hits=Object.keys(F).filter(k=>[6,-3].every(n=>Math.abs(F[k](5*n+10)-(n+4))<1e-9)); if(hits.length!==1) throw new Error('ambiguous'); return hits[0];",
+   "(S - 2)/5": "const F={\"S/5\":S=>S/5,\"S/5 - 2\":S=>S/5-2,\"(S - 2)/5\":S=>(S-2)/5,\"S/5 + 2\":S=>S/5+2}; const hits=Object.keys(F).filter(k=>[6,-3].every(n=>Math.abs(F[k](5*n+2)-n)<1e-9)); if(hits.length!==1) throw new Error('ambiguous'); return hits[0];"
+  }
+ },
+ {
+  "id": "IM11-30",
+  "domain": "Math",
+  "subskill": "a fraction taken of each part of a ratio and the results combined",
+  "difficulty": "medium",
+  "prompt": "In a class of 32 students the ratio of boys to girls is 5 to 3. One fourth of the boys and one third of the girls play a musical instrument. How many students in the class play a musical instrument?",
+  "choices": [
+   "8",
+   "9",
+   "23",
+   "5"
+  ],
+  "correct_answer": "9",
+  "explanation": "The ratio 5 to 3 divides the class into 8 equal shares of 4 students, so there are 20 boys and 12 girls; one fourth of 20 is 5 and one third of 12 is 4, and 5 + 4 = 9. \"5\" is the number of boys who play, the first of the two parts, reported before the girls are added. \"8\" comes from taking one fourth of the whole class of 32 and never splitting it by the ratio. \"23\" is the number of students who do not play an instrument, 32 - 9.",
+  "solve": "const b=32*5/8, g=32*3/8; return b/4 + g/3;",
+  "distractor_solve": {
+   "5": "return (32*5/8)/4;",
+   "8": "return 32/4;",
+   "23": "const b=32*5/8, g=32*3/8; return 32 - (b/4 + g/3);"
+  }
+ }
+]
