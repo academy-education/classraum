@@ -180,6 +180,56 @@ Nothing is blocked — every open item can start today.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-09-11 — sat-cs-v5 repair: the elimination gate went 19 -> 4, and two
+  of the last four defects were introduced by the repair itself.** The batch was
+  rebuilt against the three-solver options-only attack (majority rule: an option
+  counts as rejectable only when 2 of 3 solvers reject it). Items with any
+  confidently rejectable option: **19 -> 8 -> 3 -> 4** over four rounds, mean
+  legal options 3.79 of 4 in the final state. The trajectory is not monotone and
+  that is the finding. Round 5 fixed a word-matching hypothesis on CS5-14 and
+  CS5-16 and **created a duplicate-cause pair in one and a 3-vs-1 valence
+  outlier in the other**, both of which the next attack caught — the fifth
+  instance of "the agent rewrite inverts the tell". Worse, the hypothesis round 5
+  was built on ("the key is the only option whose content nouns appear in the
+  passage, so word-matching answers these") was then **REFUTED by the grader that
+  was asked to test it**: it held for 0 of 10 one-frame items, and 6 of 10 already
+  had all four options built from passage vocabulary. A cross-item pattern named
+  confidently by one grader is a hypothesis, not a defect; measure it on the file
+  before authoring against it.
+- **2026-09-11 — solver disagreement on "confidently rejectable" is larger than
+  the effect being measured.** On the identical 24-item options-only render the
+  three solvers returned **2, 5 and 20** items with a rejectable option (mean
+  legal 3.92 / 3.71 / 2.92). A single-solver elimination number is not a
+  measurement of the batch, it is a measurement of that solver's threshold. The
+  maximalist's confident picks were right 1 time in 4, i.e. at chance, so its
+  extra 15 rejections produced no answering power — which is the check on whether
+  a rejection is real. Report the majority number and the spread, never one run.
+- **2026-09-11 — the knowledge leak is fixable by making the field's stock answer
+  a DISTRACTOR, and it inverts cleanly.** CS5-19/20/24 were answerable from
+  domain knowledge (actigraphy reads stillness as sleep; legumes fix nitrogen;
+  willows track the water table). Rewriting Text 2 so the texts disagree about
+  something else, leaving the stock claim as a distractor, moved every solver's
+  confident pick onto the WRONG letter: across the final two attacks, solvers
+  made 11 "certain" picks and got 3 right. A knowledgeable solver now scores
+  below chance on those items, which is the intended direction.
+- **2026-09-11 — a repair script that dies mid-way leaves the checker reporting
+  PASS on the unedited file.** The round-2 edit script crashed on a typo before
+  its `json.dump`, so nothing was written; the structural checker then ran and
+  printed ALL CHECKS PASS — for the previous round's file. Nothing in the output
+  said which bytes it had read. Caught only by grepping the file for a string the
+  edit should have introduced. Same shape as the six checkers in the corollary
+  above: verify the input changed before believing the verdict.
+- **2026-09-11 — sat-cs-v5 residuals, not fixed.** Four items still carry a
+  2-of-3 rejectable option: **CS5-05** (Parsimony/Efficiency read as one sense of
+  "economy"; the word's senses cluster too tightly for four disjoint options and
+  three attempts each produced a different cluster), **CS5-14** (one tail is a
+  specific instance of another), **CS5-16** (lone cost among three benefits),
+  **CS5-20** (one option disputes how soil structure is scored while the stem
+  names the yield gap). Separately the with-source grader puts difficulty at
+  **12 easy / 10 medium / 2 hard**, so under `BANK_BAND=hard` half the batch still
+  fails its brief, and **CS5-07** keys the everyday sense of "settled" so a blind
+  guesser defaults to it. Two graders now agree on CS5-07 independently.
+
 - **2026-09-12** — THE FOUR INSERTERS DISAGREED ABOUT EASY AND NONE OF THEM SAID SO. `accepts.mjs` (SAT R&W) rejected easy; `math-bank-helper` rejected easy for ALL FOUR families; `verbal-bank-helper` (SSAT/ISEE) had **no difficulty gate at all**; `toefl-bank-helper` had none either. So the same grader label meant "dropped" or "banked" depending on which script owned the section. That is not a policy, it is an accident, and it was found only because Andy asked for consistency across the tests. **THE RULE WAS ALSO WRONG WHERE IT EXISTED.** The rationale on file — "majority-easy items are dropped, not relabelled" — was written about a batch COMMISSIONED AS HARD, and it is a statement about the BRIEF, not about the bank: an item briefed hard that three graders call easy has failed, and banking it as easy launders a failed commission into a bank row. A bank with NO easy items is not stricter, it is broken. `assemble.ts:1267` selects the SAT **lower module** by asking for `difficulties: ['easy']` — the lower module IS the easy band, so a SAT bank without easy items sends every weaker student the medium/hard module, which is not the adaptive test. ACT Math is 45 questions of rising difficulty that opens easy; SSAT and ISEE span roughly grades 5-11 and their forms are mixed by design. Measured: **319 easy items are already live in SAT and ACT** — 11.2% of SAT R&W, 31.3% of ACT English, 32.4% of ACT Reading — so the rule was not even being enforced against the existing bank, only against new work. `difficulty-policy.mjs` now holds one rule that every inserter reads, keyed on the band the batch was COMMISSIONED for and never on the family: `BANK_BAND=hard` (the DEFAULT) rejects easy, `BANK_BAND=mixed` accepts it. **The default is the strict one on purpose — a gate that loosens when you forget to pass something is not a gate, so forgetting costs items rather than standards.** Self-tested on nine cases including the default, an unrecognised band (exits 2 rather than coercing), and a missing grade (refused rather than defaulted); the 11 existing jest tests over `accepts` stay green. NOT ACTED ON: the 319 live easy items. Archiving them would take ACT English from 150 to 103 and ACT Reading from 108 to 73, dropping both below the three forms they currently serve, and it would empty the SAT lower route. That is a measurement question — how often the lower route fires and what it serves when easy is thin — not a cleanup. → **A21**
 - **2026-09-12** — A COMPOSITE-AREA OPTION SET ENCODES ITS OWN GIVENS, AND IS THEREFORE SOLVABLE WITH THE FIGURE COVERED. Found while authoring sat-geo-v3, by an author attacking its own draft. The original GEO3-17 was a square minus an inscribed circle with options `400 - 100pi`, `400 - 25pi`, and two more of that form — **100% solvable blind**, because the relation `s^2 - pi(s/2)^2` means only ONE option is internally consistent: the square term fixes s, s fixes the circle term, and the other three options fail their own arithmetic. The option IS the figure. Its sibling GEO3-22 (rectangle plus semicircle, `420 + 24.5pi`) was 50% blind for the same reason — two of 420's factor pairs survive the check rather than one. **The general rule: any `a ± b*pi` composite option set carries a cross-check between its own terms, so the figure's dimensions are recoverable from the option list alone.** Both were rebuilt on option forms with no internal cross-check — an L-shaped region with bare-integer options, and a cylinder volume with single-term pi options. This is a decidable structural class like the derivational hub and the plurality intersection, not a proxy for a semantic tell. THE REST OF THAT BATCH'S FIGURE WORK IS THE STANDARD TO COPY: all 11 figures put every number in the graphic and none in the stem, so **0 of 11 are answerable with the graphic covered** — against the recorded 80.6% decorative rate that `FIGURE-BLIND-RESULT.md` measured bank-wide. Every labelled angle was computed rather than eyeballed and all eleven were RENDERED IN A BROWSER AND INSPECTED, which caught two SVG arcs drawn on the reflex side and four labels overflowing the viewBox — defects no JSON check can see, and exactly the class that dropped GEO-H1-09 and GEO-H1-21 at insert on 2026-09-04. The five angle-chase figures carry "Figure not drawn to scale" so a protractor is not a route. One residual reported rather than hidden: GEO3-17 still lets a blind solver drop one option, because a corner was removed so the answer cannot be the largest — 3 of 4 remain. → **A21**
 - **2026-09-12** — A REPAIR THAT CAUGHT ITSELF INTRODUCING TWO NEW DEFECTS, WHICH IS THE THING CLAUDE.MD WARNS REPAIRS DO. sat-adv-v5, six items edited on three graders' findings, no key changed. **(1)** Fixing ADV5-16's illegal option left the set `{13, -12, 12, 8}`, in which the key 12 is the unique derivational hub — reachable from -12 by negation and from 13 by +1, `check-math-hub` credit 1.0, batch line moving to `key-is-hub 20.0%`. The author caught it, said plainly "that is an options-only path I would have introduced myself", and replaced the second option too. **(2)** Its first candidate set for ADV5-20 was `{8/5, 5/3, 5/4, 4/3}` — modal numerator 5, modal denominator 3, intersection uniquely `5/3`, which IS the key. Caught by running `check-plurality-key` on its own draft, hours after that checker was written. Both are the corollary landing on the repair rather than the batch: every touched item is a chance to introduce a new tell. **IT ALSO AUDITED THE GRADERS RATHER THAN EXECUTING THEM.** Grader A's sign-residual headline, `p ≈ 0.049`, is `P(X>=5 | 9, 0.25)` computed on a count that is **4.5 on A's own half-credit convention** — four outright hits plus one at half credit. At X>=4 it is 0.166. So A's number does not survive A's own arithmetic, and the author agreed with A that the flip was worth making anyway and with B and C that it was never significant. It also REFUSED four grader complaints with reasons, including one where A's objection contradicts A's own stated rule (A called `(x-6)(x+2)` an unnatural slip because "students preserve the product and err on the sum" — that factorisation does exactly that). **AND IT NAMED THE TRADE IT MADE RATHER THAN BURYING IT:** removing ADV5-19 from the lone-negative population takes "avoid the odd-one-out negative" to right on 9 of 9 (P = 0.075), which buys a solver one elimination in three — traded against ADV5-19's old leak, which determined the answer outright. Recorded as the residual to re-measure pooled on the next cohort. Two further stale referents were found beyond the one the graders named, both student-facing: a rationale citing a coefficient with its sign dropped, and an "again" referring FORWARD to a rationale listed after it. **ADV5-16 is retagged Geometry and Trigonometry, so this batch relieves 23 Advanced Math items, not 24** — and Advanced Math is the binding domain, which is exactly why a mistag there is expensive. _(fixed on the spot)_
