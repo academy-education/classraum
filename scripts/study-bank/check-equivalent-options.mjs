@@ -18,6 +18,25 @@
  *   node check-equivalent-options.mjs --bank            # the live bank
  *   node check-equivalent-options.mjs <items.json> ...  # a batch
  *   node check-equivalent-options.mjs --selftest
+ *
+ * WHAT THIS CANNOT SEE — added 2026-09-11.
+ *
+ * It compares VALUES. Two options can be distinct values and still make an
+ * item unanswerable if they are SEMANTICALLY equivalent. Two options-only
+ * solvers independently found this in ssat-verbal-s13:
+ *
+ *     SV13-29   somber / shrewd / fickle / modest / humble
+ *
+ * `modest` and `humble` are mutual synonyms, so on a SYNONYM item neither
+ * can be the unique key — a solver eliminates two of five and sits at 33%
+ * with the headword still covered. This checker reports "no two options
+ * share a value", which is true and useless here.
+ *
+ * Deciding semantic equivalence needs a thesaurus this repo does not have,
+ * so there is no checker for it and this comment exists so nobody reads the
+ * green above as covering it. It is an AUTHORING rule instead — see
+ * AUTHORING-BRIEF: no two options in a synonym item may be synonyms of each
+ * other, and on an analogy item no two option pairs may share a relation.
  */
 import { readFileSync } from 'node:fs'
 

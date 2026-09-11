@@ -247,7 +247,9 @@ State the path in the explanation. Then:
 A reading batch groups its items into passages with **`topic_id`**, never
 `passage_group_id`. The inserter does the mapping itself:
 
-    // verbal-bank-helper.mjs:113,126
+    // verbal-bank-helper.mjs — grep for `raw.topic_id`, do not trust a line
+    // number: adding the gate to that file on 2026-09-11 shifted 113,126 to
+    // 146,159, and a reading author caught the stale cite the same day.
     passage_group_id: raw.topic_id ? `rw-${raw.topic_id}` : null
 
 So a batch file that writes `passage_group_id` directly lands **every row with
@@ -311,6 +313,31 @@ subtract the known part) answered five items *including one of the four
 graded hard*. A prepared student meets that batch with less difficulty than
 the histogram claims. If one hard item is wanted from a family, replace the
 other members rather than making that one longer.
+
+## 3c-bis. No two options may be answers to the same question
+
+On a SYNONYM item, no two options may be synonyms of each other. On an
+ANALOGY item, no two option pairs may stand in the same relation.
+
+If two options are both correct, neither can be the key, and a solver who
+spots it eliminates both with the headword still covered. Two options-only
+solvers found this independently on the same item:
+
+    SV13-29   somber / shrewd / fickle / modest / humble
+
+`modest` and `humble` are mutual synonyms. That is 2 of 5 gone for free, and
+the item drops to a one-in-three with nothing read.
+
+**No checker covers this.** `check-equivalent-options.mjs` compares VALUES —
+it was built for `3 : 5` against `6 : 10` on a maths item — and it reports
+"no two options share a value" here, which is true and beside the point.
+Deciding semantic equivalence needs a thesaurus the repo does not have, so
+this is an authoring rule and a reading task, not a gate. Check it by hand
+before you report, the way both solvers did.
+
+The analogy half of the rule is why the balanced incidence design in
+`ssat-verbal-s13` uses five DISTINCT relation families per item: if two
+options shared a family, both would answer the stem equally.
 
 ## 3d. Report the template census under a STATED rule, or it is not a number
 

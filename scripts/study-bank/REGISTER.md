@@ -1331,3 +1331,21 @@ structural checks are pre-flight only. See CLAUDE.md.
   **The non-numeric sets split, and all three solvers read them the same way.** `AM8N-07` `{1, i, -1, -i}` is the complete closed set of the powers of i — every member equally reachable, nothing distinguished by form — and all three named it the model shape for the domain. `AM8N-24` `{3+i, 1-3i, 1+3i, 2+6i}` is **not** closed: `1+3i` has its conjugate, its double and its component-swap as the other three, so every distractor is visibly manufactured from one option. It is one of the two items all three solved. `AM8N-21` puts a transpose pair adjacent, narrowing four options to two for free. Both are recorded as **repair candidates, not dropped** — at +6.0 with every exact channel clean, dropping them would be selection on the outcome.
 
   Difficulty: author claimed 8 hard, all three graders found **4** — the seventh consecutive batch. Two independently flagged `AM8N-14` as **recall-gated rather than insight-gated** (you either know det(kA) = k^n det A or you do not) and asked for it to be counted separately from items where two ideas interact. That distinction is worth keeping and is not yet in the brief.
+
+- **2026-09-11** — **TWO OPTIONS THAT ANSWER THE SAME QUESTION, AND THE CHECKER THAT LOOKS FOR EXACTLY THAT CANNOT SEE IT.**
+
+  Two options-only solvers independently found this in `ssat-verbal-s13`:
+
+        SV13-29   somber / shrewd / fickle / modest / humble      key: shrewd
+
+  `modest` and `humble` are mutual synonyms, so on a synonym item neither can be the unique key. A solver eliminates two of five with the headword still covered and sits at one-in-three.
+
+  **`check-equivalent-options.mjs` reports "no two options share a value" — true, and beside the point.** That checker was built for `3 : 5` against `6 : 10` on a maths item; it compares VALUES. Semantic equivalence needs a thesaurus this repo does not have, so there is no gate for it. The checker's header now says so explicitly, so nobody reads its green as covering this, and `AUTHORING-BRIEF` §3c-bis carries it as an authoring rule: no two options may be answers to the same question — synonyms of each other on a synonym item, the same relation on an analogy item.
+
+  **I doubted the finding and was wrong, for a reason worth writing down.** The solvers said "item 30". I looked up batch item 30 — `SV13-30`, an analogy about RUSTLE and LEAVES with no such options — and started composing a note about an agent claiming something that is not there. **The blind render RENUMBERS: its item 30 is `SV13-29`.** Both solvers were precisely right about the file they were given, and I checked the wrong file. When a solver cites an item number, it is the BLIND id, and the two numbering systems only coincide by accident.
+
+- **2026-09-11** — **A LINE CITE IN THE BRIEF WENT STALE BECAUSE OF MY OWN EDIT, AND AN AUTHOR CAUGHT IT.**
+
+  §6b cited `verbal-bank-helper.mjs:113,126` for the `topic_id` → `passage_group_id` mapping. Wiring the gate into that file this morning inserted ~33 lines above it, so the mapping now sits at 146 and 159. An author writing `ssat-reading-s12` checked the code rather than the brief, found the cite wrong and the field name right, and said so.
+
+  The citation is now "grep for `raw.topic_id`, do not trust a line number", with the reason recorded inline. **A line number is a fact with a short half-life in a file anyone edits, and the thing that made it stale was the same session that wrote it.** Prefer a symbol to a line whenever the point is "this behaviour exists here".

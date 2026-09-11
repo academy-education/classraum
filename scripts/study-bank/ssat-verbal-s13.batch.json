@@ -1,0 +1,962 @@
+[
+  {
+    "id": "SV13-01",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "JAGGED",
+    "choices": [
+      "uneven",
+      "hollow",
+      "slick",
+      "sturdy",
+      "spotted"
+    ],
+    "correct_answer": "uneven",
+    "explanation": "A JAGGED edge runs up and down in notches, which is what \"uneven\" says.",
+    "distractor_rationales": [
+      "KEY",
+      "\"hollow\" is empty inside, a fact about the interior rather than about the edge",
+      "\"slick\" is smooth and slippery, a different property of a surface",
+      "\"sturdy\" will not give way, a matter of strength rather than of shape",
+      "\"spotted\" is marked in patches, a matter of coloring"
+    ],
+    "set_id": "SET-A",
+    "construction": "five plain adjectives of five to seven letters, every one of which could be said of a piece of scrap metal",
+    "options_only_legal": 5,
+    "options_only_note": "each option is a real property a torn sheet of metal can have, and two of the four wrong ones are as common as the key, so nothing narrows the set with the headword covered"
+  },
+  {
+    "id": "SV13-02",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "MASON is to STONE as",
+    "choices": [
+      "general is to army",
+      "recluse is to sociability",
+      "potter is to clay",
+      "gram is to kilogram",
+      "silt is to flooding"
+    ],
+    "correct_answer": "potter is to clay",
+    "explanation": "A mason is the craftsman whose whole trade is shaping stone, so the pair stands in the relation \"craftsman : the material he shapes\"; \"potter is to clay\" is that same pair.",
+    "distractor_rationales": [
+      "\"general is to army\" stands in the relation \"leader : the group he directs\", which is not the relation MASON and STONE stand in",
+      "\"recluse is to sociability\" stands in the relation \"person : the quality he conspicuously lacks\", which is not the relation MASON and STONE stand in",
+      "KEY",
+      "\"gram is to kilogram\" stands in the relation \"smaller unit : the larger unit it makes up\", which is not the relation MASON and STONE stand in",
+      "\"silt is to flooding\" stands in the relation \"residue : the process that leaves it behind\", which is not the relation MASON and STONE stand in"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (leader : the group he directs; person : the quality he conspicuously lacks; craftsman : the material he shapes; smaller unit : the larger unit it makes up; residue : the process that leaves it behind); each is a tight, nameable relation of comparable specificity",
+    "relation": "craftsman : the material he shapes",
+    "option_relations": [
+      "leader : the group he directs",
+      "person : the quality he conspicuously lacks",
+      "craftsman : the material he shapes",
+      "smaller unit : the larger unit it makes up",
+      "residue : the process that leaves it behind"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"general is to army\" stands in the relation \"leader : the group he directs\"; \"recluse is to sociability\" stands in the relation \"person : the quality he conspicuously lacks\"; \"gram is to kilogram\" stands in the relation \"smaller unit : the larger unit it makes up\"; \"silt is to flooding\" stands in the relation \"residue : the process that leaves it behind\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"craftsman : the material he shapes\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 3; part-to-whole pairs: 1; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-03",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "SOGGY",
+    "choices": [
+      "charred",
+      "frozen",
+      "gritty",
+      "soaked",
+      "tangled"
+    ],
+    "correct_answer": "soaked",
+    "explanation": "A SOGGY towel is heavy with water, which is what \"soaked\" names.",
+    "distractor_rationales": [
+      "\"charred\" is burnt, the opposite thing for water to have prevented",
+      "\"frozen\" is solid with cold, a state water can leave a thing in without soaking it",
+      "\"gritty\" has sand in it, a matter of what is mixed in",
+      "KEY",
+      "\"tangled\" is knotted up, a matter of how the thing lies"
+    ],
+    "set_id": "SET-A",
+    "construction": "five six-and-seven-letter past-participle adjectives, all of them ordinary states a towel can be found in",
+    "options_only_legal": 5,
+    "options_only_note": "all five are legal verdicts on a towel and two of them (not the key) also involve water, so the water axis does not name the answer"
+  },
+  {
+    "id": "SV13-04",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "CONDUCTOR is to ORCHESTRA as",
+    "choices": [
+      "sculptor is to statue",
+      "quail is to covey",
+      "sigh is to weariness",
+      "heron is to wade",
+      "captain is to crew"
+    ],
+    "correct_answer": "captain is to crew",
+    "explanation": "A conductor is the one who directs an orchestra, so the pair stands in the relation \"leader : the group he directs\"; \"captain is to crew\" is that same pair.",
+    "distractor_rationales": [
+      "\"sculptor is to statue\" stands in the relation \"maker : the work he produces\", which is not the relation CONDUCTOR and ORCHESTRA stand in",
+      "\"quail is to covey\" stands in the relation \"animal : the collective name for a group of them\", which is not the relation CONDUCTOR and ORCHESTRA stand in",
+      "\"sigh is to weariness\" stands in the relation \"bodily sign : the emotion it betrays\", which is not the relation CONDUCTOR and ORCHESTRA stand in",
+      "\"heron is to wade\" stands in the relation \"animal : its characteristic manner of moving\", which is not the relation CONDUCTOR and ORCHESTRA stand in",
+      "KEY"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (maker : the work he produces; animal : the collective name for a group of them; bodily sign : the emotion it betrays; animal : its characteristic manner of moving; leader : the group he directs); each is a tight, nameable relation of comparable specificity",
+    "relation": "leader : the group he directs",
+    "option_relations": [
+      "maker : the work he produces",
+      "animal : the collective name for a group of them",
+      "bodily sign : the emotion it betrays",
+      "animal : its characteristic manner of moving",
+      "leader : the group he directs"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"sculptor is to statue\" stands in the relation \"maker : the work he produces\"; \"quail is to covey\" stands in the relation \"animal : the collective name for a group of them\"; \"sigh is to weariness\" stands in the relation \"bodily sign : the emotion it betrays\"; \"heron is to wade\" stands in the relation \"animal : its characteristic manner of moving\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"leader : the group he directs\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 2; part-to-whole pairs: 1; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-05",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "EAGER",
+    "choices": [
+      "tense",
+      "keen",
+      "bored",
+      "proud",
+      "blunt"
+    ],
+    "correct_answer": "keen",
+    "explanation": "An EAGER helper cannot wait to start, which is what \"keen\" names.",
+    "distractor_rationales": [
+      "\"tense\" is strung tight with nerves, which is not the same as wanting to begin",
+      "KEY",
+      "\"bored\" has no interest at all, the opposite disposition",
+      "\"proud\" thinks well of itself, a matter of self-regard",
+      "\"blunt\" speaks without softening it, a matter of manner"
+    ],
+    "set_id": "SET-A",
+    "construction": "five four-and-five-letter everyday adjectives, all of them things a helper can be",
+    "options_only_legal": 5,
+    "options_only_note": "every option is a plain disposition and \"bored\" is the antonym sitting among the distractors, so the enthusiasm axis appears twice and names neither"
+  },
+  {
+    "id": "SV13-06",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "PLAYWRIGHT is to DRAMA as",
+    "choices": [
+      "composer is to symphony",
+      "bigot is to tolerance",
+      "glove is to hand",
+      "pip is to apple tree",
+      "patter is to raindrops"
+    ],
+    "correct_answer": "composer is to symphony",
+    "explanation": "A playwright is the maker whose finished work is a drama, so the pair stands in the relation \"maker : the work he produces\"; \"composer is to symphony\" is that same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"bigot is to tolerance\" stands in the relation \"person : the quality he conspicuously lacks\", which is not the relation PLAYWRIGHT and DRAMA stand in",
+      "\"glove is to hand\" stands in the relation \"garment : the part of the body it covers\", which is not the relation PLAYWRIGHT and DRAMA stand in",
+      "\"pip is to apple tree\" stands in the relation \"seed : the plant that grows from it\", which is not the relation PLAYWRIGHT and DRAMA stand in",
+      "\"patter is to raindrops\" stands in the relation \"sound : the object that makes it\", which is not the relation PLAYWRIGHT and DRAMA stand in"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (maker : the work he produces; person : the quality he conspicuously lacks; garment : the part of the body it covers; seed : the plant that grows from it; sound : the object that makes it); each is a tight, nameable relation of comparable specificity",
+    "relation": "maker : the work he produces",
+    "option_relations": [
+      "maker : the work he produces",
+      "person : the quality he conspicuously lacks",
+      "garment : the part of the body it covers",
+      "seed : the plant that grows from it",
+      "sound : the object that makes it"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"bigot is to tolerance\" stands in the relation \"person : the quality he conspicuously lacks\"; \"glove is to hand\" stands in the relation \"garment : the part of the body it covers\"; \"pip is to apple tree\" stands in the relation \"seed : the plant that grows from it\"; \"patter is to raindrops\" stands in the relation \"sound : the object that makes it\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"maker : the work he produces\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 2; part-to-whole pairs: 0; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-07",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "GLOOMY",
+    "choices": [
+      "breezy",
+      "hectic",
+      "sturdy",
+      "costly",
+      "dreary"
+    ],
+    "correct_answer": "dreary",
+    "explanation": "A GLOOMY afternoon is dark and cheerless, which is what \"dreary\" says.",
+    "distractor_rationales": [
+      "\"breezy\" is light and airy, close to the opposite mood",
+      "\"hectic\" is frantically busy, a matter of pace",
+      "\"sturdy\" is solidly built, a matter of construction",
+      "\"costly\" is expensive, a matter of price",
+      "KEY"
+    ],
+    "set_id": "SET-A",
+    "construction": "all five are six-letter adjectives ending in -y of the same everyday register",
+    "options_only_legal": 5,
+    "options_only_note": "the five are the same length and shape, so nothing marks one off; each is a legal thing some afternoon or its weather could be called"
+  },
+  {
+    "id": "SV13-08",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "COWARD is to VALOR as",
+    "choices": [
+      "fish is to school",
+      "awl is to pierce",
+      "termite is to timber",
+      "spendthrift is to thrift",
+      "carver is to wood"
+    ],
+    "correct_answer": "spendthrift is to thrift",
+    "explanation": "A coward is the person named for having no valor, so the pair stands in the relation \"person : the quality he conspicuously lacks\"; \"spendthrift is to thrift\" is that same pair.",
+    "distractor_rationales": [
+      "\"fish is to school\" stands in the relation \"animal : the collective name for a group of them\", which is not the relation COWARD and VALOR stand in",
+      "\"awl is to pierce\" stands in the relation \"tool : the action performed with it\", which is not the relation COWARD and VALOR stand in",
+      "\"termite is to timber\" stands in the relation \"agent of decay : the material it ruins\", which is not the relation COWARD and VALOR stand in",
+      "KEY",
+      "\"carver is to wood\" stands in the relation \"craftsman : the material he shapes\", which is not the relation COWARD and VALOR stand in"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (animal : the collective name for a group of them; tool : the action performed with it; agent of decay : the material it ruins; person : the quality he conspicuously lacks; craftsman : the material he shapes); each is a tight, nameable relation of comparable specificity",
+    "relation": "person : the quality he conspicuously lacks",
+    "option_relations": [
+      "animal : the collective name for a group of them",
+      "tool : the action performed with it",
+      "agent of decay : the material it ruins",
+      "person : the quality he conspicuously lacks",
+      "craftsman : the material he shapes"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"fish is to school\" stands in the relation \"animal : the collective name for a group of them\"; \"awl is to pierce\" stands in the relation \"tool : the action performed with it\"; \"termite is to timber\" stands in the relation \"agent of decay : the material it ruins\"; \"carver is to wood\" stands in the relation \"craftsman : the material he shapes\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"person : the quality he conspicuously lacks\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 2; part-to-whole pairs: 1; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-09",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "AMPLE",
+    "choices": [
+      "temporary",
+      "expensive",
+      "plentiful",
+      "familiar",
+      "artificial"
+    ],
+    "correct_answer": "plentiful",
+    "explanation": "An AMPLE supply is more than enough to go round, which is what \"plentiful\" says.",
+    "distractor_rationales": [
+      "\"temporary\" is how long the supply will last, not how much of it there is",
+      "\"expensive\" is what the supply costs rather than how much of it there is",
+      "KEY",
+      "\"familiar\" is well known, which says nothing about quantity",
+      "\"artificial\" is made rather than grown, a fact about origin"
+    ],
+    "set_id": "SET-A",
+    "construction": "five nine-and-ten-letter adjectives of the same register, every one of which could be said of a supply",
+    "options_only_legal": 5,
+    "options_only_note": "all four wrong options are true things a supply can be, and the key is neither the longest nor the rarest word in the list"
+  },
+  {
+    "id": "SV13-10",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "WOLF is to PACK as",
+    "choices": [
+      "scarf is to neck",
+      "lion is to pride",
+      "quart is to gallon",
+      "hedge is to wind",
+      "director is to cast"
+    ],
+    "correct_answer": "lion is to pride",
+    "explanation": "A group of wolves is called a pack, so the pair stands in the relation \"animal : the collective name for a group of them\"; \"lion is to pride\" is that same pair.",
+    "distractor_rationales": [
+      "\"scarf is to neck\" stands in the relation \"garment : the part of the body it covers\", which is not the relation WOLF and PACK stand in",
+      "KEY",
+      "\"quart is to gallon\" stands in the relation \"smaller unit : the larger unit it makes up\", which is not the relation WOLF and PACK stand in",
+      "\"hedge is to wind\" stands in the relation \"barrier : what it is built to keep out\", which is not the relation WOLF and PACK stand in",
+      "\"director is to cast\" stands in the relation \"leader : the group he directs\", which is not the relation WOLF and PACK stand in"
+    ],
+    "set_id": "SET-A",
+    "construction": "five options, five DIFFERENT relation families (garment : the part of the body it covers; animal : the collective name for a group of them; smaller unit : the larger unit it makes up; barrier : what it is built to keep out; leader : the group he directs); each is a tight, nameable relation of comparable specificity",
+    "relation": "animal : the collective name for a group of them",
+    "option_relations": [
+      "garment : the part of the body it covers",
+      "animal : the collective name for a group of them",
+      "smaller unit : the larger unit it makes up",
+      "barrier : what it is built to keep out",
+      "leader : the group he directs"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"scarf is to neck\" stands in the relation \"garment : the part of the body it covers\"; \"quart is to gallon\" stands in the relation \"smaller unit : the larger unit it makes up\"; \"hedge is to wind\" stands in the relation \"barrier : what it is built to keep out\"; \"director is to cast\" stands in the relation \"leader : the group he directs\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"animal : the collective name for a group of them\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 1; part-to-whole pairs: 2; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-11",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "SLUGGISH",
+    "choices": [
+      "listless",
+      "frantic",
+      "graceful",
+      "abrupt",
+      "fragrant"
+    ],
+    "correct_answer": "listless",
+    "explanation": "A SLUGGISH stream barely moves, which is the want of energy \"listless\" names.",
+    "distractor_rationales": [
+      "KEY",
+      "\"frantic\" moves at top speed, the opposite complaint",
+      "\"graceful\" moves well, a judgment on the manner rather than the pace",
+      "\"abrupt\" changes without warning, a matter of suddenness",
+      "\"fragrant\" smells sweet, a different sense entirely"
+    ],
+    "set_id": "SET-B",
+    "construction": "five adjectives of six to eight letters, all ordinary descriptions of a stream or of the creature in it",
+    "options_only_legal": 5,
+    "options_only_note": "two options sit on the speed axis and neither of those is eliminable from the other; the key is not the length outlier"
+  },
+  {
+    "id": "SV13-12",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "SANDAL is to FOOT as",
+    "choices": [
+      "ladle is to serve",
+      "wince is to pain",
+      "shavings is to planing",
+      "weaver is to tapestry",
+      "helmet is to head"
+    ],
+    "correct_answer": "helmet is to head",
+    "explanation": "A sandal is the garment worn on the foot, so the pair stands in the relation \"garment : the part of the body it covers\"; \"helmet is to head\" is that same pair.",
+    "distractor_rationales": [
+      "\"ladle is to serve\" stands in the relation \"tool : the action performed with it\", which is not the relation SANDAL and FOOT stand in",
+      "\"wince is to pain\" stands in the relation \"bodily sign : the emotion it betrays\", which is not the relation SANDAL and FOOT stand in",
+      "\"shavings is to planing\" stands in the relation \"residue : the process that leaves it behind\", which is not the relation SANDAL and FOOT stand in",
+      "\"weaver is to tapestry\" stands in the relation \"maker : the work he produces\", which is not the relation SANDAL and FOOT stand in",
+      "KEY"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (tool : the action performed with it; bodily sign : the emotion it betrays; residue : the process that leaves it behind; maker : the work he produces; garment : the part of the body it covers); each is a tight, nameable relation of comparable specificity",
+    "relation": "garment : the part of the body it covers",
+    "option_relations": [
+      "tool : the action performed with it",
+      "bodily sign : the emotion it betrays",
+      "residue : the process that leaves it behind",
+      "maker : the work he produces",
+      "garment : the part of the body it covers"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"ladle is to serve\" stands in the relation \"tool : the action performed with it\"; \"wince is to pain\" stands in the relation \"bodily sign : the emotion it betrays\"; \"shavings is to planing\" stands in the relation \"residue : the process that leaves it behind\"; \"weaver is to tapestry\" stands in the relation \"maker : the work he produces\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"garment : the part of the body it covers\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 1; part-to-whole pairs: 0; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-13",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "CENSURE",
+    "choices": [
+      "applaud",
+      "mislead",
+      "rebuke",
+      "postpone",
+      "summon"
+    ],
+    "correct_answer": "rebuke",
+    "explanation": "To CENSURE an officer is to condemn him formally, which is what \"rebuke\" names.",
+    "distractor_rationales": [
+      "\"applaud\" praises rather than condemns, the opposite verdict",
+      "\"mislead\" leads someone into error, an act on their beliefs rather than on their conduct",
+      "KEY",
+      "\"postpone\" puts the matter off rather than passing judgment on it",
+      "\"summon\" calls a person in, a step that settles nothing about them"
+    ],
+    "set_id": "SET-B",
+    "construction": "five plain transitive verbs of six to eight letters, every one of which a board could do to an officer",
+    "options_only_legal": 5,
+    "options_only_note": "the antonym \"applaud\" is a distractor, so the approval axis is present twice and names neither end"
+  },
+  {
+    "id": "SV13-14",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "RAKE is to GATHER as",
+    "choices": [
+      "inch is to foot",
+      "shears is to trim",
+      "spore is to fern",
+      "kangaroo is to bound",
+      "braggart is to modesty"
+    ],
+    "correct_answer": "shears is to trim",
+    "explanation": "A rake is the tool a person gathers with, so the pair stands in the relation \"tool : the action performed with it\"; \"shears is to trim\" is that same pair.",
+    "distractor_rationales": [
+      "\"inch is to foot\" stands in the relation \"smaller unit : the larger unit it makes up\", which is not the relation RAKE and GATHER stand in",
+      "KEY",
+      "\"spore is to fern\" stands in the relation \"seed : the plant that grows from it\", which is not the relation RAKE and GATHER stand in",
+      "\"kangaroo is to bound\" stands in the relation \"animal : its characteristic manner of moving\", which is not the relation RAKE and GATHER stand in",
+      "\"braggart is to modesty\" stands in the relation \"person : the quality he conspicuously lacks\", which is not the relation RAKE and GATHER stand in"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (smaller unit : the larger unit it makes up; tool : the action performed with it; seed : the plant that grows from it; animal : its characteristic manner of moving; person : the quality he conspicuously lacks); each is a tight, nameable relation of comparable specificity",
+    "relation": "tool : the action performed with it",
+    "option_relations": [
+      "smaller unit : the larger unit it makes up",
+      "tool : the action performed with it",
+      "seed : the plant that grows from it",
+      "animal : its characteristic manner of moving",
+      "person : the quality he conspicuously lacks"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"inch is to foot\" stands in the relation \"smaller unit : the larger unit it makes up\"; \"spore is to fern\" stands in the relation \"seed : the plant that grows from it\"; \"kangaroo is to bound\" stands in the relation \"animal : its characteristic manner of moving\"; \"braggart is to modesty\" stands in the relation \"person : the quality he conspicuously lacks\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"tool : the action performed with it\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 1; part-to-whole pairs: 1; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-15",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "COPIOUS",
+    "choices": [
+      "sporadic",
+      "tentative",
+      "habitual",
+      "expensive",
+      "abundant"
+    ],
+    "correct_answer": "abundant",
+    "explanation": "COPIOUS notes run to a great many pages, which is what \"abundant\" says.",
+    "distractor_rationales": [
+      "\"sporadic\" comes only now and again, close to the opposite of plentiful",
+      "\"tentative\" is offered without commitment, a matter of confidence",
+      "\"habitual\" is done by habit, a matter of how regularly rather than how much",
+      "\"expensive\" is what the thing costs rather than how much of it there is",
+      "KEY"
+    ],
+    "set_id": "SET-B",
+    "construction": "five eight-and-nine-letter adjectives of the same register, all of them verdicts a reader could pass on a set of notes",
+    "options_only_legal": 5,
+    "options_only_note": "two of the four wrong options bear on quantity or frequency, so the quantity axis does not single the key out"
+  },
+  {
+    "id": "SV13-16",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "OUNCE is to POUND as",
+    "choices": [
+      "grin is to delight",
+      "moth is to wool",
+      "crunch is to gravel",
+      "cent is to dollar",
+      "whale is to pod"
+    ],
+    "correct_answer": "cent is to dollar",
+    "explanation": "Ounces are the smaller units a pound is counted out in, so the pair stands in the relation \"smaller unit : the larger unit it makes up\"; \"cent is to dollar\" is that same pair.",
+    "distractor_rationales": [
+      "\"grin is to delight\" stands in the relation \"bodily sign : the emotion it betrays\", which is not the relation OUNCE and POUND stand in",
+      "\"moth is to wool\" stands in the relation \"agent of decay : the material it ruins\", which is not the relation OUNCE and POUND stand in",
+      "\"crunch is to gravel\" stands in the relation \"sound : the object that makes it\", which is not the relation OUNCE and POUND stand in",
+      "KEY",
+      "\"whale is to pod\" stands in the relation \"animal : the collective name for a group of them\", which is not the relation OUNCE and POUND stand in"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (bodily sign : the emotion it betrays; agent of decay : the material it ruins; sound : the object that makes it; smaller unit : the larger unit it makes up; animal : the collective name for a group of them); each is a tight, nameable relation of comparable specificity",
+    "relation": "smaller unit : the larger unit it makes up",
+    "option_relations": [
+      "bodily sign : the emotion it betrays",
+      "agent of decay : the material it ruins",
+      "sound : the object that makes it",
+      "smaller unit : the larger unit it makes up",
+      "animal : the collective name for a group of them"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"grin is to delight\" stands in the relation \"bodily sign : the emotion it betrays\"; \"moth is to wool\" stands in the relation \"agent of decay : the material it ruins\"; \"crunch is to gravel\" stands in the relation \"sound : the object that makes it\"; \"whale is to pod\" stands in the relation \"animal : the collective name for a group of them\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"smaller unit : the larger unit it makes up\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 0; part-to-whole pairs: 2; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-17",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "FALTER",
+    "choices": [
+      "thrive",
+      "waver",
+      "hasten",
+      "scatter",
+      "bellow"
+    ],
+    "correct_answer": "waver",
+    "explanation": "A speaker who FALTERS loses his footing partway through, which is what \"waver\" names.",
+    "distractor_rationales": [
+      "\"thrive\" goes from strength to strength, the opposite course",
+      "KEY",
+      "\"hasten\" speeds up, a change of pace rather than a loss of nerve",
+      "\"scatter\" breaks into pieces going different ways, which a single speaker cannot do",
+      "\"bellow\" is to shout, a matter of volume"
+    ],
+    "set_id": "SET-B",
+    "construction": "five intransitive verbs of five to seven letters, all of them things that can be said of a speaker partway through",
+    "options_only_legal": 5,
+    "options_only_note": "each option is a legal thing a person in the middle of something can do, and the key is neither the shortest nor the rarest"
+  },
+  {
+    "id": "SV13-18",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "TREMBLE is to FEAR as",
+    "choices": [
+      "sob is to sorrow",
+      "bulb is to tulip",
+      "moat is to besiegers",
+      "jeweler is to gold",
+      "sleeve is to arm"
+    ],
+    "correct_answer": "sob is to sorrow",
+    "explanation": "A tremble is the bodily sign that gives fear away, so the pair stands in the relation \"bodily sign : the emotion it betrays\"; \"sob is to sorrow\" is that same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"bulb is to tulip\" stands in the relation \"seed : the plant that grows from it\", which is not the relation TREMBLE and FEAR stand in",
+      "\"moat is to besiegers\" stands in the relation \"barrier : what it is built to keep out\", which is not the relation TREMBLE and FEAR stand in",
+      "\"jeweler is to gold\" stands in the relation \"craftsman : the material he shapes\", which is not the relation TREMBLE and FEAR stand in",
+      "\"sleeve is to arm\" stands in the relation \"garment : the part of the body it covers\", which is not the relation TREMBLE and FEAR stand in"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (bodily sign : the emotion it betrays; seed : the plant that grows from it; barrier : what it is built to keep out; craftsman : the material he shapes; garment : the part of the body it covers); each is a tight, nameable relation of comparable specificity",
+    "relation": "bodily sign : the emotion it betrays",
+    "option_relations": [
+      "bodily sign : the emotion it betrays",
+      "seed : the plant that grows from it",
+      "barrier : what it is built to keep out",
+      "craftsman : the material he shapes",
+      "garment : the part of the body it covers"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"bulb is to tulip\" stands in the relation \"seed : the plant that grows from it\"; \"moat is to besiegers\" stands in the relation \"barrier : what it is built to keep out\"; \"jeweler is to gold\" stands in the relation \"craftsman : the material he shapes\"; \"sleeve is to arm\" stands in the relation \"garment : the part of the body it covers\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"bodily sign : the emotion it betrays\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 1; part-to-whole pairs: 0; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-19",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "CANDOR",
+    "choices": [
+      "secrecy",
+      "patience",
+      "ambition",
+      "frankness",
+      "courtesy"
+    ],
+    "correct_answer": "frankness",
+    "explanation": "A witness who answers with CANDOR holds nothing back, which is what \"frankness\" names.",
+    "distractor_rationales": [
+      "\"secrecy\" keeps things back, the opposite practice",
+      "\"patience\" waits without complaint, a matter of temper rather than of openness",
+      "\"ambition\" wants to rise, a matter of what a person is after",
+      "KEY",
+      "\"courtesy\" is good manners, which a guarded witness may have in full"
+    ],
+    "set_id": "SET-B",
+    "construction": "five abstract nouns of seven to nine letters naming qualities a witness might show",
+    "options_only_legal": 5,
+    "options_only_note": "the antonym \"secrecy\" sits among the distractors, so the openness axis is represented twice and neither end is marked as the answer"
+  },
+  {
+    "id": "SV13-20",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "ACORN is to OAK as",
+    "choices": [
+      "blight is to potato",
+      "dregs is to brewing",
+      "kernel is to corn",
+      "choirmaster is to choir",
+      "hoe is to weed"
+    ],
+    "correct_answer": "kernel is to corn",
+    "explanation": "An acorn is the seed an oak grows from, so the pair stands in the relation \"seed : the plant that grows from it\"; \"kernel is to corn\" is that same pair.",
+    "distractor_rationales": [
+      "\"blight is to potato\" stands in the relation \"agent of decay : the material it ruins\", which is not the relation ACORN and OAK stand in",
+      "\"dregs is to brewing\" stands in the relation \"residue : the process that leaves it behind\", which is not the relation ACORN and OAK stand in",
+      "KEY",
+      "\"choirmaster is to choir\" stands in the relation \"leader : the group he directs\", which is not the relation ACORN and OAK stand in",
+      "\"hoe is to weed\" stands in the relation \"tool : the action performed with it\", which is not the relation ACORN and OAK stand in"
+    ],
+    "set_id": "SET-B",
+    "construction": "five options, five DIFFERENT relation families (agent of decay : the material it ruins; residue : the process that leaves it behind; seed : the plant that grows from it; leader : the group he directs; tool : the action performed with it); each is a tight, nameable relation of comparable specificity",
+    "relation": "seed : the plant that grows from it",
+    "option_relations": [
+      "agent of decay : the material it ruins",
+      "residue : the process that leaves it behind",
+      "seed : the plant that grows from it",
+      "leader : the group he directs",
+      "tool : the action performed with it"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"blight is to potato\" stands in the relation \"agent of decay : the material it ruins\"; \"dregs is to brewing\" stands in the relation \"residue : the process that leaves it behind\"; \"choirmaster is to choir\" stands in the relation \"leader : the group he directs\"; \"hoe is to weed\" stands in the relation \"tool : the action performed with it\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"seed : the plant that grows from it\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 1; part-to-whole pairs: 0; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-21",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "GREGARIOUS",
+    "choices": [
+      "solitary",
+      "impartial",
+      "indignant",
+      "methodical",
+      "sociable"
+    ],
+    "correct_answer": "sociable",
+    "explanation": "A GREGARIOUS neighbor is happiest in company, which is what \"sociable\" names.",
+    "distractor_rationales": [
+      "\"solitary\" keeps to itself, the opposite disposition",
+      "\"impartial\" takes no side, a matter of judgment rather than of company",
+      "\"indignant\" is angry at a wrong, a passing state rather than a standing habit",
+      "\"methodical\" works to a system, a matter of how a person goes about things",
+      "KEY"
+    ],
+    "set_id": "SET-C",
+    "construction": "five adjectives of eight to ten letters describing a person, all of the same literary register",
+    "options_only_legal": 5,
+    "options_only_note": "the direct antonym \"solitary\" is a distractor, so the sociability axis appears twice; no option is markedly commoner or rarer than the rest"
+  },
+  {
+    "id": "SV13-22",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "RUST is to IRON as",
+    "choices": [
+      "screen is to insects",
+      "eagle is to soar",
+      "baker is to loaf",
+      "mildew is to canvas",
+      "yard is to mile"
+    ],
+    "correct_answer": "mildew is to canvas",
+    "explanation": "Rust is the agent that eats away iron, so the pair stands in the relation \"agent of decay : the material it ruins\"; \"mildew is to canvas\" is that same pair.",
+    "distractor_rationales": [
+      "\"screen is to insects\" stands in the relation \"barrier : what it is built to keep out\", which is not the relation RUST and IRON stand in",
+      "\"eagle is to soar\" stands in the relation \"animal : its characteristic manner of moving\", which is not the relation RUST and IRON stand in",
+      "\"baker is to loaf\" stands in the relation \"maker : the work he produces\", which is not the relation RUST and IRON stand in",
+      "KEY",
+      "\"yard is to mile\" stands in the relation \"smaller unit : the larger unit it makes up\", which is not the relation RUST and IRON stand in"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (barrier : what it is built to keep out; animal : its characteristic manner of moving; maker : the work he produces; agent of decay : the material it ruins; smaller unit : the larger unit it makes up); each is a tight, nameable relation of comparable specificity",
+    "relation": "agent of decay : the material it ruins",
+    "option_relations": [
+      "barrier : what it is built to keep out",
+      "animal : its characteristic manner of moving",
+      "maker : the work he produces",
+      "agent of decay : the material it ruins",
+      "smaller unit : the larger unit it makes up"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"screen is to insects\" stands in the relation \"barrier : what it is built to keep out\"; \"eagle is to soar\" stands in the relation \"animal : its characteristic manner of moving\"; \"baker is to loaf\" stands in the relation \"maker : the work he produces\"; \"yard is to mile\" stands in the relation \"smaller unit : the larger unit it makes up\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"agent of decay : the material it ruins\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 1; part-to-whole pairs: 1; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-23",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "NONCHALANT",
+    "choices": [
+      "apologetic",
+      "unconcerned",
+      "suspicious",
+      "industrious",
+      "disheveled"
+    ],
+    "correct_answer": "unconcerned",
+    "explanation": "A NONCHALANT reply treats the whole business as nothing to worry about, which is what \"unconcerned\" says.",
+    "distractor_rationales": [
+      "\"apologetic\" is sorry for something, which is caring rather than not caring",
+      "KEY",
+      "\"suspicious\" doubts what it is told, a matter of trust",
+      "\"industrious\" works hard, a matter of effort",
+      "\"disheveled\" is untidy in appearance, a fact about looks rather than about attitude"
+    ],
+    "set_id": "SET-C",
+    "construction": "five adjectives of ten to eleven letters, every one of which could describe a person answering a question",
+    "options_only_legal": 5,
+    "options_only_note": "the four wrong options are all live descriptions of a person under questioning; the key is the same length class as the rest"
+  },
+  {
+    "id": "SV13-24",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "BREAKWATER is to SURF as",
+    "choices": [
+      "awning is to sunlight",
+      "slag is to smelting",
+      "hiss is to kettle",
+      "ingrate is to gratitude",
+      "gasp is to astonishment"
+    ],
+    "correct_answer": "awning is to sunlight",
+    "explanation": "A breakwater is put there to keep the surf out, so the pair stands in the relation \"barrier : what it is built to keep out\"; \"awning is to sunlight\" is that same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"slag is to smelting\" stands in the relation \"residue : the process that leaves it behind\", which is not the relation BREAKWATER and SURF stand in",
+      "\"hiss is to kettle\" stands in the relation \"sound : the object that makes it\", which is not the relation BREAKWATER and SURF stand in",
+      "\"ingrate is to gratitude\" stands in the relation \"person : the quality he conspicuously lacks\", which is not the relation BREAKWATER and SURF stand in",
+      "\"gasp is to astonishment\" stands in the relation \"bodily sign : the emotion it betrays\", which is not the relation BREAKWATER and SURF stand in"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (barrier : what it is built to keep out; residue : the process that leaves it behind; sound : the object that makes it; person : the quality he conspicuously lacks; bodily sign : the emotion it betrays); each is a tight, nameable relation of comparable specificity",
+    "relation": "barrier : what it is built to keep out",
+    "option_relations": [
+      "barrier : what it is built to keep out",
+      "residue : the process that leaves it behind",
+      "sound : the object that makes it",
+      "person : the quality he conspicuously lacks",
+      "bodily sign : the emotion it betrays"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"slag is to smelting\" stands in the relation \"residue : the process that leaves it behind\"; \"hiss is to kettle\" stands in the relation \"sound : the object that makes it\"; \"ingrate is to gratitude\" stands in the relation \"person : the quality he conspicuously lacks\"; \"gasp is to astonishment\" stands in the relation \"bodily sign : the emotion it betrays\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"barrier : what it is built to keep out\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 1; part-to-whole pairs: 0; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-25",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "HACKNEYED",
+    "choices": [
+      "brisk",
+      "bleak",
+      "sober",
+      "trite",
+      "canny"
+    ],
+    "correct_answer": "trite",
+    "explanation": "A HACKNEYED phrase has been used until it has no force left, which is what \"trite\" names.",
+    "distractor_rationales": [
+      "\"brisk\" moves along smartly, a matter of pace",
+      "\"bleak\" is grim and comfortless, a matter of mood",
+      "\"sober\" is serious and unadorned, which an original phrase can equally be",
+      "KEY",
+      "\"canny\" is shrewd, a compliment about cleverness"
+    ],
+    "set_id": "SET-C",
+    "construction": "all five are five-letter adjectives of the same literary register, every one of which has been said of a phrase",
+    "options_only_legal": 5,
+    "options_only_note": "the five are identical in length and register, so nothing marks the key by shape, and each is a standing verdict a critic might pass on a phrase"
+  },
+  {
+    "id": "SV13-26",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "SAWDUST is to SAWING as",
+    "choices": [
+      "rabbit is to hop",
+      "tanner is to hide",
+      "cinder is to burning",
+      "crow is to murder",
+      "grain is to wheat"
+    ],
+    "correct_answer": "cinder is to burning",
+    "explanation": "Sawdust is what sawing leaves behind, so the pair stands in the relation \"residue : the process that leaves it behind\"; \"cinder is to burning\" is that same pair.",
+    "distractor_rationales": [
+      "\"rabbit is to hop\" stands in the relation \"animal : its characteristic manner of moving\", which is not the relation SAWDUST and SAWING stand in",
+      "\"tanner is to hide\" stands in the relation \"craftsman : the material he shapes\", which is not the relation SAWDUST and SAWING stand in",
+      "KEY",
+      "\"crow is to murder\" stands in the relation \"animal : the collective name for a group of them\", which is not the relation SAWDUST and SAWING stand in",
+      "\"grain is to wheat\" stands in the relation \"seed : the plant that grows from it\", which is not the relation SAWDUST and SAWING stand in"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (animal : its characteristic manner of moving; craftsman : the material he shapes; residue : the process that leaves it behind; animal : the collective name for a group of them; seed : the plant that grows from it); each is a tight, nameable relation of comparable specificity",
+    "relation": "residue : the process that leaves it behind",
+    "option_relations": [
+      "animal : its characteristic manner of moving",
+      "craftsman : the material he shapes",
+      "residue : the process that leaves it behind",
+      "animal : the collective name for a group of them",
+      "seed : the plant that grows from it"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"rabbit is to hop\" stands in the relation \"animal : its characteristic manner of moving\"; \"tanner is to hide\" stands in the relation \"craftsman : the material he shapes\"; \"crow is to murder\" stands in the relation \"animal : the collective name for a group of them\"; \"grain is to wheat\" stands in the relation \"seed : the plant that grows from it\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"residue : the process that leaves it behind\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 1; part-to-whole pairs: 1; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-27",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "MAGNANIMOUS",
+    "choices": [
+      "generous",
+      "impulsive",
+      "punctual",
+      "meddlesome",
+      "fastidious"
+    ],
+    "correct_answer": "generous",
+    "explanation": "A MAGNANIMOUS victor gives more than the beaten side could ask, which is what \"generous\" names.",
+    "distractor_rationales": [
+      "KEY",
+      "\"impulsive\" acts before thinking, a matter of how a decision is reached",
+      "\"punctual\" arrives on time, a matter of habit",
+      "\"meddlesome\" interferes in what is not its business, close to the opposite of leaving a beaten rival alone",
+      "\"fastidious\" is hard to please about details, a matter of taste"
+    ],
+    "set_id": "SET-C",
+    "construction": "five adjectives of eight to ten letters describing a person, none markedly commoner than the others",
+    "options_only_legal": 5,
+    "options_only_note": "all four wrong options are ordinary things a victor could be called, and the key is neither the rarest word nor the only common one"
+  },
+  {
+    "id": "SV13-28",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "CRAB is to SCUTTLE as",
+    "choices": [
+      "toll is to bell",
+      "snake is to slither",
+      "coach is to team",
+      "cuff is to wrist",
+      "mold is to bread"
+    ],
+    "correct_answer": "snake is to slither",
+    "explanation": "To scuttle is the way a crab characteristically moves, so the pair stands in the relation \"animal : its characteristic manner of moving\"; \"snake is to slither\" is that same pair.",
+    "distractor_rationales": [
+      "\"toll is to bell\" stands in the relation \"sound : the object that makes it\", which is not the relation CRAB and SCUTTLE stand in",
+      "KEY",
+      "\"coach is to team\" stands in the relation \"leader : the group he directs\", which is not the relation CRAB and SCUTTLE stand in",
+      "\"cuff is to wrist\" stands in the relation \"garment : the part of the body it covers\", which is not the relation CRAB and SCUTTLE stand in",
+      "\"mold is to bread\" stands in the relation \"agent of decay : the material it ruins\", which is not the relation CRAB and SCUTTLE stand in"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (sound : the object that makes it; animal : its characteristic manner of moving; leader : the group he directs; garment : the part of the body it covers; agent of decay : the material it ruins); each is a tight, nameable relation of comparable specificity",
+    "relation": "animal : its characteristic manner of moving",
+    "option_relations": [
+      "sound : the object that makes it",
+      "animal : its characteristic manner of moving",
+      "leader : the group he directs",
+      "garment : the part of the body it covers",
+      "agent of decay : the material it ruins"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"toll is to bell\" stands in the relation \"sound : the object that makes it\"; \"coach is to team\" stands in the relation \"leader : the group he directs\"; \"cuff is to wrist\" stands in the relation \"garment : the part of the body it covers\"; \"mold is to bread\" stands in the relation \"agent of decay : the material it ruins\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"animal : its characteristic manner of moving\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 1; part-to-whole pairs: 0; symmetric pairs: 0 (no family in the batch is symmetric)."
+  },
+  {
+    "id": "SV13-29",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "ASTUTE",
+    "choices": [
+      "fickle",
+      "humble",
+      "shrewd",
+      "somber",
+      "modest"
+    ],
+    "correct_answer": "shrewd",
+    "explanation": "An ASTUTE bargainer sees exactly where the advantage lies, which is what \"shrewd\" names.",
+    "distractor_rationales": [
+      "\"fickle\" changes its mind for no reason, a matter of constancy",
+      "\"humble\" makes no claims for itself, a matter of self-regard",
+      "KEY",
+      "\"somber\" is grave in manner, a matter of mood",
+      "\"modest\" understates itself, again a matter of self-regard"
+    ],
+    "set_id": "SET-C",
+    "construction": "all five are six-letter adjectives of comparable frequency, every one of which could be said of a bargainer",
+    "options_only_legal": 5,
+    "options_only_note": "the five are the same length and two of the wrong options sit on one shared axis, so the key is not marked off by shape or by being the odd category out"
+  },
+  {
+    "id": "SV13-30",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "RUSTLE is to LEAVES as",
+    "choices": [
+      "glazier is to glass",
+      "poet is to ode",
+      "whisk is to blend",
+      "shutter is to hail",
+      "clatter is to hooves"
+    ],
+    "correct_answer": "clatter is to hooves",
+    "explanation": "A rustle is the sound leaves make, so the pair stands in the relation \"sound : the object that makes it\"; \"clatter is to hooves\" is that same pair.",
+    "distractor_rationales": [
+      "\"glazier is to glass\" stands in the relation \"craftsman : the material he shapes\", which is not the relation RUSTLE and LEAVES stand in",
+      "\"poet is to ode\" stands in the relation \"maker : the work he produces\", which is not the relation RUSTLE and LEAVES stand in",
+      "\"whisk is to blend\" stands in the relation \"tool : the action performed with it\", which is not the relation RUSTLE and LEAVES stand in",
+      "\"shutter is to hail\" stands in the relation \"barrier : what it is built to keep out\", which is not the relation RUSTLE and LEAVES stand in",
+      "KEY"
+    ],
+    "set_id": "SET-C",
+    "construction": "five options, five DIFFERENT relation families (craftsman : the material he shapes; maker : the work he produces; tool : the action performed with it; barrier : what it is built to keep out; sound : the object that makes it); each is a tight, nameable relation of comparable specificity",
+    "relation": "sound : the object that makes it",
+    "option_relations": [
+      "craftsman : the material he shapes",
+      "maker : the work he produces",
+      "tool : the action performed with it",
+      "barrier : what it is built to keep out",
+      "sound : the object that makes it"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "with the stem covered, the four wrong pairs stay alive because each states a relation as tight and as nameable as the key's: \"glazier is to glass\" stands in the relation \"craftsman : the material he shapes\"; \"poet is to ode\" stands in the relation \"maker : the work he produces\"; \"whisk is to blend\" stands in the relation \"tool : the action performed with it\"; \"shutter is to hail\" stands in the relation \"barrier : what it is built to keep out\" — so every option is a legal answer to some hidden stem and only the stem pair discriminates. Across the batch the keyed family \"sound : the object that makes it\" appears in five of the fifteen analogies and is keyed in exactly one, the same 20.0% as every other family, so a solver who learns which families pay gains nothing. Person-involving pairs in this item: 2; part-to-whole pairs: 0; symmetric pairs: 0 (no family in the batch is symmetric)."
+  }
+]

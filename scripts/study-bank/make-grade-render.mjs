@@ -63,7 +63,26 @@ import { createHash } from 'node:crypto'
  * "weak, but free to remove." A grader judges against the real exam, not
  * against the blueprint, so nothing is lost.
  */
-const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill|distractor|^domain$/i
+/*
+ * `options_only`, `construction`, `relation` added 2026-09-11.
+ *
+ * A new authoring convention put the AUTHOR'S OWN SELF-CHECK in the batch:
+ * `options_only_note` ("each option is a real property a torn sheet of metal
+ * can have, and two of the four wrong ones are as common as the key..."),
+ * `options_only_legal`, `construction`, and on analogies `relation` /
+ * `option_relations`. Those are the author reasoning about which options are
+ * wrong — the single most direct leak a render can carry.
+ *
+ * THE NAME DENY-LIST DID NOT CATCH IT. THE CONTENT GUARD DID, and refused to
+ * write the render: "item SV13-02: kept field 'options_only_note' names 4 of
+ * this item's 5 options." That is exactly the case the content guard was
+ * added for after `distractor_steps`, arriving on a field nobody had thought
+ * of, which is the argument for keeping a structural check behind every
+ * deny-list. The names are added here so the refusal does not have to be the
+ * mechanism every time; the content guard stays as the backstop for the next
+ * convention nobody anticipates.
+ */
+const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill|distractor|options_only|construction|relation|^domain$/i
 /** Fields that match SENSITIVE but are structural and safe to keep. */
 const KEEP_ANYWAY = new Set(['passage_group_id', 'topic_id', 'set_id'])
 /** Fields the with-source grader is MEANT to read. optionLeak skips these;
