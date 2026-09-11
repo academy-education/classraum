@@ -1016,3 +1016,23 @@ structural checks are pre-flight only. See CLAUDE.md.
   Second, and it finished the job: **72 of the 77 prose items sit in ONE `passage_group_id` each.** They are deliberate matching sets — five analogies sharing five options, each keyed to a different one — drawn and served together, which is a legitimate psychometric format and the thing `insert-verbal-sets.mjs` exists to enforce. Only **5 items** are ungrouped, and 3 of those are ACT Science trend questions where "increases steadily" recurs across unrelated figures.
 
   **Real cases: effectively zero.** The channel joins stem-echo, key-is-sum and key-magnitude on the dissolved list. It is worth recording precisely because two capable readers flagged it in good faith from a 30-item sample, and the population said no.
+
+- **2026-09-11** — **THE READING CONTROL POINTS THE OPPOSITE WAY FROM THE VERBAL ONE, AND THAT IS WHY BOTH HAD TO BE RUN.**
+
+        run                                   n    mean    chance   margin   unanimous
+        LIVE SHIPPED ssat/reading (control)  30   21.1%    20.0%     +1.1        3
+        ssat-reading-s11 (candidate)         30   66.7%    20.0%    +46.7       14
+
+  **There is no instrument floor on reading.** The same solvers who score +15.0 over chance on shipped VOCABULARY score +1.1 on shipped READING. So the verbal result and this one are not two readings of one phenomenon: on vocabulary the model's prior is worth fifteen points, and on prose options it is worth nothing. `ssat-reading-s11`'s +46.7 is a real, 45-point defect in the batch.
+
+  **The part worth keeping is why the narrative was not the evidence.** All three control solvers reported, unprompted and in detail, the same mechanism the s11 solvers reported: the 30 interleaved items reassemble into their six passage threads from option text alone. One wrote that 24 of 30 picks came from the thread rather than any single option set — *"the set is ~6 decisions dressed as 30."* Another mapped all six threads correctly and named the parallel-cause casts. **And they scored 21.1%.** Reassembling the threads tells you which items share a passage; it does not tell you what the passage says. A solver's account of a channel is a hypothesis about where to look, never a measurement of what it yields — and on this pair of runs the identical account was correct about the mechanism in both cases and predictive in neither.
+
+  Had I trusted that account on s11 I would have called its margin a format artifact and shipped it.
+
+  **Both candidate reading batches fail, on separate evidence.**
+  - `ssat-reading-s11`: 66.7% vs a measured 21.1% floor. Three with-source graders independently condemned the same item (`P5-2` keys an objection the writer does not make, and a student who understands the essay is likelier to pick the distractor), listed the same cross-item pairs (`P2-1 ↔ P2-3` is one proposition twice; `P4-1 ↔ P4-4` one judgment twice; `P6-3 → P6-5 → P6-1` a three-item cluster off one sentence), and found that the cure for the hedging tell installed its inverse: **all five attitude-tone items carry a "won't say" option and on four of five it is never the key, so "eliminate the refusal" scores 4/4 without reading.** That is §2c exactly — the cure was itself a uniform rule.
+  - `isee-reading-s10`: its author ran a SPLIT attack (no solver ever sees two items from one passage), which designs the cross-item channel out, and still measured **69.4% then 72.2%** against 25.0%. Because the confound was removed by construction, that is stronger evidence than s11's larger number. A parallel-shape repair between rounds moved it from 69.4% to 72.2% — **the fifth recorded instance of "an agent rewrite does not reach the tell"**, and the author correctly stopped after one pass instead of commissioning a third brief.
+
+  **Neither batch inserts.** 66 authored items held. The three maths batches from the same wave are unaffected.
+
+  **Limitation, stated so nobody over-reads the control:** the 30 shipped reading items come from only two cohorts (`ssat-reading-worlds-s3/s4`) — the only ones holding five-choice items in groups of five or more. A floor measured on two cohorts is a floor for those two cohorts. It is still an enormous improvement on a bare 20.0% literal, and the gap it has to explain away here is 45 points.
