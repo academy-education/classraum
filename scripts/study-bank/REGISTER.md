@@ -626,3 +626,25 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   CLAUDE.md already records the stronger version of this (`git add -A scripts/study-bank/` committed two agents' half-written batches). **Staging specific paths is not enough while agents are running — a glob over specific-looking paths is still a glob.** Name each file, or confirm the file's author has reported completion before staging it.
 
+- **2026-09-11** — **220 LIVE VERBAL ITEMS WERE GATED UNDER A FAMILY LABEL THE CURRENT CONTRACT DOES NOT PRODUCE, AND 197 OF THEM NEVER HAD AN `elimination` STAGE.** Found by an agent investigating two unrelated orphan files, who noticed the ledger disagreeing with itself and flagged it rather than working around it.
+
+        cohort            live items   stages recorded
+        ssat-verbal-v1        21       shape, withsource, nosource, tells   <- no elimination
+        isee-verbal-v1        22       shape, withsource, nosource, tells   <- no elimination
+        ssat-verbal-s2        51       shape, withsource, nosource, tells   <- no elimination
+        isee-verbal-s2        55       shape, withsource, nosource, tells   <- no elimination
+        ssat-verbal-s3        29       shape, withsource, nosource, tells   <- no elimination
+        isee-verbal-s3        19       shape, withsource, nosource, tells   <- no elimination
+        ssat-verbal-s4         0       all five
+        ssat-verbal-s5        23       all five
+                             ---
+                             220 live, of which 197 were gated on four stages
+
+  All eight are recorded as `mc_stem_source`. **`familyFor('multiple_choice', 'isee', 'verbal')` returns `mc_hidden_source` today** — verified by calling it, not by reading the table — so the current contract requires five stages for exactly these cohorts, and `isee-verbal-s10` was gated that way this morning.
+
+  **Which is right? `mc_hidden_source`, and today's run settles it empirically rather than by argument.** The case for the older label is the maths case: a synonym headword IS the source, so "reject an option with the source hidden" might be a stage that cannot meaningfully run. But the `isee-verbal-s10` elimination run **did run, and returned an informative zero**: three solvers, 0 of 90 votes at `legal == 1`, and each independently explained WHY — a bare lexical option carries no proposition to contradict, the near-miss pairs are antonyms rather than entailments, and every option completes some stem. A stage that produces a reasoned, defensible result is a stage that can be run. It also told us something the other four stages could not: that the option sets are not eliminable, which is a real property of the batch.
+
+  **Nothing is being rewritten.** Falsifying eight historical entries to match today's contract would destroy the record of how they were actually gated. They stand as they are, and this entry is the reconciliation. What it means in practice: 197 live SSAT/ISEE verbal items have never had the elimination probe run on them, and `ssat-verbal-s9` — one of today's two recovered orphans — owes five stages, not four.
+
+  Recorded alongside the standing fact that **SSAT/ISEE human coverage is zero of 942**, which is the larger gap on these families either way.
+
