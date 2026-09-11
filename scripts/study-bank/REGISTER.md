@@ -807,3 +807,34 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   Its self-test failed on correct code first, because my positive-control fixture used a key that was not in the pair — and this checker only reports a pair one of whose members is the key. **Third fixture error of the day** (the others: a 12-field fixture hand-counted as 10, and a hand-written run fixture that claimed one run where the checker correctly found two). All three were fixed in the fixture, not the code. The pattern is worth naming: when a self-test fails, suspect the fixture first — it is the part nobody checked.
 
+- **2026-09-11** — **THE FIFTH CHEAP CHANNEL TO DISSOLVE AGAINST THE POPULATION: "THE KEY IS THE SUM OF TWO OTHER OPTIONS" IS WORTH +0.8 POINTS BANK-WIDE.** Three independent sources pointed at it in one session — a repairer's private checker found the key inside an `{a, b, a+b}` triple on three geometry items no grader had named; two blind graders found it on 5 of 14 SSAT maths items; a third found two more. A repairer also **proved by break-test** that `check-math-hub` cannot see it: a scratch copy carrying `13 + 14 = 27` and `15 - 4 = 11` still reported "0 of 24 ... no hub", because that checker's OPS list is unary key->option slips and a binary relation among three options is invisible to it by construction.
+
+  So the gap was real and `check-key-is-sum.mjs` closes it. The channel is not:
+
+        LIVE BANK, 1,667 scorable of 6,044
+          items with EXACTLY ONE sum node   297
+          ...and it IS the key              75 = 25.3%   control 24.5%   margin +0.8pts
+
+  `ssat-math-s10` reads +13.3 on **six** unique-pair items, which against a bank baseline of +0.8 is not distinguishable at that n. The checker stays — it is nearly free, it closes a proven blind spot, and a future batch could be genuinely skewed — but nothing is owed to the live bank on this.
+
+  **The running tally, and it is the useful artefact:**
+
+        channel                         bank-wide margin      verdict
+        stem-echo                            -2.8 pts         dissolved
+        key-magnitude (interior)             +2.6 pts         dissolved
+        authored option order              unreachable        dissolved
+        key is the sum of two options        +0.8 pts         dissolved
+        pick the SHORTEST option (SEC)      +10.6 pts         REAL, p = 2.2e-5
+        pair sums to a config constant      +29.0 pts         REAL, p = 2.1e-9
+          (on the 100 items with exactly one such pair)
+
+  Four of six dissolved. Each looked like a finding at batch level and each would have started a rewrite of sound items. The two that survived did so because the population said so, not because a grader felt strongly — and one of them was found by a grader by hand before any script existed.
+
+- **2026-09-11** — **THE THIRD GEOMETRY REPAIR RESTORED EVERY STRIPPED DISCRIMINATOR AND BROKE EACH RELATION STRUCTURALLY INSTEAD.** Seven of 24 items changed; three are re-designed stems rather than renumberings.
+
+  **GEOH2-18** took the better fix rather than the minimum: dropping 98 would have left "acute" picking from a thinned pair, so the item now asks **for x** (`{14, 19, 23, 22}`), which nothing in the set hands over — and the alternate-interior error a grader said was being wasted is now a distractor in its own right. Break-tested: reverting only that option set makes `check-option-pair-constant` fire again at 100.0% against its 50.0% control, so the green is evidence.
+
+  **GEOH2-03's relation was unbreakable by renumbering** — the two roots' product IS the printed area and their sum IS half the printed perimeter, at every numbering — so the item was re-asked in radians with the other root's angle restored as the discriminator. **GEOH2-04** used dilution instead: two more options were added on the same misreading so that TWO pairs now sum to 24, making "find the pair" carry no information. **GEOH2-10** stopped printing "80 percent" and gives a depth instead, so the ratio is derivable but not readable. **GEOH2-12** now asks for the positive difference, which retires a decorative qualifier and restores 15.0 as a real trap. **GEOH2-21's** collapse was confirmed real (distance is proportional to shadow length, so the lamp height was skippable) and was re-designed with a second person of a different height.
+
+  Post-edit: sandbox 24/24, distractors 72/72, `check-option-pair-constant` 0 of 24, `check-stem-echo` 1/96 options and 1/24 keys. **A fresh blind grade is owed** and the 24/24-agreed result no longer describes this file — the render has been regenerated.
+

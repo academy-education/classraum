@@ -1,290 +1,242 @@
 [
  {
   "id": "GEOH2-01",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "circles in the xy-plane: the chord a circle cuts on an axis",
   "prompt": "In the xy-plane, the circle with equation x^2 + y^2 - 12x + 16y = 189 intersects the x-axis at two points. What is the distance between those two points?",
   "choices": [
-   "15",
-   "34",
    "30",
-   "22.4"
+   "15",
+   "22.4",
+   "34"
   ]
  },
  {
   "id": "GEOH2-02",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "right-triangle trigonometry: two sightings of one tower",
   "prompt": "A vertical tower stands on level ground. From station A the angle of elevation of the top of the tower is 32 degrees, and from station B, which lies on the same straight line between A and the base of the tower, the angle of elevation of the top is 47 degrees. Stations A and B are 50 meters apart. How far is station B from the base of the tower, to the nearest tenth of a meter?",
   "choices": [
    "111.7",
-   "31.2",
    "69.8",
-   "74.9"
+   "74.9",
+   "31.2"
   ]
  },
  {
   "id": "GEOH2-03",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "circles: recovering a radius from a sector's perimeter and area",
-  "prompt": "A sector of a circle has a perimeter of 44 centimeters (two radii plus the arc) and an area of 120 square centimeters. The measure of its central angle is greater than 2 radians. What is the radius of the circle, in centimeters?",
+  "prompt": "A sector of a circle has a perimeter of 44 centimeters (two radii plus the arc) and an area of 120 square centimeters. The radius of the circle is greater than 11 centimeters. What is the measure of the sector's central angle, in radians, to the nearest tenth?",
   "choices": [
-   "10.0",
-   "7.0",
-   "6.2",
-   "8.6"
+   "0.8",
+   "3.1",
+   "1.7",
+   "2.4"
   ]
  },
  {
   "id": "GEOH2-04",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "similar solids: a cut that halves a cone's volume",
   "prompt": "A right circular cone has a height of 24 centimeters. A plane parallel to the base cuts the cone into a smaller cone and a frustum whose volumes are equal. How far above the base is the cutting plane, to the nearest tenth of a centimeter?",
   "choices": [
    "5.0",
-   "21.0",
+   "16.6",
    "7.4",
-   "12.0"
+   "19.0"
   ]
  },
  {
   "id": "GEOH2-05",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "right triangles: the altitude to the hypotenuse and the segments it makes",
   "prompt": "In right triangle ABC, the right angle is at C, the hypotenuse AB has length 26, and the altitude drawn from C to AB has length 12. What is the length of the shorter of the two segments into which the altitude divides AB?",
   "choices": [
    "14.4",
+   "8.0",
    "5.5",
-   "13.0",
-   "8.0"
+   "13.0"
   ]
  },
  {
   "id": "GEOH2-06",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "triangles: two isosceles triangles share an area and a leg length",
   "prompt": "An isosceles triangle has two sides of length 13 and an area of 60. There is more than one such triangle. What is the greatest possible perimeter of the triangle, to the nearest tenth?",
   "choices": [
-   "36.0",
-   "24.0",
    "35.2",
+   "24.0",
+   "36.0",
    "50.0"
   ]
  },
  {
   "id": "GEOH2-07",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "coordinate geometry: a line tangent to a circle centered at the origin",
   "prompt": "In the xy-plane, the line y = 2x + k is tangent to the circle x^2 + y^2 = 20, and k is positive. What is the value of k, to the nearest tenth?",
   "choices": [
+   "6.3",
    "22.4",
-   "10.0",
    "4.5",
-   "6.3"
+   "10.0"
   ]
  },
  {
   "id": "GEOH2-08",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "trigonometry: complementary angles feeding a right-triangle ratio",
   "prompt": "In right triangle DEF, the right angle is at E, side DE has length 25, and angle D measures (3y + 15) degrees. In right triangle ABC, the right angle is at B and angle A measures (2y + 5) degrees. If sin(A) = cos(D), what is the length of side EF, to the nearest tenth?",
   "choices": [
-   "16.2",
+   "21.0",
    "38.5",
    "45.9",
-   "21.0"
+   "16.2"
   ]
  },
  {
   "id": "GEOH2-09",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "polygons: side count from an angle relationship, then diagonals",
   "prompt": "In a certain regular polygon, each interior angle measures 8 times each exterior angle. How many diagonals does the polygon have?",
   "choices": [
-   "135",
    "20",
-   "170",
-   "18"
+   "18",
+   "135",
+   "170"
   ]
  },
  {
   "id": "GEOH2-10",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "cylinders: volume, capacity and a percentage of what remains",
-  "prompt": "A cylindrical tank with a radius of 1.2 meters and a height of 3 meters is filled to 80 percent of its capacity. Water is then drained from the tank at a constant 45 liters per minute for 2 hours. (1 cubic meter is 1,000 liters.) What percent of the water that was originally in the tank remains, to the nearest tenth of a percent?",
+  "prompt": "A cylindrical tank with a radius of 1.2 meters and a height of 3 meters is filled with water to a depth of 2.4 meters. Water is then drained from the tank at a constant 45 liters per minute for 2 hours. (1 cubic meter is 1,000 liters.) What percent of the water that was originally in the tank remains, to the nearest tenth of a percent?",
   "choices": [
    "50.3",
    "60.2",
-   "70.2",
+   "40.2",
    "87.6"
   ]
  },
  {
   "id": "GEOH2-11",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "trigonometry: signs of the ratios for an angle in standard position",
   "prompt": "Angle theta is in standard position in the xy-plane, its terminal ray lies in the second quadrant, and sin(theta) = 3/5. What is the value of sin(theta) + cos(theta) + tan(theta)?",
   "choices": [
-   "2.15",
-   "-1.53",
    "0.55",
-   "-0.95"
+   "2.15",
+   "-0.95",
+   "-1.53"
   ]
  },
  {
   "id": "GEOH2-12",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "circles: two chords meeting inside a circle",
-  "prompt": "Chords AB and CD of a circle intersect at point P inside the circle. AP = 6, PB = 10, the whole chord CD has length 19, and CP is shorter than PD. What is the length of CP?",
+  "prompt": "Chords AB and CD of a circle intersect at point P inside the circle. AP = 5, PB = 12, and the whole chord CD has length 19. What is the positive difference between the lengths of CP and PD?",
   "choices": [
-   "3.2",
-   "9.5",
-   "7.7",
-   "4.0"
+   "7.0",
+   "17.1",
+   "11.0",
+   "15.0"
   ]
  },
  {
   "id": "GEOH2-13",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "trapezoids: the segment parallel to the bases that halves the area",
   "prompt": "In the xy-plane, a trapezoid has vertices (0, 0), (10, 0), (7, 6), and (2, 6). A segment parallel to the two horizontal sides divides the trapezoid into two regions of equal area. What is the length of that segment, to the nearest tenth?",
   "choices": [
-   "7.5",
    "7.9",
-   "5.6",
-   "7.1"
+   "7.5",
+   "7.1",
+   "5.6"
   ]
  },
  {
   "id": "GEOH2-14",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "similar solids: how surface area and volume scale",
   "prompt": "Two similar cylinders have total surface areas of 96 square centimeters and 216 square centimeters. The volume of the smaller cylinder is 128 cubic centimeters. What is the volume of the larger cylinder, in cubic centimeters?",
   "choices": [
    "288",
-   "432",
    "384",
+   "432",
    "192"
   ]
  },
  {
   "id": "GEOH2-15",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "circles and triangles: the inscribed circle of a right triangle",
   "prompt": "A circle is inscribed in a right triangle whose legs have lengths 9 and 12. What is the area of the region that is inside the triangle but outside the circle, to the nearest tenth?",
   "choices": [
    "46.9",
-   "35.2",
    "25.7",
-   "39.2"
+   "39.2",
+   "35.2"
   ]
  },
  {
   "id": "GEOH2-16",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "coordinate geometry: a point on an axis equidistant from two points",
   "prompt": "In the xy-plane, point A is at (-6, 5) and point B is at (2, -1). Point C lies on the x-axis and is the same distance from A as it is from B. What is the x-coordinate of C?",
   "choices": [
-   "-0.5",
    "-4.7",
    "-3.5",
+   "-0.5",
    "-2.0"
   ]
  },
  {
   "id": "GEOH2-17",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "volume: recasting a sphere as whole cylinders",
   "prompt": "A solid metal sphere with a radius of 5 centimeters is melted down and recast, with no loss of metal, into solid cylinders each with a radius of 2 centimeters and a height of 3 centimeters. What is the greatest number of complete cylinders that can be made?",
   "choices": [
+   "14",
+   "9",
    "41",
-   "8",
-   "27",
    "13"
   ]
  },
  {
   "id": "GEOH2-18",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "parallel lines: same-side interior angles given algebraically",
-  "prompt": "Two parallel lines are cut by a transversal. One of the angles formed measures (5x - 12) degrees, and the same-side interior angle paired with it measures (3x + 16) degrees. What is the measure, in degrees, of the acute angle formed by the transversal and either parallel line?",
+  "prompt": "Two parallel lines are cut by a transversal. One of the angles formed measures (5x - 12) degrees, and the same-side interior angle paired with it measures (3x + 16) degrees. What is the value of x?",
   "choices": [
-   "58",
-   "98",
+   "23",
+   "14",
    "22",
-   "82"
+   "19"
   ]
  },
  {
   "id": "GEOH2-19",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "circles: the region between a chord and its arc",
   "prompt": "A chord of length 12 is drawn in a circle of radius 10. What is the area of the smaller of the two regions into which the chord divides the circle's interior, to the nearest tenth?",
   "choices": [
-   "44.7",
-   "12.9",
    "16.4",
-   "48.0"
+   "48.0",
+   "12.9",
+   "44.7"
   ]
  },
  {
   "id": "GEOH2-20",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "cylinders: volume with a unit conversion",
   "prompt": "A straight pipe has an inner diameter of 5 centimeters and a length of 2 meters. When the pipe is completely full, how many liters of water does it hold, to the nearest tenth of a liter? (1 liter is 1,000 cubic centimeters.)",
   "choices": [
-   "15.7",
-   "1.6",
    "3.9",
-   "3.1"
+   "15.7",
+   "3.1",
+   "1.6"
   ]
  },
  {
   "id": "GEOH2-21",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "similar triangles: a shadow at two different distances",
-  "prompt": "A street lamp stands on level ground. A person 1.8 meters tall standing 4 meters from the base of the lamp casts a shadow 2.5 meters long. The person then walks toward the lamp until the shadow is 1.5 meters long. How far from the base of the lamp is the person then, in meters?",
+  "prompt": "A street lamp stands on level ground. A person 1.8 meters tall standing 4 meters from the base of the lamp casts a shadow 2.5 meters long. A second person, 1.5 meters tall, stands elsewhere on the same ground and casts a shadow 1.5 meters long. How far from the base of the lamp is the second person, in meters?",
   "choices": [
+   "4.7",
+   "3.2",
    "2.4",
-   "3.0",
-   "1.4",
-   "2.1"
+   "1.4"
   ]
  },
  {
   "id": "GEOH2-22",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "circles in the xy-plane: the least distance between two circles",
   "prompt": "In the xy-plane, circle P has equation x^2 + y^2 = 36 and circle Q has center (8, 6) and radius 2. If point M is on circle P and point N is on circle Q, what is the least possible length of segment MN?",
   "choices": [
-   "2",
+   "10",
    "18",
    "4",
-   "10"
+   "2"
   ]
  },
  {
   "id": "GEOH2-23",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "right-triangle trigonometry: a change in height as an angle changes",
   "prompt": "A kite is flown on a taut string 120 meters long, held by a person whose hand is 1.5 meters above level ground. The string first makes an angle of 50 degrees with the horizontal, and later makes an angle of 34 degrees with the horizontal. By how many meters does the kite's height above the ground decrease, to the nearest tenth of a meter?",
   "choices": [
    "68.6",
-   "24.8",
+   "22.3",
    "16.0",
-   "22.3"
+   "24.8"
   ]
  },
  {
   "id": "GEOH2-24",
-  "domain": "Geometry and Trigonometry",
-  "subskill": "solids: the cross section cut from a cube by a plane through three vertices",
   "prompt": "A cube has edges of length 6. A plane passes through the three vertices that are adjacent to one particular vertex of the cube, cutting a corner off the cube. What is the area of the triangular cross section, to the nearest tenth?",
   "choices": [
-   "18.0",
-   "31.2",
    "36.0",
-   "15.6"
+   "15.6",
+   "18.0",
+   "31.2"
   ]
  }
 ]
