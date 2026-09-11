@@ -1,0 +1,347 @@
+[
+ {
+  "id": "SM10-01",
+  "domain": "Math",
+  "subskill": "a digit at a given place in a repeating decimal",
+  "difficulty": "medium",
+  "prompt": "When two sevenths is written as a decimal, the digits after the decimal point repeat in a block of six. What is the 50th digit after the decimal point?",
+  "choices": [
+   "5",
+   "8",
+   "1",
+   "4",
+   "2"
+  ],
+  "correct_answer": "8",
+  "explanation": "Two sevenths is 0.285714285714..., so the repeating block is 2, 8, 5, 7, 1, 4. Dividing 50 by 6 leaves a remainder of 2, so the 50th digit is the 2nd digit of the block, which is \"8\". The option \"2\" comes from counting the digit before the decimal point as the first one, which uses place 49 and lands on the 1st digit of the block. The option \"5\" moves one place too far along the block, to the 3rd digit. The option \"4\" comes from treating 50 as a whole number of blocks with nothing left over and taking the last digit of the block. The option \"1\" comes from using a block of five digits instead of six, which makes 50 a whole number of blocks and lands on the 5th digit.",
+  "solve": "const b=[];let r=2;for(let i=0;i<6;i++){r*=10;b.push(Math.floor(r/7));r%=7;}return b[(50-1)%6];",
+  "distractor_solve": {
+   "2": "const b=[];let r=2;for(let i=0;i<6;i++){r*=10;b.push(Math.floor(r/7));r%=7;}return b[(49-1)%6];",
+   "5": "const b=[];let r=2;for(let i=0;i<6;i++){r*=10;b.push(Math.floor(r/7));r%=7;}return b[(51-1)%6];",
+   "4": "const b=[];let r=2;for(let i=0;i<6;i++){r*=10;b.push(Math.floor(r/7));r%=7;}return b[5];",
+   "1": "const b=[];let r=2;for(let i=0;i<6;i++){r*=10;b.push(Math.floor(r/7));r%=7;}return b[5-1];"
+  }
+ },
+ {
+  "id": "SM10-02",
+  "domain": "Math",
+  "subskill": "total cost under a buy-two-get-one-free offer",
+  "difficulty": "easy",
+  "prompt": "A shop sells notebooks at $3.60 each. Under an offer, for every two notebooks bought at full price a third notebook is free. A customer leaves with 12 notebooks. How many dollars does the customer pay?",
+  "choices": [
+   "43.20",
+   "28.80",
+   "21.60",
+   "39.60",
+   "32.40"
+  ],
+  "correct_answer": "28.80",
+  "explanation": "The notebooks come in groups of three, of which two are paid for. Twelve notebooks make four such groups, so eight notebooks are paid for: 8 x $3.60 = \"28.80\". The option \"43.20\" pays full price for all twelve and ignores the offer. The option \"21.60\" gives one free notebook for every one paid for, so only six are paid for. The option \"32.40\" reads the offer as one free notebook for every three bought at full price, paying for nine. The option \"39.60\" allows a single free notebook for the whole order, paying for eleven.",
+  "solve": "return (12-Math.floor(12/3))*3.60;",
+  "distractor_solve": {
+   "43.20": "return 12*3.60;",
+   "21.60": "return (12/2)*3.60;",
+   "32.40": "return (12-Math.floor(12/4))*3.60;",
+   "39.60": "return (12-1)*3.60;"
+  }
+ },
+ {
+  "id": "SM10-03",
+  "domain": "Math",
+  "subskill": "percent by which one price exceeds another",
+  "difficulty": "easy",
+  "prompt": "A shirt costs $45 and a hat costs $36. The price of the shirt is what percent greater than the price of the hat?",
+  "choices": [
+   "25",
+   "125",
+   "9",
+   "80",
+   "20"
+  ],
+  "correct_answer": "25",
+  "explanation": "The shirt costs $9 more than the hat, and the comparison is with the hat's price, so the increase is 9/36 = 0.25, or \"25\" percent. The option \"20\" divides the $9 difference by the shirt's price instead of the hat's. The option \"80\" gives what percent the hat is of the shirt. The option \"125\" gives what percent the shirt is of the hat and reports that as the increase, forgetting that the whole hat price is not part of the increase. The option \"9\" reports the difference in dollars as though it were a percent.",
+  "solve": "return 100*(45-36)/36;",
+  "distractor_solve": {
+   "20": "return 100*(45-36)/45;",
+   "80": "return 100*36/45;",
+   "125": "return 100*45/36;",
+   "9": "return 45-36;"
+  }
+ },
+ {
+  "id": "SM10-04",
+  "domain": "Math",
+  "subskill": "difference between the mean and the median of a data set",
+  "difficulty": "medium",
+  "prompt": "Seven pupils recorded the number of minutes each of them spent reading one evening: 2, 30, 8, 4, 28, 7, 5. By how many minutes does the mean of these seven numbers exceed their median?",
+  "choices": [
+   "8",
+   "5",
+   "4.5",
+   "7",
+   "6"
+  ],
+  "correct_answer": "5",
+  "explanation": "The seven values total 84, so the mean is 12. In order the values are 2, 4, 5, 7, 8, 28, 30, and the middle one is 7, so the mean exceeds the median by \"5\". The option \"4.5\" treats the list as though it had an even number of values and averages the 4th and 5th values in order, 7 and 8, to get a median of 7.5. The option \"6\" does the same with the 3rd and 4th values, 5 and 7. The option \"7\" divides the total 84 by six instead of seven, giving a mean of 14. The option \"8\" takes the median to be the number written in the middle of the list as printed, which is 4, without putting the values in order.",
+  "solve": "const d=[2,30,8,4,28,7,5];const s=[...d].sort((a,b)=>a-b);const m=d.reduce((a,b)=>a+b,0)/d.length;return m-s[3];",
+  "distractor_solve": {
+   "4.5": "const d=[2,30,8,4,28,7,5];const s=[...d].sort((a,b)=>a-b);const m=d.reduce((a,b)=>a+b,0)/d.length;return m-(s[3]+s[4])/2;",
+   "6": "const d=[2,30,8,4,28,7,5];const s=[...d].sort((a,b)=>a-b);const m=d.reduce((a,b)=>a+b,0)/d.length;return m-(s[2]+s[3])/2;",
+   "7": "const d=[2,30,8,4,28,7,5];const s=[...d].sort((a,b)=>a-b);return d.reduce((a,b)=>a+b,0)/6-s[3];",
+   "8": "const d=[2,30,8,4,28,7,5];const m=d.reduce((a,b)=>a+b,0)/d.length;return m-d[3];"
+  }
+ },
+ {
+  "id": "SM10-05",
+  "domain": "Math",
+  "subskill": "probability that a random point falls inside a region",
+  "difficulty": "medium",
+  "prompt": "A rectangle measures 12 cm by 8 cm. Inside it a triangle is drawn whose base is 6 cm long and lies along one of the 12 cm sides, with the opposite vertex on the other 12 cm side. A dart lands at a point chosen at random inside the rectangle. What is the probability that the point is inside the triangle?",
+  "choices": [
+   "3/4",
+   "1/2",
+   "1/4",
+   "3/8",
+   "3/16"
+  ],
+  "correct_answer": "1/4",
+  "explanation": "The triangle's height is the full 8 cm between the two long sides, so its area is (1/2) x 6 x 8 = 24 square cm, against the rectangle's 96 square cm. The probability is 24/96 = \"1/4\". The option \"1/2\" leaves out the 1/2 in the triangle's area and uses 48/96. The option \"3/16\" uses 6 for the height as well as the base, as though the triangle sat in a 6 by 6 corner, and gives 18/96. The option \"3/8\" divides the triangle's area by 8 x 8 = 64, using the rectangle's shorter side twice. The option \"3/4\" is the probability that the point lands outside the triangle.",
+  "solve": "return (0.5*6*8)/(12*8);",
+  "distractor_solve": {
+   "1/2": "return (6*8)/(12*8);",
+   "3/8": "return (0.5*6*8)/(8*8);",
+   "3/4": "return 1-(0.5*6*8)/(12*8);",
+   "3/16": "return (0.5*6*6)/(12*8);"
+  }
+ },
+ {
+  "id": "SM10-06",
+  "domain": "Math",
+  "subskill": "converting an area using a linear map scale",
+  "difficulty": "medium",
+  "prompt": "On a map, 1 centimetre represents 5 kilometres. A lake covers an area of 18 square centimetres on the map. What is the actual area of the lake, in square kilometres?",
+  "choices": [
+   "0.72",
+   "180",
+   "450",
+   "3.6",
+   "90"
+  ],
+  "correct_answer": "450",
+  "explanation": "Each square centimetre on the map stands for a square 5 km by 5 km, that is 25 square kilometres, so the lake covers 18 x 25 = \"450\" square kilometres. The option \"90\" multiplies by the linear scale 5 rather than by its square. The option \"180\" uses 5 + 5 = 10 as the factor for area instead of 5 x 5 = 25. The option \"3.6\" divides by 5 instead of multiplying. The option \"0.72\" divides by 25 instead of multiplying.",
+  "solve": "return 18*5*5;",
+  "distractor_solve": {
+   "90": "return 18*5;",
+   "180": "return 18*(5+5);",
+   "3.6": "return 18/5;",
+   "0.72": "return 18/(5*5);"
+  }
+ },
+ {
+  "id": "SM10-07",
+  "domain": "Math",
+  "subskill": "recovering a number by undoing a chain of operations",
+  "difficulty": "easy",
+  "prompt": "A number is doubled, then 7 is added to the result, and that total is divided by 3. The final answer is 11. What was the original number?",
+  "choices": [
+   "33",
+   "13",
+   "20",
+   "16.5",
+   "26"
+  ],
+  "correct_answer": "13",
+  "explanation": "Undoing the steps in reverse: 11 x 3 = 33, then 33 - 7 = 26, then 26 / 2 = \"13\". The option \"33\" undoes only the division and stops. The option \"26\" undoes the division and the addition but forgets to halve. The option \"16.5\" halves 33 first and never subtracts the 7. The option \"20\" adds 7 instead of subtracting it before halving.",
+  "solve": "return (11*3-7)/2;",
+  "distractor_solve": {
+   "33": "return 11*3;",
+   "26": "return 11*3-7;",
+   "16.5": "return (11*3)/2;",
+   "20": "return (11*3+7)/2;"
+  }
+ },
+ {
+  "id": "SM10-08",
+  "domain": "Math",
+  "subskill": "a difference recovered from two overlapping averages",
+  "difficulty": "medium",
+  "prompt": "The average of x and y is 14, and the average of y and z is 22. What is the value of z - x?",
+  "choices": [
+   "16",
+   "30",
+   "36",
+   "18",
+   "8"
+  ],
+  "correct_answer": "16",
+  "explanation": "From the averages, x + y = 28 and y + z = 44. Subtracting the first from the second removes y and gives z - x = 44 - 28 = \"16\". The option \"8\" subtracts the two averages without doubling them back into totals. The option \"30\" subtracts the first average from the total y + z = 44, mixing a total with an average. The option \"36\" adds the two averages. The option \"18\" averages the two averages.",
+  "solve": "return 2*22-2*14;",
+  "distractor_solve": {
+   "8": "return 22-14;",
+   "36": "return 14+22;",
+   "18": "return (14+22)/2;",
+   "30": "return (2*22)-14;"
+  }
+ },
+ {
+  "id": "SM10-09",
+  "domain": "Math",
+  "subskill": "area of a triangle from the coordinates of its vertices",
+  "difficulty": "medium",
+  "prompt": "A triangle has vertices at (2, 1), (11, 1) and (5, 7). What is its area, in square units?",
+  "choices": [
+   "22.5",
+   "54",
+   "27",
+   "15",
+   "18"
+  ],
+  "correct_answer": "27",
+  "explanation": "The side from (2, 1) to (11, 1) is horizontal and 9 units long. The third vertex is at height 7, which is 6 units above that side, so the area is (1/2) x 9 x 6 = \"27\". The option \"54\" leaves out the 1/2. The option \"22.5\" uses 5, the third vertex's x-coordinate, as the height instead of its distance from the base. The option \"18\" takes the base to be the 6 units of horizontal distance from (5, 7) across to (11, 1) rather than the full 9-unit side. The option \"15\" adds the base and the height instead of multiplying them.",
+  "solve": "return 0.5*(11-2)*(7-1);",
+  "distractor_solve": {
+   "54": "return (11-2)*(7-1);",
+   "22.5": "return 0.5*(11-2)*5;",
+   "18": "return 0.5*(11-5)*(7-1);",
+   "15": "return (11-2)+(7-1);"
+  }
+ },
+ {
+  "id": "SM10-10",
+  "domain": "Math",
+  "subskill": "the point at which two charging plans cost the same",
+  "difficulty": "medium",
+  "prompt": "Plan A charges a fixed $30 plus $4 for each hour of use. Plan B charges a fixed $54 plus $1 for each hour of use. After how many hours of use do the two plans cost the same amount?",
+  "choices": [
+   "6",
+   "8",
+   "62",
+   "4.8",
+   "24"
+  ],
+  "correct_answer": "8",
+  "explanation": "Plan A starts $24 cheaper but gains $3 on Plan B every hour, so the plans meet after 24 / 3 = \"8\" hours. The option \"24\" stops at the difference between the fixed charges. The option \"6\" divides that difference by 4, the larger hourly rate, rather than by the difference between the rates. The option \"4.8\" divides it by 5, the sum of the hourly rates. The option \"62\" is the number of dollars each plan costs at the moment they agree, which is not what the question asks for.",
+  "solve": "return (54-30)/(4-1);",
+  "distractor_solve": {
+   "24": "return 54-30;",
+   "6": "return (54-30)/4;",
+   "4.8": "return (54-30)/(4+1);",
+   "62": "return 30+4*((54-30)/(4-1));"
+  }
+ },
+ {
+  "id": "SM10-11",
+  "domain": "Math",
+  "subskill": "volume of a right prism with a triangular cross-section",
+  "difficulty": "medium",
+  "prompt": "A solid right prism is 15 cm long. Its cross-section is a right-angled triangle whose two shorter sides measure 6 cm and 8 cm. What is the volume of the prism, in cubic centimetres?",
+  "choices": [
+   "240",
+   "360",
+   "720",
+   "270",
+   "120"
+  ],
+  "correct_answer": "360",
+  "explanation": "The cross-section has area (1/2) x 6 x 8 = 24 square cm, and the volume is that area times the length: 24 x 15 = \"360\". The option \"720\" treats the cross-section as a 6 by 8 rectangle and leaves out the 1/2. The option \"240\" multiplies the cross-section by 10, the hypotenuse of the triangle, instead of by the prism's length of 15. The option \"270\" uses 6 cm for both of the triangle's shorter sides. The option \"120\" divides by 3, as the volume of a pyramid would require, but a prism keeps its full cross-section along its whole length.",
+  "solve": "return 0.5*6*8*15;",
+  "distractor_solve": {
+   "720": "return 6*8*15;",
+   "240": "return 0.5*6*8*Math.sqrt(6*6+8*8);",
+   "270": "return 0.5*6*6*15;",
+   "120": "return 0.5*6*8*15/3;"
+  }
+ },
+ {
+  "id": "SM10-12",
+  "domain": "Math",
+  "subskill": "counting the zeros at the end of a long product",
+  "difficulty": "hard",
+  "prompt": "The product 1 x 2 x 3 x ... x 25, using every whole number from 1 to 25, is written out in full. How many zeros does it end in?",
+  "choices": [
+   "4",
+   "6",
+   "22",
+   "5",
+   "10"
+  ],
+  "correct_answer": "6",
+  "explanation": "Each final zero needs a factor of 5 paired with a factor of 2, and factors of 2 are far more plentiful, so the count is the number of factors of 5. The multiples of 5 up to 25 contribute five of them, and 25 contributes a second one of its own, giving \"6\". The option \"5\" counts the five multiples of 5 and misses the extra factor hidden in 25. The option \"10\" counts each multiple of 5 twice, once for its own factor and once for the factor of 2 it pairs with. The option \"4\" counts only the multiples of 5 below 25 and leaves 25 itself out. The option \"22\" counts every factor of 2 in the product, including the extra ones in 4, 8, 16 and so on.",
+  "solve": "return Math.floor(25/5)+Math.floor(25/25);",
+  "distractor_solve": {
+   "5": "return Math.floor(25/5);",
+   "10": "return 2*Math.floor(25/5);",
+   "22": "return Math.floor(25/2)+Math.floor(25/4)+Math.floor(25/8)+Math.floor(25/16);",
+   "4": "return Math.floor(24/5);"
+  }
+ },
+ {
+  "id": "SM10-13",
+  "domain": "Math",
+  "subskill": "mixing two solutions of different concentrations to reach a target",
+  "difficulty": "hard",
+  "prompt": "A chemist has 30 litres of a solution that is 60% acid. How many litres of a solution that is 20% acid must be added so that the mixture is 45% acid?",
+  "choices": [
+   "72",
+   "18",
+   "13.5",
+   "6",
+   "48"
+  ],
+  "correct_answer": "18",
+  "explanation": "Let x be the litres added. The acid in the mixture is 0.20x + 0.60(30), and the mixture holds x + 30 litres, so 0.20x + 18 = 0.45(x + 30) = 0.45x + 13.5. That gives 4.5 = 0.25x and x = \"18\" litres, which checks: 21.6 litres of acid in 48 litres is 45%. The option \"72\" leaves the added litres out of the final total, solving 0.20x + 18 = 0.45x. The option \"48\" is the total volume of the finished mixture rather than the amount added. The option \"13.5\" is 45% of 30, an intermediate value from the working. The option \"6\" reads the 30 litres as being the weaker solution and reports 20% of it.",
+  "solve": "return (0.45*30-0.60*30)/(0.20-0.45);",
+  "distractor_solve": {
+   "72": "return (0.60*30)/(0.45-0.20);",
+   "48": "return 30+(0.45*30-0.60*30)/(0.20-0.45);",
+   "13.5": "return 0.45*30;",
+   "6": "return 0.20*30;"
+  }
+ },
+ {
+  "id": "SM10-14",
+  "domain": "Math",
+  "subskill": "counting squares of every size on a square grid",
+  "difficulty": "hard",
+  "prompt": "A square board is ruled into a 4 by 4 arrangement of small squares, all of the same size. How many squares of any size can be traced along the ruled lines?",
+  "choices": [
+   "14",
+   "30",
+   "16",
+   "25",
+   "17"
+  ],
+  "correct_answer": "30",
+  "explanation": "Squares can be traced in four sizes. There are 16 of the smallest, 9 that are 2 by 2, 4 that are 3 by 3 and 1 that is 4 by 4, so the total is 16 + 9 + 4 + 1 = \"30\". The option \"16\" counts only the smallest squares. The option \"17\" counts the smallest squares and the whole board and misses the sizes in between. The option \"25\" counts the 1 by 1 and 2 by 2 squares and stops. The option \"14\" counts 1 + 4 + 9 for the three larger sizes and forgets the sixteen smallest.",
+  "solve": "let t=0;for(let k=1;k<=4;k++)t+=(5-k)*(5-k);return t;",
+  "distractor_solve": {
+   "16": "return 4*4;",
+   "17": "return 4*4+1;",
+   "25": "return 4*4+3*3;",
+   "14": "return 1+2*2+3*3;"
+  }
+ },
+ {
+  "id": "SM10-15",
+  "domain": "Math",
+  "subskill": "area of a rectangular floor with a square corner removed",
+  "difficulty": "medium",
+  "prompt": "A rectangular room measures 9 metres by 6 metres. A square alcove of side 3 metres is cut out of one corner, so that the floor is L-shaped. What is the area of the floor, in square metres?",
+  "choices": [
+   "51",
+   "45",
+   "18",
+   "54",
+   "42"
+  ],
+  "correct_answer": "45",
+  "explanation": "The full rectangle covers 9 x 6 = 54 square metres and the square corner removes 3 x 3 = 9 of them, leaving \"45\". The option \"54\" ignores the alcove. The option \"42\" subtracts 12, the perimeter of the square, instead of its area. The option \"51\" subtracts 3, the side of the square. The option \"18\" shortens both sides of the room by 3 and multiplies 6 by 3, which removes far more than the corner.",
+  "solve": "return 9*6-3*3;",
+  "distractor_solve": {
+   "54": "return 9*6;",
+   "42": "return 9*6-4*3;",
+   "51": "return 9*6-3;",
+   "18": "return (9-3)*(6-3);"
+  }
+ }
+]
