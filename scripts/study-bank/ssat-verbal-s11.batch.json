@@ -1,0 +1,922 @@
+[
+  {
+    "id": "SV11-01",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "DAMP",
+    "choices": [
+      "sooty",
+      "moist",
+      "gritty",
+      "sour",
+      "brittle"
+    ],
+    "correct_answer": "moist",
+    "explanation": "Something DAMP holds a little water without being soaked, which is what \"moist\" names.",
+    "distractor_rationales": [
+      "\"sooty\" is a dry surface blackened by smoke",
+      "KEY",
+      "\"gritty\" is a dry surface carrying loose grit",
+      "\"sour\" is a taste rather than a condition of wetness",
+      "\"brittle\" snaps under pressure, a property of the material rather than a condition of wetness"
+    ],
+    "set_id": "SET-A",
+    "construction": "one frame (a condition a cellar wall could be in), five different fields of it; three of the five are marked words, so the key is not the only uncommon one"
+  },
+  {
+    "id": "SV11-02",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "FIN is to FISH as",
+    "choices": [
+      "shell is to turtle",
+      "hive is to bee",
+      "pack is to wolf",
+      "wing is to bird",
+      "cub is to fox"
+    ],
+    "correct_answer": "wing is to bird",
+    "explanation": "A fin is the limb a fish drives itself through the water with, so the pair is an animal and the limb it travels by; \"wing is to bird\" is that same pair.",
+    "distractor_rationales": [
+      "\"shell is to turtle\" is the armour the animal carries, a covering rather than the limb it travels by",
+      "\"hive is to bee\" is where the animal lives, not a part of its body at all",
+      "\"pack is to wolf\" is the group the animal belongs to rather than anything it moves with",
+      "KEY",
+      "\"cub is to fox\" is the young of the animal rather than a part of the grown one"
+    ],
+    "set_id": "SET-A",
+    "construction": "all five options in one animal frame; five DIFFERENT canonical animal relations (covering, dwelling, group, limb, offspring)",
+    "relation": "animal : the limb it travels by",
+    "option_relations": [
+      "covering : animal",
+      "dwelling : animal",
+      "group : animal",
+      "limb of locomotion : animal",
+      "young : adult"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "each pair is a true, tight animal relation; with FIN is to FISH covered nothing in the option list says which of the five relations is wanted"
+  },
+  {
+    "id": "SV11-03",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "HALT",
+    "choices": [
+      "stop",
+      "rush",
+      "trail",
+      "drop",
+      "repeat"
+    ],
+    "correct_answer": "stop",
+    "explanation": "To HALT a column is to bring its movement to an end, i.e. to \"stop\" it.",
+    "distractor_rationales": [
+      "KEY",
+      "\"rush\" is a change in the rate of the motion rather than an end to it",
+      "\"trail\" is to go along behind something that is still moving",
+      "\"drop\" is a change of height, not of motion",
+      "\"repeat\" is to begin the same thing again rather than to end it"
+    ],
+    "set_id": "SET-A",
+    "construction": "antonym-anchored: one option (\"hurry\") pulls the opposite way along the axis, the rest move the answer off the axis entirely"
+  },
+  {
+    "id": "SV11-04",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "LIBRARIAN is to LIBRARY as",
+    "choices": [
+      "surgeon is to scalpel",
+      "watchmaker is to wristwatch",
+      "conductor is to orchestra",
+      "physician is to patient",
+      "pharmacist is to pharmacy"
+    ],
+    "correct_answer": "pharmacist is to pharmacy",
+    "explanation": "A librarian is the trained person whose work is done in a library, so the pair is a worker and the place of work; \"pharmacist is to pharmacy\" is that same pair.",
+    "distractor_rationales": [
+      "\"surgeon is to scalpel\" gives the instrument the work is done with, not the place it is done in",
+      "\"watchmaker is to wristwatch\" gives what the worker produces",
+      "\"conductor is to orchestra\" gives the body of people the worker directs",
+      "\"physician is to patient\" gives the person the worker attends rather than the place he attends them in",
+      "KEY"
+    ],
+    "set_id": "SET-A",
+    "construction": "all five options occupational; five different worker relations (tool, product, people directed, field, workplace)",
+    "relation": "worker : place of work",
+    "option_relations": [
+      "worker : tool",
+      "worker : product",
+      "leader : group led",
+      "worker : person served",
+      "worker : workplace"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "five tight occupational relations of five different kinds (tool, product, people led, people served, place); the stem names which kind is wanted and nothing else does"
+  },
+  {
+    "id": "SV11-05",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "TIDY",
+    "choices": [
+      "orderly",
+      "plain",
+      "spacious",
+      "empty",
+      "narrow"
+    ],
+    "correct_answer": "orderly",
+    "explanation": "A TIDY room is one in which everything has been put in its place, which is what \"orderly\" describes.",
+    "distractor_rationales": [
+      "KEY",
+      "\"plain\" is without ornament, which a thoroughly cluttered room can also be",
+      "\"spacious\" has a great deal of room in it, which says nothing about how what is in it is arranged",
+      "\"empty\" contains nothing, whereas a tidy room may be quite full",
+      "\"narrow\" is a matter of the size of the room rather than its arrangement"
+    ],
+    "set_id": "SET-A",
+    "construction": "one frame (a room), five different fields; the distractors are each true of SOME tidy rooms, so none is dismissible on sight"
+  },
+  {
+    "id": "SV11-06",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "GLACIER is to ICE as",
+    "choices": [
+      "mountain is to summit",
+      "cave is to bat",
+      "dune is to sand",
+      "ocean is to voyage",
+      "volcano is to erupt"
+    ],
+    "correct_answer": "dune is to sand",
+    "explanation": "A glacier is a landform made of nothing but ice, so the pair is a landform and the loose material heaped up to build it; \"dune is to sand\" is that same pair.",
+    "distractor_rationales": [
+      "\"mountain is to summit\" gives the highest part of the landform rather than what it is made of",
+      "\"cave is to bat\" gives a creature that lives inside the landform rather than what the landform is made of",
+      "KEY",
+      "\"ocean is to voyage\" gives something done on it",
+      "\"volcano is to erupt\" gives what the landform does rather than what it is made of"
+    ],
+    "set_id": "SET-A",
+    "construction": "all five options geographic; five different relations (part, keeper, activity, material, behaviour)",
+    "relation": "landform : the loose material it is built of",
+    "option_relations": [
+      "whole : highest part",
+      "dwelling : animal housed",
+      "landform : material",
+      "place : activity done on it",
+      "thing : process it performs"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "all five are real geographic pairs; the axis (material? part? activity?) is named only by the stem"
+  },
+  {
+    "id": "SV11-07",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "easy",
+    "prompt": "SWIFT",
+    "choices": [
+      "quiet",
+      "even",
+      "sudden",
+      "graceful",
+      "rapid"
+    ],
+    "correct_answer": "rapid",
+    "explanation": "A SWIFT runner covers the ground in little time, which is what \"rapid\" says.",
+    "distractor_rationales": [
+      "\"quiet\" makes no noise, which a very slow mover manages just as well",
+      "\"even\" keeps one rate throughout, and that rate may be fast or slow",
+      "\"sudden\" begins without warning, which is about the start of a motion rather than its speed",
+      "\"graceful\" is the manner of the movement rather than its rate",
+      "KEY"
+    ],
+    "set_id": "SET-A",
+    "construction": "near-miss present: \"sudden\" sits on the same temporal axis as the key and must be separated by what exactly is being timed"
+  },
+  {
+    "id": "SV11-08",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "easy",
+    "prompt": "PEDAL is to BICYCLE as",
+    "choices": [
+      "rudder is to sailboat",
+      "oar is to rowboat",
+      "saddle is to horse",
+      "spoke is to wheel",
+      "garage is to car"
+    ],
+    "correct_answer": "oar is to rowboat",
+    "explanation": "The pedal is the part of a bicycle the rider works to drive it forward, so the pair is the propelling part and the vehicle it drives; \"oar is to rowboat\" is that same pair.",
+    "distractor_rationales": [
+      "\"rudder is to sailboat\" gives the part that steers the vessel rather than the part that drives it",
+      "KEY",
+      "\"saddle is to horse\" gives gear strapped onto a living animal, not a part of a vehicle",
+      "\"spoke is to wheel\" gives a part of a part, and one that carries load rather than supplying the push",
+      "\"garage is to car\" gives where the vehicle is kept"
+    ],
+    "set_id": "SET-A",
+    "construction": "near-miss present in the same family: \"rudder is to sailboat\" is also a part of a vessel worked by the person aboard, and is separated only by drive-versus-steer",
+    "relation": "the propelling part : the vehicle",
+    "option_relations": [
+      "steering part : vessel",
+      "propelling part : vessel",
+      "gear : animal",
+      "part : larger part",
+      "storage : vehicle"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "two options share the part-of-a-vessel family and three are other true relations; with the stem covered there is no way to tell whether drive, steer, keep or carry is wanted"
+  },
+  {
+    "id": "SV11-09",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "GRUFF",
+    "choices": [
+      "surly",
+      "hasty",
+      "meek",
+      "formal",
+      "affable"
+    ],
+    "correct_answer": "surly",
+    "explanation": "A GRUFF answer is rough and out of temper, which is what \"surly\" names.",
+    "distractor_rationales": [
+      "KEY",
+      "\"hasty\" is done in a hurry, which says nothing about roughness of temper",
+      "\"meek\" submits without protest, which is the opposite of roughening an exchange",
+      "\"formal\" is correct and ceremonious, a manner a gruff speaker does not trouble with",
+      "\"affable\" is easy and pleasant with everyone, which is the very thing the word denies"
+    ],
+    "set_id": "SET-A",
+    "construction": "one frame (manner of an answer), five different fields; \"surly\" and \"affable\" are both marked words, so the key is not the only uncommon one"
+  },
+  {
+    "id": "SV11-10",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "GERMINATE is to SEED as",
+    "choices": [
+      "swim is to fish",
+      "wilt is to blossom",
+      "pollinate is to bee",
+      "graft is to stem",
+      "hatch is to egg"
+    ],
+    "correct_answer": "hatch is to egg",
+    "explanation": "To germinate is for a seed to break open and let the living thing inside begin; \"hatch is to egg\" is that same beginning breaking out of that same kind of case.",
+    "distractor_rationales": [
+      "\"swim is to fish\" is what the grown creature habitually does, not the start of its life",
+      "\"wilt is to blossom\" is the end of a flower rather than a beginning",
+      "\"pollinate is to bee\" is an action performed BY the animal on something else, not one the thing itself undergoes",
+      "\"graft is to stem\" is an operation a gardener performs on the plant from outside",
+      "KEY"
+    ],
+    "set_id": "SET-A",
+    "construction": "options span plant and animal on both sides, so the key is not the only option from a domain other than the stem’s",
+    "relation": "the beginning it undergoes : the case it breaks out of",
+    "option_relations": [
+      "habitual action : creature",
+      "decline : thing declining",
+      "action : agent performing it",
+      "operation : thing operated on",
+      "beginning : case broken out of"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "all five are true biological pairs; beginning, ending, agent, patient and settled habit are all live until the stem names one"
+  },
+  {
+    "id": "SV11-11",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "DWINDLE",
+    "choices": [
+      "scatter",
+      "harden",
+      "wander",
+      "shrink",
+      "settle"
+    ],
+    "correct_answer": "shrink",
+    "explanation": "Supplies that DWINDLE grow smaller little by little, which is what \"shrink\" says.",
+    "distractor_rationales": [
+      "\"scatter\" spreads the same quantity out rather than reducing it",
+      "\"harden\" is a change of texture, not of amount",
+      "\"wander\" is a change of place",
+      "KEY",
+      "\"settle\" comes to rest, which leaves the quantity exactly as it was"
+    ],
+    "set_id": "SET-B",
+    "construction": "antonym-anchored plus three off-axis changes; every option is a thing a heap of supplies could genuinely do"
+  },
+  {
+    "id": "SV11-12",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "SKETCH is to PAINTING as",
+    "choices": [
+      "encore is to concert",
+      "outline is to essay",
+      "chapter is to novel",
+      "critic is to review",
+      "canvas is to portrait"
+    ],
+    "correct_answer": "outline is to essay",
+    "explanation": "A sketch is the rough version an artist works out before the finished painting, so the pair is a preliminary draft and the finished work; \"outline is to essay\" is that same pair.",
+    "distractor_rationales": [
+      "\"encore is to concert\" comes after the work rather than before it",
+      "KEY",
+      "\"chapter is to novel\" is one part of the finished work, not a draft of the whole",
+      "\"critic is to review\" is a person and the thing that person writes",
+      "\"canvas is to portrait\" is the surface the finished work is made on"
+    ],
+    "set_id": "SET-B",
+    "construction": "two options are literary, so the key is not the only option from a domain other than the stem’s",
+    "relation": "preliminary draft : finished work",
+    "option_relations": [
+      "addition after : event",
+      "part : whole",
+      "worker : product",
+      "support : work made on it",
+      "draft : finished work"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "before, part, maker, ground and draft are all ordinary relations between a work and something near it; the stem alone picks one"
+  },
+  {
+    "id": "SV11-13",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "SULLEN",
+    "choices": [
+      "timid",
+      "frantic",
+      "restless",
+      "morose",
+      "distracted"
+    ],
+    "correct_answer": "morose",
+    "explanation": "A SULLEN child is silently gloomy and out of temper, which is what \"morose\" names.",
+    "distractor_rationales": [
+      "\"timid\" is silent from shyness rather than from ill humour",
+      "\"frantic\" is agitated and hurried, the opposite of the heavy stillness the word carries",
+      "\"restless\" cannot keep still, which is again motion rather than gloom",
+      "KEY",
+      "\"distracted\" has its attention elsewhere, which is not a mood at all"
+    ],
+    "set_id": "SET-B",
+    "construction": "near-miss present: \"timid\" shares the silence the word suggests and is separated only by the reason for it"
+  },
+  {
+    "id": "SV11-14",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "STAMMER is to SPEECH as",
+    "choices": [
+      "scar is to skin",
+      "applause is to performance",
+      "limp is to gait",
+      "lens is to telescope",
+      "melody is to song"
+    ],
+    "correct_answer": "limp is to gait",
+    "explanation": "A stammer is a halting flaw in a person’s speech, so the pair is an impediment and the faculty it interrupts; \"limp is to gait\" is that same pair.",
+    "distractor_rationales": [
+      "\"scar is to skin\" is a mark left on a body part rather than a flaw in a faculty, and it is the trace of an injury already healed",
+      "\"applause is to performance\" is the audience’s response to the act",
+      "KEY",
+      "\"lens is to telescope\" is a working part of the instrument, not a fault in it",
+      "\"melody is to song\" is a component of the thing, and a welcome one"
+    ],
+    "set_id": "SET-B",
+    "construction": "two options are bodily, so the key is not the only option from a domain other than the stem’s",
+    "relation": "impediment : the faculty it interrupts",
+    "option_relations": [
+      "mark : body part",
+      "response : event",
+      "working part : instrument",
+      "component : whole",
+      "impediment : faculty"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "mark, response, part, component and fault are all true relations; nothing in the options says the wanted one is a fault"
+  },
+  {
+    "id": "SV11-15",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "COAX",
+    "choices": [
+      "browbeat",
+      "nag",
+      "cajole",
+      "deceive",
+      "entreat"
+    ],
+    "correct_answer": "cajole",
+    "explanation": "To COAX someone is to bring them round by gentle and flattering persuasion, which is what \"cajole\" names.",
+    "distractor_rationales": [
+      "\"browbeat\" bullies the person into it instead of winning them over",
+      "\"nag\" is repeated complaint, which wears a person down rather than coaxing them",
+      "KEY",
+      "\"deceive\" gets the act by giving a false account of the facts",
+      "\"entreat\" begs openly and earnestly, with none of the flattery the word carries"
+    ],
+    "set_id": "SET-B",
+    "construction": "five distinct ways of getting another person to act; \"browbeat\", \"cajole\" and \"entreat\" are all marked words, so markedness does not name the key"
+  },
+  {
+    "id": "SV11-16",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "ARSENAL is to WEAPONS as",
+    "choices": [
+      "smithy is to blacksmith",
+      "vault is to bank",
+      "harvest is to autumn",
+      "granary is to grain",
+      "surveyor is to boundary"
+    ],
+    "correct_answer": "granary is to grain",
+    "explanation": "An arsenal is the building weapons are kept in, so the pair is a store and the goods laid up in it; \"granary is to grain\" is that same pair.",
+    "distractor_rationales": [
+      "\"smithy is to blacksmith\" is a workplace and the man who works there",
+      "\"vault is to bank\" is a part of a building rather than what is held in it",
+      "\"harvest is to autumn\" is an event and the season it falls in",
+      "KEY",
+      "\"surveyor is to boundary\" is a worker and the line he fixes"
+    ],
+    "set_id": "SET-B",
+    "construction": "no option shares the stem’s military domain, so domain distance carries no signal on this item",
+    "relation": "store : goods kept in it",
+    "option_relations": [
+      "workplace : worker",
+      "part : building",
+      "event : season",
+      "store : goods",
+      "worker : thing established"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "all five are tight; place-and-worker, part-and-whole, event-and-time, store-and-goods are equally available until the stem names one"
+  },
+  {
+    "id": "SV11-17",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "TEDIOUS",
+    "choices": [
+      "difficult",
+      "tiresome",
+      "thankless",
+      "lengthy",
+      "confusing"
+    ],
+    "correct_answer": "tiresome",
+    "explanation": "A TEDIOUS task wears the patience out by being dull, which is what \"tiresome\" names.",
+    "distractor_rationales": [
+      "\"difficult\" is hard to do, whereas a tedious job is usually easy and merely long",
+      "KEY",
+      "\"thankless\" brings the doer no credit for it, which is a complaint about the reward rather than about the dullness of the work",
+      "\"lengthy\" takes much time, and time by itself does not make a task dull",
+      "\"confusing\" is hard to follow, which is a different complaint again"
+    ],
+    "set_id": "SET-B",
+    "construction": "near-miss present: \"lengthy\" is the association the word most often travels with and is separated only by whether dullness is part of the meaning"
+  },
+  {
+    "id": "SV11-18",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "OASIS is to DESERT as",
+    "choices": [
+      "clearing is to forest",
+      "mirage is to traveler",
+      "delta is to river",
+      "summit is to climber",
+      "avalanche is to mountainside"
+    ],
+    "correct_answer": "clearing is to forest",
+    "explanation": "An oasis is the patch of water and greenery set inside a desert that is otherwise unbroken sand; \"clearing is to forest\" is that same pocket of the opposite kind inside a large expanse.",
+    "distractor_rationales": [
+      "KEY",
+      "\"mirage is to traveler\" is an illusion and the person taken in by it",
+      "\"delta is to river\" is the mouth a river builds, made of the very stuff the river carries",
+      "\"summit is to climber\" is a goal and the person who seeks it",
+      "\"avalanche is to mountainside\" is a violent event and the slope it comes down"
+    ],
+    "set_id": "SET-B",
+    "construction": "all five options geographic; the key is a same-domain option, balancing the items where it is not",
+    "relation": "a pocket of the opposite kind : the expanse containing it",
+    "option_relations": [
+      "illusion : person deceived",
+      "feature : the body that built it",
+      "goal : person seeking it",
+      "event : the slope it befalls",
+      "contrasting pocket : expanse"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "illusion, deposit, goal, catastrophe and enclosed contrast are all real; the stem is the only thing that says a contrast inside an expanse is wanted"
+  },
+  {
+    "id": "SV11-19",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "RAVENOUS",
+    "choices": [
+      "insatiable",
+      "fractious",
+      "famished",
+      "savage",
+      "restless"
+    ],
+    "correct_answer": "famished",
+    "explanation": "A RAVENOUS traveller is one whose hunger has grown extreme, which is what \"famished\" says.",
+    "distractor_rationales": [
+      "\"insatiable\" can never be satisfied however much it is given, whereas a hunger of this kind ends with a meal",
+      "\"fractious\" is fretful and hard to manage, which extreme hunger may make a person but is not what the word means",
+      "KEY",
+      "\"savage\" is fierce in manner, which the sound of the word suggests but its sense does not",
+      "\"restless\" cannot settle, which hunger may cause but is not"
+    ],
+    "set_id": "SET-B",
+    "construction": "sound-alike trap (\"savage\") plus a degree trap (\"insatiable\"); the unrelated-word slot is deliberately absent"
+  },
+  {
+    "id": "SV11-20",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "medium",
+    "prompt": "SCARECROW is to CROWS as",
+    "choices": [
+      "repellent is to insects",
+      "muzzle is to dog",
+      "fence is to cattle",
+      "collar is to cat",
+      "kennel is to hound"
+    ],
+    "correct_answer": "repellent is to insects",
+    "explanation": "A scarecrow is set up to drive crows off the field, so the pair is a device and the creature it keeps away; \"repellent is to insects\" is that same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"muzzle is to dog\" restrains what the animal can do with its jaws while it stays where it is",
+      "\"fence is to cattle\" holds the animals in rather than driving them off",
+      "\"collar is to cat\" marks the animal as belonging to someone",
+      "\"kennel is to hound\" houses the animal"
+    ],
+    "set_id": "SET-B",
+    "construction": "all five options are device-and-animal pairs in one frame, and five different device relations",
+    "relation": "device : the creature it drives away",
+    "option_relations": [
+      "restraint : animal restrained",
+      "enclosure : animals held in",
+      "identifying gear : animal",
+      "shelter : animal housed",
+      "deterrent : creature driven off"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "restrain, confine, identify, house and repel are five ordinary things a device does to an animal; the stem is the only thing that says repel"
+  },
+  {
+    "id": "SV11-21",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "SHREWD",
+    "choices": [
+      "genial",
+      "cautious",
+      "erudite",
+      "astute",
+      "dogged"
+    ],
+    "correct_answer": "astute",
+    "explanation": "A SHREWD buyer sees quickly where his own advantage lies, which is what \"astute\" names.",
+    "distractor_rationales": [
+      "\"genial\" is warm and friendly towards others, a matter of temper rather than of judgment",
+      "\"cautious\" is slow to risk anything, whereas a shrewd man risks readily once he sees the advantage",
+      "\"erudite\" is full of deep book learning, which is not the same as practical judgment",
+      "KEY",
+      "\"dogged\" keeps stubbornly at a thing, which is persistence rather than penetration"
+    ],
+    "set_id": "SET-C",
+    "construction": "all five are terms of praise in the same register, and four of the five are marked words"
+  },
+  {
+    "id": "SV11-22",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "MORTAR is to BRICKS as",
+    "choices": [
+      "insulation is to cable",
+      "trowel is to mason",
+      "kiln is to pottery",
+      "solder is to wires",
+      "varnish is to surface"
+    ],
+    "correct_answer": "solder is to wires",
+    "explanation": "Mortar is the substance run between bricks to fix them to one another, so the pair is a material and the separate pieces it joins; \"solder is to wires\" is that same pair.",
+    "distractor_rationales": [
+      "\"insulation is to cable\" is a material wrapped round to keep the current in rather than to join two pieces",
+      "\"trowel is to mason\" is a tool and the man who wields it",
+      "\"kiln is to pottery\" is the oven and the ware fired in it",
+      "KEY",
+      "\"varnish is to surface\" is a coat laid over one surface to protect it, joining nothing"
+    ],
+    "set_id": "SET-C",
+    "construction": "two options are electrical, so the key is not the only option from a domain other than the stem’s",
+    "relation": "joining material : the separate pieces it joins",
+    "option_relations": [
+      "protective wrapping : thing wrapped",
+      "tool : user",
+      "equipment : product treated",
+      "protective coat : surface",
+      "joining material : pieces joined"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "wrap, tool, oven, coat and join are five true trade relations; the stem alone says the joining one is wanted"
+  },
+  {
+    "id": "SV11-23",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "NOTORIOUS",
+    "choices": [
+      "celebrated",
+      "obscure",
+      "respected",
+      "influential",
+      "infamous"
+    ],
+    "correct_answer": "infamous",
+    "explanation": "A NOTORIOUS smuggler is widely known for something bad, which is what \"infamous\" says.",
+    "distractor_rationales": [
+      "\"celebrated\" is equally well known but honoured for it rather than condemned",
+      "\"obscure\" is not known at all",
+      "\"respected\" is held in good esteem by those who deal with him, which is a standing rather than a wide name for anything bad",
+      "\"influential\" can sway others, which says nothing about the repute he is held in",
+      "KEY"
+    ],
+    "set_id": "SET-C",
+    "construction": "the axis (extent of repute) is shared by three options and the key differs on a second axis (its favour), so no option is off-topic"
+  },
+  {
+    "id": "SV11-24",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "PERJURY is to WITNESS as",
+    "choices": [
+      "chronicle is to historian",
+      "scalpel is to surgeon",
+      "plagiarism is to author",
+      "acquittal is to defendant",
+      "sermon is to preacher"
+    ],
+    "correct_answer": "plagiarism is to author",
+    "explanation": "Perjury is the characteristic offence of a witness — the betrayal of the one duty the role exists for, which is to tell the truth. \"plagiarism is to author\" is that same betrayal of an author’s one duty, which is to set down his own words.",
+    "distractor_rationales": [
+      "\"chronicle is to historian\" is the legitimate product of the role rather than its abuse",
+      "\"scalpel is to surgeon\" is the instrument of the role",
+      "KEY",
+      "\"acquittal is to defendant\" is an outcome that befalls the person rather than a fault he commits",
+      "\"sermon is to preacher\" is again the proper work of the role"
+    ],
+    "set_id": "SET-C",
+    "construction": "two options are literary, so the key is not the only option from a domain other than the stem’s",
+    "relation": "the characteristic offence : the role that commits it",
+    "option_relations": [
+      "product : role",
+      "instrument : role",
+      "outcome : person",
+      "proper work : role",
+      "characteristic offence : role"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "every option pairs a role with something belonging to it; product, tool, outcome, duty and offence are all live until the stem names the offence"
+  },
+  {
+    "id": "SV11-25",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "medium",
+    "prompt": "GARNER",
+    "choices": [
+      "squander",
+      "borrow",
+      "conceal",
+      "bestow",
+      "gather"
+    ],
+    "correct_answer": "gather",
+    "explanation": "To GARNER praise is to collect it up bit by bit, which is what \"gather\" says.",
+    "distractor_rationales": [
+      "\"squander\" throws a store away rather than building one",
+      "\"borrow\" takes on terms of return rather than accumulating anything",
+      "\"conceal\" hides what one already has",
+      "\"bestow\" hands over to another what one has",
+      "KEY"
+    ],
+    "set_id": "SET-C",
+    "construction": "all five are things one does with a stock of something; two are marked words and two plain, so register does not name the key"
+  },
+  {
+    "id": "SV11-26",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "SCHISM is to CHURCH as",
+    "choices": [
+      "secession is to nation",
+      "abdication is to monarch",
+      "doctrine is to sect",
+      "liturgy is to service",
+      "tithe is to congregation"
+    ],
+    "correct_answer": "secession is to nation",
+    "explanation": "A schism is the split by which one part of a church breaks away from the body; \"secession is to nation\" is that same breaking-away of a part from a whole.",
+    "distractor_rationales": [
+      "KEY",
+      "\"abdication is to monarch\" is one person laying down an office, which leaves the body itself entire",
+      "\"doctrine is to sect\" is the belief a group holds",
+      "\"liturgy is to service\" is the order of words a service follows",
+      "\"tithe is to congregation\" is a payment the members make"
+    ],
+    "set_id": "SET-C",
+    "construction": "two options are political rather than ecclesiastical, so the key is not the only option outside the stem’s domain",
+    "relation": "a breaking-away of part : the body broken",
+    "option_relations": [
+      "renunciation of office : office-holder",
+      "belief : group holding it",
+      "script : ceremony",
+      "payment : payers",
+      "rupture : body ruptured"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "all five pair an institution with something it can undergo or possess; rupture is distinguishable only once the stem supplies it"
+  },
+  {
+    "id": "SV11-27",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "SANGUINE",
+    "choices": [
+      "ruthless",
+      "hopeful",
+      "grave",
+      "courteous",
+      "indifferent"
+    ],
+    "correct_answer": "hopeful",
+    "explanation": "A SANGUINE forecast expects matters to turn out well, which is what \"hopeful\" says.",
+    "distractor_rationales": [
+      "\"ruthless\" is without pity in pursuing an end, a matter of conduct rather than of expectation",
+      "KEY",
+      "\"grave\" is serious and weighty in bearing, a temperament but not an expectation about how things will turn out",
+      "\"courteous\" is polite towards others, again conduct",
+      "\"indifferent\" expects nothing either way, whereas the word leans decidedly to the good side"
+    ],
+    "set_id": "SET-C",
+    "construction": "all five are old temperament words in the same register, so the key is not the odd learned one"
+  },
+  {
+    "id": "SV11-28",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "topic_tag": "analogy",
+    "difficulty": "hard",
+    "prompt": "EMBARGO is to TRADE as",
+    "choices": [
+      "tariff is to import",
+      "quarantine is to patient",
+      "curfew is to movement",
+      "subsidy is to farmer",
+      "referendum is to policy"
+    ],
+    "correct_answer": "curfew is to movement",
+    "explanation": "An embargo is an order that stops trade altogether for a time, so the pair is a prohibition and the activity it forbids; \"curfew is to movement\" is that same pair — an order forbidding people to go about.",
+    "distractor_rationales": [
+      "\"tariff is to import\" taxes the activity and makes it dearer but leaves it lawful, so it restrains rather than forbids",
+      "\"quarantine is to patient\" names the person confined rather than the activity stopped",
+      "KEY",
+      "\"subsidy is to farmer\" encourages rather than forbids, and names a recipient besides",
+      "\"referendum is to policy\" is a way of deciding a question, not a way of prohibiting anything"
+    ],
+    "set_id": "SET-C",
+    "construction": "near-miss present in the same family: \"tariff is to import\" is also a state measure aimed at an activity, separated only by restrain-versus-forbid",
+    "relation": "prohibition : the activity it forbids",
+    "option_relations": [
+      "tax : activity taxed",
+      "confinement : person confined",
+      "prohibition : activity forbidden",
+      "support : recipient",
+      "procedure : question decided"
+    ],
+    "options_only_legal": 5,
+    "options_only_note": "all five are true measure-and-target pairs; tax, confinement, ban, support and procedure are equally available with the stem covered"
+  },
+  {
+    "id": "SV11-29",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "INEXORABLE",
+    "choices": [
+      "arbitrary",
+      "relentless",
+      "inconsistent",
+      "lenient",
+      "tentative"
+    ],
+    "correct_answer": "relentless",
+    "explanation": "An INEXORABLE advance can be neither stopped nor begged off, and keeps coming; \"relentless\" names exactly that.",
+    "distractor_rationales": [
+      "\"arbitrary\" is decided on no principle, which says nothing about whether it can be halted",
+      "KEY",
+      "\"inconsistent\" does not hold to one course from one moment to the next, whereas the word means holding one course without let-up",
+      "\"lenient\" is willing to soften, which is the very thing the word denies",
+      "\"tentative\" is hesitant and ready to draw back"
+    ],
+    "set_id": "SET-C",
+    "construction": "antonym-anchored (\"lenient\") with two options on a neighbouring axis (how the course is chosen rather than whether it can be stopped)"
+  },
+  {
+    "id": "SV11-30",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "topic_tag": "synonym",
+    "difficulty": "hard",
+    "prompt": "ABSTRUSE",
+    "choices": [
+      "trivial",
+      "lengthy",
+      "disputed",
+      "dated",
+      "obscure"
+    ],
+    "correct_answer": "obscure",
+    "explanation": "An ABSTRUSE argument is so deep and technical that its sense is hard to get at, which is what \"obscure\" says.",
+    "distractor_rationales": [
+      "\"trivial\" is of no weight, which is the opposite complaint",
+      "\"lengthy\" is long, and a long argument may be perfectly plain",
+      "\"disputed\" is argued over, which the clearest claim in the world may also be",
+      "\"dated\" belongs to a time that has gone by, which the plainest argument in the world may also be",
+      "KEY"
+    ],
+    "set_id": "SET-C",
+    "construction": "all five are ordinary verdicts on an argument; none is dismissible without knowing which verdict the headword records"
+  }
+]

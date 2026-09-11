@@ -84,6 +84,15 @@ const SAT_BLUEPRINT = {
  * of that column would have moved the number by zero.
  */
 const ACT_QUOTAS = {
+  // english was ABSENT here until 2026-09-11, which made the blueprint check
+  // below iterate zero domains and print "satisfied" — a verdict over no
+  // input, the defect CLAUDE.md names. Units are DECIMAL shares, matching the
+  // rest of this map; act-test.ts states them as percentages and the drift
+  // guard below reconciles the two.
+  english: {
+    'Conventions of Standard English': 0.51, 'Production of Writing': 0.29,
+    'Knowledge of Language': 0.13,
+  },
   math: {
     'Number and Quantity': 0.10, 'Algebra': 0.17, 'Functions': 0.17,
     'Geometry': 0.17, 'Statistics and Probability': 0.12,
@@ -129,7 +138,7 @@ const pageAll = async () => {
   const out = []
   for (let from = 0; ; from += 1000) {
     const { data, error } = await db.from('study_item_bank')
-      .select('family,section,domain,difficulty')
+      .select('family,section,domain,difficulty,passage_group_id')
       .eq('verified', true).eq('archived', false).range(from, from + 999)
     if (error) throw new Error(error.message)
     out.push(...(data ?? [])); if (!data || data.length < 1000) break
@@ -141,8 +150,9 @@ const rows = await pageAll()
 const bank = {}
 for (const r of rows) {
   const k = `${r.family}/${r.section}`
-  ;(bank[k] ??= { total: 0, byDomain: {}, hardByDomain: {} })
+  ;(bank[k] ??= { total: 0, byDomain: {}, hardByDomain: {}, groups: {} })
   bank[k].total++
+  if (r.passage_group_id) bank[k].groups[r.passage_group_id] = (bank[k].groups[r.passage_group_id] ?? 0) + 1
   const d = r.domain ?? '(none)'
   bank[k].byDomain[d] = (bank[k].byDomain[d] ?? 0) + 1
   if (r.difficulty === 'hard') bank[k].hardByDomain[d] = (bank[k].hardByDomain[d] ?? 0) + 1
@@ -165,6 +175,56 @@ for (const [family, section, label, perForm, hidden] of SECTIONS) {
     family === 'sat' ? (SAT_BLUEPRINT[section] ?? null)
     : family === 'act' ? (ACT_QUOTAS[section] ?? null)
     : null
+  /*
+   * PASSAGE-DRAWN SECTIONS ARE NOT DOMAIN-CONSTRAINED — fixed 2026-09-11.
+   *
+   * assembleActSection draws ACT english as takePassages(ranked, 5, 10) with
+   * NO accept predicate, so domain never enters the draw at all. Applying a
+   * per-domain quota model to it printed "binding domain: Conventions of
+   * Standard English" — a constraint the assembler does not have — and on the
+   * strength of that line a batch was commissioned weighted toward CSE to
+   * "relieve capacity". It could not have: capacity here is whole COMPLETE
+   * passages, floor(groups / passages-per-form), and no domain mix changes
+   * that number. The same mistake had already been made once today in ACT
+   * Math, where 20 Statistics items moved route-aware capacity by zero
+   * because Statistics was not the binding domain.
+   *
+   * ACT reading and science are also passage-drawn, but their draw carries a
+   * real accept predicate (one passage per genre; per-format counts), so a
+   * domain reading of them is wrong in a different way and is flagged rather
+   * than silently replaced.
+   */
+  const PASSAGE_DRAWN = { 'act/english': { per: 10, want: 5 } }
+  const pd = PASSAGE_DRAWN[`${family}/${section}`]
+  if (pd) {
+    const complete = Object.values(b.groups).filter(n => n >= pd.per).length
+    const forms = Math.floor(complete / pd.want)
+    const quota = ACT_QUOTAS[section]
+    let note
+    if (!quota || !Object.keys(quota).length) {
+      // A compliance verdict over zero domains is not a verdict. This exact
+      // line printed "blueprint mix satisfied" for ACT English while the bank
+      // sat 11 points under the published floor, because `english` was missing
+      // from the map above and the loop ran zero times.
+      note = `  NOT MEASURED — no published quota for ${section} in this script`
+    } else {
+      const lines = []
+      for (const [dom, min] of Object.entries(quota)) {
+        // min is a DECIMAL share, not a percentage. The first version of this
+        // divided it by 100 and so compared 0.40 against 0.0051.
+        const share = (b.byDomain[dom] ?? 0) / b.total
+        if (share < min) lines.push(`${dom} ${(100 * share).toFixed(1)}% vs floor ${(100 * min).toFixed(0)}%`)
+      }
+      note = lines.length
+        ? `  BLUEPRINT VIOLATION on every form: ${lines.join('; ')}`
+        : `  blueprint mix satisfied over ${Object.keys(quota).length} domains`
+    }
+    console.log(pad(label + (hidden ? ' (hidden)' : ''), 24) + num(b.total, 6) + num(naive, 7) + num(forms, 11)
+      + `   ${complete} complete passages / ${pd.want} per form — DRAWN BY PASSAGE, no domain filter`)
+    notes.push(`${label}:${note}`)
+    continue
+  }
+
   let byDomain = naive, binding = 'even split assumed'
   if (weights) {
     let worst = Infinity
@@ -189,6 +249,9 @@ for (const [family, section, label, perForm, hidden] of SECTIONS) {
     // Say so. This branch cannot see a real constraint, and a "binding domain"
     // printed from it is a restatement of the total, not a measurement.
     binding = `${binding}  [NO PUBLISHED QUOTA — circular, treat as the naive number]`
+  }
+  if (family === 'act' && (section === 'reading' || section === 'science')) {
+    binding += '  [ALSO PASSAGE-DRAWN — the domain number is an upper bound]'
   }
   console.log(pad(label + (hidden ? ' (hidden)' : ''), 24) + num(b.total, 6) + num(naive, 7) + num(byDomain, 11) + '   ' + binding)
   if (hidden) notes.push(`${label}: drawable but the subtopic is hidden — no student can open it.`)

@@ -534,3 +534,29 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   SM5-07's rounding tie is gone — the bill moved `$37.46 -> $37.48`, so 3748/4 = 937 cents exactly and four payments balance. The author then **declined to extend the option family to n=6**, because `6.25, 9.37, 12.49` is itself an arithmetic run with the key at its middle. That is the repair discipline working: not trading one tell for another.
 
+- **2026-09-11** — **EVERY ACT ENGLISH FORM SHIPS 11 POINTS UNDER THE PUBLISHED CSE FLOOR, AND MY OWN COMMISSIONING PREMISE WAS WRONG.** An author refused the premise I gave them and was right to. I told them `form-capacity.mjs` showed ACT English capped at 3 forms by **Conventions of Standard English**, and asked for a CSE-weighted passage to relieve it. Verified their refutation myself, three ways:
+
+  - `assembleActSection` draws ACT english as `takePassages(ranked, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE)` — **five whole passages, and the english branch passes NO `accept` predicate.** Domain never enters the draw.
+  - `ACT_QUOTAS` is read by exactly two things: `act-blueprint.test.ts` and `form-capacity.mjs`. **Nothing in the draw path reads it.**
+  - So capacity is whole COMPLETE passages: 15 groups / 5 per form = 3 forms. No domain mix changes that number, exactly as the ACT Math Statistics batch moved route-aware capacity by zero earlier the same day.
+
+  **But the measurement turned up a real shipped defect.** All 15 live passages are **exactly 4 CSE of 10** — `{"4/10": 15}`, zero variance, which is itself the rigid-brief tell from §3 of the brief. So every ACT English form ever drawn is **40.0% CSE against a published floor of 51%**, and nothing enforces it. Two passages at 7 CSE would make the first compliant form possible (7+7+4+4+4 = 26 = 52%); the author's `act-english-v3a` is one of them.
+
+  `form-capacity.mjs` now models ACT English by passage and prints the compliance line. ACT reading and science are also passage-drawn but carry a real `accept` predicate, so their domain numbers are flagged as upper bounds rather than silently replaced.
+
+  **And my compliance check was itself broken twice, which is the part worth keeping.** First run printed `blueprint mix satisfied` while the bank sat 11 points under the floor — because the script's local `ACT_QUOTAS` had **no `english` key at all**, so the loop ran zero times and returned a verdict over no input. Fixed to refuse (`NOT MEASURED`) when a quota map is empty. Second, the map stores DECIMAL shares (0.51) and I compared against `w[0]/100`, i.e. 0.40 against 0.0051. Both fixed, then break-tested: the check now fires with the right numbers, and planting a wrong quota makes the existing drift guard say so (`minimum is 51% in act-test.ts, 40% here`).
+
+- **2026-09-11** — **THE SSAT ANALOGY CROSS-ITEM LEAK IS FIXED BY CONSTRUCTION AND MEASURED, WITH THE BREAK-TEST BEING THE OLD FILE.** `ssat-verbal-s10`'s 15 analogies were re-authored on a **balanced incidence design**: 15 relation families, each appearing in exactly 5 of 15 items and keyed in exactly 1 — a flat 20.0% key rate per family, identical to the derived control. Each item's five options are five different families, and no two items share more than two, so no two read as the same cast. The 15 synonyms are byte-identical to HEAD.
+
+        measure                              before      after
+        keys whose relation is UNIQUE        11/15       0/15
+          in the batch                       (73.3%)     (0.0%)
+        all recurring families (n>1)         7.4%        20.0%
+        leave-one-out strategy score         32.2%       0.0%
+          (a solver who learned which        (+12.2)     (-20.0)
+           families pay, ties split)
+
+  The break-test is the "before" column: reverting to the old analogies makes the checker fire at +12.2, reproducing from known data the skew three solvers had found. The checker's self-test includes a **marginal** fixture at only 2x chance (one family keyed 4 of 10 must score exactly 40.0%), because a blowout fires under a broken control too — and it labels option pairs in a table keyed on the PAIR, not the item id, so the same pair cannot be labelled two ways to flatter a file.
+
+  Equal family sizes were chosen over a two-tier scheme deliberately: it makes any COARSENING safe (merging container/workplace/dwelling into one "place : occupant" family still leaves that family at 20.0%). The author counted the perfect matchings consistent with the bijection at **245,840**, so knowing the design gives essentially no leverage. Not every possible re-cut is safe, and they say so. No fresh attack has been run on the new items.
+
