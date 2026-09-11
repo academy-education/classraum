@@ -19,8 +19,12 @@ const rigs = {
   'fail-vertexmoved': b => mapSvg(b, s => once(s, /(<polyline stroke-dasharray="7,2,2,2" points="[^"]*?329,)([\d.]+)(")/, m => `${m[1]}${(Number(m[2]) - 30).toFixed(2)}${m[3]}`)),
   // legend letters W and X transposed
   'fail-legendswap': b => mapSvg(b, s => once(s, /(<text x="333" y="[\d.]+" font-size="8" font-weight="bold">)W(<\/text><text x="333" y="[\d.]+" font-size="8" font-weight="bold">)X(<\/text>)/, m => `${m[1]}X${m[2]}W${m[3]}`)),
-  // Blend X's 8 mm bar cut from 0.90 to 0.40 mm: flips Q4 from 2 to 3
-  'fail-q4flip': b => mapSvg(b, s => { const bars = [...s.matchAll(/<rect x="([\d.]+)" y="([\d.]+)" width="24" height="([\d.]+)" fill="#fff"[^>]*>/g)]
+  // Blend X's 8 mm bar cut from 0.90 to 0.40 mm. Until the blueprint trim
+  // of 2026-09-11 this flipped ACT-SC7-P2-Q4 from 2 to 3; Q4 was the item
+  // dropped to bring the passage to five, so the rig is kept and RE-AIMED:
+  // the shrunken bar puts Blend X under its own 4 mm value as well, and Q5
+  // then has two legal answers. Same mutation, different item catches it.
+  'fail-barshrink': b => mapSvg(b, s => { const bars = [...s.matchAll(/<rect x="([\d.]+)" y="([\d.]+)" width="24" height="([\d.]+)" fill="#fff"[^>]*>/g)]
     const t = bars[1]; const bot = Number(t[2]) + Number(t[3]); const h = Number(t[3]) - 22.5
     return s.replace(t[0], `<rect x="${t[1]}" y="${(bot - h).toFixed(2)}" width="24" height="${h.toFixed(2)}" fill="#fff" stroke="#000" stroke-width="1"/>`) }),
   // one marker nudged 4px off its own vertex

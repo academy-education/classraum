@@ -480,3 +480,19 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   Counter-examples the author planted held: keying one item to tool:user and another to part:whole scored 0/3 and 1/3. So the named fix is real — key several items TO the filler families and vary the cast — but it needs another authoring round plus a fresh attack. Disposition: synonyms to the normal gate, analogies held.
 
+- **2026-09-11** — **27 ISEE VERBAL ITEMS IN, THROUGH ALL FIVE `mc_hidden_source` STAGES, AND THE ELIMINATION STAGE PASSED CLEAN.** `isee-verbal-s10`: 30 authored, **keys agreed 3/3 by three independent with-source graders on all 30**, 27 inserted. IV10-30 dropped unanimously — the stem read "the shop *happens to* sit on the corner where three bus lines meet", and "happens to" marks fortuity, so "luck" was defensible against "location"; all three graders reached that independently and one word fixes it. IV10-07 and IV10-18 dropped on majority-weak distractors. ISEE verbal 128 -> 155 drawable; whole ISEE family 560 -> 587. `verify-admission-forms.mjs` green on all eight sections.
+
+  **The elimination stage returned zero, and the three solvers agreed on why.** 0 of 90 votes at `legal == 1`, 0 at `legal < 4`, all 120 options legal. A bare lexical option carries no proposition to contradict; no set holds a synonym or subsumption pair (the near-misses are ANTONYM pairs, which kill nothing); every option is a well-formed completion of some stem. Each solver explicitly refused to count the cluster/singleton shape as an elimination and recorded `legal: 4`, calling it a lean.
+
+  **The singleton inversion was then MEASURED rather than argued, and it is small.** The three elimination solvers deliberately bet against the singleton on every item:
+
+        singleton rule (original 3 solvers)   15/90 = 16.7%
+        INVERTED rule  (elimination solvers)  26/90 = 28.9%
+        chance 25.0%   ceiling if the 3 cluster members are picked uniformly 33.3%
+
+  So the axis carries real information — inverting gains 12.2 points over the singleton rule — but a student who learns the inversion gains only **+3.9 over chance** and lands well short of the ceiling, which says there is no signal at all within the cluster. Recorded as a batch-level shape with no automated guard, same family as the "identical key prose across lectures" case, and fed forward to s11: the inversion should not be this consistent across a whole form.
+
+- **2026-09-11** — **`verbal-bank-helper.mjs` WAS BANKING THE AUTHOR'S DIFFICULTY LABEL, NOT THE GRADER'S.** Every field read `raw.difficulty` while `AUTHORING-BRIEF.md` §5 and every grader prompt say the grader's label is what banks; both maths inserters already did it correctly. **Break-tested rather than asserted: of the 27 items inserted, 5 are rows where the author and the graders disagreed and the grader's label banked** — those five would have been recorded wrong. `verify_meta` now carries `author_difficulty`, `graded_difficulty` and `distractor_quality` so the disagreement is visible after the fact.
+
+  Two more defects fixed in the same file. The dedupe read was a **single un-paged, un-ordered select** — the 1000-row PostgREST truncation that `math-bank-helper.mjs` has fixed TWICE. ISEE sits at 587 rows on a day that added 24 maths and 27 verbal items, so this was fixed before it bit rather than after; it now pages with `.order('id')` and prints its own denominator (`dedupe set: 128 distinct hashes from 128 rows read`). And the shared `difficulty-policy.mjs` is now wired in, so all four inserters apply one `BANK_BAND` rule — the consistency gap that was open across the verbal path.
+

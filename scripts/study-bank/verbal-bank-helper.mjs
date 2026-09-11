@@ -21,6 +21,8 @@
  *   reasoning as math-bank-helper's recorded decision.
  */
 import { createClient } from '@supabase/supabase-js'
+// One difficulty rule for all four inserters — see difficulty-policy.mjs.
+import { acceptsDifficulty } from './difficulty-policy.mjs'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -49,9 +51,31 @@ async function insert(family, batchPath, qcPath) {
   const qc = JSON.parse(readFileSync(qcPath, 'utf8'))
   const env = loadEnv()
   const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
-  const { data: existing } = await db.from('study_item_bank')
-    .select('content_hash').eq('family', family).eq('section', SECTION)
-  const seen = new Set((existing || []).map(r => r.content_hash))
+  /*
+   * PAGED AND ORDERED — added 2026-09-11, before it bit rather than after.
+   *
+   * This was a single un-paged select. PostgREST caps a response at 1000
+   * rows SILENTLY, so once a family's section passes 1000 the dedupe set
+   * would be incomplete and duplicates would insert while the log said
+   * nothing. math-bank-helper.mjs already carries this fix TWICE — once
+   * scoped to family, and again when scoping alone proved insufficient and
+   * sat/math passed 1000 on its own — with the note that range() without an
+   * ORDER BY pages an unordered relation and returns duplicates in place of
+   * unseen rows (1222 fetched, 1057 distinct, measured on R&W the same day).
+   *
+   * ISEE is at 560 rows and climbing on a day that added 24 maths and 27
+   * verbal items. Waiting for the failure is not a plan.
+   */
+  const existing = []
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await db.from('study_item_bank')
+      .select('content_hash').eq('family', family).eq('section', SECTION)
+      .order('id').range(from, from + 999)
+    if (error) { console.error(`dedupe read failed: ${error.message}`); process.exit(1) }
+    existing.push(...(data || [])); if (!data || data.length < 1000) break
+  }
+  const seen = new Set(existing.map(r => r.content_hash))
+  console.log(`dedupe set: ${seen.size} distinct hashes from ${existing.length} rows read`)
 
   let inserted = 0, rejected = 0
   for (const raw of batch) {
@@ -64,6 +88,24 @@ async function insert(family, batchPath, qcPath) {
       && String(raw.prompt || '').trim() && String(raw.explanation || '').trim()
       && (SECTION !== 'reading' || String(raw.passage || '').trim())
     if (!ok) { console.log(`SKIP ${label} — bad shape (${want} distinct choices incl. key required)`); rejected++; continue }
+    /*
+     * THE GRADER'S DIFFICULTY BANKS, NOT THE AUTHOR'S — fixed 2026-09-11.
+     *
+     * Every field below read `raw.difficulty`, the author's own label, while
+     * AUTHORING-BRIEF.md 5 and every grader prompt say the grader's label is
+     * what banks. The two maths inserters already do this. It mattered on the
+     * first batch it was noticed on: three graders independently moved most
+     * of an ISEE maths batch DOWN a band and all three named the same cause,
+     * so banking the author's label would have recorded a cohort as harder
+     * than three readers said it was.
+     *
+     * Falls back to the author's label only when the qc row carries none, so
+     * a qc file written before this change still works.
+     */
+    const graded = q.difficulty ?? raw.difficulty
+    const band = acceptsDifficulty(graded)
+    if (!band.ok) { console.log(`DROP   ${label} — ${band.why}`); rejected++; continue }
+
     const it = {
       type: 'multiple_choice', blanks: null, graphic: null,
       // reading cohorts carry a passage and group by topic; verbal/math do not
@@ -71,7 +113,7 @@ async function insert(family, batchPath, qcPath) {
       passageGroupId: raw.topic_id ? `rw-${raw.topic_id}` : null,
       prompt: raw.prompt, choices: raw.choices, correct_answer: raw.correct_answer,
       correct_answers: null, acceptable_answers: null,
-      difficulty: raw.difficulty, explanation: raw.explanation,
+      difficulty: graded, explanation: raw.explanation,
       distractor_rationales: raw.distractor_rationales || [],
     }
     const content_hash = hashOf(it)
@@ -80,13 +122,15 @@ async function insert(family, batchPath, qcPath) {
       family, section: SECTION,
       domain: SECTION === 'math' ? 'Math' : SECTION === 'reading' ? 'Reading Comprehension' : 'Verbal',
       subskill: raw.subskill || raw.kind, task: 'multiple_choice', item_type: 'multiple_choice',
-      difficulty: raw.difficulty, topic_tag: raw.topic_tag || raw.kind,
+      difficulty: graded, topic_tag: raw.topic_tag || raw.kind,
       passage_group_id: raw.topic_id ? `rw-${raw.topic_id}` : null,
       item: it, content_hash, word_count: null, verified: true, archived: false,
       source: 'hand', cohort: process.env.BANK_COHORT || `${family}-verbal-v1`,
       verify_meta: {
         method: 'claude-authored+claude-qc',
         key_votes: q.key_votes ?? null, exclusivity: q.exclusivity ?? null,
+        author_difficulty: raw.difficulty, graded_difficulty: graded,
+        distractor_quality: q.distractor_quality ?? null,
         qc: 'key voters + blind exclusivity + options-only attack; no external model',
       },
     })

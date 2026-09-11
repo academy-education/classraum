@@ -21,7 +21,8 @@
  *   - checks every plotted marker against a vertex of its own polyline,
  *   - checks every bar of Figure 2 against the plot floor and reads its
  *     value off the fitted Figure 2 axis,
- *   - and only then answers the six questions and compares with the keys.
+ *   - and only then answers the data_representation questions and
+ *     compares each with its key.
  *
  * INPUT IDENTITY. It asserts the exact item count and the exact ids and
  * exits 2 if either is wrong. A check that cannot name the bytes it read
@@ -35,11 +36,16 @@
 import { readFileSync } from 'node:fs'
 
 const FILE = process.argv[2] ?? new URL('./act-science-v7.batch.json', import.meta.url).pathname
+/* The batch is the 11 that survived the blueprint trim of 2026-09-11:
+   CV is 6 items and DR is 5, the sizes act-bank-helper pins. ACT-SC7-P1-Q7
+   and ACT-SC7-P2-Q4 were dropped, so this list and the re-answer section
+   below no longer mention them - a checker that still expected 13 would
+   have refused the very file it is about. */
 const EXPECT_IDS = [
   'ACT-SC7-P1-Q1', 'ACT-SC7-P1-Q2', 'ACT-SC7-P1-Q3', 'ACT-SC7-P1-Q4',
-  'ACT-SC7-P1-Q5', 'ACT-SC7-P1-Q6', 'ACT-SC7-P1-Q7',
+  'ACT-SC7-P1-Q5', 'ACT-SC7-P1-Q6',
   'ACT-SC7-P2-Q1', 'ACT-SC7-P2-Q2', 'ACT-SC7-P2-Q3',
-  'ACT-SC7-P2-Q4', 'ACT-SC7-P2-Q5', 'ACT-SC7-P2-Q6',
+  'ACT-SC7-P2-Q5', 'ACT-SC7-P2-Q6',
 ]
 const DR_IDS = EXPECT_IDS.filter(i => i.includes('-P2-'))
 
@@ -288,8 +294,8 @@ console.log('FIGURE 2 reconstructed (warp at 80 °C):')
 for (const k of Object.keys(fig2).sort()) console.log(`  Blend ${k}: ${Object.entries(fig2[k]).map(([t, v]) => `${t} ${v.toFixed(2)}`).join('   ')}`)
 if (Object.keys(fig2).sort().join() !== KEYS.join()) fail(`Figure 2 blends ${Object.keys(fig2).sort().join('/')} do not match Figure 1 blends ${KEYS.join('/')}`)
 
-/* ---------- 8. re-answer the six items ---------- */
-console.log('\nre-answering the 6 data_representation items from the reconstruction:')
+/* ---------- 8. re-answer the data_representation items ---------- */
+console.log(`\nre-answering the ${drItems.length} data_representation items from the reconstruction:`)
 const at = (k, t) => fig1[k][temps.indexOf(t)]
 const blendOpt = (item, k) => item.choices.find(c => new RegExp(`Blend ${k}\\b`).test(c))
 const check = (id, derived, why) => {
@@ -328,11 +334,11 @@ const nearestNumeric = (item, v) => {
   const opt = byId['ACT-SC7-P2-Q3'].choices.find(c => c === want)
   check('ACT-SC7-P2-Q3', opt, `X ${shape('X')}; Z ${shape('Z')}`)
 }
-// Q4: how many blends have the 8 mm bar below the 2 mm bar
-{
-  const n = KEYS.filter(k => fig2[k]['8 mm'] < fig2[k]['2 mm']).length
-  check('ACT-SC7-P2-Q4', byId['ACT-SC7-P2-Q4'].choices.find(c => c.trim() === String(n)), `8 mm below 2 mm for ${KEYS.filter(k => fig2[k]['8 mm'] < fig2[k]['2 mm']).join('/') || 'none'} = ${n}`)
-}
+/* ACT-SC7-P2-Q4 (how many blends have the 8 mm bar below the 2 mm bar)
+   was dropped in the trim, so there is no key left to compare against.
+   The comparison it rested on is still RECONSTRUCTED above and is still
+   load-bearing for Q5, so it is printed rather than silently lost. */
+console.log(`  (Fig 2: 8 mm below 2 mm for ${KEYS.filter(k => fig2[k]['8 mm'] < fig2[k]['2 mm']).join('/') || 'none'} - no item asks this any more)`)
 // Q5: 4 mm panel at 80 °C above BOTH bars
 {
   const win = KEYS.filter(k => at(k, 80) > fig2[k]['2 mm'] && at(k, 80) > fig2[k]['8 mm'])

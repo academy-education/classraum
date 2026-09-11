@@ -2380,6 +2380,43 @@
      "verdict": "check-stem-echo.mjs: key echoes the stem 20.7% against an all-options control of 14.7% derived from this file, margin +6.0pts — the unflattering direction, and the only one of the two batches where it is positive. 5 items carry an echo the key is not (17.2%), against the live maths bank at 25.3%. Recorded rather than repaired: the bank-wide margin is -2.8pts over 1,604 scorable items, so this channel does not discriminate and a repair programme on it would be the rewrite this repo has twice talked itself out of. check-math-hub 6 structured of 30, key-is-hub 4.2% vs 25.0% control. check-plurality-key scorable 2 of 30, fires on 1, lands on a distractor."
     }
    }
+  },
+  {
+   "id": "isee-verbal-s10-2026-09-11",
+   "targetTest": "isee",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "cohort": "isee-verbal-s10",
+   "contentSha": "211b6d04782c9758cc9ca281ddc39635c528878b5b386183b05566ccbf44955a",
+   "note": "ISEE Verbal, 30 authored (14 synonym / 16 sentence completion), 27 inserted. All 30 keys agreed 3/3 by three independent with-source graders. IV10-30 dropped unanimously — the stem said the shop \"happens to sit\" on the corner, which marks fortuity, so \"luck\" was defensible against \"location\"; one word fixes it. IV10-07 and IV10-18 dropped on majority-weak distractors.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Helper gate passed 30/30 (4 distinct choices including the key, non-empty prompt and explanation). Letters A8/B8/C7/D7, 0 of 27 sliding windows of four a permutation, letter x length-rank r = 0.083. Dedupe: 0 exact and 0 near-duplicate (Jaccard >= 0.40) against 259 prior items across 8 sibling files; 2 key-word collisions found and rekeyed. RECORDED LIMITATION, measured by the author rather than assumed: an exhaustive promotion sweep put all 90 wrong keys through the structural gate and 56 SURVIVED, with all 34 refusals coming from the letter-spread check reacting to the slot moving. There is no arithmetic gate on a verbal batch, so structural green is not evidence the keys are right — only the with-source grade reaches that."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three independent graders, each confirming the file sha256 before starting (211b6d04782c). Keys agreed 3/3 on 30 of 30 — no unreachable key. 27 survive. All three re-read every explanation against the FINAL stem and option text and all three found NO stale referent, the recorded defect on this family; one mechanical check confirmed every explanation names all four of its own options and no word that is not an option. IV10-30 drew a non-exclusive vote from all three, each reaching the same argument independently. Difficulty medians easy 7 / medium 12 / hard 8."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 30,
+     "mean": 16.7,
+     "control": 25,
+     "margin": -8.3,
+     "verdict": "Options-only, stem stripped, keys dealt flat, three solvers: 20.0 / 13.3 / 16.7, pooled 16.7% — BELOW the 25.0% chance line. Pooled confident subset 6 of 40 = 15.0%. The solvers agreed with EACH OTHER on 21-25 of 30 and were agreeing on the wrong option: all three named the rule \"three options cluster on one axis, the odd one out is the key\", and the batch is built the other way round, so the attractive singleton is a distractor and the key wins only on the sentence. Strongest authoring result measured in this repo."
+    },
+    "elimination": {
+     "passed": true,
+     "n": 30,
+     "verdict": "PASSES. Rule is zero items with any confidently rejectable option. Three solvers, all 30 items, all 120 options: legal==1 on 0 of 90 votes, any legal<4 on 0 of 90. All three reached it independently and by the same reasoning — a bare lexical option carries no proposition to contradict, no set holds a synonym or subsumption pair (the near-misses are ANTONYM pairs, which kill nothing), and every option is a well-formed completion of some stem. Each explicitly refused to count the cluster/singleton shape as an elimination, recording legal:4 and calling it a lean."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "The singleton inversion was MEASURED rather than argued. The three elimination solvers deliberately bet against the singleton on every item and scored 26/90 = 28.9%, against the original singleton rule at 16.7% and a 33.3% ceiling for picking uniformly from the three cluster members. So the axis carries real information — inverting gains 12.2 points over the singleton rule — but a student who learns the inversion gains only +3.9 over chance and lands well short of the ceiling, meaning that within the cluster there is no signal at all. Recorded as a batch-level shape with no automated guard, of the same family as the \"identical key prose across lectures\" case, and fed forward to s11: the inversion should not be this consistent across a whole form."
+    }
+   }
   }
  ],
  "auditedCohorts": [
