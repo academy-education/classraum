@@ -113,16 +113,16 @@
     "choices": [
       "y ≤ 9",
       "y ≥ 11",
-      "y ≤ 22",
+      "y ≥ 9",
       "y ≤ 11"
     ],
     "correct_answer": "y ≤ 11",
-    "explanation": "The leading coefficient is negative, so the vertex value 11 is the greatest output and every other output is smaller: y ≤ 11. The option \"y ≥ 11\" comes from a solver who reads the vertex value as a minimum, ignoring the negative leading coefficient. The option \"y ≤ 9\" comes from a solver who bounds the range by the x-coordinate of the vertex. The option \"y ≤ 22\" comes from a solver who multiplies the vertex value by the leading coefficient a second time.",
+    "explanation": "The leading coefficient is negative, so the vertex value 11 is the greatest output and every other output is smaller: y ≤ 11. The option \"y ≥ 11\" comes from a solver who reads the vertex value as a minimum, ignoring the negative leading coefficient. The option \"y ≤ 9\" comes from a solver who bounds the range by 9, the x-coordinate of the vertex, while reading the direction correctly. The option \"y ≥ 9\" comes from a solver who makes both errors at once: bounds the range by the x-coordinate of the vertex and reads that bound as a minimum.",
     "solve": "var a = -2, h = 9, k = 11; var f = function (x) { return a * (x - h) * (x - h) + k; }; var max = -Infinity; for (var x = -60; x <= 60; x += 0.25) { if (f(x) > max) { max = f(x); } } if (Math.abs(max - k) > 1e-9) { throw new Error(\"vertex is not the maximum\"); } return \"y ≤ \" + k;",
     "distractor_solve": {
       "y ≥ 11": "var k = 11; return \"y ≥ \" + k;",
       "y ≤ 9": "var h = 9; return \"y ≤ \" + h;",
-      "y ≤ 22": "var a = -2, k = 11; return \"y ≤ \" + (Math.abs(a) * k);"
+      "y ≥ 9": "var h = 9; return \"y ≥ \" + h;"
     }
   },
   {
@@ -153,18 +153,18 @@
     "difficulty": "medium",
     "prompt": "The function g is defined by g(x) = x^2 - 4x - 32. The graph of g crosses the x-axis at two points. What is the distance between those two points?",
     "choices": [
-      "2",
+      "6",
       "8",
       "4",
       "12"
     ],
     "correct_answer": "12",
-    "explanation": "x^2 - 4x - 32 = (x - 8)(x + 4), so the zeros are 8 and -4 and the distance between them is 8 - (-4) = 12. The option \"8\" comes from a solver who reports the greater zero rather than the distance between the zeros. The option \"4\" comes from a solver who reports how far the lesser zero is from the origin. The option \"2\" comes from a solver who reports the axis of symmetry, which is halfway between the zeros.",
+    "explanation": "x^2 - 4x - 32 = (x - 8)(x + 4), so the zeros are 8 and -4 and the distance between them is 8 - (-4) = 12. The option \"8\" comes from a solver who reports the greater zero rather than the distance between the zeros. The option \"4\" comes from a solver who reports how far the lesser zero is from the origin. The option \"6\" comes from a solver who measures from the axis of symmetry out to one zero, which is half the distance between the two points.",
     "solve": "var a = 1, b = -4, c = -32; var d = Math.sqrt(b * b - 4 * a * c); var r1 = (-b + d) / (2 * a), r2 = (-b - d) / (2 * a); return String(Math.abs(r1 - r2));",
     "distractor_solve": {
-      "2": "var a = 1, b = -4; return String(-b / (2 * a));",
       "4": "var a = 1, b = -4, c = -32; var d = Math.sqrt(b * b - 4 * a * c); return String(Math.abs((-b - d) / (2 * a)));",
-      "8": "var a = 1, b = -4, c = -32; var d = Math.sqrt(b * b - 4 * a * c); return String((-b + d) / (2 * a));"
+      "8": "var a = 1, b = -4, c = -32; var d = Math.sqrt(b * b - 4 * a * c); return String((-b + d) / (2 * a));",
+      "6": "var a = 1, b = -4, c = -32; var d = Math.sqrt(b * b - 4 * a * c); var r1 = (-b + d) / (2 * a); var axis = -b / (2 * a); return String(r1 - axis);"
     }
   },
   {
@@ -301,17 +301,17 @@
     "prompt": "The function f is defined by f(x) = √(x - 4) + 1 for x ≥ 4, and f has an inverse. What is the range of f⁻¹ ?",
     "choices": [
       "y ≥ 4",
-      "y ≥ 5",
+      "y ≤ 1",
       "y ≤ 4",
       "y ≥ 1"
     ],
     "correct_answer": "y ≥ 4",
-    "explanation": "Inverting a function swaps domain and range, so the range of f⁻¹ is the domain of f, namely y ≥ 4. The option \"y ≥ 1\" comes from a solver who gives the range of f itself, which is the domain of the inverse. The option \"y ≥ 5\" comes from a solver who adds the vertical shift to the domain bound. The option \"y ≤ 4\" comes from a solver who has the correct bound but the wrong direction.",
+    "explanation": "Inverting a function swaps domain and range, so the range of f⁻¹ is the domain of f, namely y ≥ 4. The option \"y ≥ 1\" comes from a solver who gives the range of f itself, which is the domain of the inverse rather than its range. The option \"y ≤ 4\" comes from a solver who has the correct bound but reverses its direction. The option \"y ≤ 1\" comes from a solver who makes both errors at once: reports the range of f and reverses its direction as well.",
     "solve": "var h = 4; var f = function (x) { return Math.sqrt(x - h) + 1; }; if (!Number.isNaN(f(h - 1))) { throw new Error(\"domain is not x >= 4\"); } return \"y ≥ \" + h;",
     "distractor_solve": {
       "y ≥ 1": "var k = 1; return \"y ≥ \" + k;",
-      "y ≥ 5": "var h = 4, k = 1; return \"y ≥ \" + (h + k);",
-      "y ≤ 4": "var h = 4; return \"y ≤ \" + h;"
+      "y ≤ 4": "var h = 4; return \"y ≤ \" + h;",
+      "y ≤ 1": "var k = 1; return \"y ≤ \" + k;"
     }
   },
   {
@@ -321,18 +321,18 @@
     "difficulty": "easy",
     "prompt": "The function f is defined by f(x) = x^2 - 5. What is the value of f(f(3)) ?",
     "choices": [
-      "8",
+      "21",
       "16",
       "11",
       "4"
     ],
     "correct_answer": "11",
-    "explanation": "f(3) = 9 - 5 = 4, and then f(4) = 16 - 5 = 11. The option \"4\" comes from a solver who applies f only once. The option \"16\" comes from a solver who squares f(3) but forgets to subtract 5 on the second pass. The option \"8\" comes from a solver who adds f(3) to itself instead of substituting it back into f.",
+    "explanation": "f(3) = 9 - 5 = 4, and then f(4) = 16 - 5 = 11. The option \"4\" comes from a solver who applies f only once. The option \"16\" comes from a solver who squares f(3) but forgets to subtract 5 on the second pass. The option \"21\" comes from a solver who adds the 5 instead of subtracting it on the second pass, computing 4^2 + 5.",
     "solve": "var f = function (x) { return x * x - 5; }; return String(f(f(3)));",
     "distractor_solve": {
       "4": "var f = function (x) { return x * x - 5; }; return String(f(3));",
-      "8": "var f = function (x) { return x * x - 5; }; return String(f(3) + f(3));",
-      "16": "var f = function (x) { return x * x - 5; }; return String(f(3) * f(3));"
+      "16": "var f = function (x) { return x * x - 5; }; return String(f(3) * f(3));",
+      "21": "var f = function (x) { return x * x - 5; }; return String(f(3) * f(3) + 5);"
     }
   },
   {
@@ -406,17 +406,17 @@
     "prompt": "The functions f and g are defined by f(x) = x^2 - 3x and g(x) = 2x + 1. What is the value of (f - g)(4) ?",
     "choices": [
       "4",
-      "13",
+      "-3",
       "-5",
       "5"
     ],
     "correct_answer": "-5",
-    "explanation": "f(4) = 16 - 12 = 4 and g(4) = 8 + 1 = 9, so (f - g)(4) = 4 - 9 = -5. The option \"13\" comes from a solver who adds the two outputs instead of subtracting them. The option \"5\" comes from a solver who subtracts in the wrong order, computing g(4) - f(4). The option \"4\" comes from a solver who evaluates f at 4 and stops, never subtracting g(4).",
+    "explanation": "f(4) = 16 - 12 = 4 and g(4) = 8 + 1 = 9, so (f - g)(4) = 4 - 9 = -5. The option \"-3\" comes from a solver who distributes the subtraction to only the first term of g, computing 4 - 2(4) + 1 and leaving the +1 unnegated. The option \"5\" comes from a solver who subtracts in the wrong order, computing g(4) - f(4). The option \"4\" comes from a solver who evaluates f at 4 and stops, never subtracting g(4).",
     "solve": "var f = function (x) { return x * x - 3 * x; }; var g = function (x) { return 2 * x + 1; }; return String(f(4) - g(4));",
     "distractor_solve": {
       "4": "var f = function (x) { return x * x - 3 * x; }; return String(f(4));",
       "5": "var f = function (x) { return x * x - 3 * x; }; var g = function (x) { return 2 * x + 1; }; return String(g(4) - f(4));",
-      "13": "var f = function (x) { return x * x - 3 * x; }; var g = function (x) { return 2 * x + 1; }; return String(f(4) + g(4));"
+      "-3": "var f = function (x) { return x * x - 3 * x; }; return String(f(4) - 2 * 4 + 1);"
     }
   },
   {
@@ -470,16 +470,16 @@
     "choices": [
       "144",
       "192",
-      "108",
-      "64"
+      "336",
+      "256"
     ],
     "correct_answer": "192",
-    "explanation": "r = 36/48 = 0.75, and 48(0.75)^2 = 27 confirms it. The sum is 48/(1 - 0.75) = 192. The option \"144\" comes from a solver who starts the sum at the second term, leaving out the 48. The option \"64\" comes from a solver who divides the first term by r instead of by 1 - r. The option \"108\" comes from a solver who uses the third term as the first term of the series.",
+    "explanation": "r = 36/48 = 0.75, and 48(0.75)^2 = 27 confirms it. The sum is 48/(1 - 0.75) = 192. The option \"144\" comes from a solver who starts the sum at the second term, leaving out the 48. The option \"256\" comes from a solver who divides the first term by r to reach 64 and sums from that phantom earlier term, computing 64/(1 - 0.75). The option \"336\" comes from a solver who misremembers the sum formula as a(1 + r)/(1 - r).",
     "solve": "var a = 48, r = 36 / 48; if (Math.abs(a * r * r - 27) > 1e-9) { throw new Error(\"ratio does not fit the third term\"); } return String(a / (1 - r));",
     "distractor_solve": {
-      "64": "var a = 48, r = 36 / 48; return String(a / r);",
-      "108": "var a = 27, r = 36 / 48; return String(a / (1 - r));",
-      "144": "var a = 48, r = 36 / 48; return String(a * r / (1 - r));"
+      "144": "var a = 48, r = 36 / 48; return String(a * r / (1 - r));",
+      "336": "var a = 48, r = 36 / 48; return String(a * (1 + r) / (1 - r));",
+      "256": "var a = 48, r = 36 / 48; var prev = a / r; return String(prev / (1 - r));"
     }
   },
   {
