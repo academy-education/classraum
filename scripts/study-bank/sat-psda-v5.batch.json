@@ -1,0 +1,875 @@
+[
+  {
+    "id": "PSDA5-01",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages: two successive percent changes on one base",
+    "difficulty": "medium",
+    "prompt": "A company's revenue was $45,000 in 2021. Revenue increased by 20 percent from 2021 to 2022 and then decreased by 15 percent from 2022 to 2023. What was the company's revenue, in dollars, in 2023?",
+    "choices": [
+      "45900",
+      "54000",
+      "41400",
+      "47250"
+    ],
+    "correct_answer": "45900",
+    "explanation": "Revenue in 2022 was 1.20(45,000) = 54,000 dollars, and revenue in 2023 was 0.85(54,000) = 45,900 dollars. Choice 54,000 stops at the end of 2022 and never applies the decrease. Choice 47,250 adds the two rates, treating the pair of changes as a single net increase of 5 percent, which is not how successive percent changes combine. Choice 41,400 applies the 20 percent as the decrease and the 15 percent as the increase, 0.80(1.15)(45,000), reversing which year rose.",
+    "solve": "const r=45000; return String(Math.round(r*1.20*0.85));",
+    "distractor_solve": {
+      "41400": "const r=45000; return String(Math.round(r*0.80*1.15));",
+      "47250": "const r=45000; return String(Math.round(r*(1+0.20-0.15)));",
+      "54000": "const r=45000; return String(Math.round(r*1.20));"
+    }
+  },
+  {
+    "id": "PSDA5-02",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages: a share of a total when both the share and the total change",
+    "difficulty": "hard",
+    "prompt": "A laboratory processed 2,400 samples in March, and 35 percent of those samples were flagged for review. In April the laboratory processed 10 percent fewer samples than in March, and the number of flagged samples was 25 percent greater than in March. To the nearest tenth of a percent, what percent of April's samples were flagged?",
+    "choices": [
+      "43.8",
+      "48.6",
+      "25.2",
+      "31.5"
+    ],
+    "correct_answer": "48.6",
+    "explanation": "March had 0.35(2,400) = 840 flagged samples. April had 1.25(840) = 1,050 flagged samples out of 0.90(2,400) = 2,160 samples, and 1,050/2,160 = 48.6 percent. Choice 43.8 divides April's 1,050 by March's total of 2,400, growing the numerator while leaving the denominator in March. Choice 31.5 applies the total's rate of 0.90 to the 35 percent share, using the denominator's rate on the numerator. Choice 25.2 swaps the two rates, shrinking the flagged count by 0.90 and growing the total by 1.25.",
+    "solve": "const N=2400,s=0.35,gF=1.25,gT=0.90; return (Math.round(1000*(N*s*gF)/(N*gT))/10).toFixed(1);",
+    "distractor_solve": {
+      "43.8": "const N=2400,s=0.35,gF=1.25; return (Math.round(1000*(N*s*gF)/N)/10).toFixed(1);",
+      "31.5": "const s=35,gT=0.90; return (Math.round(10*s*gT)/10).toFixed(1);",
+      "25.2": "const N=2400,s=0.35,gF=1.25,gT=0.90; return (Math.round(1000*(N*s*gT)/(N*gF))/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "PSDA5-03",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "measures of center: weighted mean of two unequal groups",
+    "difficulty": "medium",
+    "prompt": "In a class of 30 students, 18 students scored a mean of 82 points on an exam and the remaining 12 students scored a mean of 91 points. What was the mean score, in points, for all 30 students?",
+    "choices": [
+      "85.6",
+      "85.0",
+      "86.5",
+      "87.4"
+    ],
+    "correct_answer": "85.6",
+    "explanation": "The 30 scores total 18(82) + 12(91) = 1,476 + 1,092 = 2,568 points, so the mean is 2,568/30 = 85.6 points. Choice 86.5 averages 82 and 91 as though the two groups were the same size. Choice 87.4 attaches 82 to the group of 12 and 91 to the group of 18, swapping the weights. Choice 85.0 rounds the group sizes to 20 and 10 before weighting, (20 times 82 plus 10 times 91)/30, which shifts too much of the class into the lower-scoring group.",
+    "solve": "return ((18*82+12*91)/30).toFixed(1);",
+    "distractor_solve": {
+      "86.5": "return ((82+91)/2).toFixed(1);",
+      "87.4": "return ((12*82+18*91)/30).toFixed(1);",
+      "85.0": "return ((20*82+10*91)/30).toFixed(1);"
+    }
+  },
+  {
+    "id": "PSDA5-04",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "two-way tables: a conditional percent within a column",
+    "difficulty": "medium",
+    "prompt": "The table shows every student at a school classified by grade and by music ensemble. To the nearest tenth of a percent, what percent of the students in Band are in Grade 10?",
+    "graphic": {
+      "type": "twowaytable",
+      "rowLabels": [
+        "Grade 10",
+        "Grade 11",
+        "Grade 12",
+        "Total"
+      ],
+      "colLabels": [
+        "Chorus",
+        "Band",
+        "Neither",
+        "Total"
+      ],
+      "cells": [
+        [
+          "24",
+          "36",
+          "60",
+          "120"
+        ],
+        [
+          "30",
+          "18",
+          "42",
+          "90"
+        ],
+        [
+          "26",
+          "21",
+          "43",
+          "90"
+        ],
+        [
+          "80",
+          "75",
+          "145",
+          "300"
+        ]
+      ],
+      "caption": "Students at a school by grade and music ensemble"
+    },
+    "choices": [
+      "30.0",
+      "62.5",
+      "48.0",
+      "40.0"
+    ],
+    "correct_answer": "48.0",
+    "explanation": "Of the 75 students in Band, 36 are in Grade 10, and 36/75 = 48.0 percent. Choice 30.0 divides 36 by 120, the Grade 10 row total, which answers what percent of Grade 10 is in Band. Choice 40.0 is 120/300, Grade 10's share of the whole school, and uses neither Band figure. Choice 62.5 is 75/120, which inverts the conditional by putting the Band total over the Grade 10 total.",
+    "solve": "return (Math.round(1000*36/75)/10).toFixed(1);",
+    "distractor_solve": {
+      "30.0": "return (Math.round(1000*36/120)/10).toFixed(1);",
+      "40.0": "return (Math.round(1000*120/300)/10).toFixed(1);",
+      "62.5": "return (Math.round(1000*75/120)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "PSDA5-05",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "linear models: reading slope and intercept from a graph and extrapolating",
+    "difficulty": "medium",
+    "prompt": "The graph shows the total cost of an order as a function of the number of items ordered. Based on the graph, what is the total cost, in dollars, of an order of 32 items?",
+    "graphic": {
+      "type": "line",
+      "xLabel": "Number of items ordered",
+      "yLabel": "Total cost (dollars)",
+      "series": [
+        {
+          "label": "Total cost",
+          "points": [
+            [
+              0,
+              45
+            ],
+            [
+              5,
+              95
+            ],
+            [
+              10,
+              145
+            ],
+            [
+              15,
+              195
+            ],
+            [
+              20,
+              245
+            ]
+          ]
+        }
+      ]
+    },
+    "choices": [
+      "320",
+      "365",
+      "608",
+      "565"
+    ],
+    "correct_answer": "365",
+    "explanation": "The graph rises from 45 dollars at 0 items to 245 dollars at 20 items, so the cost is 45 + 10n dollars for n items, and 45 + 10(32) = 365 dollars. Choice 320 uses only the 10 dollars per item and drops the 45-dollar fixed cost. Choice 608 reads the rate as 95/5 = 19 dollars per item, the cost-per-item at a single plotted point, which still carries the fixed cost inside it. Choice 565 adds 32 items' worth of cost to the value already plotted at 20 items, counting the first 20 items twice.",
+    "solve": "const b=45,m=(245-45)/20; return String(b+m*32);",
+    "distractor_solve": {
+      "320": "const m=(245-45)/20; return String(m*32);",
+      "565": "const m=(245-45)/20; return String(245+m*32);",
+      "608": "return String((95/5)*32);"
+    }
+  },
+  {
+    "id": "PSDA5-06",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "measures of center: median of an unordered data set",
+    "difficulty": "easy",
+    "prompt": "The table shows the number of tickets sold on each of nine consecutive days. What is the median number of tickets sold per day?",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun",
+        "Mon",
+        "Tue"
+      ],
+      "colLabels": [
+        "Tickets sold"
+      ],
+      "cells": [
+        [
+          "14"
+        ],
+        [
+          "7"
+        ],
+        [
+          "12"
+        ],
+        [
+          "9"
+        ],
+        [
+          "19"
+        ],
+        [
+          "25"
+        ],
+        [
+          "6"
+        ],
+        [
+          "15"
+        ],
+        [
+          "11"
+        ]
+      ],
+      "caption": "Tickets sold on each of nine consecutive days"
+    },
+    "choices": [
+      "13.1",
+      "19",
+      "15.5",
+      "12"
+    ],
+    "correct_answer": "12",
+    "explanation": "Ordered, the nine values are 6, 7, 9, 11, 12, 14, 15, 19, 25, and the fifth of nine is 12. Choice 13.1 is the mean, 118/9, which is a different measure of center and here is pulled up by the 25. Choice 19 is the fifth entry of the table as printed, taken without ordering the values first. Choice 15.5 is the midrange, the average of 6 and 25, which uses only the two extremes.",
+    "solve": "const v=[14,7,12,9,19,25,6,15,11].slice().sort((a,b)=>a-b); return String(v[4]);",
+    "distractor_solve": {
+      "19": "const v=[14,7,12,9,19,25,6,15,11]; return String(v[4]);",
+      "13.1": "const v=[14,7,12,9,19,25,6,15,11]; return (Math.round(10*v.reduce((a,b)=>a+b,0)/v.length)/10).toFixed(1);",
+      "15.5": "const v=[14,7,12,9,19,25,6,15,11]; return String((Math.min(...v)+Math.max(...v))/2);"
+    }
+  },
+  {
+    "id": "PSDA5-07",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "rates: average rate of change read from a scatterplot",
+    "difficulty": "medium",
+    "prompt": "The scatterplot shows the number of subscribers, in thousands, recorded once a week for eight weeks. Based on the scatterplot, what is the average rate of change in subscribers, in thousands per week, from week 1 to week 8?",
+    "graphic": {
+      "type": "scatter",
+      "xLabel": "Week",
+      "yLabel": "Subscribers (thousands)",
+      "points": [
+        [
+          1,
+          14
+        ],
+        [
+          2,
+          21
+        ],
+        [
+          3,
+          25
+        ],
+        [
+          4,
+          34
+        ],
+        [
+          5,
+          38
+        ],
+        [
+          6,
+          47
+        ],
+        [
+          7,
+          50
+        ],
+        [
+          8,
+          59
+        ]
+      ],
+      "caption": "Subscribers recorded once a week for eight weeks"
+    },
+    "choices": [
+      "5.6",
+      "6.4",
+      "9.0",
+      "4.2"
+    ],
+    "correct_answer": "6.4",
+    "explanation": "From week 1 to week 8 the value rises from 14 to 59, a change of 45 over 7 weeks, and 45/7 = 6.4 thousand per week. Choice 5.6 divides 45 by 8, the number of plotted points, rather than by 7, the number of week-long intervals between them. Choice 4.2 is 59/14, the ratio of the endpoints, which is a growth factor and not a rate per week. Choice 9.0 is the change from week 7 to week 8 alone, which is one week's change rather than the average over seven.",
+    "solve": "return (Math.round(10*(59-14)/(8-1))/10).toFixed(1);",
+    "distractor_solve": {
+      "5.6": "return (Math.round(10*(59-14)/8)/10).toFixed(1);",
+      "4.2": "return (Math.round(10*59/14)/10).toFixed(1);",
+      "9.0": "return (Math.round(10*(59-50))/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "PSDA5-08",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "two-way tables: recovering a missing cell before taking a conditional percent",
+    "difficulty": "hard",
+    "prompt": "The table summarizes the 700 commuters surveyed for a transit study, by day type and mode of travel. One entry has been left blank. To the nearest tenth of a percent, what percent of the commuters who traveled by train traveled on a weekday?",
+    "graphic": {
+      "type": "twowaytable",
+      "rowLabels": [
+        "Weekday",
+        "Weekend",
+        "Total"
+      ],
+      "colLabels": [
+        "Bus",
+        "Train",
+        "Bicycle",
+        "Total"
+      ],
+      "cells": [
+        [
+          "156",
+          "",
+          "84",
+          "420"
+        ],
+        [
+          "96",
+          "120",
+          "64",
+          "280"
+        ],
+        [
+          "252",
+          "300",
+          "148",
+          "700"
+        ]
+      ],
+      "caption": "Commuters surveyed, by day type and mode of travel"
+    },
+    "choices": [
+      "25.7",
+      "40.0",
+      "60.0",
+      "42.9"
+    ],
+    "correct_answer": "60.0",
+    "explanation": "The weekday row must total 420, so the blank train cell is 420 - 156 - 84 = 180. Of the 300 train commuters, 180 traveled on a weekday, and 180/300 = 60.0 percent. Choice 42.9 is 180/420, which divides by the weekday row total and answers what percent of weekday commuters took the train. Choice 25.7 is 180/700, the share of all commuters who are weekday train riders, not the share of train riders who are weekday. Choice 40.0 is 120/300 and uses the weekend entry printed in the table rather than the blank cell the question is about.",
+    "solve": "const wkTrain=420-156-84; return (Math.round(1000*wkTrain/300)/10).toFixed(1);",
+    "distractor_solve": {
+      "42.9": "const wkTrain=420-156-84; return (Math.round(1000*wkTrain/420)/10).toFixed(1);",
+      "25.7": "const wkTrain=420-156-84; return (Math.round(1000*wkTrain/700)/10).toFixed(1);",
+      "40.0": "return (Math.round(1000*120/300)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "PSDA5-09",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "inference: what a confidence interval from a random sample supports",
+    "difficulty": "medium",
+    "prompt": "A polling organization selected a random sample of 240 residents from a town of 18,000 residents. In the sample, 54 percent said they would use a proposed bus route. The margin of error for this estimate is 4 percentage points at the 95 percent confidence level. Which of the following is the most appropriate conclusion?",
+    "choices": [
+      "It is plausible that between 50% and 58% of all town residents would use the proposed bus route.",
+      "It is plausible that between 50% and 58% of the surveyed residents would use the proposed bus route.",
+      "It is plausible that between 46% and 62% of all town residents would use the proposed bus route.",
+      "It is plausible that between 46% and 62% of the surveyed residents would use the proposed bus route."
+    ],
+    "correct_answer": "It is plausible that between 50% and 58% of all town residents would use the proposed bus route.",
+    "explanation": "A margin of error of 4 percentage points around 54 percent gives the interval from 50 percent to 58 percent, and because the sample was drawn at random from the town, the interval estimates the percentage among all town residents. The 46-to-62 options double the stated margin, which the 95 percent confidence level does not license; the surveyed-residents options attach the interval to the 240 people sampled, for whom the percentage is not estimated at all but measured exactly at 54 percent.",
+    "solve": "const p=54,m=4; return 'It is plausible that between '+(p-m)+'% and '+(p+m)+'% of all town residents would use the proposed bus route.';",
+    "distractor_solve": {
+      "It is plausible that between 50% and 58% of the surveyed residents would use the proposed bus route.": "const p=54,m=4; return 'It is plausible that between '+(p-m)+'% and '+(p+m)+'% of the surveyed residents would use the proposed bus route.';",
+      "It is plausible that between 46% and 62% of the surveyed residents would use the proposed bus route.": "const p=54,m=4; return 'It is plausible that between '+(p-2*m)+'% and '+(p+2*m)+'% of the surveyed residents would use the proposed bus route.';",
+      "It is plausible that between 46% and 62% of all town residents would use the proposed bus route.": "const p=54,m=4; return 'It is plausible that between '+(p-2*m)+'% and '+(p+2*m)+'% of all town residents would use the proposed bus route.';"
+    }
+  },
+  {
+    "id": "PSDA5-10",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "inference: what a confidence interval for a mean supports",
+    "difficulty": "medium",
+    "prompt": "A researcher selected a random sample of 300 students from the full enrollment list of a university and recorded the number of hours each student spent at the campus gym during one week. The sample mean was 3.4 hours, with a margin of error of 0.3 hours at the 95 percent confidence level. Which of the following is the most appropriate conclusion?",
+    "choices": [
+      "The mean weekly gym time for all enrolled students is plausibly between 3.25 and 3.55 hours.",
+      "The mean weekly gym time for the sampled students is plausibly between 3.1 and 3.7 hours.",
+      "The mean weekly gym time for all enrolled students is plausibly between 3.1 and 3.7 hours.",
+      "The mean weekly gym time for the sampled students is plausibly between 3.25 and 3.55 hours."
+    ],
+    "correct_answer": "The mean weekly gym time for all enrolled students is plausibly between 3.1 and 3.7 hours.",
+    "explanation": "A margin of error of 0.3 hours around a sample mean of 3.4 hours gives the interval from 3.1 to 3.7 hours, and because the 300 students were drawn at random from the full enrollment list, the interval estimates the mean for all enrolled students. The 3.25-to-3.55 options halve the stated margin, which narrows the interval below what the 95 percent confidence level supports; the sampled-students options attach the interval to the 300 students measured, whose mean is known exactly to be 3.4 hours and needs no interval.",
+    "solve": "const x=3.4,m=0.3; return 'The mean weekly gym time for all enrolled students is plausibly between '+(x-m).toFixed(1)+' and '+(x+m).toFixed(1)+' hours.';",
+    "distractor_solve": {
+      "The mean weekly gym time for all enrolled students is plausibly between 3.25 and 3.55 hours.": "const x=3.4,m=0.3; return 'The mean weekly gym time for all enrolled students is plausibly between '+(x-m/2).toFixed(2)+' and '+(x+m/2).toFixed(2)+' hours.';",
+      "The mean weekly gym time for the sampled students is plausibly between 3.1 and 3.7 hours.": "const x=3.4,m=0.3; return 'The mean weekly gym time for the sampled students is plausibly between '+(x-m).toFixed(1)+' and '+(x+m).toFixed(1)+' hours.';",
+      "The mean weekly gym time for the sampled students is plausibly between 3.25 and 3.55 hours.": "const x=3.4,m=0.3; return 'The mean weekly gym time for the sampled students is plausibly between '+(x-m/2).toFixed(2)+' and '+(x+m/2).toFixed(2)+' hours.';"
+    }
+  },
+  {
+    "id": "PSDA5-11",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "rates and unit conversion: a rate applied across a unit change",
+    "difficulty": "medium",
+    "prompt": "A runner holds a constant pace of 4.8 minutes per kilometer. There are approximately 1.61 kilometers in 1 mile. At this pace, how many minutes does the runner take to run 3 miles, to the nearest tenth of a minute?",
+    "choices": [
+      "23.2",
+      "14.4",
+      "28.8",
+      "8.9"
+    ],
+    "correct_answer": "23.2",
+    "explanation": "Three miles is 3(1.61) = 4.83 kilometers, and at 4.8 minutes per kilometer that takes 4.83(4.8) = 23.2 minutes. Choice 14.4 is 3(4.8) and never converts, treating the 3 miles as 3 kilometers. Choice 28.8 rounds 1.61 up to 2 kilometers per mile, so it runs 6 kilometers instead of 4.83. Choice 8.9 divides by 1.61 instead of multiplying, converting in the wrong direction and producing fewer kilometers than miles.",
+    "solve": "return (Math.round(10*3*1.61*4.8)/10).toFixed(1);",
+    "distractor_solve": {
+      "8.9": "return (Math.round(10*(3/1.61)*4.8)/10).toFixed(1);",
+      "14.4": "return (Math.round(10*3*4.8)/10).toFixed(1);",
+      "28.8": "return (Math.round(10*3*2*4.8)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "PSDA5-12",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages: a percent of a subgroup, then a part of that subgroup",
+    "difficulty": "easy",
+    "prompt": "A survey of 1,250 households found that 40 percent of them own at least one pet. Of the households that own at least one pet, 36 percent own more than one pet. How many of the 1,250 households own exactly one pet?",
+    "choices": [
+      "450",
+      "180",
+      "800",
+      "320"
+    ],
+    "correct_answer": "320",
+    "explanation": "Of the 1,250 households, 0.40(1,250) = 500 own at least one pet, and 0.36(500) = 180 of those own more than one, leaving 500 - 180 = 320 that own exactly one. Choice 450 is 0.36(1,250), applying the 36 percent to every household rather than to the 500 pet owners. Choice 180 is the count of households owning more than one pet, which the question does not ask for. Choice 800 is 0.64(1,250), applying the complement of 36 percent to all households instead of to the pet owners.",
+    "solve": "const H=1250,p=0.40,m=0.36; return String(H*p-H*p*m);",
+    "distractor_solve": {
+      "180": "const H=1250; return String(H*0.40*0.36);",
+      "450": "const H=1250; return String(H*0.36);",
+      "800": "const H=1250; return String(H*0.64);"
+    }
+  },
+  {
+    "id": "PSDA5-13",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "ratios: a part of a part-to-part ratio within a fixed total",
+    "difficulty": "medium",
+    "prompt": "A concentrate is mixed with water in the ratio 3 parts concentrate to 17 parts water by volume. How many liters of concentrate are in 45 liters of the mixture? Round to the nearest hundredth.",
+    "choices": [
+      "7.94",
+      "6.75",
+      "9.00",
+      "7.50"
+    ],
+    "correct_answer": "6.75",
+    "explanation": "The mixture is 3 + 17 = 20 parts in all, so concentrate is 3/20 of it and 45(3/20) = 6.75 liters. Choice 7.94 is 45(3/17), dividing by the 17 water parts rather than by the 20 total parts. Choice 7.50 approximates 3 to 17 as 1 part concentrate in every 6 parts of mixture, so it divides 45 by 6. Choice 9.00 rounds 3 parts in 20 up to 1 part in 5 and divides 45 by 5.",
+    "solve": "return (45*3/20).toFixed(2);",
+    "distractor_solve": {
+      "7.94": "return (Math.round(100*45*3/17)/100).toFixed(2);",
+      "7.50": "return (45/6).toFixed(2);",
+      "9.00": "return (45/5).toFixed(2);"
+    }
+  },
+  {
+    "id": "PSDA5-14",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "measures of center: mean from a frequency table",
+    "difficulty": "medium",
+    "prompt": "The table shows the number of siblings reported by each of 40 students. What is the mean number of siblings per student, to the nearest hundredth?",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "colLabels": [
+        "Number of students"
+      ],
+      "cells": [
+        [
+          "6"
+        ],
+        [
+          "14"
+        ],
+        [
+          "11"
+        ],
+        [
+          "7"
+        ],
+        [
+          "2"
+        ]
+      ],
+      "caption": "Number of siblings reported by each of 40 students (row label is the number of siblings)"
+    },
+    "choices": [
+      "2.00",
+      "1.50",
+      "1.63",
+      "1.00"
+    ],
+    "correct_answer": "1.63",
+    "explanation": "The 40 students report 0(6) + 1(14) + 2(11) + 3(7) + 4(2) = 65 siblings in all, so the mean is 65/40 = 1.63 siblings per student. Choice 2.00 averages the five row labels 0 through 4 and ignores how many students gave each answer. Choice 1.50 is the median: the 20th and 21st of the 40 ordered responses are 1 and 2. Choice 1.00 is the mode, the response given by the most students, which is a different measure of center.",
+    "solve": "const v=[0,1,2,3,4],f=[6,14,11,7,2];let s=0,n=0;for(let i=0;i<5;i++){s+=v[i]*f[i];n+=f[i];}return (Math.round(100*s/n)/100).toFixed(2);",
+    "distractor_solve": {
+      "2.00": "const v=[0,1,2,3,4]; return (v.reduce((a,b)=>a+b,0)/v.length).toFixed(2);",
+      "1.50": "const v=[0,1,2,3,4],f=[6,14,11,7,2];const all=[];v.forEach((x,i)=>{for(let k=0;k<f[i];k++)all.push(x);});all.sort((a,b)=>a-b);return ((all[19]+all[20])/2).toFixed(2);",
+      "1.00": "const v=[0,1,2,3,4],f=[6,14,11,7,2];let bi=0;f.forEach((x,i)=>{if(x>f[bi])bi=i;});return v[bi].toFixed(2);"
+    }
+  },
+  {
+    "id": "PSDA5-15",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "mixtures: concentration of a combination of two solutions",
+    "difficulty": "hard",
+    "prompt": "A chemist combines 300 milliliters of a solution that is 12 percent saline with 200 milliliters of a solution that is 22 percent saline. To the nearest tenth of a percent, what percent of the combined 500 milliliters is saline?",
+    "choices": [
+      "18.0",
+      "16.0",
+      "17.0",
+      "15.3"
+    ],
+    "correct_answer": "16.0",
+    "explanation": "The saline totals 0.12(300) + 0.22(200) = 36 + 44 = 80 milliliters in 500 milliliters, so the combination is 80/500 = 16.0 percent saline. Choice 17.0 averages 12 and 22, which would be right only if the two volumes were equal. Choice 18.0 attaches 12 percent to the 200 milliliters and 22 percent to the 300 milliliters, swapping the weights. Choice 15.3 approximates the 300-to-200 volume ratio as 2 to 1, giving (2 times 12 plus 22)/3, which over-weights the weaker solution.",
+    "solve": "return (Math.round(10*100*(300*0.12+200*0.22)/500)/10).toFixed(1);",
+    "distractor_solve": {
+      "17.0": "return ((12+22)/2).toFixed(1);",
+      "18.0": "return (Math.round(10*100*(200*0.12+300*0.22)/500)/10).toFixed(1);",
+      "15.3": "return (Math.round(10*(2*12+1*22)/3)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "PSDA5-16",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages: percent decrease between two values read from a bar graph",
+    "difficulty": "easy",
+    "prompt": "The bar graph shows a store's sales, in units, in each quarter of one year. By what percent did sales decrease from Quarter 2 to Quarter 3, to the nearest tenth of a percent?",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Quarter",
+      "yLabel": "Sales (units)",
+      "bars": [
+        {
+          "label": "Q1",
+          "value": 4200
+        },
+        {
+          "label": "Q2",
+          "value": 5600
+        },
+        {
+          "label": "Q3",
+          "value": 4900
+        },
+        {
+          "label": "Q4",
+          "value": 6720
+        }
+      ]
+    },
+    "choices": [
+      "16.7",
+      "14.3",
+      "20.0",
+      "12.5"
+    ],
+    "correct_answer": "12.5",
+    "explanation": "Sales fell from 5,600 in Quarter 2 to 4,900 in Quarter 3, a decrease of 700, and 700/5,600 = 12.5 percent. Choice 14.3 divides the 700 by 4,900, the later value, which gives the percent by which Quarter 3 would have to grow to reach Quarter 2. Choice 16.7 divides by the Quarter 1 bar, a base the question does not name. Choice 20.0 measures the change from Quarter 2 to Quarter 4, the wrong pair of bars, and that change is an increase.",
+    "solve": "return (Math.round(1000*(5600-4900)/5600)/10).toFixed(1);",
+    "distractor_solve": {
+      "14.3": "return (Math.round(1000*(5600-4900)/4900)/10).toFixed(1);",
+      "16.7": "return (Math.round(1000*(5600-4900)/4200)/10).toFixed(1);",
+      "20.0": "return (Math.round(1000*(6720-5600)/5600)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "PSDA5-17",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "rates: two constant rates combined over a mixed-unit time",
+    "difficulty": "medium",
+    "prompt": "Machine A fills 45 crates per hour and machine B fills 25 crates per hour, each at a constant rate. Working at the same time, how many crates do the two machines fill in 3 hours 30 minutes?",
+    "choices": [
+      "245",
+      "210",
+      "158",
+      "231"
+    ],
+    "correct_answer": "245",
+    "explanation": "Together the machines fill 45 + 25 = 70 crates per hour, and 3 hours 30 minutes is 3.5 hours, so they fill 70(3.5) = 245 crates. Choice 210 is 70(3) and drops the extra 30 minutes entirely. Choice 158 uses machine A alone, 45(3.5) = 157.5 rounded, and never adds machine B. Choice 231 converts 3 hours 30 minutes to 3.3 hours, treating the 30 minutes as 0.3 of an hour instead of 0.5.",
+    "solve": "return String((45+25)*3.5);",
+    "distractor_solve": {
+      "158": "return String(Math.round(45*3.5));",
+      "210": "return String((45+25)*3);",
+      "231": "return String(Math.round((45+25)*3.3));"
+    }
+  },
+  {
+    "id": "PSDA5-18",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages: recovering an intermediate price from a final price",
+    "difficulty": "hard",
+    "prompt": "A jacket was sold at a 30 percent discount off its original price, and then an 8 percent sales tax was applied to the discounted price. The jacket cost $94.50 in total. What was the price of the jacket, in dollars, after the discount but before the tax?",
+    "choices": [
+      "135.00",
+      "66.15",
+      "125.00",
+      "87.50"
+    ],
+    "correct_answer": "87.50",
+    "explanation": "The 94.50 dollars is the discounted price plus 8 percent tax on it, so the discounted price is 94.50/1.08 = 87.50 dollars. Choice 125.00 keeps going and divides by 0.70 as well, which recovers the original price before the discount rather than the price after it. Choice 135.00 divides 94.50 by 0.70 only, removing the discount but leaving the tax inside the figure. Choice 66.15 takes 70 percent of 94.50, applying the discount to the final total as though it had not been applied already.",
+    "solve": "return (94.50/1.08).toFixed(2);",
+    "distractor_solve": {
+      "125.00": "return (94.50/1.08/0.70).toFixed(2);",
+      "135.00": "return (94.50/0.70).toFixed(2);",
+      "66.15": "return (Math.round(100*94.50*0.70)/100).toFixed(2);"
+    }
+  },
+  {
+    "id": "PSDA5-19",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages: recovering a middle year from a later value and two growth rates",
+    "difficulty": "medium",
+    "prompt": "A company's revenue grew 25 percent from 2021 to 2022 and then grew 20 percent from 2022 to 2023, reaching $3.6 million in 2023. What was the company's revenue, in millions of dollars, in 2022?",
+    "choices": [
+      "3.00",
+      "2.48",
+      "2.40",
+      "2.88"
+    ],
+    "correct_answer": "3.00",
+    "explanation": "Revenue in 2023 is 1.20 times revenue in 2022, so 2022 revenue is 3.6/1.20 = 3.00 million dollars. Choice 2.48 divides 3.6 by 1.45, combining the two rates into a single 45 percent increase, which is not how successive percent changes compose. Choice 2.40 divides by both 1.20 and 1.25 and so lands on 2021, one year further back than the question asks. Choice 2.88 divides by 1.25, the 2021-to-2022 rate, which is the wrong rate to undo when moving from 2023 to 2022.",
+    "solve": "return (3.6/1.20).toFixed(2);",
+    "distractor_solve": {
+      "2.88": "return (3.6/1.25).toFixed(2);",
+      "2.40": "return (3.6/1.20/1.25).toFixed(2);",
+      "2.48": "return (Math.round(100*3.6/1.45)/100).toFixed(2);"
+    }
+  },
+  {
+    "id": "PSDA5-20",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages: recovering a middle year across a decrease and an increase",
+    "difficulty": "medium",
+    "prompt": "A bus route's annual ridership fell 12 percent from 2022 to 2023 and then rose 25 percent from 2023 to 2024, when it was 8,750 riders. To the nearest whole rider, what was the ridership in 2023?",
+    "choices": [
+      "7955",
+      "6563",
+      "7000",
+      "7743"
+    ],
+    "correct_answer": "7000",
+    "explanation": "Ridership in 2024 is 1.25 times ridership in 2023, so 2023 ridership is 8,750/1.25 = 7,000 riders. Choice 7,955 goes one step further and divides by 0.88 as well, landing on 2022 rather than 2023. Choice 6,563 takes 25 percent off 8,750, but a 25 percent increase is undone by dividing by 1.25, not by subtracting 25 percent of the later figure. Choice 7,743 divides by 1.13, netting the 12 percent fall against the 25 percent rise as though the two rates could be added.",
+    "solve": "return String(Math.round(8750/1.25));",
+    "distractor_solve": {
+      "6563": "return String(Math.round(8750*0.75));",
+      "7743": "return String(Math.round(8750/1.13));",
+      "7955": "return String(Math.round(8750/1.25/0.88));"
+    }
+  },
+  {
+    "id": "PSDA5-21",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "mixtures: how much pure solute to add to reach a target concentration",
+    "difficulty": "hard",
+    "prompt": "A 900-milliliter solution is 20 percent acid by volume. To the nearest milliliter, how many milliliters of pure acid must be added so that the resulting solution is 28 percent acid by volume?",
+    "choices": [
+      "257",
+      "100",
+      "72",
+      "90"
+    ],
+    "correct_answer": "100",
+    "explanation": "The solution starts with 0.20(900) = 180 milliliters of acid. Adding x milliliters of pure acid gives (180 + x)/(900 + x) = 0.28, so 180 + x = 252 + 0.28x and 0.72x = 72, making x = 100 milliliters. Choice 72 is 252 - 180, the shortfall against the target, but it assumes the total volume stays at 900 when the added acid raises it too. Choice 90 divides that 72 by 0.80, the complement of the original 20 percent, rather than by 0.72, the complement of the target. Choice 257 divides the 72 by 0.28 itself instead of by 0.72.",
+    "solve": "const V=900,a=0.20*V,t=0.28; return String(Math.round((t*V-a)/(1-t)));",
+    "distractor_solve": {
+      "72": "const V=900,a=0.20*V,t=0.28; return String(Math.round(t*V-a));",
+      "90": "const V=900,a=0.20*V,t=0.28; return String(Math.round((t*V-a)/(1-0.20)));",
+      "257": "const V=900,a=0.20*V,t=0.28; return String(Math.round((t*V-a)/t));"
+    }
+  },
+  {
+    "id": "PSDA5-22",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "linear models: choosing the right series on a two-series graph",
+    "difficulty": "hard",
+    "prompt": "The graph shows the total cost of two rental plans as a function of the number of hours used. Based on the graph, what is the total cost, in dollars, of Plan B for 7 hours?",
+    "graphic": {
+      "type": "line",
+      "xLabel": "Hours used",
+      "yLabel": "Total cost (dollars)",
+      "series": [
+        {
+          "label": "Plan A",
+          "points": [
+            [
+              0,
+              60
+            ],
+            [
+              2,
+              80
+            ],
+            [
+              4,
+              100
+            ],
+            [
+              6,
+              120
+            ],
+            [
+              8,
+              140
+            ]
+          ]
+        },
+        {
+          "label": "Plan B",
+          "points": [
+            [
+              0,
+              20
+            ],
+            [
+              2,
+              56
+            ],
+            [
+              4,
+              92
+            ],
+            [
+              6,
+              128
+            ],
+            [
+              8,
+              164
+            ]
+          ]
+        }
+      ]
+    },
+    "choices": [
+      "130",
+      "196",
+      "128",
+      "146"
+    ],
+    "correct_answer": "146",
+    "explanation": "Plan B starts at 20 dollars and rises from 20 to 164 dollars over 8 hours, a rate of 18 dollars per hour, so 7 hours costs 20 + 18(7) = 146 dollars. Choice 130 follows Plan A, which starts at 60 dollars and rises 10 dollars per hour. Choice 196 reads 56/2 = 28 as Plan B's hourly rate, but that ratio still contains the 20-dollar starting fee, and it then omits the fee entirely. Choice 128 is Plan B's plotted value at 6 hours rather than at 7.",
+    "solve": "const b=20,m=(164-20)/8; return String(b+m*7);",
+    "distractor_solve": {
+      "128": "return String(128);",
+      "130": "const b=60,m=(140-60)/8; return String(b+m*7);",
+      "196": "return String((56/2)*7);"
+    }
+  },
+  {
+    "id": "PSDA5-23",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages: one value as a percent of a subgroup total",
+    "difficulty": "easy",
+    "prompt": "The bar graph shows the number of books each of five students read last year. The number of books Cal read is what percent of the total number of books read by the other four students, to the nearest tenth of a percent?",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Student",
+      "yLabel": "Books read",
+      "bars": [
+        {
+          "label": "Ana",
+          "value": 12
+        },
+        {
+          "label": "Ben",
+          "value": 9
+        },
+        {
+          "label": "Cal",
+          "value": 15
+        },
+        {
+          "label": "Dee",
+          "value": 6
+        },
+        {
+          "label": "Eli",
+          "value": 18
+        }
+      ]
+    },
+    "choices": [
+      "83.3",
+      "25.0",
+      "33.3",
+      "125.0"
+    ],
+    "correct_answer": "33.3",
+    "explanation": "The other four students read 12 + 9 + 6 + 18 = 45 books, and 15/45 = 33.3 percent. Choice 25.0 is 15/60, dividing by the total for all five students, which counts Cal's own 15 books in the base. Choice 83.3 is 15/18, dividing by Eli's bar, the largest single value, rather than by the other four combined. Choice 125.0 is 15/12, dividing by the mean of the five bars instead of by the total of the four.",
+    "solve": "const b={Ana:12,Ben:9,Cal:15,Dee:6,Eli:18};const others=b.Ana+b.Ben+b.Dee+b.Eli;return (Math.round(1000*b.Cal/others)/10).toFixed(1);",
+    "distractor_solve": {
+      "25.0": "return (Math.round(1000*15/60)/10).toFixed(1);",
+      "83.3": "return (Math.round(1000*15/18)/10).toFixed(1);",
+      "125.0": "return (Math.round(1000*15/(60/5))/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "PSDA5-24",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "measures of center: mean of a frequency table after values are removed",
+    "difficulty": "hard",
+    "prompt": "The table shows the scores of the 28 students who took a quiz. If the two students who scored 95 are removed from the data set, what is the mean of the remaining scores, to the nearest tenth?",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "70",
+        "75",
+        "80",
+        "85",
+        "90",
+        "95"
+      ],
+      "colLabels": [
+        "Number of students"
+      ],
+      "cells": [
+        [
+          "3"
+        ],
+        [
+          "5"
+        ],
+        [
+          "8"
+        ],
+        [
+          "6"
+        ],
+        [
+          "4"
+        ],
+        [
+          "2"
+        ]
+      ],
+      "caption": "Scores on a quiz taken by 28 students (row label is the score)"
+    },
+    "choices": [
+      "87.9",
+      "74.8",
+      "80.0",
+      "80.6"
+    ],
+    "correct_answer": "80.6",
+    "explanation": "The 28 scores total 70(3) + 75(5) + 80(8) + 85(6) + 90(4) + 95(2) = 2,285. Removing the two 95s leaves 2,285 - 190 = 2,095 points among 26 students, so the mean is 2,095/26 = 80.6. Choice 74.8 subtracts the 190 points but still divides by 28, so the two removed students keep their places in the count. Choice 87.9 divides by 26 while leaving their 190 points in the total, the same error in the other direction. Choice 80.0 averages the five remaining score labels and ignores how many students earned each score.",
+    "solve": "const v=[70,75,80,85,90,95],f=[3,5,8,6,4,2];let s=0,n=0;for(let i=0;i<6;i++){s+=v[i]*f[i];n+=f[i];}s-=95*2;n-=2;return (Math.round(10*s/n)/10).toFixed(1);",
+    "distractor_solve": {
+      "74.8": "const v=[70,75,80,85,90,95],f=[3,5,8,6,4,2];let s=0,n=0;for(let i=0;i<6;i++){s+=v[i]*f[i];n+=f[i];}s-=95*2;return (Math.round(10*s/n)/10).toFixed(1);",
+      "87.9": "const v=[70,75,80,85,90,95],f=[3,5,8,6,4,2];let s=0,n=0;for(let i=0;i<6;i++){s+=v[i]*f[i];n+=f[i];}n-=2;return (Math.round(10*s/n)/10).toFixed(1);",
+      "80.0": "const v=[70,75,80,85,90]; return (v.reduce((a,b)=>a+b,0)/v.length).toFixed(1);"
+    }
+  }
+]
