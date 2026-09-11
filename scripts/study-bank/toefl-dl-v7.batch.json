@@ -1,0 +1,794 @@
+[
+ {
+  "id": "DLV7-01",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "next-step",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-radio",
+  "passage": "NOTICE — Campus radio, autumn slots. The Tuesday midnight slot is being retired, and its presenters move to Thursday at six in the morning. To claim a slot, sign the paper rota outside the station office on the first floor of the Marlowe Pavilion; the station's online form is used only for reporting faulty equipment. Imelda Roche checks the rota every Friday at noon and posts the finished list the same afternoon.",
+  "prompt": "[Daily Life — campus notice] How does a presenter claim a slot this autumn?",
+  "choices": [
+   "By signing the paper rota outside the station office",
+   "By filling in the station's online form",
+   "By emailing the address given on the studio door",
+   "By leaving a note in the presenters' pigeonhole in the lobby"
+  ],
+  "correct_answer": "By signing the paper rota outside the station office",
+  "explanation": "The notice says that to claim a slot you \"sign the paper rota outside the station office\" in the Marlowe Pavilion. It then rules out the obvious alternative: the online form \"is used only for reporting faulty equipment\".",
+  "distractor_rationales": [
+   {
+    "choice": "By filling in the station's online form",
+    "reason": "The institutional default for claiming anything, and the one channel the notice explicitly restricts to equipment faults. Chosen by a reader who assumes the modern route rather than reading the restriction."
+   },
+   {
+    "choice": "By emailing the address given on the studio door",
+    "reason": "A second plausible written channel; no email address is mentioned anywhere in the notice."
+   },
+   {
+    "choice": "By leaving a note in the presenters' pigeonhole in the lobby",
+    "reason": "A paper channel like the key, so it survives the reasoning 'the notice prefers paper'; the notice names a rota, not a pigeonhole."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-02",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-radio",
+  "passage": "NOTICE — Campus radio, autumn slots. The Tuesday midnight slot is being retired, and its presenters move to Thursday at six in the morning. To claim a slot, sign the paper rota outside the station office on the first floor of the Marlowe Pavilion; the station's online form is used only for reporting faulty equipment. Imelda Roche checks the rota every Friday at noon and posts the finished list the same afternoon.",
+  "prompt": "[Daily Life — campus notice] When does the finished list of slots appear?",
+  "choices": [
+   "On Monday afternoon",
+   "On Monday morning",
+   "On Friday afternoon",
+   "On Friday morning"
+  ],
+  "correct_answer": "On Friday afternoon",
+  "explanation": "The rota is checked \"every Friday at noon\" and the finished list goes up \"the same afternoon\", which is \"On Friday afternoon\". \"On Friday morning\" is before the rota has been checked at noon, and nothing in the notice happens on a Monday.",
+  "distractor_rationales": [
+   {
+    "choice": "On Monday morning",
+    "reason": "Start-of-week default for an administrative list; no Monday appears in the notice."
+   },
+   {
+    "choice": "On Friday morning",
+    "reason": "Right day, wrong half: taken by a reader who sees 'Friday' and stops before 'at noon ... the same afternoon'."
+   },
+   {
+    "choice": "On Monday afternoon",
+    "reason": "Right half of the day, wrong day. With the other three options this completes a two-by-two grid of day and half-day, so no single level of either is commonest."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-03",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-row",
+  "passage": "TRENHOLM BOATHOUSE — novice outings. Boats go out at four in the afternoon rather than at dawn, because the racing crews have the reach until three. Novices are taken out on Sundays only. Buoyancy aids, blades and gloves are lent free; shoes are the one thing we cannot lend, so bring a pair you do not mind soaking. Add your name to the list in the clubroom by Saturday lunchtime.",
+  "prompt": "[Daily Life — club flyer] What must a novice bring to an outing?",
+  "choices": [
+   "A set of blades",
+   "A pair of shoes",
+   "A pair of gloves",
+   "A buoyancy aid"
+  ],
+  "correct_answer": "A pair of shoes",
+  "explanation": "The flyer lends \"buoyancy aids, blades and gloves\" free and says \"shoes are the one thing we cannot lend\", asking for \"a pair you do not mind soaking\".",
+  "distractor_rationales": [
+   {
+    "choice": "A buoyancy aid",
+    "reason": "Named in the lending list; picked by a reader who treats the safety item as the one thing a club would not supply."
+   },
+   {
+    "choice": "A set of blades",
+    "reason": "Named in the same lending list; the most specialised item, and therefore the one a reader guessing by cost would choose."
+   },
+   {
+    "choice": "A pair of gloves",
+    "reason": "Also in the lending list, and the nearest miss to the key in both grammar and kind — a personal item in a pair."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-04",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-row",
+  "passage": "TRENHOLM BOATHOUSE — novice outings. Boats go out at four in the afternoon rather than at dawn, because the racing crews have the reach until three. Novices are taken out on Sundays only. Buoyancy aids, blades and gloves are lent free; shoes are the one thing we cannot lend, so bring a pair you do not mind soaking. Add your name to the list in the clubroom by Saturday lunchtime.",
+  "prompt": "[Daily Life — club flyer] Why do novice boats go out in the afternoon?",
+  "choices": [
+   "The lock upstream stays shut until three",
+   "The boatman does not come on duty until three",
+   "The ferry stops crossing the reach at three",
+   "The racing crews have the water until three"
+  ],
+  "correct_answer": "The racing crews have the water until three",
+  "explanation": "The flyer gives one reason for the four o'clock start: \"the racing crews have the reach until three\", which is \"The racing crews have the water until three\". The other three are equally ordinary things that could clear a river at three, and none of them is in the flyer.",
+  "distractor_rationales": [
+   {
+    "choice": "The lock upstream stays shut until three",
+    "reason": "A river-condition reason of the same shape and the same hour; nothing about a lock appears in the flyer."
+   },
+   {
+    "choice": "The boatman does not come on duty until three",
+    "reason": "A staffing reason, which is the commonest real cause of a late start at a small club; unsupported here."
+   },
+   {
+    "choice": "The ferry stops crossing the reach at three",
+    "reason": "Uses the flyer's own word 'reach', so it rewards keyword matching rather than reading the causal clause."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-05",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "next-step",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-herb",
+  "passage": "VOLUNTEER WANTED — herbarium, Oakspur Court. Two afternoons a month, mounting dried plants on to sheets. No botany is needed and we ask for no reference; what the work needs is a steady hand, so every applicant sits a ten-minute mounting trial before anything else is discussed. Nadia Hertz takes names on extension 5118 until the end of March. The trial is held in Room 318.",
+  "prompt": "[Daily Life — job ad] What does an applicant do first?",
+  "choices": [
+   "Show a record of botany coursework",
+   "Spend an afternoon watching the work",
+   "Sit a ten-minute mounting trial",
+   "Send a reference from an earlier post"
+  ],
+  "correct_answer": "Sit a ten-minute mounting trial",
+  "explanation": "The advertisement says every applicant \"sits a ten-minute mounting trial before anything else is discussed\", and it rules out two of the ordinary first steps in the same sentence: \"No botany is needed and we ask for no reference\".",
+  "distractor_rationales": [
+   {
+    "choice": "Send a reference from an earlier post",
+    "reason": "The default first step for any post, and denied in the advertisement's own words."
+   },
+   {
+    "choice": "Show a record of botany coursework",
+    "reason": "The subject-matter prior for a herbarium; also denied in the same sentence."
+   },
+   {
+    "choice": "Spend an afternoon watching the work",
+    "reason": "A plausible induction step and the same kind of practical, unpaid first act as the key, so it cannot be dismissed as the 'formal' option."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-06",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-herb",
+  "passage": "VOLUNTEER WANTED — herbarium, Oakspur Court. Two afternoons a month, mounting dried plants on to sheets. No botany is needed and we ask for no reference; what the work needs is a steady hand, so every applicant sits a ten-minute mounting trial before anything else is discussed. Nadia Hertz takes names on extension 5118 until the end of March. The trial is held in Room 318.",
+  "prompt": "[Daily Life — job ad] How often would a volunteer work?",
+  "choices": [
+   "Two afternoons a month",
+   "Two afternoons a week",
+   "One afternoon a month",
+   "One afternoon a week"
+  ],
+  "correct_answer": "Two afternoons a month",
+  "explanation": "The advertisement opens with the commitment: \"Two afternoons a month, mounting dried plants on to sheets.\"",
+  "distractor_rationales": [
+   {
+    "choice": "One afternoon a week",
+    "reason": "The commonest shape for student volunteering, and the wrong half of both variables at once."
+   },
+   {
+    "choice": "Two afternoons a week",
+    "reason": "Right number, wrong period — the misreading of skimming 'two afternoons' and supplying the usual weekly frame."
+   },
+   {
+    "choice": "One afternoon a month",
+    "reason": "Right period, wrong number. The four options form a complete two-by-two grid of number and period, so neither level is commonest and no component vote names the key."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-07",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-booth",
+  "passage": "Subject: Booth 2, next week. Hi — the recording booth is free all next week. The key now sits with the porter in Castleford Wing rather than at the music office, and the porter's desk is not staffed before ten in the morning. There is nothing to write in the booking book any more: the booth records its own start and finish times. Tomas Barrera, Room 324.",
+  "prompt": "[Daily Life — email] Where is the booth key kept now?",
+  "choices": [
+   "In Room 324 with the sender",
+   "At the music office",
+   "In a key box beside the door of the booth",
+   "With the porter in Castleford Wing"
+  ],
+  "correct_answer": "With the porter in Castleford Wing",
+  "explanation": "The email says the key \"now sits with the porter in Castleford Wing rather than at the music office\". \"At the music office\" is where it used to be, which is exactly what the sentence corrects.",
+  "distractor_rationales": [
+   {
+    "choice": "At the music office",
+    "reason": "The default home for a music-room key, and the place the email names only to contradict. A reader using institutional expectation lands here."
+   },
+   {
+    "choice": "In a key box beside the door of the booth",
+    "reason": "The self-service arrangement most studios use; nothing in the email mentions a key box."
+   },
+   {
+    "choice": "In Room 324 with the sender",
+    "reason": "Takes the sign-off address as the key's location — the one number in the email, offered to a reader who answers with whatever detail is most concrete."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-08",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-booth",
+  "passage": "Subject: Booth 2, next week. Hi — the recording booth is free all next week. The key now sits with the porter in Castleford Wing rather than at the music office, and the porter's desk is not staffed before ten in the morning. There is nothing to write in the booking book any more: the booth records its own start and finish times. Tomas Barrera, Room 324.",
+  "prompt": "[Daily Life — email] Why is there nothing to write in the booking book?",
+  "choices": [
+   "Bookings are now made a week in advance",
+   "The booth keeps its own record of the times",
+   "The times are written down by whoever unlocks the room",
+   "The book was lost when the office moved"
+  ],
+  "correct_answer": "The booth keeps its own record of the times",
+  "explanation": "The email gives the reason straight after the colon: \"the booth records its own start and finish times\", which is \"The booth keeps its own record of the times\". The other three are ordinary reasons a paper book might fall out of use and none of them is stated.",
+  "distractor_rationales": [
+   {
+    "choice": "The times are written down by whoever unlocks the room",
+    "reason": "Moves the same clerical job to a person rather than removing it; a reader who knows a key is now collected from someone can build this without the causal clause."
+   },
+   {
+    "choice": "The book was lost when the office moved",
+    "reason": "The most mundane explanation, and it borrows the email's real fact that something has moved offices."
+   },
+   {
+    "choice": "Bookings are now made a week in advance",
+    "reason": "A procedural change of the same kind as the key, but it would not make a log unnecessary."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-09",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-tools",
+  "passage": "NOTICE — tool library, Redbourne Lodge. Loans run for four days rather than the usual fortnight, because the drills are wanted by so many people at once. Nothing is charged for a late return; the borrower simply cannot take anything out for the next two weeks. Tools go out on Mondays and Wednesdays between two and four in the afternoon. No deposit is taken.",
+  "prompt": "[Daily Life — campus notice] What happens if a tool comes back late?",
+  "choices": [
+   "The borrower cannot take anything out for a fortnight",
+   "The borrower pays a charge for every day the tool is late",
+   "The borrower loses the deposit left at the counter",
+   "The borrower pays for the tool to be checked over"
+  ],
+  "correct_answer": "The borrower cannot take anything out for a fortnight",
+  "explanation": "The notice says \"Nothing is charged for a late return; the borrower simply cannot take anything out for the next two weeks.\" A fortnight is those two weeks.",
+  "distractor_rationales": [
+   {
+    "choice": "The borrower pays a charge for every day the tool is late",
+    "reason": "The universal library default, denied by the notice's first clause. A reader answering from experience takes this."
+   },
+   {
+    "choice": "The borrower loses the deposit left at the counter",
+    "reason": "The second ordinary penalty, and the notice's closing line — \"No deposit is taken\" — is the only thing that refutes it."
+   },
+   {
+    "choice": "The borrower pays for the tool to be checked over",
+    "reason": "A third money penalty at the same level of specificity as the other two, so 'the key is the one that does not involve money' does not identify it without the text."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-10",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "inference",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-tools",
+  "passage": "NOTICE — tool library, Redbourne Lodge. Loans run for four days rather than the usual fortnight, because the drills are wanted by so many people at once. Nothing is charged for a late return; the borrower simply cannot take anything out for the next two weeks. Tools go out on Mondays and Wednesdays between two and four in the afternoon. No deposit is taken.",
+  "prompt": "[Daily Life — campus notice] Why is the loan period shorter than a fortnight?",
+  "choices": [
+   "The counter opens on only two days a week",
+   "The lodge has room to store only a small number of tools",
+   "Too many people want the drills at the same time",
+   "Every tool is checked over between loans"
+  ],
+  "correct_answer": "Too many people want the drills at the same time",
+  "explanation": "The notice attaches the reason to the rule: loans are four days \"because the drills are wanted by so many people at once\". The counter does open on only two days, but the notice never offers that as the reason for the loan length.",
+  "distractor_rationales": [
+   {
+    "choice": "The lodge has room to store only a small number of tools",
+    "reason": "A storage reason rather than a demand reason; plausible for a small lending room and unstated."
+   },
+   {
+    "choice": "Every tool is checked over between loans",
+    "reason": "A maintenance reason, the other standard explanation for a short loan; unstated."
+   },
+   {
+    "choice": "The counter opens on only two days a week",
+    "reason": "The hardest of the three, because it is TRUE of the notice — Mondays and Wednesdays — but is not given as the cause. It catches a reader who matches a true fact instead of the causal clause."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-11",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "inference",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-eyes",
+  "passage": "@CampusHealth — the eye-test van is here on Thursday and Friday, parked at Quarry Yard rather than outside the health centre. You do not have to be registered with us. Tests are free for students; staff and visitors pay ten pounds. Walk up any time before one o'clock; from one o'clock the van sees booked appointments only. Halima Zoric is running it, so come and say hello.",
+  "prompt": "[Daily Life — social-media post] When can someone be seen without an appointment?",
+  "choices": [
+   "At any time on Friday",
+   "Before one o'clock on either day",
+   "After one o'clock on either day",
+   "At any time on Thursday"
+  ],
+  "correct_answer": "Before one o'clock on either day",
+  "explanation": "The post says \"Walk up any time before one o'clock; from one o'clock the van sees booked appointments only.\" The van is there on both days, so walking up works \"Before one o'clock on either day\".",
+  "distractor_rationales": [
+   {
+    "choice": "At any time on Thursday",
+    "reason": "Splits the rule by day instead of by hour — a reader who takes the two dates as the only variable in the post."
+   },
+   {
+    "choice": "At any time on Friday",
+    "reason": "The mirror of the same mistake, so neither day can be preferred over the other without reading the clause about one o'clock."
+   },
+   {
+    "choice": "After one o'clock on either day",
+    "reason": "The exact inversion of the key, and the shape a reader expects if they assume mornings are the busy, booked half of a clinic day."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-12",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-eyes",
+  "passage": "@CampusHealth — the eye-test van is here on Thursday and Friday, parked at Quarry Yard rather than outside the health centre. You do not have to be registered with us. Tests are free for students; staff and visitors pay ten pounds. Walk up any time before one o'clock; from one o'clock the van sees booked appointments only. Halima Zoric is running it, so come and say hello.",
+  "prompt": "[Daily Life — social-media post] Who has to pay for a test?",
+  "choices": [
+   "Students who are not registered with the health centre",
+   "Anyone who arrives without an appointment",
+   "Anyone who has had a test in the past year",
+   "Staff and visitors"
+  ],
+  "correct_answer": "Staff and visitors",
+  "explanation": "The post says \"Tests are free for students; staff and visitors pay ten pounds.\" Registration is dealt with separately — \"You do not have to be registered with us\" — so it has no bearing on the charge.",
+  "distractor_rationales": [
+   {
+    "choice": "Students who are not registered with the health centre",
+    "reason": "Joins the charge to the registration sentence, which the post deliberately separates. The likeliest misreading, because registration is the usual basis for charging."
+   },
+   {
+    "choice": "Anyone who arrives without an appointment",
+    "reason": "Joins the charge to the walk-up rule instead; same error, different sentence."
+   },
+   {
+    "choice": "Anyone who has had a test in the past year",
+    "reason": "A frequency limit of the kind real eye-test schemes use, with nothing in the post about it."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-13",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-exch",
+  "passage": "CONVERSATION EXCHANGE — spring sign-up. Pairs meet for an hour a week. You are matched by the language you want to practise, not by your department, so a chemist may well be paired with a historian. Sign-up closes on 14 February. Anyone who signs up after that is still matched, in the second week of term, from whoever is left over. First meetings are arranged by the pair themselves.",
+  "prompt": "[Daily Life — course-registration page] What decides who is paired with whom?",
+  "choices": [
+   "The hour each one is free to meet",
+   "The year of study each one has reached",
+   "The language each one wants to practise",
+   "The department each one studies in"
+  ],
+  "correct_answer": "The language each one wants to practise",
+  "explanation": "The page says \"You are matched by the language you want to practise, not by your department\", and illustrates it: \"a chemist may well be paired with a historian\".",
+  "distractor_rationales": [
+   {
+    "choice": "The department each one studies in",
+    "reason": "Named in the page only to be excluded; the illustration about the chemist and the historian is there to make the exclusion checkable."
+   },
+   {
+    "choice": "The hour each one is free to meet",
+    "reason": "The practical basis a reader would assume for a weekly meeting; the page leaves the time to the pair instead."
+   },
+   {
+    "choice": "The year of study each one has reached",
+    "reason": "A fourth ordinary matching criterion at the same level of specificity, so the set gives no reason to prefer any one of them without the text."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-14",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "inference",
+  "difficulty": "hard",
+  "passageGroupId": "dlv7-exch",
+  "passage": "CONVERSATION EXCHANGE — spring sign-up. Pairs meet for an hour a week. You are matched by the language you want to practise, not by your department, so a chemist may well be paired with a historian. Sign-up closes on 14 February. Anyone who signs up after that is still matched, in the second week of term, from whoever is left over. First meetings are arranged by the pair themselves.",
+  "prompt": "[Daily Life — course-registration page] What happens to a student who signs up on 20 February?",
+  "choices": [
+   "They are matched in the second week, though only from whoever is left",
+   "They are put on a list, though matched only if an existing pair splits",
+   "They are matched at once, though with a partner who has already begun",
+   "They are not matched this spring, though their name is kept on file"
+  ],
+  "correct_answer": "They are matched in the second week, though only from whoever is left",
+  "explanation": "20 February is after the 14 February close, and the page says of exactly that case: \"Anyone who signs up after that is still matched, in the second week of term, from whoever is left over.\" Every option here concedes something, so the answer cannot be found by looking for the qualified one.",
+  "distractor_rationales": [
+   {
+    "choice": "They are not matched this spring, though their name is kept on file",
+    "reason": "The stock administrative refusal — the single strongest prior for 'what happens after a deadline', and the reason this item exists."
+   },
+   {
+    "choice": "They are put on a list, though matched only if an existing pair splits",
+    "reason": "The waiting-list default, one step softer than outright refusal."
+   },
+   {
+    "choice": "They are matched at once, though with a partner who has already begun",
+    "reason": "Overshoots in the generous direction: the page does say late applicants are matched, but in the second week, not at once."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-15",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-ewaste",
+  "passage": "NOTICE — electrical waste collection, Whitlow Yard, 3 and 4 April. Bring old kettles, lamps and cables. Batteries are the one thing we cannot take, and the bin for those stays in the porters' lodge all year. Nothing is tested and nothing is resold: everything that comes in is stripped for parts, so please do not leave anything you are hoping to see again.",
+  "prompt": "[Daily Life — campus notice] What may not be brought to the yard?",
+  "choices": [
+   "Kettles",
+   "Lamps",
+   "Cables",
+   "Batteries"
+  ],
+  "correct_answer": "Batteries",
+  "explanation": "The notice asks for \"old kettles, lamps and cables\" and then excludes one thing: \"Batteries are the one thing we cannot take\", with their own bin in the porters' lodge.",
+  "distractor_rationales": [
+   {
+    "choice": "Lamps",
+    "reason": "Named in the accepted list; the bulkiest item, so it is what a reader guessing by size would exclude."
+   },
+   {
+    "choice": "Cables",
+    "reason": "Named in the accepted list; the least valuable item, so it is what a reader guessing by worth would exclude."
+   },
+   {
+    "choice": "Kettles",
+    "reason": "Named in the accepted list; the only one with a water tank, so it is what a reader guessing by hazard would exclude."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-16",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "purpose",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-ewaste",
+  "passage": "NOTICE — electrical waste collection, Whitlow Yard, 3 and 4 April. Bring old kettles, lamps and cables. Batteries are the one thing we cannot take, and the bin for those stays in the porters' lodge all year. Nothing is tested and nothing is resold: everything that comes in is stripped for parts, so please do not leave anything you are hoping to see again.",
+  "prompt": "[Daily Life — campus notice] Why does the notice warn people not to leave anything they want back?",
+  "choices": [
+   "Items are sent away within the same week",
+   "Everything that arrives is stripped for parts",
+   "Nothing that arrives is labelled with the owner's name",
+   "The yard is cleared at the end of each day"
+  ],
+  "correct_answer": "Everything that arrives is stripped for parts",
+  "explanation": "The warning follows straight from the sentence before it: \"Nothing is tested and nothing is resold: everything that comes in is stripped for parts\". The other three would each explain a warning about losing an item, but none of them is in the notice.",
+  "distractor_rationales": [
+   {
+    "choice": "Nothing that arrives is labelled with the owner's name",
+    "reason": "A record-keeping reason rather than a destruction reason; ordinary enough to sound quoted."
+   },
+   {
+    "choice": "The yard is cleared at the end of each day",
+    "reason": "Borrows the two dates in the notice's first line to sound grounded; no clearing schedule is given."
+   },
+   {
+    "choice": "Items are sent away within the same week",
+    "reason": "Says items go elsewhere, which leaves open that they still exist — the near miss to the key, and the one a reader takes if they remember only that items leave the site."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-17",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-bus",
+  "passage": "WANTED — minibus drivers for field trips, Brackley Depot. You need a licence held for two years. Your age is not looked at, and neither is any driving work you have done before. Training takes one Saturday, and a short sight test is taken the same day. Drivers are paid a set amount for each trip, not by the hour. Ring extension 5149 before 30 September.",
+  "prompt": "[Daily Life — job ad] What does the post require?",
+  "choices": [
+   "A licence held for two years",
+   "A minimum age of twenty-one",
+   "Paid driving work in the past",
+   "A clean record for the last three years"
+  ],
+  "correct_answer": "A licence held for two years",
+  "explanation": "The advertisement states one requirement — \"You need a licence held for two years\" — and then removes two others: \"Your age is not looked at, and neither is any driving work you have done before.\"",
+  "distractor_rationales": [
+   {
+    "choice": "A minimum age of twenty-one",
+    "reason": "The standard minibus rule almost everywhere, and the advertisement denies it in one clause. A reader answering from the world takes this."
+   },
+   {
+    "choice": "Paid driving work in the past",
+    "reason": "Denied in the same sentence; the second half of the same clause."
+   },
+   {
+    "choice": "A clean record for the last three years",
+    "reason": "Never mentioned either way, so it cannot be eliminated by a reader who has only skimmed the denials — it has to be checked against the one stated requirement."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-18",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "inference",
+  "difficulty": "hard",
+  "passageGroupId": "dlv7-bus",
+  "passage": "WANTED — minibus drivers for field trips, Brackley Depot. You need a licence held for two years. Your age is not looked at, and neither is any driving work you have done before. Training takes one Saturday, and a short sight test is taken the same day. Drivers are paid a set amount for each trip, not by the hour. Ring extension 5149 before 30 September.",
+  "prompt": "[Daily Life — job ad] A driver takes a two-hour trip and then a six-hour trip. What does the advertisement suggest about the pay?",
+  "choices": [
+   "The pay depends on how many passengers travel",
+   "The longer trip pays three times as much",
+   "The two trips pay the same",
+   "The longer trip pays a little more"
+  ],
+  "correct_answer": "The two trips pay the same",
+  "explanation": "The advertisement says drivers are \"paid a set amount for each trip, not by the hour\". A set amount for each trip does not move with the length of the trip, so \"The two trips pay the same\".",
+  "distractor_rationales": [
+   {
+    "choice": "The longer trip pays three times as much",
+    "reason": "Applies the hourly model the advertisement explicitly rules out, using the ratio the stem hands over. The strongest prior in the set: work paid by time is the default everywhere."
+   },
+   {
+    "choice": "The longer trip pays a little more",
+    "reason": "A compromise between an hourly rate and a flat fee; picked by a reader who accepts 'not by the hour' but cannot believe length is ignored entirely."
+   },
+   {
+    "choice": "The pay depends on how many passengers travel",
+    "reason": "Substitutes a different variable for time. It keeps the pay variable, which is what a reader expects, without using the hours in the stem."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-19",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-choir",
+  "passage": "HARROWGATE SINGERS — autumn auditions. Prepare two contrasting pieces and sing them unaccompanied; there is no sight-reading. Auditions are held in Room 356 on the first Monday of each month, and anyone who has a bad morning may come back the month after. Results are pinned to the door of the audition room the same evening. We do not write to candidates, so do come and look.",
+  "prompt": "[Daily Life — club flyer] What is a candidate asked to do at the audition?",
+  "choices": [
+   "Read a short passage of music at sight",
+   "Sing two contrasting pieces, unaccompanied",
+   "Sing a scale and a piece chosen by the panel",
+   "Sing one verse of a song they already know"
+  ],
+  "correct_answer": "Sing two contrasting pieces, unaccompanied",
+  "explanation": "The flyer opens with the requirement: \"Prepare two contrasting pieces and sing them unaccompanied; there is no sight-reading.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Sing one verse of a song they already know",
+    "reason": "The informal, low-barrier version a club flyer might well offer; the flyer asks for twice as much."
+   },
+   {
+    "choice": "Read a short passage of music at sight",
+    "reason": "Named in the flyer only to be removed — \"there is no sight-reading\" — so it is checkable against the text and not otherwise."
+   },
+   {
+    "choice": "Sing a scale and a piece chosen by the panel",
+    "reason": "The formal conservatoire shape, and the opposite end of the same scale from the one-verse option, so the four span the range of ordinary audition demands."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-20",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "next-step",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-choir",
+  "passage": "HARROWGATE SINGERS — autumn auditions. Prepare two contrasting pieces and sing them unaccompanied; there is no sight-reading. Auditions are held in Room 356 on the first Monday of each month, and anyone who has a bad morning may come back the month after. Results are pinned to the door of the audition room the same evening. We do not write to candidates, so do come and look.",
+  "prompt": "[Daily Life — club flyer] How does a candidate find out the result?",
+  "choices": [
+   "By waiting for a letter to arrive in the days that follow",
+   "By asking at the music office the next morning",
+   "By checking the choir's page later that week",
+   "By reading the list pinned to the door that evening"
+  ],
+  "correct_answer": "By reading the list pinned to the door that evening",
+  "explanation": "The flyer says \"Results are pinned to the door of the audition room the same evening\" and closes by ruling out the alternative: \"We do not write to candidates, so do come and look.\"",
+  "distractor_rationales": [
+   {
+    "choice": "By waiting for a letter to arrive in the days that follow",
+    "reason": "Denied in the flyer's last line, and the channel a candidate would otherwise assume for a result."
+   },
+   {
+    "choice": "By asking at the music office the next morning",
+    "reason": "An in-person channel like the key, at the same level of specificity and a comparable delay, so the key cannot be picked as 'the concrete one'."
+   },
+   {
+    "choice": "By checking the choir's page later that week",
+    "reason": "The modern default for results; the flyer keeps everything on paper and on the night."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-21",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-script",
+  "passage": "Subject: reading your marked script. You may photograph the pages, but you may not copy anything down by hand, and a member of staff stays in the room while you read. Bookings run for twenty minutes, in Room 361. Marks are never changed at a viewing. If you believe yours is wrong, the appeal has to come from your tutor: the faculty office will not take one from you directly.",
+  "prompt": "[Daily Life — email] Who else is in the room during a viewing?",
+  "choices": [
+   "Someone from the faculty office",
+   "Another student who is also reading",
+   "A member of staff",
+   "The marker of the script"
+  ],
+  "correct_answer": "A member of staff",
+  "explanation": "The email says \"a member of staff stays in the room while you read\". The marker and the faculty office both appear elsewhere in the email, but neither is placed in the room.",
+  "distractor_rationales": [
+   {
+    "choice": "The marker of the script",
+    "reason": "The most useful person to have present, and a reader who reasons about what would be helpful rather than what is stated picks it."
+   },
+   {
+    "choice": "Someone from the faculty office",
+    "reason": "The faculty office is named in the email, so this rewards matching a phrase that appears rather than the clause about the room."
+   },
+   {
+    "choice": "Another student who is also reading",
+    "reason": "Twenty-minute bookings suggest a shared room, which makes this a reasonable inference from a real detail — and it is still not what the email says."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-22",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "next-step",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-script",
+  "passage": "Subject: reading your marked script. You may photograph the pages, but you may not copy anything down by hand, and a member of staff stays in the room while you read. Bookings run for twenty minutes, in Room 361. Marks are never changed at a viewing. If you believe yours is wrong, the appeal has to come from your tutor: the faculty office will not take one from you directly.",
+  "prompt": "[Daily Life — email] What should a student do who believes the mark is wrong?",
+  "choices": [
+   "Ask their tutor to put the appeal in",
+   "Raise it with the staff member at the viewing",
+   "Send the appeal through the examinations page",
+   "Write to the faculty office themselves"
+  ],
+  "correct_answer": "Ask their tutor to put the appeal in",
+  "explanation": "The email says \"the appeal has to come from your tutor: the faculty office will not take one from you directly\", and it has already ruled out settling it at the viewing, since \"Marks are never changed at a viewing.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Write to the faculty office themselves",
+    "reason": "The normal route for an appeal and the one the email names only to refuse. This is the item's main prior."
+   },
+   {
+    "choice": "Raise it with the staff member at the viewing",
+    "reason": "Uses the person the email does put in the room; refuted only by the sentence that marks are never changed at a viewing."
+   },
+   {
+    "choice": "Send the appeal through the examinations page",
+    "reason": "An online route of the same specificity as the other three, so channel kind gives nothing away."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-23",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "literal detail",
+  "difficulty": "easy",
+  "passageGroupId": "dlv7-poster",
+  "passage": "Subject: posters for the Friday conference. Send your file to the print shop's inbox; they take work from students as well as departments, so there is no need to go through me. The large printer takes a full day, and Thursday's queue is always full, so files must be in by Wednesday morning. We hold matt paper only — the gloss ran out in June and is not being reordered.",
+  "prompt": "[Daily Life — email] Where should a poster file be sent?",
+  "choices": [
+   "To the sender of the email",
+   "To the department office",
+   "To the conference desk",
+   "To the print shop's inbox"
+  ],
+  "correct_answer": "To the print shop's inbox",
+  "explanation": "The email says \"Send your file to the print shop's inbox\" and adds that \"they take work from students as well as departments, so there is no need to go through me.\"",
+  "distractor_rationales": [
+   {
+    "choice": "To the department office",
+    "reason": "The route implied if the print shop only accepted departmental work — which is the belief the email is written to correct."
+   },
+   {
+    "choice": "To the conference desk",
+    "reason": "Attaches the file to the event rather than to the printing; plausible because the conference is what the subject line names."
+   },
+   {
+    "choice": "To the sender of the email",
+    "reason": "The person actually writing, and the option a reader takes if they assume a helpful sender is acting as the go-between. The email declines that role in so many words."
+   }
+  ]
+ },
+ {
+  "id": "DLV7-24",
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "kind": "inference",
+  "difficulty": "medium",
+  "passageGroupId": "dlv7-poster",
+  "passage": "Subject: posters for the Friday conference. Send your file to the print shop's inbox; they take work from students as well as departments, so there is no need to go through me. The large printer takes a full day, and Thursday's queue is always full, so files must be in by Wednesday morning. We hold matt paper only — the gloss ran out in June and is not being reordered.",
+  "prompt": "[Daily Life — email] What is the latest a file can be sent?",
+  "choices": [
+   "Tuesday evening",
+   "Wednesday morning",
+   "Thursday morning",
+   "Friday morning"
+  ],
+  "correct_answer": "Wednesday morning",
+  "explanation": "The email gives the deadline outright: \"files must be in by Wednesday morning\". Working back from \"takes a full day\" alone would give Thursday, which is why the email adds that \"Thursday's queue is always full\".",
+  "distractor_rationales": [
+   {
+    "choice": "Tuesday evening",
+    "reason": "One step earlier than the deadline — the answer of a reader who doubles the printer's day to be safe."
+   },
+   {
+    "choice": "Thursday morning",
+    "reason": "The arithmetic answer: one full day before a Friday conference. It is wrong only because of the queue, which is the detail the item tests."
+   },
+   {
+    "choice": "Friday morning",
+    "reason": "Same-day submission, taken by a reader who reads the conference date as the deadline."
+   }
+  ]
+ }
+]

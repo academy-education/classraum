@@ -852,3 +852,23 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **Do not insert `isee-reading-s6`.** It is committed uninserted so the numbers exist and nobody rewrites this brief.
 
+- **2026-09-11** — **232 OF 296 LIVE DAILY LIFE ITEMS ARE UNDRAWABLE, AND TWO CONFIDENT CLAIMS IN THE REPORT THAT LED ME THERE WERE BOTH FALSE.** A `toefl-dl-v7` author reported two things as blockers. I checked both rather than accepting them, and both are wrong — but checking them turned up something larger.
+
+  **Their claim 1: "All 296 live Daily Life rows are labelled `hard`, 100%, every cohort."** False. The live distribution is **204 easy / 85 medium / 7 hard** — 2% hard, one of the *least* hard-weighted tasks in the TOEFL bank (`speaking_interview`, `writing_discussion` and `writing_email` are the genuinely all-hard ones, at 100% each, and those are production tasks with a single band by design). Their honestly-labelled 10/12/2 is entirely consistent with the cohort; there is no in-band-monopoly problem and no re-grade of 296 rows is owed.
+
+  **Their claim 2: "148 sets, first repeat at form 30; the memory note saying 32 drawable sets is stale."** Also false, and **the memory note is right.** They divided 296 items by 2 and assumed every set is a pair. Replicating `groupKeyOf` exactly — `r.item.passageGroupId ?? '__solo:' + r.id`, then the `MULTI_QUESTION_TASKS` filter dropping any set of size < 2:
+
+        live verified daily_life items              296
+        sets after grouping                         264
+        sets of size >= 2 (not dropped)              32
+        items actually drawable                      64
+        items DROPPED as single-question sets       232
+
+  **163 of those 296 items carry `passage_group_id = NULL`** — spanning 115 distinct passages, across three cohorts (`dl-fresh-v3` 60, `dl-siblings-v1` 69, `dl-fresh-v1` 34). Null becomes a unique `__solo:` key per item, so each is a singleton set and every one is dropped. A further 69 items sit in real groups of size 1 and are dropped too.
+
+  So **78% of the live Daily Life bank cannot be served**, the drawable pool is 32 sets exactly as the memory note recorded, and the three cohorts that lost their group ids are exactly the ones authored to replace the harvest. The assembler is behaving correctly — a two-question task must not ship a fragment — and the defect is in the data: an inserter that did not write `passage_group_id`.
+
+  **What this changes:** the standing note "TOEFL Daily Life has 32 drawable sets, no repeat until form 7" is CORRECT and should not be edited. The work that matters on this family is not another batch — it is restoring group ids on 163 rows, which would take the pool from 32 sets to roughly 90 without authoring a single item. That is the cheapest capacity win identified all session, and it needs someone to establish which items shared a passage, which the `item.passage` text can answer since the 163 rows hold only 115 distinct passages.
+
+  The lesson is the standing one and it earned its keep twice in one report: **a subagent's confident number is a claim, not a measurement.** Both blockers dissolved on checking, and the real defect was three layers under them.
+
