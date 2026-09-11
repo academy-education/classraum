@@ -1,0 +1,394 @@
+{
+ "ADV5-01": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Monic completing-the-square, two steps (h2 then c-h2) plus a sign trap; author's 'medium' stands. Options carry an exact 9/-9 pair and the key is the negative member - see sign_pair_verdict. '40' is the printed constant, a fair lure."
+ },
+ "ADV5-02": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "One remainder-theorem substitution with three sign operations. '13' (last quotient coefficient) is the best distractor here - it is what a student who actually runs synthetic division sees one cell early."
+ },
+ "ADV5-03": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "'greater of the two' disambiguates cleanly and '4' (the lesser intercept) is a strong lure. BUT the distractor rationale for '16' names '(x - 4)^2' when the expression is 3(x - 7)^2 - see prose_value_mismatches; the value 16 is right, the referent is a leftover from another draft."
+ },
+ "ADV5-04": {
+  "difficulty": "hard",
+  "exclusive": true,
+  "distractor_quality": "strong",
+  "stem_complete": true,
+  "note": "Genuinely hard: factor-and-cancel, then an extraneous root that is also the excluded value of the original denominator. x=2 is correctly rejected, so exactly one option satisfies the equation as written. All three distractors are real student endpoints."
+ },
+ "ADV5-05": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "strong",
+  "stem_complete": true,
+  "note": "Standard radical/extraneous-root item; the principal-root convention forces the rejection of -3, so exclusivity holds under normal convention. Minor: the '6' rationale's mis-factorization (x-6)(x+2) expands to x^2-4x-12, so it is a slightly unnatural slip - the value is still what that path yields."
+ },
+ "ADV5-06": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Downgraded from the author's 'hard'. Two base-2 rewrites and a linear solve is routine module-2 work with no trap beyond ordinary sign care. Credit: the key 8 is a number printed in the stem, which punishes the 'never pick the stem number' heuristic."
+ },
+ "ADV5-07": {
+  "difficulty": "easy",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Downgraded from 'medium'. A single log-to-exponential conversion plus one addition. '9' (stopping at x-5) is the only distractor that costs a strong student anything. The key is also the largest option by a clear margin."
+ },
+ "ADV5-08": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Factor theorem with one unknown coefficient; k is uniquely determined. Options carry a 6/-6 pair, and this is the one pair-bearing item where the key is the POSITIVE member."
+ },
+ "ADV5-09": {
+  "difficulty": "hard",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Hard stands. Three stages (intersect, back-substitute, combine) and the live trap is reading 'y-coordinates' where the reflex is to sum x-coordinates - '6' captures exactly that. The key 4 is also a stem number, which is a defence, not a flaw."
+ },
+ "ADV5-10": {
+  "difficulty": "easy",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Downgraded from 'medium'. One composition with small integers; the order-reversal distractor '-3' is the only real content and a hard-route student does not fall for it."
+ },
+ "ADV5-11": {
+  "difficulty": "easy",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Easy, agreeing with the author. The 24/-24 pair reduces an options-only solver to a coin flip on the sign, and the sign is guessable from (-3)(8); '11' and '-5' are sums and add little. Weakest option set among the easy items but not eliminable with zero work."
+ },
+ "ADV5-12": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Downgraded from 'hard'. Vertex y-value of a downward parabola is a two-step standard. Structurally near-identical to ADV5-23, down to sharing the vertex-x distractor '3' and a constant-term distractor - see template_groups. '-25' is below f(0)=-7 and so is eliminable with one evaluation."
+ },
+ "ADV5-13": {
+  "difficulty": "hard",
+  "exclusive": true,
+  "distractor_quality": "weak",
+  "stem_complete": true,
+  "note": "Hard stands (Vieta on a cubic, or factoring it, is at or past the top of SAT scope). But the option set leaks: a sum of squares of real zeros cannot be negative, so '-24' and '-10' are eliminable by KIND with zero work, leaving 9 vs 29. Worse, both of those - and '9' - are numbers read straight off the coefficients while the key is the only option that is not. Fix the two negative distractors before this banks."
+ },
+ "ADV5-14": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Product-of-roots shortcut; k is determined and the second root is unique. Carries a 7/-7 pair with the key negative."
+ },
+ "ADV5-15": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Clean exponential back-solve; all four options are same-magnitude and none is eliminable by shape. The key is the smallest option, but the three 'divided too few times' distractors make that the correct direction rather than a tell."
+ },
+ "ADV5-16": {
+  "difficulty": "easy",
+  "exclusive": true,
+  "distractor_quality": "weak",
+  "stem_complete": true,
+  "note": "Easy, agreeing with the author - a 5-12-13 triple. Distractors are weak: '18' exceeds the radius, so no point on the circle can have that x-coordinate (eliminable by magnitude, no work), and '13' requires y=0 when y=5 is given. Two of three fall for free. Also note the domain tag: circles in the xy-plane are Geometry and Trigonometry on the real SAT, not Advanced Math."
+ },
+ "ADV5-17": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Downgraded from 'hard'. Quadratic-form substitution is a known template and 'greatest solution' is a clean instruction. '13' is lazy - it is the printed coefficient and 13^4 dwarfs 36, so it goes with almost no work; '9' (reporting u) is the item's real distractor."
+ },
+ "ADV5-18": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "strong",
+  "stem_complete": true,
+  "note": "Downgraded from 'hard' - harder than ADV5-05 because of the term outside the radical, but still one isolate-square-check cycle. Best distractor set in the batch: '-1' is the extraneous root, '9' the under-radical value, '3' the term-by-term squaring error, and all three require work."
+ },
+ "ADV5-19": {
+  "difficulty": "easy",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Easy, agreeing with the author. Carries a 4/-4 pair with the key negative; '6' (the greater root) is the intended trap and is fair."
+ },
+ "ADV5-20": {
+  "difficulty": "easy",
+  "exclusive": true,
+  "distractor_quality": "weak",
+  "stem_complete": true,
+  "note": "Downgraded from 'hard'. One base-2 rewrite, mechanically simpler than ADV5-06 which the author called hard - the fractional answer is not itself difficulty. Options leak: 8^x=32 gives 1<x<2 by inspection (8^1=8, 8^2=64), which kills '3/5' and '5/2' with no work, leaving 8/5 vs 5/3. The survivor is genuinely close, so this is a 2-way, not a giveaway - but strictly weak."
+ },
+ "ADV5-21": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Two shifts applied in the right order; '26' (stopping before the vertical shift) is the intended trap. The key 30 is the constant printed in f, which will read as 'too obvious' to some students - that cuts against the key rather than for it, so it is acceptable, but it is the third item where a stem number is the key."
+ },
+ "ADV5-22": {
+  "difficulty": "hard",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Hard stands - hole versus vertical asymptote is a top-band Advanced Math distinction and the item is posed so that only x=-6 qualifies (numerator is 24 there). Option set is the four sign-variants of the two factor roots, which is tidy and not exploitable without the stem."
+ },
+ "ADV5-23": {
+  "difficulty": "medium",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Downgraded from 'hard'. The tangency reading is a real interpretive step, but once made it is the same vertex computation as ADV5-12, with the same two distractor formulas (vertex x = 3, constant term). Shipping both invites a student to learn one and answer both; if only one banks, keep this one, since the framing carries the difficulty."
+ },
+ "ADV5-24": {
+  "difficulty": "easy",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "stem_complete": true,
+  "note": "Downgraded from 'medium'. A single substitution into -2(5)+1. Good design detail: the 11/-11 pair is a decoy pair that does NOT contain the key, which is the right way to use that shape."
+ },
+ "sign_pair_verdict": {
+  "author_report_is_accurate": true,
+  "exact_pm_pairs_where_key_is_a_member": {
+   "items": [
+    "ADV5-01",
+    "ADV5-08",
+    "ADV5-11",
+    "ADV5-14",
+    "ADV5-19",
+    "ADV5-22"
+   ],
+   "key_is_negative_member": [
+    "ADV5-01",
+    "ADV5-11",
+    "ADV5-14",
+    "ADV5-19",
+    "ADV5-22"
+   ],
+   "key_is_positive_member": [
+    "ADV5-08"
+   ]
+  },
+  "items_with_any_exact_pm_pair": [
+   "ADV5-01",
+   "ADV5-03",
+   "ADV5-08",
+   "ADV5-10",
+   "ADV5-11",
+   "ADV5-14",
+   "ADV5-19",
+   "ADV5-22",
+   "ADV5-24"
+  ],
+  "residual_1_sign_pairs": {
+   "verdict": "weak but real - do not file this as settled at p=0.22",
+   "why_the_author_tested_the_wrong_thing": "p~0.22 at n=6 is the CONDITIONAL question (given the key is in the pair, is it the negative one). A blind solver does not condition on that; the rule they would actually apply is 'if an exact +/- pair is present, pick the negative member', scored against every pair-bearing item. Nine items carry such a pair. That rule hits ADV5-01, -11, -14, -19 outright and ADV5-22 on a coin flip between its two negatives, and misses ADV5-03, -08, -10, -24: about 5.5 of 9 against an expectation of 2.25. One-tailed binomial P(X>=5 | n=9, p=0.25) ~ 0.049.",
+   "caveats": "Post-hoc rule, so the 0.049 is not multiplicity-corrected, and the half-credit on ADV5-22 is a judgement call; at n=9 this is one item away from nothing. It is evidence of where to look, not proof of a leak.",
+   "recommendation": "Cheap to remove, so remove it: flip the sign convention on two of the five (e.g. re-letter or re-constant ADV5-14 and ADV5-19 so the key is the positive member), taking the pair-negative rule to 3 of 6 and the whole-population rule to chance. This costs one stem constant each and no rewriting of the mathematics. Not grounds for rejecting the batch."
+  },
+  "residual_2_lone_negative": {
+   "verdict": "noise, and the author was right to leave it - but for a different reason than reported",
+   "detail": "Nine items have exactly one negative among three positives (ADV5-03, -04, -05, -06, -08, -09, -10, -18, -19) and the key is positive on eight. That looks like a pattern only against a 25% baseline. The rule a solver applies here is 'avoid the lone negative', which is right 75% of the time by construction when the key is one of the three positives at random. Eight of nine against an expectation of 6.75 gives P(X>=8 | n=9, p=0.75) ~ 0.30. Pure noise. It should not have been reported as a residual at all."
+  },
+  "independent_positional_checks_i_ran": {
+   "key_is_the_extreme_member_of_the_option_set": "12 of 24 (6 max, 6 min) against 12 expected under uniform. Exactly at chance - a clean negative, and the tell I most expected to fire alongside the sign pairs.",
+   "key_letter_spread": "A=6, B=6, C=6, D=6 - a perfect 25/25/25/25 at n=24 (probability ~1% if letters were assigned at random). This is not itself a leak, and there is no within-set ABCD permutation of the kind CLAUDE.md records as tell #2, but it does mean the letters were ASSIGNED, not shuffled - so verify-answer-key-spread.ts cannot fail on this batch and is uninformative here. It also means the sign-pair residual cannot be waved off as a by-product of randomisation.",
+   "stem_number_as_key": "A number printed verbatim in the stem is an option in most items, and it is the KEY in three (ADV5-06 '8', ADV5-09 '4', ADV5-21 '30'). This actively punishes the 'never pick the number you can already see' heuristic. Credit the author for it; it is the single best anti-guessing feature in the batch."
+  }
+ },
+ "prose_value_mismatches": [
+  {
+   "item": "ADV5-03",
+   "choice": "16",
+   "severity": "real - fix before insert",
+   "prose": "Divides by 3 and then adds without taking the square root, treating (x - 4)^2 as if it were x - 4.",
+   "problem": "There is no (x - 4)^2 anywhere in the item; the expression is 3(x - 7)^2 - 27. The arithmetic path described ('divides by 3 and then adds') does produce 7 + 9 = 16, so the VALUE is correct and distractor_solve is right - but the parenthetical names a binomial that does not exist, and 4 happens to be the other x-intercept and a printed option, so a reader is led to a second wrong reading. This looks like residue from a draft with a different vertex.",
+   "fix": "Replace '(x - 4)^2' with '(x - 7)^2'. No value changes."
+  }
+ ],
+ "prose_value_mismatches_cosmetic": [
+  {
+   "item": "ADV5-11",
+   "choice": "11",
+   "note": "Rationale opens 'Adds the constants as printed, again reading the -3 as +3' - the 'again' refers forward to the '24' rationale, which appears later in the array. Value 3+8=11 is correct. Reorder or drop 'again'."
+  },
+  {
+   "item": "ADV5-05",
+   "choice": "6",
+   "note": "The stated mis-factorization (x-6)(x+2) expands to x^2-4x-12, not x^2-x-12. It is explicitly labelled a mis-factorization so it is not a value error, but it is an unnatural slip - students who mis-factor usually preserve the product and err on the sum."
+  },
+  {
+   "item": "ADV5-20",
+   "choice": "8/5",
+   "note": "'the exponent on the right' is 5 only after rewriting 32 as 2^5, which the described (lazy) solver has not done. Value 8/5 and distractor_solve are consistent; the prose is loose."
+  }
+ ],
+ "prose_value_mismatch_method": "All 72 rationales were read against their printed values and against distractor_solve, one item at a time, recomputing each described path by hand. The author's found defect (prose naming a path yielding -3 while the option printed -5) is not present in this file, so it was fixed before hand-off. ADV5-03 '16' is the only remaining defect of that family, and it is a wrong-REFERENT rather than a wrong-VALUE, which is why the value-checking sandbox could not see it either.",
+ "template_groups": {
+  "exceeding_four_items": [
+   {
+    "template": "one distractor is a visible INTERMEDIATE quantity - the solver stopped one step early",
+    "items": [
+     "ADV5-03",
+     "ADV5-07",
+     "ADV5-12",
+     "ADV5-14",
+     "ADV5-17",
+     "ADV5-18",
+     "ADV5-21",
+     "ADV5-23"
+    ],
+    "count": 8,
+    "assessment": "This is ordinary SAT distractor grammar and is not by itself a leak. What makes it worth recording is that the intermediate value is NEVER the key anywhere in these 24 items: 8 of 8. The real exam sometimes makes the intermediate the answer precisely to punish 'the option that is a partial result is always wrong'. A solver who learns that rule from two or three of these gains on the rest at no cost.",
+    "recommendation": "On one item, make the intermediate the key. ADV5-21 is the natural candidate - it already has the key coinciding with a stem number."
+   },
+   {
+    "template": "one distractor is the correct work with a single sign applied backwards",
+    "items": [
+     "ADV5-01",
+     "ADV5-02",
+     "ADV5-06",
+     "ADV5-08",
+     "ADV5-11",
+     "ADV5-12",
+     "ADV5-14",
+     "ADV5-19",
+     "ADV5-22",
+     "ADV5-24"
+    ],
+    "count": 10,
+    "assessment": "Also ordinary grammar, and unavoidable in a batch about signs. It is however the mechanism that MANUFACTURES the exact +/- pairs behind residual 1 - the two findings are the same fact seen twice. Reducing this template is the same work as fixing the sign-pair residual."
+   },
+   {
+    "template": "one distractor is a symmetric function of the roots (their sum, or their product) rather than a root",
+    "items": [
+     "ADV5-04",
+     "ADV5-05",
+     "ADV5-09",
+     "ADV5-17",
+     "ADV5-19"
+    ],
+    "count": 5,
+    "assessment": "The most exploitable of the three, because it is identifiable from the option set with the stem in hand and is 5 for 5 a distractor, never a key. ADV5-13 is a sixth instance in spirit (three of its four options are symmetric functions) and is the item where this is most damaging - see its weak grade.",
+    "recommendation": "Retire the sum-of-roots distractor from two of these five and replace it with a per-item arithmetic slip."
+   }
+  ],
+  "below_the_threshold_but_worth_reporting": [
+   {
+    "template": "vertex y-value of a downward-opening parabola, with the vertex x-coordinate and the constant term as two of the three distractors",
+    "items": [
+     "ADV5-12",
+     "ADV5-23"
+    ],
+    "count": 2,
+    "assessment": "The sharpest duplication in the batch despite being only two items. Same computation, same two distractor formulas, and both use '3' as the vertex-x distractor. A student who solves one solves the other without reading it. If forms can draw both, they will sometimes land together.",
+    "recommendation": "Ship ADV5-23 (the tangency framing carries real interpretive load) and either re-base ADV5-12 with different numbers or hold it."
+   },
+   {
+    "template": "radical or rational equation with an extraneous / excluded candidate that is itself an option",
+    "items": [
+     "ADV5-04",
+     "ADV5-05",
+     "ADV5-18"
+    ],
+    "count": 3,
+    "assessment": "Healthy - this is the batch's strongest family and the three differ enough in mechanism (excluded denominator value, bare radical, radical plus outside term)."
+   },
+   {
+    "template": "function transformation or evaluation at a single point",
+    "items": [
+     "ADV5-10",
+     "ADV5-21",
+     "ADV5-24"
+    ],
+    "count": 3,
+    "assessment": "All three graded easy or medium; together they are a large share of the batch's easy end."
+   },
+   {
+    "template": "rewriting two sides to a common base",
+    "items": [
+     "ADV5-06",
+     "ADV5-20"
+    ],
+    "count": 2,
+    "assessment": "Note the author graded both hard and I graded them medium and easy; ADV5-20 is the simpler of the two and was the one labelled hard."
+   }
+  ]
+ },
+ "summary": {
+  "difficulty_histogram": {
+   "easy": 7,
+   "medium": 13,
+   "hard": 4
+  },
+  "author_histogram_for_comparison": {
+   "easy": 3,
+   "medium": 12,
+   "hard": 9
+  },
+  "exclusive_false_count": 0,
+  "weak_count": 3,
+  "weak_items": [
+   "ADV5-13",
+   "ADV5-16",
+   "ADV5-20"
+  ],
+  "distractor_quality_histogram": {
+   "plausible": 18,
+   "strong": 3,
+   "weak": 3
+  },
+  "arithmetic": "Not re-derived per instruction, but the batch was re-run: 24/24 keys and 72/72 distractor derivations reproduce their printed values, every distractor_solve key is a listed choice, and distractor_steps and distractor_solve cover the same three options on every item. The verifier was break-tested on a corrupted copy and caught both injected faults. No arithmetic looks wrong.",
+  "disagreements_with_author_labels": {
+   "downgraded": {
+    "ADV5-06": "hard->medium",
+    "ADV5-07": "medium->easy",
+    "ADV5-10": "medium->easy",
+    "ADV5-12": "hard->medium",
+    "ADV5-17": "hard->medium",
+    "ADV5-18": "hard->medium",
+    "ADV5-20": "hard->easy",
+    "ADV5-23": "hard->medium",
+    "ADV5-24": "medium->easy"
+   },
+   "upgraded": {},
+   "agreed": [
+    "ADV5-01",
+    "ADV5-02",
+    "ADV5-03",
+    "ADV5-04",
+    "ADV5-05",
+    "ADV5-08",
+    "ADV5-09",
+    "ADV5-11",
+    "ADV5-13",
+    "ADV5-14",
+    "ADV5-15",
+    "ADV5-16",
+    "ADV5-19",
+    "ADV5-21",
+    "ADV5-22"
+   ]
+  }
+ }
+}

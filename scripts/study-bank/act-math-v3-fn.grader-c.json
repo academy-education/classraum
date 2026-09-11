@@ -1,0 +1,263 @@
+{
+  "grader": "c",
+  "batch": "act-math-v3-fn",
+  "graded_at": "2026-09-11",
+  "items": {
+    "AM3F-01": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "2x2 grid over (input negated?) x (reflected?). No option is eliminable by kind or magnitude - every cell is a legal-looking point. Mid-form ACT transformation item; the x-unchanged trap is the whole discrimination."
+    },
+    "AM3F-02": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Two steps (undo the +4, apply odd symmetry). -5 (assumes even) and 9 (carries on to g(-3)) are both live. The 5/-5 pair means a sign-guesser is at 50%, but 1 and 9 are not eliminable without work."
+    },
+    "AM3F-03": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "x > 0 is present and load-bearing (x = -13 is the other root; note 13 rather than -13 is offered, which is the 'add instead of subtract' error). 9 and 13 fall to backsolving, but backsolving IS this item's work, so not weak. Thin Functions content - one composition step, then quadratic algebra."
+    },
+    "AM3F-04": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Two of the four options (5, 7) are constants lifted from the stem, so a no-work solver is at 50% between them and the key is one of them. Mild, and it inverts elsewhere in the batch (AM3F-05's key is also a stem number, AM3F-08's is not), so no batch-level rule. 12 and 2 are real inversion errors."
+    },
+    "AM3F-05": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "One-step once the rule is known, but 'the vertical shift cannot move a vertical asymptote' is the late-form concept, and x = 12 is a strong trap. 24 (3x8, base times shift) is the softest of the three."
+    },
+    "AM3F-06": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "DOWNGRADED from author's 'hard'. Vertex form is handed to the solver; the item is a single sign judgment on the leading coefficient. That is a mid-form ACT item, not a late one. Options are 3 'less-or-equal' to 1 'greater-or-equal', which nudges a guesser toward the key's family but does not name the key (two other y-less-or-equal options)."
+    },
+    "AM3F-07": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": false,
+      "note": "FLAG. Completing the square and reporting h+k requires no concept of a function at any point - pose it as 'x^2-8x+3 = (x-h)^2+k, find h+k' and nothing is lost. It is quadratic-identity algebra wearing f(x). Sound as an item (the -17/17 sign traps are good, and the h+k step defeats stop-early), but I do not think it relieves the Functions quota. Graders a/b may read ACT's 'translate representations of functions' language as covering vertex form; I am recording the stricter read."
+    },
+    "AM3F-08": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Thin but real: requires the zero-to-x-intercept link. Key 12 is the largest option and 'a distance is bigger than the parts' is a soft heuristic that lands it - but the batch-wide extremum rate is 11/19 numeric items vs 50% expected by chance, so this is not a pattern, just this item. 2 (axis of symmetry) and 4 are honest errors."
+    },
+    "AM3F-09": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "'Every term is positive' is present. (It is belt-and-braces rather than load-bearing: a1 = a3/r^2 = 2 for either sign of r. Harmless.) All three distractors are values a solver actually lands on - 6 is the 2nd term, 9 is r^2, 3 is r. Nothing eliminable without work; all four options are correctly below the given 3rd term."
+    },
+    "AM3F-10": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "'exponential function' in the stem is what makes the model determinate - without it the item would not be exclusive. 2700 (= f(3), stop-early) is strong; 2400 (linear) and 3600 (add the last difference) are both real. Key is the max, but see AM3F-08 note on the batch-wide extremum rate."
+    },
+    "AM3F-11": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Best item in the batch. Growth period not equal to one input unit is a genuine late-form discriminator, and 3t vs t/3 is the exact error. One structural remark: the key is the only option with a fractional exponent, so 'the odd one out' would land it - but 1.24 is equally the odd one out on the base axis, so the two uniqueness cues point at different options and cancel. Not a leak."
+    },
+    "AM3F-12": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Piecewise with both branch conditions actually binding (x=4 is rejected, x=-4 and x=5 kept). Each distractor is a specific failure to check a condition. My hub detector flagged the key (1) as a derivational hub, which is a false positive of the known kind - 1 divides everything. Not a real finding."
+    },
+    "AM3F-13": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": false,
+      "note": "FLAG, and the clearest one. There is no function in this item - no notation, no graph, no domain, no model to identify. It is a two-rate arithmetic word problem. Step/greatest-integer functions are a Functions topic, but nothing here requires recognising one. This should not count toward the Functions quota. As an item it is fine: 'or part of an hour' is explicit so 11 is wrong rather than defensible; 9 (omits the first hour) is the softest option, being below any rough estimate."
+    },
+    "AM3F-14": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Agree with author. 2x2 grid over shift direction x reflection; no cell is eliminable without reading the stem. A legitimate early-form ACT item and the batch needs some."
+    },
+    "AM3F-15": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Requires inverting the domain/range relation, and y >= 1 (the range of f, i.e. the DOMAIN of the inverse) is exactly what most solvers pick - a strong, correctly-aimed distractor. Marginal exclusivity note that I did not act on: this relies on f-inverse meaning the inverse and not a reciprocal, which is standard ACT notation."
+    },
+    "AM3F-16": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Agree with author. Self-composition, two substitutions. 4 (= f(3), applied once) is the classic and strong trap; 8 (doubling) is the softest."
+    },
+    "AM3F-17": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Agree with author's easy. On the option shape the author flagged: 12 is the derivational hub of the set (12/6, 12/3, 12/2 give the other three), NOT the key, which is the opposite of the SAT-math hub defect. 12 is also the natural 'divide by 2 because two terms were given' answer, so it is the second-most-attractive option, not a throwaway."
+    },
+    "AM3F-18": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "'first exceed' makes 10 wrong rather than defensible, and 10 is the strongest distractor in the batch (the crossing is at t = 10.86). 13 (flat 4% of the start) is real. 18 is the weak member: rule-of-72 on a non-doubling is contrived, and 4% x 18 years is visibly far past the 50% needed."
+    },
+    "AM3F-19": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "All three distractors are genuine features of the same graph - the uncancelled denominator zero (asymptote), the uncancelled numerator zero (intercept), and the hole's y-coordinate. A solver who does the factoring but misreads the question hits one of them. 'exactly one hole' keeps it exclusive."
+    },
+    "AM3F-20": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "TWO calls against the author. (1) DOWNGRADED to easy: two substitutions and a subtraction, early-mid form. (2) WEAK distractors: the key is the ONLY negative option, so a solver who does no arithmetic at all and merely notices the question subtracts g from f picks it by sign. The mirror option 5 makes this worse, not better - it advertises that the sign is the decision. 4 and 13 are fine. Fix would be to offer a second negative (e.g. -13 for the add-then-negate path) rather than 13."
+    },
+    "AM3F-21": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Agree with author. One averaging step. 21 (amplitude) and 42 (full swing) are strong; 50 is the weak member - a midline cannot exceed the stated maximum of 46, so it dies to a bounds glance with zero work. Stem is complete because it states the extremes are actually reached, which is what makes b irrelevant."
+    },
+    "AM3F-22": {
+      "difficulty": "hard",
+      "exclusive": true,
+      "distractor_quality": "plausible",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "Inverse plus recognising 32 as a power of 2 plus undoing the inner shift. 5 is an excellent distractor. 16 and 17 are the soft pair - anyone who knows 2^15 is enormous drops both - but that judgement is closer to substitution than to a free magnitude glance, and the key is not an order-of-magnitude outlier in either direction, so I did not grade the set weak. Borderline; a stronger pair would be 6-adjacent."
+    },
+    "AM3F-23": {
+      "difficulty": "medium",
+      "exclusive": true,
+      "distractor_quality": "weak",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "WEAK, and this is a magnitude flaw rather than a judgement call. The stem prints 48 + 36 + 27, which already sums to 111. Options 108 and 64 are both BELOW that partial sum, so two of three distractors die to adding the three numbers on the page - work that is not the item's work (finding r and applying a/(1-r)). Only 144 survives, leaving a 50/50. Fix: replace 108 and 64 with over-estimates, e.g. 240 (divides by 1-r with r taken as the second-to-first ratio inverted) or 216."
+    },
+    "AM3F-24": {
+      "difficulty": "easy",
+      "exclusive": true,
+      "distractor_quality": "strong",
+      "stem_complete": true,
+      "genuinely_functions": true,
+      "note": "DOWNGRADED from author's medium. The 2x2 grid is well built - no option eliminable by kind or magnitude - but it makes the item EASIER, not harder: reading y at t=0 halves the set in about three seconds, and one ratio halves it again. Two independent five-second checks is an early-form item. The grid is the right design; the difficulty label was the thing that was wrong."
+    }
+  },
+  "residual_habits": {
+    "AM3F-17_even_run_plus_larger": {
+      "agree_visible_habit_not_leak": true,
+      "reasoning": "Checked rather than eyeballed. Over {2, 4, 6, 12} the derivational hub is 12 (a distractor): 12/6, 12/3 and 12/2 generate the other three. The key is the hub in zero items of this batch, which is the inverse of the SAT Math hub defect. No options-only rule selects 6 - it is not the outlier, not the extreme, not the median, and not the unique sign or kind. The one heuristic that reaches it is 'discard the outlier, take the largest of what remains', which is 1-in-3 at best and does not generalise: elsewhere in the batch the key is the smallest (09, 12, 20), a stem constant (04, 05) and the outlier's family (17). Additional reason not to act: this is a single item, and a rule generalised from one un-representative case is how the SEC punctuation entry in CLAUDE.md got written."
+    },
+    "2x2_factorial_grid_01_14_24": {
+      "agree_visible_habit_not_leak": true,
+      "reasoning": "Not a leak, and arguably the safest option design in the batch. In a factorial grid two features vary independently and every cell is a legal combination, so the options cannot differ along the axis the stem names - which is the one property that has predicted leakage. All three grid items score strong on distractor quality for exactly this reason. The real cost is different and worth recording: partial-credit collapse. A solver who resolves ONE axis is immediately at 50%, and in AM3F-24 one axis (the t=0 value) is readable straight off the table, which is why I graded it easy. So the grid trades leakage risk for difficulty deflation. Three of 24 is not a batch-level habit; I would start worrying above roughly six, and would worry about the difficulty labels before the security."
+    },
+    "not_flagged_by_author_but_found": [
+      "Key slot is a perfect 6/6/6/6 across A-D. Harmless in itself (slot carries no information) but it is the exact histogram that CLAUDE.md warns reads as clean while hiding a forced permutation. Checked: consecutive quadruples are NOT complete ABCD permutations (items 01-04 are B,C,B,D), so the underlying defect is absent. Recording the check, not a finding.",
+      "The key sits at a numeric extreme (max or min of its option set) in 11 of the 19 numeric items = 57.9%, against 50% expected by chance for four values. n=19; this is noise, not a tell. Stated with the denominator so nobody re-derives it as a pattern.",
+      "Two items hand the answer over on a cue cheaper than the mathematics: AM3F-20 (key is the unique negative) and AM3F-23 (two distractors fall below the partial sum printed in the stem). These are the two weak grades and both have concrete fixes in their notes."
+    ]
+  },
+  "template_groups": {
+    "answer_to_question_2": "No true template - stem shape plus option shape plus task - is shared by more than four items. The largest genuine one is exactly four. But there are two content concentrations of six that are worth the author's attention, and one stem frame at twelve.",
+    "true_templates": {
+      "exponential_model_items": {
+        "ids": ["AM3F-10", "AM3F-11", "AM3F-18", "AM3F-24"],
+        "count": 4,
+        "verdict": "at the limit, not over it; the four tasks are genuinely different (extrapolate from a table, build a model with a non-unit period, cross a threshold, identify a model from a table)"
+      }
+    },
+    "content_concentrations_over_four": {
+      "constant_ratio_object": {
+        "ids": ["AM3F-09", "AM3F-10", "AM3F-11", "AM3F-18", "AM3F-23", "AM3F-24"],
+        "count": 6,
+        "note": "a quarter of the batch turns on recovering or applying a constant ratio. Six different task shapes, so not a template, but a student weak on ratios loses six items and a student strong on them banks six."
+      },
+      "quadratic_object": {
+        "ids": ["AM3F-03", "AM3F-06", "AM3F-07", "AM3F-08", "AM3F-12", "AM3F-16"],
+        "count": 6,
+        "note": "same shape of concentration. Combined with the above, 12 of 24 items sit on two underlying objects. Logs, rationals, trig and piecewise get one item each."
+      }
+    },
+    "shared_stem_frame": {
+      "frame": "The function(s) <f/g> is/are defined by <expression>.",
+      "ids": ["AM3F-02", "AM3F-03", "AM3F-04", "AM3F-06", "AM3F-07", "AM3F-08", "AM3F-12", "AM3F-15", "AM3F-16", "AM3F-19", "AM3F-20", "AM3F-22"],
+      "count": 12,
+      "verdict": "boilerplate, not a leak - it is standard ACT phrasing and carries no answer information. Recorded only because the question asked what is shared by more than four."
+    },
+    "shared_distractor_template": {
+      "template": "at least one distractor is an intermediate value from the correct computation (stop-early), and the others are single named errors",
+      "approx_count": 14,
+      "verdict": "this is a strength - it is why distractor quality is mostly plausible-or-better. Checked whether it hands over a heuristic ('avoid the number that appears in the stem'): it does not, because in AM3F-04 and AM3F-05 the key IS a stem constant while in AM3F-08 and AM3F-19 it is not. Inconsistent, therefore not exploitable."
+    }
+  },
+  "summary": {
+    "difficulty_histogram": {"easy": 6, "medium": 11, "hard": 7},
+    "difficulty_disagreements_with_author": {
+      "AM3F-06": "hard -> medium",
+      "AM3F-20": "medium -> easy",
+      "AM3F-24": "medium -> easy"
+    },
+    "exclusive_false_count": 0,
+    "weak_count": 2,
+    "weak_ids": ["AM3F-20", "AM3F-23"],
+    "stem_complete_false_count": 0,
+    "genuinely_functions_false_count": 2,
+    "genuinely_functions_false_ids": ["AM3F-07", "AM3F-13"],
+    "scorable": "24 of 24 items read and graded individually",
+    "what_this_grade_is_not": "One with-source grader applying structural and semantic checks. Per CLAUDE.md these are pre-flight, not the gate: none of it substitutes for the no-source blind attack, and nothing here measures whether the options alone decide an item."
+  }
+}

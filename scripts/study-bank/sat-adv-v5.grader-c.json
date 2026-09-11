@@ -1,0 +1,317 @@
+{
+  "ADV5-01": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Complete the square, report k. One mechanical step (40 - 7^2) once the student knows the move. Distractors are the three real sign/stop-short errors and -49 is not a magnitude outlier. No free elimination: deciding k<0 requires actually computing 49>40. Sound but module-1 difficulty."
+  },
+  "ADV5-02": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Remainder theorem at p(-2). The discriminator is real (knowing x+2 vanishes at -2, not +2) and 13 is the genuine last quotient coefficient a student doing synthetic division lands on. Arithmetic is short, so not hard, but nothing is eliminable without work."
+  },
+  "ADV5-03": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "weak",
+    "stem_complete": true,
+    "note": "WEAK, and the reason is free elimination: the stem hands over vertex form 3(x-7)^2-27, so the greater x-intercept must exceed 7 by inspection. That kills BOTH -4 and 4 with no work, leaving 10 vs 16 - a two-option item. 16 is the only working distractor."
+  },
+  "ADV5-04": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "The extraneous candidate x=2 is exactly the excluded value AND is on the ballot; 7 is the sum of the roots. Best distractor set in the batch. Not hard only because the factoring 2x^2-8=2(x-2)(x+2) is short and the alternative cross-multiplication route is equally fast."
+  },
+  "ADV5-05": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "The textbook radical equation. -3 is the correct extraneous-root trap but is eliminable by sign the moment you note a principal root is non-negative, and 1 (sum of roots) is a weak invitation. One of three eliminable free, so plausible rather than strong. Near-twin of ADV5-18 (see template_groups)."
+  },
+  "ADV5-06": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Common-base rewrite then a linear solve. All three distractors are real partial rewrites and none is eliminable by magnitude. Routine for a prepared student, so medium, not hard."
+  },
+  "ADV5-07": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "One-step conversion 3^2 = x-5. CONTENT FLAG, not a grading flag: logarithms are not on the Digital SAT Advanced Math blueprint - the domain tests exponentials, not logs. The item is clean but may be off-specification for the section it banks into."
+  },
+  "ADV5-08": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Factor theorem with an unknown coefficient. -6 is the sign flip of the key and 9 is the x=+2 substitution; both are the errors students actually make, and neither dies by inspection. Two sign-sensitive steps."
+  },
+  "ADV5-09": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Genuine follow-through: solve for x, convert to y, then sum. 6 (sum of the x's) and 8 (substituting the summed x once) are strong. -12 is filler - multiplying y-coordinates when asked for a sum is not an error students make, and it is the magnitude outlier of the set. Replace -12 with 2 (summing y from the parabola with one x dropped) or similar."
+  },
+  "ADV5-10": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "f(g(2)) with the order trap. -3 (composition reversed) is the one distractor worth having; 22 and 3 are weaker but not free. Standard module-1 composition."
+  },
+  "ADV5-11": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "weak",
+    "stem_complete": true,
+    "note": "WEAK: f(0) = (-3)(8) is a negative times a positive, so 11 and 24 are eliminable by sign with zero work, leaving -5 vs -24. Two of three distractors are dead on inspection. Author-labelled easy and it is easy; that combination makes it the lowest-value item in the batch."
+  },
+  "ADV5-12": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "weak",
+    "stem_complete": true,
+    "note": "Authored hard, graded medium: it is the plain vertex computation, the same one ADV5-23 wraps in a condition. WEAK distractors: the stem says 'maximum', and f(1) = 3 is one substitution, so the max is at least 3 - that kills -7 and -25 by magnitude and 3 by the same stroke. Separately, the key is the LARGEST option under a 'maximum' stem (see report note on superlative alignment)."
+  },
+  "ADV5-13": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "distractor_quality": "weak",
+    "stem_complete": true,
+    "note": "Genuinely hard - factor a cubic into three distinct roots, then a symmetric function of them (or Vieta). But the distractors are WEAK by kind: a sum of squares of real numbers cannot be negative, so -24 and -10 are eliminable on sight. That leaves 9 vs 29 on one of only three hard items in the batch. Highest-value repair in the batch: replace the two negative distractors with positive wrong sums (e.g. 21 from 2^2+4^2+(-3)^2 miscounted, or 13 from squaring only two zeros)."
+  },
+  "ADV5-14": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Known root, find the other. Product of roots -21 with a positive known root forces a negative answer, which narrows four to two (-3, -7) with no work - not free enough for weak, but it is half the item. 4 (reporting k) is the strongest member."
+  },
+  "ADV5-15": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Recover the initial value by dividing by 1.5^3. 1350 and 900 are the one-hour and two-hour partial undoings and 675 is the linear-growth reading; all four are plausible populations, none an outlier, and the division by 3.375 is real work. Cleanest distractor set of the non-trap items."
+  },
+  "ADV5-16": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "weak",
+    "stem_complete": true,
+    "note": "WEAK: the radius is 13 by inspection, so a point on the circle with y=5 must have |x| < 13 - that kills 18 immediately and 13 nearly as fast, leaving 12 vs 8. Also a DOMAIN FLAG: a circle in the xy-plane meeting a line is Geometry and Trigonometry on the SAT blueprint, not Advanced Math; banking it as Advanced Math inflates that domain's count with a non-Advanced item."
+  },
+  "ADV5-17": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Quadratic-form substitution with the 'stopped at u' trap (9), which is the right trap and is NOT eliminable. 13 is a bare coefficient echo and 5 (sum of the positive roots) is weak. Drilled pattern, so medium rather than hard. Note the key is NOT the largest option under a 'greatest' stem, which is correct construction."
+  },
+  "ADV5-18": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Isolate, square, then reject the candidate that makes x-1 negative. Three layers, and -1 is a real survivor of the squared equation rather than a sign flip. 3 (squaring term by term) is a strong distractor. The harder of the two radical items."
+  },
+  "ADV5-19": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "weak",
+    "stem_complete": true,
+    "note": "WEAK on two counts. (1) Constant term -24 < 0 means the roots straddle zero, so the lesser one is negative - and -4 is the ONLY negative option. The item collapses to one choice on inspection. (2) Under a 'lesser' stem the key is also the minimum of the option set. Easy item, near-zero measurement value as constructed."
+  },
+  "ADV5-20": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "One base rewrite: 3x = 5. All-fraction option set is good construction (no magnitude tell, and the 3/5 inversion is the right trap), but 3/5 < 1 is eliminable by anyone who notices 32 > 8. Single step, so easy on the hard route."
+  },
+  "ADV5-21": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Horizontal shift inward then vertical shift, and the key 30 coinciding with the constant in f is an anti-tell that punishes pattern-matching rather than rewarding it. 26 (stop before the +4), 9 (ignore the -3), 22 (shift the wrong way) are the three real errors. No free elimination."
+  },
+  "ADV5-22": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "The best-conceived item here: hole versus vertical asymptote, with the hole (6) on the ballot as the primary trap. 4 and -4 do require factoring x^2-36 to dismiss, so not weak, but that factoring is one line - realistically a two-option item between 6 and -6, which is exactly the discrimination intended. Keep as authored."
+  },
+  "ADV5-23": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Graded hard where ADV5-12 is medium, and the gap is the whole reason: the student must first translate 'exactly one real solution' into tangency at the vertex (or set the discriminant to zero) before any computation begins. 9 is the b^2/4|a| offset reported alone, which is the right trap. See template_groups - this item and ADV5-12 are structurally the same computation and should not both bank."
+  },
+  "ADV5-24": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "-2(5)+1 once you know the transformation acts on outputs. 5 (outputs unchanged) and -11 (sign of the shift) are real; the arithmetic is a single line, so easy."
+  },
+  "sign_pair_verdict": {
+    "verdict": "noise, not exploitable as the author framed it - but one adjacent slice is live enough to fix cheaply, and the real leak in this batch is not about signs at all",
+    "residual_1_plus_minus_pairs": {
+      "author_claim": "six items carry an exact +/- pair, key is the negative member on five of six, p ~ 0.22 at n=6",
+      "recount": "9 of 24 items carry an exact +/- pair (01, 03, 08, 10, 11, 14, 19, 22, 24). The author's six are the subset where the key is itself a member of the pair (01, 08, 11, 14, 19, 22); within that subset the key is the negative member on 5 of 6 (all but 08). The recount agrees with the author's numbers.",
+      "why_the_n_is_wrong": "n=6 conditions on whether the key lies in the pair - a fact an options-only attacker cannot see. The attacker-visible rule is 'when a +/- pair is present, pick the negative member', which fires on all 9 pair-carrying items and scores 5 of 9 (01, 11, 14, 19, 22 hit; 03, 08, 10, 24 miss). That is 55.6% against a 25% control, raw p ~ 0.049 - but ADV5-22 carries TWO pairs (6/-6 and 4/-4) so the rule is undefined there; dropping it gives 4 of 8, p ~ 0.11. It also does not survive correction across the three slices actually examined.",
+      "call": "noise. Report it as the one slice worth re-measuring on the next batch rather than acting on it here."
+    },
+    "residual_2_single_negative": {
+      "recount": "9 items have exactly one negative option (03, 04, 05, 06, 08, 09, 10, 18, 19). The key is that lone negative on 1 of 9 (only ADV5-19).",
+      "call": "not a leak - it is ANTI-correlated. 11.1% against a 25% control. A solver following 'the odd-one-out negative is the answer' loses money on this batch. No action."
+    },
+    "batch_wide_control": "7 of 24 keys are negative (29.2%) against 25 of 96 options being negative (26.0%). Dead level. There is no batch-wide sign preference to exploit.",
+    "cheapest_fix_if_you_want_it_gone": "Only three items (11, 14, 19) supply the negative-member hits that are not already balanced by 03, 08, 10, 24. Re-parameterising any two of them so the key is the POSITIVE member of its pair drops the pair rule to chance and costs nothing else.",
+    "what_i_would_flag_instead": "Signs are the wrong thing to worry about in this batch. Six items give away two of three distractors to a solver who only reads the stem's sign or magnitude constraint (03, 11, 12, 13, 16, 19) - see the weak ratings. That is a far larger and fully deterministic leak than a 5-of-9 pattern, and unlike the sign pattern it does not need the solver to guess a rule."
+  },
+  "prose_value_mismatches": {
+    "hard_mismatches": [],
+    "summary": "All 72 distractor rationales were read against their printed values and their distractor_solve bodies. NONE contradicts its value the way the author's caught case did (prose naming a path to -3 while the option printed -5). That caught item is not present in the file - no option anywhere in the batch is -5 - so it was evidently repaired before this copy.",
+    "soft_prose_defects": [
+      {
+        "item": "ADV5-20",
+        "choice": "8/5",
+        "issue": "Internally inconsistent first clause. 'Divides the two given numbers as printed' points at 8 and 32, which gives 8/32, not 8/5. The value 8/5 comes from the second clause (base 8 over the right-hand exponent 5), and 5 is precisely the number that is NOT 'as printed'. The value is right; the first clause should be deleted.",
+        "severity": "wording only, no value error"
+      },
+      {
+        "item": "ADV5-17",
+        "choice": "13",
+        "issue": "'the sum of the two values of u, read off the coefficient of x^2'. The coefficient of x^2 as printed is -13; the sum of the u-roots is +13 (it is minus that coefficient). The value 13 is correct for the named mis-step but the prose states the sign of the coefficient wrongly.",
+        "severity": "wording only, no value error"
+      },
+      {
+        "item": "ADV5-11",
+        "choice": "11",
+        "issue": "'Adds the constants as printed, AGAIN reading the -3 as +3' - 'again' refers forward to the rationale for choice 24, which appears later in the list. Reads as a dangling reference if the distractors are ever reordered or shown singly.",
+        "severity": "wording only, no value error"
+      },
+      {
+        "item": "ADV5-22",
+        "choice": "4",
+        "issue": "'Takes the zero x = -4 from the factor (x + 4) with the sign shown in the parentheses rather than the sign of the root' resolves correctly to +4, but it describes the SAME numerator root that choice -4 is built on, so two of the three distractors in this item trace to one source. Not a mismatch; a redundancy.",
+        "severity": "wording only, no value error"
+      }
+    ],
+    "method": "Read each rationale, derived the value it names by hand, compared to the printed choice, then compared both to the distractor_solve body. The three checks agree on all 72."
+  },
+  "template_groups": {
+    "groups_over_four_items": [
+      {
+        "name": "solve-a-quadratic-then-select-a-distinguished-root",
+        "items": [
+          "ADV5-03",
+          "ADV5-04",
+          "ADV5-05",
+          "ADV5-14",
+          "ADV5-17",
+          "ADV5-18",
+          "ADV5-19"
+        ],
+        "count": 7,
+        "detail": "Seven of 24 reduce to the same skeleton: produce a quadratic (directly, by cross-multiplying, by squaring, or by u-substitution), get two candidates, and pick one by a selection rule (greater, lesser, the surviving one, the other one). The selection rule is the only thing that varies. A student who has drilled this shape answers seven items with one habit.",
+        "distractor_consequence": "The same distractor archetypes recur with it: 'the other root' in 03, 05, 14, 19 and 'the sum of the roots' in 04 (7), 05 (1), 19 (2). Five items in this group carry a sum-of-roots distractor."
+      },
+      {
+        "name": "report-the-intermediate-quantity (distractor template, cross-cutting)",
+        "items": [
+          "ADV5-04",
+          "ADV5-05",
+          "ADV5-07",
+          "ADV5-09",
+          "ADV5-12",
+          "ADV5-13",
+          "ADV5-14",
+          "ADV5-17",
+          "ADV5-19",
+          "ADV5-21",
+          "ADV5-23"
+        ],
+        "count": 11,
+        "detail": "Eleven of 24 items carry a distractor that is the value computed one step before the answer (3^2 in 07, the vertex x in 12 and 23, k in 14, u in 17, f(2) in 21, sums of roots in 04/05/09/13/19). This is a legitimate archetype but at 11 of 24 it is the batch's default distractor rather than a choice, and a solver who learns 'never pick the number you computed second-to-last' gains across half the batch."
+      }
+    ],
+    "exact_structural_duplicates": [
+      {
+        "items": [
+          "ADV5-12",
+          "ADV5-23"
+        ],
+        "detail": "These are the same item. Both ask for the y-value at the vertex of a downward parabola; both carry the vertex x-coordinate as a distractor with the SAME printed value 3 and near-identical rationale wording ('Reports the x-coordinate of the vertex rather than...'); both carry the quadratic's constant term as a second distractor (-7 and 4). The only difference is that 23 states the task as a tangency condition and 12 states it outright - which is exactly why I graded 23 hard and 12 medium. Bank ONE. If both bank, a student who sees 12 gets 23 free.",
+        "recommendation": "drop or re-parameterise ADV5-12"
+      },
+      {
+        "items": [
+          "ADV5-05",
+          "ADV5-18"
+        ],
+        "detail": "Near-twins: radical equation, square both sides, reject the candidate that violates the sign condition, with the rejected root on the ballot in both (-3 and -1). 18 adds the isolation step and the term-by-term-squaring distractor, so it dominates 05 on every axis. Not an exact duplicate, but 05 measures nothing that 18 does not.",
+        "recommendation": "keep ADV5-18; ADV5-05 is optional"
+      }
+    ],
+    "smaller_groups_under_the_threshold": {
+      "exponential-or-log rewrite to recover a value": [
+        "ADV5-06",
+        "ADV5-07",
+        "ADV5-15",
+        "ADV5-20"
+      ],
+      "evaluate a composed or transformed function at a point": [
+        "ADV5-10",
+        "ADV5-21",
+        "ADV5-24"
+      ],
+      "polynomial coefficient/root theorems": [
+        "ADV5-02",
+        "ADV5-08",
+        "ADV5-13"
+      ],
+      "note": "The exponential group sits at exactly 4, not over the threshold, and its four items differ genuinely (two-sided rewrite, log form, model parameter, fractional exponent)."
+    }
+  },
+  "_summary": {
+    "difficulty_histogram": {
+      "easy": 10,
+      "medium": 11,
+      "hard": 3
+    },
+    "exclusive_false_count": 0,
+    "weak_count": 6,
+    "weak_items": [
+      "ADV5-03",
+      "ADV5-11",
+      "ADV5-12",
+      "ADV5-13",
+      "ADV5-16",
+      "ADV5-19"
+    ],
+    "plausible_count": 12,
+    "strong_count": 6,
+    "stem_complete_false_count": 0,
+    "arithmetic": "No key or distractor value disagreed with its stated derivation on my hand check. Nothing looked wrong, so no re-verification was run beyond that.",
+    "content_flags": [
+      "ADV5-07 uses logarithms, which are not on the Digital SAT Advanced Math blueprint.",
+      "ADV5-16 is a circle-and-line problem - Geometry and Trigonometry, not Advanced Math."
+    ],
+    "superlative_alignment_check": "Five items pose a superlative (03 greater, 12 maximum, 17 greatest, 19 lesser, 23 one solution). On 2 of them (12, 19) the key is the matching extreme of the option set, so 'pick the biggest/smallest option' scores. On 03 and 17 the author deliberately placed a larger wrong option above the key, which is correct construction. 2 of 5 is about chance and I do not read it as systematic, but 12 and 19 are both already flagged weak for other reasons."
+  }
+}

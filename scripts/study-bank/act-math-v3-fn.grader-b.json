@@ -1,0 +1,371 @@
+{
+  "AM3F-01": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "Only (4,3) satisfies y=-f(x)+10 at x=4.",
+    "distractor_quality": "strong",
+    "distractor_note": "Complete 2x2 grid, perfectly balanced on both axes (4/-4 twice each, 17/3 twice each), so an options-only solver has no plurality to exploit. This is the safe form of the grid.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Transformation of a named function; core Functions content.",
+    "note": "Graded easy, not medium: the stem writes the transformed rule out explicitly, so the item is substitution (-7+10) and needs no transformation vocabulary at all. The f(-x) vs -f(x) trap only bites a solver who over-thinks it."
+  },
+  "AM3F-02": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "f odd pins f(-3)=-f(3) uniquely; no second reading.",
+    "distractor_quality": "plausible",
+    "distractor_note": "All four traceable. Mild +/-5 pairing invites a blind solver to pick from that pair (2 of 4), but the pair does not point at the key.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Odd symmetry is a property of a function, not of an equation.",
+    "note": "Two steps behind a vocabulary gate ('odd'). Sits around Q30 on a real form."
+  },
+  "AM3F-03": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "x>0 is stated, so x=-13 is excluded; unique.",
+    "distractor_quality": "strong",
+    "distractor_note": "5/7/9/13 all arise from named errors, tight spread, no kind or magnitude singleton.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Composition f(g(x)) is the load-bearing step.",
+    "note": "Two steps plus a stated-constraint check. Solid mid-form."
+  },
+  "AM3F-04": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "g is the inverse of f only for k=7.",
+    "distractor_quality": "strong",
+    "distractor_note": "2/5/7/12 with no outlier; the two 'undo in the wrong order' values flank the key.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Inverse-function construction.",
+    "note": "Requires actually building the inverse rather than recalling a fact."
+  },
+  "AM3F-05": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "log argument zero at x=8; the vertical shift cannot move a vertical asymptote.",
+    "distractor_quality": "plausible",
+    "distractor_note": "No plurality axis and no magnitude outlier, but 8 and 12 are the two stem constants while 20 and 24 are derived, which faintly splits the set 2-2 for a blind solver.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Asymptotic behaviour of a logarithmic function.",
+    "note": "One step once logs are known; the knowledge gate, not the work, is what makes it mid-form."
+  },
+  "AM3F-06": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Negative leading coefficient makes 11 a maximum; y<=11 only.",
+    "distractor_quality": "weak",
+    "distractor_note": "LEAK, not merely weak. Three options use <= and one uses >=; the numeral 11 appears twice and 9 and 22 once each. The key y<=11 is the intersection of the direction plurality AND the most-repeated numeral, so an options-only solver applying 'take the commonest feature on each axis' lands on the key with no stem. Same construction as AM3F-15.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Range of a quadratic function in vertex form.",
+    "note": "Author graded hard; I read it as medium - range-from-vertex-form is standard mid-form ACT and the only work is a sign check. The option set is the real problem here, not the difficulty."
+  },
+  "AM3F-07": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "exclusive_note": "h=4, k=-13 are forced by the stated form; h+k=-9.",
+    "distractor_quality": "plausible",
+    "distractor_note": "-17/-9/7/17 all from named sign and bookkeeping errors. The +/-17 pair leaves -9 and 7 as the two singletons, so the key is not uniquely exposed.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Vertex form is function-graph analysis, though the work is quadratic algebra.",
+    "note": "Three steps with two independent sign traps (h's sign, then h+k vs h-k). Genuinely late-form."
+  },
+  "AM3F-08": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Zeros 8 and -4; distance 12.",
+    "distractor_quality": "weak",
+    "distractor_note": "2, 4, 8, 12: the three distractors are consecutive powers of two and the key is the only option outside that family, AND it is the maximum. Jointly eliminable by kind with no work - exactly the failure the SAT Algebra options-only attack measured. The author did not flag this; it is the same shape as AM3F-16 and worse than the AM3F-17 shape that WAS flagged.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Zeros of a function read off its graph; ACT Functions, though the work is factoring.",
+    "note": "Concept is easy, the trap (report the distance, not a zero) is what earns medium. Recommend reshuffling the distractor VALUES, e.g. replace 2 with 6 or 10 to break the powers-of-two family."
+  },
+  "AM3F-09": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "'Every term is positive' rules out r=-3; unique.",
+    "distractor_quality": "strong",
+    "distractor_note": "2/3/6/9 - the ratio, r^2, the 2nd term and the key, all tightly clustered, no singleton.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Sequence, i.e. a function on the integers. See batch note on taxonomy.",
+    "note": "The positivity clause is load-bearing and correctly present; without it r=-3 gives the same first term but the item would be sloppier."
+  },
+  "AM3F-10": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Ratio 1.5 is confirmed by a third table value; f(4)=4050.",
+    "distractor_quality": "weak",
+    "distractor_note": "2400, 2700, 3600 all end in 00 and are multiples of 300; 4050 is neither. The key is the only option that does not look like the others, so a blind solver picking the odd one out is right. Fix by making a distractor non-round (e.g. 5400 or 4500->2700*1.5) rather than by changing the key.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Exponential function evaluated from a table.",
+    "note": "Table is embedded as preformatted text in the prompt - verify the renderer preserves the column alignment; the data is all present but the item is unreadable if whitespace collapses. Same for AM3F-24."
+  },
+  "AM3F-11": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "exclusive_note": "t/3 growth periods; only one option expresses that. The model interpolates between 3-hour blocks, which is the standard reading and the only one any option supports.",
+    "distractor_quality": "strong",
+    "distractor_note": "Anti-tell: the base plurality (1.08, three options) and the exponent plurality (t, two options) intersect at 500(1.08)^t, a DISTRACTOR. A plurality-following blind solver is actively misled.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Building an exponential function from a described rate.",
+    "note": "The best-constructed item in the batch. Non-unit growth period is genuinely late-form ACT."
+  },
+  "AM3F-12": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "exclusive_note": "Branch conditions eliminate x=4; -4+5=1 uniquely.",
+    "distractor_quality": "strong",
+    "distractor_note": "1/4/5/9 correspond to keeping the wrong root, keeping all roots, and solving one branch only. No structural singleton.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Piecewise function with domain restrictions; unambiguously Functions.",
+    "note": "Three sub-steps plus two condition checks in ~1 minute. Correctly hard."
+  },
+  "AM3F-13": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "'or part of an hour' fixes the ceiling convention explicitly; 5+3(3)=14 only.",
+    "distractor_quality": "plausible",
+    "distractor_note": "9/11/12/14 all from named errors; key is the maximum but the spread is tight and no option is eliminable by kind.",
+    "stem_complete": true,
+    "genuinely_functions": false,
+    "genuinely_functions_note": "No function object, no notation, no graph - the solver computes 5+3*3. The 'step function' framing is in the author's subskill line, not in the item. This would sit equally well in Number & Quantity and should not be counted toward the Functions quota.",
+    "note": "Options are bare numbers while the stem is in dollars; add $ or say 'in dollars' for consistency with the rest of the batch."
+  },
+  "AM3F-14": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "Order is stated, and these two operations commute anyway; unique.",
+    "distractor_quality": "strong",
+    "distractor_note": "Complete, balanced 2x2 grid (sign twice each, shift direction twice each). No plurality to exploit.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Function transformation notation is the entire content.",
+    "note": "Author graded easy and I agree. Single-concept recall with the classic shift-direction trap; this is a Q8-12 item on a real form and is useful as one."
+  },
+  "AM3F-15": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "exclusive_note": "Range of the inverse is the domain of f, y>=4.",
+    "distractor_quality": "weak",
+    "distractor_note": "Same LEAK as AM3F-06. Three options use >= and one <=; the numeral 4 appears twice while 5 and 1 appear once. The key y>=4 is the plurality direction crossed with the plurality numeral, recoverable options-only. Fix by balancing the directions 2-2 or by making each numeral appear once.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Domain/range exchange under inversion; strongly Functions.",
+    "note": "Abstract, no computation, and the confusion it tests (range of the inverse vs range of f) is real. Hard is right."
+  },
+  "AM3F-16": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "f(f(3))=11 uniquely.",
+    "distractor_quality": "weak",
+    "distractor_note": "4, 8, 16 are consecutive powers of two and the key 11 is the only option outside that family - eliminable by kind with no work. Identical shape to AM3F-08. Replacing 8 (which comes from the weakest named error, 'adds f(3) to itself') with a non-power-of-two would fix it.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Self-composition; core Functions.",
+    "note": "Genuinely easy - two substitutions - and useful as an early-form item. Do not inflate it."
+  },
+  "AM3F-17": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "24/4=6 uniquely.",
+    "distractor_quality": "plausible",
+    "distractor_note": "The author's flagged shape: 2, 4, 6 evenly spaced plus 12. The key is INSIDE the run, not the outlier, so dropping 12 leaves a blind solver at 1/3 with no reason to prefer 6 - a visible habit, not a leak. Contrast AM3F-08 and AM3F-16, where the key IS the singleton.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Arithmetic sequence; see batch taxonomy note.",
+    "note": "Clearly easy; a Q5-10 item. All four distractor values are 24 divided by something, which is a cohesive and honest set."
+  },
+  "AM3F-18": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "exclusive_note": "Exact crossing is t=10.34, so the first whole year exceeding 7500 is 11.",
+    "distractor_quality": "plausible",
+    "distractor_note": "10/11/13 cluster plus 18; the key sits inside the cluster, so the outlier does not point at it. The rule-of-72 distractor (18) is the only one a solver could drop on feel.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Exponential model evaluated against a threshold.",
+    "note": "Requires iterating the model on a calculator and then the 'first whole year' convention, which the stem states. Correctly hard."
+  },
+  "AM3F-19": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "exclusive_note": "'Exactly one hole' plus the cancelling factor give x=7 only.",
+    "distractor_quality": "strong",
+    "distractor_note": "2/3/5/7 are the hole's y-value, the x-intercept, the asymptote and the key - four genuinely different misidentifications of the same picture. No singleton. Best distractor set in the batch after AM3F-11.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Rational function structure; unambiguously Functions.",
+    "note": "'Exactly one hole' is a mild gift but is needed for well-posedness. Hole-vs-asymptote is late-form content."
+  },
+  "AM3F-20": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "(f-g)(4)=-5 uniquely; the notation is standard.",
+    "distractor_quality": "weak",
+    "distractor_note": "-5 is the ONLY negative option among 4, 13, 5 - the three distractors are jointly eliminable by sign with no work, and blind solvers reliably take the sign singleton. The 'wrong order' distractor is +5, which makes the asymmetry unavoidable unless another distractor is also made negative (e.g. use f(4)-2g(4) = -14 or -9 in place of 13).",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Arithmetic combination of two functions.",
+    "note": "Two substitutions and a subtraction. Easy, and useful as an early-form item; author's 'medium' is an inflation I will not carry."
+  },
+  "AM3F-21": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "sin attains +/-1, so k is the mean of the extremes; 25 only.",
+    "distractor_quality": "strong",
+    "distractor_note": "21/25/42/50 form two doubling pairs (21,42) and (25,50) with no singleton and no plurality.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Parameter of a sinusoidal function model.",
+    "note": "Borderline easy/medium: the notation looks late-form but the item reduces to 'what is halfway between 46 and 4', which almost any test-taker can do without knowing what a midline is. Graded on what the solve costs, not on what the notation looks like."
+  },
+  "AM3F-22": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "f is one-to-one; f^-1(38)=6 only.",
+    "distractor_quality": "plausible",
+    "distractor_note": "Two clusters, {5,6} and {16,17}; the key is in the lower cluster and neither cluster is eliminable. Mild magnitude split but no free elimination.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Inverse of an exponential function.",
+    "note": "Gate is understanding that f^-1(38) means solve f(x)=38; after that the arithmetic is two lines. Medium, not hard."
+  },
+  "AM3F-23": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Third term confirms r=0.75; sum 192.",
+    "distractor_quality": "strong",
+    "distractor_note": "64/108/144/192 - 64 is the structural singleton (the only non-multiple of 12) and it is a DISTRACTOR, so the odd-one-out heuristic misfires.",
+    "stem_complete": true,
+    "genuinely_functions": false,
+    "genuinely_functions_note": "A series sum: one formula, no function object, no notation, no graph, no variable. Like AM3F-13 this could sit in any domain and should not be counted toward the Functions quota.",
+    "note": "Requires recalling a/(1-r) and not confusing it with a/r. Fair medium."
+  },
+  "AM3F-24": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "Only y=12(1.5)^t reproduces every table row.",
+    "distractor_quality": "plausible",
+    "distractor_note": "Balanced 2x2 grid, so no plurality tell - but unlike AM3F-01 and AM3F-14 the grid is GENERATIVE: 18 = 12*1.5 and 2.25 = 1.5^2, i.e. both distractor values are manufactured from the key's two values. A solver who notices that the 'source' parameters are 12 and 1.5 can reach the key without the table. Weaker than the other two grids for this reason.",
+    "stem_complete": true,
+    "genuinely_functions": true,
+    "genuinely_functions_note": "Fitting an exponential function to data.",
+    "note": "Easy: checking t=0 halves the set and t=1 finishes it, roughly 20 seconds. Table is preformatted text - same rendering caveat as AM3F-10."
+  },
+  "residual_habits": {
+    "author_flag_1_AM3F_17_even_run": {
+      "agree": true,
+      "verdict": "habit, not a leak",
+      "reasoning": "2, 4, 6 plus 12, with the key at 6 - INSIDE the run. Dropping the outlier leaves a blind solver at 1/3 with nothing to break the tie, so the shape costs no security. All four values are 24 divided by something, which is a coherent set.",
+      "but": "The author is wrong that this is the only item of that shape, and wrong about which instance matters. AM3F-08 (2, 4, 8 | key 12) and AM3F-16 (4, 8, 16 | key 11) have the same three-plus-one geometry with the key AS the singleton, which is the dangerous orientation and is a leak. Neither was flagged. The correct generalisation is not 'avoid even runs' but 'never let the key be the only member outside a family the distractors share'."
+    },
+    "author_flag_2_2x2_factorial_grids": {
+      "agree": true,
+      "verdict": "habit, not a leak, for AM3F-01 and AM3F-14; AM3F-24 is a weaker case",
+      "reasoning": "A COMPLETE 2x2 grid is balanced by construction - each value on each axis appears exactly twice - so an options-only solver has no plurality to follow and sits at exactly 25%. The grid is arguably the safest option shape in the batch, and its visibility (one option is transparently the double-error throwaway) costs nothing blind.",
+      "but": "AM3F-24's grid is generative rather than merely balanced: 18 = 12 x 1.5 and 2.25 = 1.5^2, so both distractor parameters are derived from the key's, and the pair that looks like the 'source' values is the key. Balance the grid with an independent value (e.g. an initial value of 9 or 20) to remove that."
+    },
+    "unflagged_and_more_serious": [
+      "PLURALITY-INTERSECTION KEY in the two inequality items. AM3F-06: three <= and one >=, numeral 11 twice, 9 and 22 once - key y<=11 is the commonest direction crossed with the commonest numeral. AM3F-15: three >= and one <=, numeral 4 twice, 5 and 1 once - key y>=4, same construction. A blind solver following the majority on each axis scores 2/2. These are leaks, not habits, and they are 100% of the items whose options are inequalities. This is the incomplete cousin of the 2x2 grid the author DID flag: the grid is safe because it is balanced, and these are unsafe because they are not.",
+      "KEY AS KIND-SINGLETON in four items: AM3F-08 and AM3F-16 (only non-power-of-two), AM3F-10 (only option not ending in 00 / not a multiple of 300), AM3F-20 (only negative). Each lets the odd-one-out heuristic succeed with no work. Note AM3F-23 shows the correct orientation - its singleton, 64, is a distractor.",
+      "Every one of the 24 explanations follows one rigid template ('The option X comes from a solver who ...'), and exactly the three grid items close with 'makes both errors at once'. Per the CLAUDE.md lesson on rigid briefs, that template is plausibly the CAUSE of the option-set habits above: 'name one error per distractor, plus one that combines them' produces a balanced grid when the errors are independent and a lopsided plurality when they are not. The tell is in the explanation prose rather than in the options, so it does not reach students, but it predicts where the next batch will fail."
+    ],
+    "structural_checks_run": {
+      "key_letter_spread": "6/6/6/6 across A-D. Checked for the forced-permutation artefact recorded in CLAUDE.md: the six consecutive groups of four are BCBD, BDAD, ABDA, DCAC, DCAC, BCBA - not one is a complete ABCD permutation, so the flat histogram is a genuine shuffle.",
+      "key_length_rank": "8/4/5/7 across shortest-to-longest. Flat; no length tell.",
+      "key_numeric_rank": "Among the 19 all-numeric items the key is the maximum 5 times and the minimum 4 times, against 9.5 expected by chance. No rank tell."
+    }
+  },
+  "template_groups": {
+    "over_four": [
+      {
+        "template": "constant multiplicative rate: extract or apply a fixed ratio",
+        "items": [
+          "AM3F-09",
+          "AM3F-10",
+          "AM3F-11",
+          "AM3F-18",
+          "AM3F-22",
+          "AM3F-23",
+          "AM3F-24"
+        ],
+        "count": 7,
+        "note": "29% of the batch turns on one idea. The narrowest reading - 'given values, compute the ratio, then apply it' - is AM3F-09, 10, 23, 24 (exactly four, at the limit), but 11, 18 and 22 are the same concept handed to the solver pre-packaged. If this batch is meant to relieve a Functions quota, it relieves it very unevenly; a form drawing several of these would feel repetitive to a student."
+      }
+    ],
+    "at_or_under_four": [
+      {
+        "template": "shift/reflection of a named function, read a parameter off it",
+        "items": [
+          "AM3F-01",
+          "AM3F-05",
+          "AM3F-14",
+          "AM3F-22"
+        ],
+        "count": 4
+      },
+      {
+        "template": "feature of a quadratic's graph (range, vertex form, zeros, branch)",
+        "items": [
+          "AM3F-06",
+          "AM3F-07",
+          "AM3F-08",
+          "AM3F-12"
+        ],
+        "count": 4
+      },
+      {
+        "template": "inverse function",
+        "items": [
+          "AM3F-04",
+          "AM3F-15",
+          "AM3F-22"
+        ],
+        "count": 3
+      },
+      {
+        "template": "evaluate and combine (composition or arithmetic combination)",
+        "items": [
+          "AM3F-03",
+          "AM3F-16",
+          "AM3F-20"
+        ],
+        "count": 3
+      },
+      {
+        "template": "complete 2x2 factorial option grid",
+        "items": [
+          "AM3F-01",
+          "AM3F-14",
+          "AM3F-24"
+        ],
+        "count": 3
+      },
+      {
+        "template": "data presented as a preformatted text table inside the prompt",
+        "items": [
+          "AM3F-10",
+          "AM3F-24"
+        ],
+        "count": 2,
+        "note": "rendering risk, not a content template"
+      }
+    ],
+    "explanation_prose": {
+      "template": "'The option X comes from a solver who ...'",
+      "count": 24,
+      "note": "24 of 24 - fully rigid. See residual_habits.unflagged_and_more_serious."
+    }
+  }
+}
