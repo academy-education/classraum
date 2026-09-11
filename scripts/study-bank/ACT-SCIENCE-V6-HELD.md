@@ -60,3 +60,70 @@ data_representation at 5, and the batch holds 7 and 6. That is my
 commissioning error, not the author's — the author refused to change the
 counts, which is correct (`never-change-question-counts`). One item must be
 dropped from each passage.
+
+
+---
+
+# REPAIRED 2026-09-11 — and the grades on file are now stale
+
+The figure was **redrawn from a generator, not hand-patched**, and the hold's
+cause is gone.
+
+    Q3's key margin   2.4 px at 340 / 1.8 px at 260   ->   11.0 px
+    thinnest of 15 separations in the batch            ->    8.8 px (floor 8)
+    Figure 2 resolution   1.2 px/min                   ->    2.2 px/min
+
+The load-bearing choice was the viewBox: 350x250 -> **260x296**. The app serves
+the graphic `w-full / h-auto / max-h-[300px]`, so the scale is
+`min(W/vbW, 300/vbH)` — at 260x296 the drawing renders at **1 unit = 1 px at
+every width at or above 260**, which stops resolution degrading on a narrow
+phone. Both bar types now carry an identical 1px stroke, so the ~0.5 px
+apparent-top bias that favoured Q3's key is gone, and both panels have major
+gridlines and ticks every 10 min with minors every 5.
+
+**The cascade turned out to be small, because the suggested fix was ambiguous
+and one reading was a disaster.** "K 27 -> 32" could mean the unstirred bar —
+but that value is pinned to Figure 1 at 10 mg/L, and raising it would put K's
+own maximum at 10 mg/L, double-keying Q2 (J and K both "greatest there") and
+shifting Q5's interpolation. It was applied to the **stirred** bar instead,
+which lives only in Figure 2. No cascade at all. Three Figure 1 values moved to
+open the other thin reads, all confined to columns **no option set uses**
+(Q1's options are the 5 mg/L column, Q4's the 15 mg/L column).
+
+**No key changed and no option string changed** — 0 of 6 keys, 0 of 24 options.
+Three explanations were reworded because they quoted moved numbers.
+
+The new verifier reads no authored table: it least-squares-fits each axis
+against its labelled major ticks (telling minors apart by length), identifies
+series by end-letter under one shared baseline offset, checks every marker
+against a vertex of its own curve, reads each bar twice — from its top and
+from its height — and re-answers all six items. It **re-derives** Experiment
+2's concentration from the cross-figure match rather than assuming it (the
+next-closest column is off by 11 min). 13 of 13 rigs behaved: 9 must-fail and
+**4 must-pass**, including a marginal thin-margin rig at 5 -> 3 min rather than
+a blowout. It caught two real things on its first run — a triangle marker whose
+centroid sat 2.1 units off its datum, and a margin left at 3 min.
+
+**A fourth defect neither grader named:** run the HELD figure through the new
+verifier and it refuses at Figure 2's calibration, because that panel had **no
+y-axis tick marks at all** — only gridlines and three text labels.
+
+## What this batch now owes
+
+`verify-act-science-v6.mjs` prints `VERIFY OK` and the pixel report. But:
+
+- **The with-source grades are STALE.** All three graders read 44/29/7/41 where
+  the file now draws 47/32/4/46. Same keys, same options, same reasoning path —
+  but their transcripts quote numbers that are gone, and a grade is evidence
+  only about the bytes it was taken on. A fresh three-grader pass is owed.
+- The figure-blind 16.7% is **untouched**, because that attack withheld the
+  figure entirely.
+- There is no ledger entry at this content hash, so the gate refuses outright.
+  That is correct.
+
+Two residuals the repairer reports rather than hides: **~2.2 px/min is a
+ceiling, not a choice** — `max-h-[300px]` caps rendered height regardless of
+card width, so two stacked 0-50 panels plus legible labels cannot do better
+without separate graphics per figure; and **Q5's option gap is the tightest
+thing in the batch** at 3 min (half-gap 1.50), clearing the +-1.25 min the
+ruler supports by 20%. That one is arithmetic, not legibility.

@@ -1,0 +1,198 @@
+{
+  "AM4F-01": {
+    "pick": "-14",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "f(-2) = -10 - 4 = -14. Option set is a complete sign x magnitude quartet {+-6, +-14} - the shape the brief names as safe; nothing in it narrows. All three distractors are named paths (rule read backwards, (-2)^2 as -4, +2 for -2)."
+  },
+  "AM4F-02": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "g(f(2)) = g(9) = 5. Inner value, reverse composition and g-only are the three real error paths. Value-set nit, unreachable in practice: the key is the difference of two other options (-2 - (-7) = 5); a blind solver would not find it, but it is the shape 2b lists, so it is on the record."
+  },
+  "AM4F-03": {
+    "pick": "-1",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "(x+9)/2 = 4 gives x = -1. Note the key is the magnitude outlier of the set (1 against 5, 6.5, 17): the usual options-only heuristic 'the key is never the order-of-magnitude outlier' misfires here, which is the safe direction. 6.5 is also the only value written as a decimal, but it is a distractor, so no leak."
+  },
+  "AM4F-04": {
+    "pick": "-3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "(7-22)/5 = -3. Graded medium, not easy: the whole difficulty is that the terms are non-adjacent and students mis-count the steps. That is exactly why '4' is the weak option - it is the 8th term, which nobody produces while answering 'what is the common difference'. The natural wrong path here is dividing by 6 or by 4 (-2.5 or -3.75) and it is absent; -15 and 3 are good."
+  },
+  "AM4F-05": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-4cos(3x) ranges over [-4,4], so max = 9. Reachable value-set tell: the key is the sum of two other options (1 + 8 = 9). '12' (4+3+5) is number-scavenging rather than a path a student walks; '1' (the minimum) and '8' (amplitude/frequency confusion) are real."
+  },
+  "AM4F-06": {
+    "pick": "y = f(x - 3) - 2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC, judged by hand: the four options are the complete 2x2 grid over (x-3 vs x+3) x (-2 vs +2). Each level appears in exactly two options, so the plurality-intersection attack cannot fire and the option set alone narrows nothing - a blind solver is at 25%. Direction-of-horizontal-shift is the canonical error and it is the key's nearest neighbour."
+  },
+  "AM4F-07": {
+    "pick": "-7/2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Denominator zero at x = -7/2. Option set is a closed sign x reciprocal quartet {+-7/2, +-2/7} - a safe shape, nothing narrows. Distractors are thinner than they look: two of the three (+-2/7) both come from the single contrived slip of reading 2x+7 as 7x+2, so the item really offers one sign error and one misreading used twice."
+  },
+  "AM4F-08": {
+    "pick": "1/3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "r^3 = (5/3)/45 = 1/27, r = 1/3. Closed reciprocal quartet {3, 1/3, 27, 1/27}: every option is the image of another, so no option is eliminable by kind. Skipped cube root, inverted ratio, and both-at-once are all genuine."
+  },
+  "AM4F-09": {
+    "pick": "400(3)^(t/8)",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC, judged by hand: complete 2x2 grid over base in {3,8} x divisor in {3,8}, with the 400 common to all four. Each numeral appears twice in each position, so nothing narrows from the options alone; the two 'mixed' and two 'matched' forms are symmetric, so there is not even a tidiness pull. Blind solver at 25%."
+  },
+  "AM4F-10": {
+    "pick": "17",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "(48 - (-3))/3 = 17. '51' (undivided total change) is the classic, '15' the sign slip on f(1), '12.75' the wrong denominator. 51 is a magnitude outlier but it is a distractor, so the heuristic points away from the key."
+  },
+  "AM4F-11": {
+    "pick": "60",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "f(1) = 8 (x<3 branch), f(8) = 60 (x>=3 branch). Worth recording that the key IS the magnitude outlier here (60 against 0, 8, 22), which inverts the live-bank tell where the key is never the outlier - the safe direction, and I would not change it. All three distractors are branch or stopping errors."
+  },
+  "AM4F-12": {
+    "pick": "5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Axis at x = 3, so 1 reflects to 5. Value-set note: {-5,-1,3} is a three-term arithmetic run (d=4) with 5 as the outlier, which is the shape 2b flags - but the run's middle is -1, not the key, so the heuristic points away. No change needed."
+  },
+  "AM4F-13": {
+    "pick": "15",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "sqrt(3x+4) = 7, 3x+4 = 49, x = 15. 7 is the radical's value one step short, 0 drops the -5, 5/3 puts the 5 on the wrong side. Clean."
+  },
+  "AM4F-14": {
+    "pick": "(-3, -10)",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "SYMBOLIC, judged by hand: complete 2x2 grid over x in {3,-3} x y in {8,-10}. Each coordinate value appears in exactly two pairs, so the option set alone narrows nothing and there is no tidy-versus-untidy pull (both y-values are equally 'unround'). Blind solver at 25%. Sign-off-the-binomial and add-instead-of-subtract are the two real errors."
+  },
+  "AM4F-15": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Ratio of leading coefficients, 6/2 = 3. Partial options-only narrowing: {3, 1/3} is a reciprocal pair and {0, 6/5} are singletons, so a solver who knows only 'the answer is the leading-coefficient ratio one way or the other' is down to two options without reading the function. '6/5' is coefficient-scavenging from the numerator rather than a path a student walks."
+  },
+  "AM4F-16": {
+    "pick": "4",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "3^2 = x+5, x = 4. Graded easy, not medium: this is one rewrite and one subtraction, and it gates on knowing the definition of a log rather than on any reasoning. '20' (treating the 5 inside the parentheses as the base, then subtracting it anyway) is a two-slip invention; '1' and '14' are real."
+  },
+  "AM4F-17": {
+    "pick": "10",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "f(-2) - g(-2) = -2 - (-12) = 10. Graded easy: two substitutions and a subtraction; the only load is negative-sign care. Value-set note: {-14,-2,10} is an arithmetic run (d=12) with -10 the outlier, but the run's middle is -2, a distractor, so it points away from the key."
+  },
+  "AM4F-18": {
+    "pick": "14",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "5 + 3(3) = 14. Four billed units for 3h25m. Exclusive: 'each additional hour or part of an additional hour' pins the rounding convention explicitly, so there is no second defensible reading. Undercount, all-at-5, and all-at-3 are the three real paths."
+  },
+  "AM4F-19": {
+    "pick": "15/8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "k = 5, then y = 5(6)/16 = 15/8. Two notes. (a) Format singleton: the key is the only option written as a vulgar fraction, the other three read as 5, 3.75, 30 - a solver reading surface form alone has a pull toward it. Writing it as 1.875 would close that. (b) '30' requires treating z^2 as varying directly AND inverting the x-ratio, which is two inventions rather than one path; '5' and '3.75' are strong."
+  },
+  "AM4F-20": {
+    "pick": "-6",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "11 - b^2/4 = 2 gives b^2 = 36, and 'b is negative' picks -6. Genuinely hard: recovering a coefficient from a stated extremum, with a sign constraint that has to be applied at the end. Option set is a complete sign x magnitude quartet {+-3, +-6}, so nothing narrows. Exclusive precisely because the stem pins the sign."
+  },
+  "AM4F-21": {
+    "pick": "8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "h(x) = x/2 + 5, so h^-1(9) = 8. Downgraded from hard: once h is composed it is a one-line linear solve, and composing two linear rules is mechanical. It is three easy steps, not a synthesis. Distractors (h(9), undoing in the written order, f^-1 alone) are all real and well chosen."
+  },
+  "AM4F-22": {
+    "pick": "13",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "At t=12, A = 12,591 and B = 12,600; at t=13, A = 13,598 and B = 12,900. Hard, and correctly so. Kept exclusive after checking the obvious attack: the gap at t=12 is 9 members in 12,600, i.e. 0.07%, so a student rounding 1.08^12 to 2.52 gets an exact tie - but a tie is not 'more members than', so the tie still resolves to 13. It survives, though the margin is thinner than an item ought to rely on; a start of 5,000 vs 9,100 would give it air."
+  },
+  "AM4F-23": {
+    "pick": "6 < x <= 6.5",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "1/(x-6) >= 2 forces x-6 > 0 and x-6 <= 1/2. SYMBOLIC, judged by hand: all four options carry the identical interval 6 to 6.5 and differ only in endpoint inclusivity, so the option set carries no propositional content at all - the closest thing to a pull is that two options are 'tidy' (both strict, both closed) and two are mixed, leaving a test-wise guesser at 50% between the two mixed forms rather than 25%. That is the weakest narrowing of the five symbolics and I would still call it acceptable. Genuinely hard: two independent constraints, one of which comes from the inner function's domain."
+  },
+  "AM4F-24": {
+    "pick": "7",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "3x-5 = +-16 gives 7 and -11/3; the greater is 7. TWO problems, both reachable. (a) Kind singleton on the key: 7 is the only integer against 10/3, -11/3, 16/3 - a blind solver taking the odd-one-out lands on the key, which is the §1 violation the brief says costs the most items. Recasting a distractor as an integer (e.g. 12 for 3x = 16 + 5 misapplied) would close it. (b) '10/3' is the sum of the two solutions, which is not an error a student makes - you choose between roots, you do not add them. Also downgraded from hard: a two-branch absolute-value equation with a 'greatest' tiebreak is mid-form ACT."
+  },
+  "AM4F-25": {
+    "pick": "2/5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "20 = 12/(1-r) gives r = 2/5. Downgraded from hard: this is formula recall plus one linear solve - knowledge-gating, not reasoning. And '5/3' is eliminable without doing any work: the stem asserts the infinite series HAS a sum, which pins |r| < 1, so a solver drops it on sight and is at one-in-three. That is the 'option outside a range the stem pins' case; replacing it with -3/5 or 8/20 would fix it."
+  },
+  "AM4F-26": {
+    "pick": "(5, 7)",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "(x-5)(x+2)/(x-5) = x+2 with a hole at x = 5, height 7. SYMBOLIC, judged by hand: complete 2x2 grid over x in {5,-2} x y in {0,7}, each value in exactly two pairs, so nothing narrows mechanically. The one soft pull is that 0 is the 'tidy' y-value and appears twice, so a guesser avoiding round numbers is 50/50 between (5,7) and (-2,7) - mild, and it does not identify the x. Downgraded from hard: factor, cancel, substitute, and the only gate is knowing what a removable discontinuity is."
+  },
+  "AM4F-27": {
+    "pick": "19",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "5, 7, 11, 19. THE STRONGEST VALUE-SET FINDING IN THE BATCH: the key is the centre of a derivational star in the item's own operation - 19 = 2(11) - 3 and 35 = 2(19) - 3, so two of the three distractors are exactly one application of the printed recursion away from the key, in opposite directions, with -2 as the odd one out. A solver who reads the rule off the stem and looks for the option that sits one step INSIDE the chain names 19 without iterating from a(1); the run {11, 19, 35} plus outlier is the shape 2b calls reachable, and a shuffle does not touch it. Fix by replacing a(5) = 35 with a value off the chain (e.g. 13, from doubling without subtracting at the last step). Also downgraded from hard to easy: three applications of a printed rule is front-half ACT work."
+  },
+  "AM4F-28": {
+    "pick": "42",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "240(1/2)^2.5 = 42.43, so 42. Downgraded from hard: one calculator expression; the only gate is accepting a non-integer number of half-lives. Distractors are all genuine - truncating to 2 whole half-lives, dividing by 2.5, and inverting the exponent - and none is eliminable by kind."
+  }
+}
