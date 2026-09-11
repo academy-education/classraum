@@ -92,6 +92,34 @@ function loadEnv() {
  * measured, `bare` is the honest condition for deciding a batch and `labelled`
  * is the one comparable with the history.
  */
+/** Compact text form of the shapes the runner renders. Unknown shapes are
+ *  named rather than silently dropped — a solver must be able to tell that
+ *  something was there and could not be shown. */
+function renderGraphic(g) {
+  if (!g || typeof g !== 'object') return '(present, unrenderable)'
+  if (g.type === 'table' || g.type === 'twowaytable') {
+    const head = (g.colLabels ?? []).join(' | ')
+    const rows = (g.cells ?? []).map((r, i) => `${(g.rowLabels ?? [])[i] ?? ''}: ${r.join(' | ')}`)
+    return `table [${head}] ` + rows.join(' ; ')
+  }
+  if (g.type === 'bar') return `bar chart (${g.xLabel ?? '?'} vs ${g.yLabel ?? '?'}) ` +
+    (g.bars ?? []).map(b => `${b.label}=${b.value}`).join(', ')
+  if (g.type === 'scatter' || g.type === 'line') {
+    // Points are [x, y] PAIRS and series carry `label`, not {x,y}/`name`.
+    // The first version of this assumed the object shape and rendered every
+    // point as "(undefined,undefined)" — a figure that was present, looked
+    // rendered, and carried no data. Caught by reading the output on a
+    // figure-heavy batch rather than by the fact that it ran.
+    const pt = p => Array.isArray(p) ? `(${p[0]},${p[1]})` : `(${p?.x},${p?.y})`
+    const axes = `(${g.xLabel ?? '?'} vs ${g.yLabel ?? '?'})`
+    if (Array.isArray(g.points)) return `${g.type} ${axes} ` + g.points.map(pt).join(' ')
+    return `${g.type} ${axes} ` + (g.series ?? [])
+      .map(se => `${se.label ?? se.name ?? ''}: ` + (se.points ?? []).map(pt).join(' ')).join(' ; ')
+  }
+  if (g.type === 'rawsvg' || g.type === 'svg') return '(figure drawn as SVG — see the item)'
+  return `(${g.type} figure)`
+}
+
 function renderBlind(batch, { labelled = true } = {}) {
   const out = []
   for (const it of batch) {
@@ -99,6 +127,16 @@ function renderBlind(batch, { labelled = true } = {}) {
       ? `### Item ${it.id}  (${it.domain} / ${it.subskill})`
       : `### Item ${it.id}  (${it.domain})`)
     if (it.passage) out.push(`Passage: ${it.passage}`)
+    /* THE GRAPHIC IS PART OF THE SOURCE. This stage hands solvers the
+     * passage and strips only the key — it is where an item is SUPPOSED to
+     * be answerable. Dropping the figure made every quantitative item
+     * unanswerable here, so a solver's miss measured the render rather than
+     * the item, and an author who handed this file to QC would have been
+     * scoring six blanks. Found 2026-09-12 by an Information and Ideas
+     * author who noticed its own .blind.txt could not be used for the QC it
+     * was built for. The no-source attack uses a DIFFERENT render, which
+     * withholds by design. */
+    if (it.graphic) out.push(`Figure: ${renderGraphic(it.graphic)}`)
     out.push(`Question: ${it.prompt}`)
     it.choices.forEach((c, i) => out.push(`  (${LETTERS[i]}) ${c}`))
     out.push('')
