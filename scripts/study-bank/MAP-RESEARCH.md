@@ -507,8 +507,117 @@ scoring, instructional areas per standard set, state-by-state strand variation,
 Terms of Use / trademark language, MAP Accelerator end-of-life, HMH ownership,
 practice test is non-adaptive.
 
-**Not confirmed from a primary source:** the number of options on a MAP multiple-
-choice item (we assumed 4); the format mix of the item pool; any prep-vendor claim;
+**Moved to confirmed 2026-09-12, but by an uncitable source — see §9:** the
+number of options on a MAP multiple-choice item (4); multiselect and
+drag-and-drop present in live events, with option counts of 5 and 7 on
+multiselect; ~40-41 items in a Reading event.
+
+**Not confirmed from a primary source:** any prep-vendor claim;
 prep pricing; whether NWEA has ever acted against a prep vendor; the full extent of
 state-by-state strand divergence (CCSS and NY verified only); raw Korean
 parent-forum demand.
+
+---
+
+## 9. 2026-09-12 — WHAT ANDY SUPPLIED IS NOT SCORE REPORTS. IT IS LIVE NWEA ITEMS.
+
+Thirteen PDFs were supplied as MAP "score reports" (G7/G8/G9, Reading and
+Language Usage, each labelled with a RIT and a percentile). **They contain no
+scores, no reports and no student data.** Every one is a sequence of test
+questions: passage, stem, numbered options, one item per page.
+
+**Provenance, from the files themselves.** All thirteen carry
+`Creator: wkhtmltopdf 0.12.5`, `Producer: GPL Ghostscript 9.15`, and creation
+timestamps on **2026-10-27 between 14:29 and 14:39 KST** — thirteen documents
+rendered from HTML in a ten-minute window, in Korea. That is the signature of a
+browser print of live test sessions, not of anything NWEA issues. There is no
+NWEA branding, no copyright line, and no student name, ID or academy mark
+anywhere in the extracted text — consistent with a capture of the item frame
+only.
+
+**This is the single thing §8 and the conclusion tell us never to touch:**
+"Do not reproduce a single NWEA item, ever — including 'reconstructed from
+memory' items sourced from students who sat the test." These are better sourced
+than reconstructions and therefore worse, not better, to hold. Consequences
+taken immediately:
+
+- The PDFs live in the session scratchpad and **were never added to the repo**.
+  Nothing in this file quotes an item, a passage, a stem or an option.
+- **No item in any Classraum bank may be authored from, checked against, or
+  informed by this corpus.** That includes using it as a style reference, as a
+  difficulty anchor, or as validation data — which is tempting precisely because
+  §"What this means for Classraum" names the absence of a validation corpus as
+  the biggest risk in the whole product. It is still the biggest risk. This does
+  not fix it; it is the one source that cannot be used to fix it.
+- Anyone reading this later: the useful output of that corpus is the **structural
+  table below and nothing else**. It is recorded so nobody needs to open the
+  files again.
+
+### Structural facts, which are format and not expression
+
+Measured over ~380 items across the 13 captures.
+
+| Question | Prior state | Measured |
+|---|---|---|
+| Options on a MAP multiple-choice item | **assumed 4, unconfirmed** | **4, confirmed** — ~370 stems each carrying exactly options 1-4 |
+| Items per test event, Reading | max 43 incl. field test (tech report) | **40-41** in all 6 Reading captures — consistent with complete events |
+| Items per test event, Language Usage | same | **18-20** in all 7 LU captures — these are **partial**, roughly half an event |
+| Multiselect exists | tech report only | **confirmed**, in BOTH Reading and Language Usage. Phrased "Which **two**…" / "Select the **three**…". Option counts **5 and 7**, not 4. ~1 per event. |
+| Drag-and-drop exists | tech report, listed as Language Usage | **confirmed, Language Usage only** — 0 in 6 Reading captures. Renders as a flat word bank plus in-sentence blanks. |
+| Format mix | "unknown, MC likely the plurality" | 4-option MC is the overwhelming majority; multiselect and drag-and-drop are each roughly **1 item per event** |
+
+**Two limits on the mix number, both of which matter.** (1) A print-to-PDF of an
+interactive test may silently drop a format that has no static rendering, so the
+mix is a floor on MC share and a ceiling on nothing. Drag-and-drop *did* render,
+which is reassuring but not proof that every format did. (2) The text extraction
+is corrupted in places — a systematic `h`→`u` substitution ("tue" for "the") and
+dropped spaces — so counts driven by keyword matching **undercount**; the
+drag-and-drop tally in particular missed at least one item that was confirmed by
+eye. Read the table as "at least this, of these kinds", not as a census.
+
+### Two corrections to earlier sections of this file
+
+1. **§4's 4-option assumption was right**, and can be moved to the confirmed
+   list — but sourced to a corpus this project must not cite, so it stays
+   unciteable in anything customer- or partner-facing.
+2. **"Reading only for admissions" is weaker than §7 states.** That claim came
+   from a secondary Korean source. Seven of the thirteen captures are Language
+   Usage, from the same academy in the same session. That is not direct evidence
+   about *admissions* use, but it does refute the working assumption that Korean
+   MAP prep demand is Reading-only, and the "do not build all four subjects,
+   Reading first" recommendation should be re-derived rather than inherited.
+
+### One thing the labels give us for free, with no IP question at all
+
+The RITs and percentiles in Andy's filenames are his own data about his own
+students and carry no NWEA content. Thirteen sittings: **Reading RIT 216-251,
+Language Usage RIT 220-249, percentiles 54th to 98th — every single student at
+or above the median.** The authoring-band recommendation in
+§"What this means for Classraum" uses "targeted at RIT 201-210" as its worked
+example. For this audience that is far too low. The band to author against is
+roughly **215-250**, and the audience is an above-median cohort, so authoring to
+the median student would miss all thirteen.
+
+### The practice test — the citable substitute, and it did not run
+
+`practice.mapnwea.org` is NWEA's own public practice player. The credentials are
+**`grow` / `grow`**, published by NWEA on its own help page
+([PracticeTest.htm](https://teach.mapnwea.org/impl/maphelp/Content/Testing/PracticeTest.htm)),
+which also confirms from primary source: "about 5 questions, depending on the
+grade", **no score and no adaptive behavior**, and that MAP Math uses the
+**Desmos** calculator (scientific and four-function).
+
+This matters because it is the ONE source of NWEA-authored item formats that
+this project may cite. Everything §9 measured is confirmed far better by the
+Herald corpus and can never be quoted; the same facts taken off the public
+practice test would be usable in a brief, a disclaimer, or a partner
+conversation.
+
+**It did not run here.** All static assets return 200 (`assessment-frontend`,
+`assessment-item-renderer`, Datadog RUM), the login form accepts `grow`/`grow`,
+and the player then stalls on "It's taking a while to load your content" through
+both the submit button and Enter, with no XHR to a session endpoint and no
+console error. Most likely the session handshake is a WebSocket or a
+lockdown-browser check that the sandboxed browser blocks. **Unfinished — worth
+ten minutes in a normal browser**, and the only reason to bother is citability,
+not new information.
