@@ -723,3 +723,20 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   Grader c said the drift from `8944d44f` to the author's final `e1924679` was benign. I verified that rather than taking it, by diffing the grader's own frozen snapshot against the final: **0 keys changed, 0 option sets changed, 0 prompts changed; 3 passages reworded (SEC-H8-07, -12, -19), 21 of 24 items wholly unchanged.** Since a grade is a judgement about picks, exclusivity and options, and none of those moved, **the grades transfer.** The correction is recorded because I had written the opposite into the register an hour earlier.
 
+- **2026-09-11** — **"STRUCTURAL OR NUMERICAL?" IS NOW DECIDED BY EXPERIMENT, AND THE FIRST TWO VERSIONS OF THE EXPERIMENT BOTH ERRED TOWARD CONDEMNING SOUND ITEMS.** The second `sat-geo-h2` repair needed to tell an option-set relation that follows from the mathematics (unfixable by renumbering — the offending option must leave) from one that is an artefact of the chosen values (fixable). It decides this **literally**: re-run each option's own derivation with the stem's literals jittered, and retest the relation.
+
+  Two bugs, found by attacking it, and both pointed the same way:
+
+  - **Jittering by ONE factor per trial is a homogeneous rescaling.** It certified `288 - 192 = the stem's 96` on GEOH2-14 as STRUCTURAL when the relation is only degree-1 homogeneous. Independent per-literal factors flip it to NUMERICAL. **That is a condemnation of a sound item, avoided.**
+  - A `0.1` scale let the literal 100 in `100*rem/start` be captured as a scaled-down quantity, corrupting GEOH2-10 into a confident NUMERICAL for a relation that is genuinely structural.
+
+  And a refusal that matters: a derivation which **hard-codes an intermediate** (`484-480`, `6.5`, `125`) cannot be renumbered at all, so the item is reported **UNCLASSIFIED with the baked literal named** rather than given a verdict. 12 of 24 items are currently unclassifiable for exactly that reason — their `solve` bodies would have to be rewritten in stem literals first. The self-test includes a marginal fixture (three near-misses at 0.4 and 0.1) that must return ZERO hits, and a harness attack: with the jitter disabled every NUMERICAL verdict becomes STRUCTURAL, so the verdicts are demonstrably driven by the renumbering rather than by the relation-finder.
+
+  **GEOH2-08 could not be patched by moving a vertex.** With `sin(A) = cos(D)` forcing `A + D = 90`, every target in that configuration collapses to 33 or 57 — `F = A` and `C = D` for the same reason — so relocating the right angle just mirrors the vacuity. The second triangle now carries a ratio instead (`EF = 25·tan 57`), and `DE = 25` was chosen by SWEEPING 10-45 for a value where no pairwise sum or difference hits a stem number, an intermediate, or another option. `DE = 20` fails that sweep, because `20·tan57 - 20·sin57 = 14.0`, which is y.
+
+  Two items turned out to carry **two** structural pairs rather than one, so all three distractors had to go (GEOH2-21, GEOH2-10). GEOH2-21's set also contained an option **illegal by kind** — a lamp height exceeding the 4 m the person starts at while walking toward the lamp.
+
+  **Honest residue, reported rather than hidden:** GEOH2-03 lost a step. With only one root now offered, its "central angle greater than 2 radians" condition is decorative — but it cannot be deleted, because without it two radii satisfy the givens and the item is ill-posed. The Vieta shortcut is gone and the item tests less than it was designed to.
+
+  **GEOH2-18 is the same defect class and was outside the repair brief.** Same-side interior angles are supplementary by construction, so `98 + 82 = 180` holds at every numbering, and the stem then asks for "the acute angle", which picks between them with no algebra. `22` is also the value of x, so the set is again a roster of intermediates. **Both earlier regraders cleared this item.** Three blind graders are now being asked to rule on it independently.
+
