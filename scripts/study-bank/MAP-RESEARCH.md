@@ -621,3 +621,130 @@ console error. Most likely the session handshake is a WebSocket or a
 lockdown-browser check that the sandboxed browser blocks. **Unfinished — worth
 ten minutes in a normal browser**, and the only reason to bother is citability,
 not new information.
+
+---
+
+## 10. 2026-09-12 — SECOND RESEARCH PASS: THE NORMS, AND THE NUMBER THAT DECIDES THE PRODUCT
+
+All primary, all from NWEA's own published PDFs, all citable. `pdftotext -layout`
+again; the resource-center links serve an HTML gate, so fetch the `/uploads/`
+or third-party-mirrored PDF.
+
+### The 2020 norms are retired. Everything in §7 and §9 was read against them.
+
+NWEA replaced the 2020 norms with the **2025 norms on 2025-07-11**
+([quick reference](https://www.nwea.org/resource-center/fact-sheet/87992/MAP-Growth-2025-norms-quick-reference_NWEA_onesheet.pdf/),
+[blog](https://www.nwea.org/blog/2025/whats-new-in-the-2025-map-growth-norms/)).
+Sampled from 116 million scores of 13.8 million students across 30,000 schools,
+fall 2022 to spring 2024. They recalibrate to post-pandemic achievement AND to
+**EISA**, the enhanced item-selection algorithm, which is now fully rolled out —
+so the 2025 norms describe the test as it actually behaves today and the 2020
+norms do not. NWEA states the consequence plainly: *"the same RIT score will now
+correspond to a higher percentile rank than it did under the 2020 norms."*
+
+**2025 fall student achievement norms, the grades we care about:**
+
+| Grade | Reading mean (SD) | Language Usage mean (SD) |
+|---|---|---|
+| 7 | 212 (17) | 210 (16) |
+| 8 | 216 (17) | 214 (16) |
+| 9 | 216 (18) | 214 (17) |
+
+Andy's thirteen sittings were taken in **October 2022**, so their percentile
+labels are **2020-norm numbers** and understate the students by today's
+reference. Recomputed against the 2025 fall norms (normal approximation, so
+treat as ±2): every one of the thirteen moves **up**, mean **+6.2 points** —
+G9 Reading 226 goes 62nd → 71st, G7 Language Usage 220 goes 62nd → 73rd. That
+all thirteen move the same way, unprompted, is an independent reproduction of
+NWEA's own stated direction and is the reason to trust the arithmetic.
+
+**Rule this fixes:** a percentile is meaningless without its norms vintage. Any
+figure this product ever shows a parent must be stamped *2025 norms*, and any
+historical score a family brings in from before July 2025 must be restated
+before it is compared to anything.
+
+### THE NUMBER THAT DECIDES THE PRODUCT: a year of growth is smaller than the noise
+
+2025 **reading student growth norms**, fall-to-spring:
+
+| Grade | 7 | 8 | 9 | 10 | 11 | 12 |
+|---|---|---|---|---|---|---|
+| mean RIT gained | **2** | **2** | **1** | 1 | 0 | **-1** |
+| SD | 9 | 9 | 10 | 11 | 12 | 13 |
+
+Language Usage is the same shape (G7 3, G8 3, G9 2). Reading growth has
+essentially **stopped by grade 7** — the scale is vertical and near-asymptotic
+at the top, and grade 12 is negative.
+
+Set that against the test's own precision. §3 already records **CSEM ≈ 3.5 RIT**
+from the technical report. A fall-to-spring *difference* is two measurements, so
+its standard error is 3.5 × √2 ≈ **4.9 RIT**. Therefore:
+
+> **A full school year of nationally typical reading growth for a 7th-9th grader
+> is 1-2 RIT, and the measurement error on detecting that growth is ~4.9 RIT.
+> The noise is two to five times the signal.**
+
+This is the most important fact found in either research pass, and it cuts three
+ways:
+
+1. **Nobody can demonstrate MAP prep efficacy on an individual student, ever.**
+   Not us, not a hagwon, not NWEA. §"The single biggest risk" called our efficacy
+   *unfalsifiable*; it is now precisely quantified, and it is unfalsifiable for
+   everyone selling into this market. That is a defence as much as a limitation
+   — but only if we say it first and in writing.
+2. **Never promise, imply, or display a RIT gain.** A student who "gains 8 RIT"
+   after our course has moved less than one SD of the ordinary growth
+   distribution and under two standard errors of pure measurement noise. Framing
+   that as our effect would be a fabrication of the same class as printing a RIT.
+3. **It reframes what the product honestly sells.** Not growth. Format
+   familiarity, stamina on an untimed 40-item test, and practice at a targeted
+   band — which is exactly what §"Mitigation" already said, now with a number
+   behind it instead of a scruple.
+
+### The Learning Continuum — the legitimate authoring spec, and it is gated
+
+Confirmed from
+[NWEA's help page](https://teach.mapnwea.org/impl/maphelp/Content/Data/SampleReports/LearningContinuumRef.htm):
+statements are *"instruction-oriented statements that describe the concepts and
+skills assessed by MAP Growth"*, organised in **10-point RIT bands**, and each
+statement *"corresponds to at least one item on the selected test in the
+displayed 10-point RIT band."* NWEA's blog adds the definition that matters for
+authoring: a statement describes questions that students in that band *"got
+right about 50% of the time."*
+
+So the Continuum is a per-band skill specification derived from real items —
+precisely the authoring blueprint §"The minimum honest product" recommends
+building against, and it carries no item text, so using it is clean. **It is
+behind a district login at `start.mapnwea.org`** and NWEA publishes no public
+copy; the strand names are visible in correlation documents from third parties.
+Obtaining a legitimate copy is a partnership question, not a research one.
+
+**Where Andy's cohort sits on it:** RIT 216-251 Reading spans roughly **five**
+10-point bands (210-219 through 250-259). A product targeting this audience
+needs five band-specific item pools per subject, not one.
+
+### Two corrections to §7's Korea section, and they point opposite ways
+
+- **The admissions premise is still unconfirmed by any school.** §7 rests the
+  entire commercial case on Korean secondary commentary that international
+  schools use MAP — Reading only — as an entrance exam. A pass over the named
+  schools' own admissions pages (NLCS Jeju, Branksome Hall Asia, Chadwick, KIS)
+  found **no school stating a MAP requirement or a cutoff**. The one concrete
+  use found is KIS Jeju, where MAP appears alongside AMC and STAR Reading for
+  **Honors course placement** — placement, not admission. The Korean-language
+  search likewise surfaced the same edumontis claim repeated and **no published
+  cutoff at any school**. This does not refute §7; absence from a public page is
+  weak evidence about admissions practice. But the load-bearing commercial
+  premise of this entire product is sourced to blog commentary and hagwon
+  marketing, and that should be stated plainly before anyone builds.
+- **Placement use cuts the other way, commercially.** If MAP gates Honors
+  placement for students *already enrolled*, the addressable moment is recurring
+  and in-school rather than one-shot and pre-admission — a different product,
+  and a larger one.
+
+### Added to the citable list
+
+4-option MC now has an independent, quotable confirmation route (the public
+practice test, still unrun — see §9). 2025 norms tables, growth norms, EISA
+rollout, Learning Continuum structure and the 50%-correct definition are all
+primary and quotable today.
