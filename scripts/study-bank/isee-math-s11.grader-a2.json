@@ -1,0 +1,191 @@
+{
+  "IM11-01": {
+    "pick": "A",
+    "solved": "GCF x LCM = product of the two numbers: 6 x 360 = 2160 = 24n, so n = 90. Check: GCF(24,90)=6, LCM(24,90)=360.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "Hard by ISEE Upper standards - needs the gcf*lcm identity (or a factor-exponent argument), not just a definition. 144 (=24x6), 60 (=360/6) and 15 (=360/24) are all products/quotients of the given numbers, so every wrong option is reachable from a plausible mis-combination. Verified none of the three satisfies both conditions."
+  },
+  "IM11-02": {
+    "pick": "C",
+    "solved": "Inclusion-exclusion: 22+20+18 = 60; minus pairs 10+9+8 = 27 gives 33; plus 5 for the triple gives 38 in at least one. 40 - 38 = 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Three-set inclusion-exclusion is at the top of the ISEE Upper range. B (7) is exactly the answer from forgetting to add the triple overlap back - the single most common error, well placed."
+  },
+  "IM11-03": {
+    "pick": "A",
+    "solved": "Add the equations: 8x + 8y = 72, so x + y = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "One insight, one step. B (5) is x - y from subtracting instead of adding, D (72) is the un-divided sum, C (36) is half of that. Every distractor sits on a real wrong path."
+  },
+  "IM11-05": {
+    "pick": "A",
+    "solved": "Square with diagonal d has area d^2/2 = 100/2 = 50. (Side = 10/sqrt2, s^2 = 50.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "B (100) treats the diagonal as the side, C (200) doubles instead of halving. D (48) has no wrong path I can construct - it is the weak option in the set."
+  },
+  "IM11-07": {
+    "pick": "B",
+    "solved": "(-3)^3 = -27, (-2)^4 = +16, sum = -11.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "The three distractors are exactly the three sign/parity errors available: 11 (both signs wrong), 43 (27+16), -43 (-27-16). Clean."
+  },
+  "IM11-08": {
+    "pick": "A",
+    "solved": "15 values in order: 0,0,0,0,0,1,1,2,2,2,3,3,3,3,5. The 8th is 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Median of a frequency table rather than a raw list - a genuine step up from 'find the middle number'. C (0) is the mode, D (1) is roughly what you get if you take the median of the five distinct goal values (0,1,2,3,5 -> 2, actually) or miscount the cumulative frequency; B (1.5) is an even-count artefact. B and D are the softer two."
+  },
+  "IM11-09": {
+    "pick": "A",
+    "solved": "Common difference 3, so figure n uses 3n + 2. Figure 50: 3(50) + 2 = 152.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "B (150) is 3n with the constant dropped; C (149) and D (147) are off-by-one/off-by-a-term slips. Standard linear-pattern item, squarely mid-form on a real ISEE."
+  },
+  "IM11-10": {
+    "pick": "D",
+    "solved": "Slope = (2-8)/(5-2) = -2. Through (2,8): y = -2x + 12. Set y = 0: x = 6.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "A (-2) is the slope quoted as the answer, C (3.5) is the midpoint x, B (4) is the y-intercept of a sign-flipped attempt. All three are live wrong paths."
+  },
+  "IM11-11": {
+    "pick": "D",
+    "solved": "Closing speed 16 + 12 = 28 mph; 84 / 28 = 3 hours.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "A (21) is 84/4 (speed difference), B (7) is 84/12, C (5.25) is 84/16 - the three ways to divide by the wrong speed."
+  },
+  "IM11-12": {
+    "pick": "B",
+    "solved": "In 8 years Marta is 30; her brother is then 15; so he is 15 - 8 = 7 now.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "C (15) is the brother's age in 8 years - the answer to the question one line earlier, the classic stopping-short trap. D (11) halves Marta's present age. A (3) is a subtract-8-twice slip."
+  },
+  "IM11-14": {
+    "pick": "B",
+    "solved": "Edges x, 2x, 3x: volume 6x^3 = 48, so x^3 = 8 and x = 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "A (8) is x^3 left un-rooted (or 48/6 read as the edge), C (6) and D (4) are the other two edges of the correct box (3x = 6, 2x = 4) - so a student who solves correctly but answers the wrong edge lands on a listed option. That is the right kind of trap, and the stem says 'shortest' unambiguously."
+  },
+  "IM11-15": {
+    "pick": "C",
+    "solved": "a5 = a3 * r^2, so r^2 = 162/18 = 9. Terms are positive, so r = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "'Of positive numbers' is load-bearing and present - without it r = -3 would be a second answer, and it is not an option anyway. B (9) is r^2, D (54) is 162/3, A (4.5) is 18/4. B is the strong one."
+  },
+  "IM11-17": {
+    "pick": "A",
+    "solved": "In parallelogram ABCD the diagonals AC and BD share a midpoint, so D = A + C - B = (1+7-5, 2+6-2) = (3, 6). Equivalently AB is (4,0), so DC must be (4,0): D = C - (4,0) = (3,6).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'Vertices in order' fixes the labelling, so the answer is unique. C (11,6) = B + C - A is the answer for a student who pairs the wrong diagonal - the best distractor in the batch. B (11,2) and D (3,2) keep the wrong y."
+  },
+  "IM11-19": {
+    "pick": "C",
+    "solved": "350 / 28 = 12.5 gallons; 12.5 x 3.60 = $45.00.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "D ($12.50) is the gallon count mis-read as dollars, B ($100.80) is 28 x 3.60, A ($46.80) is 13 gallons (rounding the gallons up). Sound but routine; this is an opening-third item on a real form."
+  },
+  "IM11-20": {
+    "pick": "B",
+    "solved": "Base pay 40 x 14 = 560. 686 - 560 = 126 in overtime. 126 / 21 = 6 overtime hours.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "A (46) is total hours worked - the stem asks for overtime hours only, and it says so plainly, so this is a fair trap rather than an ambiguity. C (49) and D (9) come from dividing the whole 686 by 14. Strong set."
+  },
+  "IM11-21": {
+    "pick": "D",
+    "solved": "Multiples of 4 strictly between 50 and 150 run 52, 56, ..., 148: (148-52)/4 + 1 = 25 terms. Sum = 25 x (52+148)/2 = 25 x 100 = 2500.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No 'between' ambiguity: neither 50 nor 150 is a multiple of 4, so inclusive and exclusive readings agree. C (2652) includes 152 (26 terms), B (2448) drops 52 (24 terms) - both exactly the off-by-one-endpoint errors. Nicely built."
+  },
+  "IM11-22": {
+    "pick": "D",
+    "solved": "-4 - 3(5) = -4 - 15 = -19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "A (-15) drops the starting temperature, B (-22) uses 6 hours (counting 6 p.m. through 11 p.m. as six drops). C (11) is the sign error and is the weak option."
+  },
+  "IM11-24": {
+    "pick": "C",
+    "solved": "Won 18, lost 30 - 18 = 12. 18:12 = 3:2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "A (3 to 5) is won:played, B (5 to 3) its reverse, D (2 to 3) the reverse of the key. Every option is one specific misreading; the order-matters trap is the whole point."
+  },
+  "IM11-27": {
+    "pick": "B",
+    "solved": "P(red) = 2/5 each spin, independent: (2/5)^2 = 4/25.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "A (2/5) is one spin, D (4/5) adds instead of multiplying, C (1/10) multiplies 2/5 by 1/4 (drawing without replacement from 'the other region'). Independence is stated explicitly, so no second reading."
+  },
+  "IM11-29": {
+    "pick": "D",
+    "solved": "Let the least be n. Sum = 5n + 10 = S, so n = (S - 10)/5 = S/5 - 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "B (S/5) is the middle term, A (S/5 + 2) the greatest, C ((S-2)/5) is the algebra slip of subtracting before dividing. All four options differ along the axis the stem names ('the least'), but you cannot pick between them without doing the algebra - the sign and the placement of the 2 are both live."
+  },
+  "IM11-30": {
+    "pick": "C",
+    "solved": "5+3 = 8 parts, 32/8 = 4 per part: 20 boys, 12 girls. One fourth of 20 = 5; one third of 12 = 4; 5 + 4 = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "B (5) is the boys only, A (8) is 32/4 (applying one fourth to the whole class), D (23) is the complement. Two-stage ratio-then-fraction item; solidly mid-form. D is the softest of the three."
+  }
+}

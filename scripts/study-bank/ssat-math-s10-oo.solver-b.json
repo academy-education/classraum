@@ -1,0 +1,17 @@
+{
+  "1":  { "pick": "E", "basis": "confident", "why": "33 = 20 + 13, the only pairwise sum in the set, and the lone non-integer 16.5 is assumed bait." },
+  "2":  { "pick": "B", "basis": "confident", "why": "30 = 14 + 16, the only pairwise sum among the five values." },
+  "3":  { "pick": "B", "basis": "guess", "why": "No sum and no clean run; 18 sits between the 8/16 doubling pair and the 36 double, so it is an arbitrary middle pick." },
+  "4":  { "pick": "B", "basis": "confident", "why": "3/4 = 1/4 + 1/2, the only pairwise sum, and it is also the only value that pairs to 1 with another option." },
+  "5":  { "pick": "A", "basis": "confident", "why": "5 = 1 + 4 and it is also the single outlier off the 1,2,4,8 geometric run, so both channels point the same way." },
+  "6":  { "pick": "C", "basis": "guess", "why": "All five are 3.60 x {6,8,9,11,12}; 32.40 is the middle multiplier, but nothing separates it structurally." },
+  "7":  { "pick": "E", "basis": "guess", "why": "Eliminating the lone non-integer 4.8 and the wild outlier 62 leaves 6, 8, 24, and 24 is the hub the others divide into." },
+  "8":  { "pick": "D", "basis": "guess", "why": "42/45/51/54 form a step-3 cluster and 18 is the lone outsider; I bet the outlier rather than the cluster here only to spend a remaining slot." },
+  "9":  { "pick": "A", "basis": "guess", "why": "Lone non-integer 13.5 dropped; of 6, 18, 48, 72 the value 72 is the one the others are fractions of." },
+  "10": { "pick": "E", "basis": "guess", "why": "20/80 and 25/125 are two scaling pairs with 9 stranded; 25 is the common base of the larger pair, but this is a guess." },
+  "11": { "pick": "C", "basis": "guess", "why": "5, 6, 7, 8 is a bare consecutive run with no distinguishing value once the lone non-integer 4.5 is dropped." },
+  "12": { "pick": "D", "basis": "confident", "why": "360 = 120 + 240, the only pairwise sum, and 720 is just its double." },
+  "13": { "pick": "D", "basis": "confident", "why": "10 = 4 + 6, the only pairwise sum; 22 is a stranded outlier." },
+  "14": { "pick": "C", "basis": "guess", "why": "90/180/450 are 90x{1,2,5} and 3.6/0.72 differ by the same factor 5; 3.6 over 0.72 is a coin-flip on which decimal is the error form." },
+  "15": { "pick": "A", "basis": "guess", "why": "Lone non-integer 22.5 dropped; 27 is the value 54 doubles and 18 is two-thirds of, so it is the generator of the multiple-of-9 family." }
+}

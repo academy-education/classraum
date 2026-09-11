@@ -1,0 +1,173 @@
+{
+  "AH3-02": {
+    "pick": "A",
+    "solved": "Synthetic division by (x-3) on [1,-6,-1,30] gives quotient x^2-3x-10 = (x-5)(x+2), so the other zeros are 5 and -2; the greatest is 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "-2 is the real trap (the other zero, taken by a student who reads 'greatest' as 'the remaining one' or mis-signs). 10 and -10 are arithmetic debris from the quotient constant. Routine two-step; not a hard-route item."
+  },
+  "AH3-04": {
+    "pick": "D",
+    "solved": "Half an hour is t=1/2, so the factor is 1.44^(1/2)=1.2, i.e. a 20% increase.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "44 (the hourly rate), 22 absent but 72 (=1.44/2 read as a percent halving) and 120 (the growth FACTOR 1.2 stated as a percent) are all live wrong paths. One of the two genuinely hard items in the batch: the exponential model and the fractional exponent have to interact."
+  },
+  "AH3-05": {
+    "pick": "A",
+    "solved": "Square: 3x+22 = x^2+8x+16 -> x^2+5x-6=0 -> x=1 or x=-6. x=-6 gives sqrt(4)=2 but RHS=-2, so it is extraneous. x=1: sqrt(25)=5=1+4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "-6 is exactly the extraneous root, which is the point of the item. The singular 'the solution' in the stem is justified since only one survives."
+  },
+  "AH3-06": {
+    "pick": "C",
+    "solved": "3x^2-11x-4 = (3x+1)(x-4), so f(x)=3x+1 for x!=4. Continuity forces g(4)=3(4)+1=13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "12 = 3*4 (dropping the +1) and -1/3 = zero of 3x+1 are both reachable; 0 is weak (nobody produces it from a wrong path except 'the hole means zero'). Stem says 'no break in it' rather than 'continuous', which is the standard SAT phrasing - fine."
+  },
+  "AH3-07": {
+    "pick": "D",
+    "solved": "g(x)=f(x+3)-4 shifts left 3 and down 4. The minimum of f at x=2 moves to x=2-3=-1, value -5-4=-9, so (-1,-9).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The four options are the complete sign-error lattice (left/right x wrong/right y), which is good design but also means the set is a 2x2 grid - no narrowing is possible without the stem, so that is fine."
+  },
+  "AH3-08": {
+    "pick": "C",
+    "solved": "Vertex at x = 12/4 = 3; f(3) = 18-36+25 = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "This is really an EASY item - single-step vertex evaluation, no second idea. It would sit in module 1 or early module 2, not the hard route. Also overlaps AH3-19 and AH3-22, which are the same quadratic-vertex machinery three times in one 19-item batch."
+  },
+  "AH3-09": {
+    "pick": "B",
+    "solved": "f(g(a)) = (2a+1)^2 - 5 = 44 -> (2a+1)^2 = 49 -> 2a+1 = +/-7 -> a = 3 or a = -4. Least is -4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "3 is the other root (student ignores 'least'), -3 and 4 are sign slips. Clean."
+  },
+  "AH3-11": {
+    "pick": "A",
+    "solved": "x^2+10x+c = 6x+5 -> x^2+4x+(c-5)=0. Exactly one intersection means discriminant 0: 16-4(c-5)=0 -> c-5=4 -> c=9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "25 comes from completing the square on 10x and forgetting the subtraction of the line; -1 and -2 are weaker. Standard tangency item."
+  },
+  "AH3-12": {
+    "pick": "C",
+    "solved": "x^2-4=(x-2)(x+2). Multiply through: x+8 = 3(x+2) = 3x+6 -> 2x=2 -> x=1, which is in the domain.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "A student who cross-multiplies blindly gets 2x^2-6x+4=0 -> x=1 or x=2, and 2 is on the list as an excluded value. That is a genuinely well-built trap."
+  },
+  "AH3-13": {
+    "pick": "D",
+    "solved": "Remainder theorem: p(3) = 27 - 36 + 3k - 6 = 3k - 15 = 12 -> k = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "27 = 3k left unsolved; -27 a sign slip; 5 is weak. Routine one-idea application of the remainder theorem - medium at most."
+  },
+  "AH3-14": {
+    "pick": "B",
+    "solved": "Let u=x^2: u^2-13u+36=0 -> u=4 or 9 -> x = +/-2, +/-3. Positive solutions 2 and 3 sum to 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "6 = product of the positive solutions (and = sum of the u-values minus 7, but mainly the product read), 0 = sum of ALL four, 9 = the larger u. All three are real wrong paths."
+  },
+  "AH3-15": {
+    "pick": "C",
+    "solved": "g(x)=f(x/2); to reuse the known value need x/2=6, so x=12 and g(12)=f(6)=10 -> (12,10).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "(3,10) is the horizontal-direction reversal, (12,5) and (3,5) come from halving the OUTPUT. Complete lattice again, same shape as AH3-07 - two transformation items with the same distractor architecture in one batch."
+  },
+  "AH3-18": {
+    "pick": "A",
+    "solved": "(x-3)(x+3) / ((x-3)(x+2)) = (x+3)/(x+2).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Plainly EASY - one factorisation, one cancellation, no second idea. This does not belong on a hard route. The four options are the sign lattice, so no option-set tell."
+  },
+  "AH3-19": {
+    "pick": "B",
+    "solved": "h(6) = a(6-4)^2 - 5 = 4a - 5 = 7 -> 4a = 12 -> a = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "EASY: substitute and solve a linear equation. 12 is 4a unsolved, 1/3 the reciprocal, 24 weak. The stem also hands the student the vertex form outright, removing the only step that could have made it medium."
+  },
+  "AH3-20": {
+    "pick": "C",
+    "solved": "log2(x^3/y^2) = 3*log2(x) - 2*log2(y) = 15 - 6 = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "SCOPE FLAG: logarithms are not in the Digital SAT Advanced Math specification (the domain covers equivalent expressions, nonlinear equations/systems, and nonlinear functions; exponentials yes, log properties essentially never appear). This item is well-formed but may be off-blueprint for Digital SAT - worth a decision before insert. 21 = 15+6 (sign slip) is the only strong distractor."
+  },
+  "AH3-21": {
+    "pick": "D",
+    "solved": "x = 27^(4/3) = (3^3)^(4/3) = 3^4 = 81.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "9 = 27^(2/3) (inverting only part of the exponent), 3 = 27^(1/3). 36 is weak. One idea, applied once."
+  },
+  "AH3-22": {
+    "pick": "B",
+    "solved": "Roots -1 and 7 give y=a(x+1)(x-7) and axis of symmetry h=3. At (1,-24): a(2)(-6) = -12a = -24 -> a=2. Then k = y(3) = 2(4)(-4) = -32.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "The hardest item here and a properly built one: 2 is a and 3 is h, both correct intermediate values a student stops at because the stem names all three constants. Three ideas chain (roots -> h, point -> a, both -> k)."
+  },
+  "AH3-23": {
+    "pick": "A",
+    "solved": "3^(4x+1) = (3^(2x))^2 * 3 = 20^2 * 3 = 1200.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "400 = forgetting the *3, 403 = adding 3 instead of multiplying, 120 = 20*2*3. All three are live. Close to hard but it is one exponent rule applied twice, not two ideas interacting - I am calling it medium and flagging it as the strongest of the mediums."
+  },
+  "AH3-24": {
+    "pick": "B",
+    "solved": "(x+y)^2 = x^2+y^2+2xy = 34 + 30 = 64. (Consistent: x=5, y=3 satisfies both givens.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "4 = 34-30 (using -2xy), 8 = x+y rather than its square, 49 weak. Nice that real (x,y) actually exist so the premise is not vacuous. Low-medium: one identity, recalled or not."
+  }
+}

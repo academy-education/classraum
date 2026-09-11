@@ -1,0 +1,173 @@
+{
+  "AH3-02": {
+    "pick": "A",
+    "solved": "Synthetic division by (x-3) on 1,-6,-1,30 gives 1,-3,-10 remainder 0, so p(x)=(x-3)(x^2-3x-10)=(x-3)(x-5)(x+2). Other zeros 5 and -2; greatest is 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "-2 is the genuine other zero; -10 is the product of the other two roots and 10 its sign flip. One routine idea (divide, factor), not a two-idea item."
+  },
+  "AH3-04": {
+    "pick": "D",
+    "solved": "Half-hour factor is 1.44^(1/2)=1.2, so a 20% increase per half hour.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Borderline hard - the rate-over-a-different-interval move is the one place in this batch a weak student is genuinely stranded. 72 (half of 44) and 44 (the hourly rate) are both real student paths; 120 is the multiplier misread as a percent."
+  },
+  "AH3-05": {
+    "pick": "A",
+    "solved": "Square: 3x+22 = x^2+8x+16 -> x^2+5x-6=0 -> (x+6)(x-1)=0 -> x=1 or x=-6. x=-6 gives RHS=-2<0, extraneous. Check x=1: sqrt(25)=5=1+4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The extraneous-root check is the whole item and -6 is sitting right there, which is correct design. Stem says 'the solution' (singular), consistent with exactly one surviving root - no ambiguity."
+  },
+  "AH3-06": {
+    "pick": "C",
+    "solved": "3x^2-11x-4 = (3x+1)(x-4), so f(x)=3x+1 for x!=4. Continuity forces g(4)=3(4)+1=13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "12 (dropping the +1), 0 (assuming a hole means zero) and -1/3 (the root of the surviving factor) are all real wrong paths."
+  },
+  "AH3-07": {
+    "pick": "D",
+    "solved": "f min -5 at x=2. g(x)=f(x+3)-4 needs x+3=2 -> x=-1, and the value drops by 4 to -9. Minimum at (-1,-9).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Clean 2x2 option grid: shift direction crossed with vertical shift. No narrowing possible from the options alone."
+  },
+  "AH3-08": {
+    "pick": "C",
+    "solved": "Vertex at x = 12/4 = 3; f(3) = 18-36+25 = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Plainly an easy item - one substitution after -b/2a. 79 is f(-3) and 3 is the x-coordinate; 16 is loose. This would not appear on the module-2 hard route."
+  },
+  "AH3-09": {
+    "pick": "B",
+    "solved": "(2a+1)^2 - 5 = 44 -> (2a+1)^2 = 49 -> 2a+1 = 7 or -7 -> a = 3 or a = -4. Least is -4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "3 is the other (greatest) root, which is the right trap for 'least'. -3 and 4 cover the sign-flip slips."
+  },
+  "AH3-11": {
+    "pick": "A",
+    "solved": "x^2+10x+c = 6x+5 -> x^2+4x+(c-5)=0. One intersection means discriminant 0: 16-4(c-5)=0 -> c-5=4 -> c=9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "25 = (10/2)^2, a student who completes the square before subtracting the line. -2 and -1 are weaker; I cannot name a clean path to -1."
+  },
+  "AH3-12": {
+    "pick": "C",
+    "solved": "Multiply through by (x-2)(x+2): x+8 = 3(x+2) = 3x+6 -> 2x = 2 -> x = 1. x=1 is in the domain.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "7 comes from cross-multiplying to 3(x-2) (forgetting the difference of squares) and 2 is an excluded value - both are exactly what students produce."
+  },
+  "AH3-13": {
+    "pick": "D",
+    "solved": "Remainder theorem: p(3) = 27-36+3k-6 = 3k-15 = 12 -> k = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "5 is the answer if the remainder is taken as 0 (the far more common textbook version); 27 is 3k left unsolved. Good set."
+  },
+  "AH3-14": {
+    "pick": "B",
+    "solved": "Let u=x^2: u^2-13u+36=0 -> u=4 or 9 -> x = +-2, +-3. Positive solutions 2 and 3, sum 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "6 is the product of the positive solutions, 0 the sum of all four, 9 one of the u-values."
+  },
+  "AH3-15": {
+    "pick": "C",
+    "solved": "g(x)=f(x/2), so g(12)=f(6)=10. Point (12,10).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2x2 grid again (stretch direction x output scaling). Note the batch carries two horizontal-transformation items, AH3-07 and this one, testing nearly the same reflex."
+  },
+  "AH3-18": {
+    "pick": "A",
+    "solved": "(x-3)(x+3) / ((x-3)(x+2)) = (x+3)/(x+2).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Easy. The three distractors are the sign permutations, which is systematic but low-effort; a student who factors correctly cannot land on any of them. Domain restrictions in the stem (x!=3, x!=-2) agree with the factorisation."
+  },
+  "AH3-19": {
+    "pick": "B",
+    "solved": "h(6) = a(6-4)^2 - 5 = 4a - 5 = 7 -> a = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "One substitution; the vertex is handed to the student in the given form, so nothing has to be derived. Easy. 12 is 4a unsolved, 1/3 the reciprocal."
+  },
+  "AH3-20": {
+    "pick": "C",
+    "solved": "log2(x^3/y^2) = 3log2(x) - 2log2(y) = 15 - 6 = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Two log rules applied once each, no interaction. 21 = 15+6 (sign slip) is the only distractor with a real path; 2.5 and 6 are weak."
+  },
+  "AH3-21": {
+    "pick": "D",
+    "solved": "x = 27^(4/3) = (3^3)^(4/3) = 3^4 = 81.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Mild options-only narrowing: 81 is the only perfect fourth power in the set, so a student who knows only that x must be a fourth power of an integer can pick it without doing the exponent arithmetic. Not decisive, but worth noting. 9 = 27^(2/3) is the real trap."
+  },
+  "AH3-22": {
+    "pick": "B",
+    "solved": "y = a(x+1)(x-7). At (1,-24): a(2)(-6) = -12a = -24 -> a = 2. Vertex x = h = 3, so k = 2(3+1)(3-7) = 2(4)(-4) = -32.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "The one genuinely hard item in the batch: factored form and vertex form have to interact - find a from the intercepts plus a point, then convert to get k. Distractors 2 and 3 are exactly a and h, which is the correct trap for students who stop one step early. 32 catches the sign."
+  },
+  "AH3-23": {
+    "pick": "A",
+    "solved": "3^(4x) = (3^(2x))^2 = 400; 3^(4x+1) = 3 * 400 = 1200.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "400 (dropping the +1), 403 (adding 3 instead of multiplying) and 120 (doubling rather than squaring) are all live paths."
+  },
+  "AH3-24": {
+    "pick": "B",
+    "solved": "(x+y)^2 = x^2 + 2xy + y^2 = 34 + 2(15) = 64.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Leans easy - the identity is one line and needs no solving for x and y. 4 comes from subtracting instead of adding 2xy, 8 is x+y left unsquared."
+  }
+}

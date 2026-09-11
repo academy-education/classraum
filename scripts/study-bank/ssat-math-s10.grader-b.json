@@ -1,0 +1,119 @@
+{
+  "SM10-01": {
+    "pick": "B",
+    "solved": "2/7 = 0.285714 repeating with period 6. 50 = 6*8 + 2, so the 50th digit is the 2nd of the block, 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Every distractor (4, 5, 1, 2) is another digit of the same repeating block, so an off-by-one or a wrong block position lands on a real option. The stem hands over the period, which removes the one step a student might not manage; without that clue it would be hard."
+  },
+  "SM10-02": {
+    "pick": "A",
+    "solved": "Notebooks come in groups of 3 costing 2 full prices. 12 notebooks = 4 groups, so 8 are paid for: 8 x 3.60 = 28.80.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "32.40 = 9 paid (one-third of 12 free rather than one per group of 3), 21.60 = 6, 43.20 = all 12, 39.60 = 11. All are reachable counting errors."
+  },
+  "SM10-03": {
+    "pick": "C",
+    "solved": "(45 - 36)/36 = 9/36 = 0.25, so 25 percent greater.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "20 is the same difference over the wrong base (9/45), 80 is 36/45, 125 is 45/36, 9 is the raw dollar difference. Percent-greater is standard usage, no ambiguity."
+  },
+  "SM10-04": {
+    "pick": "B",
+    "solved": "Sum = 2+30+8+4+28+7+5 = 84, mean = 12. Sorted: 2,4,5,7,8,28,30, median = 7. 12 - 7 = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "7 is the median itself and 4.5 catches an even-count averaging slip, but 6 and 8 are not obviously products of a named wrong path."
+  },
+  "SM10-05": {
+    "pick": "E",
+    "solved": "Base 6 on one 12 cm side with apex on the opposite 12 cm side gives height 8. Triangle area = 24; rectangle = 96; 24/96 = 1/4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Geometry is pinned by the stem (apex on the far 12 cm side forces height 8) even with no figure, so the wording is doing real work here and does it correctly. 1/2 = forgetting the halving; 3/8 and 3/16 are less clearly derived."
+  },
+  "SM10-06": {
+    "pick": "D",
+    "solved": "1 cm -> 5 km, so 1 cm^2 -> 25 km^2. 18 x 25 = 450.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "90 is the classic linear-scaling trap (18 x 5), 3.6 and 0.72 are the two divisions. Textbook but well built."
+  },
+  "SM10-07": {
+    "pick": "D",
+    "solved": "(2x + 7)/3 = 11 -> 2x + 7 = 33 -> 2x = 26 -> x = 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "26 stops before halving, 33 stops before subtracting 7, 16.5 halves 33. Every distractor is a stopping point on the correct chain."
+  },
+  "SM10-08": {
+    "pick": "E",
+    "solved": "x + y = 28 and y + z = 44. Subtracting, z - x = 16.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "8 = 22 - 14 (differencing the averages instead of the sums) is the intended trap and is good. 30, 36, 18 are weaker filler."
+  },
+  "SM10-09": {
+    "pick": "A",
+    "solved": "Base from (2,1) to (11,1) is 9 units and lies on y = 1; the apex at y = 7 gives height 6. Area = 9 x 6 / 2 = 27.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "54 is the forgotten halving; 22.5 and 18 come from misreading base or height. Clean."
+  },
+  "SM10-10": {
+    "pick": "C",
+    "solved": "30 + 4h = 54 + h -> 3h = 24 -> h = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "24 is the un-divided difference and 4.8 is 24/5 (adding the rates instead of subtracting); 62 and 6 are weak."
+  },
+  "SM10-12": {
+    "pick": "A",
+    "solved": "Trailing zeros of 25! = floor(25/5) + floor(25/25) = 5 + 1 = 6 (fives are the binding factor, twos are abundant).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "5 is exactly the answer you get if you count multiples of 5 and forget that 25 contributes a second factor - the single most likely wrong path, and it is present. This is the hardest item in the set and sits at the top end of the real SSAT Upper Level range."
+  },
+  "SM10-13": {
+    "pick": "B",
+    "solved": "Acid: 18 + 0.20x = 0.45(30 + x) -> 18 + 0.2x = 13.5 + 0.45x -> 4.5 = 0.25x -> x = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "48 is the total volume of the finished mixture rather than the amount added - a student who solves correctly and then answers the wrong question lands on it. 13.5 is 0.45 x 30."
+  },
+  "SM10-15": {
+    "pick": "C",
+    "solved": "9 x 6 = 54; the 3 x 3 alcove removes 9; 54 - 9 = 45.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "54 is the un-cut rectangle and 51 subtracts 3 instead of 9, both fine. 42 and 18 are weak. Appropriate as an opener."
+  }
+}

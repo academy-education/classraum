@@ -1,0 +1,191 @@
+{
+  "IM11-01": {
+    "pick": "A",
+    "solved": "For two numbers, gcf x lcm = product, so n = 6*360/24 = 90. Confirm by factors: gcd=6 forces exactly 2^1 and at least 3^1; lcm=360=2^3*3^2*5 forces 3^2 and 5, so n = 2*9*5 = 90 uniquely. GCF(24,90)=6, LCM=360.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "144 (=24*6), 60, 15 (=360/24) are all reachable from partial rules; none satisfies both conditions. Answer is unique over all whole numbers, not just over the options."
+  },
+  "IM11-02": {
+    "pick": "C",
+    "solved": "Inclusion-exclusion: 22+20+18 - 10 - 9 - 8 + 5 = 38 study at least one. 40 - 38 = 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Real but harmless ambiguity: 'Ten students study both history and biology' is read here as the full pairwise intersection (standard convention). Under the 'exactly two' reading the union is 23 and the answer would be 17, which is not an option, so exclusivity among the given choices survives. Still worth tightening the wording. 7 = forgot to add the triple back; 12 = subtracted the triple instead of adding it; 5 = the triple count itself."
+  },
+  "IM11-03": {
+    "pick": "A",
+    "solved": "Add the two equations: 8x + 8y = 72, so x + y = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "5 is x - y (x=7, y=2); 72 is the unsimplified sum; 36 is half of it. Clean symmetric-system item."
+  },
+  "IM11-05": {
+    "pick": "A",
+    "solved": "Square with diagonal d has area d^2/2 = 100/2 = 50. (s^2 + s^2 = 100 so s^2 = 50.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "100 = treating the diagonal as the side; 200 = d^2 doubled; 48 is weak filler with no derivation I can find."
+  },
+  "IM11-07": {
+    "pick": "B",
+    "solved": "(-3)^3 = -27, (-2)^4 = +16, sum = -11.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "All three distractors are exact sign-handling errors: 11, 43 (=27+16), -43 (=-27-16)."
+  },
+  "IM11-08": {
+    "pick": "A",
+    "solved": "15 values ordered: 0,0,0,0,0,1,1,2,2,2,3,3,3,3,5. The 8th value is the median; positions 6-7 are 1s and 8-10 are 2s, so the median is 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "0 = mode, 1 = median of the five distinct goal values, 1.5 = a mean-flavoured decoy (true mean is 23/15 = 1.53)."
+  },
+  "IM11-09": {
+    "pick": "A",
+    "solved": "Common difference 3 with first term 5, so f(n) = 3n + 2. f(50) = 152.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "150 = 3*50, 149 = off-by-one on the constant, 147 = 3*49. Classic off-by-one family, well chosen."
+  },
+  "IM11-10": {
+    "pick": "D",
+    "solved": "Slope = (2-8)/(5-2) = -2. Line: y - 8 = -2(x - 2), i.e. y = -2x + 12. Set y = 0: x = 6.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "-2 is the slope itself; 4 and 3.5 are averaging-type decoys (3.5 = mean of the two x-values)."
+  },
+  "IM11-11": {
+    "pick": "D",
+    "solved": "Closing speed 16 + 12 = 28 mph; 84 / 28 = 3 hours.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "7 = 84/12, 5.25 = 84/16, 21 = 84/4 (difference of speeds). Every wrong path lands on an option."
+  },
+  "IM11-12": {
+    "pick": "B",
+    "solved": "In 8 years Marta is 30. 30 = 2(b + 8) gives b + 8 = 15, so b = 7 now.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "15 = the brother's age in 8 years (stopping one step early), 11 = 22/2 (applying the doubling now), 3 = solving 22 = 2(b+8)."
+  },
+  "IM11-14": {
+    "pick": "B",
+    "solved": "Edges x, 2x, 3x give volume 6x^3 = 48, so x^3 = 8 and x = 2. Shortest edge = 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "8 = x^3 left unrooted, 4 = 2x, 6 = 3x. Good ladder of stop-too-early errors."
+  },
+  "IM11-15": {
+    "pick": "C",
+    "solved": "a5 = a3 * r^2, so r^2 = 162/18 = 9. The terms are positive, so r = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The 'positive numbers' clause is load-bearing and is present - without it r = -3 would be equally defensible. 9 = r^2 not rooted, 4.5, 54 = 162/3."
+  },
+  "IM11-17": {
+    "pick": "A",
+    "solved": "In parallelogram ABCD the diagonals AC and BD bisect each other, so D = A + C - B = (1+7-5, 2+6-2) = (3, 6). Check: AB = (4,0) and DC = (4,0).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "'vertices in order' is the clause that makes the answer unique; it is present. (11,6) = B + C - A, the commonest sign slip, and is the strongest distractor."
+  },
+  "IM11-19": {
+    "pick": "C",
+    "solved": "350 / 28 = 12.5 gallons; 12.5 * $3.60 = $45.00.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "12.50 = the gallon count offered as dollars, 100.80 = 28 * 3.60, 46.80 = 13 gallons (rounding up)."
+  },
+  "IM11-20": {
+    "pick": "B",
+    "solved": "Base pay 40 * 14 = $560. Overtime pay 686 - 560 = $126. 126 / 21 = 6 overtime hours.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "46 = total hours worked (answering the wrong question), 49 = 686/14, 9 = 686/... a plausible mis-split. The stem asks for overtime hours specifically and says so clearly, so 46 is not defensible."
+  },
+  "IM11-21": {
+    "pick": "D",
+    "solved": "Multiples of 4 strictly between 50 and 150 run 52 to 148: (148-52)/4 + 1 = 25 terms. Sum = 25 * (52+148)/2 = 25 * 100 = 2500.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Neither 50 nor 150 is a multiple of 4, so the inclusive/exclusive reading of 'between' cannot change the answer - deliberately safe. 2448 = dropping 52, 2652 = including 152, 2400 = 24 terms."
+  },
+  "IM11-22": {
+    "pick": "D",
+    "solved": "-4 - 3*5 = -4 - 15 = -19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-15 = forgetting the starting temperature, -22 = using 6 hourly drops, 11 = adding instead of subtracting. 6 p.m. to 11 p.m. is exactly the 5 hours stated, so there is no off-by-one trap."
+  },
+  "IM11-24": {
+    "pick": "C",
+    "solved": "Won 18, lost 30 - 18 = 12. 18:12 = 3:2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "2 to 3 = reversed, 3 to 5 = won-to-played, 5 to 3 = played-to-won. The full reversal set is present, which is right for a ratio item."
+  },
+  "IM11-27": {
+    "pick": "B",
+    "solved": "P(red) = 2/5 each spin; independent, so (2/5)^2 = 4/25.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "2/5 = one spin only, 4/5 = added the probabilities, 1/10 = 2/5 * 1/4 (treating it as without replacement). Independence is stated explicitly."
+  },
+  "IM11-29": {
+    "pick": "D",
+    "solved": "Let the least be n: n + (n+1) + (n+2) + (n+3) + (n+4) = 5n + 10 = S, so n = (S - 10)/5 = S/5 - 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "S/5 = the middle term, S/5 + 2 = the greatest, (S-2)/5 = a misplaced-constant slip. The three wrong options are exactly the three natural errors."
+  },
+  "IM11-30": {
+    "pick": "C",
+    "solved": "5+3 = 8 parts, 32/8 = 4 per part, so 20 boys and 12 girls. One fourth of 20 = 5, one third of 12 = 4; total 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "5 = boys only, 8 = 32/4, 23 = the students who do not play. Two-step ratio-then-fraction item, well within Upper Level range."
+  }
+}

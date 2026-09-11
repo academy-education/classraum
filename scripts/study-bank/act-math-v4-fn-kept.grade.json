@@ -1,0 +1,252 @@
+[
+ {
+  "id": "AM4F-01",
+  "prompt": "The function f is defined by f(x) = 5x - x^2. What is the value of f(-2)?",
+  "choices": [
+   "14",
+   "-14",
+   "6",
+   "-6"
+  ]
+ },
+ {
+  "id": "AM4F-02",
+  "prompt": "The functions f and g are defined by f(x) = 4x + 1 and g(x) = x - 4. What is the value of g(f(2))?",
+  "choices": [
+   "9",
+   "5",
+   "-7",
+   "-2"
+  ]
+ },
+ {
+  "id": "AM4F-03",
+  "prompt": "The function h is defined by h(x) = (x + 9)/2. What is the value of h^-1(4)?",
+  "choices": [
+   "17",
+   "-5",
+   "6.5",
+   "-1"
+  ]
+ },
+ {
+  "id": "AM4F-06",
+  "prompt": "The graph of y = f(x) is shifted 3 units to the right and 2 units down. Which of the following is an equation of the resulting graph?",
+  "choices": [
+   "y = f(x - 3) + 2",
+   "y = f(x + 3) + 2",
+   "y = f(x - 3) - 2",
+   "y = f(x + 3) - 2"
+  ]
+ },
+ {
+  "id": "AM4F-07",
+  "prompt": "The function r is defined by r(x) = (x - 1)/(2x + 7). For what value of x is r(x) undefined?",
+  "choices": [
+   "-7/2",
+   "2/7",
+   "-2/7",
+   "7/2"
+  ]
+ },
+ {
+  "id": "AM4F-08",
+  "prompt": "In a geometric sequence, the 2nd term is 45 and the 5th term is 5/3. If r is the common ratio of this sequence, what is the value of r cubed?",
+  "choices": [
+   "1/27",
+   "27",
+   "1/3",
+   "3"
+  ]
+ },
+ {
+  "id": "AM4F-09",
+  "prompt": "A bacterial culture starts with 400 cells and triples in number every 8 hours. Which of the following expressions gives the number of cells present t hours after the start?",
+  "choices": [
+   "400(8)^(t/8)",
+   "400(8)^(t/3)",
+   "400(3)^(t/3)",
+   "400(3)^(t/8)"
+  ]
+ },
+ {
+  "id": "AM4F-10",
+  "prompt": "The function f is defined by f(x) = x^3 - 4x. What is the total change in the value of f from x = 1 to x = 4?",
+  "choices": [
+   "48",
+   "51",
+   "17",
+   "63"
+  ]
+ },
+ {
+  "id": "AM4F-11",
+  "prompt": "The function f is defined by f(x) = 2x + 6 when x < 3, and f(x) = x^2 - 4 when x >= 3. What is the value of f(f(1))?",
+  "choices": [
+   "0",
+   "8",
+   "60",
+   "22"
+  ]
+ },
+ {
+  "id": "AM4F-12",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 12x + 7. There is exactly one number k, other than 1, for which f(k) = f(1). What is the value of k?",
+  "choices": [
+   "-1",
+   "3",
+   "5",
+   "-5"
+  ]
+ },
+ {
+  "id": "AM4F-13",
+  "prompt": "The function g is defined by g(x) = sqrt(3x + 4) - 5. For what value of x does g(x) = 2?",
+  "choices": [
+   "15",
+   "0",
+   "5/3",
+   "7"
+  ]
+ },
+ {
+  "id": "AM4F-14",
+  "prompt": "The function f is defined by f(x) = x^2 + 6x - 1. What is the vertex of the graph of f in the standard (x, y) coordinate plane?",
+  "choices": [
+   "(-3, -10)",
+   "(3, 8)",
+   "(-3, 8)",
+   "(3, -10)"
+  ]
+ },
+ {
+  "id": "AM4F-15",
+  "prompt": "The function f is defined by f(x) = (6x^2 + 5x)/(2x^2 + 1). As x increases without bound, the values of f(x) approach which of the following numbers?",
+  "choices": [
+   "0",
+   "3",
+   "6/5",
+   "1/3"
+  ]
+ },
+ {
+  "id": "AM4F-16",
+  "prompt": "If log base 3 of (x + 5) equals 2, what is the value of x?",
+  "choices": [
+   "4",
+   "14",
+   "1",
+   "20"
+  ]
+ },
+ {
+  "id": "AM4F-17",
+  "prompt": "The functions f and g are defined by f(x) = x^2 + 3x and g(x) = 5x - 2. What is the value of (f - g)(-2)?",
+  "choices": [
+   "-14",
+   "-2",
+   "-10",
+   "10"
+  ]
+ },
+ {
+  "id": "AM4F-18",
+  "prompt": "A parking garage charges $5 for the first hour or any part of an hour, and $3 for each additional hour or part of an additional hour. A car is parked for 3 hours and 25 minutes. How many dollars of the total charge are for the time after the first hour?",
+  "choices": [
+   "9",
+   "6",
+   "14",
+   "20"
+  ]
+ },
+ {
+  "id": "AM4F-19",
+  "prompt": "The quantity y varies directly with x and inversely with the square of z. When x = 12 and z = 2, y = 15. To find the value of y when x = 6 and z = 4, a student first finds the constant of variation. What is that constant?",
+  "choices": [
+   "45",
+   "2.5",
+   "5",
+   "1.875"
+  ]
+ },
+ {
+  "id": "AM4F-20",
+  "prompt": "The function f is defined by f(x) = x^2 + bx + 11, where b is a negative constant. The minimum value of f(x) is 2. What is the value of b?",
+  "choices": [
+   "3",
+   "-3",
+   "6",
+   "-6"
+  ]
+ },
+ {
+  "id": "AM4F-21",
+  "prompt": "The functions f and g are defined by f(x) = 2x - 1 and g(x) = x/4 + 3. The function h is defined by h(x) = f(g(x)). What is the value of h^-1(9)?",
+  "choices": [
+   "9.5",
+   "5",
+   "8",
+   "12.5"
+  ]
+ },
+ {
+  "id": "AM4F-22",
+  "prompt": "The number of members of club A is modelled by 5,000(1.08)^t, where t is the number of years from today. The number of members of club B is modelled by 9,000 + 300t. What is the least whole number of years t for which club A has more members than club B?",
+  "choices": [
+   "12",
+   "13",
+   "41",
+   "8"
+  ]
+ },
+ {
+  "id": "AM4F-23",
+  "prompt": "The functions f and g are defined by f(x) = sqrt(x - 2) and g(x) = 1/(x - 6). What is the domain of the composite function f(g(x))?",
+  "choices": [
+   "6 < x < 6.5",
+   "6 <= x <= 6.5",
+   "6 <= x < 6.5",
+   "6 < x <= 6.5"
+  ]
+ },
+ {
+  "id": "AM4F-24",
+  "prompt": "The function f is defined by f(x) = |3x - 9|. What is the greatest value of x for which f(x) = 15?",
+  "choices": [
+   "8",
+   "24",
+   "2",
+   "-2"
+  ]
+ },
+ {
+  "id": "AM4F-26",
+  "prompt": "The function f is defined by f(x) = (x^2 - 3x - 10)/(x - 5). The graph of f in the standard (x, y) coordinate plane is a line with one point missing. What are the coordinates of the missing point?",
+  "choices": [
+   "(5, 3)",
+   "(-2, 0)",
+   "(5, 7)",
+   "(-2, 7)"
+  ]
+ },
+ {
+  "id": "AM4F-27",
+  "prompt": "A sequence is defined by a(1) = 5 and a(n + 1) = 2a(n) - 3 for every integer n >= 1. What is the value of a(4)?",
+  "choices": [
+   "-2",
+   "11",
+   "37",
+   "19"
+  ]
+ },
+ {
+  "id": "AM4F-28",
+  "prompt": "A 240-gram sample of a substance decays so that its mass is halved every 6 years. To the nearest gram, what is the mass of the sample 15 years from now?",
+  "choices": [
+   "60",
+   "42",
+   "96",
+   "182"
+  ]
+ }
+]

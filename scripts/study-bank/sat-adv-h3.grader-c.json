@@ -1,0 +1,173 @@
+{
+  "AH3-02": {
+    "pick": "A",
+    "solved": "p(3)=0 confirmed (27-54-3+30=0); synthetic division by (x-3) gives x^2-3x-10=(x-5)(x+2), so the other zeros are 5 and -2. Greatest is 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "-2 is the genuine other zero and catches a student who reads 'greatest' as 'the other one'. 10 and -10 are not products of any natural wrong path I can construct beyond mis-signing the constant; they are filler."
+  },
+  "AH3-04": {
+    "pick": "D",
+    "solved": "Half-hour factor is 1.44^(1/2) = 1.2, so the increase is 20%.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "44 (the hourly rate, un-halved) and 120 (the multiplier read as a percent) are both live wrong paths; 72 is 44/2 + rounding, the naive halving. Good set."
+  },
+  "AH3-05": {
+    "pick": "A",
+    "solved": "Square: 3x+22 = x^2+8x+16 -> x^2+5x-6=0 -> x=1 or x=-6. x=-6 gives RHS=-2<0, extraneous. Check x=1: sqrt(25)=5=1+4. So x=1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "-6 is the extraneous root, which is exactly the intended trap. Stem says 'the solution' (singular), which is correct after the extraneous root is discarded, so no ambiguity."
+  },
+  "AH3-06": {
+    "pick": "C",
+    "solved": "3x^2-11x-4 = (3x+1)(x-4), so f(x)=3x+1 for x!=4. Continuity forces g(4)=3(4)+1=13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "12 is 3x without the +1 and is the strong one. -1/3 is the zero of the cancelled factor; 0 is filler (a student who thinks the hole makes the value 0 is not really a wrong path, just a guess)."
+  },
+  "AH3-07": {
+    "pick": "D",
+    "solved": "f(x+3) shifts left 3, so the minimum moves from x=2 to x=-1; the -4 lowers the value from -5 to -9. Minimum at (-1,-9).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The four options are the full sign grid on both coordinates (-1/5 crossed with -1/-9), so both the shift-direction error and the arithmetic error land on a real option. Nothing is guessable from the option set."
+  },
+  "AH3-08": {
+    "pick": "C",
+    "solved": "2x^2-12x+25 = 2(x-3)^2 + 7. Minimum value 7 (at x=3).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "This is a standard complete-the-square item; it would sit in module 1 or early module 2, not on the hard route. 3 is the x-coordinate (answer to the wrong question, strong); 79 is f(-3), a sign slip; 16 I cannot source to a wrong path."
+  },
+  "AH3-09": {
+    "pick": "B",
+    "solved": "f(g(a)) = (2a+1)^2 - 5 = 44 -> (2a+1)^2 = 49 -> 2a+1 = +/-7 -> a = 3 or a = -4. Least is -4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "3 is the other (greater) root, which catches anyone who drops the negative branch or misreads 'least'. -3 and 4 cover the sign-handling slips."
+  },
+  "AH3-11": {
+    "pick": "A",
+    "solved": "x^2+10x+c = 6x+5 -> x^2+4x+(c-5)=0. Exactly one intersection means discriminant 0: 16-4(c-5)=0 -> c-5=4 -> c=9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "25 is (10/2)^2, i.e. completing the square on the original quadratic and ignoring the line — a real error. -2 and -1 are weaker; I can only reach them by sign errors inside the discriminant."
+  },
+  "AH3-12": {
+    "pick": "C",
+    "solved": "(x+8)/((x-2)(x+2)) = 3/(x-2). Multiply through by (x-2)(x+2): x+8 = 3(x+2) = 3x+6 -> 2x = 2 -> x = 1, which is in the domain.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "2 is the excluded value and a genuine trap for a student who clears denominators carelessly. 7 and -0.5 are hard to source; -0.5 would come from x+8=3x+6 mis-transposed. Same extraneous-solution theme as AH3-05 — two items in 19 on one idea."
+  },
+  "AH3-13": {
+    "pick": "D",
+    "solved": "Remainder theorem: p(3) = 27 - 36 + 3k - 6 = 3k - 15 = 12 -> k = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "27 comes from 3k=27 read off as k; -27 is that with a sign slip. 5 would come from setting 3k-15=0 then... I cannot cleanly source it. Two of three distractors are variants of the same slip."
+  },
+  "AH3-14": {
+    "pick": "B",
+    "solved": "Let u=x^2: u^2-13u+36=0 -> u=4 or 9 -> x = +/-2, +/-3. Positive solutions 2 and 3, sum 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "6 is the product of the positive solutions, 0 is the sum of all four, 9 is a u-value mistaken for an x-value. Every distractor is a named wrong stopping point."
+  },
+  "AH3-15": {
+    "pick": "C",
+    "solved": "g(x)=f(x/2); need x/2 = 6, so x = 12, and g(12)=f(6)=10. Point (12,10).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Full 2x2 grid: x in {3,12} crossed with y in {10,5}. Catches both the stretch-vs-compress inversion and the belief that the input scaling also scales the output."
+  },
+  "AH3-18": {
+    "pick": "A",
+    "solved": "(x-3)(x+3) / ((x-3)(x+2)) = (x+3)/(x+2).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Clearly the easiest item in the batch — one factorisation, one cancellation, no second idea. It does not belong on a module-2 hard route. The option set is the complete sign grid, which is the right construction."
+  },
+  "AH3-19": {
+    "pick": "B",
+    "solved": "7 = a(6-4)^2 - 5 -> 12 = 4a -> a = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "The stem hands over the vertex form, so the only work is one substitution. 12 is the numerator before dividing, 1/3 the reciprocal, 24 a doubling slip — all real. But this is a one-step item and it is a strict subset of the work in AH3-22."
+  },
+  "AH3-20": {
+    "pick": "C",
+    "solved": "log2(x^3/y^2) = 3*log2(x) - 2*log2(y) = 15 - 6 = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "21 is 15+6 (quotient rule read as a sum) and is the one strong distractor. 2.5 and 6 are weak — I cannot build 2.5 from any coherent path other than 5/2. Logarithms are rare on the Digital SAT; difficulty here is carried by unfamiliarity, not by structure."
+  },
+  "AH3-21": {
+    "pick": "D",
+    "solved": "x = 27^(4/3) = (27^(1/3))^4 = 3^4 = 81.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "9 = 27^(2/3) and 3 = 27^(1/3) are both partial-exponent stops, which is the right family. 36 is filler."
+  },
+  "AH3-22": {
+    "pick": "B",
+    "solved": "Roots -1 and 7 give y = a(x+1)(x-7). At (1,-24): a(2)(-6) = -12a = -24 -> a = 2. Vertex x is the root midpoint h = 3, so k = 2(3+1)(3-7) = -32.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "The only item in the batch I would call hard, and only marginally: two ideas do have to interact (recover a from factored form, then convert to vertex form via the root midpoint), and a student who stops after either step lands on a listed option — 2 is a, 3 is h. 32 covers the sign slip. This is the item the rest of the batch was supposed to look like."
+  },
+  "AH3-23": {
+    "pick": "A",
+    "solved": "3^(4x) = (3^(2x))^2 = 400, so 3^(4x+1) = 3 * 400 = 1200.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "400 is the stop before the +1 exponent, 403 is the +1 handled as addition rather than a factor of 3, 120 is 20*... a doubling/scaling slip. All three are errors a student actually makes here."
+  },
+  "AH3-24": {
+    "pick": "B",
+    "solved": "(x+y)^2 = x^2 + 2xy + y^2 = 34 + 2(15) = 64. (Consistent: x,y = 3,5 or -3,-5.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "4 is (x-y)^2 (subtracting instead of adding) and 8 is x+y itself, the answer to the wrong question — both strong. The item is one identity with no second idea, so it grades easy despite looking abstract."
+  }
+}

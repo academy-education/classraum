@@ -1,0 +1,192 @@
+[
+ {
+  "id": "AH3-02",
+  "prompt": "The polynomial p is defined by p(x) = x³ − 6x² − x + 30, and p(3) = 0. What is the greatest of the other two zeros of p?",
+  "choices": [
+   "5",
+   "10",
+   "-2",
+   "-10"
+  ]
+ },
+ {
+  "id": "AH3-04",
+  "prompt": "A bacterial culture is modeled by P(t) = 240(1.44)^t, where P(t) is the number of cells and t is the number of hours since the culture was prepared. By what percent does the number of cells increase every half hour?",
+  "choices": [
+   "120",
+   "44",
+   "72",
+   "20"
+  ]
+ },
+ {
+  "id": "AH3-05",
+  "prompt": "What is the solution to the equation √(3x + 22) = x + 4 ?",
+  "choices": [
+   "1",
+   "6",
+   "-6",
+   "-1"
+  ]
+ },
+ {
+  "id": "AH3-06",
+  "prompt": "The function f is defined by f(x) = (3x² − 11x − 4)/(x − 4) for all x ≠ 4. The function g is defined for every real number, g(x) = f(x) whenever x ≠ 4, and the graph of g has no break in it. What is the value of g(4)?",
+  "choices": [
+   "12",
+   "0",
+   "13",
+   "-1/3"
+  ]
+ },
+ {
+  "id": "AH3-07",
+  "prompt": "The function f has a minimum value of −5, and that minimum occurs at x = 2. The function g is defined by g(x) = f(x + 3) − 4. At what point does the graph of y = g(x) attain its minimum?",
+  "choices": [
+   "(-1, -1)",
+   "(5, -1)",
+   "(5, -9)",
+   "(-1, -9)"
+  ]
+ },
+ {
+  "id": "AH3-08",
+  "prompt": "The function f is defined by f(x) = 2x² − 12x + 25. What is the minimum value of f(x)?",
+  "choices": [
+   "16",
+   "79",
+   "7",
+   "3"
+  ]
+ },
+ {
+  "id": "AH3-09",
+  "prompt": "The functions f and g are defined by f(x) = x² − 5 and g(x) = 2x + 1. If f(g(a)) = 44, what is the least possible value of a?",
+  "choices": [
+   "3",
+   "-4",
+   "-3",
+   "4"
+  ]
+ },
+ {
+  "id": "AH3-11",
+  "prompt": "In the xy-plane, the graph of y = x² + 10x + c, where c is a constant, intersects the graph of y = 6x + 5 at exactly one point. What is the value of c?",
+  "choices": [
+   "9",
+   "25",
+   "-2",
+   "-1"
+  ]
+ },
+ {
+  "id": "AH3-12",
+  "prompt": "What value of x satisfies the equation (x + 8)/(x² − 4) = 3/(x − 2) ?",
+  "choices": [
+   "7",
+   "2",
+   "1",
+   "-0.5"
+  ]
+ },
+ {
+  "id": "AH3-13",
+  "prompt": "When the polynomial p(x) = x³ − 4x² + kx − 6, where k is a constant, is divided by x − 3, the remainder is 12. What is the value of k?",
+  "choices": [
+   "-27",
+   "5",
+   "27",
+   "9"
+  ]
+ },
+ {
+  "id": "AH3-14",
+  "prompt": "What is the sum of the positive solutions to the equation x⁴ − 13x² + 36 = 0 ?",
+  "choices": [
+   "6",
+   "5",
+   "9",
+   "0"
+  ]
+ },
+ {
+  "id": "AH3-15",
+  "prompt": "The graph of y = f(x) in the xy-plane passes through the point (6, 10). The function g is defined by g(x) = f(x/2). Which point must lie on the graph of y = g(x)?",
+  "choices": [
+   "(3, 10)",
+   "(3, 5)",
+   "(12, 10)",
+   "(12, 5)"
+  ]
+ },
+ {
+  "id": "AH3-18",
+  "prompt": "Which expression is equivalent to (x² − 9)/(x² − x − 6) for all x with x ≠ 3 and x ≠ −2 ?",
+  "choices": [
+   "(x + 3)/(x + 2)",
+   "(x - 3)/(x + 2)",
+   "(x - 3)/(x - 2)",
+   "(x + 3)/(x - 2)"
+  ]
+ },
+ {
+  "id": "AH3-19",
+  "prompt": "A quadratic function h has its vertex at (4, −5), and the graph of y = h(x) passes through the point (6, 7). If h(x) = a(x − 4)² − 5, what is the value of a?",
+  "choices": [
+   "12",
+   "3",
+   "24",
+   "1/3"
+  ]
+ },
+ {
+  "id": "AH3-20",
+  "prompt": "If log₂(x) = 5 and log₂(y) = 3, what is the value of log₂(x³/y²) ?",
+  "choices": [
+   "21",
+   "2.5",
+   "9",
+   "6"
+  ]
+ },
+ {
+  "id": "AH3-21",
+  "prompt": "If x^(3/4) = 27 and x > 0, what is the value of x?",
+  "choices": [
+   "9",
+   "36",
+   "3",
+   "81"
+  ]
+ },
+ {
+  "id": "AH3-22",
+  "prompt": "In the xy-plane, a parabola crosses the x-axis at x = −1 and at x = 7 and passes through the point (1, −24). The equation of the parabola can be written as y = a(x − h)² + k, where a, h and k are constants. What is the value of k?",
+  "choices": [
+   "2",
+   "-32",
+   "3",
+   "32"
+  ]
+ },
+ {
+  "id": "AH3-23",
+  "prompt": "If 3^(2x) = 20, what is the value of 3^(4x + 1) ?",
+  "choices": [
+   "1200",
+   "400",
+   "403",
+   "120"
+  ]
+ },
+ {
+  "id": "AH3-24",
+  "prompt": "The real numbers x and y satisfy x² + y² = 34 and xy = 15. What is the value of (x + y)² ?",
+  "choices": [
+   "4",
+   "64",
+   "8",
+   "49"
+  ]
+ }
+]

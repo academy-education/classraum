@@ -1,0 +1,191 @@
+{
+  "IM11-01": {
+    "pick": "A",
+    "solved": "For two numbers, GCF x LCM = product: 6 x 360 = 2160, so n = 2160/24 = 90. Check: gcf(24,90)=6, lcm=360. The others fail gcf: gcf(24,144)=24, gcf(24,60)=12, gcf(24,15)=3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "15 = 360/24 and 144 = 24 x 6 are both natural wrong paths; 60 is the weakest of the three."
+  },
+  "IM11-02": {
+    "pick": "C",
+    "solved": "Inclusion-exclusion: 22+20+18 - 10-9-8 + 5 = 38 study at least one; 40 - 38 = 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "The region counts are all non-negative (8/7/6 only, 5/4/3 pairwise-only, 5 triple), so the data is consistent. Three-set inclusion-exclusion is at the very top of, or slightly above, the ISEE Upper Level range."
+  },
+  "IM11-03": {
+    "pick": "A",
+    "solved": "Add the equations: 8x + 8y = 72, so x + y = 9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "72 (forgot to divide) and 36 (divided by 2) are the two real wrong paths; 5 = x - y, also reachable by subtracting instead of adding."
+  },
+  "IM11-05": {
+    "pick": "A",
+    "solved": "Square with diagonal d has area d^2/2 = 100/2 = 50. (Side = 10/sqrt2, side^2 = 50.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "100 = treating the diagonal as the side; 200 = d^2 x 2. 48 is weak - no wrong path produces it."
+  },
+  "IM11-07": {
+    "pick": "B",
+    "solved": "(-3)^3 = -27, (-2)^4 = +16, sum = -11.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "The four options are the sign-error family (+/-27 +/- 16), which is the right distractor set for this item."
+  },
+  "IM11-08": {
+    "pick": "A",
+    "solved": "15 values in order: five 0s (positions 1-5), two 1s (6-7), three 2s (8-10), four 3s (11-14), one 5 (15). The 8th value is the median: 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "0 is the mode, 1 is the value at the midpoint of the distinct values, 1.5 is a plausible mis-averaging. Mean is 24/15 = 1.6, so no distractor is the mean."
+  },
+  "IM11-09": {
+    "pick": "A",
+    "solved": "Arithmetic with first term 5 and common difference 3: f(n) = 3n + 2. f(50) = 152.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "150 = 3n, 149 = 3(n-1)+2 off-by-one, 147 = 3(n-1). A tight off-by-one family; a student who mis-indexes lands on a listed option."
+  },
+  "IM11-10": {
+    "pick": "D",
+    "solved": "Slope = (2-8)/(5-2) = -2. y - 8 = -2(x - 2) gives y = -2x + 12; y = 0 at x = 6.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "-2 is the slope itself; 3.5 is the x of the midpoint; 4 is weaker."
+  },
+  "IM11-11": {
+    "pick": "D",
+    "solved": "Closing speed 16 + 12 = 28 mph; 84/28 = 3 hours.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "21 = 84/4 (difference of speeds), 7 = 84/12, 5.25 = 84/16 - each is a specific, natural wrong division."
+  },
+  "IM11-12": {
+    "pick": "B",
+    "solved": "In 8 years Marta is 30 = 2(b + 8), so b + 8 = 15 and b = 7 now.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "15 = the brother's age in 8 years (answering the wrong question), 11 = 22/2 (ignoring the shift), 3 = 22/2 - 8."
+  },
+  "IM11-14": {
+    "pick": "B",
+    "solved": "Edges x, 2x, 3x: volume 6x^3 = 48, x^3 = 8, x = 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "8 = 48/6 (forgetting the cube root), 4 and 6 are the other two edges of the correct box, so a student answering the wrong question lands on one."
+  },
+  "IM11-15": {
+    "pick": "C",
+    "solved": "r^2 = a5/a3 = 162/18 = 9, so r = 3 (positive terms rule out -3).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The stem says 'of positive numbers', which correctly closes the r = -3 branch - without that phrase the item would not be exclusive. 9 = r^2 left unrooted, 4.5 = 162/36, 54 = the fourth term."
+  },
+  "IM11-17": {
+    "pick": "A",
+    "solved": "In parallelogram ABCD the diagonals AC and BD bisect each other, so D = A + C - B = (1+7-5, 2+6-2) = (3, 6).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "(11, 6) = B + C - A, the classic vertex-order error; (11, 2) and (3, 2) come from adding only one displacement. 'Vertices in order' fixes the labelling, so exactly one D works."
+  },
+  "IM11-19": {
+    "pick": "C",
+    "solved": "350/28 = 12.5 gallons; 12.5 x 3.60 = $45.00.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "$100.80 = 28 x 3.60, $12.50 = the gallon count dressed as dollars. $46.80 is the weakest of the three."
+  },
+  "IM11-20": {
+    "pick": "B",
+    "solved": "Base pay 40 x 14 = $560. 686 - 560 = $126 of overtime; 126/21 = 6 overtime hours.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "46 = total hours worked (answering the wrong question) and is the trap this item is built around; 49 and 9 come from dividing 686 by 14 first."
+  },
+  "IM11-21": {
+    "pick": "D",
+    "solved": "Multiples of 4 strictly between 50 and 150: 52 to 148, count (148-52)/4 + 1 = 25. Sum = 25 x (52+148)/2 = 25 x 100 = 2500.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Neither 50 nor 150 is a multiple of 4, so the usual inclusive/exclusive 'between' ambiguity cannot change the answer - worth keeping. 2652 = also including 152."
+  },
+  "IM11-22": {
+    "pick": "D",
+    "solved": "-4 - 3(5) = -4 - 15 = -19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "-15 = forgetting the -4 start, -22 = counting 6 hours (the fencepost error), 11 = adding instead of falling."
+  },
+  "IM11-24": {
+    "pick": "C",
+    "solved": "Won 18, lost 30 - 18 = 12; 18:12 = 3:2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "3 to 5 is won:played, 5 to 3 its reversal, 2 to 3 the reversal of the key. The whole option set is the ratio-confusion family."
+  },
+  "IM11-27": {
+    "pick": "B",
+    "solved": "P(red) = 2/5 each spin, independent: (2/5)^2 = 4/25.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "4/5 = adding the probabilities, 2/5 = one spin only, 1/10 = 2/5 x 1/4 (treating it as drawing without replacement) - all three are real student paths."
+  },
+  "IM11-29": {
+    "pick": "D",
+    "solved": "Let the least be n. Sum = 5n + 10 = S, so n = (S - 10)/5 = S/5 - 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "S/5 is the middle term, S/5 + 2 the greatest, (S-2)/5 the mis-distributed version. Answering in terms of a variable rather than a number makes this one of the harder items here, but it is still a single idea."
+  },
+  "IM11-30": {
+    "pick": "C",
+    "solved": "5:3 of 32 is 20 boys and 12 girls. 20/4 = 5 boys and 12/3 = 4 girls, so 9 students.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "5 = boys only, 8 = 32/4 (applying one fraction to the whole class), 23 = the complement. 8 is the weakest but is reachable."
+  }
+}

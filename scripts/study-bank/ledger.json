@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-01",
+ "generatedAt": "2026-09-11",
  "note": "Generated from the real result files. Numbers are computed, not transcribed.",
  "baselines": [
   {
@@ -2450,6 +2450,118 @@
     "tells": {
      "passed": false,
      "verdict": "FAILS, on a defect no structural check can see and the attack cannot reach: SUBJECT RECALL. All three graders volunteered it unprompted and independently. The author chose booming dunes because there is no scientific consensus to recall, and all three confirmed that premise is CORRECT and is not what protects an item — what protects it is whether the key coincides with the prior. The two rival accounts (a dry-layer acoustic waveguide over a denser substrate; shear-rate x grain-diameter collision synchronisation) are each well documented, and the batch assigns one camp per passage, so recognition routes by camp without any consensus existing. Counts: grader A 3 of 9 outright plus 2 partly, grader B 3 of 9, grader C 2 decisive plus 2 assisted. All three name P1-Q4 and P1-Q9 in the cluster. One grader notes that P1-Q9s option set is the CLEAN shape — four parallel \"Sound is produced only while X\" frames varying one term — so the leak there is recall, not axis-alignment, and a cheap structural check would never see it. Two graders also named the same single wording fix, independently: P1-Q9s key says \"only while an AVALANCHE is in motion\" while Passage Bs opening produces booming with no dune and no avalanche at all, eight centimetres of poured sand sheared in a chute; the explanations own parenthetical concedes the gap. \"while the sand is in motion\" costs nothing. Also flagged: P1-Q8s three non-keys describe concessions Passage A never makes anywhere, collapsing a cross-passage task into locate-the-detail."
+    }
+   }
+  },
+  {
+   "id": "act-math-v4-fn-kept-2026-09-11",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v4-fn",
+   "contentSha": "67b468fec1bac9fafcf27f6a4e1ab71904b2e3ba8c508d2a68ee7f5345398187",
+   "note": "25 items, the survivors of act-math-v4-fn.batch.json after the options-only attack. Dropped under ONE rule applied to all four maths batches that day: an item goes if all three blind solvers got it, OR an exact checker puts the key inside the exploitable shape. The residual margin after dropping is NOT quoted as evidence — dropping items selected for being solved biases it below chance by construction. Inserted at BANK_BAND=mixed.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "25/25 recompute to their key in the sandbox; 75 of 75 distractor_solve entries recomputed, 0 mismatches. Symbolic hub 25.0% vs 25.0% control; numeric hub 25.0% vs 25.0%. Render dealt key slots 7/6/6/6, spread 1."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three independent graders on the SANITIZED render (make-grade-render.mjs), not the batch: key, authored difficulty, explanation, solve, distractor_solve, domain and subskill all withheld by construction, so no grader COULD have been anchored. All three reported the same render sha 49bf745834224d95 before and after grading. 25 of 25 keys agreed 3/3. ZERO non-exclusive votes from any grader. Distractors 0 weak-majority sets. Difficulty medians easy 12 / medium 11 / hard 2, which all three independently said is light at the top for a full ACT form — correct for a Functions-only batch feeding a mixed 45-question form that opens easy, and the reason this inserts at BANK_BAND=mixed."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 3 solvers, values with NO stems: 27.4% vs a 25.0% chance line derived from the render width, margin +2.4, p=0.35 — AT CHANCE. 1 item solved by all 3 against 0.57 expected at the batch’s own rate (p=0.44). This is the clean stratum: four bare values are meaningless until the stem says what they measure."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Four exact channels over the whole batch, each control derived from the data. run-middle: 2 items carry the shape, key is in it 0 = 0.0% vs 25.0%. option-pair-constant: 0 items carry the shape. key-is-sum: 2 items carry the shape, key in it 0 = 0.0% vs 25.0%. hub: at control on both the symbolic and numeric lines. BEFORE the drop the run channel fired on AM4F-05 (options 9/1/17/12, run 1-9-17, key at the middle) and all three blind solvers named that exact run; the pair channel fired on AM4F-04 and AM4F-25. All three dropped."
+    }
+   }
+  },
+  {
+   "id": "isee-math-s11-kept-2026-09-11",
+   "targetTest": "isee",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "isee-math-s11",
+   "contentSha": "040ee6920487123f69b885a10eeef321099a47e254bf4fa12385dde957698474",
+   "note": "21 items, the survivors of isee-math-s11.batch.json after the options-only attack. Dropped under ONE rule applied to all four maths batches that day: an item goes if all three blind solvers got it, OR an exact checker puts the key inside the exploitable shape. The residual margin after dropping is NOT quoted as evidence — dropping items selected for being solved biases it below chance by construction. Inserted at BANK_BAND=mixed.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "21/21 recompute; 63 of 63 distractors recomputed, 0 mismatches. Symbolic hub 33.3% of 3 structured (1 item, not a measurement); numeric hub 0.0% vs 25.0%. Slots 6/5/5/5, spread 1."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on the sanitized render, all reporting sha 28131ad196bd1fe2 before and after. 21 of 21 keys agreed 3/3, zero non-exclusive votes. Two graders independently flagged the same three stems as load-bearing rather than lucky: IM11-15 “of positive numbers” is what kills r = -3; IM11-17 “vertices in order” is what makes the answer unique; IM11-21 “between 50 and 150” is safe only because neither endpoint is a multiple of 4. One grader flags IM11-02 wording: “ten students study both” should read “including those who study all three” — exclusivity holds as dealt because the alternative reading gives 17, which is not an option, but the stem should be tightened before students see it."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack on the 30-item superset: 36.7% vs 25.0%, +11.7, p=0.0093, with 8 items solved by all three against 1.48 expected (p=7.7e-5) — a REAL and CONCENTRATED leak. The 9 dropped ids are those 8 plus IM11-26, which the pair-to-constant checker names (60+30=90) and 2 of 3 solvers got."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "run-middle: 2 shapes, key in 0. option-pair-constant: 1 shape, key in 0 (vs 50.0% control). key-is-sum: 1 shape, key in 0. Before the drop, run-middle named IM11-16 and IM11-18 and pair-constant named IM11-06 (11.1+88.9=100); all three were unanimous in the blind attack, so the two instruments agree item-for-item."
+    }
+   }
+  },
+  {
+   "id": "ssat-math-s10-kept-2026-09-11",
+   "targetTest": "ssat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "ssat-math-s10",
+   "contentSha": "18a641b42cd799a8621f16f2935108a3611cebe913300d066ac372859e8ff8d3",
+   "note": "13 items, the survivors of ssat-math-s10.batch.json after the options-only attack. Dropped under ONE rule applied to all four maths batches that day: an item goes if all three blind solvers got it, OR an exact checker puts the key inside the exploitable shape. The residual margin after dropping is NOT quoted as evidence — dropping items selected for being solved biases it below chance by construction. Inserted at BANK_BAND=mixed.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "13/13 recompute; 52 of 52 distractors recomputed, 0 mismatches. Numeric hub 0.0% vs a 20.0% control (FIVE-choice batch — the width is read from the data, not assumed). Slots 3/3/3/2/2, spread 1."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on the sanitized render, all reporting sha 6c0a96db383dd692 before and after. 13 of 13 keys agreed 3/3, zero non-exclusive votes, and all three solved every item outright with no guesses. All three independently checked SM10-05, the one item whose exclusivity rests on prose rather than arithmetic (no figure; the apex position along the opposite side is free but the area is invariant to it) and all three cleared it. Two graders name the same real weakness, and it is a BLUEPRINT problem not an authoring one: four of thirteen reduce to one small linear equation, so a student who can do one can do all four."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack: 33.3% vs a 20.0% chance line, +13.3, p=0.025 on 45 picks. 2 items solved by all three. Renders five-wide against 20.0%; the earlier four-option render and hardcoded 25% control would have understated this by 5 points."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "key-is-sum named SM10-11 and SM10-14 — exactly the two items all three blind solvers got, the two instruments agreeing with no coordination. Both dropped. On the kept 13: run-middle 4 shapes with the key in 0 (vs 20.0%), key-is-sum 4 shapes with the key in 0, option-pair-constant 2 shapes with the key in 1 = 50.0% against a 50.0% control, i.e. exactly at control. All three solvers independently reported that no option set narrows without the stem."
+    }
+   }
+  },
+  {
+   "id": "sat-adv-h3-kept-2026-09-11",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-adv-h3",
+   "contentSha": "e2075e3a3e0a023c76b3e38ac2611545413b400edb6b6e37736aa71c3b2fdcd2",
+   "note": "19 items, the survivors of sat-adv-h3.batch.json after the options-only attack. Dropped under ONE rule applied to all four maths batches that day: an item goes if all three blind solvers got it, OR an exact checker puts the key inside the exploitable shape. The residual margin after dropping is NOT quoted as evidence — dropping items selected for being solved biases it below chance by construction. Inserted at BANK_BAND=hard.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "19/19 recompute; 57 of 57 distractors recomputed, 0 mismatches. Symbolic hub 25.0% vs 25.0%; numeric hub 6.3% vs 25.0%. Slots 5/5/5/4, spread 1. distractor_steps — the field that leaked the key on all 24 items of the earlier render — is now withheld by the render’s name check."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on the sanitized render, all reporting sha 964e17127c4ded42 before and after. 19 of 19 keys agreed 3/3, zero non-exclusive votes. THE BATCH WAS COMMISSIONED HARD AND IS NOT: the three difficulty counts are 2/14/3, 1/14/4 and 1/13/5 hard/medium/easy, and all three named the same easy items (AH3-08, AH3-18, AH3-19, AH3-20) and the same single hard one (AH3-22). Per difficulty-policy.mjs this batch inserts at the DEFAULT band=hard, so the majority-easy items are DROPPED rather than relabelled — banking them as easy would launder a failed commission into bank rows. Two graders separately flag that AH3-20 may be off-blueprint: log properties are not in the Digital SAT Advanced Math specification."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack on the 24-item superset: mean 33.3% vs 25.0%, +8.3, p=0.070 — NOT significant at the mean — while 4 items were solved by all three against 0.89 expected, p=0.011. The leak was concentrated, not diffuse, and a mean-only gate would have passed this batch with four fully-exposed items in it. Those 4 were dropped, plus AH3-10 on solver testimony alone: 2 of 3 independently said two of its four exponential forms are absurd as growth models on sight (8000(1.06/12)^m has base 0.088 and decays; 8000(1.06)^(12m) doubles monthly), a 4-to-2 narrowing with no stem. AH3-10 is a REPAIR CANDIDATE, not a dead item."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "run-middle: 0 shapes. option-pair-constant: 1 shape, key in 0 (vs 50.0%). key-is-sum: 0 shapes. Before the drop, pair-constant named AH3-17 (48.8+51.2=100) and all three solvers named that exact pair. One grader reports mild residual narrowing on AH3-21 (81 the only perfect fourth power in its set) — recorded, not acted on, since it is one item and no checker covers it."
     }
    }
   }

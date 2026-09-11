@@ -1,0 +1,119 @@
+{
+  "SM10-01": {
+    "pick": "B",
+    "solved": "2/7 = 0.285714 repeating, block (2,8,5,7,1,4). 50 = 6*8 + 2, so the 50th digit is the 2nd of the block = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Every distractor is another digit of the same block: 2 (off-by-one, remainder read as 1), 5 (3rd), 1 (5th), 4 (remainder 0 -> 6th). Clean. The stem hands over 'block of six' so the student does not have to discover the period; that is what keeps it medium rather than hard."
+  },
+  "SM10-02": {
+    "pick": "A",
+    "solved": "Buy-2-get-1 means notebooks come in groups of 3, of which 2 are paid. 12 = 4 groups, so 8 paid at $3.60 = $28.80.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "43.20 = pay for all 12; 32.40 = pay for 9 (splits 12 as 3 free); 21.60 = pay for 6 (halves); 39.60 = pay for 11. All real wrong paths. 'Leaves with 12' is the right phrasing - it forecloses the 12-paid-plus-6-free reading."
+  },
+  "SM10-03": {
+    "pick": "C",
+    "solved": "(45 - 36)/36 = 9/36 = 0.25, so 25 percent greater.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "20 is the wrong-base error (9/45) and is the single most likely miss; 125 is 45/36 as a percent (answered 'what percent of'), 80 is 36/45, 9 is the raw difference. Textbook distractor set."
+  },
+  "SM10-04": {
+    "pick": "B",
+    "solved": "Sum = 2+30+8+4+28+7+5 = 84, mean = 12. Sorted: 2,4,5,7,8,28,30, median = 7. 12 - 7 = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "6 = using the unsorted middle term 4 (12-4=8 is option C) or a small arithmetic slip; 4.5 comes from averaging the two central values of an even-count misread. 8 and 7 are reachable by taking the median as 4 or 5. No weak option, but none is as sharp as the wrong-base trap in SM10-03."
+  },
+  "SM10-05": {
+    "pick": "E",
+    "solved": "Apex on the opposite 12 cm side forces height = 8. Triangle area = (1/2)(6)(8) = 24; rectangle = 96. 24/96 = 1/4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The geometry is fully determined by the wording (the apex's position along the far side is irrelevant), so no figure is needed - good. 1/2 = forgetting the 1/2 in the triangle area; 3/16 = 18/96, base*height/... slips; 3/8 = 36/96; 3/4 is the complement of nothing obvious and is the weakest of the five."
+  },
+  "SM10-06": {
+    "pick": "D",
+    "solved": "Linear 1 cm : 5 km, so 1 sq cm : 25 sq km. 18 * 25 = 450.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "90 = 18*5, the intended and very common failure to square the scale factor; 3.6 = 18/5, 0.72 = 18/25, 180 = 18*10. Squared-scale items are a genuine SSAT Upper Level topic."
+  },
+  "SM10-07": {
+    "pick": "D",
+    "solved": "(2n + 7)/3 = 11 -> 2n + 7 = 33 -> 2n = 26 -> n = 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Each distractor is an intermediate value left on the table: 33 (after multiplying by 3), 26 (2n), 20 (11+7+2 style slip / stopping at 33 then subtracting 13), 16.5 (dividing 33 by 2 before subtracting 7). Good opener-difficulty item; a real form opens with things like this."
+  },
+  "SM10-08": {
+    "pick": "E",
+    "solved": "x + y = 28 and y + z = 44. Subtract: z - x = 44 - 28 = 16.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "8 = 22-14, the answer a student gets by treating the averages as the values themselves - the intended trap and a strong one. 36 = 14+22, 30 and 18 fill out the field. y is genuinely unrecoverable, which is the point of the item; nothing in the stem suggests it should be."
+  },
+  "SM10-09": {
+    "pick": "A",
+    "solved": "Base from (2,1) to (11,1) is 9 units on the line y=1; the third vertex is at height 7-1 = 6. Area = (1/2)(9)(6) = 27.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "54 = forgetting the 1/2 (the dominant error); 22.5 = (1/2)(9)(5) using 5 as the height from the x-coordinate; 18, 15 are lesser slips. Coordinates chosen so the base is horizontal, so no distance formula is needed - correctly pitched for this exam."
+  },
+  "SM10-10": {
+    "pick": "C",
+    "solved": "30 + 4h = 54 + h -> 3h = 24 -> h = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "24 = the un-divided 3h, the natural stopping point; 62 = the common cost at h=8 (answering the wrong question) and is a good trap; 4.8 = 24/5, 6 = 24/4. Standard break-even setup, early-form difficulty."
+  },
+  "SM10-12": {
+    "pick": "A",
+    "solved": "Trailing zeros of 25! = floor(25/5) + floor(25/25) = 5 + 1 = 6.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "5 is the near-miss (counting multiples of 5 but missing that 25 contributes a second factor) and is exactly the distractor this item exists to catch. 10 = counting 2s-and-5s pairs wrongly or 25/2.5; 4 = counting 5,10,15,20 only; 22 = count of even numbers, the weakest of the five but still derivable. Hardest item here - two ideas interact (pairing 2s with 5s, and the square)."
+  },
+  "SM10-13": {
+    "pick": "B",
+    "solved": "Acid: 18 + 0.2x = 0.45(30 + x) -> 18 + 0.2x = 13.5 + 0.45x -> 4.5 = 0.25x -> x = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "48 = the total final volume (answering the wrong quantity) and is the strongest trap; 13.5 = 0.45*30; 72 and 6 come from inverting the 15/25 weighting. A midpoint guess of 40% would give x=30, which is deliberately NOT offered - good, since 45% being off-centre is the whole point. Genuinely hard for this exam."
+  },
+  "SM10-15": {
+    "pick": "C",
+    "solved": "9 * 6 = 54, minus the 3x3 alcove = 54 - 9 = 45.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "51 = subtracting the side (3) instead of the area; 54 = forgetting the cut; 42 = subtracting twice; 18 is weak - no plausible path lands on it. Otherwise a clean opener."
+  }
+}

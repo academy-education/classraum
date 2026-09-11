@@ -1,0 +1,227 @@
+{
+  "AM4F-01": {
+    "pick": "B",
+    "solved": "f(-2) = 5(-2) - (-2)^2 = -10 - 4 = -14.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "14 = 10+4, -6 = -10+4, 6 = 10-4; each is one sign slip. Same stimulus shape as AM4F-17 (evaluate at x = -2)."
+  },
+  "AM4F-02": {
+    "pick": "B",
+    "solved": "f(2) = 9; g(9) = 9 - 4 = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "-7 is f(g(2)), the reversed-order trap; 9 is f(2) alone; -2 is g(2) alone. Clean."
+  },
+  "AM4F-03": {
+    "pick": "D",
+    "solved": "h^-1(4) solves (x + 9)/2 = 4, so x + 9 = 8, x = -1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "6.5 = h(4), the classic inverse/forward confusion; 17 = 2(4)+9 (inverting the wrong order)."
+  },
+  "AM4F-06": {
+    "pick": "C",
+    "solved": "Right 3 replaces x with x - 3; down 2 subtracts 2. y = f(x - 3) - 2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "The option set is the complete 2x2 sign permutation, so a student who knows one of the two rules is at 1/2 rather than 1/4. Standard ACT construction; no leak, since all four are equally legal without the stem."
+  },
+  "AM4F-07": {
+    "pick": "A",
+    "solved": "Undefined where the denominator is 0: 2x + 7 = 0, x = -7/2.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "7/2 is the sign slip; 2/7 and -2/7 are reciprocal slips."
+  },
+  "AM4F-08": {
+    "pick": "A",
+    "solved": "a5 = a2 * r^3, so r^3 = (5/3)/45 = 5/135 = 1/27.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "1/3 is r itself (the student who solved for r and stopped); 27 and 3 are the inverted ratio. Asking for r^3 rather than r is what keeps this from being easy."
+  },
+  "AM4F-09": {
+    "pick": "D",
+    "solved": "Base is the growth factor 3; exponent is elapsed time over the 8-hour period: 400(3)^(t/8).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Distractors are the full base/period swap grid; 400(8)^(t/3) is the double swap."
+  },
+  "AM4F-10": {
+    "pick": "B",
+    "solved": "f(4) = 64 - 16 = 48; f(1) = 1 - 4 = -3; change = 48 - (-3) = 51.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "I checked the one reading that could split this: f has a local min at x = 2/sqrt(3) = 1.155 inside [1,4], so 'total change' read as total variation gives 51.16, not an option. 48 is f(4) with f(1) dropped."
+  },
+  "AM4F-11": {
+    "pick": "C",
+    "solved": "1 < 3 so f(1) = 2(1) + 6 = 8; 8 >= 3 so f(8) = 64 - 4 = 60.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "22 = 2(8)+6 (wrong branch on the outer call); 8 is f(1) alone; 0 = f(1) via the wrong branch then... reachable as 1^2-4+3. Branch selection is unambiguous at both steps."
+  },
+  "AM4F-12": {
+    "pick": "C",
+    "solved": "Axis of symmetry x = 12/4 = 3; the partner of x = 1 is 2(3) - 1 = 5. Check f(5) = 50 - 60 + 7 = -3 = f(1).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "3 is the axis itself, the natural stopping point. -1 and -5 assume symmetry about 0."
+  },
+  "AM4F-13": {
+    "pick": "A",
+    "solved": "sqrt(3x + 4) = 7, so 3x + 4 = 49, x = 15.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "5/3 comes from squaring before moving the 5 (3x + 4 = 9); 0 and 7 are weaker but each has a path (7 = 2 + 5 read as the argument)."
+  },
+  "AM4F-14": {
+    "pick": "A",
+    "solved": "x = -b/2a = -3; f(-3) = 9 - 18 - 1 = -10. Vertex (-3, -10).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Both coordinate signs are independently trapped, so the four options are the full sign grid."
+  },
+  "AM4F-15": {
+    "pick": "B",
+    "solved": "Equal degrees top and bottom, so the end behaviour is the ratio of leading coefficients, 6/2 = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "6/5 is the ratio of the wrong pair of coefficients; 0 is the degree-mismatch answer. 'Increases without bound' is fine ACT phrasing."
+  },
+  "AM4F-16": {
+    "pick": "A",
+    "solved": "x + 5 = 3^2 = 9, x = 4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "14 = 9 + 5 (wrong side); 1 = 6 - 5 from reading 3*2. 20 is the weakest of the four - I could not build a natural path to it."
+  },
+  "AM4F-17": {
+    "pick": "D",
+    "solved": "f(-2) = 4 - 6 = -2; g(-2) = -10 - 2 = -12; (f - g)(-2) = -2 - (-12) = 10.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "-14 is (f + g)(-2), the sign-of-the-subtraction trap and the single most likely wrong answer. Pairs with AM4F-01 on the evaluate-at--2 idea."
+  },
+  "AM4F-18": {
+    "pick": "A",
+    "solved": "First hour is $5 and is excluded by the question. Remaining 2 h 25 min bills as 3 part-hours at $3 = $9.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "14 is the total charge - the trap for anyone who skims past 'after the first hour'; 6 is the floor instead of ceiling on the extra hours. The stem is explicit enough that I do not count 14 as defensible, but this is the item in the batch most likely to be missed for reading rather than maths."
+  },
+  "AM4F-19": {
+    "pick": "C",
+    "solved": "y = kx/z^2; 15 = k(12)/4 = 3k; k = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "45 = 15*12/4, the constant with the square inverted. Odd stem shape: it sets up a question (y at x = 6, z = 4) it then never asks, which reads as an item that was cut down from a two-step original. Not ambiguous, but it telegraphs that the real work is skipped."
+  },
+  "AM4F-20": {
+    "pick": "D",
+    "solved": "Minimum is 11 - b^2/4 = 2, so b^2 = 36, b = +/-6; b negative gives -6. Check: x^2 - 6x + 11 has min 2 at x = 3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "6 is the answer that ignores the stated sign constraint; 3 and -3 are the vertex x-coordinate. The 'b is negative' clause is load-bearing and clearly stated."
+  },
+  "AM4F-21": {
+    "pick": "C",
+    "solved": "h(x) = 2(x/4 + 3) - 1 = x/2 + 5; set x/2 + 5 = 9, x = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "9.5 = h(9), the forward-instead-of-inverse trap; 12.5 = g(f(9)) territory. Third composition item in the batch (with -02 and -11) and second inverse item (with -03)."
+  },
+  "AM4F-22": {
+    "pick": "B",
+    "solved": "Need 5000(1.08)^t > 9000 + 300t. At t = 12: 1.08^12 = 2.51817, A = 12590.8 vs B = 12600 - A is still behind. At t = 13: 1.08^13 = 2.71962, A = 13598.1 vs B = 12900. Least whole t is 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Deliberately marginal: t = 12 fails by 9 members out of ~12,600. I checked the rounding - 1.08^12 rounded to 2.52 gives exactly 12,600, which is a tie, not 'more', so the answer survives a 3-significant-figure calculator. 41 is the excellent distractor for treating A as simple interest, 5000 + 400t. This is the hardest item here and the only one where a sloppy calculator entry changes the letter."
+  },
+  "AM4F-23": {
+    "pick": "D",
+    "solved": "f(g(x)) = sqrt(1/(x-6) - 2) needs 1/(x-6) >= 2 and x != 6. For x > 6 this gives 1 >= 2(x-6), x <= 6.5; for x < 6 the left side is negative. So 6 < x <= 6.5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "All four options are the same interval differing only in endpoint strictness, so the item is decided entirely by the two endpoints: x = 6 excluded (g undefined), x = 6.5 included (radicand exactly 0). Both are correct as dealt. No option-set leak - with the stem covered the four are indistinguishable. Hard because two constraints interact - the inner pole and the radicand sign - and the multiplication by (x-6) needs its sign justified."
+  },
+  "AM4F-24": {
+    "pick": "A",
+    "solved": "3x - 9 = 15 gives x = 8; 3x - 9 = -15 gives x = -2. Greatest is 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-2 is the other genuine root, so a student who solves fully but misreads 'greatest' lands there; 24 forgets the division by 3."
+  },
+  "AM4F-26": {
+    "pick": "C",
+    "solved": "(x^2 - 3x - 10)/(x - 5) = (x - 5)(x + 2)/(x - 5) = x + 2 for x != 5. The hole is at x = 5, y = 7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "(-2, 0) is the zero of the numerator's other factor, the trap for anyone who cancels the wrong factor; (5, 3) and (-2, 7) are the coordinate crosses. Clean factoring item."
+  },
+  "AM4F-27": {
+    "pick": "D",
+    "solved": "a1 = 5; a2 = 7; a3 = 11; a4 = 19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "11 is a3, the off-by-one-term answer, which is the realistic miss. 37 and -2 are weaker."
+  },
+  "AM4F-28": {
+    "pick": "B",
+    "solved": "240 * (1/2)^(15/6) = 240 * 2^-2.5 = 240/5.6569 = 42.43, so 42 g.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "60 is floor(15/6) = 2 halvings, the dominant wrong path; 182 inverts the exponent to (1/2)^(6/15). The 'to the nearest gram' makes 42 unambiguous - 42.43 does not sit near a boundary."
+  }
+}

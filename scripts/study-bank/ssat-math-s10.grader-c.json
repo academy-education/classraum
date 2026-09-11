@@ -1,0 +1,119 @@
+{
+  "SM10-01": {
+    "pick": "B",
+    "solved": "2/7 = 0.285714 repeating, cycle (2,8,5,7,1,4) of length 6. 50 mod 6 = 2, so the 50th digit is the 2nd of the cycle = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "All five options are digits drawn from the actual cycle, so no option-set narrowing is possible. The stem hands the student the period (6), which removes the one genuinely hard step; that is fine for SSAT but makes this a modular-arithmetic item rather than a repeating-decimal item."
+  },
+  "SM10-02": {
+    "pick": "A",
+    "solved": "12 notebooks = 4 groups of (2 paid + 1 free), so 8 are paid for. 8 x 3.60 = 28.80.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "32.40 (=9 x 3.60, off-by-one grouping), 43.20 (=12 at full price) and 21.60 (=6) are all real wrong paths."
+  },
+  "SM10-03": {
+    "pick": "C",
+    "solved": "(45 - 36)/36 = 9/36 = 0.25, so 25 percent greater.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "20 is the reversed-base error (9/45) and 80 is 36/45; both are exactly the errors this stem is built to catch. Clean item."
+  },
+  "SM10-04": {
+    "pick": "B",
+    "solved": "Sum = 2+30+8+4+28+7+5 = 84, mean = 12. Sorted: 2,4,5,7,8,28,30, median = 7. 12 - 7 = 5.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "7 in the option set is the median itself, which is a fair trap. 4.5 and 8 are not reachable from any wrong path I can name; they are filler."
+  },
+  "SM10-05": {
+    "pick": "E",
+    "solved": "The triangle's base (6) lies on one 12 cm side and its apex on the opposite 12 cm side, so its height is the 8 cm separation. Area = 1/2 x 6 x 8 = 24. Rectangle = 96. 24/96 = 1/4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Geometry is fully determined by the stem without a figure - the apex position along the side does not change the area, which is the point. 3/8 (= 48/96, forgetting the 1/2) is the intended slip."
+  },
+  "SM10-06": {
+    "pick": "D",
+    "solved": "1 cm represents 5 km, so 1 cm^2 represents 25 km^2. 18 x 25 = 450.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "90 (= 18 x 5, linear factor applied to an area) is the classic error and is present. Good item."
+  },
+  "SM10-07": {
+    "pick": "D",
+    "solved": "(2n + 7)/3 = 11 -> 2n + 7 = 33 -> 2n = 26 -> n = 13.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "26 (stopping at 2n) and 33 (stopping at the numerator) are both intermediate values, which is exactly the right distractor family for a reverse-operations item."
+  },
+  "SM10-08": {
+    "pick": "E",
+    "solved": "x + y = 28 and y + z = 44. Subtracting, z - x = 16.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "8 (the difference of the two averages, i.e. forgetting to double) is the intended slip and is present."
+  },
+  "SM10-09": {
+    "pick": "A",
+    "solved": "(2,1) and (11,1) give a horizontal base of 9; the third vertex at y = 7 gives a height of 6. Area = 1/2 x 9 x 6 = 27.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "54 (forgot the 1/2) present. Routine once the horizontal base is spotted."
+  },
+  "SM10-10": {
+    "pick": "C",
+    "solved": "30 + 4h = 54 + h -> 3h = 24 -> h = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "24 (stopping at 3h) and 62 (the common cost, answering a question that was not asked) are both good. Note this is the fourth item in the batch that reduces to one small linear equation (see 03, 07, 08) - the batch is thin on variety, not on quality."
+  },
+  "SM10-12": {
+    "pick": "A",
+    "solved": "Trailing zeros of 25! = floor(25/5) + floor(25/25) = 5 + 1 = 6 (twos are in surplus).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Genuinely hard for this exam: the student must know zeros come from 5x2 pairs AND that 25 contributes a second 5. 5 is the answer for anyone who misses only the second point, which is the majority. This is the one item in the batch where two ideas have to interact."
+  },
+  "SM10-13": {
+    "pick": "B",
+    "solved": "Acid: 18 + 0.20x = 0.45(30 + x) -> 18 + 0.2x = 13.5 + 0.45x -> 4.5 = 0.25x -> x = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "48 is the total volume of the mixture (right work, wrong question) - strong. 13.5 is the 45 percent of 30 intermediate."
+  },
+  "SM10-15": {
+    "pick": "C",
+    "solved": "9 x 6 = 54; remove the 3 x 3 alcove = 9. 54 - 9 = 45.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "54 (ignoring the cut) and 51 (subtracting the side length 3 instead of the area 9) are real; 18 and 42 are weak filler. Fine as an opener."
+  }
+}

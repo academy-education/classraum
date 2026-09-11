@@ -1,0 +1,527 @@
+[
+ {
+  "id": "AM4F-01",
+  "domain": "Functions",
+  "subskill": "evaluating a quadratic rule at a negative input",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = 5x - x^2. What is the value of f(-2)?",
+  "choices": [
+   "-14",
+   "6",
+   "14",
+   "-6"
+  ],
+  "correct_answer": "-14",
+  "explanation": "f(-2) = 5(-2) - (-2)^2 = -10 - 4 = -14. The option \"14\" comes from a solver who reads the rule as x^2 - 5x, which at x = -2 gives 4 + 10. The option \"-6\" comes from a solver who evaluates (-2)^2 as -4 and computes -10 - (-4). The option \"6\" comes from a solver who substitutes 2 instead of -2, giving 10 - 4.",
+  "solve": "var f = function (x) { return 5 * x - x * x; }; return f(-2);",
+  "distractor_solve": {
+   "6": "var f = function (x) { return 5 * x - x * x; }; return f(2);",
+   "14": "var g = function (x) { return x * x - 5 * x; }; return g(-2);",
+   "-6": "var x = -2; return 5 * x - (-4);"
+  }
+ },
+ {
+  "id": "AM4F-02",
+  "domain": "Functions",
+  "subskill": "composition of two functions in a stated order, with the reverse order available",
+  "difficulty": "easy",
+  "prompt": "The functions f and g are defined by f(x) = 4x + 1 and g(x) = x - 4. What is the value of g(f(2))?",
+  "choices": [
+   "5",
+   "9",
+   "-7",
+   "-2"
+  ],
+  "correct_answer": "5",
+  "explanation": "f(2) = 4(2) + 1 = 9, and g(9) = 9 - 4 = 5. The option \"9\" comes from a solver who evaluates the inside function and stops there. The option \"-7\" comes from a solver who composes in the reverse order: g(2) = -2, then f(-2) = -7. The option \"-2\" comes from a solver who applies only g to the input.",
+  "solve": "var f = function (x) { return 4 * x + 1; }; var g = function (x) { return x - 4; }; return g(f(2));",
+  "distractor_solve": {
+   "9": "var f = function (x) { return 4 * x + 1; }; return f(2);",
+   "-7": "var f = function (x) { return 4 * x + 1; }; var g = function (x) { return x - 4; }; return f(g(2));",
+   "-2": "var g = function (x) { return x - 4; }; return g(2);"
+  }
+ },
+ {
+  "id": "AM4F-03",
+  "domain": "Functions",
+  "subskill": "value of an inverse function of a linear rule with a division",
+  "difficulty": "easy",
+  "prompt": "The function h is defined by h(x) = (x + 9)/2. What is the value of h^-1(4)?",
+  "choices": [
+   "-1",
+   "6.5",
+   "-5",
+   "17"
+  ],
+  "correct_answer": "-1",
+  "explanation": "h^-1(4) is the input whose output is 4, so (x + 9)/2 = 4, giving x + 9 = 8 and x = -1. The option \"6.5\" comes from a solver who evaluates h(4) = 13/2 instead of the inverse. The option \"-5\" comes from a solver who sets x + 9 = 4 and never undoes the division by 2. The option \"17\" comes from a solver who undoes the two steps in the wrong order and computes 2(4) + 9.",
+  "solve": "var x = 4 * 2 - 9; return x;",
+  "distractor_solve": {
+   "17": "return 2 * 4 + 9;",
+   "6.5": "var h = function (x) { return (x + 9) / 2; }; return h(4);",
+   "-5": "return 4 - 9;"
+  }
+ },
+ {
+  "id": "AM4F-06",
+  "domain": "Functions",
+  "subskill": "equation of a graph after a horizontal and a vertical shift",
+  "difficulty": "easy",
+  "prompt": "The graph of y = f(x) is shifted 3 units to the right and 2 units down. Which of the following is an equation of the resulting graph?",
+  "choices": [
+   "y = f(x - 3) - 2",
+   "y = f(x + 3) + 2",
+   "y = f(x - 3) + 2",
+   "y = f(x + 3) - 2"
+  ],
+  "correct_answer": "y = f(x - 3) - 2",
+  "explanation": "A shift 3 units right replaces x by x - 3, and a shift 2 units down subtracts 2 from the output, giving y = f(x - 3) - 2. The option \"y = f(x + 3) - 2\" comes from a solver who shifts horizontally in the direction of the sign written inside the parentheses. The option \"y = f(x - 3) + 2\" comes from a solver who shifts horizontally correctly but moves the graph up. The option \"y = f(x + 3) + 2\" comes from a solver who reverses both directions.",
+  "solve": "var hSign = '-', vSign = '-'; return 'y = f(x ' + hSign + ' 3) ' + vSign + ' 2';",
+  "distractor_solve": {
+   "y = f(x + 3) - 2": "var hSign = '+', vSign = '-'; return 'y = f(x ' + hSign + ' 3) ' + vSign + ' 2';",
+   "y = f(x - 3) + 2": "var hSign = '-', vSign = '+'; return 'y = f(x ' + hSign + ' 3) ' + vSign + ' 2';",
+   "y = f(x + 3) + 2": "var hSign = '+', vSign = '+'; return 'y = f(x ' + hSign + ' 3) ' + vSign + ' 2';"
+  }
+ },
+ {
+  "id": "AM4F-07",
+  "domain": "Functions",
+  "subskill": "the value excluded from the domain of a rational function",
+  "difficulty": "easy",
+  "prompt": "The function r is defined by r(x) = (x - 1)/(2x + 7). For what value of x is r(x) undefined?",
+  "choices": [
+   "-7/2",
+   "2/7",
+   "-2/7",
+   "7/2"
+  ],
+  "correct_answer": "-7/2",
+  "explanation": "r(x) is undefined exactly where the denominator is 0, so 2x + 7 = 0 and x = -7/2. The option \"7/2\" comes from a solver who solves 2x - 7 = 0, dropping the sign when moving 7 across. The option \"-2/7\" comes from a solver who reads the denominator as 7x + 2 and solves that. The option \"2/7\" comes from a solver who makes both of those slips at once.",
+  "solve": "var a = 2, b = 7; return -b / a;",
+  "distractor_solve": {
+   "7/2": "var a = 2, b = 7; return b / a;",
+   "-2/7": "var a = 7, b = 2; return -b / a;",
+   "2/7": "var a = 7, b = 2; return b / a;"
+  }
+ },
+ {
+  "id": "AM4F-08",
+  "domain": "Functions",
+  "subskill": "the multiplier between two terms three places apart in a geometric sequence",
+  "difficulty": "medium",
+  "prompt": "In a geometric sequence, the 2nd term is 45 and the 5th term is 5/3. If r is the common ratio of this sequence, what is the value of r cubed?",
+  "choices": [
+   "1/3",
+   "27",
+   "1/27",
+   "3"
+  ],
+  "correct_answer": "1/27",
+  "explanation": "Three steps carry the 2nd term to the 5th, so r cubed = (5/3)/45 = 1/27. The option \"1/3\" is the common ratio r itself, which a solver reports after taking a cube root the question does not ask for. The option \"27\" comes from a solver who divides the earlier term by the later one. The option \"3\" comes from a solver who both divides in the wrong order and takes the cube root.",
+  "solve": "return (5 / 3) / 45;",
+  "distractor_solve": {
+   "3": "return Math.cbrt(45 / (5 / 3));",
+   "27": "return 45 / (5 / 3);",
+   "1/3": "var r3 = (5 / 3) / 45; return Math.cbrt(r3);"
+  }
+ },
+ {
+  "id": "AM4F-09",
+  "domain": "Functions",
+  "subskill": "writing an exponential model whose growth period is not one unit of the input",
+  "difficulty": "medium",
+  "prompt": "A bacterial culture starts with 400 cells and triples in number every 8 hours. Which of the following expressions gives the number of cells present t hours after the start?",
+  "choices": [
+   "400(3)^(t/8)",
+   "400(8)^(t/3)",
+   "400(3)^(t/3)",
+   "400(8)^(t/8)"
+  ],
+  "correct_answer": "400(3)^(t/8)",
+  "explanation": "The number is multiplied by 3 once per 8 hours, so t hours contain t/8 tripling periods and the count is 400(3)^(t/8). The option \"400(3)^(t/3)\" keeps the correct growth factor but divides the elapsed time by the growth factor instead of by the length of the period. The option \"400(8)^(t/8)\" uses the length of the period as the growth factor. The option \"400(8)^(t/3)\" swaps the two numbers in both places at once.",
+  "solve": "var base = 3, period = 8; return '400(' + base + ')^(t/' + period + ')';",
+  "distractor_solve": {
+   "400(3)^(t/3)": "var base = 3, period = 3; return '400(' + base + ')^(t/' + period + ')';",
+   "400(8)^(t/8)": "var base = 8, period = 8; return '400(' + base + ')^(t/' + period + ')';",
+   "400(8)^(t/3)": "var base = 8, period = 3; return '400(' + base + ')^(t/' + period + ')';"
+  }
+ },
+ {
+  "id": "AM4F-10",
+  "domain": "Functions",
+  "subskill": "total change of a cubic over an interval",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^3 - 4x. What is the total change in the value of f from x = 1 to x = 4?",
+  "choices": [
+   "51",
+   "17",
+   "48",
+   "63"
+  ],
+  "correct_answer": "51",
+  "explanation": "f(4) = 64 - 16 = 48 and f(1) = 1 - 4 = -3, so the total change is 48 - (-3) = 51. The option \"17\" is the average rate of change, 51/3, which a solver reports after dividing by the width of the interval the question does not ask about. The option \"48\" is f(4) alone, reported before f(1) is subtracted. The option \"63\" comes from a solver who evaluates f(4) as 4^3 - 4 = 60, applying the -4 to the constant rather than to 4x, and then computes 60 - (-3).",
+  "solve": "var f = function (x) { return x * x * x - 4 * x; }; return f(4) - f(1);",
+  "distractor_solve": {
+   "17": "var f = function (x) { return x * x * x - 4 * x; }; return (f(4) - f(1)) / (4 - 1);",
+   "48": "var f = function (x) { return x * x * x - 4 * x; }; return f(4);",
+   "63": "var f = function (x) { return x * x * x - 4 * x; }; var wrong4 = 4 * 4 * 4 - 4; return wrong4 - f(1);"
+  }
+ },
+ {
+  "id": "AM4F-11",
+  "domain": "Functions",
+  "subskill": "nested evaluation of a two-piece piecewise function",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 2x + 6 when x < 3, and f(x) = x^2 - 4 when x >= 3. What is the value of f(f(1))?",
+  "choices": [
+   "60",
+   "8",
+   "22",
+   "0"
+  ],
+  "correct_answer": "60",
+  "explanation": "Because 1 < 3, f(1) = 2(1) + 6 = 8. Because 8 >= 3, f(8) = 64 - 4 = 60. The option \"8\" is the inner value f(1), reported as if it were the answer. The option \"22\" comes from a solver who finds f(1) = 8 correctly and then uses the first rule again, computing 2(8) + 6. The option \"0\" comes from a solver who picks the branches by the order they are written rather than by the conditions: f(1) = 1 - 4 = -3, then f(-3) = 2(-3) + 6.",
+  "solve": "var f = function (x) { return x < 3 ? 2 * x + 6 : x * x - 4; }; return f(f(1));",
+  "distractor_solve": {
+   "0": "var wrong = function (x) { return x * x - 4; }; var first = wrong(1); return 2 * first + 6;",
+   "8": "var f = function (x) { return x < 3 ? 2 * x + 6 : x * x - 4; }; return f(1);",
+   "22": "var f = function (x) { return x < 3 ? 2 * x + 6 : x * x - 4; }; return 2 * f(1) + 6;"
+  }
+ },
+ {
+  "id": "AM4F-12",
+  "domain": "Functions",
+  "subskill": "symmetry of a quadratic: the second input giving the same output",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 12x + 7. There is exactly one number k, other than 1, for which f(k) = f(1). What is the value of k?",
+  "choices": [
+   "5",
+   "3",
+   "-5",
+   "-1"
+  ],
+  "correct_answer": "5",
+  "explanation": "The axis of symmetry of ax^2 + bx + c is x = -b/(2a), which here is 12/4 = 3. The input 1 lies 2 units left of that line, so the other input with the same output lies 2 units right of it: k = 3 + 2 = 5. The option \"3\" is the axis of symmetry itself, the step before the reflection is carried out. The option \"-1\" comes from a solver who reflects the input across the y-axis instead of across the axis of symmetry. The option \"-5\" comes from a solver who reaches 5 and then reports its opposite, reading the reflection as a change of sign.",
+  "solve": "var axis = 12 / (2 * 2); return 2 * axis - 1;",
+  "distractor_solve": {
+   "3": "return 12 / (2 * 2);",
+   "-1": "var input = 1; return -input;",
+   "-5": "var axis = 12 / (2 * 2); return -(2 * axis - 1);"
+  }
+ },
+ {
+  "id": "AM4F-13",
+  "domain": "Functions",
+  "subskill": "solving a radical equation for an input value",
+  "difficulty": "medium",
+  "prompt": "The function g is defined by g(x) = sqrt(3x + 4) - 5. For what value of x does g(x) = 2?",
+  "choices": [
+   "15",
+   "7",
+   "0",
+   "5/3"
+  ],
+  "correct_answer": "15",
+  "explanation": "g(x) = 2 gives sqrt(3x + 4) = 7, so 3x + 4 = 49 and x = 15. The option \"7\" is the value of the radical itself, the step before solving for x. The option \"0\" comes from a solver who drops the -5 and solves sqrt(3x + 4) = 2, giving 3x + 4 = 4. The option \"5/3\" comes from a solver who moves the 5 to the wrong side, solving sqrt(3x + 4) = 2 - 5 = -3 and squaring to get 3x + 4 = 9.",
+  "solve": "var radical = 2 + 5; return (radical * radical - 4) / 3;",
+  "distractor_solve": {
+   "0": "return (2 * 2 - 4) / 3;",
+   "7": "return 2 + 5;",
+   "5/3": "var wrong = 2 - 5; return (wrong * wrong - 4) / 3;"
+  }
+ },
+ {
+  "id": "AM4F-14",
+  "domain": "Functions",
+  "subskill": "vertex of a parabola found by completing the square",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 + 6x - 1. What is the vertex of the graph of f in the standard (x, y) coordinate plane?",
+  "choices": [
+   "(-3, -10)",
+   "(3, 8)",
+   "(-3, 8)",
+   "(3, -10)"
+  ],
+  "correct_answer": "(-3, -10)",
+  "explanation": "x^2 + 6x - 1 = (x + 3)^2 - 9 - 1 = (x + 3)^2 - 10, so the vertex is (-3, -10). The option \"(3, -10)\" comes from a solver who reads the vertex's x-coordinate straight off (x + 3)^2 without changing its sign. The option \"(-3, 8)\" comes from a solver who adds 9 to the constant instead of subtracting it, getting -1 + 9. The option \"(3, 8)\" comes from a solver who makes both of those slips.",
+  "solve": "var h = -6 / 2; var k = -1 - 9; return '(' + h + ', ' + k + ')';",
+  "distractor_solve": {
+   "(3, -10)": "var h = 6 / 2; var k = -1 - 9; return '(' + h + ', ' + k + ')';",
+   "(-3, 8)": "var h = -6 / 2; var k = -1 + 9; return '(' + h + ', ' + k + ')';",
+   "(3, 8)": "var h = 6 / 2; var k = -1 + 9; return '(' + h + ', ' + k + ')';"
+  }
+ },
+ {
+  "id": "AM4F-15",
+  "domain": "Functions",
+  "subskill": "end behaviour of a rational function whose numerator and denominator have equal degree",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (6x^2 + 5x)/(2x^2 + 1). As x increases without bound, the values of f(x) approach which of the following numbers?",
+  "choices": [
+   "3",
+   "1/3",
+   "0",
+   "6/5"
+  ],
+  "correct_answer": "3",
+  "explanation": "Dividing every term by x^2 leaves (6 + 5/x)/(2 + 1/x^2), and the two fractions become negligible, so f(x) approaches 6/2 = 3. The option \"1/3\" comes from a solver who forms the ratio of the leading coefficients upside down, as 2/6. The option \"0\" comes from a solver who applies the rule for a numerator of lower degree than the denominator. The option \"6/5\" comes from a solver who takes the ratio of the two coefficients in the numerator, 6 and 5.",
+  "solve": "return 6 / 2;",
+  "distractor_solve": {
+   "0": "return 0;",
+   "1/3": "return 2 / 6;",
+   "6/5": "return 6 / 5;"
+  }
+ },
+ {
+  "id": "AM4F-16",
+  "domain": "Functions",
+  "subskill": "solving a logarithmic equation by rewriting it in exponential form",
+  "difficulty": "medium",
+  "prompt": "If log base 3 of (x + 5) equals 2, what is the value of x?",
+  "choices": [
+   "4",
+   "1",
+   "14",
+   "20"
+  ],
+  "correct_answer": "4",
+  "explanation": "The equation says 3^2 = x + 5, so x + 5 = 9 and x = 4. The option \"1\" comes from a solver who multiplies the base by the exponent, setting x + 5 = 6. The option \"14\" comes from a solver who reaches x + 5 = 9 and then adds the 5 instead of subtracting it. The option \"20\" comes from a solver who takes the 5 inside the parentheses as the base and computes 5^2 = 25, then subtracts 5.",
+  "solve": "return Math.pow(3, 2) - 5;",
+  "distractor_solve": {
+   "1": "return 3 * 2 - 5;",
+   "14": "return Math.pow(3, 2) + 5;",
+   "20": "return Math.pow(5, 2) - 5;"
+  }
+ },
+ {
+  "id": "AM4F-17",
+  "domain": "Functions",
+  "subskill": "difference of two functions evaluated at a point",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = x^2 + 3x and g(x) = 5x - 2. What is the value of (f - g)(-2)?",
+  "choices": [
+   "10",
+   "-10",
+   "-14",
+   "-2"
+  ],
+  "correct_answer": "10",
+  "explanation": "f(-2) = 4 - 6 = -2 and g(-2) = -10 - 2 = -12, so (f - g)(-2) = -2 - (-12) = 10. The option \"-10\" comes from a solver who subtracts in the reverse order, computing g(-2) - f(-2). The option \"-14\" comes from a solver who adds the two values instead of subtracting. The option \"-2\" is f(-2) alone, reported before g(-2) is subtracted.",
+  "solve": "var f = function (x) { return x * x + 3 * x; }; var g = function (x) { return 5 * x - 2; }; return f(-2) - g(-2);",
+  "distractor_solve": {
+   "-10": "var f = function (x) { return x * x + 3 * x; }; var g = function (x) { return 5 * x - 2; }; return g(-2) - f(-2);",
+   "-14": "var f = function (x) { return x * x + 3 * x; }; var g = function (x) { return 5 * x - 2; }; return f(-2) + g(-2);",
+   "-2": "var f = function (x) { return x * x + 3 * x; }; return f(-2);"
+  }
+ },
+ {
+  "id": "AM4F-18",
+  "domain": "Functions",
+  "subskill": "the additional-unit part of a step-function charge, where part of a unit is charged as a whole unit",
+  "difficulty": "medium",
+  "prompt": "A parking garage charges $5 for the first hour or any part of an hour, and $3 for each additional hour or part of an additional hour. A car is parked for 3 hours and 25 minutes. How many dollars of the total charge are for the time after the first hour?",
+  "choices": [
+   "9",
+   "6",
+   "14",
+   "20"
+  ],
+  "correct_answer": "9",
+  "explanation": "After the first hour, 2 hours 25 minutes remain, and any part of an additional hour is charged as a whole one, so that time is 3 additional units at $3 each, or $9. The option \"6\" comes from a solver who drops the extra 25 minutes and charges only 2 additional units. The option \"14\" is the total charge for the whole stay, 5 + 9, reported without separating out the first hour the question excludes. The option \"20\" comes from a solver who charges the first-hour rate of $5 for all four units of the stay.",
+  "solve": "var extraUnits = Math.ceil((3 + 25 / 60) - 1); return 3 * extraUnits;",
+  "distractor_solve": {
+   "6": "var extraUnits = Math.floor((3 + 25 / 60) - 1); return 3 * extraUnits;",
+   "14": "var extraUnits = Math.ceil((3 + 25 / 60) - 1); return 5 + 3 * extraUnits;",
+   "20": "var units = Math.ceil(3 + 25 / 60); return 5 * units;"
+  }
+ },
+ {
+  "id": "AM4F-19",
+  "domain": "Functions",
+  "subskill": "the constant of variation in a joint direct-and-inverse relationship",
+  "difficulty": "medium",
+  "prompt": "The quantity y varies directly with x and inversely with the square of z. When x = 12 and z = 2, y = 15. To find the value of y when x = 6 and z = 4, a student first finds the constant of variation. What is that constant?",
+  "choices": [
+   "5",
+   "1.875",
+   "2.5",
+   "45"
+  ],
+  "correct_answer": "5",
+  "explanation": "Varying directly with x and inversely with the square of z means y = kx/z^2, so 15 = k(12)/2^2 = 3k and the constant is k = 5. The option \"1.875\" is the value of y the student is working toward, 5(6)/4^2, which is one step past the constant the question asks for. The option \"2.5\" comes from a solver who divides by z rather than by the square of z, solving 15 = k(12)/2. The option \"45\" comes from a solver who solves 15 = 12k/4 by multiplying by 12 and dividing by 4 rather than the other way round, computing 15(12)/4.",
+  "solve": "return 15 * (2 * 2) / 12;",
+  "distractor_solve": {
+   "45": "return 15 * 12 / (2 * 2);",
+   "1.875": "var k = 15 * (2 * 2) / 12; return k * 6 / (4 * 4);",
+   "2.5": "return 15 * 2 / 12;"
+  }
+ },
+ {
+  "id": "AM4F-20",
+  "domain": "Functions",
+  "subskill": "recovering an unknown coefficient from a stated minimum value",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = x^2 + bx + 11, where b is a negative constant. The minimum value of f(x) is 2. What is the value of b?",
+  "choices": [
+   "-6",
+   "3",
+   "6",
+   "-3"
+  ],
+  "correct_answer": "-6",
+  "explanation": "The minimum of x^2 + bx + 11 is 11 - b^2/4, so 11 - b^2/4 = 2 gives b^2 = 36 and b = 6 or b = -6; the stem says b is negative, so b = -6. The option \"6\" comes from a solver who does the algebra correctly and then ignores the condition that b is negative. The option \"-3\" comes from a solver who writes the minimum as 11 - b^2, giving b^2 = 9. The option \"3\" comes from a solver who makes both of those slips at once.",
+  "solve": "var bSquared = (11 - 2) * 4; return -Math.sqrt(bSquared);",
+  "distractor_solve": {
+   "3": "var bSquared = 11 - 2; return Math.sqrt(bSquared);",
+   "6": "var bSquared = (11 - 2) * 4; return Math.sqrt(bSquared);",
+   "-3": "var bSquared = 11 - 2; return -Math.sqrt(bSquared);"
+  }
+ },
+ {
+  "id": "AM4F-21",
+  "domain": "Functions",
+  "subskill": "inverse of a composition of two linear functions",
+  "difficulty": "hard",
+  "prompt": "The functions f and g are defined by f(x) = 2x - 1 and g(x) = x/4 + 3. The function h is defined by h(x) = f(g(x)). What is the value of h^-1(9)?",
+  "choices": [
+   "8",
+   "9.5",
+   "12.5",
+   "5"
+  ],
+  "correct_answer": "8",
+  "explanation": "h(x) = 2(x/4 + 3) - 1 = x/2 + 5, so h^-1(9) solves x/2 + 5 = 9, giving x = 8. The option \"9.5\" comes from a solver who evaluates h(9) instead of the inverse. The option \"12.5\" comes from a solver who undoes the two functions in the order they are written rather than in reverse, computing f^-1(g^-1(9)) = f^-1(24). The option \"5\" is f^-1(9), the first step of the correct undoing, reported before g^-1 is applied.",
+  "solve": "var h = function (x) { return 2 * (x / 4 + 3) - 1; }; var slope = h(1) - h(0); var intercept = h(0); return (9 - intercept) / slope;",
+  "distractor_solve": {
+   "5": "var fInv = function (y) { return (y + 1) / 2; }; return fInv(9);",
+   "9.5": "var h = function (x) { return 2 * (x / 4 + 3) - 1; }; return h(9);",
+   "12.5": "var gInv = function (y) { return (y - 3) * 4; }; var fInv = function (y) { return (y + 1) / 2; }; return fInv(gInv(9));"
+  }
+ },
+ {
+  "id": "AM4F-22",
+  "domain": "Functions",
+  "subskill": "least whole input at which an exponential model overtakes a linear one",
+  "difficulty": "hard",
+  "prompt": "The number of members of club A is modelled by 5,000(1.08)^t, where t is the number of years from today. The number of members of club B is modelled by 9,000 + 300t. What is the least whole number of years t for which club A has more members than club B?",
+  "choices": [
+   "13",
+   "12",
+   "41",
+   "8"
+  ],
+  "correct_answer": "13",
+  "explanation": "At t = 12 the models give about 12,591 and 12,600, so A is still behind; at t = 13 they give about 13,598 and 12,900, so A is ahead. The first whole year at which A is greater is 13. The option \"12\" is the last year at which A is still behind, which a solver reports after finding where the two are nearly equal. The option \"41\" comes from a solver who treats A's growth as a constant 8% of the starting 5,000, or 400 per year, and solves 5,000 + 400t > 9,000 + 300t. The option \"8\" comes from a solver who ignores B's growth and finds when A first passes B's starting 9,000.",
+  "solve": "var t = 0; while (5000 * Math.pow(1.08, t) <= 9000 + 300 * t) t++; return t;",
+  "distractor_solve": {
+   "8": "var t = 0; while (5000 * Math.pow(1.08, t) <= 9000) t++; return t;",
+   "12": "var t = 0; while (5000 * Math.pow(1.08, t) <= 9000 + 300 * t) t++; return t - 1;",
+   "41": "var t = 0; while (5000 + 400 * t <= 9000 + 300 * t) t++; return t;"
+  }
+ },
+ {
+  "id": "AM4F-23",
+  "domain": "Functions",
+  "subskill": "domain of a composition of a radical with a rational function",
+  "difficulty": "hard",
+  "prompt": "The functions f and g are defined by f(x) = sqrt(x - 2) and g(x) = 1/(x - 6). What is the domain of the composite function f(g(x))?",
+  "choices": [
+   "6 < x <= 6.5",
+   "6 <= x < 6.5",
+   "6 < x < 6.5",
+   "6 <= x <= 6.5"
+  ],
+  "correct_answer": "6 < x <= 6.5",
+  "explanation": "f(g(x)) = sqrt(1/(x - 6) - 2) needs 1/(x - 6) >= 2. That forces x - 6 to be positive, and then 1 >= 2(x - 6), so x - 6 <= 1/2. Since x = 6 makes g undefined, the domain is 6 < x <= 6.5. The option \"6 <= x <= 6.5\" comes from a solver who solves the inequality but never excludes the value that makes the denominator 0. The option \"6 < x < 6.5\" comes from a solver who treats the radicand as having to be strictly positive and so drops the endpoint where it is 0. The option \"6 <= x < 6.5\" comes from a solver who makes both of those slips.",
+  "solve": "var left = 'excluded', right = 'included'; return '6 ' + (left === 'included' ? '<=' : '<') + ' x ' + (right === 'included' ? '<=' : '<') + ' 6.5';",
+  "distractor_solve": {
+   "6 <= x <= 6.5": "var left = 'included', right = 'included'; return '6 ' + (left === 'included' ? '<=' : '<') + ' x ' + (right === 'included' ? '<=' : '<') + ' 6.5';",
+   "6 < x < 6.5": "var left = 'excluded', right = 'excluded'; return '6 ' + (left === 'included' ? '<=' : '<') + ' x ' + (right === 'included' ? '<=' : '<') + ' 6.5';",
+   "6 <= x < 6.5": "var left = 'included', right = 'excluded'; return '6 ' + (left === 'included' ? '<=' : '<') + ' x ' + (right === 'included' ? '<=' : '<') + ' 6.5';"
+  }
+ },
+ {
+  "id": "AM4F-24",
+  "domain": "Functions",
+  "subskill": "the greater solution of an absolute-value equation",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = |3x - 9|. What is the greatest value of x for which f(x) = 15?",
+  "choices": [
+   "8",
+   "-2",
+   "2",
+   "24"
+  ],
+  "correct_answer": "8",
+  "explanation": "The equation splits into 3x - 9 = 15, giving x = 8, and 3x - 9 = -15, giving x = -2. The greater of the two is 8. The option \"-2\" is the lesser solution. The option \"2\" comes from a solver who moves the 9 to the wrong side, solving 3x = 15 - 9. The option \"24\" comes from a solver who drops the coefficient 3 and solves x - 9 = 15.",
+  "solve": "var a = (15 + 9) / 3, b = (-15 + 9) / 3; return Math.max(a, b);",
+  "distractor_solve": {
+   "2": "return (15 - 9) / 3;",
+   "24": "return 15 + 9;",
+   "-2": "return (-15 + 9) / 3;"
+  }
+ },
+ {
+  "id": "AM4F-26",
+  "domain": "Functions",
+  "subskill": "locating the hole in the graph of a rational function with a common factor",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (x^2 - 3x - 10)/(x - 5). The graph of f in the standard (x, y) coordinate plane is a line with one point missing. What are the coordinates of the missing point?",
+  "choices": [
+   "(5, 7)",
+   "(-2, 7)",
+   "(5, 3)",
+   "(-2, 0)"
+  ],
+  "correct_answer": "(5, 7)",
+  "explanation": "x^2 - 3x - 10 = (x - 5)(x + 2), so f(x) = x + 2 everywhere except at x = 5, and the missing point sits at height 5 + 2 = 7, giving (5, 7). The option \"(5, 3)\" comes from a solver who cancels the wrong factor, reducing f to x - 2, and evaluates that at 5. The option \"(-2, 7)\" comes from a solver who takes the other factor's zero as the location while computing the height from the correct one. The option \"(-2, 0)\" comes from a solver who takes -2 as the location and evaluates the reduced form x + 2 there, landing on the point where the line crosses the x-axis rather than on the gap in it.",
+  "solve": "var xHole = 5; var y = xHole + 2; return '(' + xHole + ', ' + y + ')';",
+  "distractor_solve": {
+   "(5, 3)": "var xHole = 5; return '(' + xHole + ', ' + (xHole - 2) + ')';",
+   "(-2, 7)": "var xWrong = -2; var y = 5 + 2; return '(' + xWrong + ', ' + y + ')';",
+   "(-2, 0)": "var xWrong = -2; return '(' + xWrong + ', ' + (xWrong + 2) + ')';"
+  }
+ },
+ {
+  "id": "AM4F-27",
+  "domain": "Functions",
+  "subskill": "a term of a sequence defined by a linear recursion",
+  "difficulty": "easy",
+  "prompt": "A sequence is defined by a(1) = 5 and a(n + 1) = 2a(n) - 3 for every integer n >= 1. What is the value of a(4)?",
+  "choices": [
+   "19",
+   "11",
+   "-2",
+   "37"
+  ],
+  "correct_answer": "19",
+  "explanation": "The terms are 5, 7, 11, 19, so a(4) = 19. The option \"11\" is a(3), which a solver reports after applying the rule one time too few. The option \"37\" comes from a solver who doubles three times and subtracts 3 only once, computing 8(5) - 3. The option \"-2\" comes from a solver who subtracts 3 before doubling rather than after, generating 5, 4, 2, -2.",
+  "solve": "var a = 5; for (var i = 1; i < 4; i++) a = 2 * a - 3; return a;",
+  "distractor_solve": {
+   "11": "var a = 5; for (var i = 1; i < 3; i++) a = 2 * a - 3; return a;",
+   "37": "var a = 5; for (var i = 1; i < 4; i++) a = 2 * a; return a - 3;",
+   "-2": "var a = 5; for (var i = 1; i < 4; i++) a = 2 * (a - 3); return a;"
+  }
+ },
+ {
+  "id": "AM4F-28",
+  "domain": "Functions",
+  "subskill": "exponential decay over an elapsed time that is not a whole number of half-lives",
+  "difficulty": "medium",
+  "prompt": "A 240-gram sample of a substance decays so that its mass is halved every 6 years. To the nearest gram, what is the mass of the sample 15 years from now?",
+  "choices": [
+   "42",
+   "60",
+   "96",
+   "182"
+  ],
+  "correct_answer": "42",
+  "explanation": "15 years is 15/6 = 2.5 half-lives, so the mass is 240(1/2)^2.5, which is about 42.43 grams, or 42 grams to the nearest gram. The option \"60\" comes from a solver who counts only the 2 whole half-lives that have finished and computes 240/4. The option \"96\" comes from a solver who divides by the number of half-lives instead of raising one-half to that power, computing 240/2.5. The option \"182\" comes from a solver who inverts the exponent and computes 240(1/2)^(6/15).",
+  "solve": "return Math.round(240 * Math.pow(0.5, 15 / 6));",
+  "distractor_solve": {
+   "60": "return Math.round(240 * Math.pow(0.5, Math.floor(15 / 6)));",
+   "96": "return Math.round(240 / (15 / 6));",
+   "182": "return Math.round(240 * Math.pow(0.5, 6 / 15));"
+  }
+ }
+]

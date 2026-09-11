@@ -1,0 +1,17 @@
+{
+  "1": { "pick": "E", "basis": "confident", "why": "33 is the only option equal to the sum of two others (20+13), and the lone non-integer 16.5 is exactly 33/2." },
+  "2": { "pick": "B", "basis": "confident", "why": "30 is the only option equal to the sum of two others (14+16)." },
+  "3": { "pick": "E", "basis": "guess", "why": "8/16 and 18/36 form two doubling pairs and 30 is the only value outside that family." },
+  "4": { "pick": "E", "basis": "guess", "why": "1/4 and 3/4 sum to 1 so they read as the given complementary pair; of the two derived products 3/16 has the lone odd denominator (bait direction) leaving 3/8." },
+  "5": { "pick": "A", "basis": "confident", "why": "1, 2, 4, 8 is a complete doubling family and 5 is both the lone outsider and the only sum of two others (1+4)." },
+  "6": { "pick": "C", "basis": "guess", "why": "all five are 36 x {0.6, 0.8, 0.9, 1.1, 1.2}; nothing structurally separates them, so I took 28.80 (the 20%-off value) arbitrarily." },
+  "7": { "pick": "C", "basis": "guess", "why": "6, 8, 24 and 4.8 (=24/5) interlock by simple ratios and 62 is the only value unrelated to the rest." },
+  "8": { "pick": "D", "basis": "guess", "why": "42, 45, 51, 54 form a tight step-3 cluster around an absent 48, leaving 18 as the lone value off that cluster." },
+  "9": { "pick": "E", "basis": "guess", "why": "6, 18, 72 chain by small integer factors and 13.5 hangs off 18; 48 is the least connected, and 13.5 is ruled out as the lone non-integer." },
+  "10": { "pick": "A", "basis": "guess", "why": "20/80 (x4) and 25/125 (x5) are two derived pairs; 9 is the only value outside them." },
+  "11": { "pick": "B", "basis": "guess", "why": "5, 6, 7, 8 are consecutive and indistinguishable once the lone non-integer 4.5 is discarded; picked the low-middle of the run." },
+  "12": { "pick": "D", "basis": "confident", "why": "360 is the sum of two others (120+240) and also the hub the rest derive from (x2 = 720, /3 = 120, x0.75 = 270)." },
+  "13": { "pick": "D", "basis": "confident", "why": "10 is the only option equal to the sum of two others (4+6); 22 is unrelated filler." },
+  "14": { "pick": "B", "basis": "guess", "why": "0.72 and 3.6 read as decimal-point errors; among 90, 180, 450 nothing separates them, so I took the base value 90 that the other two are multiples of." },
+  "15": { "pick": "C", "basis": "guess", "why": "18, 27, 54 are the multiples-of-9 family and 15/22.5 pair off it; picked the middle of that family." }
+}

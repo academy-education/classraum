@@ -951,3 +951,23 @@ structural checks are pre-flight only. See CLAUDE.md.
   **`AH3-10` was dropped on solver testimony alone** — no exact checker covers it. Two of three independently said its four exponential forms include two that are absurd as growth models on sight (`8000(1.06/12)^m` has base 0.088 and decays; `8000(1.06)^(12m)` doubles monthly), a 4-to-2 narrowing with no stem. It is a **repair candidate, not a dead item**: replace the two nonsense bases with plausible competitors and it comes back.
 
   `check-key-is-sum` had dissolved against the live bank (+0.8) and still found the real thing here. A channel that is null over the population can be dense in one batch — the population result says *do not launch a repair programme*, not *do not look*.
+
+- **2026-09-11** — **74 MATHS ITEMS INSERTED ACROSS FOUR FAMILIES, AND THE DIFFICULTY POLICY DROPPED FOUR ITEMS IT WAS WRITTEN TO DROP.**
+
+        family        before  after   inserted   band
+        act/math        249    274      +25      mixed
+        isee/math       307    328      +21      mixed
+        ssat/math       153    166      +13      mixed
+        sat/math       1087   1102      +15      hard
+
+  Counts from `bank-state.mjs`, not from the inserter's own tally. All four ACT draws still fill (45/45 on maths).
+
+  **The with-source stage had never been completed on any of the four.** They had blind grades and nothing else — `act-math-v4-fn` had 2 graders, `isee-math-s11` had 1, `ssat-math-s10` and `sat-adv-h3` had none, and no `qc.json` existed anywhere. The inserter would have refused all four, which is the gate working; what is worth recording is that the batches had been described as "needing only the options-only attack plus a ledger entry" when in fact the more expensive stage was the missing one. **Check which stages exist before estimating what a batch still costs.**
+
+  Twelve graders, three per batch, on freshly sanitized renders bound to the kept files' hashes. Every grader reported its render sha before and after grading and all twelve were unchanged. **78 items graded, 78 keys agreed 3/3, ZERO non-exclusive votes from any grader on any item.** That is a suspiciously clean sheet and it is recorded as such: it is consistent with decidable arithmetic over bare numeric options — the stratum CLAUDE.md calls clean for the strongest reason — but a 100% exclusivity rate is the kind of number that should be attacked next time, not banked as a standard.
+
+  **`sat-adv-h3` was commissioned HARD and is not.** Three independent counts of hard/medium/easy: 2/14/3, 1/14/4, 1/13/5. All three named the same four easy items (AH3-08, AH3-18, AH3-19, AH3-20) and the same single hard one (AH3-22). Under `difficulty-policy.mjs` the default band is `hard`, so the majority-easy items were **dropped, not relabelled** — 19 survivors became 15 inserted. Setting `BANK_BAND=mixed` would have banked all 19 and laundered a failed commission into bank rows; the four items are worth less than the standard. This is the same shape as the SEC finding: **a batch commissioned hard grades medium, and the honest count is the one to act on.** Do not read "1 of 19 genuinely hard" as an argument for a fourth Advanced-Math hard brief.
+
+  Two content flags from graders, recorded and NOT acted on because each is one item and no checker covers it: **AH3-20 may be off-blueprint** (log properties are not in the Digital SAT Advanced Math specification — flagged independently by two graders; it was rejected on difficulty anyway, so the scope question is deferred, not answered), and **IM11-02's stem should read "including those who study all three"** (exclusivity holds as dealt because the alternative reading gives 17, which is not an option — safe by arithmetic accident, not by wording).
+
+  The gate was break-tested before it was trusted: it passes at each kept file's real hash and blocks on a **single changed byte**, reporting the stale hash rather than the missing stage.

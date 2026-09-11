@@ -1,0 +1,17 @@
+{
+  "1": { "pick": "E", "basis": "confident", "why": "33 is the only option that is the sum of two other distinct options (13 + 20), and no other option in the set has that property." },
+  "2": { "pick": "B", "basis": "confident", "why": "30 is the unique option equal to the sum of two other distinct options (14 + 16)." },
+  "3": { "pick": "C", "basis": "guess", "why": "No sum relation; 36/18 and 16/8 are two doubling pairs with 30 unpaired, but nothing tells me which side is the key, so this is a slot-balance guess." },
+  "4": { "pick": "B", "basis": "confident", "why": "As sixteenths the set is {4,12,3,8,6} and 12 = 4 + 8 is the only option that is the sum of two other distinct options (3/4 = 1/4 + 1/2)." },
+  "5": { "pick": "A", "basis": "confident", "why": "5 is the unique sum of two other distinct options (1 + 4) and is also the lone value outside the geometric run 1,2,4,8." },
+  "6": { "pick": "D", "basis": "confident", "why": "All five are 3.6 x {6,8,9,11,12}; 6,9,12 is the only three-term arithmetic run and 32.40 is its middle term, with 8 and 11 as the outliers." },
+  "7": { "pick": "E", "basis": "guess", "why": "4.8 is the set's only non-integer so I rule it out by the format rule, and 62 is a scale outlier, but nothing separates 6, 8 and 24 — 24 picked partly for slot balance." },
+  "8": { "pick": "A", "basis": "guess", "why": "42,45,51,54 straddle an absent 48 in two step-9 pairs with 18 as an outlier; I take the median present value with no real structural claim." },
+  "9": { "pick": "B", "basis": "guess", "why": "13.5 is the only non-integer so I rule it out, but 72, 6, 18 and 48 have no sum, run or common-ratio structure that isolates one." },
+  "10": { "pick": "E", "basis": "guess", "why": "20/25 and 80/125 look like the two halves of a percent-change pair, which makes 25 the familiar answer shape, but that is reconstruction-flavoured, not a value-set structure." },
+  "11": { "pick": "C", "basis": "guess", "why": "4.5 is the only non-integer so I rule it out, leaving the consecutive run 5,6,7,8 in which nothing distinguishes a member." },
+  "12": { "pick": "D", "basis": "confident", "why": "360 is the unique option equal to the sum of two other distinct options (120 + 240), and it is also the constant the other multiples of 120 point at." },
+  "13": { "pick": "D", "basis": "confident", "why": "10 is the unique option equal to the sum of two other distinct options (4 + 6); 22 is an unrelated scale outlier." },
+  "14": { "pick": "A", "basis": "guess", "why": "90/450 and 0.72/3.6 are two ratio-5 pairs leaving 180 unpaired, but I have no evidence whether the unpaired value is key or bait." },
+  "15": { "pick": "C", "basis": "guess", "why": "22.5 is the only non-integer so I rule it out; 18 relates cleanly to 27 (x1.5) and 54 (x3), which is weak, so this is close to a slot-balance guess." }
+}
