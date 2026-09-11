@@ -1,0 +1,128 @@
+{
+  "ACT-RD7-P1-Q1": {
+    "pick": "the booming face is a dry, loosely packed layer lying over a denser, damper bed.",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Letter A. Para 2 attributes this to the geophones verbatim: 'we have measured it with geophones ... the result that organized everything else was this: the booming face is layered.' D is the best trap - 'near 90 hertz' is true text, but it comes from para 1's on-the-face account, not from the geophones, and para 3 (76 -> 104 Hz) shows 'sits near 90 hertz' is not an established result at all. The item turns on provenance, not on fact, which is the right kind of hard for an easy item. SUBJECT RECALL: yes - this is the real Vriend-style waveguide picture (dry layer over a moist denser bed), and a physics-literate solver could pick A from priors without reading. Highest-exposure item in the set."
+  },
+  "ACT-RD7-P1-Q2": {
+    "pick": "a decrease in the thickness of the dry surface layer.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Letter B. Para 3: 51 cm in October, 29 cm in March, 76 -> 104 Hz, 'No property of the grains changed.' A ('an increase in the speed at which the avalanche ran') is Passage B's competing reading of the same numbers, so the stem's 'Passage A attributes' is load-bearing and a solver who merges the two passages gets it wrong. That is the best distractor in the paired set. C is explicitly denied by the passage. SUBJECT RECALL: yes - the real waveguide model makes frequency a function of layer thickness, so a solver with priors lands on B without the passage."
+  },
+  "ACT-RD7-P1-Q3": {
+    "pick": "a grain striking early is slowed and a grain striking late is driven forward.",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Letter A, near-verbatim from B para 2. C (moisture binding grains) is a decent trap because moisture is salient in Passage A, and B explicitly has no damp bed; B and D are inert. SUBJECT RECALL: partly - this is the real mode-locking/synchronised-collision account, and someone who knows Andreotti's version could recognise the phrasing. Only the detail is recalled, not a judgment, but I would still count this as recall-reachable."
+  },
+  "ACT-RD7-P1-Q4": {
+    "pick": "booming does not require the layered structure that Passage A describes.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Letter C. B para 1 stacks the negations - no dune, no six seasons, 'no damp bed under a dry layer' - and still gets 95 Hz, so the implication is exactly C. D ('too short to reproduce a full dune avalanche') is the only option worth arguing, but the passage lists the chute's differences as the POINT of the result, never as a limitation, and B nowhere concedes inadequacy; it is a misread rather than a defense. Exclusive stands. SUBJECT RECALL: partial - 'lab chutes boom without a dune' is a known result, so a solver with priors could reach C cold."
+  },
+  "ACT-RD7-P1-Q5": {
+    "pick": "A thinner dry layer avalanches faster, so the shear rate changed as well.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Letter C, stated in B para 3 ('the crust ... weakens as the sand dries, and a thinner dry layer avalanches faster'). I would call this medium rather than the author's hard: the supporting sentence sits adjacent to the word 'ambiguous'. A is the strong distractor - a TRUE sentence lifted from Passage A that a solver reaches for because 'same grains' feels like the crux; it is Passage A's argument, not B's ambiguity charge. SUBJECT RECALL: NO. The confound (drying couples thickness and shear rate) is this author's construction, not something priors supply. Best-insulated item in the pair."
+  },
+  "ACT-RD7-P1-Q6": {
+    "pick": "allowing no excuse if it turns out to be wrong.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Letter D. QUOTE FIDELITY CHECKED: 'unforgiving' occurs exactly once in the passage as shipped, in Passage A para 3, and the stem does not misquote it. The subject of 'unforgiving' is the PREDICTION, not the work or the reception, which kills B (labour) and C (slow acceptance) cleanly; the following sentence ('If the layer sets the note, the note must move when the layer does') and 'it is why we publish the depth profiles' fix the falsifiability sense. A is the dictionary-first sense of the word and will collect careless solvers. SUBJECT RECALL: no - pure vocabulary in context."
+  },
+  "ACT-RD7-P1-Q7": {
+    "pick": "accepting the measurement but denying that it separates the two accounts.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Letter B. B para 3 states both halves: 'we do not think it is a mistake' and 'it was collected in the one place where the two cannot be told apart.' Three of four options open with 'accepting the measurement', so the option set forces the solver onto the second clause rather than letting the first clause decide - good construction. C (takes it to confirm the layer account) is the near-miss. SUBJECT RECALL: no - stance tracking requires the text."
+  },
+  "ACT-RD7-P1-Q8": {
+    "pick": "it grants that without an avalanche there is no energy to guide.",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Letter D. Passage A para 4 is the concession, and it is aimed precisely at B's mechanism (shear supplies the sound). The other three are built out of real passage material - the two-metre geophone depth, the six seasons, the February silence are all actually in Passage A - but none is offered as a GRANT, so the item tests the difference between a fact mentioned and a concession made. Genuinely hard and correctly labelled. SUBJECT RECALL: no - requires locating a rhetorical move in Passage A."
+  },
+  "ACT-RD7-P1-Q9": {
+    "pick": "Sound is produced only while an avalanche is in motion.",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "Letter A. A survives both: Passage A 'It lasts as long as the avalanche does'; Passage B makes shear the generator and, on a dune, treats the avalanche as the shear source ('how fast the avalanche runs'). D dies on Passage B (no damp bed required), B and C die on Passage A. ONE WRINKLE I considered spending the exclusive vote on and decided not to: B's own chute has no avalanche and booms, so the bare quantifier 'only while an avalanche is in motion' is strictly false for Passage B in the lab. The stem's restriction 'about a booming dune' rescues it, and no second option is defensible, so exclusive stays true - but if a human sitting flags this item, that is what they will have caught, and the cheap fix is 'while sand is in motion on the dune face'. SUBJECT RECALL: yes - the true-in-reality statement is also the key, so a solver who knows nothing but 'booming happens during avalanches' answers it cold."
+  },
+  "ACT-RD7-P2-Q1": {
+    "pick": "whose ordinary effort the standard is measured against.",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Letter D. Para 2 closes on 'The rulebook says ordinary effort. It does not say whose ordinary.' A is a near-miss that trades 'whose ordinary effort' for 'which official', and para 2 has already assigned balls, strikes and outs to the umpire, so a skimmer can be pulled there. Clean easy opener."
+  },
+  "ACT-RD7-P2-Q2": {
+    "pick": "an account of how things already stand.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Letter C. PARAGRAPH-REFERENCE FIDELITY CHECKED: the stem cites paragraph 3 and 'description' does occur in the passage's bracketed [3], in 'He meant it as instruction. I took it as description' - the citation matches the passage as shipped. The item is the prescriptive/descriptive contrast, and A is the opposite pole ('how things ought to stand'), i.e. the father's 'instruction' - exactly the right distractor. I would rate it medium rather than the author's easy: the contrast is philosophical, and B and D are both ordinary senses of the word that only context excludes."
+  },
+  "ACT-RD7-P2-Q3": {
+    "pick": "reached a judgment on the play and knew it was not theirs to enter.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Letter A, restating 'Four hundred people ruled on the play in the same half second and then remembered that the ruling was not theirs.' B (divided) is the strong distractor and the one I tested hardest: 'not a groan and not a cheer' reads as a split crowd if you stop one sentence early. The next sentence makes the crowd unanimous in ACT (all ruled) and silent in expression, not divided, so B is a misread rather than a defensible second answer. Exclusive stands, but this is the item where a careless strong reader will lose a point."
+  },
+  "ACT-RD7-P2-Q4": {
+    "pick": "supply the standard against which she later measures her own ruling.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Letter C. The saying is invoked twice - at the moment of the ruling ('my father would have said reaching is not catching') and in para 8 ('my father's saying is true in a way he did not intend') - which is what a standard does. I checked B seriously: 'reaching is not catching' most naturally ENDORSES the error call rather than disapproving of it, and in either reading the passage never has the father judge the ruling, so B is not defensible. One authoring note, not an exclusivity problem: 'reaching is not catching' is genuinely two-way (it can argue the ball was unplayable, i.e. a hit), and it would be worth making sure no later item depends on which way it cuts."
+  },
+  "ACT-RD7-P2-Q5": {
+    "pick": "was managing her awareness of an outcome she preferred.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Letter B. QUOTED-SPAN FIDELITY CHECKED: the stem's quoted span 'did not look up at the press-box window' appears verbatim in para 6 of the passage as shipped. The sentence self-interprets - 'not looking up was itself a decision, and ... I made it very deliberately, which is not what a person does who wants nothing' - which is why I rate it medium rather than the author's hard; the trailing clause hands over the inference. A is refuted by para 4's build of the silence; D by 'I do not remember choosing'."
+  },
+  "ACT-RD7-P2-Q6": {
+    "pick": "It entered as a failure a play that few shortstops would have reached.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Letter A, from para 7: 'She had reached a ball that ninety shortstops in a hundred do not reach, and the book said that she had failed.' C is a well-built near-miss - the Herald-Sentinel did print '1 under E' the next morning, but a line score carries no name, so the option is false on a detail the solver must actually check. That is a distractor that rewards re-reading rather than recall."
+  },
+  "ACT-RD7-P2-Q7": {
+    "pick": "acceptance of it on grounds he did not intend.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Letter B, tracking 'my father's saying is true in a way he did not intend.' A and B differ only in the intention clause, so the option set forces the solver to the exact sentence rather than to the general drift; C and D are ruled out by 'is true'. Well-formed tone/attitude item and the option pair is doing real work."
+  },
+  "ACT-RD7-P2-Q8": {
+    "pick": "is recalling, long afterward, an episode she has not settled for herself.",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Letter D. Retrospection is fixed by 'I used to find comforting', 'I have thought since', 'I gave the bag back to the league in August'; the unsettledness by 'I have never been sure whether that is why I wrote what I wrote.' C is the strong distractor and is built from a real fact - people in the IGA told her she got it right - but she reports that she 'did not argue with' it rather than endorsing it, and the passage is not a defense. A is killed by the tense frame, B by first-hand memory. Medium rather than hard: the retrospective frame is announced in the first sentence."
+  },
+  "ACT-RD7-P2-Q9": {
+    "pick": "turn the book from a record into an opinion that has to be weighed.",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Letter B, which paraphrases para 8 closely: 'the book stops being a record and becomes an opinion with her name on it, and everyone who reads it, herself included, has to weigh it.' Because the key tracks the sentence almost word for word, I rate this easy, not the author's hard - it is the most findable item in the literary passage and is a weak closer for a set whose last position usually carries the hardest inference. A, C, D are all unsupported inventions and none is tempting. If the form needs another hard item, this is the one to rewrite."
+  }
+}

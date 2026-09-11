@@ -1,0 +1,506 @@
+[
+ {
+  "id": "GEOH2-01",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "circles in the xy-plane: the chord a circle cuts on an axis",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the circle with equation x^2 + y^2 - 12x + 16y = 189 intersects the x-axis at two points. What is the distance between those two points?",
+  "choices": [
+   "15",
+   "34",
+   "30",
+   "22.4"
+  ],
+  "correct_answer": "30",
+  "explanation": "Completing the square gives (x - 6)^2 + (y + 8)^2 = 189 + 36 + 64 = 289, a circle centered at (6, -8) with radius 17. Setting y = 0 gives (x - 6)^2 = 289 - 64 = 225, so x = 6 + 15 = 21 and x = 6 - 15 = -9, and the two points are 30 apart. The option \"15\" is the half-chord, the value found just before doubling. The option \"34\" is the diameter, which is the longest chord but not the chord on the x-axis. The option \"22.4\" comes from never completing the square at all, reading 189 as the radius squared, so that the half-chord is sqrt(189 - 64) = 11.18.",
+  "solve": "const cx=6, cy=-8, r2=189+36+64;\nconst half=Math.sqrt(r2-cy*cy);\nreturn 2*half;",
+  "distractor_solve": {
+   "15": "const r2=189+36+64; return Math.sqrt(r2-64);",
+   "34": "const r2=189+36+64; return 2*Math.sqrt(r2);",
+   "22.4": "return (2*Math.sqrt(189-64)).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-02",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "right-triangle trigonometry: two sightings of one tower",
+  "difficulty": "hard",
+  "prompt": "A vertical tower stands on level ground. From station A the angle of elevation of the top of the tower is 32 degrees, and from station B, which lies on the same straight line between A and the base of the tower, the angle of elevation of the top is 47 degrees. Stations A and B are 50 meters apart. How far is station B from the base of the tower, to the nearest tenth of a meter?",
+  "choices": [
+   "111.7",
+   "31.2",
+   "69.8",
+   "74.9"
+  ],
+  "correct_answer": "69.8",
+  "explanation": "Let h be the height of the tower. The horizontal distance from A is h/tan(32 degrees) and from B is h/tan(47 degrees), and those differ by 50, so h = 50/(1/tan(32 degrees) - 1/tan(47 degrees)) = 74.87 meters. The distance from B to the base is then h/tan(47 degrees) = 69.8 meters. The option \"74.9\" is the height of the tower itself, one step short of the distance the question asks for. The option \"31.2\" is 50*tan(32 degrees), which treats the 50 meters as the horizontal distance from the tower for the 32-degree sighting. The option \"111.7\" is 50/(tan(47 degrees) - tan(32 degrees)), which subtracts the tangents instead of their reciprocals.",
+  "solve": "const d=x=>x*Math.PI/180, T=x=>Math.tan(d(x));\nconst h=50/(1/T(32)-1/T(47));\nreturn (h/T(47)).toFixed(1);",
+  "distractor_solve": {
+   "74.9": "const d=x=>x*Math.PI/180, T=x=>Math.tan(d(x));\nreturn (50/(1/T(32)-1/T(47))).toFixed(1);",
+   "31.2": "const d=x=>x*Math.PI/180;\nreturn (50*Math.tan(d(32))).toFixed(1);",
+   "111.7": "const d=x=>x*Math.PI/180, T=x=>Math.tan(d(x));\nreturn (50/(T(47)-T(32))).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-03",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "circles: recovering a radius from a sector's perimeter and area",
+  "difficulty": "hard",
+  "prompt": "A sector of a circle has a perimeter of 44 centimeters (two radii plus the arc) and an area of 120 square centimeters. The measure of its central angle is greater than 2 radians. What is the radius of the circle, in centimeters?",
+  "choices": [
+   "10.0",
+   "7.0",
+   "6.2",
+   "12.0"
+  ],
+  "correct_answer": "10.0",
+  "explanation": "If r is the radius and s the arc length, then 2r + s = 44 and the area is (1/2)rs = 120, so rs = 240 and s = 44 - 2r. Substituting gives r(44 - 2r) = 240, or r^2 - 22r + 120 = 0, whose roots are 10 and 12. The central angle is s/r, which is 24/10 = 2.4 radians for r = 10 and 20/12 = 1.67 radians for r = 12, so the condition that the angle exceed 2 radians selects a radius of \"10.0\" centimeters. The option \"12.0\" is the other root, the one the angle condition rules out. The option \"7.0\" comes from reading the 44 as the circumference of a whole circle and solving 2*pi*r = 44, a route that never uses the area. The option \"6.2\" comes from using the whole circle's area formula, pi*r^2 = 120, in place of the sector's.",
+  "solve": "const P=44, A=120;\nconst roots=[(22-Math.sqrt(484-480))/2,(22+Math.sqrt(484-480))/2];\nfor(const r of roots){const s=P-2*r; if(s/r>2) return r;}\nreturn null;",
+  "distractor_solve": {
+   "12.0": "const P=44;\nconst roots=[(22-Math.sqrt(484-480))/2,(22+Math.sqrt(484-480))/2];\nfor(const r of roots){const s=P-2*r; if(s/r<=2) return r;}\nreturn null;",
+   "7.0": "return (44/(2*Math.PI)).toFixed(1);",
+   "6.2": "return Math.sqrt(120/Math.PI).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-04",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "similar solids: a cut that halves a cone's volume",
+  "difficulty": "hard",
+  "prompt": "A right circular cone has a height of 24 centimeters. A plane parallel to the base cuts the cone into a smaller cone and a frustum whose volumes are equal. How far above the base is the cutting plane, to the nearest tenth of a centimeter?",
+  "choices": [
+   "5.0",
+   "21.0",
+   "7.4",
+   "12.0"
+  ],
+  "correct_answer": "5.0",
+  "explanation": "The small cone is similar to the whole cone, so if its height is k times 24 its volume is k^3 times the whole volume. Equal pieces means the small cone has half the total volume, so k^3 = 1/2 and k = 0.7937. The small cone's height is 24(0.7937) = 19.05 centimeters, measured down from the apex, so the plane sits 24 - 19.05 = 4.95, or 5.0 centimeters, above the base. The option \"12.0\" halves the height, as though volume scaled with length. The option \"21.0\" cubes 1/2 instead of taking its cube root, making the small cone 24(0.125) = 3 centimeters tall and putting the plane 21 centimeters above the base. The option \"7.4\" reads the condition as the small cone being half of the frustum rather than equal to it, which gives k^3 = 1/3 and a height above the base of 24(1 - 0.6934).",
+  "solve": "const H=24, k=Math.cbrt(0.5);\nreturn (H-H*k).toFixed(1);",
+  "distractor_solve": {
+   "12.0": "return (24/2).toFixed(1);",
+   "21.0": "const H=24;\nreturn (H-H*Math.pow(0.5,3)).toFixed(1);",
+   "7.4": "const H=24;\nreturn (H-H*Math.cbrt(1/3)).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-05",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "right triangles: the altitude to the hypotenuse and the segments it makes",
+  "difficulty": "medium",
+  "prompt": "In right triangle ABC, the right angle is at C, the hypotenuse AB has length 26, and the altitude drawn from C to AB has length 12. What is the length of the shorter of the two segments into which the altitude divides AB?",
+  "choices": [
+   "14.4",
+   "5.5",
+   "13.0",
+   "8.0"
+  ],
+  "correct_answer": "8.0",
+  "explanation": "The altitude to the hypotenuse of a right triangle is the geometric mean of the two segments it creates, so if the segments are p and q then pq = 12^2 = 144, while p + q = 26. Those two conditions make p and q the roots of x^2 - 26x + 144 = 0, which are 8 and 18, so the shorter segment is \"8.0\". The option \"14.4\" is sqrt(8*26), the leg that meets the short segment, which is one step past what the question asks for. The option \"13.0\" assumes the altitude bisects the hypotenuse, which happens only when the triangle is isosceles. The option \"5.5\" misremembers the relation as h^2 = p*c and divides the square of the altitude by the whole hypotenuse, 144/26 = 5.54.",
+  "solve": "const c=26, h=12;\nconst disc=Math.sqrt(c*c-4*h*h);\nreturn Math.min((c-disc)/2,(c+disc)/2).toFixed(1);",
+  "distractor_solve": {
+   "14.4": "const c=26,h=12,disc=Math.sqrt(c*c-4*h*h);\nconst p=Math.min((c-disc)/2,(c+disc)/2);\nreturn Math.sqrt(p*c).toFixed(1);",
+   "13.0": "return (26/2).toFixed(1);",
+   "5.5": "return (144/26).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-06",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "triangles: two isosceles triangles share an area and a leg length",
+  "difficulty": "hard",
+  "prompt": "An isosceles triangle has two sides of length 13 and an area of 60. There is more than one such triangle. What is the greatest possible perimeter of the triangle, to the nearest tenth?",
+  "choices": [
+   "36.0",
+   "24.0",
+   "35.2",
+   "50.0"
+  ],
+  "correct_answer": "50.0",
+  "explanation": "Let the two equal sides be the legs of length 13 and let b be the third side. The height to that side is sqrt(169 - (b/2)^2), so the area is (b/2)sqrt(169 - (b/2)^2) = 60. Writing u = (b/2)^2 gives u(169 - u) = 3600, so u = 25 or u = 144, and b = 10 or b = 24. The perimeters are 13 + 13 + 10 = 36 and 13 + 13 + 24 = 50, and the greater is 50.0. The option \"36.0\" is the perimeter of the other triangle, the tall thin one. The option \"24.0\" is the third side rather than the perimeter. The option \"35.2\" comes from treating one side of length 13 as the height, so that (1/2)(13)b = 60 and b = 120/13.",
+  "solve": "const L=13, A=60;\nconst u=[(169-Math.sqrt(169*169-4*3600))/2,(169+Math.sqrt(169*169-4*3600))/2];\nconst per=u.map(x=>2*L+2*Math.sqrt(x));\nreturn Math.max(...per).toFixed(1);",
+  "distractor_solve": {
+   "36.0": "const L=13;\nconst u=[(169-Math.sqrt(169*169-4*3600))/2,(169+Math.sqrt(169*169-4*3600))/2];\nconst per=u.map(x=>2*L+2*Math.sqrt(x));\nreturn Math.min(...per).toFixed(1);",
+   "24.0": "const u=(169+Math.sqrt(169*169-4*3600))/2;\nreturn (2*Math.sqrt(u)).toFixed(1);",
+   "35.2": "const b=120/13; return (13+13+b).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-07",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "coordinate geometry: a line tangent to a circle centered at the origin",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the line y = 2x + k is tangent to the circle x^2 + y^2 = 20, and k is positive. What is the value of k, to the nearest tenth?",
+  "choices": [
+   "22.4",
+   "10.0",
+   "4.5",
+   "6.3"
+  ],
+  "correct_answer": "10.0",
+  "explanation": "Writing the line as 2x - y + k = 0, the distance from the origin to it is |k|/sqrt(2^2 + (-1)^2) = |k|/sqrt(5). Tangency means that distance equals the radius sqrt(20) = 2sqrt(5), so |k| = 2sqrt(5)*sqrt(5) = 10, and the positive value is 10.0. The option \"4.5\" is the radius sqrt(20) itself. The option \"22.4\" multiplies the radius by 5 instead of by sqrt(5), using the sum of the squared coefficients rather than its square root. The option \"6.3\" divides by sqrt(2) rather than by sqrt(1 + 2^2), using only the coefficient count rather than the coefficients.",
+  "solve": "const r=Math.sqrt(20), m=2;\nreturn (r*Math.sqrt(1+m*m)).toFixed(1);",
+  "distractor_solve": {
+   "4.5": "return Math.sqrt(20).toFixed(1);",
+   "22.4": "return (Math.sqrt(20)*5).toFixed(1);",
+   "6.3": "return (Math.sqrt(20)*Math.sqrt(2)).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-08",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "trigonometry: the sine-cosine relationship between complementary angles",
+  "difficulty": "medium",
+  "prompt": "Triangle ABC has a right angle at B and triangle DEF has a right angle at E. Angle A measures (2y + 5) degrees, angle D measures (3y + 15) degrees, and sin(A) = cos(D). What is the measure, in degrees, of angle F?",
+  "choices": [
+   "57",
+   "33",
+   "14",
+   "45"
+  ],
+  "correct_answer": "33",
+  "explanation": "The sine of an angle equals the cosine of its complement, so sin(A) = cos(D) forces A + D = 90. That gives (2y + 5) + (3y + 15) = 90, so 5y = 70 and y = 14. Then angle A is 33 degrees and angle D is 57 degrees. Because triangle DEF has a right angle at E, angle F = 90 - 57 = 33 degrees. The option \"57\" is angle D, the other acute angle in that triangle. The option \"14\" is y, the value found on the way. The option \"45\" comes from reading sin(A) = cos(D) as A = D, which would make both angles 45 degrees.",
+  "solve": "const y=(90-5-15)/5;\nconst D=3*y+15;\nreturn 90-D;",
+  "distractor_solve": {
+   "14": "return (90-20)/5;",
+   "45": "return 90/2;",
+   "57": "const y=(90-20)/5; return 3*y+15;"
+  }
+ },
+ {
+  "id": "GEOH2-09",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "polygons: side count from an angle relationship, then diagonals",
+  "difficulty": "medium",
+  "prompt": "In a certain regular polygon, each interior angle measures 8 times each exterior angle. How many diagonals does the polygon have?",
+  "choices": [
+   "135",
+   "20",
+   "170",
+   "18"
+  ],
+  "correct_answer": "135",
+  "explanation": "An interior angle and its exterior angle sum to 180 degrees, so if the interior angle is 8 times the exterior angle then 9 times the exterior angle is 180 and the exterior angle is 20 degrees. The polygon therefore has 360/20 = 18 sides, and a polygon with n sides has n(n - 3)/2 diagonals, which is 18(15)/2 = 135. The option \"18\" is the number of sides. The option \"20\" is the exterior angle in degrees. The option \"170\" applies the diagonal formula to the 20 from the angle step, as though the 20 degrees were the number of sides: 20(17)/2.",
+  "solve": "const ext=180/9, n=360/ext;\nreturn n*(n-3)/2;",
+  "distractor_solve": {
+   "18": "const ext=180/9; return 360/ext;",
+   "20": "return 180/9;",
+   "170": "const n=180/9;\nreturn n*(n-3)/2;"
+  }
+ },
+ {
+  "id": "GEOH2-10",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "cylinders: volume, capacity and a percentage of what remains",
+  "difficulty": "medium",
+  "prompt": "A cylindrical tank with a radius of 1.2 meters and a height of 3 meters is filled to 80 percent of its capacity. Water is then drained from the tank at a constant 45 liters per minute for 2 hours. (1 cubic meter is 1,000 liters.) What percent of the water that was originally in the tank remains, to the nearest tenth of a percent?",
+  "choices": [
+   "50.3",
+   "60.2",
+   "39.8",
+   "40.2"
+  ],
+  "correct_answer": "50.3",
+  "explanation": "The tank holds pi(1.2)^2(3) = 13.572 cubic meters, or 13,571.7 liters, and 80 percent of that is 10,857.3 liters of water at the start. Draining 45 liters per minute for 120 minutes removes 5,400 liters, leaving 5,457.3 liters. As a percent of the water originally present, that is 5,457.3/10,857.3 = 50.3 percent. The option \"40.2\" is the remaining water as a percent of the tank's full capacity rather than of the water it held. The option \"39.8\" is the drained amount as a percent of capacity. The option \"60.2\" subtracts that same 39.8 from 100, which measures the drain against capacity while measuring the remainder against the starting amount.",
+  "solve": "const V=Math.PI*1.2*1.2*3*1000, start=0.8*V, rem=start-45*120;\nreturn (100*rem/start).toFixed(1);",
+  "distractor_solve": {
+   "40.2": "const V=Math.PI*1.2*1.2*3*1000, rem=0.8*V-45*120;\nreturn (100*rem/V).toFixed(1);",
+   "39.8": "const V=Math.PI*1.2*1.2*3*1000;\nreturn (100*45*120/V).toFixed(1);",
+   "60.2": "const V=Math.PI*1.2*1.2*3*1000;\nreturn (100-100*45*120/V).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-11",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "trigonometry: signs of the ratios for an angle in standard position",
+  "difficulty": "medium",
+  "prompt": "Angle theta is in standard position in the xy-plane, its terminal ray lies in the second quadrant, and sin(theta) = 3/5. What is the value of sin(theta) + cos(theta) + tan(theta)?",
+  "choices": [
+   "2.15",
+   "-1.53",
+   "0.55",
+   "-0.95"
+  ],
+  "correct_answer": "-0.95",
+  "explanation": "With sin(theta) = 3/5 and the terminal ray in the second quadrant, the reference triangle has legs 3 and 4, and the x-coordinate is negative, so cos(theta) = -4/5 and tan(theta) = (3/5)/(-4/5) = -3/4. The sum is 0.6 - 0.8 - 0.75 = -0.95. The option \"2.15\" keeps every ratio positive, ignoring the quadrant. The option \"0.55\" makes cosine negative but leaves the tangent positive, though the tangent inherits that sign. The option \"-1.53\" uses -4/3 for the tangent, inverting the ratio to cosine over sine.",
+  "solve": "const s=0.6, c=-0.8, t=s/c;\nreturn (s+c+t).toFixed(2);",
+  "distractor_solve": {
+   "2.15": "return (0.6+0.8+0.75).toFixed(2);",
+   "0.55": "return (0.6-0.8+0.75).toFixed(2);",
+   "-1.53": "return (0.6-0.8-4/3).toFixed(2);"
+  }
+ },
+ {
+  "id": "GEOH2-12",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "circles: two chords meeting inside a circle",
+  "difficulty": "medium",
+  "prompt": "Chords AB and CD of a circle intersect at point P inside the circle. AP = 6, PB = 10, the whole chord CD has length 19, and CP is shorter than PD. What is the length of CP?",
+  "choices": [
+   "3.2",
+   "9.5",
+   "7.7",
+   "4.0"
+  ],
+  "correct_answer": "4.0",
+  "explanation": "When two chords meet inside a circle, the products of the two pieces are equal, so CP * PD = AP * PB = 60. Since CP + PD = 19 as well, CP and PD are the roots of x^2 - 19x + 60 = 0, which are 4 and 15. CP is the shorter one, so CP is \"4.0\". The option \"9.5\" takes P to be the midpoint of CD and simply halves 19. The option \"7.7\" uses the product CP * PD = 60 but never uses the given length of CD, setting CP = PD = sqrt(60) = 7.75. The option \"3.2\" divides that product by the whole chord, 60/19, instead of by PD.",
+  "solve": "const prod=6*10, sum=19;\nconst d=Math.sqrt(sum*sum-4*prod);\nreturn Math.min((sum-d)/2,(sum+d)/2);",
+  "distractor_solve": {
+   "9.5": "return 19/2;",
+   "3.2": "return (60/19).toFixed(1);",
+   "7.7": "return Math.sqrt(6*10).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-13",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "trapezoids: the segment parallel to the bases that halves the area",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, a trapezoid has vertices (0, 0), (10, 0), (7, 6), and (2, 6). A segment parallel to the two horizontal sides divides the trapezoid into two regions of equal area. What is the length of that segment, to the nearest tenth?",
+  "choices": [
+   "7.5",
+   "7.9",
+   "5.6",
+   "7.1"
+  ],
+  "correct_answer": "7.9",
+  "explanation": "The two parallel sides have lengths 10 and 5. A segment parallel to them at height y has length 10 - (5/6)y, and the area below it is the average of 10 and that length times y. Setting that equal to half the trapezoid's area, (1/2)(10 + 5)(6)/2 = 22.5, gives a segment of length sqrt((10^2 + 5^2)/2) = sqrt(62.5) = 7.9. The option \"7.5\" is the midsegment, the average of the two bases, which halves the height rather than the area. The option \"7.1\" is sqrt(10*5), the geometric mean of the bases. The option \"5.6\" is sqrt(10^2 + 5^2)/2, dividing by 2 after taking the root rather than before.",
+  "solve": "const a=10,b=5;\nreturn Math.sqrt((a*a+b*b)/2).toFixed(1);",
+  "distractor_solve": {
+   "7.5": "return ((10+5)/2).toFixed(1);",
+   "7.1": "return Math.sqrt(10*5).toFixed(1);",
+   "5.6": "return (Math.sqrt(100+25)/2).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-14",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "similar solids: how surface area and volume scale",
+  "difficulty": "medium",
+  "prompt": "Two similar cylinders have total surface areas of 96 square centimeters and 216 square centimeters. The volume of the smaller cylinder is 128 cubic centimeters. What is the volume of the larger cylinder, in cubic centimeters?",
+  "choices": [
+   "288",
+   "432",
+   "384",
+   "192"
+  ],
+  "correct_answer": "432",
+  "explanation": "Surface areas of similar solids scale as the square of the linear ratio, so the linear ratio is sqrt(216/96) = sqrt(9/4) = 3/2. Volumes scale as the cube of that ratio, so the larger volume is 128(3/2)^3 = 128(27/8) = 432. The option \"288\" applies the surface-area ratio 9/4 directly to the volume. The option \"192\" applies the linear ratio 3/2 to the volume, leaving it uncubed. The option \"384\" multiplies by 3, the numerator of the linear ratio 3/2, as though that numerator alone were the volume scale factor, instead of by (3/2)^3.",
+  "solve": "const k=Math.sqrt(216/96);\nreturn 128*Math.pow(k,3);",
+  "distractor_solve": {
+   "192": "return 128*Math.sqrt(216/96);",
+   "288": "return 128*(216/96);",
+   "384": "return 128*3;"
+  }
+ },
+ {
+  "id": "GEOH2-15",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "circles and triangles: the inscribed circle of a right triangle",
+  "difficulty": "medium",
+  "prompt": "A circle is inscribed in a right triangle whose legs have lengths 9 and 12. What is the area of the region that is inside the triangle but outside the circle, to the nearest tenth?",
+  "choices": [
+   "46.9",
+   "35.2",
+   "25.7",
+   "28.3"
+  ],
+  "correct_answer": "25.7",
+  "explanation": "The hypotenuse is sqrt(81 + 144) = 15, and the radius of the inscribed circle of a right triangle is (leg + leg - hypotenuse)/2 = (9 + 12 - 15)/2 = 3. The triangle's area is (1/2)(9)(12) = 54 and the circle's area is 9pi = 28.27, so the region between them has area 54 - 28.27 = 25.7. The option \"28.3\" is the circle's area alone. The option \"46.9\" reads the 3 produced by (9 + 12 - 15)/2 as the inscribed circle's diameter, so it uses a radius of 1.5 and removes only pi*(1.5)^2 = 7.07. The option \"35.2\" subtracts the circle's circumference, 6pi = 18.85, instead of its area.",
+  "solve": "const a=9,b=12,c=Math.sqrt(a*a+b*b), r=(a+b-c)/2;\nreturn (a*b/2-Math.PI*r*r).toFixed(1);",
+  "distractor_solve": {
+   "28.3": "const r=(9+12-15)/2; return (Math.PI*r*r).toFixed(1);",
+   "35.2": "const r=(9+12-15)/2; return (9*12/2-2*Math.PI*r).toFixed(1);",
+   "46.9": "const r=(9+12-15)/2/2;\nreturn (9*12/2-Math.PI*r*r).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-16",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "coordinate geometry: a point on an axis equidistant from two points",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, point A is at (-6, 5) and point B is at (2, -1). Point C lies on the x-axis and is the same distance from A as it is from B. What is the x-coordinate of C?",
+  "choices": [
+   "-0.5",
+   "-4.7",
+   "-3.5",
+   "-2.0"
+  ],
+  "correct_answer": "-3.5",
+  "explanation": "Every point equidistant from A and B lies on the perpendicular bisector of AB. The midpoint of AB is (-2, 2) and the slope of AB is (-1 - 5)/(2 - (-6)) = -3/4, so the perpendicular bisector has slope 4/3 and equation y - 2 = (4/3)(x + 2). Setting y = 0 gives x + 2 = -3/2, so x = -3.5. The option \"-2.0\" is the x-coordinate of the midpoint, the point the bisector passes through rather than the point on the x-axis. The option \"-4.7\" flips the sign of the slope of AB without also taking the reciprocal, running the bisector with slope 3/4. The option \"-0.5\" takes the reciprocal but keeps the sign, using -4/3.",
+  "solve": "const mx=-2,my=2, mAB=(-1-5)/(2-(-6)), mp=-1/mAB;\nreturn mx+(0-my)/mp;",
+  "distractor_solve": {
+   "-2.0": "return (-6+2)/2;",
+   "-0.5": "const mx=-2,my=2, mp=-4/3; return mx+(0-my)/mp;",
+   "-4.7": "const mx=-2,my=2, m=3/4;\nreturn (mx+(0-my)/m).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-17",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "volume: recasting a sphere as whole cylinders",
+  "difficulty": "medium",
+  "prompt": "A solid metal sphere with a radius of 5 centimeters is melted down and recast, with no loss of metal, into solid cylinders each with a radius of 2 centimeters and a height of 3 centimeters. What is the greatest number of complete cylinders that can be made?",
+  "choices": [
+   "41",
+   "8",
+   "14",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "The sphere's volume is (4/3)pi(5)^3 = 500pi/3 cubic centimeters and each cylinder's volume is pi(2)^2(3) = 12pi cubic centimeters. The quotient is (500/3)/12 = 13.89, and only complete cylinders count, so the answer is 13. The option \"14\" rounds 13.89 up, which would need more metal than the sphere contains. The option \"41\" omits the factor of 1/3 in the sphere's volume, giving 500/12 = 41.67. The option \"8\" divides the sphere's surface area, 100pi, by the cylinder's volume, giving 8.33.",
+  "solve": "const Vs=(4/3)*Math.PI*125, Vc=Math.PI*4*3;\nreturn Math.floor(Vs/Vc);",
+  "distractor_solve": {
+   "8": "const S=4*Math.PI*25, Vc=Math.PI*4*3; return Math.floor(S/Vc);",
+   "14": "const Vs=(4/3)*Math.PI*125, Vc=Math.PI*4*3; return Math.ceil(Vs/Vc);",
+   "41": "const Vs=4*Math.PI*125, Vc=Math.PI*4*3; return Math.floor(Vs/Vc);"
+  }
+ },
+ {
+  "id": "GEOH2-18",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "parallel lines: same-side interior angles given algebraically",
+  "difficulty": "easy",
+  "prompt": "Two parallel lines are cut by a transversal. One of the angles formed measures (5x - 12) degrees, and the same-side interior angle paired with it measures (3x + 16) degrees. What is the measure, in degrees, of the acute angle formed by the transversal and either parallel line?",
+  "choices": [
+   "58",
+   "98",
+   "22",
+   "82"
+  ],
+  "correct_answer": "82",
+  "explanation": "Same-side interior angles at a transversal cutting parallel lines are supplementary, so (5x - 12) + (3x + 16) = 180, giving 8x + 4 = 180 and x = 22. The two angles then measure 5(22) - 12 = 98 degrees and 3(22) + 16 = 82 degrees, and the acute one is 82 degrees. The option \"98\" is the obtuse angle of the pair. The option \"22\" is x, not an angle measure. The option \"58\" comes from setting the two expressions equal, as alternate interior angles would be, which gives x = 14 and an angle of 58 degrees.",
+  "solve": "const x=(180-4)/8;\nreturn Math.min(5*x-12,3*x+16);",
+  "distractor_solve": {
+   "22": "return (180-4)/8;",
+   "58": "const x=(16+12)/2; return 5*x-12;",
+   "98": "const x=(180-4)/8; return Math.max(5*x-12,3*x+16);"
+  }
+ },
+ {
+  "id": "GEOH2-19",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "circles: the region between a chord and its arc",
+  "difficulty": "hard",
+  "prompt": "A chord of length 12 is drawn in a circle of radius 10. What is the area of the smaller of the two regions into which the chord divides the circle's interior, to the nearest tenth?",
+  "choices": [
+   "44.7",
+   "12.9",
+   "16.4",
+   "48.0"
+  ],
+  "correct_answer": "16.4",
+  "explanation": "Drop a perpendicular from the center to the chord. It bisects the chord, so half the central angle has sine 6/10, making the central angle 2*arcsin(0.6) = 1.2870 radians. The sector cut off by that angle has area (1/2)(10^2)(1.2870) = 64.35, and the triangle formed by the chord and the two radii has area (1/2)(10^2)sin(1.2870) = 48.00, so the region between the chord and its arc is 64.35 - 48.00 = 16.4. The option \"48.0\" is the triangle alone. The option \"44.7\" swaps the two legs of the right triangle at the center, taking the half-chord to be the distance 8 from the center rather than 6, which gives 2*arcsin(0.8) = 1.8546 radians and a segment of 92.73 - 48.00. The option \"12.9\" is the length of the minor arc, r*theta = 10(1.2870), reported in place of an area.",
+  "solve": "const r=10, th=2*Math.asin(6/r);\nreturn (0.5*r*r*(th-Math.sin(th))).toFixed(1);",
+  "distractor_solve": {
+   "48.0": "const r=10, th=2*Math.asin(0.6); return (0.5*r*r*Math.sin(th)).toFixed(1);",
+   "44.7": "const r=10, th=2*Math.asin(8/r);\nreturn (0.5*r*r*(th-Math.sin(th))).toFixed(1);",
+   "12.9": "const r=10, th=2*Math.asin(6/r);\nreturn (r*th).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-20",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "cylinders: volume with a unit conversion",
+  "difficulty": "easy",
+  "prompt": "A straight pipe has an inner diameter of 5 centimeters and a length of 2 meters. When the pipe is completely full, how many liters of water does it hold, to the nearest tenth of a liter? (1 liter is 1,000 cubic centimeters.)",
+  "choices": [
+   "15.7",
+   "1.6",
+   "3.9",
+   "3.1"
+  ],
+  "correct_answer": "3.9",
+  "explanation": "The inner radius is 2.5 centimeters and the length is 200 centimeters, so the volume is pi(2.5)^2(200) = 3,926.99 cubic centimeters, which is 3.9 liters. The option \"15.7\" uses the diameter of 5 as the radius, multiplying the volume by four. The option \"1.6\" multiplies by the radius instead of by the radius squared, computing pi(2.5)(200). The option \"3.1\" computes the lateral surface area, 2pi(2.5)(200) = 3,141.6, and reads that figure as a volume.",
+  "solve": "const r=2.5, L=200;\nreturn (Math.PI*r*r*L/1000).toFixed(1);",
+  "distractor_solve": {
+   "15.7": "return (Math.PI*25*200/1000).toFixed(1);",
+   "1.6": "return (Math.PI*2.5*200/1000).toFixed(1);",
+   "3.1": "return (2*Math.PI*2.5*200/1000).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-21",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "similar triangles: a shadow at two different distances",
+  "difficulty": "medium",
+  "prompt": "A street lamp stands on level ground. A person 1.8 meters tall standing 4 meters from the base of the lamp casts a shadow 2.5 meters long. The person then walks toward the lamp until the shadow is 1.5 meters long. How far from the base of the lamp is the person then, in meters?",
+  "choices": [
+   "2.4",
+   "4.7",
+   "0.9",
+   "3.9"
+  ],
+  "correct_answer": "2.4",
+  "explanation": "The lamp, the person and the tip of the shadow form similar triangles. In the first position the tip of the shadow is 4 + 2.5 = 6.5 meters from the lamp's base, so the lamp's height H satisfies 1.8/2.5 = H/6.5, giving H = 4.68 meters. In the second position 1.8/1.5 = 4.68/(d + 1.5), so d + 1.5 = 3.9 and d = 2.4 meters. The option \"4.7\" is the lamp's height, the quantity found on the way. The option \"3.9\" is the distance from the lamp to the new shadow tip, which is 1.5 meters more than the person's distance. The option \"0.9\" uses the 4 meters as the shadow length when finding the lamp's height, giving H = 2.925 and a distance of 0.94.",
+  "solve": "const H=1.8*(4+2.5)/2.5;\nreturn (H*1.5/1.8-1.5).toFixed(1);",
+  "distractor_solve": {
+   "4.7": "return (1.8*6.5/2.5).toFixed(1);",
+   "3.9": "const H=1.8*6.5/2.5; return (H*1.5/1.8).toFixed(1);",
+   "0.9": "const H=1.8*6.5/4; return (H*1.5/1.8-1.5).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-22",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "circles in the xy-plane: the least distance between two circles",
+  "difficulty": "easy",
+  "prompt": "In the xy-plane, circle P has equation x^2 + y^2 = 36 and circle Q has center (8, 6) and radius 2. If point M is on circle P and point N is on circle Q, what is the least possible length of segment MN?",
+  "choices": [
+   "2",
+   "18",
+   "4",
+   "10"
+  ],
+  "correct_answer": "2",
+  "explanation": "Circle P is centered at the origin with radius 6, and the distance between the two centers is sqrt(8^2 + 6^2) = 10. Because 10 is greater than 6 + 2, the circles do not meet, and the least distance between a point of one and a point of the other is 10 - 6 - 2 = 2, measured along the segment joining the centers. The option \"10\" is the distance between the centers, before either radius is removed. The option \"4\" removes only the radius of circle P. The option \"18\" is 10 + 6 + 2, the greatest possible length of MN rather than the least.",
+  "solve": "const d=Math.sqrt(64+36);\nreturn d-6-2;",
+  "distractor_solve": {
+   "4": "return Math.sqrt(64+36)-6;",
+   "10": "return Math.sqrt(64+36);",
+   "18": "return Math.sqrt(64+36)+6+2;"
+  }
+ },
+ {
+  "id": "GEOH2-23",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "right-triangle trigonometry: a change in height as an angle changes",
+  "difficulty": "medium",
+  "prompt": "A kite is flown on a taut string 120 meters long, held by a person whose hand is 1.5 meters above level ground. The string first makes an angle of 50 degrees with the horizontal, and later makes an angle of 34 degrees with the horizontal. By how many meters does the kite's height above the ground decrease, to the nearest tenth of a meter?",
+  "choices": [
+   "68.6",
+   "24.8",
+   "16.0",
+   "22.3"
+  ],
+  "correct_answer": "24.8",
+  "explanation": "The kite's height above the ground is 120sin(50 degrees) + 1.5 = 93.4 meters at first and 120sin(34 degrees) + 1.5 = 68.6 meters later, so the decrease is 24.8 meters. (The 1.5 meters cancels in the difference, so the drop is 120(sin(50 degrees) - sin(34 degrees)).) The option \"68.6\" is the later height above the ground, not the change. The option \"22.3\" uses cosine in place of sine, 120(cos(34 degrees) - cos(50 degrees)), which measures the change in horizontal distance instead. The option \"16.0\" is the change in the angle, 50 - 34, reported in meters.",
+  "solve": "const d=x=>x*Math.PI/180;\nreturn (120*(Math.sin(d(50))-Math.sin(d(34)))).toFixed(1);",
+  "distractor_solve": {
+   "68.6": "const d=x=>x*Math.PI/180; return (120*Math.sin(d(34))+1.5).toFixed(1);",
+   "22.3": "const d=x=>x*Math.PI/180; return (120*(Math.cos(d(34))-Math.cos(d(50)))).toFixed(1);",
+   "16.0": "return (50-34).toFixed(1);"
+  }
+ },
+ {
+  "id": "GEOH2-24",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "solids: the cross section cut from a cube by a plane through three vertices",
+  "difficulty": "hard",
+  "prompt": "A cube has edges of length 6. A plane passes through the three vertices that are adjacent to one particular vertex of the cube, cutting a corner off the cube. What is the area of the triangular cross section, to the nearest tenth?",
+  "choices": [
+   "18.0",
+   "31.2",
+   "36.0",
+   "15.6"
+  ],
+  "correct_answer": "31.2",
+  "explanation": "Each of the three cut vertices is joined to the next by a face diagonal of the cube, so the cross section is an equilateral triangle with side 6sqrt(2). Its area is (sqrt(3)/4)(6sqrt(2))^2 = (sqrt(3)/4)(72) = 31.2. The option \"36.0\" is the area of a face of the cube. The option \"18.0\" is half a face, the area of the right triangle cut by a plane through one edge and one face diagonal. The option \"15.6\" uses the cube's edge, 6, as the side of the equilateral triangle instead of the face diagonal.",
+  "solve": "const s=6*Math.SQRT2;\nreturn (Math.sqrt(3)/4*s*s).toFixed(1);",
+  "distractor_solve": {
+   "36.0": "return (6*6).toFixed(1);",
+   "18.0": "return (6*6/2).toFixed(1);",
+   "15.6": "return (Math.sqrt(3)/4*36).toFixed(1);"
+  }
+ }
+]
