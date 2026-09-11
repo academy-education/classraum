@@ -610,3 +610,19 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   And the honest structural limit, stated by the author: **the exhaustive promotion break-test does not exist for prose reading.** For maths, promoting a distractor to key is mechanical and the sandbox refuses it. For reading MC nothing in a harness knows which option is right, so §7's promotion sweep has no analogue and the with-source exclusivity grade is the only substitute — one model per set, not three.
 
+- **2026-09-11** — **EVERY WITH-SOURCE GRADE IN THIS PROJECT WAS RUN UNBLINDED, AND A GRADER CAUGHT IT FROM THE INSIDE.** Graders were handed the raw `*.batch.json`, which carries `correct_answer`, `difficulty` AND `explanation` on every item. So a grader asked to independently reach the key could see the key; asked to independently judge difficulty, could see the author's label; and asked whether a second answer is defensible, could read a paragraph arguing for the first.
+
+  It was found because a regrader wrote, unprompted: *"Discount that agreement somewhat: the labels were visible in the file as I read it."* Several others across the session said they had committed their picks before opening `correct_answer`. **That is the honour system working, and the honour system is not an instrument** — a grade is evidence only if the grader COULD NOT have been anchored, not if they say they were not.
+
+  **The cost is asymmetric, which is why it matters rather than merely being untidy:** anchoring inflates key agreement, inflates difficulty agreement, and suppresses `exclusive: false`. Every error it causes runs in the flattering direction. Today's "keys agreed 3/3" results should be read with that in mind — they are not worthless, since several graders self-blinded and the ones who found defects found real ones, but they are weaker evidence than they read as.
+
+  `make-grade-render.mjs` fixes it. It emits `<tag>.grade.json` (what the grader gets) and `<tag>.gradekey.json` (scoring only). The withheld set is a **DENY list computed from the item's own field names**, not an allow list of fields someone thought of, so a new authoring field cannot silently leak — anything unrecognised is KEPT and NAMED in the summary, making a leak visible rather than silent. It also prints the source sha256 to quote with the grade, and warns if explanation text appears inside a kept field.
+
+  Self-test: 10 assertions including "no withheld text appears anywhere in the shown object", "an unseen field named *answer* is withheld automatically", and a losslessness check. **The losslessness assertion failed on a correct implementation** because I hand-counted a 12-field fixture as 10 — the same error an ISEE author made today when they hand-wrote a run fixture as holding one run and their checker correctly found two. Fixed the fixture, not the code, and the assertion now computes rather than asserting a literal. Break-tested on the live SAT SEC batch: 24 of 24 rendered, 0 carrying any of the three fields, and a rigged control with `correct_answer` put back is detected.
+
+  The grader protocol now says: grade the render, never the batch, never the gradekey.
+
+- **2026-09-11** — **MY OWN `git add` GLOB SWEPT AN AGENT'S FILE INTO AN UNRELATED COMMIT.** An author reported that `ssat-verbal-s11.batch.json` was committed under "Every ACT English form is 11 points under the published CSE floor" rather than left untracked as they intended. The bytes are theirs and correct (`ea11f9bb700d486d`, they verified), so nothing is lost — but the provenance is now wrong, and history was not rewritten because later commits sit on top.
+
+  CLAUDE.md already records the stronger version of this (`git add -A scripts/study-bank/` committed two agents' half-written batches). **Staging specific paths is not enough while agents are running — a glob over specific-looking paths is still a glob.** Name each file, or confirm the file's author has reported completion before staging it.
+
