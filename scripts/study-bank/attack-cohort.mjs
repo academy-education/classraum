@@ -64,9 +64,10 @@ async function prepare() {
   // pass over 20 cohorts costs the same three agent calls as one cohort
   // and tells you where to look; twenty separate runs cost sixty.
   const all = rest.includes('--all')
+  const drawable = rest.includes('--drawable')
   const family = argOf('--family')
   if (!runId || (!domain && !all)) {
-    console.error('usage: prepare <run-id> (--domain "<d>" | --all [--family sat]) [--limit 60]'); process.exit(1)
+    console.error('usage: prepare <run-id> (--domain "<d>" | --all [--family sat]) [--limit 60] [--drawable]'); process.exit(1)
   }
 
   // Everything already measured, in ANY run. This is the anti-repetition
@@ -89,7 +90,7 @@ async function prepare() {
   // come from here; the script simply was not reading it.
   const seen = new Set()
   for (let from = 0; ; from += 1000) {
-    const { data, error } = await db.from('study_item_attacks_fresh').select('item_id').range(from, from + 999)
+    const { data, error } = await db.from('study_item_attacks_fresh').select('item_id').order('item_id').range(from, from + 999)
     if (error) { console.error('could not read prior attacks:', error.message); process.exit(1) }
     for (const r of data ?? []) seen.add(r.item_id)
     if (!data || data.length < 1000) break
@@ -113,7 +114,19 @@ async function prepare() {
     let q = db.from('study_item_bank').select('id, item, domain, family').eq('archived', false)
     if (domain) q = q.eq('domain', domain)
     if (family) q = q.eq('family', family)
-    const { data, error } = await q.range(from, from + 999)
+    // --drawable restricts the sample to what the assembler actually
+    // serves. It exists because these runs are used as the CONTROL that
+    // a candidate batch is compared against, and a control that mixes in
+    // staged items is not a measurement of the shipped bank. `verified`
+    // is the assembler's own filter; see CLAUDE.md on staged/drawable.
+    if (drawable) q = q.eq('verified', true)
+    // .order() is REQUIRED, not tidiness. PostgREST .range() over an
+    // unordered select has no stable row order between pages, so rows
+    // can repeat on one page and never appear on another. A sampler that
+    // silently omits part of the population would mark the rest
+    // "considered and passed over" — the same class of defect as the
+    // 1000-row truncation this loop already guards.
+    const { data, error } = await q.order('id').range(from, from + 999)
     if (error) { console.error('bank read failed:', error.message); process.exit(1) }
     rows.push(...(data ?? []))
     if (!data || data.length < 1000) break
@@ -170,7 +183,7 @@ async function prepare() {
 
   writeFileSync(`${DIR}/${runId}.blind.json`, JSON.stringify(blind, null, 1))
   writeFileSync(`${DIR}/${runId}.key.json`, JSON.stringify(key, null, 1))
-  console.log(`scope       : ${domain ?? (family ? family + ' (all cohorts)' : 'ALL cohorts')}`)
+  console.log(`scope       : ${domain ?? (family ? family + ' (all cohorts)' : 'ALL cohorts')}${drawable ? '  [DRAWABLE ONLY — verified=true]' : '  [staged + drawable]'}`)
   console.log(`already done: ${rows.length - fresh.length} of ${rows.length}`)
   console.log(`prepared    : ${Object.keys(blind).length} items${skipped ? ` (${skipped} skipped — malformed)` : ''}`)
   console.log(`wrote       : ${DIR}/${runId}.blind.json  (SOURCE WITHHELD — solve this)`)
