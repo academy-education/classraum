@@ -1,0 +1,178 @@
+{
+  "_meta": {
+    "graded_file": "scripts/study-bank/sat-sec-h8.batch.json",
+    "graded_sha256": "8944d44fb7e06db3fd51124ec8ca5d437ae484ca005fea823bc02e7b5fe01bcb",
+    "graded_bytes": 35089,
+    "grader": "grader-b (with-source key grade)",
+    "graded_at": "2026-09-11",
+    "warning": "THE FILE CHANGED MID-GRADE. Three distinct versions existed today: ef5a4172 (HEAD, committed), ff0406e1 (34836 bytes, read at the start of this grade), 8944d44f (35089 bytes, current). Items 02,04,06,10,12,13,15,19,23 differ between HEAD and the graded version; 01,05,07,09,11,22 also differ from ff0406e1. SEC-H8-07 and SEC-H8-19 are entirely different items in the graded version. SEC-H8-01 and SEC-H8-05 had their keys FLIPPED (singular head -> plural head). This grade applies ONLY to 8944d44f. A frozen copy is at scratchpad/h8-snapshot-8944d44f.json."
+  },
+  "SEC-H8-01": {
+    "pick": ", contradict",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Clean 2x2: mark-matching (comma-opened supplement must close with a comma) x agreement to the plural head 'The two deepest cores'. Both rules bind; neither alone narrows to one. Attractors are real ('divide', 'summer', 'one field party' all singular). One extra nastiness the explanation does not mention and should: the appositive renames the subject as 'a pair', which is notionally singular, so a reader who agrees with the appositive rather than the head lands on 'contradicts'. That is a legitimate hard trap, but the item should own it. FOUR-WORDS-AFTER: 'the sequence of ash' - resolves nothing; no local shortcut. Note this item's key was flipped from ', contradicts' to ', contradict' between file versions today."
+  },
+  "SEC-H8-02": {
+    "pick": "contained",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Both stated rules are correct and both distractor axes are real, but neither is hard: 'that'-clause needs a finite verb is a one-step recognition, and colon-between-verb-and-object is the single most drilled colon error. A solver who knows only the finite-verb rule is already at 50%, and one who knows only the colon rule is also at 50%; the interaction does not raise the floor the way a real module-2 hard item does. FOUR-WORDS-AFTER: 'larch resin, walnut oil' - a list, but it does not discriminate among the four options; no local shortcut. See the cross-item flag on SEC-H8-13, which asserts the OPPOSITE colon rule."
+  },
+  "SEC-H8-03": {
+    "pick": "; the night assistant had photographed",
+    "exclusive": false,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "DEFENSE FOR A SECOND OPTION. The splice half is settled (both comma options are out), so the item reduces to a binary between '; the night assistant photographed' and '; ... had photographed'. Edited American English does NOT require the past perfect when an explicit adverbial already fixes the sequence, and 'three nights earlier' is exactly such an adverbial. Garner and CGEL both note the preterite is normal in this environment; 'She arrived at noon; he called three hours earlier' is not an error. The explanation leans on the following conjunct 'and had told nobody outside the dome', but a compound predicate that mixes preterite and past perfect is well formed English ('She left the house and had already forgotten the key'), so it does not close the option either. A careful reader can defend A. FOUR-WORDS-AFTER: 'the same object three' - no local resolution."
+  },
+  "SEC-H8-04": {
+    "pick": "and charged the coopers' wages",
+    "exclusive": false,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "THE EXPLANATION STATES A FALSE ABSOLUTE, which is the failure mode the ACT drops turned on. It says 'a comma does not separate the halves of a compound predicate'. That is a preference, not a prohibition: Chicago 6.23 and Garner both explicitly sanction an occasional comma before the conjunction of a compound predicate for clarity or emphasis. Since the possessive half is settled by the setup sentence, that leaves ', and charged the coopers' wages' as a second option a careful reader can defend as stylistically optional rather than wrong. The key is still the BEST answer; the item is not miskeyed - it is over-claimed, and as written it asks a student to treat an optional comma as an error. Separately, the possessive is signposted rather than tested: 'Four coopers worked the season on this agent's payroll, and all four were paid...' hands the plural over twice in one sentence. FOUR-WORDS-AFTER: 'twice over, so that' - no local resolution."
+  },
+  "SEC-H8-05": {
+    "pick": "record",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "weak",
+    "note": "Two of the four options put a comma between a subject and its verb, which every test-taker who has seen one SEC item rejects on sight. That collapses the item to a two-way agreement choice with a transparent head ('The sheets'). One rule binds, not two - the punctuation axis is decoration. This is the weakest item in the batch and grades EASY against the module-2 hard route. FOUR-WORDS-AFTER: 'two localities that no' - no local shortcut, but none is needed. Key also flipped from 'records' to 'record' between file versions today."
+  },
+  "SEC-H8-06": {
+    "pick": "be delivered",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "THE SECOND RULE NEVER BINDS. 'be delivered' is the only base form on offer, so the mandative subjunctive alone eliminates all three distractors in one step. The agreement analysis the explanation spends a paragraph on ('every copy' singular, 'returns'/'constables' inside a modifier) is never needed by any solver who reaches the key, and never rescues one who does not - a solver who misses the subjunctive and applies agreement picks 'is delivered' and is still wrong. This is one rule plus fiddly wording, which the calibration brief names as the thing hard is NOT. FOUR-WORDS-AFTER: 'to the clerk of' - no local resolution."
+  },
+  "SEC-H8-07": {
+    "pick": "but records",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Construction is sound and the 2x2 is real (finite-VP parallelism in the 'not ... but' pair x agreement to 'The schedule'). It grades medium rather than hard for one reason the explanation misses: THE AGREEMENT HALF IS PRE-ANSWERED INSIDE THE SENTENCE. The first member of the pair is 'does not list', and that auxiliary 'does' declares the subject singular in plain sight about twenty words before the blank. A solver who notices it never has to reason about 'two appraisers' at all, so the attractor the item is built around is neutralised by the item's own first conjunct. FOUR-WORDS-AFTER: 'the press, the frames' - no local resolution. Entirely new item, not present in the earlier file version."
+  },
+  "SEC-H8-08": {
+    "pick": "is to rerun",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "THE EXPLANATION STATES A FALSE FACT ABOUT ITS OWN PASSAGE. It says the plural options 'answer to \"reviewer\" or to the plurals in the modifier'. 'every reviewer' is SINGULAR, and there is no plural noun anywhere in the subject - 'the shallowest meter of this bog' is singular throughout. So the agreement axis has no attractor at all and 'are' is rejected by ear alone; only the parallelism axis ('to publish the raw counts' downstream forces an infinitive) does any work. One binding rule. Check the explanation before shipping, per the ACT precedent. FOUR-WORDS-AFTER: 'the samples from the' - no local resolution."
+  },
+  "SEC-H8-09": {
+    "pick": "have been stored",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Best-built item in the batch, along with 11 and 19. Both rules bind and neither is free: the plural head 'The rolls' is separated from the verb by a supplement crowded with singulars ('a period', 'the gauge', 'the datum', 'one clerk'), and the aspect cue 'since the port authority was dissolved' sits about fifteen words AFTER the blank, so it cannot be picked up locally. A solver who gets number and misses aspect lands on 'were stored'; one who gets aspect and misses number lands on 'has been stored'. That is what two interacting rules should look like. FOUR-WORDS-AFTER: 'in a crate beneath' - no local resolution; the deciding cue is deliberately out of reach."
+  },
+  "SEC-H8-10": {
+    "pick": "— is",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Genuinely hard on its own merits: the dash-opened supplement carries internal commas, so the mismatched-comma option is not merely inconsistent but actively misparses, and 'drums'/'stations' are strong plural attractors against the singular head 'The drum record'. Both rules bind. The only charge against it is repetition - this is the fifth item in the batch on the mark-matching template (see 01, 14, 20, 24). FOUR-WORDS-AFTER: 'now beyond reconstruction, and' - no local resolution."
+  },
+  "SEC-H8-11": {
+    "pick": ", the dyer had discarded",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "The one tense item in the batch whose tense half is genuinely closed. 'By the time X arrived' is a completion frame that requires anteriority marking - '*By the time I got home, she left' is rejected by native speakers, unlike the optional past perfect in item 03 - so ', the dyer discarded' is really wrong rather than merely dispreferred. Paired with the fronted-dependent-clause comma, both rules bind in a clean 2x2. FOUR-WORDS-AFTER: 'the whole of the' - no local resolution."
+  },
+  "SEC-H8-12": {
+    "pick": "was recut",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Exclusive in THIS version and not in the earlier one, which is worth recording. The earlier text read 'to its present depth in a single season', where 'in a single season' is a bare duration and 'has been recut ... in a single season' was defensible as a present-perfect of result. The current text names a definite past period - 'in the single season after the yard last changed hands' - and a definite past time reference does block the present perfect in edited American English. The revision closed the hole. Both rules now bind: singular head 'The row' against 'pits'/'families', and tense. FOUR-WORDS-AFTER: 'to its full depth' - no local resolution; the deciding adverbial begins at word five."
+  },
+  "SEC-H8-13": {
+    "pick": "remains: how",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "NO SECOND DEFENSIBLE OPTION, BUT THE BATCH CONTRADICTS ITSELF ACROSS ITEMS AND THIS SHOULD BLOCK SHIPPING ALL THREE TOGETHER. Items 02 and 22 both teach, as an absolute, that a colon may not stand between a verb and the element it governs ('contained:', 'give:' are keyed WRONG for exactly that). Here 'remains' is a copular verb and 'how the crucibles were charged at all' is its subject complement, and the colon between them is keyed RIGHT. A student who internalises 02 and 22 eliminates B and D on sight and is stranded with two comma options that are both wrong. The defensible reading is that 'The one thing ... remains' can stand alone as an independent clause and so may take a colon, but the batch never draws that line, and the mark a careful writer would actually use here is no mark at all ('remains how the crucibles were charged'), which is not on offer. Either drop 13 or rewrite the pre-colon clause so it is complete without the complement. FOUR-WORDS-AFTER: 'the crucibles were charged' - no local resolution."
+  },
+  "SEC-H8-14": {
+    "pick": ", exceeds the enumerators'",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Both rules are correct and both bind, but the possessive half is signposted rather than tested, the same way item 04's is: 'Four districts lay along the river, and each was walked by its own enumerator' is a sentence that exists only to hand over the plural, and it does so unmissably. Strip it and the item is hard; as written the solver is told the answer to one of the two axes. FOUR-WORDS-AFTER: 'tallies by more than' - no local resolution."
+  },
+  "SEC-H8-15": {
+    "pick": "and to restock",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Both rules bind and the perfect-infinitive axis is a real module-2 hard discriminator that this bank rarely tests. Note an improvement between versions worth keeping: the earlier text read '______ it in the following spring', putting the deciding time adverbial at words three to six after the blank; the current text reads 'it with whatever the ponies could still carry in the following spring', which pushes the cue out of local reach. That is exactly the right edit for the four-words-after defect. FOUR-WORDS-AFTER: 'it with whatever the' - no local resolution."
+  },
+  "SEC-H8-16": {
+    "pick": "the potter moved",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "weak",
+    "note": "THIS IS THE FOUR-WORDS-AFTER DEFECT, and it is the clearest instance in the batch. The words immediately after the blank are 'the whole stack to the lee'. Both 'the stack' options are PASSIVE ('the stack was moved', 'the stack has been moved') and a passive cannot take 'the whole stack' as a direct object - '*the stack was moved the whole stack to the lee' is ungrammatical on transitivity alone. So A and B die within three words after the blank, with no reference to the passage and no reference to the participial phrase. The advertised hard rule, that an introductory participial phrase must modify the subject that follows it, NEVER HAS TO BE APPLIED by any solver. What remains is a one-rule tense binary between 'the potter moved' and 'the potter has moved'. Fix by making the distractor subjects active and plausible (e.g. 'the kiln crew moved'), or the item is medium at best and its stated skill is untested."
+  },
+  "SEC-H8-17": {
+    "pick": "; he recorded",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "weak",
+    "note": "'; he recording' and ', he recording' are visibly broken to anyone at the hard route and are eliminated without thought, leaving a bare comma-splice binary - the single most drilled rule in Standard English Conventions. The 'what follows a semicolon must be a finite clause' rule is doing no work because no solver seriously entertains a subjectless participle here. Grades EASY. Together with 05 this is one of the two items that should not be represented as hard-band. FOUR-WORDS-AFTER: 'the state of the' - no local resolution, none needed."
+  },
+  "SEC-H8-18": {
+    "pick": "raise",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "'raising' and 'having raised' are eliminated by the same single observation (the sentence has no other predicate), so the item is effectively a two-way agreement choice. The agreement half is good - 'none of which', 'the resident engineer', 'the tidal datum', 'the mouth' are four singulars stacked between 'The levels' and the verb, and 'raises' is a real attractor - but it is one binding rule. FOUR-WORDS-AFTER: 'the line by something' - no local resolution."
+  },
+  "SEC-H8-19": {
+    "pick": "The mold having cooled overnight,",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Strongest new item. The absolute construction is rare on the real exam and genuinely discriminating, and the 2x2 is honest: A has the participle but omits the closing comma, C has the comma but a finite verb and so splices, D fails both. Neither rule alone reaches the key. One editorial note: the explanation's last clause is garbled - it calls both C and D run-ons and then says 'the second merely a splice as well', but D is the fused sentence and C is the splice, so the labels are reversed relative to the order in which the options are named. Verdicts are right, wording should be fixed. FOUR-WORDS-AFTER: the blank is sentence-initial, so the following words are 'the men broke the cope'. That does reveal the main clause has its own subject and finite verb, but it only rules out a finite blank if the solver also supplies the splice rule (C carries a comma), so it is not a free kill - no shortcut. Entirely new item, not present in the earlier file version, which had a second mandative-subjunctive item here; replacing it removed a 06/19 duplicate pair."
+  },
+  "SEC-H8-20": {
+    "pick": "— were cut",
+    "exclusive": false,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "DEFENSE FOR A SECOND OPTION, AND THE SUBSKILL LINE IS FACTUALLY WRONG. The subskill claims 'an action fixed to a named past winter'. NO WINTER IS NAMED anywhere in the passage - the text says only 'in a single winter', which is a bare duration, not a definite past time reference. Definite past time reference is what blocks the present perfect in edited American English, and there is none in the clause. Compare item 24, which does the same job correctly with 'between 1688 and the closure'. So '— have been cut down in a single winter' is defensible as a present perfect reporting an established dendrochronological result, and the past framing the explanation invokes sits in a separate coordinated clause about the parish accounts. Fix by naming the winter or by pinning the clause to a closed interval as 24 does. FOUR-WORDS-AFTER: 'down in a single winter' - 'in a single winter' occupies words two to five and is the ENTIRE tense cue, so the tense half is locally resolvable without the passage; only the dash half requires reading back. Partial instance of the recorded defect."
+  },
+  "SEC-H8-21": {
+    "pick": "and records",
+    "exclusive": false,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Same false absolute as item 04, and the explanation states it even more flatly: 'no comma stands before the conjunction in a compound predicate'. Chicago 6.23 and Garner both permit that comma for clarity or emphasis, and here the subject is long enough ('The register kept by the two assayers who served the office between the rebuilding and the fire') that a writer could reach for it on exactly those grounds. That makes ', and records' defensible as optional style rather than error. Key is still the best answer and the agreement half is sound, but the item as written asks a student to score an optional comma as wrong. Recommend one of 04 and 21 be dropped regardless, since they are the same template. FOUR-WORDS-AFTER: 'the weight after cupellation' - no local resolution."
+  },
+  "SEC-H8-22": {
+    "pick": "give",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "'gives:' is wrong on both axes, so only three options are live and the item is effectively colon-or-not crossed with a single agreement decision. The agreement is well set - 'the burner' and 'each shift' are genuine singular attractors against 'The ledgers' - but the confirming pronoun 'they never once note the weather' at the end of the same sentence hands the plural over to any solver who reads through, which softens it. Same colon rule as 02, and directly contradicted by 13; see the 13 note. FOUR-WORDS-AFTER: 'the hour of every' - no local resolution."
+  },
+  "SEC-H8-23": {
+    "pick": "had reached",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Exclusive in THIS version and not obviously so in the earlier one. The earlier text read 'at some point before the earliest trench was cut', where a preterite is normal English ('they found that before the war ended the family moved away'); the current text reads 'by the date of the earliest trench', a completion frame that really does require anteriority marking. The revision closed the hole. Grades medium rather than hard because 'having reached' and 'reaching' both die to the single observation that the 'that'-clause needs a finite verb, leaving a binary that the 'by' frame resolves. Also note the revision CREATED a template duplicate: 23 and 11 are now both by-frame plus past perfect. FOUR-WORDS-AFTER: 'the base of the' - no local resolution."
+  },
+  "SEC-H8-24": {
+    "pick": ", fell",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Correctly built and the tense half is the model the rest of the tense family should copy: 'between 1688 and the closure' plus 'across those four decades' is a genuinely closed interval, which is what actually blocks the present perfect. Grades medium rather than hard only because both cues are loud and the mark-matching rule is by now the fifth repetition of one template. FOUR-WORDS-AFTER: 'by about a third' - no local resolution; 'across those four decades' is the deciding cue and sits at words five to eight, just outside local reach."
+  }
+}
