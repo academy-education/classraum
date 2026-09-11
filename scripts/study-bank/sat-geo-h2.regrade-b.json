@@ -1,0 +1,170 @@
+{
+  "GEOH2-01": {
+    "pick": "30",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Key is exactly 2x the option '15' (multiple relation), but that is inherent: 15 IS the half-chord, the canonical forget-to-double endpoint, and a solver still has to know which of the pair is the chord. '34' is the diameter, '22.4' skips completing the square. No sum/difference relation; no option restates a stem given (189, 12, 16 are all absent). No figure needed - the equation determines everything. CROSS-ITEM (reported once here, applies to the batch): the key is an interior value by magnitude in 18 of 24 items and the extreme value in only 6, against a 50/50 chance split (p~0.02). That is a value-set property and survives the shuffle, unlike the authored slot order, which is a perfect 6/6/6/6 A/B/C/D - authored order, unreachable."
+  },
+  "GEOH2-02": {
+    "pick": "69.8",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "No option is a sum, difference or simple multiple of any other (111.7/69.8/74.9/31.2 share no ratio). The option set does not rebuild the given 50: no pair differs by 50 (74.9-31.2=43.7, 111.7-69.8=41.9). 74.9 is the tower height, the step before the answer, and is the dangerous one precisely because tan(47)>1 makes the distance SMALLER than the height, so 'the bigger number must be the slant-ish one' fails. 111.7 = 50/(tan47-tan32), the reciprocal mix-up. Genuinely hard: two sightings, a cotangent difference, then a second division. Figure-free - A, B and the base are stated collinear with B between."
+  },
+  "GEOH2-03": {
+    "pick": "10.0",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Both roots of the quadratic (10 and 12) are in the set and the 'central angle greater than 2 radians' clause is what separates them - 24/10=2.4 vs 20/12=1.67, a clean margin either side of 2, so the selection is decidable and not a coin toss. That makes the pair legitimate rather than a leak. No sum/difference relation; 7.0 and 6.2 are the two never-use-the-other-given routes. Nothing reconstructs 44 or 120 from the options. No figure."
+  },
+  "GEOH2-04": {
+    "pick": "5.0",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Check requested: 5.0+21.0=26 (not 24), 12.0+7.4=19.4, 5.0+12.0=17 - no option is the sum or difference of two others, and no pair rebuilds the given 24. 12.0 = 24/2 IS a simple multiple of the stem's height, but it is the half-the-height trap (volume scaling with length) and is the single most common wrong answer on this type, so it earns its place. Hard for the right reason: the reasoning is 'equal pieces means the small cone is HALF the whole' plus 'measured above the BASE, not down from the apex', and 21.0/12.0 punish each of those separately. No figure - a cone cut parallel to the base is fully specified in words."
+  },
+  "GEOH2-05": {
+    "pick": "8.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "This looks like one of the repaired items and the repair holds: the other root, 18, is GONE, so the set no longer contains a pair summing to the given hypotenuse 26, and no pair multiplies to 144. 13.0 is half of the given 26, which is the altitude-bisects-the-hypotenuse error, not a reconstruction of anything the solver needs. 14.4=sqrt(8*26) is one step past the question; 5.5=144/26 is a misremembered relation. No sums, no differences, no multiples other than 13.0=26/2. Medium: two facts (pq=h^2, p+q=c) and a quadratic. Figure-free."
+  },
+  "GEOH2-06": {
+    "pick": "50.0",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Relation worth stating: key 50.0 = option 24.0 + 26, and 26 = 2*13 is given. But 26 is not itself an option, so the set alone does not hand you the key - 36.0+24.0=60 (the given area, coincidentally) and 50.0 is not the sum or difference of any two options. 24.0 is the third side of the wide triangle, 36.0 the perimeter of the tall one, 35.2 the treat-a-leg-as-the-height route. Hard: substitution u=(b/2)^2 gives a quadratic with two admissible triangles and the stem then asks for the greater perimeter. No figure; 'two sides of length 13' covers every case."
+  },
+  "GEOH2-07": {
+    "pick": "10.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "No sum/difference. 22.4/4.5 = 4.98, close to but not a clean multiple. 4.5 restates a stem-derived quantity (sqrt(20), the radius) rather than a stem given, which is a fair 'stopped too early' distractor. The weakest of the three is 6.3 = sqrt(20)*sqrt(2): dividing by sqrt(2) 'because there are two coefficients' is a route I have not seen students actually take, which is why this is plausible rather than strong. Medium - one distance-from-point-to-line application with the sign settled by 'k is positive'. No figure."
+  },
+  "GEOH2-08": {
+    "pick": "33",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Reconstruction check, and this is the one item where the answer is partly visible in the value set: 57+33=90, so a solver who knows only that sin(A)=cos(D) forces A+D=90 can see that the complementary pair {57,33} must be {A,D} and that 14 and 45 are out. He is then at a 50/50 without touching the algebra, and has to notice that F is the OTHER acute angle of DEF, i.e. 90-D=A=33. Mitigating: the two halves of a complementary pair are unavoidable once A and D are both options, and the remaining step is the actual content of the item. Not enough to spend a false on. 45 (reading sin=cos as A=D) and 14 (y itself) are both real endpoints. Medium. No figure."
+  },
+  "GEOH2-09": {
+    "pick": "135",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No sums, no differences, no multiples (135/18=7.5, 170/20=8.5). 18 and 20 are the two intermediate quantities (sides, exterior angle) and 170 is the diagonal formula applied to the wrong intermediate - that last one is the strongest distractor in the batch for this type because it looks like the finished computation. Medium, not hard: two routine steps, each one fact. No figure."
+  },
+  "GEOH2-10": {
+    "pick": "50.3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "39.8+60.2=100.0 exactly - two options are complements, which tells a test-wise solver that the pair is one denominator's remainder/drained split and therefore that the answer is probably in the OTHER pair {50.3, 40.2}. Halves the field without any work. It is an honest consequence of the distractor design (the 100-minus error must be present) and the surviving pair is the real discrimination (percent of the water present vs percent of capacity), so I would not drop the item, but it is the clearest structural give in the batch after GEOH2-08. Exclusive is still true: 'the water that was originally in the tank' is unambiguous. Medium - the difficulty is bookkeeping (litres, minutes, which denominator), not reasoning. No figure."
+  },
+  "GEOH2-11": {
+    "pick": "-0.95",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Near-sum worth recording: -1.53 + 0.55 = -0.98 against a key of -0.95, and 2.15 + (-1.53) = 0.62 against 0.55. Both are off by more than a rounding step at two decimals, so neither is an exact relation and neither is exploitable - but the set is dense enough that a rounding change in authoring could make one exact. No multiples. Each distractor is a specific sign error (all-positive; tangent's sign not inherited; cos/sin inverted). Medium, and toward the easy end: it is one quadrant fact plus a 3-4-5. No figure - 'terminal ray in the second quadrant' fixes the configuration."
+  },
+  "GEOH2-12": {
+    "pick": "4.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Repair evidence again: the companion root 15 is absent, so no pair sums to the given chord length 19 (4.0+9.5=13.5, 3.2+7.7=10.9) and no pair multiplies to the given product 60 (4.0*9.5=38, 3.2*7.7=24.6). 9.5=19/2 does restate half a stem given, but as the P-is-the-midpoint error. 7.7=sqrt(60) never uses CD; 3.2=60/19 divides by the whole chord. Medium: intersecting-chords plus a quadratic, with 'CP shorter than PD' resolving the root. No figure needed."
+  },
+  "GEOH2-13": {
+    "pick": "7.9",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Best-built item in the batch. The three wrong values are the three formulas a student actually confuses with the area-bisector: 7.5 arithmetic mean (midsegment), 7.1 geometric mean, 5.6 the root-then-halve slip; the key is the quadratic mean. All four are within 2.3 of each other, so no size heuristic works, and no sum/difference/multiple relation exists. The option set gives no way back to 10, 5 or 6. Hard, and hard by reasoning rather than recall - the midsegment answer is what most strong students will pick. Figure-free by construction: the four vertices are given as coordinates."
+  },
+  "GEOH2-14": {
+    "pick": "432",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Heaviest multiple structure in the batch and it needs saying: 384=2*192, 288=1.5*192, 432=1.5*288, and every option is 128 times a simple ratio. Consequence - a solver who knows only that volume scales faster than area can rule out everything at or below 128*(216/96)=288 and is left with 432 alone, i.e. the item is answerable from 'k^3 > k^2' without computing the cube. That is still the concept under test, so I am not voting it false, but the set would be tighter if one distractor sat ABOVE 432 (e.g. 128*(9/4)^(3/2)=432 is the key, so something like 128*3^... ) - as shipped, largest-wins works. Distractors themselves are each a named wrong exponent. Medium. No figure."
+  },
+  "GEOH2-15": {
+    "pick": "25.7",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Reconstruction present: 25.7 + 28.3 = 54.0, the triangle's area, which a solver computes in one step from the legs 9 and 12. So the set reveals that the answer pair is {25.7, 28.3} and the choice collapses to 'is the circle bigger or smaller than what is left'. That still requires 9pi, and the subtract-the-circle structure makes 28.3 an unavoidable distractor, so no false vote - but it is a genuine give and should be recorded as one. 46.9 (radius read as diameter) and 35.2 (circumference subtracted instead of area) are both real. Medium: the inradius of a right triangle is a known formula, or A=rs. No figure."
+  },
+  "GEOH2-16": {
+    "pick": "-3.5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "-2.0 = 4*(-0.5) is a multiple relation but a meaningless one (both are wrong-path endpoints, not a key/derivative pair); the key is unrelated to either. No sums, no differences, and nothing rebuilds -6, 5, 2 or -1. The three distractors are the midpoint and the two half-right perpendicular slopes (negate without reciprocating; reciprocate without negating), which is exactly the error pair this subskill produces. Medium. No figure - two coordinates and an axis."
+  },
+  "GEOH2-17": {
+    "pick": "13",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "No sum/difference/multiple (41/13=3.15, 14-13=1 is adjacency, not a relation). 14 is the round-up trap and is the one that matters; 41 is the dropped 1/3. 8 = 100pi/12pi substitutes the sphere's SURFACE AREA for its volume - dimensionally incoherent, and I doubt a student reaches it often enough to call the set strong, which is the only reason this is plausible. Medium: two volume formulas and a floor. No figure."
+  },
+  "GEOH2-18": {
+    "pick": "82",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "98+82=180, so two options sum to the supplementary total the item is built on - the solver who spots it knows that pair is the angle pair and only has to pick the acute one, which the stem names outright. On an easy item that is acceptable; on a hard one it would not be. 22 is x, 58 is the treat-them-as-equal route. Exclusive: both intersections produce the same {82,98} pair, so 'either parallel line' is safe and no figure is needed."
+  },
+  "GEOH2-19": {
+    "pick": "16.4",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "The repair is visible here: 48.0 (triangle) and 16.4 (key) no longer bracket anything - 44.7+16.4=61.1 is not the sector, 48.0-44.7=3.3, 48.0-16.4=31.6, none of which is an option, so the key is not recoverable as a difference and the arcsin cannot be bypassed. 12.9 is the arc LENGTH reported as an area, 44.7 swaps 6 and 8 in the central right triangle. One caution unrelated to the option set: the exact value is 16.3501, which rounds to 16.4 by 0.0001 - a student who carries the angle as 1.287 rad gets 16.35 and has to round. No competing option near 16.3, so this does not threaten exclusivity, but it is a knife-edge the author should know about. Hard. No figure - chord and radius determine the configuration."
+  },
+  "GEOH2-20": {
+    "pick": "3.9",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "15.7 = 4 * 3.9 (approximately; 15.708 vs 3.927), the key being one quarter of a distractor - the diameter-for-radius error, so the factor of 4 is the error itself and is expected. No sums or differences. 1.6 drops the square, 3.1 is the lateral surface area read as a volume. 3.1 sits close to 3.9, which is the right kind of pressure for an easy item. No figure; both dimensions and the conversion are stated."
+  },
+  "GEOH2-21": {
+    "pick": "2.4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Reconstruction: 3.9 - 2.4 = 1.5 exactly, the given shadow length, so the option set contains the 'distance to the shadow tip' and the answer differing by a stem value. A solver who knows the answer is a distance-from-the-lamp and spots the 1.5 gap can identify the pair; he still has to know which end of it the question wants, and the off-by-the-shadow error is the single most common one on this type, so the distractor has to be there. Recorded, not a false. 4.7 is the lamp height, 0.9 uses 4 as the first shadow length. Medium - two similar-triangle steps. No figure: 'standing 4 m from the base' and 'shadow 2.5 m long' pin it."
+  },
+  "GEOH2-22": {
+    "pick": "2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Two things to flag. (1) The key 2 IS a stem given - the radius of circle Q - which is the pattern that usually marks a TRAP option, so this inverts the normal signal; harmless here but worth knowing. (2) The set is a subtraction chain off the centre distance: 10 (centres), 4 (=10-6), 2 (=10-6-2), 18 (=10+6+2), and 4 = 2*2, 2 = 4/2. Every value is on a named path (stop early, stop earlier, take the maximum), so the chain is the content rather than a leak. Easy. No figure - one equation and one centre/radius pair."
+  },
+  "GEOH2-23": {
+    "pick": "24.8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "68.6 + 24.8 = 93.4, the first height above the ground - a derived quantity, not a stem given, and not one the solver needs, so this is a weak reconstruction rather than a route. No multiples. 22.3 (cosine for sine) is the strong distractor and sits uncomfortably close to the key, which is good. 16.0 is the angle difference 50-34 reported in metres: that is a units-nonsense option rather than an arithmetic path, and it is the reason this set is plausible and not strong. Note also that the 1.5 m hand height is inert - it cancels in the difference - so it is a red herring the item never uses, which is fair on a change-in-height question but means one given does no work. Medium. No figure."
+  },
+  "GEOH2-24": {
+    "pick": "31.2",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Difficulty dissent, stated plainly: this is labelled hard and I grade it medium. Once you know the three cut vertices are pairwise joined by face diagonals, it is s*sqrt(2) into the equilateral-area formula - two substitutions, no decision, no second case. What makes it feel hard is recalling the configuration without a picture, i.e. knowledge-gating, not reasoning; the batch's real hard items (02, 13, 06, 03) all make the solver choose something. Option set: 31.2 = 2 * 15.6 and 36.0 = 2 * 18.0 - two clean doubling pairs, and the key is the double of the edge-as-side error (because (6sqrt2)^2 = 2*6^2, so that factor is the error itself). 36.0 restates the face area, derivable from the given edge in one step. No sums or differences. 15.6 and 18.0 are real paths; 36.0 is the weakest, since answering with a whole face is not an error a student makes so much as a guess, hence plausible rather than strong. No figure needed - 'the three vertices adjacent to one particular vertex' determines the cut up to congruence."
+  }
+}

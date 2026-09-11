@@ -151,6 +151,15 @@ State the path in the explanation. Then:
   (`arrange_words`, `speaking_*`, `writing_*`, `fill_in_blanks`,
   `numeric_entry`, `quant_comparison`) the old advice still applies — but none
   of those is scored by picking among `choices`, so it almost never will.
+- **And when you test it, the null is the BANK, not 50/50.** A grader today
+  reported the interior-key tell on a batch at 18 of 24 with **p = 0.011**,
+  which is true against a uniform prior and is the wrong question. Against the
+  live maths bank's own 64.8% the same 18 of 24 gives **p = 0.205** — not
+  distinguishable from the cohort it would join. The 50/50 null asks whether a
+  batch differs from a coin flip; the only question that decides anything is
+  whether it is worse than the bank. A literal null is wrong in the ALARMING
+  direction on every maths batch anyone will ever grade, because distractors
+  built from named error paths overshoot more often than they undershoot.
 - **Key MAGNITUDE rank still matters**, because it is a property of the value
   set and survives the shuffle. Read it against the live bank's own baseline,
   not against zero: across 1,499 four-choice maths items the key sits at ranks
