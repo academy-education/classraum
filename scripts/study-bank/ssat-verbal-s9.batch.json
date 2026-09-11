@@ -1,0 +1,692 @@
+[
+  {
+    "id": "SV9-01",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "WEARY",
+    "choices": [
+      "bored",
+      "hungry",
+      "restless",
+      "lonely",
+      "tired"
+    ],
+    "correct_answer": "tired",
+    "explanation": "To be WEARY is to have one's strength used up, i.e. to be \"tired\".",
+    "distractor_rationales": [
+      "\"bored\" is the mind running out of interest rather than the body running out of strength",
+      "\"hungry\" is a bodily want of a different kind — food, not rest",
+      "\"restless\" names the inability to settle, which is the opposite state of body from being worn out",
+      "\"lonely\" is a want of company rather than a want of rest",
+      "KEY"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV9-02",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "SLICE is to LOAF as",
+    "choices": [
+      "crumb is to cake",
+      "segment is to orange",
+      "wedge is to pie",
+      "crust is to bread",
+      "core is to apple"
+    ],
+    "correct_answer": "wedge is to pie",
+    "explanation": "A slice is a portion deliberately cut out of the loaf so that the whole may be shared out; \"wedge is to pie\" is the same cut-portion-to-whole pair.",
+    "distractor_rationales": [
+      "\"crumb is to cake\" is a fragment that falls off, not a portion cut to be served",
+      "\"segment is to orange\" is a division the fruit already grows, not one the knife makes",
+      "KEY",
+      "\"crust is to bread\" is the outer layer of the loaf rather than a portion of it",
+      "\"core is to apple\" is an interior structure, and it is the part discarded rather than the part served"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV9-03",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "VIGILANT",
+    "choices": [
+      "hopeful",
+      "watchful",
+      "truthful",
+      "boastful",
+      "graceful"
+    ],
+    "correct_answer": "watchful",
+    "explanation": "To be VIGILANT is to keep a close and constant lookout, which \"watchful\" names exactly.",
+    "distractor_rationales": [
+      "\"hopeful\" is an expectation about the future, not an attention paid to the present",
+      "KEY",
+      "\"truthful\" is about what one says rather than what one notices",
+      "\"boastful\" concerns the figure one cuts in one’s own account of oneself, not what one keeps an eye on",
+      "\"graceful\" describes the manner of a movement, not the keeping of a watch"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV9-04",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "DICTIONARY is to WORDS as",
+    "choices": [
+      "atlas is to maps",
+      "album is to photographs",
+      "scrapbook is to clippings",
+      "anthology is to poems",
+      "ledger is to transactions"
+    ],
+    "correct_answer": "atlas is to maps",
+    "explanation": "A dictionary is a reference volume that sets out the whole class of items in a fixed order so any one can be looked up; \"atlas is to maps\" is the same reference-volume-to-contents pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"album is to photographs\" is a keepsake collection kept for its own sake, with no order built for looking a thing up",
+      "\"scrapbook is to clippings\" gathers whatever happened to be saved rather than the whole class of items",
+      "\"anthology is to poems\" is a selection made for merit, so it is deliberately not exhaustive",
+      "\"ledger is to transactions\" records events as they occurred rather than cataloguing a class of things"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV9-05",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "TREPIDATION",
+    "choices": [
+      "fatigue",
+      "alarm",
+      "boredom",
+      "curiosity",
+      "resentment"
+    ],
+    "correct_answer": "alarm",
+    "explanation": "TREPIDATION is the nervous dread felt before something one must face, which \"alarm\" names most closely.",
+    "distractor_rationales": [
+      "\"fatigue\" is the body's exhaustion, not a fear",
+      "KEY",
+      "\"boredom\" is an absence of interest where trepidation is an excess of concern",
+      "\"curiosity\" also points forward to what is coming, but draws one toward it rather than making one shrink",
+      "\"resentment\" is a grievance held about what has already happened"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV9-06",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "FEATHER is to BIRD as",
+    "choices": [
+      "fur is to rabbit",
+      "scale is to fish",
+      "wool is to sheep",
+      "shell is to turtle",
+      "mane is to lion"
+    ],
+    "correct_answer": "scale is to fish",
+    "explanation": "A feather is one of the many small overlapping units that together make up the bird's covering; \"scale is to fish\" is the same single-unit-to-animal pair.",
+    "distractor_rationales": [
+      "\"fur is to rabbit\" names the covering in the mass; there is no single unit of it that one could point to",
+      "KEY",
+      "\"wool is to sheep\" likewise names the whole fleece rather than one unit of it",
+      "\"shell is to turtle\" is a covering made of a single piece, not of many repeated units",
+      "\"mane is to lion\" covers one region of the animal rather than being a unit of its covering"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV9-07",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "BLUNDER",
+    "choices": [
+      "promise",
+      "insult",
+      "delay",
+      "excuse",
+      "mistake"
+    ],
+    "correct_answer": "mistake",
+    "explanation": "A BLUNDER is a clumsy error, so \"mistake\" is the closest word.",
+    "distractor_rationales": [
+      "\"promise\" is an undertaking about the future, unrelated to a slip already made",
+      "\"insult\" is a deliberate wounding, where a blunder is done without meaning to",
+      "\"delay\" is a setback in time and may follow a blunder without being one",
+      "\"excuse\" is what is offered after the error rather than the error itself",
+      "KEY"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV9-08",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "RECIPE is to COOK as",
+    "choices": [
+      "menu is to diner",
+      "map is to traveler",
+      "timetable is to commuter",
+      "diary is to novelist",
+      "score is to musician"
+    ],
+    "correct_answer": "score is to musician",
+    "explanation": "A recipe is a written specification the cook works through step by step in order to produce the finished dish; \"score is to musician\" is the same instructions-to-performer pair.",
+    "distractor_rationales": [
+      "\"menu is to diner\" offers a set of choices, and the diner makes nothing from it",
+      "\"map is to traveler\" sets out the ground rather than a sequence of steps to be executed in order",
+      "\"timetable is to commuter\" is consulted for a fact rather than followed through as a procedure",
+      "\"diary is to novelist\" records what has happened instead of directing what is to be made",
+      "KEY"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV9-09",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "STURDY",
+    "choices": [
+      "strong",
+      "smooth",
+      "noisy",
+      "heavy",
+      "tall"
+    ],
+    "correct_answer": "strong",
+    "explanation": "Something STURDY is solidly built and hard to break, i.e. \"strong\".",
+    "distractor_rationales": [
+      "KEY",
+      "\"smooth\" describes the surface rather than how well the thing holds together",
+      "\"noisy\" is a matter of sound, not of build",
+      "\"heavy\" confuses weight with strength; a sturdy thing need not be heavy",
+      "\"tall\" is a dimension, and height gives no account of how solidly a thing is made"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV9-10",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "FUSE is to CIRCUIT as",
+    "choices": [
+      "valve is to boiler",
+      "lock is to door",
+      "brake is to car",
+      "anchor is to ship",
+      "railing is to staircase"
+    ],
+    "correct_answer": "valve is to boiler",
+    "explanation": "A fuse is the part built to give way first when the load runs too high, so that the circuit behind it survives; \"valve is to boiler\" is the same sacrificial-release-to-system pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"lock is to door\" keeps others out rather than releasing a dangerous excess from within",
+      "\"brake is to car\" is worked deliberately by the driver instead of yielding on its own when a limit is passed",
+      "\"anchor is to ship\" holds the vessel in place and is not spent to save it",
+      "\"railing is to staircase\" guards the person using the system rather than the system itself"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV9-11",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "JOVIAL",
+    "choices": [
+      "curious",
+      "generous",
+      "cheerful",
+      "patient",
+      "humble"
+    ],
+    "correct_answer": "cheerful",
+    "explanation": "A JOVIAL person is hearty and full of good humor, which \"cheerful\" captures.",
+    "distractor_rationales": [
+      "\"curious\" is an appetite for knowing rather than a disposition of mood",
+      "\"generous\" is open-handedness with what one owns, a different warmth from good humor",
+      "KEY",
+      "\"patient\" names the willingness to wait, which says nothing about spirits",
+      "\"humble\" is a low estimate of oneself, which a jovial person may or may not hold"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV9-12",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "HULL is to SHIP as",
+    "choices": [
+      "keel is to yacht",
+      "chassis is to automobile",
+      "mast is to schooner",
+      "fuselage is to airplane",
+      "cabin is to houseboat"
+    ],
+    "correct_answer": "fuselage is to airplane",
+    "explanation": "The hull is the sealed outer body that encloses the whole vessel and gives it its shape; \"fuselage is to airplane\" is the same enclosing-body-to-craft pair.",
+    "distractor_rationales": [
+      "\"keel is to yacht\" runs along the bottom as a spine; it is a member of the body, not the body",
+      "\"chassis is to automobile\" is the frame carried inside the body rather than the shell that encloses it",
+      "\"mast is to schooner\" projects out of the vessel instead of enclosing it",
+      "KEY",
+      "\"cabin is to houseboat\" is a space within the craft rather than the skin around it"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV9-13",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "EQUIVOCATE",
+    "choices": [
+      "chatter",
+      "repeat",
+      "recite",
+      "hedge",
+      "greet"
+    ],
+    "correct_answer": "hedge",
+    "explanation": "To EQUIVOCATE is to speak in a way that avoids committing oneself either way, i.e. to \"hedge\".",
+    "distractor_rationales": [
+      "\"chatter\" is talking at length about little, which is not the same as talking so as not to be pinned down",
+      "\"repeat\" says the same thing again; the equivocator's trouble is saying two things at once",
+      "\"recite\" delivers a fixed text from memory, which commits one to every word of it",
+      "KEY",
+      "\"greet\" is an opening courtesy and takes no position at all to be evasive about"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV9-14",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "MITTEN is to HAND as",
+    "choices": [
+      "ring is to finger",
+      "hat is to head",
+      "scarf is to neck",
+      "belt is to waist",
+      "sock is to foot"
+    ],
+    "correct_answer": "sock is to foot",
+    "explanation": "A mitten is a soft knitted garment drawn over the hand so that the whole of it is enclosed; \"sock is to foot\" is the same sheathing-garment-to-limb pair.",
+    "distractor_rationales": [
+      "\"ring is to finger\" is a band on one digit, and it is jewelry rather than a covering",
+      "\"hat is to head\" rests on top and leaves the face uncovered rather than enclosing the whole part",
+      "\"scarf is to neck\" is wound round loosely rather than made to the shape of the part",
+      "\"belt is to waist\" encircles a line of the body and covers nothing",
+      "KEY"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV9-15",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "SCOFF",
+    "choices": [
+      "stammer",
+      "whisper",
+      "sneer",
+      "mumble",
+      "chant"
+    ],
+    "correct_answer": "sneer",
+    "explanation": "To SCOFF is to speak of something with open contempt, which \"sneer\" names.",
+    "distractor_rationales": [
+      "\"stammer\" is a stumbling delivery, a fault of fluency rather than an attitude",
+      "\"whisper\" describes how softly one speaks, not the scorn in it",
+      "KEY",
+      "\"mumble\" is indistinct speech and may carry any attitude at all",
+      "\"chant\" is repeated rhythmic utterance, which fixes the form of the speech rather than its contempt"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV9-16",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "CENSUS is to POPULATION as",
+    "choices": [
+      "audit is to accounts",
+      "inventory is to stock",
+      "poll is to opinion",
+      "forecast is to weather",
+      "survey is to land"
+    ],
+    "correct_answer": "inventory is to stock",
+    "explanation": "A census is the exhaustive count, one by one, of everybody present at a single moment; \"inventory is to stock\" is the same complete-enumeration-to-subject pair.",
+    "distractor_rationales": [
+      "\"audit is to accounts\" tests whether a record is correct rather than counting what is there",
+      "KEY",
+      "\"poll is to opinion\" questions a sample and reasons from it to the whole, where a census leaves nobody out",
+      "\"forecast is to weather\" predicts a future state instead of recording a present one",
+      "\"survey is to land\" measures extent and boundary rather than counting a number of items"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV9-17",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "MURKY",
+    "choices": [
+      "salty",
+      "chilly",
+      "shallow",
+      "cloudy",
+      "narrow"
+    ],
+    "correct_answer": "cloudy",
+    "explanation": "MURKY water is dark and clouded so that one cannot see through it, i.e. \"cloudy\".",
+    "distractor_rationales": [
+      "\"salty\" is taste and content rather than clearness",
+      "\"chilly\" is a matter of temperature, not of what can be seen through the water",
+      "\"shallow\" is depth; shallow water is often the clearest",
+      "KEY",
+      "\"narrow\" describes the width of the channel and says nothing about the water in it"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV9-18",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "BLUSH is to EMBARRASSMENT as",
+    "choices": [
+      "sigh is to relief",
+      "smile is to joy",
+      "yawn is to boredom",
+      "tremble is to fear",
+      "wince is to pain"
+    ],
+    "correct_answer": "tremble is to fear",
+    "explanation": "A blush is the involuntary bodily sign that gives away the feeling even when one is trying to hide it; \"tremble is to fear\" is the same involuntary-sign-to-feeling pair.",
+    "distractor_rationales": [
+      "\"sigh is to relief\" is largely within the sigher's control and serves as much to tell others as to betray oneself",
+      "\"smile is to joy\" can be produced at will, so it is no proof of the feeling behind it",
+      "\"yawn is to boredom\" follows as readily from a poor night's sleep as from tedium",
+      "KEY",
+      "\"wince is to pain\" answers a sensation in the body rather than a feeling about oneself"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV9-19",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "RELISH",
+    "choices": [
+      "recall",
+      "enjoy",
+      "postpone",
+      "permit",
+      "notice"
+    ],
+    "correct_answer": "enjoy",
+    "explanation": "To RELISH something is to take keen pleasure in it, i.e. to \"enjoy\" it.",
+    "distractor_rationales": [
+      "\"recall\" brings the thing back to mind without any pleasure being taken in it",
+      "KEY",
+      "\"postpone\" puts the thing off, where relishing is done in the thing's presence",
+      "\"permit\" allows the thing to happen and is consistent with disliking it",
+      "\"notice\" is bare awareness, the least any pleasure could be built on"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV9-20",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "CROWN is to MONARCH as",
+    "choices": [
+      "apron is to blacksmith",
+      "gavel is to judge",
+      "helmet is to soldier",
+      "badge is to constable",
+      "whistle is to referee"
+    ],
+    "correct_answer": "badge is to constable",
+    "explanation": "A crown is worn as the insignia by which the office is recognized and does no practical work; \"badge is to constable\" is the same worn-insignia-to-office pair.",
+    "distractor_rationales": [
+      "\"apron is to blacksmith\" is likewise worn for protection from the work",
+      "\"gavel is to judge\" is a tool taken up to do a piece of the work, and it is not worn",
+      "\"helmet is to soldier\" is worn but is protective gear, not a mark of rank",
+      "KEY",
+      "\"whistle is to referee\" is an instrument sounded to make a ruling rather than an emblem of holding the post"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV9-21",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "GRIMY",
+    "choices": [
+      "filthy",
+      "faded",
+      "sticky",
+      "damp",
+      "chipped"
+    ],
+    "correct_answer": "filthy",
+    "explanation": "A GRIMY surface is coated with ingrained dirt, so \"filthy\" is the closest word.",
+    "distractor_rationales": [
+      "KEY",
+      "\"faded\" is color lost to light rather than dirt laid on",
+      "\"sticky\" describes how a surface behaves to the touch, which grime need not",
+      "\"damp\" is held moisture, and a grimy thing is as often bone dry",
+      "\"chipped\" is damage to the shape of the thing rather than anything upon it"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV9-22",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "TRIBUTARY is to RIVER as",
+    "choices": [
+      "twig is to bough",
+      "lane is to highway",
+      "corridor is to hall",
+      "suburb is to city",
+      "alcove is to room"
+    ],
+    "correct_answer": "lane is to highway",
+    "explanation": "A tributary is a smaller channel whose traffic of water runs into the larger one and is carried on by it; \"lane is to highway\" is the same feeder-to-main-route pair.",
+    "distractor_rationales": [
+      "\"twig is to bough\" divides outward from the larger part instead of delivering anything into it",
+      "KEY",
+      "\"corridor is to hall\" opens onto the larger space, but the hall does not carry the corridor's traffic onward",
+      "\"suburb is to city\" is a district of the whole rather than a channel joining it",
+      "\"alcove is to room\" is a recess off the larger space and is a dead end"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV9-23",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "INSIPID",
+    "choices": [
+      "solemn",
+      "harsh",
+      "dull",
+      "modest",
+      "abrupt"
+    ],
+    "correct_answer": "dull",
+    "explanation": "Something INSIPID has no flavor or interest in it at all, which \"dull\" names.",
+    "distractor_rationales": [
+      "\"solemn\" is a gravity of manner, which is a definite character of its own rather than the want of one",
+      "\"harsh\" is a strong quality strongly felt, not the want of one",
+      "KEY",
+      "\"modest\" is also an absence of display, but it is a restraint chosen rather than a want of substance",
+      "\"abrupt\" concerns the suddenness of a manner rather than whether there is anything in it"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV9-24",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "SCABBARD is to SWORD as",
+    "choices": [
+      "case is to violin",
+      "quiver is to arrows",
+      "holster is to pistol",
+      "sleeve is to record",
+      "wallet is to banknotes"
+    ],
+    "correct_answer": "holster is to pistol",
+    "explanation": "A scabbard is worn on the person and holds the one weapon so that it can be drawn at a moment's notice; \"holster is to pistol\" is the same worn-sheath-to-weapon pair.",
+    "distractor_rationales": [
+      "\"case is to violin\" is carried rather than worn, and it is opened at leisure",
+      "\"quiver is to arrows\" holds a supply of many rather than a single weapon",
+      "KEY",
+      "\"sleeve is to record\" protects a thing in storage, and nothing is drawn from it in haste",
+      "\"wallet is to banknotes\" carries a number of items, and what it holds is not an implement to be used"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV9-25",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "QUARREL",
+    "choices": [
+      "boast",
+      "bargain",
+      "complain",
+      "apologize",
+      "argue"
+    ],
+    "correct_answer": "argue",
+    "explanation": "To QUARREL is to fall into angry dispute with somebody, i.e. to \"argue\".",
+    "distractor_rationales": [
+      "\"boast\" is speech about oneself and wants no opponent",
+      "\"bargain\" is also a two-sided exchange of words, but it is conducted to reach a deal rather than in anger",
+      "\"complain\" can be done alone and needs nobody to answer back",
+      "\"apologize\" is what may be said to close a quarrel rather than what happens in one",
+      "KEY"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV9-26",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "VERDICT is to TRIAL as",
+    "choices": [
+      "invoice is to purchase",
+      "score is to game",
+      "armistice is to war",
+      "diagnosis is to examination",
+      "moral is to fable"
+    ],
+    "correct_answer": "diagnosis is to examination",
+    "explanation": "A verdict is the authoritative judgment that the trial exists in order to produce and that formally closes it; \"diagnosis is to examination\" is the same judgment-to-procedure pair.",
+    "distractor_rationales": [
+      "\"invoice is to purchase\" is a record of what took place, not a finding about it",
+      "\"score is to game\" is a tally accumulated throughout rather than a judgment handed down at the end",
+      "\"armistice is to war\" halts the fighting by agreement without settling who was in the right",
+      "KEY",
+      "\"moral is to fable\" is drawn afterward by the reader and is no part of what the fable is conducted to produce"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV9-27",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "PLIABLE",
+    "choices": [
+      "reusable",
+      "valuable",
+      "portable",
+      "washable",
+      "flexible"
+    ],
+    "correct_answer": "flexible",
+    "explanation": "A PLIABLE material bends readily without breaking, which \"flexible\" names.",
+    "distractor_rationales": [
+      "\"reusable\" is about how many times it may serve, not how it behaves under bending",
+      "\"valuable\" is worth rather than a physical property of the material",
+      "\"portable\" is about being carried, which has to do with weight and bulk rather than bending",
+      "\"washable\" concerns how the material stands up to water",
+      "KEY"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV9-28",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "ALIBI is to SUSPECT as",
+    "choices": [
+      "receipt is to buyer",
+      "passport is to traveler",
+      "license is to driver",
+      "testimony is to witness",
+      "uniform is to officer"
+    ],
+    "correct_answer": "receipt is to buyer",
+    "explanation": "An alibi is the evidence the accused produces afterward to show that a particular act cannot be laid at their door; \"receipt is to buyer\" is the same evidence-clearing-its-holder pair.",
+    "distractor_rationales": [
+      "KEY",
+      "\"passport is to traveler\" certifies who the holder is rather than what the holder did",
+      "\"license is to driver\" grants a permission in advance instead of answering a charge after the fact",
+      "\"testimony is to witness\" is an account given about others and does not clear the one who gives it",
+      "\"uniform is to officer\" shows the standing the wearer holds, not a fact about any particular occasion"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV9-29",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "ACQUIESCE",
+    "choices": [
+      "consent",
+      "inquire",
+      "hesitate",
+      "withdraw",
+      "pretend"
+    ],
+    "correct_answer": "consent",
+    "explanation": "To ACQUIESCE is to give in and go along with what is proposed, i.e. to \"consent\".",
+    "distractor_rationales": [
+      "KEY",
+      "\"inquire\" asks after the proposal rather than accepting it",
+      "\"hesitate\" is to hang back from answering, which withholds the agreement rather than giving it",
+      "\"withdraw\" takes oneself out of the matter instead of falling in with it",
+      "\"pretend\" concerns whether one is sincere and leaves open whether one agreed at all"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV9-30",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "CIRCUITOUS",
+    "choices": [
+      "crowded",
+      "unpaved",
+      "winding",
+      "scenic",
+      "uphill"
+    ],
+    "correct_answer": "winding",
+    "explanation": "A CIRCUITOUS route goes round about instead of straight to the point, which \"winding\" describes.",
+    "distractor_rationales": [
+      "\"crowded\" is how much traffic is on it, which is no part of its route",
+      "\"unpaved\" is the surface of the road rather than the shape of its course",
+      "KEY",
+      "\"scenic\" is what can be seen from the road; an indirect road often is, but need not be",
+      "\"uphill\" is the road's gradient, a matter of climbing rather than of going round"
+    ],
+    "set_id": "SET-F"
+  }
+]

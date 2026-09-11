@@ -1,0 +1,746 @@
+[
+  {
+    "id": "SCI-V4-01-1",
+    "passage_id": "sc4-p1",
+    "passage_title": "Corrosion of Steel Coupons in Salt Solutions",
+    "passage": "When steel is immersed in a salt solution, iron at the surface dissolves and the coupon loses mass. Students investigated the conditions under which this mass loss occurs. In every trial they used a flat steel coupon of identical size and starting mass, immersed it in 500 mL of aerated NaCl solution for 14 days, then removed the coupon, cleaned off the loose corrosion product, dried it, and weighed it. The mass lost by the coupon, in milligrams, was recorded. Each trial used fresh solution, and every solution was open to the air.\n\nExperiment 1\nAn uncoated coupon was immersed at 25 °C in NaCl solutions of the five different concentrations listed in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 25 °C, using only the NaCl concentration listed for Experiment 2 in Table 1. Four coupons were tested: one uncoated, one covered with a thin oil film, one coated with zinc, and one coated with epoxy.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated with uncoated coupons at the NaCl concentration listed for Experiment 3 in Table 1, at each of the four solution temperatures listed.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "NaCl (%)",
+        "Temperature (°C)",
+        "Coating",
+        "Mass lost (mg)"
+      ],
+      "cells": [
+        [
+          "0.0",
+          25,
+          "none",
+          9
+        ],
+        [
+          "0.5",
+          25,
+          "none",
+          21
+        ],
+        [
+          "1.0",
+          25,
+          "none",
+          30
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "6.0",
+          25,
+          "none",
+          35
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          25,
+          "oil film",
+          23
+        ],
+        [
+          "3.5",
+          25,
+          "zinc",
+          6
+        ],
+        [
+          "3.5",
+          25,
+          "epoxy",
+          1
+        ],
+        [
+          "3.5",
+          5,
+          "none",
+          18
+        ],
+        [
+          "3.5",
+          15,
+          "none",
+          26
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          35,
+          "none",
+          58
+        ]
+      ],
+      "caption": "Table 1. Mass lost by a steel coupon after 14 days in 500 mL of aerated NaCl solution."
+    },
+    "prompt": "Suppose a trial had been added to Experiment 1 in which an uncoated coupon was immersed at 25 °C in 2.0% NaCl. Based on Table 1, the mass lost by that coupon would most likely have been closest to:",
+    "choices": [
+      "22 mg",
+      "28 mg",
+      "35 mg",
+      "47 mg"
+    ],
+    "correct_answer": "35 mg",
+    "explanation": "At 25 °C the uncoated coupon lost 30 mg in 1.0% NaCl and 42 mg in 3.5% NaCl, so a trial at 2.0% NaCl falls between those two concentrations and should lose between 30 mg and 42 mg. Only 35 mg lies in that interval; 22 mg and 28 mg are below the 1.0% result and 47 mg is above the 3.5% result.",
+    "domain": "Interpretation of Data",
+    "subskill": "interpolate between values in a data table",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-V4-01-2",
+    "passage_id": "sc4-p1",
+    "passage_title": "Corrosion of Steel Coupons in Salt Solutions",
+    "passage": "When steel is immersed in a salt solution, iron at the surface dissolves and the coupon loses mass. Students investigated the conditions under which this mass loss occurs. In every trial they used a flat steel coupon of identical size and starting mass, immersed it in 500 mL of aerated NaCl solution for 14 days, then removed the coupon, cleaned off the loose corrosion product, dried it, and weighed it. The mass lost by the coupon, in milligrams, was recorded. Each trial used fresh solution, and every solution was open to the air.\n\nExperiment 1\nAn uncoated coupon was immersed at 25 °C in NaCl solutions of the five different concentrations listed in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 25 °C, using only the NaCl concentration listed for Experiment 2 in Table 1. Four coupons were tested: one uncoated, one covered with a thin oil film, one coated with zinc, and one coated with epoxy.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated with uncoated coupons at the NaCl concentration listed for Experiment 3 in Table 1, at each of the four solution temperatures listed.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "NaCl (%)",
+        "Temperature (°C)",
+        "Coating",
+        "Mass lost (mg)"
+      ],
+      "cells": [
+        [
+          "0.0",
+          25,
+          "none",
+          9
+        ],
+        [
+          "0.5",
+          25,
+          "none",
+          21
+        ],
+        [
+          "1.0",
+          25,
+          "none",
+          30
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "6.0",
+          25,
+          "none",
+          35
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          25,
+          "oil film",
+          23
+        ],
+        [
+          "3.5",
+          25,
+          "zinc",
+          6
+        ],
+        [
+          "3.5",
+          25,
+          "epoxy",
+          1
+        ],
+        [
+          "3.5",
+          5,
+          "none",
+          18
+        ],
+        [
+          "3.5",
+          15,
+          "none",
+          26
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          35,
+          "none",
+          58
+        ]
+      ],
+      "caption": "Table 1. Mass lost by a steel coupon after 14 days in 500 mL of aerated NaCl solution."
+    },
+    "prompt": "A student claimed that in Experiment 1 the mass lost by the coupon increased with every increase in NaCl concentration. Table 1 is inconsistent with this claim because the mass lost at one concentration was LESS than the mass lost at the next lower concentration tested. Which pair of concentrations shows this?",
+    "choices": [
+      "6.0% and 3.5%",
+      "3.5% and 1.0%",
+      "1.0% and 0.5%",
+      "0.5% and 0.0%"
+    ],
+    "correct_answer": "6.0% and 3.5%",
+    "explanation": "Mass loss rose from 9 mg to 21 mg to 30 mg to 42 mg across 0.0%, 0.5%, 1.0%, and 3.5% NaCl, but then fell to 35 mg at 6.0% NaCl. The 6.0% trial is therefore the only one that lost less than the trial at the next lower concentration.",
+    "domain": "Interpretation of Data",
+    "subskill": "find the point at which a trend in a data table reverses",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-V4-01-3",
+    "passage_id": "sc4-p1",
+    "passage_title": "Corrosion of Steel Coupons in Salt Solutions",
+    "passage": "When steel is immersed in a salt solution, iron at the surface dissolves and the coupon loses mass. Students investigated the conditions under which this mass loss occurs. In every trial they used a flat steel coupon of identical size and starting mass, immersed it in 500 mL of aerated NaCl solution for 14 days, then removed the coupon, cleaned off the loose corrosion product, dried it, and weighed it. The mass lost by the coupon, in milligrams, was recorded. Each trial used fresh solution, and every solution was open to the air.\n\nExperiment 1\nAn uncoated coupon was immersed at 25 °C in NaCl solutions of the five different concentrations listed in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 25 °C, using only the NaCl concentration listed for Experiment 2 in Table 1. Four coupons were tested: one uncoated, one covered with a thin oil film, one coated with zinc, and one coated with epoxy.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated with uncoated coupons at the NaCl concentration listed for Experiment 3 in Table 1, at each of the four solution temperatures listed.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "NaCl (%)",
+        "Temperature (°C)",
+        "Coating",
+        "Mass lost (mg)"
+      ],
+      "cells": [
+        [
+          "0.0",
+          25,
+          "none",
+          9
+        ],
+        [
+          "0.5",
+          25,
+          "none",
+          21
+        ],
+        [
+          "1.0",
+          25,
+          "none",
+          30
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "6.0",
+          25,
+          "none",
+          35
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          25,
+          "oil film",
+          23
+        ],
+        [
+          "3.5",
+          25,
+          "zinc",
+          6
+        ],
+        [
+          "3.5",
+          25,
+          "epoxy",
+          1
+        ],
+        [
+          "3.5",
+          5,
+          "none",
+          18
+        ],
+        [
+          "3.5",
+          15,
+          "none",
+          26
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          35,
+          "none",
+          58
+        ]
+      ],
+      "caption": "Table 1. Mass lost by a steel coupon after 14 days in 500 mL of aerated NaCl solution."
+    },
+    "prompt": "In Experiment 2, the mass lost by the zinc-coated coupon was closest to what percent of the mass lost by the uncoated coupon tested in that same experiment?",
+    "choices": [
+      "7%",
+      "14%",
+      "25%",
+      "50%"
+    ],
+    "correct_answer": "14%",
+    "explanation": "In Experiment 2 the zinc-coated coupon lost 6 mg and the uncoated coupon lost 42 mg. 6/42 is about 0.14, or 14%. A value of 7% would correspond to about 3 mg lost, 25% to about 11 mg, and 50% to 21 mg.",
+    "domain": "Interpretation of Data",
+    "subskill": "compute a ratio between two values read from a table",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-V4-01-4",
+    "passage_id": "sc4-p1",
+    "passage_title": "Corrosion of Steel Coupons in Salt Solutions",
+    "passage": "When steel is immersed in a salt solution, iron at the surface dissolves and the coupon loses mass. Students investigated the conditions under which this mass loss occurs. In every trial they used a flat steel coupon of identical size and starting mass, immersed it in 500 mL of aerated NaCl solution for 14 days, then removed the coupon, cleaned off the loose corrosion product, dried it, and weighed it. The mass lost by the coupon, in milligrams, was recorded. Each trial used fresh solution, and every solution was open to the air.\n\nExperiment 1\nAn uncoated coupon was immersed at 25 °C in NaCl solutions of the five different concentrations listed in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 25 °C, using only the NaCl concentration listed for Experiment 2 in Table 1. Four coupons were tested: one uncoated, one covered with a thin oil film, one coated with zinc, and one coated with epoxy.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated with uncoated coupons at the NaCl concentration listed for Experiment 3 in Table 1, at each of the four solution temperatures listed.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "NaCl (%)",
+        "Temperature (°C)",
+        "Coating",
+        "Mass lost (mg)"
+      ],
+      "cells": [
+        [
+          "0.0",
+          25,
+          "none",
+          9
+        ],
+        [
+          "0.5",
+          25,
+          "none",
+          21
+        ],
+        [
+          "1.0",
+          25,
+          "none",
+          30
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "6.0",
+          25,
+          "none",
+          35
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          25,
+          "oil film",
+          23
+        ],
+        [
+          "3.5",
+          25,
+          "zinc",
+          6
+        ],
+        [
+          "3.5",
+          25,
+          "epoxy",
+          1
+        ],
+        [
+          "3.5",
+          5,
+          "none",
+          18
+        ],
+        [
+          "3.5",
+          15,
+          "none",
+          26
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          35,
+          "none",
+          58
+        ]
+      ],
+      "caption": "Table 1. Mass lost by a steel coupon after 14 days in 500 mL of aerated NaCl solution."
+    },
+    "prompt": "Experiment 3 included one trial run under exactly the same NaCl concentration, temperature, and coating as a trial in Experiment 1. Based on Table 1, in each of those two trials the coupon lost:",
+    "choices": [
+      "18 mg",
+      "30 mg",
+      "42 mg",
+      "58 mg"
+    ],
+    "correct_answer": "42 mg",
+    "explanation": "Experiment 3 used 3.5% NaCl with uncoated coupons, so its 25 °C trial matches the 3.5% NaCl, 25 °C, uncoated trial of Experiment 1. Both of those trials are recorded as 42 mg. The values 18 mg and 58 mg are the 5 °C and 35 °C trials of Experiment 3, and 30 mg is the 1.0% NaCl trial of Experiment 1.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "check that results repeat across experiments run under matched conditions",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-V4-01-5",
+    "passage_id": "sc4-p1",
+    "passage_title": "Corrosion of Steel Coupons in Salt Solutions",
+    "passage": "When steel is immersed in a salt solution, iron at the surface dissolves and the coupon loses mass. Students investigated the conditions under which this mass loss occurs. In every trial they used a flat steel coupon of identical size and starting mass, immersed it in 500 mL of aerated NaCl solution for 14 days, then removed the coupon, cleaned off the loose corrosion product, dried it, and weighed it. The mass lost by the coupon, in milligrams, was recorded. Each trial used fresh solution, and every solution was open to the air.\n\nExperiment 1\nAn uncoated coupon was immersed at 25 °C in NaCl solutions of the five different concentrations listed in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 25 °C, using only the NaCl concentration listed for Experiment 2 in Table 1. Four coupons were tested: one uncoated, one covered with a thin oil film, one coated with zinc, and one coated with epoxy.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated with uncoated coupons at the NaCl concentration listed for Experiment 3 in Table 1, at each of the four solution temperatures listed.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "NaCl (%)",
+        "Temperature (°C)",
+        "Coating",
+        "Mass lost (mg)"
+      ],
+      "cells": [
+        [
+          "0.0",
+          25,
+          "none",
+          9
+        ],
+        [
+          "0.5",
+          25,
+          "none",
+          21
+        ],
+        [
+          "1.0",
+          25,
+          "none",
+          30
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "6.0",
+          25,
+          "none",
+          35
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          25,
+          "oil film",
+          23
+        ],
+        [
+          "3.5",
+          25,
+          "zinc",
+          6
+        ],
+        [
+          "3.5",
+          25,
+          "epoxy",
+          1
+        ],
+        [
+          "3.5",
+          5,
+          "none",
+          18
+        ],
+        [
+          "3.5",
+          15,
+          "none",
+          26
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          35,
+          "none",
+          58
+        ]
+      ],
+      "caption": "Table 1. Mass lost by a steel coupon after 14 days in 500 mL of aerated NaCl solution."
+    },
+    "prompt": "Based on Table 1, how many of the trials listed were run in a solution that contained no NaCl?",
+    "choices": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "correct_answer": "1",
+    "explanation": "Every trial of Experiments 2 and 3 is listed at 3.5% NaCl, and Experiment 1 lists 0.0%, 0.5%, 1.0%, 3.5%, and 6.0% NaCl. Exactly one of the 13 trials, the 0.0% trial of Experiment 1, was run with no NaCl in the solution.",
+    "domain": "Scientific Investigation",
+    "subskill": "identify the control trial among the conditions tested",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-V4-01-6",
+    "passage_id": "sc4-p1",
+    "passage_title": "Corrosion of Steel Coupons in Salt Solutions",
+    "passage": "When steel is immersed in a salt solution, iron at the surface dissolves and the coupon loses mass. Students investigated the conditions under which this mass loss occurs. In every trial they used a flat steel coupon of identical size and starting mass, immersed it in 500 mL of aerated NaCl solution for 14 days, then removed the coupon, cleaned off the loose corrosion product, dried it, and weighed it. The mass lost by the coupon, in milligrams, was recorded. Each trial used fresh solution, and every solution was open to the air.\n\nExperiment 1\nAn uncoated coupon was immersed at 25 °C in NaCl solutions of the five different concentrations listed in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 25 °C, using only the NaCl concentration listed for Experiment 2 in Table 1. Four coupons were tested: one uncoated, one covered with a thin oil film, one coated with zinc, and one coated with epoxy.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated with uncoated coupons at the NaCl concentration listed for Experiment 3 in Table 1, at each of the four solution temperatures listed.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "NaCl (%)",
+        "Temperature (°C)",
+        "Coating",
+        "Mass lost (mg)"
+      ],
+      "cells": [
+        [
+          "0.0",
+          25,
+          "none",
+          9
+        ],
+        [
+          "0.5",
+          25,
+          "none",
+          21
+        ],
+        [
+          "1.0",
+          25,
+          "none",
+          30
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "6.0",
+          25,
+          "none",
+          35
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          25,
+          "oil film",
+          23
+        ],
+        [
+          "3.5",
+          25,
+          "zinc",
+          6
+        ],
+        [
+          "3.5",
+          25,
+          "epoxy",
+          1
+        ],
+        [
+          "3.5",
+          5,
+          "none",
+          18
+        ],
+        [
+          "3.5",
+          15,
+          "none",
+          26
+        ],
+        [
+          "3.5",
+          25,
+          "none",
+          42
+        ],
+        [
+          "3.5",
+          35,
+          "none",
+          58
+        ]
+      ],
+      "caption": "Table 1. Mass lost by a steel coupon after 14 days in 500 mL of aerated NaCl solution."
+    },
+    "prompt": "A student stated that in Experiment 2 every coating tested reduced the mass lost by the coupon to less than half the mass lost by the uncoated coupon. Based on Table 1, is the student's statement supported?",
+    "choices": [
+      "Supported, because each coated coupon lost less than 42 mg",
+      "Supported, because each coated coupon lost less than 21 mg",
+      "Not supported, because the zinc-coated coupon lost more than 21 mg",
+      "Not supported, because the oil-film coupon lost more than 21 mg"
+    ],
+    "correct_answer": "Not supported, because the oil-film coupon lost more than 21 mg",
+    "explanation": "The uncoated coupon in Experiment 2 lost 42 mg, so half of that is 21 mg. The zinc-coated coupon lost 6 mg and the epoxy-coated coupon lost 1 mg, both under 21 mg, but the oil-film coupon lost 23 mg, which is more than half of 42 mg. Losing less than 42 mg is not the same as losing less than half of 42 mg.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "test a general claim against every trial it covers",
+    "difficulty": "hard"
+  }
+]
