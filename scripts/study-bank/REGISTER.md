@@ -909,3 +909,45 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **That caveat is now in the checker's header, because it decides whether a hit is repairable.** A run that follows from the error paths is not the same defect as one that follows from the chosen numbers — the structural-versus-numerical distinction the geometry repair had to make. **Do not read the 529 as 529 broken items**, and do not start a repair programme on them without asking that question per item.
 
+
+- **2026-09-11** — **THE BLIND-RENDER GUARD REFUSED TWO SOUND ITEMS, AND THE TOOL HAD BEEN WRITING RENDERS UNDER THE WRONG NAME ALL ALONG.** Three defects in `make-grade-render.mjs`, all mine, all found by pointing it at four batches at once rather than one.
+
+      AM4F-24   choices ["8","-2","2","24"]   refused on the field `id`
+      IM11-08   choices ["1.5","0","2","1"]   refused on the field `prompt`
+
+  Neither is a leak. The string `"AM4F-24"` *contains* `-2`, `2` and `24` as substrings, so an item's own label "named" three of its four options. `IM11-08` is a median question whose stem reads *"5 players scored 0 goals, 2 scored 1 goal, 3 scored 2 goals"* — listing its data is what that item type DOES, and it says nothing about which option is right.
+
+  Both are one mistake: treating *"this text contains the option string"* as *"this text identifies the option as wrong."* The leak the guard was built for (`distractor_steps`) enumerates the WRONG options and makes the key the set complement. That is a property of **metadata, never of the stimulus** — and this is the with-source render, where the stimulus is shown on purpose. The guard now skips `prompt`/`passage`/`graphic` and strips the item's own id from every field before scanning. The exemption is an allow-list on the stimulus side only, so an unrecognised new field is still scanned: the direction that has to stay safe is unchanged.
+
+  **The third defect was silent and older.** `const tag = args[args.indexOf('--out') + 1] ?? basename` — when `--out` is absent `indexOf` returns `-1`, so this read `args[0]`, the input **path**, as the tag. Every render made without `--out` was written to `scripts/study-bank/scripts/study-bank/<path>.grade.json`. It happened to crash here on the missing directory; had that directory existed it would have written a correct render under a name nobody would ever look for, and the grade would have been taken on a stale file. A sentinel index used as an array index is the whole bug.
+
+  All three are in the self-test as regressions, with the two real items copied in verbatim rather than stylised, plus the marginal case that matters: **the same text moved into a metadata field must still refuse.** Without it, exempting the stimulus by skipping `prompt` wholesale would have passed silently. Each fix was reverted separately and fails exactly one assertion — a suite that only goes red when all three are gone would not have told me which mechanism mattered.
+
+  One more, found by the self-test and invisible to the render path: `const STIMULUS` declared next to `optionLeak` sat in the temporal dead zone for `--selftest`, which runs earlier in the file. `ReferenceError` on the test path, fine on the real path, because by then the module is fully evaluated. Moved to the top with its siblings.
+
+- **2026-09-11** — **THE OPTIONS-ONLY ATTACK ON FOUR MATHS BATCHES: ONE CLEAN, THREE LEAKING, AND THE SOLVERS' OWN THEORY WAS WRONG.** Twelve solvers, three per batch, values only — no stems.
+
+        batch              n    mean    chance   margin   p        unanimous (exp.)
+        act-math-v4-fn    28   27.4%    25.0%     +2.4    0.35      1  (0.57)
+        sat-adv-h3        24   33.3%    25.0%     +8.3    0.070     4  (0.89)  p=0.011
+        isee-math-s11     30   36.7%    25.0%    +11.7    0.0093    8  (1.48)  p=7.7e-5
+        ssat-math-s10     15   33.3%    20.0%    +13.3    0.025     2  (0.56)
+
+  SSAT renders five-wide against a 20.0% line, which is the fix made earlier the same day working as intended.
+
+  **`sat-adv-h3` is the case for reporting both statistics.** Its mean is not significant (p=0.070) while its unanimity is (p=0.011): the leak is concentrated in four items, not spread across twenty-four. A mean-only gate passes that batch with four fully-exposed items in it.
+
+  **The solvers' dominant bet was backwards.** Nine of the twelve led with *"the derivational hub is the key"* — the SAT-Math defect, applied as a general law. The exact hub checker says key-is-hub runs **12.5% / 14.3% / 0.0% / 15.0%** against 25/25/20/25 controls: at or BELOW chance on all four. Their confident subsets scored no better than their guesses (1/3, 5/12, 3/8, 3/7). The margins are real and came from elsewhere. Two consequences: a defect measured on one cohort is not a law of the bank, and *hub-is-NOT-key* at 0-15% is itself a channel pointed the other way — worth measuring on the live population, not on n=4.
+
+  **Dropping the items solvers got is selection on the outcome**, and the residual is pulled below chance by construction (every `>=2` residual lands at 8-15%). It cannot show the remainder is clean and is not quoted as if it could. The drop rests on a mechanism instead — one rule applied to all four: **drop an item if all three solvers got it, OR an exact checker puts the key inside the exploitable shape.**
+
+        act-math-v4-fn   28 -> 25   AM4F-04 AM4F-05 AM4F-25
+        isee-math-s11    30 -> 21   IM11-04 -06 -13 -16 -18 -23 -25 -26 -28
+        ssat-math-s10    15 -> 13   SM10-11 SM10-14
+        sat-adv-h3       24 -> 19   AH3-01 AH3-03 AH3-10 AH3-16 AH3-17
+
+  The two instruments agree item-for-item where both can see: `check-key-is-sum` names `SM10-11` and `SM10-14` and those are exactly the two SSAT items all three solvers got. `check-run-middle` names `IM11-16` and `IM11-18`; both unanimous. `check-option-pair-constant` names `IM11-06` (11.1+88.9) and `AH3-17` (48.8+51.2); both unanimous. On the kept files all three channels sit at or below control.
+
+  **`AH3-10` was dropped on solver testimony alone** — no exact checker covers it. Two of three independently said its four exponential forms include two that are absurd as growth models on sight (`8000(1.06/12)^m` has base 0.088 and decays; `8000(1.06)^(12m)` doubles monthly), a 4-to-2 narrowing with no stem. It is a **repair candidate, not a dead item**: replace the two nonsense bases with plausible competitors and it comes back.
+
+  `check-key-is-sum` had dissolved against the live bank (+0.8) and still found the real thing here. A channel that is null over the population can be dense in one batch — the population result says *do not launch a repair programme*, not *do not look*.

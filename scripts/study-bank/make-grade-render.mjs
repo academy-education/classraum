@@ -66,6 +66,12 @@ import { createHash } from 'node:crypto'
 const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill|distractor|^domain$/i
 /** Fields that match SENSITIVE but are structural and safe to keep. */
 const KEEP_ANYWAY = new Set(['passage_group_id', 'topic_id', 'set_id'])
+/** Fields the with-source grader is MEANT to read. optionLeak skips these;
+ *  see its comment. Declared here, not next to optionLeak, because --selftest
+ *  runs before that point in the file and a `const` in the temporal dead zone
+ *  threw ReferenceError — a crash the render path would never have shown,
+ *  since by then the module is fully evaluated. */
+const STIMULUS = new Set(['choices', 'prompt', 'passage', 'graphic'])
 
 /*
  * OPTIONS ARE RE-DEALT — added 2026-09-11, same two reports.
@@ -197,9 +203,37 @@ function selftest() {
     optionLeak({ notes: 'wrong: 324, 81, -18' }, choices4) !== null)
   ok('a kept field naming EVERY option is detected',
     optionLeak({ notes: '324 81 18 -18' }, choices4) !== null)
-  ok('a kept field naming ONE option is NOT flagged (a passage may repeat a word)',
-    optionLeak({ passage: 'the value 324 appeared once' }, choices4) === null)
+  ok('a kept field naming ONE option is NOT flagged (prose may repeat a value)',
+    optionLeak({ notes: 'the value 324 appeared once' }, choices4) === null)
   ok('the choices array itself is exempt', optionLeak({ choices: choices4 }, choices4) === null)
+  /* The two REAL items that this guard refused on 2026-09-11. Both are sound;
+   * the guard was wrong. Fixtures copied from the batches verbatim so the
+   * regression is the actual case, not a stylised version of it. */
+  ok('AM4F-24: an id whose digits are substrings of 3 of 4 options is not a leak',
+    optionLeak({ id: 'AM4F-24', prompt: 'f(x) = |3x - 9|' }, ['8', '-2', '2', '24'], 'AM4F-24') === null)
+  ok('IM11-08: a median stem listing its own data values is not a leak',
+    optionLeak({ id: 'IM11-08', prompt: '5 players scored 0 goals, 2 scored 1 goal, 3 scored 2 goals' },
+      ['1.5', '0', '2', '1'], 'IM11-08') === null)
+  /* ...and the exemptions must not have blunted the guard. Same two shapes,
+   * moved into a METADATA field, must still refuse. This is the marginal
+   * case: if `prompt` were exempted by being skipped wholesale rather than
+   * by being the stimulus, these would pass silently. */
+  ok('the same text in a NON-stimulus field still refuses',
+    optionLeak({ id: 'IM11-08', distractor_steps: 'wrong: 0, 2, 1' },
+      ['1.5', '0', '2', '1'], 'IM11-08') !== null)
+  ok('stripping the id does not stop a real leak that repeats the id',
+    optionLeak({ id: 'AM4F-24', steps: 'AM4F-24 wrong paths give 8, -2, 24' },
+      ['8', '-2', '2', '24'], 'AM4F-24') !== null)
+  /* The --out default. `args.indexOf('--out') + 1` is 0 when --out is absent,
+   * so the old code read args[0] — the input path — as the tag. */
+  const tagOf = (args2, path2) => { const i = args2.indexOf('--out')
+    return (i >= 0 ? args2[i + 1] : undefined) ?? path2.replace(/\.batch\.json$/, '').replace(/^.*\//, '') }
+  ok('tag defaults to the basename when --out is absent',
+    tagOf(['scripts/study-bank/ssat-math-s10.kept.batch.json'],
+      'scripts/study-bank/ssat-math-s10.kept.batch.json') === 'ssat-math-s10.kept',
+    tagOf(['scripts/study-bank/ssat-math-s10.kept.batch.json'], 'scripts/study-bank/ssat-math-s10.kept.batch.json'))
+  ok('tag honours --out when present',
+    tagOf(['x.batch.json', '--out', 'chosen'], 'x.batch.json') === 'chosen')
   console.log(bad ? `\nSELF-TEST FAILED (${bad})` : '\nself-test passed.')
   process.exit(bad ? 1 : 0)
 }
@@ -213,7 +247,18 @@ const batch = JSON.parse(readFileSync(path, 'utf8'))
 if (!Array.isArray(batch) || !batch.length) {
   console.error(`REFUSING: ${path} holds no items. A render over zero items is not a render.`); process.exit(2)
 }
-const tag = args[args.indexOf('--out') + 1] ?? path.replace(/\.batch\.json$/, '').replace(/^.*\//, '')
+/*
+ * `args[args.indexOf('--out') + 1]` — when --out is ABSENT indexOf returns -1
+ * and this read args[0], which is the input PATH, not a tag. The render was
+ * then written to `scripts/study-bank/scripts/study-bank/<path>.grade.json`,
+ * i.e. it crashed on a missing directory, or (had the directory existed)
+ * would have written a correct render under a name nobody would look for.
+ * Default the tag explicitly instead of relying on a sentinel index.
+ */
+const outIdx = args.indexOf('--out')
+const tag = (outIdx >= 0 ? args[outIdx + 1] : undefined)
+  ?? path.replace(/\.batch\.json$/, '').replace(/^.*\//, '')
+if (!tag) { console.error('--out given with no value'); process.exit(2) }
 const sha = createHash('sha256').update(readFileSync(path)).digest('hex')
 
 const shownAll = [], keyAll = {}
@@ -227,7 +272,7 @@ for (const raw of batch) {
   for (const k of Object.keys(shown)) if (!KNOWN.has(k)) keptUnknown.add(k)
   if (Array.isArray(shown.choices) && raw.correct_answer != null && shown.choices.includes(raw.correct_answer))
     shown.choices = dealWithKey(shown.choices, raw.correct_answer, raw.id, slotMap.get(String(raw.id)))
-  const leak = optionLeak(shown, raw.choices)
+  const leak = optionLeak(shown, raw.choices, raw.id)
   if (leak) {
     console.error(`REFUSING to write a render that is not blind.`)
     console.error(`  item ${raw.id}: kept field '${leak.field}' names ${leak.named} of this item's ${leak.of} options.`)
@@ -269,16 +314,45 @@ for (let i = 0; i + 1 < dealtSlots.length; i += 2) { pairTot++; if (dealtSlots[i
  * written. A deny-list of names cannot anticipate the next author's field
  * name; a content check does not have to.
  */
-function optionLeak(shown, choices) {
+/*
+ * THE STIMULUS IS NOT A LEAK, AND AN ID IS NOT EVIDENCE — both fixed
+ * 2026-09-11, after this guard refused two sound items.
+ *
+ *   AM4F-24  choices ["8","-2","2","24"], flagged on the field `id`.
+ *            The literal string "AM4F-24" CONTAINS "-2", "2" and "24" as
+ *            substrings. Three of four options "named" by an item label that
+ *            carries no information about any of them.
+ *   IM11-08  choices ["1.5","0","2","1"], flagged on `prompt`. The stem is
+ *            "5 players scored 0 goals, 2 scored 1, 3 scored 2 ..." — a
+ *            median question listing its own data. Naming a value is what
+ *            that item type DOES, and it says nothing about which option
+ *            is correct.
+ *
+ * Both are the same mistake: treating "this text contains the option string"
+ * as "this text identifies the option as wrong". The leak this guard was
+ * built for (`distractor_steps`) is a field that enumerates the WRONG
+ * options, making the key the set complement. That is a property of
+ * METADATA, never of the stimulus — and this is the WITH-SOURCE render, so
+ * the stimulus is shown on purpose.
+ *
+ * So: scan every field EXCEPT the stimulus, and strip the item's own id from
+ * the text first. The exemption is an allow-list on the stimulus side only —
+ * an unrecognised new field is still scanned, which is the direction that
+ * has to stay safe.
+ */
+
+function optionLeak(shown, choices, id) {
   if (!Array.isArray(choices) || !choices.length) return null
   for (const [k, v] of Object.entries(shown)) {
-    if (k === 'choices') continue
-    const text = typeof v === 'string' ? v : JSON.stringify(v ?? '')
+    if (STIMULUS.has(k)) continue
+    let text = typeof v === 'string' ? v : JSON.stringify(v ?? '')
     if (!text) continue
+    // An item's own identifier is a label, not a claim about its options.
+    if (id != null) text = text.split(String(id)).join(' ')
+    if (!text.trim()) continue
     const named = choices.filter(c => String(c).length >= 1 && text.includes(String(c)))
-    /* Naming ONE option can be innocent (a passage repeating a word). Naming
-     * all but one is the set-complement leak, and naming every one hands over
-     * the whole ballot. Either is fatal. */
+    /* Naming ONE option can be innocent. Naming all but one is the
+     * set-complement leak, and naming every one hands over the whole ballot. */
     if (named.length >= choices.length - 1) return { field: k, named: named.length, of: choices.length }
   }
   return null
