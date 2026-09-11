@@ -766,3 +766,23 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **The rule this yields, and it belongs in any future repair brief:** before deleting an option that forms a relation with the key, check whether the stem contains a clause whose only job is to rule that option out. If it does, the option is load-bearing and the relation has to be broken some other way — by renumbering if it is numerical, or by re-designing the item if it is structural. This is rewrite-inverts-the-tell in a form the previous instances did not have: the repair did not create a new tell, it destroyed the item's own discrimination.
 
+- **2026-09-11** — **A NEW CHECKER CLASS: THE RELATION IS TO AN EXTERNAL CONSTANT, NOT TO A FOURTH OPTION. EVERY EXISTING CHECK MISSES IT BY CONSTRUCTION.** `GEOH2-18` offered `{58, 98, 22, 82}` and asked for "the acute angle" a transversal makes with two parallel lines. Same-side interior angles are supplementary **by construction**, so the two true measures sum to 180 at every numbering; exactly one pair in the set does; and the stem's own word then picks 82 from that pair. The algebra is never read.
+
+  **A blind grader explained why two regraders and every relation checker cleared it: nothing sums to a fourth option.** `check-math-hub`, the `{a, b, a+b}` sweep and `check-stem-echo` all look for a relation AMONG the options or BETWEEN an option and a number the stem prints. This relation is to a constant the GEOMETRY supplies and the stem never mentions. An `a + b = c` sweep clears such an item honestly. It is unfixable by shuffling and by renumbering — any option set holding both true angle values carries it — so the only repair is dropping one of the pair.
+
+  `check-option-pair-constant.mjs` covers it: 90, 180, 360 (degrees), 1 (probabilities and proportions), 100 (percentages). The list is deliberately short, because every constant added makes a coincidental hit likelier and the value of this check is that a hit is rare enough to read.
+
+  **The first version of it over-claimed, and the fix is the lesson.** It printed "the key pairs to a constant on 9.4% of live items", which means almost nothing: in an angle item the supplement IS the natural distractor — the endpoint of "forgot to subtract from 180" — so the pair existing is usually GOOD design. What made GEOH2-18 exploitable was narrower: the pair was **unique** in the set, so scanning for it yields two candidates with certainty. The statistic that decides is therefore *among items with exactly one such pair, how often is the key in it*, against a 50% control (a uniformly random key sits in a given 2-of-4 pair half the time):
+
+        items with exactly one such pair     173 of 1,664 scorable (10.4%)
+        ...and the key is in that pair       125 = 72.3%   control 50.0%
+        P(>= 125 | p = 0.5)                  2.1e-9
+
+  A solver who finds the unique pair and guesses between its two members scores **36.1% against 25.0%** on those items, +11.1 points; bank-wide about +1.2. Small in aggregate, large on the items it touches, and those items are findable by name. The self-test fires on the motivating case, refuses a pair of two DISTRACTORS summing to 180 (which tells a solver nothing), refuses a near miss at 179, and includes a break-test showing the key-membership rule is what suppresses the distractor case rather than an accident.
+
+- **2026-09-11** — **DIFFICULTY IS RELIABLY MEASURABLE ON GEOMETRY AND NOT ON SEC — THE UNRELIABILITY IS DOMAIN-SPECIFIC.** Three BLIND graders on `sat-geo-h2` (key, difficulty and explanation withheld) returned hard counts of **5 / 5 / 5**, with **three items called hard by all three** (GEOH2-04, -13, -19) and keys agreed 24 of 24. The same protocol on `sat-sec-h8` gave **4 / 7 / 1** with **zero** unanimous.
+
+  That sharpens the earlier entry. It is not that difficulty grading is unreliable in general; it is unreliable on SEC in particular, which is exactly where the capacity constraint lives and exactly where four briefs have been commissioned against a hard count. Geometry hard labels can be trusted at three-grader median. SEC hard labels cannot, and the live 27 that caps the SAT hard route at 3 forms should be read accordingly.
+
+  The blind grades also dropped 4 of 24 geometry items, all on **majority-weak distractors** and none on exclusivity — GEOH2-03, -10, -17, -21, which are precisely the items the de-relationing repair had stripped of their trap distractor.
+
