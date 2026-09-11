@@ -698,3 +698,28 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   Worth recording from the author, because it is a real trade and not a mistake: they **removed the batch's hardest item** because it was answerable with the source covered. The with-passage grader had called it "the best item in the batch". That is the standard working correctly.
 
+- **2026-09-11** — **NOT ONE `sat-sec-h8` ITEM WAS CALLED HARD BY ALL THREE GRADERS, AND THAT MEANS THE "SEC HARD COUNT" IS PARTLY A MEASUREMENT ARTEFACT.** Three graders, verified to have graded the same option sets (see below), keys agreed **24 of 24**, zero unreachable keys. Then:
+
+        per-grader hard counts        4 / 7 / 1
+        grader a called hard          06 12 15 16
+        grader b called hard          01 09 10 11 12 15 19
+        grader c called hard          08
+        called hard by ALL THREE      NONE
+        called hard by at least two   12, 15
+        difficulty medians            2 hard / 21 medium / 1 easy
+        all three agree on difficulty 12 of 24; three-way split on 1
+
+  **The headline number for this batch depends entirely on which grader you ask** — 1, 4, or 7 — and the author's own report said "5 hard" from a single with-passage grader. By median it is 2. By unanimity it is **zero**.
+
+  **This reframes four sessions of SEC work.** The standing conclusion has been that Claude cannot author hard SEC — 1 of 24 on v8, 12 of 68 across two earlier batches, now 2 of 24 by median. That may be true. But the measurement underneath it has never been checked for reliability, and it is poor: three competent graders reading the same 24 items produce hard sets that barely intersect. Some of the "SEC hard is unattainable" signal is grader variance.
+
+  **And it propagates into a capacity number that drives commissioning.** `form-capacity.mjs` caps the SAT module-2 hard route at 3 forms by dividing the live bank's **27** hard SEC items by the ~7 a form needs. Those 27 come from four cohorts (`rw-v6-sec-hard` 5, `rw-v7-sec-hard` 8, `rw-v8-sec-hard` 7, `v2` 7), all 27 carrying a graded difficulty in `verify_meta`. If a single grader's label was enough to make an item "hard" — and today shows one grader's hard set can be seven items where another's is one — then 27 is a soft number and the 3-form cap inherits that softness.
+
+  **What to do about it, in order:** this does not license inserting the batch as hard. It licenses (a) grading difficulty with three graders and a median, never one, which is now what the protocol does anyway; (b) treating the 27 as an upper bound rather than a count; and (c) not commissioning a fifth SEC brief on the strength of a capacity number built from single labels. The standing "stop commissioning SEC hard batches" decision is unaffected and still correct.
+
+  **Disposition of the batch: 17 of 24 survive** (7 dropped — SEC-H8-03, -04, -20, -21 on non-exclusivity votes, and -05, -16, -17 on majority-weak distractors). They are sound items that are mostly medium. They do not move the hard route. A grader also found that **one rule — "close the supplement with the mark that opened it" — solves five of them** (01, 10, 14, 20, 24), which is the rigid-brief corollary landing again and is reachable, so the triad should be broken before any insert.
+
+- **2026-09-11** — **CORRECTION: I CALLED THE `sat-sec-h8` GRADES STALE AND THEY ARE NOT.** The file existed in several versions during the run and all three graders independently caught it changing under them — one via a key-length script disagreeing with a dump read minutes earlier, one via a `pick` validation failing — froze snapshots, and all three converged on `8944d44f`. I recorded that their grades therefore described bytes that no longer existed.
+
+  Grader c said the drift from `8944d44f` to the author's final `e1924679` was benign. I verified that rather than taking it, by diffing the grader's own frozen snapshot against the final: **0 keys changed, 0 option sets changed, 0 prompts changed; 3 passages reworded (SEC-H8-07, -12, -19), 21 of 24 items wholly unchanged.** Since a grade is a judgement about picks, exclusivity and options, and none of those moved, **the grades transfer.** The correction is recorded because I had written the opposite into the register an hour earlier.
+
