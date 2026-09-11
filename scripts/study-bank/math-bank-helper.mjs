@@ -235,7 +235,25 @@ function shapeOk(raw) {
   return raw.prompt && (n === 4 || n === 5)
     && raw.choices.includes(raw.correct_answer)
     && new Set(raw.choices.map(c => String(c).trim())).size === n
+    // ...AND numerically distinct, not merely textually. `24` and `24.0`
+    // are different STRINGS, so the string check above passed them and the
+    // whole shipped gate went green on an item with TWO correct answers:
+    // 24/24 sandbox, 72/72 distractors, hub 0.0. Found 2026-09-12 by an
+    // author whose exhaustive break-test promoted a rigged `24.0` and saw it
+    // survive; nothing in `verify` could see it, because `answersMatch`
+    // short-circuits numeric pairs through `asNumber` and therefore treats
+    // the distractor as the key. Same family as the normAnswer relation
+    // collisions fixed the same morning, reached from the other side.
+    && numericallyDistinct(raw.choices)
     && typeof raw.solve === 'string'
+}
+
+/** Distinct as VALUES where every option is numeric; textual sets pass
+ *  through, since `2x` and `2x ` are a different problem handled above. */
+function numericallyDistinct(choices) {
+  const nums = choices.map(c => asNumber(c))
+  if (nums.some(v => v === null)) return true
+  return new Set(nums).size === nums.length
 }
 
 /*

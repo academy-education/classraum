@@ -1,0 +1,506 @@
+[
+  {
+    "id": "ALG6-01",
+    "domain": "Algebra",
+    "subskill": "extending a linear function from two of its output values",
+    "difficulty": "easy",
+    "prompt": "The function f is linear. It is known that f(2) = 13 and f(5) = 22. What is the value of f(9)?",
+    "choices": [
+      "27",
+      "31",
+      "37",
+      "34"
+    ],
+    "correct_answer": "34",
+    "explanation": "The rate of change is (22 - 13)/(5 - 2) = 3 per unit of x, so f(9) = f(2) + 3(9 - 2) = 13 + 21 = 34. The value \"27\" comes from using f(x) = 3x, keeping the rate but discarding the starting value that makes f(2) = 13. The value \"31\" comes from adding the output difference 22 - 13 = 9 once more to f(5), as though one more listed step were being taken rather than four units of x. The value \"37\" counts the x-values from 5 to 9 inclusively as five steps of 3 instead of four.",
+    "solve": "var m=(22-13)/(5-2);\nreturn 13+m*(9-2);",
+    "distractor_solve": {
+      "27": "var m=(22-13)/(5-2);\nreturn m*9;",
+      "31": "return 22+(22-13);",
+      "37": "var m=(22-13)/(5-2);\nreturn 22+m*(9-5+1);"
+    }
+  },
+  {
+    "id": "ALG6-02",
+    "domain": "Algebra",
+    "subskill": "a call-out fee plus an hourly rate, solving for the number of hours",
+    "difficulty": "easy",
+    "prompt": "A repair company charges a one-time call-out fee of $20 plus $40 for each hour of work. A job was billed at $220. For how many hours was the job worked?",
+    "choices": [
+      "5",
+      "5.5",
+      "6.5",
+      "6"
+    ],
+    "correct_answer": "5",
+    "explanation": "The hourly charges come to 220 - 20 = 200 dollars, and 200/40 = 5 hours. The value \"5.5\" divides the whole bill by 40, never removing the call-out fee. The value \"6\" adds the fee to the bill instead of subtracting it before dividing. The value \"6.5\" divides the whole bill by 40 and then counts the call-out fee as one extra hour of work.",
+    "solve": "return (220-20)/40;",
+    "distractor_solve": {
+      "6": "return (220+20)/40;",
+      "5.5": "return 220/40;",
+      "6.5": "return 220/40+1;"
+    }
+  },
+  {
+    "id": "ALG6-03",
+    "domain": "Algebra",
+    "subskill": "the y-intercept of a line through two given points",
+    "difficulty": "easy",
+    "prompt": "A line in the xy-plane passes through the points (2, 17) and (6, 29). What is the y-coordinate of the point where this line crosses the y-axis?",
+    "choices": [
+      "23",
+      "11",
+      "5",
+      "14"
+    ],
+    "correct_answer": "11",
+    "explanation": "The slope is (29 - 17)/(6 - 2) = 3, and backing up from (2, 17) to x = 0 lowers y by 3(2) = 6, so the crossing is at 11. The value \"14\" backs up by a single step of the slope rather than by the two units from x = 2 to x = 0. The value \"5\" backs up by the run between the two points, 4 units, instead of by the x-coordinate 2. The value \"23\" pairs the second point's y-value, 29, with the first point's x-coordinate, 2.",
+    "solve": "var m=(29-17)/(6-2);\nreturn 17-m*2;",
+    "distractor_solve": {
+      "5": "var m=(29-17)/(6-2);\nreturn 17-m*(6-2);",
+      "14": "var m=(29-17)/(6-2);\nreturn 17-m;",
+      "23": "var m=(29-17)/(6-2);\nreturn 29-m*2;"
+    }
+  },
+  {
+    "id": "ALG6-04",
+    "domain": "Algebra",
+    "subskill": "substitution in a system in which one equation is already solved for a variable",
+    "difficulty": "medium",
+    "prompt": "In the system of equations y = 3x - 5 and 2x + y = 20, what is the value of x + y?",
+    "choices": [
+      "15",
+      "5",
+      "10",
+      "11"
+    ],
+    "correct_answer": "15",
+    "explanation": "Substituting gives 2x + (3x - 5) = 20, so 5x = 25, x = 5, y = 3(5) - 5 = 10, and x + y = 15. The value \"5\" stops at x and reports it as the answer. The value \"10\" stops at y. The value \"11\" drops the -5 while substituting, solving 5x = 20 to get x = 4 and y = 7.",
+    "solve": "var x=(20+5)/5;\nvar y=3*x-5;\nreturn x+y;",
+    "distractor_solve": {
+      "5": "return (20+5)/5;",
+      "10": "var x=(20+5)/5;\nreturn 3*x-5;",
+      "11": "var x=20/5;\nreturn x+(3*x-5);"
+    }
+  },
+  {
+    "id": "ALG6-05",
+    "domain": "Algebra",
+    "subskill": "a weighted average, solving for the mean of the second group",
+    "difficulty": "medium",
+    "prompt": "A class of 20 students took a test. The 12 students in the morning section averaged 90 points, and the other 8 students averaged m points. The average for all 20 students was 84 points. What is the value of m?",
+    "choices": [
+      "80",
+      "84",
+      "78",
+      "75"
+    ],
+    "correct_answer": "75",
+    "explanation": "All 20 students scored 20(84) = 1680 points in total and the morning section scored 12(90) = 1080, so the other 8 scored 600 points and m = 600/8 = 75. The value \"78\" treats the two groups as the same size, balancing 90 against the class average with 84 - (90 - 84). The value \"80\" swaps the two group sizes, dividing 1680 - 8(90) by 12. The value \"84\" uses the class average in place of 90 for the morning section, which makes the second group's average equal to the class average.",
+    "solve": "return (20*84-12*90)/8;",
+    "distractor_solve": {
+      "78": "return 2*84-90;",
+      "80": "return (20*84-8*90)/12;",
+      "84": "return (20*84-12*84)/8;"
+    }
+  },
+  {
+    "id": "ALG6-06",
+    "domain": "Algebra",
+    "subskill": "two linear positions that become equal, reported as a distance rather than a time",
+    "difficulty": "medium",
+    "prompt": "Two runners move at constant speeds along a straight track in the same direction. At the moment a timer starts, the first runner is 300 meters ahead of the second. The first runner moves at 4 meters per second and the second at 6 meters per second. How many meters will the second runner have covered at the moment the two are side by side?",
+    "choices": [
+      "1200",
+      "900",
+      "600",
+      "750"
+    ],
+    "correct_answer": "900",
+    "explanation": "The gap closes at 6 - 4 = 2 meters per second, so it takes 300/2 = 150 seconds, and the second runner covers 6(150) = 900 meters. The value \"600\" is the distance the first runner covers in those 150 seconds, not the second. The value \"750\" uses the average of the two speeds, 5 meters per second, as though a single runner covered the distance. The value \"1200\" adds the 300-meter head start on top of the second runner's distance, double-counting a gap that has already been closed.",
+    "solve": "var t=300/(6-4);\nreturn 6*t;",
+    "distractor_solve": {
+      "600": "var t=300/(6-4);\nreturn 4*t;",
+      "750": "var t=300/(6-4);\nreturn ((4+6)/2)*t;",
+      "1200": "var t=300/(6-4);\nreturn 6*t+300;"
+    }
+  },
+  {
+    "id": "ALG6-07",
+    "domain": "Algebra",
+    "subskill": "the constant rate of change of a draining tank from two readings",
+    "difficulty": "easy",
+    "prompt": "Water drains from a tank at a constant rate. Four minutes after draining begins the tank holds 100 liters, and twelve minutes after draining begins it holds 28 liters. How many liters drain from the tank each minute?",
+    "choices": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "The tank loses 100 - 28 = 72 liters over 12 - 4 = 8 minutes, so the rate is 72/8 = 9 liters per minute. The value \"8\" counts the minutes from 4 through 12 inclusively as 9 minutes rather than as an elapsed 8. The value \"6\" divides the 72-liter loss by 12, the later clock reading, instead of by the elapsed time. The value \"7\" divides the later volume, 28 liters, by the earlier time, 4 minutes, pairing readings that do not go together.",
+    "solve": "return (100-28)/(12-4);",
+    "distractor_solve": {
+      "6": "return (100-28)/12;",
+      "7": "return 28/4;",
+      "8": "return (100-28)/(12-4+1);"
+    }
+  },
+  {
+    "id": "ALG6-08",
+    "domain": "Algebra",
+    "subskill": "an arithmetic sequence treated as a linear function of the term number",
+    "difficulty": "medium",
+    "prompt": "In an arithmetic sequence, the 4th term is 19 and the 9th term is 44. What is the 12th term?",
+    "choices": [
+      "54",
+      "59",
+      "69",
+      "49"
+    ],
+    "correct_answer": "59",
+    "explanation": "The common difference is (44 - 19)/(9 - 4) = 5, so the first term is 19 - 3(5) = 4 and the 12th term is 4 + 11(5) = 59. The value \"54\" takes only 10 steps from the first term, an off-by-one in the number of gaps between term 1 and term 12. The value \"49\" uses the 9 from \"9th term\" as the number of steps. The value \"69\" adds the whole 25-point rise from term 4 to term 9 again, treating the three-term jump to term 12 as if it were the same five-term jump.",
+    "solve": "var d=(44-19)/(9-4);\nvar a1=19-3*d;\nreturn a1+11*d;",
+    "distractor_solve": {
+      "49": "var d=(44-19)/(9-4);\nvar a1=19-3*d;\nreturn a1+9*d;",
+      "54": "var d=(44-19)/(9-4);\nvar a1=19-3*d;\nreturn a1+10*d;",
+      "69": "return 44+(44-19);"
+    }
+  },
+  {
+    "id": "ALG6-09",
+    "domain": "Algebra",
+    "subskill": "an added pure substance that changes both the part and the whole in a concentration model",
+    "difficulty": "hard",
+    "prompt": "A container holds 40 liters of a solution that is 25% acid by volume. How many liters of pure acid must be added so that the resulting solution is 40% acid by volume?",
+    "choices": [
+      "10",
+      "8",
+      "4",
+      "6"
+    ],
+    "correct_answer": "10",
+    "explanation": "The container starts with 0.25(40) = 10 liters of acid. Adding x liters of pure acid gives 10 + x liters of acid in 40 + x liters of solution, and 10 + x = 0.40(40 + x) gives 0.6x = 6, so x = 10. The value \"6\" is the gap between 0.40(40) = 16 and 10, computed as though the total volume stayed at 40 liters when acid is poured in. The value \"8\" comes from applying the old 25% to the added liters and the new 40% only to the original 40, solving 10 + x = 16 + 0.25x. The value \"4\" reads \"40% acid\" as \"40% more acid than before\", raising 10 liters to 14.",
+    "solve": "return (0.4*40-0.25*40)/(1-0.4);",
+    "distractor_solve": {
+      "4": "return 0.25*40*1.4-0.25*40;",
+      "6": "return 0.4*40-0.25*40;",
+      "8": "return (0.4*40-0.25*40)/(1-0.25);"
+    }
+  },
+  {
+    "id": "ALG6-10",
+    "domain": "Algebra",
+    "subskill": "a percent discount applied before a flat shipping charge, solving for the original price",
+    "difficulty": "hard",
+    "prompt": "An online store takes 20% off the listed price of an item and then adds a flat $12 shipping charge. A customer paid $128 in total. What was the listed price, in dollars?",
+    "choices": [
+      "160",
+      "172",
+      "139.2",
+      "145"
+    ],
+    "correct_answer": "145",
+    "explanation": "Shipping is not discounted, so the discounted price is 128 - 12 = 116 dollars, which is 80% of the listed price: 116/0.80 = 145. The value \"160\" divides the whole payment by 0.80 and never removes the shipping charge. The value \"139.2\" undoes the 20% discount by multiplying 116 by 1.2, which is not the inverse of multiplying by 0.8. The value \"172\" divides the full payment by 0.80 and then adds the shipping charge again on top.",
+    "solve": "return (128-12)/0.8;",
+    "distractor_solve": {
+      "160": "return 128/0.8;",
+      "172": "return 128/0.8+12;",
+      "139.2": "return (128-12)*1.2;"
+    }
+  },
+  {
+    "id": "ALG6-11",
+    "domain": "Algebra",
+    "subskill": "a fixed ratio of two parts applied to a stated total, reported as a difference",
+    "difficulty": "medium",
+    "prompt": "A jar contains only red beads and blue beads, in the ratio 3 to 5. The jar contains 320 beads in total. How many more blue beads than red beads are in the jar?",
+    "choices": [
+      "80",
+      "128",
+      "200",
+      "120"
+    ],
+    "correct_answer": "80",
+    "explanation": "The 320 beads split into 3 + 5 = 8 equal parts of 40, so there are 120 red and 200 blue and the difference is 80. The value \"120\" is the number of red beads. The value \"200\" is the number of blue beads. The value \"128\" divides the total into 5 parts rather than 8 and then takes the 2-part difference, using the blue share as the size of the whole.",
+    "solve": "return 320*5/8-320*3/8;",
+    "distractor_solve": {
+      "120": "return 320*3/8;",
+      "128": "return (320/5)*2;",
+      "200": "return 320*5/8;"
+    }
+  },
+  {
+    "id": "ALG6-12",
+    "domain": "Algebra",
+    "subskill": "the input at which a linear function reaches a stated output",
+    "difficulty": "easy",
+    "prompt": "The function f is defined by f(x) = 6x + 18. For what value of x does f(x) = 96?",
+    "choices": [
+      "22",
+      "16",
+      "13",
+      "19"
+    ],
+    "correct_answer": "13",
+    "explanation": "From 6x + 18 = 96 comes 6x = 78 and x = 13. The value \"16\" divides 96 by 6 without ever removing the constant 18. The value \"19\" adds 18 to 96 instead of subtracting it. The value \"22\" removes the 18 by subtracting and then adds it a second time before dividing, so the constant is handled twice in the wrong direction.",
+    "solve": "return (96-18)/6;",
+    "distractor_solve": {
+      "16": "return 96/6;",
+      "19": "return (96+18)/6;",
+      "22": "return (96+18+18)/6;"
+    }
+  },
+  {
+    "id": "ALG6-13",
+    "domain": "Algebra",
+    "subskill": "a linear equation with the variable on both sides after a factor is distributed",
+    "difficulty": "medium",
+    "prompt": "What value of x satisfies the equation 5(x - 4) = 3x + 16?",
+    "choices": [
+      "8",
+      "10",
+      "36",
+      "18"
+    ],
+    "correct_answer": "18",
+    "explanation": "Distributing gives 5x - 20 = 3x + 16, so 2x = 36 and x = 18. The value \"36\" is the value of 2x, reported before the final division. The value \"10\" comes from failing to distribute the 5 across the -4, solving 5x - 4 = 3x + 16 instead. The value \"8\" subtracts 3x from both sides but never adds 20 to the right, reading 2x - 20 = 16 as 2x = 16.",
+    "solve": "return (16+5*4)/(5-3);",
+    "distractor_solve": {
+      "8": "return 16/(5-3);",
+      "10": "return (16+4)/(5-3);",
+      "36": "return 16+5*4;"
+    }
+  },
+  {
+    "id": "ALG6-14",
+    "domain": "Algebra",
+    "subskill": "an inequality whose solution set is bounded above, then read for its greatest integer",
+    "difficulty": "hard",
+    "prompt": "If x is an integer and 4 - 3x is greater than or equal to 2x - 26, what is the greatest possible value of x?",
+    "choices": [
+      "6",
+      "10",
+      "15",
+      "5"
+    ],
+    "correct_answer": "6",
+    "explanation": "Adding 3x and 26 to both sides gives 30 is greater than or equal to 5x, so x is at most 6 and the greatest integer is 6. The value \"5\" reads the relation as strict and takes the largest integer below 6. The value \"10\" collects -3x and 2x as a single 3x, dividing 30 by 3. The value \"15\" divides 30 by the 2 from 2x alone, as though the -3x had already been cancelled.",
+    "solve": "return Math.floor((4+26)/(3+2));",
+    "distractor_solve": {
+      "5": "var b=(4+26)/(3+2);\nreturn Math.ceil(b)-1;",
+      "10": "return (4+26)/3;",
+      "15": "return (4+26)/2;"
+    }
+  },
+  {
+    "id": "ALG6-15",
+    "domain": "Algebra",
+    "subskill": "a line parallel to a given line through a given point, evaluated at a new input",
+    "difficulty": "medium",
+    "prompt": "Line m is parallel to the line 2x + 3y = 18 in the xy-plane and passes through the point (3, 7). What is the y-coordinate of the point on line m whose x-coordinate is -3?",
+    "choices": [
+      "9",
+      "3",
+      "11",
+      "8"
+    ],
+    "correct_answer": "11",
+    "explanation": "Writing 2x + 3y = 18 as y = -(2/3)x + 6 shows the slope is -2/3, so line m falls 2 units for every 3 units of run. Going from x = 3 to x = -3 is a run of -6, which raises y by 4, giving 7 + 4 = 11. The value \"3\" uses a slope of +2/3, losing the sign that makes the line decreasing. The value \"9\" uses -3 itself as the run instead of the change -3 - 3 = -6. The value \"8\" finds the point on the given line 2x + 3y = 18 at x = -3 rather than the point on the parallel line through (3, 7).",
+    "solve": "var s=-2/3;\nreturn 7+s*(-3-3);",
+    "distractor_solve": {
+      "3": "var s=2/3;\nreturn 7+s*(-3-3);",
+      "8": "return (18-2*(-3))/3;",
+      "9": "var s=-2/3;\nreturn 7+s*(-3);"
+    }
+  },
+  {
+    "id": "ALG6-16",
+    "domain": "Algebra",
+    "subskill": "a commission removed as a percent of an unknown total, solving for the total",
+    "difficulty": "hard",
+    "prompt": "A salesperson pays a commission of 12% of the amount of each sale and keeps the rest. After one sale she kept $3,300. What was the amount of that sale, in dollars?",
+    "choices": [
+      "3696",
+      "4092",
+      "4200",
+      "3750"
+    ],
+    "correct_answer": "3750",
+    "explanation": "She keeps 88% of the sale, so 0.88s = 3300 and s = 3300/0.88 = 3750. The value \"3696\" adds 12% to the amount kept instead of dividing by 0.88; 12% of 3300 is smaller than 12% of the sale, so this falls short. The value \"4092\" adds that same 12% of 3300 twice. The value \"4200\" corrects the amount kept twice over, first multiplying by 1.12 and then also dividing by 0.88.",
+    "solve": "return 3300/(1-0.12);",
+    "distractor_solve": {
+      "3696": "return 3300*1.12;",
+      "4092": "return 3300+2*(0.12*3300);",
+      "4200": "return (3300*1.12)/(1-0.12);"
+    }
+  },
+  {
+    "id": "ALG6-17",
+    "domain": "Algebra",
+    "subskill": "a total divided between two accounts under a multiple-and-offset condition",
+    "difficulty": "medium",
+    "prompt": "A total of $9,000 is divided between two accounts. The amount in the first account is $1,200 more than twice the amount in the second account. How many dollars are in the second account?",
+    "choices": [
+      "3000",
+      "6400",
+      "2600",
+      "2200"
+    ],
+    "correct_answer": "2600",
+    "explanation": "If the second account holds s dollars, the first holds 2s + 1200, so s + 2s + 1200 = 9000, 3s = 7800 and s = 2600. The value \"6400\" is the amount in the first account. The value \"3000\" ignores the $1,200 offset and simply divides 9000 into three equal parts. The value \"2200\" subtracts the $1,200 twice before dividing.",
+    "solve": "return (9000-1200)/3;",
+    "distractor_solve": {
+      "2200": "return (9000-2*1200)/3;",
+      "3000": "return 9000/3;",
+      "6400": "var s=(9000-1200)/3;\nreturn 2*s+1200;"
+    }
+  },
+  {
+    "id": "ALG6-18",
+    "domain": "Algebra",
+    "subskill": "a job begun by one worker alone and finished by two, solving for the second worker's time",
+    "difficulty": "hard",
+    "prompt": "Printer A prints 50 pages per minute and printer B prints 25 pages per minute. Printer A runs alone for 6 minutes, after which printer B joins it and both run until 1,500 pages have been printed in total. For how many minutes does printer B run?",
+    "choices": [
+      "24",
+      "16",
+      "20",
+      "22"
+    ],
+    "correct_answer": "16",
+    "explanation": "Printer A prints 50(6) = 300 pages alone, leaving 1,200 pages at a combined 75 pages per minute, which takes 1200/75 = 16 minutes. The value \"20\" divides all 1,500 pages by the combined rate, as though both printers ran the whole time. The value \"22\" is the total elapsed time from the start, 6 + 16, not the time printer B runs. The value \"24\" divides the remaining 1,200 pages by printer A's rate alone, leaving printer B out of the shared stretch.",
+    "solve": "return (1500-50*6)/(50+25);",
+    "distractor_solve": {
+      "20": "return 1500/(50+25);",
+      "22": "return 6+(1500-50*6)/(50+25);",
+      "24": "return (1500-50*6)/50;"
+    }
+  },
+  {
+    "id": "ALG6-19",
+    "domain": "Algebra",
+    "subskill": "a base charge plus a per-unit rate, solving for the number of units",
+    "difficulty": "easy",
+    "prompt": "A taxi fare is $3.50 plus $2.50 for each kilometer traveled. A trip cost $27.25. How many kilometers was the trip?",
+    "choices": [
+      "10.9",
+      "12.3",
+      "9.5",
+      "13.7"
+    ],
+    "correct_answer": "9.5",
+    "explanation": "The per-kilometer part of the fare is 27.25 - 3.50 = 23.75 dollars, and 23.75/2.50 = 9.5 kilometers. The value \"10.9\" divides the whole fare by 2.50, never removing the base charge. The value \"12.3\" adds the base charge to the fare instead of subtracting it. The value \"13.7\" adds the base charge and then adds it a second time, compounding the same sign error.",
+    "solve": "return (27.25-3.5)/2.5;",
+    "distractor_solve": {
+      "10.9": "return 27.25/2.5;",
+      "12.3": "return (27.25+3.5)/2.5;",
+      "13.7": "return (27.25+3.5+3.5)/2.5;"
+    }
+  },
+  {
+    "id": "ALG6-20",
+    "domain": "Algebra",
+    "subskill": "undoing two successive constant rates to recover a starting amount",
+    "difficulty": "hard",
+    "prompt": "A tank loses 15 liters each hour for 4 hours and then gains 9 liters each hour for the next 3 hours. At the end of those 7 hours it holds 88 liters. How many liters did it hold at the start?",
+    "choices": [
+      "97",
+      "121",
+      "175",
+      "55"
+    ],
+    "correct_answer": "121",
+    "explanation": "Working backward from 88 liters, the 27 liters gained must be removed and the 60 liters lost must be put back: 88 + 60 - 27 = 121. The value \"55\" applies both changes forward from 88 instead of undoing them. The value \"175\" puts the 60 liters back but also adds the 27 liters gained, undoing the gain in the wrong direction. The value \"97\" swaps the two durations, pairing 15 liters per hour with 3 hours and 9 liters per hour with 4 hours.",
+    "solve": "return 88+15*4-9*3;",
+    "distractor_solve": {
+      "55": "return 88-15*4+9*3;",
+      "97": "return 88+15*3-9*4;",
+      "175": "return 88+15*4+9*3;"
+    }
+  },
+  {
+    "id": "ALG6-21",
+    "domain": "Algebra",
+    "subskill": "a linear equation with a factor distributed on one side only",
+    "difficulty": "easy",
+    "prompt": "What value of x satisfies the equation 4(x - 3) = 2x + 10?",
+    "choices": [
+      "11",
+      "6.5",
+      "8",
+      "5.5"
+    ],
+    "correct_answer": "11",
+    "explanation": "Distributing gives 4x - 12 = 2x + 10, so 2x = 22 and x = 11. The value \"5.5\" divides 22 by the 4 in front of the parentheses rather than by the 2 left after subtracting 2x. The value \"6.5\" fails to distribute the 4 across the -3, solving 4x - 3 = 2x + 10. The value \"8\" distributes 4 times 3 as 6, solving 4x - 6 = 2x + 10.",
+    "solve": "return (10+4*3)/(4-2);",
+    "distractor_solve": {
+      "8": "return (10+2*3)/(4-2);",
+      "5.5": "return (10+4*3)/4;",
+      "6.5": "return (10+3)/(4-2);"
+    }
+  },
+  {
+    "id": "ALG6-22",
+    "domain": "Algebra",
+    "subskill": "two ages separated by a constant difference, solved for a future multiple",
+    "difficulty": "medium",
+    "prompt": "Ana is 27 years old and Ben is 9 years old. How old will Ben be when Ana is exactly twice as old as Ben?",
+    "choices": [
+      "27",
+      "36",
+      "18",
+      "13.5"
+    ],
+    "correct_answer": "18",
+    "explanation": "After t years Ana is 27 + t and Ben is 9 + t, and 27 + t = 2(9 + t) gives t = 9, so Ben will be 18. The value \"27\" uses the 18-year age difference as the number of years that must pass. The value \"13.5\" holds Ana at 27 while Ben grows, solving 27 = 2(9 + t) and forgetting that Ana ages too. The value \"36\" is Ana's age at that moment rather than Ben's.",
+    "solve": "var t=27-2*9;\nreturn 9+t;",
+    "distractor_solve": {
+      "27": "return 9+(27-9);",
+      "36": "var t=27-2*9;\nreturn 27+t;",
+      "13.5": "var t=27/2-9;\nreturn 9+t;"
+    }
+  },
+  {
+    "id": "ALG6-23",
+    "domain": "Algebra",
+    "subskill": "the slope of a line from its y-intercept and one other point",
+    "difficulty": "easy",
+    "prompt": "The line y = mx + 9 in the xy-plane passes through the point (6, -3), where m is a constant. What is the value of m?",
+    "choices": [
+      "2",
+      "-2",
+      "-4.5",
+      "1"
+    ],
+    "correct_answer": "-2",
+    "explanation": "The line crosses the y-axis at (0, 9) and passes through (6, -3), so m = (-3 - 9)/(6 - 0) = -12/6 = -2. The value \"2\" subtracts in the wrong order, computing (9 - (-3))/6, which reverses the direction of the line. The value \"1\" drops the negative sign on the point's y-coordinate before subtracting, computing (9 - 3)/6. The value \"-4.5\" divides only the 9 by 6 before subtracting, evaluating -3 - 9/6 instead of (-3 - 9)/6.",
+    "solve": "return (-3-9)/6;",
+    "distractor_solve": {
+      "1": "return (9-3)/6;",
+      "2": "return (9-(-3))/6;",
+      "-4.5": "return -3-9/6;"
+    }
+  },
+  {
+    "id": "ALG6-24",
+    "domain": "Algebra",
+    "subskill": "the constant that makes a stated number a solution of a linear equation",
+    "difficulty": "hard",
+    "prompt": "In the equation 2x + c = 3(x - 4) + 1, c is a constant. If x = -2 is a solution of the equation, what is the value of c?",
+    "choices": [
+      "-15",
+      "-5",
+      "-13",
+      "-21"
+    ],
+    "correct_answer": "-13",
+    "explanation": "With x = -2 the right side is 3(-2 - 4) + 1 = -17 and the left side is 2(-2) + c = -4 + c, so c = -17 + 4 = -13. The value \"-5\" fails to distribute the 3 across the -4, evaluating the right side as 3x - 4 + 1 = -9. The value \"-21\" moves 2x to the right side without changing its sign, computing -17 - 4. The value \"-15\" attaches the \"+ 1\" to the left side of the equation instead of the right, solving 2x + c + 1 = 3(x - 4).",
+    "solve": "var x=-2;\nreturn 3*(x-4)+1-2*x;",
+    "distractor_solve": {
+      "-5": "var x=-2;\nreturn 3*x-4+1-2*x;",
+      "-21": "var x=-2;\nreturn 3*(x-4)+1+2*x;",
+      "-15": "var x=-2;\nreturn 3*(x-4)-1-2*x;"
+    }
+  }
+]
