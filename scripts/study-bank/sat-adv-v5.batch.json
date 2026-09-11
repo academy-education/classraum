@@ -86,7 +86,7 @@
     "distractor_steps": [
       {
         "choice": "16",
-        "mis_step": "Divides by 3 and then adds without taking the square root, treating (x − 4)² as if it were x − 4."
+        "mis_step": "Divides by 3 and then adds without taking the square root, treating (x − 7)² as if it were x − 7."
       },
       {
         "choice": "-4",
@@ -366,7 +366,7 @@
     "distractor_steps": [
       {
         "choice": "11",
-        "mis_step": "Adds the constants as printed, again reading the −3 as +3."
+        "mis_step": "Adds the constants as printed, reading the −3 as +3."
       },
       {
         "choice": "-5",
@@ -387,36 +387,36 @@
   {
     "id": "ADV5-12",
     "domain": "Advanced Math",
-    "subskill": "the maximum value of a downward-opening quadratic",
-    "difficulty": "hard",
-    "prompt": "The function f is defined by f(x) = −2x² + 12x − 7. What is the maximum value of f(x) ?",
+    "subskill": "inverse function values: undoing a cubic",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = x³ − 13. What is the value of f⁻¹(14) ?",
     "choices": [
-      "-7",
+      "27",
+      "1",
       "3",
-      "11",
-      "-25"
+      "9"
     ],
-    "correct_answer": "11",
-    "explanation": "The parabola opens downward, so its maximum is at the vertex x = −b/(2a) = −12/(−4) = 3, and f(3) = −2(9) + 36 − 7 = 11.",
+    "correct_answer": "3",
+    "explanation": "f⁻¹(14) is the number whose image under f is 14, so solve x³ − 13 = 14. That gives x³ = 27, so x = 3. Checking: f(3) = 27 − 13 = 14.",
     "distractor_steps": [
       {
-        "choice": "-7",
-        "mis_step": "Reports the constant term, treating c as the extreme value of the function the way it is for the vertex form a(x − h)² + k."
+        "choice": "27",
+        "mis_step": "Undoes the subtraction correctly to x³ = 27 but reports that value, stopping one step before taking the cube root."
       },
       {
-        "choice": "3",
-        "mis_step": "Reports the x-coordinate of the vertex rather than the value of the function there."
+        "choice": "1",
+        "mis_step": "Subtracts 13 instead of adding it when undoing f, solving x³ = 14 − 13 = 1."
       },
       {
-        "choice": "-25",
-        "mis_step": "Uses the shortcut c − b²/(4a) but takes 4a as positive, subtracting 18 where the negative leading coefficient requires adding it."
+        "choice": "9",
+        "mis_step": "Reaches x³ = 27 and then divides by 3 rather than taking the cube root of 27."
       }
     ],
-    "solve": "const a = -2, b = 12, c = -7; const xv = -b/(2*a); return a*xv*xv + b*xv + c;",
+    "solve": "const f = t => t**3 - 13; const x = Math.cbrt(14 + 13); if (Math.abs(f(x) - 14) > 1e-9) return 'NOT AN INVERSE VALUE'; return x;",
     "distractor_solve": {
-      "3": "const a = -2, b = 12; return -b/(2*a);",
-      "-7": "return -7;",
-      "-25": "const a = -2, b = 12, c = -7; return c - (b*b)/(4*Math.abs(a));"
+      "27": "return 14 + 13;",
+      "1": "return Math.cbrt(14 - 13);",
+      "9": "return (14 + 13)/3;"
     }
   },
   {
@@ -427,9 +427,9 @@
     "prompt": "The polynomial p(x) = x³ − 3x² − 10x + 24 has three distinct real zeros. What is the sum of the squares of those three zeros?",
     "choices": [
       "9",
-      "-24",
+      "20",
       "29",
-      "-10"
+      "25"
     ],
     "correct_answer": "29",
     "explanation": "p factors as (x − 2)(x − 4)(x + 3), so the zeros are 2, 4 and −3. Their squares are 4, 16 and 9, and the sum is 29. (Equivalently, (Σz)² − 2Σzw = 3² − 2(−10) = 29.)",
@@ -439,19 +439,19 @@
         "mis_step": "Squares the sum of the zeros instead of summing their squares, discarding the cross terms."
       },
       {
-        "choice": "-24",
-        "mis_step": "Reports the product of the zeros rather than the sum of their squares."
+        "choice": "20",
+        "mis_step": "Sums the squares of the two positive zeros only, discarding −3 rather than squaring it."
       },
       {
-        "choice": "-10",
-        "mis_step": "Reads the sum of the squares off the coefficients as the x-coefficient itself, which is the sum of the pairwise products."
+        "choice": "25",
+        "mis_step": "Divides p by x − 2 and then sums the squares of only the two zeros of the remaining quadratic x² − x − 12, forgetting the zero x = 2 that was used to divide."
       }
     ],
     "solve": "const zs = [2, 4, -3]; const p = x => x**3 - 3*x*x - 10*x + 24; if (zs.some(z => Math.abs(p(z)) > 1e-9)) return 'NOT A ZERO'; return zs.reduce((s, z) => s + z*z, 0);",
     "distractor_solve": {
       "9": "const zs = [2, 4, -3]; const s = zs.reduce((a, z) => a + z, 0); return s*s;",
-      "-24": "const zs = [2, 4, -3]; return zs.reduce((a, z) => a * z, 1);",
-      "-10": "const zs = [2, 4, -3]; let t = 0; for (let i = 0; i < 3; i++) for (let j = i+1; j < 3; j++) t += zs[i]*zs[j]; return t;"
+      "20": "const zs = [2, 4, -3]; return zs.filter(z => z > 0).reduce((a, z) => a + z*z, 0);",
+      "25": "const zs = [4, -3]; return zs.reduce((a, z) => a + z*z, 0);"
     }
   },
   {
@@ -463,7 +463,7 @@
     "choices": [
       "-3",
       "-7",
-      "7",
+      "1",
       "4"
     ],
     "correct_answer": "-7",
@@ -474,8 +474,8 @@
         "mis_step": "Substitutes x = −3 rather than x = 3, which gives k = −4 and the equation x² − 4x − 21 = 0, and reports the negative root of that."
       },
       {
-        "choice": "7",
-        "mis_step": "Uses the product of the roots but drops the sign of the constant term, dividing 21 rather than −21 by the known root."
+        "choice": "1",
+        "mis_step": "Takes the sum of the two roots to be k rather than −k, so the other solution is computed as 4 − 3 = 1."
       },
       {
         "choice": "4",
@@ -485,7 +485,7 @@
     "solve": "const k = (21 - 9)/3; const d = Math.sqrt(k*k + 84); const rs = [(-k-d)/2, (-k+d)/2]; const other = rs.filter(x => Math.abs(x - 3) > 1e-9); if (other.length !== 1) return 'EXPECTED ONE OTHER ROOT'; return other[0];",
     "distractor_solve": {
       "4": "return (21 - 9)/3;",
-      "7": "return 21/3;",
+      "1": "const k = (21 - 9)/3; return k - 3;",
       "-3": "const k = (21 - 9)/(-3); const d = Math.sqrt(k*k + 84); const rs = [(-k-d)/2, (-k+d)/2]; return Math.min(...rs);"
     }
   },
@@ -526,13 +526,13 @@
   },
   {
     "id": "ADV5-16",
-    "domain": "Advanced Math",
+    "domain": "Geometry and Trigonometry",
     "subskill": "a circle and a horizontal line in the xy-plane",
     "difficulty": "easy",
     "prompt": "In the xy-plane the circle x² + y² = 169 intersects the line y = 5 at two points. What is the x-coordinate of the point of intersection that lies to the right of the y-axis?",
     "choices": [
-      "13",
-      "18",
+      "5",
+      "-12",
       "12",
       "8"
     ],
@@ -540,12 +540,12 @@
     "explanation": "Substituting y = 5 gives x² + 25 = 169, so x² = 144 and x = ±12. The point to the right of the y-axis has x = 12.",
     "distractor_steps": [
       {
-        "choice": "13",
-        "mis_step": "Reports the radius of the circle, taking the intersection to lie a full radius from the y-axis."
+        "choice": "5",
+        "mis_step": "Reports the y-value the stem supplies, answering with the coordinate that was given rather than the one asked for."
       },
       {
-        "choice": "18",
-        "mis_step": "Adds the y-value to the radius, combining the two given lengths in the wrong direction."
+        "choice": "-12",
+        "mis_step": "Solves x² = 144 correctly but reports the intersection point on the left of the y-axis, the one the stem excludes."
       },
       {
         "choice": "8",
@@ -554,9 +554,9 @@
     ],
     "solve": "return Math.sqrt(169 - 25);",
     "distractor_solve": {
-      "8": "return Math.sqrt(169) - 5;",
-      "13": "return Math.sqrt(169);",
-      "18": "return Math.sqrt(169) + 5;"
+      "5": "return 5;",
+      "-12": "return -Math.sqrt(169 - 25);",
+      "8": "return Math.sqrt(169) - 5;"
     }
   },
   {
@@ -580,7 +580,7 @@
       },
       {
         "choice": "13",
-        "mis_step": "Reports the sum of the two values of u, read off the coefficient of x², instead of a solution for x."
+        "mis_step": "Reports the sum of the two values of u, read off the coefficient of x² with its minus sign dropped, instead of a solution for x."
       },
       {
         "choice": "9",
@@ -638,7 +638,7 @@
     "choices": [
       "6",
       "-4",
-      "4",
+      "-6",
       "2"
     ],
     "correct_answer": "-4",
@@ -649,8 +649,8 @@
         "mis_step": "Solves correctly but reports the greater of the two solutions."
       },
       {
-        "choice": "4",
-        "mis_step": "Factors to (x − 6)(x + 4) and reads the solutions straight off the parentheses, so the second is taken as +4."
+        "choice": "-6",
+        "mis_step": "Factors to (x − 6)(x + 4) and reads the solutions off the parentheses with the signs as printed, taking them to be −6 and +4, then reports the lesser of those two."
       },
       {
         "choice": "2",
@@ -660,8 +660,8 @@
     "solve": "const d = Math.sqrt(4 + 96); return (2 - d)/2;",
     "distractor_solve": {
       "2": "return -(-2)/1;",
-      "4": "const d = Math.sqrt(4 + 96); return Math.abs((2 - d)/2);",
-      "6": "const d = Math.sqrt(4 + 96); return (2 + d)/2;"
+      "6": "const d = Math.sqrt(4 + 96); return (2 + d)/2;",
+      "-6": "const d = Math.sqrt(4 + 96); const roots = [(2 - d)/2, (2 + d)/2]; const printed = roots.map(r => -r); return Math.min(...printed);"
     }
   },
   {
@@ -673,30 +673,30 @@
     "choices": [
       "8/5",
       "5/3",
-      "3/5",
-      "5/2"
+      "4/3",
+      "3/2"
     ],
     "correct_answer": "5/3",
     "explanation": "Both sides are powers of 2: 8^x = 2^(3x) and 32 = 2^5, so 3x = 5 and x = 5/3. Checking, 8^(5/3) = (8^(1/3))^5 = 2^5 = 32.",
     "distractor_steps": [
       {
         "choice": "8/5",
-        "mis_step": "Divides the two given numbers as printed, forming the ratio of the base to the exponent on the right."
+        "mis_step": "Forms the ratio of the base on the left to the exponent 5 on the right, writing 8/5 in place of the ratio of the two base-2 exponents."
       },
       {
-        "choice": "3/5",
-        "mis_step": "Writes 3x = 5 and then divides in the wrong direction, reporting 3/5."
+        "choice": "4/3",
+        "mis_step": "Rewrites 8 as 2³ correctly but miscounts 32 as 2⁴, so the equation becomes 3x = 4."
       },
       {
-        "choice": "5/2",
-        "mis_step": "Rewrites 8 as 2² rather than 2³, so the equation becomes 2x = 5."
+        "choice": "3/2",
+        "mis_step": "Divides both sides by 8 to get 8^(x − 1) = 4, then takes 4 to be 8^(1/2) because 4 is half of 8, giving x − 1 = 1/2."
       }
     ],
     "solve": "const lg2 = n => Math.round(Math.log(n)/Math.log(2)); const num = lg2(32), den = lg2(8); const gcd = (a,b) => b ? gcd(b, a%b) : a; const k = gcd(num, den); if (Math.abs(Math.pow(8, num/den) - 32) > 1e-9) return 'NOT A SOLUTION'; return (num/k) + '/' + (den/k);",
     "distractor_solve": {
       "8/5": "const lg2 = n => Math.round(Math.log(n)/Math.log(2)); return 8 + '/' + lg2(32);",
-      "3/5": "const lg2 = n => Math.round(Math.log(n)/Math.log(2)); return lg2(8) + '/' + lg2(32);",
-      "5/2": "const lg2 = n => Math.round(Math.log(n)/Math.log(2)); return lg2(32) + '/' + 2;"
+      "4/3": "const lg2 = n => Math.round(Math.log(n)/Math.log(2)); const gcd = (a,b) => b ? gcd(b, a%b) : a; const num = lg2(16), den = lg2(8); const k = gcd(num, den); return (num/k) + '/' + (den/k);",
+      "3/2": "const gcd = (a,b) => b ? gcd(b, a%b) : a; const [pn, pd] = [1, 2]; const n = pn + pd, d = pd; const k = gcd(n, d); return (n/k) + '/' + (d/k);"
     }
   },
   {
