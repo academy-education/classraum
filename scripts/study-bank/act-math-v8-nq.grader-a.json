@@ -1,0 +1,254 @@
+{
+  "AM8N-01": {
+    "pick": "C",
+    "solved": "(2^3)^2 = 2^6 = 64; 64 x 2 = 128.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "256 = 2^8 and 32 = 2^5 are reachable from mis-combining the exponents; 66 = 64+2 is the weakest of the four."
+  },
+  "AM8N-02": {
+    "pick": "A",
+    "solved": "x - 3 = 8 or x - 3 = -8, so x = 11 or x = -5; greatest is 11.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-5 is the other root, 5 is 8-3. Stock item."
+  },
+  "AM8N-03": {
+    "pick": "A",
+    "solved": "sqrt(50) = 5 sqrt(2), sqrt(18) = 3 sqrt(2); sum = 8 sqrt(2), so k = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "68 = 50+18 (adding under one radical) is the real trap; 15 = 5x3 is weak-plausible; 4 is weak - no wrong path produces it."
+  },
+  "AM8N-04": {
+    "pick": "D",
+    "solved": "a10 = 7 + (10-1)(4) = 7 + 36 = 43.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "47 = 7 + 10x4 is the off-by-one, which is the only error this item can make."
+  },
+  "AM8N-05": {
+    "pick": "A",
+    "solved": "r^2 = 27/12 = 9/4, terms positive so r = 3/2; a3 = 12(3/2) = 18. (Equivalently a3 = sqrt(12 x 27) = 18.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "19.5 is the arithmetic mean of 12 and 27 - the dominant wrong path, well placed. 'All positive terms' correctly rules out r = -3/2."
+  },
+  "AM8N-06": {
+    "pick": "B",
+    "solved": "4 x 6 x 3 = 72.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "13 = 4+6+3 and 18 = 6x3 are the slips. Pure product rule."
+  },
+  "AM8N-07": {
+    "pick": "D",
+    "solved": "Leading digit cannot be 0: 3 choices; then 3 remaining, then 2. 3 x 3 x 2 = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD by mechanism: executing the stem's sentences as written gives 4x3x2 = 24, which is option B. The zero-leading constraint is carried only by the phrase '3-digit integer' and is never stated. This is the most familiar of the hard items in the batch - a student who has drilled it will not notice anything - but the unstated step is real and its omission is on the page."
+  },
+  "AM8N-08": {
+    "pick": "C",
+    "solved": "(AB)_12 = row1(A) . col2(B) = 3(0) + (-1)(7) = -7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "17 is the (1,1) entry - exactly the error of reading the wrong cell. 0 is 3x0 alone."
+  },
+  "AM8N-09": {
+    "pick": "D",
+    "solved": "47 = 4(11) + 3, so i^47 = i^3 = -i.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Option set is the closed cycle {1, i, -1, -i}, so no options-only narrowing is possible. Every distractor is a legitimate off-by-one in the cycle."
+  },
+  "AM8N-10": {
+    "pick": "B",
+    "solved": "Multiples of 4 under 300: 296/4 = 74. Those also multiples of 6 are the multiples of 12: 288/12 = 24. 74 - 24 = 50.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Not hard: 'multiples of 4 but NOT multiples of 6' read literally already says to remove, from the multiples of 4, the ones divisible by 6 - the lcm is careful reading rather than an unstated idea. The genuine wrong path (74 - 49 = 25, subtracting ALL multiples of 6) is NOT among the options, which is the item's main weakness: 62 and 99 have no clean derivation. 74 (forgot to subtract) is the one strong distractor."
+  },
+  "AM8N-11": {
+    "pick": "C",
+    "solved": "16^(3/4) = (16^(1/4))^3 = 2^3 = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "12 = 16 x 3/4, 64 = 4^3 (rooting and powering in the wrong order gets 4 then cubes). Fine."
+  },
+  "AM8N-12": {
+    "pick": "A",
+    "solved": "Square both sides: x = 9 x 5 = 45.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "225 = 15^2 (multiplying 3 x 5 first, then squaring) is the strong one. 8 = 3+5 is weak."
+  },
+  "AM8N-13": {
+    "pick": "C",
+    "solved": "Seq1: 4, 11, 18, 25, 32, 39. Seq2: 9, 14, 19, 24, 29, 34, 39. Least common term 39. (Also: terms are 4 mod 7 and 4 mod 5, so 4 mod 35, i.e. 4, 39, 74 - but 4 precedes the start of the second sequence.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Closest call in the batch. Option D = 4 punishes exactly the modular solver who forgets the second sequence begins at 9 - that is a genuine unstated-boundary trap. But the natural ACT method is to list, and listing reaches 39 in six terms without ever meeting the trap, so the hard step is avoidable rather than required. Graded medium; I would not argue hard down very far if the author wants it."
+  },
+  "AM8N-14": {
+    "pick": "A",
+    "solved": "For an n x n matrix, det(kA) = k^n det(A). Here n = 2, so det(3A) = 3^2 (6) = 54.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD by mechanism: the stem spells out that every entry is tripled, and executing that sentence naively gives 3 x 6 = 18, which is option B. Nothing in the stem says the scalar is raised to the size of the matrix. 27 = 3^3 and 6 = unchanged cover the other two misconceptions. One recalled property rather than two interacting ideas, so it is the softest of my four hard items."
+  },
+  "AM8N-15": {
+    "pick": "A",
+    "solved": "84 = 2^2 x 3 x 7, 126 = 2 x 3^2 x 7; GCF = 2 x 3 x 7 = 42.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "252 is the LCM (the standard confusion). 6 and 14 are common factors but not greatest - decent partial-credit traps."
+  },
+  "AM8N-16": {
+    "pick": "A",
+    "solved": "n = 12q + 5, so n^2 = 144q^2 + 120q + 25; mod 12 that is 25 mod 12 = 1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "25 (stopping before the final reduction) and 13 (25 - 12 done once too few / 5+8) are both on real paths. Reducing 25 is execution of 'remainder when divided by 12', not an unstated step, so medium not hard."
+  },
+  "AM8N-17": {
+    "pick": "D",
+    "solved": "C(8,3) = 8x7x6/6 = 56.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "336 = P(8,3) is exactly the order-matters error; 512 = 8^3; 24 = 8x3. Good set."
+  },
+  "AM8N-18": {
+    "pick": "B",
+    "solved": "(2+ki)(2-ki) = 4 - (ki)^2 = 4 + k^2 = 29, so k^2 = 25.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "33 = 4 + 29 (sign of i^2 dropped) is the strong one; 5 is k rather than k^2 - a good trap given the stem asks for k^2. 27 is weak. 'Positive real k' is decorative since only k^2 is asked."
+  },
+  "AM8N-19": {
+    "pick": "B",
+    "solved": "a5 = 6 x 2^4 = 96.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "192 = 6 x 2^5 is the off-by-one. Near-duplicate of AM8N-04 in structure (nth term, same off-by-one trap, same position of the trap)."
+  },
+  "AM8N-20": {
+    "pick": "B",
+    "solved": "x is equidistant from 3 and -7, so x = (3 + (-7))/2 = -2. Check: |-5| = |5| = 5. (Case x-3 = x+7 is impossible, so the only case is x-3 = -(x+7).)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The degenerate case (x - 3 = x + 7 has no solution) is a genuine noticing, but no option rewards missing it, so the item does not actually test it. 5, -5, 10 are number-shuffles from the stem - the weakest distractor set in the batch."
+  },
+  "AM8N-21": {
+    "pick": "C",
+    "solved": "(2x3)(3x4) = 2x4.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Options-only note: a student who remembers only 'outer dimensions' still needs to keep the order, and B (4x2) punishes reversing it. Fine as a recall item."
+  },
+  "AM8N-22": {
+    "pick": "D",
+    "solved": "The 40 multiples run 3 to 120. One-digit: 3, 6, 9 = 3 numbers, 3 digits. Two-digit: 12 to 99 = (99-12)/3 + 1 = 30 numbers, 60 digits. Three-digit: 102 to 120 = 7 numbers, 21 digits. 3+30+7 = 40 checks; digits = 3 + 60 + 21 = 84.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, and the best item in the batch. Nothing in the stem says the numbers have different digit-lengths or that the list must be partitioned; executing it as written produces either 40 (one per number) or 120 (three each, option B) or 80 (two each, option C) - all three naive readings are on the page. The count-and-partition ideas genuinely interact, and the 3+30+7 = 40 self-check is available to a student who thinks of it."
+  },
+  "AM8N-23": {
+    "pick": "C",
+    "solved": "First multiple above 20 is 21, last below 150 is 147: (147-21)/7 + 1 = 19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "'Between' is not load-bearing here (21 and 147 are strictly inside either way), so the usual endpoint ambiguity does not bite - good. 18 is the fencepost error, 21 is the first term mistaken for the count, 147 is the last term. 21 as a distractor is slightly cute since it is also a term."
+  },
+  "AM8N-24": {
+    "pick": "C",
+    "solved": "Multiply by (1+i)/(1+i): (4+2i)(1+i) = 4 + 4i + 2i - 2 = 2 + 6i; denominator (1-i)(1+i) = 2. So (2+6i)/2 = 1 + 3i.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2+6i (forgot to divide by the denominator) and 1-3i (conjugated the wrong factor) are both on real paths. Routine conjugate division - the procedure is fully cued by the form of the expression."
+  },
+  "AM8N-25": {
+    "pick": "D",
+    "solved": "2^(3x) = 2^5, so 3x = 5 and x = 5/3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "3/5 is the inverted ratio - the single most likely error, and it is present."
+  },
+  "AM8N-26": {
+    "pick": "B",
+    "solved": "|5 - (-7)| = 12.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "weak",
+    "note": "-2 (signed sum) is plausible; 35 = 7x5 and 7 are weak. Easiest item in the batch by a distance."
+  },
+  "AM8N-27": {
+    "pick": "D",
+    "solved": "n = 21m. n^2 = 441 m^2 and 441 is odd, so 8 | m^2. If m = 2j then m^2 = 4j^2 and 8 | 4j^2 forces j even, so 4 | m. Least m = 4, n = 84. Check: 84 = 21x4, 84^2 = 7056 = 8 x 882.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "HARD, and the cleanest example of the rule in the batch: the stem constrains n^2, and the student has to convert that into a constraint on n - where the answer is 'n divisible by 4', not the 8 the stem names. Two ideas interact (the 21 and the power-of-2 condition). Distractor 56 = 8x7 is what you get if you take the 8 at face value and keep only the 7 from 21; it fails the multiple-of-21 condition outright, so a checking student eliminates it cheaply - that is the one soft spot. 42 (2x21, the natural first guess) is the strong distractor; 21 is weak."
+  },
+  "AM8N-28": {
+    "pick": "B",
+    "solved": "Total C(10,3) = 120; all-red C(6,3) = 20; at least one blue = 120 - 20 = 100.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "20 is the complement itself (answering the wrong question), 60 = C(6,2)x4 (exactly one blue, a real partial path), 36 is weak. 'At least' is a trained cue for the complement, so this is medium rather than hard: the student is not noticing anything unstated, they are recognising a keyword."
+  }
+}

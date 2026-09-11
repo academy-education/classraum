@@ -1,0 +1,282 @@
+[
+ {
+  "id": "AM8N-01",
+  "prompt": "What is the value of (2^3)^2 x 2 ?",
+  "choices": [
+   "32",
+   "256",
+   "128",
+   "66"
+  ]
+ },
+ {
+  "id": "AM8N-02",
+  "prompt": "If |x - 3| = 8, what is the greatest possible value of x ?",
+  "choices": [
+   "11",
+   "-5",
+   "24",
+   "5"
+  ]
+ },
+ {
+  "id": "AM8N-03",
+  "prompt": "The sum sqrt(50) + sqrt(18) can be written in the form k x sqrt(2), where k is a positive integer. What is the value of k ?",
+  "choices": [
+   "8",
+   "68",
+   "15",
+   "4"
+  ]
+ },
+ {
+  "id": "AM8N-04",
+  "prompt": "The first term of an arithmetic sequence is 7 and the common difference is 4. What is the 10th term of the sequence?",
+  "choices": [
+   "47",
+   "28",
+   "36",
+   "43"
+  ]
+ },
+ {
+  "id": "AM8N-05",
+  "prompt": "In a geometric sequence with all positive terms, the 2nd term is 12 and the 4th term is 27. What is the 3rd term?",
+  "choices": [
+   "18",
+   "39",
+   "19.5",
+   "13.5"
+  ]
+ },
+ {
+  "id": "AM8N-06",
+  "prompt": "A restaurant offers 4 appetizers, 6 main courses, and 3 desserts. A meal consists of one appetizer, one main course, and one dessert. How many different meals are possible?",
+  "choices": [
+   "18",
+   "72",
+   "24",
+   "13"
+  ]
+ },
+ {
+  "id": "AM8N-07",
+  "prompt": "How many different 3-digit integers can be formed using the digits 0, 2, 5, and 7 if no digit may be used more than once in an integer?",
+  "choices": [
+   "64",
+   "24",
+   "48",
+   "18"
+  ]
+ },
+ {
+  "id": "AM8N-08",
+  "prompt": "Matrix A has first row (3, -1) and second row (2, 4). Matrix B has first row (5, 0) and second row (-2, 7). In the product AB, what is the entry in the 1st row and 2nd column?",
+  "choices": [
+   "17",
+   "0",
+   "-7",
+   "-5"
+  ]
+ },
+ {
+  "id": "AM8N-09",
+  "prompt": "For i = sqrt(-1), what is the value of i^47 ?",
+  "choices": [
+   "1",
+   "i",
+   "-1",
+   "-i"
+  ]
+ },
+ {
+  "id": "AM8N-10",
+  "prompt": "How many positive integers less than 300 are multiples of 4 but are NOT multiples of 6 ?",
+  "choices": [
+   "62",
+   "50",
+   "99",
+   "74"
+  ]
+ },
+ {
+  "id": "AM8N-11",
+  "prompt": "What is the value of 16^(3/4) ?",
+  "choices": [
+   "64",
+   "12",
+   "8",
+   "2"
+  ]
+ },
+ {
+  "id": "AM8N-12",
+  "prompt": "If sqrt(x) = 3 x sqrt(5) and x > 0, what is the value of x ?",
+  "choices": [
+   "45",
+   "15",
+   "8",
+   "225"
+  ]
+ },
+ {
+  "id": "AM8N-13",
+  "prompt": "One arithmetic sequence begins 4, 11, 18, 25, ... . A second arithmetic sequence begins 9, 14, 19, 24, ... . What is the least number that is a term of both sequences?",
+  "choices": [
+   "12",
+   "44",
+   "39",
+   "4"
+  ]
+ },
+ {
+  "id": "AM8N-14",
+  "prompt": "For a 2 x 2 matrix A, the determinant of A is 6. What is the determinant of 3A, the matrix whose every entry is 3 times the corresponding entry of A ?",
+  "choices": [
+   "54",
+   "18",
+   "27",
+   "6"
+  ]
+ },
+ {
+  "id": "AM8N-15",
+  "prompt": "What is the greatest common factor of 84 and 126 ?",
+  "choices": [
+   "42",
+   "6",
+   "252",
+   "14"
+  ]
+ },
+ {
+  "id": "AM8N-16",
+  "prompt": "When the positive integer n is divided by 12, the remainder is 5. What is the remainder when n^2 is divided by 12 ?",
+  "choices": [
+   "1",
+   "25",
+   "13",
+   "5"
+  ]
+ },
+ {
+  "id": "AM8N-17",
+  "prompt": "A committee of 3 people is to be chosen from a group of 8 people. How many different committees are possible?",
+  "choices": [
+   "24",
+   "336",
+   "512",
+   "56"
+  ]
+ },
+ {
+  "id": "AM8N-18",
+  "prompt": "For a positive real number k, (2 + ki)(2 - ki) = 29, where i = sqrt(-1). What is the value of k^2 ?",
+  "choices": [
+   "33",
+   "25",
+   "5",
+   "27"
+  ]
+ },
+ {
+  "id": "AM8N-19",
+  "prompt": "The first term of a geometric sequence is 6 and the common ratio is 2. What is the 5th term of the sequence?",
+  "choices": [
+   "14",
+   "96",
+   "192",
+   "16"
+  ]
+ },
+ {
+  "id": "AM8N-20",
+  "prompt": "If |x - 3| = |x + 7|, what is the value of x ?",
+  "choices": [
+   "5",
+   "-2",
+   "-5",
+   "10"
+  ]
+ },
+ {
+  "id": "AM8N-21",
+  "prompt": "Matrix A has 2 rows and 3 columns. Matrix B has 3 rows and 4 columns. The product AB is defined. How many rows and columns does AB have?",
+  "choices": [
+   "3 rows and 3 columns",
+   "4 rows and 2 columns",
+   "2 rows and 4 columns",
+   "2 rows and 3 columns"
+  ]
+ },
+ {
+  "id": "AM8N-22",
+  "prompt": "The first 40 positive multiples of 3 are written out in order: 3, 6, 9, 12, ... . How many digits are used altogether in writing these 40 numbers?",
+  "choices": [
+   "40",
+   "120",
+   "80",
+   "84"
+  ]
+ },
+ {
+  "id": "AM8N-23",
+  "prompt": "How many multiples of 7 are there between 20 and 150 ?",
+  "choices": [
+   "18",
+   "21",
+   "19",
+   "147"
+  ]
+ },
+ {
+  "id": "AM8N-24",
+  "prompt": "For i = sqrt(-1), which of the following is equal to (4 + 2i)/(1 - i) ?",
+  "choices": [
+   "1 - 3i",
+   "2 + 6i",
+   "1 + 3i",
+   "3 + i"
+  ]
+ },
+ {
+  "id": "AM8N-25",
+  "prompt": "If 8^x = 32, what is the value of x ?",
+  "choices": [
+   "24",
+   "4",
+   "3/5",
+   "5/3"
+  ]
+ },
+ {
+  "id": "AM8N-26",
+  "prompt": "On the number line, what is the distance between the point at -7 and the point at 5 ?",
+  "choices": [
+   "35",
+   "12",
+   "7",
+   "-2"
+  ]
+ },
+ {
+  "id": "AM8N-27",
+  "prompt": "The positive integer n is a multiple of 21, and n^2 is a multiple of 8. What is the least possible value of n ?",
+  "choices": [
+   "56",
+   "42",
+   "21",
+   "84"
+  ]
+ },
+ {
+  "id": "AM8N-28",
+  "prompt": "A bag contains 6 red marbles and 4 blue marbles. Three marbles are to be selected from the bag at the same time. In how many of the possible selections is at least 1 of the 3 marbles blue?",
+  "choices": [
+   "36",
+   "100",
+   "60",
+   "20"
+  ]
+ }
+]

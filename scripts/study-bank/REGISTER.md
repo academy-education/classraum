@@ -1296,3 +1296,38 @@ structural checks are pre-flight only. See CLAUDE.md.
   Real, and comparable to the run-middle channel (+6.5, p=5.2e-4). Reported on its **own denominator** rather than folded into the sum count, because mixing them would change what the existing number means. Trivial factors are excluded — `x = x * 1` is arithmetic, not authoring, and a solver reading the raw relation had already said so ("item 2's products are artifacts of C = -1"); the self-test pins that, and reverting the exclusion floods the detector.
 
   **Caveat carried from the run checker, and it applies with equal force here:** a hit is a question, not a verdict. On an item that asks for a product, having both factors on offer is the natural distractor pair, not a defect. Do not read 135 as 135 broken items, and ask per item whether the relation follows from the error paths or from the chosen numbers before repairing anything.
+
+- **2026-09-11** — **I WAS WRONG THAT THE TEMPLATE CENSUS IS UNUSABLE. IT NEEDED A STATED RULE, NOT ABANDONING.**
+
+  Yesterday's entry recorded three graders returning **15, 21 and 18 of 28** on `act-math-v8-fn` with no grouping rule specified, disagreeing about whether a hard item was templated, and concluded the census *"does NOT become a gate, because gating on it means gating on which grader was drawn."*
+
+  On the next batch all three graders **stated their rule before counting**, unprompted, and two of the three ran a sensitivity analysis across strictnesses:
+
+        grader   strict      loose
+        a        9 of 28     22 of 28
+        b        6 of 28     22 of 28
+        c        6 of 28     22 of 28
+
+  **All three landed on exactly 22 at the loose reading.** The earlier spread was not grader noise; it was three people silently choosing different units. One diagnosed it precisely before seeing anyone else's answer: *"If another grader drops clause (b), they should land near 22 and we are not actually disagreeing about the items — only about whether 'wrapped in a second idea' still counts as templated."*
+
+  Another made the gap itself the finding: a batch built one item per canonical skill *"templates heavily at topic level and barely at move level"*, so a 6-versus-22 spread describes the batch's construction rather than a failure to agree.
+
+  Now `AUTHORING-BRIEF` §3d, with both rules written out and the requirement to answer the contested question — is a HARD item templated? — under **both**, since that is exactly where the divergence lives. **The correction matters more than the metric:** a number that varies between honest readers is not automatically unusable, it may simply be missing its unit. I generalised from one run to "unusable" and the next run refuted it.
+
+- **2026-09-11** — **`act-math-v8-nq` INSERTED, 28 ITEMS, NOTHING DROPPED. ACT Math 373 -> 401; the cap moves off Number and Quantity (35 -> 63) back onto Algebra at 60.** 45 of 45 still draws. That is ACT Math 249 -> 401 across the day, forms 4 -> 7, every rise bought by commissioning against the domain that was actually binding at the time.
+
+  Attack +6.0 with 2 items solved by all three; the exact channels put the key in no exploitable shape, so the uniform drop rule selects nothing.
+
+  **Every solver measured the null before reporting a channel, and it changed the verdict on two of four.** One ran two nulls — uniform over each item's own range, and a pooled draw from the batch-wide option values, the harder test because it draws real exam-shaped numbers rather than uniform integers:
+
+        channel                  observed   expected      verdict
+        geometric run middle       4 of 25   0.17-0.31    REAL, p ~ 4e-5
+        key = product of two       2 of 25   0.13-0.34    REAL, p ~ 1e-2
+        arithmetic run middle      4-5       2.5-3.0      NOISE
+        pair sums to a constant    3         1.8-1.9      NOISE
+
+  Three pair-sums (47+43=90, 24+336=360, 72+18=90) and five arithmetic runs would each have read as a finding on a raw count. All three solvers reported them as nothing. One added a domain check the p-value cannot supply: **Number and Quantity offers no angle or percentage constant, so a 90-sum there is meaningless however significant it looks** — the configuration has to make the constant mean something. Now `AUTHORING-BRIEF` §3e.
+
+  **The non-numeric sets split, and all three solvers read them the same way.** `AM8N-07` `{1, i, -1, -i}` is the complete closed set of the powers of i — every member equally reachable, nothing distinguished by form — and all three named it the model shape for the domain. `AM8N-24` `{3+i, 1-3i, 1+3i, 2+6i}` is **not** closed: `1+3i` has its conjugate, its double and its component-swap as the other three, so every distractor is visibly manufactured from one option. It is one of the two items all three solved. `AM8N-21` puts a transpose pair adjacent, narrowing four options to two for free. Both are recorded as **repair candidates, not dropped** — at +6.0 with every exact channel clean, dropping them would be selection on the outcome.
+
+  Difficulty: author claimed 8 hard, all three graders found **4** — the seventh consecutive batch. Two independently flagged `AM8N-14` as **recall-gated rather than insight-gated** (you either know det(kA) = k^n det A or you do not) and asked for it to be counted separately from items where two ideas interact. That distinction is worth keeping and is not yet in the brief.

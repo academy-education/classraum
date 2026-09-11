@@ -2764,6 +2764,34 @@
      "verdict": "check-run-middle: 5 items carry the shape, key is the middle on 0 = 0.0% vs 25.0%. check-option-pair-constant: 0 of 27 scorable carry the shape. check-key-is-sum: 1 item, key in it 0. check-formula-options: zero population (no rearrangement item was authored at all, which is brief section 3c applied deliberately). THE RUN CLAIM WAS TESTED RATHER THAN BELIEVED: the author stated five items carry an arithmetic run with a DISTRACTOR at the middle, and all three solvers independently found exactly those five, measured the null, and DECLINED TO BET EITHER DIRECTION because 5 observed against ~6.5 expected is below the noise floor. One solver: \"both directions are bets on noise.\" Another built a rule that would have decided 27 of 28 items and refused to fire it, on the grounds that an untested coin flip applied batch-wide reads as a 50% leak when it lands well. The only structure above the floor was item 21 (one option the exact product of two others, pNull 0.002, ~0.054 Bonferroni) — two solvers bet it confidently and BOTH WERE WRONG."
     }
    }
+  },
+  {
+   "id": "act-math-v8-nq-2026-09-11",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v8-nq",
+   "contentSha": "c8fed866d2ad167c9fda0630cc9ef41cb2ef998ac8ce9558b7c623a1e2793bdb",
+   "note": "28 items, ACT Math Number and Quantity. NO ITEMS DROPPED: the attack came in at +6.0 with 2 items solved by all three, and the two exact channels that cleared their nulls put the key in the shape on neither of those items. Commissioned against the binding domain — Number and Quantity capped ACT Math at 7 forms with 35 live items. BANK_BAND=mixed.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "28/28 recompute; 84 of 84 distractor_solve entries recomputed, 0 mismatches. Exhaustive break-test: 84 promotions, 0 survivors, and the harness was then attacked — a rigged item whose solve really does produce the promoted option was correctly reported as surviving, so the 84 refusals are refusals rather than a harness that fails everything. The author found one defect no repo checker could see at the time: key 54 with 6 and 9 both present (54 = 6 x 9), which check-key-is-sum tested sums only. That report is what caused the product channel to be added and then measured live at +8.4pts."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on the sanitized render, all reporting sha 0cc729e6e5804c24 before and after. 28 of 28 keys agreed 3/3, ZERO non-exclusive votes, none guessed. All three credited the same two stems for closing ambiguity that usually bites: AM8N-05's \"all positive terms\" kills the r = -3/2 branch, and AM8N-23 is safe only because neither endpoint of \"between 20 and 150\" is a multiple of 7. DIFFICULTY: the author claimed 8 hard and all three graders found 4 — the SEVENTH consecutive batch whose author count failed independent grading. Unanimous on AM8N-14, -22 and -27; two of three also named -13. Two graders independently flagged AM8N-14 as recall-gated rather than insight-gated (you either know det(kA) = k^n det A or you do not) and asked for it to be counted separately, which is a distinction worth keeping."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 3 solvers: 31.0% vs 25.0%, margin +6.0. 2 items solved by all three (AM8N-21, AM8N-24). ALL THREE SOLVERS MEASURED THE NULL PER CHANNEL before reporting anything, one against two nulls (uniform over the item's own range, and a pooled draw from the batch-wide option values, which is the harder test because it draws real exam-shaped numbers). Their agreed verdicts: geometric run middle 4 of 25 against 0.17-0.31 expected = REAL, p ~ 4e-5; key-is-product 2 of 25 against 0.13-0.34 = REAL, p ~ 1e-2; arithmetic run middle 4-5 against 2.5-3.0 = NOISE; pair-sums-to-a-constant 3 against 1.8-1.9 = NOISE. Three pair-sums (47+43=90, 24+336=360, 72+18=90) and five arithmetic runs would each have read as a finding on a raw count, and all three solvers reported them as nothing. One added a domain check on top: Number and Quantity supplies no angle or percentage constant, so a 90-sum there is meaningless whatever its p-value — the configuration has to make the constant mean something."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "The exact checkers report: run-middle 5 items carry the shape with the key at the middle on 0; pair-constant 0 of 25 scorable; key-is-sum 2 sum nodes with the key in 0; formula-options zero population. THE NON-NUMERIC SETS SPLIT, and all three solvers reached the same reading independently. AM8N-07 {1, i, -1, -i} is the COMPLETE CLOSED SET of the powers of i — every member equally reachable, nothing distinguished by form — and all three called it the model shape for this domain. AM8N-24 {3+i, 1-3i, 1+3i, 2+6i} is NOT closed, and two solvers called it a derivational hub in complex form: 1+3i has its conjugate, its double and its component-swap as the other three, so all three distractors are visibly manufactured from one option. It is one of the two items solved by all three. AM8N-21 (matrix dimensions in words) puts a transpose pair adjacent, which narrows four options to two for free; two solvers declined to call that confidence and marked it a guess. Both leaking items are recorded as REPAIR CANDIDATES rather than dropped: at +6.0 with every exact channel clean, the uniform drop rule selects nothing."
+    }
+   }
   }
  ],
  "auditedCohorts": [

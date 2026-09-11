@@ -312,6 +312,70 @@ graded hard*. A prepared student meets that batch with less difficulty than
 the histogram claims. If one hard item is wanted from a family, replace the
 other members rather than making that one longer.
 
+## 3d. Report the template census under a STATED rule, or it is not a number
+
+Report the census. Do NOT report a bare count — state the grouping rule first,
+and give it at two strictnesses.
+
+This is here because the metric was nearly thrown away. On `act-math-v8-fn`
+three graders were asked for a census with no rule specified and returned
+**15, 21 and 18 of 28**, with largest groups of 3, 5 and 6, and they disagreed
+about whether a hard item was templated. That looks like an unusable metric.
+
+On the very next batch three graders each **stated their rule before counting**
+and returned:
+
+        grader   strict        loose
+        a        9 of 28       22 of 28
+        b        6 of 28       22 of 28
+        c        6 of 28       22 of 28
+
+**All three landed on exactly 22 at the loose reading.** The earlier spread was
+not grader noise, it was three people silently choosing different units.
+
+Use these two, and report both:
+
+- **STRICT** — three or more items where one rehearsed procedure, statable in a
+  single sentence with only the numbers changing, produces the answer, AND no
+  item in the group needs a step outside that sentence.
+- **LOOSE** — same topic and the same single recalled fact, with the procedure
+  allowed to vary.
+
+The gap between them is informative rather than embarrassing. One grader put it
+exactly right: a batch built one item per canonical skill *"templates heavily at
+topic level and barely at move level"*, so a 6-versus-22 spread is a fact about
+the batch's construction, not a disagreement about its items.
+
+**The contested question — is a HARD item templated? — must be answered under
+both rules**, because that is where graders actually diverge: an item that uses
+a habit as an inner step but wraps it in something else is templated under the
+loose rule and not under the strict one. Two graders noted that the wrapping is
+exactly what makes such an item hard.
+
+## 3e. Measure the null before reporting any options-only channel
+
+A raw count is not a finding. Resample each item's options from that item's own
+observed range (20k+ draws) and compare.
+
+Every solver on the last two maths batches did this unprompted and it changed
+the verdict every time:
+
+        channel                 observed   expected     reported as
+        geometric run middle      4 of 25   0.17-0.31    REAL, p ~ 4e-5
+        key = product of two      2 of 25   0.13-0.34    REAL, p ~ 1e-2
+        arithmetic run middle     4-5       2.5-3.0      NOISE
+        pair sums to a constant   3         1.8-1.9      NOISE
+
+Three pairs summing to 90 or 360 and five arithmetic runs would each have read
+as a finding on a raw count. Both are what 25 four-value sets produce by
+accident. One solver added a domain check on top: Number and Quantity supplies
+no angle or percentage constant, so a 90-sum there is meaningless whatever its
+p-value — **the configuration has to make the constant mean something.**
+
+An author claiming "I built N of these deliberately" is not evidence either.
+Three solvers tested exactly such a claim, found the author's count correct and
+the channel still at its noise floor, and declined to bet in either direction.
+
 ## 3c. A 2x2 option grid protects an item only when BOTH axes are arbitrary
 
 The grid is recommended above and it works — but two options-only solvers

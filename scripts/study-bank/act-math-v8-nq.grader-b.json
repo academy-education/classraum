@@ -1,0 +1,254 @@
+{
+  "AM8N-01": {
+    "pick": "C",
+    "solved": "(2^3)^2 = 2^6 = 64; 64 x 2 = 128.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "66 (=64+2) is weak; 256 (adds exponents to 2^8) and 32 (2^5) are real wrong paths. Opening-band item."
+  },
+  "AM8N-02": {
+    "pick": "A",
+    "solved": "x-3 = 8 or x-3 = -8, so x = 11 or x = -5; greatest is 11.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "-5 is the other root, a real trap for a student who reads 'greatest' as 'the value'. 24 (=3x8) weak."
+  },
+  "AM8N-03": {
+    "pick": "A",
+    "solved": "sqrt(50)=5sqrt2, sqrt(18)=3sqrt2; sum = 8sqrt2, so k=8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "68 = 50+18 is the one strong distractor. 15 and 4 are close to weak - I cannot construct a wrong path that produces 15."
+  },
+  "AM8N-04": {
+    "pick": "D",
+    "solved": "a10 = 7 + 9(4) = 43.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "47 is the off-by-one (7+10x4) and is the only strong one."
+  },
+  "AM8N-05": {
+    "pick": "A",
+    "solved": "r^2 = 27/12 = 9/4, r = 3/2 (positive terms), a3 = 12(3/2) = 18. Equivalently a3 = sqrt(12x27) = sqrt(324) = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "19.5 (arithmetic mean of 12 and 27) is an excellent distractor. The 'all positive terms' clause correctly closes the r = -3/2 branch - good stem hygiene."
+  },
+  "AM8N-06": {
+    "pick": "B",
+    "solved": "4 x 6 x 3 = 72.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "13 (=4+6+3) weak. Pure multiplication principle, executable straight off the stem."
+  },
+  "AM8N-07": {
+    "pick": "D",
+    "solved": "Leading digit cannot be 0: 3 choices, then 3 remaining, then 2 => 3x3x2 = 18.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "24 = 4x3x2, exactly the no-leading-zero oversight. I considered hard: the zero restriction is unstated. But it is carried by the words '3-digit integer', so a careful reader executes it rather than discovering it. Medium."
+  },
+  "AM8N-08": {
+    "pick": "C",
+    "solved": "Entry (1,2) = row 1 of A dotted with column 2 of B = (3)(0) + (-1)(7) = -7.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "17 is the (1,1) entry - the classic row/column slip. Good distractor set."
+  },
+  "AM8N-09": {
+    "pick": "D",
+    "solved": "47 = 4(11) + 3, so i^47 = i^3 = -i.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Options are the complete cycle {1, i, -1, -i}, so no option-set leak and every wrong path lands somewhere."
+  },
+  "AM8N-10": {
+    "pick": "B",
+    "solved": "Multiples of 4 below 300: floor(299/4) = 74. Multiples of both 4 and 6 are multiples of 12: floor(299/12) = 24. 74 - 24 = 50.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "62 is 74 - floor(299/24), i.e. using 24 instead of lcm 12 - the best distractor in the batch. Robust to 'less than 300' vs 'at most 300' (75-25 = 50 either way), which is deliberate or lucky and either way good. Nearly hard; I keep it medium because 'overlap = lcm' is a drilled reflex, not a discovery."
+  },
+  "AM8N-11": {
+    "pick": "C",
+    "solved": "16^(3/4) = (16^(1/4))^3 = 2^3 = 8.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "2 (stopped at the root), 12 (16 x 3/4), 64 (4^3) are all real paths."
+  },
+  "AM8N-12": {
+    "pick": "A",
+    "solved": "Square both sides: x = 9 x 5 = 45.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "225 = (3x5)^2, squaring the 5 as well. 8 = 3+5 is weak."
+  },
+  "AM8N-13": {
+    "pick": "C",
+    "solved": "Seq 1 is n = 4 mod 7; seq 2 is n = 4 mod 5. So n = 4 mod 35: 4, 39, 74, ... . 4 is not a term of the second sequence (it starts at 9), so the least common term is 39 (= 4+35 and = 9+30).",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD, and the reason is the option '4': the congruence solution and the answer differ, and nothing in the stem says the common value must lie at or after both first terms. Two ideas interact (lcm of the differences, plus the range constraint). This is the best item in the batch."
+  },
+  "AM8N-14": {
+    "pick": "A",
+    "solved": "For a 2x2 matrix, det(kA) = k^2 det(A). det(3A) = 9 x 6 = 54.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD by the stated rule, but with a caveat I want on record: it is recall-gated rather than insight-gated. There is no forward route from the stem - no matrix is given - so the student must supply k^2, which the stem does not say. 18 (= 3 x 6) is exactly the student who executes the stem's sentence as written, which is the signature of a real hard item. Against the REAL ACT this property is rare, so a student may simply not have it; note that 'hard' here partly means 'untaught'."
+  },
+  "AM8N-15": {
+    "pick": "A",
+    "solved": "84 = 2^2 x 3 x 7, 126 = 2 x 3^2 x 7; GCF = 2 x 3 x 7 = 42.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "252 is the LCM - the standard confusion. 6 and 14 are partial products."
+  },
+  "AM8N-16": {
+    "pick": "A",
+    "solved": "n = 12q + 5, so n^2 = 144q^2 + 120q + 25; mod 12 that is 25 mod 12 = 1.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "25 (forgot to reduce) and 5 (assumed the remainder carries) are both strong. The move - square the remainder, then reduce - is standard enough to stay medium, though this is the closest of my mediums to hard."
+  },
+  "AM8N-17": {
+    "pick": "D",
+    "solved": "C(8,3) = 56.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "336 = P(8,3) is the order-matters error; 512 = 8^3 the with-replacement error. Textbook distractor set."
+  },
+  "AM8N-18": {
+    "pick": "B",
+    "solved": "(2+ki)(2-ki) = 4 - (ki)^2 = 4 + k^2 = 29, so k^2 = 25.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "5 is the trap for solving past the question (it asks for k^2, not k); 33 = 29+4 for the sign slip on i^2. Both strong."
+  },
+  "AM8N-19": {
+    "pick": "B",
+    "solved": "a5 = 6 x 2^4 = 96.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "192 is the off-by-one (2^5). 14 and 16 are weak - no clean path produces them."
+  },
+  "AM8N-20": {
+    "pick": "B",
+    "solved": "Equal distances from 3 and -7 means x is the midpoint: (3 + (-7))/2 = -2. (Algebraically, x-3 = -(x+7) gives 2x = -4; the branch x-3 = x+7 is empty.)",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "The vanishing branch is a genuine small step, but a student who just squares both sides gets there mechanically. 10 = 3+7 is the only clearly-motivated distractor; 5 and -5 feel imported."
+  },
+  "AM8N-21": {
+    "pick": "C",
+    "solved": "(2x3)(3x4) is defined and has the outer dimensions: 2 rows, 4 columns.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "All four options are dimension pairs drawn from the stem's numbers, so nothing is readable from the option set alone. Pure recall."
+  },
+  "AM8N-22": {
+    "pick": "D",
+    "solved": "The 40 multiples run 3 to 120. One-digit: 3, 6, 9 = 3 numbers. Two-digit: 12 to 99 = (99-12)/3 + 1 = 30. Three-digit: 102 to 120 = 7. Check 3+30+7 = 40. Digits = 3(1) + 30(2) + 7(3) = 3 + 60 + 21 = 84.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD. The stem asks for digits and says nothing about the numbers having different digit-lengths; the whole item is noticing you must partition the list before counting. 80 (= all 2-digit) and 120 (= 40x3, or the last term) are both what a student who does not notice actually writes down."
+  },
+  "AM8N-23": {
+    "pick": "C",
+    "solved": "First is 21, last is 147; (147-21)/7 + 1 = 19.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Exclusivity is safe because neither 20 nor 150 is a multiple of 7, so the inclusive/exclusive reading of 'between' cannot move the answer. 18 is the fencepost error; 147 is the last term read off as the count."
+  },
+  "AM8N-24": {
+    "pick": "C",
+    "solved": "Multiply by (1+i)/(1+i): (4+2i)(1+i) = 4 + 6i + 2i^2 = 2 + 6i; denominator (1-i)(1+i) = 2. So (2+6i)/2 = 1 + 3i.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2+6i is 'forgot to divide by 2' and 1-3i is the conjugate sign slip. Best-constructed complex item here."
+  },
+  "AM8N-25": {
+    "pick": "D",
+    "solved": "2^(3x) = 2^5, so 3x = 5, x = 5/3.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "3/5 is the inverted answer and will catch a real share of students."
+  },
+  "AM8N-26": {
+    "pick": "B",
+    "solved": "|5 - (-7)| = 12.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "Below the band for anything but the first few ACT questions. -2 (signed sum) is the one real distractor; 35 (product) is weak."
+  },
+  "AM8N-27": {
+    "pick": "D",
+    "solved": "Write n = 2^a x m with m odd. 8 | n^2 needs 2a >= 3, and a is an integer, so a >= 2 - i.e. 4 | n, not merely 2 | n. With 21 | n, n = lcm(21,4) = 84. Check: 84^2 = 7056 = 8 x 882.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "HARD. The stem gives a condition on n^2 and asks about n, and the unstated step is that 2a >= 3 forces a >= 2 rather than a >= 1. 42 is precisely the student who stops at a >= 1 (42^2/8 = 220.5), so the trap is the item. 56 is a weaker grab ('needs an 8 in it') that is not even a multiple of 21."
+  },
+  "AM8N-28": {
+    "pick": "B",
+    "solved": "Complement: C(10,3) - C(6,3) = 120 - 20 = 100.",
+    "exclusive": true,
+    "second_defensible": null,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "20 (the all-red count, i.e. answering the complement) is strong; 36 and 60 I cannot source to a clean path. 'At least one => complement' is a drilled habit, so medium, not hard - the stem's phrase itself is the cue to use it."
+  }
+}
