@@ -1,0 +1,527 @@
+[
+ {
+  "id": "AM10G-01",
+  "domain": "Geometry",
+  "subskill": "base of an isosceles triangle from its perimeter",
+  "difficulty": "easy",
+  "prompt": "An isosceles triangle has a perimeter of 62 centimeters, and each of its two congruent sides is 23 centimeters long. How many centimeters long is the base?",
+  "choices": [
+   "16",
+   "39",
+   "31",
+   "20.7"
+  ],
+  "correct_answer": "16",
+  "explanation": "The two congruent sides account for 2(23) = 46 centimeters, so the base is 62 - 46 = 16 centimeters. \"39\" comes from a solver who subtracts only one congruent side, 62 - 23. \"31\" comes from a solver who halves the perimeter, as though the base were half of the whole. \"20.7\" comes from a solver who divides the perimeter by 3, treating the triangle as equilateral.",
+  "solve": "return 62 - 2*23;",
+  "distractor_solve": {
+   "39": "return 62 - 23;",
+   "31": "return 62/2;",
+   "20.7": "return (62/3).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM10G-02",
+  "domain": "Geometry",
+  "subskill": "diagonal of a square given its perimeter",
+  "difficulty": "easy",
+  "prompt": "A square has a perimeter of 40 inches. What is the length, in inches, of one of its diagonals, to the nearest tenth of an inch?",
+  "choices": [
+   "14.1",
+   "10",
+   "20",
+   "28.3"
+  ],
+  "correct_answer": "14.1",
+  "explanation": "Each side is 40/4 = 10 inches, and the diagonal of a square is the side times the square root of 2, so the diagonal is 10(1.414) = 14.1 inches. \"10\" is the side length itself, computed on the way but not asked for. \"20\" comes from a solver who travels along two sides instead of across the square, adding 10 + 10. \"28.3\" comes from a solver who takes half the perimeter, 20, as the side length and then multiplies by the square root of 2.",
+  "solve": "return (Math.sqrt(2)*(40/4)).toFixed(1);",
+  "distractor_solve": {
+   "10": "return 40/4;",
+   "20": "return 40/2;",
+   "28.3": "return (Math.sqrt(2)*(40/2)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM10G-03",
+  "domain": "Geometry",
+  "subskill": "image of a point under a 90 degree rotation about the origin",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, point P is at (-4, 6). Point P is rotated 90 degrees CLOCKWISE about the origin. What are the coordinates of the image of P?",
+  "choices": [
+   "(6, 4)",
+   "(-6, -4)",
+   "(6, -4)",
+   "(-6, 4)"
+  ],
+  "correct_answer": "(6, 4)",
+  "explanation": "A 90 degree clockwise rotation about the origin sends (x, y) to (y, -x), so (-4, 6) goes to (6, 4). \"(-6, -4)\" is the image under a 90 degree COUNTERCLOCKWISE rotation, which sends (x, y) to (-y, x). \"(6, -4)\" comes from a solver who swaps the coordinates but negates neither. \"(-6, 4)\" comes from a solver who swaps the coordinates and then negates both, which is a 90 degree rotation followed by a half turn.",
+  "solve": "const x=-4,y=6; return '(' + y + ', ' + (-x) + ')';",
+  "distractor_solve": {
+   "(-6, -4)": "const x=-4,y=6; return '(' + (-y) + ', ' + x + ')';",
+   "(6, -4)": "const x=-4,y=6; return '(' + y + ', ' + x + ')';",
+   "(-6, 4)": "const x=-4,y=6; return '(' + (-y) + ', ' + (-x) + ')';"
+  }
+ },
+ {
+  "id": "AM10G-04",
+  "domain": "Geometry",
+  "subskill": "the point dividing a segment in a given ratio",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, A is at (-2, 1) and B is at (10, 9). Point P lies on segment AB so that AP:PB = 1:3. What are the coordinates of P?",
+  "choices": [
+   "(1, 3)",
+   "(4, 5)",
+   "(7, 7)",
+   "(-5, -1)"
+  ],
+  "correct_answer": "(1, 3)",
+  "explanation": "A ratio of 1:3 splits AB into 4 equal parts, and P is 1 part from A, so P = A + (1/4)(B - A) = (-2 + 3, 1 + 2) = (1, 3). \"(4, 5)\" is the midpoint, which a solver reaches by splitting AB in the ratio 1:1. \"(7, 7)\" is the point 3 parts from A, which a solver reaches by reading the ratio in the wrong order. \"(-5, -1)\" comes from a solver who steps one quarter of the way from A in the direction away from B.",
+  "solve": "const ax=-2,ay=1,bx=10,by=9; return '(' + (ax+(bx-ax)/4) + ', ' + (ay+(by-ay)/4) + ')';",
+  "distractor_solve": {
+   "(4, 5)": "const ax=-2,ay=1,bx=10,by=9; return '(' + ((ax+bx)/2) + ', ' + ((ay+by)/2) + ')';",
+   "(7, 7)": "const ax=-2,ay=1,bx=10,by=9; return '(' + (ax+3*(bx-ax)/4) + ', ' + (ay+3*(by-ay)/4) + ')';",
+   "(-5, -1)": "const ax=-2,ay=1,bx=10,by=9; return '(' + (ax-(bx-ax)/4) + ', ' + (ay-(by-ay)/4) + ')';"
+  }
+ },
+ {
+  "id": "AM10G-05",
+  "domain": "Geometry",
+  "subskill": "uniform border width from an equal-area condition",
+  "difficulty": "hard",
+  "prompt": "A rectangular garden measures 10 meters by 24 meters. A walkway of uniform width is built all the way around the OUTSIDE of the garden, and the area of the walkway turns out to equal the area of the garden. How many meters wide is the walkway?",
+  "choices": [
+   "3",
+   "6",
+   "20",
+   "3.5"
+  ],
+  "correct_answer": "3",
+  "explanation": "The garden covers 240 square meters, so garden plus walkway covers 480. A walkway of width w adds w to each side of both dimensions, giving (10 + 2w)(24 + 2w) = 480, so 4w^2 + 68w - 240 = 0 and w^2 + 17w - 60 = 0, whose positive root is 3. \"6\" comes from a solver who adds w rather than 2w to each dimension, solving (10 + w)(24 + w) = 480. \"20\" is the magnitude of the negative root, which a width cannot take. \"3.5\" comes from a solver who treats the walkway as two 10-by-2w strips and two 24-by-2w strips, 68w = 240, forgetting that the four corner squares are also walkway.",
+  "solve": "return (-17 + Math.sqrt(17*17 + 4*60))/2;",
+  "distractor_solve": {
+   "6": "return (-34 + Math.sqrt(34*34 + 4*240))/2;",
+   "20": "return Math.abs((-17 - Math.sqrt(17*17 + 4*60))/2);",
+   "3.5": "return (240/68).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM10G-06",
+  "domain": "Geometry",
+  "subskill": "deciding which point lies on a circle from its center and one point",
+  "difficulty": "medium",
+  "prompt": "A circle in the standard (x,y) coordinate plane has its center at (4, -1), and the point (9, 11) lies on this circle. Which of the following points ALSO lies on this circle?",
+  "choices": [
+   "(-9, -1)",
+   "(9, -1)",
+   "(4, 11)",
+   "(0, 12)"
+  ],
+  "correct_answer": "(-9, -1)",
+  "explanation": "The radius is the distance from (4, -1) to (9, 11), which is the square root of 5^2 + 12^2 = 13. The point \"(-9, -1)\" is 13 units to the left of the center, so it lies on the circle. \"(9, -1)\" is only 5 units from the center; a solver reaches it by using the horizontal difference 5 as the radius. \"(4, 11)\" is only 12 units from the center; a solver reaches it by using the vertical difference 12 as the radius. \"(0, 12)\" comes from a solver who moves 4 units left and 13 units up, using the radius in one direction while also moving in the other.",
+  "solve": "const cx=4,cy=-1,r=Math.sqrt(25+144); return '(' + (cx-r) + ', ' + cy + ')';",
+  "distractor_solve": {
+   "(9, -1)": "const cx=4,cy=-1; return '(' + (cx+5) + ', ' + cy + ')';",
+   "(4, 11)": "const cx=4,cy=-1; return '(' + cx + ', ' + (cy+12) + ')';",
+   "(0, 12)": "const cx=4,cy=-1; return '(' + (cx-4) + ', ' + (cy+13) + ')';"
+  }
+ },
+ {
+  "id": "AM10G-07",
+  "domain": "Geometry",
+  "subskill": "fraction of a cone filled when the depth is halved",
+  "difficulty": "medium",
+  "prompt": "A cone-shaped paper cup is held point down. The cup is 12 centimeters deep. Water is poured in until the water is 6 centimeters deep. What fraction of the cup's capacity is filled?",
+  "choices": [
+   "1/8",
+   "1/2",
+   "1/12",
+   "1/3"
+  ],
+  "correct_answer": "1/8",
+  "explanation": "The water forms a cone similar to the cup, and every linear dimension of the water cone, including its radius, is half that of the cup. Volume scales as the CUBE of the linear ratio, so the water occupies (1/2)^3 = 1/8 of the capacity. \"1/2\" comes from a solver who scales the volume by the linear ratio itself, as though only the depth mattered. \"1/12\" comes from a solver who squares the ratio, which is how areas scale, and then multiplies by the 1/3 that appears in the cone volume formula. \"1/3\" is that 1/3 from the cone volume formula reported on its own, with the depth never used at all.",
+  "solve": "return '1/' + Math.pow(12/6,3);",
+  "distractor_solve": {
+   "1/2": "return '1/' + (12/6);",
+   "1/12": "return '1/' + (3*Math.pow(12/6,2));",
+   "1/3": "return '1/' + 3;"
+  }
+ },
+ {
+  "id": "AM10G-08",
+  "domain": "Geometry",
+  "subskill": "height from two angles of elevation taken from different points",
+  "difficulty": "hard",
+  "prompt": "From a point on level ground, the angle of elevation to the top of a tower measures 32 degrees. From a second point, 20 feet closer to the tower along the same straight line, the angle of elevation to the top measures 47 degrees. How many feet tall is the tower, to the nearest tenth of a foot?",
+  "choices": [
+   "29.9",
+   "12.5",
+   "21.4",
+   "44.7"
+  ],
+  "correct_answer": "29.9",
+  "explanation": "If the tower is h feet tall, the far point is h/tan(32 degrees) feet from its base and the near point is h/tan(47 degrees) feet from its base, and those two distances differ by 20. So h(1/tan 32 - 1/tan 47) = 20, giving h = 20/0.6678 = 29.9 feet. \"12.5\" comes from a solver who treats the 20 feet as the ground distance for the 32 degree triangle, computing 20 tan(32 degrees). \"21.4\" is the same mistake made with the other angle, 20 tan(47 degrees). \"44.7\" comes from a solver who subtracts the tangents instead of their reciprocals, computing 20/(tan 47 - tan 32).",
+  "solve": "const t=d=>Math.tan(d*Math.PI/180); return (20/(1/t(32)-1/t(47))).toFixed(1);",
+  "distractor_solve": {
+   "12.5": "const t=d=>Math.tan(d*Math.PI/180); return (20*t(32)).toFixed(1);",
+   "21.4": "const t=d=>Math.tan(d*Math.PI/180); return (20*t(47)).toFixed(1);",
+   "44.7": "const t=d=>Math.tan(d*Math.PI/180); return (20/(t(47)-t(32))).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM10G-09",
+  "domain": "Geometry",
+  "subskill": "area of the circle circumscribing a rectangle",
+  "difficulty": "medium",
+  "prompt": "A rectangle whose sides measure 10 inches and 24 inches is inscribed in a circle. What is the area of that circle, in square inches?",
+  "choices": [
+   "169π",
+   "676π",
+   "26π",
+   "289π"
+  ],
+  "correct_answer": "169π",
+  "explanation": "A rectangle inscribed in a circle has the circle's diameter as its diagonal. The diagonal is the square root of 10^2 + 24^2 = 26, so the radius is 13 and the area is 169 pi. \"676π\" comes from a solver who uses the diagonal 26 as the radius rather than as the diameter. \"26π\" is the circle's circumference, 2 pi (13), reported in place of its area. \"289π\" comes from a solver who averages the two side lengths, (10 + 24)/2 = 17, and uses that as the radius.",
+  "solve": "return Math.pow(Math.sqrt(10*10+24*24)/2,2) + 'π';",
+  "distractor_solve": {
+   "676π": "return Math.pow(Math.sqrt(10*10+24*24),2) + 'π';",
+   "26π": "return (2*(Math.sqrt(10*10+24*24)/2)) + 'π';",
+   "289π": "return Math.pow((10+24)/2,2) + 'π';"
+  }
+ },
+ {
+  "id": "AM10G-10",
+  "domain": "Geometry",
+  "subskill": "area of a triangle from the coordinates of its vertices",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, a triangle has vertices at (-5, 3), (7, 3), and (2, -4). What is the area of this triangle, in square coordinate units?",
+  "choices": [
+   "42",
+   "84",
+   "51.6",
+   "103.2"
+  ],
+  "correct_answer": "42",
+  "explanation": "The side from (-5, 3) to (7, 3) is horizontal and 12 units long, and the third vertex sits 7 units below that line, so the area is (1/2)(12)(7) = 42. \"84\" comes from a solver who multiplies the base by the height and omits the factor of 1/2. \"51.6\" comes from a solver who uses the slant side from (7, 3) to (2, -4), whose length is about 8.6, as the height. \"103.2\" comes from a solver who makes both mistakes at once, using the slant side as the height and omitting the 1/2.",
+  "solve": "return 0.5*12*7;",
+  "distractor_solve": {
+   "84": "return 12*7;",
+   "51.6": "return (0.5*12*Math.sqrt(25+49)).toFixed(1);",
+   "103.2": "return (12*Math.sqrt(25+49)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM10G-11",
+  "domain": "Geometry",
+  "subskill": "perimeter of a regular hexagon inscribed in a circle",
+  "difficulty": "medium",
+  "prompt": "A regular hexagon is inscribed in a circle whose radius is 10 centimeters. What is the perimeter of the hexagon, in centimeters, to the nearest tenth of a centimeter?",
+  "choices": [
+   "60.0",
+   "62.8",
+   "52.0",
+   "69.3"
+  ],
+  "correct_answer": "60.0",
+  "explanation": "A regular hexagon splits into six equilateral triangles meeting at the center, so each side of the hexagon equals the radius, 10, and the perimeter is 6(10) = 60.0 centimeters. \"62.8\" is the circumference of the circle, 2 pi (10), which is the curved boundary rather than the hexagon's. \"52.0\" comes from a solver who uses the apothem, 10 times the square root of 3 over 2, as the side length. \"69.3\" comes from a solver who treats the 10 as the apothem instead of the radius, making each side 20 over the square root of 3.",
+  "solve": "return (6*10).toFixed(1);",
+  "distractor_solve": {
+   "62.8": "return (2*Math.PI*10).toFixed(1);",
+   "52.0": "return (6*10*Math.sqrt(3)/2).toFixed(1);",
+   "69.3": "return (6*20/Math.sqrt(3)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM10G-12",
+  "domain": "Geometry",
+  "subskill": "volume of a square pyramid given its slant height",
+  "difficulty": "medium",
+  "prompt": "A right pyramid has a square base with edges 12 centimeters long. Its slant height, the distance from the apex to the midpoint of a base edge, is 10 centimeters. What is the volume of the pyramid, in cubic centimeters?",
+  "choices": [
+   "384",
+   "480",
+   "1152",
+   "1440"
+  ],
+  "correct_answer": "384",
+  "explanation": "The slant height, half a base edge, and the pyramid's vertical height form a right triangle, so the height is the square root of 10^2 - 6^2 = 8. The volume is (1/3)(12^2)(8) = 384 cubic centimeters. \"480\" comes from a solver who uses the slant height 10 in place of the vertical height. \"1152\" comes from a solver who finds the height correctly but uses the prism formula, omitting the factor of 1/3. \"1440\" comes from a solver who makes both mistakes, using 10 as the height and omitting the 1/3.",
+  "solve": "return (1/3)*144*Math.sqrt(10*10-6*6);",
+  "distractor_solve": {
+   "480": "return (1/3)*144*10;",
+   "1152": "return 144*Math.sqrt(10*10-6*6);",
+   "1440": "return 144*10;"
+  }
+ },
+ {
+  "id": "AM10G-13",
+  "domain": "Geometry",
+  "subskill": "recomputing a right triangle after the base is moved",
+  "difficulty": "hard",
+  "prompt": "A 25-foot ladder leans against a vertical wall, with the top of the ladder reaching 24 feet up the wall. The bottom of the ladder is then pulled 8 feet farther from the wall, and the ladder slides down, still resting against the wall. How many feet above the ground is the top of the ladder now?",
+  "choices": [
+   "20",
+   "16",
+   "15",
+   "7"
+  ],
+  "correct_answer": "20",
+  "explanation": "At first the base is the square root of 25^2 - 24^2 = 7 feet from the wall. After the pull it is 7 + 8 = 15 feet from the wall, and the ladder is still 25 feet long, so the top is now the square root of 25^2 - 15^2 = 20 feet up. \"16\" comes from a solver who assumes the top slides down by the same 8 feet the base slides out, 24 - 8; the two distances do not change at the same rate. \"15\" is the new distance from the wall to the base, computed along the way but not asked for. \"7\" is the original distance from the wall to the base.",
+  "solve": "return Math.sqrt(25*25 - Math.pow(Math.sqrt(25*25-24*24)+8,2));",
+  "distractor_solve": {
+   "16": "return 24 - 8;",
+   "15": "return Math.sqrt(25*25-24*24)+8;",
+   "7": "return Math.sqrt(25*25-24*24);"
+  }
+ },
+ {
+  "id": "AM10N-01",
+  "domain": "Number and Quantity",
+  "subskill": "a product written in scientific notation",
+  "difficulty": "easy",
+  "prompt": "What is the value of (6 × 10^-3)(1.5 × 10^8), written in scientific notation?",
+  "choices": [
+   "9 × 10^5",
+   "9 × 10^11",
+   "7.5 × 10^5",
+   "7.5 × 10^11"
+  ],
+  "correct_answer": "9 × 10^5",
+  "explanation": "Multiply the leading factors and ADD the exponents: 6(1.5) = 9 and -3 + 8 = 5, so the product is 9 × 10^5. \"9 × 10^11\" comes from a solver who subtracts the exponents, 8 - (-3), as though dividing. \"7.5 × 10^5\" comes from a solver who adds the leading factors, 6 + 1.5, instead of multiplying them. \"7.5 × 10^11\" makes both mistakes at once.",
+  "solve": "return (6*1.5) + ' × 10^' + (-3+8);",
+  "distractor_solve": {
+   "9 × 10^11": "return (6*1.5) + ' × 10^' + (8-(-3));",
+   "7.5 × 10^5": "return (6+1.5) + ' × 10^' + (-3+8);",
+   "7.5 × 10^11": "return (6+1.5) + ' × 10^' + (8-(-3));"
+  }
+ },
+ {
+  "id": "AM10N-02",
+  "domain": "Number and Quantity",
+  "subskill": "squaring a complex number",
+  "difficulty": "medium",
+  "prompt": "Given that i^2 = -1, which of the following is equal to (3 - 2i)^2 ?",
+  "choices": [
+   "5 - 12i",
+   "5 + 12i",
+   "13 - 12i",
+   "13 + 12i"
+  ],
+  "correct_answer": "5 - 12i",
+  "explanation": "Expanding gives 9 - 12i + 4i^2, and since i^2 = -1 the last term is -4, leaving 5 - 12i. \"5 + 12i\" comes from a solver who handles i^2 correctly but loses the sign on the middle term, 2(3)(-2i). \"13 - 12i\" comes from a solver who treats i^2 as +1, so the last term adds 4 rather than subtracting it. \"13 + 12i\" makes both mistakes at once.",
+  "solve": "const a=3,b=-2; const re=a*a+b*b*-1, im=2*a*b; return re + (im<0?' - ':' + ') + Math.abs(im) + 'i';",
+  "distractor_solve": {
+   "5 + 12i": "const a=3,b=-2; return (a*a - b*b) + ' + ' + Math.abs(2*a*b) + 'i';",
+   "13 - 12i": "const a=3,b=-2; return (a*a + b*b) + ' - ' + Math.abs(2*a*b) + 'i';",
+   "13 + 12i": "const a=3,b=-2; return (a*a + b*b) + ' + ' + Math.abs(2*a*b) + 'i';"
+  }
+ },
+ {
+  "id": "AM10N-03",
+  "domain": "Number and Quantity",
+  "subskill": "sum of the first n terms of a geometric sequence",
+  "difficulty": "medium",
+  "prompt": "The first term of a geometric sequence is 5, and each term after the first is 3 times the preceding term. What is the sum of the FIRST 6 TERMS of this sequence?",
+  "choices": [
+   "1820",
+   "1215",
+   "3645",
+   "364"
+  ],
+  "correct_answer": "1820",
+  "explanation": "For a geometric sequence the sum of the first n terms is a(r^n - 1)/(r - 1), so the sum is 5(3^6 - 1)/2 = 5(728)/2 = 1820. \"1215\" is the sixth term itself, 5(3^5), reported in place of the sum. \"3645\" is 5(3^6), which is the seventh term, reached by running the exponent one step too far. \"364\" comes from a solver who computes (3^6 - 1)/2 and forgets to multiply by the first term.",
+  "solve": "return 5*(Math.pow(3,6)-1)/(3-1);",
+  "distractor_solve": {
+   "1215": "return 5*Math.pow(3,5);",
+   "3645": "return 5*Math.pow(3,6);",
+   "364": "return (Math.pow(3,6)-1)/(3-1);"
+  }
+ },
+ {
+  "id": "AM10N-04",
+  "domain": "Number and Quantity",
+  "subskill": "a two-digit repeating decimal written as a fraction",
+  "difficulty": "medium",
+  "prompt": "The repeating decimal 0.515151... (with the block 51 repeating forever) is equal to which of the following fractions, expressed in lowest terms?",
+  "choices": [
+   "17/33",
+   "51/100",
+   "17/30",
+   "51/990"
+  ],
+  "correct_answer": "17/33",
+  "explanation": "Let x = 0.515151...; then 100x = 51.515151..., so 99x = 51 and x = 51/99, which reduces by 3 to 17/33. \"51/100\" comes from a solver who treats the decimal as terminating at 0.51. \"17/30\" comes from a solver who applies the ONE-digit rule, 51/90, and reduces it. \"51/990\" comes from a solver who applies the rule for a decimal with a non-repeating digit in front of the repeating block.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=51,d=99,k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "51/100": "return 51 + '/' + 100;",
+   "17/30": "const g=(a,b)=>b?g(b,a%b):a; const n=51,d=90,k=g(n,d); return (n/k)+'/'+(d/k);",
+   "51/990": "return 51 + '/' + 990;"
+  }
+ },
+ {
+  "id": "AM10N-05",
+  "domain": "Number and Quantity",
+  "subskill": "a coefficient in a binomial expansion",
+  "difficulty": "medium",
+  "prompt": "In the expansion of (2x - 3)^4, what is the coefficient of x^2 ?",
+  "choices": [
+   "216",
+   "24",
+   "54",
+   "108"
+  ],
+  "correct_answer": "216",
+  "explanation": "The x^2 term is C(4,2)(2x)^2(-3)^2 = 6(4x^2)(9) = 216x^2, so the coefficient is 216. \"24\" comes from a solver who applies C(4,2)(2)^2 and drops the (-3)^2 factor entirely. \"54\" comes from a solver who applies C(4,2)(-3)^2 and drops the 2^2 that comes from squaring 2x. \"108\" comes from a solver who squares only the x in (2x)^2, carrying the 2 along as a single factor rather than as 2^2.",
+  "solve": "return 6*Math.pow(2,2)*Math.pow(-3,2);",
+  "distractor_solve": {
+   "24": "return 6*Math.pow(2,2);",
+   "54": "return 6*Math.pow(-3,2);",
+   "108": "return 6*2*Math.pow(-3,2);"
+  }
+ },
+ {
+  "id": "AM10N-06",
+  "domain": "Number and Quantity",
+  "subskill": "a single entry of a matrix product",
+  "difficulty": "medium",
+  "prompt": "Matrix A has first row 2, -1 and second row 0, 5. Matrix B has first row 1, 6 and second row 5, -3. What is the entry in row 1, column 2 of the product AB ?",
+  "choices": [
+   "15",
+   "9",
+   "-15",
+   "29"
+  ],
+  "correct_answer": "15",
+  "explanation": "The row 1, column 2 entry of AB pairs row 1 of A with column 2 of B: 2(6) + (-1)(-3) = 12 + 3 = 15. \"9\" comes from a solver who loses a sign in the second product, computing 12 - 3. \"-15\" comes from a solver who pairs ROW 2 of A with column 2 of B, 0(6) + 5(-3). \"29\" is the row 1, column 2 entry of BA, 1(-1) + 6(5), which a solver reaches by multiplying in the wrong order.",
+  "solve": "return 2*6 + (-1)*(-3);",
+  "distractor_solve": {
+   "9": "return 2*6 + (-1)*3;",
+   "-15": "return 0*6 + 5*(-3);",
+   "29": "return 1*(-1) + 6*5;"
+  }
+ },
+ {
+  "id": "AM10N-07",
+  "domain": "Number and Quantity",
+  "subskill": "a linear combination of two vectors",
+  "difficulty": "easy",
+  "prompt": "If u = <5, -2> and v = <-3, 6>, what is 2u - v ?",
+  "choices": [
+   "<13, -10>",
+   "<7, 2>",
+   "<13, 2>",
+   "<7, -10>"
+  ],
+  "correct_answer": "<13, -10>",
+  "explanation": "Double each component of u and then subtract the matching component of v: 2(5) - (-3) = 13 and 2(-2) - 6 = -10. \"<7, 2>\" comes from a solver who ADDS v instead of subtracting it in both components. \"<13, 2>\" comes from a solver who subtracts correctly in the first component but adds in the second. \"<7, -10>\" comes from a solver who adds in the first component but subtracts in the second.",
+  "solve": "return '<' + (2*5-(-3)) + ', ' + (2*(-2)-6) + '>';",
+  "distractor_solve": {
+   "<7, 2>": "return '<' + (2*5+(-3)) + ', ' + (2*(-2)+6) + '>';",
+   "<13, 2>": "return '<' + (2*5-(-3)) + ', ' + (2*(-2)+6) + '>';",
+   "<7, -10>": "return '<' + (2*5+(-3)) + ', ' + (2*(-2)-6) + '>';"
+  }
+ },
+ {
+  "id": "AM10N-08",
+  "domain": "Number and Quantity",
+  "subskill": "a distant term of an arithmetic sequence",
+  "difficulty": "medium",
+  "prompt": "The 1st term of an arithmetic sequence is 6, and the 15th term is 76. What is the 30th term of this sequence?",
+  "choices": [
+   "151",
+   "156",
+   "226",
+   "145"
+  ],
+  "correct_answer": "151",
+  "explanation": "There are 14 steps from the 1st term to the 15th, so the common difference is (76 - 6)/14 = 5. The 30th term is 29 steps past the first: 6 + 29(5) = 151. \"156\" comes from a solver who takes 30 steps rather than 29, computing 6 + 30(5). \"226\" comes from a solver who starts from the 15th term but still takes 30 steps, 76 + 30(5), instead of the 15 steps that remain. \"145\" comes from a solver who computes 29(5) and forgets to add the first term.",
+  "solve": "const d=(76-6)/14; return 6 + 29*d;",
+  "distractor_solve": {
+   "156": "const d=(76-6)/14; return 6 + 30*d;",
+   "226": "const d=(76-6)/14; return 76 + 30*d;",
+   "145": "const d=(76-6)/14; return 29*d;"
+  }
+ },
+ {
+  "id": "AM10N-09",
+  "domain": "Number and Quantity",
+  "subskill": "counting integers coprime to a given integer",
+  "difficulty": "hard",
+  "prompt": "For how many integers n with 1 <= n <= 60 is the fraction n/60 already in lowest terms?",
+  "choices": [
+   "16",
+   "18",
+   "44",
+   "30"
+  ],
+  "correct_answer": "16",
+  "explanation": "A fraction n/60 is in lowest terms exactly when n shares no prime factor with 60 = 2^2 times 3 times 5. Counting by inclusion and exclusion: 60 - 30 - 20 - 12 + 10 + 6 + 4 - 2 = 16. \"18\" comes from a solver who stops after adding back the three pairwise overlaps and never subtracts the 2 integers divisible by all three primes. \"44\" counts the integers that DO share a factor with 60, the complement of what is asked. \"30\" counts only the integers that avoid the factor 2, ignoring 3 and 5 altogether.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; let c=0; for(let n=1;n<=60;n++) if(g(n,60)===1) c++; return c;",
+  "distractor_solve": {
+   "18": "return 60-30-20-12+10+6+4;",
+   "44": "const g=(a,b)=>b?g(b,a%b):a; let c=0; for(let n=1;n<=60;n++) if(g(n,60)!==1) c++; return c;",
+   "30": "let c=0; for(let n=1;n<=60;n++) if(n%2===1) c++; return c;"
+  }
+ },
+ {
+  "id": "AM10S-01",
+  "domain": "Statistics and Probability",
+  "subskill": "residual of a data point about a line of best fit",
+  "difficulty": "medium",
+  "prompt": "For a certain data set, the least-squares line of best fit is y = 2.4x + 15.6. One of the data points in the set is (12, 57). What is the RESIDUAL for that data point, that is, its actual y-value minus the y-value the line predicts?",
+  "choices": [
+   "12.6",
+   "-12.6",
+   "44.4",
+   "101.4"
+  ],
+  "correct_answer": "12.6",
+  "explanation": "The line predicts y = 2.4(12) + 15.6 = 44.4 when x = 12, and the actual value is 57, so the residual is 57 - 44.4 = 12.6. \"-12.6\" comes from a solver who subtracts in the order the question does not ask for, predicted minus actual. \"44.4\" is the predicted value itself, computed on the way but not the residual. \"101.4\" comes from a solver who adds the actual and predicted values instead of comparing them.",
+  "solve": "return (57 - (2.4*12+15.6)).toFixed(1);",
+  "distractor_solve": {
+   "-12.6": "return ((2.4*12+15.6) - 57).toFixed(1);",
+   "44.4": "return (2.4*12+15.6).toFixed(1);",
+   "101.4": "return (57 + 2.4*12 + 15.6).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM10S-02",
+  "domain": "Statistics and Probability",
+  "subskill": "probability that a randomly chosen integer has all distinct digits",
+  "difficulty": "hard",
+  "prompt": "An integer is chosen at random from the integers 100 through 999, inclusive. What is the probability that its three digits are all different from one another?",
+  "choices": [
+   "0.72",
+   "0.648",
+   "0.56",
+   "0.504"
+  ],
+  "correct_answer": "0.72",
+  "explanation": "There are 900 integers from 100 through 999. For all three digits to differ, the hundreds digit has 9 choices (it cannot be 0), the tens digit has 9 (any digit except the hundreds digit), and the units digit has 8, giving 9(9)(8) = 648 favorable integers and a probability of 648/900 = 0.72. \"0.648\" comes from a solver who divides the 648 favorable outcomes by 1,000 rather than by the 900 integers actually in range. \"0.56\" comes from a solver who counts 9(8)(7) favorable outcomes, as though the hundreds digit were drawn from the same pool as the other two. \"0.504\" makes both mistakes at once, counting 9(8)(7) favorable outcomes out of 1,000.",
+  "solve": "return (9*9*8)/900;",
+  "distractor_solve": {
+   "0.648": "return (9*9*8)/1000;",
+   "0.56": "return (9*8*7)/900;",
+   "0.504": "return (9*8*7)/1000;"
+  }
+ },
+ {
+  "id": "AM10S-03",
+  "domain": "Statistics and Probability",
+  "subskill": "recovering the size of a data set from a change in its mean",
+  "difficulty": "medium",
+  "prompt": "The mean of a set of numbers is 20. When the number 38 is added to the set, the mean of the new, larger set is 23. How many numbers were in the ORIGINAL set?",
+  "choices": [
+   "5",
+   "6",
+   "15",
+   "18"
+  ],
+  "correct_answer": "5",
+  "explanation": "If the original set had n numbers, its total is 20n, and after the addition 20n + 38 = 23(n + 1). That gives 38 - 23 = 23n - 20n, so 3n = 15 and n = 5. \"6\" is the size of the NEW set, one more than the question asks for. \"15\" is the value of 3n, reported before dividing by 3. \"18\" is 38 - 20, the amount by which the added number exceeds the OLD mean, which is not itself a count.",
+  "solve": "return (38-23)/(23-20);",
+  "distractor_solve": {
+   "6": "return (38-23)/(23-20) + 1;",
+   "15": "return 38-23;",
+   "18": "return 38-20;"
+  }
+ }
+]
