@@ -90,8 +90,15 @@ BLACKLIST = [
     r"\bthere (eggs|doors|face|not)\b",
 ]
 # --- M4 support: eliminable in isolation without being a misspelling -----
+# NOTE on the doubled-joiner pattern: `; and` is a doubled joiner ONLY when one
+# semicolon joins two clauses. A SERIES punctuated with semicolons legitimately
+# ends `; and` ("steaks; potatoes; and onions") and is standard edited English,
+# so an option carrying two or more semicolons is exempted. This refinement was
+# added for act-english-v5 and then break-tested (see the bottom of this file):
+# a genuine one-semicolon doubled joiner must still fire.
 SELFSTRIKE = [
-    (r";\s*(and|but|or)\b", "doubled joiner (semicolon + coordinating conjunction)"),
+    (r"^[^;]*;\s*(and|but|or)\b[^;]*$",
+     "doubled joiner (semicolon + coordinating conjunction)"),
     (r",\s*(and|but|or),", "comma-wrapped coordinating conjunction"),
     (r"[,;:]\s*[”\"']\s*,", "doubled punctuation across a quotation mark"),
     (r"\w,\s*that\s", "comma before a restrictive 'that'"),
@@ -128,6 +135,32 @@ def minimal_pair(a, b):
     return sum(1 for x, y in zip(ta, tb) if x != y) == 1
 
 
+def axes(opts):
+    """Group the options into ONE-TOKEN AXES: maximal sets of options whose
+    token sequences agree everywhere except at a single position. Returns
+    [(size, members)]. A size-2 axis names a binary rule (was/were,
+    town's/towns') and leaves the rest of the field as its survivors - that
+    is mechanism 1. A size-3+ axis is a CLOSED SET on that axis (three
+    prepositions, three marks) and privileges nobody, which is the shape
+    AUTHORING-BRIEF section 2b calls safe."""
+    groups = {}
+    for c in opts:
+        t = toks(c)
+        for p in range(len(t)):
+            groups.setdefault((len(t), p, tuple(t[:p]), tuple(t[p + 1:])),
+                              set()).add(c)
+    seen, out = set(), []
+    for members in sorted(groups.values(), key=len, reverse=True):
+        if len(members) < 2:
+            continue
+        fm = frozenset(members)
+        if fm in seen:
+            continue
+        seen.add(fm)
+        out.append((len(members), members))
+    return out
+
+
 def weak_mark_eliminated(opts):
     """Within a family of options carrying the SAME words and differing only
     in punctuation, if any member uses a semicolon, colon or dash then the
@@ -157,11 +190,12 @@ for it in conv:
     n_self = sum(1 for c in alts if self_hits(c))
     ladder = max(len(c) for c in alts) / max(1, min(len(c) for c in alts))
 
-    # M1: a minimal pair that does NOT contain the key - two options bracket
-    # an axis and the key survives on it.
-    pair = any(minimal_pair(a, b)
-               for a, b in itertools.combinations(allopts, 2)
-               if key_txt not in (a, b))
+    # M1: a BINARY axis among the NAMED alternates that does not contain the
+    # key. Named only, because `No Change` shows the solver no text: a bracket
+    # can only be read off strings the solver can actually see.
+    ax = axes(alts)
+    pair = any(sz == 2 and key_txt not in mem for sz, mem in ax)
+    closed = sum(1 for sz, mem in ax if sz >= 3)
 
     # M2: how many options survive every mechanically decidable elimination.
     # `No Change` is opaque and therefore NEVER eliminable by a solver.
@@ -171,11 +205,12 @@ for it in conv:
     residue = len(survivors)
 
     rows.append({'id': it['id'], 'orth': n_orth, 'self': n_self,
-                 'ladder': round(ladder, 2), 'bracket': pair,
+                 'ladder': round(ladder, 2), 'bracket': pair, 'closed': closed,
                  'residue': residue,
                  'residue_is_key': residue == 1 and survivors[0] == key_txt})
 
 m1 = sum(1 for r in rows if r['bracket'])
+m1c = sum(1 for r in rows if r['closed'])
 m2 = sum(1 for r in rows if r['residue'] == 1)
 m2k = sum(1 for r in rows if r['residue_is_key'])
 m3 = sum(1 for r in rows if r['orth'])
@@ -183,7 +218,8 @@ m3_total = sum(r['orth'] for r in rows)
 m4 = sum(1 for r in rows if r['ladder'] >= 2.0)
 n_self_items = sum(1 for r in rows if r['self'])
 
-print(f" M1 bracket      a minimal pair that EXCLUDES the key            : {m1}/27")
+print(f" M1 bracket      BINARY axis (2 options) that EXCLUDES the key   : {m1}/27")
+print(f"    (contrast)   items carrying a CLOSED 3+-way axis (safe shape): {m1c}/27")
 print(f" M2 residue      mechanically reduced to ONE surviving option    : {m2}/27"
       f"   (and that survivor is the key: {m2k})")
 print(f" M3 orthography  items with >=1 strike-on-sight option           : {m3}/27"
@@ -243,3 +279,11 @@ print("    options (three prepositions, four marks) is FULL of minimal pairs and
 print("    is the SAFE shape; the harm needs a general rule that picks the")
 print("    survivor, and no script decides that.")
 print("  - cross-item tells: the distribution of key VALUES across the 27.")
+
+# --- self-test of the refined doubled-joiner pattern ---------------------
+# A detector that has been loosened must be shown still to fire.
+_pat = SELFSTRIKE[0][0]
+assert re.search(_pat, "laugh; and he simply", re.I), "doubled joiner no longer fires"
+assert re.search(_pat, "ice; but within a decade", re.I), "doubled joiner no longer fires"
+assert not re.search(_pat, "Whitefish steaks; small potatoes; and onions", re.I), \
+    "semicolon series must be exempt"
