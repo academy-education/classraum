@@ -13,7 +13,13 @@
   "correct_answer": "2.0",
   "explanation": "The 40-ounce bottle costs 920/40 = 23.0 cents per ounce and the 64-ounce bottle costs 1,344/64 = 21.0 cents per ounce, so the larger bottle is 2.0 cents per ounce cheaper. '21.0' is the unit price of the larger bottle reported instead of the difference between the two unit prices. '17.7' divides the price difference by the size difference, (1,344 - 920)/(64 - 40) = 17.67, treating the extra 24 ounces as if it were the whole purchase. '6.6' divides the price difference by the larger size alone, 424/64 = 6.63, spreading the savings over the big bottle instead of comparing rates.",
   "topic_tag": "unit rate comparison",
-  "difficulty": "easy"
+  "difficulty": "easy",
+  "solve": "const small = 920 / 40; const large = 1344 / 64; return (small - large).toFixed(1);",
+  "distractor_solve": {
+   "21.0": "return (1344 / 64).toFixed(1);",
+   "17.7": "return ((1344 - 920) / (64 - 40)).toFixed(1);",
+   "6.6": "return ((1344 - 920) / 64).toFixed(1);"
+  }
  },
  {
   "id": "AM13I-02",
@@ -29,7 +35,13 @@
   "correct_answer": "540",
   "explanation": "The expected donations total 45 x 24 = $1,080, bringing the amount raised to 2,880 + 1,080 = $3,960, which leaves 4,500 - 3,960 = $540 still needed. '1,575' subtracts the number of donors instead of the money they give, computing 4,500 - 2,880 - 45. '660' rounds the 45 donors down to 40, using 40 x 24 = $960 of expected donations. '720' rounds each donation down to $20, using 45 x 20 = $900 of expected donations.",
   "topic_tag": "multi-step arithmetic",
-  "difficulty": "easy"
+  "difficulty": "easy",
+  "solve": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp(4500 - (2880 + 45 * 24));",
+  "distractor_solve": {
+   "660": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp(4500 - (2880 + 40 * 24));",
+   "720": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp(4500 - (2880 + 45 * 20));",
+   "1,575": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp(4500 - 2880 - 45);"
+  }
  },
  {
   "id": "AM13I-03",
@@ -45,7 +57,13 @@
   "correct_answer": "18,374.40",
   "explanation": "She earns 22 x 17.40 = $382.80 per week, and 382.80 x 48 = $18,374.40 for the year. '19,905.60' pays her for 52 weeks instead of the 48 weeks stated, 382.80 x 52. '33,408.00' uses a 40-hour week rather than her 22 hours, 40 x 17.40 x 48. '17,952.00' rounds the hourly pay down to $17, computing 22 x 17 x 48 and discarding 40 cents on every hour worked.",
   "topic_tag": "rates and totals",
-  "difficulty": "easy"
+  "difficulty": "easy",
+  "solve": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp((22 * 17.40 * 48).toFixed(2));",
+  "distractor_solve": {
+   "19,905.60": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp((22 * 17.40 * 52).toFixed(2));",
+   "33,408.00": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp((40 * 17.40 * 48).toFixed(2));",
+   "17,952.00": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp((22 * 17 * 48).toFixed(2));"
+  }
  },
  {
   "id": "AM13I-04",
@@ -61,7 +79,13 @@
   "correct_answer": "6.99",
   "explanation": "One gallon costs 1.60 x 3.8 = 6.08 euros, and 6.08 euros is 6.08 x 1.15 = 6.992, or $6.99. '6.08' converts liters to gallons but leaves the price in euros, never applying the exchange rate. '1.84' converts euros to dollars but leaves the price per liter, computing 1.60 x 1.15 and never applying the volume conversion. '5.29' divides by the exchange rate instead of multiplying, 6.08 / 1.15 = 5.287, which is the conversion run backwards from dollars to euros.",
   "topic_tag": "unit conversion",
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "solve": "return (1.60 * 3.8 * 1.15).toFixed(2);",
+  "distractor_solve": {
+   "6.08": "return (1.60 * 3.8).toFixed(2);",
+   "1.84": "return (1.60 * 1.15).toFixed(2);",
+   "5.29": "return ((1.60 * 3.8) / 1.15).toFixed(2);"
+  }
  },
  {
   "id": "AM13I-06",
@@ -77,7 +101,13 @@
   "correct_answer": "720",
   "explanation": "The 54 liters covers 54 / 7.5 = 7.2 hundred-kilometer stretches, so the car travels 7.2 x 100 = 720 kilometers. '405' multiplies the consumption by the fuel, 7.5 x 54, instead of dividing; that treats 7.5 as kilometers per liter rather than liters per 100 kilometers. '675' rounds the consumption up to 8 liters per 100 kilometers, giving 54 / 8 x 100 = 675. '702' inverts the rate first and rounds it, using 100 / 7.5 = 13.3 kilometers per liter cut to 13, then 13 x 54 = 702.",
   "topic_tag": "rate inversion",
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "solve": "return String(Math.round((54 / 7.5) * 100));",
+  "distractor_solve": {
+   "405": "return String(Math.round(7.5 * 54));",
+   "675": "return String(Math.round((54 / 8) * 100));",
+   "702": "return String(Math.round(Math.floor(100 / 7.5) * 54));"
+  }
  },
  {
   "id": "AM13I-07",
@@ -93,7 +123,13 @@
   "correct_answer": "459",
   "explanation": "The fenced length is 24 + 15 + 15 - 3 = 51 feet, so the cost is 51 x 9 = $459. '486' omits the 3-foot gateway, fencing 54 feet at $9. '675' subtracts the gateway but fences all four sides, 78 - 3 = 75 feet, ignoring the side along the building. '702' fences the entire perimeter of 78 feet with no deduction for either the building or the gateway.",
   "topic_tag": "perimeter in context",
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "solve": "return String((24 + 15 + 15 - 3) * 9);",
+  "distractor_solve": {
+   "486": "return String((24 + 15 + 15) * 9);",
+   "675": "return String((2 * (24 + 15) - 3) * 9);",
+   "702": "return String(2 * (24 + 15) * 9);"
+  }
  },
  {
   "id": "AM13I-08",
@@ -109,7 +145,13 @@
   "correct_answer": "552",
   "explanation": "The gravel occupies 4.8 x 2.2 x 0.5 = 5.28 cubic meters, with a mass of 5.28 x 1,600 = 8,448 kilograms, so it is 9,000 - 8,448 = 552 kilograms below the limit. '8,448' reports the mass of the load itself rather than the difference the question asks for. '3,720' uses 1,000 kilograms per cubic meter, the density of water, giving 5,280 kilograms and a gap of 3,720. '1,080' rounds the density down to 1,500 kilograms per cubic meter, giving 7,920 kilograms and a gap of 1,080.",
   "topic_tag": "volume and density",
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "solve": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; const v = 4.8 * 2.2 * 0.5; return grp(Math.round(9000 - v * 1600));",
+  "distractor_solve": {
+   "8,448": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp(Math.round(4.8 * 2.2 * 0.5 * 1600));",
+   "3,720": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp(Math.round(9000 - 4.8 * 2.2 * 0.5 * 1000));",
+   "1,080": "const grp = (s) => { const p = String(s).split(\".\"); return p[0].replace(/\\B(?=(\\d{3})+$)/g, \",\") + (p[1] ? \".\" + p[1] : \"\"); }; return grp(Math.round(9000 - 4.8 * 2.2 * 0.5 * 1500));"
+  }
  },
  {
   "id": "AM13I-09",
@@ -125,7 +167,13 @@
   "correct_answer": "25",
   "explanation": "The coil is 14.4 / 0.32 = 45 meters long, and 45 / 1.75 = 25.7, so 25 whole pieces can be cut. '45' reports the length of the coil in meters and never divides by the piece length. '8' divides the mass by the piece length, 14.4 / 1.75 = 8.2, using kilograms where meters are required. '22' rounds the piece length to 2 meters before dividing, 45 / 2 = 22.5, which discards a quarter meter on every piece.",
   "topic_tag": "multi-step rates",
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "solve": "const metres = 14.4 / 0.32; return String(Math.floor(metres / 1.75));",
+  "distractor_solve": {
+   "8": "return String(Math.floor(14.4 / 1.75));",
+   "22": "return String(Math.floor((14.4 / 0.32) / 2));",
+   "45": "return String(Math.round(14.4 / 0.32));"
+  }
  },
  {
   "id": "AM13I-10",
@@ -141,7 +189,13 @@
   "correct_answer": "47.1",
   "explanation": "After both falls the price is 0.85 x 0.80 = 0.68 of the January price, so the required rise is 1/0.68 - 1 = 0.4706, or 47.1 percent. '32.0' reports how far the price fell, 1 - 0.68, which uses the original price as the base rather than the reduced price the rise starts from. '35.0' simply adds the two decreases, 15 + 20, treating successive percents as additive. '42.6' undoes each fall separately and adds the two required rises, (1/0.85 - 1) + (1/0.80 - 1) = 17.6 + 25.0.",
   "topic_tag": "percent change",
-  "difficulty": "hard"
+  "difficulty": "hard",
+  "solve": "const left = 0.85 * 0.80; return (((1 / left) - 1) * 100).toFixed(1);",
+  "distractor_solve": {
+   "32.0": "return ((1 - 0.85 * 0.80) * 100).toFixed(1);",
+   "35.0": "return (15 + 20).toFixed(1);",
+   "42.6": "return ((((1 / 0.85) - 1) + ((1 / 0.80) - 1)) * 100).toFixed(1);"
+  }
  },
  {
   "id": "AM13I-11",
@@ -157,7 +211,13 @@
   "correct_answer": "151",
   "explanation": "The budget buys 180 x 1.05 / 1.25 = 151.2 chairs, and only whole chairs can be bought, so 151. '144' applies only the price increase, 180 / 1.25, ignoring the larger budget. '141' takes 25 percent off the chair count instead of dividing by 1.25, computing 180 x 1.05 x 0.75 = 141.75; subtracting 25 percent is not the inverse of adding 25 percent. '214' multiplies by the price factor and divides by the budget factor, 180 x 1.25 / 1.05 = 214.3, inverting the relationship so that a higher price buys more chairs.",
   "topic_tag": "inverse proportion",
-  "difficulty": "hard"
+  "difficulty": "hard",
+  "solve": "return String(Math.floor(180 * 1.05 / 1.25));",
+  "distractor_solve": {
+   "141": "return String(Math.floor(180 * 1.05 * 0.75));",
+   "144": "return String(Math.floor(180 / 1.25));",
+   "214": "return String(Math.floor(180 * 1.25 / 1.05));"
+  }
  },
  {
   "id": "AM13I-12",
@@ -173,6 +233,12 @@
   "correct_answer": "144",
   "explanation": "If t is the number of hours at 55, then 55t + 80(4 - t) = 265, so 25t = 55 and t = 2.2 hours; she drove 4 - 2.2 = 1.8 hours at 80, covering 1.8 x 80 = 144 kilometers. '121' gives 55 x 2.2, the distance driven at the slower speed rather than the faster one. '160' assumes she spent half the time at each speed, 80 x 2, which would make the trip 270 kilometers, not 265. '132.5' assumes the two speeds covered equal distances, 265 / 2, which would take 4.1 hours rather than 4.",
   "topic_tag": "distance, rate, time",
-  "difficulty": "hard"
+  "difficulty": "hard",
+  "solve": "const tSlow = (80 * 4 - 265) / (80 - 55); return String(Math.round((4 - tSlow) * 80));",
+  "distractor_solve": {
+   "121": "const tSlow = (80 * 4 - 265) / (80 - 55); return String(Math.round(55 * tSlow));",
+   "160": "return String(80 * (4 / 2));",
+   "132.5": "return (265 / 2).toFixed(1);"
+  }
  }
 ]
