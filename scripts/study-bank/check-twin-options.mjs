@@ -80,8 +80,17 @@ export function twinPair(choices, thresh = 0.80, margin = 0.10, minLen = 12) {
   return { i: top.i, j: top.j, s: top.s, runnerUp: next ? next.s : 0 }
 }
 
+/** Could twinPair() even LOOK at this set? Mirrors its own guards exactly.
+ *  Split out so the report can print what was EXAMINED, not what was loaded. */
+export function eligible(choices) {
+  if (!Array.isArray(choices) || choices.length < 3) return false
+  const idx = choices.map((c, i) => i).filter(i => !/^\s*no change\s*$/i.test(String(choices[i])))
+  if (idx.length < 3) return false
+  return !idx.some(i => norm(choices[i]).length < 12)
+}
+
 function report(label, items, getChoices, getKey) {
-  let scorable = 0, withTwin = 0, keyInside = 0
+  let scorable = 0, examined = 0, withTwin = 0, keyInside = 0
   const hits = []
   for (const it of items) {
     const ch = getChoices(it)
@@ -90,6 +99,20 @@ function report(label, items, getChoices, getKey) {
     const ki = ch.findIndex(c => String(c) === String(key))
     if (ki < 0) continue
     scorable++
+    /* THE DENOMINATOR THAT MATTERS IS `examined`, NOT `scorable`.
+     * This script printed "scorable 12 of 12" on a 12-item numeric ACT Math
+     * batch -- which reads as "I looked at all twelve" -- when the length
+     * guard had excluded every one of them before the detector ran. The
+     * author of that batch caught it by feeding the module two IDENTICAL
+     * options, '144' and '144', and getting null back.
+     *
+     * Bank-wide the gap is not marginal: 2,923 of 5,750 scorable rows are
+     * eligible, so the guard silently drops 49.2%. On numeric sections it is
+     * near-total -- act/math 3 of 470, sat/math 20 of 1,133, isee/math 1 of
+     * 328, ssat/math 0 of 214. This instrument measures PROSE options and
+     * nothing else, and must say so on its own face. */
+    if (!eligible(ch)) continue
+    examined++
     const t = twinPair(ch)
     if (!t) continue
     withTwin++
@@ -99,20 +122,35 @@ function report(label, items, getChoices, getKey) {
   }
   console.log(label)
   console.log(`  scorable ${scorable} of ${items.length}   (fewer than 3 options, or key not among them, is not scored)`)
+  console.log(`  EXAMINED ${examined} of ${scorable}   (the rest hold an option under 12 chars — this instrument reads PROSE options only)`)
   if (!scorable) { console.log('  NOT MEASURED — a rate over zero scorable items is not a pass.'); return null }
-  console.log(`  items carrying a twin pair : ${withTwin} = ${(100 * withTwin / scorable).toFixed(1)}%`)
-  if (!withTwin) { console.log('  0 — a zero-population line, not a pass.'); return { scorable, withTwin: 0 } }
+  if (!examined) {
+    console.log('  NOT MEASURED — the length guard excluded EVERY item, so no twin pair was reachable.')
+    console.log('  This is not a clean result. On numeric or single-word options this script cannot fire at all:')
+    console.log('  two identical options `144` and `144` return null. Use an exact-duplicate check instead.')
+    return { scorable, examined: 0, withTwin: null }
+  }
+  console.log(`  items carrying a twin pair : ${withTwin} = ${(100 * withTwin / examined).toFixed(1)}%   (of EXAMINED)`)
+  if (!withTwin) { console.log('  0 over a real population — no twin pairs among the items this instrument can read.'); return { scorable, examined, withTwin: 0 } }
   const insideRate = 100 * keyInside / withTwin
   /* Chance that the key falls inside a 2-of-n pair if placement is random. */
   const chance = 100 * 2 / (getChoices(items.find(i => Array.isArray(getChoices(i)))) ?? [0, 0, 0, 0]).length
   console.log(`  of those, key is INSIDE the pair : ${keyInside}/${withTwin} = ${insideRate.toFixed(1)}%   (chance ${chance.toFixed(1)}%)`)
   console.log(`  margin ${(insideRate - chance >= 0 ? '+' : '') + (insideRate - chance).toFixed(1)}pts`)
-  console.log(insideRate < chance - 10
+  /* A DIRECTION NEEDS A POPULATION. Pointed at live act/math this printed
+   * "the key avoids the pair -- act on it" over ONE item, because only 3 of
+   * 470 rows were even eligible. A margin of -50.0pts on n=1 is a coin, and
+   * the sentence read as a finding. Ten is the floor: below that the shape is
+   * reported and no direction is claimed. */
+  const MIN = 10
+  if (withTwin < MIN) {
+    console.log(`  -> ${withTwin} item${withTwin === 1 ? ' carries' : 's carry'} the shape. TOO FEW FOR A DIRECTION (floor ${MIN}); the margin above is noise, not a verdict.`)
+  } else console.log(insideRate < chance - 10
     ? '  -> the key avoids the pair. "Eliminate the twins" is a FREE CHANNEL. Act on it.'
     : insideRate > chance + 10
       ? '  -> the key sits inside the pair more than chance. Eliminating twins HURTS a solver.'
       : '  -> no direction. The shape exists and does not help. Do not build on it.')
-  return { scorable, withTwin, keyInside, insideRate, chance }
+  return { scorable, examined, withTwin, keyInside, insideRate, chance }
 }
 
 const RUN = process.argv[1] && process.argv[1].endsWith('check-twin-options.mjs')
