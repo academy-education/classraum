@@ -2425,8 +2425,8 @@
    "task": "natural_science",
    "family": "mc_hidden_source",
    "cohort": "act-reading-v7",
-   "contentSha": "aff2e8a969926c1f152d40e1022051eb3f9873f18b942da087939f7961317048",
-   "note": "ACT Reading, 18 items in 2 passages (a PAIRED natural_science pair — the first paired items in that genre, which previously held 0 of the bank's 36 — and a literary_narrative). STAGED verified=false, following act-reading-v4. The assembler ignores it until a human sitting flips it.",
+   "contentSha": "11540242c4db6fc89809ca0fa71576031b289f6367ed61d52ab68cd019e9e07f",
+   "note": "ACT Reading, 18 items in 2 passages (a PAIRED natural_science pair — the first paired items in that genre, which previously held 0 of the bank's 36 — and a literary_narrative). STAGED verified=false, following act-reading-v4. The assembler ignores it until a human sitting flips it.\n\nSHA REBOUND 2026-09-12 (was aff2e8a96992, now 11540242c4db). The file moved after it was graded and the entry went stale; the register flagged it as needing \"a fresh grade or an explanation before it is flipped\". This is the explanation, and it was checked field by field rather than asserted. Diffing the graded revision (6ce25ed4) against the current file: 18 items both sides, no ids added or removed, and the ONLY field that differs anywhere is `difficulty`, on 6 items. Items whose grader-visible content changed -- passage, prompt, choices, correct_answer, passage_id, domain -- is ZERO. The relabel is the graders' own medians being written back: author 4 easy / 9 medium / 5 hard -> 4 / 12 / 2, which is exactly what the register recorded and which reproduces on the two files. So the key and exclusivity grade stands; no regrade is owed. NOTE that difficulty is not inert -- assembleFromBank treats the band as a preference within a domain -- but it is not something a grader read or keyed, and the new labels are the graders' own.",
    "stages": {
     "shape": {
      "passed": true,
