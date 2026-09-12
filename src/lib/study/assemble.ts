@@ -1702,7 +1702,18 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
   // Draw per-domain quotas from the College Board blueprint so the test
   // mirrors the real exam's weighting. Fall back to whatever domains
   // exist (even share) if the section has no blueprint entry.
-  const weights = BLUEPRINT[p.section] ?? Object.fromEntries(
+  //
+  // BLUEPRINT IS KEYED BY SECTION ALONE AND HOLDS THE SAT'S DOMAINS, so the
+  // family must be checked here: family:'act' section:'math' otherwise found
+  // the SAT entry and drew an ACT form against Algebra / Advanced Math / PSDA
+  // / Geometry and Trigonometry. 'Algebra' is the one name the two families
+  // share, so it took the SAT's 35% share and then the backfill on top -- 11
+  // of 24 seats in the test that pins this -- while ACT's other five domains
+  // reached the form only through backfill. Latent, since ACT routes through
+  // assembleActSection, but `family` is a real parameter and the failure is
+  // silent. See the 2026-09-12 REGISTER entry on the R&W domain refiling:
+  // same class, a domain string that does not mean what the drawer assumes.
+  const weights = (family === 'sat' ? BLUEPRINT[p.section] : undefined) ?? Object.fromEntries(
     [...byDomain.keys()].map(d => [d, 1 / byDomain.size]),
   )
   const quota = blueprintQuotas(weights, p.count)

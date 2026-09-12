@@ -114,6 +114,51 @@ describe('assembleFromBank composition', () => {
     expect(test.composition['Geometry and Trigonometry']).toBe(1)
   })
 
+  /* THE BLUEPRINT IS THE SAT'S, AND THE LOOKUP USED TO IGNORE `family`.
+   * `BLUEPRINT` is keyed by SECTION alone, so family:'act' section:'math'
+   * found the SAT entry -- Algebra / Advanced Math / PSDA / Geometry and
+   * Trigonometry -- and dealt an ACT form against domains ACT does not have.
+   * 'Algebra' is the single name the two families share, so it is the only
+   * domain that would have been quota-drawn; everything else reached the test
+   * through the backfill pass, in whatever order the backfill happened to run.
+   *
+   * ACT routes through assembleActSection today, so this was latent rather
+   * than live -- but `family` is a real parameter (verify-sat-hard-route.ts
+   * passes it) and the failure is silent, which is the whole reason to pin it.
+   * Reverting the family check in assembleFromBank fails this test and only
+   * this test. */
+  it('does NOT apply the SAT blueprint to another family sharing a section name', async () => {
+    const pool = [
+      ...rowsFor('Number and Quantity', 30),
+      ...rowsFor('Algebra', 30),
+      ...rowsFor('Functions', 30),
+      ...rowsFor('Geometry', 30),
+      ...rowsFor('Statistics and Probability', 30),
+      ...rowsFor('Integrating Essential Skills', 30),
+    ]
+    enqueue('study_item_bank', { data: pool })
+
+    const test = await assembleFromBank({ family: 'act', section: 'math', count: 24 }, 'seed-act')
+    expect(test.questions).toHaveLength(24)
+    // Even share across the six domains that actually exist: 4 apiece.
+    expect(test.composition).toEqual({
+      'Number and Quantity': 4, 'Algebra': 4, 'Functions': 4,
+      'Geometry': 4, 'Statistics and Probability': 4, 'Integrating Essential Skills': 4,
+    })
+    // Under the SAT blueprint, 'Algebra' takes 35% of the seats. It must not.
+    expect(test.composition['Algebra']).toBeLessThan(8)
+  })
+
+  it('still applies the blueprint when the family is SAT by default', async () => {
+    const pool = [
+      ...rowsFor('Algebra', 30), ...rowsFor('Advanced Math', 30),
+      ...rowsFor('Problem-Solving and Data Analysis', 30), ...rowsFor('Geometry and Trigonometry', 30),
+    ]
+    enqueue('study_item_bank', { data: pool })
+    const test = await assembleFromBank({ section: 'math', count: 22 }, 'seed-sat-default')
+    expect(test.composition).toEqual(blueprintQuotas(BLUEPRINT.math, 22))
+  })
+
   it('throws when the bank has no verified items for the section', async () => {
     enqueue('study_item_bank', { data: [] })
     await expect(assembleFromBank({ section: 'math', count: 22 }, 'seed-3'))
