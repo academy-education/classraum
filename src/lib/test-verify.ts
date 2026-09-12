@@ -562,8 +562,28 @@ export function shuffleChoices(q: Question, seed: number): Question {
     s = (s * 1664525 + 1013904223) >>> 0
     return s / 0x100000000
   }
-  for (let i = choices.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1))
+  /* "NO CHANGE" is printed FIRST on every edit-in-place item the ACT has ever
+   * published — it is the option that means "leave the underlined text alone",
+   * and it only makes sense read before the alternatives. Shuffling it into
+   * slot C reads as broken for the same reason a reordered GRE quantitative
+   * comparison does, which is the carve-out directly above.
+   *
+   * Measured 2026-09-12: 110 live ACT English items carry this option, ALL
+   * authored at index 0, and every one was being dealt a random slot — so a
+   * student saw a shape the real exam never prints, about three times in four.
+   *
+   * Pin it and shuffle the REST. The key is matched by value, not by index,
+   * so pinning cannot move the answer; and the anti-tell the shuffle exists
+   * for is untouched, because the three real alternates still permute. */
+  const ncAt = choices.findIndex(c => /^\s*no change\s*$/i.test(String(c)))
+  if (ncAt > 0) { [choices[0], choices[ncAt]] = [choices[ncAt], choices[0]] }
+  // `lo` is 1 whenever the option EXISTS, not only when it was authored
+  // first — the swap above puts it at 0, and a `lo` of 0 would let the loop
+  // below move it straight back out. Caught by the test asserting it is
+  // fronted even when authored elsewhere.
+  const lo = ncAt >= 0 ? 1 : 0
+  for (let i = choices.length - 1; i > lo; i--) {
+    const j = lo + Math.floor(rand() * (i + 1 - lo))
     ;[choices[i], choices[j]] = [choices[j], choices[i]]
   }
   return { ...q, choices }
