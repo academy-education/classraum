@@ -1,0 +1,122 @@
+{
+ "L01": {
+  "pick": "B",
+  "confidence": 38,
+  "why": "10/20/40 is a x2 chain with 8 as the throwaway; picked the middle of the chain on the standard double-and-halve trap layout. Mechanism: geometric-run-middle (which my own null says is NOT significant after correction), so this is barely better than a guess."
+ },
+ "L02": {
+  "pick": "C",
+  "confidence": 36,
+  "why": "Same {10,20,40} chain as L01 plus 6.67 (=20/3) as the lone non-integer. Eliminated 6.67 as a rounded-decimal trap, then took the middle of the chain. Part mechanism, part guess."
+ },
+ "L03": {
+  "pick": "A",
+  "confidence": 27,
+  "why": "guess — magnitudes 18/36/54 with a +/-36 sign pair; key should sit on the repeated magnitude, but the sign is a coin flip."
+ },
+ "L04": {
+  "pick": "C",
+  "confidence": 34,
+  "why": "5,9,13 is an arithmetic run (d=4) with 6 as the odd one; picked the middle. Mechanism: run-middle, unsupported by the null."
+ },
+ "L05": {
+  "pick": "D",
+  "confidence": 34,
+  "why": "2,3,4 run with 11 as a magnitude outlier (discriminant-shaped). Picked the run middle. Mechanism: run-middle, unsupported by the null."
+ },
+ "L06": {
+  "pick": "B",
+  "confidence": 25,
+  "why": "guess — two sign pairs (2/-4, -3/4), a balanced 2x2; nothing distinguishes an option. Letter chosen to hold my deal at 6/6/6/6."
+ },
+ "L07": {
+  "pick": "D",
+  "confidence": 25,
+  "why": "guess — perfect 2x2 cross on sign and on the factor of 3; by construction neither axis leaks."
+ },
+ "L08": {
+  "pick": "B",
+  "confidence": 27,
+  "why": "guess — 2.25 (9/4) reads as the most terminal value against 0.4/1.8/3, but that is a hunch about tidiness, not a measured channel."
+ },
+ "L09": {
+  "pick": "A",
+  "confidence": 28,
+  "why": "guess — 2x2 cross on +/-1 and on whether the 1 is inside the division. Leaned to the form that inverts the most canonical source x=(3y^2+1)/z; that is a prior about authoring, not an option-set tell."
+ },
+ "L10": {
+  "pick": "A",
+  "confidence": 33,
+  "why": "28 = 4x7 is a product-of-two-others option and 7 the unscaled one, so both read as arithmetic traps; the +/-4 pair is where the key should sit. Took the positive. prodOfTwo measured at z=+0.29, i.e. noise, so treat as a weak guess."
+ },
+ "L11": {
+  "pick": "C",
+  "confidence": 25,
+  "why": "guess — 2.5 is the lone non-integer and 0 / -6 are shape-outliers; no option is distinguished in a direction I can read. Letter chosen to hold the deal balance."
+ },
+ "L12": {
+  "pick": "C",
+  "confidence": 26,
+  "why": "guess — 18 = 3x6 and 27 = 3^3, so two options are derivable from the others and I cannot tell which relation is the key's. Picked 18."
+ },
+ "L13": {
+  "pick": "D",
+  "confidence": 27,
+  "why": "guess — 14 = 5+9 reads as an added-instead-of trap, leaving 5/6/9; no separation among those three."
+ },
+ "L14": {
+  "pick": "B",
+  "confidence": 28,
+  "why": "guess — all four negative, so sign carries nothing; -25 is the classic parabola-minimum value, which is a prior about item types, not an options-only mechanism."
+ },
+ "L15": {
+  "pick": "D",
+  "confidence": 25,
+  "why": "guess — 11/12 adjacent and 2/4 a doubling pair, a 2x2 with no readable axis."
+ },
+ "L16": {
+  "pick": "C",
+  "confidence": 25,
+  "why": "guess — 5, -7, 18, -3 share no lattice, no run, no pair relation. The most unrelated set in the file."
+ },
+ "L17": {
+  "pick": "D",
+  "confidence": 37,
+  "why": "800/1200/1600 is an arithmetic run (d=400) with 20 as a two-order magnitude outlier that reads as an intermediate quantity. Picked the run middle. Mechanism: run-middle plus terminal-value shape; the null clears magnitude-outlier at p=0.23, so discount heavily."
+ },
+ "L18": {
+  "pick": "C",
+  "confidence": 34,
+  "why": "0.5/1.5/2.5 run with -4 as the odd sign-and-scale outlier; picked the middle. Mechanism: run-middle, unsupported by the null."
+ },
+ "L19": {
+  "pick": "A",
+  "confidence": 26,
+  "why": "guess — -7 = -16+9 is a sum-of-two-others trap and 0 is a shape-outlier; between -16 and 9 I took the negative on a minimum-value hunch."
+ },
+ "L20": {
+  "pick": "D",
+  "confidence": 27,
+  "why": "guess — 2x2 on coefficient (8 vs 2) and on y^3 up vs down. The cube-of-2 reading gives 8, the cube-root-of-8 reading gives 2, and they are exactly symmetric; the reciprocal axis is equally symmetric. Coin flip twice."
+ },
+ "L21": {
+  "pick": "B",
+  "confidence": 25,
+  "why": "guess — 10/20 and 12/24 are two doubling pairs, a clean 2x2 factor-of-2 design with no readable axis."
+ },
+ "L22": {
+  "pick": "B",
+  "confidence": 38,
+  "why": "Three options share 2x^2 and 18x^2+19 is the throwaway; the constants 1/3, 3, 9 form a x3 chain with 3 at the middle, flanked by the multiply-by-3 and divide-by-3 errors. Mechanism: geometric-run-middle on the constant term. The strongest structural read in the file, and still only p=0.065 uncorrected as a channel."
+ },
+ "L23": {
+  "pick": "A",
+  "confidence": 36,
+  "why": "9/18/36 is a x2 chain with 29 as the odd one; picked the middle. Mechanism: geometric-run-middle, corrected-insignificant."
+ },
+ "L24": {
+  "pick": "A",
+  "confidence": 26,
+  "why": "guess — 100 = 10^2 and 11 is a near-neighbour throwaway; between 5 and 10 nothing separates. Picked 10."
+ }
+}

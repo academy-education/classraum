@@ -26,14 +26,53 @@ const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
   .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 
-/* Per-domain items consumed by one form. Kept here rather than derived,
- * because deriving it from current counts is circular -- the mistake
- * form-capacity.mjs already warns about for the tests with no published
- * quota. Only families with a real published blueprint are listed. */
-const PER_FORM = {
-  'act/math': { 'Algebra': 8, 'Functions': 8, 'Geometry': 8, 'Integrating Essential Skills': 8, 'Number and Quantity': 8, 'Statistics and Probability': 8 },
-  'sat/math': { 'Algebra': 13, 'Advanced Math': 15, 'Problem-Solving and Data Analysis': 10, 'Geometry and Trigonometry': 6 },
-  'sat/reading_writing': { 'Craft and Structure': 15, 'Information and Ideas': 14, 'Standard English Conventions': 14, 'Expression of Ideas': 11 },
+/* Per-domain items consumed by one form, DERIVED from the same published
+ * shares `form-capacity.mjs` uses (which are themselves copied from
+ * assemble.ts BLUEPRINT and held in step by an assertion there).
+ *
+ * THE FIRST VERSION OF THIS FILE HARDCODED THESE FROM MEMORY AND GOT THREE OF
+ * FOUR SAT MATH QUOTAS WRONG — Algebra 13 against a real 15, PSDA 10 against 7,
+ * Geometry 6 against 7. The consequence was the exact failure this script was
+ * written to prevent: asked for the form-20 deficit it answered "Advanced Math
+ * +12" when the truth is "Algebra +3, Advanced Math +12", so a brief written
+ * from it would have missed a short domain and bought nothing. A tool that
+ * exists to stop you authoring into the wrong domain must not itself carry
+ * quotas nobody derived.
+ *
+ * Shares, not counts, because a share is what the blueprint publishes; the
+ * count is share x form size and must be recomputed if either moves. */
+const SHARE = {
+  'sat/math': {
+    form: 44,
+    domains: { 'Algebra': 0.35, 'Advanced Math': 0.35, 'Problem-Solving and Data Analysis': 0.15, 'Geometry and Trigonometry': 0.15 },
+  },
+  'sat/reading_writing': {
+    form: 54,
+    domains: { 'Information and Ideas': 0.26, 'Craft and Structure': 0.28, 'Expression of Ideas': 0.20, 'Standard English Conventions': 0.26 },
+  },
+  /* ACT shares are PUBLISHED RANGE MINIMUMS, not an exact partition -- a form
+   * may legally carry more of a domain, never fewer -- so they sum to 0.95 and
+   * the sum assertion below is relaxed for them. form-capacity.mjs says the
+   * same thing in its own comment; this flag exists so the assertion does not
+   * have to be deleted to accommodate it. */
+  'act/math': {
+    form: 48, minimums: true,
+    domains: {
+      'Number and Quantity': 0.10, 'Algebra': 0.17, 'Functions': 0.17,
+      'Geometry': 0.17, 'Statistics and Probability': 0.17, 'Integrating Essential Skills': 0.17,
+    },
+  },
+}
+const PER_FORM = Object.fromEntries(Object.entries(SHARE).map(([k, v]) => [
+  k, Object.fromEntries(Object.entries(v.domains).map(([d, sh]) => [d, Math.max(1, Math.round(sh * v.form))])),
+]))
+for (const [k, v] of Object.entries(SHARE)) {
+  const total = Object.values(v.domains).reduce((a, b) => a + b, 0)
+  const bad = v.minimums ? total > 1.001 : Math.abs(total - 1) > 0.02
+  if (bad) {
+    console.error(`REFUSING: ${k} shares sum to ${total.toFixed(2)}` + (v.minimums ? ', which exceeds 1 for range MINIMUMS' : ', not 1'))
+    process.exit(2)
+  }
 }
 
 const want = process.argv.slice(2)

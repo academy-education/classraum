@@ -1,0 +1,165 @@
+{
+ "grader": "grader-a",
+ "batch": "sat-adv-v11",
+ "source_sha256_16": "0b0cde7623957808",
+ "graded_on": "2026-09-12",
+ "items": {
+  "SAM11-01": {
+   "answer": "10",
+   "exclusive": true,
+   "hard": false,
+   "note": "f(1)=0, f(5)=40, (40-0)/4=10. Distractors 40 (=f(5), forgot to divide) and 8 (=f'(2)? weak) are fine. Routine average-rate-of-change; module 1 / easy end of module 2."
+  },
+  "SAM11-02": {
+   "answer": "10",
+   "exclusive": true,
+   "hard": true,
+   "note": "w(60-2w)=400 -> w=10 or w=20. w=20 gives L=20, not longer than w, so the stated condition genuinely eliminates it. This is one of only two items where a restriction does real work. Distractor 40 is L, 20 the rejected root."
+  },
+  "SAM11-03": {
+   "answer": "-36",
+   "exclusive": true,
+   "hard": false,
+   "note": "(2x-3)^3 = 8x^3-36x^2+54x-27. Distractor 54 is the x coefficient, 36 a sign error. Near-duplicate mechanism with SAM11-14 (expand a product, extract one coefficient)."
+  },
+  "SAM11-04": {
+   "answer": "13",
+   "exclusive": true,
+   "hard": false,
+   "note": "u=sqrt(x): u=2,3 -> x=4,9, both check, sum 13. STEM ECHO, and the batch's worst case: TWO of the four options (5 and 6) are literals printed in the stem, and a third (9) is one of the two solutions. They sit on real error paths (5 = sum of the u-roots by Vieta, 6 = their product), so I agree they are not naive echoes - but a blind solver who distrusts stem literals is down to 13 vs 9 in one step. Medium on the live scale."
+  },
+  "SAM11-05": {
+   "answer": "11",
+   "exclusive": true,
+   "hard": false,
+   "note": "min f = -4 at x=3, so max g = 4+7 = 11. Distractor 4 = -min f (forgot +7), 3 = the vertex x. Same mechanism as SAM11-17 (maximum of a downward parabola)."
+  },
+  "SAM11-06": {
+   "answer": "-4",
+   "exclusive": true,
+   "hard": true,
+   "note": "(x-3)^2(x-r), product of roots 9r = -18 -> r = -2; p(x)=x^3-4x^2-3x+18, a=-4, b=-3. Distractor -3 is b (the other constant the same work produces) - strong and fair. Option 2 echoes the multiplicity 2 printed in the stem but is also |r|, a real path; I agree it is not a usable elimination. Genuinely module-2 hard."
+  },
+  "SAM11-07": {
+   "answer": "-1/(3x)",
+   "exclusive": true,
+   "hard": false,
+   "note": "(3-x)/(3x(x-3)) = -1/(3x). Verified at x=1: -1/3. ASCII rendering is fully parenthesised, no second reading. x>0, x!=3 is needed for the cancellation, so the restriction is doing work."
+  },
+  "SAM11-08": {
+   "answer": "1.8",
+   "exclusive": true,
+   "hard": false,
+   "note": "2^(2x)*2^(3x+6)=2^15 -> 5x+6=15 -> x=9/5. Verified: 4^1.8*8^3.8 = 32768 = 32^3. STEM ECHO: option 3 equals the exponent in 32^3, but it is exactly the answer to 5x=15 (dropping the +6), a real error path. Agree with the author that it is not a usable elimination."
+  },
+  "SAM11-09": {
+   "answer": "y = sqrt((xz - 1)/3)",
+   "exclusive": true,
+   "hard": false,
+   "note": "xz = 3y^2+1 -> y = sqrt((xz-1)/3). Verified at x=2,y=1,z=2. y>0 selects the positive root, so the restriction is load-bearing. All four options are the four ways of misplacing the 1 and the 3 - clean distractor set."
+  },
+  "SAM11-10": {
+   "answer": "7",
+   "exclusive": true,
+   "hard": false,
+   "note": "x-y=3, x^2+y^2=65 -> (7,4) or (-4,-7); 'positive' plus 'greater' selects 7. Distractor 4 is the lesser number, -4 the rejected root. Easy-medium; one of the softest items in the batch."
+  },
+  "SAM11-11": {
+   "answer": "3",
+   "exclusive": true,
+   "hard": false,
+   "note": "Ratio of leading coefficients 6/2 = 3. 'As x increases without bound' is standard College Board phrasing and end behaviour of a rational function is in Advanced Math scope. Option 2.5 = 5/2 (wrong pair of coefficients), -6 a sign/coefficient slip. Medium."
+  },
+  "SAM11-12": {
+   "answer": "3",
+   "exclusive": true,
+   "hard": false,
+   "note": "2y^3=54 -> y=3 (x=6). Easiest item in the batch. Note 6 is offered as an option: it is x, the intermediate - the stem asks for y, so no ambiguity, but see self-report 2."
+  },
+  "SAM11-13": {
+   "answer": "6",
+   "exclusive": true,
+   "hard": true,
+   "note": "Remainder theorem at the root of the divisor: p(1/2) = 0.5+2-1.5+5 = 6. Both conventions (divide by 2x-1 or by x-1/2) give the constant remainder 6, so no ambiguity. STEM ECHO: option 5 is the constant term - but that is the classic 'remainder = constant term' error, a legitimate distractor. 14 = p(1). The 1/2 root makes this a real module-2 hard item."
+  },
+  "SAM11-14": {
+   "answer": "-25",
+   "exclusive": true,
+   "hard": false,
+   "note": "2x^3 - x^2 - 25x - 12; verified p(1) = -36 against the factored form. Distractors -1 and -12 are the OTHER coefficients of the same expansion - the best distractor set in the batch. Near-duplicate of SAM11-03. Borderline hard; I place it medium against the live scale."
+  },
+  "SAM11-15": {
+   "answer": "2",
+   "exclusive": true,
+   "hard": false,
+   "note": "(8+2w)(10+2w)=168 -> w^2+9w-22=0 -> w=2 (12x14=168 checks). The 'border alone = 168' misreading gives w=3.39, not an option, so exclusivity holds. WEAK OPTION: 4 has no derivation I can find and coincides with 'four sides' in the stem; 12 is the framed width. Near-duplicate of SAM11-02 (geometric quadratic, reject a root)."
+  },
+  "SAM11-16": {
+   "answer": "-3",
+   "exclusive": true,
+   "hard": true,
+   "note": "Vertex at x=5 lies OUTSIDE [0,3]; f decreasing there, so min at the endpoint x=3: -3. Distractor -7 = f(5), the unrestricted vertex value - this is the whole point of the item. STEM ECHO: 18 = f(0), also the constant term; legitimate (it is the max on the interval, the classic wrong endpoint). The second item where a restriction does real work, and correctly hard."
+  },
+  "SAM11-17": {
+   "answer": "800",
+   "exclusive": true,
+   "hard": false,
+   "note": "R = 80p-2p^2, vertex p=20, R=800. Distractor 20 is the optimal PRICE (the intermediate), 1600 = 80*20. Same mechanism as SAM11-05."
+  },
+  "SAM11-18": {
+   "answer": "0.5",
+   "exclusive": true,
+   "hard": false,
+   "note": "Zeros 3/2, -4, 3; sum 0.5. Distractors are the individual zeros (-4, 1.5) plus 2.5. Medium - the only trap is stopping at one zero."
+  },
+  "SAM11-19": {
+   "answer": "0",
+   "exclusive": true,
+   "hard": true,
+   "note": "f(2)=f(6) puts the axis at x=4; 1 and 7 are symmetric about 4, so f(7)=f(1)=0 (explicitly: f(x) = -(x-4)^2+9). Genuinely hard and a good item. BUT the key equals a number printed in the stem (f(1)=0) - the author's stem-echo audit counted distractors only, so this was not counted, and it is the most consequential echo in the batch: a blind solver who either trusts or distrusts stem literals moves off chance on the KEY, not on a distractor."
+  },
+  "SAM11-20": {
+   "answer": "8x^6/y^3",
+   "exclusive": true,
+   "hard": false,
+   "note": "16^(3/4)=8, x^8*(3/4)=x^6, y^(-3). Verified at x=1,y=2: value 1, matches 8/y^3 only. Distractors separate the 16^(3/4)=2 vs 8 error from the negative-exponent error - clean 2x2."
+  },
+  "SAM11-21": {
+   "answer": "20",
+   "exclusive": true,
+   "hard": true,
+   "note": "240/n - 240/(n+4) = 2 -> n^2+4n-480=0 -> n=20 (12 vs 10 dollars, checks). Distractor 24 = n+4, 12 and 10 the two shares - three of four options are real intermediate quantities, the strongest 'answer the wrong question' set in the batch. Hard."
+  },
+  "SAM11-22": {
+   "answer": "g(x) = 2x^2 + 3",
+   "exclusive": true,
+   "hard": false,
+   "note": "3g(x)-4 = 6x^2+5 -> g = 2x^2+3; verified by substitution. Distractor 2x^2+9 comes from subtracting rather than adding the 4, 18x^2+19 from applying f in the wrong order. Medium."
+  },
+  "SAM11-23": {
+   "answer": "9",
+   "exclusive": true,
+   "hard": false,
+   "note": "sqrt(x+7)=1+sqrt(x) -> 6=2sqrt(x) -> x=9; checks (4-3=1). No extraneous root to discard, which makes this easier than the usual radical item - the classic hard version has one. Medium."
+  },
+  "SAM11-24": {
+   "answer": "11",
+   "exclusive": true,
+   "hard": true,
+   "note": "k^2-100>0 -> k>10 for positive k -> least integer 11. Distractor 10 gives a repeated root, i.e. NOT two distinct solutions - the strict-vs-nonstrict inequality is the whole item and the distractor is exactly right. 5 = sqrt(25), 100 = the discriminant boundary. Correctly hard."
+  }
+ },
+ "summary": {
+  "hard_count": 7,
+  "hard_ids": ["SAM11-02","SAM11-06","SAM11-13","SAM11-16","SAM11-19","SAM11-21","SAM11-24"],
+  "borderline_hard": ["SAM11-14","SAM11-04","SAM11-07"],
+  "non_exclusive": [],
+  "near_duplicates": [
+   ["SAM11-05","SAM11-17"],
+   ["SAM11-03","SAM11-14"],
+   ["SAM11-02","SAM11-15"],
+   ["SAM11-04","SAM11-23"],
+   ["SAM11-10","SAM11-12"]
+  ]
+ }
+}
