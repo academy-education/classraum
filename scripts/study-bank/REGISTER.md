@@ -183,6 +183,22 @@ Nothing is blocked — every open item can start today.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-09-12** — **THE KEY-MAGNITUDE "DRIFT" DOES NOT EXIST AS I STATED IT. THIRD CORRECTION OF THE SAME NUMBER, AND THIS ONE RETRACTS THE FINDING.** An hour ago I corrected the baseline from a quoted `17.1%` to a measured `19.0%` and said the pooled drift survived at p=0.019. The `act-math-v12-mix` author then reported, unprompted, that **act/math's own baseline is far flatter than the whole-bank figure** — and checking it myself, the per-family numbers are not close to each other:
+
+        family        n      rank1 / rank2 / rank3 / rank4 (smallest)
+        act/math      423    21.0 / 26.0 / 29.3 / 23.6     nearly flat
+        sat/math     1087    14.0 / 34.8 / 34.7 / 16.6     strongly peaked
+        isee/math     319    20.1 / 26.6 / 32.0 / 21.3
+        WHOLE MATHS  1829    16.7 / 31.3 / 33.0 / 19.0     <- 59% SAT by count
+
+  **The whole-maths figure is dominated by SAT and is the wrong comparator for an ACT batch.** Re-judged against the right baseline:
+
+        act-math-v10-mix   6/20 = 30.0%  vs act/math 23.6%   p = 0.327   NOT significant
+        sat-adv-v11        8/23 = 34.8%  vs sat/math 16.6%   p = 0.027   significant
+
+  **So `act-math-v10-mix` was never drifting** — 30.0% against its own family's 23.6% is unremarkable, and I called it a defect twice. Only `sat-adv-v11` deviates, from a SAT bank that genuinely does concentrate its keys in the middle ranks. **And pooling two batches against two different baselines is not a legitimate test at all, so the pooled p=0.019 is withdrawn rather than corrected.** What remains is one batch, one family, p=0.027 — worth a line in the next SAT Math brief and nothing more.
+
+  **THREE CORRECTIONS TO ONE NUMBER IN ONE DAY, EACH FROM A DIFFERENT KIND OF ERROR.** (1) Quoted an agent's baseline without measuring it. (2) Measured it, but over a population that mixed four test families. (3) Pooled across families as though one baseline applied. Each fix was real and each left a wrong conclusion standing. **The generalisable rule, which this bank already knows in another costume — "measure the population before believing the backlog" — needs its other half: measure the RIGHT population.** A baseline is not just a number you have measured; it is a number measured over the population the thing you are judging actually belongs to. `check-key-magnitude` reports a single whole-bank baseline and should report a per-family one; that is the fix and it is not made here, because the batch in flight needs the gate more than the checker needs the improvement. _(finding withdrawn; the per-family figures above are the ones to cite)_ → **A21**
 - **2026-09-12** — **I QUOTED A LIVE BASELINE ALL DAY WITHOUT MEASURING IT, AND IT WAS WRONG. SECOND TIME TODAY.** Every key-magnitude comparison I made today was against `18.1 / 33.1 / 31.7 / 17.1` — a figure reported by the `act-math-v9-alg` author, which I put in a ledger entry, then in a §5 entry, then in two authoring briefs. **Measured directly over 1,829 scorable live maths items it is `16.7 / 31.3 / 33.0 / 19.0`**, and excluding the three batches banked today (so the baseline is not contaminated by what it is judging) `16.4 / 31.7 / 33.4 / 18.5`. The load-bearing cell is rank 4: **19.0%, not 17.1%.**
 
   **THE CONCLUSION SURVIVES; THE STRENGTH WAS OVERSTATED.** Re-testing the key-is-smallest drift at each baseline:
