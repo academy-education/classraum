@@ -102,6 +102,7 @@ export const QUOTAS = {
   'sat/math': { form: 44, domains: satShares(SAT_SRC, 'math') },
   'sat/reading_writing': { form: 54, domains: satShares(SAT_SRC, 'reading_writing') },
   // Published RANGE MINIMUMS, not a partition. They do not sum to 1 on purpose.
+  'act/english': { form: actForm('english'), minimums: true, domains: actRanges(ACT_SRC, 'ENGLISH_QUOTAS') },
   'act/math': { form: actForm('math'), minimums: true, domains: actRanges(ACT_SRC, 'MATH_QUOTAS') },
   'act/reading': { form: actForm('reading'), minimums: true, domains: actRanges(ACT_SRC, 'READING_QUOTAS') },
   'act/science': { form: actForm('science'), minimums: true, domains: actRanges(ACT_SRC, 'SCIENCE_QUOTAS') },

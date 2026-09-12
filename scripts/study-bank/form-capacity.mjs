@@ -59,71 +59,34 @@ const SECTIONS = [
 
 /* SAT per-domain share, copied from assemble.ts BLUEPRINT. Kept in step by
  * the assertion below rather than by hope. */
-const SAT_BLUEPRINT = {
-  reading_writing: {
-    'Information and Ideas': 0.26, 'Craft and Structure': 0.28,
-    'Expression of Ideas': 0.20, 'Standard English Conventions': 0.26,
-  },
-  math: {
-    'Algebra': 0.35, 'Advanced Math': 0.35,
-    'Problem-Solving and Data Analysis': 0.15, 'Geometry and Trigonometry': 0.15,
-  },
-}
-/* ACT per-domain share, copied from act-test.ts. These are PUBLISHED percentage
- * ranges, so the per-form need is the range MINIMUM — a form may legally carry
- * more, but it may not carry fewer. English has no published per-domain split,
- * so it is deliberately absent and reported as unmodelled rather than guessed.
+/* THE QUOTA TABLES USED TO LIVE HERE, and a second copy lived in
+ * next-form.mjs. They are now ONE module that parses act-test.ts and
+ * assemble.ts directly -- see blueprint-quotas.mjs, whose header lists the
+ * five wrong numbers the copies produced on 2026-09-12, two of them inside
+ * the file written to end the first three.
  *
- * These exist because the fallback below (assume the bank's own domain mix is
- * the target) is CIRCULAR: need = perForm x have/total makes floor(have/need)
- * collapse to floor(total/perForm) for every domain, so it reproduces the naive
- * number and names an essentially arbitrary "binding domain". On 2026-09-11 it
- * named ACT Math's binding domain as Geometry (47 items). Measured against the
- * real quotas the binding domains are Algebra (25) and Functions (24) at three
- * forms, and Geometry serves five. Authoring 20 Geometry items on the strength
- * of that column would have moved the number by zero.
+ * The drift guard that used to sit below is GONE ON PURPOSE, not lost: it
+ * checked this file's hand-typed copy against act-test.ts, and there is no
+ * longer a copy to check. blueprint-quotas.mjs reads act-test.ts as its only
+ * source and throws if a parse finds nothing.
+ *
+ * `minimums` still matters here: ACT shares are published range MINIMUMS and
+ * SAT shares are an exact partition, which changes the rounding. perForm()
+ * holds that distinction so neither caller has to remember it.
  */
-const ACT_QUOTAS = {
-  // english was ABSENT here until 2026-09-11, which made the blueprint check
-  // below iterate zero domains and print "satisfied" — a verdict over no
-  // input, the defect CLAUDE.md names. Units are DECIMAL shares, matching the
-  // rest of this map; act-test.ts states them as percentages and the drift
-  // guard below reconciles the two.
-  english: {
-    'Conventions of Standard English': 0.51, 'Production of Writing': 0.29,
-    'Knowledge of Language': 0.13,
-  },
-  math: {
-    'Number and Quantity': 0.10, 'Algebra': 0.17, 'Functions': 0.17,
-    'Geometry': 0.17, 'Statistics and Probability': 0.12,
-    'Integrating Essential Skills': 0.20,
-  },
-  reading: {
-    'Key Ideas and Details': 0.44, 'Craft and Structure': 0.26,
-    'Integration of Knowledge and Ideas': 0.19,
-  },
-  science: {
-    'Interpretation of Data': 0.38, 'Scientific Investigation': 0.18,
-    'Evaluation of Models, Inferences, and Experimental Results': 0.24,
-  },
-}
+import { QUOTAS, assertShares } from './blueprint-quotas.mjs'
 
-const actSrc = readFileSync('src/lib/study/act-test.ts', 'utf8')
-for (const [section, quotas] of Object.entries(ACT_QUOTAS)) {
-  for (const [dom, share] of Object.entries(quotas)) {
-    // The domain must still be spelled this way, AND the range minimum must
-    // still be this number. Checking only the name would let a blueprint
-    // reweighting pass silently.
-    const m = actSrc.match(new RegExp(`'${dom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}':\\s*\\[(\\d+),`))
-    if (!m) {
-      console.error(`ACT_QUOTAS drift: act-test.ts no longer lists ${section}/${dom}. Fix this script before trusting it.`)
-      process.exit(2)
-    }
-    if (Number(m[1]) !== Math.round(share * 100)) {
-      console.error(`ACT_QUOTAS drift: ${section}/${dom} minimum is ${m[1]}% in act-test.ts, ${Math.round(share * 100)}% here.`)
-      process.exit(2)
-    }
-  }
+const shareErrors = assertShares()
+if (shareErrors.length) { for (const e of shareErrors) console.error('REFUSING: ' + e); process.exit(2) }
+
+const shares = key => QUOTAS[key]?.domains ?? null
+const SAT_BLUEPRINT = { reading_writing: shares('sat/reading_writing'), math: shares('sat/math') }
+const ACT_QUOTAS = {
+  english: shares('act/english'), math: shares('act/math'),
+  reading: shares('act/reading'), science: shares('act/science'),
+}
+for (const [k, v] of [...Object.entries(SAT_BLUEPRINT), ...Object.entries(ACT_QUOTAS)]) {
+  if (!v || !Object.keys(v).length) { console.error(`REFUSING: no shares for ${k}; blueprint-quotas.mjs did not supply them`); process.exit(2) }
 }
 
 const src = readFileSync('src/lib/study/assemble.ts', 'utf8')

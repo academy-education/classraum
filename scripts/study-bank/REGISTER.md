@@ -1771,3 +1771,14 @@ structural checks are pre-flight only. See CLAUDE.md.
   New: `scripts/study-bank/check-ledger-binding.mjs` sweeps every entry so the next drift is not caught by hand. It reports four states and collapses none of them — **bound 40, DRIFTED 0, unbound 10, no file on disk 26** of 76 entries. "No file on disk" is NOT MEASURED, not clean. The 10 unbound entries carry no `contentSha` at all and are all from 2026-08-29 and 08-31; they are claims about batches nothing can now identify, and are left recorded rather than fabricated a binding for.
 
   **The checker's first run reported THIRTEEN DRIFTED VERDICTS and every one was its own bug.** It tried `<cohort>.batch.json` first and stopped; every `-kept-` entry had been sha'd against `<cohort>.kept.batch.json`, so it hashed the wrong file. A checker written specifically to catch stale claims produced a confident wrong number on its first run, and it read exactly like a result. The tell was that all thirteen shared one naming pattern — not the verdict. It now hashes both candidates and matches either. Break-tested by adding **one space** to one item's prompt: it fires, names both files with their hashes, and goes silent when restored.
+
+- **2026-09-12** — **The last duplicate quota table is gone: `form-capacity.mjs` now imports `blueprint-quotas.mjs`, and both tools provably track `act-test.ts`.** This closes the sequence of five wrong ACT/SAT quota numbers recorded above.
+
+  `form-capacity.mjs` held its own `SAT_BLUEPRINT` and `ACT_QUOTAS` and defended them with a drift guard that re-read `act-test.ts` — which is the only reason defects 4 and 5 were caught at all. That guard is now **deliberately removed, not lost**: it existed to check a hand-typed copy against the source, and there is no longer a copy. `blueprint-quotas.mjs` reads `act-test.ts` and `assemble.ts` as its only inputs and throws if a parse finds nothing. `act/english` was added to the shared table from `ENGLISH_QUOTAS` so `form-capacity` keeps its blueprint-violation note.
+
+  **Break-tested three ways rather than assumed:**
+  - Output is **byte-identical** to the pre-change run, 29 lines, `diff` empty. The consolidation changed no verdict.
+  - Perturbing the source into an impossible blueprint (IES 20% → 30%, minimums summing to 1.03) makes **both** tools refuse with the exact sentence `act/math shares sum to 1.03, which exceeds 1 for range minimums` and exit non-zero. A tool holding a stale copy would have printed a number.
+  - Perturbing it legally (Statistics 12% → 15%) moves `next-form`'s per-form need **6 → 7** and correctly leaves `form-capacity`'s ACT Math binding-domain line alone, Statistics not being binding there. So the tools track the source without a change to one input rewriting an unrelated verdict.
+
+  `act-test.ts` restored byte-identical to HEAD, verified by `git diff --quiet`. `tsc --noEmit` clean, 203 suites / 2,539 tests green.
