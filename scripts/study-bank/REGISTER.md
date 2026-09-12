@@ -183,6 +183,23 @@ Nothing is blocked — every open item can start today.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-09-12** — **I TOLD TWO REPAIR AGENTS NOT TO TOUCH THE ITEMS CARRYING THE WORST TELL IN THE FILE, AND I GENERALISED A v4 MEASUREMENT TO DO IT.** Both the `v5` and `v6` Conventions repairs were briefed with a hard constraint: *"Do not touch the 23 Production and Knowledge items — on v4 those measured INDISTINGUISHABLE from the shipped bank (p=1.0 both) and repairing them would remove what the ACT actually tests."* That sentence is true about **v4** and I applied it to **v5 and v6 without measuring them**. The `v6` agent measured them anyway, unprompted, and reported back: **all four "relevance of a detail" items key to "Kept", all four "purpose of the essay" items key to "Yes" — 8 of the 15 Production items fall with the passage covered**, which it called the largest single tell anywhere in the file, Conventions included. It was right.
+
+  **MEASURED ACROSS EVERY ACT ENGLISH BATCH AND THE LIVE BANK**, because a rate on one file is not a finding. Only items whose options are the Kept/Deleted or Yes/No shape are scorable:
+
+        live ACT English bank    11 of 21 =  52.4%     <- a real ACT runs near 50%
+        act-english-v4            2 of  6 =  33.3%     p=0.91
+        act-english-v1a           3 of  9 =  33.3%     p=0.93
+        act-english-v1c           4 of  7 =  57.1%     p=0.55
+        act-english-v1b           4 of  5 =  80.0%     p=0.22
+        act-english-v5            8 of  9 =  88.9%     p=0.027   SIGNIFICANT
+        act-english-v6            8 of  8 = 100.0%     p=0.006   SIGNIFICANT
+
+  **The live bank is at 52.4% — exactly where the real exam sits — so this is NOT a format property, it is a batch defect.** A student who learns "always answer Kept / always answer Yes" gets 8 of 15 Production items in `v6` without reading a word. `v4` does not have it. The live bank does not have it. `v5` and `v6` do, and both survive their Conventions repair untouched, so **`v5r` and `v6r` are NOT shippable on the strength of that repair** — the domain I protected carries a worse tell than the domain I fixed.
+
+  **THE ERROR IS THE ONE THIS FILE KEEPS RECORDING, IN A NEW COSTUME:** a number measured on one population, quoted about another. I have written that sentence three times today — about `form-capacity`'s binding domain, about the `v2` rebuild, about my own `subskill` row count — and then wrote it into a brief as a hard constraint. The v4 comparison was sound; what was unsound was carrying it across two files nobody had measured. **The agent that ignored my constraint far enough to LOOK is the reason this was caught**, and that is worth stating plainly: a brief that forbids inspection forbids finding things.
+
+  **ALSO FOUND BY THE SAME AGENT, and not acted on:** "Point D" is never the key on any of the five sentence-placement items in `v6` — not a complete permutation, which `v4` had, but still a free elimination on all five, and `shuffleDrawnChoices` does not dissolve it because the shuffle moves the `Point [X].` strings without moving which string is the key. **Recorded as open**: the Production and placement items in `v5`/`v6` need their own repair pass before either batch is attacked, and the attack should be pointed at Production, not only at Conventions. → **A21**
 - **2026-09-12** — **ACT MATH 7 FORMS → 8, AND THE POOLED ATTACK NUMBER WOULD HAVE PASSED A BATCH THAT LEAKS.** `act-math-v10-mix` banked at 21 of 25, commissioned across three domains off `next-form.mjs` rather than at the single thinnest — the direct correction of this morning's 28-item Algebra batch that bought zero forms. ACT Math is **401 → 450 items, 7 → 8 forms**, and the next form is now **4 items away** (Geometry +2, N&Q +2).
 
   **THE ATTACK RESULT IS THE FINDING.** Pooled **24/75 = 32.0%** against a control **derived at 28.0%** (keys 7/6/6/6 — the render printed a warning that 25.0% would be wrong here). Margin +4.0, CI 22.5-43.2%, **not significant**. On that number alone the batch passes. **A solver pre-registered the split that refutes it**, before any key was visible, arguing that a total near 36% is reachable by a lucky guess stratum but 4-of-5 on named mechanisms is not:
