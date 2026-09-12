@@ -1,0 +1,171 @@
+{
+ "grader": "c",
+ "file_sha256_16": "07077cef19599c51",
+ "items": {
+  "AM10G-01": {
+   "answer": "16",
+   "exclusive": true,
+   "hard": false,
+   "note": "62 - 2(23) = 16. Distractors are all stem-derived (39=62-23, 31=62/2, 20.7=62/3), none built from another option. FLAW: the item does not test any geometric fact. 'Isosceles' only names which two sides are 23; the solve is one subtraction. No triangle-inequality check, no base-angle property. Reachable without the fact it claims to test."
+  },
+  "AM10G-02": {
+   "answer": "14.1",
+   "exclusive": true,
+   "hard": false,
+   "note": "side 10, diagonal 10*sqrt2 = 14.142 -> 14.1. OPTION-DERIVED: 28.3 = 2 x 14.1 (key doubled) and 20 = 2 x 10. Two clean doubling pairs; symmetric, so no leak, but the key sits inside a x2 pair."
+  },
+  "AM10G-03": {
+   "answer": "(6, 4)",
+   "exclusive": true,
+   "hard": false,
+   "note": "CW 90: (x,y)->(y,-x); (-4,6)->(6,4). Every option is a sign flip of another - the full {+-6, +-4} family. This is the GOOD version of option-derivation: complete and symmetric, so the key cannot be picked from the set. No defect."
+  },
+  "AM10G-04": {
+   "answer": "(1, 3)",
+   "exclusive": true,
+   "hard": false,
+   "note": "P = A + (1/4)(B-A) = (1,3). OPTION-DERIVED: (-5,-1), (1,3), (7,7) are collinear in arithmetic progression with common difference (6,4), and (4,5) is the exact midpoint of (1,3) and (7,7) as well as the midpoint of AB. So one option is the mean of two others. Odd-one-out heuristic points at (4,5), not the key, so no leak."
+  },
+  "AM10G-05": {
+   "answer": "3",
+   "exclusive": true,
+   "hard": true,
+   "note": "(10+2w)(24+2w) = 480 -> w^2+17w-60=0 -> w=3. Inside-walkway misreading gives 5 or 12, neither listed, so OUTSIDE is unambiguous. OPTION-DERIVED: 6 = 2 x 3 (key doubled); this is the only multiplicative pair in the set, so it is asymmetric - 3.5 and 20 have no partner. Which member of the pair is the key is still not determinable."
+  },
+  "AM10G-06": {
+   "answer": "(-9, -1)",
+   "exclusive": true,
+   "hard": false,
+   "note": "r^2 = 25+144 = 169. Distances^2: (4,11)=144, (-9,-1)=169, (0,12)=185, (9,-1)=25. Only one option works. Note (9,-1) and (-9,-1) are an x-sign-flip pair and both share the centre's y, so the set does hint that the answer lies on the horizontal through the centre - but it does not pick between them. NEAR-DUPLICATE ARITHMETIC with AM10G-09: both items resolve to r=13 out of a 5-12-13 family."
+  },
+  "AM10G-07": {
+   "answer": "1/8",
+   "exclusive": true,
+   "hard": false,
+   "note": "Similar cones, scale 1/2, volume ratio (1/2)^3 = 1/8. KEY IDENTIFIABLE FROM OPTIONS ALONE: 1/12, 1/2, 1/3 all have denominators dividing 12 (the stem's depth); 1/8 is the unique outlier, so odd-one-out lands on the key without any similarity reasoning. Also 1/2 x 1/2 x 1/2 = key, i.e. the key is a power of another option. This is the item in the batch I would rewrite."
+  },
+  "AM10G-08": {
+   "answer": "29.9",
+   "exclusive": true,
+   "hard": true,
+   "note": "h(cot32 - cot47) = 20 -> h = 29.9482 -> 29.9. Rounds cleanly, not on a .x5 boundary. Distractors are principled: 12.5 = 20tan32, 21.4 = 20tan47, 44.7 = 20/(tan47-tan32) (the reciprocal error). No option built from another. Genuinely hard for the ACT: two triangles, no diagram."
+  },
+  "AM10G-09": {
+   "answer": "169π",
+   "exclusive": true,
+   "hard": false,
+   "note": "diagonal = 26 = diameter, r = 13, area 169pi. OPTION-DERIVED: 676 = 4 x 169 (key quadrupled) AND 676 = 26^2 (square of another option), so 676pi is doubly built out of the rest of the set. Key is not identifiable from the set. NEAR-DUPLICATE with AM10G-06 (both end at r=13) and reuses the 10-by-24 dimensions of AM10G-05 verbatim."
+  },
+  "AM10G-10": {
+   "answer": "42",
+   "exclusive": true,
+   "hard": false,
+   "note": "horizontal base 12, height 7, area 42. OPTION-DERIVED: 84 = 2 x 42 and 103.2 = 2 x 51.6 - two doubling pairs (51.6 = 12 x 8.602/2, the two-sides-as-if-perpendicular error). STRUCTURAL LEAK: a triangle with integer vertices has half-integer area by the shoelace formula, so 51.6 and 103.2 are IMPOSSIBLE and eliminable without computing anything. The item therefore collapses to a 50/50 between 42 and 84 - i.e. to 'did you halve' - reachable without coordinate geometry."
+  },
+  "AM10G-11": {
+   "answer": "60.0",
+   "exclusive": true,
+   "hard": false,
+   "note": "side = radius, perimeter 60. No option built from another (52.0 filler, 69.3 = circumscribed hexagon 4*10sqrt3, 62.8 = circumference 2pi*10). DEFECT, inverted tell: the stem demands 'to the nearest tenth' but the answer is exactly 60.0 while all three distractors carry a nonzero tenth. A student who reads the rounding instruction as a promise that the answer is not round is steered AWAY from the key. Drop the rounding clause or change the radius."
+  },
+  "AM10G-12": {
+   "answer": "384",
+   "exclusive": true,
+   "hard": false,
+   "note": "apothem 6, height sqrt(100-36)=8, V = (1/3)(144)(8) = 384. OPTION-DERIVED: 1152 = 3 x 384 (key, no 1/3) and 1440 = 3 x 480 - two exact x3 pairs, and 480 = (1/3)(144)(10) is the slant-as-height error. Key sits in one of the pairs; symmetric, so no leak. Routine multi-step, not ACT-hard."
+  },
+  "AM10G-13": {
+   "answer": "20",
+   "exclusive": true,
+   "hard": false,
+   "note": "base 7 -> 15, top = sqrt(625-225) = 20. No option built from another within the set (7 and 15 are the two bases, 16 = 24-8). Third Pythagorean-triple item in the Geometry block; see composition note."
+  },
+  "AM10N-01": {
+   "answer": "9 × 10^5",
+   "exclusive": true,
+   "hard": false,
+   "note": "6e-3 x 1.5e8 = 9e5. Option set is the complete 2x2 grid {9, 7.5} x {10^5, 10^11} - both the correct and the mis-added mantissa crossed with both exponents. Every option is 'built from' the others by construction, and that is exactly why the key is NOT identifiable from the set. Model for the rest of the batch."
+  },
+  "AM10N-02": {
+   "answer": "5 - 12i",
+   "exclusive": true,
+   "hard": false,
+   "note": "9 - 12i + 4i^2 = 5 - 12i. Complete 2x2 grid {5, 13} x {-12i, +12i}; 13 = 9+4 is the sign-of-i^2 error. Symmetric, no leak."
+  },
+  "AM10N-03": {
+   "answer": "1820",
+   "exclusive": true,
+   "hard": false,
+   "note": "5(3^6-1)/2 = 1820. OPTION-DERIVED and this one touches the KEY: 1820 = 5 x 364 exactly, and 3645 = 3 x 1215. Of the four, 364, 1215, 3645 are all direct 3-powers of the stem data while the key is the unique 'x5 product' - a mild hub signature on the key. Not decisive (a solver cannot tell which member of a x5 pair is right) but it is the same shape the author says they fixed elsewhere."
+  },
+  "AM10N-04": {
+   "answer": "17/33",
+   "exclusive": true,
+   "hard": false,
+   "note": "0.515151... = 51/99 = 17/33. KEY IDENTIFIABLE WITHOUT THE COMPUTATION: a purely repeating decimal in lowest terms must have a denominator coprime to 10, which kills 51/100 and 17/30 outright; 51/990 is not in lowest terms, which the stem itself demands. That leaves 17/33 uniquely, with no decimal conversion done. Calculator-allowed makes it worse - four divisions settle it. The item does not test the repeating-decimal algorithm it is written to test."
+  },
+  "AM10N-05": {
+   "answer": "216",
+   "exclusive": true,
+   "hard": true,
+   "note": "C(4,2)(2x)^2(-3)^2 = 6*4*9 = 216. KEY IS A DERIVATIONAL HUB - the defect the author claims to have fixed, still present here. 216 = 2 x 108 = 4 x 54 = 9 x 24: every single distractor reaches the key by one small integer multiple, and no distractor pair relates to each other except through the key (108 = 2 x 54 is the one exception). Anyone applying 'the hub is the key' picks 216 from the option set alone. Replace one distractor with a value off the 216 lattice (e.g. -216, the x^1 coefficient, or 81)."
+  },
+  "AM10N-06": {
+   "answer": "15",
+   "exclusive": true,
+   "hard": false,
+   "note": "(AB)_12 = 2*6 + (-1)(-3) = 15. -15 is a sign flip of the key (and is also the genuine (AB)_22, so it is doubly principled); 9 = 12-3; 29 = (BA)_12. Sign-flip pair noted but the pair is symmetric."
+  },
+  "AM10N-07": {
+   "answer": "<13, -10>",
+   "exclusive": true,
+   "hard": false,
+   "note": "<10,-4> - <-3,6> = <13,-10>. Complete 2x2 grid {13, 7} x {2, -10}. Clean."
+  },
+  "AM10N-08": {
+   "answer": "151",
+   "exclusive": true,
+   "hard": false,
+   "note": "d = 70/14 = 5; a30 = 6 + 29(5) = 151. Distractors principled (145 = 29d with no a1, 156 = 6+30d, 226 = 76+30d). No exact option-from-option relation. Weak tell only: 151 is the middle value of the three clustered options, which a middle-value guesser prefers."
+  },
+  "AM10N-09": {
+   "answer": "16",
+   "exclusive": true,
+   "hard": true,
+   "note": "phi(60) = 60 * 1/2 * 2/3 * 4/5 = 16; brute count confirms 16. OPTION-DERIVED: 44 = 60 - 16, i.e. the complement of the key against the stem's 60 - the count of n that are NOT coprime. It is built from the key but is also the single most plausible wrong answer, so it earns its place. 30 = 60/2. Genuinely hard for the ACT."
+  },
+  "AM10S-01": {
+   "answer": "12.6",
+   "exclusive": true,
+   "hard": false,
+   "note": "predicted 44.4; residual 57 - 44.4 = 12.6. OPTION-DERIVED, the densest chain in the batch: -12.6 is the sign flip of the key, 44.4 is 57 - 12.6 (the prediction itself), and 101.4 = 57 + 44.4. Three of the four options lie on one additive chain through 57. Does not leak - the chain does not say which end is the residual - but if the author was auditing for 'the key equals a combination of the other options', this set is the one they should re-examine."
+  },
+  "AM10S-02": {
+   "answer": "0.72",
+   "exclusive": true,
+   "hard": true,
+   "note": "9*9*8 = 648 of 900 = 0.72; brute count confirms 648. OPTION-DERIVED: 0.648 = 0.9 x 0.72 and 0.504 = 0.9 x 0.56 - two exact x0.9 pairs. 0.648 is also the raw count read as 648/1000, a good trap. Symmetric, no leak."
+  },
+  "AM10S-03": {
+   "answer": "5",
+   "exclusive": true,
+   "hard": false,
+   "note": "(20n+38)/(n+1) = 23 -> n = 5. OPTION-DERIVED: 15 = 3 x 5 (key tripled; 15 is also the 3n that appears mid-solve) and 18 = 3 x 6, with 6 = n+1 the new set size. Two x3 pairs, symmetric, no leak."
+  }
+ },
+ "summary": {
+  "hard_count": 5,
+  "hard_items": ["AM10G-05", "AM10G-08", "AM10N-05", "AM10N-09", "AM10S-02"],
+  "non_exclusive": [],
+  "key_identifiable_from_options_alone": ["AM10G-07", "AM10N-04", "AM10N-05", "AM10G-10", "AM10G-11"],
+  "option_built_from_other_options": ["AM10G-02", "AM10G-03", "AM10G-04", "AM10G-05", "AM10G-09", "AM10G-10", "AM10G-12", "AM10N-01", "AM10N-02", "AM10N-03", "AM10N-05", "AM10N-06", "AM10N-07", "AM10N-09", "AM10S-01", "AM10S-02", "AM10S-03"],
+  "key_is_derivational_hub": ["AM10N-05"],
+  "answer_reachable_without_tested_fact": ["AM10G-01", "AM10G-07", "AM10G-10", "AM10N-04"],
+  "near_duplicates_within_batch": [
+   ["AM10G-06", "AM10G-09"],
+   ["AM10G-05", "AM10G-09"],
+   ["AM10G-02", "AM10G-09"]
+  ],
+  "composition": "5 of the 13 Geometry items (G-02, G-06, G-09, G-12, G-13) reduce to a Pythagorean computation, and two of them (G-06, G-09) land on the same radius 13 from the same 5-12-13 family."
+ }
+}

@@ -1,0 +1,127 @@
+{
+ "L01": {
+  "pick": "B",
+  "confidence": 30,
+  "why": "guess — 20.7 is the only non-integer among 16/31/39, which often marks a computed radical value, but the other three are unrelated; guess"
+ },
+ "L02": {
+  "pick": "B",
+  "confidence": 35,
+  "why": "10, 14.1(=10*sqrt2), 20, 28.3(=20*sqrt2) — two scale families. Picked the sqrt2 value on the smaller base as the likeliest diagonal/45-45-90 result. Still largely a guess"
+ },
+ "L03": {
+  "pick": "D",
+  "confidence": 25,
+  "why": "guess — complete sign permutation of (6,4); nothing distinguishes any option"
+ },
+ "L04": {
+  "pick": "D",
+  "confidence": 35,
+  "why": "(-5,-1), (1,3), (7,7) form an exact arithmetic run with step (6,4) and (1,3) is the MIDDLE one; middle-of-run pick, but this could equally be a midpoint stem where (4,5) is the key. Part guess"
+ },
+ "L05": {
+  "pick": "C",
+  "confidence": 28,
+  "why": "guess — 20 is the magnitude outlier and therefore unlikely; took 3.5 as the only non-integer of the remaining three"
+ },
+ "L06": {
+  "pick": "D",
+  "confidence": 25,
+  "why": "guess — (9,-1) vs (-9,-1) is a reflection pair; no basis to choose"
+ },
+ "L07": {
+  "pick": "A",
+  "confidence": 28,
+  "why": "guess — 1/2 reads as too large for a compound-probability key, 1/12 as an over-multiplied distractor; 1/3 by elimination only"
+ },
+ "L08": {
+  "pick": "B",
+  "confidence": 25,
+  "why": "guess — four unrelated one-decimal values, no arithmetic relation found"
+ },
+ "L09": {
+  "pick": "A",
+  "confidence": 45,
+  "why": "13/26 family: 26pi is a circumference, 676pi is (26)^2*pi i.e. the radius/diameter confusion, 289pi is 17^2 and unrelated. 169pi is the canonical area for r=13. Reasoned from option texture, not a blind pick"
+ },
+ "L10": {
+  "pick": "C",
+  "confidence": 25,
+  "why": "guess — two doubling pairs (42/84 and 51.6/103.2); no way to pick a family or a member"
+ },
+ "L11": {
+  "pick": "D",
+  "confidence": 30,
+  "why": "guess — 62.8 = 20pi, the only value with a clean closed form; 69.3 = 40*sqrt3 is an equally clean rival, so this is close to a coin flip"
+ },
+ "L12": {
+  "pick": "B",
+  "confidence": 25,
+  "why": "guess — 384/1152 and 480/1440 are two 1:3 pairs; nothing selects one"
+ },
+ "L13": {
+  "pick": "C",
+  "confidence": 25,
+  "why": "guess — 20/16/15/7, no relation; took the middle value"
+ },
+ "L14": {
+  "pick": "C",
+  "confidence": 25,
+  "why": "guess — full 2x2 grid of {7.5, 9} x {10^5, 10^11}; the grid is designed to give nothing away"
+ },
+ "L15": {
+  "pick": "B",
+  "confidence": 28,
+  "why": "guess — full 2x2 grid of {5,13} x {+-12i}; 5+12i has modulus 13 so 13 is likely a red herring for the real part, but that is a hunch, guess"
+ },
+ "L16": {
+  "pick": "D",
+  "confidence": 50,
+  "why": "5,15,45,135,405,1215 is a geometric run (a=5, r=3); 1215 is its 6th TERM and 1820 is its 6th SUM, while 3645 is the 7th term and 364 is the same sum with a=1. Sum questions are the common ACT ask, so 1820. Genuine structural read"
+ },
+ "L17": {
+  "pick": "A",
+  "confidence": 65,
+  "why": "0.515151... = 51/99 = 17/33. 51/990 and 51/100 are the standard place-value slips and 17/30 is the arithmetic slip. Solved from option texture alone"
+ },
+ "L18": {
+  "pick": "A",
+  "confidence": 28,
+  "why": "guess — 54/108/216 is a doubling run and 24 is the outsider; took the middle of the run"
+ },
+ "L19": {
+  "pick": "C",
+  "confidence": 25,
+  "why": "guess — 15 and -15 are a sign pair, 9 and 29 unrelated; no basis"
+ },
+ "L20": {
+  "pick": "C",
+  "confidence": 25,
+  "why": "guess — complete 2x2 grid of {7,13} x {2,-10}; deliberately uninformative"
+ },
+ "L21": {
+  "pick": "A",
+  "confidence": 28,
+  "why": "guess — 145/151/156 cluster with 226 as the magnitude outlier; took the middle of the cluster"
+ },
+ "L22": {
+  "pick": "C",
+  "confidence": 25,
+  "why": "guess — 44 is the outlier, 16/18/30 unrelated; no basis"
+ },
+ "L23": {
+  "pick": "A",
+  "confidence": 28,
+  "why": "guess — 12.6/-12.6 is a sign pair which usually marks a distractor pair, leaving 44.4 and 101.4; picked the smaller. guess"
+ },
+ "L24": {
+  "pick": "C",
+  "confidence": 45,
+  "why": "0.9*0.8=0.72, 0.8*0.7=0.56, 0.9*0.72=0.648, and 0.504 = 0.9*0.8*0.7 — the only value that is the product of all three underlying factors. 'All three occur' is the standard ask. Structural"
+ },
+ "L25": {
+  "pick": "A",
+  "confidence": 25,
+  "why": "guess — 5/15 and 6/18 are two 1:3 pairs; nothing selects one"
+ }
+}

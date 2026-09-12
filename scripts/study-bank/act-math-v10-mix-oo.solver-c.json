@@ -1,0 +1,152 @@
+{
+ "L01": {
+  "pick": "B",
+  "confidence": 33,
+  "why": "only non-integer among three integers (20.7 ~ 12*sqrt3); weak texture tell, otherwise a guess",
+  "basis": "weak-mechanism"
+ },
+ "L02": {
+  "pick": "B",
+  "confidence": 38,
+  "why": "10/14.1/20/28.3 is one geometric run in sqrt2; picked the sqrt2-scaling of the smaller plain value (side 10 -> diagonal 14.1). part guess",
+  "basis": "weak-mechanism"
+ },
+ "L03": {
+  "pick": "A",
+  "confidence": 25,
+  "why": "guess - complete sign permutation of (6,4), no discriminator",
+  "basis": "guess"
+ },
+ "L04": {
+  "pick": "D",
+  "confidence": 45,
+  "why": "(1,3) is exactly the midpoint of (7,7) and (-5,-1), and all four are collinear; the doubled gap makes D the centre of the construction",
+  "basis": "mechanism"
+ },
+ "L05": {
+  "pick": "C",
+  "confidence": 30,
+  "why": "20 is an order-of-magnitude outlier so I dropped it; among 3/3.5/6 took the only non-integer. mostly guess",
+  "basis": "weak-mechanism"
+ },
+ "L06": {
+  "pick": "D",
+  "confidence": 28,
+  "why": "(-9,-1) and (9,-1) are an exact mirror pair = the sign-error trap pattern; chose the positive-x member. close to a guess",
+  "basis": "weak-mechanism"
+ },
+ "L07": {
+  "pick": "B",
+  "confidence": 28,
+  "why": "guess - smallest value, the shape a compound-probability product takes with 1/3 and 1/2 printed as partials; no arithmetic link confirms it",
+  "basis": "guess"
+ },
+ "L08": {
+  "pick": "B",
+  "confidence": 25,
+  "why": "guess - four one-decimal values with no arithmetic relation between any of them",
+  "basis": "guess"
+ },
+ "L09": {
+  "pick": "A",
+  "confidence": 65,
+  "why": "26 as diameter -> r=13 -> area 169pi; 26pi is the circumference trap, 676pi is pi*d^2, 289pi is 17^2. only A sits as the key of that trap family",
+  "basis": "mechanism"
+ },
+ "L10": {
+  "pick": "C",
+  "confidence": 30,
+  "why": "two exact doubling pairs (42/84, 51.6/103.2); took the decimal member as the computed value and the smaller of that pair. weak, near guess",
+  "basis": "weak-mechanism"
+ },
+ "L11": {
+  "pick": "D",
+  "confidence": 33,
+  "why": "62.8 = 20pi, the only value derivable as a pi multiple; 60.0 reads as the inscribed-hexagon trap. part guess",
+  "basis": "weak-mechanism"
+ },
+ "L12": {
+  "pick": "D",
+  "confidence": 27,
+  "why": "guess - two exact 1:3 pairs (384/1152, 480/1440); a pyramid/cone third would be 384 or 480 and nothing separates them",
+  "basis": "guess"
+ },
+ "L13": {
+  "pick": "C",
+  "confidence": 25,
+  "why": "guess - 20/16/15/7, no relation",
+  "basis": "guess"
+ },
+ "L14": {
+  "pick": "A",
+  "confidence": 25,
+  "why": "guess - perfect 2x2 crossing of mantissa {7.5,9} with exponent {5,11}; by construction no option is distinguishable",
+  "basis": "guess"
+ },
+ "L15": {
+  "pick": "B",
+  "confidence": 25,
+  "why": "guess - perfect 2x2 crossing of {5,13} with +/-12i",
+  "basis": "guess"
+ },
+ "L16": {
+  "pick": "D",
+  "confidence": 45,
+  "why": "geometric series 5,15,...,1215,3645 (r=3): 1820 = sum of the first six and 364 = that sum with the first term dropped, so 364 exists only as an error of D; 1215/3645 are terms not sums",
+  "basis": "mechanism"
+ },
+ "L17": {
+  "pick": "A",
+  "confidence": 70,
+  "why": "0.515151... = 51/99 = 17/33 in lowest terms; 51/100 is the terminating trap, 51/990 the misplaced-period trap, 17/30 the arithmetic slip. only A is a reduced repeating-decimal fraction",
+  "basis": "mechanism"
+ },
+ "L18": {
+  "pick": "A",
+  "confidence": 33,
+  "why": "54/108/216 form a geometric run of ratio 2 and 108 is the middle; 24 is off the run. part guess",
+  "basis": "weak-mechanism"
+ },
+ "L19": {
+  "pick": "C",
+  "confidence": 30,
+  "why": "-15/15 is an exact sign pair (the classic sign-error trap); took the positive member. direction of the pair is a guess",
+  "basis": "weak-mechanism"
+ },
+ "L20": {
+  "pick": "A",
+  "confidence": 25,
+  "why": "guess - perfect 2x2 crossing of {7,13} with {2,-10}, sum/difference pair, no tell",
+  "basis": "guess"
+ },
+ "L21": {
+  "pick": "A",
+  "confidence": 25,
+  "why": "guess - 226 is a magnitude outlier but 145/151/156 are undifferentiated",
+  "basis": "guess"
+ },
+ "L22": {
+  "pick": "D",
+  "confidence": 25,
+  "why": "guess - 44/16/18/30, no sum, product, run or angle-complement relation",
+  "basis": "guess"
+ },
+ "L23": {
+  "pick": "C",
+  "confidence": 32,
+  "why": "12.6/-12.6 is an exact sign pair; percent-change items report the magnitude, so the positive member. direction partly a guess",
+  "basis": "weak-mechanism"
+ },
+ "L24": {
+  "pick": "C",
+  "confidence": 55,
+  "why": "0.504 = 0.72 x 0.7 and equals 0.9*0.8*0.7 while 0.72 (=0.9*0.8) and 0.56 (=0.8*0.7) are two-event partials; the complete product is the only one nothing else is built from",
+  "basis": "mechanism"
+ },
+ "L25": {
+  "pick": "B",
+  "confidence": 27,
+  "why": "guess - 5/15 and 6/18 are two 1:3 pairs, nothing separates the members",
+  "basis": "guess"
+ }
+}
