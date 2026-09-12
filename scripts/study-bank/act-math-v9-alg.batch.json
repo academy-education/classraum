@@ -1,590 +1,590 @@
 [
- {
-  "id": "AM9A-01",
-  "domain": "Algebra",
-  "subskill": "linear equation with a fraction on one side and the variable on both",
-  "difficulty": "easy",
-  "prompt": "If (x + 9)/2 = x - 3, what is the value of x ?",
-  "choices": [
-   "15",
-   "12",
-   "-21",
-   "24"
-  ],
-  "correct_answer": "15",
-  "explanation": "Multiplying both sides by 2 gives x + 9 = 2(x - 3) = 2x - 6, so 9 + 6 = x and x = 15. \"12\" comes from a solver who multiplies only the x on the right by 2, reaching x + 9 = 2x - 3. \"-21\" comes from a solver who multiplies the LEFT side by 2 instead of the right, reaching 2(x + 9) = x - 3, so x = -3 - 18. \"24\" comes from a solver who splits the left side as x/2 + 9, reaching x/2 = 12.",
-  "solve": "return 9 + 2*3;",
-  "distractor_solve": {
-   "12": "return 9 + 3;",
-   "-21": "return -3 - 18;",
-   "24": "return 2*(9 + 3);"
+  {
+    "id": "AM9A-01",
+    "domain": "Algebra",
+    "subskill": "linear equation with a fraction on one side and the variable on both",
+    "difficulty": "easy",
+    "prompt": "If (x + 9)/2 = x - 3, what is the value of x ?",
+    "choices": [
+      "15",
+      "12",
+      "-21",
+      "24"
+    ],
+    "correct_answer": "15",
+    "explanation": "Multiplying both sides by 2 gives x + 9 = 2(x - 3) = 2x - 6, so 9 + 6 = x and x = 15. \"12\" comes from a solver who multiplies only the x on the right by 2, reaching x + 9 = 2x - 3. \"-21\" comes from a solver who multiplies the LEFT side by 2 instead of the right, reaching 2(x + 9) = x - 3, so x = -3 - 18. \"24\" comes from a solver who splits the left side as x/2 + 9, reaching x/2 = 12.",
+    "solve": "return 9 + 2*3;",
+    "distractor_solve": {
+      "12": "return 9 + 3;",
+      "24": "return 2*(9 + 3);",
+      "-21": "return -3 - 18;"
+    }
+  },
+  {
+    "id": "AM9A-02",
+    "domain": "Algebra",
+    "subskill": "linear equation where the quantity asked for is not the variable",
+    "difficulty": "easy",
+    "prompt": "If 5(x - 2) = 3x + 8, what is the value of 2x ?",
+    "choices": [
+      "18",
+      "9",
+      "10",
+      "5"
+    ],
+    "correct_answer": "18",
+    "explanation": "Expanding gives 5x - 10 = 3x + 8, so 2x = 8 + 10 = 18. The question asks for 2x, and 2x is exactly the quantity the last step produces. \"9\" is the value of x, from a solver who takes the extra step the question did not ask for. \"10\" comes from a solver who expands 5(x - 2) as 5x - 2, reaching 2x = 8 + 2. \"5\" comes from a solver who makes that same expansion error and then also divides by 2 to report x.",
+    "solve": "return 8 + 5*2;",
+    "distractor_solve": {
+      "5": "return (8 + 2)/2;",
+      "9": "return (8 + 5*2)/2;",
+      "10": "return 8 + 2;"
+    }
+  },
+  {
+    "id": "AM9A-03",
+    "domain": "Algebra",
+    "subskill": "linear equation requiring distribution on both sides",
+    "difficulty": "easy",
+    "prompt": "If 3(x - 4) = 2(x + 5), what is the value of x ?",
+    "choices": [
+      "22",
+      "14",
+      "-2",
+      "17"
+    ],
+    "correct_answer": "22",
+    "explanation": "Expanding both sides gives 3x - 12 = 2x + 10, so x = 10 + 12 = 22. \"14\" comes from a solver who distributes the 3 only to the x, reaching 3x - 4 = 2x + 10. \"-2\" comes from a solver who subtracts 12 from the right rather than adding it, reaching x = 10 - 12. \"17\" comes from a solver who distributes the 2 only to the x, reaching 3x - 12 = 2x + 5.",
+    "solve": "return 10 + 12;",
+    "distractor_solve": {
+      "14": "return 10 + 4;",
+      "17": "return 5 + 12;",
+      "-2": "return 10 - 12;"
+    }
+  },
+  {
+    "id": "AM9A-04",
+    "domain": "Algebra",
+    "subskill": "the value that makes a rational expression undefined",
+    "difficulty": "easy",
+    "prompt": "For what value of x is the expression (x + 2)/(x - 5) undefined?",
+    "choices": [
+      "5",
+      "-2",
+      "2",
+      "-5"
+    ],
+    "correct_answer": "5",
+    "explanation": "A quotient is undefined exactly where its denominator is 0, and x - 5 = 0 when x = 5. \"-2\" is the value that makes the NUMERATOR 0; there the expression equals 0, which is a perfectly good value, not an undefined one. \"2\" comes from a solver who finds the numerator's zero and then reads its sign off the +2 in x + 2. \"-5\" comes from a solver who reads the denominator's zero straight off the -5 without solving x - 5 = 0.",
+    "solve": "let x = null; for (let t = -20; t <= 20; t++) if (t - 5 === 0) x = t; return x;",
+    "distractor_solve": {
+      "2": "let x = null; for (let t = -20; t <= 20; t++) if (t + 2 === 0) x = t; return -x;",
+      "-2": "let x = null; for (let t = -20; t <= 20; t++) if (t + 2 === 0) x = t; return x;",
+      "-5": "let x = null; for (let t = -20; t <= 20; t++) if (t - 5 === 0) x = t; return -x;"
+    }
+  },
+  {
+    "id": "AM9A-05",
+    "domain": "Algebra",
+    "subskill": "system solved by elimination, then a combination of the two unknowns",
+    "difficulty": "medium",
+    "prompt": "If 2x + 3y = 31 and 5x - 3y = 4, what is the value of y - x ?",
+    "choices": [
+      "2",
+      "-2",
+      "12",
+      "-48"
+    ],
+    "correct_answer": "2",
+    "explanation": "Adding the two equations eliminates y: 7x = 35, so x = 5, and then 3y = 31 - 10 = 21 gives y = 7. So y - x = 7 - 5 = 2. \"-2\" comes from a solver who computes x - y instead of y - x. \"12\" comes from a solver who adds the two unknowns rather than subtracting them. \"-48\" comes from a solver who adds the equations to 7x = 35 and then forgets to divide by 7, carrying x = 35 into 3y = 31 - 2x.",
+    "solve": "const x = (31 + 4)/7; const y = (31 - 2*x)/3; return y - x;",
+    "distractor_solve": {
+      "12": "const x = (31 + 4)/7; const y = (31 - 2*x)/3; return x + y;",
+      "-2": "const x = (31 + 4)/7; const y = (31 - 2*x)/3; return x - y;",
+      "-48": "const x = 31 + 4; const y = (31 - 2*x)/3; return y - x;"
+    }
+  },
+  {
+    "id": "AM9A-06",
+    "domain": "Algebra",
+    "subskill": "recovering an unknown constant from one known solution of a quadratic",
+    "difficulty": "medium",
+    "prompt": "One solution of the equation x^2 - 9x + c = 0 is x = 4. What is the value of c ?",
+    "choices": [
+      "20",
+      "-20",
+      "5",
+      "36"
+    ],
+    "correct_answer": "20",
+    "explanation": "Substituting x = 4 gives 16 - 36 + c = 0, so c = 36 - 16 = 20. \"-20\" comes from a solver who moves the two known terms to the other side in the wrong order, computing 16 - 36. \"5\" is the OTHER solution of the equation, since the two solutions sum to 9; it is a real feature of the equation but it is not c. \"36\" comes from a solver who reads c as the product of the coefficient 9 and the given solution 4.",
+    "solve": "return 9*4 - 4*4;",
+    "distractor_solve": {
+      "5": "return 9 - 4;",
+      "36": "return 9*4;",
+      "-20": "return 4*4 - 9*4;"
+    }
+  },
+  {
+    "id": "AM9A-07",
+    "domain": "Algebra",
+    "subskill": "inverse variation with a squared variable",
+    "difficulty": "medium",
+    "prompt": "The quantity y varies inversely as the square of x. When x = 2, y = 12. What is the value of y when x = 4 ?",
+    "choices": [
+      "3",
+      "24",
+      "48",
+      "6"
+    ],
+    "correct_answer": "3",
+    "explanation": "Inverse variation as the square means y = k/x^2, so k = 12 x 2^2 = 48 and at x = 4, y = 48/16 = 3. \"24\" comes from a solver who uses plain inverse variation, y = k/x, finding k = 24 and reporting it. \"48\" is the constant of variation itself, from a solver who stops one step early. \"6\" comes from a solver who reasons that doubling x halves y, which is the rule for inverse variation in x rather than in x^2.",
+    "solve": "return (12*2*2)/(4*4);",
+    "distractor_solve": {
+      "6": "return 12/2;",
+      "24": "return 12*2;",
+      "48": "return 12*2*2;"
+    }
+  },
+  {
+    "id": "AM9A-08",
+    "domain": "Algebra",
+    "subskill": "completing the square when the leading coefficient is not 1",
+    "difficulty": "medium",
+    "prompt": "For what value of c is 9x^2 - 24x + c the square of a binomial?",
+    "choices": [
+      "16",
+      "144",
+      "12",
+      "576"
+    ],
+    "correct_answer": "16",
+    "explanation": "The square must be (3x + m)^2 = 9x^2 + 6mx + m^2. Matching the middle term, 6m = -24 so m = -4, and c = m^2 = 16. \"144\" comes from a solver who uses the rule (b/2)^2 without accounting for the leading 9, computing (-24/2)^2. \"12\" is the halved middle coefficient itself, from a solver who never squares it. \"576\" comes from a solver who squares the middle coefficient without halving it and without accounting for the 9.",
+    "solve": "const m = -24/(2*Math.sqrt(9)); return m*m;",
+    "distractor_solve": {
+      "12": "return Math.abs(-24/2);",
+      "144": "return Math.pow(-24/2, 2);",
+      "576": "return Math.pow(-24, 2);"
+    }
+  },
+  {
+    "id": "AM9A-09",
+    "domain": "Algebra",
+    "subskill": "the coefficient that leaves a linear equation with no solution",
+    "difficulty": "medium",
+    "prompt": "For what value of k does the equation 3(2x - 1) = kx + 7 have NO solution?",
+    "choices": [
+      "6",
+      "2",
+      "-6",
+      "-10"
+    ],
+    "correct_answer": "6",
+    "explanation": "Expanding the left side gives 6x - 3 = kx + 7. A linear equation has no solution exactly when the two sides have the same x-coefficient but different constants, so k = 6, and the constants -3 and 7 do differ. \"2\" comes from a solver who reads k off the 2 inside the parentheses without distributing the 3. \"-6\" comes from a solver who moves the kx term across and matches -k to 6. \"-10\" comes from a solver who matches the CONSTANTS instead of the coefficients, computing -3 - 7.",
+    "solve": "return 3*2;",
+    "distractor_solve": {
+      "2": "return 6/3;",
+      "-6": "return -(3*2);",
+      "-10": "return -3 - 7;"
+    }
+  },
+  {
+    "id": "AM9A-10",
+    "domain": "Algebra",
+    "subskill": "linear equation with a subtracted parenthesis",
+    "difficulty": "medium",
+    "prompt": "If 4(3x + 2) - 2(x - 5) = 68, what is the value of x ?",
+    "choices": [
+      "5",
+      "7",
+      "6.8",
+      "8.6"
+    ],
+    "correct_answer": "5",
+    "explanation": "Expanding gives 12x + 8 - 2x + 10 = 68, so 10x + 18 = 68 and x = 50/10 = 5. \"7\" comes from a solver who distributes -2 across (x - 5) as -2x - 10, which turns the constant 18 into -2 and gives 10x = 70. \"6.8\" comes from a solver who divides 68 by the collected coefficient 10 without first removing the constant 18. \"8.6\" comes from a solver who adds 18 to 68 instead of subtracting it.",
+    "solve": "return (68 - (8 + 10))/(12 - 2);",
+    "distractor_solve": {
+      "7": "return (68 - (8 - 10))/(12 - 2);",
+      "6.8": "return 68/10;",
+      "8.6": "return (68 + 18)/10;"
+    }
+  },
+  {
+    "id": "AM9A-11",
+    "domain": "Algebra",
+    "subskill": "equating two areas written as products of binomials",
+    "difficulty": "medium",
+    "prompt": "The length of a rectangle is 5 centimeters more than its width. If the width is increased by 2 centimeters and the length is decreased by 3 centimeters, the area is unchanged. What is the width, in centimeters, of the original rectangle?",
+    "choices": [
+      "4",
+      "9",
+      "6",
+      "16"
+    ],
+    "correct_answer": "4",
+    "explanation": "With width w the original area is w(w + 5) and the new area is (w + 2)(w + 2), since the length becomes w + 5 - 3 = w + 2. Setting them equal, w^2 + 4w + 4 = w^2 + 5w, so w = 4. \"9\" is the LENGTH of the original rectangle, w + 5, from a solver who answers with the wrong dimension. \"6\" is the width after the increase, w + 2, from a solver who reports the changed rectangle's width. \"16\" comes from a solver who decreases the width and increases the length instead, solving (w - 2)(w + 8) = w(w + 5).",
+    "solve": "return 4/(5 - 4);",
+    "distractor_solve": {
+      "6": "return 4/(5 - 4) + 2;",
+      "9": "return 4/(5 - 4) + 5;",
+      "16": "return 16/(6 - 5);"
+    }
+  },
+  {
+    "id": "AM9A-12",
+    "domain": "Algebra",
+    "subskill": "proportion cleared by cross multiplication",
+    "difficulty": "medium",
+    "prompt": "If 3/(x - 2) = 5/(x + 6), what is the value of x ?",
+    "choices": [
+      "14",
+      "-18",
+      "10",
+      "8"
+    ],
+    "correct_answer": "14",
+    "explanation": "Cross multiplying gives 3(x + 6) = 5(x - 2), so 3x + 18 = 5x - 10 and 28 = 2x, x = 14. \"-18\" comes from a solver who multiplies each numerator by the denominator beneath it, reaching 3(x - 2) = 5(x + 6). \"10\" comes from a solver who leaves the right side undistributed as 5x - 2. \"8\" comes from a solver who leaves the left side undistributed as 3x + 6.",
+    "solve": "return (18 + 10)/(5 - 3);",
+    "distractor_solve": {
+      "8": "return (6 + 10)/(5 - 3);",
+      "10": "return (18 + 2)/(5 - 3);",
+      "-18": "return (-6 - 30)/(5 - 3);"
+    }
+  },
+  {
+    "id": "AM9A-13",
+    "domain": "Algebra",
+    "subskill": "three algebraic expressions forming an arithmetic sequence",
+    "difficulty": "medium",
+    "prompt": "The expressions x - 3, 2x + 1, and 5x - 1 are the first three terms of an arithmetic sequence, in that order. What is the value of x ?",
+    "choices": [
+      "3",
+      "-4",
+      "-0.5",
+      "0"
+    ],
+    "correct_answer": "3",
+    "explanation": "In an arithmetic sequence consecutive gaps are equal, so (2x + 1) - (x - 3) = (5x - 1) - (2x + 1), that is x + 4 = 3x - 2, giving x = 3. \"-4\" comes from a solver who sets consecutive TERMS equal rather than consecutive gaps, solving x - 3 = 2x + 1. \"-0.5\" comes from a solver who forms the second gap backwards as (2x + 1) - (5x - 1) = -3x + 2. \"0\" comes from a solver who simplifies the first gap as x - 2 instead of x + 4, losing the sign on the -3.",
+    "solve": "return (4 + 2)/(3 - 1);",
+    "distractor_solve": {
+      "0": "return (-2 + 2)/(3 - 1);",
+      "-4": "return -3 - 1;",
+      "-0.5": "return (2 - 4)/(1 + 3);"
+    }
+  },
+  {
+    "id": "AM9A-14",
+    "domain": "Algebra",
+    "subskill": "matching coefficients in an identity that holds for all x",
+    "difficulty": "medium",
+    "prompt": "The equation (x + a)(x - 3) = x^2 + 2x - 15 is true for every value of x. What is the value of a ?",
+    "choices": [
+      "5",
+      "-1",
+      "3",
+      "15"
+    ],
+    "correct_answer": "5",
+    "explanation": "Expanding the left side gives x^2 + (a - 3)x - 3a. Matching the coefficient of x, a - 3 = 2, so a = 5, and the constants agree as well since -3(5) = -15. \"-1\" comes from a solver who reads a - 3 = 2 as a = 2 - 3. \"3\" comes from a solver who reads a off the visible factor (x - 3) rather than solving for it. \"15\" comes from a solver who uses the constant equation -3a = -15 but drops the coefficient, reading off a = 15.",
+    "solve": "return 2 + 3;",
+    "distractor_solve": {
+      "3": "return Math.abs(-3);",
+      "15": "return Math.abs(-15);",
+      "-1": "return 2 - 3;"
+    }
+  },
+  {
+    "id": "AM9A-15",
+    "domain": "Algebra",
+    "subskill": "a ratio that changes when one part is added to",
+    "difficulty": "medium",
+    "prompt": "A jar contains red and blue marbles in the ratio 3 to 5. After 12 more red marbles are put in, the ratio of red to blue is 9 to 10. How many blue marbles are in the jar?",
+    "choices": [
+      "40",
+      "24",
+      "8",
+      "36"
+    ],
+    "correct_answer": "40",
+    "explanation": "Write the counts as 3k red and 5k blue. Then (3k + 12)/(5k) = 9/10, so 30k + 120 = 45k and k = 8, which makes the blue count 5(8) = 40. Blue never changes, so the 12 added marbles do not touch it. \"24\" is the ORIGINAL red count, 3(8). \"8\" is the multiplier k itself, from a solver who stops before scaling back up. \"36\" is the red count after the addition, 3(8) + 12.",
+    "solve": "const k = 120/(45 - 30); return 5*k;",
+    "distractor_solve": {
+      "8": "return 120/(45 - 30);",
+      "24": "const k = 120/(45 - 30); return 3*k;",
+      "36": "const k = 120/(45 - 30); return 3*k + 12;"
+    }
+  },
+  {
+    "id": "AM9A-16",
+    "domain": "Algebra",
+    "subskill": "shifting an exponent when the base value is given rather than the exponent",
+    "difficulty": "medium",
+    "prompt": "If 3^x = 7, what is the value of 3^(x + 2) ?",
+    "choices": [
+      "63",
+      "9",
+      "21",
+      "49"
+    ],
+    "correct_answer": "63",
+    "explanation": "3^(x + 2) = 3^x x 3^2 = 7 x 9 = 63. \"9\" is the factor 3^2 alone, from a solver who never multiplies by the given value 7. \"21\" comes from a solver who multiplies 7 by the base 3 rather than by 3^2. \"49\" comes from a solver who reads the +2 as an instruction to square the given value, computing 7^2.",
+    "solve": "return 7*Math.pow(3, 2);",
+    "distractor_solve": {
+      "9": "return Math.pow(3, 2);",
+      "21": "return 7*3;",
+      "49": "return Math.pow(7, 2);"
+    }
+  },
+  {
+    "id": "AM9A-17",
+    "domain": "Algebra",
+    "subskill": "two rates that differ by a hidden quantity in both directions",
+    "difficulty": "medium",
+    "prompt": "A boat travels 48 miles downstream in 3 hours and makes the return trip of 48 miles upstream in 4 hours. Assuming the boat's own speed and the current's speed are each constant, what is the speed of the current, in miles per hour?",
+    "choices": [
+      "2",
+      "14",
+      "4",
+      "28"
+    ],
+    "correct_answer": "2",
+    "explanation": "Downstream the boat covers 48/3 = 16 miles per hour and upstream 48/4 = 12 miles per hour. Downstream speed is the boat's speed plus the current and upstream is the boat's speed minus the current, so the current is half their difference, (16 - 12)/2 = 2. \"14\" is the boat's own speed in still water, half their SUM, from a solver who answers the other half of the same pair. \"4\" is the raw difference 16 - 12, from a solver who never halves it. \"28\" is the raw sum 16 + 12, from a solver who adds the two trip speeds and never halves.",
+    "solve": "return (48/3 - 48/4)/2;",
+    "distractor_solve": {
+      "4": "return 48/3 - 48/4;",
+      "14": "return (48/3 + 48/4)/2;",
+      "28": "return 48/3 + 48/4;"
+    }
+  },
+  {
+    "id": "AM9A-18",
+    "domain": "Algebra",
+    "subskill": "counting integers in a compound inequality with strict bounds",
+    "difficulty": "hard",
+    "prompt": "How many integer values of n satisfy -3 < (2n - 1)/3 < 5 ?",
+    "choices": [
+      "11",
+      "3",
+      "13",
+      "23"
+    ],
+    "correct_answer": "11",
+    "explanation": "Multiplying through by 3 gives -9 < 2n - 1 < 15, then -8 < 2n < 16, then -4 < n < 8. Both bounds are strict, so n = -4 and n = 8 are both excluded: the integers -3 through 7, which is 11 values. \"3\" comes from a solver who never multiplies the outer bounds by 3, counting the integers with -3 < 2n - 1 < 5. \"13\" comes from a solver who treats both bounds as inclusive and admits n = -4 and n = 8. \"23\" comes from a solver who divides the middle by 2 in name only, counting the integers with -8 < n < 16.",
+    "solve": "let c = 0; for (let n = -60; n <= 60; n++) { const v = (2*n - 1)/3; if (v > -3 && v < 5) c++; } return c;",
+    "distractor_solve": {
+      "3": "let c = 0; for (let n = -60; n <= 60; n++) { const v = 2*n - 1; if (v > -3 && v < 5) c++; } return c;",
+      "13": "let c = 0; for (let n = -60; n <= 60; n++) { const v = (2*n - 1)/3; if (v >= -3 && v <= 5) c++; } return c;",
+      "23": "let c = 0; for (let n = -60; n <= 60; n++) { if (n > -8 && n < 16) c++; } return c;"
+    }
+  },
+  {
+    "id": "AM9A-19",
+    "domain": "Algebra",
+    "subskill": "a squared sum used to recover a product from a sum of squares",
+    "difficulty": "medium",
+    "prompt": "The sum of two numbers is 20, and the sum of their squares is 234. What is the product of the two numbers?",
+    "choices": [
+      "83",
+      "166",
+      "317",
+      "100"
+    ],
+    "correct_answer": "83",
+    "explanation": "Squaring the sum gives (a + b)^2 = a^2 + 2ab + b^2 = 400. Subtracting the sum of the squares leaves 2ab = 400 - 234 = 166, so ab = 83. \"166\" is the value of 2ab, from a solver who subtracts correctly and never halves. \"317\" comes from a solver who adds the sum of the squares to the squared sum instead of subtracting it, computing (400 + 234)/2. \"100\" comes from a solver who assumes the two numbers are equal, takes them both to be 10, and multiplies - a pair whose squares sum to 200, not 234.",
+    "solve": "return (20*20 - 234)/2;",
+    "distractor_solve": {
+      "100": "return 10*10;",
+      "166": "return 20*20 - 234;",
+      "317": "return (20*20 + 234)/2;"
+    }
+  },
+  {
+    "id": "AM9A-20",
+    "domain": "Algebra",
+    "subskill": "two unknowns pinned by a sum and a product",
+    "difficulty": "medium",
+    "prompt": "A rectangular garden has a perimeter of 46 meters and an area of 120 square meters. What is the length, in meters, of the longer side?",
+    "choices": [
+      "15",
+      "8",
+      "11.5",
+      "12"
+    ],
+    "correct_answer": "15",
+    "explanation": "The two sides sum to 46/2 = 23 and multiply to 120, so they are the solutions of t^2 - 23t + 120 = 0, which factors as (t - 8)(t - 15). The longer side is 15. \"8\" is the shorter side, a correct dimension answering the wrong half of the question. \"11.5\" comes from a solver who takes the perimeter as evidence of a square and computes 46/4, which ignores the area entirely. \"12\" comes from a solver who looks for a factor pair of 120 near a square, lands on 10 and 12, and never checks that 2(10 + 12) is 44 rather than 46.",
+    "solve": "const s = 46/2; return (s + Math.sqrt(s*s - 4*120))/2;",
+    "distractor_solve": {
+      "8": "const s = 46/2; return (s - Math.sqrt(s*s - 4*120))/2;",
+      "12": "let best = null; for (let w = 1; w*w <= 120; w++) if (120 % w === 0) best = 120/w; return best;",
+      "11.5": "return 46/4;"
+    }
+  },
+  {
+    "id": "AM9A-21",
+    "domain": "Algebra",
+    "subskill": "a rational equation where the quantity asked for is a power of the solution",
+    "difficulty": "medium",
+    "prompt": "If (x + 4)/(x - 4) = 3, what is the value of x^2 ?",
+    "choices": [
+      "64",
+      "8",
+      "144",
+      "16"
+    ],
+    "correct_answer": "64",
+    "explanation": "Multiplying by x - 4 gives x + 4 = 3x - 12, so 16 = 2x and x = 8, which makes x^2 = 64. \"8\" is the value of x, from a solver who stops before the squaring the question asks for. \"144\" comes from a solver who squares x + 4 = 12 rather than x. \"16\" comes from a solver who squares x - 4 = 4 rather than x.",
+    "solve": "const x = (4 + 12)/(3 - 1); return x*x;",
+    "distractor_solve": {
+      "8": "return (4 + 12)/(3 - 1);",
+      "16": "const x = (4 + 12)/(3 - 1); return (x - 4)*(x - 4);",
+      "144": "const x = (4 + 12)/(3 - 1); return (x + 4)*(x + 4);"
+    }
+  },
+  {
+    "id": "AM9A-22",
+    "domain": "Algebra",
+    "subskill": "a substitution chain where one price is stated as a multiple of another",
+    "difficulty": "medium",
+    "prompt": "At a shop every notebook costs exactly 4 times as much as every pencil. Six pencils and three notebooks together cost $5.40. What is the cost, in dollars, of one pencil?",
+    "choices": [
+      "0.30",
+      "1.20",
+      "0.60",
+      "1.80"
+    ],
+    "correct_answer": "0.30",
+    "explanation": "Let a pencil cost p dollars; a notebook then costs 4p. Six pencils and three notebooks cost 6p + 3(4p) = 18p = 5.40, so p = 0.30. \"1.20\" is the price of a NOTEBOOK, 4(0.30), from a solver who carries on past the quantity asked for. \"0.60\" comes from a solver who counts the nine items as nine pencils of equal price, computing 5.40/9. \"1.80\" comes from a solver who divides the total by the three notebooks alone, as though the pencils were free.",
+    "solve": "return 5.40/(6 + 3*4);",
+    "distractor_solve": {
+      "1.20": "return 4*(5.40/(6 + 3*4));",
+      "0.60": "return 5.40/9;",
+      "1.80": "return 5.40/3;"
+    }
+  },
+  {
+    "id": "AM9A-23",
+    "domain": "Algebra",
+    "subskill": "an unknown coefficient recovered from a stated factor of a cubic",
+    "difficulty": "medium",
+    "prompt": "If x - 2 is a factor of the polynomial x^3 + ax^2 - 7x + 10, what is the value of a ?",
+    "choices": [
+      "-1",
+      "1",
+      "-4",
+      "-16"
+    ],
+    "correct_answer": "-1",
+    "explanation": "If x - 2 is a factor, then substituting x = 2 makes the polynomial 0: 8 + 4a - 14 + 10 = 0, so 4a = -4 and a = -1. \"1\" comes from a solver who collects 8 - 14 + 10 = 4 correctly and then solves 4a = 4 instead of 4a = -4. \"-4\" comes from a solver who substitutes x = -2, reading the factor x - 2 as having the root -2. \"-16\" comes from that same substitution reported one step early, as the value of 4a rather than of a.",
+    "solve": "return -(8 - 14 + 10)/4;",
+    "distractor_solve": {
+      "1": "return (8 - 14 + 10)/4;",
+      "-4": "return -(-8 + 14 + 10)/4;",
+      "-16": "return -(-8 + 14 + 10);"
+    }
+  },
+  {
+    "id": "AM9A-24",
+    "domain": "Algebra",
+    "subskill": "a difference of squares used to convert a product into a sum",
+    "difficulty": "medium",
+    "prompt": "The positive numbers x and y satisfy x^2 - y^2 = 40 and x - y = 4. What is the value of y ?",
+    "choices": [
+      "3",
+      "6",
+      "10",
+      "14"
+    ],
+    "correct_answer": "3",
+    "explanation": "Since x^2 - y^2 = (x + y)(x - y), the first equation reads (x + y)(4) = 40, so x + y = 10. With x - y = 4, subtracting gives 2y = 6 and y = 3. \"6\" is the value of 2y, from a solver who subtracts the two sums correctly and then never halves. \"10\" is x + y, the intermediate quantity the factoring produces. \"14\" comes from a solver who ADDS the two equations, producing 2x = 14, and reports that total.",
+    "solve": "const s = 40/4; return (s - 4)/2;",
+    "distractor_solve": {
+      "6": "return 40/4 - 4;",
+      "10": "return 40/4;",
+      "14": "return 40/4 + 4;"
+    }
+  },
+  {
+    "id": "AM9A-25",
+    "domain": "Algebra",
+    "subskill": "a mixture in which removing and replacing changes both parts at once",
+    "difficulty": "hard",
+    "prompt": "A 12-gallon tank is filled with a mixture that is 25% antifreeze. How many gallons of the mixture must be drained off and replaced with pure antifreeze so that the tank holds a mixture that is 50% antifreeze?",
+    "choices": [
+      "4",
+      "6",
+      "3",
+      "9"
+    ],
+    "correct_answer": "4",
+    "explanation": "Draining g gallons removes 0.25g gallons of antifreeze and adds g gallons of it back, and the total volume stays 12. So 3 - 0.25g + g = 6, giving 0.75g = 3 and g = 4. \"6\" comes from a solver who pours pure antifreeze in without draining anything, solving (3 + g)/(12 + g) = 0.5 and so letting the tank overflow. \"3\" is the number of gallons of antifreeze already in the tank. \"9\" is the number of gallons that are NOT antifreeze at the start.",
+    "solve": "return (0.5*12 - 0.25*12)/(1 - 0.25);",
+    "distractor_solve": {
+      "3": "return 0.25*12;",
+      "6": "return (0.5*12 - 0.25*12)/(1 - 0.5);",
+      "9": "return 12 - 0.25*12;"
+    }
+  },
+  {
+    "id": "AM9A-26",
+    "domain": "Algebra",
+    "subskill": "a system reached by rewriting two powers on a common base",
+    "difficulty": "medium",
+    "prompt": "If 2^a · 4^b = 1,024 and a - b = 1, what is the value of b ?",
+    "choices": [
+      "3",
+      "4",
+      "10",
+      "11"
+    ],
+    "correct_answer": "3",
+    "explanation": "Rewriting 4^b as 2^(2b) makes the left side 2^(a + 2b), and 1,024 = 2^10, so a + 2b = 10. With a = b + 1 this becomes 3b + 1 = 10, so b = 3. \"4\" is the value of a, from a solver who takes the last step the question did not ask for. \"10\" is the exponent a + 2b, the intermediate the rewriting produces. \"11\" comes from a solver who adds the two equations, producing 2a + b = 11, and reports that total.",
+    "solve": "return (Math.log2(1024) - 1)/3;",
+    "distractor_solve": {
+      "4": "return (Math.log2(1024) - 1)/3 + 1;",
+      "10": "return Math.log2(1024);",
+      "11": "const b=(Math.log2(1024)-1)/3; return 2*(b+1)+b;"
+    }
+  },
+  {
+    "id": "AM9A-27",
+    "domain": "Algebra",
+    "subskill": "a linear model built from two data points and then bounded",
+    "difficulty": "hard",
+    "prompt": "A hall charges a fixed booking fee plus a fixed amount per guest. A party of 40 guests costs $860 and a party of 65 guests costs $1,235. A host can spend at most $1,500. What is the greatest number of guests the host can book?",
+    "choices": [
+      "82",
+      "100",
+      "83",
+      "69"
+    ],
+    "correct_answer": "82",
+    "explanation": "The per-guest amount is (1,235 - 860)/(65 - 40) = $15, so the fixed fee is 860 - 40(15) = $260. Then 260 + 15g is at most 1,500 gives g at most 82.67, and a guest count must be a whole number, so the greatest is 82. \"100\" comes from a solver who divides the whole budget by $15 and never subtracts the fixed fee. \"83\" comes from a solver who rounds 82.67 up, which puts the cost over the $1,500 limit. \"69\" comes from a solver who takes 860/40 = $21.50 as a per-guest rate, treating the fixed fee as though it were part of the per-guest charge.",
+    "solve": "const r = (1235 - 860)/(65 - 40); const f = 860 - 40*r; return Math.floor((1500 - f)/r);",
+    "distractor_solve": {
+      "69": "return Math.floor(1500/(860/40));",
+      "83": "const r = (1235 - 860)/(65 - 40); const f = 860 - 40*r; return Math.ceil((1500 - f)/r);",
+      "100": "const r = (1235 - 860)/(65 - 40); return Math.floor(1500/r);"
+    }
+  },
+  {
+    "id": "AM9A-28",
+    "domain": "Algebra",
+    "subskill": "a rational equation whose squared terms cancel after cross multiplication",
+    "difficulty": "medium",
+    "prompt": "What value of n satisfies (n + 4)/(n - 3) = (n + 10)/(n + 1) ?",
+    "choices": [
+      "17",
+      "-17",
+      "5",
+      "32"
+    ],
+    "correct_answer": "17",
+    "explanation": "Cross multiplying gives (n + 4)(n + 1) = (n + 10)(n - 3), that is n^2 + 5n + 4 = n^2 + 7n - 30. The n^2 terms cancel, leaving 34 = 2n and n = 17. \"-17\" comes from a solver who ends with 2n = -34 after moving both remaining terms to the same side twice. \"5\" comes from a solver who drops the +4 while expanding the left side, reaching n^2 + n = n^2 + 7n - 30. \"32\" comes from a solver who reaches 34 = 2n and then subtracts the 2 instead of dividing by it.",
+    "solve": "return (30 + 4)/(7 - 5);",
+    "distractor_solve": {
+      "5": "return 30/(7 - 1);",
+      "32": "return (30 + 4) - 2;",
+      "-17": "return -(30 + 4)/(7 - 5);"
+    }
   }
- },
- {
-  "id": "AM9A-02",
-  "domain": "Algebra",
-  "subskill": "linear equation where the quantity asked for is not the variable",
-  "difficulty": "easy",
-  "prompt": "If 5(x - 2) = 3x + 8, what is the value of 2x ?",
-  "choices": [
-   "18",
-   "9",
-   "10",
-   "5"
-  ],
-  "correct_answer": "18",
-  "explanation": "Expanding gives 5x - 10 = 3x + 8, so 2x = 8 + 10 = 18. The question asks for 2x, and 2x is exactly the quantity the last step produces. \"9\" is the value of x, from a solver who takes the extra step the question did not ask for. \"10\" comes from a solver who expands 5(x - 2) as 5x - 2, reaching 2x = 8 + 2. \"5\" comes from a solver who makes that same expansion error and then also divides by 2 to report x.",
-  "solve": "return 8 + 5*2;",
-  "distractor_solve": {
-   "9": "return (8 + 5*2)/2;",
-   "10": "return 8 + 2;",
-   "5": "return (8 + 2)/2;"
-  }
- },
- {
-  "id": "AM9A-03",
-  "domain": "Algebra",
-  "subskill": "linear equation requiring distribution on both sides",
-  "difficulty": "easy",
-  "prompt": "If 3(x - 4) = 2(x + 5), what is the value of x ?",
-  "choices": [
-   "22",
-   "14",
-   "-2",
-   "17"
-  ],
-  "correct_answer": "22",
-  "explanation": "Expanding both sides gives 3x - 12 = 2x + 10, so x = 10 + 12 = 22. \"14\" comes from a solver who distributes the 3 only to the x, reaching 3x - 4 = 2x + 10. \"-2\" comes from a solver who subtracts 12 from the right rather than adding it, reaching x = 10 - 12. \"17\" comes from a solver who distributes the 2 only to the x, reaching 3x - 12 = 2x + 5.",
-  "solve": "return 10 + 12;",
-  "distractor_solve": {
-   "14": "return 10 + 4;",
-   "-2": "return 10 - 12;",
-   "17": "return 5 + 12;"
-  }
- },
- {
-  "id": "AM9A-04",
-  "domain": "Algebra",
-  "subskill": "the value that makes a rational expression undefined",
-  "difficulty": "easy",
-  "prompt": "For what value of x is the expression (x + 2)/(x - 5) undefined?",
-  "choices": [
-   "5",
-   "-2",
-   "2",
-   "-5"
-  ],
-  "correct_answer": "5",
-  "explanation": "A quotient is undefined exactly where its denominator is 0, and x - 5 = 0 when x = 5. \"-2\" is the value that makes the NUMERATOR 0; there the expression equals 0, which is a perfectly good value, not an undefined one. \"2\" comes from a solver who finds the numerator's zero and then reads its sign off the +2 in x + 2. \"-5\" comes from a solver who reads the denominator's zero straight off the -5 without solving x - 5 = 0.",
-  "solve": "let x = null; for (let t = -20; t <= 20; t++) if (t - 5 === 0) x = t; return x;",
-  "distractor_solve": {
-   "-2": "let x = null; for (let t = -20; t <= 20; t++) if (t + 2 === 0) x = t; return x;",
-   "2": "let x = null; for (let t = -20; t <= 20; t++) if (t + 2 === 0) x = t; return -x;",
-   "-5": "let x = null; for (let t = -20; t <= 20; t++) if (t - 5 === 0) x = t; return -x;"
-  }
- },
- {
-  "id": "AM9A-05",
-  "domain": "Algebra",
-  "subskill": "system solved by elimination, then a combination of the two unknowns",
-  "difficulty": "medium",
-  "prompt": "If 2x + 3y = 31 and 5x - 3y = 4, what is the value of y - x ?",
-  "choices": [
-   "2",
-   "-2",
-   "12",
-   "-48"
-  ],
-  "correct_answer": "2",
-  "explanation": "Adding the two equations eliminates y: 7x = 35, so x = 5, and then 3y = 31 - 10 = 21 gives y = 7. So y - x = 7 - 5 = 2. \"-2\" comes from a solver who computes x - y instead of y - x. \"12\" comes from a solver who adds the two unknowns rather than subtracting them. \"-48\" comes from a solver who adds the equations to 7x = 35 and then forgets to divide by 7, carrying x = 35 into 3y = 31 - 2x.",
-  "solve": "const x = (31 + 4)/7; const y = (31 - 2*x)/3; return y - x;",
-  "distractor_solve": {
-   "-2": "const x = (31 + 4)/7; const y = (31 - 2*x)/3; return x - y;",
-   "12": "const x = (31 + 4)/7; const y = (31 - 2*x)/3; return x + y;",
-   "-48": "const x = 31 + 4; const y = (31 - 2*x)/3; return y - x;"
-  }
- },
- {
-  "id": "AM9A-06",
-  "domain": "Algebra",
-  "subskill": "recovering an unknown constant from one known solution of a quadratic",
-  "difficulty": "medium",
-  "prompt": "One solution of the equation x^2 - 9x + c = 0 is x = 4. What is the value of c ?",
-  "choices": [
-   "20",
-   "-20",
-   "5",
-   "36"
-  ],
-  "correct_answer": "20",
-  "explanation": "Substituting x = 4 gives 16 - 36 + c = 0, so c = 36 - 16 = 20. \"-20\" comes from a solver who moves the two known terms to the other side in the wrong order, computing 16 - 36. \"5\" is the OTHER solution of the equation, since the two solutions sum to 9; it is a real feature of the equation but it is not c. \"36\" comes from a solver who reads c as the product of the coefficient 9 and the given solution 4.",
-  "solve": "return 9*4 - 4*4;",
-  "distractor_solve": {
-   "-20": "return 4*4 - 9*4;",
-   "5": "return 9 - 4;",
-   "36": "return 9*4;"
-  }
- },
- {
-  "id": "AM9A-07",
-  "domain": "Algebra",
-  "subskill": "inverse variation with a squared variable",
-  "difficulty": "medium",
-  "prompt": "The quantity y varies inversely as the square of x. When x = 2, y = 12. What is the value of y when x = 4 ?",
-  "choices": [
-   "3",
-   "24",
-   "48",
-   "6"
-  ],
-  "correct_answer": "3",
-  "explanation": "Inverse variation as the square means y = k/x^2, so k = 12 x 2^2 = 48 and at x = 4, y = 48/16 = 3. \"24\" comes from a solver who uses plain inverse variation, y = k/x, finding k = 24 and reporting it. \"48\" is the constant of variation itself, from a solver who stops one step early. \"6\" comes from a solver who reasons that doubling x halves y, which is the rule for inverse variation in x rather than in x^2.",
-  "solve": "return (12*2*2)/(4*4);",
-  "distractor_solve": {
-   "24": "return 12*2;",
-   "48": "return 12*2*2;",
-   "6": "return 12/2;"
-  }
- },
- {
-  "id": "AM9A-08",
-  "domain": "Algebra",
-  "subskill": "completing the square when the leading coefficient is not 1",
-  "difficulty": "medium",
-  "prompt": "For what value of c is 9x^2 - 24x + c the square of a binomial?",
-  "choices": [
-   "16",
-   "144",
-   "12",
-   "576"
-  ],
-  "correct_answer": "16",
-  "explanation": "The square must be (3x + m)^2 = 9x^2 + 6mx + m^2. Matching the middle term, 6m = -24 so m = -4, and c = m^2 = 16. \"144\" comes from a solver who uses the rule (b/2)^2 without accounting for the leading 9, computing (-24/2)^2. \"12\" is the halved middle coefficient itself, from a solver who never squares it. \"576\" comes from a solver who squares the middle coefficient without halving it and without accounting for the 9.",
-  "solve": "const m = -24/(2*Math.sqrt(9)); return m*m;",
-  "distractor_solve": {
-   "144": "return Math.pow(-24/2, 2);",
-   "12": "return Math.abs(-24/2);",
-   "576": "return Math.pow(-24, 2);"
-  }
- },
- {
-  "id": "AM9A-09",
-  "domain": "Algebra",
-  "subskill": "the coefficient that leaves a linear equation with no solution",
-  "difficulty": "medium",
-  "prompt": "For what value of k does the equation 3(2x - 1) = kx + 7 have NO solution?",
-  "choices": [
-   "6",
-   "2",
-   "-6",
-   "-10"
-  ],
-  "correct_answer": "6",
-  "explanation": "Expanding the left side gives 6x - 3 = kx + 7. A linear equation has no solution exactly when the two sides have the same x-coefficient but different constants, so k = 6, and the constants -3 and 7 do differ. \"2\" comes from a solver who reads k off the 2 inside the parentheses without distributing the 3. \"-6\" comes from a solver who moves the kx term across and matches -k to 6. \"-10\" comes from a solver who matches the CONSTANTS instead of the coefficients, computing -3 - 7.",
-  "solve": "return 3*2;",
-  "distractor_solve": {
-   "2": "return 6/3;",
-   "-6": "return -(3*2);",
-   "-10": "return -3 - 7;"
-  }
- },
- {
-  "id": "AM9A-10",
-  "domain": "Algebra",
-  "subskill": "linear equation with a subtracted parenthesis",
-  "difficulty": "medium",
-  "prompt": "If 4(3x + 2) - 2(x - 5) = 68, what is the value of x ?",
-  "choices": [
-   "5",
-   "7",
-   "6.8",
-   "8.6"
-  ],
-  "correct_answer": "5",
-  "explanation": "Expanding gives 12x + 8 - 2x + 10 = 68, so 10x + 18 = 68 and x = 50/10 = 5. \"7\" comes from a solver who distributes -2 across (x - 5) as -2x - 10, which turns the constant 18 into -2 and gives 10x = 70. \"6.8\" comes from a solver who divides 68 by the collected coefficient 10 without first removing the constant 18. \"8.6\" comes from a solver who adds 18 to 68 instead of subtracting it.",
-  "solve": "return (68 - (8 + 10))/(12 - 2);",
-  "distractor_solve": {
-   "7": "return (68 - (8 - 10))/(12 - 2);",
-   "6.8": "return 68/10;",
-   "8.6": "return (68 + 18)/10;"
-  }
- },
- {
-  "id": "AM9A-11",
-  "domain": "Algebra",
-  "subskill": "equating two areas written as products of binomials",
-  "difficulty": "medium",
-  "prompt": "The length of a rectangle is 5 centimeters more than its width. If the width is increased by 2 centimeters and the length is decreased by 3 centimeters, the area is unchanged. What is the width, in centimeters, of the original rectangle?",
-  "choices": [
-   "4",
-   "9",
-   "6",
-   "16"
-  ],
-  "correct_answer": "4",
-  "explanation": "With width w the original area is w(w + 5) and the new area is (w + 2)(w + 2), since the length becomes w + 5 - 3 = w + 2. Setting them equal, w^2 + 4w + 4 = w^2 + 5w, so w = 4. \"9\" is the LENGTH of the original rectangle, w + 5, from a solver who answers with the wrong dimension. \"6\" is the width after the increase, w + 2, from a solver who reports the changed rectangle's width. \"16\" comes from a solver who decreases the width and increases the length instead, solving (w - 2)(w + 8) = w(w + 5).",
-  "solve": "return 4/(5 - 4);",
-  "distractor_solve": {
-   "9": "return 4/(5 - 4) + 5;",
-   "6": "return 4/(5 - 4) + 2;",
-   "16": "return 16/(6 - 5);"
-  }
- },
- {
-  "id": "AM9A-12",
-  "domain": "Algebra",
-  "subskill": "proportion cleared by cross multiplication",
-  "difficulty": "medium",
-  "prompt": "If 3/(x - 2) = 5/(x + 6), what is the value of x ?",
-  "choices": [
-   "14",
-   "-18",
-   "10",
-   "8"
-  ],
-  "correct_answer": "14",
-  "explanation": "Cross multiplying gives 3(x + 6) = 5(x - 2), so 3x + 18 = 5x - 10 and 28 = 2x, x = 14. \"-18\" comes from a solver who multiplies each numerator by the denominator beneath it, reaching 3(x - 2) = 5(x + 6). \"10\" comes from a solver who leaves the right side undistributed as 5x - 2. \"8\" comes from a solver who leaves the left side undistributed as 3x + 6.",
-  "solve": "return (18 + 10)/(5 - 3);",
-  "distractor_solve": {
-   "-18": "return (-6 - 30)/(5 - 3);",
-   "10": "return (18 + 2)/(5 - 3);",
-   "8": "return (6 + 10)/(5 - 3);"
-  }
- },
- {
-  "id": "AM9A-13",
-  "domain": "Algebra",
-  "subskill": "three algebraic expressions forming an arithmetic sequence",
-  "difficulty": "medium",
-  "prompt": "The expressions x - 3, 2x + 1, and 5x - 1 are the first three terms of an arithmetic sequence, in that order. What is the value of x ?",
-  "choices": [
-   "3",
-   "-4",
-   "-0.5",
-   "0"
-  ],
-  "correct_answer": "3",
-  "explanation": "In an arithmetic sequence consecutive gaps are equal, so (2x + 1) - (x - 3) = (5x - 1) - (2x + 1), that is x + 4 = 3x - 2, giving x = 3. \"-4\" comes from a solver who sets consecutive TERMS equal rather than consecutive gaps, solving x - 3 = 2x + 1. \"-0.5\" comes from a solver who forms the second gap backwards as (2x + 1) - (5x - 1) = -3x + 2. \"0\" comes from a solver who simplifies the first gap as x - 2 instead of x + 4, losing the sign on the -3.",
-  "solve": "return (4 + 2)/(3 - 1);",
-  "distractor_solve": {
-   "-4": "return -3 - 1;",
-   "-0.5": "return (2 - 4)/(1 + 3);",
-   "0": "return (-2 + 2)/(3 - 1);"
-  }
- },
- {
-  "id": "AM9A-14",
-  "domain": "Algebra",
-  "subskill": "matching coefficients in an identity that holds for all x",
-  "difficulty": "medium",
-  "prompt": "The equation (x + a)(x - 3) = x^2 + 2x - 15 is true for every value of x. What is the value of a ?",
-  "choices": [
-   "5",
-   "-1",
-   "3",
-   "15"
-  ],
-  "correct_answer": "5",
-  "explanation": "Expanding the left side gives x^2 + (a - 3)x - 3a. Matching the coefficient of x, a - 3 = 2, so a = 5, and the constants agree as well since -3(5) = -15. \"-1\" comes from a solver who reads a - 3 = 2 as a = 2 - 3. \"3\" comes from a solver who reads a off the visible factor (x - 3) rather than solving for it. \"15\" comes from a solver who uses the constant equation -3a = -15 but drops the coefficient, reading off a = 15.",
-  "solve": "return 2 + 3;",
-  "distractor_solve": {
-   "-1": "return 2 - 3;",
-   "3": "return Math.abs(-3);",
-   "15": "return Math.abs(-15);"
-  }
- },
- {
-  "id": "AM9A-15",
-  "domain": "Algebra",
-  "subskill": "a ratio that changes when one part is added to",
-  "difficulty": "medium",
-  "prompt": "A jar contains red and blue marbles in the ratio 3 to 5. After 12 more red marbles are put in, the ratio of red to blue is 9 to 10. How many blue marbles are in the jar?",
-  "choices": [
-   "40",
-   "24",
-   "8",
-   "36"
-  ],
-  "correct_answer": "40",
-  "explanation": "Write the counts as 3k red and 5k blue. Then (3k + 12)/(5k) = 9/10, so 30k + 120 = 45k and k = 8, which makes the blue count 5(8) = 40. Blue never changes, so the 12 added marbles do not touch it. \"24\" is the ORIGINAL red count, 3(8). \"8\" is the multiplier k itself, from a solver who stops before scaling back up. \"36\" is the red count after the addition, 3(8) + 12.",
-  "solve": "const k = 120/(45 - 30); return 5*k;",
-  "distractor_solve": {
-   "24": "const k = 120/(45 - 30); return 3*k;",
-   "8": "return 120/(45 - 30);",
-   "36": "const k = 120/(45 - 30); return 3*k + 12;"
-  }
- },
- {
-  "id": "AM9A-16",
-  "domain": "Algebra",
-  "subskill": "shifting an exponent when the base value is given rather than the exponent",
-  "difficulty": "medium",
-  "prompt": "If 3^x = 7, what is the value of 3^(x + 2) ?",
-  "choices": [
-   "63",
-   "9",
-   "21",
-   "49"
-  ],
-  "correct_answer": "63",
-  "explanation": "3^(x + 2) = 3^x x 3^2 = 7 x 9 = 63. \"9\" is the factor 3^2 alone, from a solver who never multiplies by the given value 7. \"21\" comes from a solver who multiplies 7 by the base 3 rather than by 3^2. \"49\" comes from a solver who reads the +2 as an instruction to square the given value, computing 7^2.",
-  "solve": "return 7*Math.pow(3, 2);",
-  "distractor_solve": {
-   "9": "return Math.pow(3, 2);",
-   "21": "return 7*3;",
-   "49": "return Math.pow(7, 2);"
-  }
- },
- {
-  "id": "AM9A-17",
-  "domain": "Algebra",
-  "subskill": "two rates that differ by a hidden quantity in both directions",
-  "difficulty": "medium",
-  "prompt": "A boat travels 48 miles downstream in 3 hours and makes the return trip of 48 miles upstream in 4 hours. Assuming the boat's own speed and the current's speed are each constant, what is the speed of the current, in miles per hour?",
-  "choices": [
-   "2",
-   "14",
-   "4",
-   "28"
-  ],
-  "correct_answer": "2",
-  "explanation": "Downstream the boat covers 48/3 = 16 miles per hour and upstream 48/4 = 12 miles per hour. Downstream speed is the boat's speed plus the current and upstream is the boat's speed minus the current, so the current is half their difference, (16 - 12)/2 = 2. \"14\" is the boat's own speed in still water, half their SUM, from a solver who answers the other half of the same pair. \"4\" is the raw difference 16 - 12, from a solver who never halves it. \"28\" is the raw sum 16 + 12, from a solver who adds the two trip speeds and never halves.",
-  "solve": "return (48/3 - 48/4)/2;",
-  "distractor_solve": {
-   "14": "return (48/3 + 48/4)/2;",
-   "4": "return 48/3 - 48/4;",
-   "28": "return 48/3 + 48/4;"
-  }
- },
- {
-  "id": "AM9A-18",
-  "domain": "Algebra",
-  "subskill": "counting integers in a compound inequality with strict bounds",
-  "difficulty": "hard",
-  "prompt": "How many integer values of n satisfy -3 < (2n - 1)/3 < 5 ?",
-  "choices": [
-   "11",
-   "3",
-   "13",
-   "23"
-  ],
-  "correct_answer": "11",
-  "explanation": "Multiplying through by 3 gives -9 < 2n - 1 < 15, then -8 < 2n < 16, then -4 < n < 8. Both bounds are strict, so n = -4 and n = 8 are both excluded: the integers -3 through 7, which is 11 values. \"3\" comes from a solver who never multiplies the outer bounds by 3, counting the integers with -3 < 2n - 1 < 5. \"13\" comes from a solver who treats both bounds as inclusive and admits n = -4 and n = 8. \"23\" comes from a solver who divides the middle by 2 in name only, counting the integers with -8 < n < 16.",
-  "solve": "let c = 0; for (let n = -60; n <= 60; n++) { const v = (2*n - 1)/3; if (v > -3 && v < 5) c++; } return c;",
-  "distractor_solve": {
-   "3": "let c = 0; for (let n = -60; n <= 60; n++) { const v = 2*n - 1; if (v > -3 && v < 5) c++; } return c;",
-   "13": "let c = 0; for (let n = -60; n <= 60; n++) { const v = (2*n - 1)/3; if (v >= -3 && v <= 5) c++; } return c;",
-   "23": "let c = 0; for (let n = -60; n <= 60; n++) { if (n > -8 && n < 16) c++; } return c;"
-  }
- },
- {
-  "id": "AM9A-19",
-  "domain": "Algebra",
-  "subskill": "a squared sum used to recover a product from a sum of squares",
-  "difficulty": "hard",
-  "prompt": "The sum of two numbers is 20, and the sum of their squares is 234. What is the product of the two numbers?",
-  "choices": [
-   "83",
-   "166",
-   "317",
-   "100"
-  ],
-  "correct_answer": "83",
-  "explanation": "Squaring the sum gives (a + b)^2 = a^2 + 2ab + b^2 = 400. Subtracting the sum of the squares leaves 2ab = 400 - 234 = 166, so ab = 83. \"166\" is the value of 2ab, from a solver who subtracts correctly and never halves. \"317\" comes from a solver who adds the sum of the squares to the squared sum instead of subtracting it, computing (400 + 234)/2. \"100\" comes from a solver who assumes the two numbers are equal, takes them both to be 10, and multiplies - a pair whose squares sum to 200, not 234.",
-  "solve": "return (20*20 - 234)/2;",
-  "distractor_solve": {
-   "166": "return 20*20 - 234;",
-   "317": "return (20*20 + 234)/2;",
-   "100": "return 10*10;"
-  }
- },
- {
-  "id": "AM9A-20",
-  "domain": "Algebra",
-  "subskill": "two unknowns pinned by a sum and a product",
-  "difficulty": "hard",
-  "prompt": "A rectangular garden has a perimeter of 46 meters and an area of 120 square meters. What is the length, in meters, of the longer side?",
-  "choices": [
-   "15",
-   "8",
-   "11.5",
-   "12"
-  ],
-  "correct_answer": "15",
-  "explanation": "The two sides sum to 46/2 = 23 and multiply to 120, so they are the solutions of t^2 - 23t + 120 = 0, which factors as (t - 8)(t - 15). The longer side is 15. \"8\" is the shorter side, a correct dimension answering the wrong half of the question. \"11.5\" comes from a solver who takes the perimeter as evidence of a square and computes 46/4, which ignores the area entirely. \"12\" comes from a solver who looks for a factor pair of 120 near a square, lands on 10 and 12, and never checks that 2(10 + 12) is 44 rather than 46.",
-  "solve": "const s = 46/2; return (s + Math.sqrt(s*s - 4*120))/2;",
-  "distractor_solve": {
-   "8": "const s = 46/2; return (s - Math.sqrt(s*s - 4*120))/2;",
-   "11.5": "return 46/4;",
-   "12": "let best = null; for (let w = 1; w*w <= 120; w++) if (120 % w === 0) best = 120/w; return best;"
-  }
- },
- {
-  "id": "AM9A-21",
-  "domain": "Algebra",
-  "subskill": "a rational equation where the quantity asked for is a power of the solution",
-  "difficulty": "medium",
-  "prompt": "If x is a positive number and (x + 4)/(x - 4) = 3, what is the value of x^2 ?",
-  "choices": [
-   "64",
-   "8",
-   "144",
-   "16"
-  ],
-  "correct_answer": "64",
-  "explanation": "Multiplying by x - 4 gives x + 4 = 3x - 12, so 16 = 2x and x = 8, which makes x^2 = 64. \"8\" is the value of x, from a solver who stops before the squaring the question asks for. \"144\" comes from a solver who squares x + 4 = 12 rather than x. \"16\" comes from a solver who squares x - 4 = 4 rather than x.",
-  "solve": "const x = (4 + 12)/(3 - 1); return x*x;",
-  "distractor_solve": {
-   "8": "return (4 + 12)/(3 - 1);",
-   "144": "const x = (4 + 12)/(3 - 1); return (x + 4)*(x + 4);",
-   "16": "const x = (4 + 12)/(3 - 1); return (x - 4)*(x - 4);"
-  }
- },
- {
-  "id": "AM9A-22",
-  "domain": "Algebra",
-  "subskill": "a substitution chain where one price is stated as a multiple of another",
-  "difficulty": "medium",
-  "prompt": "At a shop every notebook costs exactly 4 times as much as every pencil. Six pencils and three notebooks together cost $5.40. What is the cost of one pencil?",
-  "choices": [
-   "0.30",
-   "1.20",
-   "0.60",
-   "1.80"
-  ],
-  "correct_answer": "0.30",
-  "explanation": "Let a pencil cost p dollars; a notebook then costs 4p. Six pencils and three notebooks cost 6p + 3(4p) = 18p = 5.40, so p = 0.30. \"1.20\" is the price of a NOTEBOOK, 4(0.30), from a solver who carries on past the quantity asked for. \"0.60\" comes from a solver who counts the nine items as nine pencils of equal price, computing 5.40/9. \"1.80\" comes from a solver who divides the total by the three notebooks alone, as though the pencils were free.",
-  "solve": "return 5.40/(6 + 3*4);",
-  "distractor_solve": {
-   "1.20": "return 4*(5.40/(6 + 3*4));",
-   "0.60": "return 5.40/9;",
-   "1.80": "return 5.40/3;"
-  }
- },
- {
-  "id": "AM9A-23",
-  "domain": "Algebra",
-  "subskill": "an unknown coefficient recovered from a stated factor of a cubic",
-  "difficulty": "hard",
-  "prompt": "If x - 2 is a factor of the polynomial x^3 + ax^2 - 7x + 10, what is the value of a ?",
-  "choices": [
-   "-1",
-   "1",
-   "-4",
-   "-16"
-  ],
-  "correct_answer": "-1",
-  "explanation": "If x - 2 is a factor, then substituting x = 2 makes the polynomial 0: 8 + 4a - 14 + 10 = 0, so 4a = -4 and a = -1. \"1\" comes from a solver who collects 8 - 14 + 10 = 4 correctly and then solves 4a = 4 instead of 4a = -4. \"-4\" comes from a solver who substitutes x = -2, reading the factor x - 2 as having the root -2. \"-16\" comes from that same substitution reported one step early, as the value of 4a rather than of a.",
-  "solve": "return -(8 - 14 + 10)/4;",
-  "distractor_solve": {
-   "1": "return (8 - 14 + 10)/4;",
-   "-4": "return -(-8 + 14 + 10)/4;",
-   "-16": "return -(-8 + 14 + 10);"
-  }
- },
- {
-  "id": "AM9A-24",
-  "domain": "Algebra",
-  "subskill": "a difference of squares used to convert a product into a sum",
-  "difficulty": "hard",
-  "prompt": "The positive numbers x and y satisfy x^2 - y^2 = 40 and x - y = 4. What is the value of y ?",
-  "choices": [
-   "3",
-   "6",
-   "10",
-   "14"
-  ],
-  "correct_answer": "3",
-  "explanation": "Since x^2 - y^2 = (x + y)(x - y), the first equation reads (x + y)(4) = 40, so x + y = 10. With x - y = 4, subtracting gives 2y = 6 and y = 3. \"6\" is the value of 2y, from a solver who subtracts the two sums correctly and then never halves. \"10\" is x + y, the intermediate quantity the factoring produces. \"14\" comes from a solver who ADDS the two equations, producing 2x = 14, and reports that total.",
-  "solve": "const s = 40/4; return (s - 4)/2;",
-  "distractor_solve": {
-   "6": "return 40/4 - 4;",
-   "10": "return 40/4;",
-   "14": "return 40/4 + 4;"
-  }
- },
- {
-  "id": "AM9A-25",
-  "domain": "Algebra",
-  "subskill": "a mixture in which removing and replacing changes both parts at once",
-  "difficulty": "hard",
-  "prompt": "A 12-gallon tank is filled with a mixture that is 25% antifreeze. How many gallons of the mixture must be drained off and replaced with pure antifreeze so that the tank holds a mixture that is 50% antifreeze?",
-  "choices": [
-   "4",
-   "6",
-   "3",
-   "9"
-  ],
-  "correct_answer": "4",
-  "explanation": "Draining g gallons removes 0.25g gallons of antifreeze and adds g gallons of it back, and the total volume stays 12. So 3 - 0.25g + g = 6, giving 0.75g = 3 and g = 4. \"6\" comes from a solver who pours pure antifreeze in without draining anything, solving (3 + g)/(12 + g) = 0.5 and so letting the tank overflow. \"3\" is the number of gallons of antifreeze already in the tank. \"9\" is the number of gallons that are NOT antifreeze at the start.",
-  "solve": "return (0.5*12 - 0.25*12)/(1 - 0.25);",
-  "distractor_solve": {
-   "6": "return (0.5*12 - 0.25*12)/(1 - 0.5);",
-   "3": "return 0.25*12;",
-   "9": "return 12 - 0.25*12;"
-  }
- },
- {
-  "id": "AM9A-26",
-  "domain": "Algebra",
-  "subskill": "a system reached by rewriting two powers on a common base",
-  "difficulty": "hard",
-  "prompt": "If 2^a x 4^b = 1,024 and a - b = 1, what is the value of b ?",
-  "choices": [
-   "3",
-   "4",
-   "10",
-   "11"
-  ],
-  "correct_answer": "3",
-  "explanation": "Rewriting 4^b as 2^(2b) makes the left side 2^(a + 2b), and 1,024 = 2^10, so a + 2b = 10. With a = b + 1 this becomes 3b + 1 = 10, so b = 3. \"4\" is the value of a, from a solver who takes the last step the question did not ask for. \"10\" is the exponent a + 2b, the intermediate the rewriting produces. \"11\" comes from a solver who adds the two equations, producing 2a + b = 11, and reports that total.",
-  "solve": "return (Math.log2(1024) - 1)/3;",
-  "distractor_solve": {
-   "4": "return (Math.log2(1024) - 1)/3 + 1;",
-   "10": "return Math.log2(1024);",
-   "11": "const b=(Math.log2(1024)-1)/3; return 2*(b+1)+b;"
-  }
- },
- {
-  "id": "AM9A-27",
-  "domain": "Algebra",
-  "subskill": "a linear model built from two data points and then bounded",
-  "difficulty": "hard",
-  "prompt": "A hall charges a fixed booking fee plus a fixed amount per guest. A party of 40 guests costs $860 and a party of 65 guests costs $1,235. A host can spend at most $1,500. What is the greatest number of guests the host can book?",
-  "choices": [
-   "82",
-   "100",
-   "83",
-   "69"
-  ],
-  "correct_answer": "82",
-  "explanation": "The per-guest amount is (1,235 - 860)/(65 - 40) = $15, so the fixed fee is 860 - 40(15) = $260. Then 260 + 15g is at most 1,500 gives g at most 82.67, and a guest count must be a whole number, so the greatest is 82. \"100\" comes from a solver who divides the whole budget by $15 and never subtracts the fixed fee. \"83\" comes from a solver who rounds 82.67 up, which puts the cost over the $1,500 limit. \"69\" comes from a solver who takes 860/40 = $21.50 as a per-guest rate, treating the fixed fee as though it were part of the per-guest charge.",
-  "solve": "const r = (1235 - 860)/(65 - 40); const f = 860 - 40*r; return Math.floor((1500 - f)/r);",
-  "distractor_solve": {
-   "100": "const r = (1235 - 860)/(65 - 40); return Math.floor(1500/r);",
-   "83": "const r = (1235 - 860)/(65 - 40); const f = 860 - 40*r; return Math.ceil((1500 - f)/r);",
-   "69": "return Math.floor(1500/(860/40));"
-  }
- },
- {
-  "id": "AM9A-28",
-  "domain": "Algebra",
-  "subskill": "a rational equation whose squared terms cancel after cross multiplication",
-  "difficulty": "medium",
-  "prompt": "What value of n satisfies (n + 4)/(n - 3) = (n + 10)/(n + 1) ?",
-  "choices": [
-   "17",
-   "-17",
-   "5",
-   "32"
-  ],
-  "correct_answer": "17",
-  "explanation": "Cross multiplying gives (n + 4)(n + 1) = (n + 10)(n - 3), that is n^2 + 5n + 4 = n^2 + 7n - 30. The n^2 terms cancel, leaving 34 = 2n and n = 17. \"-17\" comes from a solver who ends with 2n = -34 after moving both remaining terms to the same side twice. \"5\" comes from a solver who drops the +4 while expanding the left side, reaching n^2 + n = n^2 + 7n - 30. \"32\" comes from a solver who reaches 34 = 2n and then subtracts the 2 instead of dividing by it.",
-  "solve": "return (30 + 4)/(7 - 5);",
-  "distractor_solve": {
-   "-17": "return -(30 + 4)/(7 - 5);",
-   "5": "return 30/(7 - 1);",
-   "32": "return (30 + 4) - 2;"
-  }
- }
 ]
