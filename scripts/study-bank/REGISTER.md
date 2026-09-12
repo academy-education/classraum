@@ -183,6 +183,26 @@ Nothing is blocked — every open item can start today.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-09-12** — **BOTH ACT ENGLISH REPAIRS HELD: `v5r2` AND `v6r2` ARE INDISTINGUISHABLE FROM THE SHIPPED BANK ON EVERY DOMAIN.** 100 items attacked options-only, sibling-free, ten passage-disjoint files, keys dealt globally for a control of exactly 25.0%. This is the first time either batch has ever been gated — both have sat with no ledger entry since they were authored.
+
+        domain                            repaired        live (today)    Fisher p
+        Conventions of Standard English   40/54 = 74.1%   17/25 = 68.0%     0.598
+        Production of Writing             22/30 = 73.3%   14/21 = 66.7%     0.757
+        Knowledge of Language             14/16 = 87.5%   13/14 = 92.9%     1.000
+        POOLED                            76/100 = 76.0%  44/60 = 73.3%     0.710
+        by batch: v5r2 39/50 = 78.0%   v6r2 37/50 = 74.0%
+
+  **The bar was fixed before the run — parity with the shipped bank, not zero — and all four comparisons clear it.** The absolute number is high (+51 over control) and so is the bank's; B7 already sat a human on this family at **10.0%** where the model scored 76-79%, which is why a model number here is a screen and not a verdict.
+
+  **THE TARGETED DEFECTS, MEASURED AGAINST THE REAL KEYS.** Kept/Yes polarity: `v5` **8/9 = 88.9%, p=0.027** → `v5r2` **5/9 = 55.6%, p=0.558**; `v6` **8/8 = 100%, p=0.006** → `v6r2` **4/8 = 50.0%, p=0.687**, against a live bank at 52.4%. Both moved from significant to indistinguishable **without overshooting to 0%**, which was the stated risk. Placement keys now use all four labels in both files (`v5r2` A1/B1/C2/D1, `v6r2` A2/B1/C1/D1) where "Point D" had never once been the key. Strike-on-sight orthography came back **0 in all ten files**.
+
+  **WHAT SURVIVES, named convergently.** Five solvers who could not see each other independently described the same Production tell: the key's reason-clause names the host paragraph's job or cites a specific phrase, while distractor reasons are generic. One put it best — *"three of three went the same way for the same reason, which is a family-level tell, not three lucky items."* It is the known 66.7% behaviour of this domain on the shipped bank, and the repaired files are not worse on it. Also still live: elimination-to-residue on NO CHANGE (one clean instance per file at most) and the redundancy ladder, which one solver called the more prevalent leak **and which neither repair targeted**.
+
+  **A SEVENTH MECHANISM, FOUND BY TWO SOLVERS INDEPENDENTLY AND ON NO SWEEP LIST: THE TWIN PAIR.** Two options semantically interchangeable — `had put` / `put` at E6-08, a homophone pair at E7-08 — so **neither can be the unique key** and the field halves for free with no passage. Unlike most semantic tells this one is mechanically decidable, so it can have a checker.
+
+  **TWO FAULTS IN MY OWN INSTRUMENT, recorded because they change how the numbers may be read.** (1) **The ten files are not type-balanced.** The draw takes the f-th item of each passage and items of one type sit at similar positions, so `f5` came out 9 Conventions / 0 Production and `f10` 6/0/4. The pooled and per-domain figures are unaffected; **per-file mechanism counts are confounded with domain** and explain what looked like solver disagreement — `f5` called NO-CHANGE-residue "the sharpest leak" while `f6` found zero, and both were right about their own file. The next version must stratify by type before slicing. (2) **The attack render deliberately rotates NO CHANGE out of slot A, and production now pins it there** after today's `shuffleChoices` fix. That is correct — the attack destroys position information so the key-letter control is clean — but **the attack is not a replica of the student view** and must not be read as one.
+
+  **AND THE SELF-REPORT MISCALIBRATION RECURS.** Solvers' own estimates averaged ~61%; they scored **76%**. The declared-**guess** stratum alone came in at **62.8%**, two and a half times the control. Second time on ACT English after `v4r`'s 31-point undershoot, and in the same direction. → **A21**
 - **2026-09-12** — **I BUILT `next-form.mjs` TO STOP US AUTHORING INTO THE WRONG DOMAIN, THEN HARDCODED ITS QUOTAS FROM MEMORY AND GOT THREE OF FOUR WRONG.** Caught when `form-capacity` and `next-form` disagreed about the SAT Math binding domain immediately after the `sat-adv-v11` insert — 15 items per form against my 13. `form-capacity` DERIVES its per-domain need from published shares copied out of `assemble.ts BLUEPRINT` and held in step by an assertion there. I typed literals.
 
         SAT Math, form 44          share   derived   I wrote
