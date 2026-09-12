@@ -1,0 +1,170 @@
+{
+  "AM12G-01": {
+    "answer": "15.5",
+    "exclusive": true,
+    "hard": false,
+    "note": "Trapezoid midsegment = (12+19)/2. Distractors are sum (31), difference (7) and half-difference (3.5), all from the same two numbers, so the option set alone does not decide it. Weakest geometry item on the 'must use the fact' test: a student who has never heard of the midsegment theorem and simply averages the two given lengths lands on the key. That is arguably the theorem in effect, but it means the item does not distinguish knowing the theorem from guessing the average. ACT-easy."
+  },
+  "AM12G-02": {
+    "answer": "96",
+    "exclusive": true,
+    "hard": false,
+    "note": "d1*d2/2 = 96. Good distractor design: 192 = product, 28 = sum, 40 = perimeter (side 10 via the 6-8-10 half-diagonals). Not reachable without the diagonal-area fact."
+  },
+  "AM12G-03": {
+    "answer": "972π",
+    "exclusive": true,
+    "hard": false,
+    "note": "(4/3)π(9^3) = 972π. 81π = area of great circle, 729π = r^3, 108π = (4/3)πr. FORMAT: the real ACT normally prints the sphere-volume formula in the stem when it needs one; here it must be memorised. Same issue at G-10. Not a defect, but it makes both items harder than ACT intends."
+  },
+  "AM12G-04": {
+    "answer": "377",
+    "exclusive": true,
+    "hard": false,
+    "note": "r = 6 (diameter given, the one trap), V = (1/3)π(36)(10) = 376.99 -> 377. 1508 and 628 are r=12 variants. Cone formula must be memorised (see G-03)."
+  },
+  "AM12G-05": {
+    "answer": "8.2",
+    "exclusive": true,
+    "hard": false,
+    "note": "Midpoint of AB = (2,5); distance to C(4,-3) = sqrt(68) = 8.246 -> 8.2. The only genuine Pythagoras-family item in the batch (distance formula). 12.2 = |AB|/... actually length AB = 11.3-ish family; 5.7 and 7.0 are plausible near-misses. Medium: two steps, no trap in the arithmetic."
+  },
+  "AM12G-06": {
+    "answer": "25.7",
+    "exclusive": true,
+    "hard": false,
+    "note": "Straight edge 10 = diameter, r = 5. Perimeter = π(5) + 10 = 25.708. Wording is unusually careful ('the curved edge together with the straight edge') and closes the usual ambiguity about whether 'perimeter of a semicircle' includes the chord. 15.7 = arc only, 31.4 = full circumference. Good item."
+  },
+  "AM12G-07": {
+    "answer": "130",
+    "exclusive": true,
+    "hard": true,
+    "note": "Minute hand at 240°; hour hand at 90 + 40(0.5) = 110°; difference 130°, which is already the smaller angle. HARD: the whole item turns on the hour hand having moved two-thirds of the way to 4, and 150 (hour hand pinned at 3) is listed. That is a real back-third ACT item. Cannot be reached without the fact it tests."
+  },
+  "AM12G-08": {
+    "answer": "6π",
+    "exclusive": true,
+    "hard": false,
+    "note": "ΔC = 2π(10-7) = 6π. 34π = sum of circumferences, 51π = area difference, 3π = radius difference times π. Minor: the stem asks 'by how many meters' and every option is an exact multiple of π - consistent, and ACT does print π-form choices, so not a defect."
+  },
+  "AM12G-09": {
+    "answer": "360",
+    "exclusive": true,
+    "hard": false,
+    "note": "(8*15/2)*6 = 360. The hypotenuse 17 is a deliberate red herring - it is stated and never needed, so this item does NOT test Pythagoras despite containing an 8-15-17 triple. 720 = leg*leg*length (forgot the half), 408 = 17*24. Note the mechanism (product of two perpendicular lengths, halved) is the same arithmetic as G-02."
+  },
+  "AM12G-10": {
+    "answer": "339.3",
+    "exclusive": true,
+    "hard": true,
+    "note": "π(9)(10) = 282.74 plus (2/3)π(27) = 56.55, total 339.29 -> 339.3. HARD: composite solid, hemisphere = half of (4/3)πr^3 held in memory, and a tenth-place rounding. 282.7 is the cylinder alone. Overlaps G-03's mechanism (sphere volume) - see the duplicate note in the summary."
+  },
+  "AM12S-01": {
+    "answer": "3/8",
+    "exclusive": true,
+    "hard": false,
+    "note": "Odds 3:5 -> 3/(3+5). Exclusive ONLY because of the gloss 'for every 3 winning tickets there are 5 that do not win'. Without that sentence 3/5 (reading odds as a probability) would be defensible and is listed as a distractor. The gloss is load-bearing; do not let an editor trim it."
+  },
+  "AM12S-02": {
+    "answer": "17/40",
+    "exclusive": true,
+    "hard": true,
+    "note": "(1/2)(1/4) + (1/2)(3/5) = 17/40. HARD: two-stage law of total probability with unequal box sizes; 17/20 (forgetting the 1/2 weights) and 4/9 (pooling all 9 marbles) are both natural wrong routes and both listed. A late-test ACT item."
+  },
+  "AM12S-03": {
+    "answer": "10",
+    "exclusive": true,
+    "hard": false,
+    "note": "n(n-1)/2 = 45 -> n = 10. Verified as the unique positive integer solution. 9 is the trap (n-1). Borderline medium/hard - the reverse-solve makes it harder than a forward count, but the numbers are small enough to guess-and-check in seconds."
+  },
+  "AM12S-04": {
+    "answer": "38",
+    "exclusive": true,
+    "hard": false,
+    "note": "3.2(7.5) + 14 = 38. Units consistent (mm). 24 = slope term only, 36.4 = 3.2(7) + 14. Straight substitution; ACT-easy."
+  },
+  "AM12S-05": {
+    "answer": "5/12",
+    "exclusive": true,
+    "hard": false,
+    "note": "(90+60)/360 = 5/12. Sectors sum to exactly 360, checked. Same mechanism as S-07 (favourable measure over total measure) with degrees instead of minutes - see duplicate note."
+  },
+  "AM12S-06": {
+    "answer": "2/15",
+    "exclusive": true,
+    "hard": false,
+    "note": "Eight multiples of 7 in 1..60 (7 through 56), 8/60 = 2/15. 1/7 is the trap for a student who assumes the count divides evenly; 7/60 and 3/20 (=9/60) are off-by-one counts. Clean."
+  },
+  "AM12S-07": {
+    "answer": "1/3",
+    "exclusive": true,
+    "hard": false,
+    "note": "15-minute window inside a 45-minute interval, uniform, so 15/45 = 1/3. The clerk's window lies entirely inside the arrival interval, so there is no truncation subtlety and no second reading. Mechanically identical to S-05."
+  },
+  "AM12S-08": {
+    "answer": "9",
+    "exclusive": true,
+    "hard": true,
+    "note": "26 + 25 - 42 = 9 by inclusion-exclusion; 0 is impossible because 26+25 > 42, and 25 is the MAXIMUM overlap, not the minimum. HARD, and the hardest item in the batch: students routinely answer the max when asked for the LEAST, and both are listed. The capitalised LEAST is the right mitigation."
+  },
+  "AM12I-01": {
+    "answer": "90",
+    "exclusive": true,
+    "hard": false,
+    "note": "(1350 - 270)/12 = 90. 112.5 = 1350/12 (deposit ignored). ACT-easy."
+  },
+  "AM12I-02": {
+    "answer": "25",
+    "exclusive": true,
+    "hard": false,
+    "note": "(5/9)(77-32) = 25. 60.6 and 170.6 are the inverted-formula routes. Formula supplied in the stem, as ACT does. Easy."
+  },
+  "AM12I-03": {
+    "answer": "450",
+    "exclusive": true,
+    "hard": false,
+    "note": "1215/2.7 = 450 exactly (floating point gives 449.99999999999994; the value is exact in rationals). 3280.5 = mass*density, the multiply-instead-of-divide trap. Easy."
+  },
+  "AM12I-04": {
+    "answer": "9",
+    "exclusive": true,
+    "hard": false,
+    "note": "90 pump-hours / 10 = 9. 25 = direct-proportion trap (15*10/6), 2.5 = 15/6. Inverse proportion, ACT-medium."
+  },
+  "AM12I-05": {
+    "answer": "560",
+    "exclusive": true,
+    "hard": false,
+    "note": "180 sq ft / 9 = 20 sq yd; 20 * 28 = 560. 5040 = 180*28 (conversion skipped) and 20 = the area alone, both listed. The capitalised YARD plus the supplied conversion factor is the right level of help. Medium."
+  },
+  "AM12I-06": {
+    "answer": "69",
+    "exclusive": true,
+    "hard": false,
+    "note": "1.30^2 = 1.69 -> 69% increase. 169 is the trap (new area as a percent of old, not the increase) and 30 is the linear answer. Borderline hard; I left it medium because 1.3^2 is a single calculator step once the student sees the square."
+  },
+  "AM12I-07": {
+    "answer": "640",
+    "exclusive": true,
+    "hard": false,
+    "note": "0.05(4000) + 0.08(5500) = 200 + 440 = 640. 440 = second tier only, 475 = 5% of everything, 570 = 6% of everything. Piecewise rate, ACT-medium; the stem is unambiguous about 'the portion above'."
+  },
+  "AM12F-01": {
+    "answer": "4.5",
+    "exclusive": true,
+    "hard": false,
+    "note": "-b/a = 9/2 = 4.5; zeros are 2 and 2.5 (discriminant 81-80 = 1 > 0, so both zeros are real and the question is well posed). 5 = product of zeros, -4.5 = sign error. Medium."
+  },
+  "AM12F-02": {
+    "answer": "0.4",
+    "exclusive": true,
+    "hard": true,
+    "note": "4(5)-3 = 17; 25k+7 = 17 -> k = 0.4. HARD: piecewise continuity is a late-test concept and 0.68 (= 17/25, dropping the +7) is exactly the error most students make. The stem paraphrases continuity in plain words rather than naming it, which is appropriate for the ACT and does not create a second reading."
+  },
+  "AM12F-03": {
+    "answer": "27",
+    "exclusive": true,
+    "hard": false,
+    "note": "18/(1 - 1/3) = 27. 13.5 and 24 are partial sums / wrong-ratio routes, 6 = a(1-r). Content note: infinite geometric series is at the far edge of ACT content - it does appear, but rarely. Wording note: physically, summing bounce HEIGHTS is not a meaningful quantity (total distance travelled would be a different number), but the stem asks for 'the sum of all the terms of this sequence', which is unambiguous mathematics. Medium."
+  }
+}

@@ -1,0 +1,226 @@
+{
+ "AM12G-01": {
+  "answer": "15.5",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "Trapezoid midsegment = (12+19)/2 = 15.5. One-step formula recall. Distractors are the half-difference (3.5) and the sum (31); 7 is the leg difference. Canonical textbook item, appears verbatim in ISEE/SSAT prep with other constants."
+ },
+ "AM12G-02": {
+  "answer": "96",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "Rhombus area = d1*d2/2 = 12*16/2 = 96. 192 is the omitted halving, 28 the sum, 40 the perimeter via 6-8-10 legs (a real distractor). The 12-and-16 diagonal pair is THE canonical version of this item; re-constanting is the only thing separating it from a hundred published copies."
+ },
+ "AM12G-03": {
+  "answer": "972π",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": "AM12G-10 (hemisphere volume is half of this same formula)",
+  "note": "V = (4/3)pi*9^3 = 972pi. 729pi is r^3 alone, 108pi is (4/3)r^2*..., 81pi is the great-circle area. Pure formula recall, bottom-third ACT difficulty."
+ },
+ "AM12G-04": {
+  "answer": "377",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": "AM12G-10 (same 'volume of a round solid from r and h' mechanism)",
+  "note": "r = 6, V = (1/3)pi*36*10 = 120pi = 376.99 -> 377. 1508 omits the third and doubles, 1131/565 come from radius=diameter slips; 628 is the cylinder-with-wrong-r. The 'paper drinking cup shaped like a right circular cone' wording is near-verbatim stock ACT-prep phrasing."
+ },
+ "AM12G-05": {
+  "answer": "8.2",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "Midpoint of AB = (2,5); distance from C(4,-3) = sqrt(4+64) = sqrt(68) = 8.246 -> 8.2. Two-step (midpoint then distance) so mid-form, not hard. 12.2 is |AB| = sqrt(128)... actually 5.7 is sqrt(32) (half of AB), 12.2 is C-to-B. All distractors are real slips. Exclusive."
+ },
+ "AM12G-06": {
+  "answer": "25.7",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "Straight edge is stated to be the 10-inch edge, so r = 5. Perimeter = 5pi + 10 = 25.708 -> 25.7. 15.7 is the arc alone, 31.4 the full circumference, 39.3 uses r = 10. The stem explicitly defines the straight edge, so the usual radius/diameter ambiguity is closed - exclusive."
+ },
+ "AM12G-07": {
+  "answer": "130",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "Minute hand at 40 min = 240 deg; hour hand at 3:40 = 90 + 40*0.5 = 110 deg. Difference 130, which is already the smaller angle (230 is the reflex). 150 is the trap for a stationary hour hand, 170 for a hand moved a full hour. This is the single best-constructed distractor set in the batch, but 'angle at 3:40' is the most-published clock item in existence."
+ },
+ "AM12G-08": {
+  "answer": "6π",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "Delta C = 2pi(10-7) = 6pi. 3pi forgets the 2, 34pi and 51pi are area-flavoured sums. Note the answer is exact in pi while the stem says 'by how many meters' - consistent with the all-pi option set, so no unit ambiguity. One-step."
+ },
+ "AM12G-09": {
+  "answer": "360",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "Cross-section area = (1/2)(8)(15) = 60; V = 60*6 = 360. The 17 cm hypotenuse is a deliberate red herring and 408 is the trap that uses it as a leg-ish factor (8*51). 720 omits the halving, 60 omits the length. Stock 8-15-17 prism; this exact hypotenuse-as-distractor construction is standard SSAT/ISEE."
+ },
+ "AM12G-10": {
+  "answer": "339.3",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": "AM12G-03 and AM12G-04 (recombines both of their formulas)",
+  "note": "Cylinder pi*9*10 = 282.743 plus hemisphere (2/3)pi*27 = 56.549 = 339.292 -> 339.3. 282.7 is the cylinder alone, 395.8 adds a full sphere, 311.0 halves the hemisphere again. Arithmetic-heavy but no insight step, so mid-form rather than hard. Worth noting this item makes AM12G-03 redundant: a student who can do G-10 has already done G-03."
+ },
+ "AM12S-01": {
+  "answer": "3/8",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "Odds 3:5 in favour -> 3/(3+5) = 3/8. 3/5 is the odds read as a probability, 5/8 the complement. The stem helpfully glosses 'odds' so the only remaining difficulty is the +5 in the denominator. Easy. Textbook-canonical."
+ },
+ "AM12S-02": {
+  "answer": "17/40",
+  "exclusive": true,
+  "hard": true,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "(1/2)(1/4) + (1/2)(3/5) = 1/8 + 3/10 = 5/40 + 12/40 = 17/40. HARD: the boxes have different sizes, so the pooled 4/9 (a genuinely tempting wrong answer, and numerically 0.444 vs the key's 0.425 - close but distinct) is the standard failure. 17/20 drops the coin weighting. Late-form ACT. Correctly exclusive: the coin is fair and stated."
+ },
+ "AM12S-03": {
+  "answer": "10",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "n(n-1)/2 = 45 -> n^2-n-90 = 0 -> n = 10. 9 is n-1 (the games each team plays), 90 the un-halved product. Borderline mid/hard - requires forming the round-robin count - but this is the single most reproduced combinatorics stem in middle-school competition prep and I have seen it with 45 games specifically."
+ },
+ "AM12S-04": {
+  "answer": "38",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": "AM12I-02 (identical mechanism: substitute a given value into a supplied linear rule)",
+  "note": "3.2(7.5) + 14 = 24 + 14 = 38. 36.4 uses x = 7, 24 drops the intercept, 17.2 adds instead of multiplying. Pure substitution - this is not a statistics item in any meaningful sense despite its S- id; the line of best fit is decoration."
+ },
+ "AM12S-05": {
+  "answer": "5/12",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": "AM12S-07 (both are favourable-measure / total-measure over a continuum)",
+  "note": "(90+60)/360 = 150/360 = 5/12. 1/4 is red alone, 1/3 uses 120, 5/24 halves. One-step. Note the four sectors sum to 360 exactly, so the stem is consistent."
+ },
+ "AM12S-06": {
+  "answer": "2/15",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "Multiples of 7 in 1..60: 7,14,...,56 = 8 of them, 8/60 = 2/15. IMPORTANT near-collision: 1/7 = 0.1429 and 2/15 = 0.1333 are distinct but only 0.0095 apart, and 1/7 is exactly the answer a student gets by reasoning 'one in every seven'. That is a good distractor, not a defect - they are not numerically equal - but it is the closest pair in the batch and worth flagging to anyone re-constanting: if the range were a multiple of 7 the two would coincide and the item would be unkeyable."
+ },
+ "AM12S-07": {
+  "answer": "1/3",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": "AM12S-05 (same favourable-measure/total-measure mechanism, time instead of angle)",
+  "note": "Clerk window 3:10-3:25 = 15 min inside a 45-min uniform window: 15/45 = 1/3. 1/4 uses a 60-min window, 1/6 and 2/9 are mis-set windows. Continuous-uniform framing is unusual for ACT but the arithmetic is one step."
+ },
+ "AM12S-08": {
+  "answer": "9",
+  "exclusive": true,
+  "hard": true,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "LEAST overlap = 26 + 25 - 42 = 9 (inclusion-exclusion at the extreme). HARD: genuinely late-form; the common wrong move is answering 25 (the greatest possible overlap) or 0 (the answer if the totals did not exceed the group). 51 is the un-subtracted sum. Exclusive because 26+25 > 42 forces a nonzero floor. This is the best item in the batch by construction - and also a stock inclusion-exclusion stem I have seen with many constant sets."
+ },
+ "AM12I-01": {
+  "answer": "90",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "(1350-270)/12 = 1080/12 = 90. 112.5 forgets the deposit, 135 divides by 10... (1350/12=112.5, 1080/10=108). Every distractor is a named slip. Trivially easy."
+ },
+ "AM12I-02": {
+  "answer": "25",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": "AM12S-04 (identical mechanism: substitute into a supplied linear formula)",
+  "note": "(5/9)(77-32) = (5/9)(45) = 25. 170.6 inverts to the F formula, 81 does 77+4ish, 60.6 mis-orders. 77F -> 25C is THE textbook instance of this conversion; I would expect to find this exact pair of constants in a live bank. See dupe_of: this and AM12S-04 are the same question in different domains, which is exactly the kind of collision a per-domain review cannot see."
+ },
+ "AM12I-03": {
+  "answer": "450",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "1215/2.7 = 450. 3280.5 multiplies, 486 divides by 2.5, 4500 misplaces the decimal. One-step. 2.7 g/cm3 is aluminium - the stock density constant."
+ },
+ "AM12I-04": {
+  "answer": "9",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "Inverse proportion: 6*15 = 90 pump-hours; 90/10 = 9. 25 is the direct-proportion trap (15*10/6), 2.5 and 6 are ratio slips. Classic work-rate item, published everywhere."
+ },
+ "AM12I-05": {
+  "answer": "560",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "180 sq ft / 9 = 20 sq yd; 20*28 = 560. 5040 forgets the conversion, 1680 divides by 3 instead of 9, 20 is the area alone. The 'cost per square YARD with the room given in feet' construction is near-verbatim stock ACT; the capitalised YARD is the author signalling the trap, which slightly softens it."
+ },
+ "AM12I-06": {
+  "answer": "69",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "1.3^2 = 1.69, an increase of 69%. 169 is the ratio not the increase, 9 squares only the 30 percent as 0.3^2*100, 30 is the linear figure. Good distractor set; still a one-step stock percent-change item."
+ },
+ "AM12I-07": {
+  "answer": "640",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "0.05(4000) + 0.08(5500) = 200 + 440 = 640. 440 is the second tier alone, 475 is a flat 5%, 570 a flat 6%. Two-step tiered rate - mid-form, not hard, because the stem states the bracket boundary explicitly rather than making the student find it."
+ },
+ "AM12F-01": {
+  "answer": "4.5",
+  "exclusive": true,
+  "hard": false,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "Sum of zeros = -b/a = 9/2 = 4.5. Discriminant 81-80 = 1 > 0, so the two zeros are real and distinct (2 and 2.5) and the sum is verifiable directly - I checked both ways. -4.5 is the sign slip, 5 is the product c/a, 18 is -b*... (9*2). Exclusive."
+ },
+ "AM12F-02": {
+  "answer": "0.4",
+  "exclusive": true,
+  "hard": true,
+  "stock": "high",
+  "dupe_of": null,
+  "note": "Continuity at x=5: 4(5)-3 = 17 = k(25)+7 -> 25k = 10 -> k = 0.4. HARD: piecewise continuity solving for a parameter is late-form ACT. 17 is the shared value itself, 0.68 is 17/25 (forgetting the +7), 2 is 10/5. The stem paraphrases continuity in plain words ('no break ... approach the same value'), which lowers the difficulty somewhat but keeps it in the hard band."
+ },
+ "AM12F-03": {
+  "answer": "27",
+  "exclusive": true,
+  "hard": false,
+  "stock": "very high",
+  "dupe_of": null,
+  "note": "S = a/(1-r) = 18/(2/3) = 27. 13.5 uses r=1/2... (18/(1-1/3) mis-done), 24 and 6 are partial sums. Exclusive as written because the stem asks for the sum of the TERMS of the sequence, not the total distance the ball travels - had it asked for distance travelled, the up-and-down doubling would make 27 wrong. The author closed that ambiguity correctly, but it is one word away from a defect and should stay worded this way through any re-constanting."
+ }
+}

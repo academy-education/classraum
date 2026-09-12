@@ -1,0 +1,170 @@
+{
+ "AM12G-01": {
+  "answer": "15.5",
+  "exclusive": true,
+  "hard": false,
+  "note": "Midsegment = (12+19)/2 = 15.5. Distractors: 7 = difference, 31 = sum, 3.5 = half the difference. LEAK (Q1, stem+options): the midsegment must lie strictly between the two parallel sides, and 15.5 is the ONLY option in (12,19). 7, 31 and 3.5 all die on that one-line plausibility argument with no formula used. Same shape as the SAT item that was dropped. Fix: add a distractor inside the interval, e.g. 14 or 16."
+ },
+ "AM12G-02": {
+  "answer": "96",
+  "exclusive": true,
+  "hard": false,
+  "note": "d1*d2/2 = 96. Distractors: 192 = product (bounding rectangle), 40 = perimeter (side 10), 28 = sum of diagonals. Free elimination knocks out 28 and 40 as far too small, leaving 96 vs 192 — the surviving pair is exactly the /2, so the intended knowledge still decides. Acceptable."
+ },
+ "AM12G-03": {
+  "answer": "972π",
+  "exclusive": true,
+  "hard": false,
+  "note": "(4/3)π(9^3) = 972π. Distractors: 729π = r^3 alone, 81π = r^2 (great-circle area), 108π = (4/3)r^2. Q2 fires mildly: 729π displays the intermediate r^3, so the item reduces to 'multiply the displayed value by 4/3' — but 108π also encodes 4/3, so it does not decide. No plausibility elimination available. Redundant with AM12G-10's hemisphere step (see near-duplicates)."
+ },
+ "AM12G-04": {
+  "answer": "377",
+  "exclusive": true,
+  "hard": false,
+  "note": "(1/3)π(6^2)(10) = 376.99 -> 377. Distractors: 1508 = diameter used as radius, 565 = 1/2 instead of 1/3, 628 = 200π. One free kill: 1508 exceeds the enclosing cylinder (1131), so a student who knows only 'cone fits inside cylinder' drops it. The remaining three are separated only by the 1/3, which is the tested fact. Fine."
+ },
+ "AM12G-05": {
+  "answer": "8.2",
+  "exclusive": true,
+  "hard": false,
+  "note": "Midpoint of AB = (2,5); dist to C(4,-3) = sqrt(68) = 8.246 -> 8.2. Distractors: 12.2 = |CB| (side, not median), 7.0 ~ |CA| = 7.21, 5.7 = sqrt(32). Clean: no option is eliminable on size or sign, all four are plausible lengths for a segment in this triangle. One of the better items in the batch."
+ },
+ "AM12G-06": {
+  "answer": "25.7",
+  "exclusive": true,
+  "hard": false,
+  "note": "r = 5; arc + diameter = 5π + 10 = 25.708 -> 25.7. Distractors: 15.7 = arc only, 31.4 = full circumference, 39.3 = 12.5π. Q2 mild: 15.7 (the arc) is displayed and the key is 15.7 + 10, so the option set shows the last step — but a student must still know the arc is 5π to recognise it. No plausibility kill. Acceptable. 'Straight edge' unambiguously names the diameter, so no second reading."
+ },
+ "AM12G-07": {
+  "answer": "130",
+  "exclusive": true,
+  "hard": true,
+  "note": "Minute at 240 deg; hour at 90 + 40(0.5) = 110; difference 130. Distractors: 150 = hour hand left at the 3 (the standard trap), 170 and 70 are off-by-one-hand-position. Clean: nothing is eliminable without tracking the hour hand's drift, and the naive answer is present and wrong. Best-constructed item in the geometry set."
+ },
+ "AM12G-08": {
+  "answer": "6π",
+  "exclusive": true,
+  "hard": false,
+  "note": "2π(10) - 2π(7) = 6π. Distractors: 3π = radius difference without the 2, 34π = 2π(17), 51π = ?. LEAK (Q1, partial): the increase cannot exceed the new circumference (20π), so 34π and 51π die free with no circle formula at all. The survivors are 6π and 3π, which differ only by the factor of 2 — so the item is a coin flip for a student who recalls 'C is proportional to r' but not '2πr'. Two of four options do no work. Replace 51π with something in range, e.g. 9π or 6."
+ },
+ "AM12G-09": {
+  "answer": "360",
+  "exclusive": true,
+  "hard": false,
+  "note": "(1/2)(8)(15)(6) = 360. Distractors: 408 = leg x hypotenuse used, 720 = full box 8x15x6, 60 = cross-section area only (forgot the length). Q3 fires lightly: 720 is transparently 'the box' and 60 is transparently 'forgot to multiply', so a trap-taxonomy student can name both errors — but naming them still requires the half-the-box fact, which is the item. Acceptable. The 17 is a well-placed unused-number check."
+ },
+ "AM12G-10": {
+  "answer": "339.3",
+  "exclusive": true,
+  "hard": true,
+  "note": "90π + (2/3)π(27) = 108π = 339.29 -> 339.3. Distractors: 282.7 = cylinder only (90π), 395.8 = cylinder + FULL sphere (126π), 311.0 = 99π (hemisphere halved twice). LEAK (Q1/Q2 combined): 282.7 is the cylinder alone and the total must exceed it, so it dies free; 395.8 uses a whole sphere and dies for anyone who knows a dome is half of one. The option set displays the cylinder sub-total, which is the item's own first step. Two real survivors. Also note a latent reading — whether the 10 m is the cylinder or the whole silo — but the alternate reading (81π = 254.5) is not among the options, so exclusivity holds."
+ },
+ "AM12S-01": {
+  "answer": "3/8",
+  "exclusive": true,
+  "hard": false,
+  "note": "Odds 3:5 in favour -> 3/(3+5) = 3/8. Distractors: 3/5 = odds read as a probability (the trap), 5/8 = complement, 1/2 = noise. Note the stem GLOSSES the odds ('for every 3 winning tickets there are 5 that do not win'), which hands over the denominator of 8 and defuses most of the odds-vs-probability confusion the item is for. Not a leak — 3/5 and 5/8 both remain live — but the item is easier than an ACT odds item. Consider deleting the gloss sentence."
+ },
+ "AM12S-02": {
+  "answer": "17/40",
+  "exclusive": true,
+  "hard": true,
+  "note": "(1/2)(1/4) + (1/2)(3/5) = 17/40. Distractors: 17/20 = forgot the coin (the exact numerator match makes this a precise, non-giveaway trap), 4/9 = pooled all nine marbles, 3/20 = product instead of sum. Clean under attack: free bounding (the answer must sit between 1/4 and 3/5) kills 17/20 and 3/20, but the two survivors are 17/40 = 0.425 and 4/9 = 0.444, which plausibility cannot separate. Strongest item in the batch."
+ },
+ "AM12S-03": {
+  "answer": "10",
+  "exclusive": true,
+  "hard": false,
+  "note": "n(n-1)/2 = 45 -> n = 10 (unique). Distractors: 9 = off by one, 45 = the games, 90 = the double count. Q1 partial: 45 and 90 die on plain implausibility (a 45-team round robin is 990 games), leaving 9 vs 10. Backsolving is available on four choices, but backsolving here EXECUTES the tested formula, so it is not a bypass. Acceptable."
+ },
+ "AM12S-04": {
+  "answer": "38",
+  "exclusive": true,
+  "hard": false,
+  "note": "3.2(7.5) + 14 = 38. Distractors: 36.4 = x = 7 (the good trap), 17.2 = 3.2 + 14, 24 = slope term only. Q2 fires lightly: 24 is displayed and the key is 24 + 14, so the option set contains the last addition — but 36.4 sits 1.6 from the key, so estimating does not resolve it. Clean enough."
+ },
+ "AM12S-05": {
+  "answer": "5/12",
+  "exclusive": true,
+  "hard": false,
+  "note": "(90+60)/360 = 5/12. Distractors: 1/4 = red only, 1/3 = blue's sector (120/360), 5/24 = halved. Q1 partial: the answer must exceed P(red) = 1/4 alone, which kills 1/4 and 5/24 free, leaving 1/3 vs 5/12. Two options do no work. Also structurally a near-duplicate of AM12S-07 (see below)."
+ },
+ "AM12S-06": {
+  "answer": "2/15",
+  "exclusive": true,
+  "hard": false,
+  "note": "8 multiples of 7 in 1..60 -> 8/60 = 2/15. Distractors: 7/60 (7 as a count), 3/20 = 9/60 (off by one the other way), 1/7 = the naive density. Clean: 0.117 / 0.133 / 0.143 / 0.15 are indistinguishable by plausibility, and the key is NOT the tidy-looking option. Excellent construction — the only item where careless counting is genuinely punished."
+ },
+ "AM12S-07": {
+  "answer": "1/3",
+  "exclusive": true,
+  "hard": true,
+  "note": "15 favourable minutes of 45 = 1/3. Distractors: 2/9 = 10/45 (window mis-measured), 1/4, 1/6. Clean under attack — no option is eliminable on bounds. One reservation: 1/3 is the 'roundest' option and both the 15 and the 45 are directly readable from the stem, so a student who merely forms favourable/total without understanding uniform continuous probability succeeds. That is arguably the tested skill. Near-duplicate of AM12S-05."
+ },
+ "AM12S-08": {
+  "answer": "9",
+  "exclusive": true,
+  "hard": true,
+  "note": "26 + 25 - 42 = 9. Distractors: 25 = the max overlap not the min, 51 = the sum, 0 = 'they could be disjoint'. LEAK (Q1, test-wise): 51 exceeds the 42-person group and dies free; and of the four options, 25, 51 and 0 are all values READ OFF the stem (a given, a sum, the trivial answer) while 9 is the only one that looks computed. On a 'LEAST possible' stem, the odd-one-out cue points at the key without the pigeonhole argument. Fix: make one distractor a computed-looking wrong value (e.g. 16 = 42 - 26, or 17)."
+ },
+ "AM12I-01": {
+  "answer": "90",
+  "exclusive": true,
+  "hard": false,
+  "note": "(1350 - 270)/12 = 90. Distractors: 112.5 = deposit ignored, 135 = 1350/10, 108 = 1080/10. Q1 partial: the instalment must be below 1350/12 = 112.5, so 112.5 and 135 fall to anyone who notices the deposit, leaving 90 vs 108 — separated by 10 vs 12 months, which is a second real distinction. Acceptable."
+ },
+ "AM12I-02": {
+  "answer": "25",
+  "exclusive": true,
+  "hard": false,
+  "note": "LEAK, the worst in the batch (Q1). The formula is HANDED OVER in the stem, so the only mathematics is one substitution — and even that is unnecessary: 77 F is a warm day, and 60.6 C, 81 C and 170.6 C are all physically absurd as air temperatures. 25 is the unique option anyone with ordinary Celsius intuition picks having read nothing but 'weather station'. 170.6 additionally advertises itself as the reverse conversion (9/5(77)+32). Arithmetic is correct — (5/9)(45) = 25 — but the item measures weather familiarity, not the relation. Recommend DROP or re-author with a temperature outside everyday range and distractors inside it."
+ },
+ "AM12I-03": {
+  "answer": "450",
+  "exclusive": true,
+  "hard": false,
+  "note": "1215/2.7 = 450. Distractors: 3280.5 = multiplied, 4500 = decimal slip, 486 = 1215/2.5. Q1 partial: density > 1 forces the volume below 1215 numerically, so 3280.5 and 4500 die on a units argument alone. Survivors 450 vs 486 require the actual division, and 486 is a well-chosen near miss. Acceptable."
+ },
+ "AM12I-04": {
+  "answer": "9",
+  "exclusive": true,
+  "hard": false,
+  "note": "LEAK (Q1). 6(15) = 90 pump-hours; 90/10 = 9. But no computation is needed: more pumps means less time (kills 25), and 10 pumps is under twice 6, so the time cannot fall to half of 15 (kills 6 and 2.5). 9 is the ONLY option in the feasible interval (7.5, 15), reachable purely by proportional intuition. Distractor 25 also transparently encodes 'direct instead of inverse', so Q3 fires too. Fix: put a second option inside (7.5,15), e.g. 12."
+ },
+ "AM12I-05": {
+  "answer": "560",
+  "exclusive": true,
+  "hard": false,
+  "note": "180 sq ft / 9 = 20 sq yd; 20(28) = 560. Distractors: 5040 = no conversion, 1680 = divided by 3 not 9, 20 = the area (answered the wrong question). Clean: the conversion factor is what separates every pair, no plausibility route, and the 'stopped early' option is present. Good item."
+ },
+ "AM12I-06": {
+  "answer": "69",
+  "exclusive": true,
+  "hard": false,
+  "note": "1.3^2 = 1.69 -> 69% increase. Distractors: 169 = the new area as a percent of the old (answered the wrong question), 30 = linear, 9 = 3^2. Q2 fires: the option set displays BOTH forms of the last step (169 and 69), so a student who knows only 'area scales by the square' arrives at 1.69 and the item collapses to reading the word 'increase'. That is a legitimate ACT trap rather than a bypass — the geometry is still required to get to 1.69 — but note the item is testing reading, not scaling."
+ },
+ "AM12I-07": {
+  "answer": "640",
+  "exclusive": true,
+  "hard": true,
+  "note": "0.05(4000) + 0.08(5500) = 200 + 440 = 640. Distractors: 440 = the upper tier only, 475 = 5% flat, 570 = 6% flat. Q2 fires: 440 is an intermediate of the key and 640 = 200 + 440, so the option set shows the last addition. Q1 partial: the blended rate must exceed 5%, which kills 475 and 440 (4.6%), leaving 640 vs 570 — a real distinction. Acceptable, but 440 would be better replaced by 760 (8% flat)."
+ },
+ "AM12F-01": {
+  "answer": "4.5",
+  "exclusive": true,
+  "hard": false,
+  "note": "Zeros are 2 and 2.5; sum = -b/a = 9/2 = 4.5. Distractors: 5 = c/a (the product — the right trap), -4.5 = sign error on -b/a, 18 = 2b. Clean: nothing eliminable free, and the item is solvable by factoring (2x-5)(x-2) as well as by Vieta, both of which are the intended mathematics. Note the +/-4.5 pair means a student recalling 'b/a up to sign' is at 50%, but that is standard."
+ },
+ "AM12F-02": {
+  "answer": "0.4",
+  "exclusive": true,
+  "hard": true,
+  "note": "4(5) - 3 = 17 = 25k + 7 -> k = 0.4. Distractors: 0.68 = 17/25 (forgot the +7 — precise and tempting), 17 = the matched value itself, 2 = noise. Q2 fires lightly: 17 is displayed, which is the item's own first step, but it is offered as a wrong answer rather than a stepping stone, so the display costs nothing. Clean. The stem's 'the two rules approach the same value there' removes any continuity-definition ambiguity — good, exclusive."
+ },
+ "AM12F-03": {
+  "answer": "27",
+  "exclusive": true,
+  "hard": true,
+  "note": "18/(1 - 1/3) = 27. Distractors: 24, 13.5, 6 = 18(1/3). LEAK (Q1, partial): the sum of a positive series must exceed its first term 18, so 13.5 and 6 die free with no series knowledge whatever — half the option set does no work. Survivors 24 and 27, and only a/(1-r) separates them. Fix: replace 6 and 13.5 with values above 18, e.g. 36 (18/(1-1/2)) and 54 (18*3)."
+ }
+}

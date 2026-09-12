@@ -183,6 +183,23 @@ Nothing is blocked — every open item can start today.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-09-12** — **THE DRAW ERASES NUMERIC OPTION ORDERING, AND FIXING THAT WOULD PUBLISH A WORSE DEFECT. THE SHUFFLE IS CURRENTLY HIDING OUR OWN AUTHORING SKEW.** A grader raised it as a format nit — *"numeric choices are in scrambled order; a real ACT orders them monotonically"* — and it opens onto something structural.
+
+  **Measured.** Authored order in the bank is already only partly monotonic (sat/math **27.1%**, act/math **42.3%**, isee **76.2%**, ssat **61.0%**, against 8.3% by chance for four distinct values). Then the draw removes what is there: a monotonically authored set survives `shuffleDrawnChoices` in **84 of 1,000 draws = 8.4%**, against 8.3% by chance. **The shuffle erases ordering completely**, so no student ever sees an ACT-shaped or SAT-shaped numeric option list.
+
+  **THE OBVIOUS FIX IS WRONG, AND THE NUMBER FROM THE ENTRY ABOVE IS WHY.** Sorting numeric options for fidelity converts MAGNITUDE rank into LETTER position, and this bank's keys are not flat by magnitude:
+
+        cohort               key is a middle rank    sorted, "always pick B or C" scores
+        sat/math v2          578/790 = 73.2%         36.6%   (+11.6 over chance)
+        sat/math others      177/297 = 59.6%         29.8%   (+4.8)
+        isee/math            187/319 = 58.6%         29.3%   (+4.3)
+        act/math             234/423 = 55.3%         27.7%   (+2.7)
+
+  So sorting would hand a student a **positional** tell worth up to +11.6 points, requiring no magnitude comparison at all — just "pick B or C". **The shuffle is not preventing a defect; it is concealing one.** That is a worse state than either alternative, because the concealment is invisible and the defect keeps being authored.
+
+  **THE ORDER OF OPERATIONS IS THE FINDING.** Fix the magnitude distribution first — bring key-is-middle toward what a real form does — and only then sort for fidelity. Doing it the other way round publishes the skew. Doing neither leaves every maths item non-exam-shaped while the skew accumulates unmeasured. **Not taken here:** this touches live draw behaviour on ~2,000 items and depends on a number I cannot get (what the real SAT's magnitude distribution actually is), so it belongs with the `v2` decision rather than in front of it. Same shape as the NO CHANGE pin fixed this morning — an option-order convention the real exam has and we do not — but the opposite conclusion, because there the pin had no interaction and here it has a large one.
+
+  **Two other things from the same graders, recorded and not acted on.** (1) A grader argues the ten live-bank duplicates the author found are the wrong ten: *"the bank scan found the ten that happened to be in your bank, not the ten that are stock"* — naming eleven canonical textbook instances carrying canonical constants (rhombus diagonals 12 and 16, the clock at 3:40, 77F to 25C, a round-robin at 45 games). A bank scan can only find collisions with OUR corpus; it cannot see the published universe, and that is a permanent limit of the method rather than a miss by this author. (2) `AM12I-02` and `AM12S-04` are the same question — substitute a value into a supplied linear rule — sitting in **different domains**, which is exactly why a per-domain review cleared them. The same blind spot as the cross-test duplicates, one level in. → **A21**
 - **2026-09-12** — **THE SAT MATHS `v2` COHORT PUTS ITS KEY IN A MIDDLE MAGNITUDE RANK 73.2% OF THE TIME, AND "ELIMINATE BOTH EXTREMES" IS WORTH +11.6 POINTS TO A STUDENT WHO READS NOTHING.** Found while fixing my own three-times-wrong baseline — the per-family measurement that corrected the error exposed something much larger than the error.
 
         family / cohort        key is a MIDDLE rank (2 or 3 of 4 by magnitude)
