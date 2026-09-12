@@ -238,17 +238,26 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
       // Try to update database if user is authenticated
       if (user?.id) {
         try {
-          // Try to update existing preferences first
-          const { error: updateError } = await db
+          /* `.select()` is load-bearing: it makes the update report WHICH rows
+           * it touched. Without it this branch tested `updateError?.code ===
+           * 'PGRST116'`, and PostgREST does not return that for an update
+           * matching nothing — it returns success with no rows. PGRST116 comes
+           * from `.single()`. Probed against the live database 2026-09-12: an
+           * update on a non-existent user_id returns error (none), data null.
+           * So the insert fallback below was unreachable, and a user with no
+           * user_preferences row kept their language in the cookie only —
+           * working on that browser, lost on every other device. */
+          const { data: updated, error: updateError } = await db
             .from('user_preferences')
             .update({
               language: newLanguage,
               updated_at: new Date().toISOString()
             })
             .eq('user_id', user.id)
+            .select('user_id')
 
-          // If update failed because no row exists, insert new preferences
-          if (updateError?.code === 'PGRST116') {
+          // No row existed to update, so create one.
+          if (!updateError && (updated?.length ?? 0) === 0) {
             const { error: insertError } = await db
               .from('user_preferences')
               .insert({
