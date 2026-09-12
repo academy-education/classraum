@@ -1669,3 +1669,33 @@ structural checks are pre-flight only. See CLAUDE.md.
   **A solver attacked a channel instead of reporting it, and killed it.** The derivational hub was the largest gap in the file — 12 items firing against 2.63 expected — so rather than bank it they widened the simple-ratio list from 12 ratios to 38. The elevation survived; **the option it names changed on nearly every item** (item 5 B→E, item 16 E→D, item 20 A→C). A channel whose named option is a function of a parameter the analyst chose cannot support a pick. What the elevation actually measures is that this author builds distractors as simple multiples of the key, which is sound SSAT practice.
 
   **Recorded for repair, not dropped:** one grader found four items whose options are eliminable by magnitude with no work — `S13-09` (three of five exceed what more than four people must need), `S13-14` (three exceed the perimeter; a side cannot), `S13-28` (two exceed the stated class of 30), `S13-18` (two impossible for a mean of scores between 80 and 95). The pattern concentrates in the EASY items, where a raw intermediate value was reached for as a fifth option. That is brief §1 and it is a cheap fix.
+
+- **2026-09-12** — **120 LIVE SAT R&W ROWS WERE FILED IN THE WRONG DOMAIN. The section's form count was 16 and is 14.** Found while reading the Craft and Structure subskill mix to write the next authoring brief; repaired the same hour by `scripts/study-bank/repair-rw-domain-filing.mjs`.
+
+  The two columns disagreed with each other, using exact taxonomy strings on both sides:
+
+        43  Craft and Structure    <- Inferences                  (Information and Ideas)
+        32  Craft and Structure    <- Command of Evidence         (Information and Ideas)
+        23  Information and Ideas  <- Cross-Text Connections      (Craft and Structure)
+        22  Information and Ideas  <- Text Structure and Purpose  (Craft and Structure)
+
+  **`assemble.ts` draws per-domain quotas from `domain` and never reads `subskill`** — one reference, a pass-through onto the payload. So 75 inference and evidence items were being dealt into Craft and Structure seats and 45 craft items into Information and Ideas seats. Every R&W form drawn before today had a mix that was not the blueprint's, and the error was invisible to every existing check because each column is individually well-formed.
+
+  **All 120 are in cohort `v2` and nowhere else.** Every other cohort is 0.0% — `eoi-v3` through `eoi-v6`, `rsw-v1`, `rsw2`, `rw-v7-*`, `rw-v8-*` all clean. This is authoring-time data, not a code path: `classifyRwBatch` **cannot** emit such a pair, because it derives the legal subskills from the domain it just accepted — and it has **zero callers**, so it filed none of these rows. Noted separately below.
+
+  **Which column was wrong was measured, not assumed.** A narrow stem classifier — stock digital-SAT wordings only, returning `null` rather than guessing — was pointed FIRST at the 604 rows whose two columns already agree, i.e. rows whose answer is known: **368 of 384 classifiable = 95.8%**. (The 20 nominal misses are the lowercase `words in context` spelling, the same subskill; the 16 real ones are Central Ideas read as Text Structure, a boundary *inside* Information and Ideas that cannot touch these 120.) Pointed at the 120 it classified 79 and **backed the SUBSKILL on 79 and the DOMAIN on 0**. The 41 it could not classify were read by hand and are the same stem families — "Which finding, if true, would most directly weaken…", "best supported by the passage", "function of the final sentence"; the regexes missed wording variants, not different items.
+
+  Repair: `domain := the subskill's home`, plus 20 rows recased `words in context` -> `Words in Context` (one subskill spelled two ways in one bank). 140 rows written, each update asserted to match exactly one row, prior values saved to `rw-domain-filing-snapshot.json`. Re-running the script finds nothing, so it is idempotent.
+
+        Information and Ideas          250 -> 280
+        Craft and Structure            244 -> 214
+        Expression of Ideas            244     (unchanged)
+        Standard English Conventions   309     (unchanged)
+
+  **The two forms were never real.** C&S is the binding domain at 15 per form, so 244/15 = 16 became 214/15 = 14. The deficit to the next form is unchanged at 11 C&S items, because the loss was exactly two forms' worth — that next form is now number 15.
+
+  **My own check was justified from the wrong place and I am recording that rather than the tidy version.** I validated 1,047 live rows against `RW_TAXONOMY` in `src/lib/study/verify-item.ts` and described it as the repo's authority. Nothing reads that constant except the dead function it sits next to. The taxonomy is still the correct College Board one, and the stem control is what actually carries the finding — but "the repo says so" was not true when I said it.
+
+- **2026-09-12** — **`classifyRwBatch` and `RW_TAXONOMY` are dead code, and the function has a quiet-wrong-number fallback.** Zero callers anywhere in `src` or `scripts`. If it were ever wired up, an item the model omits from its response silently becomes `Information and Ideas / Central Ideas and Details` rather than failing — the "fixing a loud failure by making it quiet" shape. Not touched: deleting it is out of scope for a data repair, and it files nothing today. Recorded so that whoever wires it up fixes the fallback first.
+
+- **2026-09-12** — **Craft and Structure is concentrated in the two leakiest strata ever measured, and starved in the clean one.** After the refiling, its 214 items are Text Structure and Purpose 103, Cross-Text Connections 91, Words in Context 20. Text Structure measured **87.5%** options-only and Cross-Text **75.0%**; Words in Context measured **12.5% / 33.3%**, i.e. clean. So 194 of 214 C&S items sit in strata that an options-only solver reads without the passage, and the one subskill that has held is 9% of the domain. **The next C&S brief must be weighted to Words in Context**, and any Text Structure or Cross-Text items in it must hold all four options in one frame varying along an axis the stem does *not* name — the `rsw` construction, which is the only thing that has separated a clean cohort from a leaky one within a single subskill.
