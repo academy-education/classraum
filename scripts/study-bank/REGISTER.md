@@ -183,6 +183,22 @@ Nothing is blocked — every open item can start today.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-09-12** — **THE SAT MATHS `v2` COHORT PUTS ITS KEY IN A MIDDLE MAGNITUDE RANK 73.2% OF THE TIME, AND "ELIMINATE BOTH EXTREMES" IS WORTH +11.6 POINTS TO A STUDENT WHO READS NOTHING.** Found while fixing my own three-times-wrong baseline — the per-family measurement that corrected the error exposed something much larger than the error.
+
+        family / cohort        key is a MIDDLE rank (2 or 3 of 4 by magnitude)
+        sat/math  v2            578/790 = 73.2%     P(>=578 | 50%) = 2.7e-40
+        sat/math  all others    177/297 = 59.6%     p = 0.001
+        act/math  (all)         234/423 = 55.3%
+        isee/math (all)         187/319 = 58.6%
+        a bank with no pattern would sit at 50.0%
+
+  **The strategy is the one every prep book teaches: cross off the biggest and the smallest, then guess between what is left.** On `v2` that hits **36.6%** against a 25.0% chance line — **+11.6 points with no mathematics at all**. On the rest of the SAT maths bank it is +4.8; on ACT +2.6. `v2` is **790 of 1,087 SAT maths items, 73% of the section by count**, so the cohort number is very close to the number a real student meets.
+
+  **THIS IS NOT A PROXY AND IT DOES NOT NEED A SOLVER.** Eight structural proxies have now been built and refuted on this bank, every one because the shape turned out not to point at the key. This one points at the key by direct measurement over 790 items, and it needs no model, no null and no attack — a distractor set that brackets the key above and below IS the shape, and bracketing is the most natural way to write distractors, which is exactly why it is easy to do to excess.
+
+  **WHAT I CANNOT SETTLE AND WILL NOT ASSERT:** whether the real Digital SAT brackets as hard. Genuine exams do bracket, so some concentration is fidelity rather than defect, and 50% is the wrong target — a bank at exactly 50% would look unlike a real form. What is measurable is the SPREAD between our cohorts: the hand-authored ones sit at 40.9-63.2% while `v2` sits at 73.2%, so `v2` is out of line **with our own newer work**, which is a comparison that needs no external reference.
+
+  **NOT ACTED ON, AND THE REASON MATTERS.** This is the same 790-item `v2` cohort that I nearly commissioned a rebuild against this morning before a human sitting at 26.4% stopped it. The lesson from that is exactly on point here: a measured margin against a model instrument is not a student-reachable leak. **But this one is different in kind and should be said plainly — it is arithmetic, not semantics, a student can be taught it in one sentence, and prep books do.** That is an argument for measuring it against a human, not for acting now. **Recommended: add "eliminate both extremes" to the next human sitting as an explicit instruction to one reader**, which converts it from a bank statistic into the only kind of evidence this project accepts. _(no change made; recorded with its counts, its p and its limits)_ → **B6**
 - **2026-09-12** — **THE KEY-MAGNITUDE "DRIFT" DOES NOT EXIST AS I STATED IT. THIRD CORRECTION OF THE SAME NUMBER, AND THIS ONE RETRACTS THE FINDING.** An hour ago I corrected the baseline from a quoted `17.1%` to a measured `19.0%` and said the pooled drift survived at p=0.019. The `act-math-v12-mix` author then reported, unprompted, that **act/math's own baseline is far flatter than the whole-bank figure** — and checking it myself, the per-family numbers are not close to each other:
 
         family        n      rank1 / rank2 / rank3 / rank4 (smallest)
