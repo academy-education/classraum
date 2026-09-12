@@ -1,0 +1,242 @@
+[
+ {
+  "id": "SAM11-01",
+  "prompt": "The function f is defined by f(x) = x^2 + 4x - 5. What is the average rate of change of f from x = 1 to x = 5 ?",
+  "choices": [
+   "8",
+   "10",
+   "40",
+   "20"
+  ]
+ },
+ {
+  "id": "SAM11-02",
+  "prompt": "A rectangular garden is bounded on one side by a straight wall. The other three sides are enclosed by 60 meters of fencing, and the garden encloses 400 square meters. The side parallel to the wall is longer than each of the two sides perpendicular to the wall. What is the length, in meters, of each side perpendicular to the wall?",
+  "choices": [
+   "40",
+   "6.67",
+   "10",
+   "20"
+  ]
+ },
+ {
+  "id": "SAM11-03",
+  "prompt": "In the expansion of (2x - 3)^3, what is the coefficient of x^2 ?",
+  "choices": [
+   "-36",
+   "36",
+   "-18",
+   "54"
+  ]
+ },
+ {
+  "id": "SAM11-04",
+  "prompt": "What is the sum of all solutions to the equation x - 5*sqrt(x) + 6 = 0 ?",
+  "choices": [
+   "13",
+   "6",
+   "5",
+   "9"
+  ]
+ },
+ {
+  "id": "SAM11-05",
+  "prompt": "The function f is defined by f(x) = x^2 - 6x + 5, and the function g is defined by g(x) = -f(x) + 7. What is the maximum value of g ?",
+  "choices": [
+   "11",
+   "4",
+   "3",
+   "2"
+  ]
+ },
+ {
+  "id": "SAM11-06",
+  "prompt": "The polynomial p is defined by p(x) = x^3 + ax^2 + bx + 18, where a and b are constants. If 3 is a zero of p with multiplicity 2, what is the value of a ?",
+  "choices": [
+   "4",
+   "-3",
+   "-4",
+   "2"
+  ]
+ },
+ {
+  "id": "SAM11-07",
+  "prompt": "For x > 0 and x not equal to 3, which of the following is equivalent to (1/x - 1/3)/(x - 3) ?",
+  "choices": [
+   "-1/(3x)",
+   "-1/x",
+   "1/(3x)",
+   "1/x"
+  ]
+ },
+ {
+  "id": "SAM11-08",
+  "prompt": "What is the solution to the equation (4^x)(8^(x+2)) = 32^3 ?",
+  "choices": [
+   "0.4",
+   "1.8",
+   "3",
+   "2.25"
+  ]
+ },
+ {
+  "id": "SAM11-09",
+  "prompt": "The equation z = (3y^2 + 1)/x, where x > 0 and y > 0, relates the variables x, y, and z. Which of the following gives y in terms of x and z ?",
+  "choices": [
+   "y = sqrt(xz/3 + 1)",
+   "y = sqrt(xz/3 - 1)",
+   "y = sqrt((xz + 1)/3)",
+   "y = sqrt((xz - 1)/3)"
+  ]
+ },
+ {
+  "id": "SAM11-10",
+  "prompt": "Two positive numbers differ by 3, and the sum of their squares is 65. What is the greater of the two numbers?",
+  "choices": [
+   "4",
+   "-4",
+   "28",
+   "7"
+  ]
+ },
+ {
+  "id": "SAM11-11",
+  "prompt": "The function f is defined by f(x) = (6x^2 + 5x)/(2x^2 - 1). As x increases without bound, the values of f(x) get closer and closer to which of the following?",
+  "choices": [
+   "-6",
+   "2.5",
+   "3",
+   "0"
+  ]
+ },
+ {
+  "id": "SAM11-12",
+  "prompt": "If xy^2 = 54 and x = 2y, where y > 0, what is the value of y ?",
+  "choices": [
+   "3",
+   "27",
+   "6",
+   "18"
+  ]
+ },
+ {
+  "id": "SAM11-13",
+  "prompt": "The polynomial p is defined by p(x) = 4x^3 + 8x^2 - 3x + 5. What is the remainder when p(x) is divided by 2x - 1 ?",
+  "choices": [
+   "9",
+   "5",
+   "14",
+   "6"
+  ]
+ },
+ {
+  "id": "SAM11-14",
+  "prompt": "The polynomial p is defined by p(x) = (x - 4)(2x + 1)(x + 3). What is the coefficient of x in p(x) ?",
+  "choices": [
+   "-1",
+   "-12",
+   "-21",
+   "-25"
+  ]
+ },
+ {
+  "id": "SAM11-15",
+  "prompt": "A rectangular photograph measuring 8 inches by 10 inches is mounted with a border of uniform width on all four sides. The framed rectangle has an area of 168 square inches. What is the width, in inches, of the border?",
+  "choices": [
+   "4",
+   "12",
+   "2",
+   "11"
+  ]
+ },
+ {
+  "id": "SAM11-16",
+  "prompt": "The function f is defined by f(x) = x^2 - 10x + 18 for 0 <= x <= 3. What is the least value of f on this interval?",
+  "choices": [
+   "5",
+   "-3",
+   "18",
+   "-7"
+  ]
+ },
+ {
+  "id": "SAM11-17",
+  "prompt": "A shop's daily revenue R, in dollars, when each item is priced at p dollars is modeled by R(p) = p(80 - 2p). What is the maximum daily revenue, in dollars?",
+  "choices": [
+   "1200",
+   "20",
+   "1600",
+   "800"
+  ]
+ },
+ {
+  "id": "SAM11-18",
+  "prompt": "The polynomial p is defined by p(x) = (2x - 3)(x^2 + x - 12). What is the sum of all zeros of p ?",
+  "choices": [
+   "-4",
+   "0.5",
+   "1.5",
+   "2.5"
+  ]
+ },
+ {
+  "id": "SAM11-19",
+  "prompt": "The function f is a quadratic function with f(2) = f(6) = 5 and f(1) = 0. What is the value of f(7) ?",
+  "choices": [
+   "-16",
+   "-7",
+   "0",
+   "9"
+  ]
+ },
+ {
+  "id": "SAM11-20",
+  "prompt": "Which of the following is equivalent to (16x^8y^-4)^(3/4), where x > 0 and y > 0 ?",
+  "choices": [
+   "2x^6y^3",
+   "8x^6/y^3",
+   "8x^6y^3",
+   "2x^6/y^3"
+  ]
+ },
+ {
+  "id": "SAM11-21",
+  "prompt": "The members of a club will share the $240 cost of a gift equally. If 4 more people join the club before the gift is bought, each member's share will be $2 less. How many members does the club have now?",
+  "choices": [
+   "10",
+   "24",
+   "20",
+   "12"
+  ]
+ },
+ {
+  "id": "SAM11-22",
+  "prompt": "The function f is defined by f(x) = 3x - 4. If f(g(x)) = 6x^2 + 5 for every value of x, which of the following defines g ?",
+  "choices": [
+   "g(x) = 2x^2 + 3",
+   "g(x) = 2x^2 + 1/3",
+   "g(x) = 18x^2 + 19",
+   "g(x) = 2x^2 + 9"
+  ]
+ },
+ {
+  "id": "SAM11-23",
+  "prompt": "What is the solution to the equation sqrt(x + 7) - sqrt(x) = 1 ?",
+  "choices": [
+   "36",
+   "18",
+   "29",
+   "9"
+  ]
+ },
+ {
+  "id": "SAM11-24",
+  "prompt": "In the equation x^2 + kx + 25 = 0, k is a constant. If the equation has two distinct real solutions, what is the least possible positive integer value of k ?",
+  "choices": [
+   "10",
+   "11",
+   "100",
+   "5"
+  ]
+ }
+]

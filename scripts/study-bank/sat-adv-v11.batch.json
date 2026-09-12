@@ -1,0 +1,506 @@
+[
+ {
+  "id": "SAM11-01",
+  "domain": "Advanced Math",
+  "subskill": "the average rate of change of a quadratic over an interval",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 + 4x - 5. What is the average rate of change of f from x = 1 to x = 5 ?",
+  "choices": [
+   "10",
+   "40",
+   "8",
+   "20"
+  ],
+  "correct_answer": "10",
+  "explanation": "The average rate of change is the change in f divided by the change in x. Here f(1) = 1 + 4 - 5 = 0 and f(5) = 25 + 20 - 5 = 40, so the rate is (40 - 0)/(5 - 1) = 40/4 = 10. \"40\" is the change in f alone, reported before it is divided by the change in x. \"8\" divides that change by 5 rather than by 5 - 1 = 4, using the endpoint instead of the width of the interval. \"20\" averages the two function values, (40 + 0)/2, which is not a rate of change.",
+  "solve": "const f=x=>x*x+4*x-5;return (f(5)-f(1))/(5-1);",
+  "distractor_solve": {
+   "40": "const f=x=>x*x+4*x-5;return f(5)-f(1);",
+   "8": "const f=x=>x*x+4*x-5;return (f(5)-f(1))/5;",
+   "20": "const f=x=>x*x+4*x-5;return (f(5)+f(1))/2;"
+  }
+ },
+ {
+  "id": "SAM11-02",
+  "domain": "Advanced Math",
+  "subskill": "a quadratic model with two valid roots and a stated constraint",
+  "difficulty": "hard",
+  "prompt": "A rectangular garden is bounded on one side by a straight wall. The other three sides are enclosed by 60 meters of fencing, and the garden encloses 400 square meters. The side parallel to the wall is longer than each of the two sides perpendicular to the wall. What is the length, in meters, of each side perpendicular to the wall?",
+  "choices": [
+   "10",
+   "20",
+   "40",
+   "6.67"
+  ],
+  "correct_answer": "10",
+  "explanation": "Let w be the length of each side perpendicular to the wall. The fencing covers two such sides and the side parallel to the wall, so that parallel side is 60 - 2w and the area is w(60 - 2w) = 400, or w^2 - 30w + 200 = 0, whose solutions are w = 10 and w = 20. Both give an area of 400, so the area alone does not decide the answer: at w = 20 the parallel side is 60 - 40 = 20, which is not longer than 20, so that arrangement is ruled out by the stated condition. At w = 10 the parallel side is 40, which is longer. \"20\" is the solution the condition rules out. \"40\" is the length of the side parallel to the wall rather than the sides asked for. \"6.67\" divides the area by the total fencing, 400/60, a combination that does not describe either side.",
+  "solve": "const rs=[10,20];for(const w of rs){if(w*(60-2*w)===400&&60-2*w>w)return w;}return null;",
+  "distractor_solve": {
+   "20": "const rs=[10,20];return rs.filter(w=>60-2*w<=w)[0];",
+   "40": "return 60-2*10;",
+   "6.67": "return (400/60).toFixed(2);"
+  }
+ },
+ {
+  "id": "SAM11-03",
+  "domain": "Advanced Math",
+  "subskill": "a coefficient in the expansion of a binomial cube",
+  "difficulty": "medium",
+  "prompt": "In the expansion of (2x - 3)^3, what is the coefficient of x^2 ?",
+  "choices": [
+   "-36",
+   "36",
+   "-18",
+   "54"
+  ],
+  "correct_answer": "-36",
+  "explanation": "Expanding gives (2x)^3 + 3(2x)^2(-3) + 3(2x)(-3)^2 + (-3)^3 = 8x^3 - 36x^2 + 54x - 27. The x^2 term is 3(2x)^2(-3) = 3(4x^2)(-3) = -36x^2, so the coefficient is -36. \"36\" drops the sign of the -3. \"-18\" comes from writing 3(2x)(-3) for the x^2 term, squaring the x but not the 2 that multiplies it. \"54\" is the coefficient of x, from the next term 3(2x)(-3)^2.",
+  "solve": "return 3*Math.pow(2,2)*(-3);",
+  "distractor_solve": {
+   "36": "return Math.abs(3*Math.pow(2,2)*(-3));",
+   "-18": "return 3*2*(-3);",
+   "54": "return 3*2*Math.pow(-3,2);"
+  }
+ },
+ {
+  "id": "SAM11-04",
+  "domain": "Advanced Math",
+  "subskill": "an equation in quadratic form under a radical substitution",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all solutions to the equation x - 5*sqrt(x) + 6 = 0 ?",
+  "choices": [
+   "13",
+   "5",
+   "6",
+   "9"
+  ],
+  "correct_answer": "13",
+  "explanation": "Writing u = sqrt(x) turns the equation into u^2 - 5u + 6 = 0, since x = u^2. That factors as (u - 2)(u - 3) = 0, so sqrt(x) = 2 or sqrt(x) = 3. Squaring each gives x = 4 and x = 9, both of which satisfy the original equation, and their sum is 13. \"5\" is the sum of the two values of sqrt(x), reported before they are squared back into values of x. \"6\" is the product of those two values of sqrt(x), which is the constant term of the equation in u. \"9\" is the greater of the two solutions rather than the sum of both.",
+  "solve": "const us=[(5+Math.sqrt(25-24))/2,(5-Math.sqrt(25-24))/2];return us.reduce((t,u)=>t+u*u,0);",
+  "distractor_solve": {
+   "5": "const us=[(5+Math.sqrt(25-24))/2,(5-Math.sqrt(25-24))/2];return us[0]+us[1];",
+   "6": "const us=[(5+Math.sqrt(25-24))/2,(5-Math.sqrt(25-24))/2];return us[0]*us[1];",
+   "9": "const us=[(5+Math.sqrt(25-24))/2,(5-Math.sqrt(25-24))/2];return Math.max(...us.map(u=>u*u));"
+  }
+ },
+ {
+  "id": "SAM11-05",
+  "domain": "Advanced Math",
+  "subskill": "a reflection followed by a vertical translation",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 - 6x + 5, and the function g is defined by g(x) = -f(x) + 7. What is the maximum value of g ?",
+  "choices": [
+   "11",
+   "3",
+   "4",
+   "2"
+  ],
+  "correct_answer": "11",
+  "explanation": "Completing the square gives f(x) = (x - 3)^2 - 4, so the least value of f is -4, at x = 3. Negating f turns that least value into the greatest value of -f, which is 4, and adding 7 raises it to 11. \"3\" adds 7 to the minimum of f without negating it first, as though g were f + 7. \"4\" negates the minimum but leaves out the vertical shift. \"2\" negates and shifts the value of f at x = 0, which is 5, rather than the minimum value.",
+  "solve": "const fmin=5-Math.pow(6/2,2);return -fmin+7;",
+  "distractor_solve": {
+   "3": "const fmin=5-Math.pow(6/2,2);return fmin+7;",
+   "4": "const fmin=5-Math.pow(6/2,2);return -fmin;",
+   "2": "const f0=5;return -f0+7;"
+  }
+ },
+ {
+  "id": "SAM11-06",
+  "domain": "Advanced Math",
+  "subskill": "recovering a coefficient from a repeated zero",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = x^3 + ax^2 + bx + 18, where a and b are constants. If 3 is a zero of p with multiplicity 2, what is the value of a ?",
+  "choices": [
+   "-4",
+   "4",
+   "-3",
+   "2"
+  ],
+  "correct_answer": "-4",
+  "explanation": "A cubic with leading coefficient 1 whose zeros are 3, 3, and r has constant term -(3)(3)(r) = -9r, and that constant term is 18, so r = -2. The coefficient a is the negative of the sum of the zeros: a = -(3 + 3 - 2) = -4. Checking, (x - 3)^2(x + 2) = x^3 - 4x^2 - 3x + 18. \"4\" is the sum of the zeros reported without the sign change that relates it to a. \"-3\" is the value of b, the coefficient of x, rather than of a. \"2\" is the third zero found from 9r = 18, which takes the product of the zeros to be +18 instead of -18, and then reports that zero instead of a.",
+  "solve": "const r=-18/(3*3);return -(3+3+r);",
+  "distractor_solve": {
+   "4": "const r=-18/(3*3);return 3+3+r;",
+   "-3": "const r=-18/(3*3);return 3*3+3*r+3*r;",
+   "2": "return 18/(3*3);"
+  }
+ },
+ {
+  "id": "SAM11-07",
+  "domain": "Advanced Math",
+  "subskill": "simplifying a complex fraction",
+  "difficulty": "medium",
+  "prompt": "For x > 0 and x not equal to 3, which of the following is equivalent to (1/x - 1/3)/(x - 3) ?",
+  "choices": [
+   "-1/(3x)",
+   "1/(3x)",
+   "-1/x",
+   "1/x"
+  ],
+  "correct_answer": "-1/(3x)",
+  "explanation": "Over the common denominator 3x, the numerator 1/x - 1/3 becomes (3 - x)/(3x). Dividing by x - 3 multiplies by 1/(x - 3), giving (3 - x)/(3x(x - 3)). Since 3 - x = -(x - 3), the factor x - 3 cancels and leaves -1/(3x). \"1/(3x)\" subtracts the two fractions in the wrong order, producing (x - 3)/(3x) and losing the negative sign. \"-1/x\" uses x rather than 3x as the common denominator, leaving (3 - x)/x. \"1/x\" makes both of those errors at once.",
+  "solve": "const c=[[\"-1/(3x)\",x=>-1/(3*x)],[\"1/(3x)\",x=>1/(3*x)],[\"-1/x\",x=>-1/x],[\"1/x\",x=>1/x]];const pick=w=>c.find(e=>Math.abs(e[1](5)-w)<1e-12)[0];const x=5;const v=(1/x-1/3)/(x-3);return pick(v);",
+  "distractor_solve": {
+   "1/(3x)": "const c=[[\"-1/(3x)\",x=>-1/(3*x)],[\"1/(3x)\",x=>1/(3*x)],[\"-1/x\",x=>-1/x],[\"1/x\",x=>1/x]];const pick=w=>c.find(e=>Math.abs(e[1](5)-w)<1e-12)[0];const x=5;const w=((x-3)/(3*x))/(x-3);return pick(w);",
+   "-1/x": "const c=[[\"-1/(3x)\",x=>-1/(3*x)],[\"1/(3x)\",x=>1/(3*x)],[\"-1/x\",x=>-1/x],[\"1/x\",x=>1/x]];const pick=w=>c.find(e=>Math.abs(e[1](5)-w)<1e-12)[0];const x=5;const w=((3-x)/x)/(x-3);return pick(w);",
+   "1/x": "const c=[[\"-1/(3x)\",x=>-1/(3*x)],[\"1/(3x)\",x=>1/(3*x)],[\"-1/x\",x=>-1/x],[\"1/x\",x=>1/x]];const pick=w=>c.find(e=>Math.abs(e[1](5)-w)<1e-12)[0];const x=5;const w=((x-3)/x)/(x-3);return pick(w);"
+  }
+ },
+ {
+  "id": "SAM11-08",
+  "domain": "Advanced Math",
+  "subskill": "an exponential equation with three powers of one base",
+  "difficulty": "medium",
+  "prompt": "What is the solution to the equation (4^x)(8^(x+2)) = 32^3 ?",
+  "choices": [
+   "1.8",
+   "3",
+   "2.25",
+   "0.4"
+  ],
+  "correct_answer": "1.8",
+  "explanation": "Writing every base as a power of 2 gives 4^x = 2^(2x), 8^(x+2) = 2^(3x+6), and 32^3 = 2^15. The product on the left is 2^(2x + 3x + 6), so 5x + 6 = 15 and x = 9/5 = 1.8. \"3\" solves 5x = 15, losing the 6 that comes from the +2 inside 8^(x+2). \"2.25\" solves 4x = 9, which follows from writing 4^x as 2^x instead of 2^(2x). \"0.4\" solves 5x + 6 = 8, from writing 32^3 as 2^(5+3) rather than 2^(5*3).",
+  "solve": "return (15-6)/5;",
+  "distractor_solve": {
+   "3": "return 15/5;",
+   "2.25": "return (15-6)/4;",
+   "0.4": "return (8-6)/5;"
+  }
+ },
+ {
+  "id": "SAM11-09",
+  "domain": "Advanced Math",
+  "subskill": "rearranging a relation for a squared variable",
+  "difficulty": "medium",
+  "prompt": "The equation z = (3y^2 + 1)/x, where x > 0 and y > 0, relates the variables x, y, and z. Which of the following gives y in terms of x and z ?",
+  "choices": [
+   "y = sqrt((xz - 1)/3)",
+   "y = sqrt((xz + 1)/3)",
+   "y = sqrt(xz/3 - 1)",
+   "y = sqrt(xz/3 + 1)"
+  ],
+  "correct_answer": "y = sqrt((xz - 1)/3)",
+  "explanation": "Multiplying both sides by x gives xz = 3y^2 + 1. Subtracting 1 gives 3y^2 = xz - 1, dividing by 3 gives y^2 = (xz - 1)/3, and since y > 0 the positive square root is taken: y = sqrt((xz - 1)/3). \"y = sqrt((xz + 1)/3)\" adds the 1 instead of subtracting it when the constant is moved across. \"y = sqrt(xz/3 - 1)\" divides only the xz term by 3, leaving the 1 undivided. \"y = sqrt(xz/3 + 1)\" makes both of those errors at once.",
+  "solve": "const c=[[\"y = sqrt((xz - 1)/3)\",(x,z)=>Math.sqrt((x*z-1)/3)],[\"y = sqrt((xz + 1)/3)\",(x,z)=>Math.sqrt((x*z+1)/3)],[\"y = sqrt(xz/3 - 1)\",(x,z)=>Math.sqrt(x*z/3-1)],[\"y = sqrt(xz/3 + 1)\",(x,z)=>Math.sqrt(x*z/3+1)]];const x=3,y0=2,z=(3*y0*y0+1)/x;const y=Math.sqrt((x*z-1)/3);return c.find(e=>Math.abs(e[1](x,z)-y)<1e-9)[0];",
+  "distractor_solve": {
+   "y = sqrt((xz + 1)/3)": "const c=[[\"y = sqrt((xz - 1)/3)\",(x,z)=>Math.sqrt((x*z-1)/3)],[\"y = sqrt((xz + 1)/3)\",(x,z)=>Math.sqrt((x*z+1)/3)],[\"y = sqrt(xz/3 - 1)\",(x,z)=>Math.sqrt(x*z/3-1)],[\"y = sqrt(xz/3 + 1)\",(x,z)=>Math.sqrt(x*z/3+1)]];const x=3,y0=2,z=(3*y0*y0+1)/x;const w=Math.sqrt((x*z+1)/3);return c.find(e=>Math.abs(e[1](x,z)-w)<1e-9)[0];",
+   "y = sqrt(xz/3 - 1)": "const c=[[\"y = sqrt((xz - 1)/3)\",(x,z)=>Math.sqrt((x*z-1)/3)],[\"y = sqrt((xz + 1)/3)\",(x,z)=>Math.sqrt((x*z+1)/3)],[\"y = sqrt(xz/3 - 1)\",(x,z)=>Math.sqrt(x*z/3-1)],[\"y = sqrt(xz/3 + 1)\",(x,z)=>Math.sqrt(x*z/3+1)]];const x=3,y0=2,z=(3*y0*y0+1)/x;const w=Math.sqrt(x*z/3-1);return c.find(e=>Math.abs(e[1](x,z)-w)<1e-9)[0];",
+   "y = sqrt(xz/3 + 1)": "const c=[[\"y = sqrt((xz - 1)/3)\",(x,z)=>Math.sqrt((x*z-1)/3)],[\"y = sqrt((xz + 1)/3)\",(x,z)=>Math.sqrt((x*z+1)/3)],[\"y = sqrt(xz/3 - 1)\",(x,z)=>Math.sqrt(x*z/3-1)],[\"y = sqrt(xz/3 + 1)\",(x,z)=>Math.sqrt(x*z/3+1)]];const x=3,y0=2,z=(3*y0*y0+1)/x;const w=Math.sqrt(x*z/3+1);return c.find(e=>Math.abs(e[1](x,z)-w)<1e-9)[0];"
+  }
+ },
+ {
+  "id": "SAM11-10",
+  "domain": "Advanced Math",
+  "subskill": "a quadratic from a word problem with a root to reject",
+  "difficulty": "hard",
+  "prompt": "Two positive numbers differ by 3, and the sum of their squares is 65. What is the greater of the two numbers?",
+  "choices": [
+   "7",
+   "4",
+   "-4",
+   "28"
+  ],
+  "correct_answer": "7",
+  "explanation": "Call the greater number x, so the lesser is x - 3. Then x^2 + (x - 3)^2 = 65, which expands to 2x^2 - 6x - 56 = 0, or x^2 - 3x - 28 = 0, factoring as (x - 7)(x + 4) = 0. The candidates are 7 and -4, and only 7 gives two positive numbers: 7 and 4, whose squares are 49 and 16. \"4\" is the lesser of the two numbers rather than the greater. \"-4\" is the candidate the condition that both numbers be positive rules out. \"28\" is the constant term of x^2 - 3x - 28, the product of the two candidates rather than either of them.",
+  "solve": "const d=Math.sqrt(9+4*28);const rs=[(3+d)/2,(3-d)/2];return rs.filter(v=>v>0&&v-3>0)[0];",
+  "distractor_solve": {
+   "4": "const d=Math.sqrt(9+4*28);const rs=[(3+d)/2,(3-d)/2];return rs.filter(v=>v>0)[0]-3;",
+   "-4": "const d=Math.sqrt(9+4*28);const rs=[(3+d)/2,(3-d)/2];return rs.filter(v=>v<0)[0];",
+   "28": "return (65-9)/2;"
+  }
+ },
+ {
+  "id": "SAM11-11",
+  "domain": "Advanced Math",
+  "subskill": "the end behavior of a rational function",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (6x^2 + 5x)/(2x^2 - 1). As x increases without bound, the values of f(x) get closer and closer to which of the following?",
+  "choices": [
+   "3",
+   "-6",
+   "2.5",
+   "0"
+  ],
+  "correct_answer": "3",
+  "explanation": "Dividing numerator and denominator by x^2 rewrites f(x) as (6 + 5/x)/(2 - 1/x^2). As x grows, 5/x and 1/x^2 both shrink toward 0, so f(x) approaches 6/2 = 3. At x = 1,000 the value is already 3.0025. \"2.5\" is the ratio of the coefficients of x, 5/2, rather than the ratio of the leading coefficients. \"-6\" divides the leading coefficient of the numerator by the constant term of the denominator, 6/(-1). \"0\" is what the expression would approach if the numerator had lower degree than the denominator, as (6x + 5)/(2x^2 - 1) does.",
+  "solve": "const L=6/2;const x=1e6;const v=(6*x*x+5*x)/(2*x*x-1);if(Math.abs(v-L)>1e-4)throw new Error('limit check failed');return L;",
+  "distractor_solve": {
+   "2.5": "return 5/2;",
+   "-6": "return 6/(-1);",
+   "0": "const x=1e6;return Math.round((6*x+5)/(2*x*x-1));"
+  }
+ },
+ {
+  "id": "SAM11-12",
+  "domain": "Advanced Math",
+  "subskill": "a nonlinear system solved by substitution",
+  "difficulty": "medium",
+  "prompt": "If xy^2 = 54 and x = 2y, where y > 0, what is the value of y ?",
+  "choices": [
+   "3",
+   "6",
+   "27",
+   "18"
+  ],
+  "correct_answer": "3",
+  "explanation": "Substituting x = 2y into xy^2 = 54 gives (2y)(y^2) = 2y^3 = 54, so y^3 = 27 and y = 3. Checking, x = 6 and (6)(9) = 54. \"6\" is the value of x, the other unknown in the system. \"27\" is y^3, reported before the cube root is taken. \"18\" treats y^3 as 3y and solves 3y = 54, dropping both the factor 2 and the cube root.",
+  "solve": "return Math.cbrt(54/2);",
+  "distractor_solve": {
+   "6": "return 2*Math.cbrt(54/2);",
+   "27": "return 54/2;",
+   "18": "return 54/3;"
+  }
+ },
+ {
+  "id": "SAM11-13",
+  "domain": "Advanced Math",
+  "subskill": "the remainder theorem with a divisor that is not monic",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = 4x^3 + 8x^2 - 3x + 5. What is the remainder when p(x) is divided by 2x - 1 ?",
+  "choices": [
+   "6",
+   "14",
+   "5",
+   "9"
+  ],
+  "correct_answer": "6",
+  "explanation": "The remainder when p is divided by a linear expression is the value of p at the number that makes the divisor zero. Here 2x - 1 = 0 at x = 1/2, not at x = 1, so the remainder is p(1/2) = 4(1/8) + 8(1/4) - 3(1/2) + 5 = 0.5 + 2 - 1.5 + 5 = 6. \"14\" is p(1), from reading the divisor as x - 1. \"5\" is the constant term of p, which is the remainder on division by x alone, not by 2x - 1. \"9\" evaluates at x = 1/2 but adds the -3x term instead of subtracting it, giving 0.5 + 2 + 1.5 + 5.",
+  "solve": "const p=x=>4*x*x*x+8*x*x-3*x+5;return p(1/2);",
+  "distractor_solve": {
+   "14": "const p=x=>4*x*x*x+8*x*x-3*x+5;return p(1);",
+   "5": "const p=x=>4*x*x*x+8*x*x-3*x+5;return p(0);",
+   "9": "const q=x=>4*x*x*x+8*x*x+3*x+5;return q(1/2);"
+  }
+ },
+ {
+  "id": "SAM11-14",
+  "domain": "Advanced Math",
+  "subskill": "a single coefficient of a product of three binomials",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = (x - 4)(2x + 1)(x + 3). What is the coefficient of x in p(x) ?",
+  "choices": [
+   "-25",
+   "-21",
+   "-12",
+   "-1"
+  ],
+  "correct_answer": "-25",
+  "explanation": "Multiplying the first two factors gives (x - 4)(2x + 1) = 2x^2 - 7x - 4. Multiplying that by x + 3, the x terms come from two places: (-7x)(3) = -21x and (-4)(x) = -4x. Together they give -25x, so the coefficient is -25. The full expansion is 2x^3 - x^2 - 25x - 12. \"-21\" collects only (-7x)(3) and misses the -4 multiplied by x. \"-12\" is the constant term of p, the product of the three constants. \"-1\" is the coefficient of x^2 rather than of x.",
+  "solve": "const mul=(a,b)=>{const r=new Array(a.length+b.length-1).fill(0);for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++)r[i+j]+=a[i]*b[j];return r;};const p=mul(mul([-4,1],[1,2]),[3,1]);return p[1];",
+  "distractor_solve": {
+   "-21": "const mul=(a,b)=>{const r=new Array(a.length+b.length-1).fill(0);for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++)r[i+j]+=a[i]*b[j];return r;};const q=mul([-4,1],[1,2]);return q[1]*3;",
+   "-12": "const mul=(a,b)=>{const r=new Array(a.length+b.length-1).fill(0);for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++)r[i+j]+=a[i]*b[j];return r;};const p=mul(mul([-4,1],[1,2]),[3,1]);return p[0];",
+   "-1": "const mul=(a,b)=>{const r=new Array(a.length+b.length-1).fill(0);for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++)r[i+j]+=a[i]*b[j];return r;};const p=mul(mul([-4,1],[1,2]),[3,1]);return p[2];"
+  }
+ },
+ {
+  "id": "SAM11-15",
+  "domain": "Advanced Math",
+  "subskill": "a quadratic from an area with a uniform border",
+  "difficulty": "hard",
+  "prompt": "A rectangular photograph measuring 8 inches by 10 inches is mounted with a border of uniform width on all four sides. The framed rectangle has an area of 168 square inches. What is the width, in inches, of the border?",
+  "choices": [
+   "2",
+   "11",
+   "4",
+   "12"
+  ],
+  "correct_answer": "2",
+  "explanation": "A border of width w runs along both ends of each dimension, so each dimension grows by 2w and the framed rectangle measures (8 + 2w) by (10 + 2w). Then (8 + 2w)(10 + 2w) = 168 gives 4w^2 + 36w + 80 = 168, so w^2 + 9w - 22 = 0 and (w + 11)(w - 2) = 0. A width cannot be negative, so w = 2, and the frame is 12 by 14, an area of 168. \"11\" is the size of the negative solution, which no border can have. \"4\" comes from adding the border to only one side of each dimension, solving (8 + w)(10 + w) = 168. \"12\" is the shorter side of the framed rectangle, 8 + 2(2), rather than the width of the border.",
+  "solve": "const d=Math.sqrt(81+88);return [(-9+d)/2,(-9-d)/2].filter(w=>w>0)[0];",
+  "distractor_solve": {
+   "11": "const d=Math.sqrt(81+88);return Math.abs((-9-d)/2);",
+   "4": "const e=Math.sqrt(324+352);return (-18+e)/2;",
+   "12": "const d=Math.sqrt(81+88);const w=(-9+d)/2;return 8+2*w;"
+  }
+ },
+ {
+  "id": "SAM11-16",
+  "domain": "Advanced Math",
+  "subskill": "the least value of a quadratic on a restricted interval",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = x^2 - 10x + 18 for 0 <= x <= 3. What is the least value of f on this interval?",
+  "choices": [
+   "-3",
+   "-7",
+   "18",
+   "5"
+  ],
+  "correct_answer": "-3",
+  "explanation": "The graph of f opens upward with its vertex at x = 10/2 = 5, and 5 is not in the interval 0 <= x <= 3. On that interval f is still decreasing, so its least value occurs at the right endpoint: f(3) = 9 - 30 + 18 = -3. \"-7\" is f(5), the least value the function reaches anywhere, at an input the interval does not contain. \"18\" is f(0), the value at the other endpoint, which is the greatest value on the interval rather than the least. \"5\" is the input at which the unrestricted minimum occurs, not a value of f.",
+  "solve": "const f=x=>x*x-10*x+18;let m=Infinity;for(let i=0;i<=30000;i++){const x=i/10000;m=Math.min(m,f(x));}return Math.round(m*1e6)/1e6;",
+  "distractor_solve": {
+   "-7": "const f=x=>x*x-10*x+18;return f(10/2);",
+   "18": "const f=x=>x*x-10*x+18;return f(0);",
+   "5": "return 10/2;"
+  }
+ },
+ {
+  "id": "SAM11-17",
+  "domain": "Advanced Math",
+  "subskill": "the maximum of a quadratic written as a product",
+  "difficulty": "medium",
+  "prompt": "A shop's daily revenue R, in dollars, when each item is priced at p dollars is modeled by R(p) = p(80 - 2p). What is the maximum daily revenue, in dollars?",
+  "choices": [
+   "800",
+   "20",
+   "1200",
+   "1600"
+  ],
+  "correct_answer": "800",
+  "explanation": "R is zero at p = 0 and at p = 40, and the graph of a quadratic is symmetric about the midpoint of its zeros, so the revenue is greatest at p = 20. There R(20) = 20(80 - 40) = 20(40) = 800 dollars. \"20\" is the price that produces the maximum revenue, not the revenue itself. \"1200\" evaluates 20(80 - 20), using 80 - p in place of 80 - 2p. \"1600\" multiplies the price 20 by 80, dropping the -2p term from the second factor.",
+  "solve": "const p=40/2;return p*(80-2*p);",
+  "distractor_solve": {
+   "20": "return 40/2;",
+   "1200": "const p=40/2;return p*(80-p);",
+   "1600": "return (40/2)*80;"
+  }
+ },
+ {
+  "id": "SAM11-18",
+  "domain": "Advanced Math",
+  "subskill": "the zeros of a polynomial given in partly factored form",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = (2x - 3)(x^2 + x - 12). What is the sum of all zeros of p ?",
+  "choices": [
+   "0.5",
+   "2.5",
+   "1.5",
+   "-4"
+  ],
+  "correct_answer": "0.5",
+  "explanation": "The factor 2x - 3 is zero at x = 3/2. The factor x^2 + x - 12 factors as (x + 4)(x - 3), which is zero at x = -4 and x = 3. The three zeros are 3/2, 3, and -4, and their sum is 3/2 + 3 - 4 = 0.5. \"2.5\" reads the zeros straight off the signs printed inside the factors, using -3 and 4 in place of 3 and -4. \"1.5\" is the zero of the linear factor alone, leaving the quadratic factor's zeros out of the sum. \"-4\" is the least of the three zeros rather than their sum.",
+  "solve": "const zs=[3/2,3,-4];return zs.reduce((t,z)=>t+z,0);",
+  "distractor_solve": {
+   "2.5": "return 3/2+(-3)+4;",
+   "1.5": "return 3/2;",
+   "-4": "const zs=[3/2,3,-4];return Math.min(...zs);"
+  }
+ },
+ {
+  "id": "SAM11-19",
+  "domain": "Advanced Math",
+  "subskill": "using the symmetry of a quadratic graph",
+  "difficulty": "hard",
+  "prompt": "The function f is a quadratic function with f(2) = f(6) = 5 and f(1) = 0. What is the value of f(7) ?",
+  "choices": [
+   "0",
+   "-7",
+   "-16",
+   "9"
+  ],
+  "correct_answer": "0",
+  "explanation": "A quadratic takes equal values at inputs equally far from its axis of symmetry, so the axis is halfway between 2 and 6, at x = 4. The input 7 is three units to the right of the axis and the input 1 is three units to the left, so f(7) = f(1) = 0. \"-7\" reflects 7 to 0 rather than to 1, which would require an axis at x = 3.5, and reports f(0). \"-16\" reflects 7 to -1, which would require an axis at x = 3, and reports f(-1). \"9\" is the greatest value the function attains, at the vertex, not its value at 7.",
+  "solve": "const A=(0-5)/(Math.pow(1-4,2)-Math.pow(2-4,2));const K=5-A*Math.pow(2-4,2);const f=x=>A*Math.pow(x-4,2)+K;return f(7);",
+  "distractor_solve": {
+   "-7": "const A=(0-5)/(Math.pow(1-4,2)-Math.pow(2-4,2));const K=5-A*Math.pow(2-4,2);const f=x=>A*Math.pow(x-4,2)+K;return f(0);",
+   "-16": "const A=(0-5)/(Math.pow(1-4,2)-Math.pow(2-4,2));const K=5-A*Math.pow(2-4,2);const f=x=>A*Math.pow(x-4,2)+K;return f(-1);",
+   "9": "const A=(0-5)/(Math.pow(1-4,2)-Math.pow(2-4,2));const K=5-A*Math.pow(2-4,2);const f=x=>A*Math.pow(x-4,2)+K;return K;"
+  }
+ },
+ {
+  "id": "SAM11-20",
+  "domain": "Advanced Math",
+  "subskill": "a power of a product raised to a rational exponent",
+  "difficulty": "medium",
+  "prompt": "Which of the following is equivalent to (16x^8y^-4)^(3/4), where x > 0 and y > 0 ?",
+  "choices": [
+   "8x^6/y^3",
+   "8x^6y^3",
+   "2x^6/y^3",
+   "2x^6y^3"
+  ],
+  "correct_answer": "8x^6/y^3",
+  "explanation": "Each factor takes the exponent 3/4: 16^(3/4) = (16^(1/4))^3 = 2^3 = 8, (x^8)^(3/4) = x^6, and (y^-4)^(3/4) = y^-3 = 1/y^3. The product is 8x^6/y^3. \"2x^6/y^3\" takes only the fourth root of 16, stopping before cubing it. \"8x^6y^3\" keeps the numerical coefficient but drops the negative sign on the exponent of y, putting y^3 in the numerator. \"2x^6y^3\" makes both of those errors at once.",
+  "solve": "const c=[[\"8x^6/y^3\",(x,y)=>8*Math.pow(x,6)/Math.pow(y,3)],[\"8x^6y^3\",(x,y)=>8*Math.pow(x,6)*Math.pow(y,3)],[\"2x^6/y^3\",(x,y)=>2*Math.pow(x,6)/Math.pow(y,3)],[\"2x^6y^3\",(x,y)=>2*Math.pow(x,6)*Math.pow(y,3)]];const x=2,y=2;const v=Math.pow(16*Math.pow(x,8)*Math.pow(y,-4),3/4);return c.find(e=>Math.abs(e[1](x,y)-v)<1e-9)[0];",
+  "distractor_solve": {
+   "8x^6y^3": "const c=[[\"8x^6/y^3\",(x,y)=>8*Math.pow(x,6)/Math.pow(y,3)],[\"8x^6y^3\",(x,y)=>8*Math.pow(x,6)*Math.pow(y,3)],[\"2x^6/y^3\",(x,y)=>2*Math.pow(x,6)/Math.pow(y,3)],[\"2x^6y^3\",(x,y)=>2*Math.pow(x,6)*Math.pow(y,3)]];const x=2,y=2;const w=Math.pow(16,3/4)*Math.pow(x,6)*Math.pow(y,3);return c.find(e=>Math.abs(e[1](x,y)-w)<1e-9)[0];",
+   "2x^6/y^3": "const c=[[\"8x^6/y^3\",(x,y)=>8*Math.pow(x,6)/Math.pow(y,3)],[\"8x^6y^3\",(x,y)=>8*Math.pow(x,6)*Math.pow(y,3)],[\"2x^6/y^3\",(x,y)=>2*Math.pow(x,6)/Math.pow(y,3)],[\"2x^6y^3\",(x,y)=>2*Math.pow(x,6)*Math.pow(y,3)]];const x=2,y=2;const w=Math.pow(16,1/4)*Math.pow(x,6)*Math.pow(y,-3);return c.find(e=>Math.abs(e[1](x,y)-w)<1e-9)[0];",
+   "2x^6y^3": "const c=[[\"8x^6/y^3\",(x,y)=>8*Math.pow(x,6)/Math.pow(y,3)],[\"8x^6y^3\",(x,y)=>8*Math.pow(x,6)*Math.pow(y,3)],[\"2x^6/y^3\",(x,y)=>2*Math.pow(x,6)/Math.pow(y,3)],[\"2x^6y^3\",(x,y)=>2*Math.pow(x,6)*Math.pow(y,3)]];const x=2,y=2;const w=Math.pow(16,1/4)*Math.pow(x,6)*Math.pow(y,3);return c.find(e=>Math.abs(e[1](x,y)-w)<1e-9)[0];"
+  }
+ },
+ {
+  "id": "SAM11-21",
+  "domain": "Advanced Math",
+  "subskill": "a rational equation arising from a shared cost",
+  "difficulty": "hard",
+  "prompt": "The members of a club will share the $240 cost of a gift equally. If 4 more people join the club before the gift is bought, each member's share will be $2 less. How many members does the club have now?",
+  "choices": [
+   "20",
+   "24",
+   "10",
+   "12"
+  ],
+  "correct_answer": "20",
+  "explanation": "With n members each pays 240/n, and with n + 4 members each pays 240/(n + 4). The difference is 2 dollars: 240/n - 240/(n + 4) = 2. Multiplying through by n(n + 4) gives 240(n + 4) - 240n = 2n(n + 4), so 960 = 2n^2 + 8n and n^2 + 4n - 480 = 0, which factors as (n + 24)(n - 20) = 0. A membership cannot be negative, so n = 20. Checking, 240/20 = 12 and 240/24 = 10, a difference of 2. \"24\" is the membership after the four people join, not the membership now. \"10\" is the amount, in dollars, each member will pay once the four have joined. \"12\" is the amount each member pays now, in dollars, rather than the number of members.",
+  "solve": "const rs=[(-4+Math.sqrt(16+4*480))/2,(-4-Math.sqrt(16+4*480))/2];const n=rs.filter(v=>v>0)[0];return n;",
+  "distractor_solve": {
+   "24": "const rs=[(-4+Math.sqrt(16+4*480))/2,(-4-Math.sqrt(16+4*480))/2];const n=rs.filter(v=>v>0)[0];return n+4;",
+   "10": "const rs=[(-4+Math.sqrt(16+4*480))/2,(-4-Math.sqrt(16+4*480))/2];const n=rs.filter(v=>v>0)[0];return 240/(n+4);",
+   "12": "const rs=[(-4+Math.sqrt(16+4*480))/2,(-4-Math.sqrt(16+4*480))/2];const n=rs.filter(v=>v>0)[0];return 240/n;"
+  }
+ },
+ {
+  "id": "SAM11-22",
+  "domain": "Advanced Math",
+  "subskill": "solving a composition for the inner function",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 3x - 4. If f(g(x)) = 6x^2 + 5 for every value of x, which of the following defines g ?",
+  "choices": [
+   "g(x) = 2x^2 + 3",
+   "g(x) = 2x^2 + 1/3",
+   "g(x) = 2x^2 + 9",
+   "g(x) = 18x^2 + 19"
+  ],
+  "correct_answer": "g(x) = 2x^2 + 3",
+  "explanation": "Applying f to g(x) gives 3g(x) - 4, so 3g(x) - 4 = 6x^2 + 5. Adding 4 gives 3g(x) = 6x^2 + 9, and dividing every term by 3 gives g(x) = 2x^2 + 3. Checking, f(2x^2 + 3) = 6x^2 + 9 - 4 = 6x^2 + 5. \"g(x) = 2x^2 + 1/3\" subtracts the 4 instead of adding it, leaving 3g(x) = 6x^2 + 1. \"g(x) = 2x^2 + 9\" divides only the 6x^2 term by 3 and carries the 9 across unchanged. \"g(x) = 18x^2 + 19\" undoes f in the wrong direction, computing 3(6x^2 + 5) + 4 instead of solving for g(x).",
+  "solve": "const c=[[\"g(x) = 2x^2 + 3\",x=>2*x*x+3],[\"g(x) = 2x^2 + 1/3\",x=>2*x*x+1/3],[\"g(x) = 2x^2 + 9\",x=>2*x*x+9],[\"g(x) = 18x^2 + 19\",x=>18*x*x+19]];const pick=v=>c.find(e=>Math.abs(e[1](2)-v)<1e-9)[0];const t=x=>6*x*x+5;const f=v=>3*v-4;const g=c.find(e=>Math.abs(f(e[1](2))-t(2))<1e-9&&Math.abs(f(e[1](5))-t(5))<1e-9);return g[0];",
+  "distractor_solve": {
+   "g(x) = 2x^2 + 1/3": "const c=[[\"g(x) = 2x^2 + 3\",x=>2*x*x+3],[\"g(x) = 2x^2 + 1/3\",x=>2*x*x+1/3],[\"g(x) = 2x^2 + 9\",x=>2*x*x+9],[\"g(x) = 18x^2 + 19\",x=>18*x*x+19]];const pick=v=>c.find(e=>Math.abs(e[1](2)-v)<1e-9)[0];return pick((6*2*2+5-4)/3);",
+   "g(x) = 2x^2 + 9": "const c=[[\"g(x) = 2x^2 + 3\",x=>2*x*x+3],[\"g(x) = 2x^2 + 1/3\",x=>2*x*x+1/3],[\"g(x) = 2x^2 + 9\",x=>2*x*x+9],[\"g(x) = 18x^2 + 19\",x=>18*x*x+19]];const pick=v=>c.find(e=>Math.abs(e[1](2)-v)<1e-9)[0];return pick(6*2*2/3+9);",
+   "g(x) = 18x^2 + 19": "const c=[[\"g(x) = 2x^2 + 3\",x=>2*x*x+3],[\"g(x) = 2x^2 + 1/3\",x=>2*x*x+1/3],[\"g(x) = 2x^2 + 9\",x=>2*x*x+9],[\"g(x) = 18x^2 + 19\",x=>18*x*x+19]];const pick=v=>c.find(e=>Math.abs(e[1](2)-v)<1e-9)[0];return pick(3*(6*2*2+5)+4);"
+  }
+ },
+ {
+  "id": "SAM11-23",
+  "domain": "Advanced Math",
+  "subskill": "an equation containing two radicals",
+  "difficulty": "hard",
+  "prompt": "What is the solution to the equation sqrt(x + 7) - sqrt(x) = 1 ?",
+  "choices": [
+   "9",
+   "36",
+   "18",
+   "29"
+  ],
+  "correct_answer": "9",
+  "explanation": "Isolating one radical gives sqrt(x + 7) = 1 + sqrt(x). Squaring both sides gives x + 7 = 1 + 2*sqrt(x) + x; the middle term is what makes the two sides differ, and dropping it would leave 7 = 1. Cancelling x leaves 6 = 2*sqrt(x), so sqrt(x) = 3 and x = 9. Checking, sqrt(16) - sqrt(9) = 4 - 3 = 1. \"36\" reads 6 = 2*sqrt(x) as sqrt(x) = 6, dividing nothing by 2 before squaring. \"18\" squares 6 = 2*sqrt(x) as 36 = 2x, squaring the radical but not the 2 in front of it. \"29\" sets x + 7 equal to 36, attaching the 6 to the wrong radical.",
+  "solve": "return Math.pow(6/2,2);",
+  "distractor_solve": {
+   "36": "return Math.pow(6,2);",
+   "18": "return 36/2;",
+   "29": "return 36-7;"
+  }
+ },
+ {
+  "id": "SAM11-24",
+  "domain": "Advanced Math",
+  "subskill": "a strict discriminant condition answered over the integers",
+  "difficulty": "hard",
+  "prompt": "In the equation x^2 + kx + 25 = 0, k is a constant. If the equation has two distinct real solutions, what is the least possible positive integer value of k ?",
+  "choices": [
+   "11",
+   "10",
+   "5",
+   "100"
+  ],
+  "correct_answer": "11",
+  "explanation": "Two distinct real solutions require a strictly positive discriminant: k^2 - 4(1)(25) > 0, so k^2 > 100. Among positive values that means k > 10, and because the inequality is strict, k = 10 is not allowed; the least positive integer that works is 11. At k = 11 the discriminant is 121 - 100 = 21, which is positive. \"10\" is the boundary value, where the discriminant is 0 and the equation has exactly one solution rather than two. \"100\" is the value of k^2 at that boundary, reported before the square root is taken. \"5\" is the square root of 25, which is the constant term rather than the quantity 4ac that the discriminant compares k^2 with.",
+  "solve": "let k=1;while(k*k-4*1*25<=0)k++;return k;",
+  "distractor_solve": {
+   "10": "return Math.sqrt(4*1*25);",
+   "5": "return Math.sqrt(25);",
+   "100": "return 4*1*25;"
+  }
+ }
+]
