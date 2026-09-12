@@ -1,0 +1,277 @@
+[
+ {
+  "id": "IV12-01",
+  "kind": "synonym",
+  "prompt": "NIMBLE",
+  "choices": [
+   "graceful",
+   "agile",
+   "upright",
+   "sturdy"
+  ]
+ },
+ {
+  "id": "IV12-02",
+  "kind": "synonym",
+  "prompt": "BOAST",
+  "choices": [
+   "brag",
+   "complain",
+   "insist",
+   "announce"
+  ]
+ },
+ {
+  "id": "IV12-03",
+  "kind": "synonym",
+  "prompt": "FORBID",
+  "choices": [
+   "review",
+   "outlaw",
+   "enforce",
+   "delay"
+  ]
+ },
+ {
+  "id": "IV12-04",
+  "kind": "synonym",
+  "prompt": "SPARSE",
+  "choices": [
+   "thinly scattered",
+   "crowded together",
+   "evenly trimmed",
+   "newly planted"
+  ]
+ },
+ {
+  "id": "IV12-05",
+  "kind": "synonym",
+  "prompt": "BAFFLE",
+  "choices": [
+   "persuade",
+   "puzzle",
+   "discourage",
+   "irritate"
+  ]
+ },
+ {
+  "id": "IV12-06",
+  "kind": "synonym",
+  "prompt": "OBSTINATE",
+  "choices": [
+   "unreliable",
+   "unconcerned",
+   "unyielding",
+   "unhurried"
+  ]
+ },
+ {
+  "id": "IV12-07",
+  "kind": "synonym",
+  "prompt": "VIGILANT",
+  "choices": [
+   "watchful",
+   "patient",
+   "hopeful",
+   "apprehensive"
+  ]
+ },
+ {
+  "id": "IV12-08",
+  "kind": "synonym",
+  "prompt": "LENIENT",
+  "choices": [
+   "merciful",
+   "thorough",
+   "formal",
+   "hesitant"
+  ]
+ },
+ {
+  "id": "IV12-09",
+  "kind": "synonym",
+  "prompt": "DIMINISH",
+  "choices": [
+   "linger",
+   "stabilize",
+   "dwindle",
+   "fluctuate"
+  ]
+ },
+ {
+  "id": "IV12-10",
+  "kind": "synonym",
+  "prompt": "ARDUOUS",
+  "choices": [
+   "demanding",
+   "hazardous",
+   "unfamiliar",
+   "tedious"
+  ]
+ },
+ {
+  "id": "IV12-11",
+  "kind": "synonym",
+  "prompt": "SUPERFLUOUS",
+  "choices": [
+   "unexplained",
+   "uncorroborated",
+   "unnecessary",
+   "unfinished"
+  ]
+ },
+ {
+  "id": "IV12-12",
+  "kind": "synonym",
+  "prompt": "PARSIMONIOUS",
+  "choices": [
+   "unwilling to spend",
+   "openhanded with friends",
+   "quick to borrow",
+   "unable to save"
+  ]
+ },
+ {
+  "id": "IV12-13",
+  "kind": "synonym",
+  "prompt": "INDOLENT",
+  "choices": [
+   "timid",
+   "careless",
+   "lazy",
+   "clumsy"
+  ]
+ },
+ {
+  "id": "IV12-15",
+  "kind": "sentence_completion",
+  "prompt": "The trail map shows a footbridge over the creek, but the bridge washed out two winters ago and the ranger station has not put out a new printing since, so the map is -------.",
+  "choices": [
+   "crowded",
+   "unofficial",
+   "illegible",
+   "outdated"
+  ]
+ },
+ {
+  "id": "IV12-16",
+  "kind": "sentence_completion",
+  "prompt": "Adaeze read the assembly manual twice before she opened the box, laid all twenty-nine parts out on the floor in the order the diagram gave them, and had the shelf standing in forty minutes; her approach was -------.",
+  "choices": [
+   "improvised",
+   "methodical",
+   "fortunate",
+   "inspired"
+  ]
+ },
+ {
+  "id": "IV12-17",
+  "kind": "sentence_completion",
+  "prompt": "The greenhouse was built against the north wall of the warehouse, and the plants on the back bench, the one farthest from the glass, have not put out a new leaf since March, though they are watered and fed on the same schedule as the benches that are thriving; what that bench lacks is -------.",
+  "choices": [
+   "water",
+   "light",
+   "space",
+   "fertilizer"
+  ]
+ },
+ {
+  "id": "IV12-21",
+  "kind": "sentence_completion",
+  "prompt": "The label beside the painting gives the artist's name, the year, and the medium, and says nothing about the scene, the sitter, or how the picture came to the museum; to a visitor who wants to know what he is looking at, the label is -------.",
+  "choices": [
+   "ornate",
+   "inaccurate",
+   "unhelpful",
+   "faded"
+  ]
+ },
+ {
+  "id": "IV12-22",
+  "kind": "sentence_completion",
+  "prompt": "The committee's minutes are ------- about who proposed the motion and ------- about who opposed it: three names are set down at the head of the entry, and the rest of it says only that there was discussion.",
+  "choices": [
+   "formal . . . lengthy",
+   "precise . . . silent",
+   "brief . . . thorough",
+   "cautious . . . admiring"
+  ]
+ },
+ {
+  "id": "IV12-23",
+  "kind": "sentence_completion",
+  "prompt": "For thirty years the ferry crossed whenever the tide allowed and so never twice at the same hour, and in all that time it failed to cross only once; the service was dependable but -------.",
+  "choices": [
+   "expensive",
+   "slow",
+   "cramped",
+   "irregular"
+  ]
+ },
+ {
+  "id": "IV12-24",
+  "kind": "sentence_completion",
+  "prompt": "The new bylaw forbids posters on the lampposts and says nothing about the fence along the empty lot, the bus shelter, or the blank side wall of the library, so as a rule against flyposting its coverage is -------.",
+  "choices": [
+   "temporary",
+   "illegal",
+   "symbolic",
+   "partial"
+  ]
+ },
+ {
+  "id": "IV12-25",
+  "kind": "sentence_completion",
+  "prompt": "The census of the island counted every occupied house, but it was taken in February, when half the summer cottages stand empty and the families who own them are counted in the cities instead; the figure it produced is accurate for winter and ------- for August.",
+  "choices": [
+   "identical",
+   "generous",
+   "unavailable",
+   "misleading"
+  ]
+ },
+ {
+  "id": "IV12-26",
+  "kind": "sentence_completion",
+  "prompt": "Kwan has kept the shop's books in pencil since 1978, and when a figure changes he erases it and writes the new one in the same square; the books show what every figure is, but not what it -------.",
+  "choices": [
+   "means",
+   "cost",
+   "replaced",
+   "totals"
+  ]
+ },
+ {
+  "id": "IV12-27",
+  "kind": "sentence_completion",
+  "prompt": "Every edition of the atlas printed after 1931 took its coastline from the edition before it, and the 1931 survey was flown in a single afternoon of poor visibility; sixty years of maps are therefore no more accurate than their -------.",
+  "choices": [
+   "source",
+   "scale",
+   "printing",
+   "binding"
+  ]
+ },
+ {
+  "id": "IV12-29",
+  "kind": "sentence_completion",
+  "prompt": "The prize goes each year to the best first novel written in the county, and in four of the last six years exactly one first novel was written in the county; what a winner's name really records is less the merit of the book than the ------- of the field.",
+  "choices": [
+   "age",
+   "ambition",
+   "generosity",
+   "size"
+  ]
+ },
+ {
+  "id": "IV12-30",
+  "kind": "sentence_completion",
+  "prompt": "The treaty fixes the boundary 'at the river,' and the river has since moved nine hundred yards west of where it ran on the day the treaty was signed; the clause drafted to put the question beyond argument has turned out to be the ------- of the dispute.",
+  "choices": [
+   "exception",
+   "resolution",
+   "record",
+   "origin"
+  ]
+ }
+]

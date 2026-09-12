@@ -1,0 +1,36 @@
+{
+  "1": {"pick":"B","basis":"confident","legal":4,"why":"knowledge - motor rehearsal plausibly explains a MOTOR reproduction gap and not a recall gap, but all four assignments of the two gaps stay legal with the passage hidden"},
+  "2": {"pick":"B","basis":"guess","legal":4,"why":"none - four bare adjectives from unrelated semantic fields; nothing is decidable without the sentence"},
+  "3": {"pick":"B","basis":"guess","legal":4,"why":"knowledge - couplet-answering-couplet is the standard claim about psalm parallelism, but memory, speaker-tracking and turn-location are all things a text could actually argue"},
+  "4": {"pick":"A","basis":"guess","legal":4,"why":"none - clean 2x2 (gravestones/boulders x smaller/larger) in one fixed clause; no cell is rejectable blind"},
+  "5": {"pick":"C","basis":"guess","legal":4,"why":"none - all four genuinely reconcile a rows-planted figure with a canopy figure; C is only the likeliest authorial choice, not the sole legal one"},
+  "6": {"pick":"C","basis":"guess","legal":4,"why":"none - A/B share a 'share of the gap, X covers the rest' frame and C/D take the endpoints, but a text can report any of the four outcomes"},
+  "7": {"pick":"B","basis":"confident","legal":4,"why":"knowledge - slower time-to-first-decision is the standard reported cost of posting reviewer reports, yet submission volume, desk-reject rate and institutional spread are all claims a pair of texts could share"},
+  "8": {"pick":"B","basis":"guess","legal":4,"why":"none - four live senses of 'plain'; the target sense is entirely in the withheld sentence"},
+  "9": {"pick":"C","basis":"guess","legal":4,"why":"none - four standard confounds (price size, co-occurring event, pre-trend, measurement change); each is a legal rebuttal to a free-admission conclusion"},
+  "10": {"pick":"C","basis":"guess","legal":4,"why":"none - one 'supplies two reasons to...' frame with four different objects; all four are ordinary functions for a closing sentence"},
+  "11": {"pick":"B","basis":"guess","legal":4,"why":"none - discharged/concluded/quieted/clarified are all real senses of 'settled' and the context is withheld"},
+  "12": {"pick":"A","basis":"guess","legal":4,"why":"none - 'prosperity' looks like the everyday-sense trap, but that is test-wiseness, not something defensible to a passage-holder"},
+  "13": {"pick":"D","basis":"guess","legal":4,"why":"none - co-intervention, staff behaviour, cohort age and actigraphy validity are four legal objections to a sleep-duration finding"},
+  "14": {"pick":"A","basis":"guess","legal":4,"why":"none - perceive/chronicle/indicate/acknowledge are all standard senses of 'register'"},
+  "15": {"pick":"D","basis":"guess","legal":4,"why":"none - four unrelated adjectives, no sentence to constrain them"},
+  "16": {"pick":"B","basis":"guess","legal":4,"why":"none - fencing, water table, survey month and beaver ponds are all documented alternatives to a browsing account of willow growth"},
+  "17": {"pick":"D","basis":"guess","legal":4,"why":"none - 'contemporaneous' is the commonest SAT key for record-making, but that is frequency, not a rejection of the other three"},
+  "18": {"pick":"C","basis":"guess","legal":4,"why":"shape - C generalizes B, and D risks collapsing the contrast the stem sets up, but a text could report an unexplained pattern, a raiding cause, or the same danger at a different date"},
+  "19": {"pick":"C","basis":"guess","legal":4,"why":"none - sowing date, scoring method, legume nitrogen and weed burden are four legal responses to a rotation yield gain"},
+  "20": {"pick":"C","basis":"guess","legal":4,"why":"shape - B is faintly circular (testing a reading of the contracts against the contracts) and A moves to a rival label, but neither is a rejection I would defend against the real text"},
+  "21": {"pick":"D","basis":"guess","legal":4,"why":"none - four unrelated adjectives with the sentence withheld"},
+  "22": {"pick":"C","basis":"guess","legal":4,"why":"none - B's 'those same sensors' presupposes sensors the passage would supply; walking transects, park sensors, airport station and modeled temperatures are all real comparisons for a heat map"},
+  "23": {"pick":"C","basis":"confident","legal":4,"why":"act - C is the functional-necessity explanation and the other three are circumstantial, which is the usual authorial shape for 'survived because'; still, all four are legal arguments a text could make"},
+  "24": {"pick":"C","basis":"guess","legal":4,"why":"none - disputing counts, praising the later cut, costing the change, or tracing the schedule's origin are all ordinary closings for this structure"},
+
+  "cross_item_rule": "One construction held across all 24 and is why nothing eliminates: every option in an item repeats the stem's clause verbatim and varies a SINGLE axis (which gap, which surface, which confound, which object of 'two reasons to...'). No lone absolute among hedges, no lone long option, no frame-breaker, no option performing a rhetorical act the others do not - fired 0 times in 24. The only recurring pull was solver-side and did not license any rejection: (a) knowledge of the field's standard true claim (items 1, 3, 7, 16), and (b) a prior that these authors key the measurement/confound option in alternative-explanation menus (5, 9, 13, 22). Both are guesses about authoring habit, not eliminations - I could not defend either to someone holding the passage.",
+
+  "shared_frames": [
+    {"items":[1,7,9,13,16,19],"frame":"Paired-text 'how would Text 2 respond/agree' items whose options are all menus of alternative explanations for one reported effect (confound / co-intervention / pre-trend / measurement artifact / mechanism). Solving one does not give the answer to another, but the SET teaches which confound type this batch tends to key; if the key is the measurement-artifact option in most of them, that is a cross-item tell worth a with-passage check on 9, 13 and 22 together."},
+    {"items":[4,5,10,20],"frame":"'Function of the last/second sentence' items, each with a fixed lead clause and a varied object. Item 4 is a strict 2x2 and item 10 a strict 'two reasons to X' quartet - the tightest anti-elimination construction in the batch."},
+    {"items":[6,18,24],"frame":"'Overall structure' items built as a shared three-beat spine with only the final beat varying. Same authoring template; none leaks."},
+    {"items":[2,15,17,21],"frame":"Word-completion items: four single adjectives, no shared morphology or field, nothing to eliminate on."},
+    {"items":[8,11,12,14],"frame":"Vocab-in-context items: four genuine senses of a common polysemous word. Item 12's 'prosperity' is the only option a test-wise solver would shade down, and that is a habit prior, not a rejection."}
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "AM3S-01": {
+    "pick": "A",
+    "basis": "guess",
+    "legal": 4,
+    "why": "The four options are simply the four distinct values that appear in the stem's list, in no informative order; no option is out of range, mis-formed, or a function of the others, so nothing narrows without actually tallying."
+  },
+  "AM3S-02": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 4,
+    "why": "Source is the withheld dot plot; 11, 9, 14, 6 are four plain lap counts with no complement pair, no odd form, and no stated ceiling to violate."
+  },
+  "AM3S-03": {
+    "pick": "C",
+    "basis": "guess",
+    "legal": 4,
+    "why": "All four are k/12 with the stem's own denominator, all between 0 and 1, none reducible-vs-unreducible in a way that isolates one; 3/12 and 6/12 are both reducible so even the form tell does not single one out."
+  },
+  "AM3S-04": {
+    "pick": "D",
+    "basis": "guess",
+    "legal": 4,
+    "why": "2/5 and 1/2 are just 8/20 and 10/20 in reduced form, so the set is 7, 8, 9, 10 twentieths - a tight cluster where every value is a legal prime count for 1-20, and the mixed reduced/unreduced typography points at no particular member."
+  },
+  "AM3S-05": {
+    "pick": "A",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The stem pins Bag A at 2 red of 5, so the joint probability of two independent successes cannot exceed 2/5 = 10/25: 17/25 and 3/5 are above that ceiling, and 2/5 equals the single-draw Bag A probability, which would require Bag B to be certain; only 8/25 survives, and its denominator 25 = 5x5 is the one that matches two draws from five."
+  },
+  "AM3S-06": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 2,
+    "why": "Faces 1-8 make P(even) exactly 1/2, so a union containing the even event cannot be below 1/2 - that kills 3/8 - and it must exceed 1/2 because 7 is odd and greater than 5, which kills 1/2 itself; between the survivors, at least 1 and 3 are excluded outcomes, so the answer cannot be as high as 7/8."
+  },
+  "AM3S-07": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The option set encodes its own givens: 20 = 5x4 and 12 = 4x3 are partial products that answer a two-category question rather than the three-category one asked, and 27 is not any product of 5, 4 and 3; only 60 uses all three stated counts."
+  },
+  "AM3S-08": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 1,
+    "why": "4/25 and 21/25 are a complement pair and 21/25 is the unshaded region, a different question; 2/5 and 3/5 are linear side ratios (4/10 and 6/10) offered where an area ratio is asked, and a 4-inch square strictly inside a 10-inch square cannot cover most of the board."
+  },
+  "AM3S-09": {
+    "pick": "A",
+    "basis": "confident",
+    "legal": 2,
+    "why": "74 is the erroneous mean restated verbatim from the stem, so it cannot be the corrected one; the correction replaces 58 with the larger 88 so the mean must rise, killing 71; and 104 is 74 + (88-58), the whole correction applied to the mean instead of divided among 10 packages - a stem-arithmetic artefact rather than a mean."
+  },
+  "AM3S-10": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 3,
+    "why": "12/25 has denominator 100/4, the with-replacement family (10 x 10), and so answers a different question than the stated draw without replacement; the remaining 8/15, 7/15 and 1/3 all sit in the /15 family that 10 x 9 produces, and 8/15 vs 7/15 is a complement pair I cannot split without counting."
+  },
+  "AM3S-11": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 2,
+    "why": "The stem pins 18 soccer players of whom 6 also play tennis, so at least 12 of 30 play exactly one sport; that floor of 2/5 makes 1/5 and 2/15 illegal, and since the tennis-only group is non-empty the true value must exceed 2/5, leaving 2/3."
+  },
+  "AM3S-12": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The result is a weighted average of 1/2 (two coins) and 1 (one coin) so it must exceed 1/2 - killing 1/2 - and must stay below the midpoint 3/4 because the fair coins carry twice the weight, which kills 3/4 and 5/6."
+  },
+  "AM3S-13": {
+    "pick": "A",
+    "basis": "guess",
+    "legal": 4,
+    "why": "The bar graph is withheld and the options form two complement pairs (75/25 and 43.75/56.25), so each is a legal percentage for some class size; the quarter-percent values merely imply 16 students, which 75% and 25% also permit."
+  },
+  "AM3S-14": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 3,
+    "why": "A single two-way table has one grand total, so the joint probabilities should share its denominator: 2/5, 7/20 and 1/4 are all twentieths (8/20, 7/20, 5/20) while 5/12 sits in an incompatible /12 family and is the odd one out by form; the remaining three I cannot separate without the table."
+  },
+  "AM3S-15": {
+    "pick": "A",
+    "basis": "confident",
+    "legal": 2,
+    "why": "Two fair dice give a distribution symmetric about 7, so P(sum >= 8) is strictly below 1/2, which makes 26/36 and 21/36 illegal; of the survivors 15/36 and 10/36 form no complement pair, and 10/36 is the smaller tail that a stricter cutoff would produce."
+  },
+  "AM3S-16": {
+    "pick": "D",
+    "basis": "guess",
+    "legal": 4,
+    "why": "26, 28, 29 and 32 all lie inside the stated span 12 to 40, none is a complement or simple function of another, and deciding between them is exactly the arithmetic this run is refusing to do."
+  },
+  "AM3S-17": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 2,
+    "why": "A combined rate must lie between the two group rates the stem pins (18 of 120 and 14 of 280), so 20% is above both and 4.5% is below both; between 10% and 8%, the weighting is toward the much larger and cleaner supplier B batch, so the overall figure sits nearer the low end."
+  },
+  "AM3S-18": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 2,
+    "why": "The removed value must equal the mean of the set, and a mean of a spread-out set cannot equal its minimum or its maximum, so 3 and 24 are illegal; between 9 and 11, the single large value 24 pulls the mean above the median."
+  },
+  "AM3S-19": {
+    "pick": "C",
+    "basis": "guess",
+    "legal": 3,
+    "why": "69.5 would require an IQR of roughly 34 on data whose entire stated span is 8 to 42, which the stem's own values make impossible; 26.75, 34.25 and 29.5 are all plausible fences above the bulk and below or near 42, and separating them means computing quartiles."
+  },
+  "AM3S-20": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The event requires a head on flip three, so its probability cannot exceed the stated p = 2/5 = 50/125: that kills 98/125, and 50/125 is p itself, which would demand the first two flips be certainly tails; 27/125 is (3/5)^3, the all-tails value, which answers a different question."
+  },
+  "AM3S-21": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 2,
+    "why": "By the symmetry of a fair coin over 4 flips, 'at least 2 heads' takes more than half the outcomes, so 4/16 and 5/16 are illegal; 15/16 is the complement of the single all-tails outcome and so is the answer to 'at least 1 head', leaving 11/16."
+  },
+  "AM3S-22": {
+    "pick": "A",
+    "basis": "confident",
+    "legal": 2,
+    "why": "The option set encodes its own givens - 7 = 10-3 and 13 = 10+3 - and a break-even probability is the cost-to-prize ratio, so the fraction must be built from 3 over 10 rather than from the derived 7 or 13; that leaves 3/10 and 3/13, and 13 corresponds to no stated stake."
+  },
+  "AM3S-23": {
+    "pick": "C",
+    "basis": "confident",
+    "legal": 3,
+    "why": "84 is the unrestricted count of all 3-person committees from the 9 people, and since some committees are all-student it cannot also be the at-least-one-teacher count; among the rest, 74 is 84 minus a small student-only count, the signature of a complement answer, while 40 and 30 would require most committees to fail the requirement."
+  },
+  "AM3S-24": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 3,
+    "why": "210 is the unrestricted C(10,4), which cannot be the answer to a question that imposes a restriction; 126, 35 and 15 are all smaller, and the no-two-adjacent condition on a row of ten is severe enough that a cut to 126 (a 40% reduction) reads as far too mild."
+  }
+}

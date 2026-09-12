@@ -1,0 +1,212 @@
+{
+ "SM5-01": {
+  "pick": "1",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "Not flagged structured by the hub check, and correctly so: 3.8, -3.5, 2.4, 4 have no single-step relation to 1. Every distractor is the endpoint of a named sign/denominator slip. Key is the 2nd-smallest of five, so the middle-of-the-run tell does not fire."
+ },
+ "SM5-02": {
+  "pick": "560",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "STRUCTURED (best=2, no tie) but the hub is the DISTRACTOR 280, not the key: 280 halves to 140 and doubles to 560. A student who plays the relation game lands on 280 and gets it wrong, which is the right direction. The part-multiples 140/280/420/560 are the whole point of the item and their being related is the content, not a tell."
+ },
+ "SM5-03": {
+  "pick": "81π",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "STRUCTURED and the ONE key-is-hub item in the batch (best=2, three-way tie). 81 reaches 9 by sqrt and 40.5 by halving; but 9 (double->18, square->81) and 18 (halve->9, square->324) tie with it, so relation-spotting alone leaves a 1-in-3, not a lock. Partial exposure, not decisive. 40.5π is the weak distractor: halving r-squared 'as if a triangle' is not an error a real student makes, unlike the other three (circumference, diameter-squared, un-squared radius)."
+ },
+ "SM5-04": {
+  "pick": "63",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Not structured (best=1). 21 and 42 are genuine slips; 67.20 requires misreading 25% as 20% and 56 requires misreading it as a third, which are misreadings of the stem rather than method errors. Two of four distractors are therefore soft."
+ },
+ "SM5-05": {
+  "pick": "9",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "STRUCTURED with the highest degree in the batch (best=3) and the hub is the DISTRACTOR 6, which reaches 3 (halve), 5 (minus one) and 7 (plus one). Spotting the relation leads away from the key. Graphic is present and complete (five labelled bars); the item is answerable as shipped. Every distractor is a difference against a different named bar."
+ },
+ "SM5-06": {
+  "pick": "2 5/8",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Unscorable by the hub check (mixed numbers do not parse), so I checked by hand: values 2.375, 2.5, 2.625, 3, 3.375 carry no derivational hub. The key IS the median value of the set, which is the batch-wide pattern flagged in my summary. '2 3/8' is just the number from the stem echoed back and its rationale in the explanation is contorted; '2 1/2' needs a rounding step nobody takes mid-problem."
+ },
+ "SM5-07": {
+  "pick": "9.37",
+  "exclusive": false,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "EXCLUSIVITY FAILURE, and it is designed in rather than incidental. 3746/4 = 936.5 cents lands EXACTLY on the half, and both outcomes are on the ballot: 9.37 under round-half-up, 9.36 under round-half-to-even. The stem says 'to the nearest cent' and never states which convention, which is the protocol's named case verbatim. The defense for 9.36 is writable in one line, so I am spending the false here. Fix is one character in the bill amount (e.g. $37.48), not a rewrite. Separately the item is not structured and the other distractors (12.49 over three, 7.49 over five) are sound."
+ },
+ "SM5-08": {
+  "pick": "123",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Not structured. 237 (stop at the sum), 303 (pentagon total) and 57 (triangle total) are all named wrong paths; 79 as 'the mean of the other three' is a number no student route produces and is the weak one."
+ },
+ "SM5-09": {
+  "pick": "180",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "Not flagged by the hub check (the ops list has no times-1.5 or times-3/2), but the run is visible by hand: 90, 180, 270 is an arithmetic run of step 90 with the key at its MIDDLE, and 120 and 300 sit outside it. This is the mechanism named in the brief. It is a weak instance — 90/180/270 is what any fractions-of-450 item produces, so the relation is a by-product of the content rather than of distractor generation — but the key is the middle term, so a middle-of-the-run guesser is rewarded. Worth an author's eye if this shape recurs."
+ },
+ "SM5-10": {
+  "pick": "21",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "Graded EASY against the real SSAT, not medium as labelled: 'the mean of consecutive numbers is the middle one' is a standard drill fact. STRUCTURED (best=2) with the hub at DISTRACTOR 24 (plus/minus one to 23 and 25), so relation-spotting misfires. Good defensive design: the key is the SMALLEST option and 23, the number handed to you in the stem, is on the ballot."
+ },
+ "SM5-11": {
+  "pick": "111",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Not structured. Order-of-operations item where all four distractors are real orderings (discount only, voucher first, voucher added before discounting, percent read as dollars). Key is the smallest option, which cuts against the batch's middle-value habit."
+ },
+ "SM5-12": {
+  "pick": "180",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "STRUCTURED (best=2) with a distractor hub, not the key. The 144/180/225 chain the hub check notices is a ratio of 1.25, far too obscure to be a student-usable relation — no, a student could not reach 180 by spotting it. Unit-conversion trap (m vs cm) is the real difficulty and all four distractors are its failure modes."
+ },
+ "SM5-13": {
+  "pick": "36",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Not structured. Closing-speed item; 54 (the other cyclist), 45 (midpoint) and 30 (the closing speed itself) are the three errors this problem actually produces. Key is 2nd-smallest, no run tell."
+ },
+ "SM5-14": {
+  "pick": "2",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "STRUCTURED (best=3) with the hub at a DISTRACTOR, not the key. Table graphic is present; the row meaning ('goals scored') lives only in the caption, which is legible but thin — worth having the renderer label the row column. Mean/mode/median-of-the-wrong-column is the complete distractor set for this skill. Key is the median VALUE of the option set, the batch-wide pattern."
+ },
+ "SM5-15": {
+  "pick": "6.0",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Not flagged, but by hand 2.0, 6.0, 18.0 is a geometric run of ratio 3 with the key in the MIDDLE and 5.1/5.7 as the outliers. Here the run is harmless in practice because 5.1 and 5.7 crowd 6.0 closely, so 'pick the middle of the run' competes with three near-identical values. 2.0 ('divide by three a second time') is the soft distractor; 5.7 (compound) and 5.1 (wrong base) are real."
+ },
+ "SM5-16": {
+  "pick": "1/3",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Not structured on the parsed values. By hand 1/6, 1/3, 1/2 is an arithmetic run of step 1/6 with the key at the middle and 1/4, 5/6 outside it — the named mechanism fires, but weakly: sixths and halves are forced by the arithmetic of the problem, and students do not read fractions as runs. Distractor set covers all three ways to mishandle 'of the remainder'."
+ },
+ "SM5-17": {
+  "pick": "7",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "STRUCTURED (best=2) with a distractor hub (-8/-7 differ by one, 7/-7 negate), not the key — a relation-spotter is drawn to -7 or -8. No, the key is not reachable that way. '22' (applying the translation twice) is the weak distractor: no student applies a given translation a second time. The other three are real."
+ },
+ "SM5-18": {
+  "pick": "90",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "STRUCTURED (best=2) with the hub at a distractor. But there is a hand-visible cluster the script does not model: 81, 90, 100 are 9x9, 9x10, 10x10 with 9 and 19 as outliers, and the key is the middle of that cluster. A student who notices the set is built from 9 and 10 is nudged toward 90 without counting palindromes. Real but mild — the same three numbers are what the correct counting argument produces anyway. Distractors (allowing a leading 0, barring 0 from the middle, adding instead of multiplying, all-same-digit) are each a named counting error."
+ },
+ "SM5-19": {
+  "pick": "81",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "THE CLEAREST INSTANCE OF THE NAMED MECHANISM IN THIS BATCH. Sorted: 77, 80, 81, 85, 100. 77, 81, 85 is a three-term arithmetic run of step 4 — the SAME step 4 the stem announces — with 100 as the blunder outlier, and the key sits at the run's middle. Off-by-one-figure distractors are exactly 'key plus or minus one step', which is the generator shape the brief warns about. YES, a student could reach 81 without doing the problem: read '4 more each time' in the stem, find the three options spaced by 4, take the middle. 80 partially masks it by sitting adjacent to 81, and that is the only thing keeping this from being a free item. Recommend replacing 77 or 85 with a non-step-4 error (e.g. 84 = 4x21, or 9 + 19x4) so the run is broken. The hub check cannot see this — 'plus 4' is not in its ops list."
+ },
+ "SM5-20": {
+  "pick": "50.40",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Not structured. Key is the LARGEST option, which is good variety against the batch's middle-value habit. 31.50 (stopping at litres) is the distractor most students will actually hit; all four are named."
+ },
+ "SM5-21": {
+  "pick": "62.8",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "STRUCTURED, reported key-is-hub FALSE — but the script is wrong here and this is the most derivationally exposed key in the batch. The key 62.8 reaches THREE of the four distractors in one step: x5 to 314, x1/5 from 12.56, x2 to 125.6. The check misses it only because 'times five' is not in its ops list, which is the limit of an arithmetic proxy, not evidence of safety. Sorted, 12.56 / 62.8 / 314 is a geometric run of ratio 5 with the key at the middle and 20 as the lone outlier. YES — a solver could plausibly reach 62.8 by picking the value the others orbit. The distractors are individually excellent (whole-circle area, arc length, pi dropped, 180 instead of 360) which is precisely why they all sit on one multiplicative chain; the fix is to break the chain, e.g. change the radius or the angle so the sector area is not a clean fifth of the circle."
+ },
+ "SM5-22": {
+  "pick": "231",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Not structured. Three-stage item; 510 and 210 catch the two places a student stops early, 330 converts the wrong quantity, 190.91 inverts the rate. Complete set."
+ },
+ "SM5-23": {
+  "pick": "10",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "Not structured. Genuinely hard for SSAT and correctly labelled. 0, 10, 20, 30 do form a four-term run with 130 as the outlier, but the key is the SECOND term, not the middle — a middle-of-the-run guesser picks 20 and is wrong, so the mechanism does not bite here. '0' (hour hand left on the 4) is the single most common real error and is on the ballot."
+ },
+ "SM5-24": {
+  "pick": "25",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Graded MEDIUM, not hard: the equilateral-area formula is memorised, and the only twist is reading off k. A FORM tell worth fixing: k must be exact, and three of the five options (8.7, 43.3, 33.3) are one-decimal approximations that cannot be an exact k. A student who notices that eliminates three options without any geometry, leaving 25 and 30, and 30 is transparently the perimeter. That halves-then-quarters the set on formatting alone. Not the hub mechanism — the hub check reports no structure — but the same class of free path. Make the decimal distractors exact (e.g. 50/√3 rendered as a surd, or 43 and 33) or drop them."
+ },
+ "SM5-25": {
+  "pick": "924",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Graded MEDIUM against the real SSAT: LCM then largest multiple under 1000 is a standard upper-level item, not a hard one. Not structured. Well defended against the lazy path: the stem asks for the GREATEST and the key is NOT the greatest option (996 is), so 'take the biggest number' fails. Each distractor is a named near-miss."
+ },
+ "SM5-26": {
+  "pick": "9",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "Not flagged structured, but the named mechanism fires by hand: 5, 9, 13 is an arithmetic run of step 4 with the key at the MIDDLE, and 18, 22 sit outside it. Weaker than SM5-19 because 13 to 18 breaks the spacing and the step 4 is not announced anywhere in the stem, so a solver has no reason to trust the run. Marginal, but I would not want a third item in this cohort with the same shape. Content is sound: the stem does not need to assume everyone studies a language, since 27+22-40 is a floor either way. Distractors are the maximum overlap, both complements, and the group difference — all named."
+ },
+ "SM5-27": {
+  "pick": "8",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "Not structured. Two Pythagorean triples (7-24-25, 15-20-25) and the trap of answering the new distance instead of the change; correctly hard. '4' (assuming the foot moves as far as the top) is the intuitive wrong answer and is on the ballot. Key is 2nd-smallest, no run tell."
+ },
+ "SM5-28": {
+  "pick": "15",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "STRUCTURED (best=2) with the hub at DISTRACTOR 30 (halve to 15, double to 60) — relation-spotting leads away from the key, so no, a student cannot reach 15 that way. One free path that is NOT the hub mechanism: the stem asks for the SMALLEST such multiplier and 15 is the smallest option, so 'pick the least number' is right without any factoring. Worth adding a smaller wrong multiplier (e.g. 3 or 5, each a half-done factorisation) below the key to close it. Note that 60 and 135 do both yield perfect squares, which is correct distractor craft — they fail only on 'smallest' — and the explanation says so."
+ },
+ "SM5-29": {
+  "pick": "2",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Graded MEDIUM: successive percent change is conceptually the hard part but the arithmetic (1.20 x 0.85) is one line. Not structured. All four distractors are additive-thinking errors or a swap of which dimension moves which way — the complete failure set for this skill. The stem's 'give a decrease as a negative number' removes the sign ambiguity that would otherwise have cost this item its exclusivity."
+ },
+ "SM5-30": {
+  "pick": "32",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Not structured. Inverse-ratio item; 4.5 (ratio inverted), 36 (ratio rounded to 3:1), 30 (difference of teeth) and 12 (the given rate echoed) are all named. No run tell — key is 4th of five with 36 above it."
+ }
+}

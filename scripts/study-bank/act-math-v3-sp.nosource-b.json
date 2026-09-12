@@ -1,0 +1,146 @@
+{
+  "AM3S-01": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 4,
+    "why": "All four options are distinct values that plainly occur in the listed data, so every one is a legal mode candidate; nothing but counting separates them."
+  },
+  "AM3S-02": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 4,
+    "why": "Four bare positive integers with no ceiling pinned by the stem (the dot plot is withheld), no odd form, and no arithmetic relation among them."
+  },
+  "AM3S-03": {
+    "pick": "C",
+    "basis": "guess",
+    "legal": 4,
+    "why": "All four share the denominator 12 and all four are between 0 and 1; the author held the denominator fixed deliberately, so there is no odd-one-out by form even though 6/12 and 3/12 are reducible."
+  },
+  "AM3S-04": {
+    "pick": "A",
+    "basis": "guess",
+    "legal": 2,
+    "why": "2/5 = 8/20 is exactly the midpoint of 7/20 and 9/20, a simple arithmetic function of the other two, and 1/2 = 10/20 is the round trap value; the internally consistent /20 pair remains, and nothing chooses between 7/20 and 9/20 without counting primes."
+  },
+  "AM3S-05": {
+    "pick": "A",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The answer is a product of two probabilities, so it cannot exceed either factor, and the stem's own givens cap it at 2/5 = 10/25: that kills 17/25, while 2/5 and 3/5 are raw single-bag givens restated (the option set encodes its own givens), leaving only the /25 product form 8/25."
+  },
+  "AM3S-06": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 2,
+    "why": "A union containing 'even' on an 8-sided die must be at least 4/8 and strictly more once an odd face above 5 is included, so 3/8 and 1/2 are illegal; 7/8 would require that only one of the eight faces be neither even nor above 5, which cannot hold when 1, 3 and 5 all qualify."
+  },
+  "AM3S-07": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The option set encodes its own givens: 20 = 5x4, 12 = 4x3 and 27 is below the largest pairwise product, but a count over three independent choices must strictly exceed every two-factor product, so only 60 survives."
+  },
+  "AM3S-08": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 1,
+    "why": "2/5 and 3/5 are the linear side ratio and its complement, not an area ratio, and 21/25 claims a 4-inch square covers most of a 10-inch square; a ratio of areas must be smaller than the ratio of sides, leaving 4/25."
+  },
+  "AM3S-09": {
+    "pick": "A",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The correction replaces a value with a larger one, so the mean must rise: 74 is the stated uncorrected mean and 71 moves the wrong way, while 104 applies the entire 30-ounce discrepancy to the mean of ten packages, an impossible shift."
+  },
+  "AM3S-10": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 2,
+    "why": "12/25 is the with-replacement value the stem explicitly excludes and 1/3 is far below any of the others; drawing without replacement raises the chance of two different colours above the with-replacement figure, so 7/15 (which sits below 12/25) is out and 8/15 remains."
+  },
+  "AM3S-11": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 2,
+    "why": "1/5 = 6/30 is the 'both' count restated verbatim from the givens, and 2/15 = 4/30 is smaller than the soccer-only group must be; with 18 and 14 of 30 overlapping in only 6, 'exactly one' has to be a large share, which 2/5 = 12/30 (the soccer-only count alone) is not."
+  },
+  "AM3S-12": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The answer is a weighted average of 1/2 and 1 with the fair coins in the majority, so it must be strictly above 1/2 (killing 1/2) and strictly below the midpoint 3/4 (killing 3/4 and 5/6)."
+  },
+  "AM3S-13": {
+    "pick": "C",
+    "basis": "guess",
+    "legal": 2,
+    "why": "The set is two complementary pairs, 75/25 and 43.75/56.25; the non-round pair is 7/16 and 9/16, implying a class of 16, and a percentage that lands on sixteenths cannot be produced by the same graph that yields the round pair, but nothing decides which side of 50% 'three or more' falls on."
+  },
+  "AM3S-14": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 3,
+    "why": "2/5, 7/20 and 1/4 are all expressible over 20 while 5/12 is incompatible with that common total, so 5/12 cannot come from the same table margins; among the remaining three nothing narrows further with the table withheld."
+  },
+  "AM3S-15": {
+    "pick": "A",
+    "basis": "guess",
+    "legal": 2,
+    "why": "A sum of 8 or more is the upper tail past the centre of the two-dice distribution, so it must be under 18/36, which rules out 26/36 and 21/36; 15/36 and 10/36 are both legal tails and only counting separates them."
+  },
+  "AM3S-16": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The mean of a symmetric run of consecutive integers is the average of the endpoints named in the stem, and 26 is the only option equal to (12+40)/2; 28, 29 and 32 all sit off-centre in a distribution that cannot be skewed."
+  },
+  "AM3S-17": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 2,
+    "why": "A combined rate must lie between the two group rates (18/120 = 15% and 14/280 = 5%), so 4.5% and 20% are illegal; 10% is exactly the unweighted average of the two rates, which cannot be right when the larger supplier is the cleaner one, so the answer must fall below it."
+  },
+  "AM3S-18": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 2,
+    "why": "The value removed without shifting the mean must equal the mean, which lies strictly between the minimum and maximum, so 3 and 24 are illegal; with 24 pulling the mean above the middle value, 11 beats 9."
+  },
+  "AM3S-19": {
+    "pick": "A",
+    "basis": "guess",
+    "legal": 3,
+    "why": "69.5 is far above the largest value in the set, which would make the item's obvious outlier 42 not an outlier and leave the stem's definition doing nothing; the other three are all plausible fences and only the quartile arithmetic separates them."
+  },
+  "AM3S-20": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 1,
+    "why": "50/125 is the given p = 2/5 restated and 98/125 is far too large for a single specified trial; the answer must carry one factor of 2/5, so its numerator over 125 must be even, which excludes the all-tails 27/125 and leaves 18/125."
+  },
+  "AM3S-21": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 2,
+    "why": "'At least 2 of 4' on a fair coin covers the majority of outcomes, so 4/16 and 5/16 are illegal; 15/16 is the complement of a single outcome, i.e. the answer to 'at least 1', a different question than the stem asks."
+  },
+  "AM3S-22": {
+    "pick": "A",
+    "basis": "confident",
+    "legal": 2,
+    "why": "Break-even relates the $3 cost to the $10 handed back, and the option set encodes exactly those givens; the /13 options require a total of 10+3, which no quantity in the stem equals, and 7/10 is the complement of the break-even fraction rather than the fraction itself."
+  },
+  "AM3S-23": {
+    "pick": "C",
+    "basis": "confident",
+    "legal": 2,
+    "why": "84 is the unrestricted total (an 'at least one' count must be strictly smaller), and 84 - 74 = 10 is exactly the number of all-student committees, so the pair is a complement pair with 74 as the restricted count; 40 and 30 are too small a share of the total to be what remains after removing one thin case."
+  },
+  "AM3S-24": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 3,
+    "why": "210 is the unrestricted count of 4 chairs from 10, and a count under an added no-adjacency restriction must be strictly smaller; 126, 35 and 15 are all legal reduced counts and nothing in the option set chooses among them."
+  }
+}

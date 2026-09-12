@@ -1,0 +1,146 @@
+{
+  "AM3S-01": {
+    "pick": "A",
+    "basis": "guess",
+    "legal": 4,
+    "why": "All four options are distinct values that appear in the listed data, so every one is a legal candidate for a mode on option-set grounds alone."
+  },
+  "AM3S-02": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 4,
+    "why": "Source is the dot plot; four plain small integers with no form outlier and no ceiling pinned by the stem, so nothing is rejectable."
+  },
+  "AM3S-03": {
+    "pick": "C",
+    "basis": "guess",
+    "legal": 4,
+    "why": "All four are k/12 with the correct denominator for a 12-outcome sample space and all lie in (0,1); no option is reduced or unreduced against the grain of the others."
+  },
+  "AM3S-04": {
+    "pick": "D",
+    "basis": "guess",
+    "legal": 4,
+    "why": "All four are legal probabilities expressible over 20 (2/5=8/20, 1/2=10/20); the reduced/unreduced split is 2-2 so there is no odd one out by form."
+  },
+  "AM3S-05": {
+    "pick": "A",
+    "basis": "confident",
+    "legal": 2,
+    "why": "2/5 and 3/5 are the two Bag A composition ratios read straight off the stem, so they encode a given rather than a joint outcome; of the two product-shaped /25 options I take 8/25 because a both-must-succeed intersection has to be small, and 17/25 is larger than either single-bag red probability, which an intersection cannot be."
+  },
+  "AM3S-06": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 2,
+    "why": "A union containing 'even' must be at least P(even)=1/2 and strictly more because 7 is odd and greater than 5, killing 3/8 and 1/2 (the latter being a bare given); 7/8 would leave only one face failing both conditions, but 1 and 3 both fail, so 5/8 is what remains."
+  },
+  "AM3S-07": {
+    "pick": "D",
+    "basis": "confident",
+    "legal": 1,
+    "why": "A three-way count must be a multiple of 5 and strictly larger than any two-way partial product, which rejects 27 and 12 (not multiples of 5) and 20 (= 5x4, a pairwise partial encoded straight from the givens); only 60 survives."
+  },
+  "AM3S-08": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 1,
+    "why": "The shaded square's side is less than half the board's side, so its area share must be under 1/4; 2/5, 3/5 and 21/25 all exceed 1/4, and 2/5 and 3/5 are just the linear ratio 4/10 and its complement rather than an area ratio."
+  },
+  "AM3S-09": {
+    "pick": "A",
+    "basis": "confident",
+    "legal": 1,
+    "why": "A correction that raises one entry must raise the mean, so 71 (lower) and 74 (the unchanged given) are illegal, and 104 is the raw 30-ounce correction added to the mean without dividing by 10 - a simple arithmetic function of the givens."
+  },
+  "AM3S-10": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 3,
+    "why": "Draws without replacement from 10 then 9 give a probability with denominator dividing 90, and 12/25 is not expressible over 90 - it is the with-replacement value 2(6/10)(4/10), a given-encoded near miss; 8/15, 7/15 and 1/3 are all legal and nothing in the option set separates them."
+  },
+  "AM3S-11": {
+    "pick": "C",
+    "basis": "guess",
+    "legal": 3,
+    "why": "1/5 is exactly 6/30, the 'plays both' count handed over in the stem, so it answers a different question than the one asked; the other three are legal counts over 30 and the option set gives no way to rank them."
+  },
+  "AM3S-12": {
+    "pick": "D",
+    "basis": "guess",
+    "legal": 2,
+    "why": "A mixture over 3 equally likely coins with halves has denominator dividing 6, which rules out 3/4, and 1/2 is the bare all-fair given that the double-headed coin must push above; between 5/6 and 2/3 the option set offers no discriminator."
+  },
+  "AM3S-13": {
+    "pick": "A",
+    "basis": "guess",
+    "legal": 4,
+    "why": "The set is two complement pairs (43.75/56.25 and 75/25), all legal percents, and the source bar graph is withheld, so nothing narrows it."
+  },
+  "AM3S-14": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 3,
+    "why": "Three options sit on a common /20 denominator (2/5=8/20, 1/4=5/20, 7/20) while 5/12 cannot come from the same total, making it the odd one out by form; the surviving three are indistinguishable without the table."
+  },
+  "AM3S-15": {
+    "pick": "C",
+    "basis": "guess",
+    "legal": 2,
+    "why": "The two-dice sum distribution is symmetric about 7, so 'sum 8 or more' must be strictly under half of 36, killing 26/36 and 21/36; 15/36 and 10/36 are both legal and each is the complement of one of the rejected options, so the set gives no further edge."
+  },
+  "AM3S-16": {
+    "pick": "D",
+    "basis": "guess",
+    "legal": 4,
+    "why": "All four values lie inside the 12-to-40 span the stem pins, and none is an odd one out by form or a function of the others."
+  },
+  "AM3S-17": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 2,
+    "why": "A combined rate must lie between the two group rates (18/120 and 14/280), so 20% is above both and 4.5% is below both; of the survivors the larger group dominates the weighted average, pulling it toward the lower rate, which favours 8% over 10%."
+  },
+  "AM3S-18": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 2,
+    "why": "The value removable without shifting the mean must itself equal the mean, and a mean can never equal the minimum or the maximum of a spread data set, so 3 and 24 are illegal; 9 and 11 both sit interior and the option set cannot separate them."
+  },
+  "AM3S-19": {
+    "pick": "C",
+    "basis": "guess",
+    "legal": 3,
+    "why": "69.5 sits far outside the cluster of the other three and above the data's own maximum, which would make the stated outlier rule vacuous on a set that visibly contains a high value; the remaining three are all plausible boundaries and nothing in the set ranks them."
+  },
+  "AM3S-20": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 2,
+    "why": "50/125 is just the given 2/5 rewritten, and 98/125 exceeds that given even though a first-success-on-trial-3 probability must be smaller than a single success probability; between the survivors 18/125 carries a factor of 2 from the one head required while 27/125 is a pure power of the failure probability with no head factor at all."
+  },
+  "AM3S-21": {
+    "pick": "B",
+    "basis": "confident",
+    "legal": 1,
+    "why": "By symmetry of 4 fair flips, 'at least 2 heads' must exceed 1/2, rejecting 4/16 and 5/16; 15/16 is the complement of the single all-tails outcome, i.e. the answer to 'at least 1 head', a different question than the stem asks."
+  },
+  "AM3S-22": {
+    "pick": "B",
+    "basis": "guess",
+    "legal": 4,
+    "why": "The options are a clean 2x2 grid of numerators {3,7} over denominators {10,13} built from the givens 3 and 10 and their sum and difference; all four are legal probabilities and the grid is symmetric, so the option set alone cannot choose."
+  },
+  "AM3S-23": {
+    "pick": "C",
+    "basis": "confident",
+    "legal": 2,
+    "why": "84 is the unrestricted total number of committees, a ceiling the answer cannot reach because all-student committees exist; the excluded all-student committees are few (3 chosen from only 5), so the answer must sit just under the ceiling, which points at 74 rather than 40 or 30."
+  },
+  "AM3S-24": {
+    "pick": "D",
+    "basis": "guess",
+    "legal": 3,
+    "why": "210 is the unrestricted count of 4 chairs from 10 and so is a ceiling the adjacency restriction must strictly reduce; 126, 35 and 15 are all legal binomial-sized counts below it and the option set gives no way to choose among them."
+  }
+}

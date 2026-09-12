@@ -1,0 +1,170 @@
+{
+  "GEOH2-01": {
+    "pick": "30",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed, the equation fully determines the circle. Complete the square, set y=0, double the half-chord - three routine steps with no insight step, which is mid-module-2 at best, not the hard route. Every distractor is a named endpoint: 15 the half-chord, 34 the diameter, 12 the 'forgot to move the 189' radius. No a+b*pi option anywhere in this item; nothing in the option set reconstructs the radius (17 never appears). CROSS-ITEM: key is C, and item 02's key is also C - see the batch-wide note on GEOH2-24."
+  },
+  "GEOH2-02": {
+    "pick": "69.8",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "No figure; the text pins the configuration (B between A and the base, collinear, level ground), so nothing is ambiguous, though the real exam would almost certainly draw this one. Genuinely hard: the student must express both horizontal distances as h*cot(angle), difference them, solve for h, and then take one more step to the quantity actually asked. Two-station elevation is arguably above the digital SAT's usual single-triangle trig, so this reads slightly off-spec-hard rather than SAT-hard, but it is hard. Distractors are all named paths: 74.9 the height (the classic one-step-short), 31.2 treating 50 as a horizontal leg, 111.7 subtracting tangents instead of reciprocals."
+  },
+  "GEOH2-03": {
+    "pick": "10.0",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. Hard and legitimately so: two conditions to a quadratic in r, two positive roots, and a stated angle condition to select between them. The angle clause does its job, so exclusive holds - without it the item would be dead. DECIDABLE TELL, and it is the geometry analogue of the a+b*pi warning: the option set is 10, 24, 2.4, 12, and 10/24/2.4 are mutually consistent as radius/arc/angle (2*10+24=44, (1/2)(10)(24)=120, 24/10=2.4>2) while 12 has no partner in the set. A student who never solves can check the three options against the two givens and the >2 constraint and land on 10. Distractors are named (other root, arc, angle) but that same naming is what leaks the answer here."
+  },
+  "GEOH2-04": {
+    "pick": "5.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. The cubic scaling of similar solids is a taught fact and the whole computation is 24 - 24/2^(1/3) on a calculator; the only real content is the base-versus-apex flip. One trap on top of one remembered fact is medium, not hard. Distractors strong: 19.0 measured from the apex, 7.0 using k^2, 12.0 halving the height. Rounding is clean (4.951 -> 5.0), no convention dispute."
+  },
+  "GEOH2-05": {
+    "pick": "8.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; the text determines the triangle (right angle at C, altitude from C to AB), and the configuration is legal since 12 < 26/2. Medium: one remembered relation (altitude^2 = product of the segments) plus a quadratic that factors over integers. RECONSTRUCTION TELL of the flagged kind: options 8.0 and 18.0 sum to 26 and multiply to 144, i.e. the two options between them encode both givens exactly, so a solver can verify the pair against the stem without deriving anything and then read 'shorter'. Distractors are named (18 the other segment, 14.4 the leg sqrt(8*26), 13 assuming bisection), but the pair 8/18 is the leak. Same skeleton as 03, 06 and 12 - see GEOH2-24."
+  },
+  "GEOH2-06": {
+    "pick": "50.0",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. Hard: the substitution u=(b/2)^2 turns the area condition into a quadratic with two legal bases (10 and 24, the 5-12-13 triangle used both ways), and a student who stops at the familiar 5-12-13 with base 10 gets 36.0. The 'there is more than one such triangle' clause is a fair warning rather than a giveaway. Exclusive: 'two sides of length 13' forces 13 to be the pair - the alternative reading (13 as base, equal legs 11.29) leaves only one side of length 13, and 35.2 is not that triangle's perimeter either. Distractors named: 36.0 the other perimeter, 24.0 the third side, 35.2 taking 13 as the height."
+  },
+  "GEOH2-07": {
+    "pick": "10.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "No figure; none needed. Medium: point-to-line distance equals radius, or substitute and set the discriminant to zero - both are one-template routes, and 'k is positive' removes the sign question cleanly. 22.4 is a real path (dividing by 5 instead of sqrt(5)) and 4.5 is the radius itself, but 6.3 (dividing by sqrt(2), 'the coefficient count') is not an error I can attach to a student's reasoning - it is constructed to fill the slot. That single weak option is why this is plausible and not strong. No radius reconstruction from the options: sqrt(20) does appear as 4.5, which is a mild leak in the other direction but does not identify the key."
+  },
+  "GEOH2-08": {
+    "pick": "33",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. This is a stock digital SAT item type (sin A = cos D forces complementarity) with one extra hop to angle F. Both angles are acute by construction, so the complementary reading is forced and exclusive holds. Medium - the extra hop does not make it hard, and F = 33 = A is a coincidence of the numbers, not a second defensible reading, since F is named explicitly. Distractors all named: 57 is angle D, 14 is y, 45 reads the equation as A = D."
+  },
+  "GEOH2-09": {
+    "pick": "135",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. Two remembered facts chained (interior+exterior=180, then n(n-3)/2). Medium. Distractors are the three natural stopping points and the one formula confusion: 18 the side count, 20 the exterior angle, 153 = C(18,2) counting sides along with diagonals. Clean item, just not a hard one."
+  },
+  "GEOH2-10": {
+    "pick": "50.3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. Exclusive holds because 'percent of the water that was originally in the tank' names the base explicitly - without that clause 40.2 would be defensible and the item would die. The tank does not run dry (10,857 L at 45 L/min needs 241 min, not 120), so no edge case. This is FIDDLY rather than hard: a volume, a unit conversion, a percent and a rate, all mechanical, with the difficulty living entirely in keeping the percent base straight. Medium. Distractors are excellent - 40.2, 39.8 and 60.2 are the three ways to mix the two bases."
+  },
+  "GEOH2-11": {
+    "pick": "-0.95",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed - 'terminal ray in the second quadrant' is the whole configuration. Medium: 3-4-5 reference triangle plus sign bookkeeping, which is exactly the standard-position item the SAT does ship. Distractors are a clean sign lattice: 2.15 all positive, 0.55 cosine negative but tangent left positive, -1.53 inverting the tangent. Worth noting the option set does NOT leak - all four are plausible-magnitude sums and the sign alone does not pick one, since two options are negative."
+  },
+  "GEOH2-12": {
+    "pick": "4.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; the text places P inside and names the pieces, and 'CP is shorter than PD' does the disambiguating, so exclusive holds. Medium: intersecting-chords is one remembered theorem and x^2-19x+60 factors over integers. RECONSTRUCTION TELL, same shape as 05: options 4 and 15 sum to 19 (the given whole chord) and multiply to 60 (= 6*10, the given pieces), so the option set verifies itself against the stem and 'shorter' finishes it. Distractors named: 15 the other piece, 9.5 assuming a bisection, 6 copying AP."
+  },
+  "GEOH2-13": {
+    "pick": "7.9",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "No figure; the four vertices are given, so the trapezoid is fully determined and a figure would be convenience only, not load-bearing. The best item in the batch and clearly hard: the equal-area segment is the root-mean-square of the bases, which is not a memorised SAT fact, so the student must parametrise the width at height y and solve a quadratic. The near-miss structure is what earns the grade - 7.5 (midsegment, the halves-the-height answer) sits 0.4 from the key, so guessing the 'obvious' construction fails. 7.1 is the geometric mean, 5.6 the wrong root order. No pi options, nothing reconstructable from the set."
+  },
+  "GEOH2-14": {
+    "pick": "432",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "No figure; none needed. Medium and on the easy side of it: the square/cube scaling of similar solids is a single taught fact and 216/96 reduces to a friendly 9/4. 288 (applying the area ratio to volume) and 192 (applying the linear ratio uncubed) are the two errors students actually make. 384 is weaker - 'multiply by 3, the numerator of 9/4 read as the scale factor' is a path nobody walks; it is a slot-filler, which is what pulls this to plausible."
+  },
+  "GEOH2-15": {
+    "pick": "25.7",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed, the 9-12 legs determine everything. Medium: 9-12-15 is recognisable on sight and the inradius follows from either r=(a+b-c)/2 or r=Area/s, both one line. PI-OPTION CHECK, and the authoring is RIGHT here: the honest form of this key is 54 - 9pi, which would have handed the reader both the triangle area and r=3 directly from the option text; giving decimals (25.7, 28.3, 54.0, 35.2) keeps the givens out of the option set. 28.3 does still expose the circle area, but it does not identify the key. Distractors named: circle alone, triangle alone, circumference subtracted instead of area."
+  },
+  "GEOH2-16": {
+    "pick": "-3.5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. Medium: either the perpendicular bisector (midpoint (-2,2), slope -3/4, perpendicular 4/3) or simply equating the two squared distances, which is a two-line algebra route a strong student finishes fast; I verified the key independently that way, (-3.5+6)^2+25 = (-3.5-2)^2+1 = 31.25. Distractors are the three characteristic slips and all are named: -2.0 the midpoint x, -1.5 the displacement from the midpoint never added back, -0.5 the sign-flipped perpendicular slope. All four options are negative, so no option can be eliminated on sign alone and nothing in the set reconstructs A or B. NOTE ON PROVENANCE: this item was rewritten in the batch file while I was grading (the file's mtime moved after my first read; A and B changed from (-2,5)/(6,-1) to (-6,5)/(2,-1) and the option set from a mixed-sign one to this all-negative one). This grade is against the version on disk as of the second read; if the file is still being edited, re-grade rather than trusting this line."
+  },
+  "GEOH2-17": {
+    "pick": "13",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. Medium: two volume formulas, a quotient and a floor. 'Greatest number of complete cylinders' names the rounding convention explicitly, which is what keeps 14 from being defensible - without that word the item would not be exclusive, so the wording is doing real work. Distractors strong: 14 the rounded quotient, 41 dropping the 1/3, 8 dividing by the sphere's surface area. The pi cancels, so no option carries a radius."
+  },
+  "GEOH2-18": {
+    "pick": "82",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure, and this is the one item where the real exam would certainly supply one - but the stem names the relationship in words ('the same-side interior angle paired with it'), so the configuration is not ambiguous and the figure is not load-bearing. Medium at most, arguably easy-medium: one linear equation and then pick the acute member. The transversal makes 82 with BOTH parallel lines, so 'either' is safe and exclusive holds. Distractors named: 98 the obtuse partner, 22 the value of x, 58 from treating the pair as alternate interior."
+  },
+  "GEOH2-19": {
+    "pick": "16.4",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "No figure; the construction is standard enough to hold in the head, and 'the smaller of the two regions' removes the major/minor ambiguity, so exclusive holds. Hard: the segment area needs the central angle via arcsin, the radian sector formula, and the triangle by (1/2)r^2*sin(theta) (or (1/2)(12)(8)), then a subtraction - four steps, two of them formulas the SAT rarely reaches for. Like 02 this may be slightly above spec rather than squarely hard-route, but it is hard. Distractors are the two intermediate areas plus the (1/2)(12)(10) height error, all named. The key is the smallest option, which is a mild structural hint given both intermediates must exceed it."
+  },
+  "GEOH2-20": {
+    "pick": "3.9",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "note": "No figure; none needed. Easy, and it does not belong in a hard-band batch: one cylinder volume and one unit conversion, with the conversion factor handed to the student in the stem. The only hazard is diameter-versus-radius. Distractor set is weaker than the batch average and got weaker in the edit I saw land mid-grade (the old '0.4', a 2 m -> 20 cm conversion error, became '1.6'): 1.6 = pi(2.5)(200) and 3.1 = 2pi(2.5)(200) are now both 'failed to square the radius' errors one factor of 2 apart, so two of the three distractors are the same family, and no option now punishes the unit conversion the stem makes a point of. 15.7 (diameter as radius) is the one clearly distinct path. Plausible, not strong. PROVENANCE: graded against the version on disk at my second read."
+  },
+  "GEOH2-21": {
+    "pick": "2.4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; the lamp/person/shadow-tip similar triangles are conventional enough that the text is unambiguous, and the numbers are physically consistent (lamp 4.68 m, person 1.8 m). Medium: two applications of one proportion, with the only real hazard being whether distances are measured to the person or to the shadow tip. That hazard is exactly what the distractors punish - 3.9 is the tip distance, 4.7 the lamp height, 0.9 uses the 4 m as a shadow length. Strong set, medium item."
+  },
+  "GEOH2-22": {
+    "pick": "2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. Easy: recognise the 8-6-10 centre distance and subtract both radii. The circles are separate (10 > 6+2) so there is no configuration case to consider and no ambiguity. Does not belong in a hard batch. Distractors are still all named - 10 the centre distance, 4 subtracting one radius, 18 the maximum rather than the minimum - which is why the set is strong even though the item is easy."
+  },
+  "GEOH2-23": {
+    "pick": "24.8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure; none needed. Medium: two sine evaluations and a subtraction. The 1.5 m hand height is a deliberate red herring that cancels in the difference - a nice touch, but noticing it saves time rather than deciding the item, so it does not lift this to hard. Exclusive holds: 'the kite's height above the ground' is stated, 'decrease' fixes the direction, and the string is stated taut at both moments. Distractors named: 68.6 the later height, 22.3 the cosine (horizontal) change, 16.0 the angle difference read as metres."
+  },
+  "GEOH2-24": {
+    "pick": "31.2",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "No figure, and none is load-bearing: 'the three vertices adjacent to one particular vertex' specifies the plane uniquely, and the cross section is equilateral with side 6sqrt(2) on any reading. Medium - the 3D visualisation is the only cost, and once the student sees that each side is a face diagonal it is one formula. Distractors named: 36 a face, 18 half a face, 15.6 the equilateral area on the edge rather than the face diagonal. || BATCH-LEVEL FINDING, recorded here because it is invisible from inside any single item: the key LETTERS run CC AA DD BB AA DD BB CC DD CC AA BB - every consecutive odd/even pair carries the SAME key letter, 12 pairs out of 12 (p ~ 6e-8). The per-cohort histogram is a perfect 6/6/6/6 and every 4-item block is balanced, so the existing letter checks pass, but a student who answers any odd-numbered item can mark the next one without reading it. This must be reshuffled before insert. Numeric rank of key (6/7/8/3 across smallest-to-largest) and length rank show no tell, so letters are the only positional problem. || SECOND BATCH-LEVEL FINDING: four items (03, 05, 06, 12) are the same machine - a sum condition and a product condition collapsing to a quadratic with two legal roots, the other root planted as a distractor, and a superlative or inequality in the stem to select. In 03, 05 and 12 the option set therefore verifies itself against the stem's givens, which is the geometry equivalent of the a+b*pi leak: no a+b*pi options appear anywhere in this batch (correctly - see 15), but 8/18 against 26 and 144, 4/15 against 19 and 60, and 10/24/2.4 against 44 and 120 are reconstructable the same way. || THIRD: in about two thirds of the items exactly one distractor is the stem's own intermediate value (74.9, 19.0, 24.0, 4.7, 68.6, 18, 20, 64.4, 48.0, 2, 14, 22). That is good authoring per item but consistent enough across the batch to be learnable as 'the one-step-short option is never the key'. || FOURTH, PROCESS: the batch file was modified DURING this grading pass - its mtime moved after my first read, and GEOH2-16 (new points and a new all-negative option set), GEOH2-20 (distractor 0.4 -> 1.6) and the numeric formatting of 03 and 12 all changed. I re-read every prompt, option set and key afterwards and re-graded 16 and 20 against the new text; the key-letter sequence is identical before and after the edit, so the positional finding above survives it. A grade against a moving file is worth what the reader's own mtime check says it is. || DIFFICULTY SUMMARY: commissioned hard, grades 5 hard (02, 03, 06, 13, 19), 17 medium, 2 easy (20, 22). Of the five, 13 is the only one I would call hard on the real module-2 route without reservation; 02 and 19 are hard partly by sitting above the digital SAT's usual trig scope rather than by being deep, and 20 and 22 should not be in a hard batch at all."
+  }
+}

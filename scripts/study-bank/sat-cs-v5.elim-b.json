@@ -1,0 +1,37 @@
+{
+  "1": {"pick":"B","basis":"confident","legal":3,"why":"act: the stem's own noun 'motor rehearsal' aligns with the motor task, so the option reversing that mapping (explains recall but NOT reproduction) is defensibly out; A and D both stay live via the time-on-task control."},
+  "2": {"pick":"A","basis":"guess","legal":4,"why":"none: four bare technical adjectives, meaningless until the sentence says what they modify."},
+  "3": {"pick":"B","basis":"guess","legal":4,"why":"none: one frame, four different jobs inversions could do; couplet parallelism is only a lean, not a rejection of the other three."},
+  "4": {"pick":"A","basis":"guess","legal":4,"why":"none: pure 2x2 permutation (gravestones/boulders x smaller/larger); nothing in the option set fixes either axis."},
+  "5": {"pick":"C","basis":"guess","legal":4,"why":"none: all four perform the same act (reconcile the two figures) and each is a workable reconciliation."},
+  "6": {"pick":"A","basis":"guess","legal":4,"why":"none: single frame varying only how much of the gap is covered and by what - the clean quantity-only shape."},
+  "7": {"pick":"B","basis":"confident","legal":4,"why":"knowledge: slower first decision is the standard reported correlate of open reviewer reports, but the other three are ordinary empirical claims and none can be ruled out blind."},
+  "8": {"pick":"B","basis":"guess","legal":4,"why":"none: four live senses of 'plain', all attested; word-in-context is undecidable without the sentence."},
+  "9": {"pick":"C","basis":"guess","legal":4,"why":"none: four standard confounds (level effect, one-off exhibition, prior trend, measurement change), each a legal Text 2 move."},
+  "10": {"pick":"C","basis":"guess","legal":4,"why":"none: shared 'two reasons to...' frame; the four completions are different but all are things a closing sentence can do."},
+  "11": {"pick":"A","basis":"guess","legal":4,"why":"none: 'settled' supports all four senses (debt, matter, nerves, question)."},
+  "12": {"pick":"A","basis":"guess","legal":4,"why":"none: 'economy' as sparing use, as ordering, as wealth, and as efficiency are all standard; the sentence decides."},
+  "13": {"pick":"D","basis":"guess","legal":4,"why":"none: three confounds plus one instrument-validity objection, all legal responses to a sleep-duration finding."},
+  "14": {"pick":"A","basis":"guess","legal":4,"why":"none: 'register' runs to all four senses; no option is odd for the word."},
+  "15": {"pick":"D","basis":"guess","legal":4,"why":"none: four unrelated adjectives with no stem content to test them against."},
+  "16": {"pick":"B","basis":"confident","legal":4,"why":"knowledge: hydrology rather than browsing is the standard alternative account, and B is the option aligned to that axis - but fencing, survey month and beaver ponds are each defensible blind."},
+  "17": {"pick":"D","basis":"guess","legal":4,"why":"none: four record-descriptors, any of which a sentence about sources could want."},
+  "18": {"pick":"C","basis":"confident","legal":3,"why":"shape: B is subsumed by C - explaining the second region by eastern raiding IS tracing it to a different cause, so B cannot be the unique key; A and D remain live."},
+  "19": {"pick":"C","basis":"guess","legal":4,"why":"knowledge: the legume-nitrogen claim is the textbook true fact, but the weed-burden, sowing-date and scoring-method options are equally legal rebuttals."},
+  "20": {"pick":"C","basis":"guess","legal":4,"why":"none: one frame, four plausible pairs of evidence the text could be tested against."},
+  "21": {"pick":"D","basis":"guess","legal":4,"why":"none: four adjectives, no shared axis to exploit without the sentence."},
+  "22": {"pick":"A","basis":"guess","legal":4,"why":"none: four legitimate comparison targets for a heat map; nothing internal marks one as the text's subject."},
+  "23": {"pick":"C","basis":"confident","legal":4,"why":"act: C names a functional niche (the standard survival mechanism) while the others name circumstances - a strong lean, but each remains a legal historical explanation."},
+  "24": {"pick":"C","basis":"guess","legal":4,"why":"none: four different closing acts, none excluded by the first two clauses the options share."},
+  "cross_item_rule": {
+    "rule": "The only rule that repeated: when the stem itself names the mechanism or variable under test, prefer the option whose predicate lies on that same axis (motor rehearsal -> the motor task; browsing -> its hydrological alternative; survival -> a reserved function). It selected a pick on 3 items (1, 16, 23) and justified an actual elimination on exactly one (1). It did NOT generalize: on the 2x2 and quantity-permutation items (4, 6) every option sits on the named axis, so the rule is silent there, and on the 8 vocab/word-choice items there is no axis at all. A second, weaker rule fired once: logical subsumption between two options (18), where one option entails another and therefore cannot be the unique key.",
+    "fired": 4
+  },
+  "shared_frames": [
+    {"items":[1,4,6],"note":"Permutation frames: every option is one sentence with one or two variables swapped (which gap / which surface x which direction / how much of the gap and by what). Solving one tells you nothing about another, but they share the property that the option set alone carries no content - these are the cleanest items in the batch."},
+    {"items":[9,13,16,19],"note":"Text-1/Text-2 rebuttal frame: each offers three causal confounds plus one measurement-validity objection. Knowing the frame does not decide any of them; it does warn that picking 'the measurement one' every time would be a tell if the keys clustered there."},
+    {"items":[2,15,17,21],"note":"Bare word-choice completions with no stem content. Four unrelated adjectives each; all four legal by construction."},
+    {"items":[8,11,12,14],"note":"Word-in-context, all four options attested senses of the headword. Structurally identical and uniformly undecidable blind."},
+    {"items":[3,5,10,20,22,23,24],"note":"Long-option purpose/function/structure frame: all options share a fixed opening clause and differ only in the trailing completion. One item cannot help another, but the shared stem clause means any elimination has to come from the trailing clause alone."}
+  ]
+}

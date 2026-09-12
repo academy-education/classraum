@@ -1,0 +1,212 @@
+{
+  "IM11-01": {
+    "pick": "90",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "GCF x LCM = product of the two numbers; 6*360/24 = 90, and gcd(24,90)=6, lcm=360 both check. Genuinely hard for ISEE Upper because the stem does NOT print the identity - the student must know it. This is exactly the s10 defect not repeated. 15, 60 and 144 are each a named misuse of the same three quantities. Cross-item tell: key in slot B; B holds 25 of 30 keys in this batch and D holds none, so an always-B solver scores 83%."
+  },
+  "IM11-02": {
+    "pick": "2",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "60 - 10 - 9 - 8 + 5 = 38 in at least one, so 2 in none. The pairwise counts could in principle be read as 'exactly two subjects', but that reading makes history-only negative (22 - 10 - 9 - 5 = -2), so the stem is self-forcing and exclusivity holds. Three-set inclusion-exclusion sits at the top of the ISEE Upper range - correctly hard. Sorted options 2,5,7,12 contain the run 2,7,12 but the key is its endpoint, not its middle, so the outlier-names-the-middle mechanism does NOT fire. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-03": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Adding gives 8x + 8y = 72, so x + y = 9. Standard symmetric-system trick; medium on the real exam, not hard. 72 (stop before dividing), 36 (divide by 2), 5 (subtract instead of add, giving x - y) are all live student endpoints. Cross-item: key in slot A here, but B holds 25/30 keys batch-wide."
+  },
+  "IM11-04": {
+    "pick": "23",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "1 # 4 = 1 - 8 = -7; 3 # (-7) = 9 + 14 = 23. Defined-operation items are a staple at this level and this one is two-deep, so medium is right. 41 (left-to-right), 17 (forgot to square), -5 (dropped the inner sign) are each a named slip. Defining the operator is inherent to the item type, not the s10 formula-handing defect. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-05": {
+    "pick": "50",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "2s^2 = 100, so the area s^2 = 50. The stem gives neither the Pythagorean relation nor the d^2/2 shortcut - this is the s10 fix working. 100 and 200 are the two halve/double confusions; 48 is the 6-8-10 pattern-match, contrived but a real triple-hunting error. Sorted options hold the geometric run 50,100,200 with outlier 48, but the key is the run's endpoint, not its middle. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-06": {
+    "pick": "11.1",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "16/144 = 11.1 percent. 'To the nearest tenth' is stated, so the rounding convention is pinned and exclusivity is clean. 33.3 (side ratio), 88.9 (complement), 2.8 (side against area) are the three standard confusions. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-07": {
+    "pick": "-11",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "(-3)^3 = -27, (-2)^4 = 16, sum -11. Easy is correct. The four options are the sign lattice {+/-27} +/- {+/-16} collapsed to -43, -11, 11, 43 - every distractor is a named parity-of-exponent error. Symmetric set, so no numeric run tell. Cross-item: key in slot C here; B holds 25/30 keys batch-wide."
+  },
+  "IM11-08": {
+    "pick": "2",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "15 values, median is the 8th; cumulative 5, 7, 10 puts the 8th at 2. Reading a median out of a frequency statement rather than a list is the right kind of medium for ISEE Upper. 0 (mode), 1 (7th value), 1.5 (even-set averaging) are all real. Sorted 0,1,1.5,2 holds the run 0,1,2 with outlier 1.5, but the key is the endpoint, not the middle. Cross-item: key in slot C here; B holds 25/30 batch-wide."
+  },
+  "IM11-09": {
+    "pick": "152",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Common difference 3 and first term 5 give 3n + 2, so figure 50 uses 152. Commissioned medium, but linear pattern extension with the difference visible in four printed terms is easy on the real ISEE Upper - I am grading this one down. The distractor set is the item's real strength: 150, 149, 147 are the three off-by-one endpoints and a careless solver lands on one of them rather than on 152. Cross-item: key in slot A here; B holds 25/30 batch-wide."
+  },
+  "IM11-10": {
+    "pick": "6",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "note": "Slope -2, line y = -2x + 12, x-intercept 6. Two-step coordinate work with no formula supplied - hard is fair for this level. 4 (treating (2,8) as the y-intercept) and -2 (sign of the slope) are strong paths, but 3.5 is the midpoint x-coordinate, a related number rather than the endpoint of a wrong method, so the set is plausible rather than strong. Cross-item: key in slot A here; B holds 25/30 batch-wide."
+  },
+  "IM11-11": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Closing rate 28 mph over 84 miles gives 3 hours. Medium: the combined-rate step is the whole item and it is not hinted at. 7 and 5.25 use one rate alone, 21 uses the difference (the same-direction closing rate) - three named methods. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-12": {
+    "pick": "7",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Marta is 30 in 8 years, brother 15 then, 7 now. Routine future-age algebra, medium. 15, 11 and 3 are the three places a student can stop or halve the wrong age. Structural note: all four options are 3, 7, 11, 15 - a complete arithmetic run with d=4 and no outlier, so nothing names a middle, but authoring option sets as evenly spaced ladders is worth watching; it tells a solver the key is one of four equally-spaced values and invites splitting the difference. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-13": {
+    "pick": "2000",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "(6/3) x 10^3 = 2000. Medium. 3000 (subtract coefficients) and 18000 (multiply coefficients) are strong, but 200 is justified only as 'subtracting the exponents incorrectly' with no stated slip that produces 10^2 from 8 - 5; it is the one option in this batch whose error path is named vaguely rather than exactly. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-14": {
+    "pick": "2",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "6x^3 = 48, x^3 = 8, x = 2. The cube root plus the 'which edge did it ask for' step makes this legitimately hard, and no volume formula is printed. 4 and 6 are the other two edges, 8 is the un-rooted 48/6 - every distractor is a stopping point on the correct path. Options are 2,4,6,8, a full arithmetic run with no outlier. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-15": {
+    "pick": "3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "r^2 = 162/18 = 9, r = 3. 'Of positive numbers' is doing real work - it rules out r = -3 and keeps exclusivity clean; without it this item would be false. 9 (two-step ratio), 4.5 (halved instead of rooted), 54 (the fourth term) are all named. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-16": {
+    "pick": "24",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Sum 50, third value 12; minimise the rest at 1, 1, 12 and the largest is 24, realised by {1,1,12,12,24}. 'Positive' and 'not necessarily different' are both load-bearing and both stated, so exclusive. Correctly hard. BUT this item fires the outlier-names-the-middle mechanism: sorted options are 12, 24, 26, 36, which is the arithmetic run 12, 24, 36 (d=12) plus the outlier 26, and the key is the run's exact middle. The cause is visible in the distractor construction - 36 is key+12 and 12 is key-12, both one relaxation of the same constraint, with 26 as the blunder value. A solver who has learned that distractors are built as key +/- one step can name 24 without the stem."
+  },
+  "IM11-17": {
+    "pick": "(3, 6)",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "D = A + C - B = (3, 6). 'Vertices in order' fixes which pairing is meant, so only one option survives; without that phrase three of the four would be defensible. Medium. The option set is the 2x2 grid {3,11} x {2,6}, so each distractor is one mistaken axis - no numeric run, no middle to name. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-18": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "18, 27, 36, 45, 54, 63, 72, 81, 90 - nine numbers. Medium; the only trap is whether 90 and 09 count and the stem pins both. This item fires the outlier-names-the-middle mechanism: sorted options 4, 8, 9, 10 are the run 8, 9, 10 (d=1) plus the outlier 4, and the key is the run's middle, because the distractors were built as key+1 (count 09) and key-1 (drop 90) around it. A solver who ignores the stem and takes the middle of the tight cluster is right."
+  },
+  "IM11-19": {
+    "pick": "$45.00",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "12.5 gallons at $3.60 is $45.00. 'Cost of the gasoline used' rules out the whole-gallon reading, so $46.80 is a trap and not a second defensible answer. Medium. $12.50 (gallons as dollars), $100.80 (rate times rate), $46.80 (rounded up) are three named paths. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-20": {
+    "pick": "6",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "686 - 560 = 126 at $21 gives 6 overtime hours. The stem asks for overtime hours specifically, so 46 is a trap, not an alternative reading. Medium. 9 (remainder over the regular rate), 46 (total hours), 49 (whole wage over the regular rate) all land somewhere a student stops. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-21": {
+    "pick": "2500",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "NOTE: this item was rewritten on disk while I was grading - I graded the current version (multiples of 4 between 50 and 150), not the earlier 1-to-100 version. 52 to 148 is 25 terms averaging 100, so the sum is 2500. The inclusive/exclusive reading of 'between' is harmless here because neither 50 nor 150 is a multiple of 4, which is good construction rather than luck. No summation formula is printed, so hard is earned. 2400 (fencepost count of 24), 2448 (starts at 56), 2652 (runs on to 152) are three exact endpoint errors, and the options are close enough that estimation does not separate them. Sorted 2400, 2448, 2500, 2652 contains no three-term arithmetic or geometric run, so the outlier-names-the-middle mechanism does not fire. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-22": {
+    "pick": "-19",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "-4 - 15 = -19. Easy is right. 11 (added the change), -15 (forgot the start), -22 (fencepost, six hours instead of five intervals) are the three real errors and the fencepost one is the good distractor here. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-23": {
+    "pick": "0.007",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "The 7 sits in the thousandths place. Easy. The four options are 0.0007, 0.007, 0.07, 0.7 - a complete geometric ladder of place values, so every distractor is an exact column shift and none is arbitrary. Four terms with no outlier, so no middle is named. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-24": {
+    "pick": "3 to 2",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Lost 12, so won to lost is 18:12 = 3:2. 'In lowest terms' is stated so there is no second defensible form. Easy. The three distractors are part-to-whole, the reversal, and whole-to-part reversed - all named. Mild leak worth noting: a solver who only registers that the team won more than it lost eliminates two options without any arithmetic, leaving a 50/50 between '3 to 2' and '5 to 3'. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-25": {
+    "pick": "14",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "7/3 divided by 1/6 is 14. Easy. 12 (whole units only), 7 (the improper numerator), 42 (numerator times 6) are three real stopping points. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-26": {
+    "pick": "60",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "Base times the height drawn to it, 10 x 6 = 60. Commissioned medium; I grade it easy. The stem does not print the area formula - good - but it does hand over both the base and the correct height already drawn, so the only work left is declining the 8. The figure is at least consistent (height 6 is less than the 8 side). 80, 48, 30 are the three wrong pairings/halvings. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-27": {
+    "pick": "4/25",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "(2/5)^2 = 4/25. Medium. Note the stem states 'the spins do not affect each other', which hands over the independence premise - the one place in this batch where the stem supplies a piece of the method rather than only the data, though it is far milder than the s10 pattern and the multiplication step is still the student's. 2/5, 4/5 and 1/10 are the single-spin, additive and without-replacement errors. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-28": {
+    "pick": "30",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "0.20n = 6, so n = 30. Medium - the work is in reading '6 more than the number' as the increase itself. 36 (the increased value), 5 (divided by 1.20), 120 (multiplied by 20 instead of dividing by 0.20) are all real. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-29": {
+    "pick": "S/5 - 2",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "5n + 10 = S gives n = S/5 - 2. Answering in terms of a symbol rather than a number is the hardest thing in the batch for this level. S/5 (the mean, i.e. the middle integer) and S/5 + 2 (the greatest) are the two stopping points, and (S - 2)/5 is the order-of-operations slip. Three of the options form the ladder S/5 - 2, S/5, S/5 + 2 with (S - 2)/5 as the outlier, but the key is the bottom of the ladder, not its middle, so the mechanism does not fire. Cross-item: key in slot B (25/30, D never)."
+  },
+  "IM11-30": {
+    "pick": "9",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "20 boys and 12 girls; 5 + 4 = 9. Medium, and the batch now labels it medium too (it was commissioned hard in the version of the file I first read, and was relabelled on disk mid-grade) - three routine steps chained, none above the level, and the 8 shares divide 32 evenly so no awkward arithmetic guards it. 5 (boys only), 8 (a quarter of the class), 23 (the complement) are three named endpoints. Cross-item: key in slot B (25/30, D never)."
+  }
+}

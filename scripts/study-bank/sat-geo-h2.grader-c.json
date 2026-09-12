@@ -1,0 +1,170 @@
+{
+  "GEOH2-01": {
+    "pick": "30",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Complete the square, r=17, half-chord sqrt(289-64)=15, double. Two routine steps; this is a mid-module-2 item, not a hard one. Every distractor is a named stopping point (half-chord, diameter, forgetting to move the 189). No figure supplied and none needed - the equation determines everything. CROSS-ITEM TELL: see the note on GEOH2-02; key slots run in identical consecutive pairs through the whole batch."
+  },
+  "GEOH2-02": {
+    "pick": "69.8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "h = 50/(cot32 - cot47) = 74.87, then h*cot47 = 69.8. Textbook two-station elevation problem; long but every step is forced, so it sits at the top of medium rather than in hard. Stem pins B between A and the base, so no second configuration. No figure; the text is unambiguous and a diagram would only save drawing time. CROSS-ITEM TELL (whole batch, recorded here once): key positions are A6/B6/C6/D6 - a perfect histogram - but they occur in identical CONSECUTIVE PAIRS: items 1-2 both C, 3-4 both A, 5-6 both D, 7-8 both B, 9-10 A, 11-12 D, 13-14 B, 15-16 C, 17-18 D, 19-20 C, 21-22 A, 23-24 B. Twelve pairs, all matching; odds of that by chance are about 6e-8. A student who is confident on either member of a pair has the other for free, and the balanced per-cohort histogram is exactly what hides it. This must be reshuffled before insert. (Re-checked against the batch as it stood after the mid-grade edit that reformatted several option strings and rewrote GEOH2-16's coordinates: the pairing is unchanged.)"
+  },
+  "GEOH2-03": {
+    "pick": "10.0",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "2r+s=44 and rs=240 give r^2-22r+120=0 with roots 10 and 12; the >2-radian condition selects 10 (24/10=2.4 vs 20/12=1.67). Genuinely hard by real-exam standards: two unknowns, a quadratic the student must build, two admissible roots, and a selection condition stated in radians that has to be applied to the arc-to-radius ratio rather than to anything given. The perimeter is defined in the stem ('two radii plus the arc'), which removes the one real ambiguity. Distractors are the rejected root, the arc, and the central angle - all endpoints of real paths. No figure; none needed."
+  },
+  "GEOH2-04": {
+    "pick": "5.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Equal pieces means the top cone is half the volume, k = cbrt(0.5) = 0.7937, 24 - 19.05 = 5.0. Commissioned hard, but it is two lines once you know V scales as k^3, and 'above the base' is stated explicitly, so the 19.0 trap is carelessness rather than difficulty - fiddly is not hard. 7.0 (k^2) and 12.0 (linear) are the two standard scaling errors. No figure; none needed."
+  },
+  "GEOH2-05": {
+    "pick": "8.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "pq = 12^2 = 144 with p+q = 26 gives 8 and 18; 'shorter' picks 8. Hard only if the geometric-mean relation is unknown; for a student on the module-2 hard route it is a recognised fact plus one quadratic. Triangle is realisable (altitude 12 < 13 = half the hypotenuse), so nothing is broken. 14.4 = sqrt(8*26) is the leg, one step past; 13.0 is the bisection assumption. No figure; the text fixes the configuration."
+  },
+  "GEOH2-06": {
+    "pick": "50.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "b = 10 or 24 from (b/2)sqrt(169-(b/2)^2) = 60; perimeters 36 and 50. The stem's 'There is more than one such triangle' hands over the case structure, which is precisely what would have made it hard - discovering the second root unprompted. With the hint it is medium. Exclusivity holds: the base-13 isosceles family (legs 11.3, perimeter 35.6) has only ONE side of length 13 and is excluded by 'two sides of length 13' - though note 35.2 sits suspiciously close to that 35.6 and a student who goes down that road may think they have found their answer. Distractors are the other triangle, the bare side, and the 'use 13 as the height' error. No figure; none needed."
+  },
+  "GEOH2-07": {
+    "pick": "10.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Distance from origin |k|/sqrt5 = 2sqrt5 gives k = 10; the discriminant route gives the same. 'k is positive' closes the sign. Standard tangency item, medium. 4.5 (the radius itself) is a real stop; 22.4 and 6.3 are manufactured coefficient slips - 'divided by sqrt2 because there are two terms' is not an error I can attach to a named student path, which is why this is plausible and not strong. No figure; none needed. Note the answer is a clean integer among three untidy decimals, a mild in-item tell."
+  },
+  "GEOH2-08": {
+    "pick": "33",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "sin A = cos D forces A + D = 90 (the A = 90 + D branch is impossible for acute angles in right triangles), y = 14, A = 33, D = 57, F = 90 - 57 = 33. Two linear steps; medium at most. 57 and 14 are clean stopping points, but 45 corresponds to no coherent path - the explanation's 'read sin A = cos D as A = D' gives 2y+5 = 3y+15, i.e. y = -10 and negative angles, not 45 each. One dead option drags this to plausible. No figure; none needed."
+  },
+  "GEOH2-09": {
+    "pick": "135",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "9*exterior = 180, exterior = 20, n = 18, n(n-3)/2 = 135. Two familiar facts chained; a strong student does this in under a minute. 18 (sides), 20 (the angle), 153 (n(n-1)/2, counting sides as diagonals) are all real endpoints. No figure; none needed."
+  },
+  "GEOH2-10": {
+    "pick": "50.3",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "13,571.7 L capacity, 10,857.3 L present, 5,400 L drained, 5,457.3/10,857.3 = 50.3%. Long arithmetic with a unit conversion and one conceptual pivot ('percent of the water originally in the tank', not of capacity), which the stem states explicitly. Length is not difficulty - medium. The three distractors are exactly the three ways of mismatching numerator and denominator against capacity, which is the best distractor set in the batch. No figure; none needed."
+  },
+  "GEOH2-11": {
+    "pick": "-0.95",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Q2 with sin = 3/5 gives cos = -4/5, tan = -3/4, sum -0.95. One 3-4-5 triangle plus quadrant signs; low medium. Distractors are all-positive, cosine-negative-but-tangent-positive, and the inverted tangent -4/3 - three sign/ratio errors students actually make. No figure; none needed. In-item tell worth noting: only one option is negative-and-small, and a student who knows only that two of the three ratios are negative can land on it without computing."
+  },
+  "GEOH2-12": {
+    "pick": "4.0",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "Intersecting chords: CP*PD = 60 with CP+PD = 19 gives 4 and 15, and 'CP shorter' selects 4.0. Medium - one theorem, one quadratic. 15.0 (the other piece) and 9.5 (assuming bisection) are real; 6.0 ('CP = AP') is weak, no student reasons that way once they have written down the power-of-a-point relation. No figure supplied. The real exam would almost certainly draw this one, but the text alone fixes the configuration unambiguously, so nothing is load-bearing."
+  },
+  "GEOH2-13": {
+    "pick": "7.9",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "Segment at height y has length 10 - (5/6)y (left edge x = y/3, right edge x = 10 - y/2), and equal areas give the root-mean-square of the bases, sqrt((100+25)/2) = 7.9. The strongest item in the batch: the equal-area segment is not a memorised formula, the student must set up and solve a quadratic in y or in the segment length, and the two most attractive wrong answers (7.5 midsegment, 7.1 geometric mean) are exactly the half-remembered formulas that feel right. This is what the hard band is supposed to look like. No figure; the four vertices determine it completely."
+  },
+  "GEOH2-14": {
+    "pick": "432",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "sqrt(216/96) = 3/2, 128*(3/2)^3 = 432. The canonical similar-solids item; medium. 288 (area ratio applied to volume), 192 (linear ratio uncubed), 384 (times 3) cover the three scaling errors cleanly. No figure; none needed."
+  },
+  "GEOH2-15": {
+    "pick": "25.7",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "9-12-15 right triangle, r = (9+12-15)/2 = 3, 54 - 9pi = 25.7. Medium: the inradius shortcut is standard, and if it is not known, area = rs recovers it in one line. DECIDABLE OPTION-SET TELL, the pi-expression tell in decimal clothing: the set contains 54.0 (the triangle), 28.3 (the circle) and their difference 25.7. A solver who computes either component alone can then pick the option that is the difference of two others, without trusting their own method - and 35.2 is the only option that is not part of that arithmetic triangle. Same shape as GEOH2-19. No composite a +/- b*pi expressions anywhere in this batch, so the radius is never reconstructible from the options themselves; this is the weaker cousin of that tell but it is still decidable. No figure; none needed."
+  },
+  "GEOH2-16": {
+    "pick": "-3.5",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "A(-6,5), B(2,-1): the distance equation (x+6)^2+25 = (x-2)^2+1 collapses to 16x = -56, x = -3.5; checked both ways, C(-3.5,0) is 31.25 squared-units from each. One line by the algebraic route, three by the perpendicular-bisector route, so low medium. -2.0 (the midpoint) is strong; -1.5 (the displacement left unadded) and -0.5 (slope sign reversed as well as inverted) need specific compound slips. Good that all four options are negative - nothing is separable by sign alone. No figure; none needed."
+  },
+  "GEOH2-17": {
+    "pick": "13",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "(500pi/3)/(12pi) = 13.89, floor to 13. Medium; the only judgement is 'complete cylinders', which the stem states. 14 (rounding up) and 41 (dropping the 1/3) are real errors. 8 comes from dividing a surface area by a volume - dimensionally incoherent and not a path I can name a student for, which holds this at plausible. No figure; none needed."
+  },
+  "GEOH2-18": {
+    "pick": "82",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "8x + 4 = 180, x = 22, angles 98 and 82, acute is 82. One linear equation and a comparison - this is an early module-1 item and grading it anything above easy would be papering over. Both parallel lines give the same acute angle, so 'either' introduces no ambiguity. Distractors (the obtuse partner, x itself, the alternate-interior misreading) are all genuine. No figure supplied; the real exam would draw the transversal, but the same-side-interior relationship is named in words, so nothing is load-bearing."
+  },
+  "GEOH2-19": {
+    "pick": "16.4",
+    "exclusive": true,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "note": "theta = 2*arcsin(0.6) = 1.2870, sector 64.35 minus triangle 48.00 = 16.4. Hard, with a caveat: the difficulty comes as much from the circular segment sitting at the very edge of tested SAT content as from reasoning depth. A student who knows sector-minus-triangle finds it routine; one who does not has no route at all, which is a sharper cliff than the real exam usually builds. DECIDABLE OPTION-SET TELL, same shape as GEOH2-15: 64.4 - 48.0 = 16.4, all three present, so the key is identifiable as the difference of two other options. Here it is worse than in 15, because the two components are the two things a partially-successful student computes first. 4.4 (using the radius as the triangle's height) is a good fourth. No figure; none needed."
+  },
+  "GEOH2-20": {
+    "pick": "3.9",
+    "exclusive": true,
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "note": "pi(2.5)^2(200) = 3,927 cm^3 = 3.9 L. One formula and two unit conversions, both flagged in the stem (inner diameter, the litre definition). Easy - the only failure mode is carelessness. The distractors are the three careless failures: diameter-as-radius, radius not squared (1.6), and lateral area read as volume. No figure; none needed."
+  },
+  "GEOH2-21": {
+    "pick": "2.4",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "H = 1.8(6.5)/2.5 = 4.68, then 1.8/1.5 = 4.68/(d+1.5) gives d + 1.5 = 3.9, d = 2.4. Two similar-triangle set-ups in sequence, with the standard 'distance to the lamp vs distance to the shadow tip' bookkeeping. Solid medium - the second set-up is mechanically identical to the first, so there is no new idea in it. 4.7 (the lamp height), 3.9 (the shadow tip), 0.9 (using 4 as the shadow) are all named. No figure; the text fixes which distances are which, which is the one thing a figure would settle."
+  },
+  "GEOH2-22": {
+    "pick": "2",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "Centres 10 apart, 10 > 6 + 2 so the circles are separate and the minimum is 10 - 6 - 2 = 2. The one real idea is that the minimum lies along the centre line; the 6-8-10 makes the arithmetic free. Medium, near the easy boundary. 10 (centres), 4 (one radius removed), 18 (the maximum) are the three natural misreads. No figure; none needed."
+  },
+  "GEOH2-23": {
+    "pick": "24.8",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "note": "120(sin50 - sin34) = 24.8; the 1.5 m hand height cancels and is a deliberate red herring, which is the item's only real trick. Medium. 68.6 (the later height) and 22.3 (cosine instead of sine, i.e. the horizontal change) are strong. 16.0 - the angle difference reported in metres - is weak: it is not an arithmetic slip but a category error, and a student far enough gone to make it would not have a calculator result to compare it against. No figure; none needed."
+  },
+  "GEOH2-24": {
+    "pick": "31.2",
+    "exclusive": true,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "note": "The three cut vertices are pairwise joined by face diagonals, so the section is equilateral with side 6sqrt2 and area (sqrt3/4)(72) = 31.2. Commissioned hard and it is the most 3D-looking item here, but the configuration is a stock one and, once recognised, it is a single formula - medium. 36.0 (a face), 18.0 (half a face), 15.6 (edge used as the triangle's side) are all real. No figure supplied, and this is the only item where I would want one: the real exam would draw the cube. It is still not load-bearing - 'the three vertices adjacent to one particular vertex' determines the section uniquely - but it asks the student to build the picture themselves, which is a reading burden the SAT would not impose here."
+  }
+}
