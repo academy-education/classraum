@@ -404,10 +404,20 @@ const suspicious = batch.filter(r => {
 writeFileSync(`scripts/study-bank/${tag}.grade.json`, JSON.stringify(shownAll, null, 1))
 writeFileSync(`scripts/study-bank/${tag}.gradekey.json`, JSON.stringify(keyAll, null, 1))
 console.log(`${tag}: ${shownAll.length} items rendered from ${path}`)
-console.log(`  source sha256 : ${sha.slice(0, 16)}   <- quote this with the grade`)
+/* TWO shas exist and both used to be called "the sha" in ledger entries,
+ * which made a later reader unable to tell which file a grade was bound to.
+ * They answer different questions and both are printed, named:
+ *   batch  — binds the CONTENT. A one-byte change here makes every gate
+ *            stage stale, which is what gate.mjs enforces.
+ *   render — proves the graders all read the SAME BYTES. This is the one a
+ *            grader can compute themselves (`shasum -a 256 <tag>.grade.json`)
+ *            and the one to ask them to quote back at start and end. */
+console.log(`  batch  sha256 : ${sha.slice(0, 16)}   <- binds the content; the ledger entry records THIS`)
 console.log(`  WITHHELD      : ${[...withheldFields].sort().join(', ') || '(nothing — check the input)'}`)
 console.log(`  kept, unrecognised: ${[...keptUnknown].sort().join(', ') || '(none)'}   <- verify none of these leaks the key`)
 if (suspicious.length) console.log(`  WARNING: explanation text appears inside the shown fields of: ${suspicious.join(' ')}`)
+const renderSha = createHash('sha256').update(readFileSync(`scripts/study-bank/${tag}.grade.json`)).digest('hex')
+console.log(`  render sha256 : ${renderSha.slice(0, 16)}   <- ask each grader to quote THIS, at start and end`)
 console.log(`  wrote scripts/study-bank/${tag}.grade.json  (give the grader THIS, not the batch)`)
 console.log(`  dealt key slots : ${dealtSlots.join(',')}`)
 console.log(`  consecutive pairs sharing a slot: ${pairHits} of ${pairTot}   (chance ~${(pairTot / (batch[0]?.choices?.length ?? 4)).toFixed(1)})`)

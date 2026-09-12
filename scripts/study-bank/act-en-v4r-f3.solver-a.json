@@ -1,0 +1,27 @@
+{
+ "R3-01": {
+  "pick": "B",
+  "confidence": 32,
+  "why": "guess — punctuation set (colon / semicolon / bare) names the rule but does not resolve it. 'within a decade' is a prepositional phrase, so a semicolon (C) is wrong unless an independent clause follows, which I cannot see; colon (A) is legal only after an independent clause, also unseeable. No Change is an unknown fourth mark (probably a comma), which is the default correct treatment of a fronted/trailing modifier, so I took it. Pure shape reasoning, no content."
+ },
+ "R3-02": {
+  "pick": "B",
+  "confidence": 55,
+  "why": "pronoun-agreement singleton. Alternates are his / its / those, and No Change is a fourth unseen value — the fact that 'its' was worth listing as a named alternate alongside a gendered and a demonstrative form suggests the tested antecedent is an institution or business ('closes its doors' is the idiom). Decided from the option set, not the sentence; still partly a guess about the antecedent."
+ },
+ "R3-03": {
+  "pick": "C",
+  "confidence": 30,
+  "why": "guess — his / its / their brackets the pronoun rule cleanly but the option set cannot tell me the antecedent's number or animacy. 'their face' (singular referent, singular noun) reads mismatched and 'his' needs a known male; 'its' is the form that survives the widest range of antecedents. Coin-flip dressed up as reasoning."
+ },
+ "R3-04": {
+  "pick": "D",
+  "confidence": 42,
+  "why": "guess, with one weak cross-item lean. 'and it is set' inserts a needless passive clause, 'and set it' would need a past-tense or imperative frame; 'and sets it' is the parallel third-person-singular present form, and R3-02's 'closes' suggests the form is written in present tense. That cross-item inference is exactly the kind of tell I am supposed to be reporting, not relying on, so confidence stays low."
+ },
+ "R3-05": {
+  "pick": "A",
+  "confidence": 36,
+  "why": "guess — 'have been simply' is the lone plural and drops out for free, but that only narrows to is / was / No Change. Chose 'is' on the same shaky present-tense read as R3-04. Nothing in the options distinguishes present from past."
+ }
+}

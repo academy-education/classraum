@@ -1,0 +1,27 @@
+{
+  "R2-01": {
+    "pick": "C",
+    "confidence": 40,
+    "why": "Punctuation set at a clause juncture: zero punctuation (A), comma (B), semicolon (C), unknown original (D). Semicolon is the only option guaranteed legal if what follows is an independent clause, which the option shape implies is what is being tested. But I cannot see whether the second half is independent, and NO CHANGE is invisible, so this is close to a guess biased by option shape."
+  },
+  "R2-02": {
+    "pick": "B",
+    "confidence": 50,
+    "why": "Apostrophe bracket: town's vs towns' plus a bare attributive 'town crop'. The bracket tells me the rule under test is possessive number; singular possessive is the default reading for 'the town' as a single named place. Chosen from the option set alone, not from the sentence — partly a guess between B and C on number."
+  },
+  "R2-03": {
+    "pick": "A",
+    "confidence": 30,
+    "why": "guess — tense/agreement set (are / were / NO CHANGE / has been) with no sentence to fix the subject's number or the passage's tense. Picked present plural because the sibling items suggest a general expository passage, which is a pattern argument, not evidence."
+  },
+  "R2-04": {
+    "pick": "B",
+    "confidence": 45,
+    "why": "Redundancy ladder: 'where a person' / 'and where a person' / 'and it is where a person'. The shortest grammatical rung is the ACT-preferred form and the ladder itself signals wordiness is the tested fault. Still blind to whether the conjunction is actually needed, so partly a guess."
+  },
+  "R2-05": {
+    "pick": "D",
+    "confidence": 32,
+    "why": "guess — possessive bracket leaf's vs leaves' with a vague-pronoun decoy ('its'). Ruled out the pronoun on ACT's clarity preference, then coin-flipped the number toward singular with no antecedent visible."
+  }
+}
