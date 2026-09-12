@@ -264,9 +264,20 @@ for (const [family, section, label, perForm, hidden] of SECTIONS) {
       if (forms < worst) { worst = forms; binding = `${dom} (${have} / ~${need} per form)` }
     }
     byDomain = Math.min(naive, worst)
-    // Say so. This branch cannot see a real constraint, and a "binding domain"
-    // printed from it is a restatement of the total, not a measurement.
-    binding = `${binding}  [NO PUBLISHED QUOTA — circular, treat as the naive number]`
+    /* Say so -- but only where it is true. The circularity is in the DOMAIN
+     * SPLIT: `need` above is derived from the bank's own current proportions,
+     * so a "binding domain" printed from it restates the total. The SECTION
+     * quota is not circular; it comes from ADMISSION_BLUEPRINT.
+     *
+     * So on a section with ONE domain there is no split to infer and the
+     * number is exact -- SSAT Verbal is 180 items at a published 60 per form,
+     * which is 3 forms, full stop. Printing "circular, treat as the naive
+     * number" there told the reader to distrust a solid figure, and six of the
+     * nine sections carrying this warning are in that position. A caveat that
+     * fires where it does not apply is a caveat nobody reads where it does. */
+    binding = doms.length === 1
+      ? `${binding}  [single domain — no split to infer, this number is exact]`
+      : `${binding}  [DOMAIN SPLIT INFERRED FROM CURRENT SHAPE — circular, treat as the naive number]`
   }
   if (family === 'act' && (section === 'reading' || section === 'science')) {
     binding += '  [ALSO PASSAGE-DRAWN — the domain number is an upper bound]'
