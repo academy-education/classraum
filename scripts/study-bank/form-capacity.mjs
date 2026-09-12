@@ -138,10 +138,28 @@ const pageAll = async () => {
   const out = []
   for (let from = 0; ; from += 1000) {
     const { data, error } = await db.from('study_item_bank')
-      .select('family,section,domain,difficulty,passage_group_id')
-      .eq('verified', true).eq('archived', false).range(from, from + 999)
+      .select('id,family,section,domain,difficulty,passage_group_id')
+      /* .order() is LOAD-BEARING, not tidiness. Without a total order
+       * PostgREST may return rows in a different order per page, so
+       * .range() windows overlap or skip and pageAll silently returns a
+       * DIFFERENT SUBSET each run. Measured 2026-09-12: three consecutive
+       * runs reported ACT Math as 401, 428 and 152 items, and the 152 run
+       * named the binding domain as Number and Quantity instead of
+       * Algebra. Every form count, every "binding domain" and every
+       * capacity figure taken from this script before this fix is
+       * unreliable -- including a 100-form authoring plan sized off it. */
+      .eq('verified', true).eq('archived', false)
+      .order('id', { ascending: true }).range(from, from + 999)
     if (error) throw new Error(error.message)
     out.push(...(data ?? [])); if (!data || data.length < 1000) break
+  }
+  /* A duplicate id proves the paging window slipped. Refuse rather than
+   * report: a capacity number over a corrupted population reads exactly
+   * like a real one. */
+  const ids = new Set(out.map(r => r.id))
+  if (ids.size !== out.length) {
+    console.error(`REFUSING: paged ${out.length} rows but only ${ids.size} distinct ids — the range window slipped.`)
+    process.exit(2)
   }
   return out
 }
