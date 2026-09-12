@@ -1,0 +1,422 @@
+[
+  {
+    "id": "AM12G-04",
+    "domain": "Geometry",
+    "subskill": "volume of a cone given its diameter and height",
+    "difficulty": "medium",
+    "prompt": "A paper drinking cup is a right circular cone with a base diameter of 12 centimeters and a height of 10 centimeters. What is the volume of the cup, to the nearest cubic centimeter?",
+    "choices": [
+      "628",
+      "565",
+      "1508",
+      "377"
+    ],
+    "correct_answer": "377",
+    "explanation": "The radius is half the diameter, 6 centimeters, so the volume is (1/3)π(6^2)(10), about 377 cubic centimeters. \"1508\" comes from a solver who uses the diameter 12 as the radius, (1/3)π(12^2)(10). \"628\" comes from a solver who swaps the radius and the height, (1/3)π(10^2)(6). \"565\" comes from a solver who halves instead of taking a third, (1/2)π(6^2)(10).",
+    "solve": "return Math.round((1/3) * Math.PI * Math.pow(6,2) * 10).toString();",
+    "distractor_solve": {
+      "565": "return Math.round(0.5 * Math.PI * Math.pow(6,2) * 10).toString();",
+      "628": "return Math.round((1/3) * Math.PI * Math.pow(10,2) * 6).toString();",
+      "1508": "return Math.round((1/3) * Math.PI * Math.pow(12,2) * 10).toString();"
+    }
+  },
+  {
+    "id": "AM12G-05",
+    "domain": "Geometry",
+    "subskill": "length of a median of a triangle in the coordinate plane",
+    "difficulty": "medium",
+    "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(-2,1), B(6,9), and C(4,-3). What is the length of the median drawn from C to side AB, to the nearest tenth of a unit?",
+    "choices": [
+      "7.0",
+      "5.7",
+      "8.2",
+      "12.2"
+    ],
+    "correct_answer": "8.2",
+    "explanation": "The median from C meets AB at its midpoint, ((-2+6)/2, (1+9)/2) = (2,5). The distance from C(4,-3) to (2,5) is sqrt(2^2 + 8^2) = sqrt(68), about 8.2. \"12.2\" comes from a solver who draws the segment to the endpoint B rather than to the midpoint, sqrt((6-4)^2 + (9+3)^2). \"7.0\" comes from a solver who builds the midpoint by subtracting coordinates instead of adding, ((6-(-2))/2, (9-1)/2) = (4,4), and measures from C to that point. \"5.7\" comes from a solver who assumes the median is half the length of AB, sqrt(8^2 + 8^2)/2.",
+    "solve": "var mx = (-2 + 6) / 2, my = (1 + 9) / 2; return Math.sqrt(Math.pow(4 - mx, 2) + Math.pow(-3 - my, 2)).toFixed(1);",
+    "distractor_solve": {
+      "12.2": "return Math.sqrt(Math.pow(6 - 4, 2) + Math.pow(9 - (-3), 2)).toFixed(1);",
+      "7.0": "var mx = (6 - (-2)) / 2, my = (9 - 1) / 2; return Math.sqrt(Math.pow(4 - mx, 2) + Math.pow(-3 - my, 2)).toFixed(1);",
+      "5.7": "return (Math.sqrt(Math.pow(6 - (-2), 2) + Math.pow(9 - 1, 2)) / 2).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM12G-07",
+    "domain": "Geometry",
+    "subskill": "angle between the hands of a clock at a given time",
+    "difficulty": "medium",
+    "prompt": "On a standard 12-hour clock face, what is the measure, in degrees, of the smaller angle formed by the hour hand and the minute hand at 3:40?",
+    "choices": [
+      "150",
+      "70",
+      "170",
+      "130"
+    ],
+    "correct_answer": "130",
+    "explanation": "At 40 minutes past, the minute hand is at 40(6) = 240 degrees from the 12. The hour hand starts at 3(30) = 90 degrees and advances 40(0.5) = 20 degrees, putting it at 110 degrees. The angle between them is 240 - 110 = 130 degrees. \"150\" comes from a solver who leaves the hour hand parked at the 3, 240 - 90. \"170\" comes from a solver who moves the hour hand backward by its 20 degrees instead of forward, 240 - 70. \"70\" is that mistaken hour-hand position, 90 - 20, reported as the answer.",
+    "solve": "var minute = 40 * 6, hour = 3 * 30 + 40 * 0.5; return Math.abs(minute - hour).toString();",
+    "distractor_solve": {
+      "70": "return (3 * 30 - 40 * 0.5).toString();",
+      "150": "return (40 * 6 - 3 * 30).toString();",
+      "170": "return (40 * 6 - (3 * 30 - 40 * 0.5)).toString();"
+    }
+  },
+  {
+    "id": "AM12G-08",
+    "domain": "Geometry",
+    "subskill": "change in circumference when a radius changes",
+    "difficulty": "medium",
+    "prompt": "A circular fountain with a radius of 7 meters is rebuilt with a radius of 10 meters. By how many meters does the circumference of the fountain increase?",
+    "choices": [
+      "3π",
+      "34π",
+      "51π",
+      "6π"
+    ],
+    "correct_answer": "6π",
+    "explanation": "The circumference grows from 2π(7) = 14π to 2π(10) = 20π, an increase of 6π meters. \"3π\" comes from a solver who uses C = πr rather than C = 2πr, so the increase becomes π(10 - 7). \"34π\" comes from a solver who adds the radii instead of subtracting them, 2π(10 + 7). \"51π\" is the increase in AREA, π(10^2) - π(7^2), not in circumference.",
+    "solve": "return (2 * 10 - 2 * 7) + 'π';",
+    "distractor_solve": {
+      "3π": "return (10 - 7) + 'π';",
+      "34π": "return (2 * (10 + 7)) + 'π';",
+      "51π": "return (Math.pow(10, 2) - Math.pow(7, 2)) + 'π';"
+    }
+  },
+  {
+    "id": "AM12G-09",
+    "domain": "Geometry",
+    "subskill": "volume of a prism whose base is a right triangle",
+    "difficulty": "medium",
+    "prompt": "A solid glass prism is 6 centimeters long. Each end is a right triangle whose legs are 8 centimeters and 15 centimeters long and whose hypotenuse is 17 centimeters long. What is the volume of the prism, in cubic centimeters?",
+    "choices": [
+      "720",
+      "408",
+      "60",
+      "360"
+    ],
+    "correct_answer": "360",
+    "explanation": "The triangular end has area (1/2)(8)(15) = 60 square centimeters, so the volume is 60(6) = 360 cubic centimeters. \"720\" comes from a solver who multiplies the two legs without halving, 8(15)(6). \"408\" comes from a solver who pairs a leg with the hypotenuse, (1/2)(8)(17)(6). \"60\" is the area of the triangular end, reported before it is multiplied by the length.",
+    "solve": "return (0.5 * 8 * 15 * 6).toString();",
+    "distractor_solve": {
+      "60": "return (0.5 * 8 * 15).toString();",
+      "408": "return (0.5 * 8 * 17 * 6).toString();",
+      "720": "return (8 * 15 * 6).toString();"
+    }
+  },
+  {
+    "id": "AM12G-10",
+    "domain": "Geometry",
+    "subskill": "volume of a solid built from a cylinder and a hemisphere",
+    "difficulty": "hard",
+    "prompt": "A storage silo is a right circular cylinder 10 meters tall with a radius of 3 meters, capped on top by a dome in the shape of a hemisphere of the same radius. What is the total volume of the silo, to the nearest tenth of a cubic meter?",
+    "choices": [
+      "395.8",
+      "282.7",
+      "339.3",
+      "311.0"
+    ],
+    "correct_answer": "339.3",
+    "explanation": "The cylinder holds π(3^2)(10) = 90π cubic meters and the dome holds half a sphere of radius 3, (1/2)(4/3)π(3^3) = 18π cubic meters, so the total is 108π, about 339.3 cubic meters. \"282.7\" is 90π, the cylinder alone, with the dome left out. \"395.8\" comes from a solver who adds a WHOLE sphere rather than half of one, 90π + 36π. \"311.0\" comes from a solver who puts a cone of height 3 on top instead of a dome, 90π + 9π.",
+    "solve": "return (Math.PI * 9 * 10 + 0.5 * (4/3) * Math.PI * 27).toFixed(1);",
+    "distractor_solve": {
+      "282.7": "return (Math.PI * 9 * 10).toFixed(1);",
+      "395.8": "return (Math.PI * 9 * 10 + (4/3) * Math.PI * 27).toFixed(1);",
+      "311.0": "return (Math.PI * 9 * 10 + (1/3) * Math.PI * 9 * 3).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM12S-01",
+    "domain": "Statistics and Probability",
+    "subskill": "converting odds in favour to a probability",
+    "difficulty": "easy",
+    "prompt": "At a county fair, the odds in favour of a certain ticket winning a prize are 3 to 5. That is, for every 3 winning tickets there are 5 tickets that do not win. If one ticket is drawn at random, what is the probability that it wins a prize?",
+    "choices": [
+      "3/5",
+      "1/2",
+      "5/8",
+      "3/8"
+    ],
+    "correct_answer": "3/8",
+    "explanation": "Odds of 3 to 5 describe 3 winners among 3 + 5 = 8 tickets, so the probability of winning is 3/8. \"3/5\" comes from a solver who writes the two numbers of the odds as a fraction rather than putting the winners over the total. \"5/8\" is the probability that the ticket does NOT win. \"1/2\" comes from a solver who reasons that a ticket either wins or does not and treats the two outcomes as equally likely.",
+    "solve": "return (3 / (3 + 5)).toString();",
+    "distractor_solve": {
+      "3/5": "return (3 / 5).toString();",
+      "5/8": "return (5 / (3 + 5)).toString();",
+      "1/2": "return (1 / 2).toString();"
+    }
+  },
+  {
+    "id": "AM12S-02",
+    "domain": "Statistics and Probability",
+    "subskill": "a two-stage draw in which the first stage selects the container",
+    "difficulty": "medium",
+    "prompt": "Box A contains 4 marbles, exactly 1 of which is red. Box B contains 5 marbles, exactly 3 of which are red. A fair coin is flipped to decide which box to use, and then one marble is drawn at random from that box. What is the probability that the marble drawn is red?",
+    "choices": [
+      "3/20",
+      "17/20",
+      "4/9",
+      "17/40"
+    ],
+    "correct_answer": "17/40",
+    "explanation": "Each box is equally likely, so the probability is (1/2)(1/4) + (1/2)(3/5) = 1/8 + 3/10 = 17/40. \"17/20\" comes from a solver who adds the two box probabilities, 1/4 + 3/5, and never halves them. \"3/20\" comes from a solver who multiplies them, (1/4)(3/5), as though both boxes were used. \"4/9\" comes from a solver who pours the boxes together and counts 4 red marbles among 9, which ignores that the smaller box is chosen half the time.",
+    "solve": "return (0.5 * (1 / 4) + 0.5 * (3 / 5)).toString();",
+    "distractor_solve": {
+      "17/20": "return (1 / 4 + 3 / 5).toString();",
+      "3/20": "return ((1 / 4) * (3 / 5)).toString();",
+      "4/9": "return ((1 + 3) / (4 + 5)).toString();"
+    }
+  },
+  {
+    "id": "AM12S-03",
+    "domain": "Statistics and Probability",
+    "subskill": "recovering the group size from a count of pairings",
+    "difficulty": "hard",
+    "prompt": "In a chess league, every team plays every other team exactly once during the season. The season schedule contains 45 games in all. How many teams are in the league?",
+    "choices": [
+      "9",
+      "90",
+      "10",
+      "45"
+    ],
+    "correct_answer": "10",
+    "explanation": "If there are n teams, each pair of teams meets once, so the schedule holds n(n-1)/2 games. Setting n(n-1)/2 = 45 gives n(n-1) = 90 and n = 10. \"9\" is the number of OPPONENTS each team faces, n - 1, rather than the number of teams; it also comes from solving n(n+1)/2 = 45. \"90\" comes from a solver who doubles the games to undo the division by 2 and stops there. \"45\" is the number of games, which the question hands over.",
+    "solve": "for (var n = 1; n < 200; n++) { if (n * (n - 1) / 2 === 45) return n.toString(); } return 'none';",
+    "distractor_solve": {
+      "9": "for (var n = 1; n < 200; n++) { if (n * (n + 1) / 2 === 45) return n.toString(); } return 'none';",
+      "45": "return (45).toString();",
+      "90": "return (2 * 45).toString();"
+    }
+  },
+  {
+    "id": "AM12S-04",
+    "domain": "Statistics and Probability",
+    "subskill": "predicting a value from a line of best fit",
+    "difficulty": "easy",
+    "prompt": "For a set of paired data, the line of best fit is y = 3.2x + 14, where x is the number of hours a plant is lit each day and y is its height in millimetres. According to this line, what height is predicted for a plant lit 7.5 hours each day?",
+    "choices": [
+      "17.2",
+      "38",
+      "36.4",
+      "24"
+    ],
+    "correct_answer": "38",
+    "explanation": "Substituting x = 7.5 gives y = 3.2(7.5) + 14 = 24 + 14 = 38 millimetres. \"24\" is the product 3.2(7.5), reported before the 14 is added. \"17.2\" comes from a solver who adds 3.2 and 14 instead of multiplying by the hours. \"36.4\" comes from a solver who truncates 7.5 hours to 7 before substituting, 3.2(7) + 14.",
+    "solve": "return (3.2 * 7.5 + 14).toString();",
+    "distractor_solve": {
+      "24": "return (3.2 * 7.5).toString();",
+      "17.2": "return (3.2 + 14).toString();",
+      "36.4": "return (3.2 * 7 + 14).toString();"
+    }
+  },
+  {
+    "id": "AM12S-06",
+    "domain": "Statistics and Probability",
+    "subskill": "probability that a randomly chosen integer in a range is a multiple of a given number",
+    "difficulty": "medium",
+    "prompt": "An integer is chosen at random from the integers 1 through 60, inclusive, with each equally likely. What is the probability that the integer chosen is a multiple of 7?",
+    "choices": [
+      "2/15",
+      "7/60",
+      "3/20",
+      "1/7"
+    ],
+    "correct_answer": "2/15",
+    "explanation": "The multiples of 7 in this range are 7, 14, 21, 28, 35, 42, 49, and 56 - eight of them - so the probability is 8/60 = 2/15. \"7/60\" comes from a solver who counts only the multiples through 49 and finds seven of them. \"3/20\" is 9/60, from a solver who counts 63 as though it were inside the range. \"1/7\" comes from a solver who assumes exactly one integer in every seven lands in the list without checking how the range ends.",
+    "solve": "var n = 0; for (var i = 1; i <= 60; i++) { if (i % 7 === 0) n++; } return (n / 60).toString();",
+    "distractor_solve": {
+      "7/60": "return (7 / 60).toString();",
+      "3/20": "return (9 / 60).toString();",
+      "1/7": "return (1 / 7).toString();"
+    }
+  },
+  {
+    "id": "AM12S-07",
+    "domain": "Statistics and Probability",
+    "subskill": "probability over a continuous interval of arrival times",
+    "difficulty": "medium",
+    "prompt": "A delivery van arrives at a warehouse at a time that is equally likely to be any moment between 3:00 and 3:45. A clerk is at the loading dock from 3:10 until 3:25 and can receive the van only during that stretch. What is the probability that the van arrives while the clerk is at the dock?",
+    "choices": [
+      "1/4",
+      "2/9",
+      "1/3",
+      "1/6"
+    ],
+    "correct_answer": "1/3",
+    "explanation": "The clerk covers 15 of the 45 equally likely minutes, so the probability is 15/45 = 1/3. \"2/9\" is 10/45, from a solver who measures the 10 minutes from 3:00 to 3:10 instead of the stretch the clerk is actually present. \"1/4\" is 15/60, from a solver who divides by a full hour rather than by the 45-minute window during which the van can arrive. \"1/6\" comes from a solver who halves the 15-minute stretch before dividing, 7.5/45.",
+    "solve": "return (15 / 45).toString();",
+    "distractor_solve": {
+      "2/9": "return (10 / 45).toString();",
+      "1/4": "return (15 / 60).toString();",
+      "1/6": "return ((15 / 2) / 45).toString();"
+    }
+  },
+  {
+    "id": "AM12S-08",
+    "domain": "Statistics and Probability",
+    "subskill": "least possible size of an overlap forced by a total",
+    "difficulty": "hard",
+    "prompt": "A tour group has 42 travellers. Exactly 26 of them visited the cathedral and exactly 25 of them visited the market. What is the LEAST possible number of travellers who visited both the cathedral and the market?",
+    "choices": [
+      "51",
+      "9",
+      "0",
+      "25"
+    ],
+    "correct_answer": "9",
+    "explanation": "Cathedral visits and market visits account for 26 + 25 = 51 visits among only 42 travellers, so at least 51 - 42 = 9 travellers must be counted twice, and 9 is achievable. \"0\" comes from a solver who assumes the two groups can always be kept separate, which 51 visits among 42 travellers forbids. \"25\" is the GREATEST possible overlap, reached when everyone who saw the market also saw the cathedral. \"51\" is the total of the two group sizes, 26 + 25.",
+    "solve": "return Math.max(0, 26 + 25 - 42).toString();",
+    "distractor_solve": {
+      "0": "return (0).toString();",
+      "25": "return Math.min(26, 25).toString();",
+      "51": "return (26 + 25).toString();"
+    }
+  },
+  {
+    "id": "AM12I-01",
+    "domain": "Integrating Essential Skills",
+    "subskill": "instalments after a deposit",
+    "difficulty": "easy",
+    "prompt": "A refrigerator sells for 1,350 dollars. A customer pays a deposit of 270 dollars and pays the rest in 12 equal monthly instalments with no interest added. How many dollars is each instalment?",
+    "choices": [
+      "108",
+      "112.5",
+      "135",
+      "90"
+    ],
+    "correct_answer": "90",
+    "explanation": "After the deposit, 1350 - 270 = 1080 dollars remains, and 1080/12 = 90 dollars is paid each month. \"112.5\" comes from a solver who spreads the whole price over the 12 months and forgets the deposit, 1350/12. \"135\" comes from a solver who adds the deposit to the price instead of subtracting it, 1620/12. \"108\" comes from a solver who divides the remaining 1080 dollars by 10 months rather than 12.",
+    "solve": "return ((1350 - 270) / 12).toString();",
+    "distractor_solve": {
+      "108": "return ((1350 - 270) / 10).toString();",
+      "135": "return ((1350 + 270) / 12).toString();",
+      "112.5": "return (1350 / 12).toString();"
+    }
+  },
+  {
+    "id": "AM12I-03",
+    "domain": "Integrating Essential Skills",
+    "subskill": "recovering volume from mass and density",
+    "difficulty": "medium",
+    "prompt": "The density of a certain alloy is 2.7 grams per cubic centimetre. A solid block of this alloy has a mass of 1,215 grams. What is the volume of the block, in cubic centimetres?",
+    "choices": [
+      "3280.5",
+      "4500",
+      "486",
+      "450"
+    ],
+    "correct_answer": "450",
+    "explanation": "Density is mass per unit volume, so volume = 1215/2.7 = 450 cubic centimetres. \"3280.5\" comes from a solver who multiplies by the density instead of dividing, 1215(2.7). \"4500\" comes from a solver who misplaces the decimal point in the density and divides by 0.27. \"486\" comes from a solver who rounds the density to 2.5 before dividing.",
+    "solve": "return Math.round(1215 / 2.7).toString();",
+    "distractor_solve": {
+      "486": "return (1215 / 2.5).toString();",
+      "4500": "return Math.round(1215 / 0.27).toString();",
+      "3280.5": "return (1215 * 2.7).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM12I-05",
+    "domain": "Integrating Essential Skills",
+    "subskill": "pricing an area given in feet at a rate per square yard",
+    "difficulty": "medium",
+    "prompt": "A room measures 12 feet by 15 feet. Carpet for the room costs 28 dollars per square YARD, and 1 square yard equals 9 square feet. What is the cost, in dollars, to carpet the room?",
+    "choices": [
+      "1680",
+      "20",
+      "5040",
+      "560"
+    ],
+    "correct_answer": "560",
+    "explanation": "The floor is 12(15) = 180 square feet, which is 180/9 = 20 square yards, so the carpet costs 20(28) = 560 dollars. \"5040\" comes from a solver who prices the square FEET, 180(28). \"1680\" comes from a solver who converts with 3 square feet per square yard instead of 9, 60(28). \"20\" is the room's area in square yards, reported before it is priced.",
+    "solve": "return ((12 * 15 / 9) * 28).toString();",
+    "distractor_solve": {
+      "20": "return (12 * 15 / 9).toString();",
+      "1680": "return ((12 * 15 / 3) * 28).toString();",
+      "5040": "return (12 * 15 * 28).toString();"
+    }
+  },
+  {
+    "id": "AM12I-06",
+    "domain": "Integrating Essential Skills",
+    "subskill": "percent change in area when every length changes by a percent",
+    "difficulty": "hard",
+    "prompt": "A square quilt panel is remade so that each side is 30% longer than it was. By what percent does the AREA of the panel increase?",
+    "choices": [
+      "30",
+      "69",
+      "9",
+      "169"
+    ],
+    "correct_answer": "69",
+    "explanation": "Each side is multiplied by 1.3, so the area is multiplied by 1.3^2 = 1.69, an increase of 69%. \"30\" is the percent by which each SIDE increases, which the question hands over. \"169\" is the enlarged area as a percent OF the original area, not the increase. \"9\" comes from a solver who squares only the 30% part, treating 0.3^2 = 0.09 as the whole change.",
+    "solve": "return Math.round((Math.pow(1.3, 2) - 1) * 100).toString();",
+    "distractor_solve": {
+      "9": "return Math.round(Math.pow(0.3, 2) * 100).toString();",
+      "30": "return (30).toString();",
+      "169": "return Math.round(Math.pow(1.3, 2) * 100).toString();"
+    }
+  },
+  {
+    "id": "AM12I-07",
+    "domain": "Integrating Essential Skills",
+    "subskill": "a rate that changes above a stated threshold",
+    "difficulty": "medium",
+    "prompt": "A sales associate earns a commission of 5% on the first 4,000 dollars of her monthly sales and 8% on the portion of her monthly sales above 4,000 dollars. In a month in which her sales total 9,500 dollars, how many dollars of commission does she earn?",
+    "choices": [
+      "570",
+      "640",
+      "440",
+      "475"
+    ],
+    "correct_answer": "640",
+    "explanation": "She earns 0.05(4000) = 200 dollars on the first portion and 0.08(9500 - 4000) = 440 dollars on the rest, for 640 dollars in all. \"440\" is the commission on the portion above 4,000 dollars only, with the first 4,000 dollars left out. \"475\" comes from a solver who applies 5% to all of the sales, 0.05(9500). \"570\" comes from a solver who averages the two rates to 6% and applies it to all of the sales, 0.06(9500).",
+    "solve": "return (0.05 * 4000 + 0.08 * (9500 - 4000)).toString();",
+    "distractor_solve": {
+      "440": "return (0.08 * (9500 - 4000)).toString();",
+      "475": "return (0.05 * 9500).toString();",
+      "570": "return (0.06 * 9500).toString();"
+    }
+  },
+  {
+    "id": "AM12F-02",
+    "domain": "Functions",
+    "subskill": "the constant that joins the two pieces of a piecewise function",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 4x - 3 for x <= 5 and f(x) = kx^2 + 7 for x > 5, where k is a constant. The graph of f has no break at x = 5, so the two rules approach the same value there. What is the value of k?",
+    "choices": [
+      "17",
+      "0.4",
+      "2",
+      "0.68"
+    ],
+    "correct_answer": "0.4",
+    "explanation": "At x = 5 the first rule gives 4(5) - 3 = 17, so the second rule must also give 17 there: k(5^2) + 7 = 17, so 25k = 10 and k = 0.4. \"17\" is the shared VALUE of the function at x = 5, not the constant k. \"0.68\" comes from a solver who drops the +7 and solves 25k = 17. \"2\" comes from a solver who uses x rather than x^2 in the second rule, solving 5k + 7 = 17.",
+    "solve": "var v = 4 * 5 - 3; return ((v - 7) / Math.pow(5, 2)).toString();",
+    "distractor_solve": {
+      "2": "return (((4 * 5 - 3) - 7) / 5).toString();",
+      "17": "return (4 * 5 - 3).toString();",
+      "0.68": "return ((4 * 5 - 3) / Math.pow(5, 2)).toString();"
+    }
+  },
+  {
+    "id": "AM12F-03",
+    "domain": "Functions",
+    "subskill": "sum of an infinite geometric series",
+    "difficulty": "medium",
+    "prompt": "A ball is dropped and the heights of its bounces form an infinite geometric sequence whose first term is 18 centimetres and whose common ratio is 1/3. What is the sum of all the terms of this sequence, in centimetres?",
+    "choices": [
+      "27",
+      "24",
+      "6",
+      "13.5"
+    ],
+    "correct_answer": "27",
+    "explanation": "For a geometric sequence with |r| < 1 the sum of all terms is a/(1 - r) = 18/(1 - 1/3) = 18/(2/3) = 27 centimetres. \"24\" is the sum of only the first two terms, 18 + 6. \"13.5\" comes from a solver who divides by 1 + r instead of 1 - r, 18/(4/3). \"6\" is the second term of the sequence, 18(1/3), reported on its own.",
+    "solve": "return Math.round(18 / (1 - 1 / 3)).toString();",
+    "distractor_solve": {
+      "6": "return (18 * (1 / 3)).toString();",
+      "24": "return (18 + 18 * (1 / 3)).toString();",
+      "13.5": "return (18 / (1 + 1 / 3)).toString();"
+    }
+  }
+]

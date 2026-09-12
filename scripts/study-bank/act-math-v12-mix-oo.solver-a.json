@@ -1,0 +1,142 @@
+{
+ "L01": {
+  "pick": "A",
+  "confidence": 30,
+  "why": "guess - two independent halving pairs (3.5=7/2 and 15.5=31/2); took the halved member of the larger pair on the forgot-to-halve convention, but nothing selects which pair holds the key"
+ },
+ "L02": {
+  "pick": "B",
+  "confidence": 45,
+  "why": "mechanism: 96 and 40 are the area and perimeter of a 12x8 rectangle and 192 is exactly 2x96 (the un-halved / double-count trap); the option set reconstructs as area-of-rectangle with a perimeter distractor"
+ },
+ "L03": {
+  "pick": "C",
+  "confidence": 55,
+  "why": "mechanism: sphere of radius 9 - 81(pi) is (pi)r^2, 729 is r^3 raw, 972 is exactly (4/3)(729). The key is the only option that completes the volume formula the other two are truncations of"
+ },
+ "L04": {
+  "pick": "B",
+  "confidence": 22,
+  "why": "guess - all four are (pi) multiples (120, 180, 200, 480 x pi) but no formula pair (2(pi)r vs (pi)r^2, cone vs cylinder) closes on those coefficients"
+ },
+ "L05": {
+  "pick": "D",
+  "confidence": 28,
+  "why": "guess - leaned to 7.0 only because it is the single value printed with a trailing .0, which is how an exactly-integral median usually surfaces in a decimal option set; weak"
+ },
+ "L06": {
+  "pick": "B",
+  "confidence": 50,
+  "why": "mechanism: radius-5 semicircle family - 15.7=5(pi) arc, 31.4=10(pi) full circumference, 39.3=12.5(pi) semicircle area, and 25.7 is exactly arc+diameter, the semicircle PERIMETER. Three of four are perimeter-family so the asked quantity is a perimeter"
+ },
+ "L07": {
+  "pick": "D",
+  "confidence": 28,
+  "why": "guess - 130/150/170 is an arithmetic run with the middle at 150, but that channel does not clear its own null on this file (z=+2.05), so this is a dressed-up guess. No pair sums to 180"
+ },
+ "L08": {
+  "pick": "B",
+  "confidence": 25,
+  "why": "guess - 34 and 51 share the factor 17 and 3/6 share 3; two ratio pairs, no formula reconstructs them"
+ },
+ "L09": {
+  "pick": "B",
+  "confidence": 30,
+  "why": "guess - 60/360/720 are all round angle/factorial-flavoured values and 408 is the only computed-looking one; singleton-texture lean, not a solve"
+ },
+ "L10": {
+  "pick": "D",
+  "confidence": 32,
+  "why": "guess - 90/99/108/126 x (pi); 90,99,108 is an arithmetic run with 311.0 the middle AND the only trailing-.0 value, but the run channel is inside the null band here"
+ },
+ "L11": {
+  "pick": "C",
+  "confidence": 35,
+  "why": "mechanism (partial): 3/8 and 5/8 are an exact complement pair, so the key is one of them; took 3/8 as the canonical exactly-two-of-three value. Which member of the complement pair is the key is a coin flip"
+ },
+ "L12": {
+  "pick": "A",
+  "confidence": 40,
+  "why": "mechanism (partial): 17/20 and 3/20 are an exact complement pair and 17/40 is exactly half of 17/20, so the numerator 17 is carried by two options - 17 is the real count and 17/20 the un-halved form"
+ },
+ "L13": {
+  "pick": "D",
+  "confidence": 60,
+  "why": "mechanism: handshake/combination ladder - 10 and 9 are the raw counts, 90=10x9 is the permutation trap (product-of-two-options channel fires), 45=C(10,2) is the combination. The strongest single solve in the set"
+ },
+ "L14": {
+  "pick": "A",
+  "confidence": 22,
+  "why": "guess - 24, 38 integers against 17.2, 36.4 decimals; no relation closes and the decimal-vs-integer split does not say which side is asked"
+ },
+ "L15": {
+  "pick": "C",
+  "confidence": 30,
+  "why": "guess - 5/12 and 5/24 are a halving pair so the numerator 5 is likely real, but which member is the key is a coin flip"
+ },
+ "L16": {
+  "pick": "D",
+  "confidence": 35,
+  "why": "guess - over /60 the options are 7, 9, 8 and 1/7 (an alien denominator); 7,8,9 is an arithmetic run with 2/15=8/60 in the middle, but that channel is inside the null band"
+ },
+ "L17": {
+  "pick": "D",
+  "confidence": 28,
+  "why": "guess - 2/9 is the only non-unit fraction against three unit fractions that read like naive-answer traps; singleton-texture lean only"
+ },
+ "L18": {
+  "pick": "C",
+  "confidence": 26,
+  "why": "guess - 0 is the singleton texture (25 and 9 are perfect squares, 51 arbitrary); 0 is a common key for a discriminant/number-of-solutions item but nothing here confirms the stem"
+ },
+ "L19": {
+  "pick": "A",
+  "confidence": 35,
+  "why": "guess - 90/108/135 are the interior angles of the square, pentagon and octagon, which makes 112.5 the odd one; it is also the only non-integer and the middle of the 90/112.5/135 run. Three weak converging leans, no solve"
+ },
+ "L20": {
+  "pick": "C",
+  "confidence": 20,
+  "why": "guess - 81 and 25 are perfect squares, 170.6 and 60.6 share a .6 tail and differ by exactly 110; no reconstruction"
+ },
+ "L21": {
+  "pick": "B",
+  "confidence": 45,
+  "why": "mechanism: 3280.5 = 4500 x 0.9^3 exactly - a three-period 10% decay off the 4500 principal, with 450 the single-period 10% and 4500 the un-decayed start. The only option that is a compound function of another"
+ },
+ "L22": {
+  "pick": "D",
+  "confidence": 28,
+  "why": "guess - 2.5 is the only non-integer; that channel is preserved by construction in the null so it carries no evidence beyond the authoring convention"
+ },
+ "L23": {
+  "pick": "D",
+  "confidence": 40,
+  "why": "mechanism (partial): 560/1680/5040 is an exact geometric run of ratio 3 with 1680 in the middle, and 1680 = P(8,4) = 8!/4! against 5040 = 7! - a counting ladder whose middle rung is the usual key"
+ },
+ "L24": {
+  "pick": "A",
+  "confidence": 45,
+  "why": "mechanism: 169 = 13^2 is the un-square-rooted trap of a 5-12-13 right triangle, whose perimeter AND area are both 30. The key is the option consistent with the triple, not the square"
+ },
+ "L25": {
+  "pick": "C",
+  "confidence": 20,
+  "why": "guess - four mid-hundreds values, no run, no sum, no ratio; pure guess"
+ },
+ "L26": {
+  "pick": "B",
+  "confidence": 30,
+  "why": "guess - 4.5/-4.5 is a sign pair so the key is one of them; took the positive on the convention that the negative is the sign-error distractor. 18 = 4 x 4.5 is consistent with either"
+ },
+ "L27": {
+  "pick": "D",
+  "confidence": 35,
+  "why": "guess - 0.68 = 17/25 ties the 17 and the 0.4 together and has probability texture, but 0.4 is equally in range; lean only"
+ },
+ "L28": {
+  "pick": "A",
+  "confidence": 30,
+  "why": "guess - 13.5 is the only non-integer and 27 is exactly 2 x 13.5, the forgot-the-one-half shape of a triangle-area item; convention, not a solve"
+ }
+}
