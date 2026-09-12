@@ -183,6 +183,23 @@ Nothing is blocked — every open item can start today.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-09-12** — **THE TWIN PAIR IS REAL, AND IT POINTS THE OPPOSITE WAY FROM WHAT ITS DISCOVERERS ASSUMED. EIGHTH PROXY REFUTED.** Two options-only solvers found it independently on different files, neither able to see the other, and both drew the same conclusion: *"A and D are the same clause differing only in `had put` / `put`, so neither can be uniquely correct, and the pair itself eliminates half the set."* The reasoning is clean and the mechanism is the first in a long time that is MECHANICALLY decidable rather than semantic, so it earned a checker — `check-twin-options.mjs`, which finds a pair of options far closer to each other than to the rest of the set and asks one question of it: **when a twin pair exists, is the key inside it or outside it?**
+
+        section                 key INSIDE the twin pair
+        act/english               13/17 =  76.5%
+        sat/reading_writing       17/19 =  89.5%
+        sat/math                   7/7  = 100.0%
+        toefl/reading              5/6  =  83.3%
+        ssat/reading               2/2  = 100.0%
+        act/math                   0/1  =   0.0%
+        POOLED                    44/52 =  84.6%   against a 50.0% chance line
+                                  P(>= 44 of 52) = 2.0e-07
+
+  **The key is inside the pair 84.6% of the time. "Eliminate the twins" would make a solver WORSE, not better** — it discards the key five times in six. The explanation is obvious once the number exists and was invisible before it: **the twin pair IS the contrast under test.** An item's key and its nearest miss are, by construction, the two most similar options in the set. The solvers' premise — *neither can be uniquely correct* — is exactly backwards: one of them is, and the pair exists precisely because the item tests that distinction. Joins run-middle, key-is-sum, key-magnitude, stem-echo, option-balance, plurality-key and the ratio hub on the dissolved list. **Eighth structural proxy built and refuted; CLAUDE.md's "every structural proxy has been too coarse" now has eight members and not one has survived contact with its own population.**
+
+  **TWO FAULTS MY OWN SELF-TEST CAUGHT BEFORE THE CHECKER TOUCHED DATA**, recorded because the checker would have produced confident nonsense either way. (1) It fired on `its / it is / its' / their` — **a short option set is a minimal-pair lattice BY DESIGN**, the contrast IS the item, and trigram similarity is degenerate at three characters. Guarded by a minimum length. (2) The length guard then broke the real case, because **`No Change` is nine characters**. It is now excluded from the comparison entirely — it is an opaque token carrying no orthography, so it can be neither half of a pair, which is the rule both ACT English repair agents derived independently and the one their whole method rests on.
+
+  **AND A THIRD FAULT, IN MY SHELL RATHER THAN MY CODE:** my first sweep across six sections printed `scorable 0 of 0` for every one, because zsh does not word-split `set -- $fs`, so the family was `"act math"` and the section empty. The checker reported `NOT MEASURED` on all six and I nearly read six empty lines as six clean sections. It refused correctly; the loop was wrong. _(the only reason that was caught is that the checker prints its denominator before its verdict)_ → **A21**
 - **2026-09-12** — **BOTH ACT ENGLISH REPAIRS HELD: `v5r2` AND `v6r2` ARE INDISTINGUISHABLE FROM THE SHIPPED BANK ON EVERY DOMAIN.** 100 items attacked options-only, sibling-free, ten passage-disjoint files, keys dealt globally for a control of exactly 25.0%. This is the first time either batch has ever been gated — both have sat with no ledger entry since they were authored.
 
         domain                            repaired        live (today)    Fisher p
