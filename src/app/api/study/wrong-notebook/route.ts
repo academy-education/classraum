@@ -26,6 +26,20 @@ interface NotebookQuestion {
   correct_answer: string
   explanation?: string
   difficulty?: string
+  /* `question` is the study_attempts jsonb passed through verbatim, so these
+   * two have ALWAYS been on the wire — they were simply not declared here, and
+   * an undeclared field is an invisible one. Measured over the notebook's whole
+   * population on 2026-09-13: of 2,246 wrong attempts, 1,755 (78.1%) carry a
+   * non-empty `passage` and 2,045 (91.1%) carry `choices`. The review screen
+   * rendered neither, which is what a student reported — she could not see the
+   * passage again, could not see what the other options had been, and the AI
+   * could not tell her why they were wrong because it was never given the text.
+   *
+   * For LISTENING items `passage` IS the transcript: it carries a
+   * `Transcript:` prefix and A:/B: speaker labels (494 of the 2,246), and it is
+   * the same string TestSession feeds ListeningAudioPlayer as `transcript`. */
+  passage?: string | null
+  passageGroupId?: string | null
 }
 
 interface NotebookEntry {

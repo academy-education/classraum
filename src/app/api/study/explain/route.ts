@@ -31,6 +31,8 @@ type Mode = 'steps' | 'simpler' | 'followup'
 
 interface Body {
   prompt?: string
+  /** Reading prose, or the listening transcript. See the context builder. */
+  passage?: string
   choices?: string[]
   correctAnswer?: string
   studentAnswer?: string
@@ -46,8 +48,14 @@ interface Body {
 
 const MODE_INSTRUCTION: Record<Mode, { en: string; ko: string }> = {
   steps: {
-    en: 'Give a numbered, step-by-step walkthrough that shows exactly how to arrive at the correct answer. Start from what the question is actually asking, then one concrete action per step, showing the reasoning that moves you forward. Where relevant, name why the tempting wrong choice fails. End with a one-line statement of the final answer. No preamble — start at step 1.',
-    ko: '정답에 도달하는 방법을 번호를 매겨 단계별로 정확히 보여주세요. 문제가 실제로 무엇을 묻는지에서 시작해, 각 단계마다 구체적인 행동 하나와 그 근거를 제시하세요. 필요하면 헷갈리기 쉬운 오답이 왜 틀린지도 짚어주세요. 마지막 줄에 최종 정답을 한 줄로 정리하세요. 서론 없이 1단계부터 시작하세요.',
+    /* "Where relevant, name why the tempting wrong choice fails" / "필요하면
+     * ... 짚어주세요" were BOTH hedged, and the Korean side dropped the
+     * distractors far more often — a student reported that the Korean
+     * step-by-step never told her why the other options were wrong while the
+     * English one did. The instruction is now unconditional and says EVERY
+     * option, in both languages, so the two are the same promise. */
+    en: 'Give a numbered, step-by-step walkthrough that shows exactly how to arrive at the correct answer. Start from what the question is actually asking, then one concrete action per step, showing the reasoning that moves you forward. When the question has options, you MUST account for every wrong one — name each and say in a few words why it fails, quoting the passage or transcript where there is one. End with a one-line statement of the final answer. No preamble — start at step 1.',
+    ko: '정답에 도달하는 방법을 번호를 매겨 단계별로 정확히 보여주세요. 문제가 실제로 무엇을 묻는지에서 시작해, 각 단계마다 구체적인 행동 하나와 그 근거를 제시하세요. 선택지가 있으면 오답을 하나도 빠짐없이 다뤄야 합니다. 각 오답을 언급하고 왜 틀렸는지 몇 마디로 설명하되, 지문이나 대본이 있으면 해당 부분을 인용하세요. 마지막 줄에 최종 정답을 한 줄로 정리하세요. 서론 없이 1단계부터 시작하세요.',
   },
   followup: {
     en: "Answer the student's follow-up question about this specific item directly and briefly. Answer the question they actually asked -- do not restate the whole solution unless that IS the question.",
@@ -92,7 +100,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'missing followup' }, { status: 400 })
   }
 
+  /* THE PASSAGE WAS NEVER SENT, AND THAT IS THE BUG A STUDENT REPORTED.
+   * She asked why the other choices were wrong and got nothing useful — the
+   * model had never seen the text the question is about. Clamped generously
+   * but below the prompt's own 4000 so a long academic passage cannot crowd
+   * out the question itself. Listening transcripts arrive with the
+   * `Transcript:` prefix already stripped by the caller. */
+  const passage = (body.passage ?? '').trim().slice(0, 6000)
+
   const context = [
+    passage ? `PASSAGE / TRANSCRIPT (the text this question is about):\n${passage}` : '',
     `QUESTION:\n${prompt}`,
     body.choices?.length ? `CHOICES:\n${body.choices.map((c, i) => `${String.fromCharCode(65 + i)}. ${c}`).join('\n')}` : '',
     body.correctAnswer ? `CORRECT ANSWER: ${body.correctAnswer}` : '',
@@ -107,7 +124,15 @@ export async function POST(req: NextRequest) {
       ? '반드시 한국어로 답하세요.'
       : 'Answer in English.',
     MODE_INSTRUCTION[mode][ko ? 'ko' : 'en'],
-    'Do not restate the whole question. Keep it under ~150 words. Plain text only — no markdown headers or asterisks.',
+    /* The cap was ~150 words for every mode. Accounting for three or four
+     * distractors AND the key does not fit in 150 words, so the model obeyed
+     * the cap and silently dropped the distractors — the cap was half the
+     * reason the instruction above was not being followed. `steps` gets room;
+     * `simpler` deliberately keeps the tight cap, because its whole point is
+     * brevity and it is not asked to enumerate options. */
+    mode === 'steps'
+      ? 'Do not restate the whole question. Keep it under ~250 words. Plain text only — no markdown headers or asterisks.'
+      : 'Do not restate the whole question. Keep it under ~150 words. Plain text only — no markdown headers or asterisks.',
   ].join(' ')
 
   try {

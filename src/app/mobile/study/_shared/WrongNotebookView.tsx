@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Capacitor } from '@capacitor/core'
-import { BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, BookmarkCheck, Image as ImageIcon, Search, X, AlertCircle } from '@/app/mobile/study/_shared/icons'
+import { BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, BookmarkCheck, Image as ImageIcon, Search, X, AlertCircle, Volume2 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
@@ -36,6 +36,15 @@ interface Question {
   correct_answer: string
   explanation?: string
   difficulty?: string
+  /** Reading prose, or — for listening — the transcript, prefixed
+   *  `Transcript:`. Always been on the wire; see the route's note. */
+  passage?: string | null
+  passageGroupId?: string | null
+  /** Author-written reason per wrong option. Present as an ARRAY on 1,507 of
+   *  2,246 wrong attempts but USABLE on 839 (37.4%) — on the rest every
+   *  `reason` is an empty string, so the array's presence is the wrong
+   *  denominator to read. Rendered only where the text is non-empty. */
+  distractor_rationales?: { choice: string; reason: string }[] | null
 }
 
 interface Entry {
@@ -643,7 +652,12 @@ function FilterSelect({
   )
 }
 
-function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
+/* Exported ONLY so a render test can mount one card with fixture data.
+ * A student reported that the review screen showed neither the passage nor the
+ * other options; source-level assertions can pin that the fields are read, but
+ * only a render proves the student actually SEES them. The page itself is
+ * behind a login, so this is the verification that is available. */
+export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
   entry: Entry
   index: number
   ko: boolean
@@ -654,7 +668,31 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
   const [saving, setSaving] = useState<'idle' | 'saving' | 'saved' | 'failed'>('idle')
   const [retryTick, setRetryTick] = useState(0)
   const [expanded, setExpanded] = useState(false)
+  const [passageOpen, setPassageOpen] = useState(false)
   const reviewed = entry.reviewed_at !== null
+
+  /* `passage` holds reading prose AND the listening transcript. Listening
+   * carries a leading `Transcript:` (asserted by the TOEFL bank gate and
+   * preserved by the generator), which is the only marker distinguishing the
+   * two — so it decides the label and icon, and is stripped from the body so
+   * the student does not read the word "Transcript:" as part of the script. */
+  const rawPassage = (entry.question.passage ?? '').trim()
+  const isTranscript = /^\s*transcript:/i.test(rawPassage)
+  const passageText = isTranscript
+    ? rawPassage.replace(/^\s*transcript:\s*/i, '').trim()
+    : rawPassage
+  const needsPassageToggle = passageText.length > 280
+
+  /* Match TestResultView's comparison exactly rather than inventing a
+   * normaliser here. The register records that `normAnswer` strips pipes,
+   * parentheses and punctuation, which folds options that are deliberately
+   * distinct — a looser comparison would paint two rows green. */
+  const sameAnswer = (a: string, b: string | null | undefined) =>
+    b != null && a === b
+
+  const hasChoiceList = Array.isArray(entry.question.choices) && entry.question.choices.length > 0
+  const reasonFor = (choice: string) =>
+    entry.question.distractor_rationales?.find(d => d.choice === choice)?.reason?.trim() || ''
   const topicName = entry.topic
     ? (ko ? entry.topic.name_ko : entry.topic.name_en)
     : entry.topic_freeform
@@ -744,16 +782,106 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           </div>
         </div>
 
-        <div className="mt-3 space-y-1.5 text-[13px]">
-          <div className="flex items-start gap-2">
-            <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
-            <span className="text-rose-700 line-through flex-1 break-words">{entry.student_answer || '—'}</span>
+        {/* THE PASSAGE / TRANSCRIPT, shown without a tap.
+          * A student cannot review a reading item without the text, and could
+          * not review a listening item at all — the audio is gone by then, so
+          * the transcript is the only record of what was said. Both live in
+          * `passage`; listening carries a `Transcript:` prefix, which is
+          * stripped here and replaced by a proper label. */}
+        {passageText && (
+          <div className="mt-3">
+            <div className="flex items-center gap-1.5 mb-1">
+              {isTranscript
+                ? <Volume2 className="w-3 h-3 text-gray-400 flex-shrink-0" />
+                : <BookOpen className="w-3 h-3 text-gray-400 flex-shrink-0" />}
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-400">
+                {isTranscript ? t('study.wrongNotebook.transcript') : t('study.wrongNotebook.passage')}
+              </span>
+            </div>
+            <div className={`rounded-xl bg-gray-50 ring-1 ring-gray-200/70 px-3 py-2 text-[13px] leading-relaxed text-gray-700 whitespace-pre-wrap break-words ${passageOpen ? '' : 'max-h-40 overflow-hidden relative'}`}>
+              {passageText}
+              {!passageOpen && needsPassageToggle && (
+                <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-gray-50 to-transparent" />
+              )}
+            </div>
+            {needsPassageToggle && (
+              <button type="button" onClick={() => setPassageOpen(v => !v)}
+                className="tap-target text-[11px] text-gray-500 hover:text-gray-800 mt-1 inline-flex items-center gap-0.5">
+                {passageOpen ? t('study.wrongNotebook.showLess') : t('study.wrongNotebook.showMore')}
+                <ChevronRight className={`w-3 h-3 transition-transform ${passageOpen ? 'rotate-90' : ''}`} />
+              </button>
+            )}
           </div>
-          <div className="flex items-start gap-2">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
-            <span className="text-emerald-700 font-semibold flex-1 break-words">{entry.question.correct_answer}</span>
+        )}
+
+        {/* EVERY CHOICE, not just the two that were picked.
+          * The old card showed the student's answer and the key and nothing
+          * else, so a student reviewing could not see what the alternatives
+          * had even been. Where the stored `choices` are missing (150
+          * arrange_words, 53 fill_in_blanks, and the speaking types store
+          * none) this falls back to the original two-line form rather than
+          * rendering an empty list. */}
+        {hasChoiceList ? (
+          <div className="mt-3 space-y-1.5">
+            {entry.question.choices!.map((choice, i) => {
+              const picked = sameAnswer(choice, entry.student_answer)
+              const correct = sameAnswer(choice, entry.question.correct_answer)
+              return (
+                <div key={i}
+                  className={`flex items-start gap-2 rounded-lg px-2.5 py-1.5 text-[13px] ring-1 ${
+                    correct ? 'bg-emerald-50 ring-emerald-200'
+                      : picked ? 'bg-rose-50 ring-rose-200'
+                        : 'bg-white ring-gray-200/70'}`}>
+                  <span className={`font-semibold flex-shrink-0 w-4 ${
+                    correct ? 'text-emerald-700' : picked ? 'text-rose-700' : 'text-gray-400'}`}>
+                    {String.fromCharCode(65 + i)}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <span className={`block break-words ${
+                      correct ? 'text-emerald-800 font-semibold'
+                        : picked ? 'text-rose-700 line-through' : 'text-gray-600'}`}>
+                      {choice}
+                    </span>
+                    {/* The author's own reason this option is wrong — the
+                      * student's actual complaint was that nothing told her
+                      * this. Free and instant where it exists; the AI path
+                      * below covers the rest. */}
+                    {!correct && reasonFor(choice) && (
+                      <span className={`block mt-0.5 text-[11px] leading-relaxed ${
+                        picked ? 'text-rose-800' : 'text-gray-500'}`}>
+                        <span className="font-semibold">{t('study.wrongNotebook.whyWrong')}: </span>
+                        {reasonFor(choice)}
+                      </span>
+                    )}
+                  </div>
+                  {correct && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />}
+                  {picked && !correct && <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />}
+                </div>
+              )
+            })}
+            {/* A student who ran out of time has no pick among the options;
+              * say so rather than leaving the card looking unanswered. */}
+            {!entry.question.choices!.some(c => sameAnswer(c, entry.student_answer)) && (
+              <div className="flex items-start gap-2 pl-2.5 text-[13px] text-rose-600">
+                <XCircle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+                <span>{entry.student_answer
+                  ? `${t('study.wrongNotebook.yourAnswer')}: ${entry.student_answer}`
+                  : t('study.wrongNotebook.noAnswer')}</span>
+              </div>
+            )}
           </div>
-        </div>
+        ) : (
+          <div className="mt-3 space-y-1.5 text-[13px]">
+            <div className="flex items-start gap-2">
+              <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
+              <span className="text-rose-700 line-through flex-1 break-words">{entry.student_answer || '—'}</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
+              <span className="text-emerald-700 font-semibold flex-1 break-words">{entry.question.correct_answer}</span>
+            </div>
+          </div>
+        )}
 
         {entry.ai_explanation && (
           <div className="mt-3 rounded-xl bg-indigo-50/50 ring-1 ring-indigo-100 px-3 py-2 text-[13px] text-gray-700 leading-relaxed">
@@ -764,6 +892,7 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
         {/* On-demand step-by-step / simpler / ask, same as practice. */}
         <ExplainMore
           prompt={entry.question.prompt}
+          passage={passageText || undefined}
           choices={entry.question.choices}
           correctAnswer={entry.question.correct_answer}
           studentAnswer={entry.student_answer}

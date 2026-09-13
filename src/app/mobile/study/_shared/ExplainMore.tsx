@@ -26,6 +26,12 @@ type Lang = 'en' | 'ko'
 
 interface Props {
   prompt: string
+  /** Reading prose or the listening transcript. WITHOUT THIS the model is
+   *  asked to explain a passage-based item having never seen the passage,
+   *  which is why "why were the other choices wrong?" came back useless —
+   *  a student reported exactly that. Listening is worse: the audio is gone
+   *  by review time, so the transcript is the only record of what was said. */
+  passage?: string
   choices?: string[]
   correctAnswer?: string
   studentAnswer?: string
@@ -58,7 +64,7 @@ let seq = 0
 const asLang = (v: string | null | undefined, fallback: Lang): Lang => (v === 'ko' || v === 'en' ? v : fallback)
 
 export function ExplainMore({
-  prompt, choices, correctAnswer, studentAnswer, priorExplanation, language,
+  prompt, passage, choices, correctAnswer, studentAnswer, priorExplanation, language,
   attemptId, savedSteps, savedSimpler, savedStepsLang, savedSimplerLang,
   savedFollowup, savedFollowupLang, savedFollowupQuestion,
 }: Props) {
@@ -119,7 +125,7 @@ export function ExplainMore({
         method: 'POST',
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          prompt, choices, correctAnswer, studentAnswer, priorExplanation,
+          prompt, passage, choices, correctAnswer, studentAnswer, priorExplanation,
           mode, followup: question, language: itemLang, attemptId,
         }),
       })
