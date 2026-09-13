@@ -42,6 +42,15 @@ interface NotebookQuestion {
   passageGroupId?: string | null
 }
 
+interface SavedExplanation {
+  steps: string | null
+  simpler: string | null
+  followup: string | null
+  followup_question: string | null
+}
+
+const EMPTY_SAVED: SavedExplanation = { steps: null, simpler: null, followup: null, followup_question: null }
+
 interface NotebookEntry {
   attempt_id: string
   question: NotebookQuestion
@@ -58,14 +67,13 @@ interface NotebookEntry {
   difficulty: string | null
   /** Previously generated on-demand explanations, persisted so the
    *  notebook re-shows them without re-billing a model call. */
-  saved_steps: string | null
-  saved_simpler: string | null
-  saved_steps_lang: string | null
-  saved_simpler_lang: string | null
-  saved_followup: string | null
-  saved_followup_lang: string | null
-  /** What the student asked. The answer is unreadable without it. */
-  saved_followup_question: string | null
+  /* SAVED EXPLANATIONS ARE PER LANGUAGE, one block each.
+   * The old shape was flat (`saved_steps` + `saved_steps_lang`) over a table
+   * keyed (student_id, attempt_id), so a student who generated the English
+   * step-by-step and then the Korean one lost the English on reload — and the
+   * toggle re-billed a model call for text already paid for. The key now
+   * carries the language, so both survive and both are returned. */
+  saved: Record<'en' | 'ko', SavedExplanation>
 }
 
 export async function GET(req: NextRequest) {
@@ -117,24 +125,21 @@ export async function GET(req: NextRequest) {
   const { data: explanations } = attemptIds.length > 0
     ? await dbAdmin
         .from('study_attempt_explanations')
-        .select('attempt_id, steps, simpler, steps_lang, simpler_lang, followup, followup_lang, followup_question')
+        .select('attempt_id, language, steps, simpler, followup, followup_question')
         .eq('student_id', user.id)
         .in('attempt_id', attemptIds)
     : { data: [] }
-  const explainMap = new Map<string, {
-    steps: string | null; simpler: string | null
-    stepsLang: string | null; simplerLang: string | null
-    followup: string | null; followupLang: string | null; followupQuestion: string | null
-  }>()
+  /* Up to TWO rows per attempt now — one per language — so the map is keyed by
+   * both. A Map keyed by attempt alone would have silently kept whichever row
+   * happened to come back last, which is the same data loss in a new place. */
+  const explainMap = new Map<string, SavedExplanation>()
   for (const e of (explanations ?? [])) {
-    explainMap.set(e.attempt_id as string, {
+    const lang = e.language === 'ko' ? 'ko' : 'en'
+    explainMap.set(`${e.attempt_id as string}:${lang}`, {
       steps: (e.steps as string | null) ?? null,
       simpler: (e.simpler as string | null) ?? null,
-      stepsLang: (e.steps_lang as string | null) ?? null,
-      simplerLang: (e.simpler_lang as string | null) ?? null,
       followup: (e.followup as string | null) ?? null,
-      followupLang: (e.followup_lang as string | null) ?? null,
-      followupQuestion: (e.followup_question as string | null) ?? null,
+      followup_question: (e.followup_question as string | null) ?? null,
     })
   }
 
@@ -171,13 +176,10 @@ export async function GET(req: NextRequest) {
       note_updated_at: noteRow?.updated_at ?? null,
       reviewed_at: noteRow?.reviewed_at ?? null,
       difficulty: (q.difficulty as string | undefined) ?? null,
-      saved_steps: explainMap.get(row.id as string)?.steps ?? null,
-      saved_simpler: explainMap.get(row.id as string)?.simpler ?? null,
-      saved_steps_lang: explainMap.get(row.id as string)?.stepsLang ?? null,
-      saved_simpler_lang: explainMap.get(row.id as string)?.simplerLang ?? null,
-      saved_followup: explainMap.get(row.id as string)?.followup ?? null,
-      saved_followup_lang: explainMap.get(row.id as string)?.followupLang ?? null,
-      saved_followup_question: explainMap.get(row.id as string)?.followupQuestion ?? null,
+      saved: {
+        en: explainMap.get(`${row.id as string}:en`) ?? EMPTY_SAVED,
+        ko: explainMap.get(`${row.id as string}:ko`) ?? EMPTY_SAVED,
+      },
     })
   }
 

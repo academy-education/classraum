@@ -24,22 +24,26 @@ jest.mock('@/lib/nativeHaptics', () => ({
   hapticWarning: jest.fn(), hapticError: jest.fn(),
 }))
 jest.mock('../_shared/ExplainMore', () => ({
-  // Echo the passage prop so the test can prove the AI is handed the text.
-  ExplainMore: ({ passage }: { passage?: string }) => (
-    <div data-testid="explain-more" data-passage={passage ?? ''} />
+  // Echo the props the card is responsible for forwarding, so the test can
+  // prove the AI is handed the text and both saved languages.
+  ExplainMore: ({ passage, saved }: { passage?: string; saved?: unknown }) => (
+    <div data-testid="explain-more" data-passage={passage ?? ''} data-saved={JSON.stringify(saved ?? null)} />
   ),
 }))
 
 import { NotebookEntryCard } from '../_shared/WrongNotebookView'
+
+const SAVED = {
+  en: { steps: 'English steps', simpler: null, followup: null, followup_question: null },
+  ko: { steps: '한국어 단계별 풀이', simpler: null, followup: null, followup_question: null },
+}
 
 const base = {
   attempt_id: 'a1', student_answer: 'Wait for an email from the department',
   ai_explanation: null, attempted_at: '2026-09-13T00:00:00Z',
   topic: null, topic_freeform: 'TOEFL Reading', note: '', note_updated_at: null,
   reviewed_at: null, difficulty: 'hard',
-  saved_steps: null, saved_simpler: null, saved_steps_lang: null,
-  saved_simpler_lang: null, saved_followup: null, saved_followup_lang: null,
-  saved_followup_question: null,
+  saved: SAVED,
 }
 
 const READING = {
@@ -157,5 +161,16 @@ describe('an item that stores no choices', () => {
     render(<NotebookEntryCard entry={speaking as never} index={2} ko={false} onToggleReviewed={noop} />)
     expect(screen.getByText('I would say yes')).toBeInTheDocument()
     expect(screen.queryByText('study.wrongNotebook.passage')).toBeNull()
+  })
+})
+
+describe('saved explanations reach the panel in both languages', () => {
+  it('forwards both blocks, so flipping the toggle re-shows instead of re-billing', () => {
+    render(<NotebookEntryCard entry={READING as never} index={0} ko={false} onToggleReviewed={noop} />)
+    const saved = JSON.parse(screen.getByTestId('explain-more').getAttribute('data-saved')!)
+    // Before the migration only one survived — the second language's write
+    // overwrote the first, because the key did not include the language.
+    expect(saved.en.steps).toBe('English steps')
+    expect(saved.ko.steps).toBe('한국어 단계별 풀이')
   })
 })

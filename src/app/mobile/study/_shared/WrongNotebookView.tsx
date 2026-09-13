@@ -59,13 +59,17 @@ interface Entry {
   note_updated_at: string | null
   reviewed_at: string | null
   difficulty: string | null
-  saved_steps: string | null
-  saved_simpler: string | null
-  saved_steps_lang: string | null
-  saved_simpler_lang: string | null
-  saved_followup: string | null
-  saved_followup_lang: string | null
-  saved_followup_question: string | null
+  /* One saved block per language. The server and this interface are separate
+   * declarations of one payload, so NOTHING IN THE COMPILER relates them —
+   * `wrong-notebook-review.test.ts` pins that they agree, because the first
+   * version of this change type-checked clean while the client was still
+   * reading `saved_steps` from a payload that no longer had it. */
+  saved: Record<'en' | 'ko', {
+    steps: string | null
+    simpler: string | null
+    followup: string | null
+    followup_question: string | null
+  }>
 }
 
 interface TopicSummary {
@@ -899,13 +903,7 @@ export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           priorExplanation={entry.ai_explanation ?? undefined}
           language={ko ? 'ko' : 'en'}
           attemptId={entry.attempt_id}
-          savedSteps={entry.saved_steps}
-          savedSimpler={entry.saved_simpler}
-          savedStepsLang={entry.saved_steps_lang}
-          savedSimplerLang={entry.saved_simpler_lang}
-          savedFollowup={entry.saved_followup}
-          savedFollowupLang={entry.saved_followup_lang}
-          savedFollowupQuestion={entry.saved_followup_question}
+          saved={entry.saved}
         />
       </div>
 

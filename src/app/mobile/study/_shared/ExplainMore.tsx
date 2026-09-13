@@ -39,15 +39,17 @@ interface Props {
   language: Lang
   /** When set, generated explanations are saved against this attempt. */
   attemptId?: string
-  /** Previously saved output + its language, re-shown on mount. */
-  savedSteps?: string | null
-  savedSimpler?: string | null
-  savedStepsLang?: string | null
-  savedSimplerLang?: string | null
-  savedFollowup?: string | null
-  savedFollowupLang?: string | null
-  /** The question that produced `savedFollowup`; shown as its label. */
-  savedFollowupQuestion?: string | null
+  /** Previously saved output, one block PER LANGUAGE, re-shown on mount.
+   *  Was seven flat fields over a table keyed (student_id, attempt_id): the
+   *  Korean step-by-step overwrote the English one, so a student who used both
+   *  lost the first on reload and the toggle re-billed a call for text already
+   *  paid for. Language is part of the key now, so both come back. */
+  saved?: Record<Lang, {
+    steps: string | null
+    simpler: string | null
+    followup: string | null
+    followup_question: string | null
+  }>
 }
 
 type Mode = 'steps' | 'simpler' | 'followup'
@@ -61,12 +63,10 @@ interface Item { id: number; mode: Mode; lang: Lang; label: string; text: string
 
 let seq = 0
 
-const asLang = (v: string | null | undefined, fallback: Lang): Lang => (v === 'ko' || v === 'en' ? v : fallback)
 
 export function ExplainMore({
   prompt, passage, choices, correctAnswer, studentAnswer, priorExplanation, language,
-  attemptId, savedSteps, savedSimpler, savedStepsLang, savedSimplerLang,
-  savedFollowup, savedFollowupLang, savedFollowupQuestion,
+  attemptId, saved,
 }: Props) {
   const label = (mode: Mode, l: Lang, question?: string) =>
     mode === 'steps'   ? (l === 'ko' ? '단계별 풀이' : 'Step-by-step')
@@ -75,26 +75,32 @@ export function ExplainMore({
     // as a reply to nothing once the page has been reloaded.
     : (question?.trim() || (l === 'ko' ? '추가 질문' : 'Your question'))
 
-  // The language the student wants explanations in — defaults to the app
-  // language, but seed from any saved output so a revisit reflects it.
-  const [lang, setLang] = useState<Lang>(() =>
-    savedSteps ? asLang(savedStepsLang, language) : savedSimpler ? asLang(savedSimplerLang, language) : language)
+  /* The language the student wants explanations in. Default to the app
+   * language, but if nothing is saved in it and something IS saved in the
+   * other, open on the one that has content — otherwise a student returning
+   * to a card sees an empty panel beside a toggle that would reveal their
+   * own saved work. */
+  const [lang, setLang] = useState<Lang>(() => {
+    const has = (l: Lang) => Boolean(saved?.[l]?.steps || saved?.[l]?.simpler || saved?.[l]?.followup)
+    const other: Lang = language === 'ko' ? 'en' : 'ko'
+    return has(language) || !has(other) ? language : other
+  })
 
   // Seed from saved output so a revisit shows it immediately (and the
   // matching button reads as already-used). Step-by-step is ordered first.
   const [items, setItems] = useState<Item[]>(() => {
     const out: Item[] = []
-    if (savedSteps) {
-      const l = asLang(savedStepsLang, language)
-      out.push({ id: ++seq, mode: 'steps', lang: l, label: label('steps', l), text: savedSteps, loading: false })
-    }
-    if (savedSimpler) {
-      const l = asLang(savedSimplerLang, language)
-      out.push({ id: ++seq, mode: 'simpler', lang: l, label: label('simpler', l), text: savedSimpler, loading: false })
-    }
-    if (savedFollowup) {
-      const l = asLang(savedFollowupLang, language)
-      out.push({ id: ++seq, mode: 'followup', lang: l, label: label('followup', l, savedFollowupQuestion ?? undefined), text: savedFollowup, loading: false })
+    /* BOTH languages are seeded, not just the active one. `spent()` and the
+     * rendered stack already filter by the selected language, so carrying the
+     * other language's saved text costs nothing on screen and means flipping
+     * the toggle shows work the student already paid for instead of billing
+     * a second call for it. */
+    for (const l of ['en', 'ko'] as Lang[]) {
+      const blk = saved?.[l]
+      if (!blk) continue
+      if (blk.steps) out.push({ id: ++seq, mode: 'steps', lang: l, label: label('steps', l), text: blk.steps, loading: false })
+      if (blk.simpler) out.push({ id: ++seq, mode: 'simpler', lang: l, label: label('simpler', l), text: blk.simpler, loading: false })
+      if (blk.followup) out.push({ id: ++seq, mode: 'followup', lang: l, label: label('followup', l, blk.followup_question ?? undefined), text: blk.followup, loading: false })
     }
     return out
   })

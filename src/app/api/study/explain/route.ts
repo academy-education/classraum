@@ -169,20 +169,30 @@ export async function POST(req: NextRequest) {
           // Written out, adding a third mode without a column for it is a
           // compile error rather than a runtime rejection nobody reads.
           const columns =
-            mode === 'steps'   ? { steps: clean,   steps_lang: ko ? 'ko' : 'en' } :
-            mode === 'simpler' ? { simpler: clean, simpler_lang: ko ? 'ko' : 'en' } :
+            mode === 'steps'   ? { steps: clean } :
+            mode === 'simpler' ? { simpler: clean } :
             // The question is stored beside the answer. Without it the saved
             // follow-up is a reply to nothing when the notebook reloads.
-            { followup: clean, followup_lang: ko ? 'ko' : 'en', followup_question: followup }
+            { followup: clean, followup_question: followup }
+          /* LANGUAGE IS PART OF THE KEY (migration
+           * study_attempt_explanations_per_language, 2026-09-13). It used to
+           * live in per-mode `steps_lang` / `simpler_lang` / `followup_lang`
+           * columns while the key was just (student_id, attempt_id), so
+           * generating the Korean step-by-step overwrote the English one and
+           * the student lost it on the next notebook reload — and switching
+           * the toggle re-billed a call for text already paid for. One row per
+           * language now, and those three columns are gone rather than left as
+           * a second source of truth for what the key already says. */
           const { error: saveErr } = await dbAdmin
             .from('study_attempt_explanations')
             .upsert(
               {
                 student_id: user.id, attempt_id: attemptId,
+                language: ko ? 'ko' : 'en',
                 ...columns,
                 updated_at: new Date().toISOString(),
               },
-              { onConflict: 'student_id,attempt_id' },
+              { onConflict: 'student_id,attempt_id,language' },
             )
           if (saveErr) console.error('[study/explain] save failed', { attemptId, mode, error: saveErr })
         }

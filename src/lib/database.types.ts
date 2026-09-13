@@ -3016,37 +3016,31 @@ export type Database = {
       study_attempt_explanations: {
         Row: {
           attempt_id: string
+          language: string
           followup: string | null
-          followup_lang: string | null
           followup_question: string | null
           simpler: string | null
-          simpler_lang: string | null
           steps: string | null
-          steps_lang: string | null
           student_id: string
           updated_at: string
         }
         Insert: {
           attempt_id: string
+          language?: string
           followup?: string | null
-          followup_lang?: string | null
           followup_question?: string | null
           simpler?: string | null
-          simpler_lang?: string | null
           steps?: string | null
-          steps_lang?: string | null
           student_id: string
           updated_at?: string
         }
         Update: {
           attempt_id?: string
+          language?: string
           followup?: string | null
-          followup_lang?: string | null
           followup_question?: string | null
           simpler?: string | null
-          simpler_lang?: string | null
           steps?: string | null
-          steps_lang?: string | null
           student_id?: string
           updated_at?: string
         }

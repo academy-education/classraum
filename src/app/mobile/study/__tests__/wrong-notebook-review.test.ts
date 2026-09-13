@@ -24,6 +24,11 @@ const ROUTE = read('app/api/study/wrong-notebook/route.ts')
 const EXPLAIN_UI = read('app/mobile/study/_shared/ExplainMore.tsx')
 const EXPLAIN_API = read('app/api/study/explain/route.ts')
 
+/** Source with // and block comments removed, for assertions that a string is
+ *  ABSENT — every file here documents what it dropped by naming it. */
+const stripComments = (src: string) =>
+  src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '')
+
 describe('review card shows the passage and every choice', () => {
   it('declares passage on both the server and client question types', () => {
     // Undeclared is invisible: this is the whole original defect.
@@ -148,5 +153,78 @@ describe('both locales carry every key the card renders', () => {
 
   it('the two key sets are symmetric', () => {
     expect(Object.keys(en).sort()).toEqual(Object.keys(ko).sort())
+  })
+})
+
+describe('saved explanations are kept per language', () => {
+  /* The table was keyed (student_id, attempt_id) with the language in per-mode
+   * `steps_lang` / `simpler_lang` / `followup_lang` columns, so generating the
+   * Korean step-by-step OVERWROTE the English one: the student lost it on the
+   * next reload, and flipping the toggle re-billed a model call for text
+   * already paid for. Migration `study_attempt_explanations_per_language`
+   * (2026-09-13) put language in the primary key and dropped those columns as
+   * a second source of truth for what the key now says. Verified live: writing
+   * en then ko leaves TWO rows, and re-writing en updates rather than
+   * duplicating. */
+
+  it('the write path keys the upsert on language', () => {
+    expect(EXPLAIN_API).toMatch(/language: ko \? 'ko' : 'en'/)
+    expect(EXPLAIN_API).toMatch(/onConflict: 'student_id,attempt_id,language'/)
+  })
+
+  it('the three *_lang columns are gone from every layer', () => {
+    /* Assert over CODE, not comments. These files explain the migration by
+     * naming the columns it dropped, and a bare `not.toMatch` finds them in
+     * the prose — the same trap the steps-instruction test fell into above. */
+    for (const src of [EXPLAIN_API, ROUTE, EXPLAIN_UI, CARD]) {
+      const code = stripComments(src)
+      expect(code).not.toMatch(/steps_lang/)
+      expect(code).not.toMatch(/simpler_lang/)
+      expect(code).not.toMatch(/followup_lang/)
+    }
+    const types = read('lib/database.types.ts')
+    const block = types.slice(
+      types.indexOf('      study_attempt_explanations: {'),
+      types.indexOf('      study_attempt_explanations: {') + 1400,
+    )
+    expect(block).not.toMatch(/steps_lang/)
+    expect(block).toMatch(/language/)
+  })
+
+  it('the read path keys its map by attempt AND language', () => {
+    // Keyed by attempt alone it would silently keep whichever row came back
+    // last — the same data loss in a new place.
+    expect(ROUTE).toMatch(/\$\{e\.attempt_id as string\}:\$\{lang\}/)
+    expect(ROUTE).toMatch(/select\('attempt_id, language, steps, simpler, followup, followup_question'\)/)
+  })
+
+  it('SERVER AND CLIENT PAYLOAD SHAPES AGREE — nothing in the compiler relates them', () => {
+    /* `NotebookEntry` (server) and `Entry` (client) are separate declarations
+     * of one JSON payload. The first draft of this change type-checked clean
+     * while the client still read `saved_steps` from a payload that no longer
+     * had it, so tsc is not evidence here and this assertion is. */
+    /* TOP-LEVEL fields only — exactly two spaces of indent. The client spells
+     * `saved` as an inline Record and the server via a named interface, so a
+     * trimmed match also collected the inline type's nested keys and reported
+     * a difference that was in my extractor, not in the payload. */
+    const topLevel = (block: string) => block.split('\n')
+      .map(l => l.match(/^ {2}([a-z_]+)\??:/)?.[1]).filter(Boolean).sort()
+    const serverFields = topLevel(ROUTE.match(/interface NotebookEntry \{([\s\S]*?)\n\}/)?.[1] ?? '')
+    const clientFields = topLevel(CARD.match(/interface Entry \{([\s\S]*?)\n\}/)?.[1] ?? '')
+    expect(serverFields.length).toBeGreaterThan(5)
+    expect(clientFields).toEqual(serverFields)
+    expect(serverFields).toContain('saved')
+    expect(serverFields).not.toContain('saved_steps')
+  })
+
+  it('ExplainMore seeds BOTH languages so the toggle does not re-bill', () => {
+    expect(EXPLAIN_UI).toMatch(/for \(const l of \['en', 'ko'\] as Lang\[\]\)/)
+    expect(EXPLAIN_UI).toMatch(/saved\?\.\[l\]/)
+  })
+
+  it('opens on the language that actually has saved work', () => {
+    // A student returning to a card must not see an empty panel beside a
+    // toggle that would reveal their own saved text.
+    expect(EXPLAIN_UI).toMatch(/has\(language\) \|\| !has\(other\) \? language : other/)
   })
 })
