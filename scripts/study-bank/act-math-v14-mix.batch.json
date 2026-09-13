@@ -1,0 +1,398 @@
+[
+  {
+    "id": "AM14G-01",
+    "domain": "Geometry",
+    "subskill": "Supplementary-angle pair set up as a linear equation and the LARGER angle requested",
+    "prompt": "Two angles are supplementary. The measure of one angle is 20 degrees more than 4 times the measure of the other. What is the measure, in degrees, of the LARGER angle?",
+    "choices": [
+      "32",
+      "76",
+      "144",
+      "148"
+    ],
+    "correct_answer": "148",
+    "explanation": "Let the smaller angle measure x degrees. Then x + (4x + 20) = 180, so 5x = 160, x = 32, and the larger angle is 4(32) + 20 = 148 degrees. The option \"32\" is the smaller angle, found correctly and then reported instead of the larger one. The option \"144\" drops the extra 20 degrees from the equation, solving 5x = 180 to get x = 36 and reporting 4(36) = 144. The option \"76\" treats the two angles as COMPLEMENTARY rather than supplementary, solving 5x + 20 = 90 to get x = 14 and reporting 4(14) + 20 = 76.",
+    "topic_tag": "angle relationships",
+    "difficulty": "easy",
+    "solve": "const x=(180-20)/(1+4); return String(4*x+20);",
+    "distractor_solve": {
+      "32": "return String((180-20)/(1+4));",
+      "76": "const x=(90-20)/(1+4); return String(4*x+20);",
+      "144": "return String(4*(180/(1+4)));"
+    }
+  },
+  {
+    "id": "AM14G-02",
+    "domain": "Geometry",
+    "subskill": "Tangent meets the radius at a right angle, so the radius and tangent are the two LEGS",
+    "prompt": "A circle has center O and a radius of 9 centimeters. Point P lies outside the circle, and segment PT is tangent to the circle at point T, so that PT = 40 centimeters. What is the distance, in centimeters, from P to O, to the nearest tenth of a centimeter?",
+    "choices": [
+      "39.0",
+      "41.0",
+      "43.9",
+      "49.0"
+    ],
+    "correct_answer": "41.0",
+    "explanation": "A tangent is perpendicular to the radius drawn to the point of tangency, so triangle OTP has its right angle at T and OT = 9 and TP = 40 are the legs. Then OP = sqrt(9^2 + 40^2) = sqrt(1,681) = 41.0 centimeters. The option \"39.0\" treats the tangent PT as the hypotenuse instead of a leg, computing sqrt(40^2 - 9^2) = sqrt(1,519) = 38.97. The option \"43.9\" uses the diameter 18 as a leg in place of the radius, computing sqrt(18^2 + 40^2) = sqrt(1,924) = 43.86. The option \"49.0\" adds the two given lengths, 9 + 40, treating O, T and P as collinear.",
+    "topic_tag": "circles and right triangles",
+    "difficulty": "medium",
+    "solve": "return Math.sqrt(9*9+40*40).toFixed(1);",
+    "distractor_solve": {
+      "39.0": "return Math.sqrt(40*40-9*9).toFixed(1);",
+      "43.9": "return Math.sqrt((2*9)*(2*9)+40*40).toFixed(1);",
+      "49.0": "return (9+40).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM14G-03",
+    "domain": "Geometry",
+    "subskill": "The diagonal of an inscribed rectangle IS the diameter of the circumscribed circle",
+    "prompt": "A rectangle measuring 16 centimeters by 30 centimeters is inscribed in a circle, so that all four vertices of the rectangle lie on the circle. What is the area of the circle, to the nearest square centimeter?",
+    "choices": [
+      "480",
+      "707",
+      "908",
+      "1662"
+    ],
+    "correct_answer": "908",
+    "explanation": "The diagonal of an inscribed rectangle passes through the center, so it is a diameter. The diagonal is sqrt(16^2 + 30^2) = sqrt(1,156) = 34, the radius is 17, and the area is pi(17^2) = 289pi = 907.9, or 908 square centimeters. The option \"480\" reports the area of the RECTANGLE, 16 x 30, rather than of the circle. The option \"707\" takes the longer side 30 to be the diameter, giving pi(15^2) = 706.9. The option \"1662\" averages the two sides to get a diameter of (16 + 30)/2 = 23, giving pi(11.5^2)... more precisely it uses 23 as the RADIUS, pi(23^2) = 1,661.9.",
+    "topic_tag": "circles and rectangles",
+    "difficulty": "medium",
+    "solve": "const d=Math.sqrt(16*16+30*30); return String(Math.round(Math.PI*Math.pow(d/2,2)));",
+    "distractor_solve": {
+      "480": "return String(16*30);",
+      "707": "return String(Math.round(Math.PI*Math.pow(30/2,2)));",
+      "1662": "return String(Math.round(Math.PI*Math.pow((16+30)/2,2)));"
+    }
+  },
+  {
+    "id": "AM14G-04",
+    "domain": "Geometry",
+    "subskill": "Compare the diagonal path with the two-leg path across a rectangle and report the SAVING",
+    "prompt": "A rectangular field measures 80 meters by 150 meters. A person can walk from one corner to the opposite corner either along two sides of the field or straight across on the diagonal. How many fewer meters is the diagonal walk than the walk along the two sides?",
+    "choices": [
+      "60",
+      "70",
+      "103",
+      "170"
+    ],
+    "correct_answer": "60",
+    "explanation": "The two-side walk is 80 + 150 = 230 meters and the diagonal is sqrt(80^2 + 150^2) = sqrt(28,900) = 170 meters, so the diagonal saves 230 - 170 = 60 meters. The option \"170\" reports the length of the diagonal itself rather than the saving. The option \"70\" simply takes the difference of the two sides, 150 - 80. The option \"103\" subtracts rather than adds under the radical, using sqrt(150^2 - 80^2) = 126.9 as the diagonal and reporting 230 - 126.9 = 103.",
+    "topic_tag": "Pythagorean theorem",
+    "difficulty": "medium",
+    "solve": "return String(80+150-Math.sqrt(80*80+150*150));",
+    "distractor_solve": {
+      "70": "return String(150-80);",
+      "103": "return String(Math.round(80+150-Math.sqrt(150*150-80*80)));",
+      "170": "return String(Math.sqrt(80*80+150*150));"
+    }
+  },
+  {
+    "id": "AM14G-05",
+    "domain": "Geometry",
+    "subskill": "Altitude of an equilateral triangle through the 30-60-90 half-triangle",
+    "prompt": "An equilateral triangle has a perimeter of 36 centimeters. What is the length, in centimeters, of an altitude of this triangle, to the nearest tenth of a centimeter?",
+    "choices": [
+      "6.0",
+      "8.5",
+      "10.4",
+      "13.4"
+    ],
+    "correct_answer": "10.4",
+    "explanation": "Each side is 36/3 = 12 centimeters. An altitude splits the triangle into two right triangles with hypotenuse 12 and shorter leg 6, so the altitude is sqrt(12^2 - 6^2) = sqrt(108) = 10.39, or 10.4 centimeters. The option \"6.0\" takes the altitude to be half the side, 12/2, confusing the altitude with the half-base it creates. The option \"8.5\" treats the half-triangle as a 45-45-90 triangle, computing 12/sqrt(2) = 8.49. The option \"13.4\" adds rather than subtracts under the radical, computing sqrt(12^2 + 6^2) = 13.42.",
+    "topic_tag": "special right triangles",
+    "difficulty": "medium",
+    "solve": "const s=36/3; return Math.sqrt(s*s-(s/2)*(s/2)).toFixed(1);",
+    "distractor_solve": {
+      "6.0": "return ((36/3)/2).toFixed(1);",
+      "8.5": "return ((36/3)/Math.sqrt(2)).toFixed(1);",
+      "13.4": "const s=36/3; return Math.sqrt(s*s+(s/2)*(s/2)).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM14G-06",
+    "domain": "Geometry",
+    "subskill": "Slant height must be built from r and h before the cone TOTAL surface area can be assembled",
+    "prompt": "A solid right circular cone has a base radius of 5 centimeters and a height of 12 centimeters. What is the total surface area of the cone, including its circular base, to the nearest square centimeter?",
+    "choices": [
+      "204",
+      "267",
+      "283",
+      "314"
+    ],
+    "correct_answer": "283",
+    "explanation": "The slant height is sqrt(5^2 + 12^2) = 13, so the total surface area is pi(5)(13) + pi(5^2) = 65pi + 25pi = 90pi = 282.7, or 283 square centimeters. The option \"204\" gives only the lateral surface, 65pi = 204.2, omitting the base the question explicitly includes. The option \"267\" uses the HEIGHT 12 as the slant height, computing pi(5)(12) + pi(5^2) = 85pi = 267.0. The option \"314\" computes the VOLUME of the cone, (1/3)pi(5^2)(12) = 100pi = 314.2, instead of a surface area.",
+    "topic_tag": "surface area of solids",
+    "difficulty": "hard",
+    "solve": "const r=5,h=12,l=Math.sqrt(r*r+h*h); return String(Math.round(Math.PI*r*l+Math.PI*r*r));",
+    "distractor_solve": {
+      "204": "const r=5,h=12,l=Math.sqrt(r*r+h*h); return String(Math.round(Math.PI*r*l));",
+      "267": "const r=5,h=12; return String(Math.round(Math.PI*r*h+Math.PI*r*r));",
+      "314": "const r=5,h=12; return String(Math.round((1/3)*Math.PI*r*r*h));"
+    }
+  },
+  {
+    "id": "AM14G-07",
+    "domain": "Geometry",
+    "subskill": "Volume of a hollow tube: the DIFFERENCE of two circular areas times the length",
+    "prompt": "A straight section of steel pipe is 150 centimeters long. The pipe has an outer radius of 5 centimeters and an inner radius of 4 centimeters, and the hollow interior runs the full length of the pipe. What is the volume of the steel in this section of pipe, to the nearest cubic centimeter?",
+    "choices": [
+      "4,241",
+      "4,712",
+      "7,540",
+      "19,321"
+    ],
+    "correct_answer": "4,241",
+    "explanation": "The cross section of the steel is a ring of area pi(5^2) - pi(4^2) = 9pi square centimeters, so the steel has volume 9pi(150) = 1,350pi = 4,241 cubic centimeters. The option \"7,540\" uses the inner radius alone, pi(4^2)(150) = 2,400pi = 7,540, which is the volume of the HOLE rather than of the steel. The option \"19,321\" adds the two circular areas instead of subtracting them, pi(5^2 + 4^2)(150) = 6,150pi = 19,321. The option \"4,712\" computes the curved outer SURFACE AREA, 2pi(5)(150) = 1,500pi = 4,712, instead of a volume.",
+    "topic_tag": "volume of solids",
+    "difficulty": "hard",
+    "solve": "const c=n=>String(n).replace(/\\B(?=(\\d{3})+(?!\\d))/g,\",\"); return c(Math.round(Math.PI*(5*5-4*4)*150));",
+    "distractor_solve": {
+      "4,712": "const c=n=>String(n).replace(/\\B(?=(\\d{3})+(?!\\d))/g,\",\"); return c(Math.round(2*Math.PI*5*150));",
+      "7,540": "const c=n=>String(n).replace(/\\B(?=(\\d{3})+(?!\\d))/g,\",\"); return c(Math.round(Math.PI*4*4*150));",
+      "19,321": "const c=n=>String(n).replace(/\\B(?=(\\d{3})+(?!\\d))/g,\",\"); return c(Math.round(Math.PI*(5*5+4*4)*150));"
+    }
+  },
+  {
+    "id": "AM14I-01",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Repeating block of fixed length: whole cycles plus a PARTIAL cycle that must be examined",
+    "prompt": "Tiles are laid in a long row that repeats the same pattern over and over: 5 white tiles, then 3 blue tiles, then 4 red tiles, in that order. The row starts with the first white tile of the pattern and contains 100 tiles in all. How many of the 100 tiles are blue?",
+    "choices": [
+      "24",
+      "25",
+      "27",
+      "28"
+    ],
+    "correct_answer": "24",
+    "explanation": "One full pattern is 5 + 3 + 4 = 12 tiles and contains 3 blue tiles. Since 100 = 8(12) + 4, the row holds 8 complete patterns plus 4 extra tiles, and those 4 extra tiles are the first 4 of the 5 white tiles, so none of them is blue. The count is 8(3) = 24. The option \"27\" rounds the number of patterns up to 9 and reports 9(3) = 27, counting a pattern the row does not finish. The option \"25\" applies the ratio 3 blue out of 12 to all 100 tiles, giving 100(3/12) = 25, which ignores where the row actually stops. The option \"28\" adds the 4 leftover tiles to the 24 blue tiles as if the leftovers were blue, giving 24 + 4 = 28.",
+    "topic_tag": "patterns and counting",
+    "difficulty": "easy",
+    "solve": "const cyc=5+3+4,full=Math.floor(100/cyc); return String(full*3);",
+    "distractor_solve": {
+      "25": "return String(Math.round(100*(3/(5+3+4))));",
+      "27": "return String(Math.ceil(100/(5+3+4))*3);",
+      "28": "const cyc=5+3+4,full=Math.floor(100/cyc); return String(full*3+(100-full*cyc));"
+    }
+  },
+  {
+    "id": "AM14I-02",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Signed starting value plus a steady rate over a counted number of hours",
+    "prompt": "At 6:00 a.m. the temperature was 8 degrees Celsius below zero. The temperature then rose at a steady rate of 3 degrees Celsius per hour until 11:00 a.m. What was the temperature, in degrees Celsius, at 11:00 a.m.?",
+    "choices": [
+      "-23",
+      "4",
+      "7",
+      "15"
+    ],
+    "correct_answer": "7",
+    "explanation": "From 6:00 a.m. to 11:00 a.m. is 5 hours, so the temperature rises 5(3) = 15 degrees from -8 degrees, reaching -8 + 15 = 7 degrees Celsius. The option \"-23\" subtracts the rise instead of adding it, computing -8 - 15, which would be a temperature that FELL. The option \"15\" reports only the total rise, 5(3), and never starts from -8. The option \"4\" counts the hours from 6:00 to 10:00 as the elapsed time, using 4 hours and computing -8 + 4(3) = 4.",
+    "topic_tag": "signed numbers and rates",
+    "difficulty": "easy",
+    "solve": "return String(-8+3*(11-6));",
+    "distractor_solve": {
+      "4": "return String(-8+3*(10-6));",
+      "15": "return String(3*(11-6));",
+      "-23": "return String(-8-3*(11-6));"
+    }
+  },
+  {
+    "id": "AM14I-03",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Two ratios sharing one term must be chained through that shared term, not paired off directly",
+    "prompt": "At a store the ratio of the number of pens to the number of pencils is 2 to 3, and the ratio of the number of pencils to the number of erasers is 4 to 5. The store has 120 erasers. How many pens does the store have?",
+    "choices": [
+      "64",
+      "90",
+      "96",
+      "100"
+    ],
+    "correct_answer": "64",
+    "explanation": "From pencils : erasers = 4 : 5, the store has 120(4/5) = 96 pencils. From pens : pencils = 2 : 3, it has 96(2/3) = 64 pens. The option \"96\" is the number of PENCILS, the correct intermediate value reported as the answer. The option \"90\" applies 3 to 4 to the erasers, computing 120(3/4) = 90, which pairs the 3 from the first ratio with the 4 from the second instead of chaining through the pencils. The option \"100\" inverts the second ratio, taking the pencils to be 120(5/4) = 150 and then the pens to be 150(2/3) = 100.",
+    "topic_tag": "ratio and proportion",
+    "difficulty": "medium",
+    "solve": "const pencils=120*4/5; return String(pencils*2/3);",
+    "distractor_solve": {
+      "90": "return String(120*3/4);",
+      "96": "return String(120*4/5);",
+      "100": "const pencils=120*5/4; return String(pencils*2/3);"
+    }
+  },
+  {
+    "id": "AM14I-04",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Simple interest over a FRACTION of a year: the time factor is 8/12, not 8 and not 1",
+    "prompt": "A savings certificate pays simple interest at an annual rate of 5.5% of the amount deposited. A deposit of $2,400 is left in the certificate for 8 months. How many dollars of interest does the deposit earn in those 8 months?",
+    "choices": [
+      "16.50",
+      "88.00",
+      "105.60",
+      "132.00"
+    ],
+    "correct_answer": "88.00",
+    "explanation": "Simple interest is principal x rate x time in years, so the interest is 2,400(0.055)(8/12) = 132(2/3) = $88.00. The option \"132.00\" uses a time of one full year, 2,400(0.055), ignoring that the money is deposited for only 8 months. The option \"16.50\" divides the one-year interest by 8 rather than multiplying it by 8/12, giving 132/8 = 16.50. The option \"105.60\" reads 8 months as 0.8 of a year, computing 2,400(0.055)(0.8) = 105.60.",
+    "topic_tag": "percent and interest",
+    "difficulty": "medium",
+    "solve": "return (2400*0.055*(8/12)).toFixed(2);",
+    "distractor_solve": {
+      "132.00": "return (2400*0.055).toFixed(2);",
+      "16.50": "return (2400*0.055/8).toFixed(2);",
+      "105.60": "return (2400*0.055*0.8).toFixed(2);"
+    }
+  },
+  {
+    "id": "AM14I-05",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Two-coin count-and-value system solved by the value DIFFERENCE per coin",
+    "prompt": "A cash box contains only dimes and quarters. There are 48 coins in the box, and they are worth $9.00 in all. (A dime is worth 10 cents and a quarter is worth 25 cents.) How many of the coins are quarters?",
+    "choices": [
+      "18",
+      "20",
+      "28",
+      "45"
+    ],
+    "correct_answer": "28",
+    "explanation": "If all 48 coins were dimes they would be worth 480 cents, which is 420 cents short of 900 cents. Replacing a dime by a quarter adds 15 cents, so there are 420/15 = 28 quarters (and 20 dimes, since 28(25) + 20(10) = 900). The option \"20\" is the number of DIMES, found correctly and reported in place of the quarters. The option \"45\" divides the total by 20 cents, the average of the two coin values, computing 900/20 = 45, which ignores that the coins number 48. The option \"18\" assumes the dimes and the quarters are worth the same total, $4.50 each, and reports 450/25 = 18.",
+    "topic_tag": "systems in context",
+    "difficulty": "medium",
+    "solve": "return String((900-48*10)/(25-10));",
+    "distractor_solve": {
+      "18": "return String((900/2)/25);",
+      "20": "return String(48-(900-48*10)/(25-10));",
+      "45": "return String(900/20);"
+    }
+  },
+  {
+    "id": "AM14I-06",
+    "domain": "Integrating Essential Skills",
+    "subskill": "A conditional discount that applies to only ONE part of a two-part bill, with the condition tested against a computed area",
+    "prompt": "A room has a rectangular floor 15 feet long and 18 feet wide. A tiling company charges $4.50 per square foot for tile plus a flat installation fee of $125.00. For any floor whose area is greater than 250 square feet the company takes 10% off the tile charge only; the installation fee is never discounted. What is the total charge, in dollars, for tiling this floor?",
+    "choices": [
+      "1,093.50",
+      "1,206.00",
+      "1,218.50",
+      "1,340.00"
+    ],
+    "correct_answer": "1,218.50",
+    "explanation": "The floor is 15(18) = 270 square feet, which is greater than 250, so the discount applies to the tile charge. The tile charge is 270(4.50) = $1,215.00, less 10% is $1,093.50, and adding the $125.00 installation fee gives $1,218.50. The option \"1,340.00\" ignores the discount altogether, charging 1,215.00 + 125.00. The option \"1,206.00\" applies the 10% discount to the whole bill, computing 0.90(1,215.00 + 125.00), although the installation fee is never discounted. The option \"1,093.50\" is the discounted tile charge alone, 0.90(1,215.00), with the installation fee left out.",
+    "topic_tag": "percent in multi-step pricing",
+    "difficulty": "hard",
+    "solve": "const f=n=>{const s=n.toFixed(2),i=s.split(\".\")[0],d=s.split(\".\")[1];return i.replace(/\\B(?=(\\d{3})+(?!\\d))/g,\",\")+\".\"+d;}; const a=15*18,t=a*4.50; return f((a>250?0.9*t:t)+125);",
+    "distractor_solve": {
+      "1,340.00": "const f=n=>{const s=n.toFixed(2),i=s.split(\".\")[0],d=s.split(\".\")[1];return i.replace(/\\B(?=(\\d{3})+(?!\\d))/g,\",\")+\".\"+d;}; return f(15*18*4.50+125);",
+      "1,206.00": "const f=n=>{const s=n.toFixed(2),i=s.split(\".\")[0],d=s.split(\".\")[1];return i.replace(/\\B(?=(\\d{3})+(?!\\d))/g,\",\")+\".\"+d;}; return f(0.9*(15*18*4.50+125));",
+      "1,093.50": "const f=n=>{const s=n.toFixed(2),i=s.split(\".\")[0],d=s.split(\".\")[1];return i.replace(/\\B(?=(\\d{3})+(?!\\d))/g,\",\")+\".\"+d;}; return f(0.9*15*18*4.50);"
+    }
+  },
+  {
+    "id": "AM14I-07",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Break-even between two linear pricing plans, with the COST requested rather than the quantity",
+    "prompt": "One car-rental plan costs $40.00 for a day plus $0.05 for each mile driven. A second car-rental plan costs $25.00 for a day plus $0.10 for each mile driven. For one particular number of miles driven in a day, the two plans cost exactly the same amount. What is that amount, in dollars?",
+    "choices": [
+      "30.00",
+      "45.00",
+      "55.00",
+      "300.00"
+    ],
+    "correct_answer": "55.00",
+    "explanation": "Setting 40 + 0.05m = 25 + 0.10m gives 15 = 0.05m, so m = 300 miles, and the cost is 40 + 0.05(300) = $55.00. The option \"300.00\" reports the number of MILES rather than the amount of money, which is what the question asks for. The option \"45.00\" divides the $15 difference in daily fees by the SUM of the two per-mile rates rather than their difference, 15/0.15 = 100 miles, and reports 40 + 0.05(100) = 45.00. The option \"30.00\" gives only the per-mile part of the second plan at the break-even point, 0.10(300) = 30.00, leaving out its $25.00 daily fee.",
+    "topic_tag": "linear models in context",
+    "difficulty": "hard",
+    "solve": "const m=(40-25)/(0.10-0.05); return (40+0.05*m).toFixed(2);",
+    "distractor_solve": {
+      "300.00": "return ((40-25)/(0.10-0.05)).toFixed(2);",
+      "45.00": "const m=(40-25)/(0.10+0.05); return (40+0.05*m).toFixed(2);",
+      "30.00": "const m=(40-25)/(0.10-0.05); return (0.10*m).toFixed(2);"
+    }
+  },
+  {
+    "id": "AM14F-01",
+    "domain": "Functions",
+    "subskill": "Composition read off two TABLES, inner function first",
+    "prompt": "The two tables below give every value of the functions f and g. Table for f: f(1) = 5, f(2) = 7, f(3) = 13, f(4) = 2. Table for g: g(1) = 4, g(2) = 7, g(3) = 1, g(4) = 3. What is the value of f(g(4)) ?",
+    "choices": [
+      "2",
+      "3",
+      "7",
+      "13"
+    ],
+    "correct_answer": "13",
+    "explanation": "Work from the inside out: g(4) = 3, and then f(3) = 13. The option \"3\" stops after the inner function and reports g(4) = 3. The option \"2\" evaluates only the outer function at 4, reporting f(4) = 2 and never using g. The option \"7\" reverses the order of composition, computing g(f(4)) = g(2) = 7.",
+    "topic_tag": "composition of functions",
+    "difficulty": "easy",
+    "solve": "const f={1:5,2:7,3:13,4:2},g={1:4,2:7,3:1,4:3}; return String(f[g[4]]);",
+    "distractor_solve": {
+      "2": "const f={1:5,2:7,3:13,4:2}; return String(f[4]);",
+      "3": "const g={1:4,2:7,3:1,4:3}; return String(g[4]);",
+      "7": "const f={1:5,2:7,3:13,4:2},g={1:4,2:7,3:1,4:3}; return String(g[f[4]]);"
+    }
+  },
+  {
+    "id": "AM14F-02",
+    "domain": "Functions",
+    "subskill": "Build a LINEAR function from two of its values, then evaluate it at a third input",
+    "prompt": "The function f is linear, and f(1) = 7 and f(4) = 22. What is the value of f(6) ?",
+    "choices": [
+      "30",
+      "32",
+      "33",
+      "37"
+    ],
+    "correct_answer": "32",
+    "explanation": "A linear function has a constant rate of change, here (22 - 7)/(4 - 1) = 5 per unit, so f(x) = 5x + 2 and f(6) = 32. The option \"30\" uses the rate of change as the whole rule, computing 5(6) = 30 and dropping the constant term 2 that f(1) = 7 forces. The option \"37\" adds the entire increase from x = 1 to x = 4 again, giving 22 + 15 = 37, as if the step from 4 to 6 were the same width as the step from 1 to 4. The option \"33\" assumes f is directly proportional to x and scales f(4) by 6/4, giving 22(6/4) = 33, which ignores that f(0) is not 0.",
+    "topic_tag": "linear functions",
+    "difficulty": "medium",
+    "solve": "const a=(22-7)/(4-1),b=7-a*1; return String(a*6+b);",
+    "distractor_solve": {
+      "30": "const a=(22-7)/(4-1); return String(a*6);",
+      "33": "return String(22*6/4);",
+      "37": "return String(22+(22-7));"
+    }
+  },
+  {
+    "id": "AM14F-03",
+    "domain": "Functions",
+    "subskill": "Recover an unknown CONSTANT from one known value of the function, then evaluate elsewhere",
+    "prompt": "The function f is defined by f(x) = x^2 - 4x + k, where k is a constant, and f(5) = 9. What is the value of f(7) ?",
+    "choices": [
+      "16",
+      "21",
+      "25",
+      "30"
+    ],
+    "correct_answer": "25",
+    "explanation": "Since f(5) = 25 - 20 + k = 5 + k and this equals 9, k = 4. Then f(7) = 49 - 28 + 4 = 25. The option \"21\" leaves k out altogether, computing 49 - 28 = 21 as if k were 0. The option \"30\" uses the given value 9 as k itself, computing 49 - 28 + 9 = 30. The option \"16\" sets the expression equal to 0 rather than to 9 when solving for the constant, getting 25 - 20 + k = 0 and k = -5, and reports 49 - 28 - 5 = 16.",
+    "topic_tag": "evaluating functions",
+    "difficulty": "medium",
+    "solve": "const k=9-(5*5-4*5); return String(7*7-4*7+k);",
+    "distractor_solve": {
+      "16": "const k=0-(5*5-4*5); return String(7*7-4*7+k);",
+      "21": "return String(7*7-4*7);",
+      "30": "return String(7*7-4*7+9);"
+    }
+  },
+  {
+    "id": "AM14F-04",
+    "domain": "Functions",
+    "subskill": "Self-composition of a linear rule: the constant is counted once by the inner call and again, multiplied, by the outer",
+    "prompt": "The function f is defined by f(x) = 3x + b, where b is a constant. If f(f(2)) = 54, what is the value of b ?",
+    "choices": [
+      "4",
+      "9",
+      "12",
+      "48"
+    ],
+    "correct_answer": "9",
+    "explanation": "First f(2) = 6 + b, and then f(6 + b) = 3(6 + b) + b = 18 + 4b. Setting 18 + 4b = 54 gives b = 9, and indeed f(2) = 15 and f(15) = 54. The option \"48\" solves f(2) = 54 itself, from 6 + b = 54, applying the function once rather than twice. The option \"12\" adds b to the input before multiplying, writing f(f(2)) = 3(2 + b) + b = 6 + 4b = 54. The option \"4\" multiplies the constant by 3 at both stages, writing f(f(x)) = 9x + 9b and solving 18 + 9b = 54.",
+    "topic_tag": "composition of functions",
+    "difficulty": "hard",
+    "solve": "return String((54-3*(3*2))/(3+1));",
+    "distractor_solve": {
+      "4": "return String((54-3*3*2)/(3*3));",
+      "12": "return String((54-3*2)/(3+1));",
+      "48": "return String(54-3*2);"
+    }
+  }
+]

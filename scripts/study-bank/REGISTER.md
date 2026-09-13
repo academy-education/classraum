@@ -1891,3 +1891,23 @@ structural checks are pre-flight only. See CLAUDE.md.
   - **`AM13I-09` has no round-up distractor** — flooring 25.71 is the discriminating step but 26 is not offered, so a student who forgets "whole pieces" still lands on 25. A real step, currently unpunished.
 
   All three graders also independently noticed that **675 and 702 appear as options in both `AM13I-06` and `AM13I-07`** — the same collision two attack solvers found yesterday, and already measured then: shared option values touch 5 of 12 candidates against a live-domain mean of 6.48 at equal n, P = 0.82. Visible, real, and not a defect. Five independent observers named it and the denominator is still what settles it.
+
+- **2026-09-13** — **THE NINTH STRUCTURAL PROXY IS THE FIRST TO SURVIVE ITS OWN POPULATION. The key sits in the tightest adjacent pair of options ~2/3 of the time across three independent families.** Flagged by the `act-math-v14-mix` author against their own batch, unprompted, and measured before the attack rather than after.
+
+        section      scorable   key in tightest pair   chance (2/k)   z
+        act/math        332           66.6%                50.0      6.04
+        sat/math        628           67.0%                50.0      8.54
+        isee/math       201           63.7%                50.0      3.88
+        ssat/math       127           48.0%                40.0      1.85   (5-choice, not significant)
+
+  **THE AUTHOR QUOTED THE WRONG CONTROL AND THAT IS THE POINT.** They compared against the 25% four-choice chance line — *"a solver who always guessed inside the tightest pair would score about 30%"* — but the question "is the key one of the two closest options?" has a chance line of **2/k**, which is 50% on a four-choice item and 40% on SSAT's five. Against 25% their 61% looked enormous; against the correct derived control it is the +16.6 that is actually there. Eight proxies have now been refuted and more than one of them looked real only against a control that did not match the question being asked. The checker derives 2/k from the option count and never takes a literal.
+
+  **What it is worth to a solver is +8.3 points, not a solve.** Halving to the tightest pair and picking one gives 0.666 × 50% = 33.3% against a 25% chance line. And the decisive evidence that it does not transfer: **`act-math-v13-ies` carried this shape and scored 16.7% — BELOW chance — on a real three-solver attack.** The shape was available to those solvers and did not help them.
+
+  **It is almost certainly good authoring, not a defect.** Distractors are built as near-misses — the off-by-one-step error, the un-inverted rate — so the key acquires a close neighbour by construction. Flattening the spacing would mean distractors that no wrong method produces, which is the *"bare numbers a wrong procedure does not produce"* defect three difficulty graders flagged on `AM13I-02` and `AM13I-06` the same day. This is the twin-pair finding again with the sign flipped: real, mechanically decidable, and a consequence of building items properly.
+
+  **`act-math-v14-mix` measures 82.4% (14/17) — and against the LIVE act/math rate rather than against chance, that is not distinguishable.** P(≥14 of 17 | 66.6%) = 0.129, 95% CI 59.0–93.8%, which contains the live 66.6%. Testing it against 50% would have called it a +32-point finding; testing it against the bank it would actually join says it looks like that bank.
+
+  Two scorability rules the checker enforces rather than papering over: a **tie for tightest** is not scorable — if two pairs share the smallest gap the "tightest pair" a solver would use is undefined, and counting it either way invents a result (57 of 481 act/math items, 290 of 1,133 sat/math). And **duplicate option values** make adjacency undefined. `act-math-v13-ies` came back **NOT MEASURED** at 9 scorable items against a floor of 10, which is the correct answer for an 11-item batch rather than a rate over nine.
+
+  Self-tested on six constructed cases before touching data, including the tie, the non-numeric set, the duplicate-value set and a currency set. **And it crashed on its first live run** — zsh refused to word-split `set -- $fs`, the same shell trap that once made six sections report `scorable 0 of 0`, and the empty result threw on a width read instead of saying so. A crash beats a fabricated zero, but it now refuses by name: *"zero items loaded. A rate over an empty set is not a result."*
