@@ -1,0 +1,68 @@
+{
+  "AM13I-01": {
+    "difficulty": "easy",
+    "traps": 3,
+    "seconds": 55,
+    "note": "Borderline easy/medium: two unit-rate divisions plus a cents conversion, but all three distractors are real method errors (21.0 = the 64-oz rate itself, 6.6 = price difference over 64 oz, 17.7 = price difference over ounce difference)."
+  },
+  "AM13I-02": {
+    "difficulty": "easy",
+    "traps": 1,
+    "seconds": 45,
+    "note": "Two-step subtract-and-multiply; only 1,575 (subtracting 45 donors instead of $1,080) is a method trap, the others read as arithmetic slips."
+  },
+  "AM13I-03": {
+    "difficulty": "easy",
+    "traps": 3,
+    "seconds": 40,
+    "note": "Single product, but the distractors are well built: 19,905.60 uses 52 weeks, 33,408 uses a 40-hour week, 17,952 drops the 40 cents."
+  },
+  "AM13I-04": {
+    "difficulty": "medium",
+    "traps": 3,
+    "seconds": 70,
+    "note": "Two-conversion chain where each step has a direction decision; every distractor is one wrong or omitted step (6.08 stops in euros, 5.29 divides by 1.15, 1.84 skips the liter conversion)."
+  },
+  "AM13I-06": {
+    "difficulty": "easy",
+    "traps": 2,
+    "seconds": 45,
+    "note": "One proportion. 405 is the multiply-instead-of-divide trap."
+  },
+  "AM13I-07": {
+    "difficulty": "medium",
+    "traps": 3,
+    "seconds": 75,
+    "note": "Good kind of medium-hard: the natural first approach, full perimeter x $9, lands exactly on 702, and the two partial corrections land on 675 (gate only) and 486 (building side only). Two constraints must both be carried."
+  },
+  "AM13I-08": {
+    "difficulty": "medium",
+    "traps": 2,
+    "seconds": 80,
+    "note": "Three chained steps but no hidden setup; 8,448 punishes answering the wrong question. Some of the time here is decimal arithmetic rather than reasoning."
+  },
+  "AM13I-09": {
+    "difficulty": "medium",
+    "traps": 3,
+    "seconds": 70,
+    "note": "The decision is the floor at the end; 45 catches stopping at total length, 8 catches dividing mass by piece length directly."
+  },
+  "AM13I-10": {
+    "difficulty": "hard",
+    "traps": 3,
+    "seconds": 100,
+    "note": "The good kind of hard: the natural first approaches land exactly on distractors (35.0 = 15+20, 32.0 = the total decline read back as the required rise). Requires recognising that the recovery is 1/0.68, not the mirror of the fall."
+  },
+  "AM13I-11": {
+    "difficulty": "hard",
+    "traps": 3,
+    "seconds": 100,
+    "note": "Nothing is numeric until the student sets up a ratio of ratios (1.05/1.25 x 180) with no given budget, then floors 151.2. 144 is the plain 20 percent cut, 214 inverts the two changes."
+  },
+  "AM13I-12": {
+    "difficulty": "hard",
+    "traps": 3,
+    "seconds": 110,
+    "note": "Two-rate mixture: set up an equation that is not stated, then convert the time back to a distance for the correct leg. 121 is the other leg's distance, which is exactly where a correct solve that stops one line early lands."
+  }
+}

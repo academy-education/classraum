@@ -1870,3 +1870,24 @@ structural checks are pre-flight only. See CLAUDE.md.
 - **2026-09-13** — **`actrd-control-draw.mjs` now prints the solver assignment, because the assignment IS the instrument.** The cross-file leak the three solvers found is not fixable by editing the files: every file draws one item from the *same* passage groups by construction, so any solver handed two files sees two items per passage. The only fix is **one file per solver**, and coverage then scales with solvers rather than with files per solver. The script says so in its output rather than leaving it to whoever writes the solver prompts — which is where it was lost the first time.
 
   Re-running it reproduced all six files **byte-identical** (the three blind shas the solvers confirmed, and the three key shas in `HEAD`), so the fixed seed makes the render deterministic and the scored run is intact. Worth knowing: a draw script that cannot reproduce its own output would make every past measurement unauditable.
+
+- **2026-09-13** — **THE `act-math-v13-ies` DIFFICULTY PANEL AGREES WITH THE AUTHOR, AND IT IS THE FIRST BATCH WHERE THAT HAS BEEN TRUE.** Three graders, all 11 kept items, the author's labels withheld. Closes the gap the batch was inserted with and recorded as provisional.
+
+        author    easy 3 / medium 5 / hard 3
+        grader a  easy 4 / medium 4 / hard 3
+        grader b  easy 3 / medium 6 / hard 2
+        grader c  easy 3 / medium 5 / hard 3
+        MAJORITY  easy 3 / medium 5 / hard 3      <- identical to the author
+
+  Agreement **9 of 11 = 81.8%**, every item carries a majority (no three-way split), and **the two items that move go in OPPOSITE directions** — `AM13I-01` easy→medium, `AM13I-06` medium→easy. That is noise, not a calibration offset, and it is the first time: on the two batches before this one graders moved 5–8 of 28 and read every one of them *easier* than authored.
+
+  **The gap was worse than I recorded, and it was mine.** `math-bank-helper` writes `qc.difficulty` into a field named **`verify_meta.grader_difficulty`** — and I built that qc file from the author's own labels, so eight live rows carried a "grader" label no grader had ever given. The helper recorded faithfully what it was handed; the defect is in what I handed it. This is the "columns do not mean what their names suggest" class, self-inflicted. All 11 rows now carry the panel's majority in both `difficulty` and `grader_difficulty`, plus a `difficulty_panel` provenance string so the next reader can tell a real panel from a copied label.
+
+  **The three held items are in. ACT Math 478 → 481, Integrating Essential Skills 86 → 89.** `AM13I-01` graded **medium** by the panel, so it entered under the default strict band with no escape needed. `AM13I-02` and `AM13I-03` are confirmed easy by three graders, so `BANK_BAND=mixed` is now the accurate declaration the policy asks for — *"the GRADER's label, never the author's"* — rather than the override it would have been yesterday. `AM13I-06`'s live row was corrected medium→easy (3/3 unanimous). Form count stays at **9**; the next form is now **6 items — Geometry +4, Functions +1, IES +1**, down from 9.
+
+  **Three real defects the panel found that the attack could not**, recorded for the next brief rather than acted on:
+  - **`AM13I-02` and `AM13I-06` have thin distractor sets** — only one option each traces to a named wrong method (1,575 and 405); the rest are bare numbers a wrong procedure does not produce. Two graders said so independently. A solver who avoids the single trap is choosing from two.
+  - **`AM13I-03` is difficult by keystrokes, not reasoning** — one product, `17.40 × 22 × 48`, with no decision anywhere in it. Fine as an early-form easy, and it should not be counted as carrying reasoning load.
+  - **`AM13I-09` has no round-up distractor** — flooring 25.71 is the discriminating step but 26 is not offered, so a student who forgets "whole pieces" still lands on 25. A real step, currently unpunished.
+
+  All three graders also independently noticed that **675 and 702 appear as options in both `AM13I-06` and `AM13I-07`** — the same collision two attack solvers found yesterday, and already measured then: shared option values touch 5 of 12 candidates against a live-domain mean of 6.48 at equal n, P = 0.82. Visible, real, and not a defect. Five independent observers named it and the denominator is still what settles it.

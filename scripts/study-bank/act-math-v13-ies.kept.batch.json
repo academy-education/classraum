@@ -13,7 +13,7 @@
   "correct_answer": "2.0",
   "explanation": "The 40-ounce bottle costs 920/40 = 23.0 cents per ounce and the 64-ounce bottle costs 1,344/64 = 21.0 cents per ounce, so the larger bottle is 2.0 cents per ounce cheaper. '21.0' is the unit price of the larger bottle reported instead of the difference between the two unit prices. '17.7' divides the price difference by the size difference, (1,344 - 920)/(64 - 40) = 17.67, treating the extra 24 ounces as if it were the whole purchase. '6.6' divides the price difference by the larger size alone, 424/64 = 6.63, spreading the savings over the big bottle instead of comparing rates.",
   "topic_tag": "unit rate comparison",
-  "difficulty": "easy",
+  "difficulty": "medium",
   "solve": "const small = 920 / 40; const large = 1344 / 64; return (small - large).toFixed(1);",
   "distractor_solve": {
    "21.0": "return (1344 / 64).toFixed(1);",
@@ -101,7 +101,7 @@
   "correct_answer": "720",
   "explanation": "The 54 liters covers 54 / 7.5 = 7.2 hundred-kilometer stretches, so the car travels 7.2 x 100 = 720 kilometers. '405' multiplies the consumption by the fuel, 7.5 x 54, instead of dividing; that treats 7.5 as kilometers per liter rather than liters per 100 kilometers. '675' rounds the consumption up to 8 liters per 100 kilometers, giving 54 / 8 x 100 = 675. '702' inverts the rate first and rounds it, using 100 / 7.5 = 13.3 kilometers per liter cut to 13, then 13 x 54 = 702.",
   "topic_tag": "rate inversion",
-  "difficulty": "medium",
+  "difficulty": "easy",
   "solve": "return String(Math.round((54 / 7.5) * 100));",
   "distractor_solve": {
    "405": "return String(Math.round(7.5 * 54));",
