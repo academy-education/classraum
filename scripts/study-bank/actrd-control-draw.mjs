@@ -32,6 +32,22 @@
  * SIBLING-FREE IS THE WHOLE DESIGN. ACT Reading is passage-drawn and nine
  * questions share one passage; a solver seeing two of them reconstructs it.
  * One item per passage group per file, asserted rather than intended.
+ *
+ * AND ONE FILE PER SOLVER, WHICH THE FIRST RUN GOT WRONG. Sibling-freedom
+ * WITHIN a file does not survive handing one solver several files: every file
+ * draws one item from the SAME passage groups, so file 1 takes item 1 from all
+ * 12 passages, file 2 item 2 from the same 12, and a solver reading all three
+ * sees three items per passage. On 2026-09-13 all three solvers found this
+ * unprompted, named the recurring passages (jazz, library fines, sea-turtle
+ * TSD, booming dunes, cue sheets, the habit study) and each said they USED it;
+ * one showed an option in one file naming a rival mechanism that disambiguates
+ * an item in another. The measurement survived because both strata are
+ * contaminated equally and the finding was a 70-point gap against a human, but
+ * the number it produced is an upper bound.
+ *
+ * So the script now PRINTS THE SOLVER ASSIGNMENT and refuses to stay silent
+ * about it: one file per solver, and if you want more coverage you spend more
+ * solvers, not more files per solver.
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { createClient } from '@supabase/supabase-js'
@@ -125,3 +141,14 @@ for (let f = 0; f < depth; f++) {
 }
 console.log(`\ncontrol (shipped, human-cleared) ${nC} items   |   v7 arm ${nA} items`)
 if (nA * 3 < 30) console.log(`UNDERPOWERED ARM: ${nA} v7 items = ${nA * 3} picks across three solvers. Report the interval; do not read a verdict off it.`)
+
+/* The assignment is part of the instrument, so it is printed with the files
+ * rather than left to whoever writes the solver prompts. */
+console.log('\nSOLVER ASSIGNMENT — ONE FILE EACH, and this is not a style preference:')
+for (let f = 0; f < depth; f++) {
+  console.log(`  solver ${String.fromCharCode(97 + f)}  ->  actrd-ctrl-f${f + 1}.blind.json   (${'abc'[f] ? 'reads this file and no other' : ''})`)
+}
+console.log('  Every file draws from the SAME passage groups, so a solver given two')
+console.log('  files sees two items per passage and can reconstruct it across them.')
+console.log('  Pooling then measures cross-file leakage, not the item sets.')
+console.log(`  Coverage scales with SOLVERS, not with files per solver: ${depth} files -> ${depth} solvers.`)
