@@ -1,0 +1,272 @@
+{
+ "V-01": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "tightest pair (4,241/4,712); picked the rounder pi-coefficient 1500pi. no channel"
+ },
+ "V-02": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair (2,3); no channel"
+ },
+ "V-03": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "format: 314 is uniquely 100*pi, the only pi-shaped value in the set; others arbitrary"
+ },
+ "V-04": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "hub: 14 = (16+12)/2, only half-sum hub; also inside the tightest pair (14,16)"
+ },
+ "V-05": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "ASSUMED: radicands 67,130,193 form a run d=63; 130 is the run midpoint = the drop-the-cosine-term error, so key is an endpoint. picked 193 (obtuse). coin between 67/193"
+ },
+ "V-06": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair (144,148); took the square/round one. no channel"
+ },
+ "V-07": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair (108,112); 108 is the one canonical polygon angle, but unverified"
+ },
+ "V-08": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "radical family 6, 6sqrt2=8.5, 6sqrt3=10.4, 6sqrt5=13.4; 6sqrt3 is the canonical cube/3D diagonal and is in the tightest pair (8.5,10.4)"
+ },
+ "V-09": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "format: 103 is the only non-multiple-of-10 = the computed value; 60/70/170 are round. overrides the tightest pair (60,70)"
+ },
+ "V-10": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair (96,100); took the non-round member. no channel"
+ },
+ "V-11": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "closed product family {4,12,48} (48=12*4); 9 is the outsider. tightest pair is (9,12); intersect family x pair -> 12"
+ },
+ "V-12": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "hub: 18 = (24+12)/2; also inside the tightest pair (16,18)"
+ },
+ "V-13": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "twin +/-15 sign pair; picked the positive. no real channel"
+ },
+ "V-14": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair (26/3,19/2); preferred the thirds family. no channel"
+ },
+ "V-15": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "format: 4.40 is the computed value against the round 4.00/5.80/3.40; also inside the tightest pair (4.00,4.40)"
+ },
+ "V-16": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair (110,112); 176=2*88 is a separate doubling-error pair. coin inside the pair"
+ },
+ "V-17": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "hub: -2 = (10 + -14)/2, only half-sum hub. NOTE conflict: the tightest pair is (-14,-10), hub overrode it"
+ },
+ "V-18": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "format: 194.4 is the only non-round/computed value among 90, 15, 900"
+ },
+ "V-19": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "format: 270/135/180 are all 45-degree-family angles, 216 is the only value outside it = the computed one; also inside the tightest pair (180,216)"
+ },
+ "V-20": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "closed family: 25=10+15, 30=2*15. tightest pair is (25,30); inside it 25 is the more connected node (sum of two options)"
+ },
+ "V-21": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair (1,206.00/1,218.50); took the .50 as the computed one. weak"
+ },
+ "V-22": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "format: 1.95 is the only non-round value (2, 3, 1.5 are clean); also inside the tightest pair (1.95,2)"
+ },
+ "V-23": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "tightest pair (21,25); took the non-square member. no channel"
+ },
+ "V-24": {
+  "pick": "D",
+  "basis": "guess",
+  "note": "trig family sin/cos/tan/sec of a 5-12-13 triangle; 5/13 is in the tightest pair (5/13,5/12) but which ratio is asked is unrecoverable. ASSUMED, scored as guess"
+ },
+ "V-25": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "hub: 80 = (76+84)/2; also inside the tightest pair (80,84)"
+ },
+ "V-26": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "two doubling pairs (25600/12800 and 8000/4000); tightest pair (8000,12800). coin"
+ },
+ "V-27": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "closed sum family {6,9,15} (15=6+9); 8 is the outsider. tightest pair is (8,9); intersect family x pair -> 9"
+ },
+ "V-28": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair (18,20). no channel"
+ },
+ "V-29": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "300 is a magnitude outlier; tightest pair of the rest (45,55). coin"
+ },
+ "V-30": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair (32,33). coin"
+ },
+ "V-31": {
+  "pick": "D",
+  "basis": "guess",
+  "note": "tightest pair (27,28). coin"
+ },
+ "V-32": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair (48,50); 100=2*50 doubling-error pair points at 50. weak"
+ },
+ "V-33": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "format: 34.6 = 20*sqrt3, the only computed/irrational value against round 20/40/80"
+ },
+ "V-34": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "format: 14.1 = 10*sqrt2 is computed against round 10/20; also inside the tightest pair (10,14.1). 28.3 is the rival ugly value"
+ },
+ "V-35": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "hub: 90 = (60+120)/2; also inside the tightest pair (90,120)"
+ },
+ "V-36": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "two doubling pairs (6/3, 10/5); tightest pair (5,6). coin"
+ },
+ "V-37": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "format: 105.60 is the computed value against round 88.00/132.00; also inside the tightest pair (88.00,105.60)"
+ },
+ "V-38": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair (12,13); 24=2*12 is a doubling-error pair, so took 13. weak"
+ },
+ "V-39": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "pi family: 707=225pi, 908=289pi, 1662=529pi, 480 is the outsider; 908 is inside the tightest pair (707,908)"
+ },
+ "V-40": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "format: 43.9 is the only value not ending .0 = the computed one. overrides the tightest pair (39.0,41.0)"
+ },
+ "V-41": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "(-9,-1)/(9,-1) is a sign-error twin pair, so the key is probably one of the two, but which is a coin"
+ },
+ "V-42": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair (61.44,62.21); 62.21 is the least clean product. weak"
+ },
+ "V-43": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "format: 11.25 is the computed value; 22.5=2*11.25 is the doubling error; also inside the tightest pair (9,11.25)"
+ },
+ "V-44": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "format: 3,280.5 is the only non-integer = the computed (geometric-sum-shaped) value among 4500/486/450"
+ },
+ "V-45": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "-23 is a magnitude/sign outlier; tightest pair (4,7). coin"
+ },
+ "V-46": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "all four decimals, no format split; tightest pair (21.4,29.9). coin"
+ },
+ "V-47": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "format: 6.67 is the only repeating-decimal (20/3) computed value; 6 is the round trap; also inside the tightest pair (6,6.67)"
+ },
+ "V-48": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "run 4,8,12 with 20 outside; 8 is the most connected node (half-sum of 4,12 and 20-12) and is inside the tightest pair (8,12)"
+ },
+ "V-49": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "hub: 72 = (96+48)/2. NOTE conflict: the tightest pair is (96,108), hub overrode it"
+ },
+ "V-50": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "all four are pi multiples (120,180,200,480 pi) so no format tell; tightest pair (565,628), took the rounder coefficient"
+ },
+ "V-51": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair (45,57). coin"
+ },
+ "V-52": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "geometric run 96,288,864 (x3) with 432=864/2 as the outsider; tightest pair is (288,432); intersect run x pair -> 288"
+ },
+ "V-53": {
+  "pick": "D",
+  "basis": "guess",
+  "note": "60 is a magnitude outlier and 0 a format outlier; 8 vs 22 is a coin"
+ },
+ "V-54": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "fully closed x2 family pi/2, pi, 2pi, 4pi - no odd one out. tightest pair (pi/2,pi), took the canonical pi"
+ }
+}

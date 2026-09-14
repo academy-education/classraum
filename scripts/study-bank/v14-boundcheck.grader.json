@@ -1,0 +1,190 @@
+{
+  "AM14G-01": {
+    "survivors": 2,
+    "verdict": "keep",
+    "bounds": "The angle described is 4x+20 with x>0, so it is necessarily the larger of the supplementary pair: the answer must lie in (90,180). 32 and 76 are below 90 and die on sight; 144 and 148 survive.",
+    "issues": [
+      "Two survivors, not flagged by the author. 32 (the smaller angle) and 76 (the complementary misread) are both free eliminations for anyone who notices the answer must exceed 90 - so the 'report the wrong member of the pair' and 'complementary not supplementary' traps are dead against a bound attacker.",
+      "Residual discrimination is 144 vs 148, which is the real trap (dropping the +20). Acceptable, but only one distractor is doing work."
+    ],
+    "key_confirmed": true
+  },
+  "AM14G-02": {
+    "survivors": 2,
+    "verdict": "keep",
+    "bounds": "OP is the hypotenuse of a right triangle with legs 9 and 40, so 40 < OP < 49 (strict triangle inequality). 39.0 is below the longer leg; 49.0 is the degenerate collinear sum. Survivors: 41.0, 43.9.",
+    "issues": [
+      "Two survivors. 39.0 (tangent-as-hypotenuse) and 49.0 (collinear sum) are both eliminable with no computation - the first because a hypotenuse cannot be shorter than a leg, the second because it is exactly 9+40.",
+      "Remaining discrimination 41.0 vs 43.9 is radius-vs-diameter, which is the intended tell, so the item still tests something."
+    ],
+    "key_confirmed": true
+  },
+  "AM14G-03": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "The circle strictly contains the 480 sq cm rectangle, so area > 480; and the diagonal (= diameter) is at most 16+30=46 by the triangle inequality, so area < pi(23^2)=1662. Survivors: 707, 908, 1662-as-boundary. Counting 1662 as excluded only on a strict inequality, 3 options survive a loose attack.",
+    "issues": [
+      "Cleanest item in the Geometry block on class 1: 707 (longer side as diameter) is genuinely feasible-looking and is exactly the misconception being tested.",
+      "The explanation for 1662 is garbled and would ship as written: 'averages the two sides to get a diameter of (16 + 30)/2 = 23, giving pi(11.5^2)... more precisely it uses 23 as the RADIUS'. It names two different procedures and abandons the first mid-sentence. Rewrite to the single procedure that actually produces 1662 (average the sides and use 23 as the radius).",
+      "That procedure is also weak - averaging the sides and then treating the average as a radius is not a natural student error. 1662 is close to filler."
+    ],
+    "key_confirmed": true
+  },
+  "AM14G-04": {
+    "survivors": 2,
+    "verdict": "keep",
+    "bounds": "The diagonal exceeds the longer side (150) and is less than the two-side path (230), so the saving lies in (0,80). 103 and 170 are out; 60 and 70 survive. The author's self-reported count of 2 is correct.",
+    "issues": [
+      "Author's count confirmed by independent derivation. 170 (the diagonal itself) and 103 (minus-under-the-radical) are both free.",
+      "70 = 150-80 is a decent surviving distractor, so the item is thin but not broken."
+    ],
+    "key_confirmed": true
+  },
+  "AM14G-05": {
+    "survivors": 2,
+    "verdict": "keep",
+    "bounds": "Side = 12. An altitude is a leg of a right triangle with hypotenuse 12, so it is strictly less than 12, and it exceeds the half-base 6. Feasible interval (6,12): 6.0 is the degenerate endpoint, 13.4 exceeds the side. Survivors: 8.5, 10.4. Author's count of 2 is correct.",
+    "issues": [
+      "Author's count confirmed. 13.4 (added under the radical) is free for anyone who knows a leg is shorter than the hypotenuse, and 6.0 is exactly half the side.",
+      "8.5 vs 10.4 is 45-45-90 vs 30-60-90, the intended discrimination, so the surviving pair is the right pair."
+    ],
+    "key_confirmed": true
+  },
+  "AM14G-06": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "No cheap bound eliminates anything: without the slant height a solver cannot rank 204, 267, 283, 314. A sharper solver who notes l > h = 12 and l < r+h = 17 gets TSA in (267.0, 345.6), which leaves exactly 283 and 314 - but that derivation is most of the item's mathematics, so a naive bound attack keeps 3.",
+    "issues": [
+      "Note the coincidence: the lower bound 85pi = 267.04 is essentially the distractor 267 (which uses l = h = 12). That is not an accident - the 'use the height as the slant height' distractor IS the infimum, so it is eliminable by anyone who realises the slant height must exceed the height. Same structural defect the author asks about on AM14I-04, and it is worth knowing about.",
+      "314 is the cone's volume reported as an area; it is a named procedure but a cross-category one."
+    ],
+    "key_confirmed": true
+  },
+  "AM14G-07": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "The steel is a proper subset of the full outer cylinder, pi(25)(150) = 11,781, so 19,321 is impossible on sight. Nothing else is bounded out without comparing 25-16 against 16. Survivors: 4,241, 4,712, 7,540.",
+    "issues": [
+      "19,321 (areas added rather than subtracted) exceeds the entire solid cylinder and is a free elimination - the strongest magnitude tell in the batch, though three options still survive so it is not a drop.",
+      "4,712 is a surface area offered as a volume; named, but cross-category filler rather than a real trap. 7,540 (the hole) is the good distractor and carries the item."
+    ],
+    "key_confirmed": true
+  },
+  "AM14I-01": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "100 tiles = 8 full 12-tile cycles + 4 leftover, so blue is at least 8*3 = 24 and at most 24 + 3 = 27 (the leftover cannot contain more than the 3 blue tiles of one cycle). 28 is impossible; 24, 25, 27 survive.",
+    "issues": [
+      "28 (adding the 4 leftovers as if blue) is eliminable by the ceiling of 27, but the item still has three live options and the 24/25/27 spread is exactly the partial-cycle reasoning being tested. Clean."
+    ],
+    "key_confirmed": true
+  },
+  "AM14I-02": {
+    "survivors": 2,
+    "verdict": "repair",
+    "bounds": "The temperature RISES from -8 for at most 5 hours at 3 deg/hr, so the answer lies in (-8, 7]. -23 is a fall; 15 would require 7.67 hours. Survivors: 4 and 7.",
+    "issues": [
+      "Two survivors, not flagged by the author. Half the option set dies to 'it rose' and 'it rose for five hours at most' - neither requires arithmetic.",
+      "Worse, 7 is the ENDPOINT of the feasible interval: it is the maximum possible value, reached only by the maximum elapsed time. A solver who takes the extreme lands on the key. The only surviving competitor, 4, is the off-by-one-hour error.",
+      "Repair: replace 15 (the bare rise) with a value strictly inside the interval produced by a named error - e.g. -8 + 3*(11-6) mis-signed on the start only is already -23, so use 2, from counting 6:00 to 11:00 as inclusive-of-neither (3 hours+1) or better: make the start temperature 8 below zero and ask for a time before 11 so the key is interior. Minimum acceptable fix: swap 15 for 10, from a 6-hour count (6 a.m. to 12 p.m. misread), which is above the key and restores an interior key."
+    ],
+    "key_confirmed": true
+  },
+  "AM14I-03": {
+    "survivors": 1,
+    "verdict": "drop",
+    "bounds": "pens:pencils = 2:3 means pens = (2/3)(pencils); pencils:erasers = 4:5 means pencils < erasers = 120. Therefore pens < (2/3)(120) = 80. Only 64 is below 80. 90, 96 and 100 are all arithmetically impossible pen counts given the stem.",
+    "issues": [
+      "CLASS 1 DROP. The item is answerable with no ratio chaining at all: both ratios run downward from erasers, so the answer must be smaller than two-thirds of 120, and exactly one option is.",
+      "The failure is structural, not a bad distractor choice. Every named wrong procedure the author used (report the pencils = 96; pair 3 with 4 = 90; invert the second ratio = 100) produces a number in the 90-100 band, because all three errors under-shrink the 120. The distractor family cannot be fixed by swapping letters or rewriting one option.",
+      "Repair if the item is to be kept: reverse the direction of the chain. Give the PEN count and ask for erasers (pens 64 -> pencils 96 -> erasers 120). Then the answer is the largest quantity, the bound 'erasers > pencils > pens' only excludes options at or below 64, and distractors 96, 100 and 150 all survive. The same three misconceptions are still testable."
+    ],
+    "key_confirmed": true
+  },
+  "AM14I-04": {
+    "survivors": 2,
+    "verdict": "repair",
+    "bounds": "Interest for 8 months is strictly less than one year's 132.00 and strictly more than half a year's 66.00. Feasible interval (66, 132): 16.50 and 132.00 are out. Survivors: 88.00 and 105.60.",
+    "issues": [
+      "Answering the author's question directly: YES, 132.00 being both a distractor and the upper bound is a problem, though a contained one. It is not merely a weak distractor - it is the ceiling the stem itself fixes, so it is eliminable by the single observation the item exists to test (8 months is not a year). The distractor costs a slot and provides zero information about whether the student knows anything.",
+      "It also drags a second option down with it: once 132.00 is identified as one year, 16.50 is visibly about an eighth of it, well under the half-year floor of 66.00, so both die together.",
+      "Repair: replace 132.00 with 80.00 = 2,400(0.05)(8/12), a named error (reading the rate as 5% and dropping the half point). It sits inside (66,132), is below the key so it does not re-create a boundary key, and preserves 88.00 vs 105.60 as the real 8/12-vs-0.8 discrimination.",
+      "The surviving pair 88.00 / 105.60 is the correct pair to survive, so with that one swap the item is sound."
+    ],
+    "key_confirmed": true
+  },
+  "AM14I-05": {
+    "survivors": 1,
+    "verdict": "drop",
+    "bounds": "48 coins worth 900 cents average 18.75 cents, which is above the 17.50 midpoint of 10 and 25, so quarters must OUTNUMBER dimes: quarters > 24. Only 28 is above 24. Direct check confirms it: 18 quarters caps the box at 750 cents, 20 quarters at 780, 45 quarters is 1,125 cents in quarters alone - all three are arithmetically impossible, not merely wrong.",
+    "issues": [
+      "CLASS 1 DROP, and the second-cleanest one in the batch. No system needs to be solved: the average coin value exceeds the midpoint, so the quarters are the majority of 48, and exactly one option exceeds 24.",
+      "45 is additionally a magnitude failure on its own: 45 quarters is $11.25, more than the box's entire $9.00.",
+      "The defect is inherent to the option family. Since dimes + quarters = 48, the 'report the other coin' distractor (20) is ALWAYS on the far side of the midpoint from the key, so it is always infeasible. Any two-coin item of this shape that offers the complementary count as a distractor has this hole.",
+      "Repair: drop 18 and 45 and add two values inside (24,48) that come from named procedures - 36 = 900/25 (forgetting the dimes contribute anything while keeping the total) and 42 = (900 - 48*10)/10 (dividing the 420-cent shortfall by the dime value instead of the 15-cent difference). Keep 20 as the one deliberate swap distractor. Options 20, 28, 36, 42 leave three survivors under the same bound."
+    ],
+    "key_confirmed": true
+  },
+  "AM14I-06": {
+    "survivors": 2,
+    "verdict": "keep",
+    "bounds": "The area is 270 > 250 so the discount fires, putting the total strictly below the undiscounted 1,340.00. And the total must include the 125.00 fee on top of a discounted tile charge of at least 0.9(270)(4.00) = 972, so the total exceeds 1,097 - which kills 1,093.50 using only 270 x 4. Survivors: 1,206.00 and 1,218.50.",
+    "issues": [
+      "Two survivors. 1,340.00 (no discount) and 1,093.50 (fee omitted) are both reachable without doing the pricing arithmetic.",
+      "This is an acceptable thin: the two survivors are exactly the discount-scope discrimination the item is built on (10% off the tile only vs 10% off everything), and separating them requires the full computation. No repair needed, but do not count this item as having four live options."
+    ],
+    "key_confirmed": true
+  },
+  "AM14I-07": {
+    "survivors": 2,
+    "verdict": "keep",
+    "bounds": "At the break-even point the cost is plan 1's 40.00 plus a positive mileage charge, so the answer exceeds 40.00: 30.00 is impossible. 300.00 would require 5,200 miles driven in a single day, which the stem's 'in a day' rules out on scale. Survivors: 45.00 and 55.00.",
+    "issues": [
+      "Two survivors. 300.00 is a weak slot twice over - it is both the miles-not-dollars answer (a tell any bound attacker knows to distrust) and out of scale as a one-day rental charge under either plan.",
+      "30.00 is below plan 1's flat daily fee and so cannot be a common cost at all.",
+      "The surviving pair 45.00 vs 55.00 is the sum-vs-difference error, which is the intended trap, so the item still discriminates. Optional repair: replace 300.00 with 65.00 = 25 + 0.10(400) from solving 40 + 0.05m = 25 + 0.10m with the fees subtracted the wrong way; it is in scale and interior."
+    ],
+    "key_confirmed": true
+  },
+  "AM14F-01": {
+    "survivors": 3,
+    "verdict": "repair",
+    "bounds": "The answer is a value of f, so it must lie in f's stated range {2,5,7,13}. 3 is in g's range only and is impossible as an output of f. Survivors: 2, 7, 13.",
+    "issues": [
+      "On the table-rendering question asked: YES, it reads unambiguously as plain text. The values are given in function notation (f(1) = 5, f(2) = 7, ...), not as a grid, so nothing depends on column alignment and no renderer is needed.",
+      "But the stem says 'The two tables below give every value' when there is nothing below - the values are inline in the same sentence. A student looking for a table will hunt for a missing figure. Repair the wording to 'The functions f and g are defined only for the inputs shown: f(1) = 5, ... and g(1) = 4, ...'. This is the only repair the item needs.",
+      "The 'defined only for these inputs' phrasing also matters mathematically: f(g(4)) is only well defined because g(4) = 3 happens to be in f's domain. 'every value' just about covers it, but the rewrite makes it explicit.",
+      "Minor: the inner-function distractor 3 is the free elimination noted above, since it is not in f's range."
+    ],
+    "key_confirmed": true
+  },
+  "AM14F-02": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "f is increasing (7 to 22), so f(6) > 22; and the step from 4 to 6 is narrower than the step from 1 to 4, so the increase must be less than 15, putting f(6) < 37. 37 is excluded as the endpoint. Survivors: 30, 32, 33.",
+    "issues": [
+      "Clean. 30 (slope with no intercept) and 33 (assuming proportionality) are both feasible and both come from real misconceptions."
+    ],
+    "key_confirmed": true
+  },
+  "AM14F-03": {
+    "survivors": 4,
+    "verdict": "keep",
+    "bounds": "x^2-4x+k is increasing for x>2, so f(7) > f(5) = 9 - and all four options exceed 9. Nothing else the stem fixes bounds the answer, because k is free until the given value is used. No option is eliminable without solving.",
+    "issues": [
+      "The cleanest item in the batch on class 1: all four options survive every bound the stem supports.",
+      "Note the elegant alternative solution f(7) = f(5) + (49-28) - (25-20) = 9 + 16 = 25, which never finds k. That is a legitimate route, not a leak."
+    ],
+    "key_confirmed": true
+  },
+  "AM14F-04": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "f(f(2)) = 18 + 4b = 54 with b positive, so b < 54/4 = 13.5 on the crude bound alone. 48 is impossible. Survivors: 4, 9, 12.",
+    "issues": [
+      "48 (applying f once) is a free elimination for anyone who notices the constant is counted twice, but three live options remain and 4 vs 9 vs 12 are all genuine algebra slips.",
+      "Key re-derived independently: b=9 gives f(2)=15 and f(15)=54. Confirmed."
+    ],
+    "key_confirmed": true
+  }
+}
