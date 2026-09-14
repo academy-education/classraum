@@ -2152,3 +2152,32 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Two things their run cannot settle, both structural.** It **never re-dealt the key** — checked: 18 of 18 items in their blind file preserve the authored option order *and* the authored key position — so any positional habit survived into every round. They flagged the symptom without diagnosing it: `CS10-06` and `CS10-18` were picked **4/4 by every solver across a rewrite that reversed what the key says**, which is what position looks like, not content. And it had **no control**: 31% against a literal 25% and against baselines quoted from the brief.
 
   So the progression stands as a *change* — same render throughout, so the improvement is the author's content work — while the absolute number is re-measured here. `cs10attack-draw.mjs` re-deals keys flat **within each stratum** (candidates A5/B5/C4/D4, controls 9/9/9/9) and interleaves **36 live Craft and Structure items from the same two subskills in the same proportions**. The key moved off its authored slot on **46 of 54**. Three solvers running.
+
+- **2026-09-15** — **THE SHIPPED CRAFT AND STRUCTURE BANK IS 94.4% SOLVABLE FROM ITS OPTIONS ALONE. That is the finding, and it is not about the new batch.** Three solvers, keys re-dealt flat within each stratum, 36 live Craft and Structure items from the same two subskills interleaved with the 18 candidates.
+
+        CANDIDATE sat-cs-v10               54 picks   55.6%   CI 42.4-68.0
+        LIVE CONTROL (same 2 subskills)   108 picks   94.4%   CI 88.4-97.4
+
+  **−38.9 points and the intervals are DISJOINT** — the only batch this year to separate from its control. Every solver scored **exactly 34/36 on the live items**. The recorded baselines (Text Structure 87.5%, Cross-Text 75.0%) were, if anything, generous.
+
+  **THE CANDIDATES' RESIDUAL 55.6% IS ALMOST ENTIRELY SUBJECT RECALL, NOT OPTION-SET STRUCTURE**, and the basis split says so:
+
+        candidate / mechanism    8 picks   37.5%     <- the option set gives almost nothing
+        candidate / recall      41 picks   56.1%     <- this is what is left
+        candidate / guess        5 picks   80.0%     (n=5, noise)
+        control   / mechanism   98 picks   94.9%     <- the bank's options give everything
+
+  Only 8 of 54 candidate picks rested on an option-set channel at all. **This is the ACT Reading finding reproduced on SAT R&W**: once the option set is properly built, what remains is recognising the topic — which no option-set fix can reach, and which an options-only attack structurally cannot separate from a real solve.
+
+  **SOLVER A PRE-REGISTERED AN "ARCHITECTURE SPLIT" THAT TURNED OUT TO BE THE CANDIDATE/CONTROL SPLIT, EXACTLY.** They described two constructions before answering — *frame-shared minimal pairs* (all four options repeat one frame, varying a single clause) versus *heterogeneous sets* (four different rhetorical acts) — and predicted the first would score at chance. Measured: frame-shared 56.1%, heterogeneous 95.2%, **gap +39.1 points, prediction holds.** And the frame-shared list is **18 candidates and 1 control**, out of 18 candidates in the file. All three solvers named the same two populations independently.
+
+  They were told not to guess which items were new, and they did not guess — they described a construction, and **the construction is perfectly diagnostic**. That does not invalidate the comparison (telling two items apart does not help you solve either) but it is worth knowing: **this batch is visibly different from the bank it would join.**
+
+  **THE ACTIONABLE RULE IS ABOUT DISTRACTORS AND ALL THREE SOLVERS REACHED IT INDEPENDENTLY.** In a heterogeneous set the key is identifiable as *the only option describing two moves* — concede-then-reverse, present-then-recast — because that is what a real Craft and Structure answer has to say, while writing a false second account of a text's architecture is harder than writing a flat wrong claim, so authors reach for denials and absolutes. **Three flat claims plus one transition description is a solvable item regardless of how good the passage is.** The fix the existing guidance does not state: *the distractors must be given a two-move architecture too.*
+
+  **Three more channels, each recorded because no current check looks for it:**
+  - **A distractor written to be refuted can leak the passage's polarity.** Solver B's case: an option reading *"…when even Text 2 grants that machines create losers"* exists to make that option wrong, and in doing so discloses which text is the optimist — which fixes the stem's direction and eliminates a second option. The narrower rule: **a distractor must not restate the passage's premise in order to reject it.**
+  - **The "surveys several accounts without saying which" decoy is never the key**, appears near-verbatim at three ids, and is a free elimination wherever it appears. A cross-item authoring tell.
+  - **The concede-then-qualify option is the KEY here, inverting the recorded prior** that names it a distractor family. The hedge channel is live but **its polarity is batch-dependent**, and a solver importing the earlier polarity would score below chance on those five items.
+
+  **One claim two solvers made that the render refutes.** Both reported that two items are "plainly the same passage seen twice" and used one to answer the other. Checked: **18 distinct candidate passages, 36 distinct control passages, 0 shared by text or by passage_group_id.** What they detected is a **topic collision** — the batch's monopsony item and a live bank item cover the same subject with different passages. That is not a render defect, but it is a real exposure risk: a student could draw both into one form, and the solvers demonstrated that one answers the other. **A batch's topics should be scanned against the live bank's, not just its own.**
