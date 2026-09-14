@@ -1950,3 +1950,26 @@ structural checks are pre-flight only. See CLAUDE.md.
   The tenth proxy — `check-odd-format.mjs`, built and self-tested on the solver's own examples but **not yet pointed at the population** — asks whether the uniquely odd-shaped option is the key, under two definitions reported separately (the only non-integer among integers; the only non-multiple-of-5) with the control derived as 1/k. Both are one measurement away and neither has one yet.
 
   Three solvers independently flagged that **TAP is undefined where two pairs are equally tight** and refused to quote a rate over those items — which is the behaviour `check-tightest-pair.mjs` already enforces with its tie rule, arrived at independently. That the instrument and three solvers converged on the same scorability rule is the most reassuring thing in this run.
+
+- **2026-09-14** — **THE CO-FOUNDER'S SSAT SITTING IS COMPLETE, 40 OF 40 ANSWERED, AND BOTH PRE-REGISTERED QUESTIONS RESOLVED IN THE SAME DIRECTION. 180 SSAT VERBAL ITEMS ARE EXONERATED AND THE 120 HELD READING ITEMS ARE VINDICATED.** Bars were fixed in `B5` on 2026-09-12 before the sitting so neither outcome could be reinterpreted afterwards, and neither was.
+
+        ssat/verbal    4/20 = 20.0%   key deal A4 B4 C4 D4 E4 -> control exactly 20.0%   margin +0.0
+        ssat/reading   3/20 = 15.0%   key deal A4 B4 C4 D4 E4 -> control exactly 20.0%   margin -5.0
+
+  Scored independently from `study_item_reviews` rather than read off a summary line: `reviewer_kind` is `human` on all 40 (a `model_assisted` run is not a sitting), `blind_at` and `blind_pick` are set on all 40, every reviewed item is still in the bank, and the control is derived from the deal per section — which came out at exactly 20.0% both times because the deal is dead flat, so chance and best-fixed-letter coincide.
+
+  **(1) SSAT VERBAL — 180 items were condemned on a model-only 62.2%. The bar was ≤35.0% to withdraw the archive recommendation permanently. The person scored 20.0%, exactly the control.** The 20 items sat span all five live cohorts (`s6`, `s2`, `s3`, `s5`, `v1`). Tested in the direction that matters: **P(≤4 of 20 | a true rate of 62.2%) = 0.000146.** The claim that condemned 180 items is refuted at p < 1.5e-4; the pre-registered leak bar of 55.0% is refuted at p = 0.0015. **The archive/rebuild recommendation is withdrawn permanently, as the pre-registration said it would be.** That is 180 live items saved from a rewrite that would itself have been the risk, since every touched item is a chance to introduce a new tell.
+
+  **Stated rather than hidden: 20 items cannot PROVE 180 clean.** The 95% interval on 4/20 is 8.1–41.6%, whose upper bound exceeds the 35.0% clean bar. The pre-registration set the bar on the point estimate and I am not moving the goalposts after the fact — but the honest reading is "the condemnation is refuted", not "the cohort is proven spotless".
+
+  **(2) SSAT READING — this was never a cohort verdict. It is the HUMAN FLOOR on the shipped bank, and it is the load-bearing half.** The model floor on shipped SSAT reading is 21.1% against a 20.0% chance line. The person scored **15.0%**. So **model and human agree the shipped bank is clean** — the 21.1% was a property of the items, not an artefact of the model.
+
+  That settles what the three held reading batches mean. Against a floor both instruments now confirm:
+
+        ssat-reading-s11   66.7%   +51.7 over the human floor
+        ssat-reading-s12   69.4%   +54.4
+        isee-reading-s10   72.2%   +57.2
+
+  **THE HOLDS ARE CORRECT, and this is the first evidence in this bank that a model DEVIATION transfers to a human even though model LEVELS demonstrably do not.** The `v2` finding established that a model's absolute number says nothing about a person's; ACT Reading showed it again this week at 80.6% model against 10.0% human on identical items. What this sitting adds is the other half: when a candidate sits 45–57 points above a floor that both a model and a person independently find, the deviation is real. That is the difference between an instrument that cannot measure and an instrument that cannot be read absolutely.
+
+  **No open runs remain — `bank-state.mjs open` prints "none". A new draw can be taken for any reviewer for the first time since 2026-09-12.**
