@@ -2061,3 +2061,28 @@ structural checks are pre-flight only. See CLAUDE.md.
   **`nosource` is recorded NOT RE-RUN, deliberately, and the reason is the class of the repair.** Every defect fixed here is bound feasibility — a distractor on or outside an interval the stem's own numbers force — which is precisely what an options-only attack **structurally cannot see**, established on three consecutive batches. These six were never held on an attack number; the parent batch's attack stands (candidates 33.3% against a domain-matched control at 24.1%, intervals overlapping). A blind run over six items would also return an interval far too wide to mean anything, and quoting it would be a rate over a population that cannot carry one.
 
   ACT Math is 10 forms at 497 items, the binding domain is Functions at 83/8, and the deficit is now an even **Functions +5, Geometry +5, Integrating Essential Skills +5**. Ledger: 79 entries, 43 bound, 0 drifted.
+
+- **2026-09-15** — **ELEVENTH PROXY, REFUTED, AND THE CONTROL IS THE WHOLE STORY.** The `act-math-v15-mix` author flagged a geometric chain in their own batch (`AM15G-06`: 24 | 54 | 162 | 486, a ×3 chain with the key at the top). I found a second they had not flagged (`AM15F-07`: 2 | 6 | 13 | 18). Measured before treating either as a defect, with the control **constructed** the way `check-key-at-run-middle` constructs its own — for each item, count how many options are members of *some* geometric triple, so the null "the key is a uniformly random one of the k options" gives m/k, and a chain-free set contributes 0 rather than 25%:
+
+        act/math   key in a chain 27/31 = 87.1%   constructed control 75.0%   z = 1.56
+        sat/math   key in a chain 58/68 = 85.3%   constructed control 79.4%   z = 1.20
+
+  **Not predictive on either population.** The reason is the construction: **when a geometric chain exists it usually covers 3 of the 4 options**, so the key is inside it by arithmetic rather than by authoring. Against a naive 25% line, 87.1% would have read as a +62-point finding and a batch would have been condemned on it. This is the same error the ninth proxy nearly made in the other direction — its author quoted 25% when the right line was 50%.
+
+  **Tally: eleven structural proxies built, ten refuted, one survives** (the key is in the tightest adjacent pair, worth +8.3 points and a consequence of building distractors as near-misses).
+
+- **2026-09-15** — **THREE BATCHES COMMISSIONED AT THE THREE REAL DEFICITS**, each over-commissioned because the gate drops items (the last two ACT batches kept 20 of 28 and 10 of 18):
+
+        act-math-v15-mix   24 items   Functions 8 / Geometry 8 / IES 8      -> ACT Math form 11
+        sat-math-v16-adv   22 items   Advanced Math 17 / Algebra 5          -> SAT Math form 20
+        sat-cs-v10         18 items   Text Structure 10 / Cross-Text 8      -> SAT R&W form 15
+
+  **The SAT R&W brief is the uncomfortable one and the choice is recorded rather than buried.** Craft and Structure is the binding domain, and it is Text Structure 103, Cross-Text 91, **Words in Context 20** — where the two large subskills measure **87.5%** and **75.0%** options-only and the small one measures 12.5%/33.3%. Authoring more Words in Context would duplicate 32 items already held pending a decision on whether their control is trustworthy; authoring the other two means authoring into the leakiest strata in the bank. I took the bulk, carrying the one construction that has measurably helped: **hold all four options in one frame and vary only the element the passage fixes**, so every option performs the same rhetorical act and only the source discriminates. That change alone bought the single real 20-point gain on a reading batch three option rewrites had failed to move. If it does not hold here, that is a real answer about whether those two subskills can be authored cleanly at all.
+
+- **2026-09-15** — **`act-math-v15-mix` DELIVERED, 24 items, and the author ran a check nobody asked for.** Sandbox 24/24, 72 of 72 distractor entries, 0 mismatches, 24 distinct mechanisms, 8/8/8 across the three binding domains. Independently verified: zero arithmetic runs, zero 2:1 pairs, zero duplicate values.
+
+  **They break-tested three ways, one of which is new and worth adopting: EXHAUSTIVE KEY PROMOTION.** They promoted every one of the 72 distractors to key on a copy and confirmed `Sandbox: 0/72` — no item has two answers the comparator cannot separate. That is the `24`-versus-`24.0` failure mode the `shapeOk` work chased through three versions, tested by construction rather than by inspection.
+
+  **They killed one of their own items on the bound audit**: the original `AM15F-01` asked for the *least* value of |2x+5| − 3, whose key −3 sits exactly on the forced infimum f ≥ −3 — one survivor. Replaced rather than shipped. They also went looking specifically for the bound kinds the previous author missed — monotonicity, average-between-extremes, part-not-exceeding-whole, cost-price ordering — which was the diagnosis handed to them, and found four items constrained that way.
+
+  Gate running in both halves: an options-only attack (24 candidates, 48 domain-matched live controls, best-fixed-letter 25.0%) and a with-source bound-feasibility audit told to treat the author's own survivor counts as part of what it is auditing. **The control excludes all three cohorts this author has banked in the last three days** — v13, v14 and v14r — rather than the one the `v14` render named in a comment and failed to implement. Asserted after rendering: 0 control items from an excluded cohort.
