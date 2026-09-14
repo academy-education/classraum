@@ -1,0 +1,332 @@
+[
+ {
+  "id": "AM15F-01",
+  "domain": "Functions",
+  "subskill": "Evaluating an absolute-value rule at a negative input: the bars enclose the whole inner expression and nothing outside it",
+  "prompt": "The function f is defined by f(x) = |2x + 5| - 3, where |a| denotes the absolute value of a. What is the value of f(-6) ?",
+  "choices": [
+   "-10",
+   "4",
+   "10",
+   "14"
+  ],
+  "correct_answer": "4",
+  "explanation": "Substituting gives f(-6) = |2(-6) + 5| - 3 = |-7| - 3 = 7 - 3 = 4. The option \"-10\" comes from dropping the absolute-value bars entirely and computing 2(-6) + 5 - 3. The option \"10\" comes from stretching the bars around the whole expression, |2(-6) + 5 - 3| = |-10|, so that the -3 is taken inside them. The option \"14\" comes from placing the bars around only the 2x term, |2(-6)| + 5 - 3 = 12 + 5 - 3.",
+  "topic_tag": "absolute value functions",
+  "difficulty": "easy",
+  "solve": "const x=-6; return String(Math.abs(2*x+5)-3);",
+  "distractor_solve": {
+   "-10": "const x=-6; return String(2*x+5-3);",
+   "10": "const x=-6; return String(Math.abs(2*x+5-3));",
+   "14": "const x=-6; return String(Math.abs(2*x)+5-3);"
+  }
+ },
+ {
+  "id": "AM15F-02",
+  "domain": "Functions",
+  "subskill": "Recovering BOTH coefficients of x^2 + bx + c from the vertex, then combining them",
+  "prompt": "In the standard (x, y) coordinate plane, the graph of f(x) = x^2 + bx + c has its vertex at (3, -4), where b and c are constants. What is the value of c - b ?",
+  "choices": [
+   "-1",
+   "3",
+   "11",
+   "15"
+  ],
+  "correct_answer": "11",
+  "explanation": "Vertex form gives f(x) = (x - 3)^2 - 4 = x^2 - 6x + 5, so b = -6, c = 5, and c - b = 5 - (-6) = 11. The option \"-1\" comes from writing the vertex form as (x + 3)^2 - 4 = x^2 + 6x + 5, taking b = +6 instead of -6: 5 - 6 = -1. The option \"15\" comes from dropping the vertical coordinate and using (x - 3)^2 = x^2 - 6x + 9, giving c = 9: 9 - (-6) = 15. The option \"3\" makes both of those errors at once, using (x + 3)^2 = x^2 + 6x + 9: 9 - 6 = 3.",
+  "topic_tag": "quadratic functions",
+  "difficulty": "medium",
+  "solve": "const h=3,k=-4; const b=-2*h, c=h*h+k; return String(c-b);",
+  "distractor_solve": {
+   "-1": "const h=3,k=-4; const b=2*h, c=h*h+k; return String(c-b);",
+   "15": "const h=3; const b=-2*h, c=h*h; return String(c-b);",
+   "3": "const h=3; const b=2*h, c=h*h; return String(c-b);"
+  }
+ },
+ {
+  "id": "AM15F-03",
+  "domain": "Functions",
+  "subskill": "A rule stated on a TRANSFORMED argument: the input must be solved for before the rule is applied",
+  "prompt": "For every real number x, the function f satisfies f(2x + 1) = 6x + 5. What is the value of f(7) ?",
+  "choices": [
+   "23",
+   "26",
+   "47",
+   "95"
+  ],
+  "correct_answer": "23",
+  "explanation": "The rule describes f at the input 2x + 1, so set 2x + 1 = 7, giving x = 3, and then f(7) = 6(3) + 5 = 23. The option \"47\" comes from substituting 7 for x directly in 6x + 5: 6(7) + 5 = 47. The option \"26\" comes from solving 2x = 7 instead of 2x + 1 = 7, giving x = 3.5 and 6(3.5) + 5 = 26. The option \"95\" comes from evaluating the argument expression at 7 first, 2(7) + 1 = 15, and then substituting 15 into 6x + 5: 6(15) + 5 = 95.",
+  "topic_tag": "function notation",
+  "difficulty": "medium",
+  "solve": "const x=(7-1)/2; return String(6*x+5);",
+  "distractor_solve": {
+   "47": "return String(6*7+5);",
+   "26": "const x=7/2; return String(6*x+5);",
+   "95": "const a=2*7+1; return String(6*a+5);"
+  }
+ },
+ {
+  "id": "AM15F-04",
+  "domain": "Functions",
+  "subskill": "A logarithmic magnitude scale: a DIFFERENCE of magnitudes is a RATIO of intensities",
+  "prompt": "The intensity I of an earthquake and its magnitude M are related by I = k(10^M), where k is a positive constant. An earthquake of magnitude 6.4 is how many times as intense as an earthquake of magnitude 4.4 ?",
+  "choices": [
+   "1.45",
+   "2",
+   "20",
+   "100"
+  ],
+  "correct_answer": "100",
+  "explanation": "The ratio of the intensities is k(10^6.4) / k(10^4.4) = 10^(6.4 - 4.4) = 10^2 = 100. The option \"2\" is the difference of the magnitudes, 6.4 - 4.4, reported as though the scale were additive. The option \"20\" comes from reading one magnitude step as a factor of ten and then MULTIPLYING that ten by the two steps: 10 x 2 = 20. The option \"1.45\" is the ratio of the magnitudes themselves, 6.4 / 4.4, rounded to the nearest hundredth.",
+  "topic_tag": "logarithmic models",
+  "difficulty": "hard",
+  "solve": "return String(Math.round(Math.pow(10,6.4)/Math.pow(10,4.4)));",
+  "distractor_solve": {
+   "2": "return String(6.4-4.4);",
+   "20": "return String(10*(6.4-4.4));",
+   "1.45": "return (Math.round((6.4/4.4)*100)/100).toString();"
+  }
+ },
+ {
+  "id": "AM15F-05",
+  "domain": "Functions",
+  "subskill": "Range of a reflected square-root rule: the radical contributes nothing at its smallest, so the outside constant is the MAXIMUM",
+  "prompt": "The function f is defined by f(x) = 3 - the square root of (x - 2), for all real numbers x greater than or equal to 2. Which of the following describes the set of all possible values of f(x) ?",
+  "choices": [
+   "f(x) ≤ 3",
+   "f(x) ≥ 3",
+   "f(x) ≤ 2",
+   "f(x) ≥ 2"
+  ],
+  "correct_answer": "f(x) ≤ 3",
+  "explanation": "The square root is never negative and equals 0 when x = 2, so the largest value of f is 3 - 0 = 3 and every other value is smaller: f(x) ≤ 3. The option \"f(x) ≥ 3\" comes from treating the radical as ADDED to 3, which would make 3 the smallest value rather than the largest. The option \"f(x) ≤ 2\" uses the 2 from inside the radical, the least allowed INPUT, as the bound on the OUTPUT. The option \"f(x) ≥ 2\" makes both of those errors at once.",
+  "topic_tag": "domain and range",
+  "difficulty": "easy",
+  "solve": "const a=3,b=2; const m=a-Math.sqrt(b-b); return \"f(x) ≤ \"+m;",
+  "distractor_solve": {
+   "f(x) ≥ 3": "const a=3,b=2; const m=a+Math.sqrt(b-b); return \"f(x) ≥ \"+m;",
+   "f(x) ≤ 2": "const b=2; const m=b+Math.sqrt(b-b); return \"f(x) ≤ \"+m;",
+   "f(x) ≥ 2": "const b=2; const m=b+Math.sqrt(b-b); return \"f(x) ≥ \"+m;"
+  }
+ },
+ {
+  "id": "AM15F-07",
+  "domain": "Functions",
+  "subskill": "Effect of a HORIZONTAL scaling on the slope of a linear function",
+  "prompt": "The function f is defined by f(x) = 6x - 5, and the function g is defined by g(x) = f(3x). In the standard (x, y) coordinate plane, what is the slope of the graph of g ?",
+  "choices": [
+   "2",
+   "6",
+   "13",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "Substituting gives g(x) = 6(3x) - 5 = 18x - 5, so the slope is 18. The option \"6\" is the slope of f, reported by a solver who assumes replacing x with 3x leaves the slope unchanged. The option \"2\" comes from dividing the slope of f by 3 instead of multiplying, 6 / 3 = 2, as though the graph were stretched rather than compressed. The option \"13\" comes from evaluating f at 3, f(3) = 6(3) - 5 = 13, and using that number as the slope.",
+  "topic_tag": "transformations of functions",
+  "difficulty": "medium",
+  "solve": "const m=6,k=3; return String(m*k);",
+  "distractor_solve": {
+   "6": "const m=6; return String(m);",
+   "2": "const m=6,k=3; return String(m/k);",
+   "13": "const m=6,b=-5; return String(m*3+b);"
+  }
+ },
+ {
+  "id": "AM15F-08",
+  "domain": "Functions",
+  "subskill": "Difference of a quadratic at two inputs one apart, expanded symbolically",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 5. Which of the following expressions is equivalent to f(a + 1) - f(a) for every real number a ?",
+  "choices": [
+   "-3",
+   "4a",
+   "4a + 2",
+   "4a - 8"
+  ],
+  "correct_answer": "4a + 2",
+  "explanation": "Expanding, f(a + 1) = 2(a^2 + 2a + 1) - 5 = 2a^2 + 4a - 3, and subtracting f(a) = 2a^2 - 5 leaves 4a + 2. The option \"4a\" comes from squaring (a + 1) as a^2 + 2a, dropping the final 1, which removes the 2 from the answer. The option \"4a - 8\" comes from subtracting the constant -5 of f(a) instead of adding it, turning +2 into 2 - 10 = -8. The option \"-3\" comes from replacing f(a + 1) - f(a) with f(1) = 2(1)^2 - 5 = -3, as though the function distributed over the subtraction.",
+  "topic_tag": "function notation",
+  "difficulty": "medium",
+  "solve": "const A=2; const c1=A*2, c0=A*1; return c1+\"a + \"+c0;",
+  "distractor_solve": {
+   "4a": "const A=2; return (A*2)+\"a\";",
+   "4a - 8": "const A=2,k=-5; const c1=A*2, c0=A*1+2*k; return c1+\"a - \"+Math.abs(c0);",
+   "-3": "const A=2,k=-5; return String(A*1*1+k);"
+  }
+ },
+ {
+  "id": "AM15G-01",
+  "domain": "Geometry",
+  "subskill": "The median of a trapezoid is the AVERAGE of the two parallel sides, used in reverse to recover the second one",
+  "prompt": "The median of a trapezoid is the segment joining the midpoints of its two nonparallel sides, and its length is the average of the lengths of the two parallel sides. In one trapezoid the median is 22 centimeters long and one of the parallel sides is 14 centimeters long. What is the length, in centimeters, of the other parallel side?",
+  "choices": [
+   "26",
+   "30",
+   "36",
+   "44"
+  ],
+  "correct_answer": "30",
+  "explanation": "If the other parallel side is b, then (14 + b) / 2 = 22, so 14 + b = 44 and b = 30. The option \"36\" comes from adding the median and the known side, 22 + 14, as though the median were the difference of the two sides. The option \"44\" comes from doubling the median and stopping there, 2(22), without subtracting the known side of 14. The option \"26\" comes from adding only half the gap between the known side and the median, 22 + (22 - 14) / 2 = 22 + 4.",
+  "topic_tag": "trapezoids",
+  "difficulty": "easy",
+  "solve": "const m=22,b1=14; return String(2*m-b1);",
+  "distractor_solve": {
+   "36": "const m=22,b1=14; return String(m+b1);",
+   "44": "const m=22; return String(2*m);",
+   "26": "const m=22,b1=14; return String(m+(m-b1)/2);"
+  }
+ },
+ {
+  "id": "AM15G-02",
+  "domain": "Geometry",
+  "subskill": "An angle inscribed in a SEMICIRCLE is a right angle, which fixes the third angle of the triangle",
+  "prompt": "Points A, B, and C are three distinct points on a circle, and segment AB is a diameter of that circle. The measure of angle BAC is 28 degrees. What is the measure, in degrees, of angle ABC ?",
+  "choices": [
+   "45",
+   "56",
+   "62",
+   "118"
+  ],
+  "correct_answer": "62",
+  "explanation": "Because AB is a diameter, angle ACB is a right angle, so angle ABC = 180 - 90 - 28 = 62 degrees. The option \"118\" comes from ADDING the given angle to the right angle, 90 + 28, instead of subtracting it from the remaining 90 degrees. The option \"56\" comes from doubling the given angle, 2(28), which is the measure of the intercepted arc BC rather than of any angle of the triangle. The option \"45\" comes from assuming the inscribed right triangle is isosceles, so that the two acute angles are each half of 90 degrees.",
+  "topic_tag": "circles and inscribed angles",
+  "difficulty": "medium",
+  "solve": "const given=28; return String(180-90-given);",
+  "distractor_solve": {
+   "118": "const given=28; return String(90+given);",
+   "56": "const given=28; return String(2*given);",
+   "45": "return String(90/2);"
+  }
+ },
+ {
+  "id": "AM15G-04",
+  "domain": "Geometry",
+  "subskill": "Sphere: recovering the radius from the SURFACE AREA before applying the volume formula",
+  "prompt": "The surface area of a sphere is 4πr^2 and its volume is (4/3)πr^3, where r is the radius. A sphere has a surface area of 144π square inches. What is its volume, in cubic inches?",
+  "choices": [
+   "48π",
+   "162π",
+   "216π",
+   "288π"
+  ],
+  "correct_answer": "288π",
+  "explanation": "From 4πr^2 = 144π, r^2 = 36 and r = 6, so the volume is (4/3)π(6^3) = 288π. The option \"216π\" comes from dropping the 4/3 and using πr^3 = π(216). The option \"48π\" comes from using the square rather than the cube of the radius, (4/3)π(36). The option \"162π\" comes from inverting the fraction and using (3/4)πr^3 = (3/4)π(216).",
+  "topic_tag": "surface area and volume",
+  "difficulty": "hard",
+  "solve": "const sa=144; const r=Math.sqrt(sa/4); return Math.round((4/3)*Math.pow(r,3))+\"π\";",
+  "distractor_solve": {
+   "216π": "const sa=144; const r=Math.sqrt(sa/4); return Math.round(Math.pow(r,3))+\"π\";",
+   "48π": "const sa=144; const r=Math.sqrt(sa/4); return Math.round((4/3)*Math.pow(r,2))+\"π\";",
+   "162π": "const sa=144; const r=Math.sqrt(sa/4); return Math.round((3/4)*Math.pow(r,3))+\"π\";"
+  }
+ },
+ {
+  "id": "AM15G-07",
+  "domain": "Geometry",
+  "subskill": "Area of a regular hexagon assembled from six equilateral triangles on the SIDE length",
+  "prompt": "A regular hexagon has sides that are each 8 centimeters long. The area of an equilateral triangle with side s is (√3/4)s^2. What is the area of the hexagon, in square centimeters?",
+  "choices": [
+   "16√3",
+   "64√3",
+   "96√3",
+   "192"
+  ],
+  "correct_answer": "96√3",
+  "explanation": "The hexagon splits into six equilateral triangles of side 8, so its area is 6(√3/4)(8^2) = 96√3. The option \"16√3\" comes from applying (√3/4)s^2 to the whole hexagon once, as though the figure were a single triangle of side 8, and forgetting the factor of 6. The option \"64√3\" comes from using the long diagonal, 16 centimeters, as the side of one equilateral triangle and reporting that single triangle's area, (√3/4)(16^2). The option \"192\" comes from using A = (1/2)(perimeter)(apothem) with the SIDE length 8 mistaken for the apothem: (1/2)(48)(8).",
+  "topic_tag": "regular polygons",
+  "difficulty": "hard",
+  "solve": "const s=8; const n=6*(1/4)*s*s; return n+\"√3\";",
+  "distractor_solve": {
+   "16√3": "const s=8; return ((1/4)*s*s)+\"√3\";",
+   "64√3": "const d=16; return ((1/4)*d*d)+\"√3\";",
+   "192": "const s=8; return String(0.5*(6*s)*s);"
+  }
+ },
+ {
+  "id": "AM15I-02",
+  "domain": "Integrating Essential Skills",
+  "subskill": "Three supplies each cap the output; the BINDING one is the smallest cap, not the first computed",
+  "prompt": "A recipe that makes 12 muffins requires 2 cups of flour, 3 eggs, and 1 cup of milk. A baker has 7 cups of flour, 8 eggs, and 4.5 cups of milk, and may prepare any fraction of the recipe. Using only these supplies, what is the greatest number of muffins the baker can make?",
+  "choices": [
+   "24",
+   "32",
+   "42",
+   "54"
+  ],
+  "correct_answer": "32",
+  "explanation": "The flour allows 7 / 2 = 3.5 recipes, the eggs allow 8 / 3 recipes, and the milk allows 4.5 recipes, so the eggs are binding and the baker makes 12(8 / 3) = 32 muffins. The option \"42\" comes from using the flour alone, 12(3.5), ignoring that the eggs run out first. The option \"54\" comes from using the milk alone, 12(4.5), the largest of the three caps. The option \"24\" comes from rounding the egg supply down to 2 WHOLE recipes, 12(2), even though partial recipes are allowed.",
+  "topic_tag": "rates and proportions",
+  "difficulty": "hard",
+  "solve": "const f=7/2,e=8/3,m=4.5; return String(Math.floor(12*Math.min(f,e,m)+1e-9));",
+  "distractor_solve": {
+   "42": "return String(12*(7/2));",
+   "54": "return String(12*4.5);",
+   "24": "return String(12*Math.floor(8/3));"
+  }
+ },
+ {
+  "id": "AM15I-04",
+  "domain": "Integrating Essential Skills",
+  "subskill": "Profit stated as a percent of the SELLING price, not of the cost, so the cost is the remaining fraction",
+  "prompt": "A store buys a jacket for $72 and sets a selling price so that the store's profit is 25% of the selling price. What is the selling price of the jacket?",
+  "choices": [
+   "$54.00",
+   "$90.00",
+   "$96.00",
+   "$112.50"
+  ],
+  "correct_answer": "$96.00",
+  "explanation": "If S is the selling price, the profit is S - 72 = 0.25S, so 0.75S = 72 and S = $96.00. The option \"$90.00\" comes from taking 25% of the COST instead, 72(1.25). The option \"$112.50\" comes from applying a 25% markup twice, once to the cost and once to the result: 72(1.25)(1.25). The option \"$54.00\" comes from taking 25% OFF the cost, 72(0.75), reversing the direction of the relationship.",
+  "topic_tag": "percent in pricing",
+  "difficulty": "hard",
+  "solve": "const c=72,p=0.25; return \"$\"+(c/(1-p)).toFixed(2);",
+  "distractor_solve": {
+   "$90.00": "const c=72,p=0.25; return \"$\"+(c*(1+p)).toFixed(2);",
+   "$112.50": "const c=72,p=0.25; return \"$\"+(c*(1+p)*(1+p)).toFixed(2);",
+   "$54.00": "const c=72,p=0.25; return \"$\"+(c*(1-p)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM15I-05",
+  "domain": "Integrating Essential Skills",
+  "subskill": "A fractional position ALONG an interval on the number line, measured from the starting point",
+  "prompt": "On a number line, point A is at -4 and point B is at 11. What number is located 3/5 of the way from A to B ?",
+  "choices": [
+   "3.5",
+   "5",
+   "6.6",
+   "9"
+  ],
+  "correct_answer": "5",
+  "explanation": "The distance from A to B is 11 - (-4) = 15, and 3/5 of 15 is 9, so the point is at -4 + 9 = 5. The option \"9\" is that 3/5 of the distance, reported as a position without starting from -4. The option \"3.5\" is the midpoint of A and B, (-4 + 11) / 2, found by a solver who ignores the 3/5. The option \"6.6\" comes from taking 3/5 of 11, the coordinate of B, rather than 3/5 of the distance between the points.",
+  "topic_tag": "number line",
+  "difficulty": "easy",
+  "solve": "const a=-4,b=11; return String(Math.round((a+(3/5)*(b-a))*1000)/1000);",
+  "distractor_solve": {
+   "9": "const a=-4,b=11; return String(Math.round((3/5)*(b-a)*1000)/1000);",
+   "3.5": "const a=-4,b=11; return String((a+b)/2);",
+   "6.6": "const b=11; return String(Math.round((3/5)*b*1000)/1000);"
+  }
+ },
+ {
+  "id": "AM15I-07",
+  "domain": "Integrating Essential Skills",
+  "subskill": "A three-part ratio pinned by the DIFFERENCE between two parts rather than by the total",
+  "prompt": "A rope is cut into three pieces whose lengths are in the ratio 3:4:8. The longest piece is 35 centimeters longer than the shortest piece. What is the total length, in centimeters, of the rope?",
+  "choices": [
+   "21",
+   "56",
+   "105",
+   "175"
+  ],
+  "correct_answer": "105",
+  "explanation": "Writing the pieces as 3x, 4x, and 8x, the difference is 8x - 3x = 5x = 35, so x = 7 and the total is 15x = 105 centimeters. The option \"56\" is the longest piece, 8x = 56, found correctly and reported instead of the total. The option \"21\" is the shortest piece, 3x = 21. The option \"175\" comes from dividing the 35 by the 3 of the shortest part instead of by the difference 5, giving x = 35 / 3 and a total of 15x.",
+  "topic_tag": "ratio and proportion",
+  "difficulty": "medium",
+  "solve": "const x=35/(8-3); return String(x*(3+4+8));",
+  "distractor_solve": {
+   "56": "const x=35/(8-3); return String(8*x);",
+   "21": "const x=35/(8-3); return String(3*x);",
+   "175": "const x=35/3; return String(x*(3+4+8));"
+  }
+ }
+]

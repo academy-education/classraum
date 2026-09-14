@@ -1,0 +1,178 @@
+[
+ {
+  "id": "AM15F-06",
+  "domain": "Functions",
+  "subskill": "DURATION above a threshold: the two solutions are times, and the answer is the gap between them",
+  "prompt": "A model rocket is launched from a platform. Its height above the ground, in feet, t seconds after launch is given by h(t) = -16t^2 + 176t + 16. For how many seconds is the rocket at or above a height of 400 feet?",
+  "choices": [
+   "3",
+   "5",
+   "8",
+   "11.18"
+  ],
+  "correct_answer": "5",
+  "explanation": "Setting -16t^2 + 176t + 16 = 400 gives t^2 - 11t + 24 = 0, so t = 3 and t = 8, and the rocket is at or above 400 feet for 8 - 3 = 5 seconds. The option \"3\" is the first of those two times, the moment the rocket reaches 400 feet, reported in place of the duration. The option \"8\" is the second time, the moment it drops back to 400 feet. The option \"11.18\" comes from setting the height to 0 instead of 400, solving t^2 - 11t - 1 = 0, and reporting the span between those two roots.",
+  "topic_tag": "quadratic models",
+  "difficulty": "hard",
+  "solve": "const a=-16,b=176,c=16-400; const d=Math.sqrt(b*b-4*a*c); const t1=(-b+d)/(2*a), t2=(-b-d)/(2*a); return String(Math.abs(t2-t1));",
+  "distractor_solve": {
+   "3": "const a=-16,b=176,c=16-400; const d=Math.sqrt(b*b-4*a*c); return String(Math.min((-b+d)/(2*a),(-b-d)/(2*a)));",
+   "8": "const a=-16,b=176,c=16-400; const d=Math.sqrt(b*b-4*a*c); return String(Math.max((-b+d)/(2*a),(-b-d)/(2*a)));",
+   "11.18": "const a=-16,b=176,c=16; const d=Math.sqrt(b*b-4*a*c); return (d/Math.abs(a)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM15G-03",
+  "domain": "Geometry",
+  "subskill": "Solid of revolution: the side rotated ABOUT becomes the height and the other side becomes the radius",
+  "prompt": "A rectangle whose sides are 3 centimeters and 8 centimeters is rotated one full turn about its 8-centimeter side, sweeping out a solid. What is the volume of that solid, in cubic centimeters?",
+  "choices": [
+   "18π",
+   "24π",
+   "72π",
+   "192π"
+  ],
+  "correct_answer": "72π",
+  "explanation": "The solid is a cylinder whose radius is the 3-centimeter side and whose height is the 8-centimeter axis, so its volume is π(3^2)(8) = 72π. The option \"192π\" comes from rotating about the wrong side, using radius 8 and height 3 to get π(8^2)(3). The option \"18π\" comes from treating the 3-centimeter side as a diameter, so that the radius is 1.5: π(1.5^2)(8). The option \"24π\" comes from using πrh instead of πr^2h, multiplying π by the two side lengths: π(3)(8).",
+  "topic_tag": "volume of solids",
+  "difficulty": "medium",
+  "solve": "const r=3,h=8; return (r*r*h)+\"π\";",
+  "distractor_solve": {
+   "192π": "const r=8,h=3; return (r*r*h)+\"π\";",
+   "18π": "const r=3/2,h=8; return (r*r*h)+\"π\";",
+   "24π": "const r=3,h=8; return (r*h)+\"π\";"
+  }
+ },
+ {
+  "id": "AM15G-05",
+  "domain": "Geometry",
+  "subskill": "Angle formed by two ANGLE BISECTORS of a triangle, via the angle sum of the smaller triangle",
+  "prompt": "In triangle ABC, the measure of angle A is 46 degrees and the measure of angle B is 62 degrees. The bisector of angle A and the bisector of angle B intersect at point P. What is the measure, in degrees, of angle APB ?",
+  "choices": [
+   "54",
+   "72",
+   "95",
+   "126"
+  ],
+  "correct_answer": "126",
+  "explanation": "In triangle APB the angle at A is half of 46, or 23 degrees, and the angle at B is half of 62, or 31 degrees, so angle APB = 180 - 23 - 31 = 126 degrees. The option \"72\" is the measure of angle C, 180 - 46 - 62, reported by a solver who ignores the bisectors entirely. The option \"54\" is the sum of the two half-angles, 23 + 31, reported instead of the angle they leave over. The option \"95\" comes from bisecting angle A but using the full angle B: 180 - 23 - 62.",
+  "topic_tag": "triangle angle relationships",
+  "difficulty": "hard",
+  "solve": "const A=46,B=62; return String(180-A/2-B/2);",
+  "distractor_solve": {
+   "72": "const A=46,B=62; return String(180-A-B);",
+   "54": "const A=46,B=62; return String(A/2+B/2);",
+   "95": "const A=46,B=62; return String(180-A/2-B);"
+  }
+ },
+ {
+  "id": "AM15G-06",
+  "domain": "Geometry",
+  "subskill": "Non-similar scaling of a cone: the radius enters SQUARED and the height does not",
+  "prompt": "A right circular cone has a volume of 108 cubic centimeters. A second right circular cone has 3 times the radius of the first cone and half the height of the first cone. What is the volume, in cubic centimeters, of the second cone?",
+  "choices": [
+   "24",
+   "54",
+   "162",
+   "486"
+  ],
+  "correct_answer": "486",
+  "explanation": "Volume is (1/3)πr^2h, so tripling r multiplies the volume by 3^2 = 9 and halving h multiplies it by 1/2: 108 x 9 x 0.5 = 486. The option \"162\" comes from scaling the radius linearly rather than squaring it, 108 x 3 x 0.5. The option \"54\" comes from applying only the height change, 108 x 0.5, and ignoring the radius. The option \"24\" comes from inverting both factors, dividing by 9 and multiplying by 2: 108 / 9 x 2.",
+  "topic_tag": "volume of solids",
+  "difficulty": "medium",
+  "solve": "const v=108,kr=3,kh=0.5; return String(v*kr*kr*kh);",
+  "distractor_solve": {
+   "162": "const v=108,kr=3,kh=0.5; return String(v*kr*kh);",
+   "54": "const v=108,kh=0.5; return String(v*kh);",
+   "24": "const v=108,kr=3,kh=0.5; return String(v/(kr*kr)/kh);"
+  }
+ },
+ {
+  "id": "AM15G-08",
+  "domain": "Geometry",
+  "subskill": "Counting the diagonals of a convex polygon: each vertex joins to all but itself and its two neighbours, and each diagonal is counted twice",
+  "prompt": "A convex polygon has 14 sides. How many diagonals does it have?",
+  "choices": [
+   "11",
+   "77",
+   "78",
+   "84"
+  ],
+  "correct_answer": "77",
+  "explanation": "From each of the 14 vertices there are 14 - 3 = 11 diagonals, and each diagonal is counted from both of its ends, so the total is 14(11) / 2 = 77. The option \"11\" is the number of diagonals from a SINGLE vertex, reported as the total. The option \"84\" comes from using n(n - 2) / 2, borrowing the n - 2 from the interior-angle-sum rule: 14(12) / 2. The option \"78\" comes from using (n - 1)(n - 2) / 2, counting only 13 vertices: 13(12) / 2.",
+  "topic_tag": "polygons",
+  "difficulty": "medium",
+  "solve": "const n=14; return String(n*(n-3)/2);",
+  "distractor_solve": {
+   "11": "const n=14; return String(n-3);",
+   "84": "const n=14; return String(n*(n-2)/2);",
+   "78": "const n=14; return String((n-1)*(n-2)/2);"
+  }
+ },
+ {
+  "id": "AM15I-01",
+  "domain": "Integrating Essential Skills",
+  "subskill": "Interest compounded MORE than once a year: the rate is divided and the exponent multiplied",
+  "prompt": "A credit union pays 6% annual interest on a certificate, compounded quarterly. Kiyoshi buys a certificate for $4,000 and cashes it in exactly 1 year later, having made no further deposits or withdrawals. To the nearest cent, how much is the certificate worth when he cashes it in?",
+  "choices": [
+   "$4,060.00",
+   "$4,240.00",
+   "$4,245.45",
+   "$5,049.91"
+  ],
+  "correct_answer": "$4,245.45",
+  "explanation": "Quarterly compounding applies 6% / 4 = 1.5% four times: 4000(1.015)^4 = $4,245.45. The option \"$4,240.00\" comes from applying the 6% just once for the year, 4000(1.06), ignoring the compounding. The option \"$5,049.91\" comes from applying the FULL annual rate four times, 4000(1.06)^4, without dividing the rate by 4. The option \"$4,060.00\" comes from computing a year of interest, 0.06(4000) = $240, then dividing that interest by 4 and adding only one quarter's worth: 4000 + 60.",
+  "topic_tag": "percent and interest",
+  "difficulty": "medium",
+  "solve": "const p=4000,r=0.06,n=4; const s=(p*Math.pow(1+r/n,n)).toFixed(2); return \"$\"+s.slice(0,1)+\",\"+s.slice(1);",
+  "distractor_solve": {
+   "$4,240.00": "const p=4000,r=0.06; const s=(p*(1+r)).toFixed(2); return \"$\"+s.slice(0,1)+\",\"+s.slice(1);",
+   "$5,049.91": "const p=4000,r=0.06,n=4; const s=(p*Math.pow(1+r,n)).toFixed(2); return \"$\"+s.slice(0,1)+\",\"+s.slice(1);",
+   "$4,060.00": "const p=4000,r=0.06,n=4; const s=(p+r*p/n).toFixed(2); return \"$\"+s.slice(0,1)+\",\"+s.slice(1);"
+  }
+ },
+ {
+  "id": "AM15I-03",
+  "domain": "Integrating Essential Skills",
+  "subskill": "Converting a temperature CHANGE: the 32-degree offset cancels in a difference and must not be applied again",
+  "prompt": "Fahrenheit and Celsius temperatures are related by C = (5/9)(F - 32). The temperature of a liquid rose from 14 degrees Fahrenheit to 59 degrees Fahrenheit. By how many degrees Celsius did the temperature of the liquid rise?",
+  "choices": [
+   "7.22",
+   "13",
+   "25",
+   "45"
+  ],
+  "correct_answer": "25",
+  "explanation": "Converting each reading, 14 degrees F is -10 degrees C and 59 degrees F is 15 degrees C, so the rise is 15 - (-10) = 25 degrees Celsius. The option \"45\" is the Fahrenheit rise, 59 - 14, reported without any conversion. The option \"7.22\" comes from applying the whole formula, offset included, to the 45-degree difference: (5/9)(45 - 32). The option \"13\" comes from subtracting 32 from the Fahrenheit difference, 45 - 32, and stopping before the 5/9 factor.",
+  "topic_tag": "unit conversion",
+  "difficulty": "medium",
+  "solve": "const c1=(5/9)*(14-32), c2=(5/9)*(59-32); return String(Math.round((c2-c1)*1000)/1000);",
+  "distractor_solve": {
+   "45": "return String(59-14);",
+   "7.22": "return ((5/9)*((59-14)-32)).toFixed(2);",
+   "13": "return String((59-14)-32);"
+  }
+ },
+ {
+  "id": "AM15I-06",
+  "domain": "Integrating Essential Skills",
+  "subskill": "A rise in percentage POINTS expressed as a percent of the original percent",
+  "prompt": "In January, 40% of the residents of a town supported a proposal. In June, 46% of the residents supported it. The increase from January to June was what percent of the January level of support, to the nearest whole percent?",
+  "choices": [
+   "6%",
+   "13%",
+   "15%",
+   "87%"
+  ],
+  "correct_answer": "15%",
+  "explanation": "The increase is 46 - 40 = 6 percentage points, and 6 is 6 / 40 = 15% of the January level. The option \"6%\" is that raw gap in percentage points, reported as though points and percent increase were the same thing. The option \"13%\" comes from dividing the 6-point gap by the JUNE level, 6 / 46, using the new value as the base. The option \"87%\" comes from computing January as a percent of June, 40 / 46, instead of computing the increase.",
+  "topic_tag": "percent change",
+  "difficulty": "easy",
+  "solve": "const j=40,n=46; return Math.round((n-j)/j*100)+\"%\";",
+  "distractor_solve": {
+   "6%": "const j=40,n=46; return (n-j)+\"%\";",
+   "13%": "const j=40,n=46; return Math.round((n-j)/n*100)+\"%\";",
+   "87%": "const j=40,n=46; return Math.round(j/n*100)+\"%\";"
+  }
+ }
+]
