@@ -1911,3 +1911,17 @@ structural checks are pre-flight only. See CLAUDE.md.
   Two scorability rules the checker enforces rather than papering over: a **tie for tightest** is not scorable — if two pairs share the smallest gap the "tightest pair" a solver would use is undefined, and counting it either way invents a result (57 of 481 act/math items, 290 of 1,133 sat/math). And **duplicate option values** make adjacency undefined. `act-math-v13-ies` came back **NOT MEASURED** at 9 scorable items against a floor of 10, which is the correct answer for an 11-item batch rather than a rate over nine.
 
   Self-tested on six constructed cases before touching data, including the tie, the non-numeric set, the duplicate-value set and a currency set. **And it crashed on its first live run** — zsh refused to word-split `set -- $fs`, the same shell trap that once made six sections report `scorable 0 of 0`, and the empty result threw on a width read instead of saying so. A crash beats a fabricated zero, but it now refuses by name: *"zero items loaded. A rate over an empty set is not a result."*
+
+- **2026-09-14** — **MY OWN RENDER CARRIED A COMMENT ASSERTING AN INVARIANT IT DID NOT IMPLEMENT, AND ONE ITEM DULY LEAKED THROUGH.** `v14attack-draw.mjs` drew the live control for `act-math-v14-mix` and carried this comment:
+
+        /* Exclude the batch's OWN cohort from the control -- v13's items are
+         * live now and drawing them would put this author's work on both
+         * sides of the line. */
+
+  The filter beneath it checked option validity and nothing else. Checked rather than assumed: one `act-math-v13-ies` item — banked yesterday, same author, same brief — was sitting in the control. Small in effect at 1 of 36, and exactly the shape CLAUDE.md names: *"A comment asserting an invariant is not evidence the invariant holds. Grep for the claim, then construct the concurrent case."* The fix is the filter plus an assertion that no excluded cohort survives it, not a better comment. Re-rendered and re-verified: 0 control items from that cohort.
+
+  Worth noting what the contamination did to the render's own check: with the v13 item in, the option-length gap between strata read **0.03** characters; with it removed, **0.38**. Both pass the 3-character refusal easily, but the "better" number was the contaminated one — a reminder that a flattering diagnostic is not a correct one.
+
+  The `v14` gate is now running in two halves, which is the standing design since two consecutive batches where the with-source grader found what the attack could not: **(1)** an options-only attack, 18 candidates interleaved with 36 live controls drawn from the same three domains in the same proportions (Geometry 7, Integrating Essential Skills 7, Functions 4), one file, best-fixed-letter 25.9%. **(2)** a with-source bound-feasibility audit of all 18, told to check the author's own self-reported survivor counts rather than accept them.
+
+  The solver brief carries the **measured** tightest-pair number and its correct control — 66.6% against a 50% chance line, worth about 33% against 25%, an 8-point edge and not a solve. Handing solvers a channel with its real denominator is cheaper than watching three of them rediscover it against the wrong one, which is what happened yesterday.
