@@ -1973,3 +1973,24 @@ structural checks are pre-flight only. See CLAUDE.md.
   **THE HOLDS ARE CORRECT, and this is the first evidence in this bank that a model DEVIATION transfers to a human even though model LEVELS demonstrably do not.** The `v2` finding established that a model's absolute number says nothing about a person's; ACT Reading showed it again this week at 80.6% model against 10.0% human on identical items. What this sitting adds is the other half: when a candidate sits 45–57 points above a floor that both a model and a person independently find, the deviation is real. That is the difference between an instrument that cannot measure and an instrument that cannot be read absolutely.
 
   **No open runs remain — `bank-state.mjs open` prints "none". A new draw can be taken for any reviewer for the first time since 2026-09-12.**
+
+- **2026-09-14** — **PRE-REGISTERED BEFORE `actrd-recall-2026-09-14` IS SAT.** The first ACT Reading sitting since the draw unblocked, and the only instrument that can reach the 54 staged items. 24 items, key slots dealt dead flat **A6 / B6 / C6 / D6 → control exactly 25.0%**, derived from the deal and not a literal. Reviewer is the co-founder; every item is one he has never seen, checked against `study_item_reviews` across **all** runs rather than the ACT one.
+
+        staged-v4                 8      the held batch, model nosource 91.7%
+        staged-v7                 4      the held batch whose nosource is NOT RUN
+        control-passage-exposed  10      shipped v1, from passages he has seen other items of
+        control-clean             2      shipped v1, passages he has never touched
+
+  **WHY A PERSON AND NOTHING ELSE.** Measured on 2026-09-13 on identical items: the model scores **80.6%** options-only on shipped ACT Reading where he scored **10.0%**. No model instrument can grade this family. Three graders then found subject recall independently, and the same run measured it — every item a solver flagged as recognition was right, **24 of 24**.
+
+  **THE DESIGN TAKES TWO ITEMS PER PASSAGE, IN BOTH ARMS, AND THAT IS A CHOICE WITH A COST.** Strict sibling-freedom caps the candidate arm at **six** items, because `v4` and `v7` hold only six passage groups between them, and six picks cannot decide the fate of 54 items. Cross-inference pushes a score **up**, never down — so a staged arm that still comes in low is conclusive in the direction the decision needs, which is whether to *release* held items. Applying the same depth to both arms keeps the comparison matched. The prior sitting was also not sibling-free (20 items across 10 groups, five from one passage) and still scored 10.0%, which is why that floor is conservative.
+
+  **THREE QUESTIONS, AND THE FIRST IS NOT A SCORE.**
+
+  **(1) THE RECALL RATE — the load-bearing one.** Per item he reports whether he **recognised the subject matter** from the options alone, and whether that recognition **decided his pick**. This is the channel three graders said the options-only attack structurally cannot see, and it has never been measured on a person. There is no pass/fail bar here: the number itself is the finding, and it applies to the shipped bank as much as to the candidates.
+
+  **(2) DO THE STAGED BATCHES LEAK TO A PERSON?** Stated as a **margin over the in-sitting control arm**, so it transfers off any absolute level: **at or below +15 points the staged batches do not leak to a person and the release recommendation is made; at or above +35 points the leak is confirmed and they stay held; between is the dead zone and decides nothing.**
+
+  **(3) DOES HIS 10.0% FLOOR REPRODUCE?** The control arm is 12 shipped items he has never seen. If it lands near 25% rather than near 10%, the earlier floor was a property of that particular draw and every conclusion resting on it — including this week's 80.6%-vs-10.0% finding — needs revisiting. Reported whatever it says.
+
+  **THE FAILURE MODE IS NAMED IN ADVANCE.** If the staged arm comes in HIGH, this design cannot separate a real leak from cross-inference between the two items sharing a passage, and the honest response is to **re-run sibling-free**, not to read a verdict off it. Written here before the sitting so it cannot be decided afterwards by whoever likes the answer.
