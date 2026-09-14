@@ -1,0 +1,134 @@
+[
+  {
+    "id": "AM14F-01",
+    "domain": "Functions",
+    "subskill": "Composition read off two given value lists, inner function first",
+    "prompt": "The functions f and g are defined only for the inputs shown: f(1) = 5, f(2) = 7, f(3) = 13, f(4) = 2, and g(1) = 4, g(2) = 7, g(3) = 1, g(4) = 3. What is the value of f(g(4)) ?",
+    "choices": [
+      "2",
+      "3",
+      "7",
+      "13"
+    ],
+    "correct_answer": "13",
+    "explanation": "Work from the inside out: g(4) = 3, and then f(3) = 13. The option \"3\" stops after the inner function and reports g(4) = 3. The option \"2\" evaluates only the outer function at 4, reporting f(4) = 2 and never using g. The option \"7\" reverses the order of composition, computing g(f(4)) = g(2) = 7.",
+    "topic_tag": "composition of functions",
+    "difficulty": "easy",
+    "solve": "const f={1:5,2:7,3:13,4:2},g={1:4,2:7,3:1,4:3}; return String(f[g[4]]);",
+    "distractor_solve": {
+      "2": "const f={1:5,2:7,3:13,4:2}; return String(f[4]);",
+      "3": "const g={1:4,2:7,3:1,4:3}; return String(g[4]);",
+      "7": "const f={1:5,2:7,3:13,4:2},g={1:4,2:7,3:1,4:3}; return String(g[f[4]]);"
+    }
+  },
+  {
+    "id": "AM14G-03",
+    "domain": "Geometry",
+    "subskill": "The diagonal of an inscribed rectangle IS the diameter of the circumscribed circle",
+    "prompt": "A rectangle measuring 16 centimeters by 30 centimeters is inscribed in a circle, so that all four vertices of the rectangle lie on the circle. What is the area of the circle, to the nearest square centimeter?",
+    "choices": [
+      "480",
+      "804",
+      "908",
+      "1511"
+    ],
+    "correct_answer": "908",
+    "explanation": "The diagonal of an inscribed rectangle passes through the center, so it is a diameter of the circle. The diagonal is sqrt(16^2 + 30^2) = sqrt(1,156) = 34, so the radius is 17 and the area is pi(17^2) = 289pi = 907.9, or 908 square centimeters. The option \"480\" reports the area of the RECTANGLE, 16 x 30, rather than the area of the circle. The option \"804\" takes the 16-centimeter side itself to be the radius, computing pi(16^2) = 804.2. The option \"1511\" reaches the center by halving only one side: it uses 15 for the 30-centimeter side but the full 16 for the other, so r^2 = 16^2 + 15^2 = 481 and pi(481) = 1,511.3.",
+    "topic_tag": "circles and rectangles",
+    "difficulty": "medium",
+    "solve": "const d=Math.sqrt(16*16+30*30); return String(Math.round(Math.PI*Math.pow(d/2,2)));",
+    "distractor_solve": {
+      "480": "return String(16*30);",
+      "804": "return String(Math.round(Math.PI*16*16));",
+      "1511": "return String(Math.round(Math.PI*(16*16+15*15)));"
+    }
+  },
+  {
+    "id": "AM14G-05",
+    "domain": "Geometry",
+    "subskill": "Altitude of an equilateral triangle through the 30-60-90 half-triangle",
+    "prompt": "An equilateral triangle has a perimeter of 36 centimeters. What is the length, in centimeters, of an altitude of this triangle, to the nearest tenth of a centimeter?",
+    "choices": [
+      "6.9",
+      "8.5",
+      "10.4",
+      "13.4"
+    ],
+    "correct_answer": "10.4",
+    "explanation": "Each side is 36/3 = 12 centimeters. An altitude splits the triangle into two right triangles with hypotenuse 12 and shorter leg 6, so the altitude is sqrt(12^2 - 6^2) = sqrt(108) = 10.39, or 10.4 centimeters. The option \"6.9\" runs the 30-60-90 ratio in the wrong direction, dividing the side by sqrt(3) instead of multiplying the half-side by sqrt(3): 12/sqrt(3) = 6.93. The option \"8.5\" treats the half-triangle as a 45-45-90 triangle, computing 12/sqrt(2) = 8.49. The option \"13.4\" adds rather than subtracts under the radical, computing sqrt(12^2 + 6^2) = 13.42.",
+    "topic_tag": "special right triangles",
+    "difficulty": "medium",
+    "solve": "const s=36/3; return Math.sqrt(s*s-(s/2)*(s/2)).toFixed(1);",
+    "distractor_solve": {
+      "6.9": "return ((36/3)/Math.sqrt(3)).toFixed(1);",
+      "8.5": "return ((36/3)/Math.sqrt(2)).toFixed(1);",
+      "13.4": "const s=36/3; return Math.sqrt(s*s+(s/2)*(s/2)).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM14G-06",
+    "domain": "Geometry",
+    "subskill": "Slant height must be built from r and h before the cone TOTAL surface area can be assembled",
+    "prompt": "A solid right circular cone has a base radius of 5 centimeters and a height of 12 centimeters. What is the total surface area of the cone, including its circular base, to the nearest square centimeter?",
+    "choices": [
+      "204",
+      "283",
+      "314",
+      "324"
+    ],
+    "correct_answer": "283",
+    "explanation": "The slant height is sqrt(5^2 + 12^2) = 13, so the total surface area is pi(5)(13) + pi(5^2) = 65pi + 25pi = 90pi = 282.7, or 283 square centimeters. The option \"204\" gives only the lateral surface, 65pi = 204.2, omitting the base the question explicitly includes. The option \"314\" computes the VOLUME of the cone, (1/3)pi(5^2)(12) = 100pi = 314.2, instead of a surface area. The option \"324\" builds the slant height from the full width of the base instead of the radius, taking the leg of the right triangle to be 10 rather than 5: sqrt(10^2 + 12^2) = 15.62, and then pi(5)(15.62) + pi(5^2) = 323.9.",
+    "topic_tag": "surface area of solids",
+    "difficulty": "hard",
+    "solve": "const r=5,h=12,l=Math.sqrt(r*r+h*h); return String(Math.round(Math.PI*r*l+Math.PI*r*r));",
+    "distractor_solve": {
+      "204": "const r=5,h=12,l=Math.sqrt(r*r+h*h); return String(Math.round(Math.PI*r*l));",
+      "314": "const r=5,h=12; return String(Math.round((1/3)*Math.PI*r*r*h));",
+      "324": "const r=5,h=12,l=Math.sqrt((2*r)*(2*r)+h*h); return String(Math.round(Math.PI*r*l+Math.PI*r*r));"
+    }
+  },
+  {
+    "id": "AM14I-02",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Signed starting value plus a steady rate over a counted number of hours",
+    "prompt": "At 6:00 a.m. the temperature was 8 degrees Celsius below zero. The temperature then rose at a steady rate of 3 degrees Celsius per hour until 11:00 a.m. What was the temperature, in degrees Celsius, at 11:00 a.m.?",
+    "choices": [
+      "-23",
+      "-3",
+      "7",
+      "10"
+    ],
+    "correct_answer": "7",
+    "explanation": "From 6:00 a.m. to 11:00 a.m. is 5 hours, so the temperature rises 5(3) = 15 degrees from -8 degrees, reaching -8 + 15 = 7 degrees Celsius. The option \"-23\" subtracts the rise instead of adding it, computing -8 - 15, which would be a temperature that FELL. The option \"-3\" adds the NUMBER OF HOURS rather than the rise, computing -8 + 5 and never multiplying by the 3 degrees per hour. The option \"10\" counts the clock hours inclusively -- 6, 7, 8, 9, 10, 11 -- as 6 hours, computing -8 + 6(3) = 10.",
+    "topic_tag": "signed numbers and rates",
+    "difficulty": "easy",
+    "solve": "return String(-8+3*(11-6));",
+    "distractor_solve": {
+      "-23": "return String(-8-3*(11-6));",
+      "-3": "return String(-8+(11-6));",
+      "10": "return String(-8+3*((11-6)+1));"
+    }
+  },
+  {
+    "id": "AM14I-04",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Simple interest over a FRACTION of a year: the time factor is 8/12, not 8 and not 1",
+    "prompt": "A savings certificate pays simple interest at an annual rate of 5.5% of the amount deposited. A deposit of $2,400 is left in the certificate for 8 months. How many dollars of interest does the deposit earn in those 8 months?",
+    "choices": [
+      "16.50",
+      "80.00",
+      "88.00",
+      "105.60"
+    ],
+    "correct_answer": "88.00",
+    "explanation": "Simple interest is principal x rate x time in years, so the interest is 2,400(0.055)(8/12) = 132(2/3) = $88.00. The option \"16.50\" divides the one-year interest by 8 rather than multiplying it by 8/12, computing 2,400(0.055)/8 = 16.50. The option \"80.00\" keeps the correct 8/12 time factor but rounds the annual rate of 5.5% down to 5%, computing 2,400(0.05)(8/12) = 80.00. The option \"105.60\" reads 8 months as 0.8 of a year, computing 2,400(0.055)(0.8) = 105.60.",
+    "topic_tag": "percent and interest",
+    "difficulty": "medium",
+    "solve": "return (2400*0.055*(8/12)).toFixed(2);",
+    "distractor_solve": {
+      "16.50": "return (2400*0.055/8).toFixed(2);",
+      "80.00": "return (2400*0.05*(8/12)).toFixed(2);",
+      "105.60": "return (2400*0.055*0.8).toFixed(2);"
+    }
+  }
+]
