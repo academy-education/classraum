@@ -74,13 +74,13 @@
     "passage": "Agricultural terraces cut into steep Andean slopes are usually explained as a defense against erosion, and they do hold soil in place. Excavation of the fill behind the retaining walls turns up something the erosion account does not predict: beneath the topsoil lie graded beds of gravel and coarse sand hauled up from riverbeds far below. Such beds drain water quickly and let the root zone warm. The labor of carrying them uphill makes sense only if the builders were managing moisture and temperature.",
     "prompt": "Which choice best states the main purpose of the text?",
     "choices": [
-      "To argue that the terraces' buried gravel beds show erosion control to be a later reuse of older structures",
-      "To argue that the terraces' buried gravel beds gave the retaining walls mass enough to resist slippage",
-      "To argue that the terraces' buried gravel beds were deposited by flooding rather than carried up by builders",
-      "To argue that the terraces' buried gravel beds were laid to drain and warm the soil rather than to hold it"
+      "To argue that the terraces' buried gravel beds were laid to keep topsoil from washing out through the walls",
+      "To argue that the terraces' buried gravel beds were laid to store rainwater and release it in dry months",
+      "To argue that the terraces' buried gravel beds were laid to protect the walls from heave when soil freezes",
+      "To argue that the terraces' buried gravel beds were laid to drain water quickly and let the root zone warm"
     ],
-    "correct_answer": "To argue that the terraces' buried gravel beds were laid to drain and warm the soil rather than to hold it",
-    "explanation": "The passage introduces the erosion explanation, reports the gravel beds it does not predict, and closes by saying the hauling \"makes sense only if the builders were managing moisture and temperature\" — the claim in \"To argue that the terraces' buried gravel beds were laid to drain and warm the soil rather than to hold it.\" \"gave the retaining walls mass enough to resist slippage\" fails because the beds lie in the fill behind the walls and are described by their drainage and warming effects, not by any structural role. \"were deposited by flooding rather than carried up by builders\" contradicts the text, which places the riverbeds \"far below\" and treats the carrying as deliberate labor. \"show erosion control to be a later reuse of older structures\" fails because the passage grants that the terraces do hold soil and never raises a sequence of uses.",
+    "correct_answer": "To argue that the terraces' buried gravel beds were laid to drain water quickly and let the root zone warm",
+    "explanation": "The passage sets up the erosion account, reports the imported beds it does not predict, and states their effect directly — \"Such beds drain water quickly and let the root zone warm\" — before concluding that the hauling makes sense only as management of \"moisture and temperature.\" \"laid to keep topsoil from washing out through the walls\" fails because that is the erosion function the passage says the beds go beyond, and the beds sit beneath the topsoil rather than at the wall face. \"laid to store rainwater and release it in dry months\" contradicts the stated effect, which is rapid drainage rather than retention. \"laid to protect the walls from heave when soil freezes\" fails because freezing is never mentioned and the passage assigns the beds an effect on the root zone, not on the masonry.",
     "topic_tag": "archaeology",
     "difficulty": "medium"
   },
@@ -105,16 +105,16 @@
     "id": "CS10-07",
     "domain": "Craft and Structure",
     "subskill": "Text Structure and Purpose",
-    "passage": "City temperatures are usually compared with those of a nearby rural station, and the difference is reported as the heat island effect. Most such stations sit at airfields, on mown grass beside runways and hangars. Paired sensors set a few kilometers off, in woodland and in pasture, read cooler than the airfield by one to two degrees on calm nights, a margin comparable to the heat island figures the airfield comparison yields. What the standard measure reports is a difference between two developed surfaces.",
+    "passage": "City temperatures are usually compared with those of a nearby rural station, and the daily mean difference is reported as the heat island effect. Hourly records show that the difference is not spread through the day. By mid-afternoon the paved city and the dry rural fields read within a few tenths of a degree of each other. The gap opens after sunset, as masonry gives back heat the fields have already lost, and peaks near midnight. A daily mean averages that large nocturnal difference together with almost none.",
     "prompt": "Which choice best states the main purpose of the text?",
     "choices": [
-      "To argue that the gaps inside a city can exceed the gap between that city and its rural station",
-      "To argue that the gaps between woodland and pasture readings widen on calm nights and close again on windy ones",
-      "To argue that the gaps recorded at an airfield narrow as more sensors are placed along its runways",
-      "To argue that the gaps reported as heat island effects are measured against a site that is itself developed"
+      "To argue that the reported heat island effect is spread evenly across the day and understated only at night",
+      "To argue that the reported heat island effect is set by the choice of rural station rather than by the city",
+      "To argue that the reported heat island effect is driven by masonry absorbing more sunlight than fields do",
+      "To argue that the reported heat island effect is concentrated after sunset and diluted by a daily mean"
     ],
-    "correct_answer": "To argue that the gaps reported as heat island effects are measured against a site that is itself developed",
-    "explanation": "The passage reports that reference stations sit \"at airfields, on mown grass beside runways and hangars\" and that genuinely undeveloped sites read one to two degrees cooler, a margin \"comparable to the heat island figures the airfield comparison yields\"; the closing sentence calls the standard measure \"a difference between two developed surfaces,\" which is \"measured against a site that is itself developed.\" \"the gaps inside a city can exceed the gap between that city and its rural station\" fails because every measurement here is taken outside the city. \"the gaps between woodland and pasture readings widen on calm nights and close again on windy ones\" fails because woodland and pasture are grouped together against the airfield, not compared with each other. \"the gaps recorded at an airfield narrow as more sensors are placed along its runways\" fails because the added sensors are placed kilometers away and the passage draws no conclusion about sensor count.",
+    "correct_answer": "To argue that the reported heat island effect is concentrated after sunset and diluted by a daily mean",
+    "explanation": "The hourly records put city and country \"within a few tenths of a degree of each other\" by mid-afternoon and show the gap opening after sunset and peaking near midnight, so the closing sentence objects that a daily mean averages \"that large nocturnal difference together with almost none\" — the claim in \"concentrated after sunset and diluted by a daily mean.\" \"spread evenly across the day and understated only at night\" contradicts the afternoon reading, which shows almost no difference at all. \"set by the choice of rural station rather than by the city\" fails because only one rural station appears and the passage never compares it with alternatives. \"driven by masonry absorbing more sunlight than fields do\" fails because the masonry in the passage is releasing stored heat after dark, and the daytime readings are the ones that match.",
     "topic_tag": "urban climate",
     "difficulty": "medium"
   },

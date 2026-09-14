@@ -9,16 +9,16 @@
   "choices": [
    "16",
    "31",
-   "63",
-   "81"
+   "49",
+   "63"
   ],
   "correct_answer": "63",
-  "explanation": "Factor the target before touching the roots: r²s + rs² = rs(r + s). For x² − 7x + 9 = 0, Vieta gives r + s = 7 and rs = 9, so the value is 9 × 7 = 63. Distractors: \"16\" adds the sum and the product (7 + 9) instead of multiplying the product by the sum; \"31\" answers a different symmetric expression, r² + s² = (r + s)² − 2rs = 49 − 18; \"81\" squares the product, (rs)² = 9², reading r²s + rs² as r²s².",
+  "explanation": "Factor the target before touching the roots: r²s + rs² = rs(r + s). For x² − 7x + 9 = 0, Vieta gives r + s = 7 and rs = 9, so the value is 9 × 7 = 63. Distractors: \"16\" adds the sum and the product (7 + 9) instead of multiplying them; \"31\" answers a different symmetric expression, r² + s² = (r + s)² − 2rs = 49 − 18; \"49\" factors correctly to rs(r + s) but substitutes the sum for the product as well, computing 7 × 7.",
   "solve": "const b = -7, c = 9; const sum = -b, prod = c; return (prod * sum).toString();",
   "distractor_solve": {
    "16": "const sum = 7, prod = 9; return (sum + prod).toString();",
    "31": "const sum = 7, prod = 9; return (sum * sum - 2 * prod).toString();",
-   "81": "const prod = 9; return (prod * prod).toString();"
+   "49": "const sum = 7; return (sum * sum).toString();"
   }
  },
  {
@@ -93,20 +93,20 @@
   "subskill": "the sum of the x-coordinates of a line–parabola intersection read off the combined quadratic",
   "difficulty": "medium",
   "topic_tag": "nonlinear-systems",
-  "prompt": "In the xy-plane, the graph of y = x² − 4x + 7 intersects the graph of y = 3x + 1 at two points. What is the sum of the x-coordinates of those two points?",
+  "prompt": "In the xy-plane, the graph of y = x² − 6x + 9 intersects the graph of y = 3x + 1 at two points. What is the sum of the x-coordinates of those two points?",
   "choices": [
-   "4",
    "6",
-   "7",
-   "23"
+   "8",
+   "9",
+   "29"
   ],
-  "correct_answer": "7",
-  "explanation": "Setting the expressions equal gives x² − 4x + 7 = 3x + 1, i.e. x² − 7x + 6 = 0, so the x-coordinates sum to −(−7)/1 = 7. Distractors: \"4\" never moves the 3x across, reading the sum of the roots off x² − 4x + 7 = 0 as 4; \"6\" reports the PRODUCT of the roots of x² − 7x + 6 = 0 instead of their sum; \"23\" answers the wrong question, summing the y-coordinates (x = 1 gives y = 4, x = 6 gives y = 19).",
-  "solve": "const B = -4 - 3, C = 7 - 1; return (-B).toString();",
+  "correct_answer": "9",
+  "explanation": "Setting the expressions equal gives x² − 6x + 9 = 3x + 1, i.e. x² − 9x + 8 = 0, so the x-coordinates sum to −(−9)/1 = 9. Distractors: \"6\" never moves the 3x across, reading the sum of the roots off x² − 6x + 9 = 0 as 6; \"8\" reports the PRODUCT of the roots of x² − 9x + 8 = 0 instead of their sum; \"29\" answers the wrong question, summing the y-coordinates (x = 1 gives y = 4, x = 8 gives y = 25).",
+  "solve": "const B = -6 - 3, C = 9 - 1; return (-B).toString();",
   "distractor_solve": {
-   "4": "const B = -4; return (-B).toString();",
-   "6": "const C = 7 - 1; return C.toString();",
-   "23": "const B = -7, C = 6; const d = Math.sqrt(B * B - 4 * C); const r1 = (-B + d) / 2, r2 = (-B - d) / 2; return ((3 * r1 + 1) + (3 * r2 + 1)).toString();"
+   "6": "const B = -6; return (-B).toString();",
+   "8": "const C = 9 - 1; return C.toString();",
+   "29": "const B = -9, C = 8; const d = Math.sqrt(B * B - 4 * C); const r1 = (-B + d) / 2, r2 = (-B - d) / 2; return ((3 * r1 + 1) + (3 * r2 + 1)).toString();"
   }
  },
  {
@@ -185,16 +185,16 @@
   "choices": [
    "3",
    "8",
-   "27",
-   "35"
+   "19",
+   "27"
   ],
   "correct_answer": "27",
-  "explanation": "Let u = x^(1/3), so u² − 5u + 6 = 0 and u = 2 or u = 3. Undoing the substitution, x = u³ gives x = 8 or x = 27, and the greatest is 27. Distractors: \"3\" stops at the substitution and reports the greatest value of u; \"8\" cubes the smaller u, reporting the lesser solution; \"35\" sums the two solutions, 8 + 27, instead of selecting the greater.",
+  "explanation": "Let u = x^(1/3), so u² − 5u + 6 = 0 and u = 2 or u = 3. Undoing the substitution, x = u³ gives x = 8 or x = 27, and the greatest is 27. Distractors: \"3\" stops at the substitution and reports the greatest value of u; \"8\" cubes the smaller u, reporting the lesser solution; \"19\" reports the positive difference of the two solutions, 27 − 8.",
   "solve": "const b = -5, c = 6; const d = Math.sqrt(b * b - 4 * c); const u1 = (5 + d) / 2, u2 = (5 - d) / 2; return Math.pow(Math.max(u1, u2), 3).toString();",
   "distractor_solve": {
    "3": "const b = -5, c = 6; const d = Math.sqrt(b * b - 4 * c); return Math.max((5 + d) / 2, (5 - d) / 2).toString();",
    "8": "const b = -5, c = 6; const d = Math.sqrt(b * b - 4 * c); return Math.pow(Math.min((5 + d) / 2, (5 - d) / 2), 3).toString();",
-   "35": "const b = -5, c = 6; const d = Math.sqrt(b * b - 4 * c); const u1 = (5 + d) / 2, u2 = (5 - d) / 2; return (Math.pow(u1, 3) + Math.pow(u2, 3)).toString();"
+   "19": "const b = -5, c = 6; const d = Math.sqrt(b * b - 4 * c); const u1 = (5 + d) / 2, u2 = (5 - d) / 2; return (Math.pow(u1, 3) - Math.pow(u2, 3)).toString();"
   }
  },
  {
@@ -222,23 +222,23 @@
  {
   "id": "SM16A-11",
   "domain": "Advanced Math",
-  "subskill": "evaluating an inverse function by undoing the operations in reverse order",
+  "subskill": "inverting a quadratic that has been restricted to one branch by a stated domain",
   "difficulty": "medium",
   "topic_tag": "inverse-functions",
-  "prompt": "The function f is defined by f(x) = (5x − 3)/4. What is the value of f⁻¹(8)?",
+  "prompt": "The function f is defined by f(x) = 2(x − 3)² + 5 for x ≥ 3. What is the value of f⁻¹(37)?",
   "choices": [
-   "5.8",
+   "-1",
+   "4",
    "7",
-   "9.25",
-   "13.75"
+   "19"
   ],
   "correct_answer": "7",
-  "explanation": "f⁻¹ undoes f in reverse: multiply by 4, add 3, divide by 5. So f⁻¹(8) = (4 · 8 + 3)/5 = 35/5 = 7. (Check: f(7) = (35 − 3)/4 = 8.) Distractors: \"9.25\" evaluates f(8) = (40 − 3)/4 instead of the inverse; \"5.8\" reverses the operations but subtracts 3 where it should add, (4 · 8 − 3)/5; \"13.75\" applies the operations in the ORIGINAL order rather than reversing them, (8 + 3) · 5/4.",
-  "solve": "return ((4 * 8 + 3) / 5).toString();",
+  "explanation": "Solve f(x) = 37: 2(x − 3)² = 32, so (x − 3)² = 16 and x − 3 = ±4. The domain x ≥ 3 keeps only x = 7. Distractors: \"-1\" takes the branch x − 3 = −4, ignoring the stated domain that makes f invertible; \"4\" stops at x − 3 = 4 and reports that rather than x; \"19\" omits the square root, solving 2(x − 3) = 32.",
+  "solve": "const t = Math.sqrt((37 - 5) / 2); return [3 + t, 3 - t].filter(v => v >= 3)[0].toString();",
   "distractor_solve": {
-   "9.25": "return ((5 * 8 - 3) / 4).toString();",
-   "5.8": "return ((4 * 8 - 3) / 5).toString();",
-   "13.75": "return ((8 + 3) * 5 / 4).toString();"
+   "-1": "const t = Math.sqrt((37 - 5) / 2); return (3 - t).toString();",
+   "4": "return Math.sqrt((37 - 5) / 2).toString();",
+   "19": "return (3 + (37 - 5) / 2).toString();"
   }
  },
  {
@@ -295,16 +295,16 @@
   "choices": [
    "-7",
    "3",
-   "8",
-   "36"
+   "5",
+   "8"
   ],
   "correct_answer": "8",
-  "explanation": "Write both sides base 2: 2^(4(x + 1)) = 2^(6(x − 2)), so 4x + 4 = 6x − 12, giving 2x = 16 and x = 8. Distractors: \"-7\" swaps the two exponents, solving 6(x + 1) = 4(x − 2); \"3\" fails to distribute the 6 over the −2, solving 4x + 4 = 6x − 2; \"36\" solves correctly but answers with the common exponent 4(x + 1) = 36 rather than with x.",
+  "explanation": "Write both sides base 2: 2^(4(x + 1)) = 2^(6(x − 2)), so 4x + 4 = 6x − 12, giving 2x = 16 and x = 8. Distractors: \"-7\" swaps the two exponents, solving 6(x + 1) = 4(x − 2); \"3\" fails to distribute the 6 over the −2, solving 4x + 4 = 6x − 2; \"5\" misreads 64 as 2⁸ rather than 2⁶, solving 4x + 4 = 8x − 16.",
   "solve": "return ((4 + 12) / (6 - 4)).toString();",
   "distractor_solve": {
    "-7": "return ((-8 - 6) / (6 - 4)).toString();",
    "3": "return ((4 + 2) / (6 - 4)).toString();",
-   "36": "const x = (4 + 12) / (6 - 4); return (4 * (x + 1)).toString();"
+   "5": "return ((4 + 16) / (8 - 4)).toString();"
   }
  },
  {
@@ -316,16 +316,16 @@
   "prompt": "The population of a town was 12,000 in 2010 and increases by 6% each year. To the nearest whole number, what is the population in 2018?",
   "choices": [
    "17760",
+   "18044",
    "19042",
-   "19126",
-   "20274"
+   "19126"
   ],
   "correct_answer": "19126",
-  "explanation": "From 2010 to 2018 is 8 years, so the population is 12,000(1.06)^8 = 19,126.18, or 19,126. Distractors: \"17760\" adds the growth instead of compounding it, 12,000(1 + 0.06 · 8); \"20274\" uses 9 periods by counting both endpoint years, 12,000(1.06)^9; \"19042\" swaps the rate and the number of periods, computing 12,000(1.08)^6.",
+  "explanation": "From 2010 to 2018 is 8 years, so the population is 12,000(1.06)^8 = 19,126.18, or 19,126. Distractors: \"17760\" adds the growth instead of compounding it, 12,000(1 + 0.06 · 8); \"18044\" uses 7 periods, counting the gaps between the years as 2018 − 2010 − 1, 12,000(1.06)^7; \"19042\" swaps the rate and the number of periods, computing 12,000(1.08)^6.",
   "solve": "return Math.round(12000 * Math.pow(1.06, 2018 - 2010)).toString();",
   "distractor_solve": {
    "17760": "return (12000 * (1 + 0.06 * 8)).toString();",
-   "20274": "return Math.round(12000 * Math.pow(1.06, 9)).toString();",
+   "18044": "return Math.round(12000 * Math.pow(1.06, 7)).toString();",
    "19042": "return Math.round(12000 * Math.pow(1.08, 6)).toString();"
   }
  },

@@ -89,9 +89,37 @@ const cM = chars('candidate'), lM = chars('live-control')
 console.log(`option-length means: candidate ${cM.toFixed(2)}, control ${lM.toFixed(2)}, gap ${Math.abs(cM - lM).toFixed(2)}`)
 if (Math.abs(cM - lM) > 3) { console.error('REFUSING: strata sortable by option length -- the Words in Context render defect repeating'); process.exit(2) }
 
-const order = shuffle(items)
-const slotOf = new Map()
-order.forEach((it, i) => slotOf.set(it.id, SLOT[i % 4]))
+/* SLOTS DEALT FLAT WITHIN EACH STRATUM, not globally across the file.
+ *
+ * The v15 run dealt them globally: A18/B18/C18/D18 over all 72 items, which
+ * looks perfect and is not. Per stratum it came out candidate A4/B8/C5/D7 --
+ * best-fixed-letter 33.3% INSIDE the arm that matters -- against control
+ * A14/B10/C13/D11 at 29.2%. Two of the three solvers had a letter signature
+ * they flagged against themselves (under-picking B by 8 and 10), and because
+ * the candidate arm happened to be B-heavy, that signature landed on the
+ * candidates specifically. It turned out not to explain the result -- removing
+ * every B-keyed item left the gap intact and made all three solvers agree --
+ * but it could have, and a control that is only flat in aggregate is not a
+ * control for a per-stratum comparison.
+ *
+ * A global deal is still right ACROSS files (dealing per file inflates the
+ * pooled best-fixed-letter, which cost a run before). The fix is per STRATUM,
+ * not per file. */
+const order = []
+for (const kind of ['candidate', 'live-control']) {
+  const arm = shuffle(items.filter(i => i.kind === kind))
+  arm.forEach((it, i) => { it._slot = SLOT[i % 4] })
+  order.push(...arm)
+}
+const slotOf = new Map(order.map(it => [it.id, it._slot]))
+for (const kind of ['candidate', 'live-control']) {
+  const arm = order.filter(i => i.kind === kind)
+  const t = {}
+  for (const it of arm) t[slotOf.get(it.id)] = (t[slotOf.get(it.id)] ?? 0) + 1
+  const bf = 100 * Math.max(...Object.values(t)) / arm.length
+  console.log(`  ${kind.padEnd(14)} deal ${JSON.stringify(t)}  best-fixed WITHIN the stratum ${bf.toFixed(1)}%`)
+  if (bf > 25 + 6) { console.error(`REFUSING: ${kind} deal is lopsided enough to beat chance on letter alone`); process.exit(2) }
+}
 const tally = {}
 for (const v of slotOf.values()) tally[v] = (tally[v] ?? 0) + 1
 console.log(`global deal ${JSON.stringify(tally)} -> best-fixed-letter control ${(100 * Math.max(...Object.values(tally)) / order.length).toFixed(1)}%`)

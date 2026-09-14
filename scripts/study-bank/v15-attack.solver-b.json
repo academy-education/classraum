@@ -1,0 +1,362 @@
+{
+ "V-01": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {11.25,12}"
+ },
+ "V-02": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {4240.00,4245.45}. Roundness and content point opposite ways (cents value looks like the compounded answer); M1's population is integers, not money, so it does not apply"
+ },
+ "V-03": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "tightest relative pair {24,54}; took 54, the member consistent with the 54/162/486 chain. Chain membership itself is measured non-predictive, so this is weak"
+ },
+ "V-04": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {9,17}"
+ },
+ "V-05": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "perfect x9 chain of four, all gaps equal - NO tightest pair exists, so M2 cannot fire. Pure guess"
+ },
+ "V-06": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 969 vs 1000"
+ },
+ "V-07": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "odd-shape elimination removes 7.22; top two gaps are tied (.444/.445) so the pair is not well defined - took 25 from {25,45}. Weak"
+ },
+ "V-08": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "no numeric channel; structural grid - 2x2 sign grid (+-3, 8/-10)"
+ },
+ "V-09": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 12.6 vs 13"
+ },
+ "V-10": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {13,15}. NOTE conflict: 13/87 are complements to 100, which points at the other pair"
+ },
+ "V-11": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; two gaps tie at .333, took 90 as the round/central value. Weak"
+ },
+ "V-12": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {5,6.6}"
+ },
+ "V-13": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {-9,-5}. +-9 twins give no direction"
+ },
+ "V-14": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "192 is the format outlier (no sqrt3) and M1 removes it, but it is OUTSIDE the tightest pair {64sqrt3,96sqrt3}, so the elimination did no work - coin flip"
+ },
+ "V-15": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {77,78} are twins, 11 is the magnitude outlier"
+ },
+ "V-16": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 1.45 vs 2"
+ },
+ "V-17": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {2265,2280}, 2280 far more composite. Also 4530=2265x2 twin, unused"
+ },
+ "V-18": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 103 is the only non-multiple-of-20 and sits in the pair {60,103}"
+ },
+ "V-19": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {10,19}"
+ },
+ "V-20": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {13.8,16}, 16 the integer"
+ },
+ "V-21": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {25,30} both round, no tiebreak"
+ },
+ "V-22": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "format outlier: C (-3) is the only option without 'a', M1 removes it; among 4a-8 / 4a+2 / 4a the bare clean form 4a is the key-shaped one. ASSUMED"
+ },
+ "V-23": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "M1 removes 3280.5 (only non-integer) but it is outside the pair {450,486}; took 450 as rounder. tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result"
+ },
+ "V-24": {
+  "pick": "D",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {15.03,15.56}, all four are decimals so no shape tell"
+ },
+ "V-25": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {162pi,216pi}. NOTE 288pi is the canonical sphere-volume value and sits outside the pair - conflict"
+ },
+ "V-26": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {105,175}, both multiples of 35"
+ },
+ "V-27": {
+  "pick": "D",
+  "basis": "guess",
+  "note": "coefficients 4/8/16/64: two gaps tie, 64 is the chain outsider but that is not a format tell. Pure guess"
+ },
+ "V-28": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {60,70} both round"
+ },
+ "V-29": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "24 is the ONLY value belonging to both tightest pairs {18,24} and {24,32} - the most connected member. New tiebreak, UNVERIFIED"
+ },
+ "V-30": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {110,112}, 110 rounder"
+ },
+ "V-31": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {11,18}"
+ },
+ "V-32": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 95 is the only non-multiple-of-3 and sits in the pair {72,95}"
+ },
+ "V-33": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 35 is the only non-multiple-of-3 and sits in the pair {35,45}"
+ },
+ "V-34": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {4,5} - and 4,5 generate 9 and 20 by sum/product, so the pair is the seed pair, but that gives no choice between them"
+ },
+ "V-35": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {160,192}"
+ },
+ "V-36": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {56,62}, and 118=56+62"
+ },
+ "V-37": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {34pi,51pi}"
+ },
+ "V-38": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 1.72 is the only non-half-multiple and sits in the pair {1.5,1.72}"
+ },
+ "V-39": {
+  "pick": "D",
+  "basis": "guess",
+  "note": "two gaps tie at .2 ({384,480} and {1152,1440}) - no unique tightest pair. Guess"
+ },
+ "V-40": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "M1 removes 137.14 (outside the pair); pair {48.00,52.50}, took the whole-dollar value. tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result"
+ },
+ "V-41": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {-14,-10}"
+ },
+ "V-42": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "no numeric channel; structural grid - 7-24-25 trig grid (7/25, 24/25, 7/24, 25/24); every option is a legal ratio"
+ },
+ "V-43": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 96 is the only value not divisible by 9 and sits in the pair {96,126}"
+ },
+ "V-44": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 475 is the only non-multiple-of-10 and sits in the pair {440,475}"
+ },
+ "V-45": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {25,36}. Weak - both are squares, 6=sqrt36 is a derived distractor"
+ },
+ "V-46": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "pair {144,200}: roundness says 200, 'clean answer' says 144 (=12^2). Conflict, so coin flip"
+ },
+ "V-47": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {125,135}, both multiples of 5"
+ },
+ "V-48": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {26,30}"
+ },
+ "V-49": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "M1 removes $112.50 (outside the pair); pair {90,96}, took the rounder. tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result"
+ },
+ "V-50": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {11,15}"
+ },
+ "V-51": {
+  "pick": "A",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 3.6 is the only non-half-multiple among 4.5/7.5/15 and sits in the pair {3.6,4.5}"
+ },
+ "V-52": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "top two gaps tie (.633/.636) - no unique tightest pair. Guess"
+ },
+ "V-53": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {42,54}"
+ },
+ "V-54": {
+  "pick": "B",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {8,9.5}, took the integer"
+ },
+ "V-55": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {13,18}"
+ },
+ "V-56": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 11.18 (=sqrt125) is the only non-integer and sits in the pair {8,11.18}"
+ },
+ "V-57": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 34.6 is the only non-integer and sits in the pair {34.6,40}"
+ },
+ "V-58": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {25,27}"
+ },
+ "V-59": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {-21,-8}"
+ },
+ "V-60": {
+  "pick": "C",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {84,86}, no shape difference; the round 90 is outside the pair"
+ },
+ "V-61": {
+  "pick": "B",
+  "basis": "guess",
+  "note": "no numeric channel; structural grid - 2x2 strict/inclusive endpoint grid"
+ },
+ "V-62": {
+  "pick": "D",
+  "basis": "guess",
+  "note": "no numeric channel; structural grid - 2x2 direction/threshold grid"
+ },
+ "V-63": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 7.5 is the only non-integer and sits in the pair {7,7.5}"
+ },
+ "V-64": {
+  "pick": "D",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {23,26}. 23->47->95 is a doubling chain, which is measured non-predictive"
+ },
+ "V-65": {
+  "pick": "D",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {18pi,24pi}"
+ },
+ "V-66": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "M1 removes 20.7 but it is OUTSIDE the tightest pair {31,39}, so the elimination did no work - coin flip"
+ },
+ "V-67": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "odd-shape option (measured 4.3%, anti-predictive) sits INSIDE the tightest pair; took the other member; 1.95 is the only non-half-multiple and sits in the pair {1.95,2}"
+ },
+ "V-68": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {8,10}, 100 is the magnitude outlier"
+ },
+ "V-69": {
+  "pick": "C",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {42,60}"
+ },
+ "V-70": {
+  "pick": "A",
+  "basis": "guess",
+  "note": "tightest pair, no tiebreak - coin flip inside the pair (~33% channel, not a solve); pair {15,16}"
+ },
+ "V-71": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {10,14}. Weak - -10/10 twins"
+ },
+ "V-72": {
+  "pick": "D",
+  "basis": "mechanism",
+  "note": "tightest-pair (measured 66.6%/50%) + rounder member; the roundness tiebreak is an ASSUMED extrapolation of the measured 4.3% odd-shape result; pair {66,70}"
+ }
+}
