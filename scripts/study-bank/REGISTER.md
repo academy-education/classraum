@@ -2016,3 +2016,26 @@ structural checks are pre-flight only. See CLAUDE.md.
   **`act-english-v4` is the genuinely ambiguous one and should not be lumped in.** Its 90.0% sits against shipped ACT English forms measured at **76–79%** by the same instrument — a deviation of roughly **+12 points**, where the SSAT reading holds that proved real this week deviate **+45 to +57**. Yesterday's SSAT sitting established that a model *deviation* transfers to a person even though model *levels* do not; it did not establish how small a deviation still transfers. **+12 is inside the range nobody has calibrated.** Recorded as the open question it is rather than resolved by analogy.
 
   Also visible and deliberately not acted on: **6 cohorts have 200 items ALREADY LIVE with a non-passing stage**. A failing stage on a shipped cohort is a record of what was known at insert, not a reason to pull items — the tool prints it so the record is visible.
+
+- **2026-09-14** — **THE TENTH PROXY IS REFUTED AND IT IS ANTI-PREDICTIVE — the solver's hunch was exactly backwards.** "The ugly computed value is the key", named by a `v14` solver against their own run and correctly flagged by them as *"direction is a pure assumption"*. Measured over every live math section, with the control derived as 1/k:
+
+        section      defn A: unique non-integer          defn B: unique non-multiple-of-5
+        act/math     2/46   =  4.3%  vs 25.0%  z=-3.23   33/147 = 22.4%  vs 25.0%  z=-0.71
+        sat/math     12/132 =  9.1%  vs 25.0%  z=-4.22   75/337 = 22.3%  vs 25.0%  z=-1.16
+        isee/math    2/20   = 10.0%  (n too small)       22/134 = 16.4%  vs 25.0%  z=-2.29
+        ssat/math    0/15   =  0.0%  (n too small)       10/73  = 13.7%  vs 20.0%  z=-1.35
+
+  On the two large populations the uniquely odd-shaped option is the key at **4.3% and 9.1% against a 25% line** — a solver using that channel does far worse than guessing. The explanation is the same one that makes the ninth proxy real and harmless: **authors build the KEY as the clean answer to a well-posed problem and the DISTRACTORS as the messy output of wrong procedures**, so the odd-shaped value is almost always a distractor. Two definitions were reported separately precisely so the result could not depend on which reading of "ugly" I happened to pick, and they agree in direction.
+
+  **Tally: ten structural proxies built, nine refuted, one survived.** Only "the key is in the tightest adjacent pair" holds — and it is worth +8.3 points, not a solve.
+
+- **2026-09-14** — **THE NINTH PROXY SURVIVES BOTH READINGS OF ITS OWN DEFINITION, WEAKER UNDER THE ONE I HAD NOT MEASURED.** A `v14` solver objected, correctly, that *"TAP has to be taken on ratio, not absolute gap, when the set spans an order of magnitude — and the two disagree"*, naming 15 / 90 / 194.4 / 900 where absolute picks {15, 90} and ratio picks {90, 194.4}. My 66.6% was measured on absolute alone, so the number was ambiguous between two readings of its own definition. Both are now measured and reported side by side rather than one being chosen afterwards:
+
+        section      ABSOLUTE                        RATIO
+        act/math     230/341 = 67.4%   z=6.44        197/319 = 61.8%   z=4.20
+        sat/math     421/628 = 67.0%   z=8.54        443/700 = 63.3%   z=7.03
+        isee/math    128/201 = 63.7%   z=3.88        145/255 = 56.9%   z=2.19
+
+  The objection was right and resolving it **moderates the finding rather than overturning it**: the channel holds under both, absolute is the stronger reading, and both are significant on the two large populations. The denominators differ because the two metrics have different scorability rules — ratio is undefined where any option is zero or negative, and it breaks different ties. That is why the checker refuses those rather than silently handing them to the other metric.
+
+  Worth noting the act/math absolute figure moved 66.6% → 67.4% between measurements: the denominator grew 332 → 341 because the ten `v14` items were inserted in between. The same instrument on a changed population gives a changed number, which is the ordinary case and not a discrepancy.

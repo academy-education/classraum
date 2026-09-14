@@ -28,17 +28,31 @@ export function asNum(s) {
   return Number.isFinite(v) ? v : null
 }
 
-/** Is the key one of the two options with the smallest adjacent gap? */
-export function keyInTightestPair(choices, key) {
+/** Is the key one of the two options with the smallest adjacent gap?
+ *
+ * `metric` is 'abs' (difference) or 'ratio' (b/a). A `v14` solver raised this
+ * and was right that it matters: "TAP has to be taken on ratio, not absolute
+ * gap, when the set spans an order of magnitude -- and the two disagree",
+ * naming 15 / 90 / 194.4 / 900, where absolute picks {15,90} and ratio picks
+ * {90,194.4}. The original 66.6% was measured on 'abs' alone and was therefore
+ * ambiguous between two readings of its own definition. Both are measured now
+ * and reported side by side rather than one being chosen after the fact.
+ *
+ * Ratio needs every value strictly positive to be defined; sets containing a
+ * zero or a negative are not scorable under it and say so rather than being
+ * silently handed to the absolute metric. */
+export function keyInTightestPair(choices, key, metric = 'abs') {
   const nums = choices.map(asNum)
   if (nums.some(n => n === null)) return null            // not a numeric set
   const ki = choices.findIndex(c => String(c) === String(key))
   if (ki < 0) return null
   const idx = nums.map((v, i) => ({ v, i })).sort((a, b) => a.v - b.v)
   if (new Set(nums).size !== nums.length) return null    // duplicate values: "adjacent" is undefined
+  if (metric === 'ratio' && nums.some(v => v <= 0)) return null
+  const gapAt = j => metric === 'ratio' ? idx[j + 1].v / idx[j].v : idx[j + 1].v - idx[j].v
   let best = Infinity, pair = null
   for (let j = 0; j + 1 < idx.length; j++) {
-    const gap = idx[j + 1].v - idx[j].v
+    const gap = gapAt(j)
     if (gap < best) { best = gap; pair = [idx[j].i, idx[j + 1].i] }
   }
   /* A TIE FOR TIGHTEST IS NOT SCORABLE. If two different pairs share the
@@ -46,10 +60,12 @@ export function keyInTightestPair(choices, key) {
    * counting it either way invents a result. Dropped from the denominator and
    * reported separately. */
   let ties = 0
-  for (let j = 0; j + 1 < idx.length; j++) if (idx[j + 1].v - idx[j].v === best) ties++
+  for (let j = 0; j + 1 < idx.length; j++) if (gapAt(j) === best) ties++
   if (ties > 1) return 'tie'
   return pair.includes(ki)
 }
+
+const METRIC = process.env.TAP_METRIC === 'ratio' ? 'ratio' : 'abs'
 
 function report(label, items, getChoices, getKey) {
   let loaded = 0, nonNumeric = 0, tied = 0, scorable = 0, inside = 0
@@ -57,7 +73,7 @@ function report(label, items, getChoices, getKey) {
     loaded++
     const ch = getChoices(it), key = getKey(it)
     if (!Array.isArray(ch) || ch.length < 3) { nonNumeric++; continue }
-    const r = keyInTightestPair(ch, key)
+    const r = keyInTightestPair(ch, key, METRIC)
     if (r === null) { nonNumeric++; continue }
     if (r === 'tie') { tied++; continue }
     scorable++
@@ -72,7 +88,7 @@ function report(label, items, getChoices, getKey) {
   const firstWithChoices = items.find(i => Array.isArray(getChoices(i)))
   const width = (firstWithChoices ? getChoices(firstWithChoices) : []).length || 4
   const chance = 100 * 2 / width          // DERIVED from the option count
-  console.log(label)
+  console.log(label + `   [metric: ${METRIC}]`)
   console.log(`  loaded ${loaded}   non-numeric or key absent ${nonNumeric}   tied-for-tightest ${tied} (not scorable)`)
   console.log(`  SCORABLE ${scorable}`)
   if (scorable < 10) { console.log('  NOT MEASURED — fewer than 10 scorable items is not a population.'); return null }
