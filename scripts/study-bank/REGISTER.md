@@ -1994,3 +1994,25 @@ structural checks are pre-flight only. See CLAUDE.md.
   **(3) DOES HIS 10.0% FLOOR REPRODUCE?** The control arm is 12 shipped items he has never seen. If it lands near 25% rather than near 10%, the earlier floor was a property of that particular draw and every conclusion resting on it — including this week's 80.6%-vs-10.0% finding — needs revisiting. Reported whatever it says.
 
   **THE FAILURE MODE IS NAMED IN ADVANCE.** If the staged arm comes in HIGH, this design cannot separate a real leak from cross-inference between the two items sharing a passage, and the honest response is to **re-run sibling-free**, not to read a verdict off it. Written here before the sitting so it cannot be decided afterwards by whoever likes the answer.
+
+- **2026-09-14** — **`stages.passed` IS A BOOLEAN CARRYING THREE DIFFERENT MEANINGS, AND THE DIFFERENCE DECIDES WHAT WORK UNBLOCKS A BATCH.** Asked "what is blocking?", the ledger answers "13 entries have a failing stage" — which is true and nearly useless, because `passed: false` is written for all of:
+
+        MEASURED-FAILED   "FAILS the stated bar. 16 of 24 items carry a rejectable option"
+        NOT-PROBED        "Not probed separately."
+        REMEDIATED        "Six items dropped: five named by the attacker..."
+
+  The insert gate refuses on all three and **that is correct** — *not measured is not a pass*. The defect is not the gate, it is that the record cannot tell you which kind you have, and the kind is the whole question: a NOT-PROBED stage is one cheap run away, a MEASURED-FAILED stage needs a repair or an archive decision, and a REMEDIATED stage may be stale bookkeeping.
+
+  New `ledger-blocked.mjs` classifies by reading the verdict text and **returns UNCLASSIFIED rather than guessing**. Its first run left five entries unplaced, and reading those five is what fixed it: **a verdict can report a measurement without ever using the word "fail"** — *"Nine passage-disjoint files, nine solvers: 33/36"*, *"Six passage-disjoint files, six solvers: 28/40"*, *"mean 48.0% vs 20.0% control"*. A stage carrying a score ran; the missing word is house style, not missing evidence. With a score-detecting rule added after the explicit-failure rule and before not-probed, everything classifies. Self-tested on eight verdicts whose answer I already knew, including the two orderings that matter (an explicit FAIL beating the score rule; "Not probed; the solver reports already name…" staying NOT-PROBED).
+
+  **THE RESULT IS THE USEFUL PART, AND IT POINTS AT ONE THING.** All three staged cohorts are blocked on a **model** measurement:
+
+        act-reading-v4   36 staged   nosource 33/36 = 91.7%
+        act-english-v4   50 staged   nosource 45/50 = 90.0%   "Screen only for this family (B7)"
+        act-reading-v7   18 staged   tells = subject recall, found by model graders
+
+  **Every one of those is an instrument now known to be saturated on its family.** Measured 2026-09-13: the model scores **80.6%** options-only on shipped, human-cleared ACT Reading where the person scored **10.0%**. So 104 staged items are held on numbers from a screen that cannot discriminate here — which is exactly what B7 said at the time and what the `nosource: NOT RUN` decision on `v7` was reasoning from. **The sitting drawn today is the instrument these have been waiting for**, and it covers `v4` and `v7` directly.
+
+  **`act-english-v4` is the genuinely ambiguous one and should not be lumped in.** Its 90.0% sits against shipped ACT English forms measured at **76–79%** by the same instrument — a deviation of roughly **+12 points**, where the SSAT reading holds that proved real this week deviate **+45 to +57**. Yesterday's SSAT sitting established that a model *deviation* transfers to a person even though model *levels* do not; it did not establish how small a deviation still transfers. **+12 is inside the range nobody has calibrated.** Recorded as the open question it is rather than resolved by analogy.
+
+  Also visible and deliberately not acted on: **6 cohorts have 200 items ALREADY LIVE with a non-passing stage**. A failing stage on a shipped cohort is a record of what was known at insert, not a reason to pull items — the tool prints it so the record is visible.
