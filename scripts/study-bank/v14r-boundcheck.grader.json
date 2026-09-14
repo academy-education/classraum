@@ -1,0 +1,75 @@
+{
+  "AM14F-01": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "Not an interval item; the only forced constraint is membership. The answer is a VALUE OF f, and f's listed range is {5,7,13,2}. Option 3 is not in the range of f, so it dies to that observation alone. 2 = f(4), 7 = f(2), 13 = f(3) are all legal outputs of f at an in-domain input, so all three survive. No ordering or magnitude bound exists.",
+    "on_bound": [],
+    "issues": [
+      "Inline function values (item 5 of the brief): reads unambiguously as plain text. Every value is individually labelled f(n)= / g(n)=, the two lists are separated by 'and', 'defined only for the inputs shown' fixes the domain, and no value is multi-digit-with-thousands so the comma separators cannot be misread. No table needed.",
+      "Positive, not a defect: all four options appear somewhere in the stem's value lists, so there is no odd-one-out tell of the 'three options are table values, one is invented' kind.",
+      "f(2)=7 and g(2)=7 share a value; this makes 7 reachable by two wrong routes rather than one, which is harmless here but means the '7' distractor does not uniquely diagnose order reversal."
+    ],
+    "key_confirmed": true
+  },
+  "AM14G-03": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "The 30 cm side is a chord, so the diameter exceeds 30 strictly => area > pi(15^2) = 706.9. The diagonal is less than the sum of the sides (triangle inequality), so diameter < 46 => area < pi(23^2) = 1661.9. Feasible band (706.9, 1661.9). Survivors: 804, 908, 1511. 480 fails: it is less than the area of the rectangle the circle strictly contains.",
+    "on_bound": ["480"],
+    "issues": [
+      "480 sits EXACTLY on the part-not-exceeding-whole bound: it is the area of the inscribed rectangle (16 x 30), and the circle's area is strictly greater than that by containment. It is therefore free to eliminate with one trivial multiplication and no geometry. Mitigating: the elimination does NOT leak the tested insight (diagonal = diameter), and 3 options remain, so this is a weak distractor rather than a giveaway. Flagged, not spent.",
+      "1511 survives only a loose bound; it implies a diagonal of 43.9 against a true 34, i.e. a nearly degenerate rectangle, but recognising that requires doing the arithmetic, so it is counted as surviving.",
+      "No arithmetic run (diffs 324, 104, 603), no 2:1 pair (804:1511 = 1.879), no integer multiple of the key, no duplicates."
+    ],
+    "key_confirmed": true
+  },
+  "AM14G-05": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "Side = 36/3 = 12. The altitude is a LEG of a right triangle with hypotenuse 12, so altitude < 12; and since the other leg is 6 and 12^2 - 6^2 > 6^2, altitude > 6. Feasible band (6, 12). Survivors: 6.9, 8.5, 10.4. 13.4 fails: it exceeds the hypotenuse 12, i.e. exceeds the side it is dropped inside, and dies to leg-less-than-hypotenuse with no computation.",
+    "on_bound": [],
+    "issues": [
+      "The bound values 6 and 12 are not themselves options, so nothing sits on a bound.",
+      "6.9 = 12/sqrt(3) is also the CIRCUMRADIUS of this triangle. That is a real quantity of the figure, but the stem says 'an altitude' with no ambiguity, so it is not a defensible reading - only a second, more flattering story for why a student lands there.",
+      "No arithmetic run (diffs 1.6, 1.9, 3.0), no 2:1 pair, no duplicates. Key is in slot 3 of 4."
+    ],
+    "key_confirmed": true
+  },
+  "AM14G-06": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "Slant height l is the hypotenuse of legs 5 and 12, so 12 < l < 17. Total = pi*r*l + pi*r^2 = pi*5*l + 78.5, which is increasing in l, so total lies in (pi*5*12 + 78.5, pi*5*17 + 78.5) = (267.0, 345.6). Survivors: 283, 314, 324. 204 fails on the lower bound.",
+    "on_bound": ["204"],
+    "issues": [
+      "204 is the lateral area alone, a proper PART of the requested total, so it also sits exactly on the total-exceeds-lateral bound. Unlike AM14G-03's 480 this elimination is NOT free - reaching 204.2 requires the Pythagorean step that is the item's actual work - so it is flagged for shape, not for cheapness. It is separately dead to the l > h monotonicity bound above, which is cheap; either way it does not survive.",
+      "The stem's explicit 'including its circular base' forecloses the one reading under which 204 would be correct. That phrase is load-bearing and must not be edited out.",
+      "314 is 100pi and reads as a 'pi-looking' number, which may attract a student on surface pattern rather than on the named volume error. Minor, and 314.2 is the genuine volume, so the named procedure is real.",
+      "No arithmetic run (diffs 79, 31, 10), no 2:1 pair, no integer multiple of the key, no duplicates."
+    ],
+    "key_confirmed": true
+  },
+  "AM14I-02": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "The stem says the temperature ROSE, so the 11:00 value strictly exceeds the 6:00 value of -8. Survivors: -3, 7, 10. -23 fails: it is below the starting temperature and so contradicts monotonicity outright. No free upper bound exists, because the only upper bound available is the elapsed-hours count, which is exactly what the item tests (5 vs 6 hours gives 7 vs 10).",
+    "on_bound": [],
+    "issues": [
+      "-8 is not an option, so nothing sits on the monotonicity bound.",
+      "Good property worth preserving: the 5-vs-6-hour ambiguity is the tested discrimination, so 7 and 10 cannot be separated by any bound - a bound-only solver is left at 1/3, not 1/2.",
+      "No arithmetic run (-23, -3, 7, 10: diffs 20, 10, 3), no 2:1 pair, no duplicates."
+    ],
+    "key_confirmed": true
+  },
+  "AM14I-04": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "Simple interest is proportional to time, so 8 months earns strictly more than 6 months and strictly less than 12 months: the answer lies in (132/2, 132) = (66, 132), where 132 = 2400 x 0.055 is the one-year interest. Survivors: 80.00, 88.00, 105.60. 16.50 fails: it is a quarter of even the half-year interest.",
+    "on_bound": [],
+    "issues": [
+      "The bound values 66 and 132 are not options, so nothing sits on a bound.",
+      "80.00 and 105.60 both land inside the band, which is what makes this item work - the proportionality bound cannot separate them from the key, only the correct 8/12 factor can.",
+      "No arithmetic run (80, 88, 105.60: diffs 8, 17.6), no 2:1 pair, no integer multiple of the key (88/16.50 = 5.33), no duplicates."
+    ],
+    "key_confirmed": true
+  }
+}

@@ -2988,6 +2988,34 @@
      "verdict": "Key letters re-dealt at draw time. 4 of 18 candidates unanimous against 0.31 expected, and 4 of 36 controls against 0.63. UNANIMITY WAS NOT USED TO DROP ANYTHING, for the same reason as the last batch: candidate mechanism and candidate guess both scored 33.3%, so the mechanism label carries no information here and 3d-bis keys on exactly that label. Every drop rests on the independent bound-feasibility instrument instead. AM14G-05 is HELD rather than dropped -- unanimous 3/3 with two mechanisms named AND only two bound survivors, two weak signals rather than one strong one. A SOLVER NAMED THE TENTH PROXY AGAINST THEIR OWN RUN: 'M3 (format) fired most, 13 of 27 mechanism picks... if the key is the ugly value at better than chance, this is a real authoring tell and it is cheap to check exactly.' A SECOND SOLVER CHALLENGED THE NINTH PROXY'S DEFINITION, correctly: 'TAP has to be taken on ratio, not absolute gap, when the set spans an order of magnitude -- and the two disagree', naming four items where the two readings pick different pairs and noting the 66.6% figure is ambiguous between them. Both recorded as open measurements. Three solvers also flagged that TAP is UNDEFINED where two pairs are equally tight (V-31, V-20, V-51, V-54) and refused to quote a rate over them -- the behaviour the checker's own tie rule already enforces."
     }
    }
+  },
+  {
+   "id": "act-math-v14r-2026-09-14",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v14r",
+   "contentSha": "e407e5b534232f357f588106f53d81a708830e9f1aa042d8b9710b0a7b1bdddb",
+   "note": "The six items HELD from act-math-v14-mix, repaired and independently re-audited. Every key, domain and mechanism is unchanged -- each of the six is the only item in its batch testing its mechanism, so changing what an item tests would be authoring a new item rather than repairing this one, and the brief said to leave an item held rather than silently alter it. Nothing was left unrepaired.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 6/6 recompute to their key; 18 of 18 distractor_solve entries recomputed, 0 mismatches. THE REPAIR AGENT BROKE ITS OWN GREEN rather than reading it: pointing AM14G-06's new 324 body at the correct slant instead of the doubled one flips the line to '1 item(s) with a mismatch', so the check exercises what it claims. Verified independently afterwards on all six: keys unchanged, domains unchanged, ZERO arithmetic runs, zero key-at-middle, zero 2:1 pairs, zero duplicate values. check-tightest-pair returns NOT MEASURED at 6 scorable against its floor of 10, the correct answer at that size; by hand the key falls in the tightest pair on 3 of 6, at the 50% chance line and below the 11/18 the author flagged on the parent batch, so nothing was made extreme while fixing something else."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "INDEPENDENT RE-AUDIT, a fresh grader deliberately NOT told what had changed or why -- if the repairs worked it should find nothing, and if they traded one defect for another it should find that without being steered. RESULT: all six keep, THREE SURVIVORS EACH against every bound their own numbers force, none thin, nothing to drop and nothing to repair. All six keys re-derived by hand ignoring the solve field: 13; 908 (289pi = 907.92); 10.4 (6*sqrt3 = 10.392); 283 (90pi = 282.74); 7; 88.00 -- no disagreement. Every distractor maps to a named wrong procedure in its own explanation and the arithmetic matches; no bare numbers. NO DEFENSIBLE NON-KEY READING on any item, and the grader named the two near-misses rather than passing them silently: AM14G-06's 204 is foreclosed by the stem's phrase 'including its circular base', which is LOAD-BEARING AND MUST NOT BE EDITED AWAY; AM14G-05's 6.9 is genuinely the triangle's circumradius, a real quantity of the figure, but 'an altitude' admits no such reading. TWO ON-BOUND FLAGS reported separately and reasoned about rather than mechanically counted: AM14G-03's 480 is the inscribed rectangle's area and so the strict infimum by containment -- free to eliminate, but the elimination does not leak the tested insight (diagonal = diameter) and three options remain; AM14G-06's 204 sits on the same part-vs-whole shape but is NOT cheap, since reaching 204.2 requires the Pythagorean step that is the item's actual work. One item-level observation worth keeping: AM14F-01's 7 is reachable by two routes because f(2) = g(2) = 7, which blunts its diagnostic value without making it correct."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "NOT RE-RUN, deliberately, and the reason is the class of the repair. Every defect fixed here is BOUND FEASIBILITY -- a distractor sitting on or outside an interval the stem's own numbers force -- which is precisely the class an options-only attack STRUCTURALLY CANNOT SEE, established on three consecutive batches where the with-source grader found what the attack could not. The parent batch's attack stands: candidates 33.3% against a domain-matched live control at 24.1%, intervals overlapping. These six were not held on that number. Re-running a blind attack over six items would also return an interval far too wide to mean anything, and quoting it would be a rate over a population that cannot carry one."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key letters re-dealt at draw time. THE REPAIR AGENT REFUSED A PRESCRIPTION THAT WOULD HAVE TRADED ONE TELL FOR ANOTHER: the grader prescribed swapping 15 for 10 on AM14I-02 so a distractor would sit above the key, which is right as far as it goes -- but 10 with the existing 4 and the key 7 makes 4, 7, 10, an ARITHMETIC RUN WITH THE KEY AT ITS EXACT MIDDLE. The agent applied the prescription AND replaced the 4 with -3, justifying the extra change rather than making it quietly. IT ALSO FOUND A DEFECT THE WITH-SOURCE GRADER HAD MISSED ON THAT ITEM: AM14G-03's two distractors were 707 and 1662, the infimum and supremum of the feasible area interval at the rounding the stem itself asks for (a 16x30 rectangle inscribed in a circle forces 30 < d < 46, so the area lies strictly between pi*15^2 = 706.9 and pi*23^2 = 1661.9), leaving only the key strictly inside. That is the same defect the grader DID name on two other items, unnoticed on a third. MY OWN VERIFICATION NEARLY CONTRADICTED THAT CORRECT CLAIM: a tolerance-based classifier labelled 707 as INSIDE because it is 0.1 above the infimum, and only caught 1662. The agent is right in substance -- 707 IS pi*15^2 at the precision the item asks for -- and a checker with a badly chosen tolerance would have cleared a real defect."
+    }
+   }
   }
  ],
  "auditedCohorts": [
