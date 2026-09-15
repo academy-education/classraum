@@ -83,7 +83,8 @@ for (const id of ids) {
   const diffs = vs.map(v => (v.difficulty || '').toLowerCase()).filter(Boolean)
   const dq = vs.map(v => (v.distractor_quality || '').toLowerCase()).filter(Boolean)
   const sd = vs.filter(v => v.second_defensible === true).length
-  rows.push({ id, keyVotes, n: picks.length, diffs, dq, sd,
+  const pn = vs.map(v => v.passage_needed).filter(v => v === true || v === false)
+  rows.push({ id, keyVotes, n: picks.length, diffs, dq, sd, pn,
     notes: vs.map(v => (v.note || '').trim()).filter(Boolean) })
 }
 const agreeTotal = rows.reduce((a, r) => a + r.keyVotes, 0)
@@ -104,6 +105,20 @@ for (const r of rows) {
   if (!maj(r.diffs, d => d === 'hard' || d === 'medium')) why.push(`majority difficulty ${r.diffs.join('/')}`)
   if (!maj(r.dq, q => q === 'plausible' || q === 'strong')) why.push(`distractors ${r.dq.join('/')}`)
   if (r.sd > 0) why.push(`${r.sd} grader(s) flagged a second defensible answer`)
+  /* PASSAGE DEPENDENCE — added 2026-09-15 after this scorer cleared two items
+   * the graders had explicitly asked to drop. The canonical R&W rule is in
+   * accepts.mjs and reads `if (qc.passage_needed !== true) return not
+   * passage-dependent`; this scorer simply did not have the field, so it was
+   * a LOOSER gate than the pipeline's own, silently. `sec-qc-aggregate.mjs`
+   * records the same failure once already ("never wrote passage_needed").
+   *
+   * An ABSENT field is refused, not waived. gate.mjs: "a stage with no
+   * explicit passed is NOT a pass... absence of a verdict is not a verdict."
+   * A panel that was never asked whether the passage is needed has not
+   * established that it is, and an item cleared on a rule that could not see
+   * the defect the adversarial grader exists to find is not cleared. */
+  if (!r.pn.length) why.push('passage_needed NOT MEASURED by any grader — the panel was never asked')
+  else if (r.pn.some(v => v === false)) why.push(`${r.pn.filter(v => v === false).length} grader(s) say the passage is NOT needed`)
   ;(why.length ? drop : accept).push({ ...r, why })
 }
 const hist = {}
