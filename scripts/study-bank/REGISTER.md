@@ -2214,3 +2214,26 @@ structural checks are pre-flight only. See CLAUDE.md.
   The 98.3%-versus-8.0% SAT Math split is itself evidence the checker discriminates: a pure coverage artefact would score both populations alike, not one at 98.3% and 730 items at 8.0% against a 6.3% control.
 
   **What the critique does establish, and it is worth keeping:** any hub-style number must be reported with its **uniqueness and coverage** stated, because a detector that names most of the ballot predicts the key at the rate it names it. The per-batch lines already do this badly — `2 structured of 24, key-is-hub 29.2%` needs the denominator read as *structured items*, not items.
+
+- **2026-09-16** — **`sat-math-v16-adv` ATTACK: CANDIDATES 28.8% AGAINST A 36.4% LIVE CONTROL, and a solver's pre-registered scorability rule confirmed the ninth proxy inside the same run.**
+
+        CANDIDATE sat-math-v16-adv     66 picks   28.8%   CI 19.3-40.6
+        LIVE CONTROL (Adv Math + Alg) 132 picks   36.4%   CI 28.7-44.8
+
+  −7.6 points, intervals overlapping, and the candidates sit barely above the 25.8% derived control. SAT Math is the cleanest stratum in the bank for the strongest reason — four bare values are meaningless until the stem says what they measure — and this batch is at that level. Per solver: 27.3 / 27.3 / 31.8 on candidates, tight agreement, and letter signatures were small this time (2, 3 and 1 items) against the 8 and 10 that confounded `v15`.
+
+  **THE BASIS SPLIT REPEATS FOR THE FIFTH BATCH RUNNING**: candidate `mechanism` **12.5%** against candidate `guess` **31.0%**. Named channels do *worse* than guessing on new items. All three solvers had adopted the labelling discipline unprompted — TAP plus a within-pair tiebreak called `guess`, only the measured odd-shape exclusion called `mechanism` — which is the only reason the split is readable at all.
+
+  **SOLVER C PRE-REGISTERED A SCORABILITY RULE AND IT CONFIRMED THE NINTH PROXY ON LIVE ITEMS.** They asked, before seeing any key, that the tightest-pair statistic be reported separately for items with a *unique* tightest pair versus items where two pairs tie, because on a tie the channel degenerates to a four-way flip. Measured on the live controls:
+
+        unique tightest pair   31/72 = 43.1%      <- the channel works
+        TIED tightest pair     12/51 = 23.5%      <- at chance, the channel is gone
+        gap                            +19.6pts
+
+  That is the ninth proxy confirmed **inside this run**, and it confirms the *scorability rule* rather than only the channel: where TAP is well defined it is worth ~18 points over chance; where two pairs tie it is worth nothing. `check-tightest-pair.mjs` already refuses tied items — a rule arrived at independently and now measured.
+
+  **And all 22 candidates have a unique tightest pair**, so they were maximally exposed to the one channel that works — and still scored 28.8% against the controls' 43.1% on the same footing. The batch resists the channel where the bank does not.
+
+  Three candidates were unanimous against 0.38 expected, **all with `mechanism 0/3`** — three coins landing the same way, which §3d-bis explicitly does not treat as grounds.
+
+- **2026-09-16** — **MY SCORER CARRIED A PER-BATCH JUDGEMENT ACROSS A COPY AND PRINTED IT AS A LABEL OVER THE WRONG ITEMS.** `score-v16.py` was derived from `score-v15.py`, which hardcoded three ids that two `v15` solvers had called structurally blind. The ids exist in `v16` as well — naming entirely different items that no `v16` solver said anything about — so the copied scorer printed *"the three items both A and C called structurally blind"* over items nobody had judged. Removed rather than re-pointed: **a per-batch judgement does not survive a copy, and a scorer should not carry one.** The same copy also silently dropped two helper functions when I cut the block, which threw rather than printing a wrong number — the right failure.
