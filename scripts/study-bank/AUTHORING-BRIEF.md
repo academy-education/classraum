@@ -531,3 +531,178 @@ nothing.
 Report honestly, including what you could not fix and why. A batch reported at
 its true state is worth more than one reported clean — every number here is
 going into a decision.
+
+---
+
+## 8. The gate has two halves and the blind half rarely decides
+
+Added 2026-09-16 after five consecutive batches. An options-only attack — three
+solvers reading your option sets with the stem and passage hidden — **failed to
+separate five batches in a row from their live controls**. The half that decided
+every one of them reads the stem:
+
+    act-math-v12    attack found 4    with-source found 3 the attack CANNOT see
+    act-math-v14    attack: overlapping intervals    audit: 2 drops, 6 repairs
+    act-math-v15    attack: 23.6%, BELOW chance      audit: 1 drop, 8 repairs
+    sat-math-v16    attack: overlapping intervals    audit: 1 drop, 4 repairs
+    sat-cs-v10      attack: 55.6% vs a 94.4% bank    panel: 7 of 17 dropped
+
+Write for the half that decides. The blind attack is a screen; it is cheap and
+it has been nearly silent.
+
+### 8a. Bound feasibility — the single largest cause of drops
+
+The stem's own numbers imply an interval, and if the key is the only option
+inside it the item is answerable **with no mathematics at all**.
+
+For every item, derive every bound the stem forces and **count how many of the
+four options survive. At least three must.** Bounds that are free:
+monotonicity (more workers means less time), a part not exceeding its whole, a
+hypotenuse exceeding either leg and less than their sum, an average lying
+between the extremes, a discriminant's sign, divisibility, a forced total,
+physical plausibility and order of magnitude.
+
+**An option sitting exactly ON a bound is the same defect.** The infimum or
+supremum is free to eliminate by the very observation the item exists to test.
+Check endpoints **at the precision your stem requests**: one batch shipped a
+distractor of `707` where the infimum was π·15² = 706.9, and another `267`
+where it was 85π = 267.04.
+
+**Where the rule stops**, and this matters as much as the rule: an option a
+student can reject only by doing the work the item exists to test is a GOOD
+distractor, not a dead one. Substituting options back into an equation refutes
+most of them on most solve-for-x items and is **not** a bound — counting it
+would make every equation item a one-survivor item and the category meaningless.
+
+### 8b. Do not self-certify your survivor counts
+
+**Two authors in a row certified "all items at ≥3 survivors" and were wrong on
+7 of 24 each.** Both times the auditor's diagnosis was identical:
+
+> *"They found bounds shaped like inequalities and missed every item whose
+> bound is monotonicity, an average, or a total."*
+
+You will see the bounds of the kind you were already thinking in. Report **which
+KINDS of bound you checked for**, not a count — the count is what the audit is
+for, and a wrong one costs it a starting point.
+
+### 8c. Two named failure modes, both from real batches
+
+**The complete monotone ladder.** Four options that are the same error family
+ordered end to end — compounding at n = 2, 4, 12, ∞ — so the stem's named case
+is the *middle rung*, and a solver who never applies the formula lands on it.
+
+**"The limiting thing" option.** The value you get by taking a parameter to its
+extreme: the no-compounding value in a compounding item, the un-halved count,
+the full perimeter. It is almost always the infimum or supremum and almost
+always free.
+
+---
+
+## 9. Reading items: what four measured batches established
+
+### 9a. One-frame construction is necessary and NOT sufficient
+
+Holding all four options in one frame so they vary along a single axis is the
+construction that separates a clean cohort from a leaky one. It is not enough.
+One batch obeyed it and still scored 81% blind, because underneath it:
+
+> **In every item the key was the INTERESTING claim and the distractors were
+> duller.** A solver reported it in those words: *"pick the surprising,
+> distinction-drawing option."*
+
+Make all four options equally counterintuitive and equally specific. Where a key
+is a *famous real finding* that knowledge alone picks out, rewrite the passage
+so the famous fact becomes a **distractor**.
+
+### 9b. The distractors need a two-move architecture too
+
+Reached independently by three solvers on one batch. A real Craft and Structure
+key describes a **transition** — "introduces X, then recasts it" — because that
+is what a text does. Writing a plausible distractor of that shape means writing
+a second, false account of the text's architecture, which is harder than writing
+a flat wrong claim, so authors reach for denials and absolutes instead.
+
+> **Three flat claims plus one transition description is a solvable item
+> regardless of how good the passage is.**
+
+### 9c. Good distractors are TRUE in the real world
+
+The inverse pattern, and the fix for the subject-recall channel. The
+best-measured sets used distractors that are *genuinely true* — the amount
+effect and the temperature effect both really do control oxygen isotope ratios;
+tolerant symbionts really do carry reversion and carbon costs — so **domain
+knowledge makes the distractors more attractive rather than handing over the
+key**. A solver who knows the field is narrowed to three options, not to one.
+
+The failure mode this fixes: four items in one batch were dropped because a
+reader who recognised the topic could answer cold. As a solver put it, *"it is
+not fixable by rewriting options — the topics themselves are recognisable."*
+Choose distractors the knowledgeable reader is drawn **toward**.
+
+### 9d. The key must not be retrievable from a single sentence
+
+The defect **no blind stage can see**, because an options-only attack has the
+passage hidden by construction. Three items scored 55.6% blind — genuinely hard
+without the passage — and were dropped as unanimously EASY *with* it, on one
+diagnosis: *"the key is a near-verbatim lift of the passage's penultimate
+sentence."*
+
+Before submitting, for each item: **find the sentence that states your key. If
+you can, the item is retrieval, not reasoning.** Remove it and put the evidence
+in its place, so the key must be inferred from two facts or from a result read
+against the explanation it displaces.
+
+### 9e. Weaker than intended is not the same as broken
+
+When a repair leaves a key supported at three-quarters of its content, ask which
+of these it is:
+
+> **An item a student can get right by under-reasoning is weaker than intended.
+> An item with two defensible answers is broken. Only the second disqualifies.**
+
+A panel that flags everything costs sound items; a panel that flags nothing
+ships broken ones. Name the reading either way.
+
+---
+
+## 10. Repairs
+
+### 10a. After one failed rewrite, stop
+
+A distractor rewrite inverts the tell. On one batch three of six repairs
+**traded one defect for another**: an option sitting on an infimum was replaced
+by one sitting on the supremum; a monotonicity defect became a geometric run
+with the key at its middle. Each was applied faithfully from a correct
+prescription.
+
+When you repair, **re-run the tell scan on the repaired set** and say what you
+traded. And when a prescription would create a new tell, say so and fix both —
+one repair caught that a prescribed swap would make `4, 7, 10`, a run with the
+key at its exact middle, and replaced a second option to avoid it.
+
+### 10b. A repair that changes the passage invalidates the panel
+
+Key votes are evidence about the text that produced them. If you rewrite a
+passage, **the earlier votes are about the old text** and the item must be
+re-panelled. A repair agent volunteered exactly this and was right.
+
+Conversely, a repair that changes **no option** does not invalidate an
+options-only attack or an elimination reading — both read option sets only.
+Inherit those verdicts explicitly, saying why, rather than silently reusing them.
+
+### 10c. Some mechanisms cannot carry four options
+
+Two items were held permanently rather than repaired, and the arguments are the
+model for when to stop:
+
+- *"V = πr²h is free knowledge, and a figure rotated about a side admits exactly
+  two assignments, so the answer set is forced to {72π, 192π}. **The mechanism
+  itself is one bit.**"*
+- A 14-gon diagonal count where the only options surviving one bound formed a
+  run with the key at its middle, and the only options avoiding the run failed
+  the bound. **Both roads bad is the signature of a mechanism that cannot carry
+  four options.**
+
+**A held item is a better outcome than a silently different one.** If repairing
+means changing what the item tests, say so and leave it held.
