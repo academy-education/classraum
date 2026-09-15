@@ -3132,6 +3132,38 @@
      "verdict": "ONE confidently rejectable option across 18 items, on 1 of 18 items, against a recorded bar of ZERO and prior failures at 5 of 24 and 16 of 24. THE 55.6% SOLVE-IT NUMBER DOES NOT CARRY OVER TO THIS CHANNEL, and the two come apart by design: a batch can be unsolvable and still hand a student two free eliminations, turning a four-option item into a coin flip without ever being 'solved'. THE ONE REJECTION IS A REAL AUTHORING DEFECT AND IT IS IN THE SHIPPED SET: CS10-07 option A claims the heat island effect is largest on overcast nights, which is backwards -- the nocturnal urban heat island is SUPPRESSED under cloud, not maximised -- and the option's own causal clause does not support it, since cloud traps outgoing heat over the rural reference site just as much as over the city. Recorded rather than repaired: it is one option in one item, the item is not thereby solvable (three options remain and the grader did not claim otherwise), and a rewrite round on a cleared batch is the pattern that has traded one defect for another three times this week. Named here so whoever touches CS10-07 next fixes that option rather than rediscovering it. THE GRADER DECLINED TO COUNT THREE NEAR-MISSES AND NAMED THEM SEPARATELY, which is the behaviour this stage needs: CS10-06's C and D are the intentional and the distributional form of one proposition, and CS10-18's A entails D. Both are UNIQUENESS RISKS FOR THE AUTHOR, not student-usable eliminations -- nothing tells a solver which member of the pair is the distractor. WHY THE BATCH SURVIVES, in the grader's words: 'opposed and permuted structures are structurally elimination-proof -- you cannot drop a direction without knowing which direction the passage went.' Several sets are outright opposed pairs or permutations. The other consistent property is that the option sets are DOMAIN-FAITHFUL IN ALL FOUR SLOTS: on CS10-11 all four are real published single-photoreceptor colour-vision mechanisms, and B reads implausible enough on its face to invite exactly the unfounded rejection this stage exists to catch -- it survives."
     }
    }
+  },
+  {
+   "id": "sat-cs-v10r-2026-09-16",
+   "targetTest": "sat",
+   "section": "reading_writing",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-cs-v10r",
+   "contentSha": "fc2affb25c7d87f4504f0b560728c5a69edea2365ff5f86b32255e8d897a00c9",
+   "note": "The three items dropped from sat-cs-v10 for DIFFICULTY ALONE, repaired in the PASSAGE and re-panelled. They had passed everything else first time -- key votes 3/3, no second_defensible, passage_needed true, plausible-or-strong distractors -- and were dropped because all three graders called them easy, with one diagnosis: the key was retrievable from a single sentence.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "ONLY THE PASSAGE CHANGED, verified mechanically on all three: `passage` is the sole differing field, `choices` and `correct_answer` are byte-identical, and every other field is unchanged. That constraint was the point of the brief -- those option sets had survived an options-only attack (55.6% against a live bank at 94.4%), an elimination reader and a with-passage panel, and changing an option would have destroyed evidence it took five stages to produce. Key-density check: the share of the key's content words carried by the densest single sentence fell to 17% / 29% / 33%, where each key had been a near-verbatim lift."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "RE-PANELLED FROM SCRATCH, and the repair agent asked for this themselves rather than leaning on the earlier votes: 'the passages changed, so that evidence is about the old text.' THREE SOLVERS, ALL THREE PICKS UNANIMOUS (D / A / C), no second_defensible anywhere, passage_needed true on all three, no key disputed. DIFFICULTY MOVED FROM UNANIMOUSLY EASY TO hard / medium / hard by majority. THE REPAIRER FLAGGED TWO RISKS AGAINST THEMSELVES AND THE PANEL ADJUDICATED BOTH. (1) CS10-05's key has two halves and the warming half now rests on a single cue, 'maize sown in it comes up a fortnight earlier', which is separately explicable by drainage alone. All three agreed the ~three-quarters support estimate is fair and all three refused to flag it, on the same reasoning: D is the only option naming drainage at all, so a solver who discounts the warming clause entirely still has no competitor. Solver B drew the distinction that matters -- 'the residual risk is a solver who picks D off drainage alone and never tests the second half, not a wrong key.' An item a student can get right by under-reasoning is weaker than intended; an item with two defensible answers is broken, and only the second disqualifies. (2) CS10-17's rainfall-amount distractor: all three called it TEMPTING, NOT DEFENSIBLE, because option A localises the rainfall to the basin's own seasons while Text 2's whole move is that local conditions are irrelevant. Solver C went further -- 'the repair made the distractor stronger, which is a gain.' A NEW LOAD-BEARING CLAUSE was created by the repair and named by two solvers independently: 'whatever the ground beneath it is doing' is the phrase that blocks reading the ratio as a record of conditions at the fossil site, and it must not be edited away. TWO RESIDUALS RECORDED AND NOT ACTED ON: solver A notes CS10-17's key says 'how far inland' while Text 2's actual variable is what the air CROSSED, so the key is uniquely best by family rather than by exact match; and solver C notes CS10-05 is the weakest of the three on passage_needed, since the drainage function of Andean terrace fill is well known and the warming clause is the only thing keeping the key from being free."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "NOT RE-RUN, and the reason is that NO OPTION CHANGED. The parent batch's attack stands and is about exactly these option sets: candidates 55.6% (CI 42.4-68.0) against a live Craft and Structure control at 94.4% (CI 88.4-97.4), -38.9 points with DISJOINT intervals -- the only batch this year to separate from its control. An options-only attack has the passage hidden by construction, so a passage rewrite cannot move its number, and re-running it over three items would return an interval far too wide to mean anything."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Inherited from sat-cs-v10 and valid without re-running: the elimination reader judges OPTION SETS ONLY, and no option changed. It found 1 confidently rejectable option across 18 items against a recorded bar of zero and prior failures at 5 of 24 and 16 of 24; none of the three items here carried it."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "THE DEFECT THIS BATCH FIXES IS ONE NO BLIND STAGE CAN SEE. Four stages had asked 'does this leak?' and these three items passed all of them; the with-passage panel asked 'is this trivial?' and they failed. An options-only attack has the passage HIDDEN, so it cannot detect that the key restates a sentence in it -- the batch was genuinely hard to solve WITHOUT the passage and partly trivial WITH it, which are opposite failure modes. The elimination stage also stands unchanged at 1 rejectable option across 18, since it too reads only the option sets."
+    }
+   }
   }
  ],
  "auditedCohorts": [

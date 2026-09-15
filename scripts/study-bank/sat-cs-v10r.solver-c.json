@@ -1,0 +1,29 @@
+{
+  "CS10-05": {
+    "pick": "D",
+    "second_defensible": false,
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "passage_needed": true,
+    "note": "Purpose is no longer stated; it must be built from two symptoms (workable two days after a storm = drainage; maize up a fortnight earlier = warmer root zone) plus the concession structure that sets erosion aside ('erosion control asks only for a wall and packed earth... excavation finds more'). AGREE with the repairer that the warming half rests on one cue and that earlier emergence is separately explicable by drainage alone (a drained bed can be sown earlier without being warmer) - so the key is supported at roughly three-quarters of its content, as they say. I dispute that this creates a second defensible option: D is the ONLY option containing drainage, which the text supports outright, so even a solver who discounts the warming clause entirely still has no competitor. A is the named-and-set-aside view (plausible), B is contradicted by the drainage evidence, C (frost heave) is never raised but is real-world plausible at Andean altitude, so it functions. Residual channel, and the reason passage_needed is a weaker true here than on the other two: the drainage function of terrace fill is a well-known fact about Andean terraces, and a reader who knows it can pick D without the text. The warming clause in D is what keeps it from being fully free.",
+    "flagged_risk_verdict": "CS10-05: agree with the self-flag on support (~3/4, warming rests on one attributable-elsewhere cue); disagree that it endangers uniqueness - no distractor offers drainage."
+  },
+  "CS10-12": {
+    "pick": "A",
+    "second_defensible": false,
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "passage_needed": true,
+    "note": "Text 2 never says 'third party'; A must be inferred from 'both houses sent to one and the same chest' - a single repository external to either firm's archive - together with 'no such instrument survives in either firm's archive' and 'a division of archives, not an absence of terms.' C is the strongest distractor and the one I tested hardest: 'division of archives' invites reading the terms into each firm's own private ledgers. It fails because the chest is shared ('one and the same') and because the instrument is described as sealed and cited by date, i.e. one authoritative copy, not two private entries. Not defensible. B and D are both directly contradicted by the existence of a cited written instrument, but both match the exact misreading Text 1 proposes (trust/kinship over contract), so they are earned distractors rather than filler.",
+    "flagged_risk_verdict": "not flagged"
+  },
+  "CS10-17": {
+    "pick": "C",
+    "second_defensible": false,
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "passage_needed": true,
+    "note": "With the explicit mention of distance removed, C now rests on inference from the mechanism: 'storms crossing a mountain front drop their heaviest water first, so the rain reaching the country beyond arrives already stripped' plus 'the fossils date the rise of the ranges upwind' - i.e. the ratio records what the air lost on its way past the barrier, which is path travelled, not local elevation. That inference is supported and unique. On the flagged risk: A is TEMPTING, NOT DEFENSIBLE. It is tempting because the amount effect is a real isotope effect and because 'drop their heaviest water first' is literally an amount statement, so a solver with genuine isotope knowledge will feel the pull. It fails on location and on the argument's shape: A places the signal in the basin's own seasons ('how much rain fell in the seasons when the leaves grew'), whereas Text 2's entire claim is that the basin's local conditions are irrelevant - 'whatever the ground beneath it is doing' - and that the signal was set upwind before the air arrived. Choosing A would have Text 2 substitute one local proxy for another, which is the opposite of its move. B (temperature) and D (post-burial exposure/evaporation) are likewise real isotope effects and therefore strong distractors; neither is raised by Text 2. The fact that all four options name genuine effects is what protects this item from the knowledge channel: subject knowledge alone cannot choose among them, only Text 2's mountain-front mechanism can.",
+    "flagged_risk_verdict": "CS10-17: dispute the worry - the rainfall-amount distractor is more attractive after the repair, which is a gain in distractor strength, but it is not defensible; it locates the signal at the basin, which Text 2 explicitly rules out."
+  }
+}

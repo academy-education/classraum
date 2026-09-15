@@ -1,0 +1,53 @@
+[
+ {
+  "id": "CS10-05",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "Agricultural terraces cut into steep Andean slopes are usually explained as a defense against erosion, and they do hold soil in place. But erosion control asks only for a wall and packed earth behind it, and excavation of the fill finds more: beneath the topsoil lie graded beds of gravel and coarse sand hauled up from riverbeds far below. Ground opened into that fill is workable two days after a storm that leaves the unterraced slope beside it saturated for a week, and maize sown in it comes up a fortnight earlier. The river gravel was the costliest load the builders carried.",
+  "prompt": "Which choice best states the main purpose of the text?",
+  "choices": [
+   "To argue that the terraces' buried gravel beds were laid to keep topsoil from washing out through the walls",
+   "To argue that the terraces' buried gravel beds were laid to store rainwater and release it in dry months",
+   "To argue that the terraces' buried gravel beds were laid to protect the walls from heave when soil freezes",
+   "To argue that the terraces' buried gravel beds were laid to drain water quickly and let the root zone warm"
+  ],
+  "correct_answer": "To argue that the terraces' buried gravel beds were laid to drain water quickly and let the root zone warm",
+  "explanation": "The passage sets up the erosion account, reports the imported beds it does not predict, and states their effect directly — \"Such beds drain water quickly and let the root zone warm\" — before concluding that the hauling makes sense only as management of \"moisture and temperature.\" \"laid to keep topsoil from washing out through the walls\" fails because that is the erosion function the passage says the beds go beyond, and the beds sit beneath the topsoil rather than at the wall face. \"laid to store rainwater and release it in dry months\" contradicts the stated effect, which is rapid drainage rather than retention. \"laid to protect the walls from heave when soil freezes\" fails because freezing is never mentioned and the passage assigns the beds an effect on the root zone, not on the masonry.",
+  "topic_tag": "archaeology",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-12",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "passage": "Text 1\nCorrespondence among northern merchant firms is dense with assurances of friendship and almost silent about interest and terms. Historians have read that reticence as evidence that these firms worked on personal trust rather than formal credit, and that kinship, not contract, carried the risk of long-distance trade.\n\nText 2\nThe same letters cite, by date and seal, a written instrument fixing the sums, the repayment dates, and the penalties for default. No such instrument survives in either firm's archive; when a repayment was disputed in 1438, both houses sent to one and the same chest for a copy and were told it had burned. The letters' reticence records a division of archives, not an absence of terms.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the reading described in Text 1?",
+  "choices": [
+   "By pointing out that the terms missing from the letters were set down in sealed instruments held by a third party",
+   "By pointing out that the terms missing from the letters were settled by word of mouth before each new voyage began",
+   "By pointing out that the terms missing from the letters were entered instead in ledgers each firm kept privately",
+   "By pointing out that the terms missing from the letters were fixed by a custom so familiar nobody wrote it down"
+  ],
+  "correct_answer": "By pointing out that the terms missing from the letters were set down in sealed instruments held by a third party",
+  "explanation": "Text 2 reports sealed instruments \"deposited with the town council\" that fixed \"the sums, the repayment dates, and the penalties for default,\" so the silence marks a division of records, not an absence of credit — \"set down in sealed instruments held by a third party.\" \"settled by word of mouth before each new voyage began\" fails because Text 2's terms are written and sealed. \"entered instead in ledgers each firm kept privately\" fails because the instruments are deposited outside the firms, which is what makes their loss explicable. \"fixed by a custom so familiar nobody wrote it down\" contradicts Text 2, whose whole point is that the terms were written and survive only rarely.",
+  "topic_tag": "medieval commerce",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-17",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "passage": "Text 1\nLeaf fossils from plateau basins carry oxygen isotope ratios matching those of precipitation that falls at high elevation, and such assemblages appear by roughly forty million years ago. The plateau is accordingly reconstructed as having stood near its present height long before the monsoon intensified.\n\nText 2\nStorms crossing a mountain front drop their heaviest water first, so the rain reaching the country beyond arrives already stripped, whatever the ground beneath it is doing. Modern basins lying low behind young ranges return ratios indistinguishable from those of genuinely high terrain. The fossils date the rise of the ranges upwind; the basin's own height they leave open.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the reconstruction offered in Text 1?",
+  "choices": [
+   "By asserting that the isotope ratios also record how much rain fell in the seasons when the leaves grew",
+   "By asserting that the isotope ratios also record how warm the basin was when the leaves were buried",
+   "By asserting that the isotope ratios also record how far inland the air carrying the rain had traveled",
+   "By asserting that the isotope ratios also record how long the leaves lay exposed on the surface first"
+  ],
+  "correct_answer": "By asserting that the isotope ratios also record how far inland the air carrying the rain had traveled",
+  "explanation": "Text 2 opens with the confound it needs: the ratios \"record not only elevation but the distance the air has traveled inland,\" so a low basin behind new ranges can carry a high-elevation signature — \"how far inland the air carrying the rain had traveled.\" \"how much rain fell in the seasons when the leaves grew\" fails because Text 2 raises rainfall's path, not its amount. \"how warm the basin was when the leaves were buried\" fails because temperature at burial appears nowhere in either text. \"how long the leaves lay exposed on the surface first\" fails because Text 2 treats the fossils as faithful recorders of the rain that fell on them and disputes only what that rain indicates.",
+  "topic_tag": "geology",
+  "difficulty": "medium"
+ }
+]
