@@ -180,6 +180,33 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-09-15** — **THE 150 HELD ACT ENGLISH ITEMS BUY ZERO FORMS, NOT THREE, AND THE GATE THAT SAYS SO IS A STRUCTURAL ONE NO SCORE COULD REACH.** I recommended inserting `v4r`/`v5r2`/`v6r2` on the arithmetic that they take ACT English from 2 forms to 5 for no authoring. Andy approved. Before writing I checked what the insert actually required, and the recommendation did not survive it.
+
+  **FIRST: "all three files are gated" was wrong — one stage of five had been run.** `nosource` only. `withsource` and `elimination` had never been run on any of the three. The original `v4` did pass a with-source panel, but these are repairs that REWROTE DISTRACTORS, and by AUTHORING-BRIEF §10 an option-changing repair voids that panel — key exclusivity is a property of the option set. `v5`/`v6` never had a ledger entry at all. So **100 of the 150 items had never had their keys checked by anyone reading the passage**, and the batch had been cleared by the half of the gate that failed to separate five consecutive batches this week while the half that finds real defects was skipped. The QC gate refused all three, correctly, and the refusal was not bookkeeping.
+
+  **THE PANEL, RUN 3x3 OVER ALL 150.** Every grader reported an unchanged render sha at both ends and a denominator of 50 of 50.
+
+        file    key agreement    second_defensible    difficulty (votes)      ACCEPT
+        v4r     150/150 = 100%   2-6 of 50            easy 58 / med 83 / hard  9   24/50
+        v5r2    150/150 = 100%   7 of 50 (x3)         easy 50 / med 82 / hard 18   26/50
+        v6r2    143/150 = 95.3%  6-7 of 50            easy 42 / med 93 / hard 15   26/50
+
+  **76 of 150 survive. Exactly half are dropped**, overwhelmingly on two grounds: unanimous-easy, and a second defensible answer. `ACT-EN6-P5-Q08` is outright **MIS-KEYED** — all three graders independently picked Point D against a key of Point A — which no options-only run could ever have found.
+
+  **THEN THE FINDING THAT ENDS IT.** An ACT English passage is a fixed structure of exactly ten items; the inserter refuses partial groups because *"a passage with nine English items is not 90% usable, it is a passage the assembler will never draw."* Survivors per passage:
+
+        v4r    P1 4/10  P2 4/10  P3 5/10  P4 5/10  P5 6/10     intact 0 of 5
+        v5r2   P1 4/10  P2 4/10  P3 8/10  P4 6/10  P5 4/10     intact 0 of 5
+        v6r2   P1 5/10  P2 6/10  P3 4/10  P4 6/10  P5 5/10     intact 0 of 5
+
+  **Zero of fifteen passages survive whole. The insertable count is 0.** A 50.7% item survival rate spread evenly across fifteen groups leaves no group intact — and it is worth seeing why that was predictable: independent drops at ~49% make an intact group of ten a (0.507)^10 event, about 1 in 900. **A per-item acceptance rate is not a yield when the unit of insertion is a group.** Every previous batch in this register was item-insertable, so the distinction never arose and I did the arithmetic on items without noticing the unit had changed. `next-form.mjs` has the same blind spot from the other end: it counts a deficit in ITEMS for a section whose supply comes in TENS.
+
+  **WHY THE BLIND HALF SAW NONE OF THIS, AND IT IS A FACT ABOUT THE FORMAT.** Two graders independently measured how many items are answerable from stem and options alone: **35 of 50 and 41 of 50.** The cause is structural — this render QUOTES THE TARGET SPAN INTO THE STEM rather than underlining it in situ, so the stem carries its own context and the passage is decorative for roughly three-quarters of a form. One put it exactly: *"An options-only attack structurally cannot see this, because the span lives in the stem."* **`nosource` is the wrong instrument for ACT English and its 76% was never evidence about these items.** This applies to the 150 items ALREADY LIVE, not only the candidates.
+
+  **AND A POSITIONAL ALARM RAISED AND DISPOSED OF FOR THE SECOND TIME.** Three graders independently called the key-slot spread the top pre-insert issue — `v4r` keys 58% to B (92% across its Conventions items), `v6r2` 48%, with the sequence `BBBAB` repeated across three passages. All of it is **unreachable**: measured over 1,200 draws, an authored key at slot B lands B 32.3% / C 34.8% / D 32.8%, because `shuffleDrawnChoices` re-deals everything except a pinned `No Change` (break-tested: without the No Change token the spread is a flat 25/25/25/25). The graders were reading authored order; the bank never serves authored order. The register recorded this same rescue for `v4r` once already — *"what saves it, and it is not my diligence"*. **A cross-item positional tell in an ACT English file is not a defect and should stop being reported as one; the draw is the guard.** What the draw cannot touch is everything content-based, and that is where all 74 drops live.
+
+  **DISPOSITION: the three files stay held, and "insert the survivors" is not available.** Shipping any part of this needs a passage repaired to 10 of 10, not a batch filtered to its best items. → **A21**
+
 - **2026-09-15** — **ACT SCIENCE IS ONE HUMAN SITTING FROM BEING A WHOLE NEW SECTION, AND THE COMMENT HIDING IT SAYS THE OPPOSITE.** Chased because `next-form.mjs` ranked it cheapest; the interesting part is not the 2-item deficit but what was behind the gate. `topic/[slug]/page.tsx` hid `act-science` on 2026-09-03 with the reason *"has no bank yet — `assembleActSection` throws 'no verified items' for it… Hide both until they have items."* **The bank now holds 120 verified Science items and two complete forms.** The condition the comment names as its own unhide trigger has been satisfied for some time and nobody checked back — so the comment does not merely go stale, it points a reader at the wrong action: count the items, see 120, unhide an ungated section. *A comment asserting an invariant is not evidence the invariant holds* — this is the same rule applied to a comment asserting a **blocker**, and the failure mode is worse, because a stale blocker invites the unsafe move rather than forbidding it.
 
   **THE REAL BLOCKER, AND IT REFRAMES THE SECTION.** Both Science batches carry `nosource=FAIL` in the ledger, which reads like disqualifying content until the verdict is read rather than the flag: 71.3%, and the entry's own words are *"Recorded as FAIL against the family bar; **not the gate for this family**."*
