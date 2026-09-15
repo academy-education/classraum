@@ -26,6 +26,22 @@
  */
 import { readFileSync } from 'node:fs'
 import { createClient } from '@supabase/supabase-js'
+
+/* REFUSES AN ARGUMENT — added 2026-09-15, after an author handed this a
+ * candidate batch path and got back confident LIVE BANK numbers that read
+ * as a verdict on their file. This tool measures the whole shipped
+ * population on purpose; it has no file mode. CLAUDE.md: "a check that
+ * cannot process its input exits non-zero. It never returns a number, and
+ * never falls back to a default input." Silently ignoring argv IS falling
+ * back to a default input. Two checkers had this hole; six others were
+ * found with the same shape on 2026-09-04. */
+if (process.argv.length > 2) {
+  console.error('REFUSING: ' + process.argv[1].split('/').pop() + ' is a WHOLE-POPULATION checker over the live bank and takes no arguments.')
+  console.error('  You passed: ' + process.argv.slice(2).join(' '))
+  console.error('  It cannot measure a candidate batch. Nothing it prints would describe your file.')
+  process.exit(2)
+}
+
 const env=Object.fromEntries(readFileSync('.env.local','utf8').split('\n').filter(l=>l.includes('=')&&!l.startsWith('#')).map(l=>[l.slice(0,l.indexOf('=')),l.slice(l.indexOf('=')+1).trim()]))
 const db=createClient(env.NEXT_PUBLIC_SUPABASE_URL,env.SUPABASE_SERVICE_ROLE_KEY,{auth:{persistSession:false}})
 

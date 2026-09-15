@@ -217,8 +217,51 @@ async function main() {
     process.stdout.write(renderBlind(batch, { labelled: mode === 'labelled' }))
     return
   }
+  /* `check` — ADDED 2026-09-15. It did not exist, and an authoring brief
+   * told an author to run it; they got `usage:` and exit 1. That is the
+   * benign version of the failure, because it was loud. The same brief also
+   * pointed at two whole-population checkers that silently ignored the file
+   * path and printed live-bank numbers as though they described the batch.
+   * A shape gate the author can run BEFORE the panel is cheap and was the
+   * one thing missing between `blind` and `insert`, so it exists now rather
+   * than being removed from the brief. It asserts nothing about quality —
+   * only that the batch is well-formed enough to be gradeable. */
+  if (cmd === 'check') {
+    if (!batchPath) { console.error('usage: bank-helper.mjs check <batch.json>'); process.exit(2) }
+    let batch
+    try { batch = JSON.parse(readFileSync(batchPath, 'utf8')) } catch (e) {
+      console.error(`REFUSING: cannot read ${batchPath}: ${e.message}`); process.exit(2) }
+    if (!Array.isArray(batch) || !batch.length) {
+      console.error(`REFUSING: ${batchPath} is not a non-empty batch array`); process.exit(2) }
+    const bad = []
+    const seenId = new Set()
+    for (const it of batch) {
+      const why = []
+      if (!it.id) why.push('no id')
+      else if (seenId.has(it.id)) why.push('duplicate id')
+      else seenId.add(it.id)
+      if (!shapeOk(it)) {
+        if (!it.prompt) why.push('no prompt')
+        if (!Array.isArray(it.choices) || it.choices.length !== 4) why.push(`${Array.isArray(it.choices) ? it.choices.length : 0} choices, need 4`)
+        else if (!it.choices.includes(it.correct_answer)) why.push('correct_answer not verbatim among choices')
+        else if (new Set(it.choices.map(c => String(c).trim())).size !== 4) why.push('duplicate options')
+      }
+      if (!it.domain) why.push('no domain')
+      if (!it.difficulty) why.push('no difficulty')
+      if (why.length) bad.push(`${it.id ?? '(no id)'}: ${why.join('; ')}`)
+    }
+    const by = (f) => { const m = {}; for (const it of batch) m[it[f] ?? '(none)'] = (m[it[f] ?? '(none)'] ?? 0) + 1; return m }
+    console.log(`${batch.length} items in ${batchPath.split('/').pop()}`)
+    console.log(`  domain:     ${JSON.stringify(by('domain'))}`)
+    console.log(`  subskill:   ${JSON.stringify(by('subskill'))}`)
+    console.log(`  difficulty: ${JSON.stringify(by('difficulty'))}`)
+    if (bad.length) { console.error(`\nSHAPE FAILURES (${bad.length}):`); for (const b of bad) console.error('  ' + b); process.exit(2) }
+    console.log('\nshape OK — this says NOTHING about quality; the panel and the attack are the gate')
+    return
+  }
+
   if (cmd !== 'insert' || !batchPath || !qcPath) {
-    console.error('usage: bank-helper.mjs blind <batch.json>\n       bank-helper.mjs insert <batch.json> <qc.json>')
+    console.error('usage: bank-helper.mjs check  <batch.json>\n       bank-helper.mjs blind  <batch.json>\n       bank-helper.mjs insert <batch.json> <qc.json>')
     process.exit(1)
   }
 
