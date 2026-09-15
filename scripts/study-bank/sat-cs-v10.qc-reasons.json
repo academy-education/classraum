@@ -1,121 +1,189 @@
 {
  "CS10-01": {
-  "key_votes": 0,
+  "ok": false,
+  "key_votes": 3,
+  "picks": "AAA",
   "difficulty": "medium",
   "distractor_quality": "plausible",
   "passage_needed": false,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": [
+   "majority say answerable without the passage"
+  ]
  },
  "CS10-02": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "BBB",
   "difficulty": "medium",
   "distractor_quality": "strong",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  },
  "CS10-03": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "CCC",
   "difficulty": "medium",
   "distractor_quality": "strong",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  },
  "CS10-04": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "CCC",
   "difficulty": "medium",
   "distractor_quality": "plausible",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  },
  "CS10-05": {
-  "key_votes": 0,
+  "ok": false,
+  "key_votes": 3,
+  "picks": "DDD",
   "difficulty": "easy",
   "distractor_quality": "plausible",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": [
+   "majority easy"
+  ]
  },
  "CS10-06": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "CCC",
   "difficulty": "hard",
   "distractor_quality": "strong",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  },
  "CS10-07": {
-  "key_votes": 0,
+  "ok": false,
+  "key_votes": 3,
+  "picks": "DDD",
   "difficulty": "medium",
   "distractor_quality": "weak",
   "passage_needed": false,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": [
+   "majority weak distractors",
+   "majority say answerable without the passage"
+  ]
  },
  "CS10-08": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "BBB",
   "difficulty": "medium",
   "distractor_quality": "strong",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  },
  "CS10-09": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "DDD",
   "difficulty": "medium",
   "distractor_quality": "strong",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  },
  "CS10-10": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "CCC",
   "difficulty": "medium",
   "distractor_quality": "strong",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  },
  "CS10-11": {
-  "key_votes": 0,
+  "ok": false,
+  "key_votes": 3,
+  "picks": "BBB",
   "difficulty": "easy",
   "distractor_quality": "strong",
   "passage_needed": false,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": [
+   "majority easy",
+   "majority say answerable without the passage"
+  ]
  },
  "CS10-12": {
-  "key_votes": 0,
+  "ok": false,
+  "key_votes": 3,
+  "picks": "AAA",
   "difficulty": "easy",
   "distractor_quality": "plausible",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": [
+   "majority easy"
+  ]
  },
  "CS10-13": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "AAA",
   "difficulty": "medium",
   "distractor_quality": "strong",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  },
  "CS10-14": {
-  "key_votes": 0,
+  "ok": false,
+  "key_votes": 3,
+  "picks": "DDD",
   "difficulty": "easy",
   "distractor_quality": "plausible",
   "passage_needed": false,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": [
+   "majority easy",
+   "majority say answerable without the passage"
+  ]
  },
  "CS10-16": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "AAA",
   "difficulty": "hard",
   "distractor_quality": "strong",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  },
  "CS10-17": {
-  "key_votes": 0,
+  "ok": false,
+  "key_votes": 3,
+  "picks": "CCC",
   "difficulty": "easy",
   "distractor_quality": "plausible",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": [
+   "majority easy"
+  ]
  },
  "CS10-18": {
+  "ok": true,
   "key_votes": 3,
+  "picks": "DDD",
   "difficulty": "medium",
   "distractor_quality": "plausible",
   "passage_needed": true,
-  "resolves_after_blank": false
+  "resolves_after_blank": false,
+  "why": []
  }
 }

@@ -2276,3 +2276,33 @@ structural checks are pre-flight only. See CLAUDE.md.
   Then the replacement **reconstructed k and n from a rounded rate** (`round(25.9 × 27/100/3)`) and tested **2 of 9** when the data was **7 of 27**, printing "inconclusive" over numbers that were not the data. Fixed by passing the raw counts through instead of deriving them. Both failures were mine and both are the same shape as everything else recorded here: a check that could not read its input, reporting confidently anyway.
 
   The scorer also refused solvers B and C outright because they wrote the letter under `answer` where it expected `pick`, and **its refusal said they had "skipped" all 20 items**. Refusing was right; naming the wrong cause was not — a message that misnames the cause sends the next reader to re-run an agent that already did the work. It now reads any of four field names and, when it cannot, says what it could not read rather than guessing why.
+
+- **2026-09-16** — **`sat-cs-v10` BANKED 10 OF 17, AND THE STAGE THAT CUT IT ASKED THE OPPOSITE QUESTION FROM THE FOUR BEFORE IT.** SAT R&W Craft and Structure 214 → 224. Form 15 is now **one item away**.
+
+  **THE INSERT REFUSED TWICE AND I HAD BEEN RUNNING THE WRONG GATE.** Four stages of evidence had been assembled — an options-only attack, a matched live control, an elimination reader, a tells scan — and every one of them asks *does this batch leak?* The R&W acceptance rule asks something else entirely:
+
+        key_votes >= 2                    (>= 2 of 3 blind solvers hit the key)
+        AND difficulty in {hard, medium}
+        AND distractor_quality in {plausible, strong}
+        AND (passage_needed OR domain == 'Standard English Conventions')
+
+  Those come from a **with-passage** panel that solves the item and then grades it. The author's model key-grade (18/18 on two runs) is not that instrument and produces none of those fields. `bank-helper` knew the difference and I did not.
+
+  **THE WITH-PASSAGE PANEL DROPPED 7 OF 17 FOR REASONS THE BLIND STAGES STRUCTURALLY CANNOT SEE**, and the split is the finding:
+
+        CS10-05, CS10-12, CS10-17          majority EASY
+        CS10-11, CS10-14                   majority easy AND answerable without the passage
+        CS10-01                            answerable without the passage
+        CS10-07                            weak distractors AND answerable without the passage
+
+  **Four went for being too EASY, after four stages asking whether they were too leaky.** The diagnosis is the same from all three solvers: *"the key paraphrases or lifts a single stated sentence"* — CS10-05's key is nearly verbatim. **An options-only attack has the passage HIDDEN, so it cannot possibly detect that the key restates a sentence in it.** The batch is genuinely hard to solve *without* the passage (55.6% against a 94.4% bank) and partly trivial *with* it. Those are opposite failure modes and only this stage sees the second.
+
+  **ALL THREE SOLVERS PICKED THE SAME 17 ANSWERS, IDENTICALLY** — 3/3 key votes on every item, no `second_defensible` flag anywhere, no key disputed. Two of them examined the same two near-misses (`CS10-06 D`, `CS10-07 C`) and withheld the flag with the reading named, which is how a flag should be withheld. **Correctness was never this batch's problem.**
+
+  **The recall channel is confirmed from the opposite direction.** The blind attack found the residual 55.6% was almost entirely subject recognition; the with-passage panel independently marked `passage_needed: false` on `CS10-01`, `07`, `11` and `14` — Roman marine concrete, the nocturnal heat island, the cephalopod dumbbell pupil, Neanderthal manganese dioxide. Solver C's conclusion: *"these three are the batch's residual leak, and it is not fixable by rewriting options — the topics themselves are recognisable."* Two instruments of opposite design, same diagnosis.
+
+  **`CS10-07` was condemned by three independent instruments**: the elimination reader found its option A backwards as physics, and both QC solvers who reached it confirmed that unprompted and graded the item `weak` — *"effectively a two-option item for a prepared student."*
+
+  **And solver B named the inverse pattern, which is the authoring rule worth keeping**: `CS10-08`, `13` and `17` build distractors that are **true in the real world** (reversion and carbon costs of tolerant symbionts; the amount effect and the temperature effect on isotope ratios), so domain knowledge makes the *distractors* more attractive rather than handing over the key. That is the fix for the recall channel — not rewriting options, but choosing distractors the knowledgeable reader is drawn to.
+
+  One reporting defect: the refusal printed `key_votes NaN<2` seventeen times. **`NaN` is a missing field, not a contested key**, and the message reads as "your solvers disagreed" when the truth is "your qc file has no such field" — which sends the next reader to re-run a panel instead of writing one.

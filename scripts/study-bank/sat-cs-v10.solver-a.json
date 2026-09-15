@@ -1,0 +1,52 @@
+{
+  "CS10-01": {"pick": "A", "second_defensible": false, "difficulty": "medium", "distractor_quality": "plausible", "passage_needed": false,
+    "note": "Passage: seawater dissolved ash particles and grew crystals for centuries; the material 'required' seawater. A is the only option consistent with that, and B (weakened), C (surface shield), D (finished at curing) each invert a stated clause, so they are real misreadings. passage_needed FALSE for the recall reason named in the brief: the Roman marine-mortar result is widely reported pop science, and a solver who knows it picks A off the option set alone - D even restates the modern-concrete property the passage assigns to portland cement, so it self-eliminates for that solver."},
+
+  "CS10-02": {"pick": "B", "second_defensible": false, "difficulty": "medium", "distractor_quality": "strong", "passage_needed": true,
+    "note": "Stated: shallow cores yield FEWER layers because waves rework the uppermost couplets. A inverts the direction (extra couplets laid in deep water), C substitutes a counting artifact for a physical one, D substitutes compaction - all three are misreadings a student actually makes, and A is the exact converse, so nothing is rejectable from the options."},
+
+  "CS10-03": {"pick": "C", "second_defensible": false, "difficulty": "medium", "distractor_quality": "strong", "passage_needed": true,
+    "note": "Sales figures 'governed how many pages a number ran, not which characters survived it' - length yes, plot no. A is the clean inversion; D is a plausible-sounding mechanism the text never asserts (it says chapters were drafted several numbers in advance, not that feedback arrived post-typesetting). The A/C inversion pair is what keeps the option set from deciding itself."},
+
+  "CS10-04": {"pick": "C", "second_defensible": false, "difficulty": "easy", "distractor_quality": "strong", "passage_needed": true,
+    "note": "Final sentence: experienced recruits ignore the dance and go to their remembered patch. A is the strongest distractor because it accurately describes the THIRD sentence - a student who answers 'what does the text say' instead of 'what does the final sentence do' lands there. Easy only because the sentence is short and self-contained."},
+
+  "CS10-05": {"pick": "D", "second_defensible": false, "difficulty": "easy", "distractor_quality": "plausible", "passage_needed": true,
+    "note": "D paraphrases the passage's own penultimate sentence ('drain water quickly and let the root zone warm'), which is why it is easy. A attaches the gravel to the erosion account the passage is displacing, B is the natural 'gravel = water storage' inversion of drainage, C imports a freeze-heave engineering rationale. Plausible rather than strong because D's near-verbatim restatement makes the match findable without weighing the distractors."},
+
+  "CS10-06": {"pick": "C", "second_defensible": false, "difficulty": "hard", "distractor_quality": "strong", "passage_needed": true,
+    "note": "The finding (short lines cluster by scribal stint; one hand supplies a third of them in a shared poem) undercuts the CRITICS' device-marking-speech claim, and the closing sentence says so directly. Considered and rejected D: the survey sorts 'by copyist RATHER THAN by passage', so it measures nothing about direct-speech passages and cannot ground doubt about their distribution - close, but not defensible. A is the other serious trap: the finding supports the emendation practice rather than doubting it, and 'restored on internal evidence' is a claim the text never engages. Hard by the real module-2 standard: it requires holding two opposed positions and tracking which one the evidence lands on."},
+
+  "CS10-07": {"pick": "D", "second_defensible": false, "difficulty": "medium", "distractor_quality": "weak", "passage_needed": false,
+    "note": "CONFIRMING the elimination stage on option A: it is backwards both as physics and against the passage - overcast/windy nights read 'within half a degree', the gap reaches six on calm CLEAR nights, because the nocturnal UHI depends on radiative cooling that cloud suppresses at the rural site. A is rejectable without reading the passage by anyone who has met the effect, so distractor_quality is WEAK by the stated rule. C is the honest trap (after-sunset concentration diluted by a daily average) but the text says the difference is uneven 'through the year', never that daytime differences are small, so C is not defensible as the main purpose. passage_needed FALSE: 'calm, clear nights' is the textbook answer, so subject recall reaches D directly."},
+
+  "CS10-08": {"pick": "B", "second_defensible": false, "difficulty": "medium", "distractor_quality": "strong", "passage_needed": true,
+    "note": "'Accurate names travel easily in oral transmission; procedural detail does not' - genealogies inherited, disputes composed. The four options are the permutations of two slots, so the option set alone cannot discriminate and every wrong one corresponds to a specific mis-assignment. Good construction; this is the item in the batch least exposed to recall."},
+
+  "CS10-09": {"pick": "D", "second_defensible": false, "difficulty": "easy", "distractor_quality": "plausible", "passage_needed": true,
+    "note": "'The color curve, and not the total energy released, is what identified the debris' - the rate of reddening. B is pre-refuted in the same sentence and C is the abandoned nickel expectation, which makes both weak-ish once the passage is read; A (delay before the glow) is a clean invention. Recall risk is real for an astronomy-aware solver (the 2017 red kilonova / lanthanide opacity story) but the specific structural slot - what SETTLED the interpretation - still needs the text, so passage_needed stays true."},
+
+  "CS10-10": {"pick": "C", "second_defensible": false, "difficulty": "medium", "distractor_quality": "strong", "passage_needed": true,
+    "note": "Cash deposit plus a landowning guarantor; migrants came from the middle of the local distribution; 'destitution ... kept them off it'. A overshoots to the top of the distribution (the text says middle, not richest), D is a genuinely attractive agrarian-labor rationale the text never gives, B invents a chain-migration mechanism. Nothing rejectable cold."},
+
+  "CS10-11": {"pick": "B", "second_defensible": false, "difficulty": "easy", "distractor_quality": "strong", "passage_needed": true,
+    "note": "Text 2's mechanism is the dumbbell pupil spreading wavelengths to different focal depths. The distractors are the three OTHER real single-photoreceptor / color-recovery mechanisms in the literature - layered retinae, oil droplets, a swept filter (stomatopod-style) - so a solver who knows the field is actively pulled off B rather than toward it. That is the right way to build this item."},
+
+  "CS10-12": {"pick": "A", "second_defensible": false, "difficulty": "easy", "distractor_quality": "plausible", "passage_needed": true,
+    "note": "Sealed instruments deposited with the town council = a third party; they fixed sums, dates, penalties. D is the strongest distractor because it preserves Text 1's informality while explaining the silence, and B is the oral-agreement variant. Plausible rather than strong because A is close to a restatement of Text 2's second sentence."},
+
+  "CS10-13": {"pick": "A", "second_defensible": false, "difficulty": "easy", "distractor_quality": "strong", "passage_needed": true,
+    "note": "Text 2 is a growth/fecundity cost that decides space on storm-scoured reefs. B, C and D are all real, documented symbiont costs (seasonal reversion, reduced carbon translocation, slow post-bleaching regrowth) - each is a cost a student who half-remembers the biology will accept, and only the passage names which one Text 2 argues. Strong set."},
+
+  "CS10-14": {"pick": "D", "second_defensible": false, "difficulty": "easy", "distractor_quality": "plausible", "passage_needed": true,
+    "note": "Text 2: MnO2 lowers wood's ignition temperature and dusted tinder caught from sparks. B concedes Text 1's pigment reading and is the natural trap; A and C are inventions with no purchase in either text, which is why this is plausible rather than strong. Some recall exposure (the fire-making interpretation of Neanderthal manganese is a known result), but the option set does not hand it over."},
+
+  "CS10-16": {"pick": "A", "second_defensible": false, "difficulty": "hard", "distractor_quality": "strong", "passage_needed": true,
+    "note": "Text 2: where ONE substrate dominated, the creole reproduces that language's marker order; where many were mixed, it settles on Text 1's template - 'it surfaces where the inherited options conflict'. Conflict = the substrates disagreed, so A. B is the exact inversion and is the item's whole difficulty: a solver who reads 'converge' in Text 1 and 'agreed' in B pattern-matches straight into it. Hard - the mapping from 'options conflict' to 'substrates disagreed' is one inferential step the text supports without stating in those words."},
+
+  "CS10-17": {"pick": "C", "second_defensible": false, "difficulty": "easy", "distractor_quality": "plausible", "passage_needed": true,
+    "note": "Text 2's entire point is the continental/rainout distance term confounding the elevation signature. A (rainfall amount) is the one distractor that is genuinely true of oxygen isotopes in rainfall and so is a real trap for a knowledgeable student; B and D are weaker inventions, which holds the set at plausible."},
+
+  "CS10-18": {"pick": "D", "second_defensible": false, "difficulty": "medium", "distractor_quality": "plausible", "passage_needed": true,
+    "note": "Text 2: the emblem books 'belonged to a narrow clerical readership', and the pictures were bought by householders who did not own them. D states exactly that mismatch. A is the strongest distractor - Latin emblem books are a real thing and 'few buyers could read it' is a different barrier the text never raises; B and C are inventions. Medium because the answer requires joining two separate sentences of Text 2 rather than reading one."}
+}
