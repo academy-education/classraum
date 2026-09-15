@@ -706,3 +706,45 @@ model for when to stop:
 
 **A held item is a better outcome than a silently different one.** If repairing
 means changing what the item tests, say so and leave it held.
+
+## 11. If your section ships in PASSAGE GROUPS, the per-item bar is higher
+
+Added 2026-09-15, from a batch that cost three files and bought nothing.
+
+Some sections accept items. Some accept only whole passages, and the
+inserter refuses a partial group by design — `act-bank-helper.mjs`:
+*"a passage with nine English items is not 90% usable, it is a passage the
+assembler will never draw."*
+
+    ACT English    passages of exactly 10
+    ACT Reading    passages of exactly 9
+    ACT Science    passages of 5-6 (published range)
+    SAT (both), ACT Math    standalone items — this section does not apply
+
+**A per-item acceptance rate is not a yield when the unit of insertion is a
+group.** A with-source panel over 150 held ACT English items accepted 76 —
+50.7%, which reads like half a win. It left **0 of 15 passages intact** and
+the insertable count was zero. That was arithmetic, not bad luck: at a ~49%
+drop rate an intact group of ten is `0.507^10`, about **1 in 900**. The
+yield was knowable before any grader ran, and nobody computed it because
+the deficit had been quoted in items.
+
+What this means when you are the author:
+
+1. **Author whole passages, never "N items in domain X".** One passage
+   carries a fixed domain mix, so a per-domain deficit cannot be bought one
+   domain at a time. Ask `next-form.mjs` for the whole-passage cost; it now
+   prints it for grouped sections.
+2. **Every item in a group must clear the gate, so hold each to the bar you
+   would normally apply to your best.** One unanimous-easy item, or one
+   second-defensible answer, discards the other nine. There is no partial
+   credit and no salvage pass.
+3. **Do not plan a group around a marginal item.** In an ungrouped section a
+   doubtful item costs itself; here it costs ten. If you are unsure about
+   one, replace it before submitting rather than letting the panel decide.
+4. **Expect to author more groups than you need.** If your per-item pass
+   rate is p, a group of n survives at `p^n`. At p = 0.9, ten items survive
+   35% of the time. Plan for that, and say so in the brief you write back.
+
+The general rule, which outlives ACT English: **a deficit is only spendable
+in the unit the inserter accepts.** Check the unit before you count.
