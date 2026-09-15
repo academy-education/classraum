@@ -2195,3 +2195,22 @@ structural checks are pre-flight only. See CLAUDE.md.
   **What this licenses and what it does not.** It licenses *no* archive decision and *no* rewrite programme — that is the mistake the SAT Math hub backlog nearly made at scale, where "bank-wide 64.4%" turned out to be one cohort at 98.3% and 730 items at 8.0%. It does license treating a 94.4% model reading as evidence that *something* is there, since the human number is on the same side of chance rather than the opposite side.
 
   **n = 34 across four sittings that were never designed to ask this.** It is enough to say "not at chance" and not enough to size it. **The measurement that would settle it is a purpose-drawn human sitting on Craft and Structure**, the way `actrd-recall-2026-09-14` was drawn for ACT Reading — and the co-founder already has one open run, so this queues behind it rather than competing with it.
+
+- **2026-09-16** — **TWELFTH PROXY: A LONE TYPOGRAPHICALLY ODD OPTION. REFUTED.** A `v16` solver spotted that one option among all 264 in the blind file used **U+2212 MINUS SIGN** where every other negative in the file used an ASCII hyphen — *"invisible to every value-based checker, visible to anything that diffs bytes"* — and correctly declined to use it, because its direction was unmeasured. It is measured now, over the whole live bank:
+
+        scorable                                   5,795
+        items with ANY non-ASCII option              293
+        items with exactly ONE odd option (the tell) 138
+        the odd one IS the key                    30/138 = 21.7%   vs 25.0%   z = -0.88
+
+  **Not predictive.** A solver picking the typographically odd option does slightly *worse* than chance. The shape is a rendering inconsistency, not a leak: 138 live items show a student one option set in mixed glyphs (`−2` beside `2`, `3`, `4`), which is a polish defect worth knowing about and not a reason to touch anything. Concentrated in `toefl/listening` 68, `sat/math` 28, `sat/reading_writing` 23. **Twelve proxies built, eleven refuted, one survives.**
+
+  The item that surfaced it is **live, cohort `v2`** — not this batch. `sat-math-v16-adv` has **zero** non-ASCII options.
+
+- **2026-09-16** — **A SOLVER'S CRITIQUE OF `check-math-hub` IS STRUCTURALLY RIGHT AND AIMED AT THE WRONG TOOL. Recorded so it does not propagate as a defect of a sound checker.** Solver B reported: *"0 of 66 items have a unique hub… on four arbitrary numbers, `a−b` and `a+b` relations are near-ubiquitous, so a hub detector that does not demand uniqueness will label 2–4 of the 4 options on 39 of 66 items — it then 'predicts' the key at roughly the rate at which it names most of the ballot."*
+
+  **The reasoning is exactly right, and it is the same shape as the geometric-chain refutation** — a channel whose apparent hit rate is manufactured by its own coverage, which is why that one needed a *constructed* control (87.1% against 75.0%, not against 25%). But it does not describe `check-math-hub.mjs`. That checker's `OPS` are **unary transforms of a single option** — negate, double, halve, square, sqrt, reciprocal, ±1, ×10, ÷10, complement to 90 or 180 — never a binary `a±b`. The solver tested with binary relations, which *are* near-ubiquitous, so **the coverage problem they correctly diagnosed is in their own instrument**. The checker additionally demands a hub reach **at least two** of the other three and reports items with no hub separately as unstructured.
+
+  The 98.3%-versus-8.0% SAT Math split is itself evidence the checker discriminates: a pure coverage artefact would score both populations alike, not one at 98.3% and 730 items at 8.0% against a 6.3% control.
+
+  **What the critique does establish, and it is worth keeping:** any hub-style number must be reported with its **uniqueness and coverage** stated, because a detector that names most of the ballot predicts the key at the rate it names it. The per-batch lines already do this badly — `2 structured of 24, key-is-hub 29.2%` needs the denominator read as *structured items*, not items.
