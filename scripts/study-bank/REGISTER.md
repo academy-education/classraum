@@ -2306,3 +2306,21 @@ structural checks are pre-flight only. See CLAUDE.md.
   **And solver B named the inverse pattern, which is the authoring rule worth keeping**: `CS10-08`, `13` and `17` build distractors that are **true in the real world** (reversion and carbon costs of tolerant symbionts; the amount effect and the temperature effect on isotope ratios), so domain knowledge makes the *distractors* more attractive rather than handing over the key. That is the fix for the recall channel — not rewriting options, but choosing distractors the knowledgeable reader is drawn to.
 
   One reporting defect: the refusal printed `key_votes NaN<2` seventeen times. **`NaN` is a missing field, not a contested key**, and the message reads as "your solvers disagreed" when the truth is "your qc file has no such field" — which sends the next reader to re-run a panel instead of writing one.
+
+- **2026-09-16** — **`key_votes` IS OVERLOADED AS A REJECTION FLAG, AND THE DOWNSTREAM MESSAGE THEN NAMES THE WRONG CAUSE. I nearly recorded a mis-keyed item that does not exist.** The insert printed:
+
+        REJECT idCS10-17 — key_votes 0<2 (contested/mis-keyed)
+
+  while the aggregator had dropped that item for *"majority easy"*. Those are different claims about the same item, so I chased it — and the first reading was alarming: **all three solvers picked C**, so if the author's key were not C, three independent solvers would be disputing it without knowing (each having reported "no key disputes", since none of them ever saw the key). That is the strongest mis-key signal the pipeline can produce.
+
+  **It is not that.** The author's key *is* C, all three agreed with it, and `key_votes` is 0 because `sec-qc-aggregate.mjs` writes 0 deliberately — its own header says so: *"any second_defensible flag or a listed drop id => excluded (recorded in the qc as key_votes 0 so the helper rejects it)."* The zero is a **rejection mechanism**, not a vote count. `bank-helper` then reads it as a vote count and prints **"contested/mis-keyed"** over an item whose key three solvers unanimously confirmed.
+
+  This is the same shape as `verify_meta.grader_difficulty` holding an author's label: **a field repurposed to carry a second meaning, with every downstream reader still believing the first one.** The check that saved it was comparing the solvers' picks against the batch rather than trusting either message — and the reasons file, which said "majority easy", was right all along while the louder message was wrong.
+
+  **Neither number is false; the pair of them cannot both be read literally.** The fix is for the aggregator to carry an explicit `excluded_because` and for the helper to print that when present, rather than inferring a cause from a sentinel. Recorded rather than changed here, because touching the shared aggregator mid-batch is how a gate stops gating.
+
+- **2026-09-16** — **THE THREE "EASY-ONLY" DROPS ARE THE CHEAPEST FORM ON THE BOARD, AND ONE OF THEM IS A STRONG ITEM WITH A ONE-SENTENCE DEFECT.** SAT R&W Craft and Structure sits at 224 against 225 for form 15 — **one item**. `CS10-05`, `CS10-12` and `CS10-17` were dropped for difficulty alone: they passed key votes 3/3, carried no `second_defensible` flag, and were judged `passage_needed: true` with `plausible` or `strong` distractors.
+
+  Solver B on `CS10-17`, which is the clearest case: *"A (amount of rainfall) and B (temperature) are both genuinely true of oxygen isotope ratios in precipitation — the amount effect and the temperature effect are standard — so this is the good case where real knowledge makes the distractors MORE attractive while only Text 2 fixes which factor is being pressed. **Easy only because Text 2 names it in the opening line**; a strong set."*
+
+  That is a **passage** defect, not an option defect — the text hands over the answer in its first sentence. The repair is to move the naming later or make it inferential, and it touches no option, so the option-set work that survived four blind stages is preserved intact. The same diagnosis covers the other two: *"the key paraphrases or lifts a single stated sentence."*
