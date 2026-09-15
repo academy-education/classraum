@@ -17,6 +17,21 @@
  * answer to "what should we author", whenever the margin to the next domain is
  * smaller than the batch. Ask this script instead, and read the TOTAL, not the
  * first row.
+ *
+ * SECOND DEFECT, 2026-09-15. This script printed
+ *
+ *     act/science — 2 complete forms now
+ *     CHEAPEST NEXT FORM: 2 items  ->  Interpretation of Data +2
+ *
+ * as the cheapest buy on the board by a factor of six, and it is worth nothing.
+ * `act-science` is in HIDDEN_SUBTOPIC_SLUGS: its 120 items are drawable by the
+ * assembler and no student can open the topic. A form bought there is a form
+ * nobody can sit. `bank-state.mjs` has printed that gate since it was written;
+ * this tool, the one an author actually asks "what should I write next", did
+ * not read it -- so the cheapest-looking row in its output was the one row that
+ * could not pay. The same arithmetic over a population the product does not
+ * serve is not a smaller number, it is not a number: an UNREACHABLE section is
+ * now excluded from the ranking and printed separately under its own heading.
  */
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
@@ -36,6 +51,20 @@ const shareErrors = assertShares()
 if (shareErrors.length) { for (const e of shareErrors) console.error('REFUSING: ' + e); process.exit(2) }
 const PER_FORM = Object.fromEntries(Object.keys(QUOTAS).map(k => [k, perForm(k)]))
 
+/* Reachability, read from the page that enforces it -- never repeated here,
+ * for the same reason the quotas are parsed rather than typed. */
+const PAGE = readFileSync('src/app/mobile/study/topic/[slug]/page.tsx', 'utf8')
+const grab = re => (PAGE.match(re)?.[1] ?? '').match(/'([^']+)'/g)?.map(x => x.slice(1, -1)) ?? []
+const HIDDEN = new Set(grab(/HIDDEN_SUBTOPIC_SLUGS = new Set\(\[([^\]]*)\]/))
+const LOCKED = new Set(grab(/LOCKED_TOPIC_SLUGS = new Set\(\[([\s\S]*?)\]\)/))
+if (!HIDDEN.size && !LOCKED.size) { console.error('REFUSING: parsed zero hidden subtopics AND zero locked topics from page.tsx — the gate moved or the regex did'); process.exit(2) }
+const unreachable = key => {
+  const [fam, sec] = key.split('/')
+  if (LOCKED.has(`test-${fam}`)) return `topic test-${fam} is LOCKED`
+  if (HIDDEN.has(`${fam}-${sec}`)) return `subtopic ${fam}-${sec} is HIDDEN from students`
+  return null
+}
+
 const want = process.argv.slice(2)
 const rows = []
 for (let f = 0; ; f += 1000) {
@@ -50,8 +79,11 @@ for (let f = 0; ; f += 1000) {
 const ids = new Set(rows.map(r => r.id))
 if (ids.size !== rows.length) { console.error('REFUSING: paging slipped (' + ids.size + ' distinct of ' + rows.length + ')'); process.exit(2) }
 
+const deferred = []
 for (const [key, quotas] of Object.entries(PER_FORM)) {
   if (want.length && !want.includes(key)) continue
+  const why = unreachable(key)
+  if (why && !want.includes(key)) { deferred.push([key, why]); continue }
   const [fam, sec] = key.split('/')
   const live = {}
   for (const r of rows) if (r.family === fam && r.section === sec) live[r.domain] = (live[r.domain] ?? 0) + 1
@@ -74,6 +106,13 @@ for (const [key, quotas] of Object.entries(PER_FORM)) {
   }
   console.log('  ' + '-'.repeat(70))
   console.log('  CHEAPEST NEXT FORM: ' + total + ' items' + (plan.length ? '  ->  ' + plan.join(', ') : ''))
+  if (why) console.log('  UNREACHABLE: ' + why + ' — these items buy a form no student can sit.')
   if (plan.length > 1) console.log('  NOTE: more than one domain is short. Authoring only the thinnest buys NOTHING.')
+}
+if (deferred.length) {
+  console.log('')
+  console.log('NOT RANKED — unreachable in the student UI, so a cheap deficit here is not a cheap form:')
+  for (const [k, why] of deferred) console.log('  ' + k.padEnd(16) + why)
+  console.log('  (pass the key explicitly to cost one anyway)')
 }
 console.log('')
