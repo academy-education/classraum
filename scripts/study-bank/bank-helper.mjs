@@ -393,6 +393,23 @@ async function main() {
         method: 'claude-authored+claude-qc', single_defensible: true, key_votes: q.key_votes,
         grader_difficulty: q.difficulty, distractor_quality: q.distractor_quality,
         /*
+         * PERSISTED 2026-09-15. `accepts.mjs` REFUSES any item whose qc lacks
+         * `passage_needed === true` -- it is load-bearing at insert -- and
+         * this object did not carry it out, so 0 of 1000 sampled live SAT R&W
+         * rows have the field while 967 have distractor_quality. The bank
+         * therefore cannot answer "is the shipped content passage-dependent?"
+         * about a single row, which is the one question a reading bank exists
+         * to be able to answer.
+         *
+         * This is the SAME defect as the author_difficulty note directly
+         * below, which was fixed on 2026-09-11 for one field and not
+         * generalised to the field beside it. The rule worth carrying: if a
+         * gate REFUSES on a value, the bank must RETAIN that value, or the
+         * gate is unauditable after the fact and a regression in it is
+         * undetectable.
+         */
+        passage_needed: q.passage_needed,
+        /*
          * The AUTHOR's own label, recorded alongside the grader's.
          *
          * Added 2026-09-11 because the question "what fraction of items
