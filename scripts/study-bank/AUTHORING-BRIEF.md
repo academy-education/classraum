@@ -748,3 +748,46 @@ What this means when you are the author:
 
 The general rule, which outlives ACT English: **a deficit is only spendable
 in the unit the inserter accepts.** Check the unit before you count.
+
+## 12. Vary the answer's FAMILY, not only its topic
+
+Added 2026-09-15, from a Words in Context batch whose brief was written to
+§9 and still developed the §3-class cross-item tell.
+
+The commission named one mechanism and asked for varied subject matter.
+Twenty items came back on five subjects — and on **one mechanism**: *"the
+record measures its own production process, not the phenomenon."* Twelve
+of twenty. Four shared nearly one closing frame (`___ X as much as Y`).
+And in at least ten items the option set was **three members of one
+semantic family plus the key as the lone member of another** — documentary
+vs agency, methodological vs economic, practical vs merit, material vs
+interpretive.
+
+That last shape is the defect, and it has a name already: *an item leaks
+when the options differ along the axis the stem names.* Authored once it is
+an item. Authored ten times to one spec it is a **recipe**, and a solver who
+does three items learns it: *pick the option naming the apparatus, not the
+phenomenon.*
+
+Three things follow, and the third is the one that is easy to get wrong.
+
+1. **Varying the topic does not vary the item.** Five subjects over one
+   mechanism is one item asked twenty times. Require the MECHANISM to vary
+   and name the variants in the commission; topic variety is cosmetic.
+2. **Vary the answer's family, not just its content.** If the key is the
+   odd-one-out of the option set in every item, "take the odd one out" is
+   the test. Let the key be a member of the majority family often enough
+   that the heuristic loses — and check it by listing, for each item, which
+   family the key belongs to.
+3. **An options-only attack cannot see this, so its clean result is not a
+   defence.** This batch scored 28.3% against a 25.0% control — clean — and
+   carried the recipe anyway. Each item's option families differ from the
+   next item's, so the pattern exists only ACROSS items WITH the stems in
+   view. The blind render strips the stems by construction and files are
+   sibling-free by design, which is what makes the tell invisible. **The
+   attack passing tells you nothing about whether your batch is one item
+   twenty times.**
+
+The item that proves the rule is the one that breaks the recipe. In that
+batch exactly one item punished the template, and all three graders
+independently named it the most valuable item in the set.
