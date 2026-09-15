@@ -1,0 +1,291 @@
+[
+ {
+  "id": "CS10-01",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "Cores drilled from harbor breakwaters built two thousand years ago show that seawater percolating through the volcanic ash mortar dissolved glassy particles and grew interlocking aluminous crystals along the cracks. Modern portland concrete degrades along exactly those channels, because its binder is chemically finished once cured. The ancient mixture had never finished reacting; crystals continued to form in it for centuries. Engineers who call the breakwaters unusually resistant to seawater are understating the case, since the material did not merely withstand seawater but required it.",
+  "prompt": "Which choice best states the main purpose of the text?",
+  "choices": [
+   "To argue that the mortar was strengthened over time by the seawater that attacks modern binders",
+   "To argue that the mortar was weakened over time by the crystals that had first sealed its cracks",
+   "To argue that the mortar was shielded from seawater by a surface layer its own cracking destroyed",
+   "To argue that the mortar was chemically finished at curing and survived on sheer thickness"
+  ],
+  "correct_answer": "To argue that the mortar was strengthened over time by the seawater that attacks modern binders",
+  "explanation": "The passage traces seawater through the cracks, where it dissolves ash and grows crystals \"for centuries,\" and ends by saying the material \"did not merely withstand seawater but required it\" — the claim in \"To argue that the mortar was strengthened over time by the seawater that attacks modern binders.\" \"weakened over time by the crystals that had first sealed its cracks\" reverses the passage, in which continued crystal growth is the source of durability, not of decay. \"shielded from seawater by a surface layer its own cracking destroyed\" fails because no surface layer is described; the water is said to percolate through the mortar. \"chemically finished at curing and survived on sheer thickness\" fails because the text says of the ancient mixture that it \"had never finished reacting\" and attributes finished chemistry to modern portland concrete instead.",
+  "topic_tag": "materials science",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-02",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "Annually layered lake sediments can be counted like tree rings, and a count from one core yields a year-by-year chronology of the past ten millennia. Counts from cores taken a few hundred meters apart in a single basin, however, diverge by as much as three percent, and the divergence is not random: cores raised from shallower water consistently yield fewer layers. Waves reaching the lake bed in shallow water rework the uppermost couplets each time the level drops, so the shallow counts are not imprecise but systematically short.",
+  "prompt": "Which choice best describes the overall structure of the text?",
+  "choices": [
+   "It introduces a dating method, reports that counts within one basin disagree, and traces the disagreement to a flow process that lays down extra couplets in deep water",
+   "It introduces a dating method, reports that counts within one basin disagree, and traces the disagreement to a wave process that strips couplets away in shallower water",
+   "It introduces a dating method, reports that counts within one basin disagree, and traces the disagreement to a counting rule that merges paired layers taken from deep water",
+   "It introduces a dating method, reports that counts within one basin disagree, and traces the disagreement to a compaction process that thins the layers below a fixed depth"
+  ],
+  "correct_answer": "It introduces a dating method, reports that counts within one basin disagree, and traces the disagreement to a wave process that strips couplets away in shallower water",
+  "explanation": "The last sentence supplies the mechanism: waves reaching the lake bed \"rework the uppermost couplets each time the level drops\" where the water is shallow, leaving those counts \"systematically short\" — \"a wave process that strips couplets away in shallower water.\" \"a flow process that lays down extra couplets in deep water\" would also explain a depth-linked difference, but the passage reports a shortfall in shallow cores and describes removal rather than deposition. \"a counting rule that merges paired layers taken from deep water\" fails because the text locates the problem in the sediment, not in how a counter reads it. \"a compaction process that thins the layers below a fixed depth\" fails because thinning would alter layer thickness while leaving the number of layers intact.",
+  "topic_tag": "paleoclimate",
+  "difficulty": "hard"
+ },
+ {
+  "id": "CS10-03",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "Novels issued in monthly parts are often said to have been shaped by reader feedback, since an author could read the reviews of one number before writing the next. Surviving manuscripts complicate that picture. In most cases the chapters for a given number were drafted several numbers in advance and altered afterward only for length. Where sales figures did reach the writing desk, they governed how many pages a number ran, not which characters survived it.",
+  "prompt": "Which choice best states the main purpose of the text?",
+  "choices": [
+   "To argue that reader response governed the course of serial plots but not the length of numbers",
+   "To argue that reader response governed which numbers were reprinted rather than how they were drafted",
+   "To argue that reader response governed the length of serial numbers but not the course of their plots",
+   "To argue that reader response reached serial novelists only after a number had already been set in type"
+  ],
+  "correct_answer": "To argue that reader response governed the length of serial numbers but not the course of their plots",
+  "explanation": "The last sentence states the division exactly: sales figures \"governed how many pages a number ran, not which characters survived it,\" which is \"governed the length of serial numbers but not the course of their plots.\" \"governed the course of serial plots but not the length of numbers\" inverts that sentence. \"governed which numbers were reprinted rather than how they were drafted\" fails because reprinting is never mentioned; the passage is about drafting and revision. \"reached serial novelists only after a number had already been set in type\" fails because the passage grants that sales figures did reach the writing desk and describes what they changed there.",
+  "topic_tag": "literary history",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-04",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "A forager returning from a rich patch performs a looping run whose straight segment encodes the distance and direction of the food. In experiments where hives were moved overnight, recruits flew the encoded vector even when it carried them over open water, arriving at empty sea. The dance is read, on that evidence, as an instruction rather than a suggestion. Yet recruits that have themselves foraged nearby often ignore the dance entirely and return to their own remembered patch.",
+  "prompt": "Which choice best describes the function of the final sentence in the text as a whole?",
+  "choices": [
+   "It identifies a case in which the encoded vector is followed even though it leads to no food at all",
+   "It identifies a case in which recruits unfamiliar with a patch misread the straight segment of the dance",
+   "It identifies a case in which the dance is disregarded by bees whose own experience supplies a target",
+   "It identifies a case in which the dance encodes a destination the returning forager has never visited"
+  ],
+  "correct_answer": "It identifies a case in which the dance is disregarded by bees whose own experience supplies a target",
+  "explanation": "The final sentence reports that experienced recruits \"ignore the dance entirely and return to their own remembered patch,\" which is precisely \"a case in which the dance is disregarded by bees whose own experience supplies a target\" and which qualifies the preceding claim that the dance functions as an instruction. \"the encoded vector is followed even though it leads to no food at all\" describes the displaced-hive experiment in the second sentence, not the final one. \"recruits unfamiliar with a patch misread the straight segment of the dance\" fails because the passage's recruits follow the vector accurately; nothing is misread. \"the dance encodes a destination the returning forager has never visited\" fails because the dancer is defined in the first sentence as a forager returning from the patch it encodes.",
+  "topic_tag": "animal behavior",
+  "difficulty": "hard"
+ },
+ {
+  "id": "CS10-05",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "Agricultural terraces cut into steep Andean slopes are usually explained as a defense against erosion, and they do hold soil in place. Excavation of the fill behind the retaining walls turns up something the erosion account does not predict: beneath the topsoil lie graded beds of gravel and coarse sand hauled up from riverbeds far below. Such beds drain water quickly and let the root zone warm. The labor of carrying them uphill makes sense only if the builders were managing moisture and temperature.",
+  "prompt": "Which choice best states the main purpose of the text?",
+  "choices": [
+   "To argue that the terraces' buried gravel beds were laid to keep topsoil from washing out through the walls",
+   "To argue that the terraces' buried gravel beds were laid to store rainwater and release it in dry months",
+   "To argue that the terraces' buried gravel beds were laid to protect the walls from heave when soil freezes",
+   "To argue that the terraces' buried gravel beds were laid to drain water quickly and let the root zone warm"
+  ],
+  "correct_answer": "To argue that the terraces' buried gravel beds were laid to drain water quickly and let the root zone warm",
+  "explanation": "The passage sets up the erosion account, reports the imported beds it does not predict, and states their effect directly — \"Such beds drain water quickly and let the root zone warm\" — before concluding that the hauling makes sense only as management of \"moisture and temperature.\" \"laid to keep topsoil from washing out through the walls\" fails because that is the erosion function the passage says the beds go beyond, and the beds sit beneath the topsoil rather than at the wall face. \"laid to store rainwater and release it in dry months\" contradicts the stated effect, which is rapid drainage rather than retention. \"laid to protect the walls from heave when soil freezes\" fails because freezing is never mentioned and the passage assigns the beds an effect on the root zone, not on the masonry.",
+  "topic_tag": "archaeology",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-06",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "Editors have long emended lines of early English verse that fall short of four stresses, on the assumption that a scribe dropped a word. Critics answer that the shortfall is a device marking direct speech. A recent survey sorts the short lines by copyist rather than by passage: across four manuscripts they cluster in the stints of particular hands, and one hand accounts for a third of them in a poem it shares with two other scribes. A device of the poets would not follow the hands.",
+  "prompt": "Which choice best describes the overall structure of the text?",
+  "choices": [
+   "It describes an editorial practice, presents a finding about the lines it targets, and treats that finding as grounds for doubting that the short lines can be restored by editors on internal evidence",
+   "It describes an editorial practice, presents a finding about the lines it targets, and treats that finding as grounds for doubting that the short lines are spread evenly across the poems surveyed",
+   "It describes an editorial practice, presents a finding about the lines it targets, and treats that finding as grounds for doubting that the short lines are a device the poets used to mark speech",
+   "It describes an editorial practice, presents a finding about the lines it targets, and treats that finding as grounds for doubting that the short lines occur more often in passages of direct speech"
+  ],
+  "correct_answer": "It describes an editorial practice, presents a finding about the lines it targets, and treats that finding as grounds for doubting that the short lines are a device the poets used to mark speech",
+  "explanation": "Sorting by copyist puts the short lines in \"the stints of particular hands,\" with one scribe supplying a third of them in a poem three scribes shared, and the passage draws the inference itself: \"A device of the poets would not follow the hands.\" That is grounds for doubting \"the short lines are a device the poets used to mark speech.\" \"the short lines are spread evenly across the poems surveyed\" fails because the survey's whole result is that they cluster, which the passage accepts rather than doubts. \"the short lines can be restored by editors on internal evidence\" fails because the finding supports the editors' emendation rather than undermining it. \"the short lines occur more often in passages of direct speech\" fails because the survey re-sorts the same lines by hand and never denies the association with speech.",
+  "topic_tag": "philology",
+  "difficulty": "hard"
+ },
+ {
+  "id": "CS10-07",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "City temperatures are usually compared with those of a nearby rural station, and the daily mean difference is reported as the heat island effect. Hourly records show that the difference is not spread evenly through the year. On windy or overcast nights the city and the countryside read within half a degree of each other; on the calmest, clearest nights the gap reaches six. Fewer than thirty nights supply most of the annual mean. The figure describes weather as much as it describes a city.",
+  "prompt": "Which choice best states the main purpose of the text?",
+  "choices": [
+   "To argue that the reported heat island effect is largest on overcast nights, when cloud holds a city's heat in",
+   "To argue that the reported heat island effect is produced by rural stations that sit on mown airfield grass",
+   "To argue that the reported heat island effect is concentrated after sunset and diluted by a daily average",
+   "To argue that the reported heat island effect is carried by a small number of calm, clear nights each year"
+  ],
+  "correct_answer": "To argue that the reported heat island effect is carried by a small number of calm, clear nights each year",
+  "explanation": "The hourly records split the year rather than the day: half a degree on windy or overcast nights, six degrees on the calmest and clearest, with \"fewer than thirty nights\" supplying most of the annual mean — which is what \"carried by a small number of calm, clear nights each year\" states, and what the closing sentence means by a figure that \"describes weather as much as it describes a city.\" \"largest on overcast nights, when cloud holds a city's heat in\" reverses the passage, where overcast nights are the ones that show almost no difference. \"produced by rural stations that sit on mown airfield grass\" fails because the siting of the rural station is never described or questioned here. \"concentrated after sunset and diluted by a daily average\" fails because the passage sorts nights against other nights rather than nights against daytime hours; every reading it reports is nocturnal.",
+  "topic_tag": "urban climate",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-08",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "The prose sagas were written down in the thirteenth century, three hundred years after the events they narrate, and their genealogies are accurate enough that historians once read them as preserved oral history. The same manuscripts, though, reproduce the legal formulas of thirteenth-century courts rather than tenth-century ones, and the disputes they stage turn on those later formulas. Accurate names travel easily in oral transmission; procedural detail does not. The genealogies may be inherited, but the quarrels were composed.",
+  "prompt": "Which choice best states the main purpose of the text?",
+  "choices": [
+   "To argue that the sagas inherited their legal formulas while composing their genealogies",
+   "To argue that the sagas inherited their genealogies while composing the disputes around them",
+   "To argue that the sagas inherited their disputes while composing the legal formulas for them",
+   "To argue that the sagas inherited their legal formulas while composing the disputes around them"
+  ],
+  "correct_answer": "To argue that the sagas inherited their genealogies while composing the disputes around them",
+  "explanation": "The closing sentence divides the material in exactly one way — \"The genealogies may be inherited, but the quarrels were composed\" — which matches \"inherited their genealogies while composing the disputes around them.\" \"inherited their legal formulas while composing their genealogies\" reverses that division, and the formulas are shown to belong to the thirteenth-century courts rather than to the tenth. \"inherited their disputes while composing the legal formulas for them\" fails for the same reason in the other direction: the disputes \"turn on those later formulas,\" so neither element is carried down from the events narrated. \"inherited their legal formulas while composing the disputes around them\" fails because the formulas are contemporary with the writing, which is the passage's evidence that the quarrels were made up rather than remembered.",
+  "topic_tag": "manuscript studies",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-09",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "When two neutron stars collided in 2017, the fading glow was expected to be powered by radioactive nickel, as in an ordinary supernova. The light instead reddened within days, far faster than nickel decay allows. Opacity calculations for heavy elements with open electron shells predict exactly that reddening, because such atoms absorb across a dense forest of spectral lines. The color curve, and not the total energy released, is what identified the debris as freshly forged heavy elements.",
+  "prompt": "Which choice best describes the overall structure of the text?",
+  "choices": [
+   "It states an expectation about an event, notes an observation that departed from it, and identifies the delay before the glow appeared as what settled the interpretation",
+   "It states an expectation about an event, notes an observation that departed from it, and identifies the total energy carried by the glow as what settled the interpretation",
+   "It states an expectation about an event, notes an observation that departed from it, and identifies the abundance of nickel inferred from the glow as what settled the interpretation",
+   "It states an expectation about an event, notes an observation that departed from it, and identifies the rate at which the glow reddened as what settled the interpretation"
+  ],
+  "correct_answer": "It states an expectation about an event, notes an observation that departed from it, and identifies the rate at which the glow reddened as what settled the interpretation",
+  "explanation": "The passage ends by naming its own decisive evidence: \"The color curve, and not the total energy released, is what identified the debris,\" and the reddening \"within days\" is that curve — hence \"the rate at which the glow reddened.\" \"the total energy carried by the glow\" is ruled out by that same sentence. \"the delay before the glow appeared\" fails because no onset delay is reported anywhere in the text; the timing given is the timing of the color change. \"the abundance of nickel inferred from the glow\" fails because nickel is the expectation the observation overturned, not a quantity the text measures.",
+  "topic_tag": "astrophysics",
+  "difficulty": "hard"
+ },
+ {
+  "id": "CS10-10",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "passage": "Registers of seasonal laborers crossing into the western provinces each spring have been used to gauge rural poverty, on the view that the poorest households sent the most migrants. Village tax rolls matched to the registers show the opposite pattern within any given village: migrants came disproportionately from households in the middle of the local distribution. Travel required a cash deposit and a guarantor who owned land. Destitution did not push people onto the road; it kept them off it.",
+  "prompt": "Which choice best states the main purpose of the text?",
+  "choices": [
+   "To argue that seasonal migration was led by households holding more land than their neighbors were able to farm",
+   "To argue that seasonal migration was led by households whose members had gone out in earlier springs",
+   "To argue that seasonal migration was led by households with resources enough to meet its cash requirements",
+   "To argue that seasonal migration was led by households able to spare a worker once the sowing was done"
+  ],
+  "correct_answer": "To argue that seasonal migration was led by households with resources enough to meet its cash requirements",
+  "explanation": "The tax rolls place migrants in the middle of each village's distribution, the registers require \"a cash deposit and a guarantor who owned land,\" and the final sentence says destitution \"kept them off\" the road — hence \"households with resources enough to meet its cash requirements.\" \"households holding more land than their neighbors were able to farm\" fails because the migrants are drawn from the middle of the distribution, not its top. \"households whose members had gone out in earlier springs\" fails because the passage matches registers to tax rolls for one season and tracks no household across years. \"households able to spare a worker once the sowing was done\" fails because the passage names a cash deposit and a guarantor as the requirements and never raises the timing of field work.",
+  "topic_tag": "economic history",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-11",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "passage": "Text 1\nCephalopods match their skin to the colors around them, yet their retinas carry a single class of photoreceptor. Behavioral trials confirm the deficit: trained octopuses discriminate brightness and polarization readily but fail every test requiring them to tell hues apart at matched brightness. Whatever governs the color match, these animals are, by the standard measure, colorblind.\n\nText 2\nA pupil shaped like a dumbbell spreads incoming light into a long spectrum along the eye's axis, so that each wavelength comes to focus at a different depth. An animal with one photoreceptor class can then recover color by changing focus and registering which depth is sharpest. Chromatic blur, ordinarily an optical defect, becomes the signal.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the conclusion drawn in the final sentence of Text 1?",
+  "choices": [
+   "By maintaining that one class of photoreceptor yields color vision where the retina is layered at several depths",
+   "By maintaining that one class of photoreceptor yields color vision where the pupil spreads wavelengths by depth",
+   "By maintaining that one class of photoreceptor yields color vision where colored droplets screen the receptors",
+   "By maintaining that one class of photoreceptor yields color vision where the eye sweeps a filter across a scene"
+  ],
+  "correct_answer": "By maintaining that one class of photoreceptor yields color vision where the pupil spreads wavelengths by depth",
+  "explanation": "Text 2's mechanism sits in the pupil, not the retina: a dumbbell aperture \"spreads incoming light into a long spectrum along the eye's axis,\" and the animal recovers color \"by changing focus and registering which depth is sharpest\" — \"where the pupil spreads wavelengths by depth.\" \"where the retina is layered at several depths\" fails because Text 2 keeps a single receptor class in the retina and puts the separation in front of it. \"where colored droplets screen the receptors\" fails because no filtering pigment appears in either text; the separation described is optical and depends on focus. \"where the eye sweeps a filter across a scene\" fails for the same reason, and Text 2's animal changes focus rather than moving anything across the image.",
+  "topic_tag": "sensory biology",
+  "difficulty": "hard"
+ },
+ {
+  "id": "CS10-12",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "passage": "Text 1\nCorrespondence among northern merchant firms is dense with assurances of friendship and almost silent about interest and terms. Historians have read that reticence as evidence that these firms worked on personal trust rather than formal credit, and that kinship, not contract, carried the risk of long-distance trade.\n\nText 2\nThe same letters were carried with, and refer to, sealed instruments deposited with the town council, few of which survive. Those instruments fixed the sums, the repayment dates, and the penalties for default. What the letters leave out was not absent from the business; it was recorded elsewhere, in a form the correspondents had no occasion to repeat.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the reading described in Text 1?",
+  "choices": [
+   "By pointing out that the terms missing from the letters were set down in sealed instruments held by a third party",
+   "By pointing out that the terms missing from the letters were settled by word of mouth before each new voyage began",
+   "By pointing out that the terms missing from the letters were entered instead in ledgers each firm kept privately",
+   "By pointing out that the terms missing from the letters were fixed by a custom so familiar nobody wrote it down"
+  ],
+  "correct_answer": "By pointing out that the terms missing from the letters were set down in sealed instruments held by a third party",
+  "explanation": "Text 2 reports sealed instruments \"deposited with the town council\" that fixed \"the sums, the repayment dates, and the penalties for default,\" so the silence marks a division of records, not an absence of credit — \"set down in sealed instruments held by a third party.\" \"settled by word of mouth before each new voyage began\" fails because Text 2's terms are written and sealed. \"entered instead in ledgers each firm kept privately\" fails because the instruments are deposited outside the firms, which is what makes their loss explicable. \"fixed by a custom so familiar nobody wrote it down\" contradicts Text 2, whose whole point is that the terms were written and survive only rarely.",
+  "topic_tag": "medieval commerce",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-13",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "passage": "Text 1\nReefs that came through the 2016 heat wave were dominated by colonies hosting a heat-tolerant algal symbiont. Transplant experiments show that colonies acquiring this symbiont endure temperatures that bleach their neighbors. Shuffling symbionts therefore offers reefs a route to persistence that does not wait on slow evolutionary change in the coral animal itself.\n\nText 2\nColonies hosting the tolerant symbiont grow between a third and a half more slowly and release fewer eggs. On a reef scoured by storms every few years, slow growers lose space faster than heat kills fast growers. The trade is not tolerance against nothing; it is tolerance against the ability to hold ground.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the claim in the final sentence of Text 1?",
+  "choices": [
+   "By arguing that the tolerant symbiont carries a growth cost that decides outcomes on storm-scoured reefs",
+   "By arguing that the tolerant symbiont carries a reversion cost, being dropped once the warm season ends",
+   "By arguing that the tolerant symbiont carries a carbon cost, passing less of what it fixes to its host",
+   "By arguing that the tolerant symbiont carries a recovery cost, with stripped colonies regrowing tissue slowly"
+  ],
+  "correct_answer": "By arguing that the tolerant symbiont carries a growth cost that decides outcomes on storm-scoured reefs",
+  "explanation": "Text 2 prices the tolerance in growth and eggs and then applies that price to disturbance: \"slow growers lose space faster than heat kills fast growers,\" which is \"a growth cost that decides outcomes on storm-scoured reefs.\" \"a carbon cost, passing less of what it fixes to its host\" names a mechanism Text 2 never invokes; its measured currency is growth rate and egg number. \"a reversion cost, being dropped once the warm season ends\" fails because Text 2 treats the colonies as hosting the tolerant symbiont continuously while they compete for space. \"a recovery cost, with stripped colonies regrowing tissue slowly\" fails because the storms in Text 2 open space that faster growers seize, and the text describes competition for that space rather than repair of damaged tissue.",
+  "topic_tag": "marine ecology",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-14",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "passage": "Text 1\nLumps of manganese dioxide are recovered from Neanderthal sites across Europe, often ground down and scored with grooves. Because the mineral is black and marks skin readily, the standard interpretation treats it as body pigment, and therefore as evidence of symbolic display comparable to that of later populations.\n\nText 2\nManganese dioxide lowers the temperature at which wood ignites and sharply raises its rate of combustion. In controlled trials, tinder dusted with the ground mineral caught from sparks that left untreated tinder cold. The lumps turn up beside hearths, and the materials available for coloring — soot and charcoal — are blacker and far easier to obtain.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the standard interpretation described in Text 1?",
+  "choices": [
+   "By contending that the mineral was collected for its effect on how long a hearth holds heat after burning down",
+   "By contending that the mineral was collected for its effect on how deeply a black pigment binds to skin and to hide",
+   "By contending that the mineral was collected for its effect on how sharply a groove can be cut in a soft stone",
+   "By contending that the mineral was collected for its effect on how readily dry tinder catches from a struck spark"
+  ],
+  "correct_answer": "By contending that the mineral was collected for its effect on how readily dry tinder catches from a struck spark",
+  "explanation": "Text 2's trials are about ignition: the mineral \"lowers the temperature at which wood ignites,\" and dusted tinder \"caught from sparks that left untreated tinder cold\" — \"how readily dry tinder catches from a struck spark.\" \"how long a hearth holds heat after burning down\" fails because Text 2 measures ignition and rate of combustion, not heat retention. \"how deeply a black pigment binds to skin and to hide\" is Text 1's coloring account, which Text 2 answers by noting that soot and charcoal are \"blacker and far easier to obtain.\" \"how sharply a groove can be cut in a soft stone\" fails because the grooves in Text 1 are marks of grinding the lump down, and Text 2 attaches no value to the mineral's hardness.",
+  "topic_tag": "paleoanthropology",
+  "difficulty": "hard"
+ },
+ {
+  "id": "CS10-16",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "passage": "Text 1\nCreole grammars in unrelated regions share features their source languages did not supply — invariant verbs, preverbal markers of tense and mood. Since the substrate languages of the Atlantic differ typologically from those of the Pacific, the convergence cannot be inherited. It must come from what children bring to the task of building a grammar.\n\nText 2\nConvergence is not the only measure. Where one substrate dominated a plantation population, the resulting creole reproduces that language's order of markers; where many substrates were mixed, the order settles on the pattern Text 1 describes. The template is real, but it surfaces where the inherited options conflict.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely characterize the conclusion drawn in Text 1?",
+  "choices": [
+   "As a conclusion that holds where a population's substrate languages disagreed about the order of markers",
+   "As a conclusion that holds where a population's substrate languages agreed upon the order of markers",
+   "As a conclusion that holds where a population's substrate languages stayed in daily use beside the creole",
+   "As a conclusion that holds where a population's substrate languages fell out of use within a generation"
+  ],
+  "correct_answer": "As a conclusion that holds where a population's substrate languages disagreed about the order of markers",
+  "explanation": "Text 2 grants that \"the template is real\" and then confines it: where one substrate dominated, its order of markers is reproduced, and the template \"surfaces where the inherited options conflict\" — \"where a population's substrate languages disagreed about the order of markers.\" \"agreed upon the order of markers\" is the case in which Text 2 says the inherited order wins out instead. \"stayed in daily use beside the creole\" fails because Text 2 divides its cases by how many substrates were present, not by whether they continued to be spoken. \"fell out of use within a generation\" fails for the same reason; the survival of the substrate languages plays no part in Text 2's argument.",
+  "topic_tag": "linguistics",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-17",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "passage": "Text 1\nLeaf fossils from plateau basins carry oxygen isotope ratios matching those of precipitation that falls at high elevation, and such assemblages appear by roughly forty million years ago. The plateau is accordingly reconstructed as having stood near its present height long before the monsoon intensified.\n\nText 2\nIsotope ratios in rainfall record not only elevation but the distance the air has traveled inland. A basin lying behind newly raised ranges receives rain already stripped of its heavy isotopes, and so registers a high-elevation signature while sitting low. The fossils date the rise of the ranges upwind; the basin's own height they leave open.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the reconstruction offered in Text 1?",
+  "choices": [
+   "By asserting that the isotope ratios also record how much rain fell in the seasons when the leaves grew",
+   "By asserting that the isotope ratios also record how warm the basin was when the leaves were buried",
+   "By asserting that the isotope ratios also record how far inland the air carrying the rain had traveled",
+   "By asserting that the isotope ratios also record how long the leaves lay exposed on the surface first"
+  ],
+  "correct_answer": "By asserting that the isotope ratios also record how far inland the air carrying the rain had traveled",
+  "explanation": "Text 2 opens with the confound it needs: the ratios \"record not only elevation but the distance the air has traveled inland,\" so a low basin behind new ranges can carry a high-elevation signature — \"how far inland the air carrying the rain had traveled.\" \"how much rain fell in the seasons when the leaves grew\" fails because Text 2 raises rainfall's path, not its amount. \"how warm the basin was when the leaves were buried\" fails because temperature at burial appears nowhere in either text. \"how long the leaves lay exposed on the surface first\" fails because Text 2 treats the fossils as faithful recorders of the rain that fell on them and disputes only what that rain indicates.",
+  "topic_tag": "geology",
+  "difficulty": "medium"
+ },
+ {
+  "id": "CS10-18",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "passage": "Text 1\nSeventeenth-century Netherlandish still lifes are read as moral emblems: the tipped glass, the guttering wick, the fly on the peel all signify transience, and the viewer was expected to decode them against a repertoire of printed emblem books circulating in the same decades.\n\nText 2\nInventories record these paintings hung in dining rooms and priced by the square foot alongside decorative maps. The emblem books they are read against belonged to a narrow clerical readership. Where a picture's motifs are legible as moral signs, that legibility may be ours, recovered from books the paintings' buyers did not own.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the reading described in Text 1?",
+  "choices": [
+   "By suggesting that the emblem books were printed in a language few of the picture buyers could read",
+   "By suggesting that the emblem books were read for their engravings rather than the mottoes beneath",
+   "By suggesting that the emblem books were kept in libraries the painters themselves could not enter",
+   "By suggesting that the emblem books were owned by a readership other than the people buying pictures"
+  ],
+  "correct_answer": "By suggesting that the emblem books were owned by a readership other than the people buying pictures",
+  "explanation": "Text 2 sets two groups against each other: the books \"belonged to a narrow clerical readership,\" while the pictures hung in dining rooms and were bought by people who \"did not own\" those books — \"owned by a readership other than the people buying pictures.\" \"printed in a language few of the picture buyers could read\" fails because Text 2 names the readership but says nothing about the language the books were printed in. \"kept in libraries the painters themselves could not enter\" fails because Text 2's concern is the buyers' shelves rather than the painters' access, and it mentions no libraries. \"read for their engravings rather than the mottoes beneath\" fails because Text 2 disputes who owned the books, not how their owners read them.",
+  "topic_tag": "art history",
+  "difficulty": "hard"
+ }
+]

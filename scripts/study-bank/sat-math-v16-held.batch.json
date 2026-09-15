@@ -1,0 +1,90 @@
+[
+ {
+  "id": "SM16A-08",
+  "domain": "Advanced Math",
+  "subskill": "a rational equation cleared of denominators, with the root excluded by the domain rejected",
+  "difficulty": "hard",
+  "topic_tag": "rational-equations",
+  "prompt": "What value of x satisfies the equation x/(x − 2) + 3/(x + 2) = 8/(x² − 4)?",
+  "choices": [
+   "-7",
+   "-5",
+   "2",
+   "7"
+  ],
+  "correct_answer": "-7",
+  "explanation": "Multiplying through by (x − 2)(x + 2) gives x(x + 2) + 3(x − 2) = 8, i.e. x² + 5x − 14 = 0, which factors as (x + 7)(x − 2) = 0. x = 2 makes x − 2 and x² − 4 zero, so it is excluded and x = −7 is the only solution. Distractors: \"2\" keeps the value excluded by the denominators; \"-5\" reports the sum of the two roots (−b/a) instead of the surviving root; \"7\" reads the factor (x + 7) as giving x = 7, without the sign flip.",
+  "solve": "const B = 5, C = -14; const d = Math.sqrt(B * B - 4 * C); const roots = [(-B + d) / 2, (-B - d) / 2]; const ok = roots.filter(r => Math.abs(r - 2) > 1e-9 && Math.abs(r + 2) > 1e-9); return ok[0].toString();",
+  "distractor_solve": {
+   "2": "const B = 5, C = -14; const d = Math.sqrt(B * B - 4 * C); return ((-B + d) / 2).toString();",
+   "-5": "const B = 5; return (-B).toString();",
+   "7": "const B = 5, C = -14; const d = Math.sqrt(B * B - 4 * C); return Math.abs((-B - d) / 2).toString();"
+  }
+ },
+ {
+  "id": "SM16A-12",
+  "domain": "Advanced Math",
+  "subskill": "the effect of a horizontal shift and a vertical shift on a function's minimum value",
+  "difficulty": "easy",
+  "topic_tag": "function-transformations",
+  "prompt": "The function f has a minimum value of −4. The function g is defined by g(x) = f(x + 2) − 5. What is the minimum value of g?",
+  "choices": [
+   "-11",
+   "-9",
+   "-6",
+   "1"
+  ],
+  "correct_answer": "-9",
+  "explanation": "Replacing x by x + 2 shifts the graph horizontally, which moves WHERE the minimum occurs but not its value; subtracting 5 lowers every output by 5. So the minimum of g is −4 − 5 = −9. Distractors: \"1\" adds the 5 instead of subtracting it, −4 + 5; \"-6\" treats the inside +2 as a vertical change, −4 − 2; \"-11\" applies both shifts vertically, −4 − 5 − 2.",
+  "solve": "const minF = -4, down = 5; return (minF - down).toString();",
+  "distractor_solve": {
+   "1": "const minF = -4, down = 5; return (minF + down).toString();",
+   "-6": "const minF = -4, inside = 2; return (minF - inside).toString();",
+   "-11": "const minF = -4, down = 5, inside = 2; return (minF - down - inside).toString();"
+  }
+ },
+ {
+  "id": "SM16L-04",
+  "domain": "Algebra",
+  "subskill": "the y-intercept of a line through a given point perpendicular to a line in standard form",
+  "difficulty": "easy",
+  "topic_tag": "lines-in-the-plane",
+  "prompt": "In the xy-plane, line k passes through the point (4, −1) and is perpendicular to the line with equation 2x + 3y = 12. What is the y-coordinate of the y-intercept of line k?",
+  "choices": [
+   "-7",
+   "4",
+   "5",
+   "5.5"
+  ],
+  "correct_answer": "-7",
+  "explanation": "2x + 3y = 12 has slope −2/3, so line k has slope 3/2. Using y = (3/2)x + b at (4, −1): −1 = 6 + b, so b = −7. Distractors: \"5\" uses −3/2, negating the slope without taking the reciprocal, giving −1 = −6 + b; \"5.5\" swaps the coordinates of the point, substituting (−1, 4) into y = (3/2)x + b; \"4\" reports the y-intercept of the GIVEN line, 12/3, rather than of line k.",
+  "solve": "const mGiven = -2 / 3; const m = -1 / mGiven; return (-1 - m * 4).toString();",
+  "distractor_solve": {
+   "5": "const m = -3 / 2; return (-1 - m * 4).toString();",
+   "5.5": "const m = 3 / 2; return (4 - m * (-1)).toString();",
+   "4": "return (12 / 3).toString();"
+  }
+ },
+ {
+  "id": "SM16L-05",
+  "domain": "Algebra",
+  "subskill": "counting the integers in the solution interval of a strict absolute value inequality",
+  "difficulty": "hard",
+  "topic_tag": "absolute-value-inequalities",
+  "prompt": "How many integer values of x satisfy the inequality |2x − 5| < 11?",
+  "choices": [
+   "7",
+   "10",
+   "12",
+   "21"
+  ],
+  "correct_answer": "10",
+  "explanation": "|2x − 5| < 11 means −11 < 2x − 5 < 11, so −6 < 2x < 16 and −3 < x < 8. The integers strictly between −3 and 8 are −2 through 7: 10 of them. Distractors: \"12\" treats the strict inequality as ≤ and counts −3 through 8 as well; \"7\" handles only the case 2x − 5 < 11 and counts the positive integers below 8; \"21\" forgets to divide the middle by 2, counting the integers strictly between −6 and 16.",
+  "solve": "const lo = (-11 + 5) / 2, hi = (11 + 5) / 2; let c = 0; for (let n = -200; n <= 200; n++) if (n > lo && n < hi) c++; return c.toString();",
+  "distractor_solve": {
+   "12": "const lo = (-11 + 5) / 2, hi = (11 + 5) / 2; let c = 0; for (let n = -200; n <= 200; n++) if (n >= lo && n <= hi) c++; return c.toString();",
+   "7": "const hi = (11 + 5) / 2; let c = 0; for (let n = 1; n < hi; n++) c++; return c.toString();",
+   "21": "const lo = -11 + 5, hi = 11 + 5; let c = 0; for (let n = -200; n <= 200; n++) if (n > lo && n < hi) c++; return c.toString();"
+  }
+ }
+]

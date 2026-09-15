@@ -2237,3 +2237,42 @@ structural checks are pre-flight only. See CLAUDE.md.
   Three candidates were unanimous against 0.38 expected, **all with `mechanism 0/3`** — three coins landing the same way, which §3d-bis explicitly does not treat as grounds.
 
 - **2026-09-16** — **MY SCORER CARRIED A PER-BATCH JUDGEMENT ACROSS A COPY AND PRINTED IT AS A LABEL OVER THE WRONG ITEMS.** `score-v16.py` was derived from `score-v15.py`, which hardcoded three ids that two `v15` solvers had called structurally blind. The ids exist in `v16` as well — naming entirely different items that no `v16` solver said anything about — so the copied scorer printed *"the three items both A and C called structurally blind"* over items nobody had judged. Removed rather than re-pointed: **a per-batch judgement does not survive a copy, and a scorer should not carry one.** The same copy also silently dropped two helper functions when I cut the block, which threw rather than printing a wrong number — the right failure.
+
+- **2026-09-16** — **I WAS WRONG ABOUT `sat-wic-v1`, AND THE ISOLATED CONTROL IS WHY. HOLD THE BATCH.** The batch measured 46.9% against a matched control of 44.4% and I read that as "matches its bank", pending one check. The check reverses it.
+
+        single-word arm, interleaved with 32 candidates (2026-09-12)   44.4%   12/27
+        single-word arm, ISOLATED (this run)                           25.9%    7/27
+        recorded in CLAUDE.md                                          12.5% / 33.3%
+
+  **Removing the candidates from the file moved the control down 18.5 points.** Tested directly on the same 27 picks rather than eyeballed: **P(≤7 of 27 | 44.4%) = 0.039** against **P(≤7 of 27 | 25.9%) = 0.600**. The interleaved figure is refuted; my own stated suspicion was right. Interleaving 20 live items with 32 fresh candidates **of the same single-word format** handed solvers calibration the original run never gave them.
+
+        the batch, against the interleaved control   +2.4pts   indistinguishable
+        the batch, against the ISOLATED control     +21.0pts   a leak
+
+  **So `sat-wic-v1` is held, not banked.** 32 items at 46.9% against a truer baseline near chance is a leak, not a match. **This also retires the number I have quoted in two ledger entries and a solver brief** — the 44.4% Words in Context control was an artefact of my render, and 25.9% supersedes it.
+
+  **THE GUESS STRATUM SCORED 0 of 15. That is what makes the rest of this readable.** When these solvers said they were guessing they got *nothing* right — not one of fifteen — so the 55.6% mechanism stratum is a real signal and not confident labelling over coin flips. No other run this week has had a calibration check that clean.
+
+- **2026-09-16** — **THE SENSE-INVENTORY CONSTRUCTION IS AN 85.7% LEAK IN THE LIVE BANK, AND ALL THREE SOLVERS NAMED IT INDEPENDENTLY BEFORE SEEING A KEY.**
+
+        sense-inventory sets (7 items)   18/21 = 85.7%   CI 65.4-95.0
+        everything else     (13 items)    7/39 = 17.9%   CI  9.0-32.7
+        gap                                      +67.8 points
+
+  The mechanism, in solver B's words: *"a polysemy set advertises its own headword. Four dictionary senses of one word tell a solver the word is `temperate` / `economy` / `address` without any passage, and from there the SAT convention — the tested sense is never the primary one — does the rest. That is a two-step deduction available with zero context."*
+
+  **The leak is in the item FORMAT, not in any option.** A filler-type item and a meaning-type item should not be distinguishable with the stem removed, and here they are: the gloss arm scores 54.5% against the single-word arm's 25.9%. No option rewrite reaches it — the fix is that sense-inventory options must not reconstruct their own headword.
+
+  **Two solvers independently found a second leak on top of it: cross-item headword pairing.** `W-01` and `W-02` are the same headword in two formats, and `W-04`/`W-14` likewise. The richer member identifies the headword and the terser member then has only one consistent option — so **a solver who solves the first gets the second free**, and a 20-item cohort has roughly 18 independent items rather than 20. Solver C: *"a per-batch check for two option-sets that are gloss-isomorphic would catch it cheaply, and no existing structural proxy looks for it."* That is the first proxy candidate in weeks with a specific construction behind it rather than a statistical hunch.
+
+- **2026-09-16** — **`sat-cs-v10` ELIMINATION STAGE: 1 REJECTABLE OPTION ACROSS 18 ITEMS.** Against a recorded bar of zero and prior failures at 5 of 24 and 16 of 24. **The 55.6% solve-it number does not carry over to this channel** — a batch can be unsolvable and still hand a student two free eliminations, and this one does not.
+
+  The single rejection is a real authoring defect worth fixing: **`CS10-07` option A is backwards as physics** — the nocturnal urban heat island is *suppressed* under overcast skies, not maximised, and the option's own causal clause does not support its claim since cloud traps heat over the rural reference site just as much as over the city.
+
+  The grader also declined to count three near-misses and named them separately, which is the behaviour the stage needs: `CS10-06`'s C and D are the intentional and distributional forms of one proposition, and `CS10-18`'s A entails D. **Both are uniqueness risks for the author, not student-usable eliminations** — nothing tells a solver which member of the pair is the distractor. And the reason the batch survives: *"opposed and permuted structures are structurally elimination-proof — you cannot drop a direction without knowing which direction the passage went."*
+
+- **2026-09-16** — **MY OWN SCORER PRINTED A VERDICT ITS NUMBERS DID NOT SUPPORT, TWICE, IN THE SAME FILE.** First it said *"the interval CONTAINS 44.4%, so the earlier control holds"* — true, and doing no work: at n=27 that interval spans 13.2–44.7 and therefore contains the recorded 12.5% and 33.3% as well. **An interval that excludes nothing is not evidence for anything inside it**, and the canned sentence sounded like a finding while resolving nothing. Replaced with a direct test of each hypothesis on the same picks.
+
+  Then the replacement **reconstructed k and n from a rounded rate** (`round(25.9 × 27/100/3)`) and tested **2 of 9** when the data was **7 of 27**, printing "inconclusive" over numbers that were not the data. Fixed by passing the raw counts through instead of deriving them. Both failures were mine and both are the same shape as everything else recorded here: a check that could not read its input, reporting confidently anyway.
+
+  The scorer also refused solvers B and C outright because they wrote the letter under `answer` where it expected `pick`, and **its refusal said they had "skipped" all 20 items**. Refusing was right; naming the wrong cause was not — a message that misnames the cause sends the next reader to re-run an agent that already did the work. It now reads any of four field names and, when it cannot, says what it could not read rather than guessing why.

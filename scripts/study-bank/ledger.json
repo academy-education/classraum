@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-15",
+ "generatedAt": "2026-09-16",
  "note": "Generated from the real result files. Numbers are computed, not transcribed.",
  "baselines": [
   {
@@ -3070,6 +3070,62 @@
     "tells": {
      "passed": true,
      "verdict": "Key letters re-dealt at draw time. THE ROUND WAS STOPPED RATHER THAN REWRITTEN AGAIN. Three of six repairs traded a defect, which is the recorded rewrite-inverts-the-tell shape, and the rule is to stop after one failed rewrite rather than run a fourth pass. Five items stay held: AM15G-03 and AM15G-08 on arguments that their mechanisms cannot carry four options at all, and AM15G-06, AM15I-01 and AM15I-03 on the traded defects above. Each has a named, specific fix on the record for whoever picks them up."
+    }
+   }
+  },
+  {
+   "id": "sat-math-v16-adv-kept-2026-09-16",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-math-v16-adv",
+   "contentSha": "367d623c8029439473247b587a8350b683469247a401e1b159adaf21a7e5186c",
+   "note": "17 items (14 Advanced Math, 3 Algebra), the clean survivors of 22, against a form-20 deficit of Advanced Math +12 and Algebra +3. One dropped and four held for named repairs.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 17/17 recompute to their key; 51 of 51 distractor_solve entries recomputed, 0 mismatches (22/22 and 66/66 before the split). THE AUTHOR'S OWN OPTIONS-ONLY PASS CAUGHT A TELL WORTH MORE THAN THE GATE FOUND: in their first draft THE KEY WAS NEVER THE LARGEST OPTION (0 of 22) and was second-largest in 11 of 22, so 'never pick the biggest, take the runner-up' was worth roughly 50% blind. They swapped the oversized distractor on four items. Final key magnitude rank 6/5/7/4, best constant-rank strategy 31.8% against 25%, confirmed independently. Three items were redesigned because their OWN bound test failed them at 2 survivors, and five more rewritten for duplication against the live bank -- including one TRUE duplicate, SM16L-01, which was the identical system as live bf1cda76 and whose draft distractor was that item's key. Hub-free: check-math-hub reads 22 of 22 with 0 unscorable and 0 hubs, and correctly refuses to print a rate over zero."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "BOUND-FEASIBILITY AUDIT, all 22, DECISIVE FOR THE FIFTH CONSECUTIVE BATCH. All 22 keys re-derived BY HAND and confirmed; the auditor recomputed rather than running solve. ONE DROP, SM16A-16, and THE AUTHOR HAD CERTIFIED IT AT >=3 SURVIVORS WHEN IT IS 1: the stem STATES the minimum is 25, so f(t) >= 25 for every t -- that is the DEFINITION of a minimum, not the completing-the-square insight the item tests -- and one substitution f(-1) = 35-k >= 25 kills 50 and 59 while a second, f(-4) = 14 < 25 at k=9, kills 9. A discriminant bound closes the other side independently. THE AUDITOR BROKE THEIR OWN FINDING BEFORE REPORTING IT: the probe fires on this item's three distractors and on nothing else in the batch, and it WOULD have killed the key too had the stated minimum not been the real one. The mechanism generalises -- on this stem shape every distractor with larger k has a true minimum below 25 -- so no four-option version survives without a rebuild, and repair is not an option swap. FOUR REPAIRS, each with a specific named fix: SM16L-04 (the key is the only negative option, so a solver holding only 'perpendicular slopes have opposite signs' -- the weakest fragment of the tested fact -- lands on it with no computation), SM16L-05 (the two survivors differ only by the strict/inclusive call, putting a guesser at 50% on the tested distinction), SM16A-12 (neither surviving distractor is reachable by any horizontal shift, correct or misread), SM16A-08 (x=2 zeroes a PRINTED denominator -- zero algebra, read off the page). CLEAN ON EVERYTHING ELSE: all 66 distractors read against their explanations rather than substring-matched, every one naming a specific wrong procedure whose arithmetic checks out; no phantom referent; no monotone ladder; no defensible non-key reading; no broken explanation. THE AUDITOR ALSO DREW A BOUNDARY ON THE RULE ITSELF, which is worth more than any single verdict: 'substituting options back into an equation refutes options on most solve-for-x items and is not a bound; counting it would make every equation item a 1-survivor and the category meaningless.' They applied it, refusing bounds on A-04, A-07, A-13, L-02 and L-04 that would have charged each item's own target insight. RECORDED AND NOT CHARGED: failure mode 2 appears twice -- A-03's 94.2% is a strict supremum and A-15's 17760 a strict infimum, both the no-compounding value in a compounding item, which is one recurring authoring habit worth naming in the next brief."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 22 candidates interleaved with 44 live controls from the same two domains in the same proportions, 3 solvers, 198 picks, control derived at 25.8%. CANDIDATES 19/66 = 28.8% (CI 19.3-40.6), barely above the derived control. LIVE CONTROL 48/132 = 36.4% (CI 28.7-44.8). -7.6 points, intervals overlapping. Per solver 27.3 / 27.3 / 31.8 on candidates -- tight agreement -- and letter signatures were small (2, 3 and 1 items) against the 8 and 10 that confounded v15. FIFTH BATCH RUNNING where candidate mechanism (12.5%) does WORSE than candidate guess (31.0%); all three solvers had adopted the labelling discipline unprompted, calling TAP-plus-a-tiebreak a guess and reserving mechanism for the measured odd-shape exclusion, which is the only reason the split is readable. A SOLVER PRE-REGISTERED A SCORABILITY RULE BEFORE SEEING ANY KEY and it confirmed the ninth proxy inside this run: split by whether a UNIQUE tightest adjacent pair exists, the live controls give 31/72 = 43.1% where it is unique and 12/51 = 23.5% where two pairs tie, a 19.6-point gap. Where TAP is well defined it is worth ~18 points over chance; where it degenerates it is worth nothing -- and check-tightest-pair.mjs already refuses tied items, a rule arrived at independently and now measured. ALL 22 CANDIDATES HAVE A UNIQUE TIGHTEST PAIR, so they were maximally exposed to the one channel that works, and still scored 28.8% against the controls' 43.1% on the same footing."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key letters re-dealt at draw time, flat WITHIN each stratum (candidates 6/6/5/5, controls 11/11/11/11) rather than only in aggregate -- the v15 fix, where a globally flat A18/B18/C18/D18 hid an A4/B8/C5/D7 candidate arm. Three candidates unanimous against 0.38 expected, ALL with mechanism 0/3, which 3d-bis explicitly does not treat as grounds. A SOLVER FOUND A TYPOGRAPHIC SINGLETON -- one option among all 264 using U+2212 MINUS SIGN where every other negative used an ASCII hyphen -- and correctly DECLINED to use it because its direction was unmeasured. Measured since, over 5,795 live scorable items: 138 carry exactly one non-ASCII option and the odd one is the key 30/138 = 21.7% against 25%, z = -0.88. NOT PREDICTIVE; twelfth proxy refuted. The item that surfaced it is live, cohort v2, and this batch has zero non-ASCII options. UNAVOIDABLE VERSUS FIXABLE TELLS were separated rather than counted: L-02's plus-or-minus-9 sign pair and A-06's lone non-integer are forced by their mechanisms with the key undistinguished within them; A-05, A-09 and A-13 carry cheaper half-knowledge routes that are fixable and are recorded for the next brief."
+    }
+   }
+  },
+  {
+   "id": "sat-cs-v10-kept-2026-09-16",
+   "targetTest": "sat",
+   "section": "reading_writing",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-cs-v10",
+   "contentSha": "8282f91752b64d042a5816d4ce9d2d161c57674fde3faa06fb7fea66bf6a6e80",
+   "note": "17 Craft and Structure items (9 Text Structure and Purpose, 8 Cross-Text Connections) against a form-15 deficit of 11. One held: CS10-15 collides on TOPIC with live 072cdd69 -- different passages, same assumption under attack -- and two solvers used one to answer the other. Co-draw risk is 0.392% per form, 5.72% over fifteen; holding one item removes it and costs nothing.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "18 items authored, 18 distinct topics, no proper noun repeated across items, passages 76-88 words single and 43-62 per text paired. Key-letter histogram A4/B4/C5/D5; key longest or shortest in its set on 2 of 18; longest/shortest ratio under 1.6 in every set. No easy items, deliberately: the live domain holds 214 items with ZERO easy and that gap is a separate problem not solved by adding mediums."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Model key-grade returned 18/18 against the author's key on two separate runs, no ambiguous or unsupported items, no inconsistent passages. THAT IS A MODEL GRADE AND NOT A HUMAN SITTING, and on this bank a human sitting is what decides a verbal cohort -- recorded as such rather than as clearance."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, 18 candidates interleaved with 36 live Craft and Structure items from the SAME TWO SUBSKILLS in the same proportions, keys RE-DEALT flat within each stratum, 3 solvers, 162 picks. CANDIDATES 30/54 = 55.6% (CI 42.4-68.0). LIVE CONTROL 102/108 = 94.4% (CI 88.4-97.4). -38.9 points and THE INTERVALS ARE DISJOINT -- the only batch this year to separate from its control. Every solver scored exactly 34/36 on the live items. BY SUBSKILL the live bank is worse than its recorded baselines: Cross-Text control 87.5% against a recorded 75.0%, and TEXT STRUCTURE CONTROL 60/60 = 100.0% against a recorded 87.5% -- every solver, every shipped item, from the options alone. The candidates improve on their own controls by 45.8 and 33.3 points respectively, so there was no case for banking one subskill and holding the other. THE CANDIDATES' RESIDUAL IS ALMOST ENTIRELY SUBJECT RECALL: only 8 of 54 picks rested on an option-set channel at all (37.5%), against 41 recall picks (56.1%). That is the ACT Reading finding reproduced on SAT R&W -- once the option set is properly built what remains is recognising the topic, which no option-set fix can reach. THE AUTHOR'S OWN FOUR-ROUND SELF-ATTACK took the batch 81% -> 65% -> 30% -> 31% and its DIAGNOSIS is a genuine addition: their first draft obeyed the one-frame rule and broke a rule underneath it, because in every item the key was the INTERESTING claim and the distractors were duller. One-frame construction is necessary and NOT SUFFICIENT. But their render NEVER RE-DEALT THE KEY -- 18 of 18 items preserved the authored option order and key position -- and had no control, so their progression stands as a CHANGE while the absolute number is the 55.6% measured here."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Keys re-dealt flat within each stratum; the key moved off its authored slot on 46 of 54. SOLVER A PRE-REGISTERED AN ARCHITECTURE SPLIT THAT TURNED OUT TO BE THE CANDIDATE/CONTROL SPLIT EXACTLY: frame-shared minimal pairs versus heterogeneous sets, predicted 56.1% against 95.2%, gap +39.1, prediction holds -- and the frame-shared list is 18 candidates and 1 control out of 18 candidates in the file. They were told not to guess which items were new and did not guess; they described a CONSTRUCTION, and the construction is perfectly diagnostic. THE BATCH IS VISIBLY DIFFERENT FROM THE BANK IT JOINS. THE ACTIONABLE RULE, reached independently by all three solvers: in a heterogeneous set the key is identifiable as the ONLY OPTION DESCRIBING TWO MOVES, because that is what a real Craft and Structure answer has to say while a false second account of a text's architecture is harder to write than a flat wrong claim. THREE FLAT CLAIMS PLUS ONE TRANSITION DESCRIPTION IS SOLVABLE REGARDLESS OF THE PASSAGE -- the distractors must be given a two-move architecture too. Three further channels, none of which any current check looks for: a distractor written to be refuted can LEAK THE PASSAGE'S POLARITY (an option reading 'when even Text 2 grants that machines create losers' discloses which text is the optimist), so a distractor must not restate the premise in order to reject it; the 'surveys several accounts without saying which' decoy is never the key and recurs near-verbatim at three ids; and the concede-then-qualify option is the KEY here, INVERTING the recorded prior that names it a distractor family, so that channel's polarity is batch-dependent."
     }
    }
   }
