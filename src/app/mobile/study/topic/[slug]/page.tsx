@@ -291,10 +291,27 @@ function TopicInner({ slug }: { slug: string }) {
       // the category picker.
       //
       // act-science / act-writing (2026-09-03): ACT shipped as the
-      // Composite (English, Math, Reading). Science is optional and has
-      // no bank yet - assembleActSection throws "no verified items" for
-      // it - and Writing is free-response and not built. Hide both until
-      // they have items; the topic rows stay so nothing has to be re-seeded.
+      // Composite (English, Math, Reading). Writing is free-response and
+      // not built.
+      //
+      // SCIENCE'S REASON CHANGED AND THIS COMMENT DID NOT (corrected
+      // 2026-09-15). It used to read "has no bank yet - assembleActSection
+      // throws 'no verified items'... hide until they have items". The bank
+      // now holds 120 verified Science items, TWO complete forms, and a
+      // third costs 2 items - so the condition this comment named as the
+      // unhide trigger has been satisfied for some time, and a reader
+      // acting on it would have unhidden an ungated section.
+      //
+      // The real blocker is the one the ACT family has always used: a
+      // HUMAN blind sitting, not the model attack. English and Reading
+      // each sat one (both 10.0% against a model at 76-79%) and shipped on
+      // it. Science has never had one. Its own ledger entry says the same
+      // thing - options-only 71.3%, "recorded as FAIL against the family
+      // bar; NOT the gate for this family" - and 71.3% is better than
+      // either section that shipped. So Science is one human sitting away
+      // from being openable, and that sitting is queued behind
+      // actrd-recall-2026-09-14. Unhide when it passes, not before, and
+      // not because the item count looks sufficient.
       const HIDDEN_SUBTOPIC_SLUGS = new Set(['sat-essay', 'act-science', 'act-writing'])
       const kids = (childRows ?? [])
         .flatMap(c => {
