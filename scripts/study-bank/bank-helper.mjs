@@ -255,6 +255,42 @@ async function main() {
     console.log(`  domain:     ${JSON.stringify(by('domain'))}`)
     console.log(`  subskill:   ${JSON.stringify(by('subskill'))}`)
     console.log(`  difficulty: ${JSON.stringify(by('difficulty'))}`)
+    /* KEY-SEQUENCE NOTE, not a failure. Added 2026-09-15 after a batch came
+     * back with key letters ABCDABCDABCDABCDABCD -- a pure round robin,
+     * P = 9e-13 -- while its author truthfully reported the spread as a
+     * perfect 5/5/5/5. That is CLAUDE.md tell #2 exactly: "the per-cohort
+     * histogram read as a perfect 25/25/25/25 while three confident answers
+     * forced the fourth." `verify-answer-key-spread.ts` misses it because it
+     * gates on the histogram and on per-PASSAGE-GROUP permutations, and
+     * standalone items have no groups.
+     *
+     * It is a NOTE and not a failure because the draw re-deals these options
+     * (shuffleDrawnChoices; measured flat at 25/25/25/25 for a 4-option item
+     * with no pinned token), so no student can reach the cycle. Failing the
+     * batch would block sound items over an unreachable pattern -- the same
+     * conclusion the register reached for ACT English. What it IS worth is
+     * the inference: keys assigned by position rather than by content means
+     * something in this batch was produced mechanically, and that is worth
+     * knowing before reading the rest of it. */
+    const LET = ['A', 'B', 'C', 'D']
+    const seq = batch.map(it => LET[(it.choices ?? []).indexOf(it.correct_answer)] ?? '?')
+    if (seq.length >= 8 && !seq.includes('?')) {
+      let best = 0
+      for (let off = 0; off < 4; off++) {
+        let m = 0
+        for (let i = 0; i < seq.length; i++) if (seq[i] === LET[(i + off) % 4]) m++
+        best = Math.max(best, m)
+      }
+      if (best / seq.length >= 0.9) {
+        console.log(`\nNOTE — key letters follow a round-robin cycle on ${best} of ${seq.length} positions:`)
+        console.log(`  ${seq.join('')}`)
+        console.log('  The histogram looks perfect BECAUSE of this, so a spread check will pass it.')
+        console.log('  Not fatal: the draw re-deals these options, so no student can reach the cycle.')
+        console.log('  But keys were assigned by POSITION, not by content — check what else in this')
+        console.log('  batch was produced mechanically before trusting it.')
+      }
+    }
+
     if (bad.length) { console.error(`\nSHAPE FAILURES (${bad.length}):`); for (const b of bad) console.error('  ' + b); process.exit(2) }
     console.log('\nshape OK — this says NOTHING about quality; the panel and the attack are the gate')
     return
