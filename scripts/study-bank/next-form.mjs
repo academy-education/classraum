@@ -65,6 +65,22 @@ const unreachable = key => {
   return null
 }
 
+/* The group unit, read from the file that ENFORCES it rather than retyped --
+ * act-bank-helper.mjs refuses any ACT English/Reading batch whose passage
+ * groups are not exactly this size. */
+const HELPER = readFileSync('scripts/study-bank/act-bank-helper.mjs', 'utf8')
+const perPassage = {}
+{
+  const m = HELPER.match(/const PER_PASSAGE\s*=\s*\{([^}]*)\}/)
+  if (!m) { console.error('REFUSING: PER_PASSAGE not found in act-bank-helper.mjs — the group rule moved'); process.exit(2) }
+  for (const mm of m[1].matchAll(/(\w+)\s*:\s*(\d+)/g)) perPassage['act/' + mm[1]] = Number(mm[2])
+  if (!Object.keys(perPassage).length) { console.error('REFUSING: PER_PASSAGE parsed to zero sections'); process.exit(2) }
+}
+{ /* Science groups too, at a published RANGE rather than a fixed count. */
+  const m = readFileSync('src/lib/study/act-test.ts', 'utf8').match(/SCIENCE_ITEMS_PER_PASSAGE\s*=\s*\{\s*min:\s*(\d+),\s*max:\s*(\d+)/)
+  if (m) perPassage['act/science'] = { min: Number(m[1]), max: Number(m[2]) }
+}
+
 const want = process.argv.slice(2)
 const rows = []
 for (let f = 0; ; f += 1000) {
@@ -106,6 +122,15 @@ for (const [key, quotas] of Object.entries(PER_FORM)) {
   }
   console.log('  ' + '-'.repeat(70))
   console.log('  CHEAPEST NEXT FORM: ' + total + ' items' + (plan.length ? '  ->  ' + plan.join(', ') : ''))
+  const unit = perPassage[key]
+  if (unit) {
+    const g = typeof unit === 'number' ? unit : unit.min
+    const label = typeof unit === 'number' ? String(unit) : unit.min + '-' + unit.max
+    console.log('  SUPPLY COMES IN PASSAGES OF ' + label + ' ITEMS, not in items. The inserter refuses a partial group.')
+    console.log('    -> at least ' + Math.ceil(total / g) + ' whole passage(s); the per-domain rows above CANNOT be bought one domain at a time,')
+    console.log('       because one passage carries a fixed mix. Author whole passages to the mix, and note that a passage')
+    console.log('       ships only if ALL ' + label + ' of its items clear the gate — a per-item acceptance rate is not a yield here.')
+  }
   if (why) console.log('  UNREACHABLE: ' + why + ' — these items buy a form no student can sit.')
   if (plan.length > 1) console.log('  NOTE: more than one domain is short. Authoring only the thinnest buys NOTHING.')
 }
