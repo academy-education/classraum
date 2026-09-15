@@ -3044,6 +3044,34 @@
      "verdict": "Key letters re-dealt at draw time. A PRE-REGISTERED PREDICTION WAS REFUTED CLEANLY, WHICH IS THE BEST THING IN THE RUN. Solver B registered an M3 stratum before picking -- the 14 items where the odd-shape elimination lands INSIDE the tightest adjacent pair, so the two measured channels multiply rather than sit side by side -- and named its own control, the six items where the elimination fired OUTSIDE the pair and did no work. Result: M3 5/14 = 35.7% against its own control at 3/6 = 50.0%. The stack carries nothing. Prediction, control and refutation all supplied by the solver. ALL THREE SOLVERS WERE HANDED THE MEASURED CHANNELS WITH THEIR REAL CONTROLS and used them correctly: they eliminated the odd-shaped option (anti-predictive at 4.3%) rather than picking it, ignored geometric chains (87.1% against a 75.0% CONSTRUCTED control), and declined the 2:1 twin rule (measured dead flat at 24.8/23.3/51.9). Two flagged their own within-pair tiebreak as an unverified extrapolation of the 4.3% finding, and it is: the mechanism stratum landed BELOW the guess stratum. THE AUDITOR ALSO CRITIQUED MY OWN PRE-FLIGHT: the 'is each distractor named in the explanation' test is a SUBSTRING MATCH and is not evidence, since a number appearing incidentally passes it. They read all 24 explanations instead and confirmed every distractor has a real named procedure."
     }
    }
+  },
+  {
+   "id": "act-math-v15r-2026-09-15",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v15r",
+   "contentSha": "aa59d719d5bf621deede914cb35a0206e0154d7d648608bc2c4e3e4342f020d7",
+   "note": "3 of the 8 items held from act-math-v15-mix: one Functions, one Geometry, one Integrating Essential Skills, which is EXACTLY the remaining form-11 deficit. Five are still held. Two were never repaired (arguments, not scores) and three were repaired and then found by an INDEPENDENT re-audit to have traded one defect for another -- so the round was stopped rather than rewritten again, per the recorded rule that a distractor rewrite inverts the tell.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 3/3 recompute to their key; 9 of 9 distractor_solve entries recomputed, 0 mismatches (8/8 and 24/24 across all eight repaired). THE REPAIR AGENT CAUGHT A FALSE BREAK TEST OF ITS OWN: the shared scratchpad already held break-solve.json from an earlier session, so its corrupted copies failed to write and verify silently graded a STALE 22-item SAT batch, printing 21/22 with 1 mismatch -- which reads exactly like a successful break test. Redone on unique paths with the item count printed first; both counts then moved independently. That is the 'a check that cannot read its input' corollary reaching the BREAK TEST, the instrument whose whole job is to prove the others run."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "INDEPENDENT RE-AUDIT of the six repaired items, the grader not told what changed or why. NO DROPS and NO KEY DISAGREEMENTS -- all six keys recomputed by hand and again in node, every distractor's named procedure verified by arithmetic rather than by substring. But THREE OF SIX HAD TRADED ONE DEFECT FOR ANOTHER, which is why only three are banked. AM15I-01: the first audit flagged $4,240.00 as sitting on the infimum; the repair removed it and added $4,247.35, which is 4000*e^0.06 -- the SUPREMUM over compounding frequency. One endpoint swapped for another. Worse, the four options became the ladder n = 2, 4, 12, infinity in ascending order, so quarterly is the MIDDLE RUNG and a solver who never applies the periodic formula lands on the key. AM15G-06: traded a monotonicity defect for 162/486/1458, a ratio-3 run with the KEY AT THE MIDDLE and all four options integer multiples of the key -- the agent chose it deliberately to avoid making the key the hub, and traded into a run. AM15I-03: its explanation attributes a distractor to 'the June reading' when THERE IS NO JUNE IN THE ITEM -- the word leaked from AM15I-06, which does have January and June. The arithmetic is right and the referent is wrong; that text would have shipped. THE FIRST AUDIT'S OWN PRESCRIPTION WAS ALSO INCOMPLETE ON AM15G-05: it named 72 as the exact strict infimum and then prescribed replacing 54, the OTHER option, leaving 72 in place. The repair followed it faithfully. Banked at 3 survivors, which meets the standard, with the endpoint recorded. THE RE-AUDIT ALSO DISTINGUISHED AVOIDABLE FROM UNAVOIDABLE TELLS, which is what was asked: AM15F-06's 3/5/8 structure is intrinsic to the mechanism and the key is undistinguished within it, so not a defect; AM15I-06's 13/14/15 run IS avoidable, because every distractor base exceeds the correct base so the key is necessarily the maximum -- 'smaller base means bigger percent' plus the word January reaches it without the points-versus-percent insight. BANKED WITH THAT TELL RECORDED AND UNSPENT, the same treatment AM15G-07 got: the named fix is to add one option above 15% (115%, from reporting 46/40), and a future edit must not leave the key as the maximum."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "NOT RE-RUN, for the same reason as act-math-v14r: every defect at issue is BOUND FEASIBILITY or an option-set structure visible only with the stem, which is precisely what an options-only attack cannot see -- established across four consecutive batches. The parent batch's attack stands: candidates 23.6%, BELOW the 25% chance line, against a domain-matched live control at 34.7%. A blind run over three items would return an interval too wide to mean anything."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key letters re-dealt at draw time. THE ROUND WAS STOPPED RATHER THAN REWRITTEN AGAIN. Three of six repairs traded a defect, which is the recorded rewrite-inverts-the-tell shape, and the rule is to stop after one failed rewrite rather than run a fourth pass. Five items stay held: AM15G-03 and AM15G-08 on arguments that their mechanisms cannot carry four options at all, and AM15G-06, AM15I-01 and AM15I-03 on the traded defects above. Each has a named, specific fix on the record for whoever picks them up."
+    }
+   }
   }
  ],
  "auditedCohorts": [

@@ -1,0 +1,68 @@
+[
+ {
+  "id": "AM15F-06",
+  "domain": "Functions",
+  "subskill": "DURATION above a threshold: the two solutions are times, and the answer is the gap between them",
+  "prompt": "A model rocket is launched from a platform. Its height above the ground, in feet, t seconds after launch is given by h(t) = -16t^2 + 176t + 16. For how many seconds is the rocket at or above a height of 400 feet?",
+  "choices": [
+   "3",
+   "4.58",
+   "5",
+   "8"
+  ],
+  "correct_answer": "5",
+  "explanation": "Setting -16t^2 + 176t + 16 = 400 gives t^2 - 11t + 24 = 0, so t = 3 and t = 8, and the rocket is at or above 400 feet for 8 - 3 = 5 seconds. The option \"3\" is the first of those two times, the moment the rocket reaches 400 feet, reported in place of the duration. The option \"8\" is the second time, the moment it drops back to 400 feet. The option \"4.58\" comes from ignoring the 16-foot platform the rocket is launched from and solving -16t^2 + 176t = 400 instead, that is t^2 - 11t + 25 = 0, whose roots are 3.21 and 7.79 seconds, a gap of sqrt(21) = 4.58.",
+  "topic_tag": "quadratic models",
+  "difficulty": "hard",
+  "solve": "const a=-16,b=176,c=16-400; const d=Math.sqrt(b*b-4*a*c); const t1=(-b+d)/(2*a), t2=(-b-d)/(2*a); return String(Math.abs(t2-t1));",
+  "distractor_solve": {
+   "3": "const a=-16,b=176,c=16-400; const d=Math.sqrt(b*b-4*a*c); return String(Math.min((-b+d)/(2*a),(-b-d)/(2*a)));",
+   "8": "const a=-16,b=176,c=16-400; const d=Math.sqrt(b*b-4*a*c); return String(Math.max((-b+d)/(2*a),(-b-d)/(2*a)));",
+   "4.58": "const a=-16,b=176,c=0-400; const d=Math.sqrt(b*b-4*a*c); return (d/Math.abs(a)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM15G-05",
+  "domain": "Geometry",
+  "subskill": "Angle formed by two ANGLE BISECTORS of a triangle, via the angle sum of the smaller triangle",
+  "prompt": "In triangle ABC, the measure of angle A is 46 degrees and the measure of angle B is 62 degrees. The bisector of angle A and the bisector of angle B intersect at point P. What is the measure, in degrees, of angle APB ?",
+  "choices": [
+   "72",
+   "95",
+   "103",
+   "126"
+  ],
+  "correct_answer": "126",
+  "explanation": "In triangle APB the angle at A is half of 46, or 23 degrees, and the angle at B is half of 62, or 31 degrees, so angle APB = 180 - 23 - 31 = 126 degrees. The option \"72\" is the measure of angle C, 180 - 46 - 62, reported by a solver who ignores the bisectors entirely. The option \"95\" comes from halving angle A but using the full angle B: 180 - 23 - 62. The option \"103\" is the mirror of that slip, halving angle B but using the full angle A: 180 - 46 - 31.",
+  "topic_tag": "triangle angle relationships",
+  "difficulty": "hard",
+  "solve": "const A=46,B=62; return String(180-A/2-B/2);",
+  "distractor_solve": {
+   "72": "const A=46,B=62; return String(180-A-B);",
+   "95": "const A=46,B=62; return String(180-A/2-B);",
+   "103": "const A=46,B=62; return String(180-A-B/2);"
+  }
+ },
+ {
+  "id": "AM15I-06",
+  "domain": "Integrating Essential Skills",
+  "subskill": "A rise in percentage POINTS expressed as a percent of the original percent",
+  "prompt": "In January, 40% of the residents of a town supported a proposal. In June, 46% of the residents supported it. The increase from January to June was what percent of the January level of support, to the nearest whole percent?",
+  "choices": [
+   "6%",
+   "13%",
+   "14%",
+   "15%"
+  ],
+  "correct_answer": "15%",
+  "explanation": "The increase is 46 - 40 = 6 percentage points, and 6 is 6 / 40 = 15% of the January level. The option \"6%\" is that raw gap in percentage points, reported as though points and percent increase were the same thing. The option \"13%\" comes from dividing the 6-point gap by the JUNE level, 6 / 46 = 13.0%, using the new value as the base. The option \"14%\" comes from dividing the 6-point gap by the AVERAGE of the two levels, (40 + 46) / 2 = 43, rather than by the January level: 6 / 43 = 13.95%, which rounds to 14%.",
+  "topic_tag": "percent change",
+  "difficulty": "easy",
+  "solve": "const j=40,n=46; return Math.round((n-j)/j*100)+\"%\";",
+  "distractor_solve": {
+   "6%": "const j=40,n=46; return (n-j)+\"%\";",
+   "13%": "const j=40,n=46; return Math.round((n-j)/n*100)+\"%\";",
+   "14%": "const j=40,n=46; return Math.round((n-j)/((j+n)/2)*100)+\"%\";"
+  }
+ }
+]

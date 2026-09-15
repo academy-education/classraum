@@ -2181,3 +2181,17 @@ structural checks are pre-flight only. See CLAUDE.md.
   - **The concede-then-qualify option is the KEY here, inverting the recorded prior** that names it a distractor family. The hedge channel is live but **its polarity is batch-dependent**, and a solver importing the earlier polarity would score below chance on those five items.
 
   **One claim two solvers made that the render refutes.** Both reported that two items are "plainly the same passage seen twice" and used one to answer the other. Checked: **18 distinct candidate passages, 36 distinct control passages, 0 shared by text or by passage_group_id.** What they detected is a **topic collision** — the batch's monopsony item and a live bank item cover the same subject with different passages. That is not a render defect, but it is a real exposure risk: a student could draw both into one form, and the solvers demonstrated that one answers the other. **A batch's topics should be scanned against the live bank's, not just its own.**
+
+- **2026-09-15** — **A PERSON HAS SAT CRAFT AND STRUCTURE BLIND, AND THE ANSWER IS NEITHER OF THE TWO ANSWERS EVERYONE EXPECTED.** Asked what the 94.4% model figure is worth, the review table already held the comparison — 34 scorable human picks on SAT R&W Craft and Structure items, scattered across four sittings (`resit-length`, `b2-all-cohorts`, `calibration-2026-08-11`, `calibration-andy`).
+
+        MODEL, options-only, 36 shipped items x 3 solvers   94.4%   CI 88.4-97.4
+        HUMAN, blind, 34 scorable across four sittings      38.2%   CI 23.9-55.0
+        chance                                              25.0%
+
+  **The 56-point model-human gap is the same shape as ACT Reading** (80.6% model against 10.0% human on identical items), so the 94.4% is a **screen and not a verdict**, exactly as B7 says. Nobody should archive 214 items on it.
+
+  **But unlike ACT Reading, the person did not sit at chance.** 13 of 34 against an expected 8.5 is **+13.2 points, P = 0.061**. Marginal, one-sided, and in the direction that matters: **the shipped Craft and Structure bank leaks to people — far less than the model suggests, and more than nothing.** By subskill, Cross-Text 7/16 = 43.8% and Text Structure 6/18 = 33.3%.
+
+  **What this licenses and what it does not.** It licenses *no* archive decision and *no* rewrite programme — that is the mistake the SAT Math hub backlog nearly made at scale, where "bank-wide 64.4%" turned out to be one cohort at 98.3% and 730 items at 8.0%. It does license treating a 94.4% model reading as evidence that *something* is there, since the human number is on the same side of chance rather than the opposite side.
+
+  **n = 34 across four sittings that were never designed to ask this.** It is enough to say "not at chance" and not enough to size it. **The measurement that would settle it is a purpose-drawn human sitting on Craft and Structure**, the way `actrd-recall-2026-09-14` was drawn for ACT Reading — and the co-founder already has one open run, so this queues behind it rather than competing with it.

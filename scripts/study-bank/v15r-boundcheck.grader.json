@@ -1,0 +1,64 @@
+{
+  "AM15F-06": {
+    "survivors": 4,
+    "verdict": "keep",
+    "bounds": "Free bounds available without the tested insight (solve h(t)=400 for both roots and subtract): (i) positivity, duration > 0; (ii) duration < total flight time. Reading used for (ii): the WEAK one, duration < 11.09 s, obtained from h(t)=0. Even that is arguably not free since it needs a second quadratic solve; it eliminates nothing anyway (8 < 11.09). The STRONGER reading I considered and rejected as not free: velocity is maximal at launch (176 ft/s, monotone decreasing), so the climb from 16 ft to 400 ft costs at least 384/176 = 2.18 s at each end, giving duration <= 11.09 - 4.36 = 6.7 and killing '8'. Rejected because obtaining 11.09 requires solving -16t^2+176t+16=0, the same machinery the item tests. Under the free reading all four options survive: 3 and 8 are the two crossing times (no free bound orders a duration against a time), 4.58 lies interior.",
+    "on_bound": [],
+    "issues": [
+      "Cosmetic only: 4.58 is the sole non-integer among 3/5/8, so it is format-distinguishable. Does not change the survivor count and the ACT ships mixed-format option sets routinely."
+    ],
+    "key_confirmed": true
+  },
+  "AM15G-05": {
+    "survivors": 3,
+    "verdict": "keep",
+    "bounds": "P is the intersection of two INTERIOR bisectors, so P lies strictly inside angle A and inside angle B. Therefore angle PAB < angle A = 46 and angle PBA < angle B = 62, strictly (equality would need P = C). The angle sum of triangle APB is a forced total, so angle APB = 180 - PAB - PBA > 180 - 46 - 62 = 72. This reading is free: it uses only 'a bisector lies inside its angle' plus the triangle angle sum, never the halving-and-summing computation the item tests. 72 sits EXACTLY on that infimum and is eliminated. 95 and 103 require knowing that BOTH angles are halved - that is the target insight - so they survive. Stronger reading attempted: no free upper bound below 180 exists (PAB, PBA can be arbitrarily small for a general interior point), so 126 cannot be squeezed further.",
+    "on_bound": ["72"],
+    "issues": [
+      "'72' is dead to any solver who pictures P inside the triangle: it is the strict infimum of angle APB, not an attainable value. It still traps a solver who ignores the bisectors and reports angle C, which is the procedure the explanation names, so it is not worthless - but it is a free elimination and the item is effectively 3-way."
+    ],
+    "key_confirmed": true
+  },
+  "AM15G-06": {
+    "survivors": 4,
+    "verdict": "repair",
+    "bounds": "The tested insight IS the exponent on r in V = (1/3)pi r^2 h, so no bound that fixes that exponent is free. Free bounds reduce to: volume positive, and volume changes. Reading used: the exponent p on r is unknown to a bound-only solver, so the scale factor 3^p/2 is unconstrained and nothing is eliminated - 4 survivors. Stronger reading attempted and rejected: 'volume grows at least linearly in r, so factor >= 3 x 0.5 = 1.5 and 162 sits on the infimum.' Rejected because p >= 1 is not derivable from anything in the stem without the volume formula, which is exactly what the item tests; the p=1 slip is the named distractor procedure.",
+    "on_bound": [],
+    "issues": [
+      "TELL (fixable): 162, 486, 1458 are a geometric run of ratio 3 with the KEY at the middle, and all four options are small integer multiples of the key (x1/3, x1, x2, x3). The ratio-3 run is forced by the error family the author chose - p = 1, 2, 3 on the radius - but the choice to include both p=1 and p=3 is not forced. Replacing 1458 with an error from another family (e.g. inverting the height factor, 108 x 9 x 2 = 1944) leaves 162, 486, 972, 1944, where the tightest run centres on a DISTRACTOR. So: avoidable, and worth avoiding.",
+      "EXPLANATION (ships broken): the justification for 1458 is self-contradictory. 'as if all three dimensions of the cone scaled with r' entails the height scaling by 3, but the stated arithmetic then halves the height anyway (108 x 27 x 0.5). A student reading it as written cannot reconstruct a coherent procedure. Either drop the option or re-justify it as a two-step slip ('recalled k^3 for similar solids, then separately applied the halved height')."
+    ],
+    "key_confirmed": true
+  },
+  "AM15I-01": {
+    "survivors": 3,
+    "verdict": "repair",
+    "bounds": "Free bounds (monotonicity of compound value in the compounding frequency n, plus the limit of the named function): for any finite n, 4000(1.06) < value < 4000e^0.06. The lower endpoint 4240 is absent. The upper endpoint 4000e^0.06 = 4247.3462 -> $4,247.35 IS an option and sits EXACTLY on the supremum: continuous compounding is unattainable by quarterly compounding, so it is eliminated free. This reading is free on a calculator-permitted section: e^0.06 needs one keystroke and does not use the tested insight (divide the rate by n, multiply the exponent by n). $4,243.60 and $4,246.71 cannot be eliminated freely - identifying them as the n=2 and n=12 values requires the periodic formula itself, i.e. the target insight, so they are legitimate. 3 survivors.",
+    "on_bound": ["$4,247.35"],
+    "issues": [
+      "TELL (fixable, and the reason for the repair verdict): every distractor comes from the SAME error family - wrong compounding frequency - so the option set is exactly the frequency ladder n = 2, 4, 12, infinity, listed in ascending order. 'More frequent compounding pays more' is free knowledge. Once the free supremum kills the continuous option and a free 4000 x 1.06 = 4240 shows the annual rung is absent, the three remaining options must be consecutive rungs above annual, and the stem names quarterly - the middle rung. A solver who never divides a rate or multiplies an exponent lands on the key. Fix: replace at least one frequency distractor with an error outside the family (e.g. 4000(1.06)^4 = $5,049.91, rate not divided; or 4000(1.015) = $4,060, exponent not applied), which breaks the monotone ladder and removes the key's determinate position in it."
+    ],
+    "key_confirmed": true
+  },
+  "AM15I-03": {
+    "survivors": 3,
+    "verdict": "repair",
+    "bounds": "The conversion formula is GIVEN in the stem, so its slope is not the item's secret; what the item tests is that the 32-degree offset cancels in a difference. Free bound used: slope 5/9 < 1 is readable off the given formula, hence 0 < deltaC < deltaF = 45, strictly. '45' sits EXACTLY on that supremum (it is deltaF itself) and is eliminated free. 7.22 and 27 lie strictly inside and survive. STRONGER reading considered and REJECTED: 'deltaC is about 5/9 of 45, i.e. near 25, so 7.22 and 27 both die and only the key survives.' Rejected because multiplying the difference by 5/9 is not a bound - it is the item's entire computation; treating it as free would make every given-formula item unanswerable-by-construction. Under the reading I use: 3 survivors.",
+    "on_bound": ["45"],
+    "issues": [
+      "EXPLANATION (ships broken): the clause for '27' reads 'carrying it out on the JUNE reading rather than on the rise.' There is no June in this item - no month is mentioned anywhere in the stem. That word is leaked from the January/June percent item (AM15I-06). The arithmetic named is right (59 - 32 = 27); only the referent is wrong. Should read 'on the final 59-degree reading'.",
+      "'45' is a free elimination (strict supremum), so the working option set is three wide. It still catches the solver who converts nothing, so it is cheap to keep, but it is not live for anyone who reads the slope off the given formula."
+    ],
+    "key_confirmed": true
+  },
+  "AM15I-06": {
+    "survivors": 4,
+    "verdict": "keep",
+    "bounds": "The tested insight is the points-versus-percent distinction and the choice of base. Free bounds: the answer is a positive percent; nothing else follows from the stem without choosing a base, and choosing the base IS the item. Reading used: no free bound eliminates any option, 4 survivors. Stronger reading considered and rejected as not free: 'the stem names January explicitly, 40 is the smallest candidate base, 6/x decreases in x, so the key is the largest ratio option.' That chain is free in its monotonicity step but its premise - that the base is the January level and that the answer is a ratio of the 6-point gap - is the whole target insight, so it does not reduce the count. It is recorded below as a tell rather than as a bound.",
+    "on_bound": [],
+    "issues": [
+      "TELL (fixable): 13%, 14%, 15% are three consecutive integers with the KEY at the extreme, and every distractor base (46, 43) is LARGER than the correct base (40), so the key is necessarily the maximum of the ratio options. A solver who knows only 'dividing by a smaller number gives a bigger answer' and sees 'January' in the stem picks the top of the run. Avoidable: give one distractor a base below 40 or a value above 15% - e.g. 46/40 = 115% (ratio reported instead of increase), or 6/(46-40) type slips - so the correct base is not the extreme one."
+    ],
+    "key_confirmed": true
+  }
+}
