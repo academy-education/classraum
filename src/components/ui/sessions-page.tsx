@@ -4019,7 +4019,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           type="button"
           disabled={disabled}
           onClick={() => !disabled && setActiveTimePicker(isOpen ? null : fieldId)}
-          className={`w-full h-10 px-3 py-2 text-left text-sm border rounded-lg focus:outline-none ${
+          className={`w-full h-10 px-3 py-2 text-left text-base border rounded-lg focus:outline-none ${
             disabled 
               ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
               : isOpen 
@@ -4113,7 +4113,13 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     disabled = false,
     placeholder,
     height = 'h-12',
-    shadow = 'shadow-sm'
+    shadow = 'shadow-sm',
+    // Opt-in, because this picker serves two different contexts. In the
+    // session modal it sits beside <Input> and <SelectTrigger>, whose shared
+    // default is text-base; in the filter bar it sits beside a compact h-8
+    // text-sm select. One base would be wrong in one of the two places, so
+    // the modal call sites ask for text-base and the toolbar keeps text-sm.
+    textSize = 'text-sm'
   }: { 
     value: string
     onChange: (value: string | string[]) => void
@@ -4123,6 +4129,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     disabled?: boolean
     placeholder?: string
     height?: string
+    textSize?: string
     shadow?: string
   }) => {
     const isOpen = activeDatePicker === fieldId
@@ -4244,7 +4251,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       <div className="relative" ref={datePickerRef}>
         <div
           onClick={() => !disabled && setActiveDatePicker(isOpen ? null : fieldId)}
-          className={`w-full ${height} px-3 py-2 text-left text-sm border rounded-lg cursor-pointer ${shadow} flex items-center ${
+          className={`w-full ${height} px-3 py-2 text-left ${textSize} border rounded-lg cursor-pointer ${shadow} flex items-center ${
             disabled 
               ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
               : isOpen 
@@ -5652,6 +5659,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                       )}
                     </div>
                     <DatePickerComponent
+                      textSize="text-base"
                       value={formData.date}
                       onChange={(value) => {
                         if (multipleSessions) {
@@ -5874,7 +5882,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                               placeholder={String(t("sessions.searchStudentsByName"))}
                               value={attendanceSearchQuery}
                               onChange={handleAttendanceSearchChange}
-                              className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
+                              className="h-9 pl-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                             />
                           </div>
                           
@@ -5936,7 +5944,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                       onChange={(e) => handleAttendanceNoteUpdate(attendance.student_id, e.target.value)}
                                       /* h-10, not h-9: every other control in this
                                          dialog is 40px and this one was 36px. */
-                                      className="h-10 text-sm"
+                                      className="h-10"
                                     />
                                   </div>
                                 </div>
@@ -6070,7 +6078,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                     value={assignment.title}
                                     onChange={(e) => handleAssignmentUpdate(assignment.id, 'title', e.target.value)}
                                     placeholder={String(t("sessions.assignmentTitle"))}
-                                    className="h-9 text-sm bg-white focus:border-primary"
+                                    className="h-9 bg-white focus:border-primary"
                                     required
                                   />
                                 </div>
@@ -6080,7 +6088,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                     value={assignment.assignment_type} 
                                     onValueChange={(value) => updateAssignment(assignment.id, 'assignment_type', value)}
                                   >
-                                    <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
+                                    <SelectTrigger className="h-9 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                                       <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent className="z-[90]">
@@ -6106,7 +6114,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   }}
                                   disabled={!(showDetailsModal ? viewingSession?.classroom_id : formData.classroom_id)}
                                 >
-                                  <SelectTrigger className="h-9 text-sm bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
+                                  <SelectTrigger className="h-9 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                                     <SelectValue placeholder={(showDetailsModal ? viewingSession?.classroom_id : formData.classroom_id) ? t("sessions.selectCategory") : t("sessions.selectClassroomFirst")} />
                                   </SelectTrigger>
                                   <SelectContent className="z-[90]">
@@ -6131,7 +6139,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                       value={newCategoryName}
                                       onChange={handleNewCategoryNameChange}
                                       placeholder={String(t("sessions.enterCategoryName"))}
-                                      className="h-9 text-sm rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                                      className="h-9 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0"
                                       disabled={isCreatingCategory}
                                       onKeyDown={(e) => {
                                         if (e.key === 'Enter') {
@@ -6176,13 +6184,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                   onChange={(e) => handleAssignmentUpdate(assignment.id, 'description', e.target.value)}
                                   placeholder={String(t("sessions.assignmentDescription"))}
                                   rows={2}
-                                  className="w-full min-h-[2rem] px-3 py-2 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm"
+                                  className="w-full min-h-[2rem] px-3 py-2 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-base"
                                 />
                               </div>
                               
                               <div>
                                 <Label className="text-xs text-foreground/60 mb-1 block">{t("sessions.dueDate")} <span className="text-rose-500">*</span></Label>
                                 <DatePickerComponent
+                                  textSize="text-base"
                                   value={assignment.due_date}
                                   onChange={(value) => handleAssignmentUpdate(assignment.id, 'due_date', Array.isArray(value) ? value[0] || '' : value)}
                                   fieldId={`assignment-due-date-${assignment.id}`}
@@ -6222,7 +6231,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     value={formData.notes}
                     onChange={(e) => formData.classroom_id && handleFormDataChange('notes', e.target.value)}
                     rows={3}
-                    className={`w-full min-h-[2.5rem] px-3 py-2 rounded-lg border focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-sm ${
+                    className={`w-full min-h-[2.5rem] px-3 py-2 rounded-lg border focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none resize-none text-base ${
                       !formData.classroom_id
                         ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
                         : 'border-border bg-transparent focus:border-primary'
