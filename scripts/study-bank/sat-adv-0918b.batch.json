@@ -1,0 +1,170 @@
+[
+  {
+    "id": "SADVB-01",
+    "domain": "Advanced Math",
+    "subskill": "polynomial division: equivalent form with a remainder term",
+    "difficulty": "medium",
+    "prompt": "For all x ≠ −5/2, the expression (6x² + 7x − 13)/(2x + 5) is equivalent to 3x − 4 + k/(2x + 5), where k is a constant. What is the value of k?",
+    "choices": [
+      "−7",
+      "7",
+      "42",
+      "−33"
+    ],
+    "correct_answer": "7",
+    "explanation": "Multiply 3x − 4 by 2x + 5: (2x + 5)(3x − 4) = 6x² + 7x − 20. The numerator 6x² + 7x − 13 exceeds this by 7, so (6x² + 7x − 13)/(2x + 5) = 3x − 4 + 7/(2x + 5) and k = \"7\". Equivalently, the remainder theorem gives k = 6(−5/2)² + 7(−5/2) − 13 = 37.5 − 17.5 − 13 = 7. \"−7\" comes from a solver who subtracts in the wrong order at the last step of the division, (−20) − (−13) instead of (−13) − (−20). \"42\" comes from a solver who evaluates the numerator at x = 5/2 instead of x = −5/2: 37.5 + 17.5 − 13. \"−33\" comes from a solver who adds the constant terms at the last step of the division instead of subtracting: −13 + (−20).",
+    "solve": "var a=6,b=7,c=-13; var x=-5/2; var k=a*x*x+b*x+c; return String(Math.round(k));",
+    "distractor_solve": {
+      "42": "var x=5/2; var k=6*x*x+7*x-13; return String(Math.round(k));",
+      "−7": "var prod=-20, num=-13; var k=prod-num; return (k<0?\"−\":\"\")+Math.abs(k);",
+      "−33": "var k=-13+(-20); return (k<0?\"−\":\"\")+Math.abs(k);"
+    }
+  },
+  {
+    "id": "SADVB-02",
+    "domain": "Advanced Math",
+    "subskill": "system of a line and a parabola: distance between the intersection points",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graphs of y = x² − 3x − 2 and y = x + 3 intersect at points P and Q. What is the length of segment PQ?",
+    "choices": [
+      "4√3",
+      "12",
+      "6√5",
+      "6√2"
+    ],
+    "correct_answer": "6√2",
+    "explanation": "Set the expressions equal: x² − 3x − 2 = x + 3, so x² − 4x − 5 = 0 and (x − 5)(x + 1) = 0. The x-coordinates are 5 and −1; on the line y = x + 3 the points are (5, 8) and (−1, 2). PQ = √((5 − (−1))² + (8 − 2)²) = √(36 + 36) = √72 = \"6√2\". \"4√3\" comes from a solver who combines the x-terms with the wrong sign, x² − 2x − 5 = 0, getting x = 1 ± √6 so that both coordinate differences are 2√6 and the distance is √(24 + 24) = √48. \"12\" comes from a solver who adds the horizontal and vertical differences, 6 + 6, instead of using the distance formula. \"6√5\" comes from a solver who evaluates the line at x = −1 as −1 − 3 = −4, so the vertical difference is 12 and the distance is √(36 + 144) = √180.",
+    "solve": "function rad(n){var k=Math.floor(Math.sqrt(n)); for(;k>1;k--){ if(n%(k*k)===0) break;} var c=k, r=n/(k*k); if(r===1) return String(c); return (c===1?\"\":c)+\"√\"+r;} var A=1,B=-4,C=-5; var d=Math.sqrt(B*B-4*A*C); var x1=(-B+d)/(2*A), x2=(-B-d)/(2*A); var y1=x1+3, y2=x2+3; var sq=Math.round((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)); return rad(sq);",
+    "distractor_solve": {
+      "12": "var x1=5,x2=-1; var y1=x1+3,y2=x2+3; return String(Math.abs(x1-x2)+Math.abs(y1-y2));",
+      "4√3": "function rad(n){var k=Math.floor(Math.sqrt(n)); for(;k>1;k--){ if(n%(k*k)===0) break;} var c=k, r=n/(k*k); if(r===1) return String(c); return (c===1?\"\":c)+\"√\"+r;} var d=Math.sqrt(4+20); var dx=d, dy=d; return rad(Math.round(dx*dx+dy*dy));",
+      "6√5": "function rad(n){var k=Math.floor(Math.sqrt(n)); for(;k>1;k--){ if(n%(k*k)===0) break;} var c=k, r=n/(k*k); if(r===1) return String(c); return (c===1?\"\":c)+\"√\"+r;} var x1=5,x2=-1; var y1=x1+3, y2=x2-3; return rad(Math.round((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)));"
+    }
+  },
+  {
+    "id": "SADVB-03",
+    "domain": "Advanced Math",
+    "subskill": "function transformation from a table: horizontal and vertical shift",
+    "difficulty": "medium",
+    "prompt": "The table gives four values of the function f.\n\nx: −2, 0, 2, 4\nf(x): 5, 1, −3, 7\n\nThe function g is defined by g(x) = f(x + 2) − 3. What is the value of g(2)?",
+    "choices": [
+      "4",
+      "−2",
+      "10",
+      "−6"
+    ],
+    "correct_answer": "4",
+    "explanation": "Substitute x = 2: g(2) = f(2 + 2) − 3 = f(4) − 3. From the table f(4) = 7, so g(2) = 7 − 3 = \"4\". \"−2\" comes from a solver who shifts in the wrong direction and reads f(2 − 2) = f(0) = 1, then 1 − 3. \"10\" comes from a solver who reads f(4) = 7 correctly but adds 3 instead of subtracting it. \"−6\" comes from a solver who ignores the horizontal shift and computes f(2) − 3 = −3 − 3.",
+    "solve": "var f={\"-2\":5,\"0\":1,\"2\":-3,\"4\":7}; var x=2; var v=f[String(x+2)]-3; return (v<0?\"−\":\"\")+Math.abs(v);",
+    "distractor_solve": {
+      "10": "var f={\"-2\":5,\"0\":1,\"2\":-3,\"4\":7}; var v=f[String(2+2)]+3; return String(v);",
+      "−2": "var f={\"-2\":5,\"0\":1,\"2\":-3,\"4\":7}; var v=f[String(2-2)]-3; return (v<0?\"−\":\"\")+Math.abs(v);",
+      "−6": "var f={\"-2\":5,\"0\":1,\"2\":-3,\"4\":7}; var v=f[\"2\"]-3; return (v<0?\"−\":\"\")+Math.abs(v);"
+    }
+  },
+  {
+    "id": "SADVB-04",
+    "domain": "Advanced Math",
+    "subskill": "exponential versus linear model: identifying the equation from a data table",
+    "difficulty": "medium",
+    "prompt": "The table shows the number of subscribers, P, to an online newsletter t months after it launched.\n\nt: 0, 1, 2, 3\nP: 640, 800, 1000, 1250\n\nWhich of the following equations gives P in terms of t?",
+    "choices": [
+      "P = 640 + 160t",
+      "P = 640(1.2)^t",
+      "P = 640(1.25)^t",
+      "P = 640 + 250t"
+    ],
+    "correct_answer": "P = 640(1.25)^t",
+    "explanation": "The differences between consecutive rows are 160, 200 and 250, which are not constant, so the model is not linear. The ratios are 800/640 = 1000/800 = 1250/1000 = 1.25, a constant factor, so P grows by 25% each month from an initial value of 640: \"P = 640(1.25)^t\". \"P = 640 + 160t\" comes from a solver who takes the first difference, 800 − 640, as a constant monthly increase; it gives 960 at t = 2, not 1000. \"P = 640(1.2)^t\" comes from a solver who divides the first increase by the later value, 160/800 = 0.2, instead of by the earlier value. \"P = 640 + 250t\" comes from a solver who takes the last difference, 1250 − 1000, as a constant monthly increase; it gives 890 at t = 1, not 800.",
+    "solve": "var P=[640,800,1000,1250]; var r=P[1]/P[0]; for(var i=2;i<P.length;i++){ if(Math.abs(P[i]/P[i-1]-r)>1e-9) throw new Error(\"ratio not constant\"); } var d=P[1]-P[0]; if(P[2]-P[1]===d) throw new Error(\"linear\"); return \"P = \"+P[0]+\"(\"+(Math.round(r*1000)/1000)+\")^t\";",
+    "distractor_solve": {
+      "P = 640 + 160t": "var P=[640,800,1000,1250]; var d=P[1]-P[0]; return \"P = \"+P[0]+\" + \"+d+\"t\";",
+      "P = 640(1.2)^t": "var P=[640,800,1000,1250]; var r=1+(P[1]-P[0])/P[1]; return \"P = \"+P[0]+\"(\"+(Math.round(r*1000)/1000)+\")^t\";",
+      "P = 640 + 250t": "var P=[640,800,1000,1250]; var d=P[3]-P[2]; return \"P = \"+P[0]+\" + \"+d+\"t\";"
+    }
+  },
+  {
+    "id": "SADVB-05",
+    "domain": "Advanced Math",
+    "subskill": "rational function: values where it is undefined when numerator and denominator share a factor",
+    "difficulty": "medium",
+    "prompt": "The function h is defined by h(x) = (x² − 25)/(x² − 2x − 15). What is the sum of all values of x for which h(x) is undefined?",
+    "choices": [
+      "−2",
+      "−3",
+      "4",
+      "2"
+    ],
+    "correct_answer": "2",
+    "explanation": "A rational function is undefined wherever its denominator is zero, whether or not the numerator is also zero there. x² − 2x − 15 = (x − 5)(x + 3), so h is undefined at x = 5 and x = −3, and the sum is 5 + (−3) = \"2\". The factor x − 5 also divides the numerator, but cancelling it produces a different function; h itself is still undefined at 5. \"−3\" comes from a solver who cancels the common factor x − 5 first and keeps only x = −3. \"−2\" comes from a solver who factors the denominator with the signs reversed, (x + 5)(x − 3), giving −5 + 3. \"4\" comes from a solver who applies the quadratic formula without dividing by 2, x = 2 ± √64 = 10 or −6, and sums those.",
+    "solve": "var b=-2,c=-15; var d=Math.sqrt(b*b-4*c); var x1=(-b+d)/2, x2=(-b-d)/2; var s=x1+x2; return (s<0?\"−\":\"\")+Math.abs(Math.round(s));",
+    "distractor_solve": {
+      "4": "var b=-2,c=-15; var d=Math.sqrt(b*b-4*c); var x1=-b+d, x2=-b-d; var s=x1+x2; return (s<0?\"−\":\"\")+Math.abs(Math.round(s));",
+      "−3": "var roots=[5,-3]; var kept=roots.filter(function(r){return r*r-25!==0;}); var s=kept.reduce(function(a,b){return a+b;},0); return (s<0?\"−\":\"\")+Math.abs(s);",
+      "−2": "var s=(-5)+3; return (s<0?\"−\":\"\")+Math.abs(s);"
+    }
+  },
+  {
+    "id": "SADVB-06",
+    "domain": "Advanced Math",
+    "subskill": "completing the square to read the radius of a circle",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graph of x² + y² − 6x + 10y = 2 is a circle. What is the radius of the circle?",
+    "choices": [
+      "√34",
+      "6",
+      "√2",
+      "36"
+    ],
+    "correct_answer": "6",
+    "explanation": "Complete the square in each variable: x² − 6x + 9 + y² + 10y + 25 = 2 + 9 + 25, so (x − 3)² + (y + 5)² = 36. The radius is √36 = \"6\". \"36\" comes from a solver who reports r² instead of r. \"√2\" comes from a solver who reads the constant on the right side, 2, as r² without completing the square. \"√34\" comes from a solver who adds 9 and 25 to complete the squares but forgets the original 2 on the right side, taking r² = 34.",
+    "solve": "var D=-6,E=10,F=2; var r2=F+(D/2)*(D/2)+(E/2)*(E/2); var r=Math.sqrt(r2); return Number.isInteger(r)?String(r):\"√\"+r2;",
+    "distractor_solve": {
+      "36": "var r2=2+9+25; return String(r2);",
+      "√2": "var r2=2; var r=Math.sqrt(r2); return Number.isInteger(r)?String(r):\"√\"+r2;",
+      "√34": "var r2=9+25; var r=Math.sqrt(r2); return Number.isInteger(r)?String(r):\"√\"+r2;"
+    }
+  },
+  {
+    "id": "SADVB-07",
+    "domain": "Advanced Math",
+    "subskill": "sum and product of roots with a ratio constraint between the roots",
+    "difficulty": "medium",
+    "prompt": "The equation x² − 10x + c = 0, where c is a constant, has two real solutions, and one solution is four times the other. What is the value of c?",
+    "choices": [
+      "8",
+      "10",
+      "16",
+      "21"
+    ],
+    "correct_answer": "16",
+    "explanation": "Call the solutions r and 4r. Their sum is 5r = 10, so r = 2, and the solutions are 2 and 8. The product of the solutions equals c, so c = 2 · 8 = \"16\". Check: x² − 10x + 16 = (x − 2)(x − 8). \"8\" comes from a solver who finds r = 2 and then multiplies r by 4 instead of by 4r, taking c = 2 · 4. \"10\" comes from a solver who adds the solutions 2 and 8 instead of multiplying them. \"21\" comes from a solver who reads \"four times\" as \"four more than\", solving r + (r + 4) = 10 to get solutions 3 and 7 and c = 3 · 7.",
+    "solve": "var sum=10, k=4; var r=sum/(1+k); return String(r*(k*r));",
+    "distractor_solve": {
+      "8": "var r=10/5; return String(r*4);",
+      "10": "var r=10/5; return String(r+4*r);",
+      "21": "var r=(10-4)/2; return String(r*(r+4));"
+    }
+  },
+  {
+    "id": "SADVB-08",
+    "domain": "Advanced Math",
+    "subskill": "absolute value equation with the variable on both sides: sum of solutions",
+    "difficulty": "medium",
+    "prompt": "What is the sum of all solutions to the equation |3x − 8| + x = 4?",
+    "choices": [
+      "5",
+      "3",
+      "−3",
+      "7"
+    ],
+    "correct_answer": "5",
+    "explanation": "Isolate the absolute value: |3x − 8| = 4 − x, which requires 4 − x ≥ 0. Case 1: 3x − 8 = 4 − x gives 4x = 12, x = 3. Case 2: 3x − 8 = −(4 − x) = x − 4 gives 2x = 4, x = 2. Both satisfy x ≤ 4, and checking, |9 − 8| + 3 = 4 and |6 − 8| + 2 = 4. The sum is 3 + 2 = \"5\". \"3\" comes from a solver who handles only the case 3x − 8 = 4 − x and reports its single solution. \"−3\" comes from a solver who negates only the 3x term in the second case, −3x − 8 = 4 − x, getting x = −6 and a sum of 3 + (−6). \"7\" comes from a solver who moves x to the wrong side, |3x − 8| = 4 + x, whose cases give x = 6 and x = 1.",
+    "solve": "var a=3,b=-8,k=4; var sols=[]; var x1=(k-b)/(a+1); if(k-x1>=0 && Math.abs(a*x1+b)+x1===k) sols.push(x1); var x2=(-k-b)/(a-1); if(k-x2>=0 && Math.abs(a*x2+b)+x2===k) sols.push(x2); var s=sols.reduce(function(p,q){return p+q;},0); return (s<0?\"−\":\"\")+Math.abs(s);",
+    "distractor_solve": {
+      "3": "var x1=(4+8)/4; return String(x1);",
+      "7": "var x1=(4+8)/(3-1); var x2=(-4+8)/(3+1); return String(x1+x2);",
+      "−3": "var x1=(4+8)/4; var x2=(4+8)/(-3+1); var s=x1+x2; return (s<0?\"−\":\"\")+Math.abs(s);"
+    }
+  }
+]

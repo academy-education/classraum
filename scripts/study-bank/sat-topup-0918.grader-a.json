@@ -1,0 +1,100 @@
+{
+ "SALGB-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "slope 12/3=4; f(8)=7+20=27. Same mechanism as SALGB-06 (linear function from output differences); 06 is 01 plus a midpoint twist."
+ },
+ "SALGB-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "52+3n<7n -> n>13 -> 14; 13 (D) is the boundary trap and is correctly excluded by the strict inequality."
+ },
+ "SALGB-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "perp slope 3/2; y=3/2x-7."
+ },
+ "SALGB-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "500-4t=80+6t -> t=42."
+ },
+ "SALGB-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(8+k)x-6=3x+17; k=-5, constants differ so no solution holds."
+ },
+ "SALGB-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "avg of f(6),f(14)=f(10)=38; slope 5; f(0)=8-20=-12. Overlaps SALGB-01 mechanism."
+ },
+ "SADVB-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(2x+5)(3x-4)=6x^2+7x-20; k=-13-(-20)=7."
+ },
+ "SADVB-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x^2-4x-5=0 -> (-1,2),(5,8); d=sqrt(72)=6sqrt2."
+ },
+ "SADVB-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "g(2)=f(4)-3=4."
+ },
+ "SADVB-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "constant ratio 1.25 across all three steps; A matches only the first difference."
+ },
+ "SADVB-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "denominator (x-5)(x+3); undefined at 5 and -3, sum 2. D (-3) is the cancel-the-common-factor misconception; the formula as defined is still undefined at x=5, so A is the only defensible answer under SAT convention."
+ },
+ "SADVB-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "(x-3)^2+(y+5)^2=36; A is r^2."
+ },
+ "SADVB-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "r+4r=10 -> r=2; c=2*8=16."
+ },
+ "SADVB-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x=3 and x=2, both satisfy x<=4 (no extraneous root, so the check step is not load-bearing); sum 5."
+ }
+}

@@ -1,0 +1,65 @@
+[
+ {
+  "id": "SALGB-06",
+  "domain": "Algebra",
+  "subskill": "a linear function pinned by one output and the average of two other outputs, which equals the output at the midpoint input",
+  "difficulty": "medium",
+  "prompt": "The function f is linear. If f(4) = 8 and the average of f(6) and f(14) is 38, what is the value of f(0)?",
+  "choices": [
+   "-20",
+   "-7",
+   "-12",
+   "-22"
+  ],
+  "correct_answer": "-12",
+  "explanation": "For a linear function, the average of the outputs at two inputs equals the output at the midpoint of those inputs, so f(10) = 38. The slope is then (38 - 8) / (10 - 4) = 5, and f(0) = f(4) - 4(5) = 8 - 20 = -12. \"-20\" comes from a solver who computes the drop of 4(5) = 20 from x = 4 back to x = 0 but forgets to start from f(4) = 8, reporting the drop itself with a negative sign. \"-7\" comes from a solver who counts the inputs 3, 2, 1 as three steps back from x = 4 instead of four and computes 8 - 3(5). \"-22\" comes from a solver who finds the rise of 30 from f(4) to f(10) and subtracts that entire rise from f(4), as if the four steps back to x = 0 covered the same change as the six steps forward.",
+  "solve": "var xm=(6+14)/2; var m=(38-8)/(xm-4); return String(8-m*4);",
+  "distractor_solve": {
+   "-20": "var xm=(6+14)/2; var m=(38-8)/(xm-4); return String(-m*4);",
+   "-7": "var xm=(6+14)/2; var m=(38-8)/(xm-4); return String(8-m*3);",
+   "-22": "return String(8-(38-8));"
+  }
+ },
+ {
+  "id": "SADVB-07",
+  "domain": "Advanced Math",
+  "subskill": "sum and product of roots with a ratio constraint between the roots",
+  "difficulty": "medium",
+  "prompt": "The equation x² − 10x + c = 0, where c is a constant, has two real solutions, and one solution is four times the other. What is the value of c?",
+  "choices": [
+   "8",
+   "10",
+   "16",
+   "21"
+  ],
+  "correct_answer": "16",
+  "explanation": "Call the solutions r and 4r. Their sum is 5r = 10, so r = 2, and the solutions are 2 and 8. The product of the solutions equals c, so c = 2 · 8 = \"16\". Check: x² − 10x + 16 = (x − 2)(x − 8). \"8\" comes from a solver who finds r = 2 and then multiplies r by 4 instead of by 4r, taking c = 2 · 4. \"10\" comes from a solver who adds the solutions 2 and 8 instead of multiplying them. \"21\" comes from a solver who reads \"four times\" as \"four more than\", solving r + (r + 4) = 10 to get solutions 3 and 7 and c = 3 · 7.",
+  "solve": "var sum=10, k=4; var r=sum/(1+k); return String(r*(k*r));",
+  "distractor_solve": {
+   "8": "var r=10/5; return String(r*4);",
+   "10": "var r=10/5; return String(r+4*r);",
+   "21": "var r=(10-4)/2; return String(r*(r+4));"
+  }
+ },
+ {
+  "id": "SADVB-08",
+  "domain": "Advanced Math",
+  "subskill": "absolute value equation with the variable on both sides: sum of solutions",
+  "difficulty": "medium",
+  "prompt": "What is the sum of all solutions to the equation |3x − 8| + x = 4?",
+  "choices": [
+   "5",
+   "3",
+   "−3",
+   "7"
+  ],
+  "correct_answer": "5",
+  "explanation": "Isolate the absolute value: |3x − 8| = 4 − x, which requires 4 − x ≥ 0. Case 1: 3x − 8 = 4 − x gives 4x = 12, x = 3. Case 2: 3x − 8 = −(4 − x) = x − 4 gives 2x = 4, x = 2. Both satisfy x ≤ 4, and checking, |9 − 8| + 3 = 4 and |6 − 8| + 2 = 4. The sum is 3 + 2 = \"5\". \"3\" comes from a solver who handles only the case 3x − 8 = 4 − x and reports its single solution. \"−3\" comes from a solver who negates only the 3x term in the second case, −3x − 8 = 4 − x, getting x = −6 and a sum of 3 + (−6). \"7\" comes from a solver who moves x to the wrong side, |3x − 8| = 4 + x, whose cases give x = 6 and x = 1.",
+  "solve": "var a=3,b=-8,k=4; var sols=[]; var x1=(k-b)/(a+1); if(k-x1>=0 && Math.abs(a*x1+b)+x1===k) sols.push(x1); var x2=(-k-b)/(a-1); if(k-x2>=0 && Math.abs(a*x2+b)+x2===k) sols.push(x2); var s=sols.reduce(function(p,q){return p+q;},0); return (s<0?\"−\":\"\")+Math.abs(s);",
+  "distractor_solve": {
+   "3": "var x1=(4+8)/4; return String(x1);",
+   "7": "var x1=(4+8)/(3-1); var x2=(-4+8)/(3+1); return String(x1+x2);",
+   "−3": "var x1=(4+8)/4; var x2=(4+8)/(-3+1); var s=x1+x2; return (s<0?\"−\":\"\")+Math.abs(s);"
+  }
+ }
+]

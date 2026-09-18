@@ -3258,6 +3258,34 @@
      "verdict": "Authored keys AAAAAAAAAAAAAAAAAAAA - third author today; unreachable at draw, neutralised for the panel by the shuffled render. Anchor-in-options recipe on 03/13/20 is the batch's one cross-item tell; 03 dropped, 13/20 handled by the residual rule above."
     }
    }
+  },
+  {
+   "id": "sat-topup-0918-kept-2026-09-18",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-topup-0918",
+   "contentSha": "9a170aed00fc64555a55d93c9dab775d934ab10bf7c199b276fff6f3c2eb7b24",
+   "note": "3 kept of 14 (SALGB-06 Algebra; SADVB-07, SADVB-08 Advanced Math), banked MEDIUM. THE PARENT UNIT FAILED nosource OUTRIGHT: 69.0% vs a 28.6% control, +40.5, P ~ 6.6e-8, seven of fourteen unanimous against 0.33 expected, with BOTH strata near 70% (mechanism 67.9%, guess 71.4%). This was the batch whose brief listed the tells to avoid by name - +-1/+-2 hubs, runs, doubling pairs, digit reversals - and it leaked worse than any batch today, through sign pairs (key vs -key with a third relation) and hubs. All three solvers estimated ~5/14 and scored 9-10. The seven unanimous items were dropped; the residual on the remaining seven was 38.1% vs 42.9% (-4.8, n=21). The bound hunter then removed SADVB-05 (Vieta's -b/a = 2 reaches the key with no factoring; the hole-vs-asymptote trap is never met; N=1) and SADVB-02 (a slope-1 line forces PQ = |dx|*sqrt(2) and only one option carries sqrt(2)). The routed rule dropped seven majority-easy. Every filter agreed on SALGB-01 (unanimous blind, N=1 by monotone interpolation, majority easy, duplicate of 06).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 14/14 (my run, on the combined unit); distractor_solve 42/42; symbolic hub 2 structured of 14 at 37.5% - n=2 (one at exactly the control, one a two-way tie), read as no measurement."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha cf9366ecd76edda9): 14/14 x3 key agreement; exclusive:false 0/0/0. Difficulty easy 5/8/4, hard 0/0/0. Bound hunter survivor table: SALGB-01 N=1, SADVB-05 N=1, N=2 on SALGB-06, SADVB-01, -02, -04, -06; duplicates 01/06, 05/07 (Vieta), 02/04. Aggregate ROUTED=1: 7 survive on difficulty."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "PARENT UNIT: FAIL. 3 solvers, 42 forced picks, keys A4 B4 C3 D3 for a 28.6% control: 29/42 = 69.0% (+40.5). Unanimous 7 of 14. Mechanism-minus-guess -3.6 - irrelevant at this level. KEPT 3 ONLY: residual 4/9 = 44.4% vs 66.7% control (-22.2) on n=9 picks - a coarse number over three items, recorded as such. Passed for the kept subset because none of the three was unanimous and two were majority-missed; the parent file as authored must not be inserted."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys CDABDCBDACDBCA - the first two authors today to deal keys across slots; the leak was not positional, it was in the option arithmetic the brief told them to avoid. Sign pairs on SALGB-05, SADVB-01, -05, -08; hub sets on SALGB-04, SADVB-03. Listing tells in a brief did not prevent them; only the attack did."
+    }
+   }
   }
  ],
  "auditedCohorts": [

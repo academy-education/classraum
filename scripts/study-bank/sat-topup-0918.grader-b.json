@@ -1,0 +1,100 @@
+{
+ "SALGB-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "slope 12/3=4; f(8)=7+4*5=27. 39 = 4*8+7 (treats f(x)=4x+7), 67 = slope 12 error, 19 = 7+12."
+ },
+ "SALGB-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "52+3n<7n -> n>13 -> 14. 13 is the non-strict twin; 18 ~ 52/3; 6 ~ 52/10."
+ },
+ "SALGB-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "perp slope 3/2; 2 = 9 + b -> b = -7. -2 from slope 2/3, -16 from slope 3, -11 sign-flip of the -3/2 result."
+ },
+ "SALGB-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "500-4t=80+6t -> t=42. 70=420/6, 105=420/4."
+ },
+ "SALGB-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(8+k)x-6 = 3x+17 -> 8+k=3 -> k=-5. 5 sign error, -8 kills the x term, 23 is the constant gap."
+ },
+ "SALGB-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "avg of f(6),f(14) = f(10) = 38; slope (38-8)/6 = 5; f(0)=8-20=-12."
+ },
+ "SADVB-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "(3x-4)(2x+5)=6x^2+7x-20; -13-(-20)=7. x=0 gives -13/5 = -4 + k/5 -> k=7 in one line. -7 sign, -33 = -13-20."
+ },
+ "SADVB-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x^2-4x-5=0 -> x=5,-1; points (5,8),(-1,2); d=sqrt(72)=6sqrt2. Three of four options carry 6, so the coefficient does not single out the key; 4sqrt3 is the odd one."
+ },
+ "SADVB-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "g(2)=f(4)-3=4. -2 = f(0)-3 (shift-direction error), 10 = f(4)+3, -6 = f(2)-3."
+ },
+ "SADVB-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "800/640 = 1.25; the linear options die on the first difference (160 vs 200) and 1.2 fails at t=1. One computation decides it."
+ },
+ "SADVB-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "denominator (x-5)(x+3): undefined at 5 and -3, sum 2; Vieta -b/a = 2 directly. -3 is the cancel-the-shared-factor trap, -2 sign, 4 from 5-... no clear route."
+ },
+ "SADVB-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "(x-3)^2+(y+5)^2 = 2+9+25 = 36 -> r=6. 36 = r^2, sqrt34 = 9+25 without the 2, sqrt2 = raw constant."
+ },
+ "SADVB-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "r+4r=10 -> r=2; c = 2*8 = 16. 21 = 3*7 and 16 = 2*8 both sum to 10 so the sum alone does not pick; 10 and 8 are partial values."
+ },
+ "SADVB-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "|3x-8| = 4-x, x<=4. Cases give x=3 and x=2, both valid; sum 5. 7 = 6+1 from mishandling the sign on the RHS; 3 = one root only."
+ }
+}

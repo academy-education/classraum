@@ -1,0 +1,100 @@
+{
+ "SALGB-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1: slope>0 (12 over 3 units); 5 units must gain more than 12 (>19, so 19 dead - it is f(6)) and less than 24 (<31, so 39 and 67 dead). Only 27 left with no algebra. DUPLICATE mechanism with SALGB-06."
+ },
+ "SALGB-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. Break-even 52/4=13, strict -> 14. 13 is the on-the-boundary distractor, correct trap. Setup duplicates SALGB-04 (two linear plans equated)."
+ },
+ "SALGB-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. Perpendicular slope 3/2 is recall but the intercept 2-9=-7 still needs the point. -2 = slope 2/3 (sign-flip only), -16 = slope 3; -11 has no clean error path."
+ },
+ "SALGB-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 (t<125 from P emptying rejects nothing). 105=420/4, 70=420/6, 50=500/10 are one-rate errors. Fine but easy."
+ },
+ "SALGB-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. (8+k)=3 -> k=-5. 5 sign error, -8 zeroes the LHS coefficient, 23 is the constant 17+6."
+ },
+ "SALGB-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: average of f(6),f(14) is f(10)=38 (recall); rise 30 over 6 units; 4 units back must drop more than 15 (<-7, kills -7) and less than 30 (>-22, kills -22). -12 and -20 survive. DUPLICATE mechanism with SALGB-01; keep this one, drop 01."
+ },
+ "SADVB-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: constant term (-4)(5)=-20 must become -13 so k>0 - kills -7 and -33 in one step. Whole item is that one step (or remainder theorem at x=-5/2). 42 has no error path."
+ },
+ "SADVB-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: line y=x+3 has slope 1 so PQ = |dx|*sqrt2 - only B carries sqrt2; 12 survives formally (needs dx=6sqrt2) and dies once the discriminant 36 is seen to be a perfect square. 6sqrt5 and 4sqrt3 are the wrong SHAPE, not wrong arithmetic. FIX distractors to sqrt2 multiples (4sqrt2, 8sqrt2, 2sqrt2) or change the line slope."
+ },
+ "SADVB-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: g = f(.)-3 so the answer must be a table value minus 3 ({2,-2,-6,4}); 10 = f(4)+3 is impossible by sign of the vertical shift. Remaining three are the genuine shift-direction errors. Table-read tell is mild; keep."
+ },
+ "SADVB-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: successive differences 160,200,250 are not constant -> A,B dead in one step. t=0 row does NOT leak (all four give 640). 1.2 vs 1.25 needs one ratio. Standard SAT item."
+ },
+ "SADVB-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=1: Vieta - sum of roots of x^2-2x-15 is -b/a = 2 without factoring. The intended trap (hole at 5 vs asymptote at -3, distractor -3) is bypassed entirely by the recall route. Key is correct (0/0 is undefined) but the item does not measure the skill it names. DROP or reword."
+ },
+ "SADVB-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: r^2 = 2+9+25 needs the square-completion, but the option set shows the pair {6, 36} (r and r^2) - when both appear the key is the root, never the square, since 6->36 is not a natural error. sqrt34 (dropped the 2) is the one strong distractor."
+ },
+ "SADVB-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 (discriminant c<25 rejects nothing). Vieta IS the intended method: 5r=10, c=4r^2=16. 21=3*7 wrong ratio, 8 is 4r, 10 is the sum. Second Vieta item alongside SADVB-05."
+ },
+ "SADVB-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 (x<=4 domain bound rejects nothing; sum<=8 passes all). Both cases x=3 and x=2 check, no extraneous root, sum 5. 3 = one root only. -3 and 7 have thin error paths."
+ }
+}

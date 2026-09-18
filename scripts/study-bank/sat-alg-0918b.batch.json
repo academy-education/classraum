@@ -1,0 +1,128 @@
+[
+  {
+    "id": "SALGB-01",
+    "domain": "Algebra",
+    "subskill": "find the slope of a linear function from the difference of two outputs, then extend from a third known value",
+    "difficulty": "medium",
+    "prompt": "The function f is linear, f(5) - f(2) = 12, and f(3) = 7. What is the value of f(8)?",
+    "choices": [
+      "67",
+      "39",
+      "27",
+      "19"
+    ],
+    "correct_answer": "27",
+    "explanation": "For a linear function the change in output is the slope times the change in input, so f(5) - f(2) = 12 over a change of 3 in x gives a slope of 4. From x = 3 to x = 8 the input increases by 5, so f(8) = 7 + 4(5) = 27. \"67\" comes from a solver who uses the difference 12 itself as the slope and computes 7 + 12(5). \"39\" comes from a solver who finds the slope 4 but multiplies it by the input 8 instead of by the change of 5, getting 7 + 4(8). \"19\" comes from a solver who adds the given difference of 12 to f(3) once, as if any two outputs differ by 12.",
+    "solve": "var m=12/(5-2); return String(7+m*(8-3));",
+    "distractor_solve": {
+      "67": "return String(7+12*(8-3));",
+      "39": "var m=12/(5-2); return String(7+m*8);",
+      "19": "return String(7+12);"
+    }
+  },
+  {
+    "id": "SALGB-02",
+    "domain": "Algebra",
+    "subskill": "a strict break-even inequality between a fixed-plus-per-use plan and a pure per-use plan, asked for the least integer that satisfies it",
+    "difficulty": "medium",
+    "prompt": "A gym offers two plans. Plan A costs $52 per month plus $3 per class attended. Plan B has no monthly fee and costs $7 per class attended. What is the least number of classes a member could attend in a month for which Plan A costs less than Plan B?",
+    "choices": [
+      "6",
+      "18",
+      "13",
+      "14"
+    ],
+    "correct_answer": "14",
+    "explanation": "Let n be the number of classes. Plan A costs less than Plan B when 52 + 3n < 7n, so 52 < 4n and n > 13. Because the inequality is strict, n = 13 makes the two plans cost the same (91 dollars each), so the least whole number of classes is 14. \"13\" comes from a solver who treats the boundary value 52 / 4 = 13 as the answer, where the plans cost the same rather than Plan A costing less. \"6\" comes from a solver who adds the per-class rates instead of subtracting them, getting 52 < 10n, so n > 5.2, and rounds up to 6. \"18\" comes from a solver who compares the monthly fee only with Plan A's own per-class rate, 52 / 3 = 17.33, and rounds up to 18.",
+    "solve": "var b=52/(7-3); var n=Math.floor(b)+1; return String(n);",
+    "distractor_solve": {
+      "13": "return String(52/(7-3));",
+      "6": "return String(Math.ceil(52/(7+3)));",
+      "18": "return String(Math.ceil(52/3));"
+    }
+  },
+  {
+    "id": "SALGB-03",
+    "domain": "Algebra",
+    "subskill": "the y-intercept of the line perpendicular to a line given in standard form, through a given point",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, line l is perpendicular to the line with equation 2x + 3y = 12 and passes through the point (6, 2). What is the y-coordinate of the y-intercept of line l?",
+    "choices": [
+      "-7",
+      "-2",
+      "-16",
+      "-11"
+    ],
+    "correct_answer": "-7",
+    "explanation": "Rewriting 2x + 3y = 12 as y = (-2/3)x + 4 shows its slope is -2/3, so a perpendicular line has slope 3/2, the negative reciprocal. Line l is y = (3/2)x + b, and substituting (6, 2) gives 2 = 9 + b, so b = -7. \"-2\" comes from a solver who changes the sign but never takes the reciprocal, using slope 2/3 and getting 2 = 4 + b. \"-16\" comes from a solver who takes the perpendicular slope to be 3, the coefficient of y alone, instead of 3/2, and gets 2 = 18 + b. \"-11\" comes from a solver who finds 2 = 9 + b correctly but moves the 2 across with the wrong sign, computing b = -9 - 2.",
+    "solve": "var m=-2/3; var p=-1/m; return String(2-p*6);",
+    "distractor_solve": {
+      "-2": "var m=-2/3; var p=-m; return String(2-p*6);",
+      "-16": "var p=3; return String(2-p*6);",
+      "-11": "var m=-2/3; var p=-1/m; return String(-p*6-2);"
+    }
+  },
+  {
+    "id": "SALGB-04",
+    "domain": "Algebra",
+    "subskill": "two linear models with opposite rates and different starting values, solved for the time at which they are equal",
+    "difficulty": "medium",
+    "prompt": "Tank P contains 500 liters of water and is draining at a constant rate of 4 liters per minute. At the same moment, Tank Q contains 80 liters of water and is filling at a constant rate of 6 liters per minute. After how many minutes will the two tanks contain the same amount of water?",
+    "choices": [
+      "50",
+      "42",
+      "70",
+      "105"
+    ],
+    "correct_answer": "42",
+    "explanation": "After t minutes Tank P holds 500 - 4t liters and Tank Q holds 80 + 6t liters. Setting them equal gives 500 - 4t = 80 + 6t, so 420 = 10t and t = 42. \"50\" comes from a solver who ignores the 80 liters already in Tank Q and solves 500 = 10t. \"70\" comes from a solver who treats Tank P as if it were not draining, solving 500 = 80 + 6t. \"105\" comes from a solver who treats Tank Q as if it were not filling, solving 500 - 4t = 80.",
+    "solve": "return String((500-80)/(4+6));",
+    "distractor_solve": {
+      "50": "return String(500/(4+6));",
+      "70": "return String((500-80)/6);",
+      "105": "return String((500-80)/4);"
+    }
+  },
+  {
+    "id": "SALGB-05",
+    "domain": "Algebra",
+    "subskill": "the constant for which a linear equation in one variable, with distribution on both sides, has no solution",
+    "difficulty": "medium",
+    "prompt": "In the equation 2(4x - 3) + kx = 3(x + 7) - 4, k is a constant. If the equation has no solution, what is the value of k?",
+    "choices": [
+      "5",
+      "-8",
+      "23",
+      "-5"
+    ],
+    "correct_answer": "-5",
+    "explanation": "Expanding both sides gives 8x - 6 + kx = 3x + 17, so (8 + k)x - 6 = 3x + 17. A linear equation has no solution when the x-coefficients are equal but the constants differ. The constants -6 and 17 already differ, so the equation has no solution exactly when 8 + k = 3, giving k = -5. \"5\" comes from a solver who sets up 8 + k = 3 correctly but subtracts in the wrong order, computing 8 - 3. \"-8\" comes from a solver who sets the x-coefficient on the left side to zero, 8 + k = 0, forgetting the 3x on the right side. \"23\" comes from a solver who treats k as a constant term rather than a coefficient of x and matches the constants, solving -6 + k = 17.",
+    "solve": "var left=2*4; var right=3*1; return String(right-left);",
+    "distractor_solve": {
+      "5": "var left=2*4; var right=3*1; return String(left-right);",
+      "-8": "return String(-(2*4));",
+      "23": "var lc=2*(-3); var rc=3*7-4; return String(rc-lc);"
+    }
+  },
+  {
+    "id": "SALGB-06",
+    "domain": "Algebra",
+    "subskill": "a linear function pinned by one output and the average of two other outputs, which equals the output at the midpoint input",
+    "difficulty": "medium",
+    "prompt": "The function f is linear. If f(4) = 8 and the average of f(6) and f(14) is 38, what is the value of f(0)?",
+    "choices": [
+      "-20",
+      "-7",
+      "-12",
+      "-22"
+    ],
+    "correct_answer": "-12",
+    "explanation": "For a linear function, the average of the outputs at two inputs equals the output at the midpoint of those inputs, so f(10) = 38. The slope is then (38 - 8) / (10 - 4) = 5, and f(0) = f(4) - 4(5) = 8 - 20 = -12. \"-20\" comes from a solver who computes the drop of 4(5) = 20 from x = 4 back to x = 0 but forgets to start from f(4) = 8, reporting the drop itself with a negative sign. \"-7\" comes from a solver who counts the inputs 3, 2, 1 as three steps back from x = 4 instead of four and computes 8 - 3(5). \"-22\" comes from a solver who finds the rise of 30 from f(4) to f(10) and subtracts that entire rise from f(4), as if the four steps back to x = 0 covered the same change as the six steps forward.",
+    "solve": "var xm=(6+14)/2; var m=(38-8)/(xm-4); return String(8-m*4);",
+    "distractor_solve": {
+      "-20": "var xm=(6+14)/2; var m=(38-8)/(xm-4); return String(-m*4);",
+      "-7": "var xm=(6+14)/2; var m=(38-8)/(xm-4); return String(8-m*3);",
+      "-22": "return String(8-(38-8));"
+    }
+  }
+]
