@@ -1,0 +1,275 @@
+[
+ {
+  "id": "SALG-03",
+  "domain": "Algebra",
+  "subskill": "an equation setting two absolute values equal, solved by two sign cases, with the greater root requested",
+  "difficulty": "medium",
+  "prompt": "If |3x + 4| = |x - 8|, what is the greater of the two possible values of x?",
+  "choices": [
+   "1",
+   "-6",
+   "-3",
+   "3"
+  ],
+  "correct_answer": "1",
+  "explanation": "Two absolute values are equal when the expressions are equal or opposite. From 3x + 4 = x - 8, x = -6. From 3x + 4 = -(x - 8) = -x + 8, 4x = 4 and x = 1. The greater value is 1. \"-6\" is the other solution, reported by a solver who stops after the first case. \"-3\" comes from a solver who negates only the x when writing the opposite of x - 8, so 3x + 4 = -x - 8 and 4x = -12. \"3\" comes from a solver who copies the left side of the second case as 3x - 4, so 3x - 4 = -x + 8 and 4x = 12.",
+  "solve": "var r1=(-8-4)/(3-1); var r2=(8-4)/(3+1); return String(Math.max(r1,r2));",
+  "distractor_solve": {
+   "3": "var x=(8+4)/(3+1); return String(x);",
+   "-6": "var r1=(-8-4)/(3-1); return String(r1);",
+   "-3": "var x=(-8-4)/(3+1); return String(x);"
+  }
+ },
+ {
+  "id": "SALG-04",
+  "domain": "Algebra",
+  "subskill": "count the integers inside a strict absolute value inequality",
+  "difficulty": "medium",
+  "prompt": "How many integers x satisfy |2x - 5| < 9?",
+  "choices": [
+   "8",
+   "10",
+   "9",
+   "7"
+  ],
+  "correct_answer": "8",
+  "explanation": "The inequality means -9 < 2x - 5 < 9, so -4 < 2x < 14 and -2 < x < 7. Because both ends are strict, the integers are -1 through 6, which is 8 integers. \"10\" comes from a solver who treats the inequality as non-strict and counts -2 through 7. \"9\" comes from a solver who forgets to add 5 to each side, gets -4.5 < x < 4.5, and counts -4 through 4. \"7\" comes from a solver who finds -2 < x < 7 but counts only the nonnegative integers 0 through 6.",
+  "solve": "var lo=(-9+5)/2, hi=(9+5)/2; var n=0; for (var k=Math.ceil(lo); k<=Math.floor(hi); k++) { if (k>lo && k<hi) n++; } return String(n);",
+  "distractor_solve": {
+   "7": "var lo=(-9+5)/2, hi=(9+5)/2; var n=0; for (var k=0; k<=Math.floor(hi); k++) { if (k>lo && k<hi) n++; } return String(n);",
+   "9": "var lo=-9/2, hi=9/2; var n=0; for (var k=Math.ceil(lo); k<=Math.floor(hi); k++) { if (k>lo && k<hi) n++; } return String(n);",
+   "10": "var lo=(-9+5)/2, hi=(9+5)/2; var n=0; for (var k=Math.ceil(lo); k<=Math.floor(hi); k++) { if (k>=lo && k<=hi) n++; } return String(n);"
+  }
+ },
+ {
+  "id": "SALG-05",
+  "domain": "Algebra",
+  "subskill": "a linear inequality with two fractional terms whose combined coefficient is negative, asked for the greatest integer solution",
+  "difficulty": "medium",
+  "prompt": "What is the greatest integer x that satisfies the inequality x/3 - (3x - 2)/4 is greater than or equal to 2?",
+  "choices": [
+   "-4",
+   "-6",
+   "-3",
+   "0"
+  ],
+  "correct_answer": "-4",
+  "explanation": "Multiplying by 12 gives 4x - 3(3x - 2) >= 24, so 4x - 9x + 6 >= 24 and -5x >= 18. Dividing by -5 reverses the inequality: x <= -3.6, so the greatest integer is -4. \"-6\" comes from a solver who distributes the -3 onto 3x but not onto -2, getting -5x - 6 >= 24 and x <= -6. \"-3\" comes from a solver who divides by -5 without reversing, gets x >= -3.6, and reports the first integer in that set. \"0\" comes from a solver who multiplies the left side by 12 but leaves the right side as 2, getting -5x >= -4 and x <= 0.8.",
+  "solve": "var bound=(24-6)/(-5); return String(Math.floor(bound));",
+  "distractor_solve": {
+   "0": "var bound=(2-6)/(-5); return String(Math.floor(bound));",
+   "-6": "var bound=(24+6)/(-5); return String(Math.floor(bound));",
+   "-3": "var bound=(24-6)/(-5); return String(Math.ceil(bound));"
+  }
+ },
+ {
+  "id": "SALG-10",
+  "domain": "Algebra",
+  "subskill": "find a parameter when a point whose coordinates both depend on it lies on a line of known slope through a fixed point",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the line through the points (a, 3a) and (-1, 7) has slope 2. What is the value of a?",
+  "choices": [
+   "9",
+   "5",
+   "3",
+   "-5"
+  ],
+  "correct_answer": "9",
+  "explanation": "The slope condition is (3a - 7)/(a + 1) = 2, so 3a - 7 = 2a + 2 and a = 9. \"5\" comes from a solver who distributes the 2 over (a + 1) as 2a - 2, giving 3a - 7 = 2a - 2. \"3\" comes from a solver who inverts the slope ratio, (a + 1)/(3a - 7) = 2, so a + 1 = 6a - 14 and 5a = 15. \"-5\" comes from a solver who writes the y-difference as 3a + 7, giving 3a + 7 = 2a + 2.",
+  "solve": "var k=3,p=-1,q=7,m=2; var a=(q - m*p)/(k - m); return String(a);",
+  "distractor_solve": {
+   "3": "var k=3,p=-1,q=7,m=2; var a=(p - m*q)/(1 - m*k); return String(a);",
+   "5": "var k=3,p=-1,q=7,m=2; var a=(q + m*p)/(k - m); return String(a);",
+   "-5": "var k=3,p=-1,q=7,m=2; var a=-(q + m*p)/(k - m); return String(a);"
+  }
+ },
+ {
+  "id": "SALG-11",
+  "domain": "Algebra",
+  "subskill": "use a linear profit model twice: evaluate it at a known input, shift the output, and invert it",
+  "difficulty": "medium",
+  "prompt": "A bakery's daily profit P, in dollars, from selling c cupcakes is modeled by P = 2.4c - 180. On Monday the bakery sold 130 cupcakes. On Tuesday its profit was 168 dollars greater than its Monday profit. How many cupcakes did the bakery sell on Tuesday?",
+  "choices": [
+   "200",
+   "250",
+   "145",
+   "275"
+  ],
+  "correct_answer": "200",
+  "explanation": "Monday's profit is 2.4(130) - 180 = 132 dollars, so Tuesday's is 300 dollars. Then 2.4c - 180 = 300 gives 2.4c = 480 and c = 200. \"250\" comes from a solver who divides the 168-dollar increase by 2.4 to get 70 and then adds the 180 from the model instead of the 130 cupcakes. \"145\" comes from a solver who treats the 168-dollar increase as Tuesday's entire profit and solves 2.4c - 180 = 168. \"275\" comes from a solver who drops the -180 when computing Monday's profit (312 dollars), adds 168 to get 480, and then solves 2.4c - 180 = 480.",
+  "solve": "var pm=2.4*130-180; var pt=pm+168; return String(Math.round((pt+180)/2.4));",
+  "distractor_solve": {
+   "145": "return String(Math.round((168+180)/2.4));",
+   "250": "return String(Math.round(168/2.4 + 180));",
+   "275": "var pm=2.4*130; var pt=pm+168; return String(Math.round((pt+180)/2.4));"
+  }
+ },
+ {
+  "id": "SALG-12",
+  "domain": "Algebra",
+  "subskill": "find the constant that makes a third line pass through the intersection of two given lines",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the lines y = 3x - 7, y = -2x + 13, and 3y = kx + 7 all pass through the same point, where k is a constant. What is the value of k?",
+  "choices": [
+   "2",
+   "15/4",
+   "-1/2",
+   "9"
+  ],
+  "correct_answer": "2",
+  "explanation": "Setting 3x - 7 = -2x + 13 gives x = 4 and y = 5. Substituting into 3y = kx + 7 gives 15 = 4k + 7, so k = 2. \"15/4\" comes from a solver who drops the 7, solving 15 = 4k. \"-1/2\" comes from a solver who forgets to multiply y by 3 and solves 5 = 4k + 7. \"9\" comes from a solver who never uses the intersection point and instead makes the third line's slope k/3 equal to the slope 3 of the first line.",
+  "solve": "var x=(13+7)/(3+2); var y=3*x-7; var k=(3*y-7)/x; return String(k);",
+  "distractor_solve": {
+   "9": "var k=3*3; return String(k);",
+   "15/4": "var x=(13+7)/(3+2); var y=3*x-7; var num=3*y, den=x; return num + '/' + den;",
+   "-1/2": "var x=(13+7)/(3+2); var y=3*x-7; var num=y-7, den=x; var g=2; return (num/g) + '/' + (den/g);"
+  }
+ },
+ {
+  "id": "SALG-13",
+  "domain": "Algebra",
+  "subskill": "a linear function given by three table values, two of which share an unknown constant that cancels in the slope",
+  "difficulty": "hard",
+  "prompt": "The function f is linear. A table of values gives f(1) = c, f(3) = 11, and f(7) = c + 12, where c is a constant. What is the value of c?",
+  "choices": [
+   "7",
+   "3",
+   "5",
+   "9"
+  ],
+  "correct_answer": "7",
+  "explanation": "Between x = 1 and x = 7 the output rises by (c + 12) - c = 12 whatever c is, so the slope is 12/6 = 2. Going back from x = 3 to x = 1 is two units, so c = 11 - 2(2) = 7. \"9\" comes from a solver who moves back only one step, 11 - 2. \"5\" comes from a solver who divides the rise of 12 by the run from 3 to 7 (4 units) to get slope 3, then computes 11 - 3(2). \"3\" comes from a solver who uses the correct slope 2 but counts the run from 3 to 7 (4 units) instead of from 1 to 3, computing 11 - 2(4).",
+  "solve": "var slope=((0+12)-0)/(7-1); var c=11 - slope*(3-1); return String(c);",
+  "distractor_solve": {
+   "3": "var slope=12/(7-1); var c=11 - slope*(7-3); return String(c);",
+   "5": "var slope=12/(7-3); var c=11 - slope*(3-1); return String(c);",
+   "9": "var slope=12/(7-1); var c=11 - slope*1; return String(c);"
+  }
+ },
+ {
+  "id": "SALG-14",
+  "domain": "Algebra",
+  "subskill": "the constant for which an absolute value equation has exactly one solution",
+  "difficulty": "hard",
+  "prompt": "In the equation |2x + 5| - 4 = k, k is a constant. If the equation has exactly one solution, what is the value of k?",
+  "choices": [
+   "-4",
+   "4",
+   "-5/2",
+   "1"
+  ],
+  "correct_answer": "-4",
+  "explanation": "The equation is |2x + 5| = k + 4. An absolute value equals a positive number at two points and equals 0 at exactly one point, so there is exactly one solution when k + 4 = 0, that is, k = -4. \"4\" comes from a solver who sets |2x + 5| = 0 and then moves the 4 across with the wrong sign. \"-5/2\" is the x-value at which 2x + 5 = 0, reported by a solver who solves for x instead of k. \"1\" comes from a solver who subtracts the constants 5 - 4 as if the equation were 2x + 5 - 4 = k with x = 0.",
+  "solve": "var minAbs=0; var k=minAbs-4; return String(k);",
+  "distractor_solve": {
+   "1": "return String(5-4);",
+   "4": "var minAbs=0; var k=minAbs+4; return String(k);",
+   "-5/2": "var num=-5, den=2; return num + '/' + den;"
+  }
+ },
+ {
+  "id": "SALG-15",
+  "domain": "Algebra",
+  "subskill": "maximise one count under a resource inequality and a ratio constraint, which must be set at its boundary",
+  "difficulty": "hard",
+  "prompt": "A florist has 250 flower stems. Each small bouquet uses 6 stems and each large bouquet uses 10 stems. The florist must make at least twice as many small bouquets as large bouquets. What is the greatest number of large bouquets the florist can make?",
+  "choices": [
+   "11",
+   "9",
+   "15",
+   "12"
+  ],
+  "correct_answer": "11",
+  "explanation": "Every large bouquet forces at least two small ones, so each large bouquet effectively commits 10 + 2(6) = 22 stems. Then 22L <= 250 gives L <= 11.36, so the greatest whole number is 11 (11 large and 22 small use 242 stems). \"12\" comes from a solver who rounds 11.36 up. \"15\" comes from a solver who pairs each large bouquet with only one small one, 16L <= 250. \"9\" comes from a solver who swaps the stem counts, charging 6 + 2(10) = 26 stems per large bouquet, 26L <= 250.",
+  "solve": "var per=10+2*6; return String(Math.floor(250/per));",
+  "distractor_solve": {
+   "9": "var per=6+2*10; return String(Math.floor(250/per));",
+   "12": "var per=10+2*6; return String(Math.ceil(250/per));",
+   "15": "var per=10+6; return String(Math.floor(250/per));"
+  }
+ },
+ {
+  "id": "SALG-17",
+  "domain": "Algebra",
+  "subskill": "count the integer solutions of a perimeter inequality with a lower bound on the variable",
+  "difficulty": "hard",
+  "prompt": "A rectangle's length is 3 centimeters more than twice its width. The width is a whole number of centimeters that is at least 4, and the perimeter is at most 60 centimeters. How many different widths are possible?",
+  "choices": [
+   "6",
+   "5",
+   "9",
+   "16"
+  ],
+  "correct_answer": "6",
+  "explanation": "With width w, the length is 2w + 3 and the perimeter is 2(w + 2w + 3) = 6w + 6. Then 6w + 6 <= 60 gives w <= 9, so w can be 4, 5, 6, 7, 8, or 9: six widths. \"5\" comes from a solver who subtracts 9 - 4 and forgets that both endpoints count. \"9\" is the greatest possible width, reported instead of the number of widths. \"16\" comes from a solver who sets the sum of length and width, 3w + 3, at most 60 rather than the perimeter, getting w <= 19 and counting 4 through 19.",
+  "solve": "var wmax=Math.floor((60-6)/6); return String(wmax-4+1);",
+  "distractor_solve": {
+   "5": "var wmax=Math.floor((60-6)/6); return String(wmax-4);",
+   "9": "var wmax=Math.floor((60-6)/6); return String(wmax);",
+   "16": "var wmax=Math.floor((60-3)/3); return String(wmax-4+1);"
+  }
+ },
+ {
+  "id": "SALG-18",
+  "domain": "Algebra",
+  "subskill": "recover an unknown linear function from its composition with a known one, then evaluate it",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = 3x - 4. The function g is linear, and g(f(x)) = 6x + 1 for every value of x. What is the value of g(5)?",
+  "choices": [
+   "19",
+   "31",
+   "11",
+   "18"
+  ],
+  "correct_answer": "19",
+  "explanation": "Write g(u) = au + b. Then g(f(x)) = a(3x - 4) + b = 3ax + (b - 4a), which must equal 6x + 1, so a = 2 and b = 9. Therefore g(5) = 2(5) + 9 = 19. \"31\" comes from a solver who evaluates the composite 6x + 1 at x = 5 instead of evaluating g. \"11\" comes from a solver who assumes g keeps the +1 of the composite, g(u) = 2u + 1. \"18\" comes from a solver who finds a = 2 but solves b - 4a = 0 instead of b - 4a = 1, getting b = 8.",
+  "solve": "var a=6/3; var b=1+4*a; return String(a*5+b);",
+  "distractor_solve": {
+   "11": "var a=6/3; return String(a*5+1);",
+   "18": "var a=6/3; var b=0+4*a; return String(a*5+b);",
+   "31": "return String(6*5+1);"
+  }
+ },
+ {
+  "id": "SALG-19",
+  "domain": "Algebra",
+  "subskill": "a linear equation built from two time shifts in opposite directions and a fixed age difference",
+  "difficulty": "hard",
+  "prompt": "Dana is 3 years older than her brother. In 6 years, Dana will be twice as old as her brother was 4 years ago. How old is her brother now?",
+  "choices": [
+   "17",
+   "13",
+   "14",
+   "11"
+  ],
+  "correct_answer": "17",
+  "explanation": "Let b be the brother's age now. Dana is b + 3, so in 6 years she will be b + 9, and 4 years ago her brother was b - 4. Then b + 9 = 2(b - 4) = 2b - 8, so b = 17. \"13\" comes from a solver who writes twice the brother's earlier age as 2b - 4 instead of 2b - 8. \"14\" comes from a solver who drops the 3-year difference and solves b + 6 = 2(b - 4). \"11\" comes from a solver who applies the 4-year shift to Dana's age rather than her brother's, solving b + 9 = 2(b + 3 - 4).",
+  "solve": "var b=(2*4+3+6)/(2-1); return String(b);",
+  "distractor_solve": {
+   "11": "var b=(2*(4-3)+3+6)/(2-1); return String(b);",
+   "13": "var b=(4+3+6)/(2-1); return String(b);",
+   "14": "var b=(2*4+6)/(2-1); return String(b);"
+  }
+ },
+ {
+  "id": "SALG-21",
+  "domain": "Algebra",
+  "subskill": "a two-parameter linear fee model in which one observed total must be un-discounted before the system can be solved",
+  "difficulty": "hard",
+  "prompt": "A tutor charges a flat booking fee plus a constant hourly rate. A 3-hour session cost 88 dollars. For a 7-hour session the tutor took 25% off the whole bill, and the client paid 144 dollars. What is the tutor's hourly rate, in dollars?",
+  "choices": [
+   "26",
+   "14",
+   "23",
+   "10"
+  ],
+  "correct_answer": "26",
+  "explanation": "The discounted bill of 144 dollars is 75% of the full price, so the full 7-hour price was 144/0.75 = 192 dollars. The 4 extra hours therefore cost 192 - 88 = 104 dollars, and the hourly rate is 26 dollars (the booking fee is 88 - 3(26) = 10 dollars). \"14\" comes from a solver who ignores the discount and divides 144 - 88 by 4. \"23\" comes from a solver who undoes the discount by adding 25% to 144 (getting 180) instead of dividing by 0.75, then divides 180 - 88 by 4. \"10\" is the booking fee, reported by a solver who solves for the wrong unknown.",
+  "solve": "var full=144/0.75; var rate=(full-88)/(7-3); return String(rate);",
+  "distractor_solve": {
+   "10": "var full=144/0.75; var rate=(full-88)/(7-3); var fee=88-3*rate; return String(fee);",
+   "14": "var rate=(144-88)/(7-3); return String(rate);",
+   "23": "var full=144*1.25; var rate=(full-88)/(7-3); return String(rate);"
+  }
+ }
+]

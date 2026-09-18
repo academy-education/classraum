@@ -3174,6 +3174,34 @@
      "verdict": "THE DEFECT THIS BATCH FIXES IS ONE NO BLIND STAGE CAN SEE. Four stages had asked 'does this leak?' and these three items passed all of them; the with-passage panel asked 'is this trivial?' and they failed. An options-only attack has the passage HIDDEN, so it cannot detect that the key restates a sentence in it -- the batch was genuinely hard to solve WITHOUT the passage and partly trivial WITH it, which are opposite failure modes. The elimination stage also stands unchanged at 1 rejectable option across 18, since it too reads only the option sets."
     }
    }
+  },
+  {
+   "id": "sat-alg-0918-kept-2026-09-18",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-alg-0918",
+   "contentSha": "01f517162ba8d5d11bd287a39b50819a4061588fb2ecb94797cdec0cad41288d",
+   "note": "13 kept of 22 SAT Algebra. 7 dropped majority-easy under the hard-routed rule (SALG-01,02,07,09,16,20,22); SALG-08 dropped by the bound-feasibility grader (one survivor: y=x-7 with a positive-weighted sum forces x>7 and only 10 qualifies); SALG-06 dropped as the weaker half of a duplicated two-point fee mechanism with SALG-21. Author labelled 12 medium / 10 hard; three graders returned hard 1/0/0 - every kept item banks as MEDIUM. The author put all 22 keys in slot A; graders were given a per-item shuffled render so agreement could not be positional.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 22/22 recompute to key (my own run, not the author paste); distractor_solve 66/66; symbolic hub 1 structured, numeric hub 5 structured at key-is-hub 20.0% vs 25.0%. Author's exhaustive break-test: 66 promoted distractors, 66 refused; harness attacked with an echo-solve control that survives."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha 16df6d8698072e26, unchanged for all three): key agreement 22/22, 22/22, 22/22 against the shuffled key; exclusive:false 0/0/0. Difficulty easy 9/7/-, hard 1/0/0 - the batch is medium, not hard. Bound-feasibility hunter: SALG-08 one survivor (dropped); SALG-16 effectively one via sign then \"greatest\" (already dropped easy); SALG-02/21 two survivors (02 dropped easy; 21 kept - its on-bound option 14 is the intended forgot-the-discount error). Duplicates named: 06/21, 02/22."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 66 forced picks, keys dealt A6 B6 C5 D5 for a derived control of 27.3%: pooled 19/66 = 28.8%, margin +1.5. Mechanism stratum 2/21 = 9.5% (-17.7), guess 17/45 = 37.8%; mechanism minus guess -28.3pts. Both pre-registered hub readings failed: \"hub is key\" 0/4 and 0/7, \"hub is distractor\" 1/4. Unanimous-correct 3 of 22 (SALG-04,07,09) vs 0.45 expected; only SALG-04 carried a named mechanism and the mechanism stratum is anti-predictive, so section 3d-bis is disarmed for this batch; 07 dropped easy regardless."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys AAAAAAAAAAAAAAAAAAAAAA - unreachable (shuffleDrawnChoices re-deals, measured flat) and neutralised for the panel by the shuffled render. Key-length rank per author: longest 1 of 22, shortest 0, ratio <= 1.5. Cross-item: 06/21 and 02/22 mechanism pairs, each resolved by dropping one."
+    }
+   }
   }
  ],
  "auditedCohorts": [
