@@ -1,0 +1,72 @@
+{
+ "SALG3-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "3k = 5k+28 -> k=-14. survivors=4: no stem-only bound; all options negative, -42=3k and -7=k/2 are honest slips, -6 traces to nothing."
+ },
+ "SALG3-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "A fails 2x-y>3 (2), B fails x-y<4 on the strict boundary (4), C fails x+3y>=6 (-1); D sits on x+3y=6. survivors=4: no shape tell, only substitution separates them."
+ },
+ "SALG3-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: 5.6 cm went in 80 min; 14 cm left is strictly between 2x and 3x of 5.6, so total is strictly inside (280, 360). 280 and 360 sit exactly ON the bound, 460 outside. The bound is a two-step proportion (near-solve), but the two nearest distractors are exactly the interval endpoints, which is a design defect regardless."
+ },
+ "SALG3-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "31-3x >= 5x-41 -> x<=9. survivors=4: 6 (distributed -3 as -12), 36 (72/2 sign slip), 8 (72/9) are all reachable slips."
+ },
+ "SALG3-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: A and C merely echo stem numbers (0.4, 640) in the wrong unit, a recall kill without arithmetic; B (616 vs 600) and D need one multiplication. D is also the only per-hour statement with a non-stem number."
+ },
+ "SALG3-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: '<=' is an and-interval by recall, kills C. All four share centre -1.5; radius ladder 3 / 4.5 / 9 with the key in the middle (B = forgot to halve, D = 9/3) is a mild tell."
+ },
+ "SALG3-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "(14+16)x4 = 120; 90 / 2.5 h = 36. survivors=4 (30 = the sum of the two given rates is a stem-echo a wary solver discounts, but no bound rejects it); 22.5 = 90/4 is the intended full-interval error."
+ },
+ "SALG3-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: stem semantics alone ('coupon takes d off' -> +d restores; 'adds a tip' -> subtract t) kill A (-d) and B (c+t); C survives only as nc - t + d. All four are dollars, no dimensional split; the stem does not name the key's structure."
+ },
+ "SALG3-09": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: the gap 3/4 - 2/5 is strictly between 1/4 and 1/2, so capacity is strictly inside (84, 168); 168 sits ON the bound (42x4), 840 (42x20) outside. 105 = 42/(2/5) and 120 remain."
+ },
+ "SALG3-10": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b=3a -> slope -3 (recall bypass), then -3 = -12 + b -> b=9. survivors=4: all options are multiples of 3, so the b=3a parity check rejects none; 3 is the x-intercept trap, 12 = 3x4, -15 = -3-12. Recognised sibling shape (intercept-multiple items); unverified against the bank."
+ }
+}

@@ -1,0 +1,72 @@
+{
+ "SALG3-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "multiplier 3 from coefficients, then 3k=5k+28 gives k=-14; the ratio alone does NOT give k. -42 is 3k and -7 is a sign/half slip; -6 has no derivation I can find"
+ },
+ "SALG3-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "A fails 2x-y>3 (2), B fails x-y<4 (equals 4, strict boundary), C fails x+3y>=6 (-1); D sits on x+3y=6 non-strict"
+ },
+ "SALG3-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "rate 5.6/80=0.07 cm/min, initial 22.4 cm, 22.4/0.07=320; 280 is measuring from the first observation"
+ },
+ "SALG3-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "31-3x>=5x-41, 72>=8x, x<=9; 6 is the -3*-4=-12 sign slip, 36 is 72/2"
+ },
+ "SALG3-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "0.4 L/min = 24 L/h; B gives 616 not 600; C empty at 1600 min; A unit error. Exactly one statement true"
+ },
+ "SALG3-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "-12<=2x<=6 so -6<=x<=3; all four centred at -1.5, radii 3/4.5/9/9. D (radius 3) has no natural error path; B/C are a complementary pair so a guesser halves the field before doing anything"
+ },
+ "SALG3-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "4h*(14+16)=120, remainder 90, Cal 2.5h, 36; 30 is the 3h misread, 22.5 is 90/4"
+ },
+ "SALG3-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "c-t=(T-d)/n, T=n(c-t)+d; all four options are dollars; stem does not name the operation order"
+ },
+ "SALG3-09": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "3/4-2/5=7/20, 42/(7/20)=120; 105=42/(2/5), 168=42*4, 840=42*20"
+ },
+ "SALG3-10": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b=3a gives slope -3; -3=-12+b, b=9; -15 is b=-3-12 sign slip, 3 is the x-intercept"
+ }
+}

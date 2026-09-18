@@ -3482,6 +3482,34 @@
      "verdict": "Authored keys CADBBDACDCABADCBDABCCBDA - dealt across slots. The batch-level defect is derivational hubs: every distractor built as one operation on the key, on at least five items, which is exactly the SAT Math hub defect the register's MATH-HUB-RESULT recorded and repaired in August."
     }
    }
+  },
+  {
+   "id": "sat-alg-0919b-kept-2026-09-19",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-alg-0919b",
+   "contentSha": "6ea1f22d3d70b10e2cbcf72a638952ee1e3c2d68a71c5b1c98124526885d15cb",
+   "note": "5 kept of 10. Gated from a pinned snapshot; hash verified at insert. Routed-rule drops: SALG3-04, SALG3-05, SALG3-06, SALG3-09. Rule drops: SALG3-03 - hunter N=1: 14 cm left is strictly between 2x and 3x of the observed 5.6 cm, so the total is strictly inside (280, 360); both nearest distractors sit exactly ON those endpoints and 460 is outside. Caveat recorded: the bound is a two-step proportion, weaker than a one-step kill, but the defect stands.. The author caught its own symbolic hub in draft one (+25) and re-derived the distractors rather than re-lettering; the shipped file scores key-is-hub 0.0% on both hub lines.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 10/10 (my run); distractor_solve 30/30; symbolic and numeric hub key-is-hub 0.0%."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha 105ca729683eeef0): 10/10 x3; exclusive:false 0/0/0; hard 0/0/0. Author self-flags all judged: 05 easy and exactly one true statement; 06 all four sets centred at -1.5 with the radius ladder a mild blind tell and D a filler option; 08 all four options in dollars, stem names no structure; 01 genuinely requires solving; 07's clock reading unambiguous. Hunter: N=1 on 03 only; N=2 on 05 (stem-number echoes in the wrong unit), 08 (stem semantics fix two signs), 09 (fraction-gap bound with 168 ON it); three minutes/hours conversions in ten items."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 30 forced picks, keys A3 B3 C2 D2 for a 30.0% control: 11/30 = 36.7% (+6.7). Mechanism 6/20 = 30.0%, guess 5/10 = 50.0% (-20.0) - rule disarmed; the three hubs the solvers named (L01, L08, L09) were all distractors, unanimously wrong on L06/L08/L09. Unanimous 2 of 10 vs 0.27: L03 (dropped on its bound), L05 (kept). Residual on kept 5: 5/15 = 33.3% vs 40.0% (-6.7)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys CADBDBACBD - dealt across slots. Radius-ladder option design shared by 06 and 09 (centre fixed, scale varies) is the one cross-item shape."
+    }
+   }
   }
  ],
  "auditedCohorts": [

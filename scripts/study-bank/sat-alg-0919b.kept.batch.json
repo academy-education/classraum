@@ -1,0 +1,107 @@
+[
+ {
+  "id": "SALG3-01",
+  "domain": "Algebra",
+  "subskill": "a dependent system whose parameter appears in the constants of BOTH equations: the multiplier comes from the coefficients, and the parameter is found by solving a one-variable linear equation, not by reading a ratio",
+  "difficulty": "medium",
+  "prompt": "In the system of equations 4x + 3y = k and 12x + 9y = 5k + 28, k is a constant. If the system has infinitely many solutions, what is the value of k?",
+  "choices": [
+   "-42",
+   "-7",
+   "-14",
+   "-6"
+  ],
+  "correct_answer": "-14",
+  "explanation": "The second equation's coefficients are 3 times the first's, so the system is dependent exactly when the constants are in the same ratio: 3k = 5k + 28, so -2k = 28 and k = -14. (Check: 4x + 3y = -14 tripled is 12x + 9y = -42, and 5(-14) + 28 = -42.) \"-7\" comes from a solver who equates the constants without scaling, k = 5k + 28. \"-6\" comes from a solver who scales the second constant instead of the first, 3(5k + 28) = k. \"-42\" comes from a solver who divides the second equation by 3 but divides only the 5k term, (5/3)k + 28 = k.",
+  "solve": "var m=12/4; if(9/3!==m) return 'bad'; var k=28/(m-5); return String(k);",
+  "distractor_solve": {
+   "-7": "var k=28/(1-5); return String(k);",
+   "-6": "var k=(-3*28)/(15-1); return String(k);",
+   "-42": "var k=28/(1-5/3); return String(Math.round(k));"
+  }
+ },
+ {
+  "id": "SALG3-02",
+  "domain": "Algebra",
+  "subskill": "identify the one ordered pair satisfying a system of three linear inequalities (strict, non-strict, strict) where each wrong candidate violates a different single constraint, the key sits on the non-strict boundary, and one distractor sits on a strict boundary",
+  "difficulty": "medium",
+  "prompt": "Which of the following ordered pairs (x, y) satisfies all three of the inequalities 2x - y > 3, x + 3y ≥ 6, and x - y < 4?",
+  "choices": [
+   "(3, 1)",
+   "(2, 2)",
+   "(6, 2)",
+   "(2, -1)"
+  ],
+  "correct_answer": "(3, 1)",
+  "explanation": "For (3, 1): 2(3) - 1 = 5 > 3, 3 + 3(1) = 6 ≥ 6 (the boundary is included because the inequality is non-strict), and 3 - 1 = 2 < 4, so all three hold. \"(6, 2)\" is chosen by a solver who treats the strict inequality x - y < 4 as if it included the boundary: 6 - 2 = 4 is not less than 4, though the other two inequalities hold. \"(2, 2)\" is chosen by a solver who checks only the second and third inequalities: 2(2) - 2 = 2 is not greater than 3. \"(2, -1)\" is chosen by a solver who checks only the first and third inequalities: 2 + 3(-1) = -1 is less than 6.",
+  "solve": "var pts=[[3,1],[2,2],[6,2],[2,-1]]; var f=function(p){return '('+p[0]+', '+p[1]+')';}; var ok=pts.filter(function(p){return 2*p[0]-p[1]>3 && p[0]+3*p[1]>=6 && p[0]-p[1]<4;}); if(ok.length!==1) return 'bad'; return f(ok[0]);",
+  "distractor_solve": {
+   "(6, 2)": "var pts=[[3,1],[2,2],[6,2],[2,-1]]; var f=function(p){return '('+p[0]+', '+p[1]+')';}; var ok=pts.filter(function(p){return 2*p[0]-p[1]>3 && p[0]+3*p[1]>=6 && p[0]-p[1]===4;}); return ok.length===1?f(ok[0]):'bad';",
+   "(2, 2)": "var pts=[[3,1],[2,2],[6,2],[2,-1]]; var f=function(p){return '('+p[0]+', '+p[1]+')';}; var ok=pts.filter(function(p){return !(2*p[0]-p[1]>3) && p[0]+3*p[1]>=6 && p[0]-p[1]<4;}); return ok.length===1?f(ok[0]):'bad';",
+   "(2, -1)": "var pts=[[3,1],[2,2],[6,2],[2,-1]]; var f=function(p){return '('+p[0]+', '+p[1]+')';}; var ok=pts.filter(function(p){return 2*p[0]-p[1]>3 && !(p[0]+3*p[1]>=6) && p[0]-p[1]<4;}); return ok.length===1?f(ok[0]):'bad';"
+  }
+ },
+ {
+  "id": "SALG3-07",
+  "domain": "Algebra",
+  "subskill": "a three-party constant-rate problem with a staggered start: subtract the two known workers' output over the full interval, then divide the remainder by the third worker's shorter time, which must be read from clock times",
+  "difficulty": "medium",
+  "prompt": "Ana, Ben, and Cal pack gift boxes, each at a constant rate. Ana packs 14 boxes per hour and Ben packs 16 boxes per hour. Ana and Ben begin packing at 9:00 a.m., and Cal joins them at 10:30 a.m. All three stop at 1:00 p.m., by which time they have packed a total of 210 boxes. How many boxes per hour does Cal pack?",
+  "choices": [
+   "36",
+   "22.5",
+   "54",
+   "30"
+  ],
+  "correct_answer": "36",
+  "explanation": "Ana and Ben work from 9:00 to 1:00, 4 hours, packing 4(14 + 16) = 120 boxes. Cal packs the other 210 - 120 = 90 boxes between 10:30 and 1:00, which is 2.5 hours, so Cal's rate is 90 / 2.5 = 36 boxes per hour. \"22.5\" comes from a solver who divides Cal's 90 boxes by the full 4 hours. \"30\" comes from a solver who counts Cal's time as 3 hours by subtracting 10 from 1 o'clock read as 13 and dropping the half hour. \"54\" comes from a solver who divides the total 210 by Cal's 2.5 hours to get 84 and then subtracts Ana's and Ben's combined 30 per hour.",
+  "solve": "var full=13-9, cal=13-10.5; var ab=(14+16)*full; var r=(210-ab)/cal; return String(r);",
+  "distractor_solve": {
+   "30": "var ab=(14+16)*4; return String((210-ab)/3);",
+   "54": "return String(210/2.5-(14+16));",
+   "22.5": "var ab=(14+16)*4; return String((210-ab)/4);"
+  }
+ },
+ {
+  "id": "SALG3-08",
+  "domain": "Algebra",
+  "subskill": "solve a literal equation for a variable buried inside a fraction that is then added to another term: remove the added term first, multiply through, and restore the subtracted quantity, with every option carrying the same unit",
+  "difficulty": "medium",
+  "prompt": "A group of n people shares a restaurant bill. The bill total is T dollars, a coupon takes d dollars off the total, and each person then adds a tip of t dollars, so that each person pays c dollars, where c = (T - d)/n + t. Which of the following expresses T in terms of c, d, n, and t?",
+  "choices": [
+   "T = n(c + t) + d",
+   "T = nc - t + d",
+   "T = n(c - t) + d",
+   "T = n(c + t) - d"
+  ],
+  "correct_answer": "T = n(c - t) + d",
+  "explanation": "Subtract the tip from each share, c - t = (T - d)/n, multiply by n, n(c - t) = T - d, and add d: T = n(c - t) + d. \"T = n(c + t) + d\" comes from a solver who moves the tip across with its sign unchanged. \"T = n(c + t) - d\" comes from a solver who moves both the tip and the coupon across without changing either sign. \"T = nc - t + d\" comes from a solver who multiplies by n but does not distribute it over the tip.",
+  "solve": "var c=23,d=15,n=4,t=3; var forms={'T = n(c + t) + d':n*(c+t)+d,'T = nc - t + d':n*c-t+d,'T = n(c - t) + d':n*(c-t)+d,'T = n(c + t) - d':n*(c+t)-d}; var pick=function(T){var h=Object.keys(forms).filter(function(k){return forms[k]===T;}); return h.length===1?h[0]:'bad';}; var T=(c-t)*n+d; if(Math.abs((T-d)/n+t-c)>1e-9) return 'bad'; return pick(T);",
+  "distractor_solve": {
+   "T = n(c + t) + d": "var c=23,d=15,n=4,t=3; var forms={'T = n(c + t) + d':n*(c+t)+d,'T = nc - t + d':n*c-t+d,'T = n(c - t) + d':n*(c-t)+d,'T = n(c + t) - d':n*(c+t)-d}; var pick=function(T){var h=Object.keys(forms).filter(function(k){return forms[k]===T;}); return h.length===1?h[0]:'bad';}; var T=(c+t)*n+d; return pick(T);",
+   "T = n(c + t) - d": "var c=23,d=15,n=4,t=3; var forms={'T = n(c + t) + d':n*(c+t)+d,'T = nc - t + d':n*c-t+d,'T = n(c - t) + d':n*(c-t)+d,'T = n(c + t) - d':n*(c+t)-d}; var pick=function(T){var h=Object.keys(forms).filter(function(k){return forms[k]===T;}); return h.length===1?h[0]:'bad';}; var T=(c+t)*n-d; return pick(T);",
+   "T = nc - t + d": "var c=23,d=15,n=4,t=3; var forms={'T = n(c + t) + d':n*(c+t)+d,'T = nc - t + d':n*c-t+d,'T = n(c - t) + d':n*(c-t)+d,'T = n(c + t) - d':n*(c+t)-d}; var pick=function(T){var h=Object.keys(forms).filter(function(k){return forms[k]===T;}); return h.length===1?h[0]:'bad';}; var T=n*c-t+d; return pick(T);"
+  }
+ },
+ {
+  "id": "SALG3-10",
+  "domain": "Algebra",
+  "subskill": "a line through a given point whose y-intercept is a stated multiple of its x-intercept: the multiple fixes the slope, and the point then fixes the intercept, which must be reported as the y-intercept rather than the x-intercept",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, a line passes through the point (4, -3), and the y-intercept of the line is 3 times its x-intercept. Neither intercept is 0. What is the y-intercept of the line?",
+  "choices": [
+   "3",
+   "-15",
+   "12",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "Let the x-intercept be a, so the y-intercept is 3a and the slope is -3a/a = -3. The line is y = -3x + 3a, and (4, -3) gives -3 = -12 + 3a, so a = 3 and the y-intercept is 3a = 9. (Check: y = -3x + 9 has x-intercept 3 and passes through (4, -3).) \"3\" comes from a solver who reports the x-intercept a. \"-15\" comes from a solver who takes the slope to be +3, -3 = 3(4) + b. \"12\" comes from a solver who reads the point's x-coordinate 4 as the x-intercept and triples it.",
+  "solve": "var m=-3; var b=-3-m*4; if(Math.abs(b-3*(b/ -m))>1e-9) return 'bad'; return String(b);",
+  "distractor_solve": {
+   "3": "var b=-3-(-3)*4; return String(b/3);",
+   "12": "return String(3*4);",
+   "-15": "var b=-3-3*4; return String(b);"
+  }
+ }
+]
