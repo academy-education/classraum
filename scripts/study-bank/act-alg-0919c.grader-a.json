@@ -1,0 +1,44 @@
+{
+ "AALG4-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Only (2,3) satisfies both (1 ≤ 4, 11 < 16); (4,4) hits 16 exactly and correctly fails the strict inequality, (5,2) fails the first, (1,6) fails the second; pure substitution, so easy."
+ },
+ "AALG4-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "New total (n+1)M minus old total nm gives s; A swaps the counts, C and D are each a single-count difference, all plausible slips; wording is clean."
+ },
+ "AALG4-03": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Slope 1.5 checks on all three given pairs, (29-17)/1.5 = 8, k = 18; 22 is adding the Δf without dividing, 28 is multiplying by the slope, 12 is the raw Δf; the table is consistent."
+ },
+ "AALG4-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "840 is V at t = 0; B is 70 minutes, C is 144 gallons, D is 12, so each distractor is a distinct misreading with correct units and none is defensible."
+ },
+ "AALG4-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Sum of the three equations gives x+y+z = 25, so z = 25-13 = 12; 5 and 8 are y and x (solving for the wrong variable), 15 is a subtraction slip; no ambiguity."
+ },
+ "AALG4-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "|L - 8.4| ≤ 0.15 is the tolerance form; A drops the lower bound, B swaps centre and bound, D reverses the inequality; standard ACT phrasing, no defect."
+ }
+}

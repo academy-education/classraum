@@ -861,3 +861,5 @@ the key was the largest option in both; a reader who notices carries it
 across the form. Put at least one distractor beyond the key in the asked
 direction — the value from a vertex that violates one constraint is the
 natural candidate.
+
+**13k. A symbolic key in canonical form is options-only decidable.** `act-alg-0919c`, 2026-09-19: `s = (n+1)M − nm` and `|L − 8.4| ≤ 0.15` were each picked 3/3 blind with the mechanism named — "the textbook form; the other three are one-edit corruptions." All four options were dimensionally valid (§13i), and it did not matter: the key is the one shape the student has seen before. If the asked expression is a named result (new mean, tolerance band, slope formula, quadratic formula), either ask for a NON-canonical rearrangement as the key, or ask a numeric question whose answer requires the formula, or do not write the item.

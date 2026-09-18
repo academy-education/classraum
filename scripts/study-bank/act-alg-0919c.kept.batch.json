@@ -1,0 +1,23 @@
+[
+ {
+  "id": "AALG4-04",
+  "domain": "Algebra",
+  "subskill": "interpreting the constant term of a linear model in context, with units: it is the output when the input is 0, not the rate, not the input that makes the output 0, and not a change over the coefficient's number of minutes",
+  "difficulty": "easy",
+  "prompt": "The volume V, in gallons, of water remaining in a tank t minutes after its drain is opened is given by V = 840 - 12t. What does the number 840 represent in this context?",
+  "choices": [
+   "The number of gallons that drain from the tank each minute",
+   "The volume of water, in gallons, in the tank at the moment the drain was opened",
+   "The number of minutes it takes for the tank to empty completely",
+   "The volume of water, in gallons, that drains from the tank during the first 12 minutes"
+  ],
+  "correct_answer": "The volume of water, in gallons, in the tank at the moment the drain was opened",
+  "explanation": "When t = 0, the moment the drain is opened, V = 840 - 12(0) = 840, so 840 is the volume of water, in gallons, in the tank when draining begins. \"The number of gallons that drain from the tank each minute\" is the rate, which is the coefficient 12, not 840. \"The number of minutes it takes for the tank to empty completely\" is the value of t that makes V = 0, which is 840/12 = 70 minutes, not 840. \"The volume of water that drains during the first 12 minutes\" mixes the constant with the coefficient; that volume is 12(12) = 144 gallons.",
+  "solve": "var V = function(t){ return 840 - 12*t; }; var claims = {}; claims['The number of gallons that drain from the tank each minute'] = Math.abs((V(0) - V(1)) - 840) < 1e-9; claims['The volume of water, in gallons, in the tank at the moment the drain was opened'] = Math.abs(V(0) - 840) < 1e-9; claims['The number of minutes it takes for the tank to empty completely'] = Math.abs(V(840)) < 1e-9; claims['The volume of water, in gallons, that drains from the tank during the first 12 minutes'] = Math.abs((V(0) - V(12)) - 840) < 1e-9; var t = Object.keys(claims).filter(function(k){ return claims[k]; }); return t.length === 1 ? t[0] : 'AMBIGUOUS';",
+  "distractor_solve": {
+   "The number of gallons that drain from the tank each minute": "var V = function(t){ return 840 - 12*t; }; var wrongRate = 840; var perMinute = V(0) - V(1); var byQuantity = { rate: 'The number of gallons that drain from the tank each minute', start: 'The volume of water, in gallons, in the tank at the moment the drain was opened', empty: 'The number of minutes it takes for the tank to empty completely', first12: 'The volume of water, in gallons, that drains from the tank during the first 12 minutes' }; return wrongRate !== perMinute ? byQuantity.rate : 'NOT-AN-ERROR';",
+   "The number of minutes it takes for the tank to empty completely": "var V = function(t){ return 840 - 12*t; }; var wrongEmpty = 840; var trueEmpty = 840/12; var byQuantity = { rate: 'The number of gallons that drain from the tank each minute', start: 'The volume of water, in gallons, in the tank at the moment the drain was opened', empty: 'The number of minutes it takes for the tank to empty completely', first12: 'The volume of water, in gallons, that drains from the tank during the first 12 minutes' }; return wrongEmpty !== trueEmpty ? byQuantity.empty : 'NOT-AN-ERROR';",
+   "The volume of water, in gallons, that drains from the tank during the first 12 minutes": "var V = function(t){ return 840 - 12*t; }; var wrongLoss = 840; var trueLoss = V(0) - V(12); var byQuantity = { rate: 'The number of gallons that drain from the tank each minute', start: 'The volume of water, in gallons, in the tank at the moment the drain was opened', empty: 'The number of minutes it takes for the tank to empty completely', first12: 'The volume of water, in gallons, that drains from the tank during the first 12 minutes' }; return wrongLoss !== trueLoss ? byQuantity.first12 : 'NOT-AN-ERROR';"
+  }
+ }
+]

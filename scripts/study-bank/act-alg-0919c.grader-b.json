@@ -1,0 +1,44 @@
+{
+ "AALG4-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "(2,3) gives 1 <= 4 and 11 < 16; (4,4) sits exactly on x+3y=16 and fails only the strict inequality, (5,2) fails the first, (1,6) fails the second, so each distractor fails exactly one condition and no elimination shortcut exists."
+ },
+ "AALG4-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "s = (n+1)M - nm is the only option equal to new total minus old total; all four are dimensionally a score, but plugging n=1, m=M=10 (s must be 10) kills A, C, D quickly, so a test-values solver reaches the key without deriving it."
+ },
+ "AALG4-03": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Slope 1.5 confirmed by both known pairs, 12/1.5 = 8, k = 18; distractors 12 (undivided change), 22 (10+12) and 28 (10+18) all exceed 10 so ordering alone cannot eliminate them, though a student who checks that f(k)-17 must equal 1.5(k-10) can verify D directly."
+ },
+ "AALG4-04": {
+  "pick": "A",
+  "difficulty": "easy",
+  "exclusive": true,
+  "distractor_quality": "plausible",
+  "note": "840 is V at t=0, the initial volume; B and D are the wrong quantity type (minutes, rate) and C is 12*12=144 gallons, so the stem admits one reading but a student who knows only 'constant term = starting value' picks A without reading the distractors."
+ },
+ "AALG4-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Sum of equations gives x+y+z=25 so z=25-13=12; distractors 5 and 8 are x and y, 15 is the z from mis-pairing, so all are reachable by a real error but the item is a routine easy ACT system."
+ },
+ "AALG4-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "|L-8.4| <= 0.15 is the only inclusive tolerance form; D is reversed, B swaps centre and bound, A drops the lower limit, but a student who knows the |L - centre| <= tolerance template picks C by shape without reading the numbers."
+ }
+}

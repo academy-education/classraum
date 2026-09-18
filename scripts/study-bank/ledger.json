@@ -3566,6 +3566,34 @@
      "verdict": "Authored keys CBBBCCBA (ascending numeric order pins the slot; B x4, D x0 - unreachable at draw, neutralised for the panel by the shuffled render). The batch-level finding: an author can respect every ARITHMETIC bound and still hand over three items through option geometry."
     }
    }
+  },
+  {
+   "id": "act-alg-0919c-kept-2026-09-19",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-alg-0919c",
+   "contentSha": "768361c95c0b8d0dce03f4bcb0abeec6f5eba9edd9ab3fd9e761dd8c7bcca22e",
+   "note": "1 kept of 6 (AALG4-04, interpret the constant of V = 840 - 12t). Commissioned to buy Algebra +1 for ACT Math form 13 after four Algebra items died to option geometry; briefed as an eight-step per-item procedure. The author ran the procedure honestly (rejected 37 and 18.5 on item 05 because a bound killed them) and the batch still lost 5 of 6: the two SYMBOLIC items fell to the canonical form of a known result with visibly corrupted distractors (options-only 3/3 each, mechanism named), two numeric items fell to a stem-visible bound (hunter N=1), and the pairwise-sum item was picked 3/3 by \"guess\" and carried the residual over the ceiling. Rule drops: AALG4-02 - unanimous under an ARMED rule (mechanism 100% vs guess 71%): (n+1)M - nm is the canonical new-mean form and the three distractors are visible one-edit corruptions, named 3/3; hunter N=1 by the endpoint m=M; AALG4-06 - unanimous under the armed rule: |L - 8.4| <= 0.15 is the canonical tolerance form with swap/one-sided/complement distractors, named 3/3; hunter N=1; AALG4-01 - hunter N=1: the origin satisfies both inequalities so the nearest-to-origin point is the no-substitution pick, and (4,4) sits ON the strict boundary; mechanism duplicate of SALGD-02 and ALG-H2-07; AALG4-03 - hunter N=1: df=12 over dx=6 with the visible slope forces 16 < k < 22, one option; AALG4-05 - unanimous 3/3 (all self-labelled guess) and the residual on {04,05} is +16.7, over the +10 ceiling; hunter N=2 with three options literally equal to x, y, z; solver B named the constant-sum pairing 5+15 = 12+8. The kept item is at hunter N=2 (units kill one option, a stem-number restatement kills another) and grader B notes it falls to the memorised \"y-intercept = starting value\" template - it is an EASY item and is banked as one.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 6/6 (my run, pin 0c631b1b6eb5c70f); distractor_solve 18/18; symbolic hub 0.0% vs 25.0% control; numeric hub none. Author break-tested verify with 18 promoted-distractor mutants: 18/18 refused."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha a69f24203bb4d11b): 6/6 x3 to the shuffled keys; exclusive:false 0/0/0; hard 0/0/0; easy 5/3/4. Hunter survivor table: N=1 on 01, 02, 03, 06; N=2 on 04, 05; duplicates named for 01 only."
+    },
+    "nosource": {
+     "passed": false,
+     "verdict": "Options-only, 3 solvers, 18 forced picks, keys 2/2/1/1, control 33.3%: 13/18 = 72.2% (+38.9). Mechanism 6/6, guess 5/7 - ARMED. Unanimous 4 of 6 vs 0.22 expected. Residual on kept {04}: 1/3 - a rate over one item is NOT a measurement and is not claimed as a pass; the item is kept on the with-source rules and the hunter's N=2, not on the attack."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys CADBAD (dealt, not sorted - the first author today to do so). Batch-level finding: symbolic ACT Algebra items whose key is the canonical form of a named result (new mean, tolerance band) are options-only decidable even with four dimensionally valid options; §13i is necessary and not sufficient."
+    }
+   }
   }
  ],
  "auditedCohorts": [

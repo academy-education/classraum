@@ -1,0 +1,128 @@
+[
+  {
+    "id": "AALG4-01",
+    "domain": "Algebra",
+    "subskill": "a point that satisfies a system of two linear inequalities, one inclusive and one strict: each distractor fails exactly one condition, and the intersection of the boundary lines fails the strict one",
+    "difficulty": "easy",
+    "prompt": "Which of the following points (x, y) in the standard (x, y) coordinate plane satisfies both of the inequalities 2x - y ≤ 4 and x + 3y < 16 ?",
+    "choices": [
+      "(5, 2)",
+      "(1, 6)",
+      "(2, 3)",
+      "(4, 4)"
+    ],
+    "correct_answer": "(2, 3)",
+    "explanation": "Test each point in both inequalities. For (2, 3): 2(2) - 3 = 1 ≤ 4 is true and 2 + 3(3) = 11 < 16 is true, so (2, 3) satisfies both. \"(5, 2)\" gives 2(5) - 2 = 8, which is not ≤ 4; it is chosen by a solver who reverses the first inequality to 2x - y ≥ 4. \"(1, 6)\" gives 1 + 3(6) = 19, which is not < 16; it is chosen by a solver who reverses the second inequality to x + 3y > 16. \"(4, 4)\" is the intersection of the boundary lines 2x - y = 4 and x + 3y = 16, chosen by a solver who solves the boundary equations as a system; it fails the strict inequality because 4 + 3(4) = 16 is not less than 16.",
+    "solve": "var pts = [[5,2],[1,6],[2,3],[4,4]]; var ok = pts.filter(function(p){ return 2*p[0] - p[1] <= 4 && p[0] + 3*p[1] < 16; }); if (ok.length !== 1) return 'AMBIGUOUS'; return '(' + ok[0][0] + ', ' + ok[0][1] + ')';",
+    "distractor_solve": {
+      "(5, 2)": "var pts = [[5,2],[1,6],[2,3],[4,4]]; var ok = pts.filter(function(p){ return 2*p[0] - p[1] >= 4 && p[0] + 3*p[1] < 16; }); if (ok.length !== 1) return 'AMBIGUOUS'; return '(' + ok[0][0] + ', ' + ok[0][1] + ')';",
+      "(1, 6)": "var pts = [[5,2],[1,6],[2,3],[4,4]]; var ok = pts.filter(function(p){ return 2*p[0] - p[1] <= 4 && p[0] + 3*p[1] > 16; }); if (ok.length !== 1) return 'AMBIGUOUS'; return '(' + ok[0][0] + ', ' + ok[0][1] + ')';",
+      "(4, 4)": "var x = (16 + 12)/7; var y = 2*x - 4; return '(' + x + ', ' + y + ')';"
+    }
+  },
+  {
+    "id": "AALG4-02",
+    "domain": "Algebra",
+    "subskill": "a literal equation for the score that moves a mean: the new total is (n + 1)M, the old total is nm, and the score is their difference, so the two counts must be attached to the right means",
+    "difficulty": "medium",
+    "prompt": "A student's mean score on the first n tests of a course is m. After the student scores s points on the next test, the mean of all n + 1 scores is M. Which of the following expresses s in terms of n, m, and M ?",
+    "choices": [
+      "s = (n + 1)M - nm",
+      "s = (n + 1)(M - m)",
+      "s = n(M - m)",
+      "s = nM - (n + 1)m"
+    ],
+    "correct_answer": "s = (n + 1)M - nm",
+    "explanation": "The total of the first n scores is nm, and the total of all n + 1 scores is (n + 1)M. The new score is the difference of the totals: s = (n + 1)M - nm. \"s = (n + 1)(M - m)\" comes from a solver who counts the old tests as n + 1, subtracting (n + 1)m instead of nm. \"s = n(M - m)\" comes from a solver who uses n tests for both totals and forgets that the new mean covers n + 1 scores. \"s = nM - (n + 1)m\" comes from a solver who attaches n + 1 to the old mean and n to the new one.",
+    "solve": "var trials = [[4,80,95],[6,72,51]]; var forms = { 's = (n + 1)M - nm': function(n,m,M){return (n+1)*M - n*m;}, 's = (n + 1)(M - m)': function(n,m,M){return (n+1)*(M-m);}, 's = n(M - m)': function(n,m,M){return n*(M-m);}, 's = nM - (n + 1)m': function(n,m,M){return n*M - (n+1)*m;} }; var hit = Object.keys(forms).filter(function(k){ return trials.every(function(t){ var n=t[0], m=t[1], s=t[2]; var M=(n*m+s)/(n+1); return Math.abs(forms[k](n,m,M) - s) < 1e-9; }); }); return hit.length === 1 ? hit[0] : 'AMBIGUOUS';",
+    "distractor_solve": {
+      "s = (n + 1)(M - m)": "var trials = [[4,80,95],[6,72,51]]; var forms = { 's = (n + 1)M - nm': function(n,m,M){return (n+1)*M - n*m;}, 's = (n + 1)(M - m)': function(n,m,M){return (n+1)*(M-m);}, 's = n(M - m)': function(n,m,M){return n*(M-m);}, 's = nM - (n + 1)m': function(n,m,M){return n*M - (n+1)*m;} }; var hit = Object.keys(forms).filter(function(k){ return trials.every(function(t){ var n=t[0], m=t[1], s=t[2]; var M=(n*m+s)/(n+1); return Math.abs(forms[k](n,m,M) - ((n+1)*M - (n+1)*m)) < 1e-9; }); }); return hit.length === 1 ? hit[0] : 'AMBIGUOUS';",
+      "s = n(M - m)": "var trials = [[4,80,95],[6,72,51]]; var forms = { 's = (n + 1)M - nm': function(n,m,M){return (n+1)*M - n*m;}, 's = (n + 1)(M - m)': function(n,m,M){return (n+1)*(M-m);}, 's = n(M - m)': function(n,m,M){return n*(M-m);}, 's = nM - (n + 1)m': function(n,m,M){return n*M - (n+1)*m;} }; var hit = Object.keys(forms).filter(function(k){ return trials.every(function(t){ var n=t[0], m=t[1], s=t[2]; var M=(n*m+s)/(n+1); return Math.abs(forms[k](n,m,M) - (n*M - n*m)) < 1e-9; }); }); return hit.length === 1 ? hit[0] : 'AMBIGUOUS';",
+      "s = nM - (n + 1)m": "var trials = [[4,80,95],[6,72,51]]; var forms = { 's = (n + 1)M - nm': function(n,m,M){return (n+1)*M - n*m;}, 's = (n + 1)(M - m)': function(n,m,M){return (n+1)*(M-m);}, 's = n(M - m)': function(n,m,M){return n*(M-m);}, 's = nM - (n + 1)m': function(n,m,M){return n*M - (n+1)*m;} }; var hit = Object.keys(forms).filter(function(k){ return trials.every(function(t){ var n=t[0], m=t[1], s=t[2]; var M=(n*m+s)/(n+1); return Math.abs(forms[k](n,m,M) - (n*M - (n+1)*m)) < 1e-9; }); }); return hit.length === 1 ? hit[0] : 'AMBIGUOUS';"
+    }
+  },
+  {
+    "id": "AALG4-03",
+    "domain": "Algebra",
+    "subskill": "the missing INPUT in a table of a linear function with a non-integer slope: the change in f(x) must be DIVIDED by the slope, and the result added to the last known x, not to an earlier one",
+    "difficulty": "medium",
+    "prompt": "The table below gives 4 values of the linear function f.\n\n  x   |  1  |  4  | 10 |  k\n f(x) | 3.5 |  8  | 17 | 29\n\nWhat is the value of k ?",
+    "choices": [
+      "12",
+      "22",
+      "28",
+      "18"
+    ],
+    "correct_answer": "18",
+    "explanation": "The slope of f is (8 - 3.5)/(4 - 1) = 1.5, and the table confirms it: (17 - 8)/(10 - 4) = 1.5. From x = 10 to x = k, f(x) rises by 29 - 17 = 12, so x rises by 12/1.5 = 8, and k = 10 + 8 = 18. \"22\" comes from a solver who adds the change in f(x) directly to 10, treating the slope as 1. \"28\" comes from a solver who multiplies the change in f(x) by the slope instead of dividing, 10 + 12(1.5). \"12\" comes from a solver who finds the correct change in x, 8, but adds it to 4 instead of to 10.",
+    "solve": "var slope = (8 - 3.5)/(4 - 1); var k = 10 + (29 - 17)/slope; return String(k);",
+    "distractor_solve": {
+      "22": "return String(10 + (29 - 17));",
+      "28": "var slope = (8 - 3.5)/(4 - 1); return String(10 + (29 - 17)*slope);",
+      "12": "var slope = (8 - 3.5)/(4 - 1); return String(4 + (29 - 17)/slope);"
+    }
+  },
+  {
+    "id": "AALG4-04",
+    "domain": "Algebra",
+    "subskill": "interpreting the constant term of a linear model in context, with units: it is the output when the input is 0, not the rate, not the input that makes the output 0, and not a change over the coefficient's number of minutes",
+    "difficulty": "easy",
+    "prompt": "The volume V, in gallons, of water remaining in a tank t minutes after its drain is opened is given by V = 840 - 12t. What does the number 840 represent in this context?",
+    "choices": [
+      "The number of gallons that drain from the tank each minute",
+      "The volume of water, in gallons, in the tank at the moment the drain was opened",
+      "The number of minutes it takes for the tank to empty completely",
+      "The volume of water, in gallons, that drains from the tank during the first 12 minutes"
+    ],
+    "correct_answer": "The volume of water, in gallons, in the tank at the moment the drain was opened",
+    "explanation": "When t = 0, the moment the drain is opened, V = 840 - 12(0) = 840, so 840 is the volume of water, in gallons, in the tank when draining begins. \"The number of gallons that drain from the tank each minute\" is the rate, which is the coefficient 12, not 840. \"The number of minutes it takes for the tank to empty completely\" is the value of t that makes V = 0, which is 840/12 = 70 minutes, not 840. \"The volume of water that drains during the first 12 minutes\" mixes the constant with the coefficient; that volume is 12(12) = 144 gallons.",
+    "solve": "var V = function(t){ return 840 - 12*t; }; var claims = {}; claims['The number of gallons that drain from the tank each minute'] = Math.abs((V(0) - V(1)) - 840) < 1e-9; claims['The volume of water, in gallons, in the tank at the moment the drain was opened'] = Math.abs(V(0) - 840) < 1e-9; claims['The number of minutes it takes for the tank to empty completely'] = Math.abs(V(840)) < 1e-9; claims['The volume of water, in gallons, that drains from the tank during the first 12 minutes'] = Math.abs((V(0) - V(12)) - 840) < 1e-9; var t = Object.keys(claims).filter(function(k){ return claims[k]; }); return t.length === 1 ? t[0] : 'AMBIGUOUS';",
+    "distractor_solve": {
+      "The number of gallons that drain from the tank each minute": "var V = function(t){ return 840 - 12*t; }; var wrongRate = 840; var perMinute = V(0) - V(1); var byQuantity = { rate: 'The number of gallons that drain from the tank each minute', start: 'The volume of water, in gallons, in the tank at the moment the drain was opened', empty: 'The number of minutes it takes for the tank to empty completely', first12: 'The volume of water, in gallons, that drains from the tank during the first 12 minutes' }; return wrongRate !== perMinute ? byQuantity.rate : 'NOT-AN-ERROR';",
+      "The number of minutes it takes for the tank to empty completely": "var V = function(t){ return 840 - 12*t; }; var wrongEmpty = 840; var trueEmpty = 840/12; var byQuantity = { rate: 'The number of gallons that drain from the tank each minute', start: 'The volume of water, in gallons, in the tank at the moment the drain was opened', empty: 'The number of minutes it takes for the tank to empty completely', first12: 'The volume of water, in gallons, that drains from the tank during the first 12 minutes' }; return wrongEmpty !== trueEmpty ? byQuantity.empty : 'NOT-AN-ERROR';",
+      "The volume of water, in gallons, that drains from the tank during the first 12 minutes": "var V = function(t){ return 840 - 12*t; }; var wrongLoss = 840; var trueLoss = V(0) - V(12); var byQuantity = { rate: 'The number of gallons that drain from the tank each minute', start: 'The volume of water, in gallons, in the tank at the moment the drain was opened', empty: 'The number of minutes it takes for the tank to empty completely', first12: 'The volume of water, in gallons, that drains from the tank during the first 12 minutes' }; return wrongLoss !== trueLoss ? byQuantity.first12 : 'NOT-AN-ERROR';"
+    }
+  },
+  {
+    "id": "AALG4-05",
+    "domain": "Algebra",
+    "subskill": "one unknown from three pairwise sums: adding all three equations gives twice the total, and the unknown is the total minus the one sum that omits it",
+    "difficulty": "medium",
+    "prompt": "If x + y = 13, y + z = 20, and x + z = 17, what is the value of z ?",
+    "choices": [
+      "12",
+      "5",
+      "15",
+      "8"
+    ],
+    "correct_answer": "12",
+    "explanation": "Adding the three equations gives 2x + 2y + 2z = 50, so x + y + z = 25. Then z = 25 - (x + y) = 25 - 13 = 12. \"5\" is x = 25 - 20, and \"8\" is y = 25 - 17, from solvers who subtract the wrong pair sum from the total. \"15\" comes from a solver who correctly finds x = 5 and then subtracts it from y + z = 20 instead of from x + z = 17.",
+    "solve": "var S = (13 + 20 + 17)/2; return String(S - 13);",
+    "distractor_solve": {
+      "5": "var S = (13 + 20 + 17)/2; return String(S - 20);",
+      "8": "var S = (13 + 20 + 17)/2; return String(S - 17);",
+      "15": "var S = (13 + 20 + 17)/2; var x = S - 20; return String(20 - x);"
+    }
+  },
+  {
+    "id": "AALG4-06",
+    "domain": "Algebra",
+    "subskill": "writing an absolute-value inequality for a tolerance: the centre is the target value, the bound is the allowed deviation, 'at most' gives ≤, and the absolute value is what supplies the LOWER limit",
+    "difficulty": "easy",
+    "prompt": "A machine part is acceptable only if its length L, in centimeters, differs from 8.4 centimeters by at most 0.15 centimeter. Which of the following inequalities describes all acceptable lengths L ?",
+    "choices": [
+      "|L - 0.15| ≤ 8.4",
+      "L ≤ 8.55",
+      "|8.4 - L| ≥ 0.15",
+      "|L - 8.4| ≤ 0.15"
+    ],
+    "correct_answer": "|L - 8.4| ≤ 0.15",
+    "explanation": "The difference between L and 8.4 is |L - 8.4|, and \"at most 0.15\" means that difference is ≤ 0.15, so acceptable lengths satisfy |L - 8.4| ≤ 0.15, that is, 8.25 ≤ L ≤ 8.55. \"|L - 0.15| ≤ 8.4\" comes from a solver who swaps the target value and the tolerance. \"L ≤ 8.55\" comes from a solver who drops the absolute value, solves L - 8.4 ≤ 0.15, and keeps only the upper limit; it is satisfied by every length below 8.55, including lengths far too short. \"|8.4 - L| ≥ 0.15\" comes from a solver who reads \"at most\" in the wrong direction; it describes the lengths that are NOT acceptable.",
+    "solve": "var c = 840, d = 15; /* hundredths of a cm */ var accept = function(h){ return h >= c - d && h <= c + d; }; var cands = { '|L - 0.15| ≤ 8.4': function(h){ return Math.abs(h - 15) <= 840; }, 'L ≤ 8.55': function(h){ return h <= 855; }, '|8.4 - L| ≥ 0.15': function(h){ return Math.abs(840 - h) >= 15; }, '|L - 8.4| ≤ 0.15': function(h){ return Math.abs(h - 840) <= 15; } }; var samples = [0, 700, 820, 824, 825, 830, 840, 850, 855, 856, 860, 900, 2000]; var hit = Object.keys(cands).filter(function(k){ return samples.every(function(h){ return cands[k](h) === accept(h); }); }); return hit.length === 1 ? hit[0] : 'AMBIGUOUS';",
+    "distractor_solve": {
+      "|L - 0.15| ≤ 8.4": "var c = 8.4, d = 0.15; return '|L - ' + d + '| ≤ ' + c;",
+      "|8.4 - L| ≥ 0.15": "var c = 8.4, d = 0.15; return '|' + c + ' - L| ≥ ' + d;",
+      "L ≤ 8.55": "var c = 8.4, d = 0.15; var upper = Math.round((c + d)*100)/100; return 'L ≤ ' + upper;"
+    }
+  }
+]

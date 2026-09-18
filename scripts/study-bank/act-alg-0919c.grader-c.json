@@ -1,0 +1,44 @@
+{
+ "AALG4-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1; plausibility: (0,0) satisfies both inequalities (0≤4, 0<16) so the region contains the origin and the option nearest the origin is the safe guess — (2,3) at d²=13 vs 29, 32, 37 kills A, B, C without a single substitution; structural: (4,4) is the intersection of the two boundary lines (2x-y=4, x+3y=16) sitting ON the strict boundary, the exact trap the previous batch was killed for. bank duplicate: sat-alg-unit-0919.kept.batch.json SALGD-02 (strict + non-strict pair, distractor on the strict boundary, each distractor fails exactly one) and sat-alg-hard-v2.batch.json ALG-H2-07 (same mechanism)."
+ },
+ "AALG4-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1; endpoint case m=M (the new score equals the old mean, so s must equal M): A gives -M (wrong sign), C gives 0, D gives 0, only B gives M; structural: A/B are a mirror pair with the two counts swapped, and B is the canonical (n+1)M - nm textbook form while A is the visibly corrupted 'wrong count attached' twin. No bank duplicate of the symbolic form (numeric score-to-move-the-mean items exist: act-math-v1a line 887, act-math-v1b line 183, act-math-v3, act-math-v7-ies)."
+ },
+ "AALG4-03": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1; monotonicity/proportion: from x=4 to x=10 (Δx=6) f rises 9, and from x=10 to k f rises 12 > 9, so Δx > 6 → k > 16 kills 12 (A); slope > 1 (9 over 6) so Δx < 12 → k < 22 kills 22 (C) and 28 (B); only 18 sits in 16<k<22. Structural: 22 = 10+12 restates the stem numbers (Δf added to x) and 28 = 17+11 sits beyond the last f value. No bank duplicate of missing-INPUT-with-fractional-slope (math-v3 A7, isee-math-s3, sat-alg-0918 SALG-13 are missing-output / unknown-constant variants)."
+ },
+ "AALG4-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2; units: V is in gallons and 840 sits on the V side, so a 'number of minutes' option (B) is killed; structural: C restates the stem number 12 (drained in the first 12 minutes) and is the transparently constructed distractor; D is the 'per minute' rate wording that the coefficient owns. A survives with D at best, and A is the textbook intercept phrase ('at the moment the drain was opened') a student recognises without reading the equation. No bank duplicate found (no other 'what does the number N represent in this context' item in the batch files)."
+ },
+ "AALG4-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2; comparison: y+z=20 exceeds x+y=13 so z > x, and x+z=17 then forces z > 8.5, killing 8 (A) and 5 (D); part<whole: z < 17 kills nothing further, 15 (B) and 12 (C) survive. Structural: the total (13+20+17)/2 = 25 minus each given sum yields 12, 8, 5 — three of the four options are the three unknowns, so a student who knows the trick and picks the one that is not x or y lands on the key. No bank duplicate of the three-pairwise-sums mechanism in the batch files."
+ },
+ "AALG4-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1; 'at most' → ≤ kills D (reversed inequality ≥); the centre must be the target 8.4 and the bound the tolerance 0.15, so B (numbers swapped, permits L=0) is killed by plausibility; A has no lower limit (L=0 acceptable) killed by plausibility. Structural: C is the canonical |L - c| ≤ t textbook form and every distractor is a visibly corrupted copy (swapped numbers, flipped sign, dropped bars). No bank duplicate of the write-the-tolerance-inequality form (existing |x-a|≤b items ask how many integers satisfy it, plus math-v4 line 1310 uses the band inside a rate problem)."
+ }
+}
