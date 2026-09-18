@@ -1,0 +1,506 @@
+[
+ {
+  "id": "SALG2-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a system with swapped coefficients: add the equations to read off x + y without solving for either variable, then scale to the requested multiple",
+  "prompt": "If 3x + 5y = 37 and 5x + 3y = 43, what is the value of 4x + 4y?",
+  "choices": [
+   "10",
+   "26",
+   "40",
+   "12"
+  ],
+  "correct_answer": "40",
+  "explanation": "Adding the two equations gives 8x + 8y = 80, so x + y = 10 and 4x + 4y = 40. \"10\" comes from a solver who finds x + y = 10 and reports it without scaling to 4x + 4y. \"12\" comes from a solver who subtracts the equations, gets 2x - 2y = 6 so x - y = 3, and reports 4(x - y). \"26\" comes from a solver who solves the system fully (x = 6.5, y = 3.5) and reports 4x alone.",
+  "solve": "var a1=3,b1=5,c1=37,a2=5,b2=3,c2=43; var det=a1*b2-a2*b1; var x=(c1*b2-c2*b1)/det, y=(a1*c2-a2*c1)/det; return String(4*x+4*y);",
+  "distractor_solve": {
+   "10": "var s=(37+43)/(3+5); return String(s);",
+   "12": "var d=(43-37)/(5-3); return String(4*d);",
+   "26": "var a1=3,b1=5,c1=37,a2=5,b2=3,c2=43; var det=a1*b2-a2*b1; var x=(c1*b2-c2*b1)/det; return String(4*x);"
+  }
+ },
+ {
+  "id": "SALG2-02",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a system with an unknown constant whose solution must also satisfy a stated relation between x and y: substitute the relation into the constant-free equation first, then evaluate the constant",
+  "prompt": "In the system of equations 2x + y = 20 and x - 3y = k, k is a constant. If the solution (x, y) of the system satisfies y = 2x, what is the value of k?",
+  "choices": [
+   "-25",
+   "35",
+   "-5",
+   "-4"
+  ],
+  "correct_answer": "-25",
+  "explanation": "Substituting y = 2x into 2x + y = 20 gives 4x = 20, so x = 5 and y = 10. Then k = x - 3y = 5 - 30 = -25. \"-4\" comes from a solver who reads the relation as x = 2y, gets 5y = 20 so y = 4 and x = 8, and computes 8 - 12. \"-5\" comes from a solver who finds (5, 10) but computes x - y instead of x - 3y. \"35\" comes from a solver who finds (5, 10) and computes x + 3y.",
+  "solve": "var x=20/(2+2); var y=2*x; return String(x-3*y);",
+  "distractor_solve": {
+   "35": "var x=20/(2+2); var y=2*x; return String(x+3*y);",
+   "-4": "var y=20/(4+1); var x=2*y; return String(x-3*y);",
+   "-5": "var x=20/(2+2); var y=2*x; return String(x-y);"
+  }
+ },
+ {
+  "id": "SALG2-03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a linear function given by one point and a negative slope, solved for the INPUT that produces a stated output: the point-slope step must be undone in the right order",
+  "prompt": "The function f is linear, f(5) = 9, and the slope of the graph of y = f(x) in the xy-plane is -3. For what value of x is f(x) = -15?",
+  "choices": [
+   "8",
+   "-3",
+   "29",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Point-slope form gives f(x) = 9 - 3(x - 5). Setting 9 - 3(x - 5) = -15 gives 3(x - 5) = 24, so x - 5 = 8 and x = 13. \"8\" comes from a solver who finds x - 5 = 8 and reports 8 without adding back the 5. \"29\" comes from a solver who forgets to divide 24 by 3 and solves x - 5 = 24. \"-3\" comes from a solver who uses slope +3, so 9 + 3(x - 5) = -15 and x - 5 = -8.",
+  "solve": "var m=-3, x0=5, y0=9, target=-15; return String(x0 + (target-y0)/m);",
+  "distractor_solve": {
+   "8": "var m=-3, y0=9, target=-15; return String((target-y0)/m);",
+   "29": "var x0=5, y0=9, target=-15; return String(x0 + (y0-target));",
+   "-3": "var m=3, x0=5, y0=9, target=-15; return String(x0 + (target-y0)/m);"
+  }
+ },
+ {
+  "id": "SALG2-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a two-part linear cost model (a per-day charge applied over several days plus a per-mile charge) solved for the mileage input, where the daily charge must be multiplied out before it is removed",
+  "prompt": "A car rental company charges 42 dollars per day plus 0.25 dollars per mile driven. A customer rented a car for 3 days and was charged a total of 201 dollars. How many miles did the customer drive?",
+  "choices": [
+   "636",
+   "300",
+   "804",
+   "100"
+  ],
+  "correct_answer": "300",
+  "explanation": "The daily charges total 3(42) = 126 dollars, leaving 201 - 126 = 75 dollars for mileage, so the distance is 75/0.25 = 300 miles. \"636\" comes from a solver who subtracts only one day's charge, (201 - 42)/0.25. \"804\" comes from a solver who ignores the daily charge entirely, 201/0.25. \"100\" comes from a solver who divides the bill by 3 first (67 dollars per day), subtracts 42, and divides by 0.25, getting the miles for one day only.",
+  "solve": "var days=3, perDay=42, perMile=0.25, total=201; return String(Math.round((total - days*perDay)/perMile));",
+  "distractor_solve": {
+   "100": "var days=3, perDay=42, perMile=0.25, total=201; return String(Math.round((total/days - perDay)/perMile));",
+   "636": "var perDay=42, perMile=0.25, total=201; return String(Math.round((total - perDay)/perMile));",
+   "804": "var perMile=0.25, total=201; return String(Math.round(total/perMile));"
+  }
+ },
+ {
+  "id": "SALG2-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a linear conversion formula with the input unknown, where the condition relates the output to the input itself: the equation has the variable on both sides and a fractional net coefficient",
+  "prompt": "The temperature F in degrees Fahrenheit is related to the temperature C in degrees Celsius by F = 1.8C + 32. At a certain temperature, the Fahrenheit reading is 68 more than the Celsius reading. What is the Celsius reading?",
+  "choices": [
+   "85",
+   "45",
+   "36",
+   "20"
+  ],
+  "correct_answer": "45",
+  "explanation": "The condition is 1.8C + 32 = C + 68, so 0.8C = 36 and C = 45. (Check: 1.8(45) + 32 = 113, which is 68 more than 45.) \"36\" comes from a solver who reaches 0.8C = 36 and reports 36 without dividing. \"85\" comes from a solver who drops the 32, solving 1.8C = C + 68. \"20\" comes from a solver who divides 36 by 1.8 instead of by 0.8.",
+  "solve": "var C=(68-32)/(1.8-1); return String(Math.round(C*1000)/1000);",
+  "distractor_solve": {
+   "20": "var C=(68-32)/1.8; return String(Math.round(C*1000)/1000);",
+   "36": "return String(68-32);",
+   "85": "var C=68/(1.8-1); return String(Math.round(C*1000)/1000);"
+  }
+ },
+ {
+  "id": "SALG2-06",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "recover a constant in a linear inequality from its stated solution set: solve symbolically for x, then match the boundary",
+  "prompt": "In the inequality 4x - a > 2x + 7, a is a constant. If the solution set of the inequality is x > 6, what is the value of a?",
+  "choices": [
+   "29",
+   "-1",
+   "19",
+   "5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Collecting terms gives 2x > a + 7, so x > (a + 7)/2. Setting (a + 7)/2 = 6 gives a + 7 = 12 and a = 5. \"-1\" comes from a solver who forgets to divide by 2 and sets a + 7 = 6. \"19\" comes from a solver who writes 2x > a - 7, changing the sign of the 7 although it never crossed the inequality sign, and sets (a - 7)/2 = 6. \"29\" comes from a solver who adds 2x to 4x instead of subtracting, getting 6x > a + 7 and (a + 7)/6 = 6.",
+  "solve": "var bound=6; var a=bound*(4-2)-7; return String(a);",
+  "distractor_solve": {
+   "19": "var bound=6; return String(bound*(4-2)+7);",
+   "29": "var bound=6; return String(bound*(4+2)-7);",
+   "-1": "var bound=6; return String(bound-7);"
+  }
+ },
+ {
+  "id": "SALG2-07",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a two-variable system of inequalities (a resource limit and a minimum-difference requirement) with one variable fixed: decide which constraint binds the maximum of the other",
+  "prompt": "A bakery makes muffins and scones. Each muffin uses 4 ounces of flour and each scone uses 5 ounces of flour, and the bakery has at most 650 ounces of flour available. The bakery must also make at least 40 more muffins than scones. If the bakery makes exactly 50 scones, what is the greatest number of muffins it can make?",
+  "choices": [
+   "100",
+   "130",
+   "94",
+   "112"
+  ],
+  "correct_answer": "100",
+  "explanation": "With m muffins and 50 scones, the flour constraint is 4m + 5(50) <= 650, so 4m <= 400 and m <= 100. The other constraint requires m >= 90, which 100 satisfies, so the greatest number is 100. \"130\" comes from a solver who divides the flour by the 5 ounces per scone, 650/5. \"112\" comes from a solver who charges the scones 4 ounces each, (650 - 200)/4 = 112.5, rounded down. \"94\" comes from a solver who ignores the 50 scones and instead sets the scone count to m - 40, giving 4m + 5(m - 40) <= 650 and m <= 94.4.",
+  "solve": "var flour=650, mOz=4, sOz=5, scones=50, minGap=40; var byFlour=Math.floor((flour - sOz*scones)/mOz); var lower=scones+minGap; return String(byFlour>=lower ? byFlour : NaN);",
+  "distractor_solve": {
+   "94": "return String(Math.floor((650 + 5*40)/(4+5)));",
+   "112": "return String(Math.floor((650 - 4*50)/4));",
+   "130": "return String(Math.floor(650/5));"
+  }
+ },
+ {
+  "id": "SALG2-08",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "maximise a linear expression over a region cut out by three linear inequalities: the maximum sits at the vertex where the bounding line meets the lower bound on y, not at the largest coordinates separately",
+  "prompt": "If x and y satisfy x + 2y <= 14, x >= 2, and y >= 1, what is the greatest possible value of 3x + y?",
+  "choices": [
+   "25",
+   "15",
+   "37",
+   "7"
+  ],
+  "correct_answer": "37",
+  "explanation": "The region is a triangle with vertices (2, 1), (12, 1), and (2, 6). The expression 3x + y takes the values 7, 37, and 12 there, so its greatest value is 37, at (12, 1). \"25\" comes from a solver who reaches (12, 1) but evaluates 2x + y, swapping the coefficient onto the wrong variable. \"15\" comes from a solver who evaluates x + 3y at (12, 1). \"7\" comes from a solver who evaluates the expression at the corner (2, 1), the point closest to the origin.",
+  "solve": "var verts=[[2,1],[14-2*1,1],[2,(14-2)/2]]; var best=-Infinity; for (var v of verts) best=Math.max(best,3*v[0]+v[1]); return String(best);",
+  "distractor_solve": {
+   "7": "return String(3*2+1);",
+   "15": "var x=14-2*1, y=1; return String(x+3*y);",
+   "25": "var x=14-2*1, y=1; return String(2*x+y);"
+  }
+ },
+ {
+  "id": "SALG2-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "an absolute value equation whose right side is a linear expression, with a constant to isolate first: two sign cases, both of which must be checked against the right side being nonnegative",
+  "prompt": "If |3x - 5| + 4 = 2x + 9, what is the greatest value of x that satisfies the equation?",
+  "choices": [
+   "2",
+   "10",
+   "18",
+   "0"
+  ],
+  "correct_answer": "10",
+  "explanation": "Isolating gives |3x - 5| = 2x + 5. From 3x - 5 = 2x + 5, x = 10 (check: 25 = 25). From 3x - 5 = -(2x + 5) = -2x - 5, 5x = 0 and x = 0 (check: 5 = 5). Both satisfy the equation, and the greater is 10. \"0\" comes from a solver who reports the other solution. \"2\" comes from a solver who negates only the 2x in the second case, 3x - 5 = -2x + 5, giving 5x = 10. \"18\" comes from a solver who moves the 4 to the wrong side, |3x - 5| = 2x + 13, and solves 3x - 5 = 2x + 13.",
+  "solve": "var rhsB=9-4; var sols=[]; var x1=(rhsB+5)/(3-2); if (2*x1+rhsB>=0 && Math.abs(3*x1-5)===2*x1+rhsB) sols.push(x1); var x2=(-rhsB+5)/(3+2); if (2*x2+rhsB>=0 && Math.abs(3*x2-5)===2*x2+rhsB) sols.push(x2); return String(Math.max.apply(null,sols));",
+  "distractor_solve": {
+   "0": "var rhsB=9-4; var x2=(-rhsB+5)/(3+2); return String(x2);",
+   "2": "var rhsB=9-4; var x=(rhsB+5)/(3+2); return String(x);",
+   "18": "var rhsB=9+4; var x1=(rhsB+5)/(3-2); return String(x1);"
+  }
+ },
+ {
+  "id": "SALG2-10",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "an absolute value equation with a linear right side that has two valid solutions, one a fraction: find both by sign cases, verify both, and report their product",
+  "prompt": "What is the product of all solutions to the equation |5x - 8| = 2x + 7?",
+  "choices": [
+   "36/7",
+   "75/7",
+   "5",
+   "5/7"
+  ],
+  "correct_answer": "5/7",
+  "explanation": "From 5x - 8 = 2x + 7, x = 5 (check: 17 = 17). From 5x - 8 = -(2x + 7), 7x = 1 and x = 1/7 (check: |5/7 - 56/7| = 51/7 and 2/7 + 49/7 = 51/7). Both are valid, so the product is 5(1/7) = 5/7. \"36/7\" comes from a solver who adds the solutions instead of multiplying. \"75/7\" comes from a solver who negates only the 2x in the second case, 5x - 8 = -2x + 7, gets x = 15/7, and multiplies by 5. \"5\" comes from a solver who reports the larger solution alone.",
+  "solve": "var x1=(7+8)/(5-2); var x2=(-7+8)/(5+2); var ok=function(x){return 2*x+7>=0 && Math.abs(Math.abs(5*x-8)-(2*x+7))<1e-9;}; if(!ok(x1)||!ok(x2)) return \"bad\"; var p=x1*x2; var n=Math.round(p*7); return n+\"/7\";",
+  "distractor_solve": {
+   "5": "var x1=(7+8)/(5-2); return String(x1);",
+   "36/7": "var x1=(7+8)/(5-2); var x2=(-7+8)/(5+2); return Math.round((x1+x2)*7)+\"/7\";",
+   "75/7": "var x1=(7+8)/(5-2); var x2=(7+8)/(5+2); return Math.round((x1*x2)*7)+\"/7\";"
+  }
+ },
+ {
+  "id": "SALG2-11",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "two absolute value inequalities pinning x and y to intervals, then the maximum of a linear combination with a negative coefficient: the extreme uses the LEAST y, not the greatest",
+  "prompt": "If |x - 5| <= 3 and |y + 2| <= 1, what is the greatest possible value of 3x - 2y?",
+  "choices": [
+   "30",
+   "26",
+   "8",
+   "18"
+  ],
+  "correct_answer": "30",
+  "explanation": "The inequalities give 2 <= x <= 8 and -3 <= y <= -1. Because the coefficient of y is negative, 3x - 2y is largest when x is largest and y is smallest: 3(8) - 2(-3) = 30. \"26\" comes from a solver who uses the largest y, computing 3(8) - 2(-1). \"18\" comes from a solver who solves |y + 2| <= 1 as 1 <= y <= 3 and computes 3(8) - 2(3). \"8\" comes from a solver who finds the least value of the expression, 3(2) - 2(-1), instead of the greatest.",
+  "solve": "var xs=[5-3,5+3], ys=[-2-1,-2+1]; var best=-Infinity; for (var x of xs) for (var y of ys) best=Math.max(best,3*x-2*y); return String(best);",
+  "distractor_solve": {
+   "8": "var xs=[5-3,5+3], ys=[-2-1,-2+1]; var worst=Infinity; for (var x of xs) for (var y of ys) worst=Math.min(worst,3*x-2*y); return String(worst);",
+   "18": "return String(3*(5+3)-2*(2+1));",
+   "26": "return String(3*(5+3)-2*(-2+1));"
+  }
+ },
+ {
+  "id": "SALG2-12",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "solve a reciprocal-sum literal equation for one of the summed variables: subtract the reciprocals over a common denominator, then invert the whole fraction",
+  "prompt": "If 1/f = 1/p + 1/q, where f, p, and q are positive and q > f, which of the following expresses p in terms of f and q?",
+  "choices": [
+   "fq/(f + q)",
+   "q/(q - f)",
+   "fq/(q - f)",
+   "q/(f + q)"
+  ],
+  "correct_answer": "fq/(q - f)",
+  "explanation": "Subtracting gives 1/p = 1/f - 1/q = (q - f)/(fq), and inverting both sides gives p = fq/(q - f). \"fq/(f + q)\" comes from a solver who adds the reciprocals, 1/p = 1/f + 1/q, instead of subtracting. \"q/(q - f)\" comes from a solver who combines 1/f - 1/q over the denominator q alone, getting (q - f)/q, and inverts that. \"q/(f + q)\" comes from a solver who makes both errors.",
+  "solve": "var f=6,q=10; var p=1/(1/f-1/q); var num=f*q, den=q-f; if (Math.abs(num/den-p)>1e-9) return \"bad\"; return \"fq/(q - f)\";",
+  "distractor_solve": {
+   "fq/(f + q)": "var f=6,q=10; var p=1/(1/f+1/q); if (Math.abs(f*q/(f+q)-p)>1e-9) return \"bad\"; return \"fq/(f + q)\";",
+   "q/(q - f)": "var f=6,q=10; var p=1/((q-f)/q); if (Math.abs(q/(q-f)-p)>1e-9) return \"bad\"; return \"q/(q - f)\";",
+   "q/(f + q)": "var f=6,q=10; var p=1/((q+f)/q); if (Math.abs(q/(f+q)-p)>1e-9) return \"bad\"; return \"q/(f + q)\";"
+  }
+ },
+ {
+  "id": "SALG2-13",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "solve a literal equation in which the target variable appears in both the numerator and the denominator of a fraction: cross-multiply, collect the variable on one side, factor it out",
+  "prompt": "If a = (b + c)/(b - c), where b is not equal to c and a is not equal to 1, which of the following expresses b in terms of a and c?",
+  "choices": [
+   "c(a - 1)/(a + 1)",
+   "c(a + 1)/(a - 1)",
+   "(a + 1)/(c(a - 1))",
+   "(a - 1)/(c(a + 1))"
+  ],
+  "correct_answer": "c(a + 1)/(a - 1)",
+  "explanation": "Cross-multiplying gives ab - ac = b + c. Collecting the b terms, ab - b = ac + c, so b(a - 1) = c(a + 1) and b = c(a + 1)/(a - 1). \"c(a - 1)/(a + 1)\" comes from a solver who moves the b term and the ac term across the equals sign without changing either sign, getting b(a + 1) = c(a - 1). \"(a + 1)/(c(a - 1))\" comes from a solver who reaches b(a - 1) = c(a + 1) and then divides by c instead of keeping it as a factor. \"(a - 1)/(c(a + 1))\" comes from a solver who makes both errors.",
+  "solve": "var a=3,c=2; var b=c*(a+1)/(a-1); if (Math.abs((b+c)/(b-c)-a)>1e-9) return \"bad\"; return \"c(a + 1)/(a - 1)\";",
+  "distractor_solve": {
+   "c(a - 1)/(a + 1)": "var a=3,c=2; var b=c*(a-1)/(a+1); if (Math.abs((b+c)/(b-c)-a)<1e-9) return \"not wrong\"; return \"c(a - 1)/(a + 1)\";",
+   "(a + 1)/(c(a - 1))": "var a=3,c=2; var b=(a+1)/(c*(a-1)); if (Math.abs((b+c)/(b-c)-a)<1e-9) return \"not wrong\"; return \"(a + 1)/(c(a - 1))\";",
+   "(a - 1)/(c(a + 1))": "var a=3,c=2; var b=(a-1)/(c*(a+1)); if (Math.abs((b+c)/(b-c)-a)<1e-9) return \"not wrong\"; return \"(a - 1)/(c(a + 1))\";"
+  }
+ },
+ {
+  "id": "SALG2-14",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a mixture set-up where the added volume is unknown: the amount of solute on each side must be tracked, and the total volume on the right side includes the unknown",
+  "prompt": "A chemist has 20 liters of a solution that is 50% acid. How many liters of a solution that is 20% acid must be added so that the resulting mixture is 30% acid?",
+  "choices": [
+   "100",
+   "50",
+   "5",
+   "40"
+  ],
+  "correct_answer": "40",
+  "explanation": "With x liters added, the acid balance is 0.5(20) + 0.2x = 0.3(20 + x), so 10 + 0.2x = 6 + 0.3x and x = 40. \"100\" comes from a solver who writes the right side as 0.3x, forgetting that the mixture also contains the original 20 liters. \"50\" comes from a solver who sets the acid in the added solution equal to the acid already present, 0.2x = 10. \"5\" comes from a solver who distributes the 0.3 onto the 20 but not onto the x, getting 10 + 0.2x = 6 + x.",
+  "solve": "var V=20, c0=0.5, cAdd=0.2, cT=0.3; var x=V*(c0-cT)/(cT-cAdd); return String(Math.round(x*1000)/1000);",
+  "distractor_solve": {
+   "5": "var V=20, c0=0.5, cAdd=0.2, cT=0.3; var x=(c0*V - cT*V)/(1-cAdd); return String(Math.round(x*1000)/1000);",
+   "50": "var V=20, c0=0.5, cAdd=0.2; var x=(c0*V)/cAdd; return String(Math.round(x*1000)/1000);",
+   "100": "var V=20, c0=0.5, cAdd=0.2, cT=0.3; var x=(c0*V)/(cT-cAdd); return String(Math.round(x*1000)/1000);"
+  }
+ },
+ {
+  "id": "SALG2-15",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a combined-rate set-up with one rate working against the other: subtract the rates as reciprocals of the times, then invert",
+  "prompt": "An inlet pipe can fill an empty tank in 6 hours. A drain can empty the full tank in 9 hours. If the tank is empty and both the inlet pipe and the drain are opened at the same time, how many hours will it take to fill the tank?",
+  "choices": [
+   "15",
+   "7.5",
+   "18",
+   "54"
+  ],
+  "correct_answer": "18",
+  "explanation": "The inlet fills 1/6 of the tank per hour and the drain removes 1/9 per hour, so the net rate is 1/6 - 1/9 = 1/18 of the tank per hour and the tank fills in 18 hours. \"15\" comes from a solver who adds the two times. \"7.5\" comes from a solver who averages the two times. \"54\" comes from a solver who multiplies the two times.",
+  "solve": "var tIn=6, tOut=9; var t=1/(1/tIn-1/tOut); return String(Math.round(t*1000)/1000);",
+  "distractor_solve": {
+   "15": "return String(6+9);",
+   "54": "return String(6*9);",
+   "7.5": "return String((6+9)/2);"
+  }
+ },
+ {
+  "id": "SALG2-16",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a pursuit set-up with a delayed start: convert the head start into distance, divide by the closing speed, and then multiply by the pursuer's speed to get the catch-up distance",
+  "prompt": "A train leaves a station traveling at a constant speed of 60 miles per hour. Forty-five minutes later, a second train leaves the same station on a parallel track traveling in the same direction at a constant speed of 75 miles per hour. How many miles from the station does the second train catch up to the first?",
+  "choices": [
+   "225",
+   "180",
+   "281.25",
+   "300"
+  ],
+  "correct_answer": "225",
+  "explanation": "In 45 minutes the first train travels 60(0.75) = 45 miles. The second train closes that gap at 75 - 60 = 15 miles per hour, so it catches up after 45/15 = 3 hours, having traveled 75(3) = 225 miles. \"180\" comes from a solver who multiplies the 3 hours by the first train's speed of 60. \"281.25\" comes from a solver who multiplies the second train's speed by the first train's total travel time, 75(3.75). \"300\" comes from a solver who divides the first train's speed by the closing speed, 60/15 = 4 hours, and multiplies by 75.",
+  "solve": "var v1=60, v2=75, delayH=45/60; var gap=v1*delayH; var t=gap/(v2-v1); return String(Math.round(v2*t*1000)/1000);",
+  "distractor_solve": {
+   "180": "var v1=60, v2=75, delayH=45/60; var gap=v1*delayH; var t=gap/(v2-v1); return String(Math.round(v1*t*1000)/1000);",
+   "300": "var v1=60, v2=75; var t=v1/(v2-v1); return String(Math.round(v2*t*1000)/1000);",
+   "281.25": "var v1=60, v2=75, delayH=45/60; var gap=v1*delayH; var t=gap/(v2-v1); return String(Math.round(v2*(t+delayH)*1000)/1000);"
+  }
+ },
+ {
+  "id": "SALG2-17",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "the slope of a line through a given point and the x-intercept of a second line given in standard form: the intercept must be found first, and it lies on the x-axis",
+  "prompt": "In the xy-plane, line m passes through the point (2, -5) and through the x-intercept of the graph of 3x - 4y = 24. What is the slope of line m?",
+  "choices": [
+   "-13/2",
+   "1/2",
+   "3/4",
+   "5/6"
+  ],
+  "correct_answer": "5/6",
+  "explanation": "Setting y = 0 in 3x - 4y = 24 gives x = 8, so the x-intercept is (8, 0). The slope of line m is (-5 - 0)/(2 - 8) = -5/(-6) = 5/6. \"-13/2\" comes from a solver who places the intercept at (0, 8), computing (-5 - 8)/(2 - 0). \"1/2\" comes from a solver who uses the y-intercept (0, -6) instead, computing (-5 + 6)/(2 - 0). \"3/4\" comes from a solver who reports the slope of the given line, as though line m were parallel to it.",
+  "solve": "var xi=24/3; var m=(-5-0)/(2-xi); var n=Math.round(m*6); return n+\"/6\";",
+  "distractor_solve": {
+   "-13/2": "var xi=24/3; var m=(-5-xi)/(2-0); return Math.round(m*2)+\"/2\";",
+   "1/2": "var yi=24/(-4); var m=(-5-yi)/(2-0); return Math.round(m*2)+\"/2\";",
+   "3/4": "var m=3/4; return Math.round(m*4)+\"/4\";"
+  }
+ },
+ {
+  "id": "SALG2-18",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "interpret the intercept and slope of a linear model to find the time at which the output reaches a stated multiple of its starting value: the multiple applies to the intercept, and the intercept must then be subtracted before dividing by the rate",
+  "prompt": "The water level L, in centimeters, in a reservoir t hours after a gauge is reset is modeled by L = 2.75t + 22. According to the model, after how many hours will the water level be five times the level at the moment the gauge was reset?",
+  "choices": [
+   "40",
+   "32",
+   "4",
+   "88"
+  ],
+  "correct_answer": "32",
+  "explanation": "The starting level is the intercept, 22 centimeters, so the target is 5(22) = 110. Then 2.75t + 22 = 110 gives 2.75t = 88 and t = 32. \"40\" comes from a solver who forgets to subtract the starting level, dividing 110 by 2.75. \"88\" comes from a solver who finds the required rise of 88 centimeters and reports it as the time. \"4\" comes from a solver who divides the rise of 88 by the starting level 22 instead of by the rate 2.75.",
+  "solve": "var rate=2.75, start=22, mult=5; var t=(mult*start-start)/rate; return String(Math.round(t*1000)/1000);",
+  "distractor_solve": {
+   "4": "var start=22, mult=5; return String((mult*start-start)/start);",
+   "40": "var rate=2.75, start=22, mult=5; return String(Math.round((mult*start)/rate*1000)/1000);",
+   "88": "var start=22, mult=5; return String(mult*start-start);"
+  }
+ },
+ {
+  "id": "SALG2-19",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "a line specified by its two intercepts, evaluated at a distant x: build the slope from the intercepts with the correct sign, then include the y-intercept",
+  "prompt": "In the xy-plane, a line has x-intercept 6 and y-intercept -4. What is the y-coordinate of the point on the line whose x-coordinate is 15?",
+  "choices": [
+   "-14",
+   "18.5",
+   "6",
+   "10"
+  ],
+  "correct_answer": "6",
+  "explanation": "The line passes through (6, 0) and (0, -4), so its slope is (0 - (-4))/(6 - 0) = 2/3 and its equation is y = (2/3)x - 4. At x = 15, y = 10 - 4 = 6. \"10\" comes from a solver who computes (2/3)(15) and forgets the y-intercept. \"-14\" comes from a solver who takes the slope as -2/3, reading -4/6 straight from the two intercept values. \"18.5\" comes from a solver who inverts the slope to 3/2, computing (3/2)(15) - 4.",
+  "solve": "var xi=6, yi=-4; var m=(0-yi)/(xi-0); var y=m*15+yi; return String(Math.round(y*1000)/1000);",
+  "distractor_solve": {
+   "10": "var xi=6, yi=-4; var m=(0-yi)/(xi-0); return String(Math.round(m*15*1000)/1000);",
+   "-14": "var xi=6, yi=-4; var m=yi/xi; var y=m*15+yi; return String(Math.round(y*1000)/1000);",
+   "18.5": "var xi=6, yi=-4; var m=(xi-0)/(0-yi); var y=m*15+yi; return String(Math.round(y*1000)/1000);"
+  }
+ },
+ {
+  "id": "SALG2-20",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "find the unknown coordinate of a point when the slope of the line through it is tied to the y-intercept of a different line given in standard form: extract the intercept (with its sign), then apply the slope formula",
+  "prompt": "In the xy-plane, the line through the points (-1, 4) and (2, k) has a slope equal to the y-intercept of the graph of 2x - 3y = 12, where k is a constant. What is the value of k?",
+  "choices": [
+   "-8",
+   "40",
+   "16",
+   "6"
+  ],
+  "correct_answer": "-8",
+  "explanation": "Setting x = 0 in 2x - 3y = 12 gives y = -4, so the required slope is -4. Then (k - 4)/(2 - (-1)) = -4, so k - 4 = -12 and k = -8. \"40\" comes from a solver who takes the y-intercept as 12, the constant on the right side, giving k - 4 = 36. \"16\" comes from a solver who drops the sign and uses a slope of 4, giving k - 4 = 12. \"6\" comes from a solver who uses the slope of the given line, 2/3, giving k - 4 = 2.",
+  "solve": "var yi=12/(-3); var k=4+yi*(2-(-1)); return String(k);",
+  "distractor_solve": {
+   "6": "var m=2/3; var k=4+m*(2-(-1)); return String(k);",
+   "16": "var yi=Math.abs(12/(-3)); var k=4+yi*(2-(-1)); return String(k);",
+   "40": "var k=4+12*(2-(-1)); return String(k);"
+  }
+ },
+ {
+  "id": "SALGD-01",
+  "domain": "Algebra",
+  "subskill": "a two-parameter system with infinitely many solutions: the multiplier comes from the constants and must be applied in opposite directions to the two unknown coefficients",
+  "difficulty": "medium",
+  "prompt": "In the system of equations 6x + ay = 4 and bx + 18y = 6, a and b are constants. If the system has infinitely many solutions, what is the value of a + b?",
+  "choices": [
+   "16",
+   "21",
+   "36",
+   "24"
+  ],
+  "correct_answer": "21",
+  "explanation": "A linear system has infinitely many solutions only when the two equations are the same line, so the second equation must be a constant multiple of the first. The constants fix that multiple: 6 = (3/2)(4), so every coefficient of the second equation is 3/2 times the matching coefficient of the first. Then b = (3/2)(6) = 9, and 18 = (3/2)a gives a = 12. So a + b = 12 + 9 = 21. \"24\" comes from a solver who matches the visible coefficients across the equations without scaling, taking a = 18 and b = 6. \"36\" comes from a solver who multiplies BOTH given coefficients by 3/2, getting b = 9 correctly but a = (3/2)(18) = 27. \"16\" comes from a solver who divides both given coefficients by 3/2 instead, getting b = 4 and a = 12.",
+  "solve": "var c1=4,c2=6,x1=6,y2=18; var m=c2/c1; var b=m*x1; var a=y2/m; return String(a+b);",
+  "distractor_solve": {
+   "16": "var c1=4,c2=6,x1=6,y2=18; var m=c2/c1; var b=x1/m; var a=y2/m; return String(a+b);",
+   "24": "var x1=6,y2=18; var a=y2, b=x1; return String(a+b);",
+   "36": "var c1=4,c2=6,x1=6,y2=18; var m=c2/c1; var b=m*x1; var a=m*y2; return String(a+b);"
+  }
+ },
+ {
+  "id": "SALGD-02",
+  "domain": "Algebra",
+  "subskill": "identify the one ordered pair inside a system of a strict and a non-strict linear inequality, with every candidate within one unit of a boundary",
+  "difficulty": "medium",
+  "prompt": "Which of the following ordered pairs (x, y) is a solution to the system of inequalities y > 2x - 4 and 2x + 3y ≤ 20?",
+  "choices": [
+   "(3, 2)",
+   "(5, 3)",
+   "(3, 5)",
+   "(3, 4)"
+  ],
+  "correct_answer": "(3, 4)",
+  "explanation": "Test each pair in both inequalities. For (3, 4): 4 > 2(3) - 4 = 2 is true, and 2(3) + 3(4) = 18 ≤ 20 is true, so (3, 4) is a solution. For (3, 2): 2(3) + 3(2) = 12 ≤ 20 holds, but 2 > 2(3) - 4 = 2 is false because the inequality is strict, so the point lies on the boundary line and is not a solution. For (5, 3): 3 > 2(5) - 4 = 6 is false. For (3, 5): 5 > 2 holds, but 2(3) + 3(5) = 21 is not at most 20. \"(3, 2)\" is chosen by a solver who swaps the coordinates while substituting, testing x = 2 and y = 3, which does satisfy both inequalities. \"(5, 3)\" is the only pair that satisfies the first inequality read with its direction reversed, y < 2x - 4, together with the second, so it comes from a solver who reverses the first inequality. \"(3, 5)\" is the only pair that satisfies the first inequality together with the second read with its direction reversed, 2x + 3y ≥ 20.",
+  "solve": "var pts=[[3,2],[5,3],[3,5],[3,4]]; var ok=pts.filter(function(p){return p[1]>2*p[0]-4 && 2*p[0]+3*p[1]<=20;}); if(ok.length!==1) return 'AMBIGUOUS'; return '('+ok[0][0]+', '+ok[0][1]+')';",
+  "distractor_solve": {
+   "(3, 2)": "var pts=[[3,2],[5,3],[3,5],[3,4]]; var ok=pts.filter(function(p){var x=p[1],y=p[0]; return y>2*x-4 && 2*x+3*y<=20;}); if(ok.length!==1) return 'AMBIGUOUS'; return '('+ok[0][0]+', '+ok[0][1]+')';",
+   "(5, 3)": "var pts=[[3,2],[5,3],[3,5],[3,4]]; var ok=pts.filter(function(p){return p[1]<2*p[0]-4 && 2*p[0]+3*p[1]<=20;}); if(ok.length!==1) return 'AMBIGUOUS'; return '('+ok[0][0]+', '+ok[0][1]+')';",
+   "(3, 5)": "var pts=[[3,2],[5,3],[3,5],[3,4]]; var ok=pts.filter(function(p){return p[1]>2*p[0]-4 && 2*p[0]+3*p[1]>=20;}); if(ok.length!==1) return 'AMBIGUOUS'; return '('+ok[0][0]+', '+ok[0][1]+')';"
+  }
+ },
+ {
+  "id": "SALGD-03",
+  "domain": "Algebra",
+  "subskill": "build a linear net-proceeds model from a fixed cost, a per-person cost and a per-person price, then solve it for the input that yields a stated net amount",
+  "difficulty": "medium",
+  "prompt": "A student club is holding a fundraising concert. The club pays 330 dollars to rent the hall and 9 dollars per attendee for refreshments, and it charges 11 dollars per ticket. How many tickets must the club sell so that the money left after paying all of its costs is exactly 770 dollars?",
+  "choices": [
+   "550",
+   "220",
+   "715",
+   "100"
+  ],
+  "correct_answer": "550",
+  "explanation": "If n tickets are sold, the club takes in 11n dollars and pays 330 + 9n dollars, so the money left is 11n - (330 + 9n) = 2n - 330. Setting 2n - 330 = 770 gives 2n = 1100, so n = 550. \"220\" comes from a solver who subtracts the hall rental from the target instead of adding it, solving 2n = 770 - 330. \"100\" comes from a solver who ignores the 9 dollars per attendee and solves 11n = 770 + 330. \"715\" comes from a solver who divides the 770 dollars by the 2-dollar margin to get 385 tickets and then adds the 330 from the rental as though it were a number of tickets.",
+  "solve": "var hall=330, perHead=9, price=11, target=770; var margin=price-perHead; return String((target+hall)/margin);",
+  "distractor_solve": {
+   "100": "var hall=330, price=11, target=770; return String((target+hall)/price);",
+   "220": "var hall=330, perHead=9, price=11, target=770; return String((target-hall)/(price-perHead));",
+   "715": "var hall=330, perHead=9, price=11, target=770; return String(target/(price-perHead)+hall);"
+  }
+ },
+ {
+  "id": "SALGD-04",
+  "domain": "Algebra",
+  "subskill": "solve an absolute value inequality of the 'at least' type whose inside expression has a negative coefficient, so both rays require dividing by a negative and reversing",
+  "difficulty": "medium",
+  "prompt": "Which of the following describes all solutions to the inequality |3 - 2x| ≥ 5?",
+  "choices": [
+   "x ≤ -4 or x ≥ 1",
+   "-1 ≤ x ≤ 4",
+   "x ≤ -1 or x ≥ 4",
+   "x ≤ 4"
+  ],
+  "correct_answer": "x ≤ -1 or x ≥ 4",
+  "explanation": "An absolute value is at least 5 when the expression inside is at least 5 or at most -5. From 3 - 2x ≥ 5, subtracting 3 gives -2x ≥ 2, and dividing by -2 reverses the inequality: x ≤ -1. From 3 - 2x ≤ -5, subtracting 3 gives -2x ≤ -8, and dividing by -2 gives x ≥ 4. The solutions are x ≤ -1 or x ≥ 4. \"-1 ≤ x ≤ 4\" comes from a solver who divides by -2 without reversing either inequality, so the two rays point toward each other and overlap in a band. \"x ≤ -4 or x ≥ 1\" comes from a solver who moves the 3 with the wrong sign, writing -2x ≥ 8 and -2x ≤ -2. \"x ≤ 4\" comes from a solver who writes the second case as 3 - 2x ≥ -5 instead of 3 - 2x ≤ -5, obtaining x ≤ -1 or x ≤ 4, which together is just x ≤ 4.",
+  "solve": "var c=3,a=-2,k=5; var r1=(k-c)/a; var r2=(-k-c)/a; var lo=Math.min(r1,r2), hi=Math.max(r1,r2); return 'x ≤ '+lo+' or x ≥ '+hi;",
+  "distractor_solve": {
+   "-1 ≤ x ≤ 4": "var c=3,a=-2,k=5; var r1=(k-c)/a; var r2=(-k-c)/a; return Math.min(r1,r2)+' ≤ x ≤ '+Math.max(r1,r2);",
+   "x ≤ -4 or x ≥ 1": "var c=3,a=-2,k=5; var r1=(k+c)/a; var r2=(-k+c)/a; return 'x ≤ '+Math.min(r1,r2)+' or x ≥ '+Math.max(r1,r2);",
+   "x ≤ 4": "var c=3,a=-2,k=5; var r1=(k-c)/a; var r2=(-k-c)/a; return 'x ≤ '+Math.max(r1,r2);"
+  }
+ }
+]

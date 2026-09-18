@@ -3398,6 +3398,34 @@
      "verdict": "Authored keys CADBBDACDABCACBDCADBAD - dealt across slots. Solver C detected the author's \"pair among distractors, key outside\" shape on four items and read it correctly as a halving recipe; three of those four are among the drops on other grounds, AFN2-10's remaining pair is a sign pair excluding the key."
     }
    }
+  },
+  {
+   "id": "sat-alg-unit-0919-kept-2026-09-19",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-alg-unit-0919",
+   "contentSha": "fa17a63c7dbd34a1f9bbd398c112b8ccf6f3c0a8b7867a711414f3034e96f23f",
+   "note": "9 kept of 24 (sat-alg-0919 x20 + parked sat-alg-0918d x4), gated from pinned snapshots. Routed-rule drops: SALG2-01, SALG2-02, SALG2-03, SALG2-04, SALG2-06, SALG2-07, SALG2-08, SALG2-12, SALG2-13, SALG2-15, SALGD-03. Rule drops: SALG2-12 - N=1: two options dimensionless where p carries the unit of f; 1/p = 1/f - 1/q forces p > f, killing the fourth; also a memorised lens formula; SALG2-13 - N=2 -> 1: two options carry 1/c where b scales with c; b > c > 0 kills the third; same leak as SALG2-12; SALG2-19 - N=1: the line rises and x=15 > 6 kills the negative; rise 4 over run 6 caps y(15) below 9, killing the other two; SALG2-20 - N=1: a negative y-intercept forces slope < 0 so k < 4, and all three distractors are positive; the item names its own discriminator; SALGD-04 - N=1: >= on an abs value forces outward rays (kills two); the rays must be symmetric about x = 1.5 and the last distractor centres on -1.5; SALG2-08 - N=2: any feasible point gives 19, killing 7 and 15; the survivors are the key and the region minimum; grader B: two distractors trace to no error; SALG2-09 - unanimous options-only with the run 2/10/18 named 3/3 (rule disarmed, so dropped on the with-source ground): duplicate mechanism of SALG2-10, which is kept; SALGD-03 - third copy of fixed-charge-plus-rate-solve-for-input (with SALG2-04, SALG2-18) and its 100 sits ON the revenue bound. Cross-item tell named by the hunter: both linear-programming items ask for the greatest value and the key is the largest option (08 dropped; 11 kept on its genuine trap, flagged).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 24/24 (my run on the unit); distractor_solve 72/72; symbolic hub 2 structured at 29.2% (n=2, no measurement)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha 2e858356456c07a7): 24/24 x3; exclusive:false 0/0/0. Difficulty easy 15/9/7, hard 0/0/0. Hunter: N=1 on SALG2-12, -19, -20, SALGD-04; N=2 on 04, 08, 11, 13; recall bypasses on 01, 12, 14, 15, 16, D-04; duplicate families 17/19/20, 04/18/D-03, 09/10, 08/11, 12/13. Grader B independently found the dimensional-analysis leak on 12/13."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 72 forced picks, keys 6/6/6/6, control 25.0%: 23/72 = 31.9% (+6.9). Mechanism 12/36 = 33.3%, guess 11/36 = 30.6% (+2.8) - rule disarmed. All three pre-registered the run-centre recipe on L07/L09/L20/L21; it scored 1 of 4, unanimously wrong on three. Unanimous 5 of 24 vs 0.38: SALG2-09 and SALGD-04 (3/3 named) dropped on with-source grounds; 03, 05, 13 (0-2 named) - 13 dropped on dimensions, 03/05 subject to the routed rule. Residual on kept 9: 5/27 = 18.5% vs 44.4% (-25.9)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys 5 per slot, no cycle. \"Greatest\" + key-is-largest on both LP items is the one cross-item tell; one of the pair dropped."
+    }
+   }
   }
  ],
  "auditedCohorts": [

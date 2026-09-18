@@ -1,0 +1,170 @@
+{
+ "SALG2-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. Recall bypass: swapped-coefficient add trick (sum=80, /2). B=10 is x+y itself."
+ },
+ "SALG2-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: y=2x with 2x+y=20 forces x,y>0 so k=x-3y<0, rejects 35. A=-5 is x-y, C=x+3y."
+ },
+ "SALG2-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: slope<0 and target -15<9=f(5) forces x>5, rejects -3. D=8 is the delta-x, C=29 is 5+24."
+ },
+ "SALG2-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2: mileage charge < 201-42=159 so miles < 636 (B on bound, C=804 is the zero-day figure); left 100 vs 300. Two distractors are pure part-vs-whole violations. Duplicate skeleton with SALGD-03 and SALG2-18."
+ },
+ "SALG2-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 strictly; near-bound: once F-C=0.8C+32 is formed, 0.8 in (0.5,1) pins C in (36,72] and only 45 survives, but forming that is the algebra. A=36 is 68-32, C=20 is F=68 misread."
+ },
+ "SALG2-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. D=19 is the RHS value at the boundary; one substitution of x=6 solves it."
+ },
+ "SALG2-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 (all options >= the 90 minimum; 4m<=650 rejects none). The 'at least 40 more' constraint never binds; only the flour limit matters."
+ },
+ "SALG2-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: any feasible point is a lower bound; (6,1) gives 19 so 7 and 15 die, and A=7 is the minimum vertex. Left 37 vs 25. TELL: question asks for the greatest value and the key is the largest option; same in SALG2-11."
+ },
+ "SALG2-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. A=0 is the other valid root (both roots listed). Duplicate mechanism with SALG2-10 (|ax-b|=cx+d, two sign cases)."
+ },
+ "SALG2-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. C=5 is one root; product 5*(1/7)=5/7 verified (51/7 both sides). Duplicate mechanism with SALG2-09."
+ },
+ "SALG2-11": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: centre point (5,-2) is feasible and gives 19, so 8 and 18 die; left 30 vs 26. TELL: 'greatest' and the key is the largest option (as in SALG2-08)."
+ },
+ "SALG2-12": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: A and B are dimensionless while p must carry the units of f (kills 2); 1/p=1/f-1/q < 1/f so p>f, and D=fq/(f+q)<f (kills D). Recall bypass: lens / parallel-resistor formula. DROP."
+ },
+ "SALG2-13": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: B and C have 1/c while b must scale with c (dimension kill). Left A vs D; with b>c>0, a>1 and A gives b>c while D gives b<c, so effectively 1. Dimensional-kill twin of SALG2-12."
+ },
+ "SALG2-14": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: 30% is nearer 20% than 50% so more than 20 L of the 20% solution is needed, rejects 5. Recall bypass: alligation 20:10 = 2:1 gives 40 instantly."
+ },
+ "SALG2-15": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 (drain lengthens fill so t>6; every option clears it). Recall bypass: ab/(b-a)=54/3=18. B=54 is ab, C=15 is a+b, D=7.5 is the mean: formula-fragment distractors."
+ },
+ "SALG2-16": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 (distance>45 clears all). Recall bypass: head start x v2/(v2-v1) = 45 x 5 = 225. A=75x3.75, D=60x3, B=75x4."
+ },
+ "SALG2-17": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: the x-intercept has y=0 so the line rises from y=-5 and x-int=8>2, slope>0 rejects -13/2. Rise is 5 from the stem alone and only 5/6 has it over an integer run. D=3/4 is the given line's slope, A uses the y-intercept (0,-6). Author-admitted overlap with SALG2-20."
+ },
+ "SALG2-18": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 strictly (estimating 88/2.75 needs the equation formed). B=88 is the rise, C=40 is 110/2.75, D=4 is the ratio 88/22. Third copy of fixed+rate solve-for-input (SALG2-04, SALGD-03)."
+ },
+ "SALG2-19": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: line rises (from (0,-4) to (6,0)) and x=15>6 so y>0 kills -14; rise 4 over run 6 means slope<1 so y(15) < 0+9=9, killing 10 and 18.5. Only 6 survives. DROP or rebuild options."
+ },
+ "SALG2-20": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: the y-intercept of 2x-3y=12 is negative (x=0 gives y=-4), so slope<0 forces k<4; every distractor (6, 16, 40) is positive and built from a positive slope. The item's whole difficulty note is 'the sign', and the options do not test anything else. DROP or add a negative distractor (e.g. -2 from slope -2, -32 from slope -12)."
+ },
+ "SALGD-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. 6/b = a/18 = 2/3 so b=9, a=12. A=16 applies 2/3 to both, B=36 applies 3/2 to a."
+ },
+ "SALGD-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 (substitution is the intended method here, not a bypass). (3,2) sits on the strict boundary, (3,5) gives 21>20, (5,3) fails the first. Odd-one-out heuristic (three x=3 pairs) points at A, which is wrong."
+ },
+ "SALGD-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: revenue 11n must exceed 770+330=1100 so n>100, rejects C (on bound). Net 2 per ticket, one division. Duplicate skeleton with SALG2-04 and SALG2-18."
+ },
+ "SALGD-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: '>= 5' on an absolute value means two outward rays, killing A (between) and B (one ray); the rays must be symmetric about the centre x=1.5, and D's -4/1 centre on -1.5 while C's -1/4 centre on 1.5. Solved without touching the inequality. DROP or replace D with a symmetric-about-1.5 wrong radius."
+ }
+}
