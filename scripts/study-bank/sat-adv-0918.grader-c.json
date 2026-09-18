@@ -1,0 +1,142 @@
+{
+ "SADV-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "3/2+1/3-1/6=5/3. survivors=4. No bound applies to a pure-expression item; two non-integer exponents (B, D) so no lone-fraction tell. [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=2, f(4)=2*36-9=63. survivors=4: a>0 forces f(4)>f(1)=9 and every option clears that. 27=a=1 error, 72=forgot -9; 31 has no clean error path. [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "0.88^3=68.1. survivors=2 (A,C): B=64.0 is exactly the linear 3x12 extrapolation (decay must sit ABOVE it, on-bound), D=77.4 is exactly the two-period value 0.88^2 (answer must be below the n-1 value). Soft duplicate of 20 (both b^n decay)."
+ },
+ "SADV-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "f(g(2))=f(5)=15, g(f(2))=g(0)=-1, 15-(-1)=16. survivors=4. 15/14/-16 are the natural sign and drop errors. [normalised: grader wrote good; mapped to strong]"
+ },
+ "SADV-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "3x-3=2x+4 -> 7. survivors=4 strictly; one sign step (27^(x-1) shrinks faster than 9^(x+2) for negative x, so a negative x cannot balance) removes B. Soft overlap with 18 (same-base exponent equating). [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b=1, p(-1)=30. survivors=4. -4 = p(1) (divisor-sign confusion), a real error path. [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "2x(x+1)-5(x-3)=2x^2-3x+15. survivors=3: C has degree-1 numerator while 2x*(x+1) forces degree 2. Minor tell: B is the only numerator that does not factor over the integers (A=(2x-3)(x+5), D=(2x+1)(x-5)); a student who tries to factor gets a hint but not the answer. [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "x^2+2x-3=0 -> 1 or -3; -3 makes RHS negative. survivors=3: RHS x+2>=0 rejects B without solving; that is the item's own teaching point so it is acceptable that the extraneous root is bound-rejectable. [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-09": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "t^2-10t+21<0 -> 3<t<7 -> 4 s. survivors=3: window is symmetric about t=5 inside [0,12] and h(0)=96<180, so a 10-second window is impossible. 5 and 7 are the vertex time and the right root; good. [normalised: grader wrote good; mapped to strong]"
+ },
+ "SADV-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "(x+3)(x-2)=0 -> -3+2=-1. survivors=4. Vieta on the expanded form x^2+x-6 is a one-line shortcut but it is algebra, not a bound. [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-11": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "vertex x=4 outside [5,7]; increasing there; f(5)=11. survivors=3: A=9 is the vertex value f(4), which the interval excludes, so the minimum must be strictly above it (on-bound). B=f(7), C=f(6) are legitimate endpoint/midpoint errors. [normalised: grader wrote good; mapped to strong]"
+ },
+ "SADV-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x^2-(m+2)x+16=0, (m+2)^2=64, m=6 (m=-10 rejected). survivors=4. Soft duplicate of 15: both are the discriminant of a monic quadratic; 12 sets it to 0, 15 counts where it is positive. Keep one if the batch needs trimming. [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-13": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "3^(2/5)=1.5518 -> 55.2. survivors=3: D=80.0 is exactly the linear interpolation 0.4*200%, and a convex exponential lies strictly below its chord (on-bound). Sharper: 2/5 is between 1/3 and 1/2, so the factor is between cuberoot(3)=1.44 and sqrt(3)=1.73, which leaves C alone; that needs cuberoot(3), which is not standard recall, so I do not count it. Distinct mechanism from 03/20 (fractional exponent, not integer power). [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-14": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "u=4 -> x=+-3, u=-1 -> x=+-2; 3+2=5. survivors=4. 3 (dropped the u=-1 branch), 13 (sum of squares), 0 (sum of all four) are each a real error. [normalised: grader wrote good; mapped to strong]"
+ },
+ "SADV-15": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "36-4k>0 -> k<9 -> 8 values. survivors=3: B=9 is the double-root boundary (product 3*3 with sum 6), excluded because roots must be distinct (on-bound). Soft duplicate of 12 (discriminant). [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-16": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "2x-6=-1 -> 2.5, 2x-6=8 -> 7, sum 9.5. survivors=4 strictly, but one sign step (2x-6>=-1 forces x>=2.5>0, so both zeros are positive and the sum is positive) leaves 2 (A,C). Two negative distractors is careless."
+ },
+ "SADV-17": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "sqrt(x+3)-sqrt(x-4)=1 -> sqrt(x+3)=4 -> 13. survivors=1: two radicals summing to 7 with sqrt(x-4)<sqrt(x+3) cap each side: sqrt(x+3)>3.5 -> x>9.25 and sqrt(x-4)<3.5 -> x<16.25. Only 13 lies in (9.25,16.25); 5, 7, 25 are all outside. DEAD as optioned; the stem is fine, re-option inside the band (e.g. 10/12/13/15). [normalised: grader wrote broken; mapped to weak]"
+ },
+ "SADV-18": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "4*4^x=4^(x+1)=4^7 -> 6. survivors=3: four copies of 4^x equal 4^7 so 4^x<4^7, rejecting B=8. 1.75=7/4 and 3=7-4 are the right traps. [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-19": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(r-s)^2+2rs=49+120=169. survivors=3: rs=60>0 so same sign and r^2+s^2>=2rs=120 rejects A=109. 289=(r+s)^2 is a good trap. Number sense (12 and 5) solves it instantly, but that is solving. [normalised: grader wrote adequate; mapped to plausible]"
+ },
+ "SADV-20": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b^3=0.512 -> b=0.8 -> 0.8^5=32.8. survivors=3: the 5-year value must exceed the 6-year value 0.512^2=26.2, and C is exactly that (on-bound). D=41.0 is the 4-year value 51.2*0.8 and B=30.7=51.2*0.6 (linear 20%/yr), both need b. Soft duplicate of 03. [normalised: grader wrote adequate; mapped to plausible]"
+ }
+}

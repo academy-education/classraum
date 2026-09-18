@@ -1,0 +1,422 @@
+[
+  {
+    "id": "AALG-01",
+    "domain": "Algebra",
+    "subskill": "least whole-dollar fare that covers a fixed charge plus a per-rider charge",
+    "difficulty": "medium",
+    "prompt": "A club charters a bus for a trip. The bus company charges a flat $420 plus $15 for each rider. Exactly 25 members will ride, and every rider will pay the same whole-dollar fare. What is the least fare, in dollars, that makes the total collected at least equal to the bus company's charge?",
+    "choices": [
+      "31",
+      "32",
+      "34",
+      "47"
+    ],
+    "correct_answer": "32",
+    "explanation": "The company's charge is 420 + 15(25) = 795 dollars. Spread over 25 riders that is 795/25 = 31.8 dollars each, and since the fare must be a whole number of dollars that collects at least 795, the least fare is 32. \"31\" comes from a solver who rounds 31.8 down, which collects only 775 dollars. \"34\" comes from a solver who divides the 795 among 24 riders instead of 25, leaving one rider out. \"47\" comes from a solver who spreads the 795 over the 25 riders and then adds the per-rider 15 dollars a second time.",
+    "solve": "var total = 420 + 15*25; return String(Math.ceil(total/25));",
+    "distractor_solve": {
+      "31": "var total = 420 + 15*25; return String(Math.floor(total/25));",
+      "34": "var total = 420 + 15*25; return String(Math.ceil(total/24));",
+      "47": "var total = 420 + 15*25; return String(Math.ceil(total/25) + 15);"
+    }
+  },
+  {
+    "id": "AALG-02",
+    "domain": "Algebra",
+    "subskill": "the constant that gives a linear inequality a stated solution set",
+    "difficulty": "medium",
+    "prompt": "For a certain constant c, the solution set of the inequality 2x + c > 5x - 4 is x < 3. What is the value of c?",
+    "choices": [
+      "5",
+      "13",
+      "-1",
+      "-13"
+    ],
+    "correct_answer": "5",
+    "explanation": "Collecting the x terms gives c + 4 > 3x, so x < (c + 4)/3. For the solution set to be x < 3 the boundary must be 3, so (c + 4)/3 = 3 and c = 5. \"13\" comes from a solver who moves the 4 to the wrong side, solving (c - 4)/3 = 3. \"-1\" comes from a solver who forgets to divide by the coefficient 3 and sets c + 4 = 3. \"-13\" comes from a solver who collects the x terms as -3x on the left, divides by -3 without flipping the direction, and sets -(c + 4)/3 = 3.",
+    "solve": "return String(3*3 - 4);",
+    "distractor_solve": {
+      "13": "return String(3*3 + 4);",
+      "-1": "return String(3 - 4);",
+      "-13": "return String(-3*3 - 4);"
+    }
+  },
+  {
+    "id": "AALG-03",
+    "domain": "Algebra",
+    "subskill": "a system whose solution must also satisfy a stated proportion between the unknowns",
+    "difficulty": "medium",
+    "prompt": "In the system below, k is a constant.\n\nx + 4y = 36\n2x - y = k\n\nIf the solution (x, y) of the system satisfies x = 2y, what is the value of k?",
+    "choices": [
+      "18",
+      "0",
+      "30",
+      "6"
+    ],
+    "correct_answer": "18",
+    "explanation": "Substituting x = 2y into the first equation gives 2y + 4y = 36, so y = 6 and x = 12. Then k = 2(12) - 6 = 18. \"0\" comes from a solver who reverses the proportion and uses y = 2x, getting x = 4, y = 8, and k = 8 - 8 = 0. \"30\" comes from a solver who finds x = 12 and y = 6 correctly but adds in the second equation, computing 2(12) + 6. \"6\" comes from a solver who reports the value of y instead of finishing with the second equation.",
+    "solve": "var y = 36/(2+4), x = 2*y; return String(2*x - y);",
+    "distractor_solve": {
+      "0": "var x = 36/(1+8), y = 2*x; return String(2*x - y);",
+      "30": "var y = 36/(2+4), x = 2*y; return String(2*x + y);",
+      "6": "var y = 36/(2+4); return String(y);"
+    }
+  },
+  {
+    "id": "AALG-04",
+    "domain": "Algebra",
+    "subskill": "a percent increase followed by the same percent decrease, solved for the percent from the net loss",
+    "difficulty": "hard",
+    "prompt": "A jacket originally priced at $400 was marked up by p percent. Later, the marked-up price was marked down by the same p percent, and the resulting price was $16 less than the original $400. What is the value of p?",
+    "choices": [
+      "20",
+      "4",
+      "2",
+      "25"
+    ],
+    "correct_answer": "20",
+    "explanation": "Increasing by p percent and then decreasing by p percent multiplies the price by (1 + p/100)(1 - p/100) = 1 - (p/100)^2, so the net loss is 400(p/100)^2 = 16. Then (p/100)^2 = 0.04, p/100 = 0.2, and p = 20. \"4\" comes from a solver who reports the net loss as a percent of the original, 16/400 = 4 percent, as if that were p itself. \"2\" comes from a solver who assumes the two changes almost cancel and that the net loss is 2p percent of the original, so 2p = 4. \"25\" comes from a solver who writes the loss as the fraction 16/400 = 1/25 and reports the denominator.",
+    "solve": "return String(Math.round(100*Math.sqrt(16/400)));",
+    "distractor_solve": {
+      "4": "return String(100*16/400);",
+      "2": "return String((100*16/400)/2);",
+      "25": "return String(400/16);"
+    }
+  },
+  {
+    "id": "AALG-05",
+    "domain": "Algebra",
+    "subskill": "which coefficient cannot give a quadratic with a negative constant two integer solutions",
+    "difficulty": "medium",
+    "prompt": "The equation x^2 + bx - 18 = 0 has two integer solutions. Which of the following CANNOT be the value of b?",
+    "choices": [
+      "7",
+      "-3",
+      "17",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "If the integer solutions are r and s, then rs = -18 and b = -(r + s). The factor pairs of -18 are 1 and -18, 2 and -9, 3 and -6, and their sign-swapped partners, so b can be 17, 7, 3, -17, -7, or -3. \"7\" is possible, from the solutions -9 and 2. \"-3\" is possible, from the solutions 6 and -3. \"17\" is possible, from the solutions 1 and -18. The value 9 would need two integers with product -18 and sum -9, and no such pair exists; a solver who believes 9 is possible has used the pair 3 and 6, whose product is +18, not -18.",
+    "solve": "var vals=[]; for (var r=-18;r<=18;r++){ if(r!==0 && -18 % r===0){ vals.push(-(r + (-18/r))); } } var opts=[7,-3,17,9]; var out=opts.filter(function(o){return vals.indexOf(o)<0;}); return out.length===1 ? String(out[0]) : 'AMBIG';",
+    "distractor_solve": {
+      "7": "return String(-(-9 + 2));",
+      "-3": "return String(-(6 + -3));",
+      "17": "return String(-(1 + -18));"
+    }
+  },
+  {
+    "id": "AALG-06",
+    "domain": "Algebra",
+    "subskill": "an exponential equation that becomes a quadratic in a power of the base",
+    "difficulty": "hard",
+    "prompt": "What is the value of x in the equation 3^(2x) - 3^(x + 1) = 54?",
+    "choices": [
+      "2",
+      "9",
+      "4",
+      "3"
+    ],
+    "correct_answer": "2",
+    "explanation": "Let t = 3^x. Then 3^(2x) = t^2 and 3^(x + 1) = 3t, so the equation is t^2 - 3t - 54 = 0, which factors as (t - 9)(t + 6) = 0. Since 3^x is positive, t = 9, so 3^x = 9 and x = 2. \"9\" comes from a solver who stops at t = 9 and reports it as x. \"4\" comes from a solver who finds 3^(2x) = 81 and reports the exponent 2x rather than x. \"3\" comes from a solver who reaches 3^x = 9 and divides 9 by 3 instead of asking what power of 3 gives 9.",
+    "solve": "var t = (3 + Math.sqrt(9 + 4*54))/2; return String(Math.round(Math.log(t)/Math.log(3)));",
+    "distractor_solve": {
+      "9": "var t = (3 + Math.sqrt(9 + 4*54))/2; return String(t);",
+      "4": "var t = (3 + Math.sqrt(9 + 4*54))/2; return String(2*Math.round(Math.log(t)/Math.log(3)));",
+      "3": "var t = (3 + Math.sqrt(9 + 4*54))/2; return String(t/3);"
+    }
+  },
+  {
+    "id": "AALG-07",
+    "domain": "Algebra",
+    "subskill": "the shortfall when a minimum count must be bought in whole packs under a budget with a fixed fee",
+    "difficulty": "hard",
+    "prompt": "A contractor needs at least 130 tiles. The tiles are sold only in boxes of 12 at $10.50 per box, and every order is charged a single $6.00 delivery fee. The contractor has $115.00. How many more dollars does the contractor need in order to place an order that supplies at least 130 tiles?",
+    "choices": [
+      "6.50",
+      "0.50",
+      "4.75",
+      "17.00"
+    ],
+    "correct_answer": "6.50",
+    "explanation": "Since 130/12 is between 10 and 11, the contractor must buy 11 boxes. The order costs 11(10.50) + 6.00 = 121.50 dollars, which is 121.50 - 115.00 = 6.50 dollars more than the contractor has. \"0.50\" comes from a solver who buys 11 boxes but forgets the delivery fee, comparing 115.50 with 115.00. \"4.75\" comes from a solver who prices exactly 130/12 boxes without rounding up to whole boxes, getting 113.75 + 6.00 = 119.75. \"17.00\" comes from a solver who rounds 10.8 boxes up to 12 boxes, getting 126.00 + 6.00 = 132.00.",
+    "solve": "var boxes = Math.ceil(130/12); return (boxes*10.5 + 6 - 115).toFixed(2);",
+    "distractor_solve": {
+      "0.50": "var boxes = Math.ceil(130/12); return (boxes*10.5 - 115).toFixed(2);",
+      "4.75": "var boxes = 130/12; return (boxes*10.5 + 6 - 115).toFixed(2);",
+      "17.00": "var boxes = 12; return (boxes*10.5 + 6 - 115).toFixed(2);"
+    }
+  },
+  {
+    "id": "AALG-08",
+    "domain": "Algebra",
+    "subskill": "the sum of the integer solutions of an equation in which a sum of two absolute values is constant",
+    "difficulty": "hard",
+    "prompt": "What is the sum of all integer values of x that satisfy |x - 4| + |x + 2| = 6?",
+    "choices": [
+      "7",
+      "2",
+      "1",
+      "3"
+    ],
+    "correct_answer": "7",
+    "explanation": "The expression |x - 4| + |x + 2| is the total distance from x to 4 and from x to -2. Those two points are 6 apart, so the total equals 6 for every x between -2 and 4 inclusive and is larger than 6 everywhere else. The integer solutions are -2, -1, 0, 1, 2, 3, 4, whose sum is 7. \"2\" comes from a solver who collapses the two absolute values into |2x - 2| = 6, finds only x = 4 and x = -2, and adds them. \"1\" comes from a solver who tests a few values, finds that x = 1 works, and reports it as the only solution. \"3\" comes from a solver who finds the two endpoints -2 and 4 and the midpoint 1 and adds those three.",
+    "solve": "var s = 0; for (var x = -20; x <= 20; x++) { if (Math.abs(x - 4) + Math.abs(x + 2) === 6) s += x; } return String(s);",
+    "distractor_solve": {
+      "2": "return String(4 + (-2));",
+      "1": "return String((4 + (-2))/2);",
+      "3": "return String(4 + (-2) + (4 + (-2))/2);"
+    }
+  },
+  {
+    "id": "AALG-09",
+    "domain": "Algebra",
+    "subskill": "a linear cost model from two data points, solved for the input that produces a stated cost",
+    "difficulty": "medium",
+    "prompt": "A phone plan charges a fixed monthly fee plus a constant rate for each gigabyte of data used. A month with 4 gigabytes of data cost $50, and a month with 10 gigabytes cost $74. How many gigabytes of data were used in a month that cost $98?",
+    "choices": [
+      "16",
+      "24.5",
+      "33",
+      "12"
+    ],
+    "correct_answer": "16",
+    "explanation": "The rate is (74 - 50)/(10 - 4) = 4 dollars per gigabyte, so the fixed fee is 50 - 4(4) = 34 dollars. Then 34 + 4g = 98 gives g = 16 gigabytes. \"24.5\" comes from a solver who ignores the fixed fee and divides 98 by 4. \"33\" comes from a solver who adds the fee instead of subtracting it, computing (98 + 34)/4. \"12\" comes from a solver who measures from the 4-gigabyte month, computes (98 - 50)/4 = 12 additional gigabytes, and forgets to add the original 4.",
+    "solve": "var m = (74 - 50)/(10 - 4), b = 50 - m*4; return String((98 - b)/m);",
+    "distractor_solve": {
+      "24.5": "var m = (74 - 50)/(10 - 4); return String(98/m);",
+      "33": "var m = (74 - 50)/(10 - 4), b = 50 - m*4; return String((98 + b)/m);",
+      "12": "var m = (74 - 50)/(10 - 4); return String((98 - 50)/m);"
+    }
+  },
+  {
+    "id": "AALG-10",
+    "domain": "Algebra",
+    "subskill": "evaluating a power of 2 with a shifted exponent from the value of a power of 4",
+    "difficulty": "medium",
+    "prompt": "If 4^x = 10, what is the value of 2^(2x + 3)?",
+    "choices": [
+      "80",
+      "18",
+      "13",
+      "30"
+    ],
+    "correct_answer": "80",
+    "explanation": "Since 2^(2x + 3) = 2^(2x) * 2^3 and 2^(2x) = (2^2)^x = 4^x = 10, the value is 10 * 8 = 80. \"18\" comes from a solver who treats the added exponent as adding 2^3 to the value, computing 10 + 8. \"13\" comes from a solver who adds the 3 itself to the value, computing 10 + 3. \"30\" comes from a solver who multiplies the value by the 3 in the exponent instead of by 2^3.",
+    "solve": "var x = Math.log(10)/Math.log(4); return String(Math.round(Math.pow(2, 2*x + 3)));",
+    "distractor_solve": {
+      "18": "return String(10 + Math.pow(2,3));",
+      "13": "return String(10 + 3);",
+      "30": "return String(10 * 3);"
+    }
+  },
+  {
+    "id": "AALG-11",
+    "domain": "Algebra",
+    "subskill": "a transfer between two amounts in a given ratio that leaves them equal",
+    "difficulty": "hard",
+    "prompt": "Amira and Ben had money in the ratio 5:3. After Amira gave Ben $30, they had equal amounts. How many dollars did the two of them have in total?",
+    "choices": [
+      "240",
+      "120",
+      "150",
+      "210"
+    ],
+    "correct_answer": "240",
+    "explanation": "Let Amira have 5k and Ben have 3k dollars. After the transfer Amira has 5k - 30 and Ben has 3k + 30, so 5k - 30 = 3k + 30, 2k = 60, and k = 30. The total is 8k = 240 dollars. \"120\" comes from a solver who forgets that Ben's amount also changes, solving 5k - 30 = 3k to get k = 15 and a total of 8(15). \"150\" comes from a solver who finds k = 30 correctly but reports Amira's original amount, 5k, instead of the total. \"210\" comes from a solver who finds the total of 240 and then subtracts the $30 as though it left the pair.",
+    "solve": "var k = (30 + 30)/(5 - 3); return String((5 + 3)*k);",
+    "distractor_solve": {
+      "120": "var k = 30/(5 - 3); return String((5 + 3)*k);",
+      "150": "var k = (30 + 30)/(5 - 3); return String(5*k);",
+      "210": "var k = (30 + 30)/(5 - 3); return String((5 + 3)*k - 30);"
+    }
+  },
+  {
+    "id": "AALG-12",
+    "domain": "Algebra",
+    "subskill": "the number of integers satisfying a quadratic inequality solved by factoring",
+    "difficulty": "medium",
+    "prompt": "How many integers x satisfy x^2 - 7x < 18?",
+    "choices": [
+      "10",
+      "12",
+      "8",
+      "7"
+    ],
+    "correct_answer": "10",
+    "explanation": "Rewriting gives x^2 - 7x - 18 < 0, which factors as (x - 9)(x + 2) < 0, so -2 < x < 9. The integers strictly between -2 and 9 are -1, 0, 1, ..., 8, which is 10 integers. \"12\" comes from a solver who includes the endpoints -2 and 9, where the expression equals 18 rather than being less than it. \"8\" comes from a solver who counts only the positive integers 1 through 8 and forgets 0 and -1. \"7\" comes from a solver who reports the difference between the two roots, 9 - 2, instead of counting the integers between them.",
+    "solve": "var n = 0; for (var x = -50; x <= 50; x++) { if (x*x - 7*x < 18) n++; } return String(n);",
+    "distractor_solve": {
+      "12": "var n = 0; for (var x = -50; x <= 50; x++) { if (x*x - 7*x <= 18) n++; } return String(n);",
+      "8": "var n = 0; for (var x = 1; x <= 50; x++) { if (x*x - 7*x < 18) n++; } return String(n);",
+      "7": "return String(9 - 2);"
+    }
+  },
+  {
+    "id": "AFN-01",
+    "domain": "Functions",
+    "subskill": "the product of all inputs at which a composition of two functions takes a given value",
+    "difficulty": "medium",
+    "prompt": "Let f(x) = x^2 - 3 and g(x) = 2x + 1. What is the product of all real values of x for which g(f(x)) = 13?",
+    "choices": [
+      "-9",
+      "-7.5",
+      "-3.75",
+      "9"
+    ],
+    "correct_answer": "-9",
+    "explanation": "Since g(f(x)) = 2(x^2 - 3) + 1 = 2x^2 - 5, the equation 2x^2 - 5 = 13 gives x^2 = 9, so x = 3 or x = -3 and the product is -9. \"-7.5\" comes from a solver who fails to distribute the 2, writing 2x^2 - 3 + 1 = 13 so that x^2 = 7.5. \"-3.75\" comes from a solver who composes in the wrong order and solves f(g(x)) = 13, getting (2x + 1)^2 = 16 and x = 1.5 or x = -2.5. \"9\" comes from a solver who reports x^2 rather than the product of the two opposite solutions.",
+    "solve": "var x2 = (13 + 5)/2; var r = Math.sqrt(x2); return String(r * -r);",
+    "distractor_solve": {
+      "-7.5": "var x2 = (13 + 3 - 1)/2; var r = Math.sqrt(x2); return String(r * -r);",
+      "-3.75": "var s = Math.sqrt(13 + 3); var a = (s - 1)/2, b = (-s - 1)/2; return String(a*b);",
+      "9": "var x2 = (13 + 5)/2; return String(x2);"
+    }
+  },
+  {
+    "id": "AFN-02",
+    "domain": "Functions",
+    "subskill": "sum of the maximum and minimum of an absolute-value function on a closed interval that contains its vertex",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = 7 - |2x - 4| for -3 <= x <= 5. What is the sum of the maximum value and the minimum value of f on this interval?",
+    "choices": [
+      "4",
+      "-2",
+      "8",
+      "7"
+    ],
+    "correct_answer": "4",
+    "explanation": "The absolute value is smallest, 0, at x = 2, which lies inside the interval, so the maximum of f is 7. The absolute value grows linearly in both directions, so the minimum is at the endpoint farther from 2: f(-3) = 7 - 10 = -3, while f(5) = 7 - 6 = 1. The sum is 7 + (-3) = 4. \"-2\" comes from a solver who evaluates only at the two endpoints, adding f(-3) = -3 and f(5) = 1 and missing the vertex. \"8\" comes from a solver who takes the vertex value 7 as the maximum but the nearer endpoint value 1 as the minimum. \"7\" comes from a solver who assumes the absolute-value term makes the minimum 0 and adds 7 + 0.",
+    "solve": "var f = function(x){ return 7 - Math.abs(2*x - 4); }; var mx = -1e9, mn = 1e9; for (var x = -3; x <= 5; x += 0.5) { var v = f(x); if (v > mx) mx = v; if (v < mn) mn = v; } return String(mx + mn);",
+    "distractor_solve": {
+      "-2": "var f = function(x){ return 7 - Math.abs(2*x - 4); }; return String(f(-3) + f(5));",
+      "8": "var f = function(x){ return 7 - Math.abs(2*x - 4); }; return String(f(2) + f(5));",
+      "7": "var f = function(x){ return 7 - Math.abs(2*x - 4); }; return String(f(2) + 0);"
+    }
+  },
+  {
+    "id": "AFN-03",
+    "domain": "Functions",
+    "subskill": "tracking a point through a horizontal shift combined with a vertical stretch and reflection",
+    "difficulty": "medium",
+    "prompt": "In the standard (x,y) coordinate plane, the graph of y = f(x) passes through the point (4, -1). Which of the following points must lie on the graph of y = -2f(x + 1)?",
+    "choices": [
+      "(3, 2)",
+      "(5, 2)",
+      "(3, -2)",
+      "(5, -2)"
+    ],
+    "correct_answer": "(3, 2)",
+    "explanation": "For the output f(x + 1) to use the known value f(4), the input must satisfy x + 1 = 4, so x = 3. Then y = -2f(4) = -2(-1) = 2, giving the point (3, 2). \"(5, 2)\" comes from a solver who shifts the graph to the right instead of the left, using x = 4 + 1. \"(3, -2)\" comes from a solver who shifts correctly but drops the reflection, multiplying -1 by 2 instead of by -2. \"(5, -2)\" comes from a solver who makes both errors at once.",
+    "solve": "var x = 4 - 1, y = -2 * (-1); return '(' + x + ', ' + y + ')';",
+    "distractor_solve": {
+      "(5, 2)": "var x = 4 + 1, y = -2 * (-1); return '(' + x + ', ' + y + ')';",
+      "(3, -2)": "var x = 4 - 1, y = 2 * (-1); return '(' + x + ', ' + y + ')';",
+      "(5, -2)": "var x = 4 + 1, y = 2 * (-1); return '(' + x + ', ' + y + ')';"
+    }
+  },
+  {
+    "id": "AFN-04",
+    "domain": "Functions",
+    "subskill": "running an exponential doubling model backward to an earlier time",
+    "difficulty": "medium",
+    "prompt": "The number of bacteria in a culture doubles every 3 hours. At 2:00 p.m. there were 500 bacteria in the culture. Assuming the same doubling pattern held earlier in the day, at what time were there 125 bacteria?",
+    "choices": [
+      "8:00 a.m.",
+      "11:00 a.m.",
+      "5:00 a.m.",
+      "2:00 a.m."
+    ],
+    "correct_answer": "8:00 a.m.",
+    "explanation": "Going backward, the population halves every 3 hours: 500 at 2:00 p.m., 250 at 11:00 a.m., and 125 at 8:00 a.m. That is two halvings, 6 hours before 2:00 p.m. \"11:00 a.m.\" comes from a solver who goes back only one halving, 3 hours, forgetting that 500 to 125 is a factor of 4, not 2. \"5:00 a.m.\" comes from a solver who counts the three values 500, 250, 125 as three halvings and goes back 9 hours. \"2:00 a.m.\" comes from a solver who multiplies the factor of 4 by the 3-hour period and goes back 12 hours.",
+    "solve": "var halvings = Math.log(500/125)/Math.log(2); var h = 14 - 3*halvings; return (h % 12 === 0 ? 12 : h % 12) + ':00 ' + (h < 12 ? 'a.m.' : 'p.m.');",
+    "distractor_solve": {
+      "11:00 a.m.": "var h = 14 - 3*1; return (h % 12 === 0 ? 12 : h % 12) + ':00 ' + (h < 12 ? 'a.m.' : 'p.m.');",
+      "5:00 a.m.": "var h = 14 - 3*3; return (h % 12 === 0 ? 12 : h % 12) + ':00 ' + (h < 12 ? 'a.m.' : 'p.m.');",
+      "2:00 a.m.": "var h = 14 - 3*(500/125); return (h % 12 === 0 ? 12 : h % 12) + ':00 ' + (h < 12 ? 'a.m.' : 'p.m.');"
+    }
+  },
+  {
+    "id": "AFN-05",
+    "domain": "Functions",
+    "subskill": "recovering the first term of a recursively defined sequence from a later term",
+    "difficulty": "hard",
+    "prompt": "A sequence is defined for positive integers n by s(n) = 2s(n - 1) - 3 for n >= 2. If s(4) = 21, what is the value of s(1)?",
+    "choices": [
+      "5.25",
+      "0",
+      "12",
+      "7.875"
+    ],
+    "correct_answer": "5.25",
+    "explanation": "Going backward one step means undoing the rule: from s(n) = 2s(n - 1) - 3, s(n - 1) = (s(n) + 3)/2. So s(3) = (21 + 3)/2 = 12, s(2) = (12 + 3)/2 = 7.5, and s(1) = (7.5 + 3)/2 = 5.25. \"0\" comes from a solver who undoes the rule in the wrong order, subtracting 3 before halving: 9, then 3, then 0. \"12\" comes from a solver who steps back only once and reports s(3). \"7.875\" comes from a solver who inverts the rule as s(n - 1) = s(n)/2 + 3, getting 13.5, 9.75, 7.875.",
+    "solve": "var s = 21; for (var i = 0; i < 3; i++) s = (s + 3)/2; return String(s);",
+    "distractor_solve": {
+      "0": "var s = 21; for (var i = 0; i < 3; i++) s = (s - 3)/2; return String(s);",
+      "12": "var s = 21; s = (s + 3)/2; return String(s);",
+      "7.875": "var s = 21; for (var i = 0; i < 3; i++) s = s/2 + 3; return String(s);"
+    }
+  },
+  {
+    "id": "AFN-06",
+    "domain": "Functions",
+    "subskill": "recovering the outer function of a composition when the inner function is known",
+    "difficulty": "hard",
+    "prompt": "Let f(x) = 3x - 4. If g(f(x)) = 6x + 5 for all real x, what is the value of g(3)?",
+    "choices": [
+      "19",
+      "23",
+      "9",
+      "3"
+    ],
+    "correct_answer": "19",
+    "explanation": "Set u = f(x) = 3x - 4, so x = (u + 4)/3. Then g(u) = 6(u + 4)/3 + 5 = 2u + 13, and g(3) = 2(3) + 13 = 19. \"23\" comes from a solver who substitutes 3 directly into 6x + 5, which gives g(f(3)) = g(5), not g(3). \"9\" comes from a solver who composes in the other order, solving 3g(x) - 4 = 6x + 5 to get g(x) = 2x + 3 and then g(3) = 9. \"3\" comes from a solver who inverts f with the wrong sign, using x = (u - 4)/3 so that g(u) = 2u - 3 and g(3) = 3.",
+    "solve": "var x = (3 + 4)/3; return String(6*x + 5);",
+    "distractor_solve": {
+      "23": "return String(6*3 + 5);",
+      "9": "return String((6*3 + 5 + 4)/3);",
+      "3": "var x = (3 - 4)/3; return String(6*x + 5);"
+    }
+  },
+  {
+    "id": "AFN-07",
+    "domain": "Functions",
+    "subskill": "extending a table whose second differences are constant to a later input",
+    "difficulty": "medium",
+    "prompt": "The table below gives values of a function h for four consecutive integer inputs.\n\nx: 0, 1, 2, 3\nh(x): -1, 2, 11, 26\n\nIf h is a quadratic function, what is the value of h(5)?",
+    "choices": [
+      "74",
+      "47",
+      "56",
+      "149"
+    ],
+    "correct_answer": "74",
+    "explanation": "The first differences of the outputs are 3, 9, 15 and the second differences are a constant 6, so h is quadratic with leading coefficient 6/2 = 3. Since h(0) = -1, the function is h(x) = 3x^2 + bx - 1, and h(1) = 2 gives b = 0, so h(x) = 3x^2 - 1 and h(5) = 74. Equivalently the next first differences are 21 and 27, so h(4) = 47 and h(5) = 74. \"47\" comes from a solver who extends the pattern one step short and reports h(4). \"56\" comes from a solver who assumes the last first difference of 15 keeps repeating, computing 26 + 15 + 15. \"149\" comes from a solver who uses the second difference 6 itself as the leading coefficient, computing 6(25) - 1.",
+    "solve": "var y = [-1, 2, 11, 26]; var d1 = [y[1]-y[0], y[2]-y[1], y[3]-y[2]]; var d2 = d1[1]-d1[0]; var last = y[3], diff = d1[2]; for (var i = 0; i < 2; i++) { diff += d2; last += diff; } return String(last);",
+    "distractor_solve": {
+      "47": "var y = [-1, 2, 11, 26]; var d1 = [y[1]-y[0], y[2]-y[1], y[3]-y[2]]; var d2 = d1[1]-d1[0]; return String(y[3] + d1[2] + d2);",
+      "56": "var y = [-1, 2, 11, 26]; var d = y[3]-y[2]; return String(y[3] + d + d);",
+      "149": "var y = [-1, 2, 11, 26]; var d1 = [y[1]-y[0], y[2]-y[1], y[3]-y[2]]; var d2 = d1[1]-d1[0]; return String(d2*25 + y[0]);"
+    }
+  },
+  {
+    "id": "AFN-08",
+    "domain": "Functions",
+    "subskill": "the x-intercepts of a graph after a horizontal compression and shift applied inside the function",
+    "difficulty": "hard",
+    "prompt": "In the standard (x,y) coordinate plane, the graph of y = f(x) has x-intercepts at x = -4 and x = 5 and no others. What is the sum of the x-intercepts of the graph of y = f(2x + 6)?",
+    "choices": [
+      "-5.5",
+      "-11",
+      "1",
+      "6.5"
+    ],
+    "correct_answer": "-5.5",
+    "explanation": "The graph of y = f(2x + 6) crosses the x-axis where the inner expression 2x + 6 equals an x-intercept of f. Solving 2x + 6 = -4 gives x = -5, and 2x + 6 = 5 gives x = -0.5, so the sum is -5.5. \"-11\" comes from a solver who applies the shift but forgets the compression, solving x + 6 = -4 and x + 6 = 5 to get -10 and -1. \"1\" comes from a solver who assumes the transformation leaves the x-intercepts where they were and adds -4 and 5. \"6.5\" comes from a solver who shifts in the wrong direction, solving 2x - 6 = -4 and 2x - 6 = 5 to get 1 and 5.5.",
+    "solve": "var a = (-4 - 6)/2, b = (5 - 6)/2; return String(a + b);",
+    "distractor_solve": {
+      "-11": "var a = -4 - 6, b = 5 - 6; return String(a + b);",
+      "1": "return String(-4 + 5);",
+      "6.5": "var a = (-4 + 6)/2, b = (5 + 6)/2; return String(a + b);"
+    }
+  }
+]

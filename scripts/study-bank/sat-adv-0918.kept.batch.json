@@ -1,0 +1,191 @@
+[
+ {
+  "id": "SADV-02",
+  "domain": "Advanced Math",
+  "subskill": "vertex form: recovering the leading coefficient, then evaluating",
+  "difficulty": "medium",
+  "prompt": "The graph of the quadratic function f in the xy-plane has its vertex at (−2, −9) and passes through the point (1, 9). What is the value of f(4)?",
+  "choices": [
+   "63",
+   "27",
+   "72",
+   "31"
+  ],
+  "correct_answer": "63",
+  "explanation": "Write f(x) = a(x + 2)² − 9. The point (1, 9) gives 9 = 9a − 9, so a = 2. Then f(4) = 2(6)² − 9 = 72 − 9 = 63, which is \"63\". \"27\" comes from a solver who never solves for a and uses a = 1: 36 − 9. \"72\" comes from a solver who finds a = 2 but forgets to subtract the 9 of the vertex: 2(36). \"31\" comes from a solver who squares (4 + 2) term by term as 16 + 4 = 20: 2(20) − 9.",
+  "solve": "var h=-2,k=-9; var a=(9-k)/Math.pow(1-h,2); return String(a*Math.pow(4-h,2)+k);",
+  "distractor_solve": {
+   "27": "return String(1*Math.pow(4+2,2)-9);",
+   "31": "var a=(9+9)/Math.pow(1+2,2); return String(a*(16+4)-9);",
+   "72": "var a=(9+9)/Math.pow(1+2,2); return String(a*Math.pow(4+2,2));"
+  }
+ },
+ {
+  "id": "SADV-06",
+  "domain": "Advanced Math",
+  "subskill": "factor theorem to find a coefficient, then the remainder theorem",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = 3x³ + bx² − 20x + 12, where b is a constant. If x − 2 is a factor of p(x), what is the remainder when p(x) is divided by x + 1?",
+  "choices": [
+   "30",
+   "−4",
+   "22",
+   "36"
+  ],
+  "correct_answer": "30",
+  "explanation": "Since x − 2 is a factor, p(2) = 0: 24 + 4b − 40 + 12 = 0, so b = 1. The remainder on division by x + 1 is p(−1) = −3 + 1 + 20 + 12 = 30, which is \"30\". \"−4\" comes from a solver who evaluates p(1) instead of p(−1): 3 + 1 − 20 + 12. \"22\" comes from a solver who sets p(−2) = 0 instead of p(2) = 0, getting b = −7, and then evaluates p(−1). \"36\" comes from a solver who treats (−1)³ as +1: 3 + 1 + 20 + 12.",
+  "solve": "var b = -(3*8 - 20*2 + 12)/4; var p = x=>3*x*x*x + b*x*x - 20*x + 12; return String(p(-1));",
+  "distractor_solve": {
+   "22": "var b = -(3*(-8) - 20*(-2) + 12)/4; var p = x=>3*x*x*x + b*x*x - 20*x + 12; return String(p(-1));",
+   "36": "var b=1; return String(3*1 + b*1 - 20*(-1) + 12);",
+   "−4": "var b=1; var p = x=>3*x*x*x + b*x*x - 20*x + 12; return String(p(1));"
+  }
+ },
+ {
+  "id": "SADV-09",
+  "domain": "Advanced Math",
+  "subskill": "quadratic model: length of time above a threshold",
+  "difficulty": "medium",
+  "prompt": "The height above the ground, in meters, of a drone t seconds after it is released is modeled by h(t) = −4t² + 40t + 96 for 0 ≤ t ≤ 12. For how many seconds is the drone more than 180 meters above the ground?",
+  "choices": [
+   "4",
+   "5",
+   "7",
+   "10"
+  ],
+  "correct_answer": "4",
+  "explanation": "Set −4t² + 40t + 96 = 180, so 4t² − 40t + 84 = 0 and t² − 10t + 21 = 0, giving t = 3 and t = 7. The drone is above 180 meters between those times, a span of 7 − 3 = 4 seconds, which is \"4\". \"7\" comes from a solver who reports the time at which the drone comes back down through 180 meters. \"5\" comes from a solver who reports the time of the maximum height, −40/(2·(−4)). \"10\" comes from a solver who adds the two crossing times instead of subtracting them.",
+  "solve": "var a=-4,b=40,c=96-180; var disc=b*b-4*a*c; var t1=(-b+Math.sqrt(disc))/(2*a), t2=(-b-Math.sqrt(disc))/(2*a); return String(Math.abs(t2-t1));",
+  "distractor_solve": {
+   "5": "return String(-40/(2*(-4)));",
+   "7": "var a=-4,b=40,c=96-180; var disc=b*b-4*a*c; return String(Math.max((-b+Math.sqrt(disc))/(2*a),(-b-Math.sqrt(disc))/(2*a)));",
+   "10": "var a=-4,b=40,c=96-180; var disc=b*b-4*a*c; return String((-b+Math.sqrt(disc))/(2*a)+(-b-Math.sqrt(disc))/(2*a));"
+  }
+ },
+ {
+  "id": "SADV-11",
+  "domain": "Advanced Math",
+  "subskill": "minimum of a quadratic on an interval that excludes the vertex",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = 2x² − 16x + 41. What is the minimum value of f(x) for 5 ≤ x ≤ 7 ?",
+  "choices": [
+   "11",
+   "9",
+   "17",
+   "27"
+  ],
+  "correct_answer": "11",
+  "explanation": "The vertex is at x = 16/4 = 4, which lies outside the interval, and for x > 4 the function increases, so on 5 ≤ x ≤ 7 the minimum is at the left endpoint: f(5) = 50 − 80 + 41 = 11, which is \"11\". \"9\" comes from a solver who reports the vertex value f(4) without checking that x = 4 is in the interval. \"17\" comes from a solver who evaluates at the midpoint of the interval, f(6). \"27\" comes from a solver who evaluates at the wrong endpoint, f(7).",
+  "solve": "var f=x=>2*x*x-16*x+41; var lo=5,hi=7,v=16/4; var cands=[lo,hi]; if(v>=lo&&v<=hi)cands.push(v); return String(Math.min(...cands.map(f)));",
+  "distractor_solve": {
+   "9": "var f=x=>2*x*x-16*x+41; return String(f(16/4));",
+   "17": "var f=x=>2*x*x-16*x+41; return String(f((5+7)/2));",
+   "27": "var f=x=>2*x*x-16*x+41; return String(f(7));"
+  }
+ },
+ {
+  "id": "SADV-12",
+  "domain": "Advanced Math",
+  "subskill": "line tangent to a parabola: solving for the slope with a sign constraint",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the line y = mx − 6, where m is a positive constant, intersects the parabola y = x² − 2x + 10 at exactly one point. What is the value of m?",
+  "choices": [
+   "6",
+   "10",
+   "8",
+   "3"
+  ],
+  "correct_answer": "6",
+  "explanation": "Setting the expressions equal gives x² − (2 + m)x + 16 = 0, which has exactly one solution when (2 + m)² − 64 = 0, so 2 + m = ±8 and m = 6 or m = −10. Since m is positive, m is \"6\". \"10\" comes from a solver who writes the linear coefficient as (2 − m) instead of −(2 + m) and solves (m − 2)² = 64. \"8\" comes from a solver who reports the value of 2 + m instead of m. \"3\" comes from a solver who, having found 2 + m = 8, halves the result as though applying the vertex formula −b/(2a).",
+  "solve": "var c=10+6; var sols=[]; for (var m=-50;m<=50;m++){ if ((2+m)*(2+m)-4*c===0 && m>0) sols.push(m);} return sols.length===1?String(sols[0]):\"AMBIG\";",
+  "distractor_solve": {
+   "3": "return String((Math.sqrt(64)-2)/2);",
+   "8": "return String(Math.sqrt(4*16));",
+   "10": "var c=16; var sols=[]; for (var m=-50;m<=50;m++){ if ((m-2)*(m-2)-4*c===0 && m>0) sols.push(m);} return String(sols[0]);"
+  }
+ },
+ {
+  "id": "SADV-14",
+  "domain": "Advanced Math",
+  "subskill": "equation in quadratic form where a negative intermediate value still yields real solutions",
+  "difficulty": "hard",
+  "prompt": "What is the sum of the positive real solutions to the equation (x² − 5)² − 3(x² − 5) − 4 = 0 ?",
+  "choices": [
+   "5",
+   "3",
+   "13",
+   "0"
+  ],
+  "correct_answer": "5",
+  "explanation": "Let u = x² − 5. Then u² − 3u − 4 = (u − 4)(u + 1) = 0, so u = 4 or u = −1. From u = 4, x² = 9 and x = ±3; from u = −1, x² = 4 and x = ±2. Both values of u give real x, so the positive solutions are 3 and 2, whose sum is \"5\". \"3\" comes from a solver who discards u = −1 as if it were a negative value of x², when x² − 5 = −1 gives x² = 4. \"13\" comes from a solver who adds the two values of x², 9 + 4, instead of the values of x. \"0\" comes from a solver who adds all four real solutions, 3, −3, 2, and −2.",
+  "solve": "var us=[]; for (var u=-20;u<=20;u++) if (u*u-3*u-4===0) us.push(u); var xs=[]; us.forEach(u=>{ var s=u+5; if (s>0){ xs.push(Math.sqrt(s), -Math.sqrt(s)); } }); return String(xs.filter(x=>x>0).reduce((a,b)=>a+b,0));",
+  "distractor_solve": {
+   "0": "return String(3+(-3)+2+(-2));",
+   "3": "/* keep only u=4 */ return String(Math.sqrt(4+5));",
+   "13": "return String((4+5)+(-1+5));"
+  }
+ },
+ {
+  "id": "SADV-15",
+  "domain": "Advanced Math",
+  "subskill": "counting parameter values that give two distinct real solutions",
+  "difficulty": "hard",
+  "prompt": "In the equation x² − 6x + k = 0, k is a positive integer. For how many values of k does the equation have two distinct real solutions?",
+  "choices": [
+   "8",
+   "9",
+   "35",
+   "2"
+  ],
+  "correct_answer": "8",
+  "explanation": "Two distinct real solutions require 36 − 4k > 0, so k < 9. The positive integers less than 9 are 1 through 8, so there are \"8\" values. \"9\" comes from a solver who uses 36 − 4k ≥ 0 and includes k = 9, which gives a single repeated solution. \"35\" comes from a solver who drops the factor of 4 and solves 36 − k > 0. \"2\" comes from a solver who takes the square root of each term, 6 − 2k > 0, so k < 3.",
+  "solve": "var n=0; for (var k=1;k<=1000;k++) if (36-4*k>0) n++; return String(n);",
+  "distractor_solve": {
+   "2": "var n=0; for (var k=1;k<=1000;k++) if (6-2*k>0) n++; return String(n);",
+   "9": "var n=0; for (var k=1;k<=1000;k++) if (36-4*k>=0) n++; return String(n);",
+   "35": "var n=0; for (var k=1;k<=1000;k++) if (36-k>0) n++; return String(n);"
+  }
+ },
+ {
+  "id": "SADV-16",
+  "domain": "Advanced Math",
+  "subskill": "zeros of a function after a horizontal stretch and shift",
+  "difficulty": "hard",
+  "prompt": "The function f has exactly two zeros, at x = −1 and x = 8. The function g is defined by g(x) = f(2x − 6). What is the sum of the zeros of g?",
+  "choices": [
+   "9.5",
+   "2",
+   "−8.5",
+   "−2.5"
+  ],
+  "correct_answer": "9.5",
+  "explanation": "g(x) = 0 exactly when 2x − 6 equals a zero of f. From 2x − 6 = −1, x = 2.5; from 2x − 6 = 8, x = 7. The sum is 2.5 + 7 = 9.5, which is \"9.5\". \"2\" comes from a solver who applies the transformation forward to the zeros, computing 2(−1) − 6 and 2(8) − 6. \"−8.5\" comes from a solver who divides each zero by 2 and then subtracts 6. \"−2.5\" comes from a solver who subtracts 6 from each zero and then halves, reversing the order of the inverse operations.",
+  "solve": "var zs=[-1,8]; return String(zs.map(z=>(z+6)/2).reduce((a,b)=>a+b,0));",
+  "distractor_solve": {
+   "2": "var zs=[-1,8]; return String(zs.map(z=>2*z-6).reduce((a,b)=>a+b,0));",
+   "−8.5": "var zs=[-1,8]; return String(zs.map(z=>z/2-6).reduce((a,b)=>a+b,0));",
+   "−2.5": "var zs=[-1,8]; return String(zs.map(z=>(z-6)/2).reduce((a,b)=>a+b,0));"
+  }
+ },
+ {
+  "id": "SADV-19",
+  "domain": "Advanced Math",
+  "subskill": "sum of squares of roots from their product and difference",
+  "difficulty": "hard",
+  "prompt": "The two solutions of a quadratic equation have a product of 60 and differ by 7. What is the sum of the squares of the two solutions?",
+  "choices": [
+   "169",
+   "109",
+   "289",
+   "127"
+  ],
+  "correct_answer": "169",
+  "explanation": "If the solutions are r and s with r − s = 7 and rs = 60, then r² + s² = (r − s)² + 2rs = 49 + 120 = 169, which is \"169\". (The solutions are 12 and 5, or −5 and −12; either pair gives 144 + 25.) \"109\" comes from a solver who adds rs only once: 49 + 60. \"289\" comes from a solver who adds 4rs and so computes (r + s)² instead of r² + s²: 49 + 240. \"127\" comes from a solver who adds the difference itself rather than its square: 7 + 120.",
+  "solve": "var d=7,p=60; /* solve s^2 + d s - p = 0 */ var s=(-d+Math.sqrt(d*d+4*p))/2, r=s+d; return String(r*r+s*s);",
+  "distractor_solve": {
+   "109": "return String(7*7+60);",
+   "127": "return String(7+2*60);",
+   "289": "return String(7*7+4*60);"
+  }
+ }
+]

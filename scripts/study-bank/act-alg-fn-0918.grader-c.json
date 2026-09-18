@@ -1,0 +1,142 @@
+{
+ "AALG-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "795/25=31.8 -> 32. 31 is the floor trap, 47 = 32+15 double-count, 34 filler. No bound rejects anything without arithmetic; survivors=4. Same ceiling+fixed-fee mechanism as AALG-07. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AALG-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "c+4=9 -> c=5. Distractors are sign errors on the 4 (13) and on the 3x (-13, -1). survivors=4. Not a duplicate of AALG-09; it IS the same 'substitute the stated solution, solve for the constant' move as AALG-03. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AALG-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "y=6, x=12, k=24-6=18. 30 = 24+6 sign slip, 6 = y, 0 filler. survivors=4. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AALG-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: net loss is 16/400 = 4%, and an up-then-down by p loses LESS than p%, so p > 4 kills 4 and 2 without algebra; only 20 and 25 stand. Also subject recall: prepped students know the net loss is p^2/100 %, so 4% -> p=20 in one step. Not dead, but half the option set is inert."
+ },
+ "AALG-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Factor pairs of 18 give b in {+-3, +-7, +-17}; 9 is the only option outside, and it is a trap because 9 itself divides 18. CANNOT structure: not exploitable from the option shape alone (all four odd, one negative - no odd-one-out), but the three correct options are recoverable in seconds by anyone who lists 1x18, 2x9, 3x6. survivors=4. Shares the (x-9)(x+2) factorisation with AALG-12. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AALG-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2: magnitude. 9^x = 54 + 3^(x+1), so 9^x is only somewhat above 54; x=9 and x=4 are absurd (9^4 = 6561), leaving 2 and 3. Then 9^3 = 729 is one mental check. Distractors 9 (the u value) and 4 (2x) are junk magnitudes; replace with x=1 and a non-integer-looking value or a log form."
+ },
+ "AALG-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "11 boxes: 115.50+6 = 121.50, short 6.50. 0.50 forgets the fee, 4.75 uses fractional boxes (130/12), 17.00 uses 12 boxes. survivors=4. Same ceiling+fixed-fee mechanism as AALG-01. [normalised: grader wrote good; mapped to strong, the top grade]"
+ },
+ "AALG-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Sum of distances to 4 and -2 equals their separation 6, so the whole segment [-2,4] is the solution set; integers -2..4 sum to 7. Subject recall makes this fast but not free. Symmetry about 1 gives sum = count, which does not fix parity, so survivors=4. Overlaps AALG-12: both close with 'integers in an interval with endpoint -2'. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AALG-09": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=4 by bound, but the stem is pattern-solvable with no algebra: 50, 74, 98 are equally spaced (+24), so 4, 10, 16 must be too. The model-fitting the item claims to test is never needed. Change 98 to 90 (g=14) or 106 (g=18). Distractor 33 has no derivation I can find; 12 likewise weak; 24.5 = 98/4 is the only earned one."
+ },
+ "AALG-10": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "2^(2x+3) = 8*4^x = 80. 13 = 10+3, 30 = 10*3, 18 filler. Bound 'greater than 10' rejects nothing; survivors=4. Easy on ACT scale. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AALG-11": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: integrality. 5:3 means total = 8 parts; 150 and 210 are not multiples of 8 (150/8 = 18.75, 210/8 = 26.25), leaving 120 and 240. Caveat: the stem never says whole-dollar parts, but every ACT student assumes it. The natural solve is 'the gap closed was 60 = 2 parts', also algebra-free. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AALG-12": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "(x-9)(x+2)<0 -> -2<x<9 -> 10 integers. 12 counts the closed interval, 7 is the coefficient, 8 filler. survivors=4. DUPLICATE CONTENT: x^2-7x-18 is exactly the b=-7 case of AALG-05; a student who did 05 has already factored this. Change the constant (e.g. x^2-5x<24). [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AFN-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: sign. g(f(x)) = 2x^2-5 is even in x, so the solutions are +-r and their product is -r^2 < 0; 9 dies. Then x^2=9 -> -9. -7.5 (2x^2=15, dropped the -3 sign) and -3.75 are earned. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AFN-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Max 7 is readable from the form (vertex x=2 is inside the interval); min is at the far endpoint x=-3: 7-10 = -3; sum 4. 8 uses the near endpoint (min 1), 7 assumes min 0, -2 is a slip. Max is free but min needs the endpoint check; survivors=4. [normalised: grader wrote good; mapped to strong, the top grade]"
+ },
+ "AFN-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong",
+  "note": "survivors=2: direction. 'x+1 inside' moves left, so x=3, killing the (5, .) pair before any arithmetic; then -2*(-1) = +2. The 2x2 grid {3,5}x{+-2} is the standard ACT transformation set and the two traps are the two things being tested, so this is intended discrimination, not a leak. Same mechanism as AFN-08. [normalised: grader wrote good; mapped to strong, the top grade]"
+ },
+ "AFN-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: 125 is a quarter of 500, so more than one halving is needed and 11:00 a.m. (one period back) dies without computing. 125 = 500/2^2 -> 6 h -> 8:00 a.m. 5:00 a.m. is three halvings, 2:00 a.m. four. Same 'run the step backward' mechanism as AFN-05. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AFN-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: fixed point of s -> 2s-3 is 3; s(4)=21 > 3 so every earlier term is > 3 and 0 dies. Backward: 12, 7.5, 5.25. 12 is the one-step stop, 0 is the forward-sign error, 7.875 I cannot derive from a single named slip. Non-integer key among two integers is a mild options-only tell; not fatal. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ },
+ "AFN-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "f(x)=3 at x=7/3, g(3) = 14+5 = 19. 23 = g(f(3)) is the one good trap; 3 and 9 have no clean derivation. survivors=4."
+ },
+ "AFN-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: growth bound. Gaps 3, 9, 15 are increasing, so h(5) > 26+15+15 = 56 strictly; 56 sits ON the bound (constant-difference trap) and 47 is h(4), both dead by reading the table. Only 74 and 149 remain, and 149 needs an exponential-sized jump. Replace 47/56 with values above 56 (wrong second difference: 80, 92)."
+ },
+ "AFN-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: direction. 2x+6 inside moves the graph left, so the intercept sum must fall below the original 1; 6.5 (moved right) and 1 (ON the bound, unmoved) die. Between -11 (no compression) and -5.5 the halving is the tested skill. New intercepts -5 and -0.5. Same mechanism as AFN-03. [normalised: grader wrote adequate; mapped to plausible, the middle grade]"
+ }
+}

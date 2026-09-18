@@ -3202,6 +3202,62 @@
      "verdict": "Authored keys AAAAAAAAAAAAAAAAAAAAAA - unreachable (shuffleDrawnChoices re-deals, measured flat) and neutralised for the panel by the shuffled render. Key-length rank per author: longest 1 of 22, shortest 0, ratio <= 1.5. Cross-item: 06/21 and 02/22 mechanism pairs, each resolved by dropping one."
     }
    }
+  },
+  {
+   "id": "act-alg-fn-0918-kept-2026-09-18",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-alg-fn-0918",
+   "contentSha": "a8c99bcbd0a3abeb0274c45cf27e3f0bcd7f407f66db33257d65b953815c6ff4",
+   "note": "13 kept of 20 ACT Math (7 Algebra, 6 Functions). THE FIRST NUMERIC BATCH THIS SESSION TO LEAK OPTIONS-ONLY: pooled 43.3% vs 25.0%, and unlike every prior maths batch the mechanism stratum (48.1%) beat guessing (39.4%), so section 3d-bis was ARMED. Five unanimous-correct items each carried a named mechanism and were dropped: AALG-01 (31=32-1, 34=32+2, 47 the stray), AALG-03 (run 6/18/30, middle), AALG-12 (8 and 12 = 10+-2), AFN-07 (47/74 digit reversal, 149 = 2*74+1), AFN-08 (-11 = 2 x -5.5). The bound hunter independently condemned two more: AALG-09 (stem costs 50/74/98 in arithmetic progression, so the linear model is decorative) and AALG-06 (two junk magnitudes leave a two-option item). On the 13 survivors the attack re-scores at 25.6% against a 30.8% control (-5.1): the leak was concentrated, not diffuse. The with-source panel kept all 20 (3x 20/20 key agreement, exclusive:false 0); its work here was the bound hunter's, and the panel's difficulty read is easy 7 / medium 13 / hard 0 against the author's 11 medium / 9 hard.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 20/20 (my run); distractor_solve 60/60; numeric hub 4 structured at key-is-hub 0.0%. Author break-test: 60 promoted distractors, 60 refused; echo-solve control survives."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha f283fa0a41f49b16; author had keyed 17 of 20 to slot A): 20/20 x3 against the shuffled key; exclusive:false 0/0/0; AALG-05 \"which CANNOT\" verified (b in {+-3,+-7,+-17}; 9 unreachable). Difficulty easy 5/8/11, hard 1/0/1. Bound hunter survivor table: no N=1; N=2 on AALG-04, 06, 11, AFN-03, AFN-07, AFN-08 with AFN-07's 56 ON the bound; AALG-09 arithmetic-progression stem tell; AALG-05/12 a real content duplicate (12 is the b=-7 case of 05). Grader C wrote 'adequate' and 'good' for distractor_quality; normalised to plausible/strong with a note on each row."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 60 forced picks, keys dealt 5/5/5/5 for a 25.0% control: pooled 26/60 = 43.3% (+18.3). Mechanism 13/27 = 48.1%, guess 13/33 = 39.4%, difference +8.8 - the first batch where the self-report carried information, so 3d-bis applied. Unanimous 5 of 20 vs 0.31 expected, all five with a named mechanism from >=2 solvers, all five DROPPED. RESIDUAL on the kept 13: 10/39 = 25.6% vs 30.8% control (-5.1). Passed on the kept set; the parent batch as authored would not have passed."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys BAAADAAAAAAAAAAAAAAA - unreachable at draw, neutralised for the panel by the shuffled render. Distractor-generation recipe visible in the dropped five (+-1/+-2 of key, run-middle, doubling, digit reversal) and absent from the survivors by measurement, not assertion. Duplicate pairs 01/07, 05/12, 02/03, FN-03/08 each resolved by one of the two being dropped on other grounds."
+    }
+   }
+  },
+  {
+   "id": "sat-adv-0918-kept-2026-09-18",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-adv-0918",
+   "contentSha": "49359bb7e8b6a3c6e98e99938587a2c9d882b2d71ac3eaaf124b04d2c3885831",
+   "note": "9 kept of 20 SAT Advanced Math, all banked MEDIUM. Dropped 8 majority-easy under the hard-routed rule and SADV-17 on majority-weak distractors - the same item the bound hunter scored at ONE survivor (sum of two radicals = 7 with sqrt(x-4) < sqrt(x+3) forces 9.25 < x < 16.25; only 13 is inside) and grader B called \"inherently backsolvable as MC: the key is the only option making both radicands perfect squares\". SADV-13 and SADV-20 (round anchor ON the bound, named blind by two solvers) were DROPPED by a rule fixed before the number was read: drop only if the 11-item residual exceeds +10 over its own control; it was 12.1. Author labelled 10 medium / 10 hard; graders returned hard 0/4/0.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 20/20 (my run); distractor_solve 60/60; hub lines over n=1, read as nothing structured. Author break-test: 60 promoted distractors refused; a 63.0-beside-63 rig caught by shape."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha bcd111b00eea41a2; author had keyed all 20 to slot A): 20/20 x3 against the shuffled key; exclusive:false 0/0/0 (SADV-19's two root pairs give one sum of squares; SADV-08's -3 properly extraneous). Difficulty easy 9/5/7, hard 0/4/0. Bound hunter: SADV-17 N=1 (dropped); SADV-03 N=2 with 64.0 ON the linear-extrapolation bound (dropped easy); on-bound options also on 11 (excluded vertex value), 13 (chord interpolation 80.0), 15 (double-root boundary 9), 20 (six-year value 26.2) - each at N=3. Soft duplicates 03/20, 12/15, 05/18 named. Grader C wrote adequate/good/broken for distractor_quality; normalised to plausible/strong/weak with a note on each row."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 60 forced picks, keys 5/5/5/5, control 25.0%: pooled 24/60 = 40.0% (+15.0). Mechanism 9/21 = 42.9%, guess 15/39 = 38.5%, difference +4.4 - self-report carries no information, section 3d-bis DISARMED; unanimous 2 of 20 (SADV-14, 17) not dropped on that ground (17 dropped on others). The named tells were the decay chains where the round anchor sits in the option set (03/13/20) and the rational-expression item 07. RESIDUAL on the kept 9: 10/27 = 37.0% vs 33.3% control (3.7)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys AAAAAAAAAAAAAAAAAAAA - third author today; unreachable at draw, neutralised for the panel by the shuffled render. Anchor-in-options recipe on 03/13/20 is the batch's one cross-item tell; 03 dropped, 13/20 handled by the residual rule above."
+    }
+   }
   }
  ],
  "auditedCohorts": [

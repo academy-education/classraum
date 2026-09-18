@@ -1,0 +1,139 @@
+{
+ "SADV-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "3/2+1/3-1/6 = 5/3; D (13/3) is not reachable by any natural slip"
+ },
+ "SADV-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADV-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "0.88^3 = 0.6815. Same mechanism as SADV-20 (repeated percent decay) and SADV-13 (exponential factor)"
+ },
+ "SADV-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "B (-8) is not a natural slip. Same mechanism family as SADV-18 (match a common base)"
+ },
+ "SADV-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b=1; p(-1)=30. B (-4) is p(1), a good trap"
+ },
+ "SADV-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "x=1 or -3; -3 gives 1 = -1, extraneous, offered as B. Standard. Same mechanism family as SADV-17"
+ },
+ "SADV-09": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(t-3)(t-7)<0, 3<t<7, 4 s; C (7) is the root, not the duration"
+ },
+ "SADV-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "x=-3, 2; sum -1. Vieta on x^2+x-6 gives the same directly, so the 'common factor' insight is optional"
+ },
+ "SADV-11": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "vertex x=4 is outside [5,7]; f(5)=11. A (9) is the vertex value, the intended trap"
+ },
+ "SADV-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(m+2)^2=64, m=6 or -10; positive constraint disambiguates. C (10) is |-10|"
+ },
+ "SADV-13": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "3^(2/5)=1.5518 -> 55.2. Needs a calculator; fine on Digital SAT"
+ },
+ "SADV-14": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "u=4 or -1; x^2=9 or 4; positive solutions 3+2=5. B (3) is the habit-reject-negative-u trap"
+ },
+ "SADV-15": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "36-4k>0 -> k<9 -> k=1..8. B (9) is the <= slip"
+ },
+ "SADV-16": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2x-6=-1 -> 2.5; 2x-6=8 -> 7; sum 9.5"
+ },
+ "SADV-17": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "14 sqrt(x-4)=42 -> x=13; checks 4+3=7. No extraneous root arises"
+ },
+ "SADV-18": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "4*4^x=4^(x+1)=4^7. Duplicates SADV-05's mechanism (common base)"
+ },
+ "SADV-19": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "(r-s)^2=49=r^2+s^2-120 -> 169. B (289) is (r+s)^2, A (109) is 49+60"
+ },
+ "SADV-20": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "r^3=0.512 -> r=0.8 -> 0.8^5=0.32768 -> 32.8. Same mechanism as SADV-03 and SADV-13"
+ }
+}

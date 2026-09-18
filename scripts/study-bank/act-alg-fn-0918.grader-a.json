@@ -1,0 +1,142 @@
+{
+ "AALG-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "795/25=31.8 -> 32. Same fixed-fee + per-unit + round-up mechanism as AALG-07 (different target quantity, so not a duplicate, but same shape). Option B (47) has no obvious error path."
+ },
+ "AALG-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": ""
+ },
+ "AALG-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "y=6, x=12, k=18."
+ },
+ "AALG-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "1-p^2/10000=0.96 -> p=20."
+ },
+ "AALG-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Possible b: +-17, +-7, +-3. Wrong options 7, 17, -3 are all attainable; CANNOT item is sound."
+ },
+ "AALG-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "u=3^x, u^2-3u-54=0, u=9, x=2."
+ },
+ "AALG-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "11 boxes, 115.50+6=121.50, short 6.50. Distractors map cleanly to forget-fee (0.50), no-rounding (4.75), 12 boxes (17.00). See AALG-01 mechanism overlap."
+ },
+ "AALG-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "Equality holds on all of [-2,4]; integers sum to 7."
+ },
+ "AALG-09": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": ""
+ },
+ "AALG-10": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2^(2x)=10, times 8 = 80."
+ },
+ "AALG-11": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "k=30, total 8k=240."
+ },
+ "AALG-12": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "-2<x<9, integers -1..8 = 10."
+ },
+ "AFN-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2x^2-5=13, x=+-3, product -9."
+ },
+ "AFN-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "max 7 at x=2, min -3 at x=-3, sum 4."
+ },
+ "AFN-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Four sign/direction combinations; clean."
+ },
+ "AFN-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Two halvings = 6 h earlier = 8:00 a.m."
+ },
+ "AFN-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "21->12->7.5->5.25."
+ },
+ "AFN-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "f(x)=3 at x=7/3, g(3)=14+5=19."
+ },
+ "AFN-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Second difference 6; h(4)=47, h(5)=74."
+ },
+ "AFN-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x=-5 and x=-0.5, sum -5.5."
+ }
+}

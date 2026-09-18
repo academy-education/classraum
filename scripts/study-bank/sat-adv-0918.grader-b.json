@@ -1,0 +1,134 @@
+{
+ "SADV-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADV-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "0.88^3 = 68.1. 64.0 (linear) dies to anyone who knows compounding leaves more than linear; 77.4 is 0.88^2. Two survivors for a knowing student. Acceptable: the linear option IS the misconception being tested."
+ },
+ "SADV-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADV-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x=1 only; -3 extraneous. Rejecting -3 is the item's point for an algebraic solver, but the singular 'the solution' plus integer options means a backsolver plugs 1 and is done; domain x>=-2 also kills -3 and -1 without solving. Not free, but cheap."
+ },
+ "SADV-09": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong"
+ },
+ "SADV-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADV-11": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "Vertex x=4 lies outside [5,7]; min is f(5)=11. 9 is the vertex-value trap, 17 and 27 are f(6), f(7). Genuinely hard."
+ },
+ "SADV-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(2+m)^2=64 -> m=6 or -10; sign constraint stated. Discriminant-tangency is conventional, nothing unstated. Medium."
+ },
+ "SADV-13": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "3^(2/5)=1.5518 -> 55.2. 80.0 (linear share of +200%) dies only to a student who knows exponential growth is convex; 40.0 and 24.6 (=3^(1/5)) do not die free. Three survivors. Acceptable."
+ },
+ "SADV-14": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "u=4 or -1; u=-1 gives x^2=4, still real. Positive roots 3 and 2, sum 5. Dropping u=-1 gives 3 (B). Genuinely hard."
+ },
+ "SADV-15": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "36-4k>0 -> k in 1..8. 'Distinct' and 'positive integer' are both stated. Medium."
+ },
+ "SADV-16": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "2x-6=-1 -> 2.5; 2x-6=8 -> 7; sum 9.5. Forward-mapping the zeros gives 2 (A), wrong shift direction gives -2.5 (D). Hard on the strength of the inverse-mapping trap; borderline."
+ },
+ "SADV-17": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "x=13 (4+3=7). Worse than the author's flag: sqrt(x+3)>sqrt(x-4) forces 9.25<x<16.25, which kills 5, 7 AND 25 — every distractor dies to the bound. And an integer-option backsolver just looks for the one option making both radicands perfect squares (16, 9); 7, 5, 25 all give irrationals. The form is inherently backsolvable as MC. Convert to SPR or drop."
+ },
+ "SADV-18": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "4*4^x=4^(x+1)=4^7 -> x=6. 1.75 is the 4^(4x) trap. Standard, nothing unstated. Medium."
+ },
+ "SADV-19": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "(r-s)^2+2rs=49+120=169; or just r=12,s=5. 289=(r+s)^2, 109=49+60. Medium because 12 and 5 are found by inspection."
+ },
+ "SADV-20": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "0.512=0.8^3, 0.8^5=32.8. 26.2=0.8^6 dies free (5 years must exceed 6-year value 0.512^2); 41.0=0.8^4 and 30.7 do not. Three survivors, acceptable. With a calculator the cube root is a keystroke; medium, not hard."
+ }
+}
