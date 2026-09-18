@@ -3314,6 +3314,34 @@
      "verdict": "Authored keys CBBADABDBDCABCBCBBABABCADBDAC - dealt across slots. Cross-item: percent-chain triple AIES-02/06/08 (08 dropped); AGEO-07/08 same tool different depth (kept both); AGEO-04/10 both triple-to-circle (both dropped). \"Limiting thing\" distractor used six times across IES per the author's own auditor - the batch-level pattern behind most of the IES drops."
     }
    }
+  },
+  {
+   "id": "act-ies-0918b-kept-2026-09-18",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-ies-0918b",
+   "contentSha": "7cc48fd8d416dce3579484128e19d300fdf63af83f91586abdc9763f35c067db",
+   "note": "3 kept of 4 ACT IES top-up, commissioned to buy the one item ACT Math form 12 needed. AIESB-04 dropped by the bound hunter: the row headcount caps P at 48/80 = 3/5 and that distractor sits exactly ON the cap, 15/16 exceeds it, and 35 < 40 then leaves one option - the \"limiting thing\" pattern the brief warned against, in the one item the author did not check for it.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 4/4 (my run); distractor_solve 12/12; no hub structure. The author mutation-tested the harness and found verify exits 0 on a FAIL - fixed and break-tested in the same session (exit 1 on rigged key and rigged distractor, 0 on real batches)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item shuffled render (sha 947425e29529f24d): 4/4 x3; exclusive:false 0; difficulty medium/medium/easy/medium by consensus; distractors strong on 02 and 04. Bound hunter: 01-03 N=4 free; 04 N=2 free, N=1 after one step (dropped)."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 12 forced picks, keys 1/1/1/1 for a 25.0% control: 2/12 = 16.7% (-8.3); unanimous-correct 0 of 4, and unanimously WRONG on 3 of 4 - every named hub was a distractor. n=12 is coarse and recorded as such."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys BCAD, dealt across slots. No cross-item recipe in four items."
+    }
+   }
   }
  ],
  "auditedCohorts": [

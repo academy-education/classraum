@@ -1,0 +1,38 @@
+{
+ "AIESB-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "survivors_free": 4,
+  "survivors_after_one_step": 3,
+  "note": "red:white:blue = 8:6:15, blue 60 -> red 32. N-free=4: stem bounds are red>white, white<blue, hence red<blue=60; every option is under 60 and white is unknown without computing. After one step (white = 60*2/5 = 24): red>white rejects 18 -> survivors 48, 45, 32 (N=3). 48 = chained 4:5 directly on blue; 45 = 3/4 of 60; 18 = inverted red:white applied to 24. None sits on a bound. Keep."
+ },
+ "AIESB-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "survivors_free": 4,
+  "survivors_after_one_step": 4,
+  "note": "2.5 pages/min -> 180 min = 3 h reading = 3/4 of block -> 4 h. N-free=4: no option is rejectable from the stem alone. After one step (reading = 3 h): block > 3 h, and every option (5, 3.25, 3.75, 4) exceeds 3, so N=4. The no-break time (3) is NOT offered, so the bound is not touched. 3.75 = break as 1/4 of reading time (the intended trap); 3.25 = 3 + 0.25 h; 5 = 3.75*4/3 double-correction. Keep."
+ },
+ "AIESB-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "survivors_free": 4,
+  "survivors_after_one_step": 4,
+  "note": "Corrected sorted 4,6,9,9,13,16,18,21 -> (9+13)/2 = 11. N-free=4: bounds are 4<=median<=21, median = integer/2, and (since a value dropped from above to below) new median < old median 14.5; all four options satisfy all three. After one step (old median 14.5): still N=4. 12.5 = middle two of the UNSORTED corrected list (positions 4,5 = 9,16); 12 = mean of corrected list (96/8); 9 = mode. Keep; easy because re-sorting 8 small integers is the whole task."
+ },
+ "AIESB-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "survivors_free": 2,
+  "survivors_after_one_step": 1,
+  "note": "survivors=2: grade-11 bicycle owners <= 48 (grade-11 headcount), so P <= 48/80 = 3/5. (A) 15/16 = 75/80 implies 75 grade-11 owners > 48 -> rejected free. (D) 3/5 = 48/80 sits exactly ON that bound (every grade-11 student owns a bike), which the rule counts as rejectable. Survivors B, C. After one step (35 < 40, i.e. grade 10 holds under half the owners -> P > 1/2): (C) 2/5 dies, leaving only 9/16. Semantically the set is well-designed (15/16 = 45/48 inverted condition; 2/5 = 48/120 unconditional; 3/5 = grade-11 total over owners), but two of three distractors are on or over a headcount bound visible from the stem. DROP or repair: with 56 grade 10 / 64 grade 11 the same three distractor recipes give 45/64, 8/15, and (pre-subtraction) 7/16 -- all feasible under 64/80."
+ }
+}

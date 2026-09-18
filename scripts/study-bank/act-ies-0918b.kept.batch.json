@@ -1,0 +1,65 @@
+[
+ {
+  "id": "AIESB-01",
+  "domain": "Integrating Essential Skills",
+  "subskill": "three quantities linked by two ratios that share a middle term: the shared term must be scaled to a common value before the outer two can be compared",
+  "difficulty": "medium",
+  "prompt": "A paint mixture contains red, white, and blue pigment. The ratio of red pigment to white pigment is 4:3, and the ratio of white pigment to blue pigment is 2:5. If the mixture contains 60 grams of blue pigment, how many grams of red pigment does it contain?",
+  "choices": [
+   "18",
+   "32",
+   "45",
+   "48"
+  ],
+  "correct_answer": "32",
+  "explanation": "White to blue is 2:5, so the white pigment is 60(2/5) = 24 grams. Red to white is 4:3, so the red pigment is 24(4/3) = 32 grams. Equivalently, scaling the two ratios so that white is 6 in each gives red:white:blue = 8:6:15, and 60 grams of blue makes each part 4 grams, so red is 8(4) = 32. \"48\" comes from a solver who writes the two ratios side by side as red:white:blue = 4:3:5 without matching the white terms and reads red:blue = 4:5, giving 60(4/5). \"18\" comes from a solver who finds white = 24 correctly and then multiplies by 3/4 instead of 4/3, inverting the red-to-white ratio. \"45\" comes from a solver who adds the two ratios term by term, (4 + 2):(3 + 5) = 6:8 = 3:4, treats that as red:blue, and computes 60(3/4).",
+  "solve": "var white = 60 * 2 / 5; var red = white * 4 / 3; return String(red);",
+  "distractor_solve": {
+   "18": "var white = 60 * 2 / 5; return String(white * 3 / 4);",
+   "45": "return String(60 * (4 + 2) / (3 + 5));",
+   "48": "return String(60 * 4 / 5);"
+  }
+ },
+ {
+  "id": "AIESB-02",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a rate in pages per minute converted to hours for a whole book, with break time stated as a fraction of the TOTAL block rather than of the reading time",
+  "difficulty": "medium",
+  "prompt": "Priya reads at a steady rate of 5 pages every 2 minutes. She plans to set aside one block of time in which to read an entire 450-page book, and she wants 1/4 of that block of time to be breaks during which she does not read. How many hours long should the block of time be?",
+  "choices": [
+   "3.25",
+   "3.75",
+   "4",
+   "5"
+  ],
+  "correct_answer": "4",
+  "explanation": "Reading 5 pages every 2 minutes is 2.5 pages per minute, so 450 pages take 450/2.5 = 180 minutes, which is 3 hours of reading. Breaks are 1/4 of the block, so reading is the other 3/4 of the block: (3/4)(block) = 3 hours, and the block is 3/(3/4) = 4 hours. \"3.75\" comes from a solver who takes the 1/4 as a fraction of the reading time instead of the whole block and adds 3/4 of an hour to 3 hours. \"3.25\" comes from a solver who reads the 1/4 as a quarter of an hour of break and adds 15 minutes to 3 hours. \"5\" comes from a solver who correctly finds the 4-hour block, computes its 1-hour break, and then adds that hour on top of a block that already includes it.",
+  "solve": "var pagesPerMin = 5 / 2; var readHours = 450 / pagesPerMin / 60; var block = readHours / (1 - 1 / 4); return String(block);",
+  "distractor_solve": {
+   "5": "var readHours = 450 / (5 / 2) / 60; var block = readHours / (3 / 4); return String(block + block / 4);",
+   "3.25": "var readHours = 450 / (5 / 2) / 60; return String(readHours + 1 / 4);",
+   "3.75": "var readHours = 450 / (5 / 2) / 60; return String(readHours * (1 + 1 / 4));"
+  }
+ },
+ {
+  "id": "AIESB-03",
+  "domain": "Integrating Essential Skills",
+  "subskill": "median of an even-sized list after one recorded value is corrected: the corrected list must be re-sorted, and the middle two averaged",
+  "difficulty": "medium",
+  "prompt": "The numbers of laps run by each of the 8 members of a running club were recorded as 13, 6, 21, 9, 16, 24, 9, and 18. The coach then discovered that the 24 had been recorded incorrectly and should have been 4. What is the median of the corrected list of 8 numbers?",
+  "choices": [
+   "11",
+   "9",
+   "12",
+   "12.5"
+  ],
+  "correct_answer": "11",
+  "explanation": "Replacing 24 with 4 and sorting gives 4, 6, 9, 9, 13, 16, 18, 21. With 8 values the median is the mean of the 4th and 5th values, (9 + 13)/2 = 11. \"12\" is the mean of the corrected list, 96/8, reported by a solver who computes the average instead of the median. \"12.5\" is the midrange of the corrected list, (4 + 21)/2, from a solver who averages the least and greatest values; it is also what a solver gets by replacing 24 with 4 in place and averaging the 4th and 5th entries of the unsorted list, (9 + 16)/2. \"9\" is the mode of the list, reported by a solver who confuses the most frequent value with the median.",
+  "solve": "var d = [13, 6, 21, 9, 16, 4, 9, 18].sort(function (a, b) { return a - b; }); return String((d[3] + d[4]) / 2);",
+  "distractor_solve": {
+   "9": "var d = [13, 6, 21, 9, 16, 4, 9, 18]; var c = {}; var best = null; d.forEach(function (v) { c[v] = (c[v] || 0) + 1; if (best === null || c[v] > c[best]) best = v; }); return String(best);",
+   "12": "var d = [13, 6, 21, 9, 16, 4, 9, 18]; var s = d.reduce(function (a, b) { return a + b; }, 0); return String(s / d.length);",
+   "12.5": "var d = [13, 6, 21, 9, 16, 4, 9, 18]; return String((Math.min.apply(null, d) + Math.max.apply(null, d)) / 2);"
+  }
+ }
+]
