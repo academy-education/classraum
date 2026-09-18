@@ -3342,6 +3342,34 @@
      "verdict": "Authored keys BCAD, dealt across slots. No cross-item recipe in four items."
     }
    }
+  },
+  {
+   "id": "sat-topup2-0918-kept-2026-09-18",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-topup2-0918",
+   "contentSha": "9d89599c6a69e39e6370007cea646425c96cec54fe155dbacadeeb172ec34f1b",
+   "note": "7 kept of 12 ({\"Algebra\":3,\"Advanced Math\":4}), gated from a PINNED SNAPSHOT of two files written by agents that died at a rate limit before reporting; the relaunched agents' later output was not gated. Routed-rule drops: SALGC-02, SADVC-06, SADVC-08. Rule drops: SALGC-02 - one survivor: an abs-value >= set must be symmetric about 9/2 and only the key is; two distractors carry a boundary no consistent error produces (sandbox distractor mismatch); SADVC-07 - unanimous blind with the mechanism named 3/3 (-60 is the hub of -600 and -20) under an ARMED rule (mechanism 33.3% vs guess 9.5%); also duplicates SADVC-02; SADVC-01 - key is the isolated outlier of a cluster in [-6,-3]; two of three distractors have no error path (graders A and C independently).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 12/12 (my run on the unit); distractor_solve 36/36 recomputed with ONE mismatch (SALGC-02, dropped); verify now exits 1 on that mismatch - confirmed."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha 3b3e65fa6dad087a): 12/12 x3; exclusive:false 0/0/0. Difficulty easy 7/1/4 - graders A and B disagreed sharply and the median decided. Bound hunter: SALGC-02 N=1 (symmetry centre); SALGC-01, SADVC-02, SADVC-05 N=2; SADVC-04 N=3 by design (extraneous root offered). Recall bypasses noted but judged to be the intended method on SADVC-03/08. Duplicate: SADVC-02/07."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 36 forced picks, keys 3/3/3/3, control 25.0%: 7/36 = 19.4% (-5.6). Mechanism 5/15 = 33.3%, guess 2/21 = 9.5%, difference +23.8 - the self-report was informative for once, ARMING section 3d-bis; one unanimous item (SADVC-07, 3/3 mechanism) dropped under it. Solvers herded on hub distractors: L07, L09, L10 unanimously WRONG. Residual on kept 7: 2/21 = 9.5% vs 28.6% (-19.0)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys CADB + ABCDABCD (the Advanced author dealt a round robin); unreachable at draw, neutralised for the panel by the shuffled render. No sign pairs anywhere - that recipe was closed by the brief; sum/product hubs appeared instead (SADVC-04, -07). No radicals or expressions in the batch, so no form tells."
+    }
+   }
   }
  ],
  "auditedCohorts": [

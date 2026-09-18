@@ -1,0 +1,86 @@
+[
+ {
+  "id": "SALGC-01",
+  "domain": "Algebra",
+  "subskill": "a linear model whose rate is stated per 100 units, solved for the INPUT: convert the rate, divide the change in output, then add the starting input",
+  "difficulty": "medium",
+  "prompt": "A weather balloon's thermometer shows that the air temperature decreases by 0.65 degrees Celsius for every 100 meters the balloon rises. At an altitude of 750 meters the temperature is 17.9 degrees Celsius. Assuming the temperature continues to decrease at this constant rate, at what altitude, in meters, will the temperature be 12.7 degrees Celsius?",
+  "choices": [
+   "800",
+   "1088",
+   "1550",
+   "758"
+  ],
+  "correct_answer": "1550",
+  "explanation": "The temperature must fall by 17.9 - 12.7 = 5.2 degrees. At 0.65 degrees per 100 meters, that takes 5.2 / 0.65 = 8 hundreds of meters, which is 800 meters of additional rise. The balloon started at 750 meters, so the altitude is 750 + 800 = 1550 meters. \"800\" comes from a solver who finds the 800-meter rise correctly but forgets to add the starting altitude of 750 meters. \"758\" comes from a solver who treats 0.65 as the drop per single meter, gets 5.2 / 0.65 = 8 meters, and adds it to 750. \"1088\" comes from a solver who multiplies the temperature change by the rate instead of dividing, 5.2 x 0.65 = 3.38 hundreds = 338 meters, and adds it to 750.",
+  "solve": "var drop=17.9-12.7; var hundreds=drop/0.65; var rise=hundreds*100; return String(Math.round(750+rise));",
+  "distractor_solve": {
+   "800": "var drop=17.9-12.7; var hundreds=drop/0.65; return String(Math.round(hundreds*100));",
+   "758": "var drop=17.9-12.7; var meters=drop/0.65; return String(Math.round(750+meters));",
+   "1088": "var drop=17.9-12.7; var hundreds=drop*0.65; return String(Math.round(750+hundreds*100));"
+  }
+ },
+ {
+  "id": "SALGC-02",
+  "domain": "Algebra",
+  "subskill": "an absolute value inequality with a negative x-coefficient inside, answered as a compound solution set: two cases, each divided by a negative",
+  "difficulty": "medium",
+  "prompt": "Which of the following describes all values of x that satisfy the inequality |9 - 2x| ≥ 5?",
+  "choices": [
+   "x ≤ 2 or x ≥ 7",
+   "2 ≤ x ≤ 7",
+   "x ≤ -7 or x ≥ 2",
+   "-7 ≤ x ≤ 2"
+  ],
+  "correct_answer": "x ≤ 2 or x ≥ 7",
+  "explanation": "An absolute value is at least 5 when the expression inside is at least 5 or at most -5. Case 1: 9 - 2x ≥ 5 gives -2x ≥ -4, and dividing by -2 reverses the inequality: x ≤ 2. Case 2: 9 - 2x ≤ -5 gives -2x ≤ -14, so x ≥ 7. The solution set is x ≤ 2 or x ≥ 7. \"2 ≤ x ≤ 7\" comes from a solver who sets up both cases correctly but does not reverse the inequality signs when dividing by -2, getting x ≥ 2 and x ≤ 7. \"x ≤ -7 or x ≥ 2\" comes from a solver who moves the 9 across with the wrong sign, writing -2x ≥ 14 and -2x ≤ -4, then reverses correctly. \"-7 ≤ x ≤ 2\" comes from a solver who makes both errors: moves the 9 with the wrong sign and then fails to reverse when dividing by -2.",
+  "solve": "var c=9,a=2,k=5; var lo=(c-k)/a, hi=(c+k)/a; return 'x ≤ '+lo+' or x ≥ '+hi;",
+  "distractor_solve": {
+   "2 ≤ x ≤ 7": "var c=9,a=2,k=5; var lo=(c-k)/a, hi=(c+k)/a; return lo+' ≤ x ≤ '+hi;",
+   "x ≤ -7 or x ≥ 2": "var c=9,a=2,k=5; var lo=(-(k+c))/a, hi=(-(-k+c))/a; return 'x ≤ '+lo+' or x ≥ '+hi;",
+   "-7 ≤ x ≤ 2": "var c=9,a=2,k=5; var lo=(-(k+c))/a, hi=(-(-k+c))/a; return lo+' ≤ x ≤ '+hi;"
+  }
+ },
+ {
+  "id": "SALGC-03",
+  "domain": "Algebra",
+  "subskill": "find the unknown x-coordinate of a point so that a line through two points is parallel to a line given in standard form: the slope is a fraction with a negative sign, and the run must be added to the starting x",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the line through the points (3, 2) and (k, -10) is parallel to the line with equation x + 4y = 20, where k is a constant. What is the value of k?",
+  "choices": [
+   "35",
+   "60",
+   "45",
+   "51"
+  ],
+  "correct_answer": "51",
+  "explanation": "Solving x + 4y = 20 for y gives y = -x/4 + 5, so its slope is -1/4, and a parallel line has the same slope. The slope through the two points is (-10 - 2)/(k - 3) = -12/(k - 3). Setting -12/(k - 3) = -1/4 gives k - 3 = 48, so k = 51. \"60\" comes from a solver who uses the given line itself rather than a parallel line through (3, 2): setting -10 = -x/4 + 5 gives x = 60. \"35\" comes from a solver who computes the change in y as -10 + 2 = -8 instead of -12, so k - 3 = 32 and k = 35. \"45\" comes from a solver who finds the run of 48 correctly but subtracts the starting x-coordinate instead of adding it, 48 - 3 = 45.",
+  "solve": "var m=-1/4; var dy=-10-2; var run=dy/m; return String(3+run);",
+  "distractor_solve": {
+   "60": "var m=-1/4, b=20/4; var x=(-10-b)/m; return String(x);",
+   "35": "var m=-1/4; var dy=-10+2; var run=dy/m; return String(3+run);",
+   "45": "var m=-1/4; var dy=-10-2; var run=dy/m; return String(run-3);"
+  }
+ },
+ {
+  "id": "SALGC-04",
+  "domain": "Algebra",
+  "subskill": "a system with infinitely many solutions in which the second equation has two unknown constants: find the negative multiplier from the y-coefficients, apply it to both the x-coefficient and the constant, and combine",
+  "difficulty": "medium",
+  "prompt": "3x - 4y = 7\nkx + 12y = c\n\nIn the system of equations above, k and c are constants. If the system has infinitely many solutions, what is the value of k + c?",
+  "choices": [
+   "-24",
+   "-30",
+   "-2",
+   "-16"
+  ],
+  "correct_answer": "-30",
+  "explanation": "A system of two linear equations has infinitely many solutions only when the second equation is a constant multiple of the first. The y-coefficients give the multiplier: 12 = -3 x (-4), so the multiplier is -3. Then k = -3 x 3 = -9 and c = -3 x 7 = -21, and k + c = -30. \"-24\" comes from a solver who takes k to be the multiplier itself, k = -3, while still scaling the constant to c = -21. \"-2\" comes from a solver who scales the x-coefficient to k = -9 but leaves the constant unscaled at c = 7. \"-16\" comes from a solver who scales k = -9 correctly but only negates the constant, c = -7, instead of multiplying it by -3.",
+  "solve": "var mult=12/(-4); var k=mult*3; var c=mult*7; return String(k+c);",
+  "distractor_solve": {
+   "-24": "var mult=12/(-4); var k=mult; var c=mult*7; return String(k+c);",
+   "-2": "var mult=12/(-4); var k=mult*3; var c=7; return String(k+c);",
+   "-16": "var mult=12/(-4); var k=mult*3; var c=-7; return String(k+c);"
+  }
+ }
+]

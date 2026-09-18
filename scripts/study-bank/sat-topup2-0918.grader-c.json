@@ -1,0 +1,86 @@
+{
+ "SALGC-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: temperature falls 5.2 at 0.65 per 100 m, so the rise is several hundred metres; A (rise 50 m) and B (rise 8 m) die on sight. One more multiplication (7x0.65=4.55<5.2 so rise>700, altitude>1450) leaves 1 - but that multiplication is the method itself. A=the rise alone (real trap), B=750+8, C=750+5.2x65. Replace B with 1450 or 1500."
+ },
+ "SALGC-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1: >= on an absolute value forces an 'or' set (kills B, C); the set must be symmetric about 9/2=4.5 - D is centred at 4.5, A at -2.5. No algebra needed. A (x<=-7 or x>=2) is not reachable by any single sign error I can name. Domain-inherent bypass (centre + half-width 5/2 are read straight off the stem), so fix A to a same-width set with a wrong centre (e.g. x<=-7 or x>=-2) rather than expect the type to survive."
+ },
+ "SALGC-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4: slope -1/4 and rise -12 give k>3 for all four; no bound separates 35/45/51/60 without run=4x12. D=48-3 (subtracted instead of added) is a live trap; A and C have no clean error path."
+ },
+ "SALGC-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Multiplier -3 read from 12/-4 is the method; k+c=-3(3+7). C=-9+7 (sign slip on c), A=-9-7 (c unscaled). No bound rejects any option beforehand."
+ },
+ "SADVC-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "weak",
+  "note": "Bound: circle x-range [-12,14] admits all four. FORM TELL: three options cluster in [-6,-3] and the key -11 is the isolated outlier; only A (-6 = negated given x) has an error path. Recall bypass: once the quadratic x^2+5x-66=0 is formed, Vieta (sum -5) skips factoring. Fix the distractor set (e.g. -12, -9, -10) before this ships."
+ },
+ "SADVC-02": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: g(0)=f(-3)+6, and -3 is 5 from the vertex where 6 is 4; the drop scales by (5/4)^2 < 2, so drop < 64, g(0) > -53 - kills C (-61) and D (-189, a=-8 from forgetting to square). B (-45 = f(-3), +6 forgotten) is the one strong distractor."
+ },
+ "SADVC-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=5 read from 2+a=7; c = -24-20+30 by Vieta pairwise products (this is the method, not a bypass). A=-10 is the a=7 misread; 74 and 6 have no error path I can produce. survivors=4."
+ },
+ "SADVC-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: x=-6 is excluded by the domain, so C dies on sight - but that is the extraneous-root trap the item exists to test, standard SAT practice. A (-7) and B (-1) have no error path beyond 'other factor of 18/24'."
+ },
+ "SADVC-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: f(x)=2+15/(x-4) has asymptote 2, so f(x)=3>2 forces x>4 - kills B and D. Needs the rewrite, not solving. B=-13=f(3) (computed f not f^-1) is a strong trap; D=-5 sign slip; A=11 unmotivated."
+ },
+ "SADVC-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "800->100 is three halvings in 21 days; the whole item is 21/3 with no logs. D=3 (the halving count), A=21/4, C=21/8 are each a named error. survivors=4 only because every option is a positive number under 21."
+ },
+ "SADVC-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "On (1,5) p<0 - all four options negative, no bound. A=-20 (a omitted) strong, D=-600 (a=30) plausible, B=-96 no error path. DUPLICATE MECHANISM with SADVC-02: fix the leading coefficient from one point, then evaluate at another."
+ },
+ "SADVC-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Recall bypass: x=0 gives 243-27=216 in one line - but that is also the intended factoring, so it is not a leak. A=243-9, C=3^2 (quotient instead of difference), B=5-3. survivors=4."
+ }
+}

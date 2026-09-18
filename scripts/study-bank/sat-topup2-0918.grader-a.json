@@ -1,0 +1,83 @@
+{
+ "SALGC-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "1550 = 750 + 5.2/0.0065. (C) 1088 = 750 + 5.2*65 does not follow from a natural error; A and B are clean (forgot start / divided by 0.65 per metre)."
+ },
+ "SALGC-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong"
+ },
+ "SALGC-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "-12/(k-3) = -1/4 -> k = 51. (D) 45 = 48-3 is a clean error; (A) 35 and (C) 60 do not follow from any plausible slip (slope 1/4 gives k = -45, not offered)."
+ },
+ "SALGC-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "k = -9, c = -21. (A) -16 = -9+7 (c unscaled), (B) -24 = -3 + -21 (multiplier used as k), (C) -2 = -9+7 is the same slip as A with different sign handling; all reachable but A and C overlap."
+ },
+ "SADVC-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b = 8; x^2 + 5x - 66 = 0 -> x = -11. (A) -6 is a sign flip of the known root; (B) -4 and (D) -3 do not follow from a clear error."
+ },
+ "SADVC-02": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a = -2; g(x) = -2(x-5)^2 + 11; g(0) = -39. (B) -45 forgot +6; (D) -189 from a = -8; (C) -61 = -72+11 has no clean derivation."
+ },
+ "SADVC-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "a = 5, c = 2a - 24 = -14. (A) -10 uses a = 7 (read the x^2 coefficient as a). (C) 74 and (D) 6 do not follow from a plausible slip."
+ },
+ "SADVC-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "x^2 + 3x - 18 = 0 -> x = 3 or x = -6; -6 is extraneous (zero denominator). (C) -6 is the intended trap and is correctly not a solution."
+ },
+ "SADVC-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "(B) -13 = f(3) is the clean trap; (D) -5 is a sign slip; (A) 11 has no clear derivation."
+ },
+ "SADVC-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong"
+ },
+ "SADVC-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "a = 3, p(3) = 3*5*2*(-2) = -60. (A) a = 1, (D) a = 30 are clean; (B) -96 does not follow from a plausible error."
+ },
+ "SADVC-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "strong"
+ }
+}

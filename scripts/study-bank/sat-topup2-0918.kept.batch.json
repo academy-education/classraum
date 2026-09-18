@@ -1,0 +1,149 @@
+[
+ {
+  "id": "SALGC-01",
+  "domain": "Algebra",
+  "subskill": "a linear model whose rate is stated per 100 units, solved for the INPUT: convert the rate, divide the change in output, then add the starting input",
+  "difficulty": "medium",
+  "prompt": "A weather balloon's thermometer shows that the air temperature decreases by 0.65 degrees Celsius for every 100 meters the balloon rises. At an altitude of 750 meters the temperature is 17.9 degrees Celsius. Assuming the temperature continues to decrease at this constant rate, at what altitude, in meters, will the temperature be 12.7 degrees Celsius?",
+  "choices": [
+   "800",
+   "1088",
+   "1550",
+   "758"
+  ],
+  "correct_answer": "1550",
+  "explanation": "The temperature must fall by 17.9 - 12.7 = 5.2 degrees. At 0.65 degrees per 100 meters, that takes 5.2 / 0.65 = 8 hundreds of meters, which is 800 meters of additional rise. The balloon started at 750 meters, so the altitude is 750 + 800 = 1550 meters. \"800\" comes from a solver who finds the 800-meter rise correctly but forgets to add the starting altitude of 750 meters. \"758\" comes from a solver who treats 0.65 as the drop per single meter, gets 5.2 / 0.65 = 8 meters, and adds it to 750. \"1088\" comes from a solver who multiplies the temperature change by the rate instead of dividing, 5.2 x 0.65 = 3.38 hundreds = 338 meters, and adds it to 750.",
+  "solve": "var drop=17.9-12.7; var hundreds=drop/0.65; var rise=hundreds*100; return String(Math.round(750+rise));",
+  "distractor_solve": {
+   "758": "var drop=17.9-12.7; var meters=drop/0.65; return String(Math.round(750+meters));",
+   "800": "var drop=17.9-12.7; var hundreds=drop/0.65; return String(Math.round(hundreds*100));",
+   "1088": "var drop=17.9-12.7; var hundreds=drop*0.65; return String(Math.round(750+hundreds*100));"
+  }
+ },
+ {
+  "id": "SALGC-03",
+  "domain": "Algebra",
+  "subskill": "find the unknown x-coordinate of a point so that a line through two points is parallel to a line given in standard form: the slope is a fraction with a negative sign, and the run must be added to the starting x",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the line through the points (3, 2) and (k, -10) is parallel to the line with equation x + 4y = 20, where k is a constant. What is the value of k?",
+  "choices": [
+   "35",
+   "60",
+   "45",
+   "51"
+  ],
+  "correct_answer": "51",
+  "explanation": "Solving x + 4y = 20 for y gives y = -x/4 + 5, so its slope is -1/4, and a parallel line has the same slope. The slope through the two points is (-10 - 2)/(k - 3) = -12/(k - 3). Setting -12/(k - 3) = -1/4 gives k - 3 = 48, so k = 51. \"60\" comes from a solver who uses the given line itself rather than a parallel line through (3, 2): setting -10 = -x/4 + 5 gives x = 60. \"35\" comes from a solver who computes the change in y as -10 + 2 = -8 instead of -12, so k - 3 = 32 and k = 35. \"45\" comes from a solver who finds the run of 48 correctly but subtracts the starting x-coordinate instead of adding it, 48 - 3 = 45.",
+  "solve": "var m=-1/4; var dy=-10-2; var run=dy/m; return String(3+run);",
+  "distractor_solve": {
+   "35": "var m=-1/4; var dy=-10+2; var run=dy/m; return String(3+run);",
+   "45": "var m=-1/4; var dy=-10-2; var run=dy/m; return String(run-3);",
+   "60": "var m=-1/4, b=20/4; var x=(-10-b)/m; return String(x);"
+  }
+ },
+ {
+  "id": "SALGC-04",
+  "domain": "Algebra",
+  "subskill": "a system with infinitely many solutions in which the second equation has two unknown constants: find the negative multiplier from the y-coefficients, apply it to both the x-coefficient and the constant, and combine",
+  "difficulty": "medium",
+  "prompt": "3x - 4y = 7\nkx + 12y = c\n\nIn the system of equations above, k and c are constants. If the system has infinitely many solutions, what is the value of k + c?",
+  "choices": [
+   "-24",
+   "-30",
+   "-2",
+   "-16"
+  ],
+  "correct_answer": "-30",
+  "explanation": "A system of two linear equations has infinitely many solutions only when the second equation is a constant multiple of the first. The y-coefficients give the multiplier: 12 = -3 x (-4), so the multiplier is -3. Then k = -3 x 3 = -9 and c = -3 x 7 = -21, and k + c = -30. \"-24\" comes from a solver who takes k to be the multiplier itself, k = -3, while still scaling the constant to c = -21. \"-2\" comes from a solver who scales the x-coefficient to k = -9 but leaves the constant unscaled at c = 7. \"-16\" comes from a solver who scales k = -9 correctly but only negates the constant, c = -7, instead of multiplying it by -3.",
+  "solve": "var mult=12/(-4); var k=mult*3; var c=mult*7; return String(k+c);",
+  "distractor_solve": {
+   "-24": "var mult=12/(-4); var k=mult; var c=mult*7; return String(k+c);",
+   "-2": "var mult=12/(-4); var k=mult*3; var c=7; return String(k+c);",
+   "-16": "var mult=12/(-4); var k=mult*3; var c=-7; return String(k+c);"
+  }
+ },
+ {
+  "id": "SADVC-02",
+  "domain": "Advanced Math",
+  "subskill": "quadratic in vertex form from a described graph, then evaluating a translated function",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of the quadratic function f has vertex (2, 5) and passes through the point (6, −27). The graph of the function g is the graph of f translated 3 units to the right and 6 units up. What is the value of g(0)?",
+  "choices": [
+   "−45",
+   "−39",
+   "−61",
+   "−189"
+  ],
+  "correct_answer": "−39",
+  "explanation": "Write f(x) = a(x − 2)² + 5. The point (6, −27) gives −27 = 16a + 5, so a = −2. Translating 3 right and 6 up gives g(x) = f(x − 3) + 6 = −2(x − 5)² + 11. Then g(0) = −2(25) + 11 = −39. “−45” comes from a solver who builds g correctly but forgets to add the 6-unit vertical translation: −2(0 − 5)² + 5 = −45. “−61” comes from a solver who subtracts the translated vertex’s y-value instead of adding it: −2(0 − 5)² − 11 = −61. “−189” comes from a solver who finds a by dividing −32 by (6 − 2) instead of (6 − 2)², getting a = −8: −8(0 − 5)² + 11 = −189.",
+  "solve": "var a=(-27-5)/Math.pow(6-2,2); var g0=a*Math.pow(0-3-2,2)+5+6; return String(g0).replace('-','−');",
+  "distractor_solve": {
+   "−45": "var a=(-27-5)/16; return String(a*25+5).replace('-','−');",
+   "−61": "var a=(-27-5)/16; return String(a*25-11).replace('-','−');",
+   "−189": "var a=(-27-5)/4; return String(a*25+11).replace('-','−');"
+  }
+ },
+ {
+  "id": "SADVC-03",
+  "domain": "Advanced Math",
+  "subskill": "equivalent forms of a cubic: fixing an unknown root from the x² coefficient, then reading the x coefficient",
+  "difficulty": "medium",
+  "prompt": "The expression (x − 4)(x + 6)(x + a), where a is a constant, is equivalent to x³ + 7x² + cx + d, where c and d are constants. What is the value of c?",
+  "choices": [
+   "6",
+   "74",
+   "−14",
+   "−10"
+  ],
+  "correct_answer": "−14",
+  "explanation": "The x² coefficient of (x − 4)(x + 6)(x + a) is −4 + 6 + a = 2 + a, so a = 5. The x coefficient is the sum of the pairwise products of the constants: (−4)(6) + (−4)(5) + (6)(5) = −24 − 20 + 30 = −14. “6” comes from a solver who finds a = 5 but drops the (−4)(5) cross product when collecting the x terms: −24 + 30 = 6. “74” comes from a solver who treats the root of x − 4 as +4 when forming the pairwise products: (4)(6) + (4)(5) + (6)(5) = 74. “−10” comes from a solver who takes a = 7 directly from the x² coefficient instead of solving −4 + 6 + a = 7: (−4)(6) + (−4)(7) + (6)(7) = −10.",
+  "solve": "var a=7-(-4+6); var c=(-4)*6+(-4)*a+6*a; return String(c).replace('-','−');",
+  "distractor_solve": {
+   "6": "var a=5; return String((-4)*6+6*a).replace('-','−');",
+   "74": "var a=5; return String(4*6+4*a+6*a).replace('-','−');",
+   "−10": "var a=7; return String((-4)*6+(-4)*a+6*a).replace('-','−');"
+  }
+ },
+ {
+  "id": "SADVC-04",
+  "domain": "Advanced Math",
+  "subskill": "rational equation: factoring the quadratic denominator, clearing, and rejecting the extraneous root",
+  "difficulty": "medium",
+  "prompt": "What is the solution to the equation 2/(x + 6) + 2 = −20/(x² + 2x − 24) ?",
+  "choices": [
+   "−6",
+   "−7",
+   "−1",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "Since x² + 2x − 24 = (x + 6)(x − 4), multiply both sides by (x + 6)(x − 4): 2(x − 4) + 2(x + 6)(x − 4) = −20, so 2x² + 6x − 36 = 0, or (x + 6)(x − 3) = 0. The value x = −6 makes the original denominators zero, so it is extraneous. The solution is x = 3. “−6” comes from a solver who solves the cleared quadratic x² + 3x − 18 = 0 and reports the root that makes x + 6 zero, without checking the domain. “−7” comes from a solver who multiplies only the first fraction by the denominators, leaving the 2 alone: 2(x − 4) + 2 = −20, so x = −7. “−1” comes from a solver who multiplies the 2 by (x − 4) only instead of by (x + 6)(x − 4): 4(x − 4) = −20, so x = −1.",
+  "solve": "var roots=[]; for(var x=-40;x<=40;x++){ if(x===-6||x===4) continue; var l=2/(x+6)+2, r=-20/(x*x+2*x-24); if(Math.abs(l-r)<1e-9) roots.push(x);} if(roots.length!==1) return 'BAD'; return String(roots[0]).replace('-','−');",
+  "distractor_solve": {
+   "−6": "var d=Math.sqrt(9+72); var r=(-3-d)/2; return String(Math.round(r)).replace('-','−');",
+   "−7": "return String((-20-2)/2+4).replace('-','−');",
+   "−1": "return String(-20/4+4).replace('-','−');"
+  }
+ },
+ {
+  "id": "SADVC-05",
+  "domain": "Advanced Math",
+  "subskill": "inverse of a rational function: evaluating f⁻¹ at a value by solving f(x) = value",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (2x + 7)/(x − 4) for x ≠ 4. What is the value of f⁻¹(3)?",
+  "choices": [
+   "19",
+   "11",
+   "−13",
+   "−5"
+  ],
+  "correct_answer": "19",
+  "explanation": "f⁻¹(3) is the value of x with f(x) = 3. Solve (2x + 7)/(x − 4) = 3: 2x + 7 = 3x − 12, so x = 19. Check: f(19) = 45/15 = 3. “11” comes from a solver who distributes 3(x − 4) as 3x − 4: 3x − 4 = 2x + 7, so x = 11. “−13” comes from a solver who evaluates f(3) instead of solving f(x) = 3: (6 + 7)/(3 − 4) = −13. “−5” comes from a solver who sets up 3(x − 4) = 2x + 7 but distributes as 3x + 12: 3x + 12 = 2x + 7, so x = −5.",
+  "solve": "var x=(7+12)/(3-2); return String(x);",
+  "distractor_solve": {
+   "11": "return String(7+4);",
+   "−13": "return String((2*3+7)/(3-4)).replace('-','−');",
+   "−5": "return String(7-12).replace('-','−');"
+  }
+ }
+]

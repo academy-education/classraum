@@ -1,0 +1,75 @@
+{
+ "SALGC-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SALGC-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "Solution set x<=2 or x>=7; keyed D correct, no distractor also correct. B is the coherent complement (|9-2x|<=5). A and C use boundary -7, which no single error path produces alongside boundary 2: dividing -2x<=-14 by +2 gives x<=-7 but the same error on -2x>=-4 gives x>=-2, not 2. Distractor set is internally incoherent."
+ },
+ "SALGC-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SALGC-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADVC-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible"
+ },
+ "SADVC-02": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible"
+ },
+ "SADVC-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADVC-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong"
+ },
+ "SADVC-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADVC-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADVC-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADVC-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ }
+}
