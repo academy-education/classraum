@@ -1,0 +1,161 @@
+{
+ "SADV2-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "f=(x-1)(x-7)+5, f(4)=-4. Same vertex-value mechanism as 10, 18, 20."
+ },
+ "SADV2-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADV2-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "x=2,4 -> y=-3,1. Line-parabola system duplicated by 19; 165 is not a derivable error."
+ },
+ "SADV2-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV2-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "1200*2^(8/3)=7619.5; 8000 is the linear-interpolation trap."
+ },
+ "SADV2-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "15000-14739=261; 1800 is the simple-percent trap; 2340 and 360 not derivable."
+ },
+ "SADV2-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADV2-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "a=11,b=-24; third zero -12 (Vieta: sum=-11, product=24). -11 is the sum-of-zeros trap."
+ },
+ "SADV2-09": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADV2-10": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "3(x-2)^2-7, h+k=-5. Vertex mechanism shared with 01/18/20."
+ },
+ "SADV2-11": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV2-12": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV2-13": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADV2-14": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "f(x)=3x+1, f^-1(25)=8; 76=f(25). Inverse-of-linear mechanism duplicated by 23."
+ },
+ "SADV2-15": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "u=2+k, u^2-5u-14=0, u=7 -> k=5 (u=-2 gives k=-4, rejected by k>0)."
+ },
+ "SADV2-16": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "SADV2-17": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "SADV2-18": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "h(3.5)=100. Ball-height vertex duplicated by 20."
+ },
+ "SADV2-19": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=3; 3x^2-14x+8=0 -> x=2/3. 14/3 is sum-of-roots trap. Duplicates 03's mechanism."
+ },
+ "SADV2-20": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "h(4)=83; 80 drops the +3. Duplicates 18."
+ },
+ "SADV2-21": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "3x^2-x-10=0 -> x=2 (excluded), x=-5/3. Excluded root is not offered, so the domain check is never actually tested."
+ },
+ "SADV2-22": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x=3 -> 21; 45 is the f(5)=5^2+20 trap."
+ },
+ "SADV2-23": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "f=g^-1, 4x-1=11 -> 3; 43=g(11). Duplicates 14."
+ },
+ "SADV2-24": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2x-1=27^(2/3)=9 -> x=5; 2 is the cube-root-only trap."
+ }
+}

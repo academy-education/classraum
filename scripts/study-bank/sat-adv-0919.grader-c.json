@@ -1,0 +1,170 @@
+{
+ "SADV2-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "f(x)-5=(x-1)(x-7), f(4)=-4. survivors=4 (min<=5 rejects nothing). Distractors 1, 2, -20 have no derivation I can reconstruct. Third vertex-value item with 18 and 20."
+ },
+ "SADV2-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: condition 'meets an upward parabola twice' is monotone in b (b>9), so exactly-one-correct forces the LARGEST option; 10 is the max of {0,10,7,-12}. Direction tell, no algebra. DROP or add two options above 9 with one wrong sign of discriminant."
+ },
+ "SADV2-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x=2,4 -> y=-3,1 -> -3. Vieta bypass: (2x1-7)(2x2-7)=4*8-14*6+49=-3 without finding x. survivors=4. 8=product of x's, -2=sum of y's; 165 unreconstructable. Line-parabola mechanism shared with 02 and 19."
+ },
+ "SADV2-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: P(2) < geometric mean of P(1),P(4) = sqrt(972)=31.2 rejects 54 (which is P(3), a form tell). 162/6=27=3^3 is one-glance recall."
+ },
+ "SADV2-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: 4800 at 12h, 9600 at 18h; convexity puts the 16h value BELOW the chord, chord=8000, so 8000 is rejected ON the bound. 1200*2^(8/3)=7620."
+ },
+ "SADV2-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: E's annual loss starts at 3600 and shrinks, L's is 3000, so the gap is strictly below 3*(600)=1800 -> rejects 1800 ON the bound and 2340 above it; {360,261} remain. Losses 3600+3060+2601=9261 vs 9000 -> 261. The one exponential-percent recipe in the batch."
+ },
+ "SADV2-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "-2-4+3=-3. survivors=4. No bound applies."
+ },
+ "SADV2-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Recall bypass: the x-coefficient alone gives pairwise-sum -14 = (2)(-1)+2r-r -> r=-12; a and b never needed. -11 = -a is the sum-of-roots trap and is well placed. survivors=4."
+ },
+ "SADV2-09": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1 by form: 7/8 is the derivational hub of the set - 7/4 keeps its numerator, 1/8 keeps its denominator, 0 is the outlier. The option sharing a component with two others is the key with no work. (x+3)/(x+4) at 4 = 7/8. DROP or rebuild options."
+ },
+ "SADV2-10": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "3(x-2)^2-7 -> 2-7=-5. survivors=4. -9 = (-2)+(-7) sign-of-h trap; 3, -39 fine."
+ },
+ "SADV2-11": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "|x-2|=5 -> width 2*15/3=10. survivors=4. 7 is one endpoint, 12/24 doubles."
+ },
+ "SADV2-12": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "f is constant 6 for x<=-2 and -6 for x>=4; -5 and 6 sit in those regions so the answer is the maximum possible 12. Key sits ON the |f|<=6 bound as the largest option. survivors=4 strictly, but anyone who knows the difference-of-distances range picks the max with no evaluation."
+ },
+ "SADV2-13": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2k/3-1=5 -> k=9. 15/2 is the forgot-the-divide trap. survivors=4."
+ },
+ "SADV2-14": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2: slope 3 from (5,16) reaches 25 three units later; 56 and 76 would map to outputs near 170 and 230, rejected by magnitude with no algebra. Only 6 competes. Duplicate mechanism with 23 (inverse of a linear function)."
+ },
+ "SADV2-15": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "u=2+k, u^2-5u-14=0 -> u=7 -> k=5. 7 (the u value) and 5/2 are good traps; 22 unreconstructable. survivors=4."
+ },
+ "SADV2-16": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2: perimeter >= 4*sqrt(84)=36.7 rejects 24 and 26; {38,58} remain. 7x12 -> 38. 58 has no clean derivation."
+ },
+ "SADV2-17": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: 8x in 12h means the doubling time is strictly under 12, rejects 12 ON the bound. 12/3=4 is one-step recall (8=2^3). 3 = the exponent, 9 = 12-3."
+ },
+ "SADV2-18": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Vertex t=3.5, -16(2.5)(-2.5)=100. Form tell: 96, 64, 84 are integer multiples of 16 (h at t=3,2,2.5); 100 is the only non-multiple and the only round number, so it is the isolated outlier. survivors=4 by bound, 1 by form. Third vertex-value item with 01 and 20."
+ },
+ "SADV2-19": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: a=3>0 (one subtraction from the given point), the line at x=2 is 11 > vertex 3, so the two intersections straddle the axis and the other root is < 2; rejects 2 ON the bound and 14/3. {2/3, -26/3} remain. 14/3 is the sum-of-roots trap. Vieta bypass: 3x^2-14x+8, other = 14/3-4."
+ },
+ "SADV2-20": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "H = 3 + 40^2/20 = 83. 80 = forgot +3, 78 = sign slip. survivors=4 (H>3 rejects nothing). 143 is the loose outlier. Vertex-value duplicate of 01/18 and the recipe of the classic SAT drone item."
+ },
+ "SADV2-21": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "3x^2-x-10=0 -> x=2 (excluded) or -5/3. survivors=4. The excluded root 2 is not offered, so the domain-rejection the label advertises never bites; the item is a plain rational equation. -13/3, -2, -5 all distinct sign-slip results."
+ },
+ "SADV2-22": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2x-1=5 -> x=3 -> 21. 45 is the plug-5-directly trap. survivors=4."
+ },
+ "SADV2-23": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "f = g^-1, 4x-1=11 -> 3. 43 = g(11) trap, 5/2 = wrong sign. survivors=4. Duplicate mechanism with 14."
+ },
+ "SADV2-24": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "27^(2/3)=9 -> 2x-1=9 -> x=5. 2 (cube-root only), 41 (squared only), 19/2 (halved). survivors=4."
+ }
+}

@@ -1,0 +1,170 @@
+[
+ {
+  "id": "SADV2-01",
+  "domain": "Advanced Math",
+  "subskill": "quadratic: axis of symmetry from two equal outputs, then the minimum value",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = x² + bx + c, where b and c are constants. If f(1) = f(7) = 5, what is the minimum value of f(x)?",
+  "choices": [
+   "1",
+   "−20",
+   "−4",
+   "2"
+  ],
+  "correct_answer": "−4",
+  "explanation": "Since f(1) = f(7), the axis of symmetry is x = (1 + 7)/2 = 4, so −b/2 = 4 and b = −8. Then f(1) = 1 − 8 + c = 5 gives c = 12, and the minimum is f(4) = 16 − 32 + 12 = −4, which is \"−4\". \"1\" comes from a solver who takes the axis as (7 − 1)/2 = 3, so b = −6, c = 10 and f(3) = 1. \"−20\" comes from a solver who uses c − b²/(2a) instead of c − b²/(4a): 12 − 64/2. \"2\" comes from a solver who drops from f(1) = 5 by the horizontal distance 3 to the axis instead of by its square: 5 − 3.",
+  "solve": "var h=(1+7)/2; var b=-2*h; var c=5-1-b; return String(h*h+b*h+c);",
+  "distractor_solve": {
+   "1": "var h=(7-1)/2; var b=-2*h; var c=5-1-b; return String(h*h+b*h+c);",
+   "2": "return String(5-3);",
+   "−20": "var b=-8, c=12; return String(c-b*b/2);"
+  }
+ },
+ {
+  "id": "SADV2-05",
+  "domain": "Advanced Math",
+  "subskill": "exponential growth over a fractional number of doubling periods",
+  "difficulty": "medium",
+  "prompt": "The number of bacteria in a culture doubles every 6 hours. There are 1200 bacteria in the culture now. Which of the following is closest to the number of bacteria in the culture 16 hours from now?",
+  "choices": [
+   "8000",
+   "7620",
+   "6400",
+   "7360"
+  ],
+  "correct_answer": "7620",
+  "explanation": "In 16 hours there are 16/6 = 8/3 doubling periods, so the count is 1200 · 2^(8/3) ≈ 1200 · 6.35 ≈ 7620, which is \"7620\". \"8000\" comes from a solver who applies two full doublings and then adds two-thirds of the next doubling linearly: 4800 · (1 + 2/3). \"6400\" comes from a solver who multiplies the factor 2 by 8/3 instead of raising it: 1200 · 2 · 8/3. \"7360\" comes from a solver who rounds the hourly factor 2^(1/6) ≈ 1.1225 to 1.12 before raising it to the 16th power.",
+  "solve": "var v=1200*Math.pow(2,16/6); return String(Math.round(v/10)*10);",
+  "distractor_solve": {
+   "6400": "return String(1200*2*(16/6));",
+   "7360": "var v=1200*Math.pow(1.12,16); return String(Math.round(v/10)*10);",
+   "8000": "return String(1200*4*(1+2/3));"
+  }
+ },
+ {
+  "id": "SADV2-07",
+  "domain": "Advanced Math",
+  "subskill": "coefficient of a single power in a product of two trinomials",
+  "difficulty": "medium",
+  "prompt": "In the expansion of (2x² − x + 3)(x² + 4x − 1), what is the coefficient of x²?",
+  "choices": [
+   "−3",
+   "5",
+   "−6",
+   "7"
+  ],
+  "correct_answer": "−3",
+  "explanation": "The x² terms come from 2x² · (−1), (−x) · 4x, and 3 · x², so the coefficient is −2 − 4 + 3 = −3, which is \"−3\". \"5\" comes from a solver who takes (−x)(4x) as +4x²: −2 + 4 + 3. \"−6\" comes from a solver who omits the product 3 · x²: −2 − 4. \"7\" comes from a solver who reports the coefficient of x³ instead: 2 · 4 + (−1) · 1.",
+  "solve": "var p=[2,-1,3], q=[1,4,-1]; var c=0; for(var i=0;i<3;i++)for(var j=0;j<3;j++){ if((2-i)+(2-j)===2) c+=p[i]*q[j]; } return String(c);",
+  "distractor_solve": {
+   "5": "return String(2*(-1) + 1*4 + 3*1);",
+   "7": "var p=[2,-1,3], q=[1,4,-1]; var c=0; for(var i=0;i<3;i++)for(var j=0;j<3;j++){ if((2-i)+(2-j)===3) c+=p[i]*q[j]; } return String(c);",
+   "−6": "return String(2*(-1) + (-1)*4);"
+  }
+ },
+ {
+  "id": "SADV2-10",
+  "domain": "Advanced Math",
+  "subskill": "vertex form by completing the square with a leading coefficient: reading h + k",
+  "difficulty": "medium",
+  "prompt": "The expression 3x² − 12x + 5 can be written in the form a(x − h)² + k, where a, h, and k are constants. What is the value of h + k?",
+  "choices": [
+   "3",
+   "−9",
+   "−5",
+   "−39"
+  ],
+  "correct_answer": "−5",
+  "explanation": "3x² − 12x + 5 = 3(x² − 4x) + 5 = 3((x − 2)² − 4) + 5 = 3(x − 2)² − 7, so h = 2, k = −7 and h + k = −5, which is \"−5\". \"3\" comes from a solver who subtracts 4 rather than 3 · 4 when completing the square, getting k = 1: 2 + 1. \"−9\" comes from a solver who reads h as −2 from (x − 2)²: −2 − 7. \"−39\" comes from a solver who uses h = 4 without halving the coefficient and then k = 5 − 3 · 16 = −43: 4 − 43.",
+  "solve": "var a=3,b=-12,c=5; var h=-b/(2*a); var k=a*h*h+b*h+c; return String(h+k);",
+  "distractor_solve": {
+   "3": "var h=2; var k=5-4; return String(h+k);",
+   "−9": "var h=-2; var k=-7; return String(h+k);",
+   "−39": "var h=4; var k=5-3*16; return String(h+k);"
+  }
+ },
+ {
+  "id": "SADV2-13",
+  "domain": "Advanced Math",
+  "subskill": "rational exponents: solving for an exponent after rewriting a cube root and a quotient",
+  "difficulty": "medium",
+  "prompt": "For x > 1, (∛(x²))ᵏ / x = x⁵, where k is a constant. What is the value of k?",
+  "choices": [
+   "9",
+   "15/2",
+   "4",
+   "8"
+  ],
+  "correct_answer": "9",
+  "explanation": "∛(x²) = x^(2/3), so the left side is x^(2k/3 − 1). Then 2k/3 − 1 = 5, so 2k/3 = 6 and k = 9, which is \"9\". \"15/2\" comes from a solver who ignores the division by x, solving 2k/3 = 5. \"4\" comes from a solver who reads ∛(x²) as x^(3/2), solving 3k/2 − 1 = 5. \"8\" comes from a solver who multiplies through by 3 but forgets to multiply the 1, solving 2k − 1 = 15.",
+  "solve": "var k=(5+1)*3/2; if(Math.abs(Math.pow(Math.pow(Math.cbrt(4),k)/2,1)-Math.pow(2,5))>1e-9) return 'ERR'; return String(k);",
+  "distractor_solve": {
+   "4": "return String((5+1)*2/3);",
+   "8": "return String((15+1)/2);",
+   "15/2": "var k=5*3/2; return k===7.5?'15/2':String(k);"
+  }
+ },
+ {
+  "id": "SADV2-22",
+  "domain": "Advanced Math",
+  "subskill": "function notation: evaluating when the rule is given for a transformed input",
+  "difficulty": "medium",
+  "prompt": "The function f satisfies f(2x − 1) = x² + 4x for all values of x. What is the value of f(5)?",
+  "choices": [
+   "45",
+   "21",
+   "12",
+   "13"
+  ],
+  "correct_answer": "21",
+  "explanation": "f(5) requires 2x − 1 = 5, so x = 3, and f(5) = 3² + 4(3) = 21, which is \"21\". \"45\" comes from a solver who substitutes 5 directly into x² + 4x. \"12\" comes from a solver who solves 2x + 1 = 5 to get x = 2: 4 + 8. \"13\" comes from a solver who uses x = 3 but evaluates 4x as 4: 9 + 4.",
+  "solve": "var x=(5+1)/2; return String(x*x+4*x);",
+  "distractor_solve": {
+   "12": "var x=(5-1)/2; return String(x*x+4*x);",
+   "13": "var x=3; return String(x*x+4);",
+   "45": "var x=5; return String(x*x+4*x);"
+  }
+ },
+ {
+  "id": "SADV2-23",
+  "domain": "Advanced Math",
+  "subskill": "inverse functions: using f(g(x)) = x to evaluate f at a value in the range of g",
+  "difficulty": "medium",
+  "prompt": "The functions f and g satisfy f(g(x)) = x for all values of x. If g(x) = 4x − 1, what is the value of f(11)?",
+  "choices": [
+   "43",
+   "48",
+   "5/2",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "Since f undoes g, f(11) is the value of x for which g(x) = 11: 4x − 1 = 11 gives x = 3, which is \"3\". \"43\" comes from a solver who applies g to 11 instead of undoing it: 4(11) − 1. \"48\" comes from a solver who adds 1 and then multiplies by 4: 4(11 + 1). \"5/2\" comes from a solver who subtracts 1 before dividing by 4: (11 − 1)/4.",
+  "solve": "var x=(11+1)/4; if(4*x-1!==11) return 'ERR'; return String(x);",
+  "distractor_solve": {
+   "43": "return String(4*11-1);",
+   "48": "return String(4*(11+1));",
+   "5/2": "var v=(11-1)/4; return v===2.5?'5/2':String(v);"
+  }
+ },
+ {
+  "id": "SADV2-24",
+  "domain": "Advanced Math",
+  "subskill": "equation with a rational exponent: undoing the 3/2 power before solving the linear part",
+  "difficulty": "medium",
+  "prompt": "If (2x − 1)^(3/2) = 27, what is the value of x?",
+  "choices": [
+   "5",
+   "2",
+   "19/2",
+   "41"
+  ],
+  "correct_answer": "5",
+  "explanation": "Raising both sides to the 2/3 power gives 2x − 1 = 27^(2/3) = (∛27)² = 9, so 2x = 10 and x = 5, which is \"5\". \"2\" comes from a solver who takes only the cube root, using 2x − 1 = 3. \"19/2\" comes from a solver who multiplies 27 by 2/3 instead of raising it to that power, using 2x − 1 = 18. \"41\" comes from a solver who divides 27 by 3 instead of taking its cube root and then squares, using 2x − 1 = 81.",
+  "solve": "var v=Math.pow(Math.cbrt(27),2); var x=(v+1)/2; if(Math.abs(Math.pow(2*x-1,1.5)-27)>1e-9) return 'ERR'; return String(x);",
+  "distractor_solve": {
+   "2": "var v=Math.cbrt(27); return String((v+1)/2);",
+   "41": "var v=Math.pow(27/3,2); return String((v+1)/2);",
+   "19/2": "var v=27*2/3; var x=(v+1)/2; return x===9.5?'19/2':String(x);"
+  }
+ }
+]

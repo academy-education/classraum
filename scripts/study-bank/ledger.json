@@ -3426,6 +3426,62 @@
      "verdict": "Authored keys 5 per slot, no cycle. \"Greatest\" + key-is-largest on both LP items is the one cross-item tell; one of the pair dropped."
     }
    }
+  },
+  {
+   "id": "act-ies-alg-0919-kept-2026-09-19",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-ies-alg-0919",
+   "contentSha": "d9294e626a022b784951bb63c8288213beb4177333af365112d4a4cb4911a585",
+   "note": "10 kept of 18 ({\"Integrating Essential Skills\":6,\"Algebra\":4}). The author stalled three times at the API and wrote the file before the third stall; gated from a pinned snapshot, source hash verified at insert. Drops: AIES2-02 - N=1: pipe 1 alone does half the tank in 2 h, so pipe 2 needs under 10 h; 10 sits ON the bound and 12/18 above it; AIES2-04 - N=1: 25.5 is not a headcount; the equal-weights midpoint brackets the target, and 42/51 would drag the mean to ~3.5; AALG2-04 - N=1: the second equation alone brackets p+e in (5.25, 6.56); three options outside it, and the key is the only whole-dollar option; AALG2-08 - N=1: the ratio forces both numerator and denominator negative so x < -2; three options in (-2, 7); key the isolated outlier. (Its sandbox distractor mismatch was a mislabelled error-path string per grader B, not a bad option.); AALG2-01 - unanimous options-only with the 150 hub named 3/3, and 60 sits ON the break-even bound (N=2); AALG2-05 - canonical: x + 1/x = 5 -> 23 is the prep-book instance with the prep-book numbers (grader B and the hunter independently); AIES2-08 - canonical 41F = 5C / 68F = 20C pair with 20 offered as a distractor; the 5/9 factor caps the change under 27 and kills two on sight (N=2); AIES2-07 - N=2 by physical plausibility: 0.13 and 82.1 die on sight as metal densities; the remaining pair is 7.8 (iron, recall) vs one - the \"wrong kind of number\" class that dropped AIES-04 yesterday. Duplicate AIES2-01/04 resolved by 04's drop. Zero hard items by all three graders.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 18/18 (my run); distractor_solve 54/54 with ONE mismatch on AALG2-08 (verify exited 1 on it, as fixed) - grader B traced it to a mislabelled error-path string; the item drops on a bound regardless."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha 946036bfdd6bbc10): 18/18 x3; exclusive:false 0/0/0; hard 0/0/0. Hunter survivor table: N=1 on AIES2-02, AIES2-04, AALG2-04, AALG2-08; N=2 on AIES2-07, AIES2-08, AALG2-01, AALG2-03; canonical AALG2-05, AIES2-08, AIES2-05 (shape), AIES2-07 (7.8 = iron); duplicate AIES2-01/04. Only AIES2-09, AALG2-06, AALG2-07 have four honest survivors with nothing else against them."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 54 forced picks, keys A5 B5 C4 D4 for a 27.8% control: 11/54 = 20.4% (-7.4); mechanism 22.7%, guess 18.8% - rule disarmed. Unanimous 3 of 18 vs 0.39: AALG2-01 (3/3 named, dropped), AIES2-07 (2/3, dropped on physical bound), AIES2-09 (0/3, kept). The pre-registered hub set scored 1/5. Residual on kept 10: 5/30 = 16.7% vs 50.0% (-33.3)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys CADADBCACCCABDBDDA - dealt across slots. The IES half repeated yesterday's pattern: limiting-case and physically-dead distractors sitting on or beyond a stem-readable bound."
+    }
+   }
+  },
+  {
+   "id": "sat-adv-0919-kept-2026-09-19",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-adv-0919",
+   "contentSha": "3154dd6f9781c88d2e880c841a17367ec7586a1ba5f1689f6b6858ac9bd07dc0",
+   "note": "8 kept of 24. The author stalled mid-write at the API and left a complete file; gated from a pinned snapshot, hash verified at insert. THE ATTACK ARMED THE UNANIMITY RULE - pooled 43.1% vs 25.0%, mechanism 55.2% vs guess 34.9% - and six items came back unanimous against 0.38 expected; five carried named hubs and dropped. Routed-rule drops: SADV2-04, SADV2-11, SADV2-12, SADV2-14, SADV2-16, SADV2-17, SADV2-18. Rule drops: SADV2-04 - unanimous under an ARMED rule (mechanism 55.2% vs guess 34.9%), hub 18 named 3/3 (9x2, 54/3, 12+6); SADV2-08 - unanimous under the armed rule, run-middle named 2/3; also a Vieta bypass (the x-coefficient alone gives the third zero); SADV2-09 - unanimous, hub 7/8 named 3/3; hunter N=1 by form (7/4 keeps its numerator, 1/8 its denominator, 0 the outlier); SADV2-15 - unanimous under the armed rule, hub 5 named 2/3; SADV2-21 - unanimous under the armed rule, r/3r pair named 2/3; and its advertised extraneous root x=2 is not among the options, so the domain step never bites; SADV2-02 - hunter N=1: \"meets an upward parabola twice\" is monotone in b, so exactly-one-correct forces the largest option, no algebra; SADV2-06 - hunter N=2 with 1800 ON the shrinking-loss cap; the whole distractor set is on the wrong side of a one-line inequality; SADV2-14 - hunter N=2 by magnitude; duplicate of SADV2-23 (inverse of a linear function - the same item); SADV2-16 - hunter N=2 by AM-GM perimeter floor; module-1 difficulty with unreconstructable distractors (grader B); SADV2-19 - hunter N=2 by roots straddling the axis, 2 ON the bound; the remaining distractor has no clean derivation; SADV2-18 - hunter form tell: 96/64/84 are multiples of 16 and 100 is the only non-multiple and only round value; third of the vertex-value triple 01/18/20; SADV2-03 - duplicate of SADV2-19 and SADV2-02 (three line-parabola systems); grader A: keep 19, drop 03 - 19 then dropped on its own bound; SADV2-20 - third vertex-value item (with 01, 18) and a reskin of yesterday's vertex evaluation (grader B). Grader B also counted six reskins of yesterday's Advanced items (repeated % decrease, hole-vs-asymptote, vertex form, same-base exponential, line/parabola, vertex evaluation) - recorded, not acted on: in-batch duplicates drop, cross-batch reskins are noted.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 24/24 (my run); distractor_solve 72/72; all-numeric option sets, no expressions or radicals anywhere (solver C)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha 060a607b87fa1c4e): 24/24 x3; exclusive:false 0/0/0. Difficulty easy 6/7/10, hard 0/3/2. Hunter: N=1 on 02 and 09; N=2 on 06, 14, 16, 19; form outliers 18, 12 (key the theoretical maximum and largest option); recall bypasses on 08, 03, 19, 04, 17, 24; duplicate triples 01/18/20 and 02/03/19, pair 14/23; 21's excluded root never offered."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 72 forced picks, keys 6/6/6/6, control 25.0%: 31/72 = 43.1% (+18.1). Mechanism 16/29 = 55.2%, guess 15/43 = 34.9%, +20.3 - ARMED. Unanimous 6 of 24 vs 0.38: 04, 08, 09, 15, 21 dropped (named); 07 (0/3 named) kept. Residual on kept 8: 9/24 = 37.5% vs 37.5% (0.0)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys CADBBDACDCABADCBDABCCBDA - dealt across slots. The batch-level defect is derivational hubs: every distractor built as one operation on the key, on at least five items, which is exactly the SAT Math hub defect the register's MATH-HUB-RESULT recorded and repaired in August."
+    }
+   }
   }
  ],
  "auditedCohorts": [

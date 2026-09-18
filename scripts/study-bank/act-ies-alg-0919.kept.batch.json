@@ -1,0 +1,212 @@
+[
+ {
+  "id": "AIES2-01",
+  "domain": "Integrating Essential Skills",
+  "subskill": "combining two solutions of different strengths to hit a target strength: the solute balance must use the GROWN total",
+  "difficulty": "medium",
+  "prompt": "A chemist has 12 liters of a solution that is 60 percent acid. How many liters of a solution that is 30 percent acid must be added so that the resulting mixture is 40 percent acid?",
+  "choices": [
+   "6",
+   "18",
+   "24",
+   "36"
+  ],
+  "correct_answer": "24",
+  "explanation": "Let x be the liters added. Acid before equals acid after: 0.60(12) + 0.30x = 0.40(12 + x), so 7.2 + 0.3x = 4.8 + 0.4x and x = 24. \"36\" comes from a solver who sets up the mixing ratio with the full spread between the two solutions instead of the distance to the target, x = 12(60 - 30)/(40 - 30). \"18\" uses the other gap in the same way, x = 12(60 - 30)/(60 - 40). \"6\" inverts the correct mixing ratio, x = 12(40 - 30)/(60 - 40), so the 30 percent solution is treated as the one that is nearer the target.",
+  "solve": "return String((60*12 - 40*12)/(40 - 30));",
+  "distractor_solve": {
+   "6": "return String(12*(40-30)/(60-40));",
+   "18": "return String(12*(60-30)/(60-40));",
+   "36": "return String(12*(60-30)/(40-30));"
+  }
+ },
+ {
+  "id": "AIES2-03",
+  "domain": "Integrating Essential Skills",
+  "subskill": "actual area from a map scale: the scale factor applies to EACH dimension, so area scales by its square",
+  "difficulty": "medium",
+  "prompt": "On a map, 1 centimeter represents 2.5 kilometers. A rectangular park measures 4 centimeters by 6 centimeters on the map. What is the actual area of the park, in square kilometers?",
+  "choices": [
+   "24",
+   "50",
+   "60",
+   "150"
+  ],
+  "correct_answer": "150",
+  "explanation": "The actual dimensions are 4(2.5) = 10 kilometers and 6(2.5) = 15 kilometers, so the area is 10(15) = 150 square kilometers. \"60\" comes from a solver who finds the map area 4(6) = 24 and multiplies by the scale factor only once. \"24\" is the map area with no scaling at all. \"50\" is the actual perimeter, 2(10 + 15), reported in place of the area.",
+  "solve": "return String((4*2.5) * (6*2.5));",
+  "distractor_solve": {
+   "24": "return String(4*6);",
+   "50": "return String(2*(4*2.5 + 6*2.5));",
+   "60": "return String(4*6*2.5);"
+  }
+ },
+ {
+  "id": "AIES2-05",
+  "domain": "Integrating Essential Skills",
+  "subskill": "number of largest possible square tiles covering a rectangle exactly: the side is the greatest common factor and the count is the product of the two quotients",
+  "difficulty": "medium",
+  "prompt": "A rectangular floor measures 84 inches by 60 inches. It is to be covered completely with identical square tiles, with no gaps and no tile cut. If the tiles are as large as possible, how many tiles are needed?",
+  "choices": [
+   "7",
+   "12",
+   "24",
+   "35"
+  ],
+  "correct_answer": "35",
+  "explanation": "The largest square tile that fits both dimensions exactly has side equal to the greatest common factor of 84 and 60, which is 12 inches. The floor then holds 84/12 = 7 tiles along one side and 60/12 = 5 along the other, for 7(5) = 35 tiles. \"12\" is the side length of the tile reported as the count. \"7\" counts the tiles along the 84-inch side only. \"24\" divides the perimeter of the floor, 2(84 + 60) = 288, by the tile side, as if tiles were needed only around the edge.",
+  "solve": "function g(a,b){return b?g(b,a%b):a;} var s = g(84,60); return String((84/s)*(60/s));",
+  "distractor_solve": {
+   "7": "function g(a,b){return b?g(b,a%b):a;} return String(84/g(84,60));",
+   "12": "function g(a,b){return b?g(b,a%b):a;} return String(g(84,60));",
+   "24": "function g(a,b){return b?g(b,a%b):a;} return String(2*(84+60)/g(84,60));"
+  }
+ },
+ {
+  "id": "AIES2-06",
+  "domain": "Integrating Essential Skills",
+  "subskill": "probability that two draws without replacement match in color: two disjoint cases, each a product of dependent probabilities",
+  "difficulty": "medium",
+  "prompt": "A bag contains 5 red marbles and 3 blue marbles. Two marbles are drawn at random, one after the other, without replacement. What is the probability that the two marbles are the same color?",
+  "choices": [
+   "5/14",
+   "13/28",
+   "17/32",
+   "41/56"
+  ],
+  "correct_answer": "13/28",
+  "explanation": "P(both red) = (5/8)(4/7) = 20/56 and P(both blue) = (3/8)(2/7) = 6/56, so P(same color) = 26/56 = 13/28. \"17/32\" comes from a solver who treats the draws as independent, (5/8)^2 + (3/8)^2 = 34/64. \"5/14\" is the probability that both marbles are red, with the both-blue case omitted. \"41/56\" comes from a solver who computes 1 - P(different colors) but counts only one order of a red and a blue, (5/8)(3/7) = 15/56, instead of both orders.",
+  "solve": "function g(a,b){return b?g(b,a%b):a;} var n = 5*4 + 3*2, d = 8*7, k = g(n,d); return n/k + '/' + d/k;",
+  "distractor_solve": {
+   "5/14": "function g(a,b){return b?g(b,a%b):a;} var n = 5*4, d = 8*7, k = g(n,d); return n/k + '/' + d/k;",
+   "17/32": "function g(a,b){return b?g(b,a%b):a;} var n = 5*5 + 3*3, d = 8*8, k = g(n,d); return n/k + '/' + d/k;",
+   "41/56": "function g(a,b){return b?g(b,a%b):a;} var n = 8*7 - 5*3, d = 8*7, k = g(n,d); return n/k + '/' + d/k;"
+  }
+ },
+ {
+  "id": "AIES2-09",
+  "domain": "Integrating Essential Skills",
+  "subskill": "flour left over after the greatest whole number of batches: the remainder is a quantity of flour, not the fractional part of the quotient",
+  "difficulty": "medium",
+  "prompt": "A recipe uses 5/6 cup of flour for each batch of muffins. A baker has 4 cups of flour and makes as many whole batches as the flour allows. How many cups of flour are left over?",
+  "choices": [
+   "1/5",
+   "1/3",
+   "2/3",
+   "4/5"
+  ],
+  "correct_answer": "2/3",
+  "explanation": "4 divided by 5/6 is 24/5 = 4 4/5, so the baker makes 4 whole batches, using 4(5/6) = 20/6 = 10/3 cups. The flour left is 4 - 10/3 = 2/3 cup. \"4/5\" is the fractional part of the quotient 4 4/5, which is a fraction of a batch, reported as cups of flour. \"1/5\" is the fraction of a batch that would be needed to reach a fifth batch, reported as cups. \"1/3\" comes from a solver who miswrites 20/6 as 3 2/3 and subtracts that from 4.",
+  "solve": "var b = Math.floor(4 / (5/6)); var n = 4*6 - b*5, d = 6; function g(a,c){return c?g(c,a%c):a;} var k = g(n,d); return n/k + '/' + d/k;",
+  "distractor_solve": {
+   "1/5": "var q = 4*6/5; var w = Math.floor(q); var n = 5*(w+1) - 4*6, d = 5; return n + '/' + d;",
+   "1/3": "var n = 4*3 - 11, d = 3; return n + '/' + d;",
+   "4/5": "var n = 4*6 - Math.floor(4*6/5)*5, d = 5; return n + '/' + d;"
+  }
+ },
+ {
+  "id": "AIES2-10",
+  "domain": "Integrating Essential Skills",
+  "subskill": "fuel at the start of a trip from a per-100-km consumption rate, the distance driven and the fuel remaining",
+  "difficulty": "easy",
+  "prompt": "A car uses 7.5 liters of fuel for every 100 kilometers driven. After the car is driven 260 kilometers, 18.7 liters of fuel remain in the tank. How many liters of fuel were in the tank at the start of the trip?",
+  "choices": [
+   "19.5",
+   "33.7",
+   "38.2",
+   "53.4"
+  ],
+  "correct_answer": "38.2",
+  "explanation": "The fuel used is (260/100)(7.5) = 19.5 liters, so the tank started with 19.5 + 18.7 = 38.2 liters. \"19.5\" is the fuel used, reported without adding the fuel that remains. \"33.7\" comes from a solver who counts only the 2 complete 100-kilometer blocks, 2(7.5) + 18.7. \"53.4\" divides the distance by the rate, 260/7.5, and adds the remaining fuel.",
+  "solve": "return ((260/100)*7.5 + 18.7).toFixed(1);",
+  "distractor_solve": {
+   "19.5": "return ((260/100)*7.5).toFixed(1);",
+   "33.7": "return (Math.floor(260/100)*7.5 + 18.7).toFixed(1);",
+   "53.4": "return (260/7.5 + 18.7).toFixed(1);"
+  }
+ },
+ {
+  "id": "AALG2-02",
+  "domain": "Algebra",
+  "subskill": "a later term of an arithmetic sequence from two non-adjacent given terms: the common difference comes from the gap in POSITIONS",
+  "difficulty": "medium",
+  "prompt": "In an arithmetic sequence, the 3rd term is 11 and the 8th term is 31. What is the 20th term of the sequence?",
+  "choices": [
+   "79",
+   "91",
+   "96",
+   "111"
+  ],
+  "correct_answer": "79",
+  "explanation": "From the 3rd term to the 8th term is 5 steps, so the common difference is (31 - 11)/5 = 4. The 20th term is 17 steps past the 3rd term: 11 + 17(4) = 79. \"91\" comes from a solver who adds 20 differences to the 3rd term, 11 + 20(4). \"111\" adds 20 differences to the 8th term, 31 + 20(4). \"96\" comes from a solver who counts 4 steps between the 3rd and 8th terms, getting a difference of 5, so the 1st term is 1 and the 20th is 1 + 19(5).",
+  "solve": "var d = (31 - 11)/(8 - 3); return String(11 + (20 - 3)*d);",
+  "distractor_solve": {
+   "91": "var d = (31 - 11)/(8 - 3); return String(11 + 20*d);",
+   "96": "var d = (31 - 11)/(8 - 3 - 1); var a1 = 11 - 2*d; return String(a1 + 19*d);",
+   "111": "var d = (31 - 11)/(8 - 3); return String(31 + 20*d);"
+  }
+ },
+ {
+  "id": "AALG2-03",
+  "domain": "Algebra",
+  "subskill": "inverse variation with the SQUARE of the input: the constant is y times x squared, and the new x is squared again when evaluating",
+  "difficulty": "medium",
+  "prompt": "The quantity y varies inversely as the square of x. When x = 3, y = 10. What is the value of y when x = 5?",
+  "choices": [
+   "1.2",
+   "3.6",
+   "6",
+   "18"
+  ],
+  "correct_answer": "3.6",
+  "explanation": "Since y = k/x^2, k = 10(3^2) = 90, and when x = 5, y = 90/25 = 3.6. \"6\" comes from a solver who treats the variation as plain inverse variation, k = xy = 30 and y = 30/5. \"18\" finds k = 90 correctly but then divides by 5 instead of 5^2. \"1.2\" takes k = xy = 30 and then divides by 5^2.",
+  "solve": "return String((10*3*3)/(5*5));",
+  "distractor_solve": {
+   "6": "return String((10*3)/5);",
+   "18": "return String((10*3*3)/5);",
+   "1.2": "return String((10*3)/(5*5));"
+  }
+ },
+ {
+  "id": "AALG2-06",
+  "domain": "Algebra",
+  "subskill": "a linear equation with two fractional binomials: clearing denominators and distributing a NEGATIVE multiplier across the second binomial",
+  "difficulty": "easy",
+  "prompt": "What is the solution of the equation (x - 2)/3 - (x + 1)/4 = 1?",
+  "choices": [
+   "-22",
+   "12",
+   "17",
+   "23"
+  ],
+  "correct_answer": "23",
+  "explanation": "Multiplying by 12 gives 4(x - 2) - 3(x + 1) = 12, so 4x - 8 - 3x - 3 = 12, x - 11 = 12, and x = 23. \"17\" comes from a solver who distributes the -3 only to the x, writing -3x + 3 instead of -3x - 3. \"12\" clears the denominators on the left but leaves the right side as 1, x - 11 = 1. \"-22\" swaps the multipliers, 3(x - 2) - 4(x + 1) = 12, giving -x - 10 = 12.",
+  "solve": "return String(12 + 8 + 3);",
+  "distractor_solve": {
+   "12": "return String(1 + 8 + 3);",
+   "17": "return String(12 + 8 - 3);",
+   "-22": "return String(-(12 + 6 + 4));"
+  }
+ },
+ {
+  "id": "AALG2-07",
+  "domain": "Algebra",
+  "subskill": "a coefficient in a cubic from a stated NONZERO remainder on division by a linear factor, via the remainder theorem",
+  "difficulty": "medium",
+  "prompt": "When the polynomial x^3 - 4x^2 + kx - 6 is divided by x - 2, the remainder is 10. What is the value of k?",
+  "choices": [
+   "-20",
+   "-2",
+   "7",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "By the remainder theorem, the remainder is the value of the polynomial at x = 2: 8 - 16 + 2k - 6 = 10, so 2k - 14 = 10 and k = 12. \"7\" comes from a solver who sets the remainder to 0, as if x - 2 were a factor, 2k - 14 = 0. \"-20\" substitutes x = -2 instead of x = 2: -8 - 16 - 2k - 6 = 10. \"-2\" moves the 14 across with the wrong sign, 2k = 10 - 14.",
+  "solve": "return String((10 - (8 - 16 - 6))/2);",
+  "distractor_solve": {
+   "7": "return String((0 - (8 - 16 - 6))/2);",
+   "-20": "return String((10 - (-8 - 16 - 6))/(-2));",
+   "-2": "return String((10 + (8 - 16 - 6))/2);"
+  }
+ }
+]

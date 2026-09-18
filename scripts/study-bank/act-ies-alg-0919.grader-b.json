@@ -1,0 +1,119 @@
+{
+ "AIES2-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "7.2+0.3x=0.4(12+x) -> x=24. B=6 is ignore-added-acid; A=36 and D=18 have no clean single-error path (18=1.5x12, 36=3x12). Same balance mechanism as AIES2-04."
+ },
+ "AIES2-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong"
+ },
+ "AIES2-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "AIES2-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(126+2n)/(15+n)=5 -> n=17. A=51 is the un-divided numerator, C=25.5 is 51/2, B=42=126/3 is a stretch. Same (fixed total + rate*n)/(count+n)=target mechanism as AIES2-01."
+ },
+ "AIES2-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "gcd 12, 7x5=35. A=24 follows from no plausible error (7+5=12, not 24)."
+ },
+ "AIES2-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "5R/3B same-colour = 13/28 is a widely circulated stock configuration."
+ },
+ "AIES2-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "AIES2-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong"
+ },
+ "AIES2-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "4/(5/6)=4.8; 4 batches use 10/3, remainder 2/3. B=4/5 fractional part of quotient, C=1/5 its complement; A=1/3 has no clean path."
+ },
+ "AIES2-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "AALG2-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "AALG2-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong"
+ },
+ "AALG2-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong"
+ },
+ "AALG2-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Stock 'sum by subtraction' shape; distractors are p, e, 2p - all legitimate."
+ },
+ "AALG2-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "CANONICAL: x+1/x=5 -> x^2+1/x^2=23 is the textbook instance with the textbook numbers."
+ },
+ "AALG2-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong"
+ },
+ "AALG2-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "p(2)=2k-14=10 -> k=12. C=7 remainder-0 error, A=-20 evaluate at -2. D=-2 follows from no plausible error path I can construct."
+ },
+ "AALG2-08": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2(x-3)=5(x+2) -> 3x=-16 -> -16/3, checks (-25/3)/(-10/3)=5/2. Key right. A=19/3 from inverted cross-multiply 5(x-3)=2(x+2). D=-5/3 from distributing NEITHER constant (2x-3=5x+2). B=-4/3 from 2x-6=5x-2 (sign on 5*2). The -8/3 the sandbox derived is the distribute-only-the-2 path (2x-6=5x+2); it is a legal distractor but not the one shipped; the shipped -5/3 has its own legal path. Set is coherent; the sandbox's stated error path for D is mislabelled, not the option."
+ }
+}

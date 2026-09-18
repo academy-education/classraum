@@ -1,0 +1,128 @@
+{
+ "AIES2-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: target 40% is closer to 30% than to 60%, so added volume must exceed the 12 L present -> 6 dead. Alligation ratio 20:10 gives 24 in one step. Same weighted-average-solve-for-second-weight mechanism as AIES2-04."
+ },
+ "AIES2-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: pipe 1 alone fills half the tank in 2 h, so with pipe 2 helping more than half is done; remaining < half; pipe 2 alone needs < 10 h. 10 is ON the bound, 12 and 18 above it. Only 8 survives. DROP."
+ },
+ "AIES2-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: 24 restates the map area (4x6) and the actual area must exceed it. 60 (=24x2.5, forgot to square) and 50 survive. Canonical map-scale item."
+ },
+ "AIES2-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: 25.5 is not a headcount (dead by kind). Equal-weights midpoint: class 1 scores lie in 5..10, so 15 students of class 2 at 2 would put the combined mean between 3.5 and 6; target 5 is in that band, so n is near 15. 42 and 51 (3-3.4x the first class) would drag the mean to ~3.5. Only 17 survives. Frequency-table mean + weighted mean; duplicate mechanism with AIES2-01. DROP."
+ },
+ "AIES2-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 by bound. 12 restates the GCF (tile side) and 7 restates one quotient, but neither is excludable without the GCF. 84x60 -> 7:5 -> 35 is a textbook pair; a prepped student knows count = p*q for a:b = p:q."
+ },
+ "AIES2-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: draws from 8 then 7 force a denominator dividing 56; 17/32 is dead by kind. 5/14 (RR only) and 41/56 survive."
+ },
+ "AIES2-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2: a metal's density is >1 (0.13 dead) and no metal reaches 82 g/cm3 (osmium 22.6). 7.8 is also the real density of iron/steel, which a science-literate student recognises. Two physically impossible distractors. Fix rather than drop: replace 0.13 and 82.1 with 6.5-9 range values."
+ },
+ "AIES2-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2: a Celsius change is 5/9 of the Fahrenheit change, so must be < 27; 36 and 47 dead. 15 vs 20 remain, and 41F=5C / 68F=20C are canonical textbook conversions (20 is the final temperature). Fix: replace 36 and 47 with values under 27 (e.g. 12, 27)."
+ },
+ "AIES2-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "survivors=4: leftover must be < 5/6 and every option is. 4/5 is the fractional-part-of-quotient trap and sits just under the bound. Good item."
+ },
+ "AIES2-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: start = 18.7 + used, and used > 7.5 (more than 100 km), so start > 26.2; 19.5 (the fuel used, an intermediate) is dead. 33.7 and 53.4 survive without computing."
+ },
+ "AALG2-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: B must recover $15 at strictly less than $0.25/mile, so m > 60; 37.5 dead, 60 ON the bound dead. 150 and 180 survive. Canonical break-even structure."
+ },
+ "AALG2-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4: all options exceed 31 as an increasing sequence requires. 91/111 are the d=5 (gap-of-4 positions) errors. Key is the smallest option but not isolated."
+ },
+ "AALG2-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: x grew so y must shrink below 10 (18 dead); inverse-square shrinks more than inverse-linear, and the linear answer 10*3/5 = 6 is itself an option, so 6 is ON the bound and dead. 3.6 vs 1.2 remain."
+ },
+ "AALG2-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: from 5p+4e = 26.25 with positive prices, 4(p+e) < 26.25 < 5(p+e), so p+e is in (5.25, 6.56). 2.25, 3.75, 4.50 all dead. 6.00 is also the only whole-dollar option. DROP."
+ },
+ "AALG2-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 by bound, but x + 1/x = 5 -> 23 is THE canonical instance of this identity in every prep book. Recall, not solving. Change the 5."
+ },
+ "AALG2-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. -22/23 form a near sign pair that points at the key's neighbourhood but does not decide between them. 17 is the distribute-the-negative error, 12 the LCD."
+ },
+ "AALG2-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4. 7 is the remainder-zero error, the rest are sign slips. No bound."
+ },
+ "AALG2-08": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: a ratio of 5/2 > 1 with numerator always 5 less than denominator forces both negative, i.e. x < -2. 19/3 gives a ratio under 1, -4/3 and -5/3 give a negative ratio. Only -16/3, which is also the isolated outlier (the other three sit in (-2, 7)). DROP."
+ }
+}
