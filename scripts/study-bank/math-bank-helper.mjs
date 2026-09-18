@@ -483,6 +483,14 @@ async function main() {
       if (dPartial.length) console.log(`  partial coverage: ${dPartial.join(', ')}`)
       if (dBad) { console.log(`  A distractor that does not compute to its stated derivation is a wrong number on screen.`) }
     }
+    /* EXIT NON-ZERO ON ANY FAILURE — fixed 2026-09-18. `verify` printed FAIL
+     * rows and "Sandbox: 3/4 recompute" and then exited 0, so anything reading
+     * the exit code — a `&&` chain, `set -e`, a CI step — would have passed a
+     * mis-keyed batch. Found by an author who mutation-tested the harness and
+     * noticed the green exit. The insert path was never fooled (it re-runs the
+     * sandbox per item and refuses per item), but `verify` is what authors and
+     * chains call FIRST. A check that finds a failure must not return success. */
+    if (pass !== batch.length || dBad > 0) process.exitCode = 1
     // The sandbox proves the key is RIGHT. It says nothing about whether the
     // key is GUESSABLE from the options with the stem covered — a separate
     // defect that held a 24-item Advanced Math batch on 2026-09-04 while all
