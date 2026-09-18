@@ -43,7 +43,14 @@ const [domainArg, sizeArg, reviewerId, runIdArg] = process.argv.slice(2)
  * DRAW_FAMILY=act restricts the pool to one family: "Craft and Structure"
  * is BOTH an SAT and an ACT domain, and without it an ACT sitting would
  * quietly draw SAT items. */
-const entries = (domainArg || '').split(',').map(d => d.trim()).filter(Boolean)
+/* DOMAINS MAY BE '|'-SEPARATED — added 2026-09-18. This split was on ','
+ * only, and ACT Science's third published domain is literally
+ * "Evaluation of Models, Inferences, and Experimental Results". Passed with
+ * commas it became fragments, the third resolved to a domain with zero
+ * items, and the drawer refused (correctly). That domain was un-drawable by
+ * this tool for as long as it has existed. '|' cannot occur in a domain
+ * name; ',' can — so if the argument contains a '|', that is the separator. */
+const entries = (domainArg || '').split((domainArg || '').includes('|') ? '|' : ',').map(d => d.trim()).filter(Boolean)
   .map(e => { const m = e.match(/^(.*?):(\d+)$/); return m ? { domain: m[1].trim(), size: Number(m[2]) } : { domain: e, size: Number(sizeArg) } })
 const domains = entries.map(e => e.domain)
 const sizes = entries.map(e => e.size)
