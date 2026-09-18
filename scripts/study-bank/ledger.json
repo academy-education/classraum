@@ -3538,6 +3538,34 @@
      "verdict": "Authored keys BCADBDACDABC, three per slot. Author found and reported the U+2212 defect in check-math-hub.mjs (fixed the same session)."
     }
    }
+  },
+  {
+   "id": "act-ies-alg-0919b-kept-2026-09-19",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-ies-alg-0919b",
+   "contentSha": "9e2b185cb7c3b95c43e4b4c9370fc80b7eb31eebf98190b7d7446b11ea600617",
+   "note": "2 kept of 8 ({\"Integrating Essential Skills\":2}). Commissioned to buy IES +1 and Algebra +1 for ACT Math form 13; buys IES +2 and Algebra +0. Attack 54.2% vs 25.0% on n=24 with mechanism 36 points above guess - ARMED; three unanimous items dropped. Hunter: all three remaining Algebra items at one survivor by option GEOMETRY (adjacent-pair ceiling, mirror pair about a vertex, minimum-by-definition) even though every arithmetic bound was respected as the author claimed; two of them also duplicate live rows. Rule drops: AIES3-01 - unanimous under an ARMED rule (mechanism 64.7% vs guess 28.6%): 128/176/242 is a geometric run at x11/8, named 3/3; AIES3-02 - unanimous under the armed rule: the 4.5%/5.4% digit-swap pair centred on the key, named 3/3; 21.2% also mis-rounded; AALG3-02 - unanimous under the armed rule: 27 as the hub of 9 (/3) and 33.75 (x1.25), named 2/3; D = 12 restates a stem number; AALG3-01 - hunter N=1: the 20/21 adjacent pair in a \"least ... at least\" stem resolves by the ceiling rule alone; also a mechanism duplicate of live 7e1b4cdc; AALG3-03 - hunter N=1: revenue is symmetric about p = 25, \"two prices\" excludes the vertex, 20/30 is the only mirrored pair and \"lower\" picks 20 - no solving; grader B: four multiplications back-solve it; AALG3-04 - hunter N=1: the three distractors are the other three lengths, and the original width is by definition the smallest option; duplicate of live ec4269a1. AIES3-03 kept with a note: near-duplicate of live f4e15336 (same 32 mpg, same cost mechanism) - cross-batch reskins are recorded, not dropped, under the standing rule.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 8/8 (my run); distractor_solve 24/24; no hub structure by the checker (the hubs here are geometric/positional, which the additive checker does not see)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha a07235fe26aa8d68): 8/8 x3; exclusive:false 0/0/0; hard 0/0/0. Hunter survivor table: N=1 on AALG3-01, -03, -04 by structural bounds; N=3 on AIES3-02, -03; bank duplicates named by row id for 01, 03 (IES) and 01, 04 (Alg)."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 24 forced picks, keys 2/2/2/2, control 25.0%: 13/24 = 54.2% (+29.2). Mechanism 11/17 = 64.7%, guess 2/7 = 28.6% (+36.1) - ARMED. Unanimous 3 of 8 vs 0.13: all dropped. n=24 is coarse; recorded as such. Residual on kept 2: 1/6 = 16.7% vs 50.0% (-33.3)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys CBBBCCBA (ascending numeric order pins the slot; B x4, D x0 - unreachable at draw, neutralised for the panel by the shuffled render). The batch-level finding: an author can respect every ARITHMETIC bound and still hand over three items through option geometry."
+    }
+   }
   }
  ],
  "auditedCohorts": [

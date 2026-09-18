@@ -1,0 +1,94 @@
+{
+ "AIES3-01": {
+  "ok": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "weakVotes": 0,
+  "nonExclusiveVotes": 0,
+  "grades": "medium/medium/medium",
+  "distractorVotes": "plausible/plausible/strong",
+  "regraded": false,
+  "why": []
+ },
+ "AIES3-02": {
+  "ok": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "weakVotes": 0,
+  "nonExclusiveVotes": 0,
+  "grades": "easy/easy/easy",
+  "distractorVotes": "plausible/plausible/plausible",
+  "regraded": false,
+  "why": []
+ },
+ "AIES3-03": {
+  "ok": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "weakVotes": 0,
+  "nonExclusiveVotes": 0,
+  "grades": "medium/medium/medium",
+  "distractorVotes": "plausible/strong/plausible",
+  "regraded": false,
+  "why": []
+ },
+ "AIES3-04": {
+  "ok": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "weakVotes": 0,
+  "nonExclusiveVotes": 0,
+  "grades": "medium/medium/easy",
+  "distractorVotes": "plausible/plausible/plausible",
+  "regraded": false,
+  "why": []
+ },
+ "AALG3-01": {
+  "ok": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "weakVotes": 1,
+  "nonExclusiveVotes": 0,
+  "grades": "medium/medium/medium",
+  "distractorVotes": "strong/plausible/weak",
+  "regraded": false,
+  "why": []
+ },
+ "AALG3-02": {
+  "ok": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "weakVotes": 0,
+  "nonExclusiveVotes": 0,
+  "grades": "medium/medium/medium",
+  "distractorVotes": "plausible/strong/plausible",
+  "regraded": false,
+  "why": []
+ },
+ "AALG3-03": {
+  "ok": false,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "weakVotes": 2,
+  "nonExclusiveVotes": 0,
+  "grades": "medium/easy/medium",
+  "distractorVotes": "strong/weak/weak",
+  "regraded": false,
+  "why": [
+   "majority weak distractors (2/3)"
+  ]
+ },
+ "AALG3-04": {
+  "ok": false,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "weakVotes": 2,
+  "nonExclusiveVotes": 0,
+  "grades": "easy/easy/medium",
+  "distractorVotes": "strong/weak/weak",
+  "regraded": false,
+  "why": [
+   "majority weak distractors (2/3)"
+  ]
+ }
+}

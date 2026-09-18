@@ -1,0 +1,58 @@
+{
+ "AIES3-01": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "survivors=4: only bound is distance > 48 km head start; all clear. All three distractors canonical: B=88*2.75 (clock from car 1's start), C=88*(45/24) (minutes never converted), D=64*2 (car 1's distance from car 2's start). Soft divisibility tell: 176 and 128 are the only multiples of 8 (both speeds are), not a valid bound but a guesser's heuristic that halves the set. Mechanism (catch-up from delayed start) not found in the ACT bank by keyword; nearest is the two-plan rental break-even c914b00f."
+ },
+ "AIES3-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: rate*6 must sit under total growth; balance visibly grew <30% and 21.2%*6 = 127%, so C dies with no arithmetic beyond noticing 4572 is not double 3600. C is also mis-rounded: 972/4572 = 21.26% -> 21.3%, not 21.2%. A=162/4572 (divided by balance), B=972/3600/5 (fencepost). B/D are a 5.4/4.5 digit-swap pair centred on the key. Reverse-direction sibling in bank ed3fb691 (rate given, interest asked) - not a duplicate."
+ },
+ "AIES3-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: $9.00 buys 2.5 gal (~80 mi) toward a 416-mile trip with at most 3.5 gal on hand; dead on magnitude without the 416/32 division. A=13-(14-3.5) (subtracted the empty part), C=(14-3.5)*3.6 (filled the tank), D=(13-13/4)*3.6 (quartered the need, not the tank). Remaining three cluster 34.20/35.10/37.80. NEAR-DUPLICATE of bank f4e15336 (32 mpg, $3.50/gal, 480-mile cost) - same mpg figure, same cost mechanism plus one subtraction."
+ },
+ "AIES3-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=4: bound is depth < 26 (30-4) and all four clear (25.6 sits just under it, deliberately). A=26-8 (liters as cm), B=26-0.4 (unit slip), C=26-2 (unexplained; 8000/4000?). Base area 2000 makes the drop a one-step 4 cm. Same aquarium setting as bank 13c0ff23 (60x30x40, fill to 3/4, ask liters) run in reverse; mechanism duplicate at the setting level."
+ },
+ "AALG3-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: options contain the adjacent pair 20/21 and the stem says 'least' with 'at least $360'; a test-wise student knows the key is the ceiling of a fractional bound, so the pair localises the key and the direction rule picks 21 without touching 9.50 or 6. A=72/9 or 360/48 rounded, B=48-21 (children). This is the 20/21 hub named in the brief. Same adult/child mix as bank 7e1b4cdc (50 tickets, $450, 12/7) - duplicate mechanism, inequality variant."
+ },
+ "AALG3-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4: discriminant cap c <= 36 and c > 0 (same-sign roots); all four clear, 33.75 = 36-2.25 sits under the cap (roots 4.5/7.5, 'differ by 3' misread). B=3*3 or r^2, D=12 RESTATES A STEM NUMBER (also 3r^2=12 misread). 9 -> 27 -> 33.75 are 3x steps for two of three; mild hub. Bank 80f842f6 (x^2-9x+c, one root given) is the same 'find c from a root condition' shape, one cohort older."
+ },
+ "AALG3-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: revenue p(100-2p) is symmetric about p=25, and the stem says 'two prices', so 25 (vertex) cannot be a root; the two roots must mirror about 25 and the only mirrored pair on the card is 20/30. 'Lower' picks 20 with no solving. 12 = 1200/100 pairs with nothing. Positive-demand bound p<50 is irrelevant. Mechanism (linear demand x price = revenue) not found in the ACT bank by keyword."
+ },
+ "AALG3-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: the three distractors are, by the author's own design, the other three lengths (10=w+4, 9=w+3, 13=w+7) and the original width is definitionally the SMALLEST of the four - so the minimum option is the key without any algebra. The key is also the hub every distractor derives from by adding a stem number. Same mechanism as bank ec4269a1 (length 5 more than width, dims changed, area change) - duplicate."
+ }
+}

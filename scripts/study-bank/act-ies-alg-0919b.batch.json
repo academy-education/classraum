@@ -1,0 +1,170 @@
+[
+ {
+  "id": "AIES3-01",
+  "domain": "Integrating Essential Skills",
+  "subskill": "catch-up distance from a delayed start: the head start is a DISTANCE built from minutes converted to hours, closed at the difference of the speeds, and the answer is measured from the start, not from the moment the second car leaves",
+  "difficulty": "medium",
+  "prompt": "A car leaves a rest stop and travels along a highway at a constant 64 kilometers per hour. Exactly 45 minutes later, a second car leaves the same rest stop along the same highway at a constant 88 kilometers per hour. How many kilometers from the rest stop will the second car be when it catches up to the first car?",
+  "choices": [
+   "128",
+   "165",
+   "176",
+   "242"
+  ],
+  "correct_answer": "176",
+  "explanation": "In 45 minutes, which is 0.75 hour, the first car builds a head start of 64(0.75) = 48 kilometers. The second car closes that gap at 88 - 64 = 24 kilometers per hour, so it catches up after 48/24 = 2 hours of its own driving, at a distance of 88(2) = 176 kilometers from the rest stop. \"128\" is 64(2), the distance the first car covers during those 2 hours, which leaves out its 48-kilometer head start. \"165\" comes from a solver who uses 45 as the head start in kilometers instead of converting the 45 minutes: 45/24 = 1.875 hours, and 88(1.875) = 165. \"242\" multiplies the second car's speed by the first car's total time of 2.75 hours, 88(2.75).",
+  "solve": "var head = 64 * (45/60); var t = head / (88 - 64); return String(88 * t);",
+  "distractor_solve": {
+   "128": "var head = 64 * (45/60); var t = head / (88 - 64); return String(64 * t);",
+   "165": "var t = 45 / (88 - 64); return String(88 * t);",
+   "242": "var head = 64 * (45/60); var t = head / (88 - 64); return String(88 * (t + 45/60));"
+  }
+ },
+ {
+  "id": "AIES3-02",
+  "domain": "Integrating Essential Skills",
+  "subskill": "annual simple-interest rate recovered from a final balance: the interest is the balance MINUS the principal, spread over the full number of years and divided by the principal, not the balance",
+  "difficulty": "medium",
+  "prompt": "Ana deposited $3,600 in an account that earns simple interest at a fixed annual rate. She made no other deposits or withdrawals. Exactly 6 years later, the account balance was $4,572. To the nearest tenth of a percent, what was the annual interest rate?",
+  "choices": [
+   "3.5%",
+   "4.5%",
+   "5.4%",
+   "21.2%"
+  ],
+  "correct_answer": "4.5%",
+  "explanation": "The interest earned is 4,572 - 3,600 = 972 dollars. Simple interest is I = Prt, so r = 972/(3,600 x 6) = 0.045, which is 4.5%. \"21.2%\" comes from a solver who divides the whole final balance rather than the interest by Prt, 4,572/(3,600 x 6). \"3.5%\" divides the interest by the final balance instead of the principal, 972/(4,572 x 6). \"5.4%\" counts only 5 years of interest, 972/(3,600 x 5).",
+  "solve": "var I = 4572 - 3600; var r = I / (3600 * 6); return (Math.round(r * 1000) / 10) + '%';",
+  "distractor_solve": {
+   "3.5%": "var I = 4572 - 3600; var r = I / (4572 * 6); return (Math.round(r * 1000) / 10) + '%';",
+   "5.4%": "var I = 4572 - 3600; var r = I / (3600 * 5); return (Math.round(r * 1000) / 10) + '%';",
+   "21.2%": "var r = 4572 / (3600 * 6); return (Math.round(r * 1000) / 10) + '%';"
+  }
+ },
+ {
+  "id": "AIES3-03",
+  "domain": "Integrating Essential Skills",
+  "subskill": "fuel to buy for a trip when part of a tank is already there: gallons needed from miles per gallon, MINUS the fraction of the tank's capacity on hand, then priced",
+  "difficulty": "medium",
+  "prompt": "Devon's car travels 32 miles per gallon of gasoline. The car's fuel tank holds 14 gallons and is currently 1/4 full. Devon plans to drive 416 miles and will buy only the gasoline needed beyond what is already in the tank. If gasoline costs $3.60 per gallon, how much will Devon spend on gasoline for the trip?",
+  "choices": [
+   "$9.00",
+   "$34.20",
+   "$35.10",
+   "$37.80"
+  ],
+  "correct_answer": "$34.20",
+  "explanation": "The trip needs 416/32 = 13 gallons. The tank already holds (1/4)(14) = 3.5 gallons, so Devon must buy 13 - 3.5 = 9.5 gallons, costing 9.5(3.60) = $34.20. \"$35.10\" comes from a solver who subtracts 1/4 of the gallons NEEDED rather than 1/4 of the tank: (3/4)(13) = 9.75 gallons. \"$9.00\" treats the tank as 3/4 full, 13 - 10.5 = 2.5 gallons. \"$37.80\" is the cost of filling the tank, (3/4)(14) = 10.5 gallons, rather than of the fuel the trip requires.",
+  "solve": "var need = 416 / 32; var have = 14 / 4; return '$' + ((need - have) * 3.6).toFixed(2);",
+  "distractor_solve": {
+   "$9.00": "var need = 416 / 32; var have = 14 * 3 / 4; return '$' + ((need - have) * 3.6).toFixed(2);",
+   "$35.10": "var need = 416 / 32; return '$' + (need * 3 / 4 * 3.6).toFixed(2);",
+   "$37.80": "var fill = 14 - 14 / 4; return '$' + (fill * 3.6).toFixed(2);"
+  }
+ },
+ {
+  "id": "AIES3-04",
+  "domain": "Integrating Essential Skills",
+  "subskill": "water depth in a rectangular tank after a volume in liters is removed: liters convert to cubic centimeters, the depth comes from dividing by the BASE area, and the starting depth is the tank height less the stated gap",
+  "difficulty": "medium",
+  "prompt": "A rectangular aquarium has a base that measures 50 centimeters by 40 centimeters, and it is 30 centimeters tall. It is filled with water to a level 4 centimeters below the top. Then 8 liters of water are removed. (1 liter = 1,000 cubic centimeters.) What is the depth of the water, in centimeters, after the water is removed?",
+  "choices": [
+   "18",
+   "22",
+   "24",
+   "25.6"
+  ],
+  "correct_answer": "22",
+  "explanation": "The water starts 30 - 4 = 26 centimeters deep, a volume of 50(40)(26) = 52,000 cubic centimeters. Removing 8 liters = 8,000 cubic centimeters leaves 44,000 cubic centimeters, and 44,000/(50 x 40) = 22 centimeters. Equivalently, the level drops 8,000/2,000 = 4 centimeters from 26. \"18\" subtracts the 8 liters as if it were 8 centimeters of depth, 26 - 8. \"24\" treats the 4-centimeter gap as 4 liters: 60 - 4 - 8 = 48 liters, and 48,000/2,000 = 24. \"25.6\" converts 8 liters to 800 cubic centimeters, so the level drops only 0.4 centimeter.",
+  "solve": "var base = 50 * 40; var v = base * (30 - 4) - 8 * 1000; return String(v / base);",
+  "distractor_solve": {
+   "18": "return String((30 - 4) - 8);",
+   "24": "var base = 50 * 40; var v = base * 30 - 4 * 1000 - 8 * 1000; return String(v / base);",
+   "25.6": "var base = 50 * 40; var v = base * (30 - 4) - 8 * 100; return String(v / base);"
+  }
+ },
+ {
+  "id": "AALG3-01",
+  "domain": "Algebra",
+  "subskill": "least whole count satisfying a two-price revenue inequality: the second group is the complement of the total, and a fractional bound rounds UP for a minimum",
+  "difficulty": "medium",
+  "prompt": "A community theater sold a total of 48 tickets to a performance. Adult tickets cost $9.50 each and child tickets cost $6.00 each. If the ticket sales totaled at least $360, what is the least possible number of adult tickets sold?",
+  "choices": [
+   "8",
+   "20",
+   "21",
+   "27"
+  ],
+  "correct_answer": "21",
+  "explanation": "Let a be the number of adult tickets, so 48 - a child tickets were sold. Then 9.50a + 6.00(48 - a) >= 360, which gives 3.5a + 288 >= 360, so a >= 72/3.5 = 20.57.... The least whole number of adult tickets is 21. \"20\" rounds 20.57 down, which gives sales of only $358. \"27\" is the number of CHILD tickets when 21 adult tickets are sold, 48 - 21. \"8\" comes from a solver who subtracts the 288 but forgets to subtract the 6a term, solving 9.5a >= 72 to get a >= 7.58 and rounding up.",
+  "solve": "var a = (360 - 6 * 48) / (9.5 - 6); return String(Math.ceil(a));",
+  "distractor_solve": {
+   "8": "var a = (360 - 6 * 48) / 9.5; return String(Math.ceil(a));",
+   "20": "var a = (360 - 6 * 48) / (9.5 - 6); return String(Math.floor(a));",
+   "27": "var a = (360 - 6 * 48) / (9.5 - 6); return String(48 - Math.ceil(a));"
+  }
+ },
+ {
+  "id": "AALG3-02",
+  "domain": "Algebra",
+  "subskill": "the constant term of a monic quadratic whose roots are in a stated ratio: the sum fixes the smaller root, and the constant is the PRODUCT of the two roots, not a multiple of one of them",
+  "difficulty": "medium",
+  "prompt": "The equation x^2 - 12x + c = 0 has two real solutions, and one solution is 3 times the other. What is the value of c?",
+  "choices": [
+   "9",
+   "12",
+   "27",
+   "33.75"
+  ],
+  "correct_answer": "27",
+  "explanation": "Let the solutions be r and 3r. For x^2 - 12x + c = 0, the solutions sum to 12 and multiply to c. So r + 3r = 12 gives r = 3, and c = r(3r) = 3(9) = 27; the equation is x^2 - 12x + 27 = (x - 3)(x - 9). \"9\" is r^2, or the larger solution, reported as c. \"12\" comes from a solver who takes c to be the sum of the solutions rather than their product. \"33.75\" comes from a solver who reads \"3 times the other\" as \"3 more than the other\": r + (r + 3) = 12 gives r = 4.5, and 4.5(7.5) = 33.75.",
+  "solve": "var r = 12 / (1 + 3); return String(r * (3 * r));",
+  "distractor_solve": {
+   "9": "var r = 12 / (1 + 3); return String(r * r);",
+   "12": "var r = 12 / (1 + 3); return String(r + 3 * r);",
+   "33.75": "var r = (12 - 3) / 2; return String(r * (r + 3));"
+  }
+ },
+ {
+  "id": "AALG3-03",
+  "domain": "Algebra",
+  "subskill": "a price that produces a stated revenue under a linear demand rule: revenue is price TIMES quantity, giving a quadratic with two roots, and the stem asks for the smaller one",
+  "difficulty": "medium",
+  "prompt": "A bakery finds that when it charges p dollars for a specialty loaf, it sells 100 - 2p loaves per week. The bakery's weekly revenue from the loaves, in dollars, is the price multiplied by the number of loaves sold. There are two prices at which the weekly revenue is exactly $1,200. What is the lower of these two prices?",
+  "choices": [
+   "$12",
+   "$20",
+   "$25",
+   "$30"
+  ],
+  "correct_answer": "$20",
+  "explanation": "Revenue is p(100 - 2p) = 1,200, so 2p^2 - 100p + 1,200 = 0, or p^2 - 50p + 600 = 0, which factors as (p - 20)(p - 30) = 0. The two prices are $20 and $30, and the lower is $20. \"$30\" is the higher of the two prices. \"$25\" is the price that MAXIMIZES revenue, the vertex of the parabola at p = 50/2, where the revenue is $1,250, not $1,200. \"$12\" comes from a solver who rewrites the equation as p(50 - p) = 600 and then divides 600 by 50, ignoring the p inside the parenthesis.",
+  "solve": "var a = 1, b = -50, c = 600; var d = Math.sqrt(b*b - 4*a*c); var p1 = (-b - d)/(2*a), p2 = (-b + d)/(2*a); return '$' + Math.min(p1, p2);",
+  "distractor_solve": {
+   "$12": "return '$' + (600 / 50);",
+   "$25": "var a = 1, b = -50; return '$' + (-b / (2*a));",
+   "$30": "var a = 1, b = -50, c = 600; var d = Math.sqrt(b*b - 4*a*c); var p1 = (-b - d)/(2*a), p2 = (-b + d)/(2*a); return '$' + Math.max(p1, p2);"
+  }
+ },
+ {
+  "id": "AALG3-04",
+  "domain": "Algebra",
+  "subskill": "an original dimension from a stated CHANGE in area: expanding both products cancels the squared term and leaves a linear equation, and the requested quantity is the original width, not one of the other three lengths that appear",
+  "difficulty": "medium",
+  "prompt": "The length of a rectangle is 4 inches greater than its width. If the length and the width are each increased by 3 inches, the area of the rectangle increases by 57 square inches. What is the width, in inches, of the original rectangle?",
+  "choices": [
+   "6",
+   "9",
+   "10",
+   "13"
+  ],
+  "correct_answer": "6",
+  "explanation": "Let w be the original width, so the original length is w + 4 and the original area is w(w + 4). The new rectangle is (w + 3) by (w + 7), with area (w + 3)(w + 7) = w^2 + 10w + 21. The increase is (w^2 + 10w + 21) - (w^2 + 4w) = 6w + 21, and 6w + 21 = 57 gives w = 6. The original rectangle is 6 by 10, the new one 9 by 13, and 117 - 60 = 57 checks. \"10\" is the original LENGTH, w + 4. \"9\" is the new width, w + 3. \"13\" is the new length, w + 7.",
+  "solve": "var w = (57 - 3*7) / (3 + 7 - 4); return String(w);",
+  "distractor_solve": {
+   "9": "var w = (57 - 21) / 6; return String(w + 3);",
+   "10": "var w = (57 - 21) / 6; return String(w + 4);",
+   "13": "var w = (57 - 21) / 6; return String(w + 7);"
+  }
+ }
+]

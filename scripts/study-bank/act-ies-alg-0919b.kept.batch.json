@@ -1,0 +1,44 @@
+[
+ {
+  "id": "AIES3-03",
+  "domain": "Integrating Essential Skills",
+  "subskill": "fuel to buy for a trip when part of a tank is already there: gallons needed from miles per gallon, MINUS the fraction of the tank's capacity on hand, then priced",
+  "difficulty": "medium",
+  "prompt": "Devon's car travels 32 miles per gallon of gasoline. The car's fuel tank holds 14 gallons and is currently 1/4 full. Devon plans to drive 416 miles and will buy only the gasoline needed beyond what is already in the tank. If gasoline costs $3.60 per gallon, how much will Devon spend on gasoline for the trip?",
+  "choices": [
+   "$9.00",
+   "$34.20",
+   "$35.10",
+   "$37.80"
+  ],
+  "correct_answer": "$34.20",
+  "explanation": "The trip needs 416/32 = 13 gallons. The tank already holds (1/4)(14) = 3.5 gallons, so Devon must buy 13 - 3.5 = 9.5 gallons, costing 9.5(3.60) = $34.20. \"$35.10\" comes from a solver who subtracts 1/4 of the gallons NEEDED rather than 1/4 of the tank: (3/4)(13) = 9.75 gallons. \"$9.00\" treats the tank as 3/4 full, 13 - 10.5 = 2.5 gallons. \"$37.80\" is the cost of filling the tank, (3/4)(14) = 10.5 gallons, rather than of the fuel the trip requires.",
+  "solve": "var need = 416 / 32; var have = 14 / 4; return '$' + ((need - have) * 3.6).toFixed(2);",
+  "distractor_solve": {
+   "$9.00": "var need = 416 / 32; var have = 14 * 3 / 4; return '$' + ((need - have) * 3.6).toFixed(2);",
+   "$35.10": "var need = 416 / 32; return '$' + (need * 3 / 4 * 3.6).toFixed(2);",
+   "$37.80": "var fill = 14 - 14 / 4; return '$' + (fill * 3.6).toFixed(2);"
+  }
+ },
+ {
+  "id": "AIES3-04",
+  "domain": "Integrating Essential Skills",
+  "subskill": "water depth in a rectangular tank after a volume in liters is removed: liters convert to cubic centimeters, the depth comes from dividing by the BASE area, and the starting depth is the tank height less the stated gap",
+  "difficulty": "medium",
+  "prompt": "A rectangular aquarium has a base that measures 50 centimeters by 40 centimeters, and it is 30 centimeters tall. It is filled with water to a level 4 centimeters below the top. Then 8 liters of water are removed. (1 liter = 1,000 cubic centimeters.) What is the depth of the water, in centimeters, after the water is removed?",
+  "choices": [
+   "18",
+   "22",
+   "24",
+   "25.6"
+  ],
+  "correct_answer": "22",
+  "explanation": "The water starts 30 - 4 = 26 centimeters deep, a volume of 50(40)(26) = 52,000 cubic centimeters. Removing 8 liters = 8,000 cubic centimeters leaves 44,000 cubic centimeters, and 44,000/(50 x 40) = 22 centimeters. Equivalently, the level drops 8,000/2,000 = 4 centimeters from 26. \"18\" subtracts the 8 liters as if it were 8 centimeters of depth, 26 - 8. \"24\" treats the 4-centimeter gap as 4 liters: 60 - 4 - 8 = 48 liters, and 48,000/2,000 = 24. \"25.6\" converts 8 liters to 800 cubic centimeters, so the level drops only 0.4 centimeter.",
+  "solve": "var base = 50 * 40; var v = base * (30 - 4) - 8 * 1000; return String(v / base);",
+  "distractor_solve": {
+   "18": "return String((30 - 4) - 8);",
+   "24": "var base = 50 * 40; var v = base * 30 - 4 * 1000 - 8 * 1000; return String(v / base);",
+   "25.6": "var base = 50 * 40; var v = base * (30 - 4) - 8 * 100; return String(v / base);"
+  }
+ }
+]

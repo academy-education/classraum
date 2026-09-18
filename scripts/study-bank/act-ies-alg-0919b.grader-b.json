@@ -1,0 +1,58 @@
+{
+ "AIES3-01": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "grader_note": "48 km / 24 km/h = 2 h, x88 = 176. 242 = 88x2.75 and 128 = 64x2 are honest slips; 165 is not derivable from any error path I can find (filler). Numbers are gentle but the three-step chain (min->h, distance head start, closing speed, then report the SECOND car's distance) still earns low-medium."
+ },
+ "AIES3-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "grader_note": "972/(3600x6) = 4.5%. 3.5% = divided by balance; 21.2% = 972/4572 undivided by years; 5.4% = 27%/5. Simple interest IS stated. 21.2% dies for free once a student sees 27% total growth over 6 years, which any student on the right path sees. Three live options remain, so not fatal, but it is an easy item on the ACT scale."
+ },
+ "AIES3-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "grader_note": "13 gal needed - 3.5 on hand = 9.5 x 3.60 = 34.20. 37.80 (fill the tank: 10.5 gal) is the best distractor in the batch; 35.10 = 9.75 gal; 9.00 = 2.5 gal (13 - 10.5). All reachable by real errors."
+ },
+ "AIES3-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "grader_note": "Start 26 cm, base 2000 cm^2, 8000/2000 = 4, 26-4 = 22. 18 = 26-8 (liters as cm); 25.6 = 26-0.4 (8 L as 800 cm^3); 24 = 30-2-4 or 26-2 (used 4000 as base). Sound."
+ },
+ "AALG3-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "grader_note": "3.5a + 288 >= 360 -> a >= 20.57 -> 21. Checked: a=20 gives 358 < 360, so 20 genuinely fails. The 20/21 pair is the rounding decision the stem tests, NOT a hub - a hub would let a solver pick between adjacent values without doing the arithmetic; here 20.57 must be computed before either is attractive, and 27 = 48-21 is the complement slip. 8 is filler."
+ },
+ "AALG3-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "grader_note": "r + 3r = 12, r = 3, c = 3x9 = 27. 9 = r^2, 12 = sum, 33.75 = 4.5x7.5 (misread '3 times' as '3 more than'). Very canonical form (x^2 - 12x + c, roots in ratio 3:1) - textbook standard, check the bank for the identical coefficient set before shipping."
+ },
+ "AALG3-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "grader_note": "p^2 - 50p + 600 = 0 -> 20, 30; lower = 20. Backsolvable in one line: 30x40=1200, 25x50=1250, 20x60=1200, 12x76=912 - four multiplications, no algebra. Listing BOTH roots as options and asking for the lower one does not stop backsolving; it makes it a two-hit check. 25 and 12 are not error-path values. Easy."
+ },
+ "AALG3-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "grader_note": "6w + 21 = 57 -> w = 6. Confirmed: all three distractors are the OTHER lengths (10 = length, 9 = new width, 13 = new length). No computational-error distractor exists (57/6 = 9.5, or 6w = 57-21 slip -> 6 anyway), so any student who sets up the equation cannot land on a wrong option, and w=6 backsolves in one check (6x10=60, 9x13=117). Easy, not medium. Replace 13 with 9.5 or 12 (forgot +21 -> 6w=57 does not give 12; 10w=57-21 -> 3.6; 6w=57 -> 9.5) - 9.5 is the honest slip."
+ }
+}
