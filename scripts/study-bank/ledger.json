@@ -3510,6 +3510,34 @@
      "verdict": "Authored keys CADBDBACBD - dealt across slots. Radius-ladder option design shared by 06 and 09 (centre fixed, scale varies) is the one cross-item shape."
     }
    }
+  },
+  {
+   "id": "sat-adv-0919b-kept-2026-09-19",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-adv-0919b",
+   "contentSha": "f1f08288340f92b354df0c78e8818930139b48f35ea02949ee2dfe0c030b63dd",
+   "note": "8 kept of 12. Briefed explicitly against the derivational hub after sat-adv-0919 lost five items to it; the author de-hubbed and the attack came back with ZERO unanimous items. Routed-rule drops: SADV3-05, SADV3-09, SADV3-12. Rule drops: SADV3-05 - hunter N=1: 125 < 125*sqrt(5) < 625 pins 2x-1 to (3,4), so x in (2, 2.5) and only 9/4 is in the band; also a quarter-step ladder; SADV3-10 - recall bypass: Vieta product of the u-roots is 32 = 2^5, so x1 + x2 = 5 with no factoring - the item's named method is skipped; SADV3-12 - only the keyed c makes x^2 - 8x + c factor over the integers (back-solve tell, grader B); and it reuses yesterday's dropped SADV2-12 with identical numbers (-8x, gap 6, c = 7). SADV3-11 (N=2 by convexity, 81 = forgot +b) kept under the standing N=2 rule and flagged for a distractor repair.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 12/12 (my run); distractor_solve 36/36; both hub lines: no derivational structure. The author's mutation test on the verify exit code passed (mis-key -> FAIL, exit 1)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha cc4c061a619cf7ed): 12/12 x3; exclusive:false 0/0/0. Difficulty easy 3/4/2, hard 1/1/1 (SADV3-03, the radical-in-quadratic-form item, by all three). Hunter: N=1 on 05; N=2 on 03 (the rejection step IS the item - survivable) and 11 (convexity); recall bypasses on 10 (Vieta product 2^5), 08 (x=0 gives the other point; completing the square gives the rightmost point - judged the method, kept), 03 (symmetry about x=2 - the intended skill); 12 a verbatim reuse of yesterday's dropped SADV2-12."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 36 forced picks, keys 3/3/3/3, control 25.0%: 12/36 = 33.3% (+8.3). Mechanism 35.0%, guess 31.3% (+3.8) - rule disarmed. Unanimous 0 of 12 vs 0.19 expected - the de-hubbing held; on every item where a solver named a hub, the solvers split on which end was the key. Residual on kept 8: 7/24 = 29.2% vs 37.5% (-8.3)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys BCADBDACDABC, three per slot. Author found and reported the U+2212 defect in check-math-hub.mjs (fixed the same session)."
+    }
+   }
   }
  ],
  "auditedCohorts": [

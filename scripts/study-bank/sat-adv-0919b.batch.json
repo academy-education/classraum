@@ -1,0 +1,254 @@
+[
+ {
+  "id": "SADV3-01",
+  "domain": "Advanced Math",
+  "subskill": "remainder theorem with a parameter: fixing the coefficient from one remainder, then a second remainder",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = 2x³ + kx² − 5x + 6, where k is a constant. When p(x) is divided by x − 2, the remainder is 4. What is the remainder when p(x) is divided by x + 3?",
+  "choices": [
+   "−24",
+   "−51",
+   "27",
+   "−60"
+  ],
+  "correct_answer": "−51",
+  "explanation": "By the remainder theorem p(2) = 4: 16 + 4k − 10 + 6 = 4, so k = −2. The remainder on division by x + 3 is p(−3) = 2(−27) + (−2)(9) − 5(−3) + 6 = −54 − 18 + 15 + 6 = −51, which is \"−51\". \"−24\" comes from a solver who evaluates at x = −2 for the divisor x − 2 (4k = 4, k = 1) and then computes p(−3) = −54 + 9 + 15 + 6. \"27\" comes from a solver who finds k = −2 correctly but evaluates at x = 3 instead of x = −3. \"−60\" comes from a solver who treats x − 2 as a factor (p(2) = 0, so k = −3) and then computes p(−3).",
+  "solve": "var k=(4-16+10-6)/4; var p=function(x){return 2*x*x*x+k*x*x-5*x+6}; return String(p(-3));",
+  "distractor_solve": {
+   "−24": "var k=(4-(-16+10+6))/4; var p=function(x){return 2*x*x*x+k*x*x-5*x+6}; return String(p(-3));",
+   "27": "var k=-2; var p=function(x){return 2*x*x*x+k*x*x-5*x+6}; return String(p(3));",
+   "−60": "var k=(0-16+10-6)/4; var p=function(x){return 2*x*x*x+k*x*x-5*x+6}; return String(p(-3));"
+  }
+ },
+ {
+  "id": "SADV3-02",
+  "domain": "Advanced Math",
+  "subskill": "rational equation: the quadratic yields two candidates and one is the excluded value",
+  "difficulty": "medium",
+  "prompt": "What is the solution to the equation (x² − x − 12)/(x − 4) = 2x − 5 ?",
+  "choices": [
+   "4",
+   "12",
+   "8",
+   "8/3"
+  ],
+  "correct_answer": "8",
+  "explanation": "Multiplying by x − 4 (x ≠ 4) gives x² − x − 12 = 2x² − 13x + 20, so x² − 12x + 32 = 0 and (x − 4)(x − 8) = 0. The candidate x = 4 makes the original denominator zero, so the only solution is x = 8, which is \"8\". Equivalently, (x + 3)(x − 4)/(x − 4) = x + 3, and x + 3 = 2x − 5 gives 8. \"4\" comes from a solver who keeps the excluded candidate and reports the smaller root. \"12\" comes from a solver who reports the sum of the two candidates as \"the solution\" of x² − 12x + 32 = 0. \"8/3\" comes from a solver who simplifies to x + 3 = 2x − 5 and then moves x to the wrong side: 3 + 5 = 3x.",
+  "solve": "var roots=[];for(var x=-50;x<=50;x++){if(x*x-12*x+32===0&&x!==4)roots.push(x)} return String(roots[0]);",
+  "distractor_solve": {
+   "4": "var roots=[];for(var x=-50;x<=50;x++){if(x*x-12*x+32===0)roots.push(x)} return String(Math.min.apply(null,roots));",
+   "12": "return String(-(-12)/1);",
+   "8/3": "var x=(3+5)/3; return String(Math.abs(x-8/3)<1e-12?'8/3':x);"
+  }
+ },
+ {
+  "id": "SADV3-03",
+  "domain": "Advanced Math",
+  "subskill": "radical equation in quadratic form: rejecting the branch whose square root would be negative, then summing the real solutions",
+  "difficulty": "medium",
+  "prompt": "What is the sum of all real solutions to the equation √(x² − 4x + 13) = x² − 4x − 7 ?",
+  "choices": [
+   "4",
+   "8",
+   "6",
+   "15"
+  ],
+  "correct_answer": "4",
+  "explanation": "Let t = x² − 4x. Then √(t + 13) = t − 7, and squaring gives t + 13 = t² − 14t + 49, so t² − 15t + 36 = 0 and t = 12 or t = 3. For t = 3 the right side is −4 while the left is √16 = 4, so t = 3 is extraneous. For t = 12 both sides equal 5, so x² − 4x − 12 = 0, giving x = 6 and x = −2 and a sum of 4, which is \"4\". \"8\" comes from a solver who squares, expands to the quartic x⁴ − 8x³ + x² + 60x + 36 = 0 and reports the sum of all four of its roots, including the two extraneous ones from t = 3. \"6\" comes from a solver who reports only the positive solution. \"15\" comes from a solver who adds the two values of t (12 + 3) instead of solving for x.",
+  "solve": "var sum=0;for(var i=-20;i<=20;i+=0.5){var x=i;var l=Math.sqrt(x*x-4*x+13),r=x*x-4*x-7;if(Math.abs(l-r)<1e-9)sum+=x} return String(sum);",
+  "distractor_solve": {
+   "8": "return String(-(-8)/1);",
+   "6": "var s=[];for(var x=-20;x<=20;x++){var l=Math.sqrt(x*x-4*x+13),r=x*x-4*x-7;if(Math.abs(l-r)<1e-9)s.push(x)} return String(Math.max.apply(null,s));",
+   "15": "return String(-(-15)/1);"
+  }
+ },
+ {
+  "id": "SADV3-04",
+  "domain": "Advanced Math",
+  "subskill": "composition with a piecewise inner function: choosing the branch at the boundary in both orders",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = 10 − 3x and\ng(x) = 2x + 1 for x ≤ 2,\ng(x) = x² − 5 for x > 2.\nWhat is the value of g(f(2)) + f(g(2))?",
+  "choices": [
+   "24",
+   "4",
+   "22",
+   "6"
+  ],
+  "correct_answer": "6",
+  "explanation": "f(2) = 4, and since 4 > 2, g(4) = 16 − 5 = 11. g(2) uses the first branch because 2 ≤ 2, so g(2) = 5 and f(5) = 10 − 15 = −5. The sum is 11 + (−5) = 6, which is \"6\". \"24\" comes from a solver who uses the second branch at x = 2 (g(2) = −1, f(−1) = 13) and adds 11 + 13. \"4\" comes from a solver who uses the first branch for g(4) as well (2·4 + 1 = 9) and adds 9 + (−5). \"22\" comes from a solver who assumes the two compositions are equal and doubles g(f(2)).",
+  "solve": "var f=function(x){return 10-3*x};var g=function(x){return x<=2?2*x+1:x*x-5};return String(g(f(2))+f(g(2)));",
+  "distractor_solve": {
+   "24": "var f=function(x){return 10-3*x};var g2=function(x){return x*x-5};var g=function(x){return x<=2?2*x+1:x*x-5};return String(g(f(2))+f(g2(2)));",
+   "4": "var f=function(x){return 10-3*x};var g1=function(x){return 2*x+1};return String(g1(f(2))+f(g1(2)));",
+   "22": "var f=function(x){return 10-3*x};var g=function(x){return x<=2?2*x+1:x*x-5};return String(2*g(f(2)));"
+  }
+ },
+ {
+  "id": "SADV3-05",
+  "domain": "Advanced Math",
+  "subskill": "exponential equation: matching powers of 5 when the right side is an integer times a square root",
+  "difficulty": "medium",
+  "prompt": "If 5^(2x − 1) = 125√5, what is the value of x?",
+  "choices": [
+   "7/4",
+   "9/4",
+   "11/4",
+   "5/4"
+  ],
+  "correct_answer": "9/4",
+  "explanation": "125√5 = 5³ · 5^(1/2) = 5^(7/2), so 2x − 1 = 7/2, 2x = 9/2 and x = 9/4, which is \"9/4\". \"7/4\" comes from a solver who drops the −1 and solves 2x = 7/2. \"11/4\" comes from a solver who divides first and then adds 1: 7/4 + 1. \"5/4\" comes from a solver who reads 125√5 as (5³)^(1/2) = 5^(3/2) and solves 2x − 1 = 3/2.",
+  "solve": "var e=3+0.5; var x=(e+1)/2; return String(x===2.25?'9/4':x);",
+  "distractor_solve": {
+   "7/4": "var x=3.5/2; return String(x===1.75?'7/4':x);",
+   "11/4": "var x=3.5/2+1; return String(x===2.75?'11/4':x);",
+   "5/4": "var x=(1.5+1)/2; return String(x===1.25?'5/4':x);"
+  }
+ },
+ {
+  "id": "SADV3-06",
+  "domain": "Advanced Math",
+  "subskill": "quadratic inequality: locating the strict integer solutions between the roots, then summing them",
+  "difficulty": "medium",
+  "prompt": "What is the sum of all integers x that satisfy x² − 7x − 30 < 0 ?",
+  "choices": [
+   "7",
+   "49",
+   "12",
+   "42"
+  ],
+  "correct_answer": "42",
+  "explanation": "x² − 7x − 30 = (x − 10)(x + 3), which is negative exactly when −3 < x < 10. The integers in that open interval are −2, −1, …, 9: twelve integers whose sum is (−2 + 9)·12/2 = 42, which is \"42\". \"7\" comes from a solver who adds the two roots, −3 + 10, as though they were the solutions. \"49\" comes from a solver who treats the inequality as non-strict and includes −3 and 10. \"12\" comes from a solver who reports how many integers satisfy the inequality rather than their sum.",
+  "solve": "var s=0;for(var x=-100;x<=100;x++){if(x*x-7*x-30<0)s+=x} return String(s);",
+  "distractor_solve": {
+   "7": "return String(-3+10);",
+   "49": "var s=0;for(var x=-100;x<=100;x++){if(x*x-7*x-30<=0)s+=x} return String(s);",
+   "12": "var c=0;for(var x=-100;x<=100;x++){if(x*x-7*x-30<0)c++} return String(c);"
+  }
+ },
+ {
+  "id": "SADV3-07",
+  "domain": "Advanced Math",
+  "subskill": "function transformation from two described points: undoing a horizontal shift, then a vertical stretch and shift",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = f(x) passes through the points (2, 5) and (6, −3). The function g is defined by g(x) = 2f(x − 3) + 1. What is the value of g(5) + g(9)?",
+  "choices": [
+   "6",
+   "18",
+   "4",
+   "8"
+  ],
+  "correct_answer": "6",
+  "explanation": "g(5) = 2f(2) + 1 = 2(5) + 1 = 11 and g(9) = 2f(6) + 1 = 2(−3) + 1 = −5, so the sum is 6, which is \"6\". \"18\" comes from a solver who drops the sign of f(6) and computes 11 + (2·3 + 1). \"4\" comes from a solver who ignores the factor 2: (5 + 1) + (−3 + 1). \"8\" comes from a solver who adds 1 before doubling: 2(5 + 1) + 2(−3 + 1).",
+  "solve": "var f={2:5,6:-3};var g=function(x){return 2*f[x-3]+1};return String(g(5)+g(9));",
+  "distractor_solve": {
+   "18": "return String((2*5+1)+(2*3+1));",
+   "4": "return String((5+1)+(-3+1));",
+   "8": "return String(2*(5+1)+2*(-3+1));"
+  }
+ },
+ {
+  "id": "SADV3-08",
+  "domain": "Advanced Math",
+  "subskill": "system of a circle and a line: substituting, solving the quadratic, and pairing each coordinate with its point",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of x² + y² − 6x − 2y − 15 = 0 is a circle. The circle intersects the line x + 2y = 10 at two points. What is the y-coordinate of the point of intersection that has the greater x-coordinate?",
+  "choices": [
+   "5",
+   "8",
+   "1",
+   "3"
+  ],
+  "correct_answer": "1",
+  "explanation": "From the line, x = 10 − 2y. Substituting: (10 − 2y)² + y² − 6(10 − 2y) − 2y − 15 = 0, which simplifies to 5y² − 30y + 25 = 0, so y² − 6y + 5 = 0 and y = 1 or y = 5. The corresponding x-values are x = 8 (when y = 1) and x = 0 (when y = 5). The point with the greater x-coordinate is (8, 1), so its y-coordinate is 1, which is \"1\". \"5\" comes from a solver who reports the y-coordinate of the other point, (0, 5). \"8\" comes from a solver who reports the greater x-coordinate itself. \"3\" comes from a solver who completes the square, finds the center (3, 1), and reports the center's x-coordinate.",
+  "solve": "var pts=[];for(var y=-20;y<=20;y++){var x=10-2*y;if(x*x+y*y-6*x-2*y-15===0)pts.push([x,y])}pts.sort(function(a,b){return b[0]-a[0]});return String(pts[0][1]);",
+  "distractor_solve": {
+   "5": "var pts=[];for(var y=-20;y<=20;y++){var x=10-2*y;if(x*x+y*y-6*x-2*y-15===0)pts.push([x,y])}pts.sort(function(a,b){return a[0]-b[0]});return String(pts[0][1]);",
+   "8": "var pts=[];for(var y=-20;y<=20;y++){var x=10-2*y;if(x*x+y*y-6*x-2*y-15===0)pts.push([x,y])}pts.sort(function(a,b){return b[0]-a[0]});return String(pts[0][0]);",
+   "3": "return String(-(-6)/2);"
+  }
+ },
+ {
+  "id": "SADV3-09",
+  "domain": "Advanced Math",
+  "subskill": "equivalent expressions with two unknown constants: fixing one from the constant term, the other from the x-coefficient",
+  "difficulty": "medium",
+  "prompt": "The expression (2x + a)(x − 3) is equivalent to 2x² + bx − 15 for all values of x, where a and b are constants. What is the value of a + b?",
+  "choices": [
+   "−16",
+   "7",
+   "−1",
+   "4"
+  ],
+  "correct_answer": "4",
+  "explanation": "Expanding gives 2x² + (a − 6)x − 3a. Matching constants, −3a = −15 so a = 5; matching x-coefficients, b = a − 6 = −1. Then a + b = 4, which is \"4\". \"−16\" comes from a solver who drops the sign and takes a = −5, so b = −11 and a + b = −16. \"7\" comes from a solver who computes the outer product as −3x instead of −6x, giving b = a − 3 = 2 and a + b = 7. \"−1\" comes from a solver who reports b alone.",
+  "solve": "var a=-15/-3; var b=a-6; return String(a+b);",
+  "distractor_solve": {
+   "−16": "var a=-5; var b=a-6; return String(a+b);",
+   "7": "var a=5; var b=a-3; return String(a+b);",
+   "−1": "var a=5; var b=a-6; return String(b);"
+  }
+ },
+ {
+  "id": "SADV3-10",
+  "domain": "Advanced Math",
+  "subskill": "exponential equation in quadratic form: substituting for 2^x, factoring, then converting each value back to x",
+  "difficulty": "medium",
+  "prompt": "What is the sum of all solutions to the equation 4^x − 12 · 2^x + 32 = 0 ?",
+  "choices": [
+   "5",
+   "12",
+   "32",
+   "3"
+  ],
+  "correct_answer": "5",
+  "explanation": "Since 4^x = (2^x)², let u = 2^x: u² − 12u + 32 = 0, so (u − 4)(u − 8) = 0 and u = 4 or u = 8. Then 2^x = 4 gives x = 2 and 2^x = 8 gives x = 3, so the sum is 5, which is \"5\". \"12\" comes from a solver who applies the sum of roots −b/a to the equation in u and reports the sum of the values of 2^x. \"32\" comes from a solver who reports the product of the values of 2^x. \"3\" comes from a solver who reports only the larger solution.",
+  "solve": "var s=0;for(var x=0;x<=10;x++){var u=Math.pow(2,x);if(u*u-12*u+32===0)s+=x} return String(s);",
+  "distractor_solve": {
+   "12": "return String(-(-12)/1);",
+   "32": "return String(32/1);",
+   "3": "var m=0;for(var x=0;x<=10;x++){var u=Math.pow(2,x);if(u*u-12*u+32===0)m=Math.max(m,x)} return String(m);"
+  }
+ },
+ {
+  "id": "SADV3-11",
+  "domain": "Advanced Math",
+  "subskill": "power function with a rational exponent and a vertical shift: fixing both constants, then evaluating at a perfect square",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = a · x^(3/2) + b, where a and b are constants. If f(0) = 5 and f(4) = 29, what is the value of f(9)?",
+  "choices": [
+   "81",
+   "86",
+   "59",
+   "32"
+  ],
+  "correct_answer": "86",
+  "explanation": "f(0) = b = 5. Then f(4) = a · 4^(3/2) + 5 = 8a + 5 = 29, so a = 3. Therefore f(9) = 3 · 9^(3/2) + 5 = 3 · 27 + 5 = 86, which is \"86\". \"81\" comes from a solver who finds a = 3 but forgets to add b. \"59\" comes from a solver who treats the change from f(0) as proportional to x: 5 + 24 · (9/4). \"32\" comes from a solver who takes a = 1: 9^(3/2) + 5.",
+  "solve": "var b=5; var a=(29-b)/Math.pow(4,1.5); return String(a*Math.pow(9,1.5)+b);",
+  "distractor_solve": {
+   "81": "var a=(29-5)/Math.pow(4,1.5); return String(a*Math.pow(9,1.5));",
+   "59": "return String(5+(29-5)*9/4);",
+   "32": "return String(Math.pow(9,1.5)+5);"
+  }
+ },
+ {
+  "id": "SADV3-12",
+  "domain": "Advanced Math",
+  "subskill": "quadratic with a parameter: using the axis of symmetry and the distance between the roots to find the constant term",
+  "difficulty": "medium",
+  "prompt": "The equation x² − 8x + c = 0, where c is a constant, has two real solutions that differ by 6. What is the value of c?",
+  "choices": [
+   "10",
+   "−20",
+   "7",
+   "13"
+  ],
+  "correct_answer": "7",
+  "explanation": "The solutions are symmetric about x = 4, so they are 4 − 3 = 1 and 4 + 3 = 7, and c is their product: 7, which is \"7\". Equivalently, the discriminant 64 − 4c must equal 6² = 36. \"10\" comes from a solver who subtracts the difference itself from 16: 16 − 6. \"−20\" comes from a solver who places the solutions 6 on each side of the axis (−2 and 10) instead of 3. \"13\" comes from a solver who subtracts half the difference instead of its square: 16 − 3.",
+  "solve": "var h=8/2; var r1=h-3, r2=h+3; return String(r1*r2);",
+  "distractor_solve": {
+   "10": "return String(16-6);",
+   "−20": "var h=4; return String((h-6)*(h+6));",
+   "13": "return String(16-3);"
+  }
+ }
+]

@@ -1,0 +1,86 @@
+{
+ "SADV3-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "p(2)=12+4k=4, k=-2; p(-3)=-54-18+15+6=-51. Bound: p(-3)=9k-33 so remainder = 3 mod 9 for integer k; 27 fails (27 = p(+3), the sign-slip distractor). survivors=3: mod-9 residue. -60=k=-3, -24=k=1 both from arithmetic slips. Sound."
+ },
+ "SADV3-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "LHS=(x-4)(x+3)/(x-4)=x+3, x+3=2x-5, x=8. Cross-multiplying gives x^2-12x+32=(x-4)(x-8). survivors=3: option A=4 is the excluded value - rejecting it IS the item's point, not a free kill. D=12 is Vieta sum of the two candidates (a decent trap for the student who sums instead of choosing). 8/3 has no clean genesis."
+ },
+ "SADV3-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "u=x^2-4x: u^2-15u+36=0, u=12 or 3; u=3 rejected (u-7<0); x^2-4x-12=0 sum 4. survivors=2: every x-quadratic is x^2-4x-u=0, sum 4 by Vieta / symmetry about x=2, so the answer is 4 x (accepted u count) - 6 and 15 impossible without solving (15 is the u-sum, 6 a single root). Deciding between 4 and 8 IS the rejection step, so keep, but the recall bypass halves the option set."
+ },
+ "SADV3-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "f(2)=4, g(4)=11 (x>2 branch), g(2)=5 (x<=2 branch), f(5)=-5, total 6. survivors=4. Each distractor is one wrong-branch choice: 24=wrong at g(2), 22=wrong at g(4) and g(2), 4=wrong at g(4). Clean."
+ },
+ "SADV3-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1: 125 < 125*sqrt5 < 625 so 3 < 2x-1 < 4, 2 < x < 2.5; only 9/4 lies in the band (5/4, 7/4 below 2; 11/4=2.75 above 2.5). Magnitude bound alone decides it - this is exactly the 'exponent forced by RHS size' kill. Quarter-step ladder too. DROP."
+ },
+ "SADV3-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "(x-10)(x+3)<0, integers -2..9, sum 42. survivors=3: integers strictly between roots are symmetric about 7/2 so sum=3.5n; 12 (=count) is not a multiple of 3.5. 49 = inclusive endpoints, 7 = Vieta root sum - both good traps."
+ },
+ "SADV3-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "g(5)=2f(2)+1=11, g(9)=2f(6)+1=-5, sum 6. survivors=4 (sum must be even; all options even). One-line recall: g(5)+g(9)=2(f(2)+f(6))+2=6, no shift-direction confusion possible because the stem hands you exactly the two needed f-values. 18 = sign flip on -3, 4 = dropped the +1s, 8 = doubled the +1s. Mechanism is thin for 'Advanced'."
+ },
+ "SADV3-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Centre (3,1), r=5. Sub x=10-2y: 5y^2-30y+25=0, y=1 or 5, points (8,1) and (0,5); greater x -> y=1. survivors=3: circle spans y in [-4,6], so 8 (the x-coordinate of the answer point) is dead. Recall bypasses: x=0 gives (0,5) on the circle for free, and the rightmost point of the circle (h+r,k)=(8,1) satisfies 8+2=10, so a student who knows the circle form never touches the quadratic. Same x=0 freebie the brief warns of."
+ },
+ "SADV3-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "-3a=-15, a=5; b=a-6=-1; a+b=4. survivors=4. -1 = b alone, -16 = a=-5 sign error carried, 7 = b computed as a-3. Easy."
+ },
+ "SADV3-10": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "u=2^x: u^2-12u+32=0, u=4,8, x=2,3, sum 5. Recall bypass: Vieta product of u-roots is 32=2^5, so x1+x2=log2(32)=5 with no factoring at all. 12 and 32 are the stem's own coefficients as options (u-sum, u-product); 3 is one root. Both u-roots positive so no rejection step. Same substitution family as 03."
+ },
+ "SADV3-11": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "b=5, 8a+5=29, a=3, f(9)=81+5=86. survivors=2: x^(3/2) is strictly convex, chord slope 0->4 is 6, so f(9) > 29+6*5 = 59; 59 (on the bound) and 32 are dead by convexity. 81 vs 86 is only 'forgot +b', and 81=3^4 next to 86 reads as the outlier-plus-shift pair. Needs two distractors above 59 (e.g. 91, 113) - HOLD for repair, not a kill."
+ },
+ "SADV3-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Axis x=4, roots 4+-3 = 1,7, c=7. survivors=4 by the two-real-roots bound c<16 (all four under it). -20 = 4+-6 error (product -2*10), 13 = 16-3, 10 = 16-6. DUPLICATE: the brief's own description of the previous Advanced batch ('roots differing by 6 with c<16') is this item verbatim - same coefficient 8, same gap 6. Check bank before insert."
+ }
+}
