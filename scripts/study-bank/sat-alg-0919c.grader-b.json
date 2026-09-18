@@ -1,0 +1,254 @@
+{
+ "SALG5A-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Adding gives 5(x+y)=10k+10 so x+y=2k+2; A is x-y, but the add-and-divide trick is the same mechanism as SALG5A-08 and a solver of one solves the other."
+ },
+ "SALG5A-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "p: y=3x-1, q: y=-2x+12, x=13/5 (option B, the x-coordinate trap), y=34/5; clean and single-answer."
+ },
+ "SALG5A-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Multiplier 5/2 gives a=2, b=25, a/b=2/25; C is the reciprocal and B/D are the constant ratio and its inverse, all reachable by real errors."
+ },
+ "SALG5A-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Only (2,3) satisfies all three; (-1,4) and (1,6) sit on strict boundaries, which is the whole item, so this is a second-half module-1 item at best."
+ },
+ "SALG5A-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Column heights 7+4+2=13; A (14) and B (16) are the inclusive-boundary miscounts, so the strictness is doing honest work."
+ },
+ "SALG5A-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "17b=150 so b=8.82 -> 8.8; C (11.8) is ingredient A, and the tenth rounding is unambiguous."
+ },
+ "SALG5A-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "y=-2x+10 meets y=3x+1 at (9/5,32/5); each distractor lies on exactly one line so a checker must test both, but the pattern duplicates SALG5A-02's two-line intersection."
+ },
+ "SALG5A-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Summing the equations gives 3x+2y=11 with k cancelling; a non-solver who notices the stem does not say 'in terms of k' can drop C and D, and it pairs mechanically with SALG5A-01."
+ },
+ "SALG5A-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "Vertical base 12 from intercepts 10 and -2, height 8 from the intersection, area 48; A (60) is the unhalved product and D (40) uses the wrong height."
+ },
+ "SALG5A-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "x-axis point (6,0) then 6k=27 gives 9/2; two-step and routine, not second-half module 2."
+ },
+ "SALG5A-11": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "P=(-3,4) so slope through origin is -4/3; A and C are the two given lines' slopes and B is the constants ratio, all tempting to a non-solver."
+ },
+ "SALG5A-12": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Intercepts -13 and -4 sum to -17; C (-19) is a sign slip on the second line and shares the point-slope mechanism with SALG5B-12."
+ },
+ "SALG5B-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Slope -2/5 over a run of 25 from (-4,1) gives -9; the decimal option A flags itself as a slope-inverted artefact and the mechanism duplicates SALG5B-05."
+ },
+ "SALG5B-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Perpendicular slope -5/2 through (3,4) crosses at x=23/5; A (23/2) is the y-intercept, C uses the un-negated reciprocal."
+ },
+ "SALG5B-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "-12y=2x+6 at x=6 gives -3/2; B (-39) is the un-distributed evaluation but its magnitude lets a non-solver discard it."
+ },
+ "SALG5B-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "x-intercept 8 then 8k=15; D (120) is obviously off by magnitude and the item pairs with SALG5A-10 (parameter fixed by a shared axis point)."
+ },
+ "SALG5B-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Slope -3/2, zero at x=-2+22/3=16/3; A (8) is the y-intercept read as the zero and the setup duplicates SALG5B-01."
+ },
+ "SALG5B-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Evaluate (3/4)(0-6)-6=-21/2; C (-12) is the add-the-shift error and A is shifting the wrong direction, so the direction trap is honest."
+ },
+ "SALG5B-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "6+1.5t=19+0.5t gives t=13; all distractors are day values of the right magnitude, but a real word problem with two derived rates belongs mid-module."
+ },
+ "SALG5B-08": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "Every option fits row one by design, but row two eliminates three of them in one substitution, and the visibly negative slope kills A without any arithmetic."
+ },
+ "SALG5B-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "a=6 then 48+3y=30 gives y=-6; B (-38) is off by magnitude and D (-14) from a=4 slip, routine two-step."
+ },
+ "SALG5B-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "f(2)=5 and f(4)=1 give slope -2 and f(0)=9; D (-7) is the shift decoded the wrong way and C is the other sign slip, a genuine second-half item."
+ },
+ "SALG5B-11": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Intercepts -8 and 15 give length 23; A (7) is the difference for a solver who forgets the sign and D is a slope-mixing artefact."
+ },
+ "SALG5B-12": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "m=-3/4, b=4, m+b=13/4; C (19/4) is b-m and the two-point-to-intercept mechanism repeats SALG5A-12 and SALG5B-05."
+ },
+ "SALG5C-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Clearing 12 gives x=24 (option A) and 2x-9=39; the partial-clearing distractors are real, but this is the same denominator mechanism as SALG5C-09."
+ },
+ "SALG5C-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "4k=14 gives k=7/2 and the constants 3/2 vs -21 disagree; D (k=1) is where the constants agree, an honest distractor for a solver who matches the wrong side, and the mechanism pairs with SALG5C-08."
+ },
+ "SALG5C-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "t(m-3)=s(2m+1) so t=(2ms+s)/(m-3); B differs only in the denominator sign and is the strongest distractor, D is a dropped term."
+ },
+ "SALG5C-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "-8.5<x<=8 holds 17 integers; A (13) is a boundary-halving miscount and the count-across-zero shape duplicates SALG5C-05."
+ },
+ "SALG5C-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "Reduces to x<-35 so the greatest integer is -36; B (-42) needs a magnitude that has no error path and is discardable, D (-11) from a partial clear."
+ },
+ "SALG5C-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "15h>=325 gives h>=21.67 so 22 whole hours; the stem says 'least ... whole hours ... at least', so ceiling is unambiguous and C (43) is a magnitude giveaway."
+ },
+ "SALG5C-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "|t-21.5|>0.75 scaled by 4; a non-solver can drop B (wrong direction) and C (centre/radius swap by inspection) and then only the strict/non-strict reading of 'more than' separates A from D."
+ },
+ "SALG5C-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "Constants give a=-2/3, x-terms give b=13/6, sum 3/2; D (13/6) reports b alone and the identity-matching mechanism pairs with SALG5C-02."
+ },
+ "SALG5C-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Clearing 12 gives 3x=26 so x=26/3; A (13/2) from a sign slip, and the denominator-clearing setup is the same as SALG5C-01."
+ },
+ "SALG5C-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "10k-35=6k+9 gives k=11; single-substitution linear solve that would sit in module 1."
+ },
+ "SALG5C-11": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "1+6k>=5x so (1+6k)/5=3 gives k=7/3; A (5/2) from the skipped division, B from a dropped constant, and the direction never reverses so no strictness trap exists."
+ },
+ "SALG5C-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "0.15x=9.6 gives x=64; A (94) is the un-distributed right side, and while accurate, decimal linear solving is a mid-module item for the hard route."
+ }
+}

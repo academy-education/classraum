@@ -1,0 +1,254 @@
+{
+ "SALG5A-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; no sign/magnitude bound separates 4k-10, 6-k, 3k-4, 2k+2 without adding the equations; within-file duplicate: SALG5A-08 (asked combination is the plain sum of the two equations, parameter in constants)."
+ },
+ "SALG5A-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; bracket from given points x in (1,3) gives y in (2,8), kills nothing; denominator tell: three options over 5, 22/7 is the odd one out, kills A; one midpoint check at x=2 (p=5, q=8) would tighten to y in (5,8) and kill B too, leaving C,D."
+ },
+ "SALG5A-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; mirror pair 2/25 vs 25/2 is the reciprocal pair a student bets on, 2/5 is the reciprocal of the free constant ratio 15/6, 1/2 the stray; bank duplicate: sat-alg-unit-0919.kept.batch.json SALGD-01 (cross-placed unknown coefficients, multiplier from the constants; also sat-alg-h5 ALG-H5-01, sat-alg-hard-v1 AL-H-14)."
+ },
+ "SALG5A-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2; coordinate on a strict boundary kills A (x=-1 vs x>-1) and D (1+6=7 vs <7) by inspection; B and C remain until one substitution; bank duplicate: sat-alg-0919b.kept.batch.json SALG3-02 (three inequalities, pick the pair; also unit-0919 SALGD-02, h4 ALG-H4-20)."
+ },
+ "SALG5A-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; magnitude: the triangle x<10, y<4 has area 20 so 21 interior lattice points is impossible, kills C; adjacent pair 13/14 is the strict-vs-nonstrict pair a student bets on, 16 is the other nonstrict variant; no bank duplicate of the count-lattice-points mechanism."
+ },
+ "SALG5A-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; positivity bounds b<=150/9=16.7 (fat) and b<=30 (protein) kill nothing; ratio bound (protein:fat 2 lies between A's 3 and B's 1.1) kills nothing; no bank duplicate (sat-alg-h4 ALG-H4-03 is an integer 2x2 price system, different ask)."
+ },
+ "SALG5A-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1; on-both-lines by inspection: n is y=3x+1 so C fails (21/5+1=26/5 not 36/5), m is 2x+y=10 so B fails (47/7) and D fails (97/7); only A satisfies both; no bank duplicate."
+ },
+ "SALG5A-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; stem asks 'the value of 3x+2y' with no 'in terms of k', so C and D die on structure; 11 is the sum of the stem constants 9+2, 7 is the mis-signed sum; within-file duplicate: SALG5A-01 (asked combination is the sum of the two equations)."
+ },
+ "SALG5A-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; base 12 is free-readable from the two y-intercepts 10 and -2; height is the intersection x, strictly less than the first line's x-intercept 10, so area<60 kills A as the limiting case; 32, 40, 48 survive."
+ },
+ "SALG5A-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; 27/5 is a stem-number restatement (the second line's y-intercept), kills C; sign of k needs x=6 which is a solving step; 9/2, 6, -1/2 survive."
+ },
+ "SALG5A-11": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; -3/4 and 1/2 are the slopes of the two given lines read off the stem, a student discards restatements; -7/11 is the constants ratio; mirror pair -3/4 vs -4/3 also points at D; B and D survive."
+ },
+ "SALG5A-12": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; sign: both lines pass through (2,-5) with slope 4 and -1/2, both y-intercepts are negative so the sum is negative, kills B; divisibility: 4*2 and (1/2)*2 are integers so the sum is an integer, kills D; -17 and -19 survive."
+ },
+ "SALG5B-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; monotone decreasing from f(6)=-3; magnitude: rise 4 over run 10 is a slope under 1, so a run of 15 drops less than 15, f(21)>-18 kills A; B, C, D survive (D dies on divisibility only once the slope -2/5 is computed); bank duplicate: sat-alg-h4.batch.json ALG-H4-05 (linear f from two values evaluated at a third x); within-file: SALG5B-05 same two-value mechanism."
+ },
+ "SALG5B-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; 10 is the given line's own x-intercept 20/2, a stem restatement, kills C; the perpendicular line drops from (3,4) with |slope|>1 (given line has |slope| 2/5 < 1) so the run to the x-axis is under 4 and x in (3,7) would also kill A and D, but that needs the perpendicular slope; bank duplicate: sat-alg-h5.kept.batch.json ALG-H5-10 (perpendicular to a standard-form line through a point, intercept asked; also 0918b SALGB-03)."
+ },
+ "SALG5B-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; sign: all options negative, no kill; magnitude: coefficients of size at most 12 with x=6 cannot put y near -39, kills B; -1/2, -3/2, -9/2 survive."
+ },
+ "SALG5B-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1; magnitude: 120 = 15*8 is an order too large, kills D; 5/2 = 15/6 is the second line's y-intercept magnitude, a restatement, kills C; the first line's x-intercept 8 is free-readable from 24/3 and 15/8 is the only fraction with that denominator, kills A; no bank duplicate."
+ },
+ "SALG5B-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; f decreasing with f(4)=2>0 so the zero is right of 4 (all survive); magnitude: drop 9 over run 6 is |slope|>1, so from (4,2) the run to zero is under 2, x<6 kills A and C; 16/3 and 38/9 survive; within-file: SALG5B-01 same two-value mechanism."
+ },
+ "SALG5B-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; shifting a positive-slope line right lowers the intercept below -6 (all survive); magnitude: slope 3/4 < 1 so a shift of 6 lowers it by less than 6, intercept in (-12,-6) kills C as the endpoint (adding the shift to the intercept) and B; -15/2 and -21/2 survive; bank duplicate: sat-alg-h5.kept.batch.json ALG-H5-16 (translate a line, read the new intercept) and sat-alg-0918.batch.json SALG-07 uses the identical line y=(3/4)x-6."
+ },
+ "SALG5B-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; at day 10 A=21 < B=24 and A is faster, so the crossing is after day 10 (all survive); magnitude: A gains at most 1.5 cm/day on B and the gap is 3, so at least 2 more days, t>=12 kills D; 13, 16, 26.5 survive; within-file: SALG5C-06 is the same catch-up mechanism as an inequality."
+ },
+ "SALG5B-08": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; sign: f(x) falls as x rises so the slope is negative, kills A; every option fits the first row so B, C, D survive until the 3-unit step is read (then only C)."
+ },
+ "SALG5B-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1; the y-intercept 30/3=10 is free-readable from standard form; the given point (4,2) and the asked x=8 are equally spaced from x=0, so monotone equal steps 10 -> 2 -> -6 fix the answer with no parameter found; kills A, B, D."
+ },
+ "SALG5B-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "weak",
+  "note": "survivors=2; decoding gives f(2)=5 either way; with the shift read either direction f(0) is 9 (points (2,5),(4,1)) or 11/3 (points (-4,1),(2,5)), and under both readings f(0)>0, so sign kills C and D; 9 and 11/3 survive, the pair is exactly the shift-direction fork."
+ },
+ "SALG5B-11": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; both |slopes| < 1 with y-intercept 6, so each x-intercept has magnitude over 6 and they lie on opposite sides, PQ > 12 kills A; 15, 23, 19.5 survive (15 dies only once one intercept is computed)."
+ },
+ "SALG5B-12": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; sign/magnitude: falling line so m in (-1,0) (drop 9 over run 12), b lies within 4 of 7 hence b in (3,7), m+b in (2,7) kills B (10.75); 25/4, 19/4, 13/4 survive."
+ },
+ "SALG5C-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1; magnitude: x(3/4-1/6)=14 with a coefficient under 1 forces x>14 so 2x-9>19, kills B and D; parity: 2x-9 is odd for integer x and 24 is the lone even option, kills A; no bank duplicate of the evaluate-an-expression twist (sat-alg-0918 SALG-01 asks x itself); within-file: SALG5C-09 and SALG5C-12 are the same clear-denominators solve."
+ },
+ "SALG5C-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; no sign or magnitude bound separates 3/2, 11/4, 7/2, 1; bank duplicate: sat-alg-hard-v1.batch.json AL-H-01 (no-solution with the parameter in both an x-coefficient and a constant; the plain form is also in 0918b SALGB-05, h4 ALG-H4-18, h5 ALG-H5-12, hard-v1 AL-H-03/AL-H-06)."
+ },
+ "SALG5C-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "weak",
+  "note": "survivors=1; limiting case m->infinity forces t->2s from the original (denominator must vanish), A and B tend to 2s while C tends to -2s and D to 0, kills C and D; denominator: m-3 appears in three options, B's m+3 is the visibly corrupted one, kills B; bank duplicate: sat-alg-unit-0919.batch.json SALG2-13 (target in numerator and denominator, factor it out)."
+ },
+ "SALG5C-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; magnitude: the middle expression spans 11 units and x moves 3/2 per unit, so the x-interval is about 16 wide and 6 or 9 integers is impossible, kills C and D; 13 and 17 survive until the endpoints are placed; bank duplicate: sat-alg-0918.kept.batch.json SALG-04 (count integers in a compound inequality with a non-integer bound)."
+ },
+ "SALG5C-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; sign: for large x the left side is about -5x/3 and the right about -3x/2, so the solution set opens downward and all four negative options are consistent; no adjacent pair; bank duplicate: sat-alg-0918.kept.batch.json SALG-05 (greatest integer, two denominators, negative net coefficient, direction reverses)."
+ },
+ "SALG5C-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; magnitude: the gap is 325 and B gains at most 41/hour, so h>=8 kills B (5); 8, 22, 43 survive; no adjacent least-integer pair; bank duplicate: sat-alg-h5.kept.batch.json ALG-H5-02 (least count where one plan overtakes another, head start over rate difference; also 0918b SALGB-02); within-file: SALG5B-07 same catch-up mechanism."
+ },
+ "SALG5C-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1; stem-word matching: 'more than' is strict so D (>=) dies; 'away from' the set temperature is an outside region so B (<) dies; the centre must be the stem number 21.5, so the swapped C dies; A is the only option consistent with the stem's words; no bank duplicate."
+ },
+ "SALG5C-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; no sign or magnitude bound on a+b from the stem; bank duplicate: sat-alg-hard-v1.batch.json AL-H-02 (identity in x with two unknown constants, constants fix one and x-coefficients the other; also h4 ALG-H4-09, hard-v1 AL-H-05)."
+ },
+ "SALG5C-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; all options positive and of similar size, no bound separates 13/2, 11/9, 26/3, 14/3; bank duplicate: sat-alg-0918.batch.json SALG-01 (clear denominators from a linear equation with x on both sides, report x); within-file: SALG5C-01, SALG5C-12 same solve."
+ },
+ "SALG5C-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; sign: after x=2 the equation reads 10k-35=6k+9 so k is positive, kills C; 11, 4, 11/4 survive; no bank duplicate of the given-solution mechanism."
+ },
+ "SALG5C-11": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; sign: k must be positive for the boundary to reach 3 and all options are positive; no magnitude bound separates 5/2, 11/6, 1/3, 7/3; no bank duplicate."
+ },
+ "SALG5C-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; sign glance on -16 needs a substitution, not a bound; 94, 64, 124, -16 all survive cheap bounds; within-file: SALG5C-01, SALG5C-09 same clear-and-solve mechanism."
+ }
+}

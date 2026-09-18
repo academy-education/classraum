@@ -1,0 +1,254 @@
+[
+ {
+  "id": "SALG5C-01",
+  "domain": "Algebra",
+  "subskill": "clear two different denominators from an equation with the variable on both sides, then evaluate a requested linear expression in x rather than reporting x; distractors are x itself and two partial-clearing errors",
+  "difficulty": "medium",
+  "prompt": "If 3x/4 - 7 = x/6 + 7, what is the value of 2x - 9 ?",
+  "choices": [
+   "24",
+   "17",
+   "39",
+   "-5"
+  ],
+  "correct_answer": "39",
+  "explanation": "Multiply every term by 12: 9x - 84 = 2x + 84, so 7x = 168 and x = 24. The question asks for 2x - 9 = 2(24) - 9 = 39. \"24\" is the value of x itself, reported by a solver who stops before evaluating the expression. \"17\" comes from a solver who multiplies the left side by 12 but only the fraction on the right, 9x - 84 = 2x + 7, giving x = 13 and 2(13) - 9 = 17. \"-5\" comes from a solver who multiplies only the two fractions by 12 and leaves both constants alone, 9x - 7 = 2x + 7, giving x = 2 and 2(2) - 9 = -5.",
+  "solve": "var x=(7+7)/(3/4-1/6); if(Math.abs(3*x/4-7-(x/6+7))>1e-9) return \"bad\"; return String(2*x-9);",
+  "distractor_solve": {
+   "17": "var x=(84+7)/(9-2); return String(2*x-9);",
+   "24": "var x=(7+7)/(3/4-1/6); return String(x);",
+   "-5": "var x=(7+7)/(9-2); return String(2*x-9);"
+  }
+ },
+ {
+  "id": "SALG5C-02",
+  "domain": "Algebra",
+  "subskill": "find the parameter that makes a one-variable linear equation have no solution when the parameter appears in the x-coefficient AND in the constant on both sides: match the x-coefficients, then confirm the constants disagree at that value; the value that makes the constants agree is a distractor",
+  "difficulty": "medium",
+  "prompt": "In the equation k(4x + 3) - 9 = 6(x - k) + 8x, k is a constant. If the equation has no solution, what is the value of k ?",
+  "choices": [
+   "7/2",
+   "1",
+   "11/4",
+   "3/2"
+  ],
+  "correct_answer": "7/2",
+  "explanation": "Expanding gives 4kx + 3k - 9 = 14x - 6k. A linear equation has no solution exactly when the x-coefficients are equal and the constants are not: 4k = 14 gives k = 7/2, and at that value the constants are 3(7/2) - 9 = 3/2 on the left and -6(7/2) = -21 on the right, which differ, so there is no solution. \"1\" is the value that makes the CONSTANTS equal, 3k - 9 = -6k; a solver who matches constants instead of x-coefficients picks it, but at k = 1 the equation is 4x - 6 = 14x - 6 and has the solution x = 0. \"3/2\" comes from a solver who overlooks the 8x term and matches 4k to 6. \"11/4\" comes from a solver who reads the left x-coefficient as 4k + 3 and sets 4k + 3 = 14.",
+  "solve": "var k=14/4; var lc=3*k-9, rc=-6*k; if(Math.abs(lc-rc)<1e-9) return \"bad\"; return String(k===3.5?\"7/2\":k);",
+  "distractor_solve": {
+   "1": "var k=9/9; return String(k);",
+   "3/2": "var k=6/4; return k===1.5?\"3/2\":String(k);",
+   "11/4": "var k=(14-3)/4; return k===2.75?\"11/4\":String(k);"
+  }
+ },
+ {
+  "id": "SALG5C-03",
+  "domain": "Algebra",
+  "subskill": "solve a literal equation for a variable that appears in both numerator and denominator: cross-multiply, collect the two terms containing the target on one side, factor it out, and divide; the key is written unfactored while two distractors are factored",
+  "difficulty": "hard",
+  "prompt": "If m = (3t + s)/(t - 2s), where t ≠ 2s, which of the following expresses t in terms of m and s ?",
+  "choices": [
+   "t = s(1 - 2m)/(m - 3)",
+   "t = s(2m + 1)/(m + 3)",
+   "t = 3s/(m - 3)",
+   "t = (2ms + s)/(m - 3)"
+  ],
+  "correct_answer": "t = (2ms + s)/(m - 3)",
+  "explanation": "Multiply both sides by t - 2s: mt - 2ms = 3t + s. Collect the two t-terms on the left, mt - 3t = s + 2ms, factor, t(m - 3) = s + 2ms, and divide: t = (2ms + s)/(m - 3). \"t = s(1 - 2m)/(m - 3)\" comes from a solver who moves the -2ms term across without changing its sign, mt - 3t = s - 2ms. \"t = s(2m + 1)/(m + 3)\" comes from a solver who moves 3t across without changing its sign, mt + 3t = s + 2ms. \"t = 3s/(m - 3)\" comes from a solver who does not distribute m over -2s, writing mt - 2s = 3t + s and so t(m - 3) = 3s.",
+  "solve": "var pts=[[5,2],[7,3],[-2,4]]; var forms={'t = s(1 - 2m)/(m - 3)':function(m,s){return s*(1-2*m)/(m-3);},'t = s(2m + 1)/(m + 3)':function(m,s){return s*(2*m+1)/(m+3);},'t = 3s/(m - 3)':function(m,s){return 3*s/(m-3);},'t = (2ms + s)/(m - 3)':function(m,s){return (2*m*s+s)/(m-3);}}; var pick=function(g){var h=Object.keys(forms).filter(function(k){return pts.every(function(p){return Math.abs(forms[k](p[0],p[1])-g(p[0],p[1]))<1e-9;});}); return h.length===1?h[0]:'bad';}; var g=function(m,s){var t=s*(1+2*m)/(m-3); if(Math.abs((3*t+s)/(t-2*s)-m)>1e-9) throw new Error('bad'); return t;}; return pick(g);",
+  "distractor_solve": {
+   "t = s(1 - 2m)/(m - 3)": "var pts=[[5,2],[7,3],[-2,4]]; var forms={'t = s(1 - 2m)/(m - 3)':function(m,s){return s*(1-2*m)/(m-3);},'t = s(2m + 1)/(m + 3)':function(m,s){return s*(2*m+1)/(m+3);},'t = 3s/(m - 3)':function(m,s){return 3*s/(m-3);},'t = (2ms + s)/(m - 3)':function(m,s){return (2*m*s+s)/(m-3);}}; var pick=function(g){var h=Object.keys(forms).filter(function(k){return pts.every(function(p){return Math.abs(forms[k](p[0],p[1])-g(p[0],p[1]))<1e-9;});}); return h.length===1?h[0]:'bad';}; return pick(function(m,s){return (s-2*m*s)/(m-3);});",
+   "t = s(2m + 1)/(m + 3)": "var pts=[[5,2],[7,3],[-2,4]]; var forms={'t = s(1 - 2m)/(m - 3)':function(m,s){return s*(1-2*m)/(m-3);},'t = s(2m + 1)/(m + 3)':function(m,s){return s*(2*m+1)/(m+3);},'t = 3s/(m - 3)':function(m,s){return 3*s/(m-3);},'t = (2ms + s)/(m - 3)':function(m,s){return (2*m*s+s)/(m-3);}}; var pick=function(g){var h=Object.keys(forms).filter(function(k){return pts.every(function(p){return Math.abs(forms[k](p[0],p[1])-g(p[0],p[1]))<1e-9;});}); return h.length===1?h[0]:'bad';}; return pick(function(m,s){return (s+2*m*s)/(m+3);});",
+   "t = 3s/(m - 3)": "var pts=[[5,2],[7,3],[-2,4]]; var forms={'t = s(1 - 2m)/(m - 3)':function(m,s){return s*(1-2*m)/(m-3);},'t = s(2m + 1)/(m + 3)':function(m,s){return s*(2*m+1)/(m+3);},'t = 3s/(m - 3)':function(m,s){return 3*s/(m-3);},'t = (2ms + s)/(m - 3)':function(m,s){return (2*m*s+s)/(m-3);}}; var pick=function(g){var h=Object.keys(forms).filter(function(k){return pts.every(function(p){return Math.abs(forms[k](p[0],p[1])-g(p[0],p[1]))<1e-9;});}); return h.length===1?h[0]:'bad';}; return pick(function(m,s){return (s+2*s)/(m-3);});"
+  }
+ },
+ {
+  "id": "SALG5C-04",
+  "domain": "Algebra",
+  "subskill": "count the integers in the solution set of a three-part compound inequality whose middle is a fraction: multiply all three parts by the denominator, isolate x, and count across zero from a non-integer lower bound to an integer upper bound",
+  "difficulty": "medium",
+  "prompt": "How many integers x satisfy -4 < (2x + 5)/3 ≤ 7 ?",
+  "choices": [
+   "13",
+   "17",
+   "9",
+   "6"
+  ],
+  "correct_answer": "17",
+  "explanation": "Multiply all three parts by 3: -12 < 2x + 5 ≤ 21, so -17 < 2x ≤ 16 and -8.5 < x ≤ 8. The integers from -8 to 8 inclusive number 17. \"6\" comes from a solver who does not multiply the outer parts by 3, -4 < 2x + 5 ≤ 7, which gives -4.5 < x ≤ 1 and the integers -4 through 1. \"13\" comes from a solver who multiplies only the right-hand 7 by 3, -4 < 2x + 5 ≤ 21, which gives -4.5 < x ≤ 8 and the integers -4 through 8. \"9\" comes from a solver who counts only the non-negative integers 0 through 8.",
+  "solve": "var lo=(-4*3-5)/2, hi=(7*3-5)/2; var n=0; for(var x=-100;x<=100;x++){ if(x>lo && x<=hi) n++; } return String(n);",
+  "distractor_solve": {
+   "6": "var lo=(-4-5)/2, hi=(7-5)/2; var n=0; for(var x=-100;x<=100;x++){ if(x>lo && x<=hi) n++; } return String(n);",
+   "9": "var lo=(-12-5)/2, hi=(21-5)/2; var n=0; for(var x=0;x<=100;x++){ if(x>lo && x<=hi) n++; } return String(n);",
+   "13": "var lo=(-4-5)/2, hi=(21-5)/2; var n=0; for(var x=-100;x<=100;x++){ if(x>lo && x<=hi) n++; } return String(n);"
+  }
+ },
+ {
+  "id": "SALG5C-05",
+  "domain": "Algebra",
+  "subskill": "greatest integer satisfying a strict linear inequality with two denominators and the variable on both sides, where the net coefficient is negative so the direction reverses and the strict boundary is itself an integer that must be excluded",
+  "difficulty": "hard",
+  "prompt": "What is the greatest integer x for which (x - 4)/3 - 2x > 5 - (3x + 1)/2 ?",
+  "choices": [
+   "-42",
+   "-11",
+   "-2",
+   "-36"
+  ],
+  "correct_answer": "-36",
+  "explanation": "Multiply by 6: 2(x - 4) - 12x > 30 - 3(3x + 1), so 2x - 8 - 12x > 27 - 9x, that is -10x - 8 > 27 - 9x. Adding 10x to both sides and subtracting 27 gives -35 > x, so x < -35. Because the inequality is strict, -35 itself does not work (both sides equal 57 there), and the greatest integer is -36. \"-42\" comes from a solver who does not distribute the -3 over the +1, writing 30 - 9x + 3 on the right, which gives x < -41. \"-11\" comes from a solver who forgets to multiply the 5 by 6, giving -10x - 8 > 2 - 9x and x < -10. \"-2\" comes from a solver who combines -10x and -9x as -19x on one side, -19x > 35, and takes the greatest integer below -35/19.",
+  "solve": "var b=(-8-27)/(-9+10); var g=Math.ceil(b)-1; if(!((g-4)/3-2*g>5-(3*g+1)/2)) return \"bad\"; if(((g+1)-4)/3-2*(g+1)>5-(3*(g+1)+1)/2) return \"bad\"; return String(g);",
+  "distractor_solve": {
+   "-42": "var b=(-8-33)/(-9+10); return String(Math.ceil(b)-1);",
+   "-11": "var b=(-8-2)/(-9+10); return String(Math.ceil(b)-1);",
+   "-2": "var b=35/-19; return String(Math.ceil(b)-1);"
+  }
+ },
+ {
+  "id": "SALG5C-06",
+  "domain": "Algebra",
+  "subskill": "translate a catch-up situation with two head starts and two rates into a one-variable linear inequality and report the least whole number of hours, rounding a non-integer boundary UP; distractors come from adding the rates, adding the head starts, and equating to the current total",
+  "difficulty": "medium",
+  "prompt": "Machine A has produced 480 parts so far and continues to produce parts at a constant rate of 26 parts per hour. Machine B has produced 155 parts so far and continues at a constant rate of 41 parts per hour. What is the least number of whole hours from now after which the total number of parts produced by Machine B will be at least the total produced by Machine A?",
+  "choices": [
+   "22",
+   "5",
+   "43",
+   "8"
+  ],
+  "correct_answer": "22",
+  "explanation": "After h hours Machine A has 480 + 26h parts and Machine B has 155 + 41h. The condition 155 + 41h ≥ 480 + 26h gives 15h ≥ 325, so h ≥ 21.67, and the least whole number of hours is 22. \"5\" comes from a solver who adds the rates instead of subtracting them, 67h ≥ 325. \"43\" comes from a solver who adds the two head starts instead of subtracting them, 15h ≥ 635. \"8\" comes from a solver who asks when Machine B reaches Machine A's CURRENT total, 155 + 41h ≥ 480, and ignores that Machine A keeps producing.",
+  "solve": "var h=(480-155)/(41-26); return String(Math.ceil(h));",
+  "distractor_solve": {
+   "5": "var h=(480-155)/(41+26); return String(Math.ceil(h));",
+   "8": "var h=(480-155)/41; return String(Math.ceil(h));",
+   "43": "var h=(480+155)/(41-26); return String(Math.ceil(h));"
+  }
+ },
+ {
+  "id": "SALG5C-07",
+  "domain": "Algebra",
+  "subskill": "translate a \"more than d away from c\" statement into an absolute-value inequality and recognise an equivalent form scaled by a constant; distractors are the non-strict version, the complementary (inside) region, and a centre/radius swap",
+  "difficulty": "medium",
+  "prompt": "A thermostat is set to 21.5°C. The heater switches on whenever the room temperature t, in degrees Celsius, is more than 0.75°C away from the set temperature. Which of the following inequalities describes all temperatures t for which the heater is on?",
+  "choices": [
+   "|4t - 86| ≥ 3",
+   "|t - 0.75| > 21.5",
+   "|4t - 86| > 3",
+   "|2t - 43| < 1.5"
+  ],
+  "correct_answer": "|4t - 86| > 3",
+  "explanation": "\"More than 0.75 away from 21.5\" is the distance statement |t - 21.5| > 0.75. Multiplying both sides by 4 gives |4t - 86| > 3, which is the same set of temperatures (for example t = 22.3 gives |89.2 - 86| = 3.2 > 3, heater on; t = 22 gives |88 - 86| = 2, heater off). \"|4t - 86| ≥ 3\" is chosen by a solver who reads \"more than\" as \"at least\" and includes the boundary temperatures 20.75 and 22.25, at which the heater is not on. \"|2t - 43| < 1.5\" is equivalent to |t - 21.5| < 0.75 and describes the temperatures at which the heater is OFF. \"|t - 0.75| > 21.5\" is written by a solver who swaps the centre and the distance.",
+  "solve": "var T=[19,20.7,20.75,20.8,21,21.5,22,22.2,22.25,22.3,22.5,24,0.5,-1]; var on=function(t){return Math.abs(t-21.5)>0.75;}; var forms={'|4t - 86| ≥ 3':function(t){return Math.abs(4*t-86)>=3;},'|t - 0.75| > 21.5':function(t){return Math.abs(t-0.75)>21.5;},'|4t - 86| > 3':function(t){return Math.abs(4*t-86)>3;},'|2t - 43| < 1.5':function(t){return Math.abs(2*t-43)<1.5;}}; var pick=function(g){var h=Object.keys(forms).filter(function(k){return T.every(function(t){return forms[k](t)===g(t);});}); return h.length===1?h[0]:'bad';}; return pick(on);",
+  "distractor_solve": {
+   "|4t - 86| ≥ 3": "var T=[19,20.7,20.75,20.8,21,21.5,22,22.2,22.25,22.3,22.5,24,0.5,-1]; var on=function(t){return Math.abs(t-21.5)>0.75;}; var forms={'|4t - 86| ≥ 3':function(t){return Math.abs(4*t-86)>=3;},'|t - 0.75| > 21.5':function(t){return Math.abs(t-0.75)>21.5;},'|4t - 86| > 3':function(t){return Math.abs(4*t-86)>3;},'|2t - 43| < 1.5':function(t){return Math.abs(2*t-43)<1.5;}}; var pick=function(g){var h=Object.keys(forms).filter(function(k){return T.every(function(t){return forms[k](t)===g(t);});}); return h.length===1?h[0]:'bad';}; return pick(function(t){return Math.abs(t-21.5)>=0.75;});",
+   "|2t - 43| < 1.5": "var T=[19,20.7,20.75,20.8,21,21.5,22,22.2,22.25,22.3,22.5,24,0.5,-1]; var on=function(t){return Math.abs(t-21.5)>0.75;}; var forms={'|4t - 86| ≥ 3':function(t){return Math.abs(4*t-86)>=3;},'|t - 0.75| > 21.5':function(t){return Math.abs(t-0.75)>21.5;},'|4t - 86| > 3':function(t){return Math.abs(4*t-86)>3;},'|2t - 43| < 1.5':function(t){return Math.abs(2*t-43)<1.5;}}; var pick=function(g){var h=Object.keys(forms).filter(function(k){return T.every(function(t){return forms[k](t)===g(t);});}); return h.length===1?h[0]:'bad';}; return pick(function(t){return Math.abs(t-21.5)<0.75;});",
+   "|t - 0.75| > 21.5": "var T=[19,20.7,20.75,20.8,21,21.5,22,22.2,22.25,22.3,22.5,24,0.5,-1]; var on=function(t){return Math.abs(t-21.5)>0.75;}; var forms={'|4t - 86| ≥ 3':function(t){return Math.abs(4*t-86)>=3;},'|t - 0.75| > 21.5':function(t){return Math.abs(t-0.75)>21.5;},'|4t - 86| > 3':function(t){return Math.abs(4*t-86)>3;},'|2t - 43| < 1.5':function(t){return Math.abs(2*t-43)<1.5;}}; var pick=function(g){var h=Object.keys(forms).filter(function(k){return T.every(function(t){return forms[k](t)===g(t);});}); return h.length===1?h[0]:'bad';}; return pick(function(t){return Math.abs(t-0.75)>21.5;});"
+  }
+ },
+ {
+  "id": "SALG5C-08",
+  "domain": "Algebra",
+  "subskill": "a one-variable linear equation with two constants that holds for every x: the constant terms fix one parameter, the x-coefficients then fix the other, and the asked quantity is their sum; distractors report one parameter alone or mishandle a step",
+  "difficulty": "hard",
+  "prompt": "In the equation a(x - 3) + 6 = 2(bx + 4) - 5x, a and b are constants. If the equation is true for every value of x, what is the value of a + b ?",
+  "choices": [
+   "-9/2",
+   "3/2",
+   "13/6",
+   "-1"
+  ],
+  "correct_answer": "3/2",
+  "explanation": "Expanding gives ax - 3a + 6 = (2b - 5)x + 8. For this to hold for every x, the constants must agree, -3a + 6 = 8, so a = -2/3, and the x-coefficients must agree, a = 2b - 5, so b = (a + 5)/2 = 13/6. Then a + b = -2/3 + 13/6 = 3/2. \"13/6\" is the value of b alone. \"-9/2\" comes from a solver who writes -3a = 6 + 8 instead of 8 - 6, getting a = -14/3 and b = 1/6. \"-1\" comes from a solver who overlooks the -5x term and sets a = 2b, giving b = -1/3 and a + b = -1.",
+  "solve": "var a=(8-6)/(-3); var b=(a+5)/2; for(var x=-3;x<=3;x++){ if(Math.abs(a*(x-3)+6-(2*(b*x+4)-5*x))>1e-9) return \"bad\"; } var s=a+b; return Math.abs(s-1.5)<1e-9?\"3/2\":String(s);",
+  "distractor_solve": {
+   "13/6": "var a=(8-6)/(-3); var b=(a+5)/2; return Math.abs(b-13/6)<1e-9?\"13/6\":String(b);",
+   "-9/2": "var a=(6+8)/(-3); var b=(a+5)/2; var s=a+b; return Math.abs(s+4.5)<1e-9?\"-9/2\":String(s);",
+   "-1": "var a=(8-6)/(-3); var b=a/2; var s=a+b; return String(Math.round(s*1e9)/1e9);"
+  }
+ },
+ {
+  "id": "SALG5C-09",
+  "domain": "Algebra",
+  "subskill": "clear three denominators from an equation with x on both sides in which the 8x terms cancel after expansion, leaving a small coefficient and a fractional solution; distractors from a sign slip, a partial multiplication, and a mis-scaled term",
+  "difficulty": "medium",
+  "prompt": "If (4x - 3)/6 + x/4 = (2x + 5)/3, what is the value of x ?",
+  "choices": [
+   "26/3",
+   "13/2",
+   "14/3",
+   "11/9"
+  ],
+  "correct_answer": "26/3",
+  "explanation": "Multiply every term by 12: 2(4x - 3) + 3x = 4(2x + 5), so 8x - 6 + 3x = 8x + 20. The 8x terms cancel, leaving 3x - 6 = 20, so x = 26/3. \"14/3\" comes from a solver who writes 2(4x - 3) as 8x + 6, getting 3x = 14. \"11/9\" comes from a solver who multiplies only the left side by 12, 11x - 6 = 2x + 5, getting 9x = 11. \"13/2\" comes from a solver who turns x/4 into 4x instead of 3x when clearing denominators, 8x - 6 + 4x = 8x + 20, getting 4x = 26.",
+  "solve": "var x=(20+6)/(8+3-8); if(Math.abs((4*x-3)/6+x/4-(2*x+5)/3)>1e-9) return \"bad\"; return Math.abs(x-26/3)<1e-9?\"26/3\":String(x);",
+  "distractor_solve": {
+   "14/3": "var x=(20-6)/(8+3-8); return Math.abs(x-14/3)<1e-9?\"14/3\":String(x);",
+   "11/9": "var x=(5+6)/(8+3-2); return Math.abs(x-11/9)<1e-9?\"11/9\":String(x);",
+   "13/2": "var x=(20+6)/(8+4-8); return Math.abs(x-6.5)<1e-9?\"13/2\":String(x);"
+  }
+ },
+ {
+  "id": "SALG5C-10",
+  "domain": "Algebra",
+  "subskill": "a known solution is substituted into an equation whose unknown constant multiplies x inside a parenthesis on one side and outside on the other; the result is a one-variable linear equation in the constant",
+  "difficulty": "medium",
+  "prompt": "In the equation 5(kx - 7) = 3kx + 9, k is a constant. If x = 2 is a solution of the equation, what is the value of k ?",
+  "choices": [
+   "4",
+   "-13/2",
+   "11/4",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "Substituting x = 2 gives 5(2k - 7) = 6k + 9, so 10k - 35 = 6k + 9, 4k = 44, and k = 11. (Check: 5(22 - 7) = 75 and 3(11)(2) + 9 = 75.) \"4\" comes from a solver who does not distribute the 5 over -7, writing 10k - 7 = 6k + 9. \"-13/2\" comes from a solver who moves the 35 across with the wrong sign, 4k = 9 - 35. \"11/4\" comes from a solver who adds 6k to 10k instead of subtracting, 16k = 44.",
+  "solve": "var x=2; var k=(9+35)/(5*x-3*x); if(Math.abs(5*(k*x-7)-(3*k*x+9))>1e-9) return \"bad\"; return String(k);",
+  "distractor_solve": {
+   "4": "var x=2; var k=(9+7)/(5*x-3*x); return String(k);",
+   "-13/2": "var x=2; var k=(9-35)/(5*x-3*x); return k===-6.5?\"-13/2\":String(k);",
+   "11/4": "var x=2; var k=(9+35)/(5*x+3*x); return k===2.75?\"11/4\":String(k);"
+  }
+ },
+ {
+  "id": "SALG5C-11",
+  "domain": "Algebra",
+  "subskill": "an inequality with a parameter inside a distributed parenthesis whose solution set is given as x ≤ 3: isolate x in terms of the parameter, equate the boundary to 3, and solve; distractors from a partial distribution, a skipped division, and a dropped constant",
+  "difficulty": "medium",
+  "prompt": "The solution set of the inequality 5 - 2(x - 3k) ≥ 3x + 4, where k is a constant, is x ≤ 3. What is the value of k ?",
+  "choices": [
+   "1/3",
+   "7/3",
+   "5/2",
+   "11/6"
+  ],
+  "correct_answer": "7/3",
+  "explanation": "Distributing gives 5 - 2x + 6k ≥ 3x + 4, so 1 + 6k ≥ 5x and x ≤ (1 + 6k)/5. The boundary must be 3: 1 + 6k = 15, so k = 7/3. \"11/6\" comes from a solver who does not distribute the -2 over x, writing 5 - x + 6k ≥ 3x + 4 and a boundary of (1 + 6k)/4. \"1/3\" comes from a solver who forgets to divide by 5 and sets 1 + 6k = 3. \"5/2\" comes from a solver who drops the constant 1 and sets 6k/5 = 3.",
+  "solve": "var k=(3*5-1)/6; var bnd=(1+6*k)/5; if(Math.abs(bnd-3)>1e-9) return \"bad\"; if(!(5-2*(3-3*k)>=3*3+4) || (5-2*(3.01-3*k)>=3*3.01+4)) return \"bad\"; return Math.abs(k-7/3)<1e-9?\"7/3\":String(k);",
+  "distractor_solve": {
+   "11/6": "var k=(3*4-1)/6; return Math.abs(k-11/6)<1e-9?\"11/6\":String(k);",
+   "1/3": "var k=(3-1)/6; return Math.abs(k-1/3)<1e-9?\"1/3\":String(k);",
+   "5/2": "var k=(3*5)/6; return k===2.5?\"5/2\":String(k);"
+  }
+ },
+ {
+  "id": "SALG5C-12",
+  "domain": "Algebra",
+  "subskill": "a linear equation with decimal coefficients and a parenthesis on each side: distribute both, collect the small residual coefficient, and divide; distractors from failing to distribute on either side and from a sign slip on the constants",
+  "difficulty": "medium",
+  "prompt": "If 0.4(x - 15) = 0.25(x + 6) + 2.1, what is the value of x ?",
+  "choices": [
+   "124",
+   "-16",
+   "64",
+   "94"
+  ],
+  "correct_answer": "64",
+  "explanation": "Distributing gives 0.4x - 6 = 0.25x + 1.5 + 2.1 = 0.25x + 3.6, so 0.15x = 9.6 and x = 64. \"124\" comes from a solver who does not multiply the 15 by 0.4, writing 0.4x - 15 on the left, so 0.15x = 18.6. \"94\" comes from a solver who does not multiply the 6 by 0.25, writing 0.25x + 6 + 2.1 on the right, so 0.15x = 14.1. \"-16\" comes from a solver who subtracts the 6 from 3.6 instead of adding it, 0.15x = -2.4.",
+  "solve": "var x=(0.25*6+2.1+0.4*15)/(0.4-0.25); if(Math.abs(0.4*(x-15)-(0.25*(x+6)+2.1))>1e-9) return \"bad\"; return String(Math.round(x*1e9)/1e9);",
+  "distractor_solve": {
+   "94": "var x=(6+2.1+0.4*15)/(0.4-0.25); return String(Math.round(x*1e9)/1e9);",
+   "124": "var x=(0.25*6+2.1+15)/(0.4-0.25); return String(Math.round(x*1e9)/1e9);",
+   "-16": "var x=(0.25*6+2.1-0.4*15)/(0.4-0.25); return String(Math.round(x*1e9)/1e9);"
+  }
+ }
+]

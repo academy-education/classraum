@@ -1,0 +1,254 @@
+{
+ "SALG5A-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Adding gives 5(x+y)=10k+10; distractors are x=3k-4, y=6-k, x-y=4k-10, all genuine; same add-the-equations device as SALG5A-08."
+ },
+ "SALG5A-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "p: y=3x-1, q: y=-2x+12, x=13/5 (offered as B), y=34/5; clean."
+ },
+ "SALG5A-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Multiplier 5/2 gives a=2, b=25, a/b=2/25; distractors 2/5 (constant ratio) and 25/2 (inverse) are natural errors."
+ },
+ "SALG5A-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Pure plug-in of four candidates; each wrong pair fails exactly one inequality as claimed, but a strong student finishes in under 30 seconds."
+ },
+ "SALG5A-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Columns 7+4+2=13; 14 is the non-strict count; lattice-point counting is not a Digital SAT Algebra item form (SAT-style violation)."
+ },
+ "SALG5A-06": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "17b=150, b=8.82; C (11.8) is ingredient A; the 'need not be a whole number' sentence is stilted but harmless."
+ },
+ "SALG5A-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "m: y=-2x+10, n: y=3x+1, x=9/5, y=32/5; each distractor verified to lie on exactly one line."
+ },
+ "SALG5A-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Sum of equations is literally 3x+2y=11, one step with no division; near-duplicate device of SALG5A-01."
+ },
+ "SALG5A-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Vertices (0,10),(0,-2),(8,2); base 12, height 8, area 48; clean."
+ },
+ "SALG5A-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "y=0 gives x=6, then 6k=27; two short steps, under 30 seconds for a strong student; B is the x-value itself."
+ },
+ "SALG5A-11": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "P=(-3,4), slope 4/(-3)=-4/3; A and C are the given lines' slopes as intended."
+ },
+ "SALG5A-12": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b_s=-13, b_t=-4, sum -17; clean."
+ },
+ "SALG5B-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Slope -2/5, f(21)=-3-6=-9; clean, but shares the two-point linear-function setup with SALG5B-05."
+ },
+ "SALG5B-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Perpendicular slope -5/2 through (3,4) gives x-intercept 23/5; D (13) is the parallel-slope error, C is the original line's x-intercept."
+ },
+ "SALG5B-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Substituting x=6 first gives -18-12y=36, y=-3/2 in one line; no need to rearrange."
+ },
+ "SALG5B-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "x-intercept 8, 8k=15; two trivial steps; overlaps the x-intercept theme of SALG5B-02 and SALG5B-11."
+ },
+ "SALG5B-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Slope -3/2, zero at 4+4/3=16/3; A (8) is f(0); same setup family as SALG5B-01."
+ },
+ "SALG5B-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "y=(3/4)(x-6)-6 at x=0 gives -21/2; A is the leftward-shift error, C the add-the-shift error."
+ },
+ "SALG5B-07": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "A: 1.5t+6, B: 0.5t+19, equal at t=13; clean."
+ },
+ "SALG5B-08": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "All four fit (2,17) as claimed; slope -6/3=-2 settles it in one check, and D is the 3-step trap."
+ },
+ "SALG5B-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "a=6, then 48+3y=30, y=-6; two substitutions, under 30 seconds."
+ },
+ "SALG5B-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "f(2)=5 and f(4)=1 give slope -2, f(0)=9; B (11/3) is exactly the wrong-direction decode f(-4)=1, so the tell is well-targeted."
+ },
+ "SALG5B-11": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "P=(-8,0), Q=(15,0), PQ=23; A (7) is the sign-dropped difference."
+ },
+ "SALG5B-12": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "m=-3/4, b=4, m+b=13/4; C (19/4) is b-m."
+ },
+ "SALG5C-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "7x/12=14, x=24 (offered as A), 2x-9=39; clean."
+ },
+ "SALG5C-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "4k=14 gives k=7/2 with constants 3/2 vs -21 disagreeing; D (k=1) is the constants-agree distractor as designed."
+ },
+ "SALG5C-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "t(m-3)=s(2m+1); B has the wrong denominator sign, C the wrong numerator sign; clean."
+ },
+ "SALG5C-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "-8.5<x<=8 gives 17 integers; D (9) counts only 0..8, A (13) is a boundary-count slip."
+ },
+ "SALG5C-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Clearing 6 gives -x>35, x<-35, greatest integer -36; the strict boundary is correctly excluded."
+ },
+ "SALG5C-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "15h>=325, h>=21.67, so 22; C (43) is the added-head-starts error and B (5) the added-rates error as described."
+ },
+ "SALG5C-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "|t-21.5|>0.75 scaled by 4 is |4t-86|>3; D differs only in strictness, which is the intended discrimination."
+ },
+ "SALG5C-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=-2/3 from constants, b=13/6 (offered as D) from x-terms, a+b=3/2; clean."
+ },
+ "SALG5C-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Clearing 12 gives 11x-6=8x+20, x=26/3; the 8x cancellation is as described; same clear-denominators device as SALG5C-01."
+ },
+ "SALG5C-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "10k-35=6k+9, k=11 in one line; too light for the hard route."
+ },
+ "SALG5C-11": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "1+6k>=5x so boundary (1+6k)/5=3, k=7/3; clean."
+ },
+ "SALG5C-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "0.15x=9.6, x=64; A (94) is the undistributed-0.25 error; clean."
+ }
+}

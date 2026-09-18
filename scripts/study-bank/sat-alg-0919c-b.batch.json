@@ -1,0 +1,254 @@
+[
+ {
+  "id": "SALG5B-01",
+  "domain": "Algebra",
+  "subskill": "evaluate a linear function at a third x from two given points when the slope is a non-integer fraction: the slope must be kept exact and the run measured from the correct anchor point",
+  "difficulty": "medium",
+  "prompt": "The function f is linear. In the xy-plane, the graph of y = f(x) passes through the points (-4, 1) and (6, -3). What is the value of f(21)?",
+  "choices": [
+   "-40.5",
+   "-13",
+   "-9",
+   "-11.4"
+  ],
+  "correct_answer": "-9",
+  "explanation": "The slope is (-3 - 1)/(6 - (-4)) = -4/10 = -2/5. From (6, -3) the run to x = 21 is 15, so f(21) = -3 + (-2/5)(15) = -3 - 6 = -9. \"-40.5\" comes from a solver who inverts the slope to -5/2 and computes -3 + (-5/2)(15). \"-11.4\" comes from a solver who measures the run as 21 instead of 21 - 6 and computes -3 + (-2/5)(21). \"-13\" comes from a solver who uses the run 25 from x = -4 but starts from the y-value -3 of the other point, -3 + (-2/5)(25).",
+  "solve": "var dy=-3-1, dx=6-(-4); var v=-3+(dy*(21-6))/dx; return String(v);",
+  "distractor_solve": {
+   "-40.5": "var v=-3+((6-(-4))*(21-6))/(-3-1); return String(v);",
+   "-11.4": "var v=-3+((-3-1)*21)/(6-(-4)); return String(Math.round(v*10)/10);",
+   "-13": "var v=-3+((-3-1)*(21-(-4)))/(6-(-4)); return String(v);"
+  }
+ },
+ {
+  "id": "SALG5B-02",
+  "domain": "Algebra",
+  "subskill": "x-intercept of a line perpendicular to a line given in standard form through a given point: the negative reciprocal must be taken of the slope read from standard form, and the question asks for the x-intercept rather than the equation or the y-intercept",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line k is perpendicular to the line with equation 2x - 5y = 20 and passes through the point (3, 4). What is the x-coordinate of the point where line k crosses the x-axis?",
+  "choices": [
+   "23/5",
+   "13",
+   "10",
+   "23/2"
+  ],
+  "correct_answer": "23/5",
+  "explanation": "The line 2x - 5y = 20 has slope 2/5, so line k has slope -5/2. Using the point (3, 4) with y = 0: 0 - 4 = (-5/2)(x - 3), so x - 3 = 8/5 and x = 23/5. \"13\" comes from a solver who negates the slope without inverting it, using slope -2/5: -4 = (-2/5)(x - 3) gives x = 13. \"23/2\" is the y-intercept of line k, 4 + (5/2)(3), reported in place of the x-intercept. \"10\" is the x-intercept of the given line 2x - 5y = 20, not of line k.",
+  "solve": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var A=2,B=-5; var n=3*B-4*A, d=B; return fr(n,d);",
+  "distractor_solve": {
+   "10": "return String(20/2);",
+   "13": "var m=-(2/5); var x=3-4/m; return String(x);",
+   "23/2": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var b=4-(-5/2)*3; return fr(b*2,2);"
+  }
+ },
+ {
+  "id": "SALG5B-03",
+  "domain": "Algebra",
+  "subskill": "y-coordinate where a line given in an unsimplified form meets a vertical line x = c: the equation must be fully distributed and collected before substituting the fixed x",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of the equation 3(x - 4y) = 5x + 6 is a line. What is the y-coordinate of the point where this line intersects the line x = 6?",
+  "choices": [
+   "-9/2",
+   "-1/2",
+   "-39",
+   "-3/2"
+  ],
+  "correct_answer": "-3/2",
+  "explanation": "Distributing gives 3x - 12y = 5x + 6, so -12y = 2x + 6. At x = 6 this is -12y = 18, so y = -3/2. \"-9/2\" comes from a solver who distributes the 3 over x only, 3x - 4y = 5x + 6, so -4y = 18. \"-1/2\" comes from a solver who moves the 6 across with the wrong sign, -12y = 2x - 6 = 6. \"-39\" comes from a solver who substitutes 6 for y instead of x, 3x - 72 = 5x + 6, and reports x.",
+  "solve": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var g=function(x,y){return 3*(x-4*y)-(5*x+6);}; var c0=g(6,0), c1=g(6,1)-c0; return fr(-c0,c1);",
+  "distractor_solve": {
+   "-9/2": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var g=function(x,y){return 3*x-4*y-(5*x+6);}; var c0=g(6,0), c1=g(6,1)-c0; return fr(-c0,c1);",
+   "-1/2": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var c0=2*6-6; return fr(-c0,12);",
+   "-39": "var x=(3*0-12*6-6)/(5-3); return String(x);"
+  }
+ },
+ {
+  "id": "SALG5B-04",
+  "domain": "Algebra",
+  "subskill": "find the parameter in the x-coefficient of one line so that its x-intercept equals the x-intercept of a second line given in standard form: both intercepts must be computed, and the parameter appears in the denominator of one of them",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of 3x + 4y = 24 and the graph of kx - 6y = 15, where k is a constant, have the same x-intercept. What is the value of k?",
+  "choices": [
+   "120",
+   "15/8",
+   "9/2",
+   "5/2"
+  ],
+  "correct_answer": "15/8",
+  "explanation": "The x-intercept of 3x + 4y = 24 is 24/3 = 8. The x-intercept of kx - 6y = 15 is 15/k, so 15/k = 8 and k = 15/8. \"5/2\" comes from a solver who uses the y-intercept 24/4 = 6 of the first line, 15/k = 6. \"9/2\" comes from a solver who equates the slopes with a sign slip, -3/4 = -k/6. \"120\" comes from a solver who writes the second x-intercept as k/15 and solves k/15 = 8.",
+  "solve": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var xi=24/3; return fr(15,xi);",
+  "distractor_solve": {
+   "120": "return String(8*15);",
+   "5/2": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var yi=24/4; return fr(15,yi);",
+   "9/2": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};return fr(3*6,4);"
+  }
+ },
+ {
+  "id": "SALG5B-05",
+  "domain": "Algebra",
+  "subskill": "zero of a linear function defined by two function values: the slope is a negative non-integer and the zero must be located by running from the nearer point, not read as the y-intercept",
+  "difficulty": "medium",
+  "prompt": "The function f is linear, f(-2) = 11, and f(4) = 2. For what value of x is f(x) = 0?",
+  "choices": [
+   "8",
+   "38/9",
+   "7",
+   "16/3"
+  ],
+  "correct_answer": "16/3",
+  "explanation": "The slope is (2 - 11)/(4 - (-2)) = -9/6 = -3/2. From (4, 2), reaching 0 requires a drop of 2, which takes a run of 2/(3/2) = 4/3, so x = 4 + 4/3 = 16/3. \"8\" is f(0), the y-intercept 2 + (3/2)(4), reported in place of the zero. \"38/9\" comes from a solver who uses the slope -9 without dividing by the run, x = 4 + 2/9. \"7\" comes from a solver who inverts the slope to -2/3, x = 4 + 2/(2/3).",
+  "solve": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=2-11, dx=4-(-2); return fr(4*dy-2*dx,dy);",
+  "distractor_solve": {
+   "7": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=2-11, dx=4-(-2); return fr(4*dx-2*dy,dx);",
+   "8": "var m=(2-11)/(4-(-2)); return String(2-m*4);",
+   "38/9": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var m=2-11; return fr(4*m-2,m);"
+  }
+ },
+ {
+  "id": "SALG5B-06",
+  "domain": "Algebra",
+  "subskill": "horizontal translation of a line with fractional slope: the image's y-intercept comes from evaluating the original at x = -h (shift right by h), not from adding the shift to the intercept",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = (3/4)x - 6 is translated 6 units to the right. What is the y-coordinate of the point where the resulting line crosses the y-axis?",
+  "choices": [
+   "-21/2",
+   "-15/2",
+   "-14",
+   "-12"
+  ],
+  "correct_answer": "-21/2",
+  "explanation": "Translating 6 units to the right replaces x with x - 6: y = (3/4)(x - 6) - 6 = (3/4)x - 9/2 - 6, so the y-intercept is -21/2. \"-12\" comes from a solver who applies the shift vertically, subtracting 6 from the intercept. \"-14\" comes from a solver who multiplies the shift by 4/3 instead of 3/4, -6 - 8. \"-15/2\" comes from a solver who divides the shift by 4 but never multiplies by 3, -6 - 3/2.",
+  "solve": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var h=6; return fr(3*(0-h)+(-6)*4,4);",
+  "distractor_solve": {
+   "-12": "return String(-6-6);",
+   "-14": "return String(-6-6*4/3);",
+   "-15/2": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};return fr(-6*4-6,4);"
+  }
+ },
+ {
+  "id": "SALG5B-07",
+  "domain": "Algebra",
+  "subskill": "two linear growth models each given by two data points rather than a rate: both rates and both intercepts must be derived before solving for the input at which the models agree",
+  "difficulty": "medium",
+  "prompt": "Two saplings were planted at the same time, and each has grown at its own constant rate since planting. Sapling A was 12 centimeters tall 4 days after planting and 21 centimeters tall 10 days after planting. Sapling B was 20 centimeters tall 2 days after planting and 24 centimeters tall 10 days after planting. How many days after planting were the two saplings the same height?",
+  "choices": [
+   "16",
+   "26.5",
+   "13",
+   "11.5"
+  ],
+  "correct_answer": "13",
+  "explanation": "Sapling A grows (21 - 12)/(10 - 4) = 1.5 centimeters per day, so its height is 12 + 1.5(d - 4) = 1.5d + 6. Sapling B grows (24 - 20)/(10 - 2) = 0.5 centimeters per day, so its height is 20 + 0.5(d - 2) = 0.5d + 19. Setting 1.5d + 6 = 0.5d + 19 gives d = 13, when both are 25.5 centimeters. \"16\" comes from a solver who closes the 3-centimeter gap at day 10 at sapling B's rate alone, 10 + 3/0.5. \"11.5\" comes from a solver who closes that gap at the sum of the rates, 10 + 3/2. \"26.5\" comes from a solver who computes sapling A's rate as 9/10 by dividing by the day number instead of the 6-day interval.",
+  "solve": "var mA=(21-12)/(10-4), bA=12-mA*4; var mB=(24-20)/(10-2), bB=20-mB*2; return String((bB-bA)/(mA-mB));",
+  "distractor_solve": {
+   "16": "return String(10+(24-21)/((24-20)/(10-2)));",
+   "11.5": "return String(10+(24-21)/((21-12)/(10-4)+(24-20)/(10-2)));",
+   "26.5": "var mA=(21-12)/10, bA=12-mA*4; var mB=(24-20)/(10-2), bB=20-mB*2; return String(Math.round((bB-bA)/(mA-mB)*10)/10);"
+  }
+ },
+ {
+  "id": "SALG5B-08",
+  "domain": "Algebra",
+  "subskill": "equation of a linear function from a table whose x-values step by 3: the slope must divide the output difference by the 3-unit step, and every option fits the first row so the second row decides",
+  "difficulty": "medium",
+  "prompt": "The table gives four values of x and the corresponding values of the linear function f.\n\nx: 2, 5, 8, 11\nf(x): 17, 11, 5, -1\n\nWhich equation defines f?",
+  "choices": [
+   "f(x) = -6x + 29",
+   "f(x) = -2x + 21",
+   "f(x) = 2x + 13",
+   "f(x) = -x + 19"
+  ],
+  "correct_answer": "f(x) = -2x + 21",
+  "explanation": "Between consecutive rows x increases by 3 and f(x) decreases by 6, so the slope is -6/3 = -2. Then 17 = -2(2) + b gives b = 21, so f(x) = -2x + 21; checking the second row, -2(5) + 21 = 11. \"f(x) = -6x + 29\" comes from a solver who treats consecutive rows as one unit apart, taking the slope as -6 and fitting the first row. \"f(x) = 2x + 13\" comes from a solver who drops the sign of the slope and fits the first row. \"f(x) = -x + 19\" comes from a solver who divides the 6-unit drop by the 6-unit gap between the first and third x-values, taking the slope as -1.",
+  "solve": "var xs=[2,5,8,11], ys=[17,11,5,-1]; var m=(ys[1]-ys[0])/(xs[1]-xs[0]); var b=ys[0]-m*xs[0]; for(var i=0;i<4;i++){ if(m*xs[i]+b!==ys[i]) return \"bad\"; } var ms=m===-1?\"-\":(m===1?\"\":String(m)); return \"f(x) = \"+ms+\"x + \"+b;",
+  "distractor_solve": {
+   "f(x) = -6x + 29": "var m=(11-17)/1; var b=17-m*2; return \"f(x) = \"+m+\"x + \"+b;",
+   "f(x) = 2x + 13": "var m=-((11-17)/(5-2)); var b=17-m*2; return \"f(x) = \"+m+\"x + \"+b;",
+   "f(x) = -x + 19": "var m=(11-17)/(8-2); var b=17-m*2; var ms=m===-1?\"-\":String(m); return \"f(x) = \"+ms+\"x + \"+b;"
+  }
+ },
+ {
+  "id": "SALG5B-09",
+  "domain": "Algebra",
+  "subskill": "a line in standard form with a parameter on x: fix the parameter from a given point, then evaluate the line at a new x-value, where the line must be solved for y after the parameter is known",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of the equation ax + 3y = 30, where a is a constant, passes through the point (4, 2). What is the y-coordinate of the point on the graph whose x-coordinate is 8?",
+  "choices": [
+   "-14",
+   "-10",
+   "-38",
+   "-6"
+  ],
+  "correct_answer": "-6",
+  "explanation": "Substituting (4, 2) gives 4a + 6 = 30, so a = 6 and the line is 6x + 3y = 30, or y = 10 - 2x. At x = 8, y = 10 - 16 = -6. \"-14\" comes from a solver who moves the 6 across with the wrong sign, 4a - 6 = 30, so a = 9 and y = 10 - 3x. \"-10\" comes from a solver who ignores the 3y term when finding a, 4a = 30, so a = 7.5 and y = 10 - 2.5x. \"-38\" comes from a solver who finds a = 6 but uses -a as the slope instead of -a/3, y = 10 - 6x.",
+  "solve": "var a=(30-3*2)/4; var y=(30-a*8)/3; return String(y);",
+  "distractor_solve": {
+   "-14": "var a=(30+3*2)/4; var y=(30-a*8)/3; return String(y);",
+   "-10": "var a=30/4; var y=(30-a*8)/3; return String(y);",
+   "-38": "var a=(30-3*2)/4; var y=10-a*8; return String(y);"
+  }
+ },
+ {
+  "id": "SALG5B-10",
+  "domain": "Algebra",
+  "subskill": "recover a linear function from two transformed graphs: an x-intercept of y = f(x) - 5 and a y-intercept of y = f(x + 4) each encode one point of f, and the horizontal shift must be decoded in the right direction before the slope is found",
+  "difficulty": "hard",
+  "prompt": "The function f is linear. In the xy-plane, the graph of y = f(x) - 5 has an x-intercept at x = 2, and the graph of y = f(x + 4) has a y-intercept at y = 1. What is the value of f(0)?",
+  "choices": [
+   "9",
+   "-7",
+   "11/3",
+   "-11"
+  ],
+  "correct_answer": "9",
+  "explanation": "An x-intercept of y = f(x) - 5 at x = 2 means f(2) - 5 = 0, so f(2) = 5. A y-intercept of y = f(x + 4) at y = 1 means f(0 + 4) = 1, so f(4) = 1. The slope is (1 - 5)/(4 - 2) = -2, and f(0) = f(2) - 2(-2) = 9. \"11/3\" comes from a solver who reads the second condition as f(-4) = 1, giving slope (5 - 1)/(2 + 4) = 2/3 and f(0) = 5 - 2(2/3). \"-11\" comes from a solver who reads the first condition as f(2) = -5, giving slope 3 and f(0) = -5 - 6. \"-7\" comes from a solver who finds the slope -2 but steps from (4, 1) in the wrong direction, 1 + 4(-2).",
+  "solve": "var f2=0+5, f4=1; var m=(f4-f2)/(4-2); return String(f2-2*m);",
+  "distractor_solve": {
+   "11/3": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} return n/a+\"/\"+d/a;}; var m=(5-1)/(2-(-4)); return fr(5*3-2*(m*3),3);",
+   "-11": "var f2=0-5, f4=1; var m=(f4-f2)/(4-2); return String(f2-2*m);",
+   "-7": "var m=(1-5)/(4-2); return String(1+4*m);"
+  }
+ },
+ {
+  "id": "SALG5B-11",
+  "domain": "Algebra",
+  "subskill": "distance between the x-intercepts of two lines with a common y-intercept and slopes of opposite sign: each intercept is -b/m with a fractional slope, and the intercepts lie on opposite sides of the origin",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graphs of y = (3/4)x + 6 and y = -(2/5)x + 6 intersect the x-axis at points P and Q, respectively. What is the length of segment PQ?",
+  "choices": [
+   "7",
+   "23",
+   "15",
+   "19.5"
+  ],
+  "correct_answer": "23",
+  "explanation": "P is where (3/4)x + 6 = 0, so x = -8, and Q is where -(2/5)x + 6 = 0, so x = 15. The points are on opposite sides of the origin, so PQ = 15 - (-8) = 23. \"7\" comes from a solver who takes both intercepts as positive, 15 - 8. \"15\" is the x-coordinate of Q alone. \"19.5\" comes from a solver who multiplies by the slope instead of dividing for P, placing it at -6(3/4) = -4.5, so PQ = 15 + 4.5.",
+  "solve": "var P=-6/(3/4), Q=-6/(-2/5); return String(Math.abs(Q-P));",
+  "distractor_solve": {
+   "7": "var P=6/(3/4), Q=-6/(-2/5); return String(Math.abs(Q-P));",
+   "15": "return String(-6/(-2/5));",
+   "19.5": "var P=-6*(3/4), Q=-6/(-2/5); return String(Math.round(Math.abs(Q-P)*10)/10);"
+  }
+ },
+ {
+  "id": "SALG5B-12",
+  "domain": "Algebra",
+  "subskill": "line through two points with a negative fractional slope, asking for the sum m + b of the slope and y-intercept rather than either alone, so both must be carried exactly as fractions",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the line with equation y = mx + b, where m and b are constants, passes through the points (-4, 7) and (8, -2). What is the value of m + b?",
+  "choices": [
+   "43/4",
+   "25/4",
+   "13/4",
+   "19/4"
+  ],
+  "correct_answer": "13/4",
+  "explanation": "The slope is m = (-2 - 7)/(8 - (-4)) = -9/12 = -3/4. Then 7 = (-3/4)(-4) + b gives b = 4, so m + b = -3/4 + 4 = 13/4. \"19/4\" is b - m, from a solver who subtracts the slope instead of adding it. \"25/4\" comes from a solver who takes b to be 7, the y-value of the first point, and adds -3/4. \"43/4\" comes from a solver who drops the sign of the slope, m = 3/4, so that 7 = 3/4(-4) + b gives b = 10 and the sum is 10 + 3/4.",
+  "solve": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=-2-7, dx=8-(-4); var bN=7*dx-dy*(-4); return fr(dy+bN,dx);",
+  "distractor_solve": {
+   "19/4": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=-2-7, dx=8-(-4); var bN=7*dx-dy*(-4); return fr(bN-dy,dx);",
+   "25/4": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=-2-7, dx=8-(-4); return fr(7*dx+dy,dx);",
+   "43/4": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=-(-2-7), dx=8-(-4); var bN=7*dx-dy*(-4); return fr(dy+bN,dx);"
+  }
+ }
+]

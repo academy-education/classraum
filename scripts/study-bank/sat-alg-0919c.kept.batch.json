@@ -1,0 +1,296 @@
+[
+ {
+  "domain": "Algebra",
+  "id": "SALG5A-01",
+  "subskill": "a two-parameter system whose asked quantity is a combination x + y reachable by adding the equations and dividing by the common coefficient, with the individual variables and the difference x - y as distractors",
+  "difficulty": "medium",
+  "prompt": "In the system of equations 3x + 2y = 7k and 2x + 3y = 3k + 10, k is a constant. If (x, y) is the solution to the system, what is the value of x + y in terms of k?",
+  "choices": [
+   "3k - 4",
+   "2k + 2",
+   "6 - k",
+   "4k - 10"
+  ],
+  "correct_answer": "2k + 2",
+  "explanation": "Adding the two equations gives 5x + 5y = 10k + 10, so x + y = 2k + 2. There is no need to find x or y separately. (Solving fully gives x = 3k - 4 and y = 6 - k, and their sum is 2k + 2.) \"4k - 10\" comes from a solver who subtracts the second equation from the first, getting x - y = 4k - 10, and reports that difference. \"3k - 4\" comes from a solver who solves the system completely and reports x alone. \"6 - k\" comes from a solver who solves the system completely and reports y alone.",
+  "solve": "var k=7; var a=3,b=2,c=7*k, d=2,e=3,f=3*k+10; var det=a*e-b*d; var x=(c*e-b*f)/det, y=(a*f-c*d)/det; var s=x+y; var k2=11; var c2=7*k2,f2=3*k2+10; var x2=(c2*e-b*f2)/det, y2=(a*f2-c2*d)/det; var s2=x2+y2; var m=(s2-s)/(k2-k), b0=s-m*k; return m+'k + '+b0;",
+  "distractor_solve": {
+   "4k - 10": "var k=7; var a=3,b=2,c=7*k, d=2,e=3,f=3*k+10; var det=a*e-b*d; var x=(c*e-b*f)/det, y=(a*f-c*d)/det; var s=x-y; var k2=11; var c2=7*k2,f2=3*k2+10; var x2=(c2*e-b*f2)/det, y2=(a*f2-c2*d)/det; var s2=x2-y2; var m=(s2-s)/(k2-k), b0=s-m*k; return m+'k - '+(-b0);",
+   "3k - 4": "var k=7; var a=3,b=2,c=7*k, d=2,e=3,f=3*k+10; var det=a*e-b*d; var x=(c*e-b*f)/det; var k2=11; var c2=7*k2,f2=3*k2+10; var x2=(c2*e-b*f2)/det; var m=(x2-x)/(k2-k), b0=x-m*k; return m+'k - '+(-b0);",
+   "6 - k": "var k=7; var a=3,b=2,c=7*k, d=2,e=3,f=3*k+10; var det=a*e-b*d; var y=(a*f-c*d)/det; var k2=11; var c2=7*k2,f2=3*k2+10; var y2=(a*f2-c2*d)/det; var m=(y2-y)/(k2-k), b0=y-m*k; if(m!==-1) return 'bad'; return b0+' - k';"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "id": "SALG5A-02",
+  "subskill": "two lines each given by two points: build both slope-intercept equations, equate them, and report the y-coordinate (not the x-coordinate) of the intersection, which is a non-integer",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line p passes through the points (1, 2) and (3, 8), and line q passes through the points (-1, 14) and (3, 6). What is the y-coordinate of the point where lines p and q intersect?",
+  "choices": [
+   "22/7",
+   "13/5",
+   "38/5",
+   "34/5"
+  ],
+  "correct_answer": "34/5",
+  "explanation": "Line p has slope (8 - 2)/(3 - 1) = 3, so y = 3x - 1. Line q has slope (6 - 14)/(3 - (-1)) = -2, so y = -2x + 12. Setting 3x - 1 = -2x + 12 gives 5x = 13, x = 13/5, and then y = 3(13/5) - 1 = 34/5. \"13/5\" is the x-coordinate of the intersection, reported by a solver who stops after solving for x. \"38/5\" comes from a solver who writes line p as y = 3x + 1 (sign slip on the intercept), getting x = 11/5 and y = 38/5. \"22/7\" comes from a solver who computes the slope of p as (3 - 1)/(8 - 2) = 1/3, so that p becomes y = (1/3)x + 5/3, which meets q at x = 31/7, y = 22/7.",
+  "solve": "var m1=(8-2)/(3-1), b1=2-m1*1; var m2=(6-14)/(3-(-1)), b2=14-m2*(-1); var x=(b2-b1)/(m1-m2); var y=m1*x+b1; return Math.round(y*5)+'/5';",
+  "distractor_solve": {
+   "13/5": "var m1=(8-2)/(3-1), b1=2-m1*1; var m2=(6-14)/(3-(-1)), b2=14-m2*(-1); var x=(b2-b1)/(m1-m2); return Math.round(x*5)+'/5';",
+   "38/5": "var m1=3, b1=1; var m2=-2, b2=12; var x=(b2-b1)/(m1-m2); var y=m1*x+b1; return Math.round(y*5)+'/5';",
+   "22/7": "var m1=(3-1)/(8-2), b1=2-m1*1; var m2=-2, b2=12; var x=(b2-b1)/(m1-m2); var y=m2*x+b2; return Math.round(y*7)+'/7';"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "id": "SALG5A-05",
+  "subskill": "count the ordered pairs of positive integers inside a strict linear inequality by summing column heights, respecting strictness on both the line and the axes",
+  "difficulty": "hard",
+  "prompt": "How many ordered pairs of positive integers (x, y) satisfy the inequality 2x + 5y < 20?",
+  "choices": [
+   "14",
+   "21",
+   "16",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "For each positive integer x, y must be a positive integer with 5y < 20 - 2x. For x = 1 and x = 2, y can be 1, 2, or 3 (three pairs each). For x = 3 and x = 4, y can be 1 or 2 (two pairs each). For x = 5, 6, and 7, y can only be 1 (one pair each). For x = 8, 20 - 2x = 4 leaves no positive y. The total is 3 + 3 + 2 + 2 + 1 + 1 + 1 = 13. \"14\" comes from a solver who counts pairs on the line as well, treating the inequality as 2x + 5y ≤ 20, which adds the pair (5, 2). \"16\" comes from a solver who allows x = 0 as a positive integer, adding the three pairs (0, 1), (0, 2), (0, 3). \"21\" comes from a solver who multiplies the number of possible x-values, 7, by the largest possible y-value, 3, as if every column had the same height.",
+  "solve": "var c=0; for(var x=1;x<50;x++)for(var y=1;y<50;y++){ if(2*x+5*y<20) c++; } return String(c);",
+  "distractor_solve": {
+   "14": "var c=0; for(var x=1;x<50;x++)for(var y=1;y<50;y++){ if(2*x+5*y<=20) c++; } return String(c);",
+   "16": "var c=0; for(var x=0;x<50;x++)for(var y=1;y<50;y++){ if(2*x+5*y<20) c++; } return String(c);",
+   "21": "var xs=0,ymax=0; for(var x=1;x<50;x++){ var any=false; for(var y=1;y<50;y++){ if(2*x+5*y<20){any=true; if(y>ymax) ymax=y;} } if(any) xs++; } return String(xs*ymax);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "id": "SALG5A-06",
+  "subskill": "a two-constraint mixture system (two nutrients, two ingredients) whose solution is not an integer: eliminate by scaling one equation, and report the asked ingredient to the nearest tenth",
+  "difficulty": "medium",
+  "prompt": "A feed blend is made from two ingredients measured by weight, so the number of scoops of each need not be a whole number. Each scoop of ingredient A contains 18 grams of protein and 6 grams of fat, and each scoop of ingredient B contains 10 grams of protein and 9 grams of fat. A batch of the blend must contain exactly 300 grams of protein and exactly 150 grams of fat. To the nearest tenth, how many scoops of ingredient B are in the batch?",
+  "choices": [
+   "8.8",
+   "4.1",
+   "14.1",
+   "11.8"
+  ],
+  "correct_answer": "8.8",
+  "explanation": "Let a and b be the numbers of scoops of A and B. Protein gives 18a + 10b = 300 and fat gives 6a + 9b = 150. Multiplying the fat equation by 3 gives 18a + 27b = 450; subtracting the protein equation leaves 17b = 150, so b = 150/17 ≈ 8.82, which is 8.8 to the nearest tenth. \"11.8\" is the number of scoops of ingredient A, a = (300 - 10b)/18 ≈ 11.76, reported by a solver who answers for the wrong ingredient. \"14.1\" comes from a solver who finds 150/17 ≈ 8.82 but labels it a, then solves the protein equation for b: (300 - 18(8.82))/10 ≈ 14.1. \"4.1\" comes from a solver who, after scaling the fat equation by 3, adds the b-terms instead of subtracting them, getting 37b = 150 and b ≈ 4.05.",
+  "solve": "var b=(3*150-300)/(27-10); return (Math.round(b*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "11.8": "var b=(3*150-300)/(27-10); var a=(300-10*b)/18; return (Math.round(a*10)/10).toFixed(1);",
+   "14.1": "var a=(3*150-300)/(27-10); var b=(300-18*a)/10; return (Math.round(b*10)/10).toFixed(1);",
+   "4.1": "var b=150/(27+10); return (Math.round(b*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "id": "SALG5A-09",
+  "subskill": "the area of the triangular solution region of a system of three linear inequalities: find the two y-intercepts and the intersection of the slanted boundaries, then use the vertical segment as the base",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the solution set of the system of inequalities y ≤ -x + 10, y ≥ (1/2)x - 2, and x ≥ 0 is a triangular region. What is the area of this region?",
+  "choices": [
+   "60",
+   "40",
+   "32",
+   "48"
+  ],
+  "correct_answer": "48",
+  "explanation": "The three boundary lines meet at (0, 10), (0, -2), and the point where -x + 10 = (1/2)x - 2, that is, 12 = (3/2)x, x = 8, y = 2. Taking the vertical side from (0, -2) to (0, 10) as the base, its length is 12 and the height is the x-coordinate of (8, 2), so the area is (1/2)(12)(8) = 48. \"60\" comes from a solver who uses the x-intercept of y = -x + 10, which is 10, as the height instead of the x-coordinate of the intersection. \"40\" comes from a solver who takes the base as 10, measuring from (0, 0) to (0, 10) and ignoring the vertex at (0, -2). \"32\" comes from a solver who solves -x + 10 = (1/2)x - 2 as (3/2)x = 8, getting x = 16/3, and computes (1/2)(12)(16/3).",
+  "solve": "var y1=10, y2=-2; var x=(10-(-2))/(1+0.5); var base=y1-y2; return String(0.5*base*x);",
+  "distractor_solve": {
+   "32": "var base=10-(-2); var x=(10-2)/(1+0.5); return String(0.5*base*x);",
+   "40": "var base=10-0; var x=(10-(-2))/(1+0.5); return String(0.5*base*x);",
+   "60": "var base=10-(-2); var h=10/1; return String(0.5*base*h);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "id": "SALG5A-11",
+  "subskill": "solve a system by substitution to get a solution with a negative coordinate, then use the solution as a point: the slope of the line through it and the origin is y/x, a negative fraction, with the slopes of the two given lines as distractors",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graphs of 3x + 4y = 7 and x - 2y = -11 intersect at point P. Line r passes through P and the origin. What is the slope of line r?",
+  "choices": [
+   "-3/4",
+   "-4/3",
+   "1/2",
+   "-7/11"
+  ],
+  "correct_answer": "-4/3",
+  "explanation": "From x - 2y = -11, x = 2y - 11. Substituting into 3x + 4y = 7 gives 6y - 33 + 4y = 7, so y = 4 and x = -3; P is (-3, 4). The slope of the line through (0, 0) and (-3, 4) is (4 - 0)/(-3 - 0) = -4/3. \"-3/4\" is the slope of the line 3x + 4y = 7, and is also what a solver gets by dividing run by rise, -3/4, instead of rise by run. \"1/2\" is the slope of the line x - 2y = -11, reported by a solver who confuses one of the given lines with line r. \"-7/11\" comes from a solver who forms a ratio from the two constants, 7 and -11, without solving the system.",
+  "solve": "var a=3,b=4,c=7,d=1,e=-2,f=-11; var det=a*e-b*d; var x=(c*e-b*f)/det, y=(a*f-c*d)/det; var g=function(p,q){return q?g(q,p%q):p;}; var n=Math.abs(y), m=Math.abs(x); var k=g(n,m); var neg=(y/x)<0; return (neg?'-':'')+(n/k)+'/'+(m/k);",
+  "distractor_solve": {
+   "-3/4": "var a=3,b=4,c=7,d=1,e=-2,f=-11; var det=a*e-b*d; var x=(c*e-b*f)/det, y=(a*f-c*d)/det; var g=function(p,q){return q?g(q,p%q):p;}; var n=Math.abs(x), m=Math.abs(y); var k=g(n,m); var neg=(x/y)<0; return (neg?'-':'')+(n/k)+'/'+(m/k);",
+   "1/2": "var slope=-(1)/(-2); var g=function(p,q){return q?g(q,p%q):p;}; var n=Math.round(Math.abs(slope)*100), d=100; var k=g(n,d); return (slope<0?'-':'')+(n/k)+'/'+(d/k);",
+   "-7/11": "var c1=7, c2=-11; var g=function(p,q){return q?g(q,p%q):p;}; var k=g(Math.abs(c1),Math.abs(c2)); var neg=(c1/c2)<0; return (neg?'-':'')+(Math.abs(c1)/k)+'/'+(Math.abs(c2)/k);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "id": "SALG5A-12",
+  "subskill": "two lines specified by their common intersection point and their slopes: recover each y-intercept from point-slope form with a negative point and a fractional slope, and report the sum, a negative integer",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, lines s and t intersect at the point (2, -5). The slope of line s is 4, and the slope of line t is -1/2. What is the sum of the y-intercepts of lines s and t?",
+  "choices": [
+   "-19/4",
+   "3",
+   "-17",
+   "-19"
+  ],
+  "correct_answer": "-17",
+  "explanation": "For a line with slope m through (2, -5), the y-intercept is b = -5 - 2m. For line s, b = -5 - 2(4) = -13. For line t, b = -5 - 2(-1/2) = -5 + 1 = -4. The sum is -13 + (-4) = -17. \"-19\" comes from a solver who drops the sign of the slope of t, computing its y-intercept as -5 - 2(1/2) = -6, so the sum becomes -13 + (-6) = -19. \"3\" comes from a solver who uses the point (2, 5), getting y-intercepts 5 - 8 = -3 and 5 + 1 = 6, which sum to 3. \"-19/4\" comes from a solver who finds the x-intercepts instead: 13/4 for line s and -8 for line t, which sum to -19/4.",
+  "solve": "var px=2, py=-5; var b1=py-4*px; var b2=py-(-0.5)*px; return String(b1+b2);",
+  "distractor_solve": {
+   "3": "var px=2, py=5; var b1=py-4*px; var b2=py-(-0.5)*px; return String(b1+b2);",
+   "-19": "var px=2, py=-5; var b1=py-4*px; var b2=py-(0.5)*px; return String(b1+b2);",
+   "-19/4": "var px=2, py=-5; var b1=py-4*px, b2=py-(-0.5)*px; var x1=-b1/4, x2=-b2/(-0.5); var s=x1+x2; return Math.round(s*4)+'/4';"
+  }
+ },
+ {
+  "id": "SALG5B-05",
+  "domain": "Algebra",
+  "subskill": "zero of a linear function defined by two function values: the slope is a negative non-integer and the zero must be located by running from the nearer point, not read as the y-intercept",
+  "difficulty": "medium",
+  "prompt": "The function f is linear, f(-2) = 11, and f(4) = 2. For what value of x is f(x) = 0?",
+  "choices": [
+   "8",
+   "38/9",
+   "7",
+   "16/3"
+  ],
+  "correct_answer": "16/3",
+  "explanation": "The slope is (2 - 11)/(4 - (-2)) = -9/6 = -3/2. From (4, 2), reaching 0 requires a drop of 2, which takes a run of 2/(3/2) = 4/3, so x = 4 + 4/3 = 16/3. \"8\" is f(0), the y-intercept 2 + (3/2)(4), reported in place of the zero. \"38/9\" comes from a solver who uses the slope -9 without dividing by the run, x = 4 + 2/9. \"7\" comes from a solver who inverts the slope to -2/3, x = 4 + 2/(2/3).",
+  "solve": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=2-11, dx=4-(-2); return fr(4*dy-2*dx,dy);",
+  "distractor_solve": {
+   "7": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=2-11, dx=4-(-2); return fr(4*dx-2*dy,dx);",
+   "8": "var m=(2-11)/(4-(-2)); return String(2-m*4);",
+   "38/9": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var m=2-11; return fr(4*m-2,m);"
+  }
+ },
+ {
+  "id": "SALG5B-07",
+  "domain": "Algebra",
+  "subskill": "two linear growth models each given by two data points rather than a rate: both rates and both intercepts must be derived before solving for the input at which the models agree",
+  "difficulty": "medium",
+  "prompt": "Two saplings were planted at the same time, and each has grown at its own constant rate since planting. Sapling A was 12 centimeters tall 4 days after planting and 21 centimeters tall 10 days after planting. Sapling B was 20 centimeters tall 2 days after planting and 24 centimeters tall 10 days after planting. How many days after planting were the two saplings the same height?",
+  "choices": [
+   "16",
+   "26.5",
+   "13",
+   "11.5"
+  ],
+  "correct_answer": "13",
+  "explanation": "Sapling A grows (21 - 12)/(10 - 4) = 1.5 centimeters per day, so its height is 12 + 1.5(d - 4) = 1.5d + 6. Sapling B grows (24 - 20)/(10 - 2) = 0.5 centimeters per day, so its height is 20 + 0.5(d - 2) = 0.5d + 19. Setting 1.5d + 6 = 0.5d + 19 gives d = 13, when both are 25.5 centimeters. \"16\" comes from a solver who closes the 3-centimeter gap at day 10 at sapling B's rate alone, 10 + 3/0.5. \"11.5\" comes from a solver who closes that gap at the sum of the rates, 10 + 3/2. \"26.5\" comes from a solver who computes sapling A's rate as 9/10 by dividing by the day number instead of the 6-day interval.",
+  "solve": "var mA=(21-12)/(10-4), bA=12-mA*4; var mB=(24-20)/(10-2), bB=20-mB*2; return String((bB-bA)/(mA-mB));",
+  "distractor_solve": {
+   "16": "return String(10+(24-21)/((24-20)/(10-2)));",
+   "11.5": "return String(10+(24-21)/((21-12)/(10-4)+(24-20)/(10-2)));",
+   "26.5": "var mA=(21-12)/10, bA=12-mA*4; var mB=(24-20)/(10-2), bB=20-mB*2; return String(Math.round((bB-bA)/(mA-mB)*10)/10);"
+  }
+ },
+ {
+  "id": "SALG5B-10",
+  "domain": "Algebra",
+  "subskill": "recover a linear function from two transformed graphs: an x-intercept of y = f(x) - 5 and a y-intercept of y = f(x + 4) each encode one point of f, and the horizontal shift must be decoded in the right direction before the slope is found",
+  "difficulty": "hard",
+  "prompt": "The function f is linear. In the xy-plane, the graph of y = f(x) - 5 has an x-intercept at x = 2, and the graph of y = f(x + 4) has a y-intercept at y = 1. What is the value of f(0)?",
+  "choices": [
+   "9",
+   "-7",
+   "11/3",
+   "-11"
+  ],
+  "correct_answer": "9",
+  "explanation": "An x-intercept of y = f(x) - 5 at x = 2 means f(2) - 5 = 0, so f(2) = 5. A y-intercept of y = f(x + 4) at y = 1 means f(0 + 4) = 1, so f(4) = 1. The slope is (1 - 5)/(4 - 2) = -2, and f(0) = f(2) - 2(-2) = 9. \"11/3\" comes from a solver who reads the second condition as f(-4) = 1, giving slope (5 - 1)/(2 + 4) = 2/3 and f(0) = 5 - 2(2/3). \"-11\" comes from a solver who reads the first condition as f(2) = -5, giving slope 3 and f(0) = -5 - 6. \"-7\" comes from a solver who finds the slope -2 but steps from (4, 1) in the wrong direction, 1 + 4(-2).",
+  "solve": "var f2=0+5, f4=1; var m=(f4-f2)/(4-2); return String(f2-2*m);",
+  "distractor_solve": {
+   "11/3": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} return n/a+\"/\"+d/a;}; var m=(5-1)/(2-(-4)); return fr(5*3-2*(m*3),3);",
+   "-11": "var f2=0-5, f4=1; var m=(f4-f2)/(4-2); return String(f2-2*m);",
+   "-7": "var m=(1-5)/(4-2); return String(1+4*m);"
+  }
+ },
+ {
+  "id": "SALG5B-11",
+  "domain": "Algebra",
+  "subskill": "distance between the x-intercepts of two lines with a common y-intercept and slopes of opposite sign: each intercept is -b/m with a fractional slope, and the intercepts lie on opposite sides of the origin",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graphs of y = (3/4)x + 6 and y = -(2/5)x + 6 intersect the x-axis at points P and Q, respectively. What is the length of segment PQ?",
+  "choices": [
+   "7",
+   "23",
+   "15",
+   "19.5"
+  ],
+  "correct_answer": "23",
+  "explanation": "P is where (3/4)x + 6 = 0, so x = -8, and Q is where -(2/5)x + 6 = 0, so x = 15. The points are on opposite sides of the origin, so PQ = 15 - (-8) = 23. \"7\" comes from a solver who takes both intercepts as positive, 15 - 8. \"15\" is the x-coordinate of Q alone. \"19.5\" comes from a solver who multiplies by the slope instead of dividing for P, placing it at -6(3/4) = -4.5, so PQ = 15 + 4.5.",
+  "solve": "var P=-6/(3/4), Q=-6/(-2/5); return String(Math.abs(Q-P));",
+  "distractor_solve": {
+   "7": "var P=6/(3/4), Q=-6/(-2/5); return String(Math.abs(Q-P));",
+   "15": "return String(-6/(-2/5));",
+   "19.5": "var P=-6*(3/4), Q=-6/(-2/5); return String(Math.round(Math.abs(Q-P)*10)/10);"
+  }
+ },
+ {
+  "id": "SALG5B-12",
+  "domain": "Algebra",
+  "subskill": "line through two points with a negative fractional slope, asking for the sum m + b of the slope and y-intercept rather than either alone, so both must be carried exactly as fractions",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the line with equation y = mx + b, where m and b are constants, passes through the points (-4, 7) and (8, -2). What is the value of m + b?",
+  "choices": [
+   "43/4",
+   "25/4",
+   "13/4",
+   "19/4"
+  ],
+  "correct_answer": "13/4",
+  "explanation": "The slope is m = (-2 - 7)/(8 - (-4)) = -9/12 = -3/4. Then 7 = (-3/4)(-4) + b gives b = 4, so m + b = -3/4 + 4 = 13/4. \"19/4\" is b - m, from a solver who subtracts the slope instead of adding it. \"25/4\" comes from a solver who takes b to be 7, the y-value of the first point, and adds -3/4. \"43/4\" comes from a solver who drops the sign of the slope, m = 3/4, so that 7 = 3/4(-4) + b gives b = 10 and the sum is 10 + 3/4.",
+  "solve": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=-2-7, dx=8-(-4); var bN=7*dx-dy*(-4); return fr(dy+bN,dx);",
+  "distractor_solve": {
+   "19/4": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=-2-7, dx=8-(-4); var bN=7*dx-dy*(-4); return fr(bN-dy,dx);",
+   "25/4": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=-2-7, dx=8-(-4); return fr(7*dx+dy,dx);",
+   "43/4": "var fr=function(n,d){if(d<0){n=-n;d=-d;} var a=Math.abs(n),b=d; while(b){var t=a%b;a=b;b=t;} n=n/a;d=d/a; return d===1?String(n):n+'/'+d;};var dy=-(-2-7), dx=8-(-4); var bN=7*dx-dy*(-4); return fr(dy+bN,dx);"
+  }
+ },
+ {
+  "id": "SALG5C-11",
+  "domain": "Algebra",
+  "subskill": "an inequality with a parameter inside a distributed parenthesis whose solution set is given as x ≤ 3: isolate x in terms of the parameter, equate the boundary to 3, and solve; distractors from a partial distribution, a skipped division, and a dropped constant",
+  "difficulty": "medium",
+  "prompt": "The solution set of the inequality 5 - 2(x - 3k) ≥ 3x + 4, where k is a constant, is x ≤ 3. What is the value of k ?",
+  "choices": [
+   "1/3",
+   "7/3",
+   "5/2",
+   "11/6"
+  ],
+  "correct_answer": "7/3",
+  "explanation": "Distributing gives 5 - 2x + 6k ≥ 3x + 4, so 1 + 6k ≥ 5x and x ≤ (1 + 6k)/5. The boundary must be 3: 1 + 6k = 15, so k = 7/3. \"11/6\" comes from a solver who does not distribute the -2 over x, writing 5 - x + 6k ≥ 3x + 4 and a boundary of (1 + 6k)/4. \"1/3\" comes from a solver who forgets to divide by 5 and sets 1 + 6k = 3. \"5/2\" comes from a solver who drops the constant 1 and sets 6k/5 = 3.",
+  "solve": "var k=(3*5-1)/6; var bnd=(1+6*k)/5; if(Math.abs(bnd-3)>1e-9) return \"bad\"; if(!(5-2*(3-3*k)>=3*3+4) || (5-2*(3.01-3*k)>=3*3.01+4)) return \"bad\"; return Math.abs(k-7/3)<1e-9?\"7/3\":String(k);",
+  "distractor_solve": {
+   "11/6": "var k=(3*4-1)/6; return Math.abs(k-11/6)<1e-9?\"11/6\":String(k);",
+   "1/3": "var k=(3-1)/6; return Math.abs(k-1/3)<1e-9?\"1/3\":String(k);",
+   "5/2": "var k=(3*5)/6; return k===2.5?\"5/2\":String(k);"
+  }
+ },
+ {
+  "id": "SALG5C-12",
+  "domain": "Algebra",
+  "subskill": "a linear equation with decimal coefficients and a parenthesis on each side: distribute both, collect the small residual coefficient, and divide; distractors from failing to distribute on either side and from a sign slip on the constants",
+  "difficulty": "medium",
+  "prompt": "If 0.4(x - 15) = 0.25(x + 6) + 2.1, what is the value of x ?",
+  "choices": [
+   "124",
+   "-16",
+   "64",
+   "94"
+  ],
+  "correct_answer": "64",
+  "explanation": "Distributing gives 0.4x - 6 = 0.25x + 1.5 + 2.1 = 0.25x + 3.6, so 0.15x = 9.6 and x = 64. \"124\" comes from a solver who does not multiply the 15 by 0.4, writing 0.4x - 15 on the left, so 0.15x = 18.6. \"94\" comes from a solver who does not multiply the 6 by 0.25, writing 0.25x + 6 + 2.1 on the right, so 0.15x = 14.1. \"-16\" comes from a solver who subtracts the 6 from 3.6 instead of adding it, 0.15x = -2.4.",
+  "solve": "var x=(0.25*6+2.1+0.4*15)/(0.4-0.25); if(Math.abs(0.4*(x-15)-(0.25*(x+6)+2.1))>1e-9) return \"bad\"; return String(Math.round(x*1e9)/1e9);",
+  "distractor_solve": {
+   "94": "var x=(6+2.1+0.4*15)/(0.4-0.25); return String(Math.round(x*1e9)/1e9);",
+   "124": "var x=(0.25*6+2.1+15)/(0.4-0.25); return String(Math.round(x*1e9)/1e9);",
+   "-16": "var x=(0.25*6+2.1-0.4*15)/(0.4-0.25); return String(Math.round(x*1e9)/1e9);"
+  }
+ }
+]
