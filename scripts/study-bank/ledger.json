@@ -3286,6 +3286,34 @@
      "verdict": "Authored keys CDABDCBDACDBCA - the first two authors today to deal keys across slots; the leak was not positional, it was in the option arithmetic the brief told them to avoid. Sign pairs on SALGB-05, SADVB-01, -05, -08; hub sets on SALGB-04, SADVB-03. Listing tells in a brief did not prevent them; only the attack did."
     }
    }
+  },
+  {
+   "id": "act-unit-0918-kept-2026-09-18",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-unit-0918",
+   "contentSha": "ecd6299920a97d4194830a053020cc8e8db3b4545142a47b69883c19496216ee",
+   "note": "20 kept of 29 ACT Math ({\"Geometry\":8,\"Integrating Essential Skills\":8,\"Algebra\":4}), gated as one unit: act-geo-ies-0918 (25) + act-alg-0918b (4). Nine dropped, each on a named ground: AGEO-03 - bound N=1: a 135-degree sector must lie between the quarter and half circle; 151, 126, 19 all outside (both hunters); AGEO-10 - bound N=1: diameter spans dx=12 so area >= 36pi ~ 113, three options below; plus 56.25 the only hundredths value on a nearest-tenth stem; AIES-04 - bound N=1: acre < hectare kills 0.8 and 1.3 on sight, the third to a one-digit estimate - the \"wrong kind of number\" pattern; AIES-07 - bound: 35%+25% = 60% caps the answer at 96 and 96 sits ON the cap; canonical +x%/-x% instance; AIES-08 - bound N=2 with BOTH distractors exactly on suprema (35.19 = 0.85*41.40, 36.00 = 41.40/1.15); third of a percent-chain triple with 02/06; AIES-12 - unanimous blind; both remaining distractors sit ON bounds (21.0 the arithmetic mean, 20.6 the no-rest harmonic); canonical 24/18 out-and-back; AGEO-11 - unanimous blind with the SAME mechanism named 3/3 (options differ by exactly the given 20, the stem asks for the remainder so the smaller of the pair); confirmed by both hunters; AIES-13 - unanimous blind with mechanism named 3/3; per-unit prices make 62.5 > 50% a one-step floor; canonical 5-for-$2 / 4-for-$2.50; key the only two-decimal option; AGEO-04 - canonical 7-24-25 chord problem with the standard numbers (both graders, both hunters); 36.1 sits exactly ON the r < sqrt(24^2+27^2) bound; 25 the lone integer among decimals. Note the Geometry+IES author spawned its own bound auditor, which reported against a partly-repaired draft with 11 of 25 at <=2 survivors; my hunter on the pinned snapshot found 3 at N=1 and agreed on every dropped id. Source hashes were pinned before the gate and re-checked before insert.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 29/29 (my run, on the unit); distractor_solve 87/87; symbolic hub 2 structured of 29 at 41.7% - n=2, not a measurement. Race check: source file hashes unchanged from gate to insert."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha 4e43542b11556d1e): 29/29 x3 key agreement; exclusive:false 0/0/0; no under-specified figure in twelve text-only geometry items. Difficulty easy 8/13/-, hard 2/1/-, banked under ACT's mixed band. Bound hunter: N=1 on AGEO-03, AGEO-10, AIES-04; AIES-07 dead after one addition; on-bound options on AGEO-04, AIES-05, AIES-08 (both), AIES-12 (both); textbook instances AGEO-04, AGEO-10, AGEO-09, AIES-02, AIES-11, AALGB-02; grader B's precision tell on AGEO-10. Aggregate: 29/29 survive on difficulty/exclusivity - every drop here is a bound or a canonical instance the panel's fields cannot express."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 87 forced picks, keys A8 B7 C7 D7 for a 27.6% control: pooled 34/87 = 39.1% (+11.5). Mechanism 10/28 = 35.7%, guess 24/59 = 40.7%, difference -5.0 - self-report uninformative, section 3d-bis DISARMED; unanimous 7 of 29 vs 0.61 expected. Two unanimous items carried the same mechanism from all three solvers AND were independently flagged from the stems (AGEO-11, AIES-13) - dropped on the with-source ground, not the unanimity rule; AIES-12 likewise. RESIDUAL on the kept 20: 22/60 = 36.7% vs 35.0% control (1.7)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys CBBADABDBDCABCBCBBABABCADBDAC - dealt across slots. Cross-item: percent-chain triple AIES-02/06/08 (08 dropped); AGEO-07/08 same tool different depth (kept both); AGEO-04/10 both triple-to-circle (both dropped). \"Limiting thing\" distractor used six times across IES per the author's own auditor - the batch-level pattern behind most of the IES drops."
+    }
+   }
   }
  ],
  "auditedCohorts": [

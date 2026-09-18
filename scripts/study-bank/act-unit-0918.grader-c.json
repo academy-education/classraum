@@ -1,0 +1,205 @@
+{
+ "AGEO-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "6x+12=180, x=28, pair 106/74. All four options <90 so the acute bound rejects none. C=28 is x itself."
+ },
+ "AGEO-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "3b+21=180, b=53. All options <90; construction is determined (DAB=b<BAC so D is interior to BC)."
+ },
+ "AGEO-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1: 135 deg is between a quarter circle (16pi~50) and a half circle (32pi~100), so 151, 126 and 19 are all outside the feasible band; 75 alone survives. 19 is the arc length, 151/126 are 270/225-degree sectors. DROP or re-option."
+ },
+ "AGEO-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "weak",
+  "note": "survivors=3: r>=24 (half the longer chord) rejects nothing, but r<sqrt(24^2+27^2)=36.06 since the 48-chord's centre distance is strictly below 27 - option B sits exactly ON that bound. A=sqrt(24^2+15^2) is a nonsense combination. Remaining tell: 25 is the only integer among three decimals and is the textbook 7-24-25/15-20-25 double triple."
+ },
+ "AGEO-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "10*(8*1.2 + 17*1.95)=427.5. Feasible band 300..675; all four inside. D=331.5 is the sloped part alone."
+ },
+ "AGEO-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: k falls (7 to 3 as x rises) so n rises; a rising line through (6,-2) meets the y-axis below -2. A=7 and C=2 rejected by sign alone. -6 is the 2/3-slope miss, -11 is correct."
+ },
+ "AGEO-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: depression 39<45 so horizontal distance > height 52; C=42.1 (52*tan) rejected. A is the line-of-sight (52/sin), D is 52/cos."
+ },
+ "AGEO-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "h(1/1.111-1/1.881)=12 -> 32.56. Only lower bound available without solving is h>12*tan48=13.3, rejects nothing. A=12*tan62, B=12/(tan62-tan48), C=12/(1/sin48-1/sin62)."
+ },
+ "AGEO-09": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: recall 150 deg is the regular 12-gon angle; replacing one angle with a smaller one means FEWER sides, so 12 and 15 die. Exterior form 90+30(n-1)=360 gives 10."
+ },
+ "AGEO-10": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1: the diameter spans dx=12 so d>=12, r>=6, area>=36pi~113; A, B, D all below. B=56.25 is also not 'to the nearest tenth' (format tell) and is r^2 without pi; A=pi*r, D=2*pi*r. 9-12-15 triple. DROP or re-option."
+ },
+ "AGEO-11": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "ratio 2/5 -> 4/25 -> ABC=125 -> 105. All options exceed 20 so no bound rejects. Option tell: B and C differ by exactly the given 20 (whole vs quadrilateral)."
+ },
+ "AGEO-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: 96+152>180 so arc AC<180 and the inscribed angle is acute; C=104 and D=112 die. A=76 is half of BC, D is the arc itself."
+ },
+ "AIES-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "3.4h=3h24m -> 1:11. Band 12:47..1:47 holds all four. A reads 3.4 as 3:40, B 3:30."
+ },
+ "AIES-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "0.98c=58.80 -> 60. No strict bound without knowing 1.4*0.7<1 (which is the item's point), so survivors=4 strictly. Tell: $60.00 is the only whole-dollar option among three to-the-cent options. A=58.80/0.9, B=58.80*0.98, C=58.80/1.1."
+ },
+ "AIES-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(639-532)/2=53.5. Removed mean must be <71; all options are. D=71-5 is the 'shift' guess."
+ },
+ "AIES-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2 (strict): an acre is smaller than a hectare so acres > 3.2; B and C die on sight. 10000/4047~2.5 is a one-digit estimate and kills D=13.0 too, leaving 1. DROP or re-option with values in 5..12."
+ },
+ "AIES-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: weighted mean lies between 20 and 60 and, since non-students are the majority, strictly below the midpoint 40 - D=40 is ON the bound and C=47 is above it. B=27 is the student term alone."
+ },
+ "AIES-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: two 3% fees on ~500 plus a round-trip rate of 0.9936 puts the loss in roughly 25..40; A=99.25 (~20%) is not a loss two 3% fees can produce. C=30.00 is fees on 500 ignoring the rates, B adds the 3.20 rate loss to 30."
+ },
+ "AIES-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 strictly; but 35%+1/4=60% (one addition of stem numbers) caps pennies at 40% of 240 = 96, which rejects A and B and puts C exactly ON the bound (nickels forgotten) - after that one step, 1 survivor. Easy item, bound is most of the solution."
+ },
+ "AIES-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: Tomas earns 85% of a figure below 41.40, so Tomas < 0.85*41.40 = 35.19; A is ON that bound and B=36.00 (the intermediate) is above it. C=29.91 applies 0.85 twice."
+ },
+ "AIES-09": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "6 boxes, 111*0.9=99.90. No bound rejects. A is undiscounted, D discounts one box only, B is 111-10."
+ },
+ "AIES-10": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "288*5/8=180. Strict bound (driven < non-bus < 320) rejects nothing; with 288 in hand, B=108 is the walkers. A uses the bus group, D is 3/8 of 640."
+ },
+ "AIES-11": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "60/0.24=250 -> 150 removed. Only bound is 0<removed<340; all survive. Classic evaporation item; fine."
+ },
+ "AIES-12": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: the two-leg average is below the arithmetic mean 21 (B ON the bound) and equals the harmonic mean 20.57 before rest; rest can only lower it, so A=20.6 is ON that bound too. Left: 17.3 vs 18.0."
+ },
+ "AIES-13": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "0.225/0.40=56.25%. Strict survivors=4 (bound needs per-unit prices); once 40c/62.5c are known, 62.5>1.5*40 forces >50% and only D survives. A is cents of profit, B uses selling price as base, C compares bundle prices ignoring counts."
+ },
+ "AALGB-01": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "-3x=14k. No bound. D is the sign-flip, C moves terms to the wrong side, B both."
+ },
+ "AALGB-02": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: RHS 5-x>=0 forces x<=5, so 12 is impossible before squaring - B and C die. That domain check is the skill being tested, so acceptable, but note it."
+ },
+ "AALGB-03": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "-8-15+1=-22. No bound. D=7 is the x^3 coefficient, B=17 the x coefficient."
+ },
+ "AALGB-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2/k=-3/12 -> k=-8; -4x(eq1) gives -44 not 5, so parallel not coincident. No bound. B is the sign miss, C/D invert the ratio."
+ }
+}

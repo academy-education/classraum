@@ -1,0 +1,527 @@
+[
+ {
+  "id": "AGEO-01",
+  "domain": "Geometry",
+  "subskill": "same-side interior angles on parallel lines set up as a linear equation, the ACUTE one requested",
+  "difficulty": "medium",
+  "prompt": "Lines l and m are parallel and are cut by a transversal t. Two interior angles that lie on the same side of t, one at l and one at m, measure (4x - 6) degrees and (2x + 18) degrees. What is the measure, in degrees, of the acute angle of the pair?",
+  "choices": [
+   "28",
+   "42",
+   "74",
+   "78"
+  ],
+  "correct_answer": "74",
+  "explanation": "Same-side interior angles on parallel lines are supplementary, so (4x - 6) + (2x + 18) = 180, 6x + 12 = 180, x = 28. The two angles are 4(28) - 6 = 106 and 2(28) + 18 = 74, so the acute one is 74. \"42\" comes from a solver who sets the two angles equal as if they were alternate interior angles, 4x - 6 = 2x + 18, x = 12, and reports 2(12) + 18. \"28\" is the value of x reported as the angle. \"78\" comes from a solver who drops the constants when adding, 6x = 180, x = 30, and reports 2(30) + 18.",
+  "solve": "var x = (180 - 12) / 6; var a = 4 * x - 6, b = 2 * x + 18; return String(Math.min(a, b));",
+  "distractor_solve": {
+   "42": "var x = (18 + 6) / (4 - 2); return String(2 * x + 18);",
+   "28": "return String((180 - 12) / 6);",
+   "78": "var x = 180 / 6; return String(2 * x + 18);"
+  }
+ },
+ {
+  "id": "AGEO-02",
+  "domain": "Geometry",
+  "subskill": "two isosceles triangles sharing a base angle: a point on the base equidistant from a vertex forces a second pair of equal angles",
+  "difficulty": "hard",
+  "prompt": "In triangle ABC, AB = AC. Point D lies on side BC so that AD = BD, and angle CAD measures 21 degrees. What is the measure, in degrees, of angle ABC?",
+  "choices": [
+   "39",
+   "53",
+   "69",
+   "74"
+  ],
+  "correct_answer": "53",
+  "explanation": "Let angle ABC = x. Since AB = AC, angle ACB = x as well. Since AD = BD, triangle ABD is isosceles with angle BAD = angle ABD = x. Then angle BAC = angle BAD + angle CAD = x + 21, and the angle sum of triangle ABC gives x + x + (x + 21) = 180, so 3x = 159 and x = 53. \"69\" comes from a solver who ignores AD = BD and takes angle BAC to be 2(21) = 42, leaving (180 - 42)/2 for each base angle. \"74\" is angle BAC, which equals 53 + 21, reported in place of angle ABC. \"39\" comes from a solver who divides 180 by 3 before removing the 21, 180/3 - 21, instead of subtracting first.",
+  "solve": "return String((180 - 21) / 3);",
+  "distractor_solve": {
+   "69": "return String((180 - 2 * 21) / 2);",
+   "74": "return String((180 - 21) / 3 + 21);",
+   "39": "return String(180 / 3 - 21);"
+  }
+ },
+ {
+  "id": "AGEO-03",
+  "domain": "Geometry",
+  "subskill": "area of a sector from a spray radius and a pivot angle",
+  "difficulty": "medium",
+  "prompt": "A lawn sprinkler pivots back and forth through an angle of 135 degrees and sprays water to a distance of 8 meters from the sprinkler head. To the nearest square meter, what is the area of lawn the sprinkler waters?",
+  "choices": [
+   "19",
+   "75",
+   "126",
+   "151"
+  ],
+  "correct_answer": "75",
+  "explanation": "The watered region is a sector of a circle with radius 8 and central angle 135 degrees, so its area is (135/360)(pi)(8^2) = 24 pi, about 75 square meters. \"19\" comes from a solver who treats the 8-meter spray distance as a diameter and uses a radius of 4, (135/360)(pi)(4^2). \"151\" comes from a solver who takes the fraction of the circle as 135/180 instead of 135/360. \"126\" comes from a solver who uses the reflex angle 360 - 135 = 225 as the sector angle, (225/360)(pi)(8^2).",
+  "solve": "return String(Math.round((135 / 360) * Math.PI * 64));",
+  "distractor_solve": {
+   "19": "return String(Math.round((135 / 360) * Math.PI * 16));",
+   "151": "return String(Math.round((135 / 180) * Math.PI * 64));",
+   "126": "return String(Math.round((225 / 360) * Math.PI * 64));"
+  }
+ },
+ {
+  "id": "AGEO-04",
+  "domain": "Geometry",
+  "subskill": "radius from two parallel chords on opposite sides of the centre: the two centre distances are unknown but their sum is given",
+  "difficulty": "hard",
+  "prompt": "In a circle, two parallel chords lie on opposite sides of the center. One chord is 48 centimeters long, the other is 30 centimeters long, and the perpendicular distance between the two chords is 27 centimeters. What is the radius of the circle, in centimeters?",
+  "choices": [
+   "25",
+   "27.5",
+   "28.3",
+   "36.1"
+  ],
+  "correct_answer": "25",
+  "explanation": "Let the center be a distance a from the 48-centimeter chord and 27 - a from the 30-centimeter chord. Half-chords are 24 and 15, so r^2 = 24^2 + a^2 and r^2 = 15^2 + (27 - a)^2. Setting them equal: 576 + a^2 = 225 + 729 - 54a + a^2, so 54a = 378 and a = 7. Then r^2 = 576 + 49 = 625 and r = 25. \"27.5\" comes from a solver who assumes the center lies midway between the chords, 13.5 from each, sqrt(24^2 + 13.5^2). \"36.1\" comes from a solver who uses the full 27 centimeters as the distance from the center to the 48-centimeter chord, sqrt(24^2 + 27^2). \"28.3\" comes from a solver who treats the two half-chords, 24 and 15, as the legs of a right triangle whose hypotenuse is the radius.",
+  "solve": "var a = (225 + 729 - 576) / 54; return String(Math.sqrt(576 + a * a));",
+  "distractor_solve": {
+   "27.5": "return Math.sqrt(24 * 24 + 13.5 * 13.5).toFixed(1);",
+   "36.1": "return Math.sqrt(24 * 24 + 27 * 27).toFixed(1);",
+   "28.3": "return Math.sqrt(24 * 24 + 15 * 15).toFixed(1);"
+  }
+ },
+ {
+  "id": "AGEO-05",
+  "domain": "Geometry",
+  "subskill": "volume of a prism whose cross-section is a trapezoid joined to a rectangle: a sloping floor that levels off",
+  "difficulty": "medium",
+  "prompt": "A swimming pool is 25 meters long and 10 meters wide. Along its length, the floor is level at a depth of 1.2 meters for the first 8 meters from the shallow end, and then slopes uniformly downward over the remaining 17 meters, reaching a depth of 2.7 meters at the far end. When the pool is full, how many cubic meters of water does it hold?",
+  "choices": [
+   "331.5",
+   "360",
+   "420",
+   "427.5"
+  ],
+  "correct_answer": "427.5",
+  "explanation": "Look at the cross-section along the length. The level part is a rectangle 8 by 1.2, area 9.6. The sloping part is a trapezoid with parallel sides 1.2 and 2.7 and width 17, area (1.2 + 2.7)/2 (17) = 33.15. The cross-section is 42.75 square meters, and multiplying by the 10-meter width gives 427.5 cubic meters. \"360\" comes from a solver who swaps the two section lengths, making the level part 17 meters and the sloping part 8 meters, 10(17(1.2) + 8(1.95)). \"420\" comes from a solver who assigns the 2.7-meter depth to the 8-meter section and the 1.2-meter depth to the 17-meter section, 10(8(2.7) + 17(1.2)). \"331.5\" comes from a solver who computes the sloping section correctly but leaves out the level section, 10(17)(1.95).",
+  "solve": "var flat = 8 * 1.2, slope = (1.2 + 2.7) / 2 * 17; return String(10 * (flat + slope));",
+  "distractor_solve": {
+   "360": "return String(10 * (17 * 1.2 + 8 * (1.2 + 2.7) / 2));",
+   "420": "return String(10 * (8 * 2.7 + 17 * 1.2));",
+   "331.5": "return String(10 * 17 * (1.2 + 2.7) / 2);"
+  }
+ },
+ {
+  "id": "AGEO-06",
+  "domain": "Geometry",
+  "subskill": "y-intercept of the line perpendicular to a given segment through a stated point",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, line k passes through the points (-2, 7) and (4, 3). Line n is perpendicular to line k and passes through the point (6, -2). What is the y-coordinate of the point where line n crosses the y-axis?",
+  "choices": [
+   "-11",
+   "-6",
+   "2",
+   "7"
+  ],
+  "correct_answer": "-11",
+  "explanation": "The slope of line k is (3 - 7)/(4 - (-2)) = -4/6 = -2/3, so the slope of line n is the negative reciprocal, 3/2. Through (6, -2): y = (3/2)(x - 6) - 2, and at x = 0 this gives y = -9 - 2 = -11. \"2\" comes from a solver who reuses the slope of line k, -2/3, so that y = (-2/3)(0 - 6) - 2 = 2. \"-6\" comes from a solver who flips only the sign of the slope, 2/3, giving (2/3)(-6) - 2. \"7\" comes from a solver who takes the reciprocal but not the opposite sign, -3/2, giving (-3/2)(-6) - 2.",
+  "solve": "var mk = (3 - 7) / (4 - (-2)); var mn = -1 / mk; return String(mn * (0 - 6) + (-2));",
+  "distractor_solve": {
+   "2": "var mk = (3 - 7) / (4 - (-2)); return String(mk * (0 - 6) + (-2));",
+   "-6": "var mk = (3 - 7) / (4 - (-2)); return String(-mk * (0 - 6) + (-2));",
+   "7": "var mk = (3 - 7) / (4 - (-2)); return String((1 / mk) * (0 - 6) + (-2));"
+  }
+ },
+ {
+  "id": "AGEO-07",
+  "domain": "Geometry",
+  "subskill": "horizontal distance from an angle of depression and a height, using tangent",
+  "difficulty": "medium",
+  "prompt": "From the top of a lighthouse that stands 52 meters above sea level, the angle of depression to a boat is 39 degrees. To the nearest tenth of a meter, how far is the boat from the point at sea level directly below the top of the lighthouse? (Note: sin 39 degrees is about 0.629, cos 39 degrees is about 0.777, and tan 39 degrees is about 0.810.)",
+  "choices": [
+   "42.1",
+   "64.2",
+   "66.9",
+   "82.7"
+  ],
+  "correct_answer": "64.2",
+  "explanation": "The angle of depression from the top equals the angle of elevation from the boat, so in the right triangle the 52-meter height is opposite the 39-degree angle and the horizontal distance d is adjacent: tan 39 = 52/d, d = 52/0.810, about 64.2 meters. \"42.1\" comes from a solver who multiplies instead of divides, 52(0.810). \"82.7\" comes from a solver who uses the sine ratio, 52/0.629, which gives the line-of-sight distance to the boat rather than the horizontal distance. \"66.9\" comes from a solver who uses the cosine ratio, 52/0.777.",
+  "solve": "return (52 / 0.810).toFixed(1);",
+  "distractor_solve": {
+   "42.1": "return (52 * 0.810).toFixed(1);",
+   "66.9": "return (52 / 0.777).toFixed(1);",
+   "82.7": "return (52 / 0.629).toFixed(1);"
+  }
+ },
+ {
+  "id": "AGEO-08",
+  "domain": "Geometry",
+  "subskill": "height of a pole from two guy-wire angles whose anchor points are a known distance apart: two tangent equations in one unknown",
+  "difficulty": "hard",
+  "prompt": "Two guy wires run from the top of a vertical pole to level ground on the same side of the pole. One wire makes an angle of 62 degrees with the ground and the other makes an angle of 48 degrees with the ground, and the two anchor points are 12 meters apart. To the nearest tenth of a meter, how tall is the pole? (Note: sin 48 degrees is about 0.743, tan 48 degrees is about 1.111, sin 62 degrees is about 0.883, and tan 62 degrees is about 1.881.)",
+  "choices": [
+   "56.2",
+   "15.6",
+   "22.6",
+   "32.6"
+  ],
+  "correct_answer": "32.6",
+  "explanation": "Let h be the height. The steeper wire is anchored h/tan 62 from the pole and the shallower one h/tan 48 from the pole, and the difference between those distances is 12: h/1.111 - h/1.881 = 12. That is h(0.9001 - 0.5316) = 12, so h = 12/0.3685, about 32.6 meters. \"22.6\" does the same with the 62-degree wire, 12 tan 62. \"15.6\" comes from a solver who writes the equation with the tangents themselves instead of their reciprocals, h = 12/(tan 62 - tan 48). \"56.2\" comes from a solver who uses the sine ratio for both wires, as if 12 meters were the difference between the two wire lengths, h = 12/(1/sin 48 - 1/sin 62) with sin 48 about 0.743 and sin 62 about 0.883.",
+  "solve": "return (12 / (1 / 1.111 - 1 / 1.881)).toFixed(1);",
+  "distractor_solve": {
+   "22.6": "return (12 * 1.881).toFixed(1);",
+   "15.6": "return (12 / (1.881 - 1.111)).toFixed(1);",
+   "56.2": "return (12 / (1 / 0.743 - 1 / 0.883)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AGEO-09",
+  "domain": "Geometry",
+  "subskill": "number of sides of a convex polygon whose interior angles are all equal except one",
+  "difficulty": "hard",
+  "prompt": "In a certain convex polygon, one interior angle measures 90 degrees and every other interior angle measures 150 degrees. How many sides does the polygon have?",
+  "choices": [
+   "9",
+   "10",
+   "12",
+   "15"
+  ],
+  "correct_answer": "10",
+  "explanation": "With n sides, the interior angles sum to 180(n - 2), and here they also sum to 90 + 150(n - 1). Setting 150n - 60 = 180n - 360 gives 30n = 300, so n = 10. Equivalently, the exterior angles are 90 and (n - 1) copies of 30, and 90 + 30(n - 1) = 360 gives n = 10. \"12\" comes from a solver who ignores the 90-degree angle and treats the polygon as regular with 150-degree angles, 360/30. \"9\" comes from a solver who uses the exterior-angle sum but counts n copies of 30 alongside the 90, 30n + 90 = 360. \"15\" comes from a solver who counts n copies of 150 alongside the 90 in the interior sum, 150n + 90 = 180(n - 2).",
+  "solve": "return String((360 - 60) / 30);",
+  "distractor_solve": {
+   "12": "return String(360 / (180 - 150));",
+   "9": "return String((360 - 90) / 30);",
+   "15": "return String((360 + 90) / (180 - 150));"
+  }
+ },
+ {
+  "id": "AGEO-10",
+  "domain": "Geometry",
+  "subskill": "area of a circle from the coordinates of the endpoints of a diameter",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, the points (-7, 2) and (5, -7) are the endpoints of a diameter of a circle. What is the area of the circle, to the nearest tenth of a square unit?",
+  "choices": [
+   "23.6",
+   "47.1",
+   "56.25",
+   "176.7"
+  ],
+  "correct_answer": "176.7",
+  "explanation": "The diameter is the distance between the endpoints, sqrt((5 - (-7))^2 + (-7 - 2)^2) = sqrt(144 + 81) = 15, so the radius is 7.5 and the area is pi(7.5^2) = 56.25 pi, about 176.7. \"47.1\" comes from a solver who computes 2 pi r with r = 7.5, the circumference, in place of the area. \"23.6\" comes from a solver who multiplies pi by the radius without squaring it, pi(7.5). \"56.25\" comes from a solver who squares the radius but leaves out the factor of pi.",
+  "solve": "var d = Math.sqrt(Math.pow(5 - (-7), 2) + Math.pow(-7 - 2, 2)); return (Math.PI * Math.pow(d / 2, 2)).toFixed(1);",
+  "distractor_solve": {
+   "47.1": "var d = Math.sqrt(Math.pow(5 - (-7), 2) + Math.pow(-7 - 2, 2)); return (2 * Math.PI * (d / 2)).toFixed(1);",
+   "23.6": "var d = Math.sqrt(Math.pow(5 - (-7), 2) + Math.pow(-7 - 2, 2)); return (Math.PI * (d / 2)).toFixed(1);",
+   "56.25": "var d = Math.sqrt(Math.pow(5 - (-7), 2) + Math.pow(-7 - 2, 2)); return String(Math.pow(d / 2, 2));"
+  }
+ },
+ {
+  "id": "AGEO-11",
+  "domain": "Geometry",
+  "subskill": "area of the trapezoid cut off by a segment parallel to a side of a triangle, via the squared ratio of the WHOLE side",
+  "difficulty": "hard",
+  "prompt": "In triangle ABC, point D lies on side AB and point E lies on side AC so that segment DE is parallel to side BC. AD = 6, DB = 9, and the area of triangle ADE is 20 square units. What is the area, in square units, of quadrilateral DBCE?",
+  "choices": [
+   "30",
+   "45",
+   "105",
+   "125"
+  ],
+  "correct_answer": "105",
+  "explanation": "Since DE is parallel to BC, triangles ADE and ABC are similar with ratio AD/AB = 6/15 = 2/5, so their areas are in the ratio (2/5)^2 = 4/25. The area of ABC is 20(25/4) = 125, and the quadrilateral DBCE is what remains, 125 - 20 = 105. \"125\" is the area of the whole triangle ABC reported without removing triangle ADE. \"30\" comes from a solver who scales area by the linear ratio 2/5 rather than its square, giving triangle ABC an area of 50 and leaving 50 - 20. \"45\" comes from a solver who takes the quadrilateral to be similar to the whole and scales by (DB/AB)^2 = 9/25 of 125.",
+  "solve": "var whole = 20 * Math.pow(15 / 6, 2); return String(whole - 20);",
+  "distractor_solve": {
+   "125": "return String(20 * Math.pow(15 / 6, 2));",
+   "30": "return String(20 * (15 / 6) - 20);",
+   "45": "return String(20 * Math.pow(15 / 6, 2) * Math.pow(9 / 15, 2));"
+  }
+ },
+ {
+  "id": "AGEO-12",
+  "domain": "Geometry",
+  "subskill": "inscribed angle from the two arcs the stem does NOT name: the intercepted arc must be found by subtraction from 360",
+  "difficulty": "medium",
+  "prompt": "Points A, B, and C lie on a circle. The arc from A to B that does not contain C measures 96 degrees, and the arc from B to C that does not contain A measures 152 degrees. What is the measure, in degrees, of angle ABC?",
+  "choices": [
+   "56",
+   "76",
+   "104",
+   "112"
+  ],
+  "correct_answer": "56",
+  "explanation": "Angle ABC is an inscribed angle whose intercepted arc is the arc from A to C that does not contain B. That arc measures 360 - 96 - 152 = 112 degrees, so angle ABC is half of it, 56 degrees. \"76\" comes from a solver who halves arc BC, an arc on one side of the vertex, instead of the arc opposite it. \"112\" is the intercepted arc AC, 360 - 96 - 152, reported without halving. \"104\" comes from a solver who finds arc AC correctly but then halves arcs AB and AC together, (96 + 112)/2, as if the angle intercepted both.",
+  "solve": "return String((360 - 96 - 152) / 2);",
+  "distractor_solve": {
+   "76": "return String(152 / 2);",
+   "112": "return String(360 - 96 - 152);",
+   "104": "return String((96 + (360 - 96 - 152)) / 2);"
+  }
+ },
+ {
+  "id": "AIES-01",
+  "domain": "Integrating Essential Skills",
+  "subskill": "arrival clock time from a distance and a speed: a decimal fraction of an hour converted to minutes",
+  "difficulty": "medium",
+  "prompt": "A train leaves a station at 9:47 a.m. and travels 306 kilometers at an average speed of 90 kilometers per hour without stopping. At what time does the train arrive?",
+  "choices": [
+   "12:51 p.m.",
+   "1:11 p.m.",
+   "1:17 p.m.",
+   "1:27 p.m."
+  ],
+  "correct_answer": "1:11 p.m.",
+  "explanation": "The trip takes 306/90 = 3.4 hours, which is 3 hours and 0.4(60) = 24 minutes. Adding 3 hours 24 minutes to 9:47 a.m. gives 1:11 p.m. \"1:27 p.m.\" comes from a solver who reads the 0.4 of an hour as 40 minutes. \"12:51 p.m.\" comes from a solver who reads 3.4 hours as 3 hours 4 minutes. \"1:17 p.m.\" comes from a solver who rounds 3.4 hours to 3.5 hours and adds 3 hours 30 minutes.",
+  "solve": "var mins = 9 * 60 + 47 + (306 / 90) * 60; var h = Math.floor(mins / 60), m = Math.round(mins % 60); var h12 = h > 12 ? h - 12 : h; return h12 + ':' + (m < 10 ? '0' + m : m) + ' ' + (h >= 12 ? 'p.m.' : 'a.m.');",
+  "distractor_solve": {
+   "1:27 p.m.": "var mins = 9 * 60 + 47 + 3 * 60 + 40; var h = Math.floor(mins / 60), m = mins % 60; return (h - 12) + ':' + (m < 10 ? '0' + m : m) + ' p.m.';",
+   "12:51 p.m.": "var mins = 9 * 60 + 47 + 3 * 60 + 4; var h = Math.floor(mins / 60), m = mins % 60; return h + ':' + (m < 10 ? '0' + m : m) + ' p.m.';",
+   "1:17 p.m.": "var mins = 9 * 60 + 47 + 3.5 * 60; var h = Math.floor(mins / 60), m = mins % 60; return (h - 12) + ':' + (m < 10 ? '0' + m : m) + ' p.m.';"
+  }
+ },
+ {
+  "id": "AIES-02",
+  "domain": "Integrating Essential Skills",
+  "subskill": "recovering an original cost through a markup and a later discount: the two percents multiply and do not add",
+  "difficulty": "hard",
+  "prompt": "A shop prices each item at 40 percent above the shop's cost. During a sale, every item is sold at 30 percent off its shop price. A jacket sells during the sale for $58.80. What was the shop's cost for the jacket?",
+  "choices": [
+   "$53.45",
+   "$57.62",
+   "$60.00",
+   "$65.33"
+  ],
+  "correct_answer": "$60.00",
+  "explanation": "Let the cost be c. The shop price is 1.40c and the sale price is 0.70(1.40c) = 0.98c, so 0.98c = 58.80 and c = 60.00. \"$53.45\" comes from a solver who nets the two percents to a single 10 percent markup and divides by 1.10. \"$57.62\" comes from a solver who applies the two percents forward to the sale price instead of undoing them, 58.80(1.40)(0.70). \"$65.33\" comes from a solver who ignores the markup and only undoes the discount, treating the answer as 58.80/0.90 after mistaking the discount for 10 percent net in the other direction.",
+  "solve": "return '$' + (58.80 / (1.40 * 0.70)).toFixed(2);",
+  "distractor_solve": {
+   "$53.45": "return '$' + (58.80 / 1.10).toFixed(2);",
+   "$57.62": "return '$' + (58.80 * 1.40 * 0.70).toFixed(2);",
+   "$65.33": "return '$' + (58.80 / 0.90).toFixed(2);"
+  }
+ },
+ {
+  "id": "AIES-03",
+  "domain": "Integrating Essential Skills",
+  "subskill": "mean of the members removed from a group, from the group mean before and after removal",
+  "difficulty": "medium",
+  "prompt": "The mean of 9 test scores is 71. When the two lowest scores are removed, the mean of the remaining 7 scores is 76. What is the mean of the two scores that were removed?",
+  "choices": [
+   "36",
+   "53.5",
+   "58.5",
+   "66"
+  ],
+  "correct_answer": "53.5",
+  "explanation": "The 9 scores total 9(71) = 639 and the remaining 7 total 7(76) = 532, so the two removed scores total 639 - 532 = 107 and their mean is 107/2 = 53.5. \"66\" comes from a solver who assumes each removed score sits 5 points below the original mean, 71 - (76 - 71). \"36\" comes from a solver who charges the whole 35-point shortfall of the remaining seven, 7(76 - 71), against the original mean as if it fell on a single score. \"58.5\" comes from a solver who splits that 35-point shortfall between the two removed scores but measures it from the new mean of 76 instead of the old mean.",
+  "solve": "return String((9 * 71 - 7 * 76) / 2);",
+  "distractor_solve": {
+   "66": "return String(71 - (76 - 71));",
+   "36": "return String(71 - 7 * (76 - 71));",
+   "58.5": "return String(76 - 7 * (76 - 71) / 2);"
+  }
+ },
+ {
+  "id": "AIES-04",
+  "domain": "Integrating Essential Skills",
+  "subskill": "converting an area between two named units through a common third unit",
+  "difficulty": "medium",
+  "prompt": "A farm covers 3.2 hectares. One hectare is 10,000 square meters and one acre is about 4,047 square meters. To the nearest tenth, how many acres does the farm cover?",
+  "choices": [
+   "0.8",
+   "1.3",
+   "7.9",
+   "13.0"
+  ],
+  "correct_answer": "7.9",
+  "explanation": "Convert to square meters first: 3.2(10,000) = 32,000 square meters. Then divide by the size of an acre: 32,000/4,047 is about 7.9 acres. \"1.3\" comes from a solver who multiplies by 4,047 and divides by 10,000, applying both factors in the wrong direction. \"13.0\" comes from a solver who multiplies 3.2 by 4.047 instead of dividing. \"0.8\" comes from a solver who divides 3.2 by 4.047 without first converting hectares to square meters.",
+  "solve": "return (3.2 * 10000 / 4047).toFixed(1);",
+  "distractor_solve": {
+   "1.3": "return (3.2 * 4047 / 10000).toFixed(1);",
+   "0.8": "return (3.2 / 4.047).toFixed(1);",
+   "13.0": "return (3.2 * 4.047).toFixed(1);"
+  }
+ },
+ {
+  "id": "AIES-05",
+  "domain": "Integrating Essential Skills",
+  "subskill": "overall percent from two subgroup percents weighted by unequal subgroup sizes",
+  "difficulty": "hard",
+  "prompt": "In a survey, 45 percent of the respondents were students and the rest were not. Of the students, 60 percent said they own a bicycle; of the non-students, 20 percent said they own a bicycle. What percent of all the respondents said they own a bicycle?",
+  "choices": [
+   "27%",
+   "38%",
+   "40%",
+   "47%"
+  ],
+  "correct_answer": "38%",
+  "explanation": "Out of every 100 respondents, 45 are students and 55 are not. Bicycle owners number 0.60(45) = 27 among the students and 0.20(55) = 11 among the non-students, 38 in all, so 38 percent. \"40%\" comes from a solver who averages the two subgroup rates, (60 + 20)/2, ignoring that the subgroups are different sizes. \"27%\" counts only the student owners and stops. \"47%\" comes from a solver who adds the students' 27 to the non-students' rate of 20 percent without scaling that rate to the 55 non-students.",
+  "solve": "return (0.45 * 60 + 0.55 * 20) + '%';",
+  "distractor_solve": {
+   "40%": "return ((60 + 20) / 2) + '%';",
+   "27%": "return (0.45 * 60) + '%';",
+   "47%": "return (0.45 * 60 + 20) + '%';"
+  }
+ },
+ {
+  "id": "AIES-06",
+  "domain": "Integrating Essential Skills",
+  "subskill": "round-trip currency exchange with a percent fee charged each way: four successive multipliers",
+  "difficulty": "medium",
+  "prompt": "A traveler exchanges 500 U.S. dollars for euros at a rate of 0.92 euro per dollar. The exchange office first deducts a 3 percent fee from the dollars and converts the remainder. On returning, the traveler converts all of the euros back to dollars at a rate of 1.08 dollars per euro, and the office again deducts a 3 percent fee from the dollars received. To the nearest cent, how many dollars did the traveler lose over the two exchanges?",
+  "choices": [
+   "$30.00",
+   "$32.56",
+   "$33.20",
+   "$99.25"
+  ],
+  "correct_answer": "$32.56",
+  "explanation": "Going out: 500(0.97) = 485 dollars are converted, giving 485(0.92) = 446.20 euros. Coming back: 446.20(1.08) = 481.896 dollars, and after the fee 481.896(0.97) = 467.44 dollars. The loss is 500 - 467.44 = 32.56 dollars. \"$30.00\" comes from a solver who adds the two 3 percent fees and takes 6 percent of the original 500, ignoring the exchange rates. \"$33.20\" comes from a solver who treats every change as a percent of the original 500, adding the 6 percent of fees to the 0.64 percent lost to the rates, 500(0.06 + 0.0064). \"$99.25\" comes from a solver who divides by the return rate of 1.08 instead of multiplying, 500 - 446.20/1.08 (0.97).",
+  "solve": "var back = 500 * 0.97 * 0.92 * 1.08 * 0.97; return '$' + (500 - back).toFixed(2);",
+  "distractor_solve": {
+   "$30.00": "return '$' + (500 * 0.06).toFixed(2);",
+   "$33.20": "return '$' + (500 * (0.06 + (1 - 0.92 * 1.08))).toFixed(2);",
+   "$99.25": "return '$' + (500 - (500 * 0.97 * 0.92) / 1.08 * 0.97).toFixed(2);"
+  }
+ },
+ {
+  "id": "AIES-07",
+  "domain": "Integrating Essential Skills",
+  "subskill": "the remainder of a total after parts given as a percent, a fraction and a count are all removed",
+  "difficulty": "medium",
+  "prompt": "A jar contains 240 coins. Of the coins, 35 percent are quarters, 1/4 are dimes, 42 are nickels, and the rest are pennies. How many of the coins are pennies?",
+  "choices": [
+   "54",
+   "96",
+   "114",
+   "138"
+  ],
+  "correct_answer": "54",
+  "explanation": "The quarters number 0.35(240) = 84 and the dimes number (1/4)(240) = 60. With the 42 nickels, the coins that are not pennies total 84 + 60 + 42 = 186, so there are 240 - 186 = 54 pennies. \"96\" comes from a solver who leaves out the nickels, 240 - 84 - 60. \"114\" comes from a solver who leaves out the dimes, 240 - 84 - 42. \"138\" comes from a solver who leaves out the quarters, 240 - 60 - 42.",
+  "solve": "return String(240 - 0.35 * 240 - 240 / 4 - 42);",
+  "distractor_solve": {
+   "96": "return String(240 - 0.35 * 240 - 240 / 4);",
+   "114": "return String(240 - 0.35 * 240 - 42);",
+   "138": "return String(240 - 240 / 4 - 42);"
+  }
+ },
+ {
+  "id": "AIES-08",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a percent LESS than a value that must first be recovered by undoing a percent raise",
+  "difficulty": "hard",
+  "prompt": "After receiving a 15 percent raise, Priya now earns $41.40 per hour. Her coworker Tomas earns 15 percent less per hour than Priya earned BEFORE her raise. How much does Tomas earn per hour?",
+  "choices": [
+   "$29.91",
+   "$30.60",
+   "$35.19",
+   "$36.00"
+  ],
+  "correct_answer": "$30.60",
+  "explanation": "Priya's wage before the raise satisfies 1.15w = 41.40, so w = 36.00. Tomas earns 15 percent less than that, 0.85(36.00) = 30.60 dollars per hour. \"$35.19\" comes from a solver who takes 15 percent off Priya's CURRENT wage, 0.85(41.40). \"$29.91\" comes from a solver who undoes the raise by subtracting 15 percent instead of dividing by 1.15, then subtracts 15 percent again, 41.40(0.85)(0.85). \"$36.00\" is Priya's wage before the raise, reported in place of Tomas's wage.",
+  "solve": "return '$' + (41.40 / 1.15 * 0.85).toFixed(2);",
+  "distractor_solve": {
+   "$35.19": "return '$' + (41.40 * 0.85).toFixed(2);",
+   "$29.91": "return '$' + (41.40 * 0.85 * 0.85).toFixed(2);",
+   "$36.00": "return '$' + (41.40 / 1.15).toFixed(2);"
+  }
+ },
+ {
+  "id": "AIES-09",
+  "domain": "Integrating Essential Skills",
+  "subskill": "whole boxes rounded UP, and the rounded count is what crosses a discount threshold",
+  "difficulty": "hard",
+  "prompt": "Marco needs 2,000 sheets of card stock. The stock is sold only in boxes of 350 sheets at $18.50 per box, and a 10 percent discount is applied to the whole order when 6 or more boxes are bought in a single order. What is the least amount Marco can pay to get at least 2,000 sheets?",
+  "choices": [
+   "$99.90",
+   "$101.00",
+   "$109.15",
+   "$111.00"
+  ],
+  "correct_answer": "$99.90",
+  "explanation": "2,000/350 is about 5.71, so Marco needs 6 boxes, and an order of 6 boxes qualifies for the discount: 6(18.50)(0.90) = 99.90 dollars. \"$111.00\" comes from a solver who buys 6 boxes but misses that 6 boxes qualify for the discount, 6(18.50). \"$101.00\" comes from a solver who reads the 10 percent discount as 10 dollars off, 6(18.50) - 10. \"$109.15\" comes from a solver who applies the discount only to the box that crosses the threshold, 5(18.50) + 18.50(0.90).",
+  "solve": "var boxes = Math.ceil(2000 / 350); var cost = boxes * 18.50 * (boxes >= 6 ? 0.90 : 1); return '$' + cost.toFixed(2);",
+  "distractor_solve": {
+   "$111.00": "return '$' + (Math.ceil(2000 / 350) * 18.50).toFixed(2);",
+   "$101.00": "return '$' + (Math.ceil(2000 / 350) * 18.50 - 10).toFixed(2);",
+   "$109.15": "return '$' + (5 * 18.50 + 18.50 * 0.90).toFixed(2);"
+  }
+ },
+ {
+  "id": "AIES-10",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a fraction of the remainder after a percent is taken from a whole, the remainder itself never stated",
+  "difficulty": "medium",
+  "prompt": "Of the 640 students at a school, 55 percent ride a bus to school. Of the students who do not ride a bus, 3/8 walk and all the others are driven by car. How many of the students are driven by car?",
+  "choices": [
+   "108",
+   "180",
+   "220",
+   "240"
+  ],
+  "correct_answer": "180",
+  "explanation": "The students who do not ride a bus number 0.45(640) = 288. Of these, 3/8 walk, which is 108, so the remaining 5/8, or 288 - 108 = 180, are driven. \"108\" is the number who walk, reported instead of the number driven. \"240\" comes from a solver who applies the 3/8 to all 640 students instead of to the 288 non-riders. \"220\" comes from a solver who applies the remaining 5/8 to the 352 bus riders instead of to the 288 non-riders.",
+  "solve": "var nonbus = 0.45 * 640; return String(nonbus - (3 / 8) * nonbus);",
+  "distractor_solve": {
+   "108": "return String((3 / 8) * 0.45 * 640);",
+   "240": "return String((3 / 8) * 640);",
+   "220": "return String((5 / 8) * 0.55 * 640);"
+  }
+ },
+ {
+  "id": "AIES-11",
+  "domain": "Integrating Essential Skills",
+  "subskill": "raising a concentration by removing solvent: the solute is fixed while the total shrinks",
+  "difficulty": "hard",
+  "prompt": "A container holds 400 milliliters of a salt solution that is 15 percent salt by volume. How many milliliters of water must evaporate from the container so that the remaining solution is 24 percent salt?",
+  "choices": [
+   "36",
+   "127.5",
+   "150",
+   "240"
+  ],
+  "correct_answer": "150",
+  "explanation": "The salt is fixed at 0.15(400) = 60 milliliters. For that to be 24 percent of the solution, the solution must shrink to 60/0.24 = 250 milliliters, so 400 - 250 = 150 milliliters of water must evaporate. \"36\" comes from a solver who takes the 9 percentage-point rise as a fraction of the original volume, 0.09(400), as if the salt were being added rather than the water removed. \"240\" comes from a solver who scales the whole 400 milliliters by the rise over the original percent, (24 - 15)/15 of 400. \"127.5\" comes from a solver who applies the reduction ratio 1 - 15/24 to the water alone, 340(1 - 15/24), instead of to the whole solution.",
+  "solve": "var salt = 0.15 * 400; return String(400 - salt / 0.24);",
+  "distractor_solve": {
+   "36": "return String(0.09 * 400);",
+   "240": "return String(400 * (24 - 15) / 15);",
+   "127.5": "return String((400 - 0.15 * 400) * (1 - 15 / 24));"
+  }
+ },
+ {
+  "id": "AIES-12",
+  "domain": "Integrating Essential Skills",
+  "subskill": "average speed for a whole outing that includes a stationary rest: the rest time counts, the rest distance is zero",
+  "difficulty": "hard",
+  "prompt": "A cyclist rides 18 kilometers from her home to a lake at a steady 24 kilometers per hour, rests at the lake for 20 minutes, and then rides home along the same route at a steady 18 kilometers per hour. To the nearest tenth, what was her average speed, in kilometers per hour, for the entire outing from the moment she left home until she returned?",
+  "choices": [
+   "17.3",
+   "18.0",
+   "20.6",
+   "21.0"
+  ],
+  "correct_answer": "17.3",
+  "explanation": "The ride out takes 18/24 = 0.75 hour and the ride back takes 18/18 = 1 hour; with the 20-minute rest the outing lasts 0.75 + 1/3 + 1 = 2.0833 hours. The total distance is 36 kilometers, so the average speed is 36/2.0833, about 17.3 kilometers per hour. \"21.0\" comes from a solver who averages the two riding speeds, (24 + 18)/2. \"20.6\" comes from a solver who leaves the rest out of the time, 36/1.75. \"18.0\" comes from a solver who rounds the total time of 2 hours 5 minutes down to 2 hours and divides 36 by 2.",
+  "solve": "var t = 18 / 24 + 20 / 60 + 18 / 18; return (36 / t).toFixed(1);",
+  "distractor_solve": {
+   "21.0": "return ((24 + 18) / 2).toFixed(1);",
+   "20.6": "return (36 / (18 / 24 + 18 / 18)).toFixed(1);",
+   "18.0": "return (36 / 2).toFixed(1);"
+  }
+ },
+ {
+  "id": "AIES-13",
+  "domain": "Integrating Essential Skills",
+  "subskill": "percent profit when buying and selling prices are quoted per DIFFERENT bundle sizes: normalise per unit, then use cost as the base",
+  "difficulty": "hard",
+  "prompt": "A stationery shop buys pens at a price of 5 pens for $2.00 and sells them at a price of 4 pens for $2.50. What is the shop's profit on each pen, expressed as a percent of what the shop paid for it?",
+  "choices": [
+   "22.5%",
+   "25%",
+   "36%",
+   "56.25%"
+  ],
+  "correct_answer": "56.25%",
+  "explanation": "The shop pays 2.00/5 = 0.40 dollar per pen and sells at 2.50/4 = 0.625 dollar per pen, a profit of 0.225 dollar per pen. As a percent of the cost that is 0.225/0.40 = 0.5625, or 56.25 percent. \"36%\" comes from a solver who uses the selling price as the base, 0.225/0.625. \"25%\" comes from a solver who compares the bundle prices directly, (2.50 - 2.00)/2.00, ignoring that the bundles hold different numbers of pens. \"22.5%\" is the per-pen profit of 0.225 dollar misread as a percent.",
+  "solve": "var cost = 2.00 / 5, sell = 2.50 / 4; return Number((100 * (sell - cost) / cost).toFixed(2)) + '%';",
+  "distractor_solve": {
+   "36%": "var cost = 2.00 / 5, sell = 2.50 / 4; return Number((100 * (sell - cost) / sell).toFixed(2)) + '%';",
+   "25%": "return (100 * (2.50 - 2.00) / 2.00) + '%';",
+   "22.5%": "var cost = 2.00 / 5, sell = 2.50 / 4; return Number((100 * (sell - cost)).toFixed(2)) + '%';"
+  }
+ }
+]

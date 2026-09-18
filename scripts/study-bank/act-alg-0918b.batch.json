@@ -1,0 +1,86 @@
+[
+  {
+    "id": "AALGB-01",
+    "domain": "Algebra",
+    "subskill": "solving a literal linear equation for one variable in terms of another",
+    "difficulty": "medium",
+    "prompt": "If 4(x − 3k) = 7x + 2k, which of the following expresses x in terms of k?",
+    "choices": [
+      "10k/3",
+      "-14k/3",
+      "14k/11",
+      "-10k/11"
+    ],
+    "correct_answer": "-14k/3",
+    "explanation": "Distribute on the left: 4x − 12k = 7x + 2k. Collect the x-terms on the left and the k-terms on the right, changing the sign of each term that crosses the equals sign: 4x − 7x = 2k + 12k, so −3x = 14k and x = −14k/3. \"10k/3\" comes from a solver who moves −12k across without changing its sign, getting −3x = 2k − 12k = −10k. \"14k/11\" comes from a solver who moves 7x across without changing its sign, getting 4x + 7x = 14k. \"-10k/11\" comes from a solver who moves both terms across without changing either sign, getting 11x = −10k.",
+    "solve": "var a = 4, b = 3, c = 7, d = 2; var num = d + a*b, den = a - c; if (den < 0) { num = -num; den = -den; } var p = Math.abs(num), q = den; while (q) { var t = p % q; p = q; q = t; } num /= p; den /= p; return (num < 0 ? '-' : '') + Math.abs(num) + 'k/' + den;",
+    "distractor_solve": {
+      "10k/3": "var a = 4, b = 3, c = 7, d = 2; var num = d - a*b, den = a - c; if (den < 0) { num = -num; den = -den; } var p = Math.abs(num), q = den; while (q) { var t = p % q; p = q; q = t; } num /= p; den /= p; return (num < 0 ? '-' : '') + Math.abs(num) + 'k/' + den;",
+      "14k/11": "var a = 4, b = 3, c = 7, d = 2; var num = d + a*b, den = a + c; if (den < 0) { num = -num; den = -den; } var p = Math.abs(num), q = den; while (q) { var t = p % q; p = q; q = t; } num /= p; den /= p; return (num < 0 ? '-' : '') + Math.abs(num) + 'k/' + den;",
+      "-10k/11": "var a = 4, b = 3, c = 7, d = 2; var num = d - a*b, den = a + c; if (den < 0) { num = -num; den = -den; } var p = Math.abs(num), q = den; while (q) { var t = p % q; p = q; q = t; } num /= p; den /= p; return (num < 0 ? '-' : '') + Math.abs(num) + 'k/' + den;"
+    }
+  },
+  {
+    "id": "AALGB-02",
+    "domain": "Algebra",
+    "subskill": "solving a radical equation and rejecting the extraneous root introduced by squaring",
+    "difficulty": "medium",
+    "prompt": "What are all real solutions of the equation √(3x + 13) = 5 − x?",
+    "choices": [
+      "12 only",
+      "1 and 12",
+      "no real solution",
+      "1 only"
+    ],
+    "correct_answer": "1 only",
+    "explanation": "Squaring both sides gives 3x + 13 = 25 − 10x + x², so x² − 13x + 12 = 0 and (x − 1)(x − 12) = 0, giving candidates x = 1 and x = 12. Squaring can introduce solutions that do not satisfy the original equation, so each must be checked. For x = 1: √16 = 4 and 5 − 1 = 4, so it works. For x = 12: √49 = 7 but 5 − 12 = −7, and a principal square root is never negative, so 12 is extraneous. The only solution is 1. \"1 and 12\" comes from a solver who solves the squared equation and never checks the candidates against the original. \"12 only\" comes from a solver who checks against x − 5 instead of 5 − x, which accepts 12 (7 = 7) and rejects 1 (4 ≠ −4). \"no real solution\" comes from a solver who squares 5 − x as 25 + x², dropping the middle term, and gets x² − 3x + 12 = 0, whose discriminant is negative.",
+    "solve": "var A = 1, B = -13, C = 12; var D = B*B - 4*A*C; var roots = []; if (D >= 0) { var r1 = (-B - Math.sqrt(D)) / (2*A), r2 = (-B + Math.sqrt(D)) / (2*A); roots = r1 === r2 ? [r1] : [r1, r2]; } var ok = roots.filter(function (r) { var rhs = 5 - r; return rhs >= 0 && Math.abs(Math.sqrt(3*r + 13) - rhs) < 1e-9; }); if (ok.length === 0) return 'no real solution'; if (ok.length === 1) return String(ok[0]) + ' only'; return ok.join(' and ');",
+    "distractor_solve": {
+      "1 and 12": "var A = 1, B = -13, C = 12; var D = B*B - 4*A*C; var roots = []; if (D >= 0) { var r1 = (-B - Math.sqrt(D)) / (2*A), r2 = (-B + Math.sqrt(D)) / (2*A); roots = r1 === r2 ? [r1] : [r1, r2]; } if (roots.length === 0) return 'no real solution'; if (roots.length === 1) return String(roots[0]) + ' only'; return roots.join(' and ');",
+      "12 only": "var A = 1, B = -13, C = 12; var D = B*B - 4*A*C; var roots = []; if (D >= 0) { var r1 = (-B - Math.sqrt(D)) / (2*A), r2 = (-B + Math.sqrt(D)) / (2*A); roots = r1 === r2 ? [r1] : [r1, r2]; } var ok = roots.filter(function (r) { var rhs = r - 5; return rhs >= 0 && Math.abs(Math.sqrt(3*r + 13) - rhs) < 1e-9; }); if (ok.length === 0) return 'no real solution'; if (ok.length === 1) return String(ok[0]) + ' only'; return ok.join(' and ');",
+      "no real solution": "var A = 1, B = -3, C = 12; var D = B*B - 4*A*C; var roots = []; if (D >= 0) { var r1 = (-B - Math.sqrt(D)) / (2*A), r2 = (-B + Math.sqrt(D)) / (2*A); roots = r1 === r2 ? [r1] : [r1, r2]; } if (roots.length === 0) return 'no real solution'; if (roots.length === 1) return String(roots[0]) + ' only'; return roots.join(' and ');"
+    }
+  },
+  {
+    "id": "AALGB-03",
+    "domain": "Algebra",
+    "subskill": "a single coefficient in the product of a quadratic and a quadratic, collected from three partial products",
+    "difficulty": "medium",
+    "prompt": "When (2x² − 3x + 1)(x² + 5x − 4) is expanded and like terms are combined, what is the coefficient of x²?",
+    "choices": [
+      "-22",
+      "-6",
+      "7",
+      "17"
+    ],
+    "correct_answer": "-22",
+    "explanation": "An x² term in the product arises from three pairings: 2x² times −4 gives −8x², −3x times 5x gives −15x², and 1 times x² gives x². Adding them, −8 − 15 + 1 = −22. \"-6\" comes from a solver who takes the product of 2x² and −4 as +8x², getting 8 − 15 + 1. \"7\" comes from a solver who collects the x³ terms instead: 2x² times 5x gives 10x³ and −3x times x² gives −3x³, so 10 − 3 = 7. \"17\" comes from a solver who collects the x terms instead: −3x times −4 gives 12x and 1 times 5x gives 5x, so 12 + 5 = 17.",
+    "solve": "var P = [1, -3, 2], Q = [-4, 5, 1]; var R = [0, 0, 0, 0, 0]; for (var i = 0; i < P.length; i++) for (var j = 0; j < Q.length; j++) R[i + j] += P[i] * Q[j]; return String(R[2]);",
+    "distractor_solve": {
+      "7": "var P = [1, -3, 2], Q = [-4, 5, 1]; var R = [0, 0, 0, 0, 0]; for (var i = 0; i < P.length; i++) for (var j = 0; j < Q.length; j++) R[i + j] += P[i] * Q[j]; return String(R[3]);",
+      "17": "var P = [1, -3, 2], Q = [-4, 5, 1]; var R = [0, 0, 0, 0, 0]; for (var i = 0; i < P.length; i++) for (var j = 0; j < Q.length; j++) R[i + j] += P[i] * Q[j]; return String(R[1]);",
+      "-6": "var P = [1, -3, 2], Q = [-4, 5, 1]; var R = [0, 0, 0, 0, 0]; for (var i = 0; i < P.length; i++) for (var j = 0; j < Q.length; j++) { var v = P[i] * Q[j]; if (i === 2 && j === 0) v = Math.abs(v); R[i + j] += v; } return String(R[2]);"
+    }
+  },
+  {
+    "id": "AALGB-04",
+    "domain": "Algebra",
+    "subskill": "the value of a coefficient that makes a system of two linear equations have no solution",
+    "difficulty": "medium",
+    "prompt": "For what value of k does the system 2x − 3y = 11 and kx + 12y = 5 have no solution?",
+    "choices": [
+      "-1/2",
+      "8",
+      "-8",
+      "1/2"
+    ],
+    "correct_answer": "-8",
+    "explanation": "A system of two linear equations has no solution when the lines are parallel and distinct, which happens when the coefficients of x and y are proportional but the constants are not. Here 12 is −4 times −3, so k must be −4 times 2, giving k = −8. Then the second equation is −8x + 12y = 5, while −4 times the first is −8x + 12y = −44, so the lines are indeed distinct. Equivalently, the slopes 2/3 and −k/12 must be equal, so −k/12 = 2/3 and k = −8. \"8\" comes from a solver who drops the sign, scaling by 4 instead of −4 because 12 is 4 times 3. \"-1/2\" comes from a solver who inverts the proportion, writing k/12 = −3/2 and solving for k as though 2 sat under 12, which gives k = 2(−3)/12. \"1/2\" comes from a solver who both inverts the proportion and drops the sign, computing 2(3)/12.",
+    "solve": "var a1 = 2, b1 = -3, a2 = 12; var num = a1 * a2, den = b1; if (den < 0) { num = -num; den = -den; } var p = Math.abs(num), q = den; while (q) { var t = p % q; p = q; q = t; } num /= p; den /= p; return den === 1 ? String(num) : (num < 0 ? '-' : '') + Math.abs(num) + '/' + den;",
+    "distractor_solve": {
+      "8": "var a1 = 2, b1 = -3, a2 = 12; var num = a1 * a2, den = Math.abs(b1); var p = Math.abs(num), q = den; while (q) { var t = p % q; p = q; q = t; } num /= p; den /= p; return den === 1 ? String(num) : (num < 0 ? '-' : '') + Math.abs(num) + '/' + den;",
+      "-1/2": "var a1 = 2, b1 = -3, a2 = 12; var num = a1 * b1, den = a2; if (den < 0) { num = -num; den = -den; } var p = Math.abs(num), q = den; while (q) { var t = p % q; p = q; q = t; } num /= p; den /= p; return den === 1 ? String(num) : (num < 0 ? '-' : '') + Math.abs(num) + '/' + den;",
+      "1/2": "var a1 = 2, b1 = -3, a2 = 12; var num = a1 * Math.abs(b1), den = a2; var p = Math.abs(num), q = den; while (q) { var t = p % q; p = q; q = t; } num /= p; den /= p; return den === 1 ? String(num) : (num < 0 ? '-' : '') + Math.abs(num) + '/' + den;"
+    }
+  }
+]
