@@ -1,0 +1,212 @@
+{
+ "SADV5A-01": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; no cheap bound: all options positive, no sign/magnitude/monotone read from the stem (discriminant k^2-10k+21 is a solving step; 7 is one k, 21 is their product, 16 is neither). bank duplicate: sat-adv-hard-v3.batch.json AM3-07 (x^2 + (k+3)x + k+6 = 0, exactly one real solution, same (k+3) coefficient shape, discriminant as a quadratic in k); within-file pair with SADV5A-05 (same mechanism, discriminant quadratic in k)."
+ },
+ "SADV5A-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; magnitude: one root is 5/2 read off the stem and the other satisfies 4x+19=0 so |root|<5, |product|<12.5 kills D (-95); sign (positive times negative) kills nothing. Structural: B and D are a key x8 pair sharing numerator 95, C (-9/4) is the SUM of the roots. No bank duplicate of the factor-out-common-binomial mechanism."
+ },
+ "SADV5A-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; convexity/chord: f(0) below the chord from (-4,43) to (3,22) gives f(0)<31, kills nothing; no lower bound without solving for a. No stem-number restatement among options. No bank duplicate (SADV-02, SADV2-01, SAM11-19 fit a quadratic from a vertex or symmetric pair, not three general points)."
+ },
+ "SADV5A-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; definitional extreme: D (4) is the un-shifted axis of f itself, and g is a non-trivial shift so the answer cannot equal it; a right shift moves the vertex right so answer>4 (kills D only). A (17) is 10+7 (half-width plus shift), C (10) is the half-width. bank duplicate: composite of sat-adv-v6.batch.json ADV6-05 (axis from f(2)=f(10)) and sat-adv-hard-v2.batch.json AM2-24 / sat-adv-h3.kept.batch.json AH3-07 (vertex under f(x+3)-c translation); no single item combines both but each half is live."
+ },
+ "SADV5A-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; three-option cluster with one outlier: A,B,C are 9,10,15 (small sums of a few consecutive integers), D (-55) is the sign-and-magnitude outlier and dies. B (15) = 1+2+3+4+5 (endpoints 1 and 5 wrongly included), C (10) = 1+2+3+4. bank duplicate: sat-adv-hard-v3.batch.json AM3-17 (no intersection, integer parameter, discriminant quadratic inequality in the parameter) and sat-adv-0918.kept.batch.json SADV-15 (count of k giving two distinct real solutions); within-file pair with SADV5A-01."
+ },
+ "SADV5A-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; sign: sum -5/3 with one root +4 forces the other root negative, so the product c/3 is negative, kills A (28). Structural: B (-68) and C (-68/3) are a key/3 pair sharing numerator 68, D (-20) is 3*4*(-5/3) (sum used as the other root). Adjacent pair narrows to B/C. Near duplicate mechanism: sat-adv-v5.batch.json ADV5-14 (one root given, find the other via Vieta) and sat-adv-0918b.batch.json SADVB-07 (Vieta with a root relation, find c); non-unit leading coefficient is the only new element."
+ },
+ "SADV5A-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; vertex value as ceiling: the second parabola is -2(x-4)^2+13 so every intersection y<=13, the sum of two y's <=26, kills C (65 = 5*13, the product); vertex floor of the first parabola (x-1)^2+4 gives sum>=8, kills nothing. A (13) is one of the two y-values. bank duplicate: sat-adv-v6.batch.json ADV6-08 (IDENTICAL first parabola y = x^2 - 2x + 5 against a second downward parabola, asks a y-coordinate of the intersection); also sat-adv-hard-v4.batch.json AM4-16 and sat-adv-v5.batch.json ADV5-09 (sum of y-coordinates of intersection points)."
+ },
+ "SADV5A-08": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; endpoint beyond landing: h=0 near t=8.6, so A (15) is after landing; D (17/2) is 136/16, the time the ball returns to launch height h=20 (mirror of t=0), read off without solving, so it cannot be a 260-ft time. Remaining B (5 = 2*2.5) and C. bank duplicate: sat-adv-v6.batch.json ADV6-17 (ball first at a height of 100 ft, -16t^2+80t+4: same quadratic-height-equals-value mechanism, first-time variant); sat-adv-hard-v4.batch.json AM4-17 and sat-adv-0918.kept.batch.json SADV-09 are the interval variants."
+ },
+ "SADV5A-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1; sign and magnitude: proportional coefficients a:b:6 = 2:-5:1 with scale factor 6 forces b negative and |b| > a (5 > 2), so a+b must be negative; kills A (12 = a alone), B (7), C (42). Only D negative. No bank duplicate for quadratic proportional coefficients (linear analogues: sat-alg-0919b.kept SALG3-01, sat-alg-unit-0919.kept SALGD-01)."
+ },
+ "SADV5A-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; no cheap bound: vertex x=3 is read off but k enters only as vertex y = k-18, and no option is excluded by sign or magnitude before that step (C -2 corresponds to the x=6 vertex error, B and D are not visibly stem-derived). bank duplicate: sat-adv-v6.batch.json ADV6-16 (x^2 - 8x + c, minimum value 5, find c: vertex-value condition fixes the constant) and sat-adv-hard-v3.batch.json AM3-20 / sat-adv-0919.kept.batch.json SADV2-10 (vertex location by completing the square)."
+ },
+ "SADV5B-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; convexity: an increasing exponential gains more per unit than its average over the previous span, so f(3) > 36 + (36-16)/2 = 46 kills B (40.5); magnitude: b^2 = 2.25 so b < 2.25 and f(3) = 36b < 81 kills D (121.5 = 36*1.5^3). Remaining A (72 = 36*2) and C. bank duplicate: sat-adv-hard-v4.batch.json AM4-07 (f(0)=5, f(2)=45, find f(3): identical mechanism, same input points 0/2/3), sat-adv-0919.batch.json SADV2-04, sat-adv-v6.batch.json ADV6-19; within-file pair with SADV5B-09 (f(0) and f(2) given, evaluate at a third point)."
+ },
+ "SADV5B-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; magnitude: three compounding periods of 8% decrease lie strictly between the two-period decrease (15.4, which is option B exactly) and the linear 24%; kills B (2 periods) and C (11.8 = 1.5 periods from 18/12). Remaining A (23.4) and D. bank duplicate: sat-adv-0918.batch.json SADV-03 (decreases 12% every 8 hours, percent after 24 hours: identical 3-period mechanism, complement framing), sat-adv-h3.batch.json AH3-17 (20% per year, 3 years), sat-math-v16-adv.kept.batch.json SM16A-03."
+ },
+ "SADV5B-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; structural adjacent pair: A (7) and C (16) differ by exactly 9, the value that zeroes the denominator, so one is the sum with the extraneous root and the other without; the key is the smaller. B (28) and D (5) are neither. No arithmetic bound kills anything. bank duplicate: sat-adv-0919b.kept.batch.json SADV3-02 ((x^2 - x - 12)/(x - 4) = 2x - 5: cancel the common factor, solve, reject the excluded value), sat-adv-v5.batch.json ADV5-04, sat-adv-hard-v3.batch.json AM3-22, sat-adv-h3.kept.batch.json AH3-12."
+ },
+ "SADV5B-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2; perfect-square filter: x+13 must be a perfect square for the integer RHS x-7, kills B (15 -> 28) and C (25 -> 38); magnitude on D: sqrt(49)=7 vs 36-7=29, dies on one glance. B (15) is the sum of the squared-equation roots, D (36) their product, C (25) is (x+13) at the key. bank duplicate: sat-adv-hard-v1.batch.json AM-H-11 (sqrt(3x+1) = x-3), sat-adv-hard-v3.batch.json AM3-01 (sqrt(2x+22) = x-1), sat-adv-v5.batch.json ADV5-18, sat-adv-hard-v4.batch.json AM4-14, sat-adv-h3.kept.batch.json AH3-05, sat-adv-0918.batch.json SADV-08."
+ },
+ "SADV5B-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; part < whole: xy = 12 > 0 so x and y share a sign and (x-y)^2 < (x+y)^2 = 81 (x+y = (3/4)*12 read in one line), kills A (129 = 81+48) and B (208). Remaining D (57 = 81-24, using 2xy) and C. bank duplicate: sat-adv-h3.kept.batch.json AH3-24 (x^2+y^2 = 34, xy = 15, find (x+y)^2: same symmetric-identity mechanism), sat-adv-hard-v2.batch.json AM2-07 (1/r + 1/s from Vieta); within-file trio with SADV5C-01 and SADV5C-04."
+ },
+ "SADV5B-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; magnitude: 4^x must equal 6*2^x + 16 so 2^x is about 8 and x is small, kills A (64) and B (8); structural: A and B are a visible t vs t^2 pair (8 and 64 = 8^2), which marks both as intermediates. Remaining D (1) and C; plugging x=1 fails at a glance. bank duplicate: sat-adv-hard-v4.batch.json AM4-05 (4^x - 3(2^x) - 4 = 0: identical mechanism), sat-adv-hard-v3.batch.json AM3-06 (2^(2x) - 2^(x+2) - 32 = 0), sat-adv-0919b.batch.json SADV3-10."
+ },
+ "SADV5B-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; no arithmetic bound: hole's y-value has no sign or magnitude readable before k is fixed. Structural only: A (7/4) and B (7) share numerator 7 (key/4 pair: B is the reduced numerator x+2 at x=5 without the denominator), which a pattern-reader would use to narrow to A/B; D (-11/4) is the hole placed at x=1 instead of x=5. Near duplicate: sat-adv-0919.batch.json SADV2-09 (hole y-coordinate of (x^2-x-12)/(x^2-16)), sat-adv-hard-v4.batch.json AM4-13, sat-adv-h3.kept.batch.json AH3-06; the parameter-fixing step is the only new element."
+ },
+ "SADV5B-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; sign/monotone: for x>0 the left side (1/27)^x is below 1, so 81^(x-7) must be below 1, forcing x<7 and killing D (28 = 4*7). B (14/3) and C (7/2) are 28/6 and 28/8 (wrong exponent sums 3+3, 4+4). bank duplicate: sat-math-v16-adv.kept.batch.json SM16A-14 (16^(x+1) = 64^(x-2)), sat-adv-0918.batch.json SADV-05 (27^(x-1) = 9^(x+2)), sat-adv-v5.batch.json ADV5-06, sat-adv-hard-v2.batch.json AM2-16; the reciprocal base is a cosmetic change to the same common-base mechanism."
+ },
+ "SADV5B-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; monotone: a>0 since f(2)>f(0), so f(-1) < f(0) = 7, kills nothing (all four are below 7); a lower bound f(-1) > c needs c, which is a solving step (after it, B 1/3 dies since c = 2). All options share denominator 3, no pair tell. bank duplicate: sat-adv-0919b.kept.batch.json SADV3-11 (a*x^(3/2) + b with f(0)=5, f(4)=29, find f(9): identical two-equation coefficient-plus-shift mechanism), sat-adv-hard-v4.batch.json AM4-07; within-file pair with SADV5B-01."
+ },
+ "SADV5B-10": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; domain x >= -1/3 kills nothing; all options positive; no sign, magnitude or monotone read separates them (A 14/3 is the forgot-to-square-2 error 3x+16 = 2(3x+1), C 5/3 is 3x+16 = 12x+1). A and D share denominator 3 but B and C break any pair pattern. No bank duplicate (sat-adv-0918c.batch.json SADVC-08 is the exponential analogue f(x+5)-f(x+3) = k f(x); no radical functional equation exists in the bank)."
+ },
+ "SADV5C-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; part < whole: a^2 - b^2 < a^2 + b^2 = 29 (the x coefficient, read off), kills A (99) and C (49); positivity: a > b > 0 so the answer is positive, kills nothing further. Remaining B (9 = (a-b)^2 = 29 - 20) and D. bank duplicate: sat-adv-h3.kept.batch.json AH3-24 (symmetric identity from x^2+y^2 and xy), sat-adv-hard-v4.batch.json AM4-19 (x^2 - y^2 = 40, x - y = 4), sat-adv-v6.batch.json ADV6-06 / sat-adv-0919b.batch.json SADV3-09 (coefficient matching); within-file trio with SADV5B-05 and SADV5C-04."
+ },
+ "SADV5C-02": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; structural: B (60) and D (-8) are the two partial products 12*5 and -8*1 and they sum to A (52), so the triple 60/-8/52 reads as intermediates-plus-total and C (22) is the outlier; a pattern-reader picks the sum. No arithmetic bound applies (sign of the x coefficient is not readable without the expansion). bank duplicate: sat-adv-v11.kept.batch.json SAM11-14 (coefficient of x in (x-4)(2x+1)(x+3): two products contribute to the x term), sat-adv-v11.kept.batch.json SAM11-03 ((2x-3)^3 coefficient), sat-adv-0919.kept.batch.json SADV2-07."
+ },
+ "SADV5C-03": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; sign: x=-1 lies between the touched zero -3 and the crossing at 1 with no crossing between -1 and 0, so p(-1) has the sign of p(0) = -18, negative, kills A (40 = the un-scaled product 4*2*5). Magnitude: the factor product at -1 is 40 against 36 at 0, so |p(-1)| is close to 18, which also kills C (-80) on a second glance. B (-30) and D remain. bank duplicate: sat-adv-0918c.batch.json SADVC-07 (cubic with three x-intercepts and y-intercept (0,30), find p(3): identical scale-by-y-intercept-then-evaluate mechanism), sat-adv-v11.kept.batch.json SAM11-06 (double zero as a squared factor), sat-adv-h3.kept.batch.json AH3-22."
+ },
+ "SADV5C-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; part < whole: x + 1/x = 6 > 0 so x > 0 and x^3 + 1/x^3 = 6^3 - 3*6 < 216, kills C (216 = the uncorrected cube); magnitude: x > 5 (x + 1/x = 6 with x > 1) gives x^3 > 125, kills D (34 = x^2 + 1/x^2). Remaining A (204 = 216 - 12) and B. bank duplicate: sat-adv-h3.kept.batch.json AH3-24 (symmetric identity family); within-file trio with SADV5B-05 and SADV5C-01, and pair with SADV5C-10 (evaluate a polynomial expression from a given quadratic relation without solving for x)."
+ },
+ "SADV5C-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; two excluded values (3 and -2, sum 1) are read off, but the third comes only from solving (x+2) = 4(x-3), and no option is excluded by sign or magnitude beforehand (A 29/3, C -7/3, D 8/3 correspond to third values 26/3, -10/3, 5/3, all admissible on their face). No pair or cluster tell. No bank duplicate: sat-adv-0918b.batch.json SADVB-05 sums the visible denominator zeros only; sat-adv-v11.kept.batch.json SAM11-07 / sat-adv-v6.batch.json ADV6-18 simplify a complex fraction but never ask for the hidden excluded value."
+ },
+ "SADV5C-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; no cheap bound: sign and magnitude of the coefficient sum are not readable without the p(1) insight, and once that insight is had the item is a one-line evaluation (1*3 - 81), so the bounds and the solve coincide. A (-244) is p(-1), C (84) is 3 + 81 (sign slip), B (-21) is neither. No bank duplicate: no sum-of-coefficients item exists in any batch."
+ },
+ "SADV5C-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; sign: q(2) = p(2)/(2+3) and p(2) = 24 + 20 - 54 - 45 is visibly negative (the two negative terms dominate), so q(2) < 0, kills C (55, the sign-flipped p(2)). Structural: A (-11) and C (55) are a key x(-5) pair. B (-1) and D (-5) remain with A. Near duplicate: sat-adv-h3.kept.batch.json AH3-06 (evaluate the reduced quotient at the removed point) and sat-adv-0918b.batch.json SADVB-01 (quotient and remainder by a linear divisor); the grouping factorisation is cosmetic since p(2)/5 solves it directly."
+ },
+ "SADV5C-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4; no cheap bound: the x-coefficient of the remainder has no readable sign or magnitude before division (A 29 is p(4), a stem-derived intermediate, but recognising it requires evaluating p). Once the first division step x*(x^2-3x-4) is subtracted the remainder 6x+5 appears immediately, so this is easier than its framing. Near duplicate: sat-adv-hard-v4.batch.json AM4-08 (remainder on division by x^2 - 4 is 3x+1, find p(2): the same remainder-by-factorable-quadratic frame, inverted), sat-adv-0919b.kept.batch.json SADV3-01 / sat-math-v16-adv.kept.batch.json SM16A-06 (two remainder-theorem conditions)."
+ },
+ "SADV5C-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; parameter-as-option: B (-17) is the value of k itself, and c = 7k + 4 is roughly seven times k, so an option equal to the parameter cannot be c (magnitude); kills B. A (-123 = 7k - 4) and C (-143 = 7(-21) + 4, k from 21 + k = 0 with the 4x term dropped) remain with D. No bank duplicate of the constant-for-all-x difference mechanism (sat-adv-0918c.batch.json SADVC-03 and sat-adv-v6.batch.json ADV6-06 are plain coefficient matching)."
+ },
+ "SADV5C-10": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "weak",
+  "note": "survivors=2; stem-number restatement: D (25/4) is exactly (5/2)^2, the square of the given value, and A (5/4) is that square minus the given value; positivity: the expression equals (x^2-2x)^2 + 2(x^2-2x) with x^2 - 2x = 5/2 > 0, so it strictly exceeds 25/4, kills A and D. Remaining B (33/4 = 25/4 + 2) and C. bank duplicate: sat-adv-0918.kept.batch.json SADV-14 ((x^2 - 5)^2 - 3(x^2 - 5) - 4 = 0: polynomial in a given quadratic expression) and sat-adv-0919.kept.batch.json SADV2-22 (evaluate through a substituted expression); within-file pair with SADV5C-04."
+ }
+}

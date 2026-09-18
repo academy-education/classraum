@@ -1,0 +1,212 @@
+[
+  {
+    "id": "SADV5A-01",
+    "domain": "Advanced Math",
+    "subskill": "discriminant as a quadratic in the parameter: sum of the parameter values giving exactly one real solution",
+    "difficulty": "hard",
+    "prompt": "In the equation x^2 + (k + 3)x + 4k - 3 = 0, k is a constant. There are exactly two values of k for which the equation has exactly one real solution. What is the sum of those two values of k?",
+    "choices": [
+      "7",
+      "10",
+      "21",
+      "16"
+    ],
+    "correct_answer": "10",
+    "explanation": "The equation has exactly one real solution when its discriminant is zero: (k + 3)^2 - 4(1)(4k - 3) = k^2 + 6k + 9 - 16k + 12 = k^2 - 10k + 21 = 0, so (k - 3)(k - 7) = 0 and k = 3 or k = 7. Checking: k = 3 gives x^2 + 6x + 9 = (x + 3)^2 and k = 7 gives x^2 + 10x + 25 = (x + 5)^2, each with one real solution. The sum is 3 + 7 = 10, which is \"10\". \"7\" comes from a solver who reports only the larger of the two values of k. \"16\" comes from a solver who expands (k + 3)^2 as k^2 + 9, getting k^2 - 16k + 21 = 0 and reporting the sum of its roots. \"21\" comes from a solver who reports the product of the two values of k instead of their sum.",
+    "solve": "var ks=[];for(var k=-100;k<=100;k++){var b=k+3,c=4*k-3;if(b*b-4*c===0)ks.push(k)}return String(ks.reduce(function(a,b){return a+b},0));",
+    "distractor_solve": {
+      "7": "var ks=[];for(var k=-100;k<=100;k++){var b=k+3,c=4*k-3;if(b*b-4*c===0)ks.push(k)}return String(Math.max.apply(null,ks));",
+      "16": "return String(-(-16)/1);",
+      "21": "var ks=[];for(var k=-100;k<=100;k++){var b=k+3,c=4*k-3;if(b*b-4*c===0)ks.push(k)}return String(ks[0]*ks[1]);"
+    }
+  },
+  {
+    "id": "SADV5A-02",
+    "domain": "Advanced Math",
+    "subskill": "factoring out a common binomial before reading the x-intercepts; product of the intercepts with a non-unit leading coefficient",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = (2x - 5)(4x + 13) + 6(2x - 5). In the xy-plane, the graph of y = f(x) crosses the x-axis at two points. What is the product of the x-coordinates of those two points?",
+    "choices": [
+      "-65/8",
+      "-95",
+      "-9/4",
+      "-95/8"
+    ],
+    "correct_answer": "-95/8",
+    "explanation": "Both terms share the factor 2x - 5, so f(x) = (2x - 5)(4x + 13 + 6) = (2x - 5)(4x + 19). The x-intercepts are where 2x - 5 = 0 and 4x + 19 = 0, so x = 5/2 and x = -19/4, and their product is (5/2)(-19/4) = -95/8, which is \"-95/8\". Equivalently, expanding gives 8x^2 + 18x - 95, whose roots have product -95/8. \"-65/8\" comes from a solver who ignores the added 6(2x - 5) and takes the intercepts from (2x - 5)(4x + 13) alone: (5/2)(-13/4). \"-95\" comes from a solver who multiplies the constants -5 and 19 of the two factors instead of solving each factor for x. \"-9/4\" comes from a solver who adds the two intercepts, 5/2 + (-19/4), instead of multiplying them.",
+    "solve": "var r1=5/2,r2=-19/4;var p=r1*r2;return String(p*8)+'/8';",
+    "distractor_solve": {
+      "-65/8": "var p=(5/2)*(-13/4);return String(p*8)+'/8';",
+      "-95": "return String(-5*19);",
+      "-9/4": "var s=5/2+(-19/4);return String(s*4)+'/4';"
+    }
+  },
+  {
+    "id": "SADV5A-03",
+    "domain": "Advanced Math",
+    "subskill": "fitting y = ax^2 + bx + c through three points and reporting the y-intercept",
+    "difficulty": "hard",
+    "prompt": "In the xy-plane, the graph of y = ax^2 + bx + c, where a, b, and c are constants, passes through the points (-4, 43), (3, 22), and (5, 52). What is the y-coordinate of the y-intercept of the graph?",
+    "choices": [
+      "7",
+      "15",
+      "-3",
+      "1"
+    ],
+    "correct_answer": "7",
+    "explanation": "Substituting the points gives 16a - 4b + c = 43, 9a + 3b + c = 22, and 25a + 5b + c = 52. Subtracting the second from the third gives 16a + 2b = 30, so 8a + b = 15. Subtracting the second from the first gives 7a - 7b = 21, so a - b = 3. Adding these, 9a = 18, so a = 2 and b = -1. Then c = 22 - 9(2) - 3(-1) = 22 - 18 + 3 = 7, and the y-intercept is (0, 7), so the answer is \"7\". \"15\" comes from a solver who makes a sign error in the elimination and finds b = 1 instead of -1, then computes c = 43 - 32 - (1)(-4) = 15. \"-3\" comes from a solver who finds a = 2 and b = -1 correctly but back-substitutes into (5, 52) as c = 52 - 50 - 5 instead of 52 - 50 + 5. \"1\" comes from the same slip at the point (3, 22): c = 22 - 18 - 3 instead of 22 - 18 + 3.",
+    "solve": "var P=[[-4,43],[3,22],[5,52]];var M=P.map(function(p){return [p[0]*p[0],p[0],1,p[1]]});for(var i=0;i<3;i++){var piv=M[i][i];for(var j=0;j<4;j++)M[i][j]/=piv;for(var r=0;r<3;r++){if(r===i)continue;var f=M[r][i];for(var j2=0;j2<4;j2++)M[r][j2]-=f*M[i][j2]}}return String(Math.round(M[2][3]));",
+    "distractor_solve": {
+      "1": "var a=2,b=-1;return String(22-a*9-(-b*3));",
+      "15": "var a=2,b=1;return String(43-a*16-b*(-4));",
+      "-3": "var a=2,b=-1;return String(52-a*25-(-b*5));"
+    }
+  },
+  {
+    "id": "SADV5A-04",
+    "domain": "Advanced Math",
+    "subskill": "axis of symmetry from two equal outputs, then a horizontal translation",
+    "difficulty": "medium",
+    "prompt": "The function f is a quadratic function such that f(-6) = 20 and f(14) = 20. The function g is defined by g(x) = f(x - 7). What is the x-coordinate of the vertex of the graph of y = g(x) in the xy-plane?",
+    "choices": [
+      "4",
+      "17",
+      "11",
+      "10"
+    ],
+    "correct_answer": "11",
+    "explanation": "A quadratic function takes equal values at two inputs that are symmetric about its axis of symmetry, so the axis of the graph of f is x = (-6 + 14)/2 = 4 and the vertex of f has x-coordinate 4. The graph of g(x) = f(x - 7) is the graph of f translated 7 units to the right, so the vertex of g has x-coordinate 4 + 7 = 11, which is \"11\". \"4\" comes from a solver who finds the axis of f correctly but does not apply the translation. \"10\" comes from a solver who takes half the distance between the inputs, (14 - (-6))/2 = 10, as the axis and does not apply the translation. \"17\" comes from a solver who takes that same half-distance 10 as the axis and then translates it 7 units to the right.",
+    "solve": "var h=(-6+14)/2;return String(h+7);",
+    "distractor_solve": {
+      "4": "return String((-6+14)/2);",
+      "10": "return String((14-(-6))/2);",
+      "17": "return String((14-(-6))/2+7);"
+    }
+  },
+  {
+    "id": "SADV5A-05",
+    "domain": "Advanced Math",
+    "subskill": "sign of the discriminant as a quadratic inequality in the parameter: summing the integer parameter values that give no intersection",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graph of y = x^2 + kx + 2k, where k is a constant, and the line y = -x + 1 are given. What is the sum of all integer values of k for which the graph and the line do not intersect?",
+    "choices": [
+      "15",
+      "10",
+      "-55",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "Setting the expressions for y equal gives x^2 + kx + 2k = -x + 1, or x^2 + (k + 1)x + (2k - 1) = 0. There is no intersection exactly when this equation has no real solution, that is, when the discriminant is negative: (k + 1)^2 - 4(2k - 1) = k^2 - 6k + 5 = (k - 1)(k - 5) < 0, so 1 < k < 5. The integer values are 2, 3, and 4, whose sum is 9, which is \"9\". \"15\" comes from a solver who uses \"less than or equal to zero\" and includes k = 1 and k = 5, getting 1 + 2 + 3 + 4 + 5. \"10\" comes from a solver who includes only the lower endpoint k = 1, getting 1 + 2 + 3 + 4. \"-55\" comes from a solver who writes the discriminant as b^2 + 4ac, getting k^2 + 10k - 3 < 0, and sums the integers from -10 to 0.",
+    "solve": "var s=0;for(var k=-1000;k<=1000;k++){var b=k+1,c=2*k-1;if(b*b-4*c<0)s+=k}return String(s);",
+    "distractor_solve": {
+      "10": "var s=0;for(var k=-1000;k<=1000;k++){var b=k+1,c=2*k-1;var d=b*b-4*c;if(d<0||(d===0&&k===1))s+=k}return String(s);",
+      "15": "var s=0;for(var k=-1000;k<=1000;k++){var b=k+1,c=2*k-1;if(b*b-4*c<=0)s+=k}return String(s);",
+      "-55": "var s=0;for(var k=-1000;k<=1000;k++){var b=k+1,c=2*k-1;if(b*b+4*c<0)s+=k}return String(s);"
+    }
+  },
+  {
+    "id": "SADV5A-06",
+    "domain": "Advanced Math",
+    "subskill": "constant term from one known root and the sum of the roots, with a non-unit leading coefficient",
+    "difficulty": "medium",
+    "prompt": "One solution of the equation 3x^2 + bx + c = 0, where b and c are constants, is x = 4. The sum of the two solutions of the equation is -5/3. What is the value of c?",
+    "choices": [
+      "-20",
+      "-68",
+      "28",
+      "-68/3"
+    ],
+    "correct_answer": "-68",
+    "explanation": "If the solutions are 4 and r, then 4 + r = -5/3, so r = -5/3 - 4 = -17/3. For 3x^2 + bx + c = 0 the product of the solutions is c/3, so c = 3(4)(-17/3) = -68, which is \"-68\". Checking: 3(x - 4)(x + 17/3) = 3x^2 + 5x - 68, whose solutions sum to -5/3. \"-68/3\" comes from a solver who finds r = -17/3 correctly but reports the product of the solutions, 4(-17/3), forgetting the factor 3. \"28\" comes from a solver who finds the second solution as -5/3 + 4 = 7/3 instead of -5/3 - 4 and computes 3(4)(7/3). \"-20\" comes from a solver who treats the given sum -5/3 as the second solution itself and computes 3(4)(-5/3).",
+    "solve": "var r=-5/3-4;return String(Math.round(3*4*r));",
+    "distractor_solve": {
+      "28": "var r=-5/3+4;return String(Math.round(3*4*r));",
+      "-68/3": "var r=-5/3-4;var p=4*r;return String(Math.round(p*3))+'/3';",
+      "-20": "return String(Math.round(3*4*(-5/3)));"
+    }
+  },
+  {
+    "id": "SADV5A-07",
+    "domain": "Advanced Math",
+    "subskill": "system of two parabolas with different leading coefficients: sum of the y-coordinates of the intersection points",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graphs of y = x^2 - 2x + 5 and y = -2x^2 + 16x - 19 intersect at two points. What is the sum of the y-coordinates of those two points?",
+    "choices": [
+      "18",
+      "13",
+      "65",
+      "24"
+    ],
+    "correct_answer": "18",
+    "explanation": "At an intersection the y-values agree, so x^2 - 2x + 5 = -2x^2 + 16x - 19, which gives 3x^2 - 18x + 24 = 0, or x^2 - 6x + 8 = (x - 2)(x - 4) = 0. So x = 2 or x = 4. Substituting into y = x^2 - 2x + 5 gives y = 5 and y = 13 (and -2x^2 + 16x - 19 gives the same values), so the points are (2, 5) and (4, 13) and the sum of the y-coordinates is 18, which is \"18\". \"13\" comes from a solver who reports only the y-coordinate of the point with the greater x-coordinate. \"24\" comes from a solver who adds all four coordinates of the two points, 2 + 4 + 5 + 13. \"65\" comes from a solver who multiplies the two y-coordinates instead of adding them.",
+    "solve": "var f=function(x){return x*x-2*x+5},g=function(x){return -2*x*x+16*x-19};var s=0;for(var x=-100;x<=100;x++){if(f(x)===g(x))s+=f(x)}return String(s);",
+    "distractor_solve": {
+      "13": "var f=function(x){return x*x-2*x+5},g=function(x){return -2*x*x+16*x-19};var ys=[];for(var x=-100;x<=100;x++){if(f(x)===g(x))ys.push(f(x))}return String(ys[ys.length-1]);",
+      "24": "var f=function(x){return x*x-2*x+5},g=function(x){return -2*x*x+16*x-19};var s=0;for(var x=-100;x<=100;x++){if(f(x)===g(x))s+=x+f(x)}return String(s);",
+      "65": "var f=function(x){return x*x-2*x+5},g=function(x){return -2*x*x+16*x-19};var p=1;for(var x=-100;x<=100;x++){if(f(x)===g(x))p*=f(x)}return String(p);"
+    }
+  },
+  {
+    "id": "SADV5A-08",
+    "domain": "Advanced Math",
+    "subskill": "projectile: the second time at which the height equals a given value, with a non-monic reduced quadratic",
+    "difficulty": "medium",
+    "prompt": "The height above the ground, in feet, of a ball t seconds after it is launched is modeled by h(t) = -16t^2 + 136t + 20. The ball is at a height of 260 feet for the first time when t = 2.5. At what value of t is the ball at a height of 260 feet for the second time?",
+    "choices": [
+      "15",
+      "5",
+      "6",
+      "17/2"
+    ],
+    "correct_answer": "6",
+    "explanation": "Setting h(t) = 260 gives -16t^2 + 136t + 20 = 260, so 16t^2 - 136t + 240 = 0, and dividing by 8 gives 2t^2 - 17t + 30 = (2t - 5)(t - 6) = 0. The solutions are t = 5/2 = 2.5 (the given first time) and t = 6, so the second time is t = 6, which is \"6\". Equivalently, the axis of symmetry is t = 136/32 = 4.25, and the second time is 2(4.25) - 2.5 = 6. \"5\" comes from a solver who factors 2t^2 - 17t + 30 incorrectly as (t - 5)(2t - 6) and reports the later of its zeros. \"17/2\" comes from a solver who reports the sum of the two solutions, 17/2, read from the coefficient of t. \"15\" comes from a solver who reports the product of the two solutions, 30/2, read from the constant term.",
+    "solve": "var ts=[];for(var i=0;i<=2000;i++){var t=i/100;if(Math.abs(-16*t*t+136*t+20-260)<1e-9)ts.push(t)}return String(ts[1]);",
+    "distractor_solve": {
+      "5": "var zs=[5,3];return String(Math.max.apply(null,zs));",
+      "15": "return String(30/2);",
+      "17/2": "return String(-(-17))+'/2';"
+    }
+  },
+  {
+    "id": "SADV5A-09",
+    "domain": "Advanced Math",
+    "subskill": "two quadratic equations with the same solutions have proportional coefficients",
+    "difficulty": "medium",
+    "prompt": "The equations 2x^2 - 5x + 1 = 0 and ax^2 + bx + 6 = 0, where a and b are constants, have the same two solutions. What is the value of a + b?",
+    "choices": [
+      "12",
+      "42",
+      "7",
+      "-18"
+    ],
+    "correct_answer": "-18",
+    "explanation": "Two quadratic equations with the same two solutions have proportional coefficients. The constant terms 1 and 6 fix the factor 6, so ax^2 + bx + 6 = 6(2x^2 - 5x + 1) = 12x^2 - 30x + 6, giving a = 12 and b = -30 and a + b = -18, which is \"-18\". Equivalently, the sum of the solutions is 5/2 = -b/a and the product is 1/2 = 6/a, so a = 12 and b = -30. \"12\" comes from a solver who finds a correctly but reports a alone. \"42\" comes from a solver who finds a = 12 and b = -30 but adds their absolute values, 12 + 30. \"7\" comes from a solver who adds 5 to each coefficient instead of multiplying by 6, getting a = 7 and b = 0.",
+    "solve": "var k=6/1;var a=2*k,b=-5*k;return String(a+b);",
+    "distractor_solve": {
+      "7": "var d=6-1;return String((2+d)+(-5+d));",
+      "12": "return String(2*6);",
+      "42": "return String(Math.abs(2*6)+Math.abs(-5*6));"
+    }
+  },
+  {
+    "id": "SADV5A-10",
+    "domain": "Advanced Math",
+    "subskill": "locating the vertex by completing the square, then requiring it to lie on a given line",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the vertex of the graph of y = 2x^2 - 12x + k, where k is a constant, lies on the line y = -x + 4. What is the value of k?",
+    "choices": [
+      "25",
+      "19",
+      "-2",
+      "10"
+    ],
+    "correct_answer": "19",
+    "explanation": "Completing the square, y = 2(x^2 - 6x) + k = 2(x - 3)^2 - 18 + k, so the vertex is (3, k - 18). For the vertex to lie on y = -x + 4 we need k - 18 = -3 + 4 = 1, so k = 19, which is \"19\". \"25\" comes from a solver who evaluates -x + 4 at x = 3 as 3 + 4 = 7 and solves k - 18 = 7. \"10\" comes from a solver who completes the square without the factor 2, taking the vertex to be (3, k - 9), and solves k - 9 = 1. \"-2\" comes from a solver who uses x = -b/a = 6 as the x-coordinate of the vertex; then the vertex is (6, k) and the line gives k = -6 + 4.",
+    "solve": "var h=12/(2*2);var vy=function(k){return 2*h*h-12*h+k};for(var k=-100;k<=100;k++){if(vy(k)===-h+4)return String(k)}",
+    "distractor_solve": {
+      "10": "var h=3;return String((-h+4)+9);",
+      "25": "var h=3;return String((h+4)+18);",
+      "-2": "var h=6;return String(-h+4);"
+    }
+  }
+]

@@ -3622,6 +3622,34 @@
      "verdict": "Authored keys dealt 3 per slot by every author (the brief's instruction held). Batch-level finding: \"disjoint ground\" briefs prevented in-file collision only partially (3 pairs) and did nothing against collision with the LIVE bank - the authors grepped and still matched; the grep finds phrases, not mechanisms."
     }
    }
+  },
+  {
+   "id": "sat-adv-0919c-kept-2026-09-19",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-adv-0919c",
+   "contentSha": "627632bde88ef5cb352ba21604db8cf15b1f50d4f5f1fabca611b3517a7f85af",
+   "note": "7 kept of 30 (three authors x 10: quadratics / exponential-rational-radical / polynomials; merged and gated as ONE batch). Commissioned for SAT Math form 23 (Advanced +12) - does NOT reach it. Hunter READ the live Advanced files for mechanism (not grep) and matched 14 of 30 to live kept rows by id, plus three in-file clusters (discriminant-in-k, symmetric identities x+1/x, exponential from two points). Armed attack: four unanimous items with a named hub (un-divided numerator x2, a ratio chain, a sum-of-options). One at N=1 by sign. Rule drops: SADV5A-02 - unanimous under an ARMED rule (mechanism 55.6% vs guess 33.3%): -95/8 is the hub and -95 is the same value with the /8 dropped, named 2/3; SADV5B-01 - unanimous, armed: 54 is the hub and every other option is 54 x (3/2)^n or 54 x 4/3, named 3/3; also identical mechanism to live AM4-07; SADV5B-07 - unanimous, armed: 7/4 is the hub and 7 is the un-divided numerator, named 2/3; SADV5C-02 - unanimous, armed: 52 = 60 + (-8), the key is the sum of two options, named 2/3; also mechanism duplicate of live SAM11-14; SADV5A-09 - hunter N=1: a + b must be negative and all three distractors are positive; SADV5A-01 - mechanism duplicate of live AM3-07 named by row (discriminant as a quadratic in k); in-file pair with A-05; SADV5A-04 - hunter: a composite of live ADV6-05 and AM2-24/AH3-07; 4 is the un-shifted axis by definition; SADV5A-05 - mechanism duplicate of live AM3-17 / SADV-15 named by row; in-file pair with A-01; SADV5A-07 - mechanism duplicate of live ADV6-08 named by row (identical first parabola); vertex ceiling kills 65; SADV5A-08 - mechanism duplicate of live ADV6-17 named by row; 15 s is after landing and 17/2 is the return-to-launch time; SADV5A-10 - mechanism duplicate of live ADV6-16 named by row (vertex value fixes the constant); SADV5B-02 - mechanism duplicate of live SADV-03 / AH3-17 / SM16A-03 named by row; 15.4 is exactly two periods; SADV5B-03 - mechanism duplicate of live SADV3-02 / ADV5-04 / AM3-22 / AH3-12 named by row; SADV5B-04 - mechanism duplicate of live AM-H-11 / AM3-01 / ADV5-18 / AM4-14 / AH3-05 named by row; majority easy; SADV5B-05 - mechanism duplicate of live AH3-24 named by row; in-file trio with C-01, C-04; SADV5B-06 - mechanism duplicate of live AM4-05 named by row (identical); 8 and 64 are t and t^2; SADV5B-08 - mechanism duplicate of live SM16A-14 / SADV-05 / ADV5-06 / AM2-16 named by row; SADV5B-09 - mechanism duplicate of live SADV3-11 named by row (identical two-equation shift); in-file pair with B-01; SADV5C-01 - mechanism duplicate of live AH3-24 / AM4-19 named by row; in-file trio; SADV5C-03 - mechanism duplicate of live SADVC-07 named by row (identical scale-then-evaluate); SADV5C-04 - mechanism duplicate of the live AH3-24 family named by row; in-file pair with C-10; SADV5C-10 - mechanism duplicate of live SADV-14 / SADV2-22 named by row; 25/4 = (5/2)^2 restates the stem; SADV5A-03 - unanimous 3/3 with no named mechanism; dropped because the residual on the kept set was over +10 with it in (armed batch).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 30/30 (my run on the merged snapshot; pins a2895068918c73dd / d8510f887b248dd5 / 12a40ac385b2e95b); distractor_solve 90/90; hubs none by the checker - the hubs the solvers named (key x8, key / 4, sum of two options) are outside its relation list."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha 6b96ea46959b7914): exclusive:false 0/0/0; easy 2/1/-; hard 4/13/-. Hunter: N=1 on A-09; N=2 on twelve; 14 live duplicates by id. Kept difficulty {\"medium\":5,\"hard\":2}."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 90 forced picks, keys 8/8/7/7, control 26.7%: 40/90 = 44.4% (+17.8). Mechanism 10/18 = 55.6% vs guess 12/36 = 33.3% - ARMED (+22.2). Unanimous 9 of 30 vs 0.57. Residual on kept 7: 8/21 = 38.1% vs 28.6% (9.5); unanimous items remaining in the kept set: SADV5C-05."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Keys dealt by all three authors. Batch-level: the hub checker's relation list (x2, /2, +-1, sum, digit swap) missed every hub the solvers named today - key x 8, key / 3, key / 4, a x(3/2)^n chain - so \"Numeric hub: none\" is not evidence of no hub; recorded for the checker, not patched blind."
+    }
+   }
   }
  ],
  "auditedCohorts": [

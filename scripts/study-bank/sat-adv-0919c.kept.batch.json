@@ -1,0 +1,149 @@
+[
+ {
+  "id": "SADV5A-06",
+  "domain": "Advanced Math",
+  "subskill": "constant term from one known root and the sum of the roots, with a non-unit leading coefficient",
+  "difficulty": "medium",
+  "prompt": "One solution of the equation 3x^2 + bx + c = 0, where b and c are constants, is x = 4. The sum of the two solutions of the equation is -5/3. What is the value of c?",
+  "choices": [
+   "-20",
+   "-68",
+   "28",
+   "-68/3"
+  ],
+  "correct_answer": "-68",
+  "explanation": "If the solutions are 4 and r, then 4 + r = -5/3, so r = -5/3 - 4 = -17/3. For 3x^2 + bx + c = 0 the product of the solutions is c/3, so c = 3(4)(-17/3) = -68, which is \"-68\". Checking: 3(x - 4)(x + 17/3) = 3x^2 + 5x - 68, whose solutions sum to -5/3. \"-68/3\" comes from a solver who finds r = -17/3 correctly but reports the product of the solutions, 4(-17/3), forgetting the factor 3. \"28\" comes from a solver who finds the second solution as -5/3 + 4 = 7/3 instead of -5/3 - 4 and computes 3(4)(7/3). \"-20\" comes from a solver who treats the given sum -5/3 as the second solution itself and computes 3(4)(-5/3).",
+  "solve": "var r=-5/3-4;return String(Math.round(3*4*r));",
+  "distractor_solve": {
+   "28": "var r=-5/3+4;return String(Math.round(3*4*r));",
+   "-68/3": "var r=-5/3-4;var p=4*r;return String(Math.round(p*3))+'/3';",
+   "-20": "return String(Math.round(3*4*(-5/3)));"
+  }
+ },
+ {
+  "id": "SADV5B-10",
+  "domain": "Advanced Math",
+  "subskill": "functional equation on a radical function: forming √(3x + 16) = 2√(3x + 1), squaring the factor 2 along with the radical, and solving the resulting linear equation",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = √(3x + 1). For what value of x is f(x + 5) = 2f(x)?",
+  "choices": [
+   "4/3",
+   "14/3",
+   "20/9",
+   "5/3"
+  ],
+  "correct_answer": "4/3",
+  "explanation": "f(x + 5) = √(3(x + 5) + 1) = √(3x + 16), so the equation is √(3x + 16) = 2√(3x + 1). Squaring both sides gives 3x + 16 = 4(3x + 1) = 12x + 4, so 9x = 12 and x = 4/3, which is \"4/3\". Check: f(19/3) = √20 and 2f(4/3) = 2√5 = √20. \"14/3\" comes from a solver who squares the radicals but not the factor 2, writing 3x + 16 = 2(3x + 1), so 3x = 14. \"5/3\" comes from a solver who distributes the 4 only to 3x, writing 3x + 16 = 12x + 1, so 9x = 15. \"20/9\" comes from a solver who reaches 3x + 16 = 12x + 4 but adds the constants, writing 9x = 20.",
+  "solve": "var f=function(x){return Math.sqrt(3*x+1)}; var x=(16-4)/(12-3); return Math.abs(f(x+5)-2*f(x))<1e-12&&Math.abs(x-4/3)<1e-12?'4/3':String(x);",
+  "distractor_solve": {
+   "14/3": "var x=(16-2)/(6-3); return Math.abs(x-14/3)<1e-12?'14/3':String(x);",
+   "5/3": "var x=(16-1)/(12-3); return Math.abs(x-5/3)<1e-12?'5/3':String(x);",
+   "20/9": "var x=(16+4)/(12-3); return Math.abs(x-20/9)<1e-12?'20/9':String(x);"
+  }
+ },
+ {
+  "id": "SADV5C-05",
+  "domain": "Advanced Math",
+  "subskill": "complex fraction: combining each level over a common denominator to find the hidden excluded value where the inner denominator vanishes",
+  "difficulty": "medium",
+  "prompt": "The expression (2/(x - 3) + 1/(x + 2)) / (1/(x - 3) - 4/(x + 2)) is defined for all real numbers x except three values. What is the sum of those three values?",
+  "choices": [
+   "29/3",
+   "17/3",
+   "8/3",
+   "-7/3"
+  ],
+  "correct_answer": "17/3",
+  "explanation": "The inner fractions exclude x = 3 and x = −2. The overall denominator is 1/(x − 3) − 4/(x + 2) = ((x + 2) − 4(x − 3))/((x − 3)(x + 2)) = (14 − 3x)/((x − 3)(x + 2)), which is 0 when x = 14/3, so the expression is also undefined there. The sum is 3 + (−2) + 14/3 = 17/3, which is \"17/3\". \"29/3\" comes from a solver who takes the excluded values as 3, 2 and 14/3, flipping the sign of the zero of x + 2. \"8/3\" comes from a solver who believes the factor x − 3 cancels in the simplified form (3x + 1)/(14 − 3x) and adds only −2 and 14/3. \"-7/3\" comes from a solver who distributes −4 across (x − 3) as −4x − 12, gets −3x − 10 = 0, and adds 3, −2 and −10/3.",
+  "solve": "var hidden=14/3; /* root of (x+2)-4(x-3)=0 */ var s=3+(-2)+hidden; return String(Math.round(s*3))+'/3';",
+  "distractor_solve": {
+   "29/3": "var s=3+2+14/3; return String(Math.round(s*3))+'/3';",
+   "8/3": "var s=-2+14/3; return String(Math.round(s*3))+'/3';",
+   "-7/3": "var bad=-10/3; var s=3+(-2)+bad; return String(Math.round(s*3))+'/3';"
+  }
+ },
+ {
+  "id": "SADV5C-06",
+  "domain": "Advanced Math",
+  "subskill": "the sum of all coefficients of a polynomial given in unexpanded form, obtained as p(1) without expanding",
+  "difficulty": "hard",
+  "prompt": "The polynomial p(x) = (2x - 1)³(x² - 3x + 5) - (x + 2)⁴ can be written in the form a₅x⁵ + a₄x⁴ + a₃x³ + a₂x² + a₁x + a₀, where a₀, a₁, a₂, a₃, a₄, and a₅ are constants. What is the value of a₀ + a₁ + a₂ + a₃ + a₄ + a₅?",
+  "choices": [
+   "-21",
+   "-244",
+   "84",
+   "-78"
+  ],
+  "correct_answer": "-78",
+  "explanation": "Substituting x = 1 into the standard form gives a₅ + a₄ + a₃ + a₂ + a₁ + a₀, so the requested sum is p(1). Using the factored form, p(1) = (2 − 1)³(1 − 3 + 5) − (1 + 2)⁴ = 1 · 3 − 81 = −78, which is \"-78\". \"-21\" comes from a solver who evaluates p(0) = (−1)³ · 5 − 2⁴, which gives only the constant a₀. \"-244\" comes from a solver who evaluates p(−1) = (−3)³ · 9 − 1, which gives the alternating sum of the coefficients. \"84\" comes from a solver who drops the subtraction and adds 3 + 81.",
+  "solve": "var p=function(x){return Math.pow(2*x-1,3)*(x*x-3*x+5)-Math.pow(x+2,4)};return String(p(1));",
+  "distractor_solve": {
+   "84": "var q=function(x){return Math.pow(2*x-1,3)*(x*x-3*x+5)+Math.pow(x+2,4)};return String(q(1));",
+   "-21": "var p=function(x){return Math.pow(2*x-1,3)*(x*x-3*x+5)-Math.pow(x+2,4)};return String(p(0));",
+   "-244": "var p=function(x){return Math.pow(2*x-1,3)*(x*x-3*x+5)-Math.pow(x+2,4)};return String(p(-1));"
+  }
+ },
+ {
+  "id": "SADV5C-07",
+  "domain": "Advanced Math",
+  "subskill": "factoring a cubic by grouping to expose a linear factor, then evaluating the remaining quadratic factor at a point",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = 3x³ + 5x² - 27x - 45. If p(x) = (x + 3) · q(x) for all values of x, where q is a polynomial, what is the value of q(2)?",
+  "choices": [
+   "-11",
+   "55",
+   "-1",
+   "-5"
+  ],
+  "correct_answer": "-11",
+  "explanation": "Grouping, p(x) = x²(3x + 5) − 9(3x + 5) = (3x + 5)(x² − 9) = (3x + 5)(x − 3)(x + 3), so q(x) = (3x + 5)(x − 3) = 3x² − 4x − 15 and q(2) = 11 · (−1) = −11, which is \"-11\". (Equivalently, q(2) = p(2)/(2 + 3) = −55/5.) \"55\" comes from a solver who keeps the wrong factor of x² − 9, taking q(x) = (3x + 5)(x + 3) and computing 11 · 5. \"-1\" comes from a solver who reads the common binomial as 3x − 5 after grouping, taking q(x) = (3x − 5)(x − 3) and computing 1 · (−1). \"-5\" comes from a solver who takes q(x) = x² − 9, forgetting the 3x + 5 factor, and computes 4 − 9.",
+  "solve": "var p=function(x){return 3*x*x*x+5*x*x-27*x-45};return String(p(2)/(2+3));",
+  "distractor_solve": {
+   "55": "var q=function(x){return (3*x+5)*(x+3)};return String(q(2));",
+   "-1": "var q=function(x){return (3*x-5)*(x-3)};return String(q(2));",
+   "-5": "var q=function(x){return x*x-9};return String(q(2));"
+  }
+ },
+ {
+  "id": "SADV5C-08",
+  "domain": "Advanced Math",
+  "subskill": "remainder on division by a factorable quadratic: two remainder-theorem conditions determine the linear remainder",
+  "difficulty": "medium",
+  "prompt": "When the polynomial p(x) = x³ - 3x² + 2x + 5 is divided by x² - 3x - 4, the remainder can be written as ax + b, where a and b are constants. What is the value of a?",
+  "choices": [
+   "24",
+   "29",
+   "6",
+   "10"
+  ],
+  "correct_answer": "6",
+  "explanation": "Write p(x) = (x² − 3x − 4) · Q(x) + ax + b. Since x² − 3x − 4 = (x − 4)(x + 1), substituting x = 4 and x = −1 kills the first term: p(4) = 64 − 48 + 8 + 5 = 29 = 4a + b and p(−1) = −1 − 3 − 2 + 5 = −1 = −a + b. Subtracting, 5a = 30, so a = 6, which is \"6\" (and b = 5, so the remainder is 6x + 5). \"24\" comes from a solver who takes the zeros of the divisor as x = −4 and x = 1, getting −4a + b = −115 and a + b = 5, so 5a = 120. \"29\" comes from a solver who assumes the remainder is a constant and reports p(4). \"10\" comes from a solver who finds p(4) − p(−1) = 30 correctly but divides by 3 instead of by 4 − (−1) = 5.",
+  "solve": "var p=function(x){return x*x*x-3*x*x+2*x+5};return String((p(4)-p(-1))/(4-(-1)));",
+  "distractor_solve": {
+   "10": "var p=function(x){return x*x*x-3*x*x+2*x+5};return String((p(4)-p(-1))/3);",
+   "24": "var p=function(x){return x*x*x-3*x*x+2*x+5};return String((p(1)-p(-4))/(1-(-4)));",
+   "29": "var p=function(x){return x*x*x-3*x*x+2*x+5};return String(p(4));"
+  }
+ },
+ {
+  "id": "SADV5C-09",
+  "domain": "Advanced Math",
+  "subskill": "a difference of two binomial products that is constant for all x: the x coefficient must vanish, which fixes the parameter, then the constant is evaluated",
+  "difficulty": "hard",
+  "prompt": "The expression (3x + k)(x + 7) - (3x - 2)(x + 2), where k is a constant, is equal to the same number c for every value of x. What is the value of c?",
+  "choices": [
+   "-143",
+   "-115",
+   "-17",
+   "-123"
+  ],
+  "correct_answer": "-115",
+  "explanation": "Expanding, (3x + k)(x + 7) = 3x² + (21 + k)x + 7k and (3x − 2)(x + 2) = 3x² + 4x − 4, so the difference is (17 + k)x + (7k + 4). For this to be the same number for every x, the coefficient of x must be 0, so k = −17, and then c = 7(−17) + 4 = −115, which is \"-115\". \"-143\" comes from a solver who ignores the 4x from the second product, sets 21 + k = 0, and computes 7(−21) + 4. \"-17\" comes from a solver who reports k instead of c. \"-123\" comes from a solver who subtracts the second product's constant with the wrong sign, computing 7k − 4 at k = −17.",
+  "solve": "var f=function(x,k){return (3*x+k)*(x+7)-(3*x-2)*(x+2)};var k=null;for(var t=-60;t<=60;t++){if(f(1,t)-f(0,t)===0)k=t}return String(f(0,k));",
+  "distractor_solve": {
+   "-143": "var k=-21; return String(7*k+4);",
+   "-17": "var k=-17; return String(k);",
+   "-123": "var k=-17; return String(7*k-4);"
+  }
+ }
+]

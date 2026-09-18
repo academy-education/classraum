@@ -1,0 +1,212 @@
+[
+ {
+  "id": "SADV5B-01",
+  "domain": "Advanced Math",
+  "subskill": "exponential function through two points with a non-integer ratio: extracting the per-unit ratio from a two-unit ratio, then evaluating at a third point",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = a·b^x, where a and b are positive constants. In the xy-plane, the graph of y = f(x) passes through the points (0, 16) and (2, 36). What is the value of f(3)?",
+  "choices": [
+   "40.5",
+   "72",
+   "54",
+   "121.5"
+  ],
+  "correct_answer": "54",
+  "explanation": "From f(0) = 16, a = 16. Then f(2) = 16b² = 36 gives b² = 9/4, so b = 3/2 since b is positive. Therefore f(3) = 16(3/2)³ = 16·27/8 = 54, which is \"54\". \"40.5\" comes from a solver who halves the two-unit ratio 9/4 instead of taking its square root, using 9/8 as the per-unit ratio and computing 36·9/8. \"72\" comes from a solver who finds b = 3/2 but computes 16·(3/2)·3, multiplying by the exponent instead of raising to it. \"121.5\" comes from a solver who treats 36 as the starting value and applies three more steps: 36·(3/2)³.",
+  "solve": "var a=16; var b=Math.sqrt(36/16); return String(a*Math.pow(b,3));",
+  "distractor_solve": {
+   "40.5": "var r2=36/16; var r=r2/2; return String(36*r);",
+   "72": "var b=Math.sqrt(36/16); return String(16*b*3);",
+   "121.5": "var b=Math.sqrt(36/16); return String(36*Math.pow(b,3));"
+  }
+ },
+ {
+  "id": "SADV5B-02",
+  "domain": "Advanced Math",
+  "subskill": "exponential decay with a period shorter than the asked span: counting the number of compounding periods, then converting the remaining fraction to a percent decrease",
+  "difficulty": "medium",
+  "prompt": "The value of a piece of equipment decreases by 8% every 6 months. To the nearest tenth of a percent, by what percent does the value of the equipment decrease over a period of 18 months?",
+  "choices": [
+   "22.1",
+   "15.4",
+   "23.4",
+   "11.8"
+  ],
+  "correct_answer": "22.1",
+  "explanation": "Eighteen months is three 6-month periods, and each period leaves 92% of the value, so the fraction remaining is (0.92)³ = 0.778688. The decrease is 1 − 0.778688 = 0.221312, or 22.1%, which is \"22.1\". \"15.4\" comes from a solver who counts only two periods, computing 1 − (0.92)² = 0.1536. \"23.4\" comes from a solver who adds the three 8% decreases and subtracts a single overlap term 8·8/100, getting 24 − 0.64 = 23.36. \"11.8\" comes from a solver who reads 8% as an annual rate and applies it for 1.5 years, computing 1 − (0.92)^1.5 = 0.1176.",
+  "solve": "var periods=18/6; var rem=Math.pow(1-0.08,periods); return (100*(1-rem)).toFixed(1);",
+  "distractor_solve": {
+   "15.4": "return (100*(1-Math.pow(0.92,2))).toFixed(1);",
+   "23.4": "return (8+8+8-8*8/100).toFixed(1);",
+   "11.8": "return (100*(1-Math.pow(0.92,1.5))).toFixed(1);"
+  }
+ },
+ {
+  "id": "SADV5B-03",
+  "domain": "Advanced Math",
+  "subskill": "rational equation whose cleared form is a cubic sharing a factor with the denominator: summing the solutions while excluding the value that makes the denominator zero",
+  "difficulty": "medium",
+  "prompt": "What is the sum of all solutions to the equation (x² − 4x − 45)/(x − 9) = x² − 6x + 11 ?",
+  "choices": [
+   "16",
+   "28",
+   "5",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Since x² − 4x − 45 = (x − 9)(x + 5), the left side equals x + 5 for x ≠ 9. Then x + 5 = x² − 6x + 11 gives x² − 7x + 6 = 0, so (x − 1)(x − 6) = 0 and x = 1 or x = 6. Both are allowed, and their sum is 7, which is \"7\". A solver who multiplies through by x − 9 instead gets the cubic (x − 9)(x − 1)(x − 6) = 0, and \"16\" comes from adding all three of its roots, including x = 9, which makes the original denominator zero and is not a solution. \"28\" comes from a solver who drops the multiplication and sets the numerators equal: x² − 4x − 45 = x² − 6x + 11 gives 2x = 56. \"5\" comes from a solver who moves x + 5 to the wrong side, forming x² − 5x + 16 = 0 and reporting the sum of its roots as 5.",
+  "solve": "var s=0; for(var x=-100;x<=100;x++){ if(x===9) continue; var l=(x*x-4*x-45)/(x-9), r=x*x-6*x+11; if(Math.abs(l-r)<1e-9) s+=x; } return String(s);",
+  "distractor_solve": {
+   "16": "var s=0; for(var x=-100;x<=100;x++){ var c=(x*x-4*x-45)-(x-9)*(x*x-6*x+11); if(c===0) s+=x; } return String(s);",
+   "28": "var x=(11+45)/(6-4); return String(x);",
+   "5": "return String(-(-5));"
+  }
+ },
+ {
+  "id": "SADV5B-04",
+  "domain": "Advanced Math",
+  "subskill": "radical equation of the form √(x + b) = x − c: squaring, solving the quadratic, and rejecting the candidate that makes the right side negative",
+  "difficulty": "medium",
+  "prompt": "What is the solution to the equation √(x + 13) = x − 7 ?",
+  "choices": [
+   "25",
+   "12",
+   "36",
+   "15"
+  ],
+  "correct_answer": "12",
+  "explanation": "Squaring both sides gives x + 13 = x² − 14x + 49, so x² − 15x + 36 = 0 and (x − 3)(x − 12) = 0. For x = 3 the right side is -4 while the left side is 4, so 3 is extraneous. For x = 12 both sides equal 5, so the solution is \"12\". \"15\" comes from a solver who reports the sum of the two candidates, reading −b from x² − 15x + 36 = 0 as the answer. \"36\" comes from a solver who reports the product of the two candidates, the constant term of that quadratic. \"25\" comes from a solver who sets u = √(x + 13), solves u² − u − 20 = 0 to get u = 5, and reports u² = 25 without subtracting 13.",
+  "solve": "var sol=null; for(var x=-50;x<=50;x++){ if(x+13<0) continue; if(Math.abs(Math.sqrt(x+13)-(x-7))<1e-9) sol=x; } return String(sol);",
+  "distractor_solve": {
+   "15": "return String(-(-15));",
+   "36": "return String(36/1);",
+   "25": "var u=(1+Math.sqrt(1+80))/2; return String(u*u);"
+  }
+ },
+ {
+  "id": "SADV5B-05",
+  "domain": "Advanced Math",
+  "subskill": "rational constraint to a symmetric expression: recovering x + y from 1/x + 1/y and xy, then choosing the right identity for (x − y)²",
+  "difficulty": "hard",
+  "prompt": "For nonzero numbers x and y, 1/x + 1/y = 3/4 and xy = 12. What is the value of (x − y)² ?",
+  "choices": [
+   "57",
+   "129",
+   "208",
+   "33"
+  ],
+  "correct_answer": "33",
+  "explanation": "Since 1/x + 1/y = (x + y)/(xy), we have (x + y)/12 = 3/4, so x + y = 9. Then (x − y)² = (x + y)² − 4xy = 81 − 48 = 33, which is \"33\". \"57\" comes from a solver who subtracts 2xy instead of 4xy, computing x² + y² = 81 − 24 rather than (x − y)². \"129\" comes from a solver who adds 4xy, computing 81 + 48. \"208\" comes from a solver who divides instead of multiplying to find x + y, getting 12 ÷ (3/4) = 16 and then 256 − 48.",
+  "solve": "var k=3/4, p=12; var s=k*p; return String(s*s-4*p);",
+  "distractor_solve": {
+   "57": "var s=(3/4)*12; return String(s*s-2*12);",
+   "129": "var s=(3/4)*12; return String(s*s+4*12);",
+   "208": "var s=12/(3/4); return String(s*s-4*12);"
+  }
+ },
+ {
+  "id": "SADV5B-06",
+  "domain": "Advanced Math",
+  "subskill": "exponential equation in quadratic form: substituting t = 2^x, rejecting the negative root, then converting the surviving power back to the exponent",
+  "difficulty": "medium",
+  "prompt": "What is the solution to the equation 4^x − 6·2^x − 16 = 0 ?",
+  "choices": [
+   "3",
+   "64",
+   "1",
+   "8"
+  ],
+  "correct_answer": "3",
+  "explanation": "Since 4^x = (2^x)², let t = 2^x. Then t² − 6t − 16 = 0, so (t − 8)(t + 2) = 0 and t = 8 or t = -2. Because 2^x is always positive, t = -2 is rejected, and 2^x = 8 gives x = 3, which is \"3\". \"8\" comes from a solver who reports the value of 2^x instead of x. \"64\" comes from a solver who reports 4^x = t² = 64 instead of x. \"1\" comes from a solver who factors with the signs reversed, (t − 2)(t + 8), and solves 2^x = 2.",
+  "solve": "var sol=null; for(var x=-10;x<=10;x++){ if(Math.abs(Math.pow(4,x)-6*Math.pow(2,x)-16)<1e-9) sol=x; } return String(sol);",
+  "distractor_solve": {
+   "8": "var t=(6+Math.sqrt(36+64))/2; return String(t);",
+   "64": "var t=(6+Math.sqrt(36+64))/2; return String(t*t);",
+   "1": "var t=2; return String(Math.log(t)/Math.log(2));"
+  }
+ },
+ {
+  "id": "SADV5B-07",
+  "domain": "Advanced Math",
+  "subskill": "rational function with a parameter: locating the hole from the asymptote information, fixing the parameter, then evaluating the reduced function at the hole",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = (x² + kx − 10)/(x² − 6x + 5), where k is a constant. In the xy-plane, the graph of y = f(x) has exactly one vertical asymptote, at x = 1, and a hole. What is the y-coordinate of the hole?",
+  "choices": [
+   "7",
+   "-11/4",
+   "7/4",
+   "1/2"
+  ],
+  "correct_answer": "7/4",
+  "explanation": "The denominator is (x − 1)(x − 5). Since x = 1 is an asymptote and there is only one, the factor x − 5 must cancel, so the numerator is zero at x = 5: 25 + 5k − 10 = 0 gives k = -3. Then x² − 3x − 10 = (x − 5)(x + 2), and for x ≠ 5, f(x) = (x + 2)/(x − 1). The hole is at x = 5, where (5 + 2)/(5 − 1) = 7/4, which is \"7/4\". \"-11/4\" comes from a solver who makes the numerator vanish at the asymptote x = 1 instead, getting k = 9, reducing to (x + 10)/(x − 5), and evaluating at x = 1. \"7\" comes from a solver who finds the reduced form correctly but reports only the numerator x + 2 at x = 5. \"1/2\" comes from a solver who evaluates (x + 2)/(x − 1) at x = -5 instead of x = 5, getting (-3)/(-6).",
+  "solve": "var k=(10-25)/5; var num=function(x){return x*x+k*x-10}; var g=function(x){return num(x)/((x-1)*(x-5))}; var y=(g(5.000001)+g(4.999999))/2; return Math.abs(y-7/4)<1e-4?'7/4':String(y);",
+  "distractor_solve": {
+   "-11/4": "var k=(10-1)/1; var v=(1+10)/(1-5); return Math.abs(v+11/4)<1e-12?'-11/4':String(v);",
+   "7": "var k=(10-25)/5; return String(5+2);",
+   "1/2": "var v=(-5+2)/(-5-1); return Math.abs(v-1/2)<1e-12?'1/2':String(v);"
+  }
+ },
+ {
+  "id": "SADV5B-08",
+  "domain": "Advanced Math",
+  "subskill": "exponential equation with a reciprocal base and a fourth power of the common base: rewriting both sides as powers of 3 with a negative exponent on one side",
+  "difficulty": "medium",
+  "prompt": "If (1/27)^x = 81^(x − 7), what is the value of x?",
+  "choices": [
+   "28",
+   "4",
+   "14/3",
+   "7/2"
+  ],
+  "correct_answer": "4",
+  "explanation": "Since 1/27 = 3^(-3) and 81 = 3^4, the equation becomes 3^(-3x) = 3^(4x − 28), so −3x = 4x − 28 and 7x = 28, giving x = 4, which is \"4\". \"28\" comes from a solver who ignores the reciprocal and writes 27^x = 81^(x − 7), getting 3x = 4x − 28. \"7/2\" comes from a solver who writes 81 as 3³, getting -3x = 3x − 21. \"14/3\" comes from a solver who writes 27 as 3², getting -2x = 4x − 28.",
+  "solve": "var x=28/7; var l=Math.pow(1/27,x), r=Math.pow(81,x-7); return Math.abs(l-r)<1e-12?String(x):'mismatch';",
+  "distractor_solve": {
+   "28": "return String(28/(4-3));",
+   "7/2": "var x=21/6; return Math.abs(x-7/2)<1e-12?'7/2':String(x);",
+   "14/3": "var x=28/6; return Math.abs(x-14/3)<1e-12?'14/3':String(x);"
+  }
+ },
+ {
+  "id": "SADV5B-09",
+  "domain": "Advanced Math",
+  "subskill": "shifted exponential function from two values: solving a two-equation system for the coefficient and the vertical shift, then evaluating at a negative input",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = a·3^x + c, where a and c are constants. If f(0) = 7 and f(2) = 47, what is the value of f(-1)?",
+  "choices": [
+   "17/3",
+   "1/3",
+   "7/3",
+   "11/3"
+  ],
+  "correct_answer": "11/3",
+  "explanation": "f(0) = a + c = 7 and f(2) = 9a + c = 47. Subtracting gives 8a = 40, so a = 5 and c = 2. Then f(-1) = 5·3^(-1) + 2 = 5/3 + 2 = 11/3, which is \"11/3\". \"17/3\" comes from a solver who swaps the two constants, using a = 2 and c = 5: 2/3 + 5. \"1/3\" comes from a solver who treats 3^(-1) as -1/3: −5/3 + 2. \"7/3\" comes from a solver who ignores the shift entirely and divides f(0) by 3, as if f were 7·3^x.",
+  "solve": "var a=(47-7)/(9-1); var c=7-a; var v=a*Math.pow(3,-1)+c; return Math.abs(v-11/3)<1e-12?'11/3':String(v);",
+  "distractor_solve": {
+   "17/3": "var a=2, c=5; var v=a/3+c; return Math.abs(v-17/3)<1e-12?'17/3':String(v);",
+   "1/3": "var a=5, c=2; var v=a*(-1/3)+c; return Math.abs(v-1/3)<1e-12?'1/3':String(v);",
+   "7/3": "var v=7/3; return Math.abs(v-7/3)<1e-12?'7/3':String(v);"
+  }
+ },
+ {
+  "id": "SADV5B-10",
+  "domain": "Advanced Math",
+  "subskill": "functional equation on a radical function: forming √(3x + 16) = 2√(3x + 1), squaring the factor 2 along with the radical, and solving the resulting linear equation",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = √(3x + 1). For what value of x is f(x + 5) = 2f(x)?",
+  "choices": [
+   "4/3",
+   "14/3",
+   "20/9",
+   "5/3"
+  ],
+  "correct_answer": "4/3",
+  "explanation": "f(x + 5) = √(3(x + 5) + 1) = √(3x + 16), so the equation is √(3x + 16) = 2√(3x + 1). Squaring both sides gives 3x + 16 = 4(3x + 1) = 12x + 4, so 9x = 12 and x = 4/3, which is \"4/3\". Check: f(19/3) = √20 and 2f(4/3) = 2√5 = √20. \"14/3\" comes from a solver who squares the radicals but not the factor 2, writing 3x + 16 = 2(3x + 1), so 3x = 14. \"5/3\" comes from a solver who distributes the 4 only to 3x, writing 3x + 16 = 12x + 1, so 9x = 15. \"20/9\" comes from a solver who reaches 3x + 16 = 12x + 4 but adds the constants, writing 9x = 20.",
+  "solve": "var f=function(x){return Math.sqrt(3*x+1)}; var x=(16-4)/(12-3); return Math.abs(f(x+5)-2*f(x))<1e-12&&Math.abs(x-4/3)<1e-12?'4/3':String(x);",
+  "distractor_solve": {
+   "14/3": "var x=(16-2)/(6-3); return Math.abs(x-14/3)<1e-12?'14/3':String(x);",
+   "5/3": "var x=(16-1)/(12-3); return Math.abs(x-5/3)<1e-12?'5/3':String(x);",
+   "20/9": "var x=(16+4)/(12-3); return Math.abs(x-20/9)<1e-12?'20/9':String(x);"
+  }
+ }
+]

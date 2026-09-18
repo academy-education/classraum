@@ -1,0 +1,212 @@
+{
+ "SADV5A-01": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Discriminant k^2-10k+21=0 gives k=3,7 (sum 10); 7 and 21 are the single root and the product, fine; same discriminant-in-k mechanism as SADV5A-05."
+ },
+ "SADV5A-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "f=(2x-5)(4x+19), roots 5/2 and -19/4, product -95/8; -65/8 (ignoring the +6) and -95 (dropping leading coefficients) are genuine error paths."
+ },
+ "SADV5A-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=2, b=-1, c=7; the three-point system is tedious by hand but a one-shot Desmos regression on the real test, so not hard."
+ },
+ "SADV5A-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Axis x=4, shifted right 7 gives 11; a strong student does this in one line, easy on the real scale despite the shift-direction trap (D=4, C=10)."
+ },
+ "SADV5A-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x^2+(k+1)x+2k-1 has negative discriminant for 1<k<5, integers 2,3,4 sum 9; near-duplicate mechanism of SADV5A-01 and -55 is a sign/magnitude outlier."
+ },
+ "SADV5A-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Other root -17/3, product -68/3 = c/3 so c=-68; -68/3 (forgetting a=3) is the natural slip and 28 (assuming the two 4s) is well chosen."
+ },
+ "SADV5A-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x=2,4 giving y=5,13 with sum 18; 13 is one y-value, 65 the product, 24 the sum of the products; fully Desmos-solvable so medium at most."
+ },
+ "SADV5A-08": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2t^2-17t+30=0, roots 2.5 and 6; giving the first time makes sum-of-roots (17/2 offered as a distractor) a fast route, so this leans easy-medium."
+ },
+ "SADV5A-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "Scale by 6: a=12, b=-30, a+b=-18; one multiplication, easy on the real scale; 12 is a alone and 42 is the sign slip."
+ },
+ "SADV5A-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Vertex (3, k-18) must satisfy y=1 so k=19; 25 is k from using y=+x+4 and -2 from the wrong sign, adequate."
+ },
+ "SADV5B-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=16, b=3/2, f(3)=54; 72 is b=2 (halving the two-unit ratio) and 121.5 is f(3) with b=9/4 (forgetting the root); shares its setup with SADV5B-09."
+ },
+ "SADV5B-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "1-0.92^3=22.13%, so 22.1; 15.4 is two periods, 23.4 close but not a clear error path, so the two main distractors are ok though 24.0 (linear) would have been better."
+ },
+ "SADV5B-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "LHS reduces to x+5 (x != 9), so x^2-7x+6=0 gives 1 and 6, sum 7; 16 catches students who keep the extraneous 9 from the cleared cubic, a genuinely strong distractor."
+ },
+ "SADV5B-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "x^2-15x+36=0 gives 3 (extraneous) and 12; but 15 and 36 are just the sum and product coefficients and 25, 36 are perfect squares a guesser can test by substitution in seconds."
+ },
+ "SADV5B-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x+y=9 so (x-y)^2=81-48=33; 129 is the sign error, fine; same symmetric-sum identity family as SADV5C-01 and SADV5C-04."
+ },
+ "SADV5B-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "t=2^x=8 (reject -2), x=3; 8 catches stopping at t, 64 is 4^3, 1 is weak filler; standard SAT-hard type but a routine one."
+ },
+ "SADV5B-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "Hole at x=5 forces k=-3, reduced (x+2)/(x-1) gives 7/4; 7 is the numerator alone and 1/2 is evaluating at the asymptote's side, a good multi-step item."
+ },
+ "SADV5B-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "-3x=4x-28 so x=4; 28 is the sign slip (x=-28, offered as positive), 14/3 comes from 3x=4x-14... adequate but 4 is also a small round answer that guessers favour."
+ },
+ "SADV5B-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=5, c=2, f(-1)=5/3+2=11/3; 7/3 is 5/3 plus c misread and 17/3 is c=4, plausible; near-duplicate of SADV5B-01 in mechanism."
+ },
+ "SADV5B-10": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "3x+16=4(3x+1) gives x=4/3; 14/3 (not squaring the 2) is exactly the intended trap and 5/3, 20/9 are plausible fractions, though all four are positive fractions of similar size."
+ },
+ "SADV5C-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "ab=10, a^2+b^2=29, (a+b)^2=49, (a-b)^2=9, so a^2-b^2=21 (a=5,b=2); 49 and 9 are the intermediate squares and 99 is 49+... fine; overlaps in idea with SADV5B-05."
+ },
+ "SADV5C-02": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "12*5 + (-8)*1 = 52; 60 and -8 are the two partial products, 22 is off-path; a strong student expands in under a minute."
+ },
+ "SADV5C-03": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "p=a(x+3)^2(x-1)(x-4) with a=-1/2 from p(0)=-18, p(-1)=-20; 40 is with a=+1, -80 with a=-2 (treating (x+3) as linear factor and mis-scaling), reasonable."
+ },
+ "SADV5C-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "x+1/x=6, so x^3+1/x^3=216-18=198; 216 (forgetting the -3s term), 34 (x^2+1/x^2), 204 (216-12) are all real slips; same family as SADV5C-10 and SADV5B-05."
+ },
+ "SADV5C-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "Excluded 3, -2 and 14/3 (where the inner denominator vanishes), sum 17/3; a student who only finds two values gets 1, which is not offered, so the distractors pull only from arithmetic variants."
+ },
+ "SADV5C-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "p(1)=1*3-81=-78; -21, 84 and -244 are not obvious slip products but the item is a single insight (evaluate at 1) so medium not hard."
+ },
+ "SADV5C-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "p=(3x+5)(x-3)(x+3), q(2)=11*(-1)=-11; -1 and -5 are the individual factor values (with x+3 mis-kept), 55 is q(2) with sign lost; synthetic division also works quickly."
+ },
+ "SADV5C-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "p(4)=29, p(-1)=-1, so 5a=30 and a=6; 29 is p(4) and 24 is 29+... plausible; division by a quadratic is at the edge of Digital SAT scope, which the note should flag for authors."
+ },
+ "SADV5C-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x-coefficient 17+k=0 gives k=-17, constant 7k+4=-115; -17 is k itself and -123 is 7k-4, both natural slips."
+ },
+ "SADV5C-10": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "Expression is (x-1)^4-1 = (u+1)^2-1 with u=5/2, giving 45/4; 25/4 is u^2 alone (dropping the 2u term), a good trap; near-duplicate in spirit of SADV5C-04."
+ }
+}

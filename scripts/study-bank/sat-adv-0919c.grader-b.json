@@ -1,0 +1,212 @@
+{
+ "SADV5A-01": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "k^2-10k+21=0 gives sum 10; 21 (product) and 7 (a root) catch Vieta slips, but shares the discriminant-in-k mechanism with A-05."
+ },
+ "SADV5A-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "(2x-5)(4x+19) roots 5/2 and -19/4 give -95/8; -65/8 (ignoring the +6) and -95 (dropped denominators) are the real errors."
+ },
+ "SADV5A-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=2, b=-1, c=7; a 3x3 system is labour rather than insight, and none of the distractors is a named error."
+ },
+ "SADV5A-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Axis at 4 shifted right 7 gives 11; 4 (no shift) is the only strong distractor and the item is a standard medium, not hard-route."
+ },
+ "SADV5A-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "k^2-6k+5<0 gives k in {2,3,4}, sum 9; 15 catches the inclusive-endpoint error, but this duplicates A-01's discriminant-in-k mechanism."
+ },
+ "SADV5A-06": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "Second root -17/3, c = 3*4*(-17/3) = -68; -68/3 is exactly the forgot-leading-coefficient trap."
+ },
+ "SADV5A-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x=2,4 give y=5,13, sum 18; 13 is one y-value but 24 and 65 attach to no obvious error."
+ },
+ "SADV5A-08": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2t^2-17t+30=0 gives 2.5 and 6; 17/2 is the sum-of-roots trap, and vertex symmetry (4.25) reaches 6 without solving."
+ },
+ "SADV5A-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Scale by 6: a=12, b=-30, a+b=-18; 12 alone catches the stop-early error, and the negative-only option is the answer, a mild sign tell."
+ },
+ "SADV5A-10": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Vertex (3, k-18) on y=-x+4 gives k=19; the mechanism repeats A-04's vertex-location step."
+ },
+ "SADV5B-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=16, b=3/2, f(3)=54; 121.5 = 36*(3/2)^3 is a real slip but 72 and 40.5 are loose, and B-09 shares the two-point exponential setup."
+ },
+ "SADV5B-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "1-0.92^3 = 22.1%; 15.4 (two periods) and 23.4 are close enough that a non-solver cannot eliminate by magnitude, but the remaining-percent misread is not offered."
+ },
+ "SADV5B-03": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "Left side reduces to x+5 (x != 9), solutions 1 and 6 sum 7; 16 is exactly the include-the-excluded-value trap."
+ },
+ "SADV5B-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "x=12 checks in seconds and 15, 25, 36 all fail on direct substitution, so back-solving defeats the item without ever meeting the extraneous root."
+ },
+ "SADV5B-05": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "x+y=9, (x-y)^2 = 81-48 = 33; 129 (added 4xy) and 57 (subtracted 2xy) are the two identity errors, but C-01 and C-04 use the same symmetric-sum trick."
+ },
+ "SADV5B-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2^x=8 gives x=3; 8 is the stop-at-t trap, but every option is back-solvable in one line."
+ },
+ "SADV5B-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "Hole at x=5 forces k=-3, reduced (x+2)/(x-1) gives 7/4; -11/4 is exactly the hole-at-1 misread and 7 the unreduced numerator."
+ },
+ "SADV5B-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "-3x = 4x-28 gives x=4; 28 catches the dropped negative, but substitution of the integer options settles it quickly."
+ },
+ "SADV5B-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=5, c=2, f(-1)=5/3+2=11/3; the fractional options all look alike so no shape tell, but the setup duplicates B-01."
+ },
+ "SADV5B-10": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "3x+16 = 4(3x+1) gives 4/3; 14/3 is exactly the unsquared-2 error and the domain check at 4/3 is clean."
+ },
+ "SADV5C-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "ab=10, a^2+b^2=29 give (a+b)=7, (a-b)=3, product 21; 49 and 9 are the intermediate squares, but the mechanism overlaps B-05 and C-04."
+ },
+ "SADV5C-02": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "12*5 + (-8)*1 = 52; 60 is precisely the one-product-only error."
+ },
+ "SADV5C-03": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "a=-1/2 from p(0)=-18, p(-1) = -1/2*4*10 = -20; 40 is the a=1 error and the sign is not eliminable since three options are negative."
+ },
+ "SADV5C-04": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "x+1/x=6, cube minus 3*6 gives 198; 216 (no correction), 204 (wrong correction) and 34 (the square) are all genuine, but the trick repeats B-05/C-01 and C-10."
+ },
+ "SADV5C-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "Excluded 3, -2 and 14/3 sum to 17/3; the hidden third value is the whole item, and 8/3 or -7/3 attach to no single named error."
+ },
+ "SADV5C-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "p(1) = 1*3 - 81 = -78; the sum-of-coefficients trick is well known on the hard route and -21, 84, -244 do not model a specific slip."
+ },
+ "SADV5C-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Grouping gives q(x)=(3x+5)(x-3), q(2)=-11; synthetic division reaches it mechanically, so the label should be medium."
+ },
+ "SADV5C-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "p(4)=29, p(-1)=-1 give 5a=30, a=6; 29 is the stop-at-p(4) trap and the constant b=5 is not offered as a decoy."
+ },
+ "SADV5C-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "k=-17 kills the x term, c = 7k+4 = -115; -123 is the sign error on the constant and -17 the stop-at-k trap."
+ },
+ "SADV5C-10": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "(x^2-2x)^2 + 2(x^2-2x) = 25/4 + 5 = 45/4; 25/4 is the square alone, and the mechanism mirrors C-04's expression-in-a-given-quantity idea."
+ }
+}
