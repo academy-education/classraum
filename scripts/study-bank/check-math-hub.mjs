@@ -70,7 +70,13 @@ const MATH_DOMAINS = [
  * script's entire output is derivations.
  */
 function valueOf(opt) {
-  const s = String(opt).replace(/[$,\s]/g, '')
+  const s = String(opt).replace(/\u2212/g, '-').replace(/[$,\s]/g, '')
+  /* U+2212 -> '-' BEFORE PARSING - fixed 2026-09-19. The bank writes some
+   * negative options with the Unicode minus sign, and both regexes below
+   * accept only the ASCII hyphen, so "−6" parsed as 6 and a sign pair
+   * "12 / −12" read as a duplicate. Found by an author whose first draft was
+   * flagged key-is-hub for a relation that did not exist. 34 live options in
+   * 21 items were being measured as their absolute value. */
   const frac = s.match(/^(-?\d+)\/(\d+)$/)
   if (frac) return Number(frac[1]) / Number(frac[2])
   const nums = s.match(/-?\d+(?:\.\d+)?/g)
