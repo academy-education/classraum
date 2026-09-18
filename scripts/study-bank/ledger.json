@@ -1837,6 +1837,11 @@
     "tells": {
      "passed": false,
      "verdict": "Key longest in 8, shortest in 5 (within cap) but the hedged/absolute asymmetry is present on at least 5 items per the grader (16, 26, 28, 33, 27)."
+    },
+    "human_sitting": {
+     "passed": true,
+     "run": "actrd-recall-2026-09-14",
+     "verdict": "Human blind sitting actrd-recall-2026-09-14: candidates 3/12 = 25.0% vs 33.3% control, live control arm 4/12 = 33.3%; clean under the rule fixed before the sitting. Released 2026-09-18 over failing model stages -- for ACT verbal the human is the gate and the model is a screen (REGISTER s4, SITTING-PROCEDURE s6). Instrument caveat recorded in REGISTER s5: the draw dealt keys cyclically in presentation order; the reviewer noticed and did not exploit it."
     }
    }
   },
@@ -2450,6 +2455,11 @@
     "tells": {
      "passed": false,
      "verdict": "FAILS, on a defect no structural check can see and the attack cannot reach: SUBJECT RECALL. All three graders volunteered it unprompted and independently. The author chose booming dunes because there is no scientific consensus to recall, and all three confirmed that premise is CORRECT and is not what protects an item — what protects it is whether the key coincides with the prior. The two rival accounts (a dry-layer acoustic waveguide over a denser substrate; shear-rate x grain-diameter collision synchronisation) are each well documented, and the batch assigns one camp per passage, so recognition routes by camp without any consensus existing. Counts: grader A 3 of 9 outright plus 2 partly, grader B 3 of 9, grader C 2 decisive plus 2 assisted. All three name P1-Q4 and P1-Q9 in the cluster. One grader notes that P1-Q9s option set is the CLEAN shape — four parallel \"Sound is produced only while X\" frames varying one term — so the leak there is recall, not axis-alignment, and a cheap structural check would never see it. Two graders also named the same single wording fix, independently: P1-Q9s key says \"only while an AVALANCHE is in motion\" while Passage Bs opening produces booming with no dune and no avalanche at all, eight centimetres of poured sand sheared in a chute; the explanations own parenthetical concedes the gap. \"while the sand is in motion\" costs nothing. Also flagged: P1-Q8s three non-keys describe concessions Passage A never makes anywhere, collapsing a cross-passage task into locate-the-detail."
+    },
+    "human_sitting": {
+     "passed": true,
+     "run": "actrd-recall-2026-09-14",
+     "verdict": "Human blind sitting actrd-recall-2026-09-14: candidates 3/12 = 25.0% vs 33.3% control, live control arm 4/12 = 33.3%; clean under the rule fixed before the sitting. Released 2026-09-18 over failing model stages -- for ACT verbal the human is the gate and the model is a screen (REGISTER s4, SITTING-PROCEDURE s6). Instrument caveat recorded in REGISTER s5: the draw dealt keys cyclically in presentation order; the reviewer noticed and did not exploit it."
     }
    }
   },

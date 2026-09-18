@@ -130,10 +130,34 @@ const uneven = Object.entries(depths).filter(([, n]) => n !== PER_PASSAGE)
 if (uneven.length) { console.error(`REFUSING: uneven passage depth -- ${JSON.stringify(uneven)}. Asymmetric contamination breaks the comparison.`); process.exit(2) }
 
 /* Key slots dealt as flat as the count allows, so the control is DERIVED and
- * chance and best-fixed-letter coincide. */
+ * chance and best-fixed-letter coincide.
+ *
+ * SHUFFLED AFTER DEALING -- fixed 2026-09-18. The first version wrote
+ * `deal.set(r.id, SLOT[i % W])` over the presentation order, so the key ran
+ * A,B,C,D,A,B,C,D... down the screen. The co-founder noticed on run
+ * actrd-recall-2026-09-14 and wrote it in his note; a reviewer who acted on
+ * it could score 100% without reading an option. He did not act on it and
+ * scored at control, so THAT measurement stands on his honesty, not on the
+ * instrument. Every other drawer in this directory already does
+ * `shuffle(list.map((_, i) => L[i % 4]))`; this one was the only human-facing
+ * drawer and the only one that did not. */
 const order = shuffle(picked)
+const slots = shuffle(order.map((_, i) => SLOT[i % W]))
 const deal = new Map()
-order.forEach((r, i) => deal.set(r.id, SLOT[i % W]))
+order.forEach((r, i) => deal.set(r.id, slots[i]))
+{ /* Refuse a deal that is still cyclic in presentation order -- the guard
+   * that would have caught the defect above. Counts the longest run of
+   * consecutive positions that follow the A,B,C,D,... pattern at any phase. */
+  let worst = 0
+  for (let ph = 0; ph < W; ph++) {
+    let run = 0
+    for (let i = 0; i < order.length; i++) {
+      if (deal.get(order[i].id) === SLOT[(i + ph) % W]) { run++; worst = Math.max(worst, run) } else run = 0
+    }
+  }
+  if (worst >= 2 * W) { console.error(`REFUSING: key deal is cyclic in presentation order (${worst} consecutive positions on the A,B,C,D pattern)`); process.exit(2) }
+  console.log(`   longest cyclic run in presentation order: ${worst} (refuses at ${2 * W})`)
+}
 const dt = {}
 for (const v of deal.values()) dt[v] = (dt[v] ?? 0) + 1
 const best = 100 * Math.max(...Object.values(dt)) / order.length
