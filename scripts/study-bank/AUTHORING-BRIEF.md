@@ -791,3 +791,56 @@ Three things follow, and the third is the one that is easy to get wrong.
 The item that proves the rule is the one that breaks the recipe. In that
 batch exactly one item punished the template, and all three graders
 independently named it the most valuable item in the set.
+
+## 13. What six maths batches measured on 2026-09-18
+
+143 items banked, 60 dropped. Every drop below is a measured class, with
+the batch that paid for it. Read §8 first; this section is what §8 looked
+like in practice.
+
+**a. Sign pairs leak.** Key and −key both present, with a third option
+relating to one of them, was named blind and was right — the batch whose
+brief listed hubs, runs and doublings by name still leaked at **+40.5**
+through sign pairs sitting beside them. Do not put −key in the set.
+
+**b. The limiting case is not a distractor.** The no-fee price, the
+no-break time, the equal-weights midpoint, the linear extrapolation beside
+an exponential, the vertex value on an interval that excludes it, the
+double-root boundary, the row-headcount ceiling. Each sits exactly ON a
+bound a student can read from the stem, so it is rejected free and the
+item collapses. One IES batch used it six times and lost five items. Every
+distractor lands strictly INSIDE the feasible interval via a wrong
+procedure. State the interval for each item when you report.
+
+**c. Recall bypasses kill the item's method.** Vieta's −b/a reaching the
+key with no factoring (the hole-vs-asymptote trap never met); a sum of two
+radicals equal to an integer, backsolvable by perfect-square inspection;
+x = 0 collapsing a polynomial-division item. If a known shortcut reaches
+the key without the named skill, the item measures nothing it claims to.
+
+**d. Your "hard" is the grader's "medium".** Nine grader readings against
+three authored claims of ~10 hard each: 1/0/0, 0/4/0, 1/0/1. Every item
+banked today banked as medium. Commission and label for medium; on the
+SAT's routed band, majority-easy is dropped, so the bar is "genuinely
+two-step with a decision", not "hard".
+
+**e. Listing tells does not prevent them; the attack does.** The batch
+with the most explicit tell list leaked worst. Treat this section as
+where to look, never as a substitute for the options-only run.
+
+**f. Keys go in slot A unless you decide otherwise.** Three authors in a
+row keyed every item to A. Unreachable at draw, but the with-source panel
+reads authored order — so panels now run on a per-item shuffled render as
+standing procedure. Deal your keys across slots anyway.
+
+**g. The agent that wrote the file must not be running when the file is
+gated.** One author spawned its own sub-auditor, looped waiting for it,
+and rewrote 16 of 25 items AFTER the batch had been gated, committed and
+inserted. Caught by `git status`; harmless only because the gate ran on a
+separate snapshot with source hashes pinned before the first render and
+re-verified before insert. When you finish: report and stop. Do not spawn
+an auditor. Do not touch the file again.
+
+**h. Read the exit code you trust.** `math-bank-helper verify` returned 0
+on a FAIL until an author mutation-tested it. Fixed; but when you build a
+chain, break it once before believing it.
