@@ -3370,6 +3370,34 @@
      "verdict": "Authored keys CADB + ABCDABCD (the Advanced author dealt a round robin); unreachable at draw, neutralised for the panel by the shuffled render. No sign pairs anywhere - that recipe was closed by the brief; sum/product hubs appeared instead (SADVC-04, -07). No radicals or expressions in the batch, so no form tells."
     }
    }
+  },
+  {
+   "id": "act-geo-fn-0919-kept-2026-09-19",
+   "targetTest": "act",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "act-geo-fn-0919",
+   "contentSha": "7b05935dd40200a280ac83cfd20180ffd2df348ba99bfe9bcb7f24ea9dabf367",
+   "note": "16 kept of 22 ({\"Geometry\":9,\"Functions\":7}). Gated from a pinned snapshot; source hash re-verified at insert. Six drops: AGEO2-09 - bound N=2: exterior angle of triangle PBC forces APB > 41, killing 41 (ON) and 18; the surviving distractor 82 is a stem number; AFN2-09 - bound N=2: 1 < log x < 2 puts the answer in (4,6); both canonical slips fall outside the window by construction; AGEO2-11 - bound N=2: A+B = 134 with A larger forces B < 67, killing 67 (ON) and 80; the remaining distractor 10 requires misreading 134 as 46; AFN2-06 - bound N=2: a > 0 puts f(3) below the chord midpoint 15, killing 18 and 23; the remaining distractor 9 has no derivation; AGEO2-04 - unanimous options-only with the SAME mechanism named 3/3 - every option is a power or multiple of 4/3, a ratio-set hub the numeric-hub checker does not see; AFN2-10 - duplicate mechanism with AFN2-03 (recover the linear coefficient from the axis of symmetry), named by grader B and the hunter; also carried a sign-killed -14. The author's own doubtful list was judged item by item by the hunter: the half-bounding-box bound is free but harmless, the sin<=1 bound is real and kills one, the exponential rung window leaves three.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 22/22 (my run); distractor_solve 66/66; symbolic hub n=1 at a 3-way tie (no measurement). Author break-tested the verify exit code on a scratch copy (mis-key -> FAIL, exit 1)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha d45644b66423aabe): 22/22 x3; exclusive:false 0/0/0; no under-specified figure; no rounding tie within 0.05 of a boundary. Difficulty easy 6/6/-, hard 0/1/-. Hunter survivor table: N=2 on AGEO2-01, -09, -11, AFN2-06, -09; four items with a canonical slip sitting exactly ON an easy bound. Grader B: AFN2-03/10 duplicate; AGEO2-07 the most textbook-like configuration (r=5 inscribed square)."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 66 forced picks, keys A6 B6 C5 D5 for a 27.3% control: 20/66 = 30.3% (+3.0). Mechanism 8/31 = 25.8%, guess 12/35 = 34.3% (-8.5) - rule disarmed. Solver A's pre-registered mean/sum-hub family scored 1/12. Unanimous 2 of 22 vs 0.45: AGEO2-04 (3/3 named, dropped), AFN2-04 (1/3, kept). Residual on kept 16: 14/48 = 29.2% vs 25.0% (4.2)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Authored keys CADBBDACDABCACBDCADBAD - dealt across slots. Solver C detected the author's \"pair among distractors, key outside\" shape on four items and read it correctly as a halving recipe; three of those four are among the drops on other grounds, AFN2-10's remaining pair is a sign pair excluding the key."
+    }
+   }
   }
  ],
  "auditedCohorts": [

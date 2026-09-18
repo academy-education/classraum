@@ -1,0 +1,152 @@
+{
+ "AGEO2-01": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "sqrt(166)=12.88. Only B (largest face diagonal, sqrt130) is an error-path distractor; C and D are not obviously derivable."
+ },
+ "AGEO2-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "QR^2=225-216cos40=59.53, QR=7.716. D is the sin-for-cos slip; A and B not traceable."
+ },
+ "AGEO2-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "14 sin80/sin35 = 24.03. C is side AB (used angle C=65)."
+ },
+ "AGEO2-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong"
+ },
+ "AGEO2-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(x-3)^2+(y+5)^2=36; y=0 gives (x-3)^2=11. C is the y-axis chord."
+ },
+ "AGEO2-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible"
+ },
+ "AGEO2-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "25pi-50=28.54. B is side=radius; A is 100-25pi."
+ },
+ "AGEO2-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "72pi/104pi=69.23%. B is one base only."
+ },
+ "AGEO2-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong"
+ },
+ "AGEO2-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "108pi=339.29. A is hemisphere as (1/3)pi r^3."
+ },
+ "AGEO2-11": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible"
+ },
+ "AGEO2-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "y-int 10, x-int 15, area 75."
+ },
+ "AFN2-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "k=1; f(6)=25. D is the wrong piece (2*36-5)."
+ },
+ "AFN2-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "0.4^2.5=0.1012. B is half-step of factor, C is linear interpolation."
+ },
+ "AFN2-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b=18; f(3)=22."
+ },
+ "AFN2-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "f(-3)=7; g(-3)=9. A is forgetting the flip."
+ },
+ "AFN2-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "f(x)=11-2x; x=-7. D is f(25)."
+ },
+ "AFN2-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=2, c=-5; f(-3)=13."
+ },
+ "AFN2-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a1=2, d=4; S12=6(4+44)=288."
+ },
+ "AFN2-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "a=2; y(0)=14. C is a=4 (unsquared distance)."
+ },
+ "AFN2-09": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "2+2(1.3)=4.6. C drops the exponent."
+ },
+ "AFN2-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2+k-4=72-6k-4 -> k=10; or axis -2.5=-k/4."
+ }
+}

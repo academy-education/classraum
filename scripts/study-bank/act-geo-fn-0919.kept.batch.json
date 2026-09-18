@@ -1,0 +1,338 @@
+[
+ {
+  "id": "AGEO2-01",
+  "domain": "Geometry",
+  "subskill": "longest rod inside a rectangular box: the space diagonal from three edges, not the largest face diagonal",
+  "difficulty": "medium",
+  "prompt": "A rectangular storage box has interior dimensions of 6 inches by 7 inches by 9 inches. To the nearest tenth of an inch, what is the length of the longest thin, straight rod that can fit entirely inside the box?",
+  "choices": [
+   "11.4",
+   "15.8",
+   "12.9",
+   "17.4"
+  ],
+  "correct_answer": "12.9",
+  "explanation": "The longest segment inside a rectangular box is its space diagonal, whose length is the square root of the sum of the squares of the three edges: sqrt(6^2 + 7^2 + 9^2) = sqrt(36 + 49 + 81) = sqrt(166), which is about 12.88, so 12.9 inches. \"11.4\" comes from a solver who uses only the largest face, sqrt(7^2 + 9^2) = sqrt(130). \"15.8\" comes from a solver who adds two edges before squaring, sqrt((6 + 7)^2 + 9^2) = sqrt(250). \"17.4\" comes from a solver who finds the face diagonal sqrt(130) and then adds the third edge, 11.4 + 6.",
+  "solve": "var d = Math.sqrt(6 * 6 + 7 * 7 + 9 * 9); return d.toFixed(1);",
+  "distractor_solve": {
+   "11.4": "return Math.sqrt(7 * 7 + 9 * 9).toFixed(1);",
+   "15.8": "return Math.sqrt((6 + 7) * (6 + 7) + 9 * 9).toFixed(1);",
+   "17.4": "return (Math.sqrt(7 * 7 + 9 * 9) + 6).toFixed(1);"
+  }
+ },
+ {
+  "id": "AGEO2-02",
+  "domain": "Geometry",
+  "subskill": "third side of a triangle from two sides and the included angle by the law of cosines",
+  "difficulty": "medium",
+  "prompt": "In triangle PQR, PQ = 9 inches, PR = 12 inches, and angle P measures 40 degrees. To the nearest tenth of an inch, what is the length of side QR?",
+  "choices": [
+   "7.7",
+   "11.9",
+   "5.1",
+   "9.3"
+  ],
+  "correct_answer": "7.7",
+  "explanation": "Side QR is opposite the known angle P, so the law of cosines applies directly: QR^2 = 9^2 + 12^2 - 2(9)(12)cos 40 = 225 - 216(0.7660) = 225 - 165.47 = 59.53, and QR = sqrt(59.53), about 7.7 inches. \"9.3\" comes from a solver who uses sin 40 in place of cos 40, 225 - 216(0.6428) = 86.16, sqrt of which is 9.28. \"11.9\" comes from a solver who drops the factor 2 in the cosine term, 225 - 108(0.7660) = 142.27, sqrt of which is 11.93. \"5.1\" comes from a solver who drops a perpendicular from Q and reports only the leftover piece of PR, 12 - 9 cos 40 = 12 - 6.89.",
+  "solve": "var r = 40 * Math.PI / 180; var c2 = 9 * 9 + 12 * 12 - 2 * 9 * 12 * Math.cos(r); return Math.sqrt(c2).toFixed(1);",
+  "distractor_solve": {
+   "9.3": "var r = 40 * Math.PI / 180; return Math.sqrt(9 * 9 + 12 * 12 - 2 * 9 * 12 * Math.sin(r)).toFixed(1);",
+   "11.9": "var r = 40 * Math.PI / 180; return Math.sqrt(9 * 9 + 12 * 12 - 9 * 12 * Math.cos(r)).toFixed(1);",
+   "5.1": "var r = 40 * Math.PI / 180; return (12 - 9 * Math.cos(r)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AGEO2-03",
+  "domain": "Geometry",
+  "subskill": "a side of a triangle from two angles and one side by the law of sines: the requested side is opposite the LARGER given angle",
+  "difficulty": "medium",
+  "prompt": "In triangle ABC, angle A measures 35 degrees, angle B measures 80 degrees, and side BC, which is opposite angle A, is 14 centimeters long. To the nearest tenth of a centimeter, what is the length of side AC?",
+  "choices": [
+   "15.2",
+   "22.1",
+   "32.0",
+   "24.0"
+  ],
+  "correct_answer": "24.0",
+  "explanation": "Side AC is opposite angle B. By the law of sines, AC / sin 80 = BC / sin 35, so AC = 14 sin 80 / sin 35 = 14(0.9848)/(0.5736), about 24.04, so 24.0 centimeters. \"22.1\" comes from a solver who finds the third angle, 65 degrees, and uses it in place of angle B, 14 sin 65 / sin 35. \"15.2\" comes from a solver who puts sin 65 in the denominator instead of sin 35, 14 sin 80 / sin 65. \"32.0\" comes from a solver who scales the side by the ratio of the angle measures themselves, 14(80/35).",
+  "solve": "var d = Math.PI / 180; return (14 * Math.sin(80 * d) / Math.sin(35 * d)).toFixed(1);",
+  "distractor_solve": {
+   "22.1": "var d = Math.PI / 180; return (14 * Math.sin(65 * d) / Math.sin(35 * d)).toFixed(1);",
+   "15.2": "var d = Math.PI / 180; return (14 * Math.sin(80 * d) / Math.sin(65 * d)).toFixed(1);",
+   "32.0": "return (14 * 80 / 35).toFixed(1);"
+  }
+ },
+ {
+  "id": "AGEO2-05",
+  "domain": "Geometry",
+  "subskill": "length of the chord a circle cuts on the x-axis, from the general-form equation: complete the square, then set y = 0",
+  "difficulty": "hard",
+  "prompt": "In the standard (x,y) coordinate plane, a circle has the equation x^2 + y^2 - 6x + 10y - 2 = 0. What is the length of the chord of this circle that lies along the x-axis?",
+  "choices": [
+   "2√7",
+   "2√11",
+   "6√3",
+   "2√31"
+  ],
+  "correct_answer": "2√11",
+  "explanation": "Completing the square gives (x - 3)^2 + (y + 5)^2 = 2 + 9 + 25 = 36, so the center is (3, -5) and the radius is 6. On the x-axis y = 0, so (x - 3)^2 + 25 = 36 and (x - 3)^2 = 11, giving x = 3 + sqrt(11) and x = 3 - sqrt(11). The chord between them has length 2 sqrt(11). \"2√7\" comes from a solver who moves the constant with the wrong sign, taking the radius squared to be 9 + 25 - 2 = 32, so that (x - 3)^2 = 32 - 25 = 7. \"6√3\" comes from a solver who sets x = 0 instead of y = 0 and finds the chord along the y-axis: (y + 5)^2 = 36 - 9 = 27, chord 2 sqrt(27). \"2√31\" comes from a solver who subtracts the center's y-coordinate 5 rather than its square, (x - 3)^2 = 36 - 5 = 31.",
+  "solve": "function s(n) { var k = 1; for (var i = 2; i * i <= n; i++) { while (n % (i * i) === 0) { n /= i * i; k *= i; } } return (2 * k) + '\\u221a' + n; } var r2 = 2 + 9 + 25; var t = r2 - 5 * 5; return s(t);",
+  "distractor_solve": {
+   "2√7": "function s(n) { var k = 1; for (var i = 2; i * i <= n; i++) { while (n % (i * i) === 0) { n /= i * i; k *= i; } } return (2 * k) + '\\u221a' + n; } var r2 = 9 + 25 - 2; return s(r2 - 25);",
+   "6√3": "function s(n) { var k = 1; for (var i = 2; i * i <= n; i++) { while (n % (i * i) === 0) { n /= i * i; k *= i; } } return (2 * k) + '\\u221a' + n; } var r2 = 2 + 9 + 25; return s(r2 - 3 * 3);",
+   "2√31": "function s(n) { var k = 1; for (var i = 2; i * i <= n; i++) { while (n % (i * i) === 0) { n /= i * i; k *= i; } } return (2 * k) + '\\u221a' + n; } var r2 = 2 + 9 + 25; return s(r2 - 5);"
+  }
+ },
+ {
+  "id": "AGEO2-06",
+  "domain": "Geometry",
+  "subskill": "area of a triangle from three vertex coordinates with no horizontal or vertical side: bounding rectangle minus three right triangles",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, a triangle has vertices at (-3, 1), (5, 4), and (2, -6). What is the area of the triangle, in square coordinate units?",
+  "choices": [
+   "18",
+   "23.5",
+   "29.5",
+   "35.5"
+  ],
+  "correct_answer": "35.5",
+  "explanation": "Enclose the triangle in the rectangle with x from -3 to 5 and y from -6 to 4, area 8(10) = 80. Three right triangles lie between the triangle and the rectangle: legs 8 and 3 (area 12) at the top left, legs 3 and 10 (area 15) on the right, and legs 5 and 7 (area 17.5) at the bottom left. The triangle's area is 80 - 12 - 15 - 17.5 = 35.5. The shoelace formula agrees: (1/2)|-3(4 - (-6)) + 5(-6 - 1) + 2(1 - 4)| = (1/2)|-30 - 35 - 6| = 35.5. \"23.5\" comes from a solver who forgets to halve the first corner, 80 - 24 - 15 - 17.5. \"18\" comes from a solver who forgets to halve the bottom-left corner, 80 - 12 - 15 - 35. \"29.5\" comes from a solver who reverses one subtraction in the shoelace sum, (1/2)|-30 - 35 + 6|.",
+  "solve": "var x1 = -3, y1 = 1, x2 = 5, y2 = 4, x3 = 2, y3 = -6; var a = Math.abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2; return String(a);",
+  "distractor_solve": {
+   "18": "return String(80 - 12 - 15 - 5 * 7);",
+   "23.5": "return String(80 - 8 * 3 - 15 - 17.5);",
+   "29.5": "return String(Math.abs(-3 * (4 + 6) + 5 * (-6 - 1) + 2 * (4 - 1)) / 2);"
+  }
+ },
+ {
+  "id": "AGEO2-07",
+  "domain": "Geometry",
+  "subskill": "area between a circle and its inscribed square: the square's side comes from the diameter as a diagonal, not from the radius",
+  "difficulty": "medium",
+  "prompt": "A square is inscribed in a circle of radius 5 inches, so that all four vertices of the square lie on the circle. To the nearest tenth of a square inch, what is the area of the region that is inside the circle but outside the square?",
+  "choices": [
+   "28.5",
+   "53.5",
+   "11.4",
+   "21.5"
+  ],
+  "correct_answer": "28.5",
+  "explanation": "The circle's area is pi(5^2) = 25 pi, about 78.54. The square's diagonal is a diameter, 10 inches, so its side is 10/sqrt(2) and its area is (diagonal^2)/2 = 100/2 = 50. The region between them has area 25 pi - 50, about 28.5 square inches. \"53.5\" comes from a solver who takes the side of the square to be the radius 5, 25 pi - 25. \"21.5\" comes from a solver who takes the side of the square to be the diameter 10, gets 100 for the square, and subtracts the smaller from the larger, 100 - 25 pi. \"11.4\" comes from a solver who compares the circumference with the perimeter of a square of side 5, 10 pi - 20.",
+  "solve": "return (Math.PI * 25 - 100 / 2).toFixed(1);",
+  "distractor_solve": {
+   "53.5": "return (Math.PI * 25 - 5 * 5).toFixed(1);",
+   "21.5": "return (10 * 10 - Math.PI * 25).toFixed(1);",
+   "11.4": "return (2 * Math.PI * 5 - 4 * 5).toFixed(1);"
+  }
+ },
+ {
+  "id": "AGEO2-08",
+  "domain": "Geometry",
+  "subskill": "lateral surface as a percent of the total surface area of a closed cylinder: two circular bases, both counted",
+  "difficulty": "medium",
+  "prompt": "A closed cylindrical can has a radius of 4 centimeters and a height of 9 centimeters. A paper label covers exactly the lateral (curved) surface of the can. To the nearest tenth of a percent, what percent of the can's total surface area does the label cover?",
+  "choices": [
+   "36.0",
+   "52.9",
+   "69.2",
+   "81.8"
+  ],
+  "correct_answer": "69.2",
+  "explanation": "The lateral surface area is 2 pi r h = 2 pi(4)(9) = 72 pi. The two bases together have area 2 pi r^2 = 32 pi, so the total surface area is 104 pi. The label covers 72 pi / 104 pi = 72/104, about 69.2 percent. \"81.8\" comes from a solver who counts only one base, 72/(72 + 16). \"52.9\" comes from a solver who drops the 2 from the lateral area, using pi r h = 36 pi, 36/(36 + 32). \"36.0\" comes from a solver who uses the diameter 8 in place of the radius for the bases, 2 pi(8^2) = 128 pi, giving 72/(72 + 128).",
+  "solve": "var lat = 2 * 4 * 9, bases = 2 * 4 * 4; return (100 * lat / (lat + bases)).toFixed(1);",
+  "distractor_solve": {
+   "81.8": "var lat = 2 * 4 * 9; return (100 * lat / (lat + 4 * 4)).toFixed(1);",
+   "52.9": "var lat = 4 * 9, bases = 2 * 4 * 4; return (100 * lat / (lat + bases)).toFixed(1);",
+   "36.0": "var lat = 2 * 4 * 9, bases = 2 * 8 * 8; return (100 * lat / (lat + bases)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AGEO2-10",
+  "domain": "Geometry",
+  "subskill": "volume of a cylinder capped by a hemisphere, with the radius given as a diameter",
+  "difficulty": "medium",
+  "prompt": "A grain silo is shaped like a right circular cylinder topped by a hemisphere of the same radius. The cylinder has a diameter of 6 meters and a height of 10 meters. To the nearest tenth of a cubic meter, what is the total volume of the silo?",
+  "choices": [
+   "339.3",
+   "301.6",
+   "325.2",
+   "311.0"
+  ],
+  "correct_answer": "339.3",
+  "explanation": "The radius is 3 meters. The cylinder's volume is pi(3^2)(10) = 90 pi. A hemisphere is half a sphere, (1/2)(4/3) pi(3^3) = (2/3) pi(27) = 18 pi. The total is 108 pi, about 339.3 cubic meters. \"311.0\" comes from a solver who uses (1/3) pi r^3 for the dome, 90 pi + 9 pi = 99 pi. \"325.2\" comes from a solver who treats the dome as half of a cylinder of radius 3 and height 3, 90 pi + (1/2) pi(9)(3) = 103.5 pi. \"301.6\" comes from a solver who uses r^2 instead of r^3 in the hemisphere formula, 90 pi + (2/3) pi(9) = 96 pi.",
+  "solve": "var r = 6 / 2; var v = Math.PI * r * r * 10 + (2 / 3) * Math.PI * r * r * r; return v.toFixed(1);",
+  "distractor_solve": {
+   "311.0": "var r = 3; return (Math.PI * r * r * 10 + (1 / 3) * Math.PI * r * r * r).toFixed(1);",
+   "325.2": "var r = 3; return (Math.PI * r * r * 10 + 0.5 * Math.PI * r * r * r).toFixed(1);",
+   "301.6": "var r = 3; return (Math.PI * r * r * 10 + (2 / 3) * Math.PI * r * r).toFixed(1);"
+  }
+ },
+ {
+  "id": "AGEO2-12",
+  "domain": "Geometry",
+  "subskill": "area of the triangle a line cuts off with the two axes, from two points on the line: slope, then both intercepts",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, a line passes through the points (3, 8) and (6, 6). What is the area, in square coordinate units, of the triangle bounded by this line, the x-axis, and the y-axis?",
+  "choices": [
+   "27",
+   "50",
+   "75",
+   "60"
+  ],
+  "correct_answer": "75",
+  "explanation": "The slope is (6 - 8)/(6 - 3) = -2/3. Through (3, 8): y = (-2/3)(x - 3) + 8, so the y-intercept is 8 + 2 = 10 and the x-intercept is where 0 = (-2/3)x + 10, x = 15. The triangle has legs 15 and 10 along the axes, so its area is (1/2)(15)(10) = 75. \"27\" comes from a solver who takes the slope as +2/3, getting y-intercept 6 and x-intercept -9, then (1/2)(9)(6). \"50\" comes from a solver who assumes the x-intercept equals the y-intercept, (1/2)(10)(10). \"60\" comes from a solver who uses the y-coordinate 8 of the given point as the triangle's height, (1/2)(15)(8).",
+  "solve": "var m = (6 - 8) / (6 - 3); var b = 8 - m * 3; var xi = -b / m; return String(Math.round(xi * b / 2 * 1e6) / 1e6);",
+  "distractor_solve": {
+   "27": "var m = 2 / 3; var b = 8 - m * 3; var xi = -b / m; return String(Math.round(Math.abs(xi * b / 2) * 1e6) / 1e6);",
+   "50": "var m = (6 - 8) / (6 - 3); var b = 8 - m * 3; return String(b * b / 2);",
+   "60": "var m = (6 - 8) / (6 - 3); var b = 8 - m * 3; var xi = -b / m; return String(Math.round(xi * 8 / 2 * 1e6) / 1e6);"
+  }
+ },
+ {
+  "id": "AFN2-01",
+  "domain": "Functions",
+  "subskill": "a piecewise function made continuous at the boundary: solve for the constant in one piece, then evaluate that piece elsewhere",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 5 for x < 3 and f(x) = 4x + k for x >= 3, where k is a constant. If the graph of f has no break at x = 3 (that is, f is continuous there), what is the value of f(6)?",
+  "choices": [
+   "25",
+   "67",
+   "37",
+   "49"
+  ],
+  "correct_answer": "25",
+  "explanation": "For the graph to have no break at x = 3, the two pieces must agree there: 2(3^2) - 5 = 4(3) + k, so 13 = 12 + k and k = 1. Then f(6) uses the second piece, since 6 >= 3: f(6) = 4(6) + 1 = 25. \"37\" comes from a solver who sets k equal to the left-hand value 13 instead of solving for it, 24 + 13. \"49\" comes from a solver who adds 12 instead of subtracting when solving 13 = 12 + k, getting k = 25, then 24 + 25. \"67\" comes from a solver who evaluates the first piece at 6, 2(36) - 5, ignoring the domain restriction.",
+  "solve": "var left = 2 * 3 * 3 - 5; var k = left - 4 * 3; return String(4 * 6 + k);",
+  "distractor_solve": {
+   "37": "var left = 2 * 3 * 3 - 5; return String(4 * 6 + left);",
+   "49": "var left = 2 * 3 * 3 - 5; var k = left + 4 * 3; return String(4 * 6 + k);",
+   "67": "return String(2 * 6 * 6 - 5);"
+  }
+ },
+ {
+  "id": "AFN2-02",
+  "domain": "Functions",
+  "subskill": "exponential decay over a NON-whole number of periods: the fractional exponent, not a half-step of the factor or a linear interpolation",
+  "difficulty": "hard",
+  "prompt": "A radioactive sample decays so that at the end of every 12-year period, 40% of the amount present at the start of that period remains. To the nearest tenth of a percent, what percent of the original sample remains after 30 years?",
+  "choices": [
+   "8.0",
+   "11.2",
+   "10.1",
+   "27.9"
+  ],
+  "correct_answer": "10.1",
+  "explanation": "Thirty years is 30/12 = 2.5 periods, so the remaining fraction is 0.40^2.5 = 0.16(sqrt 0.40) = 0.16(0.6325), about 0.1012, or 10.1 percent. \"8.0\" comes from a solver who applies two full periods, 0.16, and then treats the remaining half period as halving the amount, 16(0.5). \"11.2\" comes from a solver who interpolates linearly between the 24-year value 16% and the 36-year value 6.4%, landing at their midpoint. \"27.9\" comes from a solver who uses the 60% that is lost as the factor that remains, 0.60^2.5.",
+  "solve": "return (100 * Math.pow(0.40, 30 / 12)).toFixed(1);",
+  "distractor_solve": {
+   "8.0": "return (100 * Math.pow(0.40, 2) * 0.5).toFixed(1);",
+   "11.2": "return (100 * (Math.pow(0.40, 2) + Math.pow(0.40, 3)) / 2).toFixed(1);",
+   "27.9": "return (100 * Math.pow(0.60, 30 / 12)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AFN2-03",
+  "domain": "Functions",
+  "subskill": "maximum value of a downward parabola whose linear coefficient must first be recovered from the location of the vertex",
+  "difficulty": "medium",
+  "prompt": "The function f(x) = -3x^2 + bx - 5, where b is a constant, has its maximum value at x = 3. What is the maximum value of f?",
+  "choices": [
+   "27",
+   "22",
+   "76",
+   "49"
+  ],
+  "correct_answer": "22",
+  "explanation": "The vertex of y = ax^2 + bx + c is at x = -b/(2a). Here -b/(2(-3)) = b/6 = 3, so b = 18. The maximum value is f(3) = -3(9) + 18(3) - 5 = -27 + 54 - 5 = 22. \"27\" comes from a solver who drops the constant term, -27 + 54. \"49\" comes from a solver who drops the quadratic term, 54 - 5. \"76\" comes from a solver who evaluates -3(3^2) as +27, giving 27 + 54 - 5.",
+  "solve": "var b = 3 * 2 * 3; return String(-3 * 9 + b * 3 - 5);",
+  "distractor_solve": {
+   "27": "var b = 3 * 2 * 3; return String(-3 * 9 + b * 3);",
+   "49": "var b = 3 * 2 * 3; return String(b * 3 - 5);",
+   "76": "var b = 3 * 2 * 3; return String(3 * 9 + b * 3 - 5);"
+  }
+ },
+ {
+  "id": "AFN2-04",
+  "domain": "Functions",
+  "subskill": "evaluating a function built from an odd function at a negated input: the oddness flips f, and the constant is added afterward",
+  "difficulty": "medium",
+  "prompt": "The function f is odd, which means that f(-x) = -f(x) for every real number x, and f(3) = -7. If g(x) = 2f(x) - 5, what is the value of g(-3)?",
+  "choices": [
+   "-19",
+   "4",
+   "14",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "Because f is odd, f(-3) = -f(3) = 7. Then g(-3) = 2f(-3) - 5 = 2(7) - 5 = 9. \"-19\" comes from a solver who treats f as even, using f(-3) = -7, so that 2(-7) - 5. \"4\" comes from a solver who subtracts 5 from f(-3) before doubling, 2(7 - 5). \"14\" comes from a solver who doubles f(-3) and forgets the -5.",
+  "solve": "var f3 = -7; var fm3 = -f3; return String(2 * fm3 - 5);",
+  "distractor_solve": {
+   "4": "var fm3 = 7; return String(2 * (fm3 - 5));",
+   "14": "var fm3 = 7; return String(2 * fm3);",
+   "-19": "var f3 = -7; return String(2 * f3 - 5);"
+  }
+ },
+ {
+  "id": "AFN2-05",
+  "domain": "Functions",
+  "subskill": "a linear function from two function values, then solved for the INPUT that gives a stated output",
+  "difficulty": "medium",
+  "prompt": "For a linear function f, f(2) = 7 and f(5) = 1. For what value of x is f(x) = 25?",
+  "choices": [
+   "-39",
+   "-18",
+   "-7",
+   "-4"
+  ],
+  "correct_answer": "-7",
+  "explanation": "The slope is (1 - 7)/(5 - 2) = -2, so f(x) = -2(x - 2) + 7 = -2x + 11. Setting -2x + 11 = 25 gives -2x = 14, so x = -7. \"-39\" comes from a solver who evaluates f(25) instead of solving f(x) = 25, -2(25) + 11. \"-18\" comes from a solver who moves the 11 across with the wrong sign, -2x = 25 + 11 = 36. \"-4\" comes from a solver who computes the slope as -6/2 = -3, getting f(x) = -3x + 13 and -3x = 12.",
+  "solve": "var m = (1 - 7) / (5 - 2); var b = 7 - m * 2; return String((25 - b) / m);",
+  "distractor_solve": {
+   "-39": "var m = (1 - 7) / (5 - 2); var b = 7 - m * 2; return String(m * 25 + b);",
+   "-18": "var m = (1 - 7) / (5 - 2); var b = 7 - m * 2; return String((25 + b) / m);",
+   "-4": "var m = (1 - 7) / 2; var b = 7 - m * 2; return String((25 - b) / m);"
+  }
+ },
+ {
+  "id": "AFN2-07",
+  "domain": "Functions",
+  "subskill": "sum of the first n terms of an arithmetic sequence whose first term and common difference must both be recovered from two later terms",
+  "difficulty": "medium",
+  "prompt": "In an arithmetic sequence, the 3rd term is 10 and the 7th term is 26. What is the sum of the first 12 terms of the sequence?",
+  "choices": [
+   "312",
+   "384",
+   "552",
+   "288"
+  ],
+  "correct_answer": "288",
+  "explanation": "From the 3rd term to the 7th is 4 steps, so the common difference is (26 - 10)/4 = 4. The first term is 10 - 2(4) = 2 and the 12th term is 2 + 11(4) = 46. The sum of the first 12 terms is 12(2 + 46)/2 = 288. \"312\" comes from a solver who takes the 12th term as 2 + 12(4) = 50, giving 12(2 + 50)/2. \"384\" comes from a solver who treats the 3rd term as the first term, 10 + 11(4) = 54 and 12(10 + 54)/2. \"552\" comes from a solver who multiplies the number of terms by the last term, 12(46), instead of averaging the first and last.",
+  "solve": "var d = (26 - 10) / (7 - 3); var a1 = 10 - 2 * d; var a12 = a1 + 11 * d; return String(12 * (a1 + a12) / 2);",
+  "distractor_solve": {
+   "312": "var d = (26 - 10) / (7 - 3); var a1 = 10 - 2 * d; var a12 = a1 + 12 * d; return String(12 * (a1 + a12) / 2);",
+   "384": "var d = (26 - 10) / (7 - 3); var a1 = 10; var a12 = a1 + 11 * d; return String(12 * (a1 + a12) / 2);",
+   "552": "var d = (26 - 10) / (7 - 3); var a1 = 10 - 2 * d; var a12 = a1 + 11 * d; return String(12 * a12);"
+  }
+ },
+ {
+  "id": "AFN2-08",
+  "domain": "Functions",
+  "subskill": "y-intercept of a parabola from its vertex and one other point: the leading coefficient comes from the squared horizontal distance",
+  "difficulty": "medium",
+  "prompt": "In the standard (x,y) coordinate plane, a parabola has its vertex at (3, -4) and passes through the point (5, 4). What is the y-coordinate of the point where the parabola crosses the y-axis?",
+  "choices": [
+   "32",
+   "14",
+   "5",
+   "22"
+  ],
+  "correct_answer": "14",
+  "explanation": "In vertex form the parabola is y = a(x - 3)^2 - 4. Substituting (5, 4): 4 = a(2^2) - 4, so 4a = 8 and a = 2. At x = 0, y = 2(0 - 3)^2 - 4 = 18 - 4 = 14. \"5\" comes from a solver who takes a = 1 without solving for it, 9 - 4. \"22\" comes from a solver who finds a = 2 but adds the 4 instead of subtracting, 18 + 4. \"32\" comes from a solver who divides 8 by the horizontal distance 2 rather than its square, getting a = 4, then 4(9) - 4.",
+  "solve": "var a = (4 - (-4)) / ((5 - 3) * (5 - 3)); return String(a * (0 - 3) * (0 - 3) + (-4));",
+  "distractor_solve": {
+   "5": "return String(1 * 9 - 4);",
+   "22": "var a = (4 - (-4)) / ((5 - 3) * (5 - 3)); return String(a * 9 + 4);",
+   "32": "var a = (4 - (-4)) / (5 - 3); return String(a * 9 - 4);"
+  }
+ }
+]

@@ -1,0 +1,156 @@
+{
+ "AGEO2-01": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=2: rod < 9*sqrt3 = 15.6 (box fits in a 9-cube) kills C 15.8 and D 17.4; rod > 9 kills nothing. Survivors are key and face-diagonal 11.4 (canonical trap) - keep, but C/D are dead weight."
+ },
+ "AGEO2-02": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4: triangle inequality 3<QR<21 and QR<12 (opposite 40 deg, not the largest angle) kill nothing. 5.1 = 12-9cos40, 9.3 = sin-for-cos, 11.9 = dropped factor 2."
+ },
+ "AGEO2-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: AC = 14 sin80/sin35 < 14/sin30 = 28 (sin80<1, sin35>1/2) kills D 32.0 (= 14*80/35, the linear-proportion trap). AC>14 (largest angle) kills nothing. Author's doubt confirmed: the bound is free once sin30=1/2 is used."
+ },
+ "AGEO2-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4: un-thirded bound depth < 12*(6/9)^2 = 16/3 kills nothing (all four below). 4/9 = radius-18, 4 = swapped radii, 8/3 = mixed."
+ },
+ "AGEO2-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "chord <= diameter 12 kills nothing (2sqrt31 = 11.1 sneaks under). Distractors are the three natural completing-the-square slips (32-25, 36-5, 36-9)."
+ },
+ "AGEO2-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4: half-bounding-box bound area <= 8*10/2 = 40 is free but kills nothing - the key 35.5 is the largest option. Author's doubt: not a leak."
+ },
+ "AGEO2-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3 (soft): inscribed square side > r so square area > 25 so region < 25pi-25 = 53.5; B 53.5 sits ON that bound. Needs 25pi computed, so borderline free. 21.5 = circumscribed-square swap, 11.4 = (pi-2)r."
+ },
+ "AGEO2-08": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3 (soft): h=9 > r=4 means lateral 2pi r h exceeds the two bases 2pi r^2, so label > 50%; kills C 36.0. Under-100 bound kills nothing. 81.8 = one base, 52.9 = bases doubled."
+ },
+ "AGEO2-09": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: APB is an exterior angle of triangle PBC so APB > inscribed angle ACB = 82/2 = 41; kills A 41 (ON the bound) and B 18. Remaining pair is 64 vs 82, and 82 is a number printed in the stem. Author's pair doubt confirmed. DROP or replace A,C with 116 (vertical-pair angle BPC) and 128 (un-halved sum)."
+ },
+ "AGEO2-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: hemisphere > inscribed cone (9pi) so total > 99pi = 311.0; A sits ON that bound (it IS the coned cap). Full-sphere and capping-cylinder bounds kill nothing. 301.6 = r not cubed, 325.2 = half of pi r^3."
+ },
+ "AGEO2-11": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2: A+B = 134 with A the larger, so B < 67; kills D 67 (ON the bound) and C 80 (= the sign-swapped solve, also = angle A). Left with 54 vs 10, and 10 requires reading 134 as 46. REPAIR: replace C,D with 46 (angle C) and 40."
+ },
+ "AGEO2-12": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: (6,6) is on the hypotenuse so the 6x6 square lies inside the triangle, area > 36; kills D 27. (Rectangle+trapezoid under the two points gives > 45, still only D.) 50 = 1/2*10*10 symmetric guess, 60 = 1/2*12*10."
+ },
+ "AFN2-01": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "k unbounded from the stem, no free rejection. 67 = wrong piece at 6, 37 = k=13 (equated k to f(3)), 49 = k mis-solved as 25."
+ },
+ "AFN2-02": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: rungs 16.0% (24y) and 6.4% (36y) kill A 27.9 (= 0.6^2.5, the 60%-remains misread). Author's doubt confirmed. Convexity (value below the 11.2 chord midpoint) kills C for a strong student, leaving 2. Replace 27.9 with an in-window value such as 9.6."
+ },
+ "AFN2-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "b unknown, max = 3b-32, no free bound beyond max >= f(0) = -5. 76 = sign of -3x^2 dropped, 49 = quadratic term dropped, 27 = constant dropped."
+ },
+ "AFN2-04": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "no free bound. -19 = g(3), 14 = forgot -5, 4 = subtracted 5 twice."
+ },
+ "AFN2-05": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4: decreasing f and 25 > f(2) gives x < 2; all four options are negative. -39 = f(25) (evaluated instead of solved), -18 = intercept sign, -4 = intercept 17."
+ },
+ "AFN2-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2: f(-3) = f(3) lies between f(2)=3 and f(4)=27 (kills nothing) AND a>0 so f(3) is below the chord midpoint 15; kills A 18 and D 23. Left 13 vs 9, and 9 has no derivation. REPAIR: distractors must sit in (3,15), e.g. 7 (= 2*2*3-5) and 11."
+ },
+ "AFN2-07": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4: no free bound without d. 552 = 12*a12, 384 = 3rd term used as 1st, 312 = a1 off by one step."
+ },
+ "AFN2-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=4 (3 soft): opens up and x=0 is farther from the vertex than x=5, so y-int > 4 kills nothing; 'rise at least proportional' (> 8*1.5 = 12 above -4, i.e. > 8) kills A 5 but that is a small computation. 32 = a not squared (a=4), 22 = +4 instead of -4."
+ },
+ "AFN2-09": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2: 1 < log x < 2 means 10 < x < 100 so 10^4 < 100x^2 < 10^6, answer in (4,6); kills C 3.3 (forgot exponent) and D 6.6 (squared the whole). Left 4.6 vs 5.3. The canonical slips for this stem necessarily leave the window. Author's pair doubt confirmed. DROP unless distractors are redesigned inside (4,6)."
+ },
+ "AFN2-10": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3: equal outputs at 1 and -6 put the axis at -2.5 < 0, and with a=2>0 that forces k > 0; kills A -14. 70 = 7k undivided, 14 = difference 7 used for sum -5. The +-14 pair is not a key tell since neither is the key."
+ }
+}
