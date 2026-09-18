@@ -844,3 +844,20 @@ an auditor. Do not touch the file again.
 **h. Read the exit code you trust.** `math-bank-helper verify` returned 0
 on a FAIL until an author mutation-tested it. Fixed; but when you build a
 chain, break it once before believing it.
+
+**i. Literal-equation options must be dimensionally valid, and the stem
+must not name the key's denominator.** Two items on 2026-09-19 each had
+two options that were dimensionless where the unknown had to carry the
+unit of a given quantity, and a stem clause ("q > f", "a ≠ 1") that
+pointed at the key's denominator. One survivor, no algebra. Two graders
+found it independently; no automated check can, because it is a property
+of what the symbols mean. For every literal-equation item, check that each
+option has the right dimension and that the stem's side conditions do not
+single out one form.
+
+**j. On a "greatest / least" question, the key must not be the extreme
+option.** Two linear-programming items asked for the greatest value and
+the key was the largest option in both; a reader who notices carries it
+across the form. Put at least one distractor beyond the key in the asked
+direction — the value from a vertex that violates one constraint is the
+natural candidate.
