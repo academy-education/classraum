@@ -1,0 +1,254 @@
+[
+ {
+  "id": "SADV7B-01",
+  "domain": "Advanced Math",
+  "subskill": "exponential function given its value at x = 0 and its ratio between two non-adjacent inputs: recover the base, then solve for the input at a target value",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = a·b^x, where a and b are positive constants. It is given that f(0) = 7 and f(11)/f(5) = 64. For what value of x does f(x) = 28672?",
+  "choices": [
+   "17",
+   "12",
+   "2",
+   "23"
+  ],
+  "correct_answer": "12",
+  "explanation": "f(11)/f(5) = b^6 = 64, so b = 2, and f(0) = a = 7. Then 7·2^x = 28672 gives 2^x = 4096 = 2^12, so x is \"12\". \"2\" comes from reading the quotient 64 as the ratio over a single unit, so that 64^x = 4096 and x = 2. \"17\" comes from treating x as measured from the input 5, adding 5 to the exponent. \"23\" comes from treating x as measured from the input 11, adding 11 to the exponent.",
+  "solve": "var b=Math.pow(64,1/6); var a=7; return String(Math.round(Math.log(28672/a)/Math.log(b)));",
+  "distractor_solve": {
+   "2": "return String(Math.round(Math.log(28672/7)/Math.log(64)));",
+   "17": "var b=Math.pow(64,1/6); return String(Math.round(Math.log(28672/7)/Math.log(b))+5);",
+   "23": "var b=Math.pow(64,1/6); return String(Math.round(Math.log(28672/7)/Math.log(b))+11);"
+  }
+ },
+ {
+  "id": "SADV7B-02",
+  "domain": "Advanced Math",
+  "subskill": "exponential of the form a·b^x + c with the horizontal asymptote given: use the asymptote to fix c, then one function value to recover a",
+  "difficulty": "medium",
+  "prompt": "The function g is defined by g(x) = a·3^x + c, where a and c are constants. The graph of y = g(x) in the xy-plane has the horizontal asymptote y = -90, and g(2) = 99. What is the value of a?",
+  "choices": [
+   "1",
+   "11",
+   "189",
+   "21"
+  ],
+  "correct_answer": "21",
+  "explanation": "As x decreases without bound, 3^x approaches 0, so the asymptote gives c = -90. Then a·3^2 + (-90) = 99, so 9a = 189 and a is \"21\". \"1\" comes from subtracting the asymptote value instead of adding it, giving (99 - 90)/9. \"11\" comes from ignoring the asymptote entirely and solving 9a = 99. \"189\" comes from stopping at 9a = 189 and reporting the product instead of dividing by 3².",
+  "solve": "var c=-90, y=99; return String((y-c)/Math.pow(3,2));",
+  "distractor_solve": {
+   "1": "return String((99-90)/9);",
+   "11": "return String(99/9);",
+   "189": "return String(99+90);"
+  }
+ },
+ {
+  "id": "SADV7B-03",
+  "domain": "Advanced Math",
+  "subskill": "exponential equation that is quadratic in 2^x: substitute u = 2^x, solve the quadratic, convert both values back and add the inputs",
+  "difficulty": "hard",
+  "prompt": "What is the sum of the solutions of the equation 2^(2x + 1) - 24·2^x + 64 = 0 ?",
+  "choices": [
+   "5",
+   "12",
+   "8",
+   "32"
+  ],
+  "correct_answer": "5",
+  "explanation": "Writing u = 2^x, the equation 2·u² - 24u + 64 = 0 becomes u² - 12u + 32 = 0, so u = 4 or u = 8. Then 2^x = 4 gives x = 2 and 2^x = 8 gives x = 3, and the sum is \"5\". \"12\" comes from adding the two values of 2^x rather than the two values of x. \"8\" comes from reporting the larger value of 2^x as if it were a solution. \"32\" comes from multiplying the two values of 2^x instead of converting them back.",
+  "solve": "var a=2,b=-24,c=64; var d=Math.sqrt(b*b-4*a*c); var u1=(-b+d)/(2*a), u2=(-b-d)/(2*a); return String(Math.round(Math.log(u1)/Math.log(2)+Math.log(u2)/Math.log(2)));",
+  "distractor_solve": {
+   "8": "var d=Math.sqrt(576-512); return String((24+d)/4);",
+   "12": "var d=Math.sqrt(576-512); return String((24+d)/4+(24-d)/4);",
+   "32": "var d=Math.sqrt(576-512); return String(((24+d)/4)*((24-d)/4));"
+  }
+ },
+ {
+  "id": "SADV7B-04",
+  "domain": "Advanced Math",
+  "subskill": "two exponential models with related bases: find the input at which one model is a stated multiple of the other by writing both sides as powers of one base",
+  "difficulty": "hard",
+  "prompt": "The functions A and B are defined by A(t) = 3·4^t and B(t) = 3072·2^t. For what value of t is A(t) = 16·B(t) ?",
+  "choices": [
+   "10",
+   "6",
+   "40",
+   "14"
+  ],
+  "correct_answer": "14",
+  "explanation": "A(t) = 3·2^(2t), and 16·B(t) = 49152·2^t, so 2^(2t) = 16384·2^t = 2^14·2^t. Subtracting exponents gives t = \"14\". \"10\" comes from ignoring the factor of 16 and solving 2^t = 3072/3 = 1024. \"6\" comes from dividing by 16 instead of multiplying, solving 2^t = 1024/16 = 64. \"40\" comes from multiplying the exponents when combining 2⁴·2¹⁰ instead of adding them.",
+  "solve": "var L=16*3072/3; return String(Math.round(Math.log(L)/Math.log(2)));",
+  "distractor_solve": {
+   "6": "var L=3072/3/16; return String(Math.round(Math.log(L)/Math.log(2)));",
+   "10": "var L=3072/3; return String(Math.round(Math.log(L)/Math.log(2)));",
+   "40": "var e1=Math.round(Math.log(16)/Math.log(2)), e2=Math.round(Math.log(1024)/Math.log(2)); return String(e1*e2);"
+  }
+ },
+ {
+  "id": "SADV7B-05",
+  "domain": "Advanced Math",
+  "subskill": "exponential versus linear model: find the least integer input at which the exponential value first exceeds the linear value",
+  "difficulty": "hard",
+  "prompt": "The functions f and g are defined by f(n) = 4·2^n and g(n) = 45n + 70. What is the least integer value of n for which f(n) > g(n) ?",
+  "choices": [
+   "13",
+   "7",
+   "3",
+   "9"
+  ],
+  "correct_answer": "7",
+  "explanation": "f(6) = 256 and g(6) = 340, so the exponential is still behind at n = 6; f(7) = 512 and g(7) = 385, so \"7\" is the least integer that works. \"3\" comes from reading 4·2^n as (4·2)^n = 8^n, which first passes 45n + 70 at n = 3. \"9\" comes from dropping the coefficient 4 and comparing 2^n with 45n + 70, which first holds at n = 9. \"13\" comes from reading 4·2^n as 4n², which first passes 45n + 70 at n = 13.",
+  "solve": "for(var n=1;n<200;n++){if(4*Math.pow(2,n)>45*n+70) return String(n);} return 'none';",
+  "distractor_solve": {
+   "3": "for(var n=1;n<200;n++){if(Math.pow(8,n)>45*n+70) return String(n);} return 'none';",
+   "9": "for(var n=1;n<200;n++){if(Math.pow(2,n)>45*n+70) return String(n);} return 'none';",
+   "13": "for(var n=1;n<200;n++){if(4*n*n>45*n+70) return String(n);} return 'none';"
+  }
+ },
+ {
+  "id": "SADV7B-06",
+  "domain": "Advanced Math",
+  "subskill": "recovering the initial value of an exponential model with a fractional growth factor from a later value: divide by the accumulated factor",
+  "difficulty": "medium",
+  "prompt": "A quantity is modeled by f(x) = a(3/2)^x, where a is a constant and x is the number of growth periods that have passed. If f(4) = 405, what is the value of a?",
+  "choices": [
+   "45",
+   "5",
+   "80",
+   "180"
+  ],
+  "correct_answer": "80",
+  "explanation": "(3/2)⁴ = 81/16, so a(81/16) = 405 and a = 405(16/81) = \"80\". \"180\" comes from dividing by (3/2)² instead of (3/2)⁴, halving the number of periods. \"45\" comes from reading (3/2)⁴ as 3² and dividing 405 by 9. \"5\" comes from dividing by 81 alone, dropping the 16 in the denominator of (3/2)⁴.",
+  "solve": "return String(405/Math.pow(1.5,4));",
+  "distractor_solve": {
+   "5": "return String(405/81);",
+   "45": "return String(405/9);",
+   "180": "return String(405/Math.pow(1.5,2));"
+  }
+ },
+ {
+  "id": "SADV7B-07",
+  "domain": "Advanced Math",
+  "subskill": "exponential with a coefficient inside the exponent: find the constant multiplier produced by a one-unit increase in the input",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 4·5^(3x). If f(x + 1) = c·f(x) for every value of x, what is the value of c?",
+  "choices": [
+   "125",
+   "15",
+   "60",
+   "20"
+  ],
+  "correct_answer": "125",
+  "explanation": "f(x + 1) = 4·5^(3x + 3) = 5³·(4·5^(3x)) = 125·f(x), so c is \"125\". \"15\" comes from multiplying the base by the exponent’s coefficient, 5·3, instead of raising 5 to the power 3. \"20\" comes from cancelling the exponent entirely and multiplying the leading coefficient by the base, 4·5. \"60\" comes from that same product with the exponent’s coefficient attached as well, 4·5·3.",
+  "solve": "var f=function(x){return 4*Math.pow(5,3*x)}; return String(f(1)/f(0));",
+  "distractor_solve": {
+   "15": "return String(5*3);",
+   "20": "return String(4*5);",
+   "60": "return String(4*5*3);"
+  }
+ },
+ {
+  "id": "SADV7B-08",
+  "domain": "Advanced Math",
+  "subskill": "exponential equation whose exponent is a quadratic expression: match the powers, solve the resulting quadratic, and select the greater solution",
+  "difficulty": "hard",
+  "prompt": "The equation 2^(x² - 4x) = 32 has two solutions. What is the greater of the two solutions?",
+  "choices": [
+   "8",
+   "-1",
+   "5",
+   "11"
+  ],
+  "correct_answer": "5",
+  "explanation": "Since 32 = 2⁵, the exponents must be equal: x² - 4x = 5, so x² - 4x - 5 = 0 and x = 5 or x = -1. The greater solution is \"5\". \"8\" comes from setting the exponent equal to 32 rather than to 5, giving x² - 4x - 32 = 0 with greater root 8. \"11\" comes from completing the square to (x - 2)² = 9 and then solving x - 2 = 9 without taking the square root. \"-1\" comes from reporting the lesser of the two correct solutions.",
+  "solve": "var d=Math.sqrt(16+4*5); return String((4+d)/2);",
+  "distractor_solve": {
+   "8": "var d=Math.sqrt(16+4*32); return String((4+d)/2);",
+   "11": "return String(2+9);",
+   "-1": "var d=Math.sqrt(16+4*5); return String((4-d)/2);"
+  }
+ },
+ {
+  "id": "SADV7B-09",
+  "domain": "Advanced Math",
+  "subskill": "exponential model whose exponent is t divided by an unknown constant: recover that constant from one observed value",
+  "difficulty": "hard",
+  "prompt": "The number of cells in a culture after t hours is modeled by N(t) = 6·5^(t/k), where k is a positive constant. If N(36) = 3750, what is the value of k?",
+  "choices": [
+   "4",
+   "144",
+   "32",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "3750/6 = 625 = 5⁴, so 36/k = 4 and k is \"9\". \"4\" comes from stopping at the exponent 4 and reporting it as k. \"144\" comes from multiplying 36 by 4 instead of dividing. \"32\" comes from subtracting the exponent from the elapsed time, 36 - 4, instead of dividing.",
+  "solve": "var e=Math.log(3750/6)/Math.log(5); return String(Math.round(36/e));",
+  "distractor_solve": {
+   "4": "return String(Math.round(Math.log(3750/6)/Math.log(5)));",
+   "32": "var e=Math.round(Math.log(625)/Math.log(5)); return String(36-e);",
+   "144": "var e=Math.round(Math.log(625)/Math.log(5)); return String(36*e);"
+  }
+ },
+ {
+  "id": "SADV7B-10",
+  "domain": "Advanced Math",
+  "subskill": "identity between two exponential expressions: absorb a horizontal shift into the leading coefficient so the two forms agree for every input",
+  "difficulty": "medium",
+  "prompt": "For every value of x, 7·2^(x + 4) = c·2^x, where c is a constant. What is the value of c?",
+  "choices": [
+   "112",
+   "16",
+   "23",
+   "11"
+  ],
+  "correct_answer": "112",
+  "explanation": "2^(x + 4) = 2⁴·2^x, so 7·2^(x + 4) = 7·16·2^x and c is \"112\". \"16\" comes from moving 2⁴ across but dropping the coefficient 7. \"23\" comes from adding 7 and 16 instead of multiplying them. \"11\" comes from adding the coefficient and the shift, 7 + 4, as if the shift were an added constant.",
+  "solve": "return String(7*Math.pow(2,4));",
+  "distractor_solve": {
+   "11": "return String(7+4);",
+   "16": "return String(Math.pow(2,4));",
+   "23": "return String(7+Math.pow(2,4));"
+  }
+ },
+ {
+  "id": "SADV7B-11",
+  "domain": "Advanced Math",
+  "subskill": "recovering both parameters of an exponential from two non-adjacent values by dividing to isolate a power of the base, then combining the parameters",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = a·b^x, where a and b are positive constants. It is given that f(2) = 36 and f(5) = 972. What is the value of a + b?",
+  "choices": [
+   "15",
+   "7",
+   "39",
+   "12"
+  ],
+  "correct_answer": "7",
+  "explanation": "f(5)/f(2) = b³ = 972/36 = 27, so b = 3. Then a·3² = 36 gives a = 4, and a + b is \"7\". \"15\" comes from dividing by b once instead of b², taking a = 36/3 = 12. \"39\" comes from treating f(2) itself as a, giving 36 + 3. \"12\" comes from multiplying a and b instead of adding them.",
+  "solve": "var b=Math.cbrt(972/36); var a=36/(b*b); return String(Math.round(a+b));",
+  "distractor_solve": {
+   "12": "var b=Math.cbrt(972/36); var a=36/(b*b); return String(Math.round(a*b));",
+   "15": "var b=Math.cbrt(27); return String(Math.round(36/b+b));",
+   "39": "var b=Math.cbrt(27); return String(Math.round(36+b));"
+  }
+ },
+ {
+  "id": "SADV7B-12",
+  "domain": "Advanced Math",
+  "subskill": "sum of two powers of one base with different exponents: factor out the common power, then solve the resulting exponential equation",
+  "difficulty": "hard",
+  "prompt": "What is the solution to the equation 2^(x + 3) + 2^x = 2304 ?",
+  "choices": [
+   "11",
+   "256",
+   "8",
+   "5"
+  ],
+  "correct_answer": "8",
+  "explanation": "2^(x + 3) + 2^x = 2^x(2³ + 1) = 9·2^x, so 2^x = 2304/9 = 256 = 2⁸ and the solution is \"8\". \"11\" comes from solving for x correctly but reporting x + 3. \"256\" comes from reporting the value of 2^x instead of x. \"5\" comes from attaching the exponent 8 to x + 3 rather than to x, giving x = 8 - 3.",
+  "solve": "var v=2304/9; return String(Math.round(Math.log(v)/Math.log(2)));",
+  "distractor_solve": {
+   "5": "var v=2304/9; return String(Math.round(Math.log(v)/Math.log(2))-3);",
+   "11": "var v=2304/9; return String(Math.round(Math.log(v)/Math.log(2))+3);",
+   "256": "return String(2304/9);"
+  }
+ }
+]
