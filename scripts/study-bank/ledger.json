@@ -3660,6 +3660,34 @@
      "verdict": "Keys dealt by all three authors. Batch-level: the hub checker's relation list (x2, /2, +-1, sum, digit swap) missed every hub the solvers named today - key x 8, key / 3, key / 4, a x(3/2)^n chain - so \"Numeric hub: none\" is not evidence of no hub; recorded for the checker, not patched blind."
     }
    }
+  },
+  {
+   "id": "sat-adv-0919d-kept-2026-09-19",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-adv-0919d",
+   "contentSha": "c4313b483a527e1036b72d66c8210e8be6d7a7fbf5980154018be295e0ba1fbe",
+   "note": "6 kept of 16 (two authors x 8, the FIRST batch briefed under 13l: each author read all 103 live Advanced rows and wrote a 71/75-line mechanism list before authoring). Commissioned to close SAT Math form 23 (Advanced +5). Result of 13l: live duplicates fell from 14/30 to 4/16 - and all four duplicated mechanisms were ON the author's own list, just not connected to the item being written; the list is necessary and the author still has to check each item against it. One in-file pair across the two authors (author A dropped a candidate and replaced it with exactly author B's inverse-rational item). Armed attack; two unanimous items with a named hub, both also at N=1; one more at N=1 by a sign-plus-monotonicity bound. Rule drops: SADV6B-05 - unanimous under an ARMED rule (mechanism 66.7% vs guess 38.9%): -4 is the midpoint of 2 and -10, named 2/3; hunter N=1 - sqrt(x+5) <= 5 makes -4 the floor and the key IS the floor; SADV6B-06 - unanimous, armed: 1250 with 6250 = 5 x key, named; hunter N=1 - b < b^2 = 25 kills 6250 and convexity kills 370; SADV6B-01 - hunter N=1: a < 0 with the axis at 1.5 makes f increasing left of it, so f(1) > f(0) = 20 kills all three distractors; SADV6A-02 - mechanism duplicate of live SADV-09 named by row (interval length of a quadratic inequality); soft in-file pair with B-03; SADV6A-03 - mechanism duplicate of live SADV-19 named by row (sum of squares of the roots); SADV6A-06 - mechanism duplicate of live SAM11-18 named by row; construction flaw - the distinct-zero product equals c/a of the printed quadratic factor, so ignoring (x-5)^2 produces the key; SADV6B-02 - mechanism duplicate of live AH3-24 named by row (symmetric system x^2 - y^2, x - y); SADV6B-07 - in-file duplicate of SADV6A-08 (inverse of a linear-over-linear function at 4 with f(4) as the trap) - one of the pair kept; this one graded easy by grader B. CORRECTION (same day): the first write of this entry said 8 kept. The ledger script's aggregator-drop regex still read SADV5 after a case-sensitive rename, matched zero lines, printed \"agg drops: none\", and the kept file carried B-04 (majority weak) and B-08 (majority easy 3/3). The bank was never wrong: math-bank-helper insert reads the aggregator's qc.json itself and refused both rows (cohort holds exactly 6). The kept file and this entry were wrong for about ten minutes; the ledger scripts now refuse when the aggregator printed drop lines the regex did not parse.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "Sandbox 16/16 (my run on the merged snapshot; pins 1f6511bcc9a81210 / 190c9eacd5a463db); distractor_solve 48/48; hubs none by the checker - the hubs the solvers named (key x8, key / 4, sum of two options) are outside its relation list."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three graders on a per-item SHUFFLED render (sha 9fb73abde7ecadd2): exclusive:false 0/0/0; easy 1/4/-; hard 4/4/-. Hunter: N=1 on B-01, B-05, B-06; N=2 on eight; 4 live duplicates by id; in-file pair A-08/B-07. Kept difficulty {\"medium\":6}. Aggregator (ROUTED): drop B-04 (weak 2/3), B-05 (weak 2/3, easy 2/3), B-08 (easy 3/3)."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 48 forced picks, keys 4/4/4/4, control 25.0%: 21/48 = 43.8% (+18.8). Mechanism 6/9 = 66.7% vs guess 7/18 = 38.9% - ARMED (+27.8). Unanimous 3 of 16 vs 0.25. Residual on kept 6: 4/18 = 22.2% vs 33.3% (-11.1); unanimous items remaining in the kept set: none."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Keys dealt 2 per slot by both authors. Batch-level: 13l halves the duplicate rate but does not remove it; the remaining failure is the author not checking the finished item against the list it wrote."
+    }
+   }
   }
  ],
  "auditedCohorts": [
