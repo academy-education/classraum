@@ -294,25 +294,19 @@ function TopicInner({ slug }: { slug: string }) {
       // Composite (English, Math, Reading). Writing is free-response and
       // not built.
       //
-      // SCIENCE'S REASON CHANGED AND THIS COMMENT DID NOT (corrected
-      // 2026-09-15). It used to read "has no bank yet - assembleActSection
-      // throws 'no verified items'... hide until they have items". The bank
-      // now holds 120 verified Science items, TWO complete forms, and a
-      // third costs 2 items - so the condition this comment named as the
-      // unhide trigger has been satisfied for some time, and a reader
-      // acting on it would have unhidden an ungated section.
-      //
-      // The real blocker is the one the ACT family has always used: a
-      // HUMAN blind sitting, not the model attack. English and Reading
-      // each sat one (both 10.0% against a model at 76-79%) and shipped on
-      // it. Science has never had one. Its own ledger entry says the same
-      // thing - options-only 71.3%, "recorded as FAIL against the family
-      // bar; NOT the gate for this family" - and 71.3% is better than
-      // either section that shipped. So Science is one human sitting away
-      // from being openable, and that sitting is queued behind
-      // actrd-recall-2026-09-14. Unhide when it passes, not before, and
-      // not because the item count looks sufficient.
-      const HIDDEN_SUBTOPIC_SLUGS = new Set(['sat-essay', 'act-science', 'act-writing'])
+      // act-science UNHIDDEN 2026-09-19 on its human blind sitting.
+      // Run act-science-cofounder-2026-09-18: 21 items, 7 per domain, all
+      // answered by a human reviewer, 6/21 = 28.6% against a 28.6%
+      // best-fixed-letter control (+0.0). n=21 is coarse (about +/-13
+      // points per domain) and "clean" means the sample found nothing, not
+      // that the 120 items are verified item by item. It is the same gate
+      // English and Reading shipped on. The model options-only figure for
+      // this bank (71.3%) is a screen, not the gate, for ACT verbal/science
+      // (REGISTER s4). Two complete forms are drawable; a third costs 2
+      // items. If a later sitting or real attempts move it, re-hide here
+      // and say why in this comment - the earlier version of this block
+      // was stale for twelve days and read as an unhide trigger.
+      const HIDDEN_SUBTOPIC_SLUGS = new Set(['sat-essay', 'act-writing'])
       const kids = (childRows ?? [])
         .flatMap(c => {
           const kid = toTopic(c)

@@ -1794,6 +1794,11 @@
     "tells": {
      "passed": true,
      "verdict": "Key slots 20/20/20/20; per-batch key-longest <= 5 and key-shortest <= 5; no letter pattern per passage forms a bare ABCD permutation (authors reported)."
+    },
+    "human_sitting": {
+     "passed": true,
+     "run": "act-science-cofounder-2026-09-18",
+     "verdict": "Human blind sitting act-science-cofounder-2026-09-18: 21 items drawn 7 per domain across the two Science cohorts, 21/21 answered, reviewer_kind human, 6/21 = 28.6% vs 28.6% best-fixed-letter control (+0.0); per domain 3/7, 1/7, 2/7. Clean under the rule fixed before the sitting; n=21 is coarse and recorded as such. Released 2026-09-19 by unhiding act-science in page.tsx over the failing model options-only stage (71.3%) - for ACT verbal/science the human is the gate and the model is a screen (REGISTER s4)."
     }
    }
   },
@@ -1928,6 +1933,11 @@
     "tells": {
      "passed": true,
      "verdict": "Key-longest items all sit at Q4 of their passage (author-reported cross-item pattern; not student-exploitable)."
+    },
+    "human_sitting": {
+     "passed": true,
+     "run": "act-science-cofounder-2026-09-18",
+     "verdict": "Human blind sitting act-science-cofounder-2026-09-18: 21 items drawn 7 per domain across the two Science cohorts, 21/21 answered, reviewer_kind human, 6/21 = 28.6% vs 28.6% best-fixed-letter control (+0.0); per domain 3/7, 1/7, 2/7. Clean under the rule fixed before the sitting; n=21 is coarse and recorded as such. Released 2026-09-19 by unhiding act-science in page.tsx over the failing model options-only stage (71.3%) - for ACT verbal/science the human is the gate and the model is a screen (REGISTER s4)."
     }
    }
   },
