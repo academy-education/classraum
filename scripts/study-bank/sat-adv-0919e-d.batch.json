@@ -1,0 +1,254 @@
+[
+  {
+    "id": "SADV7D-01",
+    "domain": "Advanced Math",
+    "subskill": "sum of the REAL zeros of a quartic given as a factorable non-monic quadratic times an irreducible quadratic: test the discriminant, then sum only the real zeros",
+    "difficulty": "medium",
+    "prompt": "The polynomial p is defined by p(x) = (3x² − 7x + 2)(x² + 6x + 10). What is the sum of all real zeros of p?",
+    "choices": [
+      "-11/3",
+      "2/3",
+      "7/3",
+      "5/3"
+    ],
+    "correct_answer": "7/3",
+    "explanation": "The factor x² + 6x + 10 has discriminant 36 − 40 = −4 < 0, so it contributes no real zeros. The factor 3x² − 7x + 2 = (3x − 1)(x − 2) has zeros 1/3 and 2, whose sum is 7/3, which is \"7/3\". \"-11/3\" comes from a solver who applies −b/a to both factors, adding the −6 from x² + 6x + 10 to 7/3 as though that factor had real zeros. \"2/3\" is the product c/a of the two real zeros rather than their sum. \"5/3\" comes from a solver who misfactors 3x² − 7x + 2 as (3x − 2)(x − 1) and sums 2/3 + 1.",
+    "solve": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var d2=36-40; if(d2>=0) throw new Error('second factor has real zeros'); var d=49-24; var r1=(7+Math.sqrt(d))/6, r2=(7-Math.sqrt(d))/6; var s=r1+r2; var n=Math.round(s*3); if(Math.abs(n/3-s)>1e-9) throw new Error('not a third'); return frac(n,3);",
+    "distractor_solve": {
+      "-11/3": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};return frac(7-6*3,3);",
+      "2/3": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};return frac(2,3);",
+      "5/3": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};return frac(2+3,3);"
+    }
+  },
+  {
+    "id": "SADV7D-02",
+    "domain": "Advanced Math",
+    "subskill": "a new function built as f(x) + f(−x) from a cubic: evaluate both terms with correct signs on odd and even powers (the odd terms cancel)",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 2x³ − 3x² + 5x − 4. The function g is defined by g(x) = f(x) + f(−x). What is the value of g(2)?",
+    "choices": [
+      "-32",
+      "20",
+      "52",
+      "-8"
+    ],
+    "correct_answer": "-32",
+    "explanation": "f(2) = 16 − 12 + 10 − 4 = 10 and f(−2) = −16 − 12 − 10 − 4 = −42, so g(2) = 10 + (−42) = −32, which is \"-32\". (Equivalently the odd-power terms cancel and g(x) = −6x² − 8.) \"20\" comes from a solver who treats f(−x) as equal to f(x) and doubles f(2). \"52\" comes from a solver who subtracts, computing f(2) − f(−2). \"-8\" comes from a solver who evaluates (−2)² as −4, getting f(−2) = −16 + 12 − 10 − 4 = −18 and then 10 + (−18).",
+    "solve": "var f=function(x){return 2*x*x*x-3*x*x+5*x-4}; return String(f(2)+f(-2));",
+    "distractor_solve": {
+      "20": "var f=function(x){return 2*x*x*x-3*x*x+5*x-4}; return String(f(2)+f(2));",
+      "52": "var f=function(x){return 2*x*x*x-3*x*x+5*x-4}; return String(f(2)-f(-2));",
+      "-8": "var f=function(x){return 2*x*x*x-3*x*x+5*x-4}; var fneg2=2*(-8)-3*(-4)+5*(-2)-4; return String(f(2)+fneg2);"
+    }
+  },
+  {
+    "id": "SADV7D-03",
+    "domain": "Advanced Math",
+    "subskill": "nested composition from a two-function table ending in an inverse: read g⁻¹ as 'which input gives this output' from the g row",
+    "difficulty": "medium",
+    "prompt": "The table gives the values of the functions f and g for five values of x.\n\nx: 1, 2, 3, 4, 5\nf(x): 2, 5, 1, 3, 4\ng(x): 4, 1, 5, 2, 3\n\nThe function g⁻¹ is the inverse of g. What is the value of g⁻¹(f(g(3)))?",
+    "choices": [
+      "4",
+      "1",
+      "5",
+      "2"
+    ],
+    "correct_answer": "1",
+    "explanation": "From the table g(3) = 5 and f(5) = 4. Then g⁻¹(4) is the input x for which g(x) = 4, and the g row shows g(1) = 4, so g⁻¹(4) = 1, which is \"1\". \"4\" comes from a solver who stops at f(g(3)) = 4 and never applies the inverse. \"2\" comes from a solver who applies g instead of g⁻¹ to the 4, reading g(4) = 2. \"5\" comes from a solver who inverts the wrong row, finding the x with f(x) = 4 instead of g(x) = 4.",
+    "solve": "var f={1:2,2:5,3:1,4:3,5:4}, g={1:4,2:1,3:5,4:2,5:3}; var v=f[g[3]]; var x=null; for(var k in g){ if(g[k]===v){ if(x!==null) throw new Error('g not injective'); x=Number(k);} } return String(x);",
+    "distractor_solve": {
+      "4": "var f={1:2,2:5,3:1,4:3,5:4}, g={1:4,2:1,3:5,4:2,5:3}; return String(f[g[3]]);",
+      "2": "var f={1:2,2:5,3:1,4:3,5:4}, g={1:4,2:1,3:5,4:2,5:3}; return String(g[f[g[3]]]);",
+      "5": "var f={1:2,2:5,3:1,4:3,5:4}, g={1:4,2:1,3:5,4:2,5:3}; var v=f[g[3]]; var x=null; for(var k in f){ if(f[k]===v) x=Number(k);} return String(x);"
+    }
+  },
+  {
+    "id": "SADV7D-04",
+    "domain": "Advanced Math",
+    "subskill": "a function defined recursively by f(x + 1) = 2f(x) − 3 with one seed value: iterate three times, applying the whole rule at every step",
+    "difficulty": "medium",
+    "prompt": "The function f satisfies f(x + 1) = 2f(x) − 3 for all values of x, and f(0) = 5. What is the value of f(3)?",
+    "choices": [
+      "11",
+      "37",
+      "61",
+      "19"
+    ],
+    "correct_answer": "19",
+    "explanation": "Apply the rule three times: f(1) = 2(5) − 3 = 7, f(2) = 2(7) − 3 = 11, f(3) = 2(11) − 3 = 19, which is \"19\". \"11\" comes from a solver who stops after two steps and reports f(2). \"37\" comes from a solver who doubles three times first and subtracts 3 only once, computing 2³ · 5 − 3. \"61\" comes from a solver who reads the rule as f(x + 1) = 2f(x) + 3, getting 13, 29, 61.",
+    "solve": "var v=5; for(var i=0;i<3;i++) v=2*v-3; return String(v);",
+    "distractor_solve": {
+      "11": "var v=5; for(var i=0;i<2;i++) v=2*v-3; return String(v);",
+      "37": "return String(Math.pow(2,3)*5-3);",
+      "61": "var v=5; for(var i=0;i<3;i++) v=2*v+3; return String(v);"
+    }
+  },
+  {
+    "id": "SADV7D-05",
+    "domain": "Advanced Math",
+    "subskill": "leading coefficient of a composition f(g(x)) with f cubic and g quadratic: the outer leading coefficient times the inner leading coefficient raised to the outer degree",
+    "difficulty": "medium",
+    "prompt": "The functions f and g are defined by f(x) = 2x³ − x + 4 and g(x) = 3x² − 2. The function h is defined by h(x) = f(g(x)). When h(x) is written as a polynomial in x, what is its leading coefficient?",
+    "choices": [
+      "6",
+      "24",
+      "54",
+      "18"
+    ],
+    "correct_answer": "54",
+    "explanation": "The highest-degree term of h comes from 2(g(x))³, whose leading term is 2(3x²)³ = 2 · 27x⁶ = 54x⁶, so the leading coefficient is 54, which is \"54\". \"6\" comes from a solver who multiplies the two leading coefficients 2 · 3 without raising 3 to the outer degree. \"18\" comes from a solver who squares instead of cubes, computing 2 · 3². \"24\" comes from a solver who cubes the wrong coefficient, computing 2³ · 3.",
+    "solve": "var fLead=2, fDeg=3, gLead=3; return String(fLead*Math.pow(gLead,fDeg));",
+    "distractor_solve": {
+      "6": "return String(2*3);",
+      "18": "return String(2*Math.pow(3,2));",
+      "24": "return String(Math.pow(2,3)*3);"
+    }
+  },
+  {
+    "id": "SADV7D-06",
+    "domain": "Advanced Math",
+    "subskill": "nested division-algorithm identities p(x) = (x − a)q(x) + r₁ and q(x) = (x − b)r(x) + r₂: evaluate q at the second root first, then substitute into p",
+    "difficulty": "medium",
+    "prompt": "The polynomials p, q, and r satisfy p(x) = (x − 3) · q(x) + 4 and q(x) = (x + 2) · r(x) − 5 for all values of x. What is the value of p(−2)?",
+    "choices": [
+      "-6",
+      "-21",
+      "19",
+      "29"
+    ],
+    "correct_answer": "29",
+    "explanation": "At x = −2 the factor x + 2 is 0, so q(−2) = 0 · r(−2) − 5 = −5. Then p(−2) = (−2 − 3) · q(−2) + 4 = (−5)(−5) + 4 = 29, which is \"29\". \"-6\" comes from a solver who adds instead of multiplying, computing (−5) + (−5) + 4. \"-21\" comes from a solver who takes q(−2) = +5 and computes (−5)(5) + 4. \"19\" comes from a solver who evaluates the factor x − 3 as −3 (dropping the x), computing (−3)(−5) + 4.",
+    "solve": "var q=function(x, r){return (x+2)*r-5}; var qv=q(-2, 12345); var p=(-2-3)*qv+4; return String(p);",
+    "distractor_solve": {
+      "-6": "var qv=(-2+2)*0-5; return String((-2-3)+qv+4);",
+      "-21": "var qv=5; return String((-2-3)*qv+4);",
+      "19": "var qv=(-2+2)*0-5; return String((-3)*qv+4);"
+    }
+  },
+  {
+    "id": "SADV7D-07",
+    "domain": "Advanced Math",
+    "subskill": "degree-4 polynomial from described x-intercepts with one double zero (touch, no cross) and the y-intercept: fix the leading coefficient, then evaluate at a new input",
+    "difficulty": "hard",
+    "prompt": "The polynomial p has degree 4. In the xy-plane, the graph of y = p(x) crosses the x-axis at (−3, 0) and (2, 0), and touches the x-axis at (5, 0) without crossing it. These are the only x-intercepts, and p(0) = 450. What is the value of p(1)?",
+    "choices": [
+      "192",
+      "-64",
+      "240",
+      "432"
+    ],
+    "correct_answer": "192",
+    "explanation": "A touch without crossing is a zero of even multiplicity, so with degree 4 the polynomial is p(x) = a(x + 3)(x − 2)(x − 5)². Then p(0) = a(3)(−2)(25) = −150a = 450 gives a = −3, and p(1) = −3(4)(−1)(16) = 192, which is \"192\". \"-64\" comes from a solver who never finds a and evaluates (1 + 3)(1 − 2)(1 − 5)² = −64. \"240\" comes from a solver who writes the touch point as a single factor (x − 5): then 30a = 450, a = 15, and 15(4)(−1)(−4) = 240. \"432\" comes from a solver who writes the double factor as (x + 5)²: a is still −3, and −3(4)(−1)(36) = 432.",
+    "solve": "var base=function(x){return (x+3)*(x-2)*(x-5)*(x-5)}; var a=450/base(0); return String(a*base(1));",
+    "distractor_solve": {
+      "-64": "var base=function(x){return (x+3)*(x-2)*(x-5)*(x-5)}; return String(base(1));",
+      "240": "var base=function(x){return (x+3)*(x-2)*(x-5)}; var a=450/base(0); return String(a*base(1));",
+      "432": "var base=function(x){return (x+3)*(x-2)*(x+5)*(x+5)}; var a=450/base(0); return String(a*base(1));"
+    }
+  },
+  {
+    "id": "SADV7D-08",
+    "domain": "Advanced Math",
+    "subskill": "a cubic taking the same value at three inputs: write p(x) − c as a(x − 1)(x − 2)(x − 3), fix a from a fourth value, then evaluate",
+    "difficulty": "hard",
+    "prompt": "The polynomial p has degree 3, and p(1) = p(2) = p(3) = 5. If p(0) = −7, what is the value of p(5)?",
+    "choices": [
+      "48",
+      "53",
+      "-43",
+      "33"
+    ],
+    "correct_answer": "53",
+    "explanation": "The cubic p(x) − 5 is zero at 1, 2, and 3, so p(x) − 5 = a(x − 1)(x − 2)(x − 3) for some constant a. At x = 0: −7 − 5 = a(−1)(−2)(−3) = −6a, so a = 2. Then p(5) = 2(4)(3)(2) + 5 = 53, which is \"53\". \"48\" comes from a solver who finds a = 2 but forgets to add the 5 back. \"-43\" comes from a solver who takes (0 − 1)(0 − 2)(0 − 3) as +6, getting a = −2 and −48 + 5. \"33\" comes from a solver who sets a(−6) equal to p(0) = −7 itself instead of p(0) − 5, getting a = 7/6 and 24(7/6) + 5.",
+    "solve": "var base=function(x){return (x-1)*(x-2)*(x-3)}; var a=(-7-5)/base(0); return String(a*base(5)+5);",
+    "distractor_solve": {
+      "48": "var base=function(x){return (x-1)*(x-2)*(x-3)}; var a=(-7-5)/base(0); return String(a*base(5));",
+      "-43": "var base=function(x){return (x-1)*(x-2)*(x-3)}; var a=(-7-5)/6; return String(a*base(5)+5);",
+      "33": "var base=function(x){return (x-1)*(x-2)*(x-3)}; var a=(-7)/base(0); return String(a*base(5)+5);"
+    }
+  },
+  {
+    "id": "SADV7D-09",
+    "domain": "Advanced Math",
+    "subskill": "sum of the reciprocals of the three zeros of a factorable cubic: find the zeros (or use pairwise-product over product) and combine the fractions",
+    "difficulty": "medium",
+    "prompt": "The polynomial p is defined by p(x) = x³ − 2x² − 5x + 6, and the zeros of p are r, s, and t. What is the value of 1/r + 1/s + 1/t?",
+    "choices": [
+      "1/2",
+      "-1/3",
+      "-5/2",
+      "5/6"
+    ],
+    "correct_answer": "5/6",
+    "explanation": "Since p(1) = 0, dividing by x − 1 gives x² − x − 6 = (x − 3)(x + 2), so the zeros are 1, 3, and −2. Then 1/1 + 1/3 + 1/(−2) = 6/6 + 2/6 − 3/6 = 5/6, which is \"5/6\". \"1/2\" comes from a solver who takes the reciprocal of the sum of the zeros, 1/(1 + 3 − 2). \"-5/2\" comes from a solver who divides the sum of pairwise products, −5, by the sum of the zeros, 2, instead of by their product. \"-1/3\" comes from a solver who divides the sum of the zeros by their product, 2/(−6).",
+    "solve": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var p=function(x){return x*x*x-2*x*x-5*x+6}; var roots=[]; for(var x=-10;x<=10;x++){ if(p(x)===0) roots.push(x);} if(roots.length!==3) throw new Error('need 3 integer roots'); var r=roots[0],s=roots[1],t=roots[2]; return frac(s*t+r*t+r*s, r*s*t);",
+    "distractor_solve": {
+      "1/2": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var r=1,s=3,t=-2; return frac(1, r+s+t);",
+      "-5/2": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var r=1,s=3,t=-2; return frac(s*t+r*t+r*s, r+s+t);",
+      "-1/3": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var r=1,s=3,t=-2; return frac(r+s+t, r*s*t);"
+    }
+  },
+  {
+    "id": "SADV7D-10",
+    "domain": "Advanced Math",
+    "subskill": "inverse of a shifted cube at two outputs, one needing a negative cube root: undo the +k, take the real cube root with its sign, undo the horizontal shift, then add",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = (x − 3)³ + 2, and f⁻¹ is the inverse function of f. What is the value of f⁻¹(−6) + f⁻¹(29)?",
+    "choices": [
+      "7",
+      "11",
+      "1",
+      "-5"
+    ],
+    "correct_answer": "7",
+    "explanation": "f⁻¹(−6) is the x with (x − 3)³ + 2 = −6, so (x − 3)³ = −8, x − 3 = −2, x = 1. f⁻¹(29) is the x with (x − 3)³ = 27, so x − 3 = 3, x = 6. The sum is 1 + 6 = 7, which is \"7\". \"11\" comes from a solver who drops the sign of the cube root of −8, using x − 3 = 2 to get 5, then 5 + 6. \"1\" comes from a solver who ignores the horizontal shift and adds the cube roots −2 and 3 directly. \"-5\" comes from a solver who reverses the shift, solving x + 3 = −2 and x + 3 = 3 to get −5 + 0.",
+    "solve": "var inv=function(y){return Math.cbrt(y-2)+3}; return String(Math.round(inv(-6)+inv(29)));",
+    "distractor_solve": {
+      "11": "var a=Math.abs(Math.cbrt(-6-2))+3, b=Math.cbrt(29-2)+3; return String(Math.round(a+b));",
+      "1": "return String(Math.round(Math.cbrt(-6-2)+Math.cbrt(29-2)));",
+      "-5": "var a=Math.cbrt(-6-2)-3, b=Math.cbrt(29-2)-3; return String(Math.round(a+b));"
+    }
+  },
+  {
+    "id": "SADV7D-11",
+    "domain": "Advanced Math",
+    "subskill": "a polynomial defined through p(x²): rewrite the rule in terms of the input t = x² (no real x reaches a negative input), then evaluate at a negative number",
+    "difficulty": "hard",
+    "prompt": "The polynomial p satisfies p(x²) = 2x⁶ − x⁴ + 3x² − 5 for all values of x. What is the value of p(−2)?",
+    "choices": [
+      "119",
+      "-31",
+      "1",
+      "-23"
+    ],
+    "correct_answer": "-31",
+    "explanation": "Writing t = x², the rule says p(t) = 2t³ − t² + 3t − 5 for every t ≥ 0, and since p is a polynomial this formula defines it for all t. Then p(−2) = 2(−8) − 4 + 3(−2) − 5 = −31, which is \"-31\". \"119\" comes from a solver who substitutes x = −2 into the right-hand side, computing p(4) instead of p(−2). \"1\" comes from a solver who takes (−2)³ as +8, computing 16 − 4 − 6 − 5. \"-23\" comes from a solver who takes (−2)² as −4, computing −16 + 4 − 6 − 5.",
+    "solve": "var p=function(t){return 2*t*t*t-t*t+3*t-5}; var chk=Math.pow(3,6)*2-Math.pow(3,4)+3*9-5; if(p(9)!==chk) throw new Error('rewrite wrong'); return String(p(-2));",
+    "distractor_solve": {
+      "119": "var x=-2; return String(2*Math.pow(x,6)-Math.pow(x,4)+3*x*x-5);",
+      "1": "return String(2*8-4+3*(-2)-5);",
+      "-23": "return String(2*(-8)-(-4)+3*(-2)-5);"
+    }
+  },
+  {
+    "id": "SADV7D-12",
+    "domain": "Advanced Math",
+    "subskill": "recover a linear inner function from two values of a cubic composition: take real cube roots (one negative) to get two linear equations in a and b, then evaluate g elsewhere",
+    "difficulty": "medium",
+    "prompt": "The functions f and g are defined by f(x) = x³ and g(x) = ax + b, where a and b are constants. If f(g(1)) = 27 and f(g(−1)) = −1, what is the value of g(4)?",
+    "choices": [
+      "6",
+      "69",
+      "9",
+      "12"
+    ],
+    "correct_answer": "9",
+    "explanation": "f(g(1)) = (g(1))³ = 27 gives g(1) = 3, so a + b = 3. f(g(−1)) = (g(−1))³ = −1 gives g(−1) = −1, so −a + b = −1. Adding, 2b = 2, so b = 1 and a = 2, and g(4) = 2(4) + 1 = 9, which is \"9\". \"6\" comes from a solver who drops the sign of the cube root of −1, using −a + b = 1 to get a = 1, b = 2, and 1(4) + 2. \"69\" comes from a solver who skips the cube roots, solving a + b = 27 and −a + b = −1 to get a = 14, b = 13, and 14(4) + 13. \"12\" comes from a solver who assumes g has no constant term, taking a³ = 27, a = 3, and 3(4).",
+    "solve": "var g1=Math.cbrt(27), gm1=Math.cbrt(-1); var b=(g1+gm1)/2, a=(g1-gm1)/2; return String(Math.round(a*4+b));",
+    "distractor_solve": {
+      "6": "var g1=3, gm1=1; var b=(g1+gm1)/2, a=(g1-gm1)/2; return String(a*4+b);",
+      "69": "var g1=27, gm1=-1; var b=(g1+gm1)/2, a=(g1-gm1)/2; return String(a*4+b);",
+      "12": "var a=Math.cbrt(27); return String(Math.round(a*4));"
+    }
+  }
+]

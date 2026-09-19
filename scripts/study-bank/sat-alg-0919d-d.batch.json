@@ -1,0 +1,212 @@
+[
+  {
+    "id": "SALG6D-01",
+    "domain": "Algebra",
+    "subskill": "two linear filling models each given by two data points, with the model that starts behind asked for the input at which it LEADS the other by a stated amount: both rates and both starting volumes must be derived, and the gap function (a difference of the two models) is then set equal to the stated lead, not to zero",
+    "difficulty": "medium",
+    "prompt": "Two tanks, P and Q, are being filled with water, each at its own constant rate. Tank P contained 40 liters 3 minutes after filling began and 79 liters 9 minutes after filling began. Tank Q contained 55 liters 3 minutes after filling began and 70 liters 9 minutes after filling began. How many minutes after filling began does tank P contain exactly 45 liters more than tank Q?",
+    "choices": [
+      "15",
+      "20.25",
+      "18",
+      "11.25"
+    ],
+    "correct_answer": "18",
+    "explanation": "Tank P gains (79 - 40)/(9 - 3) = 6.5 liters per minute, so its volume is 6.5t + 20.5; tank Q gains (70 - 55)/6 = 2.5 liters per minute, so its volume is 2.5t + 47.5. The lead of P over Q is (6.5t + 20.5) - (2.5t + 47.5) = 4t - 27. Setting 4t - 27 = 45 gives 4t = 72 and t = 18. (Check: at t = 18, P holds 137.5 liters and Q holds 92.5 liters, a difference of 45.) \"11.25\" comes from dividing 45 by the rate difference 4 while ignoring that Q started 27 liters ahead. \"15\" comes from treating the 3-minute readings as the starting volumes, so the gap is written 4t - 15. \"20.25\" comes from adding 45/4 to the 9-minute reading time without noticing that P already leads by 9 liters at 9 minutes.",
+    "solve": "var mP=(79-40)/(9-3), bP=40-mP*3; var mQ=(70-55)/(9-3), bQ=55-mQ*3; var t=(45-(bP-bQ))/(mP-mQ); return String(t);",
+    "distractor_solve": {
+      "15": "var mP=(79-40)/6, mQ=(70-55)/6; var t=(45-(40-55))/(mP-mQ); return String(t);",
+      "11.25": "var mP=(79-40)/6, mQ=(70-55)/6; return String(45/(mP-mQ));",
+      "20.25": "var mP=(79-40)/6, mQ=(70-55)/6; return String(9+45/(mP-mQ));"
+    }
+  },
+  {
+    "id": "SALG6D-02",
+    "domain": "Algebra",
+    "subskill": "a single linear model whose rate is stated per second and whose elapsed time is stated in hours and minutes: the time must be converted to seconds through two unit steps before the output is computed, and the starting amount added back",
+    "difficulty": "medium",
+    "prompt": "A tank holds 380 liters of water when a pump is switched on. The pump adds water to the tank at a constant rate of 0.4 liter per second. How many liters of water does the tank hold 1 hour 15 minutes after the pump is switched on?",
+    "choices": [
+      "2180",
+      "3140",
+      "1800",
+      "2036"
+    ],
+    "correct_answer": "2180",
+    "explanation": "1 hour 15 minutes is 75 minutes, which is 75 × 60 = 4,500 seconds. In that time the pump adds 0.4 × 4,500 = 1,800 liters, so the tank holds 380 + 1,800 = 2,180 liters. \"1800\" is the amount added, without the 380 liters already in the tank. \"3140\" comes from reading 1 hour 15 minutes as 115 minutes: 115 × 60 × 0.4 = 2,760, plus 380. \"2036\" comes from writing 1 hour 15 minutes as 1.15 hours: 1.15 × 3,600 × 0.4 = 1,656, plus 380.",
+    "solve": "var s=(60+15)*60; return String(380+0.4*s);",
+    "distractor_solve": {
+      "1800": "var s=75*60; return String(0.4*s);",
+      "2036": "var s=1.15*3600; return String(380+0.4*s);",
+      "3140": "var s=115*60; return String(380+0.4*s);"
+    }
+  },
+  {
+    "id": "SALG6D-03",
+    "domain": "Algebra",
+    "subskill": "a linear model with a decimal rate, asked how much the INPUT must increase to raise the output by a stated amount: the change in output is divided by the rate, and the intercept, though printed, plays no part",
+    "difficulty": "medium",
+    "prompt": "The altitude A, in meters, of a hot-air balloon t seconds after a reading is taken is modeled by A = 0.8t + 1,200. According to the model, by how many seconds must t increase for the altitude to increase by 1,560 meters?",
+    "choices": [
+      "450",
+      "3450",
+      "1248",
+      "1950"
+    ],
+    "correct_answer": "1950",
+    "explanation": "In a linear model a change in output equals the rate times the change in input, so 1,560 = 0.8 × (change in t) and the change in t is 1,560 / 0.8 = 1,950 seconds. The 1,200 is the altitude at the reading and does not affect how much the altitude changes. \"1248\" comes from multiplying 1,560 by 0.8 instead of dividing. \"450\" comes from subtracting the 1,200 first, (1,560 - 1,200)/0.8, as if 1,560 were the altitude to reach rather than the increase. \"3450\" comes from adding the 1,200 first, (1,560 + 1,200)/0.8.",
+    "solve": "return String(Math.round(1560/0.8));",
+    "distractor_solve": {
+      "450": "return String(Math.round((1560-1200)/0.8));",
+      "1248": "return String(Math.round(1560*0.8));",
+      "3450": "return String(Math.round((1560+1200)/0.8));"
+    }
+  },
+  {
+    "id": "SALG6D-04",
+    "domain": "Algebra",
+    "subskill": "a piecewise linear pricing model (first block of units at one rate, every unit beyond at a higher rate) evaluated at a usage past the break: the usage must be split at the threshold and each part charged at its own rate, with every distractor strictly between the all-low and all-high totals",
+    "difficulty": "medium",
+    "prompt": "An electricity plan charges 0.12 dollar per kilowatt-hour for the first 500 kilowatt-hours used in a month and 0.19 dollar per kilowatt-hour for each kilowatt-hour used beyond 500 in that month. A household used 830 kilowatt-hours last month. What was the household's charge for last month, in dollars?",
+    "choices": [
+      "134.60",
+      "122.70",
+      "155.00",
+      "128.65"
+    ],
+    "correct_answer": "122.70",
+    "explanation": "The first 500 kilowatt-hours cost 500 × 0.12 = 60 dollars. The remaining 830 - 500 = 330 kilowatt-hours cost 330 × 0.19 = 62.70 dollars. The total is 60 + 62.70 = 122.70 dollars. \"134.60\" comes from swapping the rates, charging 0.19 on the first 500 and 0.12 on the remaining 330: 95 + 39.60. \"155.00\" comes from charging a full second block of 500 kilowatt-hours at 0.19 instead of the 330 actually used beyond the threshold: 60 + 95. \"128.65\" comes from averaging the two rates to 0.155 and applying that to all 830 kilowatt-hours.",
+    "solve": "var c=500*0.12+(830-500)*0.19; return c.toFixed(2);",
+    "distractor_solve": {
+      "134.60": "var c=500*0.19+(830-500)*0.12; return c.toFixed(2);",
+      "155.00": "var c=500*0.12+500*0.19; return c.toFixed(2);",
+      "128.65": "var c=830*((0.12+0.19)/2); return c.toFixed(2);"
+    }
+  },
+  {
+    "id": "SALG6D-05",
+    "domain": "Algebra",
+    "subskill": "linear depreciation with the rate recovered from a purchase price and one later value, asked the age at which the value is a stated FRACTION of the purchase price: the fraction applies to the original value, the total drop is divided by the rate, and the answer is measured from purchase, not from the later reading",
+    "difficulty": "medium",
+    "prompt": "A machine was purchased for 45,000 dollars, and its value has decreased by the same amount each year since purchase. Three years after purchase, the machine was worth 37,800 dollars. If the value continues to decrease at this rate, how many years after purchase will the machine be worth 2/5 of its purchase price?",
+    "choices": [
+      "11.25",
+      "12.45",
+      "7.5",
+      "8.25"
+    ],
+    "correct_answer": "11.25",
+    "explanation": "The value dropped 45,000 - 37,800 = 7,200 dollars in 3 years, so it decreases 2,400 dollars per year. Two fifths of the purchase price is (2/5)(45,000) = 18,000 dollars, a total drop of 45,000 - 18,000 = 27,000 dollars, which takes 27,000 / 2,400 = 11.25 years. \"7.5\" comes from dividing 18,000 by 2,400, the time for the value to DROP by 2/5 of the purchase price rather than to reach it. \"8.25\" comes from measuring the remaining drop from the 3-year value, (37,800 - 18,000)/2,400, without adding back the 3 years already elapsed. \"12.45\" comes from taking 2/5 of the 3-year value, 15,120 dollars, as the target: (45,000 - 15,120)/2,400.",
+    "solve": "var r=(45000-37800)/3; var target=45000*2/5; return String((45000-target)/r);",
+    "distractor_solve": {
+      "7.5": "var r=(45000-37800)/3; return String((45000*2/5)/r);",
+      "8.25": "var r=(45000-37800)/3; return String((37800-45000*2/5)/r);",
+      "12.45": "var r=(45000-37800)/3; var target=37800*2/5; return String(Math.round(((45000-target)/r)*100)/100);"
+    }
+  },
+  {
+    "id": "SALG6D-06",
+    "domain": "Algebra",
+    "subskill": "a budget inequality in which a fixed count of one item is bought first and the remaining money buys a second item sold in packs: the remainder is divided by the pack price, rounded DOWN to whole packs, and the pack count is then converted to the number of people served",
+    "difficulty": "medium",
+    "prompt": "A science teacher has 750 dollars to spend. She must buy exactly 22 lab kits at 13.75 dollars each. With the money that remains, she buys safety goggles, which are sold only in packs of 4 pairs for 12.40 dollars per pack. Each student needs exactly one pair of goggles. What is the greatest number of students the teacher can provide with goggles?",
+    "choices": [
+      "240",
+      "128",
+      "236",
+      "144"
+    ],
+    "correct_answer": "144",
+    "explanation": "The lab kits cost 22 × 13.75 = 302.50 dollars, leaving 750 - 302.50 = 447.50 dollars. That buys 447.50 / 12.40 ≈ 36.09 packs, so at most 36 whole packs, which is 36 × 4 = 144 pairs of goggles, enough for 144 students. \"240\" comes from spending the whole 750 dollars on goggles, 750/12.40 ≈ 60.48, so 60 packs and 240 pairs, forgetting the kits. \"236\" comes from subtracting the price of only one kit, (750 - 13.75)/12.40 ≈ 59.37, so 59 packs and 236 pairs. \"128\" comes from dividing the remaining 447.50 dollars by the kit price 13.75 instead of the pack price, 32.5, so 32 packs and 128 pairs.",
+    "solve": "var left=750-22*13.75; var packs=Math.floor(left/12.40); return String(packs*4);",
+    "distractor_solve": {
+      "128": "var left=750-22*13.75; var packs=Math.floor(left/13.75); return String(packs*4);",
+      "236": "var packs=Math.floor((750-13.75)/12.40); return String(packs*4);",
+      "240": "var packs=Math.floor(750/12.40); return String(packs*4);"
+    }
+  },
+  {
+    "id": "SALG6D-07",
+    "domain": "Algebra",
+    "subskill": "a linear model fitted from three table rows whose inputs do not start at zero, asked the output at an input beyond the table: the rate comes from a difference of rows divided by the ELAPSED input, and the model must be run from a row, not from an intercept mistaken for a row",
+    "difficulty": "medium",
+    "prompt": "Mara deposits the same amount into a savings account every week. The table shows the balance of the account at the end of three different weeks: at the end of week 4 the balance was 380 dollars, at the end of week 8 it was 480 dollars, and at the end of week 10 it was 530 dollars. If the balance continues to grow in this way, what will the balance be, in dollars, at the end of week 12?",
+    "choices": [
+      "680",
+      "580",
+      "560",
+      "830"
+    ],
+    "correct_answer": "580",
+    "explanation": "The balance rose 100 dollars from week 4 to week 8, which is 25 dollars per week, and 50 dollars from week 8 to week 10, also 25 dollars per week, so the model is linear with rate 25. From week 10 to week 12 is 2 more weeks, so the balance is 530 + 2 × 25 = 580 dollars. \"560\" comes from computing the rate as (530 - 380)/10 = 15, dividing by the week number instead of the 6 weeks elapsed, then adding 2 × 15 to 530. \"680\" comes from treating the week-4 balance of 380 as the starting balance and adding 25 × 12. \"830\" comes from treating the week-10 balance of 530 as the starting balance and adding 25 × 12.",
+    "solve": "var r=(480-380)/(8-4); if((530-480)/(10-8)!==r) return 'bad'; return String(530+r*(12-10));",
+    "distractor_solve": {
+      "560": "var r=(530-380)/10; return String(530+r*(12-10));",
+      "680": "var r=(480-380)/(8-4); return String(380+r*12);",
+      "830": "var r=(480-380)/(8-4); return String(530+r*12);"
+    }
+  },
+  {
+    "id": "SALG6D-08",
+    "domain": "Algebra",
+    "subskill": "a two-variable budget model in standard form with the total held fixed, asked how one quantity must change when the other changes by a stated amount: the change in one term's cost is transferred to the other term and divided by that term's unit price, so the answer is the trade-off ratio applied to the stated change",
+    "difficulty": "medium",
+    "prompt": "A florist plans to spend exactly 720 dollars on roses and lilies for an event. Roses cost 6 dollars each and lilies cost 10 dollars each, so the numbers r of roses and L of lilies satisfy 6r + 10L = 720. The florist decides to buy 15 more roses than planned while still spending exactly 720 dollars. How many fewer lilies than planned must the florist buy?",
+    "choices": [
+      "25",
+      "63",
+      "9",
+      "22.5"
+    ],
+    "correct_answer": "9",
+    "explanation": "The 15 extra roses cost 15 × 6 = 90 dollars. To keep the total at 720 dollars, the lily cost must fall by 90 dollars, which at 10 dollars per lily is 90 / 10 = 9 fewer lilies. (Equivalently, 6(r + 15) + 10(L - d) = 720 with 6r + 10L = 720 gives 90 - 10d = 0.) \"25\" comes from inverting the trade-off, 15 × 10 / 6, multiplying by the lily price and dividing by the rose price. \"22.5\" comes from dividing the 90 dollars by the difference in prices, 10 - 6 = 4. \"63\" comes from treating all the money left after the 90 dollars as buying lilies, (720 - 90)/10, which is a number of lilies rather than the change in the number.",
+    "solve": "var d=(15*6)/10; return String(d);",
+    "distractor_solve": {
+      "25": "return String(15*10/6);",
+      "63": "return String((720-15*6)/10);",
+      "22.5": "return String((15*6)/(10-6));"
+    }
+  },
+  {
+    "id": "SALG6D-09",
+    "domain": "Algebra",
+    "subskill": "a linear model whose rate is stated per 1,000 units of input and whose reference point is at a nonzero input: the required output change is converted to an input change through the per-1,000 rate, and that change is added to the reference input rather than reported on its own",
+    "difficulty": "medium",
+    "prompt": "On a certain mountain, the air temperature decreases by 6.5 degrees Celsius for every 1,000 meters of increase in altitude. At an altitude of 350 meters, the temperature is 21.4 degrees Celsius. According to this model, at what altitude, in meters, is the temperature 8.4 degrees Celsius?",
+    "choices": [
+      "2000",
+      "550",
+      "1650",
+      "2350"
+    ],
+    "correct_answer": "2350",
+    "explanation": "The temperature must fall 21.4 - 8.4 = 13 degrees. At 6.5 degrees per 1,000 meters, that takes 13 / 6.5 = 2 thousand meters, or 2,000 meters of additional altitude. Starting from 350 meters, the altitude is 350 + 2,000 = 2,350 meters. \"2000\" is the increase in altitude reported as the altitude itself, forgetting that the reference reading was taken at 350 meters. \"1650\" comes from subtracting the reference altitude instead of adding it, 2,000 - 350. \"550\" comes from reading the rate as 6.5 degrees per 100 meters, so 13 degrees is 200 meters, plus 350.",
+    "solve": "var drop=21.4-8.4; var rise=(drop/6.5)*1000; return String(Math.round(350+rise));",
+    "distractor_solve": {
+      "550": "var drop=21.4-8.4; return String(Math.round(350+(drop/6.5)*100));",
+      "1650": "var drop=21.4-8.4; return String(Math.round((drop/6.5)*1000-350));",
+      "2000": "var drop=21.4-8.4; return String(Math.round((drop/6.5)*1000));"
+    }
+  },
+  {
+    "id": "SALG6D-10",
+    "domain": "Algebra",
+    "subskill": "a linear growth model given by two dated measurements, asked to extrapolate BACKWARD to the calendar year in which the output had a stated smaller value: the rate comes from the two measurements, the years back are counted from the earlier measurement, and the planting height must be subtracted before dividing",
+    "difficulty": "medium",
+    "prompt": "A tree has grown at a constant rate since it was planted. The tree was 4.4 meters tall at the start of 2015 and 6.8 meters tall at the start of 2021. When the tree was planted, at the start of a certain year, it was 1.6 meters tall. In what year was the tree planted?",
+    "choices": [
+      "2014",
+      "2008",
+      "2002",
+      "2004"
+    ],
+    "correct_answer": "2008",
+    "explanation": "The tree grew 6.8 - 4.4 = 2.4 meters in the 6 years from 2015 to 2021, which is 0.4 meter per year. To grow from 1.6 meters to 4.4 meters took (4.4 - 1.6)/0.4 = 7 years, so the tree was planted 7 years before 2015, at the start of 2008. \"2004\" comes from forgetting the planting height and dividing the full 4.4 meters by 0.4, 11 years before 2015. \"2014\" comes from counting the 7 years back from 2021 instead of from 2015. \"2002\" comes from using the 2021 height to find the years of growth, (6.8 - 1.6)/0.4 = 13, and then counting back from 2015.",
+    "solve": "var r=(6.8-4.4)/(2021-2015); var yrs=(4.4-1.6)/r; return String(2015-Math.round(yrs));",
+    "distractor_solve": {
+      "2002": "var r=(6.8-4.4)/6; return String(2015-Math.round((6.8-1.6)/r));",
+      "2004": "var r=(6.8-4.4)/6; return String(2015-Math.round(4.4/r));",
+      "2014": "var r=(6.8-4.4)/6; return String(2021-Math.round((4.4-1.6)/r));"
+    }
+  }
+]

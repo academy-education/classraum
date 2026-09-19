@@ -1,0 +1,162 @@
+[
+  {
+    "id": "SALG6B-01",
+    "domain": "Algebra",
+    "subskill": "the perpendicular bisector of a segment between two given points: both the direction (negative reciprocal of the segment's slope) and the point (the midpoint) must be derived before the y-intercept can be found",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, points A and B have coordinates (-2, 5) and (6, 3), respectively. Line k is perpendicular to segment AB and passes through the midpoint of segment AB. What is the y-coordinate of the y-intercept of line k?",
+    "choices": ["9/2", "13", "-4", "-21"],
+    "correct_answer": "-4",
+    "explanation": "The midpoint of AB is ((-2 + 6)/2, (5 + 3)/2) = (2, 4). The slope of AB is (3 - 5)/(6 - (-2)) = -2/8 = -1/4, so a perpendicular line has slope 4. Through (2, 4) with slope 4: y - 4 = 4(x - 2), so y = 4x - 4, and the y-intercept is at y = -4. \"9/2\" comes from a solver who keeps the slope of AB itself, -1/4, through the midpoint: y = -(1/4)x + 9/2. \"13\" comes from a solver who uses the perpendicular slope 4 but runs the line through A instead of the midpoint: y - 5 = 4(x + 2). \"-21\" comes from a solver who uses slope 4 but runs the line through B: y - 3 = 4(x - 6).",
+    "solve": "var ax=-2,ay=5,bx=6,by=3; var mx=(ax+bx)/2,my=(ay+by)/2; var mAB=(by-ay)/(bx-ax); var m=-1/mAB; var b=my-m*mx; return String(b);",
+    "distractor_solve": {
+      "9/2": "var ax=-2,ay=5,bx=6,by=3; var mx=(ax+bx)/2,my=(ay+by)/2; var mAB=(by-ay)/(bx-ax); var b=my-mAB*mx; return String(b);",
+      "13": "var ax=-2,ay=5,bx=6,by=3; var mAB=(by-ay)/(bx-ax); var m=-1/mAB; var b=ay-m*ax; return String(b);",
+      "-21": "var ax=-2,ay=5,bx=6,by=3; var mAB=(by-ay)/(bx-ax); var m=-1/mAB; var b=by-m*bx; return String(b);"
+    }
+  },
+  {
+    "id": "SALG6B-02",
+    "domain": "Algebra",
+    "subskill": "zero of g(x) = f(x - 3) + 2 for a given linear f: a forward combined horizontal and vertical translation, where the direction of the horizontal shift and the sign of the vertical shift are the two decisions",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 5x - 9. The function g is defined by g(x) = f(x - 3) + 2. For what value of x is g(x) = 0?",
+    "choices": ["22/5", "26/5", "-8/5", "14/5"],
+    "correct_answer": "22/5",
+    "explanation": "g(x) = f(x - 3) + 2 = 5(x - 3) - 9 + 2 = 5x - 22, so g(x) = 0 when 5x = 22, that is, x = 22/5. \"26/5\" comes from a solver who subtracts the 2 instead of adding it: 5(x - 3) - 9 - 2 = 5x - 26. \"-8/5\" comes from a solver who shifts left instead of right, using f(x + 3) + 2 = 5x + 15 - 9 + 2 = 5x + 8. \"14/5\" comes from a solver who moves the + 2 inside the argument, using f(x - 3 + 2) = f(x - 1) = 5x - 14.",
+    "solve": "var f=function(x){return 5*x-9;}; var m=5; var g0=f(0-3)+2; var x=-g0/m; return String(x);",
+    "distractor_solve": {
+      "26/5": "var f=function(x){return 5*x-9;}; var g0=f(0-3)-2; return String(-g0/5);",
+      "-8/5": "var f=function(x){return 5*x-9;}; var g0=f(0+3)+2; return String(-g0/5);",
+      "14/5": "var f=function(x){return 5*x-9;}; var g0=f(0-3+2); return String(-g0/5);"
+    }
+  },
+  {
+    "id": "SALG6B-03",
+    "domain": "Algebra",
+    "subskill": "a line through the intersection point of two given lines and parallel to a third given line: solve the system for the point, carry the parallel slope, and locate the x-intercept (not the y-intercept)",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the lines y = 2x - 1 and y = -x + 8 intersect at point P. Line m passes through P and is parallel to the line y = (1/3)x + 5. What is the x-coordinate of the x-intercept of line m?",
+    "choices": ["14/3", "4", "-18", "-12"],
+    "correct_answer": "-12",
+    "explanation": "At P, 2x - 1 = -x + 8, so 3x = 9 and x = 3, giving y = 2(3) - 1 = 5; P is (3, 5). Line m has slope 1/3, so y - 5 = (1/3)(x - 3), that is, y = (1/3)x + 4. Setting y = 0 gives (1/3)x = -4, so x = -12. \"14/3\" comes from a solver who uses the perpendicular slope -3 instead of the parallel slope: y = -3x + 14 crosses the x-axis at 14/3. \"4\" is the y-intercept of line m, reported in place of the x-intercept. \"-18\" comes from a solver who finds the intercept as 5 + (1/3)(3) = 6 instead of 5 - (1/3)(3) = 4, so that y = (1/3)x + 6 crosses the x-axis at -18.",
+    "solve": "var px=(8+1)/(2+1); var py=2*px-1; var m=1/3; var b=py-m*px; var xi=-b/m; return String(Math.round(xi*1e9)/1e9);",
+    "distractor_solve": {
+      "14/3": "var px=3,py=5; var m=-3; var b=py-m*px; return String(-b/m);",
+      "4": "var px=3,py=5; var m=1/3; var b=py-m*px; return String(b);",
+      "-18": "var px=3,py=5; var m=1/3; var b=py+m*px; return String(-b/m);"
+    }
+  },
+  {
+    "id": "SALG6B-04",
+    "domain": "Algebra",
+    "subskill": "a linear function pinned by the average of two of its outputs plus one value: the mean of f(2) and f(8) is f(5) by linearity (equivalently 5m + b), which together with f(4) fixes the slope; then evaluate at an input outside the given ones",
+    "difficulty": "hard",
+    "prompt": "The function f is linear and f(4) = 9. The average (arithmetic mean) of f(2) and f(8) is 13. What is the value of f(12)?",
+    "choices": ["17", "41", "48", "43/3"],
+    "correct_answer": "41",
+    "explanation": "Let f(x) = mx + b. The average of f(2) and f(8) is (2m + b + 8m + b)/2 = 5m + b, which equals f(5); so f(5) = 13. With f(4) = 9, the slope is (13 - 9)/(5 - 4) = 4, and f(12) = 9 + 4(12 - 4) = 41. \"17\" comes from a solver who treats the average 13 as the value f(8): the slope becomes (13 - 9)/(8 - 4) = 1, and f(12) = 9 + 8. \"43/3\" comes from a solver who treats 13 as the value at the sum of the inputs, f(10): the slope becomes (13 - 9)/(10 - 4) = 2/3, and f(12) = 9 + (2/3)(8). \"48\" comes from a solver who finds the slope 4 correctly but drops the intercept, computing 4 × 12.",
+    "solve": "var m=(13-9)/(5-4); var b=9-4*m; return String(m*12+b);",
+    "distractor_solve": {
+      "17": "var m=(13-9)/(8-4); var b=9-4*m; return String(m*12+b);",
+      "43/3": "var m=(13-9)/(10-4); var b=9-4*m; return String(m*12+b);",
+      "48": "var m=(13-9)/(5-4); return String(m*12);"
+    }
+  },
+  {
+    "id": "SALG6B-05",
+    "domain": "Algebra",
+    "subskill": "a linear function specified by a fixed change in output over a fixed non-unit change in input (f(x + 2) = f(x) + 7) plus one value: the rate per unit is 7/2, and the number of steps from the known input must be counted correctly",
+    "difficulty": "medium",
+    "prompt": "The function f is linear, and f(x + 2) = f(x) + 7 for every value of x. If f(1) = -4, what is the value of f(9)?",
+    "choices": ["52", "17", "55/2", "24"],
+    "correct_answer": "24",
+    "explanation": "Each increase of 2 in x increases f by 7, so the slope is 7/2. From x = 1 to x = 9 is an increase of 8, which is 4 steps of 2, so f(9) = -4 + 4(7) = 24. \"52\" comes from a solver who adds 7 for each unit increase in x: -4 + 8(7). \"17\" comes from a solver who counts 3 steps instead of 4 (counting the values 3, 5, 7 but not 9): -4 + 3(7). \"55/2\" comes from a solver who multiplies the slope 7/2 by x = 9 instead of by the change in x: -4 + (7/2)(9).",
+    "solve": "var slope=7/2; return String(-4+slope*(9-1));",
+    "distractor_solve": {
+      "52": "return String(-4+7*(9-1));",
+      "17": "return String(-4+7*((9-1)/2-1));",
+      "55/2": "return String(-4+(7/2)*9);"
+    }
+  },
+  {
+    "id": "SALG6B-06",
+    "domain": "Algebra",
+    "subskill": "self-composition of a linear function: f(f(x)) = 9x + 8 gives m^2 = 9 (sign fixed by the stem) and b(m + 1) = 8, so the intercept is found by dividing by m + 1, not by m; then evaluate f(5)",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = mx + b, where m and b are constants and m > 0. If f(f(x)) = 9x + 8 for every value of x, what is the value of f(5)?",
+    "choices": ["23", "17", "-19", "53/3"],
+    "correct_answer": "17",
+    "explanation": "f(f(x)) = m(mx + b) + b = m²x + mb + b. Matching 9x + 8 gives m² = 9, so m = 3 since m > 0, and then 3b + b = 8, so b = 2. Therefore f(x) = 3x + 2 and f(5) = 15 + 2 = 17. \"23\" comes from a solver who takes b = 8 directly, ignoring that the constant term is mb + b: f(5) = 15 + 8. \"-19\" comes from a solver who chooses m = -3 despite m > 0, so that -3b + b = 8 gives b = -4 and f(5) = -15 - 4. \"53/3\" comes from a solver who divides 8 by m instead of by m + 1, taking b = 8/3: f(5) = 15 + 8/3.",
+    "solve": "var m=Math.sqrt(9); var b=8/(m+1); return String(m*5+b);",
+    "distractor_solve": {
+      "23": "var m=3,b=8; return String(m*5+b);",
+      "-19": "var m=-3; var b=8/(m+1); return String(m*5+b);",
+      "53/3": "var m=3; var b=8/m; return String(m*5+b);"
+    }
+  },
+  {
+    "id": "SALG6B-07",
+    "domain": "Algebra",
+    "subskill": "horizontal translation of a line specified by where its x-intercept moves: the slope (from the two given intercepts) times the horizontal shift gives the change in the y-intercept, not the shift itself",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graph of the linear function f has an x-intercept at (4, 0) and a y-intercept at (0, -6). The graph of the linear function g is the graph of f translated horizontally so that its x-intercept is at (9, 0). What is the y-coordinate of the y-intercept of the graph of g?",
+    "choices": ["-27/2", "-11", "-39/2", "-28/3"],
+    "correct_answer": "-27/2",
+    "explanation": "The slope of f is (0 - (-6))/(4 - 0) = 3/2, and a horizontal translation keeps the slope. The graph of g has slope 3/2 and passes through (9, 0), so y = (3/2)(x - 9), and its y-intercept is (3/2)(-9) = -27/2. \"-11\" comes from a solver who moves the y-intercept down by the same 5 units the x-intercept moved: -6 - 5. \"-39/2\" comes from a solver who multiplies the slope by the new x-intercept 9 and subtracts from -6, treating 9 as the shift: -6 - (3/2)(9). \"-28/3\" comes from a solver who uses the reciprocal of the slope for the change: -6 - (2/3)(5).",
+    "solve": "var m=(0-(-6))/(4-0); var b=0-m*9; return String(b);",
+    "distractor_solve": {
+      "-11": "return String(-6-(9-4));",
+      "-39/2": "var m=3/2; return String(-6-m*9);",
+      "-28/3": "var m=3/2; return String(-6-(1/m)*(9-4));"
+    }
+  },
+  {
+    "id": "SALG6B-08",
+    "domain": "Algebra",
+    "subskill": "a linear function pinned by a proportional relation between two of its outputs, f(2) = 3·f(6), together with one value: the relation reduces to b = -8m, and the direction of the proportion is the decision",
+    "difficulty": "hard",
+    "prompt": "The function f is linear, f(4) = 8, and f(2) = 3 · f(6). What is the value of f(0)?",
+    "choices": ["28", "11", "16", "20"],
+    "correct_answer": "16",
+    "explanation": "Let f(x) = mx + b. Then f(2) = 3 · f(6) gives 2m + b = 18m + 3b, so -16m = 2b and b = -8m. From f(4) = 8, 4m + b = 8, so 4m - 8m = 8 and m = -2, giving b = 16. So f(0) = b = 16. (Check: f(2) = 12 and f(6) = 4, and 12 = 3 × 4.) \"11\" comes from a solver who reads \"3 times f(6)\" as \"3 more than f(6)\": 2m + b = 6m + b + 3 gives m = -3/4, and then b = 8 - 4(-3/4) = 11. \"28\" comes from a solver who reads f(2) = 3 · f(6) as f(2) = 3 × 6 = 18, then solves 2m + b = 18 and 4m + b = 8 to get m = -5, b = 28. \"20\" comes from a solver who reads \"3 times\" as a slope of -3 and runs that line through (4, 8): f(0) = 8 + 3(4).",
+    "solve": "var m=8/(4-8); var b=-8*m; return String(b);",
+    "distractor_solve": {
+      "11": "var m=-3/(6-2); var b=8-4*m; return String(b);",
+      "28": "var m=(8-18)/(4-2); var b=8-4*m; return String(b);",
+      "20": "return String(8-(-3)*4);"
+    }
+  },
+  {
+    "id": "SALG6B-09",
+    "domain": "Algebra",
+    "subskill": "equate two transformed evaluations of a linear function, f(3x) = f(x) - 8: the trap is treating f(3x) as 3·f(x) (equivalently distributing the 3 into the constant), and the subtraction on the right is an output shift, not an input shift",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = -2x + 7. For what value of x is f(3x) = f(x) - 10?",
+    "choices": ["6", "5/2", "17/6", "-5"],
+    "correct_answer": "5/2",
+    "explanation": "f(3x) = -2(3x) + 7 = -6x + 7 and f(x) - 10 = -2x - 3. Setting -6x + 7 = -2x - 3 gives -4x = -10, so x = 5/2. \"6\" comes from a solver who treats f(3x) as 3 · f(x) = -6x + 21: then -6x + 21 = -2x - 3 gives x = 6. \"17/6\" comes from a solver who sets f(3x) equal to -10 alone, dropping f(x): -6x + 7 = -10 gives x = 17/6. \"-5\" comes from a solver who reads f(x) - 10 as f(x - 10) = -2x + 27: then -6x + 7 = -2x + 27 gives x = -5.",
+    "solve": "var f=function(x){return -2*x+7;}; var h=function(x){return f(3*x)-(f(x)-10);}; var slope=h(1)-h(0); return String(-h(0)/slope);",
+    "distractor_solve": {
+      "6": "var f=function(x){return -2*x+7;}; var h=function(x){return 3*f(x)-(f(x)-10);}; var s=h(1)-h(0); return String(-h(0)/s);",
+      "17/6": "var f=function(x){return -2*x+7;}; var h=function(x){return f(3*x)-(-10);}; var s=h(1)-h(0); return String(-h(0)/s);",
+      "-5": "var f=function(x){return -2*x+7;}; var h=function(x){return f(3*x)-f(x-10);}; var s=h(1)-h(0); return String(-h(0)/s);"
+    }
+  },
+  {
+    "id": "SALG6B-10",
+    "domain": "Algebra",
+    "subskill": "a line given by its x-intercept and y-intercept (the x-intercept negative, so the slope's sign is the trap), evaluated far outside the segment between the intercepts",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graph of the linear function f has an x-intercept at (-8, 0) and a y-intercept at (0, 6). What is the value of f(-20)?",
+    "choices": ["-23", "-15", "-62/3", "-9"],
+    "correct_answer": "-9",
+    "explanation": "The slope is (6 - 0)/(0 - (-8)) = 6/8 = 3/4, so f(x) = (3/4)x + 6. Then f(-20) = (3/4)(-20) + 6 = -15 + 6 = -9. \"-15\" comes from a solver who drops the y-intercept and computes only (3/4)(-20). \"-62/3\" comes from a solver who inverts the slope to 4/3: (4/3)(-20) + 6. \"-23\" comes from a solver who swaps the intercepts, using f(x) = (3/4)x - 8: (3/4)(-20) - 8.",
+    "solve": "var m=(6-0)/(0-(-8)); return String(m*(-20)+6);",
+    "distractor_solve": {
+      "-15": "var m=3/4; return String(m*(-20));",
+      "-62/3": "var m=4/3; return String(m*(-20)+6);",
+      "-23": "var m=3/4; return String(m*(-20)-8);"
+    }
+  }
+]

@@ -1,0 +1,212 @@
+[
+  {
+    "id": "SALG6C-01",
+    "domain": "Algebra",
+    "subskill": "a one-variable linear equation with three fractional terms cleared by an LCD, where the asked quantity is a linear expression 4 - 3x of the solved value rather than x itself",
+    "difficulty": "medium",
+    "prompt": "If (x + 2)/3 - (2x - 12)/4 = x/6 + 2, what is the value of 4 - 3x ?",
+    "choices": [
+      "43",
+      "5",
+      "-11",
+      "7"
+    ],
+    "correct_answer": "-11",
+    "explanation": "Multiply every term by 12: 4(x + 2) - 3(2x - 12) = 2x + 24, so 4x + 8 - 6x + 36 = 2x + 24, which gives -2x + 44 = 2x + 24, so 4x = 20 and x = 5. Then 4 - 3x = 4 - 15 = -11. \"5\" is the value of x, not of 4 - 3x. \"43\" comes from distributing the -3 as -6x - 36, which gives -4x = 52, x = -13 and 4 - 3(-13) = 43. \"7\" comes from multiplying only the 2x inside the second parenthesis by 3 while leaving -12 unchanged, which gives -4x = 4, x = -1 and 4 + 3 = 7.",
+    "solve": "var x=(24-8-36)/(-2-2); if(Math.abs((x+2)/3-(2*x-12)/4-(x/6+2))>1e-9) return \"bad\"; return String(4-3*x);",
+    "distractor_solve": {
+      "5": "var x=(24-8-36)/(-2-2); return String(x);",
+      "7": "var x=(24-8-12)/(-2-2); return String(4-3*x);",
+      "43": "var x=(24-8+36)/(-2-2); return String(4-3*x);"
+    }
+  },
+  {
+    "id": "SALG6C-02",
+    "domain": "Algebra",
+    "subskill": "count the integers satisfying a compound inequality with a negative coefficient on x, one strict and one non-strict end, and non-integer endpoints after the direction reversal",
+    "difficulty": "medium",
+    "prompt": "How many integers x satisfy the inequality -10 < 7 - 4x ≤ 12 ?",
+    "choices": [
+      "6",
+      "22",
+      "5",
+      "8"
+    ],
+    "correct_answer": "6",
+    "explanation": "Subtract 7 from all three parts: -17 < -4x ≤ 5. Dividing by -4 reverses both inequality signs: 17/4 > x ≥ -5/4, so -1.25 ≤ x < 4.25. The integers in that interval are -1, 0, 1, 2, 3, 4, which is \"6\" integers. \"5\" comes from subtracting the integer endpoints, 4 - (-1), without adding 1. \"8\" comes from rounding the endpoints outward to -2 and 5 and counting inclusively. \"22\" comes from counting the integers -5 through 16 that 4x can equal, before dividing by 4.",
+    "solve": "var lo=(7-12)/4, hi=(7+10)/4; var n=0; for(var x=-50;x<=50;x++){ if(-10<7-4*x && 7-4*x<=12) n++; } if(Math.ceil(lo)!==-1||Math.floor(hi)!==4) return \"bad\"; return String(n);",
+    "distractor_solve": {
+      "5": "var lo=Math.ceil(-5/4), hi=Math.floor(17/4); return String(hi-lo);",
+      "8": "var lo=Math.floor(-5/4), hi=Math.ceil(17/4); return String(hi-lo+1);",
+      "22": "var n=0; for(var y=-40;y<=40;y++){ if(-5<=y && y<17) n++; } return String(n);"
+    }
+  },
+  {
+    "id": "SALG6C-03",
+    "domain": "Algebra",
+    "subskill": "a literal equation with the unknown in a denominator on both sides with unequal coefficients (2x and x): clear both denominators with one LCD, collect the x-terms on one side, and divide; every option is a quotient of the same four constants",
+    "difficulty": "medium",
+    "prompt": "If a/(2x) - b = c - d/x, where a, b, c, and d are positive constants and x ≠ 0, which of the following expresses x in terms of a, b, c, and d ?",
+    "choices": [
+      "x = (a + d)/(2b + 2c)",
+      "x = (a + 2d)/(2c - 2b)",
+      "x = (a + d)/(2c - 2b)",
+      "x = (a + 2d)/(2b + 2c)"
+    ],
+    "correct_answer": "x = (a + 2d)/(2b + 2c)",
+    "explanation": "Multiply every term by 2x: a - 2bx = 2cx - 2d. Move the x-terms to the right and the constants to the left: a + 2d = 2cx + 2bx = x(2b + 2c), so \"x = (a + 2d)/(2b + 2c)\". \"x = (a + 2d)/(2c - 2b)\" comes from moving -2bx across without changing its sign. \"x = (a + d)/(2b + 2c)\" comes from multiplying d/x by 2x and getting d instead of 2d. \"x = (a + d)/(2c - 2b)\" makes both of those slips.",
+    "solve": "var a=3,b=1,c=2,d=5; var forms={'x = (a + d)/(2b + 2c)':(a+d)/(2*b+2*c),'x = (a + 2d)/(2c - 2b)':(a+2*d)/(2*c-2*b),'x = (a + d)/(2c - 2b)':(a+d)/(2*c-2*b),'x = (a + 2d)/(2b + 2c)':(a+2*d)/(2*b+2*c)}; var pick=function(v){var h=Object.keys(forms).filter(function(k){return Math.abs(forms[k]-v)<1e-9;}); return h.length===1?h[0]:'bad';}; var x=(a+2*d)/(2*b+2*c); if(Math.abs(a/(2*x)-b-(c-d/x))>1e-9) return \"bad\"; return pick(x);",
+    "distractor_solve": {
+      "x = (a + 2d)/(2c - 2b)": "var a=3,b=1,c=2,d=5; var forms={'x = (a + d)/(2b + 2c)':(a+d)/(2*b+2*c),'x = (a + 2d)/(2c - 2b)':(a+2*d)/(2*c-2*b),'x = (a + d)/(2c - 2b)':(a+d)/(2*c-2*b),'x = (a + 2d)/(2b + 2c)':(a+2*d)/(2*b+2*c)}; var pick=function(v){var h=Object.keys(forms).filter(function(k){return Math.abs(forms[k]-v)<1e-9;}); return h.length===1?h[0]:'bad';}; return pick((a+2*d)/(2*c-2*b));",
+      "x = (a + d)/(2b + 2c)": "var a=3,b=1,c=2,d=5; var forms={'x = (a + d)/(2b + 2c)':(a+d)/(2*b+2*c),'x = (a + 2d)/(2c - 2b)':(a+2*d)/(2*c-2*b),'x = (a + d)/(2c - 2b)':(a+d)/(2*c-2*b),'x = (a + 2d)/(2b + 2c)':(a+2*d)/(2*b+2*c)}; var pick=function(v){var h=Object.keys(forms).filter(function(k){return Math.abs(forms[k]-v)<1e-9;}); return h.length===1?h[0]:'bad';}; return pick((a+d)/(2*b+2*c));",
+      "x = (a + d)/(2c - 2b)": "var a=3,b=1,c=2,d=5; var forms={'x = (a + d)/(2b + 2c)':(a+d)/(2*b+2*c),'x = (a + 2d)/(2c - 2b)':(a+2*d)/(2*c-2*b),'x = (a + d)/(2c - 2b)':(a+d)/(2*c-2*b),'x = (a + 2d)/(2b + 2c)':(a+2*d)/(2*b+2*c)}; var pick=function(v){var h=Object.keys(forms).filter(function(k){return Math.abs(forms[k]-v)<1e-9;}); return h.length===1?h[0]:'bad';}; return pick((a+d)/(2*c-2*b));"
+    }
+  },
+  {
+    "id": "SALG6C-04",
+    "domain": "Algebra",
+    "subskill": "a single linear equation that is an identity: one parameter sits inside a distributed parenthesis and the other is the x-coefficient on the far side; match coefficients and constants separately and report the SUM of the two parameters",
+    "difficulty": "medium",
+    "prompt": "In the equation 3(2x + a) - 4x = bx + 36, a and b are constants. If the equation has infinitely many solutions, what is the value of a + b ?",
+    "choices": [
+      "38",
+      "14",
+      "18",
+      "12"
+    ],
+    "correct_answer": "14",
+    "explanation": "Distribute and collect: 6x + 3a - 4x = 2x + 3a. For 2x + 3a = bx + 36 to hold for every x, the x-coefficients must match, b = 2, and the constants must match, 3a = 36, so a = 12. Then a + b = \"14\". \"38\" comes from not distributing the 3 onto a, so that a = 36 and a + b = 36 + 2. \"18\" comes from dropping the -4x, so that b = 6 and a + b = 12 + 6. \"12\" is the value of a alone.",
+    "solve": "var b=3*2-4, a=36/3; var ok=[-3,0,2,7].every(function(x){return Math.abs(3*(2*x+a)-4*x-(b*x+36))<1e-9;}); if(!ok) return \"bad\"; return String(a+b);",
+    "distractor_solve": {
+      "12": "var a=36/3; return String(a);",
+      "18": "var b=3*2, a=36/3; return String(a+b);",
+      "38": "var b=3*2-4, a=36; return String(a+b);"
+    }
+  },
+  {
+    "id": "SALG6C-05",
+    "domain": "Algebra",
+    "subskill": "a capacity inequality in which the per-unit mass must first be raised by a percent and two fixed masses subtracted from the cap; the greatest whole count is the floor of the quotient",
+    "difficulty": "medium",
+    "prompt": "A freight elevator can carry a total mass of at most 1,250 kilograms. An operator with a mass of 82 kilograms rides in the elevator with a cart that has a mass of 25 kilograms. Each crate to be carried has a mass of 38 kilograms before it is packed, and the packing material adds 15% to the mass of each crate. What is the greatest number of packed crates the elevator can carry along with the operator and the cart?",
+    "choices": [
+      "30",
+      "21",
+      "32",
+      "26"
+    ],
+    "correct_answer": "26",
+    "explanation": "A packed crate has mass 1.15(38) = 43.7 kilograms, and the operator and cart use 82 + 25 = 107 kilograms of the limit. So 43.7n + 107 ≤ 1,250, which gives 43.7n ≤ 1,143 and n ≤ 26.15, so the greatest whole number is \"26\" (26 crates give 1,243.2 kilograms; 27 give 1,286.9). \"30\" comes from ignoring the packing material and dividing 1,143 by 38. \"21\" comes from adding 15 kilograms to each crate instead of 15%, dividing 1,143 by 53. \"32\" comes from dividing the full 1,250 by 38, ignoring the packing, the operator and the cart.",
+    "solve": "var per=38*1.15, avail=1250-82-25; var n=Math.floor(avail/per+1e-9); if(per*(n+1)+107<=1250) return \"bad\"; return String(n);",
+    "distractor_solve": {
+      "21": "return String(Math.floor((1250-82-25)/(38+15)));",
+      "30": "return String(Math.floor((1250-82-25)/38));",
+      "32": "return String(Math.floor(1250/38));"
+    }
+  },
+  {
+    "id": "SALG6C-06",
+    "domain": "Algebra",
+    "subskill": "a decimal money equation in which two percents of the same pre-tax base are combined into one coefficient to recover the base, and the asked quantity is one of the add-ons (the tip), not the base",
+    "difficulty": "medium",
+    "prompt": "At a restaurant, a sales tax equal to 8% of the pre-tax price of a meal and a tip equal to 18% of the pre-tax price were both added to the pre-tax price. The total amount paid was $72.45. What was the amount of the tip, in dollars?",
+    "choices": [
+      "10.35",
+      "4.60",
+      "12.00",
+      "11.05"
+    ],
+    "correct_answer": "10.35",
+    "explanation": "If the pre-tax price is m dollars, the total is m + 0.08m + 0.18m = 1.26m = 72.45, so m = 57.50. The tip is 0.18(57.50) = \"10.35\" dollars. \"4.60\" is the tax, 0.08(57.50). \"11.05\" comes from ignoring the tax when undoing the total, dividing 72.45 by 1.18 to get 61.40 and taking 18% of that. \"12.00\" comes from removing 8% of the total, 72.45(0.92) = 66.65, and taking 18% of that remainder.",
+    "solve": "var m=72.45/1.26; if(Math.abs(m*1.26-72.45)>1e-9) return \"bad\"; return (0.18*m).toFixed(2);",
+    "distractor_solve": {
+      "4.60": "var m=72.45/1.26; return (0.08*m).toFixed(2);",
+      "11.05": "var m=72.45/1.18; return (0.18*m).toFixed(2);",
+      "12.00": "var r=72.45*0.92; return (0.18*r).toFixed(2);"
+    }
+  },
+  {
+    "id": "SALG6C-07",
+    "domain": "Algebra",
+    "subskill": "a least-time inequality comparing a rising quantity with HALF of a falling quantity: the fraction must be applied to both the constant and the rate term of the falling side before the whole-number ceiling is taken",
+    "difficulty": "medium",
+    "prompt": "Tank A contains 380 liters of water and is being filled at a constant rate of 12 liters per minute. At the same moment, Tank B contains 1,160 liters of water and is being drained at a constant rate of 15 liters per minute. What is the least whole number of minutes after which the amount of water in Tank A will be at least half the amount of water in Tank B?",
+    "choices": [
+      "29",
+      "8",
+      "11",
+      "47"
+    ],
+    "correct_answer": "11",
+    "explanation": "After t minutes Tank A holds 380 + 12t liters and Tank B holds 1,160 - 15t liters. The condition is 380 + 12t ≥ (1,160 - 15t)/2, so 760 + 24t ≥ 1,160 - 15t, 39t ≥ 400, and t ≥ 10.26. The least whole number is \"11\" (at 11 minutes A holds 512 liters and half of B is 497.5; at 10 minutes A holds 500 and half of B is 505). \"29\" comes from comparing Tank A with all of Tank B, 27t ≥ 780. \"8\" comes from halving only the 1,160 and not the drain term, 380 + 12t ≥ 580 - 15t. \"47\" comes from halving Tank A instead of Tank B, 190 + 6t ≥ 1,160 - 15t.",
+    "solve": "var t=Math.ceil(400/39-1e-9); if(!(380+12*t>=(1160-15*t)/2) || (380+12*(t-1)>=(1160-15*(t-1))/2)) return \"bad\"; return String(t);",
+    "distractor_solve": {
+      "8": "return String(Math.ceil((580-380)/(12+15)));",
+      "29": "return String(Math.ceil((1160-380)/(12+15)));",
+      "47": "return String(Math.ceil((1160-190)/(6+15)));"
+    }
+  },
+  {
+    "id": "SALG6C-08",
+    "domain": "Algebra",
+    "subskill": "a number-line distance statement with the order of the points given, so it becomes one signed linear equation (no cases); the point whose coordinate is defined by the relation is the one asked for",
+    "difficulty": "medium",
+    "prompt": "On a number line, point B lies to the right of point A, and the distance between A and B is 12 units. The coordinate of A is 5 less than twice the coordinate of B. What is the coordinate of A?",
+    "choices": [
+      "-7",
+      "-19",
+      "29",
+      "-39"
+    ],
+    "correct_answer": "-19",
+    "explanation": "Let B have coordinate b, so A has coordinate 2b - 5. Since B is to the right of A, b - (2b - 5) = 12, so -b + 5 = 12 and b = -7. Then A is 2(-7) - 5 = \"-19\" (check: -7 - (-19) = 12). \"-7\" is the coordinate of B. \"29\" comes from writing A - B = 12, which places A to the right of B: 2b - 5 - b = 12 gives b = 17 and A = 29. \"-39\" comes from moving the 5 across with the wrong sign, -b - 5 = 12, which gives b = -17 and A = -39.",
+    "solve": "var b=(12-5)/(-1); var A=2*b-5; if(!(b>A) || b-A!==12) return \"bad\"; return String(A);",
+    "distractor_solve": {
+      "29": "var b=12+5; return String(2*b-5);",
+      "-7": "var b=(12-5)/(-1); return String(b);",
+      "-39": "var b=-(12+5); return String(2*b-5);"
+    }
+  },
+  {
+    "id": "SALG6C-09",
+    "domain": "Algebra",
+    "subskill": "solve a linear inequality whose x-coefficient is a negative multiple of a positive parameter: distribute, isolate, and reverse the direction when dividing by -k, reporting the solution set symbolically in k",
+    "difficulty": "medium",
+    "prompt": "In the inequality 3 - k(x - 2) ≤ 7 - k, k is a positive constant. Which of the following describes all values of x that satisfy the inequality?",
+    "choices": [
+      "x ≥ 3 - 4/k",
+      "x ≤ -1 - 4/k",
+      "x ≤ 3 - 4/k",
+      "x ≥ -1 - 4/k"
+    ],
+    "correct_answer": "x ≥ 3 - 4/k",
+    "explanation": "Distribute: 3 - kx + 2k ≤ 7 - k, so -kx ≤ 4 - 3k. Because k is positive, dividing by -k reverses the inequality: x ≥ (3k - 4)/k, which is \"x ≥ 3 - 4/k\". \"x ≤ 3 - 4/k\" comes from dividing by -k without reversing the direction. \"x ≥ -1 - 4/k\" comes from distributing -k over (x - 2) as -kx - 2k, which gives -kx ≤ 4 + k. \"x ≤ -1 - 4/k\" makes both of those slips.",
+    "solve": "var preds={'x ≥ 3 - 4/k':function(x,k){return x>=3-4/k;},'x ≤ -1 - 4/k':function(x,k){return x<=-1-4/k;},'x ≤ 3 - 4/k':function(x,k){return x<=3-4/k;},'x ≥ -1 - 4/k':function(x,k){return x>=-1-4/k;}}; var truth=function(x,k){return 3-k*(x-2)<=7-k;}; var agrees=function(name,f){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(f(x,k)!==truth(x,k)) ok=false; }}); return ok;}; var hits=Object.keys(preds).filter(function(n){return agrees(n,preds[n]);}); return hits.length===1?hits[0]:\"bad\";",
+    "distractor_solve": {
+      "x ≤ 3 - 4/k": "var preds={'x ≥ 3 - 4/k':function(x,k){return x>=3-4/k;},'x ≤ -1 - 4/k':function(x,k){return x<=-1-4/k;},'x ≤ 3 - 4/k':function(x,k){return x<=3-4/k;},'x ≥ -1 - 4/k':function(x,k){return x>=-1-4/k;}}; var truth=function(x,k){return 3-k*(x-2)<=7-k;}; var agrees=function(name,f){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(f(x,k)!==truth(x,k)) ok=false; }}); return ok;}; var wrong=function(x,k){return x<=(3*k-4)/k;}; var hits=Object.keys(preds).filter(function(n){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(preds[n](x,k)!==wrong(x,k)) ok=false; }}); return ok;}); return hits.length===1?hits[0]:'bad';",
+      "x ≥ -1 - 4/k": "var preds={'x ≥ 3 - 4/k':function(x,k){return x>=3-4/k;},'x ≤ -1 - 4/k':function(x,k){return x<=-1-4/k;},'x ≤ 3 - 4/k':function(x,k){return x<=3-4/k;},'x ≥ -1 - 4/k':function(x,k){return x>=-1-4/k;}}; var truth=function(x,k){return 3-k*(x-2)<=7-k;}; var agrees=function(name,f){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(f(x,k)!==truth(x,k)) ok=false; }}); return ok;}; var wrong=function(x,k){return x>=-(4+k)/k;}; var hits=Object.keys(preds).filter(function(n){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(preds[n](x,k)!==wrong(x,k)) ok=false; }}); return ok;}); return hits.length===1?hits[0]:'bad';",
+      "x ≤ -1 - 4/k": "var preds={'x ≥ 3 - 4/k':function(x,k){return x>=3-4/k;},'x ≤ -1 - 4/k':function(x,k){return x<=-1-4/k;},'x ≤ 3 - 4/k':function(x,k){return x<=3-4/k;},'x ≥ -1 - 4/k':function(x,k){return x>=-1-4/k;}}; var truth=function(x,k){return 3-k*(x-2)<=7-k;}; var agrees=function(name,f){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(f(x,k)!==truth(x,k)) ok=false; }}); return ok;}; var wrong=function(x,k){return x<=-(4+k)/k;}; var hits=Object.keys(preds).filter(function(n){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(preds[n](x,k)!==wrong(x,k)) ok=false; }}); return ok;}); return hits.length===1?hits[0]:'bad';"
+    }
+  },
+  {
+    "id": "SALG6C-10",
+    "domain": "Algebra",
+    "subskill": "the mean of three linear expressions fixes a one-variable equation; the asked value is the SMALLEST of the three evaluated expressions, which is not the one with the smallest x-coefficient",
+    "difficulty": "medium",
+    "prompt": "The average (arithmetic mean) of 4x - 7, 6x + 1, and 2x + 9 is 21. What is the value of the smallest of these three numbers?",
+    "choices": [
+      "19",
+      "5",
+      "-1",
+      "13"
+    ],
+    "correct_answer": "13",
+    "explanation": "The sum of the three expressions is 12x + 3, and the average is 21, so 12x + 3 = 63 and x = 5. The three numbers are 4(5) - 7 = 13, 6(5) + 1 = 31, and 2(5) + 9 = 19, so the smallest is \"13\". \"19\" is 2x + 9, the expression with the smallest x-coefficient, which is not the smallest value at x = 5. \"5\" is the value of x. \"-1\" comes from setting the sum, rather than the average, equal to 21: 12x + 3 = 21 gives x = 1.5 and 4(1.5) - 7 = -1.",
+    "solve": "var x=(3*21-3)/12; var v=[4*x-7,6*x+1,2*x+9]; if(Math.abs((v[0]+v[1]+v[2])/3-21)>1e-9) return \"bad\"; return String(Math.min.apply(null,v));",
+    "distractor_solve": {
+      "5": "var x=(3*21-3)/12; return String(x);",
+      "19": "var x=(3*21-3)/12; return String(2*x+9);",
+      "-1": "var x=(21-3)/12; return String(4*x-7);"
+    }
+  }
+]
