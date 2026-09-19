@@ -1,0 +1,114 @@
+{
+ "SADV6A-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "h(x) = 8x^2 - 14x + 2 so b = -14; distractors -34 (-24-10) and 10 (dropped the -24x) are real slips, but a full expansion is routine for the hard route."
+ },
+ "SADV6A-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(3x+2)(x-3) <= 0 gives [-2/3, 3], length 11/3; 7/3 is the root sum, the other two are filler."
+ },
+ "SADV6A-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "(5/3)^2 - 2(-4/3) = 25/9 + 24/9 = 49/9; the key being the only perfect-square numerator among the ninths is a mild tell, and 33 is off in magnitude."
+ },
+ "SADV6A-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2^(x-6) = 128 = 2^7 so x = 13; 7 is the forgot-the-shift trap, 1 and 16 are weaker."
+ },
+ "SADV6A-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "Continuity at 3 gives 6 = 3k - 4, k = 10/3, f(6) = 16; 45 is the quadratic piece evaluated at 6 (wrong branch) and 38 is 6k - 2, both good traps."
+ },
+ "SADV6A-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "3x^2 - 14x - 5 = (3x+1)(x-5) so zeros are 5 (multiplicity 3) and -1/3, product of distinct zeros -5/3; -25/3 counts 5 twice, 14/3 is the sum, -15 is the constant term."
+ },
+ "SADV6A-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "4 + 5/(x-2): a=4, b=5, c=2, sum 11; note c is forced to 2 by the given denominator so only a and b need work, and 17 (4+5+... no) / 7 (a+b-c) / 1 (4-5+2) are sign slips."
+ },
+ "SADV6A-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Solve (5x-2)/(x-3) = 4 -> x = -10; 18 is f(4) (the classic inverse confusion); near-duplicate in structure and target value of SADV6B-07 (same f^-1(4) on a linear-over-linear function)."
+ },
+ "SADV6B-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "f(x) = a(x^2 - 3x - 5), f(0) = -5a = 20 -> a = -4, f(1) = -4(-7) = 28; 12 and 18 are near-misses but none is a clean specific error path, so distractors are moderate."
+ },
+ "SADV6B-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x+y = 9, x-y = 5 -> (7, 2), xy = 14; 9 (x+y) and 49 (x^2) are natural traps; this is on the Algebra/Advanced Math border but the difference-of-squares factoring supports the AM tag."
+ },
+ "SADV6B-03": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(x+3)^2 = 11 -> x = -3 +/- sqrt(11), difference 2 sqrt(11); 2 sqrt(22) is the forgot-to-divide-by-2 trap, 22 and 4 are weak."
+ },
+ "SADV6B-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "1.15^7 ~ 2.66 < 3 < 1.15^8 ~ 3.06 so t = 8; 3 is 600/200, 14 and 23 are filler; on the calculator-allowed SAT this is a quick table check, medium at most."
+ },
+ "SADV6B-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Decreasing, so minimum at x = 20: 6 - 2*5 = -4; 2 is the maximum (at x = -1), -44 is 6 - 2*25 (forgot the root), -10 is filler."
+ },
+ "SADV6B-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b^2 = 25, b = 5 (b positive), a = 2, f(4) = 2*625 = 1250; 6250 is f(5), 370 and 490 are weak."
+ },
+ "SADV6B-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(3x+5)/(x-2) = 4 -> x = 13; 17/2 is f(4) (the inverse confusion trap); near-duplicate of SADV6A-08 (same template, same f^-1(4)), only one should ship in a form."
+ },
+ "SADV6B-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "(54 - 4)/(6 - 1) = 10; 50 is the undivided difference, 29 is f(6) - f(1) - ... no clean path, 9 is filler; a one-step item that does not belong on the hard route."
+ }
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "id": "SADV6B-01",
+    "domain": "Advanced Math",
+    "subskill": "quadratic from the sum and product of its zeros: the y-intercept fixes the leading coefficient through the product, then evaluate",
+    "difficulty": "hard",
+    "prompt": "The graph of the quadratic function f in the xy-plane has y-intercept (0, 20). The sum of the zeros of f is 3 and the product of the zeros of f is -5. What is the value of f(1)?",
+    "choices": [
+      "4",
+      "18",
+      "28",
+      "12"
+    ],
+    "correct_answer": "28",
+    "explanation": "A quadratic with zeros summing to 3 and multiplying to -5 is f(x) = a(x^2 - 3x - 5) for some constant a. The y-intercept gives f(0) = -5a = 20, so a = -4, and f(1) = -4(1 - 3 - 5) = -4(-7) = 28, which is \"28\". \"4\" comes from a solver who writes the sum term with the wrong sign, a(x^2 + 3x - 5), still finds a = -4, and gets -4(1 + 3 - 5). \"18\" comes from a solver who keeps a = 1 and puts the y-intercept in as the constant term, x^2 - 3x + 20, evaluated at 1. \"12\" comes from a solver who writes the product with the wrong sign, a(x^2 - 3x + 5), so 5a = 20 gives a = 4 and 4(1 - 3 + 5) = 12.",
+    "solve": "var S=3,P=-5,c=20; var a=c/P; return String(a*(1-S+P));",
+    "distractor_solve": {
+      "4": "var a=20/(-5); return String(a*(1+3-5));",
+      "18": "return String(1*1-3*1+20);",
+      "12": "var a=20/5; return String(a*(1-3+5));"
+    }
+  },
+  {
+    "id": "SADV6B-02",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear system with a difference of squares: factoring x^2 - y^2 against the given x - y yields x + y, then the pair, then the product xy",
+    "difficulty": "medium",
+    "prompt": "The real numbers x and y satisfy x^2 - y^2 = 45 and x - y = 5. What is the value of xy?",
+    "choices": [
+      "14",
+      "49",
+      "9",
+      "10"
+    ],
+    "correct_answer": "14",
+    "explanation": "Since x^2 - y^2 = (x - y)(x + y), 5(x + y) = 45 gives x + y = 9. Adding x - y = 5 gives 2x = 14, so x = 7 and y = 2, and xy = 14, which is \"14\". \"49\" comes from a solver who finds x = 7 and reports x^2 instead of xy. \"9\" comes from a solver who stops after finding x + y = 9. \"10\" comes from a solver who treats 45 as x^2 + y^2 and uses (x - y)^2 = x^2 + y^2 - 2xy, so 25 = 45 - 2xy and xy = 10.",
+    "solve": "var s=45/5; var x=(s+5)/2, y=(s-5)/2; return String(x*y);",
+    "distractor_solve": {
+      "49": "var s=45/5; var x=(s+5)/2; return String(x*x);",
+      "9": "return String(45/5);",
+      "10": "return String((45-25)/2);"
+    }
+  },
+  {
+    "id": "SADV6B-03",
+    "domain": "Advanced Math",
+    "subskill": "equation in shifted-square form a(x - h)^2 + k = m with a non-square isolated value: isolate the square, take both roots, and find the positive difference of the solutions",
+    "difficulty": "medium",
+    "prompt": "What is the positive difference between the two solutions of the equation 2(x + 3)^2 - 7 = 15 ?",
+    "choices": [
+      "2√22",
+      "4",
+      "22",
+      "2√11"
+    ],
+    "correct_answer": "2√11",
+    "explanation": "Adding 7 and dividing by 2 gives (x + 3)^2 = 11, so x + 3 = √11 or x + 3 = -√11, that is x = -3 + √11 or x = -3 - √11. Their difference is (-3 + √11) - (-3 - √11) = 2√11, which is \"2√11\". \"2√22\" comes from a solver who adds 7 but never divides by 2, solving (x + 3)^2 = 22. \"4\" comes from a solver who subtracts 7 instead of adding it, getting 2(x + 3)^2 = 8, (x + 3)^2 = 4, and solutions -1 and -5. \"22\" comes from a solver who forgets to take the square root, setting x + 3 = 11 or x + 3 = -11 to get solutions 8 and -14, whose difference is 22.",
+    "solve": "var c=(15+7)/2; var k=1; while(c%4===0){c/=4;k*=2;} return String(2*k)+\"√\"+String(c);",
+    "distractor_solve": {
+      "2√22": "var c=15+7; var k=1; while(c%4===0){c/=4;k*=2;} return String(2*k)+\"√\"+String(c);",
+      "4": "var c=(15-7)/2; return String(2*Math.sqrt(c));",
+      "22": "var c=(15+7)/2; var x1=c-3, x2=-c-3; return String(x1-x2);"
+    }
+  },
+  {
+    "id": "SADV6B-04",
+    "domain": "Advanced Math",
+    "subskill": "exponential growth model inverted for time: the least integer t at which 200(1.15)^t first exceeds a threshold, decided by checking consecutive integers",
+    "difficulty": "medium",
+    "prompt": "The population of a bacterial colony t hours after an experiment begins is modeled by P(t) = 200(1.15)^t. What is the least integer value of t for which P(t) is greater than 600 ?",
+    "choices": [
+      "14",
+      "8",
+      "23",
+      "3"
+    ],
+    "correct_answer": "8",
+    "explanation": "P(t) > 600 requires (1.15)^t > 3. Checking integers, (1.15)^7 is approximately 2.66, so P(7) is approximately 532, which is not greater than 600, while (1.15)^8 is approximately 3.06, so P(8) is approximately 612. The least integer is 8, which is \"8\". \"14\" comes from a solver who treats the growth as linear, adding 15% of 200, or 30, each hour: 200 + 30t > 600 first holds at t = 14. \"23\" comes from a solver who reads 1.15 as a 5% growth factor and finds the least t with (1.05)^t > 3. \"3\" comes from a solver who treats the exponent as a multiplier, solving 1.15t > 3.",
+    "solve": "var t=0; while(!(200*Math.pow(1.15,t)>600)) t++; return String(t);",
+    "distractor_solve": {
+      "14": "var t=0; while(!(200+30*t>600)) t++; return String(t);",
+      "23": "var t=0; while(!(200*Math.pow(1.05,t)>600)) t++; return String(t);",
+      "3": "var t=0; while(!(1.15*t>3)) t++; return String(t);"
+    }
+  },
+  {
+    "id": "SADV6B-05",
+    "domain": "Advanced Math",
+    "subskill": "range of a decreasing radical function on a closed domain: the minimum sits at the right endpoint because the radical is subtracted",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 6 - 2√(x + 5) for -1 ≤ x ≤ 20. What is the minimum value of f(x) on this domain?",
+    "choices": [
+      "2",
+      "-44",
+      "-4",
+      "-10"
+    ],
+    "correct_answer": "-4",
+    "explanation": "As x increases, √(x + 5) increases, and it is subtracted, so f decreases across the whole domain and its minimum is at x = 20: f(20) = 6 - 2√25 = 6 - 10 = -4, which is \"-4\". \"2\" comes from a solver who assumes the minimum occurs at the least x and evaluates f(-1) = 6 - 2√4 = 2, which is actually the maximum. \"-44\" comes from a solver who drops the square root and computes 6 - 2(25). \"-10\" comes from a solver who computes -2√25 = -10 and forgets to add the 6.",
+    "solve": "var f=function(x){return 6-2*Math.sqrt(x+5)}; return String(Math.min(f(-1),f(20)));",
+    "distractor_solve": {
+      "2": "return String(6-2*Math.sqrt(-1+5));",
+      "-44": "return String(6-2*(20+5));",
+      "-10": "return String(-2*Math.sqrt(20+5));"
+    }
+  },
+  {
+    "id": "SADV6B-06",
+    "domain": "Advanced Math",
+    "subskill": "exponential function through two non-adjacent points: the ratio of outputs gives b^2, so b is its square root, then one more step",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = a · b^x, where a and b are positive constants. If f(1) = 10 and f(3) = 250, what is the value of f(4)?",
+    "choices": [
+      "1250",
+      "370",
+      "6250",
+      "490"
+    ],
+    "correct_answer": "1250",
+    "explanation": "Dividing, f(3)/f(1) = b^2 = 25, so b = 5 (b is positive). Then f(4) = f(3) · b = 250 · 5 = 1250, which is \"1250\". (Equivalently a = 10/5 = 2 and f(4) = 2 · 5^4 = 1250.) \"370\" comes from a solver who assumes a constant increase of (250 - 10)/2 = 120 per unit and computes 250 + 120. \"6250\" comes from a solver who multiplies f(3) by the two-step ratio 25 instead of by b = 5. \"490\" comes from a solver who adds the whole two-unit increase of 240 to f(3) to move one unit.",
+    "solve": "var b=Math.sqrt(250/10); var a=10/b; return String(a*Math.pow(b,4));",
+    "distractor_solve": {
+      "370": "var m=(250-10)/2; return String(250+m);",
+      "6250": "return String(250*(250/10));",
+      "490": "return String(250+(250-10));"
+    }
+  },
+  {
+    "id": "SADV6B-07",
+    "domain": "Advanced Math",
+    "subskill": "inverse of a rational function evaluated at a point: set f(x) equal to the given output and clear the denominator",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = (3x + 5)/(x - 2) for all x ≠ 2, and f⁻¹ is the inverse function of f. What is the value of f⁻¹(4)?",
+    "choices": [
+      "17/2",
+      "-3",
+      "-1/3",
+      "13"
+    ],
+    "correct_answer": "13",
+    "explanation": "f⁻¹(4) is the value of x for which f(x) = 4. From (3x + 5)/(x - 2) = 4, multiply out: 3x + 5 = 4x - 8, so x = 13, which is \"13\". Check: (39 + 5)/(13 - 2) = 44/11 = 4. \"17/2\" comes from a solver who evaluates f(4) = (12 + 5)/(4 - 2) instead of finding the inverse. \"-3\" comes from a solver who distributes 4 with the wrong sign, 3x + 5 = 4x + 8. \"-1/3\" comes from a solver who sets only the numerator equal to 4, 3x + 5 = 4.",
+    "solve": "var x=(5+4*2)/(4-3); return String(x);",
+    "distractor_solve": {
+      "17/2": "var n=3*4+5, d=4-2; return n+\"/\"+d;",
+      "-3": "return String((8-5)/(3-4));",
+      "-1/3": "return \"-1/3\";"
+    }
+  },
+  {
+    "id": "SADV6B-08",
+    "domain": "Advanced Math",
+    "subskill": "average rate of change of a quadratic over an interval: both endpoint outputs, their difference, divided by the change in x",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = x^2 + 3x. What is the average rate of change of f from x = 1 to x = 6 ?",
+    "choices": [
+      "29",
+      "10",
+      "50",
+      "9"
+    ],
+    "correct_answer": "10",
+    "explanation": "f(1) = 1 + 3 = 4 and f(6) = 36 + 18 = 54, so the average rate of change is (54 - 4)/(6 - 1) = 50/5 = 10, which is \"10\". \"29\" comes from a solver who averages the two outputs, (4 + 54)/2, confusing the average value with the average rate of change. \"50\" comes from a solver who finds f(6) - f(1) = 50 but never divides by the change in x. \"9\" comes from a solver who computes f(6)/6 = 54/6, ignoring the starting point.",
+    "solve": "var f=function(x){return x*x+3*x}; return String((f(6)-f(1))/(6-1));",
+    "distractor_solve": {
+      "29": "var f=function(x){return x*x+3*x}; return String((f(6)+f(1))/2);",
+      "50": "var f=function(x){return x*x+3*x}; return String(f(6)-f(1));",
+      "9": "var f=function(x){return x*x+3*x}; return String(f(6)/6);"
+    }
+  }
+]

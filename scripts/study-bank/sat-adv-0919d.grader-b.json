@@ -1,0 +1,114 @@
+{
+ "SADV6A-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "h(x)=8x^2-14x+2 so b=-14; -34 (dropped the +10x) and 10 (only 5*2) are real error paths but the expansion is routine, not hard-route work."
+ },
+ "SADV6A-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "Roots -2/3 and 3 give length 11/3 (= sqrt(121)/3); 7/3 is the root sum, but nothing in shape or sign lets a non-solver eliminate."
+ },
+ "SADV6A-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "(5/3)^2-2(-4/3)=49/9; 33 is the same arithmetic with a forgotten /9, 37/9 drops the factor 2, 73/9 doubles the product twice; sign of rs is the trap and B-01 shares the Vieta mechanism only loosely."
+ },
+ "SADV6A-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "2^(x-6)=128=2^7 so x=13; 7 (forgot shift) and 1 (shifted the wrong way) are honest errors, but a calculator plug-in of four options settles it, so not hard."
+ },
+ "SADV6A-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "Continuity at 3 gives 3k-4=6, k=10/3, f(6)=16; 45 is the quadratic piece evaluated at 6 and is the natural wrong-piece error, but 0 and 38 are filler."
+ },
+ "SADV6A-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "strong",
+  "note": "3x^2-14x-5=(3x+1)(x-5) so the zeros are 5 and -1/3 and the distinct product is -5/3; -25/3 (counting 5 twice) is exactly the trap the word distinct exists for, and the stem is unambiguous."
+ },
+ "SADV6A-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "4+5/(x-2) gives 4+5+2=11; 7 is the sign-of-c error and 1 is 4+5-8, but a+b+c stems reward a one-line division and sit at medium."
+ },
+ "SADV6A-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "5x-2=4x-12 gives x=-10; 18 is f(4), the classic inverse-confusion distractor, but this is the same template, same target value 4 and same distractor design as SADV6B-07, so one of the pair should go."
+ },
+ "SADV6B-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "hard",
+  "distractor_quality": "plausible",
+  "note": "f(x)=a(x^2-3x-5) with -5a=20 so a=-4 and f(1)=28; the leading-coefficient step is genuinely hard-route, though 12 and 18 do not map to a clean error and 4 is filler."
+ },
+ "SADV6B-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "x+y=9 with x-y=5 gives (7,2) and xy=14; 49 is x^2 and 9 is x+y, but after one factoring step this is a linear system and reads as Algebra dressed up, not hard-route Advanced Math."
+ },
+ "SADV6B-03": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "(x+3)^2=11 so the roots differ by 2sqrt(11); 2sqrt(22) is the forgot-to-divide-by-2 error, but 22 and 4 are shape-eliminable so a non-solver is choosing between two radicals."
+ },
+ "SADV6B-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "1.15^7=2.66 and 1.15^8=3.06 so t=8; 3 and 23 are magnitude-eliminable and a calculator check of 8 versus 14 decides it, so this is not hard and the stem's least integer / first exceeds are consistent."
+ },
+ "SADV6B-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "Decreasing, so min at x=20: 6-2*5=-4; plugging both endpoints yields 2 and -4 and the smaller is the answer, -10 and -44 are filler, and no monotonicity insight is needed."
+ },
+ "SADV6B-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "b^2=25, b=5, a=2, f(4)=1250; 370 is linear extrapolation and 6250 is f(5), but noticing f(4) must be 250*b already kills 370 and 490."
+ },
+ "SADV6B-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "3x+5=4x-8 gives x=13; 17/2 is f(4) as in A-08, and this item duplicates SADV6A-08's mechanism, stem wording and distractor logic almost verbatim, so the pair is one skill counted twice."
+ },
+ "SADV6B-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "plausible",
+  "note": "(54-4)/5=10; 50 is the undivided difference and 9 is 54/6, but average rate of change over a stated interval is a formula plug and belongs on the medium route at most, borderline Algebra in practice."
+ }
+}

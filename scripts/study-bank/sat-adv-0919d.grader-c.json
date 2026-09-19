@@ -1,0 +1,114 @@
+{
+ "SADV6A-01": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; sign/cluster: three negative options and one positive (10) which is also the stem-number product 5*2 (the bare linear-term contribution) -> kills 10; -2/-14/-34 all need the -24x from the squared term, no cheap bound separates them (-14 and -34 are the +-10 mirror around -24 but -24 is not readable without expanding). No bank duplicate: composition-then-read-coefficient does not appear in sat-adv-*.kept or v16 (SADV2-22 is f(2x-1) rule-for-transformed-input, SADV2-07/SAM11-14 are products not compositions)."
+ },
+ "SADV6A-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; stem-number restatement: 7/3 is -b/a printed in the stem (root SUM), and product<0 forces |r-s|>|r+s| so 7/3 is also killed arithmetically; 11/3, 5, 9/2 all survive (no cheap magnitude bound below 11/3). bank duplicate: sat-adv-0918.kept.batch.json SADV-09 (quadratic inequality -> length of the solution interval = root difference, dressed as a drone height model); also in-file pair with SADV6B-03 (both items are |r-s| of a quadratic)."
+ },
+ "SADV6A-03": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "plausible",
+  "note": "survivors=3; three-option cluster over 9 with integer outlier 33 (33 is also the un-divided monic computation 25+8) -> kills 33; lower bound r^2+s^2 > (r+s)^2 = 25/9 kills nothing; 37/9 (-rs instead of -2rs), 49/9, 73/9 (= (r-s)^2, the mirror quantity) survive. bank duplicate: sat-adv-0918.kept.batch.json SADV-19 (sum of squares of the two solutions from product and difference, same (r+-s)^2 -/+ 2rs identity); related SM16A-01 (r^2s+rs^2 via Vieta)."
+ },
+ "SADV6A-04": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2; monotonicity: f(6)=449<576 so x>6 -> kills 1; structural mirror pair 1/13 around 7 (7 = the un-shifted exponent, spacing 6 = the printed shift) -> kills the center 7; 16 is the lone outlier of the 1-7-13 progression and is left only by charity (2^10+448 is nowhere near 576 on inspection). Survivors 13, 16. No bank duplicate: SM16A-14 and SAM11-08 are common-base exponential equations without the horizontal-line/vertical-shift form."
+ },
+ "SADV6A-05": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "strong",
+  "note": "survivors=4; no cheap bound: f(3)=6>0 gives k>0 and f(6)=6k-4>-4, which kills nothing (0 survives); 45 = quadratic piece evaluated at 6 (wrong piece), 38 = 45-7 / linear with k=7, 0 = linear piece with k=2/3 -> each maps to a real error and none is a stem-number restatement. No bank duplicate: no continuity-fixes-a-constant item in the Advanced Math files (SADV3-04 is piecewise composition at the boundary, no unknown constant)."
+ },
+ "SADV6A-06": {
+  "pick": "C",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; sign: the printed quadratic has c/a=-5/3<0 so one negative zero and the product of distinct zeros must be negative -> kills 14/3 (which is also the stem-number restatement 14 over 3 = -b/a); structural key*5 pair -5/3 and -25/3 (-25/3 = 5 times the quadratic's Vieta product, i.e. counting 5 twice) -> key is one of the pair, -15 (= key*9) falls outside it. Design flaw: the key EQUALS c/a of the printed quadratic, so a student who reads Vieta off the second factor and ignores (x-5)^2 entirely gets it right. bank duplicate: sat-adv-v11.kept.batch.json SAM11-18 (partly factored polynomial (2x-3)(x^2+x-12) -> aggregate of its zeros); related SAM11-06 (repeated zero of multiplicity 2)."
+ },
+ "SADV6A-07": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; stem-number read-offs: a=4 (ratio of leading coefficients) and c=2 (the printed denominator) are free, so every option is 6+b with b in {11,5,-5,1}; structural mirror pair 11/1 (b=+-5) around 6 -> key is one of them; 17 (b=11=4*2+3, sign error inside the remainder) and 7 (c=-2 sign error) fall outside the pair. Survivors 11, 1; positivity of the remainder 4*2-3 is one arithmetic step away. No bank duplicate: no linear-over-linear division-to-mixed-form item in the Advanced Math files (AH3-06 is a hole value, AH3-18/SAM11-07 simplify by factoring)."
+ },
+ "SADV6A-08": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; horizontal asymptote y=5 with f(x)=5+13/(x-3): for x>3 f(x)>5, and the target 4<5 forces x<3 -> kills 14 and 18; 18 is also the definitional-confusion distractor f(4). Survivors -10, -1. In-file pair: SADV6B-07 is the SAME mechanism (linear-over-linear f, f^-1(4), clear the denominator) with the same output value 4 and the same f(4) distractor slot; two authors wrote the same item. Related bank item sat-math-v16-adv.batch.json SM16A-11 (f^-1(37) of a restricted quadratic) shares the inverse-at-a-value frame but not the function type."
+ },
+ "SADV6B-01": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1; sign: f(0)=20 with zero-product -5 gives -5a=20, a<0 (downward parabola); axis at x=(sum)/2=1.5 read off the stem; monotonic increasing on (-inf,1.5) so f(1)>f(0)=20 -> kills 12, 18, 4 in one stroke; 4 is also key/7 = |a|. Only 28 survives. No exact bank duplicate: SADV-02 / AH3-19 / AH3-22 recover a from vertex or intercepts and evaluate; this one recovers a from Vieta product, same family (recover a then evaluate) but a different route."
+ },
+ "SADV6B-02": {
+  "pick": "B",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2; stem-number restatement: 9 = 45/5 is the printed quotient (= x+y, an intermediate, not xy) -> kills 9; part<whole: xy <= ((x+y)/2)^2 = 20.25 kills 49 (49 is also x^2). Survivors 10, 14. bank duplicate: sat-adv-h3.kept.batch.json AH3-24 (x^2+y^2=34, xy=15 -> (x+y)^2: the same two-variable symmetric-identity system, solved by the same square-expansion move); related SAM11-12 (nonlinear system by substitution)."
+ },
+ "SADV6B-03": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2; excluded form: (x+3)^2 = 22/2 = 11 is not a perfect square so the difference of solutions is irrational -> kills 4 and 22 (22 is also the stem-number restatement 15+7, un-divided); remaining pair 2sqrt22 / 2sqrt11 is the un-divided-numerator pair (radicand 22 vs 22/2), so a student who knows the leading 2 must divide is left with one. In-file pair with SADV6A-02 (both are |r-s| of a quadratic). No bank duplicate: no a(x-h)^2+k=m item in the Advanced Math files (SADV-14/AH3-14 are quadratic-form quartics)."
+ },
+ "SADV6B-04": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; stem-number restatement: 3 = 600/200 is the printed ratio, and 1.15^3 = 1.52 < 3 -> kills 3; magnitude: rule of 70 gives a doubling time of about 4.7 h so tripling lands near 7.5-8 h, and 1.15^10 is already about 4 > 3 -> kills 23 and (for anyone using the rule) 14; least-integer structure means checking 8 alone decides once 14 and 23 are known to be too large. Survivors 8, 14. No bank duplicate: SADV2-05 / SM16A-15 / AH3-04 / SM16A-03 evaluate or rescale growth, none inverts for the least integer time."
+ },
+ "SADV6B-05": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=1; vertex value as floor: sqrt(x+5) <= sqrt25 = 5 on the domain so f >= 6-10 = -4, and the key IS that floor (definitional extreme) -> kills -44 (6-2*25, root dropped) and -10 (below the floor); monotonicity (radical subtracted, f decreasing) puts the min at the right endpoint and kills 2 (= f(-1), the max, the mirror endpoint). Only -4 survives. Related but not duplicate: sat-adv-0918 SADV-11 and sat-adv-v11 SAM11-16 (min of a monotone quadratic piece on a closed interval, endpoint decides) share the endpoint-min mechanism with a different function type."
+ },
+ "SADV6B-06": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=1; magnitude: f(3)/f(1)=25=b^2 so the one-step ratio b<25 and f(4)=250b<6250 -> kills 6250 (= 250*25, b^2 used as b); structural key*5 pair 1250/6250 -> key is in the pair, and 370/490 (linear extrapolation +120/+240 from the 240 gap) are the convexity-violating options (exponential growth means the 3->4 step exceeds the average 1->3 step of 120, so f(4)>370 by convexity; 490 dies once b is the square root of 25, which is one read). Only 1250 survives the pair-plus-bound intersection. No bank duplicate: SADV3-11 fits a*x^(3/2)+b through two points; no a*b^x through two points item in the Advanced Math files."
+ },
+ "SADV6B-07": {
+  "pick": "D",
+  "exclusive": true,
+  "difficulty": "medium",
+  "distractor_quality": "weak",
+  "note": "survivors=2; horizontal asymptote y=3 with f(x)=3+11/(x-2): target 4>3 forces x>2 -> kills -1/3 and -3; 17/2 is the definitional-confusion distractor f(4). Survivors 17/2, 13. In-file pair: SADV6A-08 is the same mechanism (linear-over-linear f, f^-1(4), clear the denominator) with the same output 4 and the same f(4) distractor slot -> one of the two must go."
+ },
+ "SADV6B-08": {
+  "pick": "A",
+  "exclusive": true,
+  "difficulty": "easy",
+  "distractor_quality": "weak",
+  "note": "survivors=2; un-divided numerator: 50 = f(6)-f(1) never divided by 5 -> kills 50; magnitude: secant slope of an increasing convex quadratic lies between the endpoint slopes 2*1+3=5 and 2*6+3=15 -> kills 50 and 29 (29 is also the mean of the two outputs, a definitional confusion); adjacent pair 9/10 survives, with 9 = 6+3 the stem-number sum. Survivors 10, 9. No bank duplicate: no average-rate-of-change item in the Advanced Math kept files or v16."
+ }
+}

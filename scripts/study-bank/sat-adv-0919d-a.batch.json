@@ -1,0 +1,130 @@
+[
+  {
+    "id": "SADV6A-01",
+    "domain": "Advanced Math",
+    "subskill": "composition of a quadratic with a linear function: expanding f(g(x)) and reading one coefficient",
+    "difficulty": "medium",
+    "prompt": "The functions f and g are defined by f(x) = 2x² + 5x − 1 and g(x) = 2x − 3. The function h is defined by h(x) = f(g(x)). When h(x) is written in the form ax² + bx + c, where a, b, and c are constants, what is the value of b?",
+    "choices": ["10", "-14", "-2", "-34"],
+    "correct_answer": "-14",
+    "explanation": "h(x) = 2(2x − 3)² + 5(2x − 3) − 1 = 2(4x² − 12x + 9) + 10x − 15 − 1 = 8x² − 24x + 18 + 10x − 16 = 8x² − 14x + 2, so b = -14. \"10\" comes from composing in the wrong order: g(f(x)) = 2(2x² + 5x − 1) − 3 = 4x² + 10x − 5. \"-2\" comes from expanding (2x − 3)² as 4x² − 6x + 9 (the cross term halved), giving 2(−6) + 10. \"-34\" comes from copying 5(2x − 3) with the wrong sign as −10x + 15, giving −24 − 10.",
+    "solve": "var f=function(x){return 2*x*x+5*x-1}, g=function(x){return 2*x-3}; var h=function(x){return f(g(x))}; return String((h(1)-h(-1))/2);",
+    "distractor_solve": {
+      "10": "var f=function(x){return 2*x*x+5*x-1}, g=function(x){return 2*x-3}; var h=function(x){return g(f(x))}; return String((h(1)-h(-1))/2);",
+      "-2": "var cross=-6; return String(2*cross+5*2);",
+      "-34": "return String(2*(-12)+(-10));"
+    }
+  },
+  {
+    "id": "SADV6A-02",
+    "domain": "Advanced Math",
+    "subskill": "quadratic inequality with a non-unit leading coefficient: the LENGTH of the solution interval from its two non-integer/integer endpoints",
+    "difficulty": "medium",
+    "prompt": "The set of all real numbers x that satisfy 3x² − 7x − 6 ≤ 0 is an interval. What is the length of that interval?",
+    "choices": ["5", "7/3", "9/2", "11/3"],
+    "correct_answer": "11/3",
+    "explanation": "3x² − 7x − 6 = (3x + 2)(x − 3), which is at most 0 between its zeros x = −2/3 and x = 3. The interval is from −2/3 to 3, whose length is 3 − (−2/3) = 11/3. \"7/3\" comes from taking the zero of 3x + 2 as +2/3 and computing 3 − 2/3. \"5\" comes from solving 3x + 2 = 0 as x = −2 and computing 3 − (−2). \"9/2\" comes from solving 3x + 2 = 0 as x = −3/2 and computing 3 + 3/2.",
+    "solve": "var a=3,b=-7,c=-6; var D=b*b-4*a*c; var L=Math.sqrt(D)/a; for(var d=1;d<=20;d++){var n=L*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+\"/\"+d;} return String(L);",
+    "distractor_solve": {
+      "7/3": "var L=3-(2/3); for(var d=1;d<=20;d++){var n=L*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+\"/\"+d;} return String(L);",
+      "5": "return String(3-(-2));",
+      "9/2": "var L=3-(-1.5); for(var d=1;d<=20;d++){var n=L*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+\"/\"+d;} return String(L);"
+    }
+  },
+  {
+    "id": "SADV6A-03",
+    "domain": "Advanced Math",
+    "subskill": "sum of the squares of the roots of a non-monic quadratic via (r + s)² − 2rs, with a negative product",
+    "difficulty": "medium",
+    "prompt": "The equation 3x² − 5x − 4 = 0 has two real solutions, r and s. What is the value of r² + s²?",
+    "choices": ["49/9", "33", "37/9", "73/9"],
+    "correct_answer": "49/9",
+    "explanation": "r + s = 5/3 and rs = −4/3, so r² + s² = (r + s)² − 2rs = 25/9 − 2(−4/3) = 25/9 + 24/9 = 49/9. \"37/9\" comes from subtracting rs only once: 25/9 + 12/9. \"73/9\" comes from computing (r − s)² = (r + s)² − 4rs = 25/9 + 48/9 instead of r² + s². \"33\" comes from ignoring the leading coefficient and using r + s = 5, rs = −4: 25 + 8.",
+    "solve": "var a=3,b=-5,c=-4; var s=-b/a,p=c/a; var v=s*s-2*p; for(var d=1;d<=20;d++){var n=v*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+\"/\"+d;} return String(v);",
+    "distractor_solve": {
+      "37/9": "var s=5/3,p=-4/3; var v=s*s-p; for(var d=1;d<=20;d++){var n=v*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+\"/\"+d;} return String(v);",
+      "73/9": "var s=5/3,p=-4/3; var v=s*s-4*p; for(var d=1;d<=20;d++){var n=v*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+\"/\"+d;} return String(v);",
+      "33": "var s=5,p=-4; return String(s*s-2*p);"
+    }
+  },
+  {
+    "id": "SADV6A-04",
+    "domain": "Advanced Math",
+    "subskill": "exponential function meeting a horizontal line: isolate the power, match it to a power of the base, undo the horizontal shift",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 2^(x − 6) + 448. For what value of x is f(x) = 576?",
+    "choices": ["7", "16", "13", "1"],
+    "correct_answer": "13",
+    "explanation": "2^(x − 6) = 576 − 448 = 128 = 2⁷, so x − 6 = 7 and x = 13. \"16\" comes from adding 448 instead of subtracting it: 2^(x − 6) = 1024 = 2¹⁰, giving x = 16. \"7\" comes from stopping at x − 6 = 7 and reporting the exponent. \"1\" comes from solving x − 6 = 7 as x = 7 − 6.",
+    "solve": "var t=576-448; var e=Math.round(Math.log(t)/Math.log(2)); return String(e+6);",
+    "distractor_solve": {
+      "16": "var t=576+448; var e=Math.round(Math.log(t)/Math.log(2)); return String(e+6);",
+      "7": "var t=576-448; return String(Math.round(Math.log(t)/Math.log(2)));",
+      "1": "var t=576-448; var e=Math.round(Math.log(t)/Math.log(2)); return String(e-6);"
+    }
+  },
+  {
+    "id": "SADV6A-05",
+    "domain": "Advanced Math",
+    "subskill": "piecewise function with a quadratic piece and a linear piece: fixing the linear coefficient so the pieces meet, then evaluating on the linear piece",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 2x² − 5x + 3 for x < 3 and f(x) = kx − 4 for x ≥ 3, where k is a constant. The two pieces of the graph of y = f(x) meet at the point where x = 3. What is the value of f(6)?",
+    "choices": ["45", "0", "38", "16"],
+    "correct_answer": "16",
+    "explanation": "At x = 3 the quadratic piece gives 2(9) − 15 + 3 = 6, so 3k − 4 = 6 and k = 10/3. Since 6 ≥ 3, f(6) = (10/3)(6) − 4 = 20 − 4 = 16. \"45\" comes from evaluating the quadratic piece at x = 6: 72 − 30 + 3. \"38\" comes from matching the slopes instead of the values (4x − 5 = 7 at x = 3, so k = 7) and computing 42 − 4. \"0\" comes from solving 6 = 3k + 4 (sign of the −4 flipped), giving k = 2/3 and 6(2/3) − 4.",
+    "solve": "var q=function(x){return 2*x*x-5*x+3}; var k=(q(3)+4)/3; return String(6*k-4);",
+    "distractor_solve": {
+      "45": "var q=function(x){return 2*x*x-5*x+3}; return String(q(6));",
+      "38": "var k=4*3-5; return String(6*k-4);",
+      "0": "var q=function(x){return 2*x*x-5*x+3}; var k=(q(3)-4)/3; return String(6*k-4);"
+    }
+  },
+  {
+    "id": "SADV6A-06",
+    "domain": "Advanced Math",
+    "subskill": "polynomial with a squared factor whose zero recurs inside an unfactored quadratic factor: product of the DISTINCT zeros",
+    "difficulty": "medium",
+    "prompt": "The polynomial p is defined by p(x) = (x − 5)²(3x² − 14x − 5). What is the product of the distinct real zeros of p?",
+    "choices": ["-25/3", "-5/3", "14/3", "-15"],
+    "correct_answer": "-5/3",
+    "explanation": "3x² − 14x − 5 = (3x + 1)(x − 5), so p(x) = (x − 5)³(3x + 1) and the distinct zeros are 5 and −1/3. Their product is 5(−1/3) = -5/3. \"-25/3\" comes from letting the zero 5 of (x − 5)² count twice: 5 · 5 · (−1/3). \"-15\" comes from solving 3x + 1 = 0 as x = −3 and computing 5(−3). \"14/3\" comes from adding the distinct zeros, 5 + (−1/3), instead of multiplying them.",
+    "solve": "var zs=[5]; var D=14*14+4*3*5; var r1=(14-Math.sqrt(D))/6, r2=(14+Math.sqrt(D))/6; [r1,r2].forEach(function(r){if(!zs.some(function(z){return Math.abs(z-r)<1e-9})) zs.push(r)}); var P=zs.reduce(function(a,b){return a*b},1); for(var d=1;d<=20;d++){var n=P*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+\"/\"+d;} return String(P);",
+    "distractor_solve": {
+      "-25/3": "var P=5*5*(-1/3); for(var d=1;d<=20;d++){var n=P*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+\"/\"+d;} return String(P);",
+      "-15": "return String(5*(-3));",
+      "14/3": "var P=5+(-1/3); for(var d=1;d<=20;d++){var n=P*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+\"/\"+d;} return String(P);"
+    }
+  },
+  {
+    "id": "SADV6A-07",
+    "domain": "Advanced Math",
+    "subskill": "rewriting a linear-over-linear rational expression as a + b/(x − c) by division, then summing the three constants",
+    "difficulty": "medium",
+    "prompt": "For x ≠ 2, the expression (4x − 3)/(x − 2) is equivalent to a + b/(x − c), where a, b, and c are constants. What is the value of a + b + c?",
+    "choices": ["11", "17", "7", "1"],
+    "correct_answer": "11",
+    "explanation": "4x − 3 = 4(x − 2) + 5, so (4x − 3)/(x − 2) = 4 + 5/(x − 2). Thus a = 4, b = 5, c = 2 and a + b + c = 11. \"17\" comes from computing the remainder as 3 + 8 = 11 instead of −3 + 8 = 5, giving 4 + 11 + 2. \"7\" comes from reading c as −2 from the denominator x − 2, giving 4 + 5 − 2. \"1\" comes from a remainder with the wrong sign, b = −5, giving 4 − 5 + 2.",
+    "solve": "var a=4; var x=7; var b=(4*x-3)-a*(x-2); var c=2; return String(a+b+c);",
+    "distractor_solve": {
+      "17": "var a=4; var b=3+8; var c=2; return String(a+b+c);",
+      "7": "var a=4; var b=5; var c=-2; return String(a+b+c);",
+      "1": "var a=4; var b=-5; var c=2; return String(a+b+c);"
+    }
+  },
+  {
+    "id": "SADV6A-08",
+    "domain": "Advanced Math",
+    "subskill": "inverse of a linear-over-linear rational function at one value: solving f(x) = 4 by clearing the denominator",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = (5x − 2)/(x − 3) for all x ≠ 3, and f⁻¹ is the inverse function of f. What is the value of f⁻¹(4)?",
+    "choices": ["18", "-1", "-10", "14"],
+    "correct_answer": "-10",
+    "explanation": "f⁻¹(4) is the value of x for which f(x) = 4: (5x − 2)/(x − 3) = 4, so 5x − 2 = 4x − 12 and x = -10. \"18\" comes from evaluating f(4) = (20 − 2)/(4 − 3) instead of solving f(x) = 4. \"-1\" comes from writing 4(x − 3) as 4x − 3, giving 5x − 2 = 4x − 3. \"14\" comes from writing 4(x − 3) as 4x + 12, giving 5x − 2 = 4x + 12.",
+    "solve": "var x=(-2+12)/(4-5); return String(x);",
+    "distractor_solve": {
+      "18": "return String((5*4-2)/(4-3));",
+      "-1": "return String((-2+3)/(4-5));",
+      "14": "return String((-2-12)/(4-5));"
+    }
+  }
+]
