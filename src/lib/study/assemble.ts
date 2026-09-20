@@ -1,6 +1,7 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import {
-  ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, type AdmissionFamily,
+  ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, VERBAL_TYPES, verbalKind,
+  type AdmissionFamily,
 } from './admission-tests'
 import {
   actSection, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE,
@@ -1480,7 +1481,11 @@ export async function assembleAdmissionSection(p: {
 
   const { data, error } = await dbAdmin
     .from('study_item_bank')
-    .select('id, difficulty, item, passage_group_id')
+    /* `task` carries the verbal question type for the two cohorts that
+     * predate the "[Synonym]"/"[Analogy]" prompt tags — without it, 52 of
+     * 180 SSAT verbal rows classify as nothing and drop out of the split
+     * draw. */
+    .select('id, difficulty, item, passage_group_id, task')
     .eq('family', p.family)
     .eq('section', block.bankSection)
     .eq('verified', true)
@@ -1493,7 +1498,11 @@ export async function assembleAdmissionSection(p: {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
       return []
     }
-    return [{ id: row.id, item, passageGroupId: row.passage_group_id as string | null }]
+    return [{
+      id: row.id, item,
+      passageGroupId: row.passage_group_id as string | null,
+      task: row.task as string | null,
+    }]
   })
   if (rows.length === 0) throw new Error(`no verified items for ${p.family}/${block.bankSection}`)
 
@@ -1528,9 +1537,54 @@ export async function assembleAdmissionSection(p: {
    * note for the measurement (SSAT reading was delivering 2 fresh items
    * out of 40 on a student's third test). */
   const fresh = (row: { id: string }) => !exposures.has(row.id)
-  const picked = block.bankSection === 'reading'
-    ? drawByPassage(ranked, block.questions, ITEMS_PER_PASSAGE[p.family], fresh)
-    : drawByPassage(ranked, block.questions, 1, fresh)
+
+  /*
+   * Verbal is drawn TYPE BY TYPE, in the published order.
+   *
+   * Both tests publish the mix exactly (VERBAL_TYPES) and a single draw
+   * over the whole section reproduced neither it nor the order: measured
+   * SSAT sections came out 36/24 and 37/23 synonym/analogy, interleaved.
+   * Each type is drawn separately so the one-per-group rule still applies
+   * within it, then concatenated — synonyms first, analogies after, which
+   * is how the student will sit the real thing.
+   *
+   * A type that cannot be filled backfills from the rest of the section
+   * and says so, rather than returning a short section: a candidate is
+   * better served by 60 questions in the wrong mix than by 54 questions,
+   * and the warning is what tells us to author more of that type.
+   */
+  let picked: typeof ranked
+  /* Type blocks, kept separate so the published ORDER survives the shuffle
+   * below: seededShuffle over the whole section reproduced the right mix
+   * and then scattered it, which is not the section either test publishes. */
+  let orderedBlocks: Array<typeof ranked> | null = null
+  if (block.bankSection === 'reading') {
+    picked = drawByPassage(ranked, block.questions, ITEMS_PER_PASSAGE[p.family], fresh)
+  } else if (block.bankSection === 'verbal' && VERBAL_TYPES[p.family]) {
+    const taken = new Set<string>()
+    picked = []
+    orderedBlocks = []
+    for (const { kind, count } of VERBAL_TYPES[p.family]) {
+      const pool = ranked.filter(r => verbalKind(r.item, r.task) === kind)
+      const got = drawByPassage(pool, count, 1, fresh)
+      if (got.length < count) {
+        console.warn(`[assemble] ${p.family}/verbal SHORT ON ${kind} — wanted ${count}, drew ${got.length} from a pool of ${pool.length}`)
+      }
+      for (const r of got) { picked.push(r); taken.add(r.id) }
+      orderedBlocks.push(got)
+    }
+    if (picked.length < block.questions) {
+      const rest = ranked.filter(r => !taken.has(r.id))
+      const top = drawByPassage(rest, block.questions - picked.length, 1, fresh)
+      picked.push(...top)
+      /* Backfill joins the LAST published block rather than forming a
+       * third one, so a thin bank changes the mix without inventing a
+       * section shape the student has never seen. */
+      if (top.length) orderedBlocks[orderedBlocks.length - 1].push(...top)
+    }
+  } else {
+    picked = drawByPassage(ranked, block.questions, 1, fresh)
+  }
 
   if (picked.length < block.questions) {
     // Loud, not silent. A short section is a real event: it means the
@@ -1539,7 +1593,12 @@ export async function assembleAdmissionSection(p: {
     console.warn(`[assemble] ${p.family}/${block.key} SHORT — wanted ${block.questions}, drew ${picked.length}`)
   }
 
-  const mixed = seededShuffle(picked, seed + ':order')
+  /* Shuffle WITHIN each published block, never across them: two students
+   * should not meet the same running order, and neither should meet
+   * analogies before synonyms. */
+  const mixed = orderedBlocks
+    ? orderedBlocks.flatMap((b, i) => seededShuffle(b, `${seed}:order:${i}`))
+    : seededShuffle(picked, seed + ':order')
   if (p.studentId) await recordExposures(p.studentId, mixed.map(r => r.id), 'full_test', seed)
 
   return {

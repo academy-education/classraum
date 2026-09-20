@@ -42,10 +42,11 @@
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
 import {
-  ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, type AdmissionFamily,
+  ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, VERBAL_TYPES, verbalKind,
+  type AdmissionFamily,
 } from '../../src/lib/study/admission-tests'
 
-type Row = { id: string; passageGroupId: string | null }
+type Row = { id: string; passageGroupId: string | null; item?: { prompt?: string | null }; task?: string | null }
 
 /* A faithful copy of assemble.ts's private `unseenFirst`: unseen first
  * (stable, seeded), then already-seen oldest-first. Copied rather than
@@ -59,8 +60,19 @@ function unseenFirst(rows: Row[], seen: Map<string, number>): Row[] {
   return [...unseen, ...already]
 }
 
-/** Replay N forms for one section. Returns per-form unseen counts. */
-export function replay(rows: Row[], questions: number, perPassage: number, forms: number) {
+/**
+ * Replay N forms for one section. Returns per-form unseen counts.
+ *
+ * `types` mirrors the verbal split draw. It matters to the ANSWER, not
+ * just to fidelity: a verbal section that must find 30 synonyms AND 30
+ * analogies runs out when EITHER pool does, so the honest capacity is the
+ * thinner type, not the item total. Omitting it here would leave this
+ * tool reporting a number the product can no longer deliver.
+ */
+export function replay(
+  rows: Row[], questions: number, perPassage: number, forms: number,
+  types?: Array<{ kind: string; count: number }>,
+) {
   const seen = new Map<string, number>()
   const out: { form: number; delivered: number; fresh: number; repeats: number }[] = []
   for (let f = 1; f <= forms; f++) {
@@ -68,12 +80,27 @@ export function replay(rows: Row[], questions: number, perPassage: number, forms
      * NO_FRESH=1 to drop it and reproduce the pre-2026-09-21 behaviour —
      * that is the break-test for this whole measurement: if the numbers
      * do not get worse without it, the fix is not what moved them. */
-    const picked = process.env.NO_FRESH === '1'
-      ? drawByPassage(unseenFirst(rows, seen), questions, perPassage)
-      : drawByPassage(unseenFirst(rows, seen), questions, perPassage, r => !seen.has(r.id))
-    const fresh = picked.filter(r => !seen.has(r.id)).length
+    const fresh = (r: Row) => !seen.has(r.id)
+    const draw = (pool: Row[], n: number, per: number) => process.env.NO_FRESH === '1'
+      ? drawByPassage(pool, n, per)
+      : drawByPassage(pool, n, per, fresh)
+    let picked: Row[]
+    if (types) {
+      picked = []
+      const taken = new Set<string>()
+      for (const { kind, count } of types) {
+        const pool = unseenFirst(rows.filter(r => verbalKind(r.item ?? {}, r.task) === kind), seen)
+        for (const r of draw(pool, count, 1)) { picked.push(r); taken.add(r.id) }
+      }
+      if (picked.length < questions) {
+        picked.push(...draw(unseenFirst(rows.filter(r => !taken.has(r.id)), seen), questions - picked.length, 1))
+      }
+    } else {
+      picked = draw(unseenFirst(rows, seen), questions, perPassage)
+    }
+    const freshCount = picked.filter(r => !seen.has(r.id)).length
     for (const r of picked) seen.set(r.id, f)
-    out.push({ form: f, delivered: picked.length, fresh, repeats: picked.length - fresh })
+    out.push({ form: f, delivered: picked.length, fresh: freshCount, repeats: picked.length - freshCount })
   }
   return out
 }
@@ -115,6 +142,61 @@ if (process.argv.includes('--selftest')) {
   process.exit(bad ? 1 : 0)
 }
 
+/**
+ * What would it take to reach N clean forms?
+ *
+ * Answered by SIMULATION, not by dividing. items / form-size is the
+ * number that was wrong before (see form-capacity.mjs): it ignores that
+ * reading needs whole passages and that verbal takes one item per
+ * bijective set per form. This grows a synthetic bank in the shape the
+ * section is actually authored in and replays the real draw until N
+ * forms come back clean, so the answer accounts for both rules.
+ */
+function needFor(
+  target: number, questions: number, perPassage: number, groupSize: number,
+): { items: number; groups: number } {
+  const build = (groups: number): Row[] => {
+    const rows: Row[] = []
+    for (let g = 0; g < groups; g++) {
+      for (let i = 0; i < groupSize; i++) rows.push({ id: `g${g}i${i}`, passageGroupId: groupSize > 1 ? `g${g}` : null })
+    }
+    return rows
+  }
+  /* Grow until the target is met, then walk back to the smallest bank that
+   * still meets it — the first size that works is not necessarily minimal
+   * when items arrive a whole group at a time. */
+  let g = 1
+  for (; g <= 4000; g++) {
+    const res = replay(build(g), questions, perPassage, target)
+    if (res.every(r => r.fresh === r.delivered)) break
+  }
+  return { items: g * groupSize, groups: g }
+}
+
+if (process.argv.includes('--target')) {
+  const target = Number(process.argv[process.argv.indexOf('--target') + 1])
+  if (!Number.isFinite(target) || target < 1) { console.error('REFUSING: --target needs a positive integer'); process.exit(2) }
+  console.log(`\nWhat ${target} repeat-free tests would require, by section.`)
+  console.log('Group shapes are how each section is actually authored: reading in passages,')
+  console.log('verbal in bijective sets of 5, math and writing as independent items.\n')
+  const SHAPES: Record<string, Record<string, number>> = {
+    ssat: { math: 1, reading: 6, verbal: 5, writing: 1 },
+    isee: { math: 1, reading: 6, verbal: 5, essay: 1 },
+  }
+  for (const family of ['ssat', 'isee'] as AdmissionFamily[]) {
+    console.log(`  ${family.toUpperCase()}`)
+    for (const block of ADMISSION_BLUEPRINT[family]) {
+      const shape = SHAPES[family][block.key] ?? 1
+      const perPassage = block.bankSection === 'reading' ? ITEMS_PER_PASSAGE[family] : 1
+      const n = needFor(target, block.questions, perPassage, shape)
+      const unit = shape > 1 ? `${n.groups} groups of ${shape}` : `${n.groups} items`
+      console.log(`    ${block.key.padEnd(10)} ${block.questions} q/form  needs ${String(n.items).padStart(4)} items (${unit})`)
+    }
+    console.log('')
+  }
+  process.exit(0)
+}
+
 const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
   .filter(l => l.includes('=') && !l.startsWith('#'))
   .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
@@ -131,18 +213,24 @@ for (const family of ['ssat', 'isee'] as AdmissionFamily[]) {
     if (!block.bankSection) continue
     const rows: Row[] = []
     for (let f = 0; ; f += 1000) {
-      const { data, error } = await db.from('study_item_bank').select('id,passage_group_id')
+      const { data, error } = await db.from('study_item_bank').select('id,passage_group_id,item,task')
         .eq('family', family).eq('section', block.bankSection)
         .eq('verified', true).eq('archived', false)
         .order('id', { ascending: true }).range(f, f + 999)
       if (error) throw new Error(error.message)
-      rows.push(...data.map(r => ({ id: r.id as string, passageGroupId: r.passage_group_id as string | null })))
+      rows.push(...data.map(r => ({
+        id: r.id as string,
+        passageGroupId: r.passage_group_id as string | null,
+        item: r.item as { prompt?: string | null },
+        task: r.task as string | null,
+      })))
       if (data.length < 1000) break
     }
     if (!rows.length) { console.log(`  ${block.key.padEnd(12)} REFUSING: zero verified items`); continue }
     const groups = new Set(rows.map(r => r.passageGroupId ?? `__solo__${r.id}`)).size
     const perPassage = block.bankSection === 'reading' ? ITEMS_PER_PASSAGE[family] : 1
-    const res = replay(rows, block.questions, perPassage, FORMS)
+    const types = block.bankSection === 'verbal' ? VERBAL_TYPES[family] : undefined
+    const res = replay(rows, block.questions, perPassage, FORMS, types)
     const cleanHere = res.findIndex(r => r.fresh < r.delivered)
     const c = cleanHere === -1 ? FORMS : cleanHere
     clean = Math.min(clean, c)

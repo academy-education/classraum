@@ -67,12 +67,28 @@ describe('a drawn form never contains two items from one set', () => {
      * guard ends up existing and doing nothing. Pinned at the call site.
      */
     const src = readFileSync(join(process.cwd(), 'src/lib/study/assemble.ts'), 'utf8')
-    /* The trailing argument list is open on purpose: a freshness
-     * predicate was added 2026-09-21 so a passage draw stops re-serving
-     * exhausted passages. What this guard must keep pinning is the CAP
-     * of 1 for non-reading sections — the bijective-set rule — not the
-     * arity of the call. */
-    expect(src).toMatch(/: drawByPassage\(ranked, block\.questions, 1[,)]/)
+    /*
+     * What this guard pins is the CAP OF 1 on every non-reading admission
+     * draw — the bijective-set rule — not the shape of the call.
+     *
+     * It has been rewritten twice in one day as the draw grew, and both
+     * times the rule itself was untouched: first a freshness predicate was
+     * added (so the arity changed), then verbal was split into published
+     * type blocks (so the ternary became a branch and there are now TWO
+     * non-reading call sites). Pinning a literal call string made this
+     * test fail for a change that could not affect what it protects, which
+     * is its own kind of false signal — so it now asserts the invariant at
+     * every site that draws non-reading items.
+     */
+    const nonReadingDraws = [...src.matchAll(/drawByPassage\(([^)]*)\)/g)]
+      .map(m => m[1])
+      .filter(args => !/ITEMS_PER_PASSAGE/.test(args))
+    // The whole-section draw and the per-type verbal draw, at minimum.
+    expect(nonReadingDraws.length).toBeGreaterThanOrEqual(2)
+    for (const args of nonReadingDraws) {
+      // third argument is the per-group cap, and it must be 1
+      expect(args.split(',').map(a => a.trim())[2]).toBe('1')
+    }
     expect(src).not.toMatch(/: ranked\.slice\(0, block\.questions\)/)
   })
 

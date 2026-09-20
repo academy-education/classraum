@@ -195,6 +195,74 @@ const SCALE_NOTE: Record<AdmissionFamily, string> = {
  * fewer.
  */
 
+/**
+ * The question TYPES inside a verbal section, and how many of each.
+ *
+ * WHY THIS EXISTS, AND WHY IT CONTRADICTS A COMMENT IN assemble.ts
+ * ----------------------------------------------------------------
+ * assembleAdmissionSection carried the note "there is no content-domain
+ * blueprint. SSAT and ISEE publish section counts and timings, not domain
+ * weights, so inventing weights here would be fabricating a spec." That is
+ * true of CONTENT domains and false of question types, which both tests
+ * publish exactly — and which `src/lib/test-specs.ts` has documented in
+ * this repo the whole time:
+ *
+ *   SSAT verbal  "Two question types, 30 each ... TYPE A — SYNONYMS
+ *                (items 1-30) ... TYPE B — ANALOGIES (items 31-60)"
+ *   ISEE verbal  synonyms "roughly the first half", sentence completions
+ *                "roughly the second half" of 40
+ *
+ * Measured 2026-09-21, before this table existed: three drawn SSAT verbal
+ * sections came out 36/24, 37/23 and 37/23 synonym/analogy, interleaved in
+ * random order. A candidate practising for "30 synonyms then 30 analogies"
+ * got neither the mix nor the order, and the section still read as 60
+ * questions in 30 minutes — the same shape of defect as ISEE reading being
+ * served as twelve passages of three, which was also invisible in every
+ * count being checked at the time.
+ *
+ * ISEE's split is published as "roughly", so it is modelled as an even one
+ * and is the softer claim of the two; SSAT's is exact.
+ */
+export type VerbalKind = 'synonym' | 'analogy' | 'sentence completion'
+
+export const VERBAL_TYPES: Record<AdmissionFamily, Array<{ kind: VerbalKind; count: number }>> = {
+  ssat: [{ kind: 'synonym', count: 30 }, { kind: 'analogy', count: 30 }],
+  isee: [{ kind: 'synonym', count: 20 }, { kind: 'sentence completion', count: 20 }],
+}
+
+/**
+ * Which type is this verbal item?
+ *
+ * The published instruction is that items are tagged "[Synonym]" or
+ * "[Analogy]", and most are. Two live cohorts predate that convention and
+ * carry a BARE capitalised stem word ("ADEQUATE", "DIGRESS") with the type
+ * only in the `task` column — 52 of 180 SSAT verbal rows. Classifying on
+ * the tag alone would have silently excluded every one of them from a
+ * split draw, which is how a fidelity fix turns into a capacity cut.
+ *
+ * Returns null when nothing identifies the item, so the caller can COUNT
+ * the unclassifiable rather than quietly treat them as one type.
+ */
+export function verbalKind(item: { prompt?: string | null }, task?: string | null): VerbalKind | null {
+  const p = String(item?.prompt ?? '')
+  if (/\[Analogy\]/i.test(p) || /\bis to\b/i.test(p)) return 'analogy'
+  if (/\[Sentence Completion\]/i.test(p)) return 'sentence completion'
+  /* The blank is written as a run of HYPHENS ("stayed -------, working"),
+   * not underscores. Looking for underscores left 35 of 180 live ISEE
+   * verbal rows unclassified — all of them sentence completions — which
+   * would have pushed the draw to backfill them as synonyms and reproduce
+   * the very mix this table exists to fix. */
+  if (/-{3,}|_{3,}/.test(p)) return 'sentence completion'
+  if (/\[Synonym\]/i.test(p)) return 'synonym'
+  const t = String(task ?? '')
+  if (t === 'analogy') return 'analogy'
+  if (t === 'sentence_completion') return 'sentence completion'
+  if (t === 'synonym') return 'synonym'
+  // A bare capitalised stem with no sentence punctuation is the synonym form.
+  if (/^[A-Z][A-Z\s-]{2,}$/.test(p.trim())) return 'synonym'
+  return null
+}
+
 /** Delivery: questions per passage, per the published format. */
 export const ITEMS_PER_PASSAGE: Record<AdmissionFamily, number> = {
   isee: 6,
