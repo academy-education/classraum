@@ -1,0 +1,398 @@
+[
+ {
+  "id": "SVS7-01",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] FLAG",
+  "choices": [
+   "hoist",
+   "weaken",
+   "unfurl",
+   "revive",
+   "decorate"
+  ],
+  "correct_answer": "weaken",
+  "explanation": "FLAG as a verb means to lose energy or grow limp — 'attention flagged by the third hour'. The banner sense supplies hoist, unfurl and decorate; revive is its antonym.",
+  "distractor_rationales": [
+   "hoist — other meaning: the banner sense of FLAG, not the verb meaning to tire",
+   "unfurl — other meaning: what one does to a banner, a same-field associate of the noun sense",
+   "revive — antonym of the intended sense",
+   "decorate — same field as the banner sense, wrong relation"
+  ]
+ },
+ {
+  "id": "SVS7-04",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] ENTERTAIN",
+  "choices": [
+   "consider",
+   "host",
+   "perform",
+   "cater",
+   "dismiss"
+  ],
+  "correct_answer": "consider",
+  "explanation": "To ENTERTAIN a proposal is to give it consideration. Host, cater and perform all belong to the familiar sense.",
+  "distractor_rationales": [
+   "host — other meaning: the hospitality sense of ENTERTAIN",
+   "perform — same field as the amusement sense, an associate",
+   "cater — same field as the hospitality sense, wrong relation",
+   "dismiss — antonym of the intended sense"
+  ]
+ },
+ {
+  "id": "SVS7-06",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] HUMOR",
+  "choices": [
+   "indulge",
+   "amuse",
+   "joke",
+   "mock",
+   "provoke"
+  ],
+  "correct_answer": "indulge",
+  "explanation": "To HUMOR someone is to go along with them — 'humor your grandmother'. The comic sense supplies amuse, joke and mock.",
+  "distractor_rationales": [
+   "amuse — other meaning: the 'sense of humor' associate",
+   "joke — same field as the comic sense, wrong relation",
+   "mock — same field as the comic sense, an associate rather than a synonym",
+   "provoke — antonym of the intended sense"
+  ]
+ },
+ {
+  "id": "SVS7-08",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] EXACT",
+  "choices": [
+   "calculate",
+   "verify",
+   "estimate",
+   "forgive",
+   "demand"
+  ],
+  "correct_answer": "demand",
+  "explanation": "To EXACT a payment is to demand and take it by force. The adjective sense supplies calculate, verify and estimate.",
+  "distractor_rationales": [
+   "calculate — other meaning: the 'exact figure' sense",
+   "verify — same field as the precision sense, an associate",
+   "estimate — same field as the precision sense, wrong relation",
+   "forgive — antonym of the intended sense"
+  ]
+ },
+ {
+  "id": "SVS7-09",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] STEEP",
+  "choices": [
+   "climb",
+   "tilt",
+   "soak",
+   "parch",
+   "survey"
+  ],
+  "correct_answer": "soak",
+  "explanation": "To STEEP leaves is to soak them in liquid. The slope sense supplies climb, tilt and survey; parch is the opposite of soaking.",
+  "distractor_rationales": [
+   "climb — other meaning: the 'steep hill' sense",
+   "tilt — same field as the slope sense, an associate",
+   "parch — antonym of the intended sense",
+   "survey — same field as the slope sense, wrong relation"
+  ]
+ },
+ {
+  "id": "SVS7-10",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] MARSHAL",
+  "choices": [
+   "arrest",
+   "patrol",
+   "scatter",
+   "assemble",
+   "guard"
+  ],
+  "correct_answer": "assemble",
+  "explanation": "To MARSHAL resources is to gather and order them. The lawman sense supplies arrest, patrol and guard.",
+  "distractor_rationales": [
+   "arrest — other meaning: the lawman sense of MARSHAL",
+   "patrol — same field as the lawman sense, wrong relation",
+   "scatter — antonym of the intended sense",
+   "guard — same field as the lawman sense, an associate"
+  ]
+ },
+ {
+  "id": "SVS7-11",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] WAX",
+  "choices": [
+   "melt",
+   "harden",
+   "drip",
+   "shrink",
+   "increase"
+  ],
+  "correct_answer": "increase",
+  "explanation": "To WAX is to grow larger — 'the moon waxed'. The substance sense supplies melt, harden and drip.",
+  "distractor_rationales": [
+   "melt — other meaning: the candle-and-polish sense of WAX",
+   "harden — same field as the candle sense, wrong relation",
+   "drip — same field as the candle sense, an associate",
+   "shrink — antonym of the intended sense"
+  ]
+ },
+ {
+  "id": "SVS7-12",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] SOUND",
+  "choices": [
+   "audible",
+   "loud",
+   "valid",
+   "faint",
+   "hollow"
+  ],
+  "correct_answer": "valid",
+  "explanation": "A SOUND argument is a solid, valid one. The noise sense supplies audible, loud and faint.",
+  "distractor_rationales": [
+   "audible — other meaning: the noise sense of SOUND",
+   "loud — same field as the noise sense, an associate",
+   "faint — same field as the noise sense, wrong relation",
+   "hollow — antonym of the intended sense — an unsound argument"
+  ]
+ },
+ {
+  "id": "SVS7-14",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] WANTING",
+  "choices": [
+   "eager",
+   "envious",
+   "ample",
+   "deficient",
+   "greedy"
+  ],
+  "correct_answer": "deficient",
+  "explanation": "Found WANTING means found lacking. The desire sense supplies eager, envious and greedy.",
+  "distractor_rationales": [
+   "eager — other meaning: the desiring sense of WANTING",
+   "envious — same field as the desire sense, an associate",
+   "ample — antonym of the intended sense",
+   "greedy — same field as the desire sense, wrong relation"
+  ]
+ },
+ {
+  "id": "SVS7-15",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] SPARE",
+  "choices": [
+   "merciful",
+   "meager",
+   "lavish",
+   "spotless",
+   "cluttered"
+  ],
+  "correct_answer": "meager",
+  "explanation": "A SPARE frame or a spare prose style is a lean one; lavish and cluttered are its opposites, and merciful comes from the verb to spare.",
+  "distractor_rationales": [
+   "merciful — other meaning: to SPARE someone is to show mercy",
+   "lavish — antonym of the intended sense",
+   "spotless — same field of plain, bare surroundings, wrong relation",
+   "cluttered — antonym of the bare sense from the other direction"
+  ]
+ },
+ {
+  "id": "SVS7-18",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] ALACRITY",
+  "choices": [
+   "accuracy",
+   "clarity",
+   "reluctance",
+   "eagerness",
+   "fatigue"
+  ],
+  "correct_answer": "eagerness",
+  "explanation": "ALACRITY is brisk and cheerful willingness. Accuracy and clarity are the sound-alike traps; reluctance is its opposite.",
+  "distractor_rationales": [
+   "accuracy — sound-alike, nothing to do with willingness",
+   "clarity — look-alike ending, a different quality",
+   "reluctance — antonym of the intended sense",
+   "fatigue — same field of energy and pace, wrong relation"
+  ]
+ },
+ {
+  "id": "SVS7-30",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] PERFIDIOUS",
+  "choices": [
+   "treacherous",
+   "perpetual",
+   "loyal",
+   "flawless",
+   "meticulous"
+  ],
+  "correct_answer": "treacherous",
+  "explanation": "PERFIDIOUS means faithless, treacherous. Flawless is the trap for readers who hear perfect in it.",
+  "distractor_rationales": [
+   "perpetual — sound-alike opening, unrelated in meaning",
+   "loyal — antonym of the intended sense",
+   "flawless — look-alike: perfidious read as though it came from perfect",
+   "meticulous — same field of conduct and character, wrong relation"
+  ]
+ },
+ {
+  "id": "SVS7-31",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] PROFLIGATE",
+  "choices": [
+   "prolific",
+   "wasteful",
+   "thrifty",
+   "profitable",
+   "skillful"
+  ],
+  "correct_answer": "wasteful",
+  "explanation": "PROFLIGATE means recklessly extravagant. Prolific and profitable are the look-alike traps.",
+  "distractor_rationales": [
+   "prolific — look-alike, abundant in output rather than careless with money",
+   "thrifty — antonym of the intended sense",
+   "profitable — look-alike pro- opening, unrelated in meaning",
+   "skillful — same field of how one handles resources, wrong relation"
+  ]
+ },
+ {
+  "id": "SVS7-32",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] INTREPID",
+  "choices": [
+   "intricate",
+   "timid",
+   "fearless",
+   "weary",
+   "rapid"
+  ],
+  "correct_answer": "fearless",
+  "explanation": "INTREPID means undaunted. Intricate and rapid are the look-alike and sound-alike traps.",
+  "distractor_rationales": [
+   "intricate — look-alike opening, unrelated in meaning",
+   "timid — antonym of the intended sense",
+   "weary — same field of describing an explorer, wrong relation",
+   "rapid — sound-alike ending, unrelated in meaning"
+  ]
+ },
+ {
+  "id": "SVS7-38",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] AUSTERE",
+  "choices": [
+   "sincere",
+   "luxurious",
+   "severe",
+   "hollow",
+   "spacious"
+  ],
+  "correct_answer": "severe",
+  "explanation": "AUSTERE means stern and unadorned. Sincere is the sound-alike trap.",
+  "distractor_rationales": [
+   "sincere — sound-alike ending, unrelated in meaning",
+   "luxurious — antonym of the intended sense",
+   "hollow — same field of bare and plain surroundings, wrong relation",
+   "spacious — same field of describing a plain room, wrong relation"
+  ]
+ },
+ {
+  "id": "SVS7-50",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] THWART",
+  "choices": [
+   "block",
+   "assist",
+   "thrash",
+   "tolerate",
+   "wander"
+  ],
+  "correct_answer": "block",
+  "explanation": "To THWART a plan is to stop it going through. Thrash is the sound-alike trap.",
+  "distractor_rationales": [
+   "assist — antonym of the intended sense",
+   "thrash — sound-alike opening, a beating rather than a frustrating",
+   "tolerate — same field of responding to a plan, wrong relation",
+   "wander — same field by way of thwart's crosswise sense, wrong relation"
+  ]
+ },
+ {
+  "id": "SVS7-51",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] STURDY",
+  "choices": [
+   "fragile",
+   "noisy",
+   "strong",
+   "clumsy",
+   "gentle"
+  ],
+  "correct_answer": "strong",
+  "explanation": "STURDY means solidly built and strong.",
+  "distractor_rationales": [
+   "fragile — antonym of the intended sense",
+   "noisy — same field of describing an old chair, wrong relation",
+   "clumsy — sound-alike ending, unrelated in meaning",
+   "gentle — same field of describing manner, wrong relation"
+  ]
+ },
+ {
+  "id": "SVS7-57",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] SCARCE",
+  "choices": [
+   "plentiful",
+   "frightening",
+   "tiny",
+   "costly",
+   "rare"
+  ],
+  "correct_answer": "rare",
+  "explanation": "SCARCE means in short supply. Scare supplies the look-alike trap.",
+  "distractor_rationales": [
+   "plentiful — antonym of the intended sense",
+   "frightening — look-alike: scare",
+   "tiny — same field of describing a small supply, wrong relation",
+   "costly — same field: scarce things are often costly, but that is a consequence, not the meaning"
+  ]
+ }
+]

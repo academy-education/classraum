@@ -200,10 +200,28 @@ async function verify() {
    * reported 12 of 12 failing — because the fix for the dedup_key
    * landmine writes [] rather than null. An empty array IS "no choices".
    * Testing for emptiness is the check that was meant.
+   *
+   * AND THE SAME BUG SURVIVED IN THE OTHER HALF OF THE SAME PREDICATE
+   * until 2026-09-21. `correct_answer != null` was left as it was while
+   * the `choices` half was repaired, and buildRows writes `''` — so
+   * `'' != null` held and this line reported "12 (must be 0)" for every
+   * live row, continuously, from the day it was written. Nobody saw it,
+   * because `verify()` printed the failure and returned normally: the
+   * exit code was 0 whatever the counts said, so the one caller that
+   * could have noticed (`insert`, which calls verify at the end) always
+   * saw success. Fixed together: a key means a NON-EMPTY correct_answer,
+   * and verify now exits 1 when any must-be-0 count is not 0.
    */
   const withKeys = rows.filter(r =>
-    r.item.correct_answer != null || (Array.isArray(r.item.choices) && r.item.choices.length > 0))
+    (r.item.correct_answer != null && r.item.correct_answer !== '')
+    || (Array.isArray(r.item.choices) && r.item.choices.length > 0))
   console.log(`rows carrying a key or real options: ${withKeys.length} (must be 0)`)
+  /* A check that prints "must be 0" next to a non-zero number and then
+   * exits 0 is not a check. Both counts are fatal. */
+  if (badPairs.length || withKeys.length) {
+    console.error(`FAIL: ${badPairs.length} half-pairs, ${withKeys.length} rows carrying a key`)
+    process.exitCode = 1
+  }
 }
 
 const cmd = process.argv[2]

@@ -1,0 +1,750 @@
+[
+  {
+    "id": "SVA7B-01",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Mason is to trowel as",
+    "choices": [
+      "brick is to wall",
+      "weaver is to loom",
+      "lathe is to machinist",
+      "quarry is to stone",
+      "kiln is to pottery"
+    ],
+    "correct_answer": "weaver is to loom",
+    "explanation": "Worker to the implement of the trade: a mason spreads mortar with a trowel as a weaver makes cloth on a loom. Only this pair runs worker to tool in that order.",
+    "distractor_rationales": {
+      "brick is to wall": "topical associate, wrong internal relation — masonry field, but part to whole",
+      "lathe is to machinist": "the correct relation REVERSED — tool to worker",
+      "quarry is to stone": "related but different relation — source/location to material",
+      "kiln is to pottery": "related but different relation — tool to the product it yields, not worker to tool"
+    }
+  },
+  {
+    "id": "SVA7B-02",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] Angler is to rod as",
+    "choices": [
+      "net is to fisherman",
+      "trout is to river",
+      "surgeon is to scalpel",
+      "bait is to hook",
+      "oar is to rowing"
+    ],
+    "correct_answer": "surgeon is to scalpel",
+    "explanation": "An angler works with a rod as a surgeon works with a scalpel — worker to the characteristic tool.",
+    "distractor_rationales": {
+      "net is to fisherman": "the correct relation REVERSED, and in the stem's own field",
+      "trout is to river": "topical associate — creature to habitat",
+      "bait is to hook": "topical associate, wrong relation — two things used together, neither a worker",
+      "oar is to rowing": "related but different relation — tool to the activity it performs"
+    }
+  },
+  {
+    "id": "SVA7B-03",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] Welder is to torch as",
+    "choices": [
+      "flame is to heat",
+      "farmer is to plow",
+      "visor is to welder",
+      "steel is to girder",
+      "solder is to joint"
+    ],
+    "correct_answer": "farmer is to plow",
+    "explanation": "The welder's working implement is the torch; the farmer's is the plow.",
+    "distractor_rationales": {
+      "flame is to heat": "related but different relation — cause to effect, in the stem's field",
+      "visor is to welder": "the correct relation REVERSED — equipment to worker",
+      "steel is to girder": "related but different relation — raw material to finished form",
+      "solder is to joint": "topical associate — material to the result it creates"
+    }
+  },
+  {
+    "id": "SVA7B-04",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Tailor is to needle as",
+    "choices": [
+      "thread is to seam",
+      "easel is to painter",
+      "potter is to wheel",
+      "suit is to lapel",
+      "shears is to cut"
+    ],
+    "correct_answer": "potter is to wheel",
+    "explanation": "Worker to the tool that shapes the work: a tailor sews with a needle, a potter throws on a wheel.",
+    "distractor_rationales": {
+      "thread is to seam": "topical associate, wrong relation — material to result",
+      "easel is to painter": "the correct relation REVERSED — tool to worker",
+      "suit is to lapel": "related but different relation — whole to part, in the stem's field",
+      "shears is to cut": "related but different relation — tool to function"
+    }
+  },
+  {
+    "id": "SVA7B-05",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Conductor is to baton as",
+    "choices": [
+      "violinist is to sonata",
+      "orchestra is to section",
+      "metronome is to tempo",
+      "podium is to conductor",
+      "shepherd is to crook"
+    ],
+    "correct_answer": "shepherd is to crook",
+    "explanation": "The relation is worker to the implement he directs his charges with. Four choices stay inside the stem's musical field; only the shepherd and his crook leaves the field while keeping the relation exactly.",
+    "distractor_rationales": {
+      "violinist is to sonata": "topical associate, wrong relation — worker to product, not worker to tool",
+      "orchestra is to section": "topical associate — whole to part",
+      "metronome is to tempo": "related but different relation — instrument to the quantity it marks",
+      "podium is to conductor": "the correct relation REVERSED, and an object of position rather than a tool"
+    }
+  },
+  {
+    "id": "SVA7B-06",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Damp is to saturated as",
+    "choices": [
+      "frozen is to chilly",
+      "cracked is to shattered",
+      "sponge is to water",
+      "drenched is to moist",
+      "leak is to puddle"
+    ],
+    "correct_answer": "cracked is to shattered",
+    "explanation": "Degree, running from the slight condition to the extreme one: damp to saturated, cracked to shattered.",
+    "distractor_rationales": {
+      "frozen is to chilly": "right relation, wrong DIRECTION — extreme to slight",
+      "sponge is to water": "topical associate, wrong relation — object to what it absorbs",
+      "drenched is to moist": "right relation, wrong direction, and in the stem's own field",
+      "leak is to puddle": "related but different relation — cause to effect"
+    }
+  },
+  {
+    "id": "SVA7B-07",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Fond is to devoted as",
+    "choices": [
+      "furious is to irritated",
+      "affection is to loyalty",
+      "ancient is to old",
+      "hungry is to ravenous",
+      "friend is to companion"
+    ],
+    "correct_answer": "hungry is to ravenous",
+    "explanation": "Mild feeling to intense feeling in the same direction: fond to devoted, hungry to ravenous.",
+    "distractor_rationales": {
+      "furious is to irritated": "right relation, wrong DIRECTION — intense to mild",
+      "affection is to loyalty": "topical associate, wrong relation — two related qualities, not degrees of one",
+      "ancient is to old": "right relation, wrong direction",
+      "friend is to companion": "related but different relation — near-synonyms of equal strength, no change of degree"
+    }
+  },
+  {
+    "id": "SVA7B-08",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Glimmer is to blaze as",
+    "choices": [
+      "trickle is to torrent",
+      "lantern is to light",
+      "downpour is to drizzle",
+      "candle is to wax",
+      "roar is to rustle"
+    ],
+    "correct_answer": "trickle is to torrent",
+    "explanation": "A faint instance to an overwhelming instance of the same thing. Two other pairs change intensity but run the wrong way.",
+    "distractor_rationales": {
+      "lantern is to light": "topical associate, wrong relation — device to what it produces",
+      "downpour is to drizzle": "right relation, wrong DIRECTION, and in the key's field to prevent field-matching",
+      "candle is to wax": "topical associate — object to material",
+      "roar is to rustle": "right relation, wrong direction"
+    }
+  },
+  {
+    "id": "SVA7B-09",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Jog is to sprint as",
+    "choices": [
+      "bolt is to stroll",
+      "runner is to track",
+      "devour is to nibble",
+      "sprinter is to stopwatch",
+      "sip is to guzzle"
+    ],
+    "correct_answer": "sip is to guzzle",
+    "explanation": "Moderate action to the same action performed intensely: jog to sprint, sip to guzzle.",
+    "distractor_rationales": {
+      "bolt is to stroll": "right relation, wrong DIRECTION",
+      "runner is to track": "topical associate — person to location",
+      "devour is to nibble": "right relation, wrong direction, in the key's field so topic cannot decide it",
+      "sprinter is to stopwatch": "related but different relation — worker to tool, topically tied to the stem"
+    }
+  },
+  {
+    "id": "SVA7B-10",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] Uneasy is to terrified as",
+    "choices": [
+      "parched is to thirsty",
+      "fear is to flight",
+      "tired is to exhausted",
+      "brilliant is to clever",
+      "nervous is to calm"
+    ],
+    "correct_answer": "tired is to exhausted",
+    "explanation": "Slight state to extreme state: uneasy to terrified, tired to exhausted.",
+    "distractor_rationales": {
+      "parched is to thirsty": "right relation, wrong DIRECTION",
+      "fear is to flight": "topical associate, wrong relation — cause to effect",
+      "brilliant is to clever": "right relation, wrong direction",
+      "nervous is to calm": "related but different relation — antonyms, and topically tied to the stem"
+    }
+  },
+  {
+    "id": "SVA7B-11",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] Baker is to loaf as",
+    "choices": [
+      "oven is to baker",
+      "portrait is to painter",
+      "crumb is to bread",
+      "hive is to honey",
+      "blacksmith is to horseshoe"
+    ],
+    "correct_answer": "blacksmith is to horseshoe",
+    "explanation": "Maker to the thing made: a baker turns out a loaf as a blacksmith turns out a horseshoe.",
+    "distractor_rationales": {
+      "oven is to baker": "related but different relation REVERSED — tool to worker",
+      "portrait is to painter": "the correct relation REVERSED — product to maker",
+      "crumb is to bread": "topical associate, wrong relation — part to whole",
+      "hive is to honey": "related but different relation — source to product, with no worker"
+    }
+  },
+  {
+    "id": "SVA7B-12",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] Composer is to symphony as",
+    "choices": [
+      "playwright is to drama",
+      "score is to composer",
+      "violin is to string",
+      "chorus is to singers",
+      "stage is to actor"
+    ],
+    "correct_answer": "playwright is to drama",
+    "explanation": "Creator to the work created: composer and symphony, playwright and drama.",
+    "distractor_rationales": {
+      "score is to composer": "the correct relation REVERSED — work to creator",
+      "violin is to string": "topical associate — whole to part",
+      "chorus is to singers": "related but different relation — group to member",
+      "stage is to actor": "topical associate, wrong relation — location to person"
+    }
+  },
+  {
+    "id": "SVA7B-13",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Vintner is to wine as",
+    "choices": [
+      "grape is to vineyard",
+      "press is to vintner",
+      "cask is to cellar",
+      "miller is to flour",
+      "vinegar is to sour"
+    ],
+    "correct_answer": "miller is to flour",
+    "explanation": "A vintner produces wine from grapes as a miller produces flour from grain — worker to product.",
+    "distractor_rationales": {
+      "grape is to vineyard": "topical associate — member to location",
+      "press is to vintner": "related but different relation REVERSED — tool to worker",
+      "cask is to cellar": "topical associate, wrong relation — object to location",
+      "vinegar is to sour": "related but different relation — thing to characteristic"
+    }
+  },
+  {
+    "id": "SVA7B-14",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Glassblower is to vase as",
+    "choices": [
+      "jeweler is to brooch",
+      "furnace is to glassblower",
+      "vase is to porcelain",
+      "goblet is to stem",
+      "gem is to mine"
+    ],
+    "correct_answer": "jeweler is to brooch",
+    "explanation": "Craftsman to the object he fashions: glassblower and vase, jeweler and brooch.",
+    "distractor_rationales": {
+      "furnace is to glassblower": "the correct relation REVERSED, with a tool in place of a product",
+      "vase is to porcelain": "topical associate, wrong relation — object to material",
+      "goblet is to stem": "topical associate — whole to part",
+      "gem is to mine": "related but different relation — material to its source"
+    }
+  },
+  {
+    "id": "SVA7B-15",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Poet is to verse as",
+    "choices": [
+      "stanza is to refrain",
+      "lexicographer is to dictionary",
+      "meter is to rhythm",
+      "essay is to essayist",
+      "anthology is to poems"
+    ],
+    "correct_answer": "lexicographer is to dictionary",
+    "explanation": "The relation is the writer to what his labor produces. Four choices sit inside the poetry field and none of them is a maker-to-work pair; the lexicographer leaves the field but reproduces the relation.",
+    "distractor_rationales": {
+      "stanza is to refrain": "topical associate, wrong relation — two parts of a poem",
+      "meter is to rhythm": "topical associate — near-synonyms of a technical quality",
+      "essay is to essayist": "the correct relation REVERSED — work to writer",
+      "anthology is to poems": "related but different relation — collection to members"
+    }
+  },
+  {
+    "id": "SVA7B-16",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Printer is to pamphlet as",
+    "choices": [
+      "ink is to press",
+      "binding is to book",
+      "typeface is to font",
+      "tanner is to leather",
+      "manuscript is to editor"
+    ],
+    "correct_answer": "tanner is to leather",
+    "explanation": "The tradesman and the goods that come out of his shop: a printer turns out pamphlets, a tanner turns out leather.",
+    "distractor_rationales": {
+      "ink is to press": "topical associate, wrong relation — material used with a machine",
+      "binding is to book": "topical associate — part to whole",
+      "typeface is to font": "related but different relation — near-synonyms, no making involved",
+      "manuscript is to editor": "the correct relation REVERSED — object worked on to the worker"
+    }
+  },
+  {
+    "id": "SVA7B-17",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Choreographer is to ballet as",
+    "choices": [
+      "dancer is to leap",
+      "cartoonist is to comic strip",
+      "mural is to muralist",
+      "troupe is to dancer",
+      "ballet is to dance"
+    ],
+    "correct_answer": "cartoonist is to comic strip",
+    "explanation": "The person who composes the work to the work itself: choreographer and ballet, cartoonist and comic strip.",
+    "distractor_rationales": {
+      "dancer is to leap": "topical associate, wrong relation — performer to a single action, not a composed work",
+      "mural is to muralist": "the correct relation REVERSED",
+      "troupe is to dancer": "related but different relation — group to member",
+      "ballet is to dance": "topical associate — member to category"
+    }
+  },
+  {
+    "id": "SVA7B-18",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Bricklayer is to wall as",
+    "choices": [
+      "level is to bricklayer",
+      "wall is to partition",
+      "shipwright is to hull",
+      "keel is to ship",
+      "mast is to sail"
+    ],
+    "correct_answer": "shipwright is to hull",
+    "explanation": "Builder to the structure he builds: a bricklayer raises a wall, a shipwright builds a hull.",
+    "distractor_rationales": {
+      "level is to bricklayer": "the correct relation REVERSED, with a tool in place of a product",
+      "wall is to partition": "topical associate — near-synonyms",
+      "keel is to ship": "topical associate in the key's field, wrong relation — part to whole",
+      "mast is to sail": "related but different relation — two parts that work together"
+    }
+  },
+  {
+    "id": "SVA7B-19",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Friction is to heat as",
+    "choices": [
+      "axle is to wheel",
+      "lubricant is to friction",
+      "heat is to friction",
+      "gravel is to road",
+      "erosion is to canyon"
+    ],
+    "correct_answer": "erosion is to canyon",
+    "explanation": "A process and what it produces over time: friction produces heat, erosion produces a canyon. The trap is that three choices sit in the mechanical field and one simply mirrors the stem.",
+    "distractor_rationales": {
+      "axle is to wheel": "topical associate, wrong relation — two parts fitted together",
+      "lubricant is to friction": "related but different relation — the agent that PREVENTS the condition",
+      "heat is to friction": "the correct relation REVERSED — effect to cause",
+      "gravel is to road": "related but different relation — material to finished thing"
+    }
+  },
+  {
+    "id": "SVA7B-20",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Insult is to resentment as",
+    "choices": [
+      "praise is to confidence",
+      "resentment is to grudge",
+      "apology is to quarrel",
+      "sarcasm is to irony",
+      "compliment is to flattery"
+    ],
+    "correct_answer": "praise is to confidence",
+    "explanation": "Something said to the feeling it creates in the hearer: an insult breeds resentment, praise breeds confidence.",
+    "distractor_rationales": {
+      "resentment is to grudge": "related but different relation — degree, and it reuses the stem's own second word as a decoy",
+      "apology is to quarrel": "related but different relation — the remedy for a condition rather than its cause",
+      "sarcasm is to irony": "topical associate — member to category",
+      "compliment is to flattery": "topical associate, wrong relation — degree of intensity"
+    }
+  },
+  {
+    "id": "SVA7B-21",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Vaccine is to immunity as",
+    "choices": [
+      "immunity is to vaccine",
+      "syringe is to nurse",
+      "fertilizer is to growth",
+      "vitamin is to nutrient",
+      "soil is to garden"
+    ],
+    "correct_answer": "fertilizer is to growth",
+    "explanation": "Something applied and the beneficial result it brings about: a vaccine confers immunity, fertilizer produces growth.",
+    "distractor_rationales": {
+      "immunity is to vaccine": "the correct relation REVERSED — effect to cause",
+      "syringe is to nurse": "topical associate, wrong relation — tool to worker",
+      "vitamin is to nutrient": "related but different relation — member to category",
+      "soil is to garden": "topical associate — material to location"
+    }
+  },
+  {
+    "id": "SVA7B-22",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Overwork is to burnout as",
+    "choices": [
+      "rest is to fatigue",
+      "burnout is to overwork",
+      "effort is to labor",
+      "watering can is to gardener",
+      "overwatering is to rot"
+    ],
+    "correct_answer": "overwatering is to rot",
+    "explanation": "Excess of a normally good thing to the damage that excess causes: overwork causes burnout, overwatering causes rot. The doing-too-much is load-bearing, which is why 'rest is to fatigue' fails.",
+    "distractor_rationales": {
+      "rest is to fatigue": "related but different relation — the cure for a condition, not its cause",
+      "burnout is to overwork": "the correct relation REVERSED — effect to cause",
+      "effort is to labor": "topical associate — near-synonyms",
+      "watering can is to gardener": "topical associate of the KEY, wrong relation — tool to worker"
+    }
+  },
+  {
+    "id": "SVA7B-23",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Humidity is to mildew as",
+    "choices": [
+      "mildew is to fungus",
+      "sunlight is to sunburn",
+      "dehumidifier is to humidity",
+      "attic is to dust",
+      "rust is to moisture"
+    ],
+    "correct_answer": "sunlight is to sunburn",
+    "explanation": "Prolonged exposure to a condition and the harm it produces: humidity brings mildew, sunlight brings sunburn.",
+    "distractor_rationales": {
+      "mildew is to fungus": "topical associate, wrong relation — member to category",
+      "dehumidifier is to humidity": "related but different relation — the device that REMOVES the condition",
+      "attic is to dust": "topical associate — location to what collects there",
+      "rust is to moisture": "the correct relation REVERSED — damage to the condition that caused it"
+    }
+  },
+  {
+    "id": "SVA7B-24",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Rumor is to panic as",
+    "choices": [
+      "applause is to performance",
+      "gossip is to rumor",
+      "crowd is to spectator",
+      "delay is to frustration",
+      "hearsay is to evidence"
+    ],
+    "correct_answer": "delay is to frustration",
+    "explanation": "An event and the public feeling it sets off: a rumor sets off panic, a delay sets off frustration.",
+    "distractor_rationales": {
+      "applause is to performance": "the correct relation REVERSED — response to the thing that prompted it",
+      "gossip is to rumor": "topical associate — near-synonyms",
+      "crowd is to spectator": "related but different relation — group to member",
+      "hearsay is to evidence": "topical associate, wrong relation — contrast rather than cause"
+    }
+  },
+  {
+    "id": "SVA7B-25",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Sleeplessness is to irritability as",
+    "choices": [
+      "malnutrition is to weakness",
+      "remedy is to ailment",
+      "insomnia is to sleeplessness",
+      "pillow is to sleeper",
+      "fatigue is to drowsiness"
+    ],
+    "correct_answer": "malnutrition is to weakness",
+    "explanation": "A sustained deprivation and the condition it produces: going without sleep produces irritability, going without nourishment produces weakness.",
+    "distractor_rationales": {
+      "remedy is to ailment": "related but different relation — cure to condition, the reverse of cause",
+      "insomnia is to sleeplessness": "topical associate — near-synonyms drawn from the stem's own field",
+      "pillow is to sleeper": "topical associate, wrong relation — object to user",
+      "fatigue is to drowsiness": "topical associate, wrong relation — two symptoms of equal standing, neither causing the other"
+    }
+  },
+  {
+    "id": "SVA7B-26",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Pollution is to smog as",
+    "choices": [
+      "smog is to city",
+      "filter is to pollution",
+      "sediment is to delta",
+      "smoke is to factory",
+      "river is to bank"
+    ],
+    "correct_answer": "sediment is to delta",
+    "explanation": "Accumulated matter and the visible formation it produces: pollution accumulates into smog, sediment accumulates into a delta.",
+    "distractor_rationales": {
+      "smog is to city": "topical associate, wrong relation — thing to location",
+      "filter is to pollution": "related but different relation — the device that REMOVES the thing",
+      "smoke is to factory": "the correct relation REVERSED — product to its source",
+      "river is to bank": "topical associate of the key, wrong relation — whole to part"
+    }
+  },
+  {
+    "id": "SVA7B-27",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Earthquake is to rubble as",
+    "choices": [
+      "tremor is to earthquake",
+      "wildfire is to ash",
+      "rubble is to debris",
+      "fault is to crust",
+      "extinguisher is to fire"
+    ],
+    "correct_answer": "wildfire is to ash",
+    "explanation": "A destructive event and the residue it leaves: an earthquake leaves rubble, a wildfire leaves ash.",
+    "distractor_rationales": {
+      "tremor is to earthquake": "related but different relation — degree of intensity, in the stem's field",
+      "rubble is to debris": "topical associate — near-synonyms, reusing the stem's second word",
+      "fault is to crust": "topical associate, wrong relation — part to whole",
+      "extinguisher is to fire": "related but different relation — the agent that STOPS the event, and topically tied to the key"
+    }
+  },
+  {
+    "id": "SVA7B-28",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Brittle is to pliant as",
+    "choices": [
+      "glass is to brittle",
+      "clay is to pottery",
+      "flexible is to supple",
+      "opaque is to transparent",
+      "sturdy is to unbreakable"
+    ],
+    "correct_answer": "opaque is to transparent",
+    "explanation": "Opposed physical properties: what is brittle snaps rather than bends, what is pliant bends; what is opaque blocks light, what is transparent passes it.",
+    "distractor_rationales": {
+      "glass is to brittle": "topical associate, wrong relation — object to characteristic",
+      "clay is to pottery": "related but different relation — material to product",
+      "flexible is to supple": "related but different relation — synonyms rather than opposites, and a trap for students who match on 'bendable'",
+      "sturdy is to unbreakable": "related but different relation — degree of intensity, not opposition"
+    }
+  },
+  {
+    "id": "SVA7B-29",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Scarcity is to glut as",
+    "choices": [
+      "glut is to surplus",
+      "famine is to hunger",
+      "granary is to grain",
+      "echo is to cavern",
+      "silence is to din"
+    ],
+    "correct_answer": "silence is to din",
+    "explanation": "Too little of something to far too much of it — opposites at the extremes of one scale. Silence is the absence of sound; a din is an overwhelming excess of it.",
+    "distractor_rationales": {
+      "glut is to surplus": "topical associate, wrong relation — near-synonyms, and it recycles the stem's second word",
+      "famine is to hunger": "related but different relation — cause to effect, in the stem's economic field",
+      "granary is to grain": "topical associate — container to contents",
+      "echo is to cavern": "related but different relation — phenomenon to location, topically tied to the key"
+    }
+  },
+  {
+    "id": "SVA7B-30",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] Reckless is to cautious as",
+    "choices": [
+      "cautious is to careful",
+      "reckless is to accident",
+      "acrobat is to balance",
+      "helmet is to cyclist",
+      "clumsy is to graceful"
+    ],
+    "correct_answer": "clumsy is to graceful",
+    "explanation": "Opposed ways of behaving: reckless against cautious, clumsy against graceful.",
+    "distractor_rationales": {
+      "cautious is to careful": "related but different relation — synonyms, using a word lifted straight from the stem",
+      "reckless is to accident": "topical associate, wrong relation — cause to effect",
+      "acrobat is to balance": "related but different relation — person to a quality he possesses",
+      "helmet is to cyclist": "topical associate, wrong relation — equipment to user"
+    }
+  },
+  {
+    "id": "SVA7B-31",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Fertile is to barren as",
+    "choices": [
+      "crowded is to deserted",
+      "barren is to desert",
+      "seed is to sprout",
+      "meadow is to grass",
+      "fertile is to fruitful"
+    ],
+    "correct_answer": "crowded is to deserted",
+    "explanation": "Full of life against empty of it: fertile land teems, barren land does not; a crowded place is thick with people, a deserted one has none.",
+    "distractor_rationales": {
+      "barren is to desert": "topical associate, wrong relation — characteristic to the place that has it, recycling the stem's second word",
+      "seed is to sprout": "related but different relation — cause to effect",
+      "meadow is to grass": "topical associate — location to contents",
+      "fertile is to fruitful": "related but different relation — synonyms, using the stem's own first word"
+    }
+  },
+  {
+    "id": "SVA7B-32",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Amateur is to professional as",
+    "choices": [
+      "professional is to expert",
+      "hobby is to amateur",
+      "forger is to banknote",
+      "counterfeit is to genuine",
+      "novel is to fiction"
+    ],
+    "correct_answer": "counterfeit is to genuine",
+    "explanation": "The opposition is between the unpaid or unofficial version and the real, sanctioned one. Counterfeit stands opposed to genuine in exactly that way. The item is hard because three choices share surface vocabulary with the stem and one shares the key's field.",
+    "distractor_rationales": {
+      "professional is to expert": "topical associate, wrong relation — near-synonyms, using the stem's own second word",
+      "hobby is to amateur": "topical associate — pursuit to the person who takes it up",
+      "forger is to banknote": "topical associate of the KEY, wrong relation — worker to product",
+      "novel is to fiction": "related but different relation — member to category"
+    }
+  },
+  {
+    "id": "SVA7B-33",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] Expand is to contract as",
+    "choices": [
+      "magnet is to iron",
+      "balloon is to inflate",
+      "expand is to enlarge",
+      "attract is to repel",
+      "heat is to expansion"
+    ],
+    "correct_answer": "attract is to repel",
+    "explanation": "Directly opposed actions: to expand is to grow outward and to contract is to draw inward; to attract is to draw toward and to repel is to drive away.",
+    "distractor_rationales": {
+      "magnet is to iron": "topical associate of the KEY, wrong relation — object to what it acts on",
+      "balloon is to inflate": "related but different relation — object to the action performed on it",
+      "expand is to enlarge": "related but different relation — synonyms, using the stem's own first word",
+      "heat is to expansion": "topical associate, wrong relation — cause to effect"
+    }
+  },
+  {
+    "id": "SVA7B-34",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Deplete is to replenish as",
+    "choices": [
+      "tarnish is to polish",
+      "silver is to tarnish",
+      "replenish is to restock",
+      "reservoir is to water",
+      "depletion is to shortage"
+    ],
+    "correct_answer": "tarnish is to polish",
+    "explanation": "To deplete is to draw a supply down and to replenish is to build it back; to tarnish is to let a surface dull and to polish is to bring it back. Each pair is a spoiling action against its undoing.",
+    "distractor_rationales": {
+      "silver is to tarnish": "topical associate of the KEY, wrong relation — material to what happens to it",
+      "replenish is to restock": "related but different relation — synonyms, using the stem's own second word",
+      "reservoir is to water": "topical associate, wrong relation — container to contents",
+      "depletion is to shortage": "topical associate, wrong relation — cause to effect, built from the stem's first word"
+    }
+  }
+]

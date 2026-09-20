@@ -1,1106 +1,1322 @@
 [
   {
-    "id": "SV7-01",
+    "id": "SVS7-01",
+    "kind": "synonym",
     "subskill": "synonym",
     "difficulty": "hard",
-    "prompt": "LACONIC",
+    "prompt": "[Synonym] FLAG",
     "choices": [
-      "terse",
-      "blunt",
-      "unemotional",
-      "sluggish",
-      "secretive"
+      "hoist",
+      "weaken",
+      "unfurl",
+      "revive",
+      "decorate"
     ],
-    "correct_answer": "terse",
-    "explanation": "LACONIC means using very few words; TERSE is the closest match.",
+    "correct_answer": "weaken",
+    "explanation": "FLAG as a verb means to lose energy or grow limp — 'attention flagged by the third hour'. The banner sense supplies hoist, unfurl and decorate; revive is its antonym.",
     "distractor_rationales": [
-      "KEY",
-      "brevity confused with rudeness — a laconic speaker is short, not necessarily rude",
-      "reads the reserve that often accompanies few words as the meaning itself",
-      "sound-association with \"languid\"/\"lax\"",
-      "extends \"says little\" to \"deliberately withholds\""
-    ],
-    "set_id": "SET-A"
+      "hoist — other meaning: the banner sense of FLAG, not the verb meaning to tire",
+      "unfurl — other meaning: what one does to a banner, a same-field associate of the noun sense",
+      "revive — antonym of the intended sense",
+      "decorate — same field as the banner sense, wrong relation"
+    ]
   },
   {
-    "id": "SV7-02",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "EXTOL",
-    "choices": [
-      "endure",
-      "glorify",
-      "urge",
-      "lengthen",
-      "excuse"
-    ],
-    "correct_answer": "glorify",
-    "explanation": "EXTOL means to praise highly, i.e. GLORIFY.",
-    "distractor_rationales": [
-      "the -tol- in extol read as tolerate",
-      "KEY",
-      "confusion with exhort, a near neighbour in form and in speech-act",
-      "ex- + -tend/-tol read as extend",
-      "confusion with extenuate"
-    ],
-    "set_id": "SET-A"
-  },
-  {
-    "id": "SV7-03",
-    "subskill": "synonym",
-    "difficulty": "easy",
-    "prompt": "INTREPID",
-    "choices": [
-      "careless",
-      "tireless",
-      "fearless",
-      "restless",
-      "speechless"
-    ],
-    "correct_answer": "fearless",
-    "explanation": "INTREPID means showing no fear; FEARLESS is the match.",
-    "distractor_rationales": [
-      "slides \"bold\" into \"reckless\"",
-      "shares the -less frame and the flavour of dogged effort",
-      "KEY",
-      "sound-association with the in- prefix and -less frame",
-      "shares the -less frame only"
-    ],
-    "set_id": "SET-A"
-  },
-  {
-    "id": "SV7-04",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "GARRULOUS",
-    "choices": [
-      "given to complaining",
-      "harsh and grating in sound",
-      "boastful of one’s own rank",
-      "excessively talkative",
-      "quick to take offence"
-    ],
-    "correct_answer": "excessively talkative",
-    "explanation": "GARRULOUS means talking too much.",
-    "distractor_rationales": [
-      "confusion with querulous",
-      "confusion with raucous",
-      "confusion with grandiloquent — also a speech fault",
-      "KEY",
-      "confusion with irascible"
-    ],
-    "set_id": "SET-A"
-  },
-  {
-    "id": "SV7-05",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "PLACATE",
-    "choices": [
-      "flatter in order to win favour",
-      "settle a dispute by argument",
-      "put off until a later time",
-      "accuse openly and loudly",
-      "calm someone who is angry"
-    ],
-    "correct_answer": "calm someone who is angry",
-    "explanation": "PLACATE means to calm someone who is angry.",
-    "distractor_rationales": [
-      "flattery is a common means of placating, mistaken for the act itself",
-      "the outcome of placating read as the act",
-      "sound-association with procrastinate",
-      "confusion with the opposite move in a quarrel",
-      "KEY"
-    ],
-    "set_id": "SET-A"
-  },
-  {
-    "id": "SV7-06",
+    "id": "SVS7-02",
+    "kind": "synonym",
     "subskill": "synonym",
     "difficulty": "hard",
-    "prompt": "EPHEMERAL",
+    "prompt": "[Synonym] ARREST",
     "choices": [
-      "lasting only a short time",
-      "having no solid substance",
-      "visible only as a faint outline",
-      "returning each season",
-      "belonging to no one"
+      "halt",
+      "handcuff",
+      "accuse",
+      "release",
+      "patrol"
     ],
-    "correct_answer": "lasting only a short time",
-    "explanation": "EPHEMERAL means lasting a very short time.",
+    "correct_answer": "halt",
+    "explanation": "To ARREST something is to stop it — 'arrest the spread of the rot'. The familiar police sense supplies handcuff, accuse and patrol.",
     "distractor_rationales": [
-      "KEY",
-      "the common gloss \"fleeting, wispy\" carries the wrong half over",
-      "confusion with ethereal",
-      "inverts the sense by way of \"perennial\"",
-      "no lexical route; chosen only when the word is unknown"
-    ],
-    "set_id": "SET-B"
+      "handcuff — same field as the police sense, an associate rather than a synonym",
+      "accuse — same field as the police sense, wrong relation",
+      "release — antonym of the intended sense",
+      "patrol — same field as the police sense, wrong relation"
+    ]
   },
   {
-    "id": "SV7-07",
+    "id": "SVS7-03",
+    "kind": "synonym",
     "subskill": "synonym",
-    "difficulty": "easy",
-    "prompt": "PRUDENT",
+    "difficulty": "hard",
+    "prompt": "[Synonym] QUALIFY",
     "choices": [
-      "modest",
+      "enroll",
+      "limit",
+      "compete",
+      "broaden",
+      "train"
+    ],
+    "correct_answer": "limit",
+    "explanation": "To QUALIFY a statement is to limit or narrow it — 'she qualified her praise'. The eligibility sense supplies enroll, train and compete.",
+    "distractor_rationales": [
+      "enroll — same field as the eligibility sense, an associate",
+      "compete — same field as the eligibility sense, wrong relation",
+      "broaden — antonym of the intended sense",
+      "train — same field as the eligibility sense, an associate"
+    ]
+  },
+  {
+    "id": "SVS7-04",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] ENTERTAIN",
+    "choices": [
+      "consider",
+      "host",
+      "perform",
+      "cater",
+      "dismiss"
+    ],
+    "correct_answer": "consider",
+    "explanation": "To ENTERTAIN a proposal is to give it consideration. Host, cater and perform all belong to the familiar sense.",
+    "distractor_rationales": [
+      "host — other meaning: the hospitality sense of ENTERTAIN",
+      "perform — same field as the amusement sense, an associate",
+      "cater — same field as the hospitality sense, wrong relation",
+      "dismiss — antonym of the intended sense"
+    ]
+  },
+  {
+    "id": "SVS7-05",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] CHECK",
+    "choices": [
+      "deposit",
+      "endorse",
+      "unleash",
+      "restrain",
+      "cancel"
+    ],
+    "correct_answer": "restrain",
+    "explanation": "To CHECK a thing is to hold it back — 'checked the horse at the gate'. The cheque sense supplies deposit, endorse and cancel.",
+    "distractor_rationales": [
+      "deposit — other meaning: the bank-cheque sense",
+      "endorse — same field as the bank-cheque sense, an associate",
+      "unleash — antonym of the intended sense",
+      "cancel — same field as the cheque sense, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-06",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] HUMOR",
+    "choices": [
+      "indulge",
+      "amuse",
+      "joke",
+      "mock",
+      "provoke"
+    ],
+    "correct_answer": "indulge",
+    "explanation": "To HUMOR someone is to go along with them — 'humor your grandmother'. The comic sense supplies amuse, joke and mock.",
+    "distractor_rationales": [
+      "amuse — other meaning: the 'sense of humor' associate",
+      "joke — same field as the comic sense, wrong relation",
+      "mock — same field as the comic sense, an associate rather than a synonym",
+      "provoke — antonym of the intended sense"
+    ]
+  },
+  {
+    "id": "SVS7-07",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] RELISH",
+    "choices": [
+      "savor",
+      "garnish",
+      "season",
+      "dread",
+      "chop"
+    ],
+    "correct_answer": "savor",
+    "explanation": "To RELISH something is to take keen pleasure in it. The condiment sense supplies garnish, season and chop.",
+    "distractor_rationales": [
+      "garnish — other meaning: the condiment sense of RELISH",
+      "season — same field as the condiment sense, an associate",
+      "dread — antonym of the intended sense",
+      "chop — same field as the kitchen sense, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-08",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] EXACT",
+    "choices": [
+      "calculate",
+      "verify",
+      "estimate",
+      "forgive",
+      "demand"
+    ],
+    "correct_answer": "demand",
+    "explanation": "To EXACT a payment is to demand and take it by force. The adjective sense supplies calculate, verify and estimate.",
+    "distractor_rationales": [
+      "calculate — other meaning: the 'exact figure' sense",
+      "verify — same field as the precision sense, an associate",
+      "estimate — same field as the precision sense, wrong relation",
+      "forgive — antonym of the intended sense"
+    ]
+  },
+  {
+    "id": "SVS7-09",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] STEEP",
+    "choices": [
+      "climb",
+      "tilt",
+      "soak",
+      "parch",
+      "survey"
+    ],
+    "correct_answer": "soak",
+    "explanation": "To STEEP leaves is to soak them in liquid. The slope sense supplies climb, tilt and survey; parch is the opposite of soaking.",
+    "distractor_rationales": [
+      "climb — other meaning: the 'steep hill' sense",
+      "tilt — same field as the slope sense, an associate",
+      "parch — antonym of the intended sense",
+      "survey — same field as the slope sense, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-10",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] MARSHAL",
+    "choices": [
+      "arrest",
+      "patrol",
+      "scatter",
+      "assemble",
+      "guard"
+    ],
+    "correct_answer": "assemble",
+    "explanation": "To MARSHAL resources is to gather and order them. The lawman sense supplies arrest, patrol and guard.",
+    "distractor_rationales": [
+      "arrest — other meaning: the lawman sense of MARSHAL",
+      "patrol — same field as the lawman sense, wrong relation",
+      "scatter — antonym of the intended sense",
+      "guard — same field as the lawman sense, an associate"
+    ]
+  },
+  {
+    "id": "SVS7-11",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] WAX",
+    "choices": [
+      "melt",
+      "harden",
+      "drip",
+      "shrink",
+      "increase"
+    ],
+    "correct_answer": "increase",
+    "explanation": "To WAX is to grow larger — 'the moon waxed'. The substance sense supplies melt, harden and drip.",
+    "distractor_rationales": [
+      "melt — other meaning: the candle-and-polish sense of WAX",
+      "harden — same field as the candle sense, wrong relation",
+      "drip — same field as the candle sense, an associate",
+      "shrink — antonym of the intended sense"
+    ]
+  },
+  {
+    "id": "SVS7-12",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] SOUND",
+    "choices": [
+      "audible",
+      "loud",
+      "valid",
+      "faint",
+      "hollow"
+    ],
+    "correct_answer": "valid",
+    "explanation": "A SOUND argument is a solid, valid one. The noise sense supplies audible, loud and faint.",
+    "distractor_rationales": [
+      "audible — other meaning: the noise sense of SOUND",
+      "loud — same field as the noise sense, an associate",
+      "faint — same field as the noise sense, wrong relation",
+      "hollow — antonym of the intended sense — an unsound argument"
+    ]
+  },
+  {
+    "id": "SVS7-13",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] TELLING",
+    "choices": [
+      "spoken",
+      "revealing",
+      "verbal",
+      "trivial",
+      "lengthy"
+    ],
+    "correct_answer": "revealing",
+    "explanation": "A TELLING detail is one that reveals a great deal. The speech sense supplies spoken, verbal and lengthy.",
+    "distractor_rationales": [
+      "spoken — other meaning: the 'telling a story' sense",
+      "verbal — same field as the speech sense, an associate",
+      "trivial — antonym of the intended sense",
+      "lengthy — same field as the narration sense, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-14",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] WANTING",
+    "choices": [
+      "eager",
+      "envious",
+      "ample",
+      "deficient",
+      "greedy"
+    ],
+    "correct_answer": "deficient",
+    "explanation": "Found WANTING means found lacking. The desire sense supplies eager, envious and greedy.",
+    "distractor_rationales": [
+      "eager — other meaning: the desiring sense of WANTING",
+      "envious — same field as the desire sense, an associate",
+      "ample — antonym of the intended sense",
+      "greedy — same field as the desire sense, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-15",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] SPARE",
+    "choices": [
+      "merciful",
+      "meager",
+      "lavish",
+      "spotless",
+      "cluttered"
+    ],
+    "correct_answer": "meager",
+    "explanation": "A SPARE frame or a spare prose style is a lean one; lavish and cluttered are its opposites, and merciful comes from the verb to spare.",
+    "distractor_rationales": [
+      "merciful — other meaning: to SPARE someone is to show mercy",
+      "lavish — antonym of the intended sense",
+      "spotless — same field of plain, bare surroundings, wrong relation",
+      "cluttered — antonym of the bare sense from the other direction"
+    ]
+  },
+  {
+    "id": "SVS7-16",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] BEARING",
+    "choices": [
+      "burden",
+      "compass",
+      "weight",
+      "distance",
+      "demeanor"
+    ],
+    "correct_answer": "demeanor",
+    "explanation": "A person's BEARING is the way they carry themselves. Burden and weight come from bear, compass and distance from the navigational sense.",
+    "distractor_rationales": [
+      "burden — other meaning: the BEAR-a-weight sense",
+      "compass — same field as the navigation sense, an object rather than a synonym",
+      "weight — same field as the carrying sense, an associate",
+      "distance — same field of navigation, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-17",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] ECONOMY",
+    "choices": [
+      "market",
+      "wealth",
+      "thrift",
+      "industry",
+      "waste"
+    ],
+    "correct_answer": "thrift",
+    "explanation": "ECONOMY of motion means sparing use, thrift. The national sense supplies market, wealth and industry.",
+    "distractor_rationales": [
+      "market — other meaning: the national-economy sense",
+      "wealth — same field as the financial sense, an associate",
+      "industry — same field as the financial sense, wrong relation",
+      "waste — antonym of the intended sense"
+    ]
+  },
+  {
+    "id": "SVS7-18",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] ALACRITY",
+    "choices": [
+      "accuracy",
+      "clarity",
+      "reluctance",
+      "eagerness",
+      "fatigue"
+    ],
+    "correct_answer": "eagerness",
+    "explanation": "ALACRITY is brisk and cheerful willingness. Accuracy and clarity are the sound-alike traps; reluctance is its opposite.",
+    "distractor_rationales": [
+      "accuracy — sound-alike, nothing to do with willingness",
+      "clarity — look-alike ending, a different quality",
+      "reluctance — antonym of the intended sense",
+      "fatigue — same field of energy and pace, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-19",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] EQUIVOCAL",
+    "choices": [
+      "ambiguous",
+      "equal",
+      "vocal",
+      "decisive",
+      "fair"
+    ],
+    "correct_answer": "ambiguous",
+    "explanation": "EQUIVOCAL language is open to more than one reading. Equal and vocal are the look-alike traps built from the two halves of the word.",
+    "distractor_rationales": [
+      "equal — look-alike: the equi- prefix suggests sameness",
+      "vocal — look-alike: the second half of the word",
+      "decisive — antonym of the intended sense",
+      "fair — same field as the equi- misreading, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-20",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] ABSTRUSE",
+    "choices": [
+      "abusive",
+      "obscure",
+      "abstract",
+      "obvious",
+      "brief"
+    ],
+    "correct_answer": "obscure",
+    "explanation": "ABSTRUSE means difficult to understand. Abstract is the look-alike trap: a claim can be abstract and perfectly clear.",
+    "distractor_rationales": [
+      "abusive — sound-alike, unrelated in meaning",
+      "abstract — look-alike, and a genuinely different quality — theoretical, not hard to follow",
+      "obvious — antonym of the intended sense",
+      "brief — same field of prose description, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-21",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PINE",
+    "choices": [
+      "plant",
+      "yearn",
+      "whittle",
+      "rejoice",
+      "climb"
+    ],
+    "correct_answer": "yearn",
+    "explanation": "To PINE is to long achingly for something. The tree sense supplies plant, whittle and climb.",
+    "distractor_rationales": [
+      "plant — other meaning: the evergreen tree sense of PINE",
+      "whittle — same field as the timber sense, wrong relation",
+      "rejoice — antonym of the intended sense",
+      "climb — same field as the tree sense, an associate"
+    ]
+  },
+  {
+    "id": "SVS7-22",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] CANVASS",
+    "choices": [
+      "paint",
+      "weave",
+      "stretch",
+      "poll",
+      "ignore"
+    ],
+    "correct_answer": "poll",
+    "explanation": "To CANVASS a district is to go through it soliciting opinions or votes. The single-s look-alike canvas supplies paint, weave and stretch.",
+    "distractor_rationales": [
+      "paint — look-alike: canvas, the painter's cloth",
+      "weave — same field as the cloth sense, an associate",
+      "stretch — same field as the cloth sense, wrong relation",
+      "ignore — antonym of the intended sense"
+    ]
+  },
+  {
+    "id": "SVS7-23",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] COURT",
+    "choices": [
+      "judge",
+      "sentence",
+      "woo",
+      "shun",
+      "appeal"
+    ],
+    "correct_answer": "woo",
+    "explanation": "To COURT someone, or to court disaster, is to seek it out. The legal sense supplies judge, sentence and appeal.",
+    "distractor_rationales": [
+      "judge — other meaning: the courtroom sense of COURT",
+      "sentence — same field as the legal sense, an associate",
+      "shun — antonym of the intended sense",
+      "appeal — same field as the legal sense, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-24",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] APPEASE",
+    "choices": [
+      "appraise",
+      "applaud",
+      "provoke",
+      "pacify",
+      "postpone"
+    ],
+    "correct_answer": "pacify",
+    "explanation": "To APPEASE is to calm by giving way. Appraise and applaud are the look-alike traps.",
+    "distractor_rationales": [
+      "appraise — look-alike, a matter of valuing rather than calming",
+      "applaud — look-alike opening, unrelated in meaning",
+      "provoke — antonym of the intended sense",
+      "postpone — same field of managing a conflict, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-25",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] DETER",
+    "choices": [
+      "determine",
+      "detect",
+      "encourage",
+      "discourage",
+      "delay"
+    ],
+    "correct_answer": "discourage",
+    "explanation": "To DETER is to put someone off doing a thing. Determine and detect are the look-alike traps; delay is an associate, not a synonym.",
+    "distractor_rationales": [
+      "determine — look-alike, a different verb entirely",
+      "detect — look-alike opening, unrelated in meaning",
+      "encourage — antonym of the intended sense",
+      "delay — same field of holding someone back, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-26",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] BELITTLE",
+    "choices": [
+      "magnify",
+      "applaud",
+      "befriend",
+      "describe",
+      "disparage"
+    ],
+    "correct_answer": "disparage",
+    "explanation": "To BELITTLE is to speak of something as though it were of little worth.",
+    "distractor_rationales": [
+      "magnify — antonym of the intended sense",
+      "applaud — antonym from the opposite direction, praise rather than scorn",
+      "befriend — look-alike be- opening, unrelated in meaning",
+      "describe — same field of talking about someone, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-27",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] REPRIMAND",
+    "choices": [
+      "command",
+      "scold",
+      "repair",
+      "reward",
+      "recommend"
+    ],
+    "correct_answer": "scold",
+    "explanation": "To REPRIMAND is to rebuke formally. Command, repair and recommend are built from the pieces of the word.",
+    "distractor_rationales": [
+      "command — look-alike ending, a different act",
+      "repair — look-alike opening, unrelated in meaning",
+      "reward — antonym of the intended sense",
+      "recommend — look-alike re- opening, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-28",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] DAUNT",
+    "choices": [
+      "taunt",
+      "flaunt",
+      "encourage",
+      "delay",
+      "intimidate"
+    ],
+    "correct_answer": "intimidate",
+    "explanation": "To DAUNT is to make someone lose heart. Taunt and flaunt are the sound-alike traps.",
+    "distractor_rationales": [
+      "taunt — sound-alike, mockery rather than discouragement",
+      "flaunt — sound-alike, unrelated in meaning",
+      "encourage — antonym of the intended sense",
+      "delay — same field of getting in someone's way, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-29",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] CIRCUMSPECT",
+    "choices": [
+      "circular",
+      "reckless",
       "cautious",
-      "punctual",
-      "generous",
-      "wealthy"
+      "suspicious",
+      "thorough"
     ],
     "correct_answer": "cautious",
-    "explanation": "PRUDENT means showing care and good sense; CAUTIOUS is the match.",
+    "explanation": "CIRCUMSPECT means looking around before acting — cautious. Circular is the prefix trap.",
     "distractor_rationales": [
-      "a neighbouring virtue of restraint",
-      "KEY",
-      "a neighbouring virtue of orderliness",
-      "a neighbouring virtue, wrong dimension",
-      "the result often attributed to prudence read as the trait"
-    ],
-    "set_id": "SET-B"
+      "circular — look-alike: the circum- prefix read as circle",
+      "reckless — antonym of the intended sense",
+      "suspicious — same field of wariness, but aimed outward at others rather than at one's own conduct",
+      "thorough — same field of carefulness, wrong relation"
+    ]
   },
   {
-    "id": "SV7-08",
+    "id": "SVS7-30",
+    "kind": "synonym",
     "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "INTRANSIGENT",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PERFIDIOUS",
     "choices": [
-      "unwilling to be led",
-      "wandering from place to place",
-      "refusing to compromise",
-      "impossible to translate",
-      "openly disrespectful"
+      "treacherous",
+      "perpetual",
+      "loyal",
+      "flawless",
+      "meticulous"
     ],
-    "correct_answer": "refusing to compromise",
-    "explanation": "INTRANSIGENT means refusing to alter one’s position.",
+    "correct_answer": "treacherous",
+    "explanation": "PERFIDIOUS means faithless, treacherous. Flawless is the trap for readers who hear perfect in it.",
     "distractor_rationales": [
-      "confusion with intractable — a genuine near-synonym that is nonetheless about control, not compromise",
-      "the trans- root read as in transient",
-      "KEY",
-      "the trans- root read literally",
-      "confusion with insolent"
-    ],
-    "set_id": "SET-B"
+      "perpetual — sound-alike opening, unrelated in meaning",
+      "loyal — antonym of the intended sense",
+      "flawless — look-alike: perfidious read as though it came from perfect",
+      "meticulous — same field of conduct and character, wrong relation"
+    ]
   },
   {
-    "id": "SV7-09",
+    "id": "SVS7-31",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PROFLIGATE",
+    "choices": [
+      "prolific",
+      "wasteful",
+      "thrifty",
+      "profitable",
+      "skillful"
+    ],
+    "correct_answer": "wasteful",
+    "explanation": "PROFLIGATE means recklessly extravagant. Prolific and profitable are the look-alike traps.",
+    "distractor_rationales": [
+      "prolific — look-alike, abundant in output rather than careless with money",
+      "thrifty — antonym of the intended sense",
+      "profitable — look-alike pro- opening, unrelated in meaning",
+      "skillful — same field of how one handles resources, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-32",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] INTREPID",
+    "choices": [
+      "intricate",
+      "timid",
+      "fearless",
+      "weary",
+      "rapid"
+    ],
+    "correct_answer": "fearless",
+    "explanation": "INTREPID means undaunted. Intricate and rapid are the look-alike and sound-alike traps.",
+    "distractor_rationales": [
+      "intricate — look-alike opening, unrelated in meaning",
+      "timid — antonym of the intended sense",
+      "weary — same field of describing an explorer, wrong relation",
+      "rapid — sound-alike ending, unrelated in meaning"
+    ]
+  },
+  {
+    "id": "SVS7-33",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] VORACIOUS",
+    "choices": [
+      "ravenous",
+      "truthful",
+      "spacious",
+      "dainty",
+      "sluggish"
+    ],
+    "correct_answer": "ravenous",
+    "explanation": "VORACIOUS means devouringly hungry. Truthful is the veracious trap.",
+    "distractor_rationales": [
+      "truthful — look-alike: veracious, a different word one letter away",
+      "spacious — sound-alike ending, unrelated in meaning",
+      "dainty — antonym of the intended sense",
+      "sluggish — same field of appetite and habit, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-34",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] TENUOUS",
+    "choices": [
+      "tense",
+      "flimsy",
+      "sturdy",
+      "tedious",
+      "temporary"
+    ],
+    "correct_answer": "flimsy",
+    "explanation": "A TENUOUS connection is a thin, weak one. Tense and tedious are the look-alike traps.",
+    "distractor_rationales": [
+      "tense — look-alike opening, unrelated in meaning",
+      "sturdy — antonym of the intended sense",
+      "tedious — look-alike, a different complaint about an argument",
+      "temporary — same field of weak claims that will not last, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-35",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] INDIGENT",
+    "choices": [
+      "native",
+      "angry",
+      "wealthy",
+      "idle",
+      "penniless"
+    ],
+    "correct_answer": "penniless",
+    "explanation": "INDIGENT means poor. Indigenous and indignant supply the two look-alike traps.",
+    "distractor_rationales": [
+      "native — look-alike: indigenous, a different word",
+      "angry — look-alike: indignant, a different word",
+      "wealthy — antonym of the intended sense",
+      "idle — same field of poverty's supposed causes, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-36",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ERRATIC",
+    "choices": [
+      "mistaken",
+      "steady",
+      "exotic",
+      "unpredictable",
+      "hasty"
+    ],
+    "correct_answer": "unpredictable",
+    "explanation": "ERRATIC means wandering and irregular. Mistaken is the err trap.",
+    "distractor_rationales": [
+      "mistaken — look-alike: the err in erratic read as error",
+      "steady — antonym of the intended sense",
+      "exotic — sound-alike ending, unrelated in meaning",
+      "hasty — same field of uneven behavior, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-37",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] RESOLUTE",
+    "choices": [
+      "soluble",
+      "wavering",
+      "sorrowful",
+      "carefree",
+      "determined"
+    ],
+    "correct_answer": "determined",
+    "explanation": "RESOLUTE means firm of purpose. Soluble is the look-alike trap.",
+    "distractor_rationales": [
+      "soluble — look-alike, from a different root sense of solve",
+      "wavering — antonym of the intended sense",
+      "sorrowful — sound-alike opening, unrelated in meaning",
+      "carefree — same field of temperament, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-38",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] AUSTERE",
+    "choices": [
+      "sincere",
+      "luxurious",
+      "severe",
+      "hollow",
+      "spacious"
+    ],
+    "correct_answer": "severe",
+    "explanation": "AUSTERE means stern and unadorned. Sincere is the sound-alike trap.",
+    "distractor_rationales": [
+      "sincere — sound-alike ending, unrelated in meaning",
+      "luxurious — antonym of the intended sense",
+      "hollow — same field of bare and plain surroundings, wrong relation",
+      "spacious — same field of describing a plain room, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-39",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SCRUPULOUS",
+    "choices": [
+      "painstaking",
+      "careless",
+      "skeptical",
+      "stubborn",
+      "generous"
+    ],
+    "correct_answer": "painstaking",
+    "explanation": "SCRUPULOUS means attentive to every detail and every duty.",
+    "distractor_rationales": [
+      "careless — antonym of the intended sense",
+      "skeptical — same field of a doubting, questioning temperament, wrong relation",
+      "stubborn — same field of character terms, wrong relation",
+      "generous — same field of moral praise, not a synonym"
+    ]
+  },
+  {
+    "id": "SVS7-40",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PRECARIOUS",
+    "choices": [
+      "unstable",
+      "precious",
+      "secure",
+      "hasty",
+      "valuable"
+    ],
+    "correct_answer": "unstable",
+    "explanation": "PRECARIOUS means dangerously insecure. Precious and valuable are the look-alike traps.",
+    "distractor_rationales": [
+      "precious — look-alike, a different quality entirely",
+      "secure — antonym of the intended sense",
+      "hasty — same field of risky action, wrong relation",
+      "valuable — look-alike by way of precious, unrelated in meaning"
+    ]
+  },
+  {
+    "id": "SVS7-41",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] NOVEL",
+    "choices": [
+      "fictional",
+      "lengthy",
+      "familiar",
+      "written",
+      "new"
+    ],
+    "correct_answer": "new",
+    "explanation": "A NOVEL approach is a new one. The book sense supplies fictional, lengthy and written.",
+    "distractor_rationales": [
+      "fictional — other meaning: the book sense of NOVEL",
+      "lengthy — same field as the book sense, wrong relation",
+      "familiar — antonym of the intended sense",
+      "written — same field as the book sense, an associate"
+    ]
+  },
+  {
+    "id": "SVS7-42",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ANOMALY",
+    "choices": [
+      "analogy",
+      "anonymity",
+      "irregularity",
+      "custom",
+      "prediction"
+    ],
+    "correct_answer": "irregularity",
+    "explanation": "An ANOMALY is a departure from the regular. Analogy and anonymity are the look-alike traps.",
+    "distractor_rationales": [
+      "analogy — look-alike, a comparison rather than an oddity",
+      "anonymity — look-alike opening, unrelated in meaning",
+      "custom — antonym of the intended sense — the regular practice",
+      "prediction — same field of data and expectation, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-43",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] CACOPHONY",
+    "choices": [
+      "harmony",
+      "uproar",
+      "symphony",
+      "silence",
+      "echo"
+    ],
+    "correct_answer": "uproar",
+    "explanation": "CACOPHONY is a harsh clashing din. Symphony and echo are sound-field associates.",
+    "distractor_rationales": [
+      "harmony — antonym of the intended sense",
+      "symphony — same field of sound and music, wrong relation",
+      "silence — antonym from the other direction, absence of sound",
+      "echo — same field of sound, an associate rather than a synonym"
+    ]
+  },
+  {
+    "id": "SVS7-44",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] TREPIDATION",
+    "choices": [
+      "boldness",
+      "tremor",
+      "dread",
+      "delight",
+      "fatigue"
+    ],
+    "correct_answer": "dread",
+    "explanation": "TREPIDATION is fearful hesitation. Tremor is the same-root associate trap.",
+    "distractor_rationales": [
+      "boldness — antonym of the intended sense",
+      "tremor — same field: trepidation comes from trembling, but a tremor is a shaking, not a fear",
+      "delight — antonym from the other direction",
+      "fatigue — same field of bodily states, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-45",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PENCHANT",
+    "choices": [
+      "penalty",
+      "aversion",
+      "pendant",
+      "payment",
+      "fondness"
+    ],
+    "correct_answer": "fondness",
+    "explanation": "A PENCHANT is a strong liking. Penalty, pendant and payment are the look-alike traps.",
+    "distractor_rationales": [
+      "penalty — look-alike opening, unrelated in meaning",
+      "aversion — antonym of the intended sense",
+      "pendant — look-alike, an ornament rather than an inclination",
+      "payment — look-alike pen- opening, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-46",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ZENITH",
+    "choices": [
+      "horizon",
+      "orbit",
+      "depth",
+      "peak",
+      "distance"
+    ],
+    "correct_answer": "peak",
+    "explanation": "The ZENITH is the highest point. Horizon and orbit are the astronomical associates.",
+    "distractor_rationales": [
+      "horizon — same field of sky positions, wrong relation",
+      "orbit — same field of astronomy, an associate rather than a synonym",
+      "depth — antonym of the intended sense",
+      "distance — same field of measurement, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-47",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] LULL",
+    "choices": [
+      "uproar",
+      "melody",
+      "slumber",
+      "pause",
+      "breeze"
+    ],
+    "correct_answer": "pause",
+    "explanation": "A LULL is a brief interval of quiet. Lullaby supplies melody and slumber.",
+    "distractor_rationales": [
+      "uproar — antonym of the intended sense",
+      "melody — same field by way of lullaby, wrong relation",
+      "slumber — same field by way of lullaby, an associate rather than a synonym",
+      "breeze — same field of weather calm, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-48",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] VESTIGE",
+    "choices": [
+      "garment",
+      "entrance",
+      "surplus",
+      "custom",
+      "trace"
+    ],
+    "correct_answer": "trace",
+    "explanation": "A VESTIGE is a surviving trace. Vest and vestibule supply the look-alike traps.",
+    "distractor_rationales": [
+      "garment — look-alike: vest",
+      "entrance — look-alike: vestibule",
+      "surplus — antonym of the intended sense — a great deal left, not a trace",
+      "custom — same field of what survives from the past, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-49",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] RETICENT",
+    "choices": [
+      "reserved",
+      "boastful",
+      "recurrent",
+      "radiant",
+      "weary"
+    ],
+    "correct_answer": "reserved",
+    "explanation": "RETICENT means disinclined to speak about oneself. Recurrent and radiant are the look-alike traps.",
+    "distractor_rationales": [
+      "boastful — antonym of the intended sense",
+      "recurrent — look-alike opening, unrelated in meaning",
+      "radiant — sound-alike opening, unrelated in meaning",
+      "weary — same field of a quiet manner, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-50",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] THWART",
+    "choices": [
+      "block",
+      "assist",
+      "thrash",
+      "tolerate",
+      "wander"
+    ],
+    "correct_answer": "block",
+    "explanation": "To THWART a plan is to stop it going through. Thrash is the sound-alike trap.",
+    "distractor_rationales": [
+      "assist — antonym of the intended sense",
+      "thrash — sound-alike opening, a beating rather than a frustrating",
+      "tolerate — same field of responding to a plan, wrong relation",
+      "wander — same field by way of thwart's crosswise sense, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-51",
+    "kind": "synonym",
     "subskill": "synonym",
     "difficulty": "easy",
-    "prompt": "CANDID",
+    "prompt": "[Synonym] STURDY",
     "choices": [
-      "guarded in speech",
-      "unfailingly cheerful",
-      "smooth and polished in manner",
-      "outspokenly honest",
-      "sweet-tempered and mild"
+      "fragile",
+      "noisy",
+      "strong",
+      "clumsy",
+      "gentle"
     ],
-    "correct_answer": "outspokenly honest",
-    "explanation": "CANDID means open and honest in speech.",
+    "correct_answer": "strong",
+    "explanation": "STURDY means solidly built and strong.",
     "distractor_rationales": [
-      "the opposite conversational stance",
-      "the pleasant tone often heard in the word",
-      "confusion with the manner rather than the content",
-      "KEY",
-      "a general approval word, and the disposition often assumed to go with openness"
-    ],
-    "set_id": "SET-B"
+      "fragile — antonym of the intended sense",
+      "noisy — same field of describing an old chair, wrong relation",
+      "clumsy — sound-alike ending, unrelated in meaning",
+      "gentle — same field of describing manner, wrong relation"
+    ]
   },
   {
-    "id": "SV7-10",
+    "id": "SVS7-52",
+    "kind": "synonym",
     "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "ABATE",
-    "choices": [
-      "come to a complete stop",
-      "lower in rank",
-      "lure with a reward",
-      "put off until later",
-      "grow less intense"
-    ],
-    "correct_answer": "grow less intense",
-    "explanation": "ABATE means to become less strong.",
-    "distractor_rationales": [
-      "diminish confused with cease — the standard error",
-      "confusion with abase",
-      "the -bate read as bait",
-      "confusion with the general idea of a storm passing",
-      "KEY"
-    ],
-    "set_id": "SET-B"
-  },
-  {
-    "id": "SV7-11",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "SUPERFLUOUS",
-    "choices": [
-      "more than is needed",
-      "spilling over the edge",
-      "shallow and hasty",
-      "of the very highest quality",
-      "made in imitation"
-    ],
-    "correct_answer": "more than is needed",
-    "explanation": "SUPERFLUOUS means beyond what is required.",
-    "distractor_rationales": [
-      "KEY",
-      "the -flu- root read literally as flow",
-      "confusion with superficial",
-      "confusion with superb / superior",
-      "a general negative for a long Latinate word"
-    ],
-    "set_id": "SET-C"
-  },
-  {
-    "id": "SV7-12",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "VENERATE",
-    "choices": [
-      "flatter in order to gain favour",
-      "regard with deep respect",
-      "treat with mild contempt",
-      "poison by slow degrees",
-      "hunt for sport"
-    ],
-    "correct_answer": "regard with deep respect",
-    "explanation": "VENERATE means to honour deeply.",
-    "distractor_rationales": [
-      "a corrupted form of showing respect, in the same family as the key",
-      "KEY",
-      "the opposite stance, reached when the word is unknown",
-      "the ven- root read as venom",
-      "the ven- root read as venery"
-    ],
-    "set_id": "SET-C"
-  },
-  {
-    "id": "SV7-13",
-    "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "LUGUBRIOUS",
-    "choices": [
-      "dark and threatening",
-      "moving heavily and slowly",
-      "excessively mournful",
-      "grandly self-important",
-      "sickly sweet in flavour"
-    ],
-    "correct_answer": "excessively mournful",
-    "explanation": "LUGUBRIOUS means gloomy or mournful to excess.",
-    "distractor_rationales": [
-      "the near sense \"dismal\" carried one step too far",
-      "the lug- read as lug / lumber",
-      "KEY",
-      "the long ornate word taken to describe ornate manner",
-      "confusion with lubricious / unctuous"
-    ],
-    "set_id": "SET-C"
-  },
-  {
-    "id": "SV7-14",
-    "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "TACIT",
-    "choices": [
-      "silent by nature",
-      "stated in plain terms",
-      "agreed to reluctantly",
-      "understood without being said",
-      "of little importance"
-    ],
-    "correct_answer": "understood without being said",
-    "explanation": "TACIT means implied rather than stated.",
-    "distractor_rationales": [
-      "confusion with taciturn — same root, different word",
-      "the exact opposite, reached by mapping \"tacit agreement\" onto \"explicit agreement\"",
-      "reads the grudging tone often present in tacit consent",
-      "KEY",
-      "the word treated as a synonym for token"
-    ],
-    "set_id": "SET-C"
-  },
-  {
-    "id": "SV7-15",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "ANOMALY",
-    "choices": [
-      "a state of lawlessness",
-      "a settled and general custom",
-      "a long-standing hatred",
-      "a formal written record",
-      "a departure from what is usual"
-    ],
-    "correct_answer": "a departure from what is usual",
-    "explanation": "An ANOMALY is something that deviates from the norm.",
-    "distractor_rationales": [
-      "confusion with anomie",
-      "the opposite of the key, in the same family",
-      "confusion with animosity",
-      "confusion with annal",
-      "KEY"
-    ],
-    "set_id": "SET-C"
-  },
-  {
-    "id": "SV7-16",
-    "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "PERFUNCTORY",
-    "choices": [
-      "done without real interest",
-      "done with great care",
-      "done in advance of need",
-      "done in full public view",
-      "done as a personal favour"
-    ],
-    "correct_answer": "done without real interest",
-    "explanation": "PERFUNCTORY means carried out as a routine, with no care.",
-    "distractor_rationales": [
-      "KEY",
-      "the per- read as in perfect — the exact opposite",
-      "the fore- sense of pre- imported",
-      "confusion with the ceremonial sense of \"performed\"",
-      "the -funct- read as function/office"
-    ],
-    "set_id": "SET-D"
-  },
-  {
-    "id": "SV7-17",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "ZEALOT",
-    "choices": [
-      "a relentless fault-finder",
-      "a fanatical supporter",
-      "a skilled negotiator",
-      "a wandering beggar",
-      "a cautious observer"
-    ],
-    "correct_answer": "a fanatical supporter",
-    "explanation": "A ZEALOT holds a cause with extreme, uncritical fervour.",
-    "distractor_rationales": [
-      "fervour mistaken for hostility; a zealot attacks for a cause, not at it",
-      "KEY",
-      "the energetic public figure, wrong disposition",
-      "no lexical route; chosen when the word is unknown",
-      "the opposite temperament"
-    ],
-    "set_id": "SET-D"
-  },
-  {
-    "id": "SV7-18",
-    "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "MITIGATE",
-    "choices": [
-      "keep within set limits",
-      "settle by argument",
-      "make less severe",
-      "show to be false",
-      "give rise to"
-    ],
-    "correct_answer": "make less severe",
-    "explanation": "MITIGATE means to reduce the harshness of something.",
-    "distractor_rationales": [
-      "a genuine near neighbour, but that is contain, not mitigate",
-      "confusion with litigate — same ending, adjacent context",
-      "KEY",
-      "confusion with refute in \"mitigating evidence\"",
-      "the causal sense reversed"
-    ],
-    "set_id": "SET-D"
-  },
-  {
-    "id": "SV7-19",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "ACRID",
-    "choices": [
-      "shrill and piercing in sound",
-      "rough and coarse to the touch",
-      "faintly sweet in taste",
-      "sharply bitter in smell",
-      "unnaturally bright in colour"
-    ],
-    "correct_answer": "sharply bitter in smell",
-    "explanation": "ACRID describes a harsh, biting smell or taste.",
-    "distractor_rationales": [
-      "the harshness transferred to the wrong sense",
-      "the harshness transferred to the wrong sense",
-      "right sense, opposite quality",
-      "KEY",
-      "the harshness transferred to the wrong sense"
-    ],
-    "set_id": "SET-D"
-  },
-  {
-    "id": "SV7-20",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "CIRCUMSPECT",
-    "choices": [
-      "openly suspicious of others",
-      "strict in observing rules",
-      "seen from every side",
-      "moving in a wide circle",
-      "careful in weighing risks"
-    ],
-    "correct_answer": "careful in weighing risks",
-    "explanation": "CIRCUMSPECT means looking around before acting — cautious.",
-    "distractor_rationales": [
-      "wariness turned outward into distrust",
-      "confusion with punctilious",
-      "the circum- + -spect roots read literally",
-      "the circum- root read literally",
-      "KEY"
-    ],
-    "set_id": "SET-D"
-  },
-  {
-    "id": "SV7-21",
-    "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "PARSIMONIOUS",
-    "choices": [
-      "unwilling to spend money",
-      "living simply by choice",
-      "generous only when watched",
-      "excessively fond of small detail",
-      "unable to be divided"
-    ],
-    "correct_answer": "unwilling to spend money",
-    "explanation": "PARSIMONIOUS means extremely sparing with money.",
-    "distractor_rationales": [
-      "KEY",
-      "austere, not miserly — thrift by preference rather than grudging refusal",
-      "the same money family, wrong fault",
-      "confusion with the fussiness of parsing",
-      "the pars- root read as part"
-    ],
-    "set_id": "SET-E"
-  },
-  {
-    "id": "SV7-22",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "EBULLIENT",
-    "choices": [
-      "boiling with anger",
-      "bubbling with high spirits",
-      "swollen beyond normal size",
-      "worn away by long use",
-      "shining with reflected light"
-    ],
-    "correct_answer": "bubbling with high spirits",
-    "explanation": "EBULLIENT means overflowing with enthusiasm.",
-    "distractor_rationales": [
-      "the same boiling image, opposite feeling",
-      "KEY",
-      "confusion with the bulge in -bull-",
-      "no lexical route; a general negative",
-      "the brightness of high spirits taken literally"
-    ],
-    "set_id": "SET-E"
-  },
-  {
-    "id": "SV7-23",
-    "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "SPURIOUS",
-    "choices": [
-      "acting on sudden impulse",
-      "full of open scorn",
-      "false though seeming real",
-      "sending out many shoots",
-      "unusually free with money"
-    ],
-    "correct_answer": "false though seeming real",
-    "explanation": "SPURIOUS means not genuine, especially while appearing so.",
-    "distractor_rationales": [
-      "the spur- read as spur of the moment",
-      "confusion with spurn — same stem, common slip",
-      "KEY",
-      "the botanical spur read literally",
-      "no lexical route; chosen when the word is unknown"
-    ],
-    "set_id": "SET-E"
-  },
-  {
-    "id": "SV7-24",
-    "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "DIFFIDENT",
-    "choices": [
-      "showing no interest either way",
-      "holding a contrary opinion",
-      "difficult to please",
-      "lacking self-confidence",
-      "unwilling to be persuaded"
-    ],
-    "correct_answer": "lacking self-confidence",
-    "explanation": "DIFFIDENT means shy and unassertive.",
-    "distractor_rationales": [
-      "confusion with indifferent — same root, one prefix apart",
-      "the word read as different",
-      "the diff- read as difficult",
-      "KEY",
-      "shy reserve mistaken for stubborn reserve"
-    ],
-    "set_id": "SET-E"
-  },
-  {
-    "id": "SV7-25",
-    "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "PROLIFIC",
-    "choices": [
-      "increasing rapidly in number",
-      "speaking at tiresome length",
-      "yielding a profit",
-      "coming first in time",
-      "producing a great deal"
-    ],
-    "correct_answer": "producing a great deal",
-    "explanation": "PROLIFIC means producing abundantly.",
-    "distractor_rationales": [
-      "confusion with proliferate — the same root, but that is spreading, not producing",
-      "confusion with prolix",
-      "the pro-fi- read as profit",
-      "the pro- prefix read as prior",
-      "KEY"
-    ],
-    "set_id": "SET-E"
-  },
-  {
-    "id": "SV7-26",
-    "subskill": "synonym",
-    "difficulty": "medium",
-    "prompt": "INNOCUOUS",
-    "choices": [
-      "causing no harm",
-      "free from guilt",
-      "impossible to believe",
-      "not yet given a name",
-      "without any clear cause"
-    ],
-    "correct_answer": "causing no harm",
-    "explanation": "INNOCUOUS means harmless.",
-    "distractor_rationales": [
-      "KEY",
-      "confusion with innocent — the same root, the moral sense instead",
-      "confusion with incredulous",
-      "the in- prefix attached to the wrong stem",
-      "a general negative for an in- word"
-    ],
-    "set_id": "SET-F"
-  },
-  {
-    "id": "SV7-27",
-    "subskill": "synonym",
-    "difficulty": "hard",
-    "prompt": "TRUCULENT",
-    "choices": [
-      "unquestioningly obedient",
-      "eager to pick a quarrel",
-      "dull and unresponsive",
-      "flowing in a steady stream",
-      "carrying a heavy load"
-    ],
-    "correct_answer": "eager to pick a quarrel",
-    "explanation": "TRUCULENT means aggressively defiant.",
-    "distractor_rationales": [
-      "confusion with truckle, to submit — the near-opposite, and the standard trap",
-      "KEY",
-      "no lexical route; a general negative disposition",
-      "the truc- read as trickle",
-      "the truc- read as truck"
-    ],
-    "set_id": "SET-F"
-  },
-  {
-    "id": "SV7-28",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "BATON is to CONDUCTOR as",
-    "choices": [
-      "weaver is to cloth",
-      "anvil is to iron",
-      "loom is to weaver",
-      "iron is to anvil",
-      "gavel is to courtroom"
-    ],
-    "correct_answer": "loom is to weaver",
-    "explanation": "baton : conductor — an implement and the worker who wields it. \"Loom is to weaver\" is the same implement-to-wielder pair.",
-    "distractor_rationales": [
-      "the right worker, but paired with the product rather than the implement",
-      "an implement paired with the material it shapes, not the wielder",
-      "KEY",
-      "the same implement-and-material pair the other way about",
-      "an implement paired with its setting, not its wielder"
-    ],
-    "set_id": "SET-F"
-  },
-  {
-    "id": "SV7-29",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "ARCHER is to BOW as",
-    "choices": [
-      "flute is to musician",
-      "trowel is to mortar",
-      "soldier is to his courage",
-      "blacksmith is to anvil",
-      "quiver is to arrow"
-    ],
-    "correct_answer": "blacksmith is to anvil",
-    "explanation": "archer : bow — a worker named first, then the implement of the craft. \"Blacksmith is to anvil\" runs the same way.",
-    "distractor_rationales": [
-      "the same relation running the other way, implement first",
-      "implement to material, with no worker at all",
-      "a person and a quality, not an implement",
-      "KEY",
-      "container to contents, drawn from the archer’s own equipment"
-    ],
-    "set_id": "SET-F"
-  },
-  {
-    "id": "SV7-30",
-    "subskill": "analogy",
-    "difficulty": "hard",
-    "prompt": "STANZA is to POEM as",
-    "choices": [
-      "paragraph is to sentence",
-      "verse is to rhyme",
-      "poet is to stanza",
-      "rhyme is to sound",
-      "chapter is to novel"
-    ],
-    "correct_answer": "chapter is to novel",
-    "explanation": "stanza : poem — a formal division and the whole work it divides. \"Chapter is to novel\" is the same division-to-whole pair.",
-    "distractor_rationales": [
-      "the same kind of pair with the whole named first",
-      "a division paired with a device it commonly uses, not the whole it belongs to",
-      "the maker and the thing made",
-      "a device and the medium it works in",
-      "KEY"
-    ],
-    "set_id": "SET-F"
-  },
-  {
-    "id": "SV7-31",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "ARCHIPELAGO is to ISLAND as",
-    "choices": [
-      "constellation is to star",
-      "grain is to sand",
-      "sand is to desert",
-      "harbour is to ship",
-      "shepherd is to flock"
-    ],
-    "correct_answer": "constellation is to star",
-    "explanation": "archipelago : island — a named grouping and the individual unit that composes it. \"Constellation is to star\" is the same grouping-to-unit pair.",
-    "distractor_rationales": [
-      "KEY",
-      "unit to mass, the other way about",
-      "unit to grouping, and the unit is a substance rather than a countable member",
-      "a place and what it holds temporarily",
-      "the keeper of a group rather than a member of it"
-    ],
-    "set_id": "SET-G"
-  },
-  {
-    "id": "SV7-32",
-    "subskill": "analogy",
-    "difficulty": "hard",
-    "prompt": "WARM is to SCALDING as",
-    "choices": [
-      "saturated is to damp",
-      "damp is to saturated",
-      "cool is to tepid",
-      "hot is to temperature",
-      "bright is to visible"
-    ],
-    "correct_answer": "damp is to saturated",
-    "explanation": "warm : scalding — a moderate degree and the extreme of the same quality. \"Damp is to saturated\" climbs the same scale in the same direction.",
-    "distractor_rationales": [
-      "the identical scale run downward",
-      "KEY",
-      "two mild points on a scale, neither extreme",
-      "a value and the dimension it belongs to",
-      "a specific quality and a general condition"
-    ],
-    "set_id": "SET-G"
-  },
-  {
-    "id": "SV7-33",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "DELUGE is to DRIZZLE as",
-    "choices": [
-      "rain is to weather",
-      "flood is to riverbank",
-      "gale is to breeze",
-      "thunder is to lightning",
-      "roar is to lion"
-    ],
-    "correct_answer": "gale is to breeze",
-    "explanation": "deluge : drizzle — the extreme form named first, then the mild form of the same thing. \"Gale is to breeze\" runs the same way.",
-    "distractor_rationales": [
-      "a kind and the category above it",
-      "an event and the thing it overruns",
-      "KEY",
-      "two companions of one storm, not two degrees of one quality",
-      "a sound and its source"
-    ],
-    "set_id": "SET-G"
-  },
-  {
-    "id": "SV7-34",
-    "subskill": "analogy",
-    "difficulty": "hard",
-    "prompt": "NEGLECT is to DECAY as",
-    "choices": [
-      "medicine is to illness",
-      "illness is to medicine",
-      "erosion is to cliff",
-      "drought is to famine",
-      "fatigue is to rest"
-    ],
-    "correct_answer": "drought is to famine",
-    "explanation": "neglect : decay — a cause and the deterioration it produces. \"Drought is to famine\" is the same cause-to-consequence pair.",
-    "distractor_rationales": [
-      "a remedy and the condition it answers",
-      "the same remedy pair reversed",
-      "a process and the object it acts upon",
-      "KEY",
-      "a condition and what relieves it"
-    ],
-    "set_id": "SET-G"
-  },
-  {
-    "id": "SV7-35",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "ASH is to FIRE as",
-    "choices": [
-      "smoke is to chimney",
-      "candle is to wax",
-      "kettle is to steam",
-      "scar is to skin",
-      "rust is to moisture"
-    ],
-    "correct_answer": "rust is to moisture",
-    "explanation": "ash : fire — what remains, named first, then the agent that produced it. \"Rust is to moisture\" runs the same way.",
-    "distractor_rationales": [
-      "a product and the channel it leaves by, not its cause",
-      "an object and the material it is made of",
-      "a source and its product, the other way about",
-      "a mark and the surface it sits on",
-      "KEY"
-    ],
-    "set_id": "SET-G"
-  },
-  {
-    "id": "SV7-36",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "SIEVE is to SEPARATION as",
-    "choices": [
-      "compass is to direction",
-      "map is to traveller",
-      "hammer is to anvil",
-      "filter is to residue",
-      "ladder is to rung"
-    ],
-    "correct_answer": "compass is to direction",
-    "explanation": "sieve : separation — a device and the result it exists to produce. \"Compass is to direction\" pairs a device with what it yields in the same order.",
-    "distractor_rationales": [
-      "KEY",
-      "a device and its user",
-      "two implements used together",
-      "a device and what it leaves behind, not what it yields",
-      "a whole and one of its parts"
-    ],
-    "set_id": "SET-H"
-  },
-  {
-    "id": "SV7-37",
-    "subskill": "analogy",
-    "difficulty": "hard",
-    "prompt": "PRESERVE is to REFRIGERATOR as",
-    "choices": [
-      "lantern is to illuminate",
-      "illuminate is to lantern",
-      "ignite is to ember",
-      "insulate is to cold",
-      "measure is to accuracy"
-    ],
-    "correct_answer": "illuminate is to lantern",
-    "explanation": "preserve : refrigerator — a purpose named first, then the device that serves it. \"Illuminate is to lantern\" runs in the same order.",
-    "distractor_rationales": [
-      "the identical pair with device and purpose swapped",
-      "KEY",
-      "an action and what it leaves, not a device",
-      "an action and what it excludes",
-      "an action and a quality it aims at"
-    ],
-    "set_id": "SET-H"
-  },
-  {
-    "id": "SV7-38",
-    "subskill": "analogy",
-    "difficulty": "hard",
-    "prompt": "EDITOR is to MANUSCRIPT as",
-    "choices": [
-      "author is to manuscript",
-      "surgeon is to scalpel",
-      "pruner is to hedge",
-      "scalpel is to incision",
-      "reviewer is to opinion"
-    ],
-    "correct_answer": "pruner is to hedge",
-    "explanation": "editor : manuscript — one who cuts back and refines something already made. \"Pruner is to hedge\" is the same corrective relation.",
-    "distractor_rationales": [
-      "the same object, but its creator rather than its reviser",
-      "a worker and an implement",
-      "KEY",
-      "an implement and the cut it makes",
-      "a worker and the output produced, not the material worked on"
-    ],
-    "set_id": "SET-H"
-  },
-  {
-    "id": "SV7-39",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "JUROR is to JURY as",
-    "choices": [
-      "captain is to crew",
-      "crew is to captain",
-      "swarm is to bee",
-      "senator is to legislature",
-      "sailor is to voyage"
-    ],
-    "correct_answer": "senator is to legislature",
-    "explanation": "juror : jury — one member and the deliberative body made up of such members. \"Senator is to legislature\" is the same member-to-body pair.",
-    "distractor_rationales": [
-      "one who commands a group rather than one of its members",
-      "the same command pair reversed",
-      "a group and its member, the other way about",
-      "KEY",
-      "a person and an undertaking"
-    ],
-    "set_id": "SET-H"
-  },
-  {
-    "id": "SV7-40",
-    "subskill": "analogy",
-    "difficulty": "hard",
-    "prompt": "COBBLER is to SHOE as",
-    "choices": [
-      "wall is to mason",
-      "mason is to trowel",
-      "carpenter is to lumber",
-      "tailor is to cloth",
-      "mason is to wall"
-    ],
-    "correct_answer": "mason is to wall",
-    "explanation": "cobbler : shoe — a craftsman and the finished article produced. \"Mason is to wall\" pairs craftsman with finished article in the same order.",
-    "distractor_rationales": [
-      "the identical pair reversed",
-      "the same craftsman paired with an implement",
-      "a craftsman and the raw material rather than the article",
-      "a craftsman and the raw material rather than the article",
-      "KEY"
-    ],
-    "set_id": "SET-H"
-  },
-  {
-    "id": "SV7-41",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "CLAY is to BRICK as",
-    "choices": [
-      "ore is to ingot",
-      "brick is to kiln",
-      "wool is to ewe",
-      "timber is to forest",
-      "flour is to baker"
-    ],
-    "correct_answer": "ore is to ingot",
-    "explanation": "clay : brick — a raw material and the shaped product made from it. \"Ore is to ingot\" is the same material-to-product pair.",
-    "distractor_rationales": [
-      "KEY",
-      "a product and the apparatus that fires it",
-      "a material and the creature it came from",
-      "a material and the place it is taken from",
-      "a material and the worker who uses it"
-    ],
-    "set_id": "SET-I"
-  },
-  {
-    "id": "SV7-42",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "FRIGATE is to VESSEL as",
-    "choices": [
-      "metal is to tin",
-      "spaniel is to dog",
-      "copper is to alloy",
-      "vessel is to fleet",
-      "granite is to quarry"
-    ],
-    "correct_answer": "spaniel is to dog",
-    "explanation": "frigate : vessel — a particular type and the general class it falls under. \"Spaniel is to dog\" moves from type to class in the same direction.",
-    "distractor_rationales": [
-      "class to type, the other way about",
-      "KEY",
-      "copper is a metal, not a kind of alloy — the class is wrong",
-      "a unit and a grouping of such units",
-      "a material and where it is got"
-    ],
-    "set_id": "SET-I"
-  },
-  {
-    "id": "SV7-43",
-    "subskill": "analogy",
-    "difficulty": "hard",
-    "prompt": "ANTIDOTE is to POISON as",
-    "choices": [
-      "bandage is to wound",
-      "wound is to bandage",
-      "vaccine is to disease",
-      "poison is to serpent",
-      "tonic is to strength"
-    ],
-    "correct_answer": "vaccine is to disease",
-    "explanation": "antidote : poison — an agent that neutralises a specific harm. \"Vaccine is to disease\" is the same counteracting relation.",
-    "distractor_rationales": [
-      "a covering that protects an injury without counteracting an agent",
-      "the same covering pair reversed",
-      "KEY",
-      "a substance and the creature that supplies it",
-      "an agent and the good it promotes rather than the harm it undoes"
-    ],
-    "set_id": "SET-I"
-  },
-  {
-    "id": "SV7-44",
-    "subskill": "analogy",
-    "difficulty": "medium",
-    "prompt": "BRAY is to DONKEY as",
-    "choices": [
-      "roar is to loudness",
-      "mane is to horse",
-      "whinny is to gallop",
-      "bellow is to ox",
-      "chirp is to morning"
-    ],
-    "correct_answer": "bellow is to ox",
-    "explanation": "bray : donkey — a characteristic cry and the animal that makes it. \"Bellow is to ox\" is the same cry-to-animal pair.",
-    "distractor_rationales": [
-      "a sound and a property of sound",
-      "a bodily part and the animal it belongs to",
-      "a cry and a gait, with no animal named",
-      "KEY",
-      "a sound and a time of day"
-    ],
-    "set_id": "SET-I"
-  },
-  {
-    "id": "SV7-45",
-    "subskill": "analogy",
-    "difficulty": "hard",
-    "prompt": "SEEDLING is to TREE as",
-    "choices": [
-      "bear is to cub",
-      "caterpillar is to cocoon",
-      "tadpole is to pond",
-      "acorn is to seedling",
-      "cub is to bear"
-    ],
-    "correct_answer": "cub is to bear",
-    "explanation": "seedling : tree — an immature form and the mature organism it grows into. \"Cub is to bear\" is the same immature-to-mature pair.",
-    "distractor_rationales": [
-      "the identical pair reversed",
-      "an immature form and an enclosure, not the mature animal",
-      "an immature form and its habitat",
-      "a seed and the sprout, one stage short of maturity",
-      "KEY"
-    ],
-    "set_id": "SET-I"
-  },
-  {
-    "id": "SV7-46",
-    "subskill": "analogy",
     "difficulty": "easy",
-    "prompt": "BRAVE is to COWARDLY as",
+    "prompt": "[Synonym] POSTPONE",
     "choices": [
-      "generous is to stingy",
-      "thrifty is to frugal",
-      "kind is to gentle",
-      "gentle is to mild",
-      "brave is to soldier"
+      "cancel",
+      "hurry",
+      "delay",
+      "announce",
+      "arrange"
     ],
-    "correct_answer": "generous is to stingy",
-    "explanation": "brave : cowardly — a trait and its opposite. \"Generous is to stingy\" is the same opposition.",
+    "correct_answer": "delay",
+    "explanation": "To POSTPONE is to put off to a later time. Cancel is the near-field trap.",
     "distractor_rationales": [
-      "KEY",
-      "near synonyms, not opposites",
-      "near synonyms, not opposites",
-      "near synonyms, not opposites",
-      "a trait and a person likely to have it"
-    ],
-    "set_id": "SET-J"
+      "cancel — same field of changing a schedule, but calling it off is not putting it off",
+      "hurry — antonym of the intended sense",
+      "announce — same field of scheduling, wrong relation",
+      "arrange — same field of scheduling, an associate"
+    ]
   },
   {
-    "id": "SV7-47",
-    "subskill": "analogy",
+    "id": "SVS7-53",
+    "kind": "synonym",
+    "subskill": "synonym",
     "difficulty": "easy",
-    "prompt": "CHEF is to KITCHEN as",
+    "prompt": "[Synonym] VANISH",
     "choices": [
-      "library is to librarian",
-      "judge is to courtroom",
-      "chef is to recipe",
-      "teacher is to lesson",
-      "prisoner is to cell"
+      "disappear",
+      "appear",
+      "shrink",
+      "wander",
+      "shatter"
     ],
-    "correct_answer": "judge is to courtroom",
-    "explanation": "chef : kitchen — a worker and the place where that work is done. \"Judge is to courtroom\" is the same worker-to-workplace pair.",
+    "correct_answer": "disappear",
+    "explanation": "To VANISH is to go out of sight.",
     "distractor_rationales": [
-      "workplace to worker, the other way about",
-      "KEY",
-      "the same worker and a set of instructions",
-      "a worker and the work produced, not the place",
-      "a person and a place, but not a place of work"
-    ],
-    "set_id": "SET-J"
+      "appear — antonym of the intended sense",
+      "shrink — same field of getting smaller and then gone, wrong relation",
+      "wander — same field of leaving, wrong relation",
+      "shatter — same field of sudden loss, wrong relation"
+    ]
   },
   {
-    "id": "SV7-48",
-    "subskill": "analogy",
+    "id": "SVS7-54",
+    "kind": "synonym",
+    "subskill": "synonym",
     "difficulty": "easy",
-    "prompt": "LETTER is to ENVELOPE as",
+    "prompt": "[Synonym] WEARY",
     "choices": [
-      "book is to page",
-      "page is to book",
-      "sword is to scabbard",
-      "water is to thirst",
-      "coin is to value"
+      "lively",
+      "angry",
+      "tired",
+      "hungry",
+      "clever"
     ],
-    "correct_answer": "sword is to scabbard",
-    "explanation": "letter : envelope — an object and the fitted covering made to hold it. \"Sword is to scabbard\" is the same object-to-sheath pair.",
+    "correct_answer": "tired",
+    "explanation": "WEARY means worn out.",
     "distractor_rationales": [
-      "a whole and one of its parts",
-      "a part and the whole, the other way about",
-      "KEY",
-      "a substance and the need it answers",
-      "an object and an abstract property"
+      "lively — antonym of the intended sense",
+      "angry — same field of mood terms, wrong relation",
+      "hungry — sound-alike ending, unrelated in meaning",
+      "clever — same field of describing a person, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-55",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] GLOOMY",
+    "choices": [
+      "cheerful",
+      "dismal",
+      "stormy",
+      "clumsy",
+      "crowded"
     ],
-    "set_id": "SET-J"
+    "correct_answer": "dismal",
+    "explanation": "GLOOMY means dark and dispiriting. Stormy is the weather-field associate.",
+    "distractor_rationales": [
+      "cheerful — antonym of the intended sense",
+      "stormy — same field of dark weather, an associate rather than a synonym",
+      "clumsy — sound-alike ending, unrelated in meaning",
+      "crowded — same field of describing a room, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-56",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] SEIZE",
+    "choices": [
+      "release",
+      "search",
+      "cease",
+      "soothe",
+      "grab"
+    ],
+    "correct_answer": "grab",
+    "explanation": "To SEIZE is to take hold of suddenly. Cease is the sound-alike trap.",
+    "distractor_rationales": [
+      "release — antonym of the intended sense",
+      "search — same field of taking hold of property, wrong relation",
+      "cease — sound-alike, unrelated in meaning",
+      "soothe — same field by sound only, unrelated in meaning"
+    ]
+  },
+  {
+    "id": "SVS7-57",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] SCARCE",
+    "choices": [
+      "plentiful",
+      "frightening",
+      "tiny",
+      "costly",
+      "rare"
+    ],
+    "correct_answer": "rare",
+    "explanation": "SCARCE means in short supply. Scare supplies the look-alike trap.",
+    "distractor_rationales": [
+      "plentiful — antonym of the intended sense",
+      "frightening — look-alike: scare",
+      "tiny — same field of describing a small supply, wrong relation",
+      "costly — same field: scarce things are often costly, but that is a consequence, not the meaning"
+    ]
+  },
+  {
+    "id": "SVS7-58",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] ASSEMBLE",
+    "choices": [
+      "scatter",
+      "resemble",
+      "repair",
+      "gather",
+      "hurry"
+    ],
+    "correct_answer": "gather",
+    "explanation": "To ASSEMBLE is to bring or come together. Resemble is the sound-alike trap.",
+    "distractor_rationales": [
+      "scatter — antonym of the intended sense",
+      "resemble — sound-alike, unrelated in meaning",
+      "repair — same field of putting a thing together, wrong relation",
+      "hurry — same field of a crowd's movement, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-59",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] BLUNDER",
+    "choices": [
+      "thunder",
+      "mistake",
+      "triumph",
+      "journey",
+      "rumor"
+    ],
+    "correct_answer": "mistake",
+    "explanation": "A BLUNDER is a clumsy mistake. Thunder is the sound-alike trap.",
+    "distractor_rationales": [
+      "thunder — sound-alike, unrelated in meaning",
+      "triumph — antonym of the intended sense",
+      "journey — same field by way of blundering about, wrong relation",
+      "rumor — same field of what gets talked about afterward, wrong relation"
+    ]
+  },
+  {
+    "id": "SVS7-60",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] PLEDGE",
+    "choices": [
+      "ledge",
+      "refusal",
+      "payment",
+      "promise",
+      "rumor"
+    ],
+    "correct_answer": "promise",
+    "explanation": "A PLEDGE is a solemn promise. Ledge is the look-alike trap.",
+    "distractor_rationales": [
+      "ledge — look-alike, unrelated in meaning",
+      "refusal — antonym of the intended sense",
+      "payment — same field of money pledged to a cause, an associate rather than a synonym",
+      "rumor — same field of what is said, wrong relation"
+    ]
   }
 ]

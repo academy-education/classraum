@@ -1,0 +1,750 @@
+[
+  {
+    "id": "SVA7A-01",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] spoke is to wheel as",
+    "choices": [
+      "spaniel is to dog",
+      "mason is to trowel",
+      "rafter is to roof",
+      "orchestra is to violin",
+      "ladle is to serve"
+    ],
+    "correct_answer": "rafter is to roof",
+    "explanation": "Relation: part/whole. A spoke is one of the repeated structural members that make up a wheel, exactly as a rafter is one of the repeated structural members that make up a roof.",
+    "distractor_rationales": {
+      "spaniel is to dog": "related but different relation: category/member, not part/whole",
+      "orchestra is to violin": "the correct relation reversed in order: whole to part",
+      "ladle is to serve": "related but different relation: function/purpose",
+      "mason is to trowel": "related but different relation: worker/tool"
+    }
+  },
+  {
+    "id": "SVA7A-02",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] cornea is to eye as",
+    "choices": [
+      "fret is to guitar",
+      "telescope is to astronomer",
+      "mammal is to whale",
+      "anvil is to forge",
+      "compass is to navigate"
+    ],
+    "correct_answer": "fret is to guitar",
+    "explanation": "Relation: part/whole. The cornea is a component of the eye; a fret is a component of a guitar. Neither part is the whole in miniature and neither can function apart from it.",
+    "distractor_rationales": {
+      "telescope is to astronomer": "the tool/worker relation run in reverse order, and topically adjacent to the stem's optics",
+      "mammal is to whale": "related but different relation: category/member, and reversed",
+      "anvil is to forge": "related but different relation: object/location",
+      "compass is to navigate": "related but different relation: function/purpose"
+    }
+  },
+  {
+    "id": "SVA7A-03",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] clause is to sentence as",
+    "choices": [
+      "conductor is to podium",
+      "aria is to soprano",
+      "metronome is to tempo",
+      "quartet is to ensemble",
+      "movement is to symphony"
+    ],
+    "correct_answer": "movement is to symphony",
+    "explanation": "Relation: part/whole. A clause is one complete structural division within a sentence; a movement is one complete structural division within a symphony. Every choice sits in the music field, so topic matching is useless and only the relation separates them.",
+    "distractor_rationales": {
+      "conductor is to podium": "same field, wrong relation: object/location",
+      "aria is to soprano": "same field, wrong relation: product/performer",
+      "metronome is to tempo": "same field, wrong relation: instrument to what it measures",
+      "quartet is to ensemble": "related but different relation: category/member"
+    }
+  },
+  {
+    "id": "SVA7A-04",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] hilt is to sword as",
+    "choices": [
+      "blacksmith is to anvil",
+      "cuff is to sleeve",
+      "scabbard is to sword",
+      "garment is to fabric",
+      "helmet is to protect"
+    ],
+    "correct_answer": "cuff is to sleeve",
+    "explanation": "Relation: part/whole. The hilt is the terminal section of a sword, as the cuff is the terminal section of a sleeve.",
+    "distractor_rationales": {
+      "blacksmith is to anvil": "related but different relation: worker/tool",
+      "scabbard is to sword": "topically associated with the stem words but the internal relation is container/contents",
+      "garment is to fabric": "related but different relation: object to the material it is made from",
+      "helmet is to protect": "related but different relation: function/purpose"
+    }
+  },
+  {
+    "id": "SVA7A-05",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] yolk is to egg as",
+    "choices": [
+      "hen is to poultry",
+      "whisk is to blend",
+      "pantry is to preserves",
+      "pit is to peach",
+      "omelet is to cook"
+    ],
+    "correct_answer": "pit is to peach",
+    "explanation": "Relation: part/whole. The yolk is the inner body enclosed by the egg; the pit is the inner body enclosed by the peach.",
+    "distractor_rationales": {
+      "hen is to poultry": "related but different relation: category/member, and topically associated with the stem",
+      "whisk is to blend": "related but different relation: function/purpose",
+      "pantry is to preserves": "related but different relation: object/location, reversed",
+      "omelet is to cook": "related but different relation: product/worker, reversed"
+    }
+  },
+  {
+    "id": "SVA7A-06",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] vertebra is to spine as",
+    "choices": [
+      "link is to chain",
+      "skeleton is to bone",
+      "cable is to taut",
+      "anatomist is to dissect",
+      "rib is to protect"
+    ],
+    "correct_answer": "link is to chain",
+    "explanation": "Relation: part/whole, specifically one repeated identical unit to the segmented whole it composes. A spine is a series of vertebrae as a chain is a series of links. Hard because the direction must be checked: three choices sit in the anatomy field and one of them is the same relation reversed.",
+    "distractor_rationales": {
+      "skeleton is to bone": "the correct relation reversed in order: whole to part",
+      "anatomist is to dissect": "same field, wrong relation: worker to action",
+      "rib is to protect": "a part of the stem's own system, but the relation offered is function/purpose",
+      "cable is to taut": "related but different relation: thing to characteristic"
+    }
+  },
+  {
+    "id": "SVA7A-07",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] tine is to fork as",
+    "choices": [
+      "fork is to cutlery",
+      "spatula is to flip",
+      "crockery is to cupboard",
+      "bristle is to brush",
+      "potter is to kiln"
+    ],
+    "correct_answer": "bristle is to brush",
+    "explanation": "Relation: part/whole. A fork is a set of tines mounted on a handle; a brush is a set of bristles mounted on a handle.",
+    "distractor_rationales": {
+      "fork is to cutlery": "repeats a stem word, but the relation is category/member",
+      "spatula is to flip": "related but different relation: function/purpose",
+      "crockery is to cupboard": "related but different relation: object/location",
+      "potter is to kiln": "related but different relation: worker/tool"
+    }
+  },
+  {
+    "id": "SVA7A-08",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] copper is to metal as",
+    "choices": [
+      "alloy is to brass",
+      "sapphire is to gemstone",
+      "ore is to smelt",
+      "quartz is to crystalline",
+      "crucible is to foundry"
+    ],
+    "correct_answer": "sapphire is to gemstone",
+    "explanation": "Relation: category/member, running member to category. Copper is one particular metal; sapphire is one particular gemstone.",
+    "distractor_rationales": {
+      "alloy is to brass": "the correct relation reversed in order: category to member",
+      "ore is to smelt": "same field, wrong relation: material to the process applied to it",
+      "crucible is to foundry": "related but different relation: object/location",
+      "quartz is to crystalline": "related but different relation: thing to characteristic"
+    }
+  },
+  {
+    "id": "SVA7A-09",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] ballad is to song as",
+    "choices": [
+      "lyric is to ballad",
+      "chorus is to repeat",
+      "canvas is to studio",
+      "muralist is to plaster",
+      "fresco is to painting"
+    ],
+    "correct_answer": "fresco is to painting",
+    "explanation": "Relation: category/member. A ballad is one named kind of song, defined by its form; a fresco is one named kind of painting, defined by its technique.",
+    "distractor_rationales": {
+      "lyric is to ballad": "repeats a stem word, but the relation is part/whole",
+      "chorus is to repeat": "same field, wrong relation: function/purpose",
+      "canvas is to studio": "related but different relation: object/location",
+      "muralist is to plaster": "related but different relation: worker to material"
+    }
+  },
+  {
+    "id": "SVA7A-10",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] perjury is to falsehood as",
+    "choices": [
+      "verdict is to trial",
+      "falsehood is to slander",
+      "trespass is to intrusion",
+      "statute is to binding",
+      "witness is to testimony"
+    ],
+    "correct_answer": "trespass is to intrusion",
+    "explanation": "Relation: category/member. Perjury is the narrow legally defined case of falsehood — a lie told under oath; trespass is the narrow legally defined case of intrusion — entry onto land without right. Hard because the relation is abstract and every choice shares the legal field.",
+    "distractor_rationales": {
+      "verdict is to trial": "same field, wrong relation: part/whole",
+      "falsehood is to slander": "repeats a stem word and runs the correct relation reversed: category to member",
+      "statute is to binding": "same field, wrong relation: thing to characteristic",
+      "witness is to testimony": "same field, wrong relation: person to what that person produces"
+    }
+  },
+  {
+    "id": "SVA7A-11",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] peninsula is to landform as",
+    "choices": [
+      "landform is to plateau",
+      "delta is to silt",
+      "surveyor is to tripod",
+      "isthmus is to connect",
+      "estuary is to waterway"
+    ],
+    "correct_answer": "estuary is to waterway",
+    "explanation": "Relation: category/member. A peninsula is one named type within the class of landforms; an estuary is one named type within the class of waterways.",
+    "distractor_rationales": {
+      "landform is to plateau": "repeats a stem word and runs the correct relation reversed",
+      "delta is to silt": "same field, wrong relation: feature to the material composing it",
+      "surveyor is to tripod": "related but different relation: worker/tool",
+      "isthmus is to connect": "same field, wrong relation: function/purpose"
+    }
+  },
+  {
+    "id": "SVA7A-12",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] parsley is to herb as",
+    "choices": [
+      "herb is to basil",
+      "garden is to seedling",
+      "cinnamon is to spice",
+      "mortar is to grind",
+      "grocer is to scales"
+    ],
+    "correct_answer": "cinnamon is to spice",
+    "explanation": "Relation: category/member. Parsley is one herb among many; cinnamon is one spice among many.",
+    "distractor_rationales": {
+      "herb is to basil": "repeats a stem word and runs the correct relation reversed",
+      "garden is to seedling": "related but different relation: object/location, reversed",
+      "mortar is to grind": "related but different relation: function/purpose",
+      "grocer is to scales": "related but different relation: worker/tool"
+    }
+  },
+  {
+    "id": "SVA7A-13",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] canine is to wolf as",
+    "choices": [
+      "citrus is to lime",
+      "hound is to pack",
+      "rind is to bitter",
+      "burrow is to badger",
+      "pelt is to coarse"
+    ],
+    "correct_answer": "citrus is to lime",
+    "explanation": "Relation: category/member, run in the less expected direction — category first, member second. The canine family includes the wolf; the citrus family includes the lime.",
+    "distractor_rationales": {
+      "hound is to pack": "same field, wrong relation: individual to the group it belongs to, which is a different scale from class to type",
+      "burrow is to badger": "same field, wrong relation: object/location, reversed",
+      "pelt is to coarse": "same field, wrong relation: thing to characteristic",
+      "rind is to bitter": "related but different relation: thing to characteristic"
+    }
+  },
+  {
+    "id": "SVA7A-14",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] pigment is to ochre as",
+    "choices": [
+      "ochre is to earthen",
+      "palette is to painter",
+      "loom is to mill",
+      "fabric is to twill",
+      "dye is to color"
+    ],
+    "correct_answer": "fabric is to twill",
+    "explanation": "Relation: category/member, running general class to one named specific kind. Ochre is one named pigment; twill is one named fabric. Hard because the expected direction is specific-to-general and every choice sits in the same craft field.",
+    "distractor_rationales": {
+      "ochre is to earthen": "repeats a stem word, but the relation is thing to characteristic",
+      "palette is to painter": "same field, wrong relation: tool/worker",
+      "loom is to mill": "same field, wrong relation: object/location",
+      "dye is to color": "same field, wrong relation: function/purpose"
+    }
+  },
+  {
+    "id": "SVA7A-15",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] loaf is to bakery as",
+    "choices": [
+      "baker is to dough",
+      "vial is to pharmacy",
+      "crust is to loaf",
+      "oven is to bake",
+      "tincture is to remedy"
+    ],
+    "correct_answer": "vial is to pharmacy",
+    "explanation": "Relation: object/location. A loaf is the characteristic object of a bakery, the place where it is made and kept; a vial is the characteristic object of a pharmacy.",
+    "distractor_rationales": {
+      "baker is to dough": "same field, wrong relation: worker to material",
+      "crust is to loaf": "repeats a stem word, but the relation is part/whole",
+      "oven is to bake": "same field, wrong relation: function/purpose",
+      "tincture is to remedy": "related but different relation: category/member"
+    }
+  },
+  {
+    "id": "SVA7A-16",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] artifact is to museum as",
+    "choices": [
+      "curator is to exhibit",
+      "manuscript is to archive",
+      "catalog is to record",
+      "relic is to ancient",
+      "museum is to wing"
+    ],
+    "correct_answer": "manuscript is to archive",
+    "explanation": "Relation: object/location. An artifact is housed and preserved in a museum; a manuscript is housed and preserved in an archive.",
+    "distractor_rationales": {
+      "curator is to exhibit": "same field, wrong relation: worker to what that worker produces",
+      "catalog is to record": "same field, wrong relation: function/purpose",
+      "relic is to ancient": "same field, wrong relation: thing to characteristic",
+      "museum is to wing": "repeats a stem word, but the relation is whole/part"
+    }
+  },
+  {
+    "id": "SVA7A-17",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] telescope is to observatory as",
+    "choices": [
+      "astronomer is to telescope",
+      "lens is to telescope",
+      "smithy is to tongs",
+      "alloy is to durable",
+      "furnace is to foundry"
+    ],
+    "correct_answer": "furnace is to foundry",
+    "explanation": "Relation: object/location. A telescope is the defining apparatus housed in an observatory; a furnace is the defining apparatus housed in a foundry. In each case the building exists to hold the machine.",
+    "distractor_rationales": {
+      "astronomer is to telescope": "topically associated with the stem, but the relation is worker/tool",
+      "lens is to telescope": "topically associated with the stem, but the relation is part/whole",
+      "smithy is to tongs": "the correct relation reversed in order: location to object",
+      "alloy is to durable": "related but different relation: thing to characteristic"
+    }
+  },
+  {
+    "id": "SVA7A-18",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] sediment is to riverbed as",
+    "choices": [
+      "dredge is to clear",
+      "silt is to fine",
+      "damper is to chimney",
+      "soot is to flue",
+      "riverbed is to channel"
+    ],
+    "correct_answer": "soot is to flue",
+    "explanation": "Relation: object/location, in its residue form — the substance to the surface on which it settles and accumulates. Sediment collects on a riverbed; soot collects in a flue. Hard because the relation is a narrow one and the strongest competing choice, 'damper is to chimney', sits in the same flue field as the key.",
+    "distractor_rationales": {
+      "dredge is to clear": "same field, wrong relation: function/purpose",
+      "silt is to fine": "same field, wrong relation: thing to characteristic",
+      "riverbed is to channel": "repeats a stem word, but the two are near synonyms rather than object and location",
+      "damper is to chimney": "related but different relation: part/whole"
+    }
+  },
+  {
+    "id": "SVA7A-19",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] podium is to lecture hall as",
+    "choices": [
+      "bench is to workshop",
+      "carpenter is to plane",
+      "lectern is to sturdy",
+      "lecture hall is to aisle",
+      "gavel is to signal"
+    ],
+    "correct_answer": "bench is to workshop",
+    "explanation": "Relation: object/location. A podium is the fixed working station of a lecture hall; a bench is the fixed working station of a workshop.",
+    "distractor_rationales": {
+      "carpenter is to plane": "related but different relation: worker/tool",
+      "lectern is to sturdy": "topically associated with the stem, but the relation is thing to characteristic",
+      "lecture hall is to aisle": "repeats a stem word, but the relation is whole/part",
+      "gavel is to signal": "related but different relation: function/purpose"
+    }
+  },
+  {
+    "id": "SVA7A-20",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] aircraft is to hangar as",
+    "choices": [
+      "mechanic is to wrench",
+      "wing is to aircraft",
+      "locomotive is to depot",
+      "throttle is to accelerate",
+      "caboose is to train"
+    ],
+    "correct_answer": "locomotive is to depot",
+    "explanation": "Relation: object/location. An aircraft is sheltered and serviced in a hangar; a locomotive is sheltered and serviced in a depot.",
+    "distractor_rationales": {
+      "mechanic is to wrench": "related but different relation: worker/tool",
+      "wing is to aircraft": "repeats a stem word, but the relation is part/whole",
+      "throttle is to accelerate": "same field, wrong relation: function/purpose",
+      "caboose is to train": "related but different relation: part/whole"
+    }
+  },
+  {
+    "id": "SVA7A-21",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] ore is to vein as",
+    "choices": [
+      "miner is to pickaxe",
+      "moss is to spongy",
+      "shaft is to mine",
+      "peat is to bog",
+      "quarry is to granite"
+    ],
+    "correct_answer": "peat is to bog",
+    "explanation": "Relation: object/location — a natural material to the formation in which it is found. Ore is found in a vein; peat is found in a bog. Hard because three choices sit in the stem's extraction field and the strongest trap is the same relation running the other way.",
+    "distractor_rationales": {
+      "miner is to pickaxe": "same field, wrong relation: worker/tool",
+      "shaft is to mine": "same field, wrong relation: part/whole",
+      "quarry is to granite": "the correct relation reversed in order: location to material",
+      "moss is to spongy": "related but different relation: thing to characteristic"
+    }
+  },
+  {
+    "id": "SVA7A-22",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] velvet is to smooth as",
+    "choices": [
+      "cloth is to weave",
+      "sandpaper is to abrasive",
+      "upholsterer is to fabric",
+      "silk is to textile",
+      "grindstone is to sharpen"
+    ],
+    "correct_answer": "sandpaper is to abrasive",
+    "explanation": "Relation: characteristic. Smoothness is the defining tactile quality of velvet, as abrasiveness is the defining tactile quality of sandpaper.",
+    "distractor_rationales": {
+      "cloth is to weave": "same field, wrong relation: material to the process that makes it",
+      "upholsterer is to fabric": "related but different relation: worker to material",
+      "silk is to textile": "related but different relation: category/member",
+      "grindstone is to sharpen": "related but different relation: function/purpose"
+    }
+  },
+  {
+    "id": "SVA7A-23",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] sponge is to absorbent as",
+    "choices": [
+      "sieve is to strain",
+      "handle is to mop",
+      "cork is to buoyant",
+      "linen is to cloth",
+      "float is to angler"
+    ],
+    "correct_answer": "cork is to buoyant",
+    "explanation": "Relation: characteristic. A sponge is defined by its absorbency and a cork by its buoyancy; in each case the quality is the reason the material is used at all.",
+    "distractor_rationales": {
+      "sieve is to strain": "same field, wrong relation: function/purpose",
+      "handle is to mop": "same field, wrong relation: part/whole",
+      "linen is to cloth": "related but different relation: category/member",
+      "float is to angler": "related but different relation: tool/worker, reversed"
+    }
+  },
+  {
+    "id": "SVA7A-24",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] ultimatum is to final as",
+    "choices": [
+      "premise is to argument",
+      "dogma is to doctrine",
+      "logician is to syllogism",
+      "proof is to convince",
+      "axiom is to self-evident"
+    ],
+    "correct_answer": "axiom is to self-evident",
+    "explanation": "Relation: characteristic, with an abstract stem. An ultimatum is by definition final — a demand that admits no further negotiation — as an axiom is by definition self-evident, a statement accepted without proof. Hard because the quality must be the DEFINING one, not merely a common one, and all five choices live in the field of argument.",
+    "distractor_rationales": {
+      "premise is to argument": "same field, wrong relation: part/whole",
+      "dogma is to doctrine": "same field, wrong relation: category/member",
+      "logician is to syllogism": "same field, wrong relation: worker to what that worker produces",
+      "proof is to convince": "same field, wrong relation: function/purpose"
+    }
+  },
+  {
+    "id": "SVA7A-25",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] desert is to arid as",
+    "choices": [
+      "marsh is to sodden",
+      "dune is to desert",
+      "cactus is to succulent",
+      "levee is to restrain",
+      "heron is to wetland"
+    ],
+    "correct_answer": "marsh is to sodden",
+    "explanation": "Relation: characteristic. Aridity is the defining condition of a desert; sodden ground is the defining condition of a marsh. Each terrain is named for the water it lacks or holds.",
+    "distractor_rationales": {
+      "dune is to desert": "repeats a stem word, but the relation is part/whole",
+      "cactus is to succulent": "topically associated with the stem, but the relation is category/member",
+      "levee is to restrain": "related but different relation: function/purpose",
+      "heron is to wetland": "related but different relation: object/location"
+    }
+  },
+  {
+    "id": "SVA7A-26",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] impregnable is to fortress as",
+    "choices": [
+      "indelible is to scar",
+      "fortress is to garrison",
+      "moat is to fortress",
+      "surgeon is to suture",
+      "sentry is to vigilant"
+    ],
+    "correct_answer": "indelible is to scar",
+    "explanation": "Relation: characteristic, run in the less expected direction — quality first, thing second. A fortress is built to be impregnable; a scar is by its nature indelible. Hard because the reversal trap sits in the option set: 'sentry is to vigilant' is the same relation in the ordinary order.",
+    "distractor_rationales": {
+      "fortress is to garrison": "repeats a stem word, but the relation is location to occupants",
+      "moat is to fortress": "topically associated with the stem, but the relation is part/whole",
+      "sentry is to vigilant": "the correct relation reversed in order: thing to quality",
+      "surgeon is to suture": "related but different relation: worker/tool"
+    }
+  },
+  {
+    "id": "SVA7A-27",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] mule is to stubborn as",
+    "choices": [
+      "herd is to cattle",
+      "stable is to mule",
+      "lamb is to docile",
+      "bray is to donkey",
+      "plow is to furrow"
+    ],
+    "correct_answer": "lamb is to docile",
+    "explanation": "Relation: characteristic. Stubbornness is the quality proverbially attached to the mule, as docility is the quality proverbially attached to the lamb.",
+    "distractor_rationales": {
+      "herd is to cattle": "related but different relation: group to member",
+      "stable is to mule": "repeats a stem word, but the relation is location to occupant",
+      "bray is to donkey": "same field, wrong relation: sound to the animal that makes it, and reversed",
+      "plow is to furrow": "related but different relation: tool to what it produces"
+    }
+  },
+  {
+    "id": "SVA7A-28",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] maxim is to pithy as",
+    "choices": [
+      "proverb is to saying",
+      "orator is to tirade",
+      "preamble is to speech",
+      "eulogy is to praise",
+      "tirade is to vehement"
+    ],
+    "correct_answer": "tirade is to vehement",
+    "explanation": "Relation: characteristic. A maxim is pithy by definition — compressed to a single memorable line — as a tirade is vehement by definition, an outburst delivered with force.",
+    "distractor_rationales": {
+      "proverb is to saying": "topically associated with the stem, but the relation is category/member",
+      "orator is to tirade": "same field, wrong relation: speaker to what that speaker produces",
+      "preamble is to speech": "same field, wrong relation: part/whole",
+      "eulogy is to praise": "same field, wrong relation: function/purpose"
+    }
+  },
+  {
+    "id": "SVA7A-29",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "[Analogy] rudder is to steer as",
+    "choices": [
+      "keel is to hull",
+      "brake is to halt",
+      "mallet is to cooper",
+      "granary is to grain",
+      "bramble is to thorny"
+    ],
+    "correct_answer": "brake is to halt",
+    "explanation": "Relation: function/purpose. A rudder exists in order to steer; a brake exists in order to halt.",
+    "distractor_rationales": {
+      "keel is to hull": "topically associated with the stem, but the relation is part/whole",
+      "mallet is to cooper": "the tool/worker relation, and reversed",
+      "granary is to grain": "related but different relation: location to contents",
+      "bramble is to thorny": "related but different relation: thing to characteristic"
+    }
+  },
+  {
+    "id": "SVA7A-30",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] muffler is to noise as",
+    "choices": [
+      "piston is to engine",
+      "lamp is to parlor",
+      "canopy is to canvas",
+      "shade is to glare",
+      "mechanic is to muffler"
+    ],
+    "correct_answer": "shade is to glare",
+    "explanation": "Relation: function/purpose, in its suppressive form — a device named for the unwanted thing it reduces. A muffler cuts noise; a shade cuts glare.",
+    "distractor_rationales": {
+      "piston is to engine": "same field, wrong relation: part/whole",
+      "lamp is to parlor": "related but different relation: object/location",
+      "canopy is to canvas": "related but different relation: object to the material it is made from",
+      "mechanic is to muffler": "repeats a stem word, but the relation is worker to the object worked on"
+    }
+  },
+  {
+    "id": "SVA7A-31",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] scaffold is to construction as",
+    "choices": [
+      "mason is to mortar",
+      "girder is to bridge",
+      "splint is to fracture",
+      "ligament is to joint",
+      "blueprint is to precise"
+    ],
+    "correct_answer": "splint is to fracture",
+    "explanation": "Relation: function/purpose. A scaffold is a temporary support that holds a construction while it becomes able to stand on its own, then is removed; a splint does exactly that for a fracture. Hard because 'girder is to bridge' offers the same idea of support but as a permanent part of the structure.",
+    "distractor_rationales": {
+      "mason is to mortar": "same field, wrong relation: worker to material",
+      "girder is to bridge": "right idea, wrong relation and wrong permanence: part/whole, a support that stays",
+      "blueprint is to precise": "same field, wrong relation: thing to characteristic",
+      "ligament is to joint": "right field for the key, wrong relation: part/whole, a permanent connector rather than a temporary support"
+    }
+  },
+  {
+    "id": "SVA7A-32",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] bandage is to wound as",
+    "choices": [
+      "cooper is to barrel",
+      "gauze is to porous",
+      "attic is to heirloom",
+      "ointment is to remedy",
+      "tarpaulin is to cargo"
+    ],
+    "correct_answer": "tarpaulin is to cargo",
+    "explanation": "Relation: function/purpose. A bandage is a covering laid over a wound to shield it from harm; a tarpaulin is a covering laid over cargo for the same reason.",
+    "distractor_rationales": {
+      "cooper is to barrel": "related but different relation: worker to what that worker produces",
+      "gauze is to porous": "topically associated with the stem, but the relation is thing to characteristic",
+      "attic is to heirloom": "related but different relation: location to contents",
+      "ointment is to remedy": "topically associated with the stem, but the relation is category/member"
+    }
+  },
+  {
+    "id": "SVA7A-33",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] irrigation is to canal as",
+    "choices": [
+      "canal is to barge",
+      "illumination is to lantern",
+      "drought is to crop failure",
+      "reservoir is to capacious",
+      "beacon is to signal"
+    ],
+    "correct_answer": "illumination is to lantern",
+    "explanation": "Relation: function/purpose, run in the less expected direction — the purpose first, the device that serves it second. A canal exists to provide irrigation; a lantern exists to provide illumination. Hard because students expect device-then-purpose and three choices share the stem's waterworks field.",
+    "distractor_rationales": {
+      "canal is to barge": "repeats a stem word, but the relation is location to what travels there",
+      "drought is to crop failure": "same field, wrong relation: cause/effect",
+      "reservoir is to capacious": "same field, wrong relation: thing to characteristic",
+      "beacon is to signal": "the correct relation reversed in order: device first, purpose second"
+    }
+  },
+  {
+    "id": "SVA7A-34",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] quarantine is to contagion as",
+    "choices": [
+      "firebreak is to blaze",
+      "plague is to epidemic",
+      "ash is to powdery",
+      "ward is to patient",
+      "forester is to axe"
+    ],
+    "correct_answer": "firebreak is to blaze",
+    "explanation": "Relation: function/purpose. A quarantine is a barrier imposed to stop a contagion from spreading; a firebreak is a barrier cut to stop a blaze from spreading.",
+    "distractor_rationales": {
+      "plague is to epidemic": "topically associated with the stem, but the relation is category/member",
+      "ash is to powdery": "related but different relation: thing to characteristic",
+      "ward is to patient": "topically associated with the stem, but the relation is location to occupant",
+      "forester is to axe": "related but different relation: worker/tool"
+    }
+  }
+]

@@ -1,0 +1,750 @@
+[
+  {
+    "id": "SVA7C-01",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Lens is to focus as",
+    "choices": [
+      "rudder is to steer",
+      "anchor is to drift",
+      "periscope is to sailor",
+      "prism is to glass",
+      "telescope is to stars"
+    ],
+    "correct_answer": "rudder is to steer",
+    "explanation": "The relation is function/purpose: a lens is the component whose job is to focus, as a rudder is the component whose job is to steer. Two choices sit inside the stem's optical field (prism/glass, telescope/stars) and neither states a function; the nautical field is shared by the key and by two distractors, so field-matching cannot decide the item and only the relation can.",
+    "distractor_rationales": [
+      "anchor is to drift - right frame inverted: an anchor's purpose is to PREVENT drift, not to perform it",
+      "periscope is to sailor - tool/user, and topically nautical so it attracts anyone matching the key's field",
+      "prism is to glass - object/material, planted in the stem's optical field",
+      "telescope is to stars - instrument/object observed, optical field, wrong internal relation"
+    ]
+  },
+  {
+    "id": "SVA7C-02",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Scar is to wound as",
+    "choices": [
+      "bandage is to injury",
+      "ache is to muscle",
+      "surgeon is to incision",
+      "echo is to shout",
+      "ripple is to pond"
+    ],
+    "correct_answer": "echo is to shout",
+    "explanation": "The relation runs effect back to cause, and the effect is specifically a lingering trace of an event now over: a scar is what a healed wound leaves behind, as an echo is what a finished shout leaves behind. Three distractors occupy the stem's medical field; the key's acoustic field is shared by ripple/pond, so the key is not the only choice outside medicine.",
+    "distractor_rationales": [
+      "bandage is to injury - remedy/ailment, a related but different relation in the stem's field",
+      "ache is to muscle - condition/location, medical topic, no cause-and-trace",
+      "surgeon is to incision - worker/product, medical topic",
+      "ripple is to pond - disturbance/location rather than disturbance/cause"
+    ]
+  },
+  {
+    "id": "SVA7C-03",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Nibble is to devour as",
+    "choices": [
+      "famished is to hungry",
+      "tap is to pound",
+      "crumb is to loaf",
+      "sprint is to jog",
+      "chew is to digest"
+    ],
+    "correct_answer": "tap is to pound",
+    "explanation": "Degree of intensity, running mild to extreme: to nibble is to eat faintly and to devour is to eat overwhelmingly, as to tap is to strike faintly and to pound is to strike overwhelmingly. Two distractors are genuine intensity pairs running the OTHER way (famished/hungry, sprint/jog), so the direction of the stem is the whole item and cannot be recovered from the option list alone.",
+    "distractor_rationales": [
+      "famished is to hungry - right relation, wrong direction: extreme to mild",
+      "crumb is to loaf - part/whole in the stem's eating field, not degree",
+      "sprint is to jog - right relation, wrong direction, in the field of physical action",
+      "chew is to digest - sequence of stages, not degree"
+    ]
+  },
+  {
+    "id": "SVA7C-04",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Symphony is to movement as",
+    "choices": [
+      "chapter is to novel",
+      "composer is to symphony",
+      "sonata is to concerto",
+      "brick is to wall",
+      "quilt is to patch"
+    ],
+    "correct_answer": "quilt is to patch",
+    "explanation": "Part/whole run in the less expected direction - whole first, then the unit it is assembled from. A symphony is built of movements as a quilt is built of patches. Two distractors are part/whole reversed back to the expected order (chapter/novel, brick/wall) and two sit in the stem's musical field, so the candidate must read direction and relation together.",
+    "distractor_rationales": [
+      "chapter is to novel - correct relation with the order reversed",
+      "composer is to symphony - worker/product, planted in the stem's musical field",
+      "sonata is to concerto - two sibling forms, no whole-to-part relation, musical field",
+      "brick is to wall - correct relation with the order reversed, outside the stem's field"
+    ]
+  },
+  {
+    "id": "SVA7C-05",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Friction is to wear as",
+    "choices": [
+      "gear is to machine",
+      "flood is to rain",
+      "erosion is to canyon",
+      "oil is to engine",
+      "hammer is to anvil"
+    ],
+    "correct_answer": "erosion is to canyon",
+    "explanation": "A slow, continuous process and the thing it gradually produces: friction produces wear, as erosion produces a canyon. Three distractors sit in the stem's mechanical field and none of them is a process-to-product pair; the one other choice from the natural world runs the relation backwards.",
+    "distractor_rationales": [
+      "gear is to machine - part/whole, mechanical field matching the stem's surface topic",
+      "flood is to rain - right relation reversed: result named before the process",
+      "oil is to engine - substance/what it serves, mechanical field",
+      "hammer is to anvil - two objects merely associated in use, no causal relation"
+    ]
+  },
+  {
+    "id": "SVA7C-06",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Camouflage is to concealment as",
+    "choices": [
+      "disguise is to actor",
+      "chameleon is to skin",
+      "fortress is to siege",
+      "vaccine is to immunity",
+      "sentry is to alarm"
+    ],
+    "correct_answer": "vaccine is to immunity",
+    "explanation": "Means to end: camouflage is the device adopted in order to obtain concealment, as a vaccine is the device administered in order to obtain immunity. Two distractors (disguise/actor, chameleon/skin) are drawn straight from the stem's concealment field and neither names an end state, which is what makes surface matching fail.",
+    "distractor_rationales": [
+      "disguise is to actor - tool/user, planted in the stem's concealment field",
+      "chameleon is to skin - creature/part, concealment field, no means-to-end relation",
+      "fortress is to siege - defense and the assault it resists, a related but different relation",
+      "sentry is to alarm - worker/instrument, not means and outcome"
+    ]
+  },
+  {
+    "id": "SVA7C-07",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Baton is to conductor as",
+    "choices": [
+      "loom is to weaver",
+      "surgeon is to scalpel",
+      "violin is to orchestra",
+      "gardener is to trowel",
+      "stage is to performer"
+    ],
+    "correct_answer": "loom is to weaver",
+    "explanation": "Tool to worker, the reverse of the order candidates expect. A baton is the implement of a conductor as a loom is the implement of a weaver. Two distractors are the same relation run worker-first (surgeon/scalpel, gardener/trowel), so the option list alone cannot reveal which direction the stem takes.",
+    "distractor_rationales": [
+      "surgeon is to scalpel - correct relation reversed, worker before tool",
+      "violin is to orchestra - part/whole, planted in the stem's musical field",
+      "gardener is to trowel - correct relation reversed, worker before tool",
+      "stage is to performer - location/occupant, in the stem's performance field"
+    ]
+  },
+  {
+    "id": "SVA7C-08",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Fabric is to denim as",
+    "choices": [
+      "cotton is to shirt",
+      "grain is to barley",
+      "baker is to loaf",
+      "silk is to smooth",
+      "wool is to sheep"
+    ],
+    "correct_answer": "grain is to barley",
+    "explanation": "Category to member, stated in the less expected order: denim is one kind of fabric, as barley is one kind of grain. Two distractors come from the stem's textile field and one of them (silk/smooth) is a thing-and-quality pair rather than a class-and-instance pair, so the item turns entirely on relation type and direction.",
+    "distractor_rationales": [
+      "cotton is to shirt - material/product, planted in the stem's textile field",
+      "baker is to loaf - worker/product, sharing the key's food field so the key is not the odd choice out",
+      "silk is to smooth - thing/characteristic, textile field",
+      "wool is to sheep - material/source, not class and instance"
+    ]
+  },
+  {
+    "id": "SVA7C-09",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Applause is to concert as",
+    "choices": [
+      "audience is to theater",
+      "actor is to role",
+      "curtain is to stage",
+      "juror is to courtroom",
+      "verdict is to trial"
+    ],
+    "correct_answer": "verdict is to trial",
+    "explanation": "The relation is the judgment that comes at the close of a proceeding and pronounces on it: applause is the assembled judgment that closes a concert, as a verdict is the assembled judgment that closes a trial. Three distractors are lifted from the stem's performance field, and the key's legal field is shared by juror/courtroom, so no choice stands out as the lone outsider.",
+    "distractor_rationales": [
+      "audience is to theater - occupant/location, performance field",
+      "actor is to role - performer/part played, performance field",
+      "curtain is to stage - part/whole, performance field",
+      "juror is to courtroom - worker/location, legal field, wrong internal relation"
+    ]
+  },
+  {
+    "id": "SVA7C-10",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Curfew is to disorder as",
+    "choices": [
+      "sentence is to judge",
+      "referee is to foul",
+      "tourniquet is to bleeding",
+      "treaty is to nation",
+      "alarm is to smoke"
+    ],
+    "correct_answer": "tourniquet is to bleeding",
+    "explanation": "An emergency measure and the spreading harm it is imposed to stop: a curfew is clamped on to halt disorder, as a tourniquet is clamped on to halt bleeding. Three distractors sit in the stem's law-and-order field, and alarm/smoke is close enough in spirit (a safety device) that the key is not distinguishable as the only choice about danger.",
+    "distractor_rationales": [
+      "sentence is to judge - product/worker reversed, law-and-order field",
+      "referee is to foul - official and the infraction he punishes, a related but different relation",
+      "treaty is to nation - instrument/party, law-and-order field",
+      "alarm is to smoke - detector and what it detects, not a measure that stops it"
+    ]
+  },
+  {
+    "id": "SVA7C-11",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Mound is to mountain as",
+    "choices": [
+      "hill is to slope",
+      "pond is to ocean",
+      "boulder is to pebble",
+      "dune is to desert",
+      "summit is to peak"
+    ],
+    "correct_answer": "pond is to ocean",
+    "explanation": "A relation of scale: a mound is a tiny instance of the same kind of thing a mountain is on an enormous scale, as a pond is to an ocean. Boulder/pebble is the same scale relation running from large to small, so a solver who reads only the option list cannot tell which way the stem points; three distractors also occupy the stem's landform field with other relations entirely.",
+    "distractor_rationales": [
+      "hill is to slope - whole/part, landform field, no change of scale",
+      "boulder is to pebble - right relation, wrong direction: large to small",
+      "dune is to desert - part/whole, landform field",
+      "summit is to peak - near-synonyms, no scale difference at all"
+    ]
+  },
+  {
+    "id": "SVA7C-12",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Sermon is to preacher as",
+    "choices": [
+      "choir is to hymn",
+      "pulpit is to chapel",
+      "patient is to clinic",
+      "diagnosis is to physician",
+      "professor is to lecture"
+    ],
+    "correct_answer": "diagnosis is to physician",
+    "explanation": "Product to maker, and the product is specifically the professional pronouncement the practitioner is qualified to deliver: a sermon is the preacher's, as a diagnosis is the physician's. Professor/lecture is the identical relation reversed, which keeps the direction unreadable from the options alone; two more distractors sit in the stem's religious field.",
+    "distractor_rationales": [
+      "choir is to hymn - performer/product in the stem's religious field, but group rather than professional",
+      "pulpit is to chapel - part/whole, religious field",
+      "patient is to clinic - occupant/location, in the key's medical field so the key is not the only medical pair",
+      "professor is to lecture - correct relation reversed, maker before product"
+    ]
+  },
+  {
+    "id": "SVA7C-13",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Rumor is to distrust as",
+    "choices": [
+      "delay is to impatience",
+      "slander is to insult",
+      "whisper is to secret",
+      "suspicion is to betrayal",
+      "informant is to tip"
+    ],
+    "correct_answer": "delay is to impatience",
+    "explanation": "Cause to the state of feeling it breeds: a rumor breeds distrust as a delay breeds impatience. Three distractors are drawn from the stem's gossip-and-secrecy field, and suspicion/betrayal is the same feeling relation with cause and effect exchanged, so the candidate has to check both the relation and its direction.",
+    "distractor_rationales": [
+      "slander is to insult - kind/class, gossip field, no causal link",
+      "whisper is to secret - means/content, secrecy field",
+      "suspicion is to betrayal - right relation reversed: the feeling named before its cause",
+      "informant is to tip - worker/product, secrecy field"
+    ]
+  },
+  {
+    "id": "SVA7C-14",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Scaffold is to construction as",
+    "choices": [
+      "foundation is to building",
+      "understudy is to lead",
+      "kiln is to pottery",
+      "crane is to girder",
+      "cast is to fracture"
+    ],
+    "correct_answer": "cast is to fracture",
+    "explanation": "A temporary support erected around something for the duration of a process and taken away once the process is complete: a scaffold stands only while construction is under way, as a cast stays on only while a fracture knits. Foundation/building is the sharpest trap - also a support, in the stem's own field, but permanent and load-bearing forever.",
+    "distractor_rationales": [
+      "foundation is to building - right field, wrong relation: a permanent structural part, not a temporary support",
+      "understudy is to lead - substitute/principal, a related but different relation",
+      "kiln is to pottery - means of production, not a support removed afterwards",
+      "crane is to girder - machine and the material it lifts, construction field"
+    ]
+  },
+  {
+    "id": "SVA7C-15",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Draft is to statute as",
+    "choices": [
+      "treaty is to peace",
+      "diplomat is to accord",
+      "sketch is to mural",
+      "clause is to charter",
+      "frame is to canvas"
+    ],
+    "correct_answer": "sketch is to mural",
+    "explanation": "Provisional version to finished work: a draft is the trial version that precedes a statute, as a sketch is the trial version that precedes a mural. Three distractors sit in the stem's legal-diplomatic field with other relations, and the key's artistic field is shared by frame/canvas, so the key is not the lone choice from another subject.",
+    "distractor_rationales": [
+      "treaty is to peace - instrument/outcome, legal field",
+      "diplomat is to accord - worker/product, legal field",
+      "clause is to charter - part/whole, legal field, tempting to anyone matching topic",
+      "frame is to canvas - part/whole in the key's artistic field, wrong internal relation"
+    ]
+  },
+  {
+    "id": "SVA7C-16",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Thermostat is to heat as",
+    "choices": [
+      "valve is to flow",
+      "gauge is to pressure",
+      "furnace is to warmth",
+      "compass is to bearing",
+      "insulation is to chill"
+    ],
+    "correct_answer": "valve is to flow",
+    "explanation": "The relation is REGULATION: a thermostat does not merely register heat, it controls how much there is, as a valve controls how much flow there is. Every one of the five choices is a device paired with a physical quantity, so there is no odd pair to spot and no topic to match - the item is decided purely by whether the device measures, produces, blocks, or regulates.",
+    "distractor_rationales": [
+      "gauge is to pressure - device that MEASURES rather than regulates, the closest related relation",
+      "furnace is to warmth - device that produces the quantity rather than controlling it",
+      "compass is to bearing - device that indicates rather than controls",
+      "insulation is to chill - barrier against a quantity, not a regulator of it"
+    ]
+  },
+  {
+    "id": "SVA7C-17",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Keystone is to arch as",
+    "choices": [
+      "mural is to wall",
+      "gargoyle is to facade",
+      "pew is to cathedral",
+      "spine is to book",
+      "cover is to magazine"
+    ],
+    "correct_answer": "spine is to book",
+    "explanation": "All five choices are a part paired with the whole it belongs to, so part/whole alone settles nothing. The stem's relation is narrower: the keystone is the one part that locks the arch together and without which it falls. The spine is what holds a book's pages together; remove the mural, the gargoyle, the pew or the cover and the whole still stands.",
+    "distractor_rationales": [
+      "mural is to wall - part/whole, but decorative rather than load-bearing",
+      "gargoyle is to facade - part/whole in the stem's architectural field, ornamental only",
+      "pew is to cathedral - part/whole, architectural field, furnishing rather than structure",
+      "cover is to magazine - part/whole in the key's publishing field, protective but not what holds the whole together"
+    ]
+  },
+  {
+    "id": "SVA7C-18",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Bankruptcy is to extravagance as",
+    "choices": [
+      "thrift is to savings",
+      "creditor is to loan",
+      "sweat is to athlete",
+      "poverty is to hardship",
+      "fatigue is to exertion"
+    ],
+    "correct_answer": "fatigue is to exertion",
+    "explanation": "Outcome named first, then the excess of behaviour that brought it on: bankruptcy is what extravagance ends in, as fatigue is what exertion ends in. Two distractors run a cause-to-effect pair in the expected order (thrift/savings, poverty/hardship) and two more sit in the stem's financial field, so the item turns on reading the direction.",
+    "distractor_rationales": [
+      "thrift is to savings - correct relation reversed, cause before effect, financial field",
+      "creditor is to loan - agent/instrument, financial field",
+      "sweat is to athlete - effect and the person, not effect and cause, in the key's physical field",
+      "poverty is to hardship - cause before effect, and closer to condition and consequence than to excess and ruin"
+    ]
+  },
+  {
+    "id": "SVA7C-19",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Reprimand is to dismissal as",
+    "choices": [
+      "warning is to threat",
+      "fine is to imprisonment",
+      "expulsion is to detention",
+      "judge is to sentence",
+      "crime is to penalty"
+    ],
+    "correct_answer": "fine is to imprisonment",
+    "explanation": "Two penalties for the same offence, the first mild and the second severe: a reprimand is the light sanction where dismissal is the heavy one, as a fine is the light sanction where imprisonment is the heavy one. Expulsion/detention is the same sanction relation at the wrong magnitude order, severe before mild, and every choice is drawn from the same disciplinary field so topic decides nothing.",
+    "distractor_rationales": [
+      "warning is to threat - difference in kind, not a graded pair of penalties",
+      "expulsion is to detention - right relation, wrong direction: severe sanction before mild one",
+      "judge is to sentence - worker/product in the same field, no gradation",
+      "crime is to penalty - offence and its punishment, a related but different relation"
+    ]
+  },
+  {
+    "id": "SVA7C-20",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "[Analogy] Muzzle is to bite as",
+    "choices": [
+      "collar is to dog",
+      "bridle is to horse",
+      "lid is to spill",
+      "cork is to bottle",
+      "kennel is to hound"
+    ],
+    "correct_answer": "lid is to spill",
+    "explanation": "A device paired with the specific act it is fitted to prevent: a muzzle is fitted to prevent a bite, as a lid is fitted to prevent a spill. Bridle/horse is the sharpest trap - a restraint, in the stem's animal field, but paired with the creature restrained rather than with the act prevented. Cork/bottle keeps the key's household field occupied.",
+    "distractor_rationales": [
+      "collar is to dog - object/animal, planted in the stem's animal field",
+      "bridle is to horse - right family of device, wrong second term: the creature, not the act prevented",
+      "cork is to bottle - part/whole in the key's container field, not device and act prevented",
+      "kennel is to hound - location/occupant, animal field"
+    ]
+  },
+  {
+    "id": "SVA7C-21",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Weaver is to tapestry as",
+    "choices": [
+      "potter is to urn",
+      "loom is to thread",
+      "sculptor is to marble",
+      "tailor is to needle",
+      "critic is to gallery"
+    ],
+    "correct_answer": "potter is to urn",
+    "explanation": "Worker to finished product: a weaver makes a tapestry as a potter makes an urn. The distractors offer the neighbouring relations a candidate must rule out - worker to raw material, worker to tool, and worker to location.",
+    "distractor_rationales": [
+      "loom is to thread - tool/material, not maker and product",
+      "sculptor is to marble - worker/raw material, a related but different relation",
+      "tailor is to needle - worker/tool, a related but different relation",
+      "critic is to gallery - worker/location"
+    ]
+  },
+  {
+    "id": "SVA7C-22",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Spoke is to wheel as",
+    "choices": [
+      "tire is to road",
+      "cyclist is to bicycle",
+      "tooth is to comb",
+      "axle is to rotation",
+      "mechanic is to wrench"
+    ],
+    "correct_answer": "tooth is to comb",
+    "explanation": "Part to whole, and specifically one of many identical elements radiating from a single body: spokes on a wheel, teeth on a comb. No other choice is a part-and-whole pair.",
+    "distractor_rationales": [
+      "tire is to road - object and the surface it contacts, topical associate of the stem",
+      "cyclist is to bicycle - user/vehicle, topical associate",
+      "axle is to rotation - part and the motion it permits, function rather than part/whole",
+      "mechanic is to wrench - worker/tool"
+    ]
+  },
+  {
+    "id": "SVA7C-23",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Insult is to resentment as",
+    "choices": [
+      "apology is to quarrel",
+      "praise is to confidence",
+      "flattery is to compliment",
+      "grudge is to resentment",
+      "courtesy is to manners"
+    ],
+    "correct_answer": "praise is to confidence",
+    "explanation": "An utterance and the feeling it produces in the hearer: an insult produces resentment as praise produces confidence. The distractors offer remedy, kind, degree and class relations from the same field of social speech.",
+    "distractor_rationales": [
+      "apology is to quarrel - remedy and the trouble it repairs, a related but different relation",
+      "flattery is to compliment - kind/class, not cause and feeling",
+      "grudge is to resentment - a settled form of the same feeling, degree rather than cause",
+      "courtesy is to manners - member/category"
+    ]
+  },
+  {
+    "id": "SVA7C-24",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Emerald is to gem as",
+    "choices": [
+      "jeweler is to sapphire",
+      "gem is to necklace",
+      "sapphire is to blue",
+      "mine is to ore",
+      "trombone is to instrument"
+    ],
+    "correct_answer": "trombone is to instrument",
+    "explanation": "Member to category: an emerald is one kind of gem as a trombone is one kind of instrument. Four distractors keep the candidate inside the stem's jewellery field with other relations entirely.",
+    "distractor_rationales": [
+      "jeweler is to sapphire - worker/material, topical associate of the stem",
+      "gem is to necklace - part/whole, topical associate",
+      "sapphire is to blue - thing/characteristic, jewellery field",
+      "mine is to ore - location/contents"
+    ]
+  },
+  {
+    "id": "SVA7C-25",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Pantry is to provisions as",
+    "choices": [
+      "cook is to pantry",
+      "cellar is to damp",
+      "shelf is to jar",
+      "armory is to weapons",
+      "harvest is to granary"
+    ],
+    "correct_answer": "armory is to weapons",
+    "explanation": "A room built for the storing of one class of thing, paired with what it stores: provisions in a pantry, weapons in an armory. Harvest/granary is the same storage relation with the terms exchanged.",
+    "distractor_rationales": [
+      "cook is to pantry - worker/location, topical associate",
+      "cellar is to damp - place/characteristic, not place and contents",
+      "shelf is to jar - support and the object on it, a related but different relation",
+      "harvest is to granary - correct relation reversed, contents before the storeroom"
+    ]
+  },
+  {
+    "id": "SVA7C-26",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Tranquil is to serene as",
+    "choices": [
+      "arid is to parched",
+      "restless is to frantic",
+      "damp is to drenched",
+      "calm is to shore",
+      "storm is to fury"
+    ],
+    "correct_answer": "arid is to parched",
+    "explanation": "Synonyms at the same strength: tranquil and serene say the same thing, as arid and parched do. Two distractors are near-pairs that step UP in intensity rather than restating, which is the distinction the item tests.",
+    "distractor_rationales": [
+      "restless is to frantic - right family, wrong degree: a sharp escalation, not a restatement",
+      "damp is to drenched - right family, wrong degree",
+      "calm is to shore - quality and a thing it might describe, not a synonym",
+      "storm is to fury - thing and its characteristic"
+    ]
+  },
+  {
+    "id": "SVA7C-27",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Colander is to water as",
+    "choices": [
+      "spatula is to chef",
+      "sieve is to flour",
+      "kettle is to steam",
+      "filter is to sediment",
+      "pot is to kitchen"
+    ],
+    "correct_answer": "filter is to sediment",
+    "explanation": "A device and the unwanted material it removes and discards: a colander drains off water, a filter takes out sediment. Sieve/flour is the near miss - a sieve passes the flour through as the thing it is trying to keep, not the thing it is getting rid of.",
+    "distractor_rationales": [
+      "spatula is to chef - tool/user, kitchen field",
+      "sieve is to flour - device and the material it RETAINS, a related but different relation",
+      "kettle is to steam - device and what it produces, not what it removes",
+      "pot is to kitchen - object/location"
+    ]
+  },
+  {
+    "id": "SVA7C-28",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Tighten is to loosen as",
+    "choices": [
+      "fasten is to secure",
+      "kindle is to extinguish",
+      "wrench is to bolt",
+      "smolder is to blaze",
+      "knot is to rope"
+    ],
+    "correct_answer": "kindle is to extinguish",
+    "explanation": "Antonyms: to tighten is the exact reverse of to loosen, as to kindle is the exact reverse of to extinguish. The distractors are a synonym pair, a degree pair, a tool pair and a part pair, so the option list holds four different structures rather than four obvious rejects.",
+    "distractor_rationales": [
+      "fasten is to secure - synonyms, in the stem's field of fastening",
+      "wrench is to bolt - tool/object, topical associate of the stem",
+      "smolder is to blaze - degree of intensity, in the key's field of fire",
+      "knot is to rope - part/whole"
+    ]
+  },
+  {
+    "id": "SVA7C-29",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Linen is to flax as",
+    "choices": [
+      "barley is to field",
+      "tailor is to cloth",
+      "cotton is to fabric",
+      "mason is to mortar",
+      "wine is to grape"
+    ],
+    "correct_answer": "wine is to grape",
+    "explanation": "A manufactured product and the plant it is made from: linen comes from flax as wine comes from grapes. Cotton/fabric runs the other way, naming the raw material before the product.",
+    "distractor_rationales": [
+      "barley is to field - crop/location, agricultural field",
+      "tailor is to cloth - worker/material, textile field",
+      "cotton is to fabric - correct relation reversed, raw material before product",
+      "mason is to mortar - worker/material"
+    ]
+  },
+  {
+    "id": "SVA7C-30",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Clause is to contract as",
+    "choices": [
+      "attorney is to brief",
+      "signature is to ink",
+      "paragraph is to essay",
+      "judge is to ruling",
+      "constitution is to article"
+    ],
+    "correct_answer": "paragraph is to essay",
+    "explanation": "Part to whole: a contract is composed of clauses as an essay is composed of paragraphs. Constitution/article is the same relation with the terms exchanged, and it sits in the stem's legal field to catch a candidate matching topic.",
+    "distractor_rationales": [
+      "attorney is to brief - worker/product, legal field",
+      "signature is to ink - thing/material, legal field",
+      "judge is to ruling - worker/product, legal field",
+      "constitution is to article - correct relation reversed, whole before part"
+    ]
+  },
+  {
+    "id": "SVA7C-31",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Fox is to cunning as",
+    "choices": [
+      "hound is to kennel",
+      "mule is to stubbornness",
+      "cub is to bear",
+      "serpent is to venom",
+      "shepherd is to flock"
+    ],
+    "correct_answer": "mule is to stubbornness",
+    "explanation": "An animal and the trait it is proverbially taken to embody: the fox stands for cunning as the mule stands for stubbornness. No other choice pairs a creature with a quality - serpent/venom is a possession, not a trait.",
+    "distractor_rationales": [
+      "hound is to kennel - occupant/location, animal field",
+      "cub is to bear - young/adult, animal field",
+      "serpent is to venom - creature and a physical possession, not a character trait",
+      "shepherd is to flock - worker and what he tends"
+    ]
+  },
+  {
+    "id": "SVA7C-32",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Fossil is to sediment as",
+    "choices": [
+      "geologist is to specimen",
+      "silt is to riverbed",
+      "bone is to skeleton",
+      "pearl is to oyster",
+      "quarry is to granite"
+    ],
+    "correct_answer": "pearl is to oyster",
+    "explanation": "A prized object and the surrounding body it has to be extracted from: a fossil is found embedded in sediment as a pearl is found embedded in an oyster. Quarry/granite names the site before the material, the reverse order.",
+    "distractor_rationales": [
+      "geologist is to specimen - worker and what he collects, geological field",
+      "silt is to riverbed - material/location, but the silt is not a prize taken out of it",
+      "bone is to skeleton - part/whole",
+      "quarry is to granite - correct relation reversed, source before the thing extracted"
+    ]
+  },
+  {
+    "id": "SVA7C-33",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Kiln is to potter as",
+    "choices": [
+      "anvil is to smith",
+      "baker is to dough",
+      "chisel is to marble",
+      "printer is to pamphlet",
+      "loom is to weaving"
+    ],
+    "correct_answer": "anvil is to smith",
+    "explanation": "Equipment to the craftsman who works at it, tool named first: a kiln belongs to a potter as an anvil belongs to a smith. Two other choices also begin with a tool, but pair it with a material or an activity instead of with the worker.",
+    "distractor_rationales": [
+      "baker is to dough - worker/material, the reverse order and the wrong second term",
+      "chisel is to marble - tool/material, not tool and worker",
+      "printer is to pamphlet - worker/product",
+      "loom is to weaving - tool and the activity performed with it, a related but different relation"
+    ]
+  },
+  {
+    "id": "SVA7C-34",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "[Analogy] Abridge is to shorten as",
+    "choices": [
+      "cancel is to event",
+      "hasten is to linger",
+      "revise is to manuscript",
+      "summary is to report",
+      "pledge is to promise"
+    ],
+    "correct_answer": "pledge is to promise",
+    "explanation": "Synonyms: to abridge is to shorten, as to pledge is to promise. The distractors are an action-and-object pair, an antonym pair, a second action-and-object pair and a condensation-of pair, so nothing else restates its first term.",
+    "distractor_rationales": [
+      "cancel is to event - action/object, not a restatement",
+      "hasten is to linger - antonyms, the opposite structure",
+      "revise is to manuscript - action/object, in the stem's editorial field",
+      "summary is to report - condensed version and the whole, the stem's field but not a synonym pair"
+    ]
+  }
+]

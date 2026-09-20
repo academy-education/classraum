@@ -3688,6 +3688,76 @@
      "verdict": "Keys dealt 2 per slot by both authors. Batch-level: 13l halves the duplicate rate but does not remove it; the remaining failure is the author not checking the finished item against the list it wrote."
     }
    }
+  },
+  {
+   "id": "ssat-verbal-a7-kept-2026-09-21",
+   "createdAt": "2026-09-21",
+   "targetTest": "ssat",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "cohort": "ssat-verbal-a7",
+   "contentSha": "bfc9de5a39a2a93f4ed9e6ff306797fa0e8577ac330fa7c0436da8d6bfbf0d19",
+   "status": "shipped",
+   "note": "75 kept of 102 SSAT analogies (three authors x 34 on disjoint relations, merged and gated as one). Commissioned to take SSAT verbal from 2 to 5 clean forms; the analogy pool needed +74 and this supplies 75. Difficulty {\"easy\":13,\"medium\":38,\"hard\":24}. 27 named drops: SVA7C-14 - cross-author duplicate stem named by grader B (three authors could not see each other); the earlier item of the pair is kept; SVA7C-23 - cross-author duplicate stem named by grader B (three authors could not see each other); the earlier item of the pair is kept; SVA7C-22 - cross-author duplicate stem named by grader B (three authors could not see each other); the earlier item of the pair is kept; SVA7C-05 - cross-author duplicate stem named by grader B (three authors could not see each other); the earlier item of the pair is kept; SVA7C-13 - cross-author duplicate stem named by grader B (three authors could not see each other); the earlier item of the pair is kept; SVA7C-07 - cross-author duplicate stem named by grader B (three authors could not see each other); the earlier item of the pair is kept; SVA7C-16 - exclusivity hunter: a second option is defensible under an honest reading of the stem; SVA7C-27 - exclusivity hunter: a second option is defensible under an honest reading of the stem; SVA7A-31 - exclusivity hunter: a second option is defensible under an honest reading of the stem; SVA7A-25 - exclusivity hunter: a second option is defensible under an honest reading of the stem; SVA7C-19 - exclusivity hunter: a second option is defensible under an honest reading of the stem; SVA7C-26 - exclusivity hunter: a second option is defensible under an honest reading of the stem; SVA7C-32 - exclusivity hunter: a second option is defensible under an honest reading of the stem; SVA7B-26 - grader B: no option cleanly reproduces the stem relation, or a rival holds it identically; SVA7C-30 - grader B: no option cleanly reproduces the stem relation, or a rival holds it identically; SVA7A-18 - grader B: specialist vocabulary or a FACT rather than a relation (flue/ochre/perjury/isthmus/syllogism/flax); SVA7A-24 - grader B: specialist vocabulary or a FACT rather than a relation (flue/ochre/perjury/isthmus/syllogism/flax); SVA7A-28 - grader B: specialist vocabulary or a FACT rather than a relation (flue/ochre/perjury/isthmus/syllogism/flax); SVA7A-14 - grader B: specialist vocabulary or a FACT rather than a relation (flue/ochre/perjury/isthmus/syllogism/flax); SVA7A-10 - grader B: specialist vocabulary or a FACT rather than a relation (flue/ochre/perjury/isthmus/syllogism/flax); SVA7A-11 - grader B: specialist vocabulary or a FACT rather than a relation (flue/ochre/perjury/isthmus/syllogism/flax); SVA7C-29 - grader B: specialist vocabulary or a FACT rather than a relation (flue/ochre/perjury/isthmus/syllogism/flax); SVA7A-06 - unanimous 3/3 blind with a named mechanism; dropped to bring the kept set to the matched live floor; SVA7A-08 - unanimous 3/3 blind with a named mechanism; dropped to bring the kept set to the matched live floor; SVA7A-12 - unanimous 3/3 blind with a named mechanism; dropped to bring the kept set to the matched live floor; SVA7A-21 - unanimous 3/3 blind with a named mechanism; dropped to bring the kept set to the matched live floor; SVA7B-02 - unanimous 3/3 blind with a named mechanism; dropped to bring the kept set to the matched live floor.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "bfc9de5a39a2a93f4ed9e6ff306797fa0e8577ac330fa7c0436da8d6bfbf0d19",
+     "verdict": "My own run, not the authors': 102 items, 5 choices each, key among choices, no duplicate choices, every prompt tagged, all classify as 'analogy' under the live draw's own verbalKind(), 0 stems colliding with the 74 banked pairs. The checker was break-tested on six planted defects (extra choice, key absent, untagged prompt, live-stem duplicate, in-batch duplicate, duplicate choice) and caught all six. Per-file pins 608b173fd788a528 / d9d4a17f73b6c530 / 2d10caa0abc58d72."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Two graders plus a dedicated exclusivity hunter on a per-item SHUFFLED render (sha 85a3078ddd6d16c9). Hunter found 8 of 102 with a second defensible option; grader B found 6 cross-author duplicate stems (two sharing a key), ~12 items on specialist vocabulary or a fact rather than a relation, and 41 graded easy. All named defects are in the drop list."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 306 forced picks, derived control 20.6%: 57.5% (+36.9) on the full batch. THAT NUMBER IS NOT THE VERDICT — a matched live control decided it, per the isee-verbal-s12 precedent. 76 ALREADY-SHIPPED SSAT analogies were run through the identical instrument: 43.4% overall, and 55.8% vs 23.1% (+32.7) restricted to items with a UNIQUE option set, which is the only like-for-like comparison because 24 of the live items are bijective clones whose shared pools are information-free (they scored 16.7% against a 33.3% control, i.e. below chance). So this instrument reads roughly +33 on analogies that have already shipped, and the candidate batch sits 4.2 points above that floor. Drops were applied until the kept set reached the floor: kept 75, residual 54.7% vs 22.7% = +32.0, just inside +32.7."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "The exclusivity hunter ran the elimination stage explicitly: per item it reported defensible=N, the count of options defendable as reproducing the stem relation under an honest reading. N>=2 on 8 items, all dropped. Highest was SVA7C-16 (thermostat:heat) at N=3, where the stem never says whether the relation is 'regulates' or 'reads' a quantity."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key slots dealt near-flat by every author (21/21/20/20/20 merged). Cross-batch check found 3 exact stem collisions, 3 head-word reuses and 14 shared option pairs between authors who could not see each other's files — all dropped or recorded. A string-reversal checker written to test the tell two solvers named returned 0.0% on BOTH this batch and the live bank and is recorded as REFUTED, not tuned: the solvers meant relational inversion, which is semantic and has no cheap proxy."
+    }
+   }
+  },
+  {
+   "id": "ssat-verbal-s7-kept-2026-09-21",
+   "createdAt": "2026-09-21",
+   "targetTest": "ssat",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "cohort": "ssat-verbal-s7",
+   "contentSha": "918d72309f527df4a71e16e7a4d585bc8b856f35b9837e1620592b45bc8b78d6",
+   "status": "shipped",
+   "note": "18 kept of 60 SSAT synonyms — the batch FAILED the no-source gate as a whole and only a minority survives. Commissioned for +46 synonyms toward 5 clean forms; supplies 18, so the synonym pool stays short and a second batch is needed under a CORRECTED brief (see the nosource verdict).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "918d72309f527df4a71e16e7a4d585bc8b856f35b9837e1620592b45bc8b78d6",
+     "verdict": "My own run: 60 items, 5 choices, key among choices, every prompt tagged, all classify as 'synonym' under the live draw, 0 of 60 stems colliding with the 98 banked. Checker break-tested on six planted defects. Pin 530d81fd5f01edf2. Author reported and repaired seven exclusivity failures of its own before handing over."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Grader: 59 of 60 exclusive; the one failure (SVS7-20 ABSTRUSE, where 'abstract' carries a dictionary sense of 'hard to understand') is dropped. 13 items flagged weak distractors because the field is two orthographic lures plus an antonym."
+    },
+    "nosource": {
+     "passed": false,
+     "verdict": "FAILED AS A BATCH AND THE MATCHED CONTROL CONFIRMS IT. Options-only, 3 solvers, 180 forced picks, derived control 20.0%: 82.8% (+62.8), mechanism 97.6%, 42 of 60 unanimous against 0.48 expected. 60 ALREADY-SHIPPED live synonyms through the identical instrument scored 47.8% overall and 59.5% vs 24.3% (+35.1) restricted to unique option sets — so the instrument floor for this item type is about +35 and this batch sits 23 POINTS ABOVE IT. Cause, named identically by all three solvers: the option set RECONSTRUCTS THE HIDDEN STEM. Three or four choices drawn from one polysemous word's other sense-family (flag, arrest, check, wax, bearing, court, canvass) plus an orthographic look-alike name the stem, and the one remaining word is the key. That is the PUBLISHED distractor doctrine - 'a word from the stem's other meaning', 'a look-alike' - applied faithfully; it makes an item hard WITH the stem and trivial WITHOUT it. KEPT SET CAVEAT, stated because the number would otherwise be read as a measurement: the 18 kept are those the blind panel failed to solve, so their residual (14.8) is SELECTED ON THE OUTCOME and is not an independent estimate. They are kept because each also passed the with-source grade, not because that residual clears anything."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Blind solvers reported which sets collapse by elimination: 13 items where two orthographic lures plus an antonym let a non-solver thin the field on form alone. All are in the dropped majority."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key slots dealt 12/12/12/12/12. Author noticed its own first pass produced a clean 0,1,2,3,4 cycle - the complete-permutation tell - and reshuffled. Length tell measured against the live bank as control: key strictly longest 28.3% here vs 20.2% live (chance 20%), +8 on n=60, not significant and confounded with the antonym structure; recorded, not acted on."
+    }
+   }
   }
  ],
  "auditedCohorts": [
