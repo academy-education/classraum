@@ -225,6 +225,35 @@ export const MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING = 3
  */
 export function drawByPassage<T extends { passageGroupId: string | null }>(
   rows: T[], count: number, perPassage: number,
+  /**
+   * Has this student NOT yet seen this row? Optional; when omitted every
+   * row counts as fresh and the ordering is exactly what it was.
+   *
+   * WHY A PASSAGE-LEVEL NOTION OF FRESHNESS IS NEEDED AT ALL
+   * -------------------------------------------------------
+   * The caller already ranks rows unseen-first, which is enough for a
+   * draw that takes items. It is NOT enough for a draw that takes
+   * PASSAGES, because this function regroups the rows and then sorts the
+   * groups by size — a ranking that knows nothing about exposure. Size is
+   * a property of the bank and never changes, so the same passages won
+   * every form, for ever.
+   *
+   * Measured on the live SSAT bank 2026-09-21 (138 reading items in 31
+   * passages: thirteen of 6, seven of 5, the rest smaller). A student's
+   * first four reading sections came out 40/40 fresh, 36/40, **2/40**,
+   * 0/40. Forms three onward re-served the thirteen six-item passages
+   * because "full first, largest first" put them ahead of seven untouched
+   * five-item passages on every single draw — 56 items, 41% of the
+   * reading bank, were unreachable in practice while the student re-read
+   * questions they had already answered.
+   *
+   * So freshness has to outrank size. It does NOT outrank it within a
+   * tier: among passages that still have unseen items we still prefer
+   * full ones, largest first, so fidelity is unchanged while supply
+   * lasts, and a form degrades into smaller passages only once the
+   * alternative is repetition.
+   */
+  isFresh?: (row: T) => boolean,
 ): T[] {
   const groups = new Map<string, T[]>()
   for (const r of rows) {
@@ -233,12 +262,34 @@ export function drawByPassage<T extends { passageGroupId: string | null }>(
     if (g) g.push(r)
     else groups.set(k, [r])
   }
-  // Full passages first, largest first among the rest, so a short bank
-  // loses whole passages rather than serving many fragments.
+  // Passages the student can still learn something from first; then full
+  // passages, largest first, so a short bank loses whole passages rather
+  // than serving many fragments.
+  /*
+   * How much NEW reading a passage can supply, capped at what we would
+   * take from it anyway.
+   *
+   * Counting fresh items rather than merely asking "any fresh?" is what
+   * separates an untouched five-question passage from a six-question one
+   * with a single item left in it. Both "have fresh"; only one can carry
+   * a passage. Before this, form two of SSAT reading came out 36/40
+   * because a six-item passage with one unseen item still outranked seven
+   * completely untouched five-item passages.
+   *
+   * With no predicate every row counts as fresh, so `capped` is
+   * min(length, perPassage): full passages all tie at perPassage and the
+   * shorter ones fall in length order — which is exactly the previous
+   * "full first, largest first". The old behaviour is the special case,
+   * not a separate branch.
+   */
+  const fresh = new Map<T[], number>()
+  for (const g of groups.values()) {
+    fresh.set(g, Math.min(isFresh ? g.filter(isFresh).length : g.length, perPassage))
+  }
   const ordered = [...groups.values()].sort((a, b) => {
     const af = a.length >= perPassage ? 1 : 0
     const bf = b.length >= perPassage ? 1 : 0
-    return bf - af || b.length - a.length
+    return fresh.get(b)! - fresh.get(a)! || bf - af || b.length - a.length
   })
   /*
    * Distribute EVENLY across the chosen passages rather than filling

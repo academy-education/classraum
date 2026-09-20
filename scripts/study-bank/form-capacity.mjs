@@ -232,14 +232,29 @@ for (const [family, section, label, perForm, hidden] of SECTIONS) {
      * so a "binding domain" printed from it restates the total. The SECTION
      * quota is not circular; it comes from ADMISSION_BLUEPRINT.
      *
-     * So on a section with ONE domain there is no split to infer and the
-     * number is exact -- SSAT Verbal is 180 items at a published 60 per form,
-     * which is 3 forms, full stop. Printing "circular, treat as the naive
-     * number" there told the reader to distrust a solid figure, and six of the
-     * nine sections carrying this warning are in that position. A caveat that
-     * fires where it does not apply is a caveat nobody reads where it does. */
+     * So on a section with ONE domain there is no split to infer, and this
+     * line used to say the number was therefore "exact" -- "SSAT Verbal is 180
+     * items at a published 60 per form, which is 3 forms, full stop".
+     *
+     * THAT WAS WRONG, AND IT WAS WRONG IN THE FLATTERING DIRECTION. Corrected
+     * 2026-09-21, prompted by students running out of SSAT tests while this
+     * script said they had three or four. The division is exact; the CLAIM is
+     * that items/form-size is the capacity, and that holds only if every item
+     * is independently drawable. In this family it is not:
+     *
+     *   - Reading is drawn BY PASSAGE, so a passage that cannot supply a full
+     *     set contributes less than its item count.
+     *   - Verbal and Math take AT MOST ONE ITEM PER GROUP per form, because
+     *     SSAT verbal is banked in bijective sets -- 180 verbal items sit in
+     *     136 groups.
+     *
+     * Neither is a domain split, so neither is visible here. Measured against
+     * the real draw, SSAT reading delivered ONE clean form where this line
+     * promised three. `admission-form-depth.ts` replays the actual assembler
+     * and is the number to quote for this family; this one is an upper bound.
+     * A confident label on an upper bound is worse than no label. */
     binding = doms.length === 1
-      ? `${binding}  [single domain — no split to infer, this number is exact]`
+      ? `${binding}  [single domain — UPPER BOUND; passage and one-per-group rules are not modelled here, run admission-form-depth.ts]`
       : `${binding}  [DOMAIN SPLIT INFERRED FROM CURRENT SHAPE — circular, treat as the naive number]`
   }
   if (family === 'act' && (section === 'reading' || section === 'science')) {

@@ -1521,9 +1521,16 @@ export async function assembleAdmissionSection(p: {
    * Rows with no group id are each their own group, so unset rows are
    * unaffected.
    */
+  /* `fresh` is what stops a passage-level draw from re-serving the same
+   * passages every form. Row-level unseen-first ranking cannot do it on
+   * its own: drawByPassage regroups the rows and sorts the GROUPS, and
+   * group size does not change between sittings. See that function's
+   * note for the measurement (SSAT reading was delivering 2 fresh items
+   * out of 40 on a student's third test). */
+  const fresh = (row: { id: string }) => !exposures.has(row.id)
   const picked = block.bankSection === 'reading'
-    ? drawByPassage(ranked, block.questions, ITEMS_PER_PASSAGE[p.family])
-    : drawByPassage(ranked, block.questions, 1)
+    ? drawByPassage(ranked, block.questions, ITEMS_PER_PASSAGE[p.family], fresh)
+    : drawByPassage(ranked, block.questions, 1, fresh)
 
   if (picked.length < block.questions) {
     // Loud, not silent. A short section is a real event: it means the

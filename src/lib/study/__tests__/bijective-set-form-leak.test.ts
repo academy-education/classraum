@@ -67,7 +67,12 @@ describe('a drawn form never contains two items from one set', () => {
      * guard ends up existing and doing nothing. Pinned at the call site.
      */
     const src = readFileSync(join(process.cwd(), 'src/lib/study/assemble.ts'), 'utf8')
-    expect(src).toMatch(/: drawByPassage\(ranked, block\.questions, 1\)/)
+    /* The trailing argument list is open on purpose: a freshness
+     * predicate was added 2026-09-21 so a passage draw stops re-serving
+     * exhausted passages. What this guard must keep pinning is the CAP
+     * of 1 for non-reading sections — the bijective-set rule — not the
+     * arity of the call. */
+    expect(src).toMatch(/: drawByPassage\(ranked, block\.questions, 1[,)]/)
     expect(src).not.toMatch(/: ranked\.slice\(0, block\.questions\)/)
   })
 
