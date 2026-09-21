@@ -3917,6 +3917,45 @@
      "verdict": "Free response has no key, so no letter, length or option tell can exist. The cross-item tell that does apply is theme repetition, checked mechanically against all 16 banked prompts on content words with the boilerplate stripped: no collision. Reviewer B separately found SW10a distinct from the banked civic-spending and reading-policy prompts."
     }
    }
+  },
+  {
+   "id": "sat-wic-v3-kept-2026-09-21",
+   "createdAt": "2026-09-21",
+   "targetTest": "sat",
+   "section": "reading_writing",
+   "task": "words_in_context",
+   "family": "sat",
+   "cohort": "rw-v12-wic",
+   "contentSha": "407356902a6e4c7d44b0cee772adb24ebabbe3503d394ff203a7e2e8a23b9db2",
+   "status": "shipped",
+   "note": "10 of 20 authored survive. Craft and Structure is what caps SAT R&W at 15 forms, and this subskill was chosen deliberately: the domain holds 227 items of which 111 are text-structure and 96 are cross-text, both MEASURED leaky (87.5% and 75.0%), while Words in Context measures clean. Authored entirely in the one-frame substitution style; zero dictionary-gloss items.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "407356902a6e4c7d44b0cee772adb24ebabbe3503d394ff203a7e2e8a23b9db2",
+     "verdict": "All 4-choice with the key present among the choices, a blank in every passage, passages 88-108 words, no explanation naming a slot. Authored key letters were exactly 5/5/5/5 across the 20. Orthography normalised to US after a mechanical check found British spellings in 5 of 17 survivors and two items mixing both scripts in one passage; verified first that no affected word appears inside any OPTION, so the no-source result is unaffected by the edit."
+    },
+    "withsource": {
+     "passed": true,
+     "contentSha": "407356902a6e4c7d44b0cee772adb24ebabbe3503d394ff203a7e2e8a23b9db2",
+     "verdict": "Three graders with the passages visible. All three matched the key on 10 of 10 - no key is disputed anywhere in the shipping set. Exclusivity was the binding lens: of 17 survivors both detailed graders called only 10 exclusive, and the three they BOTH called non-exclusive (WIC3-14, -17, -20) are dropped. WIC3-10 dropped separately - the key word \"cost\" is printed verbatim two sentences above its own blank, and its premise is inverted (Bombus is the canonical cold-weather forager and does fly at 5C). WIC3-01 dropped: the lichen curve is calibrated on dated masonry, which carries the same colonization lag the item calls an unstated assumption, so it contradicts itself. WIC3-07 dropped: settled by \"not its speakers' ears\" immediately after the blank, and it takes one side of the live Dupoux dispute as settled."
+    },
+    "nosource": {
+     "passed": true,
+     "contentSha": "407356902a6e4c7d44b0cee772adb24ebabbe3503d394ff203a7e2e8a23b9db2",
+     "verdict": "Options-only attack, three solvers, candidate INTERLEAVED with a matched live control of all 20 shipped Words in Context items in one file, the arm recorded only in the key. Candidate 33.3% against a derived best-fixed-letter control of 35.0% (margin -1.7, 3 of 20 unanimous); the live control 55.0% against 40.0% (margin +15.0, 10 of 20 unanimous). The final 10-item shipping set re-scores at 20.0%, below the 25% four-option chance line, with ZERO unanimous solves. Three unanimously-solved candidates (WIC3-04, -06, -18) were dropped before with-source grading. The instrument is VALID here: SAT R&W has three human sittings at 26.3%, 30.0% and 23.5%, and live substitution-format items score 38.5% against a 38.5% control, margin 0.0."
+    },
+    "elimination": {
+     "passed": true,
+     "contentSha": "407356902a6e4c7d44b0cee772adb24ebabbe3503d394ff203a7e2e8a23b9db2",
+     "verdict": "Solvers named the eliminable structures they found: near-synonym pairs that cancel (spareness/frugality, abbreviation/compression) and antonym pairs (clarity/obscurity, literal/idiomatic). Of the items named, WIC3-04 and WIC3-06 are dropped and every other one is a live control item. Only WIC3-19 from the shipping set was named at all, under odd-one-out, and both solvers who named it classed it as an undecidable coin flip rather than a successful elimination - solver A lists it among the ten sets where it had nothing. It is the weakest survivor (2 of 3 solvers blind) and is recorded as such rather than quietly kept."
+    },
+    "tells": {
+     "passed": true,
+     "contentSha": "407356902a6e4c7d44b0cee772adb24ebabbe3503d394ff203a7e2e8a23b9db2",
+     "verdict": "BATCH-LEVEL tell, found by a grader and acted on, that neither the blind attack nor any per-item check could see: 12 of 17 survivors closed on the same X-not-Y contrastive frame, and SIX shared one semantic relation - the record measures its own production process, not its subject (WIC3-01, -05, -08, -12, -19, -20). Because Craft and Structure is the BINDING domain these items would be drawn into one form together, so a student could learn the spec instead of the vocabulary. Cut to three of the six (08, 12, 19) on the grader's own recommendation. Shipping key letters A3/B3/C3/D1 over 10, max 3, no complete permutation window."
+    }
+   }
   }
  ],
  "auditedCohorts": [
