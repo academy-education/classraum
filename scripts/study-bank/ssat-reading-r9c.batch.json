@@ -1,0 +1,968 @@
+[
+  {
+    "id": "SRD9C-01",
+    "set_id": "SRD9C-P1",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "passage": "The Night the Power Went Out\n\nAt six the refrigerator stopped its humming\nand the whole apartment seemed to lean forward,\nlistening. My sister said a word\nour mother pretended not to hear.\n\nI had four problems left of twenty,\nmy pencil still warm in my hand,\nand I was angry the way you are angry\nat weather, which cannot be argued with.\n\nWe found the candles in the kitchen drawer\nbehind the batteries and the birthday string,\nand my father, who is not a patient man,\ntook his time with the match.\n\nLight came up the walls like water rising.\nOur shadows grew enormous and polite.\nAcross the courtyard other windows\nwere filling, one by one, with the same small fires,\n\nand I understood that everyone I had ever\nresented for their television\nwas sitting, as we sat, around a saucer,\nsaying almost nothing, being kind.\n\nMy sister asked what people did before.\nMy mother said: this.\nOut past the roofline, where the city keeps\nits own bright weather, I could see\n\nthree stars I had not been told about,\nordinary as nails, and holding.\nWhen the lights came back at nine\nwe cheered, and I was sorry.",
+    "prompt": "What was the speaker doing at the moment the power went out?",
+    "choices": [
+      "Helping a parent search a kitchen drawer",
+      "Watching a programme in a window across the courtyard",
+      "Working through the last of a homework assignment",
+      "Counting the stars above the roofline",
+      "Setting out candles for a birthday"
+    ],
+    "correct_answer": "Working through the last of a homework assignment",
+    "explanation": "The second stanza places the speaker mid-assignment: 'I had four problems left of twenty, / my pencil still warm in my hand.' That is what the blackout interrupts.",
+    "distractor_rationales": {
+      "Helping a parent search a kitchen drawer": "The drawer is searched after the blackout, and by the family together, not by the speaker beforehand.",
+      "Watching a programme in a window across the courtyard": "The courtyard windows are noticed later, and what fills them is candlelight.",
+      "Counting the stars above the roofline": "The stars are seen near the end of the poem, after the candles are lit.",
+      "Setting out candles for a birthday": "The 'birthday string' is only an object in the drawer; no birthday is taking place."
+    }
+  },
+  {
+    "id": "SRD9C-02",
+    "set_id": "SRD9C-P1",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "passage": "The Night the Power Went Out\n\nAt six the refrigerator stopped its humming\nand the whole apartment seemed to lean forward,\nlistening. My sister said a word\nour mother pretended not to hear.\n\nI had four problems left of twenty,\nmy pencil still warm in my hand,\nand I was angry the way you are angry\nat weather, which cannot be argued with.\n\nWe found the candles in the kitchen drawer\nbehind the batteries and the birthday string,\nand my father, who is not a patient man,\ntook his time with the match.\n\nLight came up the walls like water rising.\nOur shadows grew enormous and polite.\nAcross the courtyard other windows\nwere filling, one by one, with the same small fires,\n\nand I understood that everyone I had ever\nresented for their television\nwas sitting, as we sat, around a saucer,\nsaying almost nothing, being kind.\n\nMy sister asked what people did before.\nMy mother said: this.\nOut past the roofline, where the city keeps\nits own bright weather, I could see\n\nthree stars I had not been told about,\nordinary as nails, and holding.\nWhen the lights came back at nine\nwe cheered, and I was sorry.",
+    "prompt": "In the line 'ordinary as nails, and holding,' the word 'holding' most nearly means",
+    "choices": [
+      "remaining steady in place",
+      "grasping an object firmly",
+      "containing a set amount",
+      "postponing something briefly",
+      "keeping to an opinion"
+    ],
+    "correct_answer": "remaining steady in place",
+    "explanation": "The stars are set against everything in the poem that has just stopped or changed - the refrigerator, the lights, the speaker's mood. Called 'ordinary as nails,' they are praised for staying put: steady, and not giving way.",
+    "distractor_rationales": {
+      "grasping an object firmly": "A common sense of the word, and one the comparison with nails invites, but the stars grip nothing; the line gives them no object to hold.",
+      "containing a set amount": "The stars are not described as containers of anything.",
+      "postponing something briefly": "Nothing in the poem is being delayed by the stars; the one delay in the poem is the father's with the match.",
+      "keeping to an opinion": "This sense applies to people and beliefs; the stars are not credited with a view."
+    }
+  },
+  {
+    "id": "SRD9C-03",
+    "set_id": "SRD9C-P1",
+    "subskill": "inference",
+    "difficulty": "medium",
+    "passage": "The Night the Power Went Out\n\nAt six the refrigerator stopped its humming\nand the whole apartment seemed to lean forward,\nlistening. My sister said a word\nour mother pretended not to hear.\n\nI had four problems left of twenty,\nmy pencil still warm in my hand,\nand I was angry the way you are angry\nat weather, which cannot be argued with.\n\nWe found the candles in the kitchen drawer\nbehind the batteries and the birthday string,\nand my father, who is not a patient man,\ntook his time with the match.\n\nLight came up the walls like water rising.\nOur shadows grew enormous and polite.\nAcross the courtyard other windows\nwere filling, one by one, with the same small fires,\n\nand I understood that everyone I had ever\nresented for their television\nwas sitting, as we sat, around a saucer,\nsaying almost nothing, being kind.\n\nMy sister asked what people did before.\nMy mother said: this.\nOut past the roofline, where the city keeps\nits own bright weather, I could see\n\nthree stars I had not been told about,\nordinary as nails, and holding.\nWhen the lights came back at nine\nwe cheered, and I was sorry.",
+    "prompt": "The phrase 'everyone I had ever / resented for their television' suggests that, before this evening, the speaker had thought of the neighbours as",
+    "choices": [
+      "better off than his family, since a set was a thing to be envied",
+      "noisy, since their sets could be heard across the courtyard",
+      "showing programmes he had not been allowed to watch",
+      "absorbed in something that shut him out",
+      "the reason his own family kept its set switched off"
+    ],
+    "correct_answer": "absorbed in something that shut him out",
+    "explanation": "Resentment 'for their television' is resentment of an activity that left the speaker outside it. When the sets go dark, the neighbours turn out to be doing exactly what his family is doing - 'saying almost nothing, being kind' - and the resentment collapses.",
+    "distractor_rationales": {
+      "better off than his family, since a set was a thing to be envied": "The poem never compares what the households own or can afford.",
+      "noisy, since their sets could be heard across the courtyard": "No sound from any neighbour is reported; what the speaker notices from the courtyard is light.",
+      "showing programmes he had not been allowed to watch": "Nothing in the poem suggests the speaker was forbidden anything, or that he wanted to watch.",
+      "the reason his own family kept its set switched off": "The speaker's family is never said to own a television at all."
+    }
+  },
+  {
+    "id": "SRD9C-04",
+    "set_id": "SRD9C-P1",
+    "subskill": "attitude",
+    "difficulty": "medium",
+    "passage": "The Night the Power Went Out\n\nAt six the refrigerator stopped its humming\nand the whole apartment seemed to lean forward,\nlistening. My sister said a word\nour mother pretended not to hear.\n\nI had four problems left of twenty,\nmy pencil still warm in my hand,\nand I was angry the way you are angry\nat weather, which cannot be argued with.\n\nWe found the candles in the kitchen drawer\nbehind the batteries and the birthday string,\nand my father, who is not a patient man,\ntook his time with the match.\n\nLight came up the walls like water rising.\nOur shadows grew enormous and polite.\nAcross the courtyard other windows\nwere filling, one by one, with the same small fires,\n\nand I understood that everyone I had ever\nresented for their television\nwas sitting, as we sat, around a saucer,\nsaying almost nothing, being kind.\n\nMy sister asked what people did before.\nMy mother said: this.\nOut past the roofline, where the city keeps\nits own bright weather, I could see\n\nthree stars I had not been told about,\nordinary as nails, and holding.\nWhen the lights came back at nine\nwe cheered, and I was sorry.",
+    "prompt": "Which best describes the change the speaker undergoes over the course of the poem?",
+    "choices": [
+      "Fear of the dark is replaced by pride at having stayed calm",
+      "Irritation at an interruption gives way to regret that it ended",
+      "Boredom with family routine hardens into a wish to be elsewhere",
+      "Curiosity about the neighbours turns into embarrassment at having watched them",
+      "Impatience with a parent softens into gratitude for his skill"
+    ],
+    "correct_answer": "Irritation at an interruption gives way to regret that it ended",
+    "explanation": "The speaker begins 'angry the way you are angry / at weather' and ends, when the power returns and everyone cheers, 'sorry' - sorry that the blackout is over. The movement is from annoyance at the interruption to regret at its end.",
+    "distractor_rationales": {
+      "Fear of the dark is replaced by pride at having stayed calm": "The speaker reports anger, not fear, and never claims any composure.",
+      "Boredom with family routine hardens into a wish to be elsewhere": "The speaker ends more attached to the room, not less; nothing suggests a wish to leave.",
+      "Curiosity about the neighbours turns into embarrassment at having watched them": "He draws a conclusion about the neighbours without any hint of shame at looking.",
+      "Impatience with a parent softens into gratitude for his skill": "The father's slowness is noted in passing, and the poem's closing feeling is about the evening as a whole, not about him."
+    }
+  },
+  {
+    "id": "SRD9C-05",
+    "set_id": "SRD9C-P1",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "passage": "The Night the Power Went Out\n\nAt six the refrigerator stopped its humming\nand the whole apartment seemed to lean forward,\nlistening. My sister said a word\nour mother pretended not to hear.\n\nI had four problems left of twenty,\nmy pencil still warm in my hand,\nand I was angry the way you are angry\nat weather, which cannot be argued with.\n\nWe found the candles in the kitchen drawer\nbehind the batteries and the birthday string,\nand my father, who is not a patient man,\ntook his time with the match.\n\nLight came up the walls like water rising.\nOur shadows grew enormous and polite.\nAcross the courtyard other windows\nwere filling, one by one, with the same small fires,\n\nand I understood that everyone I had ever\nresented for their television\nwas sitting, as we sat, around a saucer,\nsaying almost nothing, being kind.\n\nMy sister asked what people did before.\nMy mother said: this.\nOut past the roofline, where the city keeps\nits own bright weather, I could see\n\nthree stars I had not been told about,\nordinary as nails, and holding.\nWhen the lights came back at nine\nwe cheered, and I was sorry.",
+    "prompt": "What does the stanza beginning 'Light came up the walls like water rising' chiefly accomplish?",
+    "choices": [
+      "It introduces a second setting in which the rest of the poem takes place",
+      "It slows the poem with description, delaying the neighbours' windows until the stanza after",
+      "It marks the point at which the speaker stops telling the story and begins reflecting on it",
+      "It contrasts the candlelight with the electric light that returns at nine",
+      "It widens the poem from one room to the whole building, setting up the speaker's change of mind"
+    ],
+    "correct_answer": "It widens the poem from one room to the whole building, setting up the speaker's change of mind",
+    "explanation": "The stanza moves the eye outward in stages - walls, shadows, then 'Across the courtyard other windows' - and the stanza that follows draws the conclusion that depends on that widening: the neighbours are doing what this family is doing.",
+    "distractor_rationales": {
+      "It introduces a second setting in which the rest of the poem takes place": "The speaker never leaves the apartment; the courtyard is seen, not entered.",
+      "It slows the poem with description, delaying the neighbours' windows until the stanza after": "The windows arrive inside this stanza, in its last two lines, rather than being held back.",
+      "It marks the point at which the speaker stops telling the story and begins reflecting on it": "The reflection begins in the following stanza, with 'and I understood'; this stanza is still description.",
+      "It contrasts the candlelight with the electric light that returns at nine": "The return of the lights is a single line at the poem's end and is not compared with the candles here."
+    }
+  },
+  {
+    "id": "SRD9C-06",
+    "set_id": "SRD9C-P1",
+    "subskill": "main-idea",
+    "difficulty": "hard",
+    "passage": "The Night the Power Went Out\n\nAt six the refrigerator stopped its humming\nand the whole apartment seemed to lean forward,\nlistening. My sister said a word\nour mother pretended not to hear.\n\nI had four problems left of twenty,\nmy pencil still warm in my hand,\nand I was angry the way you are angry\nat weather, which cannot be argued with.\n\nWe found the candles in the kitchen drawer\nbehind the batteries and the birthday string,\nand my father, who is not a patient man,\ntook his time with the match.\n\nLight came up the walls like water rising.\nOur shadows grew enormous and polite.\nAcross the courtyard other windows\nwere filling, one by one, with the same small fires,\n\nand I understood that everyone I had ever\nresented for their television\nwas sitting, as we sat, around a saucer,\nsaying almost nothing, being kind.\n\nMy sister asked what people did before.\nMy mother said: this.\nOut past the roofline, where the city keeps\nits own bright weather, I could see\n\nthree stars I had not been told about,\nordinary as nails, and holding.\nWhen the lights came back at nine\nwe cheered, and I was sorry.",
+    "prompt": "The poem is chiefly concerned with",
+    "choices": [
+      "how a break in routine let the speaker notice what the routine had hidden",
+      "how quickly a household returns to its habits once an interruption is over",
+      "the case for reducing the amount of light a city produces at night",
+      "a father's patience with a match that would not light",
+      "a child's fear of the dark and a parent's efforts to offer comfort"
+    ],
+    "correct_answer": "how a break in routine let the speaker notice what the routine had hidden",
+    "explanation": "Everything the speaker comes to value - the neighbours, the mother's answer, the three stars - becomes visible only because the power failed. The cheer at nine is undercut at once by 'and I was sorry,' which makes the loss of the interruption the poem's point.",
+    "distractor_rationales": {
+      "how quickly a household returns to its habits once an interruption is over": "The poem stops at the cheer and the speaker's regret; it never shows the family going back to anything.",
+      "the case for reducing the amount of light a city produces at night": "The city's 'bright weather' is described, not argued against; the poem makes no proposal.",
+      "a father's patience with a match that would not light": "This is one detail of one stanza, and the poem calls the father impatient by nature.",
+      "a child's fear of the dark and a parent's efforts to offer comfort": "No one in the poem is frightened, and the mother's one line answers a question rather than reassuring anybody."
+    }
+  },
+  {
+    "id": "SRD9C-07",
+    "set_id": "SRD9C-P2",
+    "subskill": "main-idea",
+    "difficulty": "medium",
+    "passage": "The company's new production of a familiar comedy opens with a gamble, and for about twenty minutes the gamble pays. The director has stripped the stage to a single long table and nine chairs: no painted parlour, no windows, and, most of all, no doors to slam. Since the play is built on slammed doors, this is not a small decision. In place of doors the actors use the chairs, stepping over them, turning them to face away, carrying them off into the wings when a character is supposed to have left the house. The effect at first is exhilarating. We are asked to build the rooms ourselves, and we do.\n\nThe trouble is that the device has one speed. A slammed door is loud, sudden and final; a chair carried off is none of those things. By the second act, when the plot demands four entrances and exits inside a minute, the stage becomes a furniture removal, and the audience laughs at the wrong thing - at the labour of the actors rather than at the lie the character is telling. The performers are not at fault. The actor playing the aunt gives the sharpest reading of that part I have seen anywhere, finding real grief under lines that are usually played for noise, and the young man in the servant's role has a gift for stillness that the production, to its credit, lets him use.\n\nI want to be fair to the idea. A bare stage does force attention onto the language, and this text can bear that attention; there were passages last night that I heard properly for the first time. Nor is the choice merely a way of saving money, since the lighting alone must have cost what a set would. But an idea that clarifies one act and defeats the next is a half-idea, and a director's job includes knowing the hour at which to abandon his own best invention. Keep the table. Keep the aunt. Give the poor company its doors back, and this would be the production that the rest of the design deserves.",
+    "prompt": "Which best states the reviewer's overall judgment of the production?",
+    "choices": [
+      "The acting is strong enough to survive a staging idea that fails at first and recovers after the interval",
+      "A bold staging choice succeeds early but cannot meet the play's later demands, even though the acting is strong",
+      "The language rewards the bare stage so well that the loss of the doors matters less than it first appears",
+      "An inventive design is let down by performances that never rise to its ambition",
+      "The faults of the evening belong to the text rather than the director, and no staging could disguise them"
+    ],
+    "correct_answer": "A bold staging choice succeeds early but cannot meet the play's later demands, even though the acting is strong",
+    "explanation": "The review holds two things together: the gamble 'pays' for twenty minutes and the acting is excellent, but the device 'has one speed' and collapses under the second act's traffic. The closing advice - keep the table, restore the doors - is that judgment in practical form.",
+    "distractor_rationales": {
+      "The acting is strong enough to survive a staging idea that fails at first and recovers after the interval": "The reviewer reports the reverse order: the gamble 'pays' for the first twenty minutes and breaks down in the second act.",
+      "The language rewards the bare stage so well that the loss of the doors matters less than it first appears": "He credits the bare stage with clarifying the language and still calls the loss of the doors fatal to an entire act.",
+      "An inventive design is let down by performances that never rise to its ambition": "He says outright that 'the performers are not at fault' and praises two of them at length.",
+      "The faults of the evening belong to the text rather than the director, and no staging could disguise them": "He treats the text as able to reward close attention and lays the fault squarely on one directorial decision."
+    }
+  },
+  {
+    "id": "SRD9C-08",
+    "set_id": "SRD9C-P2",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "passage": "The company's new production of a familiar comedy opens with a gamble, and for about twenty minutes the gamble pays. The director has stripped the stage to a single long table and nine chairs: no painted parlour, no windows, and, most of all, no doors to slam. Since the play is built on slammed doors, this is not a small decision. In place of doors the actors use the chairs, stepping over them, turning them to face away, carrying them off into the wings when a character is supposed to have left the house. The effect at first is exhilarating. We are asked to build the rooms ourselves, and we do.\n\nThe trouble is that the device has one speed. A slammed door is loud, sudden and final; a chair carried off is none of those things. By the second act, when the plot demands four entrances and exits inside a minute, the stage becomes a furniture removal, and the audience laughs at the wrong thing - at the labour of the actors rather than at the lie the character is telling. The performers are not at fault. The actor playing the aunt gives the sharpest reading of that part I have seen anywhere, finding real grief under lines that are usually played for noise, and the young man in the servant's role has a gift for stillness that the production, to its credit, lets him use.\n\nI want to be fair to the idea. A bare stage does force attention onto the language, and this text can bear that attention; there were passages last night that I heard properly for the first time. Nor is the choice merely a way of saving money, since the lighting alone must have cost what a set would. But an idea that clarifies one act and defeats the next is a half-idea, and a director's job includes knowing the hour at which to abandon his own best invention. Keep the table. Keep the aunt. Give the poor company its doors back, and this would be the production that the rest of the design deserves.",
+    "prompt": "According to the reviewer, what does the audience laugh at during the second act?",
+    "choices": [
+      "The grief the aunt reveals beneath her lines",
+      "The stillness of the young man in the servant's role",
+      "An entrance made from the wrong side of the stage",
+      "The sound of the doors slamming one after another",
+      "The effort the actors spend moving the chairs"
+    ],
+    "correct_answer": "The effort the actors spend moving the chairs",
+    "explanation": "The second paragraph says the stage 'becomes a furniture removal, and the audience laughs at the wrong thing - at the labour of the actors rather than at the lie the character is telling.'",
+    "distractor_rationales": {
+      "The grief the aunt reveals beneath her lines": "The reviewer presents that grief as a genuine discovery by the actor, not as something the audience finds funny.",
+      "The stillness of the young man in the servant's role": "That stillness is praised as a gift the production wisely allows; no laughter is attached to it.",
+      "An entrance made from the wrong side of the stage": "No such mistake is reported anywhere in the review.",
+      "The sound of the doors slamming one after another": "There are no doors in this production; that is the whole point of the complaint."
+    }
+  },
+  {
+    "id": "SRD9C-09",
+    "set_id": "SRD9C-P2",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "passage": "The company's new production of a familiar comedy opens with a gamble, and for about twenty minutes the gamble pays. The director has stripped the stage to a single long table and nine chairs: no painted parlour, no windows, and, most of all, no doors to slam. Since the play is built on slammed doors, this is not a small decision. In place of doors the actors use the chairs, stepping over them, turning them to face away, carrying them off into the wings when a character is supposed to have left the house. The effect at first is exhilarating. We are asked to build the rooms ourselves, and we do.\n\nThe trouble is that the device has one speed. A slammed door is loud, sudden and final; a chair carried off is none of those things. By the second act, when the plot demands four entrances and exits inside a minute, the stage becomes a furniture removal, and the audience laughs at the wrong thing - at the labour of the actors rather than at the lie the character is telling. The performers are not at fault. The actor playing the aunt gives the sharpest reading of that part I have seen anywhere, finding real grief under lines that are usually played for noise, and the young man in the servant's role has a gift for stillness that the production, to its credit, lets him use.\n\nI want to be fair to the idea. A bare stage does force attention onto the language, and this text can bear that attention; there were passages last night that I heard properly for the first time. Nor is the choice merely a way of saving money, since the lighting alone must have cost what a set would. But an idea that clarifies one act and defeats the next is a half-idea, and a director's job includes knowing the hour at which to abandon his own best invention. Keep the table. Keep the aunt. Give the poor company its doors back, and this would be the production that the rest of the design deserves.",
+    "prompt": "In 'gives the sharpest reading of that part,' the word 'reading' most nearly means",
+    "choices": [
+      "an audition or rehearsal run-through of a script",
+      "a figure displayed by a measuring instrument",
+      "interpretation of a role",
+      "a stage in the passage of a proposed law",
+      "the quantity of material a student is assigned"
+    ],
+    "correct_answer": "interpretation of a role",
+    "explanation": "What the reviewer admires is what the actor found in the lines - 'real grief under lines that are usually played for noise.' The word therefore names her interpretation of the role, not an event or a measurement.",
+    "distractor_rationales": {
+      "an audition or rehearsal run-through of a script": "A genuine theatrical sense, but the reviewer is describing a performance before an audience that laughed and that he compares with others he has seen.",
+      "a figure displayed by a measuring instrument": "Nothing is being measured in this sentence.",
+      "a stage in the passage of a proposed law": "A real sense of the word, but there is no legislative context anywhere in the review.",
+      "the quantity of material a student is assigned": "This sense concerns study rather than acting; the sentence is about how the part is played."
+    }
+  },
+  {
+    "id": "SRD9C-10",
+    "set_id": "SRD9C-P2",
+    "subskill": "attitude",
+    "difficulty": "hard",
+    "passage": "The company's new production of a familiar comedy opens with a gamble, and for about twenty minutes the gamble pays. The director has stripped the stage to a single long table and nine chairs: no painted parlour, no windows, and, most of all, no doors to slam. Since the play is built on slammed doors, this is not a small decision. In place of doors the actors use the chairs, stepping over them, turning them to face away, carrying them off into the wings when a character is supposed to have left the house. The effect at first is exhilarating. We are asked to build the rooms ourselves, and we do.\n\nThe trouble is that the device has one speed. A slammed door is loud, sudden and final; a chair carried off is none of those things. By the second act, when the plot demands four entrances and exits inside a minute, the stage becomes a furniture removal, and the audience laughs at the wrong thing - at the labour of the actors rather than at the lie the character is telling. The performers are not at fault. The actor playing the aunt gives the sharpest reading of that part I have seen anywhere, finding real grief under lines that are usually played for noise, and the young man in the servant's role has a gift for stillness that the production, to its credit, lets him use.\n\nI want to be fair to the idea. A bare stage does force attention onto the language, and this text can bear that attention; there were passages last night that I heard properly for the first time. Nor is the choice merely a way of saving money, since the lighting alone must have cost what a set would. But an idea that clarifies one act and defeats the next is a half-idea, and a director's job includes knowing the hour at which to abandon his own best invention. Keep the table. Keep the aunt. Give the poor company its doors back, and this would be the production that the rest of the design deserves.",
+    "prompt": "The reviewer's attitude toward the director's central choice is best described as",
+    "choices": [
+      "respect for its ambition mixed with impatience at its inflexibility",
+      "admiration for its economy tempered by doubt that the audience understood it",
+      "amusement at its boldness combined with relief that the acting survived it",
+      "approval of its logic weakened by regret that the text had to be cut for it",
+      "sympathy with its aims joined to suspicion that it was chosen to save money"
+    ],
+    "correct_answer": "respect for its ambition mixed with impatience at its inflexibility",
+    "explanation": "He calls the choice a gamble that 'pays,' credits it with letting him hear the text properly, and calls it a 'best invention.' The charge against it is that it 'has one speed' and that the director would not drop it at the hour it stopped working.",
+    "distractor_rationales": {
+      "admiration for its economy tempered by doubt that the audience understood it": "He denies that the choice was economical at all, since 'the lighting alone must have cost what a set would.'",
+      "amusement at its boldness combined with relief that the acting survived it": "He does not treat the device as a joke; he says it defeats an entire act, which is not something to be relieved about.",
+      "approval of its logic weakened by regret that the text had to be cut for it": "No cutting of the text is mentioned; the reviewer says he heard passages properly for the first time.",
+      "sympathy with its aims joined to suspicion that it was chosen to save money": "He raises the money explanation only to dismiss it."
+    }
+  },
+  {
+    "id": "SRD9C-11",
+    "set_id": "SRD9C-P2",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "passage": "The company's new production of a familiar comedy opens with a gamble, and for about twenty minutes the gamble pays. The director has stripped the stage to a single long table and nine chairs: no painted parlour, no windows, and, most of all, no doors to slam. Since the play is built on slammed doors, this is not a small decision. In place of doors the actors use the chairs, stepping over them, turning them to face away, carrying them off into the wings when a character is supposed to have left the house. The effect at first is exhilarating. We are asked to build the rooms ourselves, and we do.\n\nThe trouble is that the device has one speed. A slammed door is loud, sudden and final; a chair carried off is none of those things. By the second act, when the plot demands four entrances and exits inside a minute, the stage becomes a furniture removal, and the audience laughs at the wrong thing - at the labour of the actors rather than at the lie the character is telling. The performers are not at fault. The actor playing the aunt gives the sharpest reading of that part I have seen anywhere, finding real grief under lines that are usually played for noise, and the young man in the servant's role has a gift for stillness that the production, to its credit, lets him use.\n\nI want to be fair to the idea. A bare stage does force attention onto the language, and this text can bear that attention; there were passages last night that I heard properly for the first time. Nor is the choice merely a way of saving money, since the lighting alone must have cost what a set would. But an idea that clarifies one act and defeats the next is a half-idea, and a director's job includes knowing the hour at which to abandon his own best invention. Keep the table. Keep the aunt. Give the poor company its doors back, and this would be the production that the rest of the design deserves.",
+    "prompt": "What is the function of the third paragraph, beginning 'I want to be fair to the idea'?",
+    "choices": [
+      "It concedes that the second act's problems belong to the playwright rather than the director",
+      "It grants that the company had very little money, and excuses the staging on that ground",
+      "It introduces a rival production against which this one is measured",
+      "It concedes real benefits of the staging, and answers one defence of it, before restating the criticism",
+      "It withdraws the objection made in the paragraph before it"
+    ],
+    "correct_answer": "It concedes real benefits of the staging, and answers one defence of it, before restating the criticism",
+    "explanation": "The paragraph grants two things (the bare stage clarifies the language; the choice was not a way of economizing) and then turns on 'But,' reaching the verdict that an idea that works for one act and fails the next is only half an idea.",
+    "distractor_rationales": {
+      "It concedes that the second act's problems belong to the playwright rather than the director": "The paragraph makes the opposite concession: the text rewards attention, and the fault lies with the director's unwillingness to abandon his device.",
+      "It grants that the company had very little money, and excuses the staging on that ground": "It argues the reverse, that the lighting cost as much as a set would have done.",
+      "It introduces a rival production against which this one is measured": "No other production is described; the only comparison is with other actors in the aunt's part.",
+      "It withdraws the objection made in the paragraph before it": "The paragraph sharpens that objection - 'a half-idea' - and ends by asking for the doors back."
+    }
+  },
+  {
+    "id": "SRD9C-12",
+    "set_id": "SRD9C-P2",
+    "subskill": "inference",
+    "difficulty": "medium",
+    "passage": "The company's new production of a familiar comedy opens with a gamble, and for about twenty minutes the gamble pays. The director has stripped the stage to a single long table and nine chairs: no painted parlour, no windows, and, most of all, no doors to slam. Since the play is built on slammed doors, this is not a small decision. In place of doors the actors use the chairs, stepping over them, turning them to face away, carrying them off into the wings when a character is supposed to have left the house. The effect at first is exhilarating. We are asked to build the rooms ourselves, and we do.\n\nThe trouble is that the device has one speed. A slammed door is loud, sudden and final; a chair carried off is none of those things. By the second act, when the plot demands four entrances and exits inside a minute, the stage becomes a furniture removal, and the audience laughs at the wrong thing - at the labour of the actors rather than at the lie the character is telling. The performers are not at fault. The actor playing the aunt gives the sharpest reading of that part I have seen anywhere, finding real grief under lines that are usually played for noise, and the young man in the servant's role has a gift for stillness that the production, to its credit, lets him use.\n\nI want to be fair to the idea. A bare stage does force attention onto the language, and this text can bear that attention; there were passages last night that I heard properly for the first time. Nor is the choice merely a way of saving money, since the lighting alone must have cost what a set would. But an idea that clarifies one act and defeats the next is a half-idea, and a director's job includes knowing the hour at which to abandon his own best invention. Keep the table. Keep the aunt. Give the poor company its doors back, and this would be the production that the rest of the design deserves.",
+    "prompt": "The advice with which the review closes implies that the reviewer believes",
+    "choices": [
+      "the company would be better served by choosing a different play",
+      "the part of the aunt should be given more lines than it has",
+      "the production could be repaired without being rebuilt",
+      "the design was the weakest element of the evening",
+      "the director has already agreed to make changes to the staging"
+    ],
+    "correct_answer": "the production could be repaired without being rebuilt",
+    "explanation": "The closing list keeps two elements - the table and the aunt - and replaces one. That is a proposal for a small, specific repair, and the sentence that follows says such a repair would produce 'the production that the rest of the design deserves.'",
+    "distractor_rationales": {
+      "the company would be better served by choosing a different play": "He wants this play staged, and says the text rewards the attention this staging gives it.",
+      "the part of the aunt should be given more lines than it has": "He praises the performance in that part and says nothing about enlarging it.",
+      "the design was the weakest element of the evening": "He calls the rest of the design deserving, and expensive; his objection is to the absence of doors.",
+      "the director has already agreed to make changes to the staging": "Nothing in the review reports any response from the director."
+    }
+  },
+  {
+    "id": "SRD9C-13",
+    "set_id": "SRD9C-P3",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "passage": "Learning the Tide Chart\n\nMy uncle keeps the chart above the sink,\na page of numbers small as grains of rice,\nand every morning, before the kettle,\nhe runs one finger down the column.\n\nFor a year I thought this was a habit\nlike touching the doorframe on the way out,\nthe sort of thing a man does because his father did,\nand I did not ask.\n\nThen a Tuesday in October he said, Come,\nand we walked to the flats at a quarter past six\nwhere the water had gone off somewhere else\nand left the whole bay standing open -\n\nlong ribs of sand, a stranded orange buoy,\na boat sitting down in the mud like a cow,\nthe mussel beds black and shining\nas a kept promise.\n\nTwo hours, he said. Then it comes back\nacross this ground, faster than a man walks.\nI looked at the drying sand and did not believe him.\nBut I had seen the page: six forty-two,\n\nand a number that meant how far,\nand the small letter L beside it\nthat meant the sea would be low,\nand then would not.\n\nNow I check it too, before the kettle.\nIt is not that I am afraid of the water.\nIt is that someone wrote down, years ago,\nexactly when the door would stand open,\n\nand where I live, that is the nearest thing\nto being told a secret\nand being trusted with it.",
+    "prompt": "What does the uncle do each morning before the kettle?",
+    "choices": [
+      "Walks out to the flats to check on the stranded buoy",
+      "Touches the doorframe as he leaves the house",
+      "Writes the day's tide times out on a fresh page",
+      "Runs a finger down a column of numbers on a chart",
+      "Wakes the speaker so that the two can cross the bay"
+    ],
+    "correct_answer": "Runs a finger down a column of numbers on a chart",
+    "explanation": "The first stanza states the routine directly: 'every morning, before the kettle, / he runs one finger down the column.'",
+    "distractor_rationales": {
+      "Walks out to the flats to check on the stranded buoy": "The walk to the flats happens once, on a Tuesday in October, and the buoy is simply something seen there.",
+      "Touches the doorframe as he leaves the house": "The doorframe belongs to the speaker's comparison - the kind of empty habit the chart was mistaken for.",
+      "Writes the day's tide times out on a fresh page": "The page already hangs above the sink; the uncle reads it rather than writing it.",
+      "Wakes the speaker so that the two can cross the bay": "No crossing is made, and the uncle's summons - 'Come' - happens on one particular day, not every morning."
+    }
+  },
+  {
+    "id": "SRD9C-14",
+    "set_id": "SRD9C-P3",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "passage": "Learning the Tide Chart\n\nMy uncle keeps the chart above the sink,\na page of numbers small as grains of rice,\nand every morning, before the kettle,\nhe runs one finger down the column.\n\nFor a year I thought this was a habit\nlike touching the doorframe on the way out,\nthe sort of thing a man does because his father did,\nand I did not ask.\n\nThen a Tuesday in October he said, Come,\nand we walked to the flats at a quarter past six\nwhere the water had gone off somewhere else\nand left the whole bay standing open -\n\nlong ribs of sand, a stranded orange buoy,\na boat sitting down in the mud like a cow,\nthe mussel beds black and shining\nas a kept promise.\n\nTwo hours, he said. Then it comes back\nacross this ground, faster than a man walks.\nI looked at the drying sand and did not believe him.\nBut I had seen the page: six forty-two,\n\nand a number that meant how far,\nand the small letter L beside it\nthat meant the sea would be low,\nand then would not.\n\nNow I check it too, before the kettle.\nIt is not that I am afraid of the water.\nIt is that someone wrote down, years ago,\nexactly when the door would stand open,\n\nand where I live, that is the nearest thing\nto being told a secret\nand being trusted with it.",
+    "prompt": "In 'we walked to the flats at a quarter past six,' the word 'flats' most nearly means",
+    "choices": [
+      "a set of apartments within one building",
+      "the level bed of a bay, left dry at low tide",
+      "level open fields lying inland from the coast",
+      "shoes made without a raised heel",
+      "musical notes lowered by half a step"
+    ],
+    "correct_answer": "the level bed of a bay, left dry at low tide",
+    "explanation": "The lines immediately after name what the flats are: ribs of sand, a stranded buoy, a boat sitting in the mud, mussel beds - ground normally under water and now uncovered. Only the poem's own description selects this sense.",
+    "distractor_rationales": {
+      "a set of apartments within one building": "A common sense of the word, and one the poem never uses; what the speaker walks out onto is sand and mud, not a building.",
+      "level open fields lying inland from the coast": "The place they reach is where 'the water had gone off somewhere else,' which makes it shore rather than farmland.",
+      "shoes made without a raised heel": "A real sense, but one that cannot be walked to.",
+      "musical notes lowered by half a step": "A real sense of the word with no bearing on a walk taken at a quarter past six."
+    }
+  },
+  {
+    "id": "SRD9C-15",
+    "set_id": "SRD9C-P3",
+    "subskill": "inference",
+    "difficulty": "medium",
+    "passage": "Learning the Tide Chart\n\nMy uncle keeps the chart above the sink,\na page of numbers small as grains of rice,\nand every morning, before the kettle,\nhe runs one finger down the column.\n\nFor a year I thought this was a habit\nlike touching the doorframe on the way out,\nthe sort of thing a man does because his father did,\nand I did not ask.\n\nThen a Tuesday in October he said, Come,\nand we walked to the flats at a quarter past six\nwhere the water had gone off somewhere else\nand left the whole bay standing open -\n\nlong ribs of sand, a stranded orange buoy,\na boat sitting down in the mud like a cow,\nthe mussel beds black and shining\nas a kept promise.\n\nTwo hours, he said. Then it comes back\nacross this ground, faster than a man walks.\nI looked at the drying sand and did not believe him.\nBut I had seen the page: six forty-two,\n\nand a number that meant how far,\nand the small letter L beside it\nthat meant the sea would be low,\nand then would not.\n\nNow I check it too, before the kettle.\nIt is not that I am afraid of the water.\nIt is that someone wrote down, years ago,\nexactly when the door would stand open,\n\nand where I live, that is the nearest thing\nto being told a secret\nand being trusted with it.",
+    "prompt": "The line 'and I did not ask' most strongly suggests that, during that first year, the speaker",
+    "choices": [
+      "had been taught not to interrupt an adult's morning routine",
+      "believed he already understood what the page above the sink was for",
+      "expected his uncle to explain the chart without being asked",
+      "cared more about the bay itself than about anything hanging in the kitchen",
+      "took the gesture for one more thing adults do for no reason"
+    ],
+    "correct_answer": "took the gesture for one more thing adults do for no reason",
+    "explanation": "The line follows the comparison with 'touching the doorframe on the way out' - a gesture repeated for no reason except that a father did it. Believing the routine was empty is exactly why the speaker saw nothing worth asking about.",
+    "distractor_rationales": {
+      "had been taught not to interrupt an adult's morning routine": "No rule of the household is mentioned; the silence is the speaker's own.",
+      "believed he already understood what the page above the sink was for": "The whole poem turns on his later discovery of what the chart is for.",
+      "expected his uncle to explain the chart without being asked": "Nothing suggests he was waiting; when the explanation finally comes it takes him by surprise.",
+      "cared more about the bay itself than about anything hanging in the kitchen": "He shows no interest in the bay until the uncle takes him there."
+    }
+  },
+  {
+    "id": "SRD9C-16",
+    "set_id": "SRD9C-P3",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "passage": "Learning the Tide Chart\n\nMy uncle keeps the chart above the sink,\na page of numbers small as grains of rice,\nand every morning, before the kettle,\nhe runs one finger down the column.\n\nFor a year I thought this was a habit\nlike touching the doorframe on the way out,\nthe sort of thing a man does because his father did,\nand I did not ask.\n\nThen a Tuesday in October he said, Come,\nand we walked to the flats at a quarter past six\nwhere the water had gone off somewhere else\nand left the whole bay standing open -\n\nlong ribs of sand, a stranded orange buoy,\na boat sitting down in the mud like a cow,\nthe mussel beds black and shining\nas a kept promise.\n\nTwo hours, he said. Then it comes back\nacross this ground, faster than a man walks.\nI looked at the drying sand and did not believe him.\nBut I had seen the page: six forty-two,\n\nand a number that meant how far,\nand the small letter L beside it\nthat meant the sea would be low,\nand then would not.\n\nNow I check it too, before the kettle.\nIt is not that I am afraid of the water.\nIt is that someone wrote down, years ago,\nexactly when the door would stand open,\n\nand where I live, that is the nearest thing\nto being told a secret\nand being trusted with it.",
+    "prompt": "The dash at the end of 'and left the whole bay standing open -' is immediately followed by",
+    "choices": [
+      "the uncle's explanation of how the chart is read",
+      "a memory of an earlier visit to the same flats",
+      "a list of the things the retreating water had uncovered",
+      "a warning about how quickly the tide will return",
+      "an account of the walk from the house down to the shore"
+    ],
+    "correct_answer": "a list of the things the retreating water had uncovered",
+    "explanation": "After the dash the poem sets out what 'standing open' revealed: 'long ribs of sand, a stranded orange buoy, / a boat sitting down in the mud like a cow, / the mussel beds black and shining.'",
+    "distractor_rationales": {
+      "the uncle's explanation of how the chart is read": "The uncle speaks two stanzas later, and what he says is a warning about the returning tide rather than a lesson in reading the page.",
+      "a memory of an earlier visit to the same flats": "The poem describes only one visit; the earlier year is a year of not going.",
+      "a warning about how quickly the tide will return": "That warning does follow eventually, but not until after the description of the exposed bay.",
+      "an account of the walk from the house down to the shore": "The walk is compressed into a single line that comes before the dash."
+    }
+  },
+  {
+    "id": "SRD9C-17",
+    "set_id": "SRD9C-P3",
+    "subskill": "attitude",
+    "difficulty": "medium",
+    "passage": "Learning the Tide Chart\n\nMy uncle keeps the chart above the sink,\na page of numbers small as grains of rice,\nand every morning, before the kettle,\nhe runs one finger down the column.\n\nFor a year I thought this was a habit\nlike touching the doorframe on the way out,\nthe sort of thing a man does because his father did,\nand I did not ask.\n\nThen a Tuesday in October he said, Come,\nand we walked to the flats at a quarter past six\nwhere the water had gone off somewhere else\nand left the whole bay standing open -\n\nlong ribs of sand, a stranded orange buoy,\na boat sitting down in the mud like a cow,\nthe mussel beds black and shining\nas a kept promise.\n\nTwo hours, he said. Then it comes back\nacross this ground, faster than a man walks.\nI looked at the drying sand and did not believe him.\nBut I had seen the page: six forty-two,\n\nand a number that meant how far,\nand the small letter L beside it\nthat meant the sea would be low,\nand then would not.\n\nNow I check it too, before the kettle.\nIt is not that I am afraid of the water.\nIt is that someone wrote down, years ago,\nexactly when the door would stand open,\n\nand where I live, that is the nearest thing\nto being told a secret\nand being trusted with it.",
+    "prompt": "How does the speaker's attitude toward the chart change over the poem?",
+    "choices": [
+      "From taking it for an empty family habit to valuing it as knowledge handed on and trusted to him",
+      "From fearing what it predicts to facing the danger of the water calmly",
+      "From admiring its exactness to doubting whether it can be relied on",
+      "From resenting his uncle's silence to forgiving him for it",
+      "From curiosity about the bay to a preference for staying indoors"
+    ],
+    "correct_answer": "From taking it for an empty family habit to valuing it as knowledge handed on and trusted to him",
+    "explanation": "At first the chart is 'a habit / like touching the doorframe.' By the end the speaker checks it himself and calls it 'the nearest thing / to being told a secret / and being trusted with it.'",
+    "distractor_rationales": {
+      "From fearing what it predicts to facing the danger of the water calmly": "The speaker denies this directly: 'It is not that I am afraid of the water.'",
+      "From admiring its exactness to doubting whether it can be relied on": "His disbelief comes before the proof, not after, and the poem ends treating the page as reliable.",
+      "From resenting his uncle's silence to forgiving him for it": "The silence of that first year is the speaker's own; he is the one who did not ask.",
+      "From curiosity about the bay to a preference for staying indoors": "He shows no curiosity at the start, and by the end he is the one consulting the chart."
+    }
+  },
+  {
+    "id": "SRD9C-18",
+    "set_id": "SRD9C-P3",
+    "subskill": "main-idea",
+    "difficulty": "hard",
+    "passage": "Learning the Tide Chart\n\nMy uncle keeps the chart above the sink,\na page of numbers small as grains of rice,\nand every morning, before the kettle,\nhe runs one finger down the column.\n\nFor a year I thought this was a habit\nlike touching the doorframe on the way out,\nthe sort of thing a man does because his father did,\nand I did not ask.\n\nThen a Tuesday in October he said, Come,\nand we walked to the flats at a quarter past six\nwhere the water had gone off somewhere else\nand left the whole bay standing open -\n\nlong ribs of sand, a stranded orange buoy,\na boat sitting down in the mud like a cow,\nthe mussel beds black and shining\nas a kept promise.\n\nTwo hours, he said. Then it comes back\nacross this ground, faster than a man walks.\nI looked at the drying sand and did not believe him.\nBut I had seen the page: six forty-two,\n\nand a number that meant how far,\nand the small letter L beside it\nthat meant the sea would be low,\nand then would not.\n\nNow I check it too, before the kettle.\nIt is not that I am afraid of the water.\nIt is that someone wrote down, years ago,\nexactly when the door would stand open,\n\nand where I live, that is the nearest thing\nto being told a secret\nand being trusted with it.",
+    "prompt": "The poem is chiefly about",
+    "choices": [
+      "how a young person learns to distrust what he is told until he has seen it himself",
+      "the risk of walking out onto tidal flats without warning",
+      "an uncle's unwillingness to explain what he does each day",
+      "how a piece of practical knowledge becomes something inherited and prized",
+      "the claim that young people no longer respect the customs they inherit"
+    ],
+    "correct_answer": "how a piece of practical knowledge becomes something inherited and prized",
+    "explanation": "The poem follows a single object - the page above the sink - from meaningless inheritance to something the speaker uses daily, and the last stanza names what he now takes it to be: a secret passed on to someone trusted with it.",
+    "distractor_rationales": {
+      "how a young person learns to distrust what he is told until he has seen it himself": "The poem ends with the speaker trusting a page he has not checked against the water that morning, which is the opposite movement.",
+      "the risk of walking out onto tidal flats without warning": "The danger takes two lines and exists to make the chart matter; the closing stanzas are about trust rather than safety.",
+      "an uncle's unwillingness to explain what he does each day": "The uncle explains as soon as he takes the speaker out; the delay was caused by the speaker's failure to ask.",
+      "the claim that young people no longer respect the customs they inherit": "The poem makes no general claim about young people; it reports one change in one speaker."
+    }
+  },
+  {
+    "id": "SRD9C-19",
+    "set_id": "SRD9C-P4",
+    "subskill": "main-idea",
+    "difficulty": "medium",
+    "passage": "Every spring the branch library at the end of my street posts its year's figures in the front window, and every spring the figure set in the largest type is circulation: the number of items checked out and carried home. I understand the appeal. It counts a real act, it can be set beside last year's, and it fits in a headline. I would still like the library to stop leading with it, because a library that manages itself toward that number will slowly become a worse library.\n\nConsider what circulation cannot see. A student who spends four afternoons a week at a table because her own apartment is too loud to think in borrows nothing. A man who comes in out of the cold and works through the newspapers borrows nothing. The woman at the desk who spent twenty minutes last Thursday showing a retired machinist how to attach a document to an email produced no checkout at all, and that twenty minutes was, by any honest account, the most useful thing the building did that day.\n\nThe objection to my position is fair, and I should state it properly. A library must report something to the people who pay for it, and the alternatives are soft. Hours of seat use, questions answered at the desk, classes held - these are harder to count and far easier to inflate, and a director who leans on them can conceal a real decline for years. So I would not throw the circulation figure away. It measures one thing well, and a sudden collapse in it would be worth explaining.\n\nBut it should be one line in a paragraph, not the headline in the window. What a branch gives a neighbourhood is a warm room with a knowledgeable adult in it and no requirement to buy anything, and there is no other building on my street of which that is true. When the only number we publish is the number of books that leave, we invite the council to imagine that the books are the point, and then to ask, reasonably enough, why the room around them costs so much.",
+    "prompt": "Which best states the writer's central claim?",
+    "choices": [
+      "The library should go on reporting circulation but should stop presenting it as the measure of its success",
+      "Circulation should be published only in the years it rises, since a fall invites misunderstanding",
+      "The real work of a branch is done at the desk, so lending is better left to bookshops",
+      "Softer measures such as hours of seat use should replace circulation, despite being harder to count",
+      "The council rather than the library should decide which figures a branch reports each year"
+    ],
+    "correct_answer": "The library should go on reporting circulation but should stop presenting it as the measure of its success",
+    "explanation": "The first paragraph asks the library 'to stop leading with it'; the third refuses to 'throw the circulation figure away'; the last asks for 'one line in a paragraph, not the headline in the window.' The claim is about prominence, not about abolition.",
+    "distractor_rationales": {
+      "Circulation should be published only in the years it rises, since a fall invites misunderstanding": "He asks for the figure to be published every year, and says a collapse in it 'would be worth explaining' rather than hidden.",
+      "The real work of a branch is done at the desk, so lending is better left to bookshops": "He wants the lending figure kept and treats the collection as part of what the building offers.",
+      "Softer measures such as hours of seat use should replace circulation, despite being harder to count": "He raises those measures himself and warns that they are 'far easier to inflate'; he does not propose them as replacements.",
+      "The council rather than the library should decide which figures a branch reports each year": "The council appears only at the end, as the audience for the figures, and the writer never proposes giving it that power."
+    }
+  },
+  {
+    "id": "SRD9C-20",
+    "set_id": "SRD9C-P4",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "passage": "Every spring the branch library at the end of my street posts its year's figures in the front window, and every spring the figure set in the largest type is circulation: the number of items checked out and carried home. I understand the appeal. It counts a real act, it can be set beside last year's, and it fits in a headline. I would still like the library to stop leading with it, because a library that manages itself toward that number will slowly become a worse library.\n\nConsider what circulation cannot see. A student who spends four afternoons a week at a table because her own apartment is too loud to think in borrows nothing. A man who comes in out of the cold and works through the newspapers borrows nothing. The woman at the desk who spent twenty minutes last Thursday showing a retired machinist how to attach a document to an email produced no checkout at all, and that twenty minutes was, by any honest account, the most useful thing the building did that day.\n\nThe objection to my position is fair, and I should state it properly. A library must report something to the people who pay for it, and the alternatives are soft. Hours of seat use, questions answered at the desk, classes held - these are harder to count and far easier to inflate, and a director who leans on them can conceal a real decline for years. So I would not throw the circulation figure away. It measures one thing well, and a sudden collapse in it would be worth explaining.\n\nBut it should be one line in a paragraph, not the headline in the window. What a branch gives a neighbourhood is a warm room with a knowledgeable adult in it and no requirement to buy anything, and there is no other building on my street of which that is true. When the only number we publish is the number of books that leave, we invite the council to imagine that the books are the point, and then to ask, reasonably enough, why the room around them costs so much.",
+    "prompt": "What does the writer name as the most useful thing the building did on the day he describes?",
+    "choices": [
+      "Providing a quiet table for a student whose home was too noisy",
+      "Keeping a man warm while he read through the newspapers",
+      "Teaching a visitor how to attach a document to an email",
+      "Posting its annual figures where the neighbourhood could read them",
+      "Holding a class for retired workers from the neighbourhood"
+    ],
+    "correct_answer": "Teaching a visitor how to attach a document to an email",
+    "explanation": "The second paragraph says the twenty minutes spent showing a retired machinist how to attach a document 'was, by any honest account, the most useful thing the building did that day.'",
+    "distractor_rationales": {
+      "Providing a quiet table for a student whose home was too noisy": "This is offered as another activity circulation cannot see, but the writer does not single it out as the day's most useful act.",
+      "Keeping a man warm while he read through the newspapers": "Also one of the writer's examples, and also not the one he calls the most useful thing the building did.",
+      "Posting its annual figures where the neighbourhood could read them": "The writer objects to how those figures are posted; he does not count the posting as useful work.",
+      "Holding a class for retired workers from the neighbourhood": "Classes are mentioned only in a list of measures a director might report, not as something that happened that day."
+    }
+  },
+  {
+    "id": "SRD9C-21",
+    "set_id": "SRD9C-P4",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "passage": "Every spring the branch library at the end of my street posts its year's figures in the front window, and every spring the figure set in the largest type is circulation: the number of items checked out and carried home. I understand the appeal. It counts a real act, it can be set beside last year's, and it fits in a headline. I would still like the library to stop leading with it, because a library that manages itself toward that number will slowly become a worse library.\n\nConsider what circulation cannot see. A student who spends four afternoons a week at a table because her own apartment is too loud to think in borrows nothing. A man who comes in out of the cold and works through the newspapers borrows nothing. The woman at the desk who spent twenty minutes last Thursday showing a retired machinist how to attach a document to an email produced no checkout at all, and that twenty minutes was, by any honest account, the most useful thing the building did that day.\n\nThe objection to my position is fair, and I should state it properly. A library must report something to the people who pay for it, and the alternatives are soft. Hours of seat use, questions answered at the desk, classes held - these are harder to count and far easier to inflate, and a director who leans on them can conceal a real decline for years. So I would not throw the circulation figure away. It measures one thing well, and a sudden collapse in it would be worth explaining.\n\nBut it should be one line in a paragraph, not the headline in the window. What a branch gives a neighbourhood is a warm room with a knowledgeable adult in it and no requirement to buy anything, and there is no other building on my street of which that is true. When the only number we publish is the number of books that leave, we invite the council to imagine that the books are the point, and then to ask, reasonably enough, why the room around them costs so much.",
+    "prompt": "In 'a director who leans on them,' the word 'leans' most nearly means",
+    "choices": [
+      "inclines the body toward",
+      "relies on for support",
+      "applies pressure to in order to get one's way",
+      "tends toward in opinion",
+      "presses against the side of"
+    ],
+    "correct_answer": "relies on for support",
+    "explanation": "The sentence concerns a director who uses soft measures as the evidence for his library's performance, and can thereby 'conceal a real decline for years.' He rests his case on them - that is, relies on them for support.",
+    "distractor_rationales": {
+      "inclines the body toward": "The physical sense cannot apply to a director and a set of statistics.",
+      "applies pressure to in order to get one's way": "A real and common sense of the phrase, but the figures cannot be coerced; what the director does with them is report them.",
+      "tends toward in opinion": "This sense takes a view or a party as its object, not the measures a director publishes.",
+      "presses against the side of": "Another physical sense, with no object in the sentence that could be pressed against."
+    }
+  },
+  {
+    "id": "SRD9C-22",
+    "set_id": "SRD9C-P4",
+    "subskill": "attitude",
+    "difficulty": "hard",
+    "passage": "Every spring the branch library at the end of my street posts its year's figures in the front window, and every spring the figure set in the largest type is circulation: the number of items checked out and carried home. I understand the appeal. It counts a real act, it can be set beside last year's, and it fits in a headline. I would still like the library to stop leading with it, because a library that manages itself toward that number will slowly become a worse library.\n\nConsider what circulation cannot see. A student who spends four afternoons a week at a table because her own apartment is too loud to think in borrows nothing. A man who comes in out of the cold and works through the newspapers borrows nothing. The woman at the desk who spent twenty minutes last Thursday showing a retired machinist how to attach a document to an email produced no checkout at all, and that twenty minutes was, by any honest account, the most useful thing the building did that day.\n\nThe objection to my position is fair, and I should state it properly. A library must report something to the people who pay for it, and the alternatives are soft. Hours of seat use, questions answered at the desk, classes held - these are harder to count and far easier to inflate, and a director who leans on them can conceal a real decline for years. So I would not throw the circulation figure away. It measures one thing well, and a sudden collapse in it would be worth explaining.\n\nBut it should be one line in a paragraph, not the headline in the window. What a branch gives a neighbourhood is a warm room with a knowledgeable adult in it and no requirement to buy anything, and there is no other building on my street of which that is true. When the only number we publish is the number of books that leave, we invite the council to imagine that the books are the point, and then to ask, reasonably enough, why the room around them costs so much.",
+    "prompt": "The writer's attitude toward the circulation figure itself is best described as",
+    "choices": [
+      "contempt for the figure joined to sympathy for the staff who have to publish it",
+      "alarm at its decline mixed with confidence that the decline can be reversed",
+      "admiration for its clarity qualified by doubt that the council ever reads it",
+      "amusement at the window display combined with respect for the director's honesty",
+      "acceptance of its narrow usefulness together with objection to the place it is given"
+    ],
+    "correct_answer": "acceptance of its narrow usefulness together with objection to the place it is given",
+    "explanation": "The writer twice defends the number's limited value while attacking its prominence: keep it, but as 'one line in a paragraph, not the headline in the window.'",
+    "distractor_rationales": {
+      "contempt for the figure joined to sympathy for the staff who have to publish it": "He says the figure 'counts a real act' and 'measures one thing well,' which is not contempt.",
+      "alarm at its decline mixed with confidence that the decline can be reversed": "He gives no figures at all, and treats a collapse as hypothetical: it 'would be worth explaining.'",
+      "admiration for its clarity qualified by doubt that the council ever reads it": "His worry is that the council reads it and draws the wrong conclusion from it.",
+      "amusement at the window display combined with respect for the director's honesty": "He treats the display as a serious mistake with a consequence at the council, not as a joke."
+    }
+  },
+  {
+    "id": "SRD9C-23",
+    "set_id": "SRD9C-P4",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "passage": "Every spring the branch library at the end of my street posts its year's figures in the front window, and every spring the figure set in the largest type is circulation: the number of items checked out and carried home. I understand the appeal. It counts a real act, it can be set beside last year's, and it fits in a headline. I would still like the library to stop leading with it, because a library that manages itself toward that number will slowly become a worse library.\n\nConsider what circulation cannot see. A student who spends four afternoons a week at a table because her own apartment is too loud to think in borrows nothing. A man who comes in out of the cold and works through the newspapers borrows nothing. The woman at the desk who spent twenty minutes last Thursday showing a retired machinist how to attach a document to an email produced no checkout at all, and that twenty minutes was, by any honest account, the most useful thing the building did that day.\n\nThe objection to my position is fair, and I should state it properly. A library must report something to the people who pay for it, and the alternatives are soft. Hours of seat use, questions answered at the desk, classes held - these are harder to count and far easier to inflate, and a director who leans on them can conceal a real decline for years. So I would not throw the circulation figure away. It measures one thing well, and a sudden collapse in it would be worth explaining.\n\nBut it should be one line in a paragraph, not the headline in the window. What a branch gives a neighbourhood is a warm room with a knowledgeable adult in it and no requirement to buy anything, and there is no other building on my street of which that is true. When the only number we publish is the number of books that leave, we invite the council to imagine that the books are the point, and then to ask, reasonably enough, why the room around them costs so much.",
+    "prompt": "The third paragraph, beginning 'The objection to my position is fair,' chiefly serves to",
+    "choices": [
+      "concede that the change the writer wants would cost the library money",
+      "grant that circulation at this branch has been falling, and account for the fall",
+      "state the strongest case against the writer and grant part of it before limiting it",
+      "supply statistics that support the writer's own position",
+      "explain the method by which circulation is counted"
+    ],
+    "correct_answer": "state the strongest case against the writer and grant part of it before limiting it",
+    "explanation": "The paragraph puts the other side's case at its strongest - soft measures can be inflated and can hide a decline - and concedes the consequence, that the figure should be kept. The concession is then bounded in the final paragraph, which begins 'But.'",
+    "distractor_rationales": {
+      "concede that the change the writer wants would cost the library money": "Cost is raised only in the final sentence, and as a danger of the present practice rather than of the writer's proposal.",
+      "grant that circulation at this branch has been falling, and account for the fall": "No figure is reported anywhere in the essay, and the collapse he mentions is hypothetical.",
+      "supply statistics that support the writer's own position": "The paragraph contains no figures; the writer offers none in the entire piece.",
+      "explain the method by which circulation is counted": "He defines circulation in his first sentence and never returns to how the counting is done."
+    }
+  },
+  {
+    "id": "SRD9C-24",
+    "set_id": "SRD9C-P4",
+    "subskill": "inference",
+    "difficulty": "medium",
+    "passage": "Every spring the branch library at the end of my street posts its year's figures in the front window, and every spring the figure set in the largest type is circulation: the number of items checked out and carried home. I understand the appeal. It counts a real act, it can be set beside last year's, and it fits in a headline. I would still like the library to stop leading with it, because a library that manages itself toward that number will slowly become a worse library.\n\nConsider what circulation cannot see. A student who spends four afternoons a week at a table because her own apartment is too loud to think in borrows nothing. A man who comes in out of the cold and works through the newspapers borrows nothing. The woman at the desk who spent twenty minutes last Thursday showing a retired machinist how to attach a document to an email produced no checkout at all, and that twenty minutes was, by any honest account, the most useful thing the building did that day.\n\nThe objection to my position is fair, and I should state it properly. A library must report something to the people who pay for it, and the alternatives are soft. Hours of seat use, questions answered at the desk, classes held - these are harder to count and far easier to inflate, and a director who leans on them can conceal a real decline for years. So I would not throw the circulation figure away. It measures one thing well, and a sudden collapse in it would be worth explaining.\n\nBut it should be one line in a paragraph, not the headline in the window. What a branch gives a neighbourhood is a warm room with a knowledgeable adult in it and no requirement to buy anything, and there is no other building on my street of which that is true. When the only number we publish is the number of books that leave, we invite the council to imagine that the books are the point, and then to ask, reasonably enough, why the room around them costs so much.",
+    "prompt": "The final sentence suggests that the writer's deepest worry about publishing circulation alone is that it will",
+    "choices": [
+      "cause residents of the neighbourhood to borrow fewer books each year",
+      "make the cost of the building harder to justify to those who fund it",
+      "persuade the council to increase the library's budget",
+      "lead the staff to neglect the condition of the collection",
+      "encourage residents to use a different branch instead"
+    ],
+    "correct_answer": "make the cost of the building harder to justify to those who fund it",
+    "explanation": "The last sentence traces a chain: publish only the books that leave, and the council will 'imagine that the books are the point, and then to ask, reasonably enough, why the room around them costs so much.' The danger is to the room - the building and its staff.",
+    "distractor_rationales": {
+      "cause residents of the neighbourhood to borrow fewer books each year": "The writer never suggests that the reporting changes how much anyone borrows.",
+      "persuade the council to increase the library's budget": "The sentence points the other way, toward a council wondering why the room costs so much.",
+      "lead the staff to neglect the condition of the collection": "His examples of work that goes unmeasured are services to people, not care of the books.",
+      "encourage residents to use a different branch instead": "No other branch appears in the essay."
+    }
+  },
+  {
+    "id": "SRD9C-25",
+    "set_id": "SRD9C-P5",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "passage": "The Piano on Platform Two\n\nSomeone left a piano in the station,\nan upright the colour of weak tea,\nwith a paper sign that says PLAY ME\nand a chip out of the middle C.\n\nFor a week I walked past it\nthe way you walk past a stranger's argument,\neyes forward, certain that whatever was happening\nwas not addressed to me.\n\nThen the six-fifteen was cancelled\nand there was nowhere left to look but there:\na boy in a delivery jacket, seventeen at most,\nsetting his helmet down on the tiles.\n\nHe played four bars, stopped, and started over,\nand started over, and had it on the third try,\nand the thing he had was not difficult -\na tune you would know from an advertisement -\n\nbut the platform, which had been a hundred people\neach minding a separate errand,\nbecame for ninety seconds one animal\nwith its head up, listening.\n\nThen he picked up his helmet and went.\nNobody clapped. Clapping would have been too much,\nand we are not, on the whole, a clapping country.\nWe only stood there, having been assembled.\n\nI still walk past it most days.\nBut I have stopped thinking of it as furniture,\nand when a child leans on the low keys and laughs\nI have stopped calling that noise.",
+    "prompt": "What happens immediately before the speaker finally pays attention to the piano?",
+    "choices": [
+      "A child leans on the low keys and laughs",
+      "A paper sign is fixed to the front of the instrument",
+      "The people on the platform applaud a performer",
+      "The speaker misses a train by a few seconds",
+      "A train the speaker was waiting for is cancelled"
+    ],
+    "correct_answer": "A train the speaker was waiting for is cancelled",
+    "explanation": "The third stanza begins the change: 'Then the six-fifteen was cancelled / and there was nowhere left to look but there.'",
+    "distractor_rationales": {
+      "A child leans on the low keys and laughs": "The child appears in the last stanza, long after the change in the speaker has taken place.",
+      "A paper sign is fixed to the front of the instrument": "The sign is part of the piano's description in the opening stanza and is not a new event.",
+      "The people on the platform applaud a performer": "The poem states plainly that nobody clapped.",
+      "The speaker misses a train by a few seconds": "The train does not leave without the speaker; it is cancelled."
+    }
+  },
+  {
+    "id": "SRD9C-26",
+    "set_id": "SRD9C-P5",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "passage": "The Piano on Platform Two\n\nSomeone left a piano in the station,\nan upright the colour of weak tea,\nwith a paper sign that says PLAY ME\nand a chip out of the middle C.\n\nFor a week I walked past it\nthe way you walk past a stranger's argument,\neyes forward, certain that whatever was happening\nwas not addressed to me.\n\nThen the six-fifteen was cancelled\nand there was nowhere left to look but there:\na boy in a delivery jacket, seventeen at most,\nsetting his helmet down on the tiles.\n\nHe played four bars, stopped, and started over,\nand started over, and had it on the third try,\nand the thing he had was not difficult -\na tune you would know from an advertisement -\n\nbut the platform, which had been a hundred people\neach minding a separate errand,\nbecame for ninety seconds one animal\nwith its head up, listening.\n\nThen he picked up his helmet and went.\nNobody clapped. Clapping would have been too much,\nand we are not, on the whole, a clapping country.\nWe only stood there, having been assembled.\n\nI still walk past it most days.\nBut I have stopped thinking of it as furniture,\nand when a child leans on the low keys and laughs\nI have stopped calling that noise.",
+    "prompt": "In the phrase 'a stranger's argument,' the word 'argument' most nearly means",
+    "choices": [
+      "a reason offered in support of a claim",
+      "a short summary of a book's contents",
+      "an orderly discussion of a question by two sides",
+      "a quarrel carried on aloud",
+      "a value supplied to a mathematical function"
+    ],
+    "correct_answer": "a quarrel carried on aloud",
+    "explanation": "The stanza describes the way one avoids a scene that is not one's business - 'eyes forward, certain that whatever was happening / was not addressed to me.' Only a quarrel between strangers works that way; the poem selects that sense and no other.",
+    "distractor_rationales": {
+      "a reason offered in support of a claim": "The commonest sense in writing, but the speaker is describing something one physically walks past with one's eyes forward.",
+      "a short summary of a book's contents": "A real sense of the word, and one that cannot be encountered on a station platform.",
+      "an orderly discussion of a question by two sides": "The poem's comparison is to something embarrassing to witness, not to a debate one might stop and follow.",
+      "a value supplied to a mathematical function": "A real technical sense with no bearing on the stanza."
+    }
+  },
+  {
+    "id": "SRD9C-27",
+    "set_id": "SRD9C-P5",
+    "subskill": "attitude",
+    "difficulty": "medium",
+    "passage": "The Piano on Platform Two\n\nSomeone left a piano in the station,\nan upright the colour of weak tea,\nwith a paper sign that says PLAY ME\nand a chip out of the middle C.\n\nFor a week I walked past it\nthe way you walk past a stranger's argument,\neyes forward, certain that whatever was happening\nwas not addressed to me.\n\nThen the six-fifteen was cancelled\nand there was nowhere left to look but there:\na boy in a delivery jacket, seventeen at most,\nsetting his helmet down on the tiles.\n\nHe played four bars, stopped, and started over,\nand started over, and had it on the third try,\nand the thing he had was not difficult -\na tune you would know from an advertisement -\n\nbut the platform, which had been a hundred people\neach minding a separate errand,\nbecame for ninety seconds one animal\nwith its head up, listening.\n\nThen he picked up his helmet and went.\nNobody clapped. Clapping would have been too much,\nand we are not, on the whole, a clapping country.\nWe only stood there, having been assembled.\n\nI still walk past it most days.\nBut I have stopped thinking of it as furniture,\nand when a child leans on the low keys and laughs\nI have stopped calling that noise.",
+    "prompt": "How does the speaker regard the boy's playing?",
+    "choices": [
+      "Untroubled by its plainness and its false starts, and struck by what it did to the platform",
+      "Impressed by the boy's technique, but sorry that so few people looked up",
+      "Amused by the false starts, and moved in spite of them by the boy's persistence",
+      "Doubtful that so familiar a tune deserved attention, though glad of anything to fill a delay",
+      "Embarrassed for the boy at first, and relieved when the third attempt succeeded"
+    ],
+    "correct_answer": "Untroubled by its plainness and its false starts, and struck by what it did to the platform",
+    "explanation": "The speaker notes both the stumbles and the ordinariness of the tune without complaint, and gives the central stanza to the result: a hundred separate errands became 'one animal / with its head up, listening.'",
+    "distractor_rationales": {
+      "Impressed by the boy's technique, but sorry that so few people looked up": "The poem says 'the thing he had was not difficult,' and a hundred people are described as listening at once.",
+      "Amused by the false starts, and moved in spite of them by the boy's persistence": "The restarts are reported as plain facts, with no amusement, and what moves the speaker is the change in the crowd rather than the boy's effort.",
+      "Doubtful that so familiar a tune deserved attention, though glad of anything to fill a delay": "The tune's familiarity is part of what makes the effect remarkable, and the delay is what made him look, not what he values.",
+      "Embarrassed for the boy at first, and relieved when the third attempt succeeded": "No discomfort of any kind is expressed; the stumbles are recorded without judgement."
+    }
+  },
+  {
+    "id": "SRD9C-28",
+    "set_id": "SRD9C-P5",
+    "subskill": "inference",
+    "difficulty": "medium",
+    "passage": "The Piano on Platform Two\n\nSomeone left a piano in the station,\nan upright the colour of weak tea,\nwith a paper sign that says PLAY ME\nand a chip out of the middle C.\n\nFor a week I walked past it\nthe way you walk past a stranger's argument,\neyes forward, certain that whatever was happening\nwas not addressed to me.\n\nThen the six-fifteen was cancelled\nand there was nowhere left to look but there:\na boy in a delivery jacket, seventeen at most,\nsetting his helmet down on the tiles.\n\nHe played four bars, stopped, and started over,\nand started over, and had it on the third try,\nand the thing he had was not difficult -\na tune you would know from an advertisement -\n\nbut the platform, which had been a hundred people\neach minding a separate errand,\nbecame for ninety seconds one animal\nwith its head up, listening.\n\nThen he picked up his helmet and went.\nNobody clapped. Clapping would have been too much,\nand we are not, on the whole, a clapping country.\nWe only stood there, having been assembled.\n\nI still walk past it most days.\nBut I have stopped thinking of it as furniture,\nand when a child leans on the low keys and laughs\nI have stopped calling that noise.",
+    "prompt": "The poem's last line most strongly suggests that the speaker now",
+    "choices": [
+      "has become more tolerant of children in public places generally",
+      "misses the boy in the delivery jacket and hopes that he will return",
+      "believes the instrument ought to be tuned before anyone else uses it",
+      "counts as worth hearing a sound he would once have dismissed",
+      "thinks of the station chiefly as a place of performance rather than travel"
+    ],
+    "correct_answer": "counts as worth hearing a sound he would once have dismissed",
+    "explanation": "The speaker says he has 'stopped calling that noise' - the word he would formerly have used for a child banging the low keys. The line records a change in what he is willing to count as worth listening to.",
+    "distractor_rationales": {
+      "has become more tolerant of children in public places generally": "The change he reports is about the piano and the sounds it makes, not about how he regards children.",
+      "misses the boy in the delivery jacket and hopes that he will return": "The boy is not mentioned again after he picks up his helmet.",
+      "believes the instrument ought to be tuned before anyone else uses it": "The chipped key is mentioned once, and the speaker never suggests repairing anything.",
+      "thinks of the station chiefly as a place of performance rather than travel": "He still walks past on his way to a train; the poem reports a change in what he hears, not in what the station is for."
+    }
+  },
+  {
+    "id": "SRD9C-29",
+    "set_id": "SRD9C-P5",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "passage": "The Piano on Platform Two\n\nSomeone left a piano in the station,\nan upright the colour of weak tea,\nwith a paper sign that says PLAY ME\nand a chip out of the middle C.\n\nFor a week I walked past it\nthe way you walk past a stranger's argument,\neyes forward, certain that whatever was happening\nwas not addressed to me.\n\nThen the six-fifteen was cancelled\nand there was nowhere left to look but there:\na boy in a delivery jacket, seventeen at most,\nsetting his helmet down on the tiles.\n\nHe played four bars, stopped, and started over,\nand started over, and had it on the third try,\nand the thing he had was not difficult -\na tune you would know from an advertisement -\n\nbut the platform, which had been a hundred people\neach minding a separate errand,\nbecame for ninety seconds one animal\nwith its head up, listening.\n\nThen he picked up his helmet and went.\nNobody clapped. Clapping would have been too much,\nand we are not, on the whole, a clapping country.\nWe only stood there, having been assembled.\n\nI still walk past it most days.\nBut I have stopped thinking of it as furniture,\nand when a child leans on the low keys and laughs\nI have stopped calling that noise.",
+    "prompt": "The line 'Then he picked up his helmet and went' marks the point at which the poem",
+    "choices": [
+      "introduces a second musician who takes the boy's place",
+      "turns from the performance itself to what it left behind in the crowd and in the speaker",
+      "shifts from what the speaker watched to what he had expected to happen instead",
+      "returns to the week of walking past described at the beginning",
+      "moves the setting from the station to the speaker's home"
+    ],
+    "correct_answer": "turns from the performance itself to what it left behind in the crowd and in the speaker",
+    "explanation": "Before that line the poem reports the playing; after it the poem reports the response - the absence of applause, the crowd 'having been assembled,' and the change in what the speaker now thinks of the piano and of a child's banging.",
+    "distractor_rationales": {
+      "introduces a second musician who takes the boy's place": "No one else plays; after the boy leaves, the poem has only the crowd and, later, a child.",
+      "shifts from what the speaker watched to what he had expected to happen instead": "No expectation is described after this line; what follows is what did happen - the absence of applause, and the speaker's later habit.",
+      "returns to the week of walking past described at the beginning": "That week is recalled only glancingly in the final stanza, and with the speaker's view reversed.",
+      "moves the setting from the station to the speaker's home": "Every stanza of the poem takes place at or near the platform."
+    }
+  },
+  {
+    "id": "SRD9C-30",
+    "set_id": "SRD9C-P5",
+    "subskill": "main-idea",
+    "difficulty": "hard",
+    "passage": "The Piano on Platform Two\n\nSomeone left a piano in the station,\nan upright the colour of weak tea,\nwith a paper sign that says PLAY ME\nand a chip out of the middle C.\n\nFor a week I walked past it\nthe way you walk past a stranger's argument,\neyes forward, certain that whatever was happening\nwas not addressed to me.\n\nThen the six-fifteen was cancelled\nand there was nowhere left to look but there:\na boy in a delivery jacket, seventeen at most,\nsetting his helmet down on the tiles.\n\nHe played four bars, stopped, and started over,\nand started over, and had it on the third try,\nand the thing he had was not difficult -\na tune you would know from an advertisement -\n\nbut the platform, which had been a hundred people\neach minding a separate errand,\nbecame for ninety seconds one animal\nwith its head up, listening.\n\nThen he picked up his helmet and went.\nNobody clapped. Clapping would have been too much,\nand we are not, on the whole, a clapping country.\nWe only stood there, having been assembled.\n\nI still walk past it most days.\nBut I have stopped thinking of it as furniture,\nand when a child leans on the low keys and laughs\nI have stopped calling that noise.",
+    "prompt": "The poem is chiefly concerned with",
+    "choices": [
+      "a young musician's struggle with a piece beyond his ability",
+      "how strangers in a station train themselves to ignore one another",
+      "the case for placing more instruments in public spaces",
+      "how an unexpected delay can change the shape of an ordinary day",
+      "how a brief, ordinary performance briefly joined a crowd of strangers"
+    ],
+    "correct_answer": "how a brief, ordinary performance briefly joined a crowd of strangers",
+    "explanation": "The poem's centre is the ninety seconds in which a hundred separate errands became 'one animal,' and its last stanza measures what remained: the piano is no longer furniture, and a child's banging is no longer noise.",
+    "distractor_rationales": {
+      "a young musician's struggle with a piece beyond his ability": "The poem insists the tune 'was not difficult' and that he had it on the third try.",
+      "how strangers in a station train themselves to ignore one another": "That is the poem's starting condition, and the poem exists to describe the ninety seconds in which it stopped holding.",
+      "the case for placing more instruments in public spaces": "The poem describes one piano and makes no recommendation about others.",
+      "how an unexpected delay can change the shape of an ordinary day": "The cancelled train is the occasion for the speaker's looking up; the poem's subject is what he saw, not the delay."
+    }
+  },
+  {
+    "id": "SRD9C-31",
+    "set_id": "SRD9C-P6",
+    "subskill": "main-idea",
+    "difficulty": "medium",
+    "passage": "Eighty photographs of shopfronts, made over eleven years in a single county, hang in four rooms, and for the length of the first room I was entirely persuaded. The photographer works in flat morning light and stands square to the glass, so that every picture has the same grammar: a door, a window, a hand-lettered sign, and, reflected faintly in the glass, the street behind her. Hung in a row, the pictures begin to argue. You notice that the lettering grows more professional and less legible; that the goods in the windows change from things that were made to things that were shipped; that by the fourth room almost nothing on any street is being repaired.\n\nThen there are the labels. Beside each photograph the gallery has hung a paragraph telling you what to feel about it. One announces that a laundry's shuttered door is a monument to a vanished solidarity. Another explains that a rack of plastic buckets interrogates the logic of disposability. These sentences are not exactly wrong. They are arriving too early, and in the wrong voice. The photographs had already said the harder half of all this, quietly and without adjectives, and the effect of reading the label first - and everyone reads the label first - is that you go to the picture to confirm a verdict rather than to look at it.\n\nI can imagine the gallery's defence, and it is not a frivolous one. A visitor given nothing at all may look for four seconds and move on, and a short text can slow that visitor down. But there is a difference between telling her where a photograph was taken, what the shop sold and in what year it closed - all of which this exhibition does well, and none of which the pictures can supply on their own - and telling her what the photograph means. The first is hospitality. The second is a critic's work, done in advance, in the one room where a critic is not needed. Take down the adjectives and leave the dates. The show would gain a room.",
+    "prompt": "Which best states the reviewer's central judgment?",
+    "choices": [
+      "The pictures are too much alike to hold a viewer, although their subject repays study",
+      "The labels are the best thing in the show, since the photographs themselves repeat a single idea",
+      "A strong body of photographs is weakened by wall texts that interpret the pictures before the viewer can",
+      "The photographs succeed, and the labels are needed to make them legible to newcomers",
+      "The exhibition's facts are its weakness, while its interpretations are what give it shape"
+    ],
+    "correct_answer": "A strong body of photographs is weakened by wall texts that interpret the pictures before the viewer can",
+    "explanation": "The first paragraph establishes that the pictures make their own argument; the rest attacks the interpretive labels for making that argument first. The closing instruction - take down the adjectives, leave the dates - is the judgment in practical form.",
+    "distractor_rationales": {
+      "The pictures are too much alike to hold a viewer, although their subject repays study": "The sameness of method is what the reviewer praises: it is why the pictures 'begin to argue' when hung in a row.",
+      "The labels are the best thing in the show, since the photographs themselves repeat a single idea": "He calls the labels a critic's work done in the wrong place, and credits the photographs with saying 'the harder half' first.",
+      "The photographs succeed, and the labels are needed to make them legible to newcomers": "He accepts that newcomers need help and argues that facts, not interpretations, are the help they need.",
+      "The exhibition's facts are its weakness, while its interpretations are what give it shape": "He reverses this: the factual labels are done well and should stay, and the interpretations should come down."
+    }
+  },
+  {
+    "id": "SRD9C-32",
+    "set_id": "SRD9C-P6",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "passage": "Eighty photographs of shopfronts, made over eleven years in a single county, hang in four rooms, and for the length of the first room I was entirely persuaded. The photographer works in flat morning light and stands square to the glass, so that every picture has the same grammar: a door, a window, a hand-lettered sign, and, reflected faintly in the glass, the street behind her. Hung in a row, the pictures begin to argue. You notice that the lettering grows more professional and less legible; that the goods in the windows change from things that were made to things that were shipped; that by the fourth room almost nothing on any street is being repaired.\n\nThen there are the labels. Beside each photograph the gallery has hung a paragraph telling you what to feel about it. One announces that a laundry's shuttered door is a monument to a vanished solidarity. Another explains that a rack of plastic buckets interrogates the logic of disposability. These sentences are not exactly wrong. They are arriving too early, and in the wrong voice. The photographs had already said the harder half of all this, quietly and without adjectives, and the effect of reading the label first - and everyone reads the label first - is that you go to the picture to confirm a verdict rather than to look at it.\n\nI can imagine the gallery's defence, and it is not a frivolous one. A visitor given nothing at all may look for four seconds and move on, and a short text can slow that visitor down. But there is a difference between telling her where a photograph was taken, what the shop sold and in what year it closed - all of which this exhibition does well, and none of which the pictures can supply on their own - and telling her what the photograph means. The first is hospitality. The second is a critic's work, done in advance, in the one room where a critic is not needed. Take down the adjectives and leave the dates. The show would gain a room.",
+    "prompt": "According to the review, how were the photographs made?",
+    "choices": [
+      "Over four years in several neighbouring counties",
+      "In flat morning light, with the camera placed square to the glass",
+      "With care taken to keep the photographer's reflection out of the glass",
+      "Using only shops whose signs had been lettered by hand",
+      "In one town whose shops have all since closed"
+    ],
+    "correct_answer": "In flat morning light, with the camera placed square to the glass",
+    "explanation": "The first paragraph states the method: 'The photographer works in flat morning light and stands square to the glass.'",
+    "distractor_rationales": {
+      "Over four years in several neighbouring counties": "The review says eleven years and a single county; four is the number of rooms.",
+      "With care taken to keep the photographer's reflection out of the glass": "The street behind her is described as reflected faintly in the glass, as part of the pictures' common grammar.",
+      "Using only shops whose signs had been lettered by hand": "Hand-lettered signs belong to the earlier pictures; the review notes that the lettering later grows more professional.",
+      "In one town whose shops have all since closed": "One laundry is described as shuttered; the review makes no claim that every shop has closed."
+    }
+  },
+  {
+    "id": "SRD9C-33",
+    "set_id": "SRD9C-P6",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "passage": "Eighty photographs of shopfronts, made over eleven years in a single county, hang in four rooms, and for the length of the first room I was entirely persuaded. The photographer works in flat morning light and stands square to the glass, so that every picture has the same grammar: a door, a window, a hand-lettered sign, and, reflected faintly in the glass, the street behind her. Hung in a row, the pictures begin to argue. You notice that the lettering grows more professional and less legible; that the goods in the windows change from things that were made to things that were shipped; that by the fourth room almost nothing on any street is being repaired.\n\nThen there are the labels. Beside each photograph the gallery has hung a paragraph telling you what to feel about it. One announces that a laundry's shuttered door is a monument to a vanished solidarity. Another explains that a rack of plastic buckets interrogates the logic of disposability. These sentences are not exactly wrong. They are arriving too early, and in the wrong voice. The photographs had already said the harder half of all this, quietly and without adjectives, and the effect of reading the label first - and everyone reads the label first - is that you go to the picture to confirm a verdict rather than to look at it.\n\nI can imagine the gallery's defence, and it is not a frivolous one. A visitor given nothing at all may look for four seconds and move on, and a short text can slow that visitor down. But there is a difference between telling her where a photograph was taken, what the shop sold and in what year it closed - all of which this exhibition does well, and none of which the pictures can supply on their own - and telling her what the photograph means. The first is hospitality. The second is a critic's work, done in advance, in the one room where a critic is not needed. Take down the adjectives and leave the dates. The show would gain a room.",
+    "prompt": "In 'every picture has the same grammar,' the word 'grammar' most nearly means",
+    "choices": [
+      "the rules that govern sentences in a language",
+      "a book used in teaching a language",
+      "correctness in the way a person speaks or writes",
+      "a consistent set of organizing elements",
+      "the elementary principles a beginner must learn first"
+    ],
+    "correct_answer": "a consistent set of organizing elements",
+    "explanation": "The colon that follows supplies the definition: the shared grammar is the recurring arrangement of door, window, sign and reflection. The word names the organizing system the pictures hold in common.",
+    "distractor_rationales": {
+      "the rules that govern sentences in a language": "The literal sense cannot apply to photographs, which contain no sentences.",
+      "a book used in teaching a language": "No book is involved; the word here describes something the pictures share.",
+      "correctness in the way a person speaks or writes": "This sense concerns usage and error, and nobody in the review is speaking.",
+      "the elementary principles a beginner must learn first": "A real sense of the word, but the reviewer is naming what every picture has in common, not what a novice photographer would study."
+    }
+  },
+  {
+    "id": "SRD9C-34",
+    "set_id": "SRD9C-P6",
+    "subskill": "attitude",
+    "difficulty": "hard",
+    "passage": "Eighty photographs of shopfronts, made over eleven years in a single county, hang in four rooms, and for the length of the first room I was entirely persuaded. The photographer works in flat morning light and stands square to the glass, so that every picture has the same grammar: a door, a window, a hand-lettered sign, and, reflected faintly in the glass, the street behind her. Hung in a row, the pictures begin to argue. You notice that the lettering grows more professional and less legible; that the goods in the windows change from things that were made to things that were shipped; that by the fourth room almost nothing on any street is being repaired.\n\nThen there are the labels. Beside each photograph the gallery has hung a paragraph telling you what to feel about it. One announces that a laundry's shuttered door is a monument to a vanished solidarity. Another explains that a rack of plastic buckets interrogates the logic of disposability. These sentences are not exactly wrong. They are arriving too early, and in the wrong voice. The photographs had already said the harder half of all this, quietly and without adjectives, and the effect of reading the label first - and everyone reads the label first - is that you go to the picture to confirm a verdict rather than to look at it.\n\nI can imagine the gallery's defence, and it is not a frivolous one. A visitor given nothing at all may look for four seconds and move on, and a short text can slow that visitor down. But there is a difference between telling her where a photograph was taken, what the shop sold and in what year it closed - all of which this exhibition does well, and none of which the pictures can supply on their own - and telling her what the photograph means. The first is hospitality. The second is a critic's work, done in advance, in the one room where a critic is not needed. Take down the adjectives and leave the dates. The show would gain a room.",
+    "prompt": "The reviewer's attitude toward the gallery's likely defence of the labels is best described as",
+    "choices": [
+      "prepared to credit its reasoning while rejecting the form the labels actually took",
+      "impressed by its practicality, and persuaded by it to withdraw the objection",
+      "dismissive of its reasoning, though sympathetic to the difficulty it names",
+      "uncertain of its merits, and unwilling to decide between the two views",
+      "amused by its confidence, and doubtful that the gallery itself believes it"
+    ],
+    "correct_answer": "prepared to credit its reasoning while rejecting the form the labels actually took",
+    "explanation": "He constructs the other side's argument himself, grants its premise about hurried visitors, and then draws a line: facts are hospitality, interpretation is a critic's work done in the wrong place.",
+    "distractor_rationales": {
+      "impressed by its practicality, and persuaded by it to withdraw the objection": "The paragraph turns on 'But' and ends with an instruction to take the interpretive text down.",
+      "dismissive of its reasoning, though sympathetic to the difficulty it names": "He calls the defence 'not a frivolous one,' which is the opposite of dismissing the reasoning.",
+      "uncertain of its merits, and unwilling to decide between the two views": "He decides plainly, drawing a line between hospitality and a critic's work.",
+      "amused by its confidence, and doubtful that the gallery itself believes it": "He states the defence in his own words and treats it as sincerely held."
+    }
+  },
+  {
+    "id": "SRD9C-35",
+    "set_id": "SRD9C-P6",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "passage": "Eighty photographs of shopfronts, made over eleven years in a single county, hang in four rooms, and for the length of the first room I was entirely persuaded. The photographer works in flat morning light and stands square to the glass, so that every picture has the same grammar: a door, a window, a hand-lettered sign, and, reflected faintly in the glass, the street behind her. Hung in a row, the pictures begin to argue. You notice that the lettering grows more professional and less legible; that the goods in the windows change from things that were made to things that were shipped; that by the fourth room almost nothing on any street is being repaired.\n\nThen there are the labels. Beside each photograph the gallery has hung a paragraph telling you what to feel about it. One announces that a laundry's shuttered door is a monument to a vanished solidarity. Another explains that a rack of plastic buckets interrogates the logic of disposability. These sentences are not exactly wrong. They are arriving too early, and in the wrong voice. The photographs had already said the harder half of all this, quietly and without adjectives, and the effect of reading the label first - and everyone reads the label first - is that you go to the picture to confirm a verdict rather than to look at it.\n\nI can imagine the gallery's defence, and it is not a frivolous one. A visitor given nothing at all may look for four seconds and move on, and a short text can slow that visitor down. But there is a difference between telling her where a photograph was taken, what the shop sold and in what year it closed - all of which this exhibition does well, and none of which the pictures can supply on their own - and telling her what the photograph means. The first is hospitality. The second is a critic's work, done in advance, in the one room where a critic is not needed. Take down the adjectives and leave the dates. The show would gain a room.",
+    "prompt": "The review as a whole is organized as",
+    "choices": [
+      "a description of the method, a history of the county, a complaint about the labels, and a verdict",
+      "a walk through the four rooms of the exhibition in order",
+      "a comparison of this exhibition with an earlier one by the same photographer",
+      "a summary of the labels followed by a defence of the gallery's choices",
+      "praise for the pictures, an objection to the labels, the opposing case, and a limited recommendation"
+    ],
+    "correct_answer": "praise for the pictures, an objection to the labels, the opposing case, and a limited recommendation",
+    "explanation": "The first paragraph is praise, the second the objection, the third states and answers the gallery's defence, and the last two sentences ask for a specific, partial change: remove the interpretation, keep the facts.",
+    "distractor_rationales": {
+      "a description of the method, a history of the county, a complaint about the labels, and a verdict": "What history there is emerges from the photographs themselves, inside the paragraph that praises them; the review never sets out a history of its own.",
+      "a walk through the four rooms of the exhibition in order": "Only the first and fourth rooms are mentioned, and both are used to mark a change across the pictures rather than to guide a tour.",
+      "a comparison of this exhibition with an earlier one by the same photographer": "No other exhibition appears in the review.",
+      "a summary of the labels followed by a defence of the gallery's choices": "The labels are quoted in order to be criticized, and the gallery's case is raised only so that it can be answered."
+    }
+  },
+  {
+    "id": "SRD9C-36",
+    "set_id": "SRD9C-P6",
+    "subskill": "inference",
+    "difficulty": "medium",
+    "passage": "Eighty photographs of shopfronts, made over eleven years in a single county, hang in four rooms, and for the length of the first room I was entirely persuaded. The photographer works in flat morning light and stands square to the glass, so that every picture has the same grammar: a door, a window, a hand-lettered sign, and, reflected faintly in the glass, the street behind her. Hung in a row, the pictures begin to argue. You notice that the lettering grows more professional and less legible; that the goods in the windows change from things that were made to things that were shipped; that by the fourth room almost nothing on any street is being repaired.\n\nThen there are the labels. Beside each photograph the gallery has hung a paragraph telling you what to feel about it. One announces that a laundry's shuttered door is a monument to a vanished solidarity. Another explains that a rack of plastic buckets interrogates the logic of disposability. These sentences are not exactly wrong. They are arriving too early, and in the wrong voice. The photographs had already said the harder half of all this, quietly and without adjectives, and the effect of reading the label first - and everyone reads the label first - is that you go to the picture to confirm a verdict rather than to look at it.\n\nI can imagine the gallery's defence, and it is not a frivolous one. A visitor given nothing at all may look for four seconds and move on, and a short text can slow that visitor down. But there is a difference between telling her where a photograph was taken, what the shop sold and in what year it closed - all of which this exhibition does well, and none of which the pictures can supply on their own - and telling her what the photograph means. The first is hospitality. The second is a critic's work, done in advance, in the one room where a critic is not needed. Take down the adjectives and leave the dates. The show would gain a room.",
+    "prompt": "The reviewer's objection to the labels rests chiefly on",
+    "choices": [
+      "the order in which a visitor meets the interpretation and the image",
+      "the unreliability of the claims that the labels make",
+      "the labels' use of language an ordinary visitor is unlikely to understand",
+      "the decision to hang eighty photographs in no more than four rooms",
+      "the gallery's failure to record where each photograph was taken"
+    ],
+    "correct_answer": "the order in which a visitor meets the interpretation and the image",
+    "explanation": "The complaint is about sequence: 'everyone reads the label first,' so the viewer comes to the picture 'to confirm a verdict rather than to look at it.' That is why the labels are said to arrive too early.",
+    "distractor_rationales": {
+      "the unreliability of the claims that the labels make": "He says the sentences are 'not exactly wrong,' so accuracy is not his complaint.",
+      "the labels' use of language an ordinary visitor is unlikely to understand": "He quotes two grand phrases, but his stated fault is that they are 'arriving too early,' not that they cannot be followed.",
+      "the decision to hang eighty photographs in no more than four rooms": "He never suggests the show is crowded; his closing joke is that removing text would gain it a room.",
+      "the gallery's failure to record where each photograph was taken": "He says the exhibition does this part well and asks for those facts to be kept."
+    }
+  },
+  {
+    "id": "SRD9C-37",
+    "set_id": "SRD9C-P7",
+    "subskill": "main-idea",
+    "difficulty": "medium",
+    "passage": "Every few years somebody proposes to fix the long race. The suggestions vary - shorten it, break it into heats, show only the leaders - but the reasoning is always the same: nothing happens for most of an hour, and audiences will not sit still for it. The reasoning has a point buried in it, and I will come back to that point. It is wrong about what the event is.\n\nA short race is a comparison of top speeds. You watch eight bodies do the same thing at once, the fastest wins, and it is thrilling, and it is over before you have chosen anybody to care about. A long race is a comparison of decisions. In the ninth lap a runner lying fourth works out that she has one surge and not two, and spends it, and you can see her decide. The runner who wins may have spent twenty minutes in fifth place doing arithmetic - how much is left, how much the leader has used, what the wind on the back straight will cost. None of that exists in a race that lasts ten seconds, and none of it can be manufactured by cutting to the leaders, because the leaders are precisely the part of the picture where the decisions have already been made.\n\nNow the point I promised to come back to, which is a real one: the middle of a long race is genuinely hard to watch, and the sport has not helped itself. Commentary that names only the front three, and cameras that follow the same three, teach an audience that the rest is filler. A spectator who has never run has no way to know that the pace has quietly risen, or that a runner who drifts wide on a bend has lost more than a stride. That is a failure of coverage, not a failure of the event. Show the gap closing at the back. Put the lap times on screen where newcomers can read them.\n\nDo that, and the hour stops being empty. Shorten the race instead, and you will have kept the audience by removing the reason to watch.",
+    "prompt": "Which best states the writer's central claim?",
+    "choices": [
+      "Long races ask more of an athlete than short ones do, even if they are harder to enjoy",
+      "Proposals to shorten the long race mistake what makes it worth watching, though the complaint behind them points to a real failure of coverage",
+      "The preferences of television audiences should be set aside, whatever it costs the sport in viewers",
+      "Commentary is beyond repair, so figures on the screen should be made to do its work instead",
+      "Short races deserve the attention they receive, and long ones are best left to those who already follow the sport"
+    ],
+    "correct_answer": "Proposals to shorten the long race mistake what makes it worth watching, though the complaint behind them points to a real failure of coverage",
+    "explanation": "The first paragraph concedes that the reformers' reasoning 'has a point buried in it' and denies their conclusion; the third identifies the real problem as 'a failure of coverage, not a failure of the event.' The last sentence states the cost of the proposed cure.",
+    "distractor_rationales": {
+      "Long races ask more of an athlete than short ones do, even if they are harder to enjoy": "The contrast he draws is between speed and decision-making, not between degrees of physical difficulty.",
+      "The preferences of television audiences should be set aside, whatever it costs the sport in viewers": "He takes the audience problem seriously enough to devote a paragraph to solving it; he rejects one solution, not the audience.",
+      "Commentary is beyond repair, so figures on the screen should be made to do its work instead": "On-screen lap times are one of two suggestions, offered alongside better commentary rather than in place of commentators.",
+      "Short races deserve the attention they receive, and long ones are best left to those who already follow the sport": "He wants newcomers brought in, not excluded, and spends the third paragraph explaining how."
+    }
+  },
+  {
+    "id": "SRD9C-38",
+    "set_id": "SRD9C-P7",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "passage": "Every few years somebody proposes to fix the long race. The suggestions vary - shorten it, break it into heats, show only the leaders - but the reasoning is always the same: nothing happens for most of an hour, and audiences will not sit still for it. The reasoning has a point buried in it, and I will come back to that point. It is wrong about what the event is.\n\nA short race is a comparison of top speeds. You watch eight bodies do the same thing at once, the fastest wins, and it is thrilling, and it is over before you have chosen anybody to care about. A long race is a comparison of decisions. In the ninth lap a runner lying fourth works out that she has one surge and not two, and spends it, and you can see her decide. The runner who wins may have spent twenty minutes in fifth place doing arithmetic - how much is left, how much the leader has used, what the wind on the back straight will cost. None of that exists in a race that lasts ten seconds, and none of it can be manufactured by cutting to the leaders, because the leaders are precisely the part of the picture where the decisions have already been made.\n\nNow the point I promised to come back to, which is a real one: the middle of a long race is genuinely hard to watch, and the sport has not helped itself. Commentary that names only the front three, and cameras that follow the same three, teach an audience that the rest is filler. A spectator who has never run has no way to know that the pace has quietly risen, or that a runner who drifts wide on a bend has lost more than a stride. That is a failure of coverage, not a failure of the event. Show the gap closing at the back. Put the lap times on screen where newcomers can read them.\n\nDo that, and the hour stops being empty. Shorten the race instead, and you will have kept the audience by removing the reason to watch.",
+    "prompt": "According to the writer, how may the winner of a long race have spent twenty minutes?",
+    "choices": [
+      "In fifth place, calculating what she and the leader have left",
+      "At the front, setting the pace for the rest of the field",
+      "Running wide on the bends to stay clear of the field",
+      "Out of the cameras' view at the back of the race",
+      "Holding back a second surge for use on the final lap"
+    ],
+    "correct_answer": "In fifth place, calculating what she and the leader have left",
+    "explanation": "The second paragraph says the runner who wins 'may have spent twenty minutes in fifth place doing arithmetic - how much is left, how much the leader has used,' and so on.",
+    "distractor_rationales": {
+      "At the front, setting the pace for the rest of the field": "His point is that the leaders are where the decisions have already been made; his example of a winner is someone running behind.",
+      "Running wide on the bends to stay clear of the field": "Drifting wide appears in the third paragraph as an unnoticed mistake that costs a runner, not as the winner's method.",
+      "Out of the cameras' view at the back of the race": "The back of the field is mentioned as something coverage ought to show, not as where the winner spent the race.",
+      "Holding back a second surge for use on the final lap": "The runner who calculates in his example has 'one surge and not two,' and she spends it on the ninth lap."
+    }
+  },
+  {
+    "id": "SRD9C-39",
+    "set_id": "SRD9C-P7",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "passage": "Every few years somebody proposes to fix the long race. The suggestions vary - shorten it, break it into heats, show only the leaders - but the reasoning is always the same: nothing happens for most of an hour, and audiences will not sit still for it. The reasoning has a point buried in it, and I will come back to that point. It is wrong about what the event is.\n\nA short race is a comparison of top speeds. You watch eight bodies do the same thing at once, the fastest wins, and it is thrilling, and it is over before you have chosen anybody to care about. A long race is a comparison of decisions. In the ninth lap a runner lying fourth works out that she has one surge and not two, and spends it, and you can see her decide. The runner who wins may have spent twenty minutes in fifth place doing arithmetic - how much is left, how much the leader has used, what the wind on the back straight will cost. None of that exists in a race that lasts ten seconds, and none of it can be manufactured by cutting to the leaders, because the leaders are precisely the part of the picture where the decisions have already been made.\n\nNow the point I promised to come back to, which is a real one: the middle of a long race is genuinely hard to watch, and the sport has not helped itself. Commentary that names only the front three, and cameras that follow the same three, teach an audience that the rest is filler. A spectator who has never run has no way to know that the pace has quietly risen, or that a runner who drifts wide on a bend has lost more than a stride. That is a failure of coverage, not a failure of the event. Show the gap closing at the back. Put the lap times on screen where newcomers can read them.\n\nDo that, and the hour stops being empty. Shorten the race instead, and you will have kept the audience by removing the reason to watch.",
+    "prompt": "In 'That is a failure of coverage,' the word 'coverage' most nearly means",
+    "choices": [
+      "the extent of ground included within an area",
+      "protection provided under an insurance policy",
+      "the way an event is reported and shown to an audience",
+      "the distance across which a signal can be received",
+      "the act of concealing something from view"
+    ],
+    "correct_answer": "the way an event is reported and shown to an audience",
+    "explanation": "The sentence follows two examples of broadcasting practice - commentary that names only the front three, cameras that follow the same three - and is followed by two instructions to broadcasters. The word refers to how the race is reported and presented.",
+    "distractor_rationales": {
+      "the extent of ground included within an area": "This sense describes territory; the sentences on either side concern commentary and cameras.",
+      "protection provided under an insurance policy": "A common sense of the word, but no policy or risk is under discussion.",
+      "the distance across which a signal can be received": "Nothing in the passage concerns transmission or reception.",
+      "the act of concealing something from view": "The writer does complain that parts of the race go unseen, but the word here names the broadcast itself rather than an act of hiding."
+    }
+  },
+  {
+    "id": "SRD9C-40",
+    "set_id": "SRD9C-P7",
+    "subskill": "attitude",
+    "difficulty": "hard",
+    "passage": "Every few years somebody proposes to fix the long race. The suggestions vary - shorten it, break it into heats, show only the leaders - but the reasoning is always the same: nothing happens for most of an hour, and audiences will not sit still for it. The reasoning has a point buried in it, and I will come back to that point. It is wrong about what the event is.\n\nA short race is a comparison of top speeds. You watch eight bodies do the same thing at once, the fastest wins, and it is thrilling, and it is over before you have chosen anybody to care about. A long race is a comparison of decisions. In the ninth lap a runner lying fourth works out that she has one surge and not two, and spends it, and you can see her decide. The runner who wins may have spent twenty minutes in fifth place doing arithmetic - how much is left, how much the leader has used, what the wind on the back straight will cost. None of that exists in a race that lasts ten seconds, and none of it can be manufactured by cutting to the leaders, because the leaders are precisely the part of the picture where the decisions have already been made.\n\nNow the point I promised to come back to, which is a real one: the middle of a long race is genuinely hard to watch, and the sport has not helped itself. Commentary that names only the front three, and cameras that follow the same three, teach an audience that the rest is filler. A spectator who has never run has no way to know that the pace has quietly risen, or that a runner who drifts wide on a bend has lost more than a stride. That is a failure of coverage, not a failure of the event. Show the gap closing at the back. Put the lap times on screen where newcomers can read them.\n\nDo that, and the hour stops being empty. Shorten the race instead, and you will have kept the audience by removing the reason to watch.",
+    "prompt": "The writer's attitude toward those who want to shorten the long race is best described as",
+    "choices": [
+      "contemptuous of their motives, though impressed by how persistently they argue",
+      "resigned to their proposal, while regretting what it will cost the sport",
+      "surprised by their argument, and unable to meet its strongest form",
+      "sympathetic to their aim, and prepared to accept a shortened version of the race",
+      "willing to take their premise seriously while judging their conclusion mistaken"
+    ],
+    "correct_answer": "willing to take their premise seriously while judging their conclusion mistaken",
+    "explanation": "He says the reformers' reasoning 'has a point buried in it,' promises to return to that point, and does so at length - while insisting throughout that their remedy is 'wrong about what the event is.'",
+    "distractor_rationales": {
+      "contemptuous of their motives, though impressed by how persistently they argue": "He treats their reasoning as honest and partly right, and never questions their motives.",
+      "resigned to their proposal, while regretting what it will cost the sport": "He ends with instructions for preventing it, which is not resignation.",
+      "surprised by their argument, and unable to meet its strongest form": "He states their strongest form himself, in the third paragraph, and then answers it.",
+      "sympathetic to their aim, and prepared to accept a shortened version of the race": "His final sentence rejects shortening outright as removing the reason to watch."
+    }
+  },
+  {
+    "id": "SRD9C-41",
+    "set_id": "SRD9C-P7",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "passage": "Every few years somebody proposes to fix the long race. The suggestions vary - shorten it, break it into heats, show only the leaders - but the reasoning is always the same: nothing happens for most of an hour, and audiences will not sit still for it. The reasoning has a point buried in it, and I will come back to that point. It is wrong about what the event is.\n\nA short race is a comparison of top speeds. You watch eight bodies do the same thing at once, the fastest wins, and it is thrilling, and it is over before you have chosen anybody to care about. A long race is a comparison of decisions. In the ninth lap a runner lying fourth works out that she has one surge and not two, and spends it, and you can see her decide. The runner who wins may have spent twenty minutes in fifth place doing arithmetic - how much is left, how much the leader has used, what the wind on the back straight will cost. None of that exists in a race that lasts ten seconds, and none of it can be manufactured by cutting to the leaders, because the leaders are precisely the part of the picture where the decisions have already been made.\n\nNow the point I promised to come back to, which is a real one: the middle of a long race is genuinely hard to watch, and the sport has not helped itself. Commentary that names only the front three, and cameras that follow the same three, teach an audience that the rest is filler. A spectator who has never run has no way to know that the pace has quietly risen, or that a runner who drifts wide on a bend has lost more than a stride. That is a failure of coverage, not a failure of the event. Show the gap closing at the back. Put the lap times on screen where newcomers can read them.\n\nDo that, and the hour stops being empty. Shorten the race instead, and you will have kept the audience by removing the reason to watch.",
+    "prompt": "The third paragraph chiefly serves to",
+    "choices": [
+      "concede that some long races are indeed too long, and propose a limit on their length",
+      "accept the reformers' case in full and withdraw the objection made earlier",
+      "raise a further objection to the idea of shortening the race",
+      "grant what the other side gets right, and locate the fault somewhere other than in the race",
+      "describe in detail one particular race that the writer watched"
+    ],
+    "correct_answer": "grant what the other side gets right, and locate the fault somewhere other than in the race",
+    "explanation": "The paragraph keeps the promise made in the first - the reformers have 'a point buried in it' - by agreeing that the middle of a long race is hard to watch, and then relocates the blame: 'That is a failure of coverage, not a failure of the event.'",
+    "distractor_rationales": {
+      "concede that some long races are indeed too long, and propose a limit on their length": "He concedes nothing about the length of the race; his concession is about how it is shown.",
+      "accept the reformers' case in full and withdraw the objection made earlier": "The paragraph ends by moving the blame onto coverage and issuing instructions to broadcasters.",
+      "raise a further objection to the idea of shortening the race": "What follows is a criticism of the sport's own broadcasters, not a new charge against the reformers.",
+      "describe in detail one particular race that the writer watched": "The examples are general practices of commentary and camera work, not a single race."
+    }
+  },
+  {
+    "id": "SRD9C-42",
+    "set_id": "SRD9C-P7",
+    "subskill": "inference",
+    "difficulty": "medium",
+    "passage": "Every few years somebody proposes to fix the long race. The suggestions vary - shorten it, break it into heats, show only the leaders - but the reasoning is always the same: nothing happens for most of an hour, and audiences will not sit still for it. The reasoning has a point buried in it, and I will come back to that point. It is wrong about what the event is.\n\nA short race is a comparison of top speeds. You watch eight bodies do the same thing at once, the fastest wins, and it is thrilling, and it is over before you have chosen anybody to care about. A long race is a comparison of decisions. In the ninth lap a runner lying fourth works out that she has one surge and not two, and spends it, and you can see her decide. The runner who wins may have spent twenty minutes in fifth place doing arithmetic - how much is left, how much the leader has used, what the wind on the back straight will cost. None of that exists in a race that lasts ten seconds, and none of it can be manufactured by cutting to the leaders, because the leaders are precisely the part of the picture where the decisions have already been made.\n\nNow the point I promised to come back to, which is a real one: the middle of a long race is genuinely hard to watch, and the sport has not helped itself. Commentary that names only the front three, and cameras that follow the same three, teach an audience that the rest is filler. A spectator who has never run has no way to know that the pace has quietly risen, or that a runner who drifts wide on a bend has lost more than a stride. That is a failure of coverage, not a failure of the event. Show the gap closing at the back. Put the lap times on screen where newcomers can read them.\n\nDo that, and the hour stops being empty. Shorten the race instead, and you will have kept the audience by removing the reason to watch.",
+    "prompt": "The writer believes that the decisive moments of a long race occur",
+    "choices": [
+      "only in the closing lap, once the field has begun to break up",
+      "chiefly before the race has begun, in the plan each runner brings to it",
+      "among the runners who are not at the front at the time",
+      "wherever the cameras and the commentary happen to be pointed",
+      "more often in short races, where each runner must commit at once"
+    ],
+    "correct_answer": "among the runners who are not at the front at the time",
+    "explanation": "He rejects cutting to the leaders 'because the leaders are precisely the part of the picture where the decisions have already been made,' and his one worked example is a runner lying fourth and a winner who spent twenty minutes in fifth.",
+    "distractor_rationales": {
+      "only in the closing lap, once the field has begun to break up": "His central example is a decision made on the ninth lap, and the winner's calculating occupies twenty minutes.",
+      "chiefly before the race has begun, in the plan each runner brings to it": "Every decision he describes is made during the running, in response to the leader and the wind.",
+      "wherever the cameras and the commentary happen to be pointed": "This reverses his argument: he complains that the cameras are pointed away from where the decisions happen.",
+      "more often in short races, where each runner must commit at once": "He says a short race contains none of this, because it is over in about ten seconds."
+    }
+  }
+]
