@@ -185,7 +185,15 @@ async function verify() {
   const rows = data ?? []
   const ssat = rows.filter(r => r.family === 'ssat')
   const isee = rows.filter(r => r.family === 'isee')
-  console.log(`live: ssat ${ssat.length} (expect 4 pairs), isee ${isee.length} (expect 8)`)
+  /* Report the counts and what they BUY, not a hardcoded expectation.
+   * This line read "(expect 4 pairs) ... (expect 8)" — the sizes on the day
+   * it was written. A fifth SSAT pair was inserted 2026-09-21 and the check
+   * then printed "ssat 5 (expect 4 pairs)", which reads as a failure and is
+   * a success. A literal that encodes the state of the bank at authoring
+   * time becomes a lie the first time the bank grows, and this file already
+   * carries one such story (the `correct_answer != null` predicate). What
+   * matters is how many whole forms the promptssupport, so that is printed. */
+  console.log(`live: ssat ${ssat.length} pair(s) = ${ssat.length} form(s), isee ${isee.length} prompt(s) = ${isee.length} form(s)`)
   // The pair must actually carry BOTH prompts — a row with one is a
   // half-delivered Writing Sample and the student loses their choice.
   const badPairs = ssat.filter(r =>

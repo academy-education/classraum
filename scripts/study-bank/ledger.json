@@ -3890,6 +3890,33 @@
      "verdict": "Keys 14/14/13/13. A solver proposed a cohort-level tell - that a lone fraction among three integers is a systematic \"didn't clear the denominator\" distractor - and asked for it to be checked against the key. Measured: 6 such items, the fraction is the key in 0 of 6 = 0.0% against 25.0% chance. REFUTED, and recorded as refuted. A second solver noted the literal value 17 repeated in slot B of three consecutive items as authoring residue; left in the kept set, worth watching."
     }
    }
+  },
+  {
+   "id": "ssat-essay-v3-2026-09-21",
+   "createdAt": "2026-09-21",
+   "targetTest": "ssat",
+   "section": "writing",
+   "task": "essay_choice",
+   "family": "production",
+   "cohort": "essay-v3",
+   "contentSha": "dd7066af7d51fadf38201c1bddc9ca15e4b723e12c5a64bc90d52113d82f8a81",
+   "status": "shipped",
+   "note": "ONE SSAT Writing Sample pair (SW11a essay + SW11b story starter), assembled from the two halves that SURVIVED a three-reviewer panel on a 14-prompt batch whose other twelve are held. SSAT writing was 4 prompts against a 5-form target; this closes it. The panel is the with-source evidence and it was run against the fuller batch rather than this pair in isolation - recorded plainly rather than re-run.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "dd7066af7d51fadf38201c1bddc9ca15e4b723e12c5a64bc90d52113d82f8a81",
+     "verdict": "check-essay-shape.mjs: complete SSAT pair; the essay states both positions and carries the published closing instruction; the story starter names a punctuated opening sentence; guidance and accessibility note present on both; no theme overlap with the 16 banked prompts. The checker was calibrated before it was trusted - it failed its known-answer test THREE times against the already-shipped v1 set (it demanded two-sidedness of narrative ISEE prompts, scored every unrelated story starter at 56% on shared boilerplate, then let a deliberately one-sided prompt through because the standard closing instruction contains the word \"or\") and now catches 5 of 5 planted defects."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Three reviewers with different briefs - general, fairness/redundancy, grader-discriminability - read the 14-prompt batch these two come from. SW8b was named by reviewer A as the strongest starter in the batch, \"the only starter with no world-building tax\". SW10a was the one essay reviewer B said to KEEP, with one repair: its guidance rewarded naming an actual book, which converts household bookshelves into marks. The guidance is rewritten here to credit reasoning over range of reading and to state that a single assigned text is not penalised. The other twelve prompts are HELD, not shipped: three impossible-event story starters where the live bank already uses that template twice, a stopped-clocks-and-smiling-grandmother opening that is a stock bereavement omen, and five of six essays being school-policy questions."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Free response has no key, so no letter, length or option tell can exist. The cross-item tell that does apply is theme repetition, checked mechanically against all 16 banked prompts on content words with the boilerplate stripped: no collision. Reviewer B separately found SW10a distinct from the banked civic-spending and reading-policy prompts."
+    }
+   }
   }
  ],
  "auditedCohorts": [
