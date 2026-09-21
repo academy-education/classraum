@@ -3793,6 +3793,41 @@
      "verdict": "Keys dealt 7/7/7/7; the author noticed its own first pass produced a repeating 0,2,1,3 cycle and reshuffled. No cloned option sets in the candidate — every item has its own pool. By contrast the LIVE control carries three items sharing one four-word pool, found blind by two solvers independently, with 'nocturnal' in slot A on all three: a cross-item defect in the shipped bank, recorded for repair."
     }
    }
+  },
+  {
+   "id": "ssat-verbal-s8ab-kept-2026-09-21",
+   "createdAt": "2026-09-21",
+   "targetTest": "ssat",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "cohort": "ssat-verbal-s8ab",
+   "contentSha": "e21d514c292077b3841e72a0e9ce796b71a667175b0b7da68740b6ca620d258b",
+   "status": "shipped",
+   "note": "58 kept of 80 SSAT synonyms, authored under the CORRECTED brief after ssat-verbal-s7 failed at 23 points above the live floor. Difficulty {\"medium\":30,\"easy\":12,\"hard\":16}. 22 named drops: SVS8B-32 - cross-author duplicate stem DOCILE, also written as SVS8A-22; the later item drops; SVS8A-01 - recycled-distractor tell: four options are words this cohort reuses and the KEY is the only one unique to it — found blind by all three solvers and measured at 8/11 = 72.7% vs a 20.0% control; SVS8A-04 - recycled-distractor tell: four options are words this cohort reuses and the KEY is the only one unique to it — found blind by all three solvers and measured at 8/11 = 72.7% vs a 20.0% control; SVS8A-08 - recycled-distractor tell: four options are words this cohort reuses and the KEY is the only one unique to it — found blind by all three solvers and measured at 8/11 = 72.7% vs a 20.0% control; SVS8A-10 - recycled-distractor tell: four options are words this cohort reuses and the KEY is the only one unique to it — found blind by all three solvers and measured at 8/11 = 72.7% vs a 20.0% control; grader: shares a root with SVS8A-02 TREPIDATION eight items away, so one item hands over the other; SVS8A-12 - recycled-distractor tell: four options are words this cohort reuses and the KEY is the only one unique to it — found blind by all three solvers and measured at 8/11 = 72.7% vs a 20.0% control; SVS8A-35 - recycled-distractor tell: four options are words this cohort reuses and the KEY is the only one unique to it — found blind by all three solvers and measured at 8/11 = 72.7% vs a 20.0% control; SVS8A-39 - recycled-distractor tell: four options are words this cohort reuses and the KEY is the only one unique to it — found blind by all three solvers and measured at 8/11 = 72.7% vs a 20.0% control; SVS8B-40 - recycled-distractor tell: four options are words this cohort reuses and the KEY is the only one unique to it — found blind by all three solvers and measured at 8/11 = 72.7% vs a 20.0% control; grader: same concept as SVS8A-11 AMBIGUOUS - a three-way overlap in the obscurity family; the first item is kept; SVS8B-12 - 13n breach: the option set still reconstructs the hidden stem (tilt/alphabetize/straighten = LIST; snub/trim/honor = SLIGHT; intricate/engaged/straightforward = INVOLVED); SVS8B-14 - 13n breach: the option set still reconstructs the hidden stem (tilt/alphabetize/straighten = LIST; snub/trim/honor = SLIGHT; intricate/engaged/straightforward = INVOLVED); grader: a second choice is defensible as a synonym of the intended sense; SVS8B-15 - 13n breach: the option set still reconstructs the hidden stem (tilt/alphabetize/straighten = LIST; snub/trim/honor = SLIGHT; intricate/engaged/straightforward = INVOLVED); grader: a second choice is defensible as a synonym of the intended sense; SVS8B-06 - the author named this its weakest item unprompted; the grader agrees it measures less than it looks - authorize+forbid read as a visible polar pair; SVS8B-19 - grader: stem is GRE-tier vocabulary, above a strong grade 8-11 candidate; SVS8B-20 - grader: stem is GRE-tier vocabulary, above a strong grade 8-11 candidate; SVS8B-21 - grader: stem is GRE-tier vocabulary, above a strong grade 8-11 candidate; SVS8B-22 - grader: stem is GRE-tier vocabulary, above a strong grade 8-11 candidate; SVS8B-23 - grader: stem is GRE-tier vocabulary, above a strong grade 8-11 candidate; SVS8B-24 - grader: stem is GRE-tier vocabulary, above a strong grade 8-11 candidate; SVS8B-27 - grader: stem is GRE-tier vocabulary, above a strong grade 8-11 candidate; SVS8B-28 - grader: stem is GRE-tier vocabulary, above a strong grade 8-11 candidate; SVS8B-35 - grader: same concept as SVS8A-11 AMBIGUOUS - a three-way overlap in the obscurity family; the first item is kept.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "e21d514c292077b3841e72a0e9ce796b71a667175b0b7da68740b6ca620d258b",
+     "verdict": "My own run on the merged 80: 5 choices each, key among choices, every prompt tagged, all classify as 'synonym' under the live draw, keys 16/16/16/16/16, no stem colliding with the live bank. ONE cross-author collision caught by my checker and dropped (both authors independently wrote DOCILE). Pins 1a01daef21258975 / 0f17561d2d1cf38c. Both authors break-tested their own pre-flight before reporting; author A additionally built an over-broad stem check and CONTROLLED it (OBDURATE and CHAMPION must register as collisions, a nonsense token must not)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Grader solved all 80: 2 fail exclusivity (INVOLVED, where engaged and intricate are both live senses; SLIGHT, where trim is a real synonym of the adjectival sense) - both dropped. It also found NINE stems at GRE tier rather than SSAT Upper Level, and four concept duplicates across the two authors who could not see each other's files (DOCILE identical; AMBIGUOUS/VAGUE/MURKY a three-way in the obscurity family; LAVISH/PROFLIGATE; TREPIDATION/INTREPID sharing a root eight items apart). All dropped. Its structural verdict is recorded and NOT repaired here: the file has a difficulty cliff between the two authors and no usable middle."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "THE CORRECTED BRIEF WORKED, MEASURED AGAINST THE SAME FLOOR THAT CONDEMNED ITS PREDECESSOR. Options-only, 3 solvers, 240 forced picks, derived control 20.0%: 53.3% (+33.3) against a live-synonym floor of +35.1 measured today on 60 already-shipped items restricted to unique option sets - i.e. 1.8 points BELOW the bank, where ssat-verbal-s7 under the old brief sat 27.7 points ABOVE it (82.8%). Kept-set residual 49.4% vs 22.4% = +27.0. A NEW cross-item tell was found here and is the reason 8 items were dropped: all three solvers independently reported that the cohort reuses a small filler pool (400 slots, 314 distinct words; 'hollow' in 8 sets), so an option unique to the cohort is almost certainly the key. Measured exactly: 11 items have exactly one cohort-unique option and it is the key in 8, 72.7% against a 20.0% control. The live bank recycles MORE (1.48 uses per word vs 1.27) and the tell never fires there, because its recycling is whole-pool via bijective sets and leaves nothing unique - partial recycling that leaves one outlier is the defect, heavy recycling is not."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Solvers named the eliminable structures: planted antonym pairs where the recycled half is the distractor, and three items where the option set still RECONSTRUCTS the stem (tilt/alphabetize/straighten = LIST, snub/trim/honor = SLIGHT, intricate/engaged/straightforward = INVOLVED) - a residual 13n breach in a batch written against 13n. All three dropped."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Keys dealt 16 per slot; author B checked its own aligned groups of five for a complete-permutation tell and found none. Author B also found that MY BRIEF created a cross-item tell - prescribing key + antonym-of-intended-sense + two others put an opposed pair in every item, so a solver who knows the construction starts near 50% - and rebuilt 11 items to break it, reporting the residual it could not remove without contradicting the brief. Measured: antonym-pair rate 98% in the failed batch, 51% here."
+    }
+   }
   }
  ],
  "auditedCohorts": [

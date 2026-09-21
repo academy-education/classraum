@@ -1,0 +1,882 @@
+[
+  {
+    "id": "SVS8B-01",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] HARBOR",
+    "choices": [
+      "dredge",
+      "shelter",
+      "haggle",
+      "expel",
+      "rehearse"
+    ],
+    "correct_answer": "shelter",
+    "explanation": "To harbor a fugitive (or a grudge) is to give it shelter — to keep or protect it.",
+    "distractor_rationales": [
+      "dredge — [P] other sense (harbor = port): an associate of the nautical noun, not a synonym of any sense of the stem",
+      "haggle — [W] plain wrong-but-plausible verb of the same register; no sense of the stem means to bargain",
+      "expel — [A] antonym of the intended sense: to drive out rather than shelter",
+      "rehearse — [U] unrelated plain verb, same register, no sense-family overlap"
+    ]
+  },
+  {
+    "id": "SVS8B-02",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] RANK",
+    "choices": [
+      "lowly",
+      "foul",
+      "brittle",
+      "fragrant",
+      "punctual"
+    ],
+    "correct_answer": "foul",
+    "explanation": "Rank as an adjective means offensively strong-smelling — rank weeds, a rank odor.",
+    "distractor_rationales": [
+      "lowly — [P] other sense (rank = position in a hierarchy): an associate of status, not a synonym of it",
+      "brittle — [W] plain wrong-but-plausible adjective; no sense of the stem concerns fragility",
+      "fragrant — [A] antonym of the intended sense: pleasantly smelling",
+      "punctual — [U] unrelated everyday adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-03",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] TART",
+    "choices": [
+      "unripe",
+      "hasty",
+      "gracious",
+      "frugal",
+      "cutting"
+    ],
+    "correct_answer": "cutting",
+    "explanation": "A tart reply is sharply critical — the taste word applied to speech.",
+    "distractor_rationales": [
+      "unripe — [P] other sense (tart = sour to taste): an associate of fruit sourness, not a synonym of it",
+      "hasty — [W] plain wrong-but-plausible adjective for manner of speech",
+      "gracious — [A] antonym of the intended sense: warm rather than cutting",
+      "frugal — [U] unrelated adjective, same register, different sense-family"
+    ]
+  },
+  {
+    "id": "SVS8B-04",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] COMPROMISE",
+    "choices": [
+      "arbitrate",
+      "duplicate",
+      "imperil",
+      "safeguard",
+      "illustrate"
+    ],
+    "correct_answer": "imperil",
+    "explanation": "To compromise a position is to expose it to danger — a compromised sample, a compromised password.",
+    "distractor_rationales": [
+      "arbitrate — [P] other sense (compromise = settlement): an associate of dispute settlement, not a synonym",
+      "duplicate — [W] plain wrong-but-plausible verb of the same register",
+      "safeguard — [A] antonym of the intended sense: to protect from danger",
+      "illustrate — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-05",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] AFFECT",
+    "choices": [
+      "agitate",
+      "tally",
+      "disclose",
+      "meander",
+      "feign"
+    ],
+    "correct_answer": "feign",
+    "explanation": "To affect an accent or an air of boredom is to put it on — to pretend to it.",
+    "distractor_rationales": [
+      "agitate — [P] other sense (affect = to influence or move): an associate of emotional disturbance, not a synonym",
+      "tally — [W] plain wrong-but-plausible verb; no sense of the stem is arithmetical",
+      "disclose — [A] antonym of the intended sense: to reveal rather than pretend",
+      "meander — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-06",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] SANCTION",
+    "choices": [
+      "authorize",
+      "prosecute",
+      "reimburse",
+      "forbid",
+      "transcribe"
+    ],
+    "correct_answer": "authorize",
+    "explanation": "To sanction a practice is to give it official approval.",
+    "distractor_rationales": [
+      "prosecute — [P] other sense (sanction = penalty): an associate of punishment, not a synonym of it",
+      "reimburse — [W] plain wrong-but-plausible formal verb",
+      "forbid — [A] antonym of the intended sense: to withhold permission",
+      "transcribe — [U] unrelated verb of the same formal register"
+    ]
+  },
+  {
+    "id": "SVS8B-07",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] APPRECIATE",
+    "choices": [
+      "thank",
+      "gain",
+      "linger",
+      "dwindle",
+      "recite"
+    ],
+    "correct_answer": "gain",
+    "explanation": "Property that appreciates gains in value; the word need not mean to admire.",
+    "distractor_rationales": [
+      "thank — [P] other sense (appreciate = to value or be grateful): an associate of gratitude, not a synonym",
+      "linger — [W] plain wrong-but-plausible verb of the same register",
+      "dwindle — [A] antonym of the intended sense: to shrink rather than grow",
+      "recite — [U] unrelated plain verb, same register"
+    ]
+  },
+  {
+    "id": "SVS8B-08",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] FLUSH",
+    "choices": [
+      "feverish",
+      "hollow",
+      "impoverished",
+      "affluent",
+      "solitary"
+    ],
+    "correct_answer": "affluent",
+    "explanation": "Flush means abundantly supplied, especially with money — flush with cash after payday.",
+    "distractor_rationales": [
+      "feverish — [P] other sense (flush = redden): an associate of a hot face, not a synonym of it",
+      "hollow — [W] plain wrong-but-plausible adjective of the same register",
+      "impoverished — [A] antonym of the intended sense: without means",
+      "solitary — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-09",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] DISPATCH",
+    "choices": [
+      "courier",
+      "burden",
+      "haste",
+      "delay",
+      "ritual"
+    ],
+    "correct_answer": "haste",
+    "explanation": "Work done with dispatch is done promptly — the noun names speed, not the message.",
+    "distractor_rationales": [
+      "courier — [P] other sense (dispatch = a sent message): an associate of delivery, not a synonym",
+      "burden — [W] plain wrong-but-plausible noun of the same register",
+      "delay — [A] antonym of the intended sense: slowness rather than promptness",
+      "ritual — [U] unrelated noun of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-10",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] CURRENCY",
+    "choices": [
+      "exchange",
+      "endurance",
+      "obscurity",
+      "prevalence",
+      "sequence"
+    ],
+    "correct_answer": "prevalence",
+    "explanation": "An idea that has currency is in wide circulation — widely current, not monetary.",
+    "distractor_rationales": [
+      "exchange — [P] other sense (currency = money): an associate of money-changing, not a synonym",
+      "endurance — [W] plain wrong-but-plausible abstract noun",
+      "obscurity — [A] antonym of the intended sense: not in circulation at all",
+      "sequence — [U] unrelated abstract noun of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-11",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] FAST",
+    "choices": [
+      "secure",
+      "athletic",
+      "idle",
+      "loose",
+      "polite"
+    ],
+    "correct_answer": "secure",
+    "explanation": "Fast means firmly fixed — a fast knot, colors that hold fast, stuck fast in the mud.",
+    "distractor_rationales": [
+      "athletic — [P] other sense (fast = quick): an associate of speed in a runner, not a synonym of it",
+      "idle — [W] plain wrong-but-plausible adjective of the same register",
+      "loose — [A] antonym of the intended sense: not firmly held",
+      "polite — [U] unrelated everyday adjective"
+    ]
+  },
+  {
+    "id": "SVS8B-12",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] LIST",
+    "choices": [
+      "alphabetize",
+      "tilt",
+      "smolder",
+      "straighten",
+      "apologize"
+    ],
+    "correct_answer": "tilt",
+    "explanation": "A ship that lists leans to one side.",
+    "distractor_rationales": [
+      "alphabetize — [P] other sense (list = an enumeration): an associate of ordering entries, not a synonym",
+      "smolder — [W] plain wrong-but-plausible intransitive verb",
+      "straighten — [A] antonym of the intended sense: to bring upright",
+      "apologize — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-13",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] PLUMB",
+    "choices": [
+      "level",
+      "barter",
+      "skim",
+      "fathom",
+      "engrave"
+    ],
+    "correct_answer": "fathom",
+    "explanation": "To plumb a mystery is to sound its depths — to get to the bottom of it.",
+    "distractor_rationales": [
+      "level — [P] other sense (plumb = perfectly vertical): an associate of the builder’s line, not a synonym",
+      "barter — [W] plain wrong-but-plausible verb of the same register",
+      "skim — [A] antonym of the intended sense: to treat only the surface",
+      "engrave — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-14",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] SLIGHT",
+    "choices": [
+      "trim",
+      "snub",
+      "wager",
+      "honor",
+      "assemble"
+    ],
+    "correct_answer": "snub",
+    "explanation": "To slight someone is to treat them with disrespect — to snub them.",
+    "distractor_rationales": [
+      "trim — [P] other sense (slight = small): an associate of smallness, not a synonym of it",
+      "wager — [W] plain wrong-but-plausible verb of the same register",
+      "honor — [A] antonym of the intended sense: to show regard rather than disregard",
+      "assemble — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-15",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] INVOLVED",
+    "choices": [
+      "engaged",
+      "lucrative",
+      "straightforward",
+      "intricate",
+      "portable"
+    ],
+    "correct_answer": "intricate",
+    "explanation": "An involved explanation is a complicated one, whatever anyone’s participation in it.",
+    "distractor_rationales": [
+      "engaged — [P] other sense (involved = taking part): an associate of participation, not a synonym",
+      "lucrative — [W] plain wrong-but-plausible adjective of the same register",
+      "straightforward — [A] antonym of the intended sense: simple and direct",
+      "portable — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-16",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] TRAIN",
+    "choices": [
+      "commute",
+      "squander",
+      "scatter",
+      "flatter",
+      "aim"
+    ],
+    "correct_answer": "aim",
+    "explanation": "To train a telescope or a camera on something is to direct it there.",
+    "distractor_rationales": [
+      "commute — [P] other sense (train = railway): an associate of rail travel, not a synonym",
+      "squander — [W] plain wrong-but-plausible verb of the same register",
+      "scatter — [A] antonym of the intended sense: to spread rather than direct at one point",
+      "flatter — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-17",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] DISCRIMINATE",
+    "choices": [
+      "exclude",
+      "postpone",
+      "confuse",
+      "narrate",
+      "distinguish"
+    ],
+    "correct_answer": "distinguish",
+    "explanation": "To discriminate between two wines is to tell them apart — the neutral sense.",
+    "distractor_rationales": [
+      "exclude — [P] other sense (discriminate = treat unfairly): an associate of unfair treatment, not a synonym",
+      "postpone — [W] plain wrong-but-plausible verb of the same register",
+      "confuse — [A] antonym of the intended sense: to fail to tell apart",
+      "narrate — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-18",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] ARCH",
+    "choices": [
+      "impish",
+      "sturdy",
+      "lavish",
+      "earnest",
+      "rustic"
+    ],
+    "correct_answer": "impish",
+    "explanation": "An arch smile is knowingly mischievous.",
+    "distractor_rationales": [
+      "sturdy — [P] other sense (arch = a curved structure): an associate of masonry, not a synonym",
+      "lavish — [W] plain wrong-but-plausible adjective of the same register",
+      "earnest — [A] antonym of the intended sense: solemn rather than teasing",
+      "rustic — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-19",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] PERFUNCTORY",
+    "choices": [
+      "thorough",
+      "provisional",
+      "acrimonious",
+      "cursory",
+      "sonorous"
+    ],
+    "correct_answer": "cursory",
+    "explanation": "A perfunctory inspection is done as a mere formality, without care.",
+    "distractor_rationales": [
+      "thorough — [A] antonym of the intended sense",
+      "provisional — [W] plain wrong-but-plausible Latinate adjective of the same register",
+      "acrimonious — [U] unrelated advanced adjective, matched for length and formality",
+      "sonorous — [U] unrelated advanced adjective, matched for register"
+    ]
+  },
+  {
+    "id": "SVS8B-20",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] RECALCITRANT",
+    "choices": [
+      "reticent",
+      "transient",
+      "defiant",
+      "verbose",
+      "ornate"
+    ],
+    "correct_answer": "defiant",
+    "explanation": "A recalcitrant mule or student resists control.",
+    "distractor_rationales": [
+      "reticent — [W] plain wrong-but-plausible advanced adjective of temperament; NOT an antonym — the antonym pair is deliberately absent here",
+      "transient — [W] plain wrong-but-plausible adjective of the same register",
+      "verbose — [U] unrelated advanced adjective, same register",
+      "ornate — [U] unrelated advanced adjective, same register"
+    ]
+  },
+  {
+    "id": "SVS8B-21",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] TRENCHANT",
+    "choices": [
+      "muddled",
+      "tentative",
+      "ornamental",
+      "sonorous",
+      "incisive"
+    ],
+    "correct_answer": "incisive",
+    "explanation": "A trenchant analysis cuts sharply to the point.",
+    "distractor_rationales": [
+      "muddled — [A] antonym of the intended sense: blunt and confused rather than keen",
+      "tentative — [W] plain wrong-but-plausible adjective of the same register",
+      "ornamental — [U] unrelated adjective, matched for length and formality",
+      "sonorous — [U] unrelated advanced adjective, same register"
+    ]
+  },
+  {
+    "id": "SVS8B-22",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] LUGUBRIOUS",
+    "choices": [
+      "ponderous",
+      "clamorous",
+      "frugal",
+      "mournful",
+      "pliant"
+    ],
+    "correct_answer": "mournful",
+    "explanation": "Lugubrious means exaggeratedly sorrowful.",
+    "distractor_rationales": [
+      "ponderous — [W] plain wrong-but-plausible advanced adjective of manner; no antonym pair in this item",
+      "clamorous — [W] plain wrong-but-plausible adjective; sound rather than mood",
+      "frugal — [U] unrelated adjective of the same register",
+      "pliant — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-23",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] PERSPICACIOUS",
+    "choices": [
+      "obtuse",
+      "loquacious",
+      "magnanimous",
+      "shrewd",
+      "indolent"
+    ],
+    "correct_answer": "shrewd",
+    "explanation": "A perspicacious observer sees keenly into things.",
+    "distractor_rationales": [
+      "obtuse — [A] antonym of the intended sense: slow to perceive",
+      "loquacious — [W] plain wrong-but-plausible Latinate adjective of the same register",
+      "magnanimous — [U] unrelated advanced adjective, matched for register",
+      "indolent — [U] unrelated advanced adjective, matched for register"
+    ]
+  },
+  {
+    "id": "SVS8B-24",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] PUSILLANIMOUS",
+    "choices": [
+      "cowardly",
+      "quarrelsome",
+      "boastful",
+      "wasteful",
+      "sluggish"
+    ],
+    "correct_answer": "cowardly",
+    "explanation": "Pusillanimous means lacking courage.",
+    "distractor_rationales": [
+      "quarrelsome — [W] plain wrong-but-plausible adjective of character; no antonym pair in this item",
+      "boastful — [W] plain wrong-but-plausible adjective of character",
+      "wasteful — [U] unrelated adjective of the same register",
+      "sluggish — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-25",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] ACRIMONIOUS",
+    "choices": [
+      "amiable",
+      "bitter",
+      "hasty",
+      "lavish",
+      "fleeting"
+    ],
+    "correct_answer": "bitter",
+    "explanation": "An acrimonious dispute is angry and bitter in tone.",
+    "distractor_rationales": [
+      "amiable — [A] antonym of the intended sense",
+      "hasty — [W] plain wrong-but-plausible adjective of manner",
+      "lavish — [U] unrelated adjective of the same register",
+      "fleeting — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-26",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] CIRCUMSPECT",
+    "choices": [
+      "affable",
+      "courteous",
+      "resourceful",
+      "indifferent",
+      "cautious"
+    ],
+    "correct_answer": "cautious",
+    "explanation": "To be circumspect is to look around before acting — careful of consequences.",
+    "distractor_rationales": [
+      "affable — [W] plain wrong-but-plausible adjective of conduct; no antonym pair in this item",
+      "courteous — [W] plain wrong-but-plausible adjective of conduct",
+      "resourceful — [U] unrelated adjective of the same register",
+      "indifferent — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-27",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] ENERVATE",
+    "choices": [
+      "weaken",
+      "invigorate",
+      "irritate",
+      "bewilder",
+      "prolong"
+    ],
+    "correct_answer": "weaken",
+    "explanation": "To enervate is to drain of strength — despite its resemblance to energize.",
+    "distractor_rationales": [
+      "invigorate — [A] antonym of the intended sense; also the trap the spelling invites",
+      "irritate — [W] plain wrong-but-plausible verb of the same register",
+      "bewilder — [U] unrelated verb of the same register",
+      "prolong — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-28",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] PROFLIGATE",
+    "choices": [
+      "wasteful",
+      "boastful",
+      "forgetful",
+      "cheerful",
+      "solitary"
+    ],
+    "correct_answer": "wasteful",
+    "explanation": "A profligate spender squanders resources recklessly.",
+    "distractor_rationales": [
+      "boastful — [W] plain wrong-but-plausible adjective of character; no antonym pair in this item",
+      "forgetful — [W] plain wrong-but-plausible adjective of character",
+      "cheerful — [U] unrelated adjective of the same register",
+      "solitary — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-29",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ABRUPT",
+    "choices": [
+      "gradual",
+      "polite",
+      "sudden",
+      "hollow",
+      "damp"
+    ],
+    "correct_answer": "sudden",
+    "explanation": "An abrupt stop happens all at once.",
+    "distractor_rationales": [
+      "gradual — [A] antonym of the intended sense",
+      "polite — [W] plain wrong-but-plausible adjective of manner",
+      "hollow — [U] unrelated adjective of the same register",
+      "damp — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-30",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] AMPLE",
+    "choices": [
+      "eager",
+      "plentiful",
+      "sturdy",
+      "hasty",
+      "quiet"
+    ],
+    "correct_answer": "plentiful",
+    "explanation": "Ample supplies are more than enough.",
+    "distractor_rationales": [
+      "eager — [W] plain wrong-but-plausible adjective; no antonym pair in this item",
+      "sturdy — [W] plain wrong-but-plausible adjective; strength rather than quantity",
+      "hasty — [U] unrelated adjective of the same register",
+      "quiet — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-31",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] HAUGHTY",
+    "choices": [
+      "humble",
+      "weary",
+      "clumsy",
+      "generous",
+      "arrogant"
+    ],
+    "correct_answer": "arrogant",
+    "explanation": "A haughty manner looks down on others.",
+    "distractor_rationales": [
+      "humble — [A] antonym of the intended sense",
+      "weary — [W] plain wrong-but-plausible adjective of bearing",
+      "clumsy — [U] unrelated adjective of the same register",
+      "generous — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-32",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] DOCILE",
+    "choices": [
+      "playful",
+      "clumsy",
+      "curious",
+      "weary",
+      "obedient"
+    ],
+    "correct_answer": "obedient",
+    "explanation": "A docile animal is easily led.",
+    "distractor_rationales": [
+      "playful — [W] plain wrong-but-plausible adjective of an animal; no antonym pair in this item",
+      "clumsy — [W] plain wrong-but-plausible adjective of an animal",
+      "curious — [U] unrelated adjective of the same register",
+      "weary — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-33",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] EVADE",
+    "choices": [
+      "confront",
+      "borrow",
+      "dodge",
+      "repair",
+      "praise"
+    ],
+    "correct_answer": "dodge",
+    "explanation": "To evade a question is to get around it.",
+    "distractor_rationales": [
+      "confront — [A] antonym of the intended sense",
+      "borrow — [W] plain wrong-but-plausible everyday verb",
+      "repair — [U] unrelated verb of the same register",
+      "praise — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-34",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] HINDER",
+    "choices": [
+      "measure",
+      "announce",
+      "purchase",
+      "obstruct",
+      "wander"
+    ],
+    "correct_answer": "obstruct",
+    "explanation": "To hinder progress is to get in its way.",
+    "distractor_rationales": [
+      "measure — [W] plain wrong-but-plausible verb; no antonym pair in this item",
+      "announce — [W] plain wrong-but-plausible verb of the same register",
+      "purchase — [U] unrelated verb of the same register",
+      "wander — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-35",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] MURKY",
+    "choices": [
+      "transparent",
+      "jagged",
+      "cloudy",
+      "fragrant",
+      "hollow"
+    ],
+    "correct_answer": "cloudy",
+    "explanation": "Murky water is dark and hard to see through.",
+    "distractor_rationales": [
+      "transparent — [A] antonym of the intended sense",
+      "jagged — [W] plain wrong-but-plausible descriptive adjective",
+      "fragrant — [U] unrelated adjective of the same register",
+      "hollow — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-36",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] QUAINT",
+    "choices": [
+      "crowded",
+      "old-fashioned",
+      "enormous",
+      "hostile",
+      "damp"
+    ],
+    "correct_answer": "old-fashioned",
+    "explanation": "A quaint cottage is charmingly old-fashioned.",
+    "distractor_rationales": [
+      "crowded — [W] plain wrong-but-plausible descriptive adjective; no antonym pair in this item",
+      "enormous — [W] plain wrong-but-plausible descriptive adjective",
+      "hostile — [U] unrelated adjective of the same register",
+      "damp — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-37",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] RASH",
+    "choices": [
+      "reckless",
+      "prudent",
+      "generous",
+      "tidy",
+      "feeble"
+    ],
+    "correct_answer": "reckless",
+    "explanation": "A rash decision is made without thinking it through.",
+    "distractor_rationales": [
+      "prudent — [A] antonym of the intended sense",
+      "generous — [W] plain wrong-but-plausible adjective of character",
+      "tidy — [U] unrelated adjective of the same register",
+      "feeble — [U] unrelated adjective of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-38",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SEVER",
+    "choices": [
+      "scold",
+      "polish",
+      "detach",
+      "rescue",
+      "delay"
+    ],
+    "correct_answer": "detach",
+    "explanation": "To sever a rope or a tie is to cut it apart.",
+    "distractor_rationales": [
+      "scold — [W] plain wrong-but-plausible verb; no antonym pair in this item",
+      "polish — [W] plain wrong-but-plausible verb of the same register",
+      "rescue — [U] unrelated verb of the same register",
+      "delay — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-39",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] WITHER",
+    "choices": [
+      "shrivel",
+      "flourish",
+      "gather",
+      "echo",
+      "harden"
+    ],
+    "correct_answer": "shrivel",
+    "explanation": "Plants left unwatered wither.",
+    "distractor_rationales": [
+      "flourish — [A] antonym of the intended sense",
+      "gather — [W] plain wrong-but-plausible verb of the same register",
+      "echo — [U] unrelated verb of the same register",
+      "harden — [U] unrelated verb of the same register"
+    ]
+  },
+  {
+    "id": "SVS8B-40",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] VAGUE",
+    "choices": [
+      "costly",
+      "generous",
+      "indistinct",
+      "sturdy",
+      "hollow"
+    ],
+    "correct_answer": "indistinct",
+    "explanation": "A vague outline or a vague promise lacks definite shape.",
+    "distractor_rationales": [
+      "costly — [W] plain wrong-but-plausible adjective; no antonym pair in this item",
+      "generous — [W] plain wrong-but-plausible adjective of the same register",
+      "sturdy — [U] unrelated adjective of the same register",
+      "hollow — [U] unrelated adjective of the same register"
+    ]
+  }
+]

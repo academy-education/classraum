@@ -1,0 +1,882 @@
+[
+  {
+    "id": "SVS8A-01",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] AMIABLE",
+    "choices": [
+      "wealthy",
+      "curious",
+      "friendly",
+      "punctual",
+      "forgetful"
+    ],
+    "correct_answer": "friendly",
+    "explanation": "AMIABLE means good-natured and pleasant toward others; 'friendly' is the direct synonym.",
+    "distractor_rationales": {
+      "wealthy": "plain wrong-but-plausible adjective; sense-family: money",
+      "curious": "unrelated same-register adjective; sense-family: intellectual disposition",
+      "punctual": "unrelated same-register adjective; sense-family: time-keeping",
+      "forgetful": "unrelated same-register adjective; sense-family: memory"
+    }
+  },
+  {
+    "id": "SVS8A-02",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] TREPIDATION",
+    "choices": [
+      "fear",
+      "fatigue",
+      "confusion",
+      "generosity",
+      "delay"
+    ],
+    "correct_answer": "fear",
+    "explanation": "TREPIDATION is nervous dread; 'fear' is the direct synonym.",
+    "distractor_rationales": {
+      "fatigue": "plain wrong-but-plausible noun; sense-family: bodily tiredness",
+      "confusion": "near-miss inner state, but cognitive not emotional; sense-family: understanding",
+      "generosity": "unrelated same-register noun; sense-family: character/giving",
+      "delay": "unrelated same-register noun; sense-family: time"
+    }
+  },
+  {
+    "id": "SVS8A-03",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] BENEVOLENT",
+    "choices": [
+      "wealthy",
+      "talkative",
+      "sleepy",
+      "stubborn",
+      "kindly"
+    ],
+    "correct_answer": "kindly",
+    "explanation": "BENEVOLENT means disposed to do good to others; 'kindly' is the direct synonym.",
+    "distractor_rationales": {
+      "wealthy": "plain wrong-but-plausible adjective; sense-family: money",
+      "talkative": "unrelated same-register adjective; sense-family: speech",
+      "sleepy": "unrelated same-register adjective; sense-family: alertness",
+      "stubborn": "unrelated same-register adjective; sense-family: will"
+    }
+  },
+  {
+    "id": "SVS8A-04",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] LUMINOUS",
+    "choices": [
+      "hollow",
+      "glowing",
+      "fragrant",
+      "sluggish",
+      "crowded"
+    ],
+    "correct_answer": "glowing",
+    "explanation": "LUMINOUS means giving off light; 'glowing' is the direct synonym.",
+    "distractor_rationales": {
+      "hollow": "unrelated same-register adjective; sense-family: internal structure",
+      "fragrant": "unrelated same-register adjective; sense-family: smell",
+      "sluggish": "unrelated same-register adjective; sense-family: speed",
+      "crowded": "unrelated same-register adjective; sense-family: density of people"
+    }
+  },
+  {
+    "id": "SVS8A-05",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] CACOPHONY",
+    "choices": [
+      "gust",
+      "bargain",
+      "rumor",
+      "din",
+      "knack"
+    ],
+    "correct_answer": "din",
+    "explanation": "CACOPHONY is a harsh, jarring mixture of sound; 'din' is the direct synonym.",
+    "distractor_rationales": {
+      "gust": "unrelated same-register noun; sense-family: weather",
+      "bargain": "unrelated same-register noun; sense-family: commerce",
+      "rumor": "unrelated same-register noun; sense-family: talk/report",
+      "knack": "unrelated same-register noun; sense-family: skill"
+    }
+  },
+  {
+    "id": "SVS8A-06",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] RESOLUTE",
+    "choices": [
+      "determined",
+      "wasteful",
+      "humorous",
+      "wealthy",
+      "clumsy"
+    ],
+    "correct_answer": "determined",
+    "explanation": "RESOLUTE means firmly set on a purpose; 'determined' is the direct synonym.",
+    "distractor_rationales": {
+      "wasteful": "plain wrong-but-plausible adjective; sense-family: thrift",
+      "humorous": "unrelated same-register adjective; sense-family: humor",
+      "wealthy": "unrelated same-register adjective; sense-family: money",
+      "clumsy": "antonym-adjacent only in poise, unrelated in sense; sense-family: physical coordination"
+    }
+  },
+  {
+    "id": "SVS8A-07",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] VORACIOUS",
+    "choices": [
+      "courteous",
+      "sorrowful",
+      "ravenous",
+      "temporary",
+      "spacious"
+    ],
+    "correct_answer": "ravenous",
+    "explanation": "VORACIOUS means having a huge appetite; 'ravenous' is the direct synonym.",
+    "distractor_rationales": {
+      "courteous": "unrelated same-register adjective; sense-family: manners",
+      "sorrowful": "unrelated same-register adjective; sense-family: emotion",
+      "temporary": "unrelated same-register adjective; sense-family: duration",
+      "spacious": "unrelated same-register adjective; sense-family: size"
+    }
+  },
+  {
+    "id": "SVS8A-08",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PRECARIOUS",
+    "choices": [
+      "plentiful",
+      "elderly",
+      "cheerful",
+      "illegible",
+      "unstable"
+    ],
+    "correct_answer": "unstable",
+    "explanation": "PRECARIOUS means insecurely held, liable to fall or fail; 'unstable' is the direct synonym.",
+    "distractor_rationales": {
+      "plentiful": "unrelated same-register adjective; sense-family: quantity",
+      "elderly": "unrelated same-register adjective; sense-family: age",
+      "cheerful": "unrelated same-register adjective; sense-family: mood",
+      "illegible": "unrelated same-register adjective; sense-family: legibility"
+    }
+  },
+  {
+    "id": "SVS8A-09",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] MEANDER",
+    "choices": [
+      "purchase",
+      "wander",
+      "scold",
+      "tighten",
+      "illuminate"
+    ],
+    "correct_answer": "wander",
+    "explanation": "MEANDER means to follow a winding, aimless course; 'wander' is the direct synonym.",
+    "distractor_rationales": {
+      "purchase": "unrelated same-register verb; sense-family: commerce",
+      "scold": "unrelated same-register verb; sense-family: speech/reproof",
+      "tighten": "unrelated same-register verb; sense-family: physical force",
+      "illuminate": "unrelated same-register verb; sense-family: light"
+    }
+  },
+  {
+    "id": "SVS8A-10",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] INTREPID",
+    "choices": [
+      "wealthy",
+      "sluggish",
+      "bitter",
+      "fearless",
+      "courteous"
+    ],
+    "correct_answer": "fearless",
+    "explanation": "INTREPID means showing no fear in the face of danger; 'fearless' is the direct synonym.",
+    "distractor_rationales": {
+      "wealthy": "plain wrong-but-plausible adjective; sense-family: money",
+      "sluggish": "unrelated same-register adjective; sense-family: speed",
+      "bitter": "unrelated same-register adjective; sense-family: taste",
+      "courteous": "unrelated same-register adjective; sense-family: manners"
+    }
+  },
+  {
+    "id": "SVS8A-11",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] AMBIGUOUS",
+    "choices": [
+      "inexpensive",
+      "crowded",
+      "unripe",
+      "punctual",
+      "unclear"
+    ],
+    "correct_answer": "unclear",
+    "explanation": "AMBIGUOUS means open to more than one reading; 'unclear' is the direct synonym.",
+    "distractor_rationales": {
+      "inexpensive": "unrelated same-register adjective; sense-family: price",
+      "crowded": "unrelated same-register adjective; sense-family: density",
+      "unripe": "unrelated same-register adjective; sense-family: ripeness",
+      "punctual": "unrelated same-register adjective; sense-family: time-keeping"
+    }
+  },
+  {
+    "id": "SVS8A-12",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] RANCID",
+    "choices": [
+      "hollow",
+      "distant",
+      "spoiled",
+      "noisy",
+      "generous"
+    ],
+    "correct_answer": "spoiled",
+    "explanation": "RANCID describes fat or oil gone stale and foul; 'spoiled' is the direct synonym.",
+    "distractor_rationales": {
+      "hollow": "unrelated same-register adjective; sense-family: internal structure",
+      "distant": "unrelated same-register adjective; sense-family: space",
+      "noisy": "unrelated same-register adjective; sense-family: sound",
+      "generous": "unrelated same-register adjective; sense-family: character/giving"
+    }
+  },
+  {
+    "id": "SVS8A-13",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] TURBULENT",
+    "choices": [
+      "stormy",
+      "elderly",
+      "thrifty",
+      "itchy",
+      "roomy"
+    ],
+    "correct_answer": "stormy",
+    "explanation": "TURBULENT means violently agitated or unsettled; 'stormy' is the direct synonym.",
+    "distractor_rationales": {
+      "elderly": "unrelated same-register adjective; sense-family: age",
+      "thrifty": "unrelated same-register adjective; sense-family: money",
+      "itchy": "unrelated same-register adjective; sense-family: bodily sensation",
+      "roomy": "unrelated same-register adjective; sense-family: size"
+    }
+  },
+  {
+    "id": "SVS8A-14",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PROVOKE",
+    "choices": [
+      "postpone",
+      "purchase",
+      "translate",
+      "incite",
+      "decorate"
+    ],
+    "correct_answer": "incite",
+    "explanation": "PROVOKE means to stir someone to action or anger; 'incite' is the direct synonym.",
+    "distractor_rationales": {
+      "postpone": "unrelated same-register verb; sense-family: time",
+      "purchase": "unrelated same-register verb; sense-family: commerce",
+      "translate": "unrelated same-register verb; sense-family: language",
+      "decorate": "unrelated same-register verb; sense-family: ornament"
+    }
+  },
+  {
+    "id": "SVS8A-15",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ABHOR",
+    "choices": [
+      "inherit",
+      "detest",
+      "memorize",
+      "exaggerate",
+      "assemble"
+    ],
+    "correct_answer": "detest",
+    "explanation": "ABHOR means to regard with disgust and hatred; 'detest' is the direct synonym.",
+    "distractor_rationales": {
+      "inherit": "unrelated same-register verb; sense-family: property",
+      "memorize": "unrelated same-register verb; sense-family: memory",
+      "exaggerate": "unrelated same-register verb; sense-family: speech",
+      "assemble": "unrelated same-register verb; sense-family: construction"
+    }
+  },
+  {
+    "id": "SVS8A-16",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] LAVISH",
+    "choices": [
+      "compulsory",
+      "adjacent",
+      "extravagant",
+      "illegible",
+      "monotonous"
+    ],
+    "correct_answer": "extravagant",
+    "explanation": "LAVISH means given or spent in great abundance; 'extravagant' is the direct synonym.",
+    "distractor_rationales": {
+      "compulsory": "unrelated same-register adjective; sense-family: obligation",
+      "adjacent": "unrelated same-register adjective; sense-family: position",
+      "illegible": "unrelated same-register adjective; sense-family: legibility",
+      "monotonous": "unrelated same-register adjective; sense-family: variety"
+    }
+  },
+  {
+    "id": "SVS8A-17",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PLAUSIBLE",
+    "choices": [
+      "believable",
+      "affordable",
+      "regrettable",
+      "unavoidable",
+      "temporary"
+    ],
+    "correct_answer": "believable",
+    "explanation": "PLAUSIBLE means seeming reasonable or likely to be true; 'believable' is the direct synonym.",
+    "distractor_rationales": {
+      "affordable": "unrelated same-register adjective; sense-family: price",
+      "regrettable": "unrelated same-register adjective; sense-family: emotion/judgment",
+      "unavoidable": "unrelated same-register adjective; sense-family: necessity",
+      "temporary": "unrelated same-register adjective; sense-family: duration"
+    }
+  },
+  {
+    "id": "SVS8A-18",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] CULMINATE",
+    "choices": [
+      "subsidize",
+      "illustrate",
+      "navigate",
+      "rehearse",
+      "conclude"
+    ],
+    "correct_answer": "conclude",
+    "explanation": "To CULMINATE is to come to a final, highest point; 'conclude' is the direct synonym.",
+    "distractor_rationales": {
+      "subsidize": "unrelated same-register verb; sense-family: funding",
+      "illustrate": "unrelated same-register verb; sense-family: explanation",
+      "navigate": "unrelated same-register verb; sense-family: travel",
+      "rehearse": "unrelated same-register verb; sense-family: practice"
+    }
+  },
+  {
+    "id": "SVS8A-19",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] INNATE",
+    "choices": [
+      "outspoken",
+      "overpriced",
+      "undercooked",
+      "inborn",
+      "offhand"
+    ],
+    "correct_answer": "inborn",
+    "explanation": "INNATE means present from birth rather than acquired; 'inborn' is the direct synonym.",
+    "distractor_rationales": {
+      "outspoken": "unrelated same-register adjective; sense-family: speech",
+      "overpriced": "unrelated same-register adjective; sense-family: price",
+      "undercooked": "unrelated same-register adjective; sense-family: food preparation",
+      "offhand": "unrelated same-register adjective; sense-family: manner/casualness"
+    }
+  },
+  {
+    "id": "SVS8A-20",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] OMINOUS",
+    "choices": [
+      "refreshing",
+      "threatening",
+      "demanding",
+      "forgiving",
+      "misleading"
+    ],
+    "correct_answer": "threatening",
+    "explanation": "OMINOUS means giving the impression that something bad is coming; 'threatening' is the direct synonym.",
+    "distractor_rationales": {
+      "refreshing": "unrelated same-register adjective; sense-family: comfort",
+      "demanding": "unrelated same-register adjective; sense-family: effort required",
+      "forgiving": "unrelated same-register adjective; sense-family: mercy",
+      "misleading": "unrelated same-register adjective; sense-family: deception"
+    }
+  },
+  {
+    "id": "SVS8A-21",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ERRATIC",
+    "choices": [
+      "ornamental",
+      "contagious",
+      "seasonal",
+      "inconsistent",
+      "hereditary"
+    ],
+    "correct_answer": "inconsistent",
+    "explanation": "ERRATIC means irregular and changeable in behavior; 'inconsistent' is the direct synonym.",
+    "distractor_rationales": {
+      "ornamental": "unrelated same-register adjective; sense-family: decoration",
+      "contagious": "unrelated same-register adjective; sense-family: disease",
+      "seasonal": "unrelated same-register adjective; sense-family: calendar",
+      "hereditary": "unrelated same-register adjective; sense-family: inheritance"
+    }
+  },
+  {
+    "id": "SVS8A-22",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] DOCILE",
+    "choices": [
+      "absorbent",
+      "obedient",
+      "transparent",
+      "permanent",
+      "fraudulent"
+    ],
+    "correct_answer": "obedient",
+    "explanation": "DOCILE means easily managed or taught; 'obedient' is the direct synonym.",
+    "distractor_rationales": {
+      "absorbent": "unrelated same-register adjective; sense-family: absorption",
+      "transparent": "unrelated same-register adjective; sense-family: optics",
+      "permanent": "unrelated same-register adjective; sense-family: duration",
+      "fraudulent": "unrelated same-register adjective; sense-family: deceit"
+    }
+  },
+  {
+    "id": "SVS8A-23",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PERPETUAL",
+    "choices": [
+      "effortless",
+      "odorless",
+      "ceaseless",
+      "penniless",
+      "spotless"
+    ],
+    "correct_answer": "ceaseless",
+    "explanation": "PERPETUAL means going on without interruption; 'ceaseless' is the direct synonym.",
+    "distractor_rationales": {
+      "effortless": "unrelated same-register adjective; sense-family: effort",
+      "odorless": "unrelated same-register adjective; sense-family: smell",
+      "penniless": "unrelated same-register adjective; sense-family: money",
+      "spotless": "unrelated same-register adjective; sense-family: cleanliness"
+    }
+  },
+  {
+    "id": "SVS8A-24",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SCOFF",
+    "choices": [
+      "sneer",
+      "barter",
+      "wade",
+      "hoard",
+      "sprout"
+    ],
+    "correct_answer": "sneer",
+    "explanation": "To SCOFF is to speak of something with derision; 'sneer' is the direct synonym.",
+    "distractor_rationales": {
+      "barter": "unrelated same-register verb; sense-family: trade",
+      "wade": "unrelated same-register verb; sense-family: movement through water",
+      "hoard": "unrelated same-register verb; sense-family: accumulation",
+      "sprout": "unrelated same-register verb; sense-family: plant growth"
+    }
+  },
+  {
+    "id": "SVS8A-25",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] TEDIOUS",
+    "choices": [
+      "expensive",
+      "risky",
+      "filthy",
+      "cold",
+      "boring"
+    ],
+    "correct_answer": "boring",
+    "explanation": "TEDIOUS means tiresome because dull; 'boring' is the direct synonym.",
+    "distractor_rationales": {
+      "expensive": "unrelated same-register adjective; sense-family: price",
+      "risky": "unrelated same-register adjective; sense-family: danger",
+      "filthy": "unrelated same-register adjective; sense-family: cleanliness",
+      "cold": "unrelated same-register adjective; sense-family: temperature"
+    }
+  },
+  {
+    "id": "SVS8A-26",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PARCHED",
+    "choices": [
+      "flat",
+      "dry",
+      "steep",
+      "faint",
+      "sore"
+    ],
+    "correct_answer": "dry",
+    "explanation": "PARCHED means dried out by heat or thirst; 'dry' is the direct synonym.",
+    "distractor_rationales": {
+      "flat": "unrelated same-register adjective; sense-family: shape/level",
+      "steep": "unrelated same-register adjective; sense-family: slope",
+      "faint": "unrelated same-register adjective; sense-family: weakness of sound or light",
+      "sore": "unrelated same-register adjective; sense-family: bodily sensation"
+    }
+  },
+  {
+    "id": "SVS8A-27",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] WEARY",
+    "choices": [
+      "wealthy",
+      "polite",
+      "curious",
+      "tired",
+      "late"
+    ],
+    "correct_answer": "tired",
+    "explanation": "WEARY means worn out; 'tired' is the direct synonym.",
+    "distractor_rationales": {
+      "wealthy": "plain wrong-but-plausible adjective; sense-family: money",
+      "polite": "unrelated same-register adjective; sense-family: manners",
+      "curious": "unrelated same-register adjective; sense-family: intellectual disposition",
+      "late": "unrelated same-register adjective; sense-family: time"
+    }
+  },
+  {
+    "id": "SVS8A-28",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] VAST",
+    "choices": [
+      "sour",
+      "quiet",
+      "huge",
+      "wooden",
+      "early"
+    ],
+    "correct_answer": "huge",
+    "explanation": "VAST means very great in size or extent; 'huge' is the direct synonym.",
+    "distractor_rationales": {
+      "sour": "unrelated same-register adjective; sense-family: taste",
+      "quiet": "unrelated same-register adjective; sense-family: sound",
+      "wooden": "unrelated same-register adjective; sense-family: material",
+      "early": "unrelated same-register adjective; sense-family: time"
+    }
+  },
+  {
+    "id": "SVS8A-29",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] STURDY",
+    "choices": [
+      "strong",
+      "funny",
+      "cheap",
+      "distant",
+      "salty"
+    ],
+    "correct_answer": "strong",
+    "explanation": "STURDY means solidly built and able to take strain; 'strong' is the direct synonym.",
+    "distractor_rationales": {
+      "funny": "unrelated same-register adjective; sense-family: humor",
+      "cheap": "unrelated same-register adjective; sense-family: price",
+      "distant": "unrelated same-register adjective; sense-family: space",
+      "salty": "unrelated same-register adjective; sense-family: taste"
+    }
+  },
+  {
+    "id": "SVS8A-30",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] GLOOMY",
+    "choices": [
+      "spicy",
+      "hilly",
+      "wealthy",
+      "noisy",
+      "dreary"
+    ],
+    "correct_answer": "dreary",
+    "explanation": "GLOOMY means dark and dispiriting; 'dreary' is the direct synonym.",
+    "distractor_rationales": {
+      "spicy": "unrelated same-register adjective; sense-family: taste",
+      "hilly": "unrelated same-register adjective; sense-family: terrain",
+      "wealthy": "unrelated same-register adjective; sense-family: money",
+      "noisy": "unrelated same-register adjective; sense-family: sound"
+    }
+  },
+  {
+    "id": "SVS8A-31",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] RIGID",
+    "choices": [
+      "sweet",
+      "stiff",
+      "brief",
+      "loyal",
+      "hollow"
+    ],
+    "correct_answer": "stiff",
+    "explanation": "RIGID means not bending; 'stiff' is the direct synonym.",
+    "distractor_rationales": {
+      "sweet": "unrelated same-register adjective; sense-family: taste",
+      "brief": "unrelated same-register adjective; sense-family: duration",
+      "loyal": "unrelated same-register adjective; sense-family: character/allegiance",
+      "hollow": "unrelated same-register adjective; sense-family: internal structure"
+    }
+  },
+  {
+    "id": "SVS8A-32",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] TIDY",
+    "choices": [
+      "brave",
+      "cheap",
+      "loud",
+      "ripe",
+      "neat"
+    ],
+    "correct_answer": "neat",
+    "explanation": "TIDY means arranged in good order; 'neat' is the direct synonym.",
+    "distractor_rationales": {
+      "brave": "unrelated same-register adjective; sense-family: courage",
+      "cheap": "unrelated same-register adjective; sense-family: price",
+      "loud": "unrelated same-register adjective; sense-family: sound",
+      "ripe": "unrelated same-register adjective; sense-family: ripeness"
+    }
+  },
+  {
+    "id": "SVS8A-33",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] RAPID",
+    "choices": [
+      "bitter",
+      "plain",
+      "swift",
+      "greedy",
+      "round"
+    ],
+    "correct_answer": "swift",
+    "explanation": "RAPID means happening or moving quickly; 'swift' is the direct synonym.",
+    "distractor_rationales": {
+      "bitter": "unrelated same-register adjective; sense-family: taste",
+      "plain": "unrelated same-register adjective; sense-family: ornament",
+      "greedy": "unrelated same-register adjective; sense-family: character/appetite",
+      "round": "unrelated same-register adjective; sense-family: shape"
+    }
+  },
+  {
+    "id": "SVS8A-34",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] SOGGY",
+    "choices": [
+      "damp",
+      "sharp",
+      "kind",
+      "heavy",
+      "distant"
+    ],
+    "correct_answer": "damp",
+    "explanation": "SOGGY means soaked and heavy with water; 'damp' is the direct synonym.",
+    "distractor_rationales": {
+      "sharp": "unrelated same-register adjective; sense-family: edge",
+      "kind": "unrelated same-register adjective; sense-family: character",
+      "heavy": "unrelated same-register adjective; sense-family: weight",
+      "distant": "unrelated same-register adjective; sense-family: space"
+    }
+  },
+  {
+    "id": "SVS8A-35",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] HARSH",
+    "choices": [
+      "cheerful",
+      "curious",
+      "hollow",
+      "wealthy",
+      "severe"
+    ],
+    "correct_answer": "severe",
+    "explanation": "HARSH means rough or unpleasantly stern; 'severe' is the direct synonym.",
+    "distractor_rationales": {
+      "cheerful": "unrelated same-register adjective; sense-family: mood",
+      "curious": "unrelated same-register adjective; sense-family: intellectual disposition",
+      "hollow": "unrelated same-register adjective; sense-family: internal structure",
+      "wealthy": "unrelated same-register adjective; sense-family: money"
+    }
+  },
+  {
+    "id": "SVS8A-36",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] CLUMSY",
+    "choices": [
+      "generous",
+      "awkward",
+      "silent",
+      "costly",
+      "sunny"
+    ],
+    "correct_answer": "awkward",
+    "explanation": "CLUMSY means lacking physical coordination; 'awkward' is the direct synonym.",
+    "distractor_rationales": {
+      "generous": "unrelated same-register adjective; sense-family: giving",
+      "silent": "unrelated same-register adjective; sense-family: sound",
+      "costly": "unrelated same-register adjective; sense-family: price",
+      "sunny": "unrelated same-register adjective; sense-family: weather"
+    }
+  },
+  {
+    "id": "SVS8A-37",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] JOLLY",
+    "choices": [
+      "sour",
+      "steep",
+      "dusty",
+      "merry",
+      "blunt"
+    ],
+    "correct_answer": "merry",
+    "explanation": "JOLLY means full of high spirits; 'merry' is the direct synonym.",
+    "distractor_rationales": {
+      "sour": "unrelated same-register adjective; sense-family: taste",
+      "steep": "unrelated same-register adjective; sense-family: slope",
+      "dusty": "unrelated same-register adjective; sense-family: cleanliness",
+      "blunt": "unrelated same-register adjective; sense-family: edge"
+    }
+  },
+  {
+    "id": "SVS8A-38",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] SCARCE",
+    "choices": [
+      "rare",
+      "noisy",
+      "gentle",
+      "square",
+      "sticky"
+    ],
+    "correct_answer": "rare",
+    "explanation": "SCARCE means in short supply and hard to find; 'rare' is the direct synonym.",
+    "distractor_rationales": {
+      "noisy": "unrelated same-register adjective; sense-family: sound",
+      "gentle": "unrelated same-register adjective; sense-family: manner/force",
+      "square": "unrelated same-register adjective; sense-family: shape",
+      "sticky": "unrelated same-register adjective; sense-family: texture"
+    }
+  },
+  {
+    "id": "SVS8A-39",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] PLUMP",
+    "choices": [
+      "salty",
+      "cloudy",
+      "polite",
+      "chubby",
+      "cheap"
+    ],
+    "correct_answer": "chubby",
+    "explanation": "PLUMP means pleasantly rounded and full in figure; 'chubby' is the direct synonym.",
+    "distractor_rationales": {
+      "salty": "unrelated same-register adjective; sense-family: taste",
+      "cloudy": "unrelated same-register adjective; sense-family: weather",
+      "polite": "unrelated same-register adjective; sense-family: manners",
+      "cheap": "unrelated same-register adjective; sense-family: price"
+    }
+  },
+  {
+    "id": "SVS8A-40",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] VANISH",
+    "choices": [
+      "purchase",
+      "whisper",
+      "disappear",
+      "stumble",
+      "collect"
+    ],
+    "correct_answer": "disappear",
+    "explanation": "VANISH means to pass out of sight suddenly; 'disappear' is the direct synonym.",
+    "distractor_rationales": {
+      "purchase": "unrelated same-register verb; sense-family: commerce",
+      "whisper": "unrelated same-register verb; sense-family: speech",
+      "stumble": "unrelated same-register verb; sense-family: movement",
+      "collect": "unrelated same-register verb; sense-family: accumulation"
+    }
+  }
+]
