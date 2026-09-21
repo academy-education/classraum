@@ -45,7 +45,16 @@ export function rank(items) {
     const k = val(x.correct_answer); if (k === null) continue
     n++; if (k === Math.max(...o)) big++; if (k === Math.min(...o)) small++
   }
-  return { n, big, small }
+  /* INTERIOR is the load-bearing statistic and was missing from the first
+   * version of this file. Largest and smallest are two marginals, and a batch
+   * can push BOTH toward zero without either one reaching significance at a
+   * realistic batch size -- sat-math-v12 sat at 85.3% interior against a live
+   * 68.4% (z = 2.12, a real deviation) while its two marginals scored z = -1.03
+   * and -1.66 and this checker returned exit 0. The repair agent found that by
+   * running the pre-edit file through as a break-test and reporting that it
+   * PASSED. A checker whose green survives the defect it was written for is
+   * the thing this directory exists to catch. */
+  return { n, big, small, interior: n - big - small }
 }
 
 const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-key-magnitude.mjs')
@@ -77,14 +86,15 @@ if (RUN_AS_CLI) {
   const c = rank(cand)
   if (live.n < 50) { console.error(`REFUSING: only ${live.n} scorable live ${fam} items — too thin to be a control`); process.exit(2) }
   if (c.n < 10) { console.error(`REFUSING: only ${c.n} scorable candidate items`); process.exit(2) }
-  const p = live.big / live.n, q = live.small / live.n
+  const p = live.big / live.n, q = live.small / live.n, r = live.interior / live.n
   const z = (obs, n, pr) => (obs - n * pr) / Math.sqrt(n * pr * (1 - pr))
-  const zb = z(c.big, c.n, p), zs = z(c.small, c.n, q)
+  const zb = z(c.big, c.n, p), zs = z(c.small, c.n, q), zi = z(c.interior, c.n, r)
+  const pc = v => (100 * v).toFixed(1).padStart(5) + '%'
   console.log('')
-  console.log(`  live ${fam}`.padEnd(28) + `n=${String(live.n).padStart(4)}   largest ${(100*p).toFixed(1)}%   smallest ${(100*q).toFixed(1)}%`)
-  console.log('  ' + file.replace(/^.*\//, '').padEnd(26) + `n=${String(c.n).padStart(4)}   largest ${(100*c.big/c.n).toFixed(1)}%   smallest ${(100*c.small/c.n).toFixed(1)}%`)
-  console.log(`  z against live:              largest ${zb.toFixed(2)}   smallest ${zs.toFixed(2)}     (|z| > 1.96 is a real deviation)`)
-  const bad = Math.abs(zb) > 1.96 || Math.abs(zs) > 1.96
+  console.log(`  live ${fam}`.padEnd(28) + `n=${String(live.n).padStart(4)}   largest ${pc(p)}   smallest ${pc(q)}   INTERIOR ${pc(r)}`)
+  console.log('  ' + file.replace(/^.*\//, '').padEnd(26) + `n=${String(c.n).padStart(4)}   largest ${pc(c.big/c.n)}   smallest ${pc(c.small/c.n)}   INTERIOR ${pc(c.interior/c.n)}`)
+  console.log(`  z against live:${' '.repeat(14)}${zb.toFixed(2).padStart(6)}${' '.repeat(6)}${zs.toFixed(2).padStart(6)}${' '.repeat(9)}${zi.toFixed(2).padStart(6)}     (|z| > 1.96 deviates)`)
+  const bad = Math.abs(zb) > 1.96 || Math.abs(zs) > 1.96 || Math.abs(zi) > 1.96
   console.log('  ' + (bad ? 'DEVIATES from the live bank — a free elimination is available' : 'consistent with the live bank'))
   console.log('')
   process.exitCode = bad ? 1 : 0

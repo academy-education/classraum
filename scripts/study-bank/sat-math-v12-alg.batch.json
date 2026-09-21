@@ -93,15 +93,15 @@
    "7",
    "31",
    "25",
-   "40"
+   "30"
   ],
   "correct_answer": "31",
-  "explanation": "The rate of change is (22 - 4)/(7 - 1) = 3 per unit. From f(7) = 22 the input increases by 3, so f(10) = 22 + 3(3) = 31, which is \"31\". \"40\" comes from adding the whole rise of 18 again for the step from 7 to 10. \"25\" comes from adding a single step of 3 rather than three of them. \"7\" comes from inverting the rate as 6/18 = 1/3 and computing 4 + (1/3)(9).",
+  "explanation": "The rate of change is (22 - 4)/(7 - 1) = 3 per unit, so the function is f(x) = 3x + 1. From f(7) = 22 the input increases by 3, so f(10) = 22 + 3(3) = 31, which is \"31\". \"30\" comes from treating the function as directly proportional once the rate of change is found, that is f(x) = 3x, which ignores that f(1) = 4 rather than 3. \"25\" comes from adding a single step of 3 to f(7) rather than three of them. \"7\" comes from inverting the rate as 6/18 = 1/3 and computing 4 + (1/3)(9).",
   "solve": "var m=(22-4)/(7-1); return String(22+m*(10-7));",
   "distractor_solve": {
-   "40": "return String(22+(22-4));",
    "25": "return String(22+(22-4)/(7-1));",
-   "7": "return String(4+(7-1)/(22-4)*(10-1));"
+   "7": "return String(4+(7-1)/(22-4)*(10-1));",
+   "30": "var m=(22-4)/(7-1); return String(m*10);"
   }
  },
  {
@@ -259,17 +259,17 @@
   "prompt": "At a snack stand, 3 pretzels and 2 drinks cost $12.00, and 5 pretzels and 4 drinks cost $21.00. At the same prices, what is the cost of 2 pretzels and 5 drinks?",
   "choices": [
    "13.5",
-   "10.5",
+   "21",
    "16.5",
    "18"
   ],
   "correct_answer": "13.5",
-  "explanation": "Doubling the first equation gives 6p + 4d = 24.00, and subtracting the second gives p = 3.00. Then 2d = 12.00 - 9.00 = 3.00, so d = 1.50. The basket costs 2(3.00) + 5(1.50) = 13.50, which is \"13.5\". \"18\" comes from swapping the two prices and computing 2(1.50) + 5(3.00). \"16.5\" is the cost of 4 pretzels and 3 drinks, the basket obtained by averaging the two given purchases rather than the one asked for. \"10.5\" comes from pricing all seven items at the drink price, 7(1.50).",
+  "explanation": "Doubling the first equation gives 6p + 4d = 24.00, and subtracting the second gives p = 3.00. Then 2d = 12.00 - 9.00 = 3.00, so d = 1.50. The basket costs 2(3.00) + 5(1.50) = 13.50, which is \"13.5\". \"18\" comes from swapping the two prices and computing 2(1.50) + 5(3.00). \"16.5\" is the cost of 4 pretzels and 3 drinks, the basket obtained by averaging the two given purchases rather than the one asked for. \"21\" comes from pricing all seven items at the pretzel price, 7(3.00), after finding p = 3.00 but never solving for the price of a drink.",
   "solve": "var p=(2*12-21); var d=(12-3*p)/2; return String(2*p+5*d);",
   "distractor_solve": {
    "18": "var p=3,d=1.5; return String(2*d+5*p);",
    "16.5": "return String((12+21)/2);",
-   "10.5": "return String(7*1.5);"
+   "21": "var p=(2*12-21); return String(7*p);"
   }
  },
  {
