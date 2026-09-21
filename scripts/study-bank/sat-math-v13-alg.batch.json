@@ -1,0 +1,107 @@
+[
+ {
+  "id": "SM13L-01",
+  "domain": "Algebra",
+  "difficulty": "easy",
+  "subskill": "constant-rate linear model: the elapsed time depends on the amount removed, which is the difference of the two given levels rather than either level itself",
+  "prompt": "A tank holds 6,000 liters of water. Water is pumped out of the tank at a constant rate of 40 liters per minute. How many minutes does it take until 2,400 liters of water remain in the tank?",
+  "choices": [
+   "60",
+   "90",
+   "150",
+   "210"
+  ],
+  "correct_answer": "90",
+  "explanation": "The amount pumped out is 6,000 - 2,400 = 3,600 liters, and at 40 liters per minute that takes 3,600/40 = 90 minutes, which is \"90\". \"150\" is the time needed to empty the tank completely, 6,000/40, which answers a question about no water remaining rather than 2,400 liters remaining. \"60\" comes from dividing the amount that remains by the rate, 2,400/40, that is, timing the water still in the tank instead of the water taken out. \"210\" comes from adding the two volumes instead of subtracting, (6,000 + 2,400)/40.",
+  "solve": "var removed = 6000 - 2400; return String(removed / 40);",
+  "distractor_solve": {
+   "150": "return String(6000 / 40);",
+   "60": "return String(2400 / 40);",
+   "210": "return String((6000 + 2400) / 40);"
+  }
+ },
+ {
+  "id": "SM13L-02",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "literal equation in three variables: undo the division by the whole right side before undoing the subtraction inside it, then evaluate",
+  "prompt": "If y = (x - 3z)/4, what is the value of x when y = 280 and z = 40?",
+  "choices": [
+   "190",
+   "400",
+   "1000",
+   "1240"
+  ],
+  "correct_answer": "1240",
+  "explanation": "Multiplying both sides by 4 gives 4y = x - 3z, so x = 4y + 3z = 4(280) + 3(40) = 1,120 + 120 = 1,240, which is \"1240\". \"1000\" comes from subtracting 3z instead of adding it when isolating x, 1,120 - 120. \"400\" comes from omitting the multiplication by 4 altogether and computing 280 + 120. \"190\" comes from dividing by 4 rather than multiplying by it, 280/4 + 120 = 70 + 120.",
+  "solve": "var y = 280, z = 40; return String(4 * y + 3 * z);",
+  "distractor_solve": {
+   "1000": "var y = 280, z = 40; return String(4 * y - 3 * z);",
+   "400": "var y = 280, z = 40; return String(y + 3 * z);",
+   "190": "var y = 280, z = 40; return String(y / 4 + 3 * z);"
+  }
+ },
+ {
+  "id": "SM13L-03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "one-variable linear inequality with two separate fixed weights, answered as a greatest whole number, so the quotient must be rounded down rather than to the nearest integer",
+  "prompt": "A delivery van can carry a total weight of at most 900 kilograms, including the driver. The driver weighs 80 kilograms, and the van is already carrying 12 crates that each weigh 35 kilograms. What is the greatest number of boxes, each weighing 24 kilograms, that can also be carried without the total weight exceeding 900 kilograms?",
+  "choices": [
+   "16",
+   "17",
+   "20",
+   "34"
+  ],
+  "correct_answer": "16",
+  "explanation": "The crates weigh 12(35) = 420 kilograms, so the weight available for boxes is 900 - 80 - 420 = 400 kilograms. Since 400/24 is about 16.7 and only whole boxes can be carried, the greatest number is \"16\": 16 boxes weigh 384 kilograms for a total of 884, while 17 boxes weigh 408 kilograms for a total of 908, which is over the limit. \"17\" comes from rounding 16.7 up rather than down, which puts the van over 900 kilograms. \"20\" comes from leaving the driver out of the total, (900 - 420)/24. \"34\" comes from leaving the crates out, so that 820 kilograms appear to be available for boxes.",
+  "solve": "var avail = 900 - 80 - 12 * 35; return String(Math.floor(avail / 24));",
+  "distractor_solve": {
+   "17": "var avail = 900 - 80 - 12 * 35; return String(Math.ceil(avail / 24));",
+   "20": "var avail = 900 - 12 * 35; return String(Math.floor(avail / 24));",
+   "34": "var avail = 900 - 80; return String(Math.floor(avail / 24));"
+  }
+ },
+ {
+  "id": "SM13L-04",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "absolute value equation whose right side contains the variable: both cases must be solved and each candidate checked, because one of them makes the right side negative and is not a solution",
+  "prompt": "What is the sum of all values of x that satisfy the equation |3x - 14| = 4x - 21?",
+  "choices": [
+   "1",
+   "5",
+   "7",
+   "12"
+  ],
+  "correct_answer": "7",
+  "explanation": "The two cases give 3x - 14 = 4x - 21, so x = 7, and 14 - 3x = 4x - 21, so 7x = 35 and x = 5. Each candidate must be checked, because the right side can be negative while the left side cannot. At x = 7 the equation reads |7| = 7, which is true. At x = 5 it reads |1| = -1, which is false, so 5 is not a solution. The only solution is 7, and the sum of all solutions is \"7\". \"12\" is the sum of both candidates, 7 + 5, taken by a solver who never checks them. \"5\" is the candidate that must be rejected. \"1\" comes from distributing the negative to only the first term in the second case, -3x - 14 = 4x - 21, which gives 7x = 7.",
+  "solve": "var s = 0; for (var i = -400; i <= 400; i++) { var x = i / 4; if (Math.abs(Math.abs(3 * x - 14) - (4 * x - 21)) < 1e-9) s += x; } return String(s);",
+  "distractor_solve": {
+   "12": "var a = (21 - 14) / (4 - 3); var b = (14 + 21) / (3 + 4); return String(a + b);",
+   "5": "return String((14 + 21) / (3 + 4));",
+   "1": "return String((21 - 14) / (4 + 3));"
+  }
+ },
+ {
+  "id": "SM13L-05",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "comparing a one-piece linear cost with a two-tier one: the comparison must be made on the tier that actually applies, and the first whole number that makes the inequality strict is one past the value where the costs are equal",
+  "prompt": "A studio offers two payment plans for a series of classes. Plan A charges a one-time fee of $84 plus $7 for each class attended. Plan B charges no one-time fee, but charges $14 for each of the first 6 classes attended and $10 for each class attended after the first 6. What is the least number of classes for which the total cost under Plan A is less than the total cost under Plan B?",
+  "choices": [
+   "13",
+   "20",
+   "21",
+   "29"
+  ],
+  "correct_answer": "21",
+  "explanation": "For n classes with n greater than 6, Plan A costs 84 + 7n and Plan B costs 14(6) + 10(n - 6) = 10n + 24. Plan A is cheaper when 84 + 7n < 10n + 24, that is 60 < 3n, so n > 20 and the least whole number is \"21\": at 21 classes Plan A costs $231 and Plan B costs $234. The other tier must also be checked and rules nothing in, since for n at most 6 the condition 84 + 7n < 14n requires n > 12. \"20\" is the number of classes at which the two plans cost the same, $224 each, which does not satisfy a strict inequality. \"13\" comes from charging $14 for every class under Plan B, giving 84 + 7n < 14n and n > 12. \"29\" comes from charging $10 for every class under Plan B, giving 84 + 7n < 10n and n > 28.",
+  "solve": "for (var n = 1; n <= 500; n++) { var A = 84 + 7 * n; var B = n <= 6 ? 14 * n : 14 * 6 + 10 * (n - 6); if (A < B) return String(n); } return 'none';",
+  "distractor_solve": {
+   "20": "for (var n = 1; n <= 500; n++) { var A = 84 + 7 * n; var B = n <= 6 ? 14 * n : 14 * 6 + 10 * (n - 6); if (A <= B) return String(n); } return 'none';",
+   "13": "for (var n = 1; n <= 500; n++) { if (84 + 7 * n < 14 * n) return String(n); } return 'none';",
+   "29": "for (var n = 1; n <= 500; n++) { if (84 + 7 * n < 10 * n) return String(n); } return 'none';"
+  }
+ }
+]

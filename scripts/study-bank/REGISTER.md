@@ -2740,3 +2740,20 @@ structural checks are pre-flight only. See CLAUDE.md.
   **A DOMAIN-SPECIFIC LEAK WORTH PUTTING IN THE BRIEF: statistics option sets leak more than bare algebra ones.** Two solvers independently found that when an author computes distractors from one two-way table, the **joint, the marginal and the reverse conditional appear as siblings, and that family is a fingerprint of the stem.** A solver reconstructed `AM11T-02`'s question from its option set alone (it still could not answer it, 0 of 3). The same shape hit several live control items. CLAUDE.md's rule — *the options must not differ along the axis the stem names* — has a statistics dialect: **do not ship the marginal, the joint and the conditional of one table as each other's distractors.**
 
   Blind result, with the denominator read first: candidate **27.8%** against a derived control of 33.3% over **n=6, which cannot support a rate**; live control 27.8% against 27.8%. The per-item result decided it, not the mean.
+
+- **2026-09-22** — **SAT MATH REACHES 25 COMPLETE FORMS. TWO ITEMS BOUGHT IT, AND THE BLIND HALF VETOED THE GRADER'S FAVOURITE.** 2 of 5 Algebra items ship; the section goes 24 → **25**. Second new form of the day, after ACT Math 13 → 14.
+
+  **THE ONE ITEM THE WITH-SOURCE GRADER WANTED MOST WAS SOLVED BLIND BY ALL THREE SOLVERS.** `SM13L-04` was its top pick — *"the one genuinely hard item, strongest distractor set, extraneous root the stem never flags"* — and it is dropped. **A unanimous blind solve outranks a quality judgement.** This is the first time this session the two halves of the gate have pointed in opposite directions on a specific item, and it is worth stating which wins: the with-source half decides what is BROKEN, the blind half decides what is GUESSABLE, and an item can be excellent and guessable at once.
+
+      CANDIDATE v13 algebra    5 items   33.3%  derived control 40.0%  margin -6.7
+      CONTROL live algebra    15 items   17.8%  derived control 26.7%  margin -8.9
+
+  Both arms below their own controls. n=5 cannot support a rate, so the per-item result decided: `SM13L-04` 3/3, `SM13L-05` 2/3, the other three 0/3.
+
+  **ALL FIVE SELF-LABELLED "MECHANISM" PICKS ACROSS THE WHOLE RENDER WERE WRONG.** Third maths batch running where confident structural reasoning scores at or below chance — 10.0% on one SAT run, 12.5% on an earlier one, 0 of 5 here. **On clean numeric material, a solver's confidence is anti-correlated with being right.** That is now a usable calibration: a numeric batch where mechanism picks run HIGH is the one to worry about.
+
+  **The author found and fixed its own options-only tell before reporting.** Its first draft had `185` as the lone non-round value among three multiples of 10 — the exact mirror of the "only non-integer" defect that had just dropped `SM12A-16` — and it renumbered to make all four multiples of 10. That is the first time an author in this session has caught the defect class that a previous batch was dropped for.
+
+  **Two dropped on with-source findings, both familiar shapes:** `SM13L-01` carries a **dead option** (210 exceeds the time to drain the entire tank, so the item is effectively three-choice — the same defect as `AM11T-01`'s out-of-range frequency), and `SM13L-02` is easy with an **incoherent distractor path** (it divides on the wrong side yet handles 3z correctly, so no real student produces it — the same defect as `SM12L-03`).
+
+  **ONE RESIDUAL, RECORDED RATHER THAN HIDDEN.** The two survivors **share a mechanism**: both are one-variable inequalities answered as the integer at a boundary, with the off-by-one sitting in the option list. The grader named the collision and recommended shipping `04` and `05`; the blind half vetoed `04`, which left the duplicated pair as the only way to reach the form. Different surfaces and strong distractors on both, but **Algebra is the binding domain, so new items get drawn together — if a third Algebra item is authored, it must not be a boundary item.**

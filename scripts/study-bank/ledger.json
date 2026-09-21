@@ -4058,6 +4058,40 @@
      "verdict": "check-key-magnitude REFUSES at n<10, correctly, so the batch was measured pooled with the 42-item v11 batch it supplements: largest 16.7%, smallest 18.8%, interior 64.6% against a live 21.0/23.1/55.9, all within z=1.22. The 6 alone deal one key largest and one smallest by construction. Numeric hub: no derivational structure in any option set. A leak specific to this domain was found and is recorded for the brief: where an author computes distractors from one two-way table, the joint, the marginal and the reverse conditional appear as siblings and that family is a fingerprint of the stem -- a solver reconstructed AM11T-02's question from its option set alone, though it could not answer it (0 of 3). Statistics option sets leak more than bare algebra ones."
     }
    }
+  },
+  {
+   "id": "sat-math-v13-alg-kept-2026-09-22",
+   "createdAt": "2026-09-22",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "math_mc",
+   "family": "mc_stem_source",
+   "cohort": "sat-math-v13",
+   "contentSha": "3c61d0bf2dd9be0d0094cd0ec104a029f23d244c73b2626c41b3b207ff0c85a8",
+   "status": "shipped",
+   "note": "2 of 5 survive, closing the Algebra gap left after v12's drops. Advanced Math was already met, so these two are the whole distance to form 25.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "3c61d0bf2dd9be0d0094cd0ec104a029f23d244c73b2626c41b3b207ff0c85a8",
+     "verdict": "5 authored, 4 choices each, key present, no duplicate values within an item, NO OPTION EQUAL TO ANY NUMERAL IN ITS OWN STEM (checked mechanically -- a v12 item was dropped for exactly that), no explanation naming a slot letter. Sandbox 5/5 keys recompute, 15/15 distractors recompute. The author break-tested the harness twice on a copy: mis-keying an item dropped the sandbox to 4/5 AND flipped the hub line to key-is-hub 100.0%, and corrupting a distractor derivation produced a mismatch. It also found and fixed its own options-only tell before reporting -- a first draft had 185 as the lone non-round value among three multiples of 10, the mirror of the \"only non-integer\" defect that dropped SM12A-16."
+    },
+    "withsource": {
+     "passed": true,
+     "contentSha": "3c61d0bf2dd9be0d0094cd0ec104a029f23d244c73b2626c41b3b207ff0c85a8",
+     "verdict": "An independent grader solved all five from the prompts before reading explanations, then re-verified by exhaustive scan including a rational-grid sweep for the absolute-value item and a full piecewise scan for the cost item. NO KEY DISPUTED, none second-defensible, no stem-value collision, every distractor path coherent. It checked the two boundary conventions explicitly rather than by sweep: SM13L-03's limit is stated twice in agreeing phrasings and neither candidate lands ON the bound, so no strict-vs-inclusive reading rescues 17; SM13L-05 has A and B EXACTLY equal at n=20, so 20 is a strong trap rather than a competing-convention second key. Difficulty from the grader: 2 easy / 2 medium / 1 hard against the author's 1/2/2. Two dropped on its findings -- SM13L-01 carries a dead option (210 exceeds the time to drain the whole tank) making it three-choice, and SM13L-02 is easy with an incoherent 190 distractor that divides on the wrong side yet handles 3z correctly."
+    },
+    "nosource": {
+     "passed": true,
+     "contentSha": "3c61d0bf2dd9be0d0094cd0ec104a029f23d244c73b2626c41b3b207ff0c85a8",
+     "verdict": "Options-only attack, three solvers, 5 candidates interleaved with 15 composition-matched live Algebra items, arm only in the key, key SLOT dealt flat because n=5 cannot carry a free shuffle. CANDIDATE 33.3% against a derived control of 40.0% (margin -6.7); CONTROL 17.8% against 26.7% (margin -8.9). Both below their own controls. READ THE DENOMINATOR: n=5 cannot support a rate, so the per-item result decides. SM13L-04 was solved by ALL THREE solvers and is dropped -- it was the with-source grader's top pick, the only genuinely hard item with the strongest distractor set, and the unanimous blind solve outranks that. ALL FIVE of the solvers' self-labelled \"mechanism\" picks across the whole render were WRONG, which is the third maths batch running where confident structural reasoning scores below chance."
+    },
+    "tells": {
+     "passed": true,
+     "contentSha": "3c61d0bf2dd9be0d0094cd0ec104a029f23d244c73b2626c41b3b207ff0c85a8",
+     "verdict": "check-key-magnitude refuses at n<10, so the batch was measured pooled with sat-math-v12.kept: largest 18.8%, smallest 12.5%, interior 68.8% against live 15.3/16.3/68.5 -- z = 0.55 / -0.58 / 0.03, the closest match to the live distribution of any batch this session. ONE RESIDUAL RECORDED RATHER THAN HIDDEN: the two survivors share a mechanism. Both SM13L-03 and SM13L-05 are one-variable inequalities whose answer is the integer at a boundary, with the off-by-one in the option list; the grader named the collision and recommended shipping 04 and 05, which the blind half then vetoed. Different surfaces (a weight budget against a two-tier price) and strong distractors on both, but Algebra is the BINDING domain so new items are drawn together -- if a third Algebra item is authored, it must not be a boundary item."
+    }
+   }
   }
  ],
  "auditedCohorts": [
