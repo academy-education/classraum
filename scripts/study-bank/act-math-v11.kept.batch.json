@@ -1,0 +1,860 @@
+[
+ {
+  "id": "AM11A-01",
+  "domain": "Algebra",
+  "subskill": "the sum of the RECIPROCALS of the two solutions of a quadratic, read off the coefficients",
+  "prompt": "The equation 3x² − 11x + 6 = 0 has two solutions, r and s. What is the value of 1/r + 1/s ?",
+  "choices": [
+   "11/6",
+   "11/18",
+   "3/11",
+   "1/2"
+  ],
+  "correct_answer": "11/6",
+  "explanation": "Adding the two reciprocals over a common denominator gives 1/r + 1/s = (r + s)/(rs). For 3x² − 11x + 6 = 0 the sum of the solutions is 11/3 and the product is 6/3 = 2, so the value is (11/3)/2 = 11/6. The option \"11/18\" divides the sum of the solutions by the constant term 6 instead of by the product of the solutions, which is 6/3 = 2, not 6. The option \"3/11\" answers 1/(r + s) — one reciprocal of the sum rather than the sum of the two reciprocals. The option \"1/2\" answers 1/(rs), taking the reciprocal of the product alone and leaving out the factor r + s in the numerator.",
+  "topic_tag": "quadratic equations",
+  "difficulty": "medium",
+  "solve": "const a=3,b=-11,c=6; const sum=-b/a, prod=c/a; return String(sum/prod);",
+  "distractor_solve": {
+   "11/18": "const a=3,b=-11,c=6; return String((-b/a)/c);",
+   "3/11": "const a=3,b=-11; return String(1/(-b/a));",
+   "1/2": "const a=3,c=6; return String(1/(c/a));"
+  }
+ },
+ {
+  "id": "AM11A-02",
+  "domain": "Algebra",
+  "subskill": "an age relationship stated now and again at a future time, solved for the age of the YOUNGER person",
+  "prompt": "Marta is now 5 times as old as her nephew Dev. In 6 years, Marta will be 3 times as old as Dev will be then. How old is Dev now?",
+  "choices": [
+   "6",
+   "9",
+   "12",
+   "30"
+  ],
+  "correct_answer": "6",
+  "explanation": "Let Dev's present age be d, so Marta's is 5d. In 6 years their ages are d + 6 and 5d + 6, and the condition is 5d + 6 = 3(d + 6). That gives 5d + 6 = 3d + 18, so 2d = 12 and d = 6. The option \"9\" adds the 6 years only to Dev's age, solving 5d = 3(d + 6). The option \"12\" is Dev's age 6 years from now rather than now. The option \"30\" is Marta's present age, 5(6), which would make her 30 and Dev 6 — the right pair, but the wrong person.",
+  "topic_tag": "linear equations in context",
+  "difficulty": "medium",
+  "solve": "return String((3*6-6)/(5-3));",
+  "distractor_solve": {
+   "9": "return String(3*6/(5-3));",
+   "12": "return String((3*6-6)/(5-3)+6);",
+   "30": "return String(5*((3*6-6)/(5-3)));"
+  }
+ },
+ {
+  "id": "AM11A-03",
+  "domain": "Algebra",
+  "subskill": "recovering a PARAMETER from a stated solution of a linear equation in which the parameter sits inside a distributed product",
+  "prompt": "The number x = 3 is a solution of the equation 4(x − c) = 2x − 14. What is the value of c ?",
+  "choices": [
+   "-2",
+   "5",
+   "11",
+   "20"
+  ],
+  "correct_answer": "5",
+  "explanation": "Substituting x = 3 gives 4(3 − c) = 2(3) − 14, so 12 − 4c = −8. Then 4c = 20 and c = 5. The option \"20\" comes from distributing the 4 only onto x, reading the left side as 4x − c = 12 − c and solving 12 − c = −8. The option \"11\" divides the left side by 4 without dividing the right side, solving 3 − c = −8. The option \"-2\" evaluates the right side as 2(3) + 14 = 20 instead of 2(3) − 14, and solves 12 − 4c = 20.",
+  "topic_tag": "linear equations",
+  "difficulty": "medium",
+  "solve": "const x=3; return String((4*x-(2*x-14))/4);",
+  "distractor_solve": {
+   "11": "const x=3; return String(x-(2*x-14));",
+   "20": "const x=3; return String(4*x-(2*x-14));",
+   "-2": "const x=3; return String((4*x-(2*x+14))/4);"
+  }
+ },
+ {
+  "id": "AM11A-04",
+  "domain": "Algebra",
+  "subskill": "a CUBE-root equation with a negative right side, where cubing preserves the sign and introduces no extraneous root",
+  "prompt": "What is the solution of the equation ∛(x + 5) = −3 ?",
+  "choices": [
+   "-32",
+   "-22",
+   "-14",
+   "4"
+  ],
+  "correct_answer": "-32",
+  "explanation": "Cubing both sides gives x + 5 = (−3)³ = −27, so x = −32. Unlike squaring, cubing keeps the sign of the right side, so no check for an extraneous root is needed. The option \"4\" squares both sides instead of cubing them, solving x + 5 = 9. The option \"-14\" multiplies −3 by 3 instead of cubing it, solving x + 5 = −9. The option \"-22\" reaches x + 5 = −27 correctly and then adds 5 to both sides instead of subtracting it.",
+  "topic_tag": "radical equations",
+  "difficulty": "medium",
+  "solve": "return String(Math.pow(-3,3)-5);",
+  "distractor_solve": {
+   "4": "return String(Math.pow(-3,2)-5);",
+   "-22": "return String(Math.pow(-3,3)+5);",
+   "-14": "return String(-3*3-5);"
+  }
+ },
+ {
+  "id": "AM11A-05",
+  "domain": "Algebra",
+  "subskill": "undoing a stated chain of operations in reverse order to recover the starting number",
+  "prompt": "Half of a certain number, increased by 7, is 19. What is the number?",
+  "choices": [
+   "12",
+   "24",
+   "26",
+   "38"
+  ],
+  "correct_answer": "24",
+  "explanation": "If the number is n, then n/2 + 7 = 19, so n/2 = 12 and n = 24. The option \"12\" is the value of n/2, the intermediate result, reported instead of the number itself. The option \"26\" adds 7 to 19 instead of subtracting it and then omits the doubling. The option \"38\" doubles 19 first and never removes the 7.",
+  "topic_tag": "linear equations",
+  "difficulty": "easy",
+  "solve": "return String((19-7)*2);",
+  "distractor_solve": {
+   "12": "return String(19-7);",
+   "26": "return String(19+7);",
+   "38": "return String(19*2);"
+  }
+ },
+ {
+  "id": "AM11A-06",
+  "domain": "Algebra",
+  "subskill": "an absolute-value equation with the variable on BOTH sides, where one algebraic root makes the right side negative and must be rejected",
+  "prompt": "What is the solution of the equation |x − 8| = 2x − 7 ?",
+  "choices": [
+   "-1",
+   "4",
+   "5",
+   "15"
+  ],
+  "correct_answer": "5",
+  "explanation": "The two cases are x − 8 = 2x − 7 and x − 8 = −(2x − 7). The first gives x = −1, but then the right side 2(−1) − 7 = −9 is negative while an absolute value cannot be, so that root is rejected. The second gives x − 8 = −2x + 7, so 3x = 15 and x = 5, which checks: |5 − 8| = 3 and 2(5) − 7 = 3. The option \"-1\" is the root of the first case, accepted without checking the sign of the right side. The option \"15\" stops at 3x = 15 and reports 15 without dividing by 3. The option \"4\" adds the two algebraic roots, −1 and 5, as though the question asked for their sum.",
+  "topic_tag": "absolute value equations",
+  "difficulty": "hard",
+  "solve": "return String((8+7)/3);",
+  "distractor_solve": {
+   "4": "return String((8+7)/3 + (-8+7));",
+   "15": "return String(8+7);",
+   "-1": "return String(-8+7);"
+  }
+ },
+ {
+  "id": "AM11A-08",
+  "domain": "Algebra",
+  "subskill": "rationalizing a BINOMIAL radical denominator with its conjugate, then combining the two integer parts of the result",
+  "prompt": "The expression 10/(4 − √6) can be written in the form a + b√6, where a and b are integers. What is the value of a + b ?",
+  "choices": [
+   "3",
+   "5",
+   "14",
+   "50"
+  ],
+  "correct_answer": "5",
+  "explanation": "Multiplying numerator and denominator by the conjugate 4 + √6 gives 10(4 + √6)/(4² − 6) = 10(4 + √6)/10 = 4 + √6. So a = 4, b = 1, and a + b = 5. The option \"3\" multiplies by 4 − √6 rather than by the conjugate, producing 4 − √6 and giving 4 + (−1). The option \"50\" expands the numerator to 40 + 10√6 but never divides by the new denominator 10, giving 40 + 10. The option \"14\" divides only the rational part of 40 + 10√6 by the new denominator 10, leaving 4 + 10√6, so b is never reduced.",
+  "topic_tag": "radical expressions",
+  "difficulty": "medium",
+  "solve": "const num=10,p=4,q=6; const den=p*p-q; return String(num*p/den + num/den);",
+  "distractor_solve": {
+   "3": "const num=10,p=4,q=6; const den=p*p-q; return String(num*p/den - num/den);",
+   "14": "const num=10,p=4,q=6; const den=p*p-q; return String(num*p/den + num);",
+   "50": "const num=10,p=4; return String(num*p + num);"
+  }
+ },
+ {
+  "id": "AM11A-09",
+  "domain": "Algebra",
+  "subskill": "a cubic factored by GROUPING into a linear factor and a difference of squares, with the greatest solution requested",
+  "prompt": "What is the greatest solution of the equation x³ + 5x² − 9x − 45 = 0 ?",
+  "choices": [
+   "-5",
+   "3",
+   "5",
+   "9"
+  ],
+  "correct_answer": "3",
+  "explanation": "Grouping gives x²(x + 5) − 9(x + 5) = (x + 5)(x² − 9) = (x + 5)(x − 3)(x + 3), so the solutions are −5, 3 and −3, and the greatest is 3. The option \"5\" reads the factor x + 5 as giving the solution 5 rather than −5. The option \"9\" comes from x² − 9 = 0 answered as x = 9, taking the constant instead of its square root. The option \"-5\" is the least solution, reported in place of the greatest.",
+  "topic_tag": "polynomial equations",
+  "difficulty": "medium",
+  "solve": "const a=5,b=9; const roots=[-a,Math.sqrt(b),-Math.sqrt(b)]; return String(Math.max(...roots));",
+  "distractor_solve": {
+   "5": "const a=5,b=9; const roots=[a,Math.sqrt(b),-Math.sqrt(b)]; return String(Math.max(...roots));",
+   "9": "const a=5,b=9; const roots=[-a,b,-b]; return String(Math.max(...roots));",
+   "-5": "const a=5,b=9; const roots=[-a,Math.sqrt(b),-Math.sqrt(b)]; return String(Math.min(...roots));"
+  }
+ },
+ {
+  "id": "AM11A-10",
+  "domain": "Algebra",
+  "subskill": "a DEFINED symbol operation that is not commutative, producing a quadratic when the two orders are set equal",
+  "prompt": "For all real numbers a and b, the operation ⊗ is defined by a ⊗ b = 2a − b². What is the greatest value of x for which 5 ⊗ x = x ⊗ 5 ?",
+  "choices": [
+   "-7",
+   "5",
+   "7",
+   "35"
+  ],
+  "correct_answer": "5",
+  "explanation": "By the definition, 5 ⊗ x = 2(5) − x² = 10 − x² and x ⊗ 5 = 2x − 5² = 2x − 25. Setting them equal gives 10 − x² = 2x − 25, so x² + 2x − 35 = 0 and (x + 7)(x − 5) = 0. The solutions are −7 and 5, and the greatest is 5. The option \"-7\" is the lesser solution. The option \"7\" misreads the factor x + 7 as giving 7. The option \"35\" reports the constant from x² + 2x = 35 without solving for x at all.",
+  "topic_tag": "defined operations",
+  "difficulty": "medium",
+  "solve": "const a=1,b=2,c=-35; const d=Math.sqrt(b*b-4*a*c); return String(Math.max((-b+d)/(2*a),(-b-d)/(2*a)));",
+  "distractor_solve": {
+   "7": "const a=1,b=2,c=-35; const d=Math.sqrt(b*b-4*a*c); return String(Math.abs(Math.min((-b+d)/(2*a),(-b-d)/(2*a))));",
+   "35": "const c=-35; return String(-c);",
+   "-7": "const a=1,b=2,c=-35; const d=Math.sqrt(b*b-4*a*c); return String(Math.min((-b+d)/(2*a),(-b-d)/(2*a)));"
+  }
+ },
+ {
+  "id": "AM11F-01",
+  "domain": "Functions",
+  "subskill": "a logarithm whose BASE is the unknown, with a POWER of that base requested rather than the base itself",
+  "prompt": "If log_x 243 = 5, what is the value of x³ ?",
+  "choices": [
+   "9",
+   "15",
+   "27",
+   "125"
+  ],
+  "correct_answer": "27",
+  "explanation": "The statement log_x 243 = 5 means x⁵ = 243, and since 3⁵ = 243, x = 3. The question asks for x³ = 27. The option \"9\" squares the base instead of cubing it. The option \"15\" multiplies the base by the exponent, 3(5), rather than raising the base to the third power. The option \"125\" cubes the exponent 5 rather than the base 3.",
+  "topic_tag": "logarithms",
+  "difficulty": "medium",
+  "solve": "let x=1; while(Math.pow(x,5) < 243) x++; return String(Math.pow(x,3));",
+  "distractor_solve": {
+   "9": "let x=1; while(Math.pow(x,5) < 243) x++; return String(x*x);",
+   "15": "let x=1; while(Math.pow(x,5) < 243) x++; return String(x*5);",
+   "125": "return String(Math.pow(5,3));"
+  }
+ },
+ {
+  "id": "AM11F-02",
+  "domain": "Functions",
+  "subskill": "SYMBOLIC composition of a quadratic with a linear rule, with one coefficient of the expanded result requested",
+  "prompt": "The functions f and g are defined by f(x) = x² − 3x and g(x) = 3x − 2. When f(g(x)) is written in the form Ax² + Bx + C, what is the value of B ?",
+  "choices": [
+   "-21",
+   "-15",
+   "-12",
+   "10"
+  ],
+  "correct_answer": "-21",
+  "explanation": "f(g(x)) = (3x − 2)² − 3(3x − 2) = 9x² − 12x + 4 − 9x + 6 = 9x² − 21x + 10, so B = −21. The option \"-12\" keeps only the cross term of (3x − 2)² and drops the −3(3x − 2) term entirely. The option \"-15\" expands (3x − 2)² with a halved cross term, −6x instead of −12x, and then adds −9x. The option \"10\" reports the constant term C of the expanded form instead of the coefficient of x.",
+  "topic_tag": "composition of functions",
+  "difficulty": "medium",
+  "solve": "return String(2*3*(-2) + (-3*3));",
+  "distractor_solve": {
+   "10": "return String((-2)*(-2) + (-3)*(-2));",
+   "-12": "return String(2*3*(-2));",
+   "-15": "return String(3*(-2) + (-3*3));"
+  }
+ },
+ {
+  "id": "AM11F-03",
+  "domain": "Functions",
+  "subskill": "the Pythagorean identity used to get cosine from sine, with the SIGN decided by a stated interval rather than by the identity",
+  "prompt": "For an angle θ with 90° < θ < 180°, sin θ = 3/5. What is the value of cos θ ?",
+  "choices": [
+   "-4/5",
+   "-3/4",
+   "-16/25",
+   "2/5"
+  ],
+  "correct_answer": "-4/5",
+  "explanation": "From sin²θ + cos²θ = 1, cos²θ = 1 − 9/25 = 16/25, so cos θ = ±4/5. Because θ lies in the second quadrant, where cosine is negative, cos θ = −4/5. The option \"-16/25\" reports cos²θ and never takes the square root. The option \"-3/4\" is tan θ, the ratio of sine to cosine, rather than cosine itself. The option \"2/5\" subtracts sin θ from 1 instead of subtracting its square, computing 1 − 3/5.",
+  "topic_tag": "trigonometric identities",
+  "difficulty": "medium",
+  "solve": "const s=3/5; return String(-Math.sqrt(1-s*s));",
+  "distractor_solve": {
+   "-16/25": "const s=3/5; return String(-(1-s*s));",
+   "-3/4": "const s=3/5; const c=-Math.sqrt(1-s*s); return String(s/c);",
+   "2/5": "const s=3/5; return String(1-s);"
+  }
+ },
+ {
+  "id": "AM11F-04",
+  "domain": "Functions",
+  "subskill": "the least positive input at which a sinusoid with a horizontal COMPRESSION and a phase shift reaches its maximum",
+  "prompt": "The function f is defined by f(x) = 5 sin(3x − 45°). What is the least positive value of x, in degrees, for which f(x) reaches its maximum value?",
+  "choices": [
+   "15",
+   "45",
+   "105",
+   "135"
+  ],
+  "correct_answer": "45",
+  "explanation": "The sine function is largest when its argument is 90°, so 3x − 45 = 90, giving 3x = 135 and x = 45. The option \"15\" sets the argument to 0 rather than to 90°, which locates the phase shift instead of the maximum. The option \"105\" sets the argument to 270°, where the sine is at its minimum rather than its maximum. The option \"135\" stops at 3x = 135 and reports that value without dividing by 3.",
+  "topic_tag": "trigonometric functions",
+  "difficulty": "medium",
+  "solve": "return String((90+45)/3);",
+  "distractor_solve": {
+   "15": "return String(45/3);",
+   "105": "return String((270+45)/3);",
+   "135": "return String(90+45);"
+  }
+ },
+ {
+  "id": "AM11F-05",
+  "domain": "Functions",
+  "subskill": "the least INTEGER in the domain of a logarithmic rule, where the argument must be strictly positive and the boundary is not an integer",
+  "prompt": "What is the least integer that is in the domain of the function f(x) = log₅(3x − 14) ?",
+  "choices": [
+   "4",
+   "5",
+   "12",
+   "15"
+  ],
+  "correct_answer": "5",
+  "explanation": "A logarithm is defined only where its argument is positive, so 3x − 14 > 0 and x > 14/3, which is about 4.67. The least integer greater than 14/3 is 5. The option \"4\" rounds 14/3 down instead of taking the next integer above it, and 3(4) − 14 = −2 is negative. The option \"15\" solves 3x − 14 > 0 as x > 14 and then adds one, ignoring the coefficient 3 entirely. The option \"12\" subtracts 3 rather than dividing by 3, using x > 11.",
+  "topic_tag": "domain of a function",
+  "difficulty": "medium",
+  "solve": "return String(Math.floor(14/3)+1);",
+  "distractor_solve": {
+   "4": "return String(Math.floor(14/3));",
+   "12": "return String((14-3)+1);",
+   "15": "return String(14+1);"
+  }
+ },
+ {
+  "id": "AM11F-06",
+  "domain": "Functions",
+  "subskill": "the SUM of the x-coordinates where a line crosses a parabola, reached from the coefficients of the combined equation",
+  "prompt": "The graphs of y = x² − 2x + 3 and y = 4x − 2 intersect at two points. What is the sum of the x-coordinates of those two points?",
+  "choices": [
+   "-2",
+   "5",
+   "6",
+   "20"
+  ],
+  "correct_answer": "6",
+  "explanation": "Setting the two rules equal gives x² − 2x + 3 = 4x − 2, so x² − 6x + 5 = 0 and the two x-coordinates are 1 and 5, whose sum is 6. The option \"5\" is the larger x-coordinate alone. The option \"20\" adds the two y-coordinates, 2 and 18, instead of the x-coordinates. The option \"-2\" comes from adding the two right-hand sides and setting the total to zero, x² + 2x + 1 = 0, instead of setting the two expressions equal to each other.",
+  "topic_tag": "systems with a quadratic",
+  "difficulty": "medium",
+  "solve": "const A=1,B=-2-4,C=3+2; return String(-B/A);",
+  "distractor_solve": {
+   "5": "const A=1,B=-6,C=5; const d=Math.sqrt(B*B-4*A*C); return String(Math.max((-B+d)/(2*A),(-B-d)/(2*A)));",
+   "20": "const A=1,B=-6,C=5; const d=Math.sqrt(B*B-4*A*C); const r1=(-B+d)/(2*A), r2=(-B-d)/(2*A); return String((4*r1-2)+(4*r2-2));",
+   "-2": "const A=1,B=-2+4,C=3-2; return String(-B/A);"
+  }
+ },
+ {
+  "id": "AM11F-07",
+  "domain": "Functions",
+  "subskill": "the output value at which an absolute-value rule is met EXACTLY ONCE — the minimum of the function, not any point on it",
+  "prompt": "The function f is defined by f(x) = |5x − 14| + 6. For exactly one value of k, the equation f(x) = k has exactly one solution. What is that value of k ?",
+  "choices": [
+   "2.8",
+   "6",
+   "12",
+   "14"
+  ],
+  "correct_answer": "6",
+  "explanation": "An absolute value is never negative, so |5x − 14| + 6 is smallest when 5x − 14 = 0, and the smallest output is 6. Above 6 the equation has two solutions and below 6 it has none, so k = 6 is the only value giving exactly one. The option \"2.8\" is the input x = 14/5 at which the minimum occurs, reported instead of the output value there. The option \"14\" is the constant inside the absolute value, which is not an output of f at all. The option \"12\" is f(4), an output the function does reach, but it is reached twice rather than once.",
+  "topic_tag": "absolute value functions",
+  "difficulty": "hard",
+  "solve": "const a=5,b=-14,c=6; const xv=-b/a; return String(Math.abs(a*xv+b)+c);",
+  "distractor_solve": {
+   "12": "const a=5,b=-14,c=6; const x=4; return String(Math.abs(a*x+b)+c);",
+   "14": "const b=-14; return String(-b);",
+   "2.8": "const a=5,b=-14; return String(-b/a);"
+  }
+ },
+ {
+  "id": "AM11F-08",
+  "domain": "Functions",
+  "subskill": "building a quadratic from its two zeros AND one further value to fix the leading coefficient, then evaluating it elsewhere",
+  "prompt": "A quadratic function f has zeros at x = −4 and x = 3, and f(0) = −36. What is the value of f(2) ?",
+  "choices": [
+   "-36",
+   "-30",
+   "-18",
+   "-6"
+  ],
+  "correct_answer": "-18",
+  "explanation": "Write f(x) = a(x + 4)(x − 3). Then f(0) = a(4)(−3) = −12a = −36, so a = 3, and f(2) = 3(6)(−1) = −18. The option \"-6\" takes a = 1, using the zeros but never using f(0) to fix the leading coefficient. The option \"-30\" writes the factors as (x − 4)(x + 3), reversing the signs of the zeros, which gives a = 3 again but f(2) = 3(−2)(5). The option \"-36\" reports the given value f(0) rather than f(2).",
+  "topic_tag": "quadratic functions",
+  "difficulty": "medium",
+  "solve": "const a=-36/((0+4)*(0-3)); return String(a*(2+4)*(2-3));",
+  "distractor_solve": {
+   "-6": "return String(1*(2+4)*(2-3));",
+   "-30": "const a=-36/((0-4)*(0+3)); return String(a*(2-4)*(2+3));",
+   "-36": "const a=-36/((0+4)*(0-3)); return String(a*(0+4)*(0-3));"
+  }
+ },
+ {
+  "id": "AM11F-10",
+  "domain": "Functions",
+  "subskill": "a value of the INVERSE of a rational rule, reached by solving the rule for its input rather than by evaluating it",
+  "prompt": "The function f is defined by f(x) = (x + 7)/(x − 2) for all x ≠ 2. What is the value of f⁻¹(4) ?",
+  "choices": [
+   "2/11",
+   "2",
+   "5",
+   "5.5"
+  ],
+  "correct_answer": "5",
+  "explanation": "f⁻¹(4) is the input whose output is 4, so solve 4 = (x + 7)/(x − 2). Then 4x − 8 = x + 7, so 3x = 15 and x = 5. Checking, f(5) = 12/3 = 4. The option \"5.5\" evaluates f(4) = 11/2 instead of inverting. The option \"2/11\" takes the reciprocal of the rule, (x − 2)/(x + 7), and evaluates it at 4, which is not the same as inverting it. The option \"2\" reports the value excluded from the domain of f.",
+  "topic_tag": "inverse functions",
+  "difficulty": "medium",
+  "solve": "const y=4; return String((2*y+7)/(y-1));",
+  "distractor_solve": {
+   "2": "const excluded=2; return String(excluded);",
+   "5.5": "const x=4; return String((x+7)/(x-2));",
+   "2/11": "const x=4; return String((x-2)/(x+7));"
+  }
+ },
+ {
+  "id": "AM11G-01",
+  "domain": "Geometry",
+  "subskill": "the TANGENT-CHORD angle: an angle between a tangent and a chord at the point of tangency is half the arc the chord cuts off",
+  "prompt": "In a circle, a chord is drawn from point A to point B, and the tangent to the circle at A makes an angle of 64° with that chord. What is the measure, in degrees, of the minor arc AB ?",
+  "choices": [
+   "26",
+   "64",
+   "116",
+   "128"
+  ],
+  "correct_answer": "128",
+  "explanation": "An angle formed by a tangent and a chord at the point of tangency measures half the intercepted arc, so the arc is 2(64) = 128 degrees. The option \"64\" repeats the given angle, treating the tangent-chord angle as equal to the arc rather than half of it. The option \"26\" uses the right angle between the tangent and the radius at A and reports 90 − 64, the other acute angle of that configuration. The option \"116\" treats the tangent and the chord as forming a linear pair with the arc and reports 180 − 64.",
+  "topic_tag": "circle angles",
+  "difficulty": "medium",
+  "solve": "return String(2*64);",
+  "distractor_solve": {
+   "26": "return String(90-64);",
+   "64": "const given=64; return String(given);",
+   "116": "return String(180-64);"
+  }
+ },
+ {
+  "id": "AM11G-02",
+  "domain": "Geometry",
+  "subskill": "the area of a triangle from its THREE SIDES, where no side is a height and Heron's formula is the available route",
+  "prompt": "A triangular plot of land has sides of length 13 m, 14 m and 15 m. What is the area of the plot, in square meters?",
+  "choices": [
+   "21",
+   "42",
+   "78",
+   "84"
+  ],
+  "correct_answer": "84",
+  "explanation": "The semiperimeter is (13 + 14 + 15)/2 = 21, and Heron's formula gives the area as √(21 · 8 · 7 · 6) = √7056 = 84 square meters. The option \"78\" uses the altitude to the 14 m side, which is 12 m, as though it were the altitude to the 13 m side, giving 13(12)/2. The option \"21\" is the semiperimeter, the intermediate value the formula needs, rather than the area. The option \"42\" reports the perimeter of the plot rather than its area.",
+  "topic_tag": "triangle area",
+  "difficulty": "medium",
+  "solve": "const a=13,b=14,c=15,s=(a+b+c)/2; return String(Math.sqrt(s*(s-a)*(s-b)*(s-c)));",
+  "distractor_solve": {
+   "21": "return String((13+14+15)/2);",
+   "42": "return String(13+14+15);",
+   "78": "return String(12*13/2);"
+  }
+ },
+ {
+  "id": "AM11G-03",
+  "domain": "Geometry",
+  "subskill": "the angle between the DIAGONALS of a rectangle, reached because the diagonals are equal and bisect each other, forming isosceles triangles",
+  "prompt": "In rectangle ABCD, diagonal AC makes an angle of 32° with side AB. The two diagonals of the rectangle intersect at point P. What is the measure, in degrees, of angle APB ?",
+  "choices": [
+   "32",
+   "64",
+   "90",
+   "116"
+  ],
+  "correct_answer": "116",
+  "explanation": "The diagonals of a rectangle are equal and bisect each other, so PA = PB and triangle APB is isosceles. Its base angles, at A and at B, are both 32°, so angle APB = 180 − 2(32) = 116 degrees. The option \"64\" is the measure of angle BPC, the supplement of angle APB, which is the other angle formed where the diagonals cross. The option \"32\" repeats the given angle, which is the measure of angle PAB rather than of angle APB. The option \"90\" assumes the two diagonals meet at right angles, which is true of a square but not of a rectangle whose sides are unequal.",
+  "topic_tag": "quadrilaterals",
+  "difficulty": "medium",
+  "solve": "return String(180-2*32);",
+  "distractor_solve": {
+   "32": "const given=32; return String(given);",
+   "64": "return String(180-(180-2*32));",
+   "90": "const rightAngle=90; return String(rightAngle);"
+  }
+ },
+ {
+  "id": "AM11G-04",
+  "domain": "Geometry",
+  "subskill": "the area of a rhombus from a SIDE and an included angle, using the sine of the angle rather than a stated height",
+  "prompt": "A rhombus has sides of length 12 cm, and one of its interior angles measures 30°. What is the area of the rhombus, in square centimeters?",
+  "choices": [
+   "48",
+   "72",
+   "124.7",
+   "144"
+  ],
+  "correct_answer": "72",
+  "explanation": "Two adjacent sides of length 12 with a 30° angle between them give an area of 12 · 12 · sin 30° = 144(0.5) = 72 square centimeters. The option \"144\" is 12², the area the figure would have if the angle were 90° and it were a square, so it ignores the 30° angle. The option \"124.7\" uses cos 30° ≈ 0.866 in place of sin 30°. The option \"48\" reports the perimeter, 4(12), rather than the area.",
+  "topic_tag": "area of quadrilaterals",
+  "difficulty": "medium",
+  "solve": "const s=12; return String(Math.round(s*s*Math.sin(Math.PI/6)*1e6)/1e6);",
+  "distractor_solve": {
+   "48": "return String(4*12);",
+   "144": "return String(12*12);",
+   "124.7": "return String(Math.round(12*12*Math.cos(Math.PI/6)*10)/10);"
+  }
+ },
+ {
+  "id": "AM11G-05",
+  "domain": "Geometry",
+  "subskill": "the CENTRAL ANGLE recovered from a sector's area — the sector formula run backward, with the whole-circle area as the denominator",
+  "prompt": "A sector of a circle of radius 6 inches has an area of 10π square inches. What is the measure, in degrees, of the central angle of that sector?",
+  "choices": [
+   "27.8",
+   "50",
+   "100",
+   "260"
+  ],
+  "correct_answer": "100",
+  "explanation": "The whole circle has area π(6²) = 36π, so the sector is 10π/36π of the circle and its central angle is (10/36)(360) = 100 degrees. The option \"50\" multiplies the fraction 10/36 by 180 instead of 360, using a half turn as the whole circle. The option \"260\" is 360 − 100, the central angle of the rest of the circle rather than of the sector described. The option \"27.8\" reports 10/36 as a percent, which is the share of the circle rather than an angle measure.",
+  "topic_tag": "sectors",
+  "difficulty": "medium",
+  "solve": "return String(10*360/36);",
+  "distractor_solve": {
+   "50": "return String(10*180/36);",
+   "260": "return String(360 - 10*360/36);",
+   "27.8": "return String(Math.round(10/36*1000)/10);"
+  }
+ },
+ {
+  "id": "AM11G-06",
+  "domain": "Geometry",
+  "subskill": "the X-intercept of a line built from a PARALLEL slope and a point, where the given line is in standard form",
+  "prompt": "In the standard (x,y) coordinate plane, line ℓ passes through the point (5,4) and is parallel to the line 2x + 5y = 20. What is the x-intercept of line ℓ ?",
+  "choices": [
+   "3.4",
+   "6",
+   "10",
+   "15"
+  ],
+  "correct_answer": "15",
+  "explanation": "Writing 2x + 5y = 20 as y = −(2/5)x + 4 shows its slope is −2/5, and a parallel line has the same slope. Through (5,4): y = −(2/5)(x − 5) + 4 = −(2/5)x + 6. Setting y = 0 gives x = 15. The option \"6\" is the y-intercept of line ℓ rather than its x-intercept. The option \"10\" is the x-intercept of the given line 2x + 5y = 20, not of the parallel line through (5,4). The option \"3.4\" uses the perpendicular slope 5/2 in place of the parallel slope −2/5.",
+  "topic_tag": "coordinate geometry",
+  "difficulty": "medium",
+  "solve": "const m=-2/5,x0=5,y0=4; const b=y0-m*x0; return String(-b/m);",
+  "distractor_solve": {
+   "6": "const m=-2/5,x0=5,y0=4; return String(y0-m*x0);",
+   "10": "return String(20/2);",
+   "3.4": "const m=5/2,x0=5,y0=4; const b=y0-m*x0; return String(-b/m);"
+  }
+ },
+ {
+  "id": "AM11G-07",
+  "domain": "Geometry",
+  "subskill": "how many cubes fit in a box when no dimension is a whole number of edges — each dimension floors SEPARATELY, so the volume ratio overstates",
+  "prompt": "A packing crate measures 50 cm by 40 cm by 30 cm on the inside. Cubical boxes measuring 12 cm on each edge are to be packed inside the crate with their edges parallel to the crate's edges. What is the greatest number of boxes that will fit?",
+  "choices": [
+   "24",
+   "32",
+   "34",
+   "60"
+  ],
+  "correct_answer": "24",
+  "explanation": "Along each edge of the crate only a whole number of boxes fits: 50/12 allows 4, 40/12 allows 3, and 30/12 allows 2. The greatest number is 4 · 3 · 2 = 24. The option \"34\" divides the crate's volume 60,000 by the box's volume 1,728 and rounds down, which counts space in the leftover slabs that no whole box can occupy. The option \"60\" rounds each dimension up to 5, 4 and 3 boxes, which would require the boxes to overhang the crate. The option \"32\" rounds only the 40 cm dimension up, to 4 boxes across.",
+  "topic_tag": "volume and packing",
+  "difficulty": "hard",
+  "solve": "return String(Math.floor(50/12)*Math.floor(40/12)*Math.floor(30/12));",
+  "distractor_solve": {
+   "32": "return String(Math.floor(50/12)*Math.ceil(40/12)*Math.floor(30/12));",
+   "34": "return String(Math.floor(50*40*30/(12*12*12)));",
+   "60": "return String(Math.ceil(50/12)*Math.ceil(40/12)*Math.ceil(30/12));"
+  }
+ },
+ {
+  "id": "AM11G-08",
+  "domain": "Geometry",
+  "subskill": "the number of sides recovered from a DIAGONAL COUNT, then used to get an exterior angle — two polygon facts chained",
+  "prompt": "A regular polygon has 20 diagonals. What is the measure, in degrees, of one exterior angle of this polygon?",
+  "choices": [
+   "18",
+   "36",
+   "45",
+   "135"
+  ],
+  "correct_answer": "45",
+  "explanation": "A convex polygon with n sides has n(n − 3)/2 diagonals, so n(n − 3) = 40 and n = 8. Each exterior angle of a regular polygon is 360/n = 360/8 = 45 degrees. The option \"135\" is one INTERIOR angle of the regular octagon, the supplement of the exterior angle. The option \"18\" divides 360 by the number of diagonals, 20, treating the diagonal count as the number of sides. The option \"36\" comes from taking n = 10, halving the diagonal count instead of solving n(n − 3)/2 = 20.",
+  "topic_tag": "polygons",
+  "difficulty": "medium",
+  "solve": "let n=3; while(n*(n-3)/2 !== 20) n++; return String(360/n);",
+  "distractor_solve": {
+   "18": "return String(360/20);",
+   "36": "return String(360/10);",
+   "135": "let n=3; while(n*(n-3)/2 !== 20) n++; return String(180-360/n);"
+  }
+ },
+ {
+  "id": "AM11I-01",
+  "domain": "Integrating Essential Skills",
+  "subskill": "converting a per-SERVING amount to a per-100-gram amount and comparing it against a threshold quoted in the second unit",
+  "prompt": "A cereal box states that one 45 g serving contains 9 g of sugar. A nutrition guideline calls a food high in sugar when it contains more than 22.5 g of sugar per 100 g. How many more grams of sugar per 100 g would this cereal need to contain in order to be called high in sugar?",
+  "choices": [
+   "1.125",
+   "2.5",
+   "13.5",
+   "20"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "Scaling the serving to 100 g gives 9(100/45) = 20 g of sugar per 100 g. The guideline's threshold is 22.5 g per 100 g, so the cereal falls short by 22.5 − 20 = 2.5 g per 100 g. The option \"20\" is the cereal's sugar content per 100 g, the intermediate value, rather than the shortfall. The option \"13.5\" compares the 9 g in one serving directly against the 22.5 g threshold, which measures the two amounts over different masses. The option \"1.125\" is the correct shortfall converted back to a 45 g serving, not the per-100-g figure the guideline uses.",
+  "topic_tag": "proportional reasoning",
+  "difficulty": "medium",
+  "solve": "const per100=9*100/45; return String(22.5-per100);",
+  "distractor_solve": {
+   "20": "return String(9*100/45);",
+   "13.5": "return String(22.5-9);",
+   "1.125": "const per100=9*100/45; return String((22.5-per100)*45/100);"
+  }
+ },
+ {
+  "id": "AM11I-02",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a three-factor dosage chain — a rate per unit of body mass, a split into equal doses, and a concentration converting mass to volume",
+  "prompt": "A liquid medicine is prescribed at 12 mg per kilogram of body mass per day, divided into 4 equal doses. The liquid contains 30 mg of medicine per milliliter. How many milliliters should a child with a mass of 25 kg be given in ONE dose?",
+  "choices": [
+   "0.625",
+   "0.83",
+   "2.5",
+   "10"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The daily amount is 12(25) = 300 mg, one dose is 300/4 = 75 mg, and at 30 mg per milliliter that is 75/30 = 2.5 mL. The option \"10\" is the whole day's volume, 300/30, given as though it were a single dose. The option \"0.83\" divides the body mass by the concentration, 25/30, skipping the 12 mg per kilogram rate entirely. The option \"0.625\" divides by the 4 doses a second time, after the per-dose amount has already been found.",
+  "topic_tag": "rates and unit conversion",
+  "difficulty": "medium",
+  "solve": "const daily=12*25; const dose=daily/4; return String(dose/30);",
+  "distractor_solve": {
+   "10": "return String(12*25/30);",
+   "0.83": "return String(Math.round(25/30*100)/100);",
+   "0.625": "const daily=12*25; const dose=daily/4; return String(dose/4/30);"
+  }
+ },
+ {
+  "id": "AM11I-03",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a per-piece wage paid only on ACCEPTED output, plus a bonus whose condition must be tested against that same accepted count",
+  "prompt": "A machinist is paid $0.75 for each acceptable part she produces, and she receives a flat $30 bonus for a shift in which at least 200 of her parts are acceptable. During one shift she produced 240 parts, of which 18 were rejected. What was her total pay for that shift?",
+  "choices": [
+   "$166.50",
+   "$180.00",
+   "$196.50",
+   "$210.00"
+  ],
+  "correct_answer": "$196.50",
+  "explanation": "She produced 240 − 18 = 222 acceptable parts, which pays 222(0.75) = $166.50. Since 222 is at least 200 the bonus applies, so the total is 166.50 + 30 = $196.50. The option \"$166.50\" is the piece-rate pay with the bonus left out even though the condition for it is met. The option \"$180.00\" pays the piece rate on all 240 parts, including the 18 rejected ones, and omits the bonus. The option \"$210.00\" pays on all 240 parts and then adds the bonus.",
+  "topic_tag": "multi-step applications",
+  "difficulty": "medium",
+  "solve": "const acc=240-18; const pay=0.75*acc; return '$'+(acc>=200?pay+30:pay).toFixed(2);",
+  "distractor_solve": {
+   "$166.50": "const acc=240-18; return '$'+(0.75*acc).toFixed(2);",
+   "$180.00": "return '$'+(0.75*240).toFixed(2);",
+   "$210.00": "return '$'+(0.75*240+30).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM11I-04",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a buy-three-get-one-free offer under a fixed budget, where the leftover money buys additional items that do not complete a group",
+  "prompt": "A shop sells notebooks for $6 each and runs an offer: buy 3 notebooks and get a 4th free. Ana has $84 to spend and wants as many notebooks as possible. How many notebooks can she take home?",
+  "choices": [
+   "14",
+   "16",
+   "18",
+   "19"
+  ],
+  "correct_answer": "18",
+  "explanation": "Her $84 pays for 84/6 = 14 notebooks. Every 3 notebooks she pays for earns one free, and 14 paid notebooks complete 4 such groups, so she gets 4 free. She takes home 14 + 4 = 18. The option \"16\" counts only complete groups of four, 84/18 = 4 groups at $18 each, and discards the $12 left over. The option \"19\" awards a fifth free notebook for the last 2 paid notebooks, though the offer requires 3 paid. The option \"14\" is the number she pays for, 84/6, with the offer never applied.",
+  "topic_tag": "multi-step applications",
+  "difficulty": "hard",
+  "solve": "let money=84,paid=0,n=0; while(money>=6){ money-=6; paid++; n++; if(paid%3===0) n++; } return String(n);",
+  "distractor_solve": {
+   "14": "return String(Math.floor(84/6));",
+   "16": "const groups=Math.floor(84/18); return String(groups*4);",
+   "19": "const paid=Math.floor(84/6); return String(paid+Math.ceil(paid/3));"
+  }
+ },
+ {
+  "id": "AM11I-05",
+  "domain": "Integrating Essential Skills",
+  "subskill": "the GAP between compound and simple interest over two years — a difference of two growth models, not either one of them",
+  "prompt": "Vikram invests $5,000 for 2 years. How much more interest does the investment earn at 8% per year compounded annually than it would earn at 8% per year simple interest?",
+  "choices": [
+   "$32",
+   "$64",
+   "$400",
+   "$832"
+  ],
+  "correct_answer": "$32",
+  "explanation": "Simple interest earns 5,000(0.08)(2) = $800. Compounded annually the balance is 5,000(1.08²) = $5,832, so the interest is $832. The difference is 832 − 800 = $32, which is the 8% earned in year two on year one's $400 of interest. The option \"$832\" is the compound interest itself rather than the amount by which it exceeds the simple interest. The option \"$400\" is one year's interest at either rate. The option \"$64\" takes 8% of the whole $800 of simple interest rather than of the first year's $400.",
+  "topic_tag": "percent and interest",
+  "difficulty": "medium",
+  "solve": "const P=5000,r=0.08,t=2; return '$'+String(Math.round((P*Math.pow(1+r,t)-P)-(P*r*t)));",
+  "distractor_solve": {
+   "$832": "const P=5000,r=0.08,t=2; return '$'+String(Math.round(P*Math.pow(1+r,t)-P));",
+   "$400": "return '$'+String(5000*0.08);",
+   "$64": "return '$'+String(5000*0.08*2*0.08);"
+  }
+ },
+ {
+  "id": "AM11I-06",
+  "domain": "Integrating Essential Skills",
+  "subskill": "two different consumption rates applied to their own durations, with the REMAINING amount rather than the amount used requested",
+  "prompt": "A phone's battery charge falls 12 percentage points per hour while streaming video and 3 percentage points per hour while idle. Starting at 100% and never charging, the phone streams video for 2.5 hours and is idle for 9 hours. What percent of the battery charge remains?",
+  "choices": [
+   "43",
+   "57",
+   "70",
+   "73"
+  ],
+  "correct_answer": "43",
+  "explanation": "Streaming uses 12(2.5) = 30 percentage points and idling uses 3(9) = 27, for 57 in all, so 100 − 57 = 43 percent remains. The option \"57\" is the charge used rather than the charge remaining. The option \"70\" subtracts only the 30 points used by streaming. The option \"73\" subtracts only the 27 points used while idle.",
+  "topic_tag": "rates",
+  "difficulty": "easy",
+  "solve": "return String(100-(12*2.5+3*9));",
+  "distractor_solve": {
+   "57": "return String(12*2.5+3*9);",
+   "70": "return String(100-12*2.5);",
+   "73": "return String(100-3*9);"
+  }
+ },
+ {
+  "id": "AM11I-07",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a capacity problem where the binding constraint is WHOLE indivisible units, so the last container's load is a remainder rather than a division",
+  "prompt": "A shipment of 47 crates, each weighing 380 kg, is carried by trucks that can each hold at most 3,000 kg. Crates cannot be split, and every truck except the last is loaded with as many crates as it can hold. How many kilograms does the last truck carry?",
+  "choices": [
+   "1,100",
+   "1,900",
+   "2,280",
+   "2,660"
+  ],
+  "correct_answer": "1,900",
+  "explanation": "Each truck holds at most 3,000/380 = 7.89 crates, so 7 crates, or 2,660 kg. Six full trucks carry 42 crates, leaving 47 − 42 = 5 crates for the last truck, or 5(380) = 1,900 kg. The option \"2,660\" is a full truck's load rather than the last truck's. The option \"2,280\" spreads the 47 crates as evenly as it can over the 7 trucks that are needed, 47/7 is about 6.7, and puts 6 crates on the last one. The option \"1,100\" is the unused capacity on the last truck, 3,000 − 1,900, rather than its load.",
+  "topic_tag": "multi-step applications",
+  "difficulty": "hard",
+  "solve": "const per=Math.floor(3000/380); const rem=47%per; const kg=(rem===0?per:rem)*380; return kg.toLocaleString('en-US');",
+  "distractor_solve": {
+   "2,660": "return (Math.floor(3000/380)*380).toLocaleString('en-US');",
+   "1,100": "const per=Math.floor(3000/380); const rem=47%per; return (3000-(rem===0?per:rem)*380).toLocaleString('en-US');",
+   "2,280": "return (6*380).toLocaleString('en-US');"
+  }
+ },
+ {
+  "id": "AM11I-08",
+  "domain": "Integrating Essential Skills",
+  "subskill": "a steady rate of DECREASE per thousand feet run backward from a target value, with the answer an elevation rather than a change in elevation",
+  "prompt": "Air temperature falls about 3.5°F for every 1,000 feet of elevation gained. At a trailhead 2,400 feet above sea level the temperature is 61°F. At approximately what elevation above sea level would the temperature be 40°F?",
+  "choices": [
+   "2,500 ft",
+   "3,000 ft",
+   "6,000 ft",
+   "8,400 ft"
+  ],
+  "correct_answer": "8,400 ft",
+  "explanation": "The temperature must fall 61 − 40 = 21°F, which takes 21/3.5 = 6 thousand feet of climbing. Added to the trailhead's 2,400 feet, the elevation is 2,400 + 6,000 = 8,400 feet. The option \"6,000 ft\" is the climb needed, measured from the trailhead rather than from sea level. The option \"3,000 ft\" reads the rate as 3.5°F for every 100 feet rather than every 1,000 feet, which makes the climb 600 feet instead of 6,000 feet. The option \"2,500 ft\" multiplies the 21-degree change by 3.5 rather than dividing by it.",
+  "topic_tag": "linear rates in context",
+  "difficulty": "medium",
+  "solve": "const gain=(61-40)/3.5*1000; return (2400+gain).toLocaleString('en-US')+' ft';",
+  "distractor_solve": {
+   "6,000 ft": "return ((61-40)/3.5*1000).toLocaleString('en-US')+' ft';",
+   "3,000 ft": "return (2400+(61-40)/3.5*100).toLocaleString('en-US')+' ft';",
+   "2,500 ft": "return (Math.round((2400+(61-40)*3.5)/100)*100).toLocaleString('en-US')+' ft';"
+  }
+ },
+ {
+  "id": "AM11I-09",
+  "domain": "Integrating Essential Skills",
+  "subskill": "an area found by removing a corner piece, divided by a coverage rate that is given as a STRIP WIDTH times a walking speed",
+  "prompt": "A lawn is the region left when a 20 ft by 25 ft corner is removed from a 70 ft by 50 ft rectangle. A mower cuts a strip 5 ft wide as it is pushed forward at 30 feet per minute, and no strip is cut twice. How many minutes does it take to mow the lawn?",
+  "choices": [
+   "20",
+   "23.3",
+   "26.7",
+   "100"
+  ],
+  "correct_answer": "20",
+  "explanation": "The lawn's area is 70(50) − 20(25) = 3,500 − 500 = 3,000 square feet. The mower covers 5(30) = 150 square feet each minute, so the job takes 3,000/150 = 20 minutes. The option \"23.3\" mows the whole 3,500 square foot rectangle without removing the corner. The option \"26.7\" adds the 500 square foot corner to the rectangle instead of removing it. The option \"100\" divides the area by the walking speed 30 ft per minute, which ignores the 5 ft width of the strip and treats a length as an area rate.",
+  "topic_tag": "area and rates",
+  "difficulty": "medium",
+  "solve": "const area=70*50-20*25; const rate=5*30; return String(area/rate);",
+  "distractor_solve": {
+   "100": "const area=70*50-20*25; return String(area/30);",
+   "23.3": "return String(Math.round(70*50/(5*30)*10)/10);",
+   "26.7": "return String(Math.round((70*50+20*25)/(5*30)*10)/10);"
+  }
+ },
+ {
+  "id": "AM11I-10",
+  "domain": "Integrating Essential Skills",
+  "subskill": "two total-cost models compared at a STATED horizon, one carrying a one-time credit that reverses which plan is cheaper",
+  "prompt": "Plan A charges $480 up front for a phone plus $35 per month. Plan B charges $180 up front plus $52 per month and gives a one-time $75 credit. Over 18 months, how much less does the cheaper of the two plans cost?",
+  "choices": [
+   "$6",
+   "$17",
+   "$69",
+   "$300"
+  ],
+  "correct_answer": "$69",
+  "explanation": "Plan A costs 480 + 35(18) = $1,110. Plan B costs 180 + 52(18) − 75 = 180 + 936 − 75 = $1,041. Plan B is cheaper by 1,110 − 1,041 = $69. The option \"$6\" leaves out the $75 credit, which makes Plan B cost $1,116 and reverses which plan is cheaper. The option \"$17\" is the difference in monthly charges, 52 − 35, with neither the 18 months nor the up-front amounts applied. The option \"$300\" is the difference in up-front charges, 480 − 180, alone.",
+  "topic_tag": "linear models in context",
+  "difficulty": "medium",
+  "solve": "const A=480+35*18, B=180+52*18-75; return '$'+String(Math.abs(A-B));",
+  "distractor_solve": {
+   "$6": "const A=480+35*18, B=180+52*18; return '$'+String(Math.abs(A-B));",
+   "$17": "return '$'+String(52-35);",
+   "$300": "return '$'+String(480-180);"
+  }
+ },
+ {
+  "id": "AM11S-01",
+  "domain": "Statistics and Probability",
+  "subskill": "counting arrangements when REPETITION IS ALLOWED, against the permutation and factorial counts that assume it is not",
+  "prompt": "A locker code consists of 4 characters in a row, each chosen from the 6 letters A, B, C, D, E and F. A letter may be used more than once in a code. How many different codes are possible?",
+  "choices": [
+   "360",
+   "720",
+   "1,296",
+   "4,096"
+  ],
+  "correct_answer": "1,296",
+  "explanation": "Each of the 4 positions can be filled in 6 ways independently of the others, so there are 6⁴ = 1,296 codes. The option \"360\" counts 6 · 5 · 4 · 3, which forbids a letter from repeating even though the problem allows it. The option \"720\" is 6!, the number of ways to arrange all six letters, which is neither the code length asked about nor a count of 4-character codes. The option \"4,096\" is 4⁶, which reverses the roles of the 6 available letters and the 4 positions.",
+  "topic_tag": "counting principles",
+  "difficulty": "medium",
+  "solve": "return Math.pow(6,4).toLocaleString('en-US');",
+  "distractor_solve": {
+   "360": "return (6*5*4*3).toLocaleString('en-US');",
+   "720": "let f=1; for(let i=2;i<=6;i++) f*=i; return f.toLocaleString('en-US');",
+   "4,096": "return Math.pow(4,6).toLocaleString('en-US');"
+  }
+ },
+ {
+  "id": "AM11S-02",
+  "domain": "Statistics and Probability",
+  "subskill": "the least number of draws that GUARANTEES an outcome — a worst case the stem never describes, not a likely case",
+  "prompt": "A drawer holds 8 black socks, 6 navy socks and 4 grey socks, jumbled together. Socks are drawn from the drawer in the dark, one at a time. What is the least number of socks that must be drawn to be certain of having 3 socks of the same color?",
+  "choices": [
+   "6",
+   "7",
+   "9",
+   "18"
+  ],
+  "correct_answer": "7",
+  "explanation": "In the worst case the first draws avoid a third match as long as possible, which means 2 black, 2 navy and 2 grey — 6 socks with no color appearing three times. The very next sock must be black, navy or grey, so it completes a set of three, and 7 draws are certain to do it. The option \"6\" is that worst case itself, which stops one draw short of the guarantee. The option \"9\" takes 3 of each of the 3 colors, which is more than a guarantee requires. The option \"18\" empties the whole drawer, 8 + 6 + 4, which is certain but far more than is needed.",
+  "topic_tag": "counting and logic",
+  "difficulty": "hard",
+  "solve": "const colors=3, target=3; return String(colors*(target-1)+1);",
+  "distractor_solve": {
+   "6": "const colors=3, target=3; return String(colors*(target-1));",
+   "9": "return String(3*3);",
+   "18": "return String(8+6+4);"
+  }
+ },
+ {
+  "id": "AM11S-03",
+  "domain": "Statistics and Probability",
+  "subskill": "the probability of a UNION of two divisibility events, where the overlap is the multiples of the least common multiple",
+  "prompt": "An integer is chosen at random from the integers 1 through 72, inclusive. What is the probability that the chosen integer is a multiple of 3 or a multiple of 4 ?",
+  "choices": [
+   "1/4",
+   "1/3",
+   "1/2",
+   "7/12"
+  ],
+  "correct_answer": "1/2",
+  "explanation": "Of the 72 integers, 24 are multiples of 3 and 18 are multiples of 4, and the 6 multiples of 12 are counted in both. The union therefore has 24 + 18 − 6 = 36 members, so the probability is 36/72 = 1/2. The option \"7/12\" is 42/72, adding the two counts without removing the 6 integers counted twice. The option \"1/3\" counts only the multiples of 3. The option \"1/4\" counts only the multiples of 4.",
+  "topic_tag": "probability",
+  "difficulty": "medium",
+  "solve": "let c=0; for(let n=1;n<=72;n++) if(n%3===0||n%4===0) c++; return String(c/72);",
+  "distractor_solve": {
+   "7/12": "let a=0,b=0; for(let n=1;n<=72;n++){ if(n%3===0) a++; if(n%4===0) b++; } return String((a+b)/72);",
+   "1/3": "let a=0; for(let n=1;n<=72;n++) if(n%3===0) a++; return String(a/72);",
+   "1/4": "let b=0; for(let n=1;n<=72;n++) if(n%4===0) b++; return String(b/72);"
+  }
+ }
+]

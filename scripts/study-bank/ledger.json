@@ -3956,6 +3956,40 @@
      "verdict": "BATCH-LEVEL tell, found by a grader and acted on, that neither the blind attack nor any per-item check could see: 12 of 17 survivors closed on the same X-not-Y contrastive frame, and SIX shared one semantic relation - the record measures its own production process, not its subject (WIC3-01, -05, -08, -12, -19, -20). Because Craft and Structure is the BINDING domain these items would be drawn into one form together, so a student could learn the spec instead of the vocabulary. Cut to three of the six (08, 12, 19) on the grader's own recommendation. Shipping key letters A3/B3/C3/D1 over 10, max 3, no complete permutation window."
     }
    }
+  },
+  {
+   "id": "act-math-v11-kept-2026-09-22",
+   "createdAt": "2026-09-22",
+   "targetTest": "act",
+   "section": "math",
+   "task": "math_mc",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v11",
+   "contentSha": "1f5243ae4144bb99ad48365fcbd1bbb7715258768a1761e1fe7fea32a575e6be",
+   "status": "shipped",
+   "note": "39 of 42 authored survive. Commissioned across five domains at once because ACT math needs all five to buy form 14 -- a single-domain batch there once bought zero forms. My brief said the section is FIVE-choice; it is four under the enhanced ACT, and the author overruled me from act-test.ts and a 580/580 four-choice live bank. My brief also asked for 4 Statistics and Probability items where 5 are needed, so that domain remains short and is commissioned separately.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "1f5243ae4144bb99ad48365fcbd1bbb7715258768a1761e1fe7fea32a575e6be",
+     "verdict": "42 authored, all exactly 4 choices, key present among the choices, no duplicate option values within an item, no duplicate ids, no explanation naming a slot letter. Sandbox: 42/42 keys recompute and 126/126 distractors recompute to their named derivation. The author break-tested that harness by promoting every one of the 126 distractors to key -- all 126 refused -- and then attacked the harness itself with a rigged mutant whose solve really returns the promoted option, which was reported OK, so the refusals are a measurement rather than a harness that fails everything."
+    },
+    "withsource": {
+     "passed": true,
+     "contentSha": "1f5243ae4144bb99ad48365fcbd1bbb7715258768a1761e1fe7fea32a575e6be",
+     "verdict": "An independent grader solved all 42 from the prompt before reading any explanation and re-checked the fiddly ones with its own script: ALL 42 KEYS CORRECT, zero disputed. It found three real defects and all three are dropped. AM11S-04: the distractor \"12\" is the INCLUSIVE quartile convention (Excel QUARTILE.INC), so it is the answer a correctly-taught student gives, not an error -- a second defensible answer, which this project treats as broken. AM11A-07 and AM11F-09 share a malformed template (\"For how large an integer k does the equation...\", \"How small an angle theta... satisfies...\") that is not a well-formed question; two items from one bad template is a brief problem, not two authoring slips. Difficulty is banked from the GRADER, not the author: easy 4 / medium 33 / hard 2 against the author's 2/33/7. The grader demoted five of the seven \"hard\" labels, which matches this project's standing finding that authors over-label hard. Distractors 28 strong / 14 plausible / 0 weak."
+    },
+    "nosource": {
+     "passed": true,
+     "contentSha": "1f5243ae4144bb99ad48365fcbd1bbb7715258768a1761e1fe7fea32a575e6be",
+     "verdict": "Options-only attack, three solvers, interleaved with a composition-matched live control of 42 shipped ACT math items, arm recorded only in the key. CANDIDATE 29.4% against a derived best-fixed-letter control of 35.7%, margin -6.3; CONTROL 28.6% against 28.6%, margin 0.0. Zero items were reported solvable from the option set by the with-source grader. 38 items were byte-identical across the pre- and post-repair files so their answers are reused; the 4 items whose option sets changed were re-attacked fresh in a second render and merged."
+    },
+    "tells": {
+     "passed": true,
+     "contentSha": "1f5243ae4144bb99ad48365fcbd1bbb7715258768a1761e1fe7fea32a575e6be",
+     "verdict": "THE TELL THE POOLED MARGIN COULD NOT SEE, found and repaired. The key was the largest of four options on 7.1% of items against 21.4% in the live bank (z = -2.25) -- a free \"eliminate the largest\" worth 1/4 -> 1/3, and the solver applying it mechanically scored exactly 33.3%. A pooled margin cannot detect this because the derived control rises with the tell. Repaired on the author's own terms, never by inventing a pathless distractor: 4 items changed, each new distractor carrying a named wrong path (an altitude attached to the wrong side, a rectangle's diagonals assumed perpendicular, a rate misread as per-100-feet, the upper-half spread reported as the IQR). After repair and drops: largest 15.4% (z = -0.92), smallest 20.5% (z = -0.42), consistent with the live bank. check-key-magnitude.mjs is self-tested on 11 fixtures and break-tests correctly against the pre-repair file. Numeric hub key-is-hub 0.0%; key-is-sum 0.0%; no two options share a value."
+    }
+   }
   }
  ],
  "auditedCohorts": [
