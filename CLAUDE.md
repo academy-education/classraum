@@ -529,3 +529,58 @@ One exception, and it proves the rule: where a defect is arithmetic
 rather than semantic (the SAT Math hub), an exact checker over the whole
 population beats any sampling attack. Ask which kind you have before
 choosing an instrument.
+
+### And the attack itself is invalid on some families. Check before quoting it.
+
+"The attack is the gate" is the rule above, and on 2026-09-21 it broke twice
+in one day. The blind options-only attack was run PAIRED against a matched
+live control — the shipped bank, same instrument, same structural regime —
+and the control came back higher than the candidate:
+
+    family         candidate   SHIPPED live control   human sitting on shipped
+    ACT Science      71.7%           88.9%             28.6% vs 28.6% control
+    ACT Reading      88.9%           96.3%             10.0%
+      (v1 subgroup)                 100.0%  18/18 unanimous, three solvers
+
+**A person cannot do this and the models can.** The solvers said why without
+noticing: the ACT Science control values ARE potassium nitrate's published
+solubility curve, one item is Hardy-Weinberg, one block is deflection
+proportional to 1/thickness cubed. The attack was scoring the model's science
+knowledge — the construct the section exists to TEST — and calling it a leak.
+
+This is not universal, and that is the whole point. SSAT Reading does not
+saturate: its shipped bank measures 21.1% by model and 15.0% by a human, both
+at or under the 20% five-choice line. So a candidate deviating +45 there is a
+real deviation, and the 216 rejected SSAT reading items stay rejected.
+
+    the instrument discriminates    SSAT Reading, SAT R&W, the maths families
+    the instrument saturates        ACT Science, ACT Reading, TOEFL MC
+
+**So, before quoting any blind number:**
+
+1. **Look up whether the family has a human sitting** — `bank-state.mjs
+   sittings`, never an ad-hoc query.
+2. **If model and human disagree about the SHIPPED bank, the instrument is
+   invalid for that family.** Do not report the candidate's number as a
+   verdict. Do not re-hide a live section on it; I came within one command of
+   re-hiding ACT Science on a number that measured the wrong thing, against a
+   human sitting that had already cleared it.
+3. **Where it saturates, the with-source half decides** — exclusivity, whether
+   the key is retrievable from a single sentence, whether the key is the
+   interesting claim, whether distractors are true in the world. Five
+   consecutive batches now where the blind half said nothing and the
+   with-source half found every real defect.
+
+### Corollary: a pre-registered bar must be checked against the control's CEILING
+
+The same run pre-registered "reject if the candidate exceeds the control by 30
+points". The control came in at 96.3%, leaving 3.7 points of headroom, so
+**the reject bar was unreachable by construction and the test could only ever
+return a pass.** Pre-registration protected against reinterpreting the result
+and did nothing about a bar that could not fire.
+
+This is the ceiling twin of "a check that cannot read its input must not
+return a number": a margin computed against a control with no room left is not
+a measurement. When fixing bars, state the control's attainable RANGE and
+confirm both bars sit inside it. A discard condition written only for the
+floor ("if the control comes in at chance") does not cover this.
