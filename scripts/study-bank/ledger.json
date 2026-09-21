@@ -3828,6 +3828,37 @@
      "verdict": "Keys dealt 16 per slot; author B checked its own aligned groups of five for a complete-permutation tell and found none. Author B also found that MY BRIEF created a cross-item tell - prescribing key + antonym-of-intended-sense + two others put an opposed pair in every item, so a solver who knows the construction starts near 50% - and rebuilt 11 items to break it, reporting the residual it could not remove without contradicting the brief. Measured: antonym-pair rate 98% in the failed batch, 51% here."
     }
    }
+  },
+  {
+   "id": "ssat-math-q9-kept-2026-09-21",
+   "createdAt": "2026-09-21",
+   "targetTest": "ssat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "ssat-math-q9",
+   "contentSha": "37921625b17483464dd7e632c34deb4258c03d2cca951ba320000e7bd5490458",
+   "status": "shipped",
+   "note": "43 kept of 50 SSAT Upper Level Quantitative (two authors x 25 on disjoint ground: arithmetic/ratio/percent/counting and algebra/geometry/data). Commissioned to take SSAT math from 4 to 5 clean forms. Author difficulty {\"easy\":7,\"medium\":21,\"hard\":15}; the grader regraded the set to 10 easy / 36 medium / 4 hard and both authors had predicted exactly that. Drops: SMQ9A-04 - two solvers independently: the option set is four small-factor composites and one prime, so a \"which is prime\" item is fully solvable with the question removed; SMQ9A-22 - grader and author agree: eight apples among three children needs stars-and-bars, outside the SSAT Upper Level curriculum; SMQ9B-13 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SMQ9A-16 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SMQ9A-01 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SMQ9A-05 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SMQ9A-12 - unanimous 3/3 blind; dropped to bring the kept set to the live floor.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "37921625b17483464dd7e632c34deb4258c03d2cca951ba320000e7bd5490458",
+     "verdict": "My own run on the merged 50: sandbox 50/50, distractor_solve 200/200, symbolic hub 0.0% and numeric hub 0.0% against a 20.0% control, keys dealt exactly 10/10/10/10/10, no cross-author prompt collision. Pins 3796f2e305d19ec7 / 0f1c28b9b19716af. BOTH authors independently caught an error in my brief: I specified 75/75 for the distractor line, which is the FOUR-choice number - SSAT is five-choice, so full coverage is 4 x 25 = 100. Author A also refused to report its own recycled-distractor result (3 of 15... n=3) as a finding, on the grounds that a rate over three items is not a measurement."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Independent recomputation of all 50 from scratch: no key disagreement (one apparent disagreement was the grader mis-inferring which slot held the key in a shuffled render, checked by hand and dismissed), no ambiguous or under-determined items - both diagram-free geometry items were interrogated and hold, the L-shape because its six sides sum consistently and the parallelogram because its \"AB and DC are opposite\" clause is load-bearing. Distractors 36 strong / 14 plausible / 0 weak. Band: SMQ9A-22 above SSAT Upper (stars-and-bars) and dropped, its author having flagged it; SMQ9A-23 was flagged by its author and the grader OVERRULED that flag, correctly."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 150 forced picks, derived control 20.0%: 35.3% (+15.3). A matched live control - 50 already-shipped SSAT math items, same solvers, same session - read 28.0% (+8.0), so the instrument reads about +8 on items that have been serving students for weeks and the candidate sat 7.3 points above that. Drops applied to the live floor: kept 43, residual 27.1% vs 20.9% = +6.2, under +8.0. One item was fully decidable with NO question at all (four small-factor composites and one prime) and was named independently by two solvers."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "A solver proposed that distractors built by doubling and halving around a key put the key at the MEDIAN by construction, and asked for it to be measured before anything else. Measured exactly, with a self-tested detector (check-median-key.mjs, 8 fixtures): candidate 31.1%, matched control 26.5%, and the WHOLE live SSAT math bank 29.5%, all against a 20.0% derived control. So it is a real +9.5 property of the family and NOT a defect of this batch, which sits 1.6 points above the population on n=45. Recorded, not acted on. Recycled-distractor tell (13q) on the kept set: 2 of 10 = 20.0% against a 20.0% control, +0.0."
+    }
+   }
   }
  ],
  "auditedCohorts": [

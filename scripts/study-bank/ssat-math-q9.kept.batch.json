@@ -1,0 +1,2197 @@
+[
+ {
+  "id": "SMQ9A-02",
+  "domain": "Math",
+  "subskill": "finding the number halfway between two fractions",
+  "difficulty": "easy",
+  "prompt": "What number is exactly halfway between 1/4 and 5/6 on a number line?",
+  "choices": [
+   "3/5",
+   "13/24",
+   "1/2",
+   "7/12",
+   "7/24"
+  ],
+  "correct_answer": "13/24",
+  "explanation": "The number halfway between two numbers is their average. Over a common denominator of 12, 1/4 = 3/12 and 5/6 = 10/12, so the sum is 13/12 and half of that is 13/24. The option \"1/2\" comes from a student who rounds 1/4 down to 0 and 5/6 up to 1 and then gives the midpoint of 0 and 1. The option \"7/12\" is the distance between them, 5/6 - 1/4, reported as if a gap were a midpoint. The option \"7/24\" is half that distance, the step from either end to the middle, reported instead of the middle itself. The option \"3/5\" comes from adding the numerators and the denominators separately, (1 + 5)/(4 + 6).",
+  "solve": "return (1/4+5/6)/2;",
+  "distractor_solve": {
+   "7/12": "return 5/6-1/4;",
+   "7/24": "return (5/6-1/4)/2;",
+   "3/5": "return (1+5)/(4+6);",
+   "1/2": "return (0+1)/2;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "3/5",
+    "reason": "comes from adding the numerators and the denominators separately, (1 + 5)/(4 + 6)."
+   },
+   {
+    "choice": "1/2",
+    "reason": "comes from a student who rounds 1/4 down to 0 and 5/6 up to 1 and then gives the midpoint of 0 and 1."
+   },
+   {
+    "choice": "7/12",
+    "reason": "is the distance between them, 5/6 - 1/4, reported as if a gap were a midpoint."
+   },
+   {
+    "choice": "7/24",
+    "reason": "is half that distance, the step from either end to the middle, reported instead of the middle itself."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-03",
+  "domain": "Math",
+  "subskill": "turning a part-to-part ratio into a percent of the whole",
+  "difficulty": "easy",
+  "prompt": "In a choir, the ratio of altos to sopranos is 3 to 7, and every singer is either an alto or a soprano. What percent of the choir are altos?",
+  "choices": [
+   "57",
+   "70",
+   "30",
+   "21",
+   "43"
+  ],
+  "correct_answer": "30",
+  "explanation": "The ratio 3 to 7 divides the choir into 3 + 7 = 10 equal parts, of which 3 are altos, so the altos are 3/10 = 30 percent of the choir. The option \"70\" is the percent of the choir that are sopranos, from a student who reads the ratio in the wrong order. The option \"43\" treats the ratio as part-to-whole and computes 3/7 as a percent. The option \"57\" takes that same 3/7 mistake and then reports its complement, 100 - 43. The option \"21\" multiplies the two terms of the ratio instead of adding them to find the number of parts.",
+  "solve": "return 3/(3+7)*100;",
+  "distractor_solve": {
+   "21": "return 3*7;",
+   "43": "return Math.round(3/7*100);",
+   "57": "return 100-Math.round(3/7*100);",
+   "70": "return 7/(3+7)*100;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "57",
+    "reason": "takes that same 3/7 mistake and then reports its complement, 100 - 43."
+   },
+   {
+    "choice": "70",
+    "reason": "is the percent of the choir that are sopranos, from a student who reads the ratio in the wrong order."
+   },
+   {
+    "choice": "21",
+    "reason": "multiplies the two terms of the ratio instead of adding them to find the number of parts."
+   },
+   {
+    "choice": "43",
+    "reason": "treats the ratio as part-to-whole and computes 3/7 as a percent."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-06",
+  "domain": "Math",
+  "subskill": "deciding from a denominator whether a fraction terminates as a decimal",
+  "difficulty": "medium",
+  "prompt": "Each fraction below is in lowest terms. Which one is equal to a decimal that ends rather than repeating forever?",
+  "choices": [
+   "7/40",
+   "4/15",
+   "11/48",
+   "5/12",
+   "7/30"
+  ],
+  "correct_answer": "7/40",
+  "explanation": "A fraction in lowest terms ends as a decimal exactly when its denominator has no prime factor except 2 and 5. Here 40 = 2 x 2 x 2 x 5, so 7/40 = 0.175 and stops. Every other denominator carries a factor of 3, which forces a repeating decimal. The option \"5/12\" is chosen by a student who sees that 12 is a multiple of 4 and reasons that because 1/4 = 0.25 ends, anything over a multiple of 4 must end. The option \"11/48\" is the same mistake made with 16 instead of 4. The option \"4/15\" is chosen by a student who looks for a 5 in the denominator and finds one, without noticing the 3 beside it. The option \"7/30\" is chosen by a student who sees a 10 in 30 and reasons that tenths always end.",
+  "solve": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const g=(a,b)=>b?g(b,a%b):a;for(const [n,d] of f){let k=d/g(n,d);while(k%2===0)k/=2;while(k%5===0)k/=5;if(k===1)return n+'/'+d;}return 'none';",
+  "distractor_solve": {
+   "5/12": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const r=f.filter(([n,d])=>d%4===0&&d%8!==0)[0];return r[0]+'/'+r[1];",
+   "11/48": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const r=f.filter(([n,d])=>d%16===0)[0];return r[0]+'/'+r[1];",
+   "4/15": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const r=f.filter(([n,d])=>d%10===5)[0];return r[0]+'/'+r[1];",
+   "7/30": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const r=f.filter(([n,d])=>d%10===0&&d%20!==0)[0];return r[0]+'/'+r[1];"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "4/15",
+    "reason": "is chosen by a student who looks for a 5 in the denominator and finds one, without noticing the 3 beside it."
+   },
+   {
+    "choice": "11/48",
+    "reason": "is the same mistake made with 16 instead of 4."
+   },
+   {
+    "choice": "5/12",
+    "reason": "is chosen by a student who sees that 12 is a multiple of 4 and reasons that because 1/4 = 0.25 ends, anything over a multiple of 4 must end."
+   },
+   {
+    "choice": "7/30",
+    "reason": "is chosen by a student who sees a 10 in 30 and reasons that tenths always end."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-07",
+  "domain": "Math",
+  "subskill": "summing the distinct prime factors of a number",
+  "difficulty": "medium",
+  "prompt": "What is the sum of the distinct prime factors of 546?",
+  "choices": [
+   "22",
+   "25",
+   "26",
+   "18",
+   "12"
+  ],
+  "correct_answer": "25",
+  "explanation": "Dividing repeatedly gives 546 = 2 x 273 = 2 x 3 x 91 = 2 x 3 x 7 x 13, so the distinct prime factors are 2, 3, 7 and 13 and their sum is 25. The option \"12\" is 2 + 3 + 7, from a student who stops once the one-digit primes are used up and never tests the 13 that is left. The option \"18\" is 2 + 3 + 13, from a student who reaches 91 and mistakes it for 13 x 13, so the 7 is never recorded. The option \"22\" is 2 + 7 + 13, from a student who splits 546 as 2 x 273 and then 273 as 7 x 39 and never splits 39 into 3 x 13. The option \"26\" is 1 + 2 + 3 + 7 + 13, from a student who counts 1 as a prime factor.",
+  "solve": "let n=546,s=0;for(let p=2;p<=n;p++){if(n%p===0){s+=p;while(n%p===0)n/=p;}}return s;",
+  "distractor_solve": {
+   "12": "return 2+3+7;",
+   "18": "return 2+3+13;",
+   "22": "return 2+7+13;",
+   "26": "let n=546,s=1;for(let p=2;p<=n;p++){if(n%p===0){s+=p;while(n%p===0)n/=p;}}return s;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "22",
+    "reason": "is 2 + 7 + 13, from a student who splits 546 as 2 x 273 and then 273 as 7 x 39 and never splits 39 into 3 x 13."
+   },
+   {
+    "choice": "26",
+    "reason": "is 1 + 2 + 3 + 7 + 13, from a student who counts 1 as a prime factor."
+   },
+   {
+    "choice": "18",
+    "reason": "is 2 + 3 + 13, from a student who reaches 91 and mistakes it for 13 x 13, so the 7 is never recorded."
+   },
+   {
+    "choice": "12",
+    "reason": "is 2 + 3 + 7, from a student who stops once the one-digit primes are used up and never tests the 13 that is left."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-08",
+  "domain": "Math",
+  "subskill": "finding a second quantity when fractional parts of two quantities are equal",
+  "difficulty": "medium",
+  "prompt": "In a parking lot, 3/4 of the cars are the same number as 5/6 of the vans. There are 60 cars in the lot. How many vans are in the lot?",
+  "choices": [
+   "48",
+   "50",
+   "54",
+   "45",
+   "72"
+  ],
+  "correct_answer": "54",
+  "explanation": "Three quarters of 60 cars is 45 cars, and that same 45 is 5/6 of the vans, so the number of vans is 45 divided by 5/6, which is 45 x 6/5 = 54. The option \"45\" is the shared quantity itself, reported instead of the total number of vans. The option \"50\" applies the vans' fraction to the cars, 5/6 of 60, and never uses the 3/4 at all. The option \"72\" multiplies 60 by 6/5, using the reciprocal of the vans' fraction while forgetting to take 3/4 first. The option \"48\" multiplies 60 by 4/5, pairing the denominator of one fraction with the numerator of the other.",
+  "solve": "return (3/4*60)/(5/6);",
+  "distractor_solve": {
+   "45": "return 3/4*60;",
+   "48": "return 60*4/5;",
+   "50": "return 5/6*60;",
+   "72": "return 60*6/5;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "48",
+    "reason": "multiplies 60 by 4/5, pairing the denominator of one fraction with the numerator of the other."
+   },
+   {
+    "choice": "50",
+    "reason": "applies the vans' fraction to the cars, 5/6 of 60, and never uses the 3/4 at all."
+   },
+   {
+    "choice": "45",
+    "reason": "is the shared quantity itself, reported instead of the total number of vans."
+   },
+   {
+    "choice": "72",
+    "reason": "multiplies 60 by 6/5, using the reciprocal of the vans' fraction while forgetting to take 3/4 first."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-09",
+  "domain": "Math",
+  "subskill": "finding which supply runs out first when a recipe is repeated",
+  "difficulty": "medium",
+  "prompt": "One batch of trail mix uses 4 cups of oats, 3 spoonfuls of honey and 2 cups of nuts. A shop has 300 cups of oats, 200 spoonfuls of honey and 150 cups of nuts, and nothing else is needed. What is the greatest number of complete batches the shop can make?",
+  "choices": [
+   "67",
+   "75",
+   "100",
+   "66",
+   "50"
+  ],
+  "correct_answer": "66",
+  "explanation": "Each supply allows a different number of batches: the oats allow 300/4 = 75, the honey allows 200/3 = 66 and two thirds, and the nuts allow 150/2 = 75. Only complete batches count, so the honey runs out first and the answer is 66. The option \"75\" is the number two of the three supplies allow, chosen by a student who checks the oats and the nuts, sees them agree, and never divides by 3. The option \"67\" rounds 66 and two thirds up, forgetting that a part batch is not a batch. The option \"100\" divides the 200 spoonfuls of honey by the 2 cups of nuts, matching a supply to the wrong ingredient. The option \"50\" makes the same mismatch the other way, dividing the 150 cups of nuts by the 3 spoonfuls of honey.",
+  "solve": "return Math.min(Math.floor(300/4),Math.floor(200/3),Math.floor(150/2));",
+  "distractor_solve": {
+   "50": "return Math.floor(150/3);",
+   "67": "return Math.ceil(200/3);",
+   "75": "return Math.floor(300/4);",
+   "100": "return Math.floor(200/2);"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "67",
+    "reason": "rounds 66 and two thirds up, forgetting that a part batch is not a batch."
+   },
+   {
+    "choice": "75",
+    "reason": "is the number two of the three supplies allow, chosen by a student who checks the oats and the nuts, sees them agree, and never divides by 3."
+   },
+   {
+    "choice": "100",
+    "reason": "divides the 200 spoonfuls of honey by the 2 cups of nuts, matching a supply to the wrong ingredient."
+   },
+   {
+    "choice": "50",
+    "reason": "makes the same mismatch the other way, dividing the 150 cups of nuts by the 3 spoonfuls of honey."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-10",
+  "domain": "Math",
+  "subskill": "finding a total from a three-part ratio and the difference between two shares",
+  "difficulty": "medium",
+  "prompt": "A sum of money is divided among Ana, Ben and Cara in the ratio 4 : 6 : 9. Cara receives $60 more than Ana. How many dollars are divided in all?",
+  "choices": [
+   "108",
+   "216",
+   "380",
+   "180",
+   "228"
+  ],
+  "correct_answer": "228",
+  "explanation": "Cara's share is 9 parts and Ana's is 4 parts, so the $60 difference is 9 - 4 = 5 parts and one part is $12. The whole sum is 4 + 6 + 9 = 19 parts, or 19 x 12 = $228. The option \"380\" takes the difference to be 9 - 6 = 3 parts, giving a part of $20 and a total of $380. The option \"108\" is Cara's share alone, nine parts of $12, reported instead of the whole sum. The option \"180\" adds only Ben's and Cara's 15 parts and leaves Ana out of the total. The option \"216\" comes from a student who adds the three ratio terms as 18 instead of 19.",
+  "solve": "const p=60/(9-4);return p*(4+6+9);",
+  "distractor_solve": {
+   "108": "const p=60/(9-4);return p*9;",
+   "180": "const p=60/(9-4);return p*(6+9);",
+   "216": "const p=60/(9-4);return p*18;",
+   "380": "const p=60/(9-6);return p*(4+6+9);"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "108",
+    "reason": "is Cara's share alone, nine parts of $12, reported instead of the whole sum."
+   },
+   {
+    "choice": "216",
+    "reason": "comes from a student who adds the three ratio terms as 18 instead of 19."
+   },
+   {
+    "choice": "380",
+    "reason": "takes the difference to be 9 - 6 = 3 parts, giving a part of $20 and a total of $380."
+   },
+   {
+    "choice": "180",
+    "reason": "adds only Ben's and Cara's 15 parts and leaves Ana out of the total."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-11",
+  "domain": "Math",
+  "subskill": "reversing the direction of a percent comparison",
+  "difficulty": "medium",
+  "prompt": "A large box holds one third more rice than a small box holds. The small box holds what percent less rice than the large box holds?",
+  "choices": [
+   "25",
+   "33",
+   "16.5",
+   "67",
+   "75"
+  ],
+  "correct_answer": "25",
+  "explanation": "Let the small box hold 3 units; then the large box holds 3 + 1 = 4 units. The small box holds 1 unit less than the large box, and that 1 unit is compared with the large box's 4, so the small box holds 1/4 = 25 percent less. The option \"33\" assumes a comparison reads the same in both directions and reuses the one third as about 33 percent; that 33 percent is measured against the small box, not the large one. The option \"75\" is the percent the small box IS of the large box, not the percent by which it falls short. The option \"67\" subtracts that same 33 percent from 100, which measures the wrong box against the wrong base twice over. The option \"16.5\" halves the 33 percent, from a student who splits the difference between the two boxes.",
+  "solve": "const S=3,L=4;return (L-S)/L*100;",
+  "distractor_solve": {
+   "33": "return Math.round(100/3);",
+   "67": "return 100-Math.round(100/3);",
+   "75": "const S=3,L=4;return S/L*100;",
+   "16.5": "return Math.round(100/3)/2;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "33",
+    "reason": "assumes a comparison reads the same in both directions and reuses the one third as about 33 percent; that 33 percent is measured against the small box, not the large one."
+   },
+   {
+    "choice": "16.5",
+    "reason": "halves the 33 percent, from a student who splits the difference between the two boxes."
+   },
+   {
+    "choice": "67",
+    "reason": "subtracts that same 33 percent from 100, which measures the wrong box against the wrong base twice over."
+   },
+   {
+    "choice": "75",
+    "reason": "is the percent the small box IS of the large box, not the percent by which it falls short."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-13",
+  "domain": "Math",
+  "subskill": "finding a day of the week by dividing by 7 and using the remainder",
+  "difficulty": "medium",
+  "prompt": "Today is Tuesday. What day of the week will it be 100 days from today?",
+  "choices": [
+   "Wednesday",
+   "Friday",
+   "Thursday",
+   "Saturday",
+   "Sunday"
+  ],
+  "correct_answer": "Thursday",
+  "explanation": "Days of the week repeat every 7 days, and 100 = 7 x 14 + 2, so 100 days from today is 2 days past Tuesday, which is Thursday. The option \"Wednesday\" comes from counting today as the first of the 100 days, which leaves a remainder of 1. The option \"Friday\" comes from a student who uses 7 x 14 = 98 and then counts days 98, 99 and 100 as three days past Tuesday. The option \"Saturday\" applies the correct 2-day shift twice, once to reach Thursday and again from there. The option \"Sunday\" counts the 2 remaining days backwards from Tuesday instead of forwards.",
+  "solve": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[(2+100)%7];",
+  "distractor_solve": {
+   "Wednesday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[(2+100-1)%7];",
+   "Friday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[(2+100+1)%7];",
+   "Saturday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[(2+100+2)%7];",
+   "Sunday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[((2-100)%7+7)%7];"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "Wednesday",
+    "reason": "comes from counting today as the first of the 100 days, which leaves a remainder of 1."
+   },
+   {
+    "choice": "Friday",
+    "reason": "comes from a student who uses 7 x 14 = 98 and then counts days 98, 99 and 100 as three days past Tuesday."
+   },
+   {
+    "choice": "Saturday",
+    "reason": "applies the correct 2-day shift twice, once to reach Thursday and again from there."
+   },
+   {
+    "choice": "Sunday",
+    "reason": "counts the 2 remaining days backwards from Tuesday instead of forwards."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-14",
+  "domain": "Math",
+  "subskill": "counting the games when every pair meets a fixed number of times",
+  "difficulty": "medium",
+  "prompt": "A league has 12 teams. Every team plays every other team exactly twice during the season. How many games are played in the whole season?",
+  "choices": [
+   "24",
+   "78",
+   "144",
+   "132",
+   "66"
+  ],
+  "correct_answer": "132",
+  "explanation": "There are 12 x 11 / 2 = 66 different pairs of teams, and each pair meets twice, so 66 x 2 = 132 games are played. The option \"66\" counts each pair once and forgets that the teams meet twice. The option \"144\" is 12 x 12, which lets each team play a game against itself. The option \"78\" uses 12 x 13 / 2, counting 13 opponents for each team rather than 11. The option \"24\" reads the word twice as meaning that each team plays only two games.",
+  "solve": "return 12*(12-1)/2*2;",
+  "distractor_solve": {
+   "24": "return 12*2;",
+   "66": "return 12*(12-1)/2;",
+   "78": "return 12*(12+1)/2;",
+   "144": "return 12*12;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "24",
+    "reason": "reads the word twice as meaning that each team plays only two games."
+   },
+   {
+    "choice": "78",
+    "reason": "uses 12 x 13 / 2, counting 13 opponents for each team rather than 11."
+   },
+   {
+    "choice": "144",
+    "reason": "is 12 x 12, which lets each team play a game against itself."
+   },
+   {
+    "choice": "66",
+    "reason": "counts each pair once and forgets that the teams meet twice."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-15",
+  "domain": "Math",
+  "subskill": "finding a whole from the amount that fills a fractional gap",
+  "difficulty": "medium",
+  "prompt": "A water tank is one quarter full. After 18 litres of water are poured in, the tank is two fifths full. How many litres does the full tank hold?",
+  "choices": [
+   "72",
+   "45",
+   "150",
+   "90",
+   "120"
+  ],
+  "correct_answer": "120",
+  "explanation": "The 18 litres raise the level from 1/4 to 2/5 of the tank. Over a common denominator of 20 that gap is 8/20 - 5/20 = 3/20 of the tank, so 3/20 of the capacity is 18 litres and the capacity is 18 x 20/3 = 120 litres. The option \"72\" multiplies 18 by 4, using only the quarter and ignoring the second level. The option \"45\" divides 18 by 2/5, using only the second level and ignoring the first. The option \"90\" multiplies 18 by the 5 in two fifths. The option \"150\" uses 25 rather than 20 as the common denominator, making the gap 3/25.",
+  "solve": "return 18/(2/5-1/4);",
+  "distractor_solve": {
+   "45": "return 18/(2/5);",
+   "72": "return 18*4;",
+   "90": "return 18*5;",
+   "150": "return 18/(3/25);"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "72",
+    "reason": "multiplies 18 by 4, using only the quarter and ignoring the second level."
+   },
+   {
+    "choice": "45",
+    "reason": "divides 18 by 2/5, using only the second level and ignoring the first."
+   },
+   {
+    "choice": "150",
+    "reason": "uses 25 rather than 20 as the common denominator, making the gap 3/25."
+   },
+   {
+    "choice": "90",
+    "reason": "multiplies 18 by the 5 in two fifths."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-17",
+  "domain": "Math",
+  "subskill": "comparing a percent discount with a percent discount plus a fixed amount",
+  "difficulty": "medium",
+  "prompt": "A coat is priced at $240 in two shops. Shop A takes 35 percent off the price. Shop B takes 25 percent off the price and then takes a further $40 off the reduced price. What is the lower of the two final prices, in dollars?",
+  "choices": [
+   "156",
+   "140",
+   "116",
+   "180",
+   "200"
+  ],
+  "correct_answer": "140",
+  "explanation": "Shop A charges 65 percent of $240, which is $156. Shop B charges 75 percent of $240, which is $180, and then $40 less, which is $140. The lower price is Shop B's $140. The option \"156\" is Shop A's price, chosen by a student who assumes the larger percent always wins. The option \"180\" is Shop B's price before the further $40 is taken off. The option \"200\" takes the $40 off the list price and never applies a percent at all. The option \"116\" takes the $40 off Shop A's reduced price, combining the better percent with the extra dollars although no shop offers both.",
+  "solve": "return Math.min(240*0.65, 240*0.75-40);",
+  "distractor_solve": {
+   "116": "return 240*0.65-40;",
+   "156": "return 240*0.65;",
+   "180": "return 240*0.75;",
+   "200": "return 240-40;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "156",
+    "reason": "is Shop A's price, chosen by a student who assumes the larger percent always wins."
+   },
+   {
+    "choice": "116",
+    "reason": "takes the $40 off Shop A's reduced price, combining the better percent with the extra dollars although no shop offers both."
+   },
+   {
+    "choice": "180",
+    "reason": "is Shop B's price before the further $40 is taken off."
+   },
+   {
+    "choice": "200",
+    "reason": "takes the $40 off the list price and never applies a percent at all."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-18",
+  "domain": "Math",
+  "subskill": "recovering two costs from one selling price, a gain percent and a loss percent",
+  "difficulty": "hard",
+  "prompt": "A shop sells two bicycles for $360 each. The first sale is a gain of 20 percent on what that bicycle cost the shop, and the second sale is a loss of 20 percent on what that bicycle cost the shop. What did the two bicycles together cost the shop, in dollars?",
+  "choices": [
+   "720",
+   "660",
+   "750",
+   "576",
+   "864"
+  ],
+  "correct_answer": "750",
+  "explanation": "A gain of 20 percent means $360 is 120 percent of the first cost, so that cost is 360/1.2 = $300. A loss of 20 percent means $360 is 80 percent of the second cost, so that cost is 360/0.8 = $450. Together the bicycles cost $750, which is more than the $720 taken in. The option \"720\" comes from a student who believes a 20 percent gain and a 20 percent loss cancel, so that cost must equal the money received. The option \"576\" takes 80 percent of each selling price, applying the percents to $360 instead of to the unknown costs. The option \"864\" makes the same mistake in the other direction, taking 120 percent of each selling price. The option \"660\" finds the first cost correctly as $300 but then records the second bicycle's cost as its $360 selling price.",
+  "solve": "return 360/1.2+360/0.8;",
+  "distractor_solve": {
+   "576": "return 360*0.8*2;",
+   "660": "return 360/1.2+360;",
+   "720": "return 360*2;",
+   "864": "return 360*1.2*2;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "720",
+    "reason": "comes from a student who believes a 20 percent gain and a 20 percent loss cancel, so that cost must equal the money received."
+   },
+   {
+    "choice": "660",
+    "reason": "finds the first cost correctly as $300 but then records the second bicycle's cost as its $360 selling price."
+   },
+   {
+    "choice": "576",
+    "reason": "takes 80 percent of each selling price, applying the percents to $360 instead of to the unknown costs."
+   },
+   {
+    "choice": "864",
+    "reason": "makes the same mistake in the other direction, taking 120 percent of each selling price."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-19",
+  "domain": "Math",
+  "subskill": "sharing an amount in the ratio of money multiplied by time",
+  "difficulty": "hard",
+  "prompt": "Ravi puts $600 into a market stall and leaves it there for 5 months. Sara puts $900 into the same stall and leaves it there for 4 months. They agree to share the $770 profit in the ratio of each person's money multiplied by the number of months it was invested. How many dollars does Ravi receive?",
+  "choices": [
+   "385",
+   "428",
+   "420",
+   "350",
+   "308"
+  ],
+  "correct_answer": "350",
+  "explanation": "Ravi's money-months come to 600 x 5 = 3,000 and Sara's to 900 x 4 = 3,600, so the profit is shared in the ratio 3,000 : 3,600, which is 5 : 6. Ravi receives 5/11 of $770, which is $350. The option \"420\" is Sara's 6/11 share, from a student who attaches the larger share to the wrong person. The option \"308\" shares the profit in the ratio of the money alone, 600 : 900, ignoring the months. The option \"428\" shares it in the ratio of the months alone, 5 : 4, ignoring the money. The option \"385\" splits the profit equally between the two partners.",
+  "solve": "const r=600*5,s=900*4;return 770*r/(r+s);",
+  "distractor_solve": {
+   "308": "return 770*600/(600+900);",
+   "385": "return 770/2;",
+   "420": "const r=600*5,s=900*4;return 770*s/(r+s);",
+   "428": "return Math.round(770*5/(5+4));"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "385",
+    "reason": "splits the profit equally between the two partners."
+   },
+   {
+    "choice": "428",
+    "reason": "shares it in the ratio of the months alone, 5 : 4, ignoring the money."
+   },
+   {
+    "choice": "420",
+    "reason": "is Sara's 6/11 share, from a student who attaches the larger share to the wrong person."
+   },
+   {
+    "choice": "308",
+    "reason": "shares the profit in the ratio of the money alone, 600 : 900, ignoring the months."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-20",
+  "domain": "Math",
+  "subskill": "the digit sum of a number written as a power of ten minus a small number",
+  "difficulty": "hard",
+  "prompt": "What is the sum of the digits of the number 100,000 - 63?",
+  "choices": [
+   "27",
+   "30",
+   "38",
+   "45",
+   "37"
+  ],
+  "correct_answer": "37",
+  "explanation": "Subtracting 63 from 100,000 gives 99,937, whose digits add to 9 + 9 + 9 + 3 + 7 = 37. The option \"45\" is the digit sum of 99,999, from a student who subtracts 1 from 100,000 rather than 63. The option \"38\" is the digit sum of 99,947, which comes from a borrowing slip in the tens column. The option \"27\" counts only the three nines and stops, treating the borrowing as if it emptied the last two places. The option \"30\" adds 9 + 9 + 9 + 3 and never reaches the units digit.",
+  "solve": "return String(100000-63).split('').reduce((a,d)=>a+Number(d),0);",
+  "distractor_solve": {
+   "27": "return 9*3;",
+   "30": "return 9+9+9+3;",
+   "38": "return String(99947).split('').reduce((a,d)=>a+Number(d),0);",
+   "45": "return String(100000-1).split('').reduce((a,d)=>a+Number(d),0);"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "27",
+    "reason": "counts only the three nines and stops, treating the borrowing as if it emptied the last two places."
+   },
+   {
+    "choice": "30",
+    "reason": "adds 9 + 9 + 9 + 3 and never reaches the units digit."
+   },
+   {
+    "choice": "38",
+    "reason": "is the digit sum of 99,947, which comes from a borrowing slip in the tens column."
+   },
+   {
+    "choice": "45",
+    "reason": "is the digit sum of 99,999, from a student who subtracts 1 from 100,000 rather than 63."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-21",
+  "domain": "Math",
+  "subskill": "building the least number with a required count of factors",
+  "difficulty": "hard",
+  "prompt": "What is the least positive whole number that has exactly 12 different positive factors?",
+  "choices": [
+   "60",
+   "72",
+   "48",
+   "90",
+   "96"
+  ],
+  "correct_answer": "60",
+  "explanation": "The number of factors is found by adding 1 to each exponent in the prime factorisation and multiplying. Writing 12 as 3 x 2 x 2 calls for exponents 2, 1, 1, and putting the largest exponent on the smallest prime gives 2^2 x 3 x 5 = 60, which has exactly 12 factors. The option \"90\" is 2 x 3^2 x 5, the same shape with the square moved to the 3, and is larger. The option \"72\" is 2^3 x 3^2, which comes from writing 12 as 4 x 3, and also has 12 factors but is larger. The option \"96\" is 2^5 x 3, from writing 12 as 6 x 2, and is larger still. The option \"48\" is 2^4 x 3, from a student who uses the exponents themselves rather than the exponents increased by 1; it has only 10 factors.",
+  "solve": "const f=n=>{let c=0;for(let d=1;d<=n;d++) if(n%d===0)c++;return c;};for(let n=1;;n++) if(f(n)===12) return n;",
+  "distractor_solve": {
+   "48": "return Math.pow(2,4)*3;",
+   "72": "return Math.pow(2,3)*Math.pow(3,2);",
+   "90": "return 2*3*3*5;",
+   "96": "return Math.pow(2,5)*3;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "72",
+    "reason": "is 2^3 x 3^2, which comes from writing 12 as 4 x 3, and also has 12 factors but is larger."
+   },
+   {
+    "choice": "48",
+    "reason": "is 2^4 x 3, from a student who uses the exponents themselves rather than the exponents increased by 1; it has only 10 factors."
+   },
+   {
+    "choice": "90",
+    "reason": "is 2 x 3^2 x 5, the same shape with the square moved to the 3, and is larger."
+   },
+   {
+    "choice": "96",
+    "reason": "is 2^5 x 3, from writing 12 as 6 x 2, and is larger still."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-23",
+  "domain": "Math",
+  "subskill": "adding a short run of unlike fractions over a common denominator",
+  "difficulty": "hard",
+  "prompt": "What is the value of 1/2 + 1/6 + 1/12 + 1/20 + 1/30?",
+  "choices": [
+   "1",
+   "13/15",
+   "5/6",
+   "2/3",
+   "1/14"
+  ],
+  "correct_answer": "5/6",
+  "explanation": "Over a common denominator of 60 the five fractions are 30/60, 10/60, 5/60, 3/60 and 2/60, which add to 50/60 = 5/6. The option \"1/14\" comes from adding the numerators and the denominators separately, 5/(2 + 6 + 12 + 20 + 30). The option \"2/3\" adds only the first two fractions, 1/2 + 1/6, and stops where the denominators stop being familiar. The option \"13/15\" is 52/60, from converting 1/20 to 4/60 and 1/30 to 3/60 instead of 3/60 and 2/60. The option \"1\" is 60/60, from converting 1/30 to 12/60 and so filling the whole.",
+  "solve": "return 1/2+1/6+1/12+1/20+1/30;",
+  "distractor_solve": {
+   "1": "return (30+10+5+3+12)/60;",
+   "1/14": "return 5/(2+6+12+20+30);",
+   "2/3": "return 1/2+1/6;",
+   "13/15": "return (30+10+5+4+3)/60;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "1",
+    "reason": "is 60/60, from converting 1/30 to 12/60 and so filling the whole."
+   },
+   {
+    "choice": "13/15",
+    "reason": "is 52/60, from converting 1/20 to 4/60 and 1/30 to 3/60 instead of 3/60 and 2/60."
+   },
+   {
+    "choice": "2/3",
+    "reason": "adds only the first two fractions, 1/2 + 1/6, and stops where the denominators stop being familiar."
+   },
+   {
+    "choice": "1/14",
+    "reason": "comes from adding the numerators and the denominators separately, 5/(2 + 6 + 12 + 20 + 30)."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-24",
+  "domain": "Math",
+  "subskill": "a percent increase cancelled by a fixed dollar amount",
+  "difficulty": "hard",
+  "prompt": "The price of a chair is raised by 20 percent. A coupon then takes $8 off the raised price, and the price after the coupon is exactly the price the chair had before the rise. What was the price of the chair before the rise, in dollars?",
+  "choices": [
+   "10",
+   "32",
+   "48",
+   "40",
+   "6.67"
+  ],
+  "correct_answer": "40",
+  "explanation": "If the old price is P, the raised price is 1.2P and the coupon price is 1.2P - 8. Setting that equal to P gives 0.2P = 8, so P = $40. The $8 coupon is exactly the 20 percent that was added. The option \"48\" is the raised price, 1.2 x 40, which answers a question about the new price rather than the old one. The option \"10\" divides the $8 by 0.8, treating the change as a 20 percent cut rather than a 20 percent rise. The option \"6.67\" divides the $8 by 1.2, applying the percent to the coupon instead of to the price. The option \"32\" comes from solving 0.2(P + 8) = 8, which charges the 20 percent on a price that already includes the coupon.",
+  "solve": "return 8/0.2;",
+  "distractor_solve": {
+   "10": "return 8/0.8;",
+   "32": "return 8/0.2-8;",
+   "48": "return (8/0.2)*1.2;",
+   "6.67": "return Math.round(8/1.2*100)/100;"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "10",
+    "reason": "divides the $8 by 0.8, treating the change as a 20 percent cut rather than a 20 percent rise."
+   },
+   {
+    "choice": "32",
+    "reason": "comes from solving 0.2(P + 8) = 8, which charges the 20 percent on a price that already includes the coupon."
+   },
+   {
+    "choice": "48",
+    "reason": "is the raised price, 1.2 x 40, which answers a question about the new price rather than the old one."
+   },
+   {
+    "choice": "6.67",
+    "reason": "divides the $8 by 1.2, applying the percent to the coupon instead of to the price."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9A-25",
+  "domain": "Math",
+  "subskill": "a clock that loses a fixed number of minutes every hour",
+  "difficulty": "hard",
+  "prompt": "A clock is set to the correct time at 9:00 a.m. and from then on it loses 4 minutes every hour. What time does this clock show when the true time is 3:00 p.m. the same day?",
+  "choices": [
+   "2:24 p.m.",
+   "2:40 p.m.",
+   "2:56 p.m.",
+   "3:24 p.m.",
+   "2:36 p.m."
+  ],
+  "correct_answer": "2:36 p.m.",
+  "explanation": "From 9:00 a.m. to 3:00 p.m. is 6 hours, and the clock loses 4 minutes in each of them, a total of 24 minutes. The clock therefore shows 24 minutes before 3:00 p.m., which is 2:36 p.m. The option \"3:24 p.m.\" adds the 24 minutes instead of subtracting them, which is what a clock that GAINED time would show. The option \"2:56 p.m.\" subtracts a single 4-minute loss, treating the rate as a one-off. The option \"2:24 p.m.\" counts 9 hours rather than 6, reading the 9 in 9:00 a.m. as the number of hours that pass. The option \"2:40 p.m.\" counts only 5 hours by counting the gaps between the six o'clocks from 10 to 3.",
+  "solve": "const t=15*60-6*4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';",
+  "distractor_solve": {
+   "3:24 p.m.": "const t=15*60+6*4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';",
+   "2:56 p.m.": "const t=15*60-4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';",
+   "2:24 p.m.": "const t=15*60-9*4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';",
+   "2:40 p.m.": "const t=15*60-5*4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';"
+  },
+  "distractor_rationales": [
+   {
+    "choice": "2:24 p.m.",
+    "reason": "counts 9 hours rather than 6, reading the 9 in 9:00 a."
+   },
+   {
+    "choice": "2:40 p.m.",
+    "reason": "counts only 5 hours by counting the gaps between the six o'clocks from 10 to 3."
+   },
+   {
+    "choice": "2:56 p.m.",
+    "reason": "subtracts a single 4-minute loss, treating the rate as a one-off."
+   },
+   {
+    "choice": "3:24 p.m.",
+    "reason": "adds the 24 minutes instead of subtracting them, which is what a clock that GAINED time would show."
+   }
+  ]
+ },
+ {
+  "id": "SMQ9B-01",
+  "domain": "Math",
+  "subskill": "evaluating a formula in which the variable is squared",
+  "difficulty": "easy",
+  "prompt": "The height h, in centimetres, of a young tree after w weeks is given by h = 4w² + 6. What is the height of the tree after 5 weeks?",
+  "choices": [
+   "46",
+   "406",
+   "100",
+   "106",
+   "26"
+  ],
+  "correct_answer": "106",
+  "explanation": "Substituting w = 5 gives 4 x 25 + 6 = 100 + 6 = 106 centimetres. The option \"46\" comes from a solver who doubles the 5 instead of squaring it, computing 4 x 5 x 2 + 6. The option \"406\" comes from a solver who squares the whole product 4w rather than w alone, computing (4 x 5)² + 6. The option \"100\" comes from a solver who squares and multiplies correctly but drops the constant 6. The option \"26\" comes from a solver who ignores the square altogether, computing 4 x 5 + 6.",
+  "distractor_rationales": [
+   {
+    "choice": "46",
+    "reason": "doubles the 5 instead of squaring it, computing 4 x 5 x 2 + 6."
+   },
+   {
+    "choice": "406",
+    "reason": "squares the whole product 4w rather than w alone, computing (4 x 5)² + 6."
+   },
+   {
+    "choice": "100",
+    "reason": "squares and multiplies correctly but drops the constant 6."
+   },
+   {
+    "choice": "26",
+    "reason": "ignores the square altogether, computing 4 x 5 + 6."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "46",
+    "mis_step": "doubles the 5 instead of squaring it, computing 4 x 5 x 2 + 6."
+   },
+   {
+    "choice": "406",
+    "mis_step": "squares the whole product 4w rather than w alone, computing (4 x 5)² + 6."
+   },
+   {
+    "choice": "100",
+    "mis_step": "squares and multiplies correctly but drops the constant 6."
+   },
+   {
+    "choice": "26",
+    "mis_step": "ignores the square altogether, computing 4 x 5 + 6."
+   }
+  ],
+  "solve": "return 4*Math.pow(5,2)+6;",
+  "distractor_solve": {
+   "26": "return 4*5+6;",
+   "46": "return 4*5*2+6;",
+   "100": "return 4*Math.pow(5,2);",
+   "406": "return Math.pow(4*5,2)+6;"
+  }
+ },
+ {
+  "id": "SMQ9B-02",
+  "domain": "Math",
+  "subskill": "an angle measure recovered from a vertical-angle equation",
+  "difficulty": "easy",
+  "prompt": "Two straight lines cross at a point. One of the angles formed measures (2x + 9)°, and the angle vertically opposite it measures (4x − 11)°. What is the measure of that angle, in degrees?",
+  "choices": [
+   "29",
+   "10",
+   "20",
+   "7",
+   "49"
+  ],
+  "correct_answer": "29",
+  "explanation": "Vertical angles are equal, so 2x + 9 = 4x − 11, giving 2x = 20 and x = 10. The angle is 2(10) + 9 = 29 degrees. The option \"10\" comes from a solver who solves correctly for x but reports x instead of the angle it produces. The option \"20\" comes from a solver who reports the term 2x and forgets to add the 9. The option \"7\" comes from a solver who moves the constants the wrong way, solving 2x = 9 − 11 = −2 and then evaluating 2x + 9 at x = −1. The option \"49\" comes from a solver who reaches 2x = 20 and reads off x = 20, then evaluates 2x + 9 at x = 20.",
+  "distractor_rationales": [
+   {
+    "choice": "10",
+    "reason": "solves correctly for x but reports x instead of the angle it produces."
+   },
+   {
+    "choice": "20",
+    "reason": "reports the term 2x and forgets to add the 9."
+   },
+   {
+    "choice": "7",
+    "reason": "moves the constants the wrong way, solving 2x = 9 − 11 = −2 and then evaluating 2x + 9 at x = −1."
+   },
+   {
+    "choice": "49",
+    "reason": "reaches 2x = 20 and reads off x = 20, then evaluates 2x + 9 at x = 20."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "10",
+    "mis_step": "solves correctly for x but reports x instead of the angle it produces."
+   },
+   {
+    "choice": "20",
+    "mis_step": "reports the term 2x and forgets to add the 9."
+   },
+   {
+    "choice": "7",
+    "mis_step": "moves the constants the wrong way, solving 2x = 9 − 11 = −2 and then evaluating 2x + 9 at x = −1."
+   },
+   {
+    "choice": "49",
+    "mis_step": "reaches 2x = 20 and reads off x = 20, then evaluates 2x + 9 at x = 20."
+   }
+  ],
+  "solve": "const x=(11+9)/(4-2); return 2*x+9;",
+  "distractor_solve": {
+   "7": "const x=(9-11)/(4-2); return 2*x+9;",
+   "10": "return (11+9)/(4-2);",
+   "20": "return 2*((11+9)/(4-2));",
+   "49": "const x=20; return 2*x+9;"
+  }
+ },
+ {
+  "id": "SMQ9B-03",
+  "domain": "Math",
+  "subskill": "perimeter of an L-shaped region from its six sides",
+  "difficulty": "easy",
+  "prompt": "A patio is an L-shaped region. Walking around its edge in order, the six straight sides measure 14 m, 6 m, 5 m, 4 m, 9 m and 10 m, and every corner is a right angle. What is the perimeter of the patio, in metres?",
+  "choices": [
+   "39",
+   "120",
+   "48",
+   "46",
+   "18"
+  ],
+  "correct_answer": "48",
+  "explanation": "The perimeter is the distance all the way round, so it is the sum of all six sides: 14 + 6 + 5 + 4 + 9 + 10 = 48 metres. The option \"39\" comes from a solver who adds only the four longer sides and leaves out the two short sides at the notch. The option \"120\" comes from a solver who finds the area of the region instead of its perimeter, taking 14 x 10 and removing the 5 by 4 corner. The option \"46\" comes from a solver who doubles the sum of the two horizontal measurements 14 and 9, as if the figure were a rectangle. The option \"18\" comes from a solver who gives the perimeter of the small 5 by 4 piece cut out of the corner.",
+  "distractor_rationales": [
+   {
+    "choice": "39",
+    "reason": "adds only the four longer sides and leaves out the two short sides at the notch."
+   },
+   {
+    "choice": "120",
+    "reason": "finds the area of the region instead of its perimeter, taking 14 x 10 and removing the 5 by 4 corner."
+   },
+   {
+    "choice": "46",
+    "reason": "doubles the sum of the two horizontal measurements 14 and 9, as if the figure were a rectangle."
+   },
+   {
+    "choice": "18",
+    "reason": "gives the perimeter of the small 5 by 4 piece cut out of the corner."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "39",
+    "mis_step": "adds only the four longer sides and leaves out the two short sides at the notch."
+   },
+   {
+    "choice": "120",
+    "mis_step": "finds the area of the region instead of its perimeter, taking 14 x 10 and removing the 5 by 4 corner."
+   },
+   {
+    "choice": "46",
+    "mis_step": "doubles the sum of the two horizontal measurements 14 and 9, as if the figure were a rectangle."
+   },
+   {
+    "choice": "18",
+    "mis_step": "gives the perimeter of the small 5 by 4 piece cut out of the corner."
+   }
+  ],
+  "solve": "return 14+6+5+4+9+10;",
+  "distractor_solve": {
+   "18": "return 2*(5+4);",
+   "39": "return 14+6+9+10;",
+   "46": "return 2*(14+9);",
+   "120": "return 14*10-5*4;"
+  }
+ },
+ {
+  "id": "SMQ9B-04",
+  "domain": "Math",
+  "subskill": "the greatest one-day increase in a table of values",
+  "difficulty": "easy",
+  "prompt": "A bakery recorded its loaves sold each day: Monday 320, Tuesday 365, Wednesday 410, Thursday 379, Friday 462. What is the greatest increase in loaves sold from one day to the next day?",
+  "choices": [
+   "45",
+   "31",
+   "97",
+   "90",
+   "83"
+  ],
+  "correct_answer": "83",
+  "explanation": "The day-to-day changes are +45, +45, −31 and +83, so the greatest increase from one day to the next is 83 loaves, from Thursday to Friday. The option \"45\" comes from a solver who takes the first increase found and does not compare it with the later ones. The option \"31\" comes from a solver who reports the size of the one decrease rather than the greatest increase. The option \"97\" comes from a solver who compares Friday with Tuesday, which are not consecutive days. The option \"90\" comes from a solver who adds the two equal increases together, treating Monday to Wednesday as a single step.",
+  "distractor_rationales": [
+   {
+    "choice": "45",
+    "reason": "takes the first increase found and does not compare it with the later ones."
+   },
+   {
+    "choice": "31",
+    "reason": "reports the size of the one decrease rather than the greatest increase."
+   },
+   {
+    "choice": "97",
+    "reason": "compares Friday with Tuesday, which are not consecutive days."
+   },
+   {
+    "choice": "90",
+    "reason": "adds the two equal increases together, treating Monday to Wednesday as a single step."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "45",
+    "mis_step": "takes the first increase found and does not compare it with the later ones."
+   },
+   {
+    "choice": "31",
+    "mis_step": "reports the size of the one decrease rather than the greatest increase."
+   },
+   {
+    "choice": "97",
+    "mis_step": "compares Friday with Tuesday, which are not consecutive days."
+   },
+   {
+    "choice": "90",
+    "mis_step": "adds the two equal increases together, treating Monday to Wednesday as a single step."
+   }
+  ],
+  "solve": "return 462-379;",
+  "distractor_solve": {
+   "31": "return 410-379;",
+   "45": "return 365-320;",
+   "90": "return (365-320)+(410-365);",
+   "97": "return 462-365;"
+  }
+ },
+ {
+  "id": "SMQ9B-05",
+  "domain": "Math",
+  "subskill": "area of a rhombus from the lengths of its diagonals",
+  "difficulty": "easy",
+  "prompt": "A rhombus has diagonals of length 10 cm and 24 cm. What is the area of the rhombus, in square centimetres?",
+  "choices": [
+   "34",
+   "52",
+   "13",
+   "120",
+   "50"
+  ],
+  "correct_answer": "120",
+  "explanation": "The diagonals of a rhombus cut it into four right triangles, and its area is half the product of the diagonals: (10 x 24) / 2 = 120 square centimetres. The option \"34\" comes from a solver who adds the diagonals instead of multiplying them. The option \"52\" comes from a solver who finds the perimeter of the rhombus: the half-diagonals 5 and 12 give a side of 13, so the perimeter is 52. The option \"13\" comes from a solver who stops at the side length of the rhombus, found from the right triangle with legs 5 and 12. The option \"50\" comes from a solver who uses the shorter diagonal twice, computing (10 x 10) / 2.",
+  "distractor_rationales": [
+   {
+    "choice": "34",
+    "reason": "adds the diagonals instead of multiplying them."
+   },
+   {
+    "choice": "52",
+    "reason": "finds the perimeter of the rhombus: the half-diagonals 5 and 12 give a side of 13, so the perimeter is 52."
+   },
+   {
+    "choice": "13",
+    "reason": "stops at the side length of the rhombus, found from the right triangle with legs 5 and 12."
+   },
+   {
+    "choice": "50",
+    "reason": "uses the shorter diagonal twice, computing (10 x 10) / 2."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "34",
+    "mis_step": "adds the diagonals instead of multiplying them."
+   },
+   {
+    "choice": "52",
+    "mis_step": "finds the perimeter of the rhombus: the half-diagonals 5 and 12 give a side of 13, so the perimeter is 52."
+   },
+   {
+    "choice": "13",
+    "mis_step": "stops at the side length of the rhombus, found from the right triangle with legs 5 and 12."
+   },
+   {
+    "choice": "50",
+    "mis_step": "uses the shorter diagonal twice, computing (10 x 10) / 2."
+   }
+  ],
+  "solve": "return 10*24/2;",
+  "distractor_solve": {
+   "13": "return Math.sqrt(25+144);",
+   "34": "return 10+24;",
+   "50": "return 10*10/2;",
+   "52": "return 4*Math.sqrt(5*5+12*12);"
+  }
+ },
+ {
+  "id": "SMQ9B-06",
+  "domain": "Math",
+  "subskill": "scaling a whole equation to evaluate a multiple of its expression",
+  "difficulty": "medium",
+  "prompt": "If 5m − 2n = 17, what is the value of 15m − 6n + 4?",
+  "choices": [
+   "21",
+   "51",
+   "68",
+   "85",
+   "55"
+  ],
+  "correct_answer": "55",
+  "explanation": "Every term of 15m − 6n is three times the matching term of 5m − 2n, so 15m − 6n = 3 x 17 = 51, and adding 4 gives 55. The option \"21\" comes from a solver who never scales the expression, treating 15m − 6n as 17 and adding 4. The option \"51\" comes from a solver who scales by 3 correctly but leaves off the + 4. The option \"68\" comes from a solver who multiplies by the 4 from the end of the expression instead of by the scale factor 3. The option \"85\" comes from a solver who uses the coefficient 5 from the original equation as the scale factor.",
+  "distractor_rationales": [
+   {
+    "choice": "21",
+    "reason": "never scales the expression, treating 15m − 6n as 17 and adding 4."
+   },
+   {
+    "choice": "51",
+    "reason": "scales by 3 correctly but leaves off the + 4."
+   },
+   {
+    "choice": "68",
+    "reason": "multiplies by the 4 from the end of the expression instead of by the scale factor 3."
+   },
+   {
+    "choice": "85",
+    "reason": "uses the coefficient 5 from the original equation as the scale factor."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "21",
+    "mis_step": "never scales the expression, treating 15m − 6n as 17 and adding 4."
+   },
+   {
+    "choice": "51",
+    "mis_step": "scales by 3 correctly but leaves off the + 4."
+   },
+   {
+    "choice": "68",
+    "mis_step": "multiplies by the 4 from the end of the expression instead of by the scale factor 3."
+   },
+   {
+    "choice": "85",
+    "mis_step": "uses the coefficient 5 from the original equation as the scale factor."
+   }
+  ],
+  "solve": "return 3*17+4;",
+  "distractor_solve": {
+   "21": "return 17+4;",
+   "51": "return 3*17;",
+   "68": "return 17*4;",
+   "85": "return 17*5;"
+  }
+ },
+ {
+  "id": "SMQ9B-07",
+  "domain": "Math",
+  "subskill": "solving a proportion whose cross-multiplication needs distribution",
+  "difficulty": "medium",
+  "prompt": "If (x + 9) / (3x − 4) = 2 / 5, what is the value of x?",
+  "choices": [
+   "−7",
+   "13",
+   "37",
+   "17",
+   "53"
+  ],
+  "correct_answer": "53",
+  "explanation": "Cross-multiplying gives 5(x + 9) = 2(3x − 4), so 5x + 45 = 6x − 8. Subtracting 5x and adding 8 gives x = 53. The option \"−7\" comes from a solver who matches the numerators only, setting x + 9 = 2. The option \"13\" comes from a solver who multiplies only the leading term inside each bracket, solving 5x + 9 = 6x − 4. The option \"37\" comes from a solver who makes a sign error distributing the 2, solving 5x + 45 = 6x + 8. The option \"17\" comes from a solver who distributes the 5 to the x but not to the 9, solving 5x + 9 = 6x − 8.",
+  "distractor_rationales": [
+   {
+    "choice": "−7",
+    "reason": "matches the numerators only, setting x + 9 = 2."
+   },
+   {
+    "choice": "13",
+    "reason": "multiplies only the leading term inside each bracket, solving 5x + 9 = 6x − 4."
+   },
+   {
+    "choice": "37",
+    "reason": "makes a sign error distributing the 2, solving 5x + 45 = 6x + 8."
+   },
+   {
+    "choice": "17",
+    "reason": "distributes the 5 to the x but not to the 9, solving 5x + 9 = 6x − 8."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "−7",
+    "mis_step": "matches the numerators only, setting x + 9 = 2."
+   },
+   {
+    "choice": "13",
+    "mis_step": "multiplies only the leading term inside each bracket, solving 5x + 9 = 6x − 4."
+   },
+   {
+    "choice": "37",
+    "mis_step": "makes a sign error distributing the 2, solving 5x + 45 = 6x + 8."
+   },
+   {
+    "choice": "17",
+    "mis_step": "distributes the 5 to the x but not to the 9, solving 5x + 9 = 6x − 8."
+   }
+  ],
+  "solve": "return (5*9+2*4)/(2*3-5);",
+  "distractor_solve": {
+   "13": "return (9+4)/(2*3-5);",
+   "17": "return (9+8)/(2*3-5);",
+   "37": "return (45-8)/(2*3-5);",
+   "−7": "return 2-9;"
+  }
+ },
+ {
+  "id": "SMQ9B-08",
+  "domain": "Math",
+  "subskill": "the middle coefficient of a product of two binomials",
+  "difficulty": "medium",
+  "prompt": "When (3x − 4)(2x + 7) is multiplied out and written in the form ax² + bx + c, what is the value of b?",
+  "choices": [
+   "13",
+   "−28",
+   "6",
+   "29",
+   "21"
+  ],
+  "correct_answer": "13",
+  "explanation": "The x-terms come from the outer and inner products: 3x(7) = 21x and (−4)(2x) = −8x, so b = 21 − 8 = 13. The option \"−28\" comes from a solver who multiplies the two constants and reports c instead of b. The option \"6\" comes from a solver who multiplies the two leading coefficients and reports a instead of b. The option \"29\" comes from a solver who loses the minus sign on the 4 and adds 21 and 8. The option \"21\" comes from a solver who takes only the outer product and never forms the inner one.",
+  "distractor_rationales": [
+   {
+    "choice": "−28",
+    "reason": "multiplies the two constants and reports c instead of b."
+   },
+   {
+    "choice": "6",
+    "reason": "multiplies the two leading coefficients and reports a instead of b."
+   },
+   {
+    "choice": "29",
+    "reason": "loses the minus sign on the 4 and adds 21 and 8."
+   },
+   {
+    "choice": "21",
+    "reason": "takes only the outer product and never forms the inner one."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "−28",
+    "mis_step": "multiplies the two constants and reports c instead of b."
+   },
+   {
+    "choice": "6",
+    "mis_step": "multiplies the two leading coefficients and reports a instead of b."
+   },
+   {
+    "choice": "29",
+    "mis_step": "loses the minus sign on the 4 and adds 21 and 8."
+   },
+   {
+    "choice": "21",
+    "mis_step": "takes only the outer product and never forms the inner one."
+   }
+  ],
+  "solve": "return 3*7+(-4)*2;",
+  "distractor_solve": {
+   "6": "return 3*2;",
+   "21": "return 3*7;",
+   "29": "return 3*7+4*2;",
+   "−28": "return -4*7;"
+  }
+ },
+ {
+  "id": "SMQ9B-09",
+  "domain": "Math",
+  "subskill": "a later term of an arithmetic sequence found from two separated terms",
+  "difficulty": "medium",
+  "prompt": "In an arithmetic sequence, the 4th term is 19 and the 10th term is 55. What is the 12th term?",
+  "choices": [
+   "61",
+   "85",
+   "73",
+   "67",
+   "72"
+  ],
+  "correct_answer": "67",
+  "explanation": "There are 6 steps from the 4th term to the 10th, so the common difference is (55 − 19) / 6 = 6. The 12th term is two more steps past the 10th: 55 + 2(6) = 67. The option \"61\" comes from a solver who adds only one common difference to the 10th term instead of two. The option \"85\" comes from a solver who treats the 4th term as the first term and adds 11 common differences to it. The option \"73\" comes from a solver who counts terms rather than steps and adds three common differences to the 10th term. The option \"72\" comes from a solver who multiplies the term number by the common difference, as if the sequence were the multiples of 6.",
+  "distractor_rationales": [
+   {
+    "choice": "61",
+    "reason": "adds only one common difference to the 10th term instead of two."
+   },
+   {
+    "choice": "85",
+    "reason": "treats the 4th term as the first term and adds 11 common differences to it."
+   },
+   {
+    "choice": "73",
+    "reason": "counts terms rather than steps and adds three common differences to the 10th term."
+   },
+   {
+    "choice": "72",
+    "reason": "multiplies the term number by the common difference, as if the sequence were the multiples of 6."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "61",
+    "mis_step": "adds only one common difference to the 10th term instead of two."
+   },
+   {
+    "choice": "85",
+    "mis_step": "treats the 4th term as the first term and adds 11 common differences to it."
+   },
+   {
+    "choice": "73",
+    "mis_step": "counts terms rather than steps and adds three common differences to the 10th term."
+   },
+   {
+    "choice": "72",
+    "mis_step": "multiplies the term number by the common difference, as if the sequence were the multiples of 6."
+   }
+  ],
+  "solve": "const d=(55-19)/(10-4); return 19+8*d;",
+  "distractor_solve": {
+   "61": "const d=(55-19)/(10-4); return 55+d;",
+   "72": "const d=(55-19)/(10-4); return 12*d;",
+   "73": "const d=(55-19)/(10-4); return 55+3*d;",
+   "85": "const d=(55-19)/(10-4); return 19+11*d;"
+  }
+ },
+ {
+  "id": "SMQ9B-10",
+  "domain": "Math",
+  "subskill": "the fourth vertex of a parallelogram in the coordinate plane",
+  "difficulty": "medium",
+  "prompt": "Three vertices of parallelogram ABCD are A(2, 1), B(8, 3) and C(11, 9), where AB and DC are opposite sides. What are the coordinates of vertex D?",
+  "choices": [
+   "(17, 11)",
+   "(5, 11)",
+   "(5, 7)",
+   "(6.5, 5)",
+   "(−1, −5)"
+  ],
+  "correct_answer": "(5, 7)",
+  "explanation": "In parallelogram ABCD the side AD must match the side BC in both direction and length. Going from B to C is 3 right and 6 up, so going from A(2, 1) by the same shift gives D(5, 7). The option \"(17, 11)\" comes from a solver who applies the shift from A to B starting at C, which lands on the opposite corner of the figure. The option \"(5, 11)\" comes from a solver who uses the correct horizontal shift from B to C but the vertical shift from A to B. The option \"(6.5, 5)\" comes from a solver who gives the midpoint of diagonal AC, the centre of the parallelogram, rather than a vertex. The option \"(−1, −5)\" comes from a solver who reverses the shift, going from A in the direction from C to B instead of from B to C.",
+  "distractor_rationales": [
+   {
+    "choice": "(17, 11)",
+    "reason": "applies the shift from A to B starting at C, which lands on the opposite corner of the figure."
+   },
+   {
+    "choice": "(5, 11)",
+    "reason": "uses the correct horizontal shift from B to C but the vertical shift from A to B."
+   },
+   {
+    "choice": "(6.5, 5)",
+    "reason": "gives the midpoint of diagonal AC, the centre of the parallelogram, rather than a vertex."
+   },
+   {
+    "choice": "(−1, −5)",
+    "reason": "reverses the shift, going from A in the direction from C to B instead of from B to C."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "(17, 11)",
+    "mis_step": "applies the shift from A to B starting at C, which lands on the opposite corner of the figure."
+   },
+   {
+    "choice": "(5, 11)",
+    "mis_step": "uses the correct horizontal shift from B to C but the vertical shift from A to B."
+   },
+   {
+    "choice": "(6.5, 5)",
+    "mis_step": "gives the midpoint of diagonal AC, the centre of the parallelogram, rather than a vertex."
+   },
+   {
+    "choice": "(−1, −5)",
+    "mis_step": "reverses the shift, going from A in the direction from C to B instead of from B to C."
+   }
+  ],
+  "solve": "return '('+(2+(11-8))+', '+(1+(9-3))+')';",
+  "distractor_solve": {
+   "(17, 11)": "return '('+(11+(8-2))+', '+(9+(3-1))+')';",
+   "(5, 11)": "return '('+(2+(11-8))+', '+(9+(3-1))+')';",
+   "(6.5, 5)": "return '('+((2+11)/2)+', '+((1+9)/2)+')';",
+   "(−1, −5)": "return '('+(2+(8-11))+', '+(1+(3-9))+')';"
+  }
+ },
+ {
+  "id": "SMQ9B-11",
+  "domain": "Math",
+  "subskill": "solving a linear equation that requires distributing a negative",
+  "difficulty": "medium",
+  "prompt": "Solve for x: 3(2x − 5) − 2(x − 6) = 45.",
+  "choices": [
+   "18",
+   "12",
+   "9",
+   "19",
+   "10"
+  ],
+  "correct_answer": "12",
+  "explanation": "Distributing gives 6x − 15 − 2x + 12 = 45. Collecting terms gives 4x − 3 = 45, so 4x = 48 and x = 12. The option \"18\" comes from a solver who carries the minus sign into only the first term of the second bracket, collecting 4x − 27 = 45. The option \"9\" comes from a solver who adds the second product instead of subtracting it, collecting 8x − 3 = 45 as 8x = 72. The option \"19\" comes from a solver who solves for x correctly but then reports the value of the bracket 2x − 5 instead of x. The option \"10\" comes from a solver who works with the first bracket alone, solving 3(2x − 5) = 45.",
+  "distractor_rationales": [
+   {
+    "choice": "18",
+    "reason": "carries the minus sign into only the first term of the second bracket, collecting 4x − 27 = 45."
+   },
+   {
+    "choice": "9",
+    "reason": "adds the second product instead of subtracting it, collecting 8x − 3 = 45 as 8x = 72."
+   },
+   {
+    "choice": "19",
+    "reason": "solves for x correctly but then reports the value of the bracket 2x − 5 instead of x."
+   },
+   {
+    "choice": "10",
+    "reason": "works with the first bracket alone, solving 3(2x − 5) = 45."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "18",
+    "mis_step": "carries the minus sign into only the first term of the second bracket, collecting 4x − 27 = 45."
+   },
+   {
+    "choice": "9",
+    "mis_step": "adds the second product instead of subtracting it, collecting 8x − 3 = 45 as 8x = 72."
+   },
+   {
+    "choice": "19",
+    "mis_step": "solves for x correctly but then reports the value of the bracket 2x − 5 instead of x."
+   },
+   {
+    "choice": "10",
+    "mis_step": "works with the first bracket alone, solving 3(2x − 5) = 45."
+   }
+  ],
+  "solve": "return (45+3)/4;",
+  "distractor_solve": {
+   "9": "return (45+15+12)/(6+2);",
+   "10": "return (45+15)/6;",
+   "18": "return (45+27)/4;",
+   "19": "const x=(45+3)/4; return 2*x-5;"
+  }
+ },
+ {
+  "id": "SMQ9B-12",
+  "domain": "Math",
+  "subskill": "counting wheel revolutions over a distance from the wheel's circumference",
+  "difficulty": "medium",
+  "prompt": "A wheel has a diameter of 35 cm. Taking pi to be 22/7, how many complete revolutions does the wheel make while rolling 385 metres along a straight path?",
+  "choices": [
+   "1100",
+   "3.5",
+   "423.5",
+   "350",
+   "38.5"
+  ],
+  "correct_answer": "350",
+  "explanation": "The circumference is (22/7) x 35 = 110 cm, which is 1.1 m. The number of revolutions is 385 / 1.1 = 350. The option \"1100\" comes from a solver who rolls the wheel forward by its diameter on each turn instead of by its circumference. The option \"3.5\" comes from a solver who divides the distance in metres by the circumference in centimetres, never converting the units. The option \"423.5\" comes from a solver who multiplies the distance by the circumference instead of dividing by it. The option \"38.5\" comes from a solver who misplaces the decimal point, converting the 110 cm circumference to 10 m rather than 1.1 m.",
+  "distractor_rationales": [
+   {
+    "choice": "1100",
+    "reason": "rolls the wheel forward by its diameter on each turn instead of by its circumference."
+   },
+   {
+    "choice": "3.5",
+    "reason": "divides the distance in metres by the circumference in centimetres, never converting the units."
+   },
+   {
+    "choice": "423.5",
+    "reason": "multiplies the distance by the circumference instead of dividing by it."
+   },
+   {
+    "choice": "38.5",
+    "reason": "misplaces the decimal point, converting the 110 cm circumference to 10 m rather than 1.1 m."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "1100",
+    "mis_step": "rolls the wheel forward by its diameter on each turn instead of by its circumference."
+   },
+   {
+    "choice": "3.5",
+    "mis_step": "divides the distance in metres by the circumference in centimetres, never converting the units."
+   },
+   {
+    "choice": "423.5",
+    "mis_step": "multiplies the distance by the circumference instead of dividing by it."
+   },
+   {
+    "choice": "38.5",
+    "mis_step": "misplaces the decimal point, converting the 110 cm circumference to 10 m rather than 1.1 m."
+   }
+  ],
+  "solve": "return 385/((22/7)*35/100);",
+  "distractor_solve": {
+   "1100": "return 385/(35/100);",
+   "3.5": "return 385/((22/7)*35);",
+   "423.5": "return 385*((22/7)*35/100);",
+   "38.5": "return 385/10;"
+  }
+ },
+ {
+  "id": "SMQ9B-14",
+  "domain": "Math",
+  "subskill": "the interior angle sum of a regular polygon found from one exterior angle",
+  "difficulty": "medium",
+  "prompt": "Each exterior angle of a regular polygon measures 24°. What is the sum of the interior angles of that polygon, in degrees?",
+  "choices": [
+   "2700",
+   "156",
+   "360",
+   "2520",
+   "2340"
+  ],
+  "correct_answer": "2340",
+  "explanation": "The exterior angles of any polygon add to 360°, so the polygon has 360 / 24 = 15 sides. The interior angles of a 15-sided polygon add to (15 − 2) x 180 = 2340 degrees. The option \"2700\" comes from a solver who finds 15 sides but uses n x 180 instead of (n − 2) x 180. The option \"156\" comes from a solver who gives the size of one interior angle, 180 − 24, rather than the sum of them all. The option \"360\" comes from a solver who reports the sum of the exterior angles, which is the figure used to find the number of sides. The option \"2520\" comes from a solver who subtracts 1 instead of 2, using (15 − 1) x 180.",
+  "distractor_rationales": [
+   {
+    "choice": "2700",
+    "reason": "finds 15 sides but uses n x 180 instead of (n − 2) x 180."
+   },
+   {
+    "choice": "156",
+    "reason": "gives the size of one interior angle, 180 − 24, rather than the sum of them all."
+   },
+   {
+    "choice": "360",
+    "reason": "reports the sum of the exterior angles, which is the figure used to find the number of sides."
+   },
+   {
+    "choice": "2520",
+    "reason": "subtracts 1 instead of 2, using (15 − 1) x 180."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "2700",
+    "mis_step": "finds 15 sides but uses n x 180 instead of (n − 2) x 180."
+   },
+   {
+    "choice": "156",
+    "mis_step": "gives the size of one interior angle, 180 − 24, rather than the sum of them all."
+   },
+   {
+    "choice": "360",
+    "mis_step": "reports the sum of the exterior angles, which is the figure used to find the number of sides."
+   },
+   {
+    "choice": "2520",
+    "mis_step": "subtracts 1 instead of 2, using (15 − 1) x 180."
+   }
+  ],
+  "solve": "const n=360/24; return (n-2)*180;",
+  "distractor_solve": {
+   "156": "return 180-24;",
+   "360": "return 24*(360/24);",
+   "2520": "return ((360/24)-1)*180;",
+   "2700": "return (360/24)*180;"
+  }
+ },
+ {
+  "id": "SMQ9B-15",
+  "domain": "Math",
+  "subskill": "recovering the height of a trapezoid from its area",
+  "difficulty": "medium",
+  "prompt": "A trapezoid has parallel sides of length 14 cm and 22 cm and an area of 216 cm². What is the height of the trapezoid, in centimetres?",
+  "choices": [
+   "27",
+   "12",
+   "54",
+   "15.4",
+   "9.8"
+  ],
+  "correct_answer": "12",
+  "explanation": "The area is the average of the parallel sides times the height: ((14 + 22) / 2) x h = 216, so 18h = 216 and h = 12 centimetres. The option \"27\" comes from a solver who divides the area by the difference of the parallel sides instead of by their average. The option \"54\" comes from a solver who doubles the area and then divides by the difference of the parallel sides. The option \"15.4\" comes from a solver who divides the area by the shorter parallel side, treating the trapezoid as a rectangle. The option \"9.8\" comes from a solver who divides the area by the longer parallel side, treating the trapezoid as a rectangle.",
+  "distractor_rationales": [
+   {
+    "choice": "27",
+    "reason": "divides the area by the difference of the parallel sides instead of by their average."
+   },
+   {
+    "choice": "54",
+    "reason": "doubles the area and then divides by the difference of the parallel sides."
+   },
+   {
+    "choice": "15.4",
+    "reason": "divides the area by the shorter parallel side, treating the trapezoid as a rectangle."
+   },
+   {
+    "choice": "9.8",
+    "reason": "divides the area by the longer parallel side, treating the trapezoid as a rectangle."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "27",
+    "mis_step": "divides the area by the difference of the parallel sides instead of by their average."
+   },
+   {
+    "choice": "54",
+    "mis_step": "doubles the area and then divides by the difference of the parallel sides."
+   },
+   {
+    "choice": "15.4",
+    "mis_step": "divides the area by the shorter parallel side, treating the trapezoid as a rectangle."
+   },
+   {
+    "choice": "9.8",
+    "mis_step": "divides the area by the longer parallel side, treating the trapezoid as a rectangle."
+   }
+  ],
+  "solve": "return 2*216/(14+22);",
+  "distractor_solve": {
+   "27": "return 216/(22-14);",
+   "54": "return 2*216/(22-14);",
+   "15.4": "return Math.round(216/14*10)/10;",
+   "9.8": "return Math.round(216/22*10)/10;"
+  }
+ },
+ {
+  "id": "SMQ9B-16",
+  "domain": "Math",
+  "subskill": "a category count recovered from a sector's central angle",
+  "difficulty": "medium",
+  "prompt": "In a circle graph showing how 300 students travel to school, the sector for cycling has a central angle of 96°. How many of the students cycle to school?",
+  "choices": [
+   "288",
+   "220",
+   "80",
+   "75",
+   "204"
+  ],
+  "correct_answer": "80",
+  "explanation": "The sector is 96/360 of the whole circle, so the number of students who cycle is 300 x 96/360 = 80. The option \"288\" comes from a solver who reads the 96° as 96 percent of the students. The option \"220\" comes from a solver who finds the cycling group correctly and then reports the number of students who do not cycle. The option \"75\" comes from a solver who rounds the angle to 90° and takes a quarter of the students. The option \"204\" comes from a solver who subtracts the number of degrees from the number of students.",
+  "distractor_rationales": [
+   {
+    "choice": "288",
+    "reason": "reads the 96° as 96 percent of the students."
+   },
+   {
+    "choice": "220",
+    "reason": "finds the cycling group correctly and then reports the number of students who do not cycle."
+   },
+   {
+    "choice": "75",
+    "reason": "rounds the angle to 90° and takes a quarter of the students."
+   },
+   {
+    "choice": "204",
+    "reason": "subtracts the number of degrees from the number of students."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "288",
+    "mis_step": "reads the 96° as 96 percent of the students."
+   },
+   {
+    "choice": "220",
+    "mis_step": "finds the cycling group correctly and then reports the number of students who do not cycle."
+   },
+   {
+    "choice": "75",
+    "mis_step": "rounds the angle to 90° and takes a quarter of the students."
+   },
+   {
+    "choice": "204",
+    "mis_step": "subtracts the number of degrees from the number of students."
+   }
+  ],
+  "solve": "return 300*96/360;",
+  "distractor_solve": {
+   "75": "return 300*90/360;",
+   "204": "return 300-96;",
+   "220": "return 300-300*96/360;",
+   "288": "return 300*96/100;"
+  }
+ },
+ {
+  "id": "SMQ9B-17",
+  "domain": "Math",
+  "subskill": "the mean of a data set given as a frequency table",
+  "difficulty": "medium",
+  "prompt": "In a class, 6 students scored 70, 9 students scored 80, 4 students scored 85 and 6 students scored 95 on a test. What is the mean score for the class?",
+  "choices": [
+   "82.5",
+   "512.5",
+   "82",
+   "85.4",
+   "2050"
+  ],
+  "correct_answer": "82",
+  "explanation": "The total of all the scores is 6(70) + 9(80) + 4(85) + 6(95) = 2050, and there are 6 + 9 + 4 + 6 = 25 students, so the mean is 2050 / 25 = 82. The option \"82.5\" comes from a solver who averages the four different scores and ignores how many students earned each one. The option \"512.5\" comes from a solver who divides the total of the scores by the four different score values rather than by the number of students. The option \"85.4\" comes from a solver who totals the scores correctly but miscounts the class as 24 students. The option \"2050\" comes from a solver who gives the total of all the scores without dividing by the number of students.",
+  "distractor_rationales": [
+   {
+    "choice": "82.5",
+    "reason": "averages the four different scores and ignores how many students earned each one."
+   },
+   {
+    "choice": "512.5",
+    "reason": "divides the total of the scores by the four different score values rather than by the number of students."
+   },
+   {
+    "choice": "85.4",
+    "reason": "totals the scores correctly but miscounts the class as 24 students."
+   },
+   {
+    "choice": "2050",
+    "reason": "gives the total of all the scores without dividing by the number of students."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "82.5",
+    "mis_step": "averages the four different scores and ignores how many students earned each one."
+   },
+   {
+    "choice": "512.5",
+    "mis_step": "divides the total of the scores by the four different score values rather than by the number of students."
+   },
+   {
+    "choice": "85.4",
+    "mis_step": "totals the scores correctly but miscounts the class as 24 students."
+   },
+   {
+    "choice": "2050",
+    "mis_step": "gives the total of all the scores without dividing by the number of students."
+   }
+  ],
+  "solve": "return (6*70+9*80+4*85+6*95)/(6+9+4+6);",
+  "distractor_solve": {
+   "2050": "return 6*70+9*80+4*85+6*95;",
+   "82.5": "return (70+80+85+95)/4;",
+   "512.5": "return (6*70+9*80+4*85+6*95)/4;",
+   "85.4": "return Math.round((6*70+9*80+4*85+6*95)/24*10)/10;"
+  }
+ },
+ {
+  "id": "SMQ9B-18",
+  "domain": "Math",
+  "subskill": "the time for a tripling quantity to pass a bound",
+  "difficulty": "hard",
+  "prompt": "A bacteria colony triples in number every 5 hours. At 9 a.m. the colony contains 250 bacteria. How many hours after 9 a.m. does the colony first contain more than 20,000 bacteria?",
+  "choices": [
+   "15",
+   "20",
+   "25",
+   "4",
+   "35"
+  ],
+  "correct_answer": "20",
+  "explanation": "The counts are 250, then 750 after 5 hours, 2250 after 10, 6750 after 15 and 20,250 after 20. The colony first passes 20,000 twenty hours after 9 a.m. The option \"15\" comes from a solver who stops at 6750, the last count still below 20,000, instead of the first count above it. The option \"25\" comes from a solver who carries the tripling one period past the first count that is above 20,000. The option \"4\" comes from a solver who gives the number of tripling periods needed rather than the number of hours. The option \"35\" comes from a solver who doubles the colony each period instead of tripling it, needing seven periods.",
+  "distractor_rationales": [
+   {
+    "choice": "15",
+    "reason": "stops at 6750, the last count still below 20,000, instead of the first count above it."
+   },
+   {
+    "choice": "25",
+    "reason": "carries the tripling one period past the first count that is above 20,000."
+   },
+   {
+    "choice": "4",
+    "reason": "gives the number of tripling periods needed rather than the number of hours."
+   },
+   {
+    "choice": "35",
+    "reason": "doubles the colony each period instead of tripling it, needing seven periods."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "15",
+    "mis_step": "stops at 6750, the last count still below 20,000, instead of the first count above it."
+   },
+   {
+    "choice": "25",
+    "mis_step": "carries the tripling one period past the first count that is above 20,000."
+   },
+   {
+    "choice": "4",
+    "mis_step": "gives the number of tripling periods needed rather than the number of hours."
+   },
+   {
+    "choice": "35",
+    "mis_step": "doubles the colony each period instead of tripling it, needing seven periods."
+   }
+  ],
+  "solve": "let n=250,h=0; while(n<=20000){n*=3;h+=5;} return h;",
+  "distractor_solve": {
+   "4": "let n=250,c=0; while(n<=20000){n*=3;c++;} return c;",
+   "15": "let n=250,h=0; while(n<=20000){n*=3;h+=5;} return h-5;",
+   "25": "let n=250,h=0; while(n<=20000){n*=3;h+=5;} return h+5;",
+   "35": "let n=250,h=0; while(n<=20000){n*=2;h+=5;} return h;"
+  }
+ },
+ {
+  "id": "SMQ9B-19",
+  "domain": "Math",
+  "subskill": "choosing the root of a quadratic that meets a stated condition",
+  "difficulty": "hard",
+  "prompt": "If x² + 3x = 54, what is the positive value of x?",
+  "choices": [
+   "−9",
+   "6",
+   "9",
+   "18",
+   "7.3"
+  ],
+  "correct_answer": "6",
+  "explanation": "Writing the equation as x² + 3x − 54 = 0 and factoring gives (x + 9)(x − 6) = 0, so x = −9 or x = 6. The positive value is 6. The option \"−9\" comes from a solver who finds both roots correctly but reports the negative one. The option \"9\" comes from a solver who mixes up the signs in the factors, writing (x − 9)(x + 6) and taking the positive root of that. The option \"18\" comes from a solver who divides 54 by the coefficient 3, as though the equation were 3x = 54. The option \"7.3\" comes from a solver who drops the 3x term and takes the square root of 54.",
+  "distractor_rationales": [
+   {
+    "choice": "−9",
+    "reason": "finds both roots correctly but reports the negative one."
+   },
+   {
+    "choice": "9",
+    "reason": "mixes up the signs in the factors, writing (x − 9)(x + 6) and taking the positive root of that."
+   },
+   {
+    "choice": "18",
+    "reason": "divides 54 by the coefficient 3, as though the equation were 3x = 54."
+   },
+   {
+    "choice": "7.3",
+    "reason": "drops the 3x term and takes the square root of 54."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "−9",
+    "mis_step": "finds both roots correctly but reports the negative one."
+   },
+   {
+    "choice": "9",
+    "mis_step": "mixes up the signs in the factors, writing (x − 9)(x + 6) and taking the positive root of that."
+   },
+   {
+    "choice": "18",
+    "mis_step": "divides 54 by the coefficient 3, as though the equation were 3x = 54."
+   },
+   {
+    "choice": "7.3",
+    "mis_step": "drops the 3x term and takes the square root of 54."
+   }
+  ],
+  "solve": "const b=3,c=-54; return (-b+Math.sqrt(b*b-4*c))/2;",
+  "distractor_solve": {
+   "9": "const b=-3,c=-54; return (-b+Math.sqrt(b*b-4*c))/2;",
+   "18": "return 54/3;",
+   "−9": "const b=3,c=-54; return (-b-Math.sqrt(b*b-4*c))/2;",
+   "7.3": "return Math.round(Math.sqrt(54)*10)/10;"
+  }
+ },
+ {
+  "id": "SMQ9B-20",
+  "domain": "Math",
+  "subskill": "a difference of two unknowns recovered from a system",
+  "difficulty": "hard",
+  "prompt": "At a theatre, 4 adult tickets and 3 child tickets cost $101, while 2 adult tickets and 5 child tickets cost $89. How many dollars more does an adult ticket cost than a child ticket?",
+  "choices": [
+   "17",
+   "11",
+   "28",
+   "6",
+   "12"
+  ],
+  "correct_answer": "6",
+  "explanation": "Eliminating one unknown gives an adult ticket at $17 and a child ticket at $11, so an adult ticket costs $17 − $11 = $6 more than a child ticket. The option \"17\" comes from a solver who solves the system correctly and then reports the price of an adult ticket. The option \"11\" comes from a solver who solves the system correctly and then reports the price of a child ticket. The option \"28\" comes from a solver who adds the two ticket prices instead of subtracting them. The option \"12\" comes from a solver who subtracts the two totals, which compares six tickets with seven rather than one with one.",
+  "distractor_rationales": [
+   {
+    "choice": "17",
+    "reason": "solves the system correctly and then reports the price of an adult ticket."
+   },
+   {
+    "choice": "11",
+    "reason": "solves the system correctly and then reports the price of a child ticket."
+   },
+   {
+    "choice": "28",
+    "reason": "adds the two ticket prices instead of subtracting them."
+   },
+   {
+    "choice": "12",
+    "reason": "subtracts the two totals, which compares six tickets with seven rather than one with one."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "17",
+    "mis_step": "solves the system correctly and then reports the price of an adult ticket."
+   },
+   {
+    "choice": "11",
+    "mis_step": "solves the system correctly and then reports the price of a child ticket."
+   },
+   {
+    "choice": "28",
+    "mis_step": "adds the two ticket prices instead of subtracting them."
+   },
+   {
+    "choice": "12",
+    "mis_step": "subtracts the two totals, which compares six tickets with seven rather than one with one."
+   }
+  ],
+  "solve": "const a=(101*5-89*3)/(4*5-2*3); const c=(101-4*a)/3; return a-c;",
+  "distractor_solve": {
+   "11": "const a=(101*5-89*3)/(4*5-2*3); return (101-4*a)/3;",
+   "12": "return 101-89;",
+   "17": "return (101*5-89*3)/(4*5-2*3);",
+   "28": "const a=(101*5-89*3)/(4*5-2*3); const c=(101-4*a)/3; return a+c;"
+  }
+ },
+ {
+  "id": "SMQ9B-21",
+  "domain": "Math",
+  "subskill": "area of a uniform path around a rectangular pool",
+  "difficulty": "hard",
+  "prompt": "A rectangular swimming pool measures 14 m by 9 m. A path of uniform width 2 m is laid all the way around the outside of the pool. What is the area of the path, in square metres?",
+  "choices": [
+   "108",
+   "92",
+   "50",
+   "184",
+   "174"
+  ],
+  "correct_answer": "108",
+  "explanation": "The path adds 2 m at each end of both dimensions, so the outer rectangle is 18 m by 13 m, with area 234 m². Removing the pool's 126 m² leaves a path of 108 m². The option \"92\" comes from a solver who multiplies the pool's perimeter by the path width, which counts the strip along each side but leaves out the four corner squares. The option \"50\" comes from a solver who adds the 2 m width once to each dimension instead of once at each end, using an outer rectangle of 16 m by 11 m. The option \"184\" comes from a solver who multiplies the pool's perimeter by twice the width, double-counting the path on each side. The option \"174\" comes from a solver who adds the full 2 m twice at each end, using an outer rectangle of 20 m by 15 m.",
+  "distractor_rationales": [
+   {
+    "choice": "92",
+    "reason": "multiplies the pool's perimeter by the path width, which counts the strip along each side but leaves out the four corner squares."
+   },
+   {
+    "choice": "50",
+    "reason": "adds the 2 m width once to each dimension instead of once at each end, using an outer rectangle of 16 m by 11 m."
+   },
+   {
+    "choice": "184",
+    "reason": "multiplies the pool's perimeter by twice the width, double-counting the path on each side."
+   },
+   {
+    "choice": "174",
+    "reason": "adds the full 2 m twice at each end, using an outer rectangle of 20 m by 15 m."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "92",
+    "mis_step": "multiplies the pool's perimeter by the path width, which counts the strip along each side but leaves out the four corner squares."
+   },
+   {
+    "choice": "50",
+    "mis_step": "adds the 2 m width once to each dimension instead of once at each end, using an outer rectangle of 16 m by 11 m."
+   },
+   {
+    "choice": "184",
+    "mis_step": "multiplies the pool's perimeter by twice the width, double-counting the path on each side."
+   },
+   {
+    "choice": "174",
+    "mis_step": "adds the full 2 m twice at each end, using an outer rectangle of 20 m by 15 m."
+   }
+  ],
+  "solve": "return (14+4)*(9+4)-14*9;",
+  "distractor_solve": {
+   "50": "return (14+2)*(9+2)-14*9;",
+   "92": "return 2*(14+9)*2;",
+   "174": "return (14+6)*(9+6)-14*9;",
+   "184": "return 2*(14+9)*4;"
+  }
+ },
+ {
+  "id": "SMQ9B-22",
+  "domain": "Math",
+  "subskill": "a leg of an isosceles right triangle found from the hypotenuse",
+  "difficulty": "hard",
+  "prompt": "The hypotenuse of an isosceles right triangle measures 18 cm. What is the length, in centimetres, of one of its legs?",
+  "choices": [
+   "9",
+   "9√3",
+   "18√3",
+   "162",
+   "9√2"
+  ],
+  "correct_answer": "9√2",
+  "explanation": "If each leg is L, then L² + L² = 18², so 2L² = 324 and L² = 162, giving L = √162 = 9√2 centimetres. The option \"9\" comes from a solver who halves the hypotenuse, treating the leg as half of the longest side. The option \"9√3\" comes from a solver who uses the 30-60-90 ratios, in which the side opposite 60° is half the hypotenuse times √3. The option \"18√3\" comes from a solver who multiplies the hypotenuse by √3 rather than dividing the hypotenuse by √2. The option \"162\" comes from a solver who reaches L² = 162 correctly and reports it without taking the square root.",
+  "distractor_rationales": [
+   {
+    "choice": "9",
+    "reason": "halves the hypotenuse, treating the leg as half of the longest side."
+   },
+   {
+    "choice": "9√3",
+    "reason": "uses the 30-60-90 ratios, in which the side opposite 60° is half the hypotenuse times √3."
+   },
+   {
+    "choice": "18√3",
+    "reason": "multiplies the hypotenuse by √3 rather than dividing the hypotenuse by √2."
+   },
+   {
+    "choice": "162",
+    "reason": "reaches L² = 162 correctly and reports it without taking the square root."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "halves the hypotenuse, treating the leg as half of the longest side."
+   },
+   {
+    "choice": "9√3",
+    "mis_step": "uses the 30-60-90 ratios, in which the side opposite 60° is half the hypotenuse times √3."
+   },
+   {
+    "choice": "18√3",
+    "mis_step": "multiplies the hypotenuse by √3 rather than dividing the hypotenuse by √2."
+   },
+   {
+    "choice": "162",
+    "mis_step": "reaches L² = 162 correctly and reports it without taking the square root."
+   }
+  ],
+  "solve": "return (18/2)+'√2';",
+  "distractor_solve": {
+   "9": "return 18/2;",
+   "162": "return Math.pow(18,2)/2;",
+   "9√3": "return (18/2)+'√3';",
+   "18√3": "return 18+'√3';"
+  }
+ },
+ {
+  "id": "SMQ9B-23",
+  "domain": "Math",
+  "subskill": "how many items must be added to reach a stated probability",
+  "difficulty": "hard",
+  "prompt": "A bag contains 3 red marbles, 9 blue marbles and 8 green marbles. How many red marbles must be added to the bag so that a marble drawn at random has a probability of 1/2 of being red?",
+  "choices": [
+   "14",
+   "6",
+   "17",
+   "34",
+   "20"
+  ],
+  "correct_answer": "14",
+  "explanation": "After adding x red marbles there are 3 + x red out of 20 + x marbles, so 2(3 + x) = 20 + x, giving x = 14. Adding 14 red marbles makes 17 red out of 34. The option \"6\" comes from a solver who adds only enough red marbles to match the 9 blue ones. The option \"17\" comes from a solver who reports the number of red marbles in the bag at the end rather than the number added. The option \"34\" comes from a solver who reports the total number of marbles in the bag at the end rather than the number added. The option \"20\" comes from a solver who adds as many marbles as the bag already holds, assuming that doubling the contents makes the chance one half.",
+  "distractor_rationales": [
+   {
+    "choice": "6",
+    "reason": "adds only enough red marbles to match the 9 blue ones."
+   },
+   {
+    "choice": "17",
+    "reason": "reports the number of red marbles in the bag at the end rather than the number added."
+   },
+   {
+    "choice": "34",
+    "reason": "reports the total number of marbles in the bag at the end rather than the number added."
+   },
+   {
+    "choice": "20",
+    "reason": "adds as many marbles as the bag already holds, assuming that doubling the contents makes the chance one half."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "adds only enough red marbles to match the 9 blue ones."
+   },
+   {
+    "choice": "17",
+    "mis_step": "reports the number of red marbles in the bag at the end rather than the number added."
+   },
+   {
+    "choice": "34",
+    "mis_step": "reports the total number of marbles in the bag at the end rather than the number added."
+   },
+   {
+    "choice": "20",
+    "mis_step": "adds as many marbles as the bag already holds, assuming that doubling the contents makes the chance one half."
+   }
+  ],
+  "solve": "return (9+8)-3;",
+  "distractor_solve": {
+   "6": "return 9-3;",
+   "17": "return 3+((9+8)-3);",
+   "20": "return 3+9+8;",
+   "34": "return 2*(3+((9+8)-3));"
+  }
+ },
+ {
+  "id": "SMQ9B-24",
+  "domain": "Math",
+  "subskill": "probability of two independent draws from the same set",
+  "difficulty": "hard",
+  "prompt": "A spinner has 8 equal sectors numbered 1 through 8. The spinner is spun twice. What is the probability that both spins land on a number greater than 5?",
+  "choices": [
+   "3/8",
+   "9/64",
+   "3/4",
+   "1/4",
+   "1/16"
+  ],
+  "correct_answer": "9/64",
+  "explanation": "Three of the eight sectors (6, 7 and 8) are greater than 5, so each spin has probability 3/8. The spins are independent, so the probability of both is (3/8) x (3/8) = 9/64. The option \"3/8\" comes from a solver who finds the probability for a single spin and never accounts for the second one. The option \"3/4\" comes from a solver who adds the two probabilities instead of multiplying them. The option \"1/4\" comes from a solver who counts 5 itself among the favourable sectors, using 4 out of 8 on each spin. The option \"1/16\" comes from a solver who counts only 6 and 7 as greater than 5, leaving out the 8.",
+  "distractor_rationales": [
+   {
+    "choice": "3/8",
+    "reason": "finds the probability for a single spin and never accounts for the second one."
+   },
+   {
+    "choice": "3/4",
+    "reason": "adds the two probabilities instead of multiplying them."
+   },
+   {
+    "choice": "1/4",
+    "reason": "counts 5 itself among the favourable sectors, using 4 out of 8 on each spin."
+   },
+   {
+    "choice": "1/16",
+    "reason": "counts only 6 and 7 as greater than 5, leaving out the 8."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "3/8",
+    "mis_step": "finds the probability for a single spin and never accounts for the second one."
+   },
+   {
+    "choice": "3/4",
+    "mis_step": "adds the two probabilities instead of multiplying them."
+   },
+   {
+    "choice": "1/4",
+    "mis_step": "counts 5 itself among the favourable sectors, using 4 out of 8 on each spin."
+   },
+   {
+    "choice": "1/16",
+    "mis_step": "counts only 6 and 7 as greater than 5, leaving out the 8."
+   }
+  ],
+  "solve": "const f=3,t=8; return (f*f)+'/'+(t*t);",
+  "distractor_solve": {
+   "3/8": "return 3+'/'+8;",
+   "3/4": "return (3+3)+'/'+8;",
+   "1/4": "const f=4,t=8; return (f*f)+'/'+(t*t);",
+   "1/16": "const f=2,t=8; return (f*f)+'/'+(t*t);"
+  }
+ },
+ {
+  "id": "SMQ9B-25",
+  "domain": "Math",
+  "subskill": "the greatest whole number of items affordable after a fixed charge",
+  "difficulty": "hard",
+  "prompt": "A moving company charges a flat fee of $95 for a job plus $34 for each box it packs. Priya has $560 to spend. What is the greatest number of boxes the company can pack for her?",
+  "choices": [
+   "16",
+   "9",
+   "13",
+   "5",
+   "19"
+  ],
+  "correct_answer": "13",
+  "explanation": "After the flat fee, $560 − $95 = $465 is left for boxes, and 465 / 34 = 13.7, so only 13 whole boxes can be paid for. The option \"16\" comes from a solver who divides the whole budget by the price per box and never pays the flat fee. The option \"9\" comes from a solver who subtracts the flat fee from the price per box instead of from the budget. The option \"5\" comes from a solver who divides the budget by the flat fee, treating $95 as the price of a box. The option \"19\" comes from a solver who adds the flat fee to the budget instead of subtracting it.",
+  "distractor_rationales": [
+   {
+    "choice": "16",
+    "reason": "divides the whole budget by the price per box and never pays the flat fee."
+   },
+   {
+    "choice": "9",
+    "reason": "subtracts the flat fee from the price per box instead of from the budget."
+   },
+   {
+    "choice": "5",
+    "reason": "divides the budget by the flat fee, treating $95 as the price of a box."
+   },
+   {
+    "choice": "19",
+    "reason": "adds the flat fee to the budget instead of subtracting it."
+   }
+  ],
+  "distractor_steps": [
+   {
+    "choice": "16",
+    "mis_step": "divides the whole budget by the price per box and never pays the flat fee."
+   },
+   {
+    "choice": "9",
+    "mis_step": "subtracts the flat fee from the price per box instead of from the budget."
+   },
+   {
+    "choice": "5",
+    "mis_step": "divides the budget by the flat fee, treating $95 as the price of a box."
+   },
+   {
+    "choice": "19",
+    "mis_step": "adds the flat fee to the budget instead of subtracting it."
+   }
+  ],
+  "solve": "return Math.floor((560-95)/34);",
+  "distractor_solve": {
+   "5": "return Math.floor(560/95);",
+   "9": "return Math.floor(560/(95-34));",
+   "16": "return Math.floor(560/34);",
+   "19": "return Math.floor((560+95)/34);"
+  }
+ }
+]

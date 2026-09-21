@@ -1,0 +1,1027 @@
+[
+  {
+    "id": "SMQ9A-01",
+    "domain": "Math",
+    "subskill": "testing divisibility by 9 with the digit-sum rule",
+    "difficulty": "easy",
+    "prompt": "Which of the following numbers is divisible by 9?",
+    "choices": [
+      "4608",
+      "5019",
+      "5241",
+      "6483",
+      "8142"
+    ],
+    "correct_answer": "4608",
+    "explanation": "A whole number is divisible by 9 exactly when its digits add to a multiple of 9. The digits of 4608 add to 18, and 4608 = 9 x 512. The option \"5241\" is the one whose digits add to 12, a multiple of 3 but not of 9; a student who remembers that the digits must add to a multiple of 3 rather than of 9 accepts it. The option \"5019\" ends in 9, and a student who looks at the last digit rather than the digit sum picks it; its digits add to 15. The option \"6483\" has the greatest digit sum in the list, 21, and is chosen by a student who believes the largest digit sum means divisibility. The option \"8142\" is the largest even number in the list and is chosen by a student who tests 2 and assumes an even multiple of 3 must be a multiple of 9; its digits add to 15.",
+    "solve": "return [5019,5241,4608,6483,8142].filter(n=>n%9===0)[0];",
+    "distractor_solve": {
+      "5241": "const s=n=>String(n).split('').reduce((a,d)=>a+ +d,0);return [5019,5241,4608,6483,8142].filter(n=>s(n)===12)[0];",
+      "5019": "return [5019,5241,4608,6483,8142].filter(n=>n%10===9)[0];",
+      "6483": "const s=n=>String(n).split('').reduce((a,d)=>a+ +d,0);return [5019,5241,4608,6483,8142].sort((a,b)=>s(b)-s(a))[0];",
+      "8142": "return [5019,5241,4608,6483,8142].filter(n=>n%2===0).sort((a,b)=>b-a)[0];"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "5019",
+        "reason": "ends in 9, and a student who looks at the last digit rather than the digit sum picks it; its digits add to 15."
+      },
+      {
+        "choice": "5241",
+        "reason": "is the one whose digits add to 12, a multiple of 3 but not of 9; a student who remembers that the digits must add to a multiple of 3 rather than of 9 accepts it."
+      },
+      {
+        "choice": "6483",
+        "reason": "has the greatest digit sum in the list, 21, and is chosen by a student who believes the largest digit sum means divisibility."
+      },
+      {
+        "choice": "8142",
+        "reason": "is the largest even number in the list and is chosen by a student who tests 2 and assumes an even multiple of 3 must be a multiple of 9; its digits add to 15."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-02",
+    "domain": "Math",
+    "subskill": "finding the number halfway between two fractions",
+    "difficulty": "easy",
+    "prompt": "What number is exactly halfway between 1/4 and 5/6 on a number line?",
+    "choices": [
+      "3/5",
+      "13/24",
+      "1/2",
+      "7/12",
+      "7/24"
+    ],
+    "correct_answer": "13/24",
+    "explanation": "The number halfway between two numbers is their average. Over a common denominator of 12, 1/4 = 3/12 and 5/6 = 10/12, so the sum is 13/12 and half of that is 13/24. The option \"1/2\" comes from a student who rounds 1/4 down to 0 and 5/6 up to 1 and then gives the midpoint of 0 and 1. The option \"7/12\" is the distance between them, 5/6 - 1/4, reported as if a gap were a midpoint. The option \"7/24\" is half that distance, the step from either end to the middle, reported instead of the middle itself. The option \"3/5\" comes from adding the numerators and the denominators separately, (1 + 5)/(4 + 6).",
+    "solve": "return (1/4+5/6)/2;",
+    "distractor_solve": {
+      "7/12": "return 5/6-1/4;",
+      "7/24": "return (5/6-1/4)/2;",
+      "3/5": "return (1+5)/(4+6);",
+      "1/2": "return (0+1)/2;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "3/5",
+        "reason": "comes from adding the numerators and the denominators separately, (1 + 5)/(4 + 6)."
+      },
+      {
+        "choice": "1/2",
+        "reason": "comes from a student who rounds 1/4 down to 0 and 5/6 up to 1 and then gives the midpoint of 0 and 1."
+      },
+      {
+        "choice": "7/12",
+        "reason": "is the distance between them, 5/6 - 1/4, reported as if a gap were a midpoint."
+      },
+      {
+        "choice": "7/24",
+        "reason": "is half that distance, the step from either end to the middle, reported instead of the middle itself."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-03",
+    "domain": "Math",
+    "subskill": "turning a part-to-part ratio into a percent of the whole",
+    "difficulty": "easy",
+    "prompt": "In a choir, the ratio of altos to sopranos is 3 to 7, and every singer is either an alto or a soprano. What percent of the choir are altos?",
+    "choices": [
+      "57",
+      "70",
+      "30",
+      "21",
+      "43"
+    ],
+    "correct_answer": "30",
+    "explanation": "The ratio 3 to 7 divides the choir into 3 + 7 = 10 equal parts, of which 3 are altos, so the altos are 3/10 = 30 percent of the choir. The option \"70\" is the percent of the choir that are sopranos, from a student who reads the ratio in the wrong order. The option \"43\" treats the ratio as part-to-whole and computes 3/7 as a percent. The option \"57\" takes that same 3/7 mistake and then reports its complement, 100 - 43. The option \"21\" multiplies the two terms of the ratio instead of adding them to find the number of parts.",
+    "solve": "return 3/(3+7)*100;",
+    "distractor_solve": {
+      "70": "return 7/(3+7)*100;",
+      "43": "return Math.round(3/7*100);",
+      "57": "return 100-Math.round(3/7*100);",
+      "21": "return 3*7;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "57",
+        "reason": "takes that same 3/7 mistake and then reports its complement, 100 - 43."
+      },
+      {
+        "choice": "70",
+        "reason": "is the percent of the choir that are sopranos, from a student who reads the ratio in the wrong order."
+      },
+      {
+        "choice": "21",
+        "reason": "multiplies the two terms of the ratio instead of adding them to find the number of parts."
+      },
+      {
+        "choice": "43",
+        "reason": "treats the ratio as part-to-whole and computes 3/7 as a percent."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-04",
+    "domain": "Math",
+    "subskill": "recognising a prime number among look-alike composites",
+    "difficulty": "easy",
+    "prompt": "Which of the following is a prime number?",
+    "choices": [
+      "57",
+      "91",
+      "51",
+      "89",
+      "77"
+    ],
+    "correct_answer": "89",
+    "explanation": "A prime number has no whole-number factors other than 1 and itself. Testing 2, 3, 5 and 7 on 89 finds no factor, and 11 x 11 already exceeds 89, so 89 is prime. The option \"91\" is 7 x 13, chosen by a student whose seven-times table stops at 70. The option \"51\" is 3 x 17, chosen by a student who tests only 2, 5 and 7 and never tries 3. The option \"57\" is 3 x 19, chosen by a student who reasons that a number written with two odd digits must be odd and therefore prime. The option \"77\" is 7 x 11, chosen by a student who checks 2, 3 and 5, finds nothing, and stops before reaching 7.",
+    "solve": "return [77,51,89,57,91].filter(n=>{for(let d=2;d*d<=n;d++) if(n%d===0) return false; return n>1;})[0];",
+    "distractor_solve": {
+      "91": "return [77,51,89,57,91].filter(n=>n%13===0)[0];",
+      "51": "return [77,51,89,57,91].filter(n=>n%17===0)[0];",
+      "57": "return [77,51,89,57,91].filter(n=>n%19===0)[0];",
+      "77": "return [77,51,89,57,91].filter(n=>n%11===0)[0];"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "57",
+        "reason": "is 3 x 19, chosen by a student who reasons that a number written with two odd digits must be odd and therefore prime."
+      },
+      {
+        "choice": "91",
+        "reason": "is 7 x 13, chosen by a student whose seven-times table stops at 70."
+      },
+      {
+        "choice": "51",
+        "reason": "is 3 x 17, chosen by a student who tests only 2, 5 and 7 and never tries 3."
+      },
+      {
+        "choice": "77",
+        "reason": "is 7 x 11, chosen by a student who checks 2, 3 and 5, finds nothing, and stops before reaching 7."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-05",
+    "domain": "Math",
+    "subskill": "percent of a whole that is left over, found from two counts",
+    "difficulty": "easy",
+    "prompt": "A cinema has 250 seats. At one showing, 210 of the seats were taken. What percent of the seats were empty?",
+    "choices": [
+      "0.16",
+      "84",
+      "19",
+      "40",
+      "16"
+    ],
+    "correct_answer": "16",
+    "explanation": "There were 250 - 210 = 40 empty seats, and 40 out of 250 is 40/250 = 0.16, which is 16 percent. The option \"84\" is the percent of seats that were taken, from a student who answers the question the stem did not ask. The option \"40\" is the number of empty seats reported where a percent was asked. The option \"19\" divides the 40 empty seats by the 210 taken rather than by the 250 total, giving about 19 percent. The option \"0.16\" is the correct fraction but is never converted to a percent.",
+    "solve": "return (250-210)/250*100;",
+    "distractor_solve": {
+      "84": "return 210/250*100;",
+      "40": "return 250-210;",
+      "19": "return Math.round((250-210)/210*100);",
+      "0.16": "return (250-210)/250;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "0.16",
+        "reason": "is the correct fraction but is never converted to a percent."
+      },
+      {
+        "choice": "84",
+        "reason": "is the percent of seats that were taken, from a student who answers the question the stem did not ask."
+      },
+      {
+        "choice": "19",
+        "reason": "divides the 40 empty seats by the 210 taken rather than by the 250 total, giving about 19 percent."
+      },
+      {
+        "choice": "40",
+        "reason": "is the number of empty seats reported where a percent was asked."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-06",
+    "domain": "Math",
+    "subskill": "deciding from a denominator whether a fraction terminates as a decimal",
+    "difficulty": "medium",
+    "prompt": "Each fraction below is in lowest terms. Which one is equal to a decimal that ends rather than repeating forever?",
+    "choices": [
+      "7/40",
+      "4/15",
+      "11/48",
+      "5/12",
+      "7/30"
+    ],
+    "correct_answer": "7/40",
+    "explanation": "A fraction in lowest terms ends as a decimal exactly when its denominator has no prime factor except 2 and 5. Here 40 = 2 x 2 x 2 x 5, so 7/40 = 0.175 and stops. Every other denominator carries a factor of 3, which forces a repeating decimal. The option \"5/12\" is chosen by a student who sees that 12 is a multiple of 4 and reasons that because 1/4 = 0.25 ends, anything over a multiple of 4 must end. The option \"11/48\" is the same mistake made with 16 instead of 4. The option \"4/15\" is chosen by a student who looks for a 5 in the denominator and finds one, without noticing the 3 beside it. The option \"7/30\" is chosen by a student who sees a 10 in 30 and reasons that tenths always end.",
+    "solve": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const g=(a,b)=>b?g(b,a%b):a;for(const [n,d] of f){let k=d/g(n,d);while(k%2===0)k/=2;while(k%5===0)k/=5;if(k===1)return n+'/'+d;}return 'none';",
+    "distractor_solve": {
+      "5/12": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const r=f.filter(([n,d])=>d%4===0&&d%8!==0)[0];return r[0]+'/'+r[1];",
+      "11/48": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const r=f.filter(([n,d])=>d%16===0)[0];return r[0]+'/'+r[1];",
+      "4/15": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const r=f.filter(([n,d])=>d%10===5)[0];return r[0]+'/'+r[1];",
+      "7/30": "const f=[[5,12],[7,40],[4,15],[11,48],[7,30]];const r=f.filter(([n,d])=>d%10===0&&d%20!==0)[0];return r[0]+'/'+r[1];"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "4/15",
+        "reason": "is chosen by a student who looks for a 5 in the denominator and finds one, without noticing the 3 beside it."
+      },
+      {
+        "choice": "11/48",
+        "reason": "is the same mistake made with 16 instead of 4."
+      },
+      {
+        "choice": "5/12",
+        "reason": "is chosen by a student who sees that 12 is a multiple of 4 and reasons that because 1/4 = 0.25 ends, anything over a multiple of 4 must end."
+      },
+      {
+        "choice": "7/30",
+        "reason": "is chosen by a student who sees a 10 in 30 and reasons that tenths always end."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-07",
+    "domain": "Math",
+    "subskill": "summing the distinct prime factors of a number",
+    "difficulty": "medium",
+    "prompt": "What is the sum of the distinct prime factors of 546?",
+    "choices": [
+      "22",
+      "25",
+      "26",
+      "18",
+      "12"
+    ],
+    "correct_answer": "25",
+    "explanation": "Dividing repeatedly gives 546 = 2 x 273 = 2 x 3 x 91 = 2 x 3 x 7 x 13, so the distinct prime factors are 2, 3, 7 and 13 and their sum is 25. The option \"12\" is 2 + 3 + 7, from a student who stops once the one-digit primes are used up and never tests the 13 that is left. The option \"18\" is 2 + 3 + 13, from a student who reaches 91 and mistakes it for 13 x 13, so the 7 is never recorded. The option \"22\" is 2 + 7 + 13, from a student who splits 546 as 2 x 273 and then 273 as 7 x 39 and never splits 39 into 3 x 13. The option \"26\" is 1 + 2 + 3 + 7 + 13, from a student who counts 1 as a prime factor.",
+    "solve": "let n=546,s=0;for(let p=2;p<=n;p++){if(n%p===0){s+=p;while(n%p===0)n/=p;}}return s;",
+    "distractor_solve": {
+      "12": "return 2+3+7;",
+      "18": "return 2+3+13;",
+      "22": "return 2+7+13;",
+      "26": "let n=546,s=1;for(let p=2;p<=n;p++){if(n%p===0){s+=p;while(n%p===0)n/=p;}}return s;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "22",
+        "reason": "is 2 + 7 + 13, from a student who splits 546 as 2 x 273 and then 273 as 7 x 39 and never splits 39 into 3 x 13."
+      },
+      {
+        "choice": "26",
+        "reason": "is 1 + 2 + 3 + 7 + 13, from a student who counts 1 as a prime factor."
+      },
+      {
+        "choice": "18",
+        "reason": "is 2 + 3 + 13, from a student who reaches 91 and mistakes it for 13 x 13, so the 7 is never recorded."
+      },
+      {
+        "choice": "12",
+        "reason": "is 2 + 3 + 7, from a student who stops once the one-digit primes are used up and never tests the 13 that is left."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-08",
+    "domain": "Math",
+    "subskill": "finding a second quantity when fractional parts of two quantities are equal",
+    "difficulty": "medium",
+    "prompt": "In a parking lot, 3/4 of the cars are the same number as 5/6 of the vans. There are 60 cars in the lot. How many vans are in the lot?",
+    "choices": [
+      "48",
+      "50",
+      "54",
+      "45",
+      "72"
+    ],
+    "correct_answer": "54",
+    "explanation": "Three quarters of 60 cars is 45 cars, and that same 45 is 5/6 of the vans, so the number of vans is 45 divided by 5/6, which is 45 x 6/5 = 54. The option \"45\" is the shared quantity itself, reported instead of the total number of vans. The option \"50\" applies the vans' fraction to the cars, 5/6 of 60, and never uses the 3/4 at all. The option \"72\" multiplies 60 by 6/5, using the reciprocal of the vans' fraction while forgetting to take 3/4 first. The option \"48\" multiplies 60 by 4/5, pairing the denominator of one fraction with the numerator of the other.",
+    "solve": "return (3/4*60)/(5/6);",
+    "distractor_solve": {
+      "45": "return 3/4*60;",
+      "50": "return 5/6*60;",
+      "72": "return 60*6/5;",
+      "48": "return 60*4/5;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "48",
+        "reason": "multiplies 60 by 4/5, pairing the denominator of one fraction with the numerator of the other."
+      },
+      {
+        "choice": "50",
+        "reason": "applies the vans' fraction to the cars, 5/6 of 60, and never uses the 3/4 at all."
+      },
+      {
+        "choice": "45",
+        "reason": "is the shared quantity itself, reported instead of the total number of vans."
+      },
+      {
+        "choice": "72",
+        "reason": "multiplies 60 by 6/5, using the reciprocal of the vans' fraction while forgetting to take 3/4 first."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-09",
+    "domain": "Math",
+    "subskill": "finding which supply runs out first when a recipe is repeated",
+    "difficulty": "medium",
+    "prompt": "One batch of trail mix uses 4 cups of oats, 3 spoonfuls of honey and 2 cups of nuts. A shop has 300 cups of oats, 200 spoonfuls of honey and 150 cups of nuts, and nothing else is needed. What is the greatest number of complete batches the shop can make?",
+    "choices": [
+      "67",
+      "75",
+      "100",
+      "66",
+      "50"
+    ],
+    "correct_answer": "66",
+    "explanation": "Each supply allows a different number of batches: the oats allow 300/4 = 75, the honey allows 200/3 = 66 and two thirds, and the nuts allow 150/2 = 75. Only complete batches count, so the honey runs out first and the answer is 66. The option \"75\" is the number two of the three supplies allow, chosen by a student who checks the oats and the nuts, sees them agree, and never divides by 3. The option \"67\" rounds 66 and two thirds up, forgetting that a part batch is not a batch. The option \"100\" divides the 200 spoonfuls of honey by the 2 cups of nuts, matching a supply to the wrong ingredient. The option \"50\" makes the same mismatch the other way, dividing the 150 cups of nuts by the 3 spoonfuls of honey.",
+    "solve": "return Math.min(Math.floor(300/4),Math.floor(200/3),Math.floor(150/2));",
+    "distractor_solve": {
+      "75": "return Math.floor(300/4);",
+      "67": "return Math.ceil(200/3);",
+      "100": "return Math.floor(200/2);",
+      "50": "return Math.floor(150/3);"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "67",
+        "reason": "rounds 66 and two thirds up, forgetting that a part batch is not a batch."
+      },
+      {
+        "choice": "75",
+        "reason": "is the number two of the three supplies allow, chosen by a student who checks the oats and the nuts, sees them agree, and never divides by 3."
+      },
+      {
+        "choice": "100",
+        "reason": "divides the 200 spoonfuls of honey by the 2 cups of nuts, matching a supply to the wrong ingredient."
+      },
+      {
+        "choice": "50",
+        "reason": "makes the same mismatch the other way, dividing the 150 cups of nuts by the 3 spoonfuls of honey."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-10",
+    "domain": "Math",
+    "subskill": "finding a total from a three-part ratio and the difference between two shares",
+    "difficulty": "medium",
+    "prompt": "A sum of money is divided among Ana, Ben and Cara in the ratio 4 : 6 : 9. Cara receives $60 more than Ana. How many dollars are divided in all?",
+    "choices": [
+      "108",
+      "216",
+      "380",
+      "180",
+      "228"
+    ],
+    "correct_answer": "228",
+    "explanation": "Cara's share is 9 parts and Ana's is 4 parts, so the $60 difference is 9 - 4 = 5 parts and one part is $12. The whole sum is 4 + 6 + 9 = 19 parts, or 19 x 12 = $228. The option \"380\" takes the difference to be 9 - 6 = 3 parts, giving a part of $20 and a total of $380. The option \"108\" is Cara's share alone, nine parts of $12, reported instead of the whole sum. The option \"180\" adds only Ben's and Cara's 15 parts and leaves Ana out of the total. The option \"216\" comes from a student who adds the three ratio terms as 18 instead of 19.",
+    "solve": "const p=60/(9-4);return p*(4+6+9);",
+    "distractor_solve": {
+      "380": "const p=60/(9-6);return p*(4+6+9);",
+      "108": "const p=60/(9-4);return p*9;",
+      "180": "const p=60/(9-4);return p*(6+9);",
+      "216": "const p=60/(9-4);return p*18;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "108",
+        "reason": "is Cara's share alone, nine parts of $12, reported instead of the whole sum."
+      },
+      {
+        "choice": "216",
+        "reason": "comes from a student who adds the three ratio terms as 18 instead of 19."
+      },
+      {
+        "choice": "380",
+        "reason": "takes the difference to be 9 - 6 = 3 parts, giving a part of $20 and a total of $380."
+      },
+      {
+        "choice": "180",
+        "reason": "adds only Ben's and Cara's 15 parts and leaves Ana out of the total."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-11",
+    "domain": "Math",
+    "subskill": "reversing the direction of a percent comparison",
+    "difficulty": "medium",
+    "prompt": "A large box holds one third more rice than a small box holds. The small box holds what percent less rice than the large box holds?",
+    "choices": [
+      "25",
+      "33",
+      "16.5",
+      "67",
+      "75"
+    ],
+    "correct_answer": "25",
+    "explanation": "Let the small box hold 3 units; then the large box holds 3 + 1 = 4 units. The small box holds 1 unit less than the large box, and that 1 unit is compared with the large box's 4, so the small box holds 1/4 = 25 percent less. The option \"33\" assumes a comparison reads the same in both directions and reuses the one third as about 33 percent; that 33 percent is measured against the small box, not the large one. The option \"75\" is the percent the small box IS of the large box, not the percent by which it falls short. The option \"67\" subtracts that same 33 percent from 100, which measures the wrong box against the wrong base twice over. The option \"16.5\" halves the 33 percent, from a student who splits the difference between the two boxes.",
+    "solve": "const S=3,L=4;return (L-S)/L*100;",
+    "distractor_solve": {
+      "33": "return Math.round(100/3);",
+      "75": "const S=3,L=4;return S/L*100;",
+      "67": "return 100-Math.round(100/3);",
+      "16.5": "return Math.round(100/3)/2;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "33",
+        "reason": "assumes a comparison reads the same in both directions and reuses the one third as about 33 percent; that 33 percent is measured against the small box, not the large one."
+      },
+      {
+        "choice": "16.5",
+        "reason": "halves the 33 percent, from a student who splits the difference between the two boxes."
+      },
+      {
+        "choice": "67",
+        "reason": "subtracts that same 33 percent from 100, which measures the wrong box against the wrong base twice over."
+      },
+      {
+        "choice": "75",
+        "reason": "is the percent the small box IS of the large box, not the percent by which it falls short."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-12",
+    "domain": "Math",
+    "subskill": "recomputing a percent after both the part and the whole change",
+    "difficulty": "medium",
+    "prompt": "A team has won 12 of the first 20 games it played. If the team wins each of its next 5 games, what percent of all the games it has played will it have won?",
+    "choices": [
+      "85",
+      "68",
+      "80",
+      "65",
+      "60"
+    ],
+    "correct_answer": "68",
+    "explanation": "After the next five games the team has won 12 + 5 = 17 games out of 20 + 5 = 25 played, and 17/25 = 0.68, or 68 percent. The option \"60\" is the percent won before the five games and ignores the change entirely. The option \"85\" adds the five wins to the numerator but leaves the denominator at 20. The option \"65\" adds five percentage points to 60, treating five wins as five percent. The option \"80\" divides the old total of 20 games by the new total of 25, which compares the two schedules rather than the wins.",
+    "solve": "return (12+5)/(20+5)*100;",
+    "distractor_solve": {
+      "60": "return 12/20*100;",
+      "85": "return (12+5)/20*100;",
+      "65": "return 12/20*100+5;",
+      "80": "return 20/(20+5)*100;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "85",
+        "reason": "adds the five wins to the numerator but leaves the denominator at 20."
+      },
+      {
+        "choice": "80",
+        "reason": "divides the old total of 20 games by the new total of 25, which compares the two schedules rather than the wins."
+      },
+      {
+        "choice": "65",
+        "reason": "adds five percentage points to 60, treating five wins as five percent."
+      },
+      {
+        "choice": "60",
+        "reason": "is the percent won before the five games and ignores the change entirely."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-13",
+    "domain": "Math",
+    "subskill": "finding a day of the week by dividing by 7 and using the remainder",
+    "difficulty": "medium",
+    "prompt": "Today is Tuesday. What day of the week will it be 100 days from today?",
+    "choices": [
+      "Wednesday",
+      "Friday",
+      "Thursday",
+      "Saturday",
+      "Sunday"
+    ],
+    "correct_answer": "Thursday",
+    "explanation": "Days of the week repeat every 7 days, and 100 = 7 x 14 + 2, so 100 days from today is 2 days past Tuesday, which is Thursday. The option \"Wednesday\" comes from counting today as the first of the 100 days, which leaves a remainder of 1. The option \"Friday\" comes from a student who uses 7 x 14 = 98 and then counts days 98, 99 and 100 as three days past Tuesday. The option \"Saturday\" applies the correct 2-day shift twice, once to reach Thursday and again from there. The option \"Sunday\" counts the 2 remaining days backwards from Tuesday instead of forwards.",
+    "solve": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[(2+100)%7];",
+    "distractor_solve": {
+      "Wednesday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[(2+100-1)%7];",
+      "Friday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[(2+100+1)%7];",
+      "Saturday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[(2+100+2)%7];",
+      "Sunday": "const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[((2-100)%7+7)%7];"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "Wednesday",
+        "reason": "comes from counting today as the first of the 100 days, which leaves a remainder of 1."
+      },
+      {
+        "choice": "Friday",
+        "reason": "comes from a student who uses 7 x 14 = 98 and then counts days 98, 99 and 100 as three days past Tuesday."
+      },
+      {
+        "choice": "Saturday",
+        "reason": "applies the correct 2-day shift twice, once to reach Thursday and again from there."
+      },
+      {
+        "choice": "Sunday",
+        "reason": "counts the 2 remaining days backwards from Tuesday instead of forwards."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-14",
+    "domain": "Math",
+    "subskill": "counting the games when every pair meets a fixed number of times",
+    "difficulty": "medium",
+    "prompt": "A league has 12 teams. Every team plays every other team exactly twice during the season. How many games are played in the whole season?",
+    "choices": [
+      "24",
+      "78",
+      "144",
+      "132",
+      "66"
+    ],
+    "correct_answer": "132",
+    "explanation": "There are 12 x 11 / 2 = 66 different pairs of teams, and each pair meets twice, so 66 x 2 = 132 games are played. The option \"66\" counts each pair once and forgets that the teams meet twice. The option \"144\" is 12 x 12, which lets each team play a game against itself. The option \"78\" uses 12 x 13 / 2, counting 13 opponents for each team rather than 11. The option \"24\" reads the word twice as meaning that each team plays only two games.",
+    "solve": "return 12*(12-1)/2*2;",
+    "distractor_solve": {
+      "66": "return 12*(12-1)/2;",
+      "144": "return 12*12;",
+      "78": "return 12*(12+1)/2;",
+      "24": "return 12*2;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "24",
+        "reason": "reads the word twice as meaning that each team plays only two games."
+      },
+      {
+        "choice": "78",
+        "reason": "uses 12 x 13 / 2, counting 13 opponents for each team rather than 11."
+      },
+      {
+        "choice": "144",
+        "reason": "is 12 x 12, which lets each team play a game against itself."
+      },
+      {
+        "choice": "66",
+        "reason": "counts each pair once and forgets that the teams meet twice."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-15",
+    "domain": "Math",
+    "subskill": "finding a whole from the amount that fills a fractional gap",
+    "difficulty": "medium",
+    "prompt": "A water tank is one quarter full. After 18 litres of water are poured in, the tank is two fifths full. How many litres does the full tank hold?",
+    "choices": [
+      "72",
+      "45",
+      "150",
+      "90",
+      "120"
+    ],
+    "correct_answer": "120",
+    "explanation": "The 18 litres raise the level from 1/4 to 2/5 of the tank. Over a common denominator of 20 that gap is 8/20 - 5/20 = 3/20 of the tank, so 3/20 of the capacity is 18 litres and the capacity is 18 x 20/3 = 120 litres. The option \"72\" multiplies 18 by 4, using only the quarter and ignoring the second level. The option \"45\" divides 18 by 2/5, using only the second level and ignoring the first. The option \"90\" multiplies 18 by the 5 in two fifths. The option \"150\" uses 25 rather than 20 as the common denominator, making the gap 3/25.",
+    "solve": "return 18/(2/5-1/4);",
+    "distractor_solve": {
+      "72": "return 18*4;",
+      "45": "return 18/(2/5);",
+      "90": "return 18*5;",
+      "150": "return 18/(3/25);"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "72",
+        "reason": "multiplies 18 by 4, using only the quarter and ignoring the second level."
+      },
+      {
+        "choice": "45",
+        "reason": "divides 18 by 2/5, using only the second level and ignoring the first."
+      },
+      {
+        "choice": "150",
+        "reason": "uses 25 rather than 20 as the common denominator, making the gap 3/25."
+      },
+      {
+        "choice": "90",
+        "reason": "multiplies 18 by the 5 in two fifths."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-16",
+    "domain": "Math",
+    "subskill": "the range of whole numbers that round to a given hundred",
+    "difficulty": "medium",
+    "prompt": "When a certain whole number is rounded to the nearest hundred, the result is 4,700. What is the greatest possible value of that whole number?",
+    "choices": [
+      "4749",
+      "4650",
+      "4799",
+      "4750",
+      "4700"
+    ],
+    "correct_answer": "4749",
+    "explanation": "A whole number rounds to 4,700 when it is at least 4,650 and at most 4,749; at 4,750 the rounding goes up to 4,800. So the greatest such number is 4,749. The option \"4750\" forgets that a number exactly halfway rounds up and away from 4,700. The option \"4799\" assumes every number beginning 47 rounds to 4,700, which is the rule for rounding down rather than rounding to the nearest. The option \"4650\" is the least number that rounds to 4,700 rather than the greatest. The option \"4700\" repeats the rounded value, from a student who reads the question as asking what the number rounds to.",
+    "solve": "let m=0;for(let n=4000;n<6000;n++){if(Math.round(n/100)*100===4700)m=n;}return m;",
+    "distractor_solve": {
+      "4750": "return 4700+50;",
+      "4799": "return 4700+99;",
+      "4650": "let m=9999;for(let n=4000;n<6000;n++){if(Math.round(n/100)*100===4700&&n<m)m=n;}return m;",
+      "4700": "return Math.round(4749/100)*100;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "4650",
+        "reason": "is the least number that rounds to 4,700 rather than the greatest."
+      },
+      {
+        "choice": "4799",
+        "reason": "assumes every number beginning 47 rounds to 4,700, which is the rule for rounding down rather than rounding to the nearest."
+      },
+      {
+        "choice": "4750",
+        "reason": "forgets that a number exactly halfway rounds up and away from 4,700."
+      },
+      {
+        "choice": "4700",
+        "reason": "repeats the rounded value, from a student who reads the question as asking what the number rounds to."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-17",
+    "domain": "Math",
+    "subskill": "comparing a percent discount with a percent discount plus a fixed amount",
+    "difficulty": "medium",
+    "prompt": "A coat is priced at $240 in two shops. Shop A takes 35 percent off the price. Shop B takes 25 percent off the price and then takes a further $40 off the reduced price. What is the lower of the two final prices, in dollars?",
+    "choices": [
+      "156",
+      "140",
+      "116",
+      "180",
+      "200"
+    ],
+    "correct_answer": "140",
+    "explanation": "Shop A charges 65 percent of $240, which is $156. Shop B charges 75 percent of $240, which is $180, and then $40 less, which is $140. The lower price is Shop B's $140. The option \"156\" is Shop A's price, chosen by a student who assumes the larger percent always wins. The option \"180\" is Shop B's price before the further $40 is taken off. The option \"200\" takes the $40 off the list price and never applies a percent at all. The option \"116\" takes the $40 off Shop A's reduced price, combining the better percent with the extra dollars although no shop offers both.",
+    "solve": "return Math.min(240*0.65, 240*0.75-40);",
+    "distractor_solve": {
+      "156": "return 240*0.65;",
+      "180": "return 240*0.75;",
+      "200": "return 240-40;",
+      "116": "return 240*0.65-40;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "156",
+        "reason": "is Shop A's price, chosen by a student who assumes the larger percent always wins."
+      },
+      {
+        "choice": "116",
+        "reason": "takes the $40 off Shop A's reduced price, combining the better percent with the extra dollars although no shop offers both."
+      },
+      {
+        "choice": "180",
+        "reason": "is Shop B's price before the further $40 is taken off."
+      },
+      {
+        "choice": "200",
+        "reason": "takes the $40 off the list price and never applies a percent at all."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-18",
+    "domain": "Math",
+    "subskill": "recovering two costs from one selling price, a gain percent and a loss percent",
+    "difficulty": "hard",
+    "prompt": "A shop sells two bicycles for $360 each. The first sale is a gain of 20 percent on what that bicycle cost the shop, and the second sale is a loss of 20 percent on what that bicycle cost the shop. What did the two bicycles together cost the shop, in dollars?",
+    "choices": [
+      "720",
+      "660",
+      "750",
+      "576",
+      "864"
+    ],
+    "correct_answer": "750",
+    "explanation": "A gain of 20 percent means $360 is 120 percent of the first cost, so that cost is 360/1.2 = $300. A loss of 20 percent means $360 is 80 percent of the second cost, so that cost is 360/0.8 = $450. Together the bicycles cost $750, which is more than the $720 taken in. The option \"720\" comes from a student who believes a 20 percent gain and a 20 percent loss cancel, so that cost must equal the money received. The option \"576\" takes 80 percent of each selling price, applying the percents to $360 instead of to the unknown costs. The option \"864\" makes the same mistake in the other direction, taking 120 percent of each selling price. The option \"660\" finds the first cost correctly as $300 but then records the second bicycle's cost as its $360 selling price.",
+    "solve": "return 360/1.2+360/0.8;",
+    "distractor_solve": {
+      "720": "return 360*2;",
+      "576": "return 360*0.8*2;",
+      "864": "return 360*1.2*2;",
+      "660": "return 360/1.2+360;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "720",
+        "reason": "comes from a student who believes a 20 percent gain and a 20 percent loss cancel, so that cost must equal the money received."
+      },
+      {
+        "choice": "660",
+        "reason": "finds the first cost correctly as $300 but then records the second bicycle's cost as its $360 selling price."
+      },
+      {
+        "choice": "576",
+        "reason": "takes 80 percent of each selling price, applying the percents to $360 instead of to the unknown costs."
+      },
+      {
+        "choice": "864",
+        "reason": "makes the same mistake in the other direction, taking 120 percent of each selling price."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-19",
+    "domain": "Math",
+    "subskill": "sharing an amount in the ratio of money multiplied by time",
+    "difficulty": "hard",
+    "prompt": "Ravi puts $600 into a market stall and leaves it there for 5 months. Sara puts $900 into the same stall and leaves it there for 4 months. They agree to share the $770 profit in the ratio of each person's money multiplied by the number of months it was invested. How many dollars does Ravi receive?",
+    "choices": [
+      "385",
+      "428",
+      "420",
+      "350",
+      "308"
+    ],
+    "correct_answer": "350",
+    "explanation": "Ravi's money-months come to 600 x 5 = 3,000 and Sara's to 900 x 4 = 3,600, so the profit is shared in the ratio 3,000 : 3,600, which is 5 : 6. Ravi receives 5/11 of $770, which is $350. The option \"420\" is Sara's 6/11 share, from a student who attaches the larger share to the wrong person. The option \"308\" shares the profit in the ratio of the money alone, 600 : 900, ignoring the months. The option \"428\" shares it in the ratio of the months alone, 5 : 4, ignoring the money. The option \"385\" splits the profit equally between the two partners.",
+    "solve": "const r=600*5,s=900*4;return 770*r/(r+s);",
+    "distractor_solve": {
+      "420": "const r=600*5,s=900*4;return 770*s/(r+s);",
+      "308": "return 770*600/(600+900);",
+      "428": "return Math.round(770*5/(5+4));",
+      "385": "return 770/2;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "385",
+        "reason": "splits the profit equally between the two partners."
+      },
+      {
+        "choice": "428",
+        "reason": "shares it in the ratio of the months alone, 5 : 4, ignoring the money."
+      },
+      {
+        "choice": "420",
+        "reason": "is Sara's 6/11 share, from a student who attaches the larger share to the wrong person."
+      },
+      {
+        "choice": "308",
+        "reason": "shares the profit in the ratio of the money alone, 600 : 900, ignoring the months."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-20",
+    "domain": "Math",
+    "subskill": "the digit sum of a number written as a power of ten minus a small number",
+    "difficulty": "hard",
+    "prompt": "What is the sum of the digits of the number 100,000 - 63?",
+    "choices": [
+      "27",
+      "30",
+      "38",
+      "45",
+      "37"
+    ],
+    "correct_answer": "37",
+    "explanation": "Subtracting 63 from 100,000 gives 99,937, whose digits add to 9 + 9 + 9 + 3 + 7 = 37. The option \"45\" is the digit sum of 99,999, from a student who subtracts 1 from 100,000 rather than 63. The option \"38\" is the digit sum of 99,947, which comes from a borrowing slip in the tens column. The option \"27\" counts only the three nines and stops, treating the borrowing as if it emptied the last two places. The option \"30\" adds 9 + 9 + 9 + 3 and never reaches the units digit.",
+    "solve": "return String(100000-63).split('').reduce((a,d)=>a+Number(d),0);",
+    "distractor_solve": {
+      "45": "return String(100000-1).split('').reduce((a,d)=>a+Number(d),0);",
+      "38": "return String(99947).split('').reduce((a,d)=>a+Number(d),0);",
+      "27": "return 9*3;",
+      "30": "return 9+9+9+3;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "27",
+        "reason": "counts only the three nines and stops, treating the borrowing as if it emptied the last two places."
+      },
+      {
+        "choice": "30",
+        "reason": "adds 9 + 9 + 9 + 3 and never reaches the units digit."
+      },
+      {
+        "choice": "38",
+        "reason": "is the digit sum of 99,947, which comes from a borrowing slip in the tens column."
+      },
+      {
+        "choice": "45",
+        "reason": "is the digit sum of 99,999, from a student who subtracts 1 from 100,000 rather than 63."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-21",
+    "domain": "Math",
+    "subskill": "building the least number with a required count of factors",
+    "difficulty": "hard",
+    "prompt": "What is the least positive whole number that has exactly 12 different positive factors?",
+    "choices": [
+      "60",
+      "72",
+      "48",
+      "90",
+      "96"
+    ],
+    "correct_answer": "60",
+    "explanation": "The number of factors is found by adding 1 to each exponent in the prime factorisation and multiplying. Writing 12 as 3 x 2 x 2 calls for exponents 2, 1, 1, and putting the largest exponent on the smallest prime gives 2^2 x 3 x 5 = 60, which has exactly 12 factors. The option \"90\" is 2 x 3^2 x 5, the same shape with the square moved to the 3, and is larger. The option \"72\" is 2^3 x 3^2, which comes from writing 12 as 4 x 3, and also has 12 factors but is larger. The option \"96\" is 2^5 x 3, from writing 12 as 6 x 2, and is larger still. The option \"48\" is 2^4 x 3, from a student who uses the exponents themselves rather than the exponents increased by 1; it has only 10 factors.",
+    "solve": "const f=n=>{let c=0;for(let d=1;d<=n;d++) if(n%d===0)c++;return c;};for(let n=1;;n++) if(f(n)===12) return n;",
+    "distractor_solve": {
+      "90": "return 2*3*3*5;",
+      "72": "return Math.pow(2,3)*Math.pow(3,2);",
+      "96": "return Math.pow(2,5)*3;",
+      "48": "return Math.pow(2,4)*3;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "72",
+        "reason": "is 2^3 x 3^2, which comes from writing 12 as 4 x 3, and also has 12 factors but is larger."
+      },
+      {
+        "choice": "48",
+        "reason": "is 2^4 x 3, from a student who uses the exponents themselves rather than the exponents increased by 1; it has only 10 factors."
+      },
+      {
+        "choice": "90",
+        "reason": "is 2 x 3^2 x 5, the same shape with the square moved to the 3, and is larger."
+      },
+      {
+        "choice": "96",
+        "reason": "is 2^5 x 3, from writing 12 as 6 x 2, and is larger still."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-22",
+    "domain": "Math",
+    "subskill": "counting the ways to share identical objects when each share is at least one",
+    "difficulty": "hard",
+    "prompt": "Eight identical apples are to be shared among three children named Ali, Bo and Cy, and each child must receive at least one apple. In how many different ways can this be done?",
+    "choices": [
+      "45",
+      "21",
+      "15",
+      "28",
+      "56"
+    ],
+    "correct_answer": "21",
+    "explanation": "Give each child one apple first; 5 apples are then free. Lining up those 5 apples and choosing 2 of the 6 gaps to divide them between the three children gives 7 choose 2 = 21 ways, and listing by Ali's share (1 through 6 apples) confirms 6 + 5 + 4 + 3 + 2 + 1 = 21. The option \"45\" is 10 choose 2, which counts the shares in which a child receives nothing. The option \"15\" is 6 choose 2, from a student who places the two dividers among the 5 remaining apples but forgets the end position. The option \"28\" is 8 choose 2, from a student who places the dividers among all 8 apples without setting one aside for each child. The option \"56\" is 8 choose 3, from a student who chooses 3 of the 8 apples, one for each child, and stops there.",
+    "solve": "let c=0;for(let a=1;a<=8;a++)for(let b=1;b<=8;b++){const y=8-a-b;if(y>=1)c++;}return c;",
+    "distractor_solve": {
+      "45": "return 10*9/2;",
+      "15": "return 6*5/2;",
+      "28": "return 8*7/2;",
+      "56": "return 8*7*6/(3*2);"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "45",
+        "reason": "is 10 choose 2, which counts the shares in which a child receives nothing."
+      },
+      {
+        "choice": "15",
+        "reason": "is 6 choose 2, from a student who places the two dividers among the 5 remaining apples but forgets the end position."
+      },
+      {
+        "choice": "28",
+        "reason": "is 8 choose 2, from a student who places the dividers among all 8 apples without setting one aside for each child."
+      },
+      {
+        "choice": "56",
+        "reason": "is 8 choose 3, from a student who chooses 3 of the 8 apples, one for each child, and stops there."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-23",
+    "domain": "Math",
+    "subskill": "adding a short run of unlike fractions over a common denominator",
+    "difficulty": "hard",
+    "prompt": "What is the value of 1/2 + 1/6 + 1/12 + 1/20 + 1/30?",
+    "choices": [
+      "1",
+      "13/15",
+      "5/6",
+      "2/3",
+      "1/14"
+    ],
+    "correct_answer": "5/6",
+    "explanation": "Over a common denominator of 60 the five fractions are 30/60, 10/60, 5/60, 3/60 and 2/60, which add to 50/60 = 5/6. The option \"1/14\" comes from adding the numerators and the denominators separately, 5/(2 + 6 + 12 + 20 + 30). The option \"2/3\" adds only the first two fractions, 1/2 + 1/6, and stops where the denominators stop being familiar. The option \"13/15\" is 52/60, from converting 1/20 to 4/60 and 1/30 to 3/60 instead of 3/60 and 2/60. The option \"1\" is 60/60, from converting 1/30 to 12/60 and so filling the whole.",
+    "solve": "return 1/2+1/6+1/12+1/20+1/30;",
+    "distractor_solve": {
+      "1/14": "return 5/(2+6+12+20+30);",
+      "2/3": "return 1/2+1/6;",
+      "13/15": "return (30+10+5+4+3)/60;",
+      "1": "return (30+10+5+3+12)/60;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "1",
+        "reason": "is 60/60, from converting 1/30 to 12/60 and so filling the whole."
+      },
+      {
+        "choice": "13/15",
+        "reason": "is 52/60, from converting 1/20 to 4/60 and 1/30 to 3/60 instead of 3/60 and 2/60."
+      },
+      {
+        "choice": "2/3",
+        "reason": "adds only the first two fractions, 1/2 + 1/6, and stops where the denominators stop being familiar."
+      },
+      {
+        "choice": "1/14",
+        "reason": "comes from adding the numerators and the denominators separately, 5/(2 + 6 + 12 + 20 + 30)."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-24",
+    "domain": "Math",
+    "subskill": "a percent increase cancelled by a fixed dollar amount",
+    "difficulty": "hard",
+    "prompt": "The price of a chair is raised by 20 percent. A coupon then takes $8 off the raised price, and the price after the coupon is exactly the price the chair had before the rise. What was the price of the chair before the rise, in dollars?",
+    "choices": [
+      "10",
+      "32",
+      "48",
+      "40",
+      "6.67"
+    ],
+    "correct_answer": "40",
+    "explanation": "If the old price is P, the raised price is 1.2P and the coupon price is 1.2P - 8. Setting that equal to P gives 0.2P = 8, so P = $40. The $8 coupon is exactly the 20 percent that was added. The option \"48\" is the raised price, 1.2 x 40, which answers a question about the new price rather than the old one. The option \"10\" divides the $8 by 0.8, treating the change as a 20 percent cut rather than a 20 percent rise. The option \"6.67\" divides the $8 by 1.2, applying the percent to the coupon instead of to the price. The option \"32\" comes from solving 0.2(P + 8) = 8, which charges the 20 percent on a price that already includes the coupon.",
+    "solve": "return 8/0.2;",
+    "distractor_solve": {
+      "48": "return (8/0.2)*1.2;",
+      "10": "return 8/0.8;",
+      "6.67": "return Math.round(8/1.2*100)/100;",
+      "32": "return 8/0.2-8;"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "10",
+        "reason": "divides the $8 by 0.8, treating the change as a 20 percent cut rather than a 20 percent rise."
+      },
+      {
+        "choice": "32",
+        "reason": "comes from solving 0.2(P + 8) = 8, which charges the 20 percent on a price that already includes the coupon."
+      },
+      {
+        "choice": "48",
+        "reason": "is the raised price, 1.2 x 40, which answers a question about the new price rather than the old one."
+      },
+      {
+        "choice": "6.67",
+        "reason": "divides the $8 by 1.2, applying the percent to the coupon instead of to the price."
+      }
+    ]
+  },
+  {
+    "id": "SMQ9A-25",
+    "domain": "Math",
+    "subskill": "a clock that loses a fixed number of minutes every hour",
+    "difficulty": "hard",
+    "prompt": "A clock is set to the correct time at 9:00 a.m. and from then on it loses 4 minutes every hour. What time does this clock show when the true time is 3:00 p.m. the same day?",
+    "choices": [
+      "2:24 p.m.",
+      "2:40 p.m.",
+      "2:56 p.m.",
+      "3:24 p.m.",
+      "2:36 p.m."
+    ],
+    "correct_answer": "2:36 p.m.",
+    "explanation": "From 9:00 a.m. to 3:00 p.m. is 6 hours, and the clock loses 4 minutes in each of them, a total of 24 minutes. The clock therefore shows 24 minutes before 3:00 p.m., which is 2:36 p.m. The option \"3:24 p.m.\" adds the 24 minutes instead of subtracting them, which is what a clock that GAINED time would show. The option \"2:56 p.m.\" subtracts a single 4-minute loss, treating the rate as a one-off. The option \"2:24 p.m.\" counts 9 hours rather than 6, reading the 9 in 9:00 a.m. as the number of hours that pass. The option \"2:40 p.m.\" counts only 5 hours by counting the gaps between the six o'clocks from 10 to 3.",
+    "solve": "const t=15*60-6*4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';",
+    "distractor_solve": {
+      "3:24 p.m.": "const t=15*60+6*4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';",
+      "2:56 p.m.": "const t=15*60-4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';",
+      "2:24 p.m.": "const t=15*60-9*4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';",
+      "2:40 p.m.": "const t=15*60-5*4;const h=Math.floor(t/60),m=t%60;return (h>12?h-12:h)+':'+String(m).padStart(2,'0')+' p.m.';"
+    },
+    "distractor_rationales": [
+      {
+        "choice": "2:24 p.m.",
+        "reason": "counts 9 hours rather than 6, reading the 9 in 9:00 a."
+      },
+      {
+        "choice": "2:40 p.m.",
+        "reason": "counts only 5 hours by counting the gaps between the six o'clocks from 10 to 3."
+      },
+      {
+        "choice": "2:56 p.m.",
+        "reason": "subtracts a single 4-minute loss, treating the rate as a one-off."
+      },
+      {
+        "choice": "3:24 p.m.",
+        "reason": "adds the 24 minutes instead of subtracting them, which is what a clock that GAINED time would show."
+      }
+    ]
+  }
+]
