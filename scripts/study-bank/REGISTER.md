@@ -2633,3 +2633,37 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Two process points.** The inserter **refused** until the gate results were in the ledger bound to the file's content hash, which is the refusal working. And the ledger script died on the apostrophe in *"speakers' ears"* — the same quoting trap already on record, whose fix is a heredoc script file; the heredoc was right and the single-quoted JS string was not, so the entry is now written with template literals. **Nothing was damaged: the refusal came before any write and `ledger.json` still parsed.**
 
   Final: **7 of 20 inserted** (3 rejected by the calibrated rule as easy with weak distractors — the same three the third solver had independently flagged). `WIC3-19` is recorded as the weakest survivor at 2 of 3 blind. **Deficit 13 → 6; SAT R&W stays at 15 forms and form 16 needs 6 more.** → **A41**
+
+- **2026-09-22** — **I TOLD AN ACT MATH AUTHOR THE SECTION IS FIVE-CHOICE. IT IS FOUR. THE AUTHOR CHECKED THE CODE INSTEAD OF BELIEVING ME.** My brief said, in bold, *"Critical: ACT Math is FIVE-choice, not four. The chance line is 20%, not 25%"* — and cited, as justification, the register's own note that *"a brief in this repo once stated the four-choice number and two authors caught it."* **I inverted the lesson I was quoting.** That note is about SSAT, which is five-choice; ACT is not.
+
+  Everything disagreed with me and the author found all of it:
+
+      src/lib/study/act-test.ts     enhanced ACT (Sept 2025): "FIVE choices -> FOUR", choiceCount: 4
+      act-bank-helper.mjs:132       refuses anything that is not exactly 4 choices
+      AUTHORING-BRIEF.md §5         "Five-choice items (SSAT, and SSAT only among the admissions tests)"
+      the live bank, measured       act/math 580 rows, choice histogram {"4": 580}
+                                    ssat/math 257 rows, {"5": 257}
+                                    sat/math 1269 rows, {"4": 1269}
+
+  **The failure mode is worse than a refusal would have been.** `shapeOk` accepts 4 **or** 5, so a five-choice ACT batch would have INSERTED and then been served against a blueprint that says four. A brief error that the tooling silently absorbs is more expensive than one it rejects.
+
+  **This is the fourth time an author has caught an error in a brief I wrote**, and the pattern is identical every time: I quoted a remembered rule instead of reading the source. The standing instruction already exists — *when a brief and the code disagree, the code is what runs* — and the authors keep honouring it while I keep not. **Before asserting any format fact in a brief (choice count, form size, per-passage count, chance line), read it out of `src/` or measure it in the bank in the same command that writes the brief.**
+
+- **2026-09-22** — **ACT MATH v11 PASSES THE ATTACK, AND CARRIES ONE REAL STRUCTURAL TELL THAT THE ATTACK DID NOT CATCH.** 42 items, options-only, three solvers, interleaved with a composition-matched live control of 42 shipped items, arm hidden:
+
+      CANDIDATE act-math-v11   42   33.3%   derived control 35.7%   margin -2.4   unanimous 6
+      CONTROL   live act/math  42   28.6%   derived control 28.6%   margin  0.0   unanimous 5
+
+  Both arms at chance, which is what CLAUDE.md predicts for numeric maths for the strongest available reason: four bare values mean nothing until the stem says what they measure.
+
+  **But the magnitude asymmetry is real and the attack could not see it.**
+
+      key is the LARGEST of four options
+        live act/math (n=561)   21.2%
+        candidate     (n= 42)    4.8%     2 items where ~10 are expected, z = -3.0
+
+  **It converts exactly as arithmetic predicts.** The solver who applied "never the largest" mechanically to every item scored **33.3%** on the candidate arm — precisely 1/4 → 1/3, the value of one free elimination. So the pooled margin of −2.4 is not evidence the batch is clean on this axis; it is evidence that **a +8-point structural gift is invisible to a pooled margin**, because the derived control rises with it.
+
+  **The author flagged this number itself, called it the batch's weakest, and declined to fix it** on the grounds that inventing a pathless distractor to sit above the key is a worse trade than leaving the asymmetry. That reasoning is right and is now the repair brief: find items where a GENUINE wrong path (a forgotten division, an un-subtracted discount, a perimeter for a side) yields a value above the key, and leave alone every item where none exists. Target 15–25%, with an explicit instruction not to overshoot, since inverting a tell is not fixing it.
+
+  **Recorded because it generalises:** a pooled options-only margin cannot detect a tell that shifts the whole option set, because the derived control absorbs it. **Magnitude rank needs its own check against the live bank, and `next-form`-driven batches should carry it as pre-flight.**
