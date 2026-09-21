@@ -76,11 +76,21 @@ for (const [sid, items] of groups) {
   else passageOf.set(t, sid)
   const subs = new Set(items.map(x => x.subskill))
   if (subs.size < 4) note(sid, `only ${subs.size} distinct subskills across ${items.length} items — a passage of one question type`)
-  /* A complete permutation inside a group lets confident answers force the
-   * rest — CLAUDE.md records this reaching the bank on 78% of one cohort. */
+  /*
+   * A group that uses EVERY slot lets confident answers force the rest —
+   * CLAUDE.md records this reaching the bank on 78% of one cohort.
+   *
+   * The first version tested `slots.length === WANT_CHOICES`, i.e. it only
+   * fired when a group held exactly as many items as there are choices. At
+   * the size this section actually uses — six items, five choices — it
+   * could therefore NEVER fire, and the guard was decorative. Found by an
+   * author who read the condition, noticed it could not apply to its own
+   * batch, and enforced the property by construction instead of trusting
+   * the check. Tests the distinct slots used, whatever the group size.
+   */
   const slots = items.map(x => (x.choices ?? []).indexOf(x.correct_answer))
-  if (slots.length === WANT_CHOICES && new Set(slots).size === WANT_CHOICES) {
-    note(sid, 'key slots form a COMPLETE permutation within the group')
+  if (new Set(slots).size >= WANT_CHOICES) {
+    note(sid, `key slots use all ${WANT_CHOICES} positions within the group — confident answers narrow the rest`)
   }
 }
 const slotDist = {}

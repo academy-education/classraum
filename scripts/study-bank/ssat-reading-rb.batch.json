@@ -1,0 +1,692 @@
+[
+  {
+    "id": "SRDB-01",
+    "set_id": "SRDB-P1",
+    "subskill": "main-idea",
+    "difficulty": "medium",
+    "prompt": "The passage is primarily concerned with",
+    "choices": [
+      "how a field crew built a dating method for talus boulders out of lichen spreading across their exposed faces",
+      "how a field crew built a dating method for talus boulders out of mite burrows in the crust on their undersides",
+      "how a field crew built a dating method for talus boulders out of soil layers trapped in the gaps between them",
+      "how a field crew built a dating method for talus boulders out of scratches left where they had ground against the cliff",
+      "how a field crew built a dating method for talus boulders out of the depth of moss along their shaded rims"
+    ],
+    "correct_answer": "how a field crew built a dating method for talus boulders out of mite burrows in the crust on their undersides",
+    "explanation": "The passage turns on the crew looking at \"the side no one had examined, the underside,\" where a mineral crust is tunneled by oribatid mites; everything after that sentence is the construction, calibration and limits of that burrow count as a clock.",
+    "distractor_rationales": {
+      "lichen spreading across their exposed faces": "Lichen dating is named only to be ruled out: the Vetter summers are too dry for it.",
+      "soil layers trapped in the gaps between them": "Soil is mentioned as what the underside rests against and as a chemistry caveat, never as the dated material.",
+      "scratches left where they had ground against the cliff": "No abrasion marks appear in the passage.",
+      "the depth of moss along their shaded rims": "No moss appears in the passage; it borrows the plausibility of the rejected lichen method."
+    },
+    "passage": "A talus slope is a heap of broken rock at the foot of a cliff, and to a geologist its chief frustration is that it keeps no order: the boulder lying on top may have fallen last winter or a thousand years ago. Lichens can date an exposed rock face, but the summers on the Vetter Slope of the eastern Cascades are too dry for lichen, and the crews working there in the 1990s had no way to tell a young boulder from an old one. Dana Whitlock's crew looked instead at the side no one had examined, the underside, where the rock meets soil and a thin crust of mineral grains binds to it. That crust is tunneled by oribatid mites, which burrow into it at a rate that, unlike almost everything else on the slope, does not depend on the amount of rain the slope receives. Burrows accumulate and are not erased, so a boulder that has lain fast for a long time carries more of them per square centimeter than a recent arrival. To turn that into a clock, the crew needed rock of known age. An earthquake in 1924 had brought down a documented sheet of stone at the slope's northern end, and a logging road cut in 1961 had dumped a second, younger pile beside it. Counting burrows on eleven boulders from each gave a rate of about eleven burrows per square centimeter per century, and predicted the two known ages to within 4.2 percent. Applied across the slope, the method returned ages from forty years to roughly nine hundred, and showed that two thirds of the surface rock had arrived in three short episodes rather than in a steady trickle. Whitlock is careful about the ceiling. Past about nine hundred years the crust itself begins to spall away, taking its burrows with it, so every older boulder returns the same saturated count. She calls the method good for a window rather than a chronology, and has refused to apply it to slopes whose soil chemistry differs from Vetter's until someone repeats the calibration there."
+  },
+  {
+    "id": "SRDB-02",
+    "set_id": "SRDB-P1",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, the rate at which the mites burrow does NOT depend on",
+    "choices": [
+      "the boulder's size",
+      "the height of the cliff above it",
+      "the season in which the boulder fell",
+      "the amount of rain the slope receives",
+      "the mineral content of the soil beneath it"
+    ],
+    "correct_answer": "the amount of rain the slope receives",
+    "explanation": "The passage says the mites burrow \"at a rate that, unlike almost everything else on the slope, does not depend on the amount of rain the slope receives.\"",
+    "distractor_rationales": {
+      "the boulder's size": "Never raised; the count is stated per square centimeter, which already removes size.",
+      "the height of the cliff above it": "Not discussed.",
+      "the season in which the boulder fell": "Not discussed.",
+      "the mineral content of the soil beneath it": "Soil chemistry is the one thing the closing sentence says the method may be sensitive to, so this reverses the passage."
+    },
+    "passage": "A talus slope is a heap of broken rock at the foot of a cliff, and to a geologist its chief frustration is that it keeps no order: the boulder lying on top may have fallen last winter or a thousand years ago. Lichens can date an exposed rock face, but the summers on the Vetter Slope of the eastern Cascades are too dry for lichen, and the crews working there in the 1990s had no way to tell a young boulder from an old one. Dana Whitlock's crew looked instead at the side no one had examined, the underside, where the rock meets soil and a thin crust of mineral grains binds to it. That crust is tunneled by oribatid mites, which burrow into it at a rate that, unlike almost everything else on the slope, does not depend on the amount of rain the slope receives. Burrows accumulate and are not erased, so a boulder that has lain fast for a long time carries more of them per square centimeter than a recent arrival. To turn that into a clock, the crew needed rock of known age. An earthquake in 1924 had brought down a documented sheet of stone at the slope's northern end, and a logging road cut in 1961 had dumped a second, younger pile beside it. Counting burrows on eleven boulders from each gave a rate of about eleven burrows per square centimeter per century, and predicted the two known ages to within 4.2 percent. Applied across the slope, the method returned ages from forty years to roughly nine hundred, and showed that two thirds of the surface rock had arrived in three short episodes rather than in a steady trickle. Whitlock is careful about the ceiling. Past about nine hundred years the crust itself begins to spall away, taking its burrows with it, so every older boulder returns the same saturated count. She calls the method good for a window rather than a chronology, and has refused to apply it to slopes whose soil chemistry differs from Vetter's until someone repeats the calibration there."
+  },
+  {
+    "id": "SRDB-03",
+    "set_id": "SRDB-P1",
+    "subskill": "inference",
+    "difficulty": "hard",
+    "prompt": "It can most reasonably be inferred that if the method were applied to a boulder that had lain on the slope for two thousand years, the burrow count would",
+    "choices": [
+      "be indistinguishable from the count on a boulder that had lain there one thousand years",
+      "be roughly twice the count on a boulder that had lain there one thousand years",
+      "fall below the count on a boulder that had lain there one hundred years",
+      "vary with the season in which the counting was done",
+      "exceed the rate established by the 1924 rockfall"
+    ],
+    "correct_answer": "be indistinguishable from the count on a boulder that had lain there one thousand years",
+    "explanation": "Past about nine hundred years the crust spalls away and \"every older boulder returns the same saturated count,\" so two boulders both past the ceiling cannot be told apart.",
+    "distractor_rationales": {
+      "be roughly twice the count on a boulder that had lain there one thousand years": "This applies the linear eleven-per-century rate past the point where the passage says it stops working.",
+      "fall below the count on a boulder that had lain there one hundred years": "Spalling removes crust, but the passage says the count saturates, not that it reverses to below young values.",
+      "vary with the season in which the counting was done": "Nothing in the passage makes the count seasonal.",
+      "exceed the rate established by the 1924 rockfall": "Confuses a rate with a count, and the 1924 fall only calibrated the rate."
+    },
+    "passage": "A talus slope is a heap of broken rock at the foot of a cliff, and to a geologist its chief frustration is that it keeps no order: the boulder lying on top may have fallen last winter or a thousand years ago. Lichens can date an exposed rock face, but the summers on the Vetter Slope of the eastern Cascades are too dry for lichen, and the crews working there in the 1990s had no way to tell a young boulder from an old one. Dana Whitlock's crew looked instead at the side no one had examined, the underside, where the rock meets soil and a thin crust of mineral grains binds to it. That crust is tunneled by oribatid mites, which burrow into it at a rate that, unlike almost everything else on the slope, does not depend on the amount of rain the slope receives. Burrows accumulate and are not erased, so a boulder that has lain fast for a long time carries more of them per square centimeter than a recent arrival. To turn that into a clock, the crew needed rock of known age. An earthquake in 1924 had brought down a documented sheet of stone at the slope's northern end, and a logging road cut in 1961 had dumped a second, younger pile beside it. Counting burrows on eleven boulders from each gave a rate of about eleven burrows per square centimeter per century, and predicted the two known ages to within 4.2 percent. Applied across the slope, the method returned ages from forty years to roughly nine hundred, and showed that two thirds of the surface rock had arrived in three short episodes rather than in a steady trickle. Whitlock is careful about the ceiling. Past about nine hundred years the crust itself begins to spall away, taking its burrows with it, so every older boulder returns the same saturated count. She calls the method good for a window rather than a chronology, and has refused to apply it to slopes whose soil chemistry differs from Vetter's until someone repeats the calibration there."
+  },
+  {
+    "id": "SRDB-04",
+    "set_id": "SRDB-P1",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "As used in the passage, \"fast\" most nearly means",
+    "choices": [
+      "quickly",
+      "abstaining from food",
+      "ahead of the correct time",
+      "firmly in place",
+      "resistant to fading"
+    ],
+    "correct_answer": "firmly in place",
+    "explanation": "A boulder that \"has lain fast for a long time\" has sat undisturbed against the soil; the sentence contrasts it with \"a recent arrival,\" so the word marks settled position, not speed.",
+    "distractor_rationales": {
+      "quickly": "The word's default sense, and the trap: nothing in the sentence is moving.",
+      "abstaining from food": "A real sense of the word, but the subject is a rock.",
+      "ahead of the correct time": "A real sense (of a clock), and tempting because the paragraph is about a clock, but it is the method that is the clock, not the boulder.",
+      "resistant to fading": "A real sense (of dye), unsupported here."
+    },
+    "passage": "A talus slope is a heap of broken rock at the foot of a cliff, and to a geologist its chief frustration is that it keeps no order: the boulder lying on top may have fallen last winter or a thousand years ago. Lichens can date an exposed rock face, but the summers on the Vetter Slope of the eastern Cascades are too dry for lichen, and the crews working there in the 1990s had no way to tell a young boulder from an old one. Dana Whitlock's crew looked instead at the side no one had examined, the underside, where the rock meets soil and a thin crust of mineral grains binds to it. That crust is tunneled by oribatid mites, which burrow into it at a rate that, unlike almost everything else on the slope, does not depend on the amount of rain the slope receives. Burrows accumulate and are not erased, so a boulder that has lain fast for a long time carries more of them per square centimeter than a recent arrival. To turn that into a clock, the crew needed rock of known age. An earthquake in 1924 had brought down a documented sheet of stone at the slope's northern end, and a logging road cut in 1961 had dumped a second, younger pile beside it. Counting burrows on eleven boulders from each gave a rate of about eleven burrows per square centimeter per century, and predicted the two known ages to within 4.2 percent. Applied across the slope, the method returned ages from forty years to roughly nine hundred, and showed that two thirds of the surface rock had arrived in three short episodes rather than in a steady trickle. Whitlock is careful about the ceiling. Past about nine hundred years the crust itself begins to spall away, taking its burrows with it, so every older boulder returns the same saturated count. She calls the method good for a window rather than a chronology, and has refused to apply it to slopes whose soil chemistry differs from Vetter's until someone repeats the calibration there."
+  },
+  {
+    "id": "SRDB-05",
+    "set_id": "SRDB-P1",
+    "subskill": "attitude",
+    "difficulty": "medium",
+    "prompt": "Whitlock's stance toward her own method is best described as",
+    "choices": [
+      "protective of its novelty, and reluctant to let other crews attempt it",
+      "impatient with the slope, and eager to push the clock past its ceiling",
+      "confident in its result on Vetter, and unwilling to export it without fresh calibration",
+      "doubtful of her own calibration, and inclined to treat every age as provisional",
+      "indifferent to its range, and interested chiefly in the three episodes it revealed"
+    ],
+    "correct_answer": "confident in its result on Vetter, and unwilling to export it without fresh calibration",
+    "explanation": "She reports Vetter ages without hedging them, but \"has refused to apply it to slopes whose soil chemistry differs from Vetter's until someone repeats the calibration there.\"",
+    "distractor_rationales": {
+      "protective of its novelty, and reluctant to let other crews attempt it": "Her refusal is about other slopes, not other crews; she asks for the calibration to be repeated, which invites others in.",
+      "impatient with the slope, and eager to push the clock past its ceiling": "She states the ceiling as a boundary and does not try to pass it.",
+      "doubtful of her own calibration, and inclined to treat every age as provisional": "The calibration predicted two known ages to 4.2 percent and is presented as sound.",
+      "indifferent to its range, and interested chiefly in the three episodes it revealed": "The range is exactly what she is careful about."
+    },
+    "passage": "A talus slope is a heap of broken rock at the foot of a cliff, and to a geologist its chief frustration is that it keeps no order: the boulder lying on top may have fallen last winter or a thousand years ago. Lichens can date an exposed rock face, but the summers on the Vetter Slope of the eastern Cascades are too dry for lichen, and the crews working there in the 1990s had no way to tell a young boulder from an old one. Dana Whitlock's crew looked instead at the side no one had examined, the underside, where the rock meets soil and a thin crust of mineral grains binds to it. That crust is tunneled by oribatid mites, which burrow into it at a rate that, unlike almost everything else on the slope, does not depend on the amount of rain the slope receives. Burrows accumulate and are not erased, so a boulder that has lain fast for a long time carries more of them per square centimeter than a recent arrival. To turn that into a clock, the crew needed rock of known age. An earthquake in 1924 had brought down a documented sheet of stone at the slope's northern end, and a logging road cut in 1961 had dumped a second, younger pile beside it. Counting burrows on eleven boulders from each gave a rate of about eleven burrows per square centimeter per century, and predicted the two known ages to within 4.2 percent. Applied across the slope, the method returned ages from forty years to roughly nine hundred, and showed that two thirds of the surface rock had arrived in three short episodes rather than in a steady trickle. Whitlock is careful about the ceiling. Past about nine hundred years the crust itself begins to spall away, taking its burrows with it, so every older boulder returns the same saturated count. She calls the method good for a window rather than a chronology, and has refused to apply it to slopes whose soil chemistry differs from Vetter's until someone repeats the calibration there."
+  },
+  {
+    "id": "SRDB-06",
+    "set_id": "SRDB-P1",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "prompt": "The sentence about the 1924 earthquake and the 1961 logging road serves chiefly to",
+    "choices": [
+      "supply rock of known age against which the burrow rate could be set",
+      "explain why lichen will not grow at the northern end of the slope",
+      "account for the three short episodes the method later revealed",
+      "show that human disturbance has made the slope harder to date",
+      "introduce the objection raised in the final sentence"
+    ],
+    "correct_answer": "supply rock of known age against which the burrow rate could be set",
+    "explanation": "It answers the preceding sentence, \"the crew needed rock of known age,\" and is followed immediately by the count that yields the rate and the 4.2 percent check.",
+    "distractor_rationales": {
+      "explain why lichen will not grow at the northern end of the slope": "The lichen problem is dryness, given two sentences earlier and not tied to either event.",
+      "account for the three short episodes the method later revealed": "Tempting because both are dated events, but the episodes are a later output of the method, not these two calibration piles.",
+      "show that human disturbance has made the slope harder to date": "The logging road made dating easier here, not harder.",
+      "introduce the objection raised in the final sentence": "The final objection concerns soil chemistry on other slopes."
+    },
+    "passage": "A talus slope is a heap of broken rock at the foot of a cliff, and to a geologist its chief frustration is that it keeps no order: the boulder lying on top may have fallen last winter or a thousand years ago. Lichens can date an exposed rock face, but the summers on the Vetter Slope of the eastern Cascades are too dry for lichen, and the crews working there in the 1990s had no way to tell a young boulder from an old one. Dana Whitlock's crew looked instead at the side no one had examined, the underside, where the rock meets soil and a thin crust of mineral grains binds to it. That crust is tunneled by oribatid mites, which burrow into it at a rate that, unlike almost everything else on the slope, does not depend on the amount of rain the slope receives. Burrows accumulate and are not erased, so a boulder that has lain fast for a long time carries more of them per square centimeter than a recent arrival. To turn that into a clock, the crew needed rock of known age. An earthquake in 1924 had brought down a documented sheet of stone at the slope's northern end, and a logging road cut in 1961 had dumped a second, younger pile beside it. Counting burrows on eleven boulders from each gave a rate of about eleven burrows per square centimeter per century, and predicted the two known ages to within 4.2 percent. Applied across the slope, the method returned ages from forty years to roughly nine hundred, and showed that two thirds of the surface rock had arrived in three short episodes rather than in a steady trickle. Whitlock is careful about the ceiling. Past about nine hundred years the crust itself begins to spall away, taking its burrows with it, so every older boulder returns the same saturated count. She calls the method good for a window rather than a chronology, and has refused to apply it to slopes whose soil chemistry differs from Vetter's until someone repeats the calibration there."
+  },
+  {
+    "id": "SRDB-07",
+    "set_id": "SRDB-P2",
+    "subskill": "main-idea",
+    "difficulty": "medium",
+    "prompt": "The passage is primarily concerned with",
+    "choices": [
+      "how a brainless comb jelly led one researcher to propose changing the way sleep is filmed in the laboratory",
+      "how a brainless comb jelly led one researcher to propose changing the daily light cycle used in sleep studies",
+      "how a brainless comb jelly led one researcher to propose changing the fourth condition on the standard checklist for sleep",
+      "how a brainless comb jelly led one researcher to propose changing the list of animals now accepted as sleepers",
+      "how a brainless comb jelly led one researcher to propose changing the accepted definition of a nervous system"
+    ],
+    "correct_answer": "how a brainless comb jelly led one researcher to propose changing the fourth condition on the standard checklist for sleep",
+    "explanation": "The passage ends where it has been heading: Lindqvist \"has proposed replacing rebound with any demonstrated cost of staying awake,\" and the committee has taken the question up. The comb jelly is the case that prompts the proposal.",
+    "distractor_rationales": {
+      "the way sleep is filmed in the laboratory": "Filming the cilia is a method detail, and no change to it is proposed.",
+      "the daily light cycle used in sleep studies": "Constant dim light is a condition of the experiment, not something the passage argues about.",
+      "the list of animals now accepted as sleepers": "The passage says explicitly that his response \"was not to argue for the animal.\"",
+      "the accepted definition of a nervous system": "The diffuse net is described, never contested."
+    },
+    "passage": "Sleep is easy to recognize in a dog and hard to define in anything else, which is why researchers rely less on the word than on a checklist. Four conditions are usually required: the animal becomes less responsive to the world; the state reverses quickly when something important happens; it recurs on a daily rhythm; and, if the animal is kept from it, it takes more of it afterward. The fourth condition, called rebound, does the real work, because it separates sleep from stillness, and a stone is unresponsive but a stone does not catch up. Beroe pallens, a comb jelly of the cold water off southern Chile, has no brain at all; its nerve cells are spread through its body in a diffuse net. Ivar Lindqvist's laboratory kept forty under constant dim light and filmed the cilia along their combs, which normally beat without pause. Every animal slowed its beating for about ninety minutes, at the same point in each twenty-four-hour cycle, and returned to full speed within seconds when dye was released in the water near it. Three of the four conditions were met cleanly. The crew then kept the animals from slowing, using a gentle current timed to the onset of each quiet period, for three cycles. The rebound they recorded was four minutes, a quiet period ninety-four minutes long instead of ninety, a difference so small that Lindqvist reports the figure without building anything on it. The checklist as written admits no exception, and by it B. pallens does not sleep. Lindqvist's response was not to argue for the animal but to question the fourth condition. Rebound, he points out, is a way of detecting a cost: an animal that must make up lost sleep has paid for going without. In a creature with no brain to restore, the cost may be smaller, and a condition built around mammals would then be measuring the size of that debt rather than its existence. He has proposed replacing rebound with any demonstrated cost of staying awake, such as slower healing or poorer capture of prey, and the committee that maintains the checklist has taken the question up."
+  },
+  {
+    "id": "SRDB-08",
+    "set_id": "SRDB-P2",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, the animals returned to full ciliary beating when",
+    "choices": [
+      "the dim light was brightened",
+      "the gentle current was switched off",
+      "ninety minutes had elapsed",
+      "another comb jelly drifted close",
+      "dye was released in the water near them"
+    ],
+    "correct_answer": "dye was released in the water near them",
+    "explanation": "The animals \"returned to full speed within seconds when dye was released in the water near it,\" which is what satisfies the reversibility condition.",
+    "distractor_rationales": {
+      "the dim light was brightened": "The light was held constant throughout.",
+      "the gentle current was switched off": "The current was used later, to prevent slowing, not to end it.",
+      "ninety minutes had elapsed": "Ninety minutes is the length of an undisturbed quiet period, not the trigger for the return.",
+      "another comb jelly drifted close": "No interaction between animals is described."
+    },
+    "passage": "Sleep is easy to recognize in a dog and hard to define in anything else, which is why researchers rely less on the word than on a checklist. Four conditions are usually required: the animal becomes less responsive to the world; the state reverses quickly when something important happens; it recurs on a daily rhythm; and, if the animal is kept from it, it takes more of it afterward. The fourth condition, called rebound, does the real work, because it separates sleep from stillness, and a stone is unresponsive but a stone does not catch up. Beroe pallens, a comb jelly of the cold water off southern Chile, has no brain at all; its nerve cells are spread through its body in a diffuse net. Ivar Lindqvist's laboratory kept forty under constant dim light and filmed the cilia along their combs, which normally beat without pause. Every animal slowed its beating for about ninety minutes, at the same point in each twenty-four-hour cycle, and returned to full speed within seconds when dye was released in the water near it. Three of the four conditions were met cleanly. The crew then kept the animals from slowing, using a gentle current timed to the onset of each quiet period, for three cycles. The rebound they recorded was four minutes, a quiet period ninety-four minutes long instead of ninety, a difference so small that Lindqvist reports the figure without building anything on it. The checklist as written admits no exception, and by it B. pallens does not sleep. Lindqvist's response was not to argue for the animal but to question the fourth condition. Rebound, he points out, is a way of detecting a cost: an animal that must make up lost sleep has paid for going without. In a creature with no brain to restore, the cost may be smaller, and a condition built around mammals would then be measuring the size of that debt rather than its existence. He has proposed replacing rebound with any demonstrated cost of staying awake, such as slower healing or poorer capture of prey, and the committee that maintains the checklist has taken the question up."
+  },
+  {
+    "id": "SRDB-09",
+    "set_id": "SRDB-P2",
+    "subskill": "inference",
+    "difficulty": "hard",
+    "prompt": "The remark that a stone is unresponsive but does not catch up most directly supports which conclusion?",
+    "choices": [
+      "Unresponsiveness is the hardest of the four conditions to measure.",
+      "Reduced responsiveness by itself cannot separate sleep from inactivity.",
+      "Stillness and sleep produce identical recordings in the laboratory.",
+      "The daily rhythm is the condition most often waived.",
+      "Animals without brains are unlikely to meet any of the four conditions."
+    ],
+    "correct_answer": "Reduced responsiveness by itself cannot separate sleep from inactivity.",
+    "explanation": "The stone satisfies the first condition and nothing else; the point of the remark is that rebound is needed because the first condition alone would admit inert objects.",
+    "distractor_rationales": {
+      "Unresponsiveness is the hardest of the four conditions to measure.": "The passage treats it as the easy one; the difficulty is that it is not sufficient.",
+      "Stillness and sleep produce identical recordings in the laboratory.": "Overstates it, and the comb jelly recordings did distinguish quiet periods.",
+      "The daily rhythm is the condition most often waived.": "No condition is described as waived, and the rhythm was met.",
+      "Animals without brains are unlikely to meet any of the four conditions.": "B. pallens met three cleanly."
+    },
+    "passage": "Sleep is easy to recognize in a dog and hard to define in anything else, which is why researchers rely less on the word than on a checklist. Four conditions are usually required: the animal becomes less responsive to the world; the state reverses quickly when something important happens; it recurs on a daily rhythm; and, if the animal is kept from it, it takes more of it afterward. The fourth condition, called rebound, does the real work, because it separates sleep from stillness, and a stone is unresponsive but a stone does not catch up. Beroe pallens, a comb jelly of the cold water off southern Chile, has no brain at all; its nerve cells are spread through its body in a diffuse net. Ivar Lindqvist's laboratory kept forty under constant dim light and filmed the cilia along their combs, which normally beat without pause. Every animal slowed its beating for about ninety minutes, at the same point in each twenty-four-hour cycle, and returned to full speed within seconds when dye was released in the water near it. Three of the four conditions were met cleanly. The crew then kept the animals from slowing, using a gentle current timed to the onset of each quiet period, for three cycles. The rebound they recorded was four minutes, a quiet period ninety-four minutes long instead of ninety, a difference so small that Lindqvist reports the figure without building anything on it. The checklist as written admits no exception, and by it B. pallens does not sleep. Lindqvist's response was not to argue for the animal but to question the fourth condition. Rebound, he points out, is a way of detecting a cost: an animal that must make up lost sleep has paid for going without. In a creature with no brain to restore, the cost may be smaller, and a condition built around mammals would then be measuring the size of that debt rather than its existence. He has proposed replacing rebound with any demonstrated cost of staying awake, such as slower healing or poorer capture of prey, and the committee that maintains the checklist has taken the question up."
+  },
+  {
+    "id": "SRDB-10",
+    "set_id": "SRDB-P2",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "As used in the passage, \"admits\" most nearly means",
+    "choices": [
+      "confesses",
+      "grants entry to",
+      "acknowledges as true",
+      "receives as a patient",
+      "allows"
+    ],
+    "correct_answer": "allows",
+    "explanation": "\"The checklist as written admits no exception\" means that the checklist permits none; a list is not a speaker and cannot confess or concede.",
+    "distractor_rationales": {
+      "confesses": "The word's default sense and the trap.",
+      "grants entry to": "A real sense, but what is excluded is an exception, not a person or thing entering a place.",
+      "acknowledges as true": "A real sense, and the nearest miss, but the checklist is a rule being applied rather than a party granting a point.",
+      "receives as a patient": "A real sense in a hospital; nothing here is being received."
+    },
+    "passage": "Sleep is easy to recognize in a dog and hard to define in anything else, which is why researchers rely less on the word than on a checklist. Four conditions are usually required: the animal becomes less responsive to the world; the state reverses quickly when something important happens; it recurs on a daily rhythm; and, if the animal is kept from it, it takes more of it afterward. The fourth condition, called rebound, does the real work, because it separates sleep from stillness, and a stone is unresponsive but a stone does not catch up. Beroe pallens, a comb jelly of the cold water off southern Chile, has no brain at all; its nerve cells are spread through its body in a diffuse net. Ivar Lindqvist's laboratory kept forty under constant dim light and filmed the cilia along their combs, which normally beat without pause. Every animal slowed its beating for about ninety minutes, at the same point in each twenty-four-hour cycle, and returned to full speed within seconds when dye was released in the water near it. Three of the four conditions were met cleanly. The crew then kept the animals from slowing, using a gentle current timed to the onset of each quiet period, for three cycles. The rebound they recorded was four minutes, a quiet period ninety-four minutes long instead of ninety, a difference so small that Lindqvist reports the figure without building anything on it. The checklist as written admits no exception, and by it B. pallens does not sleep. Lindqvist's response was not to argue for the animal but to question the fourth condition. Rebound, he points out, is a way of detecting a cost: an animal that must make up lost sleep has paid for going without. In a creature with no brain to restore, the cost may be smaller, and a condition built around mammals would then be measuring the size of that debt rather than its existence. He has proposed replacing rebound with any demonstrated cost of staying awake, such as slower healing or poorer capture of prey, and the committee that maintains the checklist has taken the question up."
+  },
+  {
+    "id": "SRDB-11",
+    "set_id": "SRDB-P2",
+    "subskill": "attitude",
+    "difficulty": "medium",
+    "prompt": "Lindqvist's attitude toward the four-part checklist is best described as",
+    "choices": [
+      "willing to revise it, on the ground that one of its conditions was built around mammals",
+      "hostile to it, and convinced that the plain word \"sleep\" would serve better",
+      "protective of it, and inclined to read the four-minute rebound generously",
+      "indifferent to it, being interested only in the comb jelly’s nervous system",
+      "resigned to it, and content to record that B. pallens fails the fourth condition"
+    ],
+    "correct_answer": "willing to revise it, on the ground that one of its conditions was built around mammals",
+    "explanation": "His response \"was not to argue for the animal but to question the fourth condition,\" and he argues that a condition built around mammals measures the size of a debt rather than its existence.",
+    "distractor_rationales": {
+      "hostile to it, and convinced that the plain word \"sleep\" would serve better": "The passage opens by explaining why researchers trust the checklist over the word, and he proposes a replacement condition, not a replacement method.",
+      "protective of it, and inclined to read the four-minute rebound generously": "He reports four minutes without building anything on it, the opposite of a generous reading.",
+      "indifferent to it, being interested only in the comb jelly’s nervous system": "The checklist is the object of his proposal.",
+      "resigned to it, and content to record that B. pallens fails the fourth condition": "He records the failure and then challenges the condition rather than accepting the verdict."
+    },
+    "passage": "Sleep is easy to recognize in a dog and hard to define in anything else, which is why researchers rely less on the word than on a checklist. Four conditions are usually required: the animal becomes less responsive to the world; the state reverses quickly when something important happens; it recurs on a daily rhythm; and, if the animal is kept from it, it takes more of it afterward. The fourth condition, called rebound, does the real work, because it separates sleep from stillness, and a stone is unresponsive but a stone does not catch up. Beroe pallens, a comb jelly of the cold water off southern Chile, has no brain at all; its nerve cells are spread through its body in a diffuse net. Ivar Lindqvist's laboratory kept forty under constant dim light and filmed the cilia along their combs, which normally beat without pause. Every animal slowed its beating for about ninety minutes, at the same point in each twenty-four-hour cycle, and returned to full speed within seconds when dye was released in the water near it. Three of the four conditions were met cleanly. The crew then kept the animals from slowing, using a gentle current timed to the onset of each quiet period, for three cycles. The rebound they recorded was four minutes, a quiet period ninety-four minutes long instead of ninety, a difference so small that Lindqvist reports the figure without building anything on it. The checklist as written admits no exception, and by it B. pallens does not sleep. Lindqvist's response was not to argue for the animal but to question the fourth condition. Rebound, he points out, is a way of detecting a cost: an animal that must make up lost sleep has paid for going without. In a creature with no brain to restore, the cost may be smaller, and a condition built around mammals would then be measuring the size of that debt rather than its existence. He has proposed replacing rebound with any demonstrated cost of staying awake, such as slower healing or poorer capture of prey, and the committee that maintains the checklist has taken the question up."
+  },
+  {
+    "id": "SRDB-12",
+    "set_id": "SRDB-P2",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "prompt": "The description of the gentle current timed to each quiet period serves chiefly to",
+    "choices": [
+      "explain why the animals were kept under constant dim light",
+      "show how the laboratory tested the one condition still outstanding",
+      "demonstrate that the quiet period is not governed by a daily rhythm",
+      "illustrate the diffuse arrangement of the animal’s nerve cells",
+      "establish that the animals recover quickly from disturbance"
+    ],
+    "correct_answer": "show how the laboratory tested the one condition still outstanding",
+    "explanation": "It follows immediately on \"three of the four conditions were met,\" and depriving the animals of the quiet period is the only way to test the fourth, rebound.",
+    "distractor_rationales": {
+      "explain why the animals were kept under constant dim light": "The lighting is set before the current is introduced and is not justified by it.",
+      "demonstrate that the quiet period is not governed by a daily rhythm": "The rhythm had already been established; the current interrupts it rather than disproving it.",
+      "illustrate the diffuse arrangement of the animal’s nerve cells": "The nerve net is described earlier and has no bearing on the current.",
+      "establish that the animals recover quickly from disturbance": "Quick recovery was shown earlier, by the dye."
+    },
+    "passage": "Sleep is easy to recognize in a dog and hard to define in anything else, which is why researchers rely less on the word than on a checklist. Four conditions are usually required: the animal becomes less responsive to the world; the state reverses quickly when something important happens; it recurs on a daily rhythm; and, if the animal is kept from it, it takes more of it afterward. The fourth condition, called rebound, does the real work, because it separates sleep from stillness, and a stone is unresponsive but a stone does not catch up. Beroe pallens, a comb jelly of the cold water off southern Chile, has no brain at all; its nerve cells are spread through its body in a diffuse net. Ivar Lindqvist's laboratory kept forty under constant dim light and filmed the cilia along their combs, which normally beat without pause. Every animal slowed its beating for about ninety minutes, at the same point in each twenty-four-hour cycle, and returned to full speed within seconds when dye was released in the water near it. Three of the four conditions were met cleanly. The crew then kept the animals from slowing, using a gentle current timed to the onset of each quiet period, for three cycles. The rebound they recorded was four minutes, a quiet period ninety-four minutes long instead of ninety, a difference so small that Lindqvist reports the figure without building anything on it. The checklist as written admits no exception, and by it B. pallens does not sleep. Lindqvist's response was not to argue for the animal but to question the fourth condition. Rebound, he points out, is a way of detecting a cost: an animal that must make up lost sleep has paid for going without. In a creature with no brain to restore, the cost may be smaller, and a condition built around mammals would then be measuring the size of that debt rather than its existence. He has proposed replacing rebound with any demonstrated cost of staying awake, such as slower healing or poorer capture of prey, and the committee that maintains the checklist has taken the question up."
+  },
+  {
+    "id": "SRDB-13",
+    "set_id": "SRDB-P3",
+    "subskill": "main-idea",
+    "difficulty": "medium",
+    "prompt": "The passage is primarily concerned with",
+    "choices": [
+      "how seven years of survey traced a marsh’s gain in height to a single storm's sheet of overwash sand",
+      "how seven years of survey traced a marsh’s gain in height to a slowing in the rate at which the sea is rising",
+      "how seven years of survey traced a marsh’s gain in height to the opening of a channel at the island’s eastern end",
+      "how seven years of survey traced a marsh’s gain in height to cordgrass rhizomes planted by the survey crew",
+      "how seven years of survey traced a marsh’s gain in height to an unusually long run of calm summers"
+    ],
+    "correct_answer": "how seven years of survey traced a marsh’s gain in height to a single storm's sheet of overwash sand",
+    "explanation": "The passage follows one event, the September 2011 overwash, through seven years of survey to a marsh standing nineteen centimeters above its neighbors.",
+    "distractor_rationales": {
+      "a slowing in the rate at which the sea is rising": "The passage holds the rate constant; it is what turns nineteen centimeters into six decades.",
+      "the opening of a channel at the island’s eastern end": "The channel is where the marsh was destroyed, not where it gained.",
+      "cordgrass rhizomes planted by the survey crew": "The rhizomes were already present under the sand; the crew measured and did not plant.",
+      "an unusually long run of calm summers": "No such run is mentioned."
+    },
+    "passage": "A salt marsh survives by keeping its surface just above the tide, and along much of the Atlantic coast the marshes are losing that race by two or three millimeters a year. Pell Island, a low barrier off the Carolina coast, was losing three. In September 2011 a storm pushed a wall of seawater across the island's narrow waist and laid a sheet of sand eleven centimeters thick over four hectares of marsh behind it. Overwash of that kind is usually read as damage, and by the following spring the buried marsh looked the part: the cordgrass was dead, the surface was bare, and the sand held so little organic matter that nothing rooted in it. Ruth Alvarado's group had been surveying Pell Island since 2006 and simply kept going, taking elevation and core samples twice a year for seven more. In the second year, tidal water moving across the bare sand began to drop silt into it, and the topmost centimeter darkened. In the third, cordgrass returned, not from seed but from rhizomes that had survived under the sand and pushed up through it, and once the stems were standing they slowed the water further, so that still more silt fell out of it. By the fifth year a new root mat had formed above the sand layer, and the gain in height was no longer just the sand. Seven years after the storm the marsh at the overwash site stood nineteen centimeters above the marsh on either side of it, and the relief it had gained was enough to buy it, at present rates, something near six decades. What the record shows is not that storms are good for marshes. The same storm took away a third of a hectare at the island's eastern end, where the water ran out through a channel instead of spreading across a flat, and nothing has grown back there. The difference, Alvarado's cores make clear, was whether the water slowed enough to set its sand down or kept enough speed to carry material away, and on a marsh that distinction can turn on a few centimeters of ground."
+  },
+  {
+    "id": "SRDB-14",
+    "set_id": "SRDB-P3",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, before the 2011 storm the marsh on Pell Island was",
+    "choices": [
+      "gaining about three millimeters of height a year",
+      "holding its height steady against the tide",
+      "losing about three millimeters of height a year",
+      "already bare of cordgrass across four hectares",
+      "rising faster than the marshes on either side of it"
+    ],
+    "correct_answer": "losing about three millimeters of height a year",
+    "explanation": "Atlantic marshes are said to be losing the race by two or three millimeters a year, and \"Pell Island, a low barrier off the Carolina coast, was losing three.\"",
+    "distractor_rationales": {
+      "gaining about three millimeters of height a year": "Reverses the direction of the figure.",
+      "holding its height steady against the tide": "That is the condition the marsh was failing to meet.",
+      "already bare of cordgrass across four hectares": "The four hectares were bared by the storm, not before it.",
+      "rising faster than the marshes on either side of it": "That describes the overwash site seven years afterward."
+    },
+    "passage": "A salt marsh survives by keeping its surface just above the tide, and along much of the Atlantic coast the marshes are losing that race by two or three millimeters a year. Pell Island, a low barrier off the Carolina coast, was losing three. In September 2011 a storm pushed a wall of seawater across the island's narrow waist and laid a sheet of sand eleven centimeters thick over four hectares of marsh behind it. Overwash of that kind is usually read as damage, and by the following spring the buried marsh looked the part: the cordgrass was dead, the surface was bare, and the sand held so little organic matter that nothing rooted in it. Ruth Alvarado's group had been surveying Pell Island since 2006 and simply kept going, taking elevation and core samples twice a year for seven more. In the second year, tidal water moving across the bare sand began to drop silt into it, and the topmost centimeter darkened. In the third, cordgrass returned, not from seed but from rhizomes that had survived under the sand and pushed up through it, and once the stems were standing they slowed the water further, so that still more silt fell out of it. By the fifth year a new root mat had formed above the sand layer, and the gain in height was no longer just the sand. Seven years after the storm the marsh at the overwash site stood nineteen centimeters above the marsh on either side of it, and the relief it had gained was enough to buy it, at present rates, something near six decades. What the record shows is not that storms are good for marshes. The same storm took away a third of a hectare at the island's eastern end, where the water ran out through a channel instead of spreading across a flat, and nothing has grown back there. The difference, Alvarado's cores make clear, was whether the water slowed enough to set its sand down or kept enough speed to carry material away, and on a marsh that distinction can turn on a few centimeters of ground."
+  },
+  {
+    "id": "SRDB-15",
+    "set_id": "SRDB-P3",
+    "subskill": "inference",
+    "difficulty": "hard",
+    "prompt": "The account of the cordgrass’s return in the third year most strongly suggests that",
+    "choices": [
+      "seed carried in on the tide is the main source of new marsh plants",
+      "a sheet of sand eleven centimeters thick is too thin to bury a marsh",
+      "the sand sheet had gathered enough organic matter by then to support seedlings",
+      "the crew’s twice-yearly coring loosened the sand enough to release growth",
+      "the marsh regrew from plants that were already present before the storm"
+    ],
+    "correct_answer": "the marsh regrew from plants that were already present before the storm",
+    "explanation": "The cordgrass returned \"not from seed but from rhizomes that had survived under the sand,\" so the recovery drew on the pre-storm marsh rather than on colonists arriving afterward.",
+    "distractor_rationales": {
+      "seed carried in on the tide is the main source of new marsh plants": "The passage rules seed out in this case.",
+      "a sheet of sand eleven centimeters thick is too thin to bury a marsh": "It did bury it; the stems died and the surface was bare for two years.",
+      "the sand sheet had gathered enough organic matter by then to support seedlings": "Silt had begun to darken the top centimeter, but the return came from below, not from seedlings above.",
+      "the crew’s twice-yearly coring loosened the sand enough to release growth": "The crew is described as surveying, and nothing connects coring to regrowth."
+    },
+    "passage": "A salt marsh survives by keeping its surface just above the tide, and along much of the Atlantic coast the marshes are losing that race by two or three millimeters a year. Pell Island, a low barrier off the Carolina coast, was losing three. In September 2011 a storm pushed a wall of seawater across the island's narrow waist and laid a sheet of sand eleven centimeters thick over four hectares of marsh behind it. Overwash of that kind is usually read as damage, and by the following spring the buried marsh looked the part: the cordgrass was dead, the surface was bare, and the sand held so little organic matter that nothing rooted in it. Ruth Alvarado's group had been surveying Pell Island since 2006 and simply kept going, taking elevation and core samples twice a year for seven more. In the second year, tidal water moving across the bare sand began to drop silt into it, and the topmost centimeter darkened. In the third, cordgrass returned, not from seed but from rhizomes that had survived under the sand and pushed up through it, and once the stems were standing they slowed the water further, so that still more silt fell out of it. By the fifth year a new root mat had formed above the sand layer, and the gain in height was no longer just the sand. Seven years after the storm the marsh at the overwash site stood nineteen centimeters above the marsh on either side of it, and the relief it had gained was enough to buy it, at present rates, something near six decades. What the record shows is not that storms are good for marshes. The same storm took away a third of a hectare at the island's eastern end, where the water ran out through a channel instead of spreading across a flat, and nothing has grown back there. The difference, Alvarado's cores make clear, was whether the water slowed enough to set its sand down or kept enough speed to carry material away, and on a marsh that distinction can turn on a few centimeters of ground."
+  },
+  {
+    "id": "SRDB-16",
+    "set_id": "SRDB-P3",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "As used in the passage, \"relief\" most nearly means",
+    "choices": [
+      "the easing of a burden",
+      "a person who takes over another’s duty",
+      "height above the surrounding surface",
+      "assistance given to those in need",
+      "a design that projects from a flat background"
+    ],
+    "correct_answer": "height above the surrounding surface",
+    "explanation": "The relief the marsh \"had gained\" is the nineteen centimeters by which it stands above the marsh on either side, and it is that elevation that buys it six decades against the tide.",
+    "distractor_rationales": {
+      "the easing of a burden": "The word's default sense, and tempting because the marsh has escaped a threat.",
+      "a person who takes over another’s duty": "A real sense, but nothing here is relieved of a post.",
+      "assistance given to those in need": "A real sense, unsupported by a sentence about centimeters.",
+      "a design that projects from a flat background": "A real sense in sculpture; the projection here is a landform, not an ornament."
+    },
+    "passage": "A salt marsh survives by keeping its surface just above the tide, and along much of the Atlantic coast the marshes are losing that race by two or three millimeters a year. Pell Island, a low barrier off the Carolina coast, was losing three. In September 2011 a storm pushed a wall of seawater across the island's narrow waist and laid a sheet of sand eleven centimeters thick over four hectares of marsh behind it. Overwash of that kind is usually read as damage, and by the following spring the buried marsh looked the part: the cordgrass was dead, the surface was bare, and the sand held so little organic matter that nothing rooted in it. Ruth Alvarado's group had been surveying Pell Island since 2006 and simply kept going, taking elevation and core samples twice a year for seven more. In the second year, tidal water moving across the bare sand began to drop silt into it, and the topmost centimeter darkened. In the third, cordgrass returned, not from seed but from rhizomes that had survived under the sand and pushed up through it, and once the stems were standing they slowed the water further, so that still more silt fell out of it. By the fifth year a new root mat had formed above the sand layer, and the gain in height was no longer just the sand. Seven years after the storm the marsh at the overwash site stood nineteen centimeters above the marsh on either side of it, and the relief it had gained was enough to buy it, at present rates, something near six decades. What the record shows is not that storms are good for marshes. The same storm took away a third of a hectare at the island's eastern end, where the water ran out through a channel instead of spreading across a flat, and nothing has grown back there. The difference, Alvarado's cores make clear, was whether the water slowed enough to set its sand down or kept enough speed to carry material away, and on a marsh that distinction can turn on a few centimeters of ground."
+  },
+  {
+    "id": "SRDB-17",
+    "set_id": "SRDB-P3",
+    "subskill": "attitude",
+    "difficulty": "medium",
+    "prompt": "The author’s position on the idea that storms are good for marshes is best described as",
+    "choices": [
+      "accepting of it in principle, though doubtful that it holds on barrier islands",
+      "hostile to it, and inclined to treat the nineteen centimeters as a measuring error",
+      "indifferent to it, being concerned only with the rate at which the sea rises",
+      "unwilling to generalize it, and pointed in citing the marsh the same storm destroyed",
+      "persuaded by it, and eager to see overwash encouraged on other islands"
+    ],
+    "correct_answer": "unwilling to generalize it, and pointed in citing the marsh the same storm destroyed",
+    "explanation": "\"What the record shows is not that storms are good for marshes\" is followed at once by the third of a hectare the same storm took away at the eastern end.",
+    "distractor_rationales": {
+      "accepting of it in principle, though doubtful that it holds on barrier islands": "Pell Island is a barrier island and is where the gain occurred.",
+      "hostile to it, and inclined to treat the nineteen centimeters as a measuring error": "The gain is reported as real and is the point of the account.",
+      "indifferent to it, being concerned only with the rate at which the sea rises": "The author raises the idea deliberately in order to qualify it.",
+      "persuaded by it, and eager to see overwash encouraged on other islands": "Directly contradicted by the sentence that opens the last part of the passage."
+    },
+    "passage": "A salt marsh survives by keeping its surface just above the tide, and along much of the Atlantic coast the marshes are losing that race by two or three millimeters a year. Pell Island, a low barrier off the Carolina coast, was losing three. In September 2011 a storm pushed a wall of seawater across the island's narrow waist and laid a sheet of sand eleven centimeters thick over four hectares of marsh behind it. Overwash of that kind is usually read as damage, and by the following spring the buried marsh looked the part: the cordgrass was dead, the surface was bare, and the sand held so little organic matter that nothing rooted in it. Ruth Alvarado's group had been surveying Pell Island since 2006 and simply kept going, taking elevation and core samples twice a year for seven more. In the second year, tidal water moving across the bare sand began to drop silt into it, and the topmost centimeter darkened. In the third, cordgrass returned, not from seed but from rhizomes that had survived under the sand and pushed up through it, and once the stems were standing they slowed the water further, so that still more silt fell out of it. By the fifth year a new root mat had formed above the sand layer, and the gain in height was no longer just the sand. Seven years after the storm the marsh at the overwash site stood nineteen centimeters above the marsh on either side of it, and the relief it had gained was enough to buy it, at present rates, something near six decades. What the record shows is not that storms are good for marshes. The same storm took away a third of a hectare at the island's eastern end, where the water ran out through a channel instead of spreading across a flat, and nothing has grown back there. The difference, Alvarado's cores make clear, was whether the water slowed enough to set its sand down or kept enough speed to carry material away, and on a marsh that distinction can turn on a few centimeters of ground."
+  },
+  {
+    "id": "SRDB-18",
+    "set_id": "SRDB-P3",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "prompt": "The mention that Alvarado’s group had been surveying Pell Island since 2006 serves chiefly to",
+    "choices": [
+      "explain why the storm crossed the island at its narrow waist",
+      "suggest that the group had anticipated an overwash event",
+      "account for the death of the cordgrass in the first spring",
+      "show that the marsh’s losses were caused by the survey work",
+      "establish that the crew held measurements of the marsh from before the storm"
+    ],
+    "correct_answer": "establish that the crew held measurements of the marsh from before the storm",
+    "explanation": "A five-year record predating 2011 is what makes the later elevations comparable, and it is what licenses the figure of three millimeters a year quoted for the marsh beforehand.",
+    "distractor_rationales": {
+      "explain why the storm crossed the island at its narrow waist": "The waist is a feature of the island, unrelated to the survey.",
+      "suggest that the group had anticipated an overwash event": "The passage says they \"simply kept going,\" which implies no such expectation.",
+      "account for the death of the cordgrass in the first spring": "The cordgrass died under eleven centimeters of sand.",
+      "show that the marsh’s losses were caused by the survey work": "The pre-storm losses are attributed to the tide outpacing the surface."
+    },
+    "passage": "A salt marsh survives by keeping its surface just above the tide, and along much of the Atlantic coast the marshes are losing that race by two or three millimeters a year. Pell Island, a low barrier off the Carolina coast, was losing three. In September 2011 a storm pushed a wall of seawater across the island's narrow waist and laid a sheet of sand eleven centimeters thick over four hectares of marsh behind it. Overwash of that kind is usually read as damage, and by the following spring the buried marsh looked the part: the cordgrass was dead, the surface was bare, and the sand held so little organic matter that nothing rooted in it. Ruth Alvarado's group had been surveying Pell Island since 2006 and simply kept going, taking elevation and core samples twice a year for seven more. In the second year, tidal water moving across the bare sand began to drop silt into it, and the topmost centimeter darkened. In the third, cordgrass returned, not from seed but from rhizomes that had survived under the sand and pushed up through it, and once the stems were standing they slowed the water further, so that still more silt fell out of it. By the fifth year a new root mat had formed above the sand layer, and the gain in height was no longer just the sand. Seven years after the storm the marsh at the overwash site stood nineteen centimeters above the marsh on either side of it, and the relief it had gained was enough to buy it, at present rates, something near six decades. What the record shows is not that storms are good for marshes. The same storm took away a third of a hectare at the island's eastern end, where the water ran out through a channel instead of spreading across a flat, and nothing has grown back there. The difference, Alvarado's cores make clear, was whether the water slowed enough to set its sand down or kept enough speed to carry material away, and on a marsh that distinction can turn on a few centimeters of ground."
+  },
+  {
+    "id": "SRDB-19",
+    "set_id": "SRDB-P4",
+    "subskill": "main-idea",
+    "difficulty": "medium",
+    "prompt": "The passage is primarily concerned with",
+    "choices": [
+      "how the routine paperwork of a small city office came to serve historians of the ice trade’s labor practices",
+      "how the routine paperwork of a small city office came to serve the city’s later disputes over ownership of the lake",
+      "how the routine paperwork of a small city office came to serve engineers designing modern cold storage plants",
+      "how the routine paperwork of a small city office came to serve researchers studying the timing of lake freeze and thaw",
+      "how the routine paperwork of a small city office came to serve genealogists tracing the families of its clerks"
+    ],
+    "correct_answer": "how the routine paperwork of a small city office came to serve researchers studying the timing of lake freeze and thaw",
+    "explanation": "The account of the office exists to set up Raghavan, \"who studies the timing of lake freeze and thaw,\" finding forty-three complete winters of fixed-point measurements in its ledgers.",
+    "distractor_rationales": {
+      "historians of the ice trade’s labor practices": "The cutters appear once, in the accident that created the office.",
+      "the city’s later disputes over ownership of the lake": "No dispute over ownership is mentioned.",
+      "engineers designing modern cold storage plants": "The cold storage plant ends the office; it does not use its records.",
+      "genealogists tracing the families of its clerks": "The clerks matter only as three hands in one volume."
+    },
+    "passage": "Before mechanical refrigeration, a northern city ate through the summer on ice cut from a lake in February, and its thickness was a matter of public safety and public price. Halloway, a milling city on the Kesset, created the Office of the Ice Inspector in 1868, after two cutters and a team of horses went through thin ice at the lake's southern end. The inspector's duties were narrow and dull: from December to the end of March he walked a fixed circuit of eleven stations on Lake Kesset, bored a hole at each, measured the ice, and entered the figure in a ledger at the city clerk's office. The figures were posted outside the market, so that cutters knew where to work and buyers knew what the season would cost. He measured in hands, a unit of four inches borrowed from the horse trade, and recorded the dates the ice first held a man and broke up. The office was abolished in 1911, three years after the Halloway Cold Storage Company opened a plant on the river and the lake harvest collapsed; the last inspector, Oyelaran, was moved to the weights and measures desk. The ledgers went to a basement and stayed there. In 2014 Priya Raghavan, who studies the timing of lake freeze and thaw, found forty-three complete winters in them: daily measurements at fixed points, made by people with no interest in climate. That last quality is what makes them valuable, and it is rarer than it sounds: a record kept for a purpose unrelated to the question now asked of it cannot have been shaped to answer it. Using them was not trivial. Raghavan had to convert hands to centimeters, locate the eleven stations from an 1874 survey map, and decide what to do with the winter of 1883, whose volume is written in three different hands and whose figures run a fifth high all season. She set 1883 aside rather than correct it. The remaining forty-two winters show a first-hold date arriving eleven days later at the end of the run than at its start, a trend no inspector served long enough to see."
+  },
+  {
+    "id": "SRDB-20",
+    "set_id": "SRDB-P4",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, the inspector’s winter circuit consisted of",
+    "choices": [
+      "four stations visited once a week",
+      "eleven stations, at each of which he bored and measured",
+      "a single station at the southern end of the lake",
+      "stations chosen afresh each December",
+      "eleven stations shared with the weights and measures desk"
+    ],
+    "correct_answer": "eleven stations, at each of which he bored and measured",
+    "explanation": "He \"walked a fixed circuit of eleven stations on Lake Kesset, bored a hole at each, measured the ice, and entered the figure in a ledger.\"",
+    "distractor_rationales": {
+      "four stations visited once a week": "Four is the number of inches in a hand, not a count of stations.",
+      "a single station at the southern end of the lake": "The southern end is where the 1868 accident happened.",
+      "stations chosen afresh each December": "The circuit is called fixed, which is what makes the record usable.",
+      "eleven stations shared with the weights and measures desk": "That desk is where the last inspector was moved in 1911."
+    },
+    "passage": "Before mechanical refrigeration, a northern city ate through the summer on ice cut from a lake in February, and its thickness was a matter of public safety and public price. Halloway, a milling city on the Kesset, created the Office of the Ice Inspector in 1868, after two cutters and a team of horses went through thin ice at the lake's southern end. The inspector's duties were narrow and dull: from December to the end of March he walked a fixed circuit of eleven stations on Lake Kesset, bored a hole at each, measured the ice, and entered the figure in a ledger at the city clerk's office. The figures were posted outside the market, so that cutters knew where to work and buyers knew what the season would cost. He measured in hands, a unit of four inches borrowed from the horse trade, and recorded the dates the ice first held a man and broke up. The office was abolished in 1911, three years after the Halloway Cold Storage Company opened a plant on the river and the lake harvest collapsed; the last inspector, Oyelaran, was moved to the weights and measures desk. The ledgers went to a basement and stayed there. In 2014 Priya Raghavan, who studies the timing of lake freeze and thaw, found forty-three complete winters in them: daily measurements at fixed points, made by people with no interest in climate. That last quality is what makes them valuable, and it is rarer than it sounds: a record kept for a purpose unrelated to the question now asked of it cannot have been shaped to answer it. Using them was not trivial. Raghavan had to convert hands to centimeters, locate the eleven stations from an 1874 survey map, and decide what to do with the winter of 1883, whose volume is written in three different hands and whose figures run a fifth high all season. She set 1883 aside rather than correct it. The remaining forty-two winters show a first-hold date arriving eleven days later at the end of the run than at its start, a trend no inspector served long enough to see."
+  },
+  {
+    "id": "SRDB-21",
+    "set_id": "SRDB-P4",
+    "subskill": "inference",
+    "difficulty": "hard",
+    "prompt": "The passage suggests that the ledgers are especially trustworthy as evidence about climate because",
+    "choices": [
+      "the inspectors had been trained in scientific measurement",
+      "the figures were checked each week against an 1874 survey map",
+      "the measurements were posted in public and could be challenged",
+      "a single inspector served for the whole of the forty-three winters",
+      "those who made them had no stake in the question later put to them"
+    ],
+    "correct_answer": "those who made them had no stake in the question later put to them",
+    "explanation": "\"A record kept for a purpose unrelated to the question now asked of it cannot have been shaped to answer it\" makes the inspectors' indifference to climate the source of the ledgers' value.",
+    "distractor_rationales": {
+      "the inspectors had been trained in scientific measurement": "Their duties are called narrow and dull, and no training is described.",
+      "the figures were checked each week against an 1874 survey map": "Raghavan used that map in 2014, to locate the stations.",
+      "the measurements were posted in public and could be challenged": "They were posted, but for cutters and buyers, and no challenge is mentioned.",
+      "a single inspector served for the whole of the forty-three winters": "The closing sentence says no inspector served long enough to see the trend."
+    },
+    "passage": "Before mechanical refrigeration, a northern city ate through the summer on ice cut from a lake in February, and its thickness was a matter of public safety and public price. Halloway, a milling city on the Kesset, created the Office of the Ice Inspector in 1868, after two cutters and a team of horses went through thin ice at the lake's southern end. The inspector's duties were narrow and dull: from December to the end of March he walked a fixed circuit of eleven stations on Lake Kesset, bored a hole at each, measured the ice, and entered the figure in a ledger at the city clerk's office. The figures were posted outside the market, so that cutters knew where to work and buyers knew what the season would cost. He measured in hands, a unit of four inches borrowed from the horse trade, and recorded the dates the ice first held a man and broke up. The office was abolished in 1911, three years after the Halloway Cold Storage Company opened a plant on the river and the lake harvest collapsed; the last inspector, Oyelaran, was moved to the weights and measures desk. The ledgers went to a basement and stayed there. In 2014 Priya Raghavan, who studies the timing of lake freeze and thaw, found forty-three complete winters in them: daily measurements at fixed points, made by people with no interest in climate. That last quality is what makes them valuable, and it is rarer than it sounds: a record kept for a purpose unrelated to the question now asked of it cannot have been shaped to answer it. Using them was not trivial. Raghavan had to convert hands to centimeters, locate the eleven stations from an 1874 survey map, and decide what to do with the winter of 1883, whose volume is written in three different hands and whose figures run a fifth high all season. She set 1883 aside rather than correct it. The remaining forty-two winters show a first-hold date arriving eleven days later at the end of the run than at its start, a trend no inspector served long enough to see."
+  },
+  {
+    "id": "SRDB-22",
+    "set_id": "SRDB-P4",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "In the phrase \"written in three different hands,\" the word \"hands\" most nearly means",
+    "choices": [
+      "styles of handwriting",
+      "units of four inches",
+      "hired laborers",
+      "rounds of a card game",
+      "forms of assistance"
+    ],
+    "correct_answer": "styles of handwriting",
+    "explanation": "The 1883 volume was written by three people, which is one of the two irregularities that made Raghavan distrust it.",
+    "distractor_rationales": {
+      "units of four inches": "The sense the passage itself defines earlier, and the trap: a volume is written in a script, not in a measure.",
+      "hired laborers": "A real sense, as in a farm hand, but a ledger is not written in laborers.",
+      "rounds of a card game": "A real sense, unsupported here.",
+      "forms of assistance": "A real sense, as in lending a hand, unsupported here."
+    },
+    "passage": "Before mechanical refrigeration, a northern city ate through the summer on ice cut from a lake in February, and its thickness was a matter of public safety and public price. Halloway, a milling city on the Kesset, created the Office of the Ice Inspector in 1868, after two cutters and a team of horses went through thin ice at the lake's southern end. The inspector's duties were narrow and dull: from December to the end of March he walked a fixed circuit of eleven stations on Lake Kesset, bored a hole at each, measured the ice, and entered the figure in a ledger at the city clerk's office. The figures were posted outside the market, so that cutters knew where to work and buyers knew what the season would cost. He measured in hands, a unit of four inches borrowed from the horse trade, and recorded the dates the ice first held a man and broke up. The office was abolished in 1911, three years after the Halloway Cold Storage Company opened a plant on the river and the lake harvest collapsed; the last inspector, Oyelaran, was moved to the weights and measures desk. The ledgers went to a basement and stayed there. In 2014 Priya Raghavan, who studies the timing of lake freeze and thaw, found forty-three complete winters in them: daily measurements at fixed points, made by people with no interest in climate. That last quality is what makes them valuable, and it is rarer than it sounds: a record kept for a purpose unrelated to the question now asked of it cannot have been shaped to answer it. Using them was not trivial. Raghavan had to convert hands to centimeters, locate the eleven stations from an 1874 survey map, and decide what to do with the winter of 1883, whose volume is written in three different hands and whose figures run a fifth high all season. She set 1883 aside rather than correct it. The remaining forty-two winters show a first-hold date arriving eleven days later at the end of the run than at its start, a trend no inspector served long enough to see."
+  },
+  {
+    "id": "SRDB-23",
+    "set_id": "SRDB-P4",
+    "subskill": "attitude",
+    "difficulty": "medium",
+    "prompt": "Raghavan’s decision about the winter of 1883 reflects",
+    "choices": [
+      "a conviction that the ledgers cannot be used at all, and a wish to say so plainly",
+      "a preference for losing a season over keeping figures she could not vouch for",
+      "an interest in the clerks themselves, and little interest in the figures",
+      "an assumption that the high readings were right and the rest of the run low",
+      "an impatience with the conversion work, and a decision to stop short of it"
+    ],
+    "correct_answer": "a preference for losing a season over keeping figures she could not vouch for",
+    "explanation": "She \"set 1883 aside rather than correct it,\" giving up one of forty-three winters instead of adjusting figures whose inflation she could not account for.",
+    "distractor_rationales": {
+      "a conviction that the ledgers cannot be used at all, and a wish to say so plainly": "She uses the other forty-two and draws a trend from them.",
+      "an interest in the clerks themselves, and little interest in the figures": "The three hands matter to her as a warning about the figures.",
+      "an assumption that the high readings were right and the rest of the run low": "Setting the volume aside is a refusal to decide which was right.",
+      "an impatience with the conversion work, and a decision to stop short of it": "She did convert hands to centimeters."
+    },
+    "passage": "Before mechanical refrigeration, a northern city ate through the summer on ice cut from a lake in February, and its thickness was a matter of public safety and public price. Halloway, a milling city on the Kesset, created the Office of the Ice Inspector in 1868, after two cutters and a team of horses went through thin ice at the lake's southern end. The inspector's duties were narrow and dull: from December to the end of March he walked a fixed circuit of eleven stations on Lake Kesset, bored a hole at each, measured the ice, and entered the figure in a ledger at the city clerk's office. The figures were posted outside the market, so that cutters knew where to work and buyers knew what the season would cost. He measured in hands, a unit of four inches borrowed from the horse trade, and recorded the dates the ice first held a man and broke up. The office was abolished in 1911, three years after the Halloway Cold Storage Company opened a plant on the river and the lake harvest collapsed; the last inspector, Oyelaran, was moved to the weights and measures desk. The ledgers went to a basement and stayed there. In 2014 Priya Raghavan, who studies the timing of lake freeze and thaw, found forty-three complete winters in them: daily measurements at fixed points, made by people with no interest in climate. That last quality is what makes them valuable, and it is rarer than it sounds: a record kept for a purpose unrelated to the question now asked of it cannot have been shaped to answer it. Using them was not trivial. Raghavan had to convert hands to centimeters, locate the eleven stations from an 1874 survey map, and decide what to do with the winter of 1883, whose volume is written in three different hands and whose figures run a fifth high all season. She set 1883 aside rather than correct it. The remaining forty-two winters show a first-hold date arriving eleven days later at the end of the run than at its start, a trend no inspector served long enough to see."
+  },
+  {
+    "id": "SRDB-24",
+    "set_id": "SRDB-P4",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "prompt": "The sentence about the Halloway Cold Storage Company serves chiefly to",
+    "choices": [
+      "explain why the inspector measured in hands rather than in inches",
+      "identify the source of the 1883 volume’s inflated figures",
+      "show that the inspectors’ measurements had grown inaccurate",
+      "give the reason the office, and with it the record, came to an end",
+      "argue that refrigeration had made the lake unsafe to cut"
+    ],
+    "correct_answer": "give the reason the office, and with it the record, came to an end",
+    "explanation": "The plant opened, \"the lake harvest collapsed,\" and the office was abolished in 1911; the ledgers stop there and go to a basement in the next sentence.",
+    "distractor_rationales": {
+      "explain why the inspector measured in hands rather than in inches": "The hand came from the horse trade, explained a sentence earlier.",
+      "identify the source of the 1883 volume’s inflated figures": "The passage never explains those figures, which is why 1883 was set aside.",
+      "show that the inspectors’ measurements had grown inaccurate": "What ended was the demand for them, not their accuracy.",
+      "argue that refrigeration had made the lake unsafe to cut": "The thin ice of 1868 is the only safety question raised."
+    },
+    "passage": "Before mechanical refrigeration, a northern city ate through the summer on ice cut from a lake in February, and its thickness was a matter of public safety and public price. Halloway, a milling city on the Kesset, created the Office of the Ice Inspector in 1868, after two cutters and a team of horses went through thin ice at the lake's southern end. The inspector's duties were narrow and dull: from December to the end of March he walked a fixed circuit of eleven stations on Lake Kesset, bored a hole at each, measured the ice, and entered the figure in a ledger at the city clerk's office. The figures were posted outside the market, so that cutters knew where to work and buyers knew what the season would cost. He measured in hands, a unit of four inches borrowed from the horse trade, and recorded the dates the ice first held a man and broke up. The office was abolished in 1911, three years after the Halloway Cold Storage Company opened a plant on the river and the lake harvest collapsed; the last inspector, Oyelaran, was moved to the weights and measures desk. The ledgers went to a basement and stayed there. In 2014 Priya Raghavan, who studies the timing of lake freeze and thaw, found forty-three complete winters in them: daily measurements at fixed points, made by people with no interest in climate. That last quality is what makes them valuable, and it is rarer than it sounds: a record kept for a purpose unrelated to the question now asked of it cannot have been shaped to answer it. Using them was not trivial. Raghavan had to convert hands to centimeters, locate the eleven stations from an 1874 survey map, and decide what to do with the winter of 1883, whose volume is written in three different hands and whose figures run a fifth high all season. She set 1883 aside rather than correct it. The remaining forty-two winters show a first-hold date arriving eleven days later at the end of the run than at its start, a trend no inspector served long enough to see."
+  },
+  {
+    "id": "SRDB-25",
+    "set_id": "SRDB-P5",
+    "subskill": "main-idea",
+    "difficulty": "medium",
+    "prompt": "The passage is primarily concerned with",
+    "choices": [
+      "how a railway’s arrival came to divide two similar ports’ fortunes by way of the depth of water in their two harbors",
+      "how a railway’s arrival came to divide two similar ports’ fortunes by way of the goods each had traditionally shipped",
+      "how a railway’s arrival came to divide two similar ports’ fortunes by way of the ground on which the branch line was laid",
+      "how a railway’s arrival came to divide two similar ports’ fortunes by way of the rates the railway charged at each town",
+      "how a railway’s arrival came to divide two similar ports’ fortunes by way of the rules governing who was allowed to drive a cart"
+    ],
+    "correct_answer": "how a railway’s arrival came to divide two similar ports’ fortunes by way of the rules governing who was allowed to drive a cart",
+    "explanation": "The passage isolates one difference between two otherwise matched towns: Arlen's chartered carting company against Wyke's open carting, and it is that difference the transshipment trade follows.",
+    "distractor_rationales": {
+      "the depth of water in their two harbors": "Both are described simply as tidal harbors, and the passage stresses that the towns were alike.",
+      "the goods each had traditionally shipped": "Both sent out wool and barley and took in coal.",
+      "the ground on which the branch line was laid": "The firmer ground north of the river explains why the line reached both towns, removing rather than creating a difference.",
+      "the rates the railway charged at each town": "The rates that matter in the passage are the carting rates set by Arlen's charter."
+    },
+    "passage": "Arlen and Wyke sit nine miles apart on the same estuary, and for three centuries the difference between them was too small to interest anyone. Both had a tidal harbor, both sent out wool and barley and took in coal, and in 1850 they handled tonnages within a tenth of each other. In 1854 a branch line reached the estuary and, because the ground north of the river was firmer, ran to both towns. A railway at a port does not by itself move goods; it changes the place where goods are handed from one carrier to another, and the handing over is done by carts. Here the two towns differed, and the difference was old enough that nobody had thought of it as an economic policy. Arlen's carters had been a chartered company since 1611, and the charter reserved carriage within the town to men who had served a seven-year apprenticeship under a freeman of the company. Wyke had no such body; its carting had always been done by farmers in the slack season, and anyone with a horse could take a load. When the railway opened, a merchant in Wyke who wanted forty tons moved from a siding to a quay hired whoever was standing there. The same merchant in Arlen could hire only from a company of thirty-one men, whose number the charter fixed and whose rates it set. Within four years the estuary's transshipment trade had gathered at Wyke; by 1861 Wyke was handling three and a half times Arlen's tonnage, and the warehouses rising along the new sidings were rising there. Arlen's company saw the problem and petitioned to open its rolls in 1866, and the charter was amended in 1869. It made no difference. The warehouses, the bonded stores and the agents' offices were in Wyke by then, and they were not going to be moved nine miles because carting in Arlen had become cheaper. The comparison is useful precisely because the two towns are otherwise so alike; it is hard to find another case in which the want of a single rule is so nearly the only variable."
+  },
+  {
+    "id": "SRDB-26",
+    "set_id": "SRDB-P5",
+    "subskill": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, carting in Wyke had traditionally been done by",
+    "choices": [
+      "farmers working in the slack season",
+      "members of a company chartered in 1611",
+      "men who had served a seven-year apprenticeship",
+      "crews employed by the railway company",
+      "agents working out of the bonded stores"
+    ],
+    "correct_answer": "farmers working in the slack season",
+    "explanation": "\"Wyke had no such body; its carting had always been done by farmers in the slack season, and anyone with a horse could take a load.\"",
+    "distractor_rationales": {
+      "members of a company chartered in 1611": "That is Arlen.",
+      "men who had served a seven-year apprenticeship": "That is the requirement in Arlen's charter.",
+      "crews employed by the railway company": "The passage says a railway does not itself move goods.",
+      "agents working out of the bonded stores": "The agents and bonded stores arrive in Wyke only after the trade does."
+    },
+    "passage": "Arlen and Wyke sit nine miles apart on the same estuary, and for three centuries the difference between them was too small to interest anyone. Both had a tidal harbor, both sent out wool and barley and took in coal, and in 1850 they handled tonnages within a tenth of each other. In 1854 a branch line reached the estuary and, because the ground north of the river was firmer, ran to both towns. A railway at a port does not by itself move goods; it changes the place where goods are handed from one carrier to another, and the handing over is done by carts. Here the two towns differed, and the difference was old enough that nobody had thought of it as an economic policy. Arlen's carters had been a chartered company since 1611, and the charter reserved carriage within the town to men who had served a seven-year apprenticeship under a freeman of the company. Wyke had no such body; its carting had always been done by farmers in the slack season, and anyone with a horse could take a load. When the railway opened, a merchant in Wyke who wanted forty tons moved from a siding to a quay hired whoever was standing there. The same merchant in Arlen could hire only from a company of thirty-one men, whose number the charter fixed and whose rates it set. Within four years the estuary's transshipment trade had gathered at Wyke; by 1861 Wyke was handling three and a half times Arlen's tonnage, and the warehouses rising along the new sidings were rising there. Arlen's company saw the problem and petitioned to open its rolls in 1866, and the charter was amended in 1869. It made no difference. The warehouses, the bonded stores and the agents' offices were in Wyke by then, and they were not going to be moved nine miles because carting in Arlen had become cheaper. The comparison is useful precisely because the two towns are otherwise so alike; it is hard to find another case in which the want of a single rule is so nearly the only variable."
+  },
+  {
+    "id": "SRDB-27",
+    "set_id": "SRDB-P5",
+    "subskill": "inference",
+    "difficulty": "hard",
+    "prompt": "The passage most strongly suggests that the 1869 amendment failed to help Arlen because",
+    "choices": [
+      "the thirty-one freemen refused to admit any new members",
+      "the railway had by then withdrawn its branch to Arlen",
+      "the trade had acquired buildings and offices that were costly to move",
+      "Wyke's farmers had by then chartered a company of their own",
+      "carting in Arlen remained dearer than carting in Wyke"
+    ],
+    "correct_answer": "the trade had acquired buildings and offices that were costly to move",
+    "explanation": "The warehouses, bonded stores and agents' offices \"were not going to be moved nine miles,\" so the trade stayed at Wyke regardless of what Arlen's carting now cost.",
+    "distractor_rationales": {
+      "the thirty-one freemen refused to admit any new members": "The company itself petitioned to open its rolls.",
+      "the railway had by then withdrawn its branch to Arlen": "Nothing suggests the branch was withdrawn.",
+      "Wyke's farmers had by then chartered a company of their own": "No such company appears.",
+      "carting in Arlen remained dearer than carting in Wyke": "The passage states the opposite: carting in Arlen had become cheaper."
+    },
+    "passage": "Arlen and Wyke sit nine miles apart on the same estuary, and for three centuries the difference between them was too small to interest anyone. Both had a tidal harbor, both sent out wool and barley and took in coal, and in 1850 they handled tonnages within a tenth of each other. In 1854 a branch line reached the estuary and, because the ground north of the river was firmer, ran to both towns. A railway at a port does not by itself move goods; it changes the place where goods are handed from one carrier to another, and the handing over is done by carts. Here the two towns differed, and the difference was old enough that nobody had thought of it as an economic policy. Arlen's carters had been a chartered company since 1611, and the charter reserved carriage within the town to men who had served a seven-year apprenticeship under a freeman of the company. Wyke had no such body; its carting had always been done by farmers in the slack season, and anyone with a horse could take a load. When the railway opened, a merchant in Wyke who wanted forty tons moved from a siding to a quay hired whoever was standing there. The same merchant in Arlen could hire only from a company of thirty-one men, whose number the charter fixed and whose rates it set. Within four years the estuary's transshipment trade had gathered at Wyke; by 1861 Wyke was handling three and a half times Arlen's tonnage, and the warehouses rising along the new sidings were rising there. Arlen's company saw the problem and petitioned to open its rolls in 1866, and the charter was amended in 1869. It made no difference. The warehouses, the bonded stores and the agents' offices were in Wyke by then, and they were not going to be moved nine miles because carting in Arlen had become cheaper. The comparison is useful precisely because the two towns are otherwise so alike; it is hard to find another case in which the want of a single rule is so nearly the only variable."
+  },
+  {
+    "id": "SRDB-28",
+    "set_id": "SRDB-P5",
+    "subskill": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "As used in the passage, \"want\" most nearly means",
+    "choices": [
+      "absence",
+      "desire",
+      "extreme poverty",
+      "a thing required",
+      "a request"
+    ],
+    "correct_answer": "absence",
+    "explanation": "The last sentence says the two towns differ in almost nothing, so what is nearly the only variable is Wyke's not having the rule that Arlen had.",
+    "distractor_rationales": {
+      "desire": "The word's default sense, and the trap.",
+      "extreme poverty": "A real sense, as in living in want, but nothing here is destitute.",
+      "a thing required": "A real sense, as in supplying a household's wants, but the sentence names a variable, not a need.",
+      "a request": "Not what a single rule can be in this sentence."
+    },
+    "passage": "Arlen and Wyke sit nine miles apart on the same estuary, and for three centuries the difference between them was too small to interest anyone. Both had a tidal harbor, both sent out wool and barley and took in coal, and in 1850 they handled tonnages within a tenth of each other. In 1854 a branch line reached the estuary and, because the ground north of the river was firmer, ran to both towns. A railway at a port does not by itself move goods; it changes the place where goods are handed from one carrier to another, and the handing over is done by carts. Here the two towns differed, and the difference was old enough that nobody had thought of it as an economic policy. Arlen's carters had been a chartered company since 1611, and the charter reserved carriage within the town to men who had served a seven-year apprenticeship under a freeman of the company. Wyke had no such body; its carting had always been done by farmers in the slack season, and anyone with a horse could take a load. When the railway opened, a merchant in Wyke who wanted forty tons moved from a siding to a quay hired whoever was standing there. The same merchant in Arlen could hire only from a company of thirty-one men, whose number the charter fixed and whose rates it set. Within four years the estuary's transshipment trade had gathered at Wyke; by 1861 Wyke was handling three and a half times Arlen's tonnage, and the warehouses rising along the new sidings were rising there. Arlen's company saw the problem and petitioned to open its rolls in 1866, and the charter was amended in 1869. It made no difference. The warehouses, the bonded stores and the agents' offices were in Wyke by then, and they were not going to be moved nine miles because carting in Arlen had become cheaper. The comparison is useful precisely because the two towns are otherwise so alike; it is hard to find another case in which the want of a single rule is so nearly the only variable."
+  },
+  {
+    "id": "SRDB-29",
+    "set_id": "SRDB-P5",
+    "subskill": "attitude",
+    "difficulty": "medium",
+    "prompt": "The author's view of the Arlen and Wyke comparison is best described as",
+    "choices": [
+      "wary of it, since the two harbors differed in depth",
+      "interested in it for the carters' sake rather than the merchants'",
+      "content to treat it as a coincidence from which nothing follows",
+      "valuing it because the towns were alike in nearly everything else",
+      "convinced by it that chartered companies were harmful wherever they existed"
+    ],
+    "correct_answer": "valuing it because the towns were alike in nearly everything else",
+    "explanation": "The closing sentence calls the comparison useful \"precisely because the two towns are otherwise so alike,\" and rare for that reason.",
+    "distractor_rationales": {
+      "wary of it, since the two harbors differed in depth": "No difference in harbor depth is stated.",
+      "interested in it for the carters' sake rather than the merchants'": "The carters are the mechanism, not the concern.",
+      "content to treat it as a coincidence from which nothing follows": "The final sentence treats it as unusually informative.",
+      "convinced by it that chartered companies were harmful wherever they existed": "The claim is confined to one estuary and one moment; the charter had stood without effect since 1611."
+    },
+    "passage": "Arlen and Wyke sit nine miles apart on the same estuary, and for three centuries the difference between them was too small to interest anyone. Both had a tidal harbor, both sent out wool and barley and took in coal, and in 1850 they handled tonnages within a tenth of each other. In 1854 a branch line reached the estuary and, because the ground north of the river was firmer, ran to both towns. A railway at a port does not by itself move goods; it changes the place where goods are handed from one carrier to another, and the handing over is done by carts. Here the two towns differed, and the difference was old enough that nobody had thought of it as an economic policy. Arlen's carters had been a chartered company since 1611, and the charter reserved carriage within the town to men who had served a seven-year apprenticeship under a freeman of the company. Wyke had no such body; its carting had always been done by farmers in the slack season, and anyone with a horse could take a load. When the railway opened, a merchant in Wyke who wanted forty tons moved from a siding to a quay hired whoever was standing there. The same merchant in Arlen could hire only from a company of thirty-one men, whose number the charter fixed and whose rates it set. Within four years the estuary's transshipment trade had gathered at Wyke; by 1861 Wyke was handling three and a half times Arlen's tonnage, and the warehouses rising along the new sidings were rising there. Arlen's company saw the problem and petitioned to open its rolls in 1866, and the charter was amended in 1869. It made no difference. The warehouses, the bonded stores and the agents' offices were in Wyke by then, and they were not going to be moved nine miles because carting in Arlen had become cheaper. The comparison is useful precisely because the two towns are otherwise so alike; it is hard to find another case in which the want of a single rule is so nearly the only variable."
+  },
+  {
+    "id": "SRDB-30",
+    "set_id": "SRDB-P5",
+    "subskill": "structure",
+    "difficulty": "hard",
+    "prompt": "The statement that a railway \"does not by itself move goods\" serves chiefly to",
+    "choices": [
+      "question whether the branch line was ever profitable",
+      "explain why the line was built to both towns rather than one",
+      "locate the point at which the towns' different rules could matter",
+      "show that Wyke's farmers were better carters than Arlen's freemen",
+      "introduce the 1869 amendment to Arlen's charter"
+    ],
+    "correct_answer": "locate the point at which the towns' different rules could matter",
+    "explanation": "It puts the handing over of goods onto carts, and the very next sentence says that carting is \"here the two towns differed.\"",
+    "distractor_rationales": {
+      "question whether the branch line was ever profitable": "The line's own finances are never raised.",
+      "explain why the line was built to both towns rather than one": "That is explained by the firmer ground, in the preceding sentence.",
+      "show that Wyke's farmers were better carters than Arlen's freemen": "The passage compares access to carts, never skill.",
+      "introduce the 1869 amendment to Arlen's charter": "The amendment comes much later and is a consequence, not what this sentence sets up."
+    },
+    "passage": "Arlen and Wyke sit nine miles apart on the same estuary, and for three centuries the difference between them was too small to interest anyone. Both had a tidal harbor, both sent out wool and barley and took in coal, and in 1850 they handled tonnages within a tenth of each other. In 1854 a branch line reached the estuary and, because the ground north of the river was firmer, ran to both towns. A railway at a port does not by itself move goods; it changes the place where goods are handed from one carrier to another, and the handing over is done by carts. Here the two towns differed, and the difference was old enough that nobody had thought of it as an economic policy. Arlen's carters had been a chartered company since 1611, and the charter reserved carriage within the town to men who had served a seven-year apprenticeship under a freeman of the company. Wyke had no such body; its carting had always been done by farmers in the slack season, and anyone with a horse could take a load. When the railway opened, a merchant in Wyke who wanted forty tons moved from a siding to a quay hired whoever was standing there. The same merchant in Arlen could hire only from a company of thirty-one men, whose number the charter fixed and whose rates it set. Within four years the estuary's transshipment trade had gathered at Wyke; by 1861 Wyke was handling three and a half times Arlen's tonnage, and the warehouses rising along the new sidings were rising there. Arlen's company saw the problem and petitioned to open its rolls in 1866, and the charter was amended in 1869. It made no difference. The warehouses, the bonded stores and the agents' offices were in Wyke by then, and they were not going to be moved nine miles because carting in Arlen had become cheaper. The comparison is useful precisely because the two towns are otherwise so alike; it is hard to find another case in which the want of a single rule is so nearly the only variable."
+  }
+]
