@@ -3859,6 +3859,37 @@
      "verdict": "A solver proposed that distractors built by doubling and halving around a key put the key at the MEDIAN by construction, and asked for it to be measured before anything else. Measured exactly, with a self-tested detector (check-median-key.mjs, 8 fixtures): candidate 31.1%, matched control 26.5%, and the WHOLE live SSAT math bank 29.5%, all against a 20.0% derived control. So it is a real +9.5 property of the family and NOT a defect of this batch, which sits 1.6 points above the population on n=45. Recorded, not acted on. Recycled-distractor tell (13q) on the kept set: 2 of 10 = 20.0% against a 20.0% control, +0.0."
     }
    }
+  },
+  {
+   "id": "sat24-kept-2026-09-21",
+   "createdAt": "2026-09-21",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "cohort": "sat-form24",
+   "contentSha": "115b20340892ef345f1e2af9e1b917f5c9adb6fff35163f55383fd9573ec3108",
+   "status": "shipped",
+   "note": "39 kept of 54 {\"Algebra\":20,\"Advanced Math\":19} — the five form-24 batches that were authored and verified this morning and then STRANDED UNGATED when subagent credits ran out mid-run. Race-checked byte-identical to their morning pins before gating. SAT form 24 needs Algebra +15 and Advanced +14; this supplies 20 and 19. 15 named drops: SADV7B-05 - MATHEMATICALLY BROKEN, found by independent recomputation and confirmed by hand: f(n)=4*2^n exceeds g(n)=45n+70 for every n <= -2 because g goes negative, so \"the least integer n\" has no answer and 7 is only the least POSITIVE integer. The sandbox agreed with itself - the author solve() returns 7 and the key is 7 - so no internal check could see it; SADV7B-11 - grader: identical mechanism to SADV7B-01 (a*b^x, divide two outputs to isolate a power of b, recover a); SADV7B-10 - grader: identical single step to SADV7B-07 (what constant multiplier relates this exponential to c*base^x); its distractors are also weak - 16/23/11 are values nobody would compute; SALG6B-08 - grader: same two-equation setup as SALG6B-04 (linear f pinned by one value plus a relation between two outputs, evaluate at a new input); SADV7D-08 - grader: same procedure as SADV7D-07 (factored form, fix the leading coefficient from one extra value, evaluate elsewhere); SALG6D-06 - grader: same as SALG6C-05 (subtract fixed amounts, divide by per-unit cost, floor) with only a pack-to-pair conversion added; SADV7B-01 - grader: distractor set weak - option 2 is unreachable by any plausible error; SALG6B-02 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SALG6B-03 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SALG6B-05 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SALG6B-07 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SALG6C-04 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SALG6C-08 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SALG6C-10 - unanimous 3/3 blind; dropped to bring the kept set to the live floor; SALG6D-03 - unanimous 3/3 blind; dropped to bring the kept set to the live floor.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "115b20340892ef345f1e2af9e1b917f5c9adb6fff35163f55383fd9573ec3108",
+     "verdict": "My own run on the merged 54: distractor_solve 90/90 (Algebra) and 72/72 (Advanced), symbolic hub 25.0% vs 25.0%, numeric hub 0.0% vs 25.0%, no cross-author prompt collision across five authors who never saw each other's files. Recycled-distractor tell (13q) NEGATIVE on both halves: -25.0 and -12.5. Race-check: all five source files byte-identical to the pins taken this morning (7effca1a / ee031ffb / c6196ad4 / 1747ace5 / 04ba6811)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Independent recomputation of all 54 from scratch. It found ONE MATHEMATICALLY BROKEN ITEM that no internal check could reach: SADV7B-05 asks for the least integer n with 4*2^n > 45n+70, and the inequality holds for every n <= -2 because the linear function goes negative, so no least value exists and the intended 7 is only the least POSITIVE integer. The author's solve() returned 7 and the key was 7, so the sandbox agreed with itself. Confirmed by hand and dropped. It also found SALG6B-09's subskill descriptor written against a different equation than the stem ships (f(3x)=f(x)-8 vs -10) - the stem is sound, the metadata is stale, recorded not dropped - and five near-duplicate mechanism pairs across authors, one of each dropped. Difficulty 15 easy / 34 medium / 5 hard: not majority-easy, but soft for a hard route, and the exponential block is the softest."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only, 3 solvers, 162 forced picks, derived control 25.9%: 43.8% (+17.9). A matched live control - 54 already-shipped SAT math items composition-matched 30 Algebra / 24 Advanced, same solvers, same session - read 31.5% (+5.6). Drops applied to that floor: kept 39, residual 34.2% vs 30.8% = +3.4. NOTE THE SELF-REPORT CARRIED NO INFORMATION on the candidate: mechanism 1 of 2 and guess 56 of 120 = 46.7%, so the solvers were scoring well above chance without being able to name why - the same signature as the failed synonym batch. Two solvers independently reported the only clearly decidable items were in the CONTROL, not the candidate."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Keys 14/14/13/13. A solver proposed a cohort-level tell - that a lone fraction among three integers is a systematic \"didn't clear the denominator\" distractor - and asked for it to be checked against the key. Measured: 6 such items, the fraction is the key in 0 of 6 = 0.0% against 25.0% chance. REFUTED, and recorded as refuted. A second solver noted the literal value 17 repeated in slot B of three consecutive items as authoring residue; left in the kept set, worth watching."
+    }
+   }
   }
  ],
  "auditedCohorts": [

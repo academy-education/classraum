@@ -1,0 +1,821 @@
+[
+ {
+  "id": "SALG6B-01",
+  "domain": "Algebra",
+  "subskill": "the perpendicular bisector of a segment between two given points: both the direction (negative reciprocal of the segment's slope) and the point (the midpoint) must be derived before the y-intercept can be found",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, points A and B have coordinates (-2, 5) and (6, 3), respectively. Line k is perpendicular to segment AB and passes through the midpoint of segment AB. What is the y-coordinate of the y-intercept of line k?",
+  "choices": [
+   "9/2",
+   "13",
+   "-4",
+   "-21"
+  ],
+  "correct_answer": "-4",
+  "explanation": "The midpoint of AB is ((-2 + 6)/2, (5 + 3)/2) = (2, 4). The slope of AB is (3 - 5)/(6 - (-2)) = -2/8 = -1/4, so a perpendicular line has slope 4. Through (2, 4) with slope 4: y - 4 = 4(x - 2), so y = 4x - 4, and the y-intercept is at y = -4. \"9/2\" comes from a solver who keeps the slope of AB itself, -1/4, through the midpoint: y = -(1/4)x + 9/2. \"13\" comes from a solver who uses the perpendicular slope 4 but runs the line through A instead of the midpoint: y - 5 = 4(x + 2). \"-21\" comes from a solver who uses slope 4 but runs the line through B: y - 3 = 4(x - 6).",
+  "solve": "var ax=-2,ay=5,bx=6,by=3; var mx=(ax+bx)/2,my=(ay+by)/2; var mAB=(by-ay)/(bx-ax); var m=-1/mAB; var b=my-m*mx; return String(b);",
+  "distractor_solve": {
+   "13": "var ax=-2,ay=5,bx=6,by=3; var mAB=(by-ay)/(bx-ax); var m=-1/mAB; var b=ay-m*ax; return String(b);",
+   "9/2": "var ax=-2,ay=5,bx=6,by=3; var mx=(ax+bx)/2,my=(ay+by)/2; var mAB=(by-ay)/(bx-ax); var b=my-mAB*mx; return String(b);",
+   "-21": "var ax=-2,ay=5,bx=6,by=3; var mAB=(by-ay)/(bx-ax); var m=-1/mAB; var b=by-m*bx; return String(b);"
+  }
+ },
+ {
+  "id": "SALG6B-04",
+  "domain": "Algebra",
+  "subskill": "a linear function pinned by the average of two of its outputs plus one value: the mean of f(2) and f(8) is f(5) by linearity (equivalently 5m + b), which together with f(4) fixes the slope; then evaluate at an input outside the given ones",
+  "difficulty": "hard",
+  "prompt": "The function f is linear and f(4) = 9. The average (arithmetic mean) of f(2) and f(8) is 13. What is the value of f(12)?",
+  "choices": [
+   "17",
+   "41",
+   "48",
+   "43/3"
+  ],
+  "correct_answer": "41",
+  "explanation": "Let f(x) = mx + b. The average of f(2) and f(8) is (2m + b + 8m + b)/2 = 5m + b, which equals f(5); so f(5) = 13. With f(4) = 9, the slope is (13 - 9)/(5 - 4) = 4, and f(12) = 9 + 4(12 - 4) = 41. \"17\" comes from a solver who treats the average 13 as the value f(8): the slope becomes (13 - 9)/(8 - 4) = 1, and f(12) = 9 + 8. \"43/3\" comes from a solver who treats 13 as the value at the sum of the inputs, f(10): the slope becomes (13 - 9)/(10 - 4) = 2/3, and f(12) = 9 + (2/3)(8). \"48\" comes from a solver who finds the slope 4 correctly but drops the intercept, computing 4 × 12.",
+  "solve": "var m=(13-9)/(5-4); var b=9-4*m; return String(m*12+b);",
+  "distractor_solve": {
+   "17": "var m=(13-9)/(8-4); var b=9-4*m; return String(m*12+b);",
+   "48": "var m=(13-9)/(5-4); return String(m*12);",
+   "43/3": "var m=(13-9)/(10-4); var b=9-4*m; return String(m*12+b);"
+  }
+ },
+ {
+  "id": "SALG6B-06",
+  "domain": "Algebra",
+  "subskill": "self-composition of a linear function: f(f(x)) = 9x + 8 gives m^2 = 9 (sign fixed by the stem) and b(m + 1) = 8, so the intercept is found by dividing by m + 1, not by m; then evaluate f(5)",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = mx + b, where m and b are constants and m > 0. If f(f(x)) = 9x + 8 for every value of x, what is the value of f(5)?",
+  "choices": [
+   "23",
+   "17",
+   "-19",
+   "53/3"
+  ],
+  "correct_answer": "17",
+  "explanation": "f(f(x)) = m(mx + b) + b = m²x + mb + b. Matching 9x + 8 gives m² = 9, so m = 3 since m > 0, and then 3b + b = 8, so b = 2. Therefore f(x) = 3x + 2 and f(5) = 15 + 2 = 17. \"23\" comes from a solver who takes b = 8 directly, ignoring that the constant term is mb + b: f(5) = 15 + 8. \"-19\" comes from a solver who chooses m = -3 despite m > 0, so that -3b + b = 8 gives b = -4 and f(5) = -15 - 4. \"53/3\" comes from a solver who divides 8 by m instead of by m + 1, taking b = 8/3: f(5) = 15 + 8/3.",
+  "solve": "var m=Math.sqrt(9); var b=8/(m+1); return String(m*5+b);",
+  "distractor_solve": {
+   "23": "var m=3,b=8; return String(m*5+b);",
+   "-19": "var m=-3; var b=8/(m+1); return String(m*5+b);",
+   "53/3": "var m=3; var b=8/m; return String(m*5+b);"
+  }
+ },
+ {
+  "id": "SALG6B-09",
+  "domain": "Algebra",
+  "subskill": "equate two transformed evaluations of a linear function, f(3x) = f(x) - 8: the trap is treating f(3x) as 3·f(x) (equivalently distributing the 3 into the constant), and the subtraction on the right is an output shift, not an input shift",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = -2x + 7. For what value of x is f(3x) = f(x) - 10?",
+  "choices": [
+   "6",
+   "5/2",
+   "17/6",
+   "-5"
+  ],
+  "correct_answer": "5/2",
+  "explanation": "f(3x) = -2(3x) + 7 = -6x + 7 and f(x) - 10 = -2x - 3. Setting -6x + 7 = -2x - 3 gives -4x = -10, so x = 5/2. \"6\" comes from a solver who treats f(3x) as 3 · f(x) = -6x + 21: then -6x + 21 = -2x - 3 gives x = 6. \"17/6\" comes from a solver who sets f(3x) equal to -10 alone, dropping f(x): -6x + 7 = -10 gives x = 17/6. \"-5\" comes from a solver who reads f(x) - 10 as f(x - 10) = -2x + 27: then -6x + 7 = -2x + 27 gives x = -5.",
+  "solve": "var f=function(x){return -2*x+7;}; var h=function(x){return f(3*x)-(f(x)-10);}; var slope=h(1)-h(0); return String(-h(0)/slope);",
+  "distractor_solve": {
+   "6": "var f=function(x){return -2*x+7;}; var h=function(x){return 3*f(x)-(f(x)-10);}; var s=h(1)-h(0); return String(-h(0)/s);",
+   "17/6": "var f=function(x){return -2*x+7;}; var h=function(x){return f(3*x)-(-10);}; var s=h(1)-h(0); return String(-h(0)/s);",
+   "-5": "var f=function(x){return -2*x+7;}; var h=function(x){return f(3*x)-f(x-10);}; var s=h(1)-h(0); return String(-h(0)/s);"
+  }
+ },
+ {
+  "id": "SALG6B-10",
+  "domain": "Algebra",
+  "subskill": "a line given by its x-intercept and y-intercept (the x-intercept negative, so the slope's sign is the trap), evaluated far outside the segment between the intercepts",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of the linear function f has an x-intercept at (-8, 0) and a y-intercept at (0, 6). What is the value of f(-20)?",
+  "choices": [
+   "-23",
+   "-15",
+   "-62/3",
+   "-9"
+  ],
+  "correct_answer": "-9",
+  "explanation": "The slope is (6 - 0)/(0 - (-8)) = 6/8 = 3/4, so f(x) = (3/4)x + 6. Then f(-20) = (3/4)(-20) + 6 = -15 + 6 = -9. \"-15\" comes from a solver who drops the y-intercept and computes only (3/4)(-20). \"-62/3\" comes from a solver who inverts the slope to 4/3: (4/3)(-20) + 6. \"-23\" comes from a solver who swaps the intercepts, using f(x) = (3/4)x - 8: (3/4)(-20) - 8.",
+  "solve": "var m=(6-0)/(0-(-8)); return String(m*(-20)+6);",
+  "distractor_solve": {
+   "-15": "var m=3/4; return String(m*(-20));",
+   "-62/3": "var m=4/3; return String(m*(-20)+6);",
+   "-23": "var m=3/4; return String(m*(-20)-8);"
+  }
+ },
+ {
+  "id": "SALG6C-01",
+  "domain": "Algebra",
+  "subskill": "a one-variable linear equation with three fractional terms cleared by an LCD, where the asked quantity is a linear expression 4 - 3x of the solved value rather than x itself",
+  "difficulty": "medium",
+  "prompt": "If (x + 2)/3 - (2x - 12)/4 = x/6 + 2, what is the value of 4 - 3x ?",
+  "choices": [
+   "43",
+   "5",
+   "-11",
+   "7"
+  ],
+  "correct_answer": "-11",
+  "explanation": "Multiply every term by 12: 4(x + 2) - 3(2x - 12) = 2x + 24, so 4x + 8 - 6x + 36 = 2x + 24, which gives -2x + 44 = 2x + 24, so 4x = 20 and x = 5. Then 4 - 3x = 4 - 15 = -11. \"5\" is the value of x, not of 4 - 3x. \"43\" comes from distributing the -3 as -6x - 36, which gives -4x = 52, x = -13 and 4 - 3(-13) = 43. \"7\" comes from multiplying only the 2x inside the second parenthesis by 3 while leaving -12 unchanged, which gives -4x = 4, x = -1 and 4 + 3 = 7.",
+  "solve": "var x=(24-8-36)/(-2-2); if(Math.abs((x+2)/3-(2*x-12)/4-(x/6+2))>1e-9) return \"bad\"; return String(4-3*x);",
+  "distractor_solve": {
+   "5": "var x=(24-8-36)/(-2-2); return String(x);",
+   "7": "var x=(24-8-12)/(-2-2); return String(4-3*x);",
+   "43": "var x=(24-8+36)/(-2-2); return String(4-3*x);"
+  }
+ },
+ {
+  "id": "SALG6C-02",
+  "domain": "Algebra",
+  "subskill": "count the integers satisfying a compound inequality with a negative coefficient on x, one strict and one non-strict end, and non-integer endpoints after the direction reversal",
+  "difficulty": "medium",
+  "prompt": "How many integers x satisfy the inequality -10 < 7 - 4x ≤ 12 ?",
+  "choices": [
+   "6",
+   "22",
+   "5",
+   "8"
+  ],
+  "correct_answer": "6",
+  "explanation": "Subtract 7 from all three parts: -17 < -4x ≤ 5. Dividing by -4 reverses both inequality signs: 17/4 > x ≥ -5/4, so -1.25 ≤ x < 4.25. The integers in that interval are -1, 0, 1, 2, 3, 4, which is \"6\" integers. \"5\" comes from subtracting the integer endpoints, 4 - (-1), without adding 1. \"8\" comes from rounding the endpoints outward to -2 and 5 and counting inclusively. \"22\" comes from counting the integers -5 through 16 that 4x can equal, before dividing by 4.",
+  "solve": "var lo=(7-12)/4, hi=(7+10)/4; var n=0; for(var x=-50;x<=50;x++){ if(-10<7-4*x && 7-4*x<=12) n++; } if(Math.ceil(lo)!==-1||Math.floor(hi)!==4) return \"bad\"; return String(n);",
+  "distractor_solve": {
+   "5": "var lo=Math.ceil(-5/4), hi=Math.floor(17/4); return String(hi-lo);",
+   "8": "var lo=Math.floor(-5/4), hi=Math.ceil(17/4); return String(hi-lo+1);",
+   "22": "var n=0; for(var y=-40;y<=40;y++){ if(-5<=y && y<17) n++; } return String(n);"
+  }
+ },
+ {
+  "id": "SALG6C-03",
+  "domain": "Algebra",
+  "subskill": "a literal equation with the unknown in a denominator on both sides with unequal coefficients (2x and x): clear both denominators with one LCD, collect the x-terms on one side, and divide; every option is a quotient of the same four constants",
+  "difficulty": "medium",
+  "prompt": "If a/(2x) - b = c - d/x, where a, b, c, and d are positive constants and x ≠ 0, which of the following expresses x in terms of a, b, c, and d ?",
+  "choices": [
+   "x = (a + d)/(2b + 2c)",
+   "x = (a + 2d)/(2c - 2b)",
+   "x = (a + d)/(2c - 2b)",
+   "x = (a + 2d)/(2b + 2c)"
+  ],
+  "correct_answer": "x = (a + 2d)/(2b + 2c)",
+  "explanation": "Multiply every term by 2x: a - 2bx = 2cx - 2d. Move the x-terms to the right and the constants to the left: a + 2d = 2cx + 2bx = x(2b + 2c), so \"x = (a + 2d)/(2b + 2c)\". \"x = (a + 2d)/(2c - 2b)\" comes from moving -2bx across without changing its sign. \"x = (a + d)/(2b + 2c)\" comes from multiplying d/x by 2x and getting d instead of 2d. \"x = (a + d)/(2c - 2b)\" makes both of those slips.",
+  "solve": "var a=3,b=1,c=2,d=5; var forms={'x = (a + d)/(2b + 2c)':(a+d)/(2*b+2*c),'x = (a + 2d)/(2c - 2b)':(a+2*d)/(2*c-2*b),'x = (a + d)/(2c - 2b)':(a+d)/(2*c-2*b),'x = (a + 2d)/(2b + 2c)':(a+2*d)/(2*b+2*c)}; var pick=function(v){var h=Object.keys(forms).filter(function(k){return Math.abs(forms[k]-v)<1e-9;}); return h.length===1?h[0]:'bad';}; var x=(a+2*d)/(2*b+2*c); if(Math.abs(a/(2*x)-b-(c-d/x))>1e-9) return \"bad\"; return pick(x);",
+  "distractor_solve": {
+   "x = (a + 2d)/(2c - 2b)": "var a=3,b=1,c=2,d=5; var forms={'x = (a + d)/(2b + 2c)':(a+d)/(2*b+2*c),'x = (a + 2d)/(2c - 2b)':(a+2*d)/(2*c-2*b),'x = (a + d)/(2c - 2b)':(a+d)/(2*c-2*b),'x = (a + 2d)/(2b + 2c)':(a+2*d)/(2*b+2*c)}; var pick=function(v){var h=Object.keys(forms).filter(function(k){return Math.abs(forms[k]-v)<1e-9;}); return h.length===1?h[0]:'bad';}; return pick((a+2*d)/(2*c-2*b));",
+   "x = (a + d)/(2b + 2c)": "var a=3,b=1,c=2,d=5; var forms={'x = (a + d)/(2b + 2c)':(a+d)/(2*b+2*c),'x = (a + 2d)/(2c - 2b)':(a+2*d)/(2*c-2*b),'x = (a + d)/(2c - 2b)':(a+d)/(2*c-2*b),'x = (a + 2d)/(2b + 2c)':(a+2*d)/(2*b+2*c)}; var pick=function(v){var h=Object.keys(forms).filter(function(k){return Math.abs(forms[k]-v)<1e-9;}); return h.length===1?h[0]:'bad';}; return pick((a+d)/(2*b+2*c));",
+   "x = (a + d)/(2c - 2b)": "var a=3,b=1,c=2,d=5; var forms={'x = (a + d)/(2b + 2c)':(a+d)/(2*b+2*c),'x = (a + 2d)/(2c - 2b)':(a+2*d)/(2*c-2*b),'x = (a + d)/(2c - 2b)':(a+d)/(2*c-2*b),'x = (a + 2d)/(2b + 2c)':(a+2*d)/(2*b+2*c)}; var pick=function(v){var h=Object.keys(forms).filter(function(k){return Math.abs(forms[k]-v)<1e-9;}); return h.length===1?h[0]:'bad';}; return pick((a+d)/(2*c-2*b));"
+  }
+ },
+ {
+  "id": "SALG6C-05",
+  "domain": "Algebra",
+  "subskill": "a capacity inequality in which the per-unit mass must first be raised by a percent and two fixed masses subtracted from the cap; the greatest whole count is the floor of the quotient",
+  "difficulty": "medium",
+  "prompt": "A freight elevator can carry a total mass of at most 1,250 kilograms. An operator with a mass of 82 kilograms rides in the elevator with a cart that has a mass of 25 kilograms. Each crate to be carried has a mass of 38 kilograms before it is packed, and the packing material adds 15% to the mass of each crate. What is the greatest number of packed crates the elevator can carry along with the operator and the cart?",
+  "choices": [
+   "30",
+   "21",
+   "32",
+   "26"
+  ],
+  "correct_answer": "26",
+  "explanation": "A packed crate has mass 1.15(38) = 43.7 kilograms, and the operator and cart use 82 + 25 = 107 kilograms of the limit. So 43.7n + 107 ≤ 1,250, which gives 43.7n ≤ 1,143 and n ≤ 26.15, so the greatest whole number is \"26\" (26 crates give 1,243.2 kilograms; 27 give 1,286.9). \"30\" comes from ignoring the packing material and dividing 1,143 by 38. \"21\" comes from adding 15 kilograms to each crate instead of 15%, dividing 1,143 by 53. \"32\" comes from dividing the full 1,250 by 38, ignoring the packing, the operator and the cart.",
+  "solve": "var per=38*1.15, avail=1250-82-25; var n=Math.floor(avail/per+1e-9); if(per*(n+1)+107<=1250) return \"bad\"; return String(n);",
+  "distractor_solve": {
+   "21": "return String(Math.floor((1250-82-25)/(38+15)));",
+   "30": "return String(Math.floor((1250-82-25)/38));",
+   "32": "return String(Math.floor(1250/38));"
+  }
+ },
+ {
+  "id": "SALG6C-06",
+  "domain": "Algebra",
+  "subskill": "a decimal money equation in which two percents of the same pre-tax base are combined into one coefficient to recover the base, and the asked quantity is one of the add-ons (the tip), not the base",
+  "difficulty": "medium",
+  "prompt": "At a restaurant, a sales tax equal to 8% of the pre-tax price of a meal and a tip equal to 18% of the pre-tax price were both added to the pre-tax price. The total amount paid was $72.45. What was the amount of the tip, in dollars?",
+  "choices": [
+   "10.35",
+   "4.60",
+   "12.00",
+   "11.05"
+  ],
+  "correct_answer": "10.35",
+  "explanation": "If the pre-tax price is m dollars, the total is m + 0.08m + 0.18m = 1.26m = 72.45, so m = 57.50. The tip is 0.18(57.50) = \"10.35\" dollars. \"4.60\" is the tax, 0.08(57.50). \"11.05\" comes from ignoring the tax when undoing the total, dividing 72.45 by 1.18 to get 61.40 and taking 18% of that. \"12.00\" comes from removing 8% of the total, 72.45(0.92) = 66.65, and taking 18% of that remainder.",
+  "solve": "var m=72.45/1.26; if(Math.abs(m*1.26-72.45)>1e-9) return \"bad\"; return (0.18*m).toFixed(2);",
+  "distractor_solve": {
+   "4.60": "var m=72.45/1.26; return (0.08*m).toFixed(2);",
+   "11.05": "var m=72.45/1.18; return (0.18*m).toFixed(2);",
+   "12.00": "var r=72.45*0.92; return (0.18*r).toFixed(2);"
+  }
+ },
+ {
+  "id": "SALG6C-07",
+  "domain": "Algebra",
+  "subskill": "a least-time inequality comparing a rising quantity with HALF of a falling quantity: the fraction must be applied to both the constant and the rate term of the falling side before the whole-number ceiling is taken",
+  "difficulty": "medium",
+  "prompt": "Tank A contains 380 liters of water and is being filled at a constant rate of 12 liters per minute. At the same moment, Tank B contains 1,160 liters of water and is being drained at a constant rate of 15 liters per minute. What is the least whole number of minutes after which the amount of water in Tank A will be at least half the amount of water in Tank B?",
+  "choices": [
+   "29",
+   "8",
+   "11",
+   "47"
+  ],
+  "correct_answer": "11",
+  "explanation": "After t minutes Tank A holds 380 + 12t liters and Tank B holds 1,160 - 15t liters. The condition is 380 + 12t ≥ (1,160 - 15t)/2, so 760 + 24t ≥ 1,160 - 15t, 39t ≥ 400, and t ≥ 10.26. The least whole number is \"11\" (at 11 minutes A holds 512 liters and half of B is 497.5; at 10 minutes A holds 500 and half of B is 505). \"29\" comes from comparing Tank A with all of Tank B, 27t ≥ 780. \"8\" comes from halving only the 1,160 and not the drain term, 380 + 12t ≥ 580 - 15t. \"47\" comes from halving Tank A instead of Tank B, 190 + 6t ≥ 1,160 - 15t.",
+  "solve": "var t=Math.ceil(400/39-1e-9); if(!(380+12*t>=(1160-15*t)/2) || (380+12*(t-1)>=(1160-15*(t-1))/2)) return \"bad\"; return String(t);",
+  "distractor_solve": {
+   "8": "return String(Math.ceil((580-380)/(12+15)));",
+   "29": "return String(Math.ceil((1160-380)/(12+15)));",
+   "47": "return String(Math.ceil((1160-190)/(6+15)));"
+  }
+ },
+ {
+  "id": "SALG6C-09",
+  "domain": "Algebra",
+  "subskill": "solve a linear inequality whose x-coefficient is a negative multiple of a positive parameter: distribute, isolate, and reverse the direction when dividing by -k, reporting the solution set symbolically in k",
+  "difficulty": "medium",
+  "prompt": "In the inequality 3 - k(x - 2) ≤ 7 - k, k is a positive constant. Which of the following describes all values of x that satisfy the inequality?",
+  "choices": [
+   "x ≥ 3 - 4/k",
+   "x ≤ -1 - 4/k",
+   "x ≤ 3 - 4/k",
+   "x ≥ -1 - 4/k"
+  ],
+  "correct_answer": "x ≥ 3 - 4/k",
+  "explanation": "Distribute: 3 - kx + 2k ≤ 7 - k, so -kx ≤ 4 - 3k. Because k is positive, dividing by -k reverses the inequality: x ≥ (3k - 4)/k, which is \"x ≥ 3 - 4/k\". \"x ≤ 3 - 4/k\" comes from dividing by -k without reversing the direction. \"x ≥ -1 - 4/k\" comes from distributing -k over (x - 2) as -kx - 2k, which gives -kx ≤ 4 + k. \"x ≤ -1 - 4/k\" makes both of those slips.",
+  "solve": "var preds={'x ≥ 3 - 4/k':function(x,k){return x>=3-4/k;},'x ≤ -1 - 4/k':function(x,k){return x<=-1-4/k;},'x ≤ 3 - 4/k':function(x,k){return x<=3-4/k;},'x ≥ -1 - 4/k':function(x,k){return x>=-1-4/k;}}; var truth=function(x,k){return 3-k*(x-2)<=7-k;}; var agrees=function(name,f){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(f(x,k)!==truth(x,k)) ok=false; }}); return ok;}; var hits=Object.keys(preds).filter(function(n){return agrees(n,preds[n]);}); return hits.length===1?hits[0]:\"bad\";",
+  "distractor_solve": {
+   "x ≤ 3 - 4/k": "var preds={'x ≥ 3 - 4/k':function(x,k){return x>=3-4/k;},'x ≤ -1 - 4/k':function(x,k){return x<=-1-4/k;},'x ≤ 3 - 4/k':function(x,k){return x<=3-4/k;},'x ≥ -1 - 4/k':function(x,k){return x>=-1-4/k;}}; var truth=function(x,k){return 3-k*(x-2)<=7-k;}; var agrees=function(name,f){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(f(x,k)!==truth(x,k)) ok=false; }}); return ok;}; var wrong=function(x,k){return x<=(3*k-4)/k;}; var hits=Object.keys(preds).filter(function(n){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(preds[n](x,k)!==wrong(x,k)) ok=false; }}); return ok;}); return hits.length===1?hits[0]:'bad';",
+   "x ≥ -1 - 4/k": "var preds={'x ≥ 3 - 4/k':function(x,k){return x>=3-4/k;},'x ≤ -1 - 4/k':function(x,k){return x<=-1-4/k;},'x ≤ 3 - 4/k':function(x,k){return x<=3-4/k;},'x ≥ -1 - 4/k':function(x,k){return x>=-1-4/k;}}; var truth=function(x,k){return 3-k*(x-2)<=7-k;}; var agrees=function(name,f){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(f(x,k)!==truth(x,k)) ok=false; }}); return ok;}; var wrong=function(x,k){return x>=-(4+k)/k;}; var hits=Object.keys(preds).filter(function(n){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(preds[n](x,k)!==wrong(x,k)) ok=false; }}); return ok;}); return hits.length===1?hits[0]:'bad';",
+   "x ≤ -1 - 4/k": "var preds={'x ≥ 3 - 4/k':function(x,k){return x>=3-4/k;},'x ≤ -1 - 4/k':function(x,k){return x<=-1-4/k;},'x ≤ 3 - 4/k':function(x,k){return x<=3-4/k;},'x ≥ -1 - 4/k':function(x,k){return x>=-1-4/k;}}; var truth=function(x,k){return 3-k*(x-2)<=7-k;}; var agrees=function(name,f){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(f(x,k)!==truth(x,k)) ok=false; }}); return ok;}; var wrong=function(x,k){return x<=-(4+k)/k;}; var hits=Object.keys(preds).filter(function(n){var ok=true;[0.5,2,5].forEach(function(k){for(var x=-12;x<=12;x+=0.25){ if(preds[n](x,k)!==wrong(x,k)) ok=false; }}); return ok;}); return hits.length===1?hits[0]:'bad';"
+  }
+ },
+ {
+  "id": "SALG6D-01",
+  "domain": "Algebra",
+  "subskill": "two linear filling models each given by two data points, with the model that starts behind asked for the input at which it LEADS the other by a stated amount: both rates and both starting volumes must be derived, and the gap function (a difference of the two models) is then set equal to the stated lead, not to zero",
+  "difficulty": "medium",
+  "prompt": "Two tanks, P and Q, are being filled with water, each at its own constant rate. Tank P contained 40 liters 3 minutes after filling began and 79 liters 9 minutes after filling began. Tank Q contained 55 liters 3 minutes after filling began and 70 liters 9 minutes after filling began. How many minutes after filling began does tank P contain exactly 45 liters more than tank Q?",
+  "choices": [
+   "15",
+   "20.25",
+   "18",
+   "11.25"
+  ],
+  "correct_answer": "18",
+  "explanation": "Tank P gains (79 - 40)/(9 - 3) = 6.5 liters per minute, so its volume is 6.5t + 20.5; tank Q gains (70 - 55)/6 = 2.5 liters per minute, so its volume is 2.5t + 47.5. The lead of P over Q is (6.5t + 20.5) - (2.5t + 47.5) = 4t - 27. Setting 4t - 27 = 45 gives 4t = 72 and t = 18. (Check: at t = 18, P holds 137.5 liters and Q holds 92.5 liters, a difference of 45.) \"11.25\" comes from dividing 45 by the rate difference 4 while ignoring that Q started 27 liters ahead. \"15\" comes from treating the 3-minute readings as the starting volumes, so the gap is written 4t - 15. \"20.25\" comes from adding 45/4 to the 9-minute reading time without noticing that P already leads by 9 liters at 9 minutes.",
+  "solve": "var mP=(79-40)/(9-3), bP=40-mP*3; var mQ=(70-55)/(9-3), bQ=55-mQ*3; var t=(45-(bP-bQ))/(mP-mQ); return String(t);",
+  "distractor_solve": {
+   "15": "var mP=(79-40)/6, mQ=(70-55)/6; var t=(45-(40-55))/(mP-mQ); return String(t);",
+   "11.25": "var mP=(79-40)/6, mQ=(70-55)/6; return String(45/(mP-mQ));",
+   "20.25": "var mP=(79-40)/6, mQ=(70-55)/6; return String(9+45/(mP-mQ));"
+  }
+ },
+ {
+  "id": "SALG6D-02",
+  "domain": "Algebra",
+  "subskill": "a single linear model whose rate is stated per second and whose elapsed time is stated in hours and minutes: the time must be converted to seconds through two unit steps before the output is computed, and the starting amount added back",
+  "difficulty": "medium",
+  "prompt": "A tank holds 380 liters of water when a pump is switched on. The pump adds water to the tank at a constant rate of 0.4 liter per second. How many liters of water does the tank hold 1 hour 15 minutes after the pump is switched on?",
+  "choices": [
+   "2180",
+   "3140",
+   "1800",
+   "2036"
+  ],
+  "correct_answer": "2180",
+  "explanation": "1 hour 15 minutes is 75 minutes, which is 75 × 60 = 4,500 seconds. In that time the pump adds 0.4 × 4,500 = 1,800 liters, so the tank holds 380 + 1,800 = 2,180 liters. \"1800\" is the amount added, without the 380 liters already in the tank. \"3140\" comes from reading 1 hour 15 minutes as 115 minutes: 115 × 60 × 0.4 = 2,760, plus 380. \"2036\" comes from writing 1 hour 15 minutes as 1.15 hours: 1.15 × 3,600 × 0.4 = 1,656, plus 380.",
+  "solve": "var s=(60+15)*60; return String(380+0.4*s);",
+  "distractor_solve": {
+   "1800": "var s=75*60; return String(0.4*s);",
+   "2036": "var s=1.15*3600; return String(380+0.4*s);",
+   "3140": "var s=115*60; return String(380+0.4*s);"
+  }
+ },
+ {
+  "id": "SALG6D-04",
+  "domain": "Algebra",
+  "subskill": "a piecewise linear pricing model (first block of units at one rate, every unit beyond at a higher rate) evaluated at a usage past the break: the usage must be split at the threshold and each part charged at its own rate, with every distractor strictly between the all-low and all-high totals",
+  "difficulty": "medium",
+  "prompt": "An electricity plan charges 0.12 dollar per kilowatt-hour for the first 500 kilowatt-hours used in a month and 0.19 dollar per kilowatt-hour for each kilowatt-hour used beyond 500 in that month. A household used 830 kilowatt-hours last month. What was the household's charge for last month, in dollars?",
+  "choices": [
+   "134.60",
+   "122.70",
+   "155.00",
+   "128.65"
+  ],
+  "correct_answer": "122.70",
+  "explanation": "The first 500 kilowatt-hours cost 500 × 0.12 = 60 dollars. The remaining 830 - 500 = 330 kilowatt-hours cost 330 × 0.19 = 62.70 dollars. The total is 60 + 62.70 = 122.70 dollars. \"134.60\" comes from swapping the rates, charging 0.19 on the first 500 and 0.12 on the remaining 330: 95 + 39.60. \"155.00\" comes from charging a full second block of 500 kilowatt-hours at 0.19 instead of the 330 actually used beyond the threshold: 60 + 95. \"128.65\" comes from averaging the two rates to 0.155 and applying that to all 830 kilowatt-hours.",
+  "solve": "var c=500*0.12+(830-500)*0.19; return c.toFixed(2);",
+  "distractor_solve": {
+   "134.60": "var c=500*0.19+(830-500)*0.12; return c.toFixed(2);",
+   "155.00": "var c=500*0.12+500*0.19; return c.toFixed(2);",
+   "128.65": "var c=830*((0.12+0.19)/2); return c.toFixed(2);"
+  }
+ },
+ {
+  "id": "SALG6D-05",
+  "domain": "Algebra",
+  "subskill": "linear depreciation with the rate recovered from a purchase price and one later value, asked the age at which the value is a stated FRACTION of the purchase price: the fraction applies to the original value, the total drop is divided by the rate, and the answer is measured from purchase, not from the later reading",
+  "difficulty": "medium",
+  "prompt": "A machine was purchased for 45,000 dollars, and its value has decreased by the same amount each year since purchase. Three years after purchase, the machine was worth 37,800 dollars. If the value continues to decrease at this rate, how many years after purchase will the machine be worth 2/5 of its purchase price?",
+  "choices": [
+   "11.25",
+   "12.45",
+   "7.5",
+   "8.25"
+  ],
+  "correct_answer": "11.25",
+  "explanation": "The value dropped 45,000 - 37,800 = 7,200 dollars in 3 years, so it decreases 2,400 dollars per year. Two fifths of the purchase price is (2/5)(45,000) = 18,000 dollars, a total drop of 45,000 - 18,000 = 27,000 dollars, which takes 27,000 / 2,400 = 11.25 years. \"7.5\" comes from dividing 18,000 by 2,400, the time for the value to DROP by 2/5 of the purchase price rather than to reach it. \"8.25\" comes from measuring the remaining drop from the 3-year value, (37,800 - 18,000)/2,400, without adding back the 3 years already elapsed. \"12.45\" comes from taking 2/5 of the 3-year value, 15,120 dollars, as the target: (45,000 - 15,120)/2,400.",
+  "solve": "var r=(45000-37800)/3; var target=45000*2/5; return String((45000-target)/r);",
+  "distractor_solve": {
+   "7.5": "var r=(45000-37800)/3; return String((45000*2/5)/r);",
+   "8.25": "var r=(45000-37800)/3; return String((37800-45000*2/5)/r);",
+   "12.45": "var r=(45000-37800)/3; var target=37800*2/5; return String(Math.round(((45000-target)/r)*100)/100);"
+  }
+ },
+ {
+  "id": "SALG6D-07",
+  "domain": "Algebra",
+  "subskill": "a linear model fitted from three table rows whose inputs do not start at zero, asked the output at an input beyond the table: the rate comes from a difference of rows divided by the ELAPSED input, and the model must be run from a row, not from an intercept mistaken for a row",
+  "difficulty": "medium",
+  "prompt": "Mara deposits the same amount into a savings account every week. The table shows the balance of the account at the end of three different weeks: at the end of week 4 the balance was 380 dollars, at the end of week 8 it was 480 dollars, and at the end of week 10 it was 530 dollars. If the balance continues to grow in this way, what will the balance be, in dollars, at the end of week 12?",
+  "choices": [
+   "680",
+   "580",
+   "560",
+   "830"
+  ],
+  "correct_answer": "580",
+  "explanation": "The balance rose 100 dollars from week 4 to week 8, which is 25 dollars per week, and 50 dollars from week 8 to week 10, also 25 dollars per week, so the model is linear with rate 25. From week 10 to week 12 is 2 more weeks, so the balance is 530 + 2 × 25 = 580 dollars. \"560\" comes from computing the rate as (530 - 380)/10 = 15, dividing by the week number instead of the 6 weeks elapsed, then adding 2 × 15 to 530. \"680\" comes from treating the week-4 balance of 380 as the starting balance and adding 25 × 12. \"830\" comes from treating the week-10 balance of 530 as the starting balance and adding 25 × 12.",
+  "solve": "var r=(480-380)/(8-4); if((530-480)/(10-8)!==r) return 'bad'; return String(530+r*(12-10));",
+  "distractor_solve": {
+   "560": "var r=(530-380)/10; return String(530+r*(12-10));",
+   "680": "var r=(480-380)/(8-4); return String(380+r*12);",
+   "830": "var r=(480-380)/(8-4); return String(530+r*12);"
+  }
+ },
+ {
+  "id": "SALG6D-08",
+  "domain": "Algebra",
+  "subskill": "a two-variable budget model in standard form with the total held fixed, asked how one quantity must change when the other changes by a stated amount: the change in one term's cost is transferred to the other term and divided by that term's unit price, so the answer is the trade-off ratio applied to the stated change",
+  "difficulty": "medium",
+  "prompt": "A florist plans to spend exactly 720 dollars on roses and lilies for an event. Roses cost 6 dollars each and lilies cost 10 dollars each, so the numbers r of roses and L of lilies satisfy 6r + 10L = 720. The florist decides to buy 15 more roses than planned while still spending exactly 720 dollars. How many fewer lilies than planned must the florist buy?",
+  "choices": [
+   "25",
+   "63",
+   "9",
+   "22.5"
+  ],
+  "correct_answer": "9",
+  "explanation": "The 15 extra roses cost 15 × 6 = 90 dollars. To keep the total at 720 dollars, the lily cost must fall by 90 dollars, which at 10 dollars per lily is 90 / 10 = 9 fewer lilies. (Equivalently, 6(r + 15) + 10(L - d) = 720 with 6r + 10L = 720 gives 90 - 10d = 0.) \"25\" comes from inverting the trade-off, 15 × 10 / 6, multiplying by the lily price and dividing by the rose price. \"22.5\" comes from dividing the 90 dollars by the difference in prices, 10 - 6 = 4. \"63\" comes from treating all the money left after the 90 dollars as buying lilies, (720 - 90)/10, which is a number of lilies rather than the change in the number.",
+  "solve": "var d=(15*6)/10; return String(d);",
+  "distractor_solve": {
+   "25": "return String(15*10/6);",
+   "63": "return String((720-15*6)/10);",
+   "22.5": "return String((15*6)/(10-6));"
+  }
+ },
+ {
+  "id": "SALG6D-09",
+  "domain": "Algebra",
+  "subskill": "a linear model whose rate is stated per 1,000 units of input and whose reference point is at a nonzero input: the required output change is converted to an input change through the per-1,000 rate, and that change is added to the reference input rather than reported on its own",
+  "difficulty": "medium",
+  "prompt": "On a certain mountain, the air temperature decreases by 6.5 degrees Celsius for every 1,000 meters of increase in altitude. At an altitude of 350 meters, the temperature is 21.4 degrees Celsius. According to this model, at what altitude, in meters, is the temperature 8.4 degrees Celsius?",
+  "choices": [
+   "2000",
+   "550",
+   "1650",
+   "2350"
+  ],
+  "correct_answer": "2350",
+  "explanation": "The temperature must fall 21.4 - 8.4 = 13 degrees. At 6.5 degrees per 1,000 meters, that takes 13 / 6.5 = 2 thousand meters, or 2,000 meters of additional altitude. Starting from 350 meters, the altitude is 350 + 2,000 = 2,350 meters. \"2000\" is the increase in altitude reported as the altitude itself, forgetting that the reference reading was taken at 350 meters. \"1650\" comes from subtracting the reference altitude instead of adding it, 2,000 - 350. \"550\" comes from reading the rate as 6.5 degrees per 100 meters, so 13 degrees is 200 meters, plus 350.",
+  "solve": "var drop=21.4-8.4; var rise=(drop/6.5)*1000; return String(Math.round(350+rise));",
+  "distractor_solve": {
+   "550": "var drop=21.4-8.4; return String(Math.round(350+(drop/6.5)*100));",
+   "1650": "var drop=21.4-8.4; return String(Math.round((drop/6.5)*1000-350));",
+   "2000": "var drop=21.4-8.4; return String(Math.round((drop/6.5)*1000));"
+  }
+ },
+ {
+  "id": "SALG6D-10",
+  "domain": "Algebra",
+  "subskill": "a linear growth model given by two dated measurements, asked to extrapolate BACKWARD to the calendar year in which the output had a stated smaller value: the rate comes from the two measurements, the years back are counted from the earlier measurement, and the planting height must be subtracted before dividing",
+  "difficulty": "medium",
+  "prompt": "A tree has grown at a constant rate since it was planted. The tree was 4.4 meters tall at the start of 2015 and 6.8 meters tall at the start of 2021. When the tree was planted, at the start of a certain year, it was 1.6 meters tall. In what year was the tree planted?",
+  "choices": [
+   "2014",
+   "2008",
+   "2002",
+   "2004"
+  ],
+  "correct_answer": "2008",
+  "explanation": "The tree grew 6.8 - 4.4 = 2.4 meters in the 6 years from 2015 to 2021, which is 0.4 meter per year. To grow from 1.6 meters to 4.4 meters took (4.4 - 1.6)/0.4 = 7 years, so the tree was planted 7 years before 2015, at the start of 2008. \"2004\" comes from forgetting the planting height and dividing the full 4.4 meters by 0.4, 11 years before 2015. \"2014\" comes from counting the 7 years back from 2021 instead of from 2015. \"2002\" comes from using the 2021 height to find the years of growth, (6.8 - 1.6)/0.4 = 13, and then counting back from 2015.",
+  "solve": "var r=(6.8-4.4)/(2021-2015); var yrs=(4.4-1.6)/r; return String(2015-Math.round(yrs));",
+  "distractor_solve": {
+   "2002": "var r=(6.8-4.4)/6; return String(2015-Math.round((6.8-1.6)/r));",
+   "2004": "var r=(6.8-4.4)/6; return String(2015-Math.round(4.4/r));",
+   "2014": "var r=(6.8-4.4)/6; return String(2021-Math.round((4.4-1.6)/r));"
+  }
+ },
+ {
+  "id": "SADV7B-02",
+  "domain": "Advanced Math",
+  "subskill": "exponential of the form a·b^x + c with the horizontal asymptote given: use the asymptote to fix c, then one function value to recover a",
+  "difficulty": "medium",
+  "prompt": "The function g is defined by g(x) = a·3^x + c, where a and c are constants. The graph of y = g(x) in the xy-plane has the horizontal asymptote y = -90, and g(2) = 99. What is the value of a?",
+  "choices": [
+   "1",
+   "11",
+   "189",
+   "21"
+  ],
+  "correct_answer": "21",
+  "explanation": "As x decreases without bound, 3^x approaches 0, so the asymptote gives c = -90. Then a·3^2 + (-90) = 99, so 9a = 189 and a is \"21\". \"1\" comes from subtracting the asymptote value instead of adding it, giving (99 - 90)/9. \"11\" comes from ignoring the asymptote entirely and solving 9a = 99. \"189\" comes from stopping at 9a = 189 and reporting the product instead of dividing by 3².",
+  "solve": "var c=-90, y=99; return String((y-c)/Math.pow(3,2));",
+  "distractor_solve": {
+   "1": "return String((99-90)/9);",
+   "11": "return String(99/9);",
+   "189": "return String(99+90);"
+  }
+ },
+ {
+  "id": "SADV7B-03",
+  "domain": "Advanced Math",
+  "subskill": "exponential equation that is quadratic in 2^x: substitute u = 2^x, solve the quadratic, convert both values back and add the inputs",
+  "difficulty": "hard",
+  "prompt": "What is the sum of the solutions of the equation 2^(2x + 1) - 24·2^x + 64 = 0 ?",
+  "choices": [
+   "5",
+   "12",
+   "8",
+   "32"
+  ],
+  "correct_answer": "5",
+  "explanation": "Writing u = 2^x, the equation 2·u² - 24u + 64 = 0 becomes u² - 12u + 32 = 0, so u = 4 or u = 8. Then 2^x = 4 gives x = 2 and 2^x = 8 gives x = 3, and the sum is \"5\". \"12\" comes from adding the two values of 2^x rather than the two values of x. \"8\" comes from reporting the larger value of 2^x as if it were a solution. \"32\" comes from multiplying the two values of 2^x instead of converting them back.",
+  "solve": "var a=2,b=-24,c=64; var d=Math.sqrt(b*b-4*a*c); var u1=(-b+d)/(2*a), u2=(-b-d)/(2*a); return String(Math.round(Math.log(u1)/Math.log(2)+Math.log(u2)/Math.log(2)));",
+  "distractor_solve": {
+   "8": "var d=Math.sqrt(576-512); return String((24+d)/4);",
+   "12": "var d=Math.sqrt(576-512); return String((24+d)/4+(24-d)/4);",
+   "32": "var d=Math.sqrt(576-512); return String(((24+d)/4)*((24-d)/4));"
+  }
+ },
+ {
+  "id": "SADV7B-04",
+  "domain": "Advanced Math",
+  "subskill": "two exponential models with related bases: find the input at which one model is a stated multiple of the other by writing both sides as powers of one base",
+  "difficulty": "hard",
+  "prompt": "The functions A and B are defined by A(t) = 3·4^t and B(t) = 3072·2^t. For what value of t is A(t) = 16·B(t) ?",
+  "choices": [
+   "10",
+   "6",
+   "40",
+   "14"
+  ],
+  "correct_answer": "14",
+  "explanation": "A(t) = 3·2^(2t), and 16·B(t) = 49152·2^t, so 2^(2t) = 16384·2^t = 2^14·2^t. Subtracting exponents gives t = \"14\". \"10\" comes from ignoring the factor of 16 and solving 2^t = 3072/3 = 1024. \"6\" comes from dividing by 16 instead of multiplying, solving 2^t = 1024/16 = 64. \"40\" comes from multiplying the exponents when combining 2⁴·2¹⁰ instead of adding them.",
+  "solve": "var L=16*3072/3; return String(Math.round(Math.log(L)/Math.log(2)));",
+  "distractor_solve": {
+   "6": "var L=3072/3/16; return String(Math.round(Math.log(L)/Math.log(2)));",
+   "10": "var L=3072/3; return String(Math.round(Math.log(L)/Math.log(2)));",
+   "40": "var e1=Math.round(Math.log(16)/Math.log(2)), e2=Math.round(Math.log(1024)/Math.log(2)); return String(e1*e2);"
+  }
+ },
+ {
+  "id": "SADV7B-06",
+  "domain": "Advanced Math",
+  "subskill": "recovering the initial value of an exponential model with a fractional growth factor from a later value: divide by the accumulated factor",
+  "difficulty": "medium",
+  "prompt": "A quantity is modeled by f(x) = a(3/2)^x, where a is a constant and x is the number of growth periods that have passed. If f(4) = 405, what is the value of a?",
+  "choices": [
+   "45",
+   "5",
+   "80",
+   "180"
+  ],
+  "correct_answer": "80",
+  "explanation": "(3/2)⁴ = 81/16, so a(81/16) = 405 and a = 405(16/81) = \"80\". \"180\" comes from dividing by (3/2)² instead of (3/2)⁴, halving the number of periods. \"45\" comes from reading (3/2)⁴ as 3² and dividing 405 by 9. \"5\" comes from dividing by 81 alone, dropping the 16 in the denominator of (3/2)⁴.",
+  "solve": "return String(405/Math.pow(1.5,4));",
+  "distractor_solve": {
+   "5": "return String(405/81);",
+   "45": "return String(405/9);",
+   "180": "return String(405/Math.pow(1.5,2));"
+  }
+ },
+ {
+  "id": "SADV7B-07",
+  "domain": "Advanced Math",
+  "subskill": "exponential with a coefficient inside the exponent: find the constant multiplier produced by a one-unit increase in the input",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 4·5^(3x). If f(x + 1) = c·f(x) for every value of x, what is the value of c?",
+  "choices": [
+   "125",
+   "15",
+   "60",
+   "20"
+  ],
+  "correct_answer": "125",
+  "explanation": "f(x + 1) = 4·5^(3x + 3) = 5³·(4·5^(3x)) = 125·f(x), so c is \"125\". \"15\" comes from multiplying the base by the exponent’s coefficient, 5·3, instead of raising 5 to the power 3. \"20\" comes from cancelling the exponent entirely and multiplying the leading coefficient by the base, 4·5. \"60\" comes from that same product with the exponent’s coefficient attached as well, 4·5·3.",
+  "solve": "var f=function(x){return 4*Math.pow(5,3*x)}; return String(f(1)/f(0));",
+  "distractor_solve": {
+   "15": "return String(5*3);",
+   "20": "return String(4*5);",
+   "60": "return String(4*5*3);"
+  }
+ },
+ {
+  "id": "SADV7B-08",
+  "domain": "Advanced Math",
+  "subskill": "exponential equation whose exponent is a quadratic expression: match the powers, solve the resulting quadratic, and select the greater solution",
+  "difficulty": "hard",
+  "prompt": "The equation 2^(x² - 4x) = 32 has two solutions. What is the greater of the two solutions?",
+  "choices": [
+   "8",
+   "-1",
+   "5",
+   "11"
+  ],
+  "correct_answer": "5",
+  "explanation": "Since 32 = 2⁵, the exponents must be equal: x² - 4x = 5, so x² - 4x - 5 = 0 and x = 5 or x = -1. The greater solution is \"5\". \"8\" comes from setting the exponent equal to 32 rather than to 5, giving x² - 4x - 32 = 0 with greater root 8. \"11\" comes from completing the square to (x - 2)² = 9 and then solving x - 2 = 9 without taking the square root. \"-1\" comes from reporting the lesser of the two correct solutions.",
+  "solve": "var d=Math.sqrt(16+4*5); return String((4+d)/2);",
+  "distractor_solve": {
+   "8": "var d=Math.sqrt(16+4*32); return String((4+d)/2);",
+   "11": "return String(2+9);",
+   "-1": "var d=Math.sqrt(16+4*5); return String((4-d)/2);"
+  }
+ },
+ {
+  "id": "SADV7B-09",
+  "domain": "Advanced Math",
+  "subskill": "exponential model whose exponent is t divided by an unknown constant: recover that constant from one observed value",
+  "difficulty": "hard",
+  "prompt": "The number of cells in a culture after t hours is modeled by N(t) = 6·5^(t/k), where k is a positive constant. If N(36) = 3750, what is the value of k?",
+  "choices": [
+   "4",
+   "144",
+   "32",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "3750/6 = 625 = 5⁴, so 36/k = 4 and k is \"9\". \"4\" comes from stopping at the exponent 4 and reporting it as k. \"144\" comes from multiplying 36 by 4 instead of dividing. \"32\" comes from subtracting the exponent from the elapsed time, 36 - 4, instead of dividing.",
+  "solve": "var e=Math.log(3750/6)/Math.log(5); return String(Math.round(36/e));",
+  "distractor_solve": {
+   "4": "return String(Math.round(Math.log(3750/6)/Math.log(5)));",
+   "32": "var e=Math.round(Math.log(625)/Math.log(5)); return String(36-e);",
+   "144": "var e=Math.round(Math.log(625)/Math.log(5)); return String(36*e);"
+  }
+ },
+ {
+  "id": "SADV7B-12",
+  "domain": "Advanced Math",
+  "subskill": "sum of two powers of one base with different exponents: factor out the common power, then solve the resulting exponential equation",
+  "difficulty": "hard",
+  "prompt": "What is the solution to the equation 2^(x + 3) + 2^x = 2304 ?",
+  "choices": [
+   "11",
+   "256",
+   "8",
+   "5"
+  ],
+  "correct_answer": "8",
+  "explanation": "2^(x + 3) + 2^x = 2^x(2³ + 1) = 9·2^x, so 2^x = 2304/9 = 256 = 2⁸ and the solution is \"8\". \"11\" comes from solving for x correctly but reporting x + 3. \"256\" comes from reporting the value of 2^x instead of x. \"5\" comes from attaching the exponent 8 to x + 3 rather than to x, giving x = 8 - 3.",
+  "solve": "var v=2304/9; return String(Math.round(Math.log(v)/Math.log(2)));",
+  "distractor_solve": {
+   "5": "var v=2304/9; return String(Math.round(Math.log(v)/Math.log(2))-3);",
+   "11": "var v=2304/9; return String(Math.round(Math.log(v)/Math.log(2))+3);",
+   "256": "return String(2304/9);"
+  }
+ },
+ {
+  "id": "SADV7D-01",
+  "domain": "Advanced Math",
+  "subskill": "sum of the REAL zeros of a quartic given as a factorable non-monic quadratic times an irreducible quadratic: test the discriminant, then sum only the real zeros",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = (3x² − 7x + 2)(x² + 6x + 10). What is the sum of all real zeros of p?",
+  "choices": [
+   "-11/3",
+   "2/3",
+   "7/3",
+   "5/3"
+  ],
+  "correct_answer": "7/3",
+  "explanation": "The factor x² + 6x + 10 has discriminant 36 − 40 = −4 < 0, so it contributes no real zeros. The factor 3x² − 7x + 2 = (3x − 1)(x − 2) has zeros 1/3 and 2, whose sum is 7/3, which is \"7/3\". \"-11/3\" comes from a solver who applies −b/a to both factors, adding the −6 from x² + 6x + 10 to 7/3 as though that factor had real zeros. \"2/3\" is the product c/a of the two real zeros rather than their sum. \"5/3\" comes from a solver who misfactors 3x² − 7x + 2 as (3x − 2)(x − 1) and sums 2/3 + 1.",
+  "solve": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var d2=36-40; if(d2>=0) throw new Error('second factor has real zeros'); var d=49-24; var r1=(7+Math.sqrt(d))/6, r2=(7-Math.sqrt(d))/6; var s=r1+r2; var n=Math.round(s*3); if(Math.abs(n/3-s)>1e-9) throw new Error('not a third'); return frac(n,3);",
+  "distractor_solve": {
+   "-11/3": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};return frac(7-6*3,3);",
+   "2/3": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};return frac(2,3);",
+   "5/3": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};return frac(2+3,3);"
+  }
+ },
+ {
+  "id": "SADV7D-02",
+  "domain": "Advanced Math",
+  "subskill": "a new function built as f(x) + f(−x) from a cubic: evaluate both terms with correct signs on odd and even powers (the odd terms cancel)",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 2x³ − 3x² + 5x − 4. The function g is defined by g(x) = f(x) + f(−x). What is the value of g(2)?",
+  "choices": [
+   "-32",
+   "20",
+   "52",
+   "-8"
+  ],
+  "correct_answer": "-32",
+  "explanation": "f(2) = 16 − 12 + 10 − 4 = 10 and f(−2) = −16 − 12 − 10 − 4 = −42, so g(2) = 10 + (−42) = −32, which is \"-32\". (Equivalently the odd-power terms cancel and g(x) = −6x² − 8.) \"20\" comes from a solver who treats f(−x) as equal to f(x) and doubles f(2). \"52\" comes from a solver who subtracts, computing f(2) − f(−2). \"-8\" comes from a solver who evaluates (−2)² as −4, getting f(−2) = −16 + 12 − 10 − 4 = −18 and then 10 + (−18).",
+  "solve": "var f=function(x){return 2*x*x*x-3*x*x+5*x-4}; return String(f(2)+f(-2));",
+  "distractor_solve": {
+   "20": "var f=function(x){return 2*x*x*x-3*x*x+5*x-4}; return String(f(2)+f(2));",
+   "52": "var f=function(x){return 2*x*x*x-3*x*x+5*x-4}; return String(f(2)-f(-2));",
+   "-8": "var f=function(x){return 2*x*x*x-3*x*x+5*x-4}; var fneg2=2*(-8)-3*(-4)+5*(-2)-4; return String(f(2)+fneg2);"
+  }
+ },
+ {
+  "id": "SADV7D-03",
+  "domain": "Advanced Math",
+  "subskill": "nested composition from a two-function table ending in an inverse: read g⁻¹ as 'which input gives this output' from the g row",
+  "difficulty": "medium",
+  "prompt": "The table gives the values of the functions f and g for five values of x.\n\nx: 1, 2, 3, 4, 5\nf(x): 2, 5, 1, 3, 4\ng(x): 4, 1, 5, 2, 3\n\nThe function g⁻¹ is the inverse of g. What is the value of g⁻¹(f(g(3)))?",
+  "choices": [
+   "4",
+   "1",
+   "5",
+   "2"
+  ],
+  "correct_answer": "1",
+  "explanation": "From the table g(3) = 5 and f(5) = 4. Then g⁻¹(4) is the input x for which g(x) = 4, and the g row shows g(1) = 4, so g⁻¹(4) = 1, which is \"1\". \"4\" comes from a solver who stops at f(g(3)) = 4 and never applies the inverse. \"2\" comes from a solver who applies g instead of g⁻¹ to the 4, reading g(4) = 2. \"5\" comes from a solver who inverts the wrong row, finding the x with f(x) = 4 instead of g(x) = 4.",
+  "solve": "var f={1:2,2:5,3:1,4:3,5:4}, g={1:4,2:1,3:5,4:2,5:3}; var v=f[g[3]]; var x=null; for(var k in g){ if(g[k]===v){ if(x!==null) throw new Error('g not injective'); x=Number(k);} } return String(x);",
+  "distractor_solve": {
+   "2": "var f={1:2,2:5,3:1,4:3,5:4}, g={1:4,2:1,3:5,4:2,5:3}; return String(g[f[g[3]]]);",
+   "4": "var f={1:2,2:5,3:1,4:3,5:4}, g={1:4,2:1,3:5,4:2,5:3}; return String(f[g[3]]);",
+   "5": "var f={1:2,2:5,3:1,4:3,5:4}, g={1:4,2:1,3:5,4:2,5:3}; var v=f[g[3]]; var x=null; for(var k in f){ if(f[k]===v) x=Number(k);} return String(x);"
+  }
+ },
+ {
+  "id": "SADV7D-04",
+  "domain": "Advanced Math",
+  "subskill": "a function defined recursively by f(x + 1) = 2f(x) − 3 with one seed value: iterate three times, applying the whole rule at every step",
+  "difficulty": "medium",
+  "prompt": "The function f satisfies f(x + 1) = 2f(x) − 3 for all values of x, and f(0) = 5. What is the value of f(3)?",
+  "choices": [
+   "11",
+   "37",
+   "61",
+   "19"
+  ],
+  "correct_answer": "19",
+  "explanation": "Apply the rule three times: f(1) = 2(5) − 3 = 7, f(2) = 2(7) − 3 = 11, f(3) = 2(11) − 3 = 19, which is \"19\". \"11\" comes from a solver who stops after two steps and reports f(2). \"37\" comes from a solver who doubles three times first and subtracts 3 only once, computing 2³ · 5 − 3. \"61\" comes from a solver who reads the rule as f(x + 1) = 2f(x) + 3, getting 13, 29, 61.",
+  "solve": "var v=5; for(var i=0;i<3;i++) v=2*v-3; return String(v);",
+  "distractor_solve": {
+   "11": "var v=5; for(var i=0;i<2;i++) v=2*v-3; return String(v);",
+   "37": "return String(Math.pow(2,3)*5-3);",
+   "61": "var v=5; for(var i=0;i<3;i++) v=2*v+3; return String(v);"
+  }
+ },
+ {
+  "id": "SADV7D-05",
+  "domain": "Advanced Math",
+  "subskill": "leading coefficient of a composition f(g(x)) with f cubic and g quadratic: the outer leading coefficient times the inner leading coefficient raised to the outer degree",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = 2x³ − x + 4 and g(x) = 3x² − 2. The function h is defined by h(x) = f(g(x)). When h(x) is written as a polynomial in x, what is its leading coefficient?",
+  "choices": [
+   "6",
+   "24",
+   "54",
+   "18"
+  ],
+  "correct_answer": "54",
+  "explanation": "The highest-degree term of h comes from 2(g(x))³, whose leading term is 2(3x²)³ = 2 · 27x⁶ = 54x⁶, so the leading coefficient is 54, which is \"54\". \"6\" comes from a solver who multiplies the two leading coefficients 2 · 3 without raising 3 to the outer degree. \"18\" comes from a solver who squares instead of cubes, computing 2 · 3². \"24\" comes from a solver who cubes the wrong coefficient, computing 2³ · 3.",
+  "solve": "var fLead=2, fDeg=3, gLead=3; return String(fLead*Math.pow(gLead,fDeg));",
+  "distractor_solve": {
+   "6": "return String(2*3);",
+   "18": "return String(2*Math.pow(3,2));",
+   "24": "return String(Math.pow(2,3)*3);"
+  }
+ },
+ {
+  "id": "SADV7D-06",
+  "domain": "Advanced Math",
+  "subskill": "nested division-algorithm identities p(x) = (x − a)q(x) + r₁ and q(x) = (x − b)r(x) + r₂: evaluate q at the second root first, then substitute into p",
+  "difficulty": "medium",
+  "prompt": "The polynomials p, q, and r satisfy p(x) = (x − 3) · q(x) + 4 and q(x) = (x + 2) · r(x) − 5 for all values of x. What is the value of p(−2)?",
+  "choices": [
+   "-6",
+   "-21",
+   "19",
+   "29"
+  ],
+  "correct_answer": "29",
+  "explanation": "At x = −2 the factor x + 2 is 0, so q(−2) = 0 · r(−2) − 5 = −5. Then p(−2) = (−2 − 3) · q(−2) + 4 = (−5)(−5) + 4 = 29, which is \"29\". \"-6\" comes from a solver who adds instead of multiplying, computing (−5) + (−5) + 4. \"-21\" comes from a solver who takes q(−2) = +5 and computes (−5)(5) + 4. \"19\" comes from a solver who evaluates the factor x − 3 as −3 (dropping the x), computing (−3)(−5) + 4.",
+  "solve": "var q=function(x, r){return (x+2)*r-5}; var qv=q(-2, 12345); var p=(-2-3)*qv+4; return String(p);",
+  "distractor_solve": {
+   "19": "var qv=(-2+2)*0-5; return String((-3)*qv+4);",
+   "-6": "var qv=(-2+2)*0-5; return String((-2-3)+qv+4);",
+   "-21": "var qv=5; return String((-2-3)*qv+4);"
+  }
+ },
+ {
+  "id": "SADV7D-07",
+  "domain": "Advanced Math",
+  "subskill": "degree-4 polynomial from described x-intercepts with one double zero (touch, no cross) and the y-intercept: fix the leading coefficient, then evaluate at a new input",
+  "difficulty": "hard",
+  "prompt": "The polynomial p has degree 4. In the xy-plane, the graph of y = p(x) crosses the x-axis at (−3, 0) and (2, 0), and touches the x-axis at (5, 0) without crossing it. These are the only x-intercepts, and p(0) = 450. What is the value of p(1)?",
+  "choices": [
+   "192",
+   "-64",
+   "240",
+   "432"
+  ],
+  "correct_answer": "192",
+  "explanation": "A touch without crossing is a zero of even multiplicity, so with degree 4 the polynomial is p(x) = a(x + 3)(x − 2)(x − 5)². Then p(0) = a(3)(−2)(25) = −150a = 450 gives a = −3, and p(1) = −3(4)(−1)(16) = 192, which is \"192\". \"-64\" comes from a solver who never finds a and evaluates (1 + 3)(1 − 2)(1 − 5)² = −64. \"240\" comes from a solver who writes the touch point as a single factor (x − 5): then 30a = 450, a = 15, and 15(4)(−1)(−4) = 240. \"432\" comes from a solver who writes the double factor as (x + 5)²: a is still −3, and −3(4)(−1)(36) = 432.",
+  "solve": "var base=function(x){return (x+3)*(x-2)*(x-5)*(x-5)}; var a=450/base(0); return String(a*base(1));",
+  "distractor_solve": {
+   "240": "var base=function(x){return (x+3)*(x-2)*(x-5)}; var a=450/base(0); return String(a*base(1));",
+   "432": "var base=function(x){return (x+3)*(x-2)*(x+5)*(x+5)}; var a=450/base(0); return String(a*base(1));",
+   "-64": "var base=function(x){return (x+3)*(x-2)*(x-5)*(x-5)}; return String(base(1));"
+  }
+ },
+ {
+  "id": "SADV7D-09",
+  "domain": "Advanced Math",
+  "subskill": "sum of the reciprocals of the three zeros of a factorable cubic: find the zeros (or use pairwise-product over product) and combine the fractions",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = x³ − 2x² − 5x + 6, and the zeros of p are r, s, and t. What is the value of 1/r + 1/s + 1/t?",
+  "choices": [
+   "1/2",
+   "-1/3",
+   "-5/2",
+   "5/6"
+  ],
+  "correct_answer": "5/6",
+  "explanation": "Since p(1) = 0, dividing by x − 1 gives x² − x − 6 = (x − 3)(x + 2), so the zeros are 1, 3, and −2. Then 1/1 + 1/3 + 1/(−2) = 6/6 + 2/6 − 3/6 = 5/6, which is \"5/6\". \"1/2\" comes from a solver who takes the reciprocal of the sum of the zeros, 1/(1 + 3 − 2). \"-5/2\" comes from a solver who divides the sum of pairwise products, −5, by the sum of the zeros, 2, instead of by their product. \"-1/3\" comes from a solver who divides the sum of the zeros by their product, 2/(−6).",
+  "solve": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var p=function(x){return x*x*x-2*x*x-5*x+6}; var roots=[]; for(var x=-10;x<=10;x++){ if(p(x)===0) roots.push(x);} if(roots.length!==3) throw new Error('need 3 integer roots'); var r=roots[0],s=roots[1],t=roots[2]; return frac(s*t+r*t+r*s, r*s*t);",
+  "distractor_solve": {
+   "1/2": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var r=1,s=3,t=-2; return frac(1, r+s+t);",
+   "-5/2": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var r=1,s=3,t=-2; return frac(s*t+r*t+r*s, r+s+t);",
+   "-1/3": "var frac=function(n,d){if(d<0){n=-n;d=-d}var a=Math.abs(n),b=d;while(b){var t=b;b=a%b;a=t}n=n/a;d=d/a;return d===1?String(n):n+'/'+d};var r=1,s=3,t=-2; return frac(r+s+t, r*s*t);"
+  }
+ },
+ {
+  "id": "SADV7D-10",
+  "domain": "Advanced Math",
+  "subskill": "inverse of a shifted cube at two outputs, one needing a negative cube root: undo the +k, take the real cube root with its sign, undo the horizontal shift, then add",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (x − 3)³ + 2, and f⁻¹ is the inverse function of f. What is the value of f⁻¹(−6) + f⁻¹(29)?",
+  "choices": [
+   "7",
+   "11",
+   "1",
+   "-5"
+  ],
+  "correct_answer": "7",
+  "explanation": "f⁻¹(−6) is the x with (x − 3)³ + 2 = −6, so (x − 3)³ = −8, x − 3 = −2, x = 1. f⁻¹(29) is the x with (x − 3)³ = 27, so x − 3 = 3, x = 6. The sum is 1 + 6 = 7, which is \"7\". \"11\" comes from a solver who drops the sign of the cube root of −8, using x − 3 = 2 to get 5, then 5 + 6. \"1\" comes from a solver who ignores the horizontal shift and adds the cube roots −2 and 3 directly. \"-5\" comes from a solver who reverses the shift, solving x + 3 = −2 and x + 3 = 3 to get −5 + 0.",
+  "solve": "var inv=function(y){return Math.cbrt(y-2)+3}; return String(Math.round(inv(-6)+inv(29)));",
+  "distractor_solve": {
+   "1": "return String(Math.round(Math.cbrt(-6-2)+Math.cbrt(29-2)));",
+   "11": "var a=Math.abs(Math.cbrt(-6-2))+3, b=Math.cbrt(29-2)+3; return String(Math.round(a+b));",
+   "-5": "var a=Math.cbrt(-6-2)-3, b=Math.cbrt(29-2)-3; return String(Math.round(a+b));"
+  }
+ },
+ {
+  "id": "SADV7D-11",
+  "domain": "Advanced Math",
+  "subskill": "a polynomial defined through p(x²): rewrite the rule in terms of the input t = x² (no real x reaches a negative input), then evaluate at a negative number",
+  "difficulty": "hard",
+  "prompt": "The polynomial p satisfies p(x²) = 2x⁶ − x⁴ + 3x² − 5 for all values of x. What is the value of p(−2)?",
+  "choices": [
+   "119",
+   "-31",
+   "1",
+   "-23"
+  ],
+  "correct_answer": "-31",
+  "explanation": "Writing t = x², the rule says p(t) = 2t³ − t² + 3t − 5 for every t ≥ 0, and since p is a polynomial this formula defines it for all t. Then p(−2) = 2(−8) − 4 + 3(−2) − 5 = −31, which is \"-31\". \"119\" comes from a solver who substitutes x = −2 into the right-hand side, computing p(4) instead of p(−2). \"1\" comes from a solver who takes (−2)³ as +8, computing 16 − 4 − 6 − 5. \"-23\" comes from a solver who takes (−2)² as −4, computing −16 + 4 − 6 − 5.",
+  "solve": "var p=function(t){return 2*t*t*t-t*t+3*t-5}; var chk=Math.pow(3,6)*2-Math.pow(3,4)+3*9-5; if(p(9)!==chk) throw new Error('rewrite wrong'); return String(p(-2));",
+  "distractor_solve": {
+   "1": "return String(2*8-4+3*(-2)-5);",
+   "119": "var x=-2; return String(2*Math.pow(x,6)-Math.pow(x,4)+3*x*x-5);",
+   "-23": "return String(2*(-8)-(-4)+3*(-2)-5);"
+  }
+ },
+ {
+  "id": "SADV7D-12",
+  "domain": "Advanced Math",
+  "subskill": "recover a linear inner function from two values of a cubic composition: take real cube roots (one negative) to get two linear equations in a and b, then evaluate g elsewhere",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = x³ and g(x) = ax + b, where a and b are constants. If f(g(1)) = 27 and f(g(−1)) = −1, what is the value of g(4)?",
+  "choices": [
+   "6",
+   "69",
+   "9",
+   "12"
+  ],
+  "correct_answer": "9",
+  "explanation": "f(g(1)) = (g(1))³ = 27 gives g(1) = 3, so a + b = 3. f(g(−1)) = (g(−1))³ = −1 gives g(−1) = −1, so −a + b = −1. Adding, 2b = 2, so b = 1 and a = 2, and g(4) = 2(4) + 1 = 9, which is \"9\". \"6\" comes from a solver who drops the sign of the cube root of −1, using −a + b = 1 to get a = 1, b = 2, and 1(4) + 2. \"69\" comes from a solver who skips the cube roots, solving a + b = 27 and −a + b = −1 to get a = 14, b = 13, and 14(4) + 13. \"12\" comes from a solver who assumes g has no constant term, taking a³ = 27, a = 3, and 3(4).",
+  "solve": "var g1=Math.cbrt(27), gm1=Math.cbrt(-1); var b=(g1+gm1)/2, a=(g1-gm1)/2; return String(Math.round(a*4+b));",
+  "distractor_solve": {
+   "6": "var g1=3, gm1=1; var b=(g1+gm1)/2, a=(g1-gm1)/2; return String(a*4+b);",
+   "12": "var a=Math.cbrt(27); return String(Math.round(a*4));",
+   "69": "var g1=27, gm1=-1; var b=(g1+gm1)/2, a=(g1-gm1)/2; return String(a*4+b);"
+  }
+ }
+]
