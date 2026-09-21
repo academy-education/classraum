@@ -76,7 +76,17 @@ export default function RootLayout({
     // suppressHydrationWarning: the theme boot script below adds the
     // .dark class before React hydrates — expected mismatch, same
     // pattern next-themes uses.
-    <html lang="en" suppressHydrationWarning>
+    // Font variables live on <html>, not <body>. Tailwind's preflight sets
+    // `:host, html { font-family: var(--default-font-family) }` and our theme
+    // points that at var(--font-montserrat) — but while the variable was
+    // declared only on <body>, it was undefined on <html>, so that whole
+    // declaration was invalid at computed-value time and <html> fell back to
+    // the UA serif. Anything painting before body classes settle got Times.
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${notoSansKR.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Explicit viewport meta for Capacitor/iOS WebView - ensures safe-area-inset-* CSS env variables work */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />

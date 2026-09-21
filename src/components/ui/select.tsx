@@ -126,7 +126,11 @@ function SelectItem({
       onSelect={(e) => { hapticTap(); onSelect?.(e) }}
       data-slot="select-item"
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2 data-[state=checked]:bg-blue-50 data-[state=checked]:text-blue-600",
+        // text-base, NOT text-sm: the trigger above is text-base (16px) while
+        // the theme remaps --text-sm to 13px, so an unmatched item made the
+        // text jump 3px the moment the dropdown opened. "One size for every
+        // form control" (3d4f8c8c) raised the trigger and missed the list.
+        "focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-base outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2 data-[state=checked]:bg-blue-50 data-[state=checked]:text-blue-600",
         className
       )}
       {...props}

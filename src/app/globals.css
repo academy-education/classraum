@@ -425,9 +425,9 @@
     background: rgba(0, 0, 0, 0.32);
   }
 
-  .font-korean {
-    font-family: var(--font-noto-sans-kr), var(--font-montserrat), system-ui, sans-serif;
-  }
+  /* .font-korean deliberately does NOT live here — see the unlayered rule
+     below the @layer utilities block. It has to sit outside any cascade
+     layer to beat next/font's generated class. */
 
   .animate-fade-in {
     animation: fadeIn 0.8s ease-out forwards;
@@ -494,6 +494,38 @@
   .rich-text-editor-content .ProseMirror p:last-child {
     margin-bottom: 0;
   }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * Korean face. UNLAYERED ON PURPOSE, and scoped to body on purpose.
+ *
+ * This rule spent its whole life inside `@layer utilities` and never once
+ * applied. `<body>` carries next/font's generated class, which sets
+ * `font-family: Montserrat, "Montserrat Fallback"` and is UNLAYERED — and in
+ * the CSS cascade an unlayered rule beats a layered one outright, whatever
+ * its specificity and wherever it sits in the file. So LanguageContext has
+ * been adding and removing `.font-korean` on every language switch with no
+ * effect at all; verified in the browser, where toggling the class moved the
+ * computed font-family by nothing.
+ *
+ * The visible symptom was not "Korean looks wrong". Montserrat has no Hangul,
+ * so the browser fell back PER GLYPH to whatever the OS offers. A string
+ * mixing scripts — which is most labels in this app — rendered half in
+ * Montserrat and half in Apple SD Gothic Neo or Malgun Gothic, at different
+ * weights and metrics. That is the "inconsistent font" people were seeing.
+ *
+ * `body.font-korean` rather than `.font-korean` so it also wins on specificity
+ * (0,1,1 against 0,1,0) and does not depend on injection order.
+ * ───────────────────────────────────────────────────────────────── */
+body.font-korean {
+  font-family: var(--font-noto-sans-kr), var(--font-montserrat), system-ui, sans-serif;
+}
+
+/* `font: inherit` from Tailwind's preflight covers button, input, optgroup,
+   select and textarea — but not `option`, so native dropdown items kept the
+   OS UI font. */
+option {
+  font: inherit;
 }
 
 /* ─────────────────────────────────────────────────────────────────
