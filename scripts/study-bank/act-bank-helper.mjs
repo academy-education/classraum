@@ -84,12 +84,21 @@ function gateOrDie(section, file) {
     console.log(`gate: ${g.batch} — ${g.reason}`)
   }
 }
+/** The sections this helper handles. One list, read by both the usage
+ *  line and the validator, so they cannot drift apart again. */
+const SECTIONS = ['english', 'reading', 'science']
 const APPLY = process.argv.includes('--apply')
 if (!cmd || !section || !file || (cmd === 'insert' && !cohort)) {
-  console.error('usage: act-bank-helper.mjs check|insert english|reading <batch.json> [cohort] [--apply]')
+  /* The section list here is DERIVED from the one the next line validates
+   * against, not typed twice. It read "english|reading" while the validator
+   * accepted science — so the usage line told a reader that a supported
+   * section was not supported, which is how a capability goes unused. Found
+   * by a science author who ran the command the usage line said was invalid
+   * and watched it work. */
+  console.error(`usage: act-bank-helper.mjs check|insert ${SECTIONS.join('|')} <batch.json> [cohort] [--apply]`)
   process.exit(1)
 }
-if (!['english', 'reading', 'science'].includes(section)) { console.error(`section must be english, reading or science (math uses math-bank-helper.mjs)`); process.exit(1) }
+if (!SECTIONS.includes(section)) { console.error(`section must be ${SECTIONS.join(', ')} (math uses math-bank-helper.mjs)`); process.exit(1) }
 
 /* Mirrors src/lib/study/act-test.ts. Kept literal here so this script
    has no TS import path to break; act-blueprint.test.ts pins the source. */
