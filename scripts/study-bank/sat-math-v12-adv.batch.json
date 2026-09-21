@@ -1,0 +1,338 @@
+[
+ {
+  "id": "SM12A-01",
+  "domain": "Advanced Math",
+  "subskill": "evaluating a rational function at a value, with the whole numerator over the whole denominator",
+  "difficulty": "easy",
+  "prompt": "The function g is defined by g(x) = (x^2 + 3x)/(x - 1). What is the value of g(5)?",
+  "choices": [
+   "7",
+   "10",
+   "28.75",
+   "40"
+  ],
+  "correct_answer": "10",
+  "explanation": "Substituting x = 5 gives (25 + 15)/(5 - 1) = 40/4 = 10, which is \"10\". \"40\" is the numerator alone, an intermediate value reported before the division. \"7\" comes from dividing only by x and then subtracting 1, as (40/5) - 1. \"28.75\" comes from attaching the denominator to the 3x term only, as 25 + 15/4.",
+  "solve": "var x=5; return String((x*x+3*x)/(x-1));",
+  "distractor_solve": {
+   "40": "var x=5; return String(x*x+3*x);",
+   "7": "var x=5; return String((x*x+3*x)/x-1);",
+   "28.75": "var x=5; return String(x*x+3*x/(x-1));"
+  }
+ },
+ {
+  "id": "SM12A-02",
+  "domain": "Advanced Math",
+  "subskill": "an exponential equation whose exponent is a linear expression: match the powers of a common base, then solve the resulting linear equation",
+  "difficulty": "easy",
+  "prompt": "If 3^(2x - 1) = 243, what is the value of x?",
+  "choices": [
+   "2",
+   "2.5",
+   "3",
+   "5"
+  ],
+  "correct_answer": "3",
+  "explanation": "Since 243 = 3^5, the exponents must be equal: 2x - 1 = 5, so 2x = 6 and x = 3, which is \"3\". \"5\" is the exponent 2x - 1, reported before the linear equation is solved. \"2.5\" comes from dropping the -1 and solving 2x = 5. \"2\" comes from moving the -1 to the wrong side, solving 2x = 5 - 1.",
+  "solve": "var e=Math.log(243)/Math.log(3); return String((e+1)/2);",
+  "distractor_solve": {
+   "5": "return String(Math.log(243)/Math.log(3));",
+   "2.5": "var e=Math.log(243)/Math.log(3); return String(e/2);",
+   "2": "var e=Math.log(243)/Math.log(3); return String((e-1)/2);"
+  }
+ },
+ {
+  "id": "SM12A-03",
+  "domain": "Advanced Math",
+  "subskill": "a cube root equation: cube both sides, then undo the linear expression inside the radical",
+  "difficulty": "easy",
+  "prompt": "If the cube root of (2x - 5) is equal to 3, what is the value of x?",
+  "choices": [
+   "16",
+   "4",
+   "7",
+   "11"
+  ],
+  "correct_answer": "16",
+  "explanation": "Cubing both sides gives 2x - 5 = 27, so 2x = 32 and x = 16, which is \"16\". \"11\" comes from a sign slip after cubing, 2x = 27 - 5. \"7\" comes from squaring instead of cubing, 2x - 5 = 9. \"4\" comes from omitting the radical altogether and solving 2x - 5 = 3.",
+  "solve": "return String((Math.pow(3,3)+5)/2);",
+  "distractor_solve": {
+   "11": "return String((Math.pow(3,3)-5)/2);",
+   "7": "return String((Math.pow(3,2)+5)/2);",
+   "4": "return String((3+5)/2);"
+  }
+ },
+ {
+  "id": "SM12A-04",
+  "domain": "Advanced Math",
+  "subskill": "a product of complex numbers set equal to a given complex number: i^2 = -1 moves one term into the real part, which fixes the unknown before the imaginary part can be read",
+  "difficulty": "medium",
+  "prompt": "(4 + i)(a + 3i) = 5 + bi\nIn the equation above, a and b are real constants and i is the imaginary unit. What is the value of b?",
+  "choices": [
+   "14",
+   "2",
+   "12.5",
+   "15"
+  ],
+  "correct_answer": "14",
+  "explanation": "Expanding gives 4a + 12i + ai + 3i^2 = (4a - 3) + (12 + a)i. Matching real parts, 4a - 3 = 5, so a = 2. Matching imaginary parts, b = 12 + a = 14, which is \"14\". \"2\" is the value of a, not b. \"12.5\" comes from using i^2 = 1, which gives 4a + 3 = 5 and a = 0.5. \"15\" comes from using the coefficient 3 from 3i in place of a when evaluating 12 + a.",
+  "solve": "var a=(5+3)/4; return String(12+a);",
+  "distractor_solve": {
+   "2": "return String((5+3)/4);",
+   "12.5": "var a=(5-3)/4; return String(12+a);",
+   "15": "return String(12+3);"
+  }
+ },
+ {
+  "id": "SM12A-05",
+  "domain": "Advanced Math",
+  "subskill": "the average rate of change of a quadratic over an interval, where one endpoint value is negative",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 - 4x. What is the average rate of change of f from x = 1 to x = 5?",
+  "choices": [
+   "0.5",
+   "2",
+   "1.6",
+   "8"
+  ],
+  "correct_answer": "2",
+  "explanation": "f(5) = 25 - 20 = 5 and f(1) = 1 - 4 = -3, so the change in f is 5 - (-3) = 8 over a change of 4 in x, giving 8/4 = 2, which is \"2\". \"8\" is the change in f alone, reported without dividing by the change in x. \"0.5\" comes from inverting the quotient as 4/8. \"1.6\" comes from dividing by 5, the right endpoint, instead of by the width 4.",
+  "solve": "var f=function(x){return x*x-4*x;}; return String((f(5)-f(1))/(5-1));",
+  "distractor_solve": {
+   "8": "var f=function(x){return x*x-4*x;}; return String(f(5)-f(1));",
+   "0.5": "var f=function(x){return x*x-4*x;}; return String((5-1)/(f(5)-f(1)));",
+   "1.6": "var f=function(x){return x*x-4*x;}; return String((f(5)-f(1))/5);"
+  }
+ },
+ {
+  "id": "SM12A-06",
+  "domain": "Advanced Math",
+  "subskill": "a linear function composed with itself: the output of the inner evaluation becomes the input of the outer one",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 3x - 2, and h is defined by h(x) = f(f(x)). What is the value of h(4)?",
+  "choices": [
+   "10",
+   "28",
+   "34",
+   "44"
+  ],
+  "correct_answer": "28",
+  "explanation": "First f(4) = 3(4) - 2 = 10, and then f(10) = 3(10) - 2 = 28, which is \"28\". \"10\" is the inner value f(4), reported before the outer function is applied. \"34\" comes from applying the -2 only once, as 3(3 times 4) - 2. \"44\" comes from expanding f(f(x)) as 9x + 8 instead of 9x - 8 and evaluating at x = 4.",
+  "solve": "var f=function(x){return 3*x-2;}; return String(f(f(4)));",
+  "distractor_solve": {
+   "10": "var f=function(x){return 3*x-2;}; return String(f(4));",
+   "34": "return String(3*(3*4)-2);",
+   "44": "return String(9*4+8);"
+  }
+ },
+ {
+  "id": "SM12A-07",
+  "domain": "Advanced Math",
+  "subskill": "the minimum value of a quadratic given in factored form: the axis of symmetry is the mean of the zeros, and the leading factor scales the result",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 2(x - 3)(x + 7). What is the minimum value of f?",
+  "choices": [
+   "-100",
+   "-42",
+   "-50",
+   "-2"
+  ],
+  "correct_answer": "-50",
+  "explanation": "The zeros are 3 and -7, so the axis of symmetry is x = (3 + (-7))/2 = -2. Then f(-2) = 2(-5)(5) = -50, which is \"-50\". \"-2\" is the x-coordinate of the vertex rather than the minimum value. \"-42\" is f(0) = 2(-3)(7), the value at the y-intercept instead of at the vertex. \"-100\" comes from squaring the leading coefficient, evaluating 4(-5)(5).",
+  "solve": "var h=(3+(-7))/2; return String(2*(h-3)*(h+7));",
+  "distractor_solve": {
+   "-2": "return String((3+(-7))/2);",
+   "-42": "return String(2*(0-3)*(0+7));",
+   "-100": "var h=-2; return String(4*(h-3)*(h+7));"
+  }
+ },
+ {
+  "id": "SM12A-08",
+  "domain": "Advanced Math",
+  "subskill": "two known zeros of a cubic pin its two unknown coefficients through a linear system; the third zero then follows from the sum of the zeros",
+  "difficulty": "hard",
+  "prompt": "The polynomial p(x) = x^3 + ax^2 - 7x + b, where a and b are constants, has zeros at x = 1 and x = -2. What is the third zero of p?",
+  "choices": [
+   "2",
+   "5",
+   "3",
+   "10"
+  ],
+  "correct_answer": "5",
+  "explanation": "Since p(1) = 0, 1 + a - 7 + b = 0, so a + b = 6. Since p(-2) = 0, -8 + 4a + 14 + b = 0, so 4a + b = -6. Subtracting gives 3a = -12, so a = -4 and b = 10, and p(x) = x^3 - 4x^2 - 7x + 10. The three zeros sum to -a = 4, so the third is 4 - 1 - (-2) = 5, which is \"5\". Checking: p(5) = 125 - 100 - 35 + 10 = 0. \"10\" is the constant b, read off as a zero rather than used in the product of the zeros. \"3\" comes from subtracting only the zero x = 1 from the sum 4. \"2\" comes from reporting the opposite of the known zero -2.",
+  "solve": "var a=(-6-6)/3; return String(-a-1-(-2));",
+  "distractor_solve": {
+   "10": "var a=(-6-6)/3; return String(6-a);",
+   "3": "var a=(-6-6)/3; return String(-a-1);",
+   "2": "return String(-(-2));"
+  }
+ },
+ {
+  "id": "SM12A-09",
+  "domain": "Advanced Math",
+  "subskill": "a distance problem whose two rates differ by a stated amount and whose times differ by a stated amount: the set-up is a rational equation that becomes a quadratic, and the negative root must be discarded",
+  "difficulty": "hard",
+  "prompt": "A car travels 300 miles at a constant average speed. If its average speed had been 15 miles per hour greater, the trip would have taken 1 hour less. What was the car's actual average speed, in miles per hour?",
+  "choices": [
+   "5",
+   "20",
+   "75",
+   "60"
+  ],
+  "correct_answer": "60",
+  "explanation": "If r is the actual speed, then 300/r - 300/(r + 15) = 1. Multiplying by r(r + 15) gives 300(r + 15) - 300r = r^2 + 15r, so 4500 = r^2 + 15r and r^2 + 15r - 4500 = 0, which factors as (r + 75)(r - 60) = 0. The speed must be positive, so r = 60, which is \"60\". Checking: 300/60 = 5 hours and 300/75 = 4 hours, a difference of 1. \"75\" is the hypothetical faster speed, r + 15. \"5\" is the actual travel time in hours, an intermediate value rather than a speed. \"20\" comes from dividing the distance by the speed increase, 300/15.",
+  "solve": "var d=Math.sqrt(225+4*4500); return String((-15+d)/2);",
+  "distractor_solve": {
+   "75": "var d=Math.sqrt(225+4*4500); return String((-15+d)/2+15);",
+   "5": "var d=Math.sqrt(225+4*4500); var r=(-15+d)/2; return String(300/r);",
+   "20": "return String(300/15);"
+  }
+ },
+ {
+  "id": "SM12A-10",
+  "domain": "Advanced Math",
+  "subskill": "a symmetric expression in x and 1/x: squaring the given sum produces a cross term that is a known constant, so the answer never requires finding x",
+  "difficulty": "hard",
+  "prompt": "If x + 1/x = 5, what is the value of x^2 + 1/x^2?",
+  "choices": [
+   "10",
+   "25",
+   "27",
+   "23"
+  ],
+  "correct_answer": "23",
+  "explanation": "Squaring both sides gives (x + 1/x)^2 = x^2 + 2 + 1/x^2 = 25, because the cross term is 2 times x times 1/x, which is 2. So x^2 + 1/x^2 = 25 - 2 = 23, which is \"23\". \"25\" is the square of the given sum, reported before the cross term is removed. \"27\" comes from adding 2 rather than subtracting it. \"10\" comes from doubling the given sum, as though squaring each term separately gave 2 times 5.",
+  "solve": "var s=5; return String(s*s-2);",
+  "distractor_solve": {
+   "25": "return String(5*5);",
+   "27": "return String(5*5+2);",
+   "10": "return String(2*5);"
+  }
+ },
+ {
+  "id": "SM12A-11",
+  "domain": "Advanced Math",
+  "subskill": "maximising a quadratic area function under a constraint in which one side is supplied by a wall, so the fencing covers three sides rather than four",
+  "difficulty": "hard",
+  "prompt": "A rectangular pen is to be enclosed on three sides by 60 meters of fencing, with a straight existing wall forming the fourth side. What is the greatest possible area of the pen, in square meters?",
+  "choices": [
+   "400",
+   "675",
+   "450",
+   "900"
+  ],
+  "correct_answer": "450",
+  "explanation": "If w is the length of each of the two sides perpendicular to the wall, then the side parallel to the wall is 60 - 2w, and the area is A = w(60 - 2w). This is a quadratic with zeros at w = 0 and w = 30, so it is greatest at w = 15, giving A = 15(30) = 450, which is \"450\". \"400\" comes from splitting the 60 meters into three equal sides of 20 and taking 20 times 20. \"675\" comes from using w = 15 but writing the parallel side as 60 - w = 45. \"900\" comes from treating the constraint as w + l = 60, which would maximise at 30 by 30 and requires 120 meters of fencing.",
+  "solve": "var L=60; var w=L/4; return String(w*(L-2*w));",
+  "distractor_solve": {
+   "400": "return String(20*20);",
+   "675": "return String(15*(60-15));",
+   "900": "return String(30*30);"
+  }
+ },
+ {
+  "id": "SM12A-12",
+  "domain": "Advanced Math",
+  "subskill": "an absolute value equation whose other side is quadratic: each case yields two candidates and exactly one candidate from each case survives substitution",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all real solutions to |x - 3| = x^2 - 9?",
+  "choices": [
+   "-4",
+   "-3",
+   "3",
+   "-1"
+  ],
+  "correct_answer": "-1",
+  "explanation": "For x >= 3 the equation is x - 3 = x^2 - 9, that is x^2 - x - 6 = 0, with roots 3 and -2; only 3 lies in this case. For x < 3 it is 3 - x = x^2 - 9, that is x^2 + x - 12 = 0, with roots 3 and -4; only -4 lies in this case. Checking -4: |-4 - 3| = 7 and 16 - 9 = 7. The real solutions are 3 and -4, and their sum is \"-1\". \"-3\" comes from also keeping -2, which fails because 16 - 9 is not equal to -5. \"3\" comes from solving only the first case. \"-4\" comes from solving only the second case.",
+  "solve": "var r=[], d1=Math.sqrt(1+24), d2=Math.sqrt(1+48); r.push((1+d1)/2,(1-d1)/2,(-1+d2)/2,(-1-d2)/2); var s=0, seen=[]; for(var i=0;i<r.length;i++){ var x=r[i]; if(Math.abs(Math.abs(x-3)-(x*x-9))<1e-9){ var dup=false; for(var j=0;j<seen.length;j++) if(Math.abs(seen[j]-x)<1e-9) dup=true; if(!dup){ seen.push(x); s+=x; } } } return String(s);",
+  "distractor_solve": {
+   "-3": "var d1=Math.sqrt(25), d2=Math.sqrt(49); return String((1+d1)/2 + (1-d1)/2 + (-1-d2)/2);",
+   "3": "var d1=Math.sqrt(25); return String((1+d1)/2);",
+   "-4": "var d2=Math.sqrt(49); return String((-1-d2)/2);"
+  }
+ },
+ {
+  "id": "SM12A-13",
+  "domain": "Advanced Math",
+  "subskill": "a parabola whose vertex is required to lie on a given line: expressing both vertex coordinates in terms of the unknown coefficient produces a quadratic in that coefficient with two valid values",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = x^2 + bx + 12 has its vertex on the line y = x, where b is a constant. What is the greatest possible value of b?",
+  "choices": [
+   "8",
+   "-6",
+   "-4",
+   "24"
+  ],
+  "correct_answer": "8",
+  "explanation": "The vertex is at x = -b/2, where y = 12 - b^2/4. Requiring the vertex to lie on y = x gives 12 - b^2/4 = -b/2, and multiplying by 4 gives 48 - b^2 = -2b, so b^2 - 2b - 48 = 0 and (b - 8)(b + 6) = 0. Both b = 8 and b = -6 work, so the greatest is \"8\". Checking b = 8: the vertex is (-4, -4), which lies on y = x. \"-6\" is the other valid value, which is the least rather than the greatest. \"-4\" is the x-coordinate of the vertex when b = 8, not the value of b. \"24\" comes from reading b^2 - 2b = 48 as 2b = 48.",
+  "solve": "var d=Math.sqrt(4+4*48); return String((2+d)/2);",
+  "distractor_solve": {
+   "-6": "var d=Math.sqrt(4+4*48); return String((2-d)/2);",
+   "-4": "return String(-8/2);",
+   "24": "return String(48/2);"
+  }
+ },
+ {
+  "id": "SM12A-14",
+  "domain": "Advanced Math",
+  "subskill": "an exponential model whose exponent is divided by the length of the doubling period: the ratio gives the exponent, which must then be scaled back to the time variable",
+  "difficulty": "medium",
+  "prompt": "The number of bacteria in a culture is modeled by N(t) = 200 times 2^(t/3), where t is the number of hours since the culture was prepared. After how many hours does the culture contain 6,400 bacteria?",
+  "choices": [
+   "15",
+   "5",
+   "32",
+   "96"
+  ],
+  "correct_answer": "15",
+  "explanation": "Dividing gives 2^(t/3) = 6400/200 = 32, and 32 = 2^5, so t/3 = 5 and t = 15, which is \"15\". \"5\" is the exponent t/3, reported before it is scaled back to t. \"32\" is the growth ratio 6400/200, not a time. \"96\" comes from multiplying that ratio by 3 instead of multiplying the exponent by 3.",
+  "solve": "return String(3*Math.log2(6400/200));",
+  "distractor_solve": {
+   "5": "return String(Math.log2(6400/200));",
+   "32": "return String(6400/200);",
+   "96": "return String(3*(6400/200));"
+  }
+ },
+ {
+  "id": "SM12A-15",
+  "domain": "Advanced Math",
+  "subskill": "the constant that completes the square on a quadratic expression with an even linear coefficient",
+  "difficulty": "medium",
+  "prompt": "If x^2 + 14x + c is the square of a binomial, what is the value of c?",
+  "choices": [
+   "7",
+   "21",
+   "196",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "The square of (x + n) is x^2 + 2nx + n^2, so 2n = 14 and n = 7, which makes c = n^2 = 49. The expression is (x + 7)^2, so the answer is \"49\". \"7\" is the value of n, an intermediate value rather than the constant term. \"196\" comes from squaring the linear coefficient 14 itself instead of half of it. \"21\" comes from adding the linear coefficient and its half, 14 + 7.",
+  "solve": "var b=14; return String((b/2)*(b/2));",
+  "distractor_solve": {
+   "7": "return String(14/2);",
+   "196": "return String(14*14);",
+   "21": "return String(14+14/2);"
+  }
+ },
+ {
+  "id": "SM12A-16",
+  "domain": "Advanced Math",
+  "subskill": "factoring a quadratic with a leading coefficient greater than 1 and selecting the positive solution",
+  "difficulty": "medium",
+  "prompt": "If 2x^2 + 5x - 3 = 0, what is the positive solution for x?",
+  "choices": [
+   "1/3",
+   "2",
+   "1/2",
+   "3"
+  ],
+  "correct_answer": "1/2",
+  "explanation": "The expression factors as (2x - 1)(x + 3), so the solutions are x = 1/2 and x = -3. The positive one is \"1/2\". \"3\" is the magnitude of the negative solution, with its sign dropped. \"2\" comes from reading the coefficient in the factor (2x - 1) as a solution rather than solving 2x - 1 = 0. \"1/3\" comes from inverting the magnitude of the negative solution.",
+  "solve": "var d=Math.sqrt(25+24); return String((-5+d)/4);",
+  "distractor_solve": {
+   "3": "var d=Math.sqrt(25+24); return String(Math.abs((-5-d)/4));",
+   "2": "var lead=2; return String(lead);",
+   "1/3": "var d=Math.sqrt(25+24); return String(1/Math.abs((-5-d)/4));"
+  }
+ }
+]

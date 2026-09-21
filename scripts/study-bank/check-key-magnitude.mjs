@@ -1,144 +1,91 @@
 #!/usr/bin/env node
 /**
- * check-key-magnitude.mjs — is the key's VALUE RANK predictable?
+ * check-key-magnitude.mjs <family> <batch.json>
  *
- * Found 2026-09-04 by a with-source grader reading three math batches as a
- * set: the key was the largest option in only 7 of 62 numeric items (11%
- * against a 25% control), and 1 of 18 in one batch. "Eliminate the largest
- * option" is then a free elimination on nearly every item.
+ * Is the key the LARGEST (or smallest) of its options more or less often than
+ * in the live bank for the same family/section?
  *
- * The cause is the authoring brief, not chance: the "forgot the last step /
- * didn't convert the unit" distractor is systematically LARGER than the key
- * (8640 seconds, 108 dollars, 28 km, 20000 members). Reshuffling letters does
- * not fix it — SAT and ACT both list options in ascending order, so the fix is
- * to vary which direction the incomplete answer points.
+ * WHY THIS EXISTS. On 2026-09-22 act-math-v11 passed the options-only attack
+ * at 33.3% against a derived control of 35.7% -- margin -2.4, a clean pass --
+ * while the key was the largest option on 7.1% of items against 21.5% in the
+ * live bank. A solver applying "never the largest" mechanically scored exactly
+ * 33.3%, which is 1/4 -> 1/3: the value of one free elimination.
  *
- * This is decidable arithmetic, so it is measured over the whole population
- * rather than sampled — the rule this repo already applies to the hub.
+ * The pooled margin CANNOT see this. A tell that shifts the whole option set
+ * also raises the best-fixed-letter control it is measured against, so the two
+ * move together and the margin stays flat. Magnitude rank therefore needs its
+ * own check, against the live bank rather than against 25%.
  *
- *   node scripts/study-bank/check-key-magnitude.mjs --selftest
- *   node scripts/study-bank/check-key-magnitude.mjs <batch.json>...
- *   node scripts/study-bank/check-key-magnitude.mjs --bank [family] [section]
+ * FRACTIONS ARE EVALUATED. The first two versions of this measurement were
+ * wrong: one stripped non-digits so "11/6" became 116, the other read it as
+ * the mixed number "1 1/6" because the space was optional. Both silently
+ * mis-ranked every fraction-bearing item. The parser is self-tested below and
+ * the CLI refuses to run if the fixtures fail.
  */
+import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
 
+export function val(s) {
+  let t = String(s).trim().replace(/[$,]/g, '').replace(/[a-zA-Z°%]+$/, '').trim()
+  const mixed = t.match(/^(-?\d+)\s+(\d+)\/(\d+)$/)          // space REQUIRED
+  if (mixed) { const w = Number(mixed[1]), f = Number(mixed[2]) / Number(mixed[3]); return w < 0 ? w - f : w + f }
+  const frac = t.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/)
+  if (frac) { const d = Number(frac[2]); return d === 0 ? null : Number(frac[1]) / d }
+  t = t.replace(/\s+/g, '')
+  if (!/^-?[\d.]+$/.test(t)) return null
+  const v = parseFloat(t)
+  return isFinite(v) ? v : null
+}
+
+export function rank(items) {
+  let n = 0, big = 0, small = 0
+  for (const x of items) {
+    const o = (x.choices || []).map(val)
+    if (o.length !== 4 || o.some(v => v === null) || new Set(o).size !== 4) continue
+    const k = val(x.correct_answer); if (k === null) continue
+    n++; if (k === Math.max(...o)) big++; if (k === Math.min(...o)) small++
+  }
+  return { n, big, small }
+}
+
 const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-key-magnitude.mjs')
+if (RUN_AS_CLI) {
+  const T = [['11/6', 11/6], ['3/11', 3/11], ['1/2', .5], ['$196.50', 196.5], ['1,296', 1296],
+             ['8,400 ft', 8400], ['-18', -18], ['2 1/2', 2.5], ['45°', 45], ['abc', null], ['x + 3', null]]
+  for (const [i, w] of T) { const g = val(i)
+    const ok = (w === null) ? g === null : (g !== null && Math.abs(g - w) < 1e-9)
+    if (!ok) { console.error(`SELF-TEST FAILED: val(${JSON.stringify(i)}) = ${g}, want ${w}`); process.exit(2) } }
+  if (!(val('11/6') > val('1/2'))) { console.error('SELF-TEST FAILED: fraction ordering'); process.exit(2) }
 
-/** Parse an option to a number; null when it is not purely numeric. */
-export function value(s) {
-  const t = String(s ?? '').trim().replace(/[\s,$%]/g, '')
-  if (/^-?\d+\/-?\d+$/.test(t)) { const [a, b] = t.split('/').map(Number); return b === 0 ? null : a / b }
-  if (/^-?\d*\.?\d+$/.test(t)) return Number(t)
-  return null
-}
+  const [fam, file] = process.argv.slice(2)
+  if (!fam || !file) { console.error('usage: check-key-magnitude.mjs <family/section> <batch.json>'); process.exit(2) }
+  const [family, section] = fam.split('/')
+  let cand
+  try { cand = JSON.parse(readFileSync(file, 'utf8')) } catch (e) { console.error(`REFUSING: cannot read ${file}: ${e.message}`); process.exit(2) }
+  if (!Array.isArray(cand) || !cand.length) { console.error(`REFUSING: ${file} holds zero items`); process.exit(2) }
 
-/** rank 1 = smallest. null when the set is not fully numeric or has ties. */
-export function keyRank(choices, key) {
-  const vals = choices.map(value)
-  if (vals.some(v => v === null)) return null
-  if (new Set(vals).size !== vals.length) return null
-  const ki = choices.indexOf(key)
-  if (ki < 0) return null
-  const sorted = [...vals].sort((a, b) => a - b)
-  return { rank: sorted.indexOf(vals[ki]) + 1, n: vals.length }
-}
-
-function report(label, rows) {
-  const scored = rows.map(r => keyRank(r.choices, r.key)).filter(Boolean)
-  // Zero scorable sets is the ABSENCE of a measurement, not a clean result.
-  // Returning undefined here let the CLI fall through to exit 0, so a batch
-  // this checker could not read printed a calm line and passed an `&&` chain
-  // exactly like a flat 25/25/25/25. Same defect class as the six checkers in
-  // the CLAUDE.md corollary; check-math-hub was fixed for it and this was not.
-  if (!scored.length) {
-    console.log(`${label.padEnd(34)} NOT MEASURED — no fully-numeric option sets (0 scorable of ${rows.length})`)
-    return null
-  }
-  const n = scored.length
-  const hist = {}
-  for (const s of scored) hist[s.rank] = (hist[s.rank] ?? 0) + 1
-  // Option count comes from the DATA, not a hardcoded 4. This printed ranks
-  // 1-4 against a 25% control for SSAT, which is five-choice: rank 5 was
-  // silently dropped and the percentages summed to 83%, not 100. Found by an
-  // SSAT author who noticed the columns did not add up.
-  const widths = [...new Set(scored.map(s => s.n))].sort()
-  const k = Math.max(...widths)
-  const ctrl = 100 / k
-  const pct = r => (100 * (hist[r] ?? 0) / n)
-  const ranks = Array.from({ length: k }, (_, i) => i + 1)
-  const worst = ranks.reduce((a, r) => Math.abs(pct(r) - ctrl) > Math.abs(pct(a) - ctrl) ? r : a, 1)
-  const mixed = widths.length > 1 ? `  MIXED widths ${widths.join('/')}` : ''
-  console.log(`${label.padEnd(34)} ${String(n).padStart(4)} numeric   ranks ` +
-    ranks.map(r => `${r}:${pct(r).toFixed(0)}%`).join(' ') +
-    `   worst rank ${worst} at ${pct(worst).toFixed(1)}% vs ${ctrl.toFixed(1)}%${mixed}`)
-  return { n, hist, k }
-}
-
-if (RUN_AS_CLI && process.argv.includes('--selftest')) {
-  let ok = true
-  const t = (name, got, want) => {
-    const pass = JSON.stringify(got) === JSON.stringify(want)
-    if (!pass) ok = false
-    console.log(`${pass ? 'ok  ' : 'FAIL'}  ${name}${pass ? '' : `  got ${JSON.stringify(got)} want ${JSON.stringify(want)}`}`)
-  }
-  t('key is smallest', keyRank(['2', '5', '9', '14'], '2'), { rank: 1, n: 4 })
-  t('key is largest', keyRank(['2', '5', '9', '14'], '14'), { rank: 4, n: 4 })
-  t('order in the list does not matter', keyRank(['14', '2', '9', '5'], '9'), { rank: 3, n: 4 })
-  t('currency and commas parse', keyRank(['$1,200', '$300', '$600', '$900'], '$300'), { rank: 1, n: 4 })
-  t('fractions parse', keyRank(['1/2', '1/4', '3/4', '1/8'], '1/8'), { rank: 1, n: 4 })
-  t('non-numeric set is skipped', keyRank(['x + 1', '2', '3', '4'], '2'), null)
-  t('duplicate values are skipped', keyRank(['5', '5', '9', '14'], '9'), null)
-  // control: over a set of items with the key at each rank once, the
-  // histogram must be flat, so a clean bank reads 25/25/25/25.
-  const flat = [1, 2, 3, 4].map(r => ({ choices: ['1', '2', '3', '4'], key: String(r) }))
-  const res = report('  (control, key at each rank)', flat)
-  t('control is flat', res.hist, { 1: 1, 2: 1, 3: 1, 4: 1 })
-  console.log(ok ? '\nself-test passed.' : '\nSELF-TEST FAILED.')
-  process.exit(ok ? 0 : 1)
-}
-
-const bankIdx = RUN_AS_CLI ? process.argv.indexOf('--bank') : -1
-if (bankIdx >= 0) {
-  const { createClient } = await import('@supabase/supabase-js')
   const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
-    .filter(l => l.includes('=') && !l.startsWith('#'))
-    .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
+    .filter(l => l.includes('=') && !l.startsWith('#')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
   const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
-  const wantFam = process.argv[bankIdx + 1], wantSec = process.argv[bankIdx + 2]
-  const all = []
-  for (let from = 0; ; from += 1000) {
-    const { data, error } = await db.from('study_item_bank')
-      .select('family,section,domain,item').eq('verified', true).eq('archived', false).range(from, from + 999)
-    if (error) throw new Error(error.message)
-    all.push(...(data ?? [])); if (!data || data.length < 1000) break
+  const rows = []
+  for (let f = 0; ; f += 1000) {
+    const { data, error } = await db.from('study_item_bank').select('item')
+      .eq('family', family).eq('section', section).eq('verified', true).eq('archived', false).range(f, f + 999)
+    if (error) throw new Error(error.message); rows.push(...data); if (data.length < 1000) break
   }
-  const g = {}
-  for (const r of all) {
-    if (wantFam && r.family !== wantFam) continue
-    if (wantSec && r.section !== wantSec) continue
-    const it = r.item
-    if (!Array.isArray(it?.choices) || it.correct_answer == null) continue
-    ;(g[`${r.family}/${r.section}`] ??= []).push({ choices: it.choices, key: it.correct_answer })
-  }
-  console.log(`live bank, ${all.length} verified rows read\n`)
-  const every = []
-  for (const [k, rows] of Object.entries(g).sort()) { report(k, rows); every.push(...rows) }
-  console.log(); report('ALL', every)
-} else if (RUN_AS_CLI) {
-  const files = process.argv.slice(2).filter(a => !a.startsWith('--'))
-  const every = []
-  const unmeasured = []
-  for (const f of files) {
-    const j = JSON.parse(readFileSync(f, 'utf8'))
-    const items = Array.isArray(j) ? j : j.items
-    const rows = items.filter(i => Array.isArray(i.choices)).map(i => ({ choices: i.choices, key: i.correct_answer }))
-    // A file this checker could not measure must not exit 0. See report().
-    if (report(f.split('/').pop().replace('.batch.json', ''), rows) === null) unmeasured.push(f)
-    every.push(...rows)
-  }
-  if (files.length > 1) { console.log(); report('ALL', every) }
-  if (unmeasured.length) {
-    console.error(`\nNOT A PASS: ${unmeasured.length} file(s) had no scorable option sets — ${unmeasured.join(', ')}`)
-    process.exit(2)
-  }
+  const live = rank(rows.map(r => r.item).filter(Boolean))
+  const c = rank(cand)
+  if (live.n < 50) { console.error(`REFUSING: only ${live.n} scorable live ${fam} items — too thin to be a control`); process.exit(2) }
+  if (c.n < 10) { console.error(`REFUSING: only ${c.n} scorable candidate items`); process.exit(2) }
+  const p = live.big / live.n, q = live.small / live.n
+  const z = (obs, n, pr) => (obs - n * pr) / Math.sqrt(n * pr * (1 - pr))
+  const zb = z(c.big, c.n, p), zs = z(c.small, c.n, q)
+  console.log('')
+  console.log(`  live ${fam}`.padEnd(28) + `n=${String(live.n).padStart(4)}   largest ${(100*p).toFixed(1)}%   smallest ${(100*q).toFixed(1)}%`)
+  console.log('  ' + file.replace(/^.*\//, '').padEnd(26) + `n=${String(c.n).padStart(4)}   largest ${(100*c.big/c.n).toFixed(1)}%   smallest ${(100*c.small/c.n).toFixed(1)}%`)
+  console.log(`  z against live:              largest ${zb.toFixed(2)}   smallest ${zs.toFixed(2)}     (|z| > 1.96 is a real deviation)`)
+  const bad = Math.abs(zb) > 1.96 || Math.abs(zs) > 1.96
+  console.log('  ' + (bad ? 'DEVIATES from the live bank — a free elimination is available' : 'consistent with the live bank'))
+  console.log('')
+  process.exitCode = bad ? 1 : 0
 }
