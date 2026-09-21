@@ -2551,3 +2551,24 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Disposition, and the part worth arguing with.** ACT Science **stays live**: it was unhidden on the human sitting (75d841c5) and nothing here touches that evidence. **Do not re-hide a section on a model attack that a human sitting contradicts** — I came close to doing exactly that, on a number that looked alarming and measured the wrong thing. The 20 candidate items are **committed to the repo but NOT inserted**: they are indistinguishable from the live bank by every instrument available, which is not the same as clean, it means there is no gate to clear. They wait for a human sitting.
 
   **The with-source grader's findings stand and are separate.** Difficulty easy 8 / medium 12 / hard 0 — nothing in the batch requires holding two comparisons at once — and ASCA-03/-05/-09 are answerable from the procedure alone. Those are construct defects, not leak, and the blind half would never have seen them. Fifth consecutive batch where the with-source half was the half that decided.
+
+- **2026-09-21** — **THREE SOLVERS ANSWERED 18 OF 18 HUMAN-CLEARED ACT READING ITEMS UNANIMOUSLY, WITH NO PASSAGE. A PERSON SCORED 10.0% ON THAT SAME COHORT.** Second family in one day where the blind attack is saturated, after ACT Science. Pre-registered before any solver reported (`ACT-READING-PREREG-2026-09-21.md`), which is the only reason the numbers can be read at all.
+
+  72 items rendered passage-hidden into ONE file with the arm recorded **only in the key**, so no solver could tell candidate from control — the science run handed them two separate files and that was a design fault:
+
+      arm                                 n   pooled   control   margin   unanimous
+      CANDIDATE   4 new passages         36    88.9%    33.3%    +55.6      31/36
+      CONTROL     4 live passages        36    96.3%    36.1%    +60.2      34/36
+        act-reading-v1  HUMAN-CLEARED    18   100.0%    27.8%    +72.2      18/18
+        act-reading-v7                    9   100.0%    44.4%    +55.6       9/9
+        act-reading-v4                    9    85.2%    55.6%    +29.6       7/9
+
+  **D = candidate − control(v1) = −11.1.** The candidate is ELEVEN POINTS BELOW the shipped, human-cleared bank.
+
+  **Verified rather than admired.** A 100% triggers the same suspicion as a 175/175 "solved to key": the key mapping was spot-checked three ways against the source rows (rendered option at the key letter is byte-identical to the live `correct_answer`), and the three solver files disagree on 5 of 72 items, so they are not copies of one another.
+
+  **THE BARS I PRE-REGISTERED WERE PARTLY DEGENERATE AND I AM RECORDING IT RATHER THAN BANKING THE PASS.** I set reject at D ≥ +30 without checking the control's HEADROOM. The control came in at 96.3%, so the candidate could exceed it by at most +3.7 — **the reject bar was unreachable by construction, and this run could only ever return "insert".** That is the ceiling-effect twin of the empty-denominator defect: a margin computed against a control with no room is not a measurement. **A pre-registered bar must be checked against the control's attainable range, not only its floor.** My stated discard condition covered the floor ("if the control comes in at or below chance") and said nothing about the ceiling.
+
+  **What survives the defect.** The informative direction is one-sided but real: the candidate was free to score 100% and did not, and its passages spread 74.1 / 88.9 / 92.6 / 100.0. So the run can say *the candidate is not worse than live* and cannot say *the candidate is clean*. **It is therefore not the gate.** Per §8 the with-source half decides, and it is running.
+
+  **Consequence for the method, two families in one day.** ACT Science (88.9% on shipped items a human sat at chance) and ACT Reading (100% on items a human sat at 10.0%) both saturate. SSAT Reading does NOT — shipped scores 21.1% by model and 15.0% by human — which is why its 216 rejected items stay rejected and are not reopened by any of this. **Before quoting a blind number for a family, look up whether that family has a human sitting, and if the model and the human disagree on the SHIPPED bank, the instrument is invalid there.** → **A39**
