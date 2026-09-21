@@ -1,0 +1,134 @@
+[
+ {
+  "id": "AM11T-01",
+  "domain": "Statistics and Probability",
+  "subskill": "the MEDIAN read out of a frequency description, where the data are given as counts of each value rather than as a list",
+  "prompt": "Each of the 20 students in a homeroom reported the number of siblings he or she has. Two students reported 0 siblings, 7 reported 1 sibling, 4 reported 2 siblings, 4 reported 3 siblings, and 3 reported 4 siblings. What is the median number of siblings reported?",
+  "choices": [
+   "1",
+   "1.95",
+   "2",
+   "7"
+  ],
+  "correct_answer": "2",
+  "explanation": "Listing the 20 reports in order puts 0 in the first 2 places, 1 in places 3 through 9, and 2 in places 10 through 13. With 20 values the median is the average of the 10th and the 11th, and both of those are 2, so the median is 2. The option \"1\" is the mode — the number of siblings reported most often, by 7 students — rather than the median. The option \"1.95\" is the mean, (0·2 + 1·7 + 2·4 + 3·4 + 4·3)/20 = 39/20. The option \"7\" is the largest of the five frequencies, the size of the biggest group, read as though it were a number of siblings.",
+  "topic_tag": "measures of center",
+  "difficulty": "easy",
+  "solve": "const c=[[0,2],[1,7],[2,4],[3,4],[4,3]]; const v=[]; for(const p of c) for(let i=0;i<p[1];i++) v.push(p[0]); v.sort((a,b)=>a-b); const m=v.length/2; return String((v[m-1]+v[m])/2);",
+  "distractor_solve": {
+   "1": "const c=[[0,2],[1,7],[2,4],[3,4],[4,3]]; let best=c[0]; for(const p of c) if(p[1]>best[1]) best=p; return String(best[0]);",
+   "1.95": "const c=[[0,2],[1,7],[2,4],[3,4],[4,3]]; let s=0,n=0; for(const p of c){ s+=p[0]*p[1]; n+=p[1]; } return String(s/n);",
+   "7": "const c=[[0,2],[1,7],[2,4],[3,4],[4,3]]; return String(Math.max.apply(null,c.map(p=>p[1])));"
+  }
+ },
+ {
+  "id": "AM11T-02",
+  "domain": "Statistics and Probability",
+  "subskill": "a CONDITIONAL probability from a two-way frequency breakdown, where the denominator is one row of the table rather than the whole group",
+  "prompt": "A fitness club has 120 members. Of these, 80 hold a Standard membership and 40 hold a Premium membership. Last week 28 of the Standard members and 25 of the Premium members attended at least one class. One of the club's Premium members is selected at random. What is the probability that this member attended at least one class last week?",
+  "choices": [
+   "5/24",
+   "25/53",
+   "53/120",
+   "5/8"
+  ],
+  "correct_answer": "5/8",
+  "explanation": "The selection is made from the 40 Premium members, and 25 of them attended a class, so the probability is 25/40 = 5/8. The option \"25/53\" reverses the condition: it is the fraction of the 53 members who attended who hold a Premium membership, which answers a different question. The option \"53/120\" is the probability that a member chosen from the entire club attended a class, ignoring the fact that the selection is restricted to Premium members. The option \"5/24\" is 25/120, the probability that a member of the whole club is both Premium and attended — the joint probability rather than the conditional one.",
+  "topic_tag": "two-way tables and conditional probability",
+  "difficulty": "medium",
+  "solve": "const prem=40, premAttend=25; return String(premAttend/prem);",
+  "distractor_solve": {
+   "25/53": "const stdAttend=28, premAttend=25; return String(premAttend/(stdAttend+premAttend));",
+   "53/120": "const stdAttend=28, premAttend=25, total=120; return String((stdAttend+premAttend)/total);",
+   "5/24": "const premAttend=25, total=120; return String(premAttend/total);"
+  }
+ },
+ {
+  "id": "AM11T-03",
+  "domain": "Statistics and Probability",
+  "subskill": "recovering one group's mean from a WEIGHTED overall mean, where the two groups are of unequal size",
+  "prompt": "A teacher's 25 students are divided into a morning section of 10 students and an afternoon section of 15 students. The morning section's mean score on a test was 76, and the mean score of all 25 students on that test was 82. What was the mean score of the afternoon section?",
+  "choices": [
+   "79",
+   "82",
+   "86",
+   "88"
+  ],
+  "correct_answer": "86",
+  "explanation": "The 25 scores total 25(82) = 2,050, and the morning section contributes 10(76) = 760, so the afternoon section's 15 scores total 2,050 − 760 = 1,290. Its mean is 1,290/15 = 86. The option \"88\" makes the afternoon mean exceed 82 by the same 6 points that the morning mean falls short of it, which would be correct only if the two sections were the same size; because the afternoon section is larger, it needs to run less far above the overall mean to balance the smaller section. The option \"82\" reports the overall mean rather than the afternoon section's. The option \"79\" averages 76 and 82 without weighting, treating the overall mean as though it were a second section's mean.",
+  "topic_tag": "weighted averages",
+  "difficulty": "medium",
+  "solve": "const nTot=25, mTot=82, nAm=10, mAm=76, nPm=15; return String((nTot*mTot - nAm*mAm)/nPm);",
+  "distractor_solve": {
+   "88": "const mTot=82, mAm=76; return String(mTot + (mTot - mAm));",
+   "82": "const mTot=82; return String(mTot);",
+   "79": "const mTot=82, mAm=76; return String((mAm + mTot)/2);"
+  }
+ },
+ {
+  "id": "AM11T-04",
+  "domain": "Statistics and Probability",
+  "subskill": "a compound probability WITHOUT replacement, where both the favorable count and the total count change between the two draws",
+  "prompt": "A bag contains 4 red marbles and 8 blue marbles. Two marbles are drawn at random, one after the other, and the first marble drawn is not put back into the bag before the second is drawn. What is the probability that both marbles drawn are red?",
+  "choices": [
+   "1/12",
+   "1/11",
+   "1/9",
+   "4/33"
+  ],
+  "correct_answer": "1/11",
+  "explanation": "The first draw is red with probability 4/12. If it is, then 3 red marbles remain among 11, so the second draw is red with probability 3/11. The probability that both are red is (4/12)(3/11) = 12/132 = 1/11. The option \"1/9\" is (4/12)(4/12), which treats the first marble as though it had been put back. The option \"4/33\" is (4/12)(4/11): the total drops from 12 to 11 but the number of red marbles is left at 4, so a red marble is removed from the bag without being removed from the favorable count. The option \"1/12\" is (4/12)(3/12): the red count drops to 3 but the total is left at 12, which is the same slip made in the other direction.",
+  "topic_tag": "compound probability",
+  "difficulty": "medium",
+  "solve": "const red=4, tot=12; return String((red/tot)*((red-1)/(tot-1)));",
+  "distractor_solve": {
+   "1/9": "const red=4, tot=12; return String((red/tot)*(red/tot));",
+   "4/33": "const red=4, tot=12; return String((red/tot)*(red/(tot-1)));",
+   "1/12": "const red=4, tot=12; return String((red/tot)*((red-1)/tot));"
+  }
+ },
+ {
+  "id": "AM11T-05",
+  "domain": "Statistics and Probability",
+  "subskill": "EXPECTED VALUE of a net gain, where the cost is paid on every play including the plays that pay nothing",
+  "prompt": "At a school fair, one play of a game costs $2. On each play a player wins $10 with probability 1/10, wins $4 with probability 1/5, and wins nothing otherwise. What is the expected net gain, in dollars, for one play of this game? (A net loss is reported as a negative number.)",
+  "choices": [
+   "-1.40",
+   "-0.20",
+   "1.20",
+   "1.80"
+  ],
+  "correct_answer": "-0.20",
+  "explanation": "The expected prize is 10(1/10) + 4(1/5) = 1 + 0.80 = $1.80, and the $2 cost is paid on every play, so the expected net gain is 1.80 − 2 = −$0.20. The option \"1.80\" is the expected prize with the cost never subtracted. The option \"1.20\" subtracts the cost from each prize, (1/10)(10 − 2) + (1/5)(4 − 2), but leaves the cost out of the 7 plays in 10 that win nothing, which are exactly the plays on which the $2 is a pure loss. The option \"-1.40\" is (7/10)(−2), counting only the plays that win nothing and ignoring the prizes altogether.",
+  "topic_tag": "expected value",
+  "difficulty": "medium",
+  "solve": "const cost=2; const ev=10*(1/10)+4*(1/5); return String(Math.round((ev-cost)*100)/100);",
+  "distractor_solve": {
+   "1.80": "return String(Math.round((10*(1/10)+4*(1/5))*100)/100);",
+   "1.20": "const cost=2; return String(Math.round(((1/10)*(10-cost)+(1/5)*(4-cost))*100)/100);",
+   "-1.40": "const cost=2; return String(Math.round((1-1/10-1/5)*(-cost)*100)/100);"
+  }
+ },
+ {
+  "id": "AM11T-06",
+  "domain": "Statistics and Probability",
+  "subskill": "the size of the OVERLAP of two groups, which the stem never states and which must be inferred from the fact that the two counts exceed the group total",
+  "prompt": "In a class of 30 students, 18 play the piano and 14 play the guitar. Every student in the class plays at least one of these two instruments. If one student is selected at random from the class, what is the probability that the student plays both instruments?",
+  "choices": [
+   "1/15",
+   "7/25",
+   "7/15",
+   "8/15"
+  ],
+  "correct_answer": "1/15",
+  "explanation": "Counting the piano players and the guitar players separately gives 18 + 14 = 32, which is 2 more than the 30 students in the class. Since every student plays at least one instrument, no student is left out of that count, so the excess of 2 is exactly the number of students counted twice — the students who play both. The probability is 2/30 = 1/15. The option \"7/25\" multiplies 18/30 by 14/30, which would be the answer only if playing the piano and playing the guitar were independent; here they are not, because every student plays at least one. The option \"7/15\" is 14/30, which assumes every guitar player also plays the piano. The option \"8/15\" is 16/30, the probability that a student plays the piano but not the guitar.",
+  "topic_tag": "probability and set overlap",
+  "difficulty": "hard",
+  "solve": "const n=30, p=18, g=14; return String((p+g-n)/n);",
+  "distractor_solve": {
+   "7/25": "const n=30, p=18, g=14; return String((p/n)*(g/n));",
+   "7/15": "const n=30, g=14; return String(g/n);",
+   "8/15": "const n=30, p=18, g=14; const both=p+g-n; return String((p-both)/n);"
+  }
+ }
+]

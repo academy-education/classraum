@@ -2723,3 +2723,20 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Difficulty banked from the grader again: easy 8 / medium 11 / hard 8, against the author's 12 hard.** Third batch running where the author over-labels hard and the grader demotes.
 
   **The blind half said nothing useful, for the third consecutive maths batch.** Candidate 36.3% against its derived control 32.4%; live control 35.3% against 32.4%. Indistinguishable. And the solvers' own confident picks scored **below chance** — one solver's ten "mechanism" calls came in at **10.0%**, another's at 12.5% on an earlier run. **Self-reported confidence on a clean numeric batch is anti-correlated with being right**, which is a useful calibration fact: it is what a clean options-only set should produce, and a batch where mechanism picks run high is the one to worry about.
+
+- **2026-09-22** — **ACT MATH REACHES 14 COMPLETE FORMS. A WHOLE NEW TEST, AND THE LAST THREE ITEMS CLOSED A GAP I HAD CREATED MYSELF.** 3 of 6 Statistics and Probability items ship; the section goes 13 → **14**.
+
+  The 6 existed only because `next-form` printed *"Statistics and Probability +5"* and my brief asked for **4**. The 42-item batch that preceded it covered four domains with margin and missed the form by that one number.
+
+  **All six keys correct, none second-defensible.** The grader specifically cleared the two convention risks — `AM11T-06`'s overlap is forced to exactly 2 by *"every student plays at least one"*, and `AM11T-01`'s median is 2 under **every** convention because positions 10 and 11 are both 2. That is the structural opposite of the inclusive-quartile item dropped from the previous batch, where the conventions diverged. Worth keeping as the shape of a safe centre-measure item.
+
+  **Three dropped, each for a different reason and none of them a wrong key:**
+  - `AM11T-04` — **the only item all three blind solvers solved**, and two named the same mechanism independently: the option set carries the complete with/without-replacement family, (4/12)², (4/12)(4/11), (4/12)(3/11), so **the distractors announce the stem**.
+  - `AM11T-01` — its `7` distractor is **dead**: a frequency sitting outside the 0–4 range every value in the stem occupies, so the item is effectively three-choice.
+  - `AM11T-06` — *"7/15 contradicts counts the student just read, and 8/15 requires first computing the overlap correctly then answering an unasked question"*. Close to two-option.
+
+  **A DEAL PROBLEM AT SMALL n, AND THE HONEST FIX.** A free per-item shuffle dealt **five of six keys to one letter**, giving a best-fixed-letter control of **83.3%** — the arm becomes unmeasurable. **Re-rolling seeds until the deal looks fair is choosing a result**, so instead the key SLOT was dealt as evenly as the count allows, which is the precedent set by the `ssat-cofounder` sitting (40 items dealt A8/B8/C8/D8 for a control of exactly 20.0%). Control fell to 33.3% and the comparison became honest. **At n under about 20, deal the slot flat rather than shuffling freely.**
+
+  **A DOMAIN-SPECIFIC LEAK WORTH PUTTING IN THE BRIEF: statistics option sets leak more than bare algebra ones.** Two solvers independently found that when an author computes distractors from one two-way table, the **joint, the marginal and the reverse conditional appear as siblings, and that family is a fingerprint of the stem.** A solver reconstructed `AM11T-02`'s question from its option set alone (it still could not answer it, 0 of 3). The same shape hit several live control items. CLAUDE.md's rule — *the options must not differ along the axis the stem names* — has a statistics dialect: **do not ship the marginal, the joint and the conditional of one table as each other's distractors.**
+
+  Blind result, with the denominator read first: candidate **27.8%** against a derived control of 33.3% over **n=6, which cannot support a rate**; live control 27.8% against 27.8%. The per-item result decided it, not the mean.

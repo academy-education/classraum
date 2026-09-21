@@ -1,0 +1,68 @@
+[
+ {
+  "id": "AM11T-02",
+  "domain": "Statistics and Probability",
+  "subskill": "a CONDITIONAL probability from a two-way frequency breakdown, where the denominator is one row of the table rather than the whole group",
+  "prompt": "A fitness club has 120 members. Of these, 80 hold a Standard membership and 40 hold a Premium membership. Last week 28 of the Standard members and 25 of the Premium members attended at least one class. One of the club's Premium members is selected at random. What is the probability that this member attended at least one class last week?",
+  "choices": [
+   "5/24",
+   "25/53",
+   "53/120",
+   "5/8"
+  ],
+  "correct_answer": "5/8",
+  "explanation": "The selection is made from the 40 Premium members, and 25 of them attended a class, so the probability is 25/40 = 5/8. The option \"25/53\" reverses the condition: it is the fraction of the 53 members who attended who hold a Premium membership, which answers a different question. The option \"53/120\" is the probability that a member chosen from the entire club attended a class, ignoring the fact that the selection is restricted to Premium members. The option \"5/24\" is 25/120, the probability that a member of the whole club is both Premium and attended — the joint probability rather than the conditional one.",
+  "topic_tag": "two-way tables and conditional probability",
+  "difficulty": "medium",
+  "solve": "const prem=40, premAttend=25; return String(premAttend/prem);",
+  "distractor_solve": {
+   "25/53": "const stdAttend=28, premAttend=25; return String(premAttend/(stdAttend+premAttend));",
+   "53/120": "const stdAttend=28, premAttend=25, total=120; return String((stdAttend+premAttend)/total);",
+   "5/24": "const premAttend=25, total=120; return String(premAttend/total);"
+  }
+ },
+ {
+  "id": "AM11T-03",
+  "domain": "Statistics and Probability",
+  "subskill": "recovering one group's mean from a WEIGHTED overall mean, where the two groups are of unequal size",
+  "prompt": "A teacher's 25 students are divided into a morning section of 10 students and an afternoon section of 15 students. The morning section's mean score on a test was 76, and the mean score of all 25 students on that test was 82. What was the mean score of the afternoon section?",
+  "choices": [
+   "79",
+   "82",
+   "86",
+   "88"
+  ],
+  "correct_answer": "86",
+  "explanation": "The 25 scores total 25(82) = 2,050, and the morning section contributes 10(76) = 760, so the afternoon section's 15 scores total 2,050 − 760 = 1,290. Its mean is 1,290/15 = 86. The option \"88\" makes the afternoon mean exceed 82 by the same 6 points that the morning mean falls short of it, which would be correct only if the two sections were the same size; because the afternoon section is larger, it needs to run less far above the overall mean to balance the smaller section. The option \"82\" reports the overall mean rather than the afternoon section's. The option \"79\" averages 76 and 82 without weighting, treating the overall mean as though it were a second section's mean.",
+  "topic_tag": "weighted averages",
+  "difficulty": "medium",
+  "solve": "const nTot=25, mTot=82, nAm=10, mAm=76, nPm=15; return String((nTot*mTot - nAm*mAm)/nPm);",
+  "distractor_solve": {
+   "79": "const mTot=82, mAm=76; return String((mAm + mTot)/2);",
+   "82": "const mTot=82; return String(mTot);",
+   "88": "const mTot=82, mAm=76; return String(mTot + (mTot - mAm));"
+  }
+ },
+ {
+  "id": "AM11T-05",
+  "domain": "Statistics and Probability",
+  "subskill": "EXPECTED VALUE of a net gain, where the cost is paid on every play including the plays that pay nothing",
+  "prompt": "At a school fair, one play of a game costs $2. On each play a player wins $10 with probability 1/10, wins $4 with probability 1/5, and wins nothing otherwise. What is the expected net gain, in dollars, for one play of this game? (A net loss is reported as a negative number.)",
+  "choices": [
+   "-1.40",
+   "-0.20",
+   "1.20",
+   "1.80"
+  ],
+  "correct_answer": "-0.20",
+  "explanation": "The expected prize is 10(1/10) + 4(1/5) = 1 + 0.80 = $1.80, and the $2 cost is paid on every play, so the expected net gain is 1.80 − 2 = −$0.20. The option \"1.80\" is the expected prize with the cost never subtracted. The option \"1.20\" subtracts the cost from each prize, (1/10)(10 − 2) + (1/5)(4 − 2), but leaves the cost out of the 7 plays in 10 that win nothing, which are exactly the plays on which the $2 is a pure loss. The option \"-1.40\" is (7/10)(−2), counting only the plays that win nothing and ignoring the prizes altogether.",
+  "topic_tag": "expected value",
+  "difficulty": "medium",
+  "solve": "const cost=2; const ev=10*(1/10)+4*(1/5); return String(Math.round((ev-cost)*100)/100);",
+  "distractor_solve": {
+   "1.80": "return String(Math.round((10*(1/10)+4*(1/5))*100)/100);",
+   "1.20": "const cost=2; return String(Math.round(((1/10)*(10-cost)+(1/5)*(4-cost))*100)/100);",
+   "-1.40": "const cost=2; return String(Math.round((1-1/10-1/5)*(-cost)*100)/100);"
+  }
+ }
+]

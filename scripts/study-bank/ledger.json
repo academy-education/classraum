@@ -4024,6 +4024,40 @@
      "verdict": "INTERIOR BIAS FOUND AND REPAIRED, AND THE REPAIR INTRODUCED A NEW TELL THAT THE GRADER THEN CAUGHT. The key sat at an interior rank on 85.3% of items against 68.4% live (z = +2.12) -- \"eliminate both extremes\" was worth about 8 points. Repaired to 67.6% by changing six items, each deleting one option and adding one on the other side of the key with a named wrong path. THEN: the fix to SM12A-16 left its set as {1, 2, 1/2, 3}, making the key the ONLY non-integer -- answerable without solving, and invisible to the letter-spread check, the magnitude check and the blind attack alike. SM12L-14's new option 21 was the literal total printed in its own stem. Both are dropped rather than re-repaired, per the rule that after one failed rewrite you stop. Final kept set: largest 18.5%, smallest 11.1%, interior 70.4%, all within z = 0.74 of live. NOTE the checker itself was fixed during this batch -- it measured largest and smallest as separate marginals and PASSED the pre-repair file at exit 0; interior is now part of its verdict and it now fails that file at z = +2.12."
     }
    }
+  },
+  {
+   "id": "act-math-v11s-kept-2026-09-22",
+   "createdAt": "2026-09-22",
+   "targetTest": "act",
+   "section": "math",
+   "task": "math_mc",
+   "family": "mc_stem_source",
+   "cohort": "act-math-v11s",
+   "contentSha": "8bc9c52e8a3146752d86a5d2286fa915d68d215f5e95069861ae2d6dc83a581d",
+   "status": "shipped",
+   "note": "3 of 6 survive. Commissioned solely to close the Statistics and Probability gap left by MY OWN brief error on the previous batch -- next-form printed \"+5\" and I asked for 4. Two items were needed; three ship.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "8bc9c52e8a3146752d86a5d2286fa915d68d215f5e95069861ae2d6dc83a581d",
+     "verdict": "6 authored, all exactly 4 choices, key present, no duplicate values within an item, no explanation naming a slot letter. Sandbox: 6/6 keys recompute, 18/18 distractors recompute to their named derivation. The author break-tested that harness two ways on a copy -- mis-keying an item dropped the sandbox to 5/6, and corrupting a distractor derivation produced a mismatch -- so the green is a check that would have failed."
+    },
+    "withsource": {
+     "passed": true,
+     "contentSha": "8bc9c52e8a3146752d86a5d2286fa915d68d215f5e95069861ae2d6dc83a581d",
+     "verdict": "An independent grader solved all six from the prompts before reading any explanation: ALL SIX KEYS CORRECT, none second-defensible, no duplicate ideas, no malformed stems, no option colliding with a numeral in its own stem. It specifically cleared the two convention risks: AM11T-06's overlap is forced to exactly 2 by \"every student plays at least one\", and AM11T-01's median is 2 under every convention because positions 10 and 11 are both 2 -- the structural opposite of the inclusive-quartile item dropped from the previous batch. Difficulty banked from the grader: easy 2 / medium 4 / hard 0 against the author's 1/4/1; the author had already declined to defend its own \"hard\" label. Two items dropped on this grader's findings: AM11T-01's \"7\" distractor is DEAD (a frequency outside the 0-4 range every stem value occupies, making the item three-choice), and AM11T-06's distractors are weak enough that it is close to two-option."
+    },
+    "nosource": {
+     "passed": true,
+     "contentSha": "8bc9c52e8a3146752d86a5d2286fa915d68d215f5e95069861ae2d6dc83a581d",
+     "verdict": "Options-only attack, three solvers, 6 candidate items interleaved with 18 composition-matched live Statistics and Probability items, arm only in the key. CANDIDATE 27.8% against a derived control of 33.3% (margin -5.6); CONTROL 27.8% against 27.8% (margin 0.0). READ THE DENOMINATOR: n=6 cannot support a rate, so the per-item result is what decides. Exactly one candidate item was solved by all three solvers -- AM11T-04 -- and two solvers independently named the same mechanism: its option set carries the complete with/without-replacement family ((4/12)^2, (4/12)(4/11), (4/12)(3/11)), so the distractors announce the stem. It is dropped. None of the three kept items was solved by more than one solver. NOTE ON THE DEAL: a free per-item shuffle dealt five of six keys to one letter, giving a best-fixed-letter control of 83.3% and making the arm unmeasurable; rather than re-roll seeds until the deal looked fair, the key SLOT was dealt as evenly as the count allows (precedent: the ssat-cofounder sitting dealt 40 items flat for a control of exactly 20.0%)."
+    },
+    "tells": {
+     "passed": true,
+     "contentSha": "8bc9c52e8a3146752d86a5d2286fa915d68d215f5e95069861ae2d6dc83a581d",
+     "verdict": "check-key-magnitude REFUSES at n<10, correctly, so the batch was measured pooled with the 42-item v11 batch it supplements: largest 16.7%, smallest 18.8%, interior 64.6% against a live 21.0/23.1/55.9, all within z=1.22. The 6 alone deal one key largest and one smallest by construction. Numeric hub: no derivational structure in any option set. A leak specific to this domain was found and is recorded for the brief: where an author computes distractors from one two-way table, the joint, the marginal and the reverse conditional appear as siblings and that family is a fingerprint of the stem -- a solver reconstructed AM11T-02's question from its option set alone, though it could not answer it (0 of 3). Statistics option sets leak more than bare algebra ones."
+    }
+   }
   }
  ],
  "auditedCohorts": [
