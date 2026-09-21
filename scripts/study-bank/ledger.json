@@ -3990,6 +3990,40 @@
      "verdict": "THE TELL THE POOLED MARGIN COULD NOT SEE, found and repaired. The key was the largest of four options on 7.1% of items against 21.4% in the live bank (z = -2.25) -- a free \"eliminate the largest\" worth 1/4 -> 1/3, and the solver applying it mechanically scored exactly 33.3%. A pooled margin cannot detect this because the derived control rises with the tell. Repaired on the author's own terms, never by inventing a pathless distractor: 4 items changed, each new distractor carrying a named wrong path (an altitude attached to the wrong side, a rectangle's diagonals assumed perpendicular, a rate misread as per-100-feet, the upper-half spread reported as the IQR). After repair and drops: largest 15.4% (z = -0.92), smallest 20.5% (z = -0.42), consistent with the live bank. check-key-magnitude.mjs is self-tested on 11 fixtures and break-tests correctly against the pre-repair file. Numeric hub key-is-hub 0.0%; key-is-sum 0.0%; no two options share a value."
     }
    }
+  },
+  {
+   "id": "sat-math-v12-kept-2026-09-22",
+   "createdAt": "2026-09-22",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "math_mc",
+   "family": "mc_stem_source",
+   "cohort": "sat-math-v12",
+   "contentSha": "ec765b4c3a2e330baa3b06137e7698532dd54fb42d4ee517c6f31ea334395e12",
+   "status": "shipped",
+   "note": "27 of 34 survive: Algebra 13, Advanced Math 14. Advanced Math meets its form-25 need; Algebra is short 2 after drops and is commissioned separately. Commissioned as a pair because SAT math needs BOTH domains to buy a form -- authoring only the thinner one buys nothing.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "ec765b4c3a2e330baa3b06137e7698532dd54fb42d4ee517c6f31ea334395e12",
+     "verdict": "34 authored, all exactly 4 choices, key present among the choices, no duplicate values within an item, no duplicate ids, no explanation naming a slot letter. Sandbox: 34/34 keys recompute and 102/102 distractors recompute to their named derivation. The author independently re-solved all 34 in a separate checker that never reads the solve fields, and break-tested it by corrupting three keys -- exactly those three were reported. It also promoted all 102 distractors to key one at a time: 102 refused, with a rigged mutant reported OK, so the refusals are a measurement rather than a harness that fails everything."
+    },
+    "withsource": {
+     "passed": true,
+     "contentSha": "ec765b4c3a2e330baa3b06137e7698532dd54fb42d4ee517c6f31ea334395e12",
+     "verdict": "An independent grader solved all 34 from the prompts by hand before reading any explanation, then re-solved them in a script written from the prompts rather than from the authors' solve fields. NO KEY DISPUTED, none second-defensible, no malformed stem. It brute-forced the two most error-prone items over their coefficient space rather than following the author's algebra. Seven items dropped: SM12L-12 and SM12L-20 graded distractor_quality \"weak\" (20 is effectively a two-option item -- 7/3 dies on the word \"integer\" and 12 is nowhere near the algebra); SM12L-03 because option 7's stated wrong path is incoherent, altering the wrong side of the equation and yielding a non-arithmetic sequence, so the option does no work; SM12L-17 and SM12A-14 as near-duplicates of SM12L-02 and SM12A-02 (one skill and one recalled fact respectively); plus the two repair regressions below. Difficulty banked from the GRADER: easy 8 / medium 11 / hard 8, against the author's 12 hard."
+    },
+    "nosource": {
+     "passed": true,
+     "contentSha": "ec765b4c3a2e330baa3b06137e7698532dd54fb42d4ee517c6f31ea334395e12",
+     "verdict": "Options-only attack, three solvers, interleaved with a composition-matched live control of 34 shipped SAT math items, arm recorded only in the key. CANDIDATE 36.3% against a derived best-fixed-letter control of 32.4%, margin +3.9; CONTROL 35.3% against 32.4%, margin +2.9 -- the two arms are indistinguishable. Solvers' own confident picks scored BELOW chance: one solver's ten \"mechanism\" calls came in at 10.0%. No solver could reconstruct a question from an option set. The attack was re-run in full at this content hash rather than reusing the pre-repair run."
+    },
+    "tells": {
+     "passed": true,
+     "contentSha": "ec765b4c3a2e330baa3b06137e7698532dd54fb42d4ee517c6f31ea334395e12",
+     "verdict": "INTERIOR BIAS FOUND AND REPAIRED, AND THE REPAIR INTRODUCED A NEW TELL THAT THE GRADER THEN CAUGHT. The key sat at an interior rank on 85.3% of items against 68.4% live (z = +2.12) -- \"eliminate both extremes\" was worth about 8 points. Repaired to 67.6% by changing six items, each deleting one option and adding one on the other side of the key with a named wrong path. THEN: the fix to SM12A-16 left its set as {1, 2, 1/2, 3}, making the key the ONLY non-integer -- answerable without solving, and invisible to the letter-spread check, the magnitude check and the blind attack alike. SM12L-14's new option 21 was the literal total printed in its own stem. Both are dropped rather than re-repaired, per the rule that after one failed rewrite you stop. Final kept set: largest 18.5%, smallest 11.1%, interior 70.4%, all within z = 0.74 of live. NOTE the checker itself was fixed during this batch -- it measured largest and smallest as separate marginals and PASSED the pre-repair file at exit 0; interior is now part of its verdict and it now fails that file at z = +2.12."
+    }
+   }
   }
  ],
  "auditedCohorts": [
