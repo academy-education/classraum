@@ -1,0 +1,592 @@
+[
+  {
+    "id": "ASCB-01",
+    "passage_id": "ascb-p1",
+    "passage_title": "Deflection of Acrylic Bars under Load",
+    "format": "data_representation",
+    "passage": "A beam that is supported at both ends sags, or deflects, when a load is applied at its midpoint. Engineering students investigated how the deflection of a rectangular acrylic bar depends on the applied load and on the thickness of the bar.\n\nBars were cut from a single sheet of acrylic. All bars had the same length (400 mm) and the same width (25 mm) but differed in thickness: 4 mm, 6 mm, or 8 mm. Each bar was laid across two knife-edge supports spaced 300 mm apart. A hanger was attached at the midpoint of the bar, and masses were added to the hanger to apply loads of 5.0 N, 10.0 N, 15.0 N, 20.0 N, and 25.0 N.\n\nFor each load, the vertical distance between the midpoint of the loaded bar and the midpoint of the same bar before loading was measured with a dial gauge reading to 0.1 mm. The load was then removed and the bar was allowed to return to its original shape before the next load was applied. Three separate bars were tested at each thickness, and every load was applied to each of those bars. The deflections reported in Table 1 are the averages of the three bars tested at that thickness.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "5.0 N",
+        "10.0 N",
+        "15.0 N",
+        "20.0 N",
+        "25.0 N"
+      ],
+      "colLabels": [
+        "4 mm bar",
+        "6 mm bar",
+        "8 mm bar"
+      ],
+      "cells": [
+        [
+          2.4,
+          0.7,
+          0.3
+        ],
+        [
+          4.8,
+          1.4,
+          0.6
+        ],
+        [
+          7.2,
+          2.1,
+          0.9
+        ],
+        [
+          9.6,
+          2.8,
+          1.2
+        ],
+        [
+          12,
+          3.5,
+          1.5
+        ]
+      ],
+      "caption": "Table 1. Average midpoint deflection (mm) of acrylic bars of three thicknesses (columns) under five applied loads (rows)."
+    },
+    "prompt": "According to Table 1, the average deflection of the 6 mm bar under a load of 15.0 N was:",
+    "choices": [
+      "0.6 mm",
+      "0.9 mm",
+      "1.4 mm",
+      "2.1 mm"
+    ],
+    "correct_answer": "2.1 mm",
+    "explanation": "Table 1 lists deflections by load (rows) and thickness (columns). Where the 15.0 N row meets the 6 mm column, the value is 2.1 mm. The value 1.4 mm is the 6 mm bar at 10.0 N, and 0.9 mm and 0.6 mm are the 8 mm bar at 15.0 N and 10.0 N.",
+    "domain": "Interpretation of Data",
+    "subskill": "read a value from a two-way table",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ASCB-02",
+    "passage_id": "ascb-p1",
+    "passage_title": "Deflection of Acrylic Bars under Load",
+    "format": "data_representation",
+    "passage": "A beam that is supported at both ends sags, or deflects, when a load is applied at its midpoint. Engineering students investigated how the deflection of a rectangular acrylic bar depends on the applied load and on the thickness of the bar.\n\nBars were cut from a single sheet of acrylic. All bars had the same length (400 mm) and the same width (25 mm) but differed in thickness: 4 mm, 6 mm, or 8 mm. Each bar was laid across two knife-edge supports spaced 300 mm apart. A hanger was attached at the midpoint of the bar, and masses were added to the hanger to apply loads of 5.0 N, 10.0 N, 15.0 N, 20.0 N, and 25.0 N.\n\nFor each load, the vertical distance between the midpoint of the loaded bar and the midpoint of the same bar before loading was measured with a dial gauge reading to 0.1 mm. The load was then removed and the bar was allowed to return to its original shape before the next load was applied. Three separate bars were tested at each thickness, and every load was applied to each of those bars. The deflections reported in Table 1 are the averages of the three bars tested at that thickness.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "5.0 N",
+        "10.0 N",
+        "15.0 N",
+        "20.0 N",
+        "25.0 N"
+      ],
+      "colLabels": [
+        "4 mm bar",
+        "6 mm bar",
+        "8 mm bar"
+      ],
+      "cells": [
+        [
+          2.4,
+          0.7,
+          0.3
+        ],
+        [
+          4.8,
+          1.4,
+          0.6
+        ],
+        [
+          7.2,
+          2.1,
+          0.9
+        ],
+        [
+          9.6,
+          2.8,
+          1.2
+        ],
+        [
+          12,
+          3.5,
+          1.5
+        ]
+      ],
+      "caption": "Table 1. Average midpoint deflection (mm) of acrylic bars of three thicknesses (columns) under five applied loads (rows)."
+    },
+    "prompt": "Based on Table 1, if a load of 12.5 N had been applied to the 4 mm bar, the average deflection would most likely have been closest to:",
+    "choices": [
+      "3.6 mm",
+      "6.0 mm",
+      "8.4 mm",
+      "12.0 mm"
+    ],
+    "correct_answer": "6.0 mm",
+    "explanation": "A load of 12.5 N lies halfway between 10.0 N and 15.0 N. For the 4 mm bar the deflections at those loads are 4.8 mm and 7.2 mm, so a deflection about halfway between them, near 6.0 mm, is expected. The value 3.6 mm corresponds to a load near 7.5 N, 8.4 mm to a load near 17.5 N, and 12.0 mm is the deflection at 25.0 N.",
+    "domain": "Interpretation of Data",
+    "subskill": "interpolate between tabulated values",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCB-03",
+    "passage_id": "ascb-p1",
+    "passage_title": "Deflection of Acrylic Bars under Load",
+    "format": "data_representation",
+    "passage": "A beam that is supported at both ends sags, or deflects, when a load is applied at its midpoint. Engineering students investigated how the deflection of a rectangular acrylic bar depends on the applied load and on the thickness of the bar.\n\nBars were cut from a single sheet of acrylic. All bars had the same length (400 mm) and the same width (25 mm) but differed in thickness: 4 mm, 6 mm, or 8 mm. Each bar was laid across two knife-edge supports spaced 300 mm apart. A hanger was attached at the midpoint of the bar, and masses were added to the hanger to apply loads of 5.0 N, 10.0 N, 15.0 N, 20.0 N, and 25.0 N.\n\nFor each load, the vertical distance between the midpoint of the loaded bar and the midpoint of the same bar before loading was measured with a dial gauge reading to 0.1 mm. The load was then removed and the bar was allowed to return to its original shape before the next load was applied. Three separate bars were tested at each thickness, and every load was applied to each of those bars. The deflections reported in Table 1 are the averages of the three bars tested at that thickness.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "5.0 N",
+        "10.0 N",
+        "15.0 N",
+        "20.0 N",
+        "25.0 N"
+      ],
+      "colLabels": [
+        "4 mm bar",
+        "6 mm bar",
+        "8 mm bar"
+      ],
+      "cells": [
+        [
+          2.4,
+          0.7,
+          0.3
+        ],
+        [
+          4.8,
+          1.4,
+          0.6
+        ],
+        [
+          7.2,
+          2.1,
+          0.9
+        ],
+        [
+          9.6,
+          2.8,
+          1.2
+        ],
+        [
+          12,
+          3.5,
+          1.5
+        ]
+      ],
+      "caption": "Table 1. Average midpoint deflection (mm) of acrylic bars of three thicknesses (columns) under five applied loads (rows)."
+    },
+    "prompt": "According to Table 1, under a load of 20.0 N the average deflection of the 4 mm bar was approximately how many times the average deflection of the 8 mm bar?",
+    "choices": [
+      "2",
+      "4",
+      "8",
+      "16"
+    ],
+    "correct_answer": "8",
+    "explanation": "In the 20.0 N row of Table 1, the 4 mm bar deflected 9.6 mm and the 8 mm bar deflected 1.2 mm. Dividing gives 9.6 divided by 1.2, which equals 8. The value 2 is the ratio of the two thicknesses, and 4 and 16 do not match the tabulated deflections.",
+    "domain": "Interpretation of Data",
+    "subskill": "compute a ratio between two tabulated values",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCB-04",
+    "passage_id": "ascb-p1",
+    "passage_title": "Deflection of Acrylic Bars under Load",
+    "format": "data_representation",
+    "passage": "A beam that is supported at both ends sags, or deflects, when a load is applied at its midpoint. Engineering students investigated how the deflection of a rectangular acrylic bar depends on the applied load and on the thickness of the bar.\n\nBars were cut from a single sheet of acrylic. All bars had the same length (400 mm) and the same width (25 mm) but differed in thickness: 4 mm, 6 mm, or 8 mm. Each bar was laid across two knife-edge supports spaced 300 mm apart. A hanger was attached at the midpoint of the bar, and masses were added to the hanger to apply loads of 5.0 N, 10.0 N, 15.0 N, 20.0 N, and 25.0 N.\n\nFor each load, the vertical distance between the midpoint of the loaded bar and the midpoint of the same bar before loading was measured with a dial gauge reading to 0.1 mm. The load was then removed and the bar was allowed to return to its original shape before the next load was applied. Three separate bars were tested at each thickness, and every load was applied to each of those bars. The deflections reported in Table 1 are the averages of the three bars tested at that thickness.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "5.0 N",
+        "10.0 N",
+        "15.0 N",
+        "20.0 N",
+        "25.0 N"
+      ],
+      "colLabels": [
+        "4 mm bar",
+        "6 mm bar",
+        "8 mm bar"
+      ],
+      "cells": [
+        [
+          2.4,
+          0.7,
+          0.3
+        ],
+        [
+          4.8,
+          1.4,
+          0.6
+        ],
+        [
+          7.2,
+          2.1,
+          0.9
+        ],
+        [
+          9.6,
+          2.8,
+          1.2
+        ],
+        [
+          12,
+          3.5,
+          1.5
+        ]
+      ],
+      "caption": "Table 1. Average midpoint deflection (mm) of acrylic bars of three thicknesses (columns) under five applied loads (rows)."
+    },
+    "prompt": "Based on the description of the procedure, how many individual deflection measurements were made in all?",
+    "choices": [
+      "15",
+      "45",
+      "75",
+      "135"
+    ],
+    "correct_answer": "45",
+    "explanation": "Three bars were tested at each of the 3 thicknesses, which is 9 bars, and each of the 5 loads was applied to each bar. That gives 9 times 5, or 45 measurements. The value 15 counts only the thickness and load combinations, ignoring the three bars per thickness; 75 and 135 multiply by the wrong factors.",
+    "domain": "Scientific Investigation",
+    "subskill": "account for the trials in an experimental design",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCB-05",
+    "passage_id": "ascb-p1",
+    "passage_title": "Deflection of Acrylic Bars under Load",
+    "format": "data_representation",
+    "passage": "A beam that is supported at both ends sags, or deflects, when a load is applied at its midpoint. Engineering students investigated how the deflection of a rectangular acrylic bar depends on the applied load and on the thickness of the bar.\n\nBars were cut from a single sheet of acrylic. All bars had the same length (400 mm) and the same width (25 mm) but differed in thickness: 4 mm, 6 mm, or 8 mm. Each bar was laid across two knife-edge supports spaced 300 mm apart. A hanger was attached at the midpoint of the bar, and masses were added to the hanger to apply loads of 5.0 N, 10.0 N, 15.0 N, 20.0 N, and 25.0 N.\n\nFor each load, the vertical distance between the midpoint of the loaded bar and the midpoint of the same bar before loading was measured with a dial gauge reading to 0.1 mm. The load was then removed and the bar was allowed to return to its original shape before the next load was applied. Three separate bars were tested at each thickness, and every load was applied to each of those bars. The deflections reported in Table 1 are the averages of the three bars tested at that thickness.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "5.0 N",
+        "10.0 N",
+        "15.0 N",
+        "20.0 N",
+        "25.0 N"
+      ],
+      "colLabels": [
+        "4 mm bar",
+        "6 mm bar",
+        "8 mm bar"
+      ],
+      "cells": [
+        [
+          2.4,
+          0.7,
+          0.3
+        ],
+        [
+          4.8,
+          1.4,
+          0.6
+        ],
+        [
+          7.2,
+          2.1,
+          0.9
+        ],
+        [
+          9.6,
+          2.8,
+          1.2
+        ],
+        [
+          12,
+          3.5,
+          1.5
+        ]
+      ],
+      "caption": "Table 1. Average midpoint deflection (mm) of acrylic bars of three thicknesses (columns) under five applied loads (rows)."
+    },
+    "prompt": "A student predicted that, for a bar of a given thickness, doubling the applied load would double the average deflection. Are the data in Table 1 for the 8 mm bar consistent with this prediction?",
+    "choices": [
+      "Yes; the deflection increased from 0.6 mm at 10.0 N to 1.2 mm at 20.0 N.",
+      "Yes; the deflection increased from 0.6 mm at 10.0 N to 1.5 mm at 25.0 N.",
+      "No; the deflection increased from 0.6 mm at 10.0 N to 0.9 mm at 20.0 N.",
+      "No; the deflection increased from 0.6 mm at 10.0 N to 1.2 mm at 25.0 N."
+    ],
+    "correct_answer": "Yes; the deflection increased from 0.6 mm at 10.0 N to 1.2 mm at 20.0 N.",
+    "explanation": "Doubling the load means going from 10.0 N to 20.0 N. For the 8 mm bar Table 1 gives 0.6 mm at 10.0 N and 1.2 mm at 20.0 N, which is exactly double, so the prediction holds. A load of 25.0 N is not double 10.0 N, so the responses citing 25.0 N compare the wrong pair; and the deflection at 20.0 N is 1.2 mm, not 0.9 mm.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "test a proportional prediction against tabulated data",
+    "difficulty": "hard"
+  },
+  {
+    "id": "ASCB-06",
+    "passage_id": "ascb-p2",
+    "passage_title": "Corrosion of Three Aluminum Alloys in Humid Air",
+    "format": "data_representation",
+    "passage": "Corrosion of a metal in humid air removes material from the metal's surface, which can be measured as a loss of mass. Materials scientists compared three aluminum alloys, designated Alloy J, Alloy K, and Alloy L, that differ only in the percentages of copper and magnesium they contain.\n\nCoupons (small flat samples) were cut from each alloy. Every coupon had a total exposed surface area of 10 cm squared. Before exposure, each coupon was polished with the same grade of abrasive paper, rinsed in a solvent to remove oils, dried, and weighed on a balance reading to 0.1 mg.\n\nCoupons were then placed in sealed chambers held at 25 degrees C. Each chamber contained a saturated salt solution that held the air inside at a fixed relative humidity of 40%, 60%, 80%, or 95%. Three coupons of each alloy were placed in each chamber. After 30 days the coupons were removed, the loose corrosion products were stripped from them by a standard chemical treatment, and the coupons were dried and reweighed. Mass loss was calculated as the mass before exposure minus the mass after stripping. The values in Table 1 are the averages of the three coupons of that alloy in that chamber.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "40% RH",
+        "60% RH",
+        "80% RH",
+        "95% RH"
+      ],
+      "colLabels": [
+        "Alloy J",
+        "Alloy K",
+        "Alloy L"
+      ],
+      "cells": [
+        [
+          0.8,
+          1.5,
+          0.4
+        ],
+        [
+          2.1,
+          2.6,
+          1.9
+        ],
+        [
+          6.4,
+          5.1,
+          7.3
+        ],
+        [
+          14.2,
+          9.8,
+          18.6
+        ]
+      ],
+      "caption": "Table 1. Average mass loss (mg) of coupons of three aluminum alloys (columns) after 30 days at four relative humidities (rows)."
+    },
+    "prompt": "According to Table 1, the average mass loss of Alloy K coupons held at 80% relative humidity was:",
+    "choices": [
+      "1.5 mg",
+      "2.6 mg",
+      "5.1 mg",
+      "6.4 mg"
+    ],
+    "correct_answer": "5.1 mg",
+    "explanation": "Table 1 lists mass loss by relative humidity (rows) and alloy (columns). Where the 80% RH row meets the Alloy K column, the value is 5.1 mg. The values 1.5 mg and 2.6 mg are Alloy K at 40% RH and 60% RH, and 6.4 mg is Alloy J at 80% RH.",
+    "domain": "Interpretation of Data",
+    "subskill": "read a value from a two-way table",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ASCB-07",
+    "passage_id": "ascb-p2",
+    "passage_title": "Corrosion of Three Aluminum Alloys in Humid Air",
+    "format": "data_representation",
+    "passage": "Corrosion of a metal in humid air removes material from the metal's surface, which can be measured as a loss of mass. Materials scientists compared three aluminum alloys, designated Alloy J, Alloy K, and Alloy L, that differ only in the percentages of copper and magnesium they contain.\n\nCoupons (small flat samples) were cut from each alloy. Every coupon had a total exposed surface area of 10 cm squared. Before exposure, each coupon was polished with the same grade of abrasive paper, rinsed in a solvent to remove oils, dried, and weighed on a balance reading to 0.1 mg.\n\nCoupons were then placed in sealed chambers held at 25 degrees C. Each chamber contained a saturated salt solution that held the air inside at a fixed relative humidity of 40%, 60%, 80%, or 95%. Three coupons of each alloy were placed in each chamber. After 30 days the coupons were removed, the loose corrosion products were stripped from them by a standard chemical treatment, and the coupons were dried and reweighed. Mass loss was calculated as the mass before exposure minus the mass after stripping. The values in Table 1 are the averages of the three coupons of that alloy in that chamber.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "40% RH",
+        "60% RH",
+        "80% RH",
+        "95% RH"
+      ],
+      "colLabels": [
+        "Alloy J",
+        "Alloy K",
+        "Alloy L"
+      ],
+      "cells": [
+        [
+          0.8,
+          1.5,
+          0.4
+        ],
+        [
+          2.1,
+          2.6,
+          1.9
+        ],
+        [
+          6.4,
+          5.1,
+          7.3
+        ],
+        [
+          14.2,
+          9.8,
+          18.6
+        ]
+      ],
+      "caption": "Table 1. Average mass loss (mg) of coupons of three aluminum alloys (columns) after 30 days at four relative humidities (rows)."
+    },
+    "prompt": "According to Table 1, for Alloy K the increase in average mass loss between 80% relative humidity and 95% relative humidity was closest to:",
+    "choices": [
+      "4.7 mg",
+      "5.1 mg",
+      "9.8 mg",
+      "14.9 mg"
+    ],
+    "correct_answer": "4.7 mg",
+    "explanation": "For Alloy K, Table 1 gives 5.1 mg at 80% RH and 9.8 mg at 95% RH. The increase is 9.8 minus 5.1, or 4.7 mg. The values 5.1 mg and 9.8 mg are the two mass losses themselves rather than the change between them, and 14.9 mg is their sum.",
+    "domain": "Interpretation of Data",
+    "subskill": "compute a difference between two tabulated values",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCB-08",
+    "passage_id": "ascb-p2",
+    "passage_title": "Corrosion of Three Aluminum Alloys in Humid Air",
+    "format": "data_representation",
+    "passage": "Corrosion of a metal in humid air removes material from the metal's surface, which can be measured as a loss of mass. Materials scientists compared three aluminum alloys, designated Alloy J, Alloy K, and Alloy L, that differ only in the percentages of copper and magnesium they contain.\n\nCoupons (small flat samples) were cut from each alloy. Every coupon had a total exposed surface area of 10 cm squared. Before exposure, each coupon was polished with the same grade of abrasive paper, rinsed in a solvent to remove oils, dried, and weighed on a balance reading to 0.1 mg.\n\nCoupons were then placed in sealed chambers held at 25 degrees C. Each chamber contained a saturated salt solution that held the air inside at a fixed relative humidity of 40%, 60%, 80%, or 95%. Three coupons of each alloy were placed in each chamber. After 30 days the coupons were removed, the loose corrosion products were stripped from them by a standard chemical treatment, and the coupons were dried and reweighed. Mass loss was calculated as the mass before exposure minus the mass after stripping. The values in Table 1 are the averages of the three coupons of that alloy in that chamber.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "40% RH",
+        "60% RH",
+        "80% RH",
+        "95% RH"
+      ],
+      "colLabels": [
+        "Alloy J",
+        "Alloy K",
+        "Alloy L"
+      ],
+      "cells": [
+        [
+          0.8,
+          1.5,
+          0.4
+        ],
+        [
+          2.1,
+          2.6,
+          1.9
+        ],
+        [
+          6.4,
+          5.1,
+          7.3
+        ],
+        [
+          14.2,
+          9.8,
+          18.6
+        ]
+      ],
+      "caption": "Table 1. Average mass loss (mg) of coupons of three aluminum alloys (columns) after 30 days at four relative humidities (rows)."
+    },
+    "prompt": "According to Table 1, at which relative humidity were the average mass losses of Alloy J and Alloy L most nearly equal?",
+    "choices": [
+      "40% RH",
+      "60% RH",
+      "80% RH",
+      "95% RH"
+    ],
+    "correct_answer": "60% RH",
+    "explanation": "Comparing the Alloy J and Alloy L columns row by row, the mass losses differ by 0.4 mg at 40% RH, by 0.2 mg at 60% RH, by 0.9 mg at 80% RH, and by 4.4 mg at 95% RH. The smallest difference, 0.2 mg, occurs at 60% RH.",
+    "domain": "Interpretation of Data",
+    "subskill": "compare two series across a table",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCB-09",
+    "passage_id": "ascb-p2",
+    "passage_title": "Corrosion of Three Aluminum Alloys in Humid Air",
+    "format": "data_representation",
+    "passage": "Corrosion of a metal in humid air removes material from the metal's surface, which can be measured as a loss of mass. Materials scientists compared three aluminum alloys, designated Alloy J, Alloy K, and Alloy L, that differ only in the percentages of copper and magnesium they contain.\n\nCoupons (small flat samples) were cut from each alloy. Every coupon had a total exposed surface area of 10 cm squared. Before exposure, each coupon was polished with the same grade of abrasive paper, rinsed in a solvent to remove oils, dried, and weighed on a balance reading to 0.1 mg.\n\nCoupons were then placed in sealed chambers held at 25 degrees C. Each chamber contained a saturated salt solution that held the air inside at a fixed relative humidity of 40%, 60%, 80%, or 95%. Three coupons of each alloy were placed in each chamber. After 30 days the coupons were removed, the loose corrosion products were stripped from them by a standard chemical treatment, and the coupons were dried and reweighed. Mass loss was calculated as the mass before exposure minus the mass after stripping. The values in Table 1 are the averages of the three coupons of that alloy in that chamber.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "40% RH",
+        "60% RH",
+        "80% RH",
+        "95% RH"
+      ],
+      "colLabels": [
+        "Alloy J",
+        "Alloy K",
+        "Alloy L"
+      ],
+      "cells": [
+        [
+          0.8,
+          1.5,
+          0.4
+        ],
+        [
+          2.1,
+          2.6,
+          1.9
+        ],
+        [
+          6.4,
+          5.1,
+          7.3
+        ],
+        [
+          14.2,
+          9.8,
+          18.6
+        ]
+      ],
+      "caption": "Table 1. Average mass loss (mg) of coupons of three aluminum alloys (columns) after 30 days at four relative humidities (rows)."
+    },
+    "prompt": "The scientists next want to identify the relative humidity at which the average mass losses of Alloy J and Alloy L first begin to differ by more than 2.0 mg. Based on Table 1, they should prepare additional chambers at relative humidities between:",
+    "choices": [
+      "40% RH and 60% RH",
+      "60% RH and 80% RH",
+      "80% RH and 95% RH",
+      "95% RH and 100% RH"
+    ],
+    "correct_answer": "80% RH and 95% RH",
+    "explanation": "The difference between the Alloy J and Alloy L mass losses is 0.4 mg at 40% RH, 0.2 mg at 60% RH, 0.9 mg at 80% RH, and 4.4 mg at 95% RH. The difference is still below 2.0 mg at 80% RH and is already above 2.0 mg at 95% RH, so the humidity being sought lies between those two chambers.",
+    "domain": "Scientific Investigation",
+    "subskill": "select the next trials from a bracketed result",
+    "difficulty": "hard"
+  },
+  {
+    "id": "ASCB-10",
+    "passage_id": "ascb-p2",
+    "passage_title": "Corrosion of Three Aluminum Alloys in Humid Air",
+    "format": "data_representation",
+    "passage": "Corrosion of a metal in humid air removes material from the metal's surface, which can be measured as a loss of mass. Materials scientists compared three aluminum alloys, designated Alloy J, Alloy K, and Alloy L, that differ only in the percentages of copper and magnesium they contain.\n\nCoupons (small flat samples) were cut from each alloy. Every coupon had a total exposed surface area of 10 cm squared. Before exposure, each coupon was polished with the same grade of abrasive paper, rinsed in a solvent to remove oils, dried, and weighed on a balance reading to 0.1 mg.\n\nCoupons were then placed in sealed chambers held at 25 degrees C. Each chamber contained a saturated salt solution that held the air inside at a fixed relative humidity of 40%, 60%, 80%, or 95%. Three coupons of each alloy were placed in each chamber. After 30 days the coupons were removed, the loose corrosion products were stripped from them by a standard chemical treatment, and the coupons were dried and reweighed. Mass loss was calculated as the mass before exposure minus the mass after stripping. The values in Table 1 are the averages of the three coupons of that alloy in that chamber.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "40% RH",
+        "60% RH",
+        "80% RH",
+        "95% RH"
+      ],
+      "colLabels": [
+        "Alloy J",
+        "Alloy K",
+        "Alloy L"
+      ],
+      "cells": [
+        [
+          0.8,
+          1.5,
+          0.4
+        ],
+        [
+          2.1,
+          2.6,
+          1.9
+        ],
+        [
+          6.4,
+          5.1,
+          7.3
+        ],
+        [
+          14.2,
+          9.8,
+          18.6
+        ]
+      ],
+      "caption": "Table 1. Average mass loss (mg) of coupons of three aluminum alloys (columns) after 30 days at four relative humidities (rows)."
+    },
+    "prompt": "A reviewer concluded that Alloy L is the most corrosion resistant of the three alloys at every relative humidity tested. Are the data in Table 1 consistent with that conclusion?",
+    "choices": [
+      "Yes; at 40% RH Alloy L had a mass loss of 0.4 mg, the lowest of the three alloys.",
+      "Yes; at every relative humidity tested Alloy L had a mass loss of 0.4 mg, the lowest of the three alloys.",
+      "No; at 60% RH Alloy L had a mass loss of 1.9 mg, the highest of the three alloys.",
+      "No; at 95% RH Alloy L had a mass loss of 18.6 mg, the highest of the three alloys."
+    ],
+    "correct_answer": "No; at 95% RH Alloy L had a mass loss of 18.6 mg, the highest of the three alloys.",
+    "explanation": "The conclusion requires Alloy L to lose the least mass in every chamber. At 95% RH, Table 1 gives 14.2 mg for Alloy J, 9.8 mg for Alloy K, and 18.6 mg for Alloy L, so Alloy L lost the most mass there and the conclusion fails. Alloy L does have the lowest mass loss at 40% RH, but one chamber cannot establish a claim about every chamber; and at 60% RH the highest mass loss is Alloy K's 2.6 mg, not Alloy L's 1.9 mg.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "evaluate a whole-range claim against a reversal in the data",
+    "difficulty": "hard"
+  }
+]

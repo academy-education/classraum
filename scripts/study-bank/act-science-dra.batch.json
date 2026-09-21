@@ -1,0 +1,782 @@
+[
+  {
+    "id": "ASCA-01",
+    "passage_id": "asca-p1",
+    "passage_title": "Two Catalase Enzymes and pH",
+    "format": "data_representation",
+    "passage": "Catalase enzymes speed the breakdown of hydrogen peroxide (H2O2) into water and oxygen gas (O2). A chemist compared 2 such enzymes: Enzyme X, purified from a fungus that grows in acidic bog soil, and Enzyme Y, purified from a bacterium that grows in alkaline lake sediment.\n\nFor each trial, 1.0 mL of a solution containing 0.10 mg of 1 of the purified enzymes was added to 50.0 mL of 0.20 M H2O2 held in a water bath at 25 °C. Before the enzyme was added, the H2O2 solution had been buffered to 1 of 9 pH values. The O2 released was collected in an inverted graduated cylinder, and the volume collected during the first 60 sec was recorded. The reaction rate was then calculated as the volume of O2 collected divided by the collection time, in mL of O2 per min.\n\nEnzymes X and Y were tested in separate trials, and each trial was repeated 3 times. The mean rate for each enzyme at each pH is shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "pH 3",
+        "pH 4",
+        "pH 5",
+        "pH 6",
+        "pH 7",
+        "pH 8",
+        "pH 9",
+        "pH 10",
+        "pH 11"
+      ],
+      "colLabels": [
+        "Enzyme X rate (mL O2/min)",
+        "Enzyme Y rate (mL O2/min)"
+      ],
+      "cells": [
+        [
+          0.4,
+          0
+        ],
+        [
+          1.9,
+          0.2
+        ],
+        [
+          4.6,
+          0.6
+        ],
+        [
+          3.8,
+          1.3
+        ],
+        [
+          2.1,
+          2.4
+        ],
+        [
+          1,
+          3.7
+        ],
+        [
+          0.3,
+          5.2
+        ],
+        [
+          0.1,
+          3.1
+        ],
+        [
+          0,
+          0.9
+        ]
+      ],
+      "caption": "Table 1. Mean reaction rate of Enzyme X and of Enzyme Y at each of 9 pH values, in mL of O2 per min."
+    },
+    "prompt": "According to Table 1, at pH 8 the mean reaction rate of Enzyme Y was:",
+    "choices": [
+      "1.3 mL O2/min",
+      "2.4 mL O2/min",
+      "3.1 mL O2/min",
+      "3.7 mL O2/min"
+    ],
+    "correct_answer": "3.7 mL O2/min",
+    "explanation": "In the pH 8 row of Table 1, the Enzyme Y column reads 3.7 mL O2/min. The other choices are Enzyme Y rates from neighbouring rows: 1.3 at pH 6, 2.4 at pH 7, and 3.1 at pH 10.",
+    "domain": "Interpretation of Data",
+    "subskill": "read a value from a table",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ASCA-02",
+    "passage_id": "asca-p1",
+    "passage_title": "Two Catalase Enzymes and pH",
+    "format": "data_representation",
+    "passage": "Catalase enzymes speed the breakdown of hydrogen peroxide (H2O2) into water and oxygen gas (O2). A chemist compared 2 such enzymes: Enzyme X, purified from a fungus that grows in acidic bog soil, and Enzyme Y, purified from a bacterium that grows in alkaline lake sediment.\n\nFor each trial, 1.0 mL of a solution containing 0.10 mg of 1 of the purified enzymes was added to 50.0 mL of 0.20 M H2O2 held in a water bath at 25 °C. Before the enzyme was added, the H2O2 solution had been buffered to 1 of 9 pH values. The O2 released was collected in an inverted graduated cylinder, and the volume collected during the first 60 sec was recorded. The reaction rate was then calculated as the volume of O2 collected divided by the collection time, in mL of O2 per min.\n\nEnzymes X and Y were tested in separate trials, and each trial was repeated 3 times. The mean rate for each enzyme at each pH is shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "pH 3",
+        "pH 4",
+        "pH 5",
+        "pH 6",
+        "pH 7",
+        "pH 8",
+        "pH 9",
+        "pH 10",
+        "pH 11"
+      ],
+      "colLabels": [
+        "Enzyme X rate (mL O2/min)",
+        "Enzyme Y rate (mL O2/min)"
+      ],
+      "cells": [
+        [
+          0.4,
+          0
+        ],
+        [
+          1.9,
+          0.2
+        ],
+        [
+          4.6,
+          0.6
+        ],
+        [
+          3.8,
+          1.3
+        ],
+        [
+          2.1,
+          2.4
+        ],
+        [
+          1,
+          3.7
+        ],
+        [
+          0.3,
+          5.2
+        ],
+        [
+          0.1,
+          3.1
+        ],
+        [
+          0,
+          0.9
+        ]
+      ],
+      "caption": "Table 1. Mean reaction rate of Enzyme X and of Enzyme Y at each of 9 pH values, in mL of O2 per min."
+    },
+    "prompt": "Based on Table 1, the rate of Enzyme Y first exceeded the rate of Enzyme X at a pH between:",
+    "choices": [
+      "pH 4 and pH 5",
+      "pH 5 and pH 6",
+      "pH 6 and pH 7",
+      "pH 7 and pH 8"
+    ],
+    "correct_answer": "pH 6 and pH 7",
+    "explanation": "At pH 6 the rates are 3.8 (X) and 1.3 (Y), so X is still faster. At pH 7 they are 2.1 (X) and 2.4 (Y), so Y is now faster. The two columns therefore cross between pH 6 and pH 7.",
+    "domain": "Interpretation of Data",
+    "subskill": "compare two data series across a table",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCA-03",
+    "passage_id": "asca-p1",
+    "passage_title": "Two Catalase Enzymes and pH",
+    "format": "data_representation",
+    "passage": "Catalase enzymes speed the breakdown of hydrogen peroxide (H2O2) into water and oxygen gas (O2). A chemist compared 2 such enzymes: Enzyme X, purified from a fungus that grows in acidic bog soil, and Enzyme Y, purified from a bacterium that grows in alkaline lake sediment.\n\nFor each trial, 1.0 mL of a solution containing 0.10 mg of 1 of the purified enzymes was added to 50.0 mL of 0.20 M H2O2 held in a water bath at 25 °C. Before the enzyme was added, the H2O2 solution had been buffered to 1 of 9 pH values. The O2 released was collected in an inverted graduated cylinder, and the volume collected during the first 60 sec was recorded. The reaction rate was then calculated as the volume of O2 collected divided by the collection time, in mL of O2 per min.\n\nEnzymes X and Y were tested in separate trials, and each trial was repeated 3 times. The mean rate for each enzyme at each pH is shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "pH 3",
+        "pH 4",
+        "pH 5",
+        "pH 6",
+        "pH 7",
+        "pH 8",
+        "pH 9",
+        "pH 10",
+        "pH 11"
+      ],
+      "colLabels": [
+        "Enzyme X rate (mL O2/min)",
+        "Enzyme Y rate (mL O2/min)"
+      ],
+      "cells": [
+        [
+          0.4,
+          0
+        ],
+        [
+          1.9,
+          0.2
+        ],
+        [
+          4.6,
+          0.6
+        ],
+        [
+          3.8,
+          1.3
+        ],
+        [
+          2.1,
+          2.4
+        ],
+        [
+          1,
+          3.7
+        ],
+        [
+          0.3,
+          5.2
+        ],
+        [
+          0.1,
+          3.1
+        ],
+        [
+          0,
+          0.9
+        ]
+      ],
+      "caption": "Table 1. Mean reaction rate of Enzyme X and of Enzyme Y at each of 9 pH values, in mL of O2 per min."
+    },
+    "prompt": "According to Table 1, as pH increased from pH 3 to pH 11, the rate of Enzyme X and the rate of Enzyme Y each:",
+    "choices": [
+      "increased only.",
+      "decreased only.",
+      "increased, then decreased.",
+      "decreased, then increased."
+    ],
+    "correct_answer": "increased, then decreased.",
+    "explanation": "Enzyme X rises from 0.4 to a maximum of 4.6 at pH 5 and then falls to 0.0 at pH 11. Enzyme Y rises from 0.0 to a maximum of 5.2 at pH 9 and then falls to 0.9 at pH 11. Both series increase and then decrease, though at different pH values.",
+    "domain": "Interpretation of Data",
+    "subskill": "identify a trend in a table",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCA-04",
+    "passage_id": "asca-p1",
+    "passage_title": "Two Catalase Enzymes and pH",
+    "format": "data_representation",
+    "passage": "Catalase enzymes speed the breakdown of hydrogen peroxide (H2O2) into water and oxygen gas (O2). A chemist compared 2 such enzymes: Enzyme X, purified from a fungus that grows in acidic bog soil, and Enzyme Y, purified from a bacterium that grows in alkaline lake sediment.\n\nFor each trial, 1.0 mL of a solution containing 0.10 mg of 1 of the purified enzymes was added to 50.0 mL of 0.20 M H2O2 held in a water bath at 25 °C. Before the enzyme was added, the H2O2 solution had been buffered to 1 of 9 pH values. The O2 released was collected in an inverted graduated cylinder, and the volume collected during the first 60 sec was recorded. The reaction rate was then calculated as the volume of O2 collected divided by the collection time, in mL of O2 per min.\n\nEnzymes X and Y were tested in separate trials, and each trial was repeated 3 times. The mean rate for each enzyme at each pH is shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "pH 3",
+        "pH 4",
+        "pH 5",
+        "pH 6",
+        "pH 7",
+        "pH 8",
+        "pH 9",
+        "pH 10",
+        "pH 11"
+      ],
+      "colLabels": [
+        "Enzyme X rate (mL O2/min)",
+        "Enzyme Y rate (mL O2/min)"
+      ],
+      "cells": [
+        [
+          0.4,
+          0
+        ],
+        [
+          1.9,
+          0.2
+        ],
+        [
+          4.6,
+          0.6
+        ],
+        [
+          3.8,
+          1.3
+        ],
+        [
+          2.1,
+          2.4
+        ],
+        [
+          1,
+          3.7
+        ],
+        [
+          0.3,
+          5.2
+        ],
+        [
+          0.1,
+          3.1
+        ],
+        [
+          0,
+          0.9
+        ]
+      ],
+      "caption": "Table 1. Mean reaction rate of Enzyme X and of Enzyme Y at each of 9 pH values, in mL of O2 per min."
+    },
+    "prompt": "Which of the following was held constant across all of the trials represented in Table 1?",
+    "choices": [
+      "The pH of the H2O2 solution",
+      "The temperature of the water bath",
+      "The enzyme that was added",
+      "The volume of O2 that was collected"
+    ],
+    "correct_answer": "The temperature of the water bath",
+    "explanation": "Every trial was run in a water bath at 25 °C, so temperature was held constant. The pH was deliberately varied across 9 values, the enzyme was varied between X and Y, and the volume of O2 collected was the quantity being measured.",
+    "domain": "Scientific Investigation",
+    "subskill": "identify the controlled variable in the design",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCA-05",
+    "passage_id": "asca-p1",
+    "passage_title": "Two Catalase Enzymes and pH",
+    "format": "data_representation",
+    "passage": "Catalase enzymes speed the breakdown of hydrogen peroxide (H2O2) into water and oxygen gas (O2). A chemist compared 2 such enzymes: Enzyme X, purified from a fungus that grows in acidic bog soil, and Enzyme Y, purified from a bacterium that grows in alkaline lake sediment.\n\nFor each trial, 1.0 mL of a solution containing 0.10 mg of 1 of the purified enzymes was added to 50.0 mL of 0.20 M H2O2 held in a water bath at 25 °C. Before the enzyme was added, the H2O2 solution had been buffered to 1 of 9 pH values. The O2 released was collected in an inverted graduated cylinder, and the volume collected during the first 60 sec was recorded. The reaction rate was then calculated as the volume of O2 collected divided by the collection time, in mL of O2 per min.\n\nEnzymes X and Y were tested in separate trials, and each trial was repeated 3 times. The mean rate for each enzyme at each pH is shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "pH 3",
+        "pH 4",
+        "pH 5",
+        "pH 6",
+        "pH 7",
+        "pH 8",
+        "pH 9",
+        "pH 10",
+        "pH 11"
+      ],
+      "colLabels": [
+        "Enzyme X rate (mL O2/min)",
+        "Enzyme Y rate (mL O2/min)"
+      ],
+      "cells": [
+        [
+          0.4,
+          0
+        ],
+        [
+          1.9,
+          0.2
+        ],
+        [
+          4.6,
+          0.6
+        ],
+        [
+          3.8,
+          1.3
+        ],
+        [
+          2.1,
+          2.4
+        ],
+        [
+          1,
+          3.7
+        ],
+        [
+          0.3,
+          5.2
+        ],
+        [
+          0.1,
+          3.1
+        ],
+        [
+          0,
+          0.9
+        ]
+      ],
+      "caption": "Table 1. Mean reaction rate of Enzyme X and of Enzyme Y at each of 9 pH values, in mL of O2 per min."
+    },
+    "prompt": "A student hypothesized that each enzyme is fastest at a pH close to the pH of the environment from which it was purified. Are the data in Table 1 consistent with this hypothesis?",
+    "choices": [
+      "Yes; Enzyme X was fastest at pH 5 and Enzyme Y was fastest at pH 9.",
+      "Yes; Enzyme X was fastest at pH 9 and Enzyme Y was fastest at pH 5.",
+      "No; Enzyme X was fastest at pH 5 and Enzyme Y was fastest at pH 5.",
+      "No; Enzyme X was fastest at pH 9 and Enzyme Y was fastest at pH 9."
+    ],
+    "correct_answer": "Yes; Enzyme X was fastest at pH 5 and Enzyme Y was fastest at pH 9.",
+    "explanation": "Enzyme X, from acidic bog soil, reaches its maximum rate of 4.6 at pH 5, an acidic pH. Enzyme Y, from alkaline lake sediment, reaches its maximum rate of 5.2 at pH 9, an alkaline pH. Each enzyme is fastest near the pH of its source environment, so the data are consistent with the hypothesis.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "evaluate a hypothesis against tabulated data",
+    "difficulty": "hard"
+  },
+  {
+    "id": "ASCA-06",
+    "passage_id": "asca-p2",
+    "passage_title": "Solubility of Three Compounds",
+    "format": "data_representation",
+    "passage": "The solubility of a solid in water is the greatest mass of that solid that will dissolve in a given mass of water at a given temperature. A technician measured the solubility of 3 solid compounds, Compound A, Compound B, and Compound C, in water.\n\nFor each measurement, an excess of 1 of the compounds was added to 100 g of distilled water in a sealed flask. The flask was held in a temperature-controlled bath and stirred for 4 hr, and undissolved solid was still visible at the bottom of the flask at the end of every measurement. A sample of the clear liquid above the undissolved solid was then drawn off through a heated filter and weighed, the sample was evaporated to dryness, and the residue that remained was weighed.\n\nFrom those 2 masses, the technician calculated the mass of the compound dissolved per 100 g of water. Each compound was measured separately at each of 8 temperatures. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "10 °C",
+        "20 °C",
+        "30 °C",
+        "40 °C",
+        "50 °C",
+        "60 °C",
+        "70 °C"
+      ],
+      "colLabels": [
+        "Compound A (g/100 g water)",
+        "Compound B (g/100 g water)",
+        "Compound C (g/100 g water)"
+      ],
+      "cells": [
+        [
+          13.3,
+          71,
+          4.8
+        ],
+        [
+          20.9,
+          66.2,
+          9.1
+        ],
+        [
+          31.6,
+          60.5,
+          19.5
+        ],
+        [
+          45.8,
+          54.1,
+          40.8
+        ],
+        [
+          63.9,
+          47.3,
+          48.8
+        ],
+        [
+          85.5,
+          40.2,
+          46.7
+        ],
+        [
+          110,
+          33,
+          45.3
+        ],
+        [
+          138,
+          26.4,
+          44.1
+        ]
+      ],
+      "caption": "Table 1. Solubility of Compound A, Compound B, and Compound C, in grams of compound per 100 g of water, at each of 8 temperatures."
+    },
+    "prompt": "According to Table 1, the solubility of Compound B at 50 °C was:",
+    "choices": [
+      "40.2 g/100 g water",
+      "46.7 g/100 g water",
+      "47.3 g/100 g water",
+      "54.1 g/100 g water"
+    ],
+    "correct_answer": "40.2 g/100 g water",
+    "explanation": "In the 50 °C row of Table 1, the Compound B column reads 40.2 g/100 g water. The value 46.7 is the Compound C solubility in the same row, while 47.3 and 54.1 are the Compound B solubilities at 40 °C and 30 °C.",
+    "domain": "Interpretation of Data",
+    "subskill": "read a value from a table",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ASCA-07",
+    "passage_id": "asca-p2",
+    "passage_title": "Solubility of Three Compounds",
+    "format": "data_representation",
+    "passage": "The solubility of a solid in water is the greatest mass of that solid that will dissolve in a given mass of water at a given temperature. A technician measured the solubility of 3 solid compounds, Compound A, Compound B, and Compound C, in water.\n\nFor each measurement, an excess of 1 of the compounds was added to 100 g of distilled water in a sealed flask. The flask was held in a temperature-controlled bath and stirred for 4 hr, and undissolved solid was still visible at the bottom of the flask at the end of every measurement. A sample of the clear liquid above the undissolved solid was then drawn off through a heated filter and weighed, the sample was evaporated to dryness, and the residue that remained was weighed.\n\nFrom those 2 masses, the technician calculated the mass of the compound dissolved per 100 g of water. Each compound was measured separately at each of 8 temperatures. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "10 °C",
+        "20 °C",
+        "30 °C",
+        "40 °C",
+        "50 °C",
+        "60 °C",
+        "70 °C"
+      ],
+      "colLabels": [
+        "Compound A (g/100 g water)",
+        "Compound B (g/100 g water)",
+        "Compound C (g/100 g water)"
+      ],
+      "cells": [
+        [
+          13.3,
+          71,
+          4.8
+        ],
+        [
+          20.9,
+          66.2,
+          9.1
+        ],
+        [
+          31.6,
+          60.5,
+          19.5
+        ],
+        [
+          45.8,
+          54.1,
+          40.8
+        ],
+        [
+          63.9,
+          47.3,
+          48.8
+        ],
+        [
+          85.5,
+          40.2,
+          46.7
+        ],
+        [
+          110,
+          33,
+          45.3
+        ],
+        [
+          138,
+          26.4,
+          44.1
+        ]
+      ],
+      "caption": "Table 1. Solubility of Compound A, Compound B, and Compound C, in grams of compound per 100 g of water, at each of 8 temperatures."
+    },
+    "prompt": "Based on Table 1, the solubility of Compound A first exceeded the solubility of Compound B at a temperature between:",
+    "choices": [
+      "10 °C and 20 °C",
+      "20 °C and 30 °C",
+      "30 °C and 40 °C",
+      "40 °C and 50 °C"
+    ],
+    "correct_answer": "30 °C and 40 °C",
+    "explanation": "At 30 °C the solubilities are 45.8 (A) and 54.1 (B), so B is still greater. At 40 °C they are 63.9 (A) and 47.3 (B), so A is now greater. The two columns cross between 30 °C and 40 °C.",
+    "domain": "Interpretation of Data",
+    "subskill": "compare two data series across a table",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCA-08",
+    "passage_id": "asca-p2",
+    "passage_title": "Solubility of Three Compounds",
+    "format": "data_representation",
+    "passage": "The solubility of a solid in water is the greatest mass of that solid that will dissolve in a given mass of water at a given temperature. A technician measured the solubility of 3 solid compounds, Compound A, Compound B, and Compound C, in water.\n\nFor each measurement, an excess of 1 of the compounds was added to 100 g of distilled water in a sealed flask. The flask was held in a temperature-controlled bath and stirred for 4 hr, and undissolved solid was still visible at the bottom of the flask at the end of every measurement. A sample of the clear liquid above the undissolved solid was then drawn off through a heated filter and weighed, the sample was evaporated to dryness, and the residue that remained was weighed.\n\nFrom those 2 masses, the technician calculated the mass of the compound dissolved per 100 g of water. Each compound was measured separately at each of 8 temperatures. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "10 °C",
+        "20 °C",
+        "30 °C",
+        "40 °C",
+        "50 °C",
+        "60 °C",
+        "70 °C"
+      ],
+      "colLabels": [
+        "Compound A (g/100 g water)",
+        "Compound B (g/100 g water)",
+        "Compound C (g/100 g water)"
+      ],
+      "cells": [
+        [
+          13.3,
+          71,
+          4.8
+        ],
+        [
+          20.9,
+          66.2,
+          9.1
+        ],
+        [
+          31.6,
+          60.5,
+          19.5
+        ],
+        [
+          45.8,
+          54.1,
+          40.8
+        ],
+        [
+          63.9,
+          47.3,
+          48.8
+        ],
+        [
+          85.5,
+          40.2,
+          46.7
+        ],
+        [
+          110,
+          33,
+          45.3
+        ],
+        [
+          138,
+          26.4,
+          44.1
+        ]
+      ],
+      "caption": "Table 1. Solubility of Compound A, Compound B, and Compound C, in grams of compound per 100 g of water, at each of 8 temperatures."
+    },
+    "prompt": "According to Table 1, as temperature increased from 0 °C to 70 °C, the solubility of Compound C:",
+    "choices": [
+      "increased only.",
+      "decreased only.",
+      "increased, then decreased.",
+      "decreased, then increased."
+    ],
+    "correct_answer": "increased, then decreased.",
+    "explanation": "Reading down the Compound C column, the solubility rises from 4.8 to 9.1, 19.5, 40.8, and a maximum of 48.8 at 40 °C, then falls to 46.7, 45.3, and 44.1.",
+    "domain": "Interpretation of Data",
+    "subskill": "identify a trend in a table",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCA-09",
+    "passage_id": "asca-p2",
+    "passage_title": "Solubility of Three Compounds",
+    "format": "data_representation",
+    "passage": "The solubility of a solid in water is the greatest mass of that solid that will dissolve in a given mass of water at a given temperature. A technician measured the solubility of 3 solid compounds, Compound A, Compound B, and Compound C, in water.\n\nFor each measurement, an excess of 1 of the compounds was added to 100 g of distilled water in a sealed flask. The flask was held in a temperature-controlled bath and stirred for 4 hr, and undissolved solid was still visible at the bottom of the flask at the end of every measurement. A sample of the clear liquid above the undissolved solid was then drawn off through a heated filter and weighed, the sample was evaporated to dryness, and the residue that remained was weighed.\n\nFrom those 2 masses, the technician calculated the mass of the compound dissolved per 100 g of water. Each compound was measured separately at each of 8 temperatures. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "10 °C",
+        "20 °C",
+        "30 °C",
+        "40 °C",
+        "50 °C",
+        "60 °C",
+        "70 °C"
+      ],
+      "colLabels": [
+        "Compound A (g/100 g water)",
+        "Compound B (g/100 g water)",
+        "Compound C (g/100 g water)"
+      ],
+      "cells": [
+        [
+          13.3,
+          71,
+          4.8
+        ],
+        [
+          20.9,
+          66.2,
+          9.1
+        ],
+        [
+          31.6,
+          60.5,
+          19.5
+        ],
+        [
+          45.8,
+          54.1,
+          40.8
+        ],
+        [
+          63.9,
+          47.3,
+          48.8
+        ],
+        [
+          85.5,
+          40.2,
+          46.7
+        ],
+        [
+          110,
+          33,
+          45.3
+        ],
+        [
+          138,
+          26.4,
+          44.1
+        ]
+      ],
+      "caption": "Table 1. Solubility of Compound A, Compound B, and Compound C, in grams of compound per 100 g of water, at each of 8 temperatures."
+    },
+    "prompt": "In the procedure, an excess of the compound was added to the water and undissolved solid remained in every flask. Doing so was necessary to ensure that each solution:",
+    "choices": [
+      "held as much dissolved compound as it could at that temperature.",
+      "reached the temperature of the bath before it was sampled.",
+      "contained the same mass of water at every temperature.",
+      "stayed at a constant pH while it was stirred."
+    ],
+    "correct_answer": "held as much dissolved compound as it could at that temperature.",
+    "explanation": "Solubility is defined as the greatest mass that will dissolve at a given temperature, so the liquid sampled has to be saturated. Solid left undissolved shows that no more compound could dissolve. The 4 hr in the bath, not the excess solid, is what brings the flask to temperature, and the 100 g of water was measured out separately.",
+    "domain": "Scientific Investigation",
+    "subskill": "explain why a procedural step was required",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ASCA-10",
+    "passage_id": "asca-p2",
+    "passage_title": "Solubility of Three Compounds",
+    "format": "data_representation",
+    "passage": "The solubility of a solid in water is the greatest mass of that solid that will dissolve in a given mass of water at a given temperature. A technician measured the solubility of 3 solid compounds, Compound A, Compound B, and Compound C, in water.\n\nFor each measurement, an excess of 1 of the compounds was added to 100 g of distilled water in a sealed flask. The flask was held in a temperature-controlled bath and stirred for 4 hr, and undissolved solid was still visible at the bottom of the flask at the end of every measurement. A sample of the clear liquid above the undissolved solid was then drawn off through a heated filter and weighed, the sample was evaporated to dryness, and the residue that remained was weighed.\n\nFrom those 2 masses, the technician calculated the mass of the compound dissolved per 100 g of water. Each compound was measured separately at each of 8 temperatures. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "10 °C",
+        "20 °C",
+        "30 °C",
+        "40 °C",
+        "50 °C",
+        "60 °C",
+        "70 °C"
+      ],
+      "colLabels": [
+        "Compound A (g/100 g water)",
+        "Compound B (g/100 g water)",
+        "Compound C (g/100 g water)"
+      ],
+      "cells": [
+        [
+          13.3,
+          71,
+          4.8
+        ],
+        [
+          20.9,
+          66.2,
+          9.1
+        ],
+        [
+          31.6,
+          60.5,
+          19.5
+        ],
+        [
+          45.8,
+          54.1,
+          40.8
+        ],
+        [
+          63.9,
+          47.3,
+          48.8
+        ],
+        [
+          85.5,
+          40.2,
+          46.7
+        ],
+        [
+          110,
+          33,
+          45.3
+        ],
+        [
+          138,
+          26.4,
+          44.1
+        ]
+      ],
+      "caption": "Table 1. Solubility of Compound A, Compound B, and Compound C, in grams of compound per 100 g of water, at each of 8 temperatures."
+    },
+    "prompt": "A student claimed that, for each of the 3 compounds, a solution saturated at 60 °C would deposit solid if it were cooled to 20 °C. Are the data in Table 1 consistent with this claim?",
+    "choices": [
+      "Yes, because each of the 3 compounds is more soluble at 60 °C than at 20 °C.",
+      "Yes, because each of the 3 compounds is less soluble at 60 °C than at 20 °C.",
+      "No, because Compound B is more soluble at 20 °C than at 60 °C.",
+      "No, because Compound A is more soluble at 20 °C than at 60 °C."
+    ],
+    "correct_answer": "No, because Compound B is more soluble at 20 °C than at 60 °C.",
+    "explanation": "Solid is deposited on cooling only if less compound can stay dissolved at the lower temperature. That holds for Compound A (31.6 at 20 °C versus 110.0 at 60 °C) and for Compound C (19.5 versus 45.3), but not for Compound B, whose solubility is 60.5 at 20 °C and only 33.0 at 60 °C. Cooling a saturated Compound B solution would allow more, not less, to dissolve, so the claim fails for 1 of the 3 compounds.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "evaluate a claim against tabulated data",
+    "difficulty": "hard"
+  }
+]

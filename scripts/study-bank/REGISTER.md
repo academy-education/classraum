@@ -2528,3 +2528,26 @@ structural checks are pre-flight only. See CLAUDE.md.
   **§9 — reading items, from four measured batches.** One-frame construction is necessary and not sufficient; the key must not be the interesting claim; the distractors need a two-move architecture too; good distractors are **true in the real world** so knowledge makes them attractive rather than handing over the key; and the key must not be retrievable from a single sentence — the defect no blind stage can see, because an options-only attack has the passage hidden by construction.
 
   **§10 — repairs.** After one failed rewrite, stop. A passage change invalidates the panel; an option-preserving change does not invalidate the blind stages, and those verdicts should be inherited **explicitly** rather than silently reused. And the two arguments for holding an item permanently rather than repairing it — *"the mechanism itself is one bit"*, and *"both roads bad is the signature of a mechanism that cannot carry four options"* — with the standing conclusion that **a held item is a better outcome than a silently different one**.
+
+- **2026-09-21** — **THE BLIND ATTACK IS INVALID FOR ACT SCIENCE. It scores the shipped, human-cleared live bank at 88.9%.** Full write-up in `SCIENCE-OO-RESULT.md`; the short version is that the one instrument this project trusts has a family where it does not work, and it was found only because the run was PAIRED against a live control.
+
+  Three blind solvers, figure withheld, controls derived from each file's own key distribution:
+
+      arm                                pooled   control   margin
+      scig      20 candidate items        71.7%    35.0%    +36.7
+      ctrlscig  30 SHIPPED live items     88.9%    26.7%    +62.2
+
+  **The control scored SEVENTEEN POINTS HIGHER than the candidate**, and all three solvers volunteered, unprompted, that the live file was the more transparent of the two. Unanimous-correct was 25 of 30 on live items against an expectation of 0.57.
+
+  **The refutation is a human sitting that already exists.** `act-science-cofounder-2026-09-18`, 21 items from that same population, **28.6% against a 28.6% control — exactly chance.** A person with the figure hidden cannot do this; the models can. The solvers explained why in their own reports without noticing: the control's numbers *are* potassium nitrate's published solubility curve, one item is Hardy-Weinberg, one block is deflection ∝ 1/thickness³. **The attack was measuring the solver's science knowledge, which is the construct the section exists to test, not a leak.** Same false positive already on record for the TOEFL MC bank — model 93-100%, humans at chance.
+
+  **A sixth structural proxy was built and it failed the same way as the other five.** The solvers named one mechanism needing no science — a value item X needs is printed in sibling Y's option set. That is arithmetic, so per the population rule it was checked exactly over both banks rather than sampled (`check-sibling-numeric-leak.mjs`, self-tested on three fixtures, break-tested four ways, exits 2 on unreadable/empty/no-arg input):
+
+      candidate   6 of 20 = 30.0%   whole blocks clean: 1 of 4
+      live bank  10 of 30 = 33.3%   whole blocks clean: 0 of 6
+
+  **It rejects every shipped block a human has already cleared.** Kept as pre-flight, never a ship decision. Most of its hits are a shared axis label — two stems in one data-table passage both naming "20 °C" is not a leak.
+
+  **Disposition, and the part worth arguing with.** ACT Science **stays live**: it was unhidden on the human sitting (75d841c5) and nothing here touches that evidence. **Do not re-hide a section on a model attack that a human sitting contradicts** — I came close to doing exactly that, on a number that looked alarming and measured the wrong thing. The 20 candidate items are **committed to the repo but NOT inserted**: they are indistinguishable from the live bank by every instrument available, which is not the same as clean, it means there is no gate to clear. They wait for a human sitting.
+
+  **The with-source grader's findings stand and are separate.** Difficulty easy 8 / medium 12 / hard 0 — nothing in the batch requires holding two comparisons at once — and ASCA-03/-05/-09 are answerable from the procedure alone. Those are construct defects, not leak, and the blind half would never have seen them. Fifth consecutive batch where the with-source half was the half that decided.
