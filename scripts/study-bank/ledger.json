@@ -3758,6 +3758,41 @@
      "verdict": "Key slots dealt 12/12/12/12/12. Author noticed its own first pass produced a clean 0,1,2,3,4 cycle - the complete-permutation tell - and reshuffled. Length tell measured against the live bank as control: key strictly longest 28.3% here vs 20.2% live (chance 20%), +8 on n=60, not significant and confounded with the antonym structure; recorded, not acted on."
     }
    }
+  },
+  {
+   "id": "isee-verbal-s14-kept-2026-09-21",
+   "createdAt": "2026-09-21",
+   "targetTest": "isee",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "cohort": "isee-verbal-s14",
+   "contentSha": "e4ddac19be95b1f9e290a6e078fd93cac277abbb9d5a66b48430ab2e73d91305",
+   "status": "shipped",
+   "note": "13 kept of 28 — the SYNONYM stratum ships and the SENTENCE-COMPLETION stratum is held. Both strata were authored together and looked alike; a stratified matched control separated them. Drops: IVS7-15 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-16 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-17 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-18 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-19 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-20 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-21 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-22 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-23 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-24 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-25 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-26 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-27 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-28 - sentence-completion stratum FAILED against its own matched live floor: candidate +40.5 vs live +9.5, a 31-point excess. Live ISEE sentence completions are nearly options-only clean, so this is a real leak and not the instrument.; IVS7-14 - grader and author agree the distractor `punctilious` is above the ISEE band, leaving the item effectively three-wide.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "e4ddac19be95b1f9e290a6e078fd93cac277abbb9d5a66b48430ab2e73d91305",
+     "verdict": "My own run: 28 items, exactly 4 choices (the ISEE count, which the inserter enforces), key among choices, every prompt tagged, 14 synonym + 14 sentence completion under the live draw's own verbalKind(), keys 7/7/7/7, no stem colliding with the live bank. Checker break-tested on six planted defects. Pin a9d9edba4e95a6ec. The author break-tested its own checks before reporting and caught that two examples in my brief were themselves live items."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Grader: 28 of 28 exclusive. It confirmed all three items the author had flagged against itself and added a fourth (IVS7-20, where 'shifting' is a second reading of the logic). The risk in this set is narrowed fields rather than dead items: 6 carry strong distractors."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "STRATIFIED, on the blind panel's own instruction, and the strata split in opposite directions. Candidate overall 67.9% vs a 25.0% derived control. A composition-matched live control (14 synonyms + 14 sentence completions drawn from shipped ISEE rows) read 57.1% overall. By stratum: sentence completions candidate +40.5 against a live floor of +9.5 — a 31-point excess, FAILED and held; synonyms candidate +38.1 against a live floor of +47.6 — 9.5 points BETTER than the bank, passed. A single verbal floor would have been wrong in both directions. Kept-set residual 33.3."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Solvers reported the eliminable structures: mutual-synonym pairs that cancel (provoke/enrage, punctilious/thorough) and planted opposite pairs, which narrow a 4-way to a 2-way without the stem. IVS7-14 is dropped on exactly that ground."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Keys dealt 7/7/7/7; the author noticed its own first pass produced a repeating 0,2,1,3 cycle and reshuffled. No cloned option sets in the candidate — every item has its own pool. By contrast the LIVE control carries three items sharing one four-word pool, found blind by two solvers independently, with 'nocturnal' in slot A on all three: a cross-item defect in the shipped bank, recorded for repair."
+    }
+   }
   }
  ],
  "auditedCohorts": [

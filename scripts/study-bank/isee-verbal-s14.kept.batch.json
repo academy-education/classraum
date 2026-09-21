@@ -1,0 +1,262 @@
+[
+ {
+  "id": "IVS7-01",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] STERN",
+  "choices": [
+   "gloomy",
+   "formal",
+   "strict",
+   "weary"
+  ],
+  "correct_answer": "strict",
+  "explanation": "A stern teacher holds people to the rule and does not bend, which is what \"strict\" names. \"Gloomy\" describes a mood rather than a standard; \"formal\" describes manners rather than severity; \"weary\" describes how tired someone is. All four could be said of the same face, but only one says that the rule will be enforced.",
+  "distractor_rationales": [
+   "gloomy — same-semantic-field associate: a stern expression looks unhappy, but the word reports severity, not sadness",
+   "formal — same-semantic-field associate: stiffness of manner, which stern faces often have but is not what stern means",
+   "weary — same-field associate drawn from the same unsmiling look"
+  ]
+ },
+ {
+  "id": "IVS7-02",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] VAST",
+  "choices": [
+   "enormous",
+   "empty",
+   "distant",
+   "ancient"
+  ],
+  "correct_answer": "enormous",
+  "explanation": "Vast reports size and nothing else, so \"enormous\" is the match. \"Empty\" reports what is in a space rather than how big it is; \"distant\" reports how far away it lies; \"ancient\" reports its age. A vast hall can be crowded, near at hand, and newly built.",
+  "distractor_rationales": [
+   "empty — same-semantic-field associate: the stock phrase \"vast emptiness\" supplies it",
+   "distant — same-field associate from descriptions of vast landscapes",
+   "ancient — same-field associate from descriptions of vast ruins"
+  ]
+ },
+ {
+  "id": "IVS7-03",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] SUMMON",
+  "choices": [
+   "dismiss",
+   "escort",
+   "obey",
+   "call"
+  ],
+  "correct_answer": "call",
+  "explanation": "To summon someone is to call that person to come, which \"call\" names directly. \"Dismiss\" is the opposite instruction; \"escort\" is walking beside someone who is already coming; \"obey\" is what the person summoned may then do.",
+  "distractor_rationales": [
+   "dismiss — antonym of the stem, which catches half-remembered vocabulary",
+   "escort — same-semantic-field associate from the same scene of being sent for",
+   "obey — same-field associate: the response to a summons, not the summons"
+  ]
+ },
+ {
+  "id": "IVS7-04",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] WITHER",
+  "choices": [
+   "scatter",
+   "shrivel",
+   "darken",
+   "harden"
+  ],
+  "correct_answer": "shrivel",
+  "explanation": "To wither is to dry and shrink, which is exactly \"shrivel.\" \"Darken\" and \"harden\" are other things a dying leaf may also do, and \"scatter\" is what happens to it afterward; none of the three carries the drawing-in that the stem requires.",
+  "distractor_rationales": [
+   "scatter — same-semantic-field associate from the same scene of dead leaves",
+   "darken — same-field associate: a change that accompanies withering without being it",
+   "harden — same-field associate of drying, but a withered stem may stay limp"
+  ]
+ },
+ {
+  "id": "IVS7-05",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] PRECARIOUS",
+  "choices": [
+   "unsteady",
+   "valuable",
+   "hurried",
+   "stubborn"
+  ],
+  "correct_answer": "unsteady",
+  "explanation": "Something precarious is held in place so poorly that it may go over at any moment, which \"unsteady\" names. \"Valuable\" answers a different question entirely, \"hurried\" reports speed, and \"stubborn\" reports a refusal to move — nearly the opposite of a thing about to slip.",
+  "distractor_rationales": [
+   "valuable — look-alike/sound-alike: precarious against precious",
+   "hurried — same-field associate of danger and haste",
+   "stubborn — near-antonym: a thing that will not budge is the opposite of one barely holding"
+  ]
+ },
+ {
+  "id": "IVS7-06",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] RESOLUTE",
+  "choices": [
+   "confused",
+   "solitary",
+   "determined",
+   "cheerful"
+  ],
+  "correct_answer": "determined",
+  "explanation": "A resolute person has settled on a course and will not be talked off it, which is what \"determined\" names. \"Confused\" is the opposite condition, \"solitary\" reports who is present rather than how firmly one has decided, and \"cheerful\" reports mood.",
+  "distractor_rationales": [
+   "confused — antonym of the stem: the mind not made up",
+   "solitary — look-alike/sound-alike of resolute, and the two are often paired in descriptions of lone figures",
+   "cheerful — same-field associate from character description, wrong dimension"
+  ]
+ },
+ {
+  "id": "IVS7-07",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] OMINOUS",
+  "choices": [
+   "mysterious",
+   "sudden",
+   "unpleasant",
+   "threatening"
+  ],
+  "correct_answer": "threatening",
+  "explanation": "An ominous sky warns of harm on the way, which \"threatening\" names precisely. \"Mysterious\" says only that something is not understood, \"sudden\" reports timing, and \"unpleasant\" is too weak and says nothing about what is coming next.",
+  "distractor_rationales": [
+   "mysterious — same-semantic-field associate: the same atmosphere, no warning of harm",
+   "sudden — same-field associate from descriptions of storms, wrong dimension",
+   "unpleasant — right polarity, wrong intensity, and lacks the forward-looking sense"
+  ]
+ },
+ {
+  "id": "IVS7-08",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] DETER",
+  "choices": [
+   "delay",
+   "discourage",
+   "mislead",
+   "destroy"
+  ],
+  "correct_answer": "discourage",
+  "explanation": "To deter is to put someone off doing a thing, which is \"discourage.\" \"Delay\" only postpones the act, \"mislead\" sends someone the wrong way while they keep going, and \"destroy\" acts on the thing rather than on the person's willingness.",
+  "distractor_rationales": [
+   "delay — look-alike/sound-alike: deter against defer",
+   "mislead — same-semantic-field associate from the field of turning someone aside",
+   "destroy — look-alike/sound-alike: deter against deteriorate, plus shared negative field"
+  ]
+ },
+ {
+  "id": "IVS7-09",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] FLIPPANT",
+  "choices": [
+   "apprehensive",
+   "talkative",
+   "disrespectful",
+   "clumsy"
+  ],
+  "correct_answer": "disrespectful",
+  "explanation": "A flippant answer treats a serious matter as a joke, and \"disrespectful\" names that failure to give the matter its weight. \"Talkative\" reports quantity of speech rather than its attitude, \"apprehensive\" reports fear, and \"clumsy\" reports awkwardness — a flippant remark is usually quick and deft.",
+  "distractor_rationales": [
+   "apprehensive — same-field associate of behavior under questioning; also a register-matched decoy",
+   "talkative — same-semantic-field associate: manner of speech, wrong attribute",
+   "clumsy — near-antonym in effect, since flippancy is typically nimble rather than awkward"
+  ]
+ },
+ {
+  "id": "IVS7-10",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ABSTAIN",
+  "choices": [
+   "object",
+   "depart",
+   "conceal",
+   "refrain"
+  ],
+  "correct_answer": "refrain",
+  "explanation": "To abstain is to hold back from doing something, which is what \"refrain\" names. \"Object\" is to speak against a thing, which is doing something rather than holding back; \"depart\" is to leave; \"conceal\" is to hide.",
+  "distractor_rationales": [
+   "object — same-semantic-field associate: the voting sense of abstain sits beside objecting, but they are opposite acts",
+   "depart — same-field associate: leaving the room is how abstaining often looks",
+   "conceal — same-field associate of keeping something back, wrong object"
+  ]
+ },
+ {
+  "id": "IVS7-11",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] TEMPER",
+  "choices": [
+   "moderate",
+   "enrage",
+   "provoke",
+   "polish"
+  ],
+  "correct_answer": "moderate",
+  "explanation": "Students know \"temper\" as the noun for anger and reach for a word from that field. As a verb it means to soften or tone something down — a judge tempers justice with mercy. \"Moderate\" names that softening. \"Enrage\" and \"provoke\" belong to the primary sense's field and both push the opposite way; \"polish\" is a finishing step rather than a lessening.",
+  "distractor_rationales": [
+   "enrage — the stem's OTHER meaning: the anger noun, planted as the primary-sense field-mate",
+   "provoke — second trap from the same anger field",
+   "polish — same-field associate from the craft sense of working a material"
+  ]
+ },
+ {
+  "id": "IVS7-12",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] COIN",
+  "choices": [
+   "borrow",
+   "invent",
+   "spend",
+   "hoard"
+  ],
+  "correct_answer": "invent",
+  "explanation": "The familiar sense sends students to the money field, where three of these choices sit. As a verb, to coin is to make something new — one coins a phrase, a nickname, a term — so \"invent\" is the match. \"Borrow\" is close to the opposite, since a borrowed phrase is one nobody coined.",
+  "distractor_rationales": [
+   "borrow — the stem's OTHER meaning: money field, and an antonym of inventing a term",
+   "spend — money-field associate of the primary sense",
+   "hoard — money-field associate of the primary sense"
+  ]
+ },
+ {
+  "id": "IVS7-13",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] STEEP",
+  "choices": [
+   "climb",
+   "harden",
+   "soak",
+   "sharpen"
+  ],
+  "correct_answer": "soak",
+  "explanation": "Almost everyone meets \"steep\" first as the adjective for a sharp slope, and \"climb\" and \"sharpen\" are planted for that reading. The verb means to let something sit in liquid — tea steeps, and a scholar is steeped in his subject — so \"soak\" is the synonym. Note that neither \"climb\" nor \"sharpen\" is a synonym of the slope sense either; they are associates of it.",
+  "distractor_rationales": [
+   "climb — the stem's OTHER meaning: an associate of the steep-slope sense",
+   "harden — same-field associate of what long immersion is imagined to do",
+   "sharpen — second associate of the slope sense (a steep, sharp rise)"
+  ]
+ }
+]
