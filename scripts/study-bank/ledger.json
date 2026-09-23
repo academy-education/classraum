@@ -4131,6 +4131,40 @@
      "verdict": "WIC4-10 DUPLICATES THE SHIPPED WIC2-08 -- same subject (sumptuary law) and the same evidentiary move, with keys that are near-antonyms describing one finding, so a student who met one answers the other unread. Verified directly against the live file. Separately, ELEVEN OF SIXTEEN passages end on the same detached summary sentence (\"the X is ______\", \"it is the Y's ______\"), a cross-item template a solver can learn and which no existing structural check looks for. Two relation families are now crowded in the bank: the editorial-artefact relation has three members and the latent-defect relation two."
     }
    }
+  },
+  {
+   "id": "sat-math-v14-kept-2026-09-24",
+   "createdAt": "2026-09-24",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "math_mc",
+   "family": "mc_stem_source",
+   "cohort": "sat-math-v14",
+   "contentSha": "087fa5d7476c23f13c52799eb13e2c127217974cb6fdf1bf80ac31ee1bfd2ef4",
+   "status": "shipped",
+   "note": "15 of 40 survive: Algebra 8, Advanced Math 7. Form 26 needs 15 of EACH, so it is not bought; the deficit goes 15+15 to 7+8. ALL 40 KEYS WERE CORRECT in both batches -- every drop is a distractor or duplication defect, not a wrong answer.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "087fa5d7476c23f13c52799eb13e2c127217974cb6fdf1bf80ac31ee1bfd2ef4",
+     "verdict": "40 authored, all exactly 4 choices with the key present, no duplicate option values, no duplicate ids, no explanation naming a slot, and ZERO options equal to a numeral printed in their own stem (checked mechanically; this defect dropped an item from the previous round). Sandbox 40/40 keys recompute, 120/120 distractors recompute. Both authors break-tested their own harness -- mis-keying dropped the sandbox and exited 1, corrupting a distractor derivation produced a mismatch, and one author promoted all 60 of its distractors to key with 0 surviving."
+    },
+    "withsource": {
+     "passed": true,
+     "contentSha": "087fa5d7476c23f13c52799eb13e2c127217974cb6fdf1bf80ac31ee1bfd2ef4",
+     "verdict": "Two graders, one per domain, each solving from the prompt before reading any explanation. NEITHER DISPUTED A SINGLE KEY across 40 items. The damage was all in the distractors: NINE OF TWENTY Algebra items carry a DEAD OPTION, four of them bypassable end to end without algebra -- SM14L-10's members force a multiple of 20 so only one option survives, SM14L-20's mean shortcut kills three, SM14L-17's factor of 5 kills two, SM14L-19 dies on magnitude. Five Advanced Math items likewise, with SM14A-02 collapsing to a coin flip on PARITY (3x2^x is even, so two options die on sight). Three duplicate mechanisms the authors missed: SM14A-04/05 are both \"evaluate p at the root of the divisor\", SM14A-16/20 both recover a symmetric expression from sum and product, and SM14L-01/19 reduce to the identical last two steps with the same key and the same distractor. Difficulty banked from the graders: 2 easy / 10 medium / 3 hard, against the authors' combined 12 hard."
+    },
+    "nosource": {
+     "passed": true,
+     "contentSha": "087fa5d7476c23f13c52799eb13e2c127217974cb6fdf1bf80ac31ee1bfd2ef4",
+     "verdict": "Options-only attack, three solvers, 40 candidates interleaved with 40 live SAT math items (this session's own cohorts excluded from the control so it is not self-referential), arm only in the key, slot dealt FLAT so both derived controls are exactly 25.0%. CANDIDATE 34.2%, margin +9.2, nine solved unanimously; CONTROL 50.0%, margin +25.0, sixteen unanimous. Split by domain the candidate is Algebra 25.0% (margin -5.0) against Advanced Math 43.3% (+13.3) -- the leak was almost entirely in one domain. After the nine unanimous drops the batch falls to 15.1%, and the final 15-item shipping set scores 13.3% against a 26.7% derived control. NOTE A REVERSAL: on three previous maths batches solvers' confident picks scored at or below chance, and one solver PREDICTED that again here; its lean bucket came in at 47.5% against its guess bucket's 28.2%. Structural reasoning carried real signal on this batch, which is why nine items were dropped rather than none."
+    },
+    "tells": {
+     "passed": true,
+     "contentSha": "087fa5d7476c23f13c52799eb13e2c127217974cb6fdf1bf80ac31ee1bfd2ef4",
+     "verdict": "Magnitude pooled across both batches matches the live bank almost exactly -- largest 17.5%, smallest 15.0%, interior 67.5% against 15.2/16.3/68.4, z = 0.40 / -0.23 / -0.13 -- and the two authors' individual skews (Algebra 55% interior, Advanced Math 80%) cancel, which is an argument for measuring a commission as a whole rather than per author. The Advanced Math grader found the cross-item version independently: the key was interior in 16 of its 20, with \"the unfinished value before the last division\" used as the standard largest distractor four times and the number 22 playing that role twice. A SEPARATE FINDING ABOUT THE CHECKING MACHINERY, not the items: SM14A-19's solve field was a finite-difference limit returning 15.000000199840144, which passed the sandbox on its 1e-6 tolerance rather than on being right. check-tolerance-pass.mjs was written and run over ALL 3,660 items in this directory that carry a solve field: 3,534 exact, 59 float noise, 65 non-numeric, ZERO wrong, and exactly ONE deliberate approximation -- this item. Its solve is now exact and the key was correct throughout."
+    }
+   }
   }
  ],
  "auditedCohorts": [

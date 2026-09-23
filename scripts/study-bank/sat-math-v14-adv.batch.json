@@ -1,0 +1,422 @@
+[
+ {
+  "id": "SM14A-01",
+  "domain": "Advanced Math",
+  "subskill": "function composition: evaluate the inner function first, then substitute that output everywhere in the outer function",
+  "difficulty": "easy",
+  "prompt": "The functions f and g are defined by f(x) = x^2 - 3x and g(x) = x + 2. What is the value of f(g(4))?",
+  "choices": [
+   "6",
+   "18",
+   "24",
+   "33"
+  ],
+  "correct_answer": "18",
+  "explanation": "g(4) = 4 + 2 = 6, and f(6) = 6^2 - 3(6) = 36 - 18 = 18, which is \"18\". \"24\" comes from substituting 6 into the squared term but leaving the original 4 in -3x, as 6^2 - 3(4) = 24. \"6\" comes from applying the functions in the wrong order, g(f(4)) = g(4) = 6. \"33\" comes from dropping the variable in -3x and subtracting only 3, as 6^2 - 3.",
+  "solve": "var g=4+2; return String(g*g-3*g);",
+  "distractor_solve": {
+   "6": "var f=4*4-3*4; return String(f+2);",
+   "24": "var g=4+2; return String(g*g-3*4);",
+   "33": "var g=4+2; return String(g*g-3);"
+  }
+ },
+ {
+  "id": "SM14A-02",
+  "domain": "Advanced Math",
+  "subskill": "evaluating an exponential function of the form a*b^x, where the coefficient multiplies the power rather than the base",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = 3(2)^x. What is the value of f(4)?",
+  "choices": [
+   "19",
+   "24",
+   "48",
+   "81"
+  ],
+  "correct_answer": "48",
+  "explanation": "f(4) = 3 * 2^4 = 3 * 16 = 48, which is \"48\". \"24\" comes from multiplying the three numbers, 3 * 2 * 4, instead of raising 2 to the fourth power. \"81\" comes from raising the coefficient to the power, 3^4. \"19\" comes from adding the coefficient to the power, 3 + 2^4.",
+  "solve": "return String(3*Math.pow(2,4));",
+  "distractor_solve": {
+   "19": "return String(3+Math.pow(2,4));",
+   "24": "return String(3*2*4);",
+   "81": "return String(Math.pow(3,4));"
+  }
+ },
+ {
+  "id": "SM14A-03",
+  "domain": "Advanced Math",
+  "subskill": "reading the zeros off a fully factored polynomial, where each zero is the opposite of the constant in its factor",
+  "difficulty": "easy",
+  "prompt": "The polynomial p is defined by p(x) = (x - 7)(x + 3)(x + 6). What is the sum of the zeros of p?",
+  "choices": [
+   "-2",
+   "4",
+   "10",
+   "16"
+  ],
+  "correct_answer": "-2",
+  "explanation": "The zeros are 7, -3 and -6, and 7 + (-3) + (-6) = -2, which is \"-2\". \"16\" comes from reading each factor's constant with the sign it is printed with reversed nowhere at all, 7 + 3 + 6. \"10\" comes from taking the sign of only the (x + 3) factor correctly, 7 - 3 + 6. \"4\" comes from taking the sign of only the (x + 6) factor correctly, 7 + 3 - 6.",
+  "solve": "return String(7+(-3)+(-6));",
+  "distractor_solve": {
+   "4": "return String(7+3-6);",
+   "10": "return String(7-3+6);",
+   "16": "return String(7+3+6);"
+  }
+ },
+ {
+  "id": "SM14A-04",
+  "domain": "Advanced Math",
+  "subskill": "the remainder theorem: the remainder on division by x + c is the polynomial evaluated at the opposite of c",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = x^3 + 5x^2 - 2x + 4. What is the remainder when p(x) is divided by x + 2?",
+  "choices": [
+   "12",
+   "16",
+   "20",
+   "28"
+  ],
+  "correct_answer": "20",
+  "explanation": "The remainder is p(-2) = -8 + 20 + 4 + 4 = 20, which is \"20\". \"28\" is p(2), from using the constant in the divisor with its printed sign instead of its opposite. \"16\" is the last product in the synthetic division, reported before the constant term is added to it. \"12\" comes from substituting -2 everywhere except in the -2x term, where 2 is used instead.",
+  "solve": "var x=-2; return String(x*x*x+5*x*x-2*x+4);",
+  "distractor_solve": {
+   "12": "var x=-2; return String(x*x*x+5*x*x-2*2+4);",
+   "16": "var r=-2,a=1; var b=5+a*r; var c=-2+b*r; return String(c*r);",
+   "28": "var x=2; return String(x*x*x+5*x*x-2*x+4);"
+  }
+ },
+ {
+  "id": "SM14A-05",
+  "domain": "Advanced Math",
+  "subskill": "the factor theorem used backwards: set the polynomial equal to zero at the root of the given factor and solve for the unknown coefficient",
+  "difficulty": "medium",
+  "prompt": "In the polynomial p(x) = x^3 + kx^2 - 30x - 24, k is a constant. If x - 4 is a factor of p(x), what is the value of k?",
+  "choices": [
+   "-10",
+   "5",
+   "20",
+   "80"
+  ],
+  "correct_answer": "5",
+  "explanation": "Since x - 4 is a factor, p(4) = 0: 64 + 16k - 120 - 24 = 0, so 16k = 80 and k = 5, which is \"5\". \"20\" comes from writing the kx^2 term as 4k rather than 16k, giving 4k = 80. \"-10\" comes from a sign error on the -30x term, giving 16k + 160 = 0. \"80\" is the value of 16k, reported before dividing by 16.",
+  "solve": "return String((-(64-120-24))/16);",
+  "distractor_solve": {
+   "20": "return String((-(64-120-24))/4);",
+   "80": "return String(-(64-120-24));",
+   "-10": "return String((-(64+120-24))/16);"
+  }
+ },
+ {
+  "id": "SM14A-06",
+  "domain": "Advanced Math",
+  "subskill": "evaluating an inverse function: undo the outer operation first, so the division becomes a multiplication before the shift is removed",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (x + 9)/2, and g is the inverse function of f. What is the value of g(11)?",
+  "choices": [
+   "10",
+   "13",
+   "22",
+   "31"
+  ],
+  "correct_answer": "13",
+  "explanation": "g(11) is the value of x for which (x + 9)/2 = 11, so x + 9 = 22 and x = 13, which is \"13\". \"10\" comes from evaluating f at 11 instead of inverting, (11 + 9)/2. \"22\" is the cleared left side, reported before 9 is subtracted. \"31\" comes from writing the inverse as 2x + 9 instead of 2x - 9.",
+  "solve": "return String(2*11-9);",
+  "distractor_solve": {
+   "10": "return String((11+9)/2);",
+   "22": "return String(2*11);",
+   "31": "return String(2*11+9);"
+  }
+ },
+ {
+  "id": "SM14A-07",
+  "domain": "Advanced Math",
+  "subskill": "the minimum value of an upward quadratic is the function evaluated at the axis of symmetry, not the axis itself",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 - 12x + 45. What is the minimum value of f(x)?",
+  "choices": [
+   "6",
+   "9",
+   "33",
+   "81"
+  ],
+  "correct_answer": "9",
+  "explanation": "The minimum occurs at x = 12/2 = 6, and f(6) = 36 - 72 + 45 = 9, which is \"9\". \"6\" is the x-value where the minimum occurs, not the minimum value. \"81\" comes from a sign error in completing the square, adding the 36 to 45 instead of subtracting it. \"33\" comes from subtracting the coefficient 12 from 45 instead of subtracting (12/2)^2.",
+  "solve": "var h=12/2; return String(h*h-12*h+45);",
+  "distractor_solve": {
+   "6": "return String(12/2);",
+   "33": "return String(45-12);",
+   "81": "return String(45+Math.pow(12/2,2));"
+  }
+ },
+ {
+  "id": "SM14A-08",
+  "domain": "Advanced Math",
+  "subskill": "a geometric sequence given two non-adjacent terms: the ratio comes from a root of the quotient, and the term index must be counted from the first term",
+  "difficulty": "medium",
+  "prompt": "In a geometric sequence, the first term is 5 and the fourth term is 135. What is the third term?",
+  "choices": [
+   "15",
+   "27",
+   "45",
+   "405"
+  ],
+  "correct_answer": "45",
+  "explanation": "The fourth term is the first times r^3, so r^3 = 135/5 = 27 and r = 3. The third term is 5 * 3^2 = 45, which is \"45\". \"15\" is the second term, from multiplying by r once too few. \"405\" is the fifth term, from multiplying once too many. \"27\" is r^3, the quotient 135/5, reported as though it were a term of the sequence.",
+  "solve": "var r=Math.cbrt(135/5); return String(5*r*r);",
+  "distractor_solve": {
+   "15": "var r=Math.cbrt(135/5); return String(5*r);",
+   "27": "return String(135/5);",
+   "405": "var r=Math.cbrt(135/5); return String(5*r*r*r*r);"
+  }
+ },
+ {
+  "id": "SM14A-09",
+  "domain": "Advanced Math",
+  "subskill": "a quartic that is quadratic in x^2: the substitution returns values of x^2, each of which yields two solutions, and only the positive ones are wanted",
+  "difficulty": "hard",
+  "prompt": "What is the sum of the positive solutions to the equation x^4 + 144 = 40x^2?",
+  "choices": [
+   "6",
+   "8",
+   "10",
+   "16"
+  ],
+  "correct_answer": "8",
+  "explanation": "Letting u = x^2 gives u^2 - 40u + 144 = 0, so u = 36 or u = 4. Then x = 6, -6, 2 or -2, and the positive solutions sum to 6 + 2 = 8, which is \"8\". \"6\" is the larger positive solution alone, from stopping after the first u-value. \"16\" is the sum of the absolute values of all four solutions. \"10\" comes from taking the square root of only one of the two u-values, adding 6 and 4.",
+  "solve": "var d=Math.sqrt(40*40-4*144); var u1=(40+d)/2, u2=(40-d)/2; return String(Math.sqrt(u1)+Math.sqrt(u2));",
+  "distractor_solve": {
+   "6": "var d=Math.sqrt(40*40-4*144); return String(Math.sqrt((40+d)/2));",
+   "10": "var d=Math.sqrt(40*40-4*144); var u1=(40+d)/2,u2=(40-d)/2; return String(Math.sqrt(u1)+u2);",
+   "16": "var d=Math.sqrt(40*40-4*144); var u1=(40+d)/2,u2=(40-d)/2; var r=[Math.sqrt(u1),-Math.sqrt(u1),Math.sqrt(u2),-Math.sqrt(u2)]; return String(r.reduce(function(a,b){return a+Math.abs(b);},0));"
+  }
+ },
+ {
+  "id": "SM14A-10",
+  "domain": "Advanced Math",
+  "subskill": "a radical equal to a variable expression: squaring produces a quadratic with two roots, and one of them fails the original equation",
+  "difficulty": "hard",
+  "prompt": "sqrt(x + 7) = x - 5\nWhat is the solution to the equation above?",
+  "choices": [
+   "2",
+   "6",
+   "9",
+   "11"
+  ],
+  "correct_answer": "9",
+  "explanation": "Squaring gives x + 7 = x^2 - 10x + 25, so x^2 - 11x + 18 = 0 and x = 9 or x = 2. Substituting x = 2 gives sqrt(9) = 3 on the left and -3 on the right, so 2 is extraneous and the solution is 9, which is \"9\". \"2\" is that extraneous root, kept without checking it. \"11\" is the sum of the two roots rather than the one that survives. \"6\" comes from mis-factoring x^2 - 11x + 18 as (x - 3)(x - 6) and taking the larger root of that.",
+  "solve": "var d=Math.sqrt(121-72); var r=[(11+d)/2,(11-d)/2].filter(function(t){return Math.abs(Math.sqrt(t+7)-(t-5))<1e-9;}); return String(r[0]);",
+  "distractor_solve": {
+   "2": "var d=Math.sqrt(121-72); return String((11-d)/2);",
+   "6": "return String(18/3);",
+   "11": "var d=Math.sqrt(121-72); return String((11+d)/2+(11-d)/2);"
+  }
+ },
+ {
+  "id": "SM14A-11",
+  "domain": "Advanced Math",
+  "subskill": "a system with one quadratic member: after substitution the quadratic gives two x-values, and the question asks for a y-value at one named point",
+  "difficulty": "medium",
+  "prompt": "y = x^2 - x - 3\ny = 3x + 2\nThe system of equations above has two solutions (x, y). What is the value of y for the solution with the greater value of x?",
+  "choices": [
+   "-1",
+   "5",
+   "14",
+   "17"
+  ],
+  "correct_answer": "17",
+  "explanation": "Setting the expressions equal gives x^2 - x - 3 = 3x + 2, so x^2 - 4x - 5 = 0 and x = 5 or x = -1. The greater x is 5, and y = 3(5) + 2 = 17, which is \"17\". \"-1\" is the y-value at the other solution, x = -1. \"5\" is the x-coordinate of the wanted point rather than its y-coordinate. \"14\" comes from dropping the constant terms when equating the two expressions, solving x^2 - x = 3x to get x = 4, then y = 3(4) + 2.",
+  "solve": "var d=Math.sqrt(16+20); var x=(4+d)/2; return String(3*x+2);",
+  "distractor_solve": {
+   "5": "var d=Math.sqrt(16+20); return String((4+d)/2);",
+   "14": "var x=Math.max(0,1+3); return String(3*x+2);",
+   "-1": "var d=Math.sqrt(16+20); var x=(4-d)/2; return String(3*x+2);"
+  }
+ },
+ {
+  "id": "SM14A-12",
+  "domain": "Advanced Math",
+  "subskill": "matching coefficients in an identity: the middle coefficient of the product comes from two cross terms, not from the constants alone",
+  "difficulty": "medium",
+  "prompt": "2x^2 + bx - 15 = (2x - 3)(x + 5)\nThe equation above is true for all values of x, where b is a constant. What is the value of b?",
+  "choices": [
+   "-1",
+   "7",
+   "10",
+   "13"
+  ],
+  "correct_answer": "7",
+  "explanation": "Expanding the right side gives 2x^2 + 10x - 3x - 15 = 2x^2 + 7x - 15, so b = 7, which is \"7\". \"13\" comes from a sign error on the -3, adding 10 and 3. \"10\" comes from taking only the 2x times 5 cross term and dropping the other. \"-1\" comes from multiplying the wrong pair of terms, 2 times -3 plus 5.",
+  "solve": "return String(2*5+(-3)*1);",
+  "distractor_solve": {
+   "10": "return String(2*5);",
+   "13": "return String(2*5+3);",
+   "-1": "return String(2*(-3)+5);"
+  }
+ },
+ {
+  "id": "SM14A-13",
+  "domain": "Advanced Math",
+  "subskill": "a transformed function: the horizontal shift is applied to the input before the base function is evaluated, and the vertical factor and shift afterwards",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 - 4. The function g is defined by g(x) = 2f(x + 1) - 3. What is the value of g(2)?",
+  "choices": [
+   "-9",
+   "7",
+   "13",
+   "18"
+  ],
+  "correct_answer": "7",
+  "explanation": "g(2) = 2f(3) - 3 = 2(9 - 4) - 3 = 10 - 3 = 7, which is \"7\". \"13\" comes from a sign error on the vertical shift, adding 3 instead of subtracting it. \"18\" comes from applying the factor 2 inside the function, evaluating f(2*2 + 1) - 3 = f(5) - 3. \"-9\" comes from shifting the input the wrong way and using f(1) = -3.",
+  "solve": "var f=function(t){return t*t-4;}; return String(2*f(2+1)-3);",
+  "distractor_solve": {
+   "13": "var f=function(t){return t*t-4;}; return String(2*f(2+1)+3);",
+   "18": "var f=function(t){return t*t-4;}; return String(f(2*2+1)-3);",
+   "-9": "var f=function(t){return t*t-4;}; return String(2*f(2-1)-3);"
+  }
+ },
+ {
+  "id": "SM14A-14",
+  "domain": "Advanced Math",
+  "subskill": "a proportion between two rational expressions: cross-multiplying requires distributing each whole numerator across the other binomial",
+  "difficulty": "medium",
+  "prompt": "3/(x - 2) = 5/(x + 6)\nWhat value of x satisfies the equation above?",
+  "choices": [
+   "8",
+   "10",
+   "14",
+   "28"
+  ],
+  "correct_answer": "14",
+  "explanation": "Cross-multiplying gives 3(x + 6) = 5(x - 2), so 3x + 18 = 5x - 10, then 28 = 2x and x = 14, which is \"14\". \"28\" is the value of 2x, reported before dividing by 2. \"10\" comes from distributing 5 to only the first term, 5x - 2. \"8\" comes from distributing 3 to only the first term, 3x + 6.",
+  "solve": "return String((18+10)/(5-3));",
+  "distractor_solve": {
+   "8": "return String((6+10)/(5-3));",
+   "10": "return String((18+2)/(5-3));",
+   "28": "return String(18+10);"
+  }
+ },
+ {
+  "id": "SM14A-15",
+  "domain": "Advanced Math",
+  "subskill": "an exponential equation with two different bases that are both powers of 2: each exponent must be multiplied through by the power the base is rewritten as",
+  "difficulty": "medium",
+  "prompt": "16^(x + 1) = 64^(x - 3)\nWhat value of x satisfies the equation above?",
+  "choices": [
+   "-7",
+   "2",
+   "11",
+   "22"
+  ],
+  "correct_answer": "11",
+  "explanation": "Writing both sides in base 2 gives 2^(4x + 4) = 2^(6x - 18), so 4x + 4 = 6x - 18, then 22 = 2x and x = 11, which is \"11\". \"22\" is the value of 2x, reported before dividing by 2. \"2\" comes from failing to distribute, writing 4x + 1 = 6x - 3. \"-7\" comes from a sign error on the -3, writing 4x + 4 = 6x + 18.",
+  "solve": "return String((18+4)/(6-4));",
+  "distractor_solve": {
+   "2": "return String((1+3)/(6-4));",
+   "22": "return String(18+4);",
+   "-7": "return String((4-18)/(6-4));"
+  }
+ },
+ {
+  "id": "SM14A-16",
+  "domain": "Advanced Math",
+  "subskill": "the separation between two zeros in terms of the coefficients: the square of the difference of the roots is the square of their sum minus four times their product",
+  "difficulty": "hard",
+  "prompt": "y = x^2 + kx + 36\nIn the equation above, k is a positive constant. The graph of the equation in the xy-plane crosses the x-axis at two points whose x-coordinates differ by 5. What is the value of k?",
+  "choices": [
+   "9",
+   "12",
+   "13",
+   "17"
+  ],
+  "correct_answer": "13",
+  "explanation": "If the zeros are r and s, then r + s = -k and rs = 36, so (r - s)^2 = (r + s)^2 - 4rs = k^2 - 144. Setting that equal to 5^2 gives k^2 = 169 and k = 13, which is \"13\". (Indeed x^2 + 13x + 36 = (x + 4)(x + 9), with zeros -4 and -9.) \"12\" comes from ignoring the separation entirely and treating the two zeros as equal, so k^2 = 144. \"17\" comes from adding the separation to that instead of combining the squares. \"9\" is the magnitude of one of the zeros, not the coefficient.",
+  "solve": "return String(Math.sqrt(25+4*36));",
+  "distractor_solve": {
+   "9": "return String((-5+Math.sqrt(25+4*36))/2+5);",
+   "12": "return String(Math.sqrt(4*36));",
+   "17": "return String(Math.sqrt(4*36)+5);"
+  }
+ },
+ {
+  "id": "SM14A-17",
+  "domain": "Advanced Math",
+  "subskill": "an absolute value equation with a variable on the right: both cases must be solved and both checked, and here both survive",
+  "difficulty": "hard",
+  "prompt": "|2x - 3| = x + 9\nWhat is the sum of all solutions to the equation above?",
+  "choices": [
+   "-2",
+   "10",
+   "12",
+   "14"
+  ],
+  "correct_answer": "10",
+  "explanation": "The case 2x - 3 = x + 9 gives x = 12, and |21| = 21 = 12 + 9, so it holds. The case -(2x - 3) = x + 9 gives -6 = 3x and x = -2, and |-7| = 7 = -2 + 9, so it holds too. The sum is 12 + (-2) = 10, which is \"10\". \"12\" is the solution from the first case alone. \"-2\" is the solution from the second case alone. \"14\" is the difference of the two solutions rather than their sum.",
+  "solve": "var s=0; for(var i=-200;i<=200;i++){ if(Math.abs(2*i-3)===i+9) s+=i; } return String(s);",
+  "distractor_solve": {
+   "12": "return String((9+3)/(2-1));",
+   "14": "return String((9+3)/(2-1)-(9-3)/(-2-1));",
+   "-2": "return String((9-3)/(-2-1));"
+  }
+ },
+ {
+  "id": "SM14A-18",
+  "domain": "Advanced Math",
+  "subskill": "recovering both parameters of an exponential function from two points: the ratio over a span of two gives b^2, and the initial value is what the question asks for",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = a*b^x, where a and b are positive constants. If f(2) = 45 and f(4) = 405, what is the value of f(0)?",
+  "choices": [
+   "3",
+   "5",
+   "9",
+   "15"
+  ],
+  "correct_answer": "5",
+  "explanation": "f(4)/f(2) = b^2 = 405/45 = 9, so b = 3. Then a*3^2 = 45 gives a = 5, and f(0) = a = 5, which is \"5\". \"15\" is f(1), from stepping back only one power of b instead of two. \"9\" is b^2, the quotient itself, reported as the answer. \"3\" is the base b, reported instead of the initial value.",
+  "solve": "var b=Math.sqrt(405/45); return String(45/(b*b));",
+  "distractor_solve": {
+   "3": "return String(Math.sqrt(405/45));",
+   "9": "return String(405/45);",
+   "15": "var b=Math.sqrt(405/45); return String(45/b);"
+  }
+ },
+ {
+  "id": "SM14A-19",
+  "domain": "Advanced Math",
+  "subskill": "a rational function whose numerator shares the denominator's factor: the graph is a line with one point removed, and that point's height comes from the reduced form",
+  "difficulty": "hard",
+  "prompt": "f(x) = (2x^2 + 3x - 27)/(x - 3)\nThe graph of y = f(x) in the xy-plane is a line with one point removed. What is the y-coordinate of the removed point?",
+  "choices": [
+   "0",
+   "6",
+   "9",
+   "15"
+  ],
+  "correct_answer": "15",
+  "explanation": "The numerator factors as (2x + 9)(x - 3), so f(x) = 2x + 9 for every x other than 3. The removed point sits at x = 3, where 2(3) + 9 = 15, which is \"15\". \"0\" is the value of the numerator at x = 3, mistaken for the value of the function there. \"9\" is the y-intercept of the reduced line, its value at x = 0 rather than at x = 3. \"6\" comes from dividing only the leading terms, 2x^2 divided by x, and evaluating the resulting 2x at x = 3.",
+  "solve": "return String(2*3 + 9);",
+  "distractor_solve": {
+   "0": "return String(2*3*3+3*3-27);",
+   "6": "return String((2*3*3/3));",
+   "9": "var num=function(t){return 2*t*t+3*t-27;}; return String(num(0)/(0-3));"
+  }
+ },
+ {
+  "id": "SM14A-20",
+  "domain": "Advanced Math",
+  "subskill": "a symmetric nonlinear system where the individual values are irrational: the requested expression is reachable from the sum and product without solving for x and y",
+  "difficulty": "hard",
+  "prompt": "x + y = 6\nxy = 4\nIf (x, y) is a solution to the system of equations above, what is the value of x^2 + y^2?",
+  "choices": [
+   "28",
+   "32",
+   "36",
+   "44"
+  ],
+  "correct_answer": "28",
+  "explanation": "Squaring the first equation gives x^2 + 2xy + y^2 = 36, so x^2 + y^2 = 36 - 2(4) = 28, which is \"28\". \"36\" comes from squaring the sum and forgetting the -2xy term entirely. \"44\" comes from adding 2xy instead of subtracting it. \"32\" comes from subtracting xy once rather than twice.",
+  "solve": "return String(6*6-2*4);",
+  "distractor_solve": {
+   "32": "return String(6*6-4);",
+   "36": "return String(6*6);",
+   "44": "return String(6*6+2*4);"
+  }
+ }
+]

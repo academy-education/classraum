@@ -2799,3 +2799,24 @@ structural checks are pre-flight only. See CLAUDE.md.
   **A CROSS-ITEM TELL NO CHECK LOOKS FOR: eleven of sixteen passages end on the same detached summary sentence** — *"the X is ______"*, *"it is the Y's ______"*. A solver can learn the shape of the final sentence. Nothing in this directory tests the position or form of the blank across a batch.
 
   **Held, not repaired.** After one failed rewrite you stop, and this is worse than a rewrite case: the cause is upstream of the items.
+
+- **2026-09-24** — **15 SAT MATH ITEMS SHIPPED, AND ALL 40 KEYS WERE CORRECT.** Algebra 8, Advanced Math 7. Form 26 needs 15 of **each**, so it is not bought; the deficit goes 15+15 → **7+8**. Two graders, one per domain, each solving from the prompt before reading any explanation, **disputed not a single key across 40 items.** Every drop is a distractor or duplication defect.
+
+  **THE DEAD OPTION IS NOW THE DOMINANT FAILURE MODE, AND IT IS WORSE THAN "ONE FREE ELIMINATION".** Nine of twenty Algebra items carry one, and four are bypassable **end to end with no algebra at all**: `SM14L-10`'s members force a multiple of 20, so of 12/36/45/60 only 60 survives and a student who writes nothing is right; `SM14L-20`'s mean shortcut kills three options; `SM14L-17`'s factor of 5 kills two; `SM14L-19` dies on magnitude. Five Advanced Math items likewise, and `SM14A-02` collapses to a coin flip on **parity** — `3·2^x` is even, so two of four options die on sight. **When an item's own stated constraints (divisibility, parity, sign, range, monotonicity) eliminate options, they eliminate them for free. Check every option against every constraint the stem states.**
+
+  **THREE DUPLICATE MECHANISMS THE AUTHORS MISSED, AND BOTH AUTHORS CLAIMED TWENTY DISTINCT ONES.** `SM14A-04`/`-05` are both "evaluate p at the root of the divisor"; `SM14A-16`/`-20` both recover a symmetric expression from sum and product; `SM14L-01`/`-19` reduce to the identical last two steps, key the same value, and carry the same distractor. One grader noted the author had flagged *the wrong pair* as its closest. **A self-reported mechanism census is not a measurement — the author names the dressing, the grader sees the motor skill.**
+
+  **A REVERSAL WORTH RECORDING: structural reasoning paid this time.** On three previous maths batches solvers' confident picks scored at or below chance, and one solver here **predicted the same for itself in advance**. Its lean bucket came in at **47.5% against its guess bucket's 28.2%**. Nine candidate items were solved unanimously. So "confidence is anti-correlated on clean numeric material" is not a law — it held while the batches were clean and broke on a batch that had a real cross-item tell. **The calibration is evidence about the batch, not about the solver.**
+
+  **DOMAIN-SPLIT MATTERED MORE THAN THE POOLED NUMBER.** Candidate 34.2% overall against a live control of 50.0%, but Algebra 25.0% (margin −5.0) against Advanced Math 43.3% (+13.3). The pooled figure would have hidden that one domain carried almost the whole leak. Similarly, **magnitude pooled across both authors matched the live bank almost exactly (interior 67.5% against 68.4%) while the individual authors sat at 55% and 80% and cancelled** — an argument for measuring a commission as a whole *and* per author, since either alone misleads.
+
+  **A44 — A CHECK THAT PASSED ON ITS TOLERANCE, AND THE POPULATION SCAN THAT BOUNDED IT.** A grader found `SM14A-19`'s `solve` field was a finite-difference limit returning **15.000000199840144**; `answersMatch` compares at 1e-6, so the sandbox confirmed a difference quotient rather than the removable discontinuity the item is about. The key was right throughout. Because this is decidable, it was checked over the whole population rather than sampled — `check-tolerance-pass.mjs`, self-tested on five fixtures:
+
+      items with a solve field   3,660
+        exact                    3,534
+        float noise (1e-14)         59
+        non-numeric comparison      65
+        DELIBERATE APPROXIMATION     1     <- this item, which I was about to ship
+        WRONG                        0
+
+  **The first draft of that checker was itself wrong in two familiar ways** — it re-implemented the value parser and read `2/3` as `2`, flagging a dozen sound items as mismatches, and it lumped 1e-14 float residue in with genuine approximations. Fixed by **importing** the already-self-tested parser instead of writing a third copy. The solve is now exact.
