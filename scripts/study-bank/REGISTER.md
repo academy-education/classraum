@@ -2757,3 +2757,21 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Two dropped on with-source findings, both familiar shapes:** `SM13L-01` carries a **dead option** (210 exceeds the time to drain the entire tank, so the item is effectively three-choice — the same defect as `AM11T-01`'s out-of-range frequency), and `SM13L-02` is easy with an **incoherent distractor path** (it divides on the wrong side yet handles 3z correctly, so no real student produces it — the same defect as `SM12L-03`).
 
   **ONE RESIDUAL, RECORDED RATHER THAN HIDDEN.** The two survivors **share a mechanism**: both are one-variable inequalities answered as the integer at a boundary, with the off-by-one sitting in the option list. The grader named the collision and recommended shipping `04` and `05`; the blind half vetoed `04`, which left the duplicated pair as the only way to reach the form. Different surfaces and strong distractors on both, but **Algebra is the binding domain, so new items get drawn together — if a third Algebra item is authored, it must not be a boundary item.**
+
+- **2026-09-24** — **"AUTHORING ONLY THE THINNEST BUYS NOTHING" APPLIES AT THE SECTION LEVEL TOO, AND NOTHING ENFORCES IT THERE. I PUT THE MISTAKE ON MY OWN STATUS BOARD.** The capacity board I published listed *"ISEE Verbal — small top-up → test 5"* under work that can ship today. Measured:
+
+      ISEE, by section        clean forms
+        quant                     6
+        mathach                   6
+        essay                     6
+        verbal                    4      <- the "cheap" one
+        reading                   2      <- what actually caps the test
+        => a student gets 2 complete ISEE tests
+
+  **ISEE verbal needs 7 items to reach 5 sections, and those 7 buy ZERO complete tests**, because reading caps the family at 2 and reading is blocked on authoring. The extra verbal depth is never reachable by a student.
+
+  This is exactly the defect `next-form.mjs` was written to prevent — *"more than one domain is short; authoring only the thinnest buys NOTHING"* — one level up. **`next-form` enforces it across DOMAINS within a section. Nothing enforces it across SECTIONS within a multi-section test**, and `admission-form-depth.ts` prints the per-section table that reveals it without drawing the conclusion. I read the verbal row, saw 4 against a target of 5, and never looked at the column that decides.
+
+  **The rule, stated so it generalises: for a multi-section test, a section that is not the binding section buys nothing, however cheap it looks.** SSAT verbal is in the same position — 5 sections against reading's 3 — and is already correctly left alone. Board corrected to say so on its face rather than quietly dropping the card.
+
+  Incidental measurement worth keeping: **both verbal banks are overwhelmingly SINGLETON groups** — ISEE 161 of 169 groups hold one item, SSAT 257 of 269 — so "one item per bijective set" means a singleton serves exactly once in a student's lifetime. Capacity there is item count, not group count, which is why 193 items give 4 forms of 40 and not the 169-group figure a reader might expect.
