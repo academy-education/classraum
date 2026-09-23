@@ -881,3 +881,26 @@ natural candidate.
 **13s. Six items about one argument are not six items.** Same batch: each author wrote seven passages to a single argumentative skeleton and then six questions that were six views of it — main idea, attitude, paragraph function, counterfactual — which must all agree, so one confident read propagates to five and the passage is recoverable from the option text alone. The live bank's six-item passages do NOT leak this way (−3.8 under the same attack), because their questions are anchored to different bits of TEXT rather than to one argument. Write the six items against different sentences, not against the same thesis, and vary the passage's shape across the set.
 
 **13t. Copying a clean item's SHAPE without its reason makes things worse.** 2026-09-21: the live SSAT reading bank writes main-idea options as one frame with a single slot varied, measured at frame ratio 0.51 against a rejected batch's 0.01. Three authors were told to reproduce that and did (0.66). The rebuild then scored **94.4% options-only against the rejected batch's 91.5%** — the fix made it worse. Holding the frame fixed makes the varied slot the only information in the option, so any sibling stem that names that slot hands the item over: a stem reading "the rate at which the mites burrow" decides the main-idea item whose varied slot is "mite burrows". What makes the live construction work is not the frame but WHAT FILLS THE SLOTS — in the live bank the four wrong slots name things the passage discusses and subordinates, so all five are live candidates the passage must adjudicate; in the rebuild they were inventions absent from the text, so the one real noun wins. **Before copying a structural feature of clean items, state the mechanism by which it defeats a blind solver, and check that your copy reproduces the mechanism and not the silhouette.**
+
+## 14. What the 2026-09-24 Words-in-Context failure taught
+
+That batch authored 16 and shipped **0**, four days after the identical commission shipped 7 of 20. Nothing here is about vocabulary; all four points generalise.
+
+**14a. A brief's constraints COMPETE FOR THE AUTHOR'S ATTENTION.** The successful brief spent most of its length on option construction. After that batch showed a batch-level relation cluster, the next brief was loaded with batch-level rules — cap the repeated closing frame, no semantic relation twice, N distinct topics, vary the passage shape — and the author **met every one of them** while ten of sixteen option sets came back graded *weak*. The grader's diagnosis: *"one opposite and two words the passage never gestures at, which leaves a strong student choosing between two options before reading."* **Adding a batch-level rule without removing something else buys the batch property at the cost of the per-item one.** If you are commissioning and you add a constraint, say explicitly which existing one it replaces, or expect the newest constraint to be satisfied and an older one to quietly lapse.
+
+**14b. READ THE COMPLETED SENTENCE ALOUD WITH THE KEY IN PLACE.** This is cheap, it is new, and it found four broken keys no other lens caught:
+
+    "survivable"    takes events one lives through, not errors
+    "unlike"        predicative with no complement is archaic -- AND it was the only
+                    preposition among three participial adjectives, so it is a
+                    part-of-speech tell readable with the passage covered
+    "indifferent"   carries a damaging second sense where the argument wants "disinterested"
+    "relieve it"    the pronoun had no clean antecedent
+
+Note the second one: **an option that is the odd part of speech is a blind tell, not just bad prose.** Put this check in every with-source brief.
+
+**14c. Derive the do-not-collide list from the BANK, not from the directory.** An item in that batch duplicated a live one — same subject, same evidentiary move, keys that were near-antonyms describing one finding, so a student who met one answers the other unread. The brief had named two files to avoid: one of them was **not live**, and the live one was **never named**. Query what is actually shipped in the subskill and hand the author that list.
+
+**14d. A CROSS-ITEM TELL NOTHING CHECKS FOR: the position and shape of the blank.** Eleven of sixteen passages ended on the same detached summary sentence — *"the X is ______"*, *"it is the Y's ______"*. A solver can learn the shape of a batch's final sentence the way they can learn a key-letter bias, and no script in this directory looks at it. Vary where the blank sits.
+
+**14e. The elimination stage is not a formality, and the inserter is right to block on it.** Two items had survived shape, with-source and no-source. `gate.mjs` refused the insert because `elimination` had never been recorded. Running it killed both on a **register singleton** — the key being the one technical or rare word among three ordinary ones, named independently by two solvers on each item. Without that refusal, two tell-carrying items would have shipped.
