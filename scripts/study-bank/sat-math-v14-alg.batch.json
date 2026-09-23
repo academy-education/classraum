@@ -1,0 +1,422 @@
+[
+ {
+  "id": "SM14L-01",
+  "domain": "Algebra",
+  "subskill": "reverse evaluation of a linear function: the given number is the OUTPUT, so the equation must be solved rather than evaluated",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = 26 - 4x. If f(a) = 6, what is the value of a?",
+  "choices": [
+   "2",
+   "5",
+   "8",
+   "20"
+  ],
+  "correct_answer": "5",
+  "explanation": "Setting 26 - 4a = 6 gives 4a = 20, so a = 5, which is \"5\". \"20\" is the value of 4a, reported before dividing by the coefficient. \"2\" comes from evaluating f at 6 rather than solving f(a) = 6, since f(6) = 26 - 24 = 2. \"8\" comes from adding 6 to 26 instead of subtracting it, giving 4a = 32 and a = 8.",
+  "solve": "return String((26-6)/4);",
+  "distractor_solve": {
+   "20": "return String(26-6);",
+   "2": "return String(26-4*6);",
+   "8": "return String((26+6)/4);"
+  }
+ },
+ {
+  "id": "SM14L-02",
+  "domain": "Algebra",
+  "subskill": "a symmetric two-variable system in which adding the equations produces the requested combination directly",
+  "difficulty": "medium",
+  "prompt": "4x + 9y = 43\n9x + 4y = 48\nIf (x, y) is the solution to the system of equations above, what is the value of x + y?",
+  "choices": [
+   "1",
+   "3",
+   "7",
+   "13"
+  ],
+  "correct_answer": "7",
+  "explanation": "Adding the two equations gives 13x + 13y = 91, so x + y = 91/13 = 7, which is \"7\". \"1\" comes from subtracting the equations instead of adding them, which gives 5x - 5y = 5 and so x - y = 1. \"3\" is the value of y alone, found after solving the system completely. \"13\" comes from dividing 91 by 7 rather than by 13, that is, dividing by the value of the combination instead of by its coefficient.",
+  "solve": "return String((43+48)/13);",
+  "distractor_solve": {
+   "1": "return String((48-43)/5);",
+   "3": "var s=(43+48)/13,d=(48-43)/5; return String((s-d)/2);",
+   "13": "return String((43+48)/7);"
+  }
+ },
+ {
+  "id": "SM14L-03",
+  "domain": "Algebra",
+  "subskill": "an unknown coordinate recovered from a given slope: the rise is the slope times the full run, and the direction of the subtraction decides the sign",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, a line with slope 3/4 passes through the points (-4, k) and (8, 20). What is the value of k?",
+  "choices": [
+   "9",
+   "11",
+   "17",
+   "29"
+  ],
+  "correct_answer": "11",
+  "explanation": "The run from x = -4 to x = 8 is 12, so the rise is (3/4)(12) = 9. Because (8, 20) is the point to the right, k = 20 - 9 = 11, which is \"11\". \"9\" is the rise itself, reported instead of the coordinate. \"29\" comes from adding the rise to 20 rather than subtracting it, which moves in the wrong direction along the line. \"17\" comes from using the numerator of the slope as the rise, giving 20 - 3.",
+  "solve": "return String(20-(3/4)*(8-(-4)));",
+  "distractor_solve": {
+   "9": "return String((3/4)*(8-(-4)));",
+   "29": "return String(20+(3/4)*(8-(-4)));",
+   "17": "return String(20-3);"
+  }
+ },
+ {
+  "id": "SM14L-04",
+  "domain": "Algebra",
+  "subskill": "distributing across a parenthesis with a negative constant, with the variable appearing on both sides",
+  "difficulty": "easy",
+  "prompt": "If 5(x - 3) = 2x + 9, what is the value of x?",
+  "choices": [
+   "4",
+   "8",
+   "12",
+   "24"
+  ],
+  "correct_answer": "8",
+  "explanation": "Distributing gives 5x - 15 = 2x + 9, so 3x = 24 and x = 8, which is \"8\". \"24\" is the value of 3x, reported before dividing. \"4\" comes from distributing the 5 only to the x, giving 5x - 3 = 2x + 9, so 3x = 12 and x = 4. \"12\" comes from dividing 24 by the 2 that appears on the right side instead of by the combined coefficient 3.",
+  "solve": "return String((9+15)/3);",
+  "distractor_solve": {
+   "24": "return String(9+15);",
+   "4": "return String((9+3)/3);",
+   "12": "return String((9+15)/2);"
+  }
+ },
+ {
+  "id": "SM14L-05",
+  "domain": "Algebra",
+  "subskill": "a linear function composed with an inner shift and an outer shift: the two adjustments act on different sides of the function",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = 3x - 4 and g(x) = f(x + 2) + 3. What is the value of g(5)?",
+  "choices": [
+   "14",
+   "17",
+   "20",
+   "26"
+  ],
+  "correct_answer": "20",
+  "explanation": "Because g(5) = f(5 + 2) + 3 = f(7) + 3 and f(7) = 3(7) - 4 = 17, the value is 17 + 3 = 20, which is \"20\". \"17\" is f(7), with the outer addition of 3 left off. \"14\" comes from adding 3 to f(5) = 11, applying the outer shift but not the inner one. \"26\" comes from adding the outer 3 to the input as well, evaluating f(5 + 2 + 3) = f(10) = 26.",
+  "solve": "function f(x){return 3*x-4;} return String(f(5+2)+3);",
+  "distractor_solve": {
+   "17": "function f(x){return 3*x-4;} return String(f(7));",
+   "14": "function f(x){return 3*x-4;} return String(f(5)+3);",
+   "26": "function f(x){return 3*x-4;} return String(f(5+2+3));"
+  }
+ },
+ {
+  "id": "SM14L-06",
+  "domain": "Algebra",
+  "subskill": "a count-and-value system in which the quantity asked for is the cheaper item, so the two prices must be kept attached to the right variable",
+  "difficulty": "medium",
+  "prompt": "A theater sold 260 tickets for a single performance. Adult tickets cost $8 each and student tickets cost $5 each, and the total collected was $1,780. How many student tickets were sold?",
+  "choices": [
+   "60",
+   "96",
+   "100",
+   "160"
+  ],
+  "correct_answer": "100",
+  "explanation": "If s student tickets were sold, then 260 - s adult tickets were sold, so 8(260 - s) + 5s = 1780. That is 2080 - 3s = 1780, so 3s = 300 and s = 100, which is \"100\". \"160\" is the number of adult tickets, the other variable in the same system. \"96\" comes from pricing every ticket at $5 to get 1300, then dividing the remaining 480 by the $5 price instead of by the $3 price difference. \"60\" comes from pricing every ticket at $8 to get 2080, then dividing the 300 surplus by the $5 price instead of by the $3 difference.",
+  "solve": "return String((8*260-1780)/(8-5));",
+  "distractor_solve": {
+   "160": "return String(260-(8*260-1780)/(8-5));",
+   "96": "return String((1780-5*260)/5);",
+   "60": "return String((8*260-1780)/5);"
+  }
+ },
+ {
+  "id": "SM14L-07",
+  "domain": "Algebra",
+  "subskill": "a round trip at two different speeds: the two legs share a distance but not a time, so the times add and the speeds do not average",
+  "difficulty": "hard",
+  "prompt": "A cyclist rides from town A to town B at a constant 30 kilometers per hour and returns along the same road at a constant 20 kilometers per hour. The round trip takes 6 hours of riding. What is the distance, in kilometers, between town A and town B?",
+  "choices": [
+   "72",
+   "75",
+   "90",
+   "144"
+  ],
+  "correct_answer": "72",
+  "explanation": "If d is the one-way distance, the times add: d/30 + d/20 = 6. Combining gives d(2 + 3)/60 = d/12 = 6, so d = 72, which is \"72\". \"144\" is the total distance ridden on the round trip, twice the distance between the towns. \"75\" comes from averaging the two speeds to 25 kilometers per hour, giving 150 kilometers ridden in total and 75 each way; the average speed is not the average of the speeds because the slower leg takes longer. \"90\" comes from assuming the 6 hours split evenly between the legs and computing 3 hours at 30 kilometers per hour.",
+  "solve": "return String(6/(1/30+1/20));",
+  "distractor_solve": {
+   "144": "return String(2*(6/(1/30+1/20)));",
+   "75": "return String(((30+20)/2)*6/2);",
+   "90": "return String(30*(6/2));"
+  }
+ },
+ {
+  "id": "SM14L-08",
+  "domain": "Algebra",
+  "subskill": "a two-step price reduction run backwards, where a percentage and a flat amount are applied in a fixed order",
+  "difficulty": "medium",
+  "prompt": "A store takes 20 percent off the listed price of a jacket and then subtracts a $12 gift certificate from the reduced price. A customer pays $76 for the jacket. What was the listed price, in dollars?",
+  "choices": [
+   "88",
+   "95",
+   "107",
+   "110"
+  ],
+  "correct_answer": "110",
+  "explanation": "If L is the listed price, then 0.80L - 12 = 76, so 0.80L = 88 and L = 110, which is \"110\". \"88\" is the price after the discount but before the certificate, an intermediate value rather than the listed price. \"95\" comes from ignoring the certificate entirely and computing 76/0.80. \"107\" comes from applying the certificate first, that is solving 0.80(L - 12) = 76, which gives L = 95 + 12.",
+  "solve": "return String((76+12)/0.8);",
+  "distractor_solve": {
+   "88": "return String(76+12);",
+   "95": "return String(76/0.8);",
+   "107": "return String(76/0.8+12);"
+  }
+ },
+ {
+  "id": "SM14L-09",
+  "domain": "Algebra",
+  "subskill": "two linear functions compared by a stated difference rather than by equality, so the offset joins the equation on one side only",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = 4x + 8 and g(x) = x + 23. For what value of x is f(x) exactly 6 more than g(x)?",
+  "choices": [
+   "3",
+   "5",
+   "7",
+   "11"
+  ],
+  "correct_answer": "7",
+  "explanation": "The condition is f(x) = g(x) + 6, that is 4x + 8 = x + 29. Then 3x = 21 and x = 7, which is \"7\". \"5\" comes from setting the two functions equal and ignoring the difference of 6, which gives 3x = 15. \"3\" comes from adding the 6 to the side that is already larger, 4x + 14 = x + 23, giving 3x = 9. \"11\" comes from solving f(x) = g(x) correctly and then adding 6 to that solution, treating the difference as an adjustment to x rather than to the function value.",
+  "solve": "return String((23+6-8)/(4-1));",
+  "distractor_solve": {
+   "5": "return String((23-8)/(4-1));",
+   "3": "return String((23-8-6)/(4-1));",
+   "11": "return String((23-8)/(4-1)+6);"
+  }
+ },
+ {
+  "id": "SM14L-10",
+  "domain": "Algebra",
+  "subskill": "a ratio that changes when only one of the two quantities changes: the common multiplier must be carried through both ratios",
+  "difficulty": "hard",
+  "prompt": "In a school club, the ratio of juniors to seniors is 3 to 5. If 9 more juniors join the club and no other members join or leave, the ratio of juniors to seniors becomes 3 to 4. How many seniors are in the club?",
+  "choices": [
+   "12",
+   "36",
+   "45",
+   "60"
+  ],
+  "correct_answer": "60",
+  "explanation": "Write the original counts as 3k juniors and 5k seniors. After 9 juniors join, (3k + 9)/(5k) = 3/4, so 4(3k + 9) = 3(5k), that is 12k + 36 = 15k and k = 12. The number of seniors is 5k = 60, which is \"60\". \"12\" is the multiplier k, not a count of people. \"36\" is the original number of juniors, 3k. \"45\" is the number of juniors after the 9 join, 3k + 9.",
+  "solve": "var k=36/(15-12); return String(5*k);",
+  "distractor_solve": {
+   "12": "return String(36/(15-12));",
+   "36": "var k=36/3; return String(3*k);",
+   "45": "var k=36/3; return String(3*k+9);"
+  }
+ },
+ {
+  "id": "SM14L-11",
+  "domain": "Algebra",
+  "subskill": "a capacity inequality with two separate fixed weights, answered as the greatest whole number of identical loads",
+  "difficulty": "medium",
+  "prompt": "An empty delivery van weighs 3,200 pounds, and the total weight of the van, its driver, and its cargo must not exceed 8,000 pounds. The driver weighs 180 pounds and each crate of cargo weighs 145 pounds. What is the greatest number of crates the van can carry while the driver is inside?",
+  "choices": [
+   "31",
+   "32",
+   "33",
+   "55"
+  ],
+  "correct_answer": "31",
+  "explanation": "The weight available for crates is 8000 - 3200 - 180 = 4620 pounds, and 4620/145 is about 31.9. Because a partial crate cannot be carried, the greatest whole number is 31, which is \"31\". \"32\" comes from rounding 31.9 up, which would put the van over the limit at 8,020 pounds. \"33\" comes from leaving the driver's 180 pounds out, giving 4800/145, about 33.1. \"55\" comes from leaving the van's own 3,200 pounds out, giving 8000/145, about 55.2.",
+  "solve": "return String(Math.floor((8000-3200-180)/145));",
+  "distractor_solve": {
+   "32": "return String(Math.ceil((8000-3200-180)/145));",
+   "33": "return String(Math.floor((8000-3200)/145));",
+   "55": "return String(Math.floor(8000/145));"
+  }
+ },
+ {
+  "id": "SM14L-12",
+  "domain": "Algebra",
+  "subskill": "a linear cost model compared at two inputs: the fixed fee cancels in a difference, so only the rate and the gap between the inputs matter",
+  "difficulty": "easy",
+  "prompt": "The total cost C, in dollars, of renting a floor sander for h hours is given by C = 14h + 35. How many more dollars does a 9-hour rental cost than a 4-hour rental?",
+  "choices": [
+   "70",
+   "105",
+   "126",
+   "161"
+  ],
+  "correct_answer": "70",
+  "explanation": "The two costs are 14(9) + 35 = 161 and 14(4) + 35 = 91, and their difference is 70, which is \"70\". The fixed $35 is paid in both rentals, so it cancels and the difference is simply 14(9 - 4). \"161\" is the cost of the 9-hour rental, not the amount by which it exceeds the shorter one. \"126\" is 14(9), the hourly part of the 9-hour cost. \"105\" comes from adding the fixed fee to the difference, that is, treating the 5 extra hours as a separate rental and computing 14(5) + 35.",
+  "solve": "return String((14*9+35)-(14*4+35));",
+  "distractor_solve": {
+   "161": "return String(14*9+35);",
+   "126": "return String(14*9);",
+   "105": "return String(14*5+35);"
+  }
+ },
+ {
+  "id": "SM14L-13",
+  "domain": "Algebra",
+  "subskill": "a sum condition combined with a multiplicative comparison, where the quantity asked for is the compared one rather than the base",
+  "difficulty": "medium",
+  "prompt": "The sum of two numbers is 44. The larger number is 4 more than three times the smaller number. What is the larger number?",
+  "choices": [
+   "10",
+   "30",
+   "32",
+   "34"
+  ],
+  "correct_answer": "34",
+  "explanation": "If s is the smaller number, the larger is 3s + 4, so s + 3s + 4 = 44, that is 4s = 40 and s = 10. The larger number is 3(10) + 4 = 34, which is \"34\". \"10\" is the smaller number, the variable solved for rather than the one asked about. \"30\" is 3s, the triple with the additional 4 left off. \"32\" comes from reading the comparison as 4 less than three times the smaller, which gives 4s = 48, s = 12, and a larger number of 32.",
+  "solve": "var s=(44-4)/4; return String(3*s+4);",
+  "distractor_solve": {
+   "10": "return String((44-4)/4);",
+   "30": "var s=(44-4)/4; return String(3*s);",
+   "32": "var s=(44+4)/4; return String(3*s-4);"
+  }
+ },
+ {
+  "id": "SM14L-14",
+  "domain": "Algebra",
+  "subskill": "a system carrying an unknown constant, pinned down by a third relation between the coordinates rather than by a second numeric equation",
+  "difficulty": "hard",
+  "prompt": "3x + y = 14\n5x - y = c\nIn the system of equations above, c is a constant. If the solution (x, y) of the system satisfies x = 2y, what is the value of c?",
+  "choices": [
+   "6",
+   "18",
+   "20",
+   "22"
+  ],
+  "correct_answer": "18",
+  "explanation": "Substituting x = 2y into the first equation gives 3(2y) + y = 14, so 7y = 14 and y = 2, and then x = 4. Putting these into the second equation gives c = 5(4) - 2 = 18, which is \"18\". \"22\" comes from a sign error in the second equation, computing 5x + y. \"20\" is 5x alone, with the y term dropped. \"6\" comes from reading the third condition backwards as y = 2x, which gives x = 2 and y = 4 and then 5(2) - 4.",
+  "solve": "var y=14/7,x=2*y; return String(5*x-y);",
+  "distractor_solve": {
+   "22": "var y=2,x=4; return String(5*x+y);",
+   "20": "var y=2,x=4; return String(5*x);",
+   "6": "var x=14/7,y=2*x; return String(5*x-y);"
+  }
+ },
+ {
+  "id": "SM14L-15",
+  "domain": "Algebra",
+  "subskill": "a constant-difference model indexed by calendar year: the rate needs the number of intervals between the two known years, not the number of years named",
+  "difficulty": "medium",
+  "prompt": "A town's population increases by the same number of people every year. The population was 24,500 in 2015 and 31,700 in 2021. What was the population in 2019?",
+  "choices": [
+   "28100",
+   "29300",
+   "30260",
+   "30500"
+  ],
+  "correct_answer": "29300",
+  "explanation": "From 2015 to 2021 is 6 years and the population rose by 7,200, so the increase is 1,200 per year. The year 2019 is 4 years after 2015, so the population was 24500 + 4(1200) = 29300, which is \"29300\". \"30500\" comes from stepping back only one year from 2021 rather than two, 31700 - 1200. \"28100\" comes from counting 2019 as 3 years after 2015, 24500 + 3(1200). \"30260\" comes from dividing the 7200 increase by 5 instead of 6, giving a rate of 1440 per year and 24500 + 4(1440).",
+  "solve": "var r=(31700-24500)/(2021-2015); return String(24500+r*(2019-2015));",
+  "distractor_solve": {
+   "30500": "return String(31700-(31700-24500)/6);",
+   "28100": "return String(24500+3*1200);",
+   "30260": "var r=7200/5; return String(24500+4*r);"
+  }
+ },
+ {
+  "id": "SM14L-16",
+  "domain": "Algebra",
+  "subskill": "evaluating an expression that is a scalar multiple of a given linear combination, without ever solving for either variable",
+  "difficulty": "medium",
+  "prompt": "If 2x - 3y = 11, what is the value of 8x - 12y + 5?",
+  "choices": [
+   "27",
+   "44",
+   "49",
+   "93"
+  ],
+  "correct_answer": "49",
+  "explanation": "The expression 8x - 12y is 4(2x - 3y), which equals 4(11) = 44, so 8x - 12y + 5 = 49, which is \"49\". \"44\" is 4(11), with the constant 5 left off. \"93\" comes from multiplying by 8 rather than by 4, reading the 8 in front of x as the scale factor for the whole combination, and then adding 5. \"27\" comes from multiplying by 2, the coefficient of x in the given equation, and then adding 5.",
+  "solve": "return String(4*11+5);",
+  "distractor_solve": {
+   "44": "return String(4*11);",
+   "93": "return String(8*11+5);",
+   "27": "return String(2*11+5);"
+  }
+ },
+ {
+  "id": "SM14L-17",
+  "domain": "Algebra",
+  "subskill": "a transfer between two quantities: the amount moved leaves one side and joins the other, so both sides change in the second relation",
+  "difficulty": "hard",
+  "prompt": "Box A holds 5 times as many marbles as box B. After 24 marbles are moved from box A to box B, box A holds twice as many marbles as box B. How many marbles were in box A originally?",
+  "choices": [
+   "48",
+   "80",
+   "96",
+   "120"
+  ],
+  "correct_answer": "120",
+  "explanation": "Let box B hold b marbles, so box A holds 5b. After the move, 5b - 24 = 2(b + 24), that is 5b - 24 = 2b + 48, so 3b = 72 and b = 24. Box A originally held 5(24) = 120, which is \"120\". \"96\" is the number in box A after the move, 120 - 24. \"48\" is the number in box B after the move, 24 + 24. \"80\" comes from adding the 24 to box B's side without doubling it, 5b - 24 = 2b + 24, which gives b = 16 and 5b = 80.",
+  "solve": "var b=(24+48)/3; return String(5*b);",
+  "distractor_solve": {
+   "96": "var b=72/3; return String(5*b-24);",
+   "48": "var b=72/3; return String(b+24);",
+   "80": "var b=48/3; return String(5*b);"
+  }
+ },
+ {
+  "id": "SM14L-18",
+  "domain": "Algebra",
+  "subskill": "a concentration mixture in which the added volume appears in both the amount of solute and the total volume, so it cannot be treated as a fixed denominator",
+  "difficulty": "hard",
+  "prompt": "How many liters of a 15% saline solution must be added to 12 liters of a 40% saline solution so that the result is a 25% saline solution?",
+  "choices": [
+   "8",
+   "18",
+   "30",
+   "48"
+  ],
+  "correct_answer": "18",
+  "explanation": "If x liters are added, the saline present is 0.15x + 0.40(12) = 0.15x + 4.8, and the total volume is x + 12. Setting 0.15x + 4.8 = 0.25(x + 12) = 0.25x + 3 gives 1.8 = 0.10x, so x = 18, which is \"18\". \"48\" comes from leaving the added liters out of the final volume, solving 0.15x + 4.8 = 0.25x. \"30\" is the total volume of the finished mixture, x + 12, rather than the amount added. \"8\" comes from inverting the mixing ratio, computing 12(25 - 15)/(40 - 25) instead of 12(40 - 25)/(25 - 15).",
+  "solve": "return String((0.25*12-0.40*12)/(0.15-0.25));",
+  "distractor_solve": {
+   "48": "return String(0.40*12/(0.25-0.15));",
+   "30": "var x=(0.25*12-0.40*12)/(0.15-0.25); return String(x+12);",
+   "8": "return String(12*(25-15)/(40-25));"
+  }
+ },
+ {
+  "id": "SM14L-19",
+  "domain": "Algebra",
+  "subskill": "substituting a given numerical value for one variable of a two-variable linear equation and solving for the other",
+  "difficulty": "easy",
+  "prompt": "4x + 3y = 38\nIf y = 6, what is the value of x?",
+  "choices": [
+   "5",
+   "8",
+   "14",
+   "20"
+  ],
+  "correct_answer": "5",
+  "explanation": "Substituting y = 6 gives 4x + 18 = 38, so 4x = 20 and x = 5, which is \"5\". \"20\" is the value of 4x, reported before dividing by 4. \"8\" comes from subtracting y itself rather than 3y, giving 4x = 32. \"14\" comes from a sign error in moving the y term, giving 4x = 38 + 18 = 56.",
+  "solve": "return String((38-3*6)/4);",
+  "distractor_solve": {
+   "20": "return String(38-3*6);",
+   "8": "return String((38-6)/4);",
+   "14": "return String((38+3*6)/4);"
+  }
+ },
+ {
+  "id": "SM14L-20",
+  "domain": "Algebra",
+  "subskill": "three terms in a fixed arithmetic pattern whose sum is given, with the largest term requested rather than the first",
+  "difficulty": "medium",
+  "prompt": "The sum of three consecutive multiples of 7 is 168. What is the greatest of these three multiples?",
+  "choices": [
+   "24",
+   "49",
+   "56",
+   "63"
+  ],
+  "correct_answer": "63",
+  "explanation": "Write the three as n, n + 7, and n + 14. Their sum is 3n + 21 = 168, so 3n = 147 and n = 49. The three multiples are 49, 56, and 63, so the greatest is \"63\". \"49\" is the least of the three. \"56\" is the middle one, which is also 168/3, the value a solver gets by dividing the sum by three and stopping. \"24\" is 168/7, the multiplier rather than a multiple.",
+  "solve": "var n=(168-21)/3; return String(n+14);",
+  "distractor_solve": {
+   "49": "return String((168-21)/3);",
+   "56": "return String(168/3);",
+   "24": "return String(168/7);"
+  }
+ }
+]

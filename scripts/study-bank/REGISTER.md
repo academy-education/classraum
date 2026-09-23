@@ -2775,3 +2775,27 @@ structural checks are pre-flight only. See CLAUDE.md.
   **The rule, stated so it generalises: for a multi-section test, a section that is not the binding section buys nothing, however cheap it looks.** SSAT verbal is in the same position — 5 sections against reading's 3 — and is already correctly left alone. Board corrected to say so on its face rather than quietly dropping the card.
 
   Incidental measurement worth keeping: **both verbal banks are overwhelmingly SINGLETON groups** — ISEE 161 of 169 groups hold one item, SSAT 257 of 269 — so "one item per bijective set" means a singleton serves exactly once in a student's lifetime. Capacity there is item count, not group count, which is why 193 items give 4 forms of 40 and not the 169-group figure a reader might expect.
+
+- **2026-09-24** — **SAT WORDS IN CONTEXT, SECOND ROUND: 16 AUTHORED, 0 SHIPPED, AGAINST 7 OF 20 ON THE IDENTICAL COMMISSION FOUR DAYS EARLIER. THE CAUSE IS A BRIEF I WROTE.** Craft and Structure stays 6 short; form 16 is not bought.
+
+  **Structurally it was the cleanest batch of the session and it did not matter.** Key letters exactly 4/4/4/4, zero complete-permutation windows, 16 distinct topics, no key word in its own passage, no British spellings, key strictly longest in 1 of 16. Every author claim re-verified independently. All three graders agreed with the key on **16 of 16 — no key is wrong.** The batch still failed on everything else.
+
+      measure                         v3 (7 shipped)     v4 (0 shipped)
+      blind, shipping set                 20.0%            45.8% batch
+      unanimous blind solves               0 of 7          4 of 16
+      option sets graded "weak"              —            10 of 16
+      answerable without the passage         —             5 of 16
+
+  **WHAT I DID WRONG, AND IT IS A NEW SHAPE.** The v3 brief spent most of its length on option construction. After v3's batch-level relation cluster, I wrote a v4 brief loaded with batch-level rules — at most five X-not-Y closings, no relation twice, 16 distinct topics, no overlap with shipped, vary the passage shape — and the author **met every one of them** and had nothing left for the option sets. The grader's diagnosis: *"the common failure is a set with one opposite and two words the passage never gestures at, which leaves a strong student choosing between two options before reading."* **A brief's constraints compete for the author's attention. Adding a batch-level rule without removing something else buys the batch-level property at the cost of the per-item one.**
+
+  **THE READ-ALOUD CHECK WAS THE PRODUCTIVE INSTRUMENT AND IS NEW.** Asked to read each completed sentence aloud with the key inserted, a grader found four broken keys no other lens caught: *survivable* takes events one lives through, not errors; predicative *unlike* with no complement is archaic **and** is the only preposition among three participial adjectives, so it is a part-of-speech tell readable with the passage covered; *indifferent* carries a damaging second sense where the argument wants *disinterested*; *relieve it* has no clean antecedent. **Add this to the with-source brief permanently.**
+
+  **TWO FACTUAL DEFECTS THAT SURVIVED THE AUTHOR'S OWN CHECKING.** The ha-ha geometry is **inverted** — the revetted vertical face belongs on the garden side, so as written the livestock are offered the six-foot fall the design exists to prevent. And the glass passage describes the mechanism of deliberate toughening rather than the residual tensile stress that actually makes an unannealed piece fail.
+
+  **A DUPLICATE OF A SHIPPED ITEM, AND MY BRIEF POINTED AT THE WRONG FILES.** `WIC4-10` duplicates the live `WIC2-08`: same subject (sumptuary law), same evidentiary move (repeated re-enactment plus absent prosecutions implies non-compliance), keys that are near-antonyms describing one finding. Verified directly against the live file. **My brief told the author to avoid overlap with `sat-wic-v3.kept` and `sat-wic-v1-hard` — and `v1-hard` is not live while `sat-wic-v2.kept`, which IS live, was never named.** When telling an author what not to collide with, derive the list from what is actually in the bank rather than from files that happen to be in the directory.
+
+  **THE ELIMINATION STAGE ENDED IT, AND THE INSERTER REFUSED UNTIL IT WAS RUN.** I had two survivors and the gate blocked on `elimination` never having been recorded. Running it killed both: solvers named a **register singleton** — the key being the one technical or rare word among three ordinary ones — and it lands on both. Two solvers independently wrote of `WIC4-12` that *"reconstruction is the historiographic term of art among three everyday nouns"*. Each item scored 2 of 3 blind. **The refusal was right and I would have shipped two tell-carrying items without it.**
+
+  **A CROSS-ITEM TELL NO CHECK LOOKS FOR: eleven of sixteen passages end on the same detached summary sentence** — *"the X is ______"*, *"it is the Y's ______"*. A solver can learn the shape of the final sentence. Nothing in this directory tests the position or form of the blank across a batch.
+
+  **Held, not repaired.** After one failed rewrite you stop, and this is worse than a rewrite case: the cause is upstream of the items.
