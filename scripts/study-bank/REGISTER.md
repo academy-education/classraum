@@ -2838,3 +2838,31 @@ structural checks are pre-flight only. See CLAUDE.md.
   **The instrument comparison, with the control's own leak isolated.** Candidate 38.1% against a 28.6% derived control, two unanimous; live control 45.2%, four unanimous. All three solvers independently named the same four items as leakiest — four glosses of one headword, where the option set reconstructs the word and the everyday sense is always the trap — and **all four are control**. Excluding them the remaining 24 score **33.3% in both arms, margin exactly 0.0.**
 
   **A MEASUREMENT BUG OF MINE, CAUGHT BECAUSE THE RESULT WAS ABSURD.** My first tally reported one grader disputing the key on **13 of 14** items, which contradicted its own prose. It had emitted picks as option **words** while the other two used **letters**, so every comparison failed. A checker that silently converts a format mismatch into "this grader rejects everything" is the same family as the empty-denominator defect. Fixed by normalising through the render; the rule now refuses if any pick cannot be resolved to a letter.
+
+- **2026-09-24** — **THE BEST-PRE-FLIGHTED BATCH OF THE SESSION LEAKED WORSE THAN THE SHIPPED BANK, AND MY OWN NEW TOOL PASSED IT BY ACCEPTING DECLARATIONS THAT CONSTRAIN NOTHING.** 18 SAT Advanced Math items, 0 shipped. → **A45**
+
+  **What it passed.** Every checker in this directory: sandbox 18/18 keys and 54/54 distractors, all solves exact, magnitude within z = 0.17 of live on all three columns, no stem-numeral collisions, no typographically unique key, **zero dead options with bounds declared on all 18**. The author break-tested its own verification four ways, including **reproducing the SM14A-19 tolerance failure on its own file** and confirming only `check-tolerance-pass` caught it. Then:
+
+      arm                          pooled   chance   margin   unanimous
+      CANDIDATE sat-math-v15-adv    46.3%    27.8%    +18.5       5
+      CONTROL live Advanced Math    24.1%    27.8%     -3.7       4
+
+  **It leaks worse than the shipped bank.** That reverses every other maths batch this session.
+
+  **MY TOOL WAS PASSED BY INERT DECLARATIONS, AND THAT IS THE "CHECK THAT CANNOT READ ITS INPUT" PATTERN IN A NEW COAT.** `check-dead-options` asks the author to declare the constraints their stem states and verifies them. The declarations were `Number.isInteger(v)` on sets of four integers and `v > 12` on a set whose smallest option is 60 — **bounds every option already satisfies, which constrain nothing.** Meanwhile a grader reading the stems found a live undeclared bound on **all 18 items**, with **seven losing all three distractors** to a single no-arithmetic constraint. Guard added: a bound satisfied by every option is reported **inert**, an item whose bounds are all inert is treated as undeclared, and the run exits non-zero. Re-run on this batch: **18 of 18 all-inert, exit 1.** Break-tested against a live bound, which still passes the guard.
+
+  **The grader also refuted the author's defence of its omissions**, and the refutation generalises: *"the defence — deriving the bound IS the work — is only valid when the bound and the answer are the SAME derivation. For `SM15A-02` it plainly is not: you get the sign from glancing at two coefficients; you get the answer from dividing."*
+
+  **THE LEAK MECHANISM, FOUND BY THE GRADER AND THEN MADE DECIDABLE.** The distractor brief was uniformly *"omit one step of the correct computation"*, which guarantees the distractors are **proper parts of the key — and parts advertise the whole**:
+
+      SM15A-08   {5, 8, 13, 25}      13 = 5 + 8
+      SM15A-13   {7, 14, 15, 17}     14 = 2 x 7
+      SM15A-11   {-12, 3, 8, 18}      3 = midpoint(-12, 18)
+
+  **The grader supplied its own falsifiers, which is why this one is believable** where six previous structural proxies were not: `SM15A-12`'s uniform ladder singles out nothing and did **not** leak, and `SM15A-17` *has* a composition (18 = 3×6) but the key is the **atom** rather than the composite, and did not leak either. `check-key-is-composition.mjs` implements it and was measured against the blind result rather than asserted: **fires on 2 items, both solved 3/3, zero false alarms; quiet on 16 averaging 39.6%.** Precise, and only **2-of-5 recall** — the other three leak by a looser version the two-operation rule does not reach, and that is stated rather than hidden.
+
+  **Held, not trimmed.** Twelve items survive the drops at 25.0% against a 33.3% control. They are still held, because **the defect is the distractor SPEC and all twelve were written to it.** The fix is a spec change: at least one distractor per item must be an **overshoot or a lateral error, never only omissions**, and no option set may contain two members summing or doubling to the key.
+
+  **Sixth consecutive batch where the author's "hard" label was demoted** (6 → 2 here). The grader's read is the right one: *"the pattern is now consistent enough to be a spec problem rather than a grader disagreement."*
+
+  **One more solver-classification reversal.** A solver flagged 21 of 36 sets as admitting a free elimination; **those scored 22.2% while the 15 it called clean scored 53.3%.** Confident structural stories keep pointing at the wrong half, which is why they are scored rather than believed.

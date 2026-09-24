@@ -4204,6 +4204,40 @@
      "verdict": "THE BATCH-LEVEL FINDING, AND IT IS WHY ONLY THREE SHIP. A grader found that all fourteen passages run ONE rhetorical machine -- a standard reading is cited, a confound is introduced, the blank names what the measure actually tracks -- and that SIX items are the identical relation (the measure records the confound, not the target). The consequence is a cross-item semantic tell no letter check can see: THE ANSWER IS ALWAYS THE DEFLATIONARY OPTION. A student who never reads a passage and picks the most unglamorous, mechanical noun scores well above chance, which is consistent with the 38.1% blind rate against a 25% line. Cut to one member of that family among the three shipped. This is the same defect that cost the first round of this commission six items, reappearing in a different dress."
     }
    }
+  },
+  {
+   "id": "sat-math-v15-adv-held-2026-09-24",
+   "createdAt": "2026-09-24",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "math_mc",
+   "family": "mc_stem_source",
+   "cohort": "sat-math-v15",
+   "contentSha": "f540da75a0f73720186690ddf88115ebaa3fdf10820c2f5aaf2e17af456b70b5",
+   "status": "held",
+   "note": "NOTHING SHIPPED. 18 authored, 0 inserted. The batch passed every pre-flight checker -- including the dead-option tool built specifically for it -- and then leaked worse than the shipped bank under the blind attack. Held on the grader's explicit recommendation: \"do not ship on the strength of the bounds tool\".",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "f540da75a0f73720186690ddf88115ebaa3fdf10820c2f5aaf2e17af456b70b5",
+     "verdict": "18 items, all 4-choice, key present, no duplicate option values, no option equal to a numeral in its own stem, no key typographically unique, bounds declared on all 18, all solves EXACT (check-tolerance-pass clean), magnitude within z=0.17 of live on all three columns. Sandbox 18/18 keys and 54/54 distractors recompute. The author break-tested its own verification four ways including REPRODUCING the SM14A-19 tolerance failure on its own file and confirming only check-tolerance-pass caught it. Every claim was re-verified independently. This is the most thoroughly pre-flighted batch of the session, and it did not matter."
+    },
+    "withsource": {
+     "passed": false,
+     "contentSha": "f540da75a0f73720186690ddf88115ebaa3fdf10820c2f5aaf2e17af456b70b5",
+     "verdict": "ALL 18 KEYS CORRECT -- no key disputed, none second-defensible. The batch still fails. EVERY ONE OF THE 18 HAS A LIVE UNDECLARED BOUND, zero nulls, and SEVEN LOSE ALL THREE DISTRACTORS to a no-arithmetic constraint: SM15A-03 (a = 4^2-3^2 so 0<a<16), -09 (monotonicity forces v > 144), -11 (a right shift by 5 raises the zero-sum above 8), -17 (b^2 = 34-a^2 with a=5 forces b<6), -18 (g = 2x^2+10 > 0), plus -15 and -13 losing one each. The grader REJECTED the author's defence on two of the three known cases: \"the defence -- deriving the bound IS the work -- is only valid when the bound and the answer are the SAME derivation. For SM15A-02 it plainly is not: you get the sign from glancing at two coefficients; you get the answer from dividing.\" Also found: one explanation whose stated path does not produce its printed value (SM15A-15's 9/2), and THREE duplicate motor-skill pairs the author missed while flagging two others -- 03/04 are the closest pair in the batch, both \"track the i^2 sign into the real part\", with identical trap inventories."
+    },
+    "nosource": {
+     "passed": false,
+     "contentSha": "f540da75a0f73720186690ddf88115ebaa3fdf10820c2f5aaf2e17af456b70b5",
+     "verdict": "Options-only attack, three solvers, 18 candidates interleaved with 18 live Advanced Math items (this session's own cohorts excluded), slot dealt FLAT. CANDIDATE 46.3% against a 27.8% derived control, margin +18.5, FIVE solved unanimously. CONTROL 24.1%, margin -3.7. THE CANDIDATE LEAKS WORSE THAN THE SHIPPED BANK, reversing every previous maths batch this session. Dropping the five unanimous plus one whose question a solver reconstructed leaves 12 items at 25.0% against a 33.3% control -- but the batch is held rather than trimmed, because the defect is the distractor SPEC and the remaining twelve were written to the same spec. A SOLVER'S OWN CLASSIFICATION RAN BACKWARDS: it flagged 21 of 36 sets as admitting a free elimination, and those scored 22.2% while the 15 it called clean scored 53.3%."
+    },
+    "tells": {
+     "passed": false,
+     "contentSha": "f540da75a0f73720186690ddf88115ebaa3fdf10820c2f5aaf2e17af456b70b5",
+     "verdict": "THE MECHANISM, FOUND BY A GRADER AND THEN MADE DECIDABLE. The distractor brief was uniformly \"omit one step of the correct computation\", which guarantees the distractors are PROPER PARTS of the key -- and parts advertise the whole. SM15A-08 is {5, 8, 13, 25} where 13 = 5+8; SM15A-13 is {7,14,15,17} where 14 = 2x7; SM15A-11 has 3 = midpoint(-12,18). The grader supplied its own falsifiers, which is why this is believable: SM15A-12's uniform ladder (-12,-10,-8,-6) singles out nothing and did NOT leak, and SM15A-17 HAS a composition (18 = 3x6) but the key is the ATOM rather than the composite, and did not leak either. check-key-is-composition.mjs implements it, self-tested on those five cases. Measured against the blind result: it fires on 2 items, BOTH solved 3/3, with ZERO false alarms, and is quiet on 16 averaging 39.6% -- precise but only 2-of-5 recall, so the other three leak by a looser version the two-operation rule does not capture. The fix is a spec change, not a rewrite: at least one distractor per item must be an OVERSHOOT or a lateral error, never only omissions."
+    }
+   }
   }
  ],
  "auditedCohorts": [

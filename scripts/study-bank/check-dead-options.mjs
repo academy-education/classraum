@@ -74,7 +74,16 @@ export function audit(item) {
     .filter(o => o.text !== item.correct_answer)
     .map(o => ({ text: o.text, by: bounds.filter(b => !test(b, o.v)) }))
     .filter(o => o.by.length)
-  return { declared: true, dead, keyFails, nBounds: bounds.length }
+  /* AN INERT BOUND IS NOT A DECLARATION. A bound every option already satisfies
+   * constrains nothing, and an item whose bounds are ALL inert has effectively
+   * declared nothing while passing. Found 2026-09-24: a batch passed with zero
+   * dead options where the declarations were `Number.isInteger(v)` on sets of
+   * four integers and `v > 12` on a set whose smallest option was 60, while a
+   * grader found a live undeclared bound on all 18 items and seven that lose
+   * ALL THREE distractors to one. Passing by declaring nothing is the
+   * "check that cannot read its input" pattern wearing a new coat. */
+  const inert = bounds.filter(b => opts.every(o => test(b, o.v)))
+  return { declared: true, dead, keyFails, nBounds: bounds.length, inert, allInert: inert.length === bounds.length }
 }
 
 const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-dead-options.mjs')
@@ -96,7 +105,7 @@ if (RUN_AS_CLI) {
 
   const files = process.argv.slice(2)
   if (!files.length) { console.error('usage: check-dead-options.mjs <batch.json ...>'); process.exit(2) }
-  let n = 0, undeclared = 0, withDead = 0, keyBad = 0
+  let n = 0, undeclared = 0, withDead = 0, keyBad = 0, allInert = 0
   for (const f of files) {
     let a; try { a = JSON.parse(readFileSync(f, 'utf8')) } catch (e) { console.error(`REFUSING: cannot read ${f}: ${e.message}`); process.exit(2) }
     if (!Array.isArray(a) || !a.length) { console.error(`REFUSING: ${f} holds zero items`); process.exit(2) }
@@ -107,9 +116,11 @@ if (RUN_AS_CLI) {
       if (!r.declared) { undeclared++; console.log(`  ${String(x.id).padEnd(12)}no bounds declared — NOT a pass, only a silence`); continue }
       if (r.keyFails.length) { keyBad++; console.log(`  ${String(x.id).padEnd(12)}KEY VIOLATES ITS OWN BOUND: ${r.keyFails.join(' AND ')}`); continue }
       if (r.dead.length) { withDead++; console.log(`  ${String(x.id).padEnd(12)}${r.dead.length} DEAD of 3: ` + r.dead.map(d => `${d.text} (${d.by[0]})`).join(', ')) }
-      else console.log(`  ${String(x.id).padEnd(12)}ok — ${r.nBounds} bound(s), no distractor dies`)
+      else if (r.allInert) { allInert++; console.log(`  ${String(x.id).padEnd(12)}ALL ${r.nBounds} BOUND(S) INERT — every option already satisfies them, so nothing was declared`) }
+      else console.log(`  ${String(x.id).padEnd(12)}ok — ${r.nBounds} bound(s), ${r.inert.length} inert, no distractor dies`)
     }
   }
-  console.log(`\n  ${n} items: ${withDead} with a dead option, ${keyBad} whose key breaks its own bound, ${undeclared} with nothing declared`)
-  process.exitCode = (withDead || keyBad) ? 1 : 0
+  console.log(`\n  ${n} items: ${withDead} with a dead option, ${keyBad} whose key breaks its own bound, ${undeclared} with nothing declared, ${allInert} whose bounds are ALL INERT`)
+  if (allInert) console.log('  An all-inert item has passed by declaring nothing. Treat it as undeclared.')
+  process.exitCode = (withDead || keyBad || allInert) ? 1 : 0
 }
