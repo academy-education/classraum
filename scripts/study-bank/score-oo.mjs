@@ -93,5 +93,36 @@ if (strat.mechanism.n && strat.guess.n) {
 }
 const unan = ids.filter(i => perItem[i].n && perItem[i].hits === perItem[i].n)
 const exp = ids.length * Math.pow(control, Object.keys(solvers).length)
+/* SPLIT BY ARM. A pooled rate over a file that interleaves candidates with a
+ * matched live control describes NEITHER: on m16alg it printed 44.0% against a
+ * 25.0% letter line, which is the average of two arms that turned out to be
+ * 28.6% and 59.5%. The margin that decides a batch is candidate-vs-control, and
+ * a tool that prints only the pooled number invites exactly the reading the
+ * control exists to prevent. Arms come from `kind` in the key file; when it is
+ * absent the file holds one arm and nothing is split. */
+{
+  const arms = [...new Set(Object.values(key).map(k => k.kind).filter(Boolean))]
+  if (arms.length > 1) {
+    console.log('')
+    const seen = {}
+    for (const arm of arms) {
+      const ids = Object.keys(key).filter(id => key[id].kind === arm)
+      let k = 0, n = 0
+      const d = {}
+      for (const id of ids) { d[key[id].letter] = (d[key[id].letter] ?? 0) + 1 }
+      const line = 100 * Math.max(...Object.values(d)) / ids.length
+      for (const sv of Object.values(solvers)) for (const id of ids) {
+        const r = sv.map[id]; if (!r || !r[sv.pf]) { n++; continue }   // unanswered counts WRONG, as above
+        n++; if (String(r[sv.pf]).trim().toUpperCase() === key[id].letter) k++
+      }
+      seen[arm] = { k, n, rate: 100 * k / n, line }
+      console.log(`  ${arm.padEnd(13)} n=${String(n).padStart(3)}  ${String(k).padStart(3)}/${n} = ${(100*k/n).toFixed(1)}%   its own best-fixed-letter line ${line.toFixed(1)}%   margin ${(100*k/n - line >= 0 ? '+' : '')}${(100*k/n - line).toFixed(1)}`)
+    }
+    if (seen.candidate && seen['live-control']) {
+      const diff = seen.candidate.rate - seen['live-control'].rate
+      console.log(`  CANDIDATE minus LIVE CONTROL: ${diff >= 0 ? '+' : ''}${diff.toFixed(1)}pts  — this is the number that decides the batch, not the pooled rate above.`)
+    }
+  }
+}
 console.log(`\n  unanimous-correct items: ${unan.length} of ${ids.length}   (expected at control: ${exp.toFixed(2)})`)
 if (unan.length) console.log(`    ${unan.map(i => i + '(' + key[i].localId + ')').join(', ')}`)

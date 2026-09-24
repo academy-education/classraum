@@ -3012,3 +3012,44 @@ structural checks are pre-flight only. See CLAUDE.md.
   **What the v4 fix bought.** v4 died because all fourteen keys were the deflationary option; v6 was briefed to split rich/plain and reports 6/6. The blind result is consistent with that having worked, and is the first words-in-context batch to measure BELOW its own control.
 
   **SAT R&W: 16 complete forms.** The module-2 hard route is unchanged at 3, still capped by Standard English Conventions at 27 hard against ~7 per form — this batch added 2 hard C&S and does not touch that constraint.
+
+- **2026-09-25** — **A POOLED RATE OVER AN INTERLEAVED FILE DESCRIBES NEITHER ARM, AND MINE PRINTED 44.0% FOR TWO ARMS THAT WERE 52.4% AND 35.7%.** Tooling fixed; both v16 maths batches measured. → **A50**
+
+  **`make-oo-render.mjs` could not draw a control at all**, so every matched control this session was hand-rolled in a scratchpad — which is how composition-matching kept drifting. It now takes `--control N --exclude <cohorts>`, draws from the same family/section/domain, refuses on a width mismatch, and prints the eligible pool with what each exclusion cost. It also imports `seeded-shuffle.mjs` instead of carrying its own LCG; the key deal there is round-robin so the bias could not reach the control, which is exactly why it survived the A44 sweep and exactly why "one shuffle, imported everywhere" is the rule.
+
+  **A STALE DENOMINATOR I INTRODUCED IN THE SAME EDIT.** With the control appended the file grew to 28 items while the realised-control line still divided by `batch.length`: it printed **"best-fixed-letter (the REAL control) 50.0% — score against 50.0%, not 25.0%"**, a control nearly double the truth and flattering in the only direction that matters. Caught by reading it against the per-arm lines, which said 28.6% each. Fixed to the file's own length.
+
+  **`score-oo.mjs` PRINTED ONLY THE POOLED RATE.** On a file that interleaves candidates with a matched control, the pooled number is the average of the two things being compared. It reported `POOLED 44.0% against control 25.0%, margin 19.0` — a real-looking verdict that describes neither arm. The split now prints per-arm rates against per-arm letter lines, and the candidate-minus-control line says in words that it, not the pooled rate, is the number that decides a batch.
+
+  **BOTH v16 MATHS BATCHES FAIL THE BLIND HALF, AND BOTH LEAK WORSE THAN THE BANK.**
+
+      batch                       candidate   live control   margin   unanimous
+      sat-math-v16-alg (14)         52.4%        35.7%        +16.7     5 of 14
+      sat-math-v16-adv (16)         41.7%        16.7%        +25.0     4 of 16
+
+  Third and fourth consecutive maths batch to do this. The instrument is valid here — both controls are at or below their 25–28.6% letter lines, so this is not the ACT Science saturation case.
+
+  **AND THE SOLVERS' NAMED MECHANISMS ARE ANTI-PREDICTIVE.** `mechanism minus guess` is **−20.0** on Algebra and **−25.5** on Advanced Math: all six solvers scored WORSE on the items where they claimed a structural reason than on the ones they called guesses. They beat the control anyway. **Whatever is leaking, nobody can name it** — which is the sixth time a confident structural story has pointed at the wrong half.
+
+  **THE AUTHORS' OWN MACHINE PASS HELD, AND I CHECKED IT INDEPENDENTLY RATHER THAN BELIEVING IT.** Both blind solvers named "one option is the sum/product/quotient of two others" as their main mechanism and cited items by number. Resolving those numbers against the key file put **every hit in the control arm: candidate 0 of 14, live control 9 of 14, key-is-the-composite in 4.** The authors designed the relation out; the solvers were reading the shipped bank.
+
+  **WHICH MAKES THE LIVE BANK THE FINDING.** Decidable, so measured exactly over the whole population rather than from that 14-item glimpse — the mistake the "hub bank-wide 64.4%" entry records:
+
+      live sat/math      n     any closure    KEY is composite
+      Algebra           368    216 (58.7%)      115 (31.3%)
+      Advanced Math     350    202 (57.7%)      108 (30.9%)
+      PSDA              267    121 (45.3%)       61 (22.8%)
+      Geometry & Trig   205     93 (45.4%)       45 (22.0%)
+      ALL              1190    632 (53.1%)      329 (27.6%)
+
+  A closure relation alone is **not** a defect — `{3,4,5,6}` is closed under midpoint and decides nothing — and `check-live-closure.mjs` says so in its own output and refuses to let the first column be read as the verdict. The actionable column is the second: **329 live items, 27.6%, where the KEY is the composite**, the exact form that condemned `sat-math-v15-adv`. Not touched; **Andy's call**, and it is much larger than the ~17 duplicate option sets already waiting on one.
+
+  **A SIXTH STRUCTURAL PROXY, AND THE FIRST TO SURVIVE OUT-OF-SAMPLE.** Hypothesis: in a freshly authored batch every distractor is a perturbation of the key, so the key sits at the centre of its own option set; an accreted live bank should show that less. "Key minimises summed distance to the other options" separates solved from unsolved:
+
+      m16alg  (in-sample)   fires 74.4%  quiet 17.8%   +56.6
+      m16adv  (in-sample)   fires 47.6%  quiet 25.0%   +22.6
+      v15-attack (OUT)      fires 45.1%  quiet 28.3%   +16.8   n=63, never seen
+
+  In-sample separation is worth nothing here — five previous proxies had it and died on the next batch. The out-of-sample run is the only line that counts, and it holds at roughly a third of the in-sample strength. **Recorded as a hypothesis with one passing out-of-sample test, not as a rule**, and explicitly not as a gate: it is still a cheap proxy for a semantic channel, and the standing rule is that the attack is the gate.
+
+  Both batches **held pending the with-source half**; nothing inserted. SAT Math stays at 25 forms, and form 26 still needs both halves.

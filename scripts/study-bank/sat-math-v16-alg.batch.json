@@ -1,0 +1,310 @@
+[
+ {
+  "id": "SM16L-01",
+  "domain": "Algebra",
+  "subskill": "a one-variable linear equation with a parenthesis on each side, where the answer requested is not x but a linear expression in x, so the last step is an evaluation rather than a division",
+  "difficulty": "medium",
+  "prompt": "If 5(x - 3) = 2(x + 9) - 3, what is the value of 3x - 4?",
+  "choices": [
+   "14",
+   "17",
+   "26",
+   "32"
+  ],
+  "correct_answer": "26",
+  "explanation": "Distributing gives 5x - 15 = 2x + 18 - 3, so 5x - 15 = 2x + 15. Subtracting 2x and adding 15 gives 3x = 30, so x = 10 and 3x - 4 = 30 - 4 = 26, which is \"26\". \"14\" comes from distributing the 5 only to x, solving 5x - 3 = 2x + 15 to get 3x = 18 and x = 6, then evaluating 3(6) - 4. \"17\" comes from distributing the 2 only to x, solving 5x - 15 = 2x + 9 - 3 to get 3x = 21 and x = 7, then evaluating 3(7) - 4. \"32\" comes from adding the 3 on the right instead of subtracting it, solving 5x - 15 = 2x + 21 to get 3x = 36 and x = 12, then evaluating 3(12) - 4.",
+  "bounds": [],
+  "solve": "var x=(5*3+2*9-3)/(5-2); return String(3*x-4);",
+  "distractor_solve": {
+   "14": "var x=(2*9-3+3)/(5-2); return String(3*x-4);",
+   "17": "var x=(5*3+9-3)/(5-2); return String(3*x-4);",
+   "32": "var x=(5*3+2*9+3)/(5-2); return String(3*x-4);"
+  }
+ },
+ {
+  "id": "SM16L-02",
+  "domain": "Algebra",
+  "subskill": "a one-variable linear equation whose two fractional terms carry different denominators, so every term including the constant on the right must be multiplied by the common denominator before anything else happens",
+  "difficulty": "medium",
+  "prompt": "If (x + 3)/2 - (x - 3)/5 = 9, what is the value of x?",
+  "choices": [
+   "14",
+   "18",
+   "23",
+   "27"
+  ],
+  "correct_answer": "23",
+  "explanation": "Multiplying every term by 10 gives 5(x + 3) - 2(x - 3) = 90, so 5x + 15 - 2x + 6 = 90 and 3x + 21 = 90. Then 3x = 69 and x = 23, which is \"23\". \"27\" comes from distributing -2 across (x - 3) as -2x - 6, giving 3x + 9 = 90 and 3x = 81. \"18\" comes from multiplying only the first numerator by its factor, writing 5(x + 3) - (x - 3) = 90, which gives 4x + 18 = 90 and 4x = 72. \"14\" comes from multiplying the two fractions by 10 but the right side by 2 + 5 = 7, giving 3x + 21 = 63 and 3x = 42.",
+  "bounds": [],
+  "solve": "return String((9*10 - 5*3 - 2*3)/(5-2));",
+  "distractor_solve": {
+   "14": "return String((9*7 - 5*3 - 2*3)/(5-2));",
+   "18": "return String((9*10 - 5*3 - 3)/(5-1));",
+   "27": "return String((9*10 - 5*3 + 2*3)/(5-2));"
+  }
+ },
+ {
+  "id": "SM16L-03",
+  "domain": "Algebra",
+  "subskill": "a two-variable system in which neither variable cancels as written, so both equations must be scaled before the subtraction, and the leftover coefficient on the surviving variable is neither of the coefficients that were printed",
+  "difficulty": "medium",
+  "prompt": "3x + 2y = 66\n4x + 5y = 123\nIf (x, y) is the solution to the system of equations above, what is the value of y?",
+  "choices": [
+   "12",
+   "15",
+   "19",
+   "21"
+  ],
+  "correct_answer": "15",
+  "explanation": "Multiplying the first equation by 4 gives 12x + 8y = 264, and multiplying the second by 3 gives 12x + 15y = 369. Subtracting leaves 7y = 105, so y = 15, which is \"15\". \"12\" is the value of x, found by eliminating y instead and reported in place of the requested variable. \"19\" comes from subtracting the equations as they are printed, giving x + 3y = 57, and then dividing 57 by 3 as though the x-term were not there. \"21\" comes from reaching 7y = 105 correctly but dividing 105 by 5, the y-coefficient printed in the second equation, rather than by the 7 the elimination produced.",
+  "bounds": [],
+  "solve": "return String((3*123 - 4*66)/(3*5 - 4*2));",
+  "distractor_solve": {
+   "12": "return String((5*66 - 2*123)/(3*5 - 4*2));",
+   "19": "return String((123-66)/(5-2));",
+   "21": "return String((3*123 - 4*66)/5);"
+  }
+ },
+ {
+  "id": "SM16L-04",
+  "domain": "Algebra",
+  "subskill": "a count-and-value word problem: the difference between the two unit prices, not either price, is the divisor once the cheaper price is charged against the whole count",
+  "difficulty": "hard",
+  "prompt": "A school sold 260 tickets to a play. Adult tickets cost $20 each and student tickets cost $12 each, and every ticket sold was one or the other. The total amount collected was $4,560. How many adult tickets were sold?",
+  "choices": [
+   "45",
+   "72",
+   "120",
+   "180"
+  ],
+  "correct_answer": "180",
+  "explanation": "If all 260 tickets had been student tickets the school would have collected 12(260) = $3,120, which is $1,440 less than $4,560. Each adult ticket sold in place of a student ticket adds 20 - 12 = $8, so the number of adult tickets is 1440/8 = 180, which is \"180\". \"72\" comes from dividing that same $1,440 by 20, the adult price, instead of by the $8 difference. \"120\" comes from dividing it by 12, the student price. \"45\" comes from dividing it by 20 + 12 = 32, the sum of the two prices rather than their difference.",
+  "bounds": [],
+  "solve": "return String((4560 - 12*260)/(20-12));",
+  "distractor_solve": {
+   "45": "return String((4560 - 12*260)/(20+12));",
+   "72": "return String((4560 - 12*260)/20);",
+   "120": "return String((4560 - 12*260)/12);"
+  }
+ },
+ {
+  "id": "SM16L-05",
+  "domain": "Algebra",
+  "subskill": "a constant rate recovered from two values of a linear function and then carried forward past the second of them: the distractors differ in which anchor is used and in whether the rate is treated as a rate or as a starting value",
+  "difficulty": "medium",
+  "prompt": "The function f is linear. If f(2) = 13 and f(7) = 33, what is the value of f(15)?",
+  "choices": [
+   "65",
+   "73",
+   "85",
+   "93"
+  ],
+  "correct_answer": "65",
+  "explanation": "The rate of change is (33 - 13)/(7 - 2) = 4 per unit. From x = 7 to x = 15 is a run of 8, so f(15) = 33 + 4(8) = 65, which is \"65\". \"85\" comes from using the correct rate but the run of 13 measured from x = 2, while still starting from f(7) = 33, giving 33 + 4(13). \"73\" comes from treating f(2) = 13 as the value of f at x = 0 and writing f(x) = 4x + 13, giving 4(15) + 13. \"93\" comes from the same mistake made with the other point, treating f(7) = 33 as the value at x = 0 and writing f(x) = 4x + 33, giving 4(15) + 33.",
+  "bounds": [],
+  "solve": "var m=(33-13)/(7-2); return String(33+m*(15-7));",
+  "distractor_solve": {
+   "73": "var m=(33-13)/(7-2); return String(m*15+13);",
+   "85": "var m=(33-13)/(7-2); return String(33+m*(15-2));",
+   "93": "var m=(33-13)/(7-2); return String(m*15+33);"
+  }
+ },
+ {
+  "id": "SM16L-06",
+  "domain": "Algebra",
+  "subskill": "a line given by a slope and one point, run BACKWARDS: the output is supplied and the input is wanted, so the rise must be divided by the slope and the anchor's x-coordinate added afterwards",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line k has a slope of 6 and passes through the point (5, 17). If the point (x, 101) also lies on line k, what is the value of x?",
+  "choices": [
+   "14",
+   "16",
+   "19",
+   "31"
+  ],
+  "correct_answer": "19",
+  "explanation": "The rise from y = 17 to y = 101 is 84, so the run is 84/6 = 14. Adding that run to the anchor's x-coordinate gives x = 5 + 14 = 19, which is \"19\". \"14\" is the run itself, reported without adding the 5. \"16\" comes from subtracting the anchor's x-coordinate from 101 instead of its y-coordinate, giving 96/6. \"31\" comes from adding the anchor's y-coordinate to the run instead of its x-coordinate, giving 14 + 17.",
+  "bounds": [],
+  "solve": "return String(5+(101-17)/6);",
+  "distractor_solve": {
+   "14": "return String((101-17)/6);",
+   "16": "return String((101-5)/6);",
+   "31": "return String(17+(101-17)/6);"
+  }
+ },
+ {
+  "id": "SM16L-07",
+  "domain": "Algebra",
+  "subskill": "a strict linear inequality with the variable on both sides whose boundary is not an integer, so the answer is the least integer above it and the two coefficients must be combined before any division happens",
+  "difficulty": "medium",
+  "prompt": "What is the least integer value of x for which 14 - 3x < 8x - 53?",
+  "choices": [
+   "4",
+   "7",
+   "9",
+   "23"
+  ],
+  "correct_answer": "7",
+  "explanation": "Adding 3x and 53 to both sides gives 67 < 11x, so x > 67/11, which is about 6.09. The least integer greater than that is 7, which is \"7\". \"9\" comes from dividing 67 by 8, the coefficient printed on the right, instead of by the combined 11, giving x > 8.375 and a least integer of 9. \"23\" comes from dividing 67 by 3, the coefficient printed on the left, giving x > 22.3 and a least integer of 23. \"4\" comes from subtracting 14 from 53 instead of adding them, giving 39 < 11x, so x > 39/11, which is about 3.55, and a least integer of 4.",
+  "bounds": [],
+  "solve": "var b=(14+53)/(8+3); return String(Number.isInteger(b)?b+1:Math.ceil(b));",
+  "distractor_solve": {
+   "4": "var b=(53-14)/(8+3); return String(Number.isInteger(b)?b+1:Math.ceil(b));",
+   "9": "var b=(14+53)/8; return String(Number.isInteger(b)?b+1:Math.ceil(b));",
+   "23": "var b=(14+53)/3; return String(Number.isInteger(b)?b+1:Math.ceil(b));"
+  }
+ },
+ {
+  "id": "SM16L-08",
+  "domain": "Algebra",
+  "subskill": "a two-variable linear inequality closed off by a one-sided bound on the second variable: the bound must be spent at its extreme before the first variable can be maximized, and the result is then floored",
+  "difficulty": "hard",
+  "prompt": "If 5x + 8y is less than or equal to 147 and y is greater than or equal to 6, what is the greatest possible integer value of x?",
+  "choices": [
+   "12",
+   "14",
+   "19",
+   "29"
+  ],
+  "correct_answer": "19",
+  "explanation": "x is largest when 8y is as small as it can be, which happens at y = 6, where 8y = 48. Then 5x is at most 147 - 48 = 99, so x is at most 19.8 and the greatest integer value is 19, which is \"19\". \"12\" comes from dividing that same 99 by 8 instead of by 5, giving 12.375 and a floor of 12. \"14\" comes from exchanging the two coefficients, spending the bound as 5(6) = 30 and then dividing 117 by 8 to get 14.625, with a floor of 14. \"29\" comes from ignoring the condition on y altogether and dividing 147 by 5, giving 29.4 and a floor of 29.",
+  "bounds": [],
+  "solve": "return String(Math.floor((147-8*6)/5));",
+  "distractor_solve": {
+   "12": "return String(Math.floor((147-8*6)/8));",
+   "14": "return String(Math.floor((147-5*6)/8));",
+   "29": "return String(Math.floor(147/5));"
+  }
+ },
+ {
+  "id": "SM16L-09",
+  "domain": "Algebra",
+  "subskill": "a whole split into two parts where one part is described by a multiplier AND an offset: the offset moves to the total before the division, and it must be applied again, with its original sign, at the end",
+  "difficulty": "medium",
+  "prompt": "A board 92 inches long is cut into two pieces. The longer piece is 8 inches shorter than 3 times the length of the shorter piece. What is the length, in inches, of the longer piece?",
+  "choices": [
+   "61",
+   "67",
+   "71",
+   "83"
+  ],
+  "correct_answer": "67",
+  "explanation": "Letting s be the shorter piece, s + (3s - 8) = 92, so 4s = 100 and s = 25. The longer piece is 3(25) - 8 = 67, which is \"67\", and 25 + 67 = 92 confirms it. \"61\" comes from dropping the 8 while solving for s, using 4s = 92 to get s = 23 and then reporting 3(23) - 8. \"71\" comes from moving the 8 to the wrong side, using 4s = 92 - 8 to get s = 21 and then reporting 92 - 21. \"83\" comes from finding s = 25 correctly and then adding the 8 back instead of subtracting it, giving 3(25) + 8.",
+  "bounds": [],
+  "solve": "var s=(92+8)/4; return String(3*s-8);",
+  "distractor_solve": {
+   "61": "var s=92/4; return String(3*s-8);",
+   "71": "var s=(92-8)/4; return String(92-s);",
+   "83": "var s=(92+8)/4; return String(3*s+8);"
+  }
+ },
+ {
+  "id": "SM16L-10",
+  "domain": "Algebra",
+  "subskill": "two linear cost models set equal to each other, where the quantity asked for is not the break-even input but the common OUTPUT, so the recovered input has to be pushed back through one of the models",
+  "difficulty": "hard",
+  "prompt": "One web-hosting plan charges a one-time setup fee of $258 plus $13 for each month of service. A second plan charges a one-time setup fee of $102 plus $25 for each month of service. For the number of months at which the two plans cost the same total amount, what is that total amount, in dollars?",
+  "choices": [
+   "414",
+   "427",
+   "583",
+   "648"
+  ],
+  "correct_answer": "427",
+  "explanation": "Setting 258 + 13m = 102 + 25m gives 156 = 12m, so m = 13 months, and the common total is 258 + 13(13) = 258 + 169 = 427, which is \"427\"; the second plan gives 102 + 25(13) = 427 as well. \"414\" comes from dividing the $156 difference in setup fees by 13, the smaller monthly rate, instead of by the $12 difference in rates, giving m = 12 and a total of 258 + 13(12). \"583\" comes from finding m = 13 correctly but then evaluating the first plan with the second plan's monthly rate, giving 258 + 25(13). \"648\" comes from adding the two setup fees instead of subtracting them, giving m = 360/12 = 30 and a total of 258 + 13(30).",
+  "bounds": [],
+  "solve": "var m=(258-102)/(25-13); return String(258+13*m);",
+  "distractor_solve": {
+   "414": "var m=(258-102)/13; return String(258+13*m);",
+   "583": "var m=(258-102)/(25-13); return String(258+25*m);",
+   "648": "var m=(258+102)/(25-13); return String(258+13*m);"
+  }
+ },
+ {
+  "id": "SM16L-11",
+  "domain": "Algebra",
+  "subskill": "a one-variable linear equation with a variable term and a constant on each side and the two variable terms of opposite sign, so the coefficients ADD when the terms are collected and the combined coefficient is neither of the printed ones",
+  "difficulty": "easy",
+  "prompt": "If 10x - 97 = 143 - 6x, what is the value of x?",
+  "choices": [
+   "15",
+   "24",
+   "40",
+   "60"
+  ],
+  "correct_answer": "15",
+  "explanation": "Adding 6x and 97 to both sides gives 16x = 240, so x = 15, which is \"15\". \"60\" comes from subtracting the coefficients instead of adding them, writing 4x = 240 because the 6x was moved as though it were positive. \"24\" comes from reaching 240 correctly but dividing by 10, the coefficient printed on the left, instead of by the combined 16. \"40\" comes from dividing that same 240 by 6, the coefficient printed on the right.",
+  "bounds": [],
+  "solve": "return String((143+97)/(10+6));",
+  "distractor_solve": {
+   "24": "return String((143+97)/10);",
+   "40": "return String((143+97)/6);",
+   "60": "return String((143+97)/(10-6));"
+  }
+ },
+ {
+  "id": "SM16L-12",
+  "domain": "Algebra",
+  "subskill": "a slope read out of standard form and carried to a parallel line, then applied across the run between a given point and a second point on that line",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, line p is parallel to the line with equation 3x - 2y = 12 and passes through the point (6, 11). If the point (24, w) also lies on line p, what is the value of w?",
+  "choices": [
+   "20",
+   "23",
+   "30",
+   "38"
+  ],
+  "correct_answer": "38",
+  "explanation": "Writing 3x - 2y = 12 as y = (3/2)x - 6 gives slope 3/2, which line p shares. The run from x = 6 to x = 24 is 18, so y changes by (3/2)(18) = 27 and w = 11 + 27 = 38, which is \"38\". \"23\" comes from inverting the slope to 2/3, giving 11 + (2/3)(18). \"20\" comes from using the correct slope but taking the run to be 6, the anchor's x-coordinate, rather than the distance between the two x-values, giving 11 + (3/2)(6). \"30\" comes from borrowing the y-intercept of the GIVEN line, writing line p as y = (3/2)x - 6 and evaluating it at x = 24, which ignores the point (6, 11) entirely.",
+  "bounds": [],
+  "solve": "return String(11+(3/2)*(24-6));",
+  "distractor_solve": {
+   "20": "return String(11+(3/2)*6);",
+   "23": "return String(11+(2/3)*(24-6));",
+   "30": "return String((3/2)*24-12/2);"
+  }
+ },
+ {
+  "id": "SM16L-13",
+  "domain": "Algebra",
+  "subskill": "a sequence with a constant increment where the increment is given but the NUMBER OF INCREMENTS is not: the answer turns on counting gaps between two term positions rather than counting the positions themselves",
+  "difficulty": "medium",
+  "prompt": "In a certain sequence, each term after the first is 8 more than the preceding term. If the 4th term of the sequence is 37, what is the 15th term?",
+  "choices": [
+   "125",
+   "133",
+   "149",
+   "157"
+  ],
+  "correct_answer": "125",
+  "explanation": "From the 4th term to the 15th term there are 15 - 4 = 11 gaps, so the value increases by 11(8) = 88 and the 15th term is 37 + 88 = 125, which is \"125\". \"133\" comes from counting terms instead of gaps, using the 12 positions from the 4th through the 15th and adding 12(8). \"149\" comes from treating the 4th term as though it were the first term and adding 14(8), the number of gaps between a first and a fifteenth term. \"157\" comes from multiplying the increment by the target position itself, adding 15(8) to 37.",
+  "bounds": [],
+  "solve": "return String(37+(15-4)*8);",
+  "distractor_solve": {
+   "133": "return String(37+(15-4+1)*8);",
+   "149": "return String(37+(15-1)*8);",
+   "157": "return String(37+15*8);"
+  }
+ },
+ {
+  "id": "SM16L-14",
+  "domain": "Algebra",
+  "subskill": "an equation carrying an unknown COEFFICIENT whose solution is supplied: the given solution is substituted and the equation is then solved for the coefficient, so the division at the end is by the solution, not by any printed coefficient",
+  "difficulty": "hard",
+  "prompt": "In the equation kx + 18 = 9(x + 6), k is a constant. If x = 6 is the solution to this equation, what is the value of k?",
+  "choices": [
+   "7",
+   "10",
+   "15",
+   "21"
+  ],
+  "correct_answer": "15",
+  "explanation": "Substituting x = 6 gives 6k + 18 = 9(6 + 6) = 108, so 6k = 90 and k = 15, which is \"15\"; checking, 15(6) + 18 = 108. \"7\" comes from distributing the 9 only to x, writing 6k + 18 = 9(6) + 6 = 60, so 6k = 42. \"21\" comes from adding the 18 instead of subtracting it, writing 6k = 108 + 18 = 126. \"10\" comes from reaching 6k = 90 correctly but dividing 90 by 9, the coefficient printed on the right, instead of by the 6 that multiplies k.",
+  "bounds": [],
+  "solve": "return String((9*(6+6)-18)/6);",
+  "distractor_solve": {
+   "7": "return String((9*6+6-18)/6);",
+   "10": "return String((9*(6+6)-18)/9);",
+   "21": "return String((9*(6+6)+18)/6);"
+  }
+ }
+]

@@ -2,485 +2,357 @@
  {
   "id": "SM16A-01",
   "domain": "Advanced Math",
-  "subskill": "a symmetric expression in the roots factored into product times sum (Vieta, without solving)",
-  "difficulty": "medium",
-  "topic_tag": "quadratic-roots",
-  "prompt": "The equation x² − 7x + 9 = 0 has two solutions, r and s. What is the value of r²s + rs²?",
+  "subskill": "setting the discriminant to zero when the parameter sits in BOTH the leading coefficient and the constant, which turns the condition into a quadratic in the parameter itself",
+  "difficulty": "hard",
+  "prompt": "In the equation kx^2 + 12x + (k + 5) = 0, k is a nonzero constant and the equation has exactly one real solution. What is the product of all possible values of k?",
   "choices": [
-   "16",
-   "31",
-   "49",
-   "63"
+   "-144",
+   "-36",
+   "-9",
+   "-5"
   ],
-  "correct_answer": "63",
-  "explanation": "Factor the target before touching the roots: r²s + rs² = rs(r + s). For x² − 7x + 9 = 0, Vieta gives r + s = 7 and rs = 9, so the value is 9 × 7 = 63. Distractors: \"16\" adds the sum and the product (7 + 9) instead of multiplying them; \"31\" answers a different symmetric expression, r² + s² = (r + s)² − 2rs = 49 − 18; \"49\" factors correctly to rs(r + s) but substitutes the sum for the product as well, computing 7 × 7.",
-  "solve": "const b = -7, c = 9; const sum = -b, prod = c; return (prod * sum).toString();",
+  "correct_answer": "-36",
+  "bounds": [],
+  "explanation": "Exactly one real solution means 12^2 - 4(k)(k + 5) = 0, so 4k^2 + 20k - 144 = 0 and k^2 + 5k - 36 = 0. The product of the roots of that quadratic is -36/1 = -36, which is \"-36\". (The two values are k = 4 and k = -9.) \"-5\" is the SUM of the two values, -b/a, rather than their product - the neighbouring question answered correctly. \"-9\" is one of the two values reported on its own, the more negative of the pair. \"-144\" drops the factor of 4 in 4ac, giving 144 = k(k + 5) and k^2 + 5k - 144 = 0, whose product of roots is -144.",
+  "solve": "var b=12; var C=-(b*b)/4; return String(C/1);",
   "distractor_solve": {
-   "16": "const sum = 7, prod = 9; return (sum + prod).toString();",
-   "31": "const sum = 7, prod = 9; return (sum * sum - 2 * prod).toString();",
-   "49": "const sum = 7; return (sum * sum).toString();"
+   "-5": "var b=12; var C=-(b*b)/4; var d=Math.sqrt(25-4*C); return String(((-5+d)/2)+((-5-d)/2));",
+   "-9": "var b=12; var C=-(b*b)/4; var d=Math.sqrt(25-4*C); return String((-5-d)/2);",
+   "-144": "var b=12; return String(-(b*b));"
   }
  },
  {
   "id": "SM16A-02",
   "domain": "Advanced Math",
-  "subskill": "the factor theorem used to pin a coefficient, then the polynomial evaluated at a different input",
-  "difficulty": "medium",
-  "topic_tag": "polynomial-factors",
-  "prompt": "In the polynomial p(x) = x³ + kx² + 4x − 30, k is a constant. If x − 3 is a factor of p(x), what is the value of p(−2)?",
+  "subskill": "reading the sum and the product of the solutions off the coefficients of a quadratic and combining them with a recovered parameter",
+  "difficulty": "hard",
+  "prompt": "The solutions to the equation 3x^2 + kx - 8 = 0 are r and s, where k is a constant and r + s = 2. What is the value of rs - k?",
   "choices": [
-   "-50",
-   "-44",
-   "-42",
-   "-18"
+   "-26/3",
+   "-2/3",
+   "10/3",
+   "26/3"
   ],
-  "correct_answer": "-50",
-  "explanation": "x − 3 is a factor means p(3) = 0: 27 + 9k + 12 − 30 = 9k + 9 = 0, so k = −1. Then p(−2) = −8 + (−1)(4) + 4(−2) − 30 = −50. Distractors: \"-18\" evaluates p(2) rather than p(−2) (8 − 4 + 8 − 30); \"-42\" comes from the sign slip k = +1 when solving 9k + 9 = 0 (−8 + 4 − 8 − 30); \"-44\" fails to square the input in the kx² term, computing −8 + (−1)(−2) − 8 − 30.",
-  "solve": "const k = -(27 + 12 - 30) / 9; return (Math.pow(-2, 3) + k * Math.pow(-2, 2) + 4 * (-2) - 30).toString();",
+  "correct_answer": "10/3",
+  "bounds": [],
+  "explanation": "For 3x^2 + kx - 8 = 0 the sum of the solutions is -k/3 and the product is -8/3. From r + s = 2 we get -k/3 = 2, so k = -6. Then rs - k = -8/3 - (-6) = -8/3 + 18/3 = 10/3, which is \"10/3\". \"-26/3\" is rs + k, the value produced by keeping the sign of k instead of subtracting it - a correct answer to the adjacent question. \"26/3\" takes the product as +8/3 and then adds 6. \"-2/3\" subtracts k from the NUMERATOR only, giving (-8 + 6)/3.",
+  "solve": "var a=3,c=-8; var k=-a*2; var num=c-k*a; return num+'/'+a;",
   "distractor_solve": {
-   "-18": "const k = -1; return (Math.pow(2, 3) + k * Math.pow(2, 2) + 4 * 2 - 30).toString();",
-   "-42": "const k = 1; return (Math.pow(-2, 3) + k * Math.pow(-2, 2) + 4 * (-2) - 30).toString();",
-   "-44": "const k = -1; return (Math.pow(-2, 3) + k * (-2) + 4 * (-2) - 30).toString();"
+   "-26/3": "var a=3,c=-8; var k=-a*2; var num=c+k*a; return num+'/'+a;",
+   "26/3": "var a=3,c=-8; var k=-a*2; var num=-c-k*a; return num+'/'+a;",
+   "-2/3": "var a=3,c=-8; var k=-a*2; var num=c-k; return num+'/'+a;"
   }
  },
  {
   "id": "SM16A-03",
   "domain": "Advanced Math",
-  "subskill": "rescaling an exponential decay factor to a shorter period by taking a root",
+  "subskill": "substituting a line into a parabola and converting a symmetric function of the combined quadratic's roots back into the y-values",
   "difficulty": "hard",
-  "topic_tag": "exponential-decay",
-  "prompt": "A sample of a radioactive material loses 35% of its mass every 6 years, and the decay is exponential. To the nearest tenth of a percent, what percent of its mass remains after 1 year?",
+  "prompt": "In the xy-plane, the graph of y = 2x^2 - 7x + 11 and the graph of y = x + 5 intersect at two points. What is the sum of the y-coordinates of those two points?",
   "choices": [
-   "83.9%",
-   "91.7%",
-   "93.1%",
-   "94.2%"
+   "3",
+   "4",
+   "13",
+   "14"
   ],
-  "correct_answer": "93.1%",
-  "explanation": "Six years multiply the mass by 0.65, so one year multiplies it by the sixth root: 0.65^(1/6) = 0.9307, i.e. 93.1% remains. Distractors: \"94.2%\" spreads the loss linearly, 100 − 35/6 = 94.17, adding the rate instead of compounding it; \"91.7%\" takes the fifth root, 0.65^(1/5) = 0.9175, counting 5 intervals instead of 6; \"83.9%\" takes the sixth root of the 35% LOST rather than of the 65% remaining, 0.35^(1/6) = 0.8395.",
-  "solve": "return (Math.pow(0.65, 1 / 6) * 100).toFixed(1) + '%';",
+  "correct_answer": "14",
+  "bounds": [],
+  "explanation": "Setting the two expressions equal gives 2x^2 - 8x + 6 = 0, so the x-coordinates have sum 8/2 = 4. Both points lie on y = x + 5, so the sum of the y-coordinates is (x1 + 5) + (x2 + 5) = 4 + 10 = 14, which is \"14\". \"4\" is the sum of the x-coordinates rather than the y-coordinates - the adjacent question answered correctly. \"3\" is the PRODUCT of the x-coordinates, 6/2. \"13\" uses that product where the sum belongs, 3 + 10.",
+  "solve": "var A=2,B=-7-1,C=11-5; return String((-B/A)+2*5);",
   "distractor_solve": {
-   "94.2%": "return (100 - 35 / 6).toFixed(1) + '%';",
-   "91.7%": "return (Math.pow(0.65, 1 / 5) * 100).toFixed(1) + '%';",
-   "83.9%": "return (Math.pow(0.35, 1 / 6) * 100).toFixed(1) + '%';"
+   "4": "var A=2,B=-7-1; return String(-B/A);",
+   "3": "var A=2,C=11-5; return String(C/A);",
+   "13": "var A=2,C=11-5; return String(C/A+2*5);"
   }
  },
  {
   "id": "SM16A-04",
   "domain": "Advanced Math",
-  "subskill": "evaluating a quadratic function at a negative input in function notation",
-  "difficulty": "easy",
-  "topic_tag": "function-notation",
-  "prompt": "The function f is defined by f(x) = 3x² − 5x + 2. What is the value of f(−4)?",
+  "subskill": "rewriting two unlike powers over a common base and equating the resulting linear exponents",
+  "difficulty": "medium",
+  "prompt": "If 9^(x + 1) = 27^(2x - 3), what is the value of x?",
   "choices": [
-   "-30",
-   "30",
-   "70",
-   "166"
+   "2",
+   "5/2",
+   "11/4",
+   "13/4"
   ],
-  "correct_answer": "70",
-  "explanation": "f(−4) = 3(−4)² − 5(−4) + 2 = 48 + 20 + 2 = 70. Distractors: \"166\" multiplies before squaring, computing (3 · −4)² = 144 for the first term (144 + 20 + 2); \"30\" evaluates f(4) instead of f(−4) (48 − 20 + 2), losing the sign of the input; \"-30\" treats f(−4) as −f(4), negating the whole output rather than substituting the negative input.",
-  "solve": "const x = -4; return (3 * x * x - 5 * x + 2).toString();",
+  "correct_answer": "11/4",
+  "bounds": [],
+  "explanation": "Writing both sides over base 3 gives 3^(2(x + 1)) = 3^(3(2x - 3)), so 2x + 2 = 6x - 9 and 4x = 11, giving x = 11/4, which is \"11/4\". \"5/2\" is the value of the exponent 2x - 3 at the correct solution, 11/2 - 3 - the right number for the wrong question. \"13/4\" carries the +2 across a second time, solving 4x = 9 + 2 + 2. \"2\" treats 27 as 3 times 9 and so multiplies only the right-hand exponent by 3, solving x + 1 = 3(2x - 3).",
+  "solve": "var n=3*3+2*1, d=3*2-2*1; return n+'/'+d;",
   "distractor_solve": {
-   "166": "const x = -4; return (Math.pow(3 * x, 2) - 5 * x + 2).toString();",
-   "30": "const x = 4; return (3 * x * x - 5 * x + 2).toString();",
-   "-30": "const x = 4; return (-(3 * x * x - 5 * x + 2)).toString();"
+   "5/2": "var n=3*3+2*1,d=3*2-2*1; var x=n/d; return String(2*x-3);",
+   "13/4": "var n=3*3+2*1+2*1,d=3*2-2*1; return n+'/'+d;",
+   "2": "return String((3*3+1)/(3*2-1));"
   }
  },
  {
   "id": "SM16A-05",
   "domain": "Advanced Math",
-  "subskill": "the sum of the x-coordinates of a line–parabola intersection read off the combined quadratic",
-  "difficulty": "medium",
-  "topic_tag": "nonlinear-systems",
-  "prompt": "In the xy-plane, the graph of y = x² − 6x + 9 intersects the graph of y = 3x + 1 at two points. What is the sum of the x-coordinates of those two points?",
+  "subskill": "using the factor theorem to recover an unknown coefficient and then the remainder theorem at a different point",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = 2x^3 + ax^2 - 13x + 6, where a is a constant. If x - 2 is a factor of p, what is the remainder when p(x) is divided by x + 1?",
   "choices": [
-   "6",
-   "8",
-   "9",
-   "29"
+   "-4",
+   "16",
+   "18",
+   "21"
   ],
-  "correct_answer": "9",
-  "explanation": "Setting the expressions equal gives x² − 6x + 9 = 3x + 1, i.e. x² − 9x + 8 = 0, so the x-coordinates sum to −(−9)/1 = 9. Distractors: \"6\" never moves the 3x across, reading the sum of the roots off x² − 6x + 9 = 0 as 6; \"8\" reports the PRODUCT of the roots of x² − 9x + 8 = 0 instead of their sum; \"29\" answers the wrong question, summing the y-coordinates (x = 1 gives y = 4, x = 8 gives y = 25).",
-  "solve": "const B = -6 - 3, C = 9 - 1; return (-B).toString();",
+  "correct_answer": "18",
+  "bounds": [],
+  "explanation": "If x - 2 is a factor then p(2) = 0, so 16 + 4a - 26 + 6 = 0, giving 4a - 4 = 0 and a = 1. The remainder on division by x + 1 is p(-1) = -2 + 1 + 13 + 6 = 18, which is \"18\". \"-4\" is p(1) rather than p(-1) - the remainder for the divisor x - 1, a correct answer to the neighbouring question. \"16\" solves the factor condition with the sign reversed, taking a = -1, and then evaluates p(-1) as -2 - 1 + 13 + 6. \"21\" reads 4a - 4 = 0 as a = 4 and evaluates -2 + 4 + 13 + 6.",
+  "solve": "var a=-(2*8-13*2+6)/4; return String(2*Math.pow(-1,3)+a*Math.pow(-1,2)-13*(-1)+6);",
   "distractor_solve": {
-   "6": "const B = -6; return (-B).toString();",
-   "8": "const C = 9 - 1; return C.toString();",
-   "29": "const B = -9, C = 8; const d = Math.sqrt(B * B - 4 * C); const r1 = (-B + d) / 2, r2 = (-B - d) / 2; return ((3 * r1 + 1) + (3 * r2 + 1)).toString();"
+   "-4": "var a=-(2*8-13*2+6)/4; return String(2+a-13+6);",
+   "16": "var a=(2*8-13*2+6)/4; return String(-2+a+13+6);",
+   "21": "var a=-(2*8-13*2+6); return String(-2+a+13+6);"
   }
  },
  {
   "id": "SM16A-06",
   "domain": "Advanced Math",
-  "subskill": "the remainder theorem applied twice: a nonzero remainder pins a coefficient, then a second divisor is evaluated",
-  "difficulty": "hard",
-  "topic_tag": "remainder-theorem",
-  "prompt": "When the polynomial p(x) = 2x³ − 5x² + ax − 7, where a is a constant, is divided by x − 2, the remainder is 9. What is the remainder when p(x) is divided by x + 1?",
+  "subskill": "finding the minimum VALUE of a quadratic whose leading coefficient is not 1, where the vertex formula must be divided by 4a rather than by a or by 4",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 3x^2 + 15x + 4. What is the minimum value of f(x)?",
   "choices": [
-   "-24",
-   "-20",
-   "-19.5",
-   "0"
+   "-71",
+   "-209/4",
+   "-59/4",
+   "-5/2"
   ],
-  "correct_answer": "-24",
-  "explanation": "By the remainder theorem p(2) = 9: 16 − 20 + 2a − 7 = 2a − 11 = 9, so a = 10. The remainder on division by x + 1 is p(−1) = −2 − 5 − 10 − 7 = −24. Distractors: \"0\" evaluates p(1) instead of p(−1), taking the divisor x + 1 to have root +1; \"-19.5\" treats x − 2 as a FACTOR (p(2) = 0, so a = 5.5) and then evaluates p(−1) = −2 − 5 − 5.5 − 7; \"-20\" carries a = 10 but drops the sign on the cubic term, computing +2 − 5 − 10 − 7.",
-  "solve": "const a = (9 + 11) / 2; return (2 * Math.pow(-1, 3) - 5 * Math.pow(-1, 2) + a * (-1) - 7).toString();",
+  "correct_answer": "-59/4",
+  "bounds": [],
+  "explanation": "The minimum value of ax^2 + bx + c for a > 0 is c - b^2/(4a) = 4 - 225/12 = 4 - 75/4 = -59/4, which is \"-59/4\". \"-71\" divides by a instead of by 4a, giving 4 - 225/3. \"-209/4\" divides by 4 instead of by 4a, giving 4 - 225/4. \"-5/2\" is -b/(2a), the x-value at which the minimum occurs rather than the minimum value itself.",
+  "solve": "var a=3,b=15,c=4; return String(c-(b*b)/(4*a));",
   "distractor_solve": {
-   "0": "const a = (9 + 11) / 2; return (2 * Math.pow(1, 3) - 5 * Math.pow(1, 2) + a * 1 - 7).toString();",
-   "-19.5": "const a = 11 / 2; return (2 * Math.pow(-1, 3) - 5 * Math.pow(-1, 2) + a * (-1) - 7).toString();",
-   "-20": "const a = (9 + 11) / 2; return (2 - 5 * Math.pow(-1, 2) + a * (-1) - 7).toString();"
+   "-71": "var a=3,b=15,c=4; return String(c-(b*b)/a);",
+   "-209/4": "var b=15,c=4; return String(c-(b*b)/4);",
+   "-5/2": "var a=3,b=15; return String(-b/(2*a));"
   }
  },
  {
   "id": "SM16A-07",
   "domain": "Advanced Math",
-  "subskill": "a radical equation squared, with the extraneous root discarded by checking the original equation",
-  "difficulty": "medium",
-  "topic_tag": "radical-equations",
-  "prompt": "The equation √(3x) = x − 6 is solved by squaring both sides. What is the sum of the solutions of the original equation?",
+  "subskill": "composing a rational function with itself, so the OUTPUT of the first application becomes the argument of the denominator in the second",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = 4x/(x - 1) for x != 1. What is the value of f(f(3))?",
   "choices": [
-   "-3",
-   "3",
-   "12",
-   "15"
+   "24/7",
+   "24/5",
+   "6",
+   "36"
   ],
-  "correct_answer": "12",
-  "explanation": "Squaring gives 3x = x² − 12x + 36, i.e. x² − 15x + 36 = 0, whose roots are 12 and 3. Checking in the original: x = 12 gives √36 = 6 = 12 − 6 ✓, while x = 3 gives √9 = 3 but 3 − 6 = −3 ✗. Only 12 survives, so the sum is 12. Distractors: \"15\" sums both roots of the squared equation without checking either; \"3\" keeps the extraneous root and discards the valid one; \"-3\" never squares, solving 3x = x − 6.",
-  "solve": "const B = -15, C = 36; const d = Math.sqrt(B * B - 4 * C); const r1 = (15 + d) / 2, r2 = (15 - d) / 2; let s = 0; for (const r of [r1, r2]) if (Math.abs(Math.sqrt(3 * r) - (r - 6)) < 1e-9) s += r; return s.toString();",
+  "correct_answer": "24/5",
+  "bounds": [],
+  "explanation": "First f(3) = 12/2 = 6. Then f(6) = 24/(6 - 1) = 24/5, which is \"24/5\". \"6\" is f(3), the result of stopping after one application. \"24/7\" adds 1 to the new argument instead of subtracting it, computing 24/(6 + 1). \"36\" reads f(f(3)) as f(3) times f(3), multiplying the first output by itself instead of feeding it back in.",
+  "solve": "var a=4*3/(3-1); return String(4*a)+'/'+String(a-1);",
   "distractor_solve": {
-   "15": "const B = -15; return (-B).toString();",
-   "3": "const B = -15, C = 36; const d = Math.sqrt(B * B - 4 * C); return ((15 - d) / 2).toString();",
-   "-3": "return (-6 / (3 - 1)).toString();"
+   "6": "return String(4*3/(3-1));",
+   "24/7": "var a=4*3/(3-1); return String(4*a)+'/'+String(a+1);",
+   "36": "var a=4*3/(3-1); return String(a*a);"
   }
  },
  {
   "id": "SM16A-08",
   "domain": "Advanced Math",
-  "subskill": "a rational equation cleared of denominators, with the root excluded by the domain rejected",
-  "difficulty": "hard",
-  "topic_tag": "rational-equations",
-  "prompt": "What value of x satisfies the equation x/(x − 2) + 3/(x + 2) = 8/(x² − 4)?",
+  "subskill": "undoing a rational exponent on a linear argument, where the denominator of the exponent is the index of the root and the numerator is the power",
+  "difficulty": "medium",
+  "prompt": "If (3x - 2)^(3/2) = 27, what is the value of x?",
   "choices": [
-   "-7",
-   "-5",
-   "2",
-   "7"
+   "5/3",
+   "11/3",
+   "9",
+   "29/3"
   ],
-  "correct_answer": "-7",
-  "explanation": "Multiplying through by (x − 2)(x + 2) gives x(x + 2) + 3(x − 2) = 8, i.e. x² + 5x − 14 = 0, which factors as (x + 7)(x − 2) = 0. x = 2 makes x − 2 and x² − 4 zero, so it is excluded and x = −7 is the only solution. Distractors: \"2\" keeps the value excluded by the denominators; \"-5\" reports the sum of the two roots (−b/a) instead of the surviving root; \"7\" reads the factor (x + 7) as giving x = 7, without the sign flip.",
-  "solve": "const B = 5, C = -14; const d = Math.sqrt(B * B - 4 * C); const roots = [(-B + d) / 2, (-B - d) / 2]; const ok = roots.filter(r => Math.abs(r - 2) > 1e-9 && Math.abs(r + 2) > 1e-9); return ok[0].toString();",
+  "correct_answer": "11/3",
+  "bounds": [],
+  "explanation": "Raising both sides to the power 2/3 gives 3x - 2 = 27^(2/3) = 3^2 = 9, so 3x = 11 and x = 11/3, which is \"11/3\". \"9\" is the value of 3x - 2, the quantity the exponent acts on, rather than x. \"5/3\" takes only the cube root, setting 3x - 2 = 3. \"29/3\" ignores the exponent altogether and sets 3x - 2 = 27.",
+  "solve": "var v=Math.pow(Math.cbrt(27),2); return String(v+2)+'/3';",
   "distractor_solve": {
-   "2": "const B = 5, C = -14; const d = Math.sqrt(B * B - 4 * C); return ((-B + d) / 2).toString();",
-   "-5": "const B = 5; return (-B).toString();",
-   "7": "const B = 5, C = -14; const d = Math.sqrt(B * B - 4 * C); return Math.abs((-B - d) / 2).toString();"
+   "9": "return String(Math.pow(Math.cbrt(27),2));",
+   "5/3": "var v=Math.cbrt(27); return String(v+2)+'/3';",
+   "29/3": "return String(27+2)+'/3';"
   }
  },
  {
   "id": "SM16A-09",
   "domain": "Advanced Math",
-  "subskill": "an equation in quadratic form under a rational-exponent substitution, undone back to x",
+  "subskill": "subtracting two rational expressions over a common denominator, where the subtraction must be distributed across both terms of the second numerator",
   "difficulty": "hard",
-  "topic_tag": "rational-exponents",
-  "prompt": "What is the greatest solution to the equation x^(2/3) − 5x^(1/3) + 6 = 0?",
+  "prompt": "For x > 1, the expression 3/(x + 2) - 5/(x - 1) is equivalent to (ax + b)/((x + 2)(x - 1)), where a and b are constants. What is the value of b?",
   "choices": [
-   "3",
-   "8",
-   "19",
-   "27"
+   "-13",
+   "-10",
+   "-2",
+   "7"
   ],
-  "correct_answer": "27",
-  "explanation": "Let u = x^(1/3), so u² − 5u + 6 = 0 and u = 2 or u = 3. Undoing the substitution, x = u³ gives x = 8 or x = 27, and the greatest is 27. Distractors: \"3\" stops at the substitution and reports the greatest value of u; \"8\" cubes the smaller u, reporting the lesser solution; \"19\" reports the positive difference of the two solutions, 27 − 8.",
-  "solve": "const b = -5, c = 6; const d = Math.sqrt(b * b - 4 * c); const u1 = (5 + d) / 2, u2 = (5 - d) / 2; return Math.pow(Math.max(u1, u2), 3).toString();",
+  "correct_answer": "-13",
+  "bounds": [
+   "v < 0"
+  ],
+  "explanation": "Over the common denominator the numerator is 3(x - 1) - 5(x + 2) = 3x - 3 - 5x - 10 = -2x - 13, so b = -13, which is \"-13\". \"7\" fails to distribute the subtraction over the second numerator, computing -3 + 10. \"-2\" is the value of a, the coefficient of x, rather than the constant term. \"-10\" keeps only the contribution of the second fraction, -5 times 2.",
+  "solve": "return String(3*(-1)-5*(2));",
   "distractor_solve": {
-   "3": "const b = -5, c = 6; const d = Math.sqrt(b * b - 4 * c); return Math.max((5 + d) / 2, (5 - d) / 2).toString();",
-   "8": "const b = -5, c = 6; const d = Math.sqrt(b * b - 4 * c); return Math.pow(Math.min((5 + d) / 2, (5 - d) / 2), 3).toString();",
-   "19": "const b = -5, c = 6; const d = Math.sqrt(b * b - 4 * c); const u1 = (5 + d) / 2, u2 = (5 - d) / 2; return (Math.pow(u1, 3) - Math.pow(u2, 3)).toString();"
+   "7": "return String(3*(-1)+5*(2));",
+   "-2": "return String(3-5);",
+   "-10": "return String(-5*2);"
   }
  },
  {
   "id": "SM16A-10",
   "domain": "Advanced Math",
-  "subskill": "solving a composition g(f(x)) = k for the input, with two branches from the square root",
+  "subskill": "evaluating the INVERSE of a rational function at a point by solving the output equation, not by evaluating the function",
   "difficulty": "medium",
-  "topic_tag": "function-composition",
-  "prompt": "The functions f and g are defined by f(x) = 2x − 1 and g(x) = x² + 5. What is the greatest value of x for which g(f(x)) = 30?",
+  "prompt": "The function f is defined by f(x) = (3x - 1)/(x + 4) for x != -4, and g is the inverse function of f. What is the value of g(2)?",
   "choices": [
-   "-2",
-   "3",
-   "5",
-   "13"
+   "-9/5",
+   "5/6",
+   "7",
+   "9"
   ],
-  "correct_answer": "3",
-  "explanation": "g(f(x)) = (2x − 1)² + 5 = 30, so (2x − 1)² = 25 and 2x − 1 = ±5, giving x = 3 or x = −2. The greatest is 3. Distractors: \"-2\" takes the other branch and reports the lesser value; \"5\" applies the functions in the wrong order, solving g(x) = x² + 5 = 30 for x; \"13\" sets f(x) equal to 25 without taking the square root, solving 2x − 1 = 25.",
-  "solve": "const t = Math.sqrt(30 - 5); return Math.max((1 + t) / 2, (1 - t) / 2).toString();",
+  "correct_answer": "9",
+  "bounds": [],
+  "explanation": "g(2) is the value of x for which f(x) = 2, so 2(x + 4) = 3x - 1, giving 2x + 8 = 3x - 1 and x = 9, which is \"9\". \"5/6\" evaluates f(2) = (6 - 1)/(2 + 4) instead of inverting - the adjacent question answered correctly. \"7\" carries the -1 across with the wrong sign, solving 2x + 8 = 3x + 1. \"-9/5\" builds the inverse algebraically, xy + 4x = 3y - 1, but collects the y terms as y(x + 3) instead of y(x - 3), giving (-1 - 4x)/(x + 3) at x = 2.",
+  "solve": "return String((2*4+1)/(3-2));",
   "distractor_solve": {
-   "-2": "const t = Math.sqrt(30 - 5); return Math.min((1 + t) / 2, (1 - t) / 2).toString();",
-   "5": "return Math.sqrt(30 - 5).toString();",
-   "13": "return ((30 - 5 + 1) / 2).toString();"
+   "5/6": "return String((3*2-1)/(2+4));",
+   "7": "return String((2*4-1)/(3-2));",
+   "-9/5": "var x=2; return String(-1-4*x)+'/'+String(x+3);"
   }
  },
  {
   "id": "SM16A-11",
   "domain": "Advanced Math",
-  "subskill": "inverting a quadratic that has been restricted to one branch by a stated domain",
+  "subskill": "recovering the linear coefficient of a cubic from its three zeros, which is the sum of the PAIRWISE products rather than the sum or the product of the zeros",
   "difficulty": "medium",
-  "topic_tag": "inverse-functions",
-  "prompt": "The function f is defined by f(x) = 2(x − 3)² + 5 for x ≥ 3. What is the value of f⁻¹(37)?",
+  "prompt": "The polynomial p is defined by p(x) = x^3 + bx^2 + cx + d, where b, c, and d are constants. The zeros of p are -2, 3, and 5. What is the value of c?",
   "choices": [
+   "-16",
    "-1",
-   "4",
-   "7",
-   "19"
+   "1",
+   "11"
   ],
-  "correct_answer": "7",
-  "explanation": "Solve f(x) = 37: 2(x − 3)² = 32, so (x − 3)² = 16 and x − 3 = ±4. The domain x ≥ 3 keeps only x = 7. Distractors: \"-1\" takes the branch x − 3 = −4, ignoring the stated domain that makes f invertible; \"4\" stops at x − 3 = 4 and reports that rather than x; \"19\" omits the square root, solving 2(x − 3) = 32.",
-  "solve": "const t = Math.sqrt((37 - 5) / 2); return [3 + t, 3 - t].filter(v => v >= 3)[0].toString();",
+  "correct_answer": "-1",
+  "bounds": [],
+  "explanation": "Expanding (x + 2)(x - 3)(x - 5), the coefficient of x is the sum of the products of the zeros taken two at a time: (-2)(3) + (-2)(5) + (3)(5) = -6 - 10 + 15 = -1, which is \"-1\". \"1\" reverses the sign of that whole sum. \"11\" takes the first product as +6 rather than -6, computing 6 - 10 + 15. \"-16\" uses only the two pairs that contain -2, stopping at -6 - 10.",
+  "solve": "var r=[-2,3,5]; return String(r[0]*r[1]+r[0]*r[2]+r[1]*r[2]);",
   "distractor_solve": {
-   "-1": "const t = Math.sqrt((37 - 5) / 2); return (3 - t).toString();",
-   "4": "return Math.sqrt((37 - 5) / 2).toString();",
-   "19": "return (3 + (37 - 5) / 2).toString();"
+   "1": "var r=[-2,3,5]; return String(-(r[0]*r[1]+r[0]*r[2]+r[1]*r[2]));",
+   "11": "var r=[-2,3,5]; return String(-r[0]*r[1]+r[0]*r[2]+r[1]*r[2]);",
+   "-16": "var r=[-2,3,5]; return String(r[0]*r[1]+r[0]*r[2]);"
   }
  },
  {
   "id": "SM16A-12",
   "domain": "Advanced Math",
-  "subskill": "the effect of a horizontal shift and a vertical shift on a function's minimum value",
-  "difficulty": "easy",
-  "topic_tag": "function-transformations",
-  "prompt": "The function f has a minimum value of −4. The function g is defined by g(x) = f(x + 2) − 5. What is the minimum value of g?",
+  "subskill": "recovering the base of an exponential function from two points that are NOT one unit apart, so the ratio is the base raised to the gap",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = a(b^x), where a and b are positive constants. If f(1) = 54 and f(4) = 1458, what is the value of b?",
   "choices": [
-   "-11",
-   "-9",
-   "-6",
-   "1"
+   "2",
+   "3",
+   "18",
+   "27"
   ],
-  "correct_answer": "-9",
-  "explanation": "Replacing x by x + 2 shifts the graph horizontally, which moves WHERE the minimum occurs but not its value; subtracting 5 lowers every output by 5. So the minimum of g is −4 − 5 = −9. Distractors: \"1\" adds the 5 instead of subtracting it, −4 + 5; \"-6\" treats the inside +2 as a vertical change, −4 − 2; \"-11\" applies both shifts vertically, −4 − 5 − 2.",
-  "solve": "const minF = -4, down = 5; return (minF - down).toString();",
+  "correct_answer": "3",
+  "bounds": [],
+  "explanation": "Dividing gives f(4)/f(1) = b^3 = 1458/54 = 27, so b = 3, which is \"3\". \"27\" is that ratio itself, b^3, reported as if the two inputs were one unit apart. \"18\" is the value of a, the coefficient in front of the power, rather than b - the adjacent question answered correctly. \"2\" divides f(1) by the ratio, 54/27, which is a value of neither a nor b.",
+  "solve": "return String(Math.cbrt(1458/54));",
   "distractor_solve": {
-   "1": "const minF = -4, down = 5; return (minF + down).toString();",
-   "-6": "const minF = -4, inside = 2; return (minF - inside).toString();",
-   "-11": "const minF = -4, down = 5, inside = 2; return (minF - down - inside).toString();"
+   "27": "return String(1458/54);",
+   "18": "return String(54/Math.cbrt(1458/54));",
+   "2": "return String(54/(1458/54));"
   }
  },
  {
   "id": "SM16A-13",
   "domain": "Advanced Math",
-  "subskill": "recovering the linear coefficient of a cubic from its zeros (sum of pairwise products)",
+  "subskill": "solving for the leading coefficient of a parabola given in vertex form from one point on the graph, where the horizontal distance must be squared",
   "difficulty": "medium",
-  "topic_tag": "polynomial-zeros",
-  "prompt": "The polynomial p(x) = x³ + bx² + cx + d has zeros −3, 2, and 5, where b, c, and d are constants. What is the value of c?",
+  "prompt": "In the xy-plane, the graph of y = a(x - 3)^2 + 8 passes through the point (6, 53), where a is a constant. What is the value of a?",
   "choices": [
-   "-30",
-   "-11",
-   "4",
-   "31"
+   "5",
+   "53/9",
+   "15",
+   "45"
   ],
-  "correct_answer": "-11",
-  "explanation": "With zeros r, s, t, p(x) = (x − r)(x − s)(x − t) and c is the sum of the pairwise products: (−3)(2) + (−3)(5) + (2)(5) = −6 − 15 + 10 = −11. Distractors: \"4\" reports the sum of the zeros, −3 + 2 + 5 (which is −b, not c); \"-30\" reports the product of the zeros, (−3)(2)(5) (which is −d); \"31\" forms the pairwise products but drops the sign of the negative zero, (3)(2) + (3)(5) + (2)(5).",
-  "solve": "const z = [-3, 2, 5]; return (z[0] * z[1] + z[0] * z[2] + z[1] * z[2]).toString();",
+  "correct_answer": "5",
+  "bounds": [],
+  "explanation": "Substituting gives 53 = a(6 - 3)^2 + 8 = 9a + 8, so 9a = 45 and a = 5, which is \"5\". \"45\" stops at 53 - 8 without dividing by 9. \"15\" subtracts the 8 but divides by the unsquared horizontal distance 6 - 3 = 3. \"53/9\" divides by 9 but never subtracts the 8.",
+  "solve": "return String((53-8)/Math.pow(6-3,2));",
   "distractor_solve": {
-   "4": "const z = [-3, 2, 5]; return (z[0] + z[1] + z[2]).toString();",
-   "-30": "const z = [-3, 2, 5]; return (z[0] * z[1] * z[2]).toString();",
-   "31": "const z = [3, 2, 5]; return (z[0] * z[1] + z[0] * z[2] + z[1] * z[2]).toString();"
+   "45": "return String(53-8);",
+   "15": "return String((53-8)/(6-3));",
+   "53/9": "return '53/'+String(Math.pow(6-3,2));"
   }
  },
  {
   "id": "SM16A-14",
   "domain": "Advanced Math",
-  "subskill": "an exponential equation solved by rewriting both sides over a common base",
-  "difficulty": "easy",
-  "topic_tag": "exponential-equations",
-  "prompt": "If 16^(x + 1) = 64^(x − 2), what is the value of x?",
+  "subskill": "solving a linear-quadratic system by substitution and then back-substituting to a SPECIFIC coordinate of a specific one of the two solutions",
+  "difficulty": "hard",
+  "prompt": "The solutions to the system of equations x^2 - y = 11 and y = 2x + 4 are (x1, y1) and (x2, y2), where x1 < x2. What is the value of y1?",
   "choices": [
-   "-7",
-   "3",
+   "-3",
+   "-2",
    "5",
-   "8"
+   "14"
   ],
-  "correct_answer": "8",
-  "explanation": "Write both sides base 2: 2^(4(x + 1)) = 2^(6(x − 2)), so 4x + 4 = 6x − 12, giving 2x = 16 and x = 8. Distractors: \"-7\" swaps the two exponents, solving 6(x + 1) = 4(x − 2); \"3\" fails to distribute the 6 over the −2, solving 4x + 4 = 6x − 2; \"5\" misreads 64 as 2⁸ rather than 2⁶, solving 4x + 4 = 8x − 16.",
-  "solve": "return ((4 + 12) / (6 - 4)).toString();",
+  "correct_answer": "-2",
+  "bounds": [],
+  "explanation": "Substituting y = 2x + 4 into the first equation gives x^2 - 2x - 4 = 11, so x^2 - 2x - 15 = 0 and x = -3 or x = 5. Since x1 < x2, x1 = -3 and y1 = 2(-3) + 4 = -2, which is \"-2\". \"-3\" is x1 itself rather than y1. \"5\" is x2. \"14\" is y2 = 2(5) + 4, the y-value belonging to the other solution.",
+  "solve": "var d=Math.sqrt(4+4*15); var x1=(2-d)/2; return String(2*x1+4);",
   "distractor_solve": {
-   "-7": "return ((-8 - 6) / (6 - 4)).toString();",
-   "3": "return ((4 + 2) / (6 - 4)).toString();",
-   "5": "return ((4 + 16) / (8 - 4)).toString();"
+   "-3": "var d=Math.sqrt(4+4*15); return String((2-d)/2);",
+   "5": "var d=Math.sqrt(4+4*15); return String((2+d)/2);",
+   "14": "var d=Math.sqrt(4+4*15); var x2=(2+d)/2; return String(2*x2+4);"
   }
  },
  {
   "id": "SM16A-15",
   "domain": "Advanced Math",
-  "subskill": "an exponential growth model evaluated over a stated number of compounding periods",
-  "difficulty": "medium",
-  "topic_tag": "exponential-growth",
-  "prompt": "The population of a town was 12,000 in 2010 and increases by 6% each year. To the nearest whole number, what is the population in 2018?",
+  "subskill": "rewriting an improper rational expression as a quotient plus a remainder over the original divisor, where the remainder absorbs the quotient times the divisor's constant",
+  "difficulty": "hard",
+  "prompt": "For x != 3/2, the expression (6x + 5)/(2x - 3) is equivalent to 3 + k/(2x - 3), where k is a constant. What is the value of k?",
   "choices": [
-   "17760",
-   "18044",
-   "19042",
-   "19126"
+   "-4",
+   "8",
+   "14",
+   "23"
   ],
-  "correct_answer": "19126",
-  "explanation": "From 2010 to 2018 is 8 years, so the population is 12,000(1.06)^8 = 19,126.18, or 19,126. Distractors: \"17760\" adds the growth instead of compounding it, 12,000(1 + 0.06 · 8); \"18044\" uses 7 periods, counting the gaps between the years as 2018 − 2010 − 1, 12,000(1.06)^7; \"19042\" swaps the rate and the number of periods, computing 12,000(1.08)^6.",
-  "solve": "return Math.round(12000 * Math.pow(1.06, 2018 - 2010)).toString();",
+  "correct_answer": "14",
+  "bounds": [
+   "v > 0"
+  ],
+  "explanation": "Multiplying through by 2x - 3 gives 6x + 5 = 3(2x - 3) + k = 6x - 9 + k, so k = 5 + 9 = 14, which is \"14\". \"-4\" adds the -9 instead of subtracting it, computing 5 - 9. \"8\" uses the quotient 3 itself in place of 3 times -3, computing 5 + 3. \"23\" removes the -9 twice, computing 5 + 9 + 9.",
+  "solve": "return String(5-3*(-3));",
   "distractor_solve": {
-   "17760": "return (12000 * (1 + 0.06 * 8)).toString();",
-   "18044": "return Math.round(12000 * Math.pow(1.06, 7)).toString();",
-   "19042": "return Math.round(12000 * Math.pow(1.08, 6)).toString();"
+   "-4": "return String(5+3*(-3));",
+   "8": "return String(5+3);",
+   "23": "return String(5-2*3*(-3));"
   }
  },
  {
   "id": "SM16A-16",
   "domain": "Advanced Math",
-  "subskill": "recovering a coefficient from a quadratic's stated minimum value (vertex form)",
-  "difficulty": "hard",
-  "topic_tag": "quadratic-vertex",
-  "prompt": "The function f is defined by f(x) = x² + kx + 34, where k is a positive constant. The minimum value of f is 25. What is the value of k?",
-  "choices": [
-   "6",
-   "9",
-   "50",
-   "59"
-  ],
-  "correct_answer": "6",
-  "explanation": "Completing the square, f(x) = (x + k/2)² + 34 − k²/4, so the minimum value is 34 − k²/4 = 25. Then k²/4 = 9, k² = 36, and since k > 0, k = 6. Distractors: \"9\" stops at 34 − 25 = 9, reporting k²/4 as if it were k; \"50\" reads the given minimum as the vertex's x-coordinate, setting k/2 = 25; \"59\" adds the constant term and the minimum, 34 + 25, instead of subtracting.",
-  "solve": "return Math.sqrt(4 * (34 - 25)).toString();",
-  "distractor_solve": {
-   "9": "return (34 - 25).toString();",
-   "50": "return (2 * 25).toString();",
-   "59": "return (34 + 25).toString();"
-  }
- },
- {
-  "id": "SM16A-17",
-  "domain": "Advanced Math",
-  "subskill": "an equation with two absolute value terms, solved by cases over the intervals the sign changes split",
-  "difficulty": "hard",
-  "topic_tag": "absolute-value",
-  "prompt": "What is the positive solution to the equation |x − 3| + |x + 2| = 11?",
-  "choices": [
-   "1",
-   "5",
-   "6",
-   "8.5"
-  ],
-  "correct_answer": "6",
-  "explanation": "The two expressions change sign at x = 3 and x = −2. For x ≥ 3 the equation is (x − 3) + (x + 2) = 2x − 1 = 11, giving x = 6, which is indeed ≥ 3. (For −2 ≤ x < 3 the left side is the constant 5, and for x < −2 it gives x = −5.) The positive solution is 6. Distractors: \"5\" sign-slips when combining, solving 2x + 1 = 11; \"8.5\" splits the 11 evenly between the two absolute values, solving x − 3 = 5.5; \"1\" reports the sum of the two solutions, 6 + (−5), rather than the positive one.",
-  "solve": "const hi = (11 + 1) / 2; return (Math.abs(hi - 3) + Math.abs(hi + 2) === 11 ? hi : NaN).toString();",
-  "distractor_solve": {
-   "5": "return ((11 - 1) / 2).toString();",
-   "8.5": "return (11 / 2 + 3).toString();",
-   "1": "const hi = (11 + 1) / 2, lo = (1 - 11) / 2; return (hi + lo).toString();"
-  }
- },
- {
-  "id": "SM16L-01",
-  "domain": "Algebra",
-  "subskill": "a symmetric two-variable system where adding the equations answers the question directly",
+  "subskill": "reconstructing the leading coefficient of a quadratic from its two zeros and one function value, where BOTH factors must be evaluated",
   "difficulty": "medium",
-  "topic_tag": "linear-systems",
-  "prompt": "If 6x + 5y = 52 and 5x + 6y = 47, what is the value of x + y?",
+  "prompt": "The function f is defined by f(x) = ax^2 + bx + c, where a, b, and c are constants. The zeros of f are -3 and 7, and f(0) = -42. What is the value of a?",
   "choices": [
    "2",
-   "5",
-   "9",
-   "14"
-  ],
-  "correct_answer": "9",
-  "explanation": "Adding the two equations gives 11x + 11y = 99, so x + y = 9 — no need to find x and y separately. Distractors: \"5\" subtracts the equations instead, giving x − y = 5; \"2\" solves the system fully (x = 7, y = 2) and reports y alone; \"14\" reports the product xy = 7 × 2 rather than the sum.",
-  "solve": "return ((52 + 47) / (6 + 5)).toString();",
-  "distractor_solve": {
-   "5": "return ((52 - 47) / (6 - 5)).toString();",
-   "2": "const S = (52 + 47) / 11, D = (52 - 47) / 1; return ((S - D) / 2).toString();",
-   "14": "const S = (52 + 47) / 11, D = (52 - 47) / 1; const x = (S + D) / 2, y = (S - D) / 2; return (x * y).toString();"
-  }
- },
- {
-  "id": "SM16L-02",
-  "domain": "Algebra",
-  "subskill": "the no-solution condition for a two-variable linear system, taken through the signed coefficient ratio",
-  "difficulty": "hard",
-  "topic_tag": "linear-systems-parameter",
-  "prompt": "The system of equations 3x − 5y = 8 and ax + 15y = 7, where a is a constant, has no solution. What is the value of a?",
-  "choices": [
-   "-9",
-   "-3",
-   "-1",
-   "9"
-  ],
-  "correct_answer": "-9",
-  "explanation": "No solution means the lines are parallel: the coefficients are proportional while the constants are not. The y-coefficients scale by 15/(−5) = −3, so a = 3(−3) = −9. (Then −9x + 15y = −24 ≠ 7, confirming no solution.) Distractors: \"9\" matches the magnitude but drops the sign of the scale factor; \"-3\" reports the scale factor 15/(−5) itself instead of a; \"-1\" inverts the ratio, computing 3(−5)/15.",
-  "solve": "return (3 * (15 / -5)).toString();",
-  "distractor_solve": {
-   "9": "return Math.abs(3 * (15 / -5)).toString();",
-   "-3": "return (15 / -5).toString();",
-   "-1": "return (3 * (-5) / 15).toString();"
-  }
- },
- {
-  "id": "SM16L-03",
-  "domain": "Algebra",
-  "subskill": "a one-variable linear inequality answered with the greatest integer strictly below the boundary",
-  "difficulty": "medium",
-  "topic_tag": "linear-inequalities",
-  "prompt": "What is the greatest integer value of n for which 9 − 4n > 2n − 31?",
-  "choices": [
-   "-4",
    "6",
-   "7",
-   "9"
-  ],
-  "correct_answer": "6",
-  "explanation": "Adding 4n and 31 to both sides gives 40 > 6n, so n < 40/6 = 6.67 and the greatest integer is 6. Distractors: \"7\" rounds 6.67 to the nearest integer instead of taking the greatest integer below it; \"9\" divides 40 by the 4 from −4n rather than by the combined 6, getting n < 10; \"-4\" subtracts 31 from both sides instead of adding it, getting −22 > 6n and n < −3.67.",
-  "solve": "const bound = (9 + 31) / (2 + 4); return (Math.ceil(bound) - 1).toString();",
-  "distractor_solve": {
-   "7": "return Math.round((9 + 31) / (2 + 4)).toString();",
-   "9": "const bound = (9 + 31) / 4; return (Math.ceil(bound) - 1).toString();",
-   "-4": "const bound = (9 - 31) / (2 + 4); return (Math.ceil(bound) - 1).toString();"
-  }
- },
- {
-  "id": "SM16L-04",
-  "domain": "Algebra",
-  "subskill": "the y-intercept of a line through a given point perpendicular to a line in standard form",
-  "difficulty": "easy",
-  "topic_tag": "lines-in-the-plane",
-  "prompt": "In the xy-plane, line k passes through the point (4, −1) and is perpendicular to the line with equation 2x + 3y = 12. What is the y-coordinate of the y-intercept of line k?",
-  "choices": [
-   "-7",
-   "4",
-   "5",
-   "5.5"
-  ],
-  "correct_answer": "-7",
-  "explanation": "2x + 3y = 12 has slope −2/3, so line k has slope 3/2. Using y = (3/2)x + b at (4, −1): −1 = 6 + b, so b = −7. Distractors: \"5\" uses −3/2, negating the slope without taking the reciprocal, giving −1 = −6 + b; \"5.5\" swaps the coordinates of the point, substituting (−1, 4) into y = (3/2)x + b; \"4\" reports the y-intercept of the GIVEN line, 12/3, rather than of line k.",
-  "solve": "const mGiven = -2 / 3; const m = -1 / mGiven; return (-1 - m * 4).toString();",
-  "distractor_solve": {
-   "5": "const m = -3 / 2; return (-1 - m * 4).toString();",
-   "5.5": "const m = 3 / 2; return (4 - m * (-1)).toString();",
-   "4": "return (12 / 3).toString();"
-  }
- },
- {
-  "id": "SM16L-05",
-  "domain": "Algebra",
-  "subskill": "counting the integers in the solution interval of a strict absolute value inequality",
-  "difficulty": "hard",
-  "topic_tag": "absolute-value-inequalities",
-  "prompt": "How many integer values of x satisfy the inequality |2x − 5| < 11?",
-  "choices": [
-   "7",
-   "10",
-   "12",
+   "14",
    "21"
   ],
-  "correct_answer": "10",
-  "explanation": "|2x − 5| < 11 means −11 < 2x − 5 < 11, so −6 < 2x < 16 and −3 < x < 8. The integers strictly between −3 and 8 are −2 through 7: 10 of them. Distractors: \"12\" treats the strict inequality as ≤ and counts −3 through 8 as well; \"7\" handles only the case 2x − 5 < 11 and counts the positive integers below 8; \"21\" forgets to divide the middle by 2, counting the integers strictly between −6 and 16.",
-  "solve": "const lo = (-11 + 5) / 2, hi = (11 + 5) / 2; let c = 0; for (let n = -200; n <= 200; n++) if (n > lo && n < hi) c++; return c.toString();",
+  "correct_answer": "2",
+  "bounds": [],
+  "explanation": "Because the zeros are -3 and 7, f(x) = a(x + 3)(x - 7). Then f(0) = a(3)(-7) = -21a = -42, so a = 2, which is \"2\". \"14\" uses only the factor from the zero at -3, solving 3a = 42. \"6\" uses only the factor from the zero at 7, solving 7a = 42. \"21\" is the magnitude of the product of the two evaluated factors, (3)(7), rather than a.",
+  "solve": "return String(-42/((0+3)*(0-7)));",
   "distractor_solve": {
-   "12": "const lo = (-11 + 5) / 2, hi = (11 + 5) / 2; let c = 0; for (let n = -200; n <= 200; n++) if (n >= lo && n <= hi) c++; return c.toString();",
-   "7": "const hi = (11 + 5) / 2; let c = 0; for (let n = 1; n < hi; n++) c++; return c.toString();",
-   "21": "const lo = -11 + 5, hi = 11 + 5; let c = 0; for (let n = -200; n <= 200; n++) if (n > lo && n < hi) c++; return c.toString();"
+   "14": "return String(Math.abs(-42)/Math.abs(0+3));",
+   "6": "return String(Math.abs(-42)/Math.abs(0-7));",
+   "21": "return String(Math.abs((0+3)*(0-7)));"
   }
  }
 ]
