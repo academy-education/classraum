@@ -143,14 +143,52 @@ if (process.argv.includes('--selftest')) {
   process.exit(fail.length ? 1 : 0)
 }
 
-const keyPath = `${D}/wic-attack.key.json`
+/* THE TAG IS REQUIRED AND HAS NO DEFAULT.
+ * This script used to hardcode `wic-attack`. Pointed at a fresh v6 run it read
+ * the OLD v1 files instead and printed a complete, plausible verdict — 52
+ * items, 156 picks, "candidate 46.9% vs matched live control 44.4%, the
+ * intervals overlap" — about a batch nobody had measured. It reads as a
+ * RESULT, which is exactly the failure mode recorded in CLAUDE.md: the only
+ * thing that gave it away was the denominator, because the file passed in held
+ * 21 items and 63 picks. A scorer that falls back to a default input must not
+ * return a number. */
+const tag = process.argv[2]
+if (!tag || tag.startsWith('--')) {
+  console.error('REFUSING: no tag given. usage: node score-wic.mjs <tag>   (reads <tag>.key.json, <tag>.blind.json, <tag>.solver-{a,b,c}.json)')
+  process.exit(2)
+}
+const keyPath = `${D}/${tag}.key.json`
 if (!existsSync(keyPath)) { console.error(`REFUSING: ${keyPath} not found.`); process.exit(2) }
-const missing = NAMES.filter(n => !existsSync(`${D}/wic-attack.solver-${n}.json`))
+const missing = NAMES.filter(n => !existsSync(`${D}/${tag}.solver-${n}.json`))
 if (missing.length) { console.error(`REFUSING: solver file(s) missing: ${missing.join(', ')}. A partial run is not a run.`); process.exit(2) }
 const key = JSON.parse(readFileSync(keyPath, 'utf8'))
-const blind = JSON.parse(readFileSync(`${D}/wic-attack.blind.json`, 'utf8'))
+let blind = JSON.parse(readFileSync(`${D}/${tag}.blind.json`, 'utf8'))
+/* Two render shapes exist in this directory: an OBJECT keyed by the same ids
+ * as the key file (wic-attack), and an ARRAY of {n, question, options} where
+ * `n` is the id (wic6-oo). Normalise to the object form rather than letting the
+ * array crash on blind[id].options — but normalise EXPLICITLY, and refuse if
+ * the ids do not then line up, because a scorer that quietly tolerates a shape
+ * mismatch is one step from scoring the wrong file. */
+if (Array.isArray(blind)) {
+  blind = Object.fromEntries(blind.map(b => [String(b.n), b]))
+  console.log(`note: ${tag}.blind.json is an array; indexed by its \`n\` field`)
+}
+/* A key entry with no `letter` scored every pick WRONG and printed a tidy
+ * "0.0%, best-fixed-letter 100.0%" — a confident number over a field that did
+ * not exist. Refuse on the schema before scoring anything. */
+const badKey = Object.entries(key).filter(([, v]) => !v || typeof v.letter !== 'string' || !v.kind)
+if (badKey.length) {
+  console.error(`REFUSING: ${badKey.length} key entr(ies) lack \`letter\` or \`kind\` (first: ${badKey[0][0]}). Expected {letter, localId, kind, src, shape}.`)
+  process.exit(2)
+}
+const unmatched = Object.keys(key).filter(id => !blind[id])
+if (unmatched.length) {
+  console.error(`REFUSING: ${unmatched.length} id(s) in the key file have no entry in the blind file (${unmatched.slice(0, 5).join(', ')}...). The two files do not describe the same run.`)
+  process.exit(2)
+}
+console.log(`tag: ${tag}  —  ${Object.keys(key).length} items in the key file`)
 const solvers = NAMES.map(n => {
-  const raw = JSON.parse(readFileSync(`${D}/wic-attack.solver-${n}.json`, 'utf8'))
+  const raw = JSON.parse(readFileSync(`${D}/${tag}.solver-${n}.json`, 'utf8'))
   /* A previous batch's graders wrapped their output under .items and a scorer
    * silently read the wrapper. Unwrap explicitly, and say so. */
   if (raw.items && !raw[Object.keys(key)[0]]) { console.log(`note: solver ${n} wrapped its output under .items; unwrapped`); return raw.items }

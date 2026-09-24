@@ -2937,3 +2937,39 @@ structural checks are pre-flight only. See CLAUDE.md.
   **So: 1 duplicate and 2 topic collisions in 435 pairs.** The duplicate is also in the **dictionary-gloss shape measured at +42.9 blind** — four glosses of one headword, where the option set reconstructs the word and the everyday sense is the trap — so it joins the **7 live gloss items already recorded as awaiting a go-ahead**, and is not a separate decision. **Andy's call; no live row touched.**
 
   **The limit, stated:** this cannot see two items glossing the same SENSE under different headwords (`grave` / `sober`), which is the next duplicate I would expect to find and have no instrument for.
+
+- **2026-09-24** — **`score-wic.mjs` PRINTED A COMPLETE, PLAUSIBLE VERDICT ABOUT A BATCH NOBODY HAD MEASURED, AND THEN, ONCE POINTED AT THE RIGHT FILES, SCORED EVERY PICK WRONG OVER A FIELD THAT DID NOT EXIST.** Two defects, one run, both in the shape CLAUDE.md already names. → **A48**
+
+  **First: it hardcoded its own input.** The paths were `wic-attack.*`, from the v1 run. Asked to score `wic6-oo`, it read v1 and reported:
+
+      items 52   solvers 3   picks 156
+      CANDIDATE 46.9%   LIVE CONTROL 44.4%   ->  +2.4pts
+      The two intervals OVERLAP. This run cannot separate the batch from the shipped bank.
+
+  Every line of that is true of a run from three weeks ago and says **nothing** about the file passed in. It reads as a result — a measured margin, a stated interval, an honest-sounding limitation. **The only thing that gave it away was the denominator:** the v6 file holds 21 items and 63 picks, not 52 and 156. That is the rule from the six-checker sweep working exactly as written — *read the denominator before the verdict* — and it is the second time a scorer here has silently fallen back to a default input.
+
+  **Fixed:** the tag is now a required argument with no default, and the script refuses without it.
+
+  **Second, uncovered by the first fix: a schema mismatch scored as a result.** `wic6-draw.mjs` wrote `{id, kind, key_slot}`; the scorer reads `{letter, localId, kind, src, shape}`. With `key[id].letter` undefined, every pick compared false and it printed:
+
+      key deal {"undefined":21}  ->  best-fixed-letter 100.0%
+      CANDIDATE   n= 36   0/36 = 0.0%   95% CI 0.0-9.6%
+
+  **A perfect zero is as confident a number as a perfect score**, and this one was over a field that did not exist. Three guards added, all break-tested: refuse a key entry lacking `letter` or `kind`; refuse when the key and blind files do not describe the same ids; and normalise the two render shapes in this directory (object-keyed vs array-of-`{n,...}`) **explicitly**, with a note, rather than letting a mismatch crash or coerce. The draw script now emits the scorer's schema.
+
+  **THE MEASUREMENT, once the instrument was reading its input.** 12 candidates against 9 shape-matched live controls, this session's own cohorts excluded, key slots dealt flat by construction (candidate 3/3/3/3 → 25.0%; control 3/2/2/2 → 33.3%; observed deal A6 B5 C5 D5 → 28.6%):
+
+      arm                                  n     rate    95% CI        vs its line
+      CANDIDATE sat-wic-v6                 36    27.8%   15.8-44.0     +0.0 (line 28.6%)
+      LIVE CONTROL, shape-matched          27    44.4%   27.6-62.7     +15.8
+      margin                                    -16.7pts
+
+  **The candidate sits on its own free-letter line and 16.7 points BELOW the shipped bank.** The intervals overlap and the control is 27 picks, so this refutes a large leak and cannot resolve a small one — as pre-registered. Splitting by the solvers' own declared basis changes nothing: mechanism-named 26.1%, declared-guess 30.8%, i.e. the three cheap heuristics all three solvers described (odd-one-out of a semantic family, register outlier, axis outlier) **bought them nothing on this batch** while scoring 44.4% on the bank.
+
+  **One drop from the blind half. `WIC6-06` — solved by all three with a mechanism named by all three** (`abandoned / forgotten / outgrown / surpassed`: three desertion verbs, key outside). `WIC6-08` was also solved 3/3 but **all three declared it a guess**, and the script correctly refuses to drop on unanimity without a mechanism — at a 28.6% line, three coins landing together is expected 0.28 times in twelve.
+
+  **The author predicted this drop.** It self-flagged 06, 07, 10, 11 as having odd-one-out option sets; 06 is the one that was actually solved. Worth recording because author self-flags have been unreliable in the other direction all session.
+
+  **One cross-item defect found exactly rather than by eye:** `settlement` is the only option word appearing in two different items (`WIC6-04`, `WIC6-08`) out of 47 distinct options. Two solvers noticed unprompted and one said it read like "a common built-environment passage". Not a leak on this evidence, but it is a free cross-item association and should not survive into the insert.
+
+  With-source half still running; **no item inserted on the blind half alone.**

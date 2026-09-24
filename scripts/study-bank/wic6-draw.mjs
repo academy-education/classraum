@@ -101,7 +101,12 @@ for (const [n, it] of items.entries()) {
   if (slot !== want) { console.error('REFUSING: key slot placement failed'); process.exit(2) }
   deal[it.kind][slot] = (deal[it.kind][slot] ?? 0) + 1
   out.push({ n: n + 1, question: 'One word has been removed from a passage you cannot see. Which of these four words was it?', options: Object.fromEntries(ch.map((c, i) => [L[i], c])) })
-  key[n + 1] = { id: it.id, kind: it.kind, key_slot: slot }
+  /* THE SCHEMA IS score-wic.mjs's, NOT A FRESH ONE. The first version of this
+   * wrote {id, kind, key_slot}; the scorer reads {letter, localId, kind, src,
+   * shape} and, finding no `letter`, scored every pick wrong and printed a
+   * tidy "0.0%, best-fixed-letter 100.0%". A new render must speak the
+   * scorer's schema or the scorer must refuse it — both now hold. */
+  key[n + 1] = { letter: slot, localId: it.id, kind: it.kind, src: it.kind === 'candidate' ? 'sat-wic-v6' : 'live', shape: it.shape }
 }
 writeFileSync(`${D}/wic6-oo.blind.json`, JSON.stringify(out, null, 1))
 writeFileSync(`${D}/wic6-oo.key.json`, JSON.stringify(key, null, 1))
