@@ -34,6 +34,28 @@
  *   - REFUSES if the KEY violates any declared bound (the bound or key is wrong)
  *   - counts distractors killed by the declared bounds -- those are dead
  *   - flags items with NO bounds declared, which is not a pass, only a silence
+ *
+ * THE LIMIT OF THIS TOOL, FOUND THE FIRST TIME IT WAS USED. It can only see
+ * bounds an author DECLARES, so a clean run is evidence about the declaration,
+ * not about the item. The first batch to use it came back 0 dead of 18 -- and
+ * three undeclared bounds each killed a distractor when an independent party
+ * probed for them:
+ *
+ *     SM15A-09   v % 5 === 0    kills 144    5^(2x+1) = 5*(5^x)^2
+ *     SM15A-15   v < 0          kills 9/2    the sum -b/a is negative
+ *     SM15A-02   v > 0          kills -29    a>0 and b<0, so -b/2a is positive
+ *
+ * To that author's credit it NAMED all three as judgement calls and argued each
+ * -- that deriving the bound IS the item's work, so a student who has it has
+ * already solved. That argument holds for the first two, where the bound needs
+ * the first real step. It fails for the third: reading the sign of -b/2a off
+ * the signs of a and b takes no arithmetic at all, and the author called that
+ * one its own weakest.
+ *
+ * So: a zero here is necessary and not sufficient. Someone other than the
+ * author must ask, per item, "what does the stem let me rule out for free?"
+ * and probe the bounds that answer it. The tool makes the declared case
+ * decidable; it does not make the undeclared case go away.
  */
 import { readFileSync } from 'node:fs'
 import { val } from './check-key-magnitude.mjs'

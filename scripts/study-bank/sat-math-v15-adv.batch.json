@@ -1,0 +1,398 @@
+[
+ {
+  "id": "SM15A-01",
+  "domain": "Advanced Math",
+  "subskill": "evaluating a rational exponent as a root followed by a power, where the denominator of the exponent is the index of the root",
+  "difficulty": "easy",
+  "prompt": "What is the value of 16^(3/4) + 27^(2/3)?",
+  "choices": [
+   "5",
+   "17",
+   "21",
+   "30"
+  ],
+  "correct_answer": "17",
+  "bounds": ["v > 0", "Number.isInteger(v)"],
+  "explanation": "16^(3/4) is the fourth root of 16 raised to the third power, 2^3 = 8, and 27^(2/3) is the cube root of 27 squared, 3^2 = 9, so the sum is 17, which is \"17\". \"5\" comes from taking the roots and forgetting the powers, 2 + 3. \"21\" comes from multiplying by the exponent in the first term only, 16 * 3/4 = 12, and evaluating the second correctly, 12 + 9. \"30\" comes from multiplying by the exponent in both terms, 16 * 3/4 + 27 * 2/3 = 12 + 18.",
+  "solve": "var a=Math.pow(Math.round(Math.pow(16,0.25)),3); var b=Math.pow(Math.round(Math.cbrt(27)),2); return String(a+b);",
+  "distractor_solve": {
+   "5": "return String(Math.round(Math.pow(16,0.25))+Math.round(Math.cbrt(27)));",
+   "21": "var a=16*3/4; var b=Math.pow(Math.round(Math.cbrt(27)),2); return String(a+b);",
+   "30": "return String(16*3/4+27*2/3);"
+  }
+ },
+ {
+  "id": "SM15A-02",
+  "domain": "Advanced Math",
+  "subskill": "locating the axis of symmetry of a quadratic given in standard form, where the linear coefficient is divided by twice the leading coefficient",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = 4x^2 - 24x + 7. For what value of x does f attain its minimum value?",
+  "choices": [
+   "-29",
+   "3",
+   "6",
+   "12"
+  ],
+  "correct_answer": "3",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "The minimum of an upward-opening quadratic occurs at x = -b/(2a) = 24/(2 * 4) = 3, which is \"3\". \"6\" comes from dividing by a instead of by 2a, 24/4. \"12\" comes from dividing b by 2 and ignoring a altogether, 24/2. \"-29\" is the minimum VALUE rather than the x at which it occurs, f(3) = 36 - 72 + 7.",
+  "solve": "var a=4,b=-24; return String(-b/(2*a));",
+  "distractor_solve": {
+   "-29": "var a=4,b=-24,c=7; var x=-b/(2*a); return String(a*x*x+b*x+c);",
+   "6": "var a=4,b=-24; return String(-b/a);",
+   "12": "var b=-24; return String(-b/2);"
+  }
+ },
+ {
+  "id": "SM15A-03",
+  "domain": "Advanced Math",
+  "subskill": "squaring a complex binomial, where the i^2 term changes sign and lands in the real part",
+  "difficulty": "easy",
+  "prompt": "The expression (4 - 3i)^2 is equivalent to a + bi, where a and b are real numbers and i = sqrt(-1). What is the value of a?",
+  "choices": [
+   "-24",
+   "7",
+   "16",
+   "25"
+  ],
+  "correct_answer": "7",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "(4 - 3i)^2 = 16 - 24i + 9i^2, and since i^2 = -1 the last term is -9, so the real part is 16 - 9 = 7, which is \"7\". \"25\" comes from treating i^2 as +1, giving 16 + 9. \"16\" comes from dropping the i^2 term entirely and reporting 4^2. \"-24\" is b, the coefficient of the imaginary part, rather than a.",
+  "solve": "return String(4*4-3*3);",
+  "distractor_solve": {
+   "-24": "return String(-2*4*3);",
+   "16": "return String(4*4);",
+   "25": "return String(4*4+3*3);"
+  }
+ },
+ {
+  "id": "SM15A-04",
+  "domain": "Advanced Math",
+  "subskill": "dividing complex numbers by multiplying numerator and denominator by the conjugate of the denominator",
+  "difficulty": "medium",
+  "prompt": "The expression (7 + i)/(2 - i) is equivalent to a + bi, where a and b are real numbers and i = sqrt(-1). What is the value of a?",
+  "choices": [
+   "3",
+   "14/5",
+   "13/5",
+   "9/5"
+  ],
+  "correct_answer": "13/5",
+  "bounds": ["v > 0"],
+  "explanation": "Multiplying numerator and denominator by the conjugate 2 + i gives (14 + 9i + i^2)/(4 + 1) = (13 + 9i)/5, so a = 13/5, which is \"13/5\". \"3\" comes from treating i^2 as +1, giving (14 + 1)/5 = 15/5. \"14/5\" comes from dropping the i^2 term from the numerator. \"9/5\" is b, the imaginary part, rather than a.",
+  "solve": "return String((7*2-1*1)/(2*2+1*1));",
+  "distractor_solve": {
+   "3": "return String((7*2+1*1)/(2*2+1*1));",
+   "14/5": "return String(7*2/(2*2+1*1));",
+   "9/5": "return String((7*1+1*2)/(2*2+1*1));"
+  }
+ },
+ {
+  "id": "SM15A-05",
+  "domain": "Advanced Math",
+  "subskill": "reading a coefficient of the QUOTIENT of a polynomial division by matching one coefficient of the expanded product",
+  "difficulty": "medium",
+  "prompt": "The polynomial 3x^3 - x^2 - 19x - 15 can be written as (x - 3)(3x^2 + bx + 5), where b is a constant. What is the value of b?",
+  "choices": [
+   "-10",
+   "-1",
+   "8",
+   "9"
+  ],
+  "correct_answer": "8",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "The x^2 coefficient of the product is b - 3(3) = b - 9, and that must equal -1, so b = 8, which is \"8\". (Synthetic division by 3 gives the same: 3, then -1 + 9 = 8.) \"-1\" comes from copying the dividend's x^2 coefficient straight into the quotient. \"-10\" comes from dividing by the root -3 instead of 3, giving -1 + 3(-3). \"9\" is the product 3 * 3 reported before the dividend's -1 is added to it.",
+  "solve": "return String(-1+3*3);",
+  "distractor_solve": {
+   "-10": "return String(-1+3*(-3));",
+   "-1": "var coeffs=[3,-1,-19,-15]; return String(coeffs[1]);",
+   "9": "return String(3*3);"
+  }
+ },
+ {
+  "id": "SM15A-06",
+  "domain": "Advanced Math",
+  "subskill": "a line meets a parabola exactly once when the discriminant of the COMBINED quadratic is zero, so the line's slope changes the linear coefficient first",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = x^2 + 6x + 13 and the graph of y = 2x + k intersect at exactly one point, where k is a constant. What is the value of k?",
+  "choices": [
+   "4",
+   "9",
+   "17",
+   "36"
+  ],
+  "correct_answer": "9",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "Setting the two equal gives x^2 + 4x + (13 - k) = 0, and one intersection means 4^2 - 4(13 - k) = 0, so 13 - k = 4 and k = 9, which is \"9\". \"4\" comes from using the parabola's linear coefficient 6 instead of the combined 4, giving 36 = 4(13 - k). \"17\" comes from a sign error, 16 + 4(13 - k) = 0. \"36\" comes from forgetting the factor 4 on the k term, solving 16 - 52 + k = 0.",
+  "solve": "var b=6-2, c=13; return String(c-(b*b)/4);",
+  "distractor_solve": {
+   "4": "var b=6, c=13; return String(c-(b*b)/4);",
+   "17": "var b=6-2, c=13; return String(c+(b*b)/4);",
+   "36": "var b=6-2, c=13; return String(4*c-b*b);"
+  }
+ },
+ {
+  "id": "SM15A-07",
+  "domain": "Advanced Math",
+  "subskill": "inverse-square variation: the constant is y times x squared, so the input's ratio acts on the output through its square",
+  "difficulty": "medium",
+  "prompt": "The quantity y is inversely proportional to the square of x. When x = 6, the value of y is 5. What is the value of y when x = 3?",
+  "choices": [
+   "60",
+   "45",
+   "20",
+   "10"
+  ],
+  "correct_answer": "20",
+  "bounds": ["v > 0", "v > 5"],
+  "explanation": "The constant is k = yx^2 = 5(36) = 180, so when x = 3, y = 180/9 = 20, which is \"20\". \"60\" comes from dividing by x rather than x^2, 180/3. \"10\" comes from treating the relationship as inversely proportional to x itself, k = 30 and y = 30/3. \"45\" comes from multiplying by the new x^2 instead of dividing, 5(9).",
+  "solve": "var k=5*6*6; return String(k/(3*3));",
+  "distractor_solve": {
+   "60": "var k=5*6*6; return String(k/3);",
+   "45": "return String(5*3*3);",
+   "10": "var k=5*6; return String(k/3);"
+  }
+ },
+ {
+  "id": "SM15A-08",
+  "domain": "Advanced Math",
+  "subskill": "adding two rational expressions over a common denominator, where each numerator must be multiplied by the OTHER denominator before the numerators are combined",
+  "difficulty": "medium",
+  "prompt": "For x > 0, the expression 2/x + 3/(x + 4) is equivalent to (ax + b)/(x(x + 4)), where a and b are constants. What is the value of a + b?",
+  "choices": [
+   "5",
+   "8",
+   "13",
+   "25"
+  ],
+  "correct_answer": "13",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "Over the common denominator the numerator is 2(x + 4) + 3x = 5x + 8, so a = 5, b = 8 and a + b = 13, which is \"13\". \"5\" is a alone. \"8\" is b alone. \"25\" comes from multiplying the second numerator by (x + 4) as well, giving 2(x + 4) + 3(x + 4) = 5x + 20 and 5 + 20.",
+  "solve": "var a=2+3, b=2*4; return String(a+b);",
+  "distractor_solve": {
+   "5": "return String(2+3);",
+   "8": "return String(2*4);",
+   "25": "var a=2+3, b=(2+3)*4; return String(a+b);"
+  }
+ },
+ {
+  "id": "SM15A-09",
+  "domain": "Advanced Math",
+  "subskill": "evaluating a power whose exponent is a linear function of an unknown exponent, by rewriting it in terms of a given power rather than solving for the unknown",
+  "difficulty": "medium",
+  "prompt": "If 5^x = 12, what is the value of 5^(2x + 1)?",
+  "choices": [
+   "720",
+   "144",
+   "120",
+   "60"
+  ],
+  "correct_answer": "720",
+  "bounds": ["v > 0", "v > 12"],
+  "explanation": "5^(2x + 1) = (5^x)^2 * 5 = 12^2 * 5 = 720, which is \"720\". \"144\" is (5^x)^2, with the + 1 in the exponent forgotten. \"120\" comes from reading 5^(2x) as 2 * 5^x, giving 2(12)(5). \"60\" comes from reading the exponent as x + 1, giving 12 * 5.",
+  "solve": "return String(12*12*5);",
+  "distractor_solve": {
+   "144": "return String(12*12);",
+   "120": "return String(2*12*5);",
+   "60": "return String(12*5);"
+  }
+ },
+ {
+  "id": "SM15A-10",
+  "domain": "Advanced Math",
+  "subskill": "collecting only the terms of one degree from a product of two trinomials, which requires finding every pair of factors whose degrees sum to that degree",
+  "difficulty": "medium",
+  "prompt": "What is the coefficient of x^2 in the product (2x^2 - 3x + 1)(x^2 + 4x - 5)?",
+  "choices": [
+   "-22",
+   "-21",
+   "-9",
+   "-1"
+  ],
+  "correct_answer": "-21",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "Three pairs produce x^2: (2x^2)(-5) = -10x^2, (-3x)(4x) = -12x^2 and (1)(x^2) = x^2, for -10 - 12 + 1 = -21, which is \"-21\". \"-22\" omits the (1)(x^2) pair. \"-9\" omits the (-3x)(4x) cross term. \"-1\" comes from a sign error on (2x^2)(-5), giving +10 - 12 + 1.",
+  "solve": "return String(2*(-5)+(-3)*4+1*1);",
+  "distractor_solve": {
+   "-22": "return String(2*(-5)+(-3)*4);",
+   "-9": "return String(2*(-5)+1*1);",
+   "-1": "return String(2*5+(-3)*4+1*1);"
+  }
+ },
+ {
+  "id": "SM15A-11",
+  "domain": "Advanced Math",
+  "subskill": "a horizontal translation moves every zero of a polynomial by the same amount, so the sum of the zeros shifts by that amount times the number of zeros",
+  "difficulty": "medium",
+  "prompt": "The function f is a cubic polynomial whose zeros are -2, 1, and 4. The function g is defined by g(x) = f(x - 5). What is the sum of the zeros of g?",
+  "choices": [
+   "-12",
+   "3",
+   "8",
+   "18"
+  ],
+  "correct_answer": "18",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "g(x) = 0 exactly when x - 5 is a zero of f, so the zeros of g are 3, 6 and 9, and their sum is 18, which is \"18\". \"3\" is the sum of f's own zeros, with the translation ignored. \"8\" comes from adding 5 once to the sum rather than to each of the three zeros. \"-12\" comes from translating in the wrong direction, subtracting 5 from each zero.",
+  "solve": "return String((-2+5)+(1+5)+(4+5));",
+  "distractor_solve": {
+   "-12": "return String((-2-5)+(1-5)+(4-5));",
+   "3": "return String(-2+1+4);",
+   "8": "return String((-2+1+4)+5);"
+  }
+ },
+ {
+  "id": "SM15A-12",
+  "domain": "Advanced Math",
+  "subskill": "a squared linear factor means the cubic is that square times one more linear factor, and the constant term pins the remaining root before any coefficient can be read",
+  "difficulty": "hard",
+  "prompt": "The polynomial p(x) = x^3 + ax^2 + bx - 32, where a and b are constants, is divisible by (x - 4)^2. What is the value of a?",
+  "choices": [
+   "-12",
+   "-10",
+   "-8",
+   "-6"
+  ],
+  "correct_answer": "-10",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "Since p is a cubic divisible by (x - 4)^2, p(x) = (x - 4)^2(x + c) for some constant c. The constant term is 16c = -32, so c = -2, and the x^2 coefficient is c - 8 = -10, which is \"-10\". \"-8\" comes from expanding only (x - 4)^2 and ignoring the third factor. \"-12\" comes from dividing -32 by 8 instead of 16 when solving for c. \"-6\" comes from a sign error giving c = 2.",
+  "solve": "var c=-32/(4*4); return String(c-2*4);",
+  "distractor_solve": {
+   "-12": "var c=-32/(2*4); return String(c-2*4);",
+   "-8": "return String(-2*4);",
+   "-6": "var c=32/(4*4); return String(c-2*4);"
+  }
+ },
+ {
+  "id": "SM15A-13",
+  "domain": "Advanced Math",
+  "subskill": "counting the integers that satisfy a strict discriminant INEQUALITY, which requires both endpoints to be excluded and zero to be counted",
+  "difficulty": "hard",
+  "prompt": "For how many integer values of k does the equation x^2 + kx + 16 = 0 have no real solutions?",
+  "choices": [
+   "7",
+   "14",
+   "15",
+   "17"
+  ],
+  "correct_answer": "15",
+  "bounds": ["v > 0", "Number.isInteger(v)"],
+  "explanation": "There are no real solutions exactly when k^2 - 64 < 0, that is -8 < k < 8, and the integers from -7 to 7 number 15, which is \"15\". \"17\" comes from using k^2 - 64 <= 0 and including k = -8 and k = 8, which give one real solution rather than none. \"14\" comes from counting seven negative and seven positive values and omitting k = 0. \"7\" counts only the positive values of k.",
+  "solve": "var n=0; for(var k=-200;k<=200;k++){ if(k*k-4*16<0) n++; } return String(n);",
+  "distractor_solve": {
+   "7": "var n=0; for(var k=1;k<=200;k++){ if(k*k-4*16<0) n++; } return String(n);",
+   "14": "var n=0; for(var k=-200;k<=200;k++){ if(k!==0 && k*k-4*16<0) n++; } return String(n);",
+   "17": "var n=0; for(var k=-200;k<=200;k++){ if(k*k-4*16<=0) n++; } return String(n);"
+  }
+ },
+ {
+  "id": "SM15A-14",
+  "domain": "Advanced Math",
+  "subskill": "recognising that the sum of a polynomial's coefficients is the polynomial evaluated at 1, after a scale factor has been fixed from a given point",
+  "difficulty": "hard",
+  "prompt": "The quadratic function f has zeros at x = -1 and x = 5, and f(2) = -36. If f(x) = ax^2 + bx + c, where a, b, and c are constants, what is the value of a + b + c?",
+  "choices": [
+   "-32",
+   "-8",
+   "4",
+   "8"
+  ],
+  "correct_answer": "-32",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "Write f(x) = a(x + 1)(x - 5). Then f(2) = a(3)(-3) = -9a = -36, so a = 4. The sum of the coefficients is f(1) = 4(2)(-4) = -32, which is \"-32\". \"4\" is the scale factor a, reported before the question is answered. \"-8\" is (1 + 1)(1 - 5), the value of f(1) with the scale factor left at 1. \"8\" comes from expanding to 4x^2 - 16x - 20 and then adding the constant with the wrong sign, 4 - 16 + 20.",
+  "solve": "var a=-36/((2+1)*(2-5)); return String(a*(1+1)*(1-5));",
+  "distractor_solve": {
+   "-8": "return String(1*(1+1)*(1-5));",
+   "4": "return String(-36/((2+1)*(2-5)));",
+   "8": "var a=-36/((2+1)*(2-5)); var b=-4*a, c=-5*a; return String(a+b-c);"
+  }
+ },
+ {
+  "id": "SM15A-15",
+  "domain": "Advanced Math",
+  "subskill": "the sum of ALL zeros of a cubic is -b/a, so a known zero can be subtracted off to reach the other two without any division of the polynomial",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = 2x^3 + 5x^2 - 14x - 8, and p(2) = 0. What is the sum of the other two zeros of p?",
+  "choices": [
+   "-9/2",
+   "-5/2",
+   "-1/2",
+   "9/2"
+  ],
+  "correct_answer": "-9/2",
+  "bounds": ["v * 2 === Math.round(v * 2)"],
+  "explanation": "The sum of all three zeros is -5/2. Removing the known zero 2 leaves -5/2 - 2 = -9/2, which is \"-9/2\". \"-5/2\" is the sum of all three zeros, with the known zero not removed. \"-1/2\" comes from adding 2 instead of subtracting it. \"9/2\" comes from taking the sum of the zeros as +b/a rather than -b/a.",
+  "solve": "var a=2,b=5; return String(-b/a-2);",
+  "distractor_solve": {
+   "-5/2": "var a=2,b=5; return String(-b/a);",
+   "-1/2": "var a=2,b=5; return String(-b/a+2);",
+   "9/2": "var a=2,b=5; return String(b/a+2);"
+  }
+ },
+ {
+  "id": "SM15A-16",
+  "domain": "Advanced Math",
+  "subskill": "a function given by a rule for f(2x) must be evaluated by finding the input that makes 2x equal the wanted argument, not by substituting that argument for x",
+  "difficulty": "hard",
+  "prompt": "The function f satisfies f(2x) = 4x^2 - 6x for every real number x. What is the value of f(5)?",
+  "choices": [
+   "70",
+   "35",
+   "10",
+   "-5"
+  ],
+  "correct_answer": "10",
+  "bounds": ["Number.isInteger(v)"],
+  "explanation": "f(5) requires 2x = 5, so x = 5/2, and f(5) = 4(25/4) - 6(5/2) = 25 - 15 = 10, which is \"10\". (Equivalently f(u) = u^2 - 3u.) \"70\" comes from substituting x = 5 directly into 4x^2 - 6x, which computes f(10). \"-5\" comes from halving only the squared term, using f(u) = u^2 - 6u. \"35\" comes from halving both coefficients instead of halving the input, using f(u) = 2u^2 - 3u.",
+  "solve": "var x=5/2; return String(4*x*x-6*x);",
+  "distractor_solve": {
+   "70": "var x=5; return String(4*x*x-6*x);",
+   "35": "var u=5; return String(2*u*u-3*u);",
+   "-5": "var u=5; return String(u*u-6*u);"
+  }
+ },
+ {
+  "id": "SM15A-17",
+  "domain": "Advanced Math",
+  "subskill": "reading the imaginary part of a complex solution pair off a negative discriminant, where the square root is taken before the division by 2a",
+  "difficulty": "medium",
+  "prompt": "The solutions to the equation x^2 - 10x + 34 = 0 are a + bi and a - bi, where a and b are positive real numbers and i = sqrt(-1). What is the value of b?",
+  "choices": [
+   "18",
+   "6",
+   "5",
+   "3"
+  ],
+  "correct_answer": "3",
+  "bounds": ["v > 0"],
+  "explanation": "The discriminant is 100 - 136 = -36, so the solutions are (10 +/- 6i)/2 = 5 +/- 3i and b = 3, which is \"3\". \"5\" is a, the real part, rather than b. \"6\" is the square root of 36 reported before the division by 2a. \"18\" comes from dividing 36 by 2 without taking the square root at all.",
+  "solve": "var d=4*34-10*10; return String(Math.sqrt(d)/2);",
+  "distractor_solve": {
+   "18": "var d=4*34-10*10; return String(d/2);",
+   "6": "var d=4*34-10*10; return String(Math.sqrt(d));",
+   "5": "return String(10/2);"
+  }
+ },
+ {
+  "id": "SM15A-18",
+  "domain": "Advanced Math",
+  "subskill": "adding a function to its own reflection across the y-axis cancels every odd-degree term, so the sum is an even function whose extreme value sits at x = 0",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = x^2 + 6x + 5, and the function g is defined by g(x) = f(x) + f(-x). What is the minimum value of g?",
+  "choices": [
+   "-8",
+   "-4",
+   "0",
+   "10"
+  ],
+  "correct_answer": "10",
+  "bounds": ["Number.isInteger(v)", "v <= 10"],
+  "explanation": "f(-x) = x^2 - 6x + 5, so g(x) = 2x^2 + 10, whose minimum is at x = 0 and equals 10, which is \"10\". \"-4\" is the minimum of f itself, f(-3), rather than of g. \"-8\" comes from failing to negate the linear term of f(-x), giving 2x^2 + 12x + 10, whose minimum is -8. \"0\" is the value of x at which the minimum occurs, not the minimum value.",
+  "solve": "var A=1+1, B=6-6, C=5+5; var x=-B/(2*A); return String(A*x*x+B*x+C);",
+  "distractor_solve": {
+   "-8": "var A=1+1, B=6+6, C=5+5; var x=-B/(2*A); return String(A*x*x+B*x+C);",
+   "-4": "var A=1, B=6, C=5; var x=-B/(2*A); return String(A*x*x+B*x+C);",
+   "0": "var A=1+1, B=6-6; return String(-B/(2*A));"
+  }
+ }
+]
