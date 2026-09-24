@@ -2914,3 +2914,26 @@ structural checks are pre-flight only. See CLAUDE.md.
   **All ten keys are correct** — solved independently before reading any explanation, five re-derived by a second route, none disputed. The batch is not wrong. It is guessable, and the checks that were supposed to see that could not.
 
   **What actually changes.** The options-only attack keeps its job and loses its promotion: it answers *"can the options alone decide it?"* and must never again be reported as *"this batch does not leak."* A numeric maths batch needs **both** halves, and the with-source half is the only one that can see a stem-derivable elimination. Recorded in `CLAUDE.md`.
+
+- **2026-09-24** — **TWO LIVE WORDS-IN-CONTEXT ITEMS GLOSS THE SAME HEADWORD WITH THE SAME FOUR SENSES, AND MY FIRST SCAN FOR EXACTLY THIS RETURNED A CLEAN ZERO.** `check-shared-headword.mjs`. **Nothing written to the bank.** → **A47**
+
+  Scanning for near-duplicates in the 30 live Words-in-Context items, the obvious instrument — content-word overlap between passages — reported **0 pairs above 0.25 Jaccard out of 435**. That green was over the wrong axis. The pair I could already see by eye:
+
+      960c560e  key "measured"                  The committee's report was praised for its
+                                                temperate ASSESSMENT of the crisis...
+                {mild in climate, abstaining from alcohol, lukewarm, measured}
+
+      ef30a967  key "Moderate and restrained"   The committee's report was praised for its
+                                                temperate TONE. Where earlier drafts...
+                {Mild in climate or weather, Slow to reach a verdict,
+                 Moderate and restrained, Lukewarm in enthusiasm}
+
+  Same headword, same stem frame, same three wrong senses, and the first item's **key is the word "measured", which appears verbatim in the second item's passage.** It scores **Jaccard 0.109** — two authors wrote different sentences around one headword, so bulk prose similarity is near zero while the ITEM is duplicated. Sixth time a structural proxy here has measured the wrong axis and returned a confident number.
+
+  **The axis that works is a shared RARE word:** words of document-frequency ≤ 2 across the subskill, counted per pair. The duplicate pair rises to **x4 (temperate, conclusions, climate, lukewarm)** against **x1 noise** ("period", "household", "sentence") on 57 of the 60 hits. Anchored — the script **exits non-zero unless it fires on this pair**, and that assertion was break-tested by pointing it at a word that does not exist (exit 1, "this check is not evidence").
+
+  **It found two more, and they are a different and milder thing:** `f3eaf017`/`f83cd135` both set in a verse translator's preface, `527313f6`/`6431289f` both on a composer's late quartets. Different headwords, different keys — **a shared little world, not a duplicated item.** That is a draw problem (a student may meet the same setting twice), not a defect, and it is reported as such rather than counted with the first.
+
+  **So: 1 duplicate and 2 topic collisions in 435 pairs.** The duplicate is also in the **dictionary-gloss shape measured at +42.9 blind** — four glosses of one headword, where the option set reconstructs the word and the everyday sense is the trap — so it joins the **7 live gloss items already recorded as awaiting a go-ahead**, and is not a separate decision. **Andy's call; no live row touched.**
+
+  **The limit, stated:** this cannot see two items glossing the same SENSE under different headwords (`grave` / `sober`), which is the next duplicate I would expect to find and have no instrument for.
