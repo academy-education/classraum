@@ -1,0 +1,247 @@
+[
+ {
+  "id": "SM15L-01",
+  "domain": "Algebra",
+  "subskill": "a one-variable linear equation whose whole left side sits over a denominator: the denominator must be cleared before the constant is undone, and the order of those two moves is what the distractors test",
+  "difficulty": "easy",
+  "prompt": "If (2x + 8)/5 = 16, what is the value of x?",
+  "choices": [
+   "4",
+   "20",
+   "32",
+   "36"
+  ],
+  "correct_answer": "36",
+  "explanation": "Multiplying both sides by 5 gives 2x + 8 = 80, so 2x = 72 and x = 36, which is \"36\". \"4\" comes from never multiplying by 5, solving 2x + 8 = 16 instead. \"20\" comes from subtracting 8 from 16 before clearing the denominator, giving (16 - 8)(5)/2 = 20. \"32\" comes from clearing the denominator correctly to 2x + 8 = 80 but dividing by 2 before subtracting 8, giving 80/2 - 8 = 32.",
+  "bounds": [
+   "v > -4",
+   "v < 40"
+  ],
+  "solve": "return String((16*5-8)/2);",
+  "distractor_solve": {
+   "4": "return String((16-8)/2);",
+   "20": "return String((16-8)*5/2);",
+   "32": "return String(16*5/2-8);"
+  }
+ },
+ {
+  "id": "SM15L-02",
+  "domain": "Algebra",
+  "subskill": "a two-variable system in which neither variable cancels as written: one equation must be scaled before the subtraction, and the requested variable is not the one the scaling produces",
+  "difficulty": "medium",
+  "prompt": "2x + 5y = 46\n4x - 3y = 14\nIf (x, y) is the solution to the system of equations above, what is the value of y?",
+  "choices": [
+   "6",
+   "8",
+   "30",
+   "78"
+  ],
+  "correct_answer": "6",
+  "explanation": "Doubling the first equation gives 4x + 10y = 92. Subtracting the second equation gives 13y = 78, so y = 6, which is \"6\". \"78\" is the value of 13y, reported before dividing by 13. \"8\" is the value of x, found by eliminating y instead and reported in place of the requested variable. \"30\" is the value of 5y, which appears when x = 8 is substituted back into 2x + 5y = 46 and the division by 5 is skipped.",
+  "bounds": [
+   "v > 0",
+   "v % 2 === 0"
+  ],
+  "solve": "return String((2*46-14)/13);",
+  "distractor_solve": {
+   "8": "return String((3*46+5*14)/26);",
+   "30": "var x=(3*46+5*14)/26; return String(46-2*x);",
+   "78": "return String(2*46-14);"
+  }
+ },
+ {
+  "id": "SM15L-03",
+  "domain": "Algebra",
+  "subskill": "two linear models set equal to each other: the divisor is the DIFFERENCE of the two rates, not either rate, and the dividend is the DIFFERENCE of the two fixed charges",
+  "difficulty": "easy",
+  "prompt": "A photo-printing service charges a one-time setup fee of $200 plus $12 for each month of service. A second service charges a one-time setup fee of $80 plus $20 for each month of service. After how many months of service will the two services have cost the same total amount?",
+  "choices": [
+   "6",
+   "10",
+   "15",
+   "35"
+  ],
+  "correct_answer": "15",
+  "explanation": "Setting 200 + 12m = 80 + 20m gives 120 = 8m, so m = 15, which is \"15\". \"10\" comes from dividing the $120 difference in setup fees by 12, the smaller monthly rate, instead of by the $8 difference in rates. \"6\" comes from dividing that same $120 by 20, the larger monthly rate. \"35\" comes from adding the two setup fees instead of subtracting them, giving 280/8 = 35.",
+  "bounds": [
+   "v > 0",
+   "Number.isInteger(v)"
+  ],
+  "solve": "return String((200-80)/(20-12));",
+  "distractor_solve": {
+   "6": "return String((200-80)/20);",
+   "10": "return String((200-80)/12);",
+   "35": "return String((200+80)/(20-12));"
+  }
+ },
+ {
+  "id": "SM15L-04",
+  "domain": "Algebra",
+  "subskill": "a slope read out of standard form and carried to a parallel line, then run backwards from a given point to the y-intercept",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line k is parallel to the line with equation 2x + 3y = 18 and passes through the point (24, 14). Line k crosses the y-axis at the point (0, b). What is the value of b?",
+  "choices": [
+   "20",
+   "22",
+   "26",
+   "30"
+  ],
+  "correct_answer": "30",
+  "explanation": "Writing 2x + 3y = 18 as y = -(2/3)x + 6 gives slope -2/3, which line k shares. Moving from x = 24 to x = 0 is a run of -24, so y changes by (-2/3)(-24) = 16 and b = 14 + 16 = 30, which is \"30\". \"22\" comes from computing (2/3)(24) as 24/3 = 8, dropping the factor of 2. \"26\" comes from computing it as 24/2 = 12, dividing by the numerator instead of the denominator. \"20\" comes from taking 6, the y-intercept of the given line, as the shift and reporting 14 + 6.",
+  "bounds": [
+   "v > 14",
+   "v < 38"
+  ],
+  "solve": "return String(14+(2/3)*24);",
+  "distractor_solve": {
+   "20": "return String(14+18/3);",
+   "22": "return String(14+24/3);",
+   "26": "return String(14+24/2);"
+  }
+ },
+ {
+  "id": "SM15L-05",
+  "domain": "Algebra",
+  "subskill": "a symmetric pair of equations whose coefficients are swapped: subtracting them yields a multiple of the REQUESTED combination directly, so neither variable ever has to be found",
+  "difficulty": "hard",
+  "prompt": "3x + 5y = 48\n5x + 3y = 64\nIf (x, y) is the solution to the system of equations above, what is the value of x - y?",
+  "choices": [
+   "8",
+   "11",
+   "14",
+   "16"
+  ],
+  "correct_answer": "8",
+  "explanation": "Subtracting the first equation from the second gives 2x - 2y = 16, so x - y = 8, which is \"8\". \"16\" is the value of 2x - 2y, reported before dividing by 2. \"14\" comes from adding the equations instead of subtracting them, which gives 8x + 8y = 112 and so x + y = 14, the other symmetric combination. \"11\" is the value of x alone, found by solving the system completely.",
+  "bounds": [
+   "v > 0"
+  ],
+  "solve": "return String((64-48)/2);",
+  "distractor_solve": {
+   "11": "var s=(48+64)/8,d=(64-48)/2; return String((s+d)/2);",
+   "14": "return String((48+64)/8);",
+   "16": "return String(64-48);"
+  }
+ },
+ {
+  "id": "SM15L-06",
+  "domain": "Algebra",
+  "subskill": "an absolute-value linear equation that must be split into two cases, with the two roots then combined rather than reported",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all values of x that satisfy |4x - 12| = 20?",
+  "choices": [
+   "-2",
+   "6",
+   "8",
+   "10"
+  ],
+  "correct_answer": "6",
+  "explanation": "The equation splits into 4x - 12 = 20, giving x = 8, and 4x - 12 = -20, giving x = -2. Their sum is 8 + (-2) = 6, which is \"6\". \"8\" is the solution of the first case alone, reported by a student who never writes the second case. \"-2\" is the solution of the second case alone. \"10\" comes from subtracting the two solutions instead of adding them, 8 - (-2) = 10.",
+  "bounds": [
+   "Number.isInteger(v)"
+  ],
+  "solve": "return String((20+12)/4 + (-20+12)/4);",
+  "distractor_solve": {
+   "8": "return String((20+12)/4);",
+   "10": "return String((20+12)/4 - (-20+12)/4);",
+   "-2": "return String((-20+12)/4);"
+  }
+ },
+ {
+  "id": "SM15L-07",
+  "domain": "Algebra",
+  "subskill": "a constant rate recovered from two function values and then applied over a THIRD interval: the distractors differ only in which anchor point is paired with which run",
+  "difficulty": "medium",
+  "prompt": "The function h is linear. If h(2) = 9 and h(8) = 27, what is the value of h(11)?",
+  "choices": [
+   "28",
+   "33",
+   "36",
+   "42"
+  ],
+  "correct_answer": "36",
+  "explanation": "The rate of change is (27 - 9)/(8 - 2) = 3 per unit. From x = 8 to x = 11 is a run of 3, so h(11) = 27 + 3(3) = 36, which is \"36\". \"33\" comes from computing the rate as (27 - 9)/(11 - 2) = 2, dividing the rise by the run to the TARGET rather than the run between the two given points, and then adding 2(3). \"28\" comes from inverting the rate to (8 - 2)/(27 - 9) = 1/3 and computing 27 + (1/3)(3). \"42\" comes from treating h(2) = 9 as the y-intercept and writing h(x) = 3x + 9, giving 3(11) + 9.",
+  "bounds": [
+   "v > 27",
+   "v < 45"
+  ],
+  "solve": "var m=(27-9)/(8-2); return String(27+m*(11-8));",
+  "distractor_solve": {
+   "28": "var m=(8-2)/(27-9); return String(27+m*(11-8));",
+   "33": "var m=(27-9)/(11-2); return String(27+m*(11-8));",
+   "42": "var m=(27-9)/(8-2); return String(m*11+9);"
+  }
+ },
+ {
+  "id": "SM15L-08",
+  "domain": "Algebra",
+  "subskill": "a linear inequality with the variable on both sides and a negative coefficient on one of them: after collecting, the answer is the greatest integer STRICTLY below the boundary",
+  "difficulty": "medium",
+  "prompt": "What is the greatest integer value of x for which 53 - 6x > 2x - 11?",
+  "choices": [
+   "5",
+   "7",
+   "8",
+   "10"
+  ],
+  "correct_answer": "7",
+  "explanation": "Adding 6x and 11 to both sides gives 64 > 8x, so x < 8. The inequality is strict, so the greatest integer value is 7, which is \"7\". \"8\" is the boundary itself, chosen by a student who solves the equation 53 - 6x = 2x - 11 and stops. \"10\" comes from dividing 64 by 6, the coefficient already on the left, instead of by the combined coefficient 8. \"5\" comes from subtracting 11 instead of adding it, giving 42 > 8x and a greatest integer of 5.",
+  "bounds": [
+   "Number.isInteger(v)"
+  ],
+  "solve": "var b=(53+11)/8; return String(Number.isInteger(b)?b-1:Math.floor(b));",
+  "distractor_solve": {
+   "5": "return String(Math.floor((53-11)/8));",
+   "8": "return String((53+11)/8);",
+   "10": "return String(Math.floor((53+11)/6));"
+  }
+ },
+ {
+  "id": "SM15L-09",
+  "domain": "Algebra",
+  "subskill": "a linear equation carrying a variable term AND a constant on both sides whose solution is not an integer: the two collections are independent, and each option records a different one going wrong",
+  "difficulty": "medium",
+  "prompt": "If 5x + 3 = -2x + 13, what is the value of x?",
+  "choices": [
+   "10/7",
+   "10/3",
+   "13/7",
+   "16/7"
+  ],
+  "correct_answer": "10/7",
+  "explanation": "Adding 2x to both sides gives 7x + 3 = 13, and subtracting 3 gives 7x = 10, so x = 10/7, which is \"10/7\". \"10/3\" comes from subtracting 2x instead of adding it, giving 3x = 10. \"13/7\" comes from collecting the variable terms correctly but dropping the 3 on the left, giving 7x = 13. \"16/7\" comes from adding 3 to 13 instead of subtracting it, giving 7x = 16.",
+  "bounds": [
+   "v > 0"
+  ],
+  "solve": "return String(13-3)+\"/\"+String(5+2);",
+  "distractor_solve": {
+   "10/3": "return String(13-3)+\"/\"+String(5-2);",
+   "13/7": "return String(13)+\"/\"+String(5+2);",
+   "16/7": "return String(13+3)+\"/\"+String(5+2);"
+  }
+ },
+ {
+  "id": "SM15L-10",
+  "domain": "Algebra",
+  "subskill": "a linear function given only by the increment it makes over a fixed step: the requested input must first be expressed as a whole number of those steps away from the known one",
+  "difficulty": "hard",
+  "prompt": "The function f is linear, and f(x + 3) = f(x) + 11 for every value of x. If f(1) = 8, what is the value of f(13)?",
+  "choices": [
+   "19",
+   "41",
+   "52",
+   "63"
+  ],
+  "correct_answer": "52",
+  "explanation": "From x = 1 to x = 13 is a change of 12, which is four steps of 3, so f increases by 11 four times: f(13) = 8 + 4(11) = 52, which is \"52\". \"41\" comes from counting three steps instead of four. \"63\" comes from counting five, one for each of the x-values 1, 4, 7, 10, 13, rather than one for each gap between them. \"19\" is f(4), the value after a single step, from applying the increment once.",
+  "bounds": [
+   "v > 8"
+  ],
+  "solve": "return String(8+((13-1)/3)*11);",
+  "distractor_solve": {
+   "19": "return String(8+11);",
+   "41": "return String(8+3*11);",
+   "63": "return String(8+5*11);"
+  }
+ }
+]
