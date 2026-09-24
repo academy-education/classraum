@@ -3053,3 +3053,37 @@ structural checks are pre-flight only. See CLAUDE.md.
   In-sample separation is worth nothing here — five previous proxies had it and died on the next batch. The out-of-sample run is the only line that counts, and it holds at roughly a third of the in-sample strength. **Recorded as a hypothesis with one passing out-of-sample test, not as a rule**, and explicitly not as a gate: it is still a cheap proxy for a semantic channel, and the standing rule is that the attack is the gate.
 
   Both batches **held pending the with-source half**; nothing inserted. SAT Math stays at 25 forms, and form 26 still needs both halves.
+
+- **2026-09-25** — **BOTH v16 MATHS BATCHES HELD. 30 authored, 0 inserted.** Algebra 4 survivors of 14 against a need of 7; Advanced Math 7 of 16 against 8. SAT Math stays at **25 forms**. → **A51**
+
+  **The authors were the best this session and it did not matter.** Both reported that `math-bank-helper check` does not exist rather than working around it; both refused to hand over inert `bounds`, with the correct argument that a bound which kills an option means the item HAS a dead option; both built their own spec checkers and **break-tested them against the register's three known-leaky sets before trusting them**; the Advanced Math author rebuilt six items and dropped the extraneous-root family outright because an excluded value is printed in the stem. My independent closure check confirmed their central claim exactly: **0 of 14 candidate sets carry a closure relation against 9 of 14 live controls.**
+
+  They still failed, on both halves, and the with-source half is where the damage was.
+
+      half           Algebra                      Advanced Math
+      blind          52.4% vs control 35.7%       41.7% vs control 16.7%
+                     +16.7, 5 of 14 unanimous     +25.0, 4 of 16 unanimous
+      with-source    17 free strikes / 8 items    20 free strikes / 12 items
+                     author declared 1            author declared 2
+
+  **THE FIFTH CONSECUTIVE AUTHOR TO DECLARE THE HALF OF A CONSTRAINT IT HAD ALREADY SATISFIED**, and this time the grader named the mechanism precisely. On `SM16A-09` the author declared `v < 0`, killing `7`; the identical glance — both contributions share a sign and one is already `-10` — also kills `-2`. On `SM16A-15` it declared `v > 0`, killing `-4`; the same expression is a sum of two positives one of which is 9, so `8` dies too. **The sign reading and the magnitude reading are one reading**, and the author stopped at the half it had built.
+
+  **THE CLEAREST CASE IS `SM16L-10`, AND I VERIFIED IT RATHER THAN TRUSTING IT.** Two hosting plans, `258 + 13m` and `102 + 25m`, asking for the equal total:
+
+      option   (t-258) mod 13   (t-102) mod 25
+      414            0                12
+      427            0                 0     <- the key, and the ONLY survivor
+      583            0                 6
+      648            0                21
+
+  **The author protected the first plan's closure perfectly — all four options really are `258 + 13m` — and never checked the second.** One divisibility glance at the equation it did not build leaves exactly one option. Three of three distractors, no arithmetic. `SM16L-09` (2 of 3 on `L+8 ≡ 0 mod 3`) and `SM16L-12` (2 of 3 on `w > 29` from the slope the item exists to test) verified the same way.
+
+  **A NEW FAILURE SHAPE, AND IT IS THE ONE TO CARRY FORWARD: A REPAIR VERIFIED ONLY AGAINST THE TELL IT WAS AIMED AT.** The Advanced Math author rebuilt `SM16A-14` to remove an ordering tell. It succeeded, and **converted the item into a closure tell that solves the whole thing**: options `{-3,-2,5,14}` with `y = 2x+4` printed in the stem maps `-3→-2` and `5→14`, both images in the set, while `-2→0` and `14→32` are not. The pre-image/image partition is unique, the answer is a y-value, and `x1 < x2` picks it — `-2`, with the quadratic never read. Of six rebuilds: three worked, one worked but changed the option form, one removed the asymptote and left two untouched strikes, one was this. **A repair must be re-audited across every structure, not re-checked against the one it was for.**
+
+  **Both batch-level briefs produced a cross-item tell, again.** Algebra: in six of fourteen items the distractors are the correct numerator over a **printed** coefficient and the key is that numerator over a **derived** one — a student who learns the rule recovers by elimination after mis-deriving. Advanced Math: **four of sixteen are Vieta** (01, 02, 11, and 03, whose whole solve is "sum of x-coords = −B/A"), with the same distractor logic in all four, and five explanations share the phrase "the adjacent question answered correctly", so "distrust the intermediate" pays off batch-wide.
+
+  **Eighth consecutive batch of difficulty demotions.** Algebra author 1/8/5 against the grader's 1/12/1 — and the one hard item is a drop, so **the batch supplies no module-2 hard-route items at all**. Advanced Math author 0/7/9 against 1/13/2. The grader's diagnosis is the right one: *"the labels track the intended trap, not the work."*
+
+  **One machine defect worth fixing before any future insert:** `SM16A-06`'s `solve` returns `-14.75` while `correct_answer` is the string `"-59/4"`. A string-comparing key check fails it; a numeric one passes. Three distractor emitters have the same decimal/fraction split. **Neither reading is currently safe** — the emitter, not the item, is wrong.
+
+  **All 30 keys are correct** across both batches, verified independently by graders who solved before reading any explanation, and all 90 distractor paths reproduce their printed values. Nothing here is wrong; it is guessable. Held, and **re-authored rather than repaired** — a repair in response to the round that caught it is fitting to the instrument, and `SM16A-14` is now the concrete proof that it can make an item worse.
