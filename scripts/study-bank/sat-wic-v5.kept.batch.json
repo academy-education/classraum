@@ -1,0 +1,53 @@
+[
+ {
+  "id": "WIC5-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "passage": "A city's thermal maps show that its coolest summer blocks are also its wealthiest, and the usual explanation is tree canopy. Canopy explains part of it. But those blocks were platted in the 1890s on lots twice the width used afterward, so their buildings cover a smaller share of each parcel, and open ground reradiates far less heat after dark than brick does. Hold lot width constant and the cooling credited to trees falls by half. The canopy figure had been absorbing the effect of ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "shade",
+   "density",
+   "income",
+   "age"
+  ],
+  "correct_answer": "density",
+  "explanation": "The variable that halves the tree effect when it is held constant is how much of each parcel is built on, which is *density*. *income* is the rival the first sentence sets up and would be the answer if wealth itself, rather than a measurable feature of the lots, were doing the work; the passage instead names a physical mechanism. *shade* is what canopy supplies, so it cannot be the confound canopy was absorbing. *age* is present in the 1890s date, but the argument turns on lot width rather than on the years since platting, and blocks of the same age with narrow lots would not be cool.",
+  "topic_tag": "urban heat and lot geometry",
+  "difficulty": "hard"
+ },
+ {
+  "id": "WIC5-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "passage": "Concert halls have been ranked for a century by reverberation time, the seconds a sound takes to fade, and the celebrated nineteenth-century halls cluster near two. So do several modern halls musicians dislike. Listening tests separate the groups on something else: how soon the first reflections arrive off the side walls, and whether they reach the two ears differently. Every hall that passes that test is narrow, and the narrow halls of the 1880s land near two seconds as well. The famous figure is best understood as a ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "symptom",
+   "standard",
+   "threshold",
+   "coincidence"
+  ],
+  "correct_answer": "symptom",
+  "explanation": "Narrowness produces the early lateral reflections that listeners actually respond to, and the old narrow halls also land near two seconds; the figure thus accompanies the good halls without causing them, which is what a *symptom* is. *coincidence* is the closest rival and would hold if the two seconds bore no relation to the width, but the passage ties both to the same narrow shape, so the pairing is not chance. *standard* describes how the number has been used and is exactly the use the passage undermines. *threshold* would require halls to become good on crossing two seconds, and the disliked modern halls sit there too.",
+  "topic_tag": "reverberation time and hall width",
+  "difficulty": "hard"
+ },
+ {
+  "id": "WIC5-13",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "passage": "Goalkeepers dive left or right on ninety-four percent of penalty kicks, though enough kicks are struck down the middle that standing still would save more of them. Economists call this action bias and put it down to the discomfort of doing nothing. Keepers themselves describe something narrower. Beaten after a dive, a keeper was outguessed by a good striker; beaten standing still, he failed to react. Both outcomes concede the same goal, and choosing between them is really a choice about ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "blame",
+   "probability",
+   "effort",
+   "habit"
+  ],
+  "correct_answer": "blame",
+  "explanation": "The two ways of conceding are identical in the score and differ only in what is said afterward about the keeper, so the dive buys him a better account of the goal: the choice is about *blame*. *probability* is the rival the first sentence sets up, and it is the consideration the keepers are shown to be overriding rather than the one they act on. *habit* fits the ninety-four percent and is what the economists' bias amounts to, but the keepers' own explanation is a reason, not an ingrained reflex. *effort* is visible in the dive and would not distinguish the two outcomes, which cost the same goal either way.",
+  "topic_tag": "penalty kicks and action bias",
+  "difficulty": "medium"
+ }
+]

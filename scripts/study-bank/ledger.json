@@ -4165,6 +4165,45 @@
      "verdict": "Magnitude pooled across both batches matches the live bank almost exactly -- largest 17.5%, smallest 15.0%, interior 67.5% against 15.2/16.3/68.4, z = 0.40 / -0.23 / -0.13 -- and the two authors' individual skews (Algebra 55% interior, Advanced Math 80%) cancel, which is an argument for measuring a commission as a whole rather than per author. The Advanced Math grader found the cross-item version independently: the key was interior in 16 of its 20, with \"the unfinished value before the last division\" used as the standard largest distractor four times and the number 22 playing that role twice. A SEPARATE FINDING ABOUT THE CHECKING MACHINERY, not the items: SM14A-19's solve field was a finite-difference limit returning 15.000000199840144, which passed the sandbox on its 1e-6 tolerance rather than on being right. check-tolerance-pass.mjs was written and run over ALL 3,660 items in this directory that carry a solve field: 3,534 exact, 59 float noise, 65 non-numeric, ZERO wrong, and exactly ONE deliberate approximation -- this item. Its solve is now exact and the key was correct throughout."
     }
    }
+  },
+  {
+   "id": "sat-wic-v5-kept-2026-09-24",
+   "createdAt": "2026-09-24",
+   "targetTest": "sat",
+   "section": "reading_writing",
+   "task": "words_in_context",
+   "family": "sat",
+   "cohort": "rw-v14-wic",
+   "contentSha": "c2d598719c488dea43f372c9db1f9784e30d69dd79859a6d0ef92e1137352c09",
+   "status": "shipped",
+   "note": "3 of 14. Third round of this commission: 7 of 20, then 0 of 16, now 3 of 14. Craft and Structure deficit 6 to 3; form 16 not bought. The brief was rewritten against the second failure -- almost all batch-level rules removed so the author's whole attention went on option construction -- and that worked: distractor quality went from 10-of-16 weak to 9 strong / 3 plausible / 2 weak.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "c2d598719c488dea43f372c9db1f9784e30d69dd79859a6d0ef92e1137352c09",
+     "verdict": "14 authored, all 4-choice with the key present, blanks 77-89 words in, no key word in its own passage, no British spellings in the shipped three, no explanation naming a slot, 14 distinct topics with no collision against WIC-LIVE-TOPICS.md (generated from the BANK this time, after the previous batch duplicated a live item because its brief named a file that is not live). One cosmetic note: the author wrote the key first in 13 of 14, the same key-first habit two other authors have shown; it does not reach students because choices are shuffled at draw time and the render deals the slot flat."
+    },
+    "withsource": {
+     "passed": true,
+     "contentSha": "c2d598719c488dea43f372c9db1f9784e30d69dd79859a6d0ef92e1137352c09",
+     "verdict": "Three graders. TWO WRONG KEYS FOUND, the first in many batches. WIC5-11 keys \"circular\", and its own passage refutes it -- the playlists are \"assembled from music that stays quiet and even\", which is selection on an ACOUSTIC property, so the counts are biased, not circular; verified by reading the passage directly. WIC5-12 keys \"cover\" where the passage builds privacy, and \"supplying cover\" most naturally reads as concealment for wrongdoing. Also dropped: WIC5-01, whose key \"recall\" is a standard evaluation metric in a passage about language-model evaluation -- an ON-TOPIC homograph; WIC5-05, whose key's morphological relative sits in sentence one; WIC5-07, where \"talks like a sailor\" idiomatically means swears; WIC5-03, ambiguous across three options and overstating the literature (reviewer agreement is low, not zero); WIC5-10, weak distractors; and 04 and 09, graded easy by both graders. The read-aloud check found four of these."
+    },
+    "nosource": {
+     "passed": true,
+     "contentSha": "c2d598719c488dea43f372c9db1f9784e30d69dd79859a6d0ef92e1137352c09",
+     "verdict": "Options-only attack, three solvers, 14 candidates interleaved with 14 live items (this session's own inserts excluded so the control is not self-referential), slot dealt FLAT. CANDIDATE 38.1% against a 28.6% derived control, TWO solved unanimously; CONTROL 45.2%, four unanimous. Better than the previous round (45.8%, four unanimous) and worse than the one before (20.0%, zero). All three solvers independently named the same four items as the leakiest -- four glosses of one headword, where the option set reconstructs the word and the everyday sense is always the trap -- and ALL FOUR ARE CONTROL. Excluding them, the remaining 24 items score 33.3% in both arms, margin exactly 0.0."
+    },
+    "elimination": {
+     "passed": true,
+     "contentSha": "c2d598719c488dea43f372c9db1f9784e30d69dd79859a6d0ef92e1137352c09",
+     "verdict": "Solvers named the eliminable structures: near-synonym cancellation (one control item offers spareness and frugality, which cancel), off-register singletons, and broken parallel. One solver counted 12 of 28 sets admitting a free elimination. Of the three shipped, none was named: WIC5-08 was called one of the two best items in the batch, WIC5-13 was explicitly defended by the grader that had flagged the author's other two leak claims, and WIC5-02 drew only a note that \"density\" is mildly ambiguous between built and population density."
+    },
+    "tells": {
+     "passed": true,
+     "contentSha": "c2d598719c488dea43f372c9db1f9784e30d69dd79859a6d0ef92e1137352c09",
+     "verdict": "THE BATCH-LEVEL FINDING, AND IT IS WHY ONLY THREE SHIP. A grader found that all fourteen passages run ONE rhetorical machine -- a standard reading is cited, a confound is introduced, the blank names what the measure actually tracks -- and that SIX items are the identical relation (the measure records the confound, not the target). The consequence is a cross-item semantic tell no letter check can see: THE ANSWER IS ALWAYS THE DEFLATIONARY OPTION. A student who never reads a passage and picks the most unglamorous, mechanical noun scores well above chance, which is consistent with the 38.1% blind rate against a 25% line. Cut to one member of that family among the three shipped. This is the same defect that cost the first round of this commission six items, reappearing in a different dress."
+    }
+   }
   }
  ],
  "auditedCohorts": [

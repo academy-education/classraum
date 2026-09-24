@@ -2820,3 +2820,21 @@ structural checks are pre-flight only. See CLAUDE.md.
         WRONG                        0
 
   **The first draft of that checker was itself wrong in two familiar ways** — it re-implemented the value parser and read `2/3` as `2`, flagging a dozen sound items as mismatches, and it lumped 1e-14 float residue in with genuine approximations. Fixed by **importing** the already-self-tested parser instead of writing a third copy. The solve is now exact.
+
+- **2026-09-24** — **WORDS IN CONTEXT, THIRD ROUND: 3 OF 14. THE BRIEF FIX WORKED ON THE THING IT TARGETED, AND A DIFFERENT DEFECT TOOK OVER.** Craft and Structure deficit 6 → **3**. The three rounds of one commission now read **7 of 20, then 0 of 16, then 3 of 14.**
+
+  **The §14a fix is confirmed.** The failed round was diagnosed as a brief overloaded with batch-level rules, leaving the author nothing for the options. This brief stripped almost all of them — I ran the mechanical ones myself — and spent its length on option construction. **Distractor quality went from ten-of-sixteen graded weak to 9 strong / 3 plausible / 2 weak.** The thing the brief aimed at moved.
+
+  **TWO WRONG KEYS, THE FIRST IN MANY BATCHES, AND ONE IS REFUTED BY ITS OWN PASSAGE.** `WIC5-11` keys *circular*, and the passage says the playlists are *"assembled from music that stays quiet and even"* — selection on an **acoustic property**, not on play counts, so there is no feedback loop and the counts are **biased**, not circular. I verified it by reading the passage rather than trusting the grader. `WIC5-12` keys *cover* where the passage builds **privacy**, and *"supplying cover"* reads most naturally as concealment for wrongdoing.
+
+  **The read-aloud check (§14b) earned its place again**, finding four of the drops: the refuted key above, an **on-topic homograph** (`recall` keyed in a passage about language-model *evaluation*, where recall is a standard metric), a key whose morphological relative sits in sentence one, and a passage asserting that a novel *"talks like a sailor"*, which idiomatically means swears.
+
+  **THE BATCH-LEVEL DEFECT THAT DECIDED IT, AND IT IS NEW IN KIND.** A grader found that **all fourteen passages run one rhetorical machine** — a standard reading is cited, a confound is introduced, the blank names what the measure actually tracks — and that **six items are the identical relation**. The consequence is a cross-item semantic tell no letter, length or magnitude check can see:
+
+  > **The answer is always the deflationary option.** A student who never reads a passage and simply picks the most unglamorous, mechanical, non-intentional word scores well above chance.
+
+  That is consistent with the blind result (38.1% against a 25% line) and it is the *same defect that cost the first round six items*, wearing a different dress: last time the six shared a semantic relation, this time they share **which side of an evaluative axis the key sits on**. **When commissioning, require that the answer is sometimes the rich option and sometimes the plain one.**
+
+  **The instrument comparison, with the control's own leak isolated.** Candidate 38.1% against a 28.6% derived control, two unanimous; live control 45.2%, four unanimous. All three solvers independently named the same four items as leakiest — four glosses of one headword, where the option set reconstructs the word and the everyday sense is always the trap — and **all four are control**. Excluding them the remaining 24 score **33.3% in both arms, margin exactly 0.0.**
+
+  **A MEASUREMENT BUG OF MINE, CAUGHT BECAUSE THE RESULT WAS ABSURD.** My first tally reported one grader disputing the key on **13 of 14** items, which contradicted its own prose. It had emitted picks as option **words** while the other two used **letters**, so every comparison failed. A checker that silently converts a format mismatch into "this grader rejects everything" is the same family as the empty-denominator defect. Fixed by normalising through the render; the rule now refuses if any pick cannot be resolved to a letter.

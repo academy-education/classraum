@@ -1,0 +1,240 @@
+[
+  {
+    "id": "WIC5-01",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "A widely used benchmark asks language models questions about short paragraphs, and average scores on it have climbed for six years; the systems tested most recently are also some fifty times the size of the earliest ones. Researchers who rewrote the questions around fresh paragraphs, holding the reasoning identical, watched scores fall by twenty points. Much of the original benchmark text, it emerged, sits inside the collections the models are trained on. The yearly gains have chiefly measured ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "recall",
+      "scale",
+      "wording",
+      "training"
+    ],
+    "correct_answer": "recall",
+    "explanation": "Scores survive only while the paragraphs are the benchmark's own, and those paragraphs are inside the training collections; what improves year over year is the models' hold on text they have already seen: *recall*. *training* is the live rival and is the reason recall is possible, but the passage does not say the training procedure got better — it says the answers were in the data, which is a claim about what the models retain, not about how they were taught. *scale* is offered by the passage and would be the natural reading if the rewritten paragraphs had left scores intact, since a larger model reasoning better would answer either version. *wording* fails because the reasoning was held identical and only the paragraphs changed.",
+    "topic_tag": "benchmark contamination in language models",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC5-02",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "A city's thermal maps show that its coolest summer blocks are also its wealthiest, and the usual explanation is tree canopy. Canopy explains part of it. But those blocks were platted in the 1890s on lots twice the width used afterward, so their buildings cover a smaller share of each parcel, and open ground reradiates far less heat after dark than brick does. Hold lot width constant and the cooling credited to trees falls by half. The canopy figure had been absorbing the effect of ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "shade",
+      "density",
+      "income",
+      "age"
+    ],
+    "correct_answer": "density",
+    "explanation": "The variable that halves the tree effect when it is held constant is how much of each parcel is built on, which is *density*. *income* is the rival the first sentence sets up and would be the answer if wealth itself, rather than a measurable feature of the lots, were doing the work; the passage instead names a physical mechanism. *shade* is what canopy supplies, so it cannot be the confound canopy was absorbing. *age* is present in the 1890s date, but the argument turns on lot width rather than on the years since platting, and blocks of the same age with narrow lots would not be cool.",
+    "topic_tag": "urban heat and lot geometry",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC5-03",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Two reviewers assigned the same manuscript agree on a recommendation about as often as two reviewers assigned different manuscripts would by chance, and editors have long cited this as evidence that refereeing is arbitrary. One journal recorded reviewers' reasons alongside their verdicts. Reviewers named the same weaknesses in a given paper and differed over how much those weaknesses ought to count. Because only the verdict is tallied, a shared reading of a paper's flaws is recorded as a dispute about ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "facts",
+      "quality",
+      "taste",
+      "competence"
+    ],
+    "correct_answer": "facts",
+    "explanation": "The reviewers converge on what is wrong with the paper and diverge only on how much it matters; a tally that keeps just the verdict makes that convergence look like disagreement over what is there at all — over the *facts*. *quality* is the strong rival and is precisely what they do disagree about, so recording a dispute about quality would be accurate rather than misleading. *taste* names the real source of the divergence for the same reason and is likewise not the thing being misreported. *competence* is what the editors' arbitrariness reading impugns, but the statistic reports a dispute between reviewers, not a verdict on them.",
+    "topic_tag": "reviewer agreement statistics",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC5-04",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Strontium taken up in childhood locks into tooth enamel, and because it arrives through food grown on local rock, archaeologists use it to pick migrants out of a cemetery. At one busy port, its middens full of imported pottery, the method found nearly the whole buried population to be foreign-born. But marine food carries the strontium of seawater, the same everywhere and matching no bedrock, so a lifelong resident who ate mostly fish reads as a stranger. The signal at this site chiefly records ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "diet",
+      "ancestry",
+      "residence",
+      "commerce"
+    ],
+    "correct_answer": "diet",
+    "explanation": "Seawater strontium is uniform and unlike any bedrock, so the signal that made everyone look foreign tracks how much of the food came from the sea: *diet*. *residence* is the live rival because it is what the technique is designed to record, and it is exactly the reading the fish overturn. *ancestry* is the inference the excavators drew from 'foreign-born', but the enamel forms from food, not from parentage, and a child of immigrants raised on local grain would read as local. *commerce* is present in the imported pottery and would explain foreign objects, not a foreign signal inside teeth.",
+    "topic_tag": "strontium isotopes at a fishing port",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC5-05",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Restoring a faded release print means deciding what the film looked like in 1958, and the print cannot say: its magenta dye has outlasted the others, so every frame now leans pink. The camera negative survives but was printed on a stock long out of manufacture. Restorers fall back on the original laboratory's timing notes, sheets of numbers specifying how much of each primary to add, reel by reel. Whatever the finished restoration recovers, it is at bottom a record of ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "decisions",
+      "chemistry",
+      "damage",
+      "equipment"
+    ],
+    "correct_answer": "decisions",
+    "explanation": "The timing notes preserve the instructions a colorist issued, not the image those instructions produced on a stock nobody can still make; what survives is the set of choices: *decisions*. *chemistry* is the rival, since the differential fading of the dyes is the passage's most vivid detail, but that is what the restoration is trying to get past, not what the notes hold. *damage* names the same fading from the other side and is the problem rather than the record. *equipment* is gestured at by the discontinued stock, and the notes say nothing about it — which is why they cannot fix the appearance.",
+    "topic_tag": "color film restoration from timing notes",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC5-06",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "A cash transfer trial in one district raised school attendance by eleven points, and the finding is cited in policy papers. The trial was clean: randomization held, attrition was low. What the citations pass over is that the district was chosen because it already had a school within walking distance of every village. A transfer that removes the last obstacle works; one that removes the second-to-last need not. Eleven points is the value of cash under a condition the trial did not ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "vary",
+      "report",
+      "fund",
+      "impose"
+    ],
+    "correct_answer": "vary",
+    "explanation": "School proximity was the same in every arm of the experiment, so the trial can say nothing about what cash does where distance is still binding; the condition was held fixed rather than manipulated, and the missing operation is to *vary* it. *report* is the rival suggested by 'the citations pass over', but the passage attributes the omission to the readers, and the site-selection criterion is known, which means it was reported. *fund* attaches to the transfer rather than to the condition. *impose* would require the researchers to have created the schools, whereas the schools are why the district was picked.",
+    "topic_tag": "external validity of a cash transfer trial",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC5-07",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Run a topic model over ten thousand Victorian novels and it returns clusters of words that tend to co-occur: ship, deck, port, cargo. It is tempting to call such a cluster a theme. But the model sees only which words stand near which, and it will happily put one author's two seafaring novels together while splitting a single novel whose second half talks like a sailor and whose first half does not. Its clusters are units of ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "diction",
+      "plot",
+      "genre",
+      "authorship"
+    ],
+    "correct_answer": "diction",
+    "explanation": "The model splits one book and joins two others purely on whether the language is nautical, which makes its unit the way things are said: *diction*. *genre* is the live rival and would fit if the clusters tracked kinds of book, but a cluster that cuts a single novel in half is not sorting books. *plot* is the reading the word 'theme' invites and the one the passage rejects, since the model has no access to what happens. *authorship* is gestured at by the two novels by one writer, and the same example shows the model grouping them for their vocabulary rather than for their author.",
+    "topic_tag": "topic models and literary vocabulary",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC5-08",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Concert halls have been ranked for a century by reverberation time, the seconds a sound takes to fade, and the celebrated nineteenth-century halls cluster near two. So do several modern halls musicians dislike. Listening tests separate the groups on something else: how soon the first reflections arrive off the side walls, and whether they reach the two ears differently. Every hall that passes that test is narrow, and the narrow halls of the 1880s land near two seconds as well. The famous figure is best understood as a ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "symptom",
+      "standard",
+      "threshold",
+      "coincidence"
+    ],
+    "correct_answer": "symptom",
+    "explanation": "Narrowness produces the early lateral reflections that listeners actually respond to, and the old narrow halls also land near two seconds; the figure thus accompanies the good halls without causing them, which is what a *symptom* is. *coincidence* is the closest rival and would hold if the two seconds bore no relation to the width, but the passage ties both to the same narrow shape, so the pairing is not chance. *standard* describes how the number has been used and is exactly the use the passage undermines. *threshold* would require halls to become good on crossing two seconds, and the disliked modern halls sit there too.",
+    "topic_tag": "reverberation time and hall width",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC5-09",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "That people more often hear about jobs from acquaintances than from close friends has been replicated for fifty years, and the standard reading is that distant contacts reach into networks your friends cannot. A study that measured how many contacts of each kind a person actually had complicates this. Any one acquaintance passes along far less than any one friend does; there are simply many more acquaintances. Per relationship, closeness still helps. The classic finding is a statement about ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "numbers",
+      "distance",
+      "trust",
+      "reach"
+    ],
+    "correct_answer": "numbers",
+    "explanation": "Acquaintances win in the aggregate only because there are so many of them, and lose whenever the comparison is made one tie at a time; the finding is therefore about quantity, about *numbers*. *reach* is the rival and states the standard interpretation the study complicates, which is that distant ties tap regions of the network close ties cannot. *distance* names the property the fifty-year reading credits and the per-relationship result denies. *trust* is what closeness supplies and is on the losing side of the headline comparison even though it wins per tie.",
+    "topic_tag": "weak ties and job information",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC5-10",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "A brain region lights up when volunteers see photographs of people they love, and it lights up again when they see a favorite dessert; a press release concludes that the brain treats the two alike. In the published literature that same region responds during something like a hundred unrelated tasks. Learning that a task activates it therefore tells you very little about the task. The scan is evidence about love only to the degree that the region is ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "selective",
+      "involved",
+      "consistent",
+      "visible"
+    ],
+    "correct_answer": "selective",
+    "explanation": "An inference from activation back to a mental state holds only if few things produce the activation; a region that answers to a hundred tasks licenses nothing, so what the argument requires is that it be *selective*. *involved* is the live rival and is exactly what the scan does establish — the region is involved in both tasks — which is why involvement alone supports no conclusion about love. *consistent* is satisfied by the passage, since the region lit up both times, and the problem survives that. *visible* restates the imaging and is not in question at all.",
+    "topic_tag": "reverse inference from brain imaging",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC5-11",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Streaming services publish counts of how often each classical recording is played, and scholars have begun reading them as evidence of what listeners value. One study of a platform's thousand most-played tracks found the eighteenth century enormously overrepresented. Most classical listening on that platform, though, begins inside its own editorial playlists — focus, sleep, study — which are assembled from music that stays quiet and even. As evidence of preference, the counts are not incomplete but ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "circular",
+      "premature",
+      "biased",
+      "coarse"
+    ],
+    "correct_answer": "circular",
+    "explanation": "The platform selects the tracks, the selection produces the plays, and the plays are then read back as the listeners' verdict, so the measure returns what was fed into it: *circular*. *biased* is the near miss and would be right if the counts leaned in some direction independent of the measurement — a bias can be estimated and corrected, whereas nothing here is left over to correct with. *coarse* would mean the counts are too blunt, but their trouble is not resolution. *premature* would apply to a judgment made too early, and the passage objects to the structure of the inference rather than its timing.",
+    "topic_tag": "streaming counts and curated playlists",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC5-12",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "When a company moved out of private offices, which had been allocated by rank, into an open floor, face-to-face conversation fell by seventy percent while email rose. The result is usually reported as a paradox: take down the walls and people talk less. Observers on the floor noticed that the new layout had also removed every place to hold a conversation nobody else could overhear. Employees had not stopped needing to talk. What the old offices had been supplying, and nobody had costed, was ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "cover",
+      "space",
+      "status",
+      "quiet"
+    ],
+    "correct_answer": "cover",
+    "explanation": "What vanished was somewhere to say something out of anyone else's hearing, and the talk moved to a channel that restored it; the offices had been furnishing concealment, that is, *cover*. *quiet* is the strong rival, since an open floor is noisier, but the passage never mentions noise and the employees' problem is being heard rather than not hearing. *status* is supplied by the allocation by rank and is a real loss, though it would not send conversation into email. *space* is what the move was presumably meant to economize and is the one thing the open floor does not remove.",
+    "topic_tag": "open-plan offices and conversation",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC5-13",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Goalkeepers dive left or right on ninety-four percent of penalty kicks, though enough kicks are struck down the middle that standing still would save more of them. Economists call this action bias and put it down to the discomfort of doing nothing. Keepers themselves describe something narrower. Beaten after a dive, a keeper was outguessed by a good striker; beaten standing still, he failed to react. Both outcomes concede the same goal, and choosing between them is really a choice about ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "blame",
+      "probability",
+      "effort",
+      "habit"
+    ],
+    "correct_answer": "blame",
+    "explanation": "The two ways of conceding are identical in the score and differ only in what is said afterward about the keeper, so the dive buys him a better account of the goal: the choice is about *blame*. *probability* is the rival the first sentence sets up, and it is the consideration the keepers are shown to be overriding rather than the one they act on. *habit* fits the ninety-four percent and is what the economists' bias amounts to, but the keepers' own explanation is a reason, not an ingrained reflex. *effort* is visible in the dive and would not distinguish the two outcomes, which cost the same goal either way.",
+    "topic_tag": "penalty kicks and action bias",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC5-14",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "A dance notated in 1935 can be reconstructed step by step, and companies do reconstruct it; audiences who have seen the result beside film of the original call them different works. The score fixes where each foot goes and for how long, and today's dancers execute it exactly. Everything the notation is good at, the revival gets right. The choreographer's own dancers, though, worked on a raked wooden stage in shoes that made every landing audible to the back row. What the score cannot carry is the dance's ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "weight",
+      "shape",
+      "sequence",
+      "duration"
+    ],
+    "correct_answer": "weight",
+    "explanation": "The detail the passage adds is the force of the landings, audible at the back of a wooden stage, and force is the one thing a record of positions and timings omits: the dance's *weight*. *shape* is the live rival and names what the score does carry — where each foot goes — which is why the revival gets the figures right and still looks wrong. *duration* is stated outright as recorded, in 'for how long'. *sequence* follows from step-by-step notation and is likewise preserved, since the reconstruction proceeds step by step.",
+    "topic_tag": "dance notation and force",
+    "difficulty": "medium"
+  }
+]
