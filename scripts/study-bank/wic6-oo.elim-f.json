@@ -1,0 +1,107 @@
+{
+  "1": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "Four unrelated nouns (durability / wealth / settlement / carpentry) with no lexical overlap, no number or part-of-speech mismatch, and no option a humanities or science passage could not plausibly contain; 'carpentry' is the most concrete but a craft-history passage would use it freely."
+  },
+  "2": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "Three methodological/organizational adjectives plus one affective one ('sentimental') is a register split, but 'sentimental' is ordinary humanities vocabulary rather than an off-register technicalism, so nothing can be cut without the stem."
+  },
+  "3": {
+    "eliminated": ["A", "C"],
+    "structure": "near-synonym cancellation",
+    "note": "This is a translation set, and 'faithful' and 'literal' are near-interchangeable in that discourse, so neither can be the unique key; the live axis is 'literal' vs its antonym 'idiomatic', which is exactly what the surviving pair (exacting / idiomatic) reflects."
+  },
+  "4": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "equivocal / idiosyncratic / derivative / inconsequential are four distinct evaluative faults on four different axes (clarity, uniqueness, originality, importance) with no pair collapsing and no register outlier."
+  },
+  "5": {
+    "eliminated": ["B"],
+    "structure": "broken parallel (number)",
+    "note": "'compounds' is the only plural among three singular/mass nouns and the only option readable as a finite verb, so it cannot fill the same slot as mutation / advantage / time."
+  },
+  "6": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "Four third-person-singular transitive verbs, all taking the same kind of abstract object; 'withstands' and 'invites' sit loosely on a resist/attract axis but are not synonyms and neither is excluded."
+  },
+  "7": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "'coeval' and 'successive' form a same-time/one-after-another temporal axis, but that pairing only suggests where the key might live - it excludes nothing, and 'conjectural' and 'unremarkable' remain legal fills."
+  },
+  "8": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "generous / provisional / incontrovertible / representative all modify evidence or a sample; 'provisional' vs 'incontrovertible' is an antonym axis but no two options collapse and none is off-register."
+  },
+  "9": {
+    "eliminated": ["A"],
+    "structure": "off-register singleton (legal)",
+    "note": "'dispositive' is courtroom vocabulary - a settled-by-this-alone finding - and sits outside the register of an SAT humanities or science passage, whose other three options (contested / ubiquitous / premonitory) are general academic."
+  },
+  "10": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "person / lineage / recipe / trade are all plausible vehicles for transmitted knowledge; 'person' is the most ordinary word but SAT words-in-context keys are routinely ordinary words, so commonness is not a cut."
+  },
+  "11": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "exposed / obeyed / resented / corrected are four distinct past participles forming two loose pairs (reveal-vs-fix an error, comply-vs-chafe at a rule) with no lexical synonymy and no grammatical mismatch."
+  },
+  "12": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "unusual / unmeasured / imaginary / irrelevant each negate a different property (frequency, quantification, existence, bearing); nothing collapses and no register outlier."
+  },
+  "13": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "circular / incomplete / unwarranted / premature are four separable argument faults (assumes its conclusion, has gaps, is unsupported, is drawn too early); 'unwarranted' and 'premature' feel close in the abstract but a passage distinguishes them cleanly, so this is functional overlap, not lexical synonymy."
+  },
+  "14": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "Two crossing axes (decisive/secondary for weight, plausible/fanciful for credibility) leave all four options legal; an antonym pairing on its own excludes nothing."
+  },
+  "15": {
+    "eliminated": ["A"],
+    "structure": "off-register singleton (computing/formal-logic)",
+    "note": "'malformed' is the vocabulary of malformed input or a malformed query; academic prose calls a bad question ill-posed or poorly framed, and the other three (academic / contested / unanswerable) are all natural modifiers of 'question'."
+  },
+  "16": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "reversible / predictable / accidental / gradual each name a different property of a process (direction, lawfulness, intent, rate) with no pair collapsing."
+  },
+  "17": {
+    "eliminated": [],
+    "structure": "none",
+    "note": "'evaporation' and 'drainage' both remove water from a site and so overlap functionally, but they are mechanistically distinct (to air vs into the ground) and a passage separates them easily; 'settlement' is the odd process but is not excluded."
+  },
+  "18": {
+    "eliminated": ["B", "C"],
+    "structure": "near-synonym cancellation",
+    "note": "'surpassed' and 'outgrown' both mean superseded when said of a theory or method, so neither can be the unique key; 'forgotten' and 'abandoned' survive because passive loss and deliberate relinquishment are genuinely distinct."
+  },
+  "19": {
+    "eliminated": ["B", "D"],
+    "structure": "near-synonym cancellation",
+    "note": "'frugality' and 'spareness' are the same austerity/plainness notion in noun form and cancel each other; 'prosperity' is their antonym and 'machinery' is the concrete outlier, both of which survive."
+  },
+  "20": {
+    "eliminated": ["B"],
+    "structure": "off-register singleton (promotional)",
+    "note": "'publicize' belongs to publicity and marketing rather than to the scholarly register of discern / chronicle / instruct, which are the three verbs such a passage would use of an observer or a record."
+  },
+  "21": {
+    "eliminated": ["D"],
+    "structure": "broken parallel (selectional mismatch)",
+    "note": "preserved / translated / invented all take a text, tradition or artifact as object, while 'disciplined' selects a person or a practice, so it cannot fill the same slot as the other three."
+  }
+}

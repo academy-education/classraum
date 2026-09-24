@@ -1,0 +1,87 @@
+[
+ {
+  "id": "WIC6-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "passage": "For a century the brightness of a variable star was estimated by eye: the observer compares it with two neighbors of known brightness and splits the interval between them by judgment. Photometers now do that job to a thousandth of a magnitude, and yet the professional surveys still solicit the eye estimates. A network of amateurs covers the whole sky on every clear night, while a telescope covers one field. The older method survives on grounds that are almost entirely ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "empirical",
+   "logistical",
+   "sentimental",
+   "institutional"
+  ],
+  "correct_answer": "logistical",
+  "explanation": "The reason given for keeping the eye estimates is coverage — many observers across the whole sky against one instrument on one field — which is a question of arranging people and time rather than of data quality, so the grounds are *logistical*. *empirical* is the rival a reader expects, since eye estimates are observations, but the passage concedes the photometer is a thousand times more exact, so nothing about the evidence itself favors the old method. *sentimental* would mean the surveys keep the practice out of attachment to it, and the passage supplies a working reason instead. *institutional* would locate the reason in the habits of the professional bodies, whereas the sentence attributes it to what a scattered network can physically do.",
+  "topic_tag": "visual estimates of variable stars",
+  "difficulty": "medium"
+ },
+ {
+  "id": "WIC6-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "passage": "A salt marsh keeps pace with rising water by an arrangement that looks like luck. When a high tide floods the marsh more deeply, the water slows further as it spreads through the grass and drops more of the silt it carries, so the surface gains most in exactly those years when it lies under water longest. Nothing in this anticipates the sea. The rising water is not something the marsh survives but something it ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "requires",
+   "withstands",
+   "measures",
+   "invites"
+  ],
+  "correct_answer": "requires",
+  "explanation": "Silt arrives only when the tide covers the marsh, and the deeper the flooding the more the surface gains, so the flooding is the marsh's source of material: it *requires* the water it appears to be threatened by. *withstands* is a near restatement of *survives*, the word the sentence is set against, so it cannot be the contrast the sentence is building. *invites* would mean the marsh draws the water in; the tide arrives on its own and the grass only slows it once it is there. *measures* fits the image of a surface that records each flood, but the passage describes the marsh gaining height, not registering a level.",
+  "topic_tag": "salt marsh accretion",
+  "difficulty": "medium"
+ },
+ {
+  "id": "WIC6-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "passage": "Bakers attribute the character of a sourdough starter to the place where it was raised, and starters kept in different cities do in fact differ. When sixteen of them were sequenced, the closest match for the organisms in each was found not in the local flour and not in the local air but on the hands of the baker who fed it; a starter handed to a new baker takes on that baker's organisms within weeks. What a starter carries is not the signature of a place but of a ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "trade",
+   "person",
+   "recipe",
+   "lineage"
+  ],
+  "correct_answer": "person",
+  "explanation": "The organisms track whoever is feeding the jar, and they change over when the jar changes hands, so what the starter records is a *person*. *lineage* is the rival that sounds most like how bakers talk about starters, and it is exactly what the evidence removes: a starter that is repopulated by each new keeper carries nothing forward from its ancestors. *recipe* would mean the method of feeding is what differs, but the passage locates the match on the baker's skin rather than in what the baker does. *trade* would make the organisms a property of baking itself, shared across the craft, and the passage rules that out twice: starters in different cities differ, and each one matches one named pair of hands.",
+  "topic_tag": "microbial communities in sourdough starters",
+  "difficulty": "medium"
+ },
+ {
+  "id": "WIC6-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "passage": "Histories of the medieval English village describe a house of cruck frame on a stone sill, and every example still standing is built that way. Manorial accounts from the same parishes record repairs to walls of mud and stake at ten times the rate, and walls of mud and stake leave nothing behind. What survives from the period is therefore a record of medieval ______ rather than of medieval housing.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "durability",
+   "carpentry",
+   "wealth",
+   "settlement"
+  ],
+  "correct_answer": "durability",
+  "explanation": "The two kinds of wall are separated in the passage by one property only — whether anything is left of them — so the standing houses are a sample of what lasted, a record of *durability*. *wealth* is the explanation a reader is likely to import, since timber and stone cost more than mud and stake, but the passage says nothing about cost and the manorial accounts are cited for frequency rather than price. *carpentry* names the technique the surviving houses display and would be the answer if the contrast were between framed and unframed building rather than between what endures and what does not. *settlement* describes where villages stood, which is not what the two wall types distinguish.",
+  "topic_tag": "survival bias in medieval vernacular building",
+  "difficulty": "hard"
+ },
+ {
+  "id": "WIC6-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "passage": "Map publishers once planted nonexistent hamlets in their road atlases so that a competitor's copy would give itself away. One such trap, a crossroads in the Catskills, acquired a general store: people who had found the name on a map drove out to it and took for granted that a settlement belonged with the name. When a rival atlas printed the name, the suit collapsed. The trap is remembered less as a clever defense than as a fiction its readers ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "exposed",
+   "corrected",
+   "resented",
+   "obeyed"
+  ],
+  "correct_answer": "obeyed",
+  "explanation": "The readers did not test the name against the ground; they went to the place the map specified and supplied what the map implied should be there, treating the map as an instruction. That is what it is to have *obeyed* it. *exposed* is what the lawsuit was designed to make a competitor do and is the opposite of what the drivers did, since their store made the fiction true rather than visible. *corrected* would describe a reader who amended the map, whereas these readers amended the landscape. *resented* imports a hostility the passage never reports.",
+  "topic_tag": "copyright traps in road atlases",
+  "difficulty": "hard"
+ }
+]

@@ -2973,3 +2973,42 @@ structural checks are pre-flight only. See CLAUDE.md.
   **One cross-item defect found exactly rather than by eye:** `settlement` is the only option word appearing in two different items (`WIC6-04`, `WIC6-08`) out of 47 distinct options. Two solvers noticed unprompted and one said it read like "a common built-environment passage". Not a leak on this evidence, but it is a free cross-item association and should not survive into the insert.
 
   With-source half still running; **no item inserted on the blind half alone.**
+
+- **2026-09-24** — **SAT R&W 15 → 16 COMPLETE FORMS. 12 authored, 5 kept, 4 banked** (`rw-v15-wic`, cohort sha `ea12e8a7`). Craft and Structure 237 → 241 against 15 per form. → **A49**
+
+  **The gate rejected the fifth item and I let it.** `WIC6-05` was graded **easy** by grader majority, and `accepts.mjs` rejects easy under the default hard band. It was left in the kept file deliberately rather than pulled by hand: if the rule is looser than I believe it is, the only way to find out is to hand it something that ought to fail. It refused, with a reason.
+
+      INSERT WIC6-01  medium, key 3/3     REJECT WIC6-05  graded easy in a batch
+      INSERT WIC6-02  medium, key 3/3                     commissioned hard
+      INSERT WIC6-08  hard,   key 3/3
+      INSERT WIC6-10  hard,   key 3/3
+
+  **BOTH HALVES RAN AND THEY FOUND DIFFERENT THINGS, WHICH IS THE POINT.**
+
+      nosource   candidate 27.8% (10/36) vs its own 28.6% derived line
+                 live control 44.4% (12/27), shape-matched, my own cohorts excluded
+                 margin -16.7 — the batch leaks LESS than the shipped bank
+      withsource three graders, all agreeing with all 12 keys — and four items
+                 dropped anyway on EXCLUSIVITY
+
+  The blind half found one item (`WIC6-06`, three desertion verbs with the key outside). The with-source half found four more that no options-only render can see: `WIC6-03` non-exclusive 3/3, `WIC6-07` 2/3, `WIC6-09` 2/3, `WIC6-12` solvable from the blank's own sentence 2/3. **In three of the four the graders found the explanation asserting a defeater that does not hold** — conceding the rival reading and then treating the concession as a refutation. That is an authoring defect the key-checking half is structurally blind to, since every key was right.
+
+  **The majority threshold was fixed before the third grader returned.** With one grader an exclusivity flag is a verdict; with three it needs a rule, and deciding how many graders it takes after seeing the answers is choosing a result. 2 of 3, mirroring `accepts.mjs`'s own key rule.
+
+  **A RULE I INVENTED AFTER SEEING THE DATA, CAUGHT IN MY OWN SCRIPT.** The first verdict pass treated any non-null `read_aloud_flag` as a drop and returned 5 survivors. That condition is not in the pre-registration — it is post-hoc, and post-hoc in the *strict* direction is the same error as loosening a bar, just harder to notice because it looks like rigour. The same pass **missed** pre-registered condition 6, which drops `WIC6-11` (two of three distractors free-strikable). Corrected to the six conditions as written: 6 survivors.
+
+  **`WIC6-04` was then dropped although it PASSED.** It and `WIC6-08` were the only two items sharing an option word — `settlement`, 1 of 47 distinct options — and two blind solvers noticed the repeat unprompted without being asked about cross-item structure. Shipping both keeps a free association live. 08 kept on difficulty (hard/strong vs medium). The kept-file builder **refuses outright** if any option word is still shared, so this cannot quietly return.
+
+  **THE ELIMINATION PROBE CONVERGED WITH THE DROP RULE WITHOUT SEEING IT.** An independent solver, told to name eliminable options without the passage and to answer "none" where it saw nothing, cut 8 of 21 sets:
+
+      all 5 KEPT items          0 cuttable
+      the 7 DROPPED candidates  4 cuttable
+      the 9 LIVE controls       4 cuttable
+
+  The rejects and the shipped bank cut at the same rate; the kept set at none. **The probe's refusals are why the number is worth quoting:** it declined to count antonym pairing, present in at least 5 sets, because it names the axis and narrows to two without saying which member dies — counting it would have inflated the yield from 8 to about 13. It also discarded "the generic common word is never the key", since words-in-context keys are routinely ordinary words.
+
+  **The author's declared free eliminations were 3 of 6 real, and it missed live ones on two items it had called clean** (`WIC6-05` *person*, `WIC6-12`). All three that held are the not-X-but-Y frames it had built deliberately. **Fourth author in a row to declare the constraints it had already satisfied.** The standing instruction — ask the grader to judge the author's list AND search independently — is what caught the rest.
+
+  **What the v4 fix bought.** v4 died because all fourteen keys were the deflationary option; v6 was briefed to split rich/plain and reports 6/6. The blind result is consistent with that having worked, and is the first words-in-context batch to measure BELOW its own control.
+
+  **SAT R&W: 16 complete forms.** The module-2 hard route is unchanged at 3, still capped by Standard English Conventions at 27 hard against ~7 per form — this batch added 2 hard C&S and does not touch that constraint.
