@@ -74,14 +74,23 @@ export function audit(item) {
     .filter(o => o.text !== item.correct_answer)
     .map(o => ({ text: o.text, by: bounds.filter(b => !test(b, o.v)) }))
     .filter(o => o.by.length)
-  /* AN INERT BOUND IS NOT A DECLARATION. A bound every option already satisfies
-   * constrains nothing, and an item whose bounds are ALL inert has effectively
-   * declared nothing while passing. Found 2026-09-24: a batch passed with zero
-   * dead options where the declarations were `Number.isInteger(v)` on sets of
-   * four integers and `v > 12` on a set whose smallest option was 60, while a
-   * grader found a live undeclared bound on all 18 items and seven that lose
-   * ALL THREE distractors to one. Passing by declaring nothing is the
-   * "check that cannot read its input" pattern wearing a new coat. */
+  /* "INERT" IS REPORTED, NOT PENALISED -- AND THE FIRST VERSION OF THIS GOT IT
+   * BACKWARDS. A bound satisfied by all four options kills nothing. I added a
+   * guard failing any item whose bounds were ALL inert, reasoning that such an
+   * author had declared nothing while passing. An author caught it within the
+   * hour by proving the `ok` branch unreachable: a declared bound partitions
+   * into exactly three cases -- inert, kills a distractor, kills the key --
+   * so "declared, none inert, nothing dead" CANNOT occur, and a genuinely
+   * CLEAN item (no distractor violates any stated constraint) necessarily has
+   * all-inert bounds. The guard was failing precisely the items it should pass.
+   *
+   * The real defect it was aimed at is not inertness. It is an author
+   * declaring a WEAK bound while a STRONGER one goes undeclared -- `v > 12` on
+   * a set whose smallest option is 60, when the live bound was `v > 144` and
+   * killed all three distractors. THIS TOOL CANNOT SEE THAT, because it only
+   * ever tests what it is handed. Finding it took a grader reading the stems.
+   * So the inert count is printed as information and the run does not fail on
+   * it; the header's warning is the operative one. */
   const inert = bounds.filter(b => opts.every(o => test(b, o.v)))
   return { declared: true, dead, keyFails, nBounds: bounds.length, inert, allInert: inert.length === bounds.length }
 }
@@ -116,11 +125,11 @@ if (RUN_AS_CLI) {
       if (!r.declared) { undeclared++; console.log(`  ${String(x.id).padEnd(12)}no bounds declared — NOT a pass, only a silence`); continue }
       if (r.keyFails.length) { keyBad++; console.log(`  ${String(x.id).padEnd(12)}KEY VIOLATES ITS OWN BOUND: ${r.keyFails.join(' AND ')}`); continue }
       if (r.dead.length) { withDead++; console.log(`  ${String(x.id).padEnd(12)}${r.dead.length} DEAD of 3: ` + r.dead.map(d => `${d.text} (${d.by[0]})`).join(', ')) }
-      else if (r.allInert) { allInert++; console.log(`  ${String(x.id).padEnd(12)}ALL ${r.nBounds} BOUND(S) INERT — every option already satisfies them, so nothing was declared`) }
+      else if (r.allInert) { allInert++; console.log(`  ${String(x.id).padEnd(12)}no declared bound kills anything (${r.nBounds} bound(s), all inert)`) }
       else console.log(`  ${String(x.id).padEnd(12)}ok — ${r.nBounds} bound(s), ${r.inert.length} inert, no distractor dies`)
     }
   }
-  console.log(`\n  ${n} items: ${withDead} with a dead option, ${keyBad} whose key breaks its own bound, ${undeclared} with nothing declared, ${allInert} whose bounds are ALL INERT`)
-  if (allInert) console.log('  An all-inert item has passed by declaring nothing. Treat it as undeclared.')
-  process.exitCode = (withDead || keyBad || allInert) ? 1 : 0
+  console.log(`\n  ${n} items: ${withDead} with a dead option, ${keyBad} whose key breaks its own bound, ${undeclared} with nothing declared`)
+  if (allInert) console.log(`  ${allInert} item(s) where no declared bound kills anything. That is what a CLEAN item looks like\n  AND what a vacuous declaration looks like — this tool cannot tell them apart. Someone other\n  than the author must ask, per item, what the stem rules out for free.`)
+  process.exitCode = (withDead || keyBad) ? 1 : 0
 }
