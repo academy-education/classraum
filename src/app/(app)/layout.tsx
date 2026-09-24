@@ -346,15 +346,30 @@ export default function AppLayout({
           bottom: 'calc(var(--safe-area-bottom) * 0.5)',
         }}
       >
-      {/* Sidebar - always visible during loading */}
-      {sidebarVisible && (
+      {/* Sidebar — ALWAYS MOUNTED, collapsed by width.
+          This used to be `{sidebarVisible && <Sidebar .../>}`, which unmounted
+          the whole subtree on collapse and rebuilt it on expand. Remounting
+          re-ran Sidebar's own role fetch (sidebar.tsx, duplicating the role
+          query this layout already runs) and both queries inside
+          useCampAcademy — three Supabase round trips per expand — and threw
+          away its internal state, so the open submenu closed and the panel
+          flashed through its loading shape. That is the "it reloads every time
+          I click collapse" report; no router was ever involved.
+          Width is the only thing that changes now. The inner panel keeps its
+          w-64 so its contents do not reflow while the wrapper animates, and
+          `inert` (React 19) takes the collapsed panel out of the tab order,
+          which `w-0 overflow-hidden` alone does not do. */}
+      <div
+        className={`flex-shrink-0 overflow-hidden transition-[width] duration-200 ease-in-out motion-reduce:transition-none ${sidebarVisible ? 'w-64' : 'w-0'}`}
+        inert={!sidebarVisible}
+      >
         <Sidebar
           activeItem={activeNav}
           userName={userName}
           onHelpClick={handleHelpClick}
           academyLogo={academyLogo}
         />
-      )}
+      </div>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
