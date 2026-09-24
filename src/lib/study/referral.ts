@@ -17,8 +17,11 @@
 /** Credits to EACH side (referrer + referee) when the code is redeemed. */
 export const REFERRAL_SIGNUP_CREDITS = 1
 
-/** Extra credits to EACH side when the referred friend first goes paid. */
-export const REFERRAL_PREMIUM_CREDITS = 10
+/** Extra credits to EACH side when the referred friend first goes paid.
+ *  Lowered 10 -> 5 on 2026-09-25. Every surface must read this constant:
+ *  two places had the old value typed in by hand and would have gone stale
+ *  (the referral page's fetch fallback and the profile row's subtitle). */
+export const REFERRAL_PREMIUM_CREDITS = 5
 
 /** Length of a generated referral code. */
 export const REFERRAL_CODE_LENGTH = 6

@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { isKakaoShareEnabled, shareToKakao } from '@/lib/kakao-share'
 import { inviteUrl } from '@/lib/deeplinks'
+import { REFERRAL_SIGNUP_CREDITS, REFERRAL_PREMIUM_CREDITS } from '@/lib/study/referral'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyScrollShell, StudyMetric, StudyPageTransition } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
@@ -77,8 +78,12 @@ function ReferralInner() {
 
   useEffect(() => { void load() }, [load])
 
-  const signupReward = data?.signupReward ?? 1
-  const premiumReward = data?.premiumReward ?? 10
+  // Fallbacks come from the shared constants, not from literals. These read
+  // `?? 1` and `?? 10`; when the premium reward changed the page would have
+  // shown the old number to anyone whose /api/study/referral call had not
+  // landed yet — the copy and the grant disagreeing only during loading.
+  const signupReward = data?.signupReward ?? REFERRAL_SIGNUP_CREDITS
+  const premiumReward = data?.premiumReward ?? REFERRAL_PREMIUM_CREDITS
 
   return (
     <StudyScrollShell
