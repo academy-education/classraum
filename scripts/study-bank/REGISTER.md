@@ -2866,3 +2866,51 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Sixth consecutive batch where the author's "hard" label was demoted** (6 → 2 here). The grader's read is the right one: *"the pattern is now consistent enough to be a spec problem rather than a grader disagreement."*
 
   **One more solver-classification reversal.** A solver flagged 21 of 36 sets as admitting a free elimination; **those scored 22.2% while the 15 it called clean scored 53.3%.** Confident structural stories keep pointing at the wrong half, which is why they are scored rather than believed.
+
+- **2026-09-24** — **THE ALGEBRA SISTER BATCH SCORED A PERFECT ZERO ON THE OPTIONS-ONLY ATTACK AND STILL FAILS, BECAUSE THAT ATTACK WITHHOLDS THE STEM AND FOUR OF THE TEN LEAK THROUGH IT.** 10 SAT Algebra items (`sat-math-v15-alg.batch.json`, pin `44cbadf658a7303d`), **0 shipped**. → **A46**
+
+  **The cleanest numbers any maths batch has produced this session.** Dead-options exit 0, all ten solves exact, composition checker 0 of 10, sandbox 10/10 keys and 30/30 distractors, magnitude z = 0.41 / 1.18 / −1.26. Then a **fresh** blind attack with new solvers against a composition-matched live control, this session's own inserts excluded, flat key deal, both arms on the same 30.0% line:
+
+      arm                          pooled   control   margin   unanimous
+      CANDIDATE sat-math-v15-alg    30.0%     30.0%     +0.0        1
+      CONTROL live Algebra          40.0%     30.0%    +10.0        3
+
+  Exactly at the control's own chance line, and **better than the shipped bank**. On the instrument as I have been running it, this is a pass.
+
+  **IT IS NOT A PASS, AND THE REASON IS A HOLE IN THE INSTRUMENT, NOT IN THE BATCH.** `make-oo-render.mjs` emits *"Which of these four values is the answer? (the question itself is withheld)"* and four bare numbers. That is the correct instrument for the one question it asks — **can the option SET alone decide it?** — and four bare values are meaningless until something says what they measure, which is exactly why numeric maths has always scored clean. But a free elimination that comes from **reading the stem and doing no arithmetic** is invisible to it by construction. The with-source grader, holding both, found one on **four of ten**:
+
+      SM15L-02   range        2x+5y=46, x>0, so 5y<46      kills 30 and 78   2 of 3
+      SM15L-06   closure      stem asks for a SUM; -2+8=6   kills -2 and 10   2 of 3
+      SM15L-08   adjacency    "greatest integer STRICTLY    kills 5 and 10    2 of 3
+                              below"; only pair is (7,8)
+      SM15L-01   monotonicity 4 is the no-denominator       kills 4           1 of 3
+                              answer
+      SM15L-09   denominator  5x+2x=7x from two printed     kills 10/3        1 of 3
+                              coefficients
+
+  **Three of those five the author never found** (01, 06, 08) — it declared six candid worries and the grader's judgement was that **two were genuinely free (02, 09), three were correctly dismissed (03, 01-as-stated, 06-as-stated), and the live tells were elsewhere.** An author auditing its own stems for free eliminations found the wrong ones.
+
+  **AND EVERY DECLARED BOUND IN THE FILE IS INERT — ALL 20 ACROSS ALL 10, KILLING ZERO OPTIONS.** Identical to the Advanced Math finding, on a batch written afterwards by a different author that had been told about it. The grader **break-tested the checker before reporting the zero**, handing it the six *undeclared* bounds and confirming it fires (`v<46/5` kills 30 and 78; `v%3===0` kills three). So the all-zero is a measurement, not a dead check. The declarations are decorative: **an author declares the constraints it has already satisfied, which are by definition the ones that eliminate nothing.** That is why the guard I built for this was backwards — see the reversal below — and why the tool cannot be the gate here.
+
+  **Applying the standing drop rule, exactly.**
+
+      SM15L-03   solved blind 3/3 (the only unanimous)                    DROP
+      SM15L-02   distractors graded POOR + 2-of-3 free kill               DROP
+      SM15L-06   distractors graded FAIR + 2-of-3 free kill               DROP
+      SM15L-08   2-of-3 free kill + explanation misstates its own method  DROP
+                 ("64 divided by 6" prints 10.67; the path needs a
+                 flooring step the prose never states)
+      SM15L-05   stem not well-formed                                     DROP
+      SM15L-01   1-of-3 free kill                                         keep
+      SM15L-09   1-of-3 free kill                                         keep
+      SM15L-04, 07, 10   clean                                            keep
+
+  **Five survive against a need of seven. Held.** The grader's own recommendation was seven — but it reached seven by *repairing* 03, 06 and 08 after measuring them, and repairing an item in response to the round that caught it is fitting to the instrument. The author had already warned about exactly this: *"Do not read 25.0% as a clean batch. Three of the four rounds were run on files edited in response to the previous round, against the same attacker population."* The fresh independent attack was run for that reason and is the number above.
+
+  **Two batch-level defects that survive any per-item repair**, so the held file needs re-authoring rather than trimming:
+  - **04, 07 and 10 are one motor skill** — "recover a constant rate, apply it across an interval" — and the author declared only the pairs 01/09 and 02/05, missing that its own 04/07 pair was a **triple**, with 10 closer to 07 than 04 is. Three of ten slots on one skill.
+  - **Zero hard items.** Grader 4 easy / 6 medium / 0 hard against the author's 2 / 5 / 3; all three "hard" labels demoted. **Seventh consecutive batch of demotions** — at this point the demotion is the expected outcome of the brief, not a disagreement.
+
+  **All ten keys are correct** — solved independently before reading any explanation, five re-derived by a second route, none disputed. The batch is not wrong. It is guessable, and the checks that were supposed to see that could not.
+
+  **What actually changes.** The options-only attack keeps its job and loses its promotion: it answers *"can the options alone decide it?"* and must never again be reported as *"this batch does not leak."* A numeric maths batch needs **both** halves, and the with-source half is the only one that can see a stem-derivable elimination. Recorded in `CLAUDE.md`.

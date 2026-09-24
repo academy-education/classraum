@@ -584,3 +584,47 @@ return a number": a margin computed against a control with no room left is not
 a measurement. When fixing bars, state the control's attainable RANGE and
 confirm both bars sit inside it. A discard condition written only for the
 floor ("if the control comes in at chance") does not cover this.
+
+### Corollary: the options-only attack withholds the stem, so it cannot see a free elimination that needs one
+
+`make-oo-render.mjs` prints "Which of these four values is the answer?
+(the question itself is withheld)" and four bare values. That is the right
+instrument for the question it asks — **can the option SET alone decide
+it?** — and it is why numeric maths has always measured clean: four bare
+numbers are meaningless until something says what they measure.
+
+On 2026-09-24 a 10-item SAT Algebra batch scored **30.0% against a 30.0%
+control, margin exactly +0.0, one unanimous** — at the control's own
+chance line and better than the shipped bank — and was still held. A
+with-source grader holding the stem *and* the options found a
+no-arithmetic elimination on **four of ten**: a range bound readable off
+one printed equation, an option set closed under addition when the stem
+asks for a sum, an "adjacency" tell where the stem promises "the greatest
+integer strictly below" and the set contains exactly one adjacent pair,
+and a monotonicity kill on the option that is the no-denominator answer.
+Each kills one or two of the three distractors. **None is visible to an
+attack that withholds the stem**, and three of the four were missed by the
+author auditing its own file.
+
+So:
+
+1. **A numeric batch needs both halves.** The options-only attack decides
+   what is guessable from the values; only a with-source read can decide
+   what is guessable from the values **plus the stem, without doing the
+   work.** A +0.0 margin means the first, never the second.
+2. **Never report an options-only result as "this batch does not leak."**
+   Report it as what it measured. The phrasing matters because the number
+   is genuinely good and reads as a clearance.
+3. **Do not ask the author to declare its own bounds and treat that as a
+   check.** Twenty declared bounds across ten items killed **zero**
+   options, on a batch written after the identical finding was recorded
+   and by an author that had been told about it. An author declares the
+   constraints it has already satisfied — which are, by construction, the
+   ones that eliminate nothing. The live eliminations are always in the
+   undeclared set. (This is also why a guard failing all-inert items was
+   backwards: a genuinely clean item *necessarily* has all-inert bounds.
+   Reverted the same day.)
+4. **A repair made in response to the round that caught it is fitting to
+   the instrument.** A grader that measures ten items and then recommends
+   seven by repairing three of them has not produced seven clean items.
+   Re-author, or hold.
