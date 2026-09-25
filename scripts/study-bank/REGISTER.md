@@ -3087,3 +3087,31 @@ structural checks are pre-flight only. See CLAUDE.md.
   **One machine defect worth fixing before any future insert:** `SM16A-06`'s `solve` returns `-14.75` while `correct_answer` is the string `"-59/4"`. A string-comparing key check fails it; a numeric one passes. Three distractor emitters have the same decimal/fraction split. **Neither reading is currently safe** — the emitter, not the item, is wrong.
 
   **All 30 keys are correct** across both batches, verified independently by graders who solved before reading any explanation, and all 90 distractor paths reproduce their printed values. Nothing here is wrong; it is guessable. Held, and **re-authored rather than repaired** — a repair in response to the round that caught it is fitting to the instrument, and `SM16A-14` is now the concrete proof that it can make an item worse.
+
+- **2026-09-25** — **A SEVENTH CHEAP PROXY, BUILT AND REFUTED THE SAME DAY BY ITS OWN BASE-RATE LINE.** `check-unique-residue.mjs`, `RESIDUE-PROXY-RESULT.md`. Nothing gated on it. → **A52**
+
+  The two v16 graders found 37 free strikes where the authors had declared three, and the most decisive were **pure divisibility** — `SM16L-10`'s key is the only option expressible as `102 + 25m`, three of three distractors gone in one glance. Divisibility is arithmetic, and the standing exception says an arithmetic defect gets an exact checker over the whole population rather than a sampling attack. So I built one: is the key the unique option in some small residue class?
+
+  **Version 1 fired on 14 of 14 Algebra items.** That reads as a catastrophic finding about the batch. It is a fact about integers:
+
+      20,000 random four-integer sets     some modulus <= 12 separates one member
+        uniform 1..200                                 98.3%
+        uniform 1..60                                  95.0%
+        clustered 100 +/- 20                           93.1%
+
+  **Four arbitrary integers are almost always separable.** The 14/14 was the expected result, and the only reason it was not written up as a disaster is that the base rate was measured instead of the fire rate being believed.
+
+  **Version 2 restricted the modulus to integers the stem actually PRINTS** — a solver can only apply `mod 25` if 25 is on the page. Real restriction, lower fire rate, and still dead, because the comparison that matters is not how often the KEY fires but how often a RANDOM OPTION does:
+
+      batch                key separated     random option separated
+      sat-math-v16-alg      11/14  78.6%          48/56   85.7%
+      sat-math-v16-adv       6/9   66.7%          25/36   69.4%
+      sat-math-v15-alg       9/9  100.0%          34/36   94.4%
+
+  **On two of three batches the key separates LESS often than a random option.** Recall against the graders' own divisibility findings was 2 of 3 at 18% precision — and at an 86% base rate, 2 of 3 is what indiscriminate firing gives you.
+
+  **Why it cannot work, recorded so nobody builds an eighth.** The grader did not reason from the stem's DIGITS but from its MEANING: *the total must be reachable by the second plan*, therefore `t ≡ 102 (mod 25)`. `13` and `25` are both printed in that stem and only one is load-bearing, because only one is a per-month rate in the equation the author never checked. Which printed integer is a live modulus depends on what the sentence says that integer DOES.
+
+  **The scoreboard is now seven**, and the honest reading is that six are dead and one is on probation: key letter spread, key length rank, punctuation asymmetry, concessive-pivot rate, option-family balance, unique residue class — all dead; **key-is-centre** survives one out-of-sample test at a third of its in-sample strength (A50) and is not a gate.
+
+  **The script is kept** rather than deleted, for two reasons: the base-rate machinery is reusable, and it now prints its own refutation on every run — a random-option base rate beside the key's rate, with the line *"if the two are close, this check is reading nothing."* A checker that cannot be misread is worth more in the tree than out of it. Its header leads with the refutation and points at the result file.
