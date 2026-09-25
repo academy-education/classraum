@@ -3141,3 +3141,22 @@ structural checks are pre-flight only. See CLAUDE.md.
   **The standing rule now:** unanimity is a batch-level comparison against the control's unanimity rate, never a per-item verdict alone. A per-item drop needs corroboration from the with-source half — disputed key, failed exclusivity, or a named free elimination — because that evidence is gathered independently of the blind solvers.
 
   **Also invalidated, and quoted several times today: every Wilson interval in this session's blind runs.** They assume independent picks; three correlated picks are worth closer to one, so the true intervals are roughly √3 wider than printed. Nothing was decided on an interval, but the WIC gate quoted "±17 points" as if it were the real precision, and it was not.
+
+- **2026-09-25** — **I SNAPSHOTTED AN AUTHOR'S FILE MID-WRITE AND HANDED THE STALE VERSION TO AN AUDITOR. SECOND TIME THIS SESSION.** `merge-halves.mjs` gains a closure check; the process lesson is the bigger half. → **A54**
+
+  The `sat-math-v17-alg-a` author ran 84 tool calls over 58 minutes. I merged its file when it had 7 items and looked finished. It was not finished — it was still rewriting `SM17L-A1`, and the version I merged was a draft **the author itself rejected minutes later**:
+
+      SM17L-A1 draft   {49, 52, 55, 61}   avg(49,55) = 52   AND   avg(49,61) = 55
+      SM17L-A1 final   {65, 70, 80, 85}   no closure relation
+
+  Its own report names the miss exactly: *"an A1 candidate whose options were 49, 52, 55, 61 — two arithmetic progressions... I had printed search candidates BEFORE the relation filter and adopted one."* It caught its own defect. I had already sent the defective file to an independent auditor, which is now auditing an item that no longer exists.
+
+  **The earlier instance this session was `git add` on two files while their author was still writing, committing a half-finished draft and then commissioning a repair on it.** Same error, different verb. **A file is not ready because it parses and has the right item count; it is ready when the agent reports done.**
+
+  **What the tool can fix, it now fixes.** `merge-halves.mjs` checked shared option values, shared keys, stem overlap and subskill shape — and had no closure check, so a set containing two averages passed through silently. Added, and break-tested by feeding it the author's own rejected draft: it fires (`52 = avg(49, 55) ; 55 = avg(49, 61)`) and is silent on the final file. It also distinguishes closure **on the key** from closure among distractors, since only the first is the leak that condemned `sat-math-v15-adv`.
+
+  **What the tool cannot fix** is reading a file too early, and no checker will catch that — the stale content was internally consistent and passed every structural test except the one I had not written yet.
+
+  **Handled without wasting the audit:** `SendMessage` is not available in this session, so the running auditor cannot be corrected mid-flight. Its findings on the other 13 items stand; `SM17L-A1` gets a separate spot-audit against the final content once it reports.
+
+  **Worth recording on its own: the author found a strike class none of my briefs named.** Four of its seven first drafts died to a **residue** argument rather than a value argument — `5 | 195` forcing `5 | y`; an integrality on one side forcing `k` to be a multiple of 5 *with no substitution at all*; a parity argument on `|2x+3|`. Its discriminator is the useful part and belongs in the brief: **a residue argument counts as a free strike only if it is cheaper than solving** — a coefficient visibly dividing its own constant, a term vanishing mod 2/3/5, an integrality forced by a denominator. A congruence reachable only *after* clearing denominators is not a shortcut, because the answer is one step further on.

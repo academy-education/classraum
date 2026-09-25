@@ -61,6 +61,35 @@ for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) {
    * LOOK-AT-THIS, never as a duplicate. */
   if (jac >= 0.45) console.log(`stem-overlap ${jac.toFixed(2)}: ${all[i].id} / ${all[j].id}  (boilerplate-dominated on maths — read them, do not trust the number)`)
 }
+/* CLOSURE, over the merged set and within each option set. Added after the
+ * merge below snapshotted a half MID-WRITE: the author was still working and
+ * its A1 draft `{49, 52, 55, 61}` carried avg(49,55)=52 AND avg(49,61)=55 --
+ * the author caught it itself minutes later, and I had already handed the stale
+ * file to an auditor. Two lessons, and the tool can only fix one: never merge
+ * before the agent reports done, and check closure here so a bad set cannot
+ * pass through the merge silently. */
+const num = x => { const t = String(x).trim().replace(/[$,%]/g, '')
+  if (/^-?\d+\/\d+$/.test(t)) { const [p2, q] = t.split('/').map(Number); return p2 / q }
+  return Number(t) }
+const near = (x, y) => Number.isFinite(x) && Number.isFinite(y) && Math.abs(x - y) < 1e-9 * Math.max(1, Math.abs(x), Math.abs(y))
+let closureHits = 0
+for (const it of all) {
+  const o = it.choices.map(c => ({ s: String(c), n: num(c) }))
+  if (o.some(z => !Number.isFinite(z.n))) continue
+  const hits = []
+  for (const t of o) for (let i = 0; i < o.length; i++) for (let j = i + 1; j < o.length; j++) {
+    const x = o[i], y = o[j]
+    if (t.s === x.s || t.s === y.s) continue
+    if (near(t.n, x.n + y.n)) hits.push(`${t.s} = ${x.s} + ${y.s}`)
+    if (near(t.n, (x.n + y.n) / 2)) hits.push(`${t.s} = avg(${x.s}, ${y.s})`)
+    if (near(t.n, x.n * y.n)) hits.push(`${t.s} = ${x.s} x ${y.s}`)
+  }
+  if (hits.length) { closureHits++
+    const isKey = hits.some(h => h.startsWith(String(it.correct_answer) + ' ='))
+    console.log(`CLOSURE ${isKey ? 'ON THE KEY' : 'among distractors'} in ${it.id}: ${[...new Set(hits)].join(' ; ')}`) }
+}
+if (!closureHits) console.log('no option set contains a sum, average or product of two others')
+
 const sub = {}
 for (const it of all) (sub[it.subskill] ??= []).push(it.id)
 console.log(`\nsubskills (${Object.keys(sub).length} distinct across ${all.length} items):`)

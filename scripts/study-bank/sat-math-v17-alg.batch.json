@@ -4,21 +4,21 @@
   "domain": "Algebra",
   "subskill": "a two-variable linear system in which neither variable cancels as printed, so both equations must be scaled before the subtraction, and the quantity requested is x + y rather than either variable alone",
   "difficulty": "medium",
-  "prompt": "7x + 4y = 301\n11x + 8y = 497\nIf (x, y) is the solution to the system of equations above, what is the value of x + y?",
+  "prompt": "9x + 4y = 360\n3x + 8y = 420\nIf (x, y) is the solution to the system of equations above, what is the value of x + y?",
   "choices": [
-   "49",
-   "52",
-   "55",
-   "61"
+   "65",
+   "70",
+   "80",
+   "85"
   ],
-  "correct_answer": "49",
-  "explanation": "Scaling the first equation by 11 and the second by 7 gives 77x + 44y = 3311 and 77x + 56y = 3479, and subtracting leaves 12y = 168, so y = 14. Then 7x = 301 - 4(14) = 245, so x = 35 and x + y = 35 + 14 = 49, which is \"49\". \"52\" comes from reaching 12y = 168 correctly but dividing 168 by 8, the y-coefficient printed in the second equation, rather than by the 12 the elimination produced; that gives y = 21, then 7x = 301 - 84 = 217 and x = 31, so x + y = 52. \"61\" comes from the same misstep with the other printed y-coefficient, dividing 168 by 4 to get y = 42, then 7x = 301 - 168 = 133 and x = 19, so x + y = 61. \"55\" comes from finding y = 14 correctly and then substituting into the first equation with the coefficient 4 dropped, writing 7x + 14 = 301, so x = 41 and x + y = 55.",
+  "correct_answer": "65",
+  "explanation": "Multiplying the second equation by 3 gives 9x + 24y = 1260, and subtracting the first equation from it leaves 20y = 900, so y = 45. Then 9x = 360 - 4(45) = 180, so x = 20 and x + y = 20 + 45 = 65, which is \"65\". \"85\" comes from reaching 9x + 24y = 1260 and 9x + 4y = 360 but combining the constants with the wrong sign, writing 20y = 1260 + 360 = 1620, so y = 81; then 9x = 360 - 324 = 36, x = 4 and x + y = 85. \"80\" comes from finding y = 45 correctly and then substituting into the first equation with the coefficient 4 dropped, writing 9x + 45 = 360, so x = 35 and x + y = 80. \"70\" comes from finding x = 20 correctly and then substituting into the second equation with the coefficient 3 dropped, writing x + 8y = 420, so 8y = 400, y = 50 and x + y = 70.",
   "bounds": [],
-  "solve": "var y=(7*497-11*301)/(7*8-11*4); var x=(301-4*y)/7; return String(x+y);",
+  "solve": "var y=(9*420-3*360)/(9*8-3*4); var x=(360-4*y)/9; return String(x+y);",
   "distractor_solve": {
-   "52": "var y=(7*497-11*301)/8; var x=(301-4*y)/7; return String(x+y);",
-   "55": "var y=(7*497-11*301)/(7*8-11*4); var x=(301-y)/7; return String(x+y);",
-   "61": "var y=(7*497-11*301)/4; var x=(301-4*y)/7; return String(x+y);"
+   "70": "var y=(9*420-3*360)/(9*8-3*4); var x=(360-4*y)/9; return String(x+(420-x)/8);",
+   "80": "var y=(9*420-3*360)/(9*8-3*4); return String((360-y)/9+y);",
+   "85": "var y=(9*420+3*360)/(9*8-3*4); var x=(360-4*y)/9; return String(x+y);"
   }
  },
  {
