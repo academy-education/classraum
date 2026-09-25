@@ -1,0 +1,156 @@
+{
+  "SM17L-A1": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "none. No printed coefficient bounds the option set, no residue is reachable without eliminating a variable, and 65/70/80/85 contain no sum, midpoint or echo of 360/420. SEPARATE AND LARGER PROBLEM: the stated subskill is factually false. Adding the two equations as printed gives 12x + 12y = 780, i.e. x + y = 780/12 = 65 in one line, with no scaling and no elimination. The author's premise 'neither variable cancels as printed, so both equations must be scaled' is wrong for the quantity actually requested, and all three distractors are built from the scale-and-subtract path a solver never has to enter.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "subskill_label": "Linear systems solved for a combined expression",
+    "note": "Key verified independently: add the equations, 12(x+y)=780, x+y=65. Distractor code runs and matches each narrated path (85 from sign-flipped constants, 80 from dropping the coefficient 4, 70 from dropping the coefficient 3). Not leaky, but mislabelled and over-rated: the 'add them' route is the standard SAT treatment of any item whose target is x+y, so this is an easy item wearing a medium label and a paragraph of subskill prose describing a harder item."
+  },
+  "SM17L-A2": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "none that survives the residue discriminator. The only congruence available (x is bounded by 416/23) needs the denominators cleared first, which is the whole solve. The adjacency structure is present but DEFUSED, and deliberately so: the set {15,16,18,19} holds TWO adjacent pairs, so a meta-solver reasoning 'greatest integer, therefore the key is the lower member of the near-miss pair' is left with two candidates (15 and 18) and has struck nothing it could not have struck at random. This is the correct way to build a floor item and should be copied.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "subskill_label": "Linear inequalities with fractional coefficients",
+    "note": "Independent solve: x30 gives -23x + 26 >= -390, -23x >= -416, direction reverses, x <= 18.086, floor 18. All three distractors are real error paths with correct floors/ceilings (19 uses ceil after failing to reverse; 16 and 15 use floor on their own shifted boundaries), so the flooring step is coherent in each. Difficulty demoted one band: three failure points but no insight step; on a real module-2 hard route this is the top of medium."
+  },
+  "SM17L-A3": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "none that is cheaper than solving. The available bound is that Plan B must reach Plan A's 630 fixed charge, s >= 630/40 = 15.75, which would strike 12 and 15 - but it costs one division of two printed numbers and the solve itself is one division (600/30), so the discriminator refuses it. Printed numbers checked against every role: 630 and 30 are the two fixed charges and their difference 600 and their sum 660 are both consumed by options (20 and 22); 10 and 40 are the rates and their difference 30 and sum 50 are consumed by 20 and 12. No fourth role goes unchecked.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "subskill_label": "Break-even between two linear cost models",
+    "note": "Key 20 verified (630 + 10s = 30 + 40s, 600 = 30s). Note the coincidence the author should be aware of: the rate difference 40 - 10 = 30 is numerically equal to Plan B's printed fixed charge 30, so 600/30 is reachable by the wrong reading 'difference of fixed charges over Plan B's fixed charge' and lands on the key. That does not make the item guessable, but it means one wrong method scores. Textbook break-even; easy."
+  },
+  "SM17L-A4": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "none. Every option is above the point's y-coordinate 12, so the negative slope gives no sign strike; the implied slopes are -2/3, -5/6, -5/4, -3/2 and separating the reciprocal-family pair from the ugly pair costs three divisions, i.e. more than the solve. Printed numbers 3, -2, 30, 24, 12 checked against every role: 30 is k's constant (k's intercepts are -15 and 10, neither in the set), 2*24 = 48 and 28*3/2 = 42 are both owned by named distractors, 24 + 12 = 36 is absent.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "subskill_label": "Perpendicular lines in the xy-plane",
+    "note": "Key verified: k has slope 3/2, m has slope -2/3, b = 12 + (2/3)(24) = 28. The 42 distractor is the x-intercept of the CORRECT line m, which is the strongest distractor in the batch - it punishes reading the wrong axis, not a bad method. Two-step, medium, correctly labelled."
+  },
+  "SM17L-A5": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "none. The only residue argument (x = -48/6) is reachable only after clearing three denominators, which is the solve; the discriminator refuses it. Two adjacent pairs again, {-9,-8} and {-6,-5}, so no adjacency tell. Actively anti-tell: x = -9, a DISTRACTOR, is the option that makes (x-5)/2 and (2x+3)/5 both come out integral, so the 'which option makes the fractions nice' heuristic points away from the key.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "subskill_label": "Linear equations with fractional coefficients",
+    "note": "Independent solve: x10 gives 5(x-5) - 2(2x+3) = 7x - 3 + 20, x - 31 = 7x + 17, -6x = 48, x = -8. All three distractor paths are standard and their code reproduces them. Difficulty demoted from hard: three denominators and two sign distributions are careful work, not insight; nothing here is module-2-hard except the opportunity to slip."
+  },
+  "SM17L-A6": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "none. Two adjacent pairs {5,6} and {8,9}. The one structural coincidence - all three of 6, 8, 9 are 72 divided by 12, 9, 8 respectively - is invisible without first producing 72, which is the solve. Printed numbers 2, 4, 7, 4, -6, -6 checked against each role: the left a-coefficient 2(-6)+4 = -8 and the right one 4 are the load-bearing pair and neither, nor their sum 12 or difference -12, appears as an option.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "subskill_label": "Solving for an unknown coefficient from a given solution",
+    "note": "Key verified: -8a + 42 = 4a - 30, 12a = 72, a = 6. Distractor 9 (forgetting the right-hand 4a) and 8 (expanding 4(x+a) as 4x+a) both divide the same 72 and both explanations match their code. Demoted from hard: substitute-then-collect is the canonical medium item for this skill."
+  },
+  "SM17L-A7": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "ONE, by sign/domain, and it is the ruling asked for. The left side is 3 times an absolute value, so it cannot be negative; therefore 30x - 528 >= 0 and x >= 17.6. That strikes 12 for free - one division of two printed numbers, against a solve that needs a division, a case split, a linear solve AND a substitution check, so it clears the cheaper-than-solving bar. Nothing strikes a second: 18, 20 and 26 all clear the bound, and the residue 24x = 624 is only reachable after the bars are dropped. SECOND, LARGER FINDING the author did not check: all four options make 2x + 32 strictly positive (the expression vanishes at x = -16, far below the whole set), so no option ever tests the negative case. A solver who scans the option set can drop the bars outright and solve 6x + 96 = 30x - 528. The stated construct - 'two cases produce two candidates and one must be discarded by substitution' - is unreachable from this option set.",
+    "n_struck": 1,
+    "path_coherent": true,
+    "difficulty": "hard",
+    "subskill_label": "Absolute-value equations with extraneous solutions",
+    "note": "Key 26 verified both branches: case 1 gives 26 and checks (252 = 252); case 2 gives 12 and fails (168 vs -168). NOTE A DISCREPANCY WITH THE AUDIT BRIEF: the brief describes A7 as |2x + 3| = 5x - 45 with options {6, 9, 14, 16}, which is not what the file contains. The file holds 3|2x + 32| = 30x - 528 with {12, 18, 20, 26}. The ruling above is on the file. It transfers: in the brief's version the same bound x >= 9 strikes 6 and nothing else, and the same construct-collapse applies since 2x + 3 > 0 for all four of its options too. The only hard item in the batch, and it is hard only for a solver who does the case work the option set lets them skip."
+  },
+  "SM17L-B1": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "ONE, by rate monotonicity, and it is acceptable. The run from 12 to 27 is 15, larger than the run from 4 to 12 which produced a gain of 24; so f(27) - 43 must exceed 24. Option 64 gives a gain of 21 and dies to two subtractions, no division - cheaper than the solve. The other two survive: 73 (gain 30) and 100 (gain 57) both exceed 24 and separating them needs the actual slope, i.e. the solve. Printed numbers 4, 19, 12, 43, 27 checked against every role; the only unowned coincidence is 4*19 + 12 = 88, invisible and useless.",
+    "n_struck": 1,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "subskill_label": "Linear functions from two points",
+    "note": "Key verified: slope 24/8 = 3, f(x) = 3x + 7, f(27) = 88. Distractor 64 is the one that is both strikable and the least instructive (it anchors the run at the wrong point); if the author wants zero free strikes, replace it with a value whose gain over 43 exceeds 24, e.g. 91 from using the run 27 - 11 or 85 from a run of 14. Difficulty demoted: two points, integer slope, direct evaluation is an easy-band item."
+  },
+  "SM17L-B2": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "none, and the option set is well constructed. The crude band a solver can get for free is 194 + 144 < h < 194 + 2*144, i.e. 338 to 482, and ALL FOUR options sit inside it (386, 402, 428, 446) - the author kept the spread tight enough that magnitude reasoning is useless. The mod-18 residue does separate the set (only 428 and 446 are congruent to 50 mod 18) but reaching 18 is the first solve step and the answer is one multiplication further on, so the discriminator refuses it. This is a near miss rather than a leak, and worth saying out loud: it is the discriminator, not the design, that saves it.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "subskill_label": "Arithmetic sequences and counting intervals",
+    "note": "Key verified: 8 spaces, 144/8 = 18 cm, 194 + 13*18 = 428. The three distractors are the three distinct off-by-one/interval slips and each explanation matches its code (the 386 expression is written as (25-13) rather than 12, which is arithmetically the same value but reads as a different slip than the prose describes - cosmetic, worth tidying). Best-constructed item in the batch alongside A2."
+  },
+  "SM17L-B3": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "TWO, and this item is a defect. (1) Feasibility/above-half: the target 55% exceeds 50%, so the final copper must outweigh the final non-copper; the non-copper mass is fixed at 60 - 15 = 45 kg, so the copper must rise from 15 past 45, i.e. x > 30. That strikes 18, at a cost of one percentage of a round number and one subtraction against a solve that needs the full mixture equation. (2) Printed-number echo: 33 is exactly 0.55 * 60, the target percentage applied to the ORIGINAL total - the one quantity the stem states does not stay put. Recognising a distractor as a direct product of two printed numbers costs one multiplication and strikes it. A third, softer tell points the same way: of the four candidate final totals (78, 93, 100, 105) only the key's is round, so the 'which option makes the numbers come out clean' scan lands on 40 unaided. 45 is itself an echo (60 - 15, and 100 - 55) but survives the bound, so it is the one honest distractor.",
+    "n_struck": 2,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "subskill_label": "Mixture models",
+    "note": "Key verified two ways: (15 + x)/(60 + x) = 0.55 gives x = 40, and the invariant route (45 kg of non-copper must become 45% of the total, so the total is 100) gives the same. REPAIR: replace the two strikable distractors, keep 40 and 45. 18 -> 100, the new TOTAL mass reported instead of the amount added (a wrong-quantity trap of the same quality as A4's 42). 33 -> 90, the alligation ratio inverted, 60 * 45/30. The set {40, 45, 90, 100} clears the x > 30 bound on all four, gives two round final totals (100 and 150) so the niceness scan no longer isolates the key, and leaves no option equal to a direct product of two printed numbers. Difficulty demoted from hard: once repaired this is a mid-band mixture item; the only insight is that the total changes."
+  },
+  "SM17L-B4": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "ONE, weaker than its author feared, and no second. RULING ON THE REPORTED LEAK: 7750 * 8 = 62,000 is real - that option forces the fixed monthly charge to be exactly zero, which the stem's 'a fixed monthly charge plus the same additional amount for every visit' rules out. But it does NOT clear the cheaper-than-solving bar: exposing it costs the division 62000/8, and the solve is the single division 21000/6. The whole item is one division, so nothing can be cheaper than solving it, and the strike is only available to a solver who has already done comparable work. Call it one strike, on the sign/feasibility structure (a fixed charge must be positive), and one is acceptable. There is no second: 1500 and 2625 each need a full substitution back into the second bill to die.",
+    "n_struck": 1,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "subskill_label": "Systems of linear equations, per-unit rate",
+    "note": "Key verified: 6v = 21000, v = 3500, m = 34000. Separate weakness worth the author's attention, unrelated to the leak: all three distractors are the same idea - divide something by the wrong count (21000/8, 21000/14, 62000/8). A student who has the 21,000 difference and knows it spans 6 visits kills all three at once, so the item discriminates on one step only. Replace one of 1500/2625 with an error of a different kind, e.g. 34000 (the monthly charge reported instead of the per-visit amount), which is the wrong-quantity trap and is not reachable by mis-choosing a denominator. Difficulty demoted from medium to easy: one subtraction and one division."
+  },
+  "SM17L-B5": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "none. The obvious bound - the answer must exceed the time at which the tanks are equal - costs the division 360/20 = 18, exactly as much as the solve 600/20 = 30, so the discriminator refuses it, and it is in any case pre-spent because 18 is printed as an option. Domain is clean: Tank A does not empty until t = 160 and every option is below that, so no option is struck for being physically impossible.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "subskill_label": "Linear equations with the variable on both sides",
+    "note": "Key verified: 600 + 14t = 1200 - 6t, 20t = 600, t = 30; at t = 30 A holds 780 and B holds 1020. One coincidence the author should know about, in the same family as A3's: the key 30 is ALSO what the wrong method '240 surplus divided by the rate difference 14 - 6' produces, 240/8 = 30. Two of the printed numbers therefore reward a solver who combines the rates wrongly but divides the wrong numerator, and the item scores them correct. Changing the surplus from 240 to a value that is not 8 times the answer (e.g. 300, which moves the key to 33) removes it. Difficulty demoted from hard: two linear models and an offset is a mid-band item."
+  },
+  "SM17L-B6": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "TWO, and this item is a defect. The option set is {8, 9, 15, 28}: two options an order of magnitude too small, one that is visibly the unconstrained maximum, and the key alone in the middle. (1) Magnitude: 5 type B crates take 1050 kg of the 2400 kg, leaving about 1350 kg for crates of 85 kg. Eight or nine such crates is under 800 kg, so the load would sit near 1850 kg with 550 kg of slack - a solver strikes both 8 and 9 on one crude sizing, with no division and certainly no floor. (2) The same crude sizing is not needed for 28: 28 crates at 85 kg is essentially the entire 2400 kg capacity, leaving nothing for the 5 type B crates the stem mandates, so 28 is recognisable as the answer to the question with the constraint deleted. That is a third soft strike on top of the two. The key is the lone survivor in the middle of its own option set.",
+    "n_struck": 2,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "subskill_label": "Linear inequalities in two variables",
+    "note": "Key verified: 85a + 210b <= 2400 with b >= 5 is maximised at b = 5, leaving 1350 kg, and floor(1350/85) = 15 (15 crates = 1275 kg, total 2325; a 16th would give 2410). REPAIR: all four options must sit inside the band a crude sizing cannot resolve, roughly 12 to 24, and each must come from a named slip. Proposed set {13, 15, 16, 23}: 16 = rounding 15.88 up instead of down; 13 = reading 'at least 5' as 'more than 5' and reserving 6 type B crates, floor(1140/85); 23 = taking the unconstrained maximum 28 and then removing 5 crates to make room for the 5 type B crates, a natural and wrong swap of units. Drop 8 and 9 outright - both are answers to a differently-shaped question (how many type B crates) and both are free to strike. Difficulty demoted from hard: minimise b to maximise a is a one-sentence insight."
+  },
+  "SM17L-B7": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "THREE. This is the worst item in the batch and the whole option set fails on one structure. The first and cheapest step, 45,000 g / 25 g = 1,800 parts, is one division. The second observation, that 9 machines for 3 days is 27 machine-days against the original 24, is a comparison of two one-digit products with no division at all. Together they say the answer is a little above 1,800. The options are 900 (half the baseline), 1350 (three quarters), 2025 (the key, 1.125x) and 3600 (double). Exactly one lies anywhere near the baseline, so all three distractors die to a comparison that never touches the proportional reasoning the item exists to test - the solver never has to decide whether machines and days multiply. The distractors were built by inverting one ratio at a time, and each inversion moves the value by 33-100% while the true answer moves 12.5%, which is precisely why they are all visible.",
+    "n_struck": 3,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "subskill_label": "Proportional reasoning with a unit conversion",
+    "note": "Key verified: 1,800 parts over 24 machine-days is 75 per machine-day; 27 machine-days gives 2,025. REPAIR: every option must be consistent with 'machine-days went up slightly', i.e. at or above the 1,800 baseline and inside a band the baseline scan cannot resolve. Proposed set {1800, 2025, 2160, 2700}: 1800 = the increase in machines and the decrease in days are assumed to cancel (a common and genuinely held belief, and the strongest distractor available here); 2160 = machine-days added rather than multiplied, 1800 * (9+3)/(6+4); 2700 = 1800 * 9/6, machines scaled and the shorter run ignored. Drop 900 and 1350 outright. Difficulty demoted from hard: a unit conversion and a machine-days product is mid-band once the option set stops giving it away."
+  }
+}

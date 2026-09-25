@@ -3186,3 +3186,37 @@ structural checks are pre-flight only. See CLAUDE.md.
   **One more self-inflicted lesson in the same hour.** My first break-test of the hand-maintained list used `sed` to delete the entry, which broke the file's syntax; the script exited 1 and I nearly read that as the check failing. It was a crash. Redone by deleting the line cleanly, confirming with `node --check` that the file still parses, and running from the directory where its relative imports resolve — *then* exit 1 means the check fired.
 
   **Swept the whole live bank afterwards:** 7,021 items, 9 distinct types, and every one now either has a branch or carries choices for the fallback.
+
+- **2026-09-25** — **THE KEY IS ALMOST NEVER THE LARGEST OR SMALLEST OPTION, ACROSS THE WHOLE LIVE SAT MATHS BANK.** 375 of 1190 = **31.5%** against a 50% chance line, p < 0.001, every domain. Found by the v17 Advanced Math auditor; neither author saw it. `check-key-extremity.mjs`. → **A56**
+
+      arm                          key at an extreme        p
+      LIVE sat/math (all)          375/1190   31.5%      <0.001
+        Advanced Math              125/350    35.7%      <0.001
+        Algebra                    106/368    28.8%      <0.001
+        Geometry and Trig           68/205    33.2%      <0.001
+        PSDA                        76/267    28.5%      <0.001
+      sat-math-v17-adv               3/16     18.8%       0.021
+      sat-math-v17-alg               3/14     21.4%       0.057
+      sat-math-v16-adv               5/16     31.3%       0.210
+      sat-math-v16-alg               5/14     35.7%       0.424
+
+  **A student who strikes the largest and the smallest value is left with two options containing the key 68.5% of the time** — an expected 34.3% against 25% for guessing, about **+9 points with no mathematics**.
+
+  **`verify-answer-key-spread.ts` is blind to this by construction.** It watches the key's LETTER, and the assembler shuffles letters at draw time. This tell is carried by RANK, which survives any shuffle. Six previous structural proxies all watched position or length; none watched order statistics.
+
+  **The cause is not the shuffle, it is the distractor brief.** A set built as "one overshoot, one undershoot, one near miss" brackets the key by construction. Every one of those is a good distractor alone, and the set is a tell. The fix is to aim for a key at an extreme on roughly half of items — not to reshuffle anything.
+
+  **THE CAVEAT THAT DECIDES HOW MUCH THIS MEANS, AND IT IS NOT RESOLVED.** Bracketing is also what competent distractor-writing produces, so the real exam may look the same. I have **no professionally-authored control** — the only real items to hand are the MAP Herald PDFs, which are harvested NWEA questions and are off limits. So: the effect is real, bank-wide, and highly significant **against chance**; whether it deviates from a professionally-built form is **unmeasured**, and this entry does not claim it does.
+
+  **A HYPOTHESIS THAT FIT HALF THE DATA AND IS RECORDED AS REFUTED.** The unexplained finding from A50 was that solvers scored WORSE on picks they justified than on picks they called guesses (−20.0 and −25.5). Solver A's own note suggested why: *"the four values are a tight cluster plus one outlier ... I picked inside the cluster and flagged it as a guess."* That IS the extremity heuristic. Tested:
+
+      m16alg   mechanism picks an extreme 20.5%, scores 33.3%
+               guess     picks an extreme  4.4%, scores 53.3%     fits
+      m16adv   mechanism picks an extreme 21.6%, scores 13.5%
+               guess     picks an extreme 32.1%, scores 41.1%     INVERTS
+
+  It explains `m16alg` cleanly and fails on `m16adv`, where the guesses hit extremes MORE and still scored better. **Had I run only the first file I would have called the inversion solved.** The mechanism/guess inversion remains unexplained.
+
+  **Break-tested:** forcing the key to the largest option in all 16 v17-adv items flips the checker to 100.0%, p < 0.001. The check also prints the live bank on every run, so no batch is ever scored against a literal, and it reports how many option sets were skipped as non-numeric (123 of 1313) rather than guessing at them.
+
+  **Not touched.** Repairing 815 live items to move keys to extremes would be a far larger programme than the ~17 duplicate option sets and the 329 key-is-composite items already awaiting a decision, and the caveat above means it may not be a defect at all. **Andy's call, and it should wait for a real-form control.**

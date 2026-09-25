@@ -1,0 +1,178 @@
+{
+ "SM17A-A1": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none firm. 64 = 8^2 and 36 = 4*9 are printed-number echoes, but they attract rather than strike; nothing in the option set is ruled out without forming the discriminant.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "hard",
+  "note": "Key verified independently: disc (k+8)^2-36k = k^2-20k+64, roots 4 and 16, sum 20. SOUNDNESS WART the explanation half-notices and does not fix: the stem never says the equation is quadratic, so k=0 also gives exactly one real solution (8x+9=0). 'The sum of ALL possible values of k' therefore has three admissible values, 0+4+16, which happens to equal 20 as well, so the key survives by luck. A strong student who spots k=0 will hesitate. REDUNDANT WITH B8 (see batch notes): same solve (discriminant -> quadratic in k -> Vieta on the sum), same question sentence, same product-of-roots distractor, both labelled hard. Recommend DROP in favour of B8, which has no degenerate branch and states the two-values guarantee explicitly."
+ },
+ "SM17A-A2": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. No sign, parity or magnitude argument separates -21/6/11/59 without solving c = 2(c-8)+5.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "medium",
+  "note": "Key verified: max = c, f(1)=c-8, c=2(c-8)+5 -> c=11. Clean item, no leak. DIFFICULTY DEMOTED from hard: 'the leading coefficient is negative so the vertex is the max' plus one linear equation is two routine steps with no second insight. On the real module-2 hard route this sits mid-pack. The three distractors are all single-misreading paths (sign of the square, scope of 'more than', sign of the vertex shift), which is the signature of a medium."
+ },
+ "SM17A-A3": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "CONFIRMED, one strike: 48 = 45 + 3, where 45 is printed in the stem. It reads as the 'used the given output as the coefficient' answer and a solver strikes it as too lazy to be the key. No second strike: 8, 15 and 18 all survive a no-arithmetic pass.",
+  "n_struck": 1,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "medium",
+  "note": "Key verified: b^3 = 1215/45 = 27, b=3, a=5, a+b=8. Author's declared leak confirmed at exactly one strike, which is inside tolerance. ACCEPT AS IS. Minor: 18 also appears in A8 and B8 (as their keys) - see batch note on repeated values; harmless here."
+ },
+ "SM17A-A4": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none from the option set. 15, 17, 36 and 60 are all products or sums of {3, 5, 12}, the numbers visible across the two printed forms, so no option stands out as unreachable. The author's flagged shortcut is real but is a route TO the key, not an elimination.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "easy",
+  "note": "Key verified: x = (3y+12)/(y-5), a=12, b=5, ab=60. RULING ON THE AUTHOR'S FLAG - the distinction is SOUND and the item is USABLE, but it costs a difficulty grade, not an option-set defect. The Moebius inverse of (ax+b)/(cx+d) is (dx-b)/(-cx+a); here that is (-3x-12)/(-x+5) = (3x+12)/(x-5). A solver who knows the swap reads a=12, b=5 off the printed coefficients and multiplies. That is real knowledge applied to the stem, which is exactly what a with-source solve is, and it does not tell a solver holding only the four options anything. But it collapses the item to one recalled fact plus 12*5, so DEMOTE to easy for anyone who has seen the rule, and accept that the item discriminates on whether the student knows it rather than on whether they can do the algebra. If you want the intended medium, change the target to something the shortcut does not hand over directly (e.g. ask for a - b, or give the inverse as (cx + a)/(x - b) with c unknown and ask for a + b + c)."
+ },
+ "SM17A-A5": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "TWO STRIKES - this is the paired trap. (i) For x > 2 the expression is positive and its numerator is 3x+43, so a solver reads the answer as positive and strikes -31. That is the half the author declared. (ii) The SAME glance strikes 54: the leading coefficients subtract by inspection, 7 - 4 = 3, so a = 3 with no arithmetic, and the constant is 7*5 combined with 4*2, i.e. 35 plus or minus 8, so b is 27 or 43 and a+b is 30 or 46. 54 requires b = 51, which no combination of the printed 5 and 2 against 7 and 4 produces. Only 30 and 46 survive; the solver is at 1-in-2 having done no real work.",
+  "n_struck": 2,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "medium",
+  "note": "Key verified: 7(x+5) - 4(x-2) = 3x+43, a+b = 46. DEFECT, REPAIR REQUIRED. The author audited the constraint it built (sign) and missed the one it did not (the constant lives in a 35 +/- 8 band). Note also that the declared sign argument is not even rigorous: positivity on x > 2 constrains the numerator on x > 2, and a+b is the numerator at x = 1, outside the domain - 3x - 5 is positive on x > 2 with a+b = -2. It works as a solver heuristic, which is why it strikes. REPAIR: keep 30 and 46, replace -31 and 54 with two values of the form 3 + b whose b also sits in the 20-50 band, so the magnitude glance is inert. Concretely 38 (adds the fractions instead of subtracting: 7(x+5) + 4(x-2) = 11x + 27, reported as 11 + 27) and 43 (reports b alone, forgetting to add a). Resulting set 30, 38, 43, 46 has no sign strike and no band strike, and every option is still a named path."
+ },
+ "SM17A-A6": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. Checked parity explicitly, which is the obvious exposure on a four-constant sum: m+n+p+q = -3+1+13-6 is odd, and ALL FOUR options (-1, 5, 9, 17) are odd, so the residue channel is closed. No sign, magnitude or echo strike either.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "hard",
+  "note": "Key verified by hand long division: quotient 2x^2 - 3x + 1, remainder 13x - 6, so m+n+p+q = 5. Best-constructed item in the batch. The one thing worth flagging is cosmetic and not a leak: the key 5 is also the printed x^2 coefficient of the dividend, so the key is itself a printed-number echo. That attracts a careless solver rather than helping one, so it does not cost a strike, but if a repair pass touches this item, nudging the dividend so the answer is not a printed constant costs nothing. Difficulty HARD confirmed: quadratic divisor, four constants to track, and no shortcut past the division."
+ },
+ "SM17A-A7": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "one strike, and the author's stated reason for it is WRONG. -14 is NOT the parabola's constant term - the parabola's constant is -10 and the line's is 4; -14 is their difference, the constant of the unprinted difference quadratic. The strike is real anyway, by the other route: -14 is the only option with the shape 'product of the roots', and a solver reading four options for the sum of two y-values on a line strikes the one that is a bare printed-difference. 1 strike, inside tolerance.",
+  "n_struck": 1,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "medium",
+  "note": "Key verified: x^2 + x - 14 = 0, x1+x2 = -1, y1+y2 = 2(-1) + 8 = 6. Nice forcing property worth keeping: the roots are (-1 +/- sqrt(57))/2, irrational, so brute-force substitution genuinely fails and the student must go through Vieta on the sum. ACCEPT AS IS. If the repair pass wants the echo gone, shift the line's intercept so that the difference quadratic's constant is not itself an option. Correct the explanation's description of -14 either way: as written it asserts a fact about the stem that is false, and a grader reading it will mis-locate the tell."
+ },
+ "SM17A-A8": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. I checked the residue channel that this construction opens and it is closed: because p(2)=0 and the constant is -12, p(x) = (x-2)(2x^2+cx+6), so p(3) = 24 + 3c is forced to be divisible by 3 - and all four options (-42, 18, 30, 66) are multiples of 3, so the constraint eliminates nothing. Whether that was designed or lucky, it holds.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "hard",
+  "note": "Key verified: 2a+b = -2 and a-b = -16 give a=-6, b=10; p(3) = 54-54+30-12 = 18. Two theorems chained plus a 2x2 system, no shortcut - HARD confirmed. Only issue is cross-item: the key 18 is also the key of B8. See the batch ruling; my recommendation there is that this is cosmetic, but if both items ship in one form, retune this polynomial's constant so p(3) is not 18."
+ },
+ "SM17A-B1": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. All four options are positive, which is correct since a minimum exists so a > 0 - the sign channel is closed but also uninformative. 6, 24, 25 and 60 are each 150 divided by a plausible quantity (25, 6.25, 6, 2.5), so no option is off-family. No magnitude bracket is available without squaring 2.5.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "medium",
+  "note": "Key verified two ways: vertex at x = 0.5 with a(2.5)^2 = 150 gives a = 24; equivalently f(x)=a(x+2)(x-3) has f(0.5) = -6.25a = -150. The distractor design here is the strongest in the B half - all three errors (y-intercept reading, forgetting to square, wrong distance) land on distinct divisors of 150 and none is strikeable. MEDIUM confirmed."
+ },
+ "SM17A-B2": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "THREE STRIKES. The stem prints sqrt(x - 3) and an integer right-hand side, so x - 3 must come out a perfect square. Subtract 3 from each option: 49-3=46, 52-3=49, 59-3=56, 100-3=97. Exactly one is a square. A solver who does nothing but subtract 3 four times and look has the key with certainty and never touches the substitution, the quadratic or the domain.",
+  "n_struck": 3,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "medium",
+  "note": "Key verified: u = sqrt(x-3), u^2 - 5u - 14 = 0, u = 7 or -2, u >= 0 discards -2, x = 52; check 52 - 5*7 = 17. RULING ON THE AUTHOR'S CLAIM: the narrow claim is TRUE and I verified it - the discarded branch u = -2 has image x = 4 + 3 = 7, and 7 is not among the options. But the claim is the wrong thing to have checked, and checking it is what caused the defect. Excluding the extraneous root is exactly what left the option set with only one member that survives the perfect-square filter. This is the declared trap in its purest form: the author audited the constraint it built and not the one it did not. SEVERE - the item as shipped is solvable by inspection. REPAIR: require every option v to satisfy 'v - 3 is a perfect square'. Concretely 7, 28, 52, 103 - 7 is the discarded u=-2 branch (restore it; it is the canonical radical-equation distractor and it is NOT freely strikeable, because it looks exactly as legal as the key until you substitute), 28 is u=5 (reads the linear coefficient as the root), 52 is the key, 103 is u=10 from the author's existing (7+3) path with the 3 added back. All four differences are 4, 25, 49, 100."
+ },
+ "SM17A-B3": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "CONFIRMED, one strike, but not for the author's reason. 'Largest and therefore implausible' is not an argument. The real one is monotonicity: the base is raised to 3/2, an increasing power greater than 1, and the result is 125, so the base must be less than 125 - and 66 is the unique option whose 2x-7 equals exactly 125, the printed right-hand side. Printed-number echo and a limiting argument, one glance, one strike. 6, 16 and 25 all survive.",
+  "n_struck": 1,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "easy",
+  "note": "Key verified: 2x - 7 = 125^(2/3) = 25, x = 16; check 25^(3/2) = 125. One strike is inside tolerance, ACCEPT. DIFFICULTY DEMOTED from medium to easy: reciprocal-power on a linear argument with a perfect cube on the right is the textbook form of this skill, the numbers are the friendliest possible, and there is no second step after solving the linear equation. This is an easy anchor, not a module-2 hard item."
+ },
+ "SM17A-B4": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "THREE STRIKES, by closure. The option set 72, 216, 648 is itself a geometric progression of ratio 3 with the key at its centre, and the stem gives t = 1 and t = 5 and asks for t = 3 - the midpoint. A solver who reads 'geometric model' and 'midpoint' takes the middle term of the geometric family and is done: 72 and 648 die because each is adjacent to one endpoint while t = 3 is equidistant from both. 984 dies separately as the arithmetic mean of the two printed values, (24+1944)/2, a printed-number echo. Conservative floor is 2 strikes if you refuse the mean echo; it is 3 as built.",
+  "n_struck": 3,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "medium",
+  "note": "Key verified: b^4 = 81, b = 3, P(3) = 24*9 = 216 = sqrt(24*1944). DEFECT, REPAIR REQUIRED. The item is well-made as a with-source problem and the geometric-mean observation in the explanation is genuinely nice; the failure is purely that the option set advertises it. REPAIR - break the symmetry rather than the distractor paths: give P(1) = 24 and P(4) = 648 (b = 3 still) and ask for P(3) = 216, so the queried point is no longer the midpoint of the two given ones. Then offer 72, 216, 440, 648, where 440 is the LINEAR interpolation between (1,24) and (4,648) and replaces 984 as the 'treated the model as linear' distractor. No option set GP centred on the key, no midpoint read, and every distractor keeps a named path."
+ },
+ "SM17A-B5": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "one strike, by residue. 42 = 2*3*7 carries exactly one factor of 2, so of any three positive integers with product 42 exactly one is even; with r even and s, t odd, k = rs + rt + st is even + even + odd = ODD for every admissible triple, with no need to find the triple. 44 dies. 27, 29 and 41 are all odd and survive. Inside tolerance.",
+  "n_struck": 1,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "medium",
+  "note": "Key verified by exhausting the factorisations: {1,1,42},{1,2,21},{1,3,14},{1,6,7},{2,3,7} have sums 44,24,18,14,12, so only {2,3,7} meets sum 12; k = 6+14+21 = 41. Uniqueness of the triple confirmed, so exclusivity is real and not assumed. One note on the 29 path: its triple (-1, 6, 7) violates the stem's 'each of which is a positive integer', so no solver reaches 29 while honouring the stem - it is reachable only by the sign error the explanation names, which is what a distractor is for. Coherent, but it is the weakest of the three."
+ },
+ "SM17A-B6": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "one strike, soft. -3 is f(3) read straight off the printed second rule at the OUTER input, i.e. the 'ignored the transformation' answer, and a solver strikes it as the option that required no use of the composition. -41 and 7 both survive a no-arithmetic pass. The item's real exposure is not an option-set leak: once the solver performs the single subtraction 3(3) - 8 = 1, the question collapses to a coin flip between -2 and 7 on the <= versus < convention, and nothing else in the item carries signal.",
+  "n_struck": 1,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "easy",
+  "note": "Key verified: g(3) = f(1), and 1 satisfies x <= 1, so the quadratic branch applies: 3 - 5 = -2. The boundary convention is correctly stated and correctly keyed. DIFFICULTY DEMOTED from medium to easy: one linear evaluation and one branch selection. It is a fine easy item and I would keep it as one, but be aware that what it measures is entirely 'does the student respect the closed inequality', so it will behave like a near-binary item in the stats rather than a graded one."
+ },
+ "SM17A-B7": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "CONFIRMED, one firm strike: f(1) = 4 - 20 + 47 = 31 and a minimum cannot exceed a sampled value, so 40.75 falls. (f(2) = 23 tightens it further for anyone who samples twice.) A second strike is borderline and I am not counting it: -3 dies to positivity, since the discriminant 400 - 752 is negative so f has no real zeros - but that needs 4*4*47, which is more arithmetic than a glance. Counting 1.",
+  "n_struck": 1,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "easy",
+  "note": "Key verified: f(x) = 4(x - 2.5)^2 + 22, minimum 22 at x = 2.5. One strike is inside tolerance so this does not need repair, but it is the WEAKEST ITEM IN THE BATCH on content and I would consider dropping it on those grounds rather than on leakage. It is a bare, contextless 'complete the square on this trinomial' with no second step, no parameter and no inversion - the single most predictable form the skill takes. DEMOTED from medium to easy. If it stays, sampling f(1) should not be this cheap: shifting the constant so that the nearest integer sample does not bracket the largest distractor removes the one strike for free."
+ },
+ "SM17A-B8": {
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "CONFIRMED, one strike, and the author's defence of it is ACCEPTED. Expanding (k+m)^2 - 4a(k+n) gives k^2 + (2m - 4a)k + (m^2 - 4an); the k-coefficient 2m - 4a is even for any integers m and a, so the sum of the two values of k is even and -7 dies. But producing that coefficient IS the setup for the solve - a solver who can see the parity has already written the discriminant and is one sign away from the answer. The strike is real but it is not free in the sense that matters. 2 and 14 are both even and survive.",
+  "n_struck": 1,
+  "path_coherent": true,
+  "representation_ok": true,
+  "difficulty": "hard",
+  "note": "Key verified: (k-5)^2 - 8(k+4) = k^2 - 18k - 7 = 0, whose own discriminant 324 + 28 = 352 is positive and not a perfect square, so there really are exactly two irrational values of k and the stem's guarantee holds; their sum is 18. The explanation's decision to check the inner discriminant is the right instinct and is what makes this the better of the A1/B8 pair. KEEP THIS ONE, drop A1 - see the A1 note. Cross-item: shares the key value 18 with A8; my ruling is that this is cosmetic, but if both ship in one form, retune A8 rather than this item."
+ }
+}
