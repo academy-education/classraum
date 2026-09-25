@@ -3220,3 +3220,37 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Break-tested:** forcing the key to the largest option in all 16 v17-adv items flips the checker to 100.0%, p < 0.001. The check also prints the live bank on every run, so no batch is ever scored against a literal, and it reports how many option sets were skipped as non-numeric (123 of 1313) rather than guessing at them.
 
   **Not touched.** Repairing 815 live items to move keys to extremes would be a far larger programme than the ~17 duplicate option sets and the 329 key-is-composite items already awaiting a decision, and the caveat above means it may not be a defect at all. **Andy's call, and it should wait for a real-form control.**
+
+- **2026-09-25** — **I PUT STALE ITEM CONTENT INTO AN AUDIT BRIEF, AND THE AUDITOR CAUGHT IT BECAUSE IT READ THE FILE INSTEAD OF MY SUMMARY.** Third instance of the same root error today. → **A57**
+
+  My brief for the Algebra audit described `SM17L-A7` as `|2x + 3| = 5x - 45` with options `{6, 9, 14, 16}`, told the auditor the authors had graded the batch 5 hard / 9 medium, and said the value `15` appeared in four items. The file holds:
+
+      SM17L-A7   3|2x + 32| = 30x - 528   {12, 18, 20, 26}, key 26
+      difficulty 8 hard / 6 medium
+      15 appears in 3 items (A2, A3, B6)
+
+  All three wrong, all three from the same cause: I wrote the brief from notes I had taken while the author was **still writing the file**, the same mid-write read recorded this morning in A54. Verified each against the file afterwards.
+
+  **The auditor audited the file and corrected me on all three**, which is the only reason this cost nothing. Its finding on the real A7 is one my stale version could not have produced: **all four options make `2x + 32` positive (56, 68, 72, 84), so the negative branch is never exercised** — the absolute-value bars are decorative and the item's stated construct, two cases with one discarded, is unreachable from its own option set.
+
+  **The rule this yields: a brief points at the artifact, it does not paraphrase it.** Where a brief must quote a number, the reader is told to check it. Both repair briefs now open with *"read both files yourself, do not trust any description of an item in this brief"* and say why.
+
+  **THE PIPELINE CHANGE IS EARNING ITS KEEP, WHICH IS THE POINT OF THE ENTRY.** Moving the audit ahead of the gate (pre-registered this morning) found, before any solver ran:
+
+      Advanced Math   B2  3 strikes  x-3 must be a perfect square; one option qualifies
+                      B4  3 strikes  three options a geometric ladder with the key at its centre
+                      A5  2 strikes  the paired trap - author declared the sign half only
+                      A1  DROP       duplicates B8, and a degenerate parameter value makes
+                                     "the sum of all possible values" have three admissible
+                                     values; the key survives by luck
+      Algebra         B7  3 strikes  distractors move 33-100% while the answer moves 12.5%
+                      B6  2 strikes  two options die to one crude sizing, no division, no floor
+                      B3  2 strikes  a percentage bound, plus an option that is a direct
+                                     product of two printed numbers
+                      A7  construct unreachable, as above
+
+  Four v16 batches reached the GATE with defects of exactly this class and were held at a cost of 58 authored items. These were found for the price of two auditors.
+
+  **Two findings outside either brief.** The Algebra auditor caught that `SM17L-A1`'s own `subskill` claims "neither variable cancels as printed" while adding the two equations as printed gives the answer in one line — a paragraph describing a harder item than the one shipped. And **two items reward a wrong method**: in `A3` the rate difference equals a printed fixed charge, and in `B5` combining the rates incorrectly still lands on the key.
+
+  **Ninth consecutive batch of difficulty demotions**, and the Algebra auditor's verdict is the sharpest yet: *"Nothing here except A7 needs an insight step; the rest are careful multi-step procedure, which is medium on the module-2 hard route."* 1 hard / 9 medium / 4 easy against the authors' 8 / 6 / 0.
