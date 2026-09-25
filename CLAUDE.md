@@ -628,3 +628,55 @@ So:
    the instrument.** A grader that measures ten items and then recommends
    seven by repairing three of them has not produced seven clean items.
    Re-author, or hold.
+
+### The three blind solvers are one solver sampled three times
+
+Measured 2026-09-25 on three separate runs, two numeric and one prose:
+
+    run                pairwise agreement   if independent   excess
+    m16alg (maths)          69.0%               27.0%        +42.0
+    m16adv (maths)          71.9%               36.1%        +35.8
+    wic6   (prose)          68.3%               28.0%        +40.2
+
+    run                unanimous on SOME letter   independence predicts
+    m16alg                   15 of 28                    2.2
+    m16adv                   20 of 32                    5.3
+    wic6                     11 of 21                     —
+
+Two thirds of all items come back unanimous. The tell that prompted the check:
+on **five of the six unanimously-SOLVED candidate items**, all three solvers
+wrote *"no signal"* or *"picked arbitrarily"* in their notes — and all three
+still landed on the key. They share a prior they cannot introspect.
+
+**What this invalidates.**
+
+1. **`n * p^3` expectations.** `score-oo.mjs` printed "unanimous-correct: 8 of
+   28 (expected at control: 0.44)". There is no honest independence expectation
+   from one model, so the line is deleted rather than corrected. What replaces
+   it is the candidate's unanimity RATE against the control's, measured through
+   the same correlated solvers — on `m16alg`, 35.7% against 21.4%.
+2. **Every confidence interval in this session's blind runs.** Wilson assumes
+   independent picks. Three correlated picks are worth closer to one, so the
+   real intervals are roughly sqrt(3) wider than printed. Nothing was decided on
+   an interval, but they were quoted.
+3. **Condition 1 of the drop rule — "solved by all three blind solvers".** It
+   has been firing on a much weaker signal than intended.
+
+**What it does NOT invalidate, and this matters.** Correlation inflates
+variance, not the mean, so the candidate-minus-control MARGINS stand exactly as
+measured. And the error was **conservative in the only direction that counts**:
+correlated unanimity drops MORE items, so it has never shipped a bad item — it
+has thrown away good ones. Do not re-count an old batch's survivors upward on
+the strength of this. Fix the rule for the next batch; re-deciding a finished
+batch with a rule discovered afterwards is the thing pre-registration exists to
+prevent, and it is not less of a violation when the new rule is the correct one.
+
+**The rule going forward.** Unanimity is a BATCH-level comparison against the
+control's unanimity rate, never a per-item verdict on its own. A per-item drop
+needs corroboration from the with-source half — a disputed key, a failed
+exclusivity check, or a named free elimination — which is gathered
+independently of the blind solvers.
+
+**What would fix it properly** is genuinely independent solvers, and this
+project cannot get them from one model family. Until then, say "three samples"
+and not "three solvers".

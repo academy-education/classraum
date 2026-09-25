@@ -3115,3 +3115,29 @@ structural checks are pre-flight only. See CLAUDE.md.
   **The scoreboard is now seven**, and the honest reading is that six are dead and one is on probation: key letter spread, key length rank, punctuation asymmetry, concessive-pivot rate, option-family balance, unique residue class — all dead; **key-is-centre** survives one out-of-sample test at a third of its in-sample strength (A50) and is not a gate.
 
   **The script is kept** rather than deleted, for two reasons: the base-rate machinery is reusable, and it now prints its own refutation on every run — a random-option base rate beside the key's rate, with the line *"if the two are close, this check is reading nothing."* A checker that cannot be misread is worth more in the tree than out of it. Its header leads with the refutation and points at the result file.
+
+- **2026-09-25** — **THE THREE BLIND SOLVERS ARE ONE SOLVER SAMPLED THREE TIMES, AND MY SCORER HAS BEEN QUOTING `n*p^3` AGAINST THEM ALL SESSION.** `score-oo.mjs` fixed; `CLAUDE.md` updated. → **A53**
+
+  **The tell.** Reading the notes on the unanimously-solved candidates, **five of six said "no signal", "no way to choose" or "picked arbitrarily" — and all three solvers still landed on the key.** Three independent solvers cannot all guess right while all three report having nothing to go on. So I measured whether they are independent:
+
+      run                pairwise agreement   if independent   excess
+      m16alg (maths)          69.0%               27.0%        +42.0
+      m16adv (maths)          71.9%               36.1%        +35.8
+      wic6   (prose)          68.3%               28.0%        +40.2
+
+      run              unanimous on SOME letter   independence predicts
+      m16alg                 15 of 28                    2.2
+      m16adv                 20 of 32                    5.3
+      wic6                   11 of 21                     —
+
+  **Two thirds of every file comes back unanimous.** `score-oo.mjs` was printing *"unanimous-correct: 8 of 28 (expected at control: 0.44)"* — an expectation off by more than an order of magnitude, and one that reads as overwhelming evidence. It held for prose as well as maths, so this is a fact about the instrument, not about numeric items.
+
+  **Fixed by deleting the expectation, not correcting it.** There is no honest independence figure to compute from one model. The scorer now measures the agreement itself, prints it, and where the excess is large says in words: *"These are not three solvers; they are one solver sampled 3 times. Unanimity below is NOT n*p^3-rare and must not carry a per-item drop on its own."* What replaces the expectation is the candidate's unanimity RATE against the control's, through the same correlated solvers — on `m16alg`, 35.7% against 21.4%.
+
+  **WHAT THIS DOES NOT CHANGE, AND I AM NOT GOING TO PRETEND OTHERWISE.** Correlation inflates variance, not the mean, so **both v16 margins stand exactly as measured** (+16.7 and +25.0) and both batches stay held. Discounting unanimity would add 4 Algebra and 2 Advanced Math items back and carry both batches over their bars — 8 of 14 against 7, and 9 of 16 against 8. **I am not taking that recount.** Re-deciding a finished batch with a rule discovered after the result is precisely what pre-registration exists to prevent, and it is not less of a violation because the new rule is the correct one. The rule changes for the NEXT batch.
+
+  **The error was conservative, which is the one piece of luck here.** Correlated unanimity drops MORE items, so it has never shipped a bad item — it has thrown away good ones. The four words-in-context items inserted today are unaffected: `WIC6-06`'s drop was corroborated by 2-of-3 graders on exclusivity, and `WIC6-08` was already NOT dropped because all three solvers declared it a guess, which was the cautious call and turns out to have been the correct one for the right reason.
+
+  **The standing rule now:** unanimity is a batch-level comparison against the control's unanimity rate, never a per-item verdict alone. A per-item drop needs corroboration from the with-source half — disputed key, failed exclusivity, or a named free elimination — because that evidence is gathered independently of the blind solvers.
+
+  **Also invalidated, and quoted several times today: every Wilson interval in this session's blind runs.** They assume independent picks; three correlated picks are worth closer to one, so the true intervals are roughly √3 wider than printed. Nothing was decided on an interval, but the WIC gate quoted "±17 points" as if it were the real precision, and it was not.

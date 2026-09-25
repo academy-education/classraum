@@ -124,5 +124,63 @@ const exp = ids.length * Math.pow(control, Object.keys(solvers).length)
     }
   }
 }
-console.log(`\n  unanimous-correct items: ${unan.length} of ${ids.length}   (expected at control: ${exp.toFixed(2)})`)
+/* UNANIMITY IS NOT WHAT IT LOOKS LIKE, AND THIS BLOCK USED TO SAY OTHERWISE.
+ *
+ * It printed "expected at control: 0.44", computed as n * p^3 — arithmetic that
+ * is only valid if the three picks are independent draws. They are three runs of
+ * the SAME model. Measured on 2026-09-25 across two files:
+ *
+ *     file      pairwise agreement   expected if independent   excess
+ *     m16alg          69.0%                  27.0%            +42.0
+ *     m16adv          71.9%                  36.1%            +35.8
+ *
+ *     file      unanimous (any letter)   independence predicts
+ *     m16alg          15 of 28                   2.2
+ *     m16adv          20 of 32                   5.3
+ *
+ * Over two thirds of all items are unanimous on SOME letter. The tell that
+ * prompted the check: on five of six unanimously-SOLVED candidate items, all
+ * three solvers wrote "no signal" or "picked arbitrarily" in their notes — and
+ * all three still landed on the key.
+ *
+ * So the independence expectation is deleted rather than corrected: there is no
+ * honest version of it from one model. What IS comparable is the candidate's
+ * unanimity rate against the CONTROL's, measured through the same correlated
+ * solvers, and that is what prints now. Per item, unanimity is weak evidence
+ * and must not carry a drop on its own. */
+{
+  const L2 = ['A', 'B', 'C', 'D', 'E'].slice(0, Math.max(...ids.map(i => Object.keys(key[i]).length ? 4 : 4)))
+  const names = Object.keys(solvers)
+  const pickAt = (nm, id) => { const r = solvers[nm].map[id]; return r && r[solvers[nm].pf] ? String(r[solvers[nm].pf]).trim().toUpperCase() : null }
+  let agree = 0, pairs = 0
+  for (const id of ids) for (let i = 0; i < names.length; i++) for (let j = i + 1; j < names.length; j++) {
+    const a = pickAt(names[i], id), b = pickAt(names[j], id)
+    if (a && b) { pairs++; if (a === b) agree++ }
+  }
+  const dists = names.map(nm => { const d = {}
+    for (const id of ids) { const p = pickAt(nm, id); if (p) d[p] = (d[p] ?? 0) + 1 }
+    const t = Object.values(d).reduce((a, b) => a + b, 0) || 1
+    for (const k of Object.keys(d)) d[k] /= t
+    return d })
+  let expA = 0, expP = 0
+  for (let i = 0; i < names.length; i++) for (let j = i + 1; j < names.length; j++) { expP++
+    expA += [...new Set([...Object.keys(dists[i]), ...Object.keys(dists[j])])].reduce((a, l) => a + (dists[i][l] ?? 0) * (dists[j][l] ?? 0), 0) }
+  if (pairs && expP) {
+    const obs = 100 * agree / pairs, ind = 100 * expA / expP
+    console.log(`\n  SOLVER INDEPENDENCE: pairwise agreement ${obs.toFixed(1)}% against ${ind.toFixed(1)}% if independent (excess ${(obs - ind).toFixed(1)}pts).`)
+    if (obs - ind > 15) console.log(`    These are not three solvers; they are one solver sampled ${names.length} times. Unanimity below is NOT n*p^3-rare and must not carry a per-item drop on its own.`)
+  }
+}
+{
+  const byArm = {}
+  for (const id of ids) {
+    const arm = key[id].kind ?? 'all'
+    const a = byArm[arm] ??= { n: 0, u: 0 }
+    a.n++; if (unan.includes(id)) a.u++
+  }
+  const arms = Object.keys(byArm)
+  console.log(`\n  unanimous-correct items: ${unan.length} of ${ids.length}`)
+  for (const arm of arms) console.log(`    ${arm.padEnd(13)} ${byArm[arm].u}/${byArm[arm].n} = ${(100*byArm[arm].u/byArm[arm].n).toFixed(1)}%`)
+  if (arms.length > 1) console.log(`    Compare the two RATES. A candidate unanimity rate near the control's is the shipped bank's own level, not a defect of the batch.`)
+}
 if (unan.length) console.log(`    ${unan.map(i => i + '(' + key[i].localId + ')').join(', ')}`)
