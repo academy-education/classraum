@@ -94,8 +94,21 @@ const sub = {}
 for (const it of all) (sub[it.subskill] ??= []).push(it.id)
 console.log(`\nsubskills (${Object.keys(sub).length} distinct across ${all.length} items):`)
 for (const [k, v] of Object.entries(sub).sort((x, y) => y[1].length - x[1].length)) console.log(`  ${String(v.length)}x ${k.padEnd(46)} ${v.join(', ')}`)
-const longLabels = all.filter(i => String(i.subskill ?? '').length > 45)
-if (longLabels.length) console.log(`\nSUBSKILL IS A TAXONOMY COLUMN, NOT A NOTE FIELD: ${longLabels.length} of ${all.length} items carry a paragraph (${longLabels.map(i => i.id).join(', ')})`)
+/* THRESHOLD SET FROM THE DATA, NOT GUESSED. The first version used 45 chars and
+ * flagged five perfectly good labels after the repair — "Linear systems solved
+ * for a combined expression" is 47 — which would have sent an author to fix
+ * correct data. Measured on the real distribution:
+ *
+ *   paragraphs, pre-repair   201, 210, 218, 234, 251, 255, 269
+ *   labels,     post-repair   14 .. 56   (both batches, 29 items)
+ *
+ * The gap is 56 to 201, so anything in it works and 100 is comfortably clear of
+ * both. A subskill is a label; it stops being one when it starts being a
+ * sentence, and 100 characters is where that happens in this data. */
+const LABEL_MAX = 100
+const longLabels = all.filter(i => String(i.subskill ?? '').length > LABEL_MAX)
+if (longLabels.length) console.log(`\nSUBSKILL IS A TAXONOMY COLUMN, NOT A NOTE FIELD: ${longLabels.length} of ${all.length} items carry a paragraph over ${LABEL_MAX} chars (${longLabels.map(i => i.id).join(', ')})`)
+else console.log(`\nsubskill: longest is ${Math.max(...all.map(i => String(i.subskill ?? '').length))} chars, all within the ${LABEL_MAX}-char label bound`)
 const triples = Object.entries(sub).filter(([, v]) => v.length >= 3)
 console.log(triples.length ? `TRIPLE ON ONE SUBSKILL: ${triples.map(([k, v]) => k + ' (' + v.join(', ') + ')').join('; ')}` : 'no subskill carries three or more items')
 writeFileSync(pout, JSON.stringify(all, null, 1))

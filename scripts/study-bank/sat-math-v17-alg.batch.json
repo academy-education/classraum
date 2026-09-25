@@ -2,8 +2,8 @@
  {
   "id": "SM17L-A1",
   "domain": "Algebra",
-  "subskill": "a two-variable linear system in which neither variable cancels as printed, so both equations must be scaled before the subtraction, and the quantity requested is x + y rather than either variable alone",
-  "difficulty": "medium",
+  "subskill": "Linear systems solved for a combined expression",
+  "difficulty": "easy",
   "prompt": "9x + 4y = 360\n3x + 8y = 420\nIf (x, y) is the solution to the system of equations above, what is the value of x + y?",
   "choices": [
    "65",
@@ -12,7 +12,7 @@
    "85"
   ],
   "correct_answer": "65",
-  "explanation": "Multiplying the second equation by 3 gives 9x + 24y = 1260, and subtracting the first equation from it leaves 20y = 900, so y = 45. Then 9x = 360 - 4(45) = 180, so x = 20 and x + y = 20 + 45 = 65, which is \"65\". \"85\" comes from reaching 9x + 24y = 1260 and 9x + 4y = 360 but combining the constants with the wrong sign, writing 20y = 1260 + 360 = 1620, so y = 81; then 9x = 360 - 324 = 36, x = 4 and x + y = 85. \"80\" comes from finding y = 45 correctly and then substituting into the first equation with the coefficient 4 dropped, writing 9x + 45 = 360, so x = 35 and x + y = 80. \"70\" comes from finding x = 20 correctly and then substituting into the second equation with the coefficient 3 dropped, writing x + 8y = 420, so 8y = 400, y = 50 and x + y = 70.",
+  "explanation": "Because the quantity asked for is x + y, the equations can simply be added: 9x + 4y + 3x + 8y = 360 + 420 gives 12x + 12y = 780, so x + y = 65. The longer route reaches the same place: multiplying the second equation by 3 gives 9x + 24y = 1260, and subtracting the first equation from it leaves 20y = 900, so y = 45. Then 9x = 360 - 4(45) = 180, so x = 20 and x + y = 20 + 45 = 65, which is \"65\". \"85\" comes from reaching 9x + 24y = 1260 and 9x + 4y = 360 but combining the constants with the wrong sign, writing 20y = 1260 + 360 = 1620, so y = 81; then 9x = 360 - 324 = 36, x = 4 and x + y = 85. \"80\" comes from finding y = 45 correctly and then substituting into the first equation with the coefficient 4 dropped, writing 9x + 45 = 360, so x = 35 and x + y = 80. \"70\" comes from finding x = 20 correctly and then substituting into the second equation with the coefficient 3 dropped, writing x + 8y = 420, so 8y = 400, y = 50 and x + y = 70.",
   "bounds": [],
   "solve": "var y=(9*420-3*360)/(9*8-3*4); var x=(360-4*y)/9; return String(x+y);",
   "distractor_solve": {
@@ -24,7 +24,7 @@
  {
   "id": "SM17L-A2",
   "domain": "Algebra",
-  "subskill": "a linear inequality with two unlike denominators whose collected x-coefficient is negative, so the direction reverses at the division, and the answer requested is the greatest integer in a solution set whose boundary is not an integer",
+  "subskill": "Linear inequalities with fractional coefficients",
   "difficulty": "hard",
   "prompt": "(2x + 1)/5 - (7x - 4)/6 ≥ -13\nWhat is the greatest integer value of x that satisfies the inequality above?",
   "choices": [
@@ -46,29 +46,29 @@
  {
   "id": "SM17L-A3",
   "domain": "Algebra",
-  "subskill": "a prose model in which two plans each carry a fixed charge and a per-session rate, so the break-even count comes from dividing a difference of fixed charges by a difference of rates, and every printed number belongs to exactly one of those two differences",
+  "subskill": "Break-even between two linear cost models",
   "difficulty": "medium",
-  "prompt": "A climbing gym offers two membership plans. Plan A costs $630 for the year plus $10 for each session used. Plan B costs $30 for the year plus $40 for each session used. For how many sessions in a year do the two plans cost the same total amount?",
+  "prompt": "A climbing gym offers two membership plans. Plan A costs $645 for the year plus $10 for each session used. Plan B costs $45 for the year plus $40 for each session used. For how many sessions in a year do the two plans cost the same total amount?",
   "choices": [
    "12",
    "15",
    "20",
-   "22"
+   "23"
   ],
   "correct_answer": "20",
-  "explanation": "Setting the two totals equal gives 630 + 10s = 30 + 40s. Subtracting 30 and 10s from both sides gives 600 = 30s, so s = 600/30 = 20, which is \"20\". Both plans then cost $830. \"12\" comes from taking the difference of the fixed charges but adding the rates instead of subtracting them, computing 600/(40 + 10) = 12. \"15\" comes from dividing the difference of the fixed charges by Plan B's rate alone, computing 600/40 = 15, which prices the sessions as though Plan A charged nothing per session. \"22\" comes from adding the fixed charges instead of subtracting them while handling the rates correctly, computing (630 + 30)/(40 - 10) = 660/30 = 22.",
+  "explanation": "Setting the two totals equal gives 645 + 10s = 45 + 40s. Subtracting 45 and 10s from both sides gives 600 = 30s, so s = 600/30 = 20, which is \"20\". Both plans then cost $845. \"12\" comes from taking the difference of the fixed charges but adding the rates instead of subtracting them, computing 600/(40 + 10) = 12. \"15\" comes from dividing the difference of the fixed charges by Plan B's rate alone, computing 600/40 = 15, which prices the sessions as though Plan A charged nothing per session. \"23\" comes from adding the fixed charges instead of subtracting them while handling the rates correctly, computing (645 + 45)/(40 - 10) = 690/30 = 23.",
   "bounds": [],
-  "solve": "return String((630-30)/(40-10));",
+  "solve": "return String((645-45)/(40-10));",
   "distractor_solve": {
-   "12": "return String((630-30)/(40+10));",
-   "15": "return String((630-30)/40);",
-   "22": "return String((630+30)/(40-10));"
+   "12": "return String((645-45)/(40+10));",
+   "15": "return String((645-45)/40);",
+   "23": "return String((645+45)/(40-10));"
   }
  },
  {
   "id": "SM17L-A4",
   "domain": "Algebra",
-  "subskill": "a line given in standard form whose slope must be read off before a negative reciprocal is taken, with the perpendicular line pinned by a point and the answer being that line's y-intercept rather than its slope",
+  "subskill": "Perpendicular lines in the xy-plane",
   "difficulty": "medium",
   "prompt": "In the xy-plane, line k is defined by 3x - 2y = 30. Line m is perpendicular to line k and passes through the point (24, 12). At what value of y does line m cross the y-axis?",
   "choices": [
@@ -90,7 +90,7 @@
  {
   "id": "SM17L-A5",
   "domain": "Algebra",
-  "subskill": "a one-variable linear equation with three unlike denominators and a bare constant on the right, so the common denominator must reach the constant as well as the fractions, and two of the three numerators carry a sign that must survive the distribution",
+  "subskill": "Linear equations with fractional coefficients",
   "difficulty": "hard",
   "prompt": "(x - 5)/2 - (2x + 3)/5 = (7x - 3)/10 + 2\nWhat is the value of x that satisfies the equation above?",
   "choices": [
@@ -112,7 +112,7 @@
  {
   "id": "SM17L-A6",
   "domain": "Algebra",
-  "subskill": "a supplied solution substituted into a linear equation in which the unknown coefficient appears on both sides, once multiplying a binomial and once inside a product on the other side, so the a-terms must be collected across the equation after both products are expanded",
+  "subskill": "Solving for an unknown coefficient from a given solution",
   "difficulty": "hard",
   "prompt": "a(2x + 4) - 7x = 4(x + a) - 6\nIn the equation above, a is a constant. If x = -6 is a solution of the equation, what is the value of a?",
   "choices": [
@@ -134,23 +134,23 @@
  {
   "id": "SM17L-A7",
   "domain": "Algebra",
-  "subskill": "an absolute-value equation carrying a factor outside the bars and a linear expression rather than a constant on the right, so the two cases produce two candidate values and one of them must be discarded by substitution",
+  "subskill": "Absolute-value equations with extraneous solutions",
   "difficulty": "hard",
-  "prompt": "3|2x + 32| = 30x - 528\nWhat is the solution to the equation above?",
+  "prompt": "3|2x - 24| = 12x - 108\nWhat is the solution to the equation above?",
   "choices": [
+   "6",
+   "10",
    "12",
-   "18",
-   "20",
-   "26"
+   "30"
   ],
-  "correct_answer": "26",
-  "explanation": "Dividing both sides by 3 gives |2x + 32| = 10x - 176. The first case, 2x + 32 = 10x - 176, gives 208 = 8x and x = 26; checking in the original equation, 3|2(26) + 32| = 3(84) = 252 and 30(26) - 528 = 252, so x = 26 is the solution, which is \"26\". \"12\" comes from the second case, -(2x + 32) = 10x - 176, which gives 144 = 12x and x = 12, and from reporting it without checking: 3|2(12) + 32| = 168 but 30(12) - 528 = -168, so 12 is extraneous. \"18\" comes from writing the second case as 2x - 32 = 10x - 176, negating only the constant inside the absolute value instead of the whole expression, which gives 144 = 8x and x = 18. \"20\" comes from dividing the left side by 3 but leaving the right side alone, writing |2x + 32| = 30x - 528, so that 2x + 32 = 30x - 528 gives 560 = 28x and x = 20.",
+  "correct_answer": "10",
+  "explanation": "Dividing both sides by 3 gives |2x - 24| = 4x - 36. The left side cannot be negative, so 4x - 36 >= 0 and x >= 9; but at every x >= 9 that is below 12 the expression 2x - 24 inside the bars is negative, so it is the second case that carries the solution. That case, -(2x - 24) = 4x - 36, gives 24 + 36 = 6x and x = 10; checking in the original equation, 3|2(10) - 24| = 3(4) = 12 and 12(10) - 108 = 12, so x = 10 is the solution, which is \"10\". \"6\" is what a solver gets by dropping the bars outright and solving 2x - 24 = 4x - 36, the first case: 12 = 2x and x = 6. It is extraneous -- 3|2(6) - 24| = 36 but 12(6) - 108 = -36 -- and it is also the value ruled out by the x >= 9 condition. \"30\" comes from negating only the constant inside the bars instead of the whole expression, writing 2x + 24 = 4x - 36, which gives 60 = 2x and x = 30; there 3|2(30) - 24| = 108 while 12(30) - 108 = 252. \"12\" comes from setting the expression inside the bars to zero, 2x - 24 = 0, and reporting x = 12, where the left side is 0 and the right side is 36.",
   "bounds": [],
-  "solve": "var Q=528/3, P=30/3; return String((Q+32)/(P-2));",
+  "solve": "var R=108/3, C=12/3; return String((24+R)/(2+C));",
   "distractor_solve": {
-   "12": "var Q=528/3, P=30/3; return String((Q-32)/(P+2));",
-   "18": "var Q=528/3, P=30/3; return String((Q-32)/(P-2));",
-   "20": "return String((528+32)/(30-2));"
+   "6": "var R=108/3, C=12/3; return String((R-24)/(C-2));",
+   "12": "return String(24/2);",
+   "30": "var R=108/3, C=12/3; return String((R+24)/(C-2));"
   }
  },
  {
@@ -192,7 +192,7 @@
   "bounds": [],
   "solve": "return 194 + ((194-50)/(12-4))*(25-12);",
   "distractor_solve": {
-   "386": "return 194 + ((194-50)/9)*(25-13);",
+   "386": "return 194 + ((194-50)/9)*12;",
    "402": "return 194 + ((194-50)/9)*(25-12);",
    "446": "return 194 + ((194-50)/(12-4))*(25-12+1);"
   }
@@ -204,19 +204,19 @@
   "difficulty": "hard",
   "prompt": "A metalworker has 60 kilograms of an alloy that is 25% copper by mass. She will add pure copper to it, and nothing else, until the alloy is 55% copper by mass. How many kilograms of pure copper must she add?",
   "choices": [
-   "18",
-   "33",
    "40",
-   "45"
+   "45",
+   "90",
+   "100"
   ],
   "correct_answer": "40",
-  "explanation": "The alloy starts with 0.25*60 = 15 kg of copper. After adding x kg of pure copper, (15 + x)/(60 + x) = 0.55, so 15 + x = 33 + 0.55x and 0.45x = 18, giving x = 40. Check: 55/100 = 55%. Distractor 18: the percentages are treated as if the total mass never changed -- 55% of 60 is 33 kg of copper, 33 - 15 = 18, which is also the answer produced by adding 55 - 25 = 30 percentage points as 30% of 60. Distractor 33: 0.55*60 = 33, the target copper mass computed on the original total and reported as the amount poured in. Distractor 45: 60 - 15 = 45, the mass of non-copper, which is the quantity that must end up as 45% of the new total but is not itself the answer.",
+  "explanation": "The alloy starts with 0.25*60 = 15 kg of copper. After adding x kg of pure copper, (15 + x)/(60 + x) = 0.55, so 15 + x = 33 + 0.55x and 0.45x = 18, giving x = 40. Check: 55/100 = 55%. The same answer falls out of the invariant: the 45 kg that is not copper never changes and must end as 45% of the new total, so the new total is 100 kg and 40 kg were added. Distractor 45: 60 - 15 = 45, the mass of non-copper, which is the quantity that must end up as 45% of the new total but is not itself the answer. Distractor 90: the alligation ratio inverted -- the correct ratio is x/60 = (55 - 25)/(100 - 55) = 30/45, and reading it as 45/30 gives 60*45/30 = 90. Distractor 100: the new total mass, 60 + 40 = 100, reported instead of the amount poured in.",
   "bounds": [],
   "solve": "return (55*60 - 25*60)/(100-55);",
   "distractor_solve": {
-   "18": "return 55*60/100 - 25*60/100;",
-   "33": "return 55*60/100;",
-   "45": "return 60 - 25*60/100;"
+   "45": "return 60 - 25*60/100;",
+   "90": "return 60*(100-55)/(55-25);",
+   "100": "return 60 + (55*60 - 25*60)/(100-55);"
   }
  },
  {
@@ -224,21 +224,21 @@
   "domain": "Algebra",
   "subskill": "Systems of linear equations, per-unit rate",
   "difficulty": "medium",
-  "prompt": "A gym bills each member a fixed monthly charge plus the same additional amount for every visit that member makes. In one month, a member who made 8 visits was billed 62,000 won and a member who made 14 visits was billed 83,000 won. What is the amount, in won, billed for each visit?",
+  "prompt": "A gym bills each member a fixed monthly membership fee plus the same additional amount for every personal-training session that member takes. In one month, a member who took 8 sessions was billed 310,000 won and a member who took 14 sessions was billed 520,000 won. What is the amount, in won, billed for each session?",
   "choices": [
-   "1500",
-   "2625",
-   "3500",
-   "7750"
+   "15000",
+   "26250",
+   "30000",
+   "35000"
   ],
-  "correct_answer": "3500",
-  "explanation": "Let m be the monthly charge and v the per-visit amount. Then m + 8v = 62000 and m + 14v = 83000. Subtracting, 6v = 21000, so v = 3500 (and m = 34000). Distractor 2625: the 21,000 won difference is divided by 8, the smaller member's visit count, instead of by the 6-visit difference, 21000/8 = 2625. Distractor 1500: the same 21,000 won difference divided by 14, the larger visit count, 21000/14 = 1500. Distractor 7750: the fixed monthly charge is ignored and the whole 62,000 won bill is divided by 8 visits, 62000/8 = 7750.",
+  "correct_answer": "35000",
+  "explanation": "Let m be the monthly fee and v the per-session amount. Then m + 8v = 310000 and m + 14v = 520000. Subtracting, 6v = 210000, so v = 35000, and m = 310000 - 8(35000) = 30000. Distractor 26250: the 210,000 won difference is divided by 8, the smaller member's session count, instead of by the 6-session difference, 210000/8 = 26250. Distractor 15000: the same 210,000 won difference divided by 14, the larger session count, 210000/14 = 15000. Distractor 30000: the system is solved correctly and the monthly fee is reported instead of the per-session amount, 310000 - 8(35000) = 30000.",
   "bounds": [],
-  "solve": "return (83000-62000)/(14-8);",
+  "solve": "return (520000-310000)/(14-8);",
   "distractor_solve": {
-   "1500": "return (83000-62000)/14;",
-   "2625": "return (83000-62000)/8;",
-   "7750": "return 62000/8;"
+   "15000": "return (520000-310000)/14;",
+   "26250": "return (520000-310000)/8;",
+   "30000": "return 310000 - 8*((520000-310000)/(14-8));"
   }
  },
  {
@@ -246,21 +246,21 @@
   "domain": "Algebra",
   "subskill": "Linear equations with the variable on both sides",
   "difficulty": "hard",
-  "prompt": "Tank A holds 960 liters of water and is draining at a constant rate of 6 liters per minute. At the same moment, Tank B holds 600 liters and is being filled at a constant rate of 14 liters per minute. Both rates continue unchanged. After how many minutes will Tank B hold exactly 240 liters more than Tank A?",
+  "prompt": "Tank A holds 960 liters of water and is draining at a constant rate of 6 liters per minute. At the same moment, Tank B holds 600 liters and is being filled at a constant rate of 14 liters per minute. Both rates continue unchanged. After how many minutes will Tank B hold exactly 120 liters more than Tank A?",
   "choices": [
    "18",
-   "30",
-   "75",
-   "100"
+   "24",
+   "60",
+   "80"
   ],
-  "correct_answer": "30",
-  "explanation": "After t minutes Tank A holds 960 - 6t liters and Tank B holds 600 + 14t liters. The condition is 600 + 14t = (960 - 6t) + 240, so 600 + 14t = 1200 - 6t and 20t = 600, giving t = 30. Check: A holds 780, B holds 1,020, a difference of 240. Distractor 18: the 240-liter surplus is dropped and the two tanks are simply set equal, (960 - 600)/(14 + 6) = 18. Distractor 100: Tank B is held fixed at 600 liters and only Tank A's drain is allowed to close the gap, 600 = 960 - 6t + 240, giving 600/6 = 100. Distractor 75: the two rates are subtracted rather than combined, 600/(14 - 6) = 75, as though both tanks moved in the same direction.",
+  "correct_answer": "24",
+  "explanation": "After t minutes Tank A holds 960 - 6t liters and Tank B holds 600 + 14t liters. The condition is 600 + 14t = (960 - 6t) + 120, so 600 + 14t = 1080 - 6t and 20t = 480, giving t = 24. Check: A holds 816, B holds 936, a difference of 120. Distractor 18: the 120-liter surplus is dropped and the two tanks are simply set equal, (960 - 600)/(14 + 6) = 18. Distractor 80: Tank B is held fixed at 600 liters and only Tank A's drain is allowed to close the gap, 600 = 960 - 6t + 120, giving 480/6 = 80. Distractor 60: the two rates are subtracted rather than combined, 480/(14 - 6) = 60, as though both tanks moved in the same direction.",
   "bounds": [],
-  "solve": "return (960 + 240 - 600)/(14 + 6);",
+  "solve": "return (960 + 120 - 600)/(14 + 6);",
   "distractor_solve": {
    "18": "return (960 - 600)/(14 + 6);",
-   "75": "return (960 + 240 - 600)/(14 - 6);",
-   "100": "return (960 + 240 - 600)/6;"
+   "60": "return (960 + 120 - 600)/(14 - 6);",
+   "80": "return (960 + 120 - 600)/6;"
   }
  },
  {
@@ -268,21 +268,21 @@
   "domain": "Algebra",
   "subskill": "Linear inequalities in two variables",
   "difficulty": "hard",
-  "prompt": "A van can carry a load of at most 2,400 kilograms. The load will consist of crates of two kinds: each type A crate weighs 85 kilograms and each type B crate weighs 210 kilograms. The load must include at least 5 type B crates. What is the greatest possible number of type A crates in the load?",
+  "prompt": "A van can carry a load of at most 2,400 kilograms. The load will consist of crates of two kinds: each type A crate weighs 85 kilograms and each type B crate weighs 255 kilograms. The load must include at least 5 type B crates. What is the greatest possible number of type A crates in the load?",
   "choices": [
-   "8",
-   "9",
-   "15",
-   "28"
+   "10",
+   "11",
+   "13",
+   "14"
   ],
-  "correct_answer": "15",
-  "explanation": "Writing a for type A crates and b for type B crates, 85a + 210b <= 2400 with b >= 5. Every extra type B crate costs 210 kilograms of capacity, so a is largest when b is at its smallest allowed value, b = 5. That leaves 2400 - 1050 = 1350 kilograms, and 1350/85 = 15.88, so a = 15 (15 crates weigh 1275 kg, for a total of 2325 kg; a 16th would bring the load to 2410 kg). Distractor 28: the type B requirement is dropped entirely and only 2400/85 = 28.2 is used, giving 28. Distractor 9: the two crate types are swapped -- 5 type A crates are reserved and the type B count is maximized, (2400 - 425)/210 = 9.4, giving 9. Distractor 8: the load is treated as A-B pairs of 85 + 210 = 295 kilograms each, 2400/295 = 8.1, giving 8.",
+  "correct_answer": "13",
+  "explanation": "Writing a for type A crates and b for type B crates, 85a + 255b <= 2400 with b >= 5. Every extra type B crate costs 255 kilograms of capacity, so a is largest when b is at its smallest allowed value, b = 5. That leaves 2400 - 1275 = 1125 kilograms, and 1125/85 = 13.2, so a = 13 (13 crates weigh 1105 kg, for a total of 2380 kg; a 14th would bring the load to 2465 kg, over the limit). Distractor 14: the division 1125/85 = 13.2 is rounded up instead of down, which is the one step a capacity constraint never allows. Distractor 10: \"at least 5 type B crates\" is read as \"more than 5\", so 6 type B crates are reserved, leaving 2400 - 1530 = 870 kilograms and 870/85 = 10.2, giving 10. Distractor 11: the same misreading of \"at least 5\" combined with rounding up, giving 11.",
   "bounds": [],
-  "solve": "return Math.floor((2400 - 5*210)/85);",
+  "solve": "return Math.floor((2400 - 5*255)/85);",
   "distractor_solve": {
-   "8": "return Math.floor(2400/(85+210));",
-   "9": "return Math.floor((2400 - 5*85)/210);",
-   "28": "return Math.floor(2400/85);"
+   "10": "return Math.floor((2400 - 6*255)/85);",
+   "11": "return Math.ceil((2400 - 6*255)/85);",
+   "14": "return Math.ceil((2400 - 5*255)/85);"
   }
  },
  {
@@ -292,19 +292,19 @@
   "difficulty": "hard",
   "prompt": "Every part made at a factory has a mass of 25 grams. Six identical machines, each running at the same constant rate, together produce 45 kilograms of parts in 4 production days. At that same rate, how many parts will 9 of these machines produce in 3 production days?",
   "choices": [
-   "900",
-   "1350",
+   "1800",
    "2025",
-   "3600"
+   "2160",
+   "2700"
   ],
   "correct_answer": "2025",
-  "explanation": "45 kilograms is 45,000 grams, so the six machines made 45000/25 = 1,800 parts in 4 production days. That is 1800/(6*4) = 75 parts per machine per production day. Nine machines for 3 production days is 27 machine-days, giving 27*75 = 2,025 parts. Distractor 1350: the change in the number of machines is left out and only the time is scaled, 1800*(3/4) = 1350. Distractor 3600: the time ratio is inverted, 1800*(9/6)*(4/3) = 3600, scaling up for time when the new run is shorter. Distractor 900: the machine ratio is inverted, 1800*(6/9)*(3/4) = 900, scaling down for machines when the new run uses more of them.",
+  "explanation": "45 kilograms is 45,000 grams, so the six machines made 45000/25 = 1,800 parts in 4 production days. That is 1800/(6*4) = 75 parts per machine per production day. Nine machines for 3 production days is 27 machine-days, against the original 24, giving 27*75 = 2,025 parts. Distractor 1800: the extra machines and the shorter run are assumed to cancel, so the output is taken to be unchanged from the 1,800 parts of the first run. Distractor 2160: machines and days are added rather than multiplied, 1800*(9 + 3)/(6 + 4) = 2,160. Distractor 2700: the machines are scaled by 9/6 and the shorter run is ignored, 1800*(9/6) = 2,700.",
   "bounds": [],
   "solve": "return (45000/25) * (9*3)/(6*4);",
   "distractor_solve": {
-   "900": "return (45000/25) * (6/9) * (3/4);",
-   "1350": "return (45000/25) * (3/4);",
-   "3600": "return (45000/25) * (9/6) * (4/3);"
+   "1800": "return (45000/25);",
+   "2160": "return (45000/25) * (9+3)/(6+4);",
+   "2700": "return (45000/25) * (9/6);"
   }
  }
 ]

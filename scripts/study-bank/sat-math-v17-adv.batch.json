@@ -1,27 +1,5 @@
 [
  {
-  "id": "SM17A-A1",
-  "domain": "Advanced Math",
-  "subskill": "Discriminant condition on a parameter",
-  "difficulty": "hard",
-  "prompt": "In the equation kx^2 + (k + 8)x + 9 = 0, k is a constant. The equation has exactly one real solution. What is the sum of all possible values of k?",
-  "choices": [
-   "12",
-   "20",
-   "36",
-   "64"
-  ],
-  "correct_answer": "20",
-  "explanation": "Exactly one real solution means the discriminant is 0: (k + 8)^2 - 4(k)(9) = 0, so k^2 + 16k + 64 - 36k = k^2 - 20k + 64 = 0. By Vieta, the sum of the two values of k is -(-20)/1 = 20. (The values are k = 4 and k = 16; both are nonzero, so the equation really is quadratic in each case.) DISTRACTORS: '64' is the PRODUCT of the two values of k, 64/1, taken from the constant term of k^2 - 20k + 64 instead of the linear term. '36' comes from expanding (k + 8)^2 as k^2 + 64 (dropping the cross term 16k), giving k^2 + 64 - 36k = k^2 - 36k + 64 = 0, whose root sum is 36. '12' is the DIFFERENCE of the two correct values, 16 - 4, produced by a solver who finds k = 4 and k = 16 correctly and then subtracts instead of adding.",
-  "bounds": [],
-  "solve": "const d = k => Math.pow(k + 8, 2) - 4 * k * 9; const C = d(0), A = (d(1) + d(-1) - 2 * C) / 2, B = (d(1) - d(-1)) / 2; return -B / A;",
-  "distractor_solve": {
-   "12": "const d = k => Math.pow(k + 8, 2) - 4 * k * 9; const C = d(0), A = (d(1) + d(-1) - 2 * C) / 2, B = (d(1) - d(-1)) / 2; const r = Math.sqrt(B * B - 4 * A * C); return r / A;",
-   "36": "const d = k => k * k + 64 - 4 * k * 9; const C = d(0), A = (d(1) + d(-1) - 2 * C) / 2, B = (d(1) - d(-1)) / 2; return -B / A;",
-   "64": "const d = k => Math.pow(k + 8, 2) - 4 * k * 9; const C = d(0), A = (d(1) + d(-1) - 2 * C) / 2; return C / A;"
-  }
- },
- {
   "id": "SM17A-A2",
   "domain": "Advanced Math",
   "subskill": "Vertex form with a leading coefficient other than 1",
@@ -69,7 +47,7 @@
   "id": "SM17A-A4",
   "domain": "Advanced Math",
   "subskill": "Inverse of a rational function",
-  "difficulty": "medium",
+  "difficulty": "easy",
   "prompt": "The function f is defined by f(x) = (5x + 12)/(x - 3) for x not equal to 3. The inverse of f can be written as f^-1(x) = (3x + a)/(x - b), where a and b are constants. What is the value of ab?",
   "choices": [
    "15",
@@ -92,21 +70,21 @@
   "domain": "Advanced Math",
   "subskill": "Combining rational expressions",
   "difficulty": "medium",
-  "prompt": "For all x > 2, the expression 7/(x - 2) - 4/(x + 5) is equivalent to (ax + b)/(x^2 + 3x - 10), where a and b are constants. What is the value of a + b?",
+  "prompt": "For all x > 2, the expression 7/(2x - 3) - 4/(3x + 4) is equivalent to (ax + b)/(6x^2 - x - 12), where a and b are constants. What is the value of a + b?",
   "choices": [
-   "-31",
-   "30",
-   "46",
-   "54"
+   "29",
+   "40",
+   "45",
+   "53"
   ],
-  "correct_answer": "46",
-  "explanation": "Since x^2 + 3x - 10 = (x - 2)(x + 5), the common denominator is already the one given. The numerator is 7(x + 5) - 4(x - 2) = 7x + 35 - 4x + 8 = 3x + 43, so a = 3, b = 43, and a + b = 46. DISTRACTORS: '30' mishandles the double negative, computing 7x + 35 - 4x - 8 = 3x + 27, so a + b = 3 + 27 = 30. '-31' multiplies each numerator by its OWN denominator instead of the other one: 7(x - 2) - 4(x + 5) = 7x - 14 - 4x - 20 = 3x - 34, so a + b = 3 - 34 = -31. '54' gets the constant 43 correctly but reads a as 7 + 4 = 11, adding the two numerators instead of subtracting, giving 11 + 43 = 54.",
+  "correct_answer": "53",
+  "explanation": "Since 6x^2 - x - 12 = (2x - 3)(3x + 4), the common denominator is already the one given. Each fraction is multiplied by the OTHER denominator, so the numerator is 7(3x + 4) - 4(2x - 3) = 21x + 28 - 8x + 12 = 13x + 40. Therefore a = 13, b = 40, and a + b = 53. Note that neither constant can be read off the stem by inspection: a is 7*3 - 4*2 and b is 7*4 + 4*3, so pinning either one requires the same expansion that produces the other. DISTRACTORS: 29 mishandles the double negative, computing 7(3x + 4) - 4(2x - 3) as 21x + 28 - 8x - 12 = 13x + 16, so a + b = 13 + 16 = 29. 45 adds the two fractions instead of subtracting: 7(3x + 4) + 4(2x - 3) = 21x + 28 + 8x - 12 = 29x + 16, so a + b = 29 + 16 = 45. 40 carries out the whole expansion correctly and reports b alone, forgetting to add a.",
   "bounds": [],
-  "solve": "const N = x => 7 * (x + 5) - 4 * (x - 2); const b = N(0), a = N(1) - b; return a + b;",
+  "solve": "const N = x => 7 * (3 * x + 4) - 4 * (2 * x - 3); const b = N(0), a = N(1) - b; return a + b;",
   "distractor_solve": {
-   "30": "const N = x => 7 * (x + 5) - 4 * (x + 2); const b = N(0), a = N(1) - b; return a + b;",
-   "54": "const N = x => 7 * (x + 5) - 4 * (x - 2); const b = N(0); return (7 + 4) + b;",
-   "-31": "const N = x => 7 * (x - 2) - 4 * (x + 5); const b = N(0), a = N(1) - b; return a + b;"
+   "29": "const N = x => 7 * (3 * x + 4) - 4 * (2 * x + 3); const b = N(0), a = N(1) - b; return a + b;",
+   "40": "const N = x => 7 * (3 * x + 4) - 4 * (2 * x - 3); return N(0);",
+   "45": "const N = x => 7 * (3 * x + 4) + 4 * (2 * x - 3); const b = N(0), a = N(1) - b; return a + b;"
   }
  },
  {
@@ -144,7 +122,7 @@
    "10"
   ],
   "correct_answer": "6",
-  "explanation": "Setting the expressions equal: x^2 + 3x - 10 = 2x + 4, so x^2 + x - 14 = 0. By Vieta, x1 + x2 = -1. Both points lie on the line, so y1 + y2 = (2x1 + 4) + (2x2 + 4) = 2(x1 + x2) + 8 = 2(-1) + 8 = 6. DISTRACTORS: '-1' is x1 + x2, the sum of the x-coordinates, reported for the wrong variable. '-14' is x1 * x2, the product of the roots read off the constant term of x^2 + x - 14. '10' comes from a sign slip when collecting like terms, writing x^2 - x - 14 = 0 so that x1 + x2 = 1, which gives 2(1) + 8 = 10.",
+  "explanation": "Setting the expressions equal: x^2 + 3x - 10 = 2x + 4, so x^2 + x - 14 = 0. By Vieta, x1 + x2 = -1. Both points lie on the line, so y1 + y2 = (2x1 + 4) + (2x2 + 4) = 2(x1 + x2) + 8 = 2(-1) + 8 = 6. The roots are (-1 +/- sqrt(57))/2, which are irrational, so substituting candidate x-values gets a solver nowhere and the sum has to be taken through Vieta. DISTRACTORS: -1 is x1 + x2, the sum of the x-coordinates, reported for the wrong variable. -14 is x1 * x2, the product of the roots, which is the constant term of the DIFFERENCE quadratic x^2 + x - 14 - not the constant term of the parabola, which is -10. That constant is exactly -10 - 4, the difference of the two printed constants, and that is what makes -14 the one strikeable option in this set: a solver reading four candidates for a sum of two y-values on a line can discard the one that is a bare difference of two numbers printed in the stem, without forming the difference quadratic at all. It is a known single strike, inside tolerance, and it is recorded here so that a grader locates it correctly. 10 comes from a sign slip when collecting like terms, writing x^2 - x - 14 = 0 so that x1 + x2 = 1, which gives 2(1) + 8 = 10.",
   "bounds": [],
   "solve": "const P = x => x * x + 3 * x - 10, L = x => 2 * x + 4; const D = x => P(x) - L(x); const C = D(0), A = (D(1) + D(-1) - 2 * C) / 2, B = (D(1) - D(-1)) / 2; const sx = -B / A; return 2 * sx + 2 * L(0);",
   "distractor_solve": {
@@ -202,43 +180,43 @@
   "domain": "Advanced Math",
   "subskill": "Radical equation by substitution",
   "difficulty": "medium",
-  "prompt": "In the equation x - 5*sqrt(x - 3) = 17, the variable x is restricted to x > 3. What is the value of x?",
+  "prompt": "In the equation x - 4*sqrt(x - 16) = 21, the variable x is restricted to x > 16. What is the value of x?",
   "choices": [
-   "49",
-   "52",
-   "59",
-   "100"
+   "25",
+   "32",
+   "41",
+   "65"
   ],
-  "correct_answer": "52",
-  "explanation": "Write the equation as (x - 3) - 5*sqrt(x - 3) - 14 = 0 and let u = sqrt(x - 3). Then u^2 - 5u - 14 = 0, so (u - 7)(u + 2) = 0 and u = 7 or u = -2. The restriction x > 3 makes sqrt(x - 3) a real nonnegative number, so u = -2 is discarded before any back-substitution is attempted: only u = 7 has to be carried forward. Then x - 3 = 49 and x = 52. Check: 52 - 5*sqrt(49) = 52 - 35 = 17. DISTRACTORS. \"49\": solves for u correctly and squares it, but reports x - 3 = 49 as x, never adding the 3 back. \"100\": adds the 3 to u before squaring instead of after, computing x = (7 + 3)^2 = 100. \"59\": isolates 5*sqrt(x - 3) = x - 17 and squares to get x^2 - 59x + 364 = 0, then reports the sum of that quadratic's two roots, 52 + 7 = 59, instead of testing which root is valid.",
+  "correct_answer": "41",
+  "explanation": "Write the equation as (x - 16) - 4*sqrt(x - 16) - 5 = 0 and let u = sqrt(x - 16). Then u^2 - 4u - 5 = 0, so (u - 5)(u + 1) = 0 and u = 5 or u = -1. A square root is nonnegative, so u = -1 is discarded and only u = 5 is carried forward. Then x - 16 = 25 and x = 41. Check: 41 - 4*sqrt(25) = 41 - 20 = 21. OPTION-SET NOTE, recorded because it is what this set was built for. Every option v satisfies \"v - 16 is a perfect square\" (9, 16, 25, 49), so the cheap filter \"x - 16 must come out a perfect square\" eliminates nothing and a solver has to substitute. Every option also exceeds 21, which closes the other cheap channel: because 4*sqrt(x - 16) is positive, any solution must be greater than the right-hand side. That bound is also why the discarded root u = -1, which would give x = 17, is NOT offered here - in this family the extraneous root always lies below the right-hand side and so is always freely strikeable without substituting. DISTRACTORS. \"25\": solves for u correctly and squares it, but reports x - 16 = 25 as x, never adding the 16 back. \"32\": reads the coefficient 4 as the value of sqrt(x - 16), giving x - 16 = 16 and x = 32. \"65\": rewrites x as (x - 16) + 16 but does not reduce the right-hand side by 16, solving u^2 - 4u - 21 = 0 instead; that gives (u - 7)(u + 3) = 0, u = 7, and x = 49 + 16 = 65.",
   "bounds": [],
-  "solve": "const u = (5 + Math.sqrt(25 + 4 * 14)) / 2; return u * u + 3;",
+  "solve": "const u = (4 + Math.sqrt(16 + 4 * 5)) / 2; return u * u + 16;",
   "distractor_solve": {
-   "49": "const u = (5 + Math.sqrt(25 + 4 * 14)) / 2; return u * u;",
-   "59": "const d = Math.sqrt(59 * 59 - 4 * 364); const r1 = (59 + d) / 2, r2 = (59 - d) / 2; return r1 + r2;",
-   "100": "const u = (5 + Math.sqrt(25 + 4 * 14)) / 2; return (u + 3) * (u + 3);"
+   "25": "const u = (4 + Math.sqrt(16 + 4 * 5)) / 2; return u * u;",
+   "32": "return 4 * 4 + 16;",
+   "65": "const t = (4 + Math.sqrt(16 + 4 * 21)) / 2; return t * t + 16;"
   }
  },
  {
   "id": "SM17A-B3",
   "domain": "Advanced Math",
   "subskill": "Rational exponent on a linear argument",
-  "difficulty": "medium",
-  "prompt": "If (2x - 7)^(3/2) = 125 and 2x - 7 > 0, what is the value of x?",
+  "difficulty": "easy",
+  "prompt": "If (x - 7)^(3/2) = 125 and x > 7, what is the value of x?",
   "choices": [
-   "6",
-   "16",
+   "12",
+   "18",
    "25",
-   "66"
+   "32"
   ],
-  "correct_answer": "16",
-  "explanation": "Raise both sides to the reciprocal power 2/3: 2x - 7 = 125^(2/3) = (125^(1/3))^2 = 5^2 = 25. Then 2x = 32 and x = 16. Check: (32 - 7)^(3/2) = 25^(3/2) = 5^3 = 125. DISTRACTORS. \"6\": takes only the cube root of 125 and forgets to square it, giving 2x - 7 = 5, so 2x = 12 and x = 6. \"25\": carries out 125^(2/3) = 25 correctly and stops there, reporting the value of the linear argument 2x - 7 rather than solving for x. \"66\": drops the exponent entirely and solves the linear equation 2x - 7 = 125, giving x = 66.",
+  "correct_answer": "32",
+  "explanation": "Raise both sides to the reciprocal power 2/3: x - 7 = 125^(2/3) = (125^(1/3))^2 = 5^2 = 25. Then x = 32. Check: (32 - 7)^(3/2) = 25^(3/2) = 5^3 = 125. OPTION-SET NOTE: the exponent 3/2 is greater than 1, so the base x - 7 must be SMALLER than 125, and it must also stay positive. Across the four options x - 7 takes the values 5, 11, 18 and 25, so both bounds hold for every option and neither strikes anything; in particular no option makes x - 7 equal to 125, the printed right-hand side. DISTRACTORS. \"12\": takes only the cube root of 125 and forgets to square it, giving x - 7 = 5 and x = 12. \"25\": carries out 125^(2/3) = 25 correctly and stops there, reporting the value of the linear argument x - 7 rather than solving for x. \"18\": carries out 125^(2/3) = 25 and then solves x - 7 = 25 by subtracting instead of adding, giving x = 25 - 7 = 18.",
   "bounds": [],
-  "solve": "const t = Math.round(Math.cbrt(125)); return (t * t + 7) / 2;",
+  "solve": "const t = Math.round(Math.cbrt(125)); return t * t + 7;",
   "distractor_solve": {
-   "6": "const t = Math.round(Math.cbrt(125)); return (t + 7) / 2;",
-   "25": "const t = Math.round(Math.cbrt(125)); return t * t;",
-   "66": "return (125 + 7) / 2;"
+   "12": "const t = Math.round(Math.cbrt(125)); return t + 7;",
+   "18": "const t = Math.round(Math.cbrt(125)); return t * t - 7;",
+   "25": "const t = Math.round(Math.cbrt(125)); return t * t;"
   }
  },
  {
@@ -246,21 +224,21 @@
   "domain": "Advanced Math",
   "subskill": "Exponential model from two separated values",
   "difficulty": "medium",
-  "prompt": "A colony of bacteria is modeled by P(t) = a*b^t, where P(t) is the number of cells t hours after the colony is established and a and b are constants. The model gives P(1) = 24 and P(5) = 1944. According to the model, what is P(3)?",
+  "prompt": "A colony of bacteria is modeled by P(t) = a*b^t, where P(t) is the number of cells t hours after the colony is established and a and b are constants. The model gives P(1) = 24 and P(4) = 648. According to the model, what is P(3)?",
   "choices": [
    "72",
    "216",
-   "648",
-   "984"
+   "440",
+   "492"
   ],
   "correct_answer": "216",
-  "explanation": "Dividing the two given values eliminates a: P(5)/P(1) = b^4 = 1944/24 = 81, so b = 3. Then P(3) = P(1)*b^2 = 24*9 = 216. Equivalently, t = 3 is midway between t = 1 and t = 5, so P(3) is the geometric mean sqrt(24*1944) = sqrt(46656) = 216. DISTRACTORS. \"984\": takes the arithmetic mean of the two given values, (24 + 1944)/2 = 984, treating the model as linear in t. \"72\": finds b = 3 correctly but advances only one hour from the t = 1 value, computing 24*3 = 72. \"648\": finds b = 3 correctly and works backward from the t = 5 value, but divides by b once instead of twice, computing 1944/3 = 648.",
+  "explanation": "Dividing the two given values eliminates a: P(4)/P(1) = b^3 = 648/24 = 27, so b = 3. Then P(3) = P(4)/b = 648/3 = 216 (equivalently P(1)*b^2 = 24*9 = 216). OPTION-SET NOTE: the queried hour t = 3 is deliberately NOT midway between the two given hours t = 1 and t = 4, so P(3) is not the geometric mean of the given values and the option set contains no geometric progression centred on the key; sqrt(24*648) is not even an integer. No option is a printed value or the arithmetic mean of the two printed values. DISTRACTORS. \"72\": finds b = 3 correctly but advances only one hour from the t = 1 value, computing 24*3 = 72 (the same slip run backwards divides 648 by b twice instead of once). \"440\": treats the model as linear, taking the average change (648 - 24)/3 = 208 cells per hour and reporting 24 + 2(208) = 440 for the two hours from t = 1 to t = 3. \"492\": also treats the model as linear but divides the total change by the second t-value rather than by the 3-hour gap, (648 - 24)/4 = 156, then reports 24 + 3(156) = 492.",
   "bounds": [],
-  "solve": "return Math.sqrt(24 * 1944);",
+  "solve": "const b = Math.cbrt(648 / 24); return 648 / b;",
   "distractor_solve": {
-   "72": "const b = Math.pow(1944 / 24, 1 / 4); return 24 * b;",
-   "648": "const b = Math.pow(1944 / 24, 1 / 4); return 1944 / b;",
-   "984": "return (24 + 1944) / 2;"
+   "72": "const b = Math.cbrt(648 / 24); return 24 * b;",
+   "440": "const m = (648 - 24) / 3; return 24 + 2 * m;",
+   "492": "const m = (648 - 24) / 4; return 24 + 3 * m;"
   }
  },
  {
