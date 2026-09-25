@@ -1360,6 +1360,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     && q.type !== 'speaking_interview'
     && q.type !== 'writing_email'
     && q.type !== 'writing_discussion'
+    // Same reason as the two above: the essay editor is a full-width body.
+    // Only essay_choice can reach here at all (ISEE essay has no passage),
+    // and a 12-row textarea squeezed into half a column is worse than the
+    // prompts sitting above it.
+    && q.type !== 'essay'
+    && q.type !== 'essay_choice'
   // Adaptive tests are timed per module; the countdown shows the CURRENT
   // module's remaining time and resets when Module 2 begins.
   const isAdaptiveTest = !!test.adaptive && typeof test.moduleBreakIdx === 'number'

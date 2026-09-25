@@ -3160,3 +3160,29 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Handled without wasting the audit:** `SendMessage` is not available in this session, so the running auditor cannot be corrected mid-flight. Its findings on the other 13 items stand; `SM17L-A1` gets a separate spot-audit against the final content once it reports.
 
   **Worth recording on its own: the author found a strike class none of my briefs named.** Four of its seven first drafts died to a **residue** argument rather than a value argument — `5 | 195` forcing `5 | y`; an integrality on one side forcing `k` to be a multiple of 5 *with no substitution at all*; a parity argument on `|2x+3|`. Its discriminator is the useful part and belongs in the brief: **a residue argument counts as a free strike only if it is cheaper than solving** — a coefficient visibly dividing its own constant, a term vanishing mod 2/3/5, an integrality forced by a denominator. A congruence reachable only *after* clearing denominators is not a shortcut, because the answer is one step further on.
+
+- **2026-09-25** — **TWO WRITING SECTIONS COULD BE REACHED AND NOT ANSWERED, AND THE OBVIOUS FIX WOULD HAVE BEEN WORSE THAN THE BUG.** 13 live items (8 ISEE Essay, 5 SSAT Writing Sample). Reported by Andy from the running app, on SSAT first and then ISEE. → **A55**
+
+  The runner's answer area is one ternary chain on `q.type` with seven branches and a multiple-choice fallback. `essay` and `essay_choice` matched nothing, fell to the fallback, and the fallback maps over `q.choices` — which an essay row sets to `[]`. The prompt rendered, the input did not, and the submit bar read **제출 (1개 미답)**.
+
+  **TypeScript could not have caught it.** The client `Question` union in `session/[id]/test/types.ts` never listed the two types, so there was no exhaustiveness to fail.
+
+  **A TEXTAREA ALONE WOULD HAVE SHIPPED A REGRESSION.** Neither type was in `OPEN_RESPONSE_TYPES`, so submit would have key-matched a real essay against `correct_answer: ''` and **marked it wrong** — worse than being unable to answer. But they must not join `RESPONSE_SKILL_BY_TYPE` either: both are `scored: false` in `admission-tests.ts`, and the rubric grader is recorded here as uncalibrated, so banding an unscored admission essay invents a number the real test does not produce. The registry now has a third state — `UNSCORED_RESPONSE_TYPES`, with `OPEN_RESPONSE_TYPES` as the derived union — and the three call sites meaning *send to the grader* test the skill map instead of the union.
+
+  **THE TEST THAT WATCHED THIS BUG FOR MONTHS AND STAYED GREEN.** `free-response-types.test.ts` documents the FIRST half of the identical bug from an earlier session — the draw did not know the types, so both sections threw "no verified items". Its own header says it *"pins the type list, which is the load-bearing half of the fix."* **It was half.** The other half was never written, and every test stayed green because they all assert the type list rather than the screen. A student could reach the question and not answer it while 1,133 study tests passed. The new test pins the **call sites** instead, and was break-tested: reverting one guard to `OPEN_RESPONSE_TYPES.has` turns it red.
+
+  **A CHECKER I BUILT FOR THE GENERAL CASE PASSED ITS OWN BREAK-TEST, AND THEN FAILED TWO MORE WAYS.** `check-unrendered-types.mjs` asks the decidable question — which live item types would render no input — and the branch list was first read out of the source by regex:
+
+      v1  `q.type === 'x'` anywhere in the file   PASSED the break-test: deleting the
+                                                  branch left the type mentioned in the
+                                                  branch BODY, so it still reported "own branch"
+      v2  lines containing `) : (`                missed a condition wrapping onto a second line,
+                                                  so the RESTORED fix reported UNANSWERABLE
+      v3  text between `) : (` and `) ? (`        missed branches written without parentheses,
+                                                  `) : q.type === 'multi_select' ? (`
+
+  **A regex is not a TSX parser**, and three attempts produced a checker that read as authoritative and was wrong three different ways. The list is now typed out by hand and the script says plainly that **it cannot tell you the list is still true** — it answers one question exactly, given the list. The check that would be real evidence is a rendering test that mounts the runner with one item per live type; **that is worth writing and is not written.**
+
+  **One more self-inflicted lesson in the same hour.** My first break-test of the hand-maintained list used `sed` to delete the entry, which broke the file's syntax; the script exited 1 and I nearly read that as the check failing. It was a crash. Redone by deleting the line cleanly, confirming with `node --check` that the file still parses, and running from the directory where its relative imports resolve — *then* exit 1 means the check fired.
+
+  **Swept the whole live bank afterwards:** 7,021 items, 9 distinct types, and every one now either has a branch or carries choices for the fallback.
