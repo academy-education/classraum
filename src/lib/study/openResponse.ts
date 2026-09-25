@@ -22,9 +22,35 @@ export const RESPONSE_SKILL_BY_TYPE: Readonly<Record<string, ResponseSkill>> = {
   writing_discussion: 'writing',
 }
 
-/** Answers scored against rubric criteria instead of an answer key. */
+/**
+ * Types with no answer key AND no rubric — ADDED 2026-09-25.
+ *
+ * ISEE Essay and the SSAT Writing Sample are `scored: false` in
+ * admission-tests.ts: the real tests send the writing to schools unscored,
+ * and we do the same. They still must be excluded from the key-scored
+ * denominator, because `correct_answer` on these rows is the empty string —
+ * a student who writes a real essay would be key-matched against `''` and
+ * marked WRONG. That is a worse outcome than the bug that exposed this
+ * (no textarea at all), so the two halves had to land together.
+ *
+ * They are deliberately NOT in RESPONSE_SKILL_BY_TYPE. Putting them there
+ * would route them to the rubric grader, and CLAUDE.md records that the
+ * grader is not calibrated — a published 5 scores 3 — so banding an unscored
+ * admission essay would invent a number the test itself does not produce.
+ */
+export const UNSCORED_RESPONSE_TYPES: ReadonlySet<string> =
+  new Set(['essay', 'essay_choice'])
+
+/**
+ * Answers NOT scored against an answer key: rubric-graded ones and unscored
+ * ones alike. This is the set that decides "keep out of the score
+ * denominator", which is why it is the union rather than the rubric map's
+ * keys. Anything that decides "send to the rubric grader" must test
+ * RESPONSE_SKILL_BY_TYPE instead — membership here is not enough, and the
+ * grader would look up an undefined skill.
+ */
 export const OPEN_RESPONSE_TYPES: ReadonlySet<string> =
-  new Set(Object.keys(RESPONSE_SKILL_BY_TYPE))
+  new Set([...Object.keys(RESPONSE_SKILL_BY_TYPE), ...UNSCORED_RESPONSE_TYPES])
 
 /**
  * What the grader should actually read as "the task".

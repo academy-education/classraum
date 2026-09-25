@@ -22,8 +22,14 @@ describe('open-response rubric resolution', () => {
   it('covers every gradeable type', () => {
     // Guards the derivation itself: an empty map would satisfy every
     // per-type assertion below by vacuous truth.
-    expect([...OPEN_RESPONSE_TYPES].sort())
+    // The GRADEABLE types are the rubric map's keys. OPEN_RESPONSE_TYPES is
+    // wider since 2026-09-25 — it also holds the unscored admission essays —
+    // so asserting against it here would pass while the grader received a type
+    // it has no rubric for. Pin the map.
+    expect(Object.keys(RESPONSE_SKILL_BY_TYPE).sort())
       .toEqual(['speaking_interview', 'writing_discussion', 'writing_email'])
+    expect([...OPEN_RESPONSE_TYPES].sort())
+      .toEqual(['essay', 'essay_choice', 'speaking_interview', 'writing_discussion', 'writing_email'])
   })
 
   it.each(Object.entries(RESPONSE_SKILL_BY_TYPE))(

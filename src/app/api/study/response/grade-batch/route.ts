@@ -116,7 +116,10 @@ export async function POST(req: NextRequest) {
   const targets = (attempts ?? []).flatMap(a => {
     const q = a.question as { type?: string; prompt?: string } | null
     const type = q?.type ?? ''
-    if (!q?.prompt || !OPEN_RESPONSE_TYPES.has(type)) return []
+    // Guard on the skill map, not the union: the next line looks the skill up,
+    // and an unscored essay type would pass the union check and then hand the
+    // grader `undefined`.
+    if (!q?.prompt || !(type in RESPONSE_SKILL_BY_TYPE)) return []
     const skill = RESPONSE_SKILL_BY_TYPE[type]
     if (!skill) return []
     // An unanswered open response has nothing to grade; grading an empty

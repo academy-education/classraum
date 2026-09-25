@@ -15,7 +15,7 @@ import { lcFirst, assembledChips, endPunctuation } from '@/lib/study/chip-displa
 import { useRunnerKeys } from './useRunnerKeys'
 import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
-import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
+import { RESPONSE_SKILL_BY_TYPE } from '@/lib/study/openResponse'
 import { db } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
 import { hapticSelection } from '@/lib/nativeHaptics'
@@ -912,7 +912,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           }, [])
         : []
 
-      if (test.questions.some(q => OPEN_RESPONSE_TYPES.has(q.type))) {
+      // RESPONSE_SKILL_BY_TYPE, not OPEN_RESPONSE_TYPES: the union now also
+      // holds the unscored admission essays, and firing the rubric batch for
+      // those would leave the result screen waiting on a grade nobody issues.
+      if (test.questions.some(q => q.type in RESPONSE_SKILL_BY_TYPE)) {
         setGradingOpenResponses(true)
         void (async () => {
           try {
@@ -2366,13 +2369,29 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               </div>
             )
           })()
-        ) : (q.type === 'writing_email' || q.type === 'writing_discussion') ? (
-          // TOEFL Writing Email / Academic Discussion (Jan 2026): open
-          // free-response. Student reads the scenario in the passage
-          // box above and writes a real reply (target 100+ words).
-          // Rubric-scored post-submit via /api/study/response/grade.
+        ) : (q.type === 'writing_email' || q.type === 'writing_discussion'
+             || q.type === 'essay' || q.type === 'essay_choice') ? (
+          // Open free-response.
+          //   writing_email / writing_discussion — TOEFL (Jan 2026),
+          //     rubric-scored post-submit via /api/study/response/grade.
+          //   essay / essay_choice — ISEE Essay and SSAT Writing Sample.
+          //     ADDED 2026-09-25. These two had NO answer input at all:
+          //     they fell through every branch to the multiple-choice
+          //     list, which maps over `q.choices` — and an essay's
+          //     choices array is empty, so the screen rendered the
+          //     prompt and then nothing. The submit bar read
+          //     "제출 (1개 미답)" and the question could not be answered.
+          //     13 live items were affected (8 ISEE, 5 SSAT).
+          //     free-response-types.test.ts documents the FIRST half of
+          //     this bug — the draw did not know the types, so the
+          //     sections were unservable — and its own header says it
+          //     "pins the type list, which is the load-bearing half of
+          //     the fix". The other half, rendering an input, was never
+          //     written, and every test stayed green because they all
+          //     assert the type list rather than the screen.
           (() => {
-            const target = q.type === 'writing_email' ? 100 : 150
+            const isEssay = q.type === 'essay' || q.type === 'essay_choice'
+            const target = isEssay ? 0 : q.type === 'writing_email' ? 100 : 150
             const student = answers[currentIdx] ?? ''
             const wordCount = student.trim().split(/\s+/).filter(Boolean).length
             return (
@@ -2380,7 +2399,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 <p className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
                   {q.type === 'writing_email'
                     ? (ko ? '이메일 답장을 작성하세요' : 'Write your email reply')
-                    : (ko ? '토론에 기여할 글을 작성하세요' : 'Write your contribution to the discussion')}
+                    : q.type === 'writing_discussion'
+                    ? (ko ? '토론에 기여할 글을 작성하세요' : 'Write your contribution to the discussion')
+                    : q.type === 'essay_choice'
+                    // SSAT prints both prompts in the passage box and asks the
+                    // student to pick one, so the answer has to say which.
+                    ? (ko ? '선택한 주제를 먼저 적고, 에세이를 작성하세요' : 'Name the prompt you chose, then write your essay')
+                    : (ko ? '에세이를 작성하세요' : 'Write your essay')}
                 </p>
                 <textarea
                   value={student}
@@ -2395,19 +2420,28 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   rows={12}
                   placeholder={q.type === 'writing_email'
                     ? (ko ? '여기에 이메일을 작성하세요…' : 'Type your email here…')
-                    : (ko ? '여기에 토론 기여글을 작성하세요…' : 'Type your contribution here…')}
+                    : q.type === 'writing_discussion'
+                    ? (ko ? '여기에 토론 기여글을 작성하세요…' : 'Type your contribution here…')
+                    : q.type === 'essay_choice'
+                    ? (ko ? '예: [Essay] 선택 — 그리고 이어서 에세이를 작성하세요…' : 'e.g. "Choosing the Essay prompt." — then write your response…')
+                    : (ko ? '여기에 에세이를 작성하세요…' : 'Write your essay here…')}
                   className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-[17px] text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
                 />
                 <div className="flex items-center justify-between text-[11px] text-gray-500">
-                  <span>
-                    {ko ? '목표' : 'Target'}: {target}+ {ko ? '단어' : 'words'}
-                  </span>
-                  <span className={wordCount >= target ? 'text-emerald-600 font-semibold' : ''}>
+                  {/* No invented word target on the admission essays. ISEE
+                      Essay and the SSAT Writing Sample are `scored: false`
+                      in admission-tests.ts — schools read them, we do not
+                      band them — so printing "Target: 300+ words" would be
+                      asserting a requirement neither test publishes. */}
+                  <span>{isEssay ? '' : `${ko ? '목표' : 'Target'}: ${target}+ ${ko ? '단어' : 'words'}`}</span>
+                  <span className={!isEssay && wordCount >= target ? 'text-emerald-600 font-semibold' : ''}>
                     {wordCount} {ko ? '단어' : 'words'}
                   </span>
                 </div>
                 <p className="text-[11px] text-gray-400 leading-relaxed">
-                  {ko ? '자동 채점: 최소 길이 확인. 세부 밴드 점수는 시험 후 리뷰에서 확인 가능합니다.' : 'Auto-grading: length check only. Full rubric band is available in the post-test review.'}
+                  {isEssay
+                    ? (ko ? '이 글은 점수로 환산되지 않습니다. 실제 시험처럼 학교가 직접 읽는 영역이며, 작성한 내용은 저장되어 시험 후 리뷰에서 다시 볼 수 있습니다.' : 'This piece is not scored. Like the real test, it is read by schools rather than banded — your writing is saved and available in the post-test review.')
+                    : (ko ? '자동 채점: 최소 길이 확인. 세부 밴드 점수는 시험 후 리뷰에서 확인 가능합니다.' : 'Auto-grading: length check only. Full rubric band is available in the post-test review.')}
                 </p>
               </div>
             )

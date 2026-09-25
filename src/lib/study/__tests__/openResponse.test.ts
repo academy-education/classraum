@@ -1,5 +1,7 @@
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import {
-  composeGraderPrompt, OPEN_RESPONSE_TYPES, RESPONSE_SKILL_BY_TYPE,
+  composeGraderPrompt, OPEN_RESPONSE_TYPES, RESPONSE_SKILL_BY_TYPE, UNSCORED_RESPONSE_TYPES,
 } from '@/lib/study/openResponse'
 
 // The real item from session 114cc85d, which scored 3 on task
@@ -41,10 +43,37 @@ describe('composeGraderPrompt', () => {
   })
 
   it('covers every open-response type', () => {
-    // If a type is gradeable it must be reachable by this composition;
-    // a type added to one map and not the other is the failure that
-    // deriving the set from the map was meant to remove.
+    // The invariant CHANGED on 2026-09-25 and this test changed with it.
+    // OPEN_RESPONSE_TYPES used to be exactly the rubric map's keys; it is now
+    // that union the UNSCORED types (ISEE Essay, SSAT Writing Sample), which
+    // have no answer key and no rubric. The anti-drift property the original
+    // test existed for is preserved: the union is still DERIVED, so a type
+    // cannot be in one place and not the other.
     expect([...OPEN_RESPONSE_TYPES].sort())
-      .toEqual(Object.keys(RESPONSE_SKILL_BY_TYPE).sort())
+      .toEqual([...Object.keys(RESPONSE_SKILL_BY_TYPE), ...UNSCORED_RESPONSE_TYPES].sort())
+  })
+
+  it('the rubric-graded and unscored sets are disjoint', () => {
+    // A type in both would reach the grader, which looks its skill up in
+    // RESPONSE_SKILL_BY_TYPE and would hand the rubric `undefined`.
+    const overlap = [...UNSCORED_RESPONSE_TYPES].filter(t => t in RESPONSE_SKILL_BY_TYPE)
+    expect(overlap).toEqual([])
+  })
+
+  it('every caller that sends to the grader guards on the skill map, not the union', () => {
+    // This is the bug the split was made to prevent, so it is pinned at the
+    // call sites rather than trusted. Each of these fires the rubric grader
+    // or renders a rubric band; guarding on OPEN_RESPONSE_TYPES would send an
+    // unscored admission essay to a grader with no skill for it, and leave the
+    // result screen waiting on a band nobody issues.
+    for (const f of [
+      'src/app/mobile/study/session/[id]/TestSession.tsx',
+      'src/app/mobile/study/session/[id]/test/TestResultView.tsx',
+      'src/app/api/study/response/grade-batch/route.ts',
+    ]) {
+      const src = readFileSync(join(process.cwd(), f), 'utf8')
+      expect(src).not.toMatch(/OPEN_RESPONSE_TYPES\.has/)
+      expect(src).toMatch(/RESPONSE_SKILL_BY_TYPE/)
+    }
   })
 })

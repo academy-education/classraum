@@ -25,7 +25,7 @@ import {
   scoreToeflSection, bandFromProportion, detectToeflSection, WEIGHTS_FOR,
 } from '@/lib/study/toefl-section-score'
 import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
-import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
+import { RESPONSE_SKILL_BY_TYPE } from '@/lib/study/openResponse'
 import {
   buildSectionBreakdown, bracketedLabel, normaliseSectionLabel,
 } from '@/lib/study/section-breakdown'
@@ -1044,7 +1044,10 @@ function ResultCard({
   // Graded against rubric criteria, not an answer key. Read from the
   // same map the grader routes on, so a new open-response type cannot
   // be gradeable here and key-matched there.
-  const isRubricItem = OPEN_RESPONSE_TYPES.has(q.type ?? '')
+  // A rubric item is one the grader actually bands. The unscored admission
+  // essays are open-response but have no band, so they render as the student's
+  // own text rather than as an empty rubric card.
+  const isRubricItem = (q.type ?? '') in RESPONSE_SKILL_BY_TYPE
   const rawTag = q.prompt ? bracketedLabel(q.prompt) : null
   const taskTag = rawTag ? normaliseSectionLabel(rawTag) : null
 

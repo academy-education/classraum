@@ -6,6 +6,10 @@ export interface Question {
   type: 'multiple_choice' | 'numeric_entry' | 'multi_select' | 'three_choice' | 'quant_comparison'
     | 'fill_in_blanks' | 'arrange_words' | 'speaking_repeat' | 'speaking_interview'
     | 'writing_email' | 'writing_discussion'
+  // ISEE Essay / SSAT Writing Sample. Absent here until 2026-09-25, which is
+  // why TypeScript never flagged TestSession's missing render branch and the
+  // two sections drew a question with no answer input.
+  | 'essay' | 'essay_choice'
   choices: string[]
   correct_answer: string
   correct_answers?: string[]
