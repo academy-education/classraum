@@ -5,7 +5,7 @@ import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { recomputeAndPersistSessionScore } from '@/lib/study/persist-session-score'
 import { awardXp } from '@/lib/study/xp'
-import { OPEN_RESPONSE_TYPES, RESPONSE_SKILL_BY_TYPE } from '@/lib/study/openResponse'
+import { RESPONSE_SKILL_BY_TYPE } from '@/lib/study/openResponse'
 import {
   inferSpeakingTaskType,
   type ResponseSkill,

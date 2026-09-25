@@ -1,4 +1,6 @@
 /** @jest-environment node */
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 /**
  * A passage draw must not re-serve passages it has already spent.
  *
@@ -95,8 +97,7 @@ describe('successive reading sections do not re-serve spent passages', () => {
   it('is wired into the admission draw, not merely available', () => {
     // The guard that the previous fix of this shape lacked: the tests
     // above pass even if the assembler never passes a predicate.
-    const src = require('node:fs').readFileSync(
-      require('node:path').join(process.cwd(), 'src/lib/study/assemble.ts'), 'utf8')
+    const src = readFileSync(join(process.cwd(), 'src/lib/study/assemble.ts'), 'utf8')
     expect(src).toMatch(/drawByPassage\(ranked, block\.questions, ITEMS_PER_PASSAGE\[p\.family\], fresh\)/)
     expect(src).toMatch(/const fresh = \(row: \{ id: string \}\) => !exposures\.has\(row\.id\)/)
   })

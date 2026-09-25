@@ -1,4 +1,6 @@
 /** @jest-environment node */
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 /**
  * A verbal section must carry the published question types, in the
  * published order.
@@ -85,8 +87,7 @@ describe('verbal type mix', () => {
   })
 
   it('is wired into the draw, and shuffles within blocks not across them', () => {
-    const src = require('node:fs').readFileSync(
-      require('node:path').join(process.cwd(), 'src/lib/study/assemble.ts'), 'utf8')
+    const src = readFileSync(join(process.cwd(), 'src/lib/study/assemble.ts'), 'utf8')
     // The split draw exists...
     expect(src).toMatch(/VERBAL_TYPES\[p\.family\]/)
     expect(src).toMatch(/verbalKind\(r\.item, r\.task\)/)

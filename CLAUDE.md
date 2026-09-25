@@ -680,3 +680,35 @@ independently of the blind solvers.
 **What would fix it properly** is genuinely independent solvers, and this
 project cannot get them from one model family. Until then, say "three samples"
 and not "three solvers".
+
+
+### `tsc` is not the build. It does not run ESLint, and the build does.
+
+The standing note here says not to run `npm run build` while a dev server is
+live — it wipes `.next` — and to verify with `tsc` instead. That is right about
+the dev server and **wrong as a complete check**, and the gap has a measured
+cost: on 2026-09-25 a Vercel deploy failed on
+
+    ./src/lib/study/__tests__/passage-reserving.test.ts
+    98:17  Error: A `require()` style import is forbidden.
+    ./src/lib/study/__tests__/verbal-type-mix.test.ts
+    88:17  Error: A `require()` style import is forbidden.
+
+Those four lines were introduced on **2026-09-21** and had been failing every
+production build for four days and 52 commits. `tsc --noEmit` passed the whole
+time, because `require()` is valid TypeScript; only `@typescript-eslint/no-require-imports`
+objects, and `tsc` does not run ESLint. Every fix in that window — a referral
+price change, a sidebar remount, two writing sections that could not be
+answered — was committed, pushed, believed shipped, and was not deployed.
+
+Two lessons:
+
+1. **Before claiming anything is shipped, run `npx next lint` (or `npm run
+   lint`).** `tsc` clean plus tests green is not a deployable state. The lint
+   step is where `next build` fails, and it fails on ERRORS only — the hundreds
+   of warnings in this repo are noise the build tolerates, so grep for `Error:`
+   rather than reading the wall.
+2. **A green local check said nothing about the deploy, and nothing told us.**
+   Four days of failed deploys produced no signal in this workflow at all. When
+   a change matters, confirm the deploy succeeded rather than inferring it from
+   a successful push.
