@@ -904,3 +904,33 @@ Note the second one: **an option that is the odd part of speech is a blind tell,
 **14d. A CROSS-ITEM TELL NOTHING CHECKS FOR: the position and shape of the blank.** Eleven of sixteen passages ended on the same detached summary sentence — *"the X is ______"*, *"it is the Y's ______"*. A solver can learn the shape of a batch's final sentence the way they can learn a key-letter bias, and no script in this directory looks at it. Vary where the blank sits.
 
 **14e. The elimination stage is not a formality, and the inserter is right to block on it.** Two items had survived shape, with-source and no-source. `gate.mjs` refused the insert because `elimination` had never been recorded. Running it killed both on a **register singleton** — the key being the one technical or rare word among three ordinary ones, named independently by two solvers on each item. Without that refusal, two tell-carrying items would have shipped.
+
+## §15 — The no-closure rule and "distractors must be real student errors" can be in direct conflict
+
+Found by the `sat-math-v17-adv-b` author on 2026-09-25, while trying to satisfy
+both at once, and it is a fact about the algebra rather than a failure of care.
+
+For a quadratic `ax² + (k+m)x + (k+n)` where a parameter lands in two places,
+the three NATURAL discriminant-slip errors a student actually makes are:
+
+    only squared the binomial                  ->  -2m
+    forgot the leading coefficient inside 4ac  ->  4 - 2m
+    the key                                    ->  4a - 2m
+
+**Those three are locked into an arithmetic progression with the key, whatever
+numbers you choose.** So any two of them plus the key violate the
+"no member is the average of two others" rule by construction. An author who
+obeys the closure rule by picking different numbers will never succeed; the
+constraint is structural.
+
+**The fix, and it generalises:** take at MOST ONE member of a single error
+family, and draw the other distractors from unrelated error types — here a
+product-instead-of-sum and a sign flip on `4ac`. A distractor set built from one
+family is the thing that produces closure relations in the first place, which is
+the same lesson the v15 Advanced Math batch learned the expensive way ("omit one
+step of the correct computation" makes every distractor a proper part of the key,
+and parts advertise the whole).
+
+So the rule to write into a brief is not "avoid closure" — that is a symptom —
+it is **one distractor per error family, and at least one distractor that
+overshoots or goes sideways rather than stopping short.**

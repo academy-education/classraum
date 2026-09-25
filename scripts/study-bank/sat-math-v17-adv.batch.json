@@ -1,0 +1,354 @@
+[
+ {
+  "id": "SM17A-A1",
+  "domain": "Advanced Math",
+  "subskill": "Discriminant condition on a parameter",
+  "difficulty": "hard",
+  "prompt": "In the equation kx^2 + (k + 8)x + 9 = 0, k is a constant. The equation has exactly one real solution. What is the sum of all possible values of k?",
+  "choices": [
+   "12",
+   "20",
+   "36",
+   "64"
+  ],
+  "correct_answer": "20",
+  "explanation": "Exactly one real solution means the discriminant is 0: (k + 8)^2 - 4(k)(9) = 0, so k^2 + 16k + 64 - 36k = k^2 - 20k + 64 = 0. By Vieta, the sum of the two values of k is -(-20)/1 = 20. (The values are k = 4 and k = 16; both are nonzero, so the equation really is quadratic in each case.) DISTRACTORS: '64' is the PRODUCT of the two values of k, 64/1, taken from the constant term of k^2 - 20k + 64 instead of the linear term. '36' comes from expanding (k + 8)^2 as k^2 + 64 (dropping the cross term 16k), giving k^2 + 64 - 36k = k^2 - 36k + 64 = 0, whose root sum is 36. '12' is the DIFFERENCE of the two correct values, 16 - 4, produced by a solver who finds k = 4 and k = 16 correctly and then subtracts instead of adding.",
+  "bounds": [],
+  "solve": "const d = k => Math.pow(k + 8, 2) - 4 * k * 9; const C = d(0), A = (d(1) + d(-1) - 2 * C) / 2, B = (d(1) - d(-1)) / 2; return -B / A;",
+  "distractor_solve": {
+   "12": "const d = k => Math.pow(k + 8, 2) - 4 * k * 9; const C = d(0), A = (d(1) + d(-1) - 2 * C) / 2, B = (d(1) - d(-1)) / 2; const r = Math.sqrt(B * B - 4 * A * C); return r / A;",
+   "36": "const d = k => k * k + 64 - 4 * k * 9; const C = d(0), A = (d(1) + d(-1) - 2 * C) / 2, B = (d(1) - d(-1)) / 2; return -B / A;",
+   "64": "const d = k => Math.pow(k + 8, 2) - 4 * k * 9; const C = d(0), A = (d(1) + d(-1) - 2 * C) / 2; return C / A;"
+  }
+ },
+ {
+  "id": "SM17A-A2",
+  "domain": "Advanced Math",
+  "subskill": "Vertex form with a leading coefficient other than 1",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = -2(x - 3)^2 + c, where c is a constant. The maximum value of f is 5 more than twice the value of f(1). What is the value of c?",
+  "choices": [
+   "-21",
+   "6",
+   "11",
+   "59"
+  ],
+  "correct_answer": "11",
+  "explanation": "Because the leading coefficient -2 is negative, the vertex (3, c) is a maximum, so the maximum value of f is c. Also f(1) = -2(1 - 3)^2 + c = -2(4) + c = c - 8. The condition gives c = 2(c - 8) + 5 = 2c - 11, so c = 11. Check: maximum 11, f(1) = 3, and 2(3) + 5 = 11. DISTRACTORS: '-21' drops the leading minus sign when squaring, reading f(1) as 2(4) + c = c + 8; then c = 2(c + 8) + 5 = 2c + 21 gives c = -21. '6' misreads '5 more than twice f(1)' as 'twice (f(1) plus 5)': c = 2(c - 8 + 5) = 2c - 6 gives c = 6. '59' reads the vertex of -2(x - 3)^2 as x = -3, so f(1) = -2(1 + 3)^2 + c = c - 32, and c = 2(c - 32) + 5 = 2c - 59 gives c = 59.",
+  "bounds": [],
+  "solve": "let c; for (let t = -200; t <= 200; t++) { if (t === 2 * (t - 8) + 5) c = t; } return c;",
+  "distractor_solve": {
+   "6": "let c; for (let t = -200; t <= 200; t++) { if (t === 2 * (t - 8 + 5)) c = t; } return c;",
+   "59": "let c; for (let t = -200; t <= 200; t++) { if (t === 2 * (t - 32) + 5) c = t; } return c;",
+   "-21": "let c; for (let t = -200; t <= 200; t++) { if (t === 2 * (t + 8) + 5) c = t; } return c;"
+  }
+ },
+ {
+  "id": "SM17A-A3",
+  "domain": "Advanced Math",
+  "subskill": "Exponential model with an unknown base",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = a * b^x, where a and b are positive constants. If f(2) = 45 and f(5) = 1215, what is the value of a + b?",
+  "choices": [
+   "8",
+   "15",
+   "18",
+   "48"
+  ],
+  "correct_answer": "8",
+  "explanation": "Dividing the two given values eliminates a: f(5)/f(2) = b^3 = 1215/45 = 27, so b = 3. Then a * 3^2 = 45 gives a = 5, and a + b = 5 + 3 = 8. DISTRACTORS: '18' comes from stepping back only ONE power instead of two, computing a = 45/3 = 15 and then 15 + 3 = 18. '15' is the PRODUCT a * b = 5 * 3, reported in place of the sum. '48' treats the given output 45 as the coefficient a (reading f(2) = 45 as if 2 were the initial input value of the model), giving 45 + 3 = 48.",
+  "bounds": [],
+  "solve": "const b = Math.cbrt(1215 / 45); const a = 45 / Math.pow(b, 2); return a + b;",
+  "distractor_solve": {
+   "15": "const b = Math.cbrt(1215 / 45); const a = 45 / Math.pow(b, 2); return a * b;",
+   "18": "const b = Math.cbrt(1215 / 45); const a = 45 / b; return a + b;",
+   "48": "const b = Math.cbrt(1215 / 45); return 45 + b;"
+  }
+ },
+ {
+  "id": "SM17A-A4",
+  "domain": "Advanced Math",
+  "subskill": "Inverse of a rational function",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (5x + 12)/(x - 3) for x not equal to 3. The inverse of f can be written as f^-1(x) = (3x + a)/(x - b), where a and b are constants. What is the value of ab?",
+  "choices": [
+   "15",
+   "17",
+   "36",
+   "60"
+  ],
+  "correct_answer": "60",
+  "explanation": "Set y = (5x + 12)/(x - 3) and solve for x: y(x - 3) = 5x + 12, so xy - 3y = 5x + 12, so x(y - 5) = 3y + 12, so x = (3y + 12)/(y - 5). Therefore f^-1(x) = (3x + 12)/(x - 5), giving a = 12 and b = 5, so ab = 60. DISTRACTORS: '36' keeps the denominator constant of the ORIGINAL function, taking b = 3 instead of 5 (a solver who swaps only the numerator constant), giving 12 * 3 = 36. '15' misidentifies a as the visible leading coefficient 3 in the given form rather than the constant term, pairing it with the correct b = 5 for 3 * 5 = 15. '17' answers a + b = 12 + 5 instead of the product.",
+  "bounds": [],
+  "solve": "const fn = x => (5 * x + 12) / (x - 3); const y1 = fn(0), y2 = fn(1); const a = -3 * y1; const b = (1 * y2 - 3 * y2) - a; return a * b;",
+  "distractor_solve": {
+   "15": "const fn = x => (5 * x + 12) / (x - 3); const y1 = fn(0), y2 = fn(1); const a = -3 * y1; const b = (1 * y2 - 3 * y2) - a; return 3 * b;",
+   "17": "const fn = x => (5 * x + 12) / (x - 3); const y1 = fn(0), y2 = fn(1); const a = -3 * y1; const b = (1 * y2 - 3 * y2) - a; return a + b;",
+   "36": "const fn = x => (5 * x + 12) / (x - 3); const a = -3 * fn(0); return a * 3;"
+  }
+ },
+ {
+  "id": "SM17A-A5",
+  "domain": "Advanced Math",
+  "subskill": "Combining rational expressions",
+  "difficulty": "medium",
+  "prompt": "For all x > 2, the expression 7/(x - 2) - 4/(x + 5) is equivalent to (ax + b)/(x^2 + 3x - 10), where a and b are constants. What is the value of a + b?",
+  "choices": [
+   "-31",
+   "30",
+   "46",
+   "54"
+  ],
+  "correct_answer": "46",
+  "explanation": "Since x^2 + 3x - 10 = (x - 2)(x + 5), the common denominator is already the one given. The numerator is 7(x + 5) - 4(x - 2) = 7x + 35 - 4x + 8 = 3x + 43, so a = 3, b = 43, and a + b = 46. DISTRACTORS: '30' mishandles the double negative, computing 7x + 35 - 4x - 8 = 3x + 27, so a + b = 3 + 27 = 30. '-31' multiplies each numerator by its OWN denominator instead of the other one: 7(x - 2) - 4(x + 5) = 7x - 14 - 4x - 20 = 3x - 34, so a + b = 3 - 34 = -31. '54' gets the constant 43 correctly but reads a as 7 + 4 = 11, adding the two numerators instead of subtracting, giving 11 + 43 = 54.",
+  "bounds": [],
+  "solve": "const N = x => 7 * (x + 5) - 4 * (x - 2); const b = N(0), a = N(1) - b; return a + b;",
+  "distractor_solve": {
+   "30": "const N = x => 7 * (x + 5) - 4 * (x + 2); const b = N(0), a = N(1) - b; return a + b;",
+   "54": "const N = x => 7 * (x + 5) - 4 * (x - 2); const b = N(0); return (7 + 4) + b;",
+   "-31": "const N = x => 7 * (x - 2) - 4 * (x + 5); const b = N(0), a = N(1) - b; return a + b;"
+  }
+ },
+ {
+  "id": "SM17A-A6",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial division with a quadratic divisor",
+  "difficulty": "hard",
+  "prompt": "When 2x^4 - 3x^3 + 5x^2 + 7x - 4 is divided by x^2 + 2, the quotient is 2x^2 + mx + n and the remainder is px + q, where m, n, p, and q are constants. What is the value of m + n + p + q?",
+  "choices": [
+   "-1",
+   "5",
+   "9",
+   "17"
+  ],
+  "correct_answer": "5",
+  "explanation": "Long division: 2x^2(x^2 + 2) = 2x^4 + 4x^2, leaving -3x^3 + x^2 + 7x - 4. Next -3x(x^2 + 2) = -3x^3 - 6x, leaving x^2 + 13x - 4. Next 1(x^2 + 2) = x^2 + 2, leaving 13x - 6. So m = -3, n = 1, p = 13, q = -6, and m + n + p + q = -3 + 1 + 13 - 6 = 5. Check: (x^2 + 2)(2x^2 - 3x + 1) + 13x - 6 = 2x^4 - 3x^3 + 5x^2 + 7x - 4. DISTRACTORS: '9' forgets to subtract the 4x^2 produced by 2x^2(x^2 + 2), so the constant term of the quotient comes out as n = 5 instead of 1, giving -3 + 5 + 13 - 6 = 9. '-1' forgets that -3x(x^2 + 2) contributes -6x, so the x term of the remainder is read straight off the dividend as p = 7, giving -3 + 1 + 7 - 6 = -1. '17' makes a sign slip in the final subtraction, taking -4 - 2 as q = +6 instead of -6, giving -3 + 1 + 13 + 6 = 17.",
+  "bounds": [],
+  "solve": "let r = [ -4, 7, 5, -3, 2 ]; const q = [0,0,0]; for (let d = 4; d >= 2; d--) { const c = r[d]; q[d-2] = c; r[d] -= c; r[d-2] -= 2 * c; } const m = q[1], n = q[0], p = r[1], qq = r[0]; return m + n + p + qq;",
+  "distractor_solve": {
+   "9": "const m = -3, n = 5, p = 13, q = -6; return m + n + p + q;",
+   "17": "const m = -3, n = 1, p = 13, q = 6; return m + n + p + q;",
+   "-1": "const m = -3, n = 1, p = 7, q = -6; return m + n + p + q;"
+  }
+ },
+ {
+  "id": "SM17A-A7",
+  "domain": "Advanced Math",
+  "subskill": "Line and parabola intersection",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = x^2 + 3x - 10 and the graph of y = 2x + 4 intersect at the points (x1, y1) and (x2, y2). What is the value of y1 + y2?",
+  "choices": [
+   "-14",
+   "-1",
+   "6",
+   "10"
+  ],
+  "correct_answer": "6",
+  "explanation": "Setting the expressions equal: x^2 + 3x - 10 = 2x + 4, so x^2 + x - 14 = 0. By Vieta, x1 + x2 = -1. Both points lie on the line, so y1 + y2 = (2x1 + 4) + (2x2 + 4) = 2(x1 + x2) + 8 = 2(-1) + 8 = 6. DISTRACTORS: '-1' is x1 + x2, the sum of the x-coordinates, reported for the wrong variable. '-14' is x1 * x2, the product of the roots read off the constant term of x^2 + x - 14. '10' comes from a sign slip when collecting like terms, writing x^2 - x - 14 = 0 so that x1 + x2 = 1, which gives 2(1) + 8 = 10.",
+  "bounds": [],
+  "solve": "const P = x => x * x + 3 * x - 10, L = x => 2 * x + 4; const D = x => P(x) - L(x); const C = D(0), A = (D(1) + D(-1) - 2 * C) / 2, B = (D(1) - D(-1)) / 2; const sx = -B / A; return 2 * sx + 2 * L(0);",
+  "distractor_solve": {
+   "10": "const P = x => x * x + 3 * x - 10, L = x => 2 * x + 4; const D = x => P(x) - L(x); const C = D(0), A = (D(1) + D(-1) - 2 * C) / 2, B = (D(1) - D(-1)) / 2; const sx = B / A; return 2 * sx + 2 * L(0);",
+   "-1": "const P = x => x * x + 3 * x - 10, L = x => 2 * x + 4; const D = x => P(x) - L(x); const C = D(0), A = (D(1) + D(-1) - 2 * C) / 2, B = (D(1) - D(-1)) / 2; return -B / A;",
+   "-14": "const P = x => x * x + 3 * x - 10, L = x => 2 * x + 4; const D = x => P(x) - L(x); const C = D(0), A = (D(1) + D(-1) - 2 * C) / 2; return C / A;"
+  }
+ },
+ {
+  "id": "SM17A-A8",
+  "domain": "Advanced Math",
+  "subskill": "Factor theorem chained to remainder theorem",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = 2x^3 + ax^2 + bx - 12, where a and b are constants. The polynomial x - 2 is a factor of p, and p(-1) = -30. What is the remainder when p(x) is divided by x - 3?",
+  "choices": [
+   "-42",
+   "18",
+   "30",
+   "66"
+  ],
+  "correct_answer": "18",
+  "explanation": "By the factor theorem, p(2) = 0: 16 + 4a + 2b - 12 = 0, so 4a + 2b = -4. From p(-1) = -30: -2 + a - b - 12 = -30, so a - b = -16. Solving gives a = -6 and b = 10, so p(x) = 2x^3 - 6x^2 + 10x - 12. By the remainder theorem the remainder on division by x - 3 is p(3) = 54 - 54 + 30 - 12 = 18. DISTRACTORS: '30' evaluates p(3) but drops the constant term -12, giving 54 - 54 + 30. '-42' solves the system correctly but applies the wrong sign to the linear term when evaluating, computing 54 - 54 - 30 - 12. '66' solves the system with both signs reversed (a = 6, b = -10, which satisfies neither condition), then evaluates p(3) = 54 + 54 - 30 - 12.",
+  "bounds": [],
+  "solve": "const M = [[4, 2], [1, -1]], v = [-4, -16]; const det = M[0][0] * M[1][1] - M[0][1] * M[1][0]; const a = (v[0] * M[1][1] - M[0][1] * v[1]) / det; const b = (M[0][0] * v[1] - v[0] * M[1][0]) / det; return 2 * 27 + a * 9 + b * 3 - 12;",
+  "distractor_solve": {
+   "30": "const M = [[4, 2], [1, -1]], v = [-4, -16]; const det = M[0][0] * M[1][1] - M[0][1] * M[1][0]; const a = (v[0] * M[1][1] - M[0][1] * v[1]) / det; const b = (M[0][0] * v[1] - v[0] * M[1][0]) / det; return 2 * 27 + a * 9 + b * 3;",
+   "66": "const a = 6, b = -10; return 2 * 27 + a * 9 + b * 3 - 12;",
+   "-42": "const M = [[4, 2], [1, -1]], v = [-4, -16]; const det = M[0][0] * M[1][1] - M[0][1] * M[1][0]; const a = (v[0] * M[1][1] - M[0][1] * v[1]) / det; const b = (M[0][0] * v[1] - v[0] * M[1][0]) / det; return 2 * 27 + a * 9 - b * 3 - 12;"
+  }
+ },
+ {
+  "id": "SM17A-B1",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic from zeros and an extreme value",
+  "difficulty": "medium",
+  "prompt": "The graph of the quadratic function f(x) = ax^2 + bx + c crosses the x-axis at (-2, 0) and (3, 0), and the minimum value of f is -150. What is the value of a?",
+  "choices": [
+   "6",
+   "24",
+   "25",
+   "60"
+  ],
+  "correct_answer": "24",
+  "explanation": "The axis of symmetry is midway between the zeros, at x = (-2 + 3)/2 = 0.5, so the vertex is (0.5, -150) and f(x) = a(x - 0.5)^2 - 150. Substituting the zero x = -2 gives 0 = a(-2.5)^2 - 150 = 6.25a - 150, so a = 150/6.25 = 24. DISTRACTORS. \"25\": reads \"minimum value -150\" as the y-intercept, so f(0) = a(0 + 2)(0 - 3) = -6a = -150 and a = 150/6 = 25. \"60\": sets up the vertex form correctly but never squares the horizontal distance, solving a(2.5) = 150 to get a = 60. \"6\": uses the distance between the two zeros, 5, in place of the distance from the vertex to a zero, solving a(5)^2 = 150 to get a = 6.",
+  "bounds": [],
+  "solve": "const h = (-2 + 3) / 2; const d = h - (-2); return 150 / (d * d);",
+  "distractor_solve": {
+   "6": "return 150 / (5 * 5);",
+   "25": "return 150 / 6;",
+   "60": "return 150 / 2.5;"
+  }
+ },
+ {
+  "id": "SM17A-B2",
+  "domain": "Advanced Math",
+  "subskill": "Radical equation by substitution",
+  "difficulty": "medium",
+  "prompt": "In the equation x - 5*sqrt(x - 3) = 17, the variable x is restricted to x > 3. What is the value of x?",
+  "choices": [
+   "49",
+   "52",
+   "59",
+   "100"
+  ],
+  "correct_answer": "52",
+  "explanation": "Write the equation as (x - 3) - 5*sqrt(x - 3) - 14 = 0 and let u = sqrt(x - 3). Then u^2 - 5u - 14 = 0, so (u - 7)(u + 2) = 0 and u = 7 or u = -2. The restriction x > 3 makes sqrt(x - 3) a real nonnegative number, so u = -2 is discarded before any back-substitution is attempted: only u = 7 has to be carried forward. Then x - 3 = 49 and x = 52. Check: 52 - 5*sqrt(49) = 52 - 35 = 17. DISTRACTORS. \"49\": solves for u correctly and squares it, but reports x - 3 = 49 as x, never adding the 3 back. \"100\": adds the 3 to u before squaring instead of after, computing x = (7 + 3)^2 = 100. \"59\": isolates 5*sqrt(x - 3) = x - 17 and squares to get x^2 - 59x + 364 = 0, then reports the sum of that quadratic's two roots, 52 + 7 = 59, instead of testing which root is valid.",
+  "bounds": [],
+  "solve": "const u = (5 + Math.sqrt(25 + 4 * 14)) / 2; return u * u + 3;",
+  "distractor_solve": {
+   "49": "const u = (5 + Math.sqrt(25 + 4 * 14)) / 2; return u * u;",
+   "59": "const d = Math.sqrt(59 * 59 - 4 * 364); const r1 = (59 + d) / 2, r2 = (59 - d) / 2; return r1 + r2;",
+   "100": "const u = (5 + Math.sqrt(25 + 4 * 14)) / 2; return (u + 3) * (u + 3);"
+  }
+ },
+ {
+  "id": "SM17A-B3",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponent on a linear argument",
+  "difficulty": "medium",
+  "prompt": "If (2x - 7)^(3/2) = 125 and 2x - 7 > 0, what is the value of x?",
+  "choices": [
+   "6",
+   "16",
+   "25",
+   "66"
+  ],
+  "correct_answer": "16",
+  "explanation": "Raise both sides to the reciprocal power 2/3: 2x - 7 = 125^(2/3) = (125^(1/3))^2 = 5^2 = 25. Then 2x = 32 and x = 16. Check: (32 - 7)^(3/2) = 25^(3/2) = 5^3 = 125. DISTRACTORS. \"6\": takes only the cube root of 125 and forgets to square it, giving 2x - 7 = 5, so 2x = 12 and x = 6. \"25\": carries out 125^(2/3) = 25 correctly and stops there, reporting the value of the linear argument 2x - 7 rather than solving for x. \"66\": drops the exponent entirely and solves the linear equation 2x - 7 = 125, giving x = 66.",
+  "bounds": [],
+  "solve": "const t = Math.round(Math.cbrt(125)); return (t * t + 7) / 2;",
+  "distractor_solve": {
+   "6": "const t = Math.round(Math.cbrt(125)); return (t + 7) / 2;",
+   "25": "const t = Math.round(Math.cbrt(125)); return t * t;",
+   "66": "return (125 + 7) / 2;"
+  }
+ },
+ {
+  "id": "SM17A-B4",
+  "domain": "Advanced Math",
+  "subskill": "Exponential model from two separated values",
+  "difficulty": "medium",
+  "prompt": "A colony of bacteria is modeled by P(t) = a*b^t, where P(t) is the number of cells t hours after the colony is established and a and b are constants. The model gives P(1) = 24 and P(5) = 1944. According to the model, what is P(3)?",
+  "choices": [
+   "72",
+   "216",
+   "648",
+   "984"
+  ],
+  "correct_answer": "216",
+  "explanation": "Dividing the two given values eliminates a: P(5)/P(1) = b^4 = 1944/24 = 81, so b = 3. Then P(3) = P(1)*b^2 = 24*9 = 216. Equivalently, t = 3 is midway between t = 1 and t = 5, so P(3) is the geometric mean sqrt(24*1944) = sqrt(46656) = 216. DISTRACTORS. \"984\": takes the arithmetic mean of the two given values, (24 + 1944)/2 = 984, treating the model as linear in t. \"72\": finds b = 3 correctly but advances only one hour from the t = 1 value, computing 24*3 = 72. \"648\": finds b = 3 correctly and works backward from the t = 5 value, but divides by b once instead of twice, computing 1944/3 = 648.",
+  "bounds": [],
+  "solve": "return Math.sqrt(24 * 1944);",
+  "distractor_solve": {
+   "72": "const b = Math.pow(1944 / 24, 1 / 4); return 24 * b;",
+   "648": "const b = Math.pow(1944 / 24, 1 / 4); return 1944 / b;",
+   "984": "return (24 + 1944) / 2;"
+  }
+ },
+ {
+  "id": "SM17A-B5",
+  "domain": "Advanced Math",
+  "subskill": "Cubic zeros and pairwise products",
+  "difficulty": "medium",
+  "prompt": "The polynomial p(x) = x^3 - 12x^2 + kx - 42, where k is a constant, has three zeros, each of which is a positive integer. What is the value of k?",
+  "choices": [
+   "27",
+   "29",
+   "41",
+   "44"
+  ],
+  "correct_answer": "41",
+  "explanation": "If the zeros are r, s, and t, then p(x) = (x - r)(x - s)(x - t) = x^3 - (r + s + t)x^2 + (rs + rt + st)x - rst. Matching coefficients gives r + s + t = 12, rst = 42, and k = rs + rt + st. The only set of three positive integers with product 42 and sum 12 is 2, 3, 7 (the other factorizations of 42 are 1*1*42, 1*2*21, 1*3*14, 1*6*7 and 1*42*1, whose sums are 44, 24, 18, and 14). So k = 2*3 + 2*7 + 3*7 = 6 + 14 + 21 = 41. DISTRACTORS. \"44\": chooses 2, 4, 6, a triple that matches the sum of 12 but has product 48 rather than 42, and computes 8 + 12 + 24 = 44. \"29\": reverses Vieta's sign on the constant term and uses rst = -42, which with sum 12 admits -1, 6, 7, giving (-1)(6) + (-1)(7) + (6)(7) = 29. \"27\": identifies the zeros 2, 3, 7 correctly but adds only two of the three pairwise products, 2*3 + 3*7 = 6 + 21 = 27, omitting 2*7.",
+  "bounds": [],
+  "solve": "for (let r = 1; r <= 12; r++) { for (let s = r; s <= 12; s++) { const t = 12 - r - s; if (t >= s && r * s * t === 42) { return r * s + r * t + s * t; } } } return -1;",
+  "distractor_solve": {
+   "27": "const r = 2, s = 3, t = 7; return r * s + s * t;",
+   "29": "const r = -1, s = 6, t = 7; return r * s + r * t + s * t;",
+   "44": "const r = 2, s = 4, t = 6; return r * s + r * t + s * t;"
+  }
+ },
+ {
+  "id": "SM17A-B6",
+  "domain": "Advanced Math",
+  "subskill": "Piecewise function through an input transformation",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 3x^2 - 5 for x <= 1 and by f(x) = 12 - 5x for x > 1. The function g is defined by g(x) = f(3x - 8). What is the value of g(3)?",
+  "choices": [
+   "-41",
+   "-3",
+   "-2",
+   "7"
+  ],
+  "correct_answer": "-2",
+  "explanation": "First evaluate the input to f: 3(3) - 8 = 1. Because 1 satisfies x <= 1, the first rule applies, so g(3) = f(1) = 3(1)^2 - 5 = -2. The input lands exactly on the boundary, and the boundary belongs to the quadratic rule. DISTRACTORS. \"7\": reaches the input 1 correctly but applies the second rule there, computing 12 - 5(1) = 7; that rule is defined only for x > 1. \"-3\": ignores the transformation and evaluates f at the outer input, f(3) = 12 - 5(3) = -3, since 3 > 1. \"-41\": reads the definition as g(x) = f(3x) - 8, computing f(9) - 8 = (12 - 45) - 8 = -41.",
+  "bounds": [],
+  "solve": "const f = (x) => (x <= 1 ? 3 * x * x - 5 : 12 - 5 * x); return f(3 * 3 - 8);",
+  "distractor_solve": {
+   "7": "return 12 - 5 * 1;",
+   "-3": "const f = (x) => (x <= 1 ? 3 * x * x - 5 : 12 - 5 * x); return f(3);",
+   "-41": "const f = (x) => (x <= 1 ? 3 * x * x - 5 : 12 - 5 * x); return f(3 * 3) - 8;"
+  }
+ },
+ {
+  "id": "SM17A-B7",
+  "domain": "Advanced Math",
+  "subskill": "Completing the square for an extreme value",
+  "difficulty": "medium",
+  "prompt": "What is the minimum value of the function f(x) = 4x^2 - 20x + 47?",
+  "choices": [
+   "-3",
+   "2.5",
+   "22",
+   "40.75"
+  ],
+  "correct_answer": "22",
+  "explanation": "Factor the leading coefficient out of the variable terms: f(x) = 4(x^2 - 5x) + 47. Half of -5 is -2.5, and 4(x - 2.5)^2 = 4x^2 - 20x + 25, so f(x) = 4(x - 2.5)^2 - 25 + 47 = 4(x - 2.5)^2 + 22. The squared term is never negative and equals 0 at x = 2.5, so the minimum value is 22. DISTRACTORS. \"2.5\": completes the square correctly but reports the x-coordinate of the vertex, -b/(2a) = 20/8 = 2.5, rather than the minimum value of the function. \"40.75\": factors the 4 out to get 4(x - 2.5)^2 but then subtracts only 2.5^2 = 6.25 instead of 4(2.5^2) = 25, giving 47 - 6.25 = 40.75. \"-3\": uses the formula c - b^2/(2a) instead of c - b^2/(4a), computing 47 - 400/8 = 47 - 50 = -3.",
+  "bounds": [],
+  "solve": "const a = 4, b = -20, c = 47; return c - (b * b) / (4 * a);",
+  "distractor_solve": {
+   "2.5": "const a = 4, b = -20; return -b / (2 * a);",
+   "40.75": "const a = 4, b = -20, c = 47; const h = -b / (2 * a); return c - h * h;",
+   "-3": "const a = 4, b = -20, c = 47; return c - (b * b) / (2 * a);"
+  }
+ },
+ {
+  "id": "SM17A-B8",
+  "domain": "Advanced Math",
+  "subskill": "Parameter in two coefficients via the discriminant",
+  "difficulty": "hard",
+  "prompt": "In the equation 2x^2 + (k - 5)x + (k + 4) = 0, k is a constant. The equation has exactly one real solution for exactly two values of k. What is the sum of those two values of k?",
+  "choices": [
+   "-7",
+   "2",
+   "14",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "A quadratic in x has exactly one real solution when its discriminant is 0: (k - 5)^2 - 4(2)(k + 4) = 0. Expanding gives k^2 - 10k + 25 - 8k - 32 = 0, that is k^2 - 18k - 7 = 0. Its discriminant is 324 + 28 = 352, which is positive and not a perfect square, so there are exactly two irrational values of k and they need not be found individually: by the sum-of-roots relation their sum is -(-18)/1 = 18. DISTRACTORS. \"-7\": applies the roots relation to the wrong coefficient and reports the product of the two values of k, (m^2 - 4an) = 25 - 32 = -7, instead of their sum. \"14\": leaves the leading coefficient 2 out of the 4ac term, solving (k - 5)^2 - 4(k + 4) = k^2 - 14k + 9 = 0, whose roots sum to 14. \"2\": adds the 4ac term instead of subtracting it, solving (k - 5)^2 + 8(k + 4) = k^2 - 2k + 57 = 0, whose roots sum to 2.",
+  "bounds": [],
+  "solve": "const a = 2, m = -5, n = 4; const B = 2 * m - 4 * a; return -B;",
+  "distractor_solve": {
+   "2": "const a = 2, m = -5; return -(2 * m + 4 * a);",
+   "14": "const m = -5; return 4 - 2 * m;",
+   "-7": "const a = 2, m = -5, n = 4; return m * m - 4 * a * n;"
+  }
+ }
+]

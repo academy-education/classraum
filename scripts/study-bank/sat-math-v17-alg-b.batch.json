@@ -1,0 +1,156 @@
+[
+  {
+    "id": "SM17L-B1",
+    "domain": "Algebra",
+    "subskill": "Linear functions from two points",
+    "difficulty": "medium",
+    "prompt": "The function f is linear. It is given that f(4) = 19 and f(12) = 43. What is the value of f(27)?",
+    "choices": [
+      "64",
+      "73",
+      "88",
+      "100"
+    ],
+    "correct_answer": "88",
+    "explanation": "The slope is (43 - 19)/(12 - 4) = 24/8 = 3, so f(x) = 3x + 7 and f(27) = 81 + 7 = 88. Distractor 64: correct slope 3, but the 15-unit run from x = 12 is added to the value at the OTHER anchor, 19 + 15*3 = 64. Distractor 73: the slope is computed as (43 - 19)/12 = 2 (dividing by the larger x-coordinate instead of the run), then 43 + 15*2 = 73. Distractor 100: correct slope 3, but 19 is taken as the y-intercept rather than f(4), giving 3*27 + 19 = 100.",
+    "bounds": [],
+    "solve": "return 19 + ((43-19)/(12-4))*(27-4);",
+    "distractor_solve": {
+      "64": "return 19 + ((43-19)/(12-4))*(27-12);",
+      "73": "return 43 + ((43-19)/12)*(27-12);",
+      "100": "return ((43-19)/(12-4))*27 + 19;"
+    }
+  },
+  {
+    "id": "SM17L-B2",
+    "domain": "Algebra",
+    "subskill": "Arithmetic sequences and counting intervals",
+    "difficulty": "medium",
+    "prompt": "The rungs of a straight ladder are equally spaced. The 4th rung from the bottom is 50 cm above the ground, and the 12th rung from the bottom is 194 cm above the ground. How many centimeters above the ground is the 25th rung from the bottom?",
+    "choices": [
+      "386",
+      "402",
+      "428",
+      "446"
+    ],
+    "correct_answer": "428",
+    "explanation": "There are 12 - 4 = 8 spaces between the 4th and 12th rungs, so each space is (194 - 50)/8 = 18 cm. From the 12th rung to the 25th there are 25 - 12 = 13 spaces, so the height is 194 + 13*18 = 428 cm. Distractor 402: the spacing is taken as 144/9 = 16 cm by counting rungs (4th through 12th inclusive) instead of the spaces between them, giving 194 + 13*16 = 402. Distractor 386: the same 16 cm spacing together with 12 spaces instead of 13, 194 + 12*16 = 386 (equivalently, a first rung at 2 cm and 24 spaces of 16). Distractor 446: correct 18 cm spacing but 25 - 12 + 1 = 14 spaces counted, 194 + 14*18 = 446.",
+    "bounds": [],
+    "solve": "return 194 + ((194-50)/(12-4))*(25-12);",
+    "distractor_solve": {
+      "386": "return 194 + ((194-50)/9)*(25-13);",
+      "402": "return 194 + ((194-50)/9)*(25-12);",
+      "446": "return 194 + ((194-50)/(12-4))*(25-12+1);"
+    }
+  },
+  {
+    "id": "SM17L-B3",
+    "domain": "Algebra",
+    "subskill": "Mixture models",
+    "difficulty": "hard",
+    "prompt": "A metalworker has 60 kilograms of an alloy that is 25% copper by mass. She will add pure copper to it, and nothing else, until the alloy is 55% copper by mass. How many kilograms of pure copper must she add?",
+    "choices": [
+      "18",
+      "33",
+      "40",
+      "45"
+    ],
+    "correct_answer": "40",
+    "explanation": "The alloy starts with 0.25*60 = 15 kg of copper. After adding x kg of pure copper, (15 + x)/(60 + x) = 0.55, so 15 + x = 33 + 0.55x and 0.45x = 18, giving x = 40. Check: 55/100 = 55%. Distractor 18: the percentages are treated as if the total mass never changed -- 55% of 60 is 33 kg of copper, 33 - 15 = 18, which is also the answer produced by adding 55 - 25 = 30 percentage points as 30% of 60. Distractor 33: 0.55*60 = 33, the target copper mass computed on the original total and reported as the amount poured in. Distractor 45: 60 - 15 = 45, the mass of non-copper, which is the quantity that must end up as 45% of the new total but is not itself the answer.",
+    "bounds": [],
+    "solve": "return (55*60 - 25*60)/(100-55);",
+    "distractor_solve": {
+      "18": "return 55*60/100 - 25*60/100;",
+      "33": "return 55*60/100;",
+      "45": "return 60 - 25*60/100;"
+    }
+  },
+  {
+    "id": "SM17L-B4",
+    "domain": "Algebra",
+    "subskill": "Systems of linear equations, per-unit rate",
+    "difficulty": "medium",
+    "prompt": "A gym bills each member a fixed monthly charge plus the same additional amount for every visit that member makes. In one month, a member who made 8 visits was billed 62,000 won and a member who made 14 visits was billed 83,000 won. What is the amount, in won, billed for each visit?",
+    "choices": [
+      "1500",
+      "2625",
+      "3500",
+      "7750"
+    ],
+    "correct_answer": "3500",
+    "explanation": "Let m be the monthly charge and v the per-visit amount. Then m + 8v = 62000 and m + 14v = 83000. Subtracting, 6v = 21000, so v = 3500 (and m = 34000). Distractor 2625: the 21,000 won difference is divided by 8, the smaller member's visit count, instead of by the 6-visit difference, 21000/8 = 2625. Distractor 1500: the same 21,000 won difference divided by 14, the larger visit count, 21000/14 = 1500. Distractor 7750: the fixed monthly charge is ignored and the whole 62,000 won bill is divided by 8 visits, 62000/8 = 7750.",
+    "bounds": [],
+    "solve": "return (83000-62000)/(14-8);",
+    "distractor_solve": {
+      "1500": "return (83000-62000)/14;",
+      "2625": "return (83000-62000)/8;",
+      "7750": "return 62000/8;"
+    }
+  },
+  {
+    "id": "SM17L-B5",
+    "domain": "Algebra",
+    "subskill": "Linear equations with the variable on both sides",
+    "difficulty": "hard",
+    "prompt": "Tank A holds 960 liters of water and is draining at a constant rate of 6 liters per minute. At the same moment, Tank B holds 600 liters and is being filled at a constant rate of 14 liters per minute. Both rates continue unchanged. After how many minutes will Tank B hold exactly 240 liters more than Tank A?",
+    "choices": [
+      "18",
+      "30",
+      "75",
+      "100"
+    ],
+    "correct_answer": "30",
+    "explanation": "After t minutes Tank A holds 960 - 6t liters and Tank B holds 600 + 14t liters. The condition is 600 + 14t = (960 - 6t) + 240, so 600 + 14t = 1200 - 6t and 20t = 600, giving t = 30. Check: A holds 780, B holds 1,020, a difference of 240. Distractor 18: the 240-liter surplus is dropped and the two tanks are simply set equal, (960 - 600)/(14 + 6) = 18. Distractor 100: Tank B is held fixed at 600 liters and only Tank A's drain is allowed to close the gap, 600 = 960 - 6t + 240, giving 600/6 = 100. Distractor 75: the two rates are subtracted rather than combined, 600/(14 - 6) = 75, as though both tanks moved in the same direction.",
+    "bounds": [],
+    "solve": "return (960 + 240 - 600)/(14 + 6);",
+    "distractor_solve": {
+      "18": "return (960 - 600)/(14 + 6);",
+      "75": "return (960 + 240 - 600)/(14 - 6);",
+      "100": "return (960 + 240 - 600)/6;"
+    }
+  },
+  {
+    "id": "SM17L-B6",
+    "domain": "Algebra",
+    "subskill": "Linear inequalities in two variables",
+    "difficulty": "hard",
+    "prompt": "A van can carry a load of at most 2,400 kilograms. The load will consist of crates of two kinds: each type A crate weighs 85 kilograms and each type B crate weighs 210 kilograms. The load must include at least 5 type B crates. What is the greatest possible number of type A crates in the load?",
+    "choices": [
+      "8",
+      "9",
+      "15",
+      "28"
+    ],
+    "correct_answer": "15",
+    "explanation": "Writing a for type A crates and b for type B crates, 85a + 210b <= 2400 with b >= 5. Every extra type B crate costs 210 kilograms of capacity, so a is largest when b is at its smallest allowed value, b = 5. That leaves 2400 - 1050 = 1350 kilograms, and 1350/85 = 15.88, so a = 15 (15 crates weigh 1275 kg, for a total of 2325 kg; a 16th would bring the load to 2410 kg). Distractor 28: the type B requirement is dropped entirely and only 2400/85 = 28.2 is used, giving 28. Distractor 9: the two crate types are swapped -- 5 type A crates are reserved and the type B count is maximized, (2400 - 425)/210 = 9.4, giving 9. Distractor 8: the load is treated as A-B pairs of 85 + 210 = 295 kilograms each, 2400/295 = 8.1, giving 8.",
+    "bounds": [],
+    "solve": "return Math.floor((2400 - 5*210)/85);",
+    "distractor_solve": {
+      "8": "return Math.floor(2400/(85+210));",
+      "9": "return Math.floor((2400 - 5*85)/210);",
+      "28": "return Math.floor(2400/85);"
+    }
+  },
+  {
+    "id": "SM17L-B7",
+    "domain": "Algebra",
+    "subskill": "Proportional reasoning with a unit conversion",
+    "difficulty": "hard",
+    "prompt": "Every part made at a factory has a mass of 25 grams. Six identical machines, each running at the same constant rate, together produce 45 kilograms of parts in 4 production days. At that same rate, how many parts will 9 of these machines produce in 3 production days?",
+    "choices": [
+      "900",
+      "1350",
+      "2025",
+      "3600"
+    ],
+    "correct_answer": "2025",
+    "explanation": "45 kilograms is 45,000 grams, so the six machines made 45000/25 = 1,800 parts in 4 production days. That is 1800/(6*4) = 75 parts per machine per production day. Nine machines for 3 production days is 27 machine-days, giving 27*75 = 2,025 parts. Distractor 1350: the change in the number of machines is left out and only the time is scaled, 1800*(3/4) = 1350. Distractor 3600: the time ratio is inverted, 1800*(9/6)*(4/3) = 3600, scaling up for time when the new run is shorter. Distractor 900: the machine ratio is inverted, 1800*(6/9)*(3/4) = 900, scaling down for machines when the new run uses more of them.",
+    "bounds": [],
+    "solve": "return (45000/25) * (9*3)/(6*4);",
+    "distractor_solve": {
+      "900": "return (45000/25) * (6/9) * (3/4);",
+      "1350": "return (45000/25) * (3/4);",
+      "3600": "return (45000/25) * (9/6) * (4/3);"
+    }
+  }
+]

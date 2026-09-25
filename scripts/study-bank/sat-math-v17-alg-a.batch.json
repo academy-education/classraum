@@ -1,0 +1,156 @@
+[
+ {
+  "id": "SM17L-A1",
+  "domain": "Algebra",
+  "subskill": "a two-variable linear system in which neither variable cancels as printed, so both equations must be scaled before the subtraction, and the quantity requested is x + y rather than either variable alone",
+  "difficulty": "medium",
+  "prompt": "7x + 4y = 301\n11x + 8y = 497\nIf (x, y) is the solution to the system of equations above, what is the value of x + y?",
+  "choices": [
+   "49",
+   "52",
+   "55",
+   "61"
+  ],
+  "correct_answer": "49",
+  "explanation": "Scaling the first equation by 11 and the second by 7 gives 77x + 44y = 3311 and 77x + 56y = 3479, and subtracting leaves 12y = 168, so y = 14. Then 7x = 301 - 4(14) = 245, so x = 35 and x + y = 35 + 14 = 49, which is \"49\". \"52\" comes from reaching 12y = 168 correctly but dividing 168 by 8, the y-coefficient printed in the second equation, rather than by the 12 the elimination produced; that gives y = 21, then 7x = 301 - 84 = 217 and x = 31, so x + y = 52. \"61\" comes from the same misstep with the other printed y-coefficient, dividing 168 by 4 to get y = 42, then 7x = 301 - 168 = 133 and x = 19, so x + y = 61. \"55\" comes from finding y = 14 correctly and then substituting into the first equation with the coefficient 4 dropped, writing 7x + 14 = 301, so x = 41 and x + y = 55.",
+  "bounds": [],
+  "solve": "var y=(7*497-11*301)/(7*8-11*4); var x=(301-4*y)/7; return String(x+y);",
+  "distractor_solve": {
+   "52": "var y=(7*497-11*301)/8; var x=(301-4*y)/7; return String(x+y);",
+   "55": "var y=(7*497-11*301)/(7*8-11*4); var x=(301-y)/7; return String(x+y);",
+   "61": "var y=(7*497-11*301)/4; var x=(301-4*y)/7; return String(x+y);"
+  }
+ },
+ {
+  "id": "SM17L-A2",
+  "domain": "Algebra",
+  "subskill": "a linear inequality with two unlike denominators whose collected x-coefficient is negative, so the direction reverses at the division, and the answer requested is the greatest integer in a solution set whose boundary is not an integer",
+  "difficulty": "hard",
+  "prompt": "(2x + 1)/5 - (7x - 4)/6 ≥ -13\nWhat is the greatest integer value of x that satisfies the inequality above?",
+  "choices": [
+   "15",
+   "16",
+   "18",
+   "19"
+  ],
+  "correct_answer": "18",
+  "explanation": "Multiplying every term by 30 gives 6(2x + 1) - 5(7x - 4) ≥ -390, so 12x + 6 - 35x + 20 ≥ -390 and -23x + 26 ≥ -390. Then -23x ≥ -416, and dividing by -23 reverses the direction, so x ≤ 416/23 = 18.08..., and the greatest integer in the solution set is 18, which is \"18\". \"19\" comes from dividing by -23 without reversing the direction, giving x ≥ 18.08..., and then reporting the first integer that satisfies that, 19. \"16\" comes from distributing -5 across (7x - 4) as -35x - 20 instead of -35x + 20, giving -23x - 14 ≥ -390, so -23x ≥ -376 and x ≤ 16.34..., whose greatest integer is 16. \"15\" comes from reaching -23x + 26 ≥ -390 and then moving the 26 to the right without changing its sign, giving -23x ≥ -364, so x ≤ 15.82..., whose greatest integer is 15.",
+  "bounds": [],
+  "solve": "var U=6*1-5*(-4), V=6*2-5*7; return String(Math.floor((-13*30-U)/V));",
+  "distractor_solve": {
+   "19": "var U=6*1-5*(-4), V=6*2-5*7; return String(Math.ceil((-13*30-U)/V));",
+   "16": "var Up=6*1+5*(-4), V=6*2-5*7; return String(Math.floor((-13*30-Up)/V));",
+   "15": "var U=6*1-5*(-4), V=6*2-5*7; return String(Math.floor((-13*30+U)/V));"
+  }
+ },
+ {
+  "id": "SM17L-A3",
+  "domain": "Algebra",
+  "subskill": "a prose model in which two plans each carry a fixed charge and a per-session rate, so the break-even count comes from dividing a difference of fixed charges by a difference of rates, and every printed number belongs to exactly one of those two differences",
+  "difficulty": "medium",
+  "prompt": "A climbing gym offers two membership plans. Plan A costs $630 for the year plus $10 for each session used. Plan B costs $30 for the year plus $40 for each session used. For how many sessions in a year do the two plans cost the same total amount?",
+  "choices": [
+   "12",
+   "15",
+   "20",
+   "22"
+  ],
+  "correct_answer": "20",
+  "explanation": "Setting the two totals equal gives 630 + 10s = 30 + 40s. Subtracting 30 and 10s from both sides gives 600 = 30s, so s = 600/30 = 20, which is \"20\". Both plans then cost $830. \"12\" comes from taking the difference of the fixed charges but adding the rates instead of subtracting them, computing 600/(40 + 10) = 12. \"15\" comes from dividing the difference of the fixed charges by Plan B's rate alone, computing 600/40 = 15, which prices the sessions as though Plan A charged nothing per session. \"22\" comes from adding the fixed charges instead of subtracting them while handling the rates correctly, computing (630 + 30)/(40 - 10) = 660/30 = 22.",
+  "bounds": [],
+  "solve": "return String((630-30)/(40-10));",
+  "distractor_solve": {
+   "12": "return String((630-30)/(40+10));",
+   "15": "return String((630-30)/40);",
+   "22": "return String((630+30)/(40-10));"
+  }
+ },
+ {
+  "id": "SM17L-A4",
+  "domain": "Algebra",
+  "subskill": "a line given in standard form whose slope must be read off before a negative reciprocal is taken, with the perpendicular line pinned by a point and the answer being that line's y-intercept rather than its slope",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line k is defined by 3x - 2y = 30. Line m is perpendicular to line k and passes through the point (24, 12). At what value of y does line m cross the y-axis?",
+  "choices": [
+   "28",
+   "32",
+   "42",
+   "48"
+  ],
+  "correct_answer": "28",
+  "explanation": "Solving 3x - 2y = 30 for y gives y = (3/2)x - 15, so line k has slope 3/2 and line m has slope -2/3. Writing m as y = -(2/3)x + b and substituting (24, 12) gives 12 = -16 + b, so b = 28 and line m crosses the y-axis at y = 28, which is \"28\". \"48\" comes from negating line k's slope without inverting it, using -3/2 for line m, so that 12 = -36 + b and b = 48. \"42\" comes from building line m correctly, y = -(2/3)x + 28, and then reporting where it crosses the x-axis instead of the y-axis: setting y = 0 gives (2/3)x = 28 and x = 42. \"32\" comes from using the correct slope -2/3 but substituting the point with its coordinates interchanged, treating (12, 24) as the point on m, so that 24 = -8 + b and b = 32.",
+  "bounds": [],
+  "solve": "return String(12 + 2*24/3);",
+  "distractor_solve": {
+   "32": "return String(24 + 2*12/3);",
+   "42": "return String((12 + 2*24/3)*3/2);",
+   "48": "return String(12 + 3*24/2);"
+  }
+ },
+ {
+  "id": "SM17L-A5",
+  "domain": "Algebra",
+  "subskill": "a one-variable linear equation with three unlike denominators and a bare constant on the right, so the common denominator must reach the constant as well as the fractions, and two of the three numerators carry a sign that must survive the distribution",
+  "difficulty": "hard",
+  "prompt": "(x - 5)/2 - (2x + 3)/5 = (7x - 3)/10 + 2\nWhat is the value of x that satisfies the equation above?",
+  "choices": [
+   "-9",
+   "-8",
+   "-6",
+   "-5"
+  ],
+  "correct_answer": "-8",
+  "explanation": "Multiplying every term by 10 gives 5(x - 5) - 2(2x + 3) = (7x - 3) + 20. Expanding gives 5x - 25 - 4x - 6 = 7x + 17, so x - 31 = 7x + 17. Subtracting 7x and adding 31 gives -6x = 48, so x = -8, which is \"-8\". \"-5\" comes from multiplying the three fractions by 10 but leaving the constant 2 unscaled, giving x - 31 = 7x - 3 + 2 = 7x - 1, so -6x = 30 and x = -5. \"-6\" comes from distributing -2 across (2x + 3) as -4x + 6 instead of -4x - 6, giving 5x - 25 - 4x + 6 = x - 19, so x - 19 = 7x + 17, -6x = 36 and x = -6. \"-9\" comes from clearing the right-hand fraction as 7x + 3 instead of 7x - 3, giving x - 31 = 7x + 23, so -6x = 54 and x = -9.",
+  "bounds": [],
+  "solve": "var V=5*1+(-2)*2-1*7; var C=(1*(-3)+10*2)-(5*(-5)+(-2)*3); return String(C/V);",
+  "distractor_solve": {
+   "-5": "var V=5*1+(-2)*2-1*7; var C=(1*(-3)+2)-(5*(-5)+(-2)*3); return String(C/V);",
+   "-6": "var V=5*1+(-2)*2-1*7; var C=(1*(-3)+10*2)-(5*(-5)+(-2)*(-3)); return String(C/V);",
+   "-9": "var V=5*1+(-2)*2-1*7; var C=(1*3+10*2)-(5*(-5)+(-2)*3); return String(C/V);"
+  }
+ },
+ {
+  "id": "SM17L-A6",
+  "domain": "Algebra",
+  "subskill": "a supplied solution substituted into a linear equation in which the unknown coefficient appears on both sides, once multiplying a binomial and once inside a product on the other side, so the a-terms must be collected across the equation after both products are expanded",
+  "difficulty": "hard",
+  "prompt": "a(2x + 4) - 7x = 4(x + a) - 6\nIn the equation above, a is a constant. If x = -6 is a solution of the equation, what is the value of a?",
+  "choices": [
+   "5",
+   "6",
+   "8",
+   "9"
+  ],
+  "correct_answer": "6",
+  "explanation": "Substituting x = -6 gives a(-12 + 4) + 42 = 4(-6 + a) - 6, so -8a + 42 = 4a - 30. Adding 8a and 30 to both sides gives 72 = 12a, so a = 6, which is \"6\". \"9\" comes from collecting the a-terms on the left only and leaving the 4a on the right out of the collection, giving -8a + 42 = -30, so -8a = -72 and a = 9. \"8\" comes from expanding 4(x + a) as 4x + a instead of 4x + 4a, giving -8a + 42 = -24 + a - 6 = a - 30, so -9a = -72 and a = 8. \"5\" comes from substituting x = 6 instead of x = -6, giving a(12 + 4) - 42 = 4(6 + a) - 6, so 16a - 42 = 4a + 18, 12a = 60 and a = 5.",
+  "bounds": [],
+  "solve": "var N=4*(-6)+(-6)-(-7)*(-6); var D=2*(-6)+4-4; return String(N/D);",
+  "distractor_solve": {
+   "5": "var N=4*6+(-6)-(-7)*6; var D=2*6+4-4; return String(N/D);",
+   "8": "var N=4*(-6)+(-6)-(-7)*(-6); return String(N/(2*(-6)+4-1));",
+   "9": "var N=4*(-6)+(-6)-(-7)*(-6); return String(N/(2*(-6)+4));"
+  }
+ },
+ {
+  "id": "SM17L-A7",
+  "domain": "Algebra",
+  "subskill": "an absolute-value equation carrying a factor outside the bars and a linear expression rather than a constant on the right, so the two cases produce two candidate values and one of them must be discarded by substitution",
+  "difficulty": "hard",
+  "prompt": "3|2x + 32| = 30x - 528\nWhat is the solution to the equation above?",
+  "choices": [
+   "12",
+   "18",
+   "20",
+   "26"
+  ],
+  "correct_answer": "26",
+  "explanation": "Dividing both sides by 3 gives |2x + 32| = 10x - 176. The first case, 2x + 32 = 10x - 176, gives 208 = 8x and x = 26; checking in the original equation, 3|2(26) + 32| = 3(84) = 252 and 30(26) - 528 = 252, so x = 26 is the solution, which is \"26\". \"12\" comes from the second case, -(2x + 32) = 10x - 176, which gives 144 = 12x and x = 12, and from reporting it without checking: 3|2(12) + 32| = 168 but 30(12) - 528 = -168, so 12 is extraneous. \"18\" comes from writing the second case as 2x - 32 = 10x - 176, negating only the constant inside the absolute value instead of the whole expression, which gives 144 = 8x and x = 18. \"20\" comes from dividing the left side by 3 but leaving the right side alone, writing |2x + 32| = 30x - 528, so that 2x + 32 = 30x - 528 gives 560 = 28x and x = 20.",
+  "bounds": [],
+  "solve": "var Q=528/3, P=30/3; return String((Q+32)/(P-2));",
+  "distractor_solve": {
+   "12": "var Q=528/3, P=30/3; return String((Q-32)/(P+2));",
+   "18": "var Q=528/3, P=30/3; return String((Q-32)/(P-2));",
+   "20": "return String((528+32)/(30-2));"
+  }
+ }
+]
