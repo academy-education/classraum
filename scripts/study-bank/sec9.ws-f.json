@@ -1,0 +1,320 @@
+{
+ "grader": "f",
+ "items": {
+  "SEC9A-01": {
+   "my_answer": "the barn owl, its nocturnal counterpart,",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "nonrestrictive appositive enclosed by matching marks",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "One rule really: paired punctuation. 'compound subject / plural hunt' is decorative - every option leaves hunt plural. Dash-open/comma-close distractor is a stock SAT trap. Same template as A-11."
+  },
+  "SEC9A-02": {
+   "my_answer": "herself:",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "colon after independent clause introducing explanation; semicolon needs independent clause both sides",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "One rule (clause boundary). '; because' is the only distractor with bite; comma splice and fused options are standard. Not two interacting rules."
+  },
+  "SEC9A-03": {
+   "my_answer": "October, the figures for the river wards,",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "comma after long introductory dependent clause (CMOS 6.31) + nonrestrictive 'where' clause enclosed by matching commas",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Genuinely two boundaries in one blank. The comma already printed before 'understate' settles the second boundary for anyone who reads four words past the blank; the first boundary (intro comma) is rule, not preference, at this clause length. Dash/comma mismatch distractor again."
+  },
+  "SEC9A-04": {
+   "my_answer": "surveyor—were",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "dash pair closure + verb agrees with subject outside the supplement",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Two rules, both real, but the subject is literally 'two dissenters' so the agreement half is not hard. Clean 2x2 grid (mark x number)."
+  },
+  "SEC9A-05": {
+   "my_answer": "The supply ship having failed to arrive,",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "nominative absolute set off by comma; finite-verb version would be a comma splice",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Two rules (absolute vs finite clause; subject-without-verb in D). D 'The supply ship, having failed to arrive, the ... sledges were loaded' is a good trap. Absolutes are rare on the real test but the convention is unambiguous."
+  },
+  "SEC9A-07": {
+   "my_answer": "the two that remain intact are illuminated",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "restrictive relative clause takes no commas; no single comma between subject and verb",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "One rule (restrictive/no-comma); 'being' fragment is a second rule only nominally. Key is the only option with no punctuation, which a no-comma bias would pick - fine here because it is right."
+  },
+  "SEC9A-08": {
+   "my_answer": "; Kofi Mensah, the customs inspector;",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "; Kofi Mensah, the customs inspector, (option A)",
+   "convention": "semicolons throughout a series whose items contain commas (CMOS 6.60), including before the final 'and'",
+   "resolving_word_after_blank": "and",
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Two rules genuinely interact (series separator + appositive comma). Option A is the nearest thing in the batch to a preference call: some writers drop the semicolon before the final 'and'. CMOS and the SAT both require it, and A leaves 'the customs inspector, and Tomas Weil' ambiguous, so I keep exclusive=true, but this is the one to watch on a unanimity vote."
+  },
+  "SEC9A-09": {
+   "my_answer": "centuries—rarely colonizes new ground,",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "dash pair closure + finite main verb; 'it' would double the subject",
+   "resolving_word_after_blank": "so",
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "The 'comma before so' rule named in the explanation is decorative - all four options end with the comma. Effective rules: close the dash, keep a finite verb. 'it rarely colonizes' (resumptive pronoun) is the best distractor."
+  },
+  "SEC9A-11": {
+   "my_answer": "the physicist Lise Meitner, his collaborator of thirty years,",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "restrictive appositive (name) unpunctuated; nonrestrictive appositive enclosed by matching commas",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Structural duplicate of A-01: coordinated pair, appositive on the second noun, closed by comma, plural verb follows. Same distractor set (semicolon/unclosed/dash-comma mismatch). One rule. Recommend keeping only one of A-01/A-11."
+  },
+  "SEC9A-12": {
+   "my_answer": "lime—that",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "dash (or colon) before a summarizing pronoun that gathers a fronted list (CMOS 6.86)",
+   "resolving_word_after_blank": "was",
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "One rule but an unusual one; 'lime, that' is a real trap since the comma reads as a series comma. 'was' right after the blank tells the reader a main verb is coming, which helps eliminate the relative readings. Colon alternative not offered, so exclusive."
+  },
+  "SEC9B-01": {
+   "my_answer": "council identify",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "neither/nor: verb agrees with nearer subject head (surveys); no lone comma between subject and verb",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Two rules named but the comma half is weak - a comma between subject and verb is never tempting, so this is functionally a one-rule proximity item with one live distractor (identifies)."
+  },
+  "SEC9B-02": {
+   "my_answer": "but to whomever",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "but to whoever (D)",
+   "convention": "not...but parallelism (to X / to Y) + fused-relative case set inside its own clause (object of judges)",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Both rules genuinely load-bearing; strongest item in the batch. Caveat for the unanimity vote: whoever-as-object in fused relatives is tolerated by descriptivist references (MWDEU) and the digital SAT has largely stopped testing whom. Under edited-American prescriptive convention whomever is required, so exclusive stays true."
+  },
+  "SEC9B-03": {
+   "my_answer": "has been",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "ever since + past anchor requires present perfect; along with does not pluralize the subject",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Two rules genuinely interact; have been is a strong distractor. Clean 2x2 (tense x number)."
+  },
+  "SEC9B-04": {
+   "my_answer": "the auditor and I concluded",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "opening participle must modify the subject; compound subject takes nominative",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Two rules, but auditor and me concluded is transparently wrong to a module-2 student; reports and mine concluded is the only distractor that tempts. Demote from hard."
+  },
+  "SEC9B-05": {
+   "my_answer": "were failing but because",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "agreement with head noun trusses across an interposed relative clause + not because / but because correlative parallelism",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Two rules genuinely interact. but rather that / but that are non-parallel by rule, not preference (not that...but that would be the parallel alternative, and it is not what the first half set up)."
+  },
+  "SEC9B-06": {
+   "my_answer": "it sends, casts",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "parenthetical opened with a comma must be closed before the verb + verb agrees with delegation, not members",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Two rules, clean 2x2. The it inside every option gives away that delegation is singular, which flattens the agreement half."
+  },
+  "SEC9B-07": {
+   "my_answer": "plain, suggests",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "noun clause as subject takes singular verb + comma-opened parenthetical must be closed before the verb",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Two rules genuinely interact; the plural nouns errors/passages sit right before the verb and the subject is a 10-word that-clause. Clean 2x2."
+  },
+  "SEC9B-08": {
+   "my_answer": "but also the pattern books kept by its foreman offer",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "not only must be answered by but (also) + verb agrees with the nearer subject head (books), not foreman",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Two rules interact. Proximity agreement for not only/but also is the rule in CMOS/Garner; a notional-plural reading gives the same answer, so no second defensible. and also is transparently wrong, leaving one live distractor."
+  },
+  "SEC9B-09": {
+   "my_answer": "the chief engineer, backed by two crews of local masons, was able to span the river",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "opening participle must modify the subject + agreement across a comma-enclosed modifier",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Two rules but engineer ... were is easy to spot once the dangling pair is removed. Demote from hard. Key is not the longest option (good)."
+  },
+  "SEC9B-10": {
+   "my_answer": "but also to open it",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "not only...but also joins matching elements; to is inside the first element so it must be repeated",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "One rule (parallelism). as well as is not a correlative partner by rule. Batch already labels this medium; agree."
+  },
+  "SEC9B-11": {
+   "my_answer": "me, arrived",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "myself, arrived (B)",
+   "convention": "object of preposition in a compound takes objective case; comma-opened participial modifier must be closed before the verb",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Two rules interact. myself as a compound prepositional object is attested (MWDEU) but every usage guide the SAT follows rejects it; exclusive stays true. Majority-vote tell: 3 of 4 options carry the closing comma and me appears twice, so picking the majority in each column yields the key."
+  },
+  "SEC9B-12": {
+   "my_answer": "who",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": "relative pronoun case set by role in its own clause; the board believed is parenthetical",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "hard",
+   "note": "One rule, done well - the believed trap is the classic who/whom hard item. which/whose are weak filler, so effectively a two-option item. Same caveat as B-02 about the digital SAT rarely testing whom."
+  }
+ },
+ "summary": {
+  "keys_agreed": "22/22",
+  "drops_recommended": [
+   "SEC9A-11 (structural duplicate of SEC9A-01; keep one)"
+  ],
+  "holds_for_vote": [
+   "SEC9A-08 (option A comma before final and - rule under CMOS 6.60 but nearest to a preference call)",
+   "SEC9B-02 / SEC9B-12 (whom items; prescriptively exclusive, but the digital SAT seldom tests whom)"
+  ],
+  "two_rule_genuine": [
+   "A-03",
+   "A-04",
+   "A-05",
+   "A-08",
+   "B-02",
+   "B-03",
+   "B-05",
+   "B-06",
+   "B-07",
+   "B-08",
+   "B-11"
+  ],
+  "two_rule_decorative_or_single": [
+   "A-01",
+   "A-02",
+   "A-07",
+   "A-09 (comma before so is in every option)",
+   "A-11",
+   "A-12",
+   "B-01 (comma half never tempts)",
+   "B-04",
+   "B-09",
+   "B-10",
+   "B-12"
+  ],
+  "preference_vs_rule": "No distractor is wrong only by preference. Nearest: A-08 option A (final-item semicolon), B-02 whoever, B-11 myself - all rule violations under CMOS/Garner and the SAT standard, tolerated only by descriptivist references.",
+  "difficulty_histogram": {
+   "hard": 9,
+   "medium": 13,
+   "easy": 0
+  },
+  "hard_items": [
+   "A-03",
+   "A-05",
+   "A-08",
+   "A-12",
+   "B-02",
+   "B-03",
+   "B-05",
+   "B-07",
+   "B-12"
+  ],
+  "demoted_from_hard": [
+   "A-01",
+   "A-02",
+   "A-04",
+   "A-07",
+   "A-09",
+   "A-11",
+   "B-01",
+   "B-04",
+   "B-06",
+   "B-08",
+   "B-09",
+   "B-11"
+  ],
+  "cross_item_tells": [
+   "Section A: 5 of 10 items (A-01, A-03, A-04, A-09, A-11) carry a dash/comma-mismatch distractor and it is never the key; in A-01/A-03/A-11 the key is the comma-both-sides option. This mirrors the real convention so it is a pattern, not a leak, but it is monotone.",
+   "A-01 and A-11 are the same template (coordinated noun pair + appositive on the second + plural verb) with the same distractor set.",
+   "Section B is a strict 2x2 grid (rule1 x rule2) on 9 of 12 items; the key is always the both-right cell. Standard SAT form, no letter/length tell. Key letters A5 B4 C7 D6.",
+   "B-11 is solvable by column majority (3/4 have the comma, me appears twice)."
+  ]
+ }
+}

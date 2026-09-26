@@ -1,0 +1,273 @@
+{
+ "grader": "d",
+ "batch": "sat-sec-hard-v9.batch.json",
+ "status": "complete",
+ "items": {
+  "SEC9A-01": {
+   "my_answer": "C",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": "hunt",
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Closing comma on the appositive is required regardless of what follows; A's dash/comma mismatch is the only distractor a strong student pauses on. Same template as SEC9A-11."
+  },
+  "SEC9A-02": {
+   "my_answer": "A",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Colon vs comma splice vs '; because' fragment. '; because' is the only distractor that takes work. A dash would also be correct but is not offered."
+  },
+  "SEC9A-03": {
+   "my_answer": "B",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "medium",
+   "note": "C is the live distractor: reading 'where' as restrictive leaves a lone comma between subject and 'understate'. Resolved by the comma after 'shifts', six words out."
+  },
+  "SEC9A-04": {
+   "my_answer": "D",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Two axes (close the dash pair, agree with 'two dissenters'). B is the real trap; A is the recurring dash/comma-mismatch distractor."
+  },
+  "SEC9A-05": {
+   "my_answer": "A",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "B",
+   "convention": "comma after introductory absolute is a strong convention, not an absolute rule; some editors let a short absolute run on",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "C is a splice, D strands a subject; the A/B decision is comma-after-intro, which the SAT rarely makes load-bearing. I would still key A, but this is the weakest exclusivity in the A block after B-02."
+  },
+  "SEC9A-07": {
+   "my_answer": "B",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Standard restrictive-that item. D ('being') is a fragment and is the weak distractor; A and C are the SAT's usual comma traps."
+  },
+  "SEC9A-08": {
+   "my_answer": "D",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": "and",
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Comma-only series is not available because both A and B mix marks; so the item stays exclusive. Textbook semicolon-series shape, medium on the real hard route."
+  },
+  "SEC9A-09": {
+   "my_answer": "A",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "B is again dash-open/comma-close. C is a left-dislocation ('coral—...—it rarely'), which nonstandard speech tolerates but edited prose does not."
+  },
+  "SEC9A-11": {
+   "my_answer": "D",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": "show",
+   "distractor_quality": "plausible",
+   "difficulty": "easy",
+   "note": "Structurally identical to SEC9A-01: compound subject, appositive on the second member, closing comma before the verb. A student who solved 01 solves this without reading. Keep one of the pair, not both."
+  },
+  "SEC9A-12": {
+   "my_answer": "C",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": "was",
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Fronted list gathered by a summarizing pronoun. A reads naturally until the sentence fails to find a main verb; singular 'was' after a three-item list is the tell that a summarizing pronoun is coming. A colon would also work but is not offered. Best item in the A block."
+  },
+  "SEC9B-01": {
+   "my_answer": "A",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "medium",
+   "note": "'city council' singular buried inside a plural nearer subject; C is a strong trap. The comma distractors are dead weight."
+  },
+  "SEC9B-02": {
+   "my_answer": "B",
+   "key_ok": true,
+   "exclusive": false,
+   "second_defensible": "D",
+   "convention": "'whom/whomever' is moribund in edited American English; 'to whoever the panel judges most likely' is accepted by MWDEU and by most current copyeditors, and the digital SAT does not test who/whom",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "hard",
+   "note": "The 'to' axis kills A and C cleanly, so the item reduces to whomever vs whoever, which is exactly the non-exclusive axis. DROP."
+  },
+  "SEC9B-03": {
+   "my_answer": "C",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "medium",
+   "note": "Two axes (ever since -> present perfect; 'along with' does not pluralize). B is the strong trap. Standard SAT pattern."
+  },
+  "SEC9B-04": {
+   "my_answer": "D",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "weak",
+   "difficulty": "easy",
+   "note": "'the auditor and me concluded' is rejected on sight; the report options dangle obviously. Not hard-route material."
+  },
+  "SEC9B-05": {
+   "my_answer": "A",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'trusses ... were' with 'the newest of which' between; 'not because / but because' kills C and D. B is only a modest trap because 'trusses' is plainly plural."
+  },
+  "SEC9B-06": {
+   "my_answer": "C",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "medium",
+   "note": "Closing comma + singular 'delegation'; the option's own 'it' gives the number away, which caps difficulty. Notional plural for 'delegation' is BrE, not AmE."
+  },
+  "SEC9B-07": {
+   "my_answer": "C",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "That-clause subject plus a parenthetical that must close before the verb; 'errors'/'passages' pull toward plural. Best item in the B block."
+  },
+  "SEC9B-08": {
+   "my_answer": "D",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "medium",
+   "note": "Proximity agreement after 'not only ... but also' is the standard rule; 'foreman' and 'correspondence' both pull singular. Correlative axis kills A and B."
+  },
+  "SEC9B-09": {
+   "my_answer": "C",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "easy",
+   "note": "Dangling 'design' + 'crews ... were'. Same shape as B-04 (participle attachment then pick the agreeing/cased version); once you know the shape it is mechanical."
+  },
+  "SEC9B-10": {
+   "my_answer": "B",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "D",
+   "convention": "With 'not only' placed before 'to', repeating 'to' is the strict rule, but 'hoped not only to catalogue ... but also open' is tolerated by many editors as sharing the marker; wrong mainly by parallelism style",
+   "resolving_word_after_blank": null,
+   "distractor_quality": "weak",
+   "difficulty": "medium",
+   "note": "A (gerund) and C ('as well as') are easy kills; the B/D decision is the only work and is a soft rule. Borderline; I keep it but it is the weakest kept item."
+  },
+  "SEC9B-11": {
+   "my_answer": "C",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'me' vs 'I'/'myself' is easy; the closing comma on the participial modifier is the second axis and makes A the only real distractor."
+  },
+  "SEC9B-12": {
+   "my_answer": "D",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "convention": null,
+   "resolving_word_after_blank": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Classic 'who [the board believed] had falsified' hypercorrection trap. Exclusive: no convention licenses 'whom' as subject of 'had falsified'. Note the digital SAT avoids who/whom, so this is off-blueprint even though sound."
+  }
+ },
+ "summary": {
+  "key_agreement": "22/22 my answers match the keys",
+  "drop": [
+   "SEC9B-02 (not exclusive: whoever/whomever)",
+   "SEC9A-11 (duplicate of SEC9A-01 template; keep one)"
+  ],
+  "borderline": [
+   "SEC9A-05 (comma after absolute)",
+   "SEC9B-10 (repeated 'to' is a soft rule)",
+   "SEC9B-12 (sound but who/whom is off the digital SAT blueprint)"
+  ],
+  "difficulty_histogram": {
+   "easy": 3,
+   "medium": 15,
+   "hard": 4
+  },
+  "cross_item_tells": [
+   "dash-open/comma-close (or comma-open/dash-close) distractor appears in 01A, 03D, 04A, 08A/B, 09B, 11C and is ALWAYS wrong; a student can strike any mismatched pair without reading.",
+   "In every boundary item the key is the option that CLOSES the supplement with a matching mark; 'unclosed' options (01B/D, 04C, 07C-shape, 09D, 11B, B06A, B07A, B11A) are always wrong.",
+   "B block: the key is always the option that agrees with the head noun furthest from the blank; the option agreeing with the nearest noun is always wrong (B01, B05, B06, B07, B08, B09). Nearest-noun agreement never once being the key is itself a tell.",
+   "Two-axis template (punctuation + agreement, or correlative + agreement) recurs in 04, B03, B05, B06, B07, B08, B11; the key is the unique option that survives both axes, so a student who resolves one axis is left with two options and the other axis is usually easier.",
+   "A-01 and A-11 are the same item with different nouns."
+  ]
+ }
+}

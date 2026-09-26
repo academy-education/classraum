@@ -1,0 +1,34 @@
+[
+ {
+  "id": "SEC9B-11",
+  "domain": "Standard English Conventions",
+  "subskill": "object case after preposition in a compound + closing the modifier",
+  "difficulty": "hard",
+  "passage": "The board's letter of reprimand, addressed jointly to the director and ______ on a morning when neither of us happened to be in the building, and the porter signed for it in our absence.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "me arrived",
+   "myself, arrived",
+   "me, arrived",
+   "I, arrived"
+  ],
+  "correct_answer": "me, arrived",
+  "explanation": "The pronoun is the second object of the preposition \"to\" (\"addressed jointly to the director and me\"), so it must take the object form; \"I, arrived\" uses the subject form because the pronoun sits in a compound, the same error as \"between you and I.\" \"Myself, arrived\" uses a reflexive where there is no earlier \"I\" in the clause for it to reflect, and a reflexive cannot stand in for an ordinary object. The participial phrase \"addressed jointly to the director and me\" was opened with a comma after \"reprimand\" and must be closed with one before the main verb; \"me arrived\" has the right case but lets the modifier run into the verb, which also makes it read momentarily as though \"me\" were the subject of \"arrived.\""
+ },
+ {
+  "id": "SEC9B-12",
+  "domain": "Standard English Conventions",
+  "subskill": "relative pronoun case across a parenthetical 'the board believed'",
+  "difficulty": "hard",
+  "passage": "The inquiry cleared the engineer ______ the board, on the strength of a single unsigned letter delivered to its chairman, believed had falsified the pressure tests, and it censured the letter's author instead.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "whose",
+   "whom",
+   "which",
+   "who"
+  ],
+  "correct_answer": "who",
+  "explanation": "The case of a relative pronoun is set by its job in its own clause. Here the clause is \"[the engineer] had falsified the pressure tests,\" and the pronoun is the subject of \"had falsified\"; \"the board ... believed\" is an inserted clause of opinion, not a verb that takes the pronoun as its object. So \"who\" is required. \"Whom\" is the object form, chosen as if \"the board believed\" governed the pronoun, but \"the board believed whom had falsified\" leaves \"had falsified\" with no subject. \"Which\" cannot refer to a person. \"Whose\" is possessive and would need a noun to modify; \"whose the board believed had falsified\" has none."
+ }
+]

@@ -29,7 +29,16 @@ const need = Number(needRaw)
 const files = ['d', 'e', 'f'].map(n => `${D}/${tag}.ws-${n}.json`)
 const missing = files.filter(f => !existsSync(f))
 if (missing.length) { console.error(`REFUSING: ${missing.length} grader file(s) missing: ${missing.join(', ')}. A partial panel is not a panel.`); process.exit(2) }
-const G = files.map(f => JSON.parse(readFileSync(f, 'utf8')))
+/* GRADER FILES COME IN TWO SHAPES AND THE SCRIPT SAYS WHICH IT GOT. Two of the
+ * three SEC graders wrapped their rows under `.items` beside a `summary` block;
+ * one wrote a flat id-keyed object. Read flat, this script saw five top-level
+ * keys and refused - correctly, but for the wrong reason. Unwrap EXPLICITLY and
+ * print it, so a wrapper is never scored as five items. */
+const unwrap = (g, name) => {
+  if (g && g.items && typeof g.items === 'object' && !Array.isArray(g.items)) { console.log(`note: ${name} wrapped its rows under .items; unwrapped (${Object.keys(g.items).length} rows)`); return g.items }
+  return g
+}
+const G = files.map(f => unwrap(JSON.parse(readFileSync(f, 'utf8')), f.replace(/^.*\//, '')))
 const ids = Object.keys(G[0]).sort()
 for (const [i, g] of G.entries()) {
   const k = Object.keys(g).sort()

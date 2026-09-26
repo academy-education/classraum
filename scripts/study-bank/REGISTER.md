@@ -3363,3 +3363,23 @@ structural checks are pre-flight only. See CLAUDE.md.
   So the live-hard effect is real but rests on **nine items**, not 27; the all-band bank shows a mild lean the other way; and **both v9 halves already run against it.** My "24 of 27" counted 18 items on which the tell could not act. The pre-flight now measures the batch and the live bank over mixed sets only and prints how many items the tell cannot touch. **Same family as the pooled-arm and residue-proxy errors this week: a rate is only a rate over the population it can act on.**
 
   The B repair brief was corrected before launch — it is told NOT to "rebalance" toward plain keys — and the part-A brief's instruction to put a mark on at least six keys did no harm (A keys 2/8 plain among mixed sets), but it was an instruction issued on a wrong number.
+
+- **2026-09-26** — **SAT R&W HARD ROUTE 3 → 4 FORMS. SEC hard 27 → 30. 24 authored, 22 gated, 11 inserted, 2 held on a blueprint question.** `rw-v9-sec-hard`, sha `c2887e51`. → **A62**
+
+  The runbook said not to expect a third SEC brief to do better than the two batches of 68 that moved the hard count 7 → 12. This one moved it 27 → 30 from 24 items, through the v17 pipeline: two authors on disjoint rule areas, an independent auditor per half BEFORE the gate, one repair, then three fresh blind solvers and three fresh graders.
+
+  **All 22 keys unanimous across three independent cold solves** — the Conventions bar. Two graders found no second defensible option anywhere.
+
+      nosource   candidate 57.6%  vs  live HARD-band control 63.6%   margin -6.1   (bar <= +10)
+                 both arms 30-36 points over their letter line: the instrument is near
+                 saturation on SEC, so the with-source half decides (standing rule)
+      rule drops five on a majority resolving word within four of the blank, two on weak
+                 distractors; EXT-1 two on an explicit grader drop (A-07; B-02 "to whoever")
+      panel      8 medium / 3 hard by median; the authors labelled all 22 hard (11th
+                 consecutive demotion)
+
+  **HELD, NOT DROPPED — ANDY'S CALL.** `SEC9B-11` (me/I/myself) and `SEC9B-12` (who/whom) are grammatically exclusive on all three grades, and **all three graders independently say pronoun case is not on the digital SAT's Form/Structure/Sense list and no Bluebook item tests it.** Two more pronoun-case items fell to other rules. Shipping off-blueprint items into the hard band is the fidelity error the TOEFL rubric entries record; not shipping two sound items costs a hard slot. `sat-sec-hard-v9.held.batch.json`, ledger-ready.
+
+  **Two grader files were wrapped under `.items` and my verdict script refused them as "5 ids".** Right refusal, wrong reason; it now unwraps explicitly and prints that it did, so a wrapper can never be scored as five items. Same shape as the `score-wic` wrapper note from A48.
+
+  **What the blind half taught about SEC as a family.** With the sentence withheld, three solvers still scored 58–64% on BOTH arms by grammar visible inside the options — case agreement, balanced marks, the animate subject in a dangling-modifier set. That is not a leak of these items; it is the shipped hard bank's own level, measured on all 22 of its remaining 27 items. The margin is the only comparable number here, and it is negative.
