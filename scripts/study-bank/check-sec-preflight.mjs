@@ -45,6 +45,17 @@ for (const f of process.argv.slice(2)) {
   }
   console.log(`  key letters ${JSON.stringify(spread)} | key uniquely longest ${longest}/${b.length} | passages not exactly one blank: ${blanksBad} | words ${Math.min(...words)}-${Math.max(...words)}`)
   console.log(`  mark on KEY ${JSON.stringify(km)}   mark on DISTRACTORS ${JSON.stringify(dm)}`)
-  console.log(`  plain key: ${km.plain??0}/${b.length}  (live hard: 24/27 — lower is the goal)`)
+  /* THE DENOMINATOR IS ITEMS WHERE THE MARK CAN DECIDE ANYTHING. The first
+   * version printed "plain key 8/12" for a batch in which 7 of those 8 items had
+   * NO option carrying a mark, so the "tell" decided nothing — the auditor
+   * caught it. A plain key is only a tell when a marked option was on offer.
+   * Both the batch and the live bank are now measured over mixed sets only. */
+  const mixed = b.filter(it => { const ms = new Set(it.choices.map(mark)); return ms.size > 1 && ms.has('plain') })
+  const plainKeyMixed = mixed.filter(it => mark(it.correct_answer) === 'plain').length
+  const liveMixed = live.filter(r => { const ch = r.item?.choices ?? []; const ms = new Set(ch.map(mark)); return ms.size > 1 && ms.has('plain') })
+  const liveHardMixed = liveMixed.filter(r => r.difficulty === 'hard')
+  const lp = xs => xs.filter(r => mark(r.item.correct_answer) === 'plain').length
+  console.log(`  among MIXED sets (a plain and a marked option both offered): key is plain in ${plainKeyMixed}/${mixed.length}` + (mixed.length ? ` = ${(100*plainKeyMixed/mixed.length).toFixed(0)}%` : '') + `   [live SEC hard, mixed sets: ${lp(liveHardMixed)}/${liveHardMixed.length}; live SEC all, mixed: ${lp(liveMixed)}/${liveMixed.length}]`)
+  console.log(`  (${b.length - mixed.length} of ${b.length} items have no mark difference among their options, so the plain/marked tell cannot act on them)`)
   console.log(collide.length ? `  KEY TEXT (3+ words) ALREADY LIVE: ${collide.join(', ')}` : `  no 3+-word key text collides with the ${live.length} live SEC items (1-2 word keys are not fingerprints and are not checked)`)
 }

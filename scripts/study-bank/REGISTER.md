@@ -3347,3 +3347,19 @@ structural checks are pre-flight only. See CLAUDE.md.
   **A defect caught only because a grader read the artifact rather than the report:** four Advanced Math explanations carried reviewer-facing text into the student-facing field, one of them stating the gate verdict inside an item three graders were judging cold. Stripped after grading finished, never mid-grade. `check-explanation-hygiene.mjs` fails a batch carrying it, and the live bank is clean at 0 of 7,021.
 
   **Two grader claims checked rather than accepted.** *"Several `distractor_solve` snippets hardcode the erroneous values"* — of the ten named, nine genuinely encode the mis-execution and one is constants only; across both batches there are **zero** bare literals, so the claim does not hold as stated. *"Nobody harmonic-means two options"* — two blind solvers did, unprompted, and 2 of 3 solved that item.
+
+- **2026-09-26** — **I BRIEFED TWO SEC AUTHORS ON A TELL WHOSE DENOMINATOR WAS WRONG, AND AN AUDITOR CAUGHT IT.** `check-sec-preflight.mjs` fixed; both briefs overstated a real but much smaller effect. → **A61**
+
+  I measured the 27 live hard SEC items and found the key unpunctuated in **24 of 27** while distractors carried a comma 14 times, and briefed both v9 authors that "pick the plainest option" is a live tell to design against. The part-B pre-flight then reported the batch keying plain in **8 of 12** — apparently copying the tell.
+
+  The auditor's correction: **in 7 of those 8 items no option carries a mark at all.** A plain key is only a tell when a marked option was on offer, so the denominator is the MIXED sets, not the batch. Re-measured over mixed sets only:
+
+      population                       key is plain among mixed sets
+      live SEC hard                          6 / 9    (67%)
+      live SEC, all bands                   17 / 49   (35%)
+      sat-sec-hard-v9-a                      2 / 8    (25%)
+      sat-sec-hard-v9-b                      1 / 5    (20%)
+
+  So the live-hard effect is real but rests on **nine items**, not 27; the all-band bank shows a mild lean the other way; and **both v9 halves already run against it.** My "24 of 27" counted 18 items on which the tell could not act. The pre-flight now measures the batch and the live bank over mixed sets only and prints how many items the tell cannot touch. **Same family as the pooled-arm and residue-proxy errors this week: a rate is only a rate over the population it can act on.**
+
+  The B repair brief was corrected before launch — it is told NOT to "rebalance" toward plain keys — and the part-A brief's instruction to put a mark on at least six keys did no harm (A keys 2/8 plain among mixed sets), but it was an instruction issued on a wrong number.
