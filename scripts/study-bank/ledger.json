@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T09:53:33.321Z",
+  "generatedAt": "2026-09-26T10:06:31.419Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -4421,6 +4421,40 @@
           "passed": true,
           "contentSha": "bc9341a72f7295a1d5fc17902f960eb1d136b48ee655b874be49de9ed9e65c5c",
           "verdict": "THE BATCH-LEVEL FINDING, RECORDED AGAINST THE BRIEF. Both authors, working independently from one brief, wrote \"X is usually read as A; the records show B; X was really ___\" in 14 of 14 and 14 of 14. The A repair moved 8 items off it; the B repair claimed 5 and the graders count 2 (B-05, B-11). In the kept B items the option restating the opening received view is a distractor in nearly every one, so \"strike the option matching sentence one\" is a free elimination worth about a third of the B half - a difficulty deflation through a learnable frame, not a no-source leak (the blind margin is +3.1). Grader E's recommendation adopted as a note: the assembler draws C&S by domain quota and does not separate cohorts, so B items will co-occur; the next WIC brief must vary the argument shape, not the option sets."
+        }
+      }
+    },
+    {
+      "id": "sat-math-v18-alg-kept-2026-09-26",
+      "createdAt": "2026-09-26",
+      "targetTest": "sat",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "sat-math-v18-alg",
+      "contentSha": "5dfb0e5a53783ac6ee5d1f18df3aa72f17b480881ac7103c0b63b83e8202bb2b",
+      "status": "inserted",
+      "note": "14 authored as hard, 9 kept, all panel-median MEDIUM. A FAILED COMMISSION for its stated purpose (pre-registered: alg18 shipping zero hard items is reported as failed regardless of insert count). The only three items the panel called hard (A7 rational equation with extraneous root, B5 rational inequality, B6 divisor count) are off the SAT Algebra blueprint by grader majority and are HELD for Andy in sat-math-v18-alg.held.batch.json. B1 and B7 dropped as easy by every grader. Authored in halves, audited by an independent auditor, repaired once, gated by three fresh blind solvers and three fresh with-source graders.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "5dfb0e5a53783ac6ee5d1f18df3aa72f17b480881ac7103c0b63b83e8202bb2b",
+          "verdict": "9 items, all 4-choice, key present, zero key-is-unique-composite, key at an extreme 2/9 = 22.2% against live Algebra 28.8%, no singleton-parity tell, no reviewer-facing text in any explanation. Magnitude check REFUSED at 9 items (needs 10): not measured."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "5dfb0e5a53783ac6ee5d1f18df3aa72f17b480881ac7103c0b63b83e8202bb2b",
+          "verdict": "Three independent graders solved from the stem before reading explanations: ALL THREE MATCHED THE KEY ON ALL 14, both counts (B5=13, B6=11) recounted independently by all three, no second defensible option, every distractor path produces its printed value. Median free strikes 0 or 1 on every kept item, never 2. Panel-median difficulty on the kept nine: 9 medium, 0 hard, 0 easy (A1 split hard/medium/medium). All nine judged insight-bypassable by all three graders: the intended insight is a shortcut to an answer routine procedure also reaches."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "5dfb0e5a53783ac6ee5d1f18df3aa72f17b480881ac7103c0b63b83e8202bb2b",
+          "verdict": "Options-only attack, three samples of one solver, 14 candidates interleaved with 14 live Algebra items matched on the HARD band (59 eligible after excluding this session cohorts), key slots dealt flat A7 B7 C7 D7. CANDIDATE 38.1% against its own 28.6% line; LIVE HARD-BAND CONTROL 69.0%. Candidate minus control -31.0. Unanimity 4/14 candidate against 8/14 control. The control is the finding: the shipped hard-band Algebra items are 69% decidable from four bare values (sign pairs, derivational hubs named on nearly every one), well above every mixed-band control this month (35.7 to 42.9). Pairwise solver agreement 76.2% against 28.0% independent."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "5dfb0e5a53783ac6ee5d1f18df3aa72f17b480881ac7103c0b63b83e8202bb2b",
+          "verdict": "Recorded, not dropped (no pre-registered condition): (1) key is never the largest option in 13/14 authored and 0/9 kept, and second-smallest in 6/9 kept; options are printed ascending so rank survives the draw shuffle. Live Algebra shows the same direction (extremes 28.8%), so this is the bank habit, not a batch outlier. (2) A1 and B3 both use the reference line 4x - 6y = k verbatim; solving one warms up the other (grader E). (3) Distractor = key composed with a printed number on A6 (21 = 3 x 7) and B2 (49 = 7^2); grader D asked to hold both, the rule keeps them and the concern is recorded rather than repaired mid-round. (4) The stopped-early distractor is consistently the smaller neighbour of the key (grader F)."
         }
       }
     }

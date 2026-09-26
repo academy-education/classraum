@@ -1,0 +1,68 @@
+[
+ {
+  "id": "SM18L-A7",
+  "domain": "Algebra",
+  "subskill": "Rational equations: extraneous solution from clearing denominators",
+  "difficulty": "hard",
+  "prompt": "(x + 3)/(x − 4) + 4/(x + 2) = 42/((x − 4)(x + 2))\n\nWhat is the solution to the equation above?",
+  "choices": [
+   "-13",
+   "-5",
+   "4",
+   "11"
+  ],
+  "correct_answer": "-13",
+  "explanation": "The denominators are zero at x = 4 and at x = −2, so neither value can be a solution; any candidate equal to 4 or −2 must be rejected. Multiplying every term by (x − 4)(x + 2) gives (x + 3)(x + 2) + 4(x − 4) = 42, so x² + 5x + 6 + 4x − 16 = 42, which rearranges to x² + 9x − 52 = 0, or (x + 13)(x − 4) = 0. The candidates are x = −13 and x = 4. The value x = 4 makes two of the original denominators zero, so it is not a solution; it appeared only because multiplying by (x − 4), which is 0 there, is not reversible. The only solution is x = −13. Checking: (−10)/(−17) + 4/(−11) = 10/17 − 4/11 = (110 − 68)/187 = 42/187, and 42/((−17)(−11)) = 42/187.\n\n−5 comes from moving 4/(x + 2) to the right side without changing its sign, which leads to x² + x − 20 = (x − 4)(x + 5) = 0 and, after rejecting 4, to x = −5. 4 is the extraneous candidate; it satisfies the cleared equation but makes the original equation undefined. 11 comes from multiplying the first fraction by only x − 4 instead of by both factors, giving (x + 3) + 4(x − 4) = 42, so 5x = 55.",
+  "bounds": [],
+  "solve": "var roots=[(-9+Math.sqrt(81+208))/2,(-9-Math.sqrt(81+208))/2]; return roots.filter(function(x){return x!==4 && x!==-2;})[0];",
+  "distractor_solve": {
+   "4": "return 4;",
+   "11": "return (42+16-3)/5;",
+   "-5": "var r=[(-1+Math.sqrt(1+80))/2,(-1-Math.sqrt(1+80))/2]; return r.filter(function(x){return x!==4;})[0];"
+  }
+ },
+ {
+  "id": "SM18L-B5",
+  "domain": "Algebra",
+  "subskill": "Rational inequality: case split on the sign of the denominator",
+  "difficulty": "hard",
+  "prompt": "How many integers x with −12 ≤ x ≤ 12 satisfy the inequality (2x − 5)/(x + 3) > 1 ?",
+  "choices": [
+   "4",
+   "10",
+   "13",
+   "19"
+  ],
+  "correct_answer": "13",
+  "explanation": "Multiplying both sides by x + 3 is only valid once its sign is known, so split into cases. If x + 3 > 0 (x > −3), the direction is kept: 2x − 5 > x + 3, so x > 8; with x ≤ 12 that gives x = 9, 10, 11, 12, four integers. If x + 3 < 0 (x < −3), the direction reverses: 2x − 5 < x + 3, so x < 8, which every x < −3 already satisfies; with x ≥ −12 that gives x = −12, −11, …, −4, nine integers. (x = −3 is excluded because the expression is undefined.) In total there are 4 + 9 = 13 integers. Choice 4 multiplies through without a case split and keeps only x > 8. Choice 19 reverses the inequality in both cases, counting every integer with x < 8 except −3. Choice 10 applies the reversal to the wrong case, keeping −3 < x < 8 (the ten integers −2 through 7) and nothing else.",
+  "bounds": [],
+  "solve": "let n = 0; for (let x = -12; x <= 12; x++) { if (x !== -3 && (2*x - 5)/(x + 3) > 1) n++; } return n;",
+  "distractor_solve": {
+   "4": "let n = 0; for (let x = -12; x <= 12; x++) { if (x > 8) n++; } return n;",
+   "10": "let n = 0; for (let x = -12; x <= 12; x++) { if (x > -3 && x < 8) n++; } return n;",
+   "19": "let n = 0; for (let x = -12; x <= 12; x++) { if (x !== -3 && x < 8) n++; } return n;"
+  }
+ },
+ {
+  "id": "SM18L-B6",
+  "domain": "Algebra",
+  "subskill": "Parameter count for an integer solution of a linear equation",
+  "difficulty": "hard",
+  "prompt": "For how many integer values of k does the equation k(x − 4) = 3x + 18 have a solution x that is a positive integer?",
+  "choices": [
+   "6",
+   "8",
+   "11",
+   "13"
+  ],
+  "correct_answer": "11",
+  "explanation": "Expanding and collecting x gives kx − 3x = 4k + 18, so (k − 3)x = 4k + 18 and, for k ≠ 3, x = (4k + 18)/(k − 3). Rewriting the numerator as 4(k − 3) + 30 gives x = 4 + 30/(k − 3), so x is an integer exactly when k − 3 divides 30. The positive divisors 1, 2, 3, 5, 6, 10, 15, 30 give x = 34, 19, 14, 10, 9, 7, 6, 5, all positive: 8 values. For a negative divisor d, x = 4 + 30/d is positive only when 30/d > −4, that is, d < −7.5, so d = −10, −15, −30, giving x = 1, 2, 3: 3 more values. In total there are 8 + 3 = 11 values of k. Choice 8 counts only the positive divisors of 30, missing k = −7, −12, −27. Choice 6 counts the positive divisors of 18, the constant in the unreduced numerator 4k + 18, instead of 30. Choice 13 mishandles the sign when solving 30/d > −4 for negative d, keeping d = −1, −2, −3, −5, −6 (which give x ≤ 0) instead of d = −10, −15, −30.",
+  "bounds": [],
+  "solve": "let n = 0; for (let k = -1000; k <= 1000; k++) { if (k === 3) continue; const num = 4*k + 18, den = k - 3; if (num % den === 0 && num/den > 0) n++; } return n;",
+  "distractor_solve": {
+   "6": "let n = 0; for (let d = 1; d <= 18; d++) if (18 % d === 0) n++; return n;",
+   "8": "let n = 0; for (let d = 1; d <= 30; d++) if (30 % d === 0) n++; return n;",
+   "13": "let n = 0; for (let d = 1; d <= 30; d++) if (30 % d === 0) n++; for (let d = -1; d > -7.5; d--) if (30 % d === 0) n++; return n;"
+  }
+ }
+]
