@@ -1,0 +1,1712 @@
+[
+ {
+  "id": "5b128a55-f8fb-4ad2-b37f-42c436a7a351",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "8",
+   "−8",
+   "4.5",
+   "6"
+  ],
+  "key": "8",
+  "negated_key_distractor": "−8",
+  "prompt": "Line ℓ has equation 4x − 3y = 12. Line m is perpendicular to ℓ and passes through (0, 6). What is the x-intercept of line m?"
+ },
+ {
+  "id": "9fc75410-fbbb-4d82-a4f9-7c7570f8e5af",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "-6",
+   "4",
+   "6",
+   "8"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "In the xy-plane, the line y = 3x + c is tangent to the parabola y = x^2 + 5x + 7. What is the value of c?"
+ },
+ {
+  "id": "fb857c99-7592-4972-a2aa-2bfe8d6eee2d",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "3",
+   "9",
+   "-3",
+   "3.5"
+  ],
+  "key": "3",
+  "negated_key_distractor": "-3",
+  "prompt": "The functions f and g are defined by f(x) = 2x - 3 and g(x) = x^2 + 1. If f(g(a)) = 17 and a > 0, what is the value of a?"
+ },
+ {
+  "id": "cb4d1dd1-bf48-4d9a-b791-2e6e3a8059e1",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "1",
+   "3",
+   "−3",
+   "2"
+  ],
+  "key": "3",
+  "negated_key_distractor": "−3",
+  "prompt": "If 4^x = 8^(x − 1), what is the value of x?"
+ },
+ {
+  "id": "76648315-23bf-4006-aa2e-43ac8551b991",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-1",
+   "-5",
+   "5",
+   "1"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "What is the solution to 9^(x + 1) = 27^(x - 1)?"
+ },
+ {
+  "id": "bbaf5787-8f59-4ee4-a5d1-599cc4f9c11a",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-5",
+   "18",
+   "-18",
+   "5"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "If (x + 6)/(x - 2) = x/3, what is the sum of all solutions?"
+ },
+ {
+  "id": "727b2bd3-6781-499e-97ff-6ab7f754d89f",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "6",
+   "3/2",
+   "11/2",
+   "-3/2"
+  ],
+  "key": "3/2",
+  "negated_key_distractor": "-3/2",
+  "prompt": "One solution of 2x^2 - 11x + 12 = 0 is x = 4. What is the other solution?"
+ },
+ {
+  "id": "cf6db388-bcf0-4a04-80b7-7428eb3ce41e",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "1",
+   "5",
+   "-5",
+   "3"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "If 4^(x + 1) = 8^(x - 1), what is the value of x?"
+ },
+ {
+  "id": "ed9b0b6c-407f-4862-8c46-8deb4ffa76f9",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-23",
+   "-11",
+   "11",
+   "-13"
+  ],
+  "key": "-11",
+  "negated_key_distractor": "11",
+  "prompt": "The function f is linear. If f(2) = 13 and f(6) = 1, what is f(10)?"
+ },
+ {
+  "id": "f6acf6ec-5206-4a2c-a3a1-5c81ce0785d8",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "-6/25",
+   "2/5",
+   "-3/5",
+   "6/25"
+  ],
+  "key": "6/25",
+  "negated_key_distractor": "-6/25",
+  "prompt": "The solutions of 5x^2 + 3x - 2 = 0 are m and n. What is the value of m^2*n + m*n^2?"
+ },
+ {
+  "id": "1eb7a622-3b46-4d8e-ad96-a01333797a2a",
+  "cohort": "math-v5-psda-hard",
+  "domain": "Problem-Solving and Data Analysis",
+  "difficulty": "hard",
+  "choices": [
+   "-10",
+   "-5",
+   "-2",
+   "2"
+  ],
+  "key": "-2",
+  "negated_key_distractor": "2",
+  "prompt": "Last year, 60 percent of a store's revenue came from clothing and the rest came from accessories. This year, clothing revenue is 10 percent greater than last year and accessories revenue is 20 percent less than last year. By what percent did the store's total revenue change from last year to this year? (A negative value indicates a decrease.)"
+ },
+ {
+  "id": "3e0fd045-b68f-4c62-aabe-9d763be8d650",
+  "cohort": "math-v5-psda-hard",
+  "domain": "Problem-Solving and Data Analysis",
+  "difficulty": "hard",
+  "choices": [
+   "-5",
+   "5",
+   "58",
+   "63"
+  ],
+  "key": "-5",
+  "negated_key_distractor": "5",
+  "prompt": "A scatterplot shows the number of pages, x, in each of several reports and the time, y, in minutes that an editor took to review each report. The line of best fit passes through the points (10, 39) and (30, 87). One report had 20 pages and took 58 minutes to review. What is the residual, in minutes, for that report, where residual is defined as the actual value minus the predicted value?"
+ },
+ {
+  "id": "8acfa0ea-cc81-45a7-814b-7e1899b1b2d8",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-5/2",
+   "5/2",
+   "2/5",
+   "-2/5"
+  ],
+  "key": "5/2",
+  "negated_key_distractor": "-5/2",
+  "prompt": "If p and q are the roots of 3x^2 + 5x - 2 = 0, what is the value of 1/p + 1/q?"
+ },
+ {
+  "id": "7b51a34c-56b3-4188-b87a-ac9add809702",
+  "cohort": "sat-alg-hard-v1",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-9",
+   "-4",
+   "9",
+   "12.6"
+  ],
+  "key": "-9",
+  "negated_key_distractor": "9",
+  "prompt": "In the system of equations 6x - 4y = 10 and cx + 6y = 21, c is a constant. If the system has no solution, what is the value of c?"
+ },
+ {
+  "id": "911c51a8-cadc-40a1-81cc-59002bd04367",
+  "cohort": "sat-alg-hard-v1",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-16/3",
+   "12",
+   "60/7",
+   "-12"
+  ],
+  "key": "-12",
+  "negated_key_distractor": "12",
+  "prompt": "In the system of equations kx + 8y = 20 and 3x - 2y = 7, k is a constant. The system has exactly one solution for every value of k except one. What is that value of k?"
+ },
+ {
+  "id": "cf9ac61d-6509-4bd5-962b-d3df23ecb90c",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "8",
+   "-2",
+   "2",
+   "-8"
+  ],
+  "key": "-8",
+  "negated_key_distractor": "8",
+  "prompt": "The function f is defined by f(x) = (2x + 5)/(x - 3) for x not equal to 3. What is the value of f-inverse(1)?"
+ },
+ {
+  "id": "3a040f12-43cb-4539-aea8-842379809ffe",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "3",
+   "-3",
+   "11",
+   "-2.25"
+  ],
+  "key": "3",
+  "negated_key_distractor": "-3",
+  "prompt": "The system y = 4x − 7 and ay − 12x = −21 has infinitely many solutions. What is the value of a?"
+ },
+ {
+  "id": "a8b7302c-4883-4f17-9f79-72fe8f8ae92b",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "4",
+   "13",
+   "-9",
+   "9"
+  ],
+  "key": "9",
+  "negated_key_distractor": "-9",
+  "prompt": "The line y = 2x + c is tangent to the parabola y = x^2 + 6x + 13. What is the value of c?"
+ },
+ {
+  "id": "6378ffa5-9f66-4037-ab55-dd271132e3e8",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "7",
+   "5",
+   "32",
+   "-7"
+  ],
+  "key": "7",
+  "negated_key_distractor": "-7",
+  "prompt": "The function f(x) = x^2 - 10x + 32 has its minimum value at x = h. What is the minimum value f(h)?"
+ },
+ {
+  "id": "e0714e93-ea28-481a-b0fd-482da74ab2f2",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "2",
+   "15",
+   "18",
+   "-18"
+  ],
+  "key": "18",
+  "negated_key_distractor": "-18",
+  "prompt": "In the following system of equations, k is a constant.\n\n6x - 5y = 8\nkx - 15y = 20\n\nIf the system has no solution, what is the value of k?"
+ },
+ {
+  "id": "6ea409c5-238a-4c99-8649-ea8294978312",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-6",
+   "6",
+   "-1",
+   "1"
+  ],
+  "key": "-1",
+  "negated_key_distractor": "1",
+  "prompt": "What is the negative solution to the equation 3/(x-2) + 2/(x+2) = 1?"
+ },
+ {
+  "id": "ace1b855-7eb4-4dd7-8f50-cb8d0211972a",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-6",
+   "5",
+   "-5",
+   "6"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "The graphs of y = x^2 - 3x and y = 2x + 6 intersect at two points. What is the sum of the x-coordinates of those two points?"
+ },
+ {
+  "id": "e92b3c49-c008-4192-b408-b7a5d8abc8d4",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "−2",
+   "2",
+   "3",
+   "4"
+  ],
+  "key": "2",
+  "negated_key_distractor": "−2",
+  "prompt": "If (x² − 9)/(x − 3) = 2x + 1 for x ≠ 3, what is the value of x?"
+ },
+ {
+  "id": "a387ac1b-0f84-4560-884a-2f655b50d2ce",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "1",
+   "-5",
+   "5",
+   "2"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "If 9^(x + 1) = 27^(x - 1), what is the value of x?"
+ },
+ {
+  "id": "9ab58d0c-d745-4a1e-a8a7-e87b299e774b",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "16",
+   "-2",
+   "11",
+   "-16"
+  ],
+  "key": "16",
+  "negated_key_distractor": "-16",
+  "prompt": "In the xy-plane, the line passing through (a, 4) and (7, 10) is parallel to the line 2x + 3y = 12. What is the value of a?"
+ },
+ {
+  "id": "da5251da-0a17-4530-aa99-16fef687a9f6",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "1",
+   "-1",
+   "3",
+   "-3"
+  ],
+  "key": "-1",
+  "negated_key_distractor": "1",
+  "prompt": "The polynomial P(x) = x^3 + ax^2 - 4x + 24 has (x + 3) as a factor. What is the value of a?"
+ },
+ {
+  "id": "76d43dbb-0ffc-40a7-818c-5c426b182291",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "4",
+   "16",
+   "-16",
+   "-4"
+  ],
+  "key": "-4",
+  "negated_key_distractor": "4",
+  "prompt": "The roots of x^2 - 6x + 10 = 0 are m and n. What is the value of (m - n)^2?"
+ },
+ {
+  "id": "1bb4956c-ac42-4f0c-8068-7e759f3074f1",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "2/3",
+   "-3/2",
+   "3/2",
+   "-2/3"
+  ],
+  "key": "-3/2",
+  "negated_key_distractor": "3/2",
+  "prompt": "A line m is perpendicular to the line 4x - 6y = 9. What is the slope of line m ?"
+ },
+ {
+  "id": "1fca5f69-c814-44d7-8876-e41fb94b4356",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "13",
+   "-5",
+   "3",
+   "-13"
+  ],
+  "key": "-13",
+  "negated_key_distractor": "13",
+  "prompt": "If 2/(x − 1) = 5/(3x + 4), what is the value of x?"
+ },
+ {
+  "id": "da7d67ca-ea03-4196-bacd-d5f5db74b948",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "6",
+   "-6",
+   "8",
+   "4"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "The line y = 3x + k is tangent to the parabola y = x^2 + 5x + 7. What is the value of k?"
+ },
+ {
+  "id": "7ca289c8-2208-474d-b5ea-6cc544562c30",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "8",
+   "6",
+   "0.75",
+   "-6"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "The line y = 3x + c is tangent to the parabola y = x^2 + 5x + 7 in the xy-plane. What is the value of c?"
+ },
+ {
+  "id": "96cda218-77f3-4bc4-ab8b-8cb7749a8b7b",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "14",
+   "-6",
+   "6",
+   "-14"
+  ],
+  "key": "-14",
+  "negated_key_distractor": "14",
+  "prompt": "A quadratic function g(x) = 2x^2 + bx + c has roots at x = -1 and x = 4. What is the value of b + c?"
+ },
+ {
+  "id": "47a971c0-35fe-42b9-a370-00a0fa8933af",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "3",
+   "23",
+   "-5",
+   "5"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "What is the minimum value of the function f(x) = 2x^2 - 12x + 23?"
+ },
+ {
+  "id": "86af0ced-3c33-4526-9ae6-333956ec49c8",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-3",
+   "1",
+   "2",
+   "3"
+  ],
+  "key": "3",
+  "negated_key_distractor": "-3",
+  "prompt": "What value of x satisfies 4^x = 8^(x - 1)?"
+ },
+ {
+  "id": "bcae4c90-117f-4069-b4a4-6e403901a61c",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "6",
+   "-6",
+   "3",
+   "9"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "For what positive value of c does x^2 + cx + 9 = 0 have exactly one real solution?"
+ },
+ {
+  "id": "d9a01b94-ffd5-4964-8d01-e0ec27e389b3",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-5",
+   "7",
+   "3",
+   "5"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "When the polynomial p(x) = x^3 - 4x^2 + ax - 6 is divided by (x - 3), the remainder is 0. What is the value of a?"
+ },
+ {
+  "id": "06563cc7-236c-4c0d-8397-39d984bad8ab",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-15",
+   "-3",
+   "15",
+   "-45"
+  ],
+  "key": "-15",
+  "negated_key_distractor": "15",
+  "prompt": "In the system of equations 3x − 5y = 12 and 9x + ky = 30, there is no solution. What is the value of k?"
+ },
+ {
+  "id": "2de6e94b-8ad3-4b59-ad71-2882945a624b",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "3",
+   "9",
+   "-13",
+   "-3"
+  ],
+  "key": "-3",
+  "negated_key_distractor": "3",
+  "prompt": "For what value of c is the line y = 2x + c tangent to the parabola y = x² − 6x + 13?"
+ },
+ {
+  "id": "bf1cda76-dfee-4e3e-83fd-a2ea7ac93f40",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "1",
+   "-1",
+   "7",
+   "4"
+  ],
+  "key": "1",
+  "negated_key_distractor": "-1",
+  "prompt": "If 5x + 3y = 29 and 3x + 5y = 27, what is the value of x − y?"
+ },
+ {
+  "id": "90365aec-571e-438b-b088-55703c3934b3",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "0",
+   "2.33",
+   "3",
+   "-3"
+  ],
+  "key": "3",
+  "negated_key_distractor": "-3",
+  "prompt": "If 2^(x+3) = 8^(x-1), what is the value of x?"
+ },
+ {
+  "id": "8ffed62e-6f54-4425-9c27-8d1a018e9f5b",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "−6",
+   "1",
+   "6",
+   "14"
+  ],
+  "key": "6",
+  "negated_key_distractor": "−6",
+  "prompt": "The line y = 2x + c is tangent to the parabola y = x² + 6x + 10. What is the value of c?"
+ },
+ {
+  "id": "e1efe814-0f0e-48e2-a0bb-b2da6882c9c4",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "5",
+   "−8",
+   "8",
+   "3"
+  ],
+  "key": "8",
+  "negated_key_distractor": "−8",
+  "prompt": "When the polynomial p(x) = x³ − 4x² + ax − 5 is divided by (x − 2), the remainder is 3. What is the value of a?"
+ },
+ {
+  "id": "20792800-c8d3-4437-a848-6504adba184c",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "13",
+   "-13",
+   "-11",
+   "-18"
+  ],
+  "key": "-13",
+  "negated_key_distractor": "13",
+  "prompt": "In the equation x² + kx + 36 = 0, the two roots differ by 5. If k is negative, what is the value of k?"
+ },
+ {
+  "id": "f99f0d6d-cc55-4e75-ab10-b88aa2ca4d09",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "1.5",
+   "-2.5",
+   "2",
+   "-1.5"
+  ],
+  "key": "1.5",
+  "negated_key_distractor": "-1.5",
+  "prompt": "Let f(x) = x^2 - 3 and g(x) = 2x + 1. What is the positive value of x for which f(g(x)) = 13?"
+ },
+ {
+  "id": "0729744e-180f-45c9-a9e0-9f4d79653e65",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "−4",
+   "8",
+   "3",
+   "4"
+  ],
+  "key": "4",
+  "negated_key_distractor": "−4",
+  "prompt": "If 1/(x − 3) + 1/(x + 3) = 8/(x² − 9) and x ≠ ±3, what is the value of x?"
+ },
+ {
+  "id": "689ca045-ae51-43af-b296-0f7684d1e5f4",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "5",
+   "1",
+   "-1",
+   "8"
+  ],
+  "key": "1",
+  "negated_key_distractor": "-1",
+  "prompt": "The system of equations y = x^2 - 4x + k and y = 2x - 8 has exactly one solution. What is the value of k?"
+ },
+ {
+  "id": "d826075d-ea68-47d2-a18a-5d716420fdb5",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "−1",
+   "1",
+   "−12",
+   "7"
+  ],
+  "key": "−1",
+  "negated_key_distractor": "1",
+  "prompt": "The graphs of y = x + 1 and x² + y² = 25 intersect at two points. What is the sum of the x-coordinates of these two points?"
+ },
+ {
+  "id": "cc99adf7-599a-4bba-ad2d-f50c229d11ff",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "4",
+   "9",
+   "13",
+   "-9"
+  ],
+  "key": "9",
+  "negated_key_distractor": "-9",
+  "prompt": "In the xy-plane, the line y = 2x + c is tangent to the parabola y = x^2 + 6x + 13. What is the value of c?"
+ },
+ {
+  "id": "cd086230-324e-47e8-a6c9-a36e4129fa95",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-3",
+   "3",
+   "-9",
+   "9"
+  ],
+  "key": "-3",
+  "negated_key_distractor": "3",
+  "prompt": "The system 6x - 9y = 12 and 2x + ay = 4 has infinitely many solutions. What is the value of a?"
+ },
+ {
+  "id": "1df10ff3-1aea-4bb2-95fd-7649069b2003",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "4.8",
+   "-24",
+   "24",
+   "20"
+  ],
+  "key": "24",
+  "negated_key_distractor": "-24",
+  "prompt": "The quantities R, a, and b are related by 1/R = 1/a + 1/b. If a = 12 and R = 8, what is the value of b ?"
+ },
+ {
+  "id": "c0ede046-b41f-443d-8c2a-afcdc73479b2",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "2",
+   "-2",
+   "8",
+   "-8"
+  ],
+  "key": "-2",
+  "negated_key_distractor": "2",
+  "prompt": "The system of equations ax - 3y = 12 and 4x + 6y = -7 has no solution. What is the value of a?"
+ },
+ {
+  "id": "51bab9f4-0389-43c9-9c07-c06590cdf9f7",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "5",
+   "3",
+   "7",
+   "-5"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "If (3x - 7)/4 - (x - 5)/6 = 2, what is the value of x?"
+ },
+ {
+  "id": "0fd38ce2-9df3-4206-b816-52b1d3d52908",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "4",
+   "36",
+   "12",
+   "-12"
+  ],
+  "key": "12",
+  "negated_key_distractor": "-12",
+  "prompt": "In the equation 3x^2 - 12x + k = 0, the sum of the two solutions equals the product of the two solutions. What is the value of k?"
+ },
+ {
+  "id": "4fc76daa-b3f2-4e31-bf16-22943b267028",
+  "cohort": "sat-alg-hard-v1",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "4",
+   "-4",
+   "10/3",
+   "12"
+  ],
+  "key": "4",
+  "negated_key_distractor": "-4",
+  "prompt": "In the equation 3(x - a) + 2(2x + 1) = 7x - 10, a is a constant. If the equation has infinitely many solutions, what is the value of a?"
+ },
+ {
+  "id": "29b0f14c-58b8-44cb-a007-7e1cfe77f0e4",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "80",
+   "15",
+   "5",
+   "-5"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "The system of equations 3x + ky = 7 and 12x + 20y = 9 has no solution. What is the value of k ?"
+ },
+ {
+  "id": "09032fe9-a3c6-4c95-bbe6-5ff10537f385",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-12",
+   "12",
+   "-4/3",
+   "4/3"
+  ],
+  "key": "-12",
+  "negated_key_distractor": "12",
+  "prompt": "In the system of equations below, c is a constant.\n\n3x − 4y = 7\n9x + cy = 2\n\nFor what value of c does the system have no solution?"
+ },
+ {
+  "id": "bae4758d-51ae-4fcf-9f70-5b1d157a2629",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "4/5",
+   "-4/5",
+   "-2",
+   "5"
+  ],
+  "key": "-4/5",
+  "negated_key_distractor": "4/5",
+  "prompt": "The line y = 2x + 1 intersects the circle x^2 + y^2 = 26 at two points. What is the sum of the x-coordinates of the two intersection points?"
+ },
+ {
+  "id": "7e51987d-c8b9-4553-8ec6-469650f32cbd",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "12",
+   "4",
+   "-4",
+   "1"
+  ],
+  "key": "4",
+  "negated_key_distractor": "-4",
+  "prompt": "The system ax + 6y = 18 and 2x + 3y = 9 has infinitely many solutions. What is the value of a ?"
+ },
+ {
+  "id": "3a55f1ba-2d0d-4d58-8a8b-cc0502c16123",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "5",
+   "1",
+   "-5",
+   "7"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "If 3^(2x - 1) = 27^(x - 2), what is the value of x ?"
+ },
+ {
+  "id": "078d81e4-352c-4710-aa41-f097c36c6c2e",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-8",
+   "-4",
+   "4",
+   "8"
+  ],
+  "key": "-4",
+  "negated_key_distractor": "4",
+  "prompt": "What is the solution to the equation x^2 / (x - 4) = 16 / (x - 4)?"
+ },
+ {
+  "id": "b7f4a920-8f6c-4f4a-b07f-2dba5879313a",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "-3",
+   "5",
+   "-8",
+   "8"
+  ],
+  "key": "-8",
+  "negated_key_distractor": "8",
+  "prompt": "The function f(x) = 2x^2 + bx + 5 has a minimum value of -3, where b < 0. What is the value of b?"
+ },
+ {
+  "id": "45378b14-a8e4-4e92-9233-1d83c45784aa",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-39",
+   "48",
+   "39",
+   "57"
+  ],
+  "key": "39",
+  "negated_key_distractor": "-39",
+  "prompt": "Let f(x) = 2x + 3 and g(x) = x^2 - 1. What is the value of g(f(2)) - f(g(2)) ?"
+ },
+ {
+  "id": "489b5cce-7ee8-4c31-8d25-510bd9aa3258",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "-6",
+   "8",
+   "6",
+   "7"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "The line y = 3x + c is tangent to the parabola y = x^2 + 5x + 7. What is the value of c ?"
+ },
+ {
+  "id": "3d7a3f09-e909-4238-869f-626eb2eb0630",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "10",
+   "-2",
+   "4",
+   "-10"
+  ],
+  "key": "10",
+  "negated_key_distractor": "-10",
+  "prompt": "Line k is parallel to the line 2x + y = 5 and passes through the point (3, 4). What is the y-coordinate of the y-intercept of line k ?"
+ },
+ {
+  "id": "6b0290b4-c420-46a5-8c4f-0e1bab638fd2",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "5",
+   "3",
+   "23",
+   "-5"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 12x + 23. What is the minimum value of f(x)?"
+ },
+ {
+  "id": "be1c3621-f1a9-41a4-b734-f07d543e19a4",
+  "cohort": "v2",
+  "domain": "Problem-Solving and Data Analysis",
+  "difficulty": "medium",
+  "choices": [
+   "-$1.00",
+   "$1.00",
+   "$6.00",
+   "$0.00"
+  ],
+  "key": "$1.00",
+  "negated_key_distractor": "-$1.00",
+  "prompt": "A game costs 5 dollars to play. A player rolls a fair six-sided die. If the die shows a 6, the player receives 20 dollars; if it shows a 4 or 5, the player receives 8 dollars; otherwise the player receives nothing. What is the player's expected net gain per game, in dollars, rounded to the nearest cent?"
+ },
+ {
+  "id": "4aae9236-3635-434a-85a2-e9c17a507b8c",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "7",
+   "5",
+   "-5",
+   "3"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "For what value of b does the equation 2(bx − 3) + 4x = 5(x + 2) + 9x have no solution?"
+ },
+ {
+  "id": "b78dd8c2-d4d8-414a-b89c-a179aa6dd259",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-3/4",
+   "5/3",
+   "-5/3",
+   "3/4"
+  ],
+  "key": "-5/3",
+  "negated_key_distractor": "5/3",
+  "prompt": "Line ℓ passes through (0, 3) and (4, 0). Line m is perpendicular to ℓ and passes through (2, 1). What is the y-intercept of line m?"
+ },
+ {
+  "id": "ac8cf403-49b6-496f-9f1b-5cdd9d96929f",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "-6",
+   "-9",
+   "9",
+   "-11"
+  ],
+  "key": "-9",
+  "negated_key_distractor": "9",
+  "prompt": "The equation x^2 + px + 18 = 0 has two positive solutions, and one solution is twice the other. What is the value of p?"
+ },
+ {
+  "id": "54ccdca0-9181-4662-90b0-2c796f172092",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "-4",
+   "4",
+   "-2",
+   "-6"
+  ],
+  "key": "-4",
+  "negated_key_distractor": "4",
+  "prompt": "For what value of k does the system y = x^2 - 3 and y = 2x + k have exactly one solution?"
+ },
+ {
+  "id": "17bec277-6c54-4948-b4e5-bafed4275c10",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "1/2",
+   "-1/2",
+   "-3",
+   "2/3"
+  ],
+  "key": "-1/2",
+  "negated_key_distractor": "1/2",
+  "prompt": "The number 3 is a solution of the equation 2x^2 - 5x + c = 0. What is the other solution?"
+ },
+ {
+  "id": "57fafa53-400a-4acb-832f-f451558d01a0",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-2",
+   "2",
+   "5",
+   "-5"
+  ],
+  "key": "-2",
+  "negated_key_distractor": "2",
+  "prompt": "The equation 3/(x - 1) + 2/(x + 1) = 1 has two solutions. What is the product of the two solutions?"
+ },
+ {
+  "id": "a0cd79de-8b0d-438d-93b3-29925339ba6c",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-8",
+   "-22",
+   "8",
+   "22"
+  ],
+  "key": "8",
+  "negated_key_distractor": "-8",
+  "prompt": "In the equation 5(2x − 3) + k = 10x − 7, k is a constant. If the equation has infinitely many solutions, what is the value of k?"
+ },
+ {
+  "id": "723a5bbb-e99a-495d-87df-8da702ad3d4a",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-6",
+   "6",
+   "8",
+   "2"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "The system of equations 3x − 4y = 12 and ax − 8y = 15 has no solution. What is the value of a?"
+ },
+ {
+  "id": "193a4191-bab7-410d-a7af-1976d5a41467",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "3",
+   "23",
+   "5",
+   "-5"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "What is the minimum value of the function f(x) = 2x² − 12x + 23?"
+ },
+ {
+  "id": "363259c9-83f6-4292-8ae0-bbc0ab83ad93",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "-6",
+   "6",
+   "10",
+   "4"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "In the xy-plane, the line y = 6x + c is tangent to the parabola y = x^2 + 2x + 10. What is the value of c?"
+ },
+ {
+  "id": "2c0a61eb-0f9d-409e-bd7b-9a7fd54ef415",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "6",
+   "8",
+   "3/4",
+   "-6"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "In the xy-plane, the line y = 3x + c is tangent to the parabola y = x² + 5x + 7. What is the value of c?"
+ },
+ {
+  "id": "b2c9ec89-7d33-41a1-b134-440aad09b255",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "-4",
+   "4",
+   "9",
+   "14"
+  ],
+  "key": "4",
+  "negated_key_distractor": "-4",
+  "prompt": "The system of equations y = x² − 4x + k and y = 2x − 5 has exactly one real solution. What is the value of k?"
+ },
+ {
+  "id": "330d4882-5619-49d3-b8ec-f2cb8f6521de",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "3",
+   "13",
+   "-7",
+   "7"
+  ],
+  "key": "7",
+  "negated_key_distractor": "-7",
+  "prompt": "The equation x² + bx + 10 = 0 has two real solutions that differ by 3. If b > 0, what is the value of b?"
+ },
+ {
+  "id": "9a0506c3-4032-41dc-82bb-b453d3deaa5a",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "-4",
+   "12",
+   "20",
+   "4"
+  ],
+  "key": "4",
+  "negated_key_distractor": "-4",
+  "prompt": "In the xy-plane, the line y = 2x + c is tangent to the parabola y = x^2 - 6x + 20. What is the value of c?"
+ },
+ {
+  "id": "4f1d1eb6-dfda-47c5-8c50-6ceeb261acd8",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "1",
+   "-5",
+   "7",
+   "5"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "If 27^(x+1) = 9^(2x-1), what is the value of x?"
+ },
+ {
+  "id": "fd4e5fe7-c8cb-443e-a65f-a87947cacdb5",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-18",
+   "18",
+   "-14",
+   "-1"
+  ],
+  "key": "-18",
+  "negated_key_distractor": "18",
+  "prompt": "What is the product of all solutions to the equation 4/(x - 2) - 3/(x + 2) = 1?"
+ },
+ {
+  "id": "3eee7654-8075-42bd-8212-a8324752e7a5",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "5",
+   "6",
+   "-6",
+   "4"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "The graphs of y = x^2 - 3x + 2 and y = 2x - 4 intersect at two points in the xy-plane. What is the product of the x-coordinates of these two points?"
+ },
+ {
+  "id": "ee9e4316-f359-4fc2-9c13-432e49186cb1",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-18",
+   "18",
+   "-21",
+   "3"
+  ],
+  "key": "-18",
+  "negated_key_distractor": "18",
+  "prompt": "The functions are defined by f(x) = x^2 + 1 and g(x) = x - 3. What is the value of f(g(5)) - g(f(5))?"
+ },
+ {
+  "id": "038b0287-7264-4114-a3a2-5a821f32a5f4",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "-2",
+   "6",
+   "-6",
+   "-8"
+  ],
+  "key": "-6",
+  "negated_key_distractor": "6",
+  "prompt": "The graph of a quadratic function f is shown, with vertex (1, -8) and x-intercepts at x = -1 and x = 3. What is the value of f(0)?"
+ },
+ {
+  "id": "89ce1b79-ce01-4480-922e-095f14c32dc4",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-14",
+   "-7",
+   "7",
+   "14"
+  ],
+  "key": "-14",
+  "negated_key_distractor": "14",
+  "prompt": "The quadratic equation 2x^2 + bx + 20 = 0 has two real solutions whose sum is 7. What is the value of b?"
+ },
+ {
+  "id": "1de34236-09c8-4b71-a340-71bdea009d6d",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-5",
+   "5",
+   "1",
+   "7"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "If 5^(2x - 1) = 125^(x - 2), what is the value of x? Round to the nearest whole number if needed."
+ },
+ {
+  "id": "28cb66bd-d9ab-465a-9a2e-81c72ed1f3f7",
+  "cohort": "sat-alg-hard-v1",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-22",
+   "-10",
+   "16",
+   "22"
+  ],
+  "key": "22",
+  "negated_key_distractor": "-22",
+  "prompt": "In the inequality -3(x - 2) + 5x ≥ 4x + k, k is a constant, and the solution set is x ≤ -8. What is the value of k?"
+ },
+ {
+  "id": "8a9f227f-9ceb-48eb-9579-3f911401e4ef",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "15",
+   "-15",
+   "-5",
+   "5"
+  ],
+  "key": "-15",
+  "negated_key_distractor": "15",
+  "prompt": "In the equation 3x^2 + bx + 12 = 0, the sum of the two solutions is 5. What is the value of b?"
+ },
+ {
+  "id": "c288f1aa-1e7e-471a-87fb-dede5eb0f931",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "6",
+   "-3",
+   "12",
+   "-6"
+  ],
+  "key": "-6",
+  "negated_key_distractor": "6",
+  "prompt": "The equation 2x² + bx − 20 = 0 has two solutions whose sum is 3. What is the value of b?"
+ },
+ {
+  "id": "e4c2abe3-a1de-4a61-82f6-838ef9b106b3",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "5",
+   "8/3",
+   "-7/3",
+   "-8/3"
+  ],
+  "key": "8/3",
+  "negated_key_distractor": "-8/3",
+  "prompt": "What is the sum of all solutions to |3x − 4| = 11?"
+ },
+ {
+  "id": "a1a0f9a5-5607-49a7-97fb-8d9ab6446ea0",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "9",
+   "6",
+   "-6",
+   "24"
+  ],
+  "key": "-6",
+  "negated_key_distractor": "6",
+  "prompt": "The line y = 6x + c is tangent to the parabola y = x^2 - 2x + 10. What is the value of c?"
+ },
+ {
+  "id": "bd17e673-aee6-436a-ae4d-2dc7824a825c",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "2",
+   "-7",
+   "7",
+   "-2"
+  ],
+  "key": "-7",
+  "negated_key_distractor": "7",
+  "prompt": "What is the solution to the equation x/(x - 2) + 3/(x + 2) = 8/(x^2 - 4)?"
+ },
+ {
+  "id": "f3b737f6-3342-463a-b64d-ca0213662d01",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "-1",
+   "9",
+   "4",
+   "1"
+  ],
+  "key": "1",
+  "negated_key_distractor": "-1",
+  "prompt": "The line y = 2x + c is tangent to the parabola y = x^2 - 4x + 10. What is the value of c?"
+ },
+ {
+  "id": "68ca9070-9acb-49cf-a17d-56cff91e58ee",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "21",
+   "-4",
+   "12.5",
+   "4"
+  ],
+  "key": "4",
+  "negated_key_distractor": "-4",
+  "prompt": "Real numbers x and y satisfy x + y = 5 and x^2 + y^2 = 17. What is the value of xy?"
+ },
+ {
+  "id": "e2083d68-1e0d-4e74-b765-80c4825d13f9",
+  "cohort": "v2",
+  "domain": "Geometry and Trigonometry",
+  "difficulty": "medium",
+  "choices": [
+   "-5/12",
+   "5/12",
+   "-12/13",
+   "-13/12"
+  ],
+  "key": "-5/12",
+  "negated_key_distractor": "5/12",
+  "prompt": "An angle θ is obtuse (between 90° and 180°) and sin θ = 5/13. What is the value of tan θ?"
+ },
+ {
+  "id": "dabce601-c279-43c1-a609-8cc56af72a49",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "1",
+   "3",
+   "-1",
+   "9"
+  ],
+  "key": "1",
+  "negated_key_distractor": "-1",
+  "prompt": "The points (−2, 5), (1, k), and (7, −7) lie on the same line in the xy-plane. What is the value of k?"
+ },
+ {
+  "id": "2b645128-0f43-43db-a390-5597208eafc4",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "6",
+   "9/2",
+   "-9/2",
+   "3"
+  ],
+  "key": "9/2",
+  "negated_key_distractor": "-9/2",
+  "prompt": "In the xy-plane, a line is parallel to the graph of 2x − 3y = 12 and passes through the point (6, 1). What is the x-coordinate of its x-intercept?"
+ },
+ {
+  "id": "ff7847dc-6e7e-475d-a051-651b2e20bd58",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-6",
+   "-2",
+   "2",
+   "4.25"
+  ],
+  "key": "-2",
+  "negated_key_distractor": "2",
+  "prompt": "Line L passes through the solution (x, y) of the system 2x + y = 8 and x - y = 1, and line L is perpendicular to the line 3x + 4y = 12. What is the y-coordinate of the y-intercept of line L?"
+ },
+ {
+  "id": "b4740f7e-65c9-4ad5-9798-ed79ce00124c",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "3",
+   "17",
+   "-3",
+   "10"
+  ],
+  "key": "3",
+  "negated_key_distractor": "-3",
+  "prompt": "If 4x − 3y = 10 and 2x + 5y = −7, what is the value of 6x + 2y?"
+ },
+ {
+  "id": "08579b79-1fa3-4248-8ad3-42f14737d865",
+  "cohort": "sat-adv-v11",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-36",
+   "36",
+   "-18",
+   "54"
+  ],
+  "key": "-36",
+  "negated_key_distractor": "36",
+  "prompt": "In the expansion of (2x - 3)^3, what is the coefficient of x^2 ?"
+ },
+ {
+  "id": "e0201951-c86d-4dfe-bc2b-f6cb63744dc0",
+  "cohort": "math-v6-adv-hard",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-135",
+   "15",
+   "135",
+   "405"
+  ],
+  "key": "135",
+  "negated_key_distractor": "-135",
+  "prompt": "The function f is an exponential function defined by f(x) = a·bˣ, where a and b are constants. If f(0) = 5 and f(2) = 45, what is the value of f(3) ?"
+ },
+ {
+  "id": "c7cace3c-c63e-43e9-8145-7d2e43077762",
+  "cohort": "math-v6-adv-hard",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-11",
+   "5",
+   "11",
+   "53"
+  ],
+  "key": "11",
+  "negated_key_distractor": "-11",
+  "prompt": "The expression (2x³ + 3x² − 11x + 5)/(x + 3) can be written as q(x) + r/(x + 3), where q is a polynomial and r is a constant. What is the value of r ?"
+ },
+ {
+  "id": "49b75ef8-aa87-4574-ac44-92d7bc340ee7",
+  "cohort": "math-v9-alg-hard",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-5",
+   "2",
+   "5",
+   "20"
+  ],
+  "key": "5",
+  "negated_key_distractor": "-5",
+  "prompt": "In the system of equations 3x + ky = 12 and 6x + 10y = 7, k is a constant. If the system has no solution, what is the value of k?"
+ },
+ {
+  "id": "50fd08f1-92b6-49d0-984c-20a911a32001",
+  "cohort": "math-v9-alg-hard",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-72",
+   "-32",
+   "-24",
+   "24"
+  ],
+  "key": "-24",
+  "negated_key_distractor": "24",
+  "prompt": "In the system of equations 3x - 4y = 8 and -9x + 12y = c, c is a constant. If the system has infinitely many solutions, what is the value of c?"
+ },
+ {
+  "id": "0cc2f3d3-2684-44d0-b409-415e5e2dd09d",
+  "cohort": "math-v9-alg-hard",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-6",
+   "2",
+   "6",
+   "18"
+  ],
+  "key": "-6",
+  "negated_key_distractor": "6",
+  "prompt": "Line k is defined by the equation 6x - 2y = 9. Line m is parallel to line k and passes through the point (4, 6). At what y-coordinate does line m cross the y-axis?"
+ },
+ {
+  "id": "ec0c4763-8435-4219-a2b7-2e48d6919651",
+  "cohort": "math-v3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "-10",
+   "-6",
+   "3/4",
+   "6"
+  ],
+  "key": "6",
+  "negated_key_distractor": "-6",
+  "prompt": "A landscaping company is comparing two mulch suppliers. Supplier A's total cost y dollars for x bags follows the schedule y = (3/4)x + 5, where 5 is a flat delivery fee. Supplier B's schedule satisfies cx - 8y = -5c - 10, where c is a constant. If the system of the two schedules has infinitely many solutions — that is, the two pricing schedules are identical — what is the value of c?"
+ },
+ {
+  "id": "7cbf8165-d088-4597-af54-1b94925b9cde",
+  "cohort": "math-v3",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "-1/4",
+   "1/4",
+   "-1/12",
+   "-6"
+  ],
+  "key": "-1/4",
+  "negated_key_distractor": "1/4",
+  "prompt": "A course designer models the side profile of a BMX dirt ramp by h(x) = a*x^2 + b*x + c, where h(x) is the height of the ramp surface, in feet, at horizontal position x feet measured from the base of the takeoff tower. The top of the tower gives h(0) = 18. The surface returns to ground level (h(x) = 0) at the landing point x = 12, and the model's other x-intercept lies 18 feet to the left of the landing point. What is the value of a?"
+ },
+ {
+  "id": "03574cad-42e7-4d4b-a61f-1324554fe81d",
+  "cohort": "sat-adv-h3",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-6",
+   "1",
+   "6",
+   "-1"
+  ],
+  "key": "1",
+  "negated_key_distractor": "-1",
+  "prompt": "What is the solution to the equation √(3x + 22) = x + 4 ?"
+ },
+ {
+  "id": "b905500f-5cfa-4c95-8c4a-c74fa7bb76e4",
+  "cohort": "sat-adv-h3",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "choices": [
+   "-4",
+   "-3",
+   "3",
+   "4"
+  ],
+  "key": "-4",
+  "negated_key_distractor": "4",
+  "prompt": "The functions f and g are defined by f(x) = x² − 5 and g(x) = 2x + 1. If f(g(a)) = 44, what is the least possible value of a?"
+ },
+ {
+  "id": "66cc1a4d-73ff-45c2-b957-7c3508837a64",
+  "cohort": "sat-adv-h3",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "-32",
+   "32",
+   "2",
+   "3"
+  ],
+  "key": "-32",
+  "negated_key_distractor": "32",
+  "prompt": "In the xy-plane, a parabola crosses the x-axis at x = −1 and at x = 7 and passes through the point (1, −24). The equation of the parabola can be written as y = a(x − h)² + k, where a, h and k are constants. What is the value of k?"
+ },
+ {
+  "id": "dfd9b921-8b73-4c72-9a4e-c7f602086165",
+  "cohort": "sat-adv-v11",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "choices": [
+   "-4",
+   "4",
+   "-3",
+   "2"
+  ],
+  "key": "-4",
+  "negated_key_distractor": "4",
+  "prompt": "The polynomial p is defined by p(x) = x^3 + ax^2 + bx + 18, where a and b are constants. If 3 is a zero of p with multiplicity 2, what is the value of a ?"
+ },
+ {
+  "id": "1eb3e800-347d-48c2-96fc-ea623ed3b57f",
+  "cohort": "sat-math-v16-adv",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "choices": [
+   "-9",
+   "-3",
+   "-1",
+   "9"
+  ],
+  "key": "-9",
+  "negated_key_distractor": "9",
+  "prompt": "The system of equations 3x − 5y = 8 and ax + 15y = 7, where a is a constant, has no solution. What is the value of a?"
+ },
+ {
+  "id": "4ed0332b-7a62-4f1b-8197-e721824bd0d7",
+  "cohort": "sat-alg-0918",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "choices": [
+   "-4",
+   "4",
+   "-5/2",
+   "1"
+  ],
+  "key": "-4",
+  "negated_key_distractor": "4",
+  "prompt": "In the equation |2x + 5| - 4 = k, k is a constant. If the equation has exactly one solution, what is the value of k?"
+ }
+]
