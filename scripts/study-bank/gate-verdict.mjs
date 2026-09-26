@@ -55,6 +55,11 @@ for (const id of ids) {
   if (med >= 2) why.push(`4: median ${med} of 3 distractors free-strikable [${struck.join(',')}]`)
   const incoherent = rows.filter(r => r.path_coherent === false)
   if (incoherent.length) why.push(`5: explanation path wrong per ${incoherent.length}/3`)
+  /* SEC-specific, from the bank-sat-rw brief: a word within four of the blank
+   * that settles the item alone is a giveaway. Majority, like exclusivity;
+   * the field is absent on maths grades and then never fires. */
+  const resolving = rows.filter(r => r.resolving_word_after_blank && String(r.resolving_word_after_blank).toLowerCase() !== 'null')
+  if (resolving.length >= 2) why.push(`6: resolving word after the blank per ${resolving.length}/3 (${[...new Set(resolving.map(r => r.resolving_word_after_blank))].join(' / ')})`)
   const diffs = rows.map(r => r.difficulty)
   const line = `${why.length ? 'DROP' : 'KEEP'}  ${id.padEnd(11)} keys ${rows.filter(r => r.key_ok === true).length}/3  struck[${struck.join(',')}]  diff[${diffs.join(',')}]  ${why.join(' | ')}`
   console.log(line)
