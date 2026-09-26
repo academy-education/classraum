@@ -1,0 +1,213 @@
+{
+ "batch": "sat-sec-hard-v9-b",
+ "status": "complete",
+ "items": {
+  "SEC9B-01": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "resolving_word_after_blank": null,
+   "rules": [
+    "neither/nor nearest-subject agreement past an of-phrase",
+    "no single comma between subject and verb"
+   ],
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Head noun of the nearer subject is 'report'; 'engineers' is object of 'of'. Comma options are wrong by rule but both are dead on sight, so the item is really 2-way (identifies/identify). Key is the plain option. Present 'identifies' beside past-perfect 'had complained' is a small tense wobble, not a defect."
+  },
+  "SEC9B-02": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "'but to whoever' under the whom-is-moribund convention; note the pronoun is object of the INNER verb 'judges', so even the Fowler/Garner fused-relative rule gives whomever - the only defence is abandoning whom altogether",
+   "resolving_word_after_blank": null,
+   "rules": [
+    "not...but parallelism: 'to' sits inside the first element so must be repeated",
+    "case of a fused relative set by its role in its own clause (object of 'judges')"
+   ],
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Both rules are load-bearing and each distractor breaks a named one. Authenticity flag: pronoun case (who/whom) is not in the digital SAT's Form/Structure/Sense list; this batch carries four case items (02, 04, 11, 12). Options are a clean 2x2 grid, nothing unique about the key."
+  },
+  "SEC9B-03": {
+   "key_ok": true,
+   "exclusive": false,
+   "second_defensible": "'was' - read 'since' as causal: 'Because the last ferry ended in 2019, its only school was shut, and the pupils [now] ride a launch.' Fully grammatical; the temporal-since rule that forces the perfect never engages.",
+   "resolving_word_after_blank": null,
+   "rules": [
+    "present perfect after temporal 'since + past point'",
+    "'along with' phrase does not pluralise the subject"
+   ],
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "REPAIR: force the temporal reading - 'Ever since the last ferry service to the island ended in 2019, ...' or 'Since 2019, when the last ferry service ended, ...'. Agreement half is sound. 2x2 grid, key not unique."
+  },
+  "SEC9B-04": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "resolving_word_after_blank": null,
+   "rules": [
+    "participle must attach to the subject of the main clause",
+    "subject-form pronoun in a compound subject"
+   ],
+   "distractor_quality": "weak",
+   "difficulty": "easy",
+   "note": "Options-only solvable: the two danglers are the two long passive/nominal options (visible without the passage) and B/D differ only in me/I before 'concluded', which any student resolves to 'I'. The dangler rule is real but the distractors self-eliminate by shape. REPAIR: give all four options one shape and length, e.g. A 'the auditor and I concluded' (key), B 'the auditor and me concluded', C 'the auditor's report and mine concluded' (dangler: a report did not compare ledgers), D 'the auditor's report and I concluded' (dangler + odd compound) - so the dangler is visible only with the passage."
+  },
+  "SEC9B-05": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "resolving_word_after_blank": null,
+   "rules": [
+    "plural subject 'trusses' across an interposed relative clause",
+    "'not because' answered by 'but because'"
+   ],
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Agreement half is decorative: 'trusses' is plainly plural and 'the newest of which dated' is a weak attractor, so 'was' is not tempting. The correlative half ('but rather that' / 'but that') does the work and is a genuine rule break, not style. 2x2 grid, key not unique."
+  },
+  "SEC9B-06": {
+   "key_ok": true,
+   "exclusive": false,
+   "second_defensible": "'it sends, casts' - indicative after a mandative verb is standard British and common in edited American prose ('requires that the delegation casts'); the mandative subjunctive is not a rule the digital SAT tests",
+   "resolving_word_after_blank": null,
+   "rules": [
+    "base form (mandative subjunctive) after 'requires that'",
+    "close the parenthetical 'however many members it sends' with a comma before the verb"
+   ],
+   "distractor_quality": "plausible",
+   "difficulty": "hard",
+   "note": "The two rules interact well and the key is the COMMA option, which breaks the plain-option tell. But the deciding axis rests on a convention split. REPAIR that keeps the sentence and moves the mark onto the indicative: drop the mandative frame - 'Under the charter each borough's delegation, however many members ______ a single vote on every question ...' with key 'it sends, casts'; 'it sends, cast' then breaks agreement by attraction to 'members', and the two comma-less options keep the parenthetical rule. Same rule pair, no subjunctive."
+  },
+  "SEC9B-07": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "resolving_word_after_blank": null,
+   "rules": [
+    "that-clause as subject takes a singular verb",
+    "close the parenthetical absolute 'several of them in passages ... plain' before the verb"
+   ],
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Best item in the batch. Two plural attractors ('errors', 'passages') sit between subject and verb, and the closing-comma rule is not decorative because the unclosed version reads as a garden path. Key is the comma option. 2x2 grid, key not unique."
+  },
+  "SEC9B-08": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "'but also ... offer' under the compound-subject reading of not only/but also (CGEL notes plural is attested); minority against the nearest-subject rule taught in US handbooks",
+   "resolving_word_after_blank": null,
+   "rules": [
+    "'not only' must be answered by 'but (also)'",
+    "nearest-subject agreement with singular 'correspondence'"
+   ],
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'And also' distractors are wrong by rule but nobody who has seen 'not only' picks 'and also', so the item reduces to offers/offer, and 'correspondence' is an unambiguous singular mass noun. Cross-item: 08 and 10 both use 'and also' as the always-wrong distractor. 2x2 grid, key not unique."
+  },
+  "SEC9B-09": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "resolving_word_after_blank": null,
+   "rules": [
+    "participle 'Hoping' must attach to a subject that can hope",
+    "'with' phrase does not pluralise the subject"
+   ],
+   "distractor_quality": "weak",
+   "difficulty": "easy",
+   "note": "Options-only solvable, same failure as 04: the river/plan danglers are the two structurally odd options, and A/B carry their own subject ('the chief engineer, with two crews ...') so was/were is decidable inside the option with the passage covered. REPAIR: make it a pure agreement item with four same-shape options - A 'the chief engineer, with two crews of local masons, was able to span the river' (key), B same with 'were', C 'the chief engineer and two crews of local masons was able ...', D 'the chief engineer, as well as two crews of local masons, were able ...'. Or keep the dangler axis but give the danglers the same length and an animate-looking subject ('the chief engineer's crews, two of them local masons, were able' - crews can hope; so use 'the chief engineer's plan, drawn up with two crews of local masons, was to span')."
+  },
+  "SEC9B-10": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "'but also open it' if a solver treats 'to' as shared across the correlative; weak, because 'not only' is placed before 'to catalogue' so 'to' is inside the first element - the SAT keys this strictly",
+   "resolving_word_after_blank": null,
+   "rules": [
+    "not only ... but also",
+    "full infinitive repeated when 'not only' precedes the first 'to'"
+   ],
+   "distractor_quality": "plausible",
+   "difficulty": "easy",
+   "note": "Textbook correlative parallelism; the long relative clause is padding, not a trap. Options-only: the key is the centroid - 'but also' appears in 3 of 4 and 'to open it' in 2 of 4, and only the key has both majority features. Demote to easy/medium; not worth repairing for the hard band."
+  },
+  "SEC9B-11": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "'myself, arrived' - 'to the director and myself' is Garner stage-3 usage, widespread in edited prose; still an error by the SAT's standard",
+   "resolving_word_after_blank": null,
+   "rules": [
+    "object case after preposition in a compound",
+    "close the participial phrase 'addressed jointly to ...' before the main verb"
+   ],
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Key is the comma option (breaks the plain tell). Options-only: comma appears in 3 of 4 and 'me' in 2 of 4, so 'me, arrived' is again the centroid. 'neither of us' / 'our absence' after the blank confirm first person but do not resolve case. Sound item; medium because 'between you and I' errors are heavily drilled."
+  },
+  "SEC9B-12": {
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "resolving_word_after_blank": "'the board ... believed had falsified' - the interrupting clause plus the subjectless 'had falsified' IS the item; nothing outside it resolves it",
+   "rules": [
+    "relative pronoun case set inside its own clause across a parenthetical 'the board believed'"
+   ],
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Not a duplicate in substance: the live item keyed 'who' (LSEC-19, 'The novelist, ___ won the national award last year, will speak') is a bare nonrestrictive relative subject with no interrupting clause; only the one-word answer string matches. The candidate tests the whom-hypercorrection trap, which the live item does not. Single rule, so 'two rules interact' fails here; the pattern is heavily drilled in prep books (medium). Same authenticity flag as 02: who/whom is not on the digital SAT's tested list."
+  }
+ },
+ "cross_item": {
+  "plain_option_tell": "The '8 of 12 keys unpunctuated' count is a denominator artifact: in 7 of those 8 (02,03,04,05,08,10,12) NO option carries a comma, so the tell decides nothing. Where options do differ by a comma (01,06,07,11) the key is the comma option in 3 of 4; only 01 keys plain, and there the comma pair is dead on sight anyway. This batch runs AGAINST the live plain-option tell; keep it that way and do not 'balance' 06/07/11 back toward plain.",
+  "options_only_guessable": "04 and 09 (danglers are the structurally odd options; the case/agreement decision is readable inside the option). 10 and 11 by the centroid heuristic (key is the only option holding every majority feature). 01,02,03,05,06,07,08,12 are clean 2x2 grids or four bare pronouns.",
+  "duplicate_check_12": "Answer-string match only; not a substance duplicate of LSEC-19.",
+  "batch_level_tells": [
+   "Intervening-noun agreement is the deciding axis in 6 of 12 (01,03,05,07,08,09) and the key is SINGULAR in 5 of those 6 - 'ignore the nearby plural, pick singular' answers half the batch.",
+   "'and also' is the always-wrong correlative distractor in both 08 and 10.",
+   "4 of 12 are pronoun case (02,04,11,12) incl. two who/whom - a rule family the digital SAT does not list; the gate should decide whether the bank wants it at all before more are authored.",
+   "Danglers in 04 and 09 are both keyed to the concise active human-subject option."
+  ],
+  "difficulty_histogram": {
+   "hard": [
+    "02",
+    "06",
+    "07"
+   ],
+   "medium": [
+    "01",
+    "03",
+    "05",
+    "08",
+    "11",
+    "12"
+   ],
+   "easy": [
+    "04",
+    "09",
+    "10"
+   ]
+  }
+ },
+ "verdict": {
+  "repair": {
+   "03": "force temporal 'since' (Ever since / Since 2019, when ...)",
+   "06": "drop the mandative frame; key becomes 'it sends, casts' with 'cast' as attraction error",
+   "04": "reshape four options to one length/shape so the dangler needs the passage",
+   "09": "same as 04, or convert to pure agreement with four connector variants"
+  },
+  "drop_or_demote": {
+   "10": "demote to easy; not a hard-band item",
+   "04/09": "if not reshaped, drop from the hard band - options-only solvable"
+  },
+  "ship_as_is": [
+   "01 (medium)",
+   "02",
+   "05 (medium)",
+   "07",
+   "08 (medium)",
+   "11 (medium)",
+   "12 (medium, pending the who/whom policy call)"
+  ]
+ }
+}

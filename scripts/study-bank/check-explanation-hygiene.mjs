@@ -31,8 +31,11 @@ import { readFileSync } from 'node:fs'
 const PATTERNS = [
   [/OPTION-SET NOTE/i,                        'an authoring note addressed to a reviewer'],
   [/recorded (here|because)/i,                'reasoning recorded for a reviewer'],
-  [/\b(a |the )?grader\b/i,                   'speaks to a grader'],
-  [/\bauditor\b/i,                            'speaks to an auditor'],
+  /* Bare "grader"/"auditor" were matched as words and fired on SEC9B-04, whose
+   * SENTENCE is about an auditor's report. Content can contain those nouns;
+   * reviewer text addresses them. Match the address, not the word. */
+  [/so that (a |the )?(grader|auditor|reviewer)/i, 'speaks to a grader'],
+  [/\b(for|to) the (grader|auditor|reviewer)s?\b/i, 'speaks to a reviewer'],
   [/inside tolerance|known single strike/i,   'STATES THE GATE VERDICT — contaminates an independent grade'],
   [/re-audit|break-test|free elimination/i,   'process vocabulary from this pipeline'],
   [/distractor[- ]set was built|built for/i,  'describes how the distractors were engineered'],

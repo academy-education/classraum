@@ -1,0 +1,162 @@
+[
+  {
+    "id": "SEC9A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: supplement inside a compound subject",
+    "difficulty": "hard",
+    "passage": "In the reserve's open grassland, the kestrel and ______ hunt the same voles at different hours, the one by daylight and the other well after dusk, so their ranges overlap without their ever meeting.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the barn owl—its nocturnal counterpart,",
+      "the barn owl, which is its nocturnal counterpart",
+      "the barn owl, its nocturnal counterpart,",
+      "the barn owl, its nocturnal counterpart"
+    ],
+    "correct_answer": "the barn owl, its nocturnal counterpart,",
+    "explanation": "\"Its nocturnal counterpart\" is a nonessential appositive renaming \"the barn owl,\" so it must be enclosed by a matching mark on each side; \"the barn owl, its nocturnal counterpart,\" closes the appositive and returns the sentence to its compound subject \"the kestrel and the barn owl,\" which the plural verb \"hunt\" then agrees with. \"The barn owl—its nocturnal counterpart,\" opens the appositive with a dash but closes it with a comma, and the two marks enclosing a supplement must match. \"The barn owl, which is its nocturnal counterpart\" opens a nonrestrictive relative clause with a comma and never closes it, so the clause swallows the main verb \"hunt.\" \"The barn owl, its nocturnal counterpart\" opens the appositive and never closes it, so \"counterpart\" runs straight into \"hunt\" with nothing to mark where the supplement ends and the predicate begins."
+  },
+  {
+    "id": "SEC9A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon introducing an explanation",
+    "difficulty": "hard",
+    "passage": "Sanchez's field notes record only what she could verify ______ every measurement she took at the estuary appears beside the serial number of the instrument that produced it and the hour at which it was read.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "herself:",
+      "herself,",
+      "herself; because",
+      "herself"
+    ],
+    "correct_answer": "herself:",
+    "explanation": "The first clause, \"Sanchez's field notes record only what she could verify herself,\" is complete, and what follows explains it, so a colon is the boundary that fits: \"herself:\" closes a full independent clause and introduces the elaboration, which is itself an independent clause. \"Herself,\" places only a comma between two independent clauses, a comma splice. \"Herself; because\" uses a semicolon correctly only if both sides are independent, but \"because every measurement she took ... was read\" is a subordinate clause, so the semicolon strands a fragment. \"Herself\" with no mark at all fuses the two clauses into a run-on."
+  },
+  {
+    "id": "SEC9A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: long introductory clause and a supplement",
+    "difficulty": "hard",
+    "passage": "Because the census counted only households that answered the door on a single evening in late ______ where most men worked night shifts, understate the population by as much as a third.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "October the figures for the river wards,",
+      "October, the figures for the river wards,",
+      "October, the figures for the river wards",
+      "October, the figures for the river wards—"
+    ],
+    "correct_answer": "October, the figures for the river wards,",
+    "explanation": "Two boundaries are needed in the same stretch: a comma to close the long introductory \"Because\" clause, and a comma to open the nonrestrictive \"where\" clause that the text closes with the comma before \"understate.\" \"October, the figures for the river wards,\" supplies both, so the subject \"the figures\" reaches its verb \"understate\" with the supplement cleanly enclosed. \"October the figures for the river wards,\" omits the comma after the introductory clause, running it into the main subject. \"October, the figures for the river wards\" closes the introduction but never opens the supplement, so the comma before \"understate\" becomes a lone comma separating subject from verb. \"October, the figures for the river wards—\" opens the supplement with a dash, but the text closes it with a comma before \"understate,\" and the two marks enclosing a supplement must match."
+  },
+  {
+    "id": "SEC9A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: closing a dash pair around a supplement",
+    "difficulty": "hard",
+    "passage": "The committee's two dissenters—a geologist from the state survey and a retired mining ______ alone in having walked the tailings dam before the vote was called.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "surveyor, were",
+      "surveyor—was",
+      "surveyor were",
+      "surveyor—were"
+    ],
+    "correct_answer": "surveyor—were",
+    "explanation": "A supplement opened with a dash must be closed with a dash, and once it is closed the verb belongs to the subject outside the dashes, \"The committee's two dissenters,\" which is plural. \"Surveyor—were\" closes the pair and agrees with that subject. \"Surveyor, were\" closes a dash-opened supplement with a comma, mismatching the pair. \"Surveyor—was\" closes the pair correctly but makes the verb agree with \"surveyor\" or \"geologist\" inside the supplement rather than with \"dissenters.\" \"Surveyor were\" never closes the supplement, so the dash-opened phrase runs straight into the verb and the sentence has no marked boundary between the appositive and the predicate."
+  },
+  {
+    "id": "SEC9A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: nominative absolute vs finite clause",
+    "difficulty": "hard",
+    "passage": "______ the expedition's two remaining sledges were loaded with instruments rather than food, a decision that the survivors defended for the rest of their lives.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "The supply ship having failed to arrive,",
+      "The supply ship having failed to arrive",
+      "The supply ship had failed to arrive,",
+      "The supply ship, having failed to arrive,"
+    ],
+    "correct_answer": "The supply ship having failed to arrive,",
+    "explanation": "\"The supply ship having failed to arrive,\" is a nominative absolute, a noun plus a participle with no finite verb, and an absolute is attached to the main clause by a comma. \"The supply ship having failed to arrive\" is the same absolute with no comma, so it runs directly into the main subject \"the expedition's two remaining sledges.\" \"The supply ship had failed to arrive,\" replaces the participle with a finite verb, producing an independent clause joined to another by a comma alone, a comma splice. \"The supply ship, having failed to arrive,\" turns the phrase into a subject with a nonrestrictive modifier, but that subject never receives a verb, since the verb \"were loaded\" already belongs to \"sledges.\""
+  },
+  {
+    "id": "SEC9A-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: restrictive clause and subject-verb boundary",
+    "difficulty": "hard",
+    "passage": "Of the workshop's six surviving manuscripts, ______ in a hand that appears nowhere else in the collection, which has led some scholars to posit a visiting illuminator.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the two, that remain intact, are illuminated",
+      "the two that remain intact are illuminated",
+      "the two that remain intact, are illuminated",
+      "the two that remain intact being illuminated"
+    ],
+    "correct_answer": "the two that remain intact are illuminated",
+    "explanation": "\"The two\" needs the clause that follows to identify which two are meant, so the clause is restrictive: it attaches with \"that\" and no commas, and the subject then runs directly into its finite verb, as in \"the two that remain intact are illuminated.\" \"The two, that remain intact, are illuminated\" encloses a \"that\" clause in commas, treating an essential clause as removable. \"The two that remain intact, are illuminated\" places a single comma between the complete subject and its verb. \"The two that remain intact being illuminated\" replaces the finite verb with a participle, so the sentence has a subject and its modifiers but no main verb anywhere."
+  },
+  {
+    "id": "SEC9A-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolons in a series with internal commas",
+    "difficulty": "hard",
+    "passage": "The delegation that met the auditors included Ana Ruiz, the port's harbormaster ______ and Tomas Weil, a hydrologist on loan from the ministry, none of whom had seen the ledgers before that morning.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "; Kofi Mensah, the customs inspector,",
+      ", Kofi Mensah, the customs inspector;",
+      "; Kofi Mensah; the customs inspector;",
+      "; Kofi Mensah, the customs inspector;"
+    ],
+    "correct_answer": "; Kofi Mensah, the customs inspector;",
+    "explanation": "Each item in this series is a name followed by a comma-attached appositive, so the items themselves must be separated by semicolons and the separators must be consistent from one item to the next. \"; Kofi Mensah, the customs inspector;\" keeps the comma inside the item and a semicolon at each end of it, matching the semicolon that must also precede \"and Tomas Weil.\" \"; Kofi Mensah, the customs inspector,\" opens the item with a semicolon but closes it with a comma, so the reader cannot tell whether \"the customs inspector\" and \"Tomas Weil\" are two people or one. \", Kofi Mensah, the customs inspector;\" opens the item with a comma but closes it with a semicolon, so the comma after \"harbormaster\" reads as though Mensah were part of Ruiz's description. \"; Kofi Mensah; the customs inspector;\" puts a semicolon between the name and its own appositive, presenting the inspector as a fourth delegate rather than as a description of Mensah."
+  },
+  {
+    "id": "SEC9A-09",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: dash pair before a coordinated clause",
+    "difficulty": "hard",
+    "passage": "The reef's dominant coral—a slow-growing species that can live for ______ so the ecologists were startled to find it thriving in a lagoon barely fifty years old.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "centuries—rarely colonizes new ground,",
+      "centuries, rarely colonizes new ground,",
+      "centuries—it rarely colonizes new ground,",
+      "centuries—rarely colonizing new ground,"
+    ],
+    "correct_answer": "centuries—rarely colonizes new ground,",
+    "explanation": "The supplement \"a slow-growing species that can live for centuries\" was opened with a dash, so it must be closed with a dash before the subject \"The reef's dominant coral\" reaches its verb; the clause that results, \"The reef's dominant coral ... rarely colonizes new ground,\" is independent, and the comma before the coordinating conjunction \"so\" then joins it to the second independent clause. \"Centuries—rarely colonizes new ground,\" does both. \"Centuries, rarely colonizes new ground,\" closes a dash-opened supplement with a comma, mismatching the pair. \"Centuries—it rarely colonizes new ground,\" closes the pair but then restates the subject with \"it,\" so one verb is given two subjects, \"The reef's dominant coral\" and \"it.\" \"Centuries—rarely colonizing new ground,\" closes the pair but replaces the finite verb with a participle, so the first clause has a subject and no verb and cannot be coordinated with \"so.\""
+  },
+  {
+    "id": "SEC9A-11",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: nonrestrictive appositive after a restrictive one in a compound object",
+    "difficulty": "hard",
+    "passage": "Notes exchanged between the chemist Otto Hahn and ______ show that the interpretation of the 1938 experiment took shape in letters rather than at the laboratory bench.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the physicist Lise Meitner; his collaborator of thirty years,",
+      "the physicist Lise Meitner, his collaborator of thirty years",
+      "the physicist Lise Meitner—his collaborator of thirty years,",
+      "the physicist Lise Meitner, his collaborator of thirty years,"
+    ],
+    "correct_answer": "the physicist Lise Meitner, his collaborator of thirty years,",
+    "explanation": "\"Lise Meitner\" identifies which physicist is meant, so it is a restrictive appositive and takes no commas, exactly as \"the chemist Otto Hahn\" does earlier in the phrase; \"his collaborator of thirty years\" then adds information about a person already fully identified, so it is nonrestrictive and must be enclosed by a comma on each side before the subject \"Notes\" proceeds to its verb \"show.\" \"The physicist Lise Meitner, his collaborator of thirty years,\" does this. \"The physicist Lise Meitner; his collaborator of thirty years,\" puts a semicolon between a noun and its own appositive, and a semicolon must have an independent clause on each side. \"The physicist Lise Meitner, his collaborator of thirty years\" opens the appositive and never closes it, so \"years\" runs into the verb \"show\" with no boundary. \"The physicist Lise Meitner—his collaborator of thirty years,\" opens the appositive with a dash and closes it with a comma, mismatching the pair."
+  },
+  {
+    "id": "SEC9A-12",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: dash before a summarizing pronoun",
+    "difficulty": "hard",
+    "passage": "Salt, charcoal, and a little ______ was all the recipe demanded, and none of it cost the dyers more than a morning's walk to gather.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "lime that",
+      "lime, which",
+      "lime—that",
+      "lime, that"
+    ],
+    "correct_answer": "lime—that",
+    "explanation": "When a fronted list is gathered up by a summarizing pronoun that becomes the grammatical subject, the list is set off from the pronoun with a dash (or a colon), and the pronoun then carries the main verb \"was\"; \"lime—that\" does this. \"Lime that\" makes \"that\" a relative pronoun modifying \"lime,\" so the whole first half is a list with a relative clause attached and no main verb, leaving nothing for \"and none of it cost\" to coordinate with. \"Lime, which\" does the same with a nonrestrictive relative clause: \"which was all the recipe demanded\" modifies the list, and the sentence still has no main verb before \"and.\" \"Lime, that\" separates the list from the summarizing pronoun with only a comma, so the comma reads as one more series comma and the clause \"that was all the recipe demanded\" is run onto the list with no boundary strong enough to mark where the list ends and the statement about it begins."
+  }
+]

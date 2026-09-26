@@ -1,0 +1,122 @@
+{
+  "SEC9A-01": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": null,
+    "rules": "Enclose a nonrestrictive appositive in a comma pair; (nominal second rule) a semicolon cannot sit inside a compound subject. Only the pairing rule is load-bearing: A (no mark) and D (semicolon) are dead on sight, and B is the same pairing rule (unclosed relative clause), not a second rule.",
+    "distractor_quality": "weak",
+    "difficulty": "medium",
+    "note": "The real hard-band trap - 'the barn owl, its nocturnal counterpart' with NO closing comma - is absent; B is a which-clause version of it and is the only live distractor. With the passage covered the key is the sole option ending in a comma, i.e. the uniquely paired one. Demote."
+  },
+  "SEC9A-02": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": null,
+    "rules": "Colon after an independent clause introducing an explanatory independent clause; semicolon requires an independent clause on each side. The second rule is decorative: the semicolon option carries 'because', which turns it into a fragment a solver kills without knowing anything about colons. B (comma splice) and D (fused) are the standard easy kills.",
+    "distractor_quality": "plausible",
+    "difficulty": "medium",
+    "note": "A genuinely hard colon item would offer 'herself;' bare - but that is legal (two independent clauses), which is exactly the Q1 trap, so the item cannot be made hard without becoming non-exclusive. Same template as 06 (colon / semicolon / comma / nothing); solving either solves the other. Keep as medium or drop from a hard batch."
+  },
+  "SEC9A-03": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": null,
+    "rules": "Comma closing a long introductory subordinate clause; comma pair opening a nonrestrictive 'where' clause whose closing comma is fixed in the text before 'understate'. Both load-bearing: intro-comma rule leaves B and C; the supplement rule leaves B and D; D dies to the semicolon-after-subordinate-clause rule. A solver who knows only one rule still has two live options.",
+    "distractor_quality": "strong",
+    "difficulty": "hard",
+    "note": "The fixed ', understate' after the blank is what makes C wrong, but that is the intended interaction, not a leak - the solver must notice the stranded comma. Mild option-set tell: the key is the option with the most commas. A (no comma after a 30-word intro clause) is wrong by SAT convention, not merely style. Best item in the batch."
+  },
+  "SEC9A-04": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": "members",
+    "rules": "Close a dash-opened supplement with a dash; verb agrees with the subject outside the dashes ('dissenters'), not the nearest noun. The agreement rule is collapsed by the text: 'was the only members' is audibly wrong, so B dies without the solver locating the subject. What remains is close-the-dash (A comma, C nothing), a single rule.",
+    "distractor_quality": "plausible",
+    "difficulty": "medium",
+    "note": "REPAIR: replace 'the only members to have walked the tailings dam' with a number-neutral complement, e.g. 'alone in having walked the tailings dam before the vote was called'. Then 'surveyor—was' is live for a solver attracted to the nearest noun and both rules bear. Also the same template as 09 (dash-close + verb-form distractor + comma-close + third mark); re-template one of them. Hard after repair."
+  },
+  "SEC9A-05": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": null,
+    "rules": "A nominative absolute attaches to the main clause with a comma; a finite clause in that slot would need a conjunction or semicolon (C is a comma splice); a comma-enclosed participial phrase turns 'The supply ship' into a verbless subject (D). Both the absolute-vs-finite and the paired-modifier readings are live; both load-bearing.",
+    "distractor_quality": "strong",
+    "difficulty": "hard",
+    "note": "The paired-comma option is a DISTRACTOR here, which usefully breaks the batch's 'paired one is the key' tendency. D reads fluently and is the real trap. Absolutes are rare on the SAT but do appear at module-2 hard. No repair."
+  },
+  "SEC9A-06": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": null,
+    "rules": "Colon introducing a list after an independent clause; semicolon needs an independent clause on each side. One rule effectively - the visible list shape ('nitrate film, lead-based pigments, and any paper') makes the colon the reflex answer; A/B/D are all textbook kills.",
+    "distractor_quality": "weak",
+    "difficulty": "easy",
+    "note": "Textbook colon-before-list item, the easiest pattern in the domain. Same option template as 02. DROP from a hard batch (or replace)."
+  },
+  "SEC9A-07": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": null,
+    "rules": "Restrictive 'that' clause takes no commas; no single comma between a complete subject and its verb. The restrictive/nonrestrictive rule is DECORATIVE: no option offers a correctly paired nonrestrictive 'the two, which remain intact, are', so D dies to the unpaired-comma rule and C to the subject-verb rule. Only A (paired commas around a that-clause) tests the restrictive rule.",
+    "distractor_quality": "plausible",
+    "difficulty": "medium",
+    "note": "Key is the only unpunctuated option among three punctuated ones - odd-one-out with the passage covered (same shape as 11). Making the nonrestrictive rule live would require offering 'the two, which remain intact, are illuminated', which a solver can defend under the 'nonrestrictive when the referent is already definite' convention - so the item is capped at medium. Keep as medium; no repair that makes it hard without making it non-exclusive."
+  },
+  "SEC9A-08": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": null,
+    "rules": "Semicolons separate series items that contain internal commas; separators must be consistent across the series (A closes with a comma). B and C break the name/appositive bond and are dead on sight. Both rules exist, but only consistency (A vs D) is live; the internal-comma rule kills B/C trivially.",
+    "distractor_quality": "plausible",
+    "difficulty": "medium",
+    "note": "No comma-only series option is offered, so the 'comma series with internal commas' defence never arises; exclusive. Option-set tell: the key is the uniquely symmetric option (semicolon at each end, comma inside). A is the only live distractor and is wrong by rule (CMOS 6.60 consistency), not style. Real SAT places this pattern medium-hard; medium here because A is the only competitor."
+  },
+  "SEC9A-09": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": "so",
+    "rules": "Close a dash-opened supplement with a dash; the clause before ', so' must be independent (kills D's participle and C's subjectless semicolon half). 'so' is constant across all four options so it does not by itself pick the key, but it does the work of eliminating C and D - leaving A vs B, which is the single dash-pairing rule.",
+    "distractor_quality": "plausible",
+    "difficulty": "medium",
+    "note": "Twin of 04: dash-close key, comma-close distractor, wrong-verb-form-with-dash distractor, a third mark. Solving 04 solves 09. REPAIR (if kept): replace C 'centuries; rarely colonizes new ground,' with 'centuries—it rarely colonizes new ground,' (a closed pair followed by a resumptive pronoun = double subject) so the dash-closed shape is no longer unique to the key and a second rule bears."
+  },
+  "SEC9A-10": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": null,
+    "rules": "A conjunctive adverb cannot join independent clauses; semicolon before 'however', comma after. One rule. A and D are comma splices, C a fused sentence - no distractor requires a second rule.",
+    "distractor_quality": "weak",
+    "difficulty": "easy",
+    "note": "The single most-drilled SAT boundaries pattern; the semicolon-however option is the reflex answer with the passage covered. DROP from a hard batch."
+  },
+  "SEC9A-11": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": null,
+    "rules": "Restrictive appositive (title + name) takes no commas; no single comma between subject and verb. The restrictive rule is DECORATIVE - no paired nonrestrictive option ('the physicist, Lise Meitner,') is offered, so C dies as an unpaired comma, B as a subject-verb comma, A as a semicolon fragment. All three are the same 'stray mark' rule.",
+    "distractor_quality": "plausible",
+    "difficulty": "medium",
+    "note": "Key is the only unpunctuated option (same odd-one-out shape as 07). The parallel 'the chemist Otto Hahn' in the stem hands the solver the answer by pattern-matching. Offering the paired nonrestrictive would be defensible under the definite-referent convention, so the item is capped at medium. No repair."
+  },
+  "SEC9A-12": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "resolving_word_after_blank": "was",
+    "rules": "Dash before a summarizing pronoun that becomes the subject of a fronted list; pronoun agrees with the verb. The agreement rule is collapsed by the text: 'these was' is audibly wrong, so B dies without the dash rule. Remaining A (relative-clause reading, no main verb) and D (semicolon after a verbless list) are the dash rule alone. A is the one genuinely subtle distractor.",
+    "distractor_quality": "plausible",
+    "difficulty": "medium",
+    "note": "REPAIR: the pronoun-number distractor is structurally unrepairable - any verb that makes 'these' wrong must be singular and therefore resolves it. Replace B 'lime—these' with 'lime, which' ('Salt, charcoal, and a little lime, which was all the recipe demanded, and none of it cost...' reads fluently and has no main verb). Then three distractors test the fronted-list boundary from three directions. Hard after repair."
+  }
+}

@@ -49,7 +49,11 @@ console.log(dupOpt.length ? `OPTION VALUE IN MORE THAN ONE ITEM: ${dupOpt.map(([
 const norm = s => String(s).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
 const bag = s => new Set(norm(s).split(' ').filter(w => w.length > 4))
 for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) {
-  const x = bag(all[i].prompt), y = bag(all[j].prompt)
+  /* Compare the PASSAGE when the batch has one: R&W items share a single
+   * boilerplate prompt, so prompt-overlap reads 1.00 on every pair and says
+   * nothing. Maths items have no passage and fall back to the prompt. */
+  const text = it => it.passage && String(it.passage).trim() ? it.passage : it.prompt
+  const x = bag(text(all[i])), y = bag(text(all[j]))
   let n = 0; for (const w of x) if (y.has(w)) n++
   const jac = n / (x.size + y.size - n)
   /* BULK STEM JACCARD DOES NOT WORK ON MATHS AND THIS IS THE SECOND TIME.
