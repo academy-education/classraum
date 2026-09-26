@@ -490,6 +490,15 @@ export default function SubscriptionPage() {
 
       if (!issued?.billingKey) {
         // User cancelled the overlay or PortOne returned an error code.
+        // Recorded either way: on 2026-09-26 a buyer hit this branch TEN
+        // times in four minutes and left no row at all — the redirect
+        // return page tracks its failures, the Promise branch did not, so
+        // the PG's reason was shown to her once and kept nowhere.
+        track('checkout_result', {
+          step: 'window', ok: false, kind: 'subscription', plan: planId,
+          code: issued?.code ?? null, message: issued?.message?.slice(0, 300) ?? null,
+          ...checkoutContext(),
+        })
         if (issued?.code) {
           setError(issued.message ?? t('study.subscription.checkoutFailed') as string)
         }
@@ -509,6 +518,11 @@ export default function SubscriptionPage() {
       await load()
       setSuccessMessage(t('study.subscription.checkoutSuccess') as string)
     } catch (e) {
+      track('checkout_result', {
+        step: 'window', ok: false, kind: 'subscription', plan: planId, thrown: true,
+        message: (e instanceof Error ? e.message : String(e)).slice(0, 300),
+        ...checkoutContext(),
+      })
       setError((e instanceof Error && e.message) || (t('study.subscription.checkoutFailed') as string))
     } finally {
       setActing(null)

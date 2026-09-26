@@ -194,6 +194,12 @@ function PaySubscribe() {
       // Mobile leaves via redirect and never resolves here; /pay/return
       // finishes it. This branch is the desktop Promise flow.
       if (!issued?.billingKey) {
+        // Recorded on failure too — see the same branch on the mobile
+        // subscription page for the buyer this was invisible for.
+        track('checkout_result', {
+          step: 'window', ok: false, kind: 'plan', surface: 'pay_web',
+          code: issued?.code ?? null, message: issued?.message?.slice(0, 300) ?? null,
+        })
         if (issued?.code) setError(issued.message ?? (ko ? '결제에 실패했어요.' : 'Payment failed.'))
         return
       }
@@ -209,6 +215,10 @@ function PaySubscribe() {
       track('checkout_result', { step: 'redeem', ok: true, kind: 'plan', surface: 'pay_web' })
       setDone(true)
     } catch (e) {
+      track('checkout_result', {
+        step: 'window', ok: false, kind: 'plan', surface: 'pay_web', thrown: true,
+        message: (e instanceof Error ? e.message : String(e)).slice(0, 300),
+      })
       setError((e instanceof Error && e.message) || (ko ? '결제에 실패했어요.' : 'Payment failed.'))
     } finally {
       setBusy(false)
