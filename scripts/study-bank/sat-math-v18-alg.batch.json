@@ -1,0 +1,310 @@
+[
+ {
+  "id": "SM18L-A1",
+  "domain": "Algebra",
+  "subskill": "Systems: dependent vs inconsistent, parameter recovery",
+  "difficulty": "hard",
+  "prompt": "4x − 6y = c\n9y = 6x + 12\n\nIn the system of equations above, c is a constant. If the system has at least one solution, what is the value of c?",
+  "choices": [
+   "-12",
+   "-8",
+   "-3",
+   "-2"
+  ],
+  "correct_answer": "-8",
+  "explanation": "Rewrite the second equation as −6x + 9y = 12. Its left side is −3/2 times the left side of the first equation (4x · (−3/2) = −6x and −6y · (−3/2) = 9y), so the two lines have the same slope for every value of c. Lines with the same slope either never meet (no solution) or coincide (infinitely many solutions); exactly one solution is impossible. For the system to have at least one solution, the lines must coincide, so the constants must scale by the same factor: c · (−3/2) = 12, giving c = −8.\n\n−12 comes from rearranging the second equation to 6x − 9y = −12 and then assuming the two equations must have the same constant term, without scaling. −3 comes from dividing the constant 12 by the leading coefficient 4 (and taking the sign from −6y) instead of scaling by the ratio of the coefficients. −2 comes from solving the second equation for x, x = (3/2)y − 2, and reading the constant −2 off that line as c.",
+  "bounds": [],
+  "solve": "return -2*12/3;",
+  "distractor_solve": {
+   "-12": "return -12;",
+   "-3": "return 12/(-4);",
+   "-2": "return -12/6;"
+  }
+ },
+ {
+  "id": "SM18L-A2",
+  "domain": "Algebra",
+  "subskill": "Systems of linear inequalities: extreme point of a region",
+  "difficulty": "hard",
+  "prompt": "y ≥ 3x − 21\ny ≤ −x + 27\nx ≥ 0\ny ≥ 0\n\nIn the xy-plane, the solution set of the system of inequalities above is a quadrilateral region. What is the greatest x-coordinate of any point in the region?",
+  "choices": [
+   "7",
+   "12",
+   "15",
+   "48"
+  ],
+  "correct_answer": "12",
+  "explanation": "The region lies on or above the line y = 3x − 21, on or below the line y = −x + 27, and in the first quadrant. Because the first line has positive slope, being above it means being to its left, so that line is the region's right-hand boundary. Moving up that boundary, x increases until the boundary meets the upper line y = −x + 27. Setting 3x − 21 = −x + 27 gives 4x = 48, so x = 12 (and y = 15). The point (12, 15) satisfies every inequality, and no point of the region lies to its right, so the greatest x-coordinate is 12.\n\n7 is the x-intercept of y = 3x − 21, the vertex where the right-hand boundary meets the x-axis; it is the rightmost point of the bottom edge only, not of the whole region. 15 is the y-coordinate of the rightmost vertex (12, 15), not its x-coordinate. 48 is the value of 4x at the intersection, before dividing by 4; no point of the region has an x-coordinate above 27, since y ≤ −x + 27 and y ≥ 0 together force x ≤ 27.",
+  "bounds": [],
+  "solve": "return (21+27)/4;",
+  "distractor_solve": {
+   "7": "return 21/3;",
+   "15": "return 27-(21+27)/4;",
+   "48": "return 21+27;"
+  }
+ },
+ {
+  "id": "SM18L-A3",
+  "domain": "Algebra",
+  "subskill": "Linear functions: rate of change under a transformed input",
+  "difficulty": "hard",
+  "prompt": "x | f(x)\n2 | 11\n7 | 26\n\nThe table gives two values of the linear function f. The function g is defined by g(t) = f(4t − 1). What is the value of g(t + 3) − g(t)?",
+  "choices": [
+   "12",
+   "36",
+   "41",
+   "45"
+  ],
+  "correct_answer": "36",
+  "explanation": "From the table, f changes by 26 − 11 = 15 when x changes by 7 − 2 = 5, so f has slope 3: every 1-unit increase in its input increases f by 3. When t increases by 3, the input to f, which is 4t − 1, increases by 4 · 3 = 12 (the −1 shifts the input but does not change how much it moves). An input increase of 12 raises f by 3 · 12 = 36, so g(t + 3) − g(t) = 36 for every t.\n\n12 is how much the input 4t − 1 changes, before applying the slope of f. 41 comes from writing f(x) = 3x + 5 and carrying the constant 5 into the difference, 3 · 12 + 5, even though it cancels when g(t) is subtracted from g(t + 3). 45 comes from using the raw change in f from the table, 15, as if it were the slope: 15 · 3.",
+  "bounds": [],
+  "solve": "return ((26-11)/(7-2))*(4*3);",
+  "distractor_solve": {
+   "12": "return 4*3;",
+   "41": "return ((26-11)/(7-2))*(4*3) + (11 - ((26-11)/(7-2))*2);",
+   "45": "return (26-11)*3;"
+  }
+ },
+ {
+  "id": "SM18L-A4",
+  "domain": "Algebra",
+  "subskill": "Absolute value inequalities: width of the solution interval",
+  "difficulty": "hard",
+  "prompt": "|3x − c| ≤ 6\n\nIn the inequality above, c is a constant. The solution set of the inequality is an interval whose midpoint is 5. What is the length of the interval?",
+  "choices": [
+   "4",
+   "7",
+   "12",
+   "21"
+  ],
+  "correct_answer": "4",
+  "explanation": "The inequality |3x − c| ≤ 6 is equivalent to −6 ≤ 3x − c ≤ 6, so c − 6 ≤ 3x ≤ c + 6 and (c − 6)/3 ≤ x ≤ (c + 6)/3. The interval runs from (c − 6)/3 to (c + 6)/3, so its length is (c + 6)/3 − (c − 6)/3 = 12/3 = 4, whatever c is. The midpoint tells you where the interval sits (it forces c = 15, giving 3 ≤ x ≤ 7), but it does not affect the width; the width is set only by the 6 and the 3.\n\n7 is the right endpoint of the interval 3 ≤ x ≤ 7, not its length. 12 is the length of the interval for 3x (from c − 6 to c + 6) without dividing by 3 to return to x. 21 is the right endpoint of that interval for 3x, c + 6 = 21, reported as a length and without dividing by 3.",
+  "bounds": [],
+  "solve": "return (6 - (-6))/3;",
+  "distractor_solve": {
+   "7": "return (3*5+6)/3;",
+   "12": "return 6 - (-6);",
+   "21": "return 3*5+6;"
+  }
+ },
+ {
+  "id": "SM18L-A5",
+  "domain": "Algebra",
+  "subskill": "Linear models in context: constraints on different variables",
+  "difficulty": "hard",
+  "prompt": "A print shop charges a fixed setup fee plus a constant amount per page. A 50-page job costs $32, and a 100-page job costs $52. The shop accepts only jobs of at least 10 pages, and it does not accept any job that would cost more than $180. What is the difference, in dollars, between the greatest possible cost and the least possible cost of a job at this shop?",
+  "choices": [
+   "148",
+   "164",
+   "168",
+   "176"
+  ],
+  "correct_answer": "164",
+  "explanation": "Let the cost of a p-page job be C = s + rp. From the two jobs, 50r = 52 − 32 = 20, so r = 0.4 dollars per page, and s = 32 − 0.4 · 50 = 12. So C = 12 + 0.4p. The two limits are stated in different variables: the lower limit is on pages, the upper limit is on cost. The least cost is at the fewest pages allowed, p = 10: C = 12 + 0.4 · 10 = 16. The greatest cost is the cap itself, $180 (reached at p = 420 pages, which is a whole number of pages, so it is attainable). The difference is 180 − 16 = 164.\n\n148 comes from taking the 50-page job, at $32, to be the cheapest job, ignoring that smaller jobs are allowed. 168 comes from taking the least cost to be the setup fee alone, 12, ignoring the 10-page minimum. 176 comes from 180 − 4, using only the per-page charge for 10 pages and leaving out the setup fee.",
+  "bounds": [],
+  "solve": "var r=(52-32)/(100-50), s=32-r*50; return 180-(s+r*10);",
+  "distractor_solve": {
+   "148": "return 180-32;",
+   "168": "var r=(52-32)/(100-50), s=32-r*50; return 180-s;",
+   "176": "var r=(52-32)/(100-50); return 180-r*10;"
+  }
+ },
+ {
+  "id": "SM18L-A6",
+  "domain": "Algebra",
+  "subskill": "Linear equations: parameter fixing the form of the solution",
+  "difficulty": "hard",
+  "prompt": "kx + 2y = 5x + 3k − 6y\n\nIn the equation above, k is a constant. When the equation is solved for x, the result is x = −4y + c, where c is a constant. What is the value of k?",
+  "choices": [
+   "7",
+   "9",
+   "13",
+   "21"
+  ],
+  "correct_answer": "7",
+  "explanation": "Collect the x-terms on the left and everything else on the right: kx − 5x = 3k − 6y − 2y, so (k − 5)x = 3k − 8y. Dividing by k − 5 gives x = −8y/(k − 5) + 3k/(k − 5). For this to match x = −4y + c, the coefficient of y must be −4: −8/(k − 5) = −4, so k − 5 = 2 and k = 7. (Then c = 3 · 7/2 = 10.5; the constant term takes care of itself once k is fixed, and it is not needed to find k.)\n\n9 comes from setting k − 5 equal to the target coefficient 4 directly, without accounting for the −8 that multiplies y. 13 comes from setting k − 5 = 8, matching the y-coefficient to −8 instead of dividing −8 by the required −4. 21 is 3k, the constant term on the right side of the equation with k = 7 substituted, reported in place of k.",
+  "bounds": [],
+  "solve": "return 5 + (-8)/(-4);",
+  "distractor_solve": {
+   "9": "return 5 + 4;",
+   "13": "return 5 + 8;",
+   "21": "return 3*(5 + (-8)/(-4));"
+  }
+ },
+ {
+  "id": "SM18L-A7",
+  "domain": "Algebra",
+  "subskill": "Rational equations: extraneous solution from clearing denominators",
+  "difficulty": "hard",
+  "prompt": "(x + 3)/(x − 4) + 4/(x + 2) = 42/((x − 4)(x + 2))\n\nWhat is the solution to the equation above?",
+  "choices": [
+   "-13",
+   "-5",
+   "4",
+   "11"
+  ],
+  "correct_answer": "-13",
+  "explanation": "The denominators are zero at x = 4 and at x = −2, so neither value can be a solution; any candidate equal to 4 or −2 must be rejected. Multiplying every term by (x − 4)(x + 2) gives (x + 3)(x + 2) + 4(x − 4) = 42, so x² + 5x + 6 + 4x − 16 = 42, which rearranges to x² + 9x − 52 = 0, or (x + 13)(x − 4) = 0. The candidates are x = −13 and x = 4. The value x = 4 makes two of the original denominators zero, so it is not a solution; it appeared only because multiplying by (x − 4), which is 0 there, is not reversible. The only solution is x = −13. Checking: (−10)/(−17) + 4/(−11) = 10/17 − 4/11 = (110 − 68)/187 = 42/187, and 42/((−17)(−11)) = 42/187.\n\n−5 comes from moving 4/(x + 2) to the right side without changing its sign, which leads to x² + x − 20 = (x − 4)(x + 5) = 0 and, after rejecting 4, to x = −5. 4 is the extraneous candidate; it satisfies the cleared equation but makes the original equation undefined. 11 comes from multiplying the first fraction by only x − 4 instead of by both factors, giving (x + 3) + 4(x − 4) = 42, so 5x = 55.",
+  "bounds": [],
+  "solve": "var roots=[(-9+Math.sqrt(81+208))/2,(-9-Math.sqrt(81+208))/2]; return roots.filter(function(x){return x!==4 && x!==-2;})[0];",
+  "distractor_solve": {
+   "4": "return 4;",
+   "11": "return (42+16-3)/5;",
+   "-5": "var r=[(-1+Math.sqrt(1+80))/2,(-1-Math.sqrt(1+80))/2]; return r.filter(function(x){return x!==4;})[0];"
+  }
+ },
+ {
+  "id": "SM18L-B1",
+  "domain": "Algebra",
+  "subskill": "Linear model: unit conversion with unscaled fixed cost",
+  "difficulty": "hard",
+  "prompt": "A landscaping company charges a fixed fee of $60 per job plus $0.35 per square foot of sod installed. A client orders sod for a lawn with an area of 40 square yards. What is the total cost, in dollars, of the job? (1 yard = 3 feet)",
+  "choices": [
+   "74",
+   "102",
+   "126",
+   "186"
+  ],
+  "correct_answer": "186",
+  "explanation": "One square yard is 3 feet by 3 feet, which is 9 square feet, so 40 square yards is 40 × 9 = 360 square feet. The sod costs 0.35 × 360 = $126, and the fixed fee is added once: 60 + 126 = $186. Choice 74 treats the 40 square yards as 40 square feet (60 + 0.35 × 40). Choice 102 converts with 3 instead of 9, using 120 square feet (60 + 0.35 × 120). Choice 126 converts correctly and finds the sod cost, 0.35 × 360 = 126, but omits the $60 fixed fee.",
+  "bounds": [],
+  "solve": "return 60 + 0.35 * (40 * 9);",
+  "distractor_solve": {
+   "74": "return 60 + 0.35 * 40;",
+   "102": "return 60 + 0.35 * (40 * 3);",
+   "126": "return 0.35 * (40 * 9);"
+  }
+ },
+ {
+  "id": "SM18L-B2",
+  "domain": "Algebra",
+  "subskill": "Systems: evaluate an expression via sum and difference",
+  "difficulty": "hard",
+  "prompt": "If 9x + 5y = 55 and 5x + 9y = 43, what is the value of x² − y²?",
+  "choices": [
+   "7",
+   "21",
+   "29",
+   "49"
+  ],
+  "correct_answer": "21",
+  "explanation": "Since x² − y² = (x + y)(x − y), find those two quantities directly. Adding the equations gives 14x + 14y = 98, so x + y = 7. Subtracting the second equation from the first gives 4x − 4y = 12, so x − y = 3. Therefore x² − y² = 7 × 3 = 21. (Solving fully gives x = 5 and y = 2, and 25 − 4 = 21 as well.) Choice 7 is the value of x + y, stopping before multiplying by x − y. Choice 49 is (x + y)², squaring the sum instead of multiplying it by the difference. Choice 29 is x² + y² = 25 + 4, adding the squares instead of subtracting them.",
+  "bounds": [],
+  "solve": "const x = 5, y = 2; return x*x - y*y;",
+  "distractor_solve": {
+   "7": "return 98/14;",
+   "29": "const x = 5, y = 2; return x*x + y*y;",
+   "49": "return (98/14)*(98/14);"
+  }
+ },
+ {
+  "id": "SM18L-B3",
+  "domain": "Algebra",
+  "subskill": "Slope of a line through parameter-dependent points",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the line through the points (k, 2k) and (3k − 4, 14) is parallel to the line 4x − 6y = 7. What is the value of k?",
+  "choices": [
+   "-8",
+   "3",
+   "5",
+   "17"
+  ],
+  "correct_answer": "5",
+  "explanation": "Rewrite 4x − 6y = 7 as y = (2/3)x − 7/6, so the slope is 2/3, and parallel lines share it. The slope between the two points is (14 − 2k)/((3k − 4) − k) = (14 − 2k)/(2k − 4). Setting this equal to 2/3 gives 3(14 − 2k) = 2(2k − 4), so 42 − 6k = 4k − 8, hence 10k = 50 and k = 5. Check: the points are (5, 10) and (11, 14), and (14 − 10)/(11 − 5) = 4/6 = 2/3. Choice 17 uses slope −2/3, the sign error from reading −6y as if it were +6y: 42 − 6k = −4k + 8 gives k = 17. Choice 3 uses the coefficient 4 as the slope: 14 − 2k = 4(2k − 4) gives k = 3. Choice -8 uses −3/2, inverting the slope and flipping its sign: 2(14 − 2k) = −3(2k − 4) gives k = −8.",
+  "bounds": [],
+  "solve": "return 50/10;",
+  "distractor_solve": {
+   "3": "return 30/10;",
+   "17": "return 34/2;",
+   "-8": "return -16/2;"
+  }
+ },
+ {
+  "id": "SM18L-B4",
+  "domain": "Algebra",
+  "subskill": "Tiered pricing: identify the tier from the total",
+  "difficulty": "hard",
+  "prompt": "An electric utility bills customers in tiers each month: the first 200 kilowatt-hours (kWh) cost $0.12 per kWh, the next 300 kWh cost $0.18 per kWh, and every kWh beyond 500 costs $0.25 per kWh. A customer’s bill for one month was $105. How many kWh did the customer use that month?",
+  "choices": [
+   "420",
+   "608",
+   "650",
+   "824"
+  ],
+  "correct_answer": "608",
+  "explanation": "First find where the tier boundaries fall in dollars. The first 200 kWh cost 200 × 0.12 = $24, and the next 300 kWh cost 300 × 0.18 = $54, so a customer who uses exactly 500 kWh pays 24 + 54 = $78. Since $105 is more than $78, the customer is in the third tier. The amount above $78 is 105 − 78 = $27, which at $0.25 per kWh buys 27 ÷ 0.25 = 108 kWh beyond 500, for a total of 608 kWh. Choice 650 stays in the second tier, treating everything above the first $24 as billed at $0.18: 200 + 81 ÷ 0.18 = 650. Choice 824 subtracts only the first tier’s $24 before dividing by 0.25: 500 + 81 ÷ 0.25 = 824. Choice 420 bills every kilowatt-hour at the top rate, 105 ÷ 0.25 = 420, ignoring the two cheaper tiers below 500 kWh.",
+  "bounds": [],
+  "solve": "const t1 = 200*0.12, t2 = 300*0.18; return 500 + (105 - t1 - t2) / 0.25;",
+  "distractor_solve": {
+   "420": "return 105 / 0.25;",
+   "650": "return 200 + (105 - 24) / 0.18;",
+   "824": "return 500 + (105 - 24) / 0.25;"
+  }
+ },
+ {
+  "id": "SM18L-B5",
+  "domain": "Algebra",
+  "subskill": "Rational inequality: case split on the sign of the denominator",
+  "difficulty": "hard",
+  "prompt": "How many integers x with −12 ≤ x ≤ 12 satisfy the inequality (2x − 5)/(x + 3) > 1 ?",
+  "choices": [
+   "4",
+   "10",
+   "13",
+   "19"
+  ],
+  "correct_answer": "13",
+  "explanation": "Multiplying both sides by x + 3 is only valid once its sign is known, so split into cases. If x + 3 > 0 (x > −3), the direction is kept: 2x − 5 > x + 3, so x > 8; with x ≤ 12 that gives x = 9, 10, 11, 12, four integers. If x + 3 < 0 (x < −3), the direction reverses: 2x − 5 < x + 3, so x < 8, which every x < −3 already satisfies; with x ≥ −12 that gives x = −12, −11, …, −4, nine integers. (x = −3 is excluded because the expression is undefined.) In total there are 4 + 9 = 13 integers. Choice 4 multiplies through without a case split and keeps only x > 8. Choice 19 reverses the inequality in both cases, counting every integer with x < 8 except −3. Choice 10 applies the reversal to the wrong case, keeping −3 < x < 8 (the ten integers −2 through 7) and nothing else.",
+  "bounds": [],
+  "solve": "let n = 0; for (let x = -12; x <= 12; x++) { if (x !== -3 && (2*x - 5)/(x + 3) > 1) n++; } return n;",
+  "distractor_solve": {
+   "4": "let n = 0; for (let x = -12; x <= 12; x++) { if (x > 8) n++; } return n;",
+   "10": "let n = 0; for (let x = -12; x <= 12; x++) { if (x > -3 && x < 8) n++; } return n;",
+   "19": "let n = 0; for (let x = -12; x <= 12; x++) { if (x !== -3 && x < 8) n++; } return n;"
+  }
+ },
+ {
+  "id": "SM18L-B6",
+  "domain": "Algebra",
+  "subskill": "Parameter count for an integer solution of a linear equation",
+  "difficulty": "hard",
+  "prompt": "For how many integer values of k does the equation k(x − 4) = 3x + 18 have a solution x that is a positive integer?",
+  "choices": [
+   "6",
+   "8",
+   "11",
+   "13"
+  ],
+  "correct_answer": "11",
+  "explanation": "Expanding and collecting x gives kx − 3x = 4k + 18, so (k − 3)x = 4k + 18 and, for k ≠ 3, x = (4k + 18)/(k − 3). Rewriting the numerator as 4(k − 3) + 30 gives x = 4 + 30/(k − 3), so x is an integer exactly when k − 3 divides 30. The positive divisors 1, 2, 3, 5, 6, 10, 15, 30 give x = 34, 19, 14, 10, 9, 7, 6, 5, all positive: 8 values. For a negative divisor d, x = 4 + 30/d is positive only when 30/d > −4, that is, d < −7.5, so d = −10, −15, −30, giving x = 1, 2, 3: 3 more values. In total there are 8 + 3 = 11 values of k. Choice 8 counts only the positive divisors of 30, missing k = −7, −12, −27. Choice 6 counts the positive divisors of 18, the constant in the unreduced numerator 4k + 18, instead of 30. Choice 13 mishandles the sign when solving 30/d > −4 for negative d, keeping d = −1, −2, −3, −5, −6 (which give x ≤ 0) instead of d = −10, −15, −30.",
+  "bounds": [],
+  "solve": "let n = 0; for (let k = -1000; k <= 1000; k++) { if (k === 3) continue; const num = 4*k + 18, den = k - 3; if (num % den === 0 && num/den > 0) n++; } return n;",
+  "distractor_solve": {
+   "6": "let n = 0; for (let d = 1; d <= 18; d++) if (18 % d === 0) n++; return n;",
+   "8": "let n = 0; for (let d = 1; d <= 30; d++) if (30 % d === 0) n++; return n;",
+   "13": "let n = 0; for (let d = 1; d <= 30; d++) if (30 % d === 0) n++; for (let d = -1; d > -7.5; d--) if (30 % d === 0) n++; return n;"
+  }
+ },
+ {
+  "id": "SM18L-B7",
+  "domain": "Algebra",
+  "subskill": "Three concurrent lines: constant from a shared solution",
+  "difficulty": "hard",
+  "prompt": "The system of equations 3x + 2y = 16 and ax − 2y = 6, where a is a constant, has exactly one solution (x, y), and that solution also lies on the line x + y = 7. What is the value of a?",
+  "choices": [
+   "-2",
+   "2",
+   "8",
+   "11"
+  ],
+  "correct_answer": "8",
+  "explanation": "The solution lies on all three lines, so it can be found from the two equations that do not involve a. Substituting y = 7 − x into 3x + 2y = 16 gives 3x + 14 − 2x = 16, so x = 2 and y = 5. Substituting into ax − 2y = 6 gives 2a − 10 = 6, so a = 8. (A shortcut: adding the two system equations gives (3 + a)x = 22, and with x = 2 this is 3 + a = 11, so a = 8.) Choice -2 comes from a sign error, adding 2y instead of subtracting it: 2a + 10 = 6. Choice 2 swaps the coordinates and uses (5, 2): 5a − 4 = 6. Choice 11 comes from the shortcut (3 + a)x = 22 with x = 2, which gives 3 + a = 11; 11 is the value of 3 + a, not of a.",
+  "bounds": [],
+  "solve": "const x = 2, y = 5; return (6 + 2*y) / x;",
+  "distractor_solve": {
+   "2": "return (6 + 4) / 5;",
+   "11": "return 22 / 2;",
+   "-2": "return (6 - 10) / 2;"
+  }
+ }
+]
