@@ -82,6 +82,13 @@ batch.forEach((it, i) => {
  * the shared generator; the realised deal is computed, never assumed. */
 const ci2 = args.indexOf('--control')
 const wantCtl = ci2 >= 0 ? Number(args[ci2 + 1]) : 0
+/* --control-difficulty <band>: match the control on the BAND as well as the
+ * domain. Live SEC is 89 easy / 193 medium / 27 hard; a hard-band candidate
+ * scored against that whole pool is compared with an easier regime than its
+ * own. Composition-matching is the standing rule — this makes it a flag
+ * instead of a hand-rolled draw. */
+const cdi = args.indexOf('--control-difficulty')
+const ctlDifficulty = cdi >= 0 ? String(args[cdi + 1]) : null
 if (wantCtl) {
   const xi = args.indexOf('--exclude')
   const exclude = new Set((xi >= 0 ? String(args[xi + 1]) : '').split(',').filter(Boolean))
@@ -91,27 +98,31 @@ if (wantCtl) {
     .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
   const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
   const fam = batch[0].family ?? 'sat'
-  const sec = batch[0].section ?? (batch[0].domain && /Algebra|Advanced Math|Geometry|Problem-Solving/.test(batch[0].domain) ? 'math' : null)
+  /* SAT batch files carry domain but not section; infer it from the domain
+   * for both SAT sections rather than only maths, or every R&W batch refuses. */
+  const sec = batch[0].section ?? (batch[0].domain && /Algebra|Advanced Math|Geometry|Problem-Solving/.test(batch[0].domain) ? 'math'
+    : batch[0].domain && /Standard English Conventions|Craft and Structure|Information and Ideas|Expression of Ideas/.test(batch[0].domain) ? 'reading_writing' : null)
   const dom = batch[0].domain
   if (!sec || !dom) { console.error('REFUSING: --control needs a section and domain on the batch items.'); process.exit(2) }
   const rows = []
   for (let f = 0; ; f += 1000) {
-    const { data, error } = await db.from('study_item_bank').select('id,cohort,item')
+    const { data, error } = await db.from('study_item_bank').select('id,cohort,difficulty,item')
       .eq('family', fam).eq('section', sec).eq('domain', dom)
       .eq('verified', true).eq('archived', false).order('id', { ascending: true }).range(f, f + 999)
     if (error) throw new Error(error.message)
     rows.push(...data); if (data.length < 1000) break
   }
   if (new Set(rows.map(r => r.id)).size !== rows.length) { console.error('REFUSING: paging slipped.'); process.exit(2) }
-  let dropWidth = 0, dropCohort = 0
+  let dropWidth = 0, dropCohort = 0, dropBand = 0
   const pool = rows.filter(r => {
     const ch = r.item?.choices
     if (!Array.isArray(ch) || ch.length !== W) { dropWidth++; return false }
     if (!ch.map(String).includes(String(r.item?.correct_answer ?? ''))) { dropWidth++; return false }
     if (exclude.has(r.cohort)) { dropCohort++; return false }
+    if (ctlDifficulty && String(r.difficulty ?? r.item?.difficulty ?? '') !== ctlDifficulty) { dropBand++; return false }
     return true
   })
-  console.log(`  control pool: ${rows.length} live ${dom} — ${dropWidth} wrong width/no key, ${dropCohort} excluded cohort(s) => ${pool.length} eligible`)
+  console.log(`  control pool: ${rows.length} live ${dom} — ${dropWidth} wrong width/no key, ${dropCohort} excluded cohort(s)${ctlDifficulty ? `, ${dropBand} not '${ctlDifficulty}'` : ''} => ${pool.length} eligible`)
   if (pool.length < wantCtl) { console.error(`REFUSING: asked for ${wantCtl} control items, ${pool.length} eligible.`); process.exit(2) }
   const picked = shuffle(pool).slice(0, wantCtl)
   picked.forEach((r, i) => {
