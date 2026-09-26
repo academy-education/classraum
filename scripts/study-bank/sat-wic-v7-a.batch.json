@@ -1,0 +1,240 @@
+[
+  {
+    "id": "WIC7A-01",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Wind farms are laid out on the assumption that each turbine harvests its own patch of air, but a turbine leaves behind it a wake of slowed, turbulent flow that can persist for kilometers. Downstream machines in a tightly packed array therefore produce markedly less than their rated output, and the loss is not fixed: it rises when the wind blows along the rows and nearly vanishes when it blows across them. The output of a farm is thus not a sum of independent contributions but a ______ quantity, one that depends on wind direction as much as on wind speed.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "nominal",
+      "diminished",
+      "collective",
+      "marginal"
+    ],
+    "correct_answer": "collective",
+    "explanation": "The sentence opposes the blank to \"a sum of independent contributions,\" so the word must name output that arises from the turbines acting on one another: *collective*. *diminished* fails on \"the loss is not fixed: it rises when the wind blows along the rows and nearly vanishes when it blows across them\" — output is sometimes barely reduced at all, and the contrast being drawn is with independence, not with size. *nominal* is ruled out by \"produce markedly less than their rated output\": the rated figure is the nominal one, and the passage's point is that the farm does not deliver it. *marginal* is contradicted by the same sentence, since a loss described as marked is not marginal, and a marginal quantity would not be the opposite of an independent sum.",
+    "topic_tag": "wind turbine wake losses",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC7A-02",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Fatigue cracks in an aluminum wing spar grow slowly for most of their life and then very quickly at the end, so an inspection schedule is set not by when a crack might begin but by how long a crack of detectable size takes to reach a critical one. Inspectors are thus asked to find cracks that are already large enough to be found, and a crack found by that standard is not a lapse: the interval was chosen so that such a crack would be caught with time to spare. What looks to a passenger like a near miss is, to the engineer who set the interval, ______.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "a vindication",
+      "an oversight",
+      "an anomaly",
+      "a coincidence"
+    ],
+    "correct_answer": "a vindication",
+    "explanation": "The engineer chose the interval so that a detectable crack would be caught before it became critical; finding one is the plan working as designed, which makes it *a vindication* of the schedule. *an oversight* is ruled out directly by \"a crack found by that standard is not a lapse.\" *an anomaly* fails on \"Inspectors are thus asked to find cracks that are already large enough to be found\": a crack of that size is the expected object of the inspection, not a departure from it. *a coincidence* is contradicted by \"the interval was chosen so that such a crack would be caught with time to spare\" — the catch is engineered, not lucky.",
+    "topic_tag": "aircraft fatigue inspection intervals",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC7A-03",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Engineers specify a lithium-ion cell's life in charge cycles, yet a cell left on a shelf at full charge in a warm room loses capacity without ever being cycled, through slow side reactions at the electrode surface. In a phone the two losses are hard to separate, because the device is cycled daily and is warm most of the time. In grid storage, where a battery may sit for weeks between discharges, the shelf loss dominates, and a bank rated for five thousand cycles can be exhausted after a few hundred. The cycle rating is not wrong; it is simply ______ in a setting it was never meant to describe.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "exaggerated",
+      "mute",
+      "arbitrary",
+      "conservative"
+    ],
+    "correct_answer": "mute",
+    "explanation": "The rating counts cycles, and in grid storage the loss that matters is the one that happens between cycles, so the rating has nothing to say about it: it is *mute*. *exaggerated* and *arbitrary* are both ruled out by \"The cycle rating is not wrong\" — a figure that is neither inflated nor unfounded cannot be either. *conservative* fails on \"a bank rated for five thousand cycles can be exhausted after a few hundred\": a conservative rating would under-promise, whereas here the bank falls far short of the figure.",
+    "topic_tag": "battery calendar ageing",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC7A-04",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Satellite clocks in a positioning constellation run fast relative to clocks on the ground, by about thirty-eight microseconds a day, because they sit higher in Earth's gravity well and move quickly along their orbits. Thirty-eight microseconds seems ______, but the receivers convert time into distance at the speed of light, and at that rate a day's drift would place a user some eleven kilometers from where they stand. The satellite clocks are therefore set to tick slowly before launch, so that in orbit they agree with the ground.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "excessive",
+      "approximate",
+      "negligible",
+      "cumulative"
+    ],
+    "correct_answer": "negligible",
+    "explanation": "The \"but\" that follows the blank introduces a consequence of eleven kilometers, so the blank must be an impression the consequence overturns: the drift seems *negligible*. *excessive* is ruled out by the same clause, \"at that rate a day's drift would place a user some eleven kilometers from where they stand\" — the correction shows the figure is consequential, which is the opposite of what a \"but\" would need to answer. *approximate* fails on \"by about thirty-eight microseconds a day\": the figure is offered as a rough one and the passage never disputes that, so there is nothing for \"but\" to contradict. *cumulative* is contradicted by \"a day's drift\": the passage treats the figure as a daily quantity, and a claim that it merely seems cumulative is not what the eleven-kilometer error corrects.",
+    "topic_tag": "satellite clock relativity",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC7A-05",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "A tree adds one ring a year, and dendrochronologists date timber by matching its pattern of wide and narrow rings against a master sequence. In severe drought, though, a stressed tree may add no ring at all, and a core taken from it will read as one year short. Such absent rings are not rare in arid regions, and a single one shifts every older date in the core. The master sequences guard against this by ______ many trees from a site: a year missing in one specimen appears in its neighbors, and the gap declares itself.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "overlapping",
+      "averaging",
+      "culling",
+      "ranking"
+    ],
+    "correct_answer": "overlapping",
+    "explanation": "The colon explains the method: the same years are laid side by side across specimens so that a ring missing in one shows up against its neighbors, which is *overlapping* the trees. *averaging* is ruled out by \"a year missing in one specimen appears in its neighbors, and the gap declares itself\" — an average would blur the gap into the others rather than expose it. *culling* fails on \"many trees from a site\": the safeguard depends on keeping many specimens, not on discarding some. *ranking* is contradicted by the same colon sentence, in which nothing is ordered by size or quality; the trees are compared year against year.",
+    "topic_tag": "tree ring missing years",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC7A-06",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Seismometers everywhere record a continuous hum at periods of five to twenty seconds, produced when ocean waves press on the seafloor. For a century it was logged as noise, the floor beneath which an earthquake could not be seen. Then researchers began to correlate the hum recorded at pairs of distant stations and found that its travel time between them measured the structure of the crust in between, as an earthquake would, but without the wait for one. The background had been ______: the same record, read differently, had become an instrument.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "suppressed",
+      "explained",
+      "amplified",
+      "rehabilitated"
+    ],
+    "correct_answer": "rehabilitated",
+    "explanation": "The hum goes from being \"logged as noise\" to serving as an instrument; its standing has been restored, so it has been *rehabilitated*. *suppressed* and *amplified* are both ruled out by \"the same record, read differently\" — nothing was removed from or added to the signal, only the reading changed. *explained* fails on the first sentence, \"produced when ocean waves press on the seafloor\": the origin of the hum was already known, so explanation is not what changed.",
+    "topic_tag": "ocean microseism as signal",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC7A-07",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Defects on a silicon wafer fall at random, at a rate the fabrication plant can measure but not eliminate. A chip fails if a single defect lands within its borders, so the fraction of working chips falls steeply as chips grow: doubling the area more than halves the yield. Designers who want more transistors thus face a choice between a large chip that is powerful and a small one that is ______, and the industry's answer has increasingly been to build the large chip out of several small ones, wired together in the package.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "durable",
+      "economical",
+      "elegant",
+      "versatile"
+    ],
+    "correct_answer": "economical",
+    "explanation": "The only advantage the passage gives the small chip is yield — more working chips per wafer — which is a matter of cost, so the small chip is *economical*. *durable* is ruled out by \"A chip fails if a single defect lands within its borders\": a defect decides whether the chip works at all when it is made, and nothing in the passage concerns how long it lasts. *elegant* and *versatile* both fail on \"doubling the area more than halves the yield,\" the sentence that defines the trade-off; the small chip wins on yield alone, and the passage credits it with neither grace of design nor range of use.",
+    "topic_tag": "chip yield and die size",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC7A-08",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Corals bleach when the water around them stays warm for too long, and reef managers forecast bleaching with a running total of how far, and for how many weeks, the temperature has exceeded the local summer maximum. The index is deliberately ______: a reef that has lived through thirty-degree summers is scored against thirty degrees, while one accustomed to twenty-six is scored against twenty-six, so the same absolute temperature can register as no stress at one site and as an emergency at another.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "uniform",
+      "lenient",
+      "relative",
+      "coarse"
+    ],
+    "correct_answer": "relative",
+    "explanation": "The colon explains that each reef is scored against its own summer maximum rather than a fixed number, so the index is *relative*. *uniform* is ruled out by \"the same absolute temperature can register as no stress at one site and as an emergency at another\" — a uniform index would score the same temperature the same way everywhere. *lenient* fails on the same clause: an index that registers emergencies is not built to go easy. *coarse* is contradicted by \"how far, and for how many weeks, the temperature has exceeded the local summer maximum,\" which describes a measure that tracks both magnitude and duration, not a rough one.",
+    "topic_tag": "coral bleaching heat index",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC7A-09",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Resistance genes were expected to be a modern artifact, selected in hospital wards and feedlots after antibiotics came into use. Yet bacteria recovered from thirty-thousand-year-old permafrost, sealed long before any drug was manufactured, already carry genes that disable penicillin and tetracycline. The finding does not diminish the role of modern overuse, which has spread these genes at a speed nothing in the Pleistocene could match. It does change what overuse is understood to have done: it did not create resistance so much as ______ it.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "necessitate",
+      "disguise",
+      "detect",
+      "unleash"
+    ],
+    "correct_answer": "unleash",
+    "explanation": "Resistance already existed in the permafrost; what overuse did was spread it fast, releasing something that was already there — it *unleashed* it. *necessitate* is ruled out by the permafrost sentence, \"sealed long before any drug was manufactured\": resistance arose with no drug to make it necessary. *detect* fails on \"has spread these genes at a speed nothing in the Pleistocene could match\" — overuse acted on the genes, it did not merely notice them. *disguise* is contradicted by the same sentence, since spreading the genes made resistance more visible, not less.",
+    "topic_tag": "ancient antibiotic resistance genes",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC7A-10",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Roman marine concrete has outlasted its modern counterparts by two millennia, and the credit long went to volcanic ash in the mix. Recent analysis points instead to the white lumps of lime scattered through it, once dismissed as evidence of careless mixing. When seawater enters a crack and reaches a lump, the lime dissolves and recrystallizes, sealing the crack from within. The lumps that had been read as ______ in the Roman method turn out to be its chief virtue.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "an economy",
+      "a refinement",
+      "a mystery",
+      "a defect"
+    ],
+    "correct_answer": "a defect",
+    "explanation": "The lumps were \"dismissed as evidence of careless mixing,\" that is, read as a fault, so the blank is *a defect*, set against \"chief virtue.\" *a refinement* is ruled out by that same phrase — something dismissed as careless was not taken for an improvement. *a mystery* fails on the same sentence too: the lumps had an accepted explanation, careless mixing, so they were not thought unexplained. *an economy* is contradicted by \"careless mixing,\" which attributes the lumps to negligence rather than to saving material or effort.",
+    "topic_tag": "Roman concrete lime clasts",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC7A-11",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "A single weather forecast is a single run of a model from the best estimate of today's atmosphere. Because that estimate is imperfect and the atmosphere amplifies small errors, forecasters now run the model dozens of times from slightly perturbed starting points. When the runs agree, the forecast can be trusted; when they scatter, it cannot. The spread among the runs is therefore not a failure of the method but its most ______ product, since a forecast that cannot say how sure it is has left out the one thing a decision-maker most needs.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "valuable",
+      "consistent",
+      "precise",
+      "surprising"
+    ],
+    "correct_answer": "valuable",
+    "explanation": "The spread tells a decision-maker how sure the forecast is, which the final clause calls \"the one thing a decision-maker most needs\"; that makes it the method's most *valuable* product. *consistent* is ruled out by \"when they scatter, it cannot\" — the spread is the runs disagreeing, the opposite of consistency. *precise* fails on the same sentence: a wide spread is what a forecast shows when it is not precise. *surprising* is contradicted by \"Because that estimate is imperfect and the atmosphere amplifies small errors,\" which gives the spread a known cause; the runs are perturbed on purpose so that they will diverge.",
+    "topic_tag": "ensemble forecast spread",
+    "difficulty": "medium"
+  },
+  {
+    "id": "WIC7A-12",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Every message sent over a noisy channel arrives with some bits flipped, and the obvious remedy, sending each bit three times and taking a vote, triples the cost to fix errors that are rare. Codes designed since the 1950s do better by adding a small number of check bits computed from the whole message, so that any single flipped bit produces a unique pattern in the checks and can be located and reversed. The redundancy in such a code is ______ rather than brute: a few bits stand guard over many, because it is the arrangement of the checks, not their number, that does the work.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "minimal",
+      "structured",
+      "incidental",
+      "uniform"
+    ],
+    "correct_answer": "structured",
+    "explanation": "The colon says the code works through \"the arrangement of the checks,\" and the contrast is with the brute repetition of sending every bit three times, so the redundancy is *structured*. *minimal* is ruled out by \"it is the arrangement of the checks, not their number, that does the work\" — the passage explicitly denies that fewness is the point. *incidental* fails on \"check bits computed from the whole message\": the checks are designed, not a by-product. *uniform* is contradicted by \"any single flipped bit produces a unique pattern in the checks\"; the checks must differ from one another for the pattern to locate the error.",
+    "topic_tag": "error-correcting code design",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC7A-13",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "Migrating robins orient by Earth's magnetic field, and the sensor was long assumed to be a grain of magnetite somewhere in the head, a compass needle in miniature. Yet the birds lose their bearing under red light and regain it under blue, which no needle would do. The current candidate is a protein in the retina whose chemistry, once light has excited it, runs at a rate that depends on the field's angle. If so, the robin does not feel north so much as ______ it, as a faint pattern laid over the ordinary image of the sky.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "see",
+      "remember",
+      "calculate",
+      "smell"
+    ],
+    "correct_answer": "see",
+    "explanation": "The sensor is a light-activated protein in the retina and the result is \"a faint pattern laid over the ordinary image of the sky,\" so the robin would *see* north. *remember* is ruled out by \"the birds lose their bearing under red light and regain it under blue\": the sense comes and goes with present light, not with stored experience. *calculate* fails on the final phrase, \"a faint pattern laid over the ordinary image of the sky,\" which describes a perception rather than a computation. *smell* is contradicted by \"a protein in the retina\" — the organ named is the eye.",
+    "topic_tag": "avian magnetoreception",
+    "difficulty": "hard"
+  },
+  {
+    "id": "WIC7A-14",
+    "domain": "Craft and Structure",
+    "subskill": "Words in Context",
+    "passage": "A river carries its sediment to the sea, and a delta survives only because deposition outpaces the subsidence of the soft ground beneath it. Dams upstream trap that sediment; the Nile below Aswan now delivers a few percent of its former load, and the delta's outer edge retreats by tens of meters a year. The dam did not raise the sea or sink the land. It ______ the delta of the one supply that had been holding both at bay.",
+    "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+    "choices": [
+      "relieved",
+      "robbed",
+      "warned",
+      "reminded"
+    ],
+    "correct_answer": "robbed",
+    "explanation": "The dam took away the sediment the delta needed, and the passage frames the loss as harm — the edge \"retreats by tens of meters a year\" — so the dam *robbed* the delta of its supply. *relieved* is ruled out by that same sentence: removing something whose absence causes retreat is not relief. *warned* and *reminded* both fail on \"Dams upstream trap that sediment,\" which describes a physical removal, not a message; the dam changed what reached the delta, it did not tell the delta anything.",
+    "topic_tag": "dam sediment and delta retreat",
+    "difficulty": "hard"
+  }
+]
