@@ -87,6 +87,12 @@ const wantCtl = ci2 >= 0 ? Number(args[ci2 + 1]) : 0
  * scored against that whole pool is compared with an easier regime than its
  * own. Composition-matching is the standing rule — this makes it a flag
  * instead of a hand-rolled draw. */
+/* --control-subskill <label>: match on the subskill too. Craft and Structure
+ * mixes Words in Context (measured clean, 12.5-33% blind) with Text Structure
+ * (87.5%) and Cross-Text (75%); a WIC candidate scored against the whole domain
+ * inherits those families' leak as its "control". */
+const csi = args.indexOf('--control-subskill')
+const ctlSubskill = csi >= 0 ? String(args[csi + 1]) : null
 const cdi = args.indexOf('--control-difficulty')
 const ctlDifficulty = cdi >= 0 ? String(args[cdi + 1]) : null
 if (wantCtl) {
@@ -106,23 +112,24 @@ if (wantCtl) {
   if (!sec || !dom) { console.error('REFUSING: --control needs a section and domain on the batch items.'); process.exit(2) }
   const rows = []
   for (let f = 0; ; f += 1000) {
-    const { data, error } = await db.from('study_item_bank').select('id,cohort,difficulty,item')
+    const { data, error } = await db.from('study_item_bank').select('id,cohort,difficulty,subskill,item')
       .eq('family', fam).eq('section', sec).eq('domain', dom)
       .eq('verified', true).eq('archived', false).order('id', { ascending: true }).range(f, f + 999)
     if (error) throw new Error(error.message)
     rows.push(...data); if (data.length < 1000) break
   }
   if (new Set(rows.map(r => r.id)).size !== rows.length) { console.error('REFUSING: paging slipped.'); process.exit(2) }
-  let dropWidth = 0, dropCohort = 0, dropBand = 0
+  let dropWidth = 0, dropCohort = 0, dropBand = 0, dropSub = 0
   const pool = rows.filter(r => {
     const ch = r.item?.choices
     if (!Array.isArray(ch) || ch.length !== W) { dropWidth++; return false }
     if (!ch.map(String).includes(String(r.item?.correct_answer ?? ''))) { dropWidth++; return false }
     if (exclude.has(r.cohort)) { dropCohort++; return false }
     if (ctlDifficulty && String(r.difficulty ?? r.item?.difficulty ?? '') !== ctlDifficulty) { dropBand++; return false }
+    if (ctlSubskill && String(r.subskill ?? r.item?.subskill ?? '').toLowerCase() !== ctlSubskill.toLowerCase()) { dropSub++; return false }
     return true
   })
-  console.log(`  control pool: ${rows.length} live ${dom} — ${dropWidth} wrong width/no key, ${dropCohort} excluded cohort(s)${ctlDifficulty ? `, ${dropBand} not '${ctlDifficulty}'` : ''} => ${pool.length} eligible`)
+  console.log(`  control pool: ${rows.length} live ${dom} — ${dropWidth} wrong width/no key, ${dropCohort} excluded cohort(s)${ctlDifficulty ? `, ${dropBand} not '${ctlDifficulty}'` : ''}${ctlSubskill ? `, ${dropSub} not '${ctlSubskill}'` : ''} => ${pool.length} eligible`)
   if (pool.length < wantCtl) { console.error(`REFUSING: asked for ${wantCtl} control items, ${pool.length} eligible.`); process.exit(2) }
   const picked = shuffle(pool).slice(0, wantCtl)
   picked.forEach((r, i) => {
