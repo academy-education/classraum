@@ -3383,3 +3383,15 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Two grader files were wrapped under `.items` and my verdict script refused them as "5 ids".** Right refusal, wrong reason; it now unwraps explicitly and prints that it did, so a wrapper can never be scored as five items. Same shape as the `score-wic` wrapper note from A48.
 
   **What the blind half taught about SEC as a family.** With the sentence withheld, three solvers still scored 58–64% on BOTH arms by grammar visible inside the options — case agreement, balanced marks, the animate subject in a dangling-modifier set. That is not a leak of these items; it is the shipped hard bank's own level, measured on all 22 of its remaining 27 items. The margin is the only comparable number here, and it is negative.
+
+- **2026-09-26** — **ACT ENGLISH'S BLUEPRINT VIOLATION IS IN THE BANK'S COMPOSITION, NOT THE DRAW, AND NO DRAW CAN FIX IT.** Measured exactly. → **A63**
+
+  `form-capacity` prints *"BLUEPRINT VIOLATION on every form: Conventions of Standard English 40.0% vs floor 51%"*. The question was whether a passage-selection preference in code could satisfy the floor. It cannot:
+
+      150 live items in 15 passages of 10
+      every passage:  CSE 4 / KoL 2 / PoW 4   (15 of 15, identical)
+      best possible five-passage form:  20 / 50 = 40% CSE   against a 51% floor
+
+  The maximum CSE in any single passage is 4, so the ceiling is 40% regardless of which five are drawn. Fixing it needs CSE-heavy passages authored, and ACT English is human-gated (model 76–79% vs co-founder 10.0% on the shipped bank), so it joins ACT Reading and Science in section 2 of the open list. Nothing to do in code.
+
+  Also regenerated `WIC-LIVE-TOPICS.md` from the bank (27 → **34** live items; the 2026-09-24 list predated the v6 insert) before commissioning WIC v7, per the file's own header.
