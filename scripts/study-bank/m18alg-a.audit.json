@@ -1,0 +1,86 @@
+{
+  "SM18L-A1": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": true,
+    "n_struck": 3,
+    "insight_bypassable": false,
+    "difficulty": "hard",
+    "path_coherent": true,
+    "representation_ok": true,
+    "note": "Cold solve: -6x+9y=12 is -3/2 times 4x-6y, so c*(-3/2)=12, c=-8. Undeclared constraint: SIGN. The first-equation coefficients (4,-6) and the rearranged second (-6,9) have opposite signs, so c and 12 must have opposite signs: 8 and 12 struck with no arithmetic. Undeclared constraint: MAGNITUDE. 4<6 and 6<9, so |c|<12: -18 struck. Sign+magnitude leave -8 alone, zero arithmetic. Repair: make every option negative and put distractors on both sides of -12 built from the same ratios, e.g. {-27, -18, -8, -6} (-27 = 12*9/4, -6 = 12/2 half-step) or move the parameter to the second equation's constant. The 'at least one solution' decision point is real; keep the stem."
+  },
+  "SM18L-A2": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": true,
+    "n_struck": 2,
+    "insight_bypassable": true,
+    "difficulty": "medium",
+    "path_coherent": true,
+    "representation_ok": true,
+    "note": "Cold solve: vertices (0,0),(3,0),(5,6),(0,11); max x = 5. Declared strike 20 (x<=11 from y<=-x+11 with y>=0) confirmed. Undeclared: 3 and 11 are both bare printed constants; a guesser striking echoes and 20 is left with 5. Counting 20 plus the echo pair as one heuristic strike = 2. Repair: replace 20 with 6 (the y-coordinate of the vertex, the coordinate-swap error) and preferably 11 with 9 or 8 so at most one option is a printed constant. Difficulty: a strong student lists all four vertices and reads off the max; no decision point survives that routine. Medium."
+  },
+  "SM18L-A3": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": false,
+    "n_struck": 1,
+    "insight_bypassable": true,
+    "difficulty": "medium",
+    "path_coherent": true,
+    "representation_ok": true,
+    "note": "Cold solve: f(x)=3x+5, g(t)=12t+2, g(t+3)-g(t)=36. 12 = 4*3, a product of two printed numbers, is strikeable as 'too raw'; 9 = 3*3 similarly. Set has structure: two pairs separated by 3 (9/12, 33/36) and the key is the largest option. No hard constraint strikes a second option, so n_struck=1. Author concedes the bypass and it is total: write f, compose, subtract. Medium. Repair suggestion if kept: distractors 24 (slope 3 * 8, sign error on -1 as +... no), 39 (3*13), 45 (15*3 from using the raw 15 rise) so the set is not two adjacent pairs."
+  },
+  "SM18L-A4": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": true,
+    "n_struck": 2,
+    "insight_bypassable": true,
+    "difficulty": "medium",
+    "path_coherent": true,
+    "representation_ok": true,
+    "note": "Cold solve: x within 2 of c/3, width 4 (c=15, 3<=x<=7). Undeclared constraint, and it IS the intended insight: the width depends only on the printed 6 and 3, so any option visibly manufactured from the midpoint 5 is dead. 10 = 2*5 and 15 = 3*5 are struck the moment the student sees that, with zero arithmetic. Left with 4 vs 12 (divide by 3 or not). n_struck=2, defect. Repair: build every distractor from 6 and 3 only, e.g. {2, 4, 6, 12} where 2 = 6/3 (half-width), 6 = the bound, 12 = 2*6 (forgot the 3). Difficulty: the midpoint red herring is a decent twist but a strong student just solves for c and the interval in three lines; bypassable, medium."
+  },
+  "SM18L-A5": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": true,
+    "n_struck": 1,
+    "insight_bypassable": true,
+    "difficulty": "medium",
+    "path_coherent": true,
+    "representation_ok": true,
+    "note": "Cold solve: r=0.4, s=12, C(20)=20, cap 180 attainable at p=420 (integer), difference 160. Declared strike 400 (difference in cost cannot exceed the 180 cap) confirmed; no second free strike found - 160/168/172 all sit as 180 minus a small number and separating them needs the rate. Mild tell: the three live options are 180-20, 180-12, 180-8 and the key is the smallest of the three; a guesser who reasons 'minimum cost includes both setup and pages so it is the largest subtraction' gets it without computing. Consider replacing 400 with 148 (180 - 32, using the 50-page job as the minimum) so the set stays inside range and does not point at the extreme. Difficulty: mixed-variable constraints (page floor, cost ceiling) is a real decision point, but a strong student computes C(20) and reads the cap without noticing they did anything; the attainability check at p=420 goes unrewarded. Medium, upper end."
+  },
+  "SM18L-A6": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": true,
+    "n_struck": 1,
+    "insight_bypassable": true,
+    "difficulty": "medium",
+    "path_coherent": true,
+    "representation_ok": true,
+    "note": "Cold solve: (k-5)x = 3k-8y, x = -8y/(k-5) + 3k/(k-5); -8/(k-5) = -4 gives k=7 (c=10.5). Undeclared: SIGN. -8 over (k-5) must equal a negative number, so k-5>0, k>5: 3 struck with no arithmetic, and 3 is also the printed coefficient of k. Remaining 7/9/13 = 5+{2,4,8}; picking among them requires the division, so n_struck=1 (not a defect on its own, but the one strike is the only distractor below 5, so the set advertises its structure). Repair: replace 3 with 6 (k-5=1, i.e. dropping the 8 entirely) or 21 (5+16, doubling instead of halving) so all distractors sit on the k>5 side. Difficulty: collect terms, divide, match coefficient - pure procedure with no decision point; a strong student never pauses. Medium."
+  },
+  "SM18L-A7": {
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": true,
+    "n_struck": 2,
+    "insight_bypassable": true,
+    "difficulty": "easy",
+    "path_coherent": true,
+    "representation_ok": true,
+    "note": "Cold solve: 6x-24 = 6(x-4), so for x != 4 the equation collapses to x = 6 in one line; the quadratic route gives 4 (extraneous) and 6. Declared strike 4 (domain) confirmed. Undeclared: SIGN. For any negative x the left side 6x/(x-4) is positive (neg/neg) while 24/(x-4)+x is negative, so -6 is struck with no arithmetic. Two strikes, defect; what remains is 6 vs 4.8, 6 echoes the printed coefficient, and +-6 is a paired-sign tell. Bigger problem: the intended insight (reject the extraneous root) is bypassed both by moving 24/(x-4) across and cancelling and by back-solving the options. Easy for a strong student. Repair needs re-authoring: pick numbers where the fractional terms do not cancel to a constant and the surviving root is not a printed coefficient, e.g. 2x/(x-3) = 18/(x-3) + x - 5 style; and include the sum or product of the two candidate roots as a distractor rather than a sign flip."
+  }
+}
