@@ -32,6 +32,7 @@ import { outcomeMessageKey } from "@/lib/auth/oauth-outcome"
 import { savePendingLink, peekPendingLink, takePendingLinkFor, clearPendingLink } from "@/lib/auth/pending-link"
 import { isNativeApp, openExternalUrl } from "@/lib/nativeApp"
 import { useOAuthDeepLink } from "@/hooks/useOAuthDeepLink"
+import { isPlausibleEmail, suggestEmailFix } from '@/lib/auth/email'
 
 /**
  * POST the referral code to the redeem endpoint using the current session.
@@ -500,8 +501,11 @@ export default function AuthPage() {
     // would pass with only one of the two filled, since joinName() falls
     // back to whichever it has — and a half-filled pair is exactly what the
     // trigger refuses to store.
+    // `type="email"` lets `name@gmailcom` through (a real student did this on
+    // 2026-09-26 and used the unreachable account all day), so the form
+    // requires a dot in the domain — see lib/auth/email.ts.
     const baseValid = validateNameFields(familyName, givenName).valid &&
-           email.trim() !== '' &&
+           isPlausibleEmail(email) &&
            password.trim() !== '' &&
            signupConfirmPassword.trim() !== ''
     // Study door collects a phone number (there's no academy to reach
@@ -1556,6 +1560,27 @@ export default function AuthPage() {
                   className="pl-10"
                 />
               </div>
+              {activeTab === "signup" && email.trim() !== '' && !isPlausibleEmail(email) && (
+                <p className="text-xs text-rose-600 leading-relaxed">
+                  {language === 'korean'
+                    ? '올바른 이메일 주소를 입력해 주세요 (예: name@gmail.com).'
+                    : 'Please enter a valid email address (e.g. name@gmail.com).'}
+                  {suggestEmailFix(email) && (
+                    <>
+                      {' '}
+                      <button
+                        type="button"
+                        className="underline underline-offset-2 font-medium"
+                        onClick={() => setEmail(suggestEmailFix(email) as string)}
+                      >
+                        {language === 'korean'
+                          ? `${suggestEmailFix(email)} 으로 수정`
+                          : `Use ${suggestEmailFix(email)}`}
+                      </button>
+                    </>
+                  )}
+                </p>
+              )}
             </div>
             {activeTab !== "forgotPassword" && activeTab !== "resetPassword" && (
               <div className="space-y-2">
