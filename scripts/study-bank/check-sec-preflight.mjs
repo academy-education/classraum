@@ -34,12 +34,17 @@ for (const f of process.argv.slice(2)) {
     words.push(String(it.passage).split(/\s+/).length)
     km[mark(it.correct_answer)]=(km[mark(it.correct_answer)]??0)+1
     it.choices.forEach((c,i)=>{ if(i!==ki) dm[mark(c)]=(dm[mark(c)]??0)+1 })
-    if (liveKeys.has(String(it.correct_answer).toLowerCase().trim())) collide.push(it.id)
+    /* One-word keys ("who", "has been") recur across unrelated items by nature —
+     * SEC9B-12 "collided" with two live items keyed "who" that share nothing else.
+     * A collision is only informative when the key is long enough to be a
+     * fingerprint, so short keys are skipped and the threshold is printed. */
+    const kw = String(it.correct_answer).trim().split(/\s+/).length
+    if (kw >= 3 && liveKeys.has(String(it.correct_answer).toLowerCase().trim())) collide.push(it.id)
     const after = String(it.passage).split('______')[1]?.trim().split(/\s+/).slice(0,4).join(' ') ?? ''
     console.log(`  ${it.id}  key[${L[ki]}] ${mark(it.correct_answer).padEnd(5)} | after blank: "${after}"`)
   }
   console.log(`  key letters ${JSON.stringify(spread)} | key uniquely longest ${longest}/${b.length} | passages not exactly one blank: ${blanksBad} | words ${Math.min(...words)}-${Math.max(...words)}`)
   console.log(`  mark on KEY ${JSON.stringify(km)}   mark on DISTRACTORS ${JSON.stringify(dm)}`)
   console.log(`  plain key: ${km.plain??0}/${b.length}  (live hard: 24/27 — lower is the goal)`)
-  console.log(collide.length ? `  KEY TEXT ALREADY LIVE: ${collide.join(', ')}` : `  no key text collides with the ${live.length} live SEC items`)
+  console.log(collide.length ? `  KEY TEXT (3+ words) ALREADY LIVE: ${collide.join(', ')}` : `  no 3+-word key text collides with the ${live.length} live SEC items (1-2 word keys are not fingerprints and are not checked)`)
 }
