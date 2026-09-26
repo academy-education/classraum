@@ -1,0 +1,19 @@
+[
+ {
+  "id": "WIC7A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "passage": "Engineers specify a lithium-ion cell's life in charge cycles, and a cell cycled continuously on a cool laboratory bench does reach the rated count. Yet a cell left on a shelf at full charge in a warm room loses capacity without ever being cycled, through slow side reactions at the electrode surface. In a phone the two losses are hard to separate, because the device is cycled daily and is warm most of the time. In grid storage, where a battery may sit for weeks between discharges, the shelf loss dominates, and a bank rated for five thousand cycles can be exhausted after a few hundred. The rating still holds as a ceiling, since no bank, however cool it is kept, will exceed the count the bench established. As a forecast of a grid battery's life, though, it is ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "insufficient",
+   "mute",
+   "conservative",
+   "arbitrary"
+  ],
+  "correct_answer": "insufficient",
+  "explanation": "The rating counts one of two losses: the fourth sentence says that in grid storage \"the shelf loss dominates,\" a loss the cycle count never registers, so as a forecast the rating is *insufficient*. *mute* is ruled out by \"The rating still holds as a ceiling\" — a figure that bounds the battery's life is not silent about it. *conservative* fails on \"a bank rated for five thousand cycles can be exhausted after a few hundred\": a conservative figure would under-promise, and this one over-promises. *arbitrary* is contradicted by the first sentence, \"a cell cycled continuously on a cool laboratory bench does reach the rated count,\" which grounds the figure in measurement.",
+  "topic_tag": "battery calendar ageing",
+  "difficulty": "hard"
+ }
+]

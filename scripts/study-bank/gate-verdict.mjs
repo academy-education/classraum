@@ -36,6 +36,10 @@ if (missing.length) { console.error(`REFUSING: ${missing.length} grader file(s) 
  * print it, so a wrapper is never scored as five items. */
 const unwrap = (g, name) => {
   if (g && g.items && typeof g.items === 'object' && !Array.isArray(g.items)) { console.log(`note: ${name} wrapped its rows under .items; unwrapped (${Object.keys(g.items).length} rows)`); return g.items }
+  /* A third shape, wic7 grader D: `.items` is an ARRAY of rows each carrying its
+   * own `id`. Index it by that id and say so; a wrapper must never be scored as
+   * four items. */
+  if (g && Array.isArray(g.items) && g.items.every(r => r && r.id)) { console.log(`note: ${name} wrote .items as an array; indexed by row id (${g.items.length} rows)`); return Object.fromEntries(g.items.map(r => [r.id, r])) }
   return g
 }
 const G = files.map(f => unwrap(JSON.parse(readFileSync(f, 'utf8')), f.replace(/^.*\//, '')))

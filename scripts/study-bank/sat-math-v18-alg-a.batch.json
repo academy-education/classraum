@@ -6,19 +6,19 @@
     "difficulty": "hard",
     "prompt": "4x − 6y = c\n9y = 6x + 12\n\nIn the system of equations above, c is a constant. If the system has at least one solution, what is the value of c?",
     "choices": [
-      "-18",
+      "-12",
       "-8",
-      "8",
-      "12"
+      "-3",
+      "-2"
     ],
     "correct_answer": "-8",
-    "explanation": "Rewrite the second equation as −6x + 9y = 12. Its left side is −3/2 times the left side of the first equation (4x · (−3/2) = −6x and −6y · (−3/2) = 9y), so the two lines have the same slope for every value of c. Lines with the same slope either never meet (no solution) or coincide (infinitely many solutions); exactly one solution is impossible. For the system to have at least one solution, the lines must coincide, so the constants must scale by the same factor: c · (−3/2) = 12, giving c = −8.\n\n−18 comes from applying the factor the wrong way (12 · (−3/2) instead of 12 · (−2/3)). 8 comes from using the correct factor 2/3 but dropping the sign that the −6x term forces. 12 comes from assuming the two equations must have the same constant term.",
+    "explanation": "Rewrite the second equation as −6x + 9y = 12. Its left side is −3/2 times the left side of the first equation (4x · (−3/2) = −6x and −6y · (−3/2) = 9y), so the two lines have the same slope for every value of c. Lines with the same slope either never meet (no solution) or coincide (infinitely many solutions); exactly one solution is impossible. For the system to have at least one solution, the lines must coincide, so the constants must scale by the same factor: c · (−3/2) = 12, giving c = −8.\n\n−12 comes from rearranging the second equation to 6x − 9y = −12 and then assuming the two equations must have the same constant term, without scaling. −3 comes from dividing the constant 12 by the leading coefficient 4 (and taking the sign from −6y) instead of scaling by the ratio of the coefficients. −2 comes from solving the second equation for x, x = (3/2)y − 2, and reading the constant −2 off that line as c.",
     "bounds": [],
     "solve": "return -2*12/3;",
     "distractor_solve": {
-      "8": "return 2*12/3;",
-      "12": "return 12;",
-      "-18": "return -3*12/2;"
+      "-12": "return -12;",
+      "-3": "return 12/(-4);",
+      "-2": "return -12/6;"
     }
   },
   {
@@ -30,17 +30,17 @@
     "choices": [
       "3",
       "5",
-      "11",
-      "20"
+      "6",
+      "10"
     ],
     "correct_answer": "5",
-    "explanation": "The region lies on or above the line y = 3x − 9, on or below the line y = −x + 11, and in the first quadrant. Because the first line has positive slope, being above it means being to its left, so that line is the region's right-hand boundary. Moving up that boundary, x increases until the boundary meets the upper line y = −x + 11. Setting 3x − 9 = −x + 11 gives 4x = 20, so x = 5 (and y = 6). The point (5, 6) satisfies every inequality, and no point of the region lies to its right, so the greatest x-coordinate is 5.\n\n3 is the x-intercept of y = 3x − 9, the vertex where the right-hand boundary meets the x-axis; it is the rightmost point of the bottom edge only, not of the whole region. 11 is the x-intercept of y = −x + 11, but the point (11, 0) fails y ≥ 3x − 9 (0 ≥ 24 is false), so it is not in the region. 20 is the value of 4x at the intersection, before dividing by 4.",
+    "explanation": "The region lies on or above the line y = 3x − 9, on or below the line y = −x + 11, and in the first quadrant. Because the first line has positive slope, being above it means being to its left, so that line is the region's right-hand boundary. Moving up that boundary, x increases until the boundary meets the upper line y = −x + 11. Setting 3x − 9 = −x + 11 gives 4x = 20, so x = 5 (and y = 6). The point (5, 6) satisfies every inequality, and no point of the region lies to its right, so the greatest x-coordinate is 5.\n\n3 is the x-intercept of y = 3x − 9, the vertex where the right-hand boundary meets the x-axis; it is the rightmost point of the bottom edge only, not of the whole region. 6 is the y-coordinate of the rightmost vertex (5, 6), not its x-coordinate. 10 comes from moving the x-terms to the same side with the wrong sign, 3x − x = 11 + 9, giving 2x = 20.",
     "bounds": [],
     "solve": "return 20/4;",
     "distractor_solve": {
       "3": "return 9/3;",
-      "11": "return 11;",
-      "20": "return 9+11;"
+      "6": "return 3*5-9;",
+      "10": "return 20/2;"
     }
   },
   {
@@ -50,19 +50,19 @@
     "difficulty": "hard",
     "prompt": "x | f(x)\n2 | 11\n7 | 26\n\nThe table gives two values of the linear function f. The function g is defined by g(t) = f(4t − 1). What is the value of g(t + 3) − g(t)?",
     "choices": [
-      "9",
       "12",
-      "33",
-      "36"
+      "36",
+      "41",
+      "45"
     ],
     "correct_answer": "36",
-    "explanation": "From the table, f changes by 26 − 11 = 15 when x changes by 7 − 2 = 5, so f has slope 3: every 1-unit increase in its input increases f by 3. When t increases by 3, the input to f, which is 4t − 1, increases by 4 · 3 = 12 (the −1 shifts the input but does not change how much it moves). An input increase of 12 raises f by 3 · 12 = 36, so g(t + 3) − g(t) = 36 for every t.\n\n9 comes from multiplying the slope of f by 3 directly, ignoring that the input to f moves 4 times as fast as t. 12 is how much the input 4t − 1 changes, before applying the slope of f. 33 comes from treating the −1 as reducing the change in input to 12 − 1 = 11 and computing 3 · 11.",
+    "explanation": "From the table, f changes by 26 − 11 = 15 when x changes by 7 − 2 = 5, so f has slope 3: every 1-unit increase in its input increases f by 3. When t increases by 3, the input to f, which is 4t − 1, increases by 4 · 3 = 12 (the −1 shifts the input but does not change how much it moves). An input increase of 12 raises f by 3 · 12 = 36, so g(t + 3) − g(t) = 36 for every t.\n\n12 is how much the input 4t − 1 changes, before applying the slope of f. 41 comes from writing f(x) = 3x + 5 and carrying the constant 5 into the difference, 3 · 12 + 5, even though it cancels when g(t) is subtracted from g(t + 3). 45 comes from using the raw change in f from the table, 15, as if it were the slope: 15 · 3.",
     "bounds": [],
     "solve": "return ((26-11)/(7-2))*(4*3);",
     "distractor_solve": {
-      "9": "return ((26-11)/(7-2))*3;",
       "12": "return 4*3;",
-      "33": "return ((26-11)/(7-2))*(4*3-1);"
+      "41": "return ((26-11)/(7-2))*(4*3) + (11 - ((26-11)/(7-2))*2);",
+      "45": "return (26-11)*3;"
     }
   },
   {
@@ -73,18 +73,18 @@
     "prompt": "|3x − c| ≤ 6\n\nIn the inequality above, c is a constant. The solution set of the inequality is an interval whose midpoint is 5. What is the length of the interval?",
     "choices": [
       "4",
-      "10",
+      "7",
       "12",
-      "15"
+      "21"
     ],
     "correct_answer": "4",
-    "explanation": "The inequality |3x − c| ≤ 6 is equivalent to −6 ≤ 3x − c ≤ 6, so c − 6 ≤ 3x ≤ c + 6 and (c − 6)/3 ≤ x ≤ (c + 6)/3. The interval runs from (c − 6)/3 to (c + 6)/3, so its length is (c + 6)/3 − (c − 6)/3 = 12/3 = 4, whatever c is. The midpoint tells you where the interval sits (it forces c = 15, giving 3 ≤ x ≤ 7), but it does not affect the width; the width is set only by the 6 and the 3.\n\n10 comes from doubling the midpoint, treating the interval as though it ran from 0 to 10. 12 is the length of the interval for 3x (from c − 6 to c + 6) without dividing by 3 to return to x. 15 is the value of c, the constant that produces the stated midpoint, not the length.",
+    "explanation": "The inequality |3x − c| ≤ 6 is equivalent to −6 ≤ 3x − c ≤ 6, so c − 6 ≤ 3x ≤ c + 6 and (c − 6)/3 ≤ x ≤ (c + 6)/3. The interval runs from (c − 6)/3 to (c + 6)/3, so its length is (c + 6)/3 − (c − 6)/3 = 12/3 = 4, whatever c is. The midpoint tells you where the interval sits (it forces c = 15, giving 3 ≤ x ≤ 7), but it does not affect the width; the width is set only by the 6 and the 3.\n\n7 is the right endpoint of the interval 3 ≤ x ≤ 7, not its length. 12 is the length of the interval for 3x (from c − 6 to c + 6) without dividing by 3 to return to x. 21 is the right endpoint of that interval for 3x, c + 6 = 21, reported as a length and without dividing by 3.",
     "bounds": [],
     "solve": "return (6 - (-6))/3;",
     "distractor_solve": {
-      "10": "return 2*5;",
+      "7": "return (3*5+6)/3;",
       "12": "return 6 - (-6);",
-      "15": "return 3*5;"
+      "21": "return 3*5+6;"
     }
   },
   {
@@ -92,21 +92,21 @@
     "domain": "Algebra",
     "subskill": "Linear models in context: constraints on different variables",
     "difficulty": "hard",
-    "prompt": "A print shop charges a fixed setup fee plus a constant amount per page. A 50-page job costs $32, and a 100-page job costs $52. The shop accepts only jobs of at least 20 pages, and it does not accept any job that would cost more than $180. What is the difference, in dollars, between the greatest possible cost and the least possible cost of a job at this shop?",
+    "prompt": "A print shop charges a fixed setup fee plus a constant amount per page. A 50-page job costs $32, and a 100-page job costs $52. The shop accepts only jobs of at least 10 pages, and it does not accept any job that would cost more than $180. What is the difference, in dollars, between the greatest possible cost and the least possible cost of a job at this shop?",
     "choices": [
-      "160",
+      "148",
+      "164",
       "168",
-      "172",
-      "400"
+      "176"
     ],
-    "correct_answer": "160",
-    "explanation": "Let the cost of a p-page job be C = s + rp. From the two jobs, 50r = 52 − 32 = 20, so r = 0.4 dollars per page, and s = 32 − 0.4 · 50 = 12. So C = 12 + 0.4p. The two limits are stated in different variables: the lower limit is on pages, the upper limit is on cost. The least cost is at the fewest pages allowed, p = 20: C = 12 + 0.4 · 20 = 20. The greatest cost is the cap itself, $180 (reached at p = 420 pages, which is a whole number of pages, so it is attainable). The difference is 180 − 20 = 160.\n\n168 comes from taking the least cost to be the setup fee alone, 12, ignoring the 20-page minimum. 172 comes from 180 − 8, using only the per-page charge for 20 pages and leaving out the setup fee. 400 is the difference in pages, 420 − 20, between the largest and smallest jobs, rather than the difference in cost.",
+    "correct_answer": "164",
+    "explanation": "Let the cost of a p-page job be C = s + rp. From the two jobs, 50r = 52 − 32 = 20, so r = 0.4 dollars per page, and s = 32 − 0.4 · 50 = 12. So C = 12 + 0.4p. The two limits are stated in different variables: the lower limit is on pages, the upper limit is on cost. The least cost is at the fewest pages allowed, p = 10: C = 12 + 0.4 · 10 = 16. The greatest cost is the cap itself, $180 (reached at p = 420 pages, which is a whole number of pages, so it is attainable). The difference is 180 − 16 = 164.\n\n148 comes from taking the 50-page job, at $32, to be the cheapest job, ignoring that smaller jobs are allowed. 168 comes from taking the least cost to be the setup fee alone, 12, ignoring the 10-page minimum. 176 comes from 180 − 4, using only the per-page charge for 10 pages and leaving out the setup fee.",
     "bounds": [],
-    "solve": "var r=(52-32)/(100-50), s=32-r*50; return 180-(s+r*20);",
+    "solve": "var r=(52-32)/(100-50), s=32-r*50; return 180-(s+r*10);",
     "distractor_solve": {
+      "148": "return 180-32;",
       "168": "var r=(52-32)/(100-50), s=32-r*50; return 180-s;",
-      "172": "var r=(52-32)/(100-50); return 180-r*20;",
-      "400": "var r=(52-32)/(100-50), s=32-r*50; return (180-s)/r-20;"
+      "176": "var r=(52-32)/(100-50); return 180-r*10;"
     }
   },
   {
@@ -116,19 +116,19 @@
     "difficulty": "hard",
     "prompt": "kx + 2y = 5x + 3k − 6y\n\nIn the equation above, k is a constant. When the equation is solved for x, the result is x = −4y + c, where c is a constant. What is the value of k?",
     "choices": [
-      "3",
       "7",
       "9",
-      "13"
+      "13",
+      "21"
     ],
     "correct_answer": "7",
-    "explanation": "Collect the x-terms on the left and everything else on the right: kx − 5x = 3k − 6y − 2y, so (k − 5)x = 3k − 8y. Dividing by k − 5 gives x = −8y/(k − 5) + 3k/(k − 5). For this to match x = −4y + c, the coefficient of y must be −4: −8/(k − 5) = −4, so k − 5 = 2 and k = 7. (Then c = 3 · 7/2 = 10.5; the constant term takes care of itself once k is fixed, and it is not needed to find k.)\n\n3 comes from a sign slip, solving 8/(k − 5) = −4 to get k − 5 = −2. 9 comes from setting k − 5 equal to the target coefficient 4 directly, without accounting for the −8 that multiplies y. 13 comes from setting k − 5 = 8, matching the y-coefficient to −8 instead of dividing −8 by the required −4.",
+    "explanation": "Collect the x-terms on the left and everything else on the right: kx − 5x = 3k − 6y − 2y, so (k − 5)x = 3k − 8y. Dividing by k − 5 gives x = −8y/(k − 5) + 3k/(k − 5). For this to match x = −4y + c, the coefficient of y must be −4: −8/(k − 5) = −4, so k − 5 = 2 and k = 7. (Then c = 3 · 7/2 = 10.5; the constant term takes care of itself once k is fixed, and it is not needed to find k.)\n\n9 comes from setting k − 5 equal to the target coefficient 4 directly, without accounting for the −8 that multiplies y. 13 comes from setting k − 5 = 8, matching the y-coefficient to −8 instead of dividing −8 by the required −4. 21 is 3k, the constant term on the right side of the equation with k = 7 substituted, reported in place of k.",
     "bounds": [],
     "solve": "return 5 + (-8)/(-4);",
     "distractor_solve": {
-      "3": "return 5 - (-8)/(-4);",
       "9": "return 5 + 4;",
-      "13": "return 5 + 8;"
+      "13": "return 5 + 8;",
+      "21": "return 3*(5 + (-8)/(-4));"
     }
   },
   {
@@ -136,21 +136,21 @@
     "domain": "Algebra",
     "subskill": "Rational equations: extraneous solution from clearing denominators",
     "difficulty": "hard",
-    "prompt": "6x/(x − 4) = 24/(x − 4) + x\n\nWhat is the solution to the equation above?",
+    "prompt": "(x + 1)/(x − 4) + 4/(x + 2) = 30/((x − 4)(x + 2))\n\nWhat is the solution to the equation above?",
     "choices": [
-      "-6",
+      "-11",
+      "-3",
       "4",
-      "4.8",
-      "6"
+      "9"
     ],
-    "correct_answer": "6",
-    "explanation": "Both fractions have denominator x − 4, so x cannot be 4; any candidate equal to 4 must be rejected. Multiplying every term by x − 4 gives 6x = 24 + x(x − 4), so 6x = 24 + x² − 4x, which rearranges to x² − 10x + 24 = 0, or (x − 4)(x − 6) = 0. The candidates are x = 4 and x = 6. The value x = 4 makes the original denominators zero, so it is not a solution; it appeared only because multiplying by x − 4 (which is 0 there) is not reversible. The only solution is x = 6, and checking: 36/2 = 18 and 24/2 + 6 = 18.\n\n−6 comes from factoring the quadratic with the wrong signs, as (x + 6)(x − 4), and then discarding 4. 4 is the extraneous candidate; it satisfies the cleared equation but makes the original equation undefined. 4.8 comes from multiplying only the two fractions by x − 4 and leaving the lone x untouched, giving 6x = 24 + x and x = 24/5.",
+    "correct_answer": "-11",
+    "explanation": "The denominators are zero at x = 4 and at x = −2, so neither value can be a solution; any candidate equal to 4 or −2 must be rejected. Multiplying every term by (x − 4)(x + 2) gives (x + 1)(x + 2) + 4(x − 4) = 30, so x² + 3x + 2 + 4x − 16 = 30, which rearranges to x² + 7x − 44 = 0, or (x + 11)(x − 4) = 0. The candidates are x = −11 and x = 4. The value x = 4 makes two of the original denominators zero, so it is not a solution; it appeared only because multiplying by (x − 4), which is 0 there, is not reversible. The only solution is x = −11. Checking: (−10)/(−15) + 4/(−9) = 2/3 − 4/9 = 2/9, and 30/((−15)(−9)) = 30/135 = 2/9.\n\n−3 comes from moving 4/(x + 2) to the right side without changing its sign, which leads to x² − x − 12 = (x − 4)(x + 3) = 0 and, after rejecting 4, to x = −3. 4 is the extraneous candidate; it satisfies the cleared equation but makes the original equation undefined. 9 comes from multiplying the first fraction by only x − 4 instead of by both factors, giving (x + 1) + 4(x − 4) = 30, so 5x = 45.",
     "bounds": [],
-    "solve": "var roots=[(10+Math.sqrt(100-96))/2,(10-Math.sqrt(100-96))/2]; return roots.filter(function(x){return x!==4;})[0];",
+    "solve": "var roots=[(-7+Math.sqrt(49+176))/2,(-7-Math.sqrt(49+176))/2]; return roots.filter(function(x){return x!==4 && x!==-2;})[0];",
     "distractor_solve": {
+      "-3": "var r=[(1+Math.sqrt(1+48))/2,(1-Math.sqrt(1+48))/2]; return r.filter(function(x){return x!==4;})[0];",
       "4": "return 4;",
-      "-6": "return -6;",
-      "4.8": "return 24/5;"
+      "9": "return (30+16-1)/5;"
     }
   }
 ]

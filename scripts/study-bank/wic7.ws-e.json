@@ -1,0 +1,453 @@
+{
+ "grader": "ws-e",
+ "status": "complete 27/27",
+ "blind_answers_pre_explanation": {
+  "WIC7A-01": "conditional",
+  "WIC7A-02": "a matter of course",
+  "WIC7A-03": "insufficient",
+  "WIC7A-04": "negligible",
+  "WIC7A-05": "invisible",
+  "WIC7A-06": "noise",
+  "WIC7A-07": "economical",
+  "WIC7A-08": "relative",
+  "WIC7A-09": "unleash",
+  "WIC7A-10": "a defect",
+  "WIC7A-11": "indecisive",
+  "WIC7A-12": "structured",
+  "WIC7A-13": "see",
+  "WIC7A-14": "suspended",
+  "WIC7B-01": "precaution",
+  "WIC7B-02": "claiming",
+  "WIC7B-03": "obligation",
+  "WIC7B-04": "invention",
+  "WIC7B-05": "protective",
+  "WIC7B-06": "invitation",
+  "WIC7B-08": "settled",
+  "WIC7B-09": "departure",
+  "WIC7B-10": "pedigree",
+  "WIC7B-11": "reprieve",
+  "WIC7B-12": "rising",
+  "WIC7B-13": "bookmark",
+  "WIC7B-14": "muted"
+ },
+ "items": {
+  "WIC7A-01": {
+   "my_answer": "conditional",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "mild: 'treat the shortfall as conditional' with no 'on' is slightly stilted but acceptable",
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "All three kills cite explicit contradicting clauses. Blank sentence ends; the next sentence decides."
+  },
+  "WIC7A-02": {
+   "my_answer": "a matter of course",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "strong",
+   "difficulty": "medium-hard",
+   "note": "'a vindication' is the natural first-read trap and is killed by an explicit sentence. 'a formality' kill is the weakest (inference that a mechanism is not a formality) but holds. Frame: 'to a passenger it sounds like A; to the engineer it is ___'."
+  },
+  "WIC7A-03": {
+   "my_answer": "insufficient",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "mute (weak)",
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "key is loose: 'as a forecast it is insufficient' is a defensible but slightly under-specified completion; 'optimistic'/'unreliable' would be more natural",
+   "distractor_quality": "plausible",
+   "difficulty": "hard",
+   "note": "'conservative' is the inverted-direction trap and is killed cleanly. 'mute' killed by 'still holds as a ceiling'. Kills hold, but the key is chosen by elimination more than by fit."
+  },
+  "WIC7A-04": {
+   "my_answer": "negligible",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": false,
+   "resolving_word_after_blank": "but",
+   "read_aloud_flag": "none",
+   "distractor_quality": "weak",
+   "difficulty": "easy",
+   "note": "Blank sentence decides via 'seems ___, but ... eleven kilometers'. 'cumulative' kill is an argument about what 'but' can answer rather than a contradiction; adequate."
+  },
+  "WIC7A-05": {
+   "my_answer": "invisible",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'reads as one year short' + 'a ring absent from one is present in the rest' -> only detectable by comparison. 'harmless' killed by shifted dates."
+  },
+  "WIC7A-06": {
+   "my_answer": "noise",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "'hum' in passage is a near-relative of 'noise'; mild",
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Key sits on the OLD reading (networks filter it out) despite the passage pivoting to signal; nice inversion. 'an instrument' is the trap."
+  },
+  "WIC7A-07": {
+   "my_answer": "economical",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": "partial",
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'fast' kill is explicit. 'elegant'/'versatile' kill is by absence ('passage credits it with neither') rather than by a contradicting sentence; they are unsupported, not contradicted."
+  },
+  "WIC7A-08": {
+   "my_answer": "relative",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": false,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "weak",
+   "difficulty": "easy",
+   "note": "Colon clause in the blank's own sentence decides it. 'lenient' kill ('registers emergencies') holds."
+  },
+  "WIC7A-09": {
+   "my_answer": "unleash",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "'not X so much as ___ it' frame; also used in A-13",
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Frame: expected modern artifact -> actually ancient -> overuse did not create so much as ___. Key on the new-reading side."
+  },
+  "WIC7A-10": {
+   "my_answer": "a defect",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "'dismissed as evidence of careless mixing' is a near-paraphrase of the key sitting in the passage; the word does the item's work",
+   "distractor_quality": "weak",
+   "difficulty": "easy",
+   "note": "Labelled medium; plays easy. Key is on the OLD-reading side of the 'credit long went to A, recent analysis says B' frame, which is good variety, but 'dismissed... careless' hands it over."
+  },
+  "WIC7A-11": {
+   "my_answer": "indecisive",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "Best item in the A set: 'misleading' is what the passage itself would say of the single number, so the solver must track whose voice the blank is in. Rebuttal sentence ('never the commitment it appeared to be') resolves it."
+  },
+  "WIC7A-12": {
+   "my_answer": "structured",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "'___ rather than brute' contrast does most of the work; near-decidable from the blank sentence",
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Labelled hard; 'rather than brute' plus 'a small number of check bits' make it medium. Kills hold."
+  },
+  "WIC7A-13": {
+   "my_answer": "see",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": false,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "'not X so much as ___ it' frame (also A-09)",
+   "distractor_quality": "weak",
+   "difficulty": "easy",
+   "note": "'as a faint pattern laid over the ordinary image of the sky' in the blank's own sentence decides it."
+  },
+  "WIC7A-14": {
+   "my_answer": "suspended",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "diverted (weak)",
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "HOMOGRAPH: 'suspended' sediment (sediment in suspension) is a live physical sense in a passage about sediment; a reader may hear the wrong sense first and reject or accept on it",
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'diverted' kill ('lies on the floor of the reservoir', i.e. held in the river's own basin) is defensible but rests on a fine distinction between trapping and redirecting; hold-worthy on the pun."
+  },
+  "WIC7B-01": {
+   "my_answer": "precaution",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "'evasion' is the historians' reading and is killed by 'the letters nowhere mention'. Kills hold. Frame: 'lately read as A; but the records are about B; for the users it was ___' \u2014 key on the revised side."
+  },
+  "WIC7B-02": {
+   "my_answer": "claiming",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'commemorating' is the live distractor and is killed by 'as though the newcomer had laid the road himself' + names chiselled over. Labelled hard; the final-sentence 'in the name of whoever happened to rule' makes it medium. Same frame, key on revised side."
+  },
+  "WIC7B-03": {
+   "my_answer": "obligation",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'design' is the critics' reading; 'is told it may not' resolves. Same frame, key on revised side."
+  },
+  "WIC7B-04": {
+   "my_answer": "invention",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "'a(n) ___' construction (also B-11, B-13); the real test avoids a(n)",
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'convenience' is the printers' reading and is killed. 'concession' kill holds. Same frame, key on revised side."
+  },
+  "WIC7B-05": {
+   "my_answer": "protective",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'exclusionary' is the historians' reading, killed by imported pieces marked and sold. 'advisory' kill (compulsory) holds. Same frame, key on revised side."
+  },
+  "WIC7B-06": {
+   "my_answer": "invitation",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": "STILTED LOGIC: 'Far from recording the composer's intention, the bare repeat was his invitation' \u2014 an invitation IS an intention; the sentence has to be read as 'recording the notes he intended', and a native reader stumbles on the completed sentence",
+   "distractor_quality": "plausible",
+   "difficulty": "hard",
+   "note": "Key correct and exclusive on the evidence (letters ask for embellishments by name). The problem is the frame sentence, not the key. 'compromise' kill is adequate."
+  },
+  "WIC7B-08": {
+   "my_answer": "settled",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "resisted (weak: 'appear only in texts written in French' for two centuries can be heard as reluctance)",
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": "over generations",
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'imposed' is the Conquest-snapshot reading; killed by 'no lords to please'. 'resisted' kill is an inference from 'narrowing to the table only later' \u2014 holds, but a stubborn reader can keep it. 'over generations' after the blank narrows to settled/resisted."
+  },
+  "WIC7B-09": {
+   "my_answer": "departure",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "easy",
+   "note": "Labelled medium; the next sentence ('could not buy a train ticket') hands it over. 'credit' is a nice voice trap. Not passage-decided by the blank sentence alone, but by the very next one."
+  },
+  "WIC7B-10": {
+   "my_answer": "pedigree",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "Labelled hard. 'told a visitor that the statue reproduced a famous bronze' immediately precedes the blank and is a paraphrase of the key. Kills all cite explicit clauses and hold."
+  },
+  "WIC7B-11": {
+   "my_answer": "reprieve",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "punishment (a reader who takes the crown's view can argue 'less a punishment than a procedure' is wrong-direction but still true-sounding)",
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": "than a procedure",
+   "read_aloud_flag": null,
+   "distractor_quality": "strong",
+   "difficulty": "hard",
+   "note": "One of three items where the key is the CONVENTIONAL reading ('usually described as mercy') \u2014 the 'less a(n) ___ than' frame flips the side. Good. 'a(n)' construction again."
+  },
+  "WIC7B-12": {
+   "my_answer": "rising",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": "tolls",
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'unequal' is the historians' reading; 'Parliament had moved it upward every time' immediately precedes the blank. 'discretionary' kill holds."
+  },
+  "WIC7B-13": {
+   "my_answer": "bookmark",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": null,
+   "kill_holds": true,
+   "passage_needed": true,
+   "resolving_word_after_blank": null,
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'preview' is the modern reading, killed by 'passed over the heading'. 'a(n) ___' again."
+  },
+  "WIC7B-14": {
+   "my_answer": "muted",
+   "key_ok": true,
+   "exclusive": true,
+   "second_defensible": "undetectable (weak)",
+   "kill_holds": "partial",
+   "passage_needed": true,
+   "resolving_word_after_blank": "in the record",
+   "read_aloud_flag": null,
+   "distractor_quality": "plausible",
+   "difficulty": "medium",
+   "note": "'delayed' kill is by absence ('no support') rather than a contradicting sentence; 'at one remove' can even be heard as delay. 'undetectable' killed by 'their prices rose'. Key holds."
+  }
+ },
+ "difficulty_histogram": {
+  "author_labels": {
+   "medium": 17,
+   "hard": 7,
+   "easy": 3
+  },
+  "grader_e": {
+   "medium": 16,
+   "medium-hard": 1,
+   "hard": 5,
+   "easy": 5
+  }
+ },
+ "summary": {
+  "key_ok": "27/27 blind answers matched the key",
+  "exclusive": "27/27; four items carry a weak second-defensible option (A-03 mute, A-14 diverted, B-08 resisted, B-11 punishment, B-14 undetectable)",
+  "kill_holds_partial": [
+   "WIC7A-07 (elegant/versatile killed by absence)",
+   "WIC7B-14 (delayed killed by absence)"
+  ],
+  "passage_needed_false": [
+   "WIC7A-04",
+   "WIC7A-08",
+   "WIC7A-13"
+  ],
+  "recommended_drops": [
+   {
+    "id": "WIC7B-06",
+    "why": "stilted/self-contradicting completed sentence: 'Far from recording the composer's intention ... was his invitation'. Native reader rejects the frame on sound; the key is right but the sentence is not."
+   },
+   {
+    "id": "WIC7A-14",
+    "why": "homograph: 'suspended' sediment in a sediment passage; plus 'diverted' survives a loose reading. Hold or re-author the final sentence."
+   }
+  ],
+  "recommended_relabel": {
+   "WIC7A-10": "easy (paraphrase 'dismissed... careless mixing' sits in passage)",
+   "WIC7B-09": "easy",
+   "WIC7A-12": "medium",
+   "WIC7B-02": "medium",
+   "WIC7B-10": "medium",
+   "WIC7A-11": "hard"
+  },
+  "rhetorical_machine": {
+   "recurs": true,
+   "description": "Every WIC7B item (13/13) and A-06, A-09, A-10, A-11, A-13 run 'X is usually/lately read as A; but the records/manuscripts/petitions/account books show B; X was really ___'. In the B set the revised reading is the key in 12 of 13 (exception B-11, flipped by 'less a(n) ___ than'), and the conventional reading A appears as a named distractor in almost every one (evasion, commemorating, design, convenience, exclusionary, imposed, credit, unequal, preview, exaggerated). A solver who has seen three of these learns: strike the option that restates the 'usually read as' sentence, then take the option the second-to-last sentence paraphrases. That is still reading the passage, so it is not a no-source leak, but it makes the B half one item repeated thirteen times and the key predictably on the revisionist side. A-06 and A-10 keep the key on the conventional side and B-11 flips by frame; that is the only variety.",
+   "secondary_frames": [
+    "'not X so much as ___' (A-09, A-13)",
+    "'less a(n) ___ than' (B-11)",
+    "'___ rather than brute' (A-12)",
+    "'a(n) ___' appears in B-04, B-11, B-13 \u2014 the real test avoids a(n)"
+   ]
+  },
+  "read_aloud": {
+   "reject_on_sound": [
+    "WIC7B-06"
+   ],
+   "flags": [
+    "WIC7A-14 homograph",
+    "WIC7A-01 'treat ... as conditional' slightly stilted",
+    "WIC7A-03 'as a forecast ... insufficient' loose",
+    "WIC7A-06 'hum'~'noise' relative",
+    "WIC7A-10 'dismissed' paraphrase"
+   ]
+  },
+  "difficulty_vs_real_module_2": "Vocabulary is everyday throughout (conditional, noise, see, rising, bookmark). Real module-2 hard WIC turns on lower-frequency words; here difficulty comes from passage length and voice-tracking, which puts most of these at real-test medium. Only A-02, A-03, A-11, B-01, B-06, B-11 play as hard."
+ }
+}

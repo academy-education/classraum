@@ -3395,3 +3395,22 @@ structural checks are pre-flight only. See CLAUDE.md.
   The maximum CSE in any single passage is 4, so the ceiling is 40% regardless of which five are drawn. Fixing it needs CSE-heavy passages authored, and ACT English is human-gated (model 76–79% vs co-founder 10.0% on the shipped bank), so it joins ACT Reading and Science in section 2 of the open list. Nothing to do in code.
 
   Also regenerated `WIC-LIVE-TOPICS.md` from the bank (27 → **34** live items; the 2026-09-24 list predated the v6 insert) before commissioning WIC v7, per the file's own header.
+
+- **2026-09-26** — **SAT R&W 16 → 17 COMPLETE FORMS. WIC v7: 28 authored, 27 gated, 15 inserted, 1 held.** `rw-v16-wic`, sha `bc9341a7`. C&S 241 → 256. → **A64**
+
+  **All 27 keys unanimous across three independent cold solves.** Blind margin **+3.1** against the word-shaped live control — and that number exists only because the control was split by shape:
+
+      candidate                 39.5%   (word-shaped candidates 37.2%)
+      live control, WORD        36.4%   n=11 items      <- matched
+      live control, GLOSS       88.9%   n=9  items      <- the +42.9 family, re-measured
+      candidate minus ALL       -20.5   (would have flattered the batch by 24 points)
+
+  **The nine live gloss items are the finding.** All three solvers named "four dictionary senses of one headword" as their strongest mechanism and declared most single-word sets guesses (7, 11 and 15 of 47 by mechanism). The family recorded at +42.9 blind is, on this run, **near-fully decidable from its options** — and it is still live, and still the one measured leak in a live verbal subskill awaiting a decision. `score-oo-by-shape.mjs` now prints all three lines and names the matched one; a subskill-matched control is not shape-matched.
+
+  **THE BRIEF PRODUCED ONE RHETORICAL MACHINE TWICE, INDEPENDENTLY.** Two authors, disjoint topic areas, no contact: *"X is usually read as A; the records show B; X was really ___"* in 14 of 14 and 14 of 14. Rule 1 of my brief — every distractor killed by a specific passage sentence — pushes an author toward a passage that overturns a stated view, because that is the cheapest way to manufacture a killing sentence. **The A repair moved 8 items off it; the B repair claimed 5 and the graders count 2.** Kept B items still let "strike the option restating sentence one" play at about a third of the half. Not a no-source leak (the margin says so); a difficulty deflation through a learnable frame, recorded against the brief. **The next WIC brief varies the argument shape, not the option sets.**
+
+  **Rule drops:** A-11 non-exclusive by 2 of 3 — the blank is what *critics call* the practice, so refuting the critics does not exclude `misleading`; four easy items on weak distractors, all decided inside the blank's own sentence; three on a majority resolving word. **EXT-1:** B-06 (its frame self-contradicts aloud — an invitation *is* an intention), A-14 (`suspended` is a live physical homograph in a sediment passage). **Held:** A-03, re-key. **Gate refused B-09 as easy** under the default band, as with SEC; left in for the gate to decide, as before.
+
+  **Two more grader files came in a third shape** — `.items` as an ARRAY of rows with their own `id`. The verdict and qc scripts now index it and say so. Three wrapper shapes from six graders in one day; the refusal-on-mismatch has been right every time and the fix is always to unwrap explicitly, never to guess.
+
+  **Twelfth consecutive batch of difficulty demotions**, mild this time (author 3/17/7 → panel median 1/12/3 on the kept). Four B passages run 130–150 words, at or over the R&W ceiling; flagged, not fixed.
