@@ -1,0 +1,156 @@
+{
+ "SM17L-A1": {
+  "my_answer": "65",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none found. The option set is 65/70/80/85; all four are plausible magnitudes for x+y with these constants, no parity, residue or roundness split isolates one (65 and 85 are the non-multiples of 10, so the odd-one-out heuristic does not land on the key). The 'add the two equations' move is a one-line solve, not an elimination.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "difficulty": "easy",
+  "note": "Solved independently: add the equations, 12x+12y=780, x+y=65; verified by back-substitution x=20, y=45. All three distractor_solve strings reproduce their labels. Wrong-method check: (360+420)/(9+3)=65 also lands on the key, but only because 9+3=4+8=12, which is the same identity the intended shortcut uses, so it is not a wrong method. No difference/sum of printed constants coincides with 65. Clean, but genuinely easy - this is a module-1 item, not a hard-route item."
+ },
+ "SM17L-A2": {
+  "my_answer": "18",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "ADJACENCY. The stem asks for the GREATEST INTEGER satisfying an inequality, so the true threshold is non-integer and the designed error is the off-by-one. The option set contains exactly one adjacent pair, 18/19, and two isolated values 15/16 (which are two apart from each other but five and three from the pair). Strike 15 and 16 with no arithmetic: the threshold must sit inside the adjacent pair. A test-wise solver then takes the LOWER member of the pair, because 'greatest integer less than a threshold' is the floor, which is the key - so the third strike is available by heuristic though not by structure.",
+  "n_struck": 2,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently before reading: x30 gives -23x+26 >= -390, -23x >= -416, flip, x <= 416/23 = 18.09, so 18. Coincidence check: 13+5 = 18 and 5+6+7 = 18, both sums of printed constants landing on the key; neither is a method a solver would run, but the batch author should avoid a key that is a bare sum of the printed denominators and constant. Note also that 15, 16 and 18 ALL satisfy the inequality - only 'greatest' makes the key unique, so a careless reader has three true options. That is standard for this stem type but it means the item measures reading the word 'greatest', not the algebra, for anyone who tests options."
+ },
+ "SM17L-A3": {
+  "my_answer": "20",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "Weak roundness only: 20 is the single option that is a multiple of 10 (12/15/23 are not), and in a break-even item authored around $645 vs $45 and $10 vs $40 the designed crossing is usually round. I would not call that a structural strike, but it is the one asymmetry in the set. Otherwise none found: no feasibility, divisibility or adjacency argument fires.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "difficulty": "easy",
+  "note": "Solved independently: 645+10s = 45+40s, 600 = 30s, s = 20, both plans $845. All three distractors reproduce. Wrong-method check: no combination of 645/45/10/40 other than 600/30 lands on 20. Correctly labelled medium in the file but against the module-2 hard route this is easy - single-step break-even with integer answer."
+ },
+ "SM17L-A4": {
+  "my_answer": "28",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "Partial (1). Line k has slope 3/2, so line m has slope -2/3 and b = 12 + (2/3)(24). A solver who has only got as far as 'the perpendicular slope is the negative RECIPROCAL' can strike 48 without finishing: 48 = 12 + 36 is what the un-inverted slope 3/2 produces, and 36 = (3/2)(24) is the only offset in play that is a multiple of 12 off the point's y-value. That is one cheap strike. 42 and 32 need real work to reject. No range, divisibility or adjacency argument fires on the set 28/32/42/48; note the odd-one-out under divisibility is not the key (32 and 48 are the powers-of-two multiples, 28 and 42 both multiples of 14), which is good.",
+  "n_struck": 1,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently: 3x-2y=30 gives y=(3/2)x-15, perpendicular slope -2/3, 12 = -(2/3)(24)+b, b=28. All three distractors reproduce and each names a real error (un-inverted slope, x-intercept reported, coordinates swapped). Wrong-method check: 30 - 2 = 28 and 24 + 12/3 = 28 both hit the key from printed constants. Neither is a method anyone runs, but the first is worth noting because 30 and 2 are both printed in the very first equation and a coincidence that cheap is the kind that shows up in an options-only attack as an unexplained hit."
+ },
+ "SM17L-A5": {
+  "my_answer": "-8",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none found. Options -9/-8/-6/-5 are four consecutive-ish negatives with no gap structure (the set is -9,-8 adjacent and -6,-5 adjacent - TWO adjacent pairs, which correctly defuses the adjacency heuristic). No sign, domain or feasibility argument applies: the equation is a plain linear identity valid for all reals, so nothing is excluded a priori. No divisibility argument is cheaper than clearing the denominators.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently: x10 gives 5(x-5) - 2(2x+3) = 7x-3+20, x-31 = 7x+17, -6x = 48, x = -8; back-check both sides equal -8.1. All three distractors reproduce and each is a named sign/scaling slip. Wrong-method check: 2 - 10 = -8 lands on the key from two printed denominators, and -(5+3) = -8 from two printed constants. Contrived but recorded. Labelled hard in the file; against the real module-2 hard route this is a medium - it is mechanical fraction clearing with no trap beyond the two sign slips, and nothing about it is hard for a student who reaches module 2 hard."
+ },
+ "SM17L-A6": {
+  "my_answer": "6",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none found. Simplifying the stem in general - a(2x+4) - 7x = 4(x+a) - 6 collapses to x(2a-11) = -6 - is the cheapest full solve, not an elimination: with x = -6 it forces 2a-11 = 1 immediately. Parity does not discriminate (2a-11 is odd for every integer a, and the set 5/6/8/9 splits two-two on parity and two-two on divisibility by 3). No adjacency tell: the set has TWO adjacent pairs, 5/6 and 8/9.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently by substitution: -8a + 42 = 4a - 30, 12a = 72, a = 6. Distractors all reproduce, and the a=5 distractor is unusually coherent - a=5 gives 2a-11 = -1 and hence x = +6, which is exactly the 'substituted +6 instead of -6' story. WRONG-METHOD FLAG, the strongest in the batch: the key 6 is the absolute value of the substituted x = -6, and -6 is also printed as the bare constant on the right-hand side. A solver who conflates the given root with the unknown constant, or who simply echoes the most salient printed number, answers 6 and is right. This is a printed-number echo on the KEY rather than on a distractor, which is the direction that cannot be defended. It is the one item here I would re-author on that ground alone: rescale so that a is not 6 and not |x|."
+ },
+ "SM17L-A7": {
+  "my_answer": "10",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "TWO, and a third by heuristic. (1) Sign/domain: the left side is 3 times an absolute value, so 12x - 108 >= 0 and x >= 9; 108/12 = 9 is one mental division, far cheaper than case-splitting, and it strikes 6. (2) The zero test: x = 12 is the value that empties the bars, so it can only be a solution if it also zeroes the right side, and 12*12 = 144 is plainly not 108; strike 12. That leaves 10 and 30 from two trivial observations. (3) Odd-one-out: 6, 12 and 30 are all multiples of 6 and 10 is not - the single most common blind-guessing heuristic lands exactly on the key with NO arithmetic at all.",
+  "n_struck": 2,
+  "path_coherent": true,
+  "difficulty": "hard",
+  "note": "Solved independently before reading the explanation. |2x-24| = 4x-36. Case 2x-24 >= 0 (x >= 12): 2x-24 = 4x-36, x = 6, contradicts x >= 12, rejected. Case x < 12: 24-2x = 4x-36, 6x = 60, x = 10, consistent, and verified in the ORIGINAL equation: 3|20-24| = 12 and 12(10)-108 = 12. Key correct and unique; 6 is genuinely extraneous (36 vs -36), 30 fails (108 vs 252), 12 fails (0 vs 36). RULING 1, negative branch: the branch is not merely reachable, it is the branch that CARRIES the key. The solution x = 10 lies strictly below the corner x = 12, so 2x-24 = -4 there and the key comes from -(2x-24) = 4x-36. The positive branch is also exercised and is present in the option set as 6, which is precisely the extraneous root a solver gets by dropping the bars. So the item does test both cases and does test the verification step - this is the best-constructed item in the batch on that axis. RULING 2, key as a mean of two other options: YES, and exactly. The harmonic mean of 6 and 30 is 2(6)(30)/36 = 10, the key on the nose; equivalently 6, 10, 30 form a harmonic progression, since 1/6, 1/10, 1/30 are in arithmetic progression with common difference -1/15. The arithmetic and geometric means of every pair miss (AM 9, 18, 21; GM 8.49, 13.42, 18.97). I judge the harmonic hit non-exploitable - no solver reaches for a harmonic mean of two option values - but it is not a coincidence either: it falls out of the distractor generator, where 6 = 12/2 and 30 = 60/2 share a denominator while the key is 60/6, so the three are forced into reciprocal-linear relation. RULING 2b, wrong method on the key: none found. 10 is not a difference or sum of printed constants (24, 108, 12, 3, 2). The real exposure on this item is not the key's arithmetic, it is the two free strikes plus the divisibility odd-one-out all pointing the same way."
+ },
+ "SM17L-B1": {
+  "my_answer": "88",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "ONE, by a monotone bound. f rises 24 over the 8-unit run from 4 to 12; the run from 12 to 27 is 15 units, longer than 8, so the further rise must exceed 24 and f(27) > 43 + 24 = 67. That strikes 64 using a single addition and no slope. 73 survives the crude bound (it would need the rise over 15 units to be 30, only slightly more than the rise over 8 units - not absurd on inspection alone). Divisibility is clean: all four options are congruent to 1 mod 3, so the residue of 3x+7 gives nothing away, which is good authoring.",
+  "n_struck": 1,
+  "path_coherent": true,
+  "difficulty": "easy",
+  "note": "Solved independently: slope (43-19)/8 = 3, f(x) = 3x+7, f(27) = 88. All distractors reproduce and each is a named anchoring or run error. Wrong-method check: no sum or difference of 4, 19, 12, 43, 27 gives 88 (nearest coincidence is 19+43+27 = 89, which misses). Labelled medium; against the module-2 hard route it is easy."
+ },
+ "SM17L-B2": {
+  "my_answer": "428",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none found. A residue argument exists but is NOT cheaper than solving, so it does not count: once you know the spacing is 18 you may note the answer must be congruent to 194 mod 18 (= 14), which kills 386 (r=8) and 402 (r=6) while sparing 446 (r=14) - but obtaining the 18 is the whole first half of the solve, after which 194 + 13(18) is a single step. Nothing else fires: all four options are even, all are in a plausible band, and the set has no adjacent pair.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently: 12-4 = 8 spaces, (194-50)/8 = 18 cm, 25-12 = 13 spaces, 194 + 234 = 428. All distractors reproduce and the off-by-one family is well chosen (16 cm from counting rungs not gaps; 14 spaces from inclusive counting). Wrong-method check: none found. Good item - the rung/gap off-by-one is the real SAT trap and it is present twice, once in the spacing and once in the extrapolation."
+ },
+ "SM17L-B3": {
+  "my_answer": "40",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "TWO, by feasibility, and cheaply. Doubling the mass with pure copper - adding 60 kg - would give 75 kg of copper in 120 kg, i.e. 62.5%, already past the 55% target. So the amount added must be less than the original 60 kg, which strikes both 90 and 100 with one halving. The set is then a two-way choice between 40 and 45, and 45 is recognisable as a quantity already in the problem (60 - 15, the non-copper mass) rather than a computed answer. Effective option count is two, arguably one.",
+  "n_struck": 2,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently by the invariant: 45 kg of non-copper is conserved and must end as 45% of the total, so the total is 100 kg and 40 kg were added; confirmed by (15+x)/(60+x) = 0.55. All distractors reproduce. Wrong-method check, two coincidences: 55 - 15 = 40 (final percent minus the computed starting copper mass) and 100 - 60 = 40 where 100 is itself an option. The first is the concerning one because 15 is the first number a solver writes down. Labelled hard; it is a medium at best, and after the feasibility strike it plays as an easy."
+ },
+ "SM17L-B4": {
+  "my_answer": "35000",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none found. The natural bound - the per-session charge cannot exceed 310000/8 = 38750, since the fixed fee is positive - admits all four options, so it strikes nothing. Divisibility gives nothing to the key: 26250 is the lone non-multiple of 5000 and hence the odd one out, but it is a distractor, not the key, which is the right way round. All four options are exact quotients of the 210,000 difference (by 14, 8, 7 and 6), so the set is internally cohesive.",
+  "n_struck": 0,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently: m + 8v = 310000, m + 14v = 520000, subtract, 6v = 210000, v = 35000, and m = 30000 is consistent and positive. All distractors reproduce, and 30000 (the fixed fee, correctly computed and then reported for the wrong quantity) is the best distractor in the batch - it punishes only the last reading step. Wrong-method check: none found. Correctly labelled medium."
+ },
+ "SM17L-B5": {
+  "my_answer": "24",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "TWO by magnitude, and the remaining pair is telegraphed. The gap closes at 6+14 = 20 L/min from an initial 360 L, so the crossing is around 18 minutes and the answer is a little past it; 60 and 80 are three and four times that and fall to a scale check with essentially no arithmetic (at 60 min Tank B has taken on 840 L, a difference of hundreds, not 120). That leaves 18 and 24, and 18 is recognisable on sight as the surplus-dropped value - it is the answer to 'when are they equal', a question the stem did not ask. So the effective set is one option.",
+  "n_struck": 2,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently: 600+14t = 960-6t+120, 20t = 480, t = 24; checked, A = 816, B = 936, difference 120. All distractors reproduce and all three are real errors. Wrong-method check: no combination of 960, 600, 120, 6, 14 lands on 24 other than 480/20. Labelled hard; it is a medium - the only step beyond a standard crossing problem is adding the 120, and the option set advertises that step by including the crossing time itself. Note 80 is the odd one out under divisibility by 6 (18, 24, 60 are multiples), and it is a distractor, which is the right way round."
+ },
+ "SM17L-B6": {
+  "my_answer": "13",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "TWO, from the pair structure alone. The set is two adjacent pairs, 10/11 and 13/14 - i.e. a floor/ceiling pair for each of the two readings of 'at least 5'. Two facts need no arithmetic: fewer type B crates leaves more capacity for type A, and 'at least 5' plainly permits exactly 5, so the correct reading is the one that yields the LARGER count, which must be the higher pair; strike 10 and 11. A capacity limit then always floors, never ceilings, so the answer is the lower member of that pair - the third strike, by heuristic rather than structure, and it lands on the key. A solver who knows only 'max means take the minimum of the other thing, and round down' answers this correctly without touching 85 or 255.",
+  "n_struck": 2,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently: 85a + 255b <= 2400 with b >= 5. Since 255 = 3*85 exactly, this is 85(a+3b) <= 2400, a+3b <= 28.23, so a+3b <= 28 and with b = 5, a <= 13. Checked: 13 A-crates plus 5 B-crates is 1105+1275 = 2380 <= 2400; a 14th crate gives 2465, over. All distractors reproduce. Wrong-method check: none found - 13 is not a difference of printed constants. The mathematics is sound and the 255 = 3*85 structure is elegant, but the option set gives it away: the double floor/ceiling pairing is exactly the arrangement a test-wise student is trained to read. If this item is kept, break one of the two pairs - replace 11 with a value that is not adjacent to 10."
+ },
+ "SM17L-B7": {
+  "my_answer": "2025",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "TWO, plus a divisibility odd-one-out that lands on the key. (1) Machine-days go from 6*4 = 24 to 9*3 = 27, an increase, so output must exceed the base run; 1800 asserts no change and falls with no arithmetic beyond 27 > 24. (2) 2700 is exactly 1.5x the base, the ratio you get from the machines alone - too large once you see the days went DOWN, so the factor must be under 9/6. That leaves 2025 and 2160. (3) And then the free one: 2025 is the only ODD option in the set, and the only one not divisible by 10 - the single commonest blind heuristic picks it with zero reading.",
+  "n_struck": 2,
+  "path_coherent": true,
+  "difficulty": "medium",
+  "note": "Solved independently: 45 kg = 45000 g, /25 = 1800 parts over 6*4 = 24 machine-days, so 75 parts per machine-day; 9*3 = 27 machine-days gives 2025. All distractors reproduce and 2160 (adding machines and days instead of multiplying) is a genuine error. Wrong-method FLAG: 2025 = 45 squared, and 45 is printed in the stem as the kilogram figure. Also 2025 = 25 * 81, both factors traceable to printed numbers (25 grams, 9 machines squared). Neither is a procedure a solver runs, but combined with the odd-one-out tell it means this key is unusually visible from the option set. Labelled hard; it is a medium - the only non-routine step is the gram/kilogram conversion."
+ }
+}

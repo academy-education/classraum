@@ -3319,3 +3319,31 @@ structural checks are pre-flight only. See CLAUDE.md.
       round ten        54/1190   4.5%          5.7%
 
   **No bank-wide singleton tell**, and the same authorial instinct as A56 — keys are kept inconspicuous. The inverse is mildly exploitable in its own right (a lone negative is almost never the answer), and `check-key-singleton.mjs` prints the base rate beside every fire rate precisely so a 4.6% is not read as alarming.
+
+- **2026-09-26** — **v17 IS THE FIRST MATHS COMMISSION TO CLEAR THE GATE. 13 inserted. AND BOTH DOMAINS LAND ON 389 AGAINST THE 390 FORM 26 NEEDS.** → **A60**
+
+      half                 authored  kept  gate-accepted   domain now   needs
+      sat-math-v17-alg        14      10         6            389        390
+      sat-math-v17-adv        16       9         7            389        390
+
+  **The blind half, both inside the pre-registered +10 bar:**
+
+      arm                   candidate   live control   margin
+      sat-math-v17-alg        40.5%        42.9%       -2.4
+      sat-math-v17-adv        42.2%        40.0%       +2.2
+
+  Against v16's +16.7 and +25.0, and after four consecutive commissions held at a cost of 58 authored items. **The pipeline change is what did it** — an independent auditor between author and gate found three-strike defects in three items and two-strike defects in four more, before any solver ran.
+
+  **The with-source half was unanimous on the mathematics: all 29 keys correct across six independent grades, every item exclusive, every explanation path coherent.** Nothing in either batch was wrong. Seven items dropped on the pre-registered rule, all on free eliminations.
+
+  **Two conservative drops beyond the rule, stated because tightening is legitimate and loosening is not.** `SM17L-A6` and `SM17A-A4`, each on a grader's explicit recommendation where the five numeric conditions did not fire. And `SM17L-A7` on evidence the rule has no field for — two blind solvers named its harmonic-mean relation unprompted and 2 of 3 solved it. **A7 was also the only item all three graders called hard, so that drop costs the Algebra half its entire hard contribution, and it was taken anyway.**
+
+  **THE GATE REFUSED SIX ITEMS AS EASY AND I LET IT.** `acceptsDifficulty` rejects easy under the default hard band, and the panel's median difficulty — not the author's label — demoted ten items. Four Algebra and two Advanced Math items were refused with a reason. **Accepting one per domain would have crossed 390 and bought form 26.** I did not change the band after seeing that, because the reason to change it and the reason to distrust the change are the same reason. The default was applied uniformly to both halves and the decision is recorded below rather than taken.
+
+  **The question, stated fairly in both directions.** `difficulty-policy.mjs` keys on *"the band the batch was COMMISSIONED for"*. The pre-registration says only *"Need 7 Algebra and 8 Advanced Math; form 26 requires BOTH"* — a capacity target, never a band. The briefs said "aim genuinely hard", but that was a counter to nine consecutive demotions, not a band specification. Against that: the policy's own header says *"a bank with no easy items is not a stricter bank, it is a broken one"*, and `assemble.ts` routes weaker students to the lower module with `difficulties: ['easy']`. A capacity commission is arguably mixed by nature. **Andy's call. `BANK_BAND=mixed` on the two kept files banks the remaining six and crosses both thresholds; the files, the qc and the ledger entries are all in place for it.**
+
+  **Tenth consecutive batch of difficulty demotions, and this time it decided the outcome.** The panel median moved ten items down and none up. Algebra shipped 6 medium and 0 hard; Advanced Math shipped 4 medium and 3 hard. The module-2 hard route is unchanged at 8 forms.
+
+  **A defect caught only because a grader read the artifact rather than the report:** four Advanced Math explanations carried reviewer-facing text into the student-facing field, one of them stating the gate verdict inside an item three graders were judging cold. Stripped after grading finished, never mid-grade. `check-explanation-hygiene.mjs` fails a batch carrying it, and the live bank is clean at 0 of 7,021.
+
+  **Two grader claims checked rather than accepted.** *"Several `distractor_solve` snippets hardcode the erroneous values"* — of the ten named, nine genuinely encode the mis-execution and one is constants only; across both batches there are **zero** bare literals, so the claim does not hold as stated. *"Nobody harmonic-means two options"* — two blind solvers did, unprompted, and 2 of 3 solved that item.

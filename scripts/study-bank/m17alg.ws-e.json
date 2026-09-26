@@ -1,0 +1,156 @@
+{
+  "SM17L-A1": {
+    "my_answer": "65",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found. All four options are positive two-digit multiples of 5; the equations bound x<40 and y<90 but place no usable bound on x+y. The 'just add the two equations' route is the intended solve, not an elimination.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "note": "Clean. Distractor set is three named arithmetic slips, each recomputed correctly by distractor_solve. Key 65 is not lone-of-kind (65 and 85 both end in 5, 70 and 80 are the round pair). Key is not a printed stem number. No option is outside a stem-implied range."
+  },
+  "SM17L-A2": {
+    "my_answer": "18",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found. The bound is 416/23 = 18.08, reachable only after clearing denominators by 30 \u2014 an excluded shortcut by the brief's own rule. No divisibility, parity or range argument separates 15/16/18/19 more cheaply than solving.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Labelled hard; it is a routine fraction-clearing inequality whose only trap is reversing the sign on division by -23. That trap is real (19 is the no-reversal answer, adjacent to the key) but it is standard module-1 material. Key 18 is not lone-of-kind: 15/19 odd, 16/18 even. No printed-number echo."
+  },
+  "SM17L-A3": {
+    "my_answer": "20",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "Weak, and NOT cheaper than solving. The session count is (645-45)/(40-10) = 600/30; noticing that 23 cannot divide 600 strikes it, but reading off 600 and 30 is already the entire solve. Counted as 0 on the brief's own rule.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "note": "STRUCTURAL FLAG (reviewer point 1 \u2014 partially upheld). Key 20 is the only multiple of 10 and the only 'round' option among {12, 15, 20, 23}; 23 is additionally the only prime and reads as filler. An odd-one-out guesser lands on the key. Mild rather than fatal, because a break-even answer being round is unremarkable, but the option set would be better as e.g. {12, 18, 20, 23}. Otherwise clean; all three distractor derivations are genuine wrong-operation slips."
+  },
+  "SM17L-A4": {
+    "my_answer": "28",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found as a strike. There is one true free constraint \u2014 line m has negative slope and passes through (24, 12), so its y-intercept must exceed 12 \u2014 but all four options already exceed 12, so it eliminates nothing. No parity, divisibility or echo argument available.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Clean, and the best-constructed option set in the A half: 48 is the negate-without-inverting slope, 42 is the x-intercept of the CORRECT line m, 32 is the swapped-coordinate point. All three are earned errors and all three recompute. Key 28 is not lone-of-kind (all four even, two-digit) and is not printed in the stem (stem prints 3, 2, 30, 24, 12)."
+  },
+  "SM17L-A5": {
+    "my_answer": "-8",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found. All four options are negative, so the sign of the solution eliminates nothing. A mod-6 argument exists (6x = -48) but only after multiplying through by 10 \u2014 an excluded shortcut. Verified by substitution: x=-8 gives -3.9 on both sides.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Labelled hard; it is a three-fraction linear equation with no structural trick \u2014 purely procedural, and the SAT reserves 'hard' for items needing an insight. The distractors are well chosen (unscaled constant, sign slip on distributing -2, sign slip clearing the right fraction) and each recomputes. Key -8 is not lone-of-kind: -9 and -5 odd, -8 and -6 even. Spacing of the option set is tight (-9, -8, -6, -5), which correctly punishes a one-step slip rather than rewarding estimation."
+  },
+  "SM17L-A6": {
+    "my_answer": "6",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found. Substituting x = -6 gives -8a + 42 = 4a - 30 immediately; no option is excluded by range, parity or closure before that step. All four options are small positive integers and all four are reachable by a plausible slip.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "STRUCTURAL FLAG (reviewer point 2 \u2014 UPHELD, but judged minor). Key 6 IS a printed number from its own stem: the stem carries both '- 6' and 'x = -6', and 6 is the only option of {5, 6, 8, 9} that appears in the stem. That is a real echo pointing at the key. I would not drop on it alone \u2014 6 is a high-frequency small constant, the echo is to a NEGATIVE printed 6 rather than the positive answer, and the usual student bias runs the other way (echoes read as traps, so the tell is as likely to push a guesser off the key as onto it). Worth changing the free constant from -6 to, say, -10 at zero cost. Distractor 5 (substituting x=+6) is the strongest of the three; 8 and 9 are clean distribution/collection slips. Labelled hard, rated medium: substitute-and-solve-for-the-coefficient is a standard item type."
+  },
+  "SM17L-A7": {
+    "my_answer": "10",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "One real strike. The right side 12x - 108 must be non-negative because the left side is 3 times an absolute value, so x >= 9; 6 fails this. That is one small multiplication (12*6 = 72 < 108) and is genuinely cheaper than solving. Struck: 6. 12 and 30 both survive a domain check and need actual casework.",
+    "n_struck": 1,
+    "path_coherent": true,
+    "difficulty": "hard",
+    "note": "STRUCTURAL FLAG (reviewer point 1 \u2014 UPHELD, and the second-most serious in the batch). Among {6, 10, 12, 30} the key 10 is the ONLY option that is not a multiple of 3 (indeed not a multiple of 6), while 6, 12 and 30 are all multiples of 6 keyed to printed values (12 and 24 and 108 are all in the stem; 12 is printed verbatim). A guesser who strikes 6 on the free domain argument and then strikes 12 as the too-obvious printed echo is left with 10 versus 30, with 10 the lone non-multiple of 3 \u2014 a no-work 50/50 or better. MITIGATION, and the reason I keep rather than drop: the domain strike IS the construct. This item exists to test that |expr| = linear requires a non-negativity check and that one case yields an extraneous root, so the elimination a strong solver makes for free is the thing being measured, not a leak past it. The fix is cheap and I would require it: replace 30 with a non-multiple of 3 (e.g. 16 or 22) so the residue pattern stops pointing at 10. Verified independently: x=10 satisfies the original (LHS 12, RHS 12); x=6 is the extraneous first-case root; x=12 gives 0 vs 36."
+  },
+  "SM17L-B1": {
+    "my_answer": "88",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found. The only free constraint is that f is increasing (19 to 43) so f(27) > 43; all four options exceed 43. No parity or divisibility handle without computing the slope.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "note": "Clean arithmetically (slope 3, f(x)=3x+7, f(27)=88) and all three distractors recompute from named errors. WEAK structural observation, ruled NOT a violation of reviewer point 1: 64 and 100 are conspicuous perfect squares and 73 is conspicuously prime, which makes 88 the residual 'unremarkable' option. I decline to call this a pointer, because an odd-one-out heuristic here is ambiguous \u2014 most guessers would name 73 as the outlier, not 88 \u2014 and 64/73/100 are each the output of a specific slip rather than decoration. Labelled medium, rated easy: two points, a slope, an evaluation, no trap."
+  },
+  "SM17L-B2": {
+    "my_answer": "428",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found. All four options are three-digit even numbers in a narrow band (386-446) and the spacing must be derived before any of them can be excluded. A mod-18 argument requires first finding 18, which is the solve.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Good item. The construct is the fencepost (8 spaces between rung 4 and rung 12, 13 spaces from rung 12 to rung 25) and all three distractors are fencepost or spacing-count errors: 402 divides by 9 rungs instead of 8 spaces, 446 counts 14 spaces instead of 13, 386 combines both. Key 428 is not lone-of-kind. No printed echo (stem prints 4, 50, 12, 194, 25). Option spread is tight enough that estimation does not reach the key."
+  },
+  "SM17L-B3": {
+    "my_answer": "40",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "TWO free strikes, and this is the batch's clearest instance of the 2026-09-24 stem-plus-options finding. The final copper fraction (15+x)/(60+x) increases in x, and adding 60 kg of pure copper to 60 kg of 25% alloy already puts you at 75/120 = 62.5%, well past 55%. So x < 60, which kills BOTH 90 and 100 with one mental check against a mass (60) printed in the stem. 100 is doubly strikable as the obvious 'new total' value. Struck: 90, 100.",
+    "n_struck": 2,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "STRUCTURAL FLAG (reviewer point 3 \u2014 UPHELD; this is the item that instance is about). The option set puts two of four values outside the range the stem implies, reducing the item to a 40-versus-45 coin flip before any mixture reasoning happens. Compounding it, 45 is the non-copper mass, which a solver who has done ANY of the work has already written down and will not choose, and the remaining option is the key. The 90 and 100 derivations are honest on paper (inverted alligation ratio; reporting the new total) but both land in territory a solver can reject without touching the construct. RECOMMEND REPAIR: replace 90 and 100 with values inside (0, 60) \u2014 e.g. 18 (0.30*60, scaling the percentage-point gap by the original mass) and 33 (the final copper mass minus nothing, or 60*30/55). Labelled hard, rated medium: standard mixture, and the invariant route (45 kg of non-copper must end as 45% of the total, so total = 100) is a one-line solve."
+  },
+  "SM17L-B4": {
+    "my_answer": "35000",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found that is cheaper than solving. One true constraint \u2014 the monthly fee is positive, so the per-session amount is below 310000/8 = 38750 \u2014 excludes nothing, since all four options are below it. 26250 is the only non-round option but it is a distractor, so the oddity points AWAY from the key, which is the harmless direction.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "note": "Clean and well built. Subtracting the two equations gives 6v = 210000 in one step. Distractors divide the same 210,000 difference by the wrong count (8 or 14) or report the correctly-found monthly fee 30,000 instead of the per-session amount \u2014 that last one is the strongest distractor in the batch, because it punishes a solver who did everything right and misread the question. Key 35000 is not lone-of-kind; not a printed stem number (stem prints 8, 310000, 14, 520000). Labelled medium, rated easy: two-equation elimination with one subtraction."
+  },
+  "SM17L-B5": {
+    "my_answer": "24",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found on the brief's own standard. 60 and 80 are implausible by scale (at t=60 Tank B alone has taken on 840 L), but establishing that needs the closing rate of 20 L/min, which IS the solve \u2014 two lines total. Feasibility does not help either: Tank A does not empty until t=160, so all four times are physically legal. Recording 0 rather than inflating; the scale heuristic is noted but is not cheaper than solving.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Ruled explicitly on reviewer point 3 for this item: NOT a violation. Both large options sit inside the stem's feasible window. Verified: at t=24, A holds 816 and B holds 936, difference exactly 120. Distractors are a dropped 120-L surplus (18), one tank frozen (80), and rates subtracted instead of combined (60) \u2014 all earned, all recomputed. Key 24 is not lone-of-kind and is not printed (stem prints 960, 6, 600, 14, 120). Labelled hard, rated medium: it is a single linear equation once the two expressions are written."
+  },
+  "SM17L-B6": {
+    "my_answer": "13",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "none found. The absolute ceiling 2400/85 = 28.2 sits above every option, so the capacity bound eliminates nothing; there is no divisibility handle because 85a need not divide anything, and 10/11/13/14 are too tightly clustered for estimation. The work (reserve 5*255 = 1275, then floor(1125/85)) has to be done.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "The best-gated item in the batch: nothing is decidable from the option set, and the two traps are genuinely separate \u2014 rounding 13.2 up instead of down (14), and misreading 'at least 5' as 'more than 5' (10), with 11 as both errors combined. That 2x2 structure means no single insight collapses the set. Verified: 13 crates = 1105 + 1275 = 2380 <= 2400; 14 crates = 2465 > 2400. Key 13 is not lone-of-kind (11 and 13 both prime, 10 and 14 both even). No printed echo. Labelled hard, rated medium \u2014 the ceiling-versus-floor decision is a recognised trap rather than an insight, but this is the closest in the batch to a legitimate hard."
+  },
+  "SM17L-B7": {
+    "my_answer": "2025",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": "none",
+    "free_elimination": "TWO free strikes, both from machine-day counting alone with no conversion and no arithmetic beyond 9*3 and 6*4. (a) 27 machine-days strictly exceeds 24, so output strictly exceeds the first run's; 1800 is exactly the first run's part count and is struck. (b) 2700 is 1.5x that count, which would need 36 machine-days, and 27 < 36; struck. Remaining: 2025 and 2160. Struck: 1800, 2700.",
+    "n_struck": 2,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "DROP. Two independent defects stack. (1) Reviewer point 1 \u2014 UPHELD, and this is the batch's worst case: among {1800, 2025, 2160, 2700} the key 2025 is the ONLY odd value, the only non-multiple of 10, and the only non-multiple of 100. After the two free strikes above the field is 2025 versus 2160, and the lone-odd tell resolves that pair straight onto the key with no work at all. (2) The stated construct is defeated. The subskill is 'proportional reasoning with a unit conversion', but the 25-gram mass and the kg-to-gram step do nothing: every option is 1800 times a rational factor and 1800 is itself printed as an option, so the conversion is a free ride once a solver anchors on choice A. An item cannot test a conversion whose answer is already in the option list. Reviewer point 3 also fires here: 1800 and 2700 both lie outside a range derivable from the stem for free. The arithmetic is correct (1800 parts, 75 per machine-day, 27 md, 2025) and all three distractors recompute, so this is a construction failure, not an error. RE-AUTHOR rather than repair: change the numbers so the answer is not round-adjacent, remove the unconverted first-run count from the option set, and make the distractors share the key's parity."
+  }
+}

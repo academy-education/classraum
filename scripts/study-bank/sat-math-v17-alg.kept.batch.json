@@ -1,0 +1,222 @@
+[
+ {
+  "id": "SM17L-A1",
+  "domain": "Algebra",
+  "subskill": "Linear systems solved for a combined expression",
+  "difficulty": "easy",
+  "prompt": "9x + 4y = 360\n3x + 8y = 420\nIf (x, y) is the solution to the system of equations above, what is the value of x + y?",
+  "choices": [
+   "65",
+   "70",
+   "80",
+   "85"
+  ],
+  "correct_answer": "65",
+  "explanation": "Because the quantity asked for is x + y, the equations can simply be added: 9x + 4y + 3x + 8y = 360 + 420 gives 12x + 12y = 780, so x + y = 65. The longer route reaches the same place: multiplying the second equation by 3 gives 9x + 24y = 1260, and subtracting the first equation from it leaves 20y = 900, so y = 45. Then 9x = 360 - 4(45) = 180, so x = 20 and x + y = 20 + 45 = 65, which is \"65\". \"85\" comes from reaching 9x + 24y = 1260 and 9x + 4y = 360 but combining the constants with the wrong sign, writing 20y = 1260 + 360 = 1620, so y = 81; then 9x = 360 - 324 = 36, x = 4 and x + y = 85. \"80\" comes from finding y = 45 correctly and then substituting into the first equation with the coefficient 4 dropped, writing 9x + 45 = 360, so x = 35 and x + y = 80. \"70\" comes from finding x = 20 correctly and then substituting into the second equation with the coefficient 3 dropped, writing x + 8y = 420, so 8y = 400, y = 50 and x + y = 70.",
+  "bounds": [],
+  "solve": "var y=(9*420-3*360)/(9*8-3*4); var x=(360-4*y)/9; return String(x+y);",
+  "distractor_solve": {
+   "70": "var y=(9*420-3*360)/(9*8-3*4); var x=(360-4*y)/9; return String(x+(420-x)/8);",
+   "80": "var y=(9*420-3*360)/(9*8-3*4); return String((360-y)/9+y);",
+   "85": "var y=(9*420+3*360)/(9*8-3*4); var x=(360-4*y)/9; return String(x+y);"
+  }
+ },
+ {
+  "id": "SM17L-A2",
+  "domain": "Algebra",
+  "subskill": "Linear inequalities with fractional coefficients",
+  "difficulty": "hard",
+  "prompt": "(2x + 1)/5 - (7x - 4)/6 ≥ -13\nWhat is the greatest integer value of x that satisfies the inequality above?",
+  "choices": [
+   "15",
+   "16",
+   "18",
+   "19"
+  ],
+  "correct_answer": "18",
+  "explanation": "Multiplying every term by 30 gives 6(2x + 1) - 5(7x - 4) ≥ -390, so 12x + 6 - 35x + 20 ≥ -390 and -23x + 26 ≥ -390. Then -23x ≥ -416, and dividing by -23 reverses the direction, so x ≤ 416/23 = 18.08..., and the greatest integer in the solution set is 18, which is \"18\". \"19\" comes from dividing by -23 without reversing the direction, giving x ≥ 18.08..., and then reporting the first integer that satisfies that, 19. \"16\" comes from distributing -5 across (7x - 4) as -35x - 20 instead of -35x + 20, giving -23x - 14 ≥ -390, so -23x ≥ -376 and x ≤ 16.34..., whose greatest integer is 16. \"15\" comes from reaching -23x + 26 ≥ -390 and then moving the 26 to the right without changing its sign, giving -23x ≥ -364, so x ≤ 15.82..., whose greatest integer is 15.",
+  "bounds": [],
+  "solve": "var U=6*1-5*(-4), V=6*2-5*7; return String(Math.floor((-13*30-U)/V));",
+  "distractor_solve": {
+   "15": "var U=6*1-5*(-4), V=6*2-5*7; return String(Math.floor((-13*30+U)/V));",
+   "16": "var Up=6*1+5*(-4), V=6*2-5*7; return String(Math.floor((-13*30-Up)/V));",
+   "19": "var U=6*1-5*(-4), V=6*2-5*7; return String(Math.ceil((-13*30-U)/V));"
+  }
+ },
+ {
+  "id": "SM17L-A3",
+  "domain": "Algebra",
+  "subskill": "Break-even between two linear cost models",
+  "difficulty": "medium",
+  "prompt": "A climbing gym offers two membership plans. Plan A costs $645 for the year plus $10 for each session used. Plan B costs $45 for the year plus $40 for each session used. For how many sessions in a year do the two plans cost the same total amount?",
+  "choices": [
+   "12",
+   "15",
+   "20",
+   "23"
+  ],
+  "correct_answer": "20",
+  "explanation": "Setting the two totals equal gives 645 + 10s = 45 + 40s. Subtracting 45 and 10s from both sides gives 600 = 30s, so s = 600/30 = 20, which is \"20\". Both plans then cost $845. \"12\" comes from taking the difference of the fixed charges but adding the rates instead of subtracting them, computing 600/(40 + 10) = 12. \"15\" comes from dividing the difference of the fixed charges by Plan B's rate alone, computing 600/40 = 15, which prices the sessions as though Plan A charged nothing per session. \"23\" comes from adding the fixed charges instead of subtracting them while handling the rates correctly, computing (645 + 45)/(40 - 10) = 690/30 = 23.",
+  "bounds": [],
+  "solve": "return String((645-45)/(40-10));",
+  "distractor_solve": {
+   "12": "return String((645-45)/(40+10));",
+   "15": "return String((645-45)/40);",
+   "23": "return String((645+45)/(40-10));"
+  }
+ },
+ {
+  "id": "SM17L-A4",
+  "domain": "Algebra",
+  "subskill": "Perpendicular lines in the xy-plane",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line k is defined by 3x - 2y = 30. Line m is perpendicular to line k and passes through the point (24, 12). At what value of y does line m cross the y-axis?",
+  "choices": [
+   "28",
+   "32",
+   "42",
+   "48"
+  ],
+  "correct_answer": "28",
+  "explanation": "Solving 3x - 2y = 30 for y gives y = (3/2)x - 15, so line k has slope 3/2 and line m has slope -2/3. Writing m as y = -(2/3)x + b and substituting (24, 12) gives 12 = -16 + b, so b = 28 and line m crosses the y-axis at y = 28, which is \"28\". \"48\" comes from negating line k's slope without inverting it, using -3/2 for line m, so that 12 = -36 + b and b = 48. \"42\" comes from building line m correctly, y = -(2/3)x + 28, and then reporting where it crosses the x-axis instead of the y-axis: setting y = 0 gives (2/3)x = 28 and x = 42. \"32\" comes from using the correct slope -2/3 but substituting the point with its coordinates interchanged, treating (12, 24) as the point on m, so that 24 = -8 + b and b = 32.",
+  "bounds": [],
+  "solve": "return String(12 + 2*24/3);",
+  "distractor_solve": {
+   "32": "return String(24 + 2*12/3);",
+   "42": "return String((12 + 2*24/3)*3/2);",
+   "48": "return String(12 + 3*24/2);"
+  }
+ },
+ {
+  "id": "SM17L-A5",
+  "domain": "Algebra",
+  "subskill": "Linear equations with fractional coefficients",
+  "difficulty": "hard",
+  "prompt": "(x - 5)/2 - (2x + 3)/5 = (7x - 3)/10 + 2\nWhat is the value of x that satisfies the equation above?",
+  "choices": [
+   "-9",
+   "-8",
+   "-6",
+   "-5"
+  ],
+  "correct_answer": "-8",
+  "explanation": "Multiplying every term by 10 gives 5(x - 5) - 2(2x + 3) = (7x - 3) + 20. Expanding gives 5x - 25 - 4x - 6 = 7x + 17, so x - 31 = 7x + 17. Subtracting 7x and adding 31 gives -6x = 48, so x = -8, which is \"-8\". \"-5\" comes from multiplying the three fractions by 10 but leaving the constant 2 unscaled, giving x - 31 = 7x - 3 + 2 = 7x - 1, so -6x = 30 and x = -5. \"-6\" comes from distributing -2 across (2x + 3) as -4x + 6 instead of -4x - 6, giving 5x - 25 - 4x + 6 = x - 19, so x - 19 = 7x + 17, -6x = 36 and x = -6. \"-9\" comes from clearing the right-hand fraction as 7x + 3 instead of 7x - 3, giving x - 31 = 7x + 23, so -6x = 54 and x = -9.",
+  "bounds": [],
+  "solve": "var V=5*1+(-2)*2-1*7; var C=(1*(-3)+10*2)-(5*(-5)+(-2)*3); return String(C/V);",
+  "distractor_solve": {
+   "-5": "var V=5*1+(-2)*2-1*7; var C=(1*(-3)+2)-(5*(-5)+(-2)*3); return String(C/V);",
+   "-6": "var V=5*1+(-2)*2-1*7; var C=(1*(-3)+10*2)-(5*(-5)+(-2)*(-3)); return String(C/V);",
+   "-9": "var V=5*1+(-2)*2-1*7; var C=(1*3+10*2)-(5*(-5)+(-2)*3); return String(C/V);"
+  }
+ },
+ {
+  "id": "SM17L-B1",
+  "domain": "Algebra",
+  "subskill": "Linear functions from two points",
+  "difficulty": "medium",
+  "prompt": "The function f is linear. It is given that f(4) = 19 and f(12) = 43. What is the value of f(27)?",
+  "choices": [
+   "64",
+   "73",
+   "88",
+   "100"
+  ],
+  "correct_answer": "88",
+  "explanation": "The slope is (43 - 19)/(12 - 4) = 24/8 = 3, so f(x) = 3x + 7 and f(27) = 81 + 7 = 88. Distractor 64: correct slope 3, but the 15-unit run from x = 12 is added to the value at the OTHER anchor, 19 + 15*3 = 64. Distractor 73: the slope is computed as (43 - 19)/12 = 2 (dividing by the larger x-coordinate instead of the run), then 43 + 15*2 = 73. Distractor 100: correct slope 3, but 19 is taken as the y-intercept rather than f(4), giving 3*27 + 19 = 100.",
+  "bounds": [],
+  "solve": "return 19 + ((43-19)/(12-4))*(27-4);",
+  "distractor_solve": {
+   "64": "return 19 + ((43-19)/(12-4))*(27-12);",
+   "73": "return 43 + ((43-19)/12)*(27-12);",
+   "100": "return ((43-19)/(12-4))*27 + 19;"
+  }
+ },
+ {
+  "id": "SM17L-B2",
+  "domain": "Algebra",
+  "subskill": "Arithmetic sequences and counting intervals",
+  "difficulty": "medium",
+  "prompt": "The rungs of a straight ladder are equally spaced. The 4th rung from the bottom is 50 cm above the ground, and the 12th rung from the bottom is 194 cm above the ground. How many centimeters above the ground is the 25th rung from the bottom?",
+  "choices": [
+   "386",
+   "402",
+   "428",
+   "446"
+  ],
+  "correct_answer": "428",
+  "explanation": "There are 12 - 4 = 8 spaces between the 4th and 12th rungs, so each space is (194 - 50)/8 = 18 cm. From the 12th rung to the 25th there are 25 - 12 = 13 spaces, so the height is 194 + 13*18 = 428 cm. Distractor 402: the spacing is taken as 144/9 = 16 cm by counting rungs (4th through 12th inclusive) instead of the spaces between them, giving 194 + 13*16 = 402. Distractor 386: the same 16 cm spacing together with 12 spaces instead of 13, 194 + 12*16 = 386 (equivalently, a first rung at 2 cm and 24 spaces of 16). Distractor 446: correct 18 cm spacing but 25 - 12 + 1 = 14 spaces counted, 194 + 14*18 = 446.",
+  "bounds": [],
+  "solve": "return 194 + ((194-50)/(12-4))*(25-12);",
+  "distractor_solve": {
+   "386": "return 194 + ((194-50)/9)*12;",
+   "402": "return 194 + ((194-50)/9)*(25-12);",
+   "446": "return 194 + ((194-50)/(12-4))*(25-12+1);"
+  }
+ },
+ {
+  "id": "SM17L-B4",
+  "domain": "Algebra",
+  "subskill": "Systems of linear equations, per-unit rate",
+  "difficulty": "medium",
+  "prompt": "A gym bills each member a fixed monthly membership fee plus the same additional amount for every personal-training session that member takes. In one month, a member who took 8 sessions was billed 310,000 won and a member who took 14 sessions was billed 520,000 won. What is the amount, in won, billed for each session?",
+  "choices": [
+   "15000",
+   "26250",
+   "30000",
+   "35000"
+  ],
+  "correct_answer": "35000",
+  "explanation": "Let m be the monthly fee and v the per-session amount. Then m + 8v = 310000 and m + 14v = 520000. Subtracting, 6v = 210000, so v = 35000, and m = 310000 - 8(35000) = 30000. Distractor 26250: the 210,000 won difference is divided by 8, the smaller member's session count, instead of by the 6-session difference, 210000/8 = 26250. Distractor 15000: the same 210,000 won difference divided by 14, the larger session count, 210000/14 = 15000. Distractor 30000: the system is solved correctly and the monthly fee is reported instead of the per-session amount, 310000 - 8(35000) = 30000.",
+  "bounds": [],
+  "solve": "return (520000-310000)/(14-8);",
+  "distractor_solve": {
+   "15000": "return (520000-310000)/14;",
+   "26250": "return (520000-310000)/8;",
+   "30000": "return 310000 - 8*((520000-310000)/(14-8));"
+  }
+ },
+ {
+  "id": "SM17L-B5",
+  "domain": "Algebra",
+  "subskill": "Linear equations with the variable on both sides",
+  "difficulty": "hard",
+  "prompt": "Tank A holds 960 liters of water and is draining at a constant rate of 6 liters per minute. At the same moment, Tank B holds 600 liters and is being filled at a constant rate of 14 liters per minute. Both rates continue unchanged. After how many minutes will Tank B hold exactly 120 liters more than Tank A?",
+  "choices": [
+   "18",
+   "24",
+   "60",
+   "80"
+  ],
+  "correct_answer": "24",
+  "explanation": "After t minutes Tank A holds 960 - 6t liters and Tank B holds 600 + 14t liters. The condition is 600 + 14t = (960 - 6t) + 120, so 600 + 14t = 1080 - 6t and 20t = 480, giving t = 24. Check: A holds 816, B holds 936, a difference of 120. Distractor 18: the 120-liter surplus is dropped and the two tanks are simply set equal, (960 - 600)/(14 + 6) = 18. Distractor 80: Tank B is held fixed at 600 liters and only Tank A's drain is allowed to close the gap, 600 = 960 - 6t + 120, giving 480/6 = 80. Distractor 60: the two rates are subtracted rather than combined, 480/(14 - 6) = 60, as though both tanks moved in the same direction.",
+  "bounds": [],
+  "solve": "return (960 + 120 - 600)/(14 + 6);",
+  "distractor_solve": {
+   "18": "return (960 - 600)/(14 + 6);",
+   "60": "return (960 + 120 - 600)/(14 - 6);",
+   "80": "return (960 + 120 - 600)/6;"
+  }
+ },
+ {
+  "id": "SM17L-B6",
+  "domain": "Algebra",
+  "subskill": "Linear inequalities in two variables",
+  "difficulty": "hard",
+  "prompt": "A van can carry a load of at most 2,400 kilograms. The load will consist of crates of two kinds: each type A crate weighs 85 kilograms and each type B crate weighs 255 kilograms. The load must include at least 5 type B crates. What is the greatest possible number of type A crates in the load?",
+  "choices": [
+   "10",
+   "11",
+   "13",
+   "14"
+  ],
+  "correct_answer": "13",
+  "explanation": "Writing a for type A crates and b for type B crates, 85a + 255b <= 2400 with b >= 5. Every extra type B crate costs 255 kilograms of capacity, so a is largest when b is at its smallest allowed value, b = 5. That leaves 2400 - 1275 = 1125 kilograms, and 1125/85 = 13.2, so a = 13 (13 crates weigh 1105 kg, for a total of 2380 kg; a 14th would bring the load to 2465 kg, over the limit). Distractor 14: the division 1125/85 = 13.2 is rounded up instead of down, which is the one step a capacity constraint never allows. Distractor 10: \"at least 5 type B crates\" is read as \"more than 5\", so 6 type B crates are reserved, leaving 2400 - 1530 = 870 kilograms and 870/85 = 10.2, giving 10. Distractor 11: the same misreading of \"at least 5\" combined with rounding up, giving 11.",
+  "bounds": [],
+  "solve": "return Math.floor((2400 - 5*255)/85);",
+  "distractor_solve": {
+   "10": "return Math.floor((2400 - 6*255)/85);",
+   "11": "return Math.ceil((2400 - 6*255)/85);",
+   "14": "return Math.ceil((2400 - 5*255)/85);"
+  }
+ }
+]

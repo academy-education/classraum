@@ -44,28 +44,6 @@
   }
  },
  {
-  "id": "SM17A-A4",
-  "domain": "Advanced Math",
-  "subskill": "Inverse of a rational function",
-  "difficulty": "easy",
-  "prompt": "The function f is defined by f(x) = (5x + 12)/(x - 3) for x not equal to 3. The inverse of f can be written as f^-1(x) = (3x + a)/(x - b), where a and b are constants. What is the value of ab?",
-  "choices": [
-   "15",
-   "17",
-   "36",
-   "60"
-  ],
-  "correct_answer": "60",
-  "explanation": "Set y = (5x + 12)/(x - 3) and solve for x: y(x - 3) = 5x + 12, so xy - 3y = 5x + 12, so x(y - 5) = 3y + 12, so x = (3y + 12)/(y - 5). Therefore f^-1(x) = (3x + 12)/(x - 5), giving a = 12 and b = 5, so ab = 60. DISTRACTORS: '36' keeps the denominator constant of the ORIGINAL function, taking b = 3 instead of 5 (a solver who swaps only the numerator constant), giving 12 * 3 = 36. '15' misidentifies a as the visible leading coefficient 3 in the given form rather than the constant term, pairing it with the correct b = 5 for 3 * 5 = 15. '17' answers a + b = 12 + 5 instead of the product.",
-  "bounds": [],
-  "solve": "const fn = x => (5 * x + 12) / (x - 3); const y1 = fn(0), y2 = fn(1); const a = -3 * y1; const b = (1 * y2 - 3 * y2) - a; return a * b;",
-  "distractor_solve": {
-   "15": "const fn = x => (5 * x + 12) / (x - 3); const y1 = fn(0), y2 = fn(1); const a = -3 * y1; const b = (1 * y2 - 3 * y2) - a; return 3 * b;",
-   "17": "const fn = x => (5 * x + 12) / (x - 3); const y1 = fn(0), y2 = fn(1); const a = -3 * y1; const b = (1 * y2 - 3 * y2) - a; return a + b;",
-   "36": "const fn = x => (5 * x + 12) / (x - 3); const a = -3 * fn(0); return a * 3;"
-  }
- },
- {
   "id": "SM17A-A5",
   "domain": "Advanced Math",
   "subskill": "Combining rational expressions",
@@ -110,28 +88,6 @@
   }
  },
  {
-  "id": "SM17A-A7",
-  "domain": "Advanced Math",
-  "subskill": "Line and parabola intersection",
-  "difficulty": "medium",
-  "prompt": "In the xy-plane, the graph of y = x^2 + 3x - 10 and the graph of y = 2x + 4 intersect at the points (x1, y1) and (x2, y2). What is the value of y1 + y2?",
-  "choices": [
-   "-14",
-   "-1",
-   "6",
-   "10"
-  ],
-  "correct_answer": "6",
-  "explanation": "Setting the expressions equal: x^2 + 3x - 10 = 2x + 4, so x^2 + x - 14 = 0. By Vieta, x1 + x2 = -1. Both points lie on the line, so y1 + y2 = (2x1 + 4) + (2x2 + 4) = 2(x1 + x2) + 8 = 2(-1) + 8 = 6. The roots are (-1 +/- sqrt(57))/2, which are irrational, so substituting candidate x-values gets a solver nowhere and the sum has to be taken through Vieta. DISTRACTORS: -1 is x1 + x2, the sum of the x-coordinates, reported for the wrong variable. -14 is x1 * x2, the product of the roots, which is the constant term of the DIFFERENCE quadratic x^2 + x - 14 - not the constant term of the parabola, which is -10. That constant is exactly -10 - 4, the difference of the two printed constants, and that is what makes -14 the one strikeable option in this set: a solver reading four candidates for a sum of two y-values on a line can discard the one that is a bare difference of two numbers printed in the stem, without forming the difference quadratic at all.",
-  "bounds": [],
-  "solve": "const P = x => x * x + 3 * x - 10, L = x => 2 * x + 4; const D = x => P(x) - L(x); const C = D(0), A = (D(1) + D(-1) - 2 * C) / 2, B = (D(1) - D(-1)) / 2; const sx = -B / A; return 2 * sx + 2 * L(0);",
-  "distractor_solve": {
-   "10": "const P = x => x * x + 3 * x - 10, L = x => 2 * x + 4; const D = x => P(x) - L(x); const C = D(0), A = (D(1) + D(-1) - 2 * C) / 2, B = (D(1) - D(-1)) / 2; const sx = B / A; return 2 * sx + 2 * L(0);",
-   "-1": "const P = x => x * x + 3 * x - 10, L = x => 2 * x + 4; const D = x => P(x) - L(x); const C = D(0), A = (D(1) + D(-1) - 2 * C) / 2, B = (D(1) - D(-1)) / 2; return -B / A;",
-   "-14": "const P = x => x * x + 3 * x - 10, L = x => 2 * x + 4; const D = x => P(x) - L(x); const C = D(0), A = (D(1) + D(-1) - 2 * C) / 2; return C / A;"
-  }
- },
- {
   "id": "SM17A-A8",
   "domain": "Advanced Math",
   "subskill": "Factor theorem chained to remainder theorem",
@@ -151,28 +107,6 @@
    "30": "const M = [[4, 2], [1, -1]], v = [-4, -16]; const det = M[0][0] * M[1][1] - M[0][1] * M[1][0]; const a = (v[0] * M[1][1] - M[0][1] * v[1]) / det; const b = (M[0][0] * v[1] - v[0] * M[1][0]) / det; return 2 * 27 + a * 9 + b * 3;",
    "66": "const a = 6, b = -10; return 2 * 27 + a * 9 + b * 3 - 12;",
    "-42": "const M = [[4, 2], [1, -1]], v = [-4, -16]; const det = M[0][0] * M[1][1] - M[0][1] * M[1][0]; const a = (v[0] * M[1][1] - M[0][1] * v[1]) / det; const b = (M[0][0] * v[1] - v[0] * M[1][0]) / det; return 2 * 27 + a * 9 - b * 3 - 12;"
-  }
- },
- {
-  "id": "SM17A-B1",
-  "domain": "Advanced Math",
-  "subskill": "Quadratic from zeros and an extreme value",
-  "difficulty": "medium",
-  "prompt": "The graph of the quadratic function f(x) = ax^2 + bx + c crosses the x-axis at (-2, 0) and (3, 0), and the minimum value of f is -150. What is the value of a?",
-  "choices": [
-   "6",
-   "24",
-   "25",
-   "60"
-  ],
-  "correct_answer": "24",
-  "explanation": "The axis of symmetry is midway between the zeros, at x = (-2 + 3)/2 = 0.5, so the vertex is (0.5, -150) and f(x) = a(x - 0.5)^2 - 150. Substituting the zero x = -2 gives 0 = a(-2.5)^2 - 150 = 6.25a - 150, so a = 150/6.25 = 24. DISTRACTORS. \"25\": reads \"minimum value -150\" as the y-intercept, so f(0) = a(0 + 2)(0 - 3) = -6a = -150 and a = 150/6 = 25. \"60\": sets up the vertex form correctly but never squares the horizontal distance, solving a(2.5) = 150 to get a = 60. \"6\": uses the distance between the two zeros, 5, in place of the distance from the vertex to a zero, solving a(5)^2 = 150 to get a = 6.",
-  "bounds": [],
-  "solve": "const h = (-2 + 3) / 2; const d = h - (-2); return 150 / (d * d);",
-  "distractor_solve": {
-   "6": "return 150 / (5 * 5);",
-   "25": "return 150 / 6;",
-   "60": "return 150 / 2.5;"
   }
  },
  {
@@ -198,50 +132,6 @@
   }
  },
  {
-  "id": "SM17A-B3",
-  "domain": "Advanced Math",
-  "subskill": "Rational exponent on a linear argument",
-  "difficulty": "easy",
-  "prompt": "If (x - 7)^(3/2) = 125 and x > 7, what is the value of x?",
-  "choices": [
-   "12",
-   "18",
-   "25",
-   "32"
-  ],
-  "correct_answer": "32",
-  "explanation": "Raise both sides to the reciprocal power 2/3: x - 7 = 125^(2/3) = (125^(1/3))^2 = 5^2 = 25. Then x = 32. Check: (32 - 7)^(3/2) = 25^(3/2) = 5^3 = 125.",
-  "bounds": [],
-  "solve": "const t = Math.round(Math.cbrt(125)); return t * t + 7;",
-  "distractor_solve": {
-   "12": "const t = Math.round(Math.cbrt(125)); return t + 7;",
-   "18": "const t = Math.round(Math.cbrt(125)); return t * t - 7;",
-   "25": "const t = Math.round(Math.cbrt(125)); return t * t;"
-  }
- },
- {
-  "id": "SM17A-B4",
-  "domain": "Advanced Math",
-  "subskill": "Exponential model from two separated values",
-  "difficulty": "medium",
-  "prompt": "A colony of bacteria is modeled by P(t) = a*b^t, where P(t) is the number of cells t hours after the colony is established and a and b are constants. The model gives P(1) = 24 and P(4) = 648. According to the model, what is P(3)?",
-  "choices": [
-   "72",
-   "216",
-   "440",
-   "492"
-  ],
-  "correct_answer": "216",
-  "explanation": "Dividing the two given values eliminates a: P(4)/P(1) = b^3 = 648/24 = 27, so b = 3. Then P(3) = P(4)/b = 648/3 = 216 (equivalently P(1)*b^2 = 24*9 = 216).",
-  "bounds": [],
-  "solve": "const b = Math.cbrt(648 / 24); return 648 / b;",
-  "distractor_solve": {
-   "72": "const b = Math.cbrt(648 / 24); return 24 * b;",
-   "440": "const m = (648 - 24) / 3; return 24 + 2 * m;",
-   "492": "const m = (648 - 24) / 4; return 24 + 3 * m;"
-  }
- },
- {
   "id": "SM17A-B5",
   "domain": "Advanced Math",
   "subskill": "Cubic zeros and pairwise products",
@@ -261,28 +151,6 @@
    "27": "const r = 2, s = 3, t = 7; return r * s + s * t;",
    "29": "const r = -1, s = 6, t = 7; return r * s + r * t + s * t;",
    "44": "const r = 2, s = 4, t = 6; return r * s + r * t + s * t;"
-  }
- },
- {
-  "id": "SM17A-B6",
-  "domain": "Advanced Math",
-  "subskill": "Piecewise function through an input transformation",
-  "difficulty": "medium",
-  "prompt": "The function f is defined by f(x) = 3x^2 - 5 for x <= 1 and by f(x) = 12 - 5x for x > 1. The function g is defined by g(x) = f(3x - 8). What is the value of g(3)?",
-  "choices": [
-   "-41",
-   "-3",
-   "-2",
-   "7"
-  ],
-  "correct_answer": "-2",
-  "explanation": "First evaluate the input to f: 3(3) - 8 = 1. Because 1 satisfies x <= 1, the first rule applies, so g(3) = f(1) = 3(1)^2 - 5 = -2. The input lands exactly on the boundary, and the boundary belongs to the quadratic rule. DISTRACTORS. \"7\": reaches the input 1 correctly but applies the second rule there, computing 12 - 5(1) = 7; that rule is defined only for x > 1. \"-3\": ignores the transformation and evaluates f at the outer input, f(3) = 12 - 5(3) = -3, since 3 > 1. \"-41\": reads the definition as g(x) = f(3x) - 8, computing f(9) - 8 = (12 - 45) - 8 = -41.",
-  "bounds": [],
-  "solve": "const f = (x) => (x <= 1 ? 3 * x * x - 5 : 12 - 5 * x); return f(3 * 3 - 8);",
-  "distractor_solve": {
-   "7": "return 12 - 5 * 1;",
-   "-3": "const f = (x) => (x <= 1 ? 3 * x * x - 5 : 12 - 5 * x); return f(3);",
-   "-41": "const f = (x) => (x <= 1 ? 3 * x * x - 5 : 12 - 5 * x); return f(3 * 3) - 8;"
   }
  },
  {
