@@ -1,0 +1,310 @@
+[
+ {
+  "id": "SM18A-A1",
+  "domain": "Advanced Math",
+  "subskill": "Quartic in x² as a quadratic: parameter value where the count of real solutions changes",
+  "difficulty": "hard",
+  "prompt": "x⁴ − 12x² + m = 0\n\nIn the equation above, m is a positive constant. For which value of m does the equation have exactly two distinct real solutions?",
+  "choices": [
+   "20",
+   "27",
+   "30",
+   "36"
+  ],
+  "correct_answer": "36",
+  "explanation": "Let t = x², so the equation becomes t² − 12t + m = 0 with t ≥ 0. Each positive value of t gives two real solutions, x = ±√t, so exactly two distinct real solutions means exactly ONE positive value of t. With m > 0 the two t-roots have the same sign (their product is m), so the only way to get one positive t is a repeated root: discriminant 144 − 4m = 0, giving m = 36. Check: x⁴ − 12x² + 36 = (x² − 6)², whose only solutions are x = ±√6, two of them. Equivalently, x² = 6 ± √(36 − m), and the ± collapses only when 36 − m = 0. The value 20 gives t² − 12t + 20 = (t − 2)(t − 10), two positive values of x² and therefore four real solutions, x = ±√2 and ±√10; treating the two t-values as the two solutions produces it. The value 27 gives t² − 12t + 27 = (t − 3)(t − 9), again two positive values of x² and four real solutions, ±√3 and ±3; it comes from the same miscount. The value 30 comes from setting the radicand 36 − m equal to 6, the repeated value of x², instead of equal to 0; at m = 30, x² = 6 ± √6 gives four real solutions.",
+  "bounds": [],
+  "solve": "return 12*12/4;",
+  "distractor_solve": {
+   "20": "return 2*10;",
+   "27": "return 3*9;",
+   "30": "return 36-6;"
+  }
+ },
+ {
+  "id": "SM18A-A2",
+  "domain": "Advanced Math",
+  "subskill": "Exponential: per-interval percent change to a per-unit factor, fractional time",
+  "difficulty": "hard",
+  "prompt": "The value of an investment increases by 33.1% every 3 months, and the growth is exponential. The investment was worth $2,000 at the start. Which of the following expressions gives the value of the investment, in dollars, 5 months after the start?",
+  "choices": [
+   "2000(1 + 0.331 · 5/3)",
+   "2000(1.1)^3(1.2)",
+   "2000(1.1)^5",
+   "2000(1 + 0.331/3)^5"
+  ],
+  "correct_answer": "2000(1.1)^5",
+  "explanation": "Exponential growth by 33.1% every 3 months means the value is multiplied by 1.331 for each 3-month interval, so after t months it is 2000(1.331)^(t/3). The monthly factor r satisfies r³ = 1.331, and 1.1³ = 1.331, so r = 1.1: the value grows 10% per month, and 5 months after the start it is 2000(1.331)^(5/3) = 2000(1.1)^5. The expression 2000(1 + 0.331 · 5/3) treats the growth as linear, adding five thirds of 33.1% of the starting value. The expression 2000(1.1)^3(1.2) compounds 10% per month for the first 3 months and then adds two months of simple 10% interest instead of continuing to compound. The expression 2000(1 + 0.331/3)^5 divides 33.1% by 3 to get a monthly rate of about 11.03%, but a rate that compounds three times to 33.1% is 10% per month, not 33.1%/3, since (1 + 0.331/3)³ ≈ 1.371, not 1.331.",
+  "bounds": [],
+  "solve": "return 2000*Math.pow(1.1,5);",
+  "distractor_solve": {
+   "2000(1 + 0.331 · 5/3)": "return 2000*(1+0.331*5/3);",
+   "2000(1.1)^3(1.2)": "return 2000*Math.pow(1.1,3)*1.2;",
+   "2000(1 + 0.331/3)^5": "return 2000*Math.pow(1+0.331/3,5);"
+  }
+ },
+ {
+  "id": "SM18A-A3",
+  "domain": "Advanced Math",
+  "subskill": "Remainder theorem twice (one divisor 2x + 2) pins two coefficients; a third remainder",
+  "difficulty": "hard",
+  "prompt": "p(x) = x³ + ax² + bx − 11\n\nIn the polynomial above, a and b are constants. When p(x) is divided by x − 2, the remainder is −21. When p(x) is divided by 2x + 2, the remainder is −18. What is the remainder when p(x) is divided by x − 3?",
+  "choices": [
+   "−26",
+   "−17",
+   "−14",
+   "−4"
+  ],
+  "correct_answer": "−26",
+  "explanation": "By the remainder theorem, dividing by x − 2 gives remainder p(2) = 8 + 4a + 2b − 11 = −21, so 4a + 2b = −18, or 2a + b = −9. The divisor 2x + 2 is zero at x = −1, and the remainder on dividing by 2x + 2 is still p(−1) (the constant factor 2 in the divisor does not change the remainder), so −1 + a − b − 11 = −18 gives a − b = −6. Adding 2a + b = −9 and a − b = −6 gives 3a = −15, so a = −5 and b = 1. Then p(x) = x³ − 5x² + x − 11 and the remainder on dividing by x − 3 is p(3) = 27 − 45 + 3 − 11 = −26. The value −14 comes from solving 2x + 2 = 0 as x = 1 instead of x = −1, which gives a = −1 and b = −7. The value −17 comes from halving the remainder to −9 because the divisor was doubled, which gives a = −2 and b = −5. The value −4 is a + b, the sum of the two constants, not the remainder.",
+  "bounds": [],
+  "solve": "return 27+(-5)*9+1*3-11;",
+  "distractor_solve": {
+   "−14": "return 27+(-1)*9+(-7)*3-11;",
+   "−17": "return 27+(-2)*9+(-5)*3-11;",
+   "−4": "return -5+1;"
+  }
+ },
+ {
+  "id": "SM18A-A4",
+  "domain": "Advanced Math",
+  "subskill": "Rational equation with a parameter: no solution when the candidate is the excluded value",
+  "difficulty": "hard",
+  "prompt": "(5x − 9)/(x − 4) + 3 = k/(x − 4)\n\nIn the equation above, k is a constant. For which value of k does the equation have no solution?",
+  "choices": [
+   "−53",
+   "−21",
+   "11",
+   "23"
+  ],
+  "correct_answer": "11",
+  "explanation": "The equation is undefined at x = 4, so any solution must satisfy x ≠ 4. Multiplying both sides by x − 4 gives 5x − 9 + 3(x − 4) = k, so 8x − 21 = k and x = (k + 21)/8. This produces one candidate for every k, and the candidate is a solution unless it is the excluded value: (k + 21)/8 = 4 when k + 21 = 32, that is, k = 11. For k = 11 the only candidate is x = 4, where both denominators are zero, so the equation has no solution; for every other value of k the candidate is a valid solution. The value −21 comes from setting k + 21 = 0, which makes the candidate x = 0, a valid solution. The value 23 comes from multiplying 3 by x instead of by x − 4, so that 8x − 9 = k at x = 4. The value −53 comes from taking the excluded value to be x = −4 instead of x = 4, so that 8(−4) − 21 = k.",
+  "bounds": [],
+  "solve": "return 8*4-21;",
+  "distractor_solve": {
+   "23": "return 8*4-9;",
+   "−21": "return 8*0-21;",
+   "−53": "return 8*(-4)-21;"
+  }
+ },
+ {
+  "id": "SM18A-A5",
+  "domain": "Advanced Math",
+  "subskill": "Line tangent to a circle with unknown center; second tangency value rejected by a y-axis condition",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of the equation\n(x - a)^2 + (y + 9)^2 = 50\nis a circle that intersects the y-axis, where a is a constant. The circle and the line with equation\ny = x - 3\nintersect at exactly one point. What is the value of a?",
+  "choices": [
+   "-16",
+   "-6",
+   "2",
+   "4"
+  ],
+  "correct_answer": "4",
+  "explanation": "Substitute y = x - 3 into the circle: (x - a)^2 + (x + 6)^2 = 50, which simplifies to 2x^2 - 2(a - 6)x + (a^2 - 14) = 0. Exactly one intersection means the discriminant is zero: 4(a - 6)^2 - 8(a^2 - 14) = 0, so a^2 + 12a - 64 = 0 and (a + 16)(a - 4) = 0. Both a = 4 and a = -16 make the line tangent, so the y-axis condition decides. The radius is sqrt(50), about 7.07, so the circle reaches the y-axis only if the center's x-coordinate satisfies |a| <= 7.07. For a = 4 the circle spans x from about -3.07 to 11.07, which includes x = 0, so it intersects the y-axis; for a = -16 it spans x from about -23.07 to -8.93 and never reaches the y-axis. Therefore a = 4. The value -16 is the other tangency value, kept only if the y-axis condition is ignored. The value -6 comes from placing the center on the line (solving -9 = a - 3, that is, distance 0 from center to line) instead of one radius away from it; that circle meets the line at two points. The value 2 comes from reading the center as (a, 9) instead of (a, -9) in the distance formula, which gives |a - 12| = 10 and the in-range value 2.",
+  "bounds": [],
+  "solve": "const r=Math.sqrt(50); const disc=Math.sqrt(12*12+4*64); const roots=[(-12-disc)/2,(-12+disc)/2]; return roots.filter(a=>Math.abs(a)<=r)[0];",
+  "distractor_solve": {
+   "2": "return 12-10;",
+   "-16": "return (-12-Math.sqrt(12*12+4*64))/2;",
+   "-6": "return -9+3;"
+  }
+ },
+ {
+  "id": "SM18A-A6",
+  "domain": "Advanced Math",
+  "subskill": "Radical equation with a common radical factor: root lost by dividing, extraneous root; sum",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all real solutions to the equation\n(x - 1)*sqrt(2x + 14) = 6x + 42 ?",
+  "choices": [
+   "13",
+   "18",
+   "25",
+   "27"
+  ],
+  "correct_answer": "18",
+  "explanation": "Because 6x + 42 = 3(2x + 14), the right side is 3 times the square of sqrt(2x + 14). Let u = sqrt(2x + 14), with u >= 0. The equation becomes (x - 1)u = 3u^2, so u[(x - 1) - 3u] = 0. Either u = 0, giving 2x + 14 = 0 and x = -7 (check: 0 = 0), or x - 1 = 3u, which requires x >= 1. Squaring x - 1 = 3 sqrt(2x + 14) gives x^2 - 2x + 1 = 18x + 126, so x^2 - 20x - 125 = 0 and (x - 25)(x + 5) = 0. The value x = 25 works: 24 * 8 = 192 = 6(25) + 42. The value x = -5 is extraneous: the left side is (-6)(2) = -12 while the right side is 12. The real solutions are -7 and 25, and their sum is 18. Note that 18 is not itself a solution; testing the options in the equation does not find the sum. The value 13 comes from adding all three roots of the squared equation, -7 + (-5) + 25, without checking for the extraneous root. The value 25 comes from dividing both sides by sqrt(2x + 14) at the start, which discards the solution x = -7, and then correctly rejecting -5. The value 27 comes from solving 2x + 14 = 0 as x = 7 instead of x = -7 and adding all three roots without checking, 7 + (-5) + 25.",
+  "bounds": [],
+  "solve": "const cands=[-7,-5,25]; return cands.filter(x=>2*x+14>=0 && Math.abs((x-1)*Math.sqrt(2*x+14)-(6*x+42))<1e-9).reduce((s,x)=>s+x,0);",
+  "distractor_solve": {
+   "13": "return -7+(-5)+25;",
+   "25": "return 25;",
+   "27": "return 7+(-5)+25;"
+  }
+ },
+ {
+  "id": "SM18A-A7",
+  "domain": "Advanced Math",
+  "subskill": "Composition f(g(x)) with g tabulated: recover linear f from two rows, evaluate a third",
+  "difficulty": "hard",
+  "prompt": "The table gives six values of the function g.\nx | g(x)\n1 | 5\n3 | 1\n4 | 7\n6 | 14\n8 | 9\n9 | 4\nThe function f is defined by\nf(x) = ax + b,\nwhere a and b are constants. If f(g(3)) = 15 and f(g(6)) = 93, what is the value of f(g(4)) ?",
+  "choices": [
+   "33",
+   "41",
+   "51",
+   "63"
+  ],
+  "correct_answer": "51",
+  "explanation": "Read the outputs first. From the table, g(3) = 1 and g(6) = 14, so the two given values say f(1) = 15 and f(14) = 93. Since f is linear, a = (93 - 15)/(14 - 1) = 78/13 = 6, and then b = 15 - 6(1) = 9, so f(x) = 6x + 9. Now g(4) = 7, so f(g(4)) = f(7) = 6(7) + 9 = 51. The value 41 comes from feeding the x-values instead of the g-values into f: treating the givens as f(3) = 15 and f(6) = 93 gives a = 26 and b = -63, and then f(4) = 41. The value 33 comes from finding f correctly but then evaluating f at 4 itself, 6(4) + 9, instead of at g(4) = 7. The value 63 comes from matching 4 in the g(x) column instead of the x column: the row with g(x) = 4 is x = 9, and f(9) = 63.",
+  "bounds": [],
+  "solve": "const g={1:5,3:1,4:7,6:14,8:9,9:4}; const a=(93-15)/(g[6]-g[3]); const b=15-a*g[3]; return a*g[4]+b;",
+  "distractor_solve": {
+   "33": "return 6*4+9;",
+   "41": "const a=(93-15)/(6-3); const b=15-a*3; return a*4+b;",
+   "63": "const g={1:5,3:1,4:7,6:14,8:9,9:4}; const x=Object.keys(g).map(Number).find(x=>g[x]===4); return 6*x+9;"
+  }
+ },
+ {
+  "id": "SM18A-B1",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic in context: time to reach a non-zero level below launch height, negative root rejected",
+  "difficulty": "hard",
+  "prompt": "A projectile is launched upward from a cliff. Its height above the ground, in feet, t seconds after launch is given by\nh(t) = −16t² + 80t + 576\nThe projectile lands on a ledge whose height above the ground is 480 feet. How many seconds after launch does the projectile land on the ledge?",
+  "choices": [
+   "1",
+   "2.5",
+   "6",
+   "9"
+  ],
+  "correct_answer": "6",
+  "explanation": "Set h(t) = 480: −16t² + 80t + 576 = 480, so −16t² + 80t + 96 = 0. Dividing by −16 gives t² − 5t − 6 = 0, which factors as (t − 6)(t + 1) = 0, so t = 6 or t = −1. A time before launch is impossible, so the projectile is at 480 feet only once, on the way down, at t = 6. (Because 480 feet is below the 576-foot launch height, the projectile never passes that height while rising, which is why the other root is negative rather than a second landing time.) The value 1 comes from a sign slip in the factor (t + 1), reading it as t = 1. The value 2.5 is the time of maximum height, −80/(2·(−16)), not the landing time. The value 9 comes from solving h(t) = 0, the time the projectile would reach the ground if the ledge were not in the way.",
+  "bounds": [],
+  "solve": "return (5 + Math.sqrt(25 + 4*6)) / 2;",
+  "distractor_solve": {
+   "1": "return -((5 - Math.sqrt(25 + 4*6)) / 2);",
+   "9": "return (5 + Math.sqrt(25 + 4*36)) / 2;",
+   "2.5": "return 80/(2*16);"
+  }
+ },
+ {
+  "id": "SM18A-B2",
+  "domain": "Advanced Math",
+  "subskill": "Exponential equation: matching the unrelated-looking bases 8 and 1/4 with linear exponents",
+  "difficulty": "hard",
+  "prompt": "What value of x satisfies the equation below?\n8^(x − 1) = (1/4)^(x − 31)",
+  "choices": [
+   "6.8",
+   "8.5",
+   "11",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Both bases are powers of 2: 8 = 2³ and 1/4 = 2⁻². The left side is 2^(3x − 3); the right side is 2^(−2(x − 31)) = 2^(−2x + 62). Equal powers of 2 have equal exponents, so 3x − 3 = −2x + 62, giving 5x = 65 and x = 13. Check: 8¹² = 2³⁶ and (1/4)⁻¹⁸ = 4¹⁸ = 2³⁶. The value 6.8 comes from applying the −2 only to the x and not to the 31, writing the right side as 2^(−2x + 31), which gives 3x − 3 = −2x + 31. The value 8.5 comes from writing 1/4 as 2⁻¹ instead of 2⁻², which gives 3x − 3 = −x + 31. The value 11 comes from writing 8 as 4² so that the equation becomes 4^(2x − 2) = 4^(−(x − 31)) and 2x − 2 = −x + 31.",
+  "bounds": [],
+  "solve": "return (62 + 3) / 5;",
+  "distractor_solve": {
+   "11": "return (31 + 2) / 3;",
+   "6.8": "return (31 + 3) / 5;",
+   "8.5": "return (31 + 3) / 4;"
+  }
+ },
+ {
+  "id": "SM18A-B3",
+  "domain": "Advanced Math",
+  "subskill": "Sum and product of roots with a parameter: one root triple the other, signs decide",
+  "difficulty": "hard",
+  "prompt": "The equation\n3x² + (k − 15)x + (2k − 10) = 0\nwhere k is a constant, has two real solutions. Both solutions are negative, and one solution is three times the other. What is the value of k?",
+  "choices": [
+   "7",
+   "23",
+   "25",
+   "55"
+  ],
+  "correct_answer": "55",
+  "explanation": "Let the solutions be r and 3r, and write m = k − 15 so that the constant term 2k − 10 equals 2m + 20. The sum of the solutions is 4r = −m/3, so r = −m/12, and their product is 3r² = (2m + 20)/3, so 9r² = 2m + 20. Substituting r = −m/12 gives m²/16 = 2m + 20, that is, m² − 32m − 320 = 0, which factors as (m − 40)(m + 8) = 0. Both m = 40 and m = −8 make one solution three times the other, so the sign condition must decide. m = −8 means k = 7, and the equation becomes 3x² − 8x + 4 = (3x − 2)(x − 2) = 0, whose solutions 2/3 and 2 are positive, so k = 7 is rejected. m = 40 means k = 55, and the equation becomes 3x² + 40x + 100 = (3x + 10)(x + 10) = 0, with solutions −10/3 and −10, both negative. So k = 55. The value 7 is the candidate that gives two positive solutions; it is the answer only if the condition that both solutions are negative is ignored. The value 23 comes from using r + 3r = −(k − 15) for the sum instead of −(k − 15)/3, which leads to 9m² − 32m − 320 = 0 and m = 8. The value 25 comes from finding m = 40 correctly and then computing k as 40 − 15 instead of 40 + 15.",
+  "bounds": [],
+  "solve": "const m = (32 + Math.sqrt(32*32 + 4*320)) / 2; return m + 15;",
+  "distractor_solve": {
+   "7": "const m = (32 - Math.sqrt(32*32 + 4*320)) / 2; return m + 15;",
+   "23": "const m = (32 + Math.sqrt(32*32 + 4*9*320)) / 18; return m + 15;",
+   "25": "const m = (32 + Math.sqrt(32*32 + 4*320)) / 2; return m - 15;"
+  }
+ },
+ {
+  "id": "SM18A-B4",
+  "domain": "Advanced Math",
+  "subskill": "Rational equation with a parameter: two ways to have no solution, combined",
+  "difficulty": "hard",
+  "prompt": "In the equation below, k is a constant.\n(kx)/(x − 3) = (5x)/(x − 3) + 7\nThere are exactly two values of k for which the equation has no solution. What is the sum of these two values?",
+  "choices": [
+   "17",
+   "19",
+   "31",
+   "60"
+  ],
+  "correct_answer": "17",
+  "explanation": "The value x = 3 is excluded because it makes the denominators zero. For x ≠ 3, multiplying both sides by (x − 3) gives kx = 5x + 7(x − 3) = 12x − 21, so (k − 12)x = −21. There are two ways for this to have no solution. If k = 12, the equation becomes 0 = −21, which is false for every x. If k ≠ 12, the only candidate is x = −21/(k − 12) = 21/(12 − k), and it fails exactly when it is the excluded value: 21/(12 − k) = 3 gives 12 − k = 7 and k = 5. (Check: with k = 5 the equation reads (5x)/(x − 3) = (5x)/(x − 3) + 7, which would require 0 = 7.) For every other k the candidate is a valid solution. So the two values are 12 and 5, and their sum is 17. The value 19 comes from a sign error, distributing 7 over (x − 3) as 7x + 21 so that the excluded-value case gives k = 19, and then forgetting the k = 12 case. The value 31 comes from the same sign error while still including k = 12: 12 + 19. The value 60 is the product of the two values, 12 × 5, instead of their sum.",
+  "bounds": [],
+  "solve": "const k1 = 5 + 7; const k2 = k1 - 21/3; return k1 + k2;",
+  "distractor_solve": {
+   "19": "return 12 + 21/3;",
+   "31": "return 12 + (12 + 21/3);",
+   "60": "return 12 * (12 - 21/3);"
+  }
+ },
+ {
+  "id": "SM18A-B5",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial from graph description: touching zero has multiplicity 2, evaluate elsewhere",
+  "difficulty": "hard",
+  "prompt": "The graph of the polynomial function f in the xy-plane touches the x-axis at x = 3 without crossing it, crosses the x-axis at x = −2 and at x = −1, and has no other x-intercepts. The y-intercept of the graph is (0, −6), and f has the least possible degree for such a graph. What is the value of f(1)?",
+  "choices": [
+   "−32",
+   "−18",
+   "−12",
+   "−8"
+  ],
+  "correct_answer": "−8",
+  "explanation": "A zero where the graph touches without crossing has even multiplicity, so with the least possible degree the zero at 3 has multiplicity 2 and the others have multiplicity 1: f(x) = a(x − 3)²(x + 2)(x + 1). Using f(0) = −6: a(9)(2)(1) = 18a = −6, so a = −1/3. Then f(1) = (−1/3)(1 − 3)²(1 + 2)(1 + 1) = (−1/3)(4)(3)(2) = −8. The value −12 comes from ignoring the multiplicity and using f(x) = a(x − 3)(x + 2)(x + 1), which gives a = 1 and f(1) = −12. The value −18 comes from placing the double zero at −2 instead of at 3, f(x) = a(x − 3)(x + 2)²(x + 1), which gives a = 1/2 and f(1) = −18. The value −32 comes from writing the touching factor as (x + 3)² instead of (x − 3)², which still gives a = −1/3 but f(1) = −32.",
+  "bounds": [],
+  "solve": "const a = -6 / ((0-3)**2 * (0+2) * (0+1)); return a * (1-3)**2 * (1+2) * (1+1);",
+  "distractor_solve": {
+   "−12": "const a = -6 / ((0-3) * (0+2) * (0+1)); return a * (1-3) * (1+2) * (1+1);",
+   "−18": "const a = -6 / ((0-3) * (0+2)**2 * (0+1)); return a * (1-3) * (1+2)**2 * (1+1);",
+   "−32": "const a = -6 / ((0+3)**2 * (0+2) * (0+1)); return a * (1+3)**2 * (1+2) * (1+1);"
+  }
+ },
+ {
+  "id": "SM18A-B6",
+  "domain": "Advanced Math",
+  "subskill": "Absolute value of a quadratic: k with exactly three solutions, sum of solutions",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = |(x + 3)(x − 11)|. There is exactly one value of the constant k for which the equation f(x) = k has exactly three real solutions. What is the sum of those three solutions?",
+  "choices": [
+   "4",
+   "12",
+   "16",
+   "49"
+  ],
+  "correct_answer": "12",
+  "explanation": "Write p(x) = (x + 3)(x − 11) = x² − 8x − 33, a parabola opening upward with vertex at x = 4, where p(4) = 7 · (−7) = −49. The graph of f is the graph of p with the part below the x-axis reflected upward, so it has a hump of height 49 at x = 4. For k > 0, f(x) = k means p(x) = k or p(x) = −k. The equation p(x) = k always has two solutions (one on each side of the hump). The equation p(x) = −k has two solutions when 0 < k < 49, exactly one when k = 49 (the vertex), and none when k > 49. So exactly three solutions occur only when k = 49. Those solutions are x = 4 (from p(x) = −49, which is (x − 4)² = 0) and the two solutions of x² − 8x − 33 = 49, that is, x² − 8x − 82 = 0, whose sum is 8 by Vieta. The total is 4 + 8 = 12. (Equivalently, all three solutions are symmetric about the axis x = 4, so their sum is 3 · 4 = 12.) The value 4 is only the middle solution, the x-coordinate of the vertex, not the sum. The value 16 comes from treating p(x) = k and p(x) = −k as each contributing two solutions with sum 8, giving 8 + 8, instead of recognizing that the second equation has one repeated solution. The value 49 is k itself, the height of the hump, not the sum of the solutions.",
+  "bounds": [],
+  "solve": "const h = (-3 + 11) / 2; const outerSum = 11 - 3; return h + outerSum;",
+  "distractor_solve": {
+   "4": "return (-3 + 11) / 2;",
+   "16": "return 2 * (-3 + 11);",
+   "49": "const h = (-3 + 11) / 2; return Math.abs((h + 3) * (h - 11));"
+  }
+ },
+ {
+  "id": "SM18A-B7",
+  "domain": "Advanced Math",
+  "subskill": "Equivalent forms: vertex y-coordinate from intercept spacing and axis of symmetry",
+  "difficulty": "hard",
+  "prompt": "The function g is defined by g(x) = 3x² − 18x + c, where c is a constant. In the xy-plane, the graph of y = g(x) has two x-intercepts that are 5 units apart. What is the y-coordinate of the vertex of the graph?",
+  "choices": [
+   "−27",
+   "−24.25",
+   "−18.75",
+   "−7.5"
+  ],
+  "correct_answer": "−18.75",
+  "explanation": "The axis of symmetry is x = −(−18)/(2 · 3) = 3, and the vertex lies on it. The two x-intercepts are symmetric about x = 3 and 5 units apart, so they are at 3 − 2.5 = 0.5 and 3 + 2.5 = 5.5. The factored form is therefore g(x) = 3(x − 0.5)(x − 5.5), and the vertex has y-coordinate g(3) = 3(2.5)(−2.5) = −18.75. (Equivalently, c = 3(0.5)(5.5) = 8.25 and g(3) = 27 − 54 + 8.25 = −18.75. In general the vertex sits a · (half the intercept spacing)² below the x-axis: 3 · 2.5² = 18.75.) The value −27 is g(3) with the constant c left out, 27 − 54, as if c were 0; but then the zeros would be 0 and 6, which are 6 units apart. The value −24.25 comes from writing the spacing formula as (x₁ − x₂)² = 36 − 4c instead of 36 − 4c/3, which gives c = 2.75 and then g(3) = c − 27 = −24.25. The value −7.5 comes from using 3 · 2.5 instead of 3 · 2.5² for the depth of the vertex.",
+  "bounds": [],
+  "solve": "const h = 18 / (2*3); const z1 = h - 5/2, z2 = h + 5/2; return 3 * (h - z1) * (h - z2);",
+  "distractor_solve": {
+   "−27": "return 3*3*3 - 18*3;",
+   "−24.25": "const c = (36 - 25) / 4; return c - 27;",
+   "−7.5": "return -3 * (5/2);"
+  }
+ }
+]

@@ -1,0 +1,58 @@
+{
+  "SM18A-A1": {
+    "my_answer": "36",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "Printed numbers: 12 (coefficient), 4 and 2 (exponents). Options 6, 20, 36, 144. 144 = 12^2: a printed constant SQUARED and the visibly naive b^2 - m = 0 answer -> struck. 6 = 12/2: half the printed constant, and it is the repeated x^2 value (the other role), not a plausible m for anyone who has written t^2 - 12t + m -> struck. 36 = 6^2 = 12^2/4 and 144 = 4*36: the 6/36/144 family is all built from 12; 20 is the only option outside the family, so the outlier is a distractor here, not the key. Sign: m > 0 satisfied by all. Adjacency: none. Left with 20 vs 36 with no arithmetic.",
+    "n_struck": 2,
+    "insight_bypassable": true,
+    "difficulty": "medium",
+    "path_coherent": true,
+    "representation_ok": true,
+    "on_blueprint": "needs ruling",
+    "note": "Solved: t = x^2, t^2 - 12t + m = 0; both t-roots positive when real (sum 12, product m > 0), so exactly two x-solutions needs a double root, 144 - 4m = 0, m = 36. Key correct and unique. Bypass: in Desmos type x^4 - 12x^2 + m with a slider for m and drag until the W just touches the axis, or graph the four candidate m and count intercepts; either reaches 36 with no discriminant and no same-sign argument. The intended decision point (two positive t give FOUR x, so the count changes only at the double root) is exactly what the slider shows for free. Difficulty medium: the 'exactly one solution -> discriminant zero' reflex is drilled on the hard route; the x^2 substitution is the only added step. Blueprint: Advanced Math does ask 'for what value of the constant does the equation have exactly one/two solutions', but a quartic-in-x^2 with a count-of-real-solutions framing is not a form I have seen on released Digital SAT modules; needs the standing ruling. Repair if kept: replace 144 with 27 (t^2 - 12t + 27 = (t-3)(t-9), two positive t, four solutions; error path 'chose the m that makes the t-roots integers / distinct real roots'). Check: 27 is not a printed number, not 12-related, not a square, not a sum/difference/product/ratio of 6, 20, 36 (6+20=26, 36-6=30, 36-20=16, 6*20=120), no +/- pair, no adjacency. That still leaves 6 = 12/2 as a weak option; replacing 6 with 32 (disc 16, t = 4 and 8, four solutions; 'set the discriminant to a perfect square') would leave 20, 27, 32, 36 with 36 no longer the square of a sibling. Neither repair fixes the Desmos bypass; the item stays medium."
+  },
+  "SM18A-A2": {
+    "my_answer": "3221",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "Printed numbers: 33.1, 3, 2000, 5. Options 3103, 3221, 3249, 3375. No option is a printed number, a printed square, or a sum/difference/product/ratio of printed numbers (2000*1.331 = 2662, 2000*1.662 = 3324 are absent). No sign or bound help: all four lie between the 3-month value 2662 and the 6-month value 3543, which a student cannot place without arithmetic anyway. No +/- pair, no closure among options (3103+3221 etc. irrelevant). 3375 = 15^3 is a coincidence, not a tell. Only candidate strike: 3103 as the visibly linear/naive answer (smallest, the one a 'multiply the rate by 5/3' student produces); a savvy student who knows the word 'exponential' is the trap will discard the minimum. Counting that as one soft strike.",
+    "n_struck": 1,
+    "insight_bypassable": true,
+    "difficulty": "medium",
+    "path_coherent": true,
+    "representation_ok": true,
+    "on_blueprint": true,
+    "note": "Solved: 2000 * 1.331^(5/3); 1.331 = 1.1^3 so 2000 * 1.1^5 = 3221.02 -> 3221. Key correct. The 'insight' (recognising 1.331 as 1.1^3) is a shortcut, not a decision point: the Digital SAT calculator is always available, and 2000*1.331^(5/3) typed straight into Desmos returns 3221.02. A student who knows nothing about cube roots but knows 'rate per 3 months means exponent t/3' reaches the key by one keystroke sequence. Also, 33.1 is a designed number that announces itself: any hard-route student who has seen 1.331 once knows it is 1.1^3. Difficulty medium: the fractional-period exponential is a real Advanced Math hard-route construct on released modules, but those items usually ask for the equivalent rate or the exponent form (where the option set is expressions and the calculator cannot decide it), not a dollar value. Distractor paths verified: 3103 = 2000(1 + 0.331*5/3) = 3103.3; 3249 = 2662 * 1.22067 = 3249.4; 3375 = 2000 * 1.11033^5 = 3374.9. All reproduce. Blueprint fine. No repair to the numbers; if the batch needs this to be hard, re-author so the options are expressions (e.g. which of these equals the value after t months) so that the calculator cannot evaluate them and the 1.1 per month recognition becomes the gate."
+  },
+  "SM18A-A3": {
+    "my_answer": "−26",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "Printed numbers: 1 (leading), 11, 2, −21, 2, 2, −18, 3. Options −26, −17, −14, −4. Sign: all negative, so no sign strike. Closure against printed numbers: −21−(−18) = −3, −21+(−18) = −39, −11−... none hit an option; −14 = −18+4 and −17 = −21+4 are 'printed plus a coefficient-count', too contrived to be a tell. Closure among options: −26 = −17 + (−9)? no; −14 = −17 + 3 with 3 printed (weak); −4 is a + b, unknowable without solving. Adjacency: −17 and −14 are 3 apart, the printed divisor root, but neither is the key so it does not help. Outlier: −4 is far from the other three, but the answer to a cubic-remainder item is not bounded by the stem, so an outlier strike is a guess not an elimination. Bounds: p(3) vs p(2) = −21 has no free ordering (a cubic with unknown coefficients). No strikes.",
+    "n_struck": 0,
+    "insight_bypassable": false,
+    "difficulty": "hard",
+    "path_coherent": true,
+    "representation_ok": true,
+    "on_blueprint": true,
+    "note": "Solved before reading: p(2) = 8 + 4a + 2b − 11 = −21 → 2a + b = −9; remainder on 2x + 2 is p(−1) unchanged by the factor 2 → −12 + a − b = −18 → a − b = −6; a = −5, b = 1; p(3) = 27 − 45 + 3 − 11 = −26. Key correct, unique. Distractor paths all verified by hand: x = +1 route gives a + b = −8 with 2a + b = −9 → a = −1, b = −7 → p(3) = −14; halved remainder −9 gives a − b = 3 → a = −2, b = −5 → p(3) = −17; a + b = −4. Every distractor is a coherent misconception, and the halving trap is a real one (students who write (2x+2)q + r and then divide by 2 halve r as well). Bypass: back-substituting the options is impossible (they are values of an unknown polynomial), a slider on two parameters in Desmos does not help unless you already know to evaluate at −1 rather than 1, and once you know that you have passed the decision point. Grinding is routine but the decision point (root of 2x + 2 is −1 and the remainder is not scaled) cannot be skipped. This is the one item in the batch I would call hard by the module-2 standard. Blueprint: remainder theorem with two conditions pinning coefficients is a released hard-route form. representation: solve returns −26 and correct_answer '−26' uses U+2212 like the choices; fine provided the checker normalises the minus sign consistently, which it must already do for the choices. No repair."
+  },
+  "SM18A-A4": {
+    "my_answer": "1/6",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "Printed numbers: 1, 2, 8, 2, 4, 2 (exponent). Options −3/2, −1/2, 0, 1/6. Sign: three options are ≤ 0 and one is positive; no free sign argument exists without evaluating, but the key is the unique positive AND the unique non-'nice' fraction, so the outlier IS the key here. 0: the visibly naive answer (numerator has a factor (x+2), so 'the y-value at the hole is 0') — a coached student knows a hole's y-value comes from the reduced form and is generically nonzero → struck. −1/2 and −3/2: closure with each other (differ by exactly 1) and both 'half-integer' shaped; a student who notices the key must be the one with denominator 6 = (−2 − 4) magnitude... that is arithmetic. Adjacency none. Printed echo: none (1/2, 3/2 not printed). One strike (0), and the outlier-is-key pattern is a soft second.",
+    "n_struck": 1,
+    "insight_bypassable": true,
+    "difficulty": "medium",
+    "path_coherent": true,
+    "representation_ok": true,
+    "on_blueprint": false,
+    "note": "Solved before reading: x² − 2x − 8 = (x − 4)(x + 2); f = (x + 1)/(x − 4) for x ≠ −2, 4; (x + 2) cancels fully → hole at x = −2, y = (−1)/(−6) = 1/6; (x − 4) survives once in the denominator → asymptote at 4, not a hole. Key correct, unique. Distractor paths verified: x = 2 → 3/(−2) = −3/2; denominator −2 + 4 → −1/2; original numerator at −2 → 0. Bypass: paste f into Desmos and open a table at x = −1.99, −2.01: 0.1664 and 0.1669 — the y-value of the hole is read straight off without factoring, without deciding which of the two candidate x-values is the hole, and without seeing that (x − 4)² beats one cancellation. Clicking the curve near x = −2 shows the same value. The intended decision point (squared factor cancels once but stays an asymptote) is never exercised because the stem already says 'exactly one hole' and Desmos shows exactly one place where the curve is continuous but undefined... in fact the student does not even need that: they need only the reduced-form value at the point that is not blowing up. Difficulty medium: factor, cancel, evaluate — the squared-factor wrinkle is genuine, but the stem gives away that only one hole exists, so a student who wrongly cancels both factors still evaluates (x+1)/(x−4) at −2 and gets 1/6 unless they also guess the hole is at 4 (where the reduced form is undefined and they would be forced back to −2). Blueprint: removable discontinuities ('holes') are not a Digital SAT Advanced Math construct; released modules test rational-expression rewriting, undefined values, and occasionally a vertical asymptote via the denominator, never a hole's y-coordinate. This is a precalculus item. I would not insert it under the SAT family regardless of repair. If a ruling keeps it: replace 0 with 5/6 ((x+1)/(x+2) at x = 4 — the student who treats (x − 4) as the cancelling factor and evaluates the surviving (x+1)/(x+2) at the 'hole' x = 4). Check: 5/6 shares a denominator with 1/6 (sibling pair by denominator, weak), 5/6 − 1/6 = 2/3 not an option, no ± pair, no printed echo, but it makes two positive options and removes the unique-positive tell. representation: correct_answer '1/6' vs solve 0.1666…; distractor_solve '−3/2' vs −1.5, '−1/2' vs −0.5 — agree numerically provided the checker parses fraction strings; flag if it compares strings."
+  }
+}

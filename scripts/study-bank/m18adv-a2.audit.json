@@ -1,0 +1,44 @@
+{
+  "SM18A-A5": {
+    "my_answer": "-1",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "Radius^2 = 32 is printed and 'intersects the y-axis' is printed, so |a| <= sqrt(32) < 6 without touching the tangency at all: 7 and 15 both fall. Independently, 7 is the visibly naive value (center (7,9) lies ON y=x+2 since 9=7+2, so two intersections, not one). Also 7 is exactly the midpoint of -1 and 15 (the two tangency values are always symmetric about the center-on-line value), a closure a student who knows the structure can read. Printed numbers: a (unknown), 9 (center y; 9-2=7 is the naive option), 32 (r^2; bound |a|<6 kills 7,15), 2 (line intercept), 1 (slope). Options vs roles: -1 in range, 3 in range, 7 out+naive, 15 out. Left with -1 vs 3: needs the distance formula (8/sqrt2 vs 4/sqrt2), so the coin flip is 50/50 with no further tell; -1 is the only negative option, which is an outlier-IS-key pattern rather than a strike.",
+    "n_struck": 2,
+    "insight_bypassable": "Yes. Desmos: type (x-a)^2+(y-9)^2=32 with a slider and y=x+2; drag a and the tangency is visible at a=-1 (and again at 15, which visibly does not cross the y-axis). Or graph the four candidate circles directly. The discriminant/distance decision point is never needed. The 'rejection' step is not a decision point either, because the y-axis condition is read off the picture.",
+    "difficulty": "medium",
+    "path_coherent": true,
+    "representation_ok": true,
+    "on_blueprint": true,
+    "note": "Key and rejection are correct (verified: a=-1 gives (y-9)^2=31 at x=0; a=15 gives (y-9)^2=-193). Construct is on-blueprint (nonlinear system / circle equation) and the SAT does run this shape hard, but as printed the rejection condition doubles as a free strike on two distractors and the survivor 7 is also the midpoint closure of -1 and 15. Repair: make the radius large enough that the naive value survives the y-axis bound and drop the sign-error path in favour of one that lands in range. E.g. r^2 = 50 (r ~ 7.07): tangency gives |a-7| = 10 -> a = -3 (key) or 17 (rejected, out of range); naive center-on-line 7 is now IN range and survives the bound; sign error |a-11| = 10 gives 1 (in range). Options -3, 1, 7, 17: no +/- pair, no echo of a printed constant, but 7 is still the midpoint of -3 and 17 (inherent to the construct: the two tangency values are always symmetric about the center-on-line value) - so if that closure is a concern, replace 7 with a non-midpoint in-range value derived from a different error, or accept that only 17 falls freely (n_struck 1). Any repair keeps n_struck >= 1 by design; the rejected tangency value is always strikable by the bound that rejects it."
+  },
+  "SM18A-A6": {
+    "my_answer": "18",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "Printed numbers: 1 (shift in x-1), 2 and 14 (radicand 2x+14, domain x>=-7, radical zero at x=-7), 6 and 42 (RHS; 6x+42 = 3(2x+14) is the insight). No printed bound on the sum; solutions may be negative so no sign strike; options are not echoes of printed constants (13,18,25,27 vs 1,2,6,14,42). Closures: 27 = 13 + 14 (option plus printed radicand constant) and 27 - 25 = 2 (printed) - both weak and non-directional. Back-substituting options into the equation cannot work (they are sums) and the stem says nothing that ranks them. A Vieta reader who forms the cubic (2x+14)[(x-1)^2 - 9(2x+14)] = 0 gets root-sum 13 and knows at least one root is extraneous, which kills 13 - but that is solving, not a free strike. n_struck = 0.",
+    "n_struck": 0,
+    "insight_bypassable": "Partly. Desmos: graph y=(x-1)sqrt(2x+14)-(6x+42) (or the two sides). The zero at x=25 is obvious; the zero at x=-7 is the left ENDPOINT of the curve (radicand zero), which Desmos shows as a grey endpoint dot rather than a highlighted x-intercept - a hurried Desmos user sees one root and picks 25, which is the intended distractor. A careful one clicks the endpoint and gets 18. Pure grinding (square both sides -> cubic x^3-13x^2-265x-875=0, rational root -5, then check) also reaches 18 but is slow enough to be a real cost under time. The factor-out-u decision point is bypassable by Desmos only if the student notices the endpoint root, which is a fair test of the same idea (do not divide by something that can be zero).",
+    "difficulty": "hard",
+    "path_coherent": true,
+    "representation_ok": true,
+    "on_blueprint": true,
+    "note": "Key confirmed by direct substitution of all three candidate roots: -7 (0=0), 25 (192=192), -5 (-12 vs 12, extraneous). Distractors 13, 25 are excellent (all-three-roots unchecked; divided-by-the-radical). 27 is contrived - 'solved 2x+14=0 as x=7' is a sign slip nobody makes at this level, and it forms the closure 13+14=27. Replace 27 with 20 = -5 + 25: the student who divides by sqrt(2x+14) at the start (losing -7) and then does NOT check the squared roots. That is a more natural error path than 27 and is a different error from 25 (divided AND checked). Check of 20: not a +/- pair with anything, not an echo (no printed 20), not a sum/difference/mean of other options (13+18=31, 25-18=7, (13+25)/2=19, (18+22)... none hit 20) nor of printed constants (14+6=20 - a genuine echo: 14+6=20 IS a closure of two printed constants; if that matters use a different recipe). Alternative that avoids it: 38 = 13 + 25 is a closure too. Cleaner: change the constant so the extraneous root sum is not a printed sum - or simply keep 27 and accept one contrived path; 27 is not strikable without arithmetic. Recommendation: replace 27 with 20 and accept 14+6=20 as a weak echo, or leave as is. No key issue. Keep."
+  },
+  "SM18A-A7": {
+    "my_answer": "22",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": false,
+    "free_elimination": "Printed numbers: x column 1,4,5,10,12,14; g column 0,2,12,8,8,12; f zeros 4 and 5; target 12. Two structural strikes with NO evaluation of f: (1) f(g(x)) depends only on g(x), so rows with equal outputs stand or fall together: {10,12} share 8, {5,14} share 12. Any valid answer set is a union of the classes {1},{4},{5,14},{10,12}, so the sum must be one of 1,4,5,19,20,22,23,24,26,27,... Option 9 (=4+5 or 1+8) and option 16 (=4+12 or 8+8) are NOT realisable as a class-union sum, so both fall. (2) 9 is also the echo of the printed zeros 4+5 and 16 the echo of the two 8s in the table. Survivors 19 ({5,14}) and 22 ({10,12}): deciding needs one evaluation, f(12)=56 vs f(8)=12. n_struck = 2. Sign/range: all positive, no bound.",
+    "n_struck": 2,
+    "insight_bypassable": "Yes, trivially. The 'insight' (solve f(t)=12 backward, then match OUTPUTS not inputs) is not needed: six forward evaluations of f at 0,2,12,8,8,12 - three distinct values, each a one-line product - takes under a minute and cannot fall into the 1-in-the-x-column trap, because that trap only exists on the backward route. Desmos not even needed. The distractor that carries the intended trap (x=1 counted, sum 23) is not offered at all, so the backward-route error the item was built around has no landing pad.",
+    "difficulty": "easy",
+    "path_coherent": true,
+    "representation_ok": true,
+    "on_blueprint": true,
+    "note": "Key correct (forward: f(0)=20, f(2)=6, f(12)=56, f(8)=12, f(8)=12, f(12)=56). Construct (composition through a table) is on-blueprint but sits at medium on the real test and this instance is easy: forward evaluation is the routine procedure and it reaches the key with no decision point. Two of three distractors are also unreachable by any consistent reading of the table (equal-output rows must move together), which is a structure strike a strong student sees without arithmetic. Drop from the hard batch. If re-authored: every option must be a sum of a union of equal-output classes, the trap value (1+10+12 = 23, from counting x=1 because t=1 is a root) should be offered, and the decision point needs to survive forward evaluation - e.g. an unknown table cell fixed by a stated condition, or f(g(x)) where g has an unknown parameter, so that grinding six rows is not sufficient. Checked candidate set 19, 22, 23 plus a fourth: 41 (=19+22) is a closure, 46 (all rows) has no error path; there is no clean fourth in this construct, which is itself evidence to re-author rather than patch."
+  }
+}
