@@ -25,7 +25,10 @@
 import { readFileSync } from 'node:fs'
 import { createClient } from '@supabase/supabase-js'
 
-const val = s => { const t=String(s).trim().replace(/[$,%]/g,'')
+/* U+2212 (typographic minus) parses as NaN and silently SKIPPED two of seven
+ * items on sat-math-v18-alg-b; 37 live sat/math options carry it beside 419
+ * ASCII hyphens. Normalise before parsing rather than skip. */
+const val = s => { const t=String(s).trim().replace(/\u2212/g,'-').replace(/[$,%]/g,'')
   if(/^-?\d+\/\d+$/.test(t)){const [a,b]=t.split('/').map(Number);return a/b}
   return Number(t) }
 

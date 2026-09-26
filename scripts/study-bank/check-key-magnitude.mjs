@@ -26,6 +26,8 @@ import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
 
 export function val(s) {
+    // U+2212 typographic minus reads as NaN and silently skipped items; normalise first.
+  if (typeof s === 'string') s = s.replace(/\u2212/g, '-')
   let t = String(s).trim().replace(/[$,]/g, '').replace(/[a-zA-Z°%]+$/, '').trim()
   const mixed = t.match(/^(-?\d+)\s+(\d+)\/(\d+)$/)          // space REQUIRED
   if (mixed) { const w = Number(mixed[1]), f = Number(mixed[2]) / Number(mixed[3]); return w < 0 ? w - f : w + f }
