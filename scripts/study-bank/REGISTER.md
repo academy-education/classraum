@@ -3278,3 +3278,44 @@ structural checks are pre-flight only. See CLAUDE.md.
   **And the break-test itself nearly lied to me.** My first attempt printed nothing, and I almost read the silence as "quiet, therefore passing" — the script had refused on `duplicate ids across halves` and never reached the check. Third time today a non-result nearly read as a result (a `sed` syntax error, an `ERR_MODULE_NOT_FOUND`, and now a guard firing upstream). **The habit that catches it every time is reading the denominator or the exit line before the verdict.**
 
   **Open, not repaired:** the auditors demoted 12 of 14 Algebra items and 5 of 16 Advanced Math items on difficulty, and both repairs applied only the demotions their briefs named. Those labels are still, in the auditors' view, wrong. Ninth consecutive batch.
+
+- **2026-09-26** — **BOTH v17 BATCHES PASS THE BLIND HALF — THE FIRST MATHS BATCH IN FIVE ATTEMPTS TO DO SO.** And a repair wrote its own verdict into the field three independent graders were about to read. → **A59**
+
+      arm                     candidate   live control   margin   bar
+      sat-math-v17-alg          40.5%        42.9%        -2.4    <= +10
+      sat-math-v17-adv          42.2%        40.0%        +2.2    <= +10
+
+  Against v16's **+16.7** and **+25.0**. Unanimity sits at the control's own level in both arms (28.6% vs 21.4%; 26.7% vs 33.3%), which after A53 is the only way it can be read at all. **Both arms scored higher than last week's run** — the control came in at 42.9% and 40.0% where the same instrument gave 35.7% and 16.7% — on a freshly drawn sample, so the margins are the comparable quantity and the absolute rates are not.
+
+  **A SOLVER FOUND A LEAK MY CHECKER STRUCTURALLY COULD NOT SEE.** Two named the harmonic mean independently, one calling it *"the strongest single tell in the file"*:
+
+      SM17L-A7   {6, 10, 12, 30}   key 10 = 2*30*6/36 = harmonic(30, 6)
+
+  `check-key-is-composition` tested `+`, `x`, midpoint and doubling. Combined-rate and round-trip items leave **both inputs** in the option set as natural distractors, so the answer is their harmonic mean and the set states the relation the stem is asking for; growth items do the same with the geometric mean (a live control in the same file carries `20 -> 30 -> 45`, key `30 = sqrt(20*45)`). Both relations added.
+
+  **Adding them broke the existing midpoint self-test, and that failure was the finding.** `8 = harmonic(3, -12)` is arithmetically true and utterly meaningless — a harmonic mean needs same-sign inputs, the guard the geometric mean already had. **A relation added without a domain guard manufactures composites nobody would traverse.**
+
+  **The checker still stayed silent on A7 even with the relation added**, because it reports only a **unique** composite and `12 = 2 x 6` shadows the key's. The gating form is left alone — it was measured at 2 fires, both solved 3/3, zero false alarms — and a separate, explicitly non-gating line now reports shadowed cases, with the self-test pinning both directions.
+
+  **`SM17L-A7` has now been rebuilt twice and each rebuild introduced a different relation** — first a derivational hub (`9 = 3²`, `9 = 8+1`), then this. Third repair this week to create a new tell while removing an old one.
+
+  **A REPAIR WROTE ITS OWN VERDICT INTO THE STUDENT-FACING `explanation`, AND THE GRADERS READ IT.** Four of fifteen Advanced Math explanations carry blocks addressed to me:
+
+      SM17A-B2   "OPTION-SET NOTE, recorded because it is what this set was built for..."
+      SM17A-A7   "It is a known single strike, inside tolerance, and it is recorded
+                  here so that a grader locates it correctly."
+
+  Two problems, and the second is the serious one. It would **ship** — `explanation` is what a student reads after answering, and a note on how the distractors were engineered teaches them to game the next item. And it **contaminates the gate**: A7's block states the verdict inside the artifact three graders were asked to judge cold. The whole point of independent graders is that they have not been told the answer.
+
+  **The cause is mine.** I asked the repair agents to explain their reasoning and never said where it goes. `check-explanation-hygiene.mjs` now fails a batch carrying it; it fires on Advanced Math, is silent on Algebra, and **the live bank is clean — 0 of 7,021** — so this has not shipped before. The text is left in place until graders E and F finish, because editing a file mid-grade is the mid-write error I have already made twice this week.
+
+  **A tell that points AT the key, and the base rate that refuted it as a pattern.** A grader found `SM17L-B7` `{1800, 2025, 2160, 2700}` where **2025 is the only odd value** — "pick the odd one out" returns the key with no reading. Real, and worth fixing on that item. But measured bank-wide the key is the lone member of its set LESS often than chance on every predicate:
+
+      predicate     key is the singleton      chance
+      odd              55/1190   4.6%          5.9%
+      even             43/1190   3.6%          4.9%
+      negative          7/1190   0.6%          2.7%
+      non-integer       9/1190   0.8%          2.8%
+      round ten        54/1190   4.5%          5.7%
+
+  **No bank-wide singleton tell**, and the same authorial instinct as A56 — keys are kept inconspicuous. The inverse is mildly exploitable in its own right (a lone negative is almost never the answer), and `check-key-singleton.mjs` prints the base rate beside every fire rate precisely so a 4.6% is not read as alarming.

@@ -1,0 +1,156 @@
+{
+  "SM17L-A1": {
+    "my_answer": "65",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "none found. No option or difference of options echoes a printed constant (360, 420, 9, 4, 3, 8); the adjacency/closure/divisibility checks are all inert. The add-the-equations shortcut (12x+12y=780) is a genuine shortcut but it is the solve, not an elimination.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "note": "Clean. All three distractor paths reproduce their printed values exactly (85 from sign error on the constants, 80 and 70 from dropping a coefficient at back-substitution). The intended shortcut rewards seeing that the question asks for x+y."
+  },
+  "SM17L-A2": {
+    "my_answer": "18",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "none found, and this is deliberate: under 'greatest integer' an option set with exactly one adjacent pair would flag the boundary, but 15/16 and 18/19 are BOTH adjacent pairs, so the adjacency tell is defused. No printed-number echo (5, 6, 7, 4, 2, 1, 13 vs 15/16/18/19); no divisibility shortcut short of clearing the denominators, which is the solve itself.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Key confirmed: x <= 416/23 = 18.08. The 19 path (failing to reverse on division by -23) produces 19 arithmetically, but it reaches x >= 18.08, for which no greatest integer exists - the solver has to silently re-read the question as 'least'. The value is right; the narrative is one step loose."
+  },
+  "SM17L-A3": {
+    "my_answer": "20",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "none found. No option appears in or is a difference of printed numbers (645, 10, 45, 40); no divisibility or closure structure; both plans' costs are increasing so no feasibility bound bites.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "note": "Textbook break-even. Distractors are the three standard combination errors (rates added, one rate ignored, fees added) and each computes to its printed value."
+  },
+  "SM17L-A4": {
+    "my_answer": "28",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "none found. Options 28/32/42/48 do not echo 3, 2, 30, 24 or 12, and no difference of options does either. Sign/domain gives only 'the intercept exceeds 12', which every option satisfies.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Key confirmed (slope -2/3 through (24,12) gives b = 28). The 42 distractor is the x-intercept of the correct line, which is a right-line/wrong-question trap rather than an ambiguity - the stem says 'crosses the y-axis' unambiguously."
+  },
+  "SM17L-A5": {
+    "my_answer": "-8",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "printed-number echo, weak: -5 reproduces the 5 of (x - 5), and it is the only option that echoes a printed constant. That is a test-wise strike on one distractor, not a solve. Divisibility, closure, adjacency and sign/domain are all inert (all four options are negative, so the sign of the answer gives nothing).",
+    "n_struck": 1,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Key confirmed by clearing to 10: x - 31 = 7x + 17, x = -8. All three distractor paths (unscaled +2, sign slip on -2(2x+3), sign slip on the 7x-3 numerator) reproduce their printed values."
+  },
+  "SM17L-A6": {
+    "my_answer": "6",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "printed-number echo, and it points AT the key: the stem prints x = -6 and the key is 6, the only option matching a printed magnitude. A guesser who echoes the printed number is right. That strikes no distractor (n_struck 0) but it is a leak in the wrong direction and is the one thing I would change here. Divisibility, closure, adjacency (5/6 and 8/9 are two adjacent pairs, so inert) and sign/domain give nothing.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Key confirmed: -8a + 42 = 4a - 30 gives a = 6. Distractor paths all reproduce their values (9 from dropping the 4a, 8 from 4(x+a) -> 4x+a, 5 from substituting x = +6). Consider renumbering so the given solution is not +/- an option value."
+  },
+  "SM17L-A7": {
+    "my_answer": "10",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "range/feasibility from a printed coefficient: the right side 12x - 108 must be non-negative because the left is an absolute value, so x >= 108/12 = 9, which strikes 6 with one division and no solving. That is genuinely cheaper than solving. 12 is the zero of the expression inside the bars (24/2, both printed) - a printed-number echo that marks it as a trap but does not strike it without a check. 30 survives free inspection.",
+    "n_struck": 1,
+    "path_coherent": true,
+    "difficulty": "hard",
+    "note": "Key confirmed: only x = 10 satisfies the original; the first case yields x = 6, which the domain kills. Good item - the extraneous root is the construct. Caveat: the free domain strike reduces a blind guess to 1-in-3, and the extraneous root is the option it removes, so the item is slightly less punishing than it looks."
+  },
+  "SM17L-B1": {
+    "my_answer": "88",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "none found that strikes anything. The one structure present is a difference echo - 88 - 64 = 24 equals the printed rise 43 - 19 - but it identifies a pair, not a member. Monotonicity only tells you f(27) > 43, which every option satisfies.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "note": "Slope 3, f(x) = 3x + 7, f(27) = 88. All three distractors reproduce (64 = run measured from the wrong anchor, 73 = slope divided by 12 instead of the run, 100 = 19 read as the intercept). Straightforward two-point linear work; not a module-2 hard item."
+  },
+  "SM17L-B2": {
+    "my_answer": "428",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "none found. All four options are even, as any 50 + 18k must be, so parity is uninformative; the residue argument mod 18 only becomes available after computing the 18 cm spacing, which is the solve. 446 - 428 = 18 equals the spacing, but that is visible only post-hoc.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Key confirmed: 8 gaps of 18 cm, then 13 more to rung 25, 194 + 234 = 428. Distractors are the two off-by-one gap counts (9 instead of 8, 14 instead of 13) and their combination, and each computes exactly. The fence-post error is the construct and it is well built."
+  },
+  "SM17L-B3": {
+    "my_answer": "40",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "range/feasibility, no arithmetic, and it is expensive: if the amount added were 60 kg or more it would be at least half of the final mass and PURE copper, so the mixture would be over 50% copper before counting the 15 kg already present - comfortably past 55%. That strikes 90 and 100 on sight. The remaining choice is 40 vs 45, so the free inspection halves the item. 45 and 100 are additionally the classic simplified-stem values (the non-copper mass and the final total).",
+    "n_struck": 2,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Key confirmed: 45 kg of non-copper must end as 45% of the total, so the total is 100 and 40 kg was added. The distractor explanations are all coherent, but two of the three sit outside the feasible range and a solver who never touches the percentages is already at 50%. I would re-author the option set with both wrong-high values under 60."
+  },
+  "SM17L-B4": {
+    "my_answer": "35000",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "none found. The only structure is cosmetic and points the safe way: 26250 is the one option that is not a round multiple of 5,000, i.e. the odd-one-out is a distractor, not the key. Feasibility bounds (8v < 310000 and 14v < 520000 for a positive fixed fee) admit every option. Recognising 15000 and 26250 as 210000/14 and 210000/8 requires computing the 210,000 difference first, which is the solve.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "easy",
+    "note": "Key confirmed: 6v = 210,000, v = 35,000, fixed fee 30,000. The 30000 distractor is the fixed fee (right system, wrong reported unknown) and both low distractors divide the correct difference by the wrong count. Mechanically a two-equation elimination; not hard-route material."
+  },
+  "SM17L-B5": {
+    "my_answer": "24",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "none found. No option echoes 960, 6, 600, 14 or 120, and no difference of options does. 18 is the 'condition dropped' answer (the moment the tanks are equal, i.e. the 120 removed) but reaching it needs 360/20, so it is not free. The gap B - A is strictly increasing, which gives uniqueness but picks no option.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Key confirmed: 20t = 480, t = 24, and at t = 24 the tanks hold 816 and 936. Each distractor reproduces its value (18 drops the 120, 60 subtracts the rates, 80 freezes Tank B). The 18 = simplified-stem distractor is exactly the right trap for this construct."
+  },
+  "SM17L-B6": {
+    "my_answer": "13",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "none found, and again by construction: under 'greatest possible number' a single adjacent pair would locate the floor boundary, but 10/11 and 13/14 are both adjacent pairs, so the adjacency tell is dead. The visible 255 = 3 x 85 collapses the constraint to a + 3b <= 2400/85, which is a real shortcut but is the solve, not an elimination; 2400/85 is not an integer so no divisibility strike falls out.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "hard",
+    "note": "Key confirmed: b = 5 minimises the B-crate load, leaving 1125 kg, floor(1125/85) = 13 (13 crates = 2380 kg, 14 = 2465 kg, over). Best-built item in the batch: the two error axes (at-least misread as more-than, and ceiling instead of floor) are crossed to give all three distractors, and the explanation names the flooring step explicitly for both 14 and 11."
+  },
+  "SM17L-B7": {
+    "my_answer": "2025",
+    "key_ok": true,
+    "exclusive": true,
+    "second_defensible": null,
+    "free_elimination": "a parity odd-one-out that selects the KEY: 2025 is the only odd option (1800, 2160, 2700 are even), so the cheapest possible guess heuristic lands on the answer with no reading at all. This is the one real free-inspection defect in the batch and it does not strike a distractor - it hands over the key. Otherwise: 1800 is the 'scaling dropped' value and 2700 the 'days ignored' value, but identifying either requires 45000/25 first, so neither is free.",
+    "n_struck": 0,
+    "path_coherent": true,
+    "difficulty": "medium",
+    "note": "Key confirmed: 1,800 parts over 24 machine-days is 75 per machine-day; 27 machine-days gives 2,025. All three distractor paths compute exactly, including 2160 from adding machines and days rather than multiplying. Fix the parity: the three distractors should not all be even when the key is odd."
+  }
+}
