@@ -8,17 +8,17 @@
     "choices": [
       "74",
       "102",
-      "186",
-      "666"
+      "126",
+      "186"
     ],
     "correct_answer": "186",
-    "explanation": "One square yard is 3 feet by 3 feet, which is 9 square feet, so 40 square yards is 40 × 9 = 360 square feet. The sod costs 0.35 × 360 = $126, and the fixed fee is added once: 60 + 126 = $186. Choice 74 treats the 40 square yards as 40 square feet (60 + 0.35 × 40). Choice 102 converts with 3 instead of 9, using 120 square feet (60 + 0.35 × 120). Choice 666 converts correctly to 360 square feet but also multiplies the $60 fixed fee by 9 (540 + 126); the fixed fee is charged per job, not per unit of area.",
+    "explanation": "One square yard is 3 feet by 3 feet, which is 9 square feet, so 40 square yards is 40 × 9 = 360 square feet. The sod costs 0.35 × 360 = $126, and the fixed fee is added once: 60 + 126 = $186. Choice 74 treats the 40 square yards as 40 square feet (60 + 0.35 × 40). Choice 102 converts with 3 instead of 9, using 120 square feet (60 + 0.35 × 120). Choice 126 converts correctly and finds the sod cost, 0.35 × 360 = 126, but omits the $60 fixed fee.",
     "bounds": [],
     "solve": "return 60 + 0.35 * (40 * 9);",
     "distractor_solve": {
       "74": "return 60 + 0.35 * 40;",
       "102": "return 60 + 0.35 * (40 * 3);",
-      "666": "return 9 * 60 + 0.35 * (40 * 9);"
+      "126": "return 0.35 * (40 * 9);"
     }
   },
   {
@@ -26,21 +26,21 @@
     "domain": "Algebra",
     "subskill": "Systems: evaluate an expression via sum and difference",
     "difficulty": "hard",
-    "prompt": "If 7x + 3y = 25 and 3x + 7y = 15, what is the value of x² − y²?",
+    "prompt": "If 9x + 5y = 55 and 5x + 9y = 43, what is the value of x² − y²?",
     "choices": [
-      "4",
-      "6.25",
-      "10",
-      "40"
+      "7",
+      "21",
+      "29",
+      "49"
     ],
-    "correct_answer": "10",
-    "explanation": "Since x² − y² = (x + y)(x − y), find those two quantities directly. Adding the equations gives 10x + 10y = 40, so x + y = 4. Subtracting the second equation from the first gives 4x − 4y = 10, so x − y = 2.5. Therefore x² − y² = 4 × 2.5 = 10. (Solving fully gives x = 3.25 and y = 0.75, and 3.25² − 0.75² = 10.5625 − 0.5625 = 10 as well.) Choice 4 is the value of x + y, stopping before multiplying by x − y. Choice 40 multiplies x + y = 4 by the unreduced difference 10 instead of by 10 ÷ 4 = 2.5. Choice 6.25 is (x − y)² = 2.5², from squaring the difference instead of multiplying it by the sum.",
+    "correct_answer": "21",
+    "explanation": "Since x² − y² = (x + y)(x − y), find those two quantities directly. Adding the equations gives 14x + 14y = 98, so x + y = 7. Subtracting the second equation from the first gives 4x − 4y = 12, so x − y = 3. Therefore x² − y² = 7 × 3 = 21. (Solving fully gives x = 5 and y = 2, and 25 − 4 = 21 as well.) Choice 7 is the value of x + y, stopping before multiplying by x − y. Choice 49 is (x + y)², squaring the sum instead of multiplying it by the difference. Choice 29 is x² + y² = 25 + 4, adding the squares instead of subtracting them.",
     "bounds": [],
-    "solve": "const x = 3.25, y = 0.75; return x*x - y*y;",
+    "solve": "const x = 5, y = 2; return x*x - y*y;",
     "distractor_solve": {
-      "4": "return 40/10;",
-      "40": "return (40/10) * 10;",
-      "6.25": "return (10/4)*(10/4);"
+      "7": "return 98/14;",
+      "29": "const x = 5, y = 2; return x*x + y*y;",
+      "49": "return (98/14)*(98/14);"
     }
   },
   {
@@ -50,19 +50,19 @@
     "difficulty": "hard",
     "prompt": "In the xy-plane, the line through the points (k, 2k) and (3k − 4, 14) is parallel to the line 4x − 6y = 7. What is the value of k?",
     "choices": [
-      "−8",
+      "-8",
       "3",
       "5",
       "17"
     ],
     "correct_answer": "5",
-    "explanation": "Rewrite 4x − 6y = 7 as y = (2/3)x − 7/6, so the slope is 2/3, and parallel lines share it. The slope between the two points is (14 − 2k)/((3k − 4) − k) = (14 − 2k)/(2k − 4). Setting this equal to 2/3 gives 3(14 − 2k) = 2(2k − 4), so 42 − 6k = 4k − 8, hence 10k = 50 and k = 5. Check: the points are (5, 10) and (11, 14), and (14 − 10)/(11 − 5) = 4/6 = 2/3. Choice 17 uses slope −2/3, the sign error from reading −6y as if it were +6y: 42 − 6k = −4k + 8 gives k = 17. Choice 3 uses the coefficient 4 as the slope: 14 − 2k = 4(2k − 4) gives k = 3. Choice −8 uses −3/2, inverting the slope and flipping its sign: 2(14 − 2k) = −3(2k − 4) gives k = −8.",
+    "explanation": "Rewrite 4x − 6y = 7 as y = (2/3)x − 7/6, so the slope is 2/3, and parallel lines share it. The slope between the two points is (14 − 2k)/((3k − 4) − k) = (14 − 2k)/(2k − 4). Setting this equal to 2/3 gives 3(14 − 2k) = 2(2k − 4), so 42 − 6k = 4k − 8, hence 10k = 50 and k = 5. Check: the points are (5, 10) and (11, 14), and (14 − 10)/(11 − 5) = 4/6 = 2/3. Choice 17 uses slope −2/3, the sign error from reading −6y as if it were +6y: 42 − 6k = −4k + 8 gives k = 17. Choice 3 uses the coefficient 4 as the slope: 14 − 2k = 4(2k − 4) gives k = 3. Choice -8 uses −3/2, inverting the slope and flipping its sign: 2(14 − 2k) = −3(2k − 4) gives k = −8.",
     "bounds": [],
     "solve": "return 50/10;",
     "distractor_solve": {
       "3": "return 30/10;",
       "17": "return 34/2;",
-      "−8": "return -16/2;"
+      "-8": "return -16/2;"
     }
   },
   {
@@ -72,18 +72,18 @@
     "difficulty": "hard",
     "prompt": "An electric utility bills customers in tiers each month: the first 200 kilowatt-hours (kWh) cost $0.12 per kWh, the next 300 kWh cost $0.18 per kWh, and every kWh beyond 500 costs $0.25 per kWh. A customer’s bill for one month was $105. How many kWh did the customer use that month?",
     "choices": [
+      "420",
       "608",
       "650",
-      "704",
       "824"
     ],
     "correct_answer": "608",
-    "explanation": "First find where the tier boundaries fall in dollars. The first 200 kWh cost 200 × 0.12 = $24, and the next 300 kWh cost 300 × 0.18 = $54, so a customer who uses exactly 500 kWh pays 24 + 54 = $78. Since $105 is more than $78, the customer is in the third tier. The amount above $78 is 105 − 78 = $27, which at $0.25 per kWh buys 27 ÷ 0.25 = 108 kWh beyond 500, for a total of 608 kWh. Choice 650 stays in the second tier, treating everything above the first $24 as billed at $0.18: 200 + 81 ÷ 0.18 = 650. Choice 704 subtracts only the second tier’s $54 before dividing by 0.25: 500 + 51 ÷ 0.25 = 704. Choice 824 subtracts only the first tier’s $24 before dividing by 0.25: 500 + 81 ÷ 0.25 = 824.",
+    "explanation": "First find where the tier boundaries fall in dollars. The first 200 kWh cost 200 × 0.12 = $24, and the next 300 kWh cost 300 × 0.18 = $54, so a customer who uses exactly 500 kWh pays 24 + 54 = $78. Since $105 is more than $78, the customer is in the third tier. The amount above $78 is 105 − 78 = $27, which at $0.25 per kWh buys 27 ÷ 0.25 = 108 kWh beyond 500, for a total of 608 kWh. Choice 650 stays in the second tier, treating everything above the first $24 as billed at $0.18: 200 + 81 ÷ 0.18 = 650. Choice 824 subtracts only the first tier’s $24 before dividing by 0.25: 500 + 81 ÷ 0.25 = 824. Choice 420 bills every kilowatt-hour at the top rate, 105 ÷ 0.25 = 420, ignoring the two cheaper tiers below 500 kWh.",
     "bounds": [],
     "solve": "const t1 = 200*0.12, t2 = 300*0.18; return 500 + (105 - t1 - t2) / 0.25;",
     "distractor_solve": {
+      "420": "return 105 / 0.25;",
       "650": "return 200 + (105 - 24) / 0.18;",
-      "704": "return 500 + (105 - 54) / 0.25;",
       "824": "return 500 + (105 - 24) / 0.25;"
     }
   },
@@ -138,19 +138,19 @@
     "difficulty": "hard",
     "prompt": "The system of equations 3x + 2y = 16 and ax − 2y = 6, where a is a constant, has exactly one solution (x, y), and that solution also lies on the line x + y = 7. What is the value of a?",
     "choices": [
-      "−2",
+      "-2",
       "2",
-      "5.5",
-      "8"
+      "8",
+      "11"
     ],
     "correct_answer": "8",
-    "explanation": "The solution lies on all three lines, so it can be found from the two equations that do not involve a. Substituting y = 7 − x into 3x + 2y = 16 gives 3x + 14 − 2x = 16, so x = 2 and y = 5. Substituting into ax − 2y = 6 gives 2a − 10 = 6, so a = 8. (A shortcut: adding the two system equations gives (3 + a)x = 22, and with x = 2 this is 3 + a = 11, so a = 8.) Choice −2 comes from a sign error, adding 2y instead of subtracting it: 2a + 10 = 6. Choice 2 swaps the coordinates and uses (5, 2): 5a − 4 = 6. Choice 5.5 drops the coefficient of y and solves 2a − 5 = 6.",
+    "explanation": "The solution lies on all three lines, so it can be found from the two equations that do not involve a. Substituting y = 7 − x into 3x + 2y = 16 gives 3x + 14 − 2x = 16, so x = 2 and y = 5. Substituting into ax − 2y = 6 gives 2a − 10 = 6, so a = 8. (A shortcut: adding the two system equations gives (3 + a)x = 22, and with x = 2 this is 3 + a = 11, so a = 8.) Choice -2 comes from a sign error, adding 2y instead of subtracting it: 2a + 10 = 6. Choice 2 swaps the coordinates and uses (5, 2): 5a − 4 = 6. Choice 11 comes from the shortcut (3 + a)x = 22 with x = 2, which gives 3 + a = 11; 11 is the value of 3 + a, not of a.",
     "bounds": [],
     "solve": "const x = 2, y = 5; return (6 + 2*y) / x;",
     "distractor_solve": {
       "2": "return (6 + 4) / 5;",
-      "−2": "return (6 - 10) / 2;",
-      "5.5": "return (6 + 5) / 2;"
+      "11": "return 22 / 2;",
+      "-2": "return (6 - 10) / 2;"
     }
   }
 ]
