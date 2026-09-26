@@ -35,9 +35,14 @@ if (!live.length) { console.error('REFUSING: zero live rows'); process.exit(2) }
  * which live item types would render no input GIVEN this list — and the list
  * must be updated by whoever adds or removes a branch.
  *
- * The check that would be real evidence is a rendering test: mount the runner
- * with one item of each live type and assert an input exists. That is worth
- * writing and is not written.
+ * THE CHECK THAT IS REAL EVIDENCE NOW EXISTS:
+ *   src/app/mobile/study/session/[id]/__tests__/TestSession.answer-input.test.tsx
+ * mounts the real TestSession with one item of each type below and asserts an
+ * answer control renders. It was break-tested by removing `essay` and
+ * `essay_choice` from the branch condition: exactly those two cases fail.
+ * This script's list is therefore a convenience for the DB half; when a type is
+ * added to the bank, add it to the rendering test FIRST — that one cannot be
+ * satisfied by editing a list.
  */
 const BRANCHED = new Set([
   'numeric_entry', 'multi_select', 'fill_in_blanks', 'arrange_words',
