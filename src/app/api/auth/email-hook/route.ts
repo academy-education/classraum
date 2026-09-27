@@ -41,7 +41,7 @@ export async function GET(request: Request) {
     from: process.env.RESEND_FROM_EMAIL ?? '(default) Classraum <no-reply@classraum.com>',
     appOrigin: DEFAULT_APP_ORIGIN,
     env: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? 'unknown',
-    probe: 3,
+    probe: 4,
   }
   // ?diag=1 asks Resend (read-only) whether the key works and which sending
   // domains are verified — the two things a failed send usually comes down to.
@@ -58,6 +58,21 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  try {
+    return await handle(request)
+  } catch (e) {
+    // A crash anywhere above returns a bare 500 to Supabase, which reports
+    // only the status. Record the exception where it can be read.
+    await raiseAlert({
+      severity: 'critical', title: 'Auth email hook crashed',
+      message: e instanceof Error ? e.message : String(e), dedupeKey: 'auth-email-hook-crash',
+      error: e instanceof Error ? e : undefined,
+    }).catch(() => {})
+    return NextResponse.json({ error: { http_code: 500, message: e instanceof Error ? e.message : 'crash' } }, { status: 500 })
+  }
+}
+
+async function handle(request: Request) {
   const secret = process.env.SEND_EMAIL_HOOK_SECRET
   if (!secret) return NextResponse.json({ error: { http_code: 500, message: 'SEND_EMAIL_HOOK_SECRET is not set' } }, { status: 500 })
 
