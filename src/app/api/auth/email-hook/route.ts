@@ -33,14 +33,26 @@ const DEFAULT_APP_ORIGIN = process.env.AUTH_EMAIL_APP_ORIGIN || 'https://app.cla
  * this is how "is the Resend key on production?" gets answered without a
  * trip to the Vercel logs. Reveals presence, never values.
  */
-export async function GET() {
-  return NextResponse.json({
+export async function GET(request: Request) {
+  const base = {
     hookSecret: Boolean(process.env.SEND_EMAIL_HOOK_SECRET),
     resendKey: Boolean(process.env.RESEND_API_KEY),
     from: process.env.RESEND_FROM_EMAIL ?? '(default) Classraum <no-reply@classraum.com>',
     appOrigin: DEFAULT_APP_ORIGIN,
     env: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? 'unknown',
-  })
+  }
+  // ?diag=1 asks Resend (read-only) whether the key works and which sending
+  // domains are verified — the two things a failed send usually comes down to.
+  if (new URL(request.url).searchParams.get('diag') === '1' && process.env.RESEND_API_KEY) {
+    try {
+      const r = await fetch('https://api.resend.com/domains', { headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}` } })
+      const body = (await r.json().catch(() => ({}))) as { data?: Array<{ name: string; status: string; region?: string }>; message?: string; name?: string }
+      return NextResponse.json({ ...base, resend: { keyValid: r.ok, status: r.status, error: r.ok ? undefined : (body.message ?? body.name), domains: (body.data ?? []).map(d => ({ name: d.name, status: d.status, region: d.region })) } })
+    } catch (e) {
+      return NextResponse.json({ ...base, resend: { keyValid: false, error: e instanceof Error ? e.message : String(e) } })
+    }
+  }
+  return NextResponse.json(base)
 }
 
 export async function POST(request: Request) {
