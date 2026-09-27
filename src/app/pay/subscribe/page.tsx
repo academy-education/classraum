@@ -42,7 +42,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { db } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
 import { track } from '@/lib/study/track-client'
-import { PortOne } from '@/lib/portone-browser'
+import { PortOne, preloadPortOne, describeCheckoutFailure } from '@/lib/portone-browser'
 import { STUDY_PLANS } from '@/lib/study/plans'
 import { resolveItem } from '@/lib/study/pay-item'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
@@ -84,6 +84,18 @@ function PaySubscribe() {
   const [ready, setReady] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // Same preload as the in-app subscription page: name a CDN load failure
+  // before the click instead of after ten of them.
+  const [sdkLoadFailed, setSdkLoadFailed] = useState<string | null>(null)
+  useEffect(() => {
+    let cancelled = false
+    void preloadPortOne().then(reason => {
+      if (cancelled || !reason) return
+      setSdkLoadFailed(reason)
+      track('checkout_result', { step: 'sdk-load', ok: false, reason, surface: 'pay_web', ...checkoutContext() })
+    })
+    return () => { cancelled = true }
+  }, [])
   const [done, setDone] = useState(false)
 
   // Signed out → /auth, coming back HERE with the WHOLE query preserved
@@ -219,7 +231,7 @@ function PaySubscribe() {
         step: 'window', ok: false, kind: 'plan', surface: 'pay_web', thrown: true,
         message: (e instanceof Error ? e.message : String(e)).slice(0, 300),
       })
-      setError((e instanceof Error && e.message) || (ko ? '결제에 실패했어요.' : 'Payment failed.'))
+      setError(describeCheckoutFailure(e, ko))
     } finally {
       setBusy(false)
     }
@@ -290,6 +302,14 @@ function PaySubscribe() {
             </p>
           )}
 
+          {sdkLoadFailed && !error && (
+            <p className="mt-4 rounded-xl bg-amber-50 px-3.5 py-2.5 text-[13px] leading-relaxed text-amber-800">
+              {describeCheckoutFailure(new Error('[PortOne] Failed to load window.PortOne'), ko)}{' '}
+              <button type="button" className="underline underline-offset-2 font-medium" onClick={() => window.location.reload()}>
+                {ko ? '새로고침' : 'Reload'}
+              </button>
+            </p>
+          )}
           {error && (
             <p className="mt-4 rounded-xl bg-red-50 px-3.5 py-2.5 text-[13px] leading-relaxed text-red-600">
               {error}

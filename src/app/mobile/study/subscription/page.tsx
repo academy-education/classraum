@@ -19,7 +19,7 @@ import { deriveSubscriptionUiState } from '@/lib/study/subscription-state'
 import { buyCreditPack, billingCustomer, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment, checkoutContext } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { isAppReturnedEvent, type AppLifecycleEvent, type ExitPlatform } from '@/lib/study/test-exit-guard'
-import { PortOne } from '@/lib/portone-browser'
+import { PortOne, preloadPortOne, describeCheckoutFailure } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
 import { passCreditLabel } from '../_shared/pass-label'
 import { PhonePromptModal } from '@/components/ui/phone-prompt-modal'
@@ -166,6 +166,20 @@ export default function SubscriptionPage() {
    */
   const [phonePrompt, setPhonePrompt] = useState<{ retry: () => void } | null>(null)
   const [error, setError] = useState<string | null>(null)
+  // The PortOne SDK is fetched from cdn.portone.io at first use; when that
+  // fetch fails the loader caches the rejection and every later click fails
+  // instantly. Load it on mount so the failure is known — and named — before
+  // anyone presses "subscribe" (see lib/portone-browser.ts).
+  const [sdkLoadFailed, setSdkLoadFailed] = useState<string | null>(null)
+  useEffect(() => {
+    let cancelled = false
+    void preloadPortOne().then(reason => {
+      if (cancelled || !reason) return
+      setSdkLoadFailed(reason)
+      track('checkout_result', { step: 'sdk-load', ok: false, reason, ...checkoutContext() })
+    })
+    return () => { cancelled = true }
+  }, [])
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [confirmingCancel, setConfirmingCancel] = useState(false)
   /**
@@ -523,7 +537,7 @@ export default function SubscriptionPage() {
         message: (e instanceof Error ? e.message : String(e)).slice(0, 300),
         ...checkoutContext(),
       })
-      setError((e instanceof Error && e.message) || (t('study.subscription.checkoutFailed') as string))
+      setError(describeCheckoutFailure(e, ko) || (t('study.subscription.checkoutFailed') as string))
     } finally {
       setActing(null)
     }
@@ -703,6 +717,18 @@ export default function SubscriptionPage() {
         {/* Action feedback lives directly under the header — at the old
             bottom-of-page spot it rendered off-screen after cancel/
             checkout and the page looked like nothing happened. */}
+        {sdkLoadFailed && !error && (
+          <div className="lg:col-span-2 rounded-2xl px-4 py-3 text-[13px] flex items-start gap-2.5 ring-1 bg-amber-50/80 ring-amber-200/60 text-amber-800">
+            <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+            <div className="leading-relaxed min-w-0">
+              <span>{describeCheckoutFailure(new Error('[PortOne] Failed to load window.PortOne'), ko)}</span>
+              {' '}
+              <button type="button" className="underline underline-offset-2 font-medium" onClick={() => window.location.reload()}>
+                {ko ? '새로고침' : 'Reload'}
+              </button>
+            </div>
+          </div>
+        )}
         {(error || successMessage) && (
           /* Full-bleed across both desktop columns — an error about the
              purchase you just attempted is not a sidebar item. */
