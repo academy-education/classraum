@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback, useRef } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
+import { isAuthLinkPath } from '@/lib/auth/auth-link'
 import {
   isNativeApp,
   getPlatform,
@@ -45,6 +46,11 @@ export function useNativeApp(options: UseNativeAppOptions = {}): UseNativeAppRet
   const handleDeepLink = useCallback((data: DeepLinkData) => {
 
     const { path, params } = data
+
+    // Auth server routes (/auth/confirm, /auth/callback, token-bearing
+    // /auth) are loaded by NativeAuthLinkOpener in the root layout; a
+    // router.push here would try to client-render a Route Handler.
+    if (isAuthLinkPath(path, Object.keys(params).length ? '?' + new URLSearchParams(params).toString() : '')) return
 
     // Map deep link paths to app routes
     // Custom scheme: classraum://session/123 -> /mobile/session/123
