@@ -28,7 +28,7 @@ function normalizedOrigin(url: URL): string {
 }
 
 /** Only a same-origin relative path may be a `next`; anything else is dropped. */
-export function safeNext(raw: string | null): string | null {
+function safeNext(raw: string | null): string | null {
   if (!raw || !raw.startsWith('/') || raw.startsWith('//') || raw.includes('\\')) return null
   return raw
 }
