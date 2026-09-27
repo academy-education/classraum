@@ -31,6 +31,8 @@ import { isOAuthFlow, OAUTH_FLOW_PARAM } from "@/lib/auth/oauth-callback"
 import { outcomeMessageKey } from "@/lib/auth/oauth-outcome"
 import { savePendingLink, peekPendingLink, takePendingLinkFor, clearPendingLink } from "@/lib/auth/pending-link"
 import { isNativeApp, openExternalUrl } from "@/lib/nativeApp"
+import { Browser } from "@capacitor/browser"
+import type { PluginListenerHandle } from "@capacitor/core"
 import { useOAuthDeepLink } from "@/hooks/useOAuthDeepLink"
 import { isPlausibleEmail, suggestEmailFix } from '@/lib/auth/email'
 
@@ -150,6 +152,23 @@ export default function AuthPage() {
   // No-op on web and in every build where the flag is off (nothing can
   // have started a flow, so no such link can arrive).
   useOAuthDeepLink()
+
+  // Native: the provider opens in an SFSafariViewController / Custom Tab.
+  // If the student dismisses it (Done / back) no deep link ever arrives, so
+  // nothing cleared `oauthProvider` and the buttons stayed on "connecting…"
+  // for good (reported 2026-09-28). The Browser plugin emits
+  // `browserFinished` when the sheet closes for ANY reason — cancel or the
+  // deep-link handler's own Browser.close() — so this also fires on success,
+  // where `oauthReturning` already owns the disabled state.
+  useEffect(() => {
+    if (!isNativeApp()) return
+    let handle: PluginListenerHandle | undefined
+    let cancelled = false
+    Browser.addListener('browserFinished', () => setOauthProvider(null)).then(h => {
+      if (cancelled) h.remove(); else handle = h
+    }).catch(() => {})
+    return () => { cancelled = true; handle?.remove() }
+  }, [])
 
   // Bring the focused field into the visible strip once the keyboard has
   // finished opening.
