@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { sendResendEmail } from '@/lib/resend'
+import { raiseAlert } from '@/lib/ops/alert'
 import {
   appOriginFor, buildAuthEmail, confirmLink, detectLanguage, nextPathFor, verifyStandardWebhook,
   type HookPayload,
@@ -40,6 +41,7 @@ export async function GET(request: Request) {
     from: process.env.RESEND_FROM_EMAIL ?? '(default) Classraum <no-reply@classraum.com>',
     appOrigin: DEFAULT_APP_ORIGIN,
     env: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? 'unknown',
+    probe: 3,
   }
   // ?diag=1 asks Resend (read-only) whether the key works and which sending
   // domains are verified — the two things a failed send usually comes down to.
@@ -97,7 +99,16 @@ export async function POST(request: Request) {
 
   const sent = await sendResendEmail({ to: toEmail, subject: mail.subject, html: mail.html, text: mail.text })
   if (!sent.sent) {
-    console.error('[email-hook] send failed', { type, error: sent.error })
+    // Supabase reports only "unexpected status code" to the caller, so the
+    // provider's reason is recorded where it can be read: the ops alerts
+    // table (and the log). Recipient domain only — no address.
+    await raiseAlert({
+      severity: 'warning',
+      title: 'Auth email send failed',
+      message: sent.error ?? 'send failed',
+      dedupeKey: `auth-email-send:${type}`,
+      context: { type, lang, toDomain: toEmail.split('@')[1] ?? null },
+    })
     return NextResponse.json({ error: { http_code: 500, message: sent.error ?? 'send failed' } }, { status: 500 })
   }
   return NextResponse.json({})
