@@ -27,6 +27,22 @@ export const dynamic = 'force-dynamic'
 
 const DEFAULT_APP_ORIGIN = process.env.AUTH_EMAIL_APP_ORIGIN || 'https://app.classraum.com'
 
+/**
+ * GET — configuration probe, booleans only. Supabase reports a failed hook
+ * as "Unexpected status code returned from hook: 500" and nothing else, so
+ * this is how "is the Resend key on production?" gets answered without a
+ * trip to the Vercel logs. Reveals presence, never values.
+ */
+export async function GET() {
+  return NextResponse.json({
+    hookSecret: Boolean(process.env.SEND_EMAIL_HOOK_SECRET),
+    resendKey: Boolean(process.env.RESEND_API_KEY),
+    from: process.env.RESEND_FROM_EMAIL ?? '(default) Classraum <no-reply@classraum.com>',
+    appOrigin: DEFAULT_APP_ORIGIN,
+    env: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? 'unknown',
+  })
+}
+
 export async function POST(request: Request) {
   const secret = process.env.SEND_EMAIL_HOOK_SECRET
   if (!secret) return NextResponse.json({ error: { http_code: 500, message: 'SEND_EMAIL_HOOK_SECRET is not set' } }, { status: 500 })
