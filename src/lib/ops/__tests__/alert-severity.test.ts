@@ -1,4 +1,4 @@
-import { toDbSeverity } from '../alert'
+import { toDbSeverity } from '../alert-severity'
 
 describe('toDbSeverity', () => {
   it("maps the code's vocabulary onto the table's CHECK (low/medium/high/critical)", () => {
