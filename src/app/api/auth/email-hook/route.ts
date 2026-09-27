@@ -41,7 +41,7 @@ export async function GET(request: Request) {
     from: process.env.RESEND_FROM_EMAIL ?? '(default) Classraum <no-reply@classraum.com>',
     appOrigin: DEFAULT_APP_ORIGIN,
     env: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? 'unknown',
-    probe: 4,
+    probe: 5,
   }
   // ?diag=1 asks Resend (read-only) whether the key works and which sending
   // domains are verified — the two things a failed send usually comes down to.
@@ -52,6 +52,23 @@ export async function GET(request: Request) {
       return NextResponse.json({ ...base, resend: { keyValid: r.ok, status: r.status, error: r.ok ? undefined : (body.message ?? body.name), domains: (body.data ?? []).map(d => ({ name: d.name, status: d.status, region: d.region })) } })
     } catch (e) {
       return NextResponse.json({ ...base, resend: { keyValid: false, error: e instanceof Error ? e.message : String(e) } })
+    }
+  }
+  // Temporary diagnostics (2026-09-28): a direct Resend send to the admin
+  // address and a direct alert write, so each half can be tested without
+  // Supabase in the loop. Recipient is fixed, so the worst case is a probe
+  // mail to the admin. Remove once the hook is proven.
+  const probe = new URL(request.url).searchParams
+  if (probe.get('send') === '1') {
+    const r = await sendResendEmail({ to: 'leeandy755@gmail.com', subject: 'Classraum auth-mail probe', html: '<p>Resend probe from /api/auth/email-hook</p>', text: 'Resend probe' })
+    return NextResponse.json({ ...base, directSend: r })
+  }
+  if (probe.get('alert') === '1') {
+    try {
+      await raiseAlert({ severity: 'info', title: 'Auth email hook probe', message: 'alert write test', dedupeKey: `auth-email-probe:${Date.now()}` })
+      return NextResponse.json({ ...base, alertWrite: 'ok' })
+    } catch (e) {
+      return NextResponse.json({ ...base, alertWrite: 'threw', error: e instanceof Error ? e.message : String(e) })
     }
   }
   return NextResponse.json(base)
