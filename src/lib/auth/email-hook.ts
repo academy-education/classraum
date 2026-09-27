@@ -137,17 +137,40 @@ const COPY: Record<AuthEmailLanguage, Record<string, { subject: string; title: s
   },
 }
 
-function shell(lang: AuthEmailLanguage, title: string, inner: string): string {
+const ASSET_ORIGIN = 'https://www.classraum.com'
+const BRAND = { navy: '#163a5f', blue: '#2885e8', teal: '#1fc8b6', ink: '#1f2937', muted: '#6b7280', line: '#e5e7eb', bg: '#f3f6fa' }
+
+/**
+ * One layout for every auth mail. Table-based and inline-styled on purpose:
+ * Gmail strips <style>, Outlook ignores flex/grid, and dark-mode clients
+ * recolour anything without an explicit background. The wordmark is the
+ * hosted PNG (email clients do not render inline SVG); the button is a
+ * solid brand blue with a gradient on clients that honour background-image.
+ */
+function shell(lang: AuthEmailLanguage, title: string, preheader: string, inner: string): string {
+  const footer = lang === 'ko'
+    ? '이 메일은 Classraum 계정 보안을 위해 자동으로 발송되었습니다. 회신은 확인되지 않아요.'
+    : 'This is an automated message about your Classraum account. Replies to this address are not monitored.'
   return `<!DOCTYPE html>
-<html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${escapeHtml(title)}</title></head>
-<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans KR',sans-serif;line-height:1.6;color:#333;margin:0;padding:0;background-color:#f5f5f5;">
-  <div style="max-width:600px;margin:0 auto;padding:40px 20px;">
-    <div style="background:white;border-radius:12px;padding:40px;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-      <div style="text-align:center;margin-bottom:30px;"><h1 style="color:#2563eb;margin:0;font-size:28px;">Classraum</h1></div>
-      ${inner}
-      <div style="margin-top:30px;text-align:center;color:#888;font-size:13px;"><p>${lang === 'ko' ? '이 이메일은 Classraum에서 자동으로 발송되었습니다.' : 'This email was sent automatically by Classraum.'}</p></div>
-    </div>
-  </div>
+<html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>${escapeHtml(title)}</title></head>
+<body style="margin:0;padding:0;background:${BRAND.bg};-webkit-text-size-adjust:100%;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeHtml(preheader)}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:${BRAND.bg};">
+    <tr><td align="center" style="padding:40px 16px;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:560px;">
+        <tr><td align="left" style="padding:0 8px 20px;">
+          <img src="${ASSET_ORIGIN}/text_logo.png" width="168" height="36" alt="Classraum" style="display:block;width:168px;height:auto;border:0;">
+        </td></tr>
+        <tr><td style="background:#ffffff;border-radius:16px;border:1px solid ${BRAND.line};padding:36px 36px 28px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Apple SD Gothic Neo','Noto Sans KR',Helvetica,Arial,sans-serif;color:${BRAND.ink};">
+          ${inner}
+        </td></tr>
+        <tr><td style="padding:20px 8px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Apple SD Gothic Neo','Noto Sans KR',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:${BRAND.muted};">
+          <p style="margin:0 0 6px;">${footer}</p>
+          <p style="margin:0;">&copy; ${new Date().getFullYear()} Classraum &middot; <a href="${ASSET_ORIGIN}" style="color:${BRAND.muted};text-decoration:underline;">classraum.com</a></p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
 </body></html>`
 }
 
@@ -162,25 +185,30 @@ export function buildAuthEmail(input: {
   const c = COPY[input.lang][t]
   if (!c) return null
   const safeEmail = escapeHtml(input.toEmail)
+  const font = "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Apple SD Gothic Neo','Noto Sans KR',Helvetica,Arial,sans-serif;"
   let action = ''
   let textAction = ''
   if (t === 'reauthentication') {
     const code = escapeHtml(input.token ?? '')
-    action = `<p style="text-align:center;margin:28px 0;"><span style="display:inline-block;font-size:28px;letter-spacing:6px;font-weight:700;background:#f1f5f9;padding:12px 20px;border-radius:8px;">${code}</span></p>`
+    action = `<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:26px auto;"><tr><td style="background:${BRAND.bg};border:1px solid ${BRAND.line};border-radius:12px;padding:14px 26px;${font}font-size:30px;letter-spacing:8px;font-weight:700;color:${BRAND.navy};">${code}</td></tr></table>`
     textAction = `${input.lang === 'ko' ? '인증 코드' : 'Code'}: ${input.token ?? ''}`
   } else {
     if (!input.link) return null
     const href = escapeHtml(input.link)
-    action = `<p style="text-align:center;margin:28px 0;"><a href="${href}" style="display:inline-block;background:#2563eb;color:#ffffff !important;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:600;">${c.cta}</a></p>
-      <p style="font-size:13px;color:#666;word-break:break-all;">${input.lang === 'ko' ? '버튼이 열리지 않으면 이 주소를 브라우저에 붙여넣어 주세요:' : "If the button doesn't open, paste this address into your browser:"}<br><a href="${href}" style="color:#2563eb;">${href}</a></p>`
+    action = `<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:26px 0 22px;"><tr><td align="center" bgcolor="${BRAND.blue}" style="border-radius:10px;background:${BRAND.blue};background-image:linear-gradient(90deg,${BRAND.blue},${BRAND.teal});">
+        <a href="${href}" style="display:inline-block;padding:14px 30px;${font}font-size:15px;font-weight:600;color:#ffffff !important;text-decoration:none;border-radius:10px;">${c.cta}</a>
+      </td></tr></table>
+      <p style="margin:0 0 4px;${font}font-size:12px;line-height:1.6;color:${BRAND.muted};">${input.lang === 'ko' ? '버튼이 열리지 않으면 아래 주소를 복사해 브라우저에 붙여넣어 주세요.' : "If the button doesn't work, copy this address into your browser."}</p>
+      <p style="margin:0 0 20px;${font}font-size:12px;line-height:1.6;word-break:break-all;"><a href="${href}" style="color:${BRAND.blue};text-decoration:underline;">${href}</a></p>`
     textAction = input.link
   }
-  const inner = `<h2 style="margin:0 0 12px;font-size:20px;">${c.title}</h2>
-    <p style="margin:0 0 6px;color:#666;font-size:13px;">${safeEmail}</p>
-    <p>${c.body}</p>
+  const inner = `<h1 style="margin:0 0 14px;${font}font-size:24px;line-height:1.3;font-weight:700;color:${BRAND.navy};">${c.title}</h1>
+    <p style="margin:0 0 18px;${font}font-size:15px;line-height:1.7;color:${BRAND.ink};">${c.body}</p>
+    <p style="margin:0;${font}font-size:13px;line-height:1.6;color:${BRAND.muted};">${input.lang === 'ko' ? '계정' : 'Account'}: <span style="color:${BRAND.ink};">${safeEmail}</span></p>
     ${action}
-    <p style="font-size:13px;color:#666;">${c.expiry}</p>
-    <p style="font-size:13px;color:#666;">${c.ignore}</p>`
+    <hr style="border:0;border-top:1px solid ${BRAND.line};margin:0 0 16px;">
+    <p style="margin:0 0 6px;${font}font-size:12px;line-height:1.6;color:${BRAND.muted};">${c.expiry}</p>
+    <p style="margin:0;${font}font-size:12px;line-height:1.6;color:${BRAND.muted};">${c.ignore}</p>`
   const text = [c.title, '', c.body, '', textAction, '', c.expiry, c.ignore].join('\n')
-  return { subject: c.subject, html: shell(input.lang, c.title, inner), text }
+  return { subject: c.subject, html: shell(input.lang, c.title, c.body, inner), text }
 }
