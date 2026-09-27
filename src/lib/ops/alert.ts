@@ -23,6 +23,21 @@ import { dbAdmin } from '@/lib/supabase-admin'
 
 export type AlertSeverity = 'info' | 'warning' | 'critical'
 
+/**
+ * The alerts table's CHECK allows only low/medium/high/critical, while the
+ * code has always raised 'warning' (43 call sites) and 'info'. Every such
+ * insert was rejected and only console-logged — found 2026-09-28 when an
+ * auth-email failure alert never appeared; the table held 8 rows in ten
+ * months, all critical/high. Map here rather than widen the CHECK: the
+ * admin dashboard already ranks by critical/high/medium.
+ */
+export const DB_SEVERITY: Record<string, 'low' | 'medium' | 'high' | 'critical'> = {
+  critical: 'critical', high: 'high', major: 'high', warning: 'medium', medium: 'medium', info: 'low', low: 'low', nit: 'low',
+}
+export function toDbSeverity(severity: string): 'low' | 'medium' | 'high' | 'critical' {
+  return DB_SEVERITY[severity] ?? 'medium'
+}
+
 export interface AlertInput {
   severity: AlertSeverity
   /** Short human title, e.g. "Cron has not run". */
@@ -122,7 +137,7 @@ export async function raiseAlert(input: AlertInput): Promise<void> {
       writeError = updateError
     } else {
       const { error: insertError } = await dbAdmin.from('alerts').insert({
-        severity, title, message,
+        severity: toDbSeverity(severity), title, message,
         error_message: errText(error),
         error_stack: errStack(error),
         context: ctx,

@@ -41,7 +41,7 @@ export async function GET(request: Request) {
     from: process.env.RESEND_FROM_EMAIL ?? '(default) Classraum <no-reply@classraum.com>',
     appOrigin: DEFAULT_APP_ORIGIN,
     env: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? 'unknown',
-    probe: 5,
+    probe: 6,
   }
   // ?diag=1 asks Resend (read-only) whether the key works and which sending
   // domains are verified — the two things a failed send usually comes down to.
