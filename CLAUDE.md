@@ -708,7 +708,12 @@ Two lessons:
    step is where `next build` fails, and it fails on ERRORS only — the hundreds
    of warnings in this repo are noise the build tolerates, so grep for `Error:`
    rather than reading the wall.
-2. **A green local check said nothing about the deploy, and nothing told us.**
+2. **Route files may export only handlers and route config.** `next build`
+   type-checks `app/**/route.ts` against Next's Route type; a helper
+   `export function` in a route file fails the build with "is not a valid
+   Route export field" — and `tsc` and `next lint` both pass it (2026-09-28,
+   `auth/confirm/route.ts`). Keep helpers unexported or in `lib/`.
+3. **A green local check said nothing about the deploy, and nothing told us.**
    Four days of failed deploys produced no signal in this workflow at all. When
    a change matters, confirm the deploy succeeded rather than inferring it from
    a successful push.
