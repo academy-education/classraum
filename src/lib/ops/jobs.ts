@@ -37,6 +37,11 @@ export const JOB_REGISTRY: JobSpec[] = [
   { job: 'sync',                         label: 'PortOne sync',                schedule: '0 */6 * * *', maxSilenceMinutes: 14 * H, severity: 'critical' },
   { job: 'payment-reminders',            label: 'Payment reminders',           schedule: '10 0 * * *',  maxSilenceMinutes: 2 * D, severity: 'warning' },
 
+  // Auth hygiene. Removes password accounts that never confirmed their email
+  // (after the 7-day grace in lib/auth/unconfirmed-cleanup.ts) so an
+  // abandoned signup does not hold the address hostage.
+  { job: 'auth-unconfirmed-cleanup',     label: 'Unconfirmed account cleanup', schedule: '20 18 * * *', maxSilenceMinutes: 2 * D, severity: 'warning' },
+
   // Credits. Stops refunding students whose generation died.
   { job: 'study-reap-stuck-generations', label: 'Stuck-generation reaper',     schedule: '*/10 * * * *', maxSilenceMinutes: 45,   severity: 'critical' },
 

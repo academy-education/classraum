@@ -64,6 +64,18 @@ export async function GET(request: Request) {
     return NextResponse.redirect(`${normalizedOrigin}/auth?${searchParams.toString()}`)
   }
 
+  // Links built by Supabase's own templates (if the Send Email hook is ever
+  // off) arrive with token_hash + type; our /auth/confirm verifies those
+  // server-side and redirects by role. Recovery keeps its branch below.
+  if (token_hash && type && ['signup', 'email', 'magiclink', 'invite', 'email_change'].includes(type)) {
+    const next = searchParams.get('next') ?? searchParams.get('redirect_to')
+    const u = new URL(`${normalizedOrigin}/auth/confirm`)
+    u.searchParams.set('token_hash', token_hash)
+    u.searchParams.set('type', type)
+    if (next) u.searchParams.set('next', next)
+    return NextResponse.redirect(u.toString())
+  }
+
   // Handle password recovery flow - check for various formats
   if (type === 'recovery' || (access_token && refresh_token)) {
     // If we have access_token and refresh_token, redirect with tokens

@@ -712,3 +712,32 @@ Two lessons:
    Four days of failed deploys produced no signal in this workflow at all. When
    a change matters, confirm the deploy succeeded rather than inferring it from
    a successful push.
+
+## Auth email goes through our hook and Resend, not Supabase's mailer
+
+Since 2026-09-27 every Supabase auth email (confirmation, password reset,
+magic link, invite, email change) is produced by `POST /api/auth/email-hook`
+— Supabase's **Send Email hook** — and sent through **Resend**
+(`src/lib/resend.ts`), not Supabase's built-in SMTP (2 mails/hour,
+unbranded). The link in the mail lands on **our** `/auth/confirm`, which
+verifies the `token_hash` server-side and hands the session to `/auth`
+recovery-style (`?type=confirmed&access_token&refresh_token`), because the
+browser client keeps its session in localStorage, not cookies. The pure
+parts — Standard-Webhooks signature check, KO/EN templates, link building,
+language detection — live in `src/lib/auth/email-hook.ts` and are tested.
+
+- **Dry run:** with no `RESEND_API_KEY` outside production the hook logs the
+  mail (link included) to the server console and returns 200. Sign with the
+  local `SEND_EMAIL_HOOK_SECRET` (see the test for the signing shape).
+- **Order of operations when turning "Confirm email" ON:** Resend domain
+  verified → `RESEND_API_KEY` + `SEND_EMAIL_HOOK_SECRET` in Vercel → hook
+  enabled in Supabase with the same secret → redirect allowlist includes
+  `https://app.classraum.com/auth/confirm` → deploy → flip. Flipping first
+  strands every new signup with no mail.
+- `auth-unconfirmed-cleanup` (cron, 7-day grace) deletes password accounts
+  that never confirmed and never signed in; social accounts are never
+  touched. `public.users` has no FK to `auth.users`, so it deletes the
+  public row first.
+- The 443 accounts confirmed before the switch were auto-confirmed and prove
+  nothing about mailbox ownership; the OAuth takeover guard in
+  `src/lib/auth/oauth-outcome.ts` stays as it is for them.

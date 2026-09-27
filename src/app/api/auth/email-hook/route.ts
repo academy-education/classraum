@@ -1,0 +1,76 @@
+import { NextResponse } from 'next/server'
+import { dbAdmin } from '@/lib/supabase-admin'
+import { sendResendEmail } from '@/lib/resend'
+import {
+  appOriginFor, buildAuthEmail, confirmLink, detectLanguage, nextPathFor, verifyStandardWebhook,
+  type HookPayload,
+} from '@/lib/auth/email-hook'
+
+/**
+ * POST /api/auth/email-hook — Supabase Auth "Send Email" hook.
+ *
+ * Supabase calls this instead of sending mail itself (Dashboard → Auth →
+ * Hooks → Send Email → HTTPS, URL = this route, secret = SEND_EMAIL_HOOK_SECRET).
+ * We verify the Standard Webhooks signature, build a Korean or English mail
+ * whose link lands on OUR /auth/confirm, and send it through Resend.
+ *
+ * Contract: 200 with `{}` means "sent"; any non-2xx makes Supabase report
+ * the send as failed to the caller (signUp/resetPasswordForEmail return an
+ * error), which is what we want — a silent 200 over a failed send would
+ * strand the user with no mail and no message.
+ *
+ * DRY RUN: with no RESEND_API_KEY outside production, the mail is logged to
+ * the server console (link included) and 200 is returned, so the whole flow
+ * can be exercised locally before the Resend account exists.
+ */
+export const dynamic = 'force-dynamic'
+
+const DEFAULT_APP_ORIGIN = process.env.AUTH_EMAIL_APP_ORIGIN || 'https://app.classraum.com'
+
+export async function POST(request: Request) {
+  const secret = process.env.SEND_EMAIL_HOOK_SECRET
+  if (!secret) return NextResponse.json({ error: { http_code: 500, message: 'SEND_EMAIL_HOOK_SECRET is not set' } }, { status: 500 })
+
+  const raw = await request.text()
+  const bad = verifyStandardWebhook({
+    id: request.headers.get('webhook-id'),
+    timestamp: request.headers.get('webhook-timestamp'),
+    signature: request.headers.get('webhook-signature'),
+  }, raw, secret)
+  if (bad) return NextResponse.json({ error: { http_code: 401, message: `invalid signature: ${bad}` } }, { status: 401 })
+
+  let payload: HookPayload
+  try { payload = JSON.parse(raw) as HookPayload } catch {
+    return NextResponse.json({ error: { http_code: 400, message: 'body is not JSON' } }, { status: 400 })
+  }
+  const { user, email_data: ed } = payload
+  const type = ed?.email_action_type
+  // email_change sends to the NEW address with token_hash_new; the old address gets the plain token_hash.
+  const toEmail = type === 'email_change_new' ? (user.new_email ?? user.email) : user.email
+  if (!user?.id || !toEmail || !type) return NextResponse.json({ error: { http_code: 400, message: 'payload missing user/email/type' } }, { status: 400 })
+
+  let prefsLanguage: string | null = null
+  try {
+    const { data } = await dbAdmin.from('user_preferences').select('language').eq('user_id', user.id).maybeSingle()
+    prefsLanguage = (data as { language?: string | null } | null)?.language ?? null
+  } catch { /* language falls back below */ }
+  const lang = detectLanguage(user, prefsLanguage)
+
+  const origin = appOriginFor(ed.redirect_to, DEFAULT_APP_ORIGIN)
+  const tokenHash = type === 'email_change_new' ? ed.token_hash_new : ed.token_hash
+  const link = tokenHash && type !== 'reauthentication' ? confirmLink(origin, tokenHash, type === 'email_change_new' ? 'email_change' : type, nextPathFor(ed.redirect_to)) : null
+  const mail = buildAuthEmail({ type, lang, link, token: ed.token ?? null, toEmail })
+  if (!mail) return NextResponse.json({ error: { http_code: 400, message: `unsupported email_action_type ${type}` } }, { status: 400 })
+
+  if (!process.env.RESEND_API_KEY && process.env.NODE_ENV !== 'production') {
+    console.log(`[email-hook DRY RUN] to=${toEmail} type=${type} lang=${lang}\n  subject: ${mail.subject}\n  link: ${link ?? '(none)'}`)
+    return NextResponse.json({})
+  }
+
+  const sent = await sendResendEmail({ to: toEmail, subject: mail.subject, html: mail.html, text: mail.text })
+  if (!sent.sent) {
+    console.error('[email-hook] send failed', { type, error: sent.error })
+    return NextResponse.json({ error: { http_code: 500, message: sent.error ?? 'send failed' } }, { status: 500 })
+  }
+  return NextResponse.json({})
+}

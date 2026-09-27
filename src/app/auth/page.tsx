@@ -83,6 +83,27 @@ export default function AuthPage() {
   const [phone, setPhone] = useState("")
   const [loading, setLoading] = useState(false)
   const [activeTab, setActiveTab] = useState("signin")
+  // Email confirmation. Set when signUp returns a user but no session
+  // (Supabase "Confirm email" on) or when sign-in says the address is
+  // unconfirmed; the form gives way to a "check your email" panel with a
+  // resend button. Resend is rate-limited server-side; the cooldown just
+  // stops the double-tap.
+  const [awaitingConfirmation, setAwaitingConfirmation] = useState<{ email: string } | null>(null)
+  const [resendCooldown, setResendCooldown] = useState(0)
+  useEffect(() => {
+    if (resendCooldown <= 0) return
+    const id = window.setTimeout(() => setResendCooldown(c => c - 1), 1000)
+    return () => window.clearTimeout(id)
+  }, [resendCooldown])
+  const confirmationRedirectTo = () => `${window.location.origin}/auth${window.location.search}`
+  const resendConfirmation = async () => {
+    if (!awaitingConfirmation || resendCooldown > 0) return
+    setResendCooldown(60)
+    const { error } = await db.auth.resend({ type: 'signup', email: awaitingConfirmation.email, options: { emailRedirectTo: confirmationRedirectTo() } })
+    toast(error
+      ? { title: error.message, variant: 'destructive' }
+      : { title: language === 'korean' ? '확인 메일을 다시 보냈어요.' : 'Confirmation email sent again.', variant: 'success' })
+  }
   const [resetEmail, setResetEmail] = useState("")
   const [resetSent, setResetSent] = useState(false)
   const [familyId, setFamilyId] = useState("")
@@ -193,6 +214,23 @@ export default function AuthPage() {
       const refreshToken = urlParams.get('refresh_token')
 
       // Handle password reset with tokens IMMEDIATELY
+      // Back from an email-confirmation link (/auth/confirm verified the
+      // token and handed us the fresh session, recovery-style). Store it;
+      // the authenticated-user effect then runs the normal redirect.
+      if (typeParam === 'confirmed' && accessToken && refreshToken) {
+        db.auth.setSession({ access_token: accessToken, refresh_token: refreshToken }).then(({ error }) => {
+          const newUrl = new URL(window.location.href)
+          for (const k of ['access_token', 'refresh_token', 'type']) newUrl.searchParams.delete(k)
+          window.history.replaceState({}, '', newUrl.toString())
+          if (error) {
+            toast({ title: language === 'korean' ? '확인 링크가 만료되었거나 올바르지 않아요. 로그인 후 다시 요청해 주세요.' : 'This confirmation link is invalid or has expired. Sign in to request a new one.', variant: 'destructive' })
+            return
+          }
+          toast({ title: language === 'korean' ? '이메일이 확인되었어요.' : 'Your email is confirmed.', variant: 'success' })
+        })
+        return
+      }
+
       if (typeParam === 'reset' && accessToken && refreshToken) {
         // Set session synchronously to prevent redirects
         db.auth.setSession({
@@ -240,6 +278,13 @@ export default function AuthPage() {
         }
 
       // Handle error states
+      if (errorParam === 'confirm_link_invalid') {
+        toast({ title: (langParam ?? language) === 'korean' ? '확인 링크가 만료되었거나 이미 사용되었어요. 로그인하면 새 링크를 보내드려요.' : 'This confirmation link has expired or was already used. Sign in and we will send a new one.', variant: 'destructive' })
+        const newUrl = new URL(window.location.href)
+        newUrl.searchParams.delete('error'); newUrl.searchParams.delete('reason')
+        window.history.replaceState({}, '', newUrl.toString())
+      }
+
       if (errorParam === 'invalid_reset_link') {
         toast({ title: t('auth.resetPassword.invalidLink') as string || 'Password reset link is invalid or has expired. Please request a new password reset.', variant: 'destructive' })
         // Clear the error parameter from URL
@@ -779,7 +824,12 @@ export default function AuthPage() {
         email,
         password,
         options: {
+          // Where the confirmation link lands: back on THIS page with the
+          // same query (invite, role, lang…) so the post-confirm redirect
+          // sees exactly what an immediate sign-in would have.
+          emailRedirectTo: confirmationRedirectTo(),
           data: {
+            lang: language,
             // `name` stays — the trigger falls back to it and Supabase
             // reads it. family_name/given_name are sent ALONGSIDE, and
             // BOTH or NEITHER: handle_new_user() stores neither column
@@ -843,6 +893,16 @@ export default function AuthPage() {
       // code up on the first authenticated load after confirmation.
       const pendingReferral = signupIntent === 'study' ? referralCode.trim().toUpperCase() : ''
       if (pendingReferral) savePendingReferral(pendingReferral)
+
+      // Email confirmation on: the account exists, the trigger has made the
+      // profile, but there is no session — nothing below can run (every
+      // fallback insert needs one) and the sign-in would only say
+      // "Email not confirmed". Show the panel and stop.
+      if (!authData.session) {
+        setAwaitingConfirmation({ email })
+        setLoading(false)
+        return
+      }
 
       // User profile will be created automatically by the handle_new_user trigger
       // Wait briefly for the trigger to complete
@@ -1240,6 +1300,12 @@ export default function AuthPage() {
         }
 
         // Provide more user-friendly error messages
+        if (/email not confirmed/i.test(errorMessage)) {
+          setAwaitingConfirmation({ email })
+          setLoading(false)
+          return
+        }
+
         if (errorMessage.includes('Invalid login credentials')) {
           errorMessage = 'Invalid email or password. Please check your credentials and try again.'
         }
@@ -1484,7 +1550,30 @@ export default function AuthPage() {
         </div>
 
         <Card className="p-6 sm:p-7 backdrop-blur-sm pointer-events-none gap-5">
-          <form onSubmit={activeTab === "signin" ? handleSignIn : activeTab === "signup" ? handleSignUp : activeTab === "resetPassword" ? handlePasswordReset : handleForgotPassword} className="space-y-5 pointer-events-auto">
+          {awaitingConfirmation && (
+            <div className="pointer-events-auto rounded-2xl border border-gray-200 bg-white p-5 space-y-3 text-left">
+              <p className="text-base font-semibold text-gray-900">
+                {language === 'korean' ? '이메일을 확인해 주세요' : 'Check your email'}
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {language === 'korean'
+                  ? <>아래 주소로 확인 메일을 보냈어요. 메일의 버튼을 누르면 가입이 완료돼요. 스팸함도 확인해 주세요.</>
+                  : <>We sent a confirmation email to the address below. Press the button in it to finish signing up. Check your spam folder too.</>}
+              </p>
+              <p className="text-sm font-medium text-gray-900 break-all">{awaitingConfirmation.email}</p>
+              <div className="flex flex-wrap gap-2 pt-1">
+                <Button type="button" onClick={() => void resendConfirmation()} disabled={resendCooldown > 0}>
+                  {resendCooldown > 0
+                    ? (language === 'korean' ? `다시 보내기 (${resendCooldown}초)` : `Resend (${resendCooldown}s)`)
+                    : (language === 'korean' ? '확인 메일 다시 보내기' : 'Resend confirmation email')}
+                </Button>
+                <Button type="button" variant="outline" onClick={() => { setAwaitingConfirmation(null); setActiveTab('signup') }}>
+                  {language === 'korean' ? '다른 이메일로 가입' : 'Use a different email'}
+                </Button>
+              </div>
+            </div>
+          )}
+          <form onSubmit={activeTab === "signin" ? handleSignIn : activeTab === "signup" ? handleSignUp : activeTab === "resetPassword" ? handlePasswordReset : handleForgotPassword} className="space-y-5 pointer-events-auto" hidden={!!awaitingConfirmation}>
             {activeTab === "signup" && !isInviteSignup && (
               /* Segmented door toggle — mirrors the shared TabsList /
                  TabsTrigger styling (muted track, white active pill) so
