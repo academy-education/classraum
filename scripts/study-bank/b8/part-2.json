@@ -1,0 +1,901 @@
+[
+ {
+  "id": "da7d67ca-ea03-4196-bacd-d5f5db74b948",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "prompt": "The line y = 3x + k is tangent to the parabola y = x^2 + 5x + 7. What is the value of k?",
+  "passage": null,
+  "choices": [
+   "6",
+   "-6",
+   "8",
+   "4"
+  ],
+  "correct_answer": "6",
+  "negated_key_distractor": "-6",
+  "explanation": "Setting the expressions equal: x^2 + 5x + 7 = 3x + k, so x^2 + 2x + (7 - k) = 0. Tangency means one solution, so the discriminant is 0: 2^2 - 4(7 - k) = 0, giving 7 - k = 1, so k = 6.",
+  "distractor_rationales": [
+   {
+    "choice": "-6",
+    "reason": ""
+   },
+   {
+    "choice": "8",
+    "reason": ""
+   },
+   {
+    "choice": "4",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "7ca289c8-2208-474d-b5ea-6cc544562c30",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The line y = 3x + c is tangent to the parabola y = x^2 + 5x + 7 in the xy-plane. What is the value of c?",
+  "passage": null,
+  "choices": [
+   "8",
+   "6",
+   "0.75",
+   "-6"
+  ],
+  "correct_answer": "6",
+  "negated_key_distractor": "-6",
+  "explanation": "Set the two expressions equal: x^2 + 5x + 7 = 3x + c, which rearranges to x^2 + 2x + (7 - c) = 0. Tangency means this quadratic has exactly one root, so its discriminant is zero: 2^2 - 4(7 - c) = 0, i.e. 4 = 4(7 - c), so 7 - c = 1 and c = 6, the key. The value 8 comes from solving 7 - c = 1 as c = 7 + 1 instead of c = 7 - 1. The value 5 comes from mis-simplifying 4 = 4(7 - c) by dividing by 2 rather than by 4, which leaves 7 - c = 2. The value -6 comes from carrying the constant as 7 + c, so that 4 = 4(7 + c) forces 7 + c = 1.",
+  "distractor_rationales": [
+   {
+    "choice": "8",
+    "reason": ""
+   },
+   {
+    "choice": "5",
+    "reason": ""
+   },
+   {
+    "choice": "-6",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "96cda218-77f3-4bc4-ab8b-8cb7749a8b7b",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "A quadratic function g(x) = 2x^2 + bx + c has roots at x = -1 and x = 4. What is the value of b + c?",
+  "passage": null,
+  "choices": [
+   "14",
+   "-6",
+   "6",
+   "-14"
+  ],
+  "correct_answer": "-14",
+  "negated_key_distractor": "14",
+  "explanation": "g(x) = 2(x+1)(x-4) = 2x^2 - 6x - 8, so b = -6 and c = -8, giving b + c = -14.",
+  "distractor_rationales": [
+   {
+    "choice": "14",
+    "reason": ""
+   },
+   {
+    "choice": "-6",
+    "reason": ""
+   },
+   {
+    "choice": "6",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "47a971c0-35fe-42b9-a370-00a0fa8933af",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "What is the minimum value of the function f(x) = 2x^2 - 12x + 23?",
+  "passage": null,
+  "choices": [
+   "3",
+   "23",
+   "-5",
+   "5"
+  ],
+  "correct_answer": "5",
+  "negated_key_distractor": "-5",
+  "explanation": "The vertex is at x = -b/(2a) = 12/4 = 3. Then f(3) = 2(9) - 12(3) + 23 = 18 - 36 + 23 = 5, which is the minimum since a > 0.",
+  "distractor_rationales": [
+   {
+    "choice": "3",
+    "reason": ""
+   },
+   {
+    "choice": "23",
+    "reason": ""
+   },
+   {
+    "choice": "-5",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "86af0ced-3c33-4526-9ae6-333956ec49c8",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "What value of x satisfies 4^x = 8^(x - 1)?",
+  "passage": null,
+  "choices": [
+   "-3",
+   "1",
+   "2",
+   "3"
+  ],
+  "correct_answer": "3",
+  "negated_key_distractor": "-3",
+  "explanation": "Write both sides base 2: 2^(2x) = 2^(3(x - 1)). Equate exponents: 2x = 3x - 3, so x = 3.",
+  "distractor_rationales": [
+   {
+    "choice": "-3",
+    "reason": ""
+   },
+   {
+    "choice": "1",
+    "reason": ""
+   },
+   {
+    "choice": "2",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "bcae4c90-117f-4069-b4a4-6e403901a61c",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "For what positive value of c does x^2 + cx + 9 = 0 have exactly one real solution?",
+  "passage": null,
+  "choices": [
+   "6",
+   "-6",
+   "3",
+   "9"
+  ],
+  "correct_answer": "6",
+  "negated_key_distractor": "-6",
+  "explanation": "Exactly one real solution means the discriminant is 0: c^2 - 4(1)(9) = 0, so c^2 = 36 and the positive value is c = 6.",
+  "distractor_rationales": [
+   {
+    "choice": "-6",
+    "reason": ""
+   },
+   {
+    "choice": "3",
+    "reason": ""
+   },
+   {
+    "choice": "9",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "d9a01b94-ffd5-4964-8d01-e0ec27e389b3",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "When the polynomial p(x) = x^3 - 4x^2 + ax - 6 is divided by (x - 3), the remainder is 0. What is the value of a?",
+  "passage": null,
+  "choices": [
+   "-5",
+   "7",
+   "3",
+   "5"
+  ],
+  "correct_answer": "5",
+  "negated_key_distractor": "-5",
+  "explanation": "By the factor theorem, p(3) = 0. So 27 - 36 + 3a - 6 = 0, giving 3a - 15 = 0 and a = 5.",
+  "distractor_rationales": [
+   {
+    "choice": "-5",
+    "reason": ""
+   },
+   {
+    "choice": "7",
+    "reason": ""
+   },
+   {
+    "choice": "3",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "06563cc7-236c-4c0d-8397-39d984bad8ab",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the system of equations 3x − 5y = 12 and 9x + ky = 30, there is no solution. What is the value of k?",
+  "passage": null,
+  "choices": [
+   "-15",
+   "-3",
+   "15",
+   "-45"
+  ],
+  "correct_answer": "-15",
+  "negated_key_distractor": "15",
+  "explanation": "No solution means the lines are parallel but not identical: the x- and y-coefficients are proportional. Since 9 = 3·(3), the y-coefficient must be −5·3 = −15. The constants (30 vs 12·3 = 36) are not proportional, so the system is truly inconsistent.",
+  "distractor_rationales": [
+   {
+    "choice": "-3",
+    "reason": ""
+   },
+   {
+    "choice": "15",
+    "reason": ""
+   },
+   {
+    "choice": "-45",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "2de6e94b-8ad3-4b59-ad71-2882945a624b",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "For what value of c is the line y = 2x + c tangent to the parabola y = x² − 6x + 13?",
+  "passage": null,
+  "choices": [
+   "3",
+   "9",
+   "-13",
+   "-3"
+  ],
+  "correct_answer": "-3",
+  "negated_key_distractor": "3",
+  "explanation": "Setting x² − 6x + 13 = 2x + c gives x² − 8x + (13 − c) = 0. Tangency means exactly one solution, so the discriminant is 0: 64 − 4(13 − c) = 0, giving c = 13 − 16 = −3.",
+  "distractor_rationales": [
+   {
+    "choice": "3",
+    "reason": ""
+   },
+   {
+    "choice": "9",
+    "reason": ""
+   },
+   {
+    "choice": "-13",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "bf1cda76-dfee-4e3e-83fd-a2ea7ac93f40",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "If 5x + 3y = 29 and 3x + 5y = 27, what is the value of x − y?",
+  "passage": null,
+  "choices": [
+   "1",
+   "-1",
+   "7",
+   "4"
+  ],
+  "correct_answer": "1",
+  "negated_key_distractor": "-1",
+  "explanation": "Subtracting the second equation from the first gives 2x − 2y = 2, so x − y = 1 — no need to solve for x and y individually.",
+  "distractor_rationales": [
+   {
+    "choice": "-1",
+    "reason": ""
+   },
+   {
+    "choice": "7",
+    "reason": ""
+   },
+   {
+    "choice": "4",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "90365aec-571e-438b-b088-55703c3934b3",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "If 2^(x+3) = 8^(x-1), what is the value of x?",
+  "passage": null,
+  "choices": [
+   "0",
+   "2.33",
+   "3",
+   "-3"
+  ],
+  "correct_answer": "3",
+  "negated_key_distractor": "-3",
+  "explanation": "Write 8 as 2^3, so 8^(x-1) = 2^(3(x-1)) = 2^(3x-3). With the same base on both sides the exponents must match: x + 3 = 3x - 3, so 2x = 6 and x = 3, the key. Substituting back confirms it, since 2^6 = 64 and 8^2 = 64. The option giving 2 comes from failing to distribute the 3 across the whole exponent, writing 8^(x-1) = 2^(3x-1) and solving x + 3 = 3x - 1. The option giving 6 stops one step early and reports 2x = 6 instead of dividing by 2. The option giving -3 moves the terms the wrong way, reaching -2x = 6 rather than -2x = -6.",
+  "distractor_rationales": [
+   {
+    "choice": "2",
+    "reason": ""
+   },
+   {
+    "choice": "6",
+    "reason": ""
+   },
+   {
+    "choice": "-3",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "8ffed62e-6f54-4425-9c27-8d1a018e9f5b",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "prompt": "The line y = 2x + c is tangent to the parabola y = x² + 6x + 10. What is the value of c?",
+  "passage": null,
+  "choices": [
+   "−6",
+   "1",
+   "6",
+   "14"
+  ],
+  "correct_answer": "6",
+  "negated_key_distractor": "−6",
+  "explanation": "Setting the expressions equal gives x² + 6x + 10 = 2x + c, or x² + 4x + (10 − c) = 0. Tangency means exactly one solution, so the discriminant is 0: 4² − 4(10 − c) = 0, giving 16 = 4(10 − c), so 10 − c = 4 and c = 6.",
+  "distractor_rationales": [
+   {
+    "choice": "−6",
+    "reason": ""
+   },
+   {
+    "choice": "1",
+    "reason": ""
+   },
+   {
+    "choice": "14",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "e1efe814-0f0e-48e2-a0bb-b2da6882c9c4",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "When the polynomial p(x) = x³ − 4x² + ax − 5 is divided by (x − 2), the remainder is 3. What is the value of a?",
+  "passage": null,
+  "choices": [
+   "5",
+   "−8",
+   "8",
+   "3"
+  ],
+  "correct_answer": "8",
+  "negated_key_distractor": "−8",
+  "explanation": "By the remainder theorem, p(2) = 3. p(2) = 8 − 16 + 2a − 5 = 2a − 13. Setting 2a − 13 = 3 gives a = 8.",
+  "distractor_rationales": [
+   {
+    "choice": "5",
+    "reason": ""
+   },
+   {
+    "choice": "−8",
+    "reason": ""
+   },
+   {
+    "choice": "3",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "20792800-c8d3-4437-a848-6504adba184c",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "In the equation x² + kx + 36 = 0, the two roots differ by 5. If k is negative, what is the value of k?",
+  "passage": null,
+  "choices": [
+   "13",
+   "-13",
+   "-11",
+   "-18"
+  ],
+  "correct_answer": "-13",
+  "negated_key_distractor": "13",
+  "explanation": "Let the roots be r and s. Then r + s = −k and rs = 36. Since (r − s)² = (r + s)² − 4rs, we get 25 = k² − 144, so k² = 169 and k = ±13. With k negative, k = −13.",
+  "distractor_rationales": [
+   {
+    "choice": "13",
+    "reason": ""
+   },
+   {
+    "choice": "-11",
+    "reason": ""
+   },
+   {
+    "choice": "-18",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "f99f0d6d-cc55-4e75-ab10-b88aa2ca4d09",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = x^2 - 3 and g(x) = 2x + 1. What is the positive value of x for which f(g(x)) = 13?",
+  "passage": null,
+  "choices": [
+   "1.5",
+   "-2.5",
+   "2",
+   "-1.5"
+  ],
+  "correct_answer": "1.5",
+  "negated_key_distractor": "-1.5",
+  "explanation": "f(g(x)) = (2x + 1)^2 - 3 = 13, so (2x + 1)^2 = 16 and 2x + 1 = ±4. The positive branch gives 2x + 1 = 4, so x = 1.5. Choice -2.5 is the negative branch; -1.5 sign-flips the answer; 2 comes from taking 2x + 1 = ... incorrectly.",
+  "distractor_rationales": [
+   {
+    "choice": "-2.5",
+    "reason": ""
+   },
+   {
+    "choice": "2",
+    "reason": ""
+   },
+   {
+    "choice": "-1.5",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "0729744e-180f-45c9-a9e0-9f4d79653e65",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "If 1/(x − 3) + 1/(x + 3) = 8/(x² − 9) and x ≠ ±3, what is the value of x?",
+  "passage": null,
+  "choices": [
+   "−4",
+   "8",
+   "3",
+   "4"
+  ],
+  "correct_answer": "4",
+  "negated_key_distractor": "−4",
+  "explanation": "Since x² − 9 = (x − 3)(x + 3), multiply through: (x + 3) + (x − 3) = 8, so 2x = 8, x = 4.",
+  "distractor_rationales": [
+   {
+    "choice": "−4",
+    "reason": ""
+   },
+   {
+    "choice": "8",
+    "reason": ""
+   },
+   {
+    "choice": "3",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "689ca045-ae51-43af-b296-0f7684d1e5f4",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "prompt": "The system of equations y = x^2 - 4x + k and y = 2x - 8 has exactly one solution. What is the value of k?",
+  "passage": null,
+  "choices": [
+   "5",
+   "1",
+   "-1",
+   "8"
+  ],
+  "correct_answer": "1",
+  "negated_key_distractor": "-1",
+  "explanation": "Setting the expressions equal: x^2 - 4x + k = 2x - 8, so x^2 - 6x + (k + 8) = 0. One solution requires discriminant 0: (-6)^2 - 4(k + 8) = 0, giving 36 = 4(k + 8), so k + 8 = 9 and k = 1. Choice -1 is a sign slip; 5 and 8 come from mishandling the constant.",
+  "distractor_rationales": [
+   {
+    "choice": "5",
+    "reason": ""
+   },
+   {
+    "choice": "-1",
+    "reason": ""
+   },
+   {
+    "choice": "8",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "d826075d-ea68-47d2-a18a-5d716420fdb5",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "The graphs of y = x + 1 and x² + y² = 25 intersect at two points. What is the sum of the x-coordinates of these two points?",
+  "passage": null,
+  "choices": [
+   "−1",
+   "1",
+   "−12",
+   "7"
+  ],
+  "correct_answer": "−1",
+  "negated_key_distractor": "1",
+  "explanation": "Substitute: x² + (x+1)² = 25 → 2x² + 2x − 24 = 0. The sum of the roots is −b/a = −2/2 = −1.",
+  "distractor_rationales": [
+   {
+    "choice": "1",
+    "reason": ""
+   },
+   {
+    "choice": "−12",
+    "reason": ""
+   },
+   {
+    "choice": "7",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "cc99adf7-599a-4bba-ad2d-f50c229d11ff",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the line y = 2x + c is tangent to the parabola y = x^2 + 6x + 13. What is the value of c?",
+  "passage": null,
+  "choices": [
+   "4",
+   "9",
+   "13",
+   "-9"
+  ],
+  "correct_answer": "9",
+  "negated_key_distractor": "-9",
+  "explanation": "Set the expressions equal: x^2 + 6x + 13 = 2x + c, which rearranges to x^2 + 4x + (13 - c) = 0. Tangency means exactly one root, so the discriminant vanishes: 4^2 - 4(13 - c) = 0, giving 16 = 52 - 4c, then 4c = 36 and c = 9, the key. The value 4 is what you get by forgetting to move the 2x across, leaving x^2 + 6x + (13 - c) = 0 and 36 = 52 - 4c. The value 13 is just the parabola's constant term, copied out without doing any tangency work. The value -9 comes from a sign slip that makes the constant 13 + c, so that 16 = 52 + 4c.",
+  "distractor_rationales": [
+   {
+    "choice": "4",
+    "reason": ""
+   },
+   {
+    "choice": "13",
+    "reason": ""
+   },
+   {
+    "choice": "-9",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "cd086230-324e-47e8-a6c9-a36e4129fa95",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "The system 6x - 9y = 12 and 2x + ay = 4 has infinitely many solutions. What is the value of a?",
+  "passage": null,
+  "choices": [
+   "-3",
+   "3",
+   "-9",
+   "9"
+  ],
+  "correct_answer": "-3",
+  "negated_key_distractor": "3",
+  "explanation": "Second equation times 3 must equal the first: 6x + 3a y = 12 forces 3a = -9, so a = -3.",
+  "distractor_rationales": [
+   {
+    "choice": "3",
+    "reason": ""
+   },
+   {
+    "choice": "-9",
+    "reason": ""
+   },
+   {
+    "choice": "9",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "1df10ff3-1aea-4bb2-95fd-7649069b2003",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "The quantities R, a, and b are related by 1/R = 1/a + 1/b. If a = 12 and R = 8, what is the value of b ?",
+  "passage": null,
+  "choices": [
+   "4.8",
+   "-24",
+   "24",
+   "20"
+  ],
+  "correct_answer": "24",
+  "negated_key_distractor": "-24",
+  "explanation": "Isolate 1/b = 1/R - 1/a = 1/8 - 1/12 = (3 - 2)/24 = 1/24, so b = 24. Equivalently b = aR/(a - R) = 12*8/4 = 24. Distractor 4.8 adds the reciprocals (1/8 + 1/12 = 5/24); -24 subtracts in the wrong order; 20 uses a + R instead of a - R.",
+  "distractor_rationales": [
+   {
+    "choice": "4.8",
+    "reason": ""
+   },
+   {
+    "choice": "-24",
+    "reason": ""
+   },
+   {
+    "choice": "20",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "c0ede046-b41f-443d-8c2a-afcdc73479b2",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "The system of equations ax - 3y = 12 and 4x + 6y = -7 has no solution. What is the value of a?",
+  "passage": null,
+  "choices": [
+   "2",
+   "-2",
+   "8",
+   "-8"
+  ],
+  "correct_answer": "-2",
+  "negated_key_distractor": "2",
+  "explanation": "A linear system has no solution when the two lines are parallel but not identical, i.e. their coefficient ratios for x and y are equal while differing from the constant ratio. Setting a/4 = -3/6 gives a = 4(-1/2) = -2. (Checking: with a = -2 the constant ratios differ, so the lines are truly parallel.) The other values come from sign or ratio slips.",
+  "distractor_rationales": [
+   {
+    "choice": "2",
+    "reason": ""
+   },
+   {
+    "choice": "8",
+    "reason": ""
+   },
+   {
+    "choice": "-8",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "51bab9f4-0389-43c9-9c07-c06590cdf9f7",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "If (3x - 7)/4 - (x - 5)/6 = 2, what is the value of x?",
+  "passage": null,
+  "choices": [
+   "5",
+   "3",
+   "7",
+   "-5"
+  ],
+  "correct_answer": "5",
+  "negated_key_distractor": "-5",
+  "explanation": "Clear the fractions by multiplying every term by 12: 3(3x - 7) - 2(x - 5) = 24. Expanding gives 9x - 21 - 2x + 10 = 24, so 7x - 11 = 24, then 7x = 35 and x = 5, the key. The value 3 comes from failing to distribute the 3 across both terms, writing 9x - 7 - 2x + 10 = 24, which collapses to 7x + 3 = 24. The values 7 and -5 merely echo the constants sitting inside the numerators 3x - 7 and x - 5; substituting 7 into the original equation gives 3.5 - 1/3 and substituting -5 gives about -3.83, and neither equals 2, which is exactly the check that exposes them.",
+  "distractor_rationales": [
+   {
+    "choice": "3",
+    "reason": ""
+   },
+   {
+    "choice": "7",
+    "reason": ""
+   },
+   {
+    "choice": "-5",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "0fd38ce2-9df3-4206-b816-52b1d3d52908",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "In the equation 3x^2 - 12x + k = 0, the sum of the two solutions equals the product of the two solutions. What is the value of k?",
+  "passage": null,
+  "choices": [
+   "4",
+   "36",
+   "12",
+   "-12"
+  ],
+  "correct_answer": "12",
+  "negated_key_distractor": "-12",
+  "explanation": "For ax^2 + bx + c = 0 the sum of the roots is -b/a and the product is c/a. Here the sum is 12/3 = 4 and the product is k/3. Setting them equal, 4 = k/3, so k = 12, the key. The option giving 4 stops at the sum and never solves for k. The option giving 36 sets the product equal to the coefficient 12 rather than to the sum 4, solving k/3 = 12. The option giving -12 mis-signs -b/a, taking the sum to be -4 and solving k/3 = -4.",
+  "distractor_rationales": [
+   {
+    "choice": "4",
+    "reason": ""
+   },
+   {
+    "choice": "36",
+    "reason": ""
+   },
+   {
+    "choice": "-12",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "4fc76daa-b3f2-4e31-bf16-22943b267028",
+  "cohort": "sat-alg-hard-v1",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the equation 3(x - a) + 2(2x + 1) = 7x - 10, a is a constant. If the equation has infinitely many solutions, what is the value of a?",
+  "passage": null,
+  "choices": [
+   "4",
+   "-4",
+   "10/3",
+   "12"
+  ],
+  "correct_answer": "4",
+  "negated_key_distractor": "-4",
+  "explanation": "Expanding the left side gives 3x - 3a + 4x + 2, which is 7x + (2 - 3a). The coefficients of x are already equal on both sides, so the equation has infinitely many solutions exactly when the constants also match: 2 - 3a = -10, so -3a = -12 and a = 4. Slipping the sign and solving -3a = -10 - 2 as 3a = -12 gives -4. Dropping the +2 that comes from 2(2x + 1) and solving -3a = -10 gives 10/3. Solving as far as 3a = 12 and reporting that quantity rather than a gives 12.",
+  "distractor_rationales": [
+   {
+    "choice": "-4",
+    "reason": ""
+   },
+   {
+    "choice": "10/3",
+    "reason": ""
+   },
+   {
+    "choice": "12",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "29b0f14c-58b8-44cb-a007-7e1cfe77f0e4",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The system of equations 3x + ky = 7 and 12x + 20y = 9 has no solution. What is the value of k ?",
+  "passage": null,
+  "choices": [
+   "80",
+   "15",
+   "5",
+   "-5"
+  ],
+  "correct_answer": "5",
+  "negated_key_distractor": "-5",
+  "explanation": "No solution means the lines are parallel: the x- and y-coefficients are proportional while the constants are not. So 3/12 = k/20, giving k = 20(3)/12 = 5 (and 7/9 is not 1/4, so it is truly parallel, not coincident). 80 inverts the ratio (3/12 = 20/k); -5 flips a sign; 15 mis-scales the proportion.",
+  "distractor_rationales": [
+   {
+    "choice": "80",
+    "reason": ""
+   },
+   {
+    "choice": "15",
+    "reason": ""
+   },
+   {
+    "choice": "-5",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "09032fe9-a3c6-4c95-bbe6-5ff10537f385",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the system of equations below, c is a constant.\n\n3x − 4y = 7\n9x + cy = 2\n\nFor what value of c does the system have no solution?",
+  "passage": null,
+  "choices": [
+   "-12",
+   "12",
+   "-4/3",
+   "4/3"
+  ],
+  "correct_answer": "-12",
+  "negated_key_distractor": "12",
+  "explanation": "A system of two lines has no solution when the lines are parallel (equal slopes) but not identical. Matching the ratio of coefficients: 3/9 = −4/c, so c = −4·9/3 = −12. (The constants 7 and 2 are not in the same ratio, so the lines are parallel, not identical.)",
+  "distractor_rationales": [
+   {
+    "choice": "12",
+    "reason": ""
+   },
+   {
+    "choice": "-4/3",
+    "reason": ""
+   },
+   {
+    "choice": "4/3",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "bae4758d-51ae-4fcf-9f70-5b1d157a2629",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "The line y = 2x + 1 intersects the circle x^2 + y^2 = 26 at two points. What is the sum of the x-coordinates of the two intersection points?",
+  "passage": null,
+  "choices": [
+   "4/5",
+   "-4/5",
+   "-2",
+   "5"
+  ],
+  "correct_answer": "-4/5",
+  "negated_key_distractor": "4/5",
+  "explanation": "Substituting gives 5x^2 + 4x - 25 = 0; the sum of roots is -4/5 by Vieta's.",
+  "distractor_rationales": [
+   {
+    "choice": "4/5",
+    "reason": ""
+   },
+   {
+    "choice": "-2",
+    "reason": ""
+   },
+   {
+    "choice": "5",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "7e51987d-c8b9-4553-8ec6-469650f32cbd",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The system ax + 6y = 18 and 2x + 3y = 9 has infinitely many solutions. What is the value of a ?",
+  "passage": null,
+  "choices": [
+   "12",
+   "4",
+   "-4",
+   "1"
+  ],
+  "correct_answer": "4",
+  "negated_key_distractor": "-4",
+  "explanation": "Infinitely many solutions means the equations are proportional: 6/3 = 18/9 = 2, so a/2 must also equal 2, giving a = 4. Distractor 12 sets a = 2*6; -4 flips the sign; 1 sets a/2 = 3/6.",
+  "distractor_rationales": [
+   {
+    "choice": "12",
+    "reason": ""
+   },
+   {
+    "choice": "-4",
+    "reason": ""
+   },
+   {
+    "choice": "1",
+    "reason": ""
+   }
+  ]
+ }
+]

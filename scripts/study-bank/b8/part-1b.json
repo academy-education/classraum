@@ -1,0 +1,312 @@
+[
+ {
+  "id": "e0714e93-ea28-481a-b0fd-482da74ab2f2",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the following system of equations, k is a constant.\n\n6x - 5y = 8\nkx - 15y = 20\n\nIf the system has no solution, what is the value of k?",
+  "passage": null,
+  "choices": [
+   "2",
+   "15",
+   "18",
+   "-18"
+  ],
+  "correct_answer": "18",
+  "negated_key_distractor": "-18",
+  "explanation": "A system has no solution when the lines are parallel but distinct: the x- and y-coefficients are proportional while the constants are not. Matching the coefficient ratios, 6/k = (-5)/(-15) = 1/3, so k = 18, the key. Checking the constants, 8/20 = 2/5, which is not 1/3, so the lines really are parallel and distinct. The option giving 2 inverts the y-coefficient ratio, solving 6/k = 15/5 = 3. The option giving 15 uses the ratio of the constants in place of the coefficients, solving 6/k = 8/20. The option giving -18 has the right magnitude but carries a stray negative, even though the two minus signs cancel.",
+  "distractor_rationales": [
+   {
+    "choice": "2",
+    "reason": ""
+   },
+   {
+    "choice": "15",
+    "reason": ""
+   },
+   {
+    "choice": "-18",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "6ea409c5-238a-4c99-8649-ea8294978312",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "What is the negative solution to the equation 3/(x-2) + 2/(x+2) = 1?",
+  "passage": null,
+  "choices": [
+   "-6",
+   "6",
+   "-1",
+   "1"
+  ],
+  "correct_answer": "-1",
+  "negated_key_distractor": "1",
+  "explanation": "Multiplying through by (x-2)(x+2) gives 3(x+2) + 2(x-2) = x^2 - 4, leading to x^2 - 5x - 6 = 0 with roots 6 and -1; the negative one is -1.",
+  "distractor_rationales": [
+   {
+    "choice": "-6",
+    "reason": ""
+   },
+   {
+    "choice": "6",
+    "reason": ""
+   },
+   {
+    "choice": "1",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "ace1b855-7eb4-4dd7-8f50-cb8d0211972a",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "The graphs of y = x^2 - 3x and y = 2x + 6 intersect at two points. What is the sum of the x-coordinates of those two points?",
+  "passage": null,
+  "choices": [
+   "-6",
+   "5",
+   "-5",
+   "6"
+  ],
+  "correct_answer": "5",
+  "negated_key_distractor": "-5",
+  "explanation": "Setting x^2 - 3x = 2x + 6 gives x^2 - 5x - 6 = 0. By Vieta's, the sum of the roots is -(-5)/1 = 5. Choice -5 keeps the wrong sign; -6 gives the product of the roots instead of the sum; 6 slips a sign on the constant.",
+  "distractor_rationales": [
+   {
+    "choice": "-6",
+    "reason": ""
+   },
+   {
+    "choice": "-5",
+    "reason": ""
+   },
+   {
+    "choice": "6",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "e92b3c49-c008-4192-b408-b7a5d8abc8d4",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "If (x² − 9)/(x − 3) = 2x + 1 for x ≠ 3, what is the value of x?",
+  "passage": null,
+  "choices": [
+   "−2",
+   "2",
+   "3",
+   "4"
+  ],
+  "correct_answer": "2",
+  "negated_key_distractor": "−2",
+  "explanation": "Left side simplifies to x+3 (x≠3). x+3=2x+1 → x=2.",
+  "distractor_rationales": [
+   {
+    "choice": "−2",
+    "reason": ""
+   },
+   {
+    "choice": "3",
+    "reason": ""
+   },
+   {
+    "choice": "4",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "a387ac1b-0f84-4560-884a-2f655b50d2ce",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "If 9^(x + 1) = 27^(x - 1), what is the value of x?",
+  "passage": null,
+  "choices": [
+   "1",
+   "-5",
+   "5",
+   "2"
+  ],
+  "correct_answer": "5",
+  "negated_key_distractor": "-5",
+  "explanation": "Write both sides base 3: 3^(2(x+1)) = 3^(3(x-1)), so 2x+2 = 3x-3, giving x = 5.",
+  "distractor_rationales": [
+   {
+    "choice": "1",
+    "reason": ""
+   },
+   {
+    "choice": "-5",
+    "reason": ""
+   },
+   {
+    "choice": "2",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "9ab58d0c-d745-4a1e-a8a7-e87b299e774b",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the line passing through (a, 4) and (7, 10) is parallel to the line 2x + 3y = 12. What is the value of a?",
+  "passage": null,
+  "choices": [
+   "16",
+   "-2",
+   "11",
+   "-16"
+  ],
+  "correct_answer": "16",
+  "negated_key_distractor": "-16",
+  "explanation": "The line 2x + 3y = 12 has slope −2/3, so the segment must have that slope: (10 − 4)/(7 − a) = −2/3. Then 7 − a = 6/(−2/3) = −9, so a = 7 − (−9) = 16.",
+  "distractor_rationales": [
+   {
+    "choice": "-2",
+    "reason": ""
+   },
+   {
+    "choice": "11",
+    "reason": ""
+   },
+   {
+    "choice": "-16",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "da5251da-0a17-4530-aa99-16fef687a9f6",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "The polynomial P(x) = x^3 + ax^2 - 4x + 24 has (x + 3) as a factor. What is the value of a?",
+  "passage": null,
+  "choices": [
+   "1",
+   "-1",
+   "3",
+   "-3"
+  ],
+  "correct_answer": "-1",
+  "negated_key_distractor": "1",
+  "explanation": "Since (x+3) is a factor, P(-3) = -27 + 9a + 12 + 24 = 0, so 9a + 9 = 0, giving a = -1.",
+  "distractor_rationales": [
+   {
+    "choice": "1",
+    "reason": ""
+   },
+   {
+    "choice": "3",
+    "reason": ""
+   },
+   {
+    "choice": "-3",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "76d43dbb-0ffc-40a7-818c-5c426b182291",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "The roots of x^2 - 6x + 10 = 0 are m and n. What is the value of (m - n)^2?",
+  "passage": null,
+  "choices": [
+   "4",
+   "16",
+   "-16",
+   "-4"
+  ],
+  "correct_answer": "-4",
+  "negated_key_distractor": "4",
+  "explanation": "(m-n)^2 = (m+n)^2 - 4mn = 36 - 40 = -4 (the roots are complex, so this squared difference is negative).",
+  "distractor_rationales": [
+   {
+    "choice": "4",
+    "reason": ""
+   },
+   {
+    "choice": "16",
+    "reason": ""
+   },
+   {
+    "choice": "-16",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "1bb4956c-ac42-4f0c-8068-7e759f3074f1",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "A line m is perpendicular to the line 4x - 6y = 9. What is the slope of line m ?",
+  "passage": null,
+  "choices": [
+   "2/3",
+   "-3/2",
+   "3/2",
+   "-2/3"
+  ],
+  "correct_answer": "-3/2",
+  "negated_key_distractor": "3/2",
+  "explanation": "Rewrite as y = (4/6)x - 3/2, so the given slope is 2/3; the perpendicular slope is the negative reciprocal, -3/2. Distractor 2/3 is the original slope; 3/2 drops the sign; -2/3 negates without taking the reciprocal.",
+  "distractor_rationales": [
+   {
+    "choice": "2/3",
+    "reason": ""
+   },
+   {
+    "choice": "3/2",
+    "reason": ""
+   },
+   {
+    "choice": "-2/3",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "1fca5f69-c814-44d7-8876-e41fb94b4356",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "If 2/(x − 1) = 5/(3x + 4), what is the value of x?",
+  "passage": null,
+  "choices": [
+   "13",
+   "-5",
+   "3",
+   "-13"
+  ],
+  "correct_answer": "-13",
+  "negated_key_distractor": "13",
+  "explanation": "Cross-multiplying gives 2(3x + 4) = 5(x − 1), so 6x + 8 = 5x − 5. Then x = −5 − 8 = −13.",
+  "distractor_rationales": [
+   {
+    "choice": "13",
+    "reason": ""
+   },
+   {
+    "choice": "-5",
+    "reason": ""
+   },
+   {
+    "choice": "3",
+    "reason": ""
+   }
+  ]
+ }
+]

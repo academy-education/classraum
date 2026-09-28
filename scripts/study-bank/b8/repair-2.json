@@ -1,0 +1,170 @@
+[
+ {
+  "id": "7ca289c8-2208-474d-b5ea-6cc544562c30",
+  "old": "-6",
+  "new": "-9",
+  "error_path": "Adding 3x instead of subtracting it, so the quadratic is x^2 + 8x + (7 - c) = 0; the discriminant 64 - 4(7 - c) = 0 gives 7 - c = 16 and c = -9.",
+  "explanation": "Set the two expressions equal: x^2 + 5x + 7 = 3x + c, which rearranges to x^2 + 2x + (7 - c) = 0. Tangency means this quadratic has exactly one root, so its discriminant is zero: 2^2 - 4(7 - c) = 0, i.e. 4 = 4(7 - c), so 7 - c = 1 and c = 6, the key. The value 8 comes from solving 7 - c = 1 as c = 7 + 1 instead of c = 7 - 1. The value 5 comes from mis-simplifying 4 = 4(7 - c) by dividing by 2 rather than by 4, which leaves 7 - c = 2. The value -9 comes from adding 3x instead of subtracting it, so the quadratic is x^2 + 8x + (7 - c) = 0 and 64 = 4(7 - c) forces 7 - c = 16.",
+  "rationale": "Comes from adding 3x instead of subtracting it, so 64 = 4(7 - c) forces 7 - c = 16."
+ },
+ {
+  "id": "96cda218-77f3-4bc4-ab8b-8cb7749a8b7b",
+  "old": "14",
+  "new": "-2",
+  "error_path": "Writing the factors with the root signs flipped, g(x) = 2(x - 1)(x + 4) = 2x^2 + 6x - 8, so b = 6, c = -8 and b + c = -2.",
+  "explanation": "g(x) = 2(x+1)(x-4) = 2x^2 - 6x - 8, so b = -6 and c = -8, giving b + c = -14.",
+  "rationale": "Comes from flipping the signs of both roots, g(x) = 2(x - 1)(x + 4) = 2x^2 + 6x - 8, so b + c = 6 - 8."
+ },
+ {
+  "id": "47a971c0-35fe-42b9-a370-00a0fa8933af",
+  "old": "-5",
+  "new": "29",
+  "error_path": "Evaluating f(3) with the -12x term taken as -12 instead of -12(3): 18 - 12 + 23 = 29.",
+  "explanation": "The vertex is at x = -b/(2a) = 12/4 = 3. Then f(3) = 2(9) - 12(3) + 23 = 18 - 36 + 23 = 5, which is the minimum since a > 0.",
+  "rationale": "Comes from evaluating f(3) as 18 - 12 + 23, forgetting to multiply the -12 by x = 3."
+ },
+ {
+  "id": "86af0ced-3c33-4526-9ae6-333956ec49c8",
+  "old": "-3",
+  "new": "0",
+  "error_path": "Dropping the -1 in the exponent, treating 8^(x - 1) as 8^x, so 2x = 3x and x = 0.",
+  "explanation": "Write both sides base 2: 2^(2x) = 2^(3(x - 1)). Equate exponents: 2x = 3x - 3, so x = 3.",
+  "rationale": "Comes from treating 8^(x - 1) as 8^x, so the exponent equation collapses to 2x = 3x."
+ },
+ {
+  "id": "bcae4c90-117f-4069-b4a4-6e403901a61c",
+  "old": "-6",
+  "new": "36",
+  "error_path": "Stopping at c^2 = 36 and reporting c = 36, forgetting to take the square root.",
+  "explanation": "Exactly one real solution means the discriminant is 0: c^2 - 4(1)(9) = 0, so c^2 = 36 and the positive value is c = 6.",
+  "rationale": "Comes from reading c^2 = 36 as c = 36, forgetting to take the square root."
+ },
+ {
+  "id": "d9a01b94-ffd5-4964-8d01-e0ec27e389b3",
+  "old": "-5",
+  "new": "-23",
+  "error_path": "Using x = -3 instead of x = 3 as the root of (x - 3): p(-3) = -27 - 36 - 3a - 6 = 0 gives -3a = 69 and a = -23.",
+  "explanation": "By the factor theorem, p(3) = 0. So 27 - 36 + 3a - 6 = 0, giving 3a - 15 = 0 and a = 5.",
+  "rationale": "Comes from substituting x = -3 instead of x = 3, so -27 - 36 - 3a - 6 = 0 gives a = -23."
+ },
+ {
+  "id": "06563cc7-236c-4c0d-8397-39d984bad8ab",
+  "old": "15",
+  "new": "1",
+  "error_path": "Scaling additively instead of multiplicatively: 9 is 6 more than 3, so the y-coefficient is taken as -5 + 6 = 1.",
+  "explanation": "No solution means the lines are parallel but not identical: the x- and y-coefficients are proportional. Since 9 = 3·(3), the y-coefficient must be −5·3 = −15. The constants (30 vs 12·3 = 36) are not proportional, so the system is truly inconsistent.",
+  "rationale": "Comes from additive scaling: 9 = 3 + 6, so the y-coefficient is taken as -5 + 6 = 1."
+ },
+ {
+  "id": "2de6e94b-8ad3-4b59-ad71-2882945a624b",
+  "old": "3",
+  "new": "4",
+  "error_path": "Forgetting to move the 2x across, so the quadratic is x² − 6x + (13 − c) = 0; then 36 − 4(13 − c) = 0 gives 13 − c = 9 and c = 4.",
+  "explanation": "Setting x² − 6x + 13 = 2x + c gives x² − 8x + (13 − c) = 0. Tangency means exactly one solution, so the discriminant is 0: 64 − 4(13 − c) = 0, giving c = 13 − 16 = −3.",
+  "rationale": "Comes from forgetting to subtract 2x, so 36 = 4(13 − c) forces 13 − c = 9."
+ },
+ {
+  "id": "bf1cda76-dfee-4e3e-83fd-a2ea7ac93f40",
+  "old": "-1",
+  "new": "12",
+  "error_path": "Solving fully to x = 4 and y = 3, then reporting the product xy = 12 instead of the difference x − y.",
+  "explanation": "Subtracting the second equation from the first gives 2x − 2y = 2, so x − y = 1 — no need to solve for x and y individually.",
+  "rationale": "Comes from solving to x = 4, y = 3 and reporting the product 12 instead of x − y."
+ },
+ {
+  "id": "90365aec-571e-438b-b088-55703c3934b3",
+  "old": "-3",
+  "new": "7",
+  "error_path": "Rewriting 8 as 2^4 instead of 2^3, so the exponents give x + 3 = 4x - 4 and 3x = 7, then reporting 7 without dividing by the coefficient 3.",
+  "explanation": "Write 8 as 2^3, so 8^(x-1) = 2^(3(x-1)) = 2^(3x-3). With the same base on both sides the exponents must match: x + 3 = 3x - 3, so 2x = 6 and x = 3, the key. Substituting back confirms it, since 2^6 = 64 and 8^2 = 64. The option giving 2 comes from failing to distribute the 3 across the whole exponent, writing 8^(x-1) = 2^(3x-1) and solving x + 3 = 3x - 1. The option giving 6 stops one step early and reports 2x = 6 instead of dividing by 2. The option giving 7 rewrites 8 as 2^4, so the exponents give x + 3 = 4x - 4 and 3x = 7, and then reports 7 without dividing by the 3.",
+  "rationale": "Comes from rewriting 8 as 2^4, reaching 3x = 7, and reporting 7 without dividing by 3."
+ },
+ {
+  "id": "8ffed62e-6f54-4425-9c27-8d1a018e9f5b",
+  "old": "−6",
+  "new": "9",
+  "error_path": "Using b instead of b² in the discriminant: 4 − 4(10 − c) = 0 gives 10 − c = 1 and c = 9.",
+  "explanation": "Setting the expressions equal gives x² + 6x + 10 = 2x + c, or x² + 4x + (10 − c) = 0. Tangency means exactly one solution, so the discriminant is 0: 4² − 4(10 − c) = 0, giving 16 = 4(10 − c), so 10 − c = 4 and c = 6.",
+  "rationale": "Comes from using b rather than b² in the discriminant, so 4 = 4(10 − c) forces 10 − c = 1."
+ },
+ {
+  "id": "e1efe814-0f0e-48e2-a0bb-b2da6882c9c4",
+  "old": "−8",
+  "new": "−16",
+  "error_path": "Using x = −2 instead of x = 2 as the root of (x − 2): p(−2) = −8 − 16 − 2a − 5 = −2a − 29 = 3 gives a = −16.",
+  "explanation": "By the remainder theorem, p(2) = 3. p(2) = 8 − 16 + 2a − 5 = 2a − 13. Setting 2a − 13 = 3 gives a = 8.",
+  "rationale": "Comes from substituting x = −2 instead of x = 2, so −2a − 29 = 3 gives a = −16."
+ },
+ {
+  "id": "20792800-c8d3-4437-a848-6504adba184c",
+  "old": "13",
+  "new": "-17",
+  "error_path": "Taking one root to be √36 = 6 and the other 6 + 5 = 11 (differ by 5), so k = −(6 + 11) = −17; the product 66 is never checked against 36.",
+  "explanation": "Let the roots be r and s. Then r + s = −k and rs = 36. Since (r − s)² = (r + s)² − 4rs, we get 25 = k² − 144, so k² = 169 and k = ±13. With k negative, k = −13.",
+  "rationale": "Comes from taking the roots as 6 and 6 + 5 = 11, giving k = −(6 + 11), without checking that their product is 36."
+ },
+ {
+  "id": "f99f0d6d-cc55-4e75-ab10-b88aa2ca4d09",
+  "old": "-1.5",
+  "new": "6",
+  "error_path": "Setting the inner function equal to 13 and never applying f: 2x + 1 = 13 gives x = 6.",
+  "explanation": "f(g(x)) = (2x + 1)^2 - 3 = 13, so (2x + 1)^2 = 16 and 2x + 1 = ±4. The positive branch gives 2x + 1 = 4, so x = 1.5. Choice -2.5 is the negative branch; 6 comes from solving g(x) = 13 directly, 2x + 1 = 13, without applying f; 2 comes from taking 2x + 1 = ... incorrectly.",
+  "rationale": "Comes from solving g(x) = 13 directly, 2x + 1 = 13, without applying f."
+ },
+ {
+  "id": "0729744e-180f-45c9-a9e0-9f4d79653e65",
+  "old": "−4",
+  "new": "16",
+  "error_path": "Reaching 2x = 8 correctly and then multiplying instead of dividing, x = 16.",
+  "explanation": "Since x² − 9 = (x − 3)(x + 3), multiply through: (x + 3) + (x − 3) = 8, so 2x = 8, x = 4.",
+  "rationale": "Comes from solving 2x = 8 by multiplying instead of dividing, giving x = 16."
+ },
+ {
+  "id": "689ca045-ae51-43af-b296-0f7684d1e5f4",
+  "old": "-1",
+  "new": "17",
+  "error_path": "Moving the −8 across with the wrong sign, so the constant is k − 8 and 36 = 4(k − 8) gives k − 8 = 9 and k = 17.",
+  "explanation": "Setting the expressions equal: x^2 - 4x + k = 2x - 8, so x^2 - 6x + (k + 8) = 0. One solution requires discriminant 0: (-6)^2 - 4(k + 8) = 0, giving 36 = 4(k + 8), so k + 8 = 9 and k = 1. Choice 17 comes from moving the -8 across with the wrong sign, so that k - 8 = 9; 5 and 8 come from mishandling the constant.",
+  "rationale": "Comes from moving the -8 across with the wrong sign, so that k - 8 = 9."
+ },
+ {
+  "id": "d826075d-ea68-47d2-a18a-5d716420fdb5",
+  "old": "1",
+  "new": "−4",
+  "error_path": "Solving 2x² + 2x − 24 = 0 to the roots x = 3 and x = −4 and reporting the x-coordinate −4 of one intersection point instead of the sum.",
+  "explanation": "Substitute: x² + (x+1)² = 25 → 2x² + 2x − 24 = 0. The sum of the roots is −b/a = −2/2 = −1.",
+  "rationale": "Comes from reporting the x-coordinate −4 of one intersection point instead of the sum of both."
+ },
+ {
+  "id": "1df10ff3-1aea-4bb2-95fd-7649069b2003",
+  "old": "-24",
+  "new": "48",
+  "error_path": "Writing the difference over 48 as 6/48 - 4/48 = 2/48 and then reporting the denominator 48 as b without dividing by the numerator 2.",
+  "explanation": "Isolate 1/b = 1/R - 1/a = 1/8 - 1/12 = (3 - 2)/24 = 1/24, so b = 24. Equivalently b = aR/(a - R) = 12*8/4 = 24. Distractor 4.8 adds the reciprocals (1/8 + 1/12 = 5/24); 48 comes from writing the difference as 6/48 - 4/48 = 2/48 and reporting the denominator 48 without dividing by the 2; 20 uses a + R instead of a - R.",
+  "rationale": "Comes from writing 1/b as 6/48 - 4/48 = 2/48 and reporting the denominator 48 without dividing by the 2."
+ },
+ {
+  "id": "51bab9f4-0389-43c9-9c07-c06590cdf9f7",
+  "old": "-5",
+  "new": "13",
+  "error_path": "Clearing the fractions on the right side only: writing (3x - 7) - (x - 5) = 24 with the numerators unscaled, so 2x - 2 = 24 and x = 13.",
+  "explanation": "Clear the fractions by multiplying every term by 12: 3(3x - 7) - 2(x - 5) = 24. Expanding gives 9x - 21 - 2x + 10 = 24, so 7x - 11 = 24, then 7x = 35 and x = 5, the key. The value 3 comes from failing to distribute the 3 across both terms, writing 9x - 7 - 2x + 10 = 24, which collapses to 7x + 3 = 24. The value 7 merely echoes the constant sitting inside the numerator 3x - 7; substituting 7 into the original equation gives 3.5 - 1/3, which does not equal 2, and that is exactly the check that exposes it. The value 13 comes from clearing the fractions on the right side only, writing (3x - 7) - (x - 5) = 24 with the numerators unscaled, so that 2x - 2 = 24.",
+  "rationale": "Comes from multiplying only the right side by 12, so (3x - 7) - (x - 5) = 24 gives 2x - 2 = 24."
+ },
+ {
+  "id": "0fd38ce2-9df3-4206-b816-52b1d3d52908",
+  "old": "-12",
+  "new": "7",
+  "error_path": "Solving k/3 = 4 with the inverse operation done wrong: adding 3 instead of multiplying by 3, k = 4 + 3 = 7.",
+  "explanation": "For ax^2 + bx + c = 0 the sum of the roots is -b/a and the product is c/a. Here the sum is 12/3 = 4 and the product is k/3. Setting them equal, 4 = k/3, so k = 12, the key. The option giving 4 stops at the sum and never solves for k. The option giving 36 sets the product equal to the coefficient 12 rather than to the sum 4, solving k/3 = 12. The option giving 7 solves k/3 = 4 by adding 3 instead of multiplying by 3.",
+  "rationale": "Comes from solving k/3 = 4 by adding 3 instead of multiplying by 3."
+ },
+ {
+  "id": "4fc76daa-b3f2-4e31-bf16-22943b267028",
+  "old": "-4",
+  "new": "-8/3",
+  "error_path": "Slipping the sign of the right-hand constant, matching 2 - 3a = 10 instead of 2 - 3a = -10, so -3a = 8 and a = -8/3.",
+  "explanation": "Expanding the left side gives 3x - 3a + 4x + 2, which is 7x + (2 - 3a). The coefficients of x are already equal on both sides, so the equation has infinitely many solutions exactly when the constants also match: 2 - 3a = -10, so -3a = -12 and a = 4. Slipping the sign of the -10 and solving 2 - 3a = 10, so that -3a = 8, gives -8/3. Dropping the +2 that comes from 2(2x + 1) and solving -3a = -10 gives 10/3. Solving as far as 3a = 12 and reporting that quantity rather than a gives 12.",
+  "rationale": "Comes from matching the constants as 2 - 3a = 10 instead of -10, so -3a = 8."
+ }
+]

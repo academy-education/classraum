@@ -1,0 +1,138 @@
+[
+ {
+  "id": "28cb66bd-d9ab-465a-9a2e-81c72ed1f3f7",
+  "old": "-22",
+  "new": "-38",
+  "error_path": "Substitutes the boundary x = -8 into the original inequality but evaluates -3(-8 - 2) as -30 instead of +30 (sign slip on a product of two negatives): -30 - 40 = -70 = -32 + k, so k = -38.",
+  "explanation": "The left side becomes -3x + 6 + 5x, which is 2x + 6, so the inequality reads 2x + 6 ≥ 4x + k. Subtracting 4x and 6 from both sides gives -2x ≥ k - 6, and dividing by -2 reverses the inequality to x ≤ (6 - k)/2. For this to match x ≤ -8, the boundary must satisfy (6 - k)/2 = -8, so 6 - k = -16 and k = 22. Failing to reverse the inequality and solving (k - 6)/2 = -8 gives -10. Dropping the +6 from the expanded left side and solving -k/2 = -8 gives 16. Substituting the boundary x = -8 directly but evaluating -3(-8 - 2) as -30 instead of 30 gives -70 = -32 + k and k = -38.",
+  "rationale": "Substitutes x = -8 but evaluates -3(-8 - 2) as -30 rather than 30, so -70 = -32 + k gives k = -38."
+ },
+ {
+  "id": "c288f1aa-1e7e-471a-87fb-dede5eb0f931",
+  "old": "6",
+  "new": "-14",
+  "error_path": "Finds the roots from r + s = 3 and rs = -10 but drops the sign of the product, taking the roots as 5 and 2, then expands 2(x - 5)(x - 2) = 2x^2 - 14x + 20 and reads b = -14.",
+  "explanation": "By Vieta's formulas the sum of the roots equals −b/a = −b/2. Setting −b/2 = 3 gives b = −6.",
+  "rationale": "Drops the sign of the product of the roots, takes them as 5 and 2, and expands 2(x − 5)(x − 2) = 2x² − 14x + 20 to read b = −14."
+ },
+ {
+  "id": "a1a0f9a5-5607-49a7-97fb-8d9ab6446ea0",
+  "old": "6",
+  "new": "-5",
+  "error_path": "Slope route: sets the parabola's slope 2x - 2 equal to 6 but solves 2x = 6 (forgets to move the -2), so x = 3; the parabola's height there is 9 - 6 + 10 = 13, and 6(3) + c = 13 gives c = -5.",
+  "explanation": "Setting the two expressions equal gives x^2 - 2x + 10 = 6x + c, i.e. x^2 - 8x + (10 - c) = 0. Tangency forces the discriminant to zero: 64 - 4(10 - c) = 0, so 10 - c = 16 and c = -6, the key. The option giving 9 never moves the 6x across, leaving x^2 - 2x + (10 - c) = 0, whose discriminant condition 4 - 4(10 - c) = 0 gives 10 - c = 1 and c = 9. The option giving -5 comes from the slope route: setting the parabola's slope 2x - 2 equal to 6 but solving 2x = 6, so x = 3, then using the parabola's height 9 - 6 + 10 = 13 there and solving 6(3) + c = 13. The option giving 24 is an intermediate quantity: 64 - 40 = 24 is the value of -4c, reported before dividing by -4.",
+  "rationale": "Sets the slope 2x - 2 equal to 6 but solves 2x = 6, so x = 3; the height there is 13 and 6(3) + c = 13 gives c = -5."
+ },
+ {
+  "id": "f3b737f6-3342-463a-b64d-ca0213662d01",
+  "old": "-1",
+  "new": "7",
+  "error_path": "Slope route: the parabola's slope 2x - 4 equals 2 at x = 3, where the height is 9 - 12 + 10 = 7; reports that height as c instead of solving 2(3) + c = 7 for c = 1.",
+  "explanation": "Setting the expressions equal gives x^2 - 4x + 10 = 2x + c, i.e. x^2 - 6x + (10 - c) = 0. One intersection point means the discriminant is zero: 36 - 4(10 - c) = 0, so 10 - c = 9 and c = 1, the key. The option giving 9 is the intermediate quantity 10 - c, reported before solving for c. The option giving 4 is the other intermediate: expanding 36 - 40 + 4c = 0 leaves 4c = 4, and 4 is that value of 4c rather than of c. The option giving 7 comes from the slope route: the parabola's slope 2x - 4 equals 2 at x = 3, where its height is 9 - 12 + 10 = 7, and 7 is that height reported as c instead of solving 2(3) + c = 7.",
+  "rationale": "Finds the tangent point x = 3 and the parabola's height 7 there, and reports the height as c instead of solving 2(3) + c = 7."
+ },
+ {
+  "id": "68ca9070-9acb-49cf-a17d-56cff91e58ee",
+  "old": "-4",
+  "new": "-6",
+  "error_path": "Forgets to square the sum: writes 5 = 17 + 2xy (using x + y = 5 in place of (x + y)^2 = 25), so 2xy = -12 and xy = -6.",
+  "explanation": "Square the sum: (x + y)^2 = x^2 + 2xy + y^2, so 25 = 17 + 2xy, giving 2xy = 8 and xy = 4. The 4 option is correct. The 8 option stops at 2xy and forgets to divide by 2. The 12.5 option is 25/2, halving the square of the sum instead of using the identity. The -6 option forgets to square the sum, writing 5 = 17 + 2xy so that 2xy = -12.",
+  "rationale": "Forgets to square the sum, writing 5 = 17 + 2xy so that 2xy = -12 and xy = -6."
+ },
+ {
+  "id": "e2083d68-1e0d-4e74-b765-80c4825d13f9",
+  "old": "5/12",
+  "new": "-12/5",
+  "error_path": "Computes the reciprocal ratio cos θ / sin θ = (-12/13)/(5/13) = -12/5, the cotangent, instead of sin θ / cos θ.",
+  "explanation": "Since sin^2 + cos^2 = 1, cos θ = ±12/13, and θ lies in the second quadrant where cosine is negative, so cos θ = -12/13. Then tan θ = sin θ / cos θ = (5/13)/(-12/13) = -5/12, and the -5/12 option is correct. The -12/5 option is the reciprocal ratio cos θ / sin θ = (-12/13)/(5/13), the cotangent rather than the tangent. The 12/13 option is the size of the cosine, an intermediate value, and it drops the negative sign as well.",
+  "rationale": "Divides cosine by sine instead of sine by cosine, giving the cotangent -12/5 rather than the tangent."
+ },
+ {
+  "id": "dabce601-c279-43c1-a609-8cc56af72a49",
+  "old": "-1",
+  "new": "-15",
+  "error_path": "Works back from (7, -7) with the slope's sign flipped: k = -7 - (4/3)(6) = -7 - 8 = -15 instead of -7 + 8 = 1.",
+  "explanation": "Collinear points share a single slope. From the two fully known points the slope is (-7 - 5)/(7 - (-2)) = -12/9 = -4/3. Moving from x = -2 to x = 1 is a run of 3, which lowers the height by (4/3)(3) = 4, so k = 5 - 4 = 1, the key. The value 9 is what a sign error on the slope produces, 5 + 4. The value -15 comes from working back from (7, -7) with the slope's sign flipped, computing -7 - (4/3)(6) = -7 - 8 instead of -7 + 8. The value 3 fits no slope at all: with k = 3 the slope from x = -2 to x = 1 would be -2/3 while the slope from x = 1 to x = 7 would be -5/3, so the three points would not lie on one line.",
+  "rationale": "Works back from (7, -7) with the slope's sign flipped, computing -7 - (4/3)(6) = -15."
+ },
+ {
+  "id": "ff7847dc-6e7e-475d-a051-651b2e20bd58",
+  "old": "2",
+  "new": "2.75",
+  "error_path": "Reads the slope of 3x + 4y = 12 off the y-coefficient as 4 instead of solving for y, takes the perpendicular slope to be -1/4, and solves 2 = (-1/4)(3) + b, giving b = 2 + 3/4 = 2.75.",
+  "explanation": "Adding the two equations gives 3x = 9, so x = 3, and then y = x - 1 = 2: the lines meet at (3, 2). The line 3x + 4y = 12 has slope -3/4, so a perpendicular line has slope 4/3. Writing y = (4/3)x + b and substituting the point, 2 = (4/3)(3) + b = 4 + b, so b = -2, the key. The option giving 4.25 uses the parallel slope -3/4 instead of the perpendicular one, solving 2 = -2.25 + b. The option giving 2.75 reads the slope of 3x + 4y = 12 off the y-coefficient as 4 instead of solving for y, takes the perpendicular slope to be -1/4, and solves 2 = (-1/4)(3) + b. The option giving -6 comes from a sign slip in back-substitution, reading x - y = 1 as y = 1 - x = -2 instead of y = x - 1 = 2; the point (3, -2) then gives b = -2 - 4 = -6.",
+  "rationale": "Reads the slope of 3x + 4y = 12 as 4, uses -1/4 for the perpendicular slope, and solves 2 = (-1/4)(3) + b to get 2.75."
+ },
+ {
+  "id": "b4740f7e-65c9-4ad5-9798-ed79ce00124c",
+  "old": "-3",
+  "new": "-25",
+  "error_path": "Solves the system outright with one slip: substituting x = (-7 - 5y)/2 into 4x - 3y = 10 gives -14 - 13y = 10; moving the -14 across as -13y = -4 (instead of 24) gives y = 4/13, then x = (-7 - 20/13)/2 = -111/26, and 6x + 2y = -333/13 + 8/13 = -25.",
+  "explanation": "Adding the two equations lines up exactly with the requested expression: (4x - 3y) + (2x + 5y) = 6x + 2y, and on the right 10 + (-7) = 3, the key. There is no need to solve for x and y separately. The option giving 17 subtracts the constants instead, 10 - (-7). The option giving -25 comes from solving the system outright with one slip: substituting x = (-7 - 5y)/2 into the first equation gives -14 - 13y = 10, and moving the -14 across as -13y = -4 instead of 24 leads to y = 4/13, x = -111/26, and 6x + 2y = -25. The option giving 10 uses only the first equation's constant and ignores the second.",
+  "rationale": "Solves the system but moves the -14 across with the wrong sign, getting y = 4/13 and x = -111/26, so 6x + 2y = -25."
+ },
+ {
+  "id": "e0201951-c86d-4dfe-bc2b-f6cb63744dc0",
+  "old": "-135",
+  "new": "65",
+  "error_path": "Treats f as linear: the average rate from f(0) = 5 to f(2) = 45 is 20 per unit, so f(3) = 45 + 20 = 65.",
+  "explanation": "f(0) = a = 5, so 5b² = 45 and b² = 9, giving b = 3 or b = −3. The base of an exponential function must be positive, so b = 3 and f(x) = 5(3ˣ). Then f(3) = 5(27) = 135.",
+  "rationale": "Treats f as linear: the average rate from f(0) = 5 to f(2) = 45 is 20 per unit, so f(3) = 45 + 20 = 65."
+ },
+ {
+  "id": "c7cace3c-c63e-43e9-8145-7d2e43077762",
+  "old": "-11",
+  "new": "38",
+  "error_path": "Drops the leading coefficient 2 when evaluating at x = -3: (-27) + 3(9) - 11(-3) + 5 = -27 + 27 + 33 + 5 = 38.",
+  "explanation": "By the remainder theorem, r is the value of the dividend at the zero of x + 3, namely x = −3. That gives 2(−27) + 3(9) − 11(−3) + 5 = −54 + 27 + 33 + 5 = 11.",
+  "rationale": "Drops the leading coefficient 2 when evaluating at x = −3, computing −27 + 27 + 33 + 5 = 38."
+ },
+ {
+  "id": "50fd08f1-92b6-49d0-984c-20a911a32001",
+  "old": "24",
+  "new": "-14",
+  "error_path": "Intercept route: the first line has y-intercept -2 and the second has y-intercept c/12; solves c/12 = -2 by subtracting 12 instead of multiplying, c = -2 - 12 = -14.",
+  "explanation": "The system has infinitely many solutions only when one equation is a constant multiple of the other. Since -9 = -3 times 3 and 12 = -3 times -4, the multiplier is -3, and the same multiplier must apply to the constant: c = -3 times 8 = -24. The value \"-14\" comes from the intercept route: the first line has y-intercept -2 and the second has y-intercept c/12, and solving c/12 = -2 by subtracting 12 instead of multiplying gives c = -2 - 12 = -14. The value \"-72\" uses -9, the x-coefficient of the second equation, as the multiplier instead of the ratio of the coefficients. The value \"-32\" uses -4, a y-coefficient, as the multiplier.",
+  "rationale": "Matches the y-intercepts, c/12 = -2, but subtracts 12 instead of multiplying, giving c = -14."
+ },
+ {
+  "id": "0cc2f3d3-2684-44d0-b409-415e5e2dd09d",
+  "old": "6",
+  "new": "-9",
+  "error_path": "Rewrites 6x - 2y = 9 as y = 3x - 9, dividing the x-term by -2 but not the constant, and carries that intercept over to line m without using the point (4, 6).",
+  "explanation": "Solving 6x - 2y = 9 for y gives y = 3x - 4.5, so line k has slope 3 and line m has slope 3 as well. Using the point (4, 6), line m is y = 6 + 3(x - 4) = 3x - 6, so it crosses the y-axis at -6. The value \"2\" is where line m crosses the x-axis, the wrong axis. The value \"-9\" comes from rewriting 6x - 2y = 9 as y = 3x - 9, dividing the x-term by -2 but not the constant, and then carrying that intercept over to line m without using the point (4, 6). The value \"18\" comes from using a slope of -3, giving y = -3x + 18.",
+  "rationale": "Rewrites line k as y = 3x - 9 (constant not divided by -2) and carries that intercept over to line m without using the point."
+ },
+ {
+  "id": "ec0c4763-8435-4219-a2b7-2e48d6919651",
+  "old": "-6",
+  "new": "24",
+  "error_path": "Cross-multiplies c/8 = 3/4 to 4c = 24 and reports 24 without dividing by 4.",
+  "explanation": "Solving cx - 8y = -5c - 10 for y gives y = (c/8)x + (5c + 10)/8, and matching the slope 3/4 requires c/8 = 3/4, so c = 6; the intercept condition (5c + 10)/8 = 5 also gives 6, confirming the schedules coincide. The value 3/4 is the slope itself, left unmultiplied by 8.",
+  "rationale": "Cross-multiplies c/8 = 3/4 to 4c = 24 and reports 24 without dividing by 4."
+ },
+ {
+  "id": "7cbf8165-d088-4597-af54-1b94925b9cde",
+  "old": "1/4",
+  "new": "-4",
+  "error_path": "Inverts the product-of-roots relation: computes a = (product of roots)/c = (12)(-6)/18 = -72/18 = -4 instead of a = c/(product) = 18/(-72).",
+  "explanation": "The x-intercepts are 12 and 12 - 18 = -6, and since h(0) = 18 gives c = 18, the product of the roots satisfies (12)(-6) = c/a = 18/a, so a = 18/(-72) = -1/4.",
+  "rationale": "Inverts the product-of-roots relation, computing a = (12)(−6)/18 = −72/18 = −4 instead of 18/(−72)."
+ },
+ {
+  "id": "66cc1a4d-73ff-45c2-b957-7c3508837a64",
+  "old": "32",
+  "new": "-14",
+  "error_path": "Evaluates y = 2(x + 1)(x - 7) at x = 0 instead of at the vertex x = 3, reporting the y-intercept 2(1)(-7) = -14 as k.",
+  "explanation": "From the intercepts, y = a(x + 1)(x − 7). The point (1, −24) gives −24 = a(2)(−6) = −12a, so a = 2. The vertex sits midway between the intercepts, at x = 3, and there y = 2(4)(−4) = −32, so k = −32.",
+  "rationale": "Evaluates the parabola at x = 0 instead of at the vertex x = 3, reporting the y-intercept 2(1)(−7) = −14 as k."
+ },
+ {
+  "id": "1eb3e800-347d-48c2-96fc-ea623ed3b57f",
+  "old": "9",
+  "new": "-25",
+  "error_path": "Pairs the coefficients by the wrong variable: sets a/(-5) = 15/3 (matching a with the first equation's y-coefficient and 15 with its x-coefficient), so a = 5(-5) = -25.",
+  "explanation": "No solution means the lines are parallel: the coefficients are proportional while the constants are not. The y-coefficients scale by 15/(−5) = −3, so a = 3(−3) = −9. (Then −9x + 15y = −24 ≠ 7, confirming no solution.) Distractors: \"-25\" pairs the coefficients by the wrong variable, setting a/(−5) = 15/3 so that a = 5(−5) = −25; \"-3\" reports the scale factor 15/(−5) itself instead of a; \"-1\" inverts the ratio, computing 3(−5)/15.",
+  "rationale": "Pairs the coefficients by the wrong variable, setting a/(−5) = 15/3 so that a = −25."
+ }
+]

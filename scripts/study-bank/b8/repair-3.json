@@ -1,0 +1,186 @@
+[
+  {
+    "id": "3a55f1ba-2d0d-4d58-8a8b-cc0502c16123",
+    "old": "-5",
+    "new": "-3",
+    "error_path": "Distributes the 3 only onto x, writing 27^(x-2) as 3^(3x-2) (the slip behind option 1), then solves 2x - 1 = 3x - 2 by collecting the constants as -2 - 1 = -3, gets -x = -3, and forgets to divide by -1, reading off x = -3.",
+    "explanation": "Write 27 = 3^3, so the right side is 3^(3(x - 2)) = 3^(3x - 6). Equating exponents: 2x - 1 = 3x - 6, so x = 5. Distractor 1 forgets to distribute the 3 (2x - 1 = 3x - 2); -3 makes the same slip and then, solving 2x - 1 = 3x - 2, collects the constants as -2 - 1 = -3 and forgets to divide by -1; 7 mis-adds constants.",
+    "rationale": "Distributes the 3 only onto x (3x - 2), collects the constants as -2 - 1 = -3 and forgets to divide by -1."
+  },
+  {
+    "id": "b7f4a920-8f6c-4f4a-b07f-2dba5879313a",
+    "old": "8",
+    "new": "-12",
+    "error_path": "Confuses the minimum VALUE with the x-coordinate of the vertex: sets -b/(2a) = -b/4 = -3, so b = 12, then applies the condition b < 0 and writes -12.",
+    "explanation": "The minimum value is 5 - b^2/8 = -3, so b^2 = 64 and, since b < 0, b = -8.",
+    "rationale": "Treats the minimum value -3 as the vertex's x-coordinate, -b/4 = -3, so b = 12, then applies b < 0."
+  },
+  {
+    "id": "45378b14-a8e4-4e92-9233-1d83c45784aa",
+    "old": "-39",
+    "new": "35",
+    "error_path": "Sign slip inside g: computes g(2) = 2^2 + 1 = 5 instead of 3, so f(g(2)) = 2(5) + 3 = 13 and 48 - 13 = 35.",
+    "explanation": "f(2) = 7 so g(f(2)) = 7^2 - 1 = 48; g(2) = 3 so f(g(2)) = 2(3) + 3 = 9. Then 48 - 9 = 39. Distractor 35 mis-signs g(2) as 2^2 + 1 = 5, so f(g(2)) = 13 and 48 - 13 = 35; 48 is only the first term; 57 adds the two terms instead of subtracting.",
+    "rationale": "Mis-signs g(2) as 2^2 + 1 = 5, so f(g(2)) = 13 and 48 - 13 = 35."
+  },
+  {
+    "id": "489b5cce-7ee8-4c31-8d25-510bd9aa3258",
+    "old": "-6",
+    "new": "-9",
+    "error_path": "Adds the 3x term instead of subtracting it when equating: x^2 + 8x + (7 - c) = 0, discriminant 64 - 4(7 - c) = 0, so 7 - c = 16 and c = -9.",
+    "explanation": "Setting the expressions equal gives x^2 + 5x + 7 = 3x + c, i.e. x^2 + 2x + (7 - c) = 0. Tangency requires the discriminant to be zero: 2^2 - 4(7 - c) = 0, so 7 - c = 1 and c = 6. Distractor -9 adds the 3x term instead of subtracting it (x^2 + 8x + (7 - c) = 0, so 64 - 4(7 - c) = 0 and c = -9); 8 and 7 come from discriminant arithmetic slips.",
+    "rationale": "Adds the 3x term instead of subtracting it, x^2 + 8x + (7 - c) = 0, so 64 - 4(7 - c) = 0 and c = -9."
+  },
+  {
+    "id": "6b0290b4-c420-46a5-8c4f-0e1bab638fd2",
+    "old": "-5",
+    "new": "-4",
+    "error_path": "Finds the vertex x = 3 correctly but drops the leading coefficient 2 when evaluating: f(3) = 9 - 36 + 23 = -4.",
+    "explanation": "The minimum occurs at x = -b/(2a) = 12/4 = 3. Then f(3) = 2(9) - 12(3) + 23 = 18 - 36 + 23 = 5. The distractor 3 reports the x-coordinate of the vertex, 23 is the y-intercept, and -4 drops the leading coefficient when evaluating, 9 - 36 + 23 = -4.",
+    "rationale": "Drops the leading coefficient when evaluating at the vertex: 9 - 36 + 23 = -4."
+  },
+  {
+    "id": "be1c3621-f1a9-41a4-b734-f07d543e19a4",
+    "old": "-$1.00",
+    "new": "$11.00",
+    "error_path": "Computes the expected receipt of $6.00 correctly but adds the $5 cost instead of subtracting it: 6 + 5 = 11.",
+    "explanation": "Expected receipt = (1/6)(20) + (2/6)(8) + (3/6)(0) = 20/6 + 16/6 = 36/6 = 6 dollars. Net gain = 6 - 5 (cost) = 1.00 dollar.",
+    "rationale": "Adds the $5 cost to the expected receipt instead of subtracting it: 6 + 5 = 11."
+  },
+  {
+    "id": "4aae9236-3635-434a-85a2-e9c17a507b8c",
+    "old": "-5",
+    "new": "13",
+    "error_path": "Lumps each side's x-coefficient and constant together instead of matching coefficients: 2b + 4 - 6 = 14 + 10, so 2b = 26 and b = 13.",
+    "explanation": "Expand both sides: the left is 2bx - 6 + 4x = (2b + 4)x - 6, and the right is 5x + 10 + 9x = 14x + 10. A linear equation has no solution exactly when the x-coefficients match but the constants do not, so 2b + 4 = 14 and b = 5, the key; the constants -6 and 10 differ, so there is indeed no solution. The option giving 7 solves 2b = 14 and ignores the 4x on the left; with that value the equation becomes 18x - 6 = 14x + 10, which does have a solution, x = 4. The option giving 3 matches 2b + 4 against the right side's constant 10 rather than its x-coefficient 14, and it likewise leaves a solvable equation. The option giving 13 lumps each side's x-coefficient and constant together, 2b + 4 - 6 = 14 + 10, so 2b = 26.",
+    "rationale": "Lumps each side's coefficient and constant together, 2b + 4 - 6 = 14 + 10, so 2b = 26 and b = 13."
+  },
+  {
+    "id": "ac8cf403-49b6-496f-9f1b-5cdd9d96929f",
+    "old": "9",
+    "new": "-19",
+    "error_path": "Picks a factor pair of 18 without enforcing the 2:1 ratio, 1 and 18, so the sum is 19 and p = -19.",
+    "explanation": "Let the roots be a and 2a. Their product is 2a^2 = 18, so a^2 = 9 and a = 3. The roots are 3 and 6 with sum 9, and since the sum equals -p, we get p = -9. Choosing -19 takes a factor pair of 18 (1 and 18) without enforcing the 2:1 ratio; -6 uses a = 2; -11 is an arithmetic slip.",
+    "rationale": "Takes the factor pair 1 and 18 without enforcing the 2:1 ratio; sum 19, so p = -19."
+  },
+  {
+    "id": "54ccdca0-9181-4662-90b0-2c796f172092",
+    "old": "4",
+    "new": "-16",
+    "error_path": "Forgets to multiply the constant by 4 in the discriminant: writes 4 + 12 + k = 0 instead of 4 + 12 + 4k = 0, so k = -16.",
+    "explanation": "Setting x^2 - 3 = 2x + k gives x^2 - 2x - (3 + k) = 0. Exactly one solution requires the discriminant to be 0: 4 + 4(3 + k) = 0, so 16 + 4k = 0 and k = -4. Choosing -16 forgets to multiply the constant by 4 in the discriminant (4 + 12 + k = 0); -2 and -6 come from mishandling the constant.",
+    "rationale": "Forgets to multiply the constant by 4 in the discriminant, 4 + 12 + k = 0, so k = -16."
+  },
+  {
+    "id": "17bec277-6c54-4948-b4e5-bafed4275c10",
+    "old": "1/2",
+    "new": "5/6",
+    "error_path": "Confuses the two Vieta relations: finds the sum of the roots 5/2 but then divides it by the known root 3 (as one would the product) instead of subtracting 3, getting 5/6.",
+    "explanation": "Since x = 3 is a root, 2(9) - 5(3) + c = 0, so c = -3. The product of the roots is c/a = -3/2, so the other root is (-3/2)/3 = -1/2. Choosing 5/6 divides the sum of the roots, 5/2, by the known root 3 instead of subtracting 3; -3 reports c; 2/3 inverts and mis-signs.",
+    "rationale": "Divides the sum of the roots, 5/2, by the known root 3 instead of subtracting 3."
+  },
+  {
+    "id": "723a5bbb-e99a-495d-87df-8da702ad3d4a",
+    "old": "-6",
+    "new": "-1",
+    "error_path": "Treats parallel lines as having equal DIFFERENCES of coefficients rather than equal ratios: a - 3 = (-8) - (-4) = -4, so a = -1.",
+    "explanation": "No solution means the two lines are parallel: the coefficient ratios of x and y must be equal while the constant ratio differs. So a/3 = (−8)/(−4) = 2, giving a = 6. (Check: 15/12 = 1.25 ≠ 2, so the lines are parallel, not identical.)",
+    "rationale": "Uses equal differences instead of equal ratios: a - 3 = (-8) - (-4) = -4, so a = -1."
+  },
+  {
+    "id": "193a4191-bab7-410d-a7af-1976d5a41467",
+    "old": "-5",
+    "new": "-4",
+    "error_path": "Finds the vertex x = 3 correctly but drops the leading coefficient 2 when evaluating: 9 - 36 + 23 = -4.",
+    "explanation": "The vertex occurs at x = −(−12)/(2·2) = 3. Then f(3) = 2(9) − 12(3) + 23 = 18 − 36 + 23 = 5, which is the minimum since the parabola opens upward.",
+    "rationale": "Drops the leading coefficient when evaluating at the vertex: 9 - 36 + 23 = -4."
+  },
+  {
+    "id": "363259c9-83f6-4292-8ae0-bbc0ab83ad93",
+    "old": "-6",
+    "new": "18",
+    "error_path": "Uses the slope condition 2x + 2 = 6 to find the tangent point x = 2, y = 4 + 4 + 10 = 18, and reports that y-value as c instead of solving 18 = 6(2) + c.",
+    "explanation": "Setting the expressions equal gives x^2 + 2x + 10 = 6x + c, i.e. x^2 - 4x + (10 - c) = 0. Tangency means exactly one solution, so the discriminant is 0: 16 - 4(10 - c) = 0, giving c = 6.",
+    "rationale": "Finds the tangent point (2, 18) and reports its y-coordinate instead of solving 18 = 6(2) + c."
+  },
+  {
+    "id": "2c0a61eb-0f9d-409e-bd7b-9a7fd54ef415",
+    "old": "-6",
+    "new": "-9",
+    "error_path": "Adds the 3x term instead of subtracting it when equating: x² + 8x + (7 − c) = 0, discriminant 64 − 4(7 − c) = 0, so 7 − c = 16 and c = −9.",
+    "explanation": "Setting the expressions equal: x² + 5x + 7 = 3x + c, so x² + 2x + (7 − c) = 0. Tangency means one repeated root, so the discriminant is 0: 2² − 4(7 − c) = 0, giving 4 − 28 + 4c = 0 and c = 6. Forgetting to combine the 3x term (using coefficient 5) yields c = 3/4.",
+    "rationale": "Adds the 3x term instead of subtracting it, x² + 8x + (7 − c) = 0, so 64 − 4(7 − c) = 0 and c = −9."
+  },
+  {
+    "id": "b2c9ec89-7d33-41a1-b134-440aad09b255",
+    "old": "-4",
+    "new": "-2",
+    "error_path": "Uses 2b instead of b² in the discriminant: 12 − 4(k + 5) = 0 gives k + 5 = 3 and k = −2.",
+    "explanation": "Equate the two expressions: x² − 4x + k = 2x − 5, so x² − 6x + (k + 5) = 0. One solution requires discriminant 0: 36 − 4(k + 5) = 0, so 16 = 4k and k = 4. Dropping the +5 (from moving −5 across) gives k = 9.",
+    "rationale": "Uses 2b instead of b² in the discriminant: 12 − 4(k + 5) = 0 gives k = −2."
+  },
+  {
+    "id": "330d4882-5619-49d3-b8ec-f2cb8f6521de",
+    "old": "-7",
+    "new": "2",
+    "error_path": "Solves for the roots themselves (2 and 5, since they multiply to 10 and differ by 3) and reports the smaller root instead of b.",
+    "explanation": "For roots r and s: r + s = −b and rs = 10. Then (r − s)² = (r + s)² − 4rs = b² − 40 = 3² = 9, so b² = 49 and b = 7 (since b > 0). Taking the difference itself as b would suggest 3.",
+    "rationale": "Finds the roots 2 and 5 and reports the smaller root instead of b."
+  },
+  {
+    "id": "9a0506c3-4032-41dc-82bb-b453d3deaa5a",
+    "old": "-4",
+    "new": "36",
+    "error_path": "Reaches 20 - c = 16 correctly but slips the sign when isolating c, writing c = 20 + 16 = 36.",
+    "explanation": "Setting the expressions equal: x^2 - 6x + 20 = 2x + c, i.e. x^2 - 8x + (20 - c) = 0. Tangency means the discriminant is 0: 64 - 4(20 - c) = 0, so 4c = 16 and c = 4. (36 solves 20 - c = 16 with the sign slipped, c = 20 + 16; 20 is the constant term; 12 is 20 minus 8.)",
+    "rationale": "Solves 20 - c = 16 with the sign slipped, c = 20 + 16 = 36."
+  },
+  {
+    "id": "4f1d1eb6-dfda-47c5-8c50-6ceeb261acd8",
+    "old": "-5",
+    "new": "-3",
+    "error_path": "Distributes the 3 only onto x, writing 27^(x+1) as 3^(3x+1), then solves 3x + 1 = 4x - 2 by collecting the constants as -2 - 1 = -3, gets -x = -3, and forgets to divide by -1, reading off x = -3.",
+    "explanation": "Write both sides base 3: 3^(3(x+1)) = 3^(2(2x-1)). Equate exponents: 3x + 3 = 4x - 2, so x = 5. (-3 distributes the 3 only onto x, giving 3x + 1 = 4x - 2, then reads -x = -3 as x = -3; 7 mishandles the constants; 1 comes from equating bases 3 and 9 carelessly.)",
+    "rationale": "Distributes the 3 only onto x (3x + 1), gets -x = -3 and forgets to divide by -1."
+  },
+  {
+    "id": "fd4e5fe7-c8cb-443e-a65f-a87947cacdb5",
+    "old": "18",
+    "new": "-10",
+    "error_path": "Expands (x - 2)(x + 2) as x^2 + 4 instead of x^2 - 4, so x + 14 = x^2 + 4 gives x^2 - x - 10 = 0 and a product of -10.",
+    "explanation": "Multiplying by (x - 2)(x + 2): 4(x + 2) - 3(x - 2) = x^2 - 4, so x + 14 = x^2 - 4, i.e. x^2 - x - 18 = 0. The product of its roots is -18. (-10 expands (x - 2)(x + 2) as x^2 + 4, giving x^2 - x - 10 = 0; -14 is the linear constant before moving terms; -1 is the sum of the roots.)",
+    "rationale": "Expands (x - 2)(x + 2) as x^2 + 4, giving x^2 - x - 10 = 0 and a product of -10."
+  },
+  {
+    "id": "3eee7654-8075-42bd-8212-a8324752e7a5",
+    "old": "-6",
+    "new": "0",
+    "error_path": "Finds the intersection points (2, 0) and (3, 2) correctly but multiplies the y-coordinates, 0 x 2 = 0, instead of the x-coordinates.",
+    "explanation": "Setting the equations equal: x^2 - 3x + 2 = 2x - 4, so x^2 - 5x + 6 = 0. By Vieta's formulas the product of the roots is 6. (5 is the sum of the x-coordinates; 0 multiplies the y-coordinates of the intersection points, 0 and 2, instead of the x-coordinates; 4 comes from a sign error moving the -4.)",
+    "rationale": "Multiplies the y-coordinates of the intersection points, 0 and 2, instead of the x-coordinates."
+  },
+  {
+    "id": "ee9e4316-f359-4fc2-9c13-432e49186cb1",
+    "old": "18",
+    "new": "-14",
+    "error_path": "Reads f(x) = x^2 + 1 as (x + 1)^2 when evaluating f(2), getting 9 instead of 5, so 9 - 23 = -14.",
+    "explanation": "g(5) = 2, so f(g(5)) = 2^2 + 1 = 5. f(5) = 26, so g(f(5)) = 26 - 3 = 23. The difference is 5 - 23 = -18. (-14 evaluates f(2) as (2 + 1)^2 = 9 instead of 2^2 + 1, giving 9 - 23 = -14; -21 uses f(g(5)) = 2 forgetting the +1; 3 subtracts the inner constants.)",
+    "rationale": "Evaluates f(2) as (2 + 1)^2 = 9 instead of 2^2 + 1 = 5, giving 9 - 23 = -14."
+  },
+  {
+    "id": "038b0287-7264-4114-a3a2-5a821f32a5f4",
+    "old": "6",
+    "new": "10",
+    "error_path": "Sign slip on the vertex y-coordinate: writes vertex form as 2(x - 1)² + 8, so f(0) = 2 + 8 = 10.",
+    "explanation": "Vertex form f(x) = a(x-1)² - 8. Using the intercept (3,0): 0 = a(4) - 8, so a = 2. Then f(0) = 2(1) - 8 = -6.",
+    "rationale": "Sign slip on the vertex y-coordinate, 2(x - 1)² + 8, so f(0) = 2 + 8 = 10."
+  },
+  {
+    "id": "1de34236-09c8-4b71-a340-71bdea009d6d",
+    "old": "-5",
+    "new": "-3",
+    "error_path": "Distributes the 3 only onto x, writing 125^(x-2) as 5^(3x-2), then solves 2x - 1 = 3x - 2 by collecting the constants as -2 - 1 = -3, gets -x = -3, and forgets to divide by -1, reading off x = -3.",
+    "explanation": "Write 125 as 5^3, so the right side is 5^(3(x - 2)) = 5^(3x - 6). Equating exponents: 2x - 1 = 3x - 6, which gives x = 5.",
+    "rationale": "Distributes the 3 only onto x (3x - 2), collects the constants as -2 - 1 = -3 and forgets to divide by -1."
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "e0714e93-ea28-481a-b0fd-482da74ab2f2",
+    "old": "-18",
+    "new": "-4",
+    "error_path": "Additive instead of multiplicative proportionality: treats the second equation's coefficients as offset from the first by a constant difference, k - 6 = (-15) - (-5) = -10, so k = -4.",
+    "explanation": "A system has no solution when the lines are parallel but distinct: the x- and y-coefficients are proportional while the constants are not. Matching the coefficient ratios, 6/k = (-5)/(-15) = 1/3, so k = 18, the key. Checking the constants, 8/20 = 2/5, which is not 1/3, so the lines really are parallel and distinct. The option giving 2 inverts the y-coefficient ratio, solving 6/k = 15/5 = 3. The option giving 15 uses the ratio of the constants in place of the coefficients, solving 6/k = 8/20. The option giving -4 treats the coefficients as differing by a constant offset rather than a constant factor, solving k - 6 = (-15) - (-5) = -10.",
+    "rationale": "Treats the coefficients as differing by a constant offset rather than a constant factor, solving k - 6 = (-15) - (-5) = -10."
+  },
+  {
+    "id": "ace1b855-7eb4-4dd7-8f50-cb8d0211972a",
+    "old": "-5",
+    "new": "-7",
+    "error_path": "Finds the roots 6 and -1 correctly, then subtracts them in the order -1 - 6 = -7 instead of adding them.",
+    "explanation": "Setting x^2 - 3x = 2x + 6 gives x^2 - 5x - 6 = 0. By Vieta's, the sum of the roots is -(-5)/1 = 5. Choice -7 subtracts the roots, -1 - 6, instead of adding them; -6 gives the product of the roots instead of the sum; 6 slips a sign on the constant.",
+    "rationale": "Subtracts the roots 6 and -1 in the order -1 - 6 instead of adding them."
+  },
+  {
+    "id": "9ab58d0c-d745-4a1e-a8a7-e87b299e774b",
+    "old": "-16",
+    "new": "0",
+    "error_path": "Confuses 'parallel to the line' with 'on the line': substitutes (a, 4) into 2x + 3y = 12 itself, 2a + 12 = 12, so a = 0.",
+    "explanation": "The line 2x + 3y = 12 has slope −2/3, so the segment must have that slope: (10 − 4)/(7 − a) = −2/3. Then 7 − a = 6/(−2/3) = −9, so a = 7 − (−9) = 16.",
+    "rationale": "Substitutes (a, 4) into the given line 2x + 3y = 12 itself, as if the point lay on it, giving 2a + 12 = 12."
+  },
+  {
+    "id": "da5251da-0a17-4530-aa99-16fef687a9f6",
+    "old": "1",
+    "new": "-7",
+    "error_path": "Sign error on the odd power: evaluates (-3)^3 as +27, so P(-3) = 27 + 9a + 12 + 24 = 9a + 63 = 0 and a = -7.",
+    "explanation": "Since (x+3) is a factor, P(-3) = -27 + 9a + 12 + 24 = 0, so 9a + 9 = 0, giving a = -1.",
+    "rationale": "Evaluates (-3)^3 as +27, giving 9a + 63 = 0."
+  },
+  {
+    "id": "76d43dbb-0ffc-40a7-818c-5c426b182291",
+    "old": "4",
+    "new": "76",
+    "error_path": "Sign error in the identity: uses (m - n)^2 = (m + n)^2 + 4mn = 36 + 40 = 76 instead of subtracting 4mn.",
+    "explanation": "(m-n)^2 = (m+n)^2 - 4mn = 36 - 40 = -4 (the roots are complex, so this squared difference is negative).",
+    "rationale": "Adds 4mn instead of subtracting it: (m + n)^2 + 4mn = 36 + 40."
+  },
+  {
+    "id": "1bb4956c-ac42-4f0c-8068-7e759f3074f1",
+    "old": "3/2",
+    "new": "1/4",
+    "error_path": "Stops at -6y = -4x + 9 without dividing by -6, reads the slope as -4, and takes its negative reciprocal, 1/4.",
+    "explanation": "Rewrite as y = (4/6)x - 3/2, so the given slope is 2/3; the perpendicular slope is the negative reciprocal, -3/2. Distractor 2/3 is the original slope; 1/4 stops at -6y = -4x + 9, reads the slope as -4, and takes its negative reciprocal; -2/3 negates without taking the reciprocal.",
+    "rationale": "Stops at -6y = -4x + 9 without dividing by -6, reads the slope as -4, and takes its negative reciprocal."
+  }
+]

@@ -1,0 +1,839 @@
+[
+ {
+  "id": "28cb66bd-d9ab-465a-9a2e-81c72ed1f3f7",
+  "cohort": "sat-alg-hard-v1",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the inequality -3(x - 2) + 5x ≥ 4x + k, k is a constant, and the solution set is x ≤ -8. What is the value of k?",
+  "passage": null,
+  "choices": [
+   "-22",
+   "-10",
+   "16",
+   "22"
+  ],
+  "correct_answer": "22",
+  "negated_key_distractor": "-22",
+  "explanation": "The left side becomes -3x + 6 + 5x, which is 2x + 6, so the inequality reads 2x + 6 ≥ 4x + k. Subtracting 4x and 6 from both sides gives -2x ≥ k - 6, and dividing by -2 reverses the inequality to x ≤ (6 - k)/2. For this to match x ≤ -8, the boundary must satisfy (6 - k)/2 = -8, so 6 - k = -16 and k = 22. Failing to reverse the inequality and solving (k - 6)/2 = -8 gives -10. Dropping the +6 from the expanded left side and solving -k/2 = -8 gives 16. Slipping the sign on the constant and solving (6 + k)/2 = -8 gives -22.",
+  "distractor_rationales": [
+   {
+    "choice": "-22",
+    "reason": ""
+   },
+   {
+    "choice": "-10",
+    "reason": ""
+   },
+   {
+    "choice": "16",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "8a9f227f-9ceb-48eb-9579-3f911401e4ef",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "In the equation 3x^2 + bx + 12 = 0, the sum of the two solutions is 5. What is the value of b?",
+  "passage": null,
+  "choices": [
+   "15",
+   "-15",
+   "-5",
+   "5"
+  ],
+  "correct_answer": "-15",
+  "negated_key_distractor": "15",
+  "explanation": "By Vieta's formulas, the sum of the roots of ax^2+bx+c=0 is -b/a. So 5 = -b/3, giving b = -15.",
+  "distractor_rationales": [
+   {
+    "choice": "15",
+    "reason": ""
+   },
+   {
+    "choice": "-5",
+    "reason": ""
+   },
+   {
+    "choice": "5",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "c288f1aa-1e7e-471a-87fb-dede5eb0f931",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "The equation 2x² + bx − 20 = 0 has two solutions whose sum is 3. What is the value of b?",
+  "passage": null,
+  "choices": [
+   "6",
+   "-3",
+   "12",
+   "-6"
+  ],
+  "correct_answer": "-6",
+  "negated_key_distractor": "6",
+  "explanation": "By Vieta's formulas the sum of the roots equals −b/a = −b/2. Setting −b/2 = 3 gives b = −6.",
+  "distractor_rationales": [
+   {
+    "choice": "6",
+    "reason": ""
+   },
+   {
+    "choice": "-3",
+    "reason": ""
+   },
+   {
+    "choice": "12",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "e4c2abe3-a1de-4a61-82f6-838ef9b106b3",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "What is the sum of all solutions to |3x − 4| = 11?",
+  "passage": null,
+  "choices": [
+   "5",
+   "8/3",
+   "-7/3",
+   "-8/3"
+  ],
+  "correct_answer": "8/3",
+  "negated_key_distractor": "-8/3",
+  "explanation": "The absolute-value equation splits into 3x - 4 = 11, giving x = 5, and 3x - 4 = -11, giving x = -7/3; both satisfy the original equation, so the sum is 5 + (-7/3) = 15/3 - 7/3 = 8/3, the key. The option giving 5 is the positive root by itself, which is what you report if you solve only the first case. The option giving -7/3 is the other root by itself. The option giving -8/3 has the right magnitude but subtracts rather than adds, computing 7/3 - 5 instead of 5 - 7/3.",
+  "distractor_rationales": [
+   {
+    "choice": "5",
+    "reason": ""
+   },
+   {
+    "choice": "-7/3",
+    "reason": ""
+   },
+   {
+    "choice": "-8/3",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "a1a0f9a5-5607-49a7-97fb-8d9ab6446ea0",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "prompt": "The line y = 6x + c is tangent to the parabola y = x^2 - 2x + 10. What is the value of c?",
+  "passage": null,
+  "choices": [
+   "9",
+   "6",
+   "-6",
+   "24"
+  ],
+  "correct_answer": "-6",
+  "negated_key_distractor": "6",
+  "explanation": "Setting the two expressions equal gives x^2 - 2x + 10 = 6x + c, i.e. x^2 - 8x + (10 - c) = 0. Tangency forces the discriminant to zero: 64 - 4(10 - c) = 0, so 10 - c = 16 and c = -6, the key. The option giving 9 never moves the 6x across, leaving x^2 - 2x + (10 - c) = 0, whose discriminant condition 4 - 4(10 - c) = 0 gives 10 - c = 1 and c = 9. The option giving 6 has the right magnitude but the wrong sign. The option giving 24 is an intermediate quantity: 64 - 40 = 24 is the value of -4c, reported before dividing by -4.",
+  "distractor_rationales": [
+   {
+    "choice": "9",
+    "reason": ""
+   },
+   {
+    "choice": "6",
+    "reason": ""
+   },
+   {
+    "choice": "24",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "bd17e673-aee6-436a-ae4d-2dc7824a825c",
+  "cohort": "v2",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "What is the solution to the equation x/(x - 2) + 3/(x + 2) = 8/(x^2 - 4)?",
+  "passage": null,
+  "choices": [
+   "2",
+   "-7",
+   "7",
+   "-2"
+  ],
+  "correct_answer": "-7",
+  "negated_key_distractor": "7",
+  "explanation": "Multiply through by (x - 2)(x + 2) to clear denominators: x(x + 2) + 3(x - 2) = 8, so x^2 + 5x - 14 = 0 and (x + 7)(x - 2) = 0. The candidates are x = -7 and x = 2, but x = 2 makes the denominators x - 2 and x^2 - 4 zero, so only x = -7 survives, the key. The option giving 2 is the extraneous root, accepted by anyone who does not test it against the original denominators. The option giving 7 loses the sign when reading the factor x + 7. The option giving -2 is the other excluded value, the zero of x + 2, which is not a root of the cleared equation at all.",
+  "distractor_rationales": [
+   {
+    "choice": "2",
+    "reason": ""
+   },
+   {
+    "choice": "7",
+    "reason": ""
+   },
+   {
+    "choice": "-2",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "f3b737f6-3342-463a-b64d-ca0213662d01",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The line y = 2x + c is tangent to the parabola y = x^2 - 4x + 10. What is the value of c?",
+  "passage": null,
+  "choices": [
+   "-1",
+   "9",
+   "4",
+   "1"
+  ],
+  "correct_answer": "1",
+  "negated_key_distractor": "-1",
+  "explanation": "Setting the expressions equal gives x^2 - 4x + 10 = 2x + c, i.e. x^2 - 6x + (10 - c) = 0. One intersection point means the discriminant is zero: 36 - 4(10 - c) = 0, so 10 - c = 9 and c = 1, the key. The option giving 9 is the intermediate quantity 10 - c, reported before solving for c. The option giving 4 is the other intermediate: expanding 36 - 40 + 4c = 0 leaves 4c = 4, and 4 is that value of 4c rather than of c. The option giving -1 solves 10 - c = 9 backwards, writing c = 9 - 10.",
+  "distractor_rationales": [
+   {
+    "choice": "-1",
+    "reason": ""
+   },
+   {
+    "choice": "9",
+    "reason": ""
+   },
+   {
+    "choice": "4",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "68ca9070-9acb-49cf-a17d-56cff91e58ee",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "Real numbers x and y satisfy x + y = 5 and x^2 + y^2 = 17. What is the value of xy?",
+  "passage": null,
+  "choices": [
+   "21",
+   "-4",
+   "12.5",
+   "4"
+  ],
+  "correct_answer": "4",
+  "negated_key_distractor": "-4",
+  "explanation": "Square the sum: (x + y)^2 = x^2 + 2xy + y^2, so 25 = 17 + 2xy, giving 2xy = 8 and xy = 4. The 4 option is correct. The 8 option stops at 2xy and forgets to divide by 2. The 12.5 option is 25/2, halving the square of the sum instead of using the identity. The -4 option comes from a sign error, writing 25 = 17 - 2xy.",
+  "distractor_rationales": [
+   {
+    "choice": "8",
+    "reason": ""
+   },
+   {
+    "choice": "-4",
+    "reason": ""
+   },
+   {
+    "choice": "12.5",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "e2083d68-1e0d-4e74-b765-80c4825d13f9",
+  "cohort": "v2",
+  "domain": "Geometry and Trigonometry",
+  "difficulty": "medium",
+  "prompt": "An angle θ is obtuse (between 90° and 180°) and sin θ = 5/13. What is the value of tan θ?",
+  "passage": null,
+  "choices": [
+   "-5/12",
+   "5/12",
+   "-12/13",
+   "-13/12"
+  ],
+  "correct_answer": "-5/12",
+  "negated_key_distractor": "5/12",
+  "explanation": "Since sin^2 + cos^2 = 1, cos θ = ±12/13, and θ lies in the second quadrant where cosine is negative, so cos θ = -12/13. Then tan θ = sin θ / cos θ = (5/13)/(-12/13) = -5/12, and the -5/12 option is correct. The 5/12 option has the right magnitude with the sign ignored; it is what the tangent would be if θ were acute. The -12/5 option is the reciprocal, the cotangent rather than the tangent. The 12/13 option is the size of the cosine, an intermediate value, and it drops the negative sign as well.",
+  "distractor_rationales": [
+   {
+    "choice": "5/12",
+    "reason": ""
+   },
+   {
+    "choice": "-12/5",
+    "reason": ""
+   },
+   {
+    "choice": "12/13",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "dabce601-c279-43c1-a609-8cc56af72a49",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "The points (−2, 5), (1, k), and (7, −7) lie on the same line in the xy-plane. What is the value of k?",
+  "passage": null,
+  "choices": [
+   "1",
+   "3",
+   "-1",
+   "9"
+  ],
+  "correct_answer": "1",
+  "negated_key_distractor": "-1",
+  "explanation": "Collinear points share a single slope. From the two fully known points the slope is (-7 - 5)/(7 - (-2)) = -12/9 = -4/3. Moving from x = -2 to x = 1 is a run of 3, which lowers the height by (4/3)(3) = 4, so k = 5 - 4 = 1, the key. The value 9 is what a sign error on the slope produces, 5 + 4. The value -1 is the average of the two outer heights, 5 and -7, which would be k only if x = 1 sat halfway between -2 and 7, and it does not. The value 3 fits no slope at all: with k = 3 the slope from x = -2 to x = 1 would be -2/3 while the slope from x = 1 to x = 7 would be -5/3, so the three points would not lie on one line.",
+  "distractor_rationales": [
+   {
+    "choice": "3",
+    "reason": ""
+   },
+   {
+    "choice": "-1",
+    "reason": ""
+   },
+   {
+    "choice": "9",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "2b645128-0f43-43db-a390-5597208eafc4",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, a line is parallel to the graph of 2x − 3y = 12 and passes through the point (6, 1). What is the x-coordinate of its x-intercept?",
+  "passage": null,
+  "choices": [
+   "6",
+   "9/2",
+   "-9/2",
+   "3"
+  ],
+  "correct_answer": "9/2",
+  "negated_key_distractor": "-9/2",
+  "explanation": "Rewriting 2x - 3y = 12 as y = (2/3)x - 4 shows the slope is 2/3, so the parallel line through the point where x = 6 and y = 1 is y - 1 = (2/3)(x - 6), that is y = (2/3)x - 3. Setting y = 0 gives (2/3)x = 3 and x = 9/2, the key. The value 6 is the x-intercept of the given line 2x - 3y = 12 rather than of the parallel one, and it is also the x-coordinate of the point the new line passes through. The value 3 is the size of the parallel line's y-intercept, -3, reported in place of its x-intercept. The value -9/2 has the right magnitude with the sign flipped, as if solving (2/3)x = -3.",
+  "distractor_rationales": [
+   {
+    "choice": "6",
+    "reason": ""
+   },
+   {
+    "choice": "-9/2",
+    "reason": ""
+   },
+   {
+    "choice": "3",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "ff7847dc-6e7e-475d-a051-651b2e20bd58",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "Line L passes through the solution (x, y) of the system 2x + y = 8 and x - y = 1, and line L is perpendicular to the line 3x + 4y = 12. What is the y-coordinate of the y-intercept of line L?",
+  "passage": null,
+  "choices": [
+   "-6",
+   "-2",
+   "2",
+   "4.25"
+  ],
+  "correct_answer": "-2",
+  "negated_key_distractor": "2",
+  "explanation": "Adding the two equations gives 3x = 9, so x = 3, and then y = x - 1 = 2: the lines meet at (3, 2). The line 3x + 4y = 12 has slope -3/4, so a perpendicular line has slope 4/3. Writing y = (4/3)x + b and substituting the point, 2 = (4/3)(3) + b = 4 + b, so b = -2, the key. The option giving 4.25 uses the parallel slope -3/4 instead of the perpendicular one, solving 2 = -2.25 + b. The option giving 2 skips the slope term entirely and reports the y-coordinate of the point. The option giving -6 comes from a sign slip in back-substitution, reading x - y = 1 as y = 1 - x = -2 instead of y = x - 1 = 2; the point (3, -2) then gives b = -2 - 4 = -6.",
+  "distractor_rationales": [
+   {
+    "choice": "-6",
+    "reason": ""
+   },
+   {
+    "choice": "2",
+    "reason": ""
+   },
+   {
+    "choice": "4.25",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "b4740f7e-65c9-4ad5-9798-ed79ce00124c",
+  "cohort": "v2",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "If 4x − 3y = 10 and 2x + 5y = −7, what is the value of 6x + 2y?",
+  "passage": null,
+  "choices": [
+   "3",
+   "17",
+   "-3",
+   "10"
+  ],
+  "correct_answer": "3",
+  "negated_key_distractor": "-3",
+  "explanation": "Adding the two equations lines up exactly with the requested expression: (4x - 3y) + (2x + 5y) = 6x + 2y, and on the right 10 + (-7) = 3, the key. There is no need to solve for x and y separately. The option giving 17 subtracts the constants instead, 10 - (-7). The option giving -3 has the right magnitude with the sign flipped, as from -10 + 7. The option giving 10 uses only the first equation's constant and ignores the second.",
+  "distractor_rationales": [
+   {
+    "choice": "17",
+    "reason": ""
+   },
+   {
+    "choice": "-3",
+    "reason": ""
+   },
+   {
+    "choice": "10",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "08579b79-1fa3-4248-8ad3-42f14737d865",
+  "cohort": "sat-adv-v11",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "In the expansion of (2x - 3)^3, what is the coefficient of x^2 ?",
+  "passage": null,
+  "choices": [
+   "-36",
+   "36",
+   "-18",
+   "54"
+  ],
+  "correct_answer": "-36",
+  "negated_key_distractor": "36",
+  "explanation": "Expanding gives (2x)^3 + 3(2x)^2(-3) + 3(2x)(-3)^2 + (-3)^3 = 8x^3 - 36x^2 + 54x - 27. The x^2 term is 3(2x)^2(-3) = 3(4x^2)(-3) = -36x^2, so the coefficient is -36. \"36\" drops the sign of the -3. \"-18\" comes from writing 3(2x)(-3) for the x^2 term, squaring the x but not the 2 that multiplies it. \"54\" is the coefficient of x, from the next term 3(2x)(-3)^2.",
+  "distractor_rationales": [
+   {
+    "choice": "36",
+    "reason": ""
+   },
+   {
+    "choice": "-18",
+    "reason": ""
+   },
+   {
+    "choice": "54",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "e0201951-c86d-4dfe-bc2b-f6cb63744dc0",
+  "cohort": "math-v6-adv-hard",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "The function f is an exponential function defined by f(x) = a·bˣ, where a and b are constants. If f(0) = 5 and f(2) = 45, what is the value of f(3) ?",
+  "passage": null,
+  "choices": [
+   "-135",
+   "15",
+   "135",
+   "405"
+  ],
+  "correct_answer": "135",
+  "negated_key_distractor": "-135",
+  "explanation": "f(0) = a = 5, so 5b² = 45 and b² = 9, giving b = 3 or b = −3. The base of an exponential function must be positive, so b = 3 and f(x) = 5(3ˣ). Then f(3) = 5(27) = 135.",
+  "distractor_rationales": [
+   {
+    "choice": "-135",
+    "reason": "Takes b = −3 from b² = 9, keeping the negative root that an exponential base cannot have, and evaluates 5(−3)³."
+   },
+   {
+    "choice": "15",
+    "reason": "Evaluates f(1) = 5(3) = 15 rather than f(3), advancing one step from f(0) instead of three."
+   },
+   {
+    "choice": "405",
+    "reason": "Multiplies f(2) by 9 again, advancing by the two-step factor a second time instead of by the one-step factor of 3."
+   }
+  ]
+ },
+ {
+  "id": "c7cace3c-c63e-43e9-8145-7d2e43077762",
+  "cohort": "math-v6-adv-hard",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "The expression (2x³ + 3x² − 11x + 5)/(x + 3) can be written as q(x) + r/(x + 3), where q is a polynomial and r is a constant. What is the value of r ?",
+  "passage": null,
+  "choices": [
+   "-11",
+   "5",
+   "11",
+   "53"
+  ],
+  "correct_answer": "11",
+  "negated_key_distractor": "-11",
+  "explanation": "By the remainder theorem, r is the value of the dividend at the zero of x + 3, namely x = −3. That gives 2(−27) + 3(9) − 11(−3) + 5 = −54 + 27 + 33 + 5 = 11.",
+  "distractor_rationales": [
+   {
+    "choice": "-11",
+    "reason": "Reports the coefficient of x in the dividend, picking the term that shares the numeral with the correct remainder but keeping its sign."
+   },
+   {
+    "choice": "5",
+    "reason": "Reports the constant term of the dividend, reading the last coefficient as the remainder without carrying out the division."
+   },
+   {
+    "choice": "53",
+    "reason": "Evaluates the dividend at x = 3 rather than at x = −3, using the constant in the divisor without changing its sign."
+   }
+  ]
+ },
+ {
+  "id": "49b75ef8-aa87-4574-ac44-92d7bc340ee7",
+  "cohort": "math-v9-alg-hard",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the system of equations 3x + ky = 12 and 6x + 10y = 7, k is a constant. If the system has no solution, what is the value of k?",
+  "passage": null,
+  "choices": [
+   "-5",
+   "2",
+   "5",
+   "20"
+  ],
+  "correct_answer": "5",
+  "negated_key_distractor": "-5",
+  "explanation": "Two linear equations have no solution when the lines have the same slope but different y-intercepts. Matching slopes requires 3/6 = k/10, so 6k = 30 and k = 5. With k = 5 the left side of the second equation is exactly twice the left side of the first, while 7 is not twice 12, so the lines are parallel and distinct and the system truly has no solution. The value \"-5\" comes from a sign slip in solving 6k = 30. The value \"20\" comes from setting up the ratio upside down, as 6/3 = k/10. The value \"2\" is the ratio of the x-coefficients, 6/3, reported as k itself rather than used to scale the y-coefficient.",
+  "distractor_rationales": [
+   {
+    "choice": "-5",
+    "reason": ""
+   },
+   {
+    "choice": "2",
+    "reason": ""
+   },
+   {
+    "choice": "20",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "50fd08f1-92b6-49d0-984c-20a911a32001",
+  "cohort": "math-v9-alg-hard",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the system of equations 3x - 4y = 8 and -9x + 12y = c, c is a constant. If the system has infinitely many solutions, what is the value of c?",
+  "passage": null,
+  "choices": [
+   "-72",
+   "-32",
+   "-24",
+   "24"
+  ],
+  "correct_answer": "-24",
+  "negated_key_distractor": "24",
+  "explanation": "The system has infinitely many solutions only when one equation is a constant multiple of the other. Since -9 = -3 times 3 and 12 = -3 times -4, the multiplier is -3, and the same multiplier must apply to the constant: c = -3 times 8 = -24. The value \"24\" has the correct magnitude with the sign of the multiplier dropped. The value \"-72\" uses -9, the x-coefficient of the second equation, as the multiplier instead of the ratio of the coefficients. The value \"-32\" uses -4, a y-coefficient, as the multiplier.",
+  "distractor_rationales": [
+   {
+    "choice": "-72",
+    "reason": ""
+   },
+   {
+    "choice": "-32",
+    "reason": ""
+   },
+   {
+    "choice": "24",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "0cc2f3d3-2684-44d0-b409-415e5e2dd09d",
+  "cohort": "math-v9-alg-hard",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "Line k is defined by the equation 6x - 2y = 9. Line m is parallel to line k and passes through the point (4, 6). At what y-coordinate does line m cross the y-axis?",
+  "passage": null,
+  "choices": [
+   "-6",
+   "2",
+   "6",
+   "18"
+  ],
+  "correct_answer": "-6",
+  "negated_key_distractor": "6",
+  "explanation": "Solving 6x - 2y = 9 for y gives y = 3x - 4.5, so line k has slope 3 and line m has slope 3 as well. Using the point (4, 6), line m is y = 6 + 3(x - 4) = 3x - 6, so it crosses the y-axis at -6. The value \"2\" is where line m crosses the x-axis, the wrong axis. The value \"6\" is the y-coordinate of the given point, which is not on the y-axis. The value \"18\" comes from using a slope of -3, giving y = -3x + 18.",
+  "distractor_rationales": [
+   {
+    "choice": "2",
+    "reason": ""
+   },
+   {
+    "choice": "6",
+    "reason": ""
+   },
+   {
+    "choice": "18",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "ec0c4763-8435-4219-a2b7-2e48d6919651",
+  "cohort": "math-v3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "A landscaping company is comparing two mulch suppliers. Supplier A's total cost y dollars for x bags follows the schedule y = (3/4)x + 5, where 5 is a flat delivery fee. Supplier B's schedule satisfies cx - 8y = -5c - 10, where c is a constant. If the system of the two schedules has infinitely many solutions — that is, the two pricing schedules are identical — what is the value of c?",
+  "passage": null,
+  "choices": [
+   "-10",
+   "-6",
+   "3/4",
+   "6"
+  ],
+  "correct_answer": "6",
+  "negated_key_distractor": "-6",
+  "explanation": "Solving cx - 8y = -5c - 10 for y gives y = (c/8)x + (5c + 10)/8, and matching the slope 3/4 requires c/8 = 3/4, so c = 6; the intercept condition (5c + 10)/8 = 5 also gives 6, confirming the schedules coincide. The value 3/4 is the slope itself, left unmultiplied by 8.",
+  "distractor_rationales": [
+   {
+    "choice": "-10",
+    "reason": "Sign slip on the flat fee when matching intercepts: sets (5c + 10)/8 = -5 instead of 5, giving 5c + 10 = -40 and c = -10."
+   },
+   {
+    "choice": "-6",
+    "reason": "Sign slip when isolating y: divides -8y = -cx - 5c - 10 by +8 instead of -8, reading the slope as -c/8, so -c/8 = 3/4 gives c = -6."
+   },
+   {
+    "choice": "3/4",
+    "reason": "Equates c directly with Supplier A's slope, forgetting that Supplier B's equation must first be divided by 8, so c is left as 3/4."
+   }
+  ]
+ },
+ {
+  "id": "7cbf8165-d088-4597-af54-1b94925b9cde",
+  "cohort": "math-v3",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "prompt": "A course designer models the side profile of a BMX dirt ramp by h(x) = a*x^2 + b*x + c, where h(x) is the height of the ramp surface, in feet, at horizontal position x feet measured from the base of the takeoff tower. The top of the tower gives h(0) = 18. The surface returns to ground level (h(x) = 0) at the landing point x = 12, and the model's other x-intercept lies 18 feet to the left of the landing point. What is the value of a?",
+  "passage": null,
+  "choices": [
+   "-1/4",
+   "1/4",
+   "-1/12",
+   "-6"
+  ],
+  "correct_answer": "-1/4",
+  "negated_key_distractor": "1/4",
+  "explanation": "The x-intercepts are 12 and 12 - 18 = -6, and since h(0) = 18 gives c = 18, the product of the roots satisfies (12)(-6) = c/a = 18/a, so a = 18/(-72) = -1/4.",
+  "distractor_rationales": [
+   {
+    "choice": "1/4",
+    "reason": "Drops the sign when locating the second intercept, using x = 6 instead of x = -6, so the root product is 72 and a = 18/72."
+   },
+   {
+    "choice": "-1/12",
+    "reason": "Treats the 18-foot offset itself as the second intercept's coordinate, using x = -18, so the root product is -216 and a = 18/(-216)."
+   },
+   {
+    "choice": "-6",
+    "reason": "Reports the intermediate quantity — the second x-intercept, 12 - 18 — instead of solving for a."
+   }
+  ]
+ },
+ {
+  "id": "03574cad-42e7-4d4b-a61f-1324554fe81d",
+  "cohort": "sat-adv-h3",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "What is the solution to the equation √(3x + 22) = x + 4 ?",
+  "passage": null,
+  "choices": [
+   "-6",
+   "1",
+   "6",
+   "-1"
+  ],
+  "correct_answer": "1",
+  "negated_key_distractor": "-1",
+  "explanation": "Squaring both sides gives 3x + 22 = x² + 8x + 16, so x² + 5x − 6 = 0 and x = 1 or x = −6. At x = −6 the right side is −2 while a square root is never negative, so −6 is extraneous. At x = 1, √25 = 5 = 1 + 4.",
+  "distractor_rationales": [
+   {
+    "choice": "-6",
+    "reason": "Solves the squared equation and reports the root that makes the right side negative, never substituting it back."
+   },
+   {
+    "choice": "6",
+    "reason": "Discards −6 correctly but treats the rejection as a sign error to be repaired, reporting its magnitude."
+   },
+   {
+    "choice": "-1",
+    "reason": "Expands (x + 4)² with the wrong sign on the middle term, solving x² − 5x − 6 = 0, and reports its negative root."
+   }
+  ]
+ },
+ {
+  "id": "b905500f-5cfa-4c95-8c4a-c74fa7bb76e4",
+  "cohort": "sat-adv-h3",
+  "domain": "Advanced Math",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = x² − 5 and g(x) = 2x + 1. If f(g(a)) = 44, what is the least possible value of a?",
+  "passage": null,
+  "choices": [
+   "-4",
+   "-3",
+   "3",
+   "4"
+  ],
+  "correct_answer": "-4",
+  "negated_key_distractor": "4",
+  "explanation": "f(g(a)) = (2a + 1)² − 5 = 44, so (2a + 1)² = 49 and 2a + 1 = 7 or 2a + 1 = −7. These give a = 3 and a = −4, and −4 is the lesser. Checking: g(−4) = −7 and f(−7) = 49 − 5 = 44.",
+  "distractor_rationales": [
+   {
+    "choice": "-3",
+    "reason": "Solves 2a + 1 = −7 by adding 1 to the right side instead of subtracting it, giving 2a = −6."
+   },
+   {
+    "choice": "3",
+    "reason": "Finds both values of a correctly but reports the greater one."
+   },
+   {
+    "choice": "4",
+    "reason": "Finds a = −4 and reports its magnitude, reading 'least' as smallest in size rather than furthest left."
+   }
+  ]
+ },
+ {
+  "id": "66cc1a4d-73ff-45c2-b957-7c3508837a64",
+  "cohort": "sat-adv-h3",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, a parabola crosses the x-axis at x = −1 and at x = 7 and passes through the point (1, −24). The equation of the parabola can be written as y = a(x − h)² + k, where a, h and k are constants. What is the value of k?",
+  "passage": null,
+  "choices": [
+   "-32",
+   "32",
+   "2",
+   "3"
+  ],
+  "correct_answer": "-32",
+  "negated_key_distractor": "32",
+  "explanation": "From the intercepts, y = a(x + 1)(x − 7). The point (1, −24) gives −24 = a(2)(−6) = −12a, so a = 2. The vertex sits midway between the intercepts, at x = 3, and there y = 2(4)(−4) = −32, so k = −32.",
+  "distractor_rationales": [
+   {
+    "choice": "32",
+    "reason": "Computes the distance from the vertex down to the x-axis and reports it without the sign, though the vertex lies below the axis."
+   },
+   {
+    "choice": "2",
+    "reason": "Reports a, the leading coefficient found along the way, instead of k."
+   },
+   {
+    "choice": "3",
+    "reason": "Reports h, the x-coordinate of the vertex, instead of the value of y there."
+   }
+  ]
+ },
+ {
+  "id": "dfd9b921-8b73-4c72-9a4e-c7f602086165",
+  "cohort": "sat-adv-v11",
+  "domain": "Advanced Math",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = x^3 + ax^2 + bx + 18, where a and b are constants. If 3 is a zero of p with multiplicity 2, what is the value of a ?",
+  "passage": null,
+  "choices": [
+   "-4",
+   "4",
+   "-3",
+   "2"
+  ],
+  "correct_answer": "-4",
+  "negated_key_distractor": "4",
+  "explanation": "A cubic with leading coefficient 1 whose zeros are 3, 3, and r has constant term -(3)(3)(r) = -9r, and that constant term is 18, so r = -2. The coefficient a is the negative of the sum of the zeros: a = -(3 + 3 - 2) = -4. Checking, (x - 3)^2(x + 2) = x^3 - 4x^2 - 3x + 18. \"4\" is the sum of the zeros reported without the sign change that relates it to a. \"-3\" is the value of b, the coefficient of x, rather than of a. \"2\" is the third zero found from 9r = 18, which takes the product of the zeros to be +18 instead of -18, and then reports that zero instead of a.",
+  "distractor_rationales": [
+   {
+    "choice": "4",
+    "reason": ""
+   },
+   {
+    "choice": "-3",
+    "reason": ""
+   },
+   {
+    "choice": "2",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "1eb3e800-347d-48c2-96fc-ea623ed3b57f",
+  "cohort": "sat-math-v16-adv",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "prompt": "The system of equations 3x − 5y = 8 and ax + 15y = 7, where a is a constant, has no solution. What is the value of a?",
+  "passage": null,
+  "choices": [
+   "-9",
+   "-3",
+   "-1",
+   "9"
+  ],
+  "correct_answer": "-9",
+  "negated_key_distractor": "9",
+  "explanation": "No solution means the lines are parallel: the coefficients are proportional while the constants are not. The y-coefficients scale by 15/(−5) = −3, so a = 3(−3) = −9. (Then −9x + 15y = −24 ≠ 7, confirming no solution.) Distractors: \"9\" matches the magnitude but drops the sign of the scale factor; \"-3\" reports the scale factor 15/(−5) itself instead of a; \"-1\" inverts the ratio, computing 3(−5)/15.",
+  "distractor_rationales": [
+   {
+    "choice": "-3",
+    "reason": ""
+   },
+   {
+    "choice": "-1",
+    "reason": ""
+   },
+   {
+    "choice": "9",
+    "reason": ""
+   }
+  ]
+ },
+ {
+  "id": "4ed0332b-7a62-4f1b-8197-e721824bd0d7",
+  "cohort": "sat-alg-0918",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "prompt": "In the equation |2x + 5| - 4 = k, k is a constant. If the equation has exactly one solution, what is the value of k?",
+  "passage": null,
+  "choices": [
+   "-4",
+   "4",
+   "-5/2",
+   "1"
+  ],
+  "correct_answer": "-4",
+  "negated_key_distractor": "4",
+  "explanation": "The equation is |2x + 5| = k + 4. An absolute value equals a positive number at two points and equals 0 at exactly one point, so there is exactly one solution when k + 4 = 0, that is, k = -4. \"4\" comes from a solver who sets |2x + 5| = 0 and then moves the 4 across with the wrong sign. \"-5/2\" is the x-value at which 2x + 5 = 0, reported by a solver who solves for x instead of k. \"1\" comes from a solver who subtracts the constants 5 - 4 as if the equation were 2x + 5 - 4 = k with x = 0.",
+  "distractor_rationales": [
+   {
+    "choice": "4",
+    "reason": ""
+   },
+   {
+    "choice": "-5/2",
+    "reason": ""
+   },
+   {
+    "choice": "1",
+    "reason": ""
+   }
+  ]
+ }
+]
