@@ -15,8 +15,22 @@
  * rather than throwing. Callers decide whether to surface or swallow.
  */
 
+import { sendResendEmail } from './resend'
+
 const FROM_EMAIL =
   process.env.POSTMARK_FROM_EMAIL || 'no-reply@classraum.com'
+
+/**
+ * PROVIDER SWITCH (2026-09-29). Postmark has answered "This account is not
+ * approved to send email" to every send since 2026-07-27 — the account
+ * never left Postmark's approval queue, so the account-deletion digest
+ * failed nine weeks running, critical ops alerts reached nobody, and the
+ * deletion notices to users went nowhere. Resend's classraum.com domain is
+ * verified (it carries the auth mail), so when RESEND_API_KEY is present
+ * every send here goes through Resend; Postmark stays as the fallback for
+ * an environment without the key. Callers keep this function's name and
+ * shape — the switch is invisible to them and to the tests that mock it.
+ */
 
 export interface PostmarkSendResult {
   sent: boolean
@@ -45,6 +59,14 @@ export interface PostmarkSendOptions {
 export async function sendPostmarkEmail(
   options: PostmarkSendOptions
 ): Promise<PostmarkSendResult> {
+  {
+    const list = Array.isArray(options.to) ? options.to : options.to.split(',').map(x => x.trim()).filter(Boolean)
+    if (list.length === 0) return { sent: false, error: 'no recipients' }
+    if (process.env.RESEND_API_KEY) {
+      const r = await sendResendEmail({ to: list, subject: options.subject, html: options.htmlBody, from: options.from || FROM_EMAIL, replyTo: options.replyTo })
+      return r.sent ? { sent: true } : { sent: false, error: r.error }
+    }
+  }
   const postmarkToken = process.env.POSTMARK_SERVER_TOKEN
   if (!postmarkToken) {
     return { sent: false, error: 'POSTMARK_SERVER_TOKEN not configured' }
