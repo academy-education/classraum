@@ -43,6 +43,7 @@ import { SocialPresenceCard } from './SocialPresenceCard'
 import { SkeletonTestGrid, SkeletonBlock, SkeletonCard } from './skeletons'
 import { track } from '@/lib/study/track-client'
 import { authHeaders } from '@/lib/auth-headers'
+import { VerifyEmailBanner } from '@/components/VerifyEmailBanner'
 import { captureReferralFromUrl, readPendingReferral, clearPendingReferral } from '@/lib/study/pending-referral'
 
 /**
@@ -592,6 +593,9 @@ function StudyLandingInner() {
             onDone={() => { clearPendingReferral(); setPendingRef(null) }}
           />
         )}
+
+        {/* Mailbox proof for pre-2026-09-28 password accounts (see the component). */}
+        <VerifyEmailBanner />
 
         {/* First-test activation — the single highest-leverage nudge for a
             brand-new user. Shows only until they finish their first mock

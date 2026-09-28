@@ -69,6 +69,11 @@ describe('templates', () => {
       }
     }
   })
+  it('renders the verify-email variant used by the in-app banner', () => {
+    const m = buildAuthEmail({ type: 'verify', lang: 'en', link: 'https://app.classraum.com/auth/confirm?token_hash=x&type=magiclink', toEmail: 'a@x.com' })
+    expect(m!.subject).toMatch(/verify your classraum email/i)
+    expect(m!.html).toContain('Verify email')
+  })
   it('renders the reauthentication code without a link, and refuses unknown types or a missing link', () => {
     const m = buildAuthEmail({ type: 'reauthentication', lang: 'en', link: null, token: '482913', toEmail: 'a@x.com' })
     expect(m!.html).toContain('482913')

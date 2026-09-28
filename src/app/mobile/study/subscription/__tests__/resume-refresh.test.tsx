@@ -73,6 +73,9 @@ jest.mock('@/lib/study/track-client', () => ({ track: jest.fn() }))
 jest.mock('@/lib/nativeApp', () => ({ openExternalUrl: jest.fn() }))
 jest.mock('@/lib/portone-browser', () => ({
   PortOne: { requestIssueBillingKey: jest.fn(async () => ({})) },
+  // The page preloads the SDK on mount and names load failures; neither is under test here.
+  preloadPortOne: async () => null,
+  describeCheckoutFailure: (e: unknown) => (e instanceof Error ? e.message : 'Payment failed.'),
 }))
 
 const mockBuyCreditPack = jest.fn()

@@ -5489,6 +5489,7 @@ export type Database = {
           is_internal: boolean
           name: string
           name_confirmed_at: string | null
+          email_verified_at: string | null
           name_prompt_snoozed_until: string | null
           phone: string | null
           role: string
@@ -5504,6 +5505,7 @@ export type Database = {
           is_internal?: boolean
           name: string
           name_confirmed_at?: string | null
+          email_verified_at?: string | null
           name_prompt_snoozed_until?: string | null
           phone?: string | null
           role: string
@@ -5519,6 +5521,7 @@ export type Database = {
           is_internal?: boolean
           name?: string
           name_confirmed_at?: string | null
+          email_verified_at?: string | null
           name_prompt_snoozed_until?: string | null
           phone?: string | null
           role?: string

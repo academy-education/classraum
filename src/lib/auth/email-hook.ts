@@ -125,6 +125,7 @@ const COPY: Record<AuthEmailLanguage, Record<string, { subject: string; title: s
     magiclink:        { subject: '[Classraum] 로그인 링크', title: '로그인 링크', body: '아래 버튼을 눌러 바로 로그인하세요.', cta: '로그인하기', expiry: '이 링크는 1시간 동안 유효해요.', ignore: '요청한 적이 없다면 이 메일은 무시해 주세요.' },
     invite:           { subject: '[Classraum] 초대를 받았어요', title: 'Classraum 초대', body: 'Classraum에 초대되었어요. 아래 버튼을 눌러 계정을 만들어 주세요.', cta: '초대 수락하기', expiry: '이 링크는 24시간 동안 유효해요.', ignore: '모르는 초대라면 이 메일은 무시해 주세요.' },
     email_change:     { subject: '[Classraum] 이메일 변경 확인', title: '이메일 변경 확인', body: '계정 이메일 주소 변경을 요청하셨어요. 아래 버튼을 눌러 변경을 확인해 주세요.', cta: '변경 확인하기', expiry: '이 링크는 24시간 동안 유효해요.', ignore: '요청한 적이 없다면 이 메일은 무시하고 비밀번호를 바꿔 주세요.' },
+    verify:           { subject: '[Classraum] 이메일 주소를 인증해 주세요', title: '이메일 인증', body: '계정의 이메일 주소가 본인 것인지 확인하려고 해요. 아래 버튼을 누르면 인증이 완료되고 바로 로그인돼요.', cta: '이메일 인증하기', expiry: '이 링크는 1시간 동안 유효해요.', ignore: '요청한 적이 없다면 이 메일은 무시해 주세요.' },
     reauthentication: { subject: '[Classraum] 인증 코드', title: '인증 코드', body: '아래 코드를 앱에 입력해 주세요.', cta: '', expiry: '이 코드는 5분 동안 유효해요.', ignore: '요청한 적이 없다면 이 메일은 무시해 주세요.' },
   },
   en: {
@@ -133,6 +134,7 @@ const COPY: Record<AuthEmailLanguage, Record<string, { subject: string; title: s
     magiclink:        { subject: 'Your Classraum sign-in link', title: 'Sign-in link', body: 'Press the button below to sign in.', cta: 'Sign in', expiry: 'This link is valid for 1 hour.', ignore: "If you didn't ask for this, you can ignore this email." },
     invite:           { subject: "You've been invited to Classraum", title: 'Classraum invitation', body: "You've been invited to Classraum. Press the button below to create your account.", cta: 'Accept invitation', expiry: 'This link is valid for 24 hours.', ignore: "If you don't recognise this invitation, ignore this email." },
     email_change:     { subject: 'Confirm your new Classraum email', title: 'Confirm email change', body: 'You asked to change the email address on your account. Press the button below to confirm.', cta: 'Confirm change', expiry: 'This link is valid for 24 hours.', ignore: "If you didn't ask for this, ignore this email and change your password." },
+    verify:           { subject: 'Verify your Classraum email address', title: 'Verify your email', body: 'We want to confirm this email address is yours. Press the button below to verify it — you will be signed in at the same time.', cta: 'Verify email', expiry: 'This link is valid for 1 hour.', ignore: "If you didn't ask for this, you can ignore this email." },
     reauthentication: { subject: 'Your Classraum verification code', title: 'Verification code', body: 'Enter the code below in the app.', cta: '', expiry: 'This code is valid for 5 minutes.', ignore: "If you didn't ask for this, you can ignore this email." },
   },
 }
@@ -181,7 +183,7 @@ export function buildAuthEmail(input: {
   token?: string | null
   toEmail: string
 }): AuthEmail | null {
-  const t = input.type === 'email_change_new' ? 'email_change' : input.type
+  const t = input.type === 'email_change_new' ? 'email_change' : input.type   // 'verify' is a magiclink sent by the verify-email banner
   const c = COPY[input.lang][t]
   if (!c) return null
   const safeEmail = escapeHtml(input.toEmail)

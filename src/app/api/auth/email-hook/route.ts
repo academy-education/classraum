@@ -92,7 +92,10 @@ async function handle(request: Request) {
   const origin = appOriginFor(ed.redirect_to, DEFAULT_APP_ORIGIN)
   const tokenHash = type === 'email_change_new' ? ed.token_hash_new : ed.token_hash
   const link = tokenHash && type !== 'reauthentication' ? confirmLink(origin, tokenHash, type === 'email_change_new' ? 'email_change' : type, nextPathFor(ed.redirect_to)) : null
-  const mail = buildAuthEmail({ type, lang, link, token: ed.token ?? null, toEmail })
+  // A magic link requested by the in-app "verify your email" banner carries
+  // verify=1 on its redirect; same token flow, different words.
+  const isVerify = type === 'magiclink' && /[?&]verify=1(&|$)/.test(ed.redirect_to ?? '')
+  const mail = buildAuthEmail({ type: isVerify ? 'verify' : type, lang, link, token: ed.token ?? null, toEmail })
   if (!mail) return NextResponse.json({ error: { http_code: 400, message: `unsupported email_action_type ${type}` } }, { status: 400 })
 
   if (!process.env.RESEND_API_KEY && process.env.NODE_ENV !== 'production') {

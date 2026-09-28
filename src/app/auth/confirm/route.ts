@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import type { EmailOtpType } from '@supabase/supabase-js'
+import { dbAdmin } from '@/lib/supabase-admin'
 
 /**
  * GET /auth/confirm?token_hash=…&type=…&next=…
@@ -54,6 +55,15 @@ export async function GET(request: Request) {
   if (error || !data.session) return fail(error?.message ?? 'no_session')
 
   const { access_token, refresh_token } = data.session
+
+  // Clicking any of these proves the mailbox is theirs. Recorded separately
+  // from Supabase's email_confirmed_at, which was auto-set for every account
+  // created before 2026-09-28 and so proves nothing (migration 108).
+  if (['signup', 'email', 'magiclink', 'email_change'].includes(type) && data.user?.id) {
+    await dbAdmin.from('users').update({ email_verified_at: new Date().toISOString() }).eq('id', data.user.id).is('email_verified_at', null)
+      .then(({ error }) => { if (error) console.error('[auth/confirm] email_verified_at not written', error.message) })
+  }
+
   if (type === 'recovery') {
     return NextResponse.redirect(`${origin}/auth?type=reset&access_token=${access_token}&refresh_token=${refresh_token}`)
   }
