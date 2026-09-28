@@ -35,10 +35,23 @@ export async function GET(req: NextRequest) {
 
   // Heartbeat sits inside the auth guard — a 401'd request never ran the
   // job, so letting it report would mask a dead cron to the watchdog.
+  // TIME BUDGET. 57 targets × two model calls (web research + structured
+  // extraction) does not fit one 300-second invocation; through 2026-09-29
+  // this job had NEVER written a heartbeat — it was dying on the Vercel
+  // timeout every month, silently, and the ops watchdog read that as
+  // "never ran". The loop now stops starting new targets after BUDGET_MS,
+  // records what it did and how many remain, and the schedule is daily:
+  // each refresher already skips targets verified within its own window
+  // (30 days for specs, 90 for examples), so a daily run is a no-op once
+  // everything is fresh and the backlog drains a handful per day.
+  const BUDGET_MS = 240_000
+  const started = Date.now()
   const summary = await withHeartbeat('refresh-test-spec-examples', async () => {
     const targets = await listAllSpecTargetsFromDB()
     const results = []
+    let remaining = 0
     for (const t of targets) {
+      if (Date.now() - started > BUDGET_MS) { remaining++; continue }
       const r = await refreshTestSpecExamples(t, { targetCount: 8 })
       results.push(r)
     }
@@ -46,9 +59,11 @@ export async function GET(req: NextRequest) {
       ran: results.length,
       ok: results.filter(r => r.ok).length,
       failed: results.filter(r => !r.ok).length,
+      skippedFresh: results.filter(r => /skipped/.test(r.notes ?? '')).length,
+      remaining,
+      budgetHit: remaining > 0,
       examplesAdded: results.reduce((sum, r) => sum + r.examplesAdded, 0),
     }
   })
-
   return NextResponse.json(summary)
 }

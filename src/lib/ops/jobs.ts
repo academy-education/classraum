@@ -64,9 +64,11 @@ export const JOB_REGISTRY: JobSpec[] = [
   // change and nothing in our logs.
   { job: 'apple-secret-expiry',          label: 'Apple secret expiry check',   schedule: '0 6 * * 1',   maxSilenceMinutes: 9 * D, severity: 'critical' },
 
-  // Content refresh. Monthly/quarterly — long silence is normal.
-  { job: 'refresh-test-specs',           label: 'Test spec refresh',           schedule: '30 4 1 * *',  maxSilenceMinutes: 40 * D, severity: 'warning' },
-  { job: 'refresh-test-spec-examples',   label: 'Test spec example refresh',   schedule: '0 5 1 1,4,7,10 *', maxSilenceMinutes: 100 * D, severity: 'warning' },
+  // Content refresh. Daily runs under a 240-s budget; each refresher skips
+  // targets fresh within its own window (30 / 90 days), so most days are
+  // no-ops. Was monthly/quarterly and timed out every time (2026-09-29).
+  { job: 'refresh-test-specs',           label: 'Test spec refresh',           schedule: '30 4 * * *',  maxSilenceMinutes: 2 * D, severity: 'warning' },
+  { job: 'refresh-test-spec-examples',   label: 'Test spec example refresh',   schedule: '0 5 * * *',   maxSilenceMinutes: 2 * D, severity: 'warning' },
 ]
 
 export const jobSpec = (job: string): JobSpec | undefined =>

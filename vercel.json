@@ -46,11 +46,11 @@
     },
     {
       "path": "/api/cron/refresh-test-specs",
-      "schedule": "30 4 1 * *"
+      "schedule": "30 4 * * *"
     },
     {
       "path": "/api/cron/refresh-test-spec-examples",
-      "schedule": "0 5 1 1,4,7,10 *"
+      "schedule": "0 5 * * *"
     },
     {
       "path": "/api/cron/study-weekly-recap",
