@@ -6,6 +6,7 @@ import { REFERRAL_SIGNUP_CREDITS, normalizeReferralCode } from '@/lib/study/refe
 import { FREE_CREDITS } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
 import { raiseAlert } from '@/lib/ops/alert'
+import { findAccountsByPhone } from '@/lib/auth/phone-duplicates'
 
 /**
  * POST /api/study/referral/redeem — a new student redeems a friend's
@@ -64,6 +65,28 @@ export async function POST(req: NextRequest) {
   }
 
   // Resolve the code to its owner.
+  // One reward per PERSON, not per account. On 2026-09-26 one student's
+  // four accounts each redeemed a code and the referrer was paid three
+  // times. The phone number is the cross-account identity we hold; if any
+  // other account with this number has already been a referee, this one
+  // is not rewarded (and not recorded as a redemption either).
+  const { data: me } = await dbAdmin.from('users').select('phone').eq('id', user.id).maybeSingle()
+  const myPhone = (me as { phone?: string | null } | null)?.phone
+  if (myPhone) {
+    const others = await findAccountsByPhone(myPhone, user.id)
+    if (others.length) {
+      const { data: prior } = await dbAdmin
+        .from('study_referral_redemptions')
+        .select('id')
+        .in('referee_id', others.map(o => o.id))
+        .limit(1)
+      if (prior && prior.length) {
+        await trackEvent(user.id, 'referral_redeemed', { blocked: 'phone_already_rewarded' })
+        return NextResponse.json({ error: 'a referral was already rewarded for this phone number', code: 'phone_already_rewarded' }, { status: 409 })
+      }
+    }
+  }
+
   const { data: owner } = await dbAdmin
     .from('study_referral_codes')
     .select('student_id')

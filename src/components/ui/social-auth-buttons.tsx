@@ -87,6 +87,8 @@ export interface SocialAuthButtonsProps {
   t: (key: string, params?: Record<string, string | number | undefined>) => string
   /** Providers to show. Defaults to the env flag; injected for tests. */
   providers?: OAuthProvider[]
+  /** The provider this device signed in with last time — gets a small chip. */
+  lastUsed?: OAuthProvider | null
 }
 
 export function SocialAuthButtons({
@@ -95,6 +97,7 @@ export function SocialAuthButtons({
   disabled,
   t,
   providers,
+  lastUsed,
 }: SocialAuthButtonsProps) {
   const list = providers ?? enabledProviders()
   if (list.length === 0) return null
@@ -120,8 +123,13 @@ export function SocialAuthButtons({
               // signup context with a different provider's.
               disabled={disabled || Boolean(busyProvider)}
               onClick={() => onSelect(provider)}
-              className={`w-full h-10 ${CHROME[provider]}`}
+              className={`relative w-full h-10 ${CHROME[provider]}`}
             >
+              {lastUsed === provider && (
+                <span className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-semibold text-gray-700 ring-1 ring-black/10">
+                  {t('auth.social.lastUsed')}
+                </span>
+              )}
               <Mark />
               {busy
                 ? t('auth.social.signingIn', { provider: PROVIDER_LABEL[provider] })

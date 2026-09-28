@@ -35,6 +35,7 @@ import { Browser } from "@capacitor/browser"
 import type { PluginListenerHandle } from "@capacitor/core"
 import { useOAuthDeepLink } from "@/hooks/useOAuthDeepLink"
 import { isPlausibleEmail, suggestEmailFix } from '@/lib/auth/email'
+import { readSignInMethod, rememberSignInMethod, type SignInMethod } from '@/lib/auth/last-sign-in'
 
 /**
  * POST the referral code to the redeem endpoint using the current session.
@@ -95,6 +96,16 @@ export default function AuthPage() {
   // a mail client). Persistent, not a toast: the person has just come from
   // their inbox and needs to know what to do next, per link type.
   const [linkNotice, setLinkNotice] = useState<{ kind: 'signup' | 'recovery' | 'other' } | null>(null)
+  // Duplicate-account guard. Before a password signup is created, the phone
+  // number is looked up; a hit means this person already has an account
+  // (2026-09-26: four accounts, one number). They can go sign in with the
+  // method we name, or insist on a new account.
+  const [duplicateAccount, setDuplicateAccount] = useState<{ provider: string; since: string; emailHint: string } | null>(null)
+  const [duplicateAcknowledged, setDuplicateAcknowledged] = useState(false)
+  // Which button this device pressed last time — the cheapest cure for
+  // "which one did I use?". Read once on mount; written on every success.
+  const [lastMethod, setLastMethod] = useState<SignInMethod | null>(null)
+  useEffect(() => { setLastMethod(readSignInMethod()) }, [])
   const [resendCooldown, setResendCooldown] = useState(0)
   useEffect(() => {
     if (resendCooldown <= 0) return
@@ -472,6 +483,13 @@ export default function AuthPage() {
     // User is authenticated - check for invite params first, then redirect based on role
     const handleAuthenticatedUser = async () => {
       if (!user?.id) return
+      if (oauthReturning) {
+        // The identity that signed in most recently is the button they pressed.
+        const { data } = await db.auth.getUser()
+        const ids = data.user?.identities ?? []
+        const latest = [...ids].sort((a, b) => String(b.last_sign_in_at ?? '').localeCompare(String(a.last_sign_in_at ?? '')))[0]
+        rememberSignInMethod(latest?.provider)
+      }
 
       // Check if this is an invite link - redirect to mobile with params
       const hasInvite = checkInviteParams()
@@ -846,6 +864,18 @@ export default function AuthPage() {
       // Step 1: Sign up the user with Supabase Auth with metadata
       // Note: If using family_member_id (personalized link), don't pass family_id
       // because we'll update the existing family_member record instead of creating a new one
+      if (isPlausiblePhone(phone) && !duplicateAcknowledged) {
+        try {
+          const res = await fetch('/api/auth/phone-lookup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone }) })
+          const found = (await res.json().catch(() => ({}))) as { exists?: boolean; provider?: string; since?: string; emailHint?: string }
+          if (res.ok && found.exists) {
+            setDuplicateAccount({ provider: found.provider ?? 'email', since: found.since ?? '', emailHint: found.emailHint ?? '' })
+            setLoading(false)
+            return
+          }
+        } catch { /* lookup is advisory; a network failure must not block signup */ }
+      }
+
       const { data: authData, error: authError } = await db.auth.signUp({
         email,
         password,
@@ -1351,6 +1381,7 @@ export default function AuthPage() {
          * A failure here is NOT fatal: the user is signed in to their
          * own account, which is what they asked for. They keep the
          * password login and can try again. */
+        rememberSignInMethod('password')
         const linkStore = browserContextStore()
         const provider = takePendingLinkFor(email, linkStore)
         setPendingLinkProvider(null)
@@ -1576,6 +1607,37 @@ export default function AuthPage() {
         </div>
 
         <Card className="p-6 sm:p-7 backdrop-blur-sm pointer-events-none gap-5">
+          {activeTab === 'signin' && lastMethod === 'password' && !awaitingConfirmation && (
+            <p className="pointer-events-auto text-xs text-gray-500 text-center -mb-2">
+              {language === 'korean' ? '이 기기에서는 최근에 이메일/비밀번호로 로그인했어요.' : 'Last time on this device you signed in with email & password.'}
+            </p>
+          )}
+          {duplicateAccount && (
+            <div className="pointer-events-auto rounded-2xl border border-amber-200 bg-amber-50 p-5 space-y-3 text-left">
+              <p className="text-base font-semibold text-amber-900">
+                {language === 'korean' ? '이미 계정이 있는 것 같아요' : 'It looks like you already have an account'}
+              </p>
+              <p className="text-sm text-amber-800 leading-relaxed">
+                {language === 'korean'
+                  ? `이 전화번호로 ${duplicateAccount.since}에 ${duplicateAccount.provider === 'email' ? '이메일/비밀번호' : PROVIDER_LABEL[duplicateAccount.provider as OAuthProvider] ?? duplicateAccount.provider}(으)로 가입한 계정(${duplicateAccount.emailHint})이 있어요. 새 계정을 만들면 학습 기록과 크레딧이 나뉘어요.`
+                  : `An account with this phone number was created on ${duplicateAccount.since} using ${duplicateAccount.provider === 'email' ? 'email & password' : PROVIDER_LABEL[duplicateAccount.provider as OAuthProvider] ?? duplicateAccount.provider} (${duplicateAccount.emailHint}). A second account would split your study history and credits.`}
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1">
+                {duplicateAccount.provider === 'email' ? (
+                  <Button type="button" onClick={() => { setDuplicateAccount(null); setActiveTab('signin'); setEmail('') }}>
+                    {language === 'korean' ? '그 계정으로 로그인' : 'Sign in to that account'}
+                  </Button>
+                ) : (
+                  <Button type="button" onClick={() => { setDuplicateAccount(null); void handleOAuth(duplicateAccount.provider as OAuthProvider) }}>
+                    {language === 'korean' ? `${PROVIDER_LABEL[duplicateAccount.provider as OAuthProvider] ?? duplicateAccount.provider}로 로그인` : `Sign in with ${PROVIDER_LABEL[duplicateAccount.provider as OAuthProvider] ?? duplicateAccount.provider}`}
+                  </Button>
+                )}
+                <Button type="button" variant="outline" onClick={() => { setDuplicateAcknowledged(true); setDuplicateAccount(null) }}>
+                  {language === 'korean' ? '그래도 새 계정 만들기' : 'Create a new account anyway'}
+                </Button>
+              </div>
+            </div>
+          )}
           {linkNotice && !awaitingConfirmation && (
             <div className="pointer-events-auto p-3 rounded-xl ring-1 bg-amber-50 ring-amber-100 text-left">
               <p className="text-sm font-medium text-amber-900">
@@ -2040,6 +2102,7 @@ export default function AuthPage() {
               onSelect={handleOAuth}
               busyProvider={oauthProvider}
               disabled={loading || oauthReturning}
+              lastUsed={lastMethod && lastMethod !== 'password' ? lastMethod : null}
             />
           )}
 

@@ -37,3 +37,19 @@ export function normalizePhone(value: string | null | undefined): string | null 
   const trimmed = String(value ?? '').trim()
   return isPlausiblePhone(trimmed) ? trimmed : null
 }
+
+/**
+ * A comparison key for "is this the same phone?".
+ *
+ * One person signed up four times on 2026-09-26 and stored the same number
+ * three ways: `508227384`, `+966508227384`, `966508227384`. Country code
+ * and leading zero are the parts people drop or add, and the last nine
+ * digits are the part they never change — so that is the key (KR
+ * 010-1234-5678 → `012345678`, the Saudi number → `508227384`). Shorter
+ * numbers key on all their digits. Empty for anything implausible.
+ */
+export function phoneKey(value: string | null | undefined): string {
+  const d = phoneDigits(value)
+  if (!isPlausiblePhone(value)) return ''
+  return d.length > 9 ? d.slice(-9) : d
+}
