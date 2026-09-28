@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import type { EmailOtpType } from '@supabase/supabase-js'
 import { dbAdmin } from '@/lib/supabase-admin'
+import type { Database } from '@/lib/database.types'
 
 /**
  * GET /auth/confirm?token_hash=…&type=…&next=…
@@ -46,7 +47,7 @@ export async function GET(request: Request) {
 
   if (!tokenHash || !LINK_TYPES.has(type)) return fail('missing')
 
-  const supabase = createClient(
+  const supabase = createClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } },
@@ -60,8 +61,8 @@ export async function GET(request: Request) {
   // from Supabase's email_confirmed_at, which was auto-set for every account
   // created before 2026-09-28 and so proves nothing (migration 108).
   if (['signup', 'email', 'magiclink', 'email_change'].includes(type) && data.user?.id) {
-    await dbAdmin.from('users').update({ email_verified_at: new Date().toISOString() }).eq('id', data.user.id).is('email_verified_at', null)
-      .then(({ error }) => { if (error) console.error('[auth/confirm] email_verified_at not written', error.message) })
+    const { error: stampError } = await dbAdmin.from('users').update({ email_verified_at: new Date().toISOString() }).eq('id', data.user.id).is('email_verified_at', null)
+    if (stampError) console.error('[auth/confirm] email_verified_at not written', stampError.message)
   }
 
   if (type === 'recovery') {

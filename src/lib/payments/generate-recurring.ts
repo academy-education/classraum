@@ -99,8 +99,9 @@ export interface GenerateRecurringResult {
 async function rollForwardEmptyTemplate(
   template: RecurrenceTemplate & { id: string; name: string },
   why: string,
+  today: string,
 ): Promise<void> {
-  const nextDueDate = calculateNextDueDate(template)
+  const nextDueDate = calculateNextDueDate(template, today)
   const { error } = await dbAdmin
     .from('recurring_payment_templates')
     .update({ next_due_date: nextDueDate })
@@ -185,7 +186,7 @@ export async function generateRecurringInvoices(
 
         if (!rawTemplateStudents || rawTemplateStudents.length === 0) {
           console.log(`[RECURRING] No students found for template: ${template.name}`)
-          await rollForwardEmptyTemplate(template, 'no students linked')
+          await rollForwardEmptyTemplate(template, 'no students linked', today)
           continue
         }
 
@@ -241,7 +242,7 @@ export async function generateRecurringInvoices(
           // Everyone already invoiced for this period — just bump
           // next_due_date so the template doesn't keep matching the
           // "due today" query forever.
-          const nextDueDate = calculateNextDueDate(template)
+          const nextDueDate = calculateNextDueDate(template, today)
           const { error: rollForwardError } = await dbAdmin
             .from('recurring_payment_templates')
             .update({ next_due_date: nextDueDate })
@@ -316,7 +317,7 @@ export async function generateRecurringInvoices(
         }
 
         // Update template's next_due_date to the next occurrence
-        const nextDueDate = calculateNextDueDate(template)
+        const nextDueDate = calculateNextDueDate(template, today)
 
         const { error: updateError } = await dbAdmin
           .from('recurring_payment_templates')
