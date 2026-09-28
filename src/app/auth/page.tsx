@@ -91,6 +91,10 @@ export default function AuthPage() {
   // resend button. Resend is rate-limited server-side; the cooldown just
   // stops the double-tap.
   const [awaitingConfirmation, setAwaitingConfirmation] = useState<{ email: string } | null>(null)
+  // An email link that no longer works (expired, already used, mangled by
+  // a mail client). Persistent, not a toast: the person has just come from
+  // their inbox and needs to know what to do next, per link type.
+  const [linkNotice, setLinkNotice] = useState<{ kind: 'signup' | 'recovery' | 'other' } | null>(null)
   const [resendCooldown, setResendCooldown] = useState(0)
   useEffect(() => {
     if (resendCooldown <= 0) return
@@ -298,9 +302,12 @@ export default function AuthPage() {
 
       // Handle error states
       if (errorParam === 'confirm_link_invalid') {
-        toast({ title: (langParam ?? language) === 'korean' ? '확인 링크가 만료되었거나 이미 사용되었어요. 로그인하면 새 링크를 보내드려요.' : 'This confirmation link has expired or was already used. Sign in and we will send a new one.', variant: 'destructive' })
+        const link = urlParams.get('link')
+        const kind = link === 'recovery' ? 'recovery' : (link === 'signup' || link === 'email' || link === 'invite') ? 'signup' : 'other'
+        setLinkNotice({ kind })
+        setActiveTab(kind === 'recovery' ? 'forgotPassword' : 'signin')
         const newUrl = new URL(window.location.href)
-        newUrl.searchParams.delete('error'); newUrl.searchParams.delete('reason')
+        for (const k of ['error', 'reason', 'link']) newUrl.searchParams.delete(k)
         window.history.replaceState({}, '', newUrl.toString())
       }
 
@@ -1569,6 +1576,21 @@ export default function AuthPage() {
         </div>
 
         <Card className="p-6 sm:p-7 backdrop-blur-sm pointer-events-none gap-5">
+          {linkNotice && !awaitingConfirmation && (
+            <div className="pointer-events-auto p-3 rounded-xl ring-1 bg-amber-50 ring-amber-100 text-left">
+              <p className="text-sm font-medium text-amber-900">
+                {language === 'korean' ? '이 링크는 만료되었거나 이미 사용되었어요.' : 'This link has expired or was already used.'}
+              </p>
+              <p className="mt-1 text-sm text-amber-800 leading-relaxed">
+                {linkNotice.kind === 'recovery'
+                  ? (language === 'korean' ? '아래에 이메일을 입력하면 새 비밀번호 재설정 링크를 보내드려요.' : 'Enter your email below and we will send a new password-reset link.')
+                  : (language === 'korean' ? '이메일과 비밀번호로 로그인하면 새 확인 메일을 보내드려요.' : 'Sign in with your email and password and we will send a new confirmation email.')}
+              </p>
+              <button type="button" onClick={() => setLinkNotice(null)} className="mt-1 text-xs font-medium text-amber-700 hover:text-amber-900">
+                {language === 'korean' ? '닫기' : 'Dismiss'}
+              </button>
+            </div>
+          )}
           {awaitingConfirmation && (
             <div className="pointer-events-auto rounded-2xl border border-gray-200 bg-white p-5 space-y-3 text-left">
               <p className="text-base font-semibold text-gray-900">

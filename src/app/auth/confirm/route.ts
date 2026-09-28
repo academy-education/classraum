@@ -39,7 +39,9 @@ export async function GET(request: Request) {
   const tokenHash = url.searchParams.get('token_hash')
   const type = url.searchParams.get('type') ?? ''
   const next = safeNext(url.searchParams.get('next'))
-  const fail = (reason: string) => NextResponse.redirect(`${origin}/auth?error=confirm_link_invalid&reason=${encodeURIComponent(reason)}`)
+  // `link` carries the type so the auth page can offer the right remedy
+  // (a new reset link vs. a new confirmation email).
+  const fail = (reason: string) => NextResponse.redirect(`${origin}/auth?error=confirm_link_invalid&link=${encodeURIComponent(type || 'unknown')}&reason=${encodeURIComponent(reason)}`)
 
   if (!tokenHash || !LINK_TYPES.has(type)) return fail('missing')
 
