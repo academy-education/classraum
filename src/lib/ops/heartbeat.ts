@@ -1,6 +1,6 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import { toJson } from '@/lib/json'
-import { raiseAlert } from '@/lib/ops/alert'
+import { raiseAlert, resolveAlerts } from '@/lib/ops/alert'
 import { jobSpec } from '@/lib/ops/jobs'
 
 /**
@@ -57,6 +57,12 @@ export async function recordHeartbeat(
       console.error('[heartbeat] upsert rejected for', job, upsertError)
     }
 
+    if (result.ok) {
+      // A job that succeeds clears its own failure alert; until 2026-09-29
+      // these stayed open until someone clicked, so the dashboard showed
+      // a digest as failing days after it had recovered.
+      await resolveAlerts(`job-failed:${job}`)
+    }
     if (!result.ok) {
       const spec = jobSpec(job)
       await raiseAlert({

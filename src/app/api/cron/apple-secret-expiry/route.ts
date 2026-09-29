@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
-import { raiseAlert } from '@/lib/ops/alert'
+import { raiseAlert, resolveAlerts } from '@/lib/ops/alert'
 import {
   classifyAppleSecret,
   severityFor,
@@ -41,6 +41,10 @@ export async function GET(req: NextRequest) {
       const severity = severityFor(status)
       const message = messageFor(status)
 
+      if (!severity) {
+        // Secret present and far from expiry: clear any open alert of this family.
+        await resolveAlerts('apple-secret:')
+      }
       if (severity && message) {
         await raiseAlert({
           severity,

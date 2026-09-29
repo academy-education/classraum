@@ -182,3 +182,25 @@ async function emailOncall(
   })
   if (!res.sent) console.error('[alert] critical email not sent:', res.error)
 }
+
+
+/**
+ * Auto-resolve open alerts whose condition has cleared, by dedupeKey (or a
+ * `prefix:` to clear every kind of one family). Checked, not fire-and-
+ * forget: a dropped auto-resolve leaves a recovered job red on the
+ * dashboard forever, which is how an alert channel gets tuned out.
+ */
+export async function resolveAlerts(dedupeKeyOrPrefix: string): Promise<void> {
+  try {
+    const q = dbAdmin
+      .from('alerts')
+      .update({ resolved: true, resolved_at: new Date().toISOString() })
+      .eq('resolved', false)
+    const { error } = dedupeKeyOrPrefix.endsWith(':')
+      ? await q.like('context->>dedupeKey', `${dedupeKeyOrPrefix}%`)
+      : await q.contains('context', { dedupeKey: dedupeKeyOrPrefix })
+    if (error) console.error('[alert] auto-resolve rejected', dedupeKeyOrPrefix, error)
+  } catch (e) {
+    console.error('[alert] auto-resolve failed', dedupeKeyOrPrefix, e)
+  }
+}

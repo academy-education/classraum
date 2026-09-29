@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
-import { raiseAlert } from '@/lib/ops/alert'
+import { raiseAlert, resolveAlerts } from '@/lib/ops/alert'
 import { JOB_REGISTRY } from '@/lib/ops/jobs'
 
 /**
@@ -90,8 +90,8 @@ export async function GET(req: NextRequest) {
       healthy.push(spec.job)
       // Recovered: close any open staleness alert so the dashboard
       // reflects reality without a human clicking resolve.
-      await resolveOpen(`cron-stale:${spec.job}`)
-      await resolveOpen(`cron-never-ran:${spec.job}`)
+      await resolveAlerts(`cron-stale:${spec.job}`)
+      await resolveAlerts(`cron-never-ran:${spec.job}`)
     }
   }
 
@@ -104,25 +104,6 @@ export async function GET(req: NextRequest) {
   })
 }
 
-/** Auto-resolve an alert whose condition has cleared. */
-async function resolveOpen(dedupeKey: string): Promise<void> {
-  try {
-    // Checked explicitly — the update resolves with { error } and never
-    // throws, so the catch below is only for transport faults. A dropped
-    // auto-resolve leaves a recovered job showing red on the dashboard
-    // forever, which is how an alert channel gets tuned out.
-    const { error } = await dbAdmin
-      .from('alerts')
-      .update({ resolved: true, resolved_at: new Date().toISOString() })
-      .eq('resolved', false)
-      .contains('context', { dedupeKey })
-    if (error) {
-      console.error('[ops-watchdog] auto-resolve rejected', dedupeKey, error)
-    }
-  } catch (e) {
-    console.error('[ops-watchdog] auto-resolve failed', dedupeKey, e)
-  }
-}
 
 function formatAge(minutes: number): string {
   if (minutes < 60) return `${minutes}m`
