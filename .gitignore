@@ -70,3 +70,6 @@ scripts/study-bank/ets-reference-v1.json
 
 # Holds a Supabase personal access token — never commit
 .mcp.json
+
+# local artifact staging (published pages, not source)
+.tmp-artifacts/
