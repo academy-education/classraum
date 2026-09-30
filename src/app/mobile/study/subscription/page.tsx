@@ -1376,7 +1376,14 @@ export default function SubscriptionPage() {
 
         {/* Billing & refund policy — always visible so it's disclosed before
             any purchase (Korean PG/merchant expectation), not only at cancel. */}
-        <div className="pt-1 pb-2 text-center">
+        <div className="pt-1 pb-2 flex items-center justify-center gap-4">
+          {/* Every charge and its card receipt. */}
+          <Link
+            href="/mobile/study/billing"
+            className="text-[13px] font-medium text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+          >
+            {ko ? '결제 내역 · 영수증' : 'Billing history & receipts'}
+          </Link>
           <Link
             href="/mobile/study/refund-policy"
             className="text-[13px] text-gray-400 underline underline-offset-2 hover:text-gray-600 transition-colors"

@@ -1,4 +1,5 @@
 import { dbAdmin } from '@/lib/supabase-admin'
+import { sendChargeReceipt } from '@/lib/study/charge-receipt'
 
 /**
  * Record a study subscription charge (first charge / renewal / upgrade) into
@@ -24,5 +25,10 @@ export async function recordSubscriptionPayment(opts: {
   // 23505 = unique_violation → already recorded, expected on re-runs.
   if (error && error.code !== '23505') {
     console.error('[recordSubscriptionPayment] insert failed', opts.paymentId, error.message)
+    return
   }
+  // Every charge gets a receipt (first payment, renewal, plan change). On a
+  // re-run the row already exists and the receipt's own claim makes this a
+  // no-op; sendChargeReceipt never throws, so it cannot fail the charge.
+  await sendChargeReceipt(opts.paymentId)
 }

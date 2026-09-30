@@ -87,6 +87,14 @@
     {
       "path": "/api/cron/auth-unconfirmed-cleanup",
       "schedule": "20 18 * * *"
+    },
+    {
+      "path": "/api/cron/study-renewal-reminders",
+      "schedule": "5 0 * * *"
+    },
+    {
+      "path": "/api/cron/study-receipt-sweep",
+      "schedule": "15 0 * * *"
     }
   ],
   "framework": "nextjs",
@@ -141,6 +149,9 @@
     },
     "src/app/api/cron/ops-watchdog/route.ts": {
       "maxDuration": 60
+    },
+    "src/app/api/cron/study-receipt-sweep/route.ts": {
+      "maxDuration": 300
     }
   }
 }

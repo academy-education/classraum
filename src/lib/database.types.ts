@@ -3989,6 +3989,10 @@ export type Database = {
       }
       study_payments: {
         Row: {
+          paid_at: string | null
+          order_name: string | null
+          receipt_url: string | null
+          receipt_sent_at: string | null
           amount_won: number
           created_at: string
           kind: string
@@ -3998,6 +4002,10 @@ export type Database = {
           student_id: string
         }
         Insert: {
+          paid_at?: string | null
+          order_name?: string | null
+          receipt_url?: string | null
+          receipt_sent_at?: string | null
           amount_won: number
           created_at?: string
           kind: string
@@ -4007,6 +4015,10 @@ export type Database = {
           student_id: string
         }
         Update: {
+          paid_at?: string | null
+          order_name?: string | null
+          receipt_url?: string | null
+          receipt_sent_at?: string | null
           amount_won?: number
           created_at?: string
           kind?: string
@@ -4541,6 +4553,7 @@ export type Database = {
       }
       study_subscriptions: {
         Row: {
+          renewal_reminded_for: string | null
           cancel_at_period_end: boolean
           created_at: string
           currency: string
@@ -4563,6 +4576,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          renewal_reminded_for?: string | null
           cancel_at_period_end?: boolean
           created_at?: string
           currency?: string
@@ -4585,6 +4599,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          renewal_reminded_for?: string | null
           cancel_at_period_end?: boolean
           created_at?: string
           currency?: string

@@ -746,3 +746,26 @@ language detection — live in `src/lib/auth/email-hook.ts` and are tested.
 - The 443 accounts confirmed before the switch were auto-confirmed and prove
   nothing about mailbox ownership; the OAuth takeover guard in
   `src/lib/auth/oauth-outcome.ts` stays as it is for them.
+
+## Every Study charge gets a receipt — exactly once
+
+Until 2026-09-30 a successful subscription renewal sent the student nothing:
+no email, no in-app notice, no history page. Only failures notified. Now:
+
+- **`sendChargeReceipt(paymentId)`** (`src/lib/study/charge-receipt.ts`) runs
+  after every recorded charge — both recorders call it
+  (`recordSubscriptionPayment`, `grant-purchase.recordPayment`). It claims the
+  row with a conditional UPDATE on `study_payments.receipt_sent_at`, so re-runs,
+  the webhook racing the cron and the sweep can never double-send; a failed send
+  releases the claim. It never throws, so it cannot fail a charge.
+- **Facts come from PortOne**, not our row: item name, amount, paid time, card,
+  and the Inicis card slip URL (신용카드 매출전표). They are saved on the row for
+  `/mobile/study/billing`.
+- **`study-receipt-sweep`** (daily) sends any receipt still missing: the
+  pre-launch backfill on its first run, then any live send that failed.
+  `?dry=1` lists what it would send without sending.
+- **`study-renewal-reminders`** (daily) emails auto-renewing subscribers ~3 days
+  before a charge, once per period (`study_subscriptions.renewal_reminded_for`).
+- A new charge path must call `sendChargeReceipt` after recording the payment,
+  and must write `last_payment_id` first if it is a subscription charge — the
+  receipt only quotes a next-renewal date for the subscription's current charge.

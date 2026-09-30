@@ -104,6 +104,9 @@ export const STUDY_NOTIFICATION_COPY = {
   study_subscription_expired: {
     default: { titleKey: `${NS}.subscriptionExpired.title`, messageKey: `${NS}.subscriptionExpired.message` },
   },
+  study_payment_receipt: {
+    default: { titleKey: `${NS}.paymentReceipt.title`, messageKey: `${NS}.paymentReceipt.message` },
+  },
 } as const satisfies Record<StudyNotificationKind, Record<string, StudyCopy>>
 
 export type StudyCopyRegistry = typeof STUDY_NOTIFICATION_COPY

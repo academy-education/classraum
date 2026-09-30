@@ -41,6 +41,7 @@ export const NOTIFICATION_TYPES = [
   'study_response_graded',
   'study_payment_failed',
   'study_subscription_expired',
+  'study_payment_receipt',
 ] as const
 
 export type NotificationType = (typeof NOTIFICATION_TYPES)[number]

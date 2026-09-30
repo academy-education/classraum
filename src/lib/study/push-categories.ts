@@ -63,6 +63,7 @@ export const KIND_CATEGORY: Record<StudyNotificationKind, PushCategory> = {
 
   study_payment_failed: 'account',
   study_subscription_expired: 'account',
+  study_payment_receipt: 'account',
 }
 
 /** The categories a student can actually turn off (account is excluded). */

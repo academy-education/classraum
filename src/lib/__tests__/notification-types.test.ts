@@ -15,15 +15,21 @@ import { NOTIFICATION_TYPES, isNotificationType } from '@/lib/notification-types
  */
 
 const REPO_ROOT = path.resolve(__dirname, '../../..')
-const MIGRATION = path.join(
-  REPO_ROOT,
-  'database/migrations/052_notifications_allow_system_and_level_test.sql'
-)
+/** The LATEST migration that (re)defines the constraint is the live one.
+ *  Pinning 052 by name meant adding a kind in a later migration either
+ *  failed this test for the wrong reason or tempted an edit to 052, which
+ *  has already run and would no longer describe production. */
+const MIGRATIONS_DIR = path.join(REPO_ROOT, 'database/migrations')
+const MIGRATION = path.join(MIGRATIONS_DIR, fs.readdirSync(MIGRATIONS_DIR)
+  .filter(f => f.endsWith('.sql'))
+  .sort()
+  .filter(f => /ADD CONSTRAINT notifications_type_check/i.test(fs.readFileSync(path.join(MIGRATIONS_DIR, f), 'utf8')))
+  .pop()!)
 
 describe('notification type registry', () => {
-  it('matches the CHECK constraint in migration 052 exactly', () => {
+  it('matches the CHECK constraint in the latest migration that defines it', () => {
     const sql = fs.readFileSync(MIGRATION, 'utf8')
-    const body = sql.slice(sql.indexOf('ADD CONSTRAINT notifications_type_check'))
+    const body = sql.slice(sql.search(/ADD CONSTRAINT notifications_type_check/i))
     const fromSql = [...body.matchAll(/'([a-z_]+)'::text/g)].map(m => m[1])
 
     expect(fromSql.length).toBeGreaterThan(0)

@@ -1,4 +1,5 @@
 import { dbAdmin } from '@/lib/supabase-admin'
+import { sendChargeReceipt } from '@/lib/study/charge-receipt'
 import { resolvePack, resolvePass, STUDY_PLANS, isPassPlan } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
 import { grantTestEntitlement, pointStudyPathAtTest } from '@/lib/study/entitlements'
@@ -57,7 +58,11 @@ export async function recordPayment(
     kind,
     amount_won: amountWon,
   })
-  if (!error) return { status: 'new' }
+  if (!error) {
+    // Receipt for the pack/pass charge — exactly once, never blocks the grant.
+    await sendChargeReceipt(paymentId)
+    return { status: 'new' }
+  }
   if ((error as { code?: string }).code === '23505') return { status: 'duplicate' }
   return { status: 'failed', error }
 }

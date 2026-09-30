@@ -139,8 +139,8 @@ const COPY: Record<AuthEmailLanguage, Record<string, { subject: string; title: s
   },
 }
 
-const ASSET_ORIGIN = 'https://www.classraum.com'
-const BRAND = { navy: '#163a5f', blue: '#2885e8', teal: '#1fc8b6', ink: '#1f2937', muted: '#6b7280', line: '#e5e7eb', bg: '#f3f6fa' }
+export const ASSET_ORIGIN = 'https://www.classraum.com'
+export const BRAND = { navy: '#163a5f', blue: '#2885e8', teal: '#1fc8b6', ink: '#1f2937', muted: '#6b7280', line: '#e5e7eb', bg: '#f3f6fa' }
 
 /**
  * One layout for every auth mail. Table-based and inline-styled on purpose:
@@ -149,7 +149,7 @@ const BRAND = { navy: '#163a5f', blue: '#2885e8', teal: '#1fc8b6', ink: '#1f2937
  * hosted PNG (email clients do not render inline SVG); the button is a
  * solid brand blue with a gradient on clients that honour background-image.
  */
-function shell(lang: AuthEmailLanguage, title: string, preheader: string, inner: string): string {
+export function shell(lang: AuthEmailLanguage, title: string, preheader: string, inner: string): string {
   const footer = lang === 'ko'
     ? '이 메일은 Classraum 계정 보안을 위해 자동으로 발송되었습니다. 회신은 확인되지 않아요.'
     : 'This is an automated message about your Classraum account. Replies to this address are not monitored.'

@@ -61,6 +61,7 @@ export type StudyNotificationKind =
   | 'study_response_graded'
   | 'study_payment_failed'
   | 'study_subscription_expired'
+  | 'study_payment_receipt'
 
 /**
  * The student's preferred language, for the stored-plaintext fallback

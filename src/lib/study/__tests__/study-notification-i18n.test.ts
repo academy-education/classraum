@@ -51,6 +51,7 @@ const EXPECTED_KINDS = [
   'study_response_graded',
   'study_payment_failed',
   'study_subscription_expired',
+  'study_payment_receipt',
 ] as const
 
 const LANGS = ['english', 'korean'] as const
@@ -268,6 +269,7 @@ describe('rendering', () => {
       rank: 1, credits: 5, hours: 2, accuracy: 80, total: 40, topic: 'Algebra',
       days: 7, questions: 5, minutes: 5, xp: 50,
       family: 'TOEFL', skill: skillParam('speaking'), score: 24, summary: 'Good work.',
+      amount: '₩26,900', item: 'Classraum Study — Premium Plus (Monthly)',
     }
     for (const { kind, variant, copy } of allStudyCopyEntries()) {
       for (const lang of LANGS) {
