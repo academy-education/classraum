@@ -15,6 +15,13 @@ import { escapeHtml } from '@/lib/html-escape'
 import { BRAND, shell } from '@/lib/auth/email-hook'
 
 export type ReceiptLang = 'ko' | 'en'
+
+/** Billing mail footer. The shared shell's default says "sent for account
+ *  security", which is the auth-mail line and wrong on a receipt. */
+const BILLING_FOOTER: Record<ReceiptLang, string> = {
+  ko: '이 메일은 Classraum 결제 안내를 위해 자동으로 발송되었습니다. 회신은 확인되지 않아요.',
+  en: 'This is an automated message about a payment on your Classraum account. Replies to this address are not monitored.',
+}
 export type ChargeKind = 'study_subscription' | 'study_credit_pack' | 'study_exam_pass'
 
 export interface Seller {
@@ -63,7 +70,7 @@ const T = {
     title: '결제가 완료되었어요', preheader: (item: string, a: string) => `${item} ${a} 결제 영수증`,
     backfill: (d: string) => `이제 Classraum은 모든 결제마다 영수증을 보내드려요. 아래는 ${d} 결제에 대한 영수증이에요.`,
     item: '상품', amount: '결제 금액', paidOn: '결제일', method: '결제 수단', id: '결제 번호',
-    renews: (d: string, a: string) => `${d}에 ${a}이(가) 자동으로 결제돼요. 그 전에 언제든 해지할 수 있어요.`,
+    renews: (d: string, a: string) => `${d}에 ${a}이 자동으로 결제돼요. 그 전에 언제든 해지할 수 있어요.`,
     receipt: '카드 영수증 보기', history: '결제 내역', manage: '구독 관리 · 해지',
     refund: '환불 정책', seller: '판매자', rep: '대표', bn: '사업자등록번호', mo: '통신판매업 신고번호', contact: '문의',
     noReply: '이 메일은 결제 확인을 위해 자동으로 발송되었습니다.',
@@ -162,7 +169,7 @@ export function buildReceiptEmail(r: ReceiptInput): RenderedEmail {
     '', `${t.seller}: ${seller.name} · ${t.contact}: ${seller.contact}`,
   ].filter(x => x !== null).join('\n')
 
-  return { subject: t.subject(amount), html: shell(r.lang, t.title, t.preheader(r.orderName, amount), inner), text }
+  return { subject: t.subject(amount), html: shell(r.lang, t.title, t.preheader(r.orderName, amount), inner, BILLING_FOOTER[r.lang]), text }
 }
 
 const R = {
@@ -192,5 +199,5 @@ export function buildRenewalReminderEmail(r: { lang: ReceiptLang; planName: stri
     <hr style="border:0;border-top:1px solid ${BRAND.line};margin:22px 0 0;">
     ${sellerHtml(seller, T[r.lang])}`
   const text = [t.title, '', t.body(r.planName, d, a), t.cancel, '', `${t.manage}: ${manage}`].join('\n')
-  return { subject: t.subject(d), html: shell(r.lang, t.title, t.body(r.planName, d, a), inner), text }
+  return { subject: t.subject(d), html: shell(r.lang, t.title, t.body(r.planName, d, a), inner, BILLING_FOOTER[r.lang]), text }
 }

@@ -23,6 +23,14 @@ describe('formatting', () => {
 })
 
 describe('receipt', () => {
+  it('uses the billing footer, never the auth mail\'s "account security" line', () => {
+    for (const lang of ['ko', 'en'] as const) {
+      const r = buildReceiptEmail({ ...base, lang })
+      const rem = buildRenewalReminderEmail({ lang, planName: 'Basic', amountWon: 9900, renewsOn: '2026-10-29T15:30:00Z', appOrigin: 'https://app.classraum.com' })
+      for (const m of [r, rem]) { expect(m.html).not.toContain('계정 보안'); expect(m.html).not.toContain('about your Classraum account.') }
+    }
+    expect(buildReceiptEmail({ ...base, lang: 'ko' }).html).toContain('결제 안내를 위해 자동으로 발송')
+  })
   it('carries every field, the slip link (escaped), history and refund links', () => {
     const m = buildReceiptEmail({ ...base, lang: 'en' })
     expect(m.subject).toBe('Your Classraum receipt · ₩26,900')
@@ -36,7 +44,8 @@ describe('receipt', () => {
     const plain = buildReceiptEmail({ ...base, lang: 'ko' })
     expect(plain.html).not.toContain('자동으로 결제돼요'); expect(plain.html).not.toContain('구독 관리')
     const renewing = buildReceiptEmail({ ...base, lang: 'ko', renewal: { on: '2026-10-29T15:30:00Z', amountWon: 26900 } })
-    expect(renewing.html).toContain('2026년 10월 30일에 26,900원이(가) 자동으로 결제돼요')
+    expect(renewing.html).toContain('2026년 10월 30일에 26,900원이 자동으로 결제돼요')
+    expect(renewing.html).not.toContain('(가)')
     expect(renewing.html).toContain('/mobile/study/subscription')
   })
   it('explains itself on a backfilled receipt, and not otherwise', () => {

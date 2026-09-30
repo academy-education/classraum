@@ -149,8 +149,10 @@ export const BRAND = { navy: '#163a5f', blue: '#2885e8', teal: '#1fc8b6', ink: '
  * hosted PNG (email clients do not render inline SVG); the button is a
  * solid brand blue with a gradient on clients that honour background-image.
  */
-export function shell(lang: AuthEmailLanguage, title: string, preheader: string, inner: string): string {
-  const footer = lang === 'ko'
+/** `footer` overrides the account-security line: receipts reuse this shell and
+ *  must not tell a paying customer the mail was sent "for account security". */
+export function shell(lang: AuthEmailLanguage, title: string, preheader: string, inner: string, footer?: string): string {
+  footer ??= lang === 'ko'
     ? '이 메일은 Classraum 계정 보안을 위해 자동으로 발송되었습니다. 회신은 확인되지 않아요.'
     : 'This is an automated message about your Classraum account. Replies to this address are not monitored.'
   return `<!DOCTYPE html>
