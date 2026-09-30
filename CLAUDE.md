@@ -766,6 +766,14 @@ no email, no in-app notice, no history page. Only failures notified. Now:
   `?dry=1` lists what it would send without sending.
 - **`study-renewal-reminders`** (daily) emails auto-renewing subscribers ~3 days
   before a charge, once per period (`study_subscriptions.renewal_reminded_for`).
+- **Holds** (`study_payments.receipt_held_reason`, migration 110): a held row
+  is never receipted, by the live path or the sweep; clearing it releases the
+  receipt. TEST-channel payments hold themselves. On 2026-09-30 the backfill
+  review held 6 of 29 charges: one PortOne TEST payment on a seeded account,
+  and five real charges on three accounts whose emails look fabricated
+  (`alexandria@`, `sonny@`, `jason.kim@gmail.com`) — a receipt there would
+  tell a stranger about someone else's purchase. **Before any bulk send, list
+  who receives it and check the addresses are theirs.**
 - A new charge path must call `sendChargeReceipt` after recording the payment,
   and must write `last_payment_id` first if it is a subscription charge — the
   receipt only quotes a next-renewal date for the subscription's current charge.

@@ -3989,6 +3989,7 @@ export type Database = {
       }
       study_payments: {
         Row: {
+          receipt_held_reason: string | null
           paid_at: string | null
           order_name: string | null
           receipt_url: string | null
@@ -4002,6 +4003,7 @@ export type Database = {
           student_id: string
         }
         Insert: {
+          receipt_held_reason?: string | null
           paid_at?: string | null
           order_name?: string | null
           receipt_url?: string | null
@@ -4015,6 +4017,7 @@ export type Database = {
           student_id: string
         }
         Update: {
+          receipt_held_reason?: string | null
           paid_at?: string | null
           order_name?: string | null
           receipt_url?: string | null

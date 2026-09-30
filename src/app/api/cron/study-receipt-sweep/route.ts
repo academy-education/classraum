@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
 
   const { data: rows, error } = await dbAdmin.from('study_payments')
     .select('payment_id, student_id, kind, amount_won, created_at')
-    .is('receipt_sent_at', null).is('refunded_at', null)
+    .is('receipt_sent_at', null).is('refunded_at', null).is('receipt_held_reason', null)
     .lt('created_at', new Date(Date.now() - 15 * 60e3).toISOString())
     .order('created_at', { ascending: true })
     .limit(PER_RUN)

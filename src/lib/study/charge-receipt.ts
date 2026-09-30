@@ -41,6 +41,7 @@ interface PortOnePaid {
   paidAt?: string
   receiptUrl?: string
   method?: { card?: { name?: string; issuer?: string; number?: string } }
+  channel?: { type?: string }
 }
 
 export async function fetchPortOnePayment(paymentId: string): Promise<PortOnePaid | null> {
@@ -75,16 +76,27 @@ export async function sendChargeReceipt(paymentId: string, opts: { backfill?: bo
       .eq('payment_id', paymentId)
       .is('receipt_sent_at', null)
       .is('refunded_at', null)
+      .is('receipt_held_reason', null)   // held rows (migration 110) are never receipted
       .select('payment_id, student_id, kind, amount_won, created_at')
       .maybeSingle()
     if (claimErr) return { status: 'failed', reason: `claim: ${claimErr.message}` }
-    if (!claimed) return { status: 'skipped', reason: 'already sent, refunded, or unknown' }
+    if (!claimed) return { status: 'skipped', reason: 'already sent, refunded, held, or unknown' }
 
     // 2. What PortOne says was charged. Anything but PAID is not receipted.
     const pay = await fetchPortOnePayment(paymentId)
     if (!pay || pay.status !== 'PAID') {
       await release(paymentId)
       return { status: 'skipped', reason: `portone status ${pay?.status ?? 'unavailable'}` }
+    }
+    // A TEST-channel payment moved no money (the backfill found one on a
+    // seeded account). Hold it with the reason instead of emailing a receipt
+    // for a charge that never happened; held rows are never retried.
+    if (pay.channel?.type && pay.channel.type !== 'LIVE') {
+      const { error: holdErr } = await dbAdmin.from('study_payments')
+        .update({ receipt_sent_at: null, receipt_held_reason: `test-mode charge: PortOne ${pay.channel.type} channel; no real money moved` })
+        .eq('payment_id', paymentId)
+      if (holdErr) console.error('[charge-receipt] hold failed', paymentId, holdErr.message)
+      return { status: 'skipped', reason: 'test-mode charge' }
     }
     const amountWon = pay.amount?.total ?? claimed.amount_won
     const paidAt = pay.paidAt ?? claimed.created_at

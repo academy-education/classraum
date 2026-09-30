@@ -1,0 +1,11 @@
+-- 110: hold a charge's receipt without pretending it was sent.
+--
+-- The 2026-09-30 backfill review found charges that must not be emailed:
+--   * a TEST-channel payment (PortOne test mode, card 0000) on a seeded test
+--     account — no real money moved;
+--   * real charges whose account email looks fabricated (a short Gmail handle
+--     that almost certainly belongs to a stranger), where a receipt would tell
+--     a third party about someone else's purchase.
+-- NULL = eligible. Any text = held, with the reason. sendChargeReceipt and the
+-- sweep skip held rows; clearing the column releases the receipt.
+alter table public.study_payments add column if not exists receipt_held_reason text;
