@@ -182,6 +182,7 @@ async function runRecap() {
         }),
       })
       if (result.sent) sent++
+      else if (result.suppressed) optedOutCount++
       else failed++
     }
 

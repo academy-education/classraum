@@ -9,6 +9,8 @@
  * callers decide whether a failure is fatal (the hook route does treat it as
  * fatal — Supabase must know the mail did not go out).
  */
+import { normalizeEmail, suppressedAmong } from './email-suppression'
+
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Classraum <no-reply@classraum.com>'
 
 export interface ResendSendOptions {
@@ -24,18 +26,25 @@ export interface ResendSendResult {
   sent: boolean
   id?: string
   error?: string
+  /** Every recipient is on the suppression list; nothing was sent, on
+   *  purpose. Callers should treat this as done, not as a failure to retry. */
+  suppressed?: true
 }
 
 export async function sendResendEmail(opts: ResendSendOptions): Promise<ResendSendResult> {
   const key = process.env.RESEND_API_KEY
   if (!key) return { sent: false, error: 'RESEND_API_KEY is not set' }
+  const all = Array.isArray(opts.to) ? opts.to : [opts.to]
+  const blocked = await suppressedAmong(all)
+  const to = all.filter(a => !blocked.has(normalizeEmail(a)))
+  if (to.length === 0) return { sent: false, suppressed: true, error: 'recipient is on the suppression list' }
   try {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from: opts.from ?? FROM_EMAIL,
-        to: Array.isArray(opts.to) ? opts.to : [opts.to],
+        to,
         subject: opts.subject,
         html: opts.html,
         text: opts.text,

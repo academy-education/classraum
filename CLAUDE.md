@@ -774,6 +774,13 @@ no email, no in-app notice, no history page. Only failures notified. Now:
   (`alexandria@`, `sonny@`, `jason.kim@gmail.com`) — a receipt there would
   tell a stranger about someone else's purchase. **Before any bulk send, list
   who receives it and check the addresses are theirs.**
+- **Suppression list** (`public.email_suppressions`, migration 111): an
+  address there gets NO email of any kind — `sendResendEmail` drops it, and
+  `sendPostmarkEmail` delegates there (or filters it on the Postmark
+  fallback). Senders get `{ sent:false, suppressed:true }` and must treat it
+  as done, not retry it: receipts hold the row, reminders keep their claim,
+  the recap counts it as an opt-out. The two Manning test accounts
+  (`alexandria@`, `sonny@gmail.com`) are on it at the owner's request.
 - A new charge path must call `sendChargeReceipt` after recording the payment,
   and must write `last_payment_id` first if it is a subscription charge — the
   receipt only quotes a next-renewal date for the subscription's current charge.

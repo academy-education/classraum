@@ -3987,6 +3987,12 @@ export type Database = {
           },
         ]
       }
+      email_suppressions: {
+        Row: { email: string; reason: string; created_at: string }
+        Insert: { email: string; reason: string; created_at?: string }
+        Update: { email?: string; reason?: string; created_at?: string }
+        Relationships: []
+      }
       study_payments: {
         Row: {
           receipt_held_reason: string | null

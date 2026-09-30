@@ -137,6 +137,15 @@ export async function sendChargeReceipt(paymentId: string, opts: { backfill?: bo
         card: cardLabel(pay.method?.card, lang), receiptUrl: pay.receiptUrl ?? null, appOrigin: APP_ORIGIN(),
       })
       const sent = await sendResendEmail({ to, subject: mail.subject, html: mail.html, text: mail.text })
+      if (sent.suppressed) {
+        // The owner asked that this address get nothing: hold the row (so the
+        // sweep stops trying) and skip the in-app notice too.
+        const { error: holdErr } = await dbAdmin.from('study_payments')
+          .update({ receipt_held_reason: 'email suppressed (email_suppressions)', receipt_sent_at: null })
+          .eq('payment_id', paymentId)
+        if (holdErr) console.error('[charge-receipt] hold failed', paymentId, holdErr.message)
+        return { status: 'skipped', reason: 'address suppressed' }
+      }
       if (!sent.sent) {
         // Released, and NO in-app notice yet — a retry would otherwise post it twice.
         await release(paymentId)

@@ -16,6 +16,7 @@
  */
 
 import { sendResendEmail } from './resend'
+import { normalizeEmail, suppressedAmong } from './email-suppression'
 
 const FROM_EMAIL =
   process.env.POSTMARK_FROM_EMAIL || 'no-reply@classraum.com'
@@ -35,6 +36,8 @@ const FROM_EMAIL =
 export interface PostmarkSendResult {
   sent: boolean
   error?: string
+  /** All recipients suppressed (src/lib/email-suppression.ts): skipped on purpose. */
+  suppressed?: true
 }
 
 export interface PostmarkSendOptions {
@@ -64,7 +67,7 @@ export async function sendPostmarkEmail(
     if (list.length === 0) return { sent: false, error: 'no recipients' }
     if (process.env.RESEND_API_KEY) {
       const r = await sendResendEmail({ to: list, subject: options.subject, html: options.htmlBody, from: options.from || FROM_EMAIL, replyTo: options.replyTo })
-      return r.sent ? { sent: true } : { sent: false, error: r.error }
+      return r.sent ? { sent: true } : r.suppressed ? { sent: false, suppressed: true, error: r.error } : { sent: false, error: r.error }
     }
   }
   const postmarkToken = process.env.POSTMARK_SERVER_TOKEN
@@ -72,7 +75,10 @@ export async function sendPostmarkEmail(
     return { sent: false, error: 'POSTMARK_SERVER_TOKEN not configured' }
   }
 
-  const to = Array.isArray(options.to) ? options.to.join(', ') : options.to
+  const blocked = await suppressedAmong(Array.isArray(options.to) ? options.to : options.to.split(','))
+  const kept = (Array.isArray(options.to) ? options.to : options.to.split(',')).map(x => x.trim()).filter(x => x && !blocked.has(normalizeEmail(x)))
+  if (blocked.size && kept.length === 0) return { sent: false, suppressed: true, error: 'recipient is on the suppression list' }
+  const to = kept.join(', ')
   if (!to.trim()) {
     return { sent: false, error: 'no recipients' }
   }

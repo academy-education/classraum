@@ -61,6 +61,7 @@ export async function GET(req: NextRequest) {
       })
       const r = await sendResendEmail({ to: user!.email as string, subject: mail.subject, html: mail.html, text: mail.text })
       if (r.sent) { sent++; continue }
+      if (r.suppressed) { skipped++; continue }   // on the suppression list: done, keep the claim
       failures.push(`${s.id}: ${r.error}`)
       const { error: relErr } = await dbAdmin.from('study_subscriptions').update({ renewal_reminded_for: s.renewal_reminded_for }).eq('id', s.id)
       if (relErr) failures.push(`${s.id}: release ${relErr.message}`)
