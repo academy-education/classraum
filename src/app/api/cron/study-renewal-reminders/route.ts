@@ -41,11 +41,18 @@ export async function GET(req: NextRequest) {
       const plan = STUDY_PLANS[s.plan], next = STUDY_PLANS[s.pending_plan ?? s.plan]
       if (!plan || !next || next.priceWon <= 0 || next.intervalDays >= 3650 || !s.current_period_end) { skipped++; continue }
 
-      const { data: claimed, error: claimErr } = await dbAdmin.from('study_subscriptions')
-        .update({ renewal_reminded_for: s.current_period_end })
-        .eq('id', s.id)
-        .or(`renewal_reminded_for.is.null,renewal_reminded_for.neq."${s.current_period_end}"`)
-        .select('id').maybeSingle()
+      // Claim in two conditional UPDATEs, not one with .or(): PostgREST
+      // rejects an or() filter on a PATCH here with 42703 "column
+      // study_subscriptions.renewal_reminded_for does not exist" (the first
+      // live run, 2026-10-01, failed all three reminders this way). Each step
+      // is atomic; neq() never matches NULL, so the steps cannot overlap, and
+      // a concurrent run finds the column already equal to this period.
+      const claim = (step: 'unset' | 'stale') => {
+        const q = dbAdmin.from('study_subscriptions').update({ renewal_reminded_for: s.current_period_end }).eq('id', s.id)
+        return (step === 'unset' ? q.is('renewal_reminded_for', null) : q.neq('renewal_reminded_for', s.current_period_end!)).select('id').maybeSingle()
+      }
+      let { data: claimed, error: claimErr } = await claim('unset')
+      if (!claimErr && !claimed && s.renewal_reminded_for) ({ data: claimed, error: claimErr } = await claim('stale'))
       if (claimErr) { failures.push(`${s.id}: claim ${claimErr.message}`); continue }
       if (!claimed) { skipped++; continue }   // already reminded for this period
 
