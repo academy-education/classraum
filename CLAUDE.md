@@ -764,8 +764,12 @@ no email, no in-app notice, no history page. Only failures notified. Now:
 - **`study-receipt-sweep`** (daily) sends any receipt still missing: the
   pre-launch backfill on its first run, then any live send that failed.
   `?dry=1` lists what it would send without sending.
-- **`study-renewal-reminders`** (daily) emails auto-renewing subscribers ~3 days
-  before a charge, once per period (`study_subscriptions.renewal_reminded_for`).
+- **No renewal reminders.** A `study-renewal-reminders` cron (3-day pre-charge
+  email) shipped 2026-09-30 and was removed 2026-10-01 at the owner's call:
+  "we just need receipts". Korean law does not require a reminder for a
+  same-price renewal; it DOES require consent within 30 days before a price
+  increase or a free-to-paid conversion, so build that before either ships.
+  `study_subscriptions.renewal_reminded_for` is left in place, unused.
 - **Holds** (`study_payments.receipt_held_reason`, migration 110): a held row
   is never receipted, by the live path or the sweep; clearing it releases the
   receipt. TEST-channel payments hold themselves. On 2026-09-30 the backfill

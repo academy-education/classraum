@@ -171,33 +171,3 @@ export function buildReceiptEmail(r: ReceiptInput): RenderedEmail {
 
   return { subject: t.subject(amount), html: shell(r.lang, t.title, t.preheader(r.orderName, amount), inner, BILLING_FOOTER[r.lang]), text }
 }
-
-const R = {
-  ko: {
-    subject: (d: string) => `[Classraum] ${d} 구독 자동 결제 안내`, title: '곧 구독이 자동 결제돼요',
-    body: (plan: string, d: string, a: string) => `${plan} 플랜이 ${d}에 ${a}으로 자동 결제될 예정이에요. 계속 이용하시려면 따로 하실 일은 없어요.`,
-    cancel: '해지를 원하시면 결제일 전에 구독 관리에서 해지해 주세요. 해지해도 남은 기간 동안은 계속 이용할 수 있어요.',
-    manage: '구독 관리 · 해지',
-  },
-  en: {
-    subject: (d: string) => `Your Classraum plan renews on ${d}`, title: 'Your plan renews soon',
-    body: (plan: string, d: string, a: string) => `Your ${plan} plan will renew automatically on ${d} for ${a}. You don't need to do anything to keep studying.`,
-    cancel: 'To cancel, do it from Manage subscription before the renewal date. You keep access until the end of the period you paid for.',
-    manage: 'Manage or cancel',
-  },
-} as const
-
-export function buildRenewalReminderEmail(r: { lang: ReceiptLang; planName: string; amountWon: number; renewsOn: string; appOrigin: string; seller?: Seller }): RenderedEmail {
-  const t = R[r.lang], d = formatDate(r.renewsOn, r.lang), a = formatWon(r.amountWon, r.lang)
-  const seller = r.seller ?? sellerFromEnv()
-  const manage = `${r.appOrigin}/mobile/study/subscription`
-  const inner = `<h1 style="margin:0 0 12px;${FONT}font-size:22px;line-height:1.3;font-weight:700;color:${BRAND.navy};">${escapeHtml(t.title)}</h1>
-    <p style="${FONT}margin:0 0 12px;font-size:15px;line-height:1.7;color:${BRAND.ink};">${escapeHtml(t.body(r.planName, d, a))}</p>
-    <p style="${FONT}margin:0;font-size:13px;line-height:1.7;color:${BRAND.muted};">${escapeHtml(t.cancel)}</p>
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:22px 0 4px;"><tr><td bgcolor="${BRAND.blue}" style="border-radius:10px;background:${BRAND.blue};">
-      <a href="${escapeHtml(manage)}" style="display:inline-block;padding:12px 24px;${FONT}font-size:14px;font-weight:600;color:#ffffff !important;text-decoration:none;border-radius:10px;">${escapeHtml(t.manage)}</a></td></tr></table>
-    <hr style="border:0;border-top:1px solid ${BRAND.line};margin:22px 0 0;">
-    ${sellerHtml(seller, T[r.lang])}`
-  const text = [t.title, '', t.body(r.planName, d, a), t.cancel, '', `${t.manage}: ${manage}`].join('\n')
-  return { subject: t.subject(d), html: shell(r.lang, t.title, t.body(r.planName, d, a), inner, BILLING_FOOTER[r.lang]), text }
-}

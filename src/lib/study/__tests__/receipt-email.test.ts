@@ -1,5 +1,5 @@
 /** @jest-environment node */
-import { buildReceiptEmail, buildRenewalReminderEmail, cardLabel, formatDate, formatWon, sellerFromEnv } from '../receipt-email'
+import { buildReceiptEmail, cardLabel, formatDate, formatWon, sellerFromEnv } from '../receipt-email'
 
 const base = {
   orderName: 'Classraum Study — Premium Plus (Monthly)', amountWon: 26900, paidAt: '2026-09-29T15:30:00Z',
@@ -26,8 +26,7 @@ describe('receipt', () => {
   it('uses the billing footer, never the auth mail\'s "account security" line', () => {
     for (const lang of ['ko', 'en'] as const) {
       const r = buildReceiptEmail({ ...base, lang })
-      const rem = buildRenewalReminderEmail({ lang, planName: 'Basic', amountWon: 9900, renewsOn: '2026-10-29T15:30:00Z', appOrigin: 'https://app.classraum.com' })
-      for (const m of [r, rem]) { expect(m.html).not.toContain('계정 보안'); expect(m.html).not.toContain('about your Classraum account.') }
+      expect(r.html).not.toContain('계정 보안'); expect(r.html).not.toContain('about your Classraum account.')
     }
     expect(buildReceiptEmail({ ...base, lang: 'ko' }).html).toContain('결제 안내를 위해 자동으로 발송')
   })
@@ -67,13 +66,3 @@ describe('receipt', () => {
   })
 })
 
-describe('renewal reminder', () => {
-  it('names plan, date, amount and the manage link in both languages', () => {
-    const en = buildRenewalReminderEmail({ lang: 'en', planName: 'Premium Plus', amountWon: 26900, renewsOn: '2026-10-29T15:30:00Z', appOrigin: 'https://app.classraum.com' })
-    expect(en.subject).toBe('Your Classraum plan renews on Oct 30, 2026')
-    expect(en.html).toContain('renew automatically on Oct 30, 2026 for ₩26,900')
-    expect(en.html).toContain('/mobile/study/subscription')
-    const ko = buildRenewalReminderEmail({ lang: 'ko', planName: '프리미엄 플러스', amountWon: 26900, renewsOn: '2026-10-29T15:30:00Z', appOrigin: 'https://app.classraum.com' })
-    expect(ko.html).toContain('2026년 10월 30일에 26,900원으로 자동 결제될 예정')
-  })
-})

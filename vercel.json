@@ -89,10 +89,6 @@
       "schedule": "20 18 * * *"
     },
     {
-      "path": "/api/cron/study-renewal-reminders",
-      "schedule": "5 0 * * *"
-    },
-    {
       "path": "/api/cron/study-receipt-sweep",
       "schedule": "15 0 * * *"
     }
