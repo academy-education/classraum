@@ -34,7 +34,7 @@ import { Check, Copy } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { savePendingReferral } from '@/lib/study/pending-referral'
 import { appStoreUrl, detectPlatform, PLAY_STORE_URL, type DevicePlatform } from '@/lib/deeplinks'
-import { REFERRAL_PREMIUM_CREDITS, REFERRAL_SIGNUP_CREDITS } from '@/lib/study/referral'
+import { REFERRAL_INVITEE_CREDITS } from '@/lib/study/referral'
 import { StudyButton, studyButtonClass } from '@/app/mobile/study/_shared/StudyButton'
 
 export function InviteLanding({ code }: { code: string }) {
@@ -119,8 +119,8 @@ export function InviteLanding({ code }: { code: string }) {
             </div>
             <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed break-keep">
               {ko
-                ? `가입하면 둘 다 크레딧 ${REFERRAL_SIGNUP_CREDITS}개, 프리미엄으로 업그레이드하면 각각 ${REFERRAL_PREMIUM_CREDITS}개를 더 받아요.`
-                : `You both get ${REFERRAL_SIGNUP_CREDITS} credit when you sign up, and ${REFERRAL_PREMIUM_CREDITS} more each when you go Premium.`}
+                ? `이 초대로 가입하면 테스트 크레딧 ${REFERRAL_INVITEE_CREDITS}개를 받아요.`
+                : `Sign up with this invite and get ${REFERRAL_INVITEE_CREDITS} free test credits.`}
             </p>
           </div>
 

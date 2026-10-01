@@ -202,14 +202,19 @@ export function TestCustomizationSheet({
       <div
         role="dialog"
         aria-modal="true"
-        className="fixed inset-x-0 bottom-0 z-[121] max-h-[88vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up"
+        /* Phones: a bottom sheet. lg and up: a centred dialog, so "Start
+           test" sits in the middle of the screen instead of in a bar
+           stretched across the whole window. Centred with the individual
+           `translate` property, not `transform`, because the slide-up
+           animation and the drag-to-dismiss both own `transform`. */
+        className="fixed inset-x-0 bottom-0 z-[121] max-h-[88vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up lg:inset-x-auto lg:bottom-auto lg:left-1/2 lg:top-1/2 lg:w-[min(560px,calc(100vw-48px))] lg:max-h-[85vh] lg:rounded-3xl lg:[translate:-50%_-50%] lg:shadow-[0_24px_64px_-16px_rgba(0,0,0,0.35)]"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)', ...sheetStyle }}
       >
-        <div {...handleProps} className="pt-2.5 pb-1.5 flex justify-center cursor-grab active:cursor-grabbing touch-none">
+        <div {...handleProps} className="pt-2.5 pb-1.5 flex justify-center cursor-grab active:cursor-grabbing touch-none lg:hidden">
           <div className="w-10 h-1 rounded-full bg-gray-200" />
         </div>
 
-        <div className="flex items-center justify-between px-5 pb-3 border-b border-gray-100">
+        <div className="flex items-center justify-between px-5 pb-3 lg:pt-5 border-b border-gray-100">
           <div>
             <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
               {String(t('study.testConfig.title'))}
@@ -377,9 +382,12 @@ export function TestCustomizationSheet({
               )
             )}
           </div>
+          {/* fullWidth shrinks to content from lg up (house style); in this
+              dialog that left "Start test" stranded on the left, so centre it. */}
           <StudyButton
             type="button"
             fullWidth
+            className="lg:flex lg:mx-auto lg:min-w-[260px]"
             onClick={submit}
             loading={starting}
           >

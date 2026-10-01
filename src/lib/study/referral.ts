@@ -1,27 +1,24 @@
 /**
  * Referral-loop constants + helpers for Classraum Study (B2C).
  *
- * Two-stage rewards, both in never-expiring purchased-bucket credits:
- *   1. SIGNUP  — when the friend redeems the code, BOTH sides get
- *      REFERRAL_SIGNUP_CREDITS, exactly once (a small "you joined" nudge).
- *   2. PREMIUM — when that referred friend FIRST becomes a paying
- *      subscriber, BOTH sides get REFERRAL_PREMIUM_CREDITS, exactly once
- *      (the real reward — quality referrals, not just signups).
+ * ONE reward (since 2026-10-01): the invited friend gets
+ * REFERRAL_INVITEE_CREDITS never-expiring purchased-bucket credits when they
+ * redeem the code, exactly once. The inviter gets nothing, and nothing is
+ * paid when the friend later subscribes (that is still recorded, unpaid, in
+ * referral-conversion.ts).
  *
- * Signup granting + idempotency live in the redeem route; the premium
- * grant lives in referral-conversion.ts (called from the subscribe path).
- * This file only owns the reward sizes + the code generator so tests and
- * routes agree.
+ * Until then it was two stages: +1 to BOTH sides on redeem, +5 to BOTH on
+ * the friend's first payment. Credits already paid under that scheme stay
+ * where they are; the referral page reads them from the ledger.
+ *
+ * Granting + idempotency live in the redeem route. This file owns the reward
+ * size + the code generator so tests, routes and every page agree.
  */
 
-/** Credits to EACH side (referrer + referee) when the code is redeemed. */
-export const REFERRAL_SIGNUP_CREDITS = 1
-
-/** Extra credits to EACH side when the referred friend first goes paid.
- *  Lowered 10 -> 5 on 2026-09-25. Every surface must read this constant:
- *  two places had the old value typed in by hand and would have gone stale
- *  (the referral page's fetch fallback and the profile row's subtitle). */
-export const REFERRAL_PREMIUM_CREDITS = 5
+/** Credits the INVITED friend gets on redeeming a code. Every surface must
+ *  read this constant: the referral page, its share text, the invite landing
+ *  page and the profile row all print it. */
+export const REFERRAL_INVITEE_CREDITS = 5
 
 /** Length of a generated referral code. */
 export const REFERRAL_CODE_LENGTH = 6

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireStudyUser } from '@/lib/study/auth'
-import { REFERRAL_SIGNUP_CREDITS, REFERRAL_PREMIUM_CREDITS, generateReferralCode } from '@/lib/study/referral'
+import { REFERRAL_INVITEE_CREDITS, generateReferralCode } from '@/lib/study/referral'
 
 /**
  * GET /api/study/referral — the caller's referral code + stats.
@@ -71,23 +71,34 @@ export async function GET(req: NextRequest) {
 
   const { data: redemptions } = await dbAdmin
     .from('study_referral_redemptions')
-    .select('rewarded, converted')
+    .select('id, converted')
     .eq('referrer_id', user.id)
 
   const rows = redemptions ?? []
   const referrals = rows.length
-  const rewardedCount = rows.filter(r => r.rewarded === true).length
   const convertedCount = rows.filter(r => r.converted === true).length
-  const creditsEarned =
-    rewardedCount * REFERRAL_SIGNUP_CREDITS + convertedCount * REFERRAL_PREMIUM_CREDITS
+  // What this inviter was actually paid, from the ledger. Inviters earned
+  // under the old two-stage scheme (until 2026-10-01) and earn nothing under
+  // the current one, so no formula over the rows can be right for both.
+  let creditsEarned = 0
+  if (rows.length) {
+    const { data: ledger } = await dbAdmin
+      .from('study_credit_ledger')
+      .select('delta')
+      .eq('student_id', user.id)
+      .in('source_id', rows.map(r => r.id as string))
+    creditsEarned = (ledger ?? []).reduce((n, r) => n + Math.max(0, Number(r.delta) || 0), 0)
+  }
 
   return NextResponse.json({
     code,
-    // Two-stage reward amounts so the UI can explain both.
-    signupReward: REFERRAL_SIGNUP_CREDITS,
-    premiumReward: REFERRAL_PREMIUM_CREDITS,
-    // Back-compat: existing clients read rewardPerReferral as the headline.
-    rewardPerReferral: REFERRAL_SIGNUP_CREDITS,
+    // What the invited friend gets. signupReward/premiumReward/rewardPerReferral
+    // stay for installed app builds that still read them: the friend's reward
+    // and 0 for the retired premium stage.
+    inviteeReward: REFERRAL_INVITEE_CREDITS,
+    signupReward: REFERRAL_INVITEE_CREDITS,
+    premiumReward: 0,
+    rewardPerReferral: REFERRAL_INVITEE_CREDITS,
     stats: {
       referrals,
       creditsEarned,

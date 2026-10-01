@@ -17,12 +17,14 @@
  */
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { MODE_INSTRUCTION } from '@/lib/study/explain-prompt'
 
 const read = (p: string) => readFileSync(join(__dirname, '..', '..', '..', '..', p), 'utf8')
 const CARD = read('app/mobile/study/_shared/WrongNotebookView.tsx')
 const ROUTE = read('app/api/study/wrong-notebook/route.ts')
 const EXPLAIN_UI = read('app/mobile/study/_shared/ExplainMore.tsx')
 const EXPLAIN_API = read('app/api/study/explain/route.ts')
+const EXPLAIN_PROMPT = read('lib/study/explain-prompt.ts')
 
 /** Source with // and block comments removed, for assertions that a string is
  *  ABSENT — every file here documents what it dropped by naming it. */
@@ -88,8 +90,9 @@ describe('the AI is given the text it is asked about', () => {
 
   it('the explain route reads the passage into the model context', () => {
     expect(EXPLAIN_API).toMatch(/passage\?: string/)
-    expect(EXPLAIN_API).toMatch(/const passage = \(body\.passage \?\? ''\)/)
-    expect(EXPLAIN_API).toMatch(/PASSAGE \/ TRANSCRIPT/)
+    expect(EXPLAIN_API).toMatch(/passage: body\.passage/)              // the route hands it to the builder
+    expect(EXPLAIN_PROMPT).toMatch(/const passage = \(input\.passage \?\? ''\)/)
+    expect(EXPLAIN_PROMPT).toMatch(/PASSAGE \/ TRANSCRIPT/)
   })
 
   it('the card passes the passage down', () => {
@@ -102,23 +105,11 @@ describe('the two languages make the same promise', () => {
    * Korean one not. Both instructions were hedged — "Where relevant" and
    * "필요하면" — so the model was free to drop the distractors, and did so far
    * more often in Korean. Neither may hedge now. */
-  /* Assert on the INSTRUCTION STRINGS, not the surrounding block. The first
-   * draft of this test sliced from `const MODE_INSTRUCTION` and failed its own
-   * negative assertions — the code comment above the strings QUOTES the old
-   * hedged wording to explain why it changed, so `not.toMatch` found it in the
-   * comment. A test that reads comments is testing the wrong bytes. */
-  const modeBlock = EXPLAIN_API.slice(
-    EXPLAIN_API.indexOf('const MODE_INSTRUCTION'),
-    EXPLAIN_API.indexOf('export async function POST'),
-  )
-  const stepsBlock = modeBlock.slice(modeBlock.indexOf('steps: {'), modeBlock.indexOf('followup: {'))
-  /** Just the quoted value of `en:` / `ko:` — no comments. */
-  const instruction = (lang: 'en' | 'ko') => {
-    const m = stepsBlock.match(new RegExp(`\\n\\s*${lang}: '((?:[^'\\\\]|\\\\.)*)'`))
-    if (!m) throw new Error(`could not extract the ${lang} steps instruction`)
-    return m[1]
-  }
-  const steps = { en: instruction('en'), ko: instruction('ko') }
+  /* Assert on the INSTRUCTION STRINGS themselves. They used to be parsed out
+   * of the route's source (and a first draft failed because the comment above
+   * them quotes the old hedged wording); since 2026-10-01 they live in
+   * lib/study/explain-prompt and are imported, so there is nothing to parse. */
+  const steps = MODE_INSTRUCTION.steps
 
   it('the English steps instruction is unconditional about the wrong options', () => {
     expect(steps.en).toMatch(/MUST account for every wrong one/)
@@ -133,8 +124,8 @@ describe('the two languages make the same promise', () => {
   it('the word cap leaves room to enumerate options in steps mode', () => {
     // A ~150-word cap and "account for every wrong option" are contradictory
     // instructions; the model obeyed the cap and dropped the options.
-    expect(EXPLAIN_API).toMatch(/mode === 'steps'/)
-    expect(EXPLAIN_API).toMatch(/under ~250 words/)
+    expect(EXPLAIN_PROMPT).toMatch(/mode === 'steps'/)
+    expect(EXPLAIN_PROMPT).toMatch(/under ~250 words/)
   })
 })
 

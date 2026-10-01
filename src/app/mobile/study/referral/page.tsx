@@ -3,12 +3,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
 import { Share } from '@capacitor/share'
-import { Gift, Copy, Check, Users, Sparkles, Ticket, Share2 } from '@/app/mobile/study/_shared/icons'
+import { Gift, Copy, Check, Users, Sparkles, Ticket, Share2, MessageSquare } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { isKakaoShareEnabled, shareToKakao } from '@/lib/kakao-share'
 import { inviteUrl } from '@/lib/deeplinks'
-import { REFERRAL_SIGNUP_CREDITS, REFERRAL_PREMIUM_CREDITS } from '@/lib/study/referral'
+import { REFERRAL_INVITEE_CREDITS } from '@/lib/study/referral'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { StudyPageHeader, StudyScrollShell, StudyMetric, StudyPageTransition } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
@@ -28,11 +28,8 @@ import { SkeletonBlock, SkeletonCard, SkeletonMetricCard } from '../skeletons'
 
 interface ReferralData {
   code: string
-  rewardPerReferral: number
-  /** Credits each side gets when the code is redeemed. */
-  signupReward: number
-  /** Extra credits each side gets when the friend first goes Premium. */
-  premiumReward: number
+  /** Credits the INVITED friend gets on redeeming the code (the inviter gets none). */
+  inviteeReward?: number
   stats: { referrals: number; creditsEarned: number; converted?: number }
 }
 
@@ -82,8 +79,7 @@ function ReferralInner() {
   // `?? 1` and `?? 10`; when the premium reward changed the page would have
   // shown the old number to anyone whose /api/study/referral call had not
   // landed yet — the copy and the grant disagreeing only during loading.
-  const signupReward = data?.signupReward ?? REFERRAL_SIGNUP_CREDITS
-  const premiumReward = data?.premiumReward ?? REFERRAL_PREMIUM_CREDITS
+  const reward = data?.inviteeReward ?? REFERRAL_INVITEE_CREDITS
 
   return (
     <StudyScrollShell
@@ -94,10 +90,10 @@ function ReferralInner() {
           icon={Gift}
           iconColorClass="text-primary bg-primary/10"
           eyebrow={ko ? '친구 초대' : 'Invite friends'}
-          title={ko ? '친구 초대하고 크레딧 받기' : 'Invite friends, earn credits'}
+          title={ko ? `친구에게 크레딧 ${reward}개 선물하기` : `Give friends ${reward} credits`}
           subtitle={ko
-            ? `가입하면 둘 다 크레딧 ${signupReward}개, 프리미엄으로 업그레이드하면 각각 ${premiumReward}개 더!`
-            : `You both get ${signupReward} credit when they sign up — and ${premiumReward} more each when they go Premium!`}
+            ? `가입한 친구에게 크레딧 ${reward}개`
+            : `Friends who join get ${reward} credits`}
         />
       }
     >
@@ -139,7 +135,7 @@ function ReferralInner() {
             </div>
           ) : (
             <>
-              <ShareCard code={data.code} signupReward={signupReward} premiumReward={premiumReward} ko={ko} />
+              <ShareCard code={data.code} reward={reward} ko={ko} />
 
               <div className="grid grid-cols-2 gap-3">
                 <StudyMetric
@@ -165,7 +161,7 @@ function ReferralInner() {
   )
 }
 
-function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; signupReward: number; premiumReward: number; ko: boolean }) {
+function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boolean }) {
   const [copied, setCopied] = useState(false)
 
   // Invite link points at /invite/CODE, which both native apps claim as a
@@ -199,14 +195,23 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
   // the Kakao JS SDK when a key is configured. Either way, copy-link is the
   // fallback. On web without a Kakao key the button stays a disabled
   // placeholder below.
+  const shareText = ko
+    ? `Classraum에서 같이 공부해요! 제 초대 코드 "${code}"로 가입하면 테스트 크레딧 ${reward}개를 받아요.`
+    : `Study with me on Classraum! Sign up with my invite code "${code}" and get ${reward} free test credits.`
+
+  // SMS: the OS composer with the message and link filled in. Capacitor hands
+  // sms: to the system on iOS and Android; iOS wants "&body=", others "?body=".
+  const shareSms = useCallback(() => {
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    window.location.href = `sms:${ios ? '&' : '?'}body=${encodeURIComponent(`${shareText} ${inviteLink}`)}`
+  }, [shareText, inviteLink])
+
   const [isNative, setIsNative] = useState(false)
   useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
   const kakaoEnabled = isKakaoShareEnabled()
   const canShare = isNative || kakaoEnabled
   const doShare = useCallback(async () => {
-    const text = ko
-      ? `Classraum에서 같이 공부해요! 초대 코드 "${code}"를 입력하면 둘 다 테스트 크레딧 ${signupReward}개, 프리미엄으로 업그레이드하면 각각 ${premiumReward}개를 더 받아요.`
-      : `Study with me on Classraum! Use my invite code "${code}" — we each get ${signupReward} test credit now, and ${premiumReward} more each when you go Premium.`
+    const text = shareText
     if (isNative) {
       try {
         await Share.share({ text, url: inviteLink, dialogTitle: ko ? '친구 초대' : 'Invite a friend' })
@@ -222,7 +227,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
       buttonTitle: ko ? '초대 코드 받기' : 'Get the code',
     })
     if (!ok) void copy(inviteLink)
-  }, [isNative, ko, code, signupReward, premiumReward, inviteLink, copy])
+  }, [isNative, ko, shareText, inviteLink, copy])
 
   return (
     <section className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-5 space-y-4">
@@ -237,12 +242,15 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
         </div>
         <p className="text-[13px] text-gray-500 mt-3 leading-relaxed">
           {ko
-            ? `친구가 가입하면 둘 다 ${signupReward}개, 프리미엄으로 업그레이드하면 각각 ${premiumReward}개를 더 받아요.`
-            : `You both get ${signupReward} credit when they sign up, and ${premiumReward} more each when they go Premium.`}
+            ? `이 코드로 가입한 친구는 크레딧 ${reward}개를 받아요.`
+            : `A friend who signs up with this code gets ${reward} credits.`}
         </p>
       </div>
 
-      <div className="space-y-2">
+      {/* One column, gap-3. It was space-y-2 with the Kakao button at
+          lg:w-auto: an inline box beside a full-width one, which on wide
+          screens sat flush against the copy button with no visible gap. */}
+      <div className="flex flex-col gap-3">
         <StudyButton
           type="button"
           variant="primary"
@@ -274,7 +282,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
           <button
             type="button"
             onClick={() => void doShare()}
-            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500] text-[#191600] text-[15px] font-semibold ring-1 ring-[#FEE500] hover:brightness-95 active:scale-[0.99] transition"
+            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500] text-[#191600] text-[15px] font-semibold ring-1 ring-[#FEE500] hover:brightness-95 active:scale-[0.99] transition"
           >
             <KakaoIcon className="w-[18px] h-[18px]" />
             {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
@@ -285,7 +293,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
             disabled
             aria-disabled="true"
             title={ko ? '곧 제공됩니다' : 'Coming soon'}
-            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500]/60 text-[#3C1E1E]/70 text-[15px] font-semibold ring-1 ring-[#FEE500]/70 cursor-not-allowed"
+            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500]/60 text-[#3C1E1E]/70 text-[15px] font-semibold ring-1 ring-[#FEE500]/70 cursor-not-allowed"
           >
             <KakaoIcon className="w-[18px] h-[18px]" />
             {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
@@ -294,6 +302,17 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
             </span>
           </button>
         )}
+
+        <StudyButton
+          type="button"
+          variant="secondary"
+          fullWidth
+          square
+          onClick={shareSms}
+          leftIcon={<MessageSquare className="w-4 h-4" />}
+        >
+          {ko ? '문자로 공유' : 'Share by text message'}
+        </StudyButton>
       </div>
     </section>
   )
@@ -369,8 +388,8 @@ function RedeemBox({ ko, onRedeemed }: { ko: boolean; onRedeemed: () => void }) 
       </div>
       <p className="text-[13px] text-gray-500 leading-relaxed">
         {ko
-          ? '친구에게 받은 코드를 입력하면 둘 다 크레딧을 받아요.'
-          : 'Enter a code a friend shared and you both get credits.'}
+          ? `친구에게 받은 코드를 입력하면 크레딧 ${REFERRAL_INVITEE_CREDITS}개를 받아요.`
+          : `Enter a code a friend shared and get ${REFERRAL_INVITEE_CREDITS} credits.`}
       </p>
       <div className="flex gap-2">
         <input

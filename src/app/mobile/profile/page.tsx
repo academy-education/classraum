@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { db } from '@/lib/supabase'
-import { REFERRAL_SIGNUP_CREDITS, REFERRAL_PREMIUM_CREDITS } from '@/lib/study/referral'
+import { REFERRAL_INVITEE_CREDITS } from '@/lib/study/referral'
 import { Capacitor } from '@capacitor/core'
 import { performLogout } from '@/lib/logout'
 import { hapticTap } from '@/lib/nativeHaptics'
@@ -818,8 +818,8 @@ function MobileProfilePageContent() {
                 </span>
                 <span className="block text-[12px] text-gray-500 truncate">
                   {language === 'korean'
-                    ? `가입 시 ${REFERRAL_SIGNUP_CREDITS}개 + 프리미엄 시 ${REFERRAL_PREMIUM_CREDITS}개`
-                    : `${REFERRAL_SIGNUP_CREDITS} credit + ${REFERRAL_PREMIUM_CREDITS} on Premium`}
+                    ? `친구에게 크레딧 ${REFERRAL_INVITEE_CREDITS}개`
+                    : `Friends get ${REFERRAL_INVITEE_CREDITS} credits`}
                 </span>
               </span>
               <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />

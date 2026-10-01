@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { Sparkles, ListOrdered, Baby, Loader2, Check, Send } from '@/app/mobile/study/_shared/icons'
+import { Sparkles, Lightbulb, Loader2, Check, Send } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { hapticSelection } from '@/lib/nativeHaptics'
 
@@ -70,7 +70,7 @@ export function ExplainMore({
 }: Props) {
   const label = (mode: Mode, l: Lang, question?: string) =>
     mode === 'steps'   ? (l === 'ko' ? '단계별 풀이' : 'Step-by-step')
-    : mode === 'simpler' ? (l === 'ko' ? '더 쉽게' : 'Explain simply')
+    : mode === 'simpler' ? (l === 'ko' ? '더 자세히 설명' : 'Explain more')
     // A follow-up is labelled with what was asked — the answer alone reads
     // as a reply to nothing once the page has been reloaded.
     : (question?.trim() || (l === 'ko' ? '추가 질문' : 'Your question'))
@@ -112,7 +112,7 @@ export function ExplainMore({
   // "Spent" per (mode, language): a non-errored item exists for this mode
   // in the selected language. Switching language re-enables the buttons.
   const spent = (mode: Mode) => items.some(it => it.mode === mode && it.lang === lang && !it.error)
-  const stepsUsed = spent('steps')
+
   const simplerUsed = spent('simpler')
   const ko = lang === 'ko'
 
@@ -159,7 +159,7 @@ export function ExplainMore({
       <div className="flex items-center justify-between gap-2">
         <span className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
           <Sparkles className="w-3 h-3" />
-          {ko ? '더 알아보기' : 'Explain more'}
+          {ko ? '더 알아보기' : 'More help'}
         </span>
         <div className="inline-flex items-center rounded-full bg-gray-100 p-0.5" role="group" aria-label={ko ? '설명 언어' : 'Explanation language'}>
           {(['en', 'ko'] as Lang[]).map(l => (
@@ -178,27 +178,18 @@ export function ExplainMore({
         </div>
       </div>
 
-      {/* Quick-action chips — step-by-step first, then simpler.
-          gap-3, not gap-2: the chips are h-8 and project a 44px hit area, so
-          a 12px gap is what makes the projected areas tile instead of
-          overlapping when they wrap onto two lines. */}
+      {/* Quick action. Step-by-step is hidden (2026-10-01): "Explain more"
+          now walks the passage, the key and every choice by letter, which
+          covered what step-by-step was for. Saved step-by-step answers still
+          render in the stack below. gap-3 keeps 44px hit areas tiling. */}
       <div className="flex flex-wrap items-center gap-3">
-        <button
-          type="button"
-          onClick={() => void run('steps')}
-          disabled={busy || stepsUsed}
-          className="tap-target-y inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[13px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
-        >
-          {stepsUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <ListOrdered className="w-3.5 h-3.5" />}
-          {label('steps', lang)}
-        </button>
         <button
           type="button"
           onClick={() => void run('simpler')}
           disabled={busy || simplerUsed}
           className="tap-target-y inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[13px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
         >
-          {simplerUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Baby className="w-3.5 h-3.5" />}
+          {simplerUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Lightbulb className="w-3.5 h-3.5" />}
           {label('simpler', lang)}
         </button>
       </div>
