@@ -29,7 +29,6 @@ export const JOB_REGISTRY: JobSpec[] = [
   // Money. If these stop, charges are missed or refunds never reconcile.
   { job: 'subscription-billing',         label: 'Subscription billing',        schedule: '0 9 * * *',   maxSilenceMinutes: 2 * D, severity: 'critical' },
   { job: 'study-billing',                label: 'Study billing',               schedule: '15 9 * * *',  maxSilenceMinutes: 2 * D, severity: 'critical' },
-  // Emails auto-renewing subscribers ~3 days before each charge, once per period.
   // Sends any missing Study receipt: the pre-launch backfill, then a safety net for failed live sends.
   { job: 'study-receipt-sweep',          label: 'Study receipt sweep',         schedule: '15 0 * * *',  maxSilenceMinutes: 2 * D, severity: 'warning' },
   { job: 'study-refund-sync',            label: 'Study refund reconcile',      schedule: '40 3 * * *',  maxSilenceMinutes: 2 * D, severity: 'critical' },
