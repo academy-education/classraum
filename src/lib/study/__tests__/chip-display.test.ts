@@ -16,9 +16,15 @@
  *
  * NOT covered here: the stored rows, which still carry the capitals. They
  * are deliberately unchanged — see chip-display.ts.
+ *
+ * POLICY CHANGE 2026-10-01 (owner's decision): the test screen now passes
+ * the opener, taken from the KEY, and the pool shows it capitalised on
+ * purpose so students can see how the sentence starts. Without a key the
+ * helpers still reveal nothing. See "the sentence starter is shown" below.
  */
 import {
   poolChips,
+  openerChip,
   assembledChips,
   endPunctuation,
   leaksOpenerByCapitalisation,
@@ -34,7 +40,7 @@ const CHOICES = [
 const KEY = 'The solution | proposed by the engineer | was implemented | last quarter'
 
 describe('the chip pool', () => {
-  it('never reveals which chip opens the sentence', () => {
+  it('without a key, never reveals which chip opens the sentence', () => {
     const pool = poolChips(CHOICES, [])
     const capitalised = pool.filter(c => /^[A-Z]/.test(c))
     expect(capitalised).toEqual([])
@@ -135,5 +141,32 @@ describe('the assembled row does not leak the opener', () => {
 
   it('accepts the proper-noun cost, as the pool already does', () => {
     expect(assembledChips(['when', 'Maria', 'arrived'])).toEqual(['When', 'maria', 'arrived'])
+  })
+})
+
+describe('the sentence starter is shown (owner decision 2026-10-01)', () => {
+  it('finds the opener from the key, ignoring case', () => {
+    expect(openerChip(['proposed by the engineer', 'the solution'], 'The solution | proposed by the engineer')).toBe('the solution')
+    expect(openerChip(CHOICES, KEY)).toBe('The solution')
+    expect(openerChip(CHOICES, null)).toBeNull()
+    expect(openerChip(CHOICES, 'nothing matches | here')).toBeNull()
+  })
+
+  it('capitalises the opener and nothing else in the pool', () => {
+    const choices = ['proposed by the engineer', 'last quarter', 'the solution', 'was implemented']
+    const pool = poolChips(choices, [], openerChip(choices, 'The solution | proposed by the engineer | was implemented | last quarter'))
+    expect(pool.filter(c => /^[A-Z]/.test(c))).toEqual(['The solution'])
+  })
+
+  it('lowercases a capital that is NOT the opener, so only the real start looks like one', () => {
+    // live shape: "I recommended" capitalised while the sentence opens "The book"
+    const choices = ['the book', 'I recommended', 'was late']
+    const pool = poolChips(choices, [], openerChip(choices, 'The book | I recommended | was late'))
+    expect(pool).toEqual(['The book', 'i recommended', 'was late'])
+  })
+
+  it('keeps the opener capitalised wherever it is placed in the row', () => {
+    expect(assembledChips(['was late', 'the book'], 'the book')).toEqual(['Was late', 'The book'])
+    expect(assembledChips(['the book', 'I recommended'], 'the book')).toEqual(['The book', 'i recommended'])
   })
 })

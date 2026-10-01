@@ -230,7 +230,8 @@ describe('TOEFL Writing per-section timers', () => {
   it('answers given before the expiry survive the hard advance', async () => {
     await renderWritingTest()
     // Answer question 1 by tapping its chips in order.
-    fireEvent.click(screen.getByRole('button', { name: 'the cat' }))
+    // The opener is shown capitalised in the pool (owner's decision 2026-10-01).
+    fireEvent.click(screen.getByRole('button', { name: 'The cat' }))
     fireEvent.click(screen.getByRole('button', { name: 'sat' }))
     fireEvent.click(screen.getByRole('button', { name: 'here' }))
 

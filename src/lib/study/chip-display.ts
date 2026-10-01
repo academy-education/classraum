@@ -20,7 +20,28 @@
  * stored rows are deliberately NOT rewritten: normalising 44 live items
  * would be churn with no student-visible effect, and every touched item is
  * a chance to introduce a new defect.
+ *
+ * POLICY CHANGE, 2026-10-01 (owner's decision). The correct opener is now
+ * SHOWN capitalised in the pool, on purpose, so students can see how the
+ * sentence starts: "capitalize the first choice that is the sentence starter
+ * so that the users know it's how you start". Every other chip stays
+ * lowercase. This is a deliberate hint, not a leak: it gives position 1
+ * away on EVERY item (not 41%), cutting a 6-chunk item from 720 orderings to
+ * 120. The opener is taken from the answer key, never from the stored
+ * capitals, so the 2 items whose lone capital is NOT the opener cannot
+ * mislead anyone.
  */
+
+/**
+ * The chip that starts the sentence: the key's first chunk, matched to a
+ * choice ignoring case (choices are stored "the solution", the key "The
+ * solution"). Null when the key is missing or matches no choice.
+ */
+export function openerChip(choices: readonly string[], correctAnswer: string | null | undefined): string | null {
+  const first = String(correctAnswer ?? '').split('|')[0]?.trim().toLowerCase() ?? ''
+  if (!first) return null
+  return choices.find(c => c.trim().toLowerCase() === first) ?? null
+}
 
 /** Lowercase the first character; leave the rest exactly as authored. */
 export function lcFirst(s: string): string {
@@ -35,14 +56,13 @@ export function ucFirst(s: string): string {
 /**
  * The pool of unplaced chips, as the student sees them.
  *
- * Every chip is lowercase-initial so capitalisation carries no positional
- * information. A chunk that is intrinsically capitalised — "Maria", "I" —
- * is lowercased here too: it reads slightly oddly in the pool, and that is
- * the correct trade, because the alternative is that the only capitalised
- * chip in the pool is usually the answer's first word.
+ * The opener (when known) is capitalised so the student can see how the
+ * sentence starts; every other chip is lowercase-initial, including an
+ * intrinsically capitalised one ("Maria", "I"), so no chip OTHER than the
+ * real opener can look like a sentence start.
  */
-export function poolChips(choices: readonly string[], placed: readonly string[]): string[] {
-  return choices.filter(c => !placed.includes(c)).map(lcFirst)
+export function poolChips(choices: readonly string[], placed: readonly string[], opener: string | null = null): string[] {
+  return choices.filter(c => !placed.includes(c)).map(c => (c === opener ? ucFirst(c) : lcFirst(c)))
 }
 
 /**
@@ -62,8 +82,10 @@ export function poolChips(choices: readonly string[], placed: readonly string[])
  * a mid-sentence "maria" reads slightly oddly, and that is the correct
  * trade against handing over the opener on half the cohort.
  */
-export function assembledChips(placed: readonly string[]): string[] {
-  return placed.map((chip, i) => (i === 0 ? ucFirst(chip) : lcFirst(chip)))
+export function assembledChips(placed: readonly string[], opener: string | null = null): string[] {
+  // The opener keeps its capital wherever it is placed: it is already shown
+  // capitalised in the pool, so lowercasing it mid-row would hide nothing.
+  return placed.map((chip, i) => (i === 0 || chip === opener ? ucFirst(chip) : lcFirst(chip)))
 }
 
 /**
