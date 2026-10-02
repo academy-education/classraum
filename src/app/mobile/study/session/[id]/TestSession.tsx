@@ -39,6 +39,7 @@ import { SubmitConfirmModal, GenerationProgress } from './test/chrome'
 import { useAppExitGuard } from './test/useAppExitGuard'
 import { setBackInterceptor } from '@/lib/back-intercept'
 import { exitMarkerKey } from '@/lib/study/test-exit-guard'
+import { decideRestoredClock, pausedKey, heartbeatKey } from '@/lib/study/test-clock-restore'
 import {
   initQuestionTime, checkpointQuestionTime, restoreQuestionTime, questionSecondsArray,
   type QuestionTimeState,
@@ -464,9 +465,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       const elapsedKey = `study:test:${sessionId}:elapsedMs`
       const legacyStartedAtKey = `study:test:${sessionId}:startedAt`
       let restored = 0
+      let hasStoredElapsed = false
       if (typeof window !== 'undefined') {
         const storedElapsed = localStorage.getItem(elapsedKey)
         if (storedElapsed) {
+          hasStoredElapsed = true
           restored = parseInt(storedElapsed, 10) || 0
         } else {
           const legacyStartedAt = localStorage.getItem(legacyStartedAtKey)
@@ -492,7 +495,29 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       }
       qTimeRef.current = restoreQuestionTime(rawQTime, restored)
       qTimeIdxRef.current = restoredIdx
-      resumedAtRef.current = Date.now()  // start the clock immediately on taking
+      // Restore the PAUSE, not just the elapsed. `paused` used to live
+      // only in React state, so a reload (iOS Safari discarding the tab
+      // overnight) came back unpaused with the clock already running —
+      // and running even on a page that loaded hidden, since no 'hidden'
+      // transition reaches a page that starts hidden. See
+      // lib/study/test-clock-restore for the rule.
+      let restoreDecision = { paused: false, running: true }
+      if (typeof window !== 'undefined') {
+        let storedPaused: string | null = null
+        let storedAliveAt: string | null = null
+        try {
+          storedPaused = localStorage.getItem(pausedKey(sessionId))
+          storedAliveAt = localStorage.getItem(heartbeatKey(sessionId))
+        } catch { /* storage blocked: treat as a fresh, unpaused clock */ }
+        restoreDecision = decideRestoredClock({
+          storedPaused, storedAliveAt, hasStoredElapsed,
+          now: Date.now(),
+          visible: typeof document === 'undefined' || document.visibilityState === 'visible',
+        })
+      }
+      pausedRef.current = restoreDecision.paused
+      setPaused(restoreDecision.paused)
+      resumedAtRef.current = restoreDecision.running ? Date.now() : null
       // Restore the Module 2 start marker so a mid-Module-2 refresh keeps
       // its own module clock (not restarted from the whole-test elapsed).
       if (typeof window !== 'undefined') {
@@ -547,6 +572,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       qTimeRef.current = checkpointQuestionTime(qTimeRef.current, qTimeIdxRef.current, elapsedNow)
       if (typeof window !== 'undefined') {
         localStorage.setItem(`study:test:${sessionId}:elapsedMs`, String(elapsedNow))
+        // Heartbeat: "the test page was open at this moment". A reload
+        // whose heartbeat is stale was a return after being away, and
+        // comes back paused (test-clock-restore).
+        try { localStorage.setItem(heartbeatKey(sessionId), String(Date.now())) } catch { /* quota */ }
         try {
           localStorage.setItem(`study:test:${sessionId}:qTimeMs`, JSON.stringify(qTimeRef.current))
         } catch { /* quota: submit falls back to the even split */ }
@@ -783,6 +812,23 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     setPaused(true)
   }, [freezeClock])
 
+  // Persist the pause the moment it changes, with the frozen elapsed
+  // beside it, so closing the app right after pressing Pause (or the
+  // exit guard pausing on the way out) cannot lose either. Only while
+  // taking: the restore in `load` sets `paused` before the phase flips,
+  // so this never clears a stored pause before reading it.
+  useEffect(() => {
+    if (phase !== 'taking' || typeof window === 'undefined') return
+    try {
+      if (paused) {
+        localStorage.setItem(`study:test:${sessionId}:elapsedMs`, String(currentElapsedMs()))
+        localStorage.setItem(pausedKey(sessionId), '1')
+      } else {
+        localStorage.removeItem(pausedKey(sessionId))
+      }
+    } catch { /* quota: the in-memory pause still holds */ }
+  }, [paused, phase, sessionId, currentElapsedMs])
+
   // Manual pause / resume toggle.
   const togglePause = useCallback(() => {
     setPaused(p => {
@@ -1004,6 +1050,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         localStorage.removeItem(`study:test:${sessionId}:m2StartMs`)
         localStorage.removeItem(`study:test:${sessionId}:wsStartMs`)
         localStorage.removeItem(`study:test:${sessionId}:qTimeMs`)
+        localStorage.removeItem(pausedKey(sessionId))
+        localStorage.removeItem(heartbeatKey(sessionId))
         // Cleared only now, on a SUCCESSFUL submit. While it exists, a
         // relaunch after the OS killed the app re-ends the test instead
         // of resuming it.
