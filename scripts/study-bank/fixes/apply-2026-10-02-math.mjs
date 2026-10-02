@@ -129,7 +129,13 @@ function plan(rows) {
 }
 
 if (ROLLBACK) {
-  const snap = JSON.parse(readFileSync(SNAP, 'utf8'))
+  // Snapshot entries carry a `stage`: 'pre-repair' (the original rows, the
+  // default rollback target) and 'pre-step2' (df25c0d2 after the option fix,
+  // before the stem edit). `--rollback pre-step2` undoes only step 2.
+  const stageArg = process.argv[process.argv.indexOf('--rollback') + 1]
+  const stage = stageArg && !stageArg.startsWith('--') ? stageArg : 'pre-repair'
+  const snap = JSON.parse(readFileSync(SNAP, 'utf8')).filter(r => (r.stage ?? 'pre-repair') === stage)
+  if (!snap.length) { console.error(`no snapshot rows for stage ${stage}`); process.exit(2) }
   for (const r of snap) { const { error } = await db.from('study_item_bank').update({ item: r.item }).eq('id', r.id); if (error) throw new Error(`${r.id}: ${error.message}`) }
   console.log(`rolled back ${snap.length} rows from ${SNAP}`); process.exit(0)
 }
@@ -142,6 +148,32 @@ if (SNAPSHOT_ONLY) {
   if (existsSync(SNAP)) { console.error(`${SNAP} exists; refusing to overwrite the pre-write snapshot`); process.exit(2) }
   writeFileSync(SNAP, JSON.stringify(PREFIXES.map(p => live[p]), null, 1) + '\n')
   console.log(`snapshot written: ${SNAP}`); process.exit(0)
+}
+
+/*
+ * STEP 2 (2026-10-02, coordinator's read-back). Step 1 left the stem saying
+ * "in simplest radical form" while only 2 of the 4 options are radicals, so
+ * 6 and 13 died from the stem alone: a 50/50 on a hard item. The options are
+ * already in simplest form, so the phrase is dropped. `--step2` appends a
+ * 'pre-step2' snapshot of the live row (keeping the pre-repair rows), then
+ * applies the stem edit with --write.
+ */
+if (process.argv.includes('--step2')) {
+  const row = live.df25c0d2, it = row.item
+  const OLD = ', in simplest radical form?', NEW = '?'
+  if (!it.prompt.endsWith(OLD)) { console.error(`df25c0d2 prompt does not end with ${JSON.stringify(OLD)}: ${it.prompt}`); process.exit(2) }
+  if (JSON.stringify(it.choices) !== JSON.stringify(['2√13', '3√13', '6', '13'])) { console.error('df25c0d2 choices are not the step-1 set'); process.exit(2) }
+  const next = { ...it, prompt: it.prompt.slice(0, -OLD.length) + NEW }
+  const leg = solveLeg(4, 9)
+  if (next.choices.filter(c => near(val(c), leg)).length !== 1 || !near(val(next.correct_answer), leg)) { console.error('step2 recompute failed'); process.exit(2) }
+  console.log(`df25c0d2 prompt:\n  - ${it.prompt}\n  + ${next.prompt}\n  recomputed ${leg.toFixed(6)} = ${next.correct_answer}`)
+  if (!WRITE) { console.log('dry run — pass --write'); process.exit(0) }
+  const snap = JSON.parse(readFileSync(SNAP, 'utf8')).map(r => ({ stage: 'pre-repair', ...r }))
+  if (!snap.some(r => r.stage === 'pre-step2')) { snap.push({ stage: 'pre-step2', ...row }); writeFileSync(SNAP, JSON.stringify(snap, null, 1) + '\n'); console.log('appended pre-step2 snapshot') }
+  else if (JSON.stringify(snap.find(r => r.stage === 'pre-step2').item) !== JSON.stringify(it)) { console.error('pre-step2 snapshot exists and differs from live; refusing'); process.exit(2) }
+  const { error } = await db.from('study_item_bank').update({ item: next }).eq('id', row.id)
+  if (error) { console.error(error.message); process.exit(1) }
+  console.log(`updated ${row.id}`); process.exit(0)
 }
 
 const steps = plan(live)
@@ -157,7 +189,7 @@ if (!WRITE) { console.log('\ndry run — pass --write'); process.exit(0) }
 if (!existsSync(SNAP)) { console.error(`no snapshot at ${SNAP}; run --snapshot first`); process.exit(2) }
 const snap = JSON.parse(readFileSync(SNAP, 'utf8'))
 for (const s of steps) {
-  const sr = snap.find(r => r.id === s.id)
+  const sr = snap.find(r => r.id === s.id && (r.stage ?? 'pre-repair') === 'pre-repair')
   if (!sr || JSON.stringify(sr.item) !== JSON.stringify(s.from)) { console.error(`${s.id}: live row differs from snapshot; refusing`); process.exit(2) }
 }
 for (const s of steps) {

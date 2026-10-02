@@ -1,5 +1,6 @@
 [
  {
+  "stage": "pre-repair",
   "id": "df25c0d2-97b3-4a24-864d-2953fd807bfe",
   "family": "sat",
   "section": "math",
@@ -66,6 +67,7 @@
   "dedup_key": "834a6c3407366a00d7965e1ed8afc0cb"
  },
  {
+  "stage": "pre-repair",
   "id": "820a40b5-c460-4d68-b2aa-ef0013c36395",
   "family": "sat",
   "section": "math",
@@ -130,5 +132,72 @@
   "task": "multiple_choice",
   "content_sha": "247af9c1cbf00f63217e4527b8da2cd5",
   "dedup_key": "3df3dfd9c9c17f8a609cb2c44528363c"
+ },
+ {
+  "stage": "pre-step2",
+  "id": "df25c0d2-97b3-4a24-864d-2953fd807bfe",
+  "family": "sat",
+  "section": "math",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Right-triangle leg-as-geometric-mean of segment and hypotenuse",
+  "difficulty": "hard",
+  "topic_tag": "leg-geometric-mean",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Geometry and Trigonometry",
+   "prompt": "In a right triangle, the altitude to the hypotenuse splits it into segments of length 4 and 9. What is the length of the longer leg, in simplest radical form?",
+   "choices": [
+    "2√13",
+    "3√13",
+    "6",
+    "13"
+   ],
+   "graphic": null,
+   "passage": null,
+   "subskill": "Right-triangle leg-as-geometric-mean of segment and hypotenuse",
+   "topic_tag": "leg-geometric-mean",
+   "difficulty": "hard",
+   "word_count": null,
+   "explanation": "Each leg is the geometric mean of the full hypotenuse (4+9=13) and its adjacent segment; the longer leg uses segment 9: √(9·13) = 3√13. 2√13 = √(4·13) is the shorter leg, 6 = √(4·9) is the altitude (the geometric mean of the two segments), and 13 is the hypotenuse.",
+   "correct_answer": "3√13",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "2√13",
+     "reason": ""
+    },
+    {
+     "choice": "6",
+     "reason": "The altitude to the hypotenuse, √(4·9), not a leg."
+    },
+    {
+     "choice": "13",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "a9337265426c079b3a9098c4c1b43345",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "qc": "deterministic sandbox recompute; no external model",
+   "method": "claude-authored+sandbox",
+   "computed": "3√13",
+   "blind_letter": "B",
+   "grader_difficulty": "hard"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:53:07.855353+00:00",
+  "updated_at": "2026-07-08T09:53:07.855353+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "c15ad762340e99afd4228842d21a6bea",
+  "dedup_key": "c1c326865ab2abbcf4cd15d7d22669c8"
  }
 ]
