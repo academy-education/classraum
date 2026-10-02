@@ -24,6 +24,8 @@ exists because an ACT Functions item shipped 31484 where its own stated
 derivation gives 31482, invisible to the sandbox, to both hub checks and
 to the explanation alike. Round inside the body if the option is rounded.
 
+- **Key at an extreme: about as often as chance — now a refusing gate (2026-10-02).** Across live maths the key is the largest or smallest option far less often than chance (SAT 31% vs 50%, SSAT 20% vs 40%); "strike the max and the min" is worth ~9 points per guessed SAT item, and authors who already knew still wrote 33%. The inserters now REFUSE a batch whose key-at-extreme rate is under 0.8 x the derived chance line (2/k: >=40% for four choices, >=32% for five), over >=10 numeric items (`node scripts/study-bank/key-extremity-gate.mjs <batch.json>`; `verify` prints it too). Aim for chance, not the bar: make the key the largest or smallest value roughly 2 in k times, by letting the named error path sometimes undershoot (dropped factor, wrong sign, half instead of double) rather than always overshoot. Do NOT overcorrect into the opposite tell — keys at an extreme far above chance, or every distractor on one side of the key, are just as strikeable. The gate is per batch on purpose; never move distractors to satisfy it after review (that repair is fitting to the instrument) — re-author. Override only with `BANK_GATE_OVERRIDE="<reason>"`.
+
 ## 2. QC and insert
 
 `verify` prints a **symbolic hub** line as well as the sandbox result: the

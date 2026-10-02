@@ -206,6 +206,17 @@ State the path in the explanation. Then:
   that. The middle-heaviness is inherent to building distractors from named
   error paths — wrong arithmetic overshoots more often than it undershoots —
   and flattening it by inventing pathless distractors is a worse trade.
+- **Key at an extreme — SUPERSEDES the "+2.6 points" reading above for every
+  maths family (SAT, ACT, SSAT, ISEE), 2026-10-02.** Measured per family it is
+  not +2.6: striking the max and min is worth SAT +9.1, SSAT +6.5 points per
+  guessed item (`KEY-EXTREMITY-RESULT.md`). The maths inserters
+  (`math-bank-helper.mjs`, and `verbal-bank-helper.mjs` with
+  `BANK_SECTION=math`) now refuse a batch whose key is at the largest or
+  smallest value on fewer than 0.8 x 2/k of its numeric items (>=40% at four
+  choices, >=32% at five; >=10 numeric items or "no measurement"). Aim for
+  about 2 in k, by letting some named error paths undershoot; do not invent
+  pathless distractors, and do not swing to keys-at-extremes well above
+  chance or all distractors on one side — that is the same tell inverted.
 - **The control is 100/k, never a literal.** Five-choice items (SSAT, and SSAT
   only among the admissions tests) have a **20%** control. A hardcoded 25% on
   five-choice data handed batches five free points.

@@ -25,6 +25,7 @@ import { createClient } from '@supabase/supabase-js'
 import { acceptsDifficulty } from './difficulty-policy.mjs'
 // The insert gate. See the block in insert() for why this import is new.
 import { gateBatch, overrideReason } from './gate.mjs'
+import { enforceKeyExtremity } from './key-extremity-gate.mjs'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -98,6 +99,9 @@ async function insert(family, batchPath, qcPath) {
   } else {
     console.log(`gate: ${g.batch} — ${g.reason}`)
   }
+  // KEY-EXTREMITY PRE-FLIGHT for maths cohorts banked through this path
+  // (2026-10-02, see key-extremity-gate.mjs).
+  if (SECTION === 'math') enforceKeyExtremity(batch, batchPath, overrideReason)
 
   const existing = []
   for (let from = 0; ; from += 1000) {
