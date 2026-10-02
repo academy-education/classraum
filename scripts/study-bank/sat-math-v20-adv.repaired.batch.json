@@ -1,0 +1,288 @@
+[
+ {
+  "id": "SM20A-A1",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay from two data points",
+  "difficulty": "medium",
+  "prompt": "The mass of a radioactive sample decreases exponentially over time. One day after a measurement began, the mass of the sample was 250 grams. Four days after the measurement began, the mass was 128 grams. To the nearest hundredth of a gram, what was the mass of the sample six days after the measurement began?",
+  "choices": [
+   "46.67",
+   "81.92",
+   "89.74",
+   "102.40"
+  ],
+  "correct_answer": "81.92",
+  "explanation": "In the 3 days from day 1 to day 4, the mass is multiplied by 128/250 = 0.512. If b is the daily decay factor, then b³ = 0.512, so b = 0.8: the mass decreases by 20% each day. From day 4 to day 6 is 2 more days, so the mass is 128(0.8)² = 128(0.64) = 81.92 grams. The value 46.67 comes from treating the decrease as linear: the mass drops 122 grams in 3 days, about 40.67 grams per day, and subtracting 2 days of that from 128 gives 46.67. The value 89.74 comes from dividing the 3-day decrease of 48.8% by 3 to get a daily decrease of about 16.27% and compounding that for 2 days; a percent decrease over 3 days cannot be split evenly into daily percents. The value 102.40 comes from applying the daily factor 0.8 only once for the two days from day 4 to day 6.",
+  "bounds": [],
+  "solve": "const b = Math.cbrt(128/250); return Math.round(128*b*b*100)/100;",
+  "distractor_solve": {
+   "46.67": "return Math.round((128 - 2*(250-128)/3)*100)/100;",
+   "89.74": "const d = (1 - 128/250)/3; return Math.round(128*(1-d)*(1-d)*100)/100;",
+   "102.40": "return Math.round(128*Math.cbrt(128/250)*100)/100;"
+  }
+ },
+ {
+  "id": "SM20A-A2",
+  "domain": "Advanced Math",
+  "subskill": "Factored quadratic in context: maximum value",
+  "difficulty": "medium",
+  "prompt": "h(t) = −16(t − 5)(t + 1)\n\nThe function h gives the height, in feet, of a ball t seconds after it is thrown upward from the roof of a building, for 0 ≤ t ≤ 5. What is the maximum height, in feet, that the ball reaches?",
+  "choices": [
+   "128",
+   "140",
+   "144",
+   "208"
+  ],
+  "correct_answer": "144",
+  "explanation": "The zeros of h are t = 5 and t = −1, and the graph of h is a parabola opening downward, so its maximum occurs halfway between the zeros, at t = (5 + (−1))/2 = 2. Then h(2) = −16(2 − 5)(2 + 1) = −16(−3)(3) = 144 feet. The value 128 comes from reading the zeros as t = 5 and t = 1, using the midpoint t = 3, and finding h(3) = −16(−2)(4). The value 140 comes from using t = 2.5, halfway between the throw at t = 0 and the landing at t = 5, instead of halfway between the zeros. The value 208 comes from expanding h(t) = −16t² + 64t + 80 and computing 80 + 64²/32, dividing by 2|a| instead of 4|a| in the vertex-value formula.",
+  "bounds": [],
+  "solve": "const h=t=>-16*(t-5)*(t+1); return h((5+(-1))/2);",
+  "distractor_solve": {
+   "128": "const h=t=>-16*(t-5)*(t+1); return h((5+1)/2);",
+   "140": "const h=t=>-16*(t-5)*(t+1); return h((0+5)/2);",
+   "208": "return 80 + 64*64/32;"
+  }
+ },
+ {
+  "id": "SM20A-A3",
+  "domain": "Advanced Math",
+  "subskill": "Linear-quadratic system: coordinate of an intersection",
+  "difficulty": "medium",
+  "prompt": "y = 2x² + 7x − 34\ny = 3x − 4\n\nThe solutions to the system of equations above are (x₁, y₁) and (x₂, y₂), where x₁ < x₂. What is the value of y₂?",
+  "choices": [
+   "−19",
+   "5",
+   "11",
+   "14"
+  ],
+  "correct_answer": "5",
+  "explanation": "Set the expressions for y equal: 2x² + 7x − 34 = 3x − 4, so 2x² + 4x − 30 = 0, or x² + 2x − 15 = 0. This factors as (x + 5)(x − 3) = 0, so x = −5 or x = 3. Since x₁ < x₂, x₂ = 3 and y₂ = 3(3) − 4 = 5. The value −19 is y₁, the y-coordinate of the solution with the smaller x-value. The value 11 comes from factoring x² + 2x − 15 as (x − 5)(x + 3), which gives x = 5 as the larger x-value and y = 3(5) − 4. The value 14 comes from using the quadratic formula on 2x² + 4x − 30 = 0 with a denominator of a instead of 2a, which gives x = (−4 + 16)/2 = 6 and y = 3(6) − 4.",
+  "bounds": [],
+  "solve": "const A=2,B=4,C=-30; const x2=(-B+Math.sqrt(B*B-4*A*C))/(2*A); return 3*x2-4;",
+  "distractor_solve": {
+   "11": "return 3*5-4;",
+   "14": "const A=2,B=4,C=-30; const x=(-B+Math.sqrt(B*B-4*A*C))/A; return 3*x-4;",
+   "−19": "const A=2,B=4,C=-30; const x1=(-B-Math.sqrt(B*B-4*A*C))/(2*A); return 3*x1-4;"
+  }
+ },
+ {
+  "id": "SM20A-A5",
+  "domain": "Advanced Math",
+  "subskill": "Factor and remainder theorems with two unknown coefficients",
+  "difficulty": "hard",
+  "prompt": "p(x) = x³ + ax² + bx − 9\n\nIn the polynomial above, a and b are constants. If x − 3 is a factor of p(x), and the remainder when p(x) is divided by x + 1 is 12, what is the value of a?",
+  "choices": [
+   "−18",
+   "−13",
+   "1",
+   "4"
+  ],
+  "correct_answer": "4",
+  "explanation": "Because x − 3 is a factor, p(3) = 0: 27 + 9a + 3b − 9 = 0, so 3a + b = −6. Because the remainder on division by x + 1 is 12, p(−1) = 12: −1 + a − b − 9 = 12, so a − b = 22. Adding the two equations gives 4a = 16, so a = 4. The value −18 is the value of b, found by solving the same system for the wrong constant. The value −13 comes from using p(1) = 12 for division by x + 1, which gives a + b = 20 and, with 3a + b = −6, a = −13. The value 1 comes from setting p(−1) = 0, as if x + 1 were also a factor, which gives a − b = 10 and, with 3a + b = −6, a = 1.",
+  "bounds": [],
+  "solve": "// 3a+b=-6 ; a-b=22\nreturn (-6+22)/4;",
+  "distractor_solve": {
+   "1": "// a-b=10 ; 3a+b=-6\nreturn (10-6)/4;",
+   "−18": "// 3a+b=-6 ; a-b=22 ; report b\nconst a=(-6+22)/4; return a-22;",
+   "−13": "// a+b=20 ; 3a+b=-6\nreturn (-6-20)/2;"
+  }
+ },
+ {
+  "id": "SM20A-A6",
+  "domain": "Advanced Math",
+  "subskill": "Composition: value of the outer function",
+  "difficulty": "medium",
+  "prompt": "f(x) = 2x + 1\n\nThe functions f and g satisfy g(f(x)) = 8x + 3 for all real numbers x. What is the value of g(5)?",
+  "choices": [
+   "19",
+   "27",
+   "43",
+   "91"
+  ],
+  "correct_answer": "19",
+  "explanation": "g(5) is the value of g(f(x)) at the x for which f(x) = 5. Solve 2x + 1 = 5 to get x = 2. Then g(5) = g(f(2)) = 8(2) + 3 = 19. Equivalently, g(u) = 4(u − 1) + 3 = 4u − 1, and g(5) = 19. The value 43 comes from substituting 5 directly into 8x + 3, which finds g(f(5)) = g(11) instead of g(5). The value 91 comes from computing f(5) = 11 and then substituting 11 for x in 8x + 3, which finds g(f(11)) instead of g(5). The value 27 comes from solving 2x + 1 = 5 incorrectly as x = (5 + 1)/2 = 3 and then evaluating 8(3) + 3.",
+  "bounds": [],
+  "solve": "const x=(5-1)/2; return 8*x+3;",
+  "distractor_solve": {
+   "27": "const x=(5+1)/2; return 8*x+3;",
+   "43": "return 8*5+3;",
+   "91": "const x=2*5+1; return 8*x+3;"
+  }
+ },
+ {
+  "id": "SM20A-A7",
+  "domain": "Advanced Math",
+  "subskill": "Rational equation with no solution: value of a constant",
+  "difficulty": "hard",
+  "prompt": "k/(x − 3) = (4x + 4)/(x − 3) − 6\n\nIn the equation above, k is a constant. If the equation has no solution, what is the value of k?",
+  "choices": [
+   "10",
+   "16",
+   "24",
+   "28"
+  ],
+  "correct_answer": "16",
+  "explanation": "Multiply both sides by x − 3: k = 4x + 4 − 6(x − 3) = −2x + 22, so x = (22 − k)/2. This value solves the original equation unless it equals 3, the value that makes the denominators zero. So the equation has no solution exactly when (22 − k)/2 = 3, that is, k = 16. The value 10 comes from not multiplying 6 by x − 3, which gives k = 4x − 2 and k = 10 at x = 3. The value 28 comes from treating x = −3 as the excluded value, which gives k = −2(−3) + 22. The value 24 comes from treating the zero of the numerator, x = −1, as the excluded value, which gives k = −2(−1) + 22.",
+  "bounds": [],
+  "solve": "// k = -2x + 22 ; no solution iff x = 3\nreturn -2*3+22;",
+  "distractor_solve": {
+   "10": "return 4*3+4-6;",
+   "24": "return -2*(-1)+22;",
+   "28": "return -2*(-3)+22;"
+  }
+ },
+ {
+  "id": "SM20A-B2",
+  "domain": "Advanced Math",
+  "subskill": "Sum of solutions from a non-standard quadratic",
+  "difficulty": "medium",
+  "prompt": "(3x + 2)(x − 4) = x + 6\n\nWhat is the sum of the solutions to the equation above?",
+  "choices": [
+   "−14/3",
+   "−3",
+   "10/3",
+   "11/3"
+  ],
+  "correct_answer": "11/3",
+  "explanation": "Expand the left side: (3x + 2)(x − 4) = 3x² − 12x + 2x − 8 = 3x² − 10x − 8. Subtract x + 6 from both sides: 3x² − 11x − 14 = 0. This factors as (3x − 14)(x + 1) = 0, so the solutions are 14/3 and −1, and their sum is 14/3 − 1 = 11/3 (equivalently, −b/a = 11/3). The value 10/3 comes from moving only the constant 6 to the left side and leaving the x term behind, which gives 3x² − 10x − 14 = 0. The value −3 comes from expanding the middle term with the wrong sign, 3x² + 10x − 8, which leads to 3x² + 9x − 14 = 0. The value −14/3 is c/a, the product of the solutions, rather than their sum.",
+  "bounds": [],
+  "solve": "const a=3,b=-10-1,c=-8-6; return -b/a;",
+  "distractor_solve": {
+   "10/3": "const a=3,b=-10,c=-8-6; return -b/a;",
+   "−3": "const a=3,b=10-1,c=-14; return -b/a;",
+   "−14/3": "const a=3,c=-8-6; const r=c/a; return Math.abs(r+14/3)<1e-9?\"−14/3\":String(r);"
+  }
+ },
+ {
+  "id": "SM20A-B3",
+  "domain": "Advanced Math",
+  "subskill": "Matching coefficients of a factored product",
+  "difficulty": "medium",
+  "prompt": "(ax + 5)(3x + m) = 6x² + kx − 20\n\nThe equation above is true for all values of x, where a, m, and k are constants. What is the value of k?",
+  "choices": [
+   "−2",
+   "3",
+   "7",
+   "23"
+  ],
+  "correct_answer": "7",
+  "explanation": "Expanding the left side gives 3ax² + (am + 15)x + 5m. Matching the x² coefficients, 3a = 6, so a = 2. Matching the constant terms, 5m = −20, so m = −4. Then k = am + 15 = 2(−4) + 15 = 7. The value −2 comes from pairing the wrong terms for the middle coefficient, computing a·5 + 3·m = 10 − 12 instead of a·m + 5·3. The value 3 comes from adding the leading coefficients instead of multiplying them, a + 3 = 6, so that a = 3 and k = 3(−4) + 15. The value 23 comes from a sign error in the middle coefficient, computing 15 − am = 15 − (−8) instead of am + 15.",
+  "bounds": [],
+  "solve": "const a=6/3, m=-20/5; return a*m+15;",
+  "distractor_solve": {
+   "3": "const a=6-3, m=-20/5; return a*m+15;",
+   "23": "const a=6/3, m=-20/5; return 15-a*m;",
+   "−2": "const a=6/3, m=-20/5; return a*5+3*m;"
+  }
+ },
+ {
+  "id": "SM20A-B4",
+  "domain": "Advanced Math",
+  "subskill": "Absolute value of a quadratic meeting a slanted line",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = |x² − 2x − 3| and the line y = x + b, where b is a constant, intersect at exactly three points. What is the greatest possible value of b?",
+  "choices": [
+   "−21/4",
+   "1",
+   "13/4",
+   "4"
+  ],
+  "correct_answer": "13/4",
+  "explanation": "The expression x² − 2x − 3 = (x + 1)(x − 3) is negative for −1 < x < 3, so on that interval the graph is the reflected arch y = −x² + 2x + 3, with a peak at (1, 4); outside it the graph follows the original parabola. A line of slope 1 meets the two outer branches once each for every b > −3, so exactly three intersections happen when the line meets the arch at exactly one point. That happens in two ways. The line can be tangent to the arch: x + b = −x² + 2x + 3 gives x² − x + (b − 3) = 0, and a single solution needs 1 − 4(b − 3) = 0, so b = 13/4, with tangency at x = 1/2, inside the arch. Or the line can pass through the corner (−1, 0), giving b = 1, where it meets the arch again at x = 2 and the right branch at x = 4. For 1 < b < 13/4 the line crosses the arch twice (four points), and for b > 13/4 it misses the arch (two points), so the greatest value is 13/4. The value 1 is the line through the corner (−1, 0); it also gives exactly three points but is not the greatest such value. The value 4 comes from using the arch's maximum height as b, as if the line were horizontal; the line y = x + 4 lies above the arch and meets the graph at only two points. The value −21/4 comes from requiring tangency to the unreflected parabola, x + b = x² − 2x − 3, without noticing that the tangent point x = 3/2 lies where the graph has been reflected.",
+  "bounds": [],
+  "solve": "const b=3+1/4; return b;",
+  "distractor_solve": {
+   "1": "const x=-1,y=0; return y-x;",
+   "4": "const xv=1; return -xv*xv+2*xv+3;",
+   "−21/4": "const r=-3-9/4; return Math.abs(r+21/4)<1e-9?\"−21/4\":String(r);"
+  }
+ },
+ {
+  "id": "SM20A-B6",
+  "domain": "Advanced Math",
+  "subskill": "System of exponential equations with different bases",
+  "difficulty": "medium",
+  "prompt": "(2ˣ)(8ʸ) = 16⁵\n3ˣ / 9ʸ = 243\n\nIf x and y satisfy the system of equations above, what is the value of x?",
+  "choices": [
+   "33/5",
+   "35/4",
+   "11",
+   "13"
+  ],
+  "correct_answer": "11",
+  "explanation": "Rewrite each equation over a single base. Since 8 = 2³ and 16 = 2⁴, the first equation is 2^(x + 3y) = 2²⁰, so x + 3y = 20. Since 9 = 3² and 243 = 3⁵, the second is 3^(x − 2y) = 3⁵, so x − 2y = 5. Subtracting, 5y = 15, so y = 3 and x = 5 + 2(3) = 11. The value 13 comes from rewriting 8ʸ as 2^(y + 3) instead of 2^(3y), which gives x + y + 3 = 20; with x − 2y = 5 this yields y = 4 and x = 13. The value 33/5 comes from rewriting 16⁵ as 2⁹ by adding the exponents 4 and 5 instead of multiplying them, which gives x + 3y = 9. The value 35/4 comes from treating 9ʸ as 3ʸ, which gives x − y = 5 in place of x − 2y = 5.",
+  "bounds": [],
+  "solve": "const y=(20-5)/5; return 5+2*y;",
+  "distractor_solve": {
+   "13": "const y=(20-3-5)/3; return 5+2*y;",
+   "33/5": "const y=(9-5)/5; return 5+2*y;",
+   "35/4": "const y=(20-5)/4; return 5+y;"
+  }
+ },
+ {
+  "id": "SM20A-B7",
+  "domain": "Advanced Math",
+  "subskill": "Equivalent exponential models: new base and new time unit",
+  "difficulty": "hard",
+  "prompt": "The population of a town t years after 2010 is modeled by P(t) = 4,000(1.69)^(t/10). The same population can be modeled by Q(m) = 4,000(1.3)^(m/k), where m is the number of months after the start of 2010 and k is a constant. What is the value of k?",
+  "choices": [
+   "1200/23",
+   "60",
+   "1200/13",
+   "240"
+  ],
+  "correct_answer": "60",
+  "explanation": "Since 1.69 = 1.3², P(t) = 4,000(1.3²)^(t/10) = 4,000(1.3)^(t/5), so the population is multiplied by 1.3 every 5 years. Five years is 5 × 12 = 60 months, so with m in months the model is 4,000(1.3)^(m/60), and k = 60. Check: m = 12t gives (1.3)^(12t/60) = (1.3)^(t/5). The value 240 comes from doubling the 10-year period instead of halving it, giving 20 years, then converting to 240 months. The value 1200/23 comes from assuming the period shrinks in proportion to the percent increase, 10 × 30/69 years, then converting to months. The value 1200/13 comes from scaling the 10-year period by the ratio of the bases, 10 × 1.3/1.69 years, then converting to months.",
+  "bounds": [],
+  "solve": "const years=10*Math.log(1.3)/Math.log(1.69); return Math.round(years*12*1e9)/1e9;",
+  "distractor_solve": {
+   "240": "return 10*2*12;",
+   "1200/23": "return 10*(30/69)*12;",
+   "1200/13": "return 10*(1.3/1.69)*12;"
+  }
+ },
+ {
+  "id": "SM20A-C2",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: constant exponent in an equivalent form",
+  "difficulty": "medium",
+  "prompt": "(x^a)(⁴√(x³)) / √x = x^(5/2)\n\nThe equation above is true for all x > 0, where a is a constant. What is the value of a?",
+  "choices": [
+   "1/2",
+   "5/4",
+   "9/4",
+   "15/4"
+  ],
+  "correct_answer": "9/4",
+  "explanation": "Write each radical as a power of x: ⁴√(x³) = x^(3/4) and √x = x^(1/2). Multiplying powers adds exponents and dividing subtracts them, so the left side is x^(a + 3/4 − 1/2) = x^(a + 1/4). Setting a + 1/4 = 5/2 gives a = 10/4 − 1/4 = 9/4. The value 15/4 comes from reading √x as x² instead of x^(1/2), which gives a + 3/4 − 2 = 5/2. The value 5/4 comes from adding the exponent of √x instead of subtracting it, a + 3/4 + 1/2 = 5/2. The value 1/2 comes from dividing the exponents instead of subtracting them, (a + 3/4) ÷ (1/2) = 5/2, which gives a + 3/4 = 5/4.",
+  "bounds": [],
+  "solve": "return 5/2 + 1/2 - 3/4;",
+  "distractor_solve": {
+   "15/4": "return 5/2 + 2 - 3/4;",
+   "5/4": "return 5/2 - 3/4 - 1/2;",
+   "1/2": "return (5/2)*(1/2) - 3/4;"
+  }
+ },
+ {
+  "id": "SM20A-C3",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic from vertex and a point: another output value",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of the quadratic function f has its vertex at (−2, 12) and passes through the point (0, 16). What is the value of f(−5)?",
+  "choices": [
+   "21",
+   "30",
+   "48",
+   "61"
+  ],
+  "correct_answer": "21",
+  "explanation": "Because the vertex is (−2, 12), f can be written as f(x) = a(x + 2)² + 12. Substituting the point (0, 16) gives 16 = a(2)² + 12, so 4a = 4 and a = 1. Then f(−5) = 1(−5 + 2)² + 12 = 9 + 12 = 21. The value 61 comes from writing the vertex form as a(x − 2)² + 12 with the sign of the vertex's x-coordinate reversed, which still gives a = 1 but makes f(−5) = (−7)² + 12. The value 48 comes from leaving out the vertex's y-value when solving for a, 16 = 4a, so a = 4 and f(−5) = 4(9) + 12. The value 30 comes from not squaring (0 + 2) when solving for a, 16 = 2a + 12, so a = 2 and f(−5) = 2(9) + 12.",
+  "bounds": [],
+  "solve": "const h=-2,k=12,p=0,y=16; const a=(y-k)/((p-h)**2); return a*(-5-h)**2+k;",
+  "distractor_solve": {
+   "30": "const a=(16-12)/(0+2); return a*(-5+2)**2+12;",
+   "48": "const a=16/((0+2)**2); return a*(-5+2)**2+12;",
+   "61": "const a=(16-12)/((0-2)**2); return a*(-5-2)**2+12;"
+  }
+ }
+]

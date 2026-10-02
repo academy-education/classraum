@@ -1,0 +1,129 @@
+[
+ {
+  "id": "SM20A-D1",
+  "domain": "Advanced Math",
+  "subskill": "Given factor of a cubic: value of a coefficient",
+  "difficulty": "medium",
+  "prompt": "p(x) = 2x³ − 9x² + kx − 24\n\nIn the polynomial above, k is a constant. If x − 3 is a factor of p(x), what is the value of k?",
+  "choices": [
+   "17",
+   "29",
+   "33",
+   "51"
+  ],
+  "correct_answer": "17",
+  "explanation": "If x − 3 is a factor of p(x), then p(3) = 0. Substituting gives 2(27) − 9(9) + 3k − 24 = 54 − 81 + 3k − 24 = 3k − 51 = 0, so 3k = 51 and k = 17. The value 29 comes from evaluating 2x³ at x = 3 as 2(3²) = 18 instead of 2(3³) = 54. The value 33 comes from synthetic division with an error in the last column: after bringing down 2, −3 and k − 9, adding k − 9 to −24 instead of adding 3(k − 9). The value 51 comes from stopping at 3k = 51 without dividing by 3.",
+  "bounds": [],
+  "solve": "for (let k=-200;k<=200;k++){ if (2*27-9*9+3*k-24===0) return k; } return null;",
+  "distractor_solve": {
+   "29": "return (81+24-2*9)/3;",
+   "33": "return 24+9;",
+   "51": "return -(2*27-9*9-24);"
+  }
+ },
+ {
+  "id": "SM20A-D2",
+  "domain": "Advanced Math",
+  "subskill": "Equation in √x solved as a quadratic: product of the solutions",
+  "difficulty": "medium",
+  "prompt": "2x − 15√x + 18 = 0\n\nWhat is the product of all solutions to the equation above?",
+  "choices": [
+   "9",
+   "38.25",
+   "54",
+   "81"
+  ],
+  "correct_answer": "81",
+  "explanation": "Let u = √x, so x = u² and the equation becomes 2u² − 15u + 18 = 0, which factors as (2u − 3)(u − 6) = 0. So u = 3/2 or u = 6; both are positive, so both give solutions: x = (3/2)² = 9/4 and x = 6² = 36. Their product is (9/4)(36) = 81. The value 9 is the product of the u-values, 3/2 and 6, without squaring them back to x. The value 38.25 is the sum of the solutions, 9/4 + 36, rather than their product. The value 54 comes from squaring only one u-value and multiplying 36 by 3/2.",
+  "bounds": [],
+  "solve": "const a=2,b=-15,c=18; const d=Math.sqrt(b*b-4*a*c); const u1=(-b+d)/(2*a), u2=(-b-d)/(2*a); return (u1*u1)*(u2*u2);",
+  "distractor_solve": {
+   "9": "const a=2,b=-15,c=18; const d=Math.sqrt(b*b-4*a*c); return ((-b+d)/(2*a))*((-b-d)/(2*a));",
+   "38.25": "const a=2,b=-15,c=18; const d=Math.sqrt(b*b-4*a*c); const u1=(-b+d)/(2*a), u2=(-b-d)/(2*a); return u1*u1+u2*u2;",
+   "54": "const a=2,b=-15,c=18; const d=Math.sqrt(b*b-4*a*c); const u1=(-b+d)/(2*a), u2=(-b-d)/(2*a); return (u1*u1)*u2;"
+  }
+ },
+ {
+  "id": "SM20A-D3",
+  "domain": "Advanced Math",
+  "subskill": "Function transformation from a table: value of g at a point",
+  "difficulty": "medium",
+  "prompt": "The table shows selected values of the function f. The function g is defined by g(x) = 3f(x + 2) − 4. What is the value of g(3)?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "colLabels": [
+    "f(x)"
+   ],
+   "cells": [
+    [
+     17
+    ],
+    [
+     4
+    ],
+    [
+     12
+    ],
+    [
+     6
+    ],
+    [
+     11
+    ],
+    [
+     14
+    ],
+    [
+     3
+    ]
+   ],
+   "caption": "Values of x (rows) and the corresponding values of f(x)."
+  },
+  "choices": [
+   "29",
+   "38",
+   "41",
+   "47"
+  ],
+  "correct_answer": "29",
+  "explanation": "g(3) = 3f(3 + 2) − 4 = 3f(5) − 4. From the table, f(5) = 11, so g(3) = 3(11) − 4 = 29. The value 38 comes from treating f(x + 2) as f(x) + 2, computing 3(f(3) + 2) − 4 = 3(14) − 4. The value 41 comes from swapping the roles of the 3 and the 4, computing 4f(5) − 3 = 4(11) − 3. The value 47 comes from shifting in the wrong direction and using f(3 − 2) = f(1) = 17, giving 3(17) − 4.",
+  "bounds": [],
+  "solve": "const f={1:17,2:4,3:12,4:6,5:11,6:14,7:3}; return 3*f[3+2]-4;",
+  "distractor_solve": {
+   "38": "const f={1:17,2:4,3:12,4:6,5:11,6:14,7:3}; return 3*(f[3]+2)-4;",
+   "41": "const f={1:17,2:4,3:12,4:6,5:11,6:14,7:3}; return 4*f[3+2]-3;",
+   "47": "const f={1:17,2:4,3:12,4:6,5:11,6:14,7:3}; return 3*f[3-2]-4;"
+  }
+ },
+ {
+  "id": "SM20A-D4",
+  "domain": "Advanced Math",
+  "subskill": "Completing the square: constant in vertex form",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 4x² − 12x + 2. The function can be rewritten in the form f(x) = 4(x − h)² + k, where h and k are constants. What is the value of k?",
+  "choices": [
+   "−34",
+   "−16",
+   "−11",
+   "−7"
+  ],
+  "correct_answer": "−7",
+  "explanation": "Factor 4 from the x-terms: f(x) = 4(x² − 3x) + 2. Half of −3 is −3/2, and (3/2)² = 9/4, so f(x) = 4(x² − 3x + 9/4) − 4(9/4) + 2 = 4(x − 3/2)² − 9 + 2 = 4(x − 3/2)² − 7. So k = −7. The value −34 comes from completing the square on x² − 12x as though the leading coefficient were 1, subtracting (12/2)² = 36 from 2. The value −16 comes from using b²/(2a) = 144/8 = 18 instead of b²/(4a) = 9 as the amount to subtract from 2. The value −11 comes from a sign error on the constant term, computing −2 − 9 instead of 2 − 9.",
+  "bounds": [],
+  "solve": "const a=4,b=-12,c=2; const h=-b/(2*a); return c-a*h*h;",
+  "distractor_solve": {
+   "−34": "const b=-12,c=2; return c-(b/2)*(b/2);",
+   "−16": "const a=4,b=-12,c=2; return c-b*b/(2*a);",
+   "−11": "const a=4,b=-12,c=2; const h=-b/(2*a); return -c-a*h*h;"
+  }
+ }
+]

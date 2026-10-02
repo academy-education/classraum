@@ -79,7 +79,10 @@ const entries = []
 const deal = (choices, keyStr, i) => {
   const ch = choices.map(String); const ci = ch.indexOf(String(keyStr)); const want = SLOT[i % 4]
   const rest = shuffle(ch.filter((_, j) => j !== ci)); let r = 0
-  return { want, options: Object.fromEntries(SLOT.map(sl => [sl, sl === want ? ch[ci] : rest[r++]])) }
+  // One minus glyph in the render: candidates print U+2212, most live rows an
+  // ASCII hyphen, and a glyph that differs by arm marks the arm.
+  const show = x => x.replace(/\u2212/g, '-')
+  return { want, options: Object.fromEntries(SLOT.map(sl => [sl, show(sl === want ? ch[ci] : rest[r++])])) }
 }
 batch.forEach((it, i) => { const d = deal(it.choices, it.correct_answer, i); entries.push({ blind: { options: d.options }, key: { letter: d.want, localId: it.id, domain: it.domain, difficulty: it.difficulty, kind: 'candidate' } }) })
 control.forEach((r, i) => { const d = deal(r.item.choices, r.item.correct_answer, i); entries.push({ blind: { options: d.options }, key: { letter: d.want, localId: r.id, cohort: r.cohort, domain: 'Advanced Math', difficulty: r.difficulty, kind: 'live-control' } }) })
