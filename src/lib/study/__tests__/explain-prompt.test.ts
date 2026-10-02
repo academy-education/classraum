@@ -1,7 +1,7 @@
 /** @jest-environment node */
 import { buildExplainPrompt } from '../explain-prompt'
 
-const base = { prompt: 'Which choice is best?', choices: ['alpha', 'beta', 'gamma', 'delta'], mode: 'simpler' as const }
+const base = { prompt: 'Which choice is best?', choices: ['alpha', 'beta', 'gamma', 'delta'], mode: 'more' as const }
 
 describe('explain prompt', () => {
   it('labels the correct and chosen answers by letter, whether they arrive as text or as a letter', () => {
@@ -13,7 +13,7 @@ describe('explain prompt', () => {
     expect(fromLetter.prompt).toContain('STUDENT ANSWERED: A. alpha')
   })
   it('passes free-response answers through unchanged', () => {
-    expect(buildExplainPrompt({ prompt: 'x', correctAnswer: '42', mode: 'simpler', ko: false }).prompt).toContain('CORRECT ANSWER: 42')
+    expect(buildExplainPrompt({ prompt: 'x', correctAnswer: '42', mode: 'more', ko: false }).prompt).toContain('CORRECT ANSWER: 42')
   })
   it('"Explain more" asks for every choice by letter, and Korean must be polite', () => {
     const en = buildExplainPrompt({ ...base, correctAnswer: 'beta', ko: false })

@@ -66,7 +66,7 @@ interface Entry {
    * reading `saved_steps` from a payload that no longer had it. */
   saved: Record<'en' | 'ko', {
     steps: string | null
-    simpler: string | null
+    more: string | null
     followup: string | null
     followup_question: string | null
   }>
@@ -894,7 +894,7 @@ export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           </div>
         )}
 
-        {/* On-demand step-by-step / simpler / ask, same as practice. */}
+        {/* On-demand Explain more / ask, same as practice. */}
         <ExplainMore
           prompt={entry.question.prompt}
           passage={passageText || undefined}

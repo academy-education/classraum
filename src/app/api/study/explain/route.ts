@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { buildExplainPrompt } from '@/lib/study/explain-prompt'
+import { buildExplainPrompt, type ExplainMode } from '@/lib/study/explain-prompt'
 import { requireStudyUser } from '@/lib/study/auth'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { loggers } from '@/lib/error-monitoring'
@@ -12,13 +12,14 @@ import { loggers } from '@/lib/error-monitoring'
  * question the student just answered (or a wrong-notebook entry).
  *
  * This is the interactive layer on top of the static grader explanation:
- * the student can ask for a step-by-step walkthrough, a simpler
- * re-explanation, or ask their own question about it. One short model call
+ * the student can ask for a fuller "Explain more" walkthrough, or ask their
+ * own question about it. One short model call
  * per tap.
  *
  * Modes:
- *   steps    → numbered worked solution
- *   simpler  → plain-language re-explanation, no jargon
+ *   more     → "Explain more": the key and every other choice, by letter
+ *   steps    → numbered worked solution. The button is hidden (2026-10-01)
+ *              and no client sends it; kept so an explicit request still works.
  *   followup → answers the student's own typed question about this item
  *
  * The follow-up shipped on 2026-07-14, was hidden a week later in a3cbff44
@@ -28,7 +29,7 @@ import { loggers } from '@/lib/error-monitoring'
  * nearly earned a migration to store output nothing produced.
  */
 
-type Mode = 'steps' | 'simpler' | 'followup'
+type Mode = ExplainMode
 
 interface Body {
   prompt?: string
@@ -42,7 +43,7 @@ interface Body {
   /** The student's own question, for mode 'followup'. */
   followup?: string
   language?: 'en' | 'ko'
-  /** When present, the generated steps/simpler text is persisted against
+  /** When present, the generated steps/more text is persisted against
    *  this attempt so it survives a reload of the wrong-answer notebook. */
   attemptId?: string
 }
@@ -66,8 +67,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'bad json' }, { status: 400 })
   }
 
+  /* Anything that is not explicitly 'steps' or 'followup' is "Explain more".
+   * That includes 'simpler' from a client still running the pre-2026-10-01
+   * bundle: its button is the same one, and its output belongs in `more` —
+   * the `simpler` column holds only the retired "Explain simply" prompt. */
+  const requested = body.mode as string | undefined
   const mode: Mode =
-    body.mode === 'simpler' || body.mode === 'followup' ? body.mode : 'steps'
+    requested === 'steps' || requested === 'followup' ? requested : 'more'
   const ko = body.language === 'ko'
   const prompt = (body.prompt ?? '').slice(0, 4000)
   if (!prompt.trim()) {
@@ -95,7 +101,7 @@ export async function POST(req: NextRequest) {
     })
     const clean = text.replace(/\*\*/g, '').replace(/^#+\s*/gm, '').trim()
 
-    // Persist steps/simpler against the attempt so the wrong-answer
+    // Persist steps/more against the attempt so the wrong-answer
     // notebook can re-show them on reload (best-effort; a save failure
     // never blocks returning the explanation the student is waiting on).
     const attemptId = (body.attemptId ?? '').trim()
@@ -120,7 +126,9 @@ export async function POST(req: NextRequest) {
           // compile error rather than a runtime rejection nobody reads.
           const columns =
             mode === 'steps'   ? { steps: clean } :
-            mode === 'simpler' ? { simpler: clean } :
+            // NOT `simpler`: that column is the retired "Explain simply"
+            // prompt's output, and is never written or read any more.
+            mode === 'more'    ? { more: clean } :
             // The question is stored beside the answer. Without it the saved
             // follow-up is a reply to nothing when the notebook reloads.
             { followup: clean, followup_question: followup }

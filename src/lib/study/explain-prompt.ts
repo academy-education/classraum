@@ -2,7 +2,7 @@
  * Prompt construction for /api/study/explain ("More help" on review and
  * practice). Pure, so the route and a live check use the exact same text.
  */
-export type ExplainMode = 'steps' | 'simpler' | 'followup'
+export type ExplainMode = 'steps' | 'more' | 'followup'
 type Mode = ExplainMode
 
 export interface ExplainInput {
@@ -32,11 +32,12 @@ export const MODE_INSTRUCTION: Record<Mode, { en: string; ko: string }> = {
     en: "Answer the student's follow-up question about this specific item directly and briefly. Answer the question they actually asked -- do not restate the whole solution unless that IS the question.",
     ko: '이 문항에 대한 학생의 추가 질문에 직접적이고 간결하게 답하세요. 학생이 실제로 물어본 것에 답하고, 그것이 질문이 아닌 이상 풀이 전체를 다시 설명하지 마세요.',
   },
-  /* 'simpler' is the storage key (study_attempts.saved.*.simpler); the button
-   * now reads "Explain more" / "더 자세히 설명". It replaced the 2-4 sentence
+  /* "Explain more" / "더 자세히 설명", stored in its own `more` column (see
+   * lib/study/saved-explanations.ts). It was briefly keyed 'simpler', which made
+   * the notebook serve old "Explain simply" texts under this label. It replaced the 2-4 sentence
    * plain-language version (2026-10-01): students wanted a fuller account that
    * ties the passage, the question and EACH choice together by letter. */
-  simpler: {
+  more: {
     en: 'Explain this question more fully so the student understands it. In one sentence, say what the question is asking and point to the part of the passage or transcript that decides it, quoting it when there is one. Then explain why the correct choice is right, naming it by its letter, e.g. "(B)". Then go through every other choice by letter and say in a sentence why it is wrong. If the student chose a wrong letter, start that part with their choice and say what made it tempting. Refer to the choices by letter throughout. Use plain words and short paragraphs.',
     ko: '학생이 이 문제를 잘 이해할 수 있도록 더 자세히 설명해 주세요. 먼저 한 문장으로 문제가 무엇을 묻는지 말하고, 정답을 가르는 지문이나 대본의 부분을 짚어 주세요. 지문이 있으면 해당 부분을 인용해 주세요. 그다음 정답 선택지가 왜 맞는지 "(B)"처럼 알파벳으로 지칭하며 설명해 주세요. 이어서 나머지 선택지를 하나도 빠짐없이 알파벳으로 지칭하며 각각 왜 틀렸는지 한 문장씩 설명해 주세요. 학생이 오답을 골랐다면 그 선택지부터 다루고, 왜 헷갈리기 쉬웠는지도 말해 주세요. 쉬운 말과 짧은 문단을 사용해 주세요.',
   },
@@ -86,8 +87,8 @@ export function buildExplainPrompt(input: ExplainInput): { system: string; promp
      * distractors AND the key does not fit in 150 words, so the model obeyed
      * the cap and silently dropped the distractors — the cap was half the
      * reason the instruction above was not being followed. `steps` and
-     * `simpler` (now "Explain more", which walks every choice) get room. */
-    mode === 'steps' || mode === 'simpler'
+     * `more` ("Explain more", which walks every choice) get room. */
+    mode === 'steps' || mode === 'more'
       ? 'Do not restate the whole question. Keep it under ~250 words. Plain text only — no markdown headers or asterisks.'
       : 'Do not restate the whole question. Keep it under ~150 words. Plain text only — no markdown headers or asterisks.',
   ].join(' ')

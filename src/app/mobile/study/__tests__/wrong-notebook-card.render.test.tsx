@@ -34,8 +34,8 @@ jest.mock('../_shared/ExplainMore', () => ({
 import { NotebookEntryCard } from '../_shared/WrongNotebookView'
 
 const SAVED = {
-  en: { steps: 'English steps', simpler: null, followup: null, followup_question: null },
-  ko: { steps: '한국어 단계별 풀이', simpler: null, followup: null, followup_question: null },
+  en: { steps: 'English steps', more: null, followup: null, followup_question: null },
+  ko: { steps: '한국어 단계별 풀이', more: null, followup: null, followup_question: null },
 }
 
 const base = {
