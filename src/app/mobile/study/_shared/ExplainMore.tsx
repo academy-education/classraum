@@ -215,9 +215,13 @@ export function ExplainMore({
             type="submit"
             disabled={busy || !followup.trim()}
             aria-label={ko ? '보내기' : 'Send'}
-            className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-primary text-white inline-flex items-center justify-center disabled:opacity-40 active:scale-95 transition-all"
+            // The hit area is the full 44x44 right end of the 44px-tall
+            // field; the painted 32px square sits inside it unchanged.
+            className="group absolute right-0 top-0 w-11 h-11 inline-flex items-center justify-center rounded-xl disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
-            <Send className="w-3.5 h-3.5" />
+            <span className="w-8 h-8 rounded-lg bg-primary text-white inline-flex items-center justify-center group-active:scale-95 transition-all">
+              <Send className="w-3.5 h-3.5" />
+            </span>
           </button>
         </form>
       ) : (

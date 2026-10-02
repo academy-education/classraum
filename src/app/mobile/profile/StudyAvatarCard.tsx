@@ -220,7 +220,7 @@ export function StudyAvatarCard({ onSaved }: {
                 something the picture does not — that what they are
                 looking at is their initials, not a choice they made. */}
             {!preview && (
-              <p className="mt-1 text-[11.5px] text-gray-400">{t('study.avatar.usingInitials')}</p>
+              <p className="mt-1 text-[11.5px] text-gray-500">{t('study.avatar.usingInitials')}</p>
             )}
           </div>
         </div>
@@ -541,7 +541,7 @@ function Section({ label, hint, children }: { label: string; hint?: string; chil
   return (
     <section className="mt-5">
       <p className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-600">{label}</p>
-      {hint && <p className="mt-0.5 text-[11.5px] text-gray-400">{hint}</p>}
+      {hint && <p className="mt-0.5 text-[11.5px] text-gray-500">{hint}</p>}
       <div className="mt-2">{children}</div>
     </section>
   )
