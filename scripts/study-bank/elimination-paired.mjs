@@ -207,7 +207,8 @@ function score(tag) {
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const [cmd, ...rest] = process.argv.slice(2)
-  if (cmd === 'render') await render(rest)
+  // no top-level await: gate.mjs imports this file and jest compiles it to CJS
+  if (cmd === 'render') render(rest).catch(e => { console.error(e); process.exit(1) })
   else if (cmd === 'score' && rest[0]) score(rest[0])
   else { console.error('usage: elimination-paired.mjs render|score ...'); process.exit(2) }
 }
