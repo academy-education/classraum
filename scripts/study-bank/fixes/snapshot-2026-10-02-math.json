@@ -1,0 +1,134 @@
+[
+ {
+  "id": "df25c0d2-97b3-4a24-864d-2953fd807bfe",
+  "family": "sat",
+  "section": "math",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Right-triangle leg-as-geometric-mean of segment and hypotenuse",
+  "difficulty": "hard",
+  "topic_tag": "leg-geometric-mean",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Geometry and Trigonometry",
+   "prompt": "In a right triangle, the altitude to the hypotenuse splits it into segments of length 4 and 9. What is the length of the longer leg, in simplest radical form?",
+   "choices": [
+    "2√13",
+    "3√13",
+    "√117",
+    "13"
+   ],
+   "graphic": null,
+   "passage": null,
+   "subskill": "Right-triangle leg-as-geometric-mean of segment and hypotenuse",
+   "topic_tag": "leg-geometric-mean",
+   "difficulty": "hard",
+   "word_count": null,
+   "explanation": "Each leg is the geometric mean of the full hypotenuse (4+9=13) and its adjacent segment; the longer leg uses segment 9: √(9·13) = √117 = 3√13. 2√13 = √(4·13) is the shorter leg, √117 is left unsimplified, and 13 is the hypotenuse.",
+   "correct_answer": "3√13",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "2√13",
+     "reason": ""
+    },
+    {
+     "choice": "√117",
+     "reason": ""
+    },
+    {
+     "choice": "13",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "a9337265426c079b3a9098c4c1b43345",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "qc": "deterministic sandbox recompute; no external model",
+   "method": "claude-authored+sandbox",
+   "computed": "3√13",
+   "blind_letter": "B",
+   "grader_difficulty": "hard"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:53:07.855353+00:00",
+  "updated_at": "2026-07-08T09:53:07.855353+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "e70874e437cfb1ab8b5ad41ee351eb42",
+  "dedup_key": "834a6c3407366a00d7965e1ed8afc0cb"
+ },
+ {
+  "id": "820a40b5-c460-4d68-b2aa-ef0013c36395",
+  "family": "sat",
+  "section": "math",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Scaling a recipe with a constraint",
+  "difficulty": "medium",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Problem-Solving and Data Analysis",
+   "prompt": "A bread recipe uses flour and water in a ratio of 5 to 3 by weight. A baker wants to make dough using exactly 2 kilograms of a flour supply and as much water as needed, but only has 900 grams of water available. What is the maximum total weight of dough, in grams, the baker can make while keeping the 5:3 ratio?",
+   "choices": [
+    "2900",
+    "2400",
+    "3200",
+    "2000"
+   ],
+   "graphic": null,
+   "passage": null,
+   "subskill": "Scaling a recipe with a constraint",
+   "topic_tag": null,
+   "difficulty": "medium",
+   "word_count": null,
+   "explanation": "Water is the binding constraint. If water = 900 g at ratio 3 parts, one part = 300 g, so flour = 5 parts = 1500 g (only 1500 of the 2000 g flour is used). Total dough = 1500 + 900 = 2400 g.",
+   "correct_answer": "2400",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "2900",
+     "reason": ""
+    },
+    {
+     "choice": "3200",
+     "reason": ""
+    },
+    {
+     "choice": "2000",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "ff14f79b2aa346e3ae335869ae9885a1",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "qc": "deterministic sandbox recompute; no external model",
+   "method": "claude-authored+sandbox",
+   "computed": "2400",
+   "blind_letter": null,
+   "grader_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T13:22:47.397093+00:00",
+  "updated_at": "2026-07-21T13:22:47.397093+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "247af9c1cbf00f63217e4527b8da2cd5",
+  "dedup_key": "3df3dfd9c9c17f8a609cb2c44528363c"
+ }
+]

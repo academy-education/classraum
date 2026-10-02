@@ -46,6 +46,14 @@
  *   node check-math-hub.mjs --selftest    # no DB
  *   node check-math-hub.mjs --validate    # score the 90 repaired items
  *   node check-math-hub.mjs [domain]      # score the unrepaired bank
+ *   --family=act                          # another family (default sat)
+ *
+ * FAMILY FILTER (added 2026-10-02). The live pool used to be
+ * `!archived && MATH_DOMAINS.includes(domain)` with no family, section or
+ * verified filter. ACT Math's `Algebra` domain shares the SAT name, so
+ * "1339 UNREPAIRED live SAT Math items" were 1226 SAT + 113 ACT Algebra
+ * (MATH-LIVE-AUDIT-2026-10-02.md). The pool is now family + section math +
+ * verified + not archived, matching bank-state.mjs's drawable set.
  */
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
@@ -215,6 +223,8 @@ if (!RUN_AS_CLI) { /* imported for scoreItem only; the live path below is CLI-on
 else {
 const validate = process.argv.includes('--validate')
 const onlyDomain = process.argv.slice(2).find(a => !a.startsWith('--')) ?? null
+const familyArg = process.argv.slice(2).find(a => a.startsWith('--family='))
+const FAMILY = familyArg ? familyArg.slice('--family='.length) : 'sat'
 
 /*
  * BATCH MODE (added 2026-09-04). A batch path used to be refused outright,
@@ -287,7 +297,7 @@ const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_
 const rows = []
 for (let from = 0; ; from += 1000) {
   const { data, error } = await db.from('study_item_bank')
-    .select('id, domain, item, verify_meta, archived')
+    .select('id, family, section, verified, domain, item, verify_meta, archived')
     .order('id', { ascending: true }).range(from, from + 999)
   if (error) { console.error('read failed:', error.message); process.exit(2) }
   if (!data?.length) break
@@ -298,7 +308,12 @@ for (let from = 0; ; from += 1000) {
 const repaired = r => !!r.verify_meta &&
   ('legacy_choices' in r.verify_meta || 'hub_repaired_at' in r.verify_meta)
 
-let pool = rows.filter(r => !r.archived && MATH_DOMAINS.includes(r.domain))
+let pool = rows.filter(r => r.family === FAMILY && r.section === 'math' && r.verified === true &&
+  !r.archived && MATH_DOMAINS.includes(r.domain))
+if (pool.length === 0) {
+  console.error(`no live ${FAMILY} math rows read (${rows.length} rows loaded). A checker that read nothing must not print a number.`)
+  process.exit(2)
+}
 if (onlyDomain) pool = pool.filter(r => r.domain === onlyDomain)
 if (onlyDomain && pool.length === 0) {
   console.error(`no live rows in domain ${JSON.stringify(onlyDomain)}. Known domains: ${MATH_DOMAINS.join(', ')}.\n` +
@@ -309,7 +324,7 @@ pool = pool.filter(r => (validate ? repaired(r) : !repaired(r)))
 
 console.log(validate
   ? `VALIDATION — scoring the ${pool.length} items already repaired. Known result: ~23.6%.\n`
-  : `Scoring ${pool.length} UNREPAIRED live SAT Math items.\n`)
+  : `Scoring ${pool.length} UNREPAIRED live ${FAMILY.toUpperCase()} Math items (family=${FAMILY}, section=math, verified, not archived; ${rows.length} rows loaded).\n`)
 
 const byDomain = new Map()
 let scored = 0, skipped = 0, credit = 0, structured = 0

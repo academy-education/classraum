@@ -92,7 +92,7 @@ SADV7B-05 itself is not live.
   radical form" makes it formally defensible, but the real SAT never makes a
   student choose between equal values: a student who computes √(9·13) correctly
   and stops is marked wrong. check-equivalent-options missed it because it does
-  not parse radicals. **Owner decides; not edited.**
+  not parse radicals. **Fixed 2026-10-02: `√117` → `6` (the altitude); see REGISTER §5.**
 
 **Confirmed: wording defect (1, not arithmetic).**
 
@@ -100,6 +100,7 @@ SADV7B-05 itself is not live.
   of water". At 5:3, 2 kg of flour needs 1200 g of water, so the premise is
   impossible. The key 2400 (1500 g flour + 900 g water) only works if
   "exactly" is dropped. The distractor 3200 is what a literal reader computes.
+  **Fixed 2026-10-02: stem reworded, key 2400 unchanged; see REGISTER §5.**
 
 **Refuted (false positives from the sympy checker).**
 
