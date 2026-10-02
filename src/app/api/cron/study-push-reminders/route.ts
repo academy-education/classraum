@@ -5,6 +5,7 @@ import { notifyStudent, studentNotifLang } from '@/lib/study/notify'
 import { renderStudyPush } from '@/lib/study/notification-copy'
 import { DAILY_CHALLENGE_QUESTION_COUNT } from '@/lib/study/daily-challenge'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
+import { deliveryStatus } from '@/lib/ops/cron-status'
 import { verifyCronAuth } from '@/lib/cron-auth'
 
 /**
@@ -44,7 +45,7 @@ export async function GET(req: NextRequest) {
   // Heartbeat sits inside the auth guard — a 401'd request never ran the
   // job, so letting it report would mask a dead cron to the watchdog.
   // withHeartbeat rethrows, so the route's error behaviour is unchanged.
-  const summary = await withHeartbeat('study-push-reminders', runReminders)
+  const summary = await withHeartbeat('study-push-reminders', runReminders, deliveryStatus)
   return NextResponse.json(summary)
 }
 
@@ -122,7 +123,10 @@ async function runReminders() {
         ...renderStudyPush(lang, 'srsDue', { due }),
         url: '/mobile/study/review',
       }, { category: 'reminders' })
-      if (result.skipped) skipped++
+      // oauth_failed comes back skipped:true WITH failed>0 — an FCM outage,
+      // not an opt-out. Counting it as skipped made every push in an outage
+      // read as a quiet day.
+      if (result.skipped && result.failed === 0) skipped++
       else if (result.sent > 0) sent++
       else failed++
       continue
@@ -151,7 +155,7 @@ async function runReminders() {
         }
 
     const result = await sendPushToStudent(studentId, payload, { category: 'reminders' })
-    if (result.skipped) skipped++
+    if (result.skipped && result.failed === 0) skipped++
     else if (result.sent > 0) sent++
     else failed++
   }

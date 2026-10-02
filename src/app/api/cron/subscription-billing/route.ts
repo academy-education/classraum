@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { getPortOneConfig } from '@/lib/portone-config';
 import { verifyCronAuth } from '@/lib/cron-auth';
-import { recordHeartbeat } from '@/lib/ops/heartbeat';
+import { heartbeatFor, recordHeartbeat } from '@/lib/ops/heartbeat';
+import { subscriptionBillingStatus } from '@/lib/ops/cron-status';
 import type { Database } from '@/lib/database.types';
 
 // Create admin client with service role key for cron operations
@@ -71,6 +72,10 @@ export async function GET(req: NextRequest) {
     // business outcome and must not page anyone, but a rejected DB write
     // means the job did not do its job and the heartbeat has to say so.
     let writeFailures = 0;
+    // Reported-and-stepped-around data problems, and batch promises that
+    // rejected. Both went into errors[] and nothing read them.
+    let anomalies = 0;
+    let rejected = 0;
     const errors: string[] = [];
     // Subscriptions that cannot be charged at all (no billing key). Tracked
     // separately from `errors` so errorCount stays a meaningful signal.
@@ -124,6 +129,7 @@ export async function GET(req: NextRequest) {
           if (!subscription.next_billing_date) {
             console.error(`[SUBSCRIPTION-BILLING] Subscription ${subscription.id} has no next_billing_date — skipping`);
             errors.push(`Subscription ${subscription.id}: No next_billing_date`);
+            anomalies++;
             return;
           }
           const billingDate = subscription.next_billing_date;
@@ -213,9 +219,11 @@ export async function GET(req: NextRequest) {
               // plan is deleted from the code while a change is booked.
               console.error(`[SUBSCRIPTION-BILLING] Unknown pending_tier "${pendingTier}" on subscription ${subscription.id}; leaving the change scheduled`);
               errors.push(`Subscription ${subscription.id}: Unknown pending_tier ${pendingTier}`);
+              anomalies++;
             } else if (subscription.pending_monthly_amount === null) {
               console.error(`[SUBSCRIPTION-BILLING] Subscription ${subscription.id} has pending_tier "${pendingTier}" but no pending_monthly_amount; leaving the change scheduled`);
               errors.push(`Subscription ${subscription.id}: pending_tier without pending_monthly_amount`);
+              anomalies++;
             } else {
               applyPendingChange = true;
             }
@@ -508,6 +516,7 @@ export async function GET(req: NextRequest) {
         if (result.status === 'rejected') {
           failCount++;
           errors.push(`Batch error: ${result.reason?.message || 'Unknown error'}`);
+          rejected++;
         }
       }
     }
@@ -532,16 +541,20 @@ export async function GET(req: NextRequest) {
     // per-subscription write error to keep the batch going and then
     // answers 200, so an unconditional ok:true would show a green cron
     // over academies that were charged but never advanced.
+    // Since 2026-10-02 a rejected batch promise is also 'failed', and a
+    // data anomaly it stepped around is 'degraded' (cron-status.ts).
     await recordHeartbeat(
       'subscription-billing',
-      {
-        ok: writeFailures === 0,
-        detail: {
+      heartbeatFor(
+        subscriptionBillingStatus({ writeFailures, rejected, anomalies }),
+        {
           date: today,
           found: subscriptions.length,
           succeeded: successCount,
           failed: failCount,
           writeFailures,
+          rejected,
+          anomalies,
           errorCount: errors.length,
           // Standing condition, not a failure: auto-renewing subs with no
           // billing key. Surfaced so it stays visible without polluting
@@ -549,7 +562,7 @@ export async function GET(req: NextRequest) {
           unbillableCount: unbillable.length,
           unbillableIds: unbillable.slice(0, 10),
         },
-      },
+      ),
       Date.now() - startedAt,
     );
 

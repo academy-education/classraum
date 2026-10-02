@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { triggerSessionReminderNotifications } from '@/lib/notification-triggers'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
+import { reminderStatus } from '@/lib/ops/cron-status'
 
 /**
  * Daily cron — sends "session is tomorrow" reminders.
@@ -23,8 +24,11 @@ export async function GET(req: NextRequest) {
 
     // Heartbeat is recorded only past the auth guard — a 401'd request
     // never ran the job, so letting it report would mask a dead cron.
-    const result = await withHeartbeat('session-reminders', () =>
-      triggerSessionReminderNotifications(),
+    const result = await withHeartbeat(
+      'session-reminders',
+      () => triggerSessionReminderNotifications(),
+      // Per-session failures are caught so the batch continues; read them.
+      r => reminderStatus(r),
     )
 
     console.log('[CRON] Session reminder cron completed:', result)

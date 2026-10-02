@@ -1283,6 +1283,7 @@ export async function triggerSessionReminderNotifications() {
     }
 
     let successCount = 0
+    let failedCount = 0
 
     for (const session of sessions) {
       try {
@@ -1348,13 +1349,14 @@ export async function triggerSessionReminderNotifications() {
 
         successCount++
       } catch (sessionError) {
+        failedCount++
         // Don't let one bad session block the rest of the batch.
         console.error('[Session reminder] Failed for session', session.id, sessionError)
       }
     }
 
     console.log(`[Session reminder] Sent reminders for ${successCount}/${sessions.length} sessions`)
-    return { remindedSessions: successCount, totalSessions: sessions.length }
+    return { remindedSessions: successCount, totalSessions: sessions.length, failed: failedCount }
   } catch (error) {
     console.error('[Session reminder] Cron error:', error)
     throw error
@@ -1450,6 +1452,7 @@ export async function triggerAssignmentDueReminderNotifications() {
     }
 
     let successCount = 0
+    let failedCount = 0
 
     for (const assignment of assignments) {
       try {
@@ -1489,12 +1492,13 @@ export async function triggerAssignmentDueReminderNotifications() {
 
         successCount++
       } catch (err) {
+        failedCount++
         console.error('[Assignment due reminder] Failed for', assignment.id, err)
       }
     }
 
     console.log(`[Assignment due reminder] Sent ${successCount}/${assignments.length}`)
-    return { remindedAssignments: successCount, totalAssignments: assignments.length }
+    return { remindedAssignments: successCount, totalAssignments: assignments.length, failed: failedCount }
   } catch (error) {
     console.error('[Assignment due reminder] Cron error:', error)
     throw error
@@ -1556,6 +1560,7 @@ export async function triggerAssignmentOverdueNotifications() {
     }
 
     let successCount = 0
+    let failedCount = 0
 
     for (const assignment of assignments) {
       try {
@@ -1591,12 +1596,13 @@ export async function triggerAssignmentOverdueNotifications() {
 
         successCount++
       } catch (err) {
+        failedCount++
         console.error('[Assignment overdue] Failed for', assignment.id, err)
       }
     }
 
     console.log(`[Assignment overdue] Sent ${successCount}/${assignments.length}`)
-    return { notifiedAssignments: successCount, totalAssignments: assignments.length }
+    return { notifiedAssignments: successCount, totalAssignments: assignments.length, failed: failedCount }
   } catch (error) {
     console.error('[Assignment overdue] Cron error:', error)
     throw error
@@ -1644,6 +1650,7 @@ export async function triggerPaymentDueReminderNotifications() {
     }
 
     let successCount = 0
+    let failedCount = 0
 
     for (const invoice of invoices) {
       try {
@@ -1705,12 +1712,13 @@ export async function triggerPaymentDueReminderNotifications() {
 
         successCount++
       } catch (err) {
+        failedCount++
         console.error('[Payment due reminder] Failed for', invoice.id, err)
       }
     }
 
     console.log(`[Payment due reminder] Sent ${successCount}/${invoices.length}`)
-    return { remindedInvoices: successCount, totalInvoices: invoices.length }
+    return { remindedInvoices: successCount, totalInvoices: invoices.length, failed: failedCount }
   } catch (error) {
     console.error('[Payment due reminder] Cron error:', error)
     throw error
@@ -1758,6 +1766,7 @@ export async function triggerPaymentOverdueNotifications() {
     }
 
     let successCount = 0
+    let failedCount = 0
 
     for (const invoice of invoices) {
       try {
@@ -1823,12 +1832,13 @@ export async function triggerPaymentOverdueNotifications() {
 
         successCount++
       } catch (err) {
+        failedCount++
         console.error('[Payment overdue] Failed for', invoice.id, err)
       }
     }
 
     console.log(`[Payment overdue] Sent ${successCount}/${invoices.length}`)
-    return { notifiedInvoices: successCount, totalInvoices: invoices.length }
+    return { notifiedInvoices: successCount, totalInvoices: invoices.length, failed: failedCount }
   } catch (error) {
     console.error('[Payment overdue] Cron error:', error)
     throw error

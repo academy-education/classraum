@@ -3,7 +3,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { notifyStudent } from '@/lib/study/notify'
 import { tierParam } from '@/lib/study/notification-copy'
 import { grantLeagueRewards } from '@/lib/study/league-rewards'
-import { recordHeartbeat } from '@/lib/ops/heartbeat'
+import { heartbeatFor, recordHeartbeat } from '@/lib/ops/heartbeat'
 import { verifyCronAuth } from '@/lib/cron-auth'
 
 /**
@@ -81,7 +81,9 @@ export async function GET(req: NextRequest) {
   // notifications inbox alongside system events. The league page also
   // surfaces it as a banner for 36h — the inbox row stays around as
   // a permanent record.
-  const { data: closed } = await dbAdmin
+  // Checked: a failed read here means no rewards and no notifications for
+  // the whole week, and the run used to record ok:true with notified: 0.
+  const { data: closed, error: closedError } = await dbAdmin
     .from('study_league_memberships')
     .select(`
       student_id, promotion_event, next_tier, final_rank,
@@ -153,13 +155,21 @@ export async function GET(req: NextRequest) {
     notified++
   }
 
+  if (closedError) {
+    console.error('[cron/study-league-roll] closed-membership read failed', closedError)
+  }
   const summary = {
     weekStart: lastWeekStart,
     cohortsProcessed: processed ?? 0,
     notified,
     creditsAwarded,
+    ...(closedError ? { closedReadError: closedError.message } : {}),
   }
-  await recordHeartbeat('study-league-roll', { ok: true, detail: summary }, Date.now() - startedAt)
+  await recordHeartbeat(
+    'study-league-roll',
+    heartbeatFor(closedError ? 'failed' : 'ok', summary),
+    Date.now() - startedAt,
+  )
 
   return NextResponse.json(summary)
 }
