@@ -26,6 +26,7 @@ import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { TEST_SPECS, type SectionSpec } from '@/lib/test-specs'
 import { verifyAndCorrect, type Question } from '@/lib/test-verify'
+import { describeExtractionError, orderByLeastRecentlyAttempted } from '@/lib/test-spec-refresh-summary'
 
 /** Refresh target — uses arbitrary strings so any test works, not
  *  limited to the 8 hardcoded TestFamily values. */
@@ -41,23 +42,32 @@ export interface RefreshTarget {
  *  MC, confusing the model about what choiceCount to report) or on
  *  Korean fields the model translated tersely. We validate loosely here
  *  and clamp/coerce in the post-extraction step instead. */
-const SectionSpecSchema = z.object({
+export const SectionSpecSchema = z.object({
   name_en: z.string(),
-  name_ko: z.string().optional().default(''),
+  name_ko: z.string().nullish().transform(v => v ?? ''),
   questionsPerSection: z.number().int().min(1).max(300),
-  minutesPerSection: z.number().int().min(5).max(240),
-  choiceCount: z.number().int().min(2).max(5), // coerced to 4|5 below
+  // Not .int(): IELTS Speaking is published as "11-14 minutes" and an
+  // honest extractor returns 12.5. Rounded in coerceSpec.
+  minutesPerSection: z.number().min(5).max(240),
+  // Writing / Speaking sections have no options. The research prompt says
+  // "pick 4" but the extraction prompt never did, and an extractor asked to
+  // describe an essay section reports 0 or null. coerceSpec maps anything
+  // that is not 5 to 4, which is what this field always meant for them.
+  choiceCount: z.number().nullish(),
   patterns_en: z.string(),
-  patterns_ko: z.string().optional().default(''),
+  patterns_ko: z.string().nullish().transform(v => v ?? ''),
   distractorPatterns_en: z.string(),
-  distractorPatterns_ko: z.string().optional().default(''),
+  distractorPatterns_ko: z.string().nullish().transform(v => v ?? ''),
+  // .nullish(), not .optional(): the schema is sent non-strict, so a model
+  // that has nothing to say emits `null`, and .optional() rejects null —
+  // which fails the whole object for a field we treat as optional anyway.
   difficultyMix: z.object({
     easy: z.number().min(0).max(1),
     medium: z.number().min(0).max(1),
     hard: z.number().min(0).max(1),
-  }).optional(),
-  hardItemFraming_en: z.string().optional(),
-  hardItemFraming_ko: z.string().optional(),
+  }).nullish().transform(v => v ?? undefined),
+  hardItemFraming_en: z.string().nullish().transform(v => v ?? undefined),
+  hardItemFraming_ko: z.string().nullish().transform(v => v ?? undefined),
 })
 
 interface RefreshResult {
@@ -102,6 +112,8 @@ const EXTRACT_PROMPT = (researchText: string) => `
 The following is a research report on a standardized test section's current format. Extract a clean structured spec from it.
 
 If the report says authoritative numbers couldn't be found, return the closest you can with a clear note in the patterns field saying "unverified — model could not find authoritative source."
+
+If the section has no multiple-choice questions (an essay, writing or speaking section), set choiceCount to 4 and describe the task types in patterns_en. If a field is genuinely unknown, omit it rather than inventing a value.
 
 Translate the English fields to Korean too — patterns_ko, distractorPatterns_ko, hardItemFraming_ko should be natural Korean, not literal translations.
 
@@ -174,12 +186,12 @@ export async function refreshTestSpec(
       prompt: EXTRACT_PROMPT(researchText),
       temperature: 0.1,
     })
-    spec = coerceSpec(result.object as SectionSpec)
+    spec = coerceSpec(result.object)
   } catch (err) {
     // Extraction failures are usually a model dropping a required field
     // entirely. Retry once on gpt-4o (more capable extractor) before
     // giving up.
-    console.error(`[test-spec-refresh] extraction failed on mini, retrying on gpt-4o: ${(err as Error).message}`)
+    console.error(`[test-spec-refresh] extraction failed on mini, retrying on gpt-4o: ${describeExtractionError(err)}`)
     try {
       const retry = await generateObject({
         model: openai('gpt-4o'),
@@ -187,12 +199,12 @@ export async function refreshTestSpec(
         prompt: EXTRACT_PROMPT(researchText),
         temperature: 0.1,
       })
-      spec = coerceSpec(retry.object as SectionSpec)
+      spec = coerceSpec(retry.object)
     } catch (retryErr) {
-      const msg = (retryErr as Error).message ?? 'unknown'
+      const msg = describeExtractionError(retryErr)
       console.error(`[test-spec-refresh] extraction failed on retry too`, { family, sectionKey, msg, researchTextLength: researchText.length })
       await markAttempt(family, sectionKey, `extraction failed: ${msg.slice(0, 200)}`)
-      return { family, sectionKey, ok: false, notes: `extraction failed: ${msg.slice(0, 100)}`, sources: citedUrls }
+      return { family, sectionKey, ok: false, notes: `extraction failed: ${msg.slice(0, 200)}`, sources: citedUrls }
     }
   }
 
@@ -272,6 +284,7 @@ DO NOT USE: Khan Academy, Princeton Review, Kaplan, Magoosh, PrepScholar, Manhat
 Skip items that depend on copyrighted figures, audio, or images that can't be reproduced cleanly in plain text. Skip free-response / student-produced-response items — only include items with 4 or 5 multiple choice options.
 
 For each item, report:
+- If the item depends on a passage, text or table, that passage in full as plain text (the item cannot be checked without it)
 - The full problem prompt as plain text (translate any LaTeX to Unicode: x², √(2), π, ½, etc.)
 - All multiple-choice options (do NOT include letter prefixes — just the choice content)
 - The correct answer as the exact choice text
@@ -282,6 +295,7 @@ For each item, report:
 Format each item like this:
 
 ITEM 1 (source: <url>):
+Passage: <text, or "none">
 Prompt: <text>
 Choices: ["<a>", "<b>", "<c>", "<d>"]
 Correct: "<exact text>"
@@ -294,6 +308,14 @@ End with a "Sources:" line listing the URLs you used.
 `.trim()
 
 const SampleItemSchema = z.object({
+  // The passage / stimulus the item depends on, verbatim, or null. Until
+  // 2026-10-02 there was no such field, so every reading-type item reached
+  // the answer-key verifier with `passage: null` — asked to solve "Which
+  // choice best states the main idea of the passage?" with no passage — and
+  // was dropped or re-rated. That is 4 of the 10 failures on 2026-10-01
+  // (ACT English, TOEFL Reading, KSAT Korean, GRE Verbal). Used for
+  // verification only; the stored exemplar is unchanged.
+  passage: z.string().nullish().transform(v => v ?? null),
   prompt: z.string(),
   // Permissive: SPR (free-response) items come back with [] — we filter
   // them out below since our generator only does MC. Validating strictly
@@ -378,13 +400,15 @@ export async function refreshTestSpecExamples(
     const result = await generateObject({
       model: openai('gpt-4o-mini'),
       schema: SampleBatchSchema,
-      prompt: `Extract the practice items from this research report into the structured schema. Skip items that are incomplete or that depend on figures/audio. If a "difficulty" label was given by the test maker, preserve it; otherwise estimate honestly.\n\nReport:\n${researchText}`,
+      prompt: `Extract the practice items from this research report into the structured schema. Put the item's passage in "passage" verbatim (null when it has none). Skip items that are incomplete or that depend on figures/audio. If a "difficulty" label was given by the test maker, preserve it; otherwise estimate honestly.\n\nReport:\n${researchText}`,
       temperature: 0.1,
     })
     items = result.object.items
   } catch (err) {
-    console.error('[test-spec-refresh] sample extraction failed', { family, sectionKey, err })
-    return { family, sectionKey, ok: false, notes: 'extraction failed', sources: citedUrls, examplesAdded: 0 }
+    const msg = describeExtractionError(err)
+    console.error('[test-spec-refresh] sample extraction failed', { family, sectionKey, msg })
+    await markAttempt(family, sectionKey, `samples: extraction failed: ${msg.slice(0, 200)}`)
+    return { family, sectionKey, ok: false, notes: `extraction failed: ${msg.slice(0, 200)}`, sources: citedUrls, examplesAdded: 0 }
   }
 
   // Filter out SPR / free-response items (empty choices) and any item
@@ -403,7 +427,7 @@ export async function refreshTestSpecExamples(
   // fill the fields the extractor doesn't produce with their empty
   // values so the verifier gets the same shape the generator feeds it.
   const asQuestions: Question[] = mcItems.map(it => ({
-    passage: null,
+    passage: it.passage,
     passageGroupId: null,
     listeningTask: null,
     readingTask: null,
@@ -505,9 +529,14 @@ Why hard: ${q.explanation}`
 /** Post-extraction cleanup: coerce loosely-typed model output into the
  *  canonical SectionSpec shape (clamp choiceCount, ensure 4 if the
  *  model returned something weird like 3 for a 25%-SPR section). */
-function coerceSpec(s: SectionSpec): SectionSpec {
-  const cc = s.choiceCount === 5 ? 5 : 4 // default to 4 for anything non-5
-  return { ...s, choiceCount: cc }
+export function coerceSpec(s: z.infer<typeof SectionSpecSchema>): SectionSpec {
+  const cc = s.choiceCount === 5 ? 5 : 4 // default to 4 for anything non-5, incl. null
+  const out: SectionSpec = { ...s, choiceCount: cc, minutesPerSection: Math.round(s.minutesPerSection) }
+  // Drop keys whose value is undefined so the stored JSON stays clean.
+  for (const k of Object.keys(out) as Array<keyof SectionSpec>) {
+    if (out[k] === undefined) delete out[k]
+  }
+  return out
 }
 
 /** Sanity-check the extracted spec against the hardcoded baseline.
@@ -627,6 +656,24 @@ export async function listAllSpecTargetsFromDB(opts: { includeSkipped?: boolean 
     })
   }
   return targets
+}
+
+/**
+ * Targets in least-recently-attempted order (see
+ * orderByLeastRecentlyAttempted). If the attempt read fails the catalog
+ * order is kept and the error logged — ordering is a fairness measure,
+ * not a correctness one, and must not stop the refresh.
+ */
+export async function listSpecTargetsForCron(): Promise<RefreshTarget[]> {
+  const targets = await listAllSpecTargetsFromDB()
+  const { data, error } = await dbAdmin
+    .from('study_test_specs')
+    .select('family, section_key, last_attempted_at')
+  if (error) {
+    console.error('[test-spec-refresh] attempt-order read failed; using catalog order', error)
+    return targets
+  }
+  return orderByLeastRecentlyAttempted(targets, data ?? [])
 }
 
 /**

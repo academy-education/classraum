@@ -3,11 +3,14 @@ import {
   severityFor,
   messageFor,
   secretsAgree,
+  runStatusFor,
   APPLE_MAX_SECRET_LIFETIME_S,
   WARN_DAYS,
   CRITICAL_DAYS,
 } from '../apple-secret'
 import { APPLE_TEAM_ID } from '@/lib/deeplinks'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 
 /**
  * The failure being guarded is a date passing unnoticed, so the tests
@@ -171,5 +174,39 @@ describe('apple client secret expiry', () => {
     expect(secretsAgree('abc', 'abd')).toBe(false)
     expect(secretsAgree('', '')).toBe(false)
     expect(secretsAgree(null, undefined)).toBe(false)
+  })
+})
+
+/**
+ * The job's own heartbeat. Until 2026-10-02 the cron reported ok over
+ * `missing` for a month — Apple enabled, APPLE_OAUTH_SECRET unset — so
+ * the dashboard showed a green check over the exact condition it exists
+ * to catch. Every kind is enumerated so a new kind cannot default green.
+ */
+describe('runStatusFor', () => {
+  it('fails the run when Apple is enabled and the secret is missing', () => {
+    const s = classifyAppleSecret({ providersRaw: 'google,apple', secret: undefined, now: NOW })
+    expect(s.kind).toBe('missing')
+    expect(runStatusFor(s)).toBe('failed')
+  })
+
+  it('fails the run on a malformed or expired secret', () => {
+    expect(runStatusFor({ kind: 'malformed', reason: 'x' })).toBe('failed')
+    expect(runStatusFor({ kind: 'expired', expiresAt: NOW, daysAgo: 1 })).toBe('failed')
+  })
+
+  it('passes when there is nothing to guard, the secret is fine, or merely expiring', () => {
+    // Expiring is reported by its own alert; the check itself succeeded.
+    expect(runStatusFor({ kind: 'not_enabled' })).toBe('ok')
+    expect(runStatusFor({ kind: 'ok', expiresAt: NOW, daysLeft: 100 })).toBe('ok')
+    expect(runStatusFor({ kind: 'expiring', expiresAt: NOW, daysLeft: 3 })).toBe('ok')
+  })
+
+  it('the route passes runStatusFor to the heartbeat and answers 500 on failure', () => {
+    // Route files may export only handlers, so the wiring is pinned by source.
+    const src = readFileSync(join(process.cwd(), 'src/app/api/cron/apple-secret-expiry/route.ts'), 'utf8')
+    expect(src).toMatch(/runStatus: runStatusFor\(status\)/)
+    expect(src).toMatch(/\}, out => out\.runStatus\)/)
+    expect(src).toMatch(/status: failed \? 500 : 200/)
   })
 })

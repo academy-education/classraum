@@ -10,6 +10,7 @@ import { syncAll } from '@/lib/portone-sync-service';
 import { loggers } from '@/lib/error-monitoring';
 import { verifyCronAuth } from '@/lib/cron-auth';
 import { withHeartbeat } from '@/lib/ops/heartbeat';
+import { portoneSyncStatus } from '@/lib/ops/cron-status';
 
 /**
  * POST /api/portone/sync
@@ -46,7 +47,8 @@ async function runSync(request: NextRequest, trigger: 'cron' | 'manual') {
     // Run sync. The heartbeat sits inside the auth guard — a 401'd
     // request never ran the job, so letting it report would mask a
     // dead cron. Job key is the cron path's last segment: `sync`.
-    const result = await withHeartbeat('sync', () => syncAll(options));
+    // Per-row sync errors are counted, not thrown; read them.
+    const result = await withHeartbeat('sync', () => syncAll(options), portoneSyncStatus);
 
     const duration = Date.now() - startTime;
 

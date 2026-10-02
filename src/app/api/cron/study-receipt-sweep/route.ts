@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
+import { deliveryStatus } from '@/lib/ops/cron-status'
 import { sendChargeReceipt } from '@/lib/study/charge-receipt'
 
 /**
@@ -63,6 +64,8 @@ export async function GET(req: NextRequest) {
       else { out[o.status === 'failed' ? 'failed' : 'skipped']++; out.reasons.push(`${r.payment_id.slice(0, 12)}…: ${o.reason}`) }
     }
     return out
-  })
+    // A receipt that failed to send is a charge the student was not told
+    // about; the sweep retries it tomorrow, but today's run is not clean.
+  }, deliveryStatus)
   return NextResponse.json(summary)
 }

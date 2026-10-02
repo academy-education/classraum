@@ -5,6 +5,7 @@ import {
 } from '@/lib/notification-triggers'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
+import { reminderStatus } from '@/lib/ops/cron-status'
 
 /**
  * Daily cron — pushes payment-related reminders.
@@ -38,6 +39,8 @@ export async function GET(req: NextRequest) {
         dueResult: await triggerPaymentDueReminderNotifications(),
         overdueResult: await triggerPaymentOverdueNotifications(),
       }),
+      // Per-invoice failures are caught so the batch continues; read them.
+      r => reminderStatus(r.dueResult, r.overdueResult),
     )
 
     console.log('[CRON] Payment reminders cron completed:', { dueResult, overdueResult })

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { refreshTestSpecExamples, listAllSpecTargetsFromDB } from '@/lib/test-spec-refresh'
+import { refreshTestSpecExamples, listSpecTargetsForCron } from '@/lib/test-spec-refresh'
+import { summarizeRefresh } from '@/lib/test-spec-refresh-summary'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
 import { verifyCronAuth } from '@/lib/cron-auth'
 
@@ -47,7 +48,7 @@ export async function GET(req: NextRequest) {
   const BUDGET_MS = 240_000
   const started = Date.now()
   const summary = await withHeartbeat('refresh-test-spec-examples', async () => {
-    const targets = await listAllSpecTargetsFromDB()
+    const targets = await listSpecTargetsForCron()
     const results = []
     let remaining = 0
     for (const t of targets) {
@@ -55,15 +56,14 @@ export async function GET(req: NextRequest) {
       const r = await refreshTestSpecExamples(t, { targetCount: 8 })
       results.push(r)
     }
+    // Partial failure is visible: 'degraded' when some attempted targets
+    // failed, 'failed' above half. Until 2026-10-02 this returned the
+    // counts and withHeartbeat marked every run green, 13/16 and 10/11
+    // failures included.
     return {
-      ran: results.length,
-      ok: results.filter(r => r.ok).length,
-      failed: results.filter(r => !r.ok).length,
-      skippedFresh: results.filter(r => /skipped/.test(r.notes ?? '')).length,
-      remaining,
-      budgetHit: remaining > 0,
+      ...summarizeRefresh(results, remaining),
       examplesAdded: results.reduce((sum, r) => sum + r.examplesAdded, 0),
     }
-  })
+  }, s => s.status)
   return NextResponse.json(summary)
 }

@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { resolveIfEnded, type ChallengeRow } from '@/lib/study/challenges'
-import { recordHeartbeat } from '@/lib/ops/heartbeat'
+import { heartbeatFor, recordHeartbeat } from '@/lib/ops/heartbeat'
+import { duelsStatus } from '@/lib/ops/cron-status'
 import { verifyCronAuth } from '@/lib/cron-auth'
 
 /**
@@ -68,13 +69,17 @@ export async function GET(req: NextRequest) {
   // assertion over the row's other fields is involved.
   const rows: ChallengeRow[] = (raw ?? []).map(r => ({ ...r, status: 'active' as const }))
   let resolved = 0
+  let unresolved = 0
   for (const r of rows) {
     const settled = await resolveIfEnded(r, nowIso)
     if (settled.status === 'completed') resolved++
+    // Every row here has already ended, so one still active means
+    // resolveIfEnded hit its catch (it logs and returns the row unchanged).
+    else if (settled.status === 'active') unresolved++
   }
 
-  const summary = { examined: rows.length, resolved }
-  await recordHeartbeat('study-resolve-duels', { ok: true, detail: summary }, Date.now() - startedAt)
+  const summary = { examined: rows.length, resolved, unresolved }
+  await recordHeartbeat('study-resolve-duels', heartbeatFor(duelsStatus(summary), summary), Date.now() - startedAt)
 
   return NextResponse.json(summary)
 }

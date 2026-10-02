@@ -3,6 +3,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { sendPostmarkEmail } from '@/lib/postmark'
 import { notifyStudent } from '@/lib/study/notify'
 import { withHeartbeat } from '@/lib/ops/heartbeat'
+import { deliveryStatus } from '@/lib/ops/cron-status'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { readStudyRecapOptOuts } from '@/lib/study/emailPrefs'
 
@@ -39,7 +40,7 @@ export async function GET(req: NextRequest) {
   // Heartbeat sits inside the auth guard — a 401'd request never ran the
   // job, so letting it report would mask a dead cron to the watchdog.
   // withHeartbeat rethrows, so the route's error behaviour is unchanged.
-  const summary = await withHeartbeat('study-weekly-recap', runRecap)
+  const summary = await withHeartbeat('study-weekly-recap', runRecap, deliveryStatus)
   return NextResponse.json(summary)
 }
 

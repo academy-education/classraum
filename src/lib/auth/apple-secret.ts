@@ -159,6 +159,31 @@ export function severityFor(status: AppleSecretStatus): 'warning' | 'critical' |
   }
 }
 
+/**
+ * What the weekly check's heartbeat should say. Until 2026-10-02 the job
+ * reported ok over `missing` for a month: the alert opened, but the job
+ * itself read green on the dashboard, and an expired or malformed secret
+ * would have read green too. The check exists to catch exactly these.
+ *
+ *   failed    missing, malformed, expired — Apple sign-in is broken now or
+ *             cannot be verified, which is the condition the job guards
+ *   ok        not_enabled, ok, expiring — the check did its job; an
+ *             expiring secret is reported through its own alert, and the
+ *             check is not failing because it correctly found a date
+ */
+export function runStatusFor(status: AppleSecretStatus): 'ok' | 'failed' {
+  switch (status.kind) {
+    case 'missing':
+    case 'malformed':
+    case 'expired':
+      return 'failed'
+    case 'not_enabled':
+    case 'ok':
+    case 'expiring':
+      return 'ok'
+  }
+}
+
 /** Alert copy. Always names the env var, so nobody edits the wrong copy. */
 export function messageFor(status: AppleSecretStatus): string | null {
   const tail =

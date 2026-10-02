@@ -2,6 +2,12 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { toJson } from '@/lib/json'
 import { raiseAlert, resolveAlerts } from '@/lib/ops/alert'
 import { jobSpec } from '@/lib/ops/jobs'
+import {
+  alertSeverityFor,
+  heartbeatRowFields,
+  statusOf,
+  type RunStatus,
+} from '@/lib/ops/run-status'
 
 /**
  * Record that a scheduled job ran.
@@ -16,7 +22,20 @@ import { jobSpec } from '@/lib/ops/jobs'
 
 export interface HeartbeatResult {
   ok: boolean
+  /**
+   * Only read when ok is false: 'degraded' means the run completed but
+   * some items failed (see run-status.ts). Omitted means 'failed'.
+   */
+  status?: RunStatus
   detail?: Record<string, unknown>
+}
+
+/** Build a HeartbeatResult from a RunStatus, stamping it into detail. */
+export function heartbeatFor(
+  status: RunStatus,
+  detail?: Record<string, unknown>,
+): HeartbeatResult {
+  return { ok: status === 'ok', status, detail: { ...(detail ?? {}), status } }
 }
 
 export async function recordHeartbeat(
@@ -34,7 +53,13 @@ export async function recordHeartbeat(
       .eq('job', job)
       .maybeSingle()
 
-    const failStreak = result.ok ? 0 : ((prev?.fail_streak as number | undefined) ?? 0) + 1
+    const status = statusOf(result)
+    const fields = heartbeatRowFields(
+      status,
+      (prev?.fail_streak as number | undefined) ?? 0,
+      now,
+    )
+    const failStreak = fields.fail_streak
 
     // Checked, not because we can do anything about it here, but because
     // a dropped upsert is indistinguishable from a job that never ran:
@@ -44,12 +69,9 @@ export async function recordHeartbeat(
     const { error: upsertError } = await dbAdmin.from('job_heartbeats').upsert(
       {
         job,
-        last_run_at: now,
-        ...(result.ok ? { last_ok_at: now } : {}),
-        ok: result.ok,
+        ...fields,
         duration_ms: durationMs ?? null,
         detail: result.detail ? toJson(result.detail) : null,
-        fail_streak: failStreak,
       },
       { onConflict: 'job' },
     )
@@ -63,11 +85,11 @@ export async function recordHeartbeat(
       // a digest as failing days after it had recovered.
       await resolveAlerts(`job-failed:${job}`)
     }
-    if (!result.ok) {
+    if (status !== 'ok') {
       const spec = jobSpec(job)
       await raiseAlert({
-        severity: failStreak >= 3 ? 'critical' : (spec?.severity ?? 'warning'),
-        title: `${spec?.label ?? job} failed`,
+        severity: alertSeverityFor(status, failStreak, spec?.severity),
+        title: `${spec?.label ?? job} ${status === 'degraded' ? 'partially failed' : 'failed'}`,
         /*
          * Say WHICH half failed. The generic line read "Scheduled work
          * it is responsible for is not being done" for every job, and on
@@ -78,7 +100,9 @@ export async function recordHeartbeat(
          */
         message:
           `The job reported a failure${failStreak > 1 ? ` (${failStreak} consecutive)` : ''}.` +
-          (typeof (result.detail as { emailError?: unknown } | null)?.emailError === 'string'
+          (status === 'degraded'
+            ? ' It ran to completion, but some of the items it processed failed; the counts are in the alert context.'
+            : typeof (result.detail as { emailError?: unknown } | null)?.emailError === 'string'
             ? ' Its work ran, but the notification could not be delivered:'
               + ` ${(result.detail as { emailError: string }).emailError}`
               + ' Nobody is being told the result.'
@@ -99,6 +123,12 @@ export async function recordHeartbeat(
 export async function withHeartbeat<T>(
   job: string,
   fn: () => Promise<T>,
+  /**
+   * How to read the result. Without it a resolved promise is 'ok', which
+   * is wrong for any batch that catches per-item errors and returns a
+   * count — pass a function that reads the count (run-status.ts).
+   */
+  statusOfResult?: (out: T) => RunStatus,
 ): Promise<T> {
   const started = Date.now()
   try {
@@ -107,7 +137,8 @@ export async function withHeartbeat<T>(
       out && typeof out === 'object' && !Array.isArray(out)
         ? (out as Record<string, unknown>)
         : undefined
-    await recordHeartbeat(job, { ok: true, detail }, Date.now() - started)
+    const status = statusOfResult ? statusOfResult(out) : 'ok'
+    await recordHeartbeat(job, heartbeatFor(status, detail), Date.now() - started)
     return out
   } catch (err) {
     await recordHeartbeat(

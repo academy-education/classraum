@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
-import { recordHeartbeat } from '@/lib/ops/heartbeat'
+import { heartbeatFor, recordHeartbeat } from '@/lib/ops/heartbeat'
+import { refundSyncStatus } from '@/lib/ops/cron-status'
 
 /**
  * Nightly reconcile of study_payments against PortOne.
@@ -74,11 +75,15 @@ export async function GET(req: NextRequest) {
   }
 
   const truncated = (rows?.length ?? 0) === MAX_PER_RUN
+  // `unverifiable` means PortOne could not be reached or the refund write
+  // was rejected — that payment's refund state is unknown tonight. It was
+  // counted and then reported ok:true regardless.
+  const status = refundSyncStatus(summary)
   await recordHeartbeat(
     'study-refund-sync',
-    { ok: true, detail: { ...summary, truncated } },
+    heartbeatFor(status, { ...summary, truncated }),
     Date.now() - startedAt,
   )
 
-  return NextResponse.json({ ok: true, ...summary, truncated })
+  return NextResponse.json({ ok: status === 'ok', status, ...summary, truncated })
 }

@@ -6,6 +6,7 @@ import {
   classifyAppleSecret,
   severityFor,
   messageFor,
+  runStatusFor,
 } from '@/lib/auth/apple-secret'
 
 /**
@@ -64,17 +65,24 @@ export async function GET(req: NextRequest) {
       return {
         kind: status.kind,
         severity,
+        runStatus: runStatusFor(status),
         expiresAt: 'expiresAt' in status ? status.expiresAt.toISOString() : null,
         daysLeft: 'daysLeft' in status ? status.daysLeft : null,
       }
-    })
+      // A missing/malformed/expired secret is a FAILED run, not a green
+      // one with an alert beside it (see runStatusFor).
+    }, out => out.runStatus)
 
     console.log('[CRON] Apple secret expiry check:', result)
-    return NextResponse.json({
-      success: true,
-      timestamp: new Date().toISOString(),
-      result,
-    })
+    const failed = result.runStatus === 'failed'
+    return NextResponse.json(
+      {
+        success: !failed,
+        timestamp: new Date().toISOString(),
+        result,
+      },
+      { status: failed ? 500 : 200 },
+    )
   } catch (error) {
     console.error('[CRON] Error in apple secret expiry cron job:', error)
     return NextResponse.json(
