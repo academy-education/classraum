@@ -4,7 +4,7 @@ import {
   type AdmissionFamily,
 } from './admission-tests'
 import {
-  actSection, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE,
+  actSection, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE, ENGLISH_QUOTAS,
   READING_GENRE_ORDER, READING_ITEMS_PER_PASSAGE, type ActSectionKey, type ReadingGenre,
 } from './act-test'
 import type { Question, QuestionType } from '@/lib/test-verify'
@@ -1960,7 +1960,7 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
  * assembler: a short section is a different denominator than the one the
  * student was told.
  * ------------------------------------------------------------------ */
-type ActRow = { id: string; item: Question; passageGroupId: string | null; task: string | null }
+type ActRow = { id: string; item: Question; passageGroupId: string | null; task: string | null; domain?: string | null }
 
 function groupsOf(rows: ActRow[]): Map<string, ActRow[]> {
   const g = new Map<string, ActRow[]>()
@@ -1987,6 +1987,67 @@ function takePassages(
   return out
 }
 
+/**
+ * ACT English passage selection that respects the published reporting-
+ * category ranges (ENGLISH_QUOTAS), added 2026-10-02 (REGISTER §5 A63).
+ *
+ * WHY: takePassages() takes the first five full passages in exposure order
+ * and never looks at domain. While every passage in the bank was CSE 4 /
+ * KoL 2 / PoW 4 that made no difference — no five of them could reach the
+ * 51% Conventions floor. act-english-v7 adds CSE 7 / PoW 2 / KoL 1 passages,
+ * and a compliant form is then exactly 3 old + 2 new (26/16/8 of 50). Drawn
+ * blind, a student gets whatever five the shuffle ranks first — usually all
+ * old, i.e. 40% Conventions — so the mix has to enter the draw.
+ *
+ * HOW: depth-first over full passages in RANKED order, so the first feasible
+ * set found is the lexicographically earliest one — unseen passages still
+ * win, and among them the ranking's own order. Ranges are converted to item
+ * counts on the delivered form (ceil of the floor, floor of the ceiling).
+ * If no five passages satisfy every range — a bank that cannot yet produce a
+ * compliant form — it falls back to the plain exposure-order draw and says
+ * so, because a SHORT form is worse than an off-blueprint one and a silent
+ * off-blueprint one is worse than both.
+ */
+export function pickEnglishPassages(
+  ranked: ActRow[],
+  want: number = ENGLISH_PASSAGES,
+  per: number = ENGLISH_ITEMS_PER_PASSAGE,
+  quotas: Readonly<Record<string, readonly [number, number]>> = ENGLISH_QUOTAS,
+): { passages: ActRow[][]; onBlueprint: boolean } {
+  const full = [...groupsOf(ranked).values()].filter(g => g.length >= per).map(g => g.slice(0, per))
+  const domains = Object.keys(quotas)
+  const n = want * per
+  const lo = domains.map(d => Math.ceil(quotas[d][0] * n / 100 - 1e-9))
+  const hi = domains.map(d => Math.floor(quotas[d][1] * n / 100 + 1e-9))
+  const counts = full.map(g => domains.map(d => g.filter(r => r.domain === d).length))
+
+  const chosen: number[] = []
+  const tally = domains.map(() => 0)
+  let budget = 200_000 // bounded: 25 passages choose 5 is 53,130 leaves
+  const dfs = (start: number): boolean => {
+    if (--budget < 0) return false
+    if (chosen.length === want) return tally.every((t, i) => t >= lo[i] && t <= hi[i])
+    const slotsLeft = want - chosen.length
+    for (let i = start; i <= full.length - slotsLeft; i++) {
+      const c = counts[i]
+      if (c.some((v, k) => tally[k] + v > hi[k])) continue
+      c.forEach((v, k) => { tally[k] += v })
+      chosen.push(i)
+      // Pruning only, never the verdict: a domain that cannot reach its floor
+      // even if every remaining slot were all that domain is dead. Skipped at
+      // the leaf so the range check above is the ONE place a form is judged.
+      const after = want - chosen.length
+      const reachable = after === 0 || tally.every((t, k) => t + after * per >= lo[k])
+      if (reachable && dfs(i + 1)) return true
+      chosen.pop()
+      c.forEach((v, k) => { tally[k] -= v })
+    }
+    return false
+  }
+  if (full.length >= want && dfs(0)) return { passages: chosen.map(i => full[i]), onBlueprint: true }
+  return { passages: takePassages(ranked, want, per), onBlueprint: false }
+}
+
 export async function assembleActSection(p: {
   sectionKey: ActSectionKey
   studentId?: string
@@ -1998,7 +2059,7 @@ export async function assembleActSection(p: {
 
   const { data, error } = await dbAdmin
     .from('study_item_bank')
-    .select('id, difficulty, item, passage_group_id, task')
+    .select('id, difficulty, item, passage_group_id, task, domain')
     .eq('family', 'act')
     .eq('section', block.bankSection)
     .eq('verified', true)
@@ -2011,7 +2072,7 @@ export async function assembleActSection(p: {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
       return []
     }
-    return [{ id: row.id, item, passageGroupId: row.passage_group_id as string | null, task: row.task as string | null }]
+    return [{ id: row.id, item, passageGroupId: row.passage_group_id as string | null, task: row.task as string | null, domain: row.domain as string | null }]
   })
   if (rows.length === 0) throw new Error(`no verified items for act/${block.bankSection}`)
 
@@ -2020,7 +2081,9 @@ export async function assembleActSection(p: {
 
   let picked: ActRow[]
   if (block.key === 'english') {
-    picked = takePassages(ranked, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE).flat()
+    const { passages, onBlueprint } = pickEnglishPassages(ranked)
+    if (!onBlueprint) console.warn('[assemble] act/english: no five passages satisfy ENGLISH_QUOTAS — drew in exposure order, OFF-BLUEPRINT')
+    picked = passages.flat()
   } else if (block.key === 'reading') {
     /* One passage per genre, in the published order. A genre with no full
        passage in the bank is skipped — and reported SHORT below — rather

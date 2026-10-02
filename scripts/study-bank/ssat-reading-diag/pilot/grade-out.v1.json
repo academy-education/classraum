@@ -1,0 +1,20 @@
+{
+  "items": {
+    "P1-1": {"my_pick": "C", "exclusive": true, "problem": "", "tell": "None from options alone (all five parallel 'a baker who...'). But each distractor is a verbatim negated sentence in P1: A 'He did not close the shop'; B 'He did not cut the order'; D 'none of it went near the trough'; E 'he baked no loaf from it'."},
+    "P1-2": {"my_pick": "E", "exclusive": true, "problem": "", "tell": "Distractors are ruled out by one sentence listing them in turn: 'would not let me return it' (A), 'baked no loaf from it' (B), 'none went to the neighbours' (C) 'or into the bin' (D); key stated next: 'It went to dust the boards.' Pure lookup."},
+    "P1-3": {"my_pick": "B", "exclusive": true, "problem": "", "tell": ""},
+    "P1-4": {"my_pick": "D", "exclusive": true, "problem": "", "tell": "A/B/C/E refer to things outside paragraph 2 (rye, bridge, committee, supermarket flour); only D names a paragraph-2 participant, so D is findable by matching names. Key reason stated outright: 'lent her yeast... a debt she had meant to pay'."},
+    "P1-5": {"my_pick": "A", "exclusive": true, "problem": "", "tell": "Not an inference: B-E are each explicitly negated ('not the money', 'not the committee', 'nor the town', 'It was not pride') and A is quoted ('I said forty'). Answerable by elimination from the negation list."},
+    "P1-6": {"my_pick": "E", "exclusive": true, "problem": "", "tell": "E is the odd one out in form: the only compound option ('pride, with shame...'); the other four are single emotions. A-D each match a negated sentence ('I was not embarrassed', 'the bread had never worried me', 'Nothing in it struck me as funny', 'I felt no relief')."},
+    "P2-1": {"my_pick": "D", "exclusive": true, "problem": "", "tell": "Mild: D is the only counterintuitive remedy, the 'interesting' option a test-wise student may favour. Each distractor is explicitly rejected in paragraph 4 ('was rejected', 'would have dragged the church wall over', 'would have pressed on clay', 'no buttress was poured')."},
+    "P2-2": {"my_pick": "A", "exclusive": true, "problem": "", "tell": "Pure lookup; the key is near-verbatim ('returned them with the seals unbroken') and B-E are each negated in the same sentence ('no buttress was poured, no fee was paid, no model was made, and the town never saw the plans')."},
+    "P2-3": {"my_pick": "C", "exclusive": true, "problem": "", "tell": ""},
+    "P2-4": {"my_pick": "E", "exclusive": true, "problem": "", "tell": "A-D each negated in order in paragraph 2 ('It was not an earthquake', 'nor the bells', 'nor the mortar', 'The river had never once reached the piazza')."},
+    "P2-5": {"my_pick": "C", "exclusive": true, "problem": "", "tell": "Labelled inference but stated verbatim ('a tower that still leaned but no longer moved'); A, B, D, E each negated in paragraph 3 ('Nobody asked for a straight tower', 'no date was fixed', 'bells were to stay silent', 'whatever money the work required')."},
+    "P2-6": {"my_pick": "B", "exclusive": true, "problem": "", "tell": "Stated verbatim ('What I feel is envy'), and A, C, D, E each negated in the line before it ('no pity', 'do not awe me', 'does not outrage me', 'not nostalgic for the danger')."}
+  },
+  "passages": {
+    "P1": {"verdict": "UNNATURAL", "reason": "Every paragraph is a run of denials written to supply distractors: closing, cutting, rye, return, neighbours and bin are each denied in turn, then sale, loan, peace offering and credit, then money, committee, town and pride, then embarrassed, worried, funny and relief. No student meets narrative prose built like this; the story underneath is good, but the scaffolding shows on every line."},
+    "P2": {"verdict": "UNNATURAL", "reason": "The same template: the cause is found by four denials, the goal is set by four, the buttress is rejected with a string of 'no buttress... no fee... no model... never saw', and the closing line lists four feelings the author does not have before naming the one he does. A careful reader can see the stems through the prose."}
+  }
+}

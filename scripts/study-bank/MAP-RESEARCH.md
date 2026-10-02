@@ -1024,3 +1024,67 @@ holds:
 - It should be attacked before a third is commissioned.
 - A human sitting remains the only verdict on a verbal cohort, and MAP still
   has none.
+
+## 15. 2026-10-02 — THE SECOND PILOT: THE CENTROID IS FIXED, THE COMPREHENSION LEAK IS NOT
+
+Batch 2 (24 items, batch files only, pre-registered at abd5f80a) was written
+to fix the three things §14 named. Results: `MAP-PILOT-2-2026-10-02.md`.
+
+**It fails its own bar by more than batch 1 did.**
+
+- **12 of 24 pass the with-source graders under all four conditions.** The
+  bar is 20.
+- **16 of 24 pass on batch 1's three conditions alone.** Batch 1 passed 18.
+- Every exact check passes, E1-E8 included.
+
+**What worked: Mechanics, the 2x2 grid.** Distractors were built as
+{neither error, first only, second only, both}.
+
+- That leaves no unique medoid on any of the 12 items. Batch 1 had one on
+  10 of 11.
+- The majority-vote centroid that §14 found falls from 10/11 to 2/12.
+- No grader found a new tell in the grid.
+- Keep this construction.
+
+**What did not work: comprehension.** All four options were briefed to make
+the same kind of passage-specific claim.
+
+- **Options-only:** 83.3%, with 5 of 6 unanimous on the key. Batch 1 was
+  100%, 5/5.
+- **Pre-registered call:** NOT FIXED.
+- **The new comprehension-shaped control:** 8 live ISEE main-idea items came
+  in at **25.0%**, exactly on their letter line.
+- **Why that control matters:** it means the instrument is not saturating.
+  The leak belongs to our authoring, not to the model's reading skill.
+- **What still decides the leaky items:**
+  - world knowledge (US time zones, Dutch flood control)
+  - a self-contradicting distractor
+  - a key that reads as the literary-analysis answer
+- **The one clean item:** RLU-01 (0/3) puts all four options in one frame,
+  "the story shows that X matters more than Y".
+
+**A grader explanation that was measured and refuted.** Both graders,
+unprompted, blamed a "shared-fragment medoid" in the comprehension options.
+
+- Measured, the key is the unique word-overlap medoid on 1 of 6.
+- The live control is 1 of 8.
+- In a prose 2x2 every option shares a half with two others, so the pairing
+  is symmetric.
+- The "free elimination named by both graders: 2/6" secondary bar did
+  improve. The blind half says that improvement does not mean the leak
+  shrank.
+
+**Still open:**
+
+- **Upper Mechanics bands are too high.** Both 230-239 items were assigned
+  210-229.
+- **The `easier` calls are still above bar:** 11 of 48 against a bar of 8.
+  Batch 1 had 17.
+- **Condition 4 (a dead distractor named by both graders) held four items**
+  that passed everything else. Three of them were comprehension or vocabulary
+  items.
+
+**Decision recorded:** no third comprehension batch on this evidence. Two
+briefs have failed on the same stratum, and the narrower rule RLU-01 suggests
+rests on n=1. Fixed frames have also backfired before (SSAT Reading, REGISTER
+2026-09-21). MAP has no human sitting and nothing was inserted.
