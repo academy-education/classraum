@@ -1749,7 +1749,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             </div>
             <div className="flex-1 min-w-0">
             <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
-              Module 2
+              {ko ? '모듈 2' : 'Module 2'}
             </div>
             <div className="text-[15px] font-semibold text-gray-900 leading-tight">
               {ko ? '모듈 2 시작' : 'Module 2 begins'}
@@ -1795,7 +1795,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <div className="mb-4 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-amber-50/40 px-4 py-3">
               <div className="flex items-center gap-2 mb-1">
                 <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider">
-                  Module 2
+                  {ko ? '모듈 2' : 'Module 2'}
                 </span>
                 <span className="text-[13px] font-bold text-amber-900">
                   {ko ? '모듈 2 시작' : 'Module 2 begins'}

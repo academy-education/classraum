@@ -498,7 +498,7 @@ export default function MobileReportDetailsPage() {
           type: a?.assignment_type || 'unknown',
           subject:
             getReportSubjectName(a?.classroom_sessions?.classrooms?.subjects ?? null) ||
-            'Unknown Subject',
+            String(t('mobile.fallbacks.unknownSubject')),
           classroom:
             a?.classroom_sessions?.classrooms?.name ||
             String(t('mobile.fallbacks.unknownClassroom')),

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { hapticTap } from '@/lib/nativeHaptics'
 import { useMobileNav } from './useMobileNav'
+import { useTranslation } from '@/hooks/useTranslation'
 
 /**
  * Desktop navigation rail for the /mobile shell — shown only at lg+,
@@ -16,6 +17,7 @@ import { useMobileNav } from './useMobileNav'
 export function StudySidebar() {
   const router = useRouter()
   const { navItems, isActive, inSession } = useMobileNav()
+  const { t } = useTranslation()
 
   // Match the bottom bar's focus-mode hide so a full-screen session
   // isn't flanked by the rail either.
@@ -23,7 +25,7 @@ export function StudySidebar() {
 
   return (
     <nav
-      aria-label="Study navigation"
+      aria-label={String(t('mobile.navigation.studyNav'))}
       className="hidden lg:flex flex-shrink-0 w-60 xl:w-64 flex-col border-r border-gray-100 bg-white overflow-y-auto"
     >
       {/* Logo pinned to the rail's top-left — the desktop app's brand

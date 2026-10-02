@@ -186,6 +186,9 @@ export function WritingScenario({ text, kind }: { text: string; kind: 'email' | 
 /** Renders each speaker as a distinct card with a role tag + name header
  *  so two classmates' opinions never run together as one post. */
 export function DiscussionScenario({ normalized }: { normalized: string }) {
+  // Role tags are our chrome, so they follow the app locale; the posts
+  // themselves stay in the test's own language.
+  const { t } = useTranslation()
   const blocks = parseDiscussionSpeakers(normalized)
   if (blocks.length === 0) {
     return (
@@ -220,7 +223,9 @@ export function DiscussionScenario({ normalized }: { normalized: string }) {
                     : 'bg-emerald-500 text-white'
                 }`}
               >
-                {isProf ? 'Professor' : `Student ${studentIndex}`}
+                {isProf
+                  ? String(t('study.test.writing.professor'))
+                  : String(t('study.test.writing.studentN', { n: studentIndex }))}
               </span>
               <span className={`text-[13px] font-bold ${isProf ? 'text-primary' : 'text-emerald-800'}`}>
                 {b.name}
@@ -628,11 +633,11 @@ export function WritingFeedbackPanel({
           </div>
           <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
             {speechSignals.durationSec != null && (
-              <span className="text-gray-700">{ko ? '길이' : 'Length'} · <span className="tabular-nums">{speechSignals.durationSec.toFixed(1)}s</span></span>
+              <span className="text-gray-700">{ko ? '길이' : 'Length'} · <span className="tabular-nums">{speechSignals.durationSec.toFixed(1)}{ko ? '초' : 's'}</span></span>
             )}
             {speechSignals.wpm != null && (
               <span className="text-gray-700">
-                {ko ? '속도' : 'Pace'} · <span className="tabular-nums">{speechSignals.wpm} wpm</span>
+                {ko ? '속도' : 'Pace'} · <span className="tabular-nums">{ko ? `분당 ${speechSignals.wpm}단어` : `${speechSignals.wpm} wpm`}</span>
                 <span className={`ml-1 ${paceLabel(speechSignals.wpm).color}`}>· {paceLabel(speechSignals.wpm).text}</span>
               </span>
             )}

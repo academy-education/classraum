@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { RotateCcw } from '@/app/mobile/study/_shared/icons'
+import { useTranslation } from '@/hooks/useTranslation'
 
 /**
  * UndoToast — global bottom-center toast with an inline Undo button.
@@ -25,6 +26,7 @@ let nextId = 1
 const HOLD_MS = 5000
 
 export function UndoToast() {
+  const { t } = useTranslation()
   const [current, setCurrent] = useState<UndoState | null>(null)
 
   useEffect(() => {
@@ -59,7 +61,7 @@ export function UndoToast() {
         className="inline-flex items-center gap-1 h-8 px-3 rounded-full bg-white/15 hover:bg-white/25 text-white text-[13px] font-semibold transition"
       >
         <RotateCcw className="w-3.5 h-3.5" />
-        Undo
+        {String(t('common.undo'))}
       </button>
     </div>
   )

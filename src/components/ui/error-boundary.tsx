@@ -4,6 +4,7 @@ import React, { Component, ErrorInfo, ReactNode } from 'react'
 import * as Sentry from '@sentry/nextjs'
 import { AlertCircle, RefreshCw, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/hooks/useTranslation'
 
 /**
  * Report a crashed subtree.
@@ -201,7 +202,11 @@ export const DashboardErrorBoundary: React.FC<{ children: ReactNode }> = ({ chil
 )
 
 // Mobile-optimized error fallback component
-const MobileErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) => (
+// Rendered under the root LanguageWrapper (src/app/layout.tsx), so the
+// student's language is available even when the /mobile subtree crashed.
+const MobileErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) => {
+  const { t } = useTranslation()
+  return (
   <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4">
     <div className="max-w-sm w-full bg-card shadow-lg rounded-lg p-6 text-center">
       <div className="flex justify-center mb-4">
@@ -209,11 +214,11 @@ const MobileErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) => 
       </div>
 
       <h1 className="text-lg font-semibold text-foreground mb-2">
-        Oops! Something went wrong
+        {String(t('mobile.errorScreen.title'))}
       </h1>
 
       <p className="text-muted-foreground text-sm mb-6">
-        Don&apos;t worry, we can fix this. Try refreshing the page or go back to the home screen.
+        {String(t('mobile.errorScreen.body'))}
       </p>
 
       <div className="space-y-3">
@@ -222,7 +227,7 @@ const MobileErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) => 
           className="w-full flex items-center justify-center gap-2"
         >
           <RefreshCw className="h-4 w-4" />
-          Try Again
+          {String(t('errorBoundary.tryAgain'))}
         </Button>
         <Button
           variant="outline"
@@ -232,14 +237,14 @@ const MobileErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) => 
           }}
           className="w-full flex items-center justify-center gap-2"
         >
-          🏠 Go to Home
+          {String(t('mobile.errorScreen.goHome'))}
         </Button>
       </div>
 
       {process.env.NODE_ENV === 'development' && error && (
         <details className="mt-4 text-left">
           <summary className="text-xs text-muted-foreground cursor-pointer">
-            Error Details (Dev)
+            {String(t('mobile.errorScreen.details'))}
           </summary>
           <pre className="text-xs text-muted-foreground mt-2 bg-muted p-2 rounded overflow-auto max-h-24">
             {error.stack}
@@ -248,7 +253,8 @@ const MobileErrorFallback: React.FC<ErrorFallbackProps> = ({ error, retry }) => 
       )}
     </div>
   </div>
-)
+  )
+}
 
 export const MobileErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => (
   <ErrorBoundary

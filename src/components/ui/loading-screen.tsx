@@ -2,12 +2,14 @@
 
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface LoadingScreenProps {
   onComplete?: () => void
 }
 
 export function LoadingScreen({ onComplete }: LoadingScreenProps) {
+  const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(true)
   const [isFadingOut, setIsFadingOut] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
@@ -84,10 +86,10 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
         {showTimeout && (
           <div className="text-center space-y-2 px-4">
             <p className="text-sm text-muted-foreground">
-              Connection is taking longer than expected...
+              {String(t('loadingScreen.slow'))}
             </p>
             <p className="text-xs text-muted-foreground">
-              Please check your internet connection
+              {String(t('loadingScreen.checkConnection'))}
             </p>
           </div>
         )}

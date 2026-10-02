@@ -694,7 +694,7 @@ function ResultScreen({
 function BetaPill({ ko }: { ko: boolean }) {
   return (
     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-[10px] font-bold tracking-wider uppercase">
-      <Sparkles className="w-3 h-3" />Beta{ko ? '' : ''}
+      <Sparkles className="w-3 h-3" />{ko ? '베타' : 'Beta'}
     </span>
   )
 }
