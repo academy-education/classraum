@@ -181,6 +181,26 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-02** — **MAP GROWTH PILOT BATCH 2 (24 items, batch files only, never inserted): 12/24 pass all four pre-registered with-source conditions against a bar of 20, and 16/24 on batch 1's three, where batch 1 passed 18. FAILS, and worse than batch 1 like for like.**
+  - **Pre-registration:** abd5f80a.
+  - **Fixed: the Mechanics centroid.** The 2x2 grid leaves E7 with 0/12 unique medoid. The majority centroid is 2/12; batch 1 was 10/11.
+  - **Not fixed: comprehension.** Options-only scores **83.3% with 5/6 unanimous on the key**, so the pre-registered call is NOT FIXED. Batch 1 was 100%, 5/5.
+  - **The new comprehension-shaped control** (8 live ISEE main-idea easy items) came in at **25.0% on a 25.0% line**. So the instrument discriminates here and the leak is ours.
+  - **The only clean comprehension item** is RLU-01: one fixed frame, "X matters more than Y".
+  - **Other strands:**
+    - Vocabulary 5/9, against batch 1's 0/6.
+    - Usage 8/9.
+    - Control V 58.3%, against batch 1's 61.1%: the instrument is stable.
+  - **Holds:**
+    - Too easy: MECH-06, -09, -11, -12 (the upper bands again) and RLU-09 (the key echoes "reasoning").
+    - Second answer named by grader A: RLU-04, -07, -12.
+    - Condition 4 alone, a dead distractor named by both graders: RLU-02, -06, -08, -10.
+  - **`easier` calls:** 11/48, against a bar of 8; batch 1 had 17.
+  - **Refuted grader claim.** Both graders blamed a "shared-fragment medoid" in the comprehension options. Measured (`map-pilot-2-posthoc.mjs`, self-tested): the key is the unique word-overlap medoid on 1/6, against 1/8 for the live control. So the graders' secondary "free elimination 2/6, improved" is not evidence the leak shrank.
+  - **Pre-attack repair:** explanation texts on RLU-01, -06 and -07 (no option changed).
+  - **Decision:** keep the 2x2 for Mechanics. Do not commission a third comprehension batch, since two briefs have failed on the same stratum.
+  - **Details:** `MAP-PILOT-2-2026-10-02.md`, MAP-RESEARCH §15.
+
 - **2026-10-02** — **ISEE HARD SENTENCE COMPLETIONS (`isee-verbal-s16`): 16 OF 40 INSERTED (6 hard, 10 medium). ALL 16 TWO-BLANK ITEMS WERE HELD, BECAUSE THE OPTIONS ALONE GIVE THE ANSWER.** Live SC went from **50 easy / 51 medium / 26 hard (127)** to **50 / 61 / 32 (143)**. Easy share fell from 39.4% to 35.0%; hard rose from 20.5% to 22.4%. ISEE verbal stays at **5 clean forms** (form 6 has 21/40 fresh) and ISEE overall stays at 2, because reading binds.
   - **Setup.** Two Claude authors each wrote 12 single-blank and 8 two-blank items. The bars were in `isee-verbal-s16.prereg.md`, committed before any result. At pre-flight, IS16-B-10 and IS16-B-12 were dropped because their keys repeated author A's keys (capricious, inconspicuous).
   - **Options-only test.** The 38 items were mixed with 30 live SCs, matched on type and on hard/medium difficulty (s4 and s15 excluded). Three samples of one Claude solver were run; the samples agreed with each other 76.5% of the time.
