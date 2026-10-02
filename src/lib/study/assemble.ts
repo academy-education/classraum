@@ -443,6 +443,13 @@ export interface PracticeQuestion {
   correct_answer: string
   difficulty: 'easy' | 'medium' | 'hard'
   explanation: string
+  /** The item's passage, when it has one. It is ALSO folded into `prompt`
+   *  (the practice UI has no passage pane), so this is not for display: it
+   *  lets "Explain more" send the passage and the bare question separately.
+   *  The explain route clamps `prompt` at 4000 chars from the FRONT, so a
+   *  long passage folded in there cut off the question itself. Absent on
+   *  batches cached before 2026-10-02 and on passage-less items. */
+  passage?: string
 }
 
 /**
@@ -533,6 +540,7 @@ export async function drawBankPractice(p: {
     correct_answer: q.correct_answer,
     difficulty: q.difficulty,
     explanation: q.explanation,
+    ...(q.passage?.trim() ? { passage: q.passage.trim() } : {}),
   }))
 }
 

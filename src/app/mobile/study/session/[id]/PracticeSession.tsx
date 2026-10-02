@@ -12,6 +12,7 @@ import { PathMascot } from '../../_shared/PathMascot'
 import { MascotLoader, useMascotGate } from '../../_shared/MascotLoader'
 import { ExplainMore } from '../../_shared/ExplainMore'
 import { StudyButton } from '../../_shared/StudyButton'
+import { practiceExplainContext } from '@/lib/study/practice-explain'
 
 type QuestionType = 'multiple_choice' | 'true_false' | 'short_answer'
 
@@ -22,12 +23,19 @@ interface Question {
   correct_answer: string
   difficulty: 'easy' | 'medium' | 'hard'
   explanation: string
+  /** Bank items with a passage carry it here as well as folded into
+   *  `prompt`; used only to give "Explain more" the passage as context. */
+  passage?: string | null
 }
 
 interface Verdict {
   isCorrect: boolean
   aiExplanation: string
   xpAwarded?: number
+  /** The study_attempts row this answer was saved as. Passed to ExplainMore
+   *  so explanations asked here are persisted against it (and re-shown in
+   *  the wrong-answer notebook). Null when the attempt was not recorded. */
+  attemptId?: string | null
 }
 
 /**
@@ -184,7 +192,8 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
       // explanation so the student isn't stranded on a 500 page.
       const q = questions[idx]
       const isCorrect = trimmed.toLowerCase() === q.correct_answer.trim().toLowerCase()
-      setVerdict({ isCorrect, aiExplanation: q.explanation })
+      const synthetic: Verdict = { isCorrect, aiExplanation: q.explanation }
+      setVerdict(synthetic)
       setResults(prev => [...prev, isCorrect])
       setPhase('feedback')
       // The grade endpoint (which normally persists the attempt server-side)
@@ -206,7 +215,13 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
         student_answer: trimmed,
         is_correct: isCorrect,
         ai_explanation: q.explanation ?? null,
-      }).then(({ error }) => { if (error) console.error('[practice] soft-fail attempt insert failed', error) })
+      }).select('id').single().then(({ data, error }) => {
+        if (error) { console.error('[practice] soft-fail attempt insert failed', error); return }
+        // Attach the id only if the student is still on THIS verdict, so a
+        // late insert can never hand the next question's panel a stale id.
+        const id = data?.id
+        if (id) setVerdict(v => (v === synthetic ? { ...v, attemptId: id } : v))
+      })
     } finally {
       setSubmitting(false)
     }
@@ -561,8 +576,12 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
               )}
             </div>
             {/* Interactive follow-up: Explain more, or ask. */}
+            {/* attemptId is read per call, so the soft-fail path (which
+                learns its id after mount) saves from then on without a
+                remount. The passage goes separately from the question. */}
             <ExplainMore
-              prompt={q.prompt}
+              {...practiceExplainContext(q)}
+              attemptId={verdict.attemptId ?? undefined}
               choices={q.type === 'multiple_choice' ? (q.choices ?? undefined) : undefined}
               correctAnswer={q.correct_answer}
               studentAnswer={answer}
