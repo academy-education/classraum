@@ -29,6 +29,7 @@ import { createClient } from '@supabase/supabase-js'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { gateBatch, overrideReason } from './gate.mjs'
+import { enforceKeyExtremity } from './key-extremity-gate.mjs'
 import { acceptsDifficulty } from './difficulty-policy.mjs'
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E']
@@ -535,6 +536,11 @@ async function main() {
       console.log(`Numeric hub:  ${nums.length} structured of ${batch.length}, key-is-hub ${nrate.toFixed(1)}% vs ${CTL.toFixed(1)}% control, margin ${(nrate - CTL).toFixed(1)}pts`)
       if (nrate - CTL > 10) console.log(`  ^ ABOVE THE 10-POINT PRE-FLIGHT BAR. Do not insert on this number.`)
     } else console.log(`Numeric hub:  no derivational structure in any option set`)
+    // Same verdict `insert` enforces; printed here so the author sees it first.
+    const { keyExtremityVerdict } = await import('./key-extremity-gate.mjs')
+    const kx = keyExtremityVerdict(batch)
+    console.log(`Key extremity: ${kx.status.toUpperCase()} — ${kx.reason}`)
+    if (kx.status === 'fail') { console.log(`  ^ insert WILL REFUSE this batch. Re-author so the key is the largest/smallest value about as often as chance.`); process.exitCode = 1 }
     return
   }
 
@@ -574,6 +580,9 @@ async function main() {
   } else {
     console.log(`gate: ${g.batch} — ${g.reason}`)
   }
+  // KEY-EXTREMITY PRE-FLIGHT (2026-10-02, KEY-EXTREMITY-RESULT.md): refuse a
+  // batch whose keys sit at the largest/smallest value under 0.8 x derived chance.
+  enforceKeyExtremity(batch, batchPath, overrideReason)
   console.log(`inserting as family=${FAMILY} cohort=${COHORT}`)
   const qc = JSON.parse(readFileSync(qcPath, 'utf8'))
   /*
