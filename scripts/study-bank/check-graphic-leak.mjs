@@ -39,11 +39,31 @@
  * key's own value, which every well-formed scatter plot does.
  *
  * usage:
- *   node check-graphic-leak.mjs --selftest     # no DB, proves it fires
- *   node check-graphic-leak.mjs [domain]       # sweep the live bank
+ *   node check-graphic-leak.mjs <batch.json> [...]       # report on THOSE files
+ *   node check-graphic-leak.mjs --live [--domain=X]      # sweep the live bank
+ *   node check-graphic-leak.mjs --selftest               # no DB, proves it fires
+ *
+ * A22 (2026-10-02): the positional argument used to be a DOMAIN filter, so
+ * a batch path was taken as a domain name, matched zero rows, and printed
+ * "0 rows read ... nothing to check" with exit 0 — for every file. Now a
+ * positional argument is a batch file, the domain filter is --domain=X and
+ * live-only, zero graphics is exit 2 (not a pass), and a math batch's
+ * top-level `svg`/`caption` is read the way math-bank-helper inserts it.
+ *
+ * KNOWN GAP, recorded rather than patched: for svg/rawsvg figures only
+ * `caption` is scanned, not the <text> inside the markup. Tick labels live
+ * there, so a naive scan would fire on every axis that ticks past the key.
  */
-import { createClient } from '@supabase/supabase-js'
-import { readFileSync } from 'node:fs'
+import { isMain, parseCheckerArgs, flagValue, loadBatchFile, loadLive, printDenominator, populationHeader, refuse } from './checker-input.mjs'
+
+const USAGE = 'usage: check-graphic-leak.mjs <batch.json> [...] | --live [--domain=X] | --selftest'
+
+/** The graphic an item renders; a math batch's top-level svg becomes rawsvg on insert. */
+export function graphicOf(item) {
+  if (item?.graphic) return item.graphic
+  if (typeof item?.svg === 'string') return { type: 'rawsvg', svg: item.svg, caption: item.caption || null }
+  return null
+}
 
 /** Every string the student can SEE in the rendered figure. */
 function visibleText(g) {
@@ -92,8 +112,8 @@ const hasToken = (hay, needle) =>
 const FIG_NUM = /\b(figure|fig\.|item|question)\s*\d+/i
 
 /** Scan ONE item. Extracted so --selftest can drive it without a DB. */
-function scanItem(row, findings, suspicious) {
-  const it = row.item
+export function scanItem(row, findings, suspicious) {
+  const it = { ...row.item, graphic: graphicOf(row.item) }
   const key = it.correct_answer
   if (typeof key !== 'string' || !key.trim()) return
   const choices = Array.isArray(it.choices) ? it.choices : []
@@ -147,7 +167,7 @@ function scanItem(row, findings, suspicious) {
 }
 
 // ── self-test ────────────────────────────────────────────────────────
-if (process.argv.includes('--selftest')) {
+export function selftest(verbose = false) {
   const cases = [
     ['caption states the key', 'answer-in-figure-text', {
       correct_answer: '24', choices: ['18', '20', '24', '30'],
@@ -186,6 +206,11 @@ if (process.argv.includes('--selftest')) {
       correct_answer: '24', choices: ['18', '20', '24', '30'],
       graphic: { type: 'bar', caption: 'Rainfall by month', bars: [{ label: 'Jan', value: 7 }] },
     }],
+    // A math batch's top-level svg + caption must be read, not skipped.
+    ['top-level svg caption states the key', 'answer-in-figure-text', {
+      correct_answer: '42', choices: ['36', '40', '42', '48'],
+      svg: '<svg viewBox="0 0 10 10"></svg>', caption: 'The perimeter is 42',
+    }],
   ]
   let bad = 0
   for (const [name, expected, item] of cases) {
@@ -194,63 +219,62 @@ if (process.argv.includes('--selftest')) {
     const kinds = f.map(x => x.kind)
     const ok = expected === null ? kinds.length === 0 : kinds.includes(expected)
     if (!ok) bad++
-    console.log(`${ok ? 'ok  ' : 'FAIL'}  ${name}  ->  [${kinds.join(', ') || 'none'}]`)
+    if (verbose || !ok) console.log(`${ok ? 'ok  ' : 'FAIL'}  ${name}  ->  [${kinds.join(', ') || 'none'}]`)
   }
   console.log(bad
-    ? `\n${bad} self-test(s) FAILED — do not trust a clean sweep from this build.`
-    : '\nself-test passed: fires on real leaks, quiet on well-formed figures.')
-  process.exit(bad ? 1 : 0)
+    ? `${bad} self-test(s) FAILED — do not trust a clean sweep from this build.`
+    : `selftest ${cases.length}/${cases.length} pass: fires on real leaks, quiet on well-formed figures.`)
+  return bad
 }
 
-// ── live sweep ───────────────────────────────────────────────────────
-const onlyDomain = process.argv[2] ?? null
+function report(label, rows) {
+  const withGraphic = rows.filter(r => graphicOf(r.item))
+  console.log(`\nFIGURE TEXT vs KEY`)
+  console.log(`  ${label}`)
+  printDenominator('items carrying a graphic', withGraphic.length, rows.length)
 
-const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8').split('\n')
-  .filter(l => l.includes('=') && !l.startsWith('#'))
-  .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
-const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY,
-  { auth: { persistSession: false } })
+  const findings = []
+  const suspicious = []
+  for (const row of withGraphic) scanItem(row, findings, suspicious)
 
-/*
- * .range() pagination, NOT .limit(). PostgREST caps a response at 1000
- * rows and .limit() above that returns 1000 silently — a verifier here
- * already reported "0 problems" from a bank truncated that way, having
- * never loaded the rows carrying the defect.
- */
-const rows = []
-for (let from = 0; ; from += 1000) {
-  let q = db.from('study_item_bank').select('id, domain, item, archived')
-    .order('id', { ascending: true }).range(from, from + 999)
-  if (onlyDomain) q = q.eq('domain', onlyDomain)
-  const { data, error } = await q
-  if (error) { console.error('read failed:', error.message); process.exit(2) }
-  if (!data?.length) break
-  rows.push(...data)
-  if (data.length < 1000) break
+  const byKind = findings.reduce((m, f) => ((m[f.kind] = (m[f.kind] ?? 0) + 1), m), {})
+  console.log('  DEFECTS')
+  if (findings.length === 0) console.log('    none — run --selftest before believing this')
+  for (const [k, n] of Object.entries(byKind)) console.log(`    ${k}: ${n}`)
+  for (const f of findings.slice(0, 25)) {
+    console.log(`\n    ${f.id}  [${f.domain}]  ${f.kind}`)
+    console.log(`      ${f.detail}`)
+  }
+  if (findings.length > 25) console.log(`\n    … and ${findings.length - 25} more`)
+
+  console.log(`\n  SUSPICIOUS, for a human to judge (${suspicious.length})`)
+  for (const s of suspicious.slice(0, 15)) console.log(`    ${s.id}  [${s.domain}]  ${s.detail}`)
+  if (suspicious.length > 15) console.log(`    … and ${suspicious.length - 15} more`)
+  return findings.length
 }
 
-const live = rows.filter(r => !r.archived && r.item?.graphic)
-console.log(`${rows.length} rows read, ${live.length} live items carry a graphic\n`)
-if (live.length === 0) { console.log('nothing to check'); process.exit(0) }
-
-const findings = []
-const suspicious = []
-for (const row of live) scanItem(row, findings, suspicious)
-
-const byKind = findings.reduce((m, f) => ((m[f.kind] = (m[f.kind] ?? 0) + 1), m), {})
-console.log('DEFECTS')
-if (findings.length === 0) console.log('  none — run --selftest before believing this')
-for (const [k, n] of Object.entries(byKind)) console.log(`  ${k}: ${n}`)
-for (const f of findings.slice(0, 25)) {
-  console.log(`\n  ${f.id}  [${f.domain}]  ${f.kind}`)
-  console.log(`    ${f.detail}`)
+if (isMain(import.meta.url)) {
+  const { mode, paths, flags } = parseCheckerArgs(process.argv, { name: 'check-graphic-leak.mjs', usage: USAGE, extraFlags: ['--domain'], liveOnly: ['--domain'] })
+  const stBad = selftest(mode === 'selftest')
+  if (mode === 'selftest') process.exit(stBad ? 1 : 0)
+  if (stBad) refuse('detector self-test failed — not running')
+  let defects = 0
+  if (mode === 'live') {
+    const onlyDomain = flagValue(flags, '--domain')
+    /*
+     * .range() pagination, NOT .limit(). PostgREST caps a response at 1000
+     * rows and .limit() above that returns 1000 silently — a verifier here
+     * already reported "0 problems" from a bank truncated that way, having
+     * never loaded the rows carrying the defect.
+     */
+    const { rows } = await loadLive({
+      select: 'id, domain, item',
+      filter: q => { q = q.eq('archived', false); return onlyDomain ? q.eq('domain', onlyDomain) : q },
+      label: onlyDomain ? `live domain "${onlyDomain}"` : 'live bank',
+    })
+    defects = report(populationHeader('live') + (onlyDomain ? `, domain=${onlyDomain}` : ''), rows)
+  } else {
+    for (const p of paths) defects += report(populationHeader('batch', p), loadBatchFile(p))
+  }
+  process.exit(defects ? 1 : 0)
 }
-if (findings.length > 25) console.log(`\n  … and ${findings.length - 25} more`)
-
-console.log(`\nSUSPICIOUS, for a human to judge (${suspicious.length})`)
-for (const s of suspicious.slice(0, 15)) {
-  console.log(`  ${s.id}  [${s.domain}]  ${s.detail}`)
-}
-if (suspicious.length > 15) console.log(`  … and ${suspicious.length - 15} more`)
-
-process.exit(findings.length ? 1 : 0)

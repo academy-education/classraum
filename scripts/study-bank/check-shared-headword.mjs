@@ -27,6 +27,9 @@
  * Usage:  set -a; source .env.local; set +a; node scripts/study-bank/check-shared-headword.mjs
  */
 import { createClient } from '@supabase/supabase-js'
+import { refuseUnknownArgs } from './checker-input.mjs'
+// A22: live-only, no file mode — refuse a batch path rather than ignore it.
+refuseUnknownArgs('check-shared-headword.mjs')
 const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
 const rows = []
 for (let from = 0; ; from += 1000) {

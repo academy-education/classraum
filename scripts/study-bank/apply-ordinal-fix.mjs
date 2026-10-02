@@ -24,7 +24,10 @@
  * to honour it.
  */
 import fs from 'fs'
-import { optionOrdinals } from './check-explanation-ordinals.mjs'
+import { optionOrdinals, selftest } from './check-explanation-ordinals.mjs'
+// The detector's self-test used to run as a side effect of this import; it
+// no longer does (A22), so run it explicitly before trusting `leftover`.
+if (selftest()) { console.log('detector is broken — refusing to run'); process.exit(1) }
 
 const env = fs.readFileSync('.env.local', 'utf8')
 const g = k => env.match(new RegExp('^' + k + '=(.*)$', 'm'))[1].trim()

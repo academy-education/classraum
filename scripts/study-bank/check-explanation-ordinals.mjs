@@ -16,10 +16,22 @@
  * a noun. `OPTION_NOUNS` is the observed set plus obvious neighbours, and
  * the selftest pins both directions.
  */
+/*
+ * usage:
+ *   check-explanation-ordinals.mjs <batch.json> [...]   report on THOSE files
+ *   check-explanation-ordinals.mjs --live               the whole live bank
+ *   check-explanation-ordinals.mjs --selftest           fixtures, no DB
+ *
+ * A22 (2026-10-02): until this date a batch path was IGNORED and the live
+ * bank reported instead — byte-identical output for two different files —
+ * and the self-test ran (and could process.exit) on IMPORT, so
+ * apply-ordinal-fix.mjs ran it too. Now importing runs nothing. Exit 0
+ * clean, 1 provably-wrong explanations found, 2 cannot process the input.
+ */
 import fs from 'fs'
-const env = fs.readFileSync('.env.local', 'utf8')
-const g = k => env.match(new RegExp('^' + k + '=(.*)$', 'm'))[1].trim()
-const U = g('NEXT_PUBLIC_SUPABASE_URL'), K = g('SUPABASE_SERVICE_ROLE_KEY')
+import { isMain, parseCheckerArgs, loadBatchFile, loadLive, printDenominator, populationHeader, refuse } from './checker-input.mjs'
+
+const USAGE = 'usage: check-explanation-ordinals.mjs <batch.json> [...] | --live | --selftest'
 
 const ORD = { first: 0, second: 1, third: 2, fourth: 3 }
 /** A following noun means the ordinal counts CONTENT, not options. */
@@ -80,36 +92,66 @@ const FIXTURES = [
   { n: 'worked arithmetic is never options',   ex: 'double the first to get 6h + 4d = 27, then subtract the second', want: [] },
   { n: 'prose with a digit is still prose',    ex: 'the second ignores the 40-minute warning', want: [1] },
 ]
-let bad = 0
-for (const f of FIXTURES) {
-  const got = optionOrdinals(f.ex).map(o => o.index)
-  if (JSON.stringify(got) !== JSON.stringify(f.want)) { bad++; console.log('SELFTEST FAIL:', f.n, 'got', got, 'want', f.want) }
+/** Run the fixtures. Returns the number that failed. */
+export function selftest(verbose = false) {
+  let bad = 0
+  for (const f of FIXTURES) {
+    const got = optionOrdinals(f.ex).map(o => o.index)
+    const ok = JSON.stringify(got) === JSON.stringify(f.want)
+    if (!ok) bad++
+    if (verbose || !ok) console.log(`${ok ? 'ok  ' : 'SELFTEST FAIL'}  ${f.n}  got ${JSON.stringify(got)} want ${JSON.stringify(f.want)}`)
+  }
+  console.log(bad ? `${bad} self-test(s) FAILED — detector is broken` : `selftest ${FIXTURES.length}/${FIXTURES.length} pass`)
+  return bad
 }
-if (bad) { console.log('detector is broken — refusing to run'); process.exit(1) }
 
-if (process.argv[1].endsWith('check-explanation-ordinals.mjs')) {
-  console.log(`selftest ${FIXTURES.length}/${FIXTURES.length} pass\n`)
-  const all = async q => { let o = [], f = 0
-    for (;;) { const r = await fetch(`${U}/rest/v1/study_item_bank?${q}`, { headers: { apikey: K, Authorization: 'Bearer ' + K, Range: `${f}-${f + 999}` } })
-      const d = await r.json(); if (!Array.isArray(d)) throw new Error(JSON.stringify(d)); o = o.concat(d); if (d.length < 1000) break; f += 1000 }
-    return o }
-  const rows = await all('select=id,cohort,family,domain,task,item&archived=is.false')
+/** An explanation that names, by position, the slot holding the key. */
+export function scanOrdinals(rows) {
   const broken = []
-  let cite = 0
+  let scorable = 0, cite = 0
   for (const r of rows) {
     const it = r.item || {}, ex = it.explanation, ch = it.choices
     if (!ex || !Array.isArray(ch)) continue
     const ki = ch.indexOf(it.correct_answer); if (ki < 0) continue
+    scorable++
     const ords = optionOrdinals(ex)
     if (ords.length) cite++
-    if (ords.some(o => o.index === ki)) broken.push({ id: r.id, family: r.family, task: r.task, cohort: r.cohort, ki, ch, ex })
+    if (ords.some(o => o.index === ki)) broken.push({ id: r.id, family: r.family, task: r.task ?? r.item?.type ?? null, cohort: r.cohort, ki, ch, ex })
   }
-  console.log('live items scanned          ', rows.length)
-  console.log('explanations naming an option by position', cite)
-  console.log('PROVABLY WRONG (position = key)', broken.length)
-  const by = f => { const m = {}; broken.forEach(b => m[f(b)] = (m[f(b)] || 0) + 1); return m }
-  console.log('  by family:', JSON.stringify(by(b => b.family)))
-  console.log('  by cohort:', JSON.stringify(by(b => b.cohort)))
-  console.log('  by task  :', JSON.stringify(by(b => b.task)))
-  fs.writeFileSync('/tmp/broken-ordinals.json', JSON.stringify(broken, null, 1))
+  return { total: rows.length, scorable, cite, broken }
+}
+
+function report(label, rows) {
+  const s = scanOrdinals(rows)
+  console.log(`\nEXPLANATION ORDINALS vs KEY SLOT`)
+  console.log(`  ${label}`)
+  printDenominator('explanation + choices + key in choices', s.scorable, s.total)
+  console.log('  explanations naming an option by position', s.cite)
+  console.log('  PROVABLY WRONG (position = key)', s.broken.length)
+  const by = f => { const m = {}; s.broken.forEach(b => m[f(b)] = (m[f(b)] || 0) + 1); return m }
+  if (s.broken.length) {
+    console.log('    by family:', JSON.stringify(by(b => b.family)))
+    console.log('    by cohort:', JSON.stringify(by(b => b.cohort)))
+    console.log('    by task  :', JSON.stringify(by(b => b.task)))
+    for (const b of s.broken.slice(0, 8)) console.log(`    ${b.id}  key slot ${'ABCDE'[b.ki]}: ${String(b.ex).replace(/\s+/g, ' ').slice(0, 160)}`)
+  }
+  return s
+}
+
+if (isMain(import.meta.url)) {
+  const { mode, paths } = parseCheckerArgs(process.argv, { name: 'check-explanation-ordinals.mjs', usage: USAGE })
+  const stBad = selftest(mode === 'selftest')
+  if (mode === 'selftest') process.exit(stBad ? 1 : 0)
+  if (stBad) refuse('detector self-test failed — not running')
+  let defects = 0
+  if (mode === 'live') {
+    const { rows } = await loadLive({ select: 'id,cohort,family,domain,task,item', filter: q => q.eq('archived', false) })
+    const s = report(populationHeader('live'), rows)
+    defects = s.broken.length
+    // apply-ordinal-fix.mjs's review list; live mode only, never for a batch.
+    fs.writeFileSync('/tmp/broken-ordinals.json', JSON.stringify(s.broken, null, 1))
+  } else {
+    for (const p of paths) defects += report(populationHeader('batch', p), loadBatchFile(p)).broken.length
+  }
+  process.exit(defects ? 1 : 0)
 }

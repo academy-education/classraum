@@ -11,6 +11,9 @@
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
 import { register } from 'node:module'
+import { refuseUnknownArgs } from './checker-input.mjs'
+// A22: live-only, no file mode — refuse a batch path rather than ignore it.
+refuseUnknownArgs('check-conversations.mjs')
 
 const env = Object.fromEntries(
   readFileSync(new URL('../../.env.local', import.meta.url), 'utf8')

@@ -30,6 +30,12 @@ const env = Object.fromEntries(readFileSync('.env.local','utf8').split('\n')
   .filter(l=>l.includes('=')&&!l.startsWith('#')).map(l=>[l.slice(0,l.indexOf('=')),l.slice(l.indexOf('=')+1).trim()]))
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth:{persistSession:false} })
 const section = process.argv[2] ?? 'math'
+// A22: a batch path here used to become a section name, match zero rows, and
+// carry on. Only the two SAT sections exist.
+if (!['math', 'reading_writing'].includes(section) || process.argv.length > 3) {
+  console.error(`REFUSING: section must be math or reading_writing (got ${process.argv.slice(2).join(' ')}). This checker measures the live SAT bank and has no file mode.`)
+  process.exit(2)
+}
 const rows = []
 for (let f=0;;f+=1000) {
   const { data, error } = await db.from('study_item_bank').select('id,domain,cohort,item')

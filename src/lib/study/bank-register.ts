@@ -383,7 +383,8 @@ export const WORK: WorkItem[] = [
     size: '6 scripts',
     why: 'check-explanation-option-refs, check-explanation-ordinals, check-verbatim-key, check-vocab-ambiguity, check-svg-viewbox and check-graphic-leak each ignore a batch path and print a whole-bank report instead. Handed two DIFFERENT batch files they print byte-identical output. That is the defect already fixed six times over on 2026-09-04; the sweep that fixed those searched for checkers and did not reach these. Each must exit non-zero on input it cannot process, and none may fall back to a default population.',
     owner: 'claude',
-    state: 'open',
+    state: 'done',
+    note: 'DONE 2026-10-02. Re-measured first: four (option-refs, ordinals, svg-viewbox, graphic-leak) still printed byte-identical live output for two different batch files; verbatim-key and vocab-ambiguity had been made to refuse any argument on 2026-09-15, leaving no file mode. All six now read the batch they are given, print `scorable N of M` first, exit 2 on missing/unparseable/empty/unknown-shape input or zero scorable items, and touch the live bank only with --live. Shared contract in scripts/study-bank/checker-input.mjs. Sweep found seven more live-only checkers that ignored argv; they now refuse an argument. See REGISTER.md section 5, 2026-10-02.',
   },
   {
     id: 'A23',

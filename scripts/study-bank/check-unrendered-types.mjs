@@ -6,6 +6,9 @@
  * in the live bank against the chain rather than waiting for the next report. */
 import { readFileSync } from 'node:fs'
 import { createClient } from '@supabase/supabase-js'
+import { refuseUnknownArgs } from './checker-input.mjs'
+// A22: live-only, no file mode — refuse a batch path rather than ignore it.
+refuseUnknownArgs('check-unrendered-types.mjs')
 const env = Object.fromEntries(readFileSync('.env.local','utf8').split('\n')
   .filter(l=>l.includes('=')&&!l.startsWith('#')).map(l=>[l.slice(0,l.indexOf('=')),l.slice(l.indexOf('=')+1).trim()]))
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth:{persistSession:false} })
