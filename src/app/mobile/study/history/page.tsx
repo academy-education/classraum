@@ -251,7 +251,7 @@ function HistoryInner() {
                         <Link
                           key={row.id}
                           href={`/mobile/study/session/${row.id}`}
-                          className="group flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
+                          className="group flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white ring-1 ring-gray-200/70 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(23,118,219,0.15)] active:scale-[0.995] transition-all"
                         >
                           <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${MODE_TILES[row.mode] ?? 'bg-primary/10 text-primary'}`}>
                             <Icon className="w-[18px] h-[18px]" />

@@ -330,7 +330,7 @@ function Frame({
       <div
         className={`rounded-2xl bg-white p-8 ${
           highlight
-            ? 'shadow-[0_2px_8px_-2px_rgba(40,133,232,0.15),0_8px_24px_-8px_rgba(40,133,232,0.1)] ring-1 ring-primary/10'
+            ? 'shadow-[0_2px_8px_-2px_rgba(23,118,219,0.15),0_8px_24px_-8px_rgba(23,118,219,0.1)] ring-1 ring-primary/10'
             : 'border border-gray-200'
         }`}
       >
@@ -373,7 +373,7 @@ function NewPageHeader() {
             Classrooms
           </h1>
         </div>
-        <button className="bg-primary text-white text-sm font-medium px-4 h-10 rounded-md flex items-center gap-2 self-start sm:self-end shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_8px_-2px_rgba(40,133,232,0.3)] hover:-translate-y-px transition-all">
+        <button className="bg-primary text-white text-sm font-medium px-4 h-10 rounded-md flex items-center gap-2 self-start sm:self-end shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_8px_-2px_rgba(23,118,219,0.3)] hover:-translate-y-px transition-all">
           <Plus className="w-4 h-4" strokeWidth={2.25} />
           Create Classroom
         </button>
@@ -578,7 +578,7 @@ function NewInput() {
 function CurrentButton() {
   return (
     <div className="flex flex-wrap gap-3 items-center">
-      <button className="bg-primary text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-primary/90">
+      <button className="bg-primary text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-primary-hover">
         Create Classroom
       </button>
       <button className="border border-gray-200 bg-white text-gray-700 text-sm font-medium px-4 py-2 rounded-md hover:bg-gray-50">
@@ -594,7 +594,7 @@ function CurrentButton() {
 function NewButton() {
   return (
     <div className="flex flex-wrap gap-3 items-center">
-      <button className="bg-primary text-white text-sm font-medium px-4 h-10 rounded-md flex items-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-2px_rgba(40,133,232,0.4)] hover:-translate-y-px transition-all">
+      <button className="bg-primary text-white text-sm font-medium px-4 h-10 rounded-md flex items-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-2px_rgba(23,118,219,0.4)] hover:-translate-y-px transition-all">
         Create Classroom
       </button>
       <button className="bg-white text-gray-700 text-sm font-medium px-4 h-10 rounded-md flex items-center ring-1 ring-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:ring-gray-300 hover:shadow-[0_2px_6px_-1px_rgba(0,0,0,0.08)] hover:-translate-y-px transition-all">
@@ -736,7 +736,7 @@ function CurrentClassroomCard() {
         <button className="w-full h-9 border border-gray-200 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50">
           View Details
         </button>
-        <button className="w-full h-9 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90">
+        <button className="w-full h-9 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary-hover">
           View Sessions
         </button>
       </div>
@@ -1294,7 +1294,7 @@ function CompositeClassroomsPage() {
               <Calendar className="w-4 h-4" strokeWidth={1.75} />
               Schedule Break
             </button>
-            <button className="bg-primary text-white text-sm font-medium px-4 h-10 rounded-md flex items-center gap-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-2px_rgba(40,133,232,0.4)] hover:-translate-y-px transition-all">
+            <button className="bg-primary text-white text-sm font-medium px-4 h-10 rounded-md flex items-center gap-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_1px_2px_rgba(0,0,0,0.08)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-2px_rgba(23,118,219,0.4)] hover:-translate-y-px transition-all">
               <Plus className="w-4 h-4" strokeWidth={2.25} />
               Create Classroom
             </button>

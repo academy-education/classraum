@@ -312,7 +312,7 @@ function RoiCalculator({ t }: { t: TFunc }) {
   const wonLabel = `₩${won.toLocaleString("en-US")}`
   const unit = tOpt(t, "landing.home.calc.unit")
   const pct = (v: number, min: number, max: number) => ((v - min) / (max - min)) * 100
-  const track = (p: number) => ({ background: `linear-gradient(to right, #2885e8 ${p}%, #e5e7eb ${p}%)` })
+  const track = (p: number) => ({ background: `linear-gradient(to right, #1776db ${p}%, #e5e7eb ${p}%)` })
 
   return (
     <section className="bg-[#f8fafc] border-y border-gray-100 py-24" id="calculator">
@@ -500,7 +500,7 @@ function HomeContent() {
       <header className="relative pt-20 pb-14 text-center overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(40,133,232,.06), transparent 70%)" }}
+          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(23,118,219,.06), transparent 70%)" }}
         />
         <div className="relative max-w-[1080px] mx-auto px-6 sm:px-8">
           <h1 className="text-[clamp(38px,5.4vw,64px)] font-bold text-[#163e64] leading-[1.16] tracking-[-0.024em]">
@@ -520,7 +520,7 @@ function HomeContent() {
             <div
               aria-hidden="true"
               className="absolute -inset-x-16 -top-10 -bottom-6 pointer-events-none"
-              style={{ background: "radial-gradient(60% 55% at 50% 42%, rgba(40,133,232,0.09), rgba(0,208,174,0.05) 55%, transparent 75%)" }}
+              style={{ background: "radial-gradient(60% 55% at 50% 42%, rgba(23,118,219,0.09), rgba(0,208,174,0.05) 55%, transparent 75%)" }}
             />
             <div className="hv4-hero-panel relative">
               <DashboardMock t={t} label={ts(t, "landing.home.shots.dashboard")} />

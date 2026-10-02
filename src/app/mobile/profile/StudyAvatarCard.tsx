@@ -301,7 +301,7 @@ export function StudyAvatarCard({ onSaved }: {
                     onClick={() => setTab(id)}
                     className={`h-11 min-w-11 px-3.5 rounded-full text-[13px] font-semibold whitespace-nowrap transition-all active:scale-[0.96] ${
                       tab === id
-                        ? 'bg-primary text-white shadow-[0_6px_14px_-6px_rgba(40,133,232,0.6)]'
+                        ? 'bg-primary text-white shadow-[0_6px_14px_-6px_rgba(23,118,219,0.6)]'
                         : 'text-gray-500 bg-gray-100 hover:text-gray-700'
                     }`}
                   >

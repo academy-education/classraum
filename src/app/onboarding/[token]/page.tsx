@@ -422,9 +422,9 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
     return (
       <CenteredState lang={lang}>
         <div className="relative">
-          <span className="ob-ping-lg absolute inset-0 rounded-full bg-[#2885e8]/30" />
-          <span className="ob-ping-lg absolute inset-0 rounded-full bg-[#2885e8]/20" style={{ animationDelay: '300ms' }} />
-          <div className="ob-pop relative w-16 h-16 rounded-full bg-gradient-to-br from-[#2885e8] to-[#1f6fc7] flex items-center justify-center shadow-[0_12px_40px_-8px_rgba(40,133,232,0.6)]">
+          <span className="ob-ping-lg absolute inset-0 rounded-full bg-primary/30" />
+          <span className="ob-ping-lg absolute inset-0 rounded-full bg-primary/20" style={{ animationDelay: '300ms' }} />
+          <div className="ob-pop relative w-16 h-16 rounded-full bg-gradient-to-br from-primary to-[#1568c2] flex items-center justify-center shadow-[0_12px_40px_-8px_rgba(23,118,219,0.6)]">
             <Check className="w-8 h-8 text-white" strokeWidth={3} />
           </div>
         </div>
@@ -490,7 +490,7 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
           {/* Ambient brand-color glows + grid texture */}
           <div className="pointer-events-none absolute inset-0">
             {/* Slow drifting brand orbs — give the panel real depth */}
-            <div className="ob-orb absolute -top-32 -left-24 w-[520px] h-[520px] rounded-full bg-[#2885e8]/40 blur-3xl" />
+            <div className="ob-orb absolute -top-32 -left-24 w-[520px] h-[520px] rounded-full bg-primary/40 blur-3xl" />
             <div className="ob-orb absolute top-1/3 -right-32 w-[420px] h-[420px] rounded-full bg-[#5ba3ff]/25 blur-3xl" style={{ animationDuration: '15s', animationDirection: 'reverse' }} />
             <div className="ob-orb absolute -bottom-32 left-1/4 w-[480px] h-[480px] rounded-full bg-[#1d6fd0]/30 blur-3xl" style={{ animationDuration: '18s' }} />
             {/* Hairline grid */}
@@ -571,7 +571,7 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
           <div className="lg:hidden px-5 mt-2">
             <div className="h-0.5 bg-gray-100 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-[#2885e8] to-[#5ba3ff] transition-all duration-700 ease-out"
+                className="h-full bg-gradient-to-r from-primary to-[#5ba3ff] transition-all duration-700 ease-out"
                 style={{ width: `${(currentStepNumber / totalSteps) * 100}%` }}
               />
             </div>
@@ -649,7 +649,7 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
                     type="button"
                     onClick={handleSubmit}
                     disabled={submitting}
-                    className="h-11 px-5 gap-2 bg-gradient-to-b from-[#2885e8] to-[#1f6fc7] hover:from-[#3590ec] hover:to-[#2885e8] text-white shadow-[0_8px_24px_-8px_rgba(40,133,232,0.6)] hover:shadow-[0_12px_28px_-6px_rgba(40,133,232,0.7)] transition-all duration-300 hover:-translate-y-px"
+                    className="h-11 px-5 gap-2 bg-gradient-to-b from-primary to-[#1568c2] hover:from-[#1568c2] hover:to-[#1568c2] text-white shadow-[0_8px_24px_-8px_rgba(23,118,219,0.6)] hover:shadow-[0_12px_28px_-6px_rgba(23,118,219,0.7)] transition-all duration-300 hover:-translate-y-px"
                   >
                     {submitting ? (
                       <><Loader2 className="w-4 h-4 animate-spin" />{tt.creating}</>
@@ -661,7 +661,7 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
                   <Button
                     type="button"
                     onClick={goNext}
-                    className="h-11 px-5 gap-2 bg-gradient-to-b from-[#2885e8] to-[#1f6fc7] hover:from-[#3590ec] hover:to-[#2885e8] text-white shadow-[0_8px_24px_-8px_rgba(40,133,232,0.6)] hover:shadow-[0_12px_28px_-6px_rgba(40,133,232,0.7)] transition-all duration-300 hover:-translate-y-px"
+                    className="h-11 px-5 gap-2 bg-gradient-to-b from-primary to-[#1568c2] hover:from-[#1568c2] hover:to-[#1568c2] text-white shadow-[0_8px_24px_-8px_rgba(23,118,219,0.6)] hover:shadow-[0_12px_28px_-6px_rgba(23,118,219,0.7)] transition-all duration-300 hover:-translate-y-px"
                   >
                     {tt.getStarted}
                     <ArrowRight className="w-4 h-4" />
@@ -670,7 +670,7 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
                   <Button
                     type="button"
                     onClick={goNext}
-                    className="h-11 px-5 gap-2 bg-gradient-to-b from-[#2885e8] to-[#1f6fc7] hover:from-[#3590ec] hover:to-[#2885e8] text-white shadow-[0_8px_24px_-8px_rgba(40,133,232,0.6)] hover:shadow-[0_12px_28px_-6px_rgba(40,133,232,0.7)] transition-all duration-300 hover:-translate-y-px"
+                    className="h-11 px-5 gap-2 bg-gradient-to-b from-primary to-[#1568c2] hover:from-[#1568c2] hover:to-[#1568c2] text-white shadow-[0_8px_24px_-8px_rgba(23,118,219,0.6)] hover:shadow-[0_12px_28px_-6px_rgba(23,118,219,0.7)] transition-all duration-300 hover:-translate-y-px"
                   >
                     {tt.next}
                     <ArrowRight className="w-4 h-4" />
@@ -715,7 +715,7 @@ function StepRail({ currentStep, lang }: { currentStep: Step; lang: Lang }) {
                 state === 'done'
                   ? 'bg-white text-gray-900'
                   : state === 'current'
-                  ? 'bg-[#2885e8] text-white ring-4 ring-[#2885e8]/20'
+                  ? 'bg-primary text-white ring-4 ring-primary/20'
                   : 'bg-white/10 text-white/40'
               }`}
             >
@@ -752,8 +752,8 @@ function LangSwitch({ lang, onChange }: { lang: Lang; onChange: (l: Lang) => voi
           onClick={() => onChange(l)}
           className={`px-3 h-7 rounded-full text-xs font-medium tracking-wide transition-all duration-300 ${
             lang === l
-              ? 'bg-gradient-to-b from-[#2885e8] to-[#1f6fc7] text-white shadow-[0_4px_12px_-4px_rgba(40,133,232,0.5)]'
-              : 'text-gray-500 hover:text-[#2885e8]'
+              ? 'bg-gradient-to-b from-primary to-[#1568c2] text-white shadow-[0_4px_12px_-4px_rgba(23,118,219,0.5)]'
+              : 'text-gray-500 hover:text-primary'
           }`}
         >
           {l === 'en' ? 'EN' : '한국어'}
@@ -772,7 +772,7 @@ function StepHeader({ kicker, title, body }: { kicker?: string; title: string; b
     <div className="mb-8">
       {kicker && (
         <p
-          className="text-xs uppercase tracking-[0.16em] text-[#2885e8] font-semibold mb-3 ob-fade-up-sm"
+          className="text-xs uppercase tracking-[0.16em] text-primary font-semibold mb-3 ob-fade-up-sm"
           style={{ animationDelay: '60ms' }}
         >
           {kicker}
@@ -812,8 +812,8 @@ function LanguageStep({ lang, onPick }: { lang: Lang; onPick: (l: Lang) => void 
               style={{ animationDelay: `${140 + i * 80}ms` }}
               className={`group w-full text-left rounded-xl border px-5 py-4 flex items-center justify-between transition-[colors,box-shadow,transform] duration-300 ob-fade-up ${
                 selected
-                  ? 'border-[#2885e8] bg-gradient-to-br from-[#2885e8]/8 to-[#5ba3ff]/4 shadow-[inset_0_0_0_1px_#2885e8,0_8px_24px_-12px_rgba(40,133,232,0.4)]'
-                  : 'border-gray-200 hover:border-[#2885e8]/40 hover:bg-[#2885e8]/[0.02]'
+                  ? 'border-primary bg-gradient-to-br from-primary/8 to-[#5ba3ff]/4 shadow-[inset_0_0_0_1px_#1776db,0_8px_24px_-12px_rgba(23,118,219,0.4)]'
+                  : 'border-gray-200 hover:border-primary/40 hover:bg-primary/[0.02]'
               }`}
             >
               <div>
@@ -823,7 +823,7 @@ function LanguageStep({ lang, onPick }: { lang: Lang; onPick: (l: Lang) => void 
               <div
                 className={`w-5 h-5 rounded-full flex items-center justify-center transition-all duration-300 ${
                   selected
-                    ? 'bg-[#2885e8] scale-100 shadow-[0_0_0_4px_rgba(40,133,232,0.15)]'
+                    ? 'bg-primary scale-100 shadow-[0_0_0_4px_rgba(23,118,219,0.15)]'
                     : 'border border-gray-300 scale-90'
                 }`}
               >
@@ -857,7 +857,7 @@ function WelcomeStep({ academy, lang }: { academy: AcademyPreview; lang: Lang })
             className="flex items-start gap-3 ob-fade-up"
             style={{ animationDelay: `${150 + i * 100}ms` }}
           >
-            <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-[#2885e8]/15 to-[#5ba3ff]/8 text-[#2885e8] text-xs font-semibold flex items-center justify-center ring-1 ring-[#2885e8]/20">
+            <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-primary/15 to-[#5ba3ff]/8 text-primary text-xs font-semibold flex items-center justify-center ring-1 ring-primary/20">
               {i + 1}
             </div>
             <span className="text-[15px] text-gray-700 leading-relaxed pt-0.5">{p}</span>
@@ -867,15 +867,15 @@ function WelcomeStep({ academy, lang }: { academy: AcademyPreview; lang: Lang })
 
       {/* Plan card */}
       <div
-        className="relative overflow-hidden rounded-xl border border-[#2885e8]/20 bg-gradient-to-br from-[#2885e8]/5 via-white to-[#5ba3ff]/5 p-4 flex items-center justify-between ob-fade-up"
+        className="relative overflow-hidden rounded-xl border border-primary/20 bg-gradient-to-br from-primary/5 via-white to-[#5ba3ff]/5 p-4 flex items-center justify-between ob-fade-up"
         style={{ animationDelay: '500ms' }}
       >
-        <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-[#2885e8]/10 blur-2xl" />
+        <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/10 blur-2xl" />
         <div className="relative">
-          <div className="text-xs uppercase tracking-wider text-[#2885e8] font-semibold">{tt.welcomePlan}</div>
+          <div className="text-xs uppercase tracking-wider text-primary font-semibold">{tt.welcomePlan}</div>
           <div className="text-base font-semibold text-gray-900 mt-0.5">{tierLabel}</div>
         </div>
-        <Sparkles className="relative w-5 h-5 text-[#2885e8]" />
+        <Sparkles className="relative w-5 h-5 text-primary" />
       </div>
     </div>
   )
@@ -1039,7 +1039,7 @@ function Field({
       </div>
       <div className="relative group">
         {icon && (
-          <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none transition-colors duration-200 peer-focus-visible:text-[#2885e8] group-focus-within:text-[#2885e8]">
+          <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none transition-colors duration-200 peer-focus-visible:text-primary group-focus-within:text-primary">
             {icon}
           </div>
         )}
@@ -1051,7 +1051,7 @@ function Field({
           placeholder={placeholder}
           required={required}
           autoComplete={type === 'password' ? 'new-password' : type === 'email' ? 'email' : 'off'}
-          className={`${icon ? 'pl-10' : ''} peer h-11 bg-white border-gray-200 rounded-lg shadow-none focus-visible:ring-4 focus-visible:ring-[#2885e8]/15 focus-visible:border-[#2885e8] transition-all duration-200`}
+          className={`${icon ? 'pl-10' : ''} peer h-11 bg-white border-gray-200 rounded-lg shadow-none focus-visible:ring-4 focus-visible:ring-primary/15 focus-visible:border-primary transition-all duration-200`}
         />
       </div>
       {helperText && (
@@ -1071,7 +1071,7 @@ interface ReviewCardProps {
 function ReviewCard({ title, rows, onEdit, editLabel, delay = 0 }: ReviewCardProps) {
   return (
     <div
-      className="rounded-xl border border-gray-200 bg-white overflow-hidden hover:border-[#2885e8]/30 hover:shadow-[0_8px_24px_-12px_rgba(40,133,232,0.2)] transition-[colors,box-shadow] duration-300 ob-fade-up"
+      className="rounded-xl border border-gray-200 bg-white overflow-hidden hover:border-primary/30 hover:shadow-[0_8px_24px_-12px_rgba(23,118,219,0.2)] transition-[colors,box-shadow] duration-300 ob-fade-up"
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100">
@@ -1079,7 +1079,7 @@ function ReviewCard({ title, rows, onEdit, editLabel, delay = 0 }: ReviewCardPro
         <button
           type="button"
           onClick={onEdit}
-          className="text-xs font-medium text-[#2885e8] hover:text-[#1f6fc7] transition-colors"
+          className="text-xs font-medium text-primary hover:text-[#1568c2] transition-colors"
         >
           {editLabel}
         </button>

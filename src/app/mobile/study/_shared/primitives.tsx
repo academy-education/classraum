@@ -525,7 +525,7 @@ export function StudyTodayCard({
   // When onDismiss is present, the outer X sits at right-2, so the
   // inner content needs extra right padding to keep the arrow /
   // rightSlot from overlapping it. Without dismiss: standard px-4.
-  const commonClassName = `group flex items-center gap-3 h-[80px] w-full rounded-2xl bg-white ring-1 ring-gray-200 pl-4 ${onDismiss ? 'pr-11' : 'pr-4'} hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all text-left disabled:opacity-70 disabled:cursor-wait`
+  const commonClassName = `group flex items-center gap-3 h-[80px] w-full rounded-2xl bg-white ring-1 ring-gray-200 pl-4 ${onDismiss ? 'pr-11' : 'pr-4'} hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(23,118,219,0.15)] active:scale-[0.995] transition-all text-left disabled:opacity-70 disabled:cursor-wait`
   const body = (
     <>
       <div className={`flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] ${iconColorClass}`}>
@@ -622,7 +622,7 @@ export function StudyEmptyState({
     ['rose', 'from-rose-400 to-pink-600 shadow-[0_6px_16px_-6px_rgba(244,63,94,0.45)]'],
     ['sky', 'from-sky-400 to-blue-500 shadow-[0_6px_16px_-6px_rgba(56,189,248,0.45)]'],
     ['indigo', 'from-indigo-400 to-blue-600 shadow-[0_6px_16px_-6px_rgba(79,70,229,0.45)]'],
-    ['primary', 'from-primary to-indigo-600 shadow-[0_6px_16px_-6px_rgba(40,133,232,0.45)]'],
+    ['primary', 'from-primary to-indigo-600 shadow-[0_6px_16px_-6px_rgba(23,118,219,0.45)]'],
   ]
   const gradient = gradients.find(([key]) => iconColorClass.includes(key))?.[1]
     ?? 'from-gray-300 to-gray-400 shadow-[0_6px_16px_-6px_rgba(107,114,128,0.4)]'
@@ -638,7 +638,7 @@ export function StudyEmptyState({
       {body && <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs mx-auto leading-relaxed">{body}</p>}
       {ctaHref && ctaText && (
         <Link href={ctaHref}
-          className="mt-4 inline-flex items-center justify-center h-10 px-4 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[13px] font-medium hover:opacity-95 active:scale-[0.98] transition-all">
+          className="mt-4 inline-flex items-center justify-center h-10 px-4 rounded-xl bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(23,118,219,0.28)] text-[13px] font-medium hover:opacity-95 active:scale-[0.98] transition-all">
           {ctaText}
         </Link>
       )}
@@ -671,7 +671,7 @@ const ACCENT_TINT: Record<StudyMetricAccent, string> = {
 }
 
 const ACCENT_GLOW: Record<StudyMetricAccent, string> = {
-  primary: 'shadow-[0_4px_10px_-2px_rgba(40,133,232,0.30)]',
+  primary: 'shadow-[0_4px_10px_-2px_rgba(23,118,219,0.30)]',
   emerald: 'shadow-[0_4px_10px_-2px_rgba(16,185,129,0.28)]',
   amber:   'shadow-[0_4px_10px_-2px_rgba(245,158,11,0.28)]',
   violet:  'shadow-[0_4px_10px_-2px_rgba(139,92,246,0.28)]',

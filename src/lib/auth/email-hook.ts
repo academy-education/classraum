@@ -140,7 +140,7 @@ const COPY: Record<AuthEmailLanguage, Record<string, { subject: string; title: s
 }
 
 export const ASSET_ORIGIN = 'https://www.classraum.com'
-export const BRAND = { navy: '#163a5f', blue: '#2885e8', teal: '#1fc8b6', ink: '#1f2937', muted: '#6b7280', line: '#e5e7eb', bg: '#f3f6fa' }
+export const BRAND = { navy: '#163a5f', blue: '#1776db', teal: '#1fc8b6', ink: '#1f2937', muted: '#6b7280', line: '#e5e7eb', bg: '#f3f6fa' }
 
 /**
  * One layout for every auth mail. Table-based and inline-styled on purpose:

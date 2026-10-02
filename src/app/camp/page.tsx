@@ -50,14 +50,14 @@ type Tile = { t: string; d: string }
    its number chip and its bullet dots so a stage keeps its identity
    from the diagram to the card. */
 const STAGE_TONE = [
-  { border: "border-t-[#2885e8]", chip: "bg-[#2885e8]", dot: "bg-[#2885e8]" },
+  { border: "border-t-[#1776db]", chip: "bg-primary", dot: "bg-primary" },
   { border: "border-t-[#7a5af8]", chip: "bg-[#7a5af8]", dot: "bg-[#7a5af8]" },
   { border: "border-t-[#f79009]", chip: "bg-[#f79009]", dot: "bg-[#f79009]" },
   { border: "border-t-[#00b89c]", chip: "bg-[#00b89c]", dot: "bg-[#00b89c]" },
 ]
 
 const WHY_TONE = [
-  { bar: "linear-gradient(90deg,#2885e8,#5aa9f5)", chip: "bg-blue-50 text-primary" },
+  { bar: "linear-gradient(90deg,#1776db,#5aa9f5)", chip: "bg-blue-50 text-primary" },
   { bar: "linear-gradient(90deg,#7a5af8,#a78bfa)", chip: "bg-violet-50 text-violet-600" },
   { bar: "linear-gradient(90deg,#f79009,#fbbf24)", chip: "bg-amber-50 text-amber-600" },
   { bar: "linear-gradient(90deg,#00D0AE,#5eead4)", chip: "bg-[#00D0AE]/15 text-[#00806c]" },
@@ -121,7 +121,7 @@ export default function CampPage() {
       <header className="relative pt-16 pb-14">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(620px 300px at 50% -60px, ${isToefl ? "rgba(122,90,248,.08)" : "rgba(40,133,232,.07)"}, transparent 70%)` }}
+          style={{ background: `radial-gradient(620px 300px at 50% -60px, ${isToefl ? "rgba(122,90,248,.08)" : "rgba(23,118,219,.07)"}, transparent 70%)` }}
         />
         <div className={`relative ${WRAP}`}>
           {/* programme tabs */}
@@ -131,7 +131,7 @@ export default function CampPage() {
               onClick={() => setTab("sat")}
               aria-pressed={tab === "sat"}
               className={`text-[13.5px] font-semibold rounded-full px-4 py-2 transition-colors duration-200 ${
-                !isToefl ? "bg-primary text-white shadow-[0_8px_18px_-10px_rgba(40,133,232,0.8)]"
+                !isToefl ? "bg-primary text-white shadow-[0_8px_18px_-10px_rgba(23,118,219,0.8)]"
                               : "bg-white text-gray-500 ring-1 ring-gray-200 hover:text-primary"
               }`}
             >
@@ -142,7 +142,7 @@ export default function CampPage() {
               onClick={() => setTab("toefl")}
               aria-pressed={isToefl}
               className={`text-[13.5px] font-semibold rounded-full px-4 py-2 transition-colors duration-200 ${
-                isToefl ? "bg-primary text-white shadow-[0_8px_18px_-10px_rgba(40,133,232,0.8)]"
+                isToefl ? "bg-primary text-white shadow-[0_8px_18px_-10px_rgba(23,118,219,0.8)]"
                         : "bg-white text-gray-500 ring-1 ring-gray-200 hover:text-primary"
               }`}
             >
@@ -156,7 +156,7 @@ export default function CampPage() {
             </span>
             <h1 className="camp-in text-[clamp(32px,4.4vw,52px)] font-bold text-[#163e64] leading-[1.14] tracking-[-0.022em]">
               {ts(t, C + "hero.title1")}{" "}
-              <span className={`whitespace-nowrap bg-gradient-to-r bg-clip-text text-transparent ${isToefl ? "from-[#7a5af8] to-[#2885e8]" : "from-[#2885e8] to-[#00D0AE]"}`}>
+              <span className={`whitespace-nowrap bg-gradient-to-r bg-clip-text text-transparent ${isToefl ? "from-[#7a5af8] to-primary" : "from-primary to-[#00D0AE]"}`}>
                 {isToefl ? ts(t, C + "toefl.hero.titleAccent") : ts(t, C + "hero.titleAccent")}
               </span>{" "}
               {ts(t, C + "hero.title2")}
@@ -213,8 +213,8 @@ export default function CampPage() {
               <Plus size={17} strokeWidth={2.6} />
             </span>
             <div className={`camp-in rounded-2xl p-7 sm:p-8 text-white bg-gradient-to-br ${isToefl
-              ? "from-[#7a5af8] to-[#2885e8] shadow-[0_20px_44px_-24px_rgba(122,90,248,0.9)]"
-              : "from-[#2885e8] to-[#00b89c] shadow-[0_20px_44px_-24px_rgba(40,133,232,0.9)]"}`}>
+              ? "from-[#7a5af8] to-primary shadow-[0_20px_44px_-24px_rgba(122,90,248,0.9)]"
+              : "from-primary to-[#00b89c] shadow-[0_20px_44px_-24px_rgba(23,118,219,0.9)]"}`}>
               <div className="flex items-center gap-2.5 mb-5">
                 <span className="shrink-0"><LogoMark size={36} radius={11} /></span>
                 <h3 className="text-[15px] font-bold">{ts(t, C + "hero.usTitle")}</h3>
@@ -667,8 +667,8 @@ export default function CampPage() {
                 gradient (per tab), white text, the real LogoMark — not a
                 second, lighter interpretation of the same idea. */}
             <div className={`camp-in rounded-2xl p-6 sm:p-7 text-white bg-gradient-to-br ${isToefl
-              ? "from-[#7a5af8] to-[#2885e8] shadow-[0_20px_44px_-24px_rgba(122,90,248,0.9)]"
-              : "from-[#2885e8] to-[#00b89c] shadow-[0_20px_44px_-24px_rgba(40,133,232,0.9)]"}`}>
+              ? "from-[#7a5af8] to-primary shadow-[0_20px_44px_-24px_rgba(122,90,248,0.9)]"
+              : "from-primary to-[#00b89c] shadow-[0_20px_44px_-24px_rgba(23,118,219,0.9)]"}`}>
               <div className="flex items-center gap-2.5 mb-4 pb-4 border-b border-white/20">
                 <span className="shrink-0"><LogoMark size={36} radius={11} /></span>
                 <h4 className="text-[15px] font-bold">{ts(t, C + "provides.usHead")}</h4>
@@ -745,7 +745,7 @@ export default function CampPage() {
             <span aria-hidden className="absolute -right-28 -top-28 w-[26rem] h-[26rem] rounded-full blur-3xl"
                   style={{ background: "radial-gradient(circle, rgba(0,208,174,.14), transparent 70%)" }} />
             <span aria-hidden className="absolute -left-24 -bottom-32 w-[24rem] h-[24rem] rounded-full blur-3xl"
-                  style={{ background: "radial-gradient(circle, rgba(40,133,232,.16), transparent 70%)" }} />
+                  style={{ background: "radial-gradient(circle, rgba(23,118,219,.16), transparent 70%)" }} />
             <div className="relative grid lg:grid-cols-[auto_1fr] items-center gap-8 lg:gap-12">
               <div className="flex flex-col items-center gap-3 shrink-0 mx-auto lg:mx-0">
                 <span className="camp-float"><PathMascot state="celebrate" size={116} /></span>
@@ -917,7 +917,7 @@ function WorkflowDiamond({ steps, artefacts }: { steps: Tile[]; artefacts: strin
         <svg viewBox="0 0 560 340" className="absolute inset-0 w-full h-full z-[2] pointer-events-none" aria-hidden>
           <defs>
             <marker id="wfArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 z" fill="#2885e8" opacity="0.55" />
+              <path d="M0,0 L10,5 L0,10 z" fill="#1776db" opacity="0.55" />
             </marker>
           </defs>
           {/* four arcs, clockwise: top→right→bottom→left→top */}
@@ -1064,14 +1064,14 @@ function TrendChart() {
     <svg viewBox="0 0 352 90" className="w-full h-[90px]" role="img" aria-label="Illustrative upward score trend">
       <defs>
         <linearGradient id="campTrend" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#2885e8" stopOpacity="0.22" />
-          <stop offset="100%" stopColor="#2885e8" stopOpacity="0" />
+          <stop offset="0%" stopColor="#1776db" stopOpacity="0.22" />
+          <stop offset="100%" stopColor="#1776db" stopOpacity="0" />
         </linearGradient>
       </defs>
       {[8, 30, 52, 74].map(y => <line key={y} x1="0" y1={y} x2="352" y2={y} stroke="#eef2f7" strokeWidth="1" />)}
       <path d={`${d} L352,90 L0,90 Z`} fill="url(#campTrend)" />
-      <path d={d} fill="none" stroke="#2885e8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      {pts.map(p => <circle key={p[0]} cx={p[0]} cy={p[1]} r="3.5" fill="#fff" stroke="#2885e8" strokeWidth="2.5" />)}
+      <path d={d} fill="none" stroke="#1776db" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      {pts.map(p => <circle key={p[0]} cx={p[0]} cy={p[1]} r="3.5" fill="#fff" stroke="#1776db" strokeWidth="2.5" />)}
     </svg>
   )
 }
@@ -1146,7 +1146,7 @@ function FlowCycle({ t, steps, label }: { t: TFunc; steps: string[]; label: stri
              aria-label={ts(t, C + "flow.title") + ": " + steps.join(" → ")}>
           <defs>
             <linearGradient id="campRing" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#2885e8" /><stop offset="100%" stopColor="#00D0AE" />
+              <stop offset="0%" stopColor="#1776db" /><stop offset="100%" stopColor="#00D0AE" />
             </linearGradient>
             <filter id="campNodeShadow" x="-30%" y="-30%" width="160%" height="160%">
               <feDropShadow dx="0" dy="3" stdDeviation="5" floodColor="#163e64" floodOpacity="0.10" />
@@ -1186,7 +1186,7 @@ function FlowCycle({ t, steps, label }: { t: TFunc; steps: string[]; label: stri
                 </g>
                 <circle cx={x - NODE_W / 2 + 19} cy={y} r="11" fill="url(#campRing)" opacity="0.14" />
                 <text x={x - NODE_W / 2 + 19} y={y + 4} textAnchor="middle"
-                      style={{ fontSize: 10.5, fontWeight: 800, fill: "#2885e8" }}>
+                      style={{ fontSize: 10.5, fontWeight: 800, fill: "#1776db" }}>
                   {i + 1}
                 </text>
                 <text x={x + 8} y={y + 4.5} textAnchor="middle"
@@ -1238,7 +1238,7 @@ function Converge({ t, tools }: { t: TFunc; tools: string[] }) {
         ))}
         <circle cx="310" cy="52" r="3" fill="#00D0AE" className="camp-dot-breathe" />
       </svg>
-      <div className="max-w-[620px] mx-auto rounded-xl px-5 py-4 flex flex-wrap items-center justify-center gap-3 text-white bg-gradient-to-r from-[#2C6EF1] via-[#16ADD4] to-[#00D0AE] shadow-[0_18px_36px_-18px_rgba(40,133,232,0.8)]">
+      <div className="max-w-[620px] mx-auto rounded-xl px-5 py-4 flex flex-wrap items-center justify-center gap-3 text-white bg-gradient-to-r from-[#2C6EF1] via-[#16ADD4] to-[#00D0AE] shadow-[0_18px_36px_-18px_rgba(23,118,219,0.8)]">
         <LogoMark size={30} radius={9} />
         <b className="text-[14px] font-extrabold tracking-[0.05em]">CLASSRAUM</b>
         <span className="w-px h-4 bg-white/30 hidden sm:block" />
@@ -1255,7 +1255,7 @@ function Converge({ t, tools }: { t: TFunc; tools: string[] }) {
  * section as over-coloured — the highlighted element already says
  * which bar matters, so the hue was carrying nothing. */
 function ActionVignette({ kind }: { kind: number }) {
-  const TRACK = "#cbd9e8", SIGNAL = "#2885e8"
+  const TRACK = "#cbd9e8", SIGNAL = "#1776db"
   if (kind === 0) return ( // low skill score — one bar sags
     <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
       {[[8, 18, TRACK], [20, 24, TRACK], [32, 9, SIGNAL], [44, 21, TRACK]].map(([x, h, c]) => (
@@ -1293,7 +1293,7 @@ function WhyGlyph({ kind }: { kind: number }) {
   const g = (
     <defs>
       <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stopColor="#2885e8" /><stop offset="100%" stopColor="#00D0AE" />
+        <stop offset="0%" stopColor="#1776db" /><stop offset="100%" stopColor="#00D0AE" />
       </linearGradient>
     </defs>
   )

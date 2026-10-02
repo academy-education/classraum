@@ -69,7 +69,7 @@ export function SubmitConfirmModal({
             className={`flex-1 h-11 rounded-xl text-white text-[15px] font-semibold active:scale-[0.98] transition-all ${
               unanswered > 0
                 ? 'bg-amber-600 hover:bg-amber-700'
-                : 'bg-primary hover:bg-primary/90'
+                : 'bg-primary hover:bg-primary-hover'
             }`}
           >
             {confirmLabel ?? String(t('study.test.submitConfirm.confirm'))}

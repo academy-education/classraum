@@ -69,9 +69,9 @@ const STEP_ICONS: Record<SetupTourStepId, LucideIcon> = {
 }
 
 
-/** #2885e8 — `--primary` in globals.css. Inline because the spotlight
+/** #1776db — `--primary` in globals.css. Inline because the spotlight
  *  glow is a box-shadow layered with the dim, not a ring utility. */
-const PRIMARY_RGB = '40,133,232'
+const PRIMARY_RGB = '23,118,219'
 
 /** How long the success state is held before the tour moves on. Long
  *  enough to read one line; "Continue" skips it, "Back" cancels it. */
@@ -606,7 +606,7 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
                 ? 'bg-emerald-500 text-white ring-4 ring-emerald-100 shadow-[0_2px_8px_-2px_rgba(16,185,129,0.55)]'
                 : step
                   ? 'bg-primary/10 text-primary ring-1 ring-primary/15'
-                  : 'bg-gradient-to-br from-primary to-blue-500 text-white ring-4 ring-primary/10 shadow-[0_2px_8px_-2px_rgba(40,133,232,0.55)]'
+                  : 'bg-gradient-to-br from-primary to-blue-500 text-white ring-4 ring-primary/10 shadow-[0_2px_8px_-2px_rgba(23,118,219,0.55)]'
             }`}>
               <Icon className="w-[18px] h-[18px]" strokeWidth={2.2} />
             </div>
@@ -688,7 +688,7 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
           )}
           {step && !celebratedStep && onRoute && rect && (
             <div className="mt-3 flex items-center gap-2.5 rounded-xl bg-primary/[0.07] ring-1 ring-primary/15 px-2.5 py-2">
-              <span className="w-6 h-6 rounded-lg bg-primary text-white flex items-center justify-center flex-shrink-0 shadow-[0_2px_6px_-1px_rgba(40,133,232,0.5)]">
+              <span className="w-6 h-6 rounded-lg bg-primary text-white flex items-center justify-center flex-shrink-0 shadow-[0_2px_6px_-1px_rgba(23,118,219,0.5)]">
                 <MousePointerClick className="w-3.5 h-3.5" strokeWidth={2.2} />
               </span>
               <p className="text-xs font-semibold text-primary leading-snug">
@@ -759,7 +759,7 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
                         item.state === 'done'
                           ? 'bg-emerald-500 text-white ring-2 ring-emerald-100'
                           : isCurrent
-                            ? 'bg-primary text-white ring-[3px] ring-primary/15 shadow-[0_2px_5px_-1px_rgba(40,133,232,0.5)]'
+                            ? 'bg-primary text-white ring-[3px] ring-primary/15 shadow-[0_2px_5px_-1px_rgba(23,118,219,0.5)]'
                             : 'bg-white text-gray-400 ring-1 ring-gray-200'
                       }`}>
                         {item.state === 'done'

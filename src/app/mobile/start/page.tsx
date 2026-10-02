@@ -92,7 +92,7 @@ export default function MobileStartPage() {
             {isStudent && (
               <Link
                 href="/mobile/study"
-                className="group block rounded-2xl p-5 ring-1 ring-primary/20 bg-gradient-to-br from-primary/[0.07] via-blue-50/70 to-violet-50/40 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(40,133,232,0.20)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-16px_rgba(40,133,232,0.28)] hover:ring-primary/40 transition-all active:scale-[0.99]"
+                className="group block rounded-2xl p-5 ring-1 ring-primary/20 bg-gradient-to-br from-primary/[0.07] via-blue-50/70 to-violet-50/40 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(23,118,219,0.20)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-16px_rgba(23,118,219,0.28)] hover:ring-primary/40 transition-all active:scale-[0.99]"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">

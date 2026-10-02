@@ -269,7 +269,7 @@ export default function StudyLandingPage() {
               <div
                 key={key}
                 className={`${CARD} ${CARD_HOVER} hv4-fade relative p-6 flex flex-col ${
-                  featured ? "ring-2 ring-primary shadow-[0_12px_32px_-12px_rgba(40,133,232,0.35)]" : ""
+                  featured ? "ring-2 ring-primary shadow-[0_12px_32px_-12px_rgba(23,118,219,0.35)]" : ""
                 }`}
               >
                 {featured && (

@@ -79,7 +79,7 @@ export function StudentsTable({
           strokeLinejoin="round" 
           strokeWidth={2} 
           d="M8 9l4-4 4 4" 
-          stroke={isAscending ? '#2885e8' : 'currentColor'}
+          stroke={isAscending ? '#1776db' : 'currentColor'}
           className={isAscending ? '' : 'text-gray-400'}
         />
         <path 
@@ -87,7 +87,7 @@ export function StudentsTable({
           strokeLinejoin="round" 
           strokeWidth={2} 
           d="M8 15l4 4 4-4" 
-          stroke={isDescending ? '#2885e8' : 'currentColor'}
+          stroke={isDescending ? '#1776db' : 'currentColor'}
           className={isDescending ? '' : 'text-gray-400'}
         />
       </svg>

@@ -33,8 +33,8 @@ const VARIANTS: Record<Variant, string> = {
   // Solid brand gradient — the standard call to action.
   primary:
     'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/20 ' +
-    'shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] ' +
-    'hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_4px_14px_rgba(40,133,232,0.34)] ' +
+    'shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(23,118,219,0.28)] ' +
+    'hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_4px_14px_rgba(23,118,219,0.34)] ' +
     'disabled:opacity-40',
   // Neutral surface — secondary actions, cancels.
   secondary:

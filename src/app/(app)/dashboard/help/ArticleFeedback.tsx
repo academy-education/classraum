@@ -144,7 +144,7 @@ export function ArticleFeedback({ slug, lang, labels }: ArticleFeedbackProps) {
               type="button"
               disabled={sending || !comment.trim()}
               onClick={() => submit(vote, comment)}
-              className="px-3 h-8 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 h-8 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {sending ? labels.sending : labels.send}
             </button>

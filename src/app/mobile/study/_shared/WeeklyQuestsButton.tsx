@@ -42,7 +42,7 @@ export function WeeklyQuestsButton() {
             icon in TestPrepPathCard, OnboardingWizard, PredictedScore and the
             path page, so using it here made "your goal exam" and "this week's
             quests" look like the same concept. */}
-        <span className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/20">
+        <span className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(23,118,219,0.25)] ring-1 ring-primary/20">
           <ListChecks className="w-5 h-5" />
         </span>
         <span className="flex-1 min-w-0">

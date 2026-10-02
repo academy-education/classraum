@@ -413,7 +413,7 @@ export function VoiceRecorderButton({ sessionId, language, ko, disabled, onTrans
           type="button"
           onClick={startRec}
           disabled={transcribing || disabled}
-          className="w-full h-14 rounded-2xl bg-primary text-white inline-flex items-center justify-center gap-3 shadow-[0_2px_6px_-2px_rgba(40,133,232,0.35)] active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full h-14 rounded-2xl bg-primary text-white inline-flex items-center justify-center gap-3 shadow-[0_2px_6px_-2px_rgba(23,118,219,0.35)] active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed"
           aria-label={ko ? '음성으로 답변 녹음' : 'Record voice answer'}
         >
           {transcribing ? (

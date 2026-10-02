@@ -358,11 +358,11 @@ function RecentSessionCard({ card, name, t, startSession, creating }: {
       type="button"
       onClick={() => void startSession(card)}
       disabled={creating !== null}
-      className="group relative w-full h-full overflow-hidden rounded-2xl p-4 ring-1 ring-primary/15 bg-gradient-to-br from-primary/[0.04] via-indigo-50/40 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.14),0_12px_24px_-12px_rgba(40,133,232,0.20)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
+      className="group relative w-full h-full overflow-hidden rounded-2xl p-4 ring-1 ring-primary/15 bg-gradient-to-br from-primary/[0.04] via-indigo-50/40 to-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:shadow-[0_2px_8px_-2px_rgba(23,118,219,0.14),0_12px_24px_-12px_rgba(23,118,219,0.20)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait"
     >
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
       <div className="flex items-center gap-3.5">
-        <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/20">
+        <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-indigo-600 text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_2px_4px_rgba(23,118,219,0.25)] ring-1 ring-primary/20">
           {creating === card.topic?.id
             ? <Loader2 className="w-4 h-4 animate-spin" />
             : <History className="w-5 h-5" />}

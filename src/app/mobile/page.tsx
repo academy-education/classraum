@@ -1353,7 +1353,7 @@ export default function MobilePage() {
               <button
                 onClick={handleJoinAcademy}
                 disabled={joiningAcademy}
-                className="w-full py-3 px-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 disabled:opacity-50 transition-colors"
+                className="w-full py-3 px-4 bg-primary text-white rounded-lg font-medium hover:bg-primary-hover disabled:opacity-50 transition-colors"
               >
                 {joiningAcademy ? t('common.loading') : t('mobile.invite.join')}
               </button>

@@ -4358,7 +4358,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     className={`h-8 w-8 text-sm rounded flex items-center justify-center ${
                       isSelected
                         ? multiSelect
-                          ? 'bg-primary text-white font-medium hover:bg-primary/90'
+                          ? 'bg-primary text-white font-medium hover:bg-primary-hover'
                           : 'bg-primary/10 text-primary font-medium hover:bg-primary/20'
                         : isToday
                         ? 'bg-gray-100 font-medium hover:bg-gray-200 text-gray-900'
@@ -4389,7 +4389,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                     onClick={() => {
                       setActiveDatePicker(null)
                     }}
-                    className="flex-1 text-sm bg-primary text-white px-3 py-2 rounded hover:bg-primary/90 font-medium"
+                    className="flex-1 text-sm bg-primary text-white px-3 py-2 rounded hover:bg-primary-hover font-medium"
                   >
                     {t("common.done")}
                   </button>
@@ -5844,7 +5844,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             loadAvailableStudents(formData.classroom_id)
                             setShowAddAttendanceModal(true)
                           }}
-                          className="h-8 px-2 text-[#2885e8] hover:text-[#2885e8]/80"
+                          className="h-8 px-2 text-primary hover:text-primary/80"
                         >
                           <Plus className="w-4 h-4 mr-1" />
                           {t("sessions.addAttendance")}
@@ -5984,7 +5984,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             className={`h-8 px-2 ${
                               !formData.classroom_id
                                 ? 'text-gray-400 cursor-not-allowed'
-                                : 'text-[#2885e8] hover:text-[#2885e8]/80'
+                                : 'text-primary hover:text-primary/80'
                             }`}
                           >
                             <Tags className="w-4 h-4 mr-1" />
@@ -6003,7 +6003,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             className={`h-8 px-2 ${
                               !formData.classroom_id
                                 ? 'text-gray-400 cursor-not-allowed'
-                                : 'text-[#2885e8] hover:text-[#2885e8]/80'
+                                : 'text-primary hover:text-primary/80'
                             }`}
                           >
                             <Sparkles className="w-4 h-4 mr-1" />
@@ -6022,7 +6022,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             className={`h-8 px-2 ${
                               !formData.classroom_id
                                 ? 'text-gray-400 cursor-not-allowed'
-                                : 'text-[#2885e8] hover:text-[#2885e8]/80'
+                                : 'text-primary hover:text-primary/80'
                             }`}
                           >
                             <Plus className="w-4 h-4 mr-1" />

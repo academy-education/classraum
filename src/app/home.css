@@ -36,7 +36,7 @@
 /* report typing demo caret */
 .hv4-typed::after {
   content: "▍";
-  color: #2885e8;
+  color: #1776db;
   animation: hv4-blink 1s steps(1) infinite;
 }
 .hv4-typed.hv4-done::after {
@@ -95,8 +95,8 @@
 .hv4-umods span.hv4-on {
   max-width: 96px;
   padding: 5px 10px;
-  color: #2885e8;
-  background: rgba(40, 133, 232, 0.08);
+  color: #1776db;
+  background: rgba(23,118,219, 0.08);
   border-color: transparent;
 }
 .hv4-umods span.hv4-on.hv4-teal {
@@ -192,7 +192,7 @@
   height: 20px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #2885e8;
+  border: 2px solid #1776db;
   box-shadow: 0 1px 4px rgba(16, 24, 40, 0.25);
   transition: transform 0.15s ease;
 }
@@ -204,11 +204,11 @@
   height: 20px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #2885e8;
+  border: 2px solid #1776db;
   box-shadow: 0 1px 4px rgba(16, 24, 40, 0.25);
 }
 .hv4-range:focus-visible {
-  box-shadow: 0 0 0 3px rgba(40, 133, 232, 0.25);
+  box-shadow: 0 0 0 3px rgba(23,118,219, 0.25);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -247,7 +247,7 @@
   height: 320px;
   left: -120px;
   top: 40px;
-  background: rgba(40, 133, 232, 0.13);
+  background: rgba(23,118,219, 0.13);
   animation: ft-drift-a 22s ease-in-out infinite;
 }
 .ft-aurora-b {

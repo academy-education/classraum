@@ -256,7 +256,7 @@ function PreferencesInner() {
                   className={`relative w-full h-11 rounded-xl text-[13px] font-semibold transition-all ${
                     selected
                       ? focused
-                        ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)] ring-1 ring-primary/30'
+                        ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(23,118,219,0.25)] ring-1 ring-primary/30'
                         : 'bg-primary/10 text-primary ring-1 ring-primary/25 active:scale-[0.98]'
                       : locked
                         ? 'bg-gray-50 text-gray-400 ring-1 ring-gray-200/60 cursor-not-allowed'
@@ -323,7 +323,7 @@ function PreferencesInner() {
                       }}
                       className={`h-11 rounded-xl text-[13px] font-semibold transition-all ${
                         selected
-                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)]'
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(23,118,219,0.25)]'
                           : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
                       }`}
                     >
@@ -352,7 +352,7 @@ function PreferencesInner() {
                 onClick={() => update('grade_level', selected ? null : grade.value)}
                 className={`flex items-center justify-between h-11 px-4 rounded-xl text-[15px] font-semibold transition-all ${
                   selected
-                    ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(40,133,232,0.25)]'
+                    ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_4px_rgba(23,118,219,0.25)]'
                     : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.99]'
                 }`}
               >

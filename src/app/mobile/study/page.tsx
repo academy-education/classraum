@@ -103,7 +103,7 @@ const NEUTRAL_THEME: Theme = {
   cardBg: 'bg-white',
   ring: 'ring-gray-200/70',
   hoverText: 'group-hover:text-primary',
-  hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(40,133,232,0.14),0_12px_28px_-12px_rgba(40,133,232,0.18)]',
+  hoverShadow: 'hover:shadow-[0_2px_8px_-2px_rgba(23,118,219,0.14),0_12px_28px_-12px_rgba(23,118,219,0.18)]',
 }
 
 const SUBJECT_THEMES: Record<string, Theme> = {
@@ -967,7 +967,7 @@ function StudyLandingInner() {
               aria-label={String(t('study.landing.freeformPlaceholder'))}
               placeholder={String(t('study.landing.freeformPlaceholder'))}
               disabled={creatingFreeForm}
-              className="w-full h-12 pl-10 pr-24 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[15px] placeholder:text-gray-400 shadow-[0_1px_2px_rgba(0,0,0,0.03)] focus:outline-none focus:ring-2 focus:ring-primary/30 focus:shadow-[0_2px_12px_-2px_rgba(40,133,232,0.15)] transition-all"
+              className="w-full h-12 pl-10 pr-24 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[15px] placeholder:text-gray-400 shadow-[0_1px_2px_rgba(0,0,0,0.03)] focus:outline-none focus:ring-2 focus:ring-primary/30 focus:shadow-[0_2px_12px_-2px_rgba(23,118,219,0.15)] transition-all"
             />
             <StudyButton
               type="submit"
@@ -1280,7 +1280,7 @@ function FirstTestActivationCard() {
         else setConfirmOpen(true)
       }}
       disabled={busy}
-      className="group relative block w-full overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-blue-600 to-indigo-700 text-left text-white p-5 shadow-[0_10px_30px_-10px_rgba(40,133,232,0.5)] hover:shadow-[0_16px_40px_-10px_rgba(40,133,232,0.6)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] disabled:opacity-70 disabled:cursor-wait transition-all"
+      className="group relative block w-full overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-blue-600 to-indigo-700 text-left text-white p-5 shadow-[0_10px_30px_-10px_rgba(23,118,219,0.5)] hover:shadow-[0_16px_40px_-10px_rgba(23,118,219,0.6)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] disabled:opacity-70 disabled:cursor-wait transition-all"
     >
       <div aria-hidden className="pointer-events-none absolute -top-10 -right-8 w-36 h-36 rounded-full bg-white/20 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -top-2 -right-3 text-[72px] font-black tracking-tighter text-white/[0.10] select-none leading-none">SAT</div>

@@ -84,7 +84,7 @@ function SnapComingSoon() {
       </div>
       <Link
         href="/mobile/study"
-        className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(40,133,232,0.30)] active:scale-[0.97] transition-transform"
+        className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(23,118,219,0.30)] active:scale-[0.97] transition-transform"
       >
         {ko ? '학습으로 돌아가기' : 'Back to study'}
       </Link>

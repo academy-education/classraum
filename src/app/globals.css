@@ -52,6 +52,7 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -101,8 +102,9 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #2885e8;
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: #1776db;
+  --primary-hover: #1568c2;
+  --primary-foreground: #ffffff; /* pure white: #1776db is 4.52:1 on #fff but 4.33:1 on oklch(.985) */
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -140,8 +142,9 @@
   --popover-foreground: oklch(0.985 0 0);
   /* Brand blue, same as light — the template's muted navy drained
      every primary element of contrast. */
-  --primary: #2885e8;
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: #1776db;
+  --primary-hover: #1568c2;
+  --primary-foreground: #ffffff; /* pure white: #1776db is 4.52:1 on #fff but 4.33:1 on oklch(.985) */
   --secondary: #232936;
   --secondary-foreground: oklch(0.985 0 0);
   --muted: #232936;
@@ -258,7 +261,7 @@
 /* Keep the brand blue in dark mode — the shadcn template's .dark block
    swaps --primary to a muted navy (#163e64), which drained every
    primary button/chip/gradient of contrast on the dark ground. */
-.dark { --primary: #2885e8; }
+.dark { --primary: #1776db; --primary-hover: #1568c2; }
 
 /* Segmented controls / tab pills: a bg-white thumb inside a
    bg-gray-100 track would remap DARKER than its track — invert to an
@@ -545,7 +548,7 @@ option {
   --motion-press:        150ms ease-out;
   --motion-stagger-step: 40ms;
 
-  --study-primary:       #2885E8;
+  --study-primary:       #1776db;
   --study-snap:          #F97316;
   --study-league:        #D97706;
   --study-test:          #E11D48;
@@ -822,7 +825,7 @@ option {
 /* The improvement loop: a pulse that travels around the six stages. */
 @keyframes camp-pulse {
   0%, 100% { background-color: rgb(239 246 255 / 0.7); transform: translateY(0) }
-  50% { background-color: rgb(40 133 232 / 0.14); transform: translateY(-2px) }
+  50% { background-color: rgb(23 118 219 / 0.14); transform: translateY(-2px) }
 }
 .camp-loop-step { animation: camp-pulse 4.8s ease-in-out infinite }
 
