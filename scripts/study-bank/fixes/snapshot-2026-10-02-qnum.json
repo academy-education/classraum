@@ -1,0 +1,674 @@
+[
+ {
+  "id": "1510dd4e-48ef-4ffe-b18a-fd816521bc6a",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "sentence placement across paragraphs",
+  "difficulty": "medium",
+  "topic_tag": "sentence placement across paragraphs",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P3",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 30 asks about the preceding passage as a whole. The writer wants to add the following sentence to the essay: \"The loudest dune song on record reached about 105 decibels, roughly the volume of a chainsaw.\" The sentence would most logically be placed in:",
+   "choices": [
+    "paragraph 1, after the sentence that ends \"more than a kilometer away.\"",
+    "paragraph 2, after the sentence that ends \"and producing a tone.\"",
+    "paragraph 3, after the sentence that ends \"stay silent for weeks.\"",
+    "paragraph 4, after the sentence that ends \"not from the shape of the dune.\""
+   ],
+   "passage": "[1] In a handful of deserts around the world, sand dunes make noise. The sound is not the hiss of grains blowing across a surface but a low, steady drone that can last for minutes and be heard from more than a kilometer away. Travelers have described the sound for centuries, comparing it to a foghorn, a cello, or a distant airplane.\n\n[2] The sound occurs when a layer of dry sand slides down the steep face of a dune. As the grains tumble over one another, they collide in almost perfectly regular bursts that set the sliding layer vibrating. The vibrating layer acts like the skin of a drum, pushing against the air above it, and producing a tone. The pitch of that tone, typically between sixty and one hundred hertz, depend on the size of the grains: smaller grains collide more often and produce a higher note.\n\n[3] Not every dune can sing. The grains must be unusually uniform in size, rounded rather than jagged, and coated with a thin layer of silica that lets them slide cleanly. They must also be dry. Field researchers have found that a dune which sang in the morning may totally clam up by afternoon after a light rain, and it may stay silent for weeks. However, humidity of even a few percent is enough to dampen the vibrations.\n\n[4] By pouring desert sand down a chute in a sealed chamber, the effect has been reproduced in the laboratory. The tone they recorded matched the field recordings closely and was very similar to them, confirming that the sound comes from the sand itself, not from the shape of the dune. A singing dune is thus a kind of natural instrument that reports on its own composition: a listener with a trained ear can estimate the grain size from the pitch alone.\n\n[5] The dunes that sing are rare, and several of the best-known ones lie near growing cities. Traffic compacts the sand and mixes in grains of the wrong size, and a dune that has stopped singing may not start again. Some countries have begun to protect their singing dunes as they would protect a monument, which is, in a sense, exactly what they are.",
+   "difficulty": "medium",
+   "explanation": "The sentence describes how loud the sound is, which belongs with paragraph 1's account of what the sound is like and how far it carries. Paragraph 2 is explaining how the tone is made, paragraph 3 is listing the conditions that silence a dune, and paragraph 4 is reporting what the laboratory confirmed; a decibel figure would interrupt each of those.",
+   "passage_title": "Why Some Dunes Sing",
+   "correct_answer": "paragraph 1, after the sentence that ends \"more than a kilometer away.\"",
+   "passageGroupId": "act-english-v1:AE1-P3"
+  },
+  "content_hash": "5f2dbbd67b69c1b1c6806d131573a9cf",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-30",
+   "passage_id": "AE1-P3",
+   "repair_why": "PoW distractors rewritten after blind attack act-english-pow-2026-09-02 (90% blind); transition stems trimmed",
+   "repaired_at": "2026-09-02T10:34:30.947Z",
+   "repaired_from": {
+    "prompt": "Question 30 asks about the preceding passage as a whole. The writer wants to add the following sentence to the essay: \"The loudest dune song on record reached about 105 decibels, roughly the volume of a chainsaw.\" The sentence would most logically be placed in:",
+    "choices": [
+     "paragraph 1, after the sentence that ends \"more than a kilometer away.\"",
+     "paragraph 2, after the sentence that ends \"produce a higher note.\"",
+     "paragraph 3, before the sentence \"Not every dune can sing.\"",
+     "paragraph 4, after the sentence that ends \"from the pitch alone.\""
+    ],
+    "correct_answer": "paragraph 1, after the sentence that ends \"more than a kilometer away.\""
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:36.005077+00:00",
+  "updated_at": "2026-09-02T10:21:36.005077+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "6393b0e2f06e417c04fd2f9ae5b55991",
+  "dedup_key": "2f446640c95c71ea88d88d2c287ebd31"
+ },
+ {
+  "id": "4833bf0e-c087-4a0d-aed3-97dd9e0573bd",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "essay purpose",
+  "difficulty": "medium",
+  "topic_tag": "essay purpose",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P1",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 9 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to explain the technical process of making laminated pastry. Would this essay accomplish that purpose?",
+   "choices": [
+    "Yes, because the essay is largely built around the croissant dough, and the grandmother appears mostly to correct the narrator's hands.",
+    "Yes, because the essay follows one batch of dough from cooler to oven, using the narrator's mistakes to mark each step.",
+    "No, because the essay focuses on the narrator's summer of learning under her grandmother rather than on a detailed procedure.",
+    "No, because the essay is mostly a portrait of the grandmother and her bakery, and the narrator's own work is described only briefly."
+   ],
+   "passage": "[1] My grandmother's bakery opened at six, but the work began at four. The summer I turned sixteen she offered me a job on the condition that I show up on time, every morning, without her having to call. I said yes before I understood what four in the morning felt like. The first week, I arrived with my eyes half shut and my hair still flattened from the pillow, and she handed me an apron without a word.\n\n[2] The kitchen at that hour was a different place than the one customers saw. [A] Steel tables gleamed under fluorescent tubes, and the ovens, which had been preheating in advance since three-thirty, hummed like distant traffic. [B] My grandmother moved between them with a rhythm I could not yet follow: scale, mixer, bench, proof box, oven, repeat. [C] She rarely spoke while she worked. When she did, it was to correct my hands, not my ideas. [D]\n\n[3] My first task was the croissant dough, which had rested overnight in the walk-in cooler. It had to be rolled, folded, and turned three times, with the butter kept cold but pliable through all of it. Roll too hard and the butter would tear through the layers. Work too slowly and it would soften into the dough and disappear. Being that I had never handled laminated dough before, my first batch came out of the oven flat and greasy, more cracker than pastry. My grandmother tasted one, nodded, and chucked the tray in the garbage.\n\n[4] By August, however, my hands had learned what my head could not explain. I could feel when the butter was right. I knew, without looking at the clock, when the second proof is done. On the last morning of the summer, my grandmother set a tray of my croissants in the front window, next to hers, and did not say which was which. A regular customer bought two of mine. My grandmother said nothing about it, but she poured me a coffee, and we drank it standing up in the quiet before the doors opened.",
+   "difficulty": "medium",
+   "explanation": "The essay is organized around one summer: the early mornings, the grandmother's silence, the failed first batch, and the unlabeled trays at the end. Only a few sentences in paragraph 3 touch on technique, and they serve the story of the narrator learning by doing. An essay built around the dough itself, or one that followed a single batch step by step, would look very different from this one, and the grandmother is not its subject so much as the narrator's teacher; the narrator's work at the bench is described at length, not briefly.",
+   "passage_title": "Four in the Morning",
+   "correct_answer": "No, because the essay focuses on the narrator's summer of learning under her grandmother rather than on a detailed procedure.",
+   "passageGroupId": "act-english-v1:AE1-P1"
+  },
+  "content_hash": "a79ddd594d4d64e4f048f6b7053adc99",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-09",
+   "passage_id": "AE1-P1",
+   "repair_why": "purpose items: four equally essay-shaped blurbs; would-lose stems quote only a 3-word locator",
+   "repaired_at": "2026-09-02T10:53:56.036Z",
+   "repaired_from": {
+    "prompt": "Question 9 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to explain the technical process of making laminated pastry. Would this essay accomplish that purpose?",
+    "choices": [
+     "Yes, because paragraph 3 walks through the rolling, folding, and turning in enough detail that paragraph 4's finished croissants read as the result of that procedure.",
+     "Yes, because the essay pairs each step of the lamination with the mistake that step can produce, which is how a procedural explanation is usually organized.",
+     "No, because the essay focuses on the narrator's summer of learning under her grandmother rather than on a detailed procedure.",
+     "No, because paragraph 3 presents the lamination steps out of the order in which a baker would actually perform them."
+    ],
+    "correct_answer": "No, because the essay focuses on the narrator's summer of learning under her grandmother rather than on a detailed procedure."
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:35.433628+00:00",
+  "updated_at": "2026-09-02T10:21:35.433628+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "ee852ca1b8078f73cbe6457ea4f80ce2",
+  "dedup_key": "cc7a768f99c97196b095e1f600a7fdb7"
+ },
+ {
+  "id": "4dcf790c-8f2d-4ba7-af3d-75373aa5467a",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "essay purpose",
+  "difficulty": "medium",
+  "topic_tag": "essay purpose",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P2",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 20 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to profile a scientist whose work changed how a city understands its own environment. Would this essay accomplish that purpose?",
+   "choices": [
+    "Yes, because it is largely an account of the city's mosses themselves, with Okafor serving mostly as the reader's guide.",
+    "Yes, because it follows Okafor's turn toward urban mosses and shows city planners now relying on her atlas.",
+    "No, because it is mostly a portrait of Okafor herself, and the atlas comes up only briefly near the end.",
+    "No, because it is largely an argument that urban habitats deserve study, with Okafor's story as its opening example."
+   ],
+   "passage": "[1] Most people walk past moss without seeing it. Hana Okafor, a botanist who has spent eleven years cataloging the mosses of a single mid-sized city sees little else. On her morning commute she has been known to stop on a crowded footbridge to photograph a patch of silver-green fuzz the size of a coin. \"Every wall is a habitat,\" she says. \"We just haven't been looking at the right scale.\"\n\n[2] Okafor did not set out to become a moss specialist. She trained as a forest ecologist and expected to spend her career in remote places. Then a funding cut stranded her in the city for a year with no field site and no budget. She began walking. Within a month she had found forty species of moss growing on curbs, retaining walls, and the north sides of parking garages; within a year, she had found ninety. [A]\n\n[3] [B] The atlas she eventually produced maps each species to the surfaces where it thrives. Some prefer old brick, whose mortar leaches lime; others colonize the concrete of highway overpasses, where the surface stays like that from runoff. [C] One species, which had been recorded in the region only twice before, turned out to be common on the shaded steps of a downtown library. Okafor's atlas has since been used by the city's planners, whom consult it when choosing materials for new public spaces. [D]\n\n[4] Not everyone shared her enthusiasm at first. Colleagues asked when she would return to \"real\" fieldwork, and one reviewer of her first paper wondered whether mosses on parking garages constituted an ecosystem worth studying. Okafor answered by pointing to the data: the city's mosses were absorbing rainwater, cooling surfaces, and they sheltered invertebrates, all without being planted or watered by anyone.\n\n[5] Today Okafor currently teaches a course that begins with a single assignment. Students must find, on their own block, five species they have never noticed. Nobody has failed it yet.",
+   "difficulty": "medium",
+   "explanation": "The essay traces how Okafor came to study the city's mosses and then shows the result: planners consult her atlas when choosing materials, and her students now find species on their own blocks. That is a scientist changing how a city sees itself. The mosses are not the subject in their own right; Okafor is, and the essay gives more than a passing glance to the atlas, which occupies paragraph 3 and returns in paragraph 4's data. Nor is the essay structured as a general argument about urban habitats; the skeptics' question in paragraph 4 is answered within Okafor's story, not developed into a thesis.",
+   "passage_title": "An Atlas of the Overlooked",
+   "correct_answer": "Yes, because it follows Okafor's turn toward urban mosses and shows city planners now relying on her atlas.",
+   "passageGroupId": "act-english-v1:AE1-P2"
+  },
+  "content_hash": "417993d7470d2f1c08cc1308c8fcfeb0",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-20",
+   "passage_id": "AE1-P2",
+   "repair_why": "purpose items: four equally essay-shaped blurbs; would-lose stems quote only a 3-word locator",
+   "repaired_at": "2026-09-02T10:53:56.259Z",
+   "repaired_from": {
+    "prompt": "Question 20 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to profile a scientist whose work changed how a city understands its own environment. Would this essay accomplish that purpose?",
+    "choices": [
+     "Yes, because paragraph 4 shows Okafor's skeptics coming around once she pointed to her data.",
+     "Yes, because it follows Okafor's turn toward urban mosses and shows city planners now relying on her atlas.",
+     "No, because the essay treats the atlas itself only briefly in paragraph 3 and gives more space to how Okafor came to walk the city than to what the city did with her findings.",
+     "No, because the change the essay documents is in Okafor's own career, which paragraph 2 traces from forest ecology to city walking, rather than in the city's view of itself."
+    ],
+    "correct_answer": "Yes, because it follows Okafor's turn toward urban mosses and shows city planners now relying on her atlas."
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:35.769094+00:00",
+  "updated_at": "2026-09-02T10:21:35.769094+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "50350e402e29b9231dec8e69213ef251",
+  "dedup_key": "91a57e118d7bf41ad8a39062d0fb6b13"
+ },
+ {
+  "id": "4e0e4b65-9365-4d4b-9d31-16bffcfd36e9",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "essay purpose",
+  "difficulty": "medium",
+  "topic_tag": "essay purpose",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P3",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 29 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to argue for stronger legal protection of singing dunes. Would this essay accomplish that purpose?",
+   "choices": [
+    "Yes, because the essay builds from the dunes' rarity toward the case for protection, treating the science as background.",
+    "Yes, because the essay is largely a comparison of how countries treat their dunes, ending by endorsing the strictest.",
+    "No, because the essay is mostly a history of how travelers described the dunes, and the threats appear in passing.",
+    "No, because most of the essay explains how the sound is produced, and protection is raised only briefly at the end."
+   ],
+   "passage": "[1] In a handful of deserts around the world, sand dunes make noise. The sound is not the hiss of grains blowing across a surface but a low, steady drone that can last for minutes and be heard from more than a kilometer away. Travelers have described the sound for centuries, comparing it to a foghorn, a cello, or a distant airplane.\n\n[2] The sound occurs when a layer of dry sand slides down the steep face of a dune. As the grains tumble over one another, they collide in almost perfectly regular bursts that set the sliding layer vibrating. The vibrating layer acts like the skin of a drum, pushing against the air above it, and producing a tone. The pitch of that tone, typically between sixty and one hundred hertz, depend on the size of the grains: smaller grains collide more often and produce a higher note.\n\n[3] Not every dune can sing. The grains must be unusually uniform in size, rounded rather than jagged, and coated with a thin layer of silica that lets them slide cleanly. They must also be dry. Field researchers have found that a dune which sang in the morning may totally clam up by afternoon after a light rain, and it may stay silent for weeks. However, humidity of even a few percent is enough to dampen the vibrations.\n\n[4] By pouring desert sand down a chute in a sealed chamber, the effect has been reproduced in the laboratory. The tone they recorded matched the field recordings closely and was very similar to them, confirming that the sound comes from the sand itself, not from the shape of the dune. A singing dune is thus a kind of natural instrument that reports on its own composition: a listener with a trained ear can estimate the grain size from the pitch alone.\n\n[5] The dunes that sing are rare, and several of the best-known ones lie near growing cities. Traffic compacts the sand and mixes in grains of the wrong size, and a dune that has stopped singing may not start again. Some countries have begun to protect their singing dunes as they would protect a monument, which is, in a sense, exactly what they are.",
+   "difficulty": "medium",
+   "explanation": "Four of the five paragraphs describe the phenomenon and the physical conditions it requires; protection enters only in the closing paragraph, and even there the essay reports what some countries do rather than urging any action. The science is the body of the essay, not its background, and the essay never compares national policies or endorses one. The travelers' descriptions occupy a single sentence in paragraph 1, so the essay is not a history of them either.",
+   "passage_title": "Why Some Dunes Sing",
+   "correct_answer": "No, because most of the essay explains how the sound is produced, and protection is raised only briefly at the end.",
+   "passageGroupId": "act-english-v1:AE1-P3"
+  },
+  "content_hash": "1c072c096a0aacb45fea45d3d51a130c",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-29",
+   "passage_id": "AE1-P3",
+   "repair_why": "purpose items: four equally essay-shaped blurbs; would-lose stems quote only a 3-word locator",
+   "repaired_at": "2026-09-02T10:53:56.343Z",
+   "repaired_from": {
+    "prompt": "Question 29 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to argue for stronger legal protection of singing dunes. Would this essay accomplish that purpose?",
+    "choices": [
+     "Yes, because paragraph 5 names the threat from nearby cities and some governments' response.",
+     "Yes, because the closing comparison of a dune to a monument makes the case without having to state it.",
+     "No, because the essay's treatment of the dunes' fragility in paragraph 3 concerns rain and humidity, not the traffic that paragraph 5 says silences them.",
+     "No, because most of the essay explains how the sound is produced, and protection is raised only briefly at the end."
+    ],
+    "correct_answer": "No, because most of the essay explains how the sound is produced, and protection is raised only briefly at the end."
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:35.984181+00:00",
+  "updated_at": "2026-09-02T10:21:35.984181+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "d32a6a210d3d7478a58b656f8319efb8",
+  "dedup_key": "a0d474dce4cd6f972b6c19e0c8786c6a"
+ },
+ {
+  "id": "59c7a865-d2cb-4926-bfb5-dd0ca37d5d2a",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "effect of deletion / conclusion",
+  "difficulty": "medium",
+  "topic_tag": "effect of deletion / conclusion",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P2",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 19 asks about the preceding passage as a whole. The writer is considering deleting the final sentence of the essay, \"Nobody has failed it yet.\" Should the writer make this deletion?",
+   "choices": [
+    "Yes, because it turns attention from the mosses to the students' grades just as the essay closes.",
+    "Yes, because the essay's way of answering skeptics, established in paragraph 4, is to point to data, and a remark about a course record is not that kind of evidence.",
+    "No, because it reinforces the essay's central idea that the mosses are there for anyone who looks.",
+    "No, because it tells the reader how Okafor grades the five species each student turns in."
+   ],
+   "passage": "[1] Most people walk past moss without seeing it. Hana Okafor, a botanist who has spent eleven years cataloging the mosses of a single mid-sized city sees little else. On her morning commute she has been known to stop on a crowded footbridge to photograph a patch of silver-green fuzz the size of a coin. \"Every wall is a habitat,\" she says. \"We just haven't been looking at the right scale.\"\n\n[2] Okafor did not set out to become a moss specialist. She trained as a forest ecologist and expected to spend her career in remote places. Then a funding cut stranded her in the city for a year with no field site and no budget. She began walking. Within a month she had found forty species of moss growing on curbs, retaining walls, and the north sides of parking garages; within a year, she had found ninety. [A]\n\n[3] [B] The atlas she eventually produced maps each species to the surfaces where it thrives. Some prefer old brick, whose mortar leaches lime; others colonize the concrete of highway overpasses, where the surface stays like that from runoff. [C] One species, which had been recorded in the region only twice before, turned out to be common on the shaded steps of a downtown library. Okafor's atlas has since been used by the city's planners, whom consult it when choosing materials for new public spaces. [D]\n\n[4] Not everyone shared her enthusiasm at first. Colleagues asked when she would return to \"real\" fieldwork, and one reviewer of her first paper wondered whether mosses on parking garages constituted an ecosystem worth studying. Okafor answered by pointing to the data: the city's mosses were absorbing rainwater, cooling surfaces, and they sheltered invertebrates, all without being planted or watered by anyone.\n\n[5] Today Okafor currently teaches a course that begins with a single assignment. Students must find, on their own block, five species they have never noticed. Nobody has failed it yet.",
+   "difficulty": "medium",
+   "explanation": "The essay opens with people walking past moss without seeing it and ends with students who, once asked to look, always find five unnoticed species. The final sentence closes that arc in a single stroke. It says nothing about how the species are graded, and while paragraph 4 does show Okafor pointing to data, the closing sentence is not offered as a rebuttal to skeptics but as the essay's last illustration of its opening claim.",
+   "passage_title": "An Atlas of the Overlooked",
+   "correct_answer": "No, because it reinforces the essay's central idea that the mosses are there for anyone who looks.",
+   "passageGroupId": "act-english-v1:AE1-P2"
+  },
+  "content_hash": "eeff7a3d9f575498cda904fe9475f2e9",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-19",
+   "passage_id": "AE1-P2",
+   "repair_why": "PoW distractors rewritten after blind attack act-english-pow-2026-09-02 (90% blind); transition stems trimmed",
+   "repaired_at": "2026-09-02T10:34:30.729Z",
+   "repaired_from": {
+    "prompt": "Question 19 asks about the preceding passage as a whole. The writer is considering deleting the final sentence of the essay, \"Nobody has failed it yet.\" Should the writer make this deletion?",
+    "choices": [
+     "Yes, because it shifts the essay's focus to how the course is graded.",
+     "Yes, because it contradicts the skepticism described in paragraph 4.",
+     "No, because it reinforces the essay's central idea that the mosses are there for anyone who looks.",
+     "No, because it explains what the students are required to submit."
+    ],
+    "correct_answer": "No, because it reinforces the essay's central idea that the mosses are there for anyone who looks."
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:35.74556+00:00",
+  "updated_at": "2026-09-02T10:21:35.74556+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "59070ca05bfaae44094af8020409f7e8",
+  "dedup_key": "7bb2f74a0e087a861a2f1aa420b54867"
+ },
+ {
+  "id": "739778fa-e9d5-42e9-b63a-b9c240a46b9b",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "effect of deletion",
+  "difficulty": "hard",
+  "topic_tag": "effect of deletion",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P5",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 49 asks about the preceding passage as a whole. If the writer were to delete the sentence beginning \"Families gathered around…\" in paragraph 1, the essay would primarily lose:",
+   "choices": [
+    "a setup for paragraph 3, which treats the fixed broadcast hour as the one obstacle that podcasts finally removed.",
+    "a picture of live production and shared listening that paragraph 4 later contrasts with how new audio dramas are made.",
+    "a concession, before paragraph 2's claim that the form only went quiet, that its audience had always been a captive one.",
+    "a contrast that paragraph 5 completes, setting the crowded family room against the solitary listener in headphones."
+   ],
+   "passage": "[1] For most of the twentieth century, radio drama was the most popular form of storytelling in the country. Families gathered around a single receiver to hear detectives, cowboys, and comedians perform live, with an orchestra and a sound-effects crew working just out of earshot of the microphone. Then television arrived, and within a decade the studios that had produced those shows fell silent.\n\n[2] Radio drama did not die, though; it went quiet. A handful of public stations kept producing it, and a small community of writers and actors continued to work in the form, often for tiny audiences. What they lacked was a way to reach listeners, who had never tuned in at the appointed hour. Nevertheless, the podcast arrived.\n\n[3] Podcasts cancelled the single obstacle that had held audio drama back for decades: the schedule. A listener no longer had to be near a radio at eight o'clock on a Thursday. Episodes could be downloaded, paused, replayed, and shared, and a series could find its audience over months rather than in a single broadcast. Producers who had been making shows for a few thousand loyal listeners suddenly found themselves with hundreds of thousands.\n\n[4] The new audio dramas differ from their ancestors in more than distribution. Recording is done in small studios or even bedrooms rather than in front of live audiences, and sound design that once required a crew with coconut shells and sheets of tin is now built on a laptop. The stories have changed too. Where the old programs favored self-contained episodes, many new series unfold across seasons, with plots that reward listeners who start at the beginning.\n\n[5] What has not changed is the peculiar intimacy of the form. A voice in a pair of headphones is way closer than any screen, and a listener who supplies the pictures is doing half the work of the story. That partnership between a speaker and an imagining listener, is the reason radio drama survived its own obituary, and it is the reason it is thriving now.",
+   "difficulty": "hard",
+   "explanation": "The sentence supplies the live orchestra, the sound-effects crew, and the family around one receiver. Paragraph 4 depends on that picture when it describes bedroom studios and laptop sound design as a departure. The sentence presents the gathering as the form's heyday rather than as a burden, so it does not set up the schedule problem; it concedes nothing about a captive audience; and paragraph 5 insists on what has not changed, so it completes no contrast with the family room.",
+   "passage_title": "The Radio Drama Comes Back",
+   "correct_answer": "a picture of live production and shared listening that paragraph 4 later contrasts with how new audio dramas are made.",
+   "passageGroupId": "act-english-v1:AE1-P5"
+  },
+  "content_hash": "533aee5df5b250b3064123a807ee32fe",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-49",
+   "passage_id": "AE1-P5",
+   "repair_why": "purpose items: four equally essay-shaped blurbs; would-lose stems quote only a 3-word locator",
+   "repaired_at": "2026-09-02T10:53:56.495Z",
+   "repaired_from": {
+    "prompt": "Question 49 asks about the preceding passage as a whole. If the writer were to delete the sentence in paragraph 1 that begins \"Families gathered around a single receiver,\" the essay would primarily lose:",
+    "choices": [
+     "the essay's only description of an orchestra and a sound crew, which paragraph 5 later relies on when it calls the form intimate.",
+     "a picture of live production and shared listening that paragraph 4 later contrasts with how new audio dramas are made.",
+     "the essay's first indication that the appointed hour was a burden, which paragraph 3 develops into the schedule problem.",
+     "an account of the studios falling silent that the opening of paragraph 2 qualifies when it says radio drama went quiet rather than died."
+    ],
+    "correct_answer": "a picture of live production and shared listening that paragraph 4 later contrasts with how new audio dramas are made."
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "hard"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:36.473786+00:00",
+  "updated_at": "2026-09-02T10:21:36.473786+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "c278ec4ed66aad136f1b0ba96391973e",
+  "dedup_key": "6a6d33fca8456ebab73836c2edc3f05c"
+ },
+ {
+  "id": "8fa17bfb-3bcf-49d0-b468-31c439cbf701",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "effect of deletion",
+  "difficulty": "hard",
+  "topic_tag": "effect of deletion",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P1",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 10 asks about the preceding passage as a whole. If the writer were to delete the sentence beginning \"A regular customer…\" in paragraph 4, the essay would primarily lose:",
+   "choices": [
+    "a callback to paragraph 1, where the grandmother set her one condition, showing the narrator has finally met it.",
+    "a qualification of the claim that the narrator's hands had learned, hinting that customers still preferred the grandmother's.",
+    "a setup for the coffee that follows, which reads as the grandmother's reward for a sale rather than for the summer's work.",
+    "a detail suggesting that, to a customer, the narrator's work had become indistinguishable from her grandmother's."
+   ],
+   "passage": "[1] My grandmother's bakery opened at six, but the work began at four. The summer I turned sixteen she offered me a job on the condition that I show up on time, every morning, without her having to call. I said yes before I understood what four in the morning felt like. The first week, I arrived with my eyes half shut and my hair still flattened from the pillow, and she handed me an apron without a word.\n\n[2] The kitchen at that hour was a different place than the one customers saw. [A] Steel tables gleamed under fluorescent tubes, and the ovens, which had been preheating in advance since three-thirty, hummed like distant traffic. [B] My grandmother moved between them with a rhythm I could not yet follow: scale, mixer, bench, proof box, oven, repeat. [C] She rarely spoke while she worked. When she did, it was to correct my hands, not my ideas. [D]\n\n[3] My first task was the croissant dough, which had rested overnight in the walk-in cooler. It had to be rolled, folded, and turned three times, with the butter kept cold but pliable through all of it. Roll too hard and the butter would tear through the layers. Work too slowly and it would soften into the dough and disappear. Being that I had never handled laminated dough before, my first batch came out of the oven flat and greasy, more cracker than pastry. My grandmother tasted one, nodded, and chucked the tray in the garbage.\n\n[4] By August, however, my hands had learned what my head could not explain. I could feel when the butter was right. I knew, without looking at the clock, when the second proof is done. On the last morning of the summer, my grandmother set a tray of my croissants in the front window, next to hers, and did not say which was which. A regular customer bought two of mine. My grandmother said nothing about it, but she poured me a coffee, and we drank it standing up in the quiet before the doors opened.",
+   "difficulty": "hard",
+   "explanation": "The trays were placed side by side with no label, so a customer choosing the narrator's croissants shows that the two bakers' work could no longer be told apart. The condition in paragraph 1 was punctuality, which the sale has nothing to do with; the sale confirms rather than qualifies what the narrator's hands had learned; and the coffee is poured in silence after a whole summer, not as payment for two croissants.",
+   "passage_title": "Four in the Morning",
+   "correct_answer": "a detail suggesting that, to a customer, the narrator's work had become indistinguishable from her grandmother's.",
+   "passageGroupId": "act-english-v1:AE1-P1"
+  },
+  "content_hash": "c7cbf4ff27d45defd52a6fe35b41d426",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-10",
+   "passage_id": "AE1-P1",
+   "repair_why": "purpose items: four equally essay-shaped blurbs; would-lose stems quote only a 3-word locator",
+   "repaired_at": "2026-09-02T10:53:56.154Z",
+   "repaired_from": {
+    "prompt": "Question 10 asks about the preceding passage as a whole. If the writer were to delete the sentence \"A regular customer bought two of mine.\" from paragraph 4, the essay would primarily lose:",
+    "choices": [
+     "a callback to paragraph 3, where the grandmother tastes a croissant and discards the tray, that shows her judgment being overturned by a paying customer.",
+     "the detail that explains why the grandmother left the two trays unlabeled.",
+     "an indication that the narrator's croissants outsold her grandmother's on the final morning, which the closing coffee then quietly rewards.",
+     "a detail suggesting that, to a customer, the narrator's work had become indistinguishable from her grandmother's."
+    ],
+    "correct_answer": "a detail suggesting that, to a customer, the narrator's work had become indistinguishable from her grandmother's."
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "hard"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:35.477167+00:00",
+  "updated_at": "2026-09-02T10:21:35.477167+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "2c1dd77cf980e55f3021ac77dbaab665",
+  "dedup_key": "4734822f21f8c718f10a58a3a79edebd"
+ },
+ {
+  "id": "97f5555b-44fa-41c1-a3a1-2e1656b0b4a3",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "conclusion / effect of deletion",
+  "difficulty": "medium",
+  "topic_tag": "conclusion / effect of deletion",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P4",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 39 asks about the preceding passage as a whole. The writer is considering deleting the final sentence of the essay, \"Paint fades; concrete does not.\" Should the writer make this deletion?",
+   "choices": [
+    "No, because it returns to the opening image of repainted crosswalks and sums up the argument in a memorable way.",
+    "No, because it answers the cost objection raised in paragraph 3 by noting that a concrete fix is paid for once.",
+    "Yes, because the essay's recommendation in the previous sentence already contrasts concrete measures with paint, and repeating the contrast blunts it.",
+    "Yes, because the image of fading paint belongs to paragraph 1's complaint about the crosswalks, not to paragraph 5's proposal about lanes and curbs."
+   ],
+   "passage": "[1] Every few years, my town repaints the crosswalks on Linden Avenue, and every few years a driver runs one of them. The crosswalks are not the problem, the problem is a street built for speed running through a neighborhood built for walking. If the town wants fewer collisions, it should stop repainting and start redesigning.\n\n[2] Linden Avenue is forty feet wide, straight for nearly a mile, and lined with parked cars that block the view of anyone stepping off the curb. The posted limit is twenty-five miles per hour. Drivers routinely do forty, and few of them are ever ticketed. Wide, straight roads do things to drivers the way a downhill slope does to a bicycle; no sign can fully override that message.\n\n[3] Other towns have found that changing the street changes the driving. [A] Curb extensions at intersections shorten the crossing distance and make pedestrians visible sooner. [B] Raised crosswalks—which lift the walkway to sidewalk height, force drivers to slow down or feel the bump. [C] Narrowing the lanes, even by a foot or two, has been shown to reduce average speeds without reducing the number of cars a street can carry. [D] None of these measures is expensive compared with the cost of a single serious injury.\n\n[4] Opponents of such changes usually raise two objections. The first is that slower traffic means longer commutes. On a mile-long stretch, however, the difference between twenty-five and forty miles per hour is less than a minute. The second is that emergency vehicles will be delayed. Fire departments in several cities have tested raised crosswalks and found that engines cross them at speed with no meaningful loss of time.\n\n[5] Linden Avenue will be repaved next spring. That is the moment to act, because a street is cheapest and least expensive to change when it is already torn up. The town council should direct it's engineers to include curb extensions and narrower lanes in the repaving plan. Paint fades; concrete does not.",
+   "difficulty": "medium",
+   "explanation": "The essay opens with the town repainting crosswalks that keep getting run, and it argues throughout that paint is no substitute for redesign. The final sentence compresses that contrast into five words and closes the loop with the first paragraph; that the image comes from paragraph 1 is the point, not a reason to cut it. The previous sentence names curb extensions and lanes without mentioning paint, and paragraph 3 dismisses cost rather than raising it as an objection.",
+   "passage_title": "Slow Down Linden Avenue",
+   "correct_answer": "No, because it returns to the opening image of repainted crosswalks and sums up the argument in a memorable way.",
+   "passageGroupId": "act-english-v1:AE1-P4"
+  },
+  "content_hash": "d1001697da79e55c1a185d117d46f8a2",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-39",
+   "passage_id": "AE1-P4",
+   "repair_why": "PoW distractors rewritten after blind attack act-english-pow-2026-09-02 (90% blind); transition stems trimmed",
+   "repaired_at": "2026-09-02T10:34:31.019Z",
+   "repaired_from": {
+    "prompt": "Question 39 asks about the preceding passage as a whole. The writer is considering deleting the final sentence of the essay, \"Paint fades; concrete does not.\" Should the writer make this deletion?",
+    "choices": [
+     "No, because it returns to the opening image of repainted crosswalks and sums up the argument in a memorable way.",
+     "No, because it explains why concrete costs more than paint.",
+     "Yes, because it introduces a topic the essay has not discussed.",
+     "Yes, because the essay has already stated what the council should do."
+    ],
+    "correct_answer": "No, because it returns to the opening image of repainted crosswalks and sums up the argument in a memorable way."
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:36.220046+00:00",
+  "updated_at": "2026-09-02T10:21:36.220046+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "f7ab53867b1e46dc2d80c0b4779691e5",
+  "dedup_key": "2162953e86cacc5d6fbf61c31eb4977e"
+ },
+ {
+  "id": "d5cedb22-d73d-45e2-9a6a-6c685a808a09",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "essay purpose",
+  "difficulty": "medium",
+  "topic_tag": "essay purpose",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P5",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 50 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to explain how a change in technology revived an older art form. Would this essay accomplish that purpose?",
+   "choices": [
+    "Yes, because it presents podcasts as removing the obstacle that had kept radio drama small and describes how the form has changed since.",
+    "Yes, because it is largely a history of radio drama's golden age and decline, with the podcast arriving only briefly at the end to close the story.",
+    "No, because it is mostly a comparison of old and new audio dramas as storytelling, and the technology behind them is treated only in passing.",
+    "No, because it is largely an argument that audio is a more intimate medium than film or television, with the revival as evidence."
+   ],
+   "passage": "[1] For most of the twentieth century, radio drama was the most popular form of storytelling in the country. Families gathered around a single receiver to hear detectives, cowboys, and comedians perform live, with an orchestra and a sound-effects crew working just out of earshot of the microphone. Then television arrived, and within a decade the studios that had produced those shows fell silent.\n\n[2] Radio drama did not die, though; it went quiet. A handful of public stations kept producing it, and a small community of writers and actors continued to work in the form, often for tiny audiences. What they lacked was a way to reach listeners, who had never tuned in at the appointed hour. Nevertheless, the podcast arrived.\n\n[3] Podcasts cancelled the single obstacle that had held audio drama back for decades: the schedule. A listener no longer had to be near a radio at eight o'clock on a Thursday. Episodes could be downloaded, paused, replayed, and shared, and a series could find its audience over months rather than in a single broadcast. Producers who had been making shows for a few thousand loyal listeners suddenly found themselves with hundreds of thousands.\n\n[4] The new audio dramas differ from their ancestors in more than distribution. Recording is done in small studios or even bedrooms rather than in front of live audiences, and sound design that once required a crew with coconut shells and sheets of tin is now built on a laptop. The stories have changed too. Where the old programs favored self-contained episodes, many new series unfold across seasons, with plots that reward listeners who start at the beginning.\n\n[5] What has not changed is the peculiar intimacy of the form. A voice in a pair of headphones is way closer than any screen, and a listener who supplies the pictures is doing half the work of the story. That partnership between a speaker and an imagining listener, is the reason radio drama survived its own obituary, and it is the reason it is thriving now.",
+   "difficulty": "medium",
+   "explanation": "The essay identifies the schedule as what held audio drama back, shows the podcast removing it, and then describes how production and storytelling changed as a result: a technological change reviving an art form. The golden age and decline take up a single paragraph, and the podcast arrives in paragraph 2, not at the end. The comparison of old and new dramas in paragraph 4 is the consequence of the technology, not the essay's subject, and the intimacy of paragraph 5 explains why the form was worth reviving rather than serving as the thesis of an argument about media.",
+   "passage_title": "The Radio Drama Comes Back",
+   "correct_answer": "Yes, because it presents podcasts as removing the obstacle that had kept radio drama small and describes how the form has changed since.",
+   "passageGroupId": "act-english-v1:AE1-P5"
+  },
+  "content_hash": "8233120d6c40f5d420a1e9d5eb38acab",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-50",
+   "passage_id": "AE1-P5",
+   "repair_why": "purpose items: four equally essay-shaped blurbs; would-lose stems quote only a 3-word locator",
+   "repaired_at": "2026-09-02T10:53:56.616Z",
+   "repaired_from": {
+    "prompt": "Question 50 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to explain how a change in technology revived an older art form. Would this essay accomplish that purpose?",
+    "choices": [
+     "Yes, because it presents podcasts as removing the obstacle that had kept radio drama small and describes how the form has changed since.",
+     "Yes, because paragraph 4 credits the laptop with replacing the sound-effects crew, which is the change the essay says brought listeners back.",
+     "No, because the essay attributes the revival in paragraph 5 to the intimacy of the form, which it says has not changed, rather than to any technology.",
+     "No, because the essay describes the podcast as reaching listeners who already existed rather than as creating an audience the older form had lacked."
+    ],
+    "correct_answer": "Yes, because it presents podcasts as removing the obstacle that had kept radio drama small and describes how the form has changed since."
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:36.497332+00:00",
+  "updated_at": "2026-09-02T10:21:36.497332+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "751dbd2cd22fa255fe783696f1693755",
+  "dedup_key": "9b3eb8f9ab4d1733d2d95bc2b59524d4"
+ },
+ {
+  "id": "f11cedad-4d00-41ba-8c1e-ab98db2ad56f",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "essay purpose",
+  "difficulty": "medium",
+  "topic_tag": "essay purpose",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v1:AE1-P4",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 40 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to persuade local officials to adopt a specific course of action. Would this essay accomplish that purpose?",
+   "choices": [
+    "Yes, because it is largely a survey of what other towns have tried, leaving the choice among them to the council.",
+    "Yes, because it names specific measures and ties them to a concrete upcoming opportunity, the repaving of the street.",
+    "No, because it is mostly a personal account of living along the avenue, and the appeal to officials comes only at the close.",
+    "No, because it is largely an explanation of why wide, straight streets invite speeding, and it recommends no single remedy."
+   ],
+   "passage": "[1] Every few years, my town repaints the crosswalks on Linden Avenue, and every few years a driver runs one of them. The crosswalks are not the problem, the problem is a street built for speed running through a neighborhood built for walking. If the town wants fewer collisions, it should stop repainting and start redesigning.\n\n[2] Linden Avenue is forty feet wide, straight for nearly a mile, and lined with parked cars that block the view of anyone stepping off the curb. The posted limit is twenty-five miles per hour. Drivers routinely do forty, and few of them are ever ticketed. Wide, straight roads do things to drivers the way a downhill slope does to a bicycle; no sign can fully override that message.\n\n[3] Other towns have found that changing the street changes the driving. [A] Curb extensions at intersections shorten the crossing distance and make pedestrians visible sooner. [B] Raised crosswalks—which lift the walkway to sidewalk height, force drivers to slow down or feel the bump. [C] Narrowing the lanes, even by a foot or two, has been shown to reduce average speeds without reducing the number of cars a street can carry. [D] None of these measures is expensive compared with the cost of a single serious injury.\n\n[4] Opponents of such changes usually raise two objections. The first is that slower traffic means longer commutes. On a mile-long stretch, however, the difference between twenty-five and forty miles per hour is less than a minute. The second is that emergency vehicles will be delayed. Fire departments in several cities have tested raised crosswalks and found that engines cross them at speed with no meaningful loss of time.\n\n[5] Linden Avenue will be repaved next spring. That is the moment to act, because a street is cheapest and least expensive to change when it is already torn up. The town council should direct it's engineers to include curb extensions and narrower lanes in the repaving plan. Paint fades; concrete does not.",
+   "difficulty": "medium",
+   "explanation": "The essay recommends curb extensions, raised crosswalks, and narrower lanes, answers the two standard objections, and then points to next spring's repaving as the moment to act, addressing the town council directly. It does not leave the choice open: paragraph 5 names the measures the council should include. The writer's own experience of the street appears only in the opening sentence, so this is not a personal account, and the explanation of why wide streets invite speed occupies one paragraph in service of a specific recommendation.",
+   "passage_title": "Slow Down Linden Avenue",
+   "correct_answer": "Yes, because it names specific measures and ties them to a concrete upcoming opportunity, the repaving of the street.",
+   "passageGroupId": "act-english-v1:AE1-P4"
+  },
+  "content_hash": "4ee6e63478aee47a0ba58ca70abcb1c5",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "AE1-40",
+   "passage_id": "AE1-P4",
+   "repair_why": "purpose items: four equally essay-shaped blurbs; would-lose stems quote only a 3-word locator",
+   "repaired_at": "2026-09-02T10:53:56.437Z",
+   "repaired_from": {
+    "prompt": "Question 40 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to persuade local officials to adopt a specific course of action. Would this essay accomplish that purpose?",
+    "choices": [
+     "Yes, because paragraph 2 establishes that drivers, not the street, are what must change, the premise any appeal to officials requires.",
+     "Yes, because it names specific measures and ties them to a concrete upcoming opportunity, the repaving of the street.",
+     "No, because paragraph 4 concedes that the changes would slow commutes and emergency vehicles, weakening the recommendation.",
+     "No, because it addresses the council only in its final paragraph, after spending paragraph 3 on other towns."
+    ],
+    "correct_answer": "Yes, because it names specific measures and ties them to a concrete upcoming opportunity, the repaving of the street."
+   },
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-02T10:21:36.246295+00:00",
+  "updated_at": "2026-09-02T10:21:36.246295+00:00",
+  "archived": false,
+  "cohort": "act-english-v1",
+  "task": "multiple_choice",
+  "content_sha": "720e1d0d30e5f0021c277561e40516fa",
+  "dedup_key": "3fd38c9c505621946dbff7851adf1faa"
+ },
+ {
+  "id": "3f042b44-b288-4b69-9b2c-28f90c1da334",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "essay purpose",
+  "difficulty": "medium",
+  "topic_tag": "essay purpose",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v4:en4-p5",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 50 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to argue that the night market meets a need that other kinds of shopping do not. Would this essay accomplish that purpose?",
+   "choices": [
+    "No, because the essay is chiefly a description of one city's market on a single evening, offered for its atmosphere rather than as an argument.",
+    "No, because paragraph 1 concedes that the night market has become a tourist attraction, which undercuts any claim that it serves a local need.",
+    "Yes, because it names the needs the market meets — heat, time, and company — and closes by setting the market against the supermarket, the mall, and the delivery app.",
+    "Yes, because it traces the night market's history from Bangkok to Mexico City and shows how each city adapted the form to its own climate."
+   ],
+   "passage": "[1] In much of the world, the most important shopping happens after dark. The night market, a street or square that fills with food stalls and vendors from dusk until well past midnight, exist in some form from Bangkok to Marrakesh to Mexico City. It is easy to mistake it for a tourist attraction, and in a few cities it has become one. But the night market is older than tourism, it answers a need that the daytime shop never did.\n\n[2] The first need is simply heat. In hot climates, the middle of the day is for shade and sleep, and commerce waits for the air to get better. Opening at six in the evening, novelty is not the point of such a market; it is a sensible adaptation, the same one that puts the siesta in the afternoon. The second need is time. For most of history, most people worked from first light until the light gave out, and the only hours that belonged to them came after. A market that met them in those hours met them in the only ones they had.\n\n[3] What the night market sells, in the end, is not mainly goods. A shopper who wanted a shirt could buy one more cheaply and more quietly during the day. What the market offers is the crowd itself: the noise, the smoke from the grills, the chance to eat standing up beside a stranger, the sense of a whole neighborhood out of doors at once. In many places it is where families go on a weeknight, where teenagers are first allowed out alone, and a person who lives alone can eat dinner surrounded by people.\n\n[4] Nevertheless, efforts to tidy the night market so often kill it. When a city moves the stalls indoors, gives each vendor a numbered booth, and closes their doors at ten, it keeps the food and loses the market. What was an event becomes a food court. The vendors are the same; the customers are the same; only the reason to go is gone.\n\n[5] The night market persists where it is left alone, or nearly so. It survives the supermarket, the shopping mall, and the delivery app, because none of them offers what it does. They sell things. It sells the evening.",
+   "difficulty": "medium",
+   "explanation": "Paragraph 2 lays out two needs, heat and time; paragraph 3 adds the crowd; paragraph 4 shows what is lost when the crowd is engineered away; and paragraph 5 says outright that the supermarket, the mall, and the app \"sell things\" while the market \"sells the evening.\" That is the argument the stated purpose calls for. The essay describes no single city or evening, and it offers no history, since Bangkok, Marrakesh, and Mexico City appear only as a list of places where the form exists. Paragraph 1 says the market has become a tourist attraction \"in a few cities\" and immediately answers that it is \"older than tourism,\" a concession the essay turns into support rather than a weakness.",
+   "passage_title": "The Night Market",
+   "correct_answer": "Yes, because it names the needs the market meets — heat, time, and company — and closes by setting the market against the supermarket, the mall, and the delivery app.",
+   "passageGroupId": "act-english-v4:en4-p5"
+  },
+  "content_hash": "4291d51556d62bedff0104e3b947cd17",
+  "word_count": null,
+  "verified": false,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "ACT-EN4-P5-Q10",
+   "passage_id": "en4-p5",
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-03T16:23:07.162548+00:00",
+  "updated_at": "2026-09-03T16:23:07.162548+00:00",
+  "archived": false,
+  "cohort": "act-english-v4",
+  "task": "multiple_choice",
+  "content_sha": "f0afe3dc9947e3838b433f533efc9268",
+  "dedup_key": "1f096a0a18c7da05226fffa2ce9a78d2"
+ },
+ {
+  "id": "c8707bfc-d7fd-430c-ac75-be6526759e61",
+  "family": "act",
+  "section": "english",
+  "domain": "Production of Writing",
+  "subskill": "essay purpose",
+  "difficulty": "medium",
+  "topic_tag": "essay purpose",
+  "item_type": "multiple_choice",
+  "passage_group_id": "act-english-v4:en4-p1",
+  "item": {
+   "type": "multiple_choice",
+   "prompt": "Question 10 asks about the preceding passage as a whole. Suppose the writer's primary purpose had been to describe how a particular teacher helped the narrator overcome a fear. Would this essay accomplish that purpose?",
+   "choices": [
+    "Yes, because it centers on Mr. Osei's advice about repetition, shows the narrator acting on it every evening, and presents the final swim as the result.",
+    "Yes, because it is organized lesson by lesson, describing the stroke that Mr. Osei introduced in each session of the course.",
+    "No, because Mr. Osei appears only in paragraph 2, and the narrator credits every later gain to the water rather than to any instruction.",
+    "No, because the essay is chiefly about the embarrassment of learning to swim late, and the lessons themselves are barely described."
+   ],
+   "passage": "[1] I learned to swim the summer I turned fourteen, which is late enough that I had stopped admitting I could not. My mother, who had grown up beside a lake and could not remember not knowing how, finally signed me up for adult lessons at the municipal pool, where nobody I knew would see me holding a kickboard.\n\n[2] The instructor was a retired lifeguard named Mr. Osei, and his first lesson had nothing to do with strokes. He asked each of us to put our faces in the water and blow bubbles until they ran out of breath. [A] Most of the class managed it on the first try. I lasted about two seconds before I stood up, gasping, certain I had nearly bit the dust in three feet of water. [B] Mr. Osei did not laugh. He told me that the body's panic at having it's face covered is older than any of us, and that the only cure for it was repetition. [C] Every evening that week I filled the bathroom sink, set a timer, and put my face in until the beeping told me I could stop. [D]\n\n[3] By the second lesson I could float on my back, an achievement that felt more like surrender than skill. Floating, it turned out, asked nothing of me except that I stop fighting the water. The strokes came slowly after that. My arms, which had spent fourteen years pulling doors and carrying groceries, was not used to pulling something that gave way. I swallowed a great deal of the pool.\n\n[4] The test at the end of the course was a single length of the deep end. I remember the moment the floor dropped away beneath me and the water turned from pale green to a blue that seemed to go down forever and never end. My hand hit the far wall at last. Breathing hard, Mr. Osei wrote something on his clipboard while I hung there, and then he nodded once.\n\n[5] I still am not a graceful swimmer. Even so, I know the difference between fear and danger now, and that the two are not always in the same place. The pool taught me that, it was never trying to hurt me, it was only waiting for me to stop thrashing.",
+   "difficulty": "medium",
+   "explanation": "The turning point of the essay is Mr. Osei's explanation that the panic is old and that \"the only cure for it was repetition,\" which the narrator then carries out at the bathroom sink; the deep-end swim in paragraph 4 is the outcome, and Mr. Osei is there to record it. The essay is not arranged by lesson or by stroke, and it names no stroke at all. Mr. Osei appears in paragraph 4 as well as paragraph 2, and while paragraph 3 says floating asked only that the narrator stop fighting, that is the repetition lesson working, not a rival explanation. The embarrassment of paragraph 1 is a setup, not the subject; paragraphs 2 through 4 are all about the lessons.",
+   "passage_title": "The Deep End",
+   "correct_answer": "Yes, because it centers on Mr. Osei's advice about repetition, shows the narrator acting on it every evening, and presents the final swim as the result.",
+   "passageGroupId": "act-english-v4:en4-p1"
+  },
+  "content_hash": "c1017b7bb18a5585c38cbb52647cc3aa",
+  "word_count": null,
+  "verified": false,
+  "verify_meta": {
+   "note": "Difficulty is the author's own label, not an independent grade. Not yet blind-attacked, not yet read by a human.",
+   "method": "claude-authored; structure-checked by act-bank-helper before insert",
+   "localId": "ACT-EN4-P1-Q10",
+   "passage_id": "en4-p1",
+   "difficulty_ungraded": true,
+   "author_reported_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-09-03T16:23:05.764271+00:00",
+  "updated_at": "2026-09-03T16:23:05.764271+00:00",
+  "archived": false,
+  "cohort": "act-english-v4",
+  "task": "multiple_choice",
+  "content_sha": "c0378b6951f84849070730b501831aa9",
+  "dedup_key": "ec8d2e64e47fa8e48c8f41e2393ca072"
+ }
+]

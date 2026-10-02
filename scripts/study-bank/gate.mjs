@@ -27,6 +27,7 @@ import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { eliminationVerdict } from './elimination-paired.mjs'
+import { scanFiles, describeHits } from './question-number-refs.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const contract = JSON.parse(readFileSync(join(HERE, 'gate-contract.json'), 'utf8'))
@@ -130,6 +131,22 @@ export function gateBatch({ task, family, section, itemFiles }) {
   const h = createHash('sha256')
   for (const f of itemFiles) h.update(readFileSync(f))
   const sha = h.digest('hex')
+
+  /*
+   * HARDCODED QUESTION NUMBERS (register A74 follow-up, 2026-10-02). Ten live
+   * act-english-v1 stems read "Question 10 asks about the preceding passage";
+   * on any drawn form that names the wrong question. No ledger stage looks for
+   * it, so it is checked here, before the ledger, for every inserter. A file
+   * this check cannot read throws (question-number-refs.mjs) rather than
+   * passing silently.
+   */
+  const q = scanFiles(itemFiles)
+  if (q.hits.length) {
+    return {
+      canInsert: false, sha, family: fam, batch: null, questionNumberRefs: q.hits,
+      reason: `${q.hits.length} hardcoded question-number reference(s) — items are drawn into a new order, so this text names the wrong question on a form. Reword position-independently ("This question asks…"):\n    ${describeHits(q.hits)}`,
+    }
+  }
 
   const ledger = JSON.parse(readFileSync(ledgerPath, 'utf8'))
   const batch = (ledger.batches || []).find(b => b.contentSha === sha)
