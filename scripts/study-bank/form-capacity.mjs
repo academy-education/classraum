@@ -25,6 +25,9 @@
  */
 import { readFileSync } from 'node:fs'
 import { createClient } from '@supabase/supabase-js'
+import { refuseUnknownArgs } from './checker-input.mjs'
+// A22: live-only, no file mode — refuse a batch path rather than ignore it.
+refuseUnknownArgs('form-capacity.mjs')
 
 const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8')
   .split('\n').filter(l => l.includes('=') && !l.startsWith('#'))

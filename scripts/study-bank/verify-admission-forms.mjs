@@ -21,6 +21,9 @@ import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { refuseUnknownArgs } from './checker-input.mjs'
+// A22: live-only, no file mode — refuse a batch path rather than ignore it.
+refuseUnknownArgs('verify-admission-forms.mjs')
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const env = Object.fromEntries(readFileSync(join(HERE, '../../.env.local'), 'utf8').split('\n')

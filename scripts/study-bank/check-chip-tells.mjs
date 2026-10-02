@@ -16,6 +16,9 @@
  * surface is the bug.
  */
 import fs from 'fs'
+import { refuseUnknownArgs } from './checker-input.mjs'
+// A22: live-only, no file mode — refuse a batch path rather than ignore it.
+refuseUnknownArgs('check-chip-tells.mjs')
 const env=fs.readFileSync('.env.local','utf8')
 const g=k=>env.match(new RegExp('^'+k+'=(.*)$','m'))[1].trim()
 const U=g('NEXT_PUBLIC_SUPABASE_URL'),K=g('SUPABASE_SERVICE_ROLE_KEY')

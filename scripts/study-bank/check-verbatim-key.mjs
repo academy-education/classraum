@@ -21,26 +21,23 @@
  *
  * Control is the best fixed slot, the bar every blind attack here uses.
  */
-import { readFileSync } from 'node:fs'
-import { createClient } from '@supabase/supabase-js'
+/*
+ * usage:
+ *   check-verbatim-key.mjs <batch.json> [...]   report on THOSE files
+ *   check-verbatim-key.mjs --live               the shipped bank, per family/section
+ *   check-verbatim-key.mjs --selftest           fixtures, no DB
+ *
+ * HISTORY OF ITS INPUT HANDLING. Until 2026-09-15 it ignored argv and
+ * printed live numbers for any batch path. That day it was made to REFUSE
+ * any argument (exit 2) — honest, but it left an author with no way to
+ * measure the batch they were holding, and no-argument still meant "the
+ * live bank" by default. A22 (2026-10-02): a batch path is now read and
+ * measured; the live bank only with --live. Exit 0 = measured (this is a
+ * diagnostic with a margin, not a pass/fail gate), 2 = cannot process.
+ */
+import { isMain, parseCheckerArgs, loadBatchFile, loadLive, printDenominator, populationHeader, refuse } from './checker-input.mjs'
 
-/* REFUSES AN ARGUMENT — added 2026-09-15, after an author handed this a
- * candidate batch path and got back confident LIVE BANK numbers that read
- * as a verdict on their file. This tool measures the whole shipped
- * population on purpose; it has no file mode. CLAUDE.md: "a check that
- * cannot process its input exits non-zero. It never returns a number, and
- * never falls back to a default input." Silently ignoring argv IS falling
- * back to a default input. Two checkers had this hole; six others were
- * found with the same shape on 2026-09-04. */
-if (process.argv.length > 2) {
-  console.error('REFUSING: ' + process.argv[1].split('/').pop() + ' is a WHOLE-POPULATION checker over the live bank and takes no arguments.')
-  console.error('  You passed: ' + process.argv.slice(2).join(' '))
-  console.error('  It cannot measure a candidate batch. Nothing it prints would describe your file.')
-  process.exit(2)
-}
-
-const env=Object.fromEntries(readFileSync('.env.local','utf8').split('\n').filter(l=>l.includes('=')&&!l.startsWith('#')).map(l=>[l.slice(0,l.indexOf('=')),l.slice(l.indexOf('=')+1).trim()]))
-const db=createClient(env.NEXT_PUBLIC_SUPABASE_URL,env.SUPABASE_SERVICE_ROLE_KEY,{auth:{persistSession:false}})
+const USAGE = 'usage: check-verbatim-key.mjs <batch.json> [...] | --live | --selftest'
 
 const STOP=new Set(['the','a','an','of','to','in','and','or','is','are','was','were','be','been','that','this','it','its','for','on','with','as','by','at','from','their','they','he','she','not'])
 const words=s=>String(s).toLowerCase().replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(w=>w&&!STOP.has(w))
@@ -58,18 +55,12 @@ function longestRun(opt, passage){
   return best
 }
 
-async function run(fam,sec){
-  const rows=[]
-  for(let f=0;;f+=1000){
-    const {data,error}=await db.from('study_item_bank').select('item')
-      .eq('family',fam).eq('section',sec).eq('archived',false).eq('verified',true).range(f,f+999)
-    if(error) throw new Error(error.message)
-    rows.push(...(data??[])); if(!data||data.length<1000) break
-  }
+/** Measure one population of items. Pure, so --selftest can drive it. */
+export function measureVerbatim(items){
   let n=0, fires=0, right=0, keyLonger=0, distLonger=0
   const slots={}
-  for(const r of rows){
-    const it=r.item, ch=it?.choices, key=it?.correct_answer, pas=it?.passage
+  for(const it of items){
+    const ch=it?.choices, key=it?.correct_answer, pas=it?.passage
     if(!Array.isArray(ch)||ch.length<2||typeof key!=='string'||!ch.includes(key)||!pas) continue
     n++; slots[ch.indexOf(key)]=(slots[ch.indexOf(key)]??0)+1
     const runs=ch.map(c=>longestRun(c,pas))
@@ -81,13 +72,62 @@ async function run(fam,sec){
     const winners=ch.filter((_,i)=>runs[i]===best)
     if(winners.length===1){ fires++; if(winners[0]===key) right++ }
   }
-  if(!n) return
-  const ctl=100*Math.max(...Object.values(slots))/n
-  const overall=100*right/n
-  console.log(`\n${fam}/${sec}  n=${n}`)
-  console.log(`  key has the longest verbatim run   ${(100*keyLonger/n).toFixed(1)}%`)
-  console.log(`  a DISTRACTOR does (echo trap)      ${(100*distLonger/n).toFixed(1)}%`)
-  console.log(`  strategy picks a unique winner     ${(100*fires/n).toFixed(1)}%`)
-  console.log(`  strategy score / control           ${overall.toFixed(1)}% / ${ctl.toFixed(1)}%   margin ${(overall-ctl>=0?'+':'')}${(overall-ctl).toFixed(1)}`)
+  const ctl=n?100*Math.max(...Object.values(slots))/n:NaN
+  return { total:items.length, n, fires, right, keyLonger, distLonger, ctl, score:n?100*right/n:NaN }
 }
-for(const [f,s] of [['toefl','reading'],['toefl','listening'],['sat','reading_writing'],['ssat','reading'],['isee','reading']]) await run(f,s)
+
+function report(label, items){
+  const m=measureVerbatim(items)
+  console.log(`\n${label}`)
+  // Scorable = has a passage, >=2 string choices, and the key among them.
+  printDenominator('passage + key among choices', m.n, m.total)
+  const pct=x=>(100*x/m.n).toFixed(1)
+  console.log(`  n=${m.n}`)
+  console.log(`  key has the longest verbatim run   ${pct(m.keyLonger)}%`)
+  console.log(`  a DISTRACTOR does (echo trap)      ${pct(m.distLonger)}%`)
+  console.log(`  strategy picks a unique winner     ${pct(m.fires)}%`)
+  console.log(`  strategy score / control           ${m.score.toFixed(1)}% / ${m.ctl.toFixed(1)}%   margin ${(m.score-m.ctl>=0?'+':'')}${(m.score-m.ctl).toFixed(1)}`)
+  if(m.n<10) console.log(`  (n=${m.n}: a rate over this few items is an anecdote, not a measurement)`)
+  return m
+}
+
+export function selftest(verbose=false){
+  const P='The committee approved the bridge after engineers confirmed the steel would hold under winter loads.'
+  const quoted={passage:P,choices:['engineers confirmed the steel would hold under winter loads','the mayor vetoed it','costs rose sharply','the river flooded'],correct_answer:'engineers confirmed the steel would hold under winter loads'}
+  const echo={passage:P,choices:['its strength was verified','engineers confirmed the steel would hold','the mayor vetoed it','costs rose'],correct_answer:'its strength was verified'}
+  const cases=[
+    ['key quoted verbatim -> strategy wins', [quoted], m=>m.n===1&&m.right===1&&m.keyLonger===1],
+    ['echo trap -> distractor longer, strategy loses', [echo], m=>m.n===1&&m.right===0&&m.distLonger===1],
+    ['no passage -> unscorable', [{choices:['a','b'],correct_answer:'a'}], m=>m.n===0],
+    ['key not among choices -> unscorable', [{passage:P,choices:['a','b'],correct_answer:'c'}], m=>m.n===0],
+  ]
+  let bad=0
+  for(const [name,items,ok] of cases){
+    const pass=ok(measureVerbatim(items)); if(!pass) bad++
+    if(verbose||!pass) console.log(`${pass?'ok  ':'FAIL'}  ${name}`)
+  }
+  console.log(bad?`${bad} self-test(s) FAILED`:`selftest ${cases.length}/${cases.length} pass`)
+  return bad
+}
+
+if(isMain(import.meta.url)){
+  const {mode,paths}=parseCheckerArgs(process.argv,{name:'check-verbatim-key.mjs',usage:USAGE})
+  const stBad=selftest(mode==='selftest')
+  if(mode==='selftest') process.exit(stBad?1:0)
+  if(stBad) refuse('detector self-test failed — not running')
+  if(mode==='live'){
+    console.log(populationHeader('live'))
+    const {rows}=await loadLive({select:'family,section,item',filter:q=>q.eq('archived',false).eq('verified',true)})
+    let any=0
+    for(const [f,sec] of [['toefl','reading'],['toefl','listening'],['sat','reading_writing'],['ssat','reading'],['isee','reading']]){
+      const items=rows.filter(r=>r.family===f&&r.section===sec).map(r=>r.item)
+      // Per-group: an empty live section is reported, not silently skipped.
+      if(!measureVerbatim(items).n){ console.log(`\n${f}/${sec}  scorable 0 of ${items.length} — not measured`); continue }
+      any++; report(`${f}/${sec}`, items)
+    }
+    if(!any) refuse('no live family/section had a scorable item')
+  }else{
+    for(const p of paths) report(populationHeader('batch',p), loadBatchFile(p).map(r=>r.item))
+  }
+  process.exit(0)
+}

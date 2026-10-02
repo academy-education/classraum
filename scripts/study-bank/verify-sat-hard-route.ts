@@ -12,6 +12,11 @@ import { randomUUID } from 'node:crypto'
 
 async function main() {
   const section = (process.argv[2] ?? 'reading_writing') as 'reading_writing' | 'math'
+  // A22: refuse anything that is not a section rather than query an empty one.
+  if (!['math', 'reading_writing'].includes(section)) {
+    console.error(`REFUSING: section must be math or reading_writing (got ${section}). This verifier has no file mode.`)
+    process.exit(2)
+  }
   // A real test account (FK on study_item_exposures.student_id). Only the
   // rows written under this run's session ids are deleted afterwards.
   // The hardcoded default here was an id no longer present in `users`, so

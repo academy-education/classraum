@@ -24,26 +24,22 @@
  * says "in the paragraph describing the second season" has done the
  * disambiguating and is not flagged.
  */
-import { readFileSync } from 'node:fs'
-import { createClient } from '@supabase/supabase-js'
+/*
+ * usage:
+ *   check-vocab-ambiguity.mjs <batch.json> [...]   report on THOSE files
+ *   check-vocab-ambiguity.mjs --live               the shipped bank, per family/section
+ *   check-vocab-ambiguity.mjs --selftest           fixtures, no DB
+ *
+ * HISTORY OF ITS INPUT HANDLING. Until 2026-09-15 it ignored argv and
+ * printed live numbers for any batch path; that day it was made to REFUSE
+ * any argument, which left an author no way to gate the batch in hand and
+ * still defaulted to the live bank with no argument. A22 (2026-10-02): a
+ * batch path is read and measured; the live bank only with --live.
+ * Exit 0 clean, 1 ambiguous stems found, 2 cannot process the input.
+ */
+import { isMain, parseCheckerArgs, loadBatchFile, loadLive, printDenominator, populationHeader, refuse } from './checker-input.mjs'
 
-/* REFUSES AN ARGUMENT — added 2026-09-15, after an author handed this a
- * candidate batch path and got back confident LIVE BANK numbers that read
- * as a verdict on their file. This tool measures the whole shipped
- * population on purpose; it has no file mode. CLAUDE.md: "a check that
- * cannot process its input exits non-zero. It never returns a number, and
- * never falls back to a default input." Silently ignoring argv IS falling
- * back to a default input. Two checkers had this hole; six others were
- * found with the same shape on 2026-09-04. */
-if (process.argv.length > 2) {
-  console.error('REFUSING: ' + process.argv[1].split('/').pop() + ' is a WHOLE-POPULATION checker over the live bank and takes no arguments.')
-  console.error('  You passed: ' + process.argv.slice(2).join(' '))
-  console.error('  It cannot measure a candidate batch. Nothing it prints would describe your file.')
-  process.exit(2)
-}
-
-const env=Object.fromEntries(readFileSync('.env.local','utf8').split('\n').filter(l=>l.includes('=')&&!l.startsWith('#')).map(l=>[l.slice(0,l.indexOf('=')),l.slice(l.indexOf('=')+1).trim()]))
-const db=createClient(env.NEXT_PUBLIC_SUPABASE_URL,env.SUPABASE_SERVICE_ROLE_KEY,{auth:{persistSession:false}})
+const USAGE = 'usage: check-vocab-ambiguity.mjs <batch.json> [...] | --live | --selftest'
 
 const ORD={first:0,second:1,third:2,fourth:3,fifth:4,final:-1,last:-1}
 
@@ -66,7 +62,10 @@ function target(prompt){
  * passage, present more than once, or not containing the target word.
  */
 function quotedStem(prompt, passage, word){
-  const m=String(prompt).match(/as it is used in\s+["“]([^"”]{4,120})["”]/i)
+  /* ACT writes 'As it is used in the phrase "…", the word ledger …'. Until
+   * A22 (2026-10-02) only a quote straight after "used in" was recognised,
+   * so every ACT phrase-quoted stem fell outside the denominator. */
+  const m=String(prompt).match(/as it is used in\s+(?:the\s+(?:phrase|sentence|line|clause)\s+)?["“]([^"”]{4,120})["”]/i)
   if(!m) return null
   const flat=t=>String(t).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/\s+/g,' ').trim()
   const q=flat(m[1]).replace(/[,.;:]$/,'')
@@ -80,6 +79,13 @@ function quotedStem(prompt, passage, word){
 /** Which region the stem points at: an ordinal paragraph, or the whole text. */
 function region(prompt, passage){
   const paras=String(passage).split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean)
+  /* "paragraph 6" (ACT's numbered paragraphs) — unrecognised until A22, so
+   * those stems were silently out of the denominator. */
+  const nm=String(prompt).match(/\bparagraph\s+(\d{1,2})\b/i)
+  if(nm){
+    const p=paras[Number(nm[1])-1]
+    return { text:p??'', scoped:true }
+  }
   const om=String(prompt).match(/\b(first|second|third|fourth|fifth|final|last)\s+paragraph\b/i)
   if(om){
     const i=ORD[om[1].toLowerCase()]
@@ -93,20 +99,13 @@ function region(prompt, passage){
   return null
 }
 
-const FAMS=[['toefl','reading'],['sat','reading_writing'],['ssat','reading'],['isee','reading'],['ssat','verbal'],['isee','verbal']]
-let grand=0, grandN=0
-for(const [fam,sec] of FAMS){
-  const rows=[]
-  for(let f=0;;f+=1000){
-    const {data,error}=await db.from('study_item_bank').select('id,cohort,item')
-      .eq('family',fam).eq('section',sec).eq('archived',false).eq('verified',true).range(f,f+999)
-    if(error) throw new Error(error.message)
-    rows.push(...(data??[])); if(!data||data.length<1000) break
-  }
+/** Scan rows ({id, cohort, item}). Pure, so --selftest can drive it. */
+export function scanVocab(rows){
   const bad=[]
-  let vocab=0
+  let vocab=0, targeted=0
   for(const r of rows){
     const w=target(r.item?.prompt); if(!w) continue
+    targeted++
 
     /* Quoted stems are counted and checked, never skipped. */
     const qs=quotedStem(r.item?.prompt, r.item?.passage||'', w)
@@ -121,11 +120,64 @@ for(const [fam,sec] of FAMS){
     const n=(reg.text.match(new RegExp(`\\b${w}\\w*\\b`,'gi'))??[]).length
     if(n>1) bad.push({id:r.id, cohort:r.cohort, word:w, n, scoped:reg.scoped})
   }
-  grand+=bad.length; grandN+=vocab
-  console.log(`${fam}/${sec}: ${rows.length} items, ${vocab} vocab-in-context with a pointed region, ${bad.length} AMBIGUOUS`)
-  for(const b of bad.slice(0,8)) console.log(b.why
-    ? `   "${b.word}" QUOTED STEM FAILS: ${b.why}  ${b.cohort}  ${b.id.slice(0,8)}`
-    : `   "${b.word}" x${b.n} in the ${b.scoped?'named paragraph':'passage'}  ${b.cohort}  ${b.id.slice(0,8)}`)
+  return {total:rows.length, targeted, vocab, bad}
 }
-console.log(`\nTOTAL: ${grand} of ${grandN} pointed vocab items are ambiguous (${grandN?(100*grand/grandN).toFixed(1):0}%)`)
-process.exit(grand?1:0)
+
+function printBad(bad){
+  for(const b of bad.slice(0,8)) console.log(b.why
+    ? `   "${b.word}" QUOTED STEM FAILS: ${b.why}  ${b.cohort}  ${String(b.id).slice(0,8)}`
+    : `   "${b.word}" x${b.n} in the ${b.scoped?'named paragraph':'passage'}  ${b.cohort}  ${String(b.id).slice(0,8)}`)
+}
+
+export function selftest(verbose=false){
+  const P='We keep grain in the cellar.\n\nThe old keep stood on the hill, and the monks would keep the feast.\n\nNothing else.'
+  const cases=[
+    ['word x2 in the named paragraph fires', {prompt:'As it is used in the second paragraph, the word "keep" most nearly means', passage:P}, 1],
+    ['word x1 in the named paragraph is clean', {prompt:'As it is used in the first paragraph, the word "keep" most nearly means', passage:P}, 0],
+    ['quote that disambiguates is clean', {prompt:'As it is used in "The old keep stood on the hill", the word "keep" most nearly means', passage:P}, 0],
+    ['quote absent from the passage fires', {prompt:'As it is used in "the keep was tall", the word "keep" most nearly means', passage:P}, 1],
+    ['ACT phrase-quoted stem is read', {prompt:'As it is used in the phrase "The old keep stood on the hill," the word keep most nearly means:', passage:P}, 0],
+    ['ACT numbered paragraph with x2 fires', {prompt:'As it is used in paragraph 2, the word "keep" most nearly means:', passage:P}, 1],
+  ]
+  let bad=0
+  for(const [n,item,want] of cases){
+    const s=scanVocab([{id:'fixture',cohort:'t',item}])
+    const ok=s.vocab===1&&s.bad.length===want; if(!ok) bad++
+    if(verbose||!ok) console.log(`${ok?'ok  ':'FAIL'}  ${n}  -> vocab ${s.vocab}, flagged ${s.bad.length} (want 1, ${want})`)
+  }
+  console.log(bad?`${bad} self-test(s) FAILED`:`selftest ${cases.length}/${cases.length} pass`)
+  return bad
+}
+
+if(isMain(import.meta.url)){
+  const {mode,paths}=parseCheckerArgs(process.argv,{name:'check-vocab-ambiguity.mjs',usage:USAGE})
+  const stBad=selftest(mode==='selftest')
+  if(mode==='selftest') process.exit(stBad?1:0)
+  if(stBad) refuse('detector self-test failed — not running')
+  let grand=0, grandN=0
+  if(mode==='live'){
+    console.log(populationHeader('live'))
+    // act/reading added by A22: ACT vocab stems had never been in this sweep.
+    const FAMS=[['act','reading'],['toefl','reading'],['sat','reading_writing'],['ssat','reading'],['isee','reading'],['ssat','verbal'],['isee','verbal']]
+    const {rows}=await loadLive({select:'id,cohort,family,section,item',filter:q=>q.eq('archived',false).eq('verified',true)})
+    for(const [fam,sec] of FAMS){
+      const s=scanVocab(rows.filter(r=>r.family===fam&&r.section===sec))
+      grand+=s.bad.length; grandN+=s.vocab
+      console.log(`${fam}/${sec}: ${s.total} items, ${s.vocab} vocab-in-context with a pointed region, ${s.bad.length} AMBIGUOUS`)
+      printBad(s.bad)
+    }
+    if(!grandN) refuse('no live vocab-in-context item with a pointed region — nothing measured')
+  }else{
+    for(const p of paths){
+      const s=scanVocab(loadBatchFile(p))
+      console.log(`\n${populationHeader('batch',p)}`)
+      // Scorable = a vocab-in-context stem that points at a region or quotes one.
+      printDenominator('pointed vocab-in-context stems', s.vocab, s.total)
+      console.log(`  ${s.targeted} stems name a target word; ${s.vocab} point at a region or quote; ${s.bad.length} AMBIGUOUS`)
+      printBad(s.bad)
+      grand+=s.bad.length; grandN+=s.vocab
+    }
+  }
+  console.log(`\nTOTAL: ${grand} of ${grandN} pointed vocab items are ambiguous (${grandN?(100*grand/grandN).toFixed(1):0}%)`)
+  process.exit(grand?1:0)
+}
