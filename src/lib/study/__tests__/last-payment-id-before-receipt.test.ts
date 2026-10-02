@@ -81,7 +81,9 @@ it('renewal (study-billing cron)', async () => {
     current_period_end: '2020-01-01T00:00:00.000Z', cancel_at_period_end: false,
     portone_subscription_id: 'bk-1', last_payment_attempt_at: null,
   }] })                                                       // §2 renewals due
-  const advance = enqueue('study_subscriptions', { error: null })
+  // The advance is conditional on the period it charged (race audit): it
+  // returns the row it claimed, and an empty result means another run won.
+  const advance = enqueue('study_subscriptions', { data: [{ id: 'sub-1' }], error: null })
   enqueue('study_subscriptions', { data: [] })                // §3 past-due retries
   enqueue('study_subscriptions', { data: [] })                // §4 grant sweep
   enqueue('study_credit_ledger', { error: null })
