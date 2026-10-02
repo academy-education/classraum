@@ -103,22 +103,23 @@ export default function TopicPage({ params }: { params: Promise<{ slug: string }
 }
 
 function LockedTopicView() {
+  const { t } = useTranslation()
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-5 text-center gap-4">
       <div className="w-14 h-14 rounded-full bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center">
         <Lock className="w-6 h-6 text-gray-500" />
       </div>
       <div>
-        <h1 className="text-[20px] font-semibold text-gray-900">Coming soon</h1>
+        <h1 className="text-[20px] font-semibold text-gray-900">{String(t('study.lockedTopic.title'))}</h1>
         <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs leading-relaxed">
-          This test isn&apos;t available yet. Currently the SAT and TOEFL are open.
+          {String(t('study.lockedTopic.body'))}
         </p>
       </div>
       <Link
         href="/mobile/study"
         className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(40,133,232,0.30)] active:scale-[0.97] transition-transform"
       >
-        Back to study
+        {String(t('study.lockedTopic.back'))}
       </Link>
     </div>
   )
@@ -1397,7 +1398,7 @@ function FeaturedResponseCard({
               {String(t('study.modes.response.title'))}
             </div>
             <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.10em] text-indigo-700 bg-white/90 backdrop-blur ring-1 ring-indigo-200/80 rounded-full px-2 py-0.5 shadow-[0_1px_2px_rgba(99,102,241,0.06)]">
-              <Sparkles className="w-2.5 h-2.5" />Beta
+              <Sparkles className="w-2.5 h-2.5" />{String(t('study.modes.beta'))}
             </span>
           </div>
           <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">

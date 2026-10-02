@@ -226,7 +226,7 @@ export function TestCustomizationSheet({
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label={String(t('common.close'))}
             className="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 hover:bg-gray-100 active:scale-[0.94] transition-all"
           >
             <X className="w-4 h-4" />

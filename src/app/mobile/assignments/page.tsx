@@ -143,7 +143,7 @@ const getFileIcon = (fileType: string) => {
 }
 
 // Function to fetch assignment comments efficiently
-const fetchAssignmentComments = async (assignmentIds: string[]): Promise<Map<string, Comment[]>> => {
+const fetchAssignmentComments = async (assignmentIds: string[], unknownUserLabel: string): Promise<Map<string, Comment[]>> => {
   if (assignmentIds.length === 0) return new Map()
 
   try {
@@ -167,7 +167,7 @@ const fetchAssignmentComments = async (assignmentIds: string[]): Promise<Map<str
         commentMap.set(comment.assignment_id, [])
       }
 
-      const userName = comment.user_name || 'Unknown User'
+      const userName = comment.user_name || unknownUserLabel
       const formattedComment: Comment = {
         id: comment.id,
         assignment_id: comment.assignment_id,
@@ -789,7 +789,7 @@ function MobileAssignmentsPageContent() {
         if (!classroom) return []
 
         const teacherId = classroom.teacher_id || ''
-        const teacherName = teacherMap.get(teacherId) || 'Unknown Teacher'
+        const teacherName = teacherMap.get(teacherId) || String(t('mobile.fallbacks.unknownTeacher'))
 
         const getInitials = (name: string) => initialsFromName(name) || 'T'
 
@@ -816,7 +816,7 @@ function MobileAssignmentsPageContent() {
           session_date: session.date || '',
           created_at: assignment.created_at || '',
           status,
-          classroom_name: classroom.name || 'Unknown Class',
+          classroom_name: classroom.name || String(t('mobile.fallbacks.unknownClassroom')),
           classroom_id: classroom.id || '',
           subject: classroom.subjects?.name || classroom.subject || '',
           teacher_name: teacherName,
@@ -853,7 +853,7 @@ function MobileAssignmentsPageContent() {
           // Fetch both attachments and comments in parallel
           const [attachmentMap, commentMap] = await Promise.all([
             fetchAssignmentAttachments(assignmentIds),
-            fetchAssignmentComments(assignmentIds)
+            fetchAssignmentComments(assignmentIds, String(t('common.fallbacks.unknownUser')))
           ])
 
           // Merge attachments and comments into assignments
@@ -889,7 +889,7 @@ function MobileAssignmentsPageContent() {
       console.error('Error in fetchAssignments:', error)
       return []
     }
-  }, [effectiveUserId, academyIds, user?.role, selectedStudent])
+  }, [effectiveUserId, academyIds, user?.role, selectedStudent, t])
 
   const fetchGradesOptimized = useCallback(async (): Promise<Grade[]> => {
     if (!effectiveUserId || !hasAcademyIds || academyIds.length === 0) return []
@@ -1105,11 +1105,11 @@ function MobileAssignmentsPageContent() {
         const classroom = unwrapClassroom(classroomMap.get(session.classroom_id))
         if (!classroom) return []
 
-        const teacherName = teacherMap.get(classroom.teacher_id || '') || 'Unknown Teacher'
+        const teacherName = teacherMap.get(classroom.teacher_id || '') || String(t('mobile.fallbacks.unknownTeacher'))
 
         return [{
           id: gradeRecord.id,
-          assignment_title: assignment.title || 'Unknown Assignment',
+          assignment_title: assignment.title || String(t('mobile.fallbacks.unknownAssignment')),
           assignment_description: assignment.description || '',
           assignment_type: assignment.assignment_type,
           category_name: assignment.category_name || '',
@@ -1118,7 +1118,7 @@ function MobileAssignmentsPageContent() {
           max_points: 100,
           graded_date: gradeRecord.updated_at || gradeRecord.submitted_date || '',
           teacher_name: teacherName,
-          classroom_name: classroom.name || 'Unknown Class',
+          classroom_name: classroom.name || String(t('mobile.fallbacks.unknownClassroom')),
           classroom_id: classroom.id || '',
           academy_id: classroom.academy_id || '',
           status: gradeRecord.status || 'not submitted',
@@ -1157,7 +1157,7 @@ function MobileAssignmentsPageContent() {
       console.error('Error fetching grades:', error)
       return []
     }
-  }, [effectiveUserId, hasAcademyIds, academyIds])
+  }, [effectiveUserId, hasAcademyIds, academyIds, t])
 
   const fetchClassrooms = useCallback(async () => {
     if (!effectiveUserId || !hasAcademyIds) return
@@ -1724,7 +1724,7 @@ function MobileAssignmentsPageContent() {
         id: savedComment.id,
         assignment_id: savedComment.assignment_id,
         user_id: savedComment.user_id,
-        user_name: user?.userName || 'You',
+        user_name: user?.userName || String(t('messages.you')),
         user_initials: initialsFromName(user?.userName) || 'Y',
         content: savedComment.text,
         // created_at is nullable in the schema but defaults to now() on insert;
@@ -3233,7 +3233,7 @@ function MobileAssignmentsPageContent() {
                     <div className="flex items-center gap-1 mb-2">
                       <Paperclip className="w-4 h-4 text-gray-500" />
                       <span className="text-sm font-medium text-gray-700">
-                        Attachments ({(grade as any).attachments.length})
+                        {String(t('mobile.assignments.attachments'))} ({(grade as any).attachments.length})
                       </span>
                     </div>
                     <div className="space-y-2">

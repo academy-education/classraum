@@ -31,7 +31,7 @@ function todayKey(): string {
 }
 
 export function DailyGoalCelebration() {
-  const { language } = useTranslation()
+  const { t, language } = useTranslation()
   const ko = language === 'korean'
   const landingData = useLandingData()
   const pathname = usePathname()
@@ -133,7 +133,7 @@ export function DailyGoalCelebration() {
         <button
           type="button"
           onClick={() => setShow(false)}
-          aria-label="close"
+          aria-label={String(t('common.close'))}
           className="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-600 inline-flex items-center justify-center transition"
         >
           <X className="w-4 h-4" />

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { db } from '@/lib/supabase'
 import { appInitTracker } from '@/utils/appInitializationTracker'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface RoleBasedAuthWrapperProps {
   children: React.ReactNode
@@ -25,6 +26,11 @@ export function RoleBasedAuthWrapper({
   // Always show loading during initial role fetch, only suppress on true tab returns
   const [roleLoading, setRoleLoading] = useState(true)
   const [authError, setAuthError] = useState<string | null>(null)
+  const { t } = useTranslation()
+
+  useEffect(() => {
+    if (authError || error) console.error('RoleBasedAuthWrapper:', authError || error)
+  }, [authError, error])
 
   // Fetch user role when user is available, with retry for session propagation
   useEffect(() => {
@@ -136,9 +142,12 @@ export function RoleBasedAuthWrapper({
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
         <div className="flex flex-col items-center space-y-4 p-6 max-w-md">
           <div className="text-center space-y-2">
-            <h2 className="text-lg font-semibold text-destructive">Authentication Error</h2>
+            <h2 className="text-lg font-semibold text-destructive">{String(t('authWrapper.errorTitle'))}</h2>
             <p className="text-sm text-muted-foreground">
-              {authError || error || 'Unable to verify your access permissions. Please sign in again.'}
+              {/* authError/error are internal English diagnostics ("Failed to
+                  load user role"), not copy — they went to Korean students
+                  verbatim. Log them; show the translated explanation. */}
+              {String(t('authWrapper.errorBody'))}
             </p>
           </div>
         </div>

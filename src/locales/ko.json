@@ -5536,7 +5536,8 @@
       "transcript": "듣기 대본",
       "whyWrong": "오답 이유",
       "yourAnswer": "내가 고른 답",
-      "noAnswer": "답하지 않은 문제입니다"
+      "noAnswer": "답하지 않은 문제입니다",
+      "printLoading": "오답노트를 불러오는 중…"
     },
     "resumeBanner": {
       "eyebrow": "이어서 공부하기"
@@ -5838,7 +5839,8 @@
         "title": "말하기·작문",
         "body": "AI 시험관이 공식 채점 기준에 따라 응답을 평가합니다.",
         "comingSoon": "말하기·작문 — 곧 제공"
-      }
+      },
+      "beta": "베타"
     },
     "test": {
       "generateFailed": "모의고사를 만들지 못했습니다. 다시 시도하세요.",
@@ -5948,8 +5950,18 @@
         "taskDetail": "{count}문항 기록",
         "minutesSeconds": "{m}분 {s}초",
         "seconds": "{s}초"
+      },
+      "writing": {
+        "professor": "교수",
+        "studentN": "학생 {n}"
       }
-    }
+    },
+    "lockedTopic": {
+      "title": "곧 출시",
+      "body": "이 시험은 아직 준비 중이에요. 지금은 SAT와 TOEFL을 이용할 수 있어요.",
+      "back": "공부 화면으로"
+    },
+    "carouselGoTo": "{n}번째 카드로 이동"
   },
   "mobile": {
     "hub": {
@@ -5997,7 +6009,8 @@
       "snap": "사진 풀이",
       "path": "학습 경로",
       "review": "복습",
-      "league": "리그"
+      "league": "리그",
+      "studyNav": "학습 메뉴"
     },
     "mode": {
       "sheetTitle": "모드 전환",
@@ -6491,6 +6504,12 @@
       "noReports": "캠프 리포트가 없습니다",
       "noReportsDesc": "선생님이 리포트를 생성하면 여기에 표시됩니다.",
       "entryCount": "캠프 프로그램 리포트 {count}건"
+    },
+    "errorScreen": {
+      "title": "앗, 문제가 발생했어요",
+      "body": "걱정하지 마세요. 페이지를 새로고침하거나 홈 화면으로 돌아가 주세요.",
+      "goHome": "🏠 홈으로 가기",
+      "details": "오류 세부 정보 (개발용)"
     }
   },
   "features": {
@@ -10443,5 +10462,13 @@
       "dismiss": "나중에",
       "save": "저장"
     }
+  },
+  "loadingScreen": {
+    "slow": "연결이 예상보다 오래 걸리고 있어요...",
+    "checkConnection": "인터넷 연결을 확인해 주세요"
+  },
+  "authWrapper": {
+    "errorTitle": "인증 오류",
+    "errorBody": "접근 권한을 확인할 수 없습니다. 다시 로그인해 주세요."
   }
 }

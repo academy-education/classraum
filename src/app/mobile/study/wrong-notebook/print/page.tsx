@@ -46,8 +46,9 @@ type SortKey = 'newest' | 'oldest' | 'hardest'
 type DifficultyKey = 'all' | 'easy' | 'medium' | 'hard'
 
 export default function PrintPage() {
+  const { t } = useTranslation()
   return (
-    <Suspense fallback={<div className="p-8 text-gray-500">Loading…</div>}>
+    <Suspense fallback={<div className="p-8 text-gray-500">{String(t('common.loading'))}</div>}>
       <PrintInner />
     </Suspense>
   )
@@ -63,7 +64,7 @@ function PrintInner() {
     ? search.get('sort')
     : 'newest') as SortKey
   const rawQuery = (search.get('q') ?? '').trim()
-  const { language } = useTranslation()
+  const { t, language } = useTranslation()
   const ko = language === 'korean'
   const [entries, setEntries] = useState<Entry[]>([])
   const [loading, setLoading] = useState(true)
@@ -146,7 +147,7 @@ function PrintInner() {
   if (loading) {
     return (
       <div className="p-8 flex items-center gap-2 text-gray-500">
-        <Loader2 className="w-4 h-4 animate-spin" />Loading wrong-answer notebook…
+        <Loader2 className="w-4 h-4 animate-spin" />{String(t('study.wrongNotebook.printLoading'))}
       </div>
     )
   }

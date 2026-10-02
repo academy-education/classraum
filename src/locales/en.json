@@ -5536,7 +5536,8 @@
       "transcript": "Transcript",
       "whyWrong": "Why this is wrong",
       "yourAnswer": "Your answer",
-      "noAnswer": "You did not answer this question"
+      "noAnswer": "You did not answer this question",
+      "printLoading": "Loading wrong-answer notebook…"
     },
     "resumeBanner": {
       "eyebrow": "Pick up where you left off"
@@ -5838,7 +5839,8 @@
         "title": "Speaking & writing",
         "body": "AI examiner grades your response against the official rubric.",
         "comingSoon": "Speaking & writing — coming soon"
-      }
+      },
+      "beta": "Beta"
     },
     "test": {
       "generateFailed": "Couldn't build the test. Try again.",
@@ -5948,8 +5950,18 @@
         "taskDetail": "{count} timed",
         "minutesSeconds": "{m}m {s}s",
         "seconds": "{s}s"
+      },
+      "writing": {
+        "professor": "Professor",
+        "studentN": "Student {n}"
       }
-    }
+    },
+    "lockedTopic": {
+      "title": "Coming soon",
+      "body": "This test isn't available yet. Currently the SAT and TOEFL are open.",
+      "back": "Back to study"
+    },
+    "carouselGoTo": "Go to card {n}"
   },
   "mobile": {
     "hub": {
@@ -5997,7 +6009,8 @@
       "snap": "Snap",
       "path": "Path",
       "review": "Review",
-      "league": "League"
+      "league": "League",
+      "studyNav": "Study navigation"
     },
     "mode": {
       "sheetTitle": "Switch mode",
@@ -6491,6 +6504,12 @@
       "noReports": "No camp reports",
       "noReportsDesc": "Camp reports will appear here once your teacher generates them.",
       "entryCount": "{count} reports from camp programs"
+    },
+    "errorScreen": {
+      "title": "Oops! Something went wrong",
+      "body": "Don't worry, we can fix this. Try refreshing the page or go back to the home screen.",
+      "goHome": "🏠 Go to Home",
+      "details": "Error Details (Dev)"
     }
   },
   "features": {
@@ -10457,5 +10476,13 @@
       "dismiss": "Later",
       "save": "Save"
     }
+  },
+  "loadingScreen": {
+    "slow": "Connection is taking longer than expected...",
+    "checkConnection": "Please check your internet connection"
+  },
+  "authWrapper": {
+    "errorTitle": "Authentication Error",
+    "errorBody": "Unable to verify your access permissions. Please sign in again."
   }
 }

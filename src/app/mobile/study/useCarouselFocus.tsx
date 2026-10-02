@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import { useTranslation } from '@/hooks/useTranslation'
 
 /**
  * Tracks the most-visible card in a horizontal carousel.
@@ -83,6 +84,7 @@ export function CarouselDots({
   activeIndex: number
   onSelect?: (index: number) => void
 }) {
+  const { t } = useTranslation()
   if (count <= 1) return null
   return (
     <div className="flex items-center justify-center gap-1.5 mt-3">
@@ -93,7 +95,7 @@ export function CarouselDots({
             key={i}
             type="button"
             onClick={() => onSelect?.(i)}
-            aria-label={`Go to card ${i + 1}`}
+            aria-label={String(t('study.carouselGoTo', { n: i + 1 }))}
             className={`h-1.5 rounded-full transition-all duration-300 ease-out ${
               active
                 ? 'w-6 bg-primary shadow-[0_0_8px_rgba(40,133,232,0.35)]'

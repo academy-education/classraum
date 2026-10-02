@@ -84,7 +84,7 @@ const STEPS: Step[] = [
 
 export function NavTour() {
   const pathname = usePathname() ?? ''
-  const { language } = useTranslation()
+  const { t, language } = useTranslation()
   const ko = language === 'korean'
   const [step, setStep] = useState(0)
   const [active, setActive] = useState(false)
@@ -167,7 +167,7 @@ export function NavTour() {
         className="fixed inset-x-4 bottom-[96px] z-[106] mx-auto max-w-sm rounded-2xl bg-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)] animate-in slide-in-from-bottom-4 fade-in duration-300 overflow-hidden"
       >
         <button type="button" onClick={finish}
-          aria-label="close"
+          aria-label={String(t('common.close'))}
           className="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-500 hover:bg-gray-100 inline-flex items-center justify-center transition">
           <X className="w-4 h-4" />
         </button>
