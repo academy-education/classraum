@@ -1,0 +1,24 @@
+[
+ {
+  "id": "SM19L-B4",
+  "domain": "Algebra",
+  "subskill": "Two linear inequalities in context: counting integers, strict vs non-strict",
+  "difficulty": "hard",
+  "prompt": "A delivery drone's frame and battery have a combined mass of 7.5 kilograms. On each trip the drone carries n identical packages, each with a mass of 1.25 kilograms. The total mass of the drone and its packages must be less than 40 kilograms, and a trip is scheduled only if the packages have a combined mass of at least 12.5 kilograms. How many different values of n are possible for a scheduled trip?",
+  "choices": [
+   "14",
+   "15",
+   "16",
+   "17"
+  ],
+  "correct_answer": "16",
+  "explanation": "The mass condition is 7.5 + 1.25n < 40, so 1.25n < 32.5 and n < 26; since n is a whole number, n ≤ 25. The scheduling condition is 1.25n ≥ 12.5, so n ≥ 10. The possible values are 10, 11, ..., 25, which is 25 − 10 + 1 = 16 values.\n\n17 comes from treating 'less than 40' as 'at most 40', which wrongly allows n = 26. 15 comes from treating 'at least 12.5' as 'more than 12.5', which wrongly excludes n = 10 and leaves 11 through 25. 14 comes from making that same mistake and then also finding the count by subtracting the endpoints, 25 − 11, without adding 1.",
+  "bounds": [],
+  "solve": "const hi=Math.ceil((40-7.5)/1.25)-1; const lo=Math.ceil(12.5/1.25); return hi-lo+1;",
+  "distractor_solve": {
+   "14": "const hi=Math.ceil((40-7.5)/1.25)-1; const lo=Math.floor(12.5/1.25)+1; return hi-lo;",
+   "15": "const hi=Math.ceil((40-7.5)/1.25)-1; const lo=Math.floor(12.5/1.25)+1; return hi-lo+1;",
+   "17": "const hi=Math.floor((40-7.5)/1.25); const lo=Math.ceil(12.5/1.25); return hi-lo+1;"
+  }
+ }
+]

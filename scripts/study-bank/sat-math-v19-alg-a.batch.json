@@ -1,0 +1,134 @@
+[
+ {
+  "id": "SM19L-A1",
+  "domain": "Algebra",
+  "subskill": "Systems: parameter in two coefficients, no-solution vs infinitely many",
+  "difficulty": "hard",
+  "prompt": "(k − 2)x + 18y = 27\n2x + (k − 2)y = 9\n\nIn the system of equations above, k is a constant. If the system has no solution, what is the value of k?",
+  "choices": [
+   "-4",
+   "-1",
+   "5",
+   "8"
+  ],
+  "correct_answer": "-4",
+  "explanation": "A system of two linear equations has no solution when the coefficients of x and y are proportional but the constants are not in the same proportion. The coefficients are proportional when (k − 2)/2 = 18/(k − 2). Cross-multiplying gives (k − 2)² = 2 · 18 = 36, so k − 2 = 6 or k − 2 = −6, giving k = 8 or k = −4. Check each candidate against the constants. If k = 8, the first equation is 6x + 18y = 27, which is exactly 3 times 2x + 6y = 9, so the two equations describe the same line and the system has infinitely many solutions. If k = −4, the first equation is −6x + 18y = 27; its coefficients are −3 times those of 2x − 6y = 9, but −3 · 9 = −27, not 27, so the lines are parallel and distinct and the system has no solution. Therefore k = −4.\n\n8 makes the coefficients proportional and also makes the constants match, so it gives infinitely many solutions, not none. 5 comes from cross-multiplying incorrectly as (k − 2)² = 18/2 = 9 and taking k − 2 = 3. −1 comes from the same incorrect equation (k − 2)² = 9 but taking k − 2 = −3.",
+  "bounds": [],
+  "solve": "for (const s of [1,-1]) { const k = 6*s + 2; const r = (k-2)/2; if (Math.abs(r*(k-2) - 18) < 1e-9 && Math.abs(r*9 - 27) > 1e-9) return k; } return null;",
+  "distractor_solve": {
+   "5": "return 2 + Math.sqrt(18/2);",
+   "8": "return Math.sqrt(2*18) + 2;",
+   "-1": "return 2 - Math.sqrt(18/2);"
+  }
+ },
+ {
+  "id": "SM19L-A2",
+  "domain": "Algebra",
+  "subskill": "Linear equation, two constants: infinitely many solutions",
+  "difficulty": "hard",
+  "prompt": "3(ax − 2) + b = 12x − 2(bx − 5)\n\nIn the equation above, a and b are constants. If the equation has infinitely many solutions, what is the value of a + b?",
+  "choices": [
+   "-20/3",
+   "13/3",
+   "8",
+   "28/3"
+  ],
+  "correct_answer": "28/3",
+  "explanation": "Expand both sides: the left side is 3ax − 6 + b and the right side is 12x − 2bx + 10 = (12 − 2b)x + 10. The equation has infinitely many solutions only if the coefficients of x match and the constant terms match. Because b appears in the x-coefficient on the right, use the constant terms first: −6 + b = 10, so b = 16. Then 3a = 12 − 2(16) = −20, so a = −20/3. Therefore a + b = −20/3 + 16 = 28/3.\n\n−20/3 is the value of a alone, not of a + b. 8 comes from distributing the 3 only to ax, so that −2 + b = 10 gives b = 12 and a = −4. 13/3 comes from expanding −2(bx − 5) as −2bx − 5, so that b = 1 and a = 10/3.",
+  "bounds": [],
+  "solve": "const b = 10 + 6; const a = (12 - 2*b)/3; return a + b;",
+  "distractor_solve": {
+   "8": "const b = 10 + 2; const a = (12 - 2*b)/3; return a + b;",
+   "13/3": "const b = -5 + 6; const a = (12 - 2*b)/3; return a + b;",
+   "-20/3": "const b = 10 + 6; const a = (12 - 2*b)/3; return a;"
+  }
+ },
+ {
+  "id": "SM19L-A3",
+  "domain": "Algebra",
+  "subskill": "Linear function from a difference identity and a shifted graph",
+  "difficulty": "hard",
+  "prompt": "The function f is linear, and f(x − 3) − f(x + 2) = 20 for every value of x. In the xy-plane, the graph of y = f(x − 6) passes through the point (4, 9). What is the value of f(6)?",
+  "choices": [
+   "-31",
+   "-23",
+   "-7",
+   "1"
+  ],
+  "correct_answer": "-23",
+  "explanation": "Write f(x) = mx + c. Then f(x − 3) − f(x + 2) = m(x − 3) − m(x + 2) = −5m. Since this equals 20, m = −4. The graph of y = f(x − 6) passes through (4, 9), so f(4 − 6) = 9, that is, f(−2) = 9. Moving from an input of −2 to an input of 6 increases the input by 8, which changes f by 8m = −32. Therefore f(6) = 9 − 32 = −23.\n\n1 comes from treating (4, 9) as a point on the graph of f itself, so that f(4) = 9. −31 comes from simplifying (x − 3) − (x + 2) as −1 instead of −5, which gives m = −20, and also treating (4, 9) as a point on the graph of f itself. −7 comes from taking m = 4 and also reading the shift backward, as f(4 + 6) = 9.",
+  "bounds": [],
+  "solve": "const m = 20/((-3) - 2); const x0 = 4 - 6; return 9 + m*(6 - x0);",
+  "distractor_solve": {
+   "1": "const m = 20/((-3) - 2); const x0 = 4; return 9 + m*(6 - x0);",
+   "-7": "const m = 20/(2 - (-3)); const x0 = 4 + 6; return 9 + m*(6 - x0);",
+   "-31": "const m = 20/((-3) + 2); const x0 = 4; return 9 + m*(6 - x0);"
+  }
+ },
+ {
+  "id": "SM19L-A4",
+  "domain": "Algebra",
+  "subskill": "Composition of linear functions: recover the outer function",
+  "difficulty": "hard",
+  "prompt": "The functions f and g are linear, and g(x) = 4 − 2x. The function h is defined by h(x) = f(g(x)). If h(1) = 11 and h(3) = 3, what is the value of f(10)?",
+  "choices": [
+   "17",
+   "19",
+   "27",
+   "29"
+  ],
+  "correct_answer": "27",
+  "explanation": "Write f(x) = px + q. Then h(x) = f(4 − 2x) = p(4 − 2x) + q, so h is linear with slope −2p. From the given values, the slope of h is (3 − 11)/(3 − 1) = −4, so −2p = −4 and p = 2. Notice that h is decreasing but f is increasing, because g reverses direction. Next, h(1) = f(g(1)) = f(2) = 2(2) + q = 11, so q = 7. Therefore f(x) = 2x + 7 and f(10) = 27. (Check: h(3) = f(−2) = −4 + 7 = 3.)\n\n29 comes from finding p = 2 but then using h(1) = 11 as f(1) = 11 instead of f(g(1)) = f(2) = 11. 17 comes from finding p = 2 but then using h(3) = 3 as f(3) = 3 instead of f(g(3)) = f(−2) = 3. 19 comes from finding p = 2 but computing g(3) as 4 − 2 = 2 instead of 4 − 6 = −2, so that h(3) = 3 is taken as f(2) = 3.",
+  "bounds": [],
+  "solve": "const g = x => 4 - 2*x; const p = ((3 - 11)/(3 - 1))/(-2); const q = 11 - p*g(1); return p*10 + q;",
+  "distractor_solve": {
+   "17": "const p = ((3 - 11)/(3 - 1))/(-2); const q = 3 - p*3; return p*10 + q;",
+   "19": "const p = 2; return p*10 + (3 - p*2);",
+   "29": "const p = 2; return p*10 + (11 - p*1);"
+  }
+ },
+ {
+  "id": "SM19L-A6",
+  "domain": "Algebra",
+  "subskill": "System with an unknown constant: a combination that is fixed",
+  "difficulty": "hard",
+  "prompt": "4x − 3y = 5c + 7\n2x + y = 3c − 6\n\nIn the system of equations above, c is a constant. If (x, y) is the solution to the system, what is the value of x − 7y?",
+  "choices": [
+   "-9/2",
+   "27/2",
+   "37/2",
+   "51/2"
+  ],
+  "correct_answer": "51/2",
+  "explanation": "The values of x and y depend on c, which is not given, so the goal is a combination of the equations in which c cancels. Multiply the first equation by 3 and the second by 5: 12x − 9y = 15c + 21 and 10x + 5y = 15c − 30. Subtracting the second from the first eliminates c: 2x − 14y = 21 − (−30) = 51. Dividing by 2 gives x − 7y = 51/2.\n\n−9/2 comes from subtracting the constants as 21 − 30 instead of 21 − (−30). 27/2 comes from multiplying the second equation's c-term by 5 but leaving its constant −6 unscaled, so that 21 − (−6) = 27. 37/2 comes from multiplying the first equation's c-term by 3 but leaving its constant 7 unscaled, so that 7 − (−30) = 37.",
+  "bounds": [],
+  "solve": "const c = 2; const x = ((5*c+7)*1 - (-3)*(3*c-6))/(4*1 - (-3)*2); const y = (3*c - 6) - 2*x; return x - 7*y;",
+  "distractor_solve": {
+   "-9/2": "return (3*7 - 5*6)/2;",
+   "37/2": "return (7 - 5*(-6))/2;",
+   "27/2": "return (3*7 - (-6))/2;"
+  }
+ },
+ {
+  "id": "SM19L-A7",
+  "domain": "Algebra",
+  "subskill": "Three concurrent lines with a parameter in two of them",
+  "difficulty": "hard",
+  "prompt": "y = (k − 2)x + 6\ny = 3x + 2k − 4\ny = −4x + 17\n\nIn the xy-plane, the graphs of the three equations above, where k is a constant, are three distinct lines that pass through a common point. What is the value of k?",
+  "choices": [
+   "-15/2",
+   "7/2",
+   "23/2",
+   "35/2"
+  ],
+  "correct_answer": "7/2",
+  "explanation": "Find where the first two lines meet. Setting (k − 2)x + 6 = 3x + 2k − 4 gives (k − 5)x = 2k − 10 = 2(k − 5). If k ≠ 5, dividing by k − 5 gives x = 2, so for every such k the first two lines cross at x = 2, at the point (2, 2k + 2). If k = 5, the first two equations are both y = 3x + 6, the same line, which the problem rules out because the three lines are distinct. The third line passes through x = 2 at y = −4(2) + 17 = 9, so 2k + 2 = 9 and k = 7/2. Check: with k = 7/2 the lines are y = 1.5x + 6, y = 3x + 3 and y = −4x + 17, and all three contain (2, 9).\n\n35/2 comes from dividing (k − 5)x = 2(k − 5) incorrectly to get x = −2; the third line passes through (−2, 25), and requiring the second line to pass through that point gives 2k − 10 = 25. −15/2 comes from the same incorrect x = −2, but requiring the first line to pass through (−2, 25), which gives −2k + 10 = 25. 23/2 comes from evaluating the third line at x = 2 as 8 + 17 = 25 instead of −8 + 17 = 9.",
+  "bounds": [],
+  "solve": "for (let k2 = -100; k2 <= 100; k2++) { const k = k2/2; const m1 = k - 2, b1 = 6, m2 = 3, b2 = 2*k - 4; if (Math.abs(m1 - m2) < 1e-12) continue; const x = (b2 - b1)/(m1 - m2); const y = m2*x + b2; if (Math.abs(-4*x + 17 - y) < 1e-9) return k; } return null;",
+  "distractor_solve": {
+   "35/2": "return (25 + 10)/2;",
+   "-15/2": "return (25 - 10)/(-2);",
+   "23/2": "return (4*2 + 17 - 2)/2;"
+  }
+ }
+]

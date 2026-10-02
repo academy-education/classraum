@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T15:46:22.827Z",
+  "generatedAt": "2026-10-02T05:17:15.148Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -4568,6 +4568,40 @@
           "passed": true,
           "contentSha": "92e84ccbd3ccf6a6e095253e94b573c63e1ca88c21f0832b10335ec2c593eaa0",
           "verdict": "Keys dealt flat by make-oo-render (candidate 10/9/10/10). check-recycled-distractor: 156 option slots, 154 distinct words - NO MEASUREMENT (no item has exactly one cohort-unique option); the only reuse is 'defensive' and 'unpredictable' across the two authors. Key strictly longest 5/39 vs 7.25 expected; strictly SHORTEST 2/39 vs 6.25 expected - the key is rarely the shortest option, recorded as a weak possible tell, not acted on (key-rejected-first rate is below the live control's). Solvers' per-item notes were boilerplate and their batch-level heuristic reports were lost to a subagent stall, so no named heuristic is available - recorded as missing, not as clean."
+        }
+      }
+    },
+    {
+      "id": "sat-math-v19-alg-kept-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "sat",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "sat-math-v19-alg",
+      "contentSha": "1acd75877c3841d91f3251add4fbbf519f8c4ee072a278a2862d255f32ffe4ac",
+      "status": "inserted",
+      "note": "16 authored as HARD in two halves (separate authors), independent no-arithmetic audit before the gate, one repair, 13 gated, 9 kept: 1 panel-median HARD (A1) + 8 medium. PARTIAL hard commission under PREREG-ALG19-2026-10-02.md (1-6 hard): Algebra hard 65 -> 66, hard route stays 8. Pre-gate drops: A5 (quadratic factoring, off-blueprint, 3 free strikes), A8 (integer LP optimisation, off-blueprint), B4 (closure on the key after repair; no second repair). Gate drops: B6 (EXT-1, grader F: key fixed by the time limit alone; the only other median-hard item), B7 (median 2 free strikes: key = 6 x combined rate, two distractors not multiples of 6), B3/B5 (panel median easy).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "1acd75877c3841d91f3251add4fbbf519f8c4ee072a278a2862d255f32ffe4ac",
+          "verdict": "9 items, all 4-choice numeric. On the 13-item gate file: sandbox 13/13 and 39/39 distractor_solve recompute; zero +-pair sets; zero key-as-unique-composite; no numeric or symbolic hub; key at an extreme 6/13 (live Algebra 27.6%); key-magnitude consistent with live (z 1.51/-0.06/-1.13); no singleton tell; zero reviewer-facing text. Option value 8 recurs in A1/A2."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "1acd75877c3841d91f3251add4fbbf519f8c4ee072a278a2862d255f32ffe4ac",
+          "verdict": "Three fresh graders solved cold before reading keys: all three matched the key on all 13; every item exclusive; every distractor path produces its printed value. Kept items: median free strikes 0 (B2: 1 on all three, 41 dies to the 7-minute count being a multiple of 4). Panel median on the kept nine: A1 hard (3/3), the rest medium (A2 A3 A4 A6 A7 B1 B2 B8). Off-blueprint by majority: none (B8 called PSDA by one grader)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "1acd75877c3841d91f3251add4fbbf519f8c4ee072a278a2862d255f32ffe4ac",
+          "verdict": "Options-only attack on the 13-item gate file, three samples of one solver (pairwise agreement 76.9% vs 29.7% independent), 13 candidates interleaved with 13 live Algebra HARD-band items excluding v2 and sat-math-v17/v18/v19-alg (32 eligible). CANDIDATE 30.8% (line 30.8%) vs CONTROL 33.3% (line 30.8%): margin -2.6, inside the pre-registered +10 bar; control far below the 90% ceiling. Unanimous-correct 3/13 candidate vs 1/13 control (batch-level rate only). Every solver pick was labelled guess; heuristics named: hub, adjacent pair, middle-of-chain."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "1acd75877c3841d91f3251add4fbbf519f8c4ee072a278a2862d255f32ffe4ac",
+          "verdict": "Recorded, not dropped: graders call A6 (set c=0 in Desmos) and A7 (k=5 coincident-lines trap not offered as an option) insight-bypassable; A7 distractors 35/2 and -15/2 rest on an unlikely slip (one grader: weak). Options print ascending, so rank survives the draw shuffle; key extremity 6/13."
         }
       }
     }

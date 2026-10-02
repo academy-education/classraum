@@ -1,0 +1,223 @@
+[
+  {
+    "id": "SEC10B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: finite verb for a subject followed by a reduced relative clause",
+    "difficulty": "hard",
+    "passage": "Ecologists studying old-growth forests have found that fungal threads link the roots of neighboring trees and that the network they form ______ sugars from tall, sunlit trees to seedlings growing in deep shade, a transfer that may help young firs survive their first decade.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "redistributing",
+      "and redistribute",
+      "redistributes",
+      "redistribute"
+    ],
+    "correct_answer": "redistributes",
+    "explanation": "The blank falls inside a clause introduced by \"that\": \"that the network they form ______ sugars.\" The subject of this clause is \"the network,\" and \"they form\" is a shortened relative clause describing it (\"the network [that] they form\"). \"Network\" still needs a verb of its own, and because it is singular, that verb must be singular: \"redistributes.\" \"Redistribute\" is plural; it agrees with \"they\" or \"threads,\" which come just before the blank, rather than with \"network.\" \"And redistribute\" joins a second verb to \"form,\" so both verbs belong to \"they,\" and \"the network\" is left with no verb at all. \"Redistributing\" is a participle, not a finite verb, so it also leaves \"the network\" without a verb.",
+    "topic_tag": "ecology"
+  },
+  {
+    "id": "SEC10B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: nonfinite modifier when the main verb is already present",
+    "difficulty": "hard",
+    "passage": "Over three consecutive summers, a team of volunteers organized by the regional land trust removed nearly forty tons of invasive kudzu from the eroding hillside above the reservoir, ______ native oak and hickory seedlings to take root in soil that the vine had smothered for decades.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "enabling",
+      "enabled",
+      "enables",
+      "enable"
+    ],
+    "correct_answer": "enabling",
+    "explanation": "This sentence already has a subject and a main verb: \"a team of volunteers ... removed nearly forty tons of invasive kudzu.\" What follows the comma must therefore modify that clause rather than add a second main verb. \"Enabling\" is a participle that does exactly that, describing the result of the removal. \"Enabled\" would be a second past-tense main verb attached to the first with only a comma and no conjunction, so the sentence would have two verbs fighting for the same subject. \"Enables\" has the same problem and also shifts from the past tense of \"removed\" to the present. \"Enable\" adds a second main verb as well, and as a plural form it does not even agree with the singular subject \"team.\"",
+    "topic_tag": "conservation"
+  },
+  {
+    "id": "SEC10B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: finite past verb inside a relative clause with its own subject",
+    "difficulty": "hard",
+    "passage": "Divers recovered a bronze astrolabe from the wreck in 1985, and its finely engraved scales, which the ship's navigator ______ to fix the vessel's latitude, remain legible after four centuries on the seabed.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "relying on",
+      "that relies on",
+      "relied on",
+      "relies on"
+    ],
+    "correct_answer": "relied on",
+    "explanation": "The words between the commas form a relative clause that begins with \"which\" and has its own subject, \"the ship's navigator.\" That clause needs a finite verb, and because the navigator used the astrolabe before the ship sank four centuries ago, the verb must be in the past tense: \"which the ship's navigator relied on to fix the vessel's latitude.\" The main clause then continues: \"its finely engraved scales ... remain legible.\" \"Relies on\" is finite, but its present tense describes a navigator from four centuries ago as if he were still using the instrument. \"Relying on\" is a participle, so the clause beginning \"which the ship's navigator\" has no verb. \"That relies on\" starts a second relative clause inside the first, so \"that\" becomes the subject of \"relies,\" and the clause beginning \"which the ship's navigator\" is still left without a verb.",
+    "topic_tag": "navigation"
+  },
+  {
+    "id": "SEC10B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: plural possessive with number set by an earlier sentence",
+    "difficulty": "hard",
+    "passage": "Starting in 2011, two ornithologists kept one shared handwritten log of the arrival date of every barn swallow that nested under the eaves of a dairy barn in rural Ontario. Over thirteen years, the ______ grew to more than 9,000 entries, and it now shows that the birds arrive nearly a week earlier than they once did.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "ornithologist's log",
+      "ornithologist's logs",
+      "ornithologists' logs",
+      "ornithologists' log"
+    ],
+    "correct_answer": "ornithologists' log",
+    "explanation": "The first sentence establishes two facts: two ornithologists kept the record, and they kept one shared log. The possessive must therefore be plural, \"ornithologists'\" (plural noun, apostrophe after the s), and the noun must be singular, \"log.\" \"Ornithologists' log\" gets both right, and it also matches the singular pronoun \"it\" later in the sentence. \"Ornithologist's log\" uses a singular possessive, which credits the record to only one person. \"Ornithologist's logs\" makes that same error and also makes the noun plural. \"Ornithologists' logs\" uses the correct possessive, but the plural \"logs\" contradicts the one shared log described in the first sentence and clashes with \"it.\"",
+    "topic_tag": "ornithology"
+  },
+  {
+    "id": "SEC10B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "pronoun-antecedent: possessive with a distant plural antecedent",
+    "difficulty": "hard",
+    "passage": "Printed charts of the West African coast, which engravers in Lisbon copied and recopied for more than a century, owe ______ error, a cape drawn nearly forty miles too far south, to a single survey that a pilot misread in 1502.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "it's most persistent",
+      "they're most persistent",
+      "its most persistent",
+      "their most persistent"
+    ],
+    "correct_answer": "their most persistent",
+    "explanation": "The pronoun names whatever owns the error: the thing that \"owe[s]\" it to a misread survey. That is the subject of the sentence, \"Printed charts of the West African coast,\" and \"charts\" is plural, so the possessive must be plural: \"their.\" \"Its most persistent\" uses a singular possessive; it may seem to fit the singular nouns closer to the blank, \"coast,\" \"Lisbon,\" and \"century,\" but none of them is what owes the error to the survey. \"It's\" is a contraction of \"it is\" or \"it has,\" and \"they're\" is a contraction of \"they are\"; neither is a possessive, so neither can come before \"error\" this way.",
+    "topic_tag": "cartography"
+  },
+  {
+    "id": "SEC10B-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: number and tense of the second verb in a compound predicate",
+    "difficulty": "hard",
+    "passage": "After removing brittle wartime letters from their original envelopes, the archive's lead conservator flattens the pages under a single pane of weighted glass for about a week and then ______ them in acid-free folders that are kept in a climate-controlled vault.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "stores",
+      "store",
+      "stored",
+      "storing"
+    ],
+    "correct_answer": "stores",
+    "explanation": "The subject is \"the archive's lead conservator,\" a singular noun, and it has two verbs joined by \"and then\": \"flattens\" and the verb in the blank. The second verb must match the first: singular and in the present tense, \"stores.\" \"Store\" is plural, perhaps drawn by \"letters,\" \"envelopes,\" or \"pages,\" but none of those is the subject. \"Stored\" is past tense, an unexplained shift away from the present-tense \"flattens\" in a description of a routine. \"Storing\" is a participle, not a finite verb, so it cannot pair with \"flattens\" as the second verb of the subject \"conservator.\"",
+    "topic_tag": "archives"
+  },
+  {
+    "id": "SEC10B-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a gerund-phrase subject containing plural nouns",
+    "difficulty": "hard",
+    "passage": "Reintroducing gray wolves to the northern ranges of the park after an absence of nearly seventy years ______ the grazing patterns of elk herds, which now avoid the open riverbanks where young willows have begun to recover.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has reshaped",
+      "have reshaped",
+      "reshaping",
+      "had reshaped"
+    ],
+    "correct_answer": "has reshaped",
+    "explanation": "The subject of this sentence is the gerund phrase \"Reintroducing gray wolves to the northern ranges of the park after an absence of nearly seventy years.\" A gerund phrase names a single action, so it takes a singular verb even though it contains the plural nouns \"wolves,\" \"ranges,\" and \"years.\" \"Has reshaped\" is a singular finite verb, and its present perfect tense links the past reintroduction to the present, where the elk \"now avoid\" the riverbanks. \"Have reshaped\" is plural; it agrees with one of the plural nouns inside the phrase rather than with the phrase itself. \"Reshaping\" is a participle, so it leaves the subject without a main verb and turns the sentence into a fragment. \"Had reshaped\" uses the past perfect, which places an action before some other moment in the past; no such moment appears here, and the sentence goes on to describe what the elk do \"now.\"",
+    "topic_tag": "wildlife"
+  },
+  {
+    "id": "SEC10B-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with the head noun next to the blank, earlier trap",
+    "difficulty": "hard",
+    "passage": "Although the great fresco of the harvest in the monastery's refectory, exposed for centuries to candle smoke and to damp air rising from the valley, has faded almost beyond recognition, the smaller altar panels ______ much of the vivid blue pigment that the painters ground from lapis lazuli.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has preserved",
+      "having preserved",
+      "have preserved",
+      "which has preserved"
+    ],
+    "correct_answer": "have preserved",
+    "explanation": "The sentence has two parts: a long introductory clause beginning with \"Although,\" whose subject is the singular \"fresco\" and whose verb is \"has faded,\" and a main clause whose subject is \"the smaller altar panels.\" The blank needs the main clause's verb, and because \"panels\" is plural, that verb must be plural: \"have preserved.\" \"Has preserved\" is singular; it echoes \"has faded\" and the singular \"fresco\" from the first clause, but the subject of the main clause is \"panels.\" \"Having preserved\" is a participle, not a finite verb, so \"panels\" has no verb and the sentence has no main clause. \"Which has preserved\" turns what follows into a relative clause describing \"panels,\" which again leaves \"panels\" without a main verb; its singular \"has\" does not agree with \"panels\" either.",
+    "topic_tag": "art history"
+  },
+  {
+    "id": "SEC10B-12",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with \"the number of\" before plural nouns",
+    "difficulty": "hard",
+    "passage": "The number of migrating songbirds that strike the illuminated glass towers of the city's financial district each spring and fall ______ by nearly half since volunteers persuaded building managers to switch off decorative lighting after midnight.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have declined",
+      "has declined",
+      "declining",
+      "to decline"
+    ],
+    "correct_answer": "has declined",
+    "explanation": "The subject of this sentence is \"The number,\" not \"songbirds\" or \"towers.\" The phrase \"of migrating songbirds that strike the illuminated glass towers ...\" only describes what is being counted. \"The number\" names a single quantity and takes a singular verb, so \"has declined\" is correct. \"Have declined\" is plural, matching the plural nouns between the subject and the blank rather than the subject itself. \"Declining\" is a participle and \"to decline\" is an infinitive; neither can serve as a main verb, so either one leaves \"The number\" without a verb and makes the sentence a fragment.",
+    "topic_tag": "urban ecology"
+  },
+  {
+    "id": "SEC10B-13",
+    "domain": "Standard English Conventions",
+    "subskill": "form: compound subject with a singular part next to the blank",
+    "difficulty": "hard",
+    "passage": "The steady rise in average summer temperatures across the plateau since the 1980s and the arrival of a bark beetle that bores into any pine weakened by drought ______ to kill nearly a third of the region's old-growth forest, according to a new aerial survey.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has combined",
+      "combining",
+      "which combine",
+      "have combined"
+    ],
+    "correct_answer": "have combined",
+    "explanation": "The subject of this sentence is compound: \"The steady rise in average summer temperatures across the plateau since the 1980s\" and \"the arrival of a bark beetle that bores into any pine weakened by drought.\" Two subjects joined by \"and\" take a plural verb, so \"have combined\" is correct. \"Has combined\" is singular; it agrees with the noun right before the blank, \"drought,\" or with just one half of the compound. \"Combining\" is a participle, so the subject would have no main verb. \"Which combine\" would attach a relative clause to \"drought,\" again leaving the compound subject without a main verb and making the sentence a fragment.",
+    "topic_tag": "forestry"
+  },
+  {
+    "id": "SEC10B-14",
+    "domain": "Standard English Conventions",
+    "subskill": "modifier: opening modifier must attach to the noun after the comma",
+    "difficulty": "hard",
+    "passage": "Last spring a ceremonial robe was returned to the coastal community where it had been made, after more than a century in private collections. Woven from the inner bark of yellow cedar and the wool of mountain goats and patterned with rows of stylized ravens, ______",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the community now displays the robe in its longhouse.",
+      "the robe now hangs in the community's longhouse.",
+      "the robe's ravens now look out over the longhouse.",
+      "the longhouse now holds the robe at its center."
+    ],
+    "correct_answer": "the robe now hangs in the community's longhouse.",
+    "explanation": "The second sentence opens with a long modifier: \"Woven from the inner bark of yellow cedar and the wool of mountain goats and patterned with rows of stylized ravens.\" A modifier in this position describes the noun that comes right after the comma, so that noun must be the thing that was woven and patterned: the robe. \"The robe now hangs in the community's longhouse\" puts \"the robe\" right after the modifier. \"The community now displays the robe in its longhouse\" makes the community the thing woven from cedar bark and goat wool. \"The robe's ravens now look out over the longhouse\" makes \"ravens\" the subject; \"robe's\" is only a possessive, and the ravens are not what was patterned with rows of ravens. \"The longhouse now holds the robe at its center\" says that the longhouse was woven and patterned.",
+    "topic_tag": "textile arts"
+  },
+  {
+    "id": "SEC10B-15",
+    "domain": "Standard English Conventions",
+    "subskill": "agreement: linking verb with a plural complement after it",
+    "difficulty": "hard",
+    "passage": "For decades the farms along the river were blamed, but the largest single source of the silt that clouds its estuary each spring ______ the eroding sandstone bluffs near its headwaters, according to a new sediment survey.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are actually",
+      "is actually",
+      "that are actually",
+      "which is actually"
+    ],
+    "correct_answer": "is actually",
+    "explanation": "After \"but,\" the subject is \"the largest single source,\" and everything from \"of the silt\" to \"each spring\" describes it. \"Source\" is singular, so the verb must be singular: \"is actually.\" The plural noun after the verb, \"bluffs,\" does not change this, because a linking verb agrees with its subject, not with the noun that follows it. \"Are actually\" agrees with \"bluffs\" (or with \"farms\") instead of with \"source.\" \"That are actually\" and \"which is actually\" each begin a relative clause that attaches to a nearby noun, so \"source\" is left with no verb and the clause after \"but\" is incomplete.",
+    "topic_tag": "geology"
+  },
+  {
+    "id": "SEC10B-16",
+    "domain": "Standard English Conventions",
+    "subskill": "agreement: verb in a who-clause with a singular antecedent",
+    "difficulty": "hard",
+    "passage": "Linguists recording the harvest songs of a remote mountain village are working against time: the only person there who ______ all forty verses of the cycle by heart is a farmer in his nineties.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "still know",
+      "still knowing",
+      "still knew",
+      "still knows"
+    ],
+    "correct_answer": "still knows",
+    "explanation": "The blank holds the verb of a relative clause, \"who ______ all forty verses of the cycle by heart,\" and \"who\" refers to \"the only person there.\" \"Person\" is singular, so the verb must be singular, and because the sentence describes the present (\"are working,\" \"is a farmer\"), it must be in the present tense: \"still knows.\" \"Still know\" is plural, matching \"songs\" or \"verses\" rather than \"person.\" \"Still knew\" is past tense, which clashes with \"is a farmer in his nineties\": the farmer is the one person who knows the verses now. \"Still knowing\" is a participle, which cannot serve as the verb after \"who,\" so the relative clause is left incomplete.",
+    "topic_tag": "linguistics"
+  }
+]

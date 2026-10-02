@@ -1,0 +1,280 @@
+{
+ "SM19L-A1": {
+  "status": "KEEP",
+  "reasons": [],
+  "diffs": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "median": "hard",
+  "n_struck": [
+   0,
+   1,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-A2": {
+  "status": "KEEP",
+  "reasons": [],
+  "diffs": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "median": "medium",
+  "n_struck": [
+   0,
+   0,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-A3": {
+  "status": "KEEP",
+  "reasons": [],
+  "diffs": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "median": "medium",
+  "n_struck": [
+   0,
+   0,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-A4": {
+  "status": "KEEP",
+  "reasons": [],
+  "diffs": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "median": "medium",
+  "n_struck": [
+   0,
+   0,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-A6": {
+  "status": "KEEP",
+  "reasons": [],
+  "diffs": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "median": "medium",
+  "n_struck": [
+   0,
+   0,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-A7": {
+  "status": "KEEP",
+  "reasons": [],
+  "diffs": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "median": "medium",
+  "n_struck": [
+   0,
+   0,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   true,
+   false,
+   false
+  ]
+ },
+ "SM19L-B1": {
+  "status": "KEEP",
+  "reasons": [],
+  "diffs": [
+   "medium",
+   "easy",
+   "medium"
+  ],
+  "median": "medium",
+  "n_struck": [
+   0,
+   0,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-B2": {
+  "status": "KEEP",
+  "reasons": [],
+  "diffs": [
+   "hard",
+   "medium",
+   "medium"
+  ],
+  "median": "medium",
+  "n_struck": [
+   1,
+   1,
+   1
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-B3": {
+  "status": "REJECT-EASY",
+  "reasons": [],
+  "diffs": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "median": "easy",
+  "n_struck": [
+   0,
+   0,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   true,
+   false
+  ]
+ },
+ "SM19L-B5": {
+  "status": "REJECT-EASY",
+  "reasons": [],
+  "diffs": [
+   "easy",
+   "medium",
+   "easy"
+  ],
+  "median": "easy",
+  "n_struck": [
+   0,
+   0,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-B6": {
+  "status": "DROP",
+  "reasons": [
+   "EXT-1 drop by f"
+  ],
+  "diffs": [
+   "hard",
+   "hard",
+   "easy"
+  ],
+  "median": "hard",
+  "n_struck": [
+   0,
+   1,
+   0
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-B7": {
+  "status": "DROP",
+  "reasons": [
+   "median n_struck 2",
+   "EXT-1 drop by e,f"
+  ],
+  "diffs": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "median": "medium",
+  "n_struck": [
+   0,
+   2,
+   2
+  ],
+  "offbp": 0,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ },
+ "SM19L-B8": {
+  "status": "KEEP",
+  "reasons": [],
+  "diffs": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "median": "medium",
+  "n_struck": [
+   0,
+   0,
+   0
+  ],
+  "offbp": 1,
+  "weak": [
+   false,
+   false,
+   false
+  ]
+ }
+}

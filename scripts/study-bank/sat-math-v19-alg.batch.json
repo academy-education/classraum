@@ -1,0 +1,288 @@
+[
+ {
+  "id": "SM19L-A1",
+  "domain": "Algebra",
+  "subskill": "Systems: parameter in two coefficients, no-solution vs infinitely many",
+  "difficulty": "hard",
+  "prompt": "(k − 2)x + 18y = 27\n2x + (k − 2)y = 9\n\nIn the system of equations above, k is a constant. If the system has no solution, what is the value of k?",
+  "choices": [
+   "-4",
+   "-1",
+   "5",
+   "8"
+  ],
+  "correct_answer": "-4",
+  "explanation": "A system of two linear equations has no solution when the coefficients of x and y are proportional but the constants are not in the same proportion. The coefficients are proportional when (k − 2)/2 = 18/(k − 2). Cross-multiplying gives (k − 2)² = 2 · 18 = 36, so k − 2 = 6 or k − 2 = −6, giving k = 8 or k = −4. Check each candidate against the constants. If k = 8, the first equation is 6x + 18y = 27, which is exactly 3 times 2x + 6y = 9, so the two equations describe the same line and the system has infinitely many solutions. If k = −4, the first equation is −6x + 18y = 27; its coefficients are −3 times those of 2x − 6y = 9, but −3 · 9 = −27, not 27, so the lines are parallel and distinct and the system has no solution. Therefore k = −4.\n\n8 makes the coefficients proportional and also makes the constants match, so it gives infinitely many solutions, not none. 5 comes from cross-multiplying incorrectly as (k − 2)² = 18/2 = 9 and taking k − 2 = 3. −1 comes from the same incorrect equation (k − 2)² = 9 but taking k − 2 = −3.",
+  "bounds": [],
+  "solve": "for (const s of [1,-1]) { const k = 6*s + 2; const r = (k-2)/2; if (Math.abs(r*(k-2) - 18) < 1e-9 && Math.abs(r*9 - 27) > 1e-9) return k; } return null;",
+  "distractor_solve": {
+   "5": "return 2 + Math.sqrt(18/2);",
+   "8": "return Math.sqrt(2*18) + 2;",
+   "-1": "return 2 - Math.sqrt(18/2);"
+  }
+ },
+ {
+  "id": "SM19L-A2",
+  "domain": "Algebra",
+  "subskill": "Linear equation, two constants: infinitely many solutions",
+  "difficulty": "hard",
+  "prompt": "3(ax − 2) + b = 12x − 2(bx − 5)\n\nIn the equation above, a and b are constants. If the equation has infinitely many solutions, what is the value of a + b?",
+  "choices": [
+   "-20/3",
+   "13/3",
+   "8",
+   "28/3"
+  ],
+  "correct_answer": "28/3",
+  "explanation": "Expand both sides: the left side is 3ax − 6 + b and the right side is 12x − 2bx + 10 = (12 − 2b)x + 10. The equation has infinitely many solutions only if the coefficients of x match and the constant terms match. Because b appears in the x-coefficient on the right, use the constant terms first: −6 + b = 10, so b = 16. Then 3a = 12 − 2(16) = −20, so a = −20/3. Therefore a + b = −20/3 + 16 = 28/3.\n\n−20/3 is the value of a alone, not of a + b. 8 comes from distributing the 3 only to ax, so that −2 + b = 10 gives b = 12 and a = −4. 13/3 comes from expanding −2(bx − 5) as −2bx − 5, so that b = 1 and a = 10/3.",
+  "bounds": [],
+  "solve": "const b = 10 + 6; const a = (12 - 2*b)/3; return a + b;",
+  "distractor_solve": {
+   "8": "const b = 10 + 2; const a = (12 - 2*b)/3; return a + b;",
+   "13/3": "const b = -5 + 6; const a = (12 - 2*b)/3; return a + b;",
+   "-20/3": "const b = 10 + 6; const a = (12 - 2*b)/3; return a;"
+  }
+ },
+ {
+  "id": "SM19L-A3",
+  "domain": "Algebra",
+  "subskill": "Linear function from a difference identity and a shifted graph",
+  "difficulty": "hard",
+  "prompt": "The function f is linear, and f(x − 3) − f(x + 2) = 20 for every value of x. In the xy-plane, the graph of y = f(x − 6) passes through the point (4, 9). What is the value of f(6)?",
+  "choices": [
+   "-31",
+   "-23",
+   "-7",
+   "1"
+  ],
+  "correct_answer": "-23",
+  "explanation": "Write f(x) = mx + c. Then f(x − 3) − f(x + 2) = m(x − 3) − m(x + 2) = −5m. Since this equals 20, m = −4. The graph of y = f(x − 6) passes through (4, 9), so f(4 − 6) = 9, that is, f(−2) = 9. Moving from an input of −2 to an input of 6 increases the input by 8, which changes f by 8m = −32. Therefore f(6) = 9 − 32 = −23.\n\n1 comes from treating (4, 9) as a point on the graph of f itself, so that f(4) = 9. −31 comes from simplifying (x − 3) − (x + 2) as −1 instead of −5, which gives m = −20, and also treating (4, 9) as a point on the graph of f itself. −7 comes from taking m = 4 and also reading the shift backward, as f(4 + 6) = 9.",
+  "bounds": [],
+  "solve": "const m = 20/((-3) - 2); const x0 = 4 - 6; return 9 + m*(6 - x0);",
+  "distractor_solve": {
+   "1": "const m = 20/((-3) - 2); const x0 = 4; return 9 + m*(6 - x0);",
+   "-7": "const m = 20/(2 - (-3)); const x0 = 4 + 6; return 9 + m*(6 - x0);",
+   "-31": "const m = 20/((-3) + 2); const x0 = 4; return 9 + m*(6 - x0);"
+  }
+ },
+ {
+  "id": "SM19L-A4",
+  "domain": "Algebra",
+  "subskill": "Composition of linear functions: recover the outer function",
+  "difficulty": "hard",
+  "prompt": "The functions f and g are linear, and g(x) = 4 − 2x. The function h is defined by h(x) = f(g(x)). If h(1) = 11 and h(3) = 3, what is the value of f(10)?",
+  "choices": [
+   "17",
+   "19",
+   "27",
+   "29"
+  ],
+  "correct_answer": "27",
+  "explanation": "Write f(x) = px + q. Then h(x) = f(4 − 2x) = p(4 − 2x) + q, so h is linear with slope −2p. From the given values, the slope of h is (3 − 11)/(3 − 1) = −4, so −2p = −4 and p = 2. Notice that h is decreasing but f is increasing, because g reverses direction. Next, h(1) = f(g(1)) = f(2) = 2(2) + q = 11, so q = 7. Therefore f(x) = 2x + 7 and f(10) = 27. (Check: h(3) = f(−2) = −4 + 7 = 3.)\n\n29 comes from finding p = 2 but then using h(1) = 11 as f(1) = 11 instead of f(g(1)) = f(2) = 11. 17 comes from finding p = 2 but then using h(3) = 3 as f(3) = 3 instead of f(g(3)) = f(−2) = 3. 19 comes from finding p = 2 but computing g(3) as 4 − 2 = 2 instead of 4 − 6 = −2, so that h(3) = 3 is taken as f(2) = 3.",
+  "bounds": [],
+  "solve": "const g = x => 4 - 2*x; const p = ((3 - 11)/(3 - 1))/(-2); const q = 11 - p*g(1); return p*10 + q;",
+  "distractor_solve": {
+   "17": "const p = ((3 - 11)/(3 - 1))/(-2); const q = 3 - p*3; return p*10 + q;",
+   "19": "const p = 2; return p*10 + (3 - p*2);",
+   "29": "const p = 2; return p*10 + (11 - p*1);"
+  }
+ },
+ {
+  "id": "SM19L-A6",
+  "domain": "Algebra",
+  "subskill": "System with an unknown constant: a combination that is fixed",
+  "difficulty": "hard",
+  "prompt": "4x − 3y = 5c + 7\n2x + y = 3c − 6\n\nIn the system of equations above, c is a constant. If (x, y) is the solution to the system, what is the value of x − 7y?",
+  "choices": [
+   "-9/2",
+   "27/2",
+   "37/2",
+   "51/2"
+  ],
+  "correct_answer": "51/2",
+  "explanation": "The values of x and y depend on c, which is not given, so the goal is a combination of the equations in which c cancels. Multiply the first equation by 3 and the second by 5: 12x − 9y = 15c + 21 and 10x + 5y = 15c − 30. Subtracting the second from the first eliminates c: 2x − 14y = 21 − (−30) = 51. Dividing by 2 gives x − 7y = 51/2.\n\n−9/2 comes from subtracting the constants as 21 − 30 instead of 21 − (−30). 27/2 comes from multiplying the second equation's c-term by 5 but leaving its constant −6 unscaled, so that 21 − (−6) = 27. 37/2 comes from multiplying the first equation's c-term by 3 but leaving its constant 7 unscaled, so that 7 − (−30) = 37.",
+  "bounds": [],
+  "solve": "const c = 2; const x = ((5*c+7)*1 - (-3)*(3*c-6))/(4*1 - (-3)*2); const y = (3*c - 6) - 2*x; return x - 7*y;",
+  "distractor_solve": {
+   "-9/2": "return (3*7 - 5*6)/2;",
+   "37/2": "return (7 - 5*(-6))/2;",
+   "27/2": "return (3*7 - (-6))/2;"
+  }
+ },
+ {
+  "id": "SM19L-A7",
+  "domain": "Algebra",
+  "subskill": "Three concurrent lines with a parameter in two of them",
+  "difficulty": "hard",
+  "prompt": "y = (k − 2)x + 6\ny = 3x + 2k − 4\ny = −4x + 17\n\nIn the xy-plane, the graphs of the three equations above, where k is a constant, are three distinct lines that pass through a common point. What is the value of k?",
+  "choices": [
+   "-15/2",
+   "7/2",
+   "23/2",
+   "35/2"
+  ],
+  "correct_answer": "7/2",
+  "explanation": "Find where the first two lines meet. Setting (k − 2)x + 6 = 3x + 2k − 4 gives (k − 5)x = 2k − 10 = 2(k − 5). If k ≠ 5, dividing by k − 5 gives x = 2, so for every such k the first two lines cross at x = 2, at the point (2, 2k + 2). If k = 5, the first two equations are both y = 3x + 6, the same line, which the problem rules out because the three lines are distinct. The third line passes through x = 2 at y = −4(2) + 17 = 9, so 2k + 2 = 9 and k = 7/2. Check: with k = 7/2 the lines are y = 1.5x + 6, y = 3x + 3 and y = −4x + 17, and all three contain (2, 9).\n\n35/2 comes from dividing (k − 5)x = 2(k − 5) incorrectly to get x = −2; the third line passes through (−2, 25), and requiring the second line to pass through that point gives 2k − 10 = 25. −15/2 comes from the same incorrect x = −2, but requiring the first line to pass through (−2, 25), which gives −2k + 10 = 25. 23/2 comes from evaluating the third line at x = 2 as 8 + 17 = 25 instead of −8 + 17 = 9.",
+  "bounds": [],
+  "solve": "for (let k2 = -100; k2 <= 100; k2++) { const k = k2/2; const m1 = k - 2, b1 = 6, m2 = 3, b2 = 2*k - 4; if (Math.abs(m1 - m2) < 1e-12) continue; const x = (b2 - b1)/(m1 - m2); const y = m2*x + b2; if (Math.abs(-4*x + 17 - y) < 1e-9) return k; } return null;",
+  "distractor_solve": {
+   "35/2": "return (25 + 10)/2;",
+   "-15/2": "return (25 - 10)/(-2);",
+   "23/2": "return (4*2 + 17 - 2)/2;"
+  }
+ },
+ {
+  "id": "SM19L-B1",
+  "domain": "Algebra",
+  "subskill": "Linear equations in context: staggered start with a required lead",
+  "difficulty": "hard",
+  "prompt": "Two survey boats leave the same dock and travel along the same straight route in the same direction, each at a constant speed. Boat A leaves at 8:00 a.m. and travels at 12 kilometers per hour. Boat B leaves at 10:00 a.m. and travels at 20 kilometers per hour. How many minutes after boat B leaves the dock is boat B exactly 4 kilometers ahead of boat A?",
+  "choices": [
+   "187.5",
+   "192",
+   "200",
+   "210"
+  ],
+  "correct_answer": "210",
+  "explanation": "Let s be the number of hours boat B has been traveling. Boat A has then been traveling s + 2 hours. Boat B is 4 kilometers ahead when 20s = 12(s + 2) + 4, so 8s = 28 and s = 3.5. That is 3.5(60) = 210 minutes after boat B leaves.\n\n192 comes from finding when boat B catches boat A (after 3 hours) and then dividing the extra 4 kilometers by boat B's speed, as if boat A had stopped. 200 comes from finding the catch-up time and then dividing the extra 4 kilometers by boat A's speed. 187.5 comes from finding the catch-up time and then dividing the extra 4 kilometers by the sum of the speeds, 32 kilometers per hour, as if the boats were moving apart in opposite directions.",
+  "bounds": [],
+  "solve": "const s = (12*2 + 4)/(20 - 12); return 60*s;",
+  "distractor_solve": {
+   "192": "const c = (12*2)/(20 - 12); return 60*(c + 4/20);",
+   "200": "const c = (12*2)/(20 - 12); return 60*(c + 4/12);",
+   "187.5": "const c = (12*2)/(20 - 12); return 60*(c + 4/(20 + 12));"
+  }
+ },
+ {
+  "id": "SM19L-B2",
+  "domain": "Algebra",
+  "subskill": "Linear system in context: replacement that is not one-for-one",
+  "difficulty": "hard",
+  "prompt": "A radio station's overnight playlist consists of 118 tracks, each exactly 4 minutes long. The station replaces some of these tracks with tracks that are each exactly 7 minutes long, keeping the total length of the playlist the same as before. After the change, the 7-minute tracks account for 144 more minutes of the playlist than the 4-minute tracks do. How many 7-minute tracks are on the playlist after the change?",
+  "choices": [
+   "41",
+   "44",
+   "48",
+   "56"
+  ],
+  "correct_answer": "44",
+  "explanation": "The playlist originally lasts 118(4) = 472 minutes, and it still lasts 472 minutes after the change. Let L be the minutes of 7-minute tracks and S the minutes of 4-minute tracks. Then L + S = 472 and L − S = 144, so L = 308 and S = 164. There are 308/7 = 44 seven-minute tracks (and 164/4 = 41 four-minute tracks). Because the total time stays fixed, the number of tracks does not stay at 118.\n\n56 comes from assuming each 7-minute track replaced exactly one 4-minute track, writing 7x − 4(118 − x) = 144; that playlist would last 616 minutes, not 472. 48 comes from assuming one-for-one replacement and reading the 144 minutes as the increase in length, 3x = 144. 41 is the number of 4-minute tracks, not 7-minute tracks.",
+  "bounds": [],
+  "solve": "const T=118*4; const L=(T+144)/2; return L/7;",
+  "distractor_solve": {
+   "41": "const T=118*4; const S=(T-144)/2; return S/4;",
+   "48": "return 144/(7-4);",
+   "56": "return (144+4*118)/(7+4);"
+  }
+ },
+ {
+  "id": "SM19L-B3",
+  "domain": "Algebra",
+  "subskill": "Linear function in context: net change from rates given per day and per week",
+  "difficulty": "hard",
+  "prompt": "A food bank has 4,200 cans in stock. Starting now, it receives donated cans at a constant rate of 340 cans per day, and it gives out cans at a constant rate of 1,890 cans per week. If both rates continue, how many cans will the food bank have in stock 3 weeks and 4 days from now?",
+  "choices": [
+   "5950",
+   "6160",
+   "6580",
+   "7030"
+  ],
+  "correct_answer": "5950",
+  "explanation": "Giving out 1,890 cans per week at a constant rate is 1,890/7 = 270 cans per day, so the stock grows by 340 − 270 = 70 cans per day. Three weeks and 4 days is 3(7) + 4 = 25 days, so the stock will be 4,200 + 70(25) = 5,950 cans.\n\n6160 comes from rounding 3 weeks and 4 days up to 4 full weeks (28 days). 6580 comes from treating 3 weeks and 4 days as 34 days. 7030 comes from subtracting the weekly 1,890 only for the 3 full weeks and counting only donations during the last 4 days, even though cans are given out at a constant rate every day.",
+  "bounds": [],
+  "solve": "const net=340-1890/7; return 4200+net*(3*7+4);",
+  "distractor_solve": {
+   "6160": "const net=340-1890/7; return 4200+net*(4*7);",
+   "6580": "const net=340-1890/7; return 4200+net*34;",
+   "7030": "return 4200+3*(340*7-1890)+4*340;"
+  }
+ },
+ {
+  "id": "SM19L-B5",
+  "domain": "Algebra",
+  "subskill": "Linear model with literal constants: constant is value at t = 0, not at a stated start",
+  "difficulty": "hard",
+  "prompt": "Biologists model the number of sea turtle nests on a beach with the function N(t) = a + bt, where a and b are constants and t is the number of years after 2018. Monitoring of the beach began in 2021, when 340 nests were counted, and in 2027, 610 nests were counted. Both counts fit the model exactly. What is the value of a + b?",
+  "choices": [
+   "160",
+   "250",
+   "280",
+   "295"
+  ],
+  "correct_answer": "250",
+  "explanation": "In the model, 2021 is t = 3 and 2027 is t = 9. So a + 3b = 340 and a + 9b = 610. Subtracting gives 6b = 270, so b = 45, and then a = 340 − 3(45) = 205. Therefore a + b = 205 + 45 = 250.\n\n295 comes from counting 2021 as t = 2 and 2027 as t = 8, which gives b = 45 and a = 250. 280 comes from dividing the increase of 270 by 9, the number of years from 2018 to 2027, instead of by the 6 years from 2021 to 2027, which gives b = 30 and a = 250. 160 comes from finding a = 205 and b = 45 correctly and then computing a − b instead of a + b.",
+  "bounds": [],
+  "solve": "const b=(610-340)/(9-3); const a=340-3*b; return a+b;",
+  "distractor_solve": {
+   "160": "const b=(610-340)/(9-3); const a=340-3*b; return a-b;",
+   "280": "const b=(610-340)/9; const a=340-3*b; return a+b;",
+   "295": "const b=(610-340)/(8-2); const a=340-2*b; return a+b;"
+  }
+ },
+ {
+  "id": "SM19L-B6",
+  "domain": "Algebra",
+  "subskill": "Linear inequalities in context: pricing tier and a second binding constraint",
+  "difficulty": "hard",
+  "prompt": "A print shop charges a $12 setup fee on every order. In addition, an order of fewer than 400 pages costs $0.085 per page, and an order of 400 pages or more costs $0.06 per page for every page in the order. The shop's printer needs 3 minutes to warm up and then prints 26 pages per minute, and every order must be finished within 20 minutes of turning the printer on. A customer can spend at most $40 on one order. What is the greatest number of pages the customer can order?",
+  "choices": [
+   "266",
+   "329",
+   "442",
+   "466"
+  ],
+  "correct_answer": "442",
+  "explanation": "Time: after the 3-minute warm-up, 17 minutes remain, so the printer can print at most 17(26) = 442 pages. Cost: after the $12 fee, $28 remains for pages. At the under-400 rate, 0.085p ≤ 28 gives at most 329 pages. At the 400-or-more rate, 0.06p ≤ 28 gives p ≤ 466.6..., so at most 466 pages, and the lower rate applies to any order of 400 or more pages. Both conditions must hold, so the greatest order is 442 pages, which is at least 400 pages and costs 12 + 0.06(442) = $38.52.\n\n466 comes from using only the cost condition and ignoring the printing time. 329 comes from using only the under-400 rate and never checking whether a larger order qualifies for the lower rate. 266 comes from subtracting the $12 fee twice, (40 − 24)/0.06.",
+  "bounds": [],
+  "solve": "const t=(20-3)*26; const c=Math.floor((40-12)/0.06+1e-9); let p=Math.min(t,c); if(p<400) p=Math.min(t,Math.floor((40-12)/0.085+1e-9)); return p;",
+  "distractor_solve": {
+   "266": "return Math.floor((40-24)/0.06+1e-9);",
+   "329": "return Math.floor((40-12)/0.085+1e-9);",
+   "466": "return Math.floor((40-12)/0.06+1e-9);"
+  }
+ },
+ {
+  "id": "SM19L-B7",
+  "domain": "Algebra",
+  "subskill": "System in context: asked quantity is a combination of the two rates",
+  "difficulty": "hard",
+  "prompt": "A workshop has two machines, A and B, each producing parts at its own constant rate. On Monday, machine A ran alone for 2 hours, and then machines A and B ran together for 3 more hours; 1,010 parts were produced in all. On Tuesday, machine B ran alone for 1 hour, and then machines A and B ran together for 4 more hours; 1,185 parts were produced in all. How many parts would the two machines produce running together for 6 hours?",
+  "choices": [
+   "1515",
+   "1560",
+   "1580",
+   "1740"
+  ],
+  "correct_answer": "1560",
+  "explanation": "Let a and b be the machines' rates in parts per hour. On Monday machine A ran 5 hours and machine B ran 3 hours, so 5a + 3b = 1,010. On Tuesday machine A ran 4 hours and machine B ran 5 hours, so 4a + 5b = 1,185. Adding Monday's equation to twice Tuesday's gives 13a + 13b = 1,010 + 2,370 = 3,380, so a + b = 260 parts per hour. (Solving the system directly gives a = 115 and b = 145, with the same sum.) Running together for 6 hours, the machines produce 6(260) = 1,560 parts.\n\n1515 comes from assuming the two machines have the same rate and using only Monday's total: 1,010 parts in 8 machine-hours, times 12 machine-hours. 1580 comes from the same equal-rate assumption applied only to Tuesday's total: 1,185 parts in 9 machine-hours, times 12 machine-hours. 1740 comes from finding b = 145 and then multiplying by 12, as if both machines produced at machine B's rate.",
+  "bounds": [],
+  "solve": "const S=(1010+2*1185)/13; return 6*S;",
+  "distractor_solve": {
+   "1515": "return 12*1010/8;",
+   "1580": "return 12*1185/9;",
+   "1740": "const b=(5*1185-4*1010)/(25-12); return 12*b;"
+  }
+ },
+ {
+  "id": "SM19L-B8",
+  "domain": "Algebra",
+  "subskill": "Linear equation from a change in mean: what the totals include",
+  "difficulty": "hard",
+  "prompt": "A hiking club has n members, including its founder, who is 70 years old. The mean age of the n members is 34 years. The founder then leaves the club, and 6 new members whose mean age is 22 years join. The mean age of the club's members is now 32 years. What is the value of n?",
+  "choices": [
+   "14",
+   "30",
+   "31",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "The original total age is 34n. Removing the founder subtracts 70, and the new members add 6(22) = 132, so the new total is 34n + 62. The club now has n − 1 + 6 = n + 5 members, so 34n + 62 = 32(n + 5). Then 34n + 62 = 32n + 160, so 2n = 98 and n = 49.\n\n30 comes from ignoring the founder's departure completely, writing 34n + 132 = 32(n + 6). 14 comes from reducing the member count by one but forgetting to subtract the founder's 70 years, writing 34n + 132 = 32(n + 5). 31 comes from setting the drop in the mean times n equal to the net change in total age, 2n = 132 − 70, which ignores that the number of members changed.",
+  "bounds": [],
+  "solve": "return (32*5 - (6*22 - 70))/(34-32);",
+  "distractor_solve": {
+   "14": "return (32*5 - 6*22)/(34-32);",
+   "30": "return (32*6 - 6*22)/(34-32);",
+   "31": "return (6*22-70)/(34-32);"
+  }
+ }
+]
