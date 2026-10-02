@@ -125,7 +125,9 @@ if (wantCtl) {
     if (!Array.isArray(ch) || ch.length !== W) { dropWidth++; return false }
     if (!ch.map(String).includes(String(r.item?.correct_answer ?? ''))) { dropWidth++; return false }
     if (exclude.has(r.cohort)) { dropCohort++; return false }
-    if (ctlDifficulty && String(r.difficulty ?? r.item?.difficulty ?? '') !== ctlDifficulty) { dropBand++; return false }
+    // A comma list ('hard,medium') matches ANY of the bands: a hard-commissioned
+    // batch whose items may bank hard OR medium is compared with that regime.
+    if (ctlDifficulty && !ctlDifficulty.split(',').includes(String(r.difficulty ?? r.item?.difficulty ?? ''))) { dropBand++; return false }
     if (ctlSubskill && String(r.subskill ?? r.item?.subskill ?? '').toLowerCase() !== ctlSubskill.toLowerCase()) { dropSub++; return false }
     return true
   })

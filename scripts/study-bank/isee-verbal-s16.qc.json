@@ -1,0 +1,581 @@
+{
+ "IS16-A-01": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "hard",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "hard",
+   "b": "hard",
+   "c": "hard"
+  },
+  "drop_reasons": []
+ },
+ "IS16-A-02": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS16-A-03": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS16-A-04": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": []
+ },
+ "IS16-A-05": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": []
+ },
+ "IS16-A-06": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "hard",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 2,
+  "blanks": 1,
+  "graders": {
+   "a": "hard",
+   "b": "hard",
+   "c": "hard"
+  },
+  "drop_reasons": []
+ },
+ "IS16-A-07": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "hard",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 1,
+  "graders": {
+   "a": "hard",
+   "b": "hard",
+   "c": "hard"
+  },
+  "drop_reasons": []
+ },
+ "IS16-A-08": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": []
+ },
+ "IS16-A-09": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "hard",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "hard",
+   "c": "hard"
+  },
+  "drop_reasons": []
+ },
+ "IS16-A-10": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "easy",
+   "c": "easy"
+  },
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS16-A-11": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "easy"
+  },
+  "drop_reasons": []
+ },
+ "IS16-A-12": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": []
+ },
+ "IS16-A-13": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 1,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "easy"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-A-14": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 2,
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)",
+   "median easy"
+  ]
+ },
+ "IS16-A-15": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 1,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-A-16": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 1,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-A-17": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 1,
+  "blanks": 2,
+  "graders": {
+   "a": "easy",
+   "b": "medium",
+   "c": "easy"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)",
+   "median easy"
+  ]
+ },
+ "IS16-A-18": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-A-19": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 1,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-A-20": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 2,
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)",
+   "median easy"
+  ]
+ },
+ "IS16-B-01": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "hard",
+   "c": "medium"
+  },
+  "drop_reasons": []
+ },
+ "IS16-B-02": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "second-defensible",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "second defensible"
+  ]
+ },
+ "IS16-B-03": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "hard",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 2,
+  "blanks": 1,
+  "graders": {
+   "a": "hard",
+   "b": "hard",
+   "c": "hard"
+  },
+  "drop_reasons": []
+ },
+ "IS16-B-04": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": []
+ },
+ "IS16-B-05": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS16-B-06": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": []
+ },
+ "IS16-B-07": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "easy",
+   "c": "medium"
+  },
+  "drop_reasons": []
+ },
+ "IS16-B-08": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "hard",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 2,
+  "blanks": 1,
+  "graders": {
+   "a": "hard",
+   "b": "hard",
+   "c": "hard"
+  },
+  "drop_reasons": []
+ },
+ "IS16-B-09": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 1,
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS16-B-11": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 2,
+  "blanks": 1,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": []
+ },
+ "IS16-B-13": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-B-14": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-B-15": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-B-16": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-B-17": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "easy",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-B-18": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "hard",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 2,
+  "blanks": 2,
+  "graders": {
+   "a": "hard",
+   "b": "hard",
+   "c": "hard"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-B-19": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 3,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "hard"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ },
+ "IS16-B-20": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "blind_hits_of_3": 0,
+  "blanks": 2,
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "drop_reasons": [
+   "two-blank stratum HOLD (E_two +28.5 > +15)"
+  ]
+ }
+}

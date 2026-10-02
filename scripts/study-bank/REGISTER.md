@@ -181,6 +181,18 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-02** — **ISEE HARD SENTENCE COMPLETIONS (`isee-verbal-s16`): 16 OF 40 INSERTED (6 hard, 10 medium). ALL 16 TWO-BLANK ITEMS WERE HELD, BECAUSE THE OPTIONS ALONE GIVE THE ANSWER.** Live SC went from **50 easy / 51 medium / 26 hard (127)** to **50 / 61 / 32 (143)**. Easy share fell from 39.4% to 35.0%; hard rose from 20.5% to 22.4%. ISEE verbal stays at **5 clean forms** (form 6 has 21/40 fresh) and ISEE overall stays at 2, because reading binds.
+  - **Setup.** Two Claude authors each wrote 12 single-blank and 8 two-blank items. The bars were in `isee-verbal-s16.prereg.md`, committed before any result. At pre-flight, IS16-B-10 and IS16-B-12 were dropped because their keys repeated author A's keys (capricious, inconspicuous).
+  - **Options-only test.** The 38 items were mixed with 30 live SCs, matched on type and on hard/medium difficulty (s4 and s15 excluded). Three samples of one Claude solver were run; the samples agreed with each other 76.5% of the time.
+    - **Overall:** candidate +18.4 above its best-fixed-letter line, live +20.0. **Excess −1.6. PASS.**
+    - **Single-blank:** candidate 30.3% vs a 27.3% letter line, live 47.6% vs 28.6%. **Excess −16.0. PASS.**
+    - **Two-blank:** candidate **64.6%** vs a 25.0% letter line, live 44.4% vs 33.3% (n=9). **Excess +28.5, over the +15 bar, so the stratum is held.** The live arm was below its ceiling, so the bar was able to fire.
+    - **The tell, named by all three samples:** on two-blank items they picked "the pair whose two words hang together", meaning a contrast or a cause-and-effect pair. This decided 10–22 picks per sample. The authors wrote two-blank distractors that each break one blank, so the only coherent pair is the key. **Any future two-blank brief needs distractor pairs that are each internally coherent.**
+  - **With-source grading.** Three fresh graders matched the key on all 38 items. One drop for a second defensible answer: IS16-B-02 (habitual vs conditional). Five single-blank items were dropped because their median grade was easy.
+  - **Single-blank difficulty is still hard to author.** Only 6 of 22 single-blank items reached a median of hard.
+  - **The hard keys are guessable another way.** The solvers' second heuristic was "pick the harder or more test-like word", and it lands on the hard keys: A-07 and A-09 were solved by 3 of 3 samples; A-06, B-03 and B-08 by 2 of 3. This is recorded, not used as a per-item drop. A hard SC whose key is the only hard word in the set is guessable without the sentence, so **hard distractors must be as hard as the key.**
+  - → `isee-verbal-s16.prereg.md`, `.batch.json`, `.qc.json`, `-oo.*`, `.grade-*`, `.grader-*`; ledger `isee-verbal-s16-2026-10-02`.
+
 - **2026-10-02** — **MAP GROWTH PILOT (24 items, batch files only, never inserted): 18/24 pass the with-source graders against a pre-registered bar of 20, so the method as briefed FAILS.**
   - **Setup.** Two Claude authors wrote 12 grades 5-7 Reading/LU items at RIT 180-209 and 12 Capitalization/Spelling items at 180-239. They worked from public CCSS_2024 strand names only; no NWEA or Herald material was opened.
   - **Disposition.** Batch-file only. MAP is not shipped, and a staged row under an unexpected family was judged riskier than no row.

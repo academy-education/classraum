@@ -4730,6 +4730,49 @@
           "verdict": "Recorded, not dropped: key is the largest option on a maximum/greatest question in B1 and B5, and the odd-one-out above the 5-6-7 cluster in A3 (three graders, no strike counted); A1 and B4 are near-easy with Desmos (one formula / graph read); option values 4, 5, 6, 7 recur across small-integer items."
         }
       }
+    },
+    {
+      "id": "isee-verbal-s16-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s16",
+      "contentSha": "ddf5691022589fd5f9a106a77b52338e947c158a7427a1831164c98e42326341",
+      "status": "shipped",
+      "note": "HARD ISEE Upper sentence completions to rebalance SC difficulty after s15 (easy SC 18/92 -> 50/127). 40 authored by two independent Claude authors (12 single-blank + 8 two-blank each); 38 rendered (IS16-B-10 and IS16-B-12 dropped at pre-flight: keys 'capricious'/'inconspicuous' duplicated author A's keys; the later author's copy was dropped). Bars in isee-verbal-s16.prereg.md, committed before any result. Options-only overall excess -1.6 (PASS); single-blank stratum -16.0 (PASS); two-blank stratum +28.5 vs bar +15 -> all 16 two-blank items HELD by the stratum rule. With-source: three fresh graders, 38/38 on key each; IS16-B-02 dropped (grader C named a second defensible option); 5 single-blank dropped as median easy. 16 kept: 6 median-hard, 10 medium. Inserted BANK_BAND=hard (easy rejected, never relabelled).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ddf5691022589fd5f9a106a77b52338e947c158a7427a1831164c98e42326341",
+          "verdict": "38 items, 4 choices, key among choices, '[Sentence Completion]' tag, blank count == key part count == blanks field on all 38, no 'is to' in any prompt (verbalKind = sentence completion), no live ISEE key reused, no shared key across authors after dropping B-10/B-12, stored key slots 10/10/10/10 before the drop."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "ddf5691022589fd5f9a106a77b52338e947c158a7427a1831164c98e42326341",
+          "verdict": "Three fresh graders (opus), each on its own unmarked re-shuffled render (isee-verbal-s16.grade-{a,b,c}.json): 38/38 on key for all three. Second defensible: only grader C on IS16-B-02 (habitual vs conditional) -> dropped. No above-band words, no free eliminations named. Difficulty labels A 6 hard/25 medium/7 easy, B 8/21/9, C 8/20/10; medians over 38: 7 hard / 23 medium / 8 easy. Kept 16 single-blank: 6 hard, 10 medium."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "ddf5691022589fd5f9a106a77b52338e947c158a7427a1831164c98e42326341",
+          "verdict": "Options-only, interleaved with a type- AND difficulty-matched live control (30 live SC, hard+medium, isee-verbal-s4 and s15 excluded; pool 58), three samples of one Claude solver (pairwise agreement 76.5% vs 25.6% independent). Candidate 51/114 = 44.7% vs letter 26.3% (+18.4); live 42/90 = 46.7% vs 26.7% (+20.0). EXCESS -1.6 <= +10 PASS; ceiling: live 46.7% < 90%, bar could fire. Strata: single-blank cand 30.3% vs 27.3% (+3.0), live 47.6% vs 28.6% (+19.0), excess -16.0 PASS; two-blank cand 64.6% vs 25.0% (+39.6), live 44.4% vs 33.3% (+11.1, n=9), excess +28.5 > +15 -> HOLD all two-blank items (live two-blank 44.4% < 85% ceiling, so the bar could fire). Kept-set residual 17/48 = 35.4%.",
+          "n": 38,
+          "mean": 44.7,
+          "control": 26.3,
+          "margin": 18.4
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "ddf5691022589fd5f9a106a77b52338e947c158a7427a1831164c98e42326341",
+          "verdict": "Items where >=2 samples certainly rejected the same option: candidate 0/38, live 0/30. Key rejected first: candidate 6/114 (5%), live 18/90 (20%). No grader named a free elimination."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "ddf5691022589fd5f9a106a77b52338e947c158a7427a1831164c98e42326341",
+          "verdict": "Keys dealt flat by make-oo-render (candidate 10/9/9/10). Key strictly longest 9/40, shortest 9/40 (chance 10). check-recycled-distractor: NO MEASUREMENT (148 distinct words over 152 slots). Solvers' named heuristics, all three: two-blank 'pair whose two words hang together' (contrast or cause-effect coherence) decided ~10-22 picks each -- the two-blank tell the stratum measured; single-blank 'pick the harder/more test-like word' decided ~12-25 each, and it lands on median-hard keys (A-07, A-09 3/3; A-06, B-03, B-08 2/3), recorded, not a per-item drop under the prereg."
+        }
+      }
     }
   ],
   "auditedCohorts": [

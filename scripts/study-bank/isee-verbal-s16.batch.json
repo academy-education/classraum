@@ -1,0 +1,952 @@
+[
+ {
+  "id": "IS16-A-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "late-reversal",
+  "prompt": "[Sentence Completion] The committee first dismissed the young architect's design as -------, until its members learned that each of the building's unusual angles followed a strict rule derived from the site's prevailing winds.",
+  "choices": [
+   "extravagant",
+   "capricious",
+   "derivative",
+   "austere"
+  ],
+  "correct_answer": "capricious",
+  "explanation": "'Until' signals that the later discovery overturns the first judgment. What a strict, wind-derived rule overturns is the charge that the angles were arbitrary, i.e. capricious.",
+  "distractor_rationales": [
+   "extravagant — a complaint about cost or excess; learning that the angles obey a wind rule does nothing to answer it, so 'until' has nothing to reverse",
+   "derivative — unoriginality is not overturned by discovering a governing rule; if anything a rule-bound design is less novel, so the reversal points the wrong way",
+   "austere — describes plainness, which unusual angles already contradict, and a wind rule neither confirms nor refutes plainness"
+  ]
+ },
+ {
+  "id": "IS16-A-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession",
+  "prompt": "[Sentence Completion] For all the digressions in Senator Okafor's speeches, her voting record was strikingly -------: in twelve years, her aides could not find a single bill on which she had departed from the principles of her first campaign.",
+  "choices": [
+   "concise",
+   "pragmatic",
+   "eloquent",
+   "consistent"
+  ],
+  "correct_answer": "consistent",
+  "explanation": "'For all the digressions' sets up a contrast, and the colon restates the blank: twelve years without departing from her first principles is a consistent record.",
+  "distractor_rationales": [
+   "concise — answers the 'digressions' half of the concession, but a voting record is not long- or short-winded, and the colon clause is about never departing from principle",
+   "pragmatic — points the wrong way: a pragmatist bends principles to circumstances, while the colon clause says she never departed from them",
+   "eloquent — contrasts with rambling speeches, but eloquence is a quality of speech, not of a record of never deviating from early principles"
+  ]
+ },
+ {
+  "id": "IS16-A-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Having spent her career repairing frescoes damaged by well-meaning but careless cleaners, the museum's new director was ------- about letting volunteers handle even the least valuable objects in the collection.",
+  "choices": [
+   "wary",
+   "ambivalent",
+   "sentimental",
+   "cavalier"
+  ],
+  "correct_answer": "wary",
+  "explanation": "Two-step cause: she repaired damage done by well-meaning amateurs, so she distrusts well-meaning amateurs (volunteers), even with cheap objects. That is wariness.",
+  "distractor_rationales": [
+   "ambivalent — mixed feelings are the wrong degree; 'even the least valuable objects' shows a settled reluctance, not indecision",
+   "sentimental — fits a museum, but her experience was with damage done by careless hands, which produces distrust, not fondness for the objects",
+   "cavalier — reverses the effect: years of repairing well-meant damage would make her more cautious about untrained handlers, not offhand"
+  ]
+ },
+ {
+  "id": "IS16-A-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] New players mistook the coach's halftime remarks for -------, but veterans knew that each comment, however casually delivered, named a specific adjustment the team would make in the second half.",
+  "choices": [
+   "sarcasm",
+   "desperation",
+   "indifference",
+   "condescension"
+  ],
+  "correct_answer": "indifference",
+  "explanation": "The 'but' clause corrects the misreading: casual remarks that each carry a concrete plan show engagement. The misreading those facts refute is that she did not care: indifference.",
+  "distractor_rationales": [
+   "sarcasm — a casual tone could be misread many ways, but the veterans' correction (each comment named a real adjustment) does not refute sarcasm; a specific instruction can still be sarcastic",
+   "desperation — casual delivery is the opposite of what would be mistaken for desperation, so the misreading never gets started",
+   "condescension — nothing in the correction answers it; naming specific adjustments is compatible with talking down to players"
+  ]
+ },
+ {
+  "id": "IS16-A-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Reviewers urged the journal to treat Dr. Lindqvist's conclusion as ------- at best: the correlation she reported held in only two of the seven regions she studied, and she conceded that one unusually wet year might explain even those.",
+  "choices": [
+   "controversial",
+   "anomalous",
+   "tenuous",
+   "innovative"
+  ],
+  "correct_answer": "tenuous",
+  "explanation": "'At best' asks for a weak rating, and the colon spells out why: two of seven regions, possibly explained by a single wet year. The support is thin: tenuous.",
+  "distractor_rationales": [
+   "controversial — describes dispute among scholars, but the colon clause gives evidence of weakness, not of disagreement",
+   "anomalous — means deviating from an expected pattern; the evidence describes a pattern that barely holds, not a surprising result",
+   "innovative — 'at best' caps the conclusion at a low ceiling, and novelty is a strength, so the phrase and the evidence both reject it"
+  ]
+ },
+ {
+  "id": "IS16-A-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession",
+  "prompt": "[Sentence Completion] Though the novelist's prose was spare and her plots rarely left a single farmhouse kitchen, critics found her books anything but -------, pointing to the emotional range she drew from such small materials.",
+  "choices": [
+   "insular",
+   "florid",
+   "melodramatic",
+   "accessible"
+  ],
+  "correct_answer": "insular",
+  "explanation": "Double turn: spare prose and one kitchen would suggest a narrow, closed-in book; 'anything but' denies that, and the evidence (emotional range) is exactly the answer to narrowness. Insular.",
+  "distractor_rationales": [
+   "florid — 'though spare ... anything but X' requires X to be what spareness would SUGGEST; florid is the opposite of spare, so the concession collapses",
+   "melodramatic — 'anything but melodramatic' would need restraint as its evidence, but critics point to range, which argues against narrowness, not excess",
+   "accessible — denying accessibility is not supported by citing emotional range, and spare prose would not suggest accessibility as a worry to answer"
+  ]
+ },
+ {
+  "id": "IS16-A-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Since the treaty's wording allowed each government to tell its citizens that it had surrendered nothing, historians have tended to regard the agreement as ------- rather than as a genuine settlement of the border dispute.",
+  "choices": [
+   "retaliatory",
+   "visionary",
+   "comprehensive",
+   "cosmetic"
+  ],
+  "correct_answer": "cosmetic",
+  "explanation": "Chain: the wording let both sides claim they gave up nothing, so nothing was actually resolved; the agreement concerned appearances. 'Rather than genuine' confirms: cosmetic.",
+  "distractor_rationales": [
+   "retaliatory — a punishing treaty would mean one side surrendered something, which the wording was built to deny",
+   "visionary — a positive verdict, while 'rather than a genuine settlement' requires a judgment that it resolved nothing",
+   "comprehensive — a comprehensive agreement would be a genuine settlement, which the sentence sets it against"
+  ]
+ },
+ {
+  "id": "IS16-A-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "late-reversal",
+  "prompt": "[Sentence Completion] Spectators took the veteran sprinter's sluggish starts this season as evidence of her -------, yet her times over the final forty meters were faster than in the year she won her first national title.",
+  "choices": [
+   "complacency",
+   "deterioration",
+   "inexperience",
+   "recklessness"
+  ],
+  "correct_answer": "deterioration",
+  "explanation": "The deciding fact comes late: she is faster than in her title-winning year. That comparison with her own past refutes only a claim that she has declined: deterioration.",
+  "distractor_rationales": [
+   "complacency — a complacent runner can still be fast; the rebuttal compares her with her own peak, which answers decline, not attitude",
+   "inexperience — spectators would not attribute a veteran's starts to inexperience, so there is nothing for 'yet' to correct",
+   "recklessness — sluggish starts are the opposite of reckless ones, so the first half of the sentence already rules it out"
+  ]
+ },
+ {
+  "id": "IS16-A-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because the principal needed to keep both the teachers' union and the parents' association on her side, her statement on the grading dispute was carefully -------, and each group left the meeting quoting a different sentence as proof that she had backed them.",
+  "choices": [
+   "equivocal",
+   "rehearsed",
+   "impassioned",
+   "contrite"
+  ],
+  "correct_answer": "equivocal",
+  "explanation": "Motive (keep both sides) plus result (each side found proof she backed them) means the statement could be read both ways: equivocal.",
+  "distractor_rationales": [
+   "rehearsed — fits 'carefully' and her motive, but rehearsal does not explain why each side found a different sentence supporting it",
+   "impassioned — strong advocacy would have shown which side she favored, defeating the goal of keeping both",
+   "contrite — an apology fits a dispute, but neither the motive nor the result (both sides claiming her support) involves admitting fault"
+  ]
+ },
+ {
+  "id": "IS16-A-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Unlike the comet's dazzling appearance in 1910, its return in 1986 was so ------- that many amateur astronomers in the Northern Hemisphere never managed to find it at all.",
+  "choices": [
+   "disappointing",
+   "ominous",
+   "inconspicuous",
+   "luminous"
+  ],
+  "correct_answer": "inconspicuous",
+  "explanation": "'Unlike dazzling' asks for the opposite of brilliance, and 'so X that they never found it' asks for a cause of not finding it. Hard to see: inconspicuous.",
+  "distractor_rationales": [
+   "disappointing — true of the 1986 return, but it names the observers' reaction; 'so X that they never found it' needs a property of the comet that caused the failure",
+   "ominous — comets were once read as omens, but foreboding does not make an object hard to locate and does not contrast with 'dazzling'",
+   "luminous — agrees with 'dazzling' rather than contrasting with it, and a bright comet is easy to find"
+  ]
+ },
+ {
+  "id": "IS16-A-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession",
+  "prompt": "[Sentence Completion] Although the conductor rarely raised his voice in rehearsal, the orchestra considered him the most ------- director it had ever worked under, since he would stop a piece forty times to correct a single phrase.",
+  "choices": [
+   "volatile",
+   "unrelenting",
+   "obliging",
+   "eccentric"
+  ],
+  "correct_answer": "unrelenting",
+  "explanation": "'Although quiet' implies the blank names something loudness usually signals, and the 'since' clause supplies it: forty stops for one phrase. He never let up: unrelenting.",
+  "distractor_rationales": [
+   "volatile — the concession denies loudness, so a hot-tempered conductor contradicts the 'although' clause instead of contrasting with it",
+   "obliging — agrees with the quiet manner, but 'although' needs a contrast, and forty stops for one phrase is not obliging",
+   "eccentric — stopping often is unusual, but the 'although' clause sets up demandingness (what a loud conductor would show), not oddity"
+  ]
+ },
+ {
+  "id": "IS16-A-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] After three years of drought had shrunk the reservoir to a third of its capacity, the town's once-generous watering allowances became noticeably -------, though officials insisted the change would last only until the autumn rains.",
+  "choices": [
+   "provisional",
+   "contentious",
+   "sporadic",
+   "stringent"
+  ],
+  "correct_answer": "stringent",
+  "explanation": "Drought shrinks the reservoir, so the allowances that were generous are now tight; 'though temporary' softens a severity. Stringent.",
+  "distractor_rationales": [
+   "provisional — true of the change, but the 'though' clause would then contrast 'temporary' with 'temporary'; the concession needs a severity officials are softening",
+   "contentious — residents may have objected, but 'once-generous' marks a change in amount, so the blank must describe the allowances, not the reaction",
+   "sporadic — describes frequency, while 'once-generous' contrasts with how much water was allowed"
+  ]
+ },
+ {
+  "id": "IS16-A-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] In public lectures the physicist was -------, delighting audiences with jokes and stories, but in the laboratory she was so ------- that her assistants rechecked every figure twice rather than face her questions about a misplaced decimal.",
+  "choices": [
+   "jovial ... negligent",
+   "aloof ... meticulous",
+   "solemn ... forgiving",
+   "genial ... fastidious"
+  ],
+  "correct_answer": "genial ... fastidious",
+  "explanation": "Blank 1 is defined by the jokes and stories (warm), blank 2 by assistants rechecking to avoid her questions about a decimal (exacting). Only genial ... fastidious meets both clues.",
+  "distractor_rationales": [
+   "jovial ... negligent — jovial fits the lectures, but assistants recheck figures to avoid her questions only if she catches errors, not if she is careless",
+   "aloof ... meticulous — meticulous fits the laboratory, but an aloof lecturer would not be delighting audiences with jokes",
+   "solemn ... forgiving — fails both: solemnity contradicts the jokes, and a forgiving supervisor would not drive assistants to recheck twice"
+  ]
+ },
+ {
+  "id": "IS16-A-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] The mayor's plan to widen the avenue seemed ------- at first, since it promised to end the daily traffic jams, but residents grew ------- once engineers revealed that forty homes would have to be demolished.",
+  "choices": [
+   "reasonable ... nonchalant",
+   "appealing ... indignant",
+   "modest ... disillusioned",
+   "economical ... apathetic"
+  ],
+  "correct_answer": "appealing ... indignant",
+  "explanation": "'Since it promised to end the jams' explains a favorable first impression; the demolition news explains anger. Appealing ... indignant satisfies both causes.",
+  "distractor_rationales": [
+   "reasonable ... nonchalant — reasonable fits the first clue, but demolishing forty homes would provoke residents, not leave them unconcerned",
+   "modest ... disillusioned — disillusioned fits the reaction, but a plan promising to end daily jams is ambitious, so 'since' does not support modest",
+   "economical ... apathetic — fails both: ending jams is not a reason to call a plan cheap, and apathy is the wrong response to demolition"
+  ]
+ },
+ {
+  "id": "IS16-A-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "late-reversal",
+  "prompt": "[Sentence Completion] The opening of the critic's review was so ------- that the playwright's friends braced for disaster, yet by the final paragraph its ------- was unmistakable, as the critic called the second act the finest new writing of the decade.",
+  "choices": [
+   "scathing ... admiration",
+   "caustic ... restraint",
+   "pedantic ... enthusiasm",
+   "rambling ... objectivity"
+  ],
+  "correct_answer": "scathing ... admiration",
+  "explanation": "Blank 1 must be harsh enough to make friends fear disaster; blank 2 is decided late by 'finest new writing of the decade', which is admiration. Only scathing ... admiration fits both.",
+  "distractor_rationales": [
+   "caustic ... restraint — caustic fits the opening, but calling the act the finest of the decade is high praise, not restraint",
+   "pedantic ... enthusiasm — enthusiasm fits the ending, but a pedantic opening would irritate rather than make friends brace for disaster",
+   "rambling ... objectivity — fails both: rambling does not threaten disaster, and 'finest of the decade' is warm judgment, not neutrality"
+  ]
+ },
+ {
+  "id": "IS16-A-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] The new captain was ------- in the locker room, seldom speaking more than a sentence at a time, but on the field her ------- was obvious, as she directed every defensive shift with sharp, constant commands.",
+  "choices": [
+   "reserved ... exuberance",
+   "affable ... authority",
+   "taciturn ... assertiveness",
+   "gracious ... bravado"
+  ],
+  "correct_answer": "taciturn ... assertiveness",
+  "explanation": "Blank 1 is defined by 'seldom speaking more than a sentence' (taciturn); blank 2 by directing every shift with sharp commands (assertiveness). The pair contrasts as 'but' requires.",
+  "distractor_rationales": [
+   "reserved ... exuberance — reserved fits the locker room, but sharp, constant commands show forcefulness, not joyful energy",
+   "affable ... authority — authority fits the field, but friendliness is not what 'seldom speaking more than a sentence' describes",
+   "gracious ... bravado — fails both: graciousness is not silence, and directing every shift is real command, not a show of boldness"
+  ]
+ },
+ {
+  "id": "IS16-A-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] The novelist's early drafts were -------, crowded with subplots she would later cut, while her final manuscripts were so ------- that her editors rarely changed a single word.",
+  "choices": [
+   "sprawling ... impeccable",
+   "cluttered ... adventurous",
+   "skeletal ... flawless",
+   "stilted ... whimsical"
+  ],
+  "correct_answer": "sprawling ... impeccable",
+  "explanation": "Blank 1 is defined by 'crowded with subplots' (sprawling); blank 2 by editors rarely changing a word (impeccable).",
+  "distractor_rationales": [
+   "cluttered ... adventurous — cluttered fits the drafts, but editors leaving every word alone shows polish, not daring",
+   "skeletal ... flawless — flawless fits the manuscripts, but 'crowded with subplots' is the opposite of skeletal",
+   "stilted ... whimsical — fails both: stiffness is not crowding, and whimsy does not explain why editors changed nothing"
+  ]
+ },
+ {
+  "id": "IS16-A-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Mrs. Adeyemi's comments on essays were famously -------, and her students dreaded getting papers back; over a semester, though, they grew ------- about checking every claim before turning in a draft.",
+  "choices": [
+   "rigorous ... defensive",
+   "encouraging ... conscientious",
+   "indulgent ... careless",
+   "unsparing ... scrupulous"
+  ],
+  "correct_answer": "unsparing ... scrupulous",
+  "explanation": "Dread implies harsh comments (unsparing); 'though' turns that into a gain, and 'checking every claim' is scrupulousness. Only the key pair satisfies both.",
+  "distractor_rationales": [
+   "rigorous ... defensive — rigorous fits the dreaded comments, but one is not 'defensive about checking every claim'; the second clause describes care, not resistance",
+   "encouraging ... conscientious — conscientious fits the second clause, but encouraging comments would not make students dread getting papers back",
+   "indulgent ... careless — fails both: indulgent comments would not be dreaded, and 'though' turns the dread into improvement, not carelessness"
+  ]
+ },
+ {
+  "id": "IS16-A-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because the expedition's supply ships had been held up by storms, the explorers' rations grew steadily more -------, and by spring the once ------- crew had begun quarreling over who had received the larger share of each biscuit.",
+  "choices": [
+   "sparse ... boisterous",
+   "monotonous ... harmonious",
+   "meager ... cordial",
+   "bland ... industrious"
+  ],
+  "correct_answer": "meager ... cordial",
+  "explanation": "Delayed ships cause scarcity, confirmed late by fights over shares (meager); 'once ... had begun quarreling' requires former goodwill (cordial).",
+  "distractor_rationales": [
+   "sparse ... boisterous — sparse fits the rations, but 'once ... had begun quarreling' needs a former harmony; a boisterous crew is not the opposite of a quarrelsome one",
+   "monotonous ... harmonious — harmonious fits the crew, but quarreling over the larger share shows the rations were scarce, not merely repetitive",
+   "bland ... industrious — fails both: blandness is not scarcity, and industriousness is not the opposite of quarreling"
+  ]
+ },
+ {
+  "id": "IS16-A-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "concession",
+  "prompt": "[Sentence Completion] Even admirers of the sculptor conceded that her early work was -------, borrowing freely from her teachers, but they insisted that her late pieces were so ------- that no one could mistake them for anyone else's.",
+  "choices": [
+   "conservative ... monumental",
+   "imitative ... distinctive",
+   "clumsy ... idiosyncratic",
+   "crude ... contemplative"
+  ],
+  "correct_answer": "imitative ... distinctive",
+  "explanation": "Blank 1 is defined by 'borrowing freely from her teachers' (imitative); blank 2 by 'no one could mistake them for anyone else's' (distinctive).",
+  "distractor_rationales": [
+   "conservative ... monumental — conservative fits borrowing from teachers, but size does not explain why no one could mistake the pieces for another artist's",
+   "clumsy ... idiosyncratic — idiosyncratic fits the late pieces, but borrowing freely from teachers describes imitation, not lack of skill",
+   "crude ... contemplative — fails both: borrowing is not crudeness, and a meditative mood does not make work unmistakably one's own"
+  ]
+ },
+ {
+  "id": "IS16-B-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "late-reversal",
+  "prompt": "[Sentence Completion] The tide-pool survey's daily tallies pointed to a ------- hermit crab population, but the tallies were thrown out once the team realized that the same dozen crabs had simply been recounted as they shuffled between neighboring pools.",
+  "choices": [
+   "robust",
+   "sedentary",
+   "diverse",
+   "migratory"
+  ],
+  "correct_answer": "robust",
+  "explanation": "The tallies were discarded because the same crabs were counted again and again, which inflates a count. An inflated count makes a population look larger and healthier than it is, so the tallies pointed to a robust population. The deciding fact (recounting) comes after the blank.",
+  "distractor_rationales": [
+   "sedentary — a tally of numbers cannot show how much the crabs move, and recounting does not undo a claim about movement",
+   "diverse — the error was counting the same individuals repeatedly, which inflates size, not the number of species",
+   "migratory — the crabs really did shuffle between pools, so learning this would confirm, not discredit, a migratory reading; and a count cannot show migration"
+  ]
+ },
+ {
+  "id": "IS16-B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast-then-cause",
+  "prompt": "[Sentence Completion] The owner assumed his regulars were loyal, but when he doubled his prices the same week a rival opened across the river, his sales collapsed within a month, revealing that their attachment had been ------- all along.",
+  "choices": [
+   "sentimental",
+   "conditional",
+   "habitual",
+   "reciprocal"
+  ],
+  "correct_answer": "conditional",
+  "explanation": "The assumption of loyalty is contradicted ('but'), and the collapse followed a price rise plus a cheaper alternative. An attachment that vanishes when the terms change depended on those terms: it was conditional.",
+  "distractor_rationales": [
+   "sentimental — a sentimental attachment would predict customers staying despite the price, the opposite of what happened",
+   "habitual — habit would also predict customers lingering; the collapse shows the attachment rested on price, not routine",
+   "reciprocal — describes mutual obligation between owner and customer, which the sentence never addresses"
+  ]
+ },
+ {
+  "id": "IS16-B-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession",
+  "prompt": "[Sentence Completion] Although the conductor's written tempo markings were notoriously -------, his recordings of the cycle vary by only a few seconds from one decade to the next, since he carried every tempo in his head rather than on the page.",
+  "choices": [
+   "pedantic",
+   "flamboyant",
+   "cursory",
+   "idiosyncratic"
+  ],
+  "correct_answer": "cursory",
+  "explanation": "'Although' sets the markings against the recordings' consistency, and 'in his head rather than on the page' explains the gap: the page held little. Markings that were cursory would lead one to expect inconsistent performances, which is the expectation the sentence overturns.",
+  "distractor_rationales": [
+   "pedantic — overly detailed markings would predict consistency, so there would be no concession; it also contradicts 'rather than on the page'",
+   "flamboyant — showy markings do not oppose consistent recordings, and nothing explains why tempo would live 'in his head'",
+   "idiosyncratic — odd markings are not opposed to consistency, and 'rather than on the page' points to too little notation, not unusual notation"
+  ]
+ },
+ {
+  "id": "IS16-B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Rather than striking down the entire zoning ordinance, Judge Okafor invalidated only the single clause that had been used against the plaintiff's workshop, a ruling that scholars praised as ------- precisely because it left the city council to decide what the rest should say.",
+  "choices": [
+   "eloquent",
+   "impartial",
+   "unprecedented",
+   "restrained"
+  ],
+  "correct_answer": "restrained",
+  "explanation": "The ruling did the minimum (one clause, not the whole law) and deferred to the council on the rest. Praise for limiting the court's own reach is praise for a restrained ruling.",
+  "distractor_rationales": [
+   "eloquent — praises the wording of the opinion; the stated reason for praise is its narrow scope",
+   "impartial — true of a good judge in general, but the reason given ('left the city council to decide') is about scope, not fairness to the parties",
+   "unprecedented — nothing indicates novelty; a narrow, deferential ruling is the conventional course"
+  ]
+ },
+ {
+  "id": "IS16-B-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "refutation",
+  "prompt": "[Sentence Completion] Critics dismissed the muralist's drips and smears as -------, a verdict that collapsed when conservators found faint pencil grids beneath the paint marking exactly where each drip had been meant to fall.",
+  "choices": [
+   "derivative",
+   "haphazard",
+   "garish",
+   "unfinished"
+  ],
+  "correct_answer": "haphazard",
+  "explanation": "The verdict 'collapsed' because of grids planning every drip's location. Evidence of precise planning refutes only a charge of randomness, so the critics had called the work haphazard.",
+  "distractor_rationales": [
+   "derivative — a plausible critics' complaint, but planned drip positions say nothing about whether the style was copied",
+   "garish — concerns color and showiness; pencil grids under the paint do not bear on that charge",
+   "unfinished — planning where drips fall does not show the work was complete, so the finding would not collapse this verdict"
+  ]
+ },
+ {
+  "id": "IS16-B-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause-chain",
+  "prompt": "[Sentence Completion] Because the island's lizards had evolved for thousands of years with no animal that hunted them, they had never needed to flee anything larger than a beetle, so when rats arrived on supply ships the lizards proved fatally -------.",
+  "choices": [
+   "unwary",
+   "gaudy",
+   "specialized",
+   "insular"
+  ],
+  "correct_answer": "unwary",
+  "explanation": "Two steps: no predators, so no habit of fleeing; no habit of fleeing, so no caution toward a new hunter. Animals that do not recognize danger are unwary.",
+  "distractor_rationales": [
+   "gaudy — bright coloring could expose prey, but the sentence's chain is about never learning to flee, not about appearance",
+   "specialized — island species are often specialized, but specialization concerns diet or habitat; the chain concerns reaction to a hunter",
+   "insular — describes their isolation (the cause), not the trait that made the rats deadly (the effect)"
+  ]
+ },
+ {
+  "id": "IS16-B-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast-inference",
+  "prompt": "[Sentence Completion] The merchants' guild publicly championed free trade, yet its members quietly lobbied for tariffs on every import that competed with their own goods, so their devotion to open markets was, at best, -------.",
+  "choices": [
+   "fervent",
+   "inherited",
+   "communal",
+   "selective"
+  ],
+  "correct_answer": "selective",
+  "explanation": "They backed free trade except where it hurt them: they applied the principle only where it cost nothing. 'At best' signals a limited, diminished commitment, so it was selective.",
+  "distractor_rationales": [
+   "fervent — wrong direction; 'yet' and 'at best' both mark the devotion as weaker than claimed",
+   "inherited — where the devotion came from is never discussed; it does not answer the contrast between speech and lobbying",
+   "communal — true that a guild acts as a group, but sharing a view does not explain the exceptions the sentence describes"
+  ]
+ },
+ {
+  "id": "IS16-B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "reinterpretation",
+  "prompt": "[Sentence Completion] The young cellist's teacher called her phrasing -------, a word she heard as an insult until she learned that he reserved it for the rare students who let the music breathe instead of rushing through every rest.",
+  "choices": [
+   "strident",
+   "mannered",
+   "languid",
+   "brittle"
+  ],
+  "correct_answer": "languid",
+  "explanation": "The word sounded insulting but turned out to mean she does not rush and lets the music breathe. Of words that can sound like criticism, only languid (slow, unhurried) names that quality.",
+  "distractor_rationales": [
+   "strident — sounds like a criticism, but means harsh and loud, the opposite of letting the music breathe",
+   "mannered — sounds like a criticism, but means affected or artificial; it has nothing to do with unhurried pacing",
+   "brittle — sounds like a criticism, but suggests a thin, tense sound, which does not fit the explanation about not rushing"
+  ]
+ },
+ {
+  "id": "IS16-B-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "expectation-reversal",
+  "prompt": "[Sentence Completion] Given her thirty-year friendship with the defendant, prosecutors had expected the witness to be -------, yet she answered every question about his finances with a candor that startled even the judge.",
+  "choices": [
+   "nervous",
+   "evasive",
+   "sympathetic",
+   "articulate"
+  ],
+  "correct_answer": "evasive",
+  "explanation": "Long friendship implies she would protect him, and 'yet ... candor' says the expectation failed. The opposite of candor in a protective witness is being evasive.",
+  "distractor_rationales": [
+   "nervous — anxiety is not the opposite of candor; a nervous witness can still answer openly",
+   "sympathetic — follows from the friendship, but sympathy and candor can coexist, so 'yet' would have nothing to contrast",
+   "articulate — candor does not contrast with speaking well, and friendship gives no reason to expect it"
+  ]
+ },
+ {
+  "id": "IS16-B-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession",
+  "prompt": "[Sentence Completion] Even the label's accountants, who rarely agreed with its producers about anything, conceded that the band's debut, though it sold poorly on release, had been a ------- investment once its songs began earning licensing fees decades later.",
+  "choices": [
+   "shrewd",
+   "speculative",
+   "lavish",
+   "modest"
+  ],
+  "correct_answer": "shrewd",
+  "explanation": "'Conceded' means the skeptics admitted a positive verdict, and 'though it sold poorly' marks the concession: the later fees proved the decision wise. It was a shrewd investment.",
+  "distractor_rationales": [
+   "speculative — true of the investment at the time, but 'conceded' requires a judgment the accountants were reluctant to grant, i.e. a favorable one",
+   "lavish — concerns how much was spent; the licensing fees bear on whether it paid off, not its size",
+   "modest — also about size; small cost is not what the later earnings forced the accountants to admit"
+  ]
+ },
+ {
+  "id": "IS16-B-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "contrast-with-cause",
+  "prompt": "[Sentence Completion] Photographed under floodlights, which drown out its faint glow, the anglerfish's lure looks -------, but in the total darkness of the deep sea that same organ becomes -------, drawing prey from meters away.",
+  "choices": [
+   "menacing ... alluring",
+   "vivid ... invisible",
+   "delicate ... formidable",
+   "drab ... luminous"
+  ],
+  "correct_answer": "drab ... luminous",
+  "explanation": "Floodlights 'drown out its faint glow', so in photos the lure looks drab; in darkness the glow is no longer drowned out, so it becomes luminous and draws prey. The contrast runs along brightness, which is the axis the floodlight/darkness clue names.",
+  "distractor_rationales": [
+   "menacing ... alluring — alluring fits 'drawing prey', but drowning out a glow would not make the lure look menacing",
+   "vivid ... invisible — reversed: drowning out the glow cannot make it vivid, and an invisible lure could not draw prey",
+   "delicate ... formidable — contrasts size or strength, which neither the floodlights nor the darkness affects"
+  ]
+ },
+ {
+  "id": "IS16-B-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "late-cause",
+  "prompt": "[Sentence Completion] Once the new subway line reached the ------- warehouse district, rents there became ------- within two years, pricing out the very artists who had settled it precisely because it was so far from everything else.",
+  "choices": [
+   "gritty ... steep",
+   "derelict ... negligible",
+   "remote ... exorbitant",
+   "desolate ... volatile"
+  ],
+  "correct_answer": "remote ... exorbitant",
+  "explanation": "The district's appeal to artists was that it was 'so far from everything else', which the subway ended, so it was remote; rents that price people out are exorbitant. The deciding clue for the first blank comes at the end.",
+  "distractor_rationales": [
+   "gritty ... steep — steep rents fit 'pricing out', but gritty describes atmosphere; the sentence says the attraction was distance",
+   "derelict ... negligible — negligible rents could not price anyone out",
+   "desolate ... volatile — rents swinging up and down do not explain artists being priced out; desolate also names bleakness rather than distance"
+  ]
+ },
+ {
+  "id": "IS16-B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "concession",
+  "prompt": "[Sentence Completion] Though the composer's critics found her harmonies -------, her students insisted that every dissonance was -------, and the manuscripts bear them out: each clashing chord falls on a word where the poem's meaning turns.",
+  "choices": [
+   "tame ... daring",
+   "arbitrary ... deliberate",
+   "cluttered ... economical",
+   "imitative ... novel"
+  ],
+  "correct_answer": "arbitrary ... deliberate",
+  "explanation": "The proof offered is that every clash lands exactly on a turning point in the poem, which shows placement by intention. So the students said the dissonances were deliberate, against critics who found them arbitrary.",
+  "distractor_rationales": [
+   "tame ... daring — a contrasting pair, but precise placement shows purpose, not boldness",
+   "cluttered ... economical — economy concerns how many notes are used; the evidence is about where the clashes fall",
+   "imitative ... novel — originality is not shown by matching chords to the poem's turns"
+  ]
+ },
+ {
+  "id": "IS16-B-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] The framers deliberately made the amendment process -------, requiring supermajorities in Congress and among the states, so that the Constitution would stay ------- through the passions of any single election.",
+  "choices": [
+   "arduous ... intact",
+   "swift ... unsettled",
+   "onerous ... malleable",
+   "effortless ... precarious"
+  ],
+  "correct_answer": "arduous ... intact",
+  "explanation": "Supermajority requirements make amending hard (arduous), and the purpose ('so that') is that the document survives short-lived political moods unchanged (intact).",
+  "distractor_rationales": [
+   "swift ... unsettled — supermajorities slow a process, and no framer would aim for an unsettled constitution",
+   "onerous ... malleable — onerous fits the supermajorities, but a hard-to-amend constitution is the opposite of malleable",
+   "effortless ... precarious — supermajorities make the process harder, not effortless, and the purpose is protection, not fragility"
+  ]
+ },
+ {
+  "id": "IS16-B-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "late-reversal",
+  "prompt": "[Sentence Completion] The botanist's notebooks, long dismissed as -------, turned out to be -------: the seemingly random strings of dates were a forty-year record of the day each orchard tree first bloomed.",
+  "choices": [
+   "disjointed ... systematic",
+   "forged ... genuine",
+   "outdated ... prophetic",
+   "verbose ... concise"
+  ],
+  "correct_answer": "disjointed ... systematic",
+  "explanation": "The colon explains the reversal: what looked 'random' was an orderly long-term record. So the notebooks had been dismissed as disjointed and proved systematic.",
+  "distractor_rationales": [
+   "forged ... genuine — a plausible reversal for old notebooks, but the explanation concerns apparent randomness, not authenticity",
+   "outdated ... prophetic — the dates record the past; nothing in them predicts the future",
+   "verbose ... concise — strings of dates are already terse; the reversal is from random to orderly, not from wordy to brief"
+  ]
+ },
+ {
+  "id": "IS16-B-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "ironic-cause",
+  "prompt": "[Sentence Completion] The restorers worked so ------- that decades later no one could tell which patches of sky were original and which were theirs, a feat that has made their methods ------- among conservators who now insist that every repair be visible.",
+  "choices": [
+   "clumsily ... admired",
+   "carelessly ... emulated",
+   "seamlessly ... contentious",
+   "flawlessly ... esoteric"
+  ],
+  "correct_answer": "seamlessly ... contentious",
+  "explanation": "No one can distinguish their patches, so they worked seamlessly; but today's conservators demand visible repairs, so that very invisibility makes their methods contentious.",
+  "distractor_rationales": [
+   "clumsily ... admired — clumsy work would be easy to spot, contradicting 'no one could tell'",
+   "carelessly ... emulated — careless work would be detectable, and conservators who want visible repairs would not copy invisible ones",
+   "flawlessly ... esoteric — flawlessly fits, but the conflict with a 'visible repair' rule makes the methods disputed, not obscure or specialized"
+  ]
+ },
+ {
+  "id": "IS16-B-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "concession",
+  "prompt": "[Sentence Completion] The colonial magistrate's verdicts were ------- in their reasoning, citing precedent at every turn, yet so ------- in their sentencing that two thieves convicted of identical crimes might receive a small fine and a public flogging.",
+  "choices": [
+   "measured ... harsh",
+   "scrupulous ... erratic",
+   "slipshod ... consistent",
+   "lucid ... opaque"
+  ],
+  "correct_answer": "scrupulous ... erratic",
+  "explanation": "Citing precedent constantly shows scrupulous reasoning; identical crimes drawing wildly different penalties shows erratic sentencing. 'Yet' sets careful reasoning against inconsistent sentences.",
+  "distractor_rationales": [
+   "measured ... harsh — one thief gets only a small fine, so the problem is inconsistency, not severity",
+   "slipshod ... consistent — citing precedent at every turn is not slipshod, and different punishments for identical crimes are not consistent",
+   "lucid ... opaque — lucid fits the reasoning, but the example shows unequal outcomes, not unclear ones"
+  ]
+ },
+ {
+  "id": "IS16-B-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 2,
+  "clue_type": "enabling-cause",
+  "prompt": "[Sentence Completion] The quartet's rehearsals were -------, each passage repeated until every bow stroke matched, which explains why their concerts could afford to feel -------, as if the four players were inventing the music on the spot.",
+  "choices": [
+   "rigorous ... serene",
+   "casual ... rehearsed",
+   "sporadic ... polished",
+   "exhaustive ... spontaneous"
+  ],
+  "correct_answer": "exhaustive ... spontaneous",
+  "explanation": "Repeating each passage until every stroke matched is exhaustive preparation; 'as if inventing the music on the spot' describes performances that feel spontaneous. The preparation is what makes the freedom affordable.",
+  "distractor_rationales": [
+   "rigorous ... serene — rigorous fits the rehearsals, but 'as if inventing the music on the spot' describes improvisatory freedom, not calm",
+   "casual ... rehearsed — repeating passages to match every stroke is not casual, and 'rehearsed' contradicts 'inventing on the spot'",
+   "sporadic ... polished — rehearsals that repeat each passage are not sporadic, and 'polished' misses the improvised feel"
+  ]
+ }
+]
