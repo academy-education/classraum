@@ -4491,6 +4491,49 @@
           "verdict": "RECORDED AGAINST A2, KEPT BY THE RULE: all three blind samples hit A2 by the same mechanism (0.331 = 1.1^3 - 1, so 2000(1.1)^5 is the designed expression), and two with-source graders independently named the same leak (1.1 printed in two options hands over the cube-root insight; the wrong method 33.1/3 ≈ 10%/month lands on the key). Panel n_struck median is 1, below the pre-registered 2, and no grader recommended dropping it, so it ships as medium; making options expressions to defeat the calculator exposed the derivation to a reader with no stem, and that is the finding. Other tells recorded: four items share the shape \"two candidates, reject one by a side condition\" with the rejected candidate printed (A5, A6, B1, B3; two dropped), and on A5 the side condition strikes the rejected candidate for free; the discriminant-equals-zero motor decides A1, A5, B7 (three kept) — at most two should sit in one form; A6 key is the sole even option (grader E asked to hold; rule keeps); A5/A6 use ASCII hyphen where the rest use U+2212."
         }
       }
+    },
+    {
+      "id": "isee-verbal-s15-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s15",
+      "contentSha": "92e84ccbd3ccf6a6e095253e94b573c63e1ca88c21f0832b10335ec2c593eaa0",
+      "status": "shipped",
+      "note": "Sentence completions only: the BINDING type (92 SC items / 80 groups gave 4 clean forms at 20 per form; synonyms 101/89 gave 5). 40 authored by two independent Claude authors, 39 rendered, 35 kept. Bars pre-registered in isee-verbal-s15.prereg.md before any result, including Amendment 1 (single-blank control subset) written after the render and before any solver ran. Drops: ISC-A-03, ISC-A-04, ISC-B-02, ISC-B-16 - with-source grader A named a second defensible option (wage / lineup / amusement / luxury), pre-registered drop. ISC-B-06 - dropped at pre-flight, never rendered: its gloss 'which is to say' matches verbalKind's \\bis to\\b and the live draw would type it as an analogy. DIFFICULTY SKEW, recorded not hidden: neither grader rated any item hard (A 27 easy/12 medium, B 33 easy/6 medium); banked the easier label (32 easy / 3 medium). Closeness was partly bought with easiness, which VERBAL-DISTRACTOR-CONSTRAINT.md warns about; the assembler does not balance admission difficulty, so a hard-SC batch is owed.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "92e84ccbd3ccf6a6e095253e94b573c63e1ca88c21f0832b10335ec2c593eaa0",
+          "verdict": "39 items, 4 choices each (ISEE width; the inserter enforces it), key among choices, '[Sentence Completion]' tag, exactly one 7-hyphen blank, verbalKind()='sentence completion' on all 39 (ISC-B-06 failed this and was removed before rendering), no stem or key colliding with live ISEE verbal, no shared key across authors, stored key slots dealt 10/10/10/9."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "92e84ccbd3ccf6a6e095253e94b573c63e1ca88c21f0832b10335ec2c593eaa0",
+          "verdict": "Two graders on an unmarked, re-shuffled render (isee-verbal-s15.grade.json). Grader A (sonnet) 39/39 on key, all marked exclusive, but named a weak second defensible option on 4 - dropped per pre-registration. Grader B (opus) 39/39, all exclusive, no second options, no above-band words. Neither found a miskey."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "92e84ccbd3ccf6a6e095253e94b573c63e1ca88c21f0832b10335ec2c593eaa0",
+          "n": 39,
+          "mean": 46.2,
+          "control": 25.6,
+          "margin": 20.5,
+          "verdict": "Options-only, interleaved with a TYPE-MATCHED live control (30 live sentence completions, isee-verbal-s4 bijective clones excluded), three samples of one solver (pairwise agreement 59.9% vs 25.2% if independent - one solver sampled three times). Candidate 54/117 = 46.2% vs its own letter line 25.6% (+20.5); live SC 38/90 = 42.2% vs 26.7% (+15.6). EXCESS +5.0 against all 30 and +7.5 against the 18 single-blank controls (22/54 = 40.7% vs 27.8%, +13.0); pre-registered bar <= +10 on BOTH: PASS. Ceiling: live arm 42.2%, far below the 85% saturation line, so the bar could fire. Unanimous-correct 11/39 = 28.2% vs live 8/30 = 26.7%. Kept-set residual 45.7% (48/105), reported not decided on. With correlated samples the effective n is ~39 items, so this says the batch is not detectably leakier than the shipped SC bank, not that it is cleaner. Note A34 measured live SC at +9.5 with a different panel; this run's live SC floor is +15.6."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "92e84ccbd3ccf6a6e095253e94b573c63e1ca88c21f0832b10335ec2c593eaa0",
+          "verdict": "Each blind sample also named the option it would reject first and whether certain. Items where >=2 samples certainly rejected the SAME distractor: candidate 0/39, live control 3/30. Key rejected first: candidate 14/117 (12%), live 15/90 (17%). Grader A's free_elimination field was misused (its notes argue from the sentence, e.g. 'celebration contradicts'), so it carries no signal; grader B named none."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "92e84ccbd3ccf6a6e095253e94b573c63e1ca88c21f0832b10335ec2c593eaa0",
+          "verdict": "Keys dealt flat by make-oo-render (candidate 10/9/10/10). check-recycled-distractor: 156 option slots, 154 distinct words - NO MEASUREMENT (no item has exactly one cohort-unique option); the only reuse is 'defensive' and 'unpredictable' across the two authors. Key strictly longest 5/39 vs 7.25 expected; strictly SHORTEST 2/39 vs 6.25 expected - the key is rarely the shortest option, recorded as a weak possible tell, not acted on (key-rejected-first rate is below the live control's). Solvers' per-item notes were boilerplate and their batch-level heuristic reports were lost to a subagent stall, so no named heuristic is available - recorded as missing, not as clean."
+        }
+      }
     }
   ],
   "auditedCohorts": [

@@ -1,0 +1,1016 @@
+[
+ {
+  "id": "ISC-A-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "easy",
+  "clue_type": "cause",
+  "key_valence": "negative",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Because inspector Bjorn found that the bridge's steel cables had rusted through in several places, the old span was declared ------- and closed to traffic.",
+  "choices": [
+   "unstable",
+   "picturesque",
+   "famous",
+   "congested"
+  ],
+  "correct_answer": "unstable",
+  "explanation": "The cause clause (rusted-through cables) must explain the declaration and the closure, so the bridge was judged unstable. Rust says nothing about how scenic, crowded, or well known the bridge is.",
+  "distractor_rationales": [
+   "picturesque — rusted cables are a structural finding, not a reason to call a bridge scenic or to close it",
+   "congested — rust does not cause traffic jams; the cause clause is about the cables' condition",
+   "famous — rust does not make a bridge well known, and fame is no reason to close it"
+  ]
+ },
+ {
+  "id": "ISC-A-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "definition",
+  "key_valence": "positive",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] Kenji's grandfather could tell that rain was coming a full day ahead from the ache in his knees, a ------- the whole family trusted more than the radio forecast.",
+  "choices": [
+   "burden",
+   "knack",
+   "grievance",
+   "remedy"
+  ],
+  "correct_answer": "knack",
+  "explanation": "The appositive renames his ability to predict rain, and the family 'trusted [it] more than the radio forecast', so it is a reliable special skill: a knack. The other nouns describe things that are not trusted as predictions.",
+  "distractor_rationales": [
+   "remedy — a remedy cures something; the sentence is about forecasting rain, not treating the ache",
+   "grievance — a complaint is not something a family relies on in place of a forecast",
+   "burden — a hardship is not 'trusted more than the radio forecast'; the clue is about reliability"
+  ]
+ },
+ {
+  "id": "ISC-A-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "easy",
+  "clue_type": "cause",
+  "key_valence": "neutral",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] So that the remaining stores would last until the ship reached port, Captain Dmitri cut each sailor's daily ------- in half.",
+  "choices": [
+   "wage",
+   "lesson",
+   "ration",
+   "shift"
+  ],
+  "correct_answer": "ration",
+  "explanation": "The purpose clause is about making the food stores last, so what he halved was each sailor's daily allowance of food, the ration. Cutting pay, work hours, or lessons would not stretch the stores.",
+  "distractor_rationales": [
+   "wage — halving pay does not make the food stores last longer",
+   "shift — shorter working hours do not save any stores",
+   "lesson — cutting instruction has nothing to do with stretching the supplies"
+  ]
+ },
+ {
+  "id": "ISC-A-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "restatement",
+  "key_valence": "neutral",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] Coach Priya changed her team's ------- at halftime: instead of each defender marking one opponent, every player now guarded a zone of the field.",
+  "choices": [
+   "lineup",
+   "uniform",
+   "captain",
+   "tactics"
+  ],
+  "correct_answer": "tactics",
+  "explanation": "The colon introduces a restatement: the switch from one-on-one marking to zone defense is a change in how the team plays, its tactics. The same players are still on the field, so the lineup did not change, and neither did the captain or the uniform.",
+  "distractor_rationales": [
+   "lineup — the gloss describes the same players defending differently, not a change of who plays",
+   "captain — choosing a new leader is not what the colon clause describes",
+   "uniform — what the players wore is irrelevant to the change in defending described after the colon"
+  ]
+ },
+ {
+  "id": "ISC-A-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "easy",
+  "clue_type": "example",
+  "key_valence": "negative",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] Mateo's orchard suffered one ------- after another that spring: a late frost killed the blossoms, hail split the young fruit, and beetles stripped the leaves.",
+  "choices": [
+   "setback",
+   "celebration",
+   "lawsuit",
+   "inspection"
+  ],
+  "correct_answer": "setback",
+  "explanation": "The examples after the colon (frost, hail, beetles) are all natural misfortunes that hurt the crop, so the orchard suffered one setback after another. None of the examples is an inspection, a celebration, or a legal case.",
+  "distractor_rationales": [
+   "inspection — frost, hail, and beetles are not inspections",
+   "celebration — the listed events are losses, not festivities",
+   "lawsuit — the examples are weather and pests, not court cases"
+  ]
+ },
+ {
+  "id": "ISC-A-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "definition",
+  "key_valence": "positive",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] Engineer Soo-ah praised the new alloy chiefly for its -------, its ability to bend under heavy loads and spring back without cracking.",
+  "choices": [
+   "purity",
+   "resilience",
+   "luster",
+   "conductivity"
+  ],
+  "correct_answer": "resilience",
+  "explanation": "The appositive defines the blank as the ability to bend under load and recover without cracking, which is resilience. Shine, the ability to carry electricity or heat, and freedom from impurities are different properties.",
+  "distractor_rationales": [
+   "luster — shine is not the ability to bend and spring back",
+   "conductivity — carrying electricity or heat is not what the definition describes",
+   "purity — freedom from other metals is not the ability to recover from bending"
+  ]
+ },
+ {
+  "id": "ISC-A-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "easy",
+  "clue_type": "contrast",
+  "key_valence": "neutral",
+  "key_pos": "verb",
+  "prompt": "[Sentence Completion] Ximena expected the creek to ------- after the night's heavy storm, but by morning its water had actually dropped below the usual banks.",
+  "choices": [
+   "freeze",
+   "murmur",
+   "overflow",
+   "stagnate"
+  ],
+  "correct_answer": "overflow",
+  "explanation": "'But ... actually dropped below the usual banks' contrasts with what she expected, so she expected the water to rise over its banks, to overflow. Low water is not the surprising opposite of freezing, murmuring, or going stagnant.",
+  "distractor_rationales": [
+   "freeze — water dropping below its banks does not contrast with an expectation of ice",
+   "murmur — a low creek does not contradict an expectation that it would make a soft sound",
+   "stagnate — still water is not contradicted by the level dropping; the 'but' needs an expectation about rising"
+  ]
+ },
+ {
+  "id": "ISC-A-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "restatement",
+  "key_valence": "negative",
+  "key_pos": "verb",
+  "prompt": "[Sentence Completion] The colonial governor set out to ------- the newspaper that mocked him: his soldiers seized its printing press and jailed its editor, Olusegun.",
+  "choices": [
+   "ignore",
+   "flatter",
+   "sue",
+   "silence"
+  ],
+  "correct_answer": "silence",
+  "explanation": "The colon spells out what he did: taking the press and jailing the editor stops the paper from printing anything, so he set out to silence it. Force is not a lawsuit, the opposite of ignoring, and nothing like flattery.",
+  "distractor_rationales": [
+   "sue — seizing a press with soldiers is force, not a court case",
+   "ignore — sending soldiers and jailing the editor is the opposite of paying no attention",
+   "flatter — seizing and jailing are not praise"
+  ]
+ },
+ {
+  "id": "ISC-A-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "example",
+  "key_valence": "positive",
+  "key_pos": "verb",
+  "prompt": "[Sentence Completion] Physical therapists help injured athletes ------- lost strength; Aroha, for instance, spent eight weeks on gradually heavier leg presses until her knee could once again carry her through a full sprint.",
+  "choices": [
+   "rebuild",
+   "accept",
+   "measure",
+   "mourn"
+  ],
+  "correct_answer": "rebuild",
+  "explanation": "The example shows Aroha getting her strength back through steadily harder training until she could sprint again, so therapists help athletes rebuild lost strength. The example is not about testing it, coming to terms with losing it, or grieving it.",
+  "distractor_rationales": [
+   "measure — the example describes training until the knee recovers, not testing how much strength is gone",
+   "accept — Aroha regains her sprint; she does not settle for the loss",
+   "mourn — the example is recovery, not grief"
+  ]
+ },
+ {
+  "id": "ISC-A-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "easy",
+  "clue_type": "contrast",
+  "key_valence": "neutral",
+  "key_pos": "verb",
+  "prompt": "[Sentence Completion] Rather than ------- their wheat by hand with sickles, the members of Thabo's cooperative pooled their savings to buy one machine that cuts and gathers the grain.",
+  "choices": [
+   "sell",
+   "harvest",
+   "irrigate",
+   "store"
+  ],
+  "correct_answer": "harvest",
+  "explanation": "The machine replaces the hand work, and it 'cuts and gathers the grain', which is harvesting; sickles are also harvesting tools. Watering, storing, and selling are not done with sickles and are not what the machine does.",
+  "distractor_rationales": [
+   "irrigate — watering is not done with sickles, and the machine cuts rather than waters",
+   "store — a machine that cuts and gathers grain does not replace storing it",
+   "sell — sickles and a cutting machine have nothing to do with selling"
+  ]
+ },
+ {
+  "id": "ISC-A-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "cause",
+  "key_valence": "positive",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Conditions for Saoirse's first regatta were ideal, with a breeze so ------- that it neither gusted nor died away all afternoon.",
+  "choices": [
+   "northerly",
+   "salty",
+   "steady",
+   "warm"
+  ],
+  "correct_answer": "steady",
+  "explanation": "'So ... that it neither gusted nor died away' means the result follows from the quality: a wind that never got stronger or weaker is steady. Temperature, saltiness, or direction would not produce that result.",
+  "distractor_rationales": [
+   "warm — warmth does not stop a wind from gusting or dying away",
+   "salty — salt in the air has no bearing on whether the wind keeps the same strength",
+   "northerly — wind direction does not explain why its strength never changed"
+  ]
+ },
+ {
+  "id": "ISC-A-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "restatement",
+  "key_valence": "negative",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Readers had long trusted the explorer Anselm's journals, but a comparison with the ship's log revealed that he routinely made his voyages sound longer and more perilous than they had been; his accounts were, in short, -------.",
+  "choices": [
+   "disorganized",
+   "anonymous",
+   "illustrated",
+   "exaggerated"
+  ],
+  "correct_answer": "exaggerated",
+  "explanation": "'In short' sums up the clause before it: he made the voyages sound longer and more dangerous than they really were, so his accounts were exaggerated. The finding is about overstatement, not order, authorship, or pictures.",
+  "distractor_rationales": [
+   "disorganized — the log comparison exposed overstatement, not poor ordering",
+   "anonymous — the journals are explicitly Anselm's, so they are not unsigned",
+   "illustrated — whether the journals had pictures does not sum up 'made his voyages sound longer and more perilous'"
+  ]
+ },
+ {
+  "id": "ISC-A-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "cause",
+  "key_valence": "positive",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Rafael was the smallest player on the court, yet defenders dreaded guarding him: he was so ------- that they could seldom keep track of where he had darted.",
+  "choices": [
+   "elusive",
+   "muscular",
+   "devoted",
+   "confident"
+  ],
+  "correct_answer": "elusive",
+  "explanation": "The result clause, defenders losing track of where he went, follows from a player who is hard to catch or pin down: elusive. Confidence, strength, and dedication do not make a player hard to follow.",
+  "distractor_rationales": [
+   "confident — self-belief does not stop defenders from tracking his position",
+   "muscular — strength does not explain why he keeps vanishing from view, and the sentence stresses his small size",
+   "devoted — dedication does not make him hard to keep track of"
+  ]
+ },
+ {
+  "id": "ISC-A-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "restatement",
+  "key_valence": "negative",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] The menu at Mei's harvest supper turned out to be rather -------: every dish, from the soup to the dessert, was made from pumpkin, and several guests went home wishing for a little more choice.",
+  "choices": [
+   "overpriced",
+   "limited",
+   "spicy",
+   "healthy"
+  ],
+  "correct_answer": "limited",
+  "explanation": "The colon explains the adjective: one ingredient in every dish, and guests wanting more choice, describe a menu with little variety, a limited one. The explanation says nothing about heat, price, or nutrition.",
+  "distractor_rationales": [
+   "spicy — 'every dish was pumpkin' and 'wishing for more choice' are about variety, not heat",
+   "overpriced — cost is never mentioned in the explanation after the colon",
+   "healthy — nutrition does not explain why guests wanted more choice"
+  ]
+ },
+ {
+  "id": "ISC-A-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "contrast",
+  "key_valence": "negative",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Ingrid's chart of the coast was not wrong so much as -------: every headland on it sat exactly where it should, but the dozens of small coves where boats actually anchored had been left off.",
+  "choices": [
+   "elegant",
+   "blurry",
+   "incomplete",
+   "oversized"
+  ],
+  "correct_answer": "incomplete",
+  "explanation": "'Not wrong so much as' calls for a smaller flaw than inaccuracy, and the explanation names it: what is shown is correct, but much was left off, so the chart was incomplete. The explanation is about missing coves, not fuzziness, size, or beauty.",
+  "distractor_rationales": [
+   "blurry — the headlands 'sat exactly where it should', so the problem is not fuzziness but omission",
+   "oversized — the chart's size has nothing to do with coves being left off",
+   "elegant — the frame calls for a flaw, and the colon describes missing features, not style"
+  ]
+ },
+ {
+  "id": "ISC-A-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "contrast",
+  "key_valence": "neutral",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Most visitors assume the glacier has hardly changed in centuries, and from the viewing platform it does look -------; but the stakes Nadia drove into the ice show it creeping nearly a meter downhill every day.",
+  "choices": [
+   "barren",
+   "brittle",
+   "dazzling",
+   "stationary"
+  ],
+  "correct_answer": "stationary",
+  "explanation": "The 'but' clause, that the ice is moving downhill every day, has to contradict how the glacier looks, so it looks still: stationary. Movement does not contradict the glacier looking brittle, dazzling, or barren.",
+  "distractor_rationales": [
+   "brittle — daily downhill movement does not contrast with the ice looking easy to break",
+   "dazzling — creeping a meter a day is no contrast with looking brilliant",
+   "barren — movement does not contradict looking lifeless; the 'but' requires an appearance of stillness"
+  ]
+ },
+ {
+  "id": "ISC-A-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "contrast",
+  "key_valence": "positive",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Although museum labels once dismissed the island canoes as crude, the sailors led by Kalani who built a full-size replica found it remarkably -------: it rode out a storm that swamped their modern escort boat.",
+  "choices": [
+   "seaworthy",
+   "spacious",
+   "authentic",
+   "handsome"
+  ],
+  "correct_answer": "seaworthy",
+  "explanation": "The colon gives the evidence: the canoe survived a storm that swamped a modern boat, so it was seaworthy, able to handle rough seas. That contrasts with 'crude'. Riding out a storm proves nothing about room, looks, or historical accuracy.",
+  "distractor_rationales": [
+   "spacious — surviving a storm says nothing about how much room the canoe had",
+   "handsome — riding out rough seas is about performance, not appearance",
+   "authentic — accuracy to the original design is not what the storm evidence shows"
+  ]
+ },
+ {
+  "id": "ISC-A-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "definition",
+  "key_valence": "neutral",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Most of the crops on Ama's farm are -------, meaning they die off each winter and must be grown again from seed every spring.",
+  "choices": [
+   "organic",
+   "annual",
+   "local",
+   "hybrid"
+  ],
+  "correct_answer": "annual",
+  "explanation": "'Meaning' introduces a definition: plants that live a single season and must be replanted each year are annual. Hybrid, organic, and local describe breeding, growing method, and origin, not a one-year life.",
+  "distractor_rationales": [
+   "hybrid — crossbred plants are not defined as ones that die each winter",
+   "organic — growing without synthetic chemicals is not the definition given",
+   "local — where a crop comes from has nothing to do with dying off each winter"
+  ]
+ },
+ {
+  "id": "ISC-A-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "example",
+  "key_valence": "neutral",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Coaches describe Sigrun's playing style as -------: she might let a match drift along quietly for ten minutes and then attack at full speed, and opponents who studied hours of film still could not tell when the change would come.",
+  "choices": [
+   "defensive",
+   "physical",
+   "unpredictable",
+   "stylish"
+  ],
+  "correct_answer": "unpredictable",
+  "explanation": "The example has her switching pace suddenly, and opponents who studied her could not tell when, so her style is hard to anticipate: unpredictable. The example describes surprise timing, not defense, flair, or bodily contact.",
+  "distractor_rationales": [
+   "defensive — she attacks at full speed, and the point is the timing, not holding back",
+   "stylish — the example says nothing about flair; it is about opponents being unable to anticipate her",
+   "physical — contact and strength are not mentioned; the example is about unreadable timing"
+  ]
+ },
+ {
+  "id": "ISC-A-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "contrast",
+  "key_valence": "positive",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Before his first final, Emeka surprised the coaching staff: instead of pacing or fidgeting, he sat reading a comic and joking with the trainers, as ------- as if it were an ordinary practice.",
+  "choices": [
+   "grateful",
+   "determined",
+   "careful",
+   "relaxed"
+  ],
+  "correct_answer": "relaxed",
+  "explanation": "'Instead of pacing or fidgeting' sets up the opposite of nerves, and reading a comic and joking show someone at ease: relaxed. Nothing in the contrast or the behavior points to determination, gratitude, or caution.",
+  "distractor_rationales": [
+   "determined — reading comics and joking show ease, not grim resolve, and the contrast is with nerves",
+   "grateful — thankfulness is not the opposite of pacing and fidgeting",
+   "careful — joking with trainers before a final shows ease, not caution"
+  ]
+ },
+ {
+  "id": "ISC-B-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "easy",
+  "clue_type": "cause",
+  "key_valence": "negative",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Because the orchestra's old piano had not been tuned in years, its notes sounded ------- even to listeners with no musical training.",
+  "choices": [
+   "sour",
+   "thin",
+   "solemn",
+   "sparkling"
+  ],
+  "correct_answer": "sour",
+  "explanation": "An instrument left untuned drifts off pitch, and off-pitch notes sound sour; the clue that even untrained ears notice it points to wrongness of pitch. Thin describes a weak tone and solemn a mood, neither caused by tuning, and sparkling is a pleasing quality an untuned piano would not produce.",
+  "distractor_rationales": [
+   "thin — describes a weak tone, which neglecting tuning does not cause",
+   "solemn — names a mood, not a defect the lack of tuning would create",
+   "sparkling — a pleasing quality, the opposite of what years without tuning produce"
+  ]
+ },
+ {
+  "id": "ISC-B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "easy",
+  "clue_type": "contrast",
+  "key_valence": "positive",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] Although Tomasz had expected his new classmates to ignore him, they greeted him with such ------- that he felt at home before lunch.",
+  "choices": [
+   "amusement",
+   "enthusiasm",
+   "suspicion",
+   "astonishment"
+  ],
+  "correct_answer": "enthusiasm",
+  "explanation": "\"Although\" sets the greeting against being ignored, and \"felt at home\" requires a welcoming reaction; enthusiasm is the only one that would make a newcomer comfortable. Amusement, astonishment, and suspicion are all reactions, but none would make him feel at home.",
+  "distractor_rationales": [
+   "amusement — being laughed at would not make a newcomer feel at home",
+   "astonishment — surprise at him is not welcoming and would not settle him in",
+   "suspicion — distrust contradicts his feeling at home"
+  ]
+ },
+ {
+  "id": "ISC-B-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "restatement",
+  "key_valence": "neutral",
+  "key_pos": "verb",
+  "prompt": "[Sentence Completion] The town council decided to ------- the vote on the new parking rules: no decision would be made until residents had had a month to comment.",
+  "choices": [
+   "repeat",
+   "tally",
+   "defer",
+   "broadcast"
+  ],
+  "correct_answer": "defer",
+  "explanation": "The colon explains the blank: no decision until a month has passed means the vote is put off, which is to defer it. Repeating presumes a vote already held, tallying means counting votes now, and broadcasting is about showing the vote, none of which matches the delay described.",
+  "distractor_rationales": [
+   "repeat — implies a vote already taken; the gloss says no decision has been made",
+   "tally — counting the votes would produce a decision now, not after a month",
+   "broadcast — concerns airing the vote, while the gloss describes postponing it"
+  ]
+ },
+ {
+  "id": "ISC-B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "easy",
+  "clue_type": "example",
+  "key_valence": "positive",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Ngozi is remarkably -------: her prize-winning water pump was built entirely from things she found in the garage, including a bicycle chain, two buckets, and a length of garden hose.",
+  "choices": [
+   "adventurous",
+   "persuasive",
+   "punctual",
+   "resourceful"
+  ],
+  "correct_answer": "resourceful",
+  "explanation": "The example after the colon shows her making something useful out of whatever was at hand, which is what resourceful means. Punctuality, adventurousness, and persuasiveness are real strengths but nothing in the garage example illustrates them.",
+  "distractor_rationales": [
+   "punctual — the example says nothing about being on time",
+   "adventurous — building in a garage involves no risk or exploration",
+   "persuasive — the example involves no convincing of anyone"
+  ]
+ },
+ {
+  "id": "ISC-B-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "cause",
+  "key_valence": "negative",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] Since the ferry company had already raised its fares twice that year, island residents greeted news of yet another increase with -------.",
+  "choices": [
+   "resentment",
+   "relief",
+   "nostalgia",
+   "guilt"
+  ],
+  "correct_answer": "resentment",
+  "explanation": "Two earlier fare hikes give residents a reason to feel bitter about a third, so resentment follows from the cause. Nostalgia is longing for the past, relief would require good news, and guilt would require the residents to be at fault, which they are not.",
+  "distractor_rationales": [
+   "nostalgia — longing for the past is not a reaction to a price increase",
+   "relief — would follow good news, not a third fare hike",
+   "guilt — residents did not cause the increase, so they have nothing to feel guilty about"
+  ]
+ },
+ {
+  "id": "ISC-B-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "contrast",
+  "key_valence": "positive",
+  "key_pos": "verb",
+  "prompt": "[Sentence Completion] Haruto's neighbors had grumbled for months about his weedy, overgrown yard, yet when he finally cleared it and planted rows of tomatoes, they were the first to ------- him.",
+  "choices": [
+   "avoid",
+   "commend",
+   "correct",
+   "question"
+  ],
+  "correct_answer": "commend",
+  "explanation": "\"Yet\" signals a reversal of the neighbors' grumbling, and he has fixed exactly what they complained about, so their new response must be approval: they commend him. Questioning, avoiding, or correcting him would continue their disapproval rather than reverse it.",
+  "distractor_rationales": [
+   "question — continues suspicion; \"yet\" requires the neighbors' attitude to reverse",
+   "avoid — shunning him would not contrast with months of complaints",
+   "correct — there is nothing left to correct once he has fixed the yard"
+  ]
+ },
+ {
+  "id": "ISC-B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "easy",
+  "clue_type": "restatement",
+  "key_valence": "negative",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] The shop's return policy was -------: customers needed the original receipt, the box, and a signed form, and even then most refunds were refused.",
+  "choices": [
+   "posted",
+   "costly",
+   "severe",
+   "recent"
+  ],
+  "correct_answer": "severe",
+  "explanation": "The colon spells out a policy with many requirements that still refuses most refunds, which is a severe policy. Nothing in the gloss concerns when the policy began, what it costs, or whether it was displayed.",
+  "distractor_rationales": [
+   "recent — the gloss describes harshness, not when the policy started",
+   "costly — the gloss describes rules that block refunds, not a fee or expense",
+   "posted — the gloss describes the policy's demands, not whether it was displayed"
+  ]
+ },
+ {
+  "id": "ISC-B-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "restatement",
+  "key_valence": "neutral",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] Before opening night, the director called for one final -------: the cast ran the entire play in costume, with full lights and music, just as the audience would see it.",
+  "choices": [
+   "intermission",
+   "interview",
+   "audition",
+   "rehearsal"
+  ],
+  "correct_answer": "rehearsal",
+  "explanation": "The colon describes a full run-through of the play before an audience sees it, which is a rehearsal. An audition chooses actors who have already been cast here, an intermission is a break during a performance, and an interview involves no running of the play.",
+  "distractor_rationales": [
+   "audition — the cast is already chosen and is performing the play, not trying out",
+   "intermission — a break in a show, not a full run of it",
+   "interview — involves questions, not performing the entire play"
+  ]
+ },
+ {
+  "id": "ISC-B-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "cause",
+  "key_valence": "negative",
+  "key_pos": "verb",
+  "prompt": "[Sentence Completion] After an update erased users' saved files without warning, thousands of customers chose to ------- the app within a week.",
+  "choices": [
+   "delete",
+   "unlock",
+   "purchase",
+   "rename"
+  ],
+  "correct_answer": "delete",
+  "explanation": "Losing their files gives customers a reason to get rid of the app, so they delete it. Renaming it would not address the problem, and buying it or unlocking more of its features would mean investing further in it, the opposite of the reaction such a failure causes.",
+  "distractor_rationales": [
+   "rename — changing the app's name does nothing about lost files",
+   "purchase — no one is moved to buy an app that just erased their work",
+   "unlock — paying for extra features is no response to an app that destroyed files"
+  ]
+ },
+ {
+  "id": "ISC-B-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "contrast",
+  "key_valence": "positive",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Critics had dismissed Leilani's first album as forgettable, so few expected her second one, recorded in a single afternoon on borrowed instruments, to be so -------.",
+  "choices": [
+   "cheerful",
+   "impressive",
+   "political",
+   "theatrical"
+  ],
+  "correct_answer": "impressive",
+  "explanation": "The forgettable first album and the hurried, borrowed setup made low expectations reasonable; \"few expected\" means the album defied them, so it was impressive. The critics doubted its quality, so nothing in the sentence makes it surprising for the album to be political, cheerful, or theatrical.",
+  "distractor_rationales": [
+   "political — the low expectations concern quality, not subject matter",
+   "cheerful — the critics doubted the album's quality, not its mood, so a cheerful tone would not defy their expectations",
+   "theatrical — nothing in the critics' doubts or the setup concerns showmanship"
+  ]
+ },
+ {
+  "id": "ISC-B-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "definition",
+  "key_valence": "negative",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] The mayor's ------- reply, an answer that sounded like a promise but committed the city to nothing, frustrated the reporters who had asked when the bridge would be repaired.",
+  "choices": [
+   "emotional",
+   "defensive",
+   "noncommittal",
+   "prepared"
+  ],
+  "correct_answer": "noncommittal",
+  "explanation": "The appositive defines the reply as one that commits the city to nothing, which is a noncommittal answer. Prepared, emotional, and defensive describe how the reply was delivered, not the fact that it promised nothing.",
+  "distractor_rationales": [
+   "prepared — the definition concerns commitment, not whether the reply was planned",
+   "emotional — the appositive describes a promise-like answer, not a display of feeling",
+   "defensive — the appositive says the reply sounded like a promise, not like self-protection"
+  ]
+ },
+ {
+  "id": "ISC-B-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "restatement",
+  "key_valence": "positive",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] Ines's greatest asset as a tour guide was her -------: she could answer a question in Portuguese, Swahili, or French without searching for a single word.",
+  "choices": [
+   "stamina",
+   "charm",
+   "eyesight",
+   "fluency"
+  ],
+  "correct_answer": "fluency",
+  "explanation": "The colon explains the asset: speaking several languages easily and without hesitation is fluency. Stamina, eyesight, and charm can all help a guide, but the gloss describes only her ease with languages.",
+  "distractor_rationales": [
+   "stamina — the gloss is about speaking easily, not lasting through long tours",
+   "eyesight — the gloss involves languages, not vision",
+   "charm — the gloss describes word-finding ease, not personal appeal"
+  ]
+ },
+ {
+  "id": "ISC-B-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "contrast",
+  "key_valence": "neutral",
+  "key_pos": "verb",
+  "prompt": "[Sentence Completion] Rather than ------- the family bakery after their father retired, as many neighbors expected, Yetunde and her brother Kofi kept it open and even added a second oven.",
+  "choices": [
+   "close",
+   "advertise",
+   "paint",
+   "insure"
+  ],
+  "correct_answer": "close",
+  "explanation": "\"Rather than\" requires the blank to be the opposite of what they did; they kept the bakery open, so the expected action was to close it. Painting, insuring, or advertising the bakery are all compatible with keeping it open, so none contrasts with it.",
+  "distractor_rationales": [
+   "paint — compatible with keeping the bakery open, so \"rather than\" has nothing to contrast",
+   "insure — insuring is consistent with staying open, not opposed to it",
+   "advertise — advertising fits a business that stays open and grows"
+  ]
+ },
+ {
+  "id": "ISC-B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "cause",
+  "key_valence": "positive",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Sefa, the new principal, was so ------- that students who had never spoken to an adult at school began stopping by her office just to chat.",
+  "choices": [
+   "athletic",
+   "approachable",
+   "organized",
+   "unpredictable"
+  ],
+  "correct_answer": "approachable",
+  "explanation": "\"So ... that\" makes the blank the cause of shy students coming to chat, and being easy to talk to is what approachable means. Being organized or athletic would not draw students in to chat, and unpredictability would make them more hesitant.",
+  "distractor_rationales": [
+   "organized — an orderly office does not draw shy students in to chat",
+   "unpredictable — uncertainty about her reaction would discourage students from dropping by",
+   "athletic — physical fitness does not explain why students want to talk"
+  ]
+ },
+ {
+  "id": "ISC-B-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "definition",
+  "key_valence": "negative",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] When it first appeared, the telephone was mocked as a mere -------, an amusing toy with no serious use.",
+  "choices": [
+   "monopoly",
+   "luxury",
+   "gimmick",
+   "hazard"
+  ],
+  "correct_answer": "gimmick",
+  "explanation": "The appositive defines the blank as an amusing toy with no serious use, which is a gimmick. A hazard is dangerous, a luxury is costly and desirable, and a monopoly is control of a market; none is defined as a toy.",
+  "distractor_rationales": [
+   "hazard — a danger, not an amusing toy",
+   "luxury — an expensive comfort, not a plaything without purpose",
+   "monopoly — control of a market, unrelated to being a toy"
+  ]
+ },
+ {
+  "id": "ISC-B-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "example",
+  "key_valence": "negative",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Directors dread staging Odalys's plays, whose ------- stage directions include one scene set in \"a room, perhaps\" and another that reads only \"something happens here.\"",
+  "choices": [
+   "handwritten",
+   "misspelled",
+   "old-fashioned",
+   "imprecise"
+  ],
+  "correct_answer": "imprecise",
+  "explanation": "Both examples leave the director guessing what is meant, so the directions are imprecise, which is also why directors dread them. The quoted directions are spelled correctly, and the examples say nothing about handwriting or old-fashioned style.",
+  "distractor_rationales": [
+   "misspelled — the quoted directions are spelled correctly; their problem is vagueness",
+   "handwritten — the examples concern what the directions say, not how they were written",
+   "old-fashioned — nothing in the examples is dated; they are simply unclear"
+  ]
+ },
+ {
+  "id": "ISC-B-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "clue_type": "example",
+  "key_valence": "neutral",
+  "key_pos": "verb",
+  "prompt": "[Sentence Completion] Merchants on the old caravan routes often chose to ------- goods rather than pay in coins, trading bolts of silk for horses or spices for glassware.",
+  "choices": [
+   "barter",
+   "smuggle",
+   "weigh",
+   "auction"
+  ],
+  "correct_answer": "barter",
+  "explanation": "The examples show goods exchanged directly for other goods instead of money, which is to barter. Weighing does not replace payment, smuggling concerns hiding goods, and auctioning sells goods for money, which contradicts \"rather than pay in coins.\"",
+  "distractor_rationales": [
+   "weigh — measuring goods is not an alternative to paying",
+   "smuggle — concerns sneaking goods past authorities, not swapping them",
+   "auction — sells goods for money, the opposite of trading instead of paying in coins"
+  ]
+ },
+ {
+  "id": "ISC-B-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "contrast",
+  "key_valence": "neutral",
+  "key_pos": "adjective",
+  "prompt": "[Sentence Completion] Newcomers who arrived expecting the bustle of a modern town found Brenmoor -------: the same single bakery, the same weekly market, and the same main street the oldest residents remembered from childhood.",
+  "choices": [
+   "foggy",
+   "sleepy",
+   "prosperous",
+   "tidy"
+  ],
+  "correct_answer": "sleepy",
+  "explanation": "The blank is set against \"bustle,\" and the gloss describes a town where little has changed or happens, which is sleepy. A tidy, prosperous, or foggy town would not contrast with bustle, and the gloss describes none of those things.",
+  "distractor_rationales": [
+   "tidy — neatness neither contrasts with bustle nor appears in the gloss",
+   "prosperous — wealth is not the opposite of bustle, and the gloss shows sameness, not wealth",
+   "foggy — weather is not mentioned and does not contrast with bustle"
+  ]
+ },
+ {
+  "id": "ISC-B-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "clue_type": "cause",
+  "key_valence": "neutral",
+  "key_pos": "noun",
+  "prompt": "[Sentence Completion] Hyun-woo's team shaved down the frame, swapped steel screws for plastic ones, and trimmed the battery case to a thin shell, all because ------- decided how long their drone could stay aloft.",
+  "choices": [
+   "noise",
+   "branding",
+   "weight",
+   "color"
+  ],
+  "correct_answer": "weight",
+  "explanation": "Every change listed removes mass, so the team acted because weight governed flight time. None of the changes alters color, noise, or branding, and none of those determines how long a drone stays in the air.",
+  "distractor_rationales": [
+   "color — none of the listed changes affects color, which does not govern flight time",
+   "noise — lighter screws and a thinner case are about mass, not sound",
+   "branding — appearance and name have no bearing on how long the drone flies"
+  ]
+ }
+]
