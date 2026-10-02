@@ -105,7 +105,7 @@ for (const [di, domain] of domains.entries()) {
   const size = sizes[di]
   const pool = []
   for (let f = 0; ; f += 1000) {
-    let q = db.from('study_item_bank').select('id, item')
+    let q = db.from('study_item_bank').select('id, item, verified')
       .eq('domain', domain).neq('archived', true).order('id', { ascending: true }).range(f, f + 999)
     if (FAMILY) q = q.eq('family', FAMILY)
     // DRAW_COHORT=cr-v10 restricts to one cohort: "Choose a Response" is a
@@ -126,7 +126,15 @@ for (const [di, domain] of domains.entries()) {
   })
   const widths = [...new Set(usable.map(r => r.item.choices.length))].sort()
   console.log(`  widths present: ${widths.map(w => `${w}-choice:${usable.filter(r => r.item.choices.length === w).length}`).join('  ')}`)
-  console.log(`${domain}: ${pool.length} live, ${usable.length} reviewable (unseen)`)
+  /* STAGED ITEMS ARE DRAWN — stated 2026-10-02. This query has never
+   * filtered `verified`, only `archived`, so a staged cohort
+   * (verified=false: in the bank, ignored by the assembler) is drawable
+   * as-is. That is the point: a human sitting is what releases a staged
+   * cohort, so it must be able to reach one, and no item's flag needs
+   * touching to sit it. The review route and study_item_reviews_fresh
+   * do not filter it either. Printed so a draw says which it got. */
+  const nStaged = usable.filter(r => r.verified !== true).length
+  console.log(`${domain}: ${pool.length} unarchived, ${usable.length} reviewable (unseen) — ${usable.length - nStaged} verified, ${nStaged} staged`)
   if (usable.length < size) { console.error(`only ${usable.length} reviewable in "${domain}", need ${size}`); process.exit(1) }
   sample.push(...sh(usable).slice(0, size))
 }
