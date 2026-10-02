@@ -21,7 +21,7 @@ import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { REFERRAL_INVITEE_CREDITS } from '@/lib/study/referral'
 import { raiseAlert } from '@/lib/ops/alert'
-import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
+import { tableRouter, makeRequest, chain } from '@/tests/study-route-helpers'
 import { NextRequest } from 'next/server'
 
 /** GET NextRequest — makeRequest always attaches a body, which GET rejects. */
@@ -150,6 +150,43 @@ describe('referral loop', () => {
       expect(ledger.insert).toHaveBeenCalledWith(expect.objectContaining({ student_id: 'student-1', delta: REFERRAL_INVITEE_CREDITS }))
       expect(updateChain.update).toHaveBeenCalledWith(expect.objectContaining({ rewarded: true }))
       expect(alertMock).not.toHaveBeenCalled()
+    })
+
+    it('the offer is exactly 5 credits (the UI copy and the grant share this constant)', () => {
+      // Every other assertion compares against the constant, so changing it
+      // to 50 kept the suite green. Pin the number the owner set.
+      expect(REFERRAL_INVITEE_CREDITS).toBe(5)
+    })
+
+    it('never pays the inviter, even when every inviter write would succeed', async () => {
+      // The FIFO-queue test above ran out of study_subscriptions entries
+      // after one inviter read, so a re-added inviter grant (provision +
+      // grant = two reads) failed silently and the test stayed green. Here
+      // every read finds a row and every write lands, so any inviter grant
+      // would be visible.
+      let redemptionCall = 0
+      const ledgerInserts: unknown[] = []
+      fromMock.mockImplementation((table: string) => {
+        if (table === 'study_referral_redemptions') {
+          redemptionCall++
+          return chain(redemptionCall === 1 ? { data: null } : { data: { id: 'redemption-1' } })
+        }
+        if (table === 'study_referral_codes') return chain({ data: { student_id: 'referrer-1' } })
+        if (table === 'study_subscriptions') return chain({ data: { student_id: 'exists' } })
+        if (table === 'study_credit_ledger') {
+          const c = chain({ error: null })
+          c.insert.mockImplementation((row: unknown) => { ledgerInserts.push(row); return c })
+          return c
+        }
+        return chain()
+      })
+
+      const res = await POST(makeRequest({ code: 'abc234' }))
+      expect(res.status).toBe(200)
+      expect(rpcMock.mock.calls).toEqual([
+        ['increment_study_purchased_credits', { p_student_id: 'student-1', p_delta: 5 }],
+      ])
+      expect(ledgerInserts).toEqual([expect.objectContaining({ student_id: 'student-1', delta: 5 })])
     })
 
     it('does NOT mark rewarded (and alerts critical) when the grant fails', async () => {
