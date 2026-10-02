@@ -18,8 +18,11 @@ import type { SpeechSignals, SubmitResult, TestPayload } from './types'
  */
 export function ReviewView({
   test, answers, answerAudioPaths, answerSpeechSignals, speakingGradeMode, result, ko, sessionId,
-  moduleRoute = null, gradingOpenResponses = false,
+  moduleRoute = null, gradingOpenResponses = false, elapsedSeconds = null,
 }: {
+  /** The elapsed clock sent with the submit. Exact, unlike the per-row
+   *  value submit derives from it. */
+  elapsedSeconds?: number | null
   test: TestPayload
   answers: (string | null)[]
   /** Per-question audio storage paths captured during Speaking. */
@@ -76,6 +79,7 @@ export function ReviewView({
         sessionId={sessionId}
         ko={ko}
         gradingOpenResponses={gradingOpenResponses}
+        elapsedSeconds={elapsedSeconds}
         sat={result.sat ? { score: result.sat.score, capped: !!result.sat.capped } : null}
         // Adaptive only. `moduleBreakIdx` is the payload's CARD index of
         // the first Module 2 item; on a non-adaptive test it is absent

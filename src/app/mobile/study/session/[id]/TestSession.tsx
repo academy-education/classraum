@@ -101,6 +101,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   } | null>(null)
   const [gridOpen, setGridOpen] = useState(false)
   const [result, setResult] = useState<SubmitResult | null>(null)
+  /** The elapsed clock that was SENT with the submit, so the result
+   *  screen's time line is the same number the server divided out. */
+  const [submittedElapsed, setSubmittedElapsed] = useState<number | null>(null)
   /** Batch grading of open responses runs after submit — see the call
    *  site. Drives the result screen's "scoring your responses" state. */
   const [gradingOpenResponses, setGradingOpenResponses] = useState(false)
@@ -881,6 +884,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         throw new Error(detail)
       }
       const json = await res.json() as SubmitResult
+      setSubmittedElapsed(elapsedSeconds)
       setResult(json)
       // Grade every open response for this test in ONE request, as part
       // of submitting.
@@ -1337,6 +1341,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         ko={ko}
         sessionId={sessionId}
         moduleRoute={moduleRoute}
+        elapsedSeconds={submittedElapsed}
         // Batch grading is fired on submit and keeps running while this
         // screen is already up; the result view says so on the rubric row.
         gradingOpenResponses={gradingOpenResponses}

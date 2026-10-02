@@ -5929,6 +5929,21 @@
         "question": "question",
         "reviewItems": "{count} items",
         "reviewItem": "1 item"
+      },
+      "badges": {
+        "experimental": "Experimental — not counted in your score",
+        "rubric": "Graded separately by rubric",
+        "unscored": "Not scored — the real test does not score it either"
+      },
+      "timing": {
+        "eyebrow": "Time",
+        "perQuestion": "About {time} per question",
+        "total": "{time} in total across {count} questions",
+        "evenNote": "Time is recorded for the whole test, not question by question, so this is your average pace. Time per task type is not available.",
+        "perTaskTitle": "Average time per question, by task",
+        "taskDetail": "{count} timed",
+        "minutesSeconds": "{m}m {s}s",
+        "seconds": "{s}s"
       }
     }
   },

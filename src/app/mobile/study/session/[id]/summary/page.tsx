@@ -261,6 +261,9 @@ function SummaryInner({ id }: { id: string }) {
         // elsewhere. Distinct from a wrong answer and from a pilot.
         ungraded: a.is_correct === null,
         position: a.position,
+        // Read only through testTiming: it is the even split of the
+        // session clock, not a per-question measurement.
+        timeSpentSeconds: a.time_spent_seconds,
       })),
     })
     return (
