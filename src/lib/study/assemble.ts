@@ -10,6 +10,7 @@ import {
 import type { Question, QuestionType } from '@/lib/test-verify'
 import { shuffleChoices } from '@/lib/test-verify'
 import { capWarmupItems } from '@/lib/study/toefl-warmup'
+import { bandTier, chooseExactFill, setScore } from '@/lib/study/toefl-pack'
 
 /**
  * Randomise choice order AT DRAW TIME, for every bank-assembled test.
@@ -290,15 +291,47 @@ export interface AssembleParams {
  *  Exposures written by `excludeSessionId` are ignored — a session
  *  re-drawing its own questions (practice re-mount) must get the same
  *  set back, not treat its own draw as "already seen". */
-async function loadExposures(studentId: string, excludeSessionId?: string): Promise<Map<string, string>> {
-  const { data } = await dbAdmin
-    .from('study_item_exposures')
-    .select('item_id, seen_at, session_id')
-    .eq('student_id', studentId)
+/*
+ * PAGED (2026-10-02). This was one unpaged read, so PostgREST's 1000-row
+ * cap silently dropped every exposure past the first 1000 — and an item
+ * missing from this map ranks as UNSEEN, so a heavy student was served
+ * repeats as if they were fresh. The ledger is one row per (student, item)
+ * across every family, so it reaches 1000 in ~10 TOEFL sittings
+ * (toefl-form-depth.ts: 1111 rows at upper/medium's 11th).
+ *
+ * Why not a narrower read (only this family/section, or only a recent
+ * window)? A time window is exactly the bug: dropping an old exposure
+ * turns that item unseen, and seen_at is also the recycling order once a
+ * pool is exhausted, so every row is needed. Scoping by family/section
+ * would shrink the read but still exceed 1000 on one section (SAT R&W
+ * holds 1000+ items) — it does not remove the need to page, and it would
+ * add a join to the hot path. So: all rows, only the three columns, paged.
+ *
+ * (student_id, item_id) is unique, so ordering by item_id is a total
+ * order — required for range() to page rather than overlap. A failed page
+ * is logged and the read stops there; the map then holds what was read,
+ * which can only under-report exposure (the pre-existing failure mode).
+ */
+export const EXPOSURE_PAGE = 1000
+export async function loadExposures(studentId: string, excludeSessionId?: string): Promise<Map<string, string>> {
   const map = new Map<string, string>()
-  for (const r of data ?? []) {
-    if (excludeSessionId && r.session_id === excludeSessionId) continue
-    map.set(r.item_id as string, r.seen_at as string)
+  for (let from = 0; ; from += EXPOSURE_PAGE) {
+    const { data, error } = await dbAdmin
+      .from('study_item_exposures')
+      .select('item_id, seen_at, session_id')
+      .eq('student_id', studentId)
+      .order('item_id', { ascending: true })
+      .range(from, from + EXPOSURE_PAGE - 1)
+    if (error) {
+      console.error('[assemble] exposure read failed', { studentId, from, error })
+      break
+    }
+    const page = data ?? []
+    for (const r of page) {
+      if (excludeSessionId && r.session_id === excludeSessionId) continue
+      map.set(r.item_id as string, r.seen_at as string)
+    }
+    if (page.length < EXPOSURE_PAGE) break
   }
   return map
 }
@@ -930,17 +963,20 @@ export async function assembleToeflFromBank(
   seed = 'bank',
 ): Promise<AssembledTest> {
   const meta = TOEFL_META[p.section]
-  let query = dbAdmin
-    .from('study_item_bank')
-    .select('id, item_type, item, difficulty')
-    .eq('family', 'toefl')
-    .eq('section', p.section)
-    .eq('verified', true)
-    .eq('archived', false)
-  // Single-domain drill: filter in SQL rather than after the fetch, so
-  // an empty domain fails on its own row count instead of quietly
-  // producing a short test.
-  if (p.domain) query = query.eq('domain', p.domain)
+  const bankQuery = (withCount: boolean) => {
+    let q = dbAdmin
+      .from('study_item_bank')
+      .select('id, item_type, item, difficulty', withCount ? { count: 'exact' } : undefined)
+      .eq('family', 'toefl')
+      .eq('section', p.section)
+      .eq('verified', true)
+      .eq('archived', false)
+    // Single-domain drill: filter in SQL rather than after the fetch, so
+    // an empty domain fails on its own row count instead of quietly
+    // producing a short test.
+    if (p.domain) q = q.eq('domain', p.domain)
+    return q
+  }
   // Difficulty banding is a MODULE-2 concept (module 1 is the fixed
   // mixed-difficulty form everyone takes), and it is applied below as a
   // PREFERENCE, not a filter.
@@ -956,14 +992,39 @@ export async function assembleToeflFromBank(
   // A student performing badly is exactly who must not be handed a
   // malformed test. Adaptivity we cannot materialise degrades to the
   // correct test SHAPE, drawn from whatever the bank has.
-  const { data, error } = await query
-    // Authoring order = insertion order. A Take-an-Interview set is
-    // banked 1→N in ETS's escalation order (personal experience →
-    // policy/prediction), and nothing else in the row carries that
-    // sequence, so the draw must start from a stable authored order.
-    .order('created_at', { ascending: true })
-  if (error) throw new Error(`toefl assemble query failed: ${error.message}`)
-  const rows = (data ?? []).flatMap(row => {
+  //
+  // PAGED (2026-10-02). This read was a single unpaged query, and PostgREST
+  // caps a response at 1000 rows: Listening holds 837 verified rows, so the
+  // next few batches would have silently dropped the newest items from
+  // every draw. Paging needs a TOTAL order — `range()` over a non-unique
+  // sort is not paging (bank-register: 1222 rows fetched, 1057 distinct) —
+  // so `id` breaks created_at ties. The exact count is read with the first
+  // page and the result is asserted against it, distinct ids included.
+  const PAGE = 1000
+  const data: Array<{ id: string; item_type: string; item: unknown; difficulty: string | null }> = []
+  let expected: number | null = null
+  for (let from = 0; ; from += PAGE) {
+    const res = await bankQuery(from === 0)
+      // Authoring order = insertion order. A Take-an-Interview set is
+      // banked 1→N in ETS's escalation order (personal experience →
+      // policy/prediction), and nothing else in the row carries that
+      // sequence, so the draw must start from a stable authored order.
+      .order('created_at', { ascending: true })
+      .order('id', { ascending: true })
+      .range(from, from + PAGE - 1)
+    if (res.error) throw new Error(`toefl assemble query failed: ${res.error.message}`)
+    if (from === 0) expected = res.count ?? null
+    const page = res.data ?? []
+    data.push(...page)
+    if (page.length < PAGE) break
+  }
+  if (expected !== null && data.length !== expected) {
+    throw new Error(`toefl assemble: read ${data.length} toefl/${p.section} rows, bank count says ${expected}`)
+  }
+  if (new Set(data.map(r => r.id)).size !== data.length) {
+    throw new Error(`toefl assemble: duplicate rows across pages for toefl/${p.section} — paging is not on a total order`)
+  }
+  const rows = data.flatMap(row => {
     const item = readBankItem(row.item)
     if (!item) {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
@@ -1118,16 +1179,29 @@ export async function assembleToeflFromBank(
    *  passages once the count is taken. A SET is in-band when at least half
    *  its items are, and it moves as one. Singleton sets reduce to the
    *  item-level rule exactly. */
+  //
+  // THE BAND RULE (2026-10-02). A routed module 2 ranks sets in three tiers
+  // (see bandTier): IN band (>= half its items in the routed bands),
+  // ADJACENT (some but < half — it straddles into the route), CROSS (none).
+  // `takeGroups` then scores whole fills with setScore, which orders:
+  //   never use a CROSS set while an exact fill without one exists
+  //   > freshness (an UNSEEN adjacent set beats a SEEN in-band set)
+  //   > in-band over adjacent.
+  // So freshness may reach one band over before a repeat, but never across
+  // the route: an upper/hard module 2 (medium+hard) does not get an
+  // all-easy set to avoid a repeat, and an easy module 2 does not get an
+  // all-hard one. A CROSS set is still the last resort when nothing else
+  // fills the quota at all — a short module is a malformed test (see the
+  // query note above), and that guarantee predates this rule.
+  const wantedBands: Set<string> | null =
+    p.module === 2 && p.difficulties?.length ? new Set<string>(p.difficulties) : null
+  const tierOf = (g: Group) => bandTier(g.rows.map(r => r.difficulty), wantedBands)
   const bandPreferredGroups = (groups: Group[], type: string): Group[] => {
-    if (p.module !== 2 || !p.difficulties?.length) return orderGroups(groups, seed + type)
-    const want = new Set<string>(p.difficulties)
-    const inBand = (g: Group) => {
-      const hits = g.rows.filter(r => r.difficulty !== null && want.has(r.difficulty)).length
-      return hits * 2 >= g.rows.length
-    }
+    if (!wantedBands) return orderGroups(groups, seed + type)
     return [
-      ...orderGroups(groups.filter(inBand), seed + type),
-      ...orderGroups(groups.filter(g => !inBand(g)), seed + type + ':fallback'),
+      ...orderGroups(groups.filter(g => tierOf(g) === 'in'), seed + type),
+      ...orderGroups(groups.filter(g => tierOf(g) !== 'in'), seed + type + ':fallback')
+        .sort((a, b) => (tierOf(a) === 'cross' ? 1 : 0) - (tierOf(b) === 'cross' ? 1 : 0)),
     ]
   }
 
@@ -1145,6 +1219,27 @@ export async function assembleToeflFromBank(
    *  whole module, which today only exist because `passageGroupId` is
    *  corrupt (one Reading "set" holds 108 items over 28 passages). */
   const takeGroups = (ranked: Group[], n: number, strict = false): Row[] => {
+    // EXACT FILL FIRST (2026-10-02). Choose the combination of whole sets
+    // that fills `n` exactly and scores best under setScore (no cross-route
+    // sets if avoidable, then most unseen items, then most in-band, then
+    // fewest sets), ties to
+    // the earliest-ranked sets. This replaces "greedy in rank order, then
+    // back-fill the slack with whatever is next" — which against a quota of
+    // 6 took an unseen 4-set and then a SEEN 2-set while two unseen 3-sets
+    // sat in the bank, and repeated Announcement at the 4th lower-path
+    // sitting with 85 unseen items left (toefl-form-depth.ts). Last level:
+    // fewer sets, so the small sets that are the only fillers for a quota
+    // are not burnt three at a time. Only if NO exact fill exists does the
+    // old best-effort path below run (strict: come up short; else truncate).
+    const exact = chooseExactFill(
+      ranked.map(g => ({
+        size: g.rows.length,
+        score: setScore(g.rows.length, g.rows.some(r => exposures.has(r.id)), tierOf(g)),
+      })),
+      n,
+    )
+    if (exact) return exact.flatMap(i => ranked[i]!.rows)
+
     const out: Row[] = []
     const leftover: Group[] = []
     for (const g of ranked) {
