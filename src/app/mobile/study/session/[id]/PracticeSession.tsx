@@ -560,7 +560,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
                 </p>
               )}
             </div>
-            {/* Interactive follow-up: step-by-step, simpler, or ask. */}
+            {/* Interactive follow-up: Explain more, or ask. */}
             <ExplainMore
               prompt={q.prompt}
               choices={q.type === 'multiple_choice' ? (q.choices ?? undefined) : undefined}

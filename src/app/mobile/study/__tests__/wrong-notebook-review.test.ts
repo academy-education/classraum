@@ -186,7 +186,7 @@ describe('saved explanations are kept per language', () => {
     // Keyed by attempt alone it would silently keep whichever row came back
     // last — the same data loss in a new place.
     expect(ROUTE).toMatch(/\$\{e\.attempt_id as string\}:\$\{lang\}/)
-    expect(ROUTE).toMatch(/select\('attempt_id, language, steps, simpler, followup, followup_question'\)/)
+    expect(ROUTE).toMatch(/\.select\(SAVED_EXPLANATION_SELECT\)/)
   })
 
   it('SERVER AND CLIENT PAYLOAD SHAPES AGREE — nothing in the compiler relates them', () => {

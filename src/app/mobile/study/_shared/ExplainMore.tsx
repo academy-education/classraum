@@ -8,8 +8,8 @@ import { hapticSelection } from '@/lib/nativeHaptics'
 /**
  * On-demand follow-up explanations for a single graded question. Sits
  * under the grader's static explanation (practice feedback, wrong
- * notebook) and lets the student pull a step-by-step walkthrough, a simpler
- * re-explanation, or ask their own question — each one short model call to
+ * notebook) and lets the student pull an "Explain more" walkthrough of every
+ * choice, or ask their own question — each one short model call to
  * /api/study/explain.
  *
  * The student picks the explanation language (English / 한국어) via a small
@@ -17,8 +17,7 @@ import { hapticSelection } from '@/lib/nativeHaptics'
  * (mode, language), so switching languages lets them get the other one.
  *
  * When `attemptId` is passed (wrong-answer notebook) the generated text +
- * its language are persisted and re-seeded here via `savedSteps` /
- * `savedSimpler`, so the explanation stays visible across reloads without
+ * its language are persisted and re-seeded here via `saved`, so the explanation stays visible across reloads without
  * re-billing.
  */
 
@@ -46,13 +45,15 @@ interface Props {
    *  paid for. Language is part of the key now, so both come back. */
   saved?: Record<Lang, {
     steps: string | null
-    simpler: string | null
+    /** "Explain more". Deliberately NOT the old `simpler` column, which holds
+     *  the retired "Explain simply" prompt's output. */
+    more: string | null
     followup: string | null
     followup_question: string | null
   }>
 }
 
-type Mode = 'steps' | 'simpler' | 'followup'
+type Mode = 'steps' | 'more' | 'followup'
 
 /** The canned modes are one billed call each, so they are allowed once per
  *  question and language. A free-text follow-up is open-ended, so it gets a
@@ -70,7 +71,7 @@ export function ExplainMore({
 }: Props) {
   const label = (mode: Mode, l: Lang, question?: string) =>
     mode === 'steps'   ? (l === 'ko' ? '단계별 풀이' : 'Step-by-step')
-    : mode === 'simpler' ? (l === 'ko' ? '더 자세히 설명' : 'Explain more')
+    : mode === 'more'    ? (l === 'ko' ? '더 자세히 설명' : 'Explain more')
     // A follow-up is labelled with what was asked — the answer alone reads
     // as a reply to nothing once the page has been reloaded.
     : (question?.trim() || (l === 'ko' ? '추가 질문' : 'Your question'))
@@ -81,7 +82,7 @@ export function ExplainMore({
    * to a card sees an empty panel beside a toggle that would reveal their
    * own saved work. */
   const [lang, setLang] = useState<Lang>(() => {
-    const has = (l: Lang) => Boolean(saved?.[l]?.steps || saved?.[l]?.simpler || saved?.[l]?.followup)
+    const has = (l: Lang) => Boolean(saved?.[l]?.steps || saved?.[l]?.more || saved?.[l]?.followup)
     const other: Lang = language === 'ko' ? 'en' : 'ko'
     return has(language) || !has(other) ? language : other
   })
@@ -99,7 +100,7 @@ export function ExplainMore({
       const blk = saved?.[l]
       if (!blk) continue
       if (blk.steps) out.push({ id: ++seq, mode: 'steps', lang: l, label: label('steps', l), text: blk.steps, loading: false })
-      if (blk.simpler) out.push({ id: ++seq, mode: 'simpler', lang: l, label: label('simpler', l), text: blk.simpler, loading: false })
+      if (blk.more) out.push({ id: ++seq, mode: 'more', lang: l, label: label('more', l), text: blk.more, loading: false })
       if (blk.followup) out.push({ id: ++seq, mode: 'followup', lang: l, label: label('followup', l, blk.followup_question ?? undefined), text: blk.followup, loading: false })
     }
     return out
@@ -113,7 +114,7 @@ export function ExplainMore({
   // in the selected language. Switching language re-enables the buttons.
   const spent = (mode: Mode) => items.some(it => it.mode === mode && it.lang === lang && !it.error)
 
-  const simplerUsed = spent('simpler')
+  const moreUsed = spent('more')
   const ko = lang === 'ko'
 
   const run = async (mode: Mode, question?: string) => {
@@ -185,12 +186,12 @@ export function ExplainMore({
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"
-          onClick={() => void run('simpler')}
-          disabled={busy || simplerUsed}
+          onClick={() => void run('more')}
+          disabled={busy || moreUsed}
           className="tap-target-y inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[13px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
         >
-          {simplerUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Lightbulb className="w-3.5 h-3.5" />}
-          {label('simpler', lang)}
+          {moreUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Lightbulb className="w-3.5 h-3.5" />}
+          {label('more', lang)}
         </button>
       </div>
 

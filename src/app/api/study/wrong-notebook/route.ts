@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
+import { EMPTY_SAVED, SAVED_EXPLANATION_SELECT, savedFromRow, type SavedExplanation } from '@/lib/study/saved-explanations'
 
 /**
  * GET /api/study/wrong-notebook — full wrong-answer notebook for the
@@ -41,15 +42,6 @@ interface NotebookQuestion {
   passage?: string | null
   passageGroupId?: string | null
 }
-
-interface SavedExplanation {
-  steps: string | null
-  simpler: string | null
-  followup: string | null
-  followup_question: string | null
-}
-
-const EMPTY_SAVED: SavedExplanation = { steps: null, simpler: null, followup: null, followup_question: null }
 
 interface NotebookEntry {
   attempt_id: string
@@ -120,12 +112,12 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  // Saved on-demand explanations (step-by-step / simpler), joined in the
+  // Saved on-demand explanations (step-by-step / Explain more), joined in the
   // same one-round-trip style as notes.
   const { data: explanations } = attemptIds.length > 0
     ? await dbAdmin
         .from('study_attempt_explanations')
-        .select('attempt_id, language, steps, simpler, followup, followup_question')
+        .select(SAVED_EXPLANATION_SELECT)
         .eq('student_id', user.id)
         .in('attempt_id', attemptIds)
     : { data: [] }
@@ -135,12 +127,7 @@ export async function GET(req: NextRequest) {
   const explainMap = new Map<string, SavedExplanation>()
   for (const e of (explanations ?? [])) {
     const lang = e.language === 'ko' ? 'ko' : 'en'
-    explainMap.set(`${e.attempt_id as string}:${lang}`, {
-      steps: (e.steps as string | null) ?? null,
-      simpler: (e.simpler as string | null) ?? null,
-      followup: (e.followup as string | null) ?? null,
-      followup_question: (e.followup_question as string | null) ?? null,
-    })
+    explainMap.set(`${e.attempt_id as string}:${lang}`, savedFromRow(e as Record<string, unknown>))
   }
 
   const seen = new Set<string>()

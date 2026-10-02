@@ -3017,6 +3017,7 @@ export type Database = {
         Row: {
           attempt_id: string
           language: string
+          more: string | null
           followup: string | null
           followup_question: string | null
           simpler: string | null
@@ -3027,6 +3028,7 @@ export type Database = {
         Insert: {
           attempt_id: string
           language?: string
+          more?: string | null
           followup?: string | null
           followup_question?: string | null
           simpler?: string | null
@@ -3037,6 +3039,7 @@ export type Database = {
         Update: {
           attempt_id?: string
           language?: string
+          more?: string | null
           followup?: string | null
           followup_question?: string | null
           simpler?: string | null
