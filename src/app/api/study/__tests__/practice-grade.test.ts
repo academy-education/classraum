@@ -71,11 +71,11 @@ describe('POST /api/study/practice/grade', () => {
     enqueue('study_messages', {
       data: { content: '[practice-v1]' + JSON.stringify({ questions: [serverQ] }) },
     })
-    const attemptsChain = enqueue('study_attempts', { error: null })
+    const attemptsChain = enqueue('study_attempts', { data: { id: 'att-1' }, error: null })
 
     const res = await POST(makeRequest(gradeBody(clientQ, 'A')))
     expect(res.status).toBe(200)
-    expect(await res.json()).toEqual({ isCorrect: false, aiExplanation: 'server explanation', xpAwarded: 0 })
+    expect(await res.json()).toEqual({ isCorrect: false, aiExplanation: 'server explanation', xpAwarded: 0, attemptId: 'att-1' })
     // The attempt persists the SERVER copy of the question
     expect(attemptsChain.insert).toHaveBeenCalledWith(expect.objectContaining({
       is_correct: false,
@@ -131,6 +131,42 @@ describe('POST /api/study/practice/grade', () => {
     expect(res.status).toBe(500)
     expect(await res.json()).toEqual({ error: 'served batch unreadable' })
     expect(fromMock).not.toHaveBeenCalledWith('study_attempts')
+  })
+
+  // "Explain more" in practice is saved against this id; before it was
+  // returned, every practice explanation was shown once and lost.
+  it('returns the id of the attempt it just recorded', async () => {
+    enqueue('study_sessions', { data: SESSION })
+    enqueue('study_messages', {
+      data: { content: '[practice-v1]' + JSON.stringify({ questions: [mcQuestion('What is X?', 'B')] }) },
+    })
+    const insert = enqueue('study_attempts', { data: { id: 'att-42' }, error: null })
+    const res = await POST(makeRequest(gradeBody(mcQuestion('What is X?', 'B'), 'A')))
+    expect((await res.json()).attemptId).toBe('att-42')
+    expect(insert.insert).toHaveBeenCalled()
+    expect(insert.select).toHaveBeenCalledWith('id')
+  })
+
+  it('returns the id on the short-answer (AI judge) path too', async () => {
+    const { generateObject } = jest.requireMock('ai') as { generateObject: jest.Mock }
+    generateObject.mockResolvedValueOnce({ object: { isCorrect: false, aiExplanation: 'nope' } })
+    const saQ = { ...mcQuestion('Name X.', 'x'), type: 'short_answer' as const, choices: null }
+    enqueue('study_sessions', { data: SESSION })
+    enqueue('study_messages', { data: { content: '[practice-v1]' + JSON.stringify({ questions: [saQ] }) } })
+    enqueue('study_attempts', { data: { id: 'att-sa' }, error: null })
+    const res = await POST(makeRequest(gradeBody(saQ, 'y')))
+    expect(await res.json()).toEqual(expect.objectContaining({ isCorrect: false, attemptId: 'att-sa' }))
+  })
+
+  it('returns attemptId null (never a guess) when the attempt was not recorded', async () => {
+    enqueue('study_sessions', { data: SESSION })
+    enqueue('study_messages', {
+      data: { content: '[practice-v1]' + JSON.stringify({ questions: [mcQuestion('What is X?', 'B')] }) },
+    })
+    enqueue('study_attempts', { data: { id: 'att-ghost' }, error: { message: 'insert failed' } })
+    const res = await POST(makeRequest(gradeBody(mcQuestion('What is X?', 'B'), 'A')))
+    expect(res.status).toBe(200)
+    expect((await res.json()).attemptId).toBeNull()
   })
 
   it('returns 404 for another student\'s session', async () => {

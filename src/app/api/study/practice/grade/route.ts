@@ -183,7 +183,14 @@ export async function POST(req: NextRequest) {
   // unchecked failure showed the student a verdict that then existed
   // nowhere. We still return the verdict they're waiting on — the LLM call
   // is already paid for — but the loss is no longer silent.
-  const { error: attemptErr } = await dbAdmin
+  //
+  // The id comes back to the client so "Explain more" / follow-ups asked on
+  // the feedback screen are saved against THIS attempt (the explain route
+  // re-checks ownership). Without it practice explanations were generated,
+  // shown once and lost — only the wrong-answer notebook ever saved. This is
+  // the ONLY server writer of a practice attempt: both grading branches above
+  // (deterministic MC/TF and the short-answer judge) fall through to here.
+  const { data: attemptRow, error: attemptErr } = await dbAdmin
     .from('study_attempts')
     .insert({
       session_id: sessionId,
@@ -194,6 +201,11 @@ export async function POST(req: NextRequest) {
       ai_explanation: aiExplanation,
       time_spent_seconds: typeof timeSpentSeconds === 'number' ? timeSpentSeconds : null,
     })
+    .select('id')
+    .single()
+  // Null when the write failed: the client then has nothing to save against
+  // and the explanation is simply not persisted — never a made-up id.
+  const attemptId = !attemptErr && typeof attemptRow?.id === 'string' ? attemptRow.id : null
   if (attemptErr) {
     console.error('[practice/grade] attempt not recorded', {
       sessionId, studentId: user.id, prompt: gradedQ.prompt.slice(0, 120), isCorrect, error: attemptErr,
@@ -219,5 +231,5 @@ export async function POST(req: NextRequest) {
     })
   }
 
-  return NextResponse.json({ isCorrect, aiExplanation, xpAwarded })
+  return NextResponse.json({ isCorrect, aiExplanation, xpAwarded, attemptId })
 }
