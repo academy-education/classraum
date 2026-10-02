@@ -1,0 +1,68 @@
+[
+ {
+  "id": "SM20A-C1",
+  "domain": "Advanced Math",
+  "subskill": "Radical equation with an extraneous root: value of a derived expression",
+  "difficulty": "medium",
+  "prompt": "√(7x + 46) = x + 4\n\nWhat is the value of x², where x is the solution to the equation above?",
+  "choices": [
+   "25",
+   "36",
+   "49",
+   "100"
+  ],
+  "correct_answer": "25",
+  "explanation": "Square both sides: 7x + 46 = (x + 4)² = x² + 8x + 16, so x² + x − 30 = 0, which factors as (x + 6)(x − 5) = 0. The candidates are x = −6 and x = 5. Check x = −6 in the original equation: the left side is √(−42 + 46) = √4 = 2, but the right side is −6 + 4 = −2, so x = −6 is extraneous. Check x = 5: the left side is √81 = 9 and the right side is 5 + 4 = 9, so x = 5 is the solution, and x² = 25. The value 36 comes from keeping the extraneous candidate x = −6 and squaring it. The value 100 comes from squaring the right side as x² + 16 instead of x² + 8x + 16, which gives x² − 7x − 30 = 0 and the positive root x = 10. The value 49 comes from squaring only the left side, 7x + 46 = x + 4, which gives x = −7.",
+  "bounds": [],
+  "solve": "const xs=[-6,5].filter(x=>x*x+x-30===0&&Math.sqrt(7*x+46)===x+4); return xs[0]**2;",
+  "distractor_solve": {
+   "36": "const x=(-1-Math.sqrt(1+120))/2; return x*x;",
+   "49": "const x=(4-46)/(7-1); return x*x;",
+   "100": "const x=(7+Math.sqrt(49+120))/2; return x*x;"
+  }
+ },
+ {
+  "id": "SM20A-C2",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: constant exponent in an equivalent form",
+  "difficulty": "medium",
+  "prompt": "(x^a)(⁴√(x³)) / √x = x^(5/2)\n\nThe equation above is true for all x > 0, where a is a constant. What is the value of a?",
+  "choices": [
+   "1/2",
+   "5/4",
+   "5/3",
+   "9/4"
+  ],
+  "correct_answer": "9/4",
+  "explanation": "Write each radical as a power of x: ⁴√(x³) = x^(3/4) and √x = x^(1/2). Multiplying powers adds exponents and dividing subtracts them, so the left side is x^(a + 3/4 − 1/2) = x^(a + 1/4). Setting a + 1/4 = 5/2 gives a = 10/4 − 1/4 = 9/4. The value 5/3 comes from rewriting ⁴√(x³) as x^(4/3), with the index and the power swapped, which gives a + 4/3 − 1/2 = 5/2. The value 5/4 comes from adding the exponent of √x instead of subtracting it, a + 3/4 + 1/2 = 5/2. The value 1/2 comes from dividing the exponents instead of subtracting them, (a + 3/4) ÷ (1/2) = 5/2, which gives a + 3/4 = 5/4.",
+  "bounds": [],
+  "solve": "return 5/2 + 1/2 - 3/4;",
+  "distractor_solve": {
+   "5/3": "return 5/2 + 1/2 - 4/3;",
+   "5/4": "return 5/2 - 3/4 - 1/2;",
+   "1/2": "return (5/2)*(1/2) - 3/4;"
+  }
+ },
+ {
+  "id": "SM20A-C3",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic from vertex and a point: another output value",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of the quadratic function f has its vertex at (−2, 12) and passes through the point (0, 16). What is the value of f(−5)?",
+  "choices": [
+   "21",
+   "30",
+   "48",
+   "61"
+  ],
+  "correct_answer": "21",
+  "explanation": "Because the vertex is (−2, 12), f can be written as f(x) = a(x + 2)² + 12. Substituting the point (0, 16) gives 16 = a(2)² + 12, so 4a = 4 and a = 1. Then f(−5) = 1(−5 + 2)² + 12 = 9 + 12 = 21. The value 61 comes from writing the vertex form as a(x − 2)² + 12 with the sign of the vertex's x-coordinate reversed, which still gives a = 1 but makes f(−5) = (−7)² + 12. The value 48 comes from leaving out the vertex's y-value when solving for a, 16 = 4a, so a = 4 and f(−5) = 4(9) + 12. The value 30 comes from not squaring (0 + 2) when solving for a, 16 = 2a + 12, so a = 2 and f(−5) = 2(9) + 12.",
+  "bounds": [],
+  "solve": "const h=-2,k=12,p=0,y=16; const a=(y-k)/((p-h)**2); return a*(-5-h)**2+k;",
+  "distractor_solve": {
+   "30": "const a=(16-12)/(0+2); return a*(-5+2)**2+12;",
+   "48": "const a=16/((0+2)**2); return a*(-5+2)**2+12;",
+   "61": "const a=(16-12)/((0-2)**2); return a*(-5-2)**2+12;"
+  }
+ }
+]

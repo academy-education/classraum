@@ -1,0 +1,72 @@
+{
+ "SM21A-B1": {
+  "my_answer": "16224",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "10080 is the product of the two printed numbers (20 x 504), the revenue at the starting price. One glance, plus one multiplication if you want proof, kills it: a single $2 increase gives 22 x 492 = 10824 > 10080, so the start price cannot be the maximum. No other strike. No member of {11532, 15624, 16224} is a sum, difference, mean or double of the others (differences 4092, 4692, 600). 11532 is not divisible by 24 while R = 24(10+n)(42-n) always is, but you only see that after factoring, so it does not count. Soft batch-level tell, not a strike: the key is the LARGEST option on a 'maximum' stem (B5 has the same shape).",
+  "n_struck": 1,
+  "insight_bypassable": true,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: n = number of $2 raises, R = (20+2n)(504-12n), zeros n = -10 and 42, vertex n = 16, price $52, 312 tickets, R = 16224. Key correct and unique. Distractor paths check out: 11532 = 31 x 372 ($1 steps, vertex at n = 11); 15624 = 62 x 252 (maximizing 2n(504-12n), n = 21). Difficulty: medium. Building the model is the only real step. With Desmos, graphing (20+2x)(504-12x) and tapping the maximum finishes it, and no decision point catches a student who has the model. Blueprint: quadratic model and its maximum, Advanced Math. REPAIR (replace 10080; the key is the largest option, so the replacement must also be below the key): 13824 from a sign slip on the price zero. The student sets 20 + 2n = 0 as n = +10, averages 10 and 42 to get n = 26, and evaluates R(26) = 72 x 192 = 13824. distractor_solve: \"const n = (10 + 42) / 2; return (20 + 2*n) * (504 - 12*n);\". The set {11532, 13824, 15624, 16224} passes every class: no pairwise difference, sum or mean is in the set (differences 2292, 4092, 4692, 1800, 2400, 600; means 12678, 13578, 13878, 14724, 15024, 15924), and 13824 is not a product of printed numbers. 13824 = 24 x 24^2 shares the key's 24 x square form (16224 = 24 x 26^2), which hides the key's form rather than pointing at it. The largest-option tell remains, and same-side replacement cannot fix it. The author should decide whether some batch items need a distractor above the key."
+ },
+ "SM21A-B2": {
+  "my_answer": "17",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. The stem gives no sign or magnitude bound on the y-sum: the parabola's minimum is about -5.1 and the line is unbounded, so 1, 11 and 20 all survive. Closure: 20-17=3, 17-11=6, 20-11=9, 11-1=10, and no mean of two options is a third (9, 10.5, 14, 15.5, 18.5). Options are sums, so you cannot plug one back in. 1 equals the y-coordinate of the point (-2, 1), but you see that only after solving.",
+  "n_struck": 0,
+  "insight_bypassable": true,
+  "difficulty": "easy",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: 2x^2 + x - 5 = 3x + 7 gives x^2 - x - 6 = 0, so x = 3 or x = -2. The points are (3, 16) and (-2, 1), and the y-sum is 17. Key correct and unique. Distractor paths check out: 1 = x-sum; 11 = sign slip on -b/a; 20 = -b without dividing by a, 3(2) + 14. Difficulty: EASY. The quadratic factors at sight, and with Desmos the student graphs both curves, taps the two labelled integer intersections, and adds 16 + 1. That is one routine step with no decision point; the Vieta shortcut in the explanation is optional. Blueprint: linear-quadratic system, Advanced Math. Not a defect as a medium-or-easy commission, but report it as easy. If medium is wanted: change the constant so the roots are irrational, e.g. y = 2x^2 + x - 4 (giving 2x^2 - 2x - 11 = 0). The answer stays 17 and all three distractor paths reproduce unchanged (they depend only on the -2x coefficient and a = 2). Even then Desmos gives decimals that add to 17.000, so expect easy-medium at best. No option needs replacing."
+ },
+ "SM21A-B3": {
+  "my_answer": "6",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. a = 9 can be read off at a glance (18/2), but that fixes no option. Plugging x = 0 shows 3b + r = 11, so a + b + r = 20 - 2b, which is always even: all four options are even, so nothing dies. Closure: 14 is the mean of 6 and 22, which points at a distractor, not the key. 6 and 26 are symmetric about 16 (a + b with r = -10 or +10), an r/-r pair that shows a sign decision exists but not which side wins. No option is a sum or difference of two others (8, 12, 16, 20, 4 are not in the set). 14 = 70/5 is f(1), a combination of printed numbers, but striking it means knowing a + b + r is not f(1), which is the item's own content, so it does not count.",
+  "n_struck": 0,
+  "insight_bypassable": false,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: 18x^2 / 2x = 9x, leaving 14x + 11; 14x / 2x = 7, leaving 11 - 21 = -10. So a = 9, b = 7, r = -10, and a + b + r = 6. Cross-check by the remainder theorem: f(-3/2) = 40.5 - 61.5 + 11 = -10. Key correct and unique. Distractor paths all reproduce: 14 = f(1) = 70/5; 22 = synthetic division by -3/2 with quotient 18x + 14 left undivided, plus the same remainder -10; 26 = remainder sign reversed. Difficulty: medium. Long division by a non-monic linear factor is a careful two-step procedure, and Desmos offers no direct read (it cannot output a, b, r without algebra). The trap for 22, forgetting to halve the synthetic quotient, is real but is a slip, not a decision point. The key is the smallest option and the only one below 10. That is a lone-value position but not a structural tell, since the stem gives no reason to favor small values. Blueprint: equivalent rational expressions, Advanced Math. No repair needed."
+ },
+ "SM21A-B4": {
+  "my_answer": "3",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "33/2 dies at a glance: it is the printed 33 over the printed leading 2, i.e. -b/a of the visible pseudo-quadratic, and the only non-integer option. A test-wise student recognizes it as the 'sum of the u-roots' print and strikes it without doing any work. Nothing else dies by glance: -4, 3 and 5 are not sign-bounded by the stem (one u-root is below 1, so one x is negative), and no closure exists among them (5 + (-4) = 1, 5 - 3 = 2, 3 - (-4) = 7, means 0.5, -0.5, 4). Options are sums, so you cannot plug one back in.",
+  "n_struck": 1,
+  "insight_bypassable": true,
+  "difficulty": "easy",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: 2^(2x+1) = 2u^2 with u = 2^x, so 2u^2 - 33u + 16 = (2u - 1)(u - 16) = 0, u = 1/2 or 16, x = -1 or 4, sum 3. Key correct and unique; both u are positive, so there is no extraneous root. Distractor paths reproduce: -4 = product of the roots; 5 = |log2(1/2)| + 4; 33/2 = sum of the u's. Difficulty: EASY with Desmos. Graph y = 2^(2x+1) - 33(2^x) + 16 and Desmos labels the integer zeros -1 and 4, so the student adds them: one graph read, no decision point. Without a calculator it would be medium: you have to spot the substitution (the 2^(2x+1) = 2(2^x)^2 rewrite is the only real step). Blueprint: an exponential equation that is quadratic in disguise is a nonlinear equation in one variable, so it is on blueprint, though the Digital SAT rarely asks for this substitution. Mark it borderline-common, not off. REPAIR (replace 33/2; it sits above the key, so the replacement must be greater than 3): 4, from dropping the +1 in the exponent. The student treats 2^(2x+1) as (2^x)^2, solves u^2 - 33u + 16 = 0 (both roots positive real, discriminant 1025), and the u-product 16 = 2^(x1+x2) gives 4. The Desmos version of the same slip, graphing 2^(2x) - 33(2^x) + 16, shows zeros near -0.04 and 5.04, which also sum to 4, so the path is live on both routes. distractor_solve: \"const p = 16 / 1; return Math.log2(p);\". The set {-4, 3, 4, 5} has no printed-number option and no lone non-integer. It does have two patterns, and both point AWAY from the key: 4 is the mean of 3 and 5, and 4/-4 is an x/-x pair. 3 sits at the edge of the 3-4-5 run, not in the middle. No sum or difference of two options is a third. This repair does not lift difficulty; Desmos still reads -1 and 4."
+ },
+ "SM21A-B5": {
+  "my_answer": "39",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none by glance. Since c = f(0) >= -25, every option is admissible (-21 >= -25). Plugging back means b = -(9 + c)/3, then checking c - b^2/4 = -25, which takes several operations per option, not a glance. Closure: 4 - (-21) = 25 echoes the printed 25, but it links two distractors, not the key, and is consistent with the b = 4 case (b^2/4 - c = 25). No other sum, difference or mean lands in the set (60, 18, 9, 15, 20, 35, 43). Soft tell, not counted: the key is the LARGEST option on a 'greatest possible value' stem, and the lone negative (-21) is visibly the 'other case'. This is the same shape as B1.",
+  "n_struck": 0,
+  "insight_bypassable": true,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: f = (x - h)^2 - 25, zeros h - 5 and h + 5. With 3 as a zero, h = 8 or h = -2, so c = h^2 - 25 = 39 or -21; greatest 39. Direct route gives the same: 9 + 3b + c = 0 and c - b^2/4 = -25 lead to c^2 - 18c - 819 = 0, so c = 39 or -21. Key correct and unique. Distractor paths reproduce: -21 is the other case; 4 is b in the h = -2 case, the greatest b; 24 takes the zeros 5 apart, 3 x 8. Difficulty: MEDIUM, not hard. The item aims at the two-case decision, but the word 'greatest' tells the student up front that there are two values. Either obvious procedure (vertex form, or eliminating b) produces BOTH c-values automatically, and the student only takes the larger. A competent student running the obvious procedure lands on the key, not on -21. Desmos (vertex form with a slider h, or graphing the c-quadratic) also gives both values. Blueprint: quadratic function from its minimum and a zero, Advanced Math. Suggested change to reach hard, without replacing an option: drop 'greatest' and select the case by a condition that has to be checked, e.g. 'The vertex of the graph of f lies in quadrant IV. What is the value of c?' Then h > 0 forces h = 8 and c = 39. A student who takes the other zero as 3 - 10 = -7 (just as natural as 3 + 10), or who solves the c-quadratic and keeps the wrong root, lands on -21. Under that stem 'largest option' is no longer cued by the wording. The options {-21, 4, 24, 39} and all three distractor_solve bodies stay valid, since the 4 and 24 paths do not depend on 'greatest' (24: zeros 5 apart give h = 5.5 > 0, so other zero 8 and c = 24 even under the quadrant condition). Re-run every class on the new stem before accepting it."
+ }
+}

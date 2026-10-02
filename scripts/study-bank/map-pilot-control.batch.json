@@ -1,0 +1,170 @@
+[
+ {
+  "id": "f31cafab-bd90-4ecb-a47b-8f780772ced5",
+  "family": "isee",
+  "subskill": "synonym",
+  "cohort": "isee-verbal-s12",
+  "prompt": "BAFFLE",
+  "choices": [
+   "irritate",
+   "puzzle",
+   "persuade",
+   "discourage"
+  ],
+  "correct_answer": "puzzle"
+ },
+ {
+  "id": "ab28e172-db7e-4a73-84d8-b5788c8994d5",
+  "family": "isee",
+  "subskill": "synonym",
+  "cohort": "isee-verbal-s2",
+  "prompt": "[Synonym] PERIL",
+  "choices": [
+   "comfort",
+   "danger",
+   "journey",
+   "delay"
+  ],
+  "correct_answer": "danger"
+ },
+ {
+  "id": "c530b0f5-7331-43d6-b95c-531d69465167",
+  "family": "isee",
+  "subskill": "synonym",
+  "cohort": "isee-verbal-s12",
+  "prompt": "NIMBLE",
+  "choices": [
+   "sturdy",
+   "agile",
+   "upright",
+   "graceful"
+  ],
+  "correct_answer": "agile"
+ },
+ {
+  "id": "a4af4c87-b18a-42af-9419-a5061d88f9a9",
+  "family": "isee",
+  "subskill": "synonym",
+  "cohort": "isee-verbal-s12",
+  "prompt": "SPARSE",
+  "choices": [
+   "thinly scattered",
+   "crowded together",
+   "newly planted",
+   "evenly trimmed"
+  ],
+  "correct_answer": "thinly scattered"
+ },
+ {
+  "id": "2c355c9a-dd32-4367-801d-48234f7c66aa",
+  "family": "isee",
+  "subskill": "synonym",
+  "cohort": "isee-verbal-s2",
+  "prompt": "[Synonym] DRAB",
+  "choices": [
+   "sturdy",
+   "damp",
+   "noisy",
+   "dull"
+  ],
+  "correct_answer": "dull"
+ },
+ {
+  "id": "b3809623-e705-4d19-8515-34e0055b061e",
+  "family": "isee",
+  "subskill": "synonym",
+  "cohort": "isee-verbal-s2",
+  "prompt": "[Synonym] VACANT",
+  "choices": [
+   "tidy",
+   "crowded",
+   "empty",
+   "noisy"
+  ],
+  "correct_answer": "empty"
+ },
+ {
+  "id": "3030de5f-4c2c-4474-8f62-9ef8d50ab450",
+  "family": "isee",
+  "subskill": "sentence_completion",
+  "cohort": "isee-verbal-s2",
+  "prompt": "[Sentence Completion] Because the town's only bridge had washed out in the flood, residents were ------- from the highway until the county could rebuild it.",
+  "choices": [
+   "sheltered",
+   "transported",
+   "isolated",
+   "relieved"
+  ],
+  "correct_answer": "isolated"
+ },
+ {
+  "id": "0959a635-0f3b-4e0c-986e-f0a18039cd69",
+  "family": "isee",
+  "subskill": "sentence_completion",
+  "cohort": "isee-verbal-s10",
+  "prompt": "Every player on the under-twelve team was new to the sport, so the coach gave the first three practices over entirely to -------: how to hold the stick, where to stand, when to pass.",
+  "choices": [
+   "conditioning",
+   "scrimmages",
+   "strategy",
+   "fundamentals"
+  ],
+  "correct_answer": "fundamentals"
+ },
+ {
+  "id": "d07659ab-5271-4695-8f53-56b5ec2b8408",
+  "family": "isee",
+  "subskill": "sentence_completion",
+  "cohort": "isee-verbal-s3",
+  "prompt": "Although the museum's new wing was praised everywhere for its bold design, the older galleries remained ------- , with faded labels and burned-out lights.",
+  "choices": [
+   "crowded",
+   "neglected",
+   "renovated",
+   "celebrated"
+  ],
+  "correct_answer": "neglected"
+ },
+ {
+  "id": "0e4b5e23-3a5d-4977-b7aa-21103d10e0bb",
+  "family": "isee",
+  "subskill": "sentence_completion",
+  "cohort": "isee-verbal-s15",
+  "prompt": "[Sentence Completion] Physical therapists help injured athletes ------- lost strength; Aroha, for instance, spent eight weeks on gradually heavier leg presses until her knee could once again carry her through a full sprint.",
+  "choices": [
+   "rebuild",
+   "accept",
+   "measure",
+   "mourn"
+  ],
+  "correct_answer": "rebuild"
+ },
+ {
+  "id": "7d264058-1d11-4e3d-94a5-0ee43892534d",
+  "family": "isee",
+  "subskill": "sentence_completion",
+  "cohort": "isee-verbal-s12",
+  "prompt": "Adaeze read the assembly manual twice before she opened the box, laid all twenty-nine parts out on the floor in the order the diagram gave them, and had the shelf standing in forty minutes; her approach was -------.",
+  "choices": [
+   "methodical",
+   "inspired",
+   "improvised",
+   "fortunate"
+  ],
+  "correct_answer": "methodical"
+ },
+ {
+  "id": "6320a43c-9706-4fdb-9274-e2eda3a091c8",
+  "family": "isee",
+  "subskill": "sentence_completion",
+  "cohort": "isee-verbal-s15",
+  "prompt": "[Sentence Completion] Ingrid's chart of the coast was not wrong so much as -------: every headland on it sat exactly where it should, but the dozens of small coves where boats actually anchored had been left off.",
+  "choices": [
+   "elegant",
+   "blurry",
+   "incomplete",
+   "oversized"
+  ],
+  "correct_answer": "incomplete"
+ }
+]

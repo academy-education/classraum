@@ -1,0 +1,261 @@
+[
+ {
+  "id": "MAPP-MECH-01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "My Uncle and aunt Rosa live near the river.",
+   "my uncle and Aunt Rosa live near the river.",
+   "My uncle and Aunt Rosa live near the river.",
+   "My uncle and Aunt Rosa live near the River."
+  ],
+  "correct_answer": "My uncle and Aunt Rosa live near the river.",
+  "explanation": "\"Aunt\" is capitalized because it is part of a name (Aunt Rosa). \"My uncle\" is a common noun with no name after it, so \"uncle\" stays lowercase. The first word of a sentence is always capitalized, and \"river\" is a common noun here.",
+  "difficulty": "easy",
+  "cap_rule": "family title as part of a name vs. common noun"
+ },
+ {
+  "id": "MAPP-MECH-02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Our swim lessons begin on Monday, June 3, at the start of summer.",
+   "Our swim lessons begin on Monday, June 3, at the start of Summer.",
+   "Our swim lessons begin on monday, June 3, at the start of summer.",
+   "Our swim lessons begin on Monday, june 3, at the start of summer."
+  ],
+  "correct_answer": "Our swim lessons begin on Monday, June 3, at the start of summer.",
+  "explanation": "Days of the week and months are proper nouns, so \"Monday\" and \"June\" are capitalized. Seasons such as \"summer\" are common nouns and stay lowercase.",
+  "difficulty": "easy",
+  "cap_rule": "days and months vs. seasons"
+ },
+ {
+  "id": "MAPP-MECH-03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "target_band": "RIT 200-209",
+  "grade_target": 6,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Last year Kenji's family moved from the south to a town north of Chicago.",
+   "Last year Kenji's family moved from the South to a Town north of Chicago.",
+   "Last year Kenji's family moved from the South to a town North of Chicago.",
+   "Last year Kenji's family moved from the South to a town north of Chicago."
+  ],
+  "correct_answer": "Last year Kenji's family moved from the South to a town north of Chicago.",
+  "explanation": "\"The South\" names a region of the country, so it is capitalized. \"North of Chicago\" only gives a direction, so \"north\" stays lowercase. \"Town\" is a common noun.",
+  "difficulty": "medium",
+  "cap_rule": "region name vs. compass direction"
+ },
+ {
+  "id": "MAPP-MECH-04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "target_band": "RIT 210-219",
+  "grade_target": 7,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Amara chose the book Journey To The Edge Of The Sea for her report.",
+   "Amara chose the book Journey to the Edge of the Sea for her report.",
+   "Amara chose the book journey to the Edge of the Sea for her report.",
+   "Amara chose the book Journey to the edge of the sea for her report."
+  ],
+  "correct_answer": "Amara chose the book Journey to the Edge of the Sea for her report.",
+  "explanation": "In a title, capitalize the first word and all important words. Short words such as \"to,\" \"the,\" and \"of\" stay lowercase unless they come first.",
+  "difficulty": "medium",
+  "cap_rule": "titles of works (short words lowercase)"
+ },
+ {
+  "id": "MAPP-MECH-05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "target_band": "RIT 220-229",
+  "grade_target": 8,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "\"Hurry Up,\" said Lena, \"or we will miss the bus.\"",
+   "\"Hurry up,\" said lena, \"or we will miss the bus.\"",
+   "\"Hurry up,\" said Lena, \"Or we will miss the bus.\"",
+   "\"Hurry up,\" said Lena, \"or we will miss the bus.\""
+  ],
+  "correct_answer": "\"Hurry up,\" said Lena, \"or we will miss the bus.\"",
+  "explanation": "This is one quoted sentence split by \"said Lena.\" The second part continues the same sentence, so \"or\" stays lowercase. Only the first word of the quotation, \"Hurry,\" and the name \"Lena\" are capitalized.",
+  "difficulty": "hard",
+  "cap_rule": "split quotation (second part continues the sentence)"
+ },
+ {
+  "id": "MAPP-MECH-06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "target_band": "RIT 230-239",
+  "grade_target": 9,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "The Governor met with Senator Okafor and two other senators.",
+   "The governor met with Senator Okafor and two other senators.",
+   "The governor met with senator Okafor and two other senators.",
+   "The governor met with Senator Okafor and two other Senators."
+  ],
+  "correct_answer": "The governor met with Senator Okafor and two other senators.",
+  "explanation": "A title is capitalized when it comes right before a name, as in \"Senator Okafor.\" When a title is used on its own, without a name, it is a common noun: \"the governor\" and \"two other senators\" stay lowercase.",
+  "difficulty": "hard",
+  "cap_rule": "title before a name vs. title used generically"
+ },
+ {
+  "id": "MAPP-MECH-07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": null,
+  "prompt": "Which word is spelled correctly?",
+  "choices": [
+   "becuase",
+   "because",
+   "becaus",
+   "becouse"
+  ],
+  "correct_answer": "because",
+  "explanation": "\"Because\" is spelled b-e-c-a-u-s-e. The vowel sound in the middle is spelled with the letters \"au,\" and the word ends with a silent e.",
+  "difficulty": "easy",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "vowel team au with final silent e"
+ },
+ {
+  "id": "MAPP-MECH-08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nMy little brother is learning to swim, and he loves ___ in the lake.",
+  "choices": [
+   "swiming",
+   "swimmming",
+   "swimeing",
+   "swimming"
+  ],
+  "correct_answer": "swimming",
+  "explanation": "\"Swim\" ends in one vowel and one consonant, so the final m is doubled before adding -ing: swim + m + ing = swimming.",
+  "difficulty": "easy",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "doubling the final consonant before -ing"
+ },
+ {
+  "id": "MAPP-MECH-09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "passage": null,
+  "prompt": "Which word is spelled INCORRECTLY?",
+  "choices": [
+   "colum",
+   "knowledge",
+   "wrinkle",
+   "island"
+  ],
+  "correct_answer": "colum",
+  "explanation": "\"Column\" ends with a silent n: c-o-l-u-m-n. The other words, \"knowledge,\" \"wrinkle,\" and \"island,\" are spelled correctly, each with its own silent letter.",
+  "difficulty": "medium",
+  "spelling_polarity": "incorrect",
+  "spelling_pattern": "silent letters (kn, wr, s, mn)",
+  "intended_word": "column"
+ },
+ {
+  "id": "MAPP-MECH-10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "target_band": "RIT 210-219",
+  "grade_target": 7,
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nThe tiny green bug was almost ___ on the leaf.",
+  "choices": [
+   "invisable",
+   "invisibal",
+   "invisible",
+   "invisibel"
+  ],
+  "correct_answer": "invisible",
+  "explanation": "\"Invisible\" ends in -ible. A useful clue: when the part before the ending is not a whole word on its own (\"invis\"), the ending is usually -ible, not -able.",
+  "difficulty": "medium",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "-ible vs. -able ending"
+ },
+ {
+  "id": "MAPP-MECH-11",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "target_band": "RIT 220-229",
+  "grade_target": 9,
+  "passage": null,
+  "prompt": "Which word is spelled correctly?",
+  "choices": [
+   "perseverence",
+   "perserverance",
+   "perseveranse",
+   "perseverance"
+  ],
+  "correct_answer": "perseverance",
+  "explanation": "\"Perseverance\" comes from \"persevere\" and ends in -ance. There is no extra r after \"per,\" and the final sound is spelled with a c, not an s.",
+  "difficulty": "hard",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "-ance vs. -ence ending"
+ },
+ {
+  "id": "MAPP-MECH-12",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "target_band": "RIT 230-239",
+  "grade_target": 10,
+  "passage": null,
+  "prompt": "Which word is spelled correctly?",
+  "choices": [
+   "conscientious",
+   "consciencious",
+   "conscientous",
+   "conscientius"
+  ],
+  "correct_answer": "conscientious",
+  "explanation": "\"Conscientious\" keeps the \"sci\" of \"science\" and ends in -tious: c-o-n-s-c-i-e-n-t-i-o-u-s. The \"sh\" sound near the end is spelled \"ti,\" and both the i and the o in \"-ious\" are needed.",
+  "difficulty": "hard",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "-tious ending (sh sound spelled ti)"
+ }
+]

@@ -959,3 +959,68 @@ Not "author a MAP bank". In order:
 ground for this bank, and CLAUDE.md's standing lesson is that a batch built to
 one brief develops a cross-item tell. The first grade-5 batch should be small
 and attacked before a second is commissioned.
+
+---
+
+## 14. 2026-10-02 — THE FIRST AUTHORED PILOT: 24 ITEMS, AND WHAT THEY SHOWED
+
+The owner approved a pilot of the §13 brief. Full results are in
+`MAP-PILOT-2026-10-02.md` and the bars in `MAP-PILOT-2026-10-02.prereg.md`,
+which was committed before any item existed.
+
+**What was built.** Two independent Claude authors wrote 24 original 4-option
+items:
+
+- 12 grades 5-7 Reading + Language Usage, targeted at RIT 180-209
+- 6 Capitalization and 6 Spelling, targeted at RIT 180-239
+
+The authors worked only from the §12 CCSS_2024 strand names and general CCSS
+ELA standards. No NWEA item and no Herald file was opened (§8, §9). **Nothing
+was inserted.** MAP is not a shipped family, so the pilot lives only in batch
+files and can't reach a student.
+
+**Verdict on the pre-registered bar: 18 of 24 cleared the two with-source
+graders, against a bar of 20. The method as briefed does NOT pass.** The six
+holds:
+
+- one exclusivity failure: a grammar item where tense and agreement both
+  varied
+- five items rated too easy for their stated grade, such as "because" for
+  grade 5 and "creaked" for grade 7
+
+**Three findings that shape the next brief:**
+
+1. **Mechanics has a centroid tell.** Every distractor sits one edit from the
+   key, so a per-token majority vote finds the key in **10 of 11** scorable
+   items (exact count; chance about 2.8). It was found by script and named
+   unprompted by a grader. This is separate from the options-only 100% on
+   Mechanics, which is the construct: four spellings contain the whole item.
+2. **Grade-5 comprehension items leak by option shape, exactly as the SAT
+   bank did.** All five theme/summary/central-idea/POV items were solved
+   blind by all three samples. Both graders named the free elimination: an
+   absolute, a narrow detail, a summary that adds invented details. At arm
+   level R/LU sat at 63.9% against a 61.1% live ISEE easy-verbal control, so
+   the pre-registered arm bar did not fire. The control is vocabulary-shaped,
+   so it matched the stratum that came in clean (vocabulary in context,
+   **0/6 blind**) and not the one that leaked.
+3. **Band labels skew generous, and only in one direction.** The graders
+   called 17 of 48 item-judgements "easier than target" and none "harder".
+   The weakest are the upper Mechanics bands (220-239). This validates no
+   label (§10); it does say the authors' sense of a high RIT band is too
+   high.
+
+**What carries forward.**
+
+- The exact-check script `map-pilot-checks.mjs` is break-tested and works.
+  It covers FK readability, dictionary-checked spelling, case-only
+  capitalization and key-length tells.
+- It correctly refused to print a readability number for Mechanics, where
+  every unit is under 15 words.
+- Batch 2 should stay at about 24 items and add three gates:
+  - a centroid gate
+  - a no-dead-distractor rule
+  - comprehension options that all make the same kind of passage-specific
+    claim
+- It should be attacked before a third is commissioned.
+- A human sitting remains the only verdict on a verbal cohort, and MAP still
+  has none.

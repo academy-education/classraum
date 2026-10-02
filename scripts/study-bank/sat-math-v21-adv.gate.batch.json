@@ -1,0 +1,178 @@
+[
+ {
+  "id": "SM21A-A1",
+  "domain": "Advanced Math",
+  "subskill": "Exponential growth with a rate stated per 2 years, asked at 3 years",
+  "difficulty": "medium",
+  "prompt": "The population of a town was 4,875 at the start of 2020. The population grows exponentially so that it increases by 44% every 2 years. Based on this model, what is the population of the town 3 years after the start of 2020?",
+  "choices": [
+   "8424",
+   "8564",
+   "8852",
+   "10109"
+  ],
+  "correct_answer": "8424",
+  "explanation": "Every 2 years the population is multiplied by 1.44. Over t years there are t/2 such periods, so P(t) = 4875(1.44)^(t/2) = 4875(1.2)^t, because 1.44 = 1.2^2. After 3 years, P(3) = 4875(1.2)^3 = 4875(1.728) = 8424. The value 8564 comes from applying one full 44% period and then adding half of 44%, or 22%, for the remaining year: 4875(1.44)(1.22) is about 8564. The value 8852 comes from splitting 44% evenly into 22% per year and compounding: 4875(1.22)^3 is about 8852. The value 10109 comes from rounding 3 years up to 2 full periods: 4875(1.44)^2 is about 10109.",
+  "bounds": [],
+  "solve": "return Math.round(4875*Math.pow(1.44, 3/2));",
+  "distractor_solve": {
+   "8564": "return Math.round(4875*1.44*1.22);",
+   "8852": "return Math.round(4875*Math.pow(1.22,3));",
+   "10109": "return Math.round(4875*Math.pow(1.44,2));"
+  }
+ },
+ {
+  "id": "SM21A-A2",
+  "domain": "Advanced Math",
+  "subskill": "Horizontal shift fixed by a zero, then evaluate the shifted function",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 - 2x - 8. The function g is defined by g(x) = f(x - h), where h is a positive constant. If g(1) = 0, what is the value of g(2)?",
+  "choices": [
+   "-8",
+   "-5",
+   "1",
+   "7"
+  ],
+  "correct_answer": "-5",
+  "explanation": "Since g(1) = f(1 - h) = 0, the number 1 - h must be a zero of f. Factoring, f(x) = (x - 4)(x + 2), so the zeros of f are 4 and -2. If 1 - h = 4, then h = -3, which is not positive. If 1 - h = -2, then h = 3. So g(x) = f(x - 3), and g(2) = f(-1) = 1 + 2 - 8 = -5. The value 7 comes from shifting the wrong way, computing f(2 + 3) = f(5) = 7 (the same value results from keeping h = -3). The value 1 comes from treating the shift as vertical, g(x) = f(x) + h: then f(1) + h = -9 + h = 0 gives h = 9, and g(2) = f(2) + 9 = 1. The value -8 comes from finding h but then evaluating f(2) without applying the shift.",
+  "bounds": [],
+  "solve": "const f=x=>x*x-2*x-8; const h=1-(-2); return f(2-h);",
+  "distractor_solve": {
+   "1": "const f=x=>x*x-2*x-8; const h=-f(1); return f(2)+h;",
+   "7": "const f=x=>x*x-2*x-8; const h=3; return f(2+h);",
+   "-8": "const f=x=>x*x-2*x-8; return f(2);"
+  }
+ },
+ {
+  "id": "SM21A-A3",
+  "domain": "Advanced Math",
+  "subskill": "Count integer parameters giving real solutions within a stated range",
+  "difficulty": "medium",
+  "prompt": "The integer k satisfies -10 ≤ k ≤ 13. For how many such values of k does the equation x^2 + kx + 16 = 0 have at least one real solution?",
+  "choices": [
+   "5",
+   "6",
+   "7",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "The equation has at least one real solution exactly when its discriminant is nonnegative: k^2 - 4(1)(16) ≥ 0, so k^2 ≥ 64, which means k ≥ 8 or k ≤ -8. Within -10 ≤ k ≤ 13, the values k = 8, 9, 10, 11, 12, 13 give 6 values, and k = -10, -9, -8 give 3 more, for a total of 9. The value 7 comes from requiring k^2 > 64, which leaves out k = 8 and k = -8, even though those give one repeated real solution. The value 6 comes from solving k^2 ≥ 64 as k ≥ 8 only and missing the negative values. The value 5 comes from making both mistakes: using k > 8 and ignoring the negative values.",
+  "bounds": [],
+  "solve": "let n=0; for(let k=-10;k<=13;k++){ if(k*k-64>=0) n++; } return n;",
+  "distractor_solve": {
+   "5": "let n=0; for(let k=-10;k<=13;k++){ if(k>8) n++; } return n;",
+   "6": "let n=0; for(let k=-10;k<=13;k++){ if(k>=8) n++; } return n;",
+   "7": "let n=0; for(let k=-10;k<=13;k++){ if(k*k-64>0) n++; } return n;"
+  }
+ },
+ {
+  "id": "SM21A-B1",
+  "domain": "Advanced Math",
+  "subskill": "Build a quadratic revenue model from a price trade-off; maximize",
+  "difficulty": "medium",
+  "prompt": "A community theater sells 504 tickets to a show when the ticket price is $20. For every $2 increase in the ticket price, 12 fewer tickets are sold. Assuming this relationship continues, what is the maximum possible revenue, in dollars, from ticket sales for the show?",
+  "choices": [
+   "11532",
+   "13824",
+   "15624",
+   "16224"
+  ],
+  "correct_answer": "16224",
+  "explanation": "Let n be the number of $2 increases. The price is 20 + 2n dollars and the number of tickets sold is 504 - 12n, so the revenue is R = (20 + 2n)(504 - 12n). The zeros of R are n = -10 and n = 42, so the maximum occurs halfway between them, at n = 16. Then the price is 20 + 32 = 52 dollars, 504 - 192 = 312 tickets are sold, and R = 52(312) = 16224 dollars. The value 13824 comes from a sign error in the price factor: setting 20 + 2n = 0 as n = 10 instead of n = -10 puts the maximum halfway between 10 and 42, at n = 26, where the revenue is 72(192). The value 11532 comes from treating each increase as $1 instead of $2, using (20 + n)(504 - 12n), which peaks at n = 11 with revenue 31(372). The value 15624 comes from maximizing only the amount of the increase times the tickets sold, 2n(504 - 12n), which peaks at n = 21, and then computing the revenue 62(252) at that price.",
+  "bounds": [],
+  "solve": "const n = (42 + -10) / 2; return (20 + 2*n) * (504 - 12*n);",
+  "distractor_solve": {
+   "11532": "const n = (42 + -20) / 2; return (20 + n) * (504 - 12*n);",
+   "13824": "const n = (10 + 42) / 2; return (20 + 2*n) * (504 - 12*n);",
+   "15624": "const n = 504 / 24; return (20 + 2*n) * (504 - 12*n);"
+  }
+ },
+ {
+  "id": "SM21A-B2",
+  "domain": "Advanced Math",
+  "subskill": "Line-parabola system: sum of the y-coordinates of intersections",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = 2x^2 + x - 5 intersects the graph of y = 3x + 7 at two points. What is the sum of the y-coordinates of the two points?",
+  "choices": [
+   "1",
+   "11",
+   "17",
+   "20"
+  ],
+  "correct_answer": "17",
+  "explanation": "Set the expressions equal: 2x^2 + x - 5 = 3x + 7, so 2x^2 - 2x - 12 = 0, or x^2 - x - 6 = 0. The sum of the solutions is 1 (the solutions are x = 3 and x = -2). Each intersection point lies on the line, so its y-coordinate is 3x + 7. The sum of the y-coordinates is 3(x1 + x2) + 7 + 7 = 3(1) + 14 = 17. (Check: the points are (3, 16) and (-2, 1), and 16 + 1 = 17.) The value 1 is the sum of the x-coordinates, not the y-coordinates. The value 11 comes from a sign error in the sum of the solutions, using -1 instead of 1, so 3(-1) + 14 = 11. The value 20 comes from taking the sum of the solutions of 2x^2 - 2x - 12 = 0 to be 2 without dividing by the leading coefficient, so 3(2) + 14 = 20.",
+  "bounds": [],
+  "solve": "const s = -(-2)/2; return 3*s + 14;",
+  "distractor_solve": {
+   "1": "return -(-2)/2;",
+   "11": "const s = -2/2; return 3*s + 14;",
+   "20": "const s = 2; return 3*s + 14;"
+  }
+ },
+ {
+  "id": "SM21A-B3",
+  "domain": "Advanced Math",
+  "subskill": "Rewrite a rational expression by polynomial division; combine constants",
+  "difficulty": "medium",
+  "prompt": "The expression (18x^2 + 41x + 11)/(2x + 3) is equivalent to ax + b + r/(2x + 3), where a, b, and r are constants and x ≠ -3/2. What is the value of a + b + r?",
+  "choices": [
+   "6",
+   "14",
+   "22",
+   "26"
+  ],
+  "correct_answer": "6",
+  "explanation": "Divide 18x^2 + 41x + 11 by 2x + 3. First, 18x^2 / (2x) = 9x, and 9x(2x + 3) = 18x^2 + 27x; subtracting leaves 14x + 11. Next, 14x / (2x) = 7, and 7(2x + 3) = 14x + 21; subtracting leaves 11 - 21 = -10. So the expression equals 9x + 7 + (-10)/(2x + 3), which gives a = 9, b = 7, and r = -10, and a + b + r = 9 + 7 - 10 = 6. The value 14 comes from substituting x = 1 into the equivalent form, which gives (18 + 41 + 11)/5 = 14, but that equals a + b + r/5, not a + b + r. The value 22 comes from using synthetic division with -3/2 and not dividing the result by 2, which gives the quotient 18x + 14, so 18 + 14 - 10 = 22. The value 26 comes from subtracting in the wrong order in the last step, 21 - 11 = 10, so 9 + 7 + 10 = 26.",
+  "bounds": [],
+  "solve": "const a = 18/2; const rem1 = 41 - a*3; const b = rem1/2; const r = 11 - b*3; return a + b + r;",
+  "distractor_solve": {
+   "14": "return (18 + 41 + 11) / (2*1 + 3);",
+   "22": "const q1 = 18; const q0 = 41 + q1*(-3/2); const r = 11 + q0*(-3/2); return q1 + q0 + r;",
+   "26": "const a = 9; const b = (41 - 27)/2; const r = (b*3) - 11; return a + b + r;"
+  }
+ },
+ {
+  "id": "SM21A-B4",
+  "domain": "Advanced Math",
+  "subskill": "Exponential equation quadratic in 2^x; sum of the solutions",
+  "difficulty": "medium",
+  "prompt": "What is the sum of all solutions to the equation 2^(2x + 1) - 33(2^x) + 16 = 0?",
+  "choices": [
+   "-4",
+   "3",
+   "4",
+   "5"
+  ],
+  "correct_answer": "3",
+  "explanation": "Since 2^(2x + 1) = 2(2^x)^2, let u = 2^x. The equation becomes 2u^2 - 33u + 16 = 0, which factors as (2u - 1)(u - 16) = 0, so u = 1/2 or u = 16. Both are positive, so 2^x = 1/2 gives x = -1 and 2^x = 16 gives x = 4. The sum of the solutions is -1 + 4 = 3. (Equivalently, the product of the u-values is 16/2 = 8 = 2^(x1 + x2), so x1 + x2 = 3.) The value -4 is the product of the solutions, (-1)(4). The value 5 comes from a sign slip that treats 2^x = 1/2 as x = 1, giving 1 + 4. The value 4 comes from treating 2^(2x + 1) as (2^x)^2: then u^2 - 33u + 16 = 0, the product of the u-values is 16 = 2^(x1 + x2), and x1 + x2 = 4.",
+  "bounds": [],
+  "solve": "const u1 = 1/2, u2 = 16; return Math.log2(u1) + Math.log2(u2);",
+  "distractor_solve": {
+   "4": "const uProduct = 16; return Math.log2(uProduct);",
+   "5": "return Math.abs(Math.log2(1/2)) + Math.log2(16);",
+   "-4": "return Math.log2(1/2) * Math.log2(16);"
+  }
+ },
+ {
+  "id": "SM21A-B5",
+  "domain": "Advanced Math",
+  "subskill": "Monic quadratic from a zero and minimum value; two cases for c",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = x^2 + bx + c, where b and c are constants. The minimum value of f is -25, and f(3) = 0. What is the greatest possible value of c?",
+  "choices": [
+   "-21",
+   "4",
+   "24",
+   "39"
+  ],
+  "correct_answer": "39",
+  "explanation": "Write f(x) = (x - h)^2 - 25, where x = h is the axis of symmetry. The zeros satisfy (x - h)^2 = 25, so they are x = h - 5 and x = h + 5, which are 10 units apart. Since 3 is a zero, the other zero is either 3 + 10 = 13 or 3 - 10 = -7. For a monic quadratic, c is the product of the zeros, so c = 3(13) = 39 or c = 3(-7) = -21. The greatest possible value of c is 39. The value -21 is the value of c in the other case, where the other zero is -7. The value 4 is the greatest possible value of b instead of c: the zeros 3 and -7 give b = -(3 + (-7)) = 4. The value 24 comes from taking the zeros to be 5 units apart instead of 5 units from the axis, so the other zero is 8 and c = 3(8) = 24.",
+  "bounds": [],
+  "solve": "const d = 2*Math.sqrt(25); return Math.max(3*(3+d), 3*(3-d));",
+  "distractor_solve": {
+   "4": "const d = 2*Math.sqrt(25); return Math.max(-(3+3+d), -(3+3-d));",
+   "24": "const d = Math.sqrt(25); return Math.max(3*(3+d), 3*(3-d));",
+   "-21": "const d = 2*Math.sqrt(25); return Math.min(3*(3+d), 3*(3-d));"
+  }
+ }
+]

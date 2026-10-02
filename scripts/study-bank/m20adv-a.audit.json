@@ -1,0 +1,51 @@
+{
+ "SM20A-A1": {
+  "my_answer": "81.92", "key_ok": true, "exclusive": true, "second_defensible": false,
+  "free_elimination": "76.80 struck once 102.40 is read as 0.8 x 128 (1024/10 is recognisable): 128, 102.40, 76.80 is the ARITHMETIC continuation (step -25.6) and 128, 102.40, 81.92 the GEOMETRIC one; the stem says 'decreases exponentially', so the arithmetic member dies. 102.40 is also the geometric mean of printed 128 and the key, which pairs 102.40/81.92 as the live decision. 89.74 survives (fits neither sequence) and so does 102.40 (one vs two applications of 0.8). Needs a noticing step rather than pure glance; counted 1.",
+  "n_struck": 1, "insight_bypassable": false, "difficulty": "medium", "on_blueprint": true,
+  "path_coherent": true, "representation_ok": true,
+  "note": "Cold: 128/250 = 0.512 = 0.8^3, daily factor 0.8, day 6 = 128(0.64) = 81.92. All distractor_solves reproduce (89.74 checked: (1-0.16267)^2 x 128). Medium is honest. REPAIR: replace 76.80 with 46.67 (linear model: 128 - 2(250-128)/3; distractor_solve 'return Math.round((128 - 2*(250-128)/3)*100)/100;'). Set {46.67, 81.92, 89.74, 102.40}: no sum/difference/mean/double/geometric-mean closure except the existing 102.40 = sqrt(128 x 81.92), which pairs key with a distractor and kills nothing; 46.67 is not on either sequence through 128 and 102.40. Convexity (exponential lies above the chord extension, 46.67 is exactly the chord extension) kills it only for a student who reasons it, not at a glance."
+ },
+ "SM20A-A2": {
+  "my_answer": "144", "key_ok": true, "exclusive": true, "second_defensible": false,
+  "free_elimination": "none counted. Noted: 140 is the lone non-multiple of 16 while the stem prints -16, but h(2.5) = 140 exactly, so outputs at non-integer t are not multiples of 16; it dies only after finding the axis t = 2, which is the item's work. Lower bound h(0) = 80 kills nothing.",
+  "n_struck": 0, "insight_bypassable": true, "difficulty": "medium", "on_blueprint": true,
+  "path_coherent": true, "representation_ok": true,
+  "note": "Cold: axis at midpoint of zeros 5 and -1, t = 2, h = -16(-3)(3) = 144. Distractor paths all reproduce (128 = h(3), 140 = h(2.5), 208 = 80 + 64^2/32). Low end of medium: Desmos graph-and-click gives 144 in seconds, and 'product of (5-t)(t+1), two numbers summing to 6, max 3x3' is a one-line mental route. Honest label medium (bordering easy). No repair required."
+ },
+ "SM20A-A3": {
+  "my_answer": "5", "key_ok": true, "exclusive": true, "second_defensible": false,
+  "free_elimination": "none. All four satisfy y = 3x - 4 with integer x (-5, 3, 5, 6), so the line congruence (y + 4 divisible by 3) kills nothing. Plug-back (x = (y+4)/3 into the parabola) costs four evaluations, no cheaper than solving. Coincidence noted, not a strike: -19 + 5 = -14 = y1 + y2 by Vieta and 14 is an option, but reading that needs the Vieta derivation.",
+  "n_struck": 0, "insight_bypassable": false, "difficulty": "medium", "on_blueprint": true,
+  "path_coherent": true, "representation_ok": true,
+  "note": "Cold: 2x^2 + 4x - 30 = 0, x^2 + 2x - 15 = (x+5)(x-3), x2 = 3, y2 = 5. y1 = -19 is the expected wrong-coordinate distractor; 11 (sign-flipped factors) and 14 (denominator a not 2a, x = 6) reproduce. Medium honest; Desmos intersection-click shortens it to easy for a calculator user. No repair required."
+ },
+ "SM20A-A4": {
+  "my_answer": "21", "key_ok": true, "exclusive": true, "second_defensible": false,
+  "free_elimination": "ALL THREE. 3 dies by the domain premise readable off the stem: x - 8 must be >= 0 (also, 3 - 8 = -5). 9 dies by plug-back at a glance: 8(9)+1 = 73 is not a perfect square while 9 - 8 = 1. 13 dies the same way: 105 is not a square while 13 - 8 = 5. 21 confirms: 169 = 13^2 and 21 - 8 = 13.",
+  "n_struck": 3, "insight_bypassable": true, "difficulty": "easy", "on_blueprint": true,
+  "path_coherent": true, "representation_ok": true,
+  "note": "Cold: x^2 - 24x + 63 = (x-3)(x-21), x = 21, 3 extraneous. Distractor paths reproduce (9 from x^2 - 16x + 63, 13 from x^2 - 8x - 65). The defect is structural, not a distractor: a radical equation asking 'what is the solution' with integer options is decided by plug-back in under 20 seconds, and the domain bound x >= 8 is printed. No ONE-distractor change fixes it: any integer distractor >= 8 is checked by 'is 8x+1 a square equal to (x-8)^2' at a glance, and a distractor below 8 dies by domain. RECOMMEND RE-AUTHOR, e.g. put a parameter in so the option is not the root: 'sqrt(ax + 1) = x - 8 has the solution x = 21. What is the other solution of the equation obtained by squaring both sides?' (a = 8, answer 3; options must then be audited for Vieta sum/product closure with printed 21, 64, 1). As it stands: easy, held."
+ },
+ "SM20A-A5": {
+  "my_answer": "4", "key_ok": true, "exclusive": true, "second_defensible": false,
+  "free_elimination": "none. No sign or magnitude bound on a from the stem; no closure in {-18, -13, 1, 4} (sums -31, -17, -14, -12, -9, 5; means and doubles not in set); plug-back of a candidate a needs b first, which is the system itself. -18 is b, not a second answer.",
+  "n_struck": 0, "insight_bypassable": false, "difficulty": "medium", "on_blueprint": true,
+  "path_coherent": true, "representation_ok": true,
+  "note": "Cold: p(3) = 0 gives 3a + b = -6; p(-1) = 12 gives a - b = 22; 4a = 16, a = 4 (b = -18). Distractor paths reproduce (-13 from p(1) = 12, 1 from p(-1) = 0, -18 = b). LABELED HARD, MEASURED MEDIUM: the factor and remainder theorems applied twice plus elimination is routine procedure; a competent student who runs it lands on the key, and the traps (p(1) for x+1, reporting b) are carelessness, not a decision point the procedure fails to bypass. Relabel medium. No distractor repair needed."
+ },
+ "SM20A-A6": {
+  "my_answer": "19", "key_ok": true, "exclusive": true, "second_defensible": false,
+  "free_elimination": "32 struck by form: 19 = 8(2)+3, 27 = 8(3)+3, 43 = 8(5)+3 all have the printed form 8n + 3 (all odd, all 3 mod 8) and 32 is the lone even value, not of that form. A test-wise student reading '8x + 3' strikes it at a glance.",
+  "n_struck": 1, "insight_bypassable": false, "difficulty": "medium", "on_blueprint": true,
+  "path_coherent": true, "representation_ok": true,
+  "note": "Cold: 2x + 1 = 5, x = 2, g(5) = 19 (g(u) = 4u - 1). Paths reproduce (43 direct plug, 27 from x = 3, 32 from g = 6x + 2). Medium bordering easy: two operations once the 'set the inside to 5' idea is known; 43 is the real trap. REPAIR: replace 32 with 51 (solving 2x + 1 = 5 as x = 5 + 1 = 6 then 8(6) + 3; distractor_solve 'const x=5+1; return 8*x+3;'). Set {19, 27, 43, 51}: all 8n+3, all odd; differences 8, 16, 24, 24, 32, 8 none in set; no pair mean in set (23, 31, 35, 35, 39, 47); no sum or double in set. Avoid 35 (x = 4): it makes {19, 27, 35, 43} an arithmetic progression with both inner members means of others. 51's error path is weaker (sign slip plus no halving) - acceptable but say so."
+ },
+ "SM20A-A7": {
+  "my_answer": "16", "key_ok": true, "exclusive": true, "second_defensible": false,
+  "free_elimination": "none on distractors (10, 24, 28: no sign/magnitude bound on k, no closure: 10+16 = 26, 24-16 = 8, means 13, 17, 19, 20, 22, 26 not in set). Key exposure noted: 16 = 4(3) + 4, the printed numerator evaluated at the printed excluded value - a one-step combination of printed numbers that a student reasoning 'make the fractions match at x = 3' reads off without clearing denominators. That route is actually valid here because -6(x - 3) vanishes at x = 3, so it is an insight shortcut, not a strike.",
+  "n_struck": 0, "insight_bypassable": true, "difficulty": "medium", "on_blueprint": true,
+  "path_coherent": true, "representation_ok": true,
+  "note": "Cold: k = 4x + 4 - 6(x - 3) = -2x + 22, so x = (22 - k)/2; no solution iff that x is 3, k = 16. Paths reproduce (10 from not distributing 6, 28 from x = -3, 24 from x = -1). LABELED HARD, MEASURED MEDIUM: the decision (no solution = the only root is excluded) is real, but a student who misses it gets stuck rather than landing on a distractor, and 'plug x = 3 into the numerator' hits the key directly; 24 (numerator zero as excluded value) is a weak lure. To make it hard, make the cleared equation quadratic so one root is excluded and the obvious procedure lands on a distractor, then re-audit. No distractor strike to repair."
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "SM20A-C1": {
+  "my_answer": "25",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "All three distractors die by plug-back, each in about two mental evaluations. The stem requires x + 4 = sqrt(...) >= 0, so x >= -4 and the solution is +sqrt(option) (the x^2 ask hides the sign but the premise restores it). x = 6: 7*6+46 = 88, not a square (sqrt 88 != 10). x = 7: 95, not a square. x = 10: 116, not a square. x = 5: 81 -> 9 = 5+4, survives. 49's own path (x = -7) also contradicts x >= -4, and 36's (x = -6) gives RHS -2 < 0.",
+  "n_struck": 3,
+  "insight_bypassable": true,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: square -> x^2 + x - 30 = 0 -> x = 5 or -6; -6 gives sqrt4 = 2 vs -2, extraneous; x = 5, x^2 = 25. Key correct and unique. All distractor paths reach their values (36 keeps -6; 100 from (x+4)^2 = x^2+16; 49 from not squaring the right side). Difficulty medium, not hard: the squared quadratic puts 25 and 36 side by side, which forces the check, and Desmos graphing both sides shows one intersection at x = 5. The defect is structural: with integer roots and a perfect-square radicand at the key, plug-back of ANY option is a perfect-square test, so no single-distractor swap can repair it (any x >= -4 with 7x+46 not a perfect square dies instantly; any with it a perfect square is a second answer unless x+4 mismatches, which is equally quick to see). Repair needs a redesign rather than one swap: e.g. ask for a quantity that does not invert to a checkable x (the sum of all solutions of the squared equation is -1, not this item), or put a parameter in the radicand so the student must use the extraneous check to determine it (e.g. 'sqrt(7x + k) = x + 4 has exactly one solution, x = 5; what is the rejected candidate' -> -6, distractors 6, -5, 10) and re-audit."
+ },
+ "SM20A-C2": {
+  "my_answer": "9/4",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "5/3 dies by denominator: every exponent in the stem is a multiple of 1/4 (x^(3/4), x^(1/2), x^(5/2)), so a must be a multiple of 1/4; a thirds denominator is unreachable from a correct reading. No other glance strike: no closure (1/2+5/4 = 7/4, 9/4-5/4 = 1, means 7/8, 11/8, 7/4 not in set), no symmetric pair about 5/2, and plug-back of 1/2, 5/4 is the solve itself.",
+  "n_struck": 1,
+  "insight_bypassable": false,
+  "difficulty": "easy",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: x^a * x^(3/4) / x^(1/2) = x^(a+1/4) = x^(5/2) -> a = 9/4. Key correct and unique. Distractor paths reach 5/3 (index/power swap), 5/4 (adding the 1/2), 1/2 (dividing exponents). Easy: one pass of exponent rules reaches the key with no decision point; arguably low-medium, not hard. REPAIR (one swap): replace 5/3 with 15/4, from reading sqrt(x) as x^2 (a + 3/4 - 2 = 5/2). Set {1/2, 5/4, 9/4, 15/4}: all quarter-multiples; sums 7/4, 11/4, 7/2, 17/4, 5, 6 and differences 3/4, 1, 3/2, 7/4, 5/2, 13/4 hit no option; means 7/8, 11/8, 17/8, 7/4, 5/2, 3 not in set; no pair symmetric about 5/2 or 1/4; key not extreme. Avoid 7/4 (mean of 5/4 and 9/4), 11/4 (pairs with 9/4 symmetrically about the printed 5/2), and 2 (makes 5/4 the mean of 1/2 and 2)."
+ },
+ "SM20A-C3": {
+  "my_answer": "21",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. Symmetry gives f(-4) = 16 and opening upward (16 > 12) gives f(-5) > 16, which every option satisfies. Options minus 12 are 9, 18, 36, 49; a 'multiple of 9' argument would need a to be known integral, which is the solve. No closure (21+30 = 51, 48-30 = 18, means 25.5, 34.5, 39, 41, 45.5, 54.5 not in set), no printed-number key (21 is not 12, 16, -2, 0, -5 or a one-step combination: 12+16 = 28, 16-12 = 4).",
+  "n_struck": 0,
+  "insight_bypassable": false,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: f(x) = a(x+2)^2 + 12; f(0) = 4a + 12 = 16 -> a = 1; f(-5) = 9 + 12 = 21. Key correct and unique. All distractor_solve paths reach their values (61 vertex-sign flip, 48 dropping k when solving a, 30 not squaring 2). Difficulty medium (low end): two routine steps from vertex form, no decision point that the standard procedure bypasses; the key is the smallest option, but nothing in the stem bounds f(-5) above, so that is not a usable tell. On blueprint (quadratic functions). No repair needed for elimination; if a harder item is wanted it needs a different construction, not a distractor swap."
+ }
+}

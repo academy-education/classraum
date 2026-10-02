@@ -1,0 +1,112 @@
+[
+ {
+  "id": "SM20A-A1",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay from two data points",
+  "difficulty": "medium",
+  "prompt": "The mass of a radioactive sample decreases exponentially over time. One day after a measurement began, the mass of the sample was 250 grams. Four days after the measurement began, the mass was 128 grams. To the nearest hundredth of a gram, what was the mass of the sample six days after the measurement began?",
+  "choices": [
+   "46.67",
+   "81.92",
+   "89.74",
+   "102.40"
+  ],
+  "correct_answer": "81.92",
+  "explanation": "In the 3 days from day 1 to day 4, the mass is multiplied by 128/250 = 0.512. If b is the daily decay factor, then b³ = 0.512, so b = 0.8: the mass decreases by 20% each day. From day 4 to day 6 is 2 more days, so the mass is 128(0.8)² = 128(0.64) = 81.92 grams. The value 46.67 comes from treating the decrease as linear: the mass drops 122 grams in 3 days, about 40.67 grams per day, and subtracting 2 days of that from 128 gives 46.67. The value 89.74 comes from dividing the 3-day decrease of 48.8% by 3 to get a daily decrease of about 16.27% and compounding that for 2 days; a percent decrease over 3 days cannot be split evenly into daily percents. The value 102.40 comes from applying the daily factor 0.8 only once for the two days from day 4 to day 6.",
+  "bounds": [],
+  "solve": "const b = Math.cbrt(128/250); return Math.round(128*b*b*100)/100;",
+  "distractor_solve": {
+   "46.67": "return Math.round((128 - 2*(250-128)/3)*100)/100;",
+   "89.74": "const d = (1 - 128/250)/3; return Math.round(128*(1-d)*(1-d)*100)/100;",
+   "102.40": "return Math.round(128*Math.cbrt(128/250)*100)/100;"
+  }
+ },
+ {
+  "id": "SM20A-A5",
+  "domain": "Advanced Math",
+  "subskill": "Factor and remainder theorems with two unknown coefficients",
+  "difficulty": "medium",
+  "prompt": "p(x) = x³ + ax² + bx − 9\n\nIn the polynomial above, a and b are constants. If x − 3 is a factor of p(x), and the remainder when p(x) is divided by x + 1 is 12, what is the value of a?",
+  "choices": [
+   "−18",
+   "−13",
+   "1",
+   "4"
+  ],
+  "correct_answer": "4",
+  "explanation": "Because x − 3 is a factor, p(3) = 0: 27 + 9a + 3b − 9 = 0, so 3a + b = −6. Because the remainder on division by x + 1 is 12, p(−1) = 12: −1 + a − b − 9 = 12, so a − b = 22. Adding the two equations gives 4a = 16, so a = 4. The value −18 is the value of b, found by solving the same system for the wrong constant. The value −13 comes from using p(1) = 12 for division by x + 1, which gives a + b = 20 and, with 3a + b = −6, a = −13. The value 1 comes from setting p(−1) = 0, as if x + 1 were also a factor, which gives a − b = 10 and, with 3a + b = −6, a = 1.",
+  "bounds": [],
+  "solve": "// 3a+b=-6 ; a-b=22\nreturn (-6+22)/4;",
+  "distractor_solve": {
+   "1": "// a-b=10 ; 3a+b=-6\nreturn (10-6)/4;",
+   "−18": "// 3a+b=-6 ; a-b=22 ; report b\nconst a=(-6+22)/4; return a-22;",
+   "−13": "// a+b=20 ; 3a+b=-6\nreturn (-6-20)/2;"
+  }
+ },
+ {
+  "id": "SM20A-A7",
+  "domain": "Advanced Math",
+  "subskill": "Rational equation with no solution: value of a constant",
+  "difficulty": "medium",
+  "prompt": "k/(x − 3) = (4x + 4)/(x − 3) − 6\n\nIn the equation above, k is a constant. If the equation has no solution, what is the value of k?",
+  "choices": [
+   "10",
+   "16",
+   "24",
+   "28"
+  ],
+  "correct_answer": "16",
+  "explanation": "Multiply both sides by x − 3: k = 4x + 4 − 6(x − 3) = −2x + 22, so x = (22 − k)/2. This value solves the original equation unless it equals 3, the value that makes the denominators zero. So the equation has no solution exactly when (22 − k)/2 = 3, that is, k = 16. The value 10 comes from not multiplying 6 by x − 3, which gives k = 4x − 2 and k = 10 at x = 3. The value 28 comes from treating x = −3 as the excluded value, which gives k = −2(−3) + 22. The value 24 comes from treating the zero of the numerator, x = −1, as the excluded value, which gives k = −2(−1) + 22.",
+  "bounds": [],
+  "solve": "// k = -2x + 22 ; no solution iff x = 3\nreturn -2*3+22;",
+  "distractor_solve": {
+   "10": "return 4*3+4-6;",
+   "24": "return -2*(-1)+22;",
+   "28": "return -2*(-3)+22;"
+  }
+ },
+ {
+  "id": "SM20A-B4",
+  "domain": "Advanced Math",
+  "subskill": "Absolute value of a quadratic meeting a slanted line",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = |x² − 2x − 3| and the line y = x + b, where b is a constant, intersect at exactly three points. What is the greatest possible value of b?",
+  "choices": [
+   "−21/4",
+   "1",
+   "13/4",
+   "4"
+  ],
+  "correct_answer": "13/4",
+  "explanation": "The expression x² − 2x − 3 = (x + 1)(x − 3) is negative for −1 < x < 3, so on that interval the graph is the reflected arch y = −x² + 2x + 3, with a peak at (1, 4); outside it the graph follows the original parabola. For b > 1 a line of slope 1 meets each outer branch exactly once (for b < 1 it misses the left branch), so exactly three intersections need the line to meet the arch at exactly one point or to pass through a corner where the arch meets an outer branch. The line can be tangent to the arch: x + b = −x² + 2x + 3 gives x² − x + (b − 3) = 0, and a single solution needs 1 − 4(b − 3) = 0, so b = 13/4, with tangency at x = 1/2, inside the arch. Or the line can pass through the corner (−1, 0), giving b = 1, where it meets the arch again at x = 2 and the right branch at x = 4. For 1 < b < 13/4 the line crosses the arch twice (four points), and for b > 13/4 it misses the arch (two points), so the greatest value is 13/4. The value 1 is the line through the corner (−1, 0); it also gives exactly three points but is not the greatest such value. The value 4 comes from using the arch's maximum height as b, as if the line were horizontal; the line y = x + 4 lies above the arch and meets the graph at only two points. The value −21/4 comes from requiring tangency to the unreflected parabola, x + b = x² − 2x − 3, without noticing that the tangent point x = 3/2 lies where the graph has been reflected.",
+  "bounds": [],
+  "solve": "const b=3+1/4; return b;",
+  "distractor_solve": {
+   "1": "const x=-1,y=0; return y-x;",
+   "4": "const xv=1; return -xv*xv+2*xv+3;",
+   "−21/4": "const r=-3-9/4; return Math.abs(r+21/4)<1e-9?\"−21/4\":String(r);"
+  }
+ },
+ {
+  "id": "SM20A-D2",
+  "domain": "Advanced Math",
+  "subskill": "Equation in √x solved as a quadratic: product of the solutions",
+  "difficulty": "medium",
+  "prompt": "2x − 15√x + 18 = 0\n\nWhat is the product of all solutions to the equation above?",
+  "choices": [
+   "9",
+   "38.25",
+   "54",
+   "81"
+  ],
+  "correct_answer": "81",
+  "explanation": "Let u = √x, so x = u² and the equation becomes 2u² − 15u + 18 = 0, which factors as (2u − 3)(u − 6) = 0. So u = 3/2 or u = 6; both are positive, so both give solutions: x = (3/2)² = 9/4 and x = 6² = 36. Their product is (9/4)(36) = 81. The value 9 is the product of the u-values, 3/2 and 6, without squaring them back to x. The value 38.25 is the sum of the solutions, 9/4 + 36, rather than their product. The value 54 comes from squaring only one u-value and multiplying 36 by 3/2.",
+  "bounds": [],
+  "solve": "const a=2,b=-15,c=18; const d=Math.sqrt(b*b-4*a*c); const u1=(-b+d)/(2*a), u2=(-b-d)/(2*a); return (u1*u1)*(u2*u2);",
+  "distractor_solve": {
+   "9": "const a=2,b=-15,c=18; const d=Math.sqrt(b*b-4*a*c); return ((-b+d)/(2*a))*((-b-d)/(2*a));",
+   "54": "const a=2,b=-15,c=18; const d=Math.sqrt(b*b-4*a*c); const u1=(-b+d)/(2*a), u2=(-b-d)/(2*a); return (u1*u1)*u2;",
+   "38.25": "const a=2,b=-15,c=18; const d=Math.sqrt(b*b-4*a*c); const u1=(-b+d)/(2*a), u2=(-b-d)/(2*a); return u1*u1+u2*u2;"
+  }
+ }
+]

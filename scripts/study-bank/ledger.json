@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-02T05:17:15.148Z",
+  "generatedAt": "2026-10-02T08:32:37.977Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -4602,6 +4602,168 @@
           "passed": true,
           "contentSha": "1acd75877c3841d91f3251add4fbbf519f8c4ee072a278a2862d255f32ffe4ac",
           "verdict": "Recorded, not dropped: graders call A6 (set c=0 in Desmos) and A7 (k=5 coincident-lines trap not offered as an option) insight-bypassable; A7 distractors 35/2 and -15/2 rest on an unlikely slip (one grader: weak). Options print ascending, so rank survives the draw shuffle; key extremity 6/13."
+        }
+      }
+    },
+    {
+      "id": "conv-hard-v1-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "conversation",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 44,
+        "sets": 22,
+        "authors": 2,
+        "method": "DL-FRESH brief (flat prior, form symmetry, atypical facts, channel parity, name hygiene) + conversation-gate shape + assigned cross-set variation; Opus authors"
+      },
+      "contentSha": "41ce8fd991681395284ad79f7026ef1863ecf3db9c3dbda23579ca8b481cb6fa",
+      "status": "qc",
+      "cohort": "conv-hard-v1",
+      "note": "HELD at the pre-registered no-source bar (PREREG-CONV-HARD-V1-2026-10-02.md, CONV-HARD-V1-RESULT.md). Never inserted; no item repaired or cherry-picked.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "conversation-gate 0 blocking; key uniquely longest 18.2%; joins clean"
+        },
+        "nosource": {
+          "passed": false,
+          "n": 44,
+          "mean": 56.8,
+          "control": 27.3,
+          "margin": 29.5,
+          "liveControl": {
+            "n": 24,
+            "mean": 86.1
+          },
+          "verdict": "SPLIT=2, 3 Haiku samples; margin +29.5 > +15 bar. Leak kinds: self-explaining quoted lines, narrating stems, lexical echo/majority family."
+        }
+      }
+    },
+    {
+      "id": "conv-hard-v2-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "conversation",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 44,
+        "sets": 22,
+        "kept": 34,
+        "keptSets": 17,
+        "authors": 2,
+        "method": "conv-hard-v1 brief + revision 1 (R1 quote-alone ties, R2 no narrating stems, R3 no lexical echo, R4 crossed 2x2 detail grids, R5 stem-assumption is a distractor); Opus authors; difficulty = median of 3 fresh graders"
+      },
+      "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+      "status": "shipped",
+      "cohort": "conv-hard-v2",
+      "note": "Gate per PREREG-CONV-HARD-V1-2026-10-02.md addendum. Keep list conv-hard-v2.keep.json (34 of 44). Dropped whole sets: CH24, CH28 (option certain-rejected by 2+ blind samples; CH28 also grader key dispute), CH32 (two graders name the same second answer), CH23, CH33 (blind 3/3 AND a grader passage_needed=false - CLAUDE.md unanimity+with-source corroboration rule). Difficulty field edited to grader medians AFTER the attack; verified the rendered prompts/options/passages are byte-identical to the attack render (44/44).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "verdict": "conversation-gate 0 blocking (100-158 words, 9-11 turns, strictly alternating); key uniquely longest 13.6% (kept 14.7%); hedge-only-in-key 2.3%; check-batch-joins clean on 44 and on the kept 34. check-batch-variety not applicable to transcripts (the live control fails the same measures)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "n": 44,
+          "mean": 37.1,
+          "control": 27.3,
+          "margin": 9.8,
+          "unanimousRate": 22.7,
+          "liveControl": {
+            "n": 24,
+            "mean": 86.1,
+            "unanimousRate": 83.3,
+            "note": ">=85% ceiling rule: reported, not decisive"
+          },
+          "verdict": "SPLIT=2 make-attack, 3 Haiku samples per file, matched live harvest-v1 2-set control solved by the same agents. PASS (<= +15). Kept-subset mean 34.3% (reported only)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "verdict": "3 fresh graders (Opus, Sonnet, Sonnet), transcript + unmarked options: key agreement 131/132 picks (one dispute, CH28, dropped). Second-defensible claims: CH32 by two graders (dropped); CH35-1 and CH37-2 by one each, refuted by quoted lines (\"oh, right, rehearsal was Wednesday\"; \"I can live with that\"). Median difficulty kept: 5 hard, 28 medium, 1 easy (as banked)."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "verdict": "certain-reject probe inside the blind attack: 2 sets with an option rejected by 2+ samples (CH24, CH28) dropped whole; no key ever certain-rejected."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "verdict": "Cross-item hunter (grader a): on 17 2x2 grid items the key is always the LAST-mentioned value pair (17/17) - transcript-conditional, makes those items medium not hard, and is recorded as the next brief fix (key the restored earlier value sometimes). Quote items: key ties the line to the adjacent turn 11/14; attitude: qualified-agree option 4/6. None is a no-source rule; batch-level blind score is the measure. Stored key slot B 12/34 (35.3%) from the deterministic insert shuffle, invisible to students (serve-time shuffleDrawnChoices)."
+        }
+      }
+    },
+    {
+      "id": "sat-math-v20-adv-kept-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "sat",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "sat-math-v20-adv",
+      "contentSha": "3384789c90d084231143c84efcebdfaeaeb555a5ed522027c28d9f5fb403389d",
+      "status": "inserted",
+      "note": "Commissioned medium-weighted (PREREG-ADV20-2026-10-02.md) to buy SAT Math form 27 (needs Advanced Math +8). 5 kept: 1 panel-median HARD (B4) + 4 medium (A1 A5 A7 D2). DOES NOT BUY FORM 27. 21 authored in four rounds (A/B halves of 7, then C x3 and D x4 re-authored after audit drops pushed the gated file below the key-extremity bar); audit drops A4 B1 B5 C1 (>=2 free strikes); one repair round on A1 A6 B3 B6 C2 D3 (one distractor each, auditor-vetted). 17 gated. Gate drops: A6 (EXT-1, linear-linear composition off-blueprint per one grader), B7 (distractors weak 3/3). Not inserted, panel-median EASY: A2 A3 B2 B3 B6 C2 C3 D1 D3 D4. B4 explanation sentence corrected after the gate (\"for every b > -3\" was false; key and options unchanged).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "3384789c90d084231143c84efcebdfaeaeb555a5ed522027c28d9f5fb403389d",
+          "verdict": "5 items, all 4-choice numeric. On the 17-item gate file: sandbox 17/17 and 51/51 distractor_solve recompute (mutation: a changed key and a changed distractor body are both refused); zero +-pair sets; zero key-as-unique-composite; no numeric hub; symbolic hub +4.2; key at an extreme 8/17 = 47.1% (gate bar 40.0%), key largest 23.5% / smallest 23.5%, consistent with live; no singleton tell; zero reviewer-facing text. Kept file: key extremity NO MEASUREMENT (n=5)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "3384789c90d084231143c84efcebdfaeaeb555a5ed522027c28d9f5fb403389d",
+          "verdict": "Three fresh graders solved cold before reading keys: all three matched the key on all 17; every item exclusive. Kept five: free strikes median A1 1 (46.67 is the linear extrapolation; exponential decay lies above it), B4 1 (-21/4 by sign), others 0. Panel: B4 hard 3/3; A1 A5 A7 D2 medium 3/3. Off-blueprint by majority: none."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "3384789c90d084231143c84efcebdfaeaeb555a5ed522027c28d9f5fb403389d",
+          "verdict": "Options-only attack on the 17-item gate file, three samples of one solver (pairwise agreement 78.4% vs 31.1% independent), 17 candidates interleaved with 17 composition-matched live Advanced Math items (13 medium + 4 hard, numeric, excluding v2 and the session cohorts; pool hard 52 / medium 126; minus glyph normalised across arms). CANDIDATE 43.1% vs CONTROL 37.3% (lines 29.4%): margin +5.9, inside the pre-registered +10; control far below the 90% ceiling. Unanimous-correct 5/17 vs 4/17 (rate only). Every pick labelled guess; heuristics: hub value, midpoint, sign/reciprocal pair."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "3384789c90d084231143c84efcebdfaeaeb555a5ed522027c28d9f5fb403389d",
+          "verdict": "Recorded, not dropped: A7 key = printed numerator at the excluded x (valid shortcut); D2 key 81 = 9 squared where 9 = c/a (the intended insight); B4 and D2 Desmos-bypassable by testing options; A1 and B4 unanimous in the blind half, each with one with-source strike only."
+        }
+      }
+    },
+    {
+      "id": "sat-math-v21-adv-kept-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "sat",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "sat-math-v21-adv",
+      "contentSha": "80ac056487c7f53347b1160b60a3f7a2e52a4477613bd42366dfd81399cfbd2e",
+      "status": "inserted",
+      "note": "Commissioned per PREREG-ADV21-2026-10-02.md to buy SAT Math form 27 (needs Advanced Math +3). 7 kept, all panel-median MEDIUM (A1 A2 A3 B1 B3 B4 B5); hard yield 0 (A5 and B5 aimed hard). 10 authored in two halves of 5, constructs and key position fixed per item before authoring; no replacement rounds (pre-registered). Audit drops: A4 (3 free strikes: profit = 15n, so options/15 give n that violate the printed >45 or the $70 average) and A5 (2: -11/-3 the lone pair differing by the printed 8). One repair round, same-side swaps: B1 10080 -> 13824, B4 33/2 -> 4. 8 gated. Not inserted, panel-median EASY: B2. No gate drops.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "80ac056487c7f53347b1160b60a3f7a2e52a4477613bd42366dfd81399cfbd2e",
+          "verdict": "7 items, all 4-choice numeric. On the 10-item authored file: sandbox 10/10, 30/30 distractor_solve (mutation: a changed key and a changed distractor body are both refused); key at an extreme 5/10 = 50.0% PASS (bar 40.0%). On the 8-item gate file: sandbox 8/8, 24/24; zero +-pair sets with the key; zero key-as-unique-composite; numeric hub key-is-hub 0/2; no singleton tell; zero reviewer-facing text; key extremity NO MEASUREMENT (n=8; raw 5/8). Kept file: NO MEASUREMENT (n=7; raw 5/7, 3 largest / 2 smallest)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "80ac056487c7f53347b1160b60a3f7a2e52a4477613bd42366dfd81399cfbd2e",
+          "verdict": "Three fresh graders solved cold before reading keys: all three matched the key on all 8 gated items; every item exclusive; every distractor path reproduces; no drop recommended; all on blueprint. Free strikes on the kept: A1 median 0 (one grader: 10109 is the 4-year value, growth is monotone), A2 median 0 (one grader: -8 is the printed constant), others 0. Panel: A1 medium/easy/medium; A2 A3 B1 B3 B4 B5 medium 3/3; B2 easy 3/3 (not inserted)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "80ac056487c7f53347b1160b60a3f7a2e52a4477613bd42366dfd81399cfbd2e",
+          "verdict": "Options-only attack on the 8-item gate file, three samples of one solver (pairwise agreement 75.0% vs 33.7% independent), 8 candidates interleaved with 8 composition-matched live Advanced Math items (7 medium + 1 hard, numeric, excluding v2 and the session cohorts; pool hard 52 / medium 126; make-adv21-oo.mjs seed 20261021). CANDIDATE 16.7% (4/24) vs CONTROL 45.8% (11/24), line 25.0%: margin -29.2, inside the pre-registered +10; control below the 90% ceiling. n=8 per arm is small. Unanimous-correct 1/8 vs 3/8 (rate only). Heuristics: hub value, midpoint/cluster centre; two of three samples picked the B1 distractor 13824 as \"a clean cube\"."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "80ac056487c7f53347b1160b60a3f7a2e52a4477613bd42366dfd81399cfbd2e",
+          "verdict": "Recorded, not dropped: key is the largest option on a maximum/greatest question in B1 and B5, and the odd-one-out above the 5-6-7 cluster in A3 (three graders, no strike counted); A1 and B4 are near-easy with Desmos (one formula / graph read); option values 4, 5, 6, 7 recur across small-integer items."
         }
       }
     }

@@ -1,0 +1,58 @@
+{
+ "SM20A-D1": {
+  "my_answer": "17",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none counted. Tried: parity (p(3)=3k-51 forces k odd; all four options odd), mod 3 (every term of p(3) is a multiple of 3, no constraint), sign/magnitude (none), plug-back (checking any k IS the full p(3) evaluation, not a glance), Rational Root framing (constant -24 = -3*8 gives the cofactor shape but is the solve). Weak pattern tells, not counted: 51 = 3*17 (key and 3x key both present, points at {17,51}); 33 = 24+9 is a one-step combination of two printed numbers (marks 33 as a decoy, not the key). Key 17 is the smallest option but no stem bound makes the minimum the only legal value.",
+  "n_struck": 0,
+  "insight_bypassable": false,
+  "difficulty": "easy",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: factor theorem, p(3)=54-81+3k-24=3k-51=0, k=17. Key correct and unique (p(3) is linear in k). All three distractor paths reproduce their values (29: 2*3^2 for 2*3^3; 33: synthetic division adding k-9 instead of 3(k-9); 51: stops at 3k=51). Difficulty: one substitution and a one-step linear solve, no decision point a competent student misses - easy, at most low medium (commissioned medium). n_struck=0 so no repair required; optional tidy for the 51=3x17 pair: replace 51 with -53 (root taken as x=-3: -54-81-3k-24=0). It stays odd (parity mod 2 of p(3) is cheap and forces k odd, so do NOT use an even value such as 26 from dropping the leading 2), is not a sum/difference/mean/multiple of 17, 29, 33, and a negative k is not excluded by anything in the stem."
+ },
+ "SM20A-D2": {
+  "my_answer": "81",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none counted. Tried: domain (u=sqrt x >= 0; both u-roots 3/2 and 6 are positive, so no extraneous-root premise kills anything), sign (product of nonnegative x is nonnegative; all options positive), lone non-integer 38.25 (a distractor, so it eliminates only itself and only for a test-wise student - not counted), closure (no option is sum/difference/mean/GM of two others; GM(9,81)=27 absent, mean 45 absent). Pattern tell, not counted: 9 = 18/2 is c/a read off the stem and 81 = 9^2, so the pair {9,81} advertises 'product of u-roots vs its square'; reading that pair already IS the Vieta insight (product of x = (u1*u2)^2). Key 81 is the largest option; no stem bound makes the maximum the only legal value.",
+  "n_struck": 0,
+  "insight_bypassable": true,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: u=sqrt x, 2u^2-15u+18=0=(2u-3)(u-6), u=3/2 or 6, x=9/4 or 36, both check (4.5-22.5+18=0; 72-90+18=0), product 81. Distractors reproduce: 9 (u-product), 38.25 (sum 9/4+36; DS computes u1^2+u2^2, same number, coherent), 54 (36*3/2). Medium on paper: the substitution and the square-back are the decision; the 9 trap is real. Bypass: Desmos graph of y=2x-15sqrt(x)+18 shows roots 2.25 and 36 directly, so with Desmos it is easy-medium. Not hard, as commissioned (medium). No repair required."
+ },
+ "SM20A-D3": {
+  "my_answer": "29",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "41 dies by plug-back in two mental steps: any g value has the form 3*(a table entry) - 4, and (41+4)/3 = 15 is not in the f column {17,4,12,6,11,14,3}. The other three survive that check (29->11=f(5), 38->14=f(6), 47->17=f(1)), and mod 3 kills nothing (all four are 2 mod 3). Noted, not counted: 38 is the exact mean of 29 and 47 (a closure tell, but it points at a distractor, not the key); key 29 is the smallest option with no stem bound behind it.",
+  "n_struck": 1,
+  "insight_bypassable": false,
+  "difficulty": "easy",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: g(3)=3f(5)-4=3(11)-4=29. Key correct, unique. Distractors reproduce (38: 3(f(3)+2)-4; 41: 4f(5)-3; 47: 3f(1)-4). The 41 path (swapping 3 and 4) is the only one that produces a value outside the reachable set {3*f-4}, which is why it is free to strike. Difficulty: direct substitution x=3 into x+2 then one table read and one linear step; no horizontal-shift reasoning is actually needed to evaluate at a point - easy (commissioned medium). Blueprint: function notation/transformation of a nonlinear (table-defined) function - on blueprint, though borderline since no named nonlinear family is tested. REPAIR (one distractor): replace 41 with 32 = 3f(3)-4 (ignores the +2 shift entirely, a very common slip). 32 survives plug-back ((32+4)/3=12=f(3)), keeps parity mixed (29,47 odd; 32,38 even), is 2 mod 3 like the rest, and is not a sum/difference/mean/double of the others; 32-29=3 is adjacency only in the 3-step lattice every option already lives on. The pre-existing 38=(29+47)/2 closure remains; to remove it as well, change table f(1) from 17 to 18 so the wrong-direction distractor becomes 50."
+ },
+ "SM20A-D4": {
+  "my_answer": "-7",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none counted. Key -7 is the LARGEST option; checked for a readable bound making the maximum the only legal value: k is the minimum of f, and a glance gives f(1) = f(2) = -6, so k <= -6 - all four options satisfy that, so no option dies; pinning k = -6 - 4(1/2)^2 = -7 from the symmetric pair is the solve, not a glance. f(0)=2 gives only k <= 2. Parity mixed (-34,-16 even; -11,-7 odd), no lone negative/non-integer, no sum/difference/mean/double closure among {-34,-16,-11,-7}, key not a printed number or one-step combination of printed numbers (2-9, where 9 is not printed).",
+  "n_struck": 0,
+  "insight_bypassable": true,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: f=4(x^2-3x)+2=4(x-3/2)^2-9+2, k=-7. Key correct, unique (vertex form is unique). Distractors reproduce: -34 (completes x^2-12x as if a=1: 2-36), -16 (b^2/(2a)=18), -11 (-2-9 sign slip). Medium on paper (factor-out-4 then complete the square; the a=1 slip lands on -34). Desmos bypass: graphing f shows vertex (1.5,-7) in one step, so it is easy with the calculator - insight_bypassable true. Not hard, as commissioned (medium). No repair required."
+ }
+}
