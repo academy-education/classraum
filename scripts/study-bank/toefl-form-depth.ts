@@ -115,10 +115,22 @@ function installFakeFetch() {
         throw new Error(`fake fetch: unexpected bank filter ${url.search}`)
       }
       if (q.has('domain')) throw new Error('fake fetch: domain drills are not modelled')
-      if (q.get('order') !== 'created_at.asc') throw new Error(`fake fetch: assembler order changed to ${q.get('order')}; re-check the stand-in`)
-      const rows = BANK.get(section) ?? []
-      if (rows.length > MAX_ROWS) capWarnings.add(`${section}: ${rows.length} rows, assembler sees the first ${MAX_ROWS}`)
-      return json(rows.slice(0, MAX_ROWS).map(r => ({ id: r.id, item_type: r.item_type, item: r.item, difficulty: r.difficulty })))
+      /* The assembler pages since 2026-10-02 (created_at, id; offset/limit;
+       * exact count on the first page). The stand-in honours all three and
+       * still caps each response at MAX_ROWS, so an unpaged read would
+       * still be truncated here exactly as in production. Rows are served
+       * in (created_at, id) order to match. */
+      const ord = q.get('order')
+      if (ord !== 'created_at.asc,id.asc' && ord !== 'created_at.asc') throw new Error(`fake fetch: assembler order changed to ${ord}; re-check the stand-in`)
+      const all = [...(BANK.get(section) ?? [])].sort((a, b) => a.created_at.localeCompare(b.created_at) || (ord.endsWith('id.asc') ? a.id.localeCompare(b.id) : 0))
+      const offset = Number(q.get('offset') ?? 0)
+      const limit = Math.min(MAX_ROWS, Number(q.get('limit') ?? MAX_ROWS))
+      if (!q.has('offset') && all.length > MAX_ROWS) capWarnings.add(`${section}: ${all.length} rows, assembler sees the first ${MAX_ROWS} (unpaged read)`)
+      const slice = all.slice(offset, offset + limit)
+      const headers: Record<string, string> = { 'content-type': 'application/json' }
+      const prefer = (init?.headers ? new Headers(init.headers).get('prefer') : null) ?? ''
+      if (prefer.includes('count=exact')) headers['content-range'] = `${offset}-${offset + slice.length - 1}/${all.length}`
+      return new Response(JSON.stringify(slice.map(r => ({ id: r.id, item_type: r.item_type, item: r.item, difficulty: r.difficulty }))), { status: 200, headers })
     }
     if (table === 'study_item_exposures' && method === 'GET') {
       const student = eqParam(q, 'student_id')
@@ -186,7 +198,7 @@ export async function simulate(
   const byId = new Map<string, { section: Section; row: BankRow }>()
   const setSize = new Map<string, number>()
   for (const s of SECTIONS) {
-    for (const r of (BANK.get(s) ?? []).slice(0, MAX_ROWS)) {
+    for (const r of BANK.get(s) ?? []) { // the assembler pages (2026-10-02); no cap
       byId.set(r.id, { section: s, row: r })
       const k = `${s}|${taskKey(s, r)}|${gidOf(r)}`
       setSize.set(k, (setSize.get(k) ?? 0) + 1)
