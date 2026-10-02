@@ -84,7 +84,7 @@ export function ReportQuestion({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-400 hover:text-gray-600 transition-colors"
+        className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-500 hover:text-gray-600 transition-colors"
       >
         <Flag className="w-3.5 h-3.5" />
         {t('study.report.cta')}
@@ -116,6 +116,7 @@ export function ReportQuestion({
         onChange={e => setNote(e.target.value)}
         rows={2}
         maxLength={1000}
+        aria-label={t('study.report.notePlaceholder')}
         placeholder={t('study.report.notePlaceholder')}
         className="mt-2 w-full resize-none rounded-lg border border-gray-200 bg-white px-2.5 py-2 text-[13px] text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none"
       />

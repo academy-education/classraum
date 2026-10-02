@@ -263,6 +263,11 @@ function ShareCard({ code, reward, ko }: { code: string; reward: number; ko: boo
             ? (ko ? '복사됐어요!' : 'Copied!')
             : (ko ? '초대 링크 복사' : 'Copy invite link')}
         </StudyButton>
+        {/* The button relabels itself on copy; a label change is not
+            announced, so say it once in a polite live region. */}
+        <span className="sr-only" role="status" aria-live="polite">
+          {copied ? (ko ? '초대 링크가 복사됐어요' : 'Invite link copied') : ''}
+        </span>
 
         {/* Share — native uses the OS share sheet (@capacitor/share), which
             includes KakaoTalk; web uses the Kakao JS SDK when a key is set.
@@ -397,6 +402,7 @@ function RedeemBox({ ko, onRedeemed }: { ko: boolean; onRedeemed: () => void }) 
           value={code}
           onChange={e => setCode(e.target.value.toUpperCase())}
           onKeyDown={e => { if (e.key === 'Enter') void submit() }}
+          aria-label={ko ? '코드 입력' : 'Enter code'}
           placeholder={ko ? '코드 입력' : 'Enter code'}
           autoCapitalize="characters"
           autoCorrect="off"
@@ -417,7 +423,10 @@ function RedeemBox({ ko, onRedeemed }: { ko: boolean; onRedeemed: () => void }) 
         </StudyButton>
       </div>
       {message && (
-        <p className={`text-[13px] font-medium ${message.kind === 'success' ? 'text-emerald-600' : 'text-rose-600'}`}>
+        <p
+          role={message.kind === 'error' ? 'alert' : 'status'}
+          className={`text-[13px] font-medium ${message.kind === 'success' ? 'text-emerald-700' : 'text-rose-600'}`}
+        >
           {message.text}
         </p>
       )}

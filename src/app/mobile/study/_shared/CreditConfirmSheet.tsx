@@ -1,8 +1,10 @@
 "use client"
 
+import { useId } from 'react'
 import Link from 'next/link'
 import { Coins, Loader2 } from '@/app/mobile/study/_shared/icons'
 import { ModalPortal } from '@/components/ui/modal-portal'
+import { useDialogA11y } from './useDialogA11y'
 
 /**
  * Credit-spend confirmation — shown before any one-tap test start that
@@ -42,20 +44,23 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
   onSourceChange?: (s: 'pass' | 'regular') => void
 }) {
   const showSource = !!onSourceChange && (passCredits ?? 0) > 0
+  const titleId = useId()
+  const dialogRef = useDialogA11y(open, () => { if (!busy) onCancel() })
   if (!open) return null
   return (
     <ModalPortal>
       <div
         className="fixed inset-0 backdrop-blur-sm bg-black/40 z-[9998]"
         onClick={busy ? undefined : onCancel}
+        aria-hidden
       />
       <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4 pointer-events-none">
-        <div className="pointer-events-auto w-full max-w-sm rounded-2xl bg-white p-5 shadow-xl">
+        <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={titleId} className="pointer-events-auto w-full max-w-sm rounded-2xl bg-white p-5 shadow-xl outline-none">
           <div className="flex flex-col items-center text-center gap-2.5">
             <span className="w-11 h-11 rounded-full bg-amber-500/15 text-amber-600 flex items-center justify-center">
               <Coins className="w-5 h-5" />
             </span>
-            <p className="text-[17px] font-bold text-gray-900">
+            <p id={titleId} className="text-[17px] font-bold text-gray-900">
               {title ?? (ko ? `크레딧 ${cost}개를 사용할까요?` : `Use ${cost} credit${cost === 1 ? '' : 's'} to start?`)}
             </p>
             <p className="text-[13px] text-gray-500 leading-relaxed">
@@ -73,6 +78,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
                 <button
                   type="button"
                   onClick={() => onSourceChange?.('pass')}
+                  aria-pressed={source === 'pass'}
                   disabled={busy}
                   className={`h-10 rounded-lg text-[13px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                     source === 'pass' ? 'bg-white text-indigo-700 shadow-sm ring-1 ring-indigo-200' : 'text-gray-500'
@@ -84,6 +90,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
                 <button
                   type="button"
                   onClick={() => onSourceChange?.('regular')}
+                  aria-pressed={source === 'regular'}
                   disabled={busy}
                   className={`h-10 rounded-lg text-[13px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                     source === 'regular' ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' : 'text-gray-500'
@@ -137,20 +144,23 @@ export function NoCreditsSheet({ open, cost, ko, onCancel, description }: {
   /** Optional copy override — default speaks about "this test". */
   description?: string
 }) {
+  const titleId = useId()
+  const dialogRef = useDialogA11y(open, onCancel)
   if (!open) return null
   return (
     <ModalPortal>
       <div
         className="fixed inset-0 backdrop-blur-sm bg-black/40 z-[9998]"
         onClick={onCancel}
+        aria-hidden
       />
       <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4 pointer-events-none">
-        <div className="pointer-events-auto w-full max-w-sm rounded-2xl bg-white p-5 shadow-xl">
+        <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={titleId} className="pointer-events-auto w-full max-w-sm rounded-2xl bg-white p-5 shadow-xl outline-none">
           <div className="flex flex-col items-center text-center gap-2.5">
             <span className="w-11 h-11 rounded-full bg-amber-500/15 text-amber-600 flex items-center justify-center">
               <Coins className="w-5 h-5" />
             </span>
-            <p className="text-[17px] font-bold text-gray-900">
+            <p id={titleId} className="text-[17px] font-bold text-gray-900">
               {ko ? '크레딧이 부족해요' : 'Not enough credits'}
             </p>
             <p className="text-[13px] text-gray-500 leading-relaxed">

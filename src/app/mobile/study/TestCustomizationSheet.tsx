@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { X, Clock, Hash, Sparkles, Award, Coins } from '@/app/mobile/study/_shared/icons'
 import type { LucideIcon } from '@/app/mobile/study/_shared/icons'
+import { useDialogA11y } from './_shared/useDialogA11y'
 import { useTranslation } from '@/hooks/useTranslation'
 import { db } from '@/lib/supabase'
 import { SegmentedTabs } from './_shared/SegmentedTabs'
@@ -159,16 +160,11 @@ export function TestCustomizationSheet({
     return () => { cancelled = true }
   }, [open, family])
 
-  // Close on Escape.
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [open, onClose])
-
   const [mounted, setMounted] = useState(false)
   useEffect(() => { setMounted(true) }, [])
+
+  // Escape closes, Tab stays inside, focus returns to the opener.
+  const dialogRef = useDialogA11y(open && mounted, onClose)
 
   if (!open || !mounted) return null
 
@@ -200,14 +196,16 @@ export function TestCustomizationSheet({
         aria-hidden
       />
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
+        aria-labelledby="test-config-title"
         /* Phones: a bottom sheet. lg and up: a centred dialog, so "Start
            test" sits in the middle of the screen instead of in a bar
            stretched across the whole window. Centred with the individual
            `translate` property, not `transform`, because the slide-up
            animation and the drag-to-dismiss both own `transform`. */
-        className="fixed inset-x-0 bottom-0 z-[121] max-h-[88vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up lg:inset-x-auto lg:bottom-auto lg:left-1/2 lg:top-1/2 lg:w-[min(560px,calc(100vw-48px))] lg:max-h-[85vh] lg:rounded-3xl lg:[translate:-50%_-50%] lg:shadow-[0_24px_64px_-16px_rgba(0,0,0,0.35)]"
+        className="fixed inset-x-0 bottom-0 z-[121] outline-none max-h-[88vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up lg:inset-x-auto lg:bottom-auto lg:left-1/2 lg:top-1/2 lg:w-[min(560px,calc(100vw-48px))] lg:max-h-[85vh] lg:rounded-3xl lg:[translate:-50%_-50%] lg:shadow-[0_24px_64px_-16px_rgba(0,0,0,0.35)]"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)', ...sheetStyle }}
       >
         <div {...handleProps} className="pt-2.5 pb-1.5 flex justify-center cursor-grab active:cursor-grabbing touch-none lg:hidden">
@@ -216,7 +214,7 @@ export function TestCustomizationSheet({
 
         <div className="flex items-center justify-between px-5 pb-3 lg:pt-5 border-b border-gray-100">
           <div>
-            <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
+            <h2 id="test-config-title" className="text-[17px] font-semibold tracking-tight text-gray-900">
               {String(t('study.testConfig.title'))}
             </h2>
             <p className="text-[13px] text-gray-500 mt-0.5">
@@ -227,9 +225,9 @@ export function TestCustomizationSheet({
             type="button"
             onClick={onClose}
             aria-label={String(t('common.close'))}
-            className="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 hover:bg-gray-100 active:scale-[0.94] transition-all"
+            className="tap-target inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 hover:bg-gray-100 active:scale-[0.94] transition-all"
           >
-            <X className="w-4 h-4" />
+            <X className="w-4 h-4" aria-hidden />
           </button>
         </div>
 
@@ -290,6 +288,7 @@ export function TestCustomizationSheet({
                 <button
                   type="button"
                   onClick={() => setSpeakingGradeMode('text')}
+                  aria-pressed={speakingGradeMode === 'text'}
                   className={`w-full text-left rounded-xl border p-3 transition ${
                     speakingGradeMode === 'text'
                       ? 'border-primary bg-primary/[0.04] ring-1 ring-primary/30'
@@ -311,6 +310,7 @@ export function TestCustomizationSheet({
                 <button
                   type="button"
                   onClick={() => setSpeakingGradeMode('audio')}
+                  aria-pressed={speakingGradeMode === 'audio'}
                   className={`w-full text-left rounded-xl border p-3 transition ${
                     speakingGradeMode === 'audio'
                       ? 'border-primary bg-primary/[0.04] ring-1 ring-primary/30'
@@ -343,6 +343,7 @@ export function TestCustomizationSheet({
               <button
                 type="button"
                 onClick={() => setCreditSource('pass')}
+                aria-pressed={creditSource === 'pass'}
                 className={`h-9 rounded-lg text-[13px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                   creditSource === 'pass' ? 'bg-white text-indigo-700 shadow-sm ring-1 ring-indigo-200' : 'text-gray-500'
                 }`}
@@ -353,6 +354,7 @@ export function TestCustomizationSheet({
               <button
                 type="button"
                 onClick={() => setCreditSource('regular')}
+                aria-pressed={creditSource === 'regular'}
                 className={`h-9 rounded-lg text-[13px] font-semibold inline-flex items-center justify-center gap-1 transition-all ${
                   creditSource === 'regular' ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' : 'text-gray-500'
                 }`}
@@ -425,7 +427,7 @@ function DifficultyHint({
   ko: boolean
 }) {
   if (recommended === null) {
-    return <p className="text-[11px] text-gray-400 mt-2">{ko ? '난이도 계산 중…' : 'Calculating recommendation…'}</p>
+    return <p className="text-[11px] text-gray-500 mt-2">{ko ? '난이도 계산 중…' : 'Calculating recommendation…'}</p>
   }
   if (masteryScore === null) {
     return (

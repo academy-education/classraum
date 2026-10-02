@@ -72,7 +72,7 @@ export default function BillingHistoryPage() {
       <StudyPageTransition>
         <div className="max-w-3xl mx-auto px-5 lg:px-8 pt-4 pb-14">
           {failed && (
-            <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-8 text-center text-[15px] text-gray-600">
+            <div role="alert" className="rounded-2xl bg-white ring-1 ring-gray-200/70 px-5 py-8 text-center text-[15px] text-gray-600">
               {ko ? '결제 내역을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.' : "Couldn't load your billing history. Please try again in a moment."}
             </div>
           )}
@@ -101,17 +101,20 @@ export default function BillingHistoryPage() {
                     <p className="text-[13px] text-gray-500 tabular-nums">{date(it.paidAt)}</p>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className={`text-[15px] font-semibold tabular-nums ${it.refundedAt ? 'text-gray-400 line-through' : 'text-gray-900'}`}>{won(it.amountWon)}</p>
+                    <p className={`text-[15px] font-semibold tabular-nums ${it.refundedAt ? 'text-gray-500 line-through' : 'text-gray-900'}`}>{won(it.amountWon)}</p>
                     {it.receiptUrl ? (
                       <button
                         type="button"
                         onClick={() => void openExternalUrl(it.receiptUrl as string)}
-                        className="mt-1 inline-flex items-center gap-1 text-[13px] font-semibold text-primary"
+                        // Every row's button reads "Receipt"; name the charge so
+                        // a screen-reader list of buttons is distinguishable.
+                        aria-label={`${ko ? '영수증' : 'Receipt'} · ${date(it.paidAt)} · ${won(it.amountWon)}`}
+                        className="tap-target mt-1 inline-flex items-center gap-1 text-[13px] font-semibold text-primary"
                       >
-                        {ko ? '영수증' : 'Receipt'} <ExternalLink className="w-3.5 h-3.5" />
+                        {ko ? '영수증' : 'Receipt'} <ExternalLink className="w-3.5 h-3.5" aria-hidden />
                       </button>
                     ) : (
-                      <span className="mt-1 block text-[13px] text-gray-400">{ko ? '영수증 준비 중' : 'Receipt pending'}</span>
+                      <span className="mt-1 block text-[13px] text-gray-500">{ko ? '영수증 준비 중' : 'Receipt pending'}</span>
                     )}
                   </div>
                 </li>

@@ -277,6 +277,7 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
         <input
           type="text" value={q} onChange={e => setQ(e.target.value)}
           autoCapitalize="none" autoCorrect="off" spellCheck={false}
+          aria-label={ko ? '닉네임으로 검색' : 'Search by nickname'}
           placeholder={ko ? '닉네임으로 검색' : 'Search by nickname'}
           className="w-full h-11 pl-9 pr-9 rounded-xl bg-gray-50 ring-1 ring-gray-200/70 text-[15px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
         />
@@ -330,6 +331,7 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
             type="text" value={codeInput} onChange={e => { setCodeInput(e.target.value.toUpperCase()); setCodeMsg(null) }}
             onKeyDown={e => { if (e.key === 'Enter') void addByCode() }}
             autoCapitalize="characters" autoCorrect="off" spellCheck={false} maxLength={12}
+            aria-label={ko ? '코드 입력' : 'Enter code'}
             placeholder={ko ? '코드 입력' : 'Enter code'}
             className="flex-1 min-w-0 h-11 px-4 rounded-xl bg-gray-50 ring-1 ring-gray-200/70 text-[15px] font-semibold tracking-[0.1em] uppercase text-gray-900 placeholder:font-normal placeholder:tracking-normal placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />

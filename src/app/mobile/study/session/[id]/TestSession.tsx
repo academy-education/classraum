@@ -60,6 +60,9 @@ import {
  * Timer state lives in localStorage keyed by session id, so a
  * refresh mid-test resumes from the elapsed-time the page left off.
  */
+/** Stable callback ref: focuses the element once, when it mounts. */
+const focusOnMount = (el: HTMLElement | null) => { el?.focus({ preventScroll: true }) }
+
 export function TestSession({ sessionId, language }: { sessionId: string; language: 'en' | 'ko' }) {
   const { t } = useTranslation()
   const { user } = useAuth()
@@ -1351,7 +1354,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               {ko ? `또는 ${MICRO_PACK.credits}개만 — ${fmtWon(MICRO_PACK.priceWon)}` : `Or just ${MICRO_PACK.credits} — ${fmtWon(MICRO_PACK.priceWon)}`}
             </button>
             {buyError && <p className="text-[13px] text-rose-600 leading-snug">{buyError}</p>}
-            <Link href="/mobile/study/subscription" className="text-[13px] text-gray-400 underline mt-0.5">
+            <Link href="/mobile/study/subscription" className="text-[13px] text-gray-500 underline mt-0.5">
               {ko ? '구독 플랜 보기' : 'See subscription plans'}
             </Link>
           </div>
@@ -1365,7 +1368,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             {copy.cta}
           </button>
         )}
-        <Link href="/mobile/study" className="text-[13px] text-gray-400 underline mt-1">
+        <Link href="/mobile/study" className="text-[13px] text-gray-500 underline mt-1">
           {ko ? '학습 홈으로 돌아가기' : 'Back to Study home'}
         </Link>
       </div>
@@ -1614,9 +1617,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             type="button"
             onClick={() => setKeyHelpOpen(false)}
             className="ml-1 text-white/50 hover:text-white text-[13px]"
-            aria-label={ko ? '닫기' : 'Close'}
+            aria-label={String(t('common.close'))}
           >
-            ✕
+            <span aria-hidden>✕</span>
           </button>
         </div>
       )}
@@ -1630,6 +1633,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             className="h-full bg-emerald-500 transition-[width] duration-500 ease-out"
             style={{ width: `${progressPct}%` }}
             role="progressbar"
+            aria-label={String(t('study.a11y.testProgress'))}
             aria-valuenow={furthest}
             aria-valuemin={0}
             aria-valuemax={totalQuestions}
@@ -1647,6 +1651,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           <button
             type="button"
             onClick={() => setGridOpen(v => !v)}
+            aria-expanded={gridOpen}
             disabled={audioPlaying}
             className="tap-target text-[11px] text-gray-500 tabular-nums inline-flex items-center gap-1 disabled:opacity-40"
           >
@@ -1662,8 +1667,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 : timeWarning ? 'bg-amber-50 text-amber-800 border-amber-200'
                 : 'bg-gray-50 text-gray-600 border-gray-200'
             }`}>
-              <Clock className="w-3 h-3" />
-              {formatTime(remainingMs)}
+              {/* role=timer is aria-live="off" by default: the value is
+                  readable on demand but never announced every second. */}
+              <Clock className="w-3 h-3" aria-hidden />
+              <span className="sr-only">{String(t('study.a11y.timeRemaining'))}</span>
+              <span role="timer" aria-live="off">{formatTime(remainingMs)}</span>
             </div>
             <button
               type="button"
@@ -2095,13 +2103,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 <p className="text-[13px] text-amber-700 mb-2 font-medium">
                   {ko ? `정확히 ${targetCount}개 선택` : `Select exactly ${targetCount}`}
                 </p>
-                <div className="space-y-2">
+                <div className="space-y-2" role="group" aria-label={String(t('study.a11y.answerChoices'))}>
                   {q.choices.map(choice => {
                     const selected = current.includes(choice)
                     return (
                       <button
                         key={choice}
                         type="button"
+                        role="checkbox"
+                        aria-checked={selected}
                         data-runner-option
                         onClick={() => { hapticSelection(); toggle(choice) }}
                         className={`w-full text-left px-4 py-3 rounded-xl border text-[15px] transition-colors active:scale-[0.99] flex items-start gap-3 ${
@@ -2254,7 +2264,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 {/* Slot row — assembled sentence so far */}
                 <div className="rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 px-3 py-3 min-h-[60px] flex flex-wrap items-center gap-2">
                   {current.length === 0
-                    ? <span className="text-[13px] text-gray-400 italic">{ko ? '비어 있음' : 'empty'}</span>
+                    ? <span className="text-[13px] text-gray-500 italic">{ko ? '비어 있음' : 'empty'}</span>
                     : current.map((chip, i) => (
                         <button
                           key={`${chip}-${i}`}
@@ -2459,7 +2469,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             const wordCount = student.trim().split(/\s+/).filter(Boolean).length
             return (
               <div className="space-y-3">
-                <p className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
+                <p id={`writing-prompt-${currentIdx}`} className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
                   {q.type === 'writing_email'
                     ? (ko ? '이메일 답장을 작성하세요' : 'Write your email reply')
                     : q.type === 'writing_discussion'
@@ -2471,6 +2481,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     : (ko ? '에세이를 작성하세요' : 'Write your essay')}
                 </p>
                 <textarea
+                  aria-labelledby={`writing-prompt-${currentIdx}`}
                   value={student}
                   onChange={(e) => {
                     const val = e.target.value
@@ -2501,7 +2512,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     {wordCount} {ko ? '단어' : 'words'}
                   </span>
                 </div>
-                <p className="text-[11px] text-gray-400 leading-relaxed">
+                <p className="text-[11px] text-gray-500 leading-relaxed">
                   {isEssay
                     ? (ko ? '이 글은 점수로 환산되지 않습니다. 실제 시험처럼 학교가 직접 읽는 영역이며, 작성한 내용은 저장되어 시험 후 리뷰에서 다시 볼 수 있습니다.' : 'This piece is not scored. Like the real test, it is read by schools rather than banded — your writing is saved and available in the post-test review.')
                     : (ko ? '자동 채점: 최소 길이 확인. 세부 밴드 점수는 시험 후 리뷰에서 확인 가능합니다.' : 'Auto-grading: length check only. Full rubric band is available in the post-test review.')}
@@ -2661,7 +2672,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // multiple_choice / three_choice / quant_comparison — all
           // render the same way: vertical list of choice buttons with
           // a test-format-aware label prefix (KSAT ①②③④⑤, others A B C D).
-          <div className="space-y-2">
+          <div className="space-y-2" role="radiogroup" aria-label={String(t('study.a11y.answerChoices'))}>
             {q.choices.map((choice, i) => {
               const selected = answers[currentIdx] === choice
               const label = choiceLabel(test.family, i, currentIdx)
@@ -2669,6 +2680,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 <button
                   key={choice}
                   type="button"
+                  role="radio"
+                  aria-checked={selected}
                   data-runner-option
                   onClick={() => {
                     hapticSelection()
@@ -2719,7 +2732,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           <button
             type="button"
             onClick={() => setKeyHelpOpen(v => !v)}
-            className="mt-1 text-left text-gray-400 hover:text-gray-600"
+            aria-expanded={keyHelpOpen}
+            className="mt-1 text-left text-gray-500 hover:text-gray-700"
           >
             {ko ? '단축키 ?' : 'Shortcuts  ?'}
           </button>
@@ -2919,6 +2933,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <button
               type="button"
               onClick={togglePause}
+              // Focus moves here when the overlay opens so keyboard and
+              // screen-reader users land on the only action available.
+              ref={focusOnMount}
               className="mt-5 inline-flex items-center justify-center gap-1.5 h-11 px-5 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_6px_-2px_rgba(40,133,232,0.35)] active:scale-[0.99] transition"
             >
               {ko ? '재개' : 'Resume test'}
@@ -2965,7 +2982,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <button
               type="button"
               onClick={() => setSubmitError(null)}
-              className="text-rose-600 hover:text-rose-800 text-[11px] font-medium px-1"
+              className="tap-target text-rose-700 hover:text-rose-800 text-[11px] font-medium px-1"
             >
               {String(t('study.test.submitError.dismiss'))}
             </button>

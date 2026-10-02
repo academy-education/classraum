@@ -641,6 +641,59 @@ option {
   animation: mascot-sad 1800ms ease-in-out infinite;
 }
 
+/* Reduced motion for the study surface. Every entrance ends VISIBLE:
+ * card-in and fade-in start from opacity 0 (often with an `opacity-0`
+ * utility beside them), so "animation: none" alone would leave the
+ * element invisible — opacity is forced back to 1. The two toasts keep
+ * their timing and fade but lose the bounce, because they fade OUT by
+ * design and the component's unmount timer is tuned to that duration.
+ * Unlayered on purpose, so it beats the utilities layer. Spinners are
+ * left running: they are the only sign that something is loading. */
+@keyframes study-fade-hold {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-card-in,
+  .animate-fade-in,
+  .animate-fade-in-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .animate-slide-up,
+  .animate-shimmer-soft,
+  .animate-mascot-idle,
+  .animate-mascot-hop,
+  .animate-mascot-sad,
+  .animate-bounce,
+  .animate-in {
+    animation: none;
+  }
+  /* A stopped ping is a solid halo sitting on top of its control (the
+     record buttons overlay one at 70% white), so hide it instead. */
+  .animate-ping {
+    animation: none;
+    visibility: hidden;
+  }
+  .animate-xp-pop,
+  .animate-big-banner {
+    animation-name: study-fade-hold;
+  }
+  .animate-confetti-fall {
+    animation: none;
+    display: none;
+  }
+  .study-card-hover,
+  .study-card-hover:hover,
+  .study-card-hover:active {
+    transition: none;
+    transform: none;
+  }
+}
+
 @keyframes confetti-fall {
   0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
   100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }

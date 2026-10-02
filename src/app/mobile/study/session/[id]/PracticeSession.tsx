@@ -525,6 +525,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
                 value={answer}
                 onChange={(e) => phase === 'asking' && setAnswer(e.target.value)}
                 disabled={phase !== 'asking'}
+                aria-label={String(t('study.practice.shortAnswerPlaceholder'))}
                 placeholder={String(t('study.practice.shortAnswerPlaceholder'))}
                 className="w-full h-12 px-4 rounded-xl border border-gray-200 text-[15px] focus:outline-none focus:border-primary disabled:bg-gray-50"
               />

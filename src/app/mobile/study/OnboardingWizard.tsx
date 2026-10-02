@@ -566,13 +566,14 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   topic shelves: bleed to the screen edge so the row reads
                   as scrollable instead of stopping at the card padding. */}
               <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x -mx-5 px-5 scroll-px-5 py-3 mt-3">
-                {STUDY_AVATAR_IDS.map(id => {
+                {STUDY_AVATAR_IDS.map((id, avatarIdx) => {
                   const on = avatarId === id
                   return (
                     <button
                       key={id}
                       type="button"
                       aria-pressed={on}
+                      aria-label={String(t('study.a11y.avatarOption', { n: avatarIdx + 1 }))}
                       // Tapping the chosen one clears it — otherwise the
                       // first tap is irreversible without finishing and
                       // going to Profile, and there is no "none" tile.
@@ -597,6 +598,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   autoCapitalize="none"
                   autoCorrect="off"
                   spellCheck={false}
+                  aria-label={ko ? '닉네임을 정하세요' : 'Choose a nickname'}
                   placeholder={ko ? '닉네임을 정하세요' : 'Choose a nickname'}
                   className="w-full h-12 pl-10 pr-3 rounded-2xl bg-gray-50 ring-1 ring-gray-200/70 text-[15px] font-medium text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
                 />

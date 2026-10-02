@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { BookOpen, Route, Shuffle, Trophy, X, ChevronRight, ChevronLeft } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useDialogA11y } from './useDialogA11y'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudyButton } from './StudyButton'
 import { onboardingHandledThisLoad } from './onboarding-signal'
@@ -136,10 +137,6 @@ export function NavTour() {
     }
   }, [pathname])
 
-  if (!active) return null
-
-  const s = STEPS[step]
-  const Icon = s.icon
   const finish = () => {
     // Hide immediately; persist locally AND on the account so the
     // dismissal survives new devices, new origins, and cache wipes.
@@ -156,20 +153,28 @@ export function NavTour() {
       } catch { /* localStorage still suppresses on this device */ }
     })()
   }
+  const dialogRef = useDialogA11y(active, finish)
+
+  if (!active) return null
+
+  const s = STEPS[step]
+  const Icon = s.icon
 
   return (
     <>
-      <div onClick={finish}
+      <div onClick={finish} aria-hidden
         className="fixed inset-0 z-[105] bg-black/40 backdrop-blur-sm animate-in fade-in duration-300" />
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        className="fixed inset-x-4 bottom-[96px] z-[106] mx-auto max-w-sm rounded-2xl bg-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)] animate-in slide-in-from-bottom-4 fade-in duration-300 overflow-hidden"
+        aria-labelledby="nav-tour-title"
+        className="fixed inset-x-4 bottom-[96px] z-[106] outline-none mx-auto max-w-sm rounded-2xl bg-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)] animate-in slide-in-from-bottom-4 fade-in duration-300 overflow-hidden"
       >
         <button type="button" onClick={finish}
           aria-label={String(t('common.close'))}
-          className="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-500 hover:bg-gray-100 inline-flex items-center justify-center transition">
-          <X className="w-4 h-4" />
+          className="tap-target absolute top-3 right-3 w-8 h-8 rounded-full text-gray-500 hover:bg-gray-100 inline-flex items-center justify-center transition">
+          <X className="w-4 h-4" aria-hidden />
         </button>
         <div className="p-5">
           <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.iconBg} text-white flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_8px_rgba(0,0,0,0.10)] mb-3`}>
@@ -178,7 +183,7 @@ export function NavTour() {
           <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-gray-500 mb-1">
             {ko ? `${step + 1} / ${STEPS.length}` : `Step ${step + 1} of ${STEPS.length}`}
           </div>
-          <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
+          <h2 id="nav-tour-title" className="text-[17px] font-semibold tracking-tight text-gray-900">
             {ko ? s.titleKo : s.titleEn}
           </h2>
           <p className="text-[13px] text-gray-600 leading-relaxed mt-2">
