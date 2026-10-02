@@ -105,7 +105,7 @@ describe('study-billing cron — writes are verified before counting success', (
   it('counts a charge normally when every write lands', async () => {
     enqueue('study_subscriptions', { data: [] })
     enqueue('study_subscriptions', { data: [dueRow] })
-    enqueue('study_subscriptions', { error: null })      // advance ok
+    enqueue('study_subscriptions', { data: [{ id: 'sub-1' }], error: null }) // advance ok (row matched)
     enqueue('study_subscriptions', { data: [] })
     enqueue('study_subscriptions', { data: [] })
     enqueue('study_credit_ledger', { error: null })      // ledger ok
@@ -164,5 +164,50 @@ describe('study-billing cron — writes are verified before counting success', (
     expect(alertMock).toHaveBeenCalledWith(
       expect.objectContaining({ dedupeKey: 'study-grant-refresh-failed:sub-annual' }),
     )
+  })
+})
+
+describe('study-billing cron — overlapping runs', () => {
+  let enqueue: ReturnType<typeof tableRouter>
+  const dueRow = {
+    id: 'sub-1', student_id: 'stu-1', status: 'active', plan: 'general_monthly_v1', pending_plan: null,
+    current_period_end: '2020-01-01T00:00:00.000Z', cancel_at_period_end: false,
+    portone_subscription_id: 'billing-key-1', last_payment_attempt_at: null,
+  }
+  beforeEach(() => {
+    jest.clearAllMocks()
+    enqueue = tableRouter(fromMock)
+  })
+  const req = () => new NextRequest('http://localhost/api/cron/study-billing', {
+    method: 'GET', headers: { authorization: 'Bearer test-token' },
+  })
+
+  it('a renewal whose period another run already advanced writes no second ledger row', async () => {
+    enqueue('study_subscriptions', { data: [] })
+    enqueue('study_subscriptions', { data: [dueRow] })
+    const advance = enqueue('study_subscriptions', { data: [], error: null }) // WHERE missed
+    enqueue('study_subscriptions', { data: [] })
+    enqueue('study_subscriptions', { data: [] })
+    const ledger = enqueue('study_credit_ledger', { error: null })
+    chargeMock.mockResolvedValue({ ok: true })
+
+    const body = await (await GET(req())).json()
+    expect(advance.eq).toHaveBeenCalledWith('current_period_end', dueRow.current_period_end)
+    expect(ledger.insert).not.toHaveBeenCalled()
+    expect(body.summary.charged).toBe(0)
+  })
+
+  it('ALREADY_PAID from PortOne is the success path, never dunning', async () => {
+    enqueue('study_subscriptions', { data: [] })
+    enqueue('study_subscriptions', { data: [dueRow] })
+    const advance = enqueue('study_subscriptions', { data: [{ id: 'sub-1' }], error: null })
+    enqueue('study_subscriptions', { data: [] })
+    enqueue('study_subscriptions', { data: [] })
+    chargeMock.mockResolvedValue({ ok: false, code: 'ALREADY_PAID', message: 'already paid' })
+
+    const body = await (await GET(req())).json()
+    expect(advance.update).toHaveBeenCalledWith(expect.objectContaining({ status: 'active' }))
+    expect(advance.update).not.toHaveBeenCalledWith(expect.objectContaining({ status: 'past_due' }))
+    expect(body.summary.failed).toBe(0)
   })
 })

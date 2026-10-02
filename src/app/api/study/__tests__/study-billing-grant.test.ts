@@ -59,7 +59,7 @@ describe('study-billing cron — §4 annual grant refresh', () => {
         next_grant_at: '2020-01-01T00:00:00.000Z',
       }],
     })
-    const updateChain = enqueue('study_subscriptions', { error: null })
+    const updateChain = enqueue('study_subscriptions', { data: [{ id: 'sub-1' }], error: null })
     const ledgerChain = enqueue('study_credit_ledger', { error: null })
 
     const res = await GET(req())
@@ -80,6 +80,23 @@ describe('study-billing cron — §4 annual grant refresh', () => {
     expect(ledgerChain.insert).toHaveBeenCalledWith(
       expect.objectContaining({ student_id: 'stu-1', delta: allotment, bucket: 'grant', kind: 'grant' }),
     )
+  })
+
+  it('an overlapping run whose conditional grant write matches no row neither re-fills nor writes a ledger row', async () => {
+    enqueue('study_subscriptions', { data: [] })
+    enqueue('study_subscriptions', { data: [] })
+    enqueue('study_subscriptions', { data: [] })
+    enqueue('study_subscriptions', {
+      data: [{ id: 'sub-1', student_id: 'stu-1', plan: 'general_annual_v1', next_grant_at: '2020-01-01T00:00:00.000Z' }],
+    })
+    // The other run already moved next_grant_at: our WHERE matches nothing.
+    const updateChain = enqueue('study_subscriptions', { data: [], error: null })
+    const ledgerChain = enqueue('study_credit_ledger', { error: null })
+
+    const body = await (await GET(req())).json()
+    expect(updateChain.eq).toHaveBeenCalledWith('next_grant_at', '2020-01-01T00:00:00.000Z')
+    expect(body.summary.granted).toBe(0)
+    expect(ledgerChain.insert).not.toHaveBeenCalled()
   })
 
   it('does nothing in §4 when no grants are due', async () => {

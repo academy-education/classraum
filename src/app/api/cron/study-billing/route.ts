@@ -144,12 +144,20 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
     .eq('cancel_at_period_end', true)
     .lte('current_period_end', now.toISOString())
   for (const row of toCancel ?? []) {
-    const { error } = await dbAdmin
+    // Re-assert the selection criteria in the WHERE. Between the SELECT
+    // above and this write the student can resubscribe (cancel flag off,
+    // new period) — an unconditional update by id cancelled that fresh,
+    // paid subscription.
+    const { data: flipped, error } = await dbAdmin
       .from('study_subscriptions')
       .update({ status: 'cancelled', updated_at: now.toISOString() })
       .eq('id', row.id)
+      .in('status', ['active', 'trial'])
+      .eq('cancel_at_period_end', true)
+      .lte('current_period_end', now.toISOString())
+      .select('id')
     if (error) summary.errors.push(`cancel ${row.id}: ${error.message}`)
-    else summary.cancelled++
+    else if ((flipped ?? []).length > 0) summary.cancelled++
   }
 
   // ── 2. Renewal charges for active subscriptions due today ──────
@@ -223,7 +231,13 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
     // run retries — no double grant. If the update lands but the ledger
     // insert fails the balance is still correct (grant_credits_remaining is
     // the source of truth); only the audit line is missing.
-    const { error: subErr } = await dbAdmin
+    //
+    // The write is conditional on the next_grant_at we read: two
+    // overlapping runs both select this row, and an unconditional update
+    // let the second one reset grant_credits_remaining AGAIN — re-filling
+    // whatever the student had spent in between — and write a second
+    // ledger row. Only the run whose WHERE still matches owns the grant.
+    const { data: claimed, error: subErr } = await dbAdmin
       .from('study_subscriptions')
       .update({
         grant_credits_remaining: plan.monthlyCredits,
@@ -231,6 +245,12 @@ async function runBillingCycle(now: Date, summary: RunSummary) {
         updated_at: now.toISOString(),
       })
       .eq('id', row.id)
+      .eq('next_grant_at', row.next_grant_at)
+      .select('id')
+    if (!subErr && (claimed ?? []).length === 0) {
+      summary.skipped++
+      continue
+    }
     if (subErr) {
       summary.errors.push(`grant ${row.id}: ${subErr.message}`)
       await raiseAlert({
@@ -283,10 +303,16 @@ async function markExpired(
   now: Date,
   summary: RunSummary,
 ): Promise<boolean> {
-  const { error } = await dbAdmin
+  // Conditional on still being past_due: a card update / recover between
+  // our read and this write re-activated the row, and expiring it by id
+  // alone took away a subscription the student had just paid for.
+  const { data: expiredRows, error } = await dbAdmin
     .from('study_subscriptions')
     .update({ status: 'expired', updated_at: now.toISOString() })
     .eq('id', row.id)
+    .eq('status', 'past_due')
+    .select('id')
+  if (!error && (expiredRows ?? []).length === 0) return false
   if (error) {
     summary.errors.push(`expire ${row.id}: ${error.message}`)
     await raiseAlert({
@@ -338,14 +364,20 @@ async function chargeAndAdvance(
     },
   })
 
-  if (result.ok) {
+  // ALREADY_PAID means an overlapping run charged this exact period id a
+  // moment ago (PortOne pays a paymentId at most once). The money moved,
+  // so this is the success path, not dunning: marking it past_due both
+  // mis-dunned a paying student and — once that write landed first —
+  // made the paying run's conditional advance below miss.
+  const paid = result.ok || result.code === 'ALREADY_PAID'
+  if (paid) {
     // Advance the charge period by the plan's cadence (30 = monthly,
     // 365 = annual). Credits refresh on the renewal AND every 30 days in
     // between (via next_grant_at) so annual subs still get monthly grants.
     const base = Math.max(now.getTime(), new Date(row.current_period_end).getTime())
     const nextEnd = new Date(base + effectivePlan.intervalDays * 24 * 60 * 60 * 1000)
     const nextGrant = new Date(now.getTime() + GRANT_INTERVAL_DAYS * 24 * 60 * 60 * 1000)
-    const { error: subErr } = await dbAdmin
+    const { data: advancedRows, error: subErr } = await dbAdmin
       .from('study_subscriptions')
       .update({
         status: 'active',
@@ -364,6 +396,12 @@ async function chargeAndAdvance(
         updated_at: now.toISOString(),
       })
       .eq('id', row.id)
+      // Only the run that still sees the period it charged for advances it;
+      // the other no-ops, so the ledger line and the credit reset happen once.
+      .eq('current_period_end', row.current_period_end)
+      .eq('status', row.status)
+      .select('id')
+    const advanced = (advancedRows ?? []).length > 0
 
     // Money has already left the student's card at this point. If the
     // entitlement writes didn't land, this is NOT a clean charge: the
@@ -396,6 +434,13 @@ async function chargeAndAdvance(
       summary.failed++
       return
     }
+    if (!advanced) {
+      // An overlapping run already advanced this period. It owns the
+      // ledger row; the payment record is PK-idempotent either way.
+      await recordSubscriptionPayment({ paymentId, studentId: row.student_id, amountWon: effectivePlan.priceWon })
+      summary.skipped++
+      return
+    }
 
     const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
       student_id: row.student_id,
@@ -423,7 +468,7 @@ async function chargeAndAdvance(
     await recordSubscriptionPayment({ paymentId, studentId: row.student_id, amountWon: effectivePlan.priceWon })
     summary.charged++
   } else {
-    const { error: pastDueErr } = await dbAdmin
+    const { data: dunned, error: pastDueErr } = await dbAdmin
       .from('study_subscriptions')
       .update({
         status: 'past_due',
@@ -432,6 +477,14 @@ async function chargeAndAdvance(
         updated_at: now.toISOString(),
       })
       .eq('id', row.id)
+      // Never dun a row another run has since renewed.
+      .eq('current_period_end', row.current_period_end)
+      .eq('status', row.status)
+      .select('id')
+    if (!pastDueErr && (dunned ?? []).length === 0) {
+      summary.skipped++
+      return
+    }
     if (pastDueErr) {
       // Dunning state didn't stick: last_payment_attempt_at is unchanged,
       // so the retry sweep will pick this row up again on the next run
