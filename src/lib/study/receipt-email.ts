@@ -1,5 +1,5 @@
 /**
- * Receipt and renewal-reminder emails for Classraum Study charges. Pure: no
+ * Receipt emails for Classraum Study charges. Pure: no
  * network, no database — `charge-receipt.ts` gathers the facts, this renders
  * them, and the tests pin every field.
  *
