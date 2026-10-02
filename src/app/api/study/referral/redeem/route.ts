@@ -7,6 +7,7 @@ import { FREE_CREDITS } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
 import { raiseAlert } from '@/lib/ops/alert'
 import { findAccountsByPhone } from '@/lib/auth/phone-duplicates'
+import { phoneKey } from '@/lib/auth/phone'
 
 /**
  * POST /api/study/referral/redeem — a new student redeems a friend's
@@ -22,6 +23,11 @@ import { findAccountsByPhone } from '@/lib/auth/phone-duplicates'
  *     concurrent redeems collapse to one winner (the loser hits 23505 →
  *     409). Only the request that actually inserts the row goes on to
  *     grant credits, so a referee can never be rewarded twice.
+ *   - One reward per PHONE across accounts: the row carries the referee's
+ *     phoneKey and a partial unique index (migration 118) rejects a second
+ *     account with the same number → 409 phone_already_rewarded. The
+ *     SELECT pre-check is only a fast path; it cannot stop two concurrent
+ *     accounts, the index can.
  *   - Rewards are written only AFTER the redemption row is committed.
  *
  * Credits are added to the purchased bucket via the same atomic RPC the
@@ -101,17 +107,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'cannot redeem your own code', code: 'self_referral' }, { status: 400 })
   }
 
-  // Insert the redemption row FIRST — this is the race guard. If a
-  // concurrent request already inserted for this referee, the unique
-  // constraint on referee_id rejects us and we treat it as already
-  // redeemed (no reward).
+  // Insert the redemption row FIRST — this is the race guard. Two unique
+  // indexes back it: referee_id (one redemption per account) and
+  // referee_phone_key (one per phone number, migration 118). The phone
+  // pre-check above is a friendly fast path only — it is a SELECT followed
+  // by this INSERT, so two accounts with one number redeeming in the same
+  // second both pass it. The index is what makes the loser lose.
+  const myPhoneKey = phoneKey(myPhone) || null
   const { data: inserted, error: insertErr } = await dbAdmin
     .from('study_referral_redemptions')
-    .insert({ referrer_id: referrerId, referee_id: user.id, code, rewarded: false })
+    .insert({ referrer_id: referrerId, referee_id: user.id, code, rewarded: false, referee_phone_key: myPhoneKey })
     .select('id')
     .single()
   if (insertErr || !inserted) {
     if (isUniqueViolation(insertErr)) {
+      if (isPhoneKeyViolation(insertErr)) {
+        await trackEvent(user.id, 'referral_redeemed', { blocked: 'phone_already_rewarded' })
+        return NextResponse.json({ error: 'a referral was already rewarded for this phone number', code: 'phone_already_rewarded' }, { status: 409 })
+      }
       return NextResponse.json({ error: 'already redeemed', code: 'already_redeemed' }, { status: 409 })
     }
     console.error('[study/referral/redeem] redemption insert failed', {
@@ -264,6 +277,13 @@ async function grantReferralCredits(studentId: string, sourceId: string): Promis
     })
   }
   return { ok: true, credits: REFERRAL_INVITEE_CREDITS }
+}
+
+/** A 23505 raised by the per-phone index rather than the per-account one.
+ *  PostgREST passes Postgres's message through, which names the index. */
+function isPhoneKeyViolation(error: unknown): boolean {
+  const e = (error ?? {}) as { message?: string; details?: string }
+  return /phone_key/.test(`${e.message ?? ''} ${e.details ?? ''}`)
 }
 
 function isUniqueViolation(error: unknown): boolean {

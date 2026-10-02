@@ -12,7 +12,7 @@
 import { reserveTestCredits } from '@/lib/study/credits'
 import { dbAdmin } from '@/lib/supabase-admin'
 
-jest.mock('@/lib/supabase-admin', () => ({ dbAdmin: { rpc: jest.fn() } }))
+jest.mock('@/lib/supabase-admin', () => ({ dbAdmin: { rpc: jest.fn(), from: jest.fn() } }))
 jest.mock('@/lib/ops/alert', () => ({ raiseAlert: jest.fn(async () => {}) }))
 
 const rpc = dbAdmin.rpc as unknown as jest.Mock
@@ -37,6 +37,17 @@ function ledgerModel(balance: number) {
       return { data: { ok: true }, error: null }
     }
     throw new Error(`unexpected rpc ${fn}`)
+  })
+  // reserveTestCredits reads the ledger for a refund row after `already`.
+  ;(dbAdmin.from as unknown as jest.Mock).mockImplementation(() => {
+    let src = ''
+    const b: Record<string, unknown> = {
+      select: () => b,
+      eq: (c: string, v: string) => { if (c === 'source_id') src = v; return b },
+      limit: () => b,
+      then: (ok: (v: unknown) => unknown) => Promise.resolve({ data: refunds.has(src) ? [{ id: 1 }] : [], error: null }).then(ok),
+    }
+    return b
   })
   return state
 }

@@ -4209,6 +4209,7 @@ export type Database = {
           created_at: string
           id: string
           referee_id: string
+          referee_phone_key: string | null
           referrer_id: string
           rewarded: boolean
         }
@@ -4219,6 +4220,7 @@ export type Database = {
           created_at?: string
           id?: string
           referee_id: string
+          referee_phone_key?: string | null
           referrer_id: string
           rewarded?: boolean
         }
@@ -4229,6 +4231,7 @@ export type Database = {
           created_at?: string
           id?: string
           referee_id?: string
+          referee_phone_key?: string | null
           referrer_id?: string
           rewarded?: boolean
         }
