@@ -212,44 +212,48 @@ export async function grantExamPass(opts: {
     ? new Date(`${passTerms.examDate}T23:59:59+09:00`)
     : new Date(now.getTime() + (passTerms.durationDays ?? 90) * 24 * 60 * 60 * 1000)
 
-  // Preserve an existing stored card so the buyer can still top up packs,
-  // and (critically) preserve any grant-bucket credits they already have —
-  // buying a pass must not wipe free/monthly credits.
-  const { data: sub } = await dbAdmin
-    .from('study_subscriptions')
-    .select('portone_subscription_id, grant_credits_remaining')
-    .eq('student_id', opts.studentId)
-    .maybeSingle()
-
-  const { error: upsertError } = await dbAdmin
-    .from('study_subscriptions')
-    .upsert({
-      student_id: opts.studentId,
-      status: 'active',
-      plan: passPlan.id,
-      pending_plan: null,
-      price_cents: passPlan.priceWon * 100,
-      currency: 'KRW',
-      current_period_start: now.toISOString(),
-      current_period_end: periodEnd.toISOString(),
-      next_grant_at: null,
-      cancel_at_period_end: true,
-      portone_subscription_id: sub?.portone_subscription_id ?? null,
-      last_payment_id: opts.paymentId,
-      last_payment_attempt_at: now.toISOString(),
-      last_payment_failure: null,
-      // Keep existing grant-bucket credits — the pass adds to the purchased
-      // bucket (RPC below) and must never zero out credits the buyer had.
-      grant_credits_remaining: sub?.grant_credits_remaining ?? 0,
-      updated_at: now.toISOString(),
-    }, { onConflict: 'student_id' })
-  if (upsertError) {
-    console.error('[grant] pass recorded but state write failed', {
-      studentId: opts.studentId, paymentId: opts.paymentId, error: upsertError,
-    })
-    return { status: 'error', httpStatus: 500, message: 'pass state write failed; support will reconcile' }
+  // Pass state. The balance columns are NOT round-tripped: this used to
+  // read grant_credits_remaining / portone_subscription_id and write the
+  // values back in an upsert, so a credit spent (use_study_credit) or a
+  // card saved between the read and the write was silently undone — the
+  // spent credit came back. An existing row gets an UPDATE that never
+  // names those columns; only a brand-new row sets them (to empty).
+  const passState = {
+    status: 'active',
+    plan: passPlan.id,
+    pending_plan: null,
+    price_cents: passPlan.priceWon * 100,
+    currency: 'KRW',
+    current_period_start: now.toISOString(),
+    current_period_end: periodEnd.toISOString(),
+    next_grant_at: null,
+    cancel_at_period_end: true,
+    last_payment_id: opts.paymentId,
+    last_payment_attempt_at: now.toISOString(),
+    last_payment_failure: null,
+    updated_at: now.toISOString(),
   }
-
+  const { data: updatedRows, error: updateStateErr } = await dbAdmin
+    .from('study_subscriptions')
+    .update(passState)
+    .eq('student_id', opts.studentId)
+    .select('student_id')
+  let upsertError = updateStateErr
+  if (!updateStateErr && (updatedRows ?? []).length === 0) {
+    const { error: insertErr } = await dbAdmin
+      .from('study_subscriptions')
+      .insert({ student_id: opts.studentId, ...passState, portone_subscription_id: null, grant_credits_remaining: 0 })
+    upsertError = insertErr
+    // 23505: a concurrent create (SubscriptionGate, a pack grant) won —
+    // the row exists now, so apply the pass state to it.
+    if (insertErr && (insertErr as { code?: string }).code === '23505') {
+      const { error: retryErr } = await dbAdmin
+        .from('study_subscriptions')
+        .update(passState)
+        .eq('student_id', opts.studentId)
+      upsertError = retryErr
+    }
+  }
   // Pass credits go into the TEST-SCOPED pool (spendable only on this
   // pass's test, or any test for the '*' all-access pass) — not the
   // generic purchased bucket.

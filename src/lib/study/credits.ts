@@ -42,6 +42,11 @@ export interface ReserveResult {
  *  monthly/purchased credits — so a SAT pass depletes on SAT tests and its
  *  credits are never usable on another test. Omit for non-test charges. */
 export async function reserveTestCredits(studentId: string, sessionId: string, cost: number, testFamily?: string | null, opts?: { skipPass?: boolean }): Promise<ReserveResult> {
+  // Slices THIS call debited. A slice the RPC reports as `already` was
+  // debited by someone else — a concurrent call for the same session /
+  // charge id (double-tap on generate, two path-repeat requests). Those are
+  // NOT ours to roll back: refunding them on our failure path handed the
+  // student back a credit the winning call's session is still using.
   const reserved: string[] = []
   for (let i = 0; i < cost; i++) {
     const source = creditSourceId(sessionId, i)
@@ -50,6 +55,7 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
     // 'no_pass_credits' when the student holds none for this test). Skipped
     // when the student explicitly chose to spend a regular credit instead.
     let reservedSlice = false
+    let ownSlice = false
     if (testFamily && !opts?.skipPass) {
       const { data, error } = await dbAdmin
         .rpc('use_study_pass_credit', { p_student: studentId, p_source: source, p_test: testFamily })
@@ -58,7 +64,8 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
       // student spends a credit they didn't mean to. Not worth failing the
       // start over, but it must not be invisible.
       if (error) console.error('[credits] pass-credit reserve errored, falling back to generic', { studentId, sessionId, testFamily, error })
-      if ((data as { ok?: boolean } | null)?.ok) reservedSlice = true
+      const pr = (data ?? null) as { ok?: boolean; already?: boolean } | null
+      if (pr?.ok) { reservedSlice = true; ownSlice = !pr.already }
     }
 
     // Fall back to generic grant → purchased.
@@ -66,8 +73,8 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
     if (!reservedSlice) {
       const { data, error } = await dbAdmin
         .rpc('use_study_credit', { p_student: studentId, p_source: source })
-      const r = (data ?? {}) as { ok?: boolean; reason?: string }
-      if (!error && r.ok) reservedSlice = true
+      const r = (data ?? {}) as { ok?: boolean; already?: boolean; reason?: string }
+      if (!error && r.ok) { reservedSlice = true; ownSlice = !r.already }
       else reason = error ? 'rpc_error' : (r.reason ?? 'no_credits')
     }
 
@@ -106,7 +113,7 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
       }
       return { ok: false, reason: reason ?? 'no_credits' }
     }
-    reserved.push(source)
+    if (ownSlice) reserved.push(source)
   }
   return { ok: true }
 }

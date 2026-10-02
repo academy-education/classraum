@@ -1,5 +1,6 @@
+import { createHash } from 'crypto'
 import { dbAdmin } from '@/lib/supabase-admin'
-import { chargeBillingKey } from '@/lib/portone-charge'
+import { chargeBillingKey, chargeAlreadyPaid } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
@@ -16,15 +17,31 @@ import { grantReferralConversionIfEligible } from '@/lib/study/referral-conversi
  *      closed WebView). Without it, the card is registered but the first
  *      charge never fires, so the buyer has no subscription.
  *
- * Idempotency: subscription first-charges use a timestamped paymentId
- * (each attempt issues a NEW billing key), so there's no PK to dedupe on
- * like the one-time flow. Instead we guard on the subscription row:
+ * Idempotency: the first-charge paymentId is DERIVED FROM THE BILLING KEY
+ * (each checkout issues a new key), so every caller for one key charges
+ * the same paymentId and PortOne — whose idempotency key it is — charges
+ * the card at most once. The row guards below are an optimisation, not
+ * the guarantee:
  *   - a row already active on THIS billing key → no-op (client already
  *     completed, or a webhook retry)
  *   - `onlyIfNoActiveSub` (the webhook) also no-ops if the student has
- *     ANY active/trial subscription, so the backstop never charges
- *     someone a client retry already subscribed.
+ *     ANY active/trial subscription.
+ *
+ * They are a read followed by a charge, so on their own they were NOT
+ * safe: the client POST and the BillingKey.Issued webhook arrive within
+ * a second of each other, both read "no active sub", and with the old
+ * `-${Date.now()}` paymentId each charged the card under its own id —
+ * two real charges for one subscription. The loser of that race now gets
+ * ALREADY_PAID from PortOne; once a re-read of the payment confirms it is
+ * PAID, that is treated as the concurrent success it is.
  */
+
+/** The first-charge paymentId for a billing key. Same length as the old
+ *  `-${Date.now()}` suffix (13 chars) so the id shape is unchanged. */
+export function initialPaymentIdFor(studentId: string, billingKey: string): string {
+  const h = createHash('sha256').update(billingKey).digest('hex').slice(0, 13)
+  return `study-sub-init-${studentId}-${h}`
+}
 
 export type ActivateOutcome =
   | { status: 'activated'; periodEnd: string; paymentId: string }
@@ -59,9 +76,10 @@ export async function activateSubscriptionFromBillingKey(opts: {
     return { status: 'already_active' }
   }
 
-  // First charge. Namespace with init + epoch so retries don't collide
-  // with the renewal cron's monthly paymentIds.
-  const paymentId = `study-sub-init-${opts.studentId}-${Date.now()}`
+  // First charge. Namespaced with init so it never collides with the
+  // renewal cron's period ids; keyed on the billing key so concurrent
+  // callers for one checkout share one PortOne idempotency key.
+  const paymentId = initialPaymentIdFor(opts.studentId, opts.billingKey)
   const result = await chargeBillingKey({
     billingKey: opts.billingKey,
     paymentId,
@@ -76,7 +94,18 @@ export async function activateSubscriptionFromBillingKey(opts: {
     },
   })
 
-  if (!result.ok) {
+  if (!result.ok && await chargeAlreadyPaid(result, paymentId, plan.priceWon)) {
+    // A concurrent caller for this same key charged it a moment ago. If it
+    // already wrote the activation we are done; if not (it is still in
+    // flight, or died after the charge) fall through and write the same
+    // activation ourselves — the money moved, so the state must follow.
+    const { data: current } = await dbAdmin
+      .from('study_subscriptions')
+      .select('status, last_payment_id')
+      .eq('student_id', opts.studentId)
+      .maybeSingle()
+    if (current?.last_payment_id === paymentId) return { status: 'already_active' }
+  } else if (!result.ok) {
     // Persist the failure for the management UI, but DON'T store the
     // billing key — a bad first charge could mean a dead card, and we
     // don't want the renewal cron to keep retrying it.

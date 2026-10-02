@@ -558,10 +558,11 @@ export async function POST(req: NextRequest) {
             p_student: row.student_id, p_test: revCtx.passTest!, p_delta: -revoke,
           }));
         } else {
-          ({ error: clawErr } = await dbAdmin
-            .from('study_subscriptions')
-            .update({ grant_credits_remaining: Math.max(0, bucketRemaining - revoke), updated_at: nowIso })
-            .eq('student_id', row.student_id));
+          // Grant bucket has no relative-decrement RPC, and writing
+          // `bucketRemaining - revoke` from a value read before the PortOne
+          // round-trip undid any credit the student spent (or the cron
+          // granted) in between. Compare-and-swap on the value we saw.
+          clawErr = await clawBackGrantCredits(row.student_id, revoke, nowIso);
         }
         if (clawErr) {
           creditsRevoked = 0;
@@ -752,4 +753,29 @@ export async function POST(req: NextRequest) {
     accessRevoked,
     ...(revocationFailures.length > 0 ? { revocationFailures } : {}),
   });
+}
+
+/** Subtract `revoke` from grant_credits_remaining (floored at 0) without a
+ *  lost update: each attempt re-reads the balance and writes only if it is
+ *  still the value read. Returns the error to report, or null. */
+async function clawBackGrantCredits(studentId: string, revoke: number, nowIso: string): Promise<unknown> {
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const { data: cur, error: readErr } = await dbAdmin
+      .from('study_subscriptions')
+      .select('grant_credits_remaining')
+      .eq('student_id', studentId)
+      .maybeSingle();
+    if (readErr) return readErr;
+    if (!cur) return new Error('no subscription row');
+    const seen = Number(cur.grant_credits_remaining ?? 0);
+    const { data: swapped, error: writeErr } = await dbAdmin
+      .from('study_subscriptions')
+      .update({ grant_credits_remaining: Math.max(0, seen - revoke), updated_at: nowIso })
+      .eq('student_id', studentId)
+      .eq('grant_credits_remaining', seen)
+      .select('student_id');
+    if (writeErr) return writeErr;
+    if ((swapped ?? []).length > 0) return null;
+  }
+  return new Error('grant balance kept changing; clawback not applied');
 }

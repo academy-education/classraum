@@ -129,8 +129,7 @@ describe('grant-purchase entitlement write', () => {
   /** Queue everything grantExamPass touches before the entitlement write. */
   function queueUpToEntitlement() {
     enqueue('study_payments', { error: null })
-    enqueue('study_subscriptions', { data: { portone_subscription_id: null, grant_credits_remaining: 3 } })
-    enqueue('study_subscriptions', { error: null }) // upsert
+    enqueue('study_subscriptions', { data: [{ student_id: 'student-1' }], error: null }) // update existing row
     enqueue('study_credit_ledger', { error: null })
   }
 
@@ -178,5 +177,47 @@ describe('grant-purchase entitlement write', () => {
 
     expect(outcome).toMatchObject({ status: 'granted' })
     expect(alertMock).not.toHaveBeenCalled()
+  })
+})
+
+describe('grantExamPass never round-trips a balance', () => {
+  let enqueue: ReturnType<typeof tableRouter>
+  beforeEach(() => {
+    jest.clearAllMocks()
+    jest.spyOn(console, 'error').mockImplementation(() => {})
+    rpcMock.mockResolvedValue({ data: null, error: null })
+    enqueue = tableRouter(fromMock)
+  })
+  afterEach(() => { ;(console.error as jest.Mock).mockRestore() })
+
+  it('updates an existing row without naming grant_credits_remaining or the stored card', async () => {
+    // A credit spent between a read and a write-back used to come back:
+    // the old code read grant_credits_remaining=3, the student spent one,
+    // and the upsert wrote 3 again.
+    enqueue('study_payments', { error: null })
+    const state = enqueue('study_subscriptions', { data: [{ student_id: 'student-1' }], error: null })
+    enqueue('study_credit_ledger', { error: null })
+
+    const outcome = await grantExamPass({ studentId: 'student-1', passId: SAT_PASS.id, paymentId: 'pay-rt' })
+    expect(outcome).toMatchObject({ status: 'granted' })
+    expect(state.update).toHaveBeenCalledTimes(1)
+    const written = state.update.mock.calls[0][0]
+    expect(written).toMatchObject({ status: 'active', plan: SAT_PASS.id })
+    expect(written).not.toHaveProperty('grant_credits_remaining')
+    expect(written).not.toHaveProperty('portone_subscription_id')
+    expect(state.upsert).not.toHaveBeenCalled()
+  })
+
+  it('creates the row (with empty balances) only when none exists', async () => {
+    enqueue('study_payments', { error: null })
+    enqueue('study_subscriptions', { data: [], error: null })          // update matched nothing
+    const create = enqueue('study_subscriptions', { error: null })     // insert
+    enqueue('study_credit_ledger', { error: null })
+
+    const outcome = await grantExamPass({ studentId: 'student-1', passId: SAT_PASS.id, paymentId: 'pay-new' })
+    expect(outcome).toMatchObject({ status: 'granted' })
+    expect(create.insert).toHaveBeenCalledWith(expect.objectContaining({
+      student_id: 'student-1', grant_credits_remaining: 0, plan: SAT_PASS.id,
+    }))
   })
 })

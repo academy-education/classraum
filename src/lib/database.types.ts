@@ -4331,6 +4331,7 @@ export type Database = {
       study_response_submissions: {
         Row: {
           audio_path: string | null
+          grader_route: string
           created_at: string
           duration_seconds: number | null
           id: string
@@ -4345,6 +4346,7 @@ export type Database = {
         }
         Insert: {
           audio_path?: string | null
+          grader_route?: string
           created_at?: string
           duration_seconds?: number | null
           id?: string
@@ -4359,6 +4361,7 @@ export type Database = {
         }
         Update: {
           audio_path?: string | null
+          grader_route?: string
           created_at?: string
           duration_seconds?: number | null
           id?: string

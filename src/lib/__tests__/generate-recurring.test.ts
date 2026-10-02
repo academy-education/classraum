@@ -255,6 +255,35 @@ describe('generateRecurringInvoices', () => {
     expect(result.errors).toBeUndefined()
   })
 
+  it('an overlapping run that loses the unique index bills nobody twice', async () => {
+    // Both runs pre-read "nobody invoiced"; the other run inserted stu-1
+    // in between. The batch trips UNIQUE (template_id, student_id,
+    // due_date); row-by-row, stu-1 is skipped and only stu-2 is created
+    // and notified.
+    enqueue('recurring_payment_templates', { count: 1 })
+    enqueue('recurring_payment_templates', { data: [template()] })
+    enqueue('recurring_payment_template_students', {
+      data: [{ student_id: 'stu-1', amount_override: null }, { student_id: 'stu-2', amount_override: null }],
+    })
+    enqueue('students', { data: [{ user_id: 'stu-1' }, { user_id: 'stu-2' }] })
+    enqueue('invoices', { data: [] })                                           // pre-read: none yet
+    enqueue('invoices', { error: { code: '23505', message: 'duplicate key' } }) // batch
+    const one = enqueue('invoices', { error: { code: '23505', message: 'duplicate key' } }) // stu-1
+    const two = enqueue('invoices', { data: [{ id: 'inv-2' }] })                // stu-2
+    const updateChain = enqueue('recurring_payment_templates', {})
+
+    const result = await generateRecurringInvoices(TODAY)
+
+    expect((one.insert.mock.calls[0][0] as Record<string, unknown>).student_id).toBe('stu-1')
+    expect((two.insert.mock.calls[0][0] as Record<string, unknown>).student_id).toBe('stu-2')
+    expect(result.totalInvoicesCreated).toBe(1)
+    expect(result.errors).toBeUndefined()
+    expect(updateChain.eq).toHaveBeenCalledWith('next_due_date', '2026-08-15')
+    const { triggerInvoiceCreatedNotifications } = jest.requireMock('@/lib/notification-triggers')
+    expect(triggerInvoiceCreatedNotifications).toHaveBeenCalledTimes(1)
+    expect(triggerInvoiceCreatedNotifications).toHaveBeenCalledWith('inv-2')
+  })
+
   it('invoices ONE period per run even for a template overdue by months', async () => {
     // next_due_date in Jan; a run must emit that period only and move to
     // the next FUTURE occurrence — not loop through every missed month.

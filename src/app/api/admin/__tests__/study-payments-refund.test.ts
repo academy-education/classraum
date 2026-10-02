@@ -183,7 +183,8 @@ describe('POST /api/admin/study/payments (refund)', () => {
       enqueue('study_subscriptions', {
         data: { plan: 'premium_v1', status: 'active', grant_credits_remaining: 15, purchased_credits_remaining: 0 },
       })
-      const claw = enqueue('study_subscriptions', { data: null, error: null }) // grant bucket zeroing
+      enqueue('study_subscriptions', { data: { grant_credits_remaining: 15 } }) // CAS re-read
+      const claw = enqueue('study_subscriptions', { data: [{ student_id: 'stu-1' }], error: null }) // grant bucket zeroing
       const ledger = enqueue('study_credit_ledger', { data: null, error: null })
       const expire = enqueue('study_subscriptions', { data: null, error: null }) // access revocation
       enqueue('study_payments', { data: null, error: null }) // stamp
@@ -207,6 +208,30 @@ describe('POST /api/admin/study/payments (refund)', () => {
         status: 'expired', cancel_at_period_end: true, next_grant_at: null,
       }))
       expect(raiseAlertMock).not.toHaveBeenCalled()
+    })
+
+    it('grant clawback compares-and-swaps: a balance change mid-refund is not overwritten', async () => {
+      enqueue('study_payments', { data: PAID_ROW })
+      enqueue('study_subscriptions', {
+        data: { plan: 'premium_v1', status: 'active', grant_credits_remaining: 15, purchased_credits_remaining: 0 },
+      })
+      // The student buys/receives credits while PortOne cancels (balance
+      // 15 -> 20). First swap (expecting 15) misses; the re-read sees 20
+      // and the swap lands. Writing `15 - 15` from the stale read wiped
+      // the 5 new credits.
+      enqueue('study_subscriptions', { data: { grant_credits_remaining: 15 } })
+      const miss = enqueue('study_subscriptions', { data: [], error: null })
+      enqueue('study_subscriptions', { data: { grant_credits_remaining: 20 } })
+      const hit = enqueue('study_subscriptions', { data: [{ student_id: 'stu-1' }], error: null })
+      enqueue('study_credit_ledger', { data: null, error: null })
+      enqueue('study_subscriptions', { data: null, error: null })
+      enqueue('study_payments', { data: null, error: null })
+
+      const res = await POST(makeRequest({ ...BODY, revokeCredits: true, revokeAccess: true }))
+      expect(res.status).toBe(200)
+      expect(miss.eq).toHaveBeenCalledWith('grant_credits_remaining', 15)
+      expect(hit.eq).toHaveBeenCalledWith('grant_credits_remaining', 20)
+      expect(hit.update).toHaveBeenCalledWith(expect.objectContaining({ grant_credits_remaining: 5 }))
     })
 
     it('pass payment: zeroes pass credits, expires the pass sub, deletes the entitlement', async () => {

@@ -105,14 +105,14 @@ function applyRegen(stored: number, updatedAtMs: number, plan: PlanEnergy, now: 
   return { energy, anchor, msToNext: plan.intervalMs - remainder }
 }
 
-async function readRow(studentId: string): Promise<{ energy: number; updatedAtMs: number } | null> {
+async function readRow(studentId: string): Promise<{ energy: number; updatedAtMs: number; updatedAtRaw: string } | null> {
   const { data } = await dbAdmin
     .from('study_energy')
     .select('energy, updated_at')
     .eq('student_id', studentId)
     .maybeSingle()
   if (!data) return null
-  return { energy: data.energy as number, updatedAtMs: Date.parse(data.updated_at as string) }
+  return { energy: data.energy as number, updatedAtMs: Date.parse(data.updated_at as string), updatedAtRaw: data.updated_at as string }
 }
 
 /** Current energy state (regen applied virtually; no write). */
@@ -135,38 +135,68 @@ export async function getEnergy(studentId: string): Promise<EnergyState> {
 
 /** Spend 1 energy for a fresh practice/flashcards set. Settles regen first,
  *  then decrements and persists. Returns whether the spend succeeded (false
- *  = out of energy). Best-effort atomicity — a single student rarely double-
- *  fires, and the visible meter makes any drift self-correcting. */
+ *  = out of energy).
+ *
+ *  The write is a compare-and-swap on the (energy, updated_at) pair that was
+ *  read. It used to be a plain upsert of a value computed from that read, so
+ *  two practice starts fired together (double-tap, two tabs) both read 3 and
+ *  both wrote 2: two sets for one energy. A lost swap re-reads and retries. */
 export async function spendEnergy(studentId: string): Promise<{ ok: boolean; state: EnergyState }> {
   const plan = await planEnergy(studentId)
-  const now = Date.now()
-  const row = await readRow(studentId)
-  const stored = row ? row.energy : plan.cap
-  const updatedAtMs = row ? row.updatedAtMs : now
-  const settled = applyRegen(stored, updatedAtMs, plan, now)
+  let error: unknown = null
+  let settled = { energy: 0, anchor: 0, msToNext: 0 }
+  let newEnergy = 0
+  let newAnchorMs = 0
+  let now = Date.now()
+  let swapped = false
+  for (let attempt = 0; attempt < 5 && !swapped; attempt++) {
+    now = Date.now()
+    const row = await readRow(studentId)
+    const stored = row ? row.energy : plan.cap
+    const updatedAtMs = row ? row.updatedAtMs : now
+    settled = applyRegen(stored, updatedAtMs, plan, now)
 
-  if (settled.energy <= 0) {
-    return {
-      ok: false,
-      state: { paid: plan.paid, energy: 0, cap: plan.cap, nextRefillSeconds: Math.ceil(settled.msToNext / 1000), refillHours: plan.refillHours },
+    if (settled.energy <= 0) {
+      return {
+        ok: false,
+        state: { paid: plan.paid, energy: 0, cap: plan.cap, nextRefillSeconds: Math.ceil(settled.msToNext / 1000), refillHours: plan.refillHours },
+      }
+    }
+
+    const wasFull = settled.energy >= plan.cap
+    newEnergy = settled.energy - 1
+    // If we were full, start the regen clock now (dropping below cap). Else
+    // keep the anchor advanced past already-consumed regen.
+    newAnchorMs = wasFull ? now : settled.anchor
+    const next = { energy: newEnergy, updated_at: new Date(newAnchorMs).toISOString() }
+
+    if (row) {
+      const { data, error: e } = await dbAdmin
+        .from('study_energy')
+        .update(next)
+        .eq('student_id', studentId)
+        .eq('energy', row.energy)
+        .eq('updated_at', row.updatedAtRaw)
+        .select('student_id')
+      error = e
+      if (e) break
+      swapped = (data ?? []).length > 0
+    } else {
+      const { error: e } = await dbAdmin
+        .from('study_energy')
+        .insert({ student_id: studentId, ...next })
+      // 23505: a concurrent first spend created the row — re-read, retry.
+      if (e && (e as { code?: string }).code === '23505') continue
+      error = e
+      if (e) break
+      swapped = true
     }
   }
+  if (!swapped && !error) error = new Error('energy row kept changing; spend not applied')
 
-  const wasFull = settled.energy >= plan.cap
-  const newEnergy = settled.energy - 1
-  // If we were full, start the regen clock now (dropping below cap). Else
-  // keep the anchor advanced past already-consumed regen.
-  const newAnchorMs = wasFull ? now : settled.anchor
-
-  // Verified: this upsert IS the debit. Returning ok:true over a failed
+  // Verified: this write IS the debit. Returning ok:true over a failed
   // write meant the session started and no energy was ever deducted —
   // i.e. unlimited free practice for anyone whose write happened to fail.
-  const { error } = await dbAdmin
-    .from('study_energy')
-    .upsert(
-      { student_id: studentId, energy: newEnergy, updated_at: new Date(newAnchorMs).toISOString() },
-      { onConflict: 'student_id' },
-    )
   if (error) {
     await raiseAlert({
       severity: 'warning',
