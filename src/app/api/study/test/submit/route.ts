@@ -12,6 +12,7 @@ import { awardXp, XP_VALUES } from '@/lib/study/xp'
 import { seedSrsFromWrongAnswer } from '@/lib/study/srs-seed'
 import { trackEvent } from '@/lib/study/analytics'
 import { raiseAlert } from '@/lib/ops/alert'
+import { reconcileQuestionSeconds } from '@/lib/study/question-time'
 
 /**
  * POST /api/study/test/submit — grade a completed full_test in one
@@ -90,6 +91,11 @@ const SubmitSchema = z.object({
   answers: z.array(z.string().nullable()),
   /** Total seconds the student actually spent. */
   elapsedSeconds: z.number().int().min(0),
+  /** Active seconds each question was on screen, carved from the same
+   *  clock as elapsedSeconds (see lib/study/question-time). Optional:
+   *  older clients omit it, and an inconsistent array is ignored in
+   *  favour of the even split by reconcileQuestionSeconds. */
+  questionSeconds: z.array(z.number().int().min(0).nullable()).max(200).optional(),
   /** Why the test ended, when it wasn't the student pressing Submit.
    *  'app_exited' = the native app was backgrounded mid-test and the
    *  exit guard auto-submitted whatever had been answered. Persisted
@@ -256,10 +262,17 @@ export async function POST(req: NextRequest) {
   }
 
   const verdicts: { index: number; correct: boolean; correctAnswer: string; ungraded?: boolean }[] = []
-  // Distribute the elapsed time across attempts evenly — we don't
-  // capture per-question timing in the client (it would be a real
-  // anti-cheating signal but adds complexity we don't need yet).
-  const perQuestionTime = Math.max(1, Math.round(body.elapsedSeconds / gradingQuestions.length))
+  // Per-question time. The client now sends the active seconds each
+  // question was on screen; when that array is missing (older client,
+  // a resume that lost it) or does not reconcile with elapsedSeconds,
+  // this falls back to the even split the route always wrote. This
+  // route is the ONLY writer of time_spent_seconds for full tests.
+  const timeSpent = reconcileQuestionSeconds({
+    questionSeconds: body.questionSeconds ?? null,
+    elapsedSeconds: body.elapsedSeconds,
+    answers: body.answers,
+    count: gradingQuestions.length,
+  })
 
   // Weighted totals: each Complete-the-Words BLANK counts as one
   // scored question (matching the client's "Question X of 50"
@@ -317,7 +330,7 @@ export async function POST(req: NextRequest) {
       // null = not objectively gradable (open response); true/false otherwise.
       is_correct: openResp ? null : isCorrect,
       ai_explanation: q.explanation,
-      time_spent_seconds: studentAnswer == null ? null : perQuestionTime,
+      time_spent_seconds: timeSpent.seconds[i] ?? null,
     }
   })
 

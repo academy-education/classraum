@@ -203,7 +203,10 @@ function SummaryInner({ id }: { id: string }) {
   const satBand = satRoute && attempted
     ? estimateSectionScore(correct, totalItems, satRoute, satSection)
     : null
-  // time_spent_seconds is NOT per-question: submit distributes the session
+  // (Full tests never render this number: they return through
+  // TestResultView below, whose testTiming handles both stored shapes. Since 2026-10-02
+  // submit writes measured per-question seconds when it has them.)
+  // time_spent_seconds was NOT per-question: submit distributed the session
   // elapsed evenly (`elapsedSeconds / questions.length`), and writes NULL for
   // unanswered items. Summing it therefore reports only the answered share —
   // a 54-question session with 1 answer showed "0m" for a ~23 minute sitting.
@@ -261,6 +264,9 @@ function SummaryInner({ id }: { id: string }) {
         // elsewhere. Distinct from a wrong answer and from a pilot.
         ungraded: a.is_correct === null,
         position: a.position,
+        // Read only through testTiming: it is the even split of the
+        // session clock, not a per-question measurement.
+        timeSpentSeconds: a.time_spent_seconds,
       })),
     })
     return (

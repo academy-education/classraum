@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { StudyColumns, StudyMain, StudyAside } from '@/app/mobile/study/_shared/primitives'
 import {
   CheckCircle2, XCircle, AlertTriangle, ChevronDown, Sparkles, ListChecks,
-  ArrowRight, BookOpen,
+  ArrowRight, BookOpen, Clock,
 } from '@/app/mobile/study/_shared/icons'
 import { PathMascot, type MascotState } from '@/app/mobile/study/_shared/PathMascot'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -15,7 +15,7 @@ import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
 import {
   tallyRows, scaleFraction, scoreSplit, moduleSplit, passageSetBreakdown,
-  admissionScoreFromRows,
+  admissionScoreFromRows, testTiming,
   type ResultRow, type RubricGrade, type TestResultModel,
 } from '@/lib/study/test-result'
 import { actScoreFromRows } from '@/lib/study/test-result'
@@ -53,9 +53,12 @@ const FREE_TEXT_TYPES = new Set([
 export function TestResultView({
   model, sessionId, ko, sat, modules = null, gradingOpenResponses = false,
   answerAudioPaths = {}, answerSpeechSignals = {}, speakingGradeMode = 'text',
-  header, footer,
+  header, footer, elapsedSeconds = null,
 }: {
   model: TestResultModel
+  /** Exact elapsed clock, post-submit only. A reopened test rebuilds it
+   *  from the rows inside testTiming. */
+  elapsedSeconds?: number | null
   sessionId: string
   ko: boolean
   /** Two-module adaptive test: where Module 2 starts (a CARD index) and
@@ -168,6 +171,18 @@ export function TestResultView({
       })
     : null
   const passageSets = passageSetBreakdown(model.rows)
+  /* Pace. Whole-test average always; per-task only when the rows were
+     genuinely timed per question, which testTiming decides (today: never,
+     the stored value is an even split of the session clock). */
+  const timing = testTiming({ rows: model.rows, deliveredTotal: model.deliveredTotal, elapsedSeconds })
+  const fmtTime = (secs: number) => {
+    const total = Math.max(0, Math.round(secs))
+    const m = Math.floor(total / 60)
+    const s = total % 60
+    return m > 0
+      ? String(t('study.test.timing.minutesSeconds', { m: String(m), s: String(s) }))
+      : String(t('study.test.timing.seconds', { s: String(s) }))
+  }
 
   // TOEFL Speaking and Writing are scored on the points model rather than
   // percent-correct: a near-miss repeat earns partial credit, and the
@@ -505,6 +520,58 @@ export function TestResultView({
           two labelled sections. */}
       <SectionBreakdownCard breakdown={breakdown} ko={ko} />
 
+      {/* Pace. Unit: DELIVERED QUESTIONS, the same count as the review
+          rows' "of 48". The per-task table renders only on genuinely
+          per-question timing; otherwise the card says in words why there
+          is no per-task time rather than printing one number N times. */}
+      {timing && (
+        <div className="rounded-2xl ring-1 ring-gray-200/70 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-4 py-3.5">
+          <div className="flex items-center gap-3">
+            <div className="flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] bg-gradient-to-br from-sky-400 to-sky-600 text-white">
+              <Clock className="w-5 h-5" strokeWidth={2.25} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
+                {t('study.test.timing.eyebrow')}
+              </div>
+              <div className="text-[15px] font-semibold text-gray-900 leading-tight">
+                {t('study.test.timing.perQuestion', { time: fmtTime(timing.perQuestionSeconds) })}
+              </div>
+              <div className="text-[13px] text-gray-500 mt-0.5 leading-snug">
+                {t('study.test.timing.total', {
+                  time: fmtTime(timing.totalSeconds),
+                  count: String(model.deliveredTotal),
+                })}
+              </div>
+            </div>
+          </div>
+          {timing.perTask ? (
+            <div className="mt-3 pt-3 border-t border-gray-100">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400 mb-2">
+                {t('study.test.timing.perTaskTitle')}
+              </div>
+              <div className="space-y-1.5">
+                {timing.perTask.map(task => (
+                  <div key={task.label} className="flex items-center justify-between gap-3 text-[13px]">
+                    <span className="text-gray-700 truncate">{task.label}</span>
+                    <span className="flex-shrink-0 tabular-nums text-gray-900 font-semibold">
+                      {fmtTime(task.avgSeconds)}
+                      <span className="ml-1.5 text-[11px] font-normal text-gray-400">
+                        {t('study.test.timing.taskDetail', { count: String(task.cards) })}
+                      </span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <p className="mt-2.5 text-[11px] text-gray-400 leading-snug">
+              {t('study.test.timing.evenNote')}
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Module 1 vs Module 2.
         *
         * Only for a two-module adaptive test, and only when the two
@@ -663,6 +730,7 @@ export function TestResultView({
             {tally.counted > 0 && <div className="bg-emerald-500" style={{ flexGrow: tally.counted }} />}
             {tally.pilot > 0 && <div className="bg-orange-400" style={{ flexGrow: tally.pilot }} />}
             {tally.rubric > 0 && <div className="bg-primary" style={{ flexGrow: tally.rubric }} />}
+            {tally.unscored > 0 && <div className="bg-gray-400" style={{ flexGrow: tally.unscored }} />}
           </div>
         </div>
 
@@ -694,6 +762,14 @@ export function TestResultView({
                     : 'Scoring these now — feedback appears in a moment.')
               : undefined}
             subTone="info" />
+          {/* Only the ISEE/SSAT essay ever lands here, so it renders only
+              when non-zero; a dimmed "Not scored 0" on every TOEFL and SAT
+              result would be a bucket that cannot apply to that test. */}
+          {tally.unscored > 0 && (
+            <TallyRow dot="bg-gray-400" count={tally.unscored} unit={questionUnit(tally.unscored)}
+              label={String(t('study.test.tally.unscoredLabel'))}
+              note={String(t('study.test.tally.unscoredNote'))} />
+          )}
         </div>
       </div>
       )}
@@ -1105,13 +1181,24 @@ function ResultCard({
                 {taskTag}
               </span>
             )}
-            {row.ungraded ? (
-              <span className="inline-flex items-center rounded-md bg-primary/10 text-primary ring-1 ring-primary/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.04em] leading-none">
-                {ko ? '루브릭' : 'Rubric'}
+            {/* The agreed wording (2026-07-28), in full: a bare
+                "Experimental" pill left the student to infer that the
+                question did not count, and "Rubric" did not say the item
+                is scored somewhere else rather than not at all.
+                `ungraded` also covers the unscored admission essays, which
+                the rubric grader never sees; calling those "graded by
+                rubric" would promise a grade that never arrives. */}
+            {row.ungraded && !isRubricItem ? (
+              <span className="inline-flex items-center rounded-md bg-gray-100 text-gray-600 ring-1 ring-gray-200/70 px-1.5 py-0.5 text-[10px] font-semibold tracking-[0.02em] leading-tight">
+                {t('study.test.badges.unscored')}
+              </span>
+            ) : row.ungraded ? (
+              <span className="inline-flex items-center rounded-md bg-primary/10 text-primary ring-1 ring-primary/20 px-1.5 py-0.5 text-[10px] font-semibold tracking-[0.02em] leading-tight">
+                {t('study.test.badges.rubric')}
               </span>
             ) : row.isPilot ? (
-              <span className="inline-flex items-center rounded-md bg-amber-50 text-amber-700 ring-1 ring-amber-200/70 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.04em] leading-none">
-                {ko ? '실험' : 'Experimental'}
+              <span className="inline-flex items-center rounded-md bg-amber-50 text-amber-700 ring-1 ring-amber-200/70 px-1.5 py-0.5 text-[10px] font-semibold tracking-[0.02em] leading-tight">
+                {t('study.test.badges.experimental')}
               </span>
             ) : null}
           </div>

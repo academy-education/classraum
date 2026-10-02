@@ -39,6 +39,10 @@ import { SubmitConfirmModal, GenerationProgress } from './test/chrome'
 import { useAppExitGuard } from './test/useAppExitGuard'
 import { setBackInterceptor } from '@/lib/back-intercept'
 import { exitMarkerKey } from '@/lib/study/test-exit-guard'
+import {
+  initQuestionTime, checkpointQuestionTime, restoreQuestionTime, questionSecondsArray,
+  type QuestionTimeState,
+} from '@/lib/study/question-time'
 
 /**
  * Full-test mode UI.
@@ -101,6 +105,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   } | null>(null)
   const [gridOpen, setGridOpen] = useState(false)
   const [result, setResult] = useState<SubmitResult | null>(null)
+  /** The elapsed clock that was SENT with the submit, so the result
+   *  screen's time line is the same number the server divided out. */
+  const [submittedElapsed, setSubmittedElapsed] = useState<number | null>(null)
+  /** The per-question seconds sent with that submit. */
+  const [submittedQuestionSeconds, setSubmittedQuestionSeconds] = useState<number[] | null>(null)
   /** Batch grading of open responses runs after submit — see the call
    *  site. Drives the result screen's "scoring your responses" state. */
   const [gradingOpenResponses, setGradingOpenResponses] = useState(false)
@@ -193,6 +202,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // WebView's own 'visible' event. Reading the stale `false` there
   // restarted the clock underneath the paused overlay.
   const pausedRef = useRef(false)
+  // Per-question time, CREDITED from the active clock above rather than
+  // kept by a second timer (see lib/study/question-time): every freeze
+  // rule the clock has (hidden tab, pause, app exit, audio) applies to it
+  // for free. qTimeIdxRef is the question currently being credited.
+  // Persisted next to the answers so a reload keeps it.
+  const qTimeRef = useRef<QuestionTimeState>(initQuestionTime(0))
+  const qTimeIdxRef = useRef<number | null>(null)
   const [now, setNow] = useState(Date.now())
   // Adaptive per-module timing: total-elapsed value at the moment
   // Module 2 began. null while still in Module 1. Persisted so a
@@ -462,6 +478,17 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         }
       }
       activeElapsedMsRef.current = restored
+      // Per-question credit, restored against the SAME restored elapsed
+      // so its mark cannot sit ahead of the clock it is carved from.
+      let rawQTime: unknown = null
+      if (typeof window !== 'undefined') {
+        try {
+          const q = localStorage.getItem(`study:test:${sessionId}:qTimeMs`)
+          rawQTime = q ? JSON.parse(q) : null
+        } catch { /* corrupted: start the credit fresh */ }
+      }
+      qTimeRef.current = restoreQuestionTime(rawQTime, restored)
+      qTimeIdxRef.current = restoredIdx
       resumedAtRef.current = Date.now()  // start the clock immediately on taking
       // Restore the Module 2 start marker so a mid-Module-2 refresh keeps
       // its own module clock (not restarted from the whole-test elapsed).
@@ -511,8 +538,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     if (phase !== 'taking') return
     const id = setInterval(() => {
       setNow(Date.now())
+      const elapsedNow = currentElapsedMs()
+      // Keep the per-question mark fresh, so a reload loses at most the
+      // same one second the elapsed save above can lose.
+      qTimeRef.current = checkpointQuestionTime(qTimeRef.current, qTimeIdxRef.current, elapsedNow)
       if (typeof window !== 'undefined') {
-        localStorage.setItem(`study:test:${sessionId}:elapsedMs`, String(currentElapsedMs()))
+        localStorage.setItem(`study:test:${sessionId}:elapsedMs`, String(elapsedNow))
+        try {
+          localStorage.setItem(`study:test:${sessionId}:qTimeMs`, JSON.stringify(qTimeRef.current))
+        } catch { /* quota: submit falls back to the even split */ }
       }
     }, 1000)
     return () => clearInterval(id)
@@ -525,6 +559,14 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     if (phase !== 'taking' || typeof window === 'undefined') return
     localStorage.setItem(`study:test:${sessionId}:currentIdx`, String(currentIdx))
   }, [phase, sessionId, currentIdx])
+  // Question changed (Next/Back, grid jump, a section's hard time-out
+  // advance, Module 2): credit the one being LEFT, then switch.
+  useEffect(() => {
+    if (phase !== 'taking') return
+    if (qTimeIdxRef.current === currentIdx) return
+    qTimeRef.current = checkpointQuestionTime(qTimeRef.current, qTimeIdxRef.current, currentElapsedMs())
+    qTimeIdxRef.current = currentIdx
+  }, [phase, currentIdx, currentElapsedMs])
   useEffect(() => {
     if (phase !== 'taking' || typeof window === 'undefined') return
     try {
@@ -824,7 +866,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     setWaitingForNetwork(false)
     setPhase('submitting')
     try {
-      const elapsedSeconds = Math.max(0, Math.round(currentElapsedMs() / 1000))
+      // ONE read of the clock for both numbers, so the per-question
+      // seconds sum to the elapsed they are sent with (the server checks).
+      const elapsedMsNow = currentElapsedMs()
+      const elapsedSeconds = Math.max(0, Math.round(elapsedMsNow / 1000))
+      qTimeRef.current = checkpointQuestionTime(qTimeRef.current, qTimeIdxRef.current, elapsedMsNow)
+      const questionSeconds = questionSecondsArray(qTimeRef.current, test.questions.length)
       const headers = await authHeaders()
       // School wifi is flaky: retry transient failures (network drop,
       // 5xx) with backoff before surfacing an error. 4xx responses are
@@ -840,6 +887,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         questions: test.questions,
         answers: fullAnswers,
         elapsedSeconds,
+        questionSeconds,
       })
       let res: Response | null = null
       let lastNetworkError: Error | null = null
@@ -881,6 +929,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         throw new Error(detail)
       }
       const json = await res.json() as SubmitResult
+      setSubmittedElapsed(elapsedSeconds)
+      setSubmittedQuestionSeconds(questionSeconds)
       setResult(json)
       // Grade every open response for this test in ONE request, as part
       // of submitting.
@@ -950,6 +1000,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         localStorage.removeItem(`study:test:${sessionId}:speech`)
         localStorage.removeItem(`study:test:${sessionId}:m2StartMs`)
         localStorage.removeItem(`study:test:${sessionId}:wsStartMs`)
+        localStorage.removeItem(`study:test:${sessionId}:qTimeMs`)
         // Cleared only now, on a SUCCESSFUL submit. While it exists, a
         // relaunch after the OS killed the app re-ends the test instead
         // of resuming it.
@@ -1337,6 +1388,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         ko={ko}
         sessionId={sessionId}
         moduleRoute={moduleRoute}
+        elapsedSeconds={submittedElapsed}
+        questionSeconds={submittedQuestionSeconds}
         // Batch grading is fired on submit and keeps running while this
         // screen is already up; the result view says so on the rubric row.
         gradingOpenResponses={gradingOpenResponses}

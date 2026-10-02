@@ -5929,6 +5929,25 @@
         "question": "문항",
         "reviewItems": "{count}개 항목",
         "reviewItem": "1개 항목"
+      },
+      "tally": {
+        "unscoredLabel": "채점 안 함",
+        "unscoredNote": "실제 시험에서도 점수 없이 학교로 보내지는 에세이예요. 여기서도 똑같이 채점하지 않아요."
+      },
+      "badges": {
+        "experimental": "실험 문항 — 점수에 반영되지 않아요",
+        "rubric": "루브릭으로 따로 채점돼요",
+        "unscored": "채점하지 않아요 — 실제 시험에서도 채점하지 않는 문항이에요"
+      },
+      "timing": {
+        "eyebrow": "소요 시간",
+        "perQuestion": "문항당 약 {time}",
+        "total": "{count}문항에 총 {time}",
+        "evenNote": "시간은 문항별이 아니라 시험 전체로 기록돼요. 그래서 이 값은 평균 속도이고, 유형별 소요 시간은 제공되지 않아요.",
+        "perTaskTitle": "유형별 문항당 평균 시간",
+        "taskDetail": "{count}문항 기록",
+        "minutesSeconds": "{m}분 {s}초",
+        "seconds": "{s}초"
       }
     }
   },

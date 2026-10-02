@@ -38,6 +38,8 @@
  *  Every label rendering one of these must name its unit. */
 import { scoreAdmission, type AdmissionScore } from './admission-tests'
 import { scoreActSection, type ActSectionKey, type ActSectionScore } from './act-test'
+import { bracketedLabel, normaliseSectionLabel } from './section-breakdown'
+import { RESPONSE_SKILL_BY_TYPE } from './openResponse'
 export type ResultUnit = 'card' | 'delivered' | 'scored'
 
 /** Minimal shape of a stored question. Structural rather than the submit
@@ -140,6 +142,11 @@ export interface ResultRow {
    *  the delivery order is precisely the trap canNumberRows exists to
    *  refuse. Array index would ALWAYS produce a plausible split. */
   position: number | null
+  /** study_attempts.time_spent_seconds as stored. NOT a per-question
+   *  measurement today; read it only through testTiming. Optional only
+   *  so hand-built fixtures need not carry it; buildResultModel always
+   *  sets it. */
+  timeSpentSeconds?: number | null
 }
 
 export interface ResultCardInput {
@@ -148,6 +155,7 @@ export interface ResultCardInput {
   correct: boolean
   ungraded: boolean
   position?: number | null
+  timeSpentSeconds?: number | null
 }
 
 export interface TestResultModel {
@@ -204,6 +212,7 @@ export function buildResultModel(input: {
       correctAnswerDisplay: displayCorrectAnswer(c.question),
       range: numbered ? (ranges[i] ?? null) : null,
       position: typeof c.position === 'number' ? c.position : null,
+      timeSpentSeconds: typeof c.timeSpentSeconds === 'number' ? c.timeSpentSeconds : null,
     })),
   }
 }
@@ -240,15 +249,26 @@ export interface ResultTally {
   pilot: number
   /** Rubric-graded open response — no key, not in the denominator. */
   rubric: number
+  /** Open response nobody grades: the ISEE Essay / SSAT Writing Sample,
+   *  which the real tests send to schools unscored. `ungraded` like the
+   *  rubric items, but NOT in RESPONSE_SKILL_BY_TYPE, so the grader never
+   *  sees them; counting them under "Graded by rubric" promised a grade
+   *  that never arrives. */
+  unscored: number
   /** Subset of `counted` left blank. Counted as wrong, still counted. */
   skippedWithinCounted: number
 }
 
 export function tallyRows(rows: ResultRow[]): ResultTally {
-  const tally: ResultTally = { counted: 0, pilot: 0, rubric: 0, skippedWithinCounted: 0 }
+  const tally: ResultTally = { counted: 0, pilot: 0, rubric: 0, unscored: 0, skippedWithinCounted: 0 }
   for (const r of rows) {
     const w = deliveredWeight(r.question)
-    if (r.ungraded) tally.rubric += w
+    if (r.ungraded) {
+      // The grader's own routing map, so "graded by rubric" here and
+      // "sent to the rubric grader" cannot disagree.
+      if (Object.prototype.hasOwnProperty.call(RESPONSE_SKILL_BY_TYPE, r.question.type ?? '')) tally.rubric += w
+      else tally.unscored += w
+    }
     else if (r.isPilot) tally.pilot += w
     else {
       tally.counted += w
@@ -691,4 +711,105 @@ export function passageSetBreakdown(
     coveredScored: sets.reduce((n, s) => n + s.total, 0),
     totalScored,
   }
+}
+
+export interface TaskTime {
+  label: string
+  /** Timed cards in this task (blank answers carry no time). */
+  cards: number
+  /** Mean seconds per timed card. */
+  avgSeconds: number
+}
+
+export interface TestTiming {
+  /** Whole-sitting seconds. Exact on the post-submit screen; on a
+   *  reopened test reconstructed from the rows (see `basis`). */
+  totalSeconds: number
+  /** Unit: DELIVERED QUESTIONS, the same "of 48" the review rows count,
+   *  so a Complete-the-Words paragraph is ten questions, not one card. */
+  perQuestionSeconds: number
+  /** 'elapsed'    the client's own elapsed clock, exact.
+   *  'even_split' rebuilt from study_attempts, where every answered row
+   *               holds the SAME value (see below).
+   *  'measured'   the rows genuinely differ, i.e. per-question timing. */
+  basis: 'elapsed' | 'even_split' | 'measured'
+  /** Average time per task, ONLY when basis is 'measured'. Null otherwise,
+   *  and that null is the whole point of this function. */
+  perTask: TaskTime[] | null
+}
+
+/**
+ * Time on the result screen, and what it must refuse to say.
+ *
+ * study_attempts.time_spent_seconds LOOKS per-question and is not. The
+ * submit route writes `round(elapsedSeconds / cards)` onto every answered
+ * row and NULL onto blanks. Measured 2026-10-02 over every full_test
+ * session: 198 of 198 timed sessions hold exactly ONE distinct value
+ * (20 more hold none). A per-task time table built from that column
+ * would print the same seconds beside every task, presented as a
+ * measurement: the precise shape of the silent wrong numbers this
+ * screen was rebuilt to end.
+ *
+ * So the whole-test average is returned whenever there is any time at
+ * all (it is the elapsed clock divided out, which is honest), and a
+ * per-task split only when the rows actually vary. Every session before
+ * per-question capture (lib/study/question-time, 2026-10-02) is even
+ * split and stays refused; sessions submitted since carry measured
+ * per-question seconds and split by task.
+ *
+ * Reconstruction for a reopened test: value x CARD count, because submit
+ * divided by cards. Blanks hold NULL but the time was still spent, so
+ * every card counts; summing the non-null rows reported "0m" for a
+ * 23-minute sitting with one answer (summary/page.tsx).
+ */
+export function testTiming(input: {
+  rows: Pick<ResultRow, 'question' | 'timeSpentSeconds'>[]
+  deliveredTotal: number
+  /** The client's elapsed clock, when the caller has it. */
+  elapsedSeconds?: number | null
+}): TestTiming | null {
+  const { rows, deliveredTotal } = input
+  if (rows.length === 0 || deliveredTotal <= 0) return null
+  const timed = rows.filter(
+    (r): r is typeof r & { timeSpentSeconds: number } =>
+      typeof r.timeSpentSeconds === 'number' && Number.isFinite(r.timeSpentSeconds) && r.timeSpentSeconds > 0,
+  )
+  // Two different values on one session cannot come from the even split.
+  const measured = new Set(timed.map(r => r.timeSpentSeconds)).size >= 2
+
+  let totalSeconds: number
+  let basis: TestTiming['basis']
+  if (typeof input.elapsedSeconds === 'number' && input.elapsedSeconds > 0) {
+    totalSeconds = input.elapsedSeconds
+    basis = measured ? 'measured' : 'elapsed'
+  } else if (timed.length === 0) {
+    return null
+  } else if (measured) {
+    totalSeconds = timed.reduce((s, r) => s + r.timeSpentSeconds, 0)
+    basis = 'measured'
+  } else {
+    totalSeconds = timed[0].timeSpentSeconds * rows.length
+    basis = 'even_split'
+  }
+
+  let perTask: TaskTime[] | null = null
+  if (measured) {
+    // Same label function the section breakdown and the row's task tag
+    // use, so a task's time row and its accuracy row say the same word.
+    const acc = new Map<string, { cards: number; seconds: number }>()
+    for (const r of timed) {
+      const raw = r.question.prompt ? bracketedLabel(r.question.prompt) : null
+      const label = raw ? normaliseSectionLabel(raw) : ''
+      if (!label) continue
+      const cur = acc.get(label) ?? { cards: 0, seconds: 0 }
+      acc.set(label, { cards: cur.cards + 1, seconds: cur.seconds + r.timeSpentSeconds })
+    }
+    const tasks = [...acc.entries()].map(([label, v]) => ({
+      label, cards: v.cards, avgSeconds: v.seconds / v.cards,
+    }))
+    // One task is not a split; it is the whole-test average again.
+    perTask = tasks.length >= 2 ? tasks.sort((a, b) => b.avgSeconds - a.avgSeconds) : null
+  }
+
+  return { totalSeconds, perQuestionSeconds: totalSeconds / deliveredTotal, basis, perTask }
 }
