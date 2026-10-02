@@ -161,7 +161,7 @@ are fixed below, and a fail ends agent authoring of SSAT reading.
    nothing"). The with-source grader must judge whether the passage reads as real prose an SSAT
    student could meet. A pilot that is clean but unreadable is a fail.
 
-## 6. Pre-registered pilot (do not run from this file without approval)
+## 6. Pre-registered pilot (RUN 2026-10-02, result in section 7: refuted)
 
 - **Size.** 2 passages × 6 items (main-idea, detail, vocabulary, inference, attitude, structure),
   12 items. One fresh author agent that has not seen the rejected batches or their attack notes. It
@@ -197,6 +197,79 @@ are fixed below, and a fail ends agent authoring of SSAT reading.
   `bank-gate`, which ends with a human sitting. The co-founder's sitting on live SSAT reading was
   15.0% on 20 items.
 
+## 7. Pilot result (run 2026-10-02): REFUTED. Agent authoring of SSAT reading stops.
+
+Run exactly as section 6 fixed it, on the **v1 originals** of two passages x 6 items. The authors
+later wrote revisions (after the with-source grade below); those were set aside and **never
+attacked**, so nothing here was repaired in response to a round. Nothing was inserted. Evidence:
+`ssat-reading-diag/pilot/`.
+
+**Isolated-item options-only (the bar).** 58 items per sample: 10 candidate non-vocab items + the
+same 48 live control items, anonymised and shuffled, no passage, no siblings adjacent. Three fresh
+Claude samples (one rater sampled three times, so read rates, not independence expectations):
+
+| sample | candidate | live control |
+|---|---|---|
+| 1 | 7/10 = 70.0% | 10/48 = 20.8% |
+| 2 | 9/10 = 90.0% | 10/48 = 20.8% |
+| 3 | 8/10 = 80.0% | 15/48 = 31.3% |
+| **pooled** | **24/30 = 80.0%** | **35/144 = 24.3%** |
+
+- **Run validity:** live control 24.3%, inside the 10-45% window, and near the diagnosis run's 29.2%.
+  Valid, so the candidate is read.
+- **Verdict per the fixed bars: refuted (>= 60%).** Every sample is above 60% on its own, so the
+  verdict does not depend on pooling. The peer, ruled-out construction is **not sufficient**.
+- Unanimity, as a rate through the same correlated solvers: all three samples on the key on
+  **7/10 candidate items vs 8/48 = 16.7% live**. Only two candidate items resisted: pilot-A-4
+  (structure, 0/3) and pilot-B-6 (attitude, 1/3).
+- Stated basis on candidate hits: SOPHISTICATED 12, COHERENT_STORY 5, MODERATE 3, SPECIFIC 2,
+  GUESS 2. This is the same "the reading a test writer keys" signal that sank r1/r2.
+- The scorer (`ssat-reading-label.mjs score`) was break-tested against planted fixtures (perfect
+  100/100, random, candidate-only, live-only, a truncated file that shows n=47), and all three
+  sample files are complete (58/58).
+
+**Grouped attack (sibling-leak check).** One passage per file, all 5 non-vocab siblings together,
+3 fresh samples per file: passage A 11/15 = 73.3%, passage B 10/15 = 66.7%, **pooled 21/30 = 70.0%**.
+That is lower than isolated (80.0%), so siblings add nothing. The leak is in each item's option set,
+not in the cross-item story. (No grouped live control was re-run this session. The reference is the
+A36/A38 grouped live 28.2%, which was s3 and s4 only.)
+
+**Pre-flight, for the record.** 9 of 10 non-vocab items had all 4 distractors NAMED_RULED_OUT
+(pilot-A-4 had 0; bar >= 8/10). The key was uniquely longest on 2 of 12 (bar <= 2). `stem_leak` 0.
+With-source grade: **all 12 keys exclusively defensible**. **Both passages UNNATURAL**, which
+fails the pre-flight bar.
+
+**Validity caveat: the "unnatural" finding.** The with-source grader called both passages a "run
+of denials written to supply distractors": every candidate is named and denied in turn, and "a
+careful reader can see the stems through the prose." By section 5.6, a pilot that is clean but
+unreadable is a fail, so on naturalness alone these items could never have shipped. The attack was
+run on items that failed one pre-flight bar. This does **not** rescue the hypothesis, for two
+reasons:
+1. **The options-only attack never shows the passage**, so the passage's prose could not move the
+   blind solve rate. Only the option sets were measured, and they were built to the brief: concrete,
+   parallel, distractors drawn from the passage's own candidates.
+2. **The construction was over-applied, not under-applied.** 9/10 items had 4/4 ruled-out
+   distractors, against live 37/48 with >= 3/4. If the property were sufficient, this is the strongest
+   test it could get. A naturalised revision could only dilute it.
+
+What the revisions could still differ on is option wording, and they are untested. Per section 6,
+there is no third pilot.
+
+**Why it leaked anyway (observation, not a measured cause).** The grader's per-item tells and the
+solvers' bases point the same way. Even with peer-shaped options, the agent's key is still the
+**different kind of answer**: the only compound feeling among four single emotions ("pride, with
+shame at having doubted him"), the only counterintuitive remedy, the motive that "a test writer
+usually keys". The distractors are the passage's own ruled-out candidates, but the author still
+picks them as foils to an interesting key, and the foils read that way without the passage. Live
+items (77.6% ruled-out distractors, solving at 21-31% here) do not show this. **So the separating
+property in section 4 was a correlate of how humans wrote the live bank, not a recipe an agent can
+follow.** It is one more structural proxy that caught its own tell and missed the next
+(CLAUDE.md, "every structural proxy has been too coarse").
+
+**Consequence (pre-registered).** Agent authoring of SSAT reading stops. The SSAT reading deficit
+is escalated to human authoring. The 216 rejected items stay rejected. Live SSAT reading (138
+items, human sitting 15.0% on 20) is unaffected.
+
 ## Reproduce
 
 ```
@@ -208,5 +281,12 @@ node scripts/study-bank/ssat-reading-label.mjs score scripts/study-bank/ssat-rea
 node scripts/study-bank/ssat-reading-label.mjs cross scripts/study-bank/ssat-reading-diag \
   scripts/study-bank/ssat-reading-diag/labels-R-B.json scripts/study-bank/ssat-reading-diag/solve-iso-{A,B}.json
 ```
+Pilot (section 7):
+```
+node scripts/study-bank/ssat-reading-label.mjs score scripts/study-bank/ssat-reading-diag/pilot \
+  scripts/study-bank/ssat-reading-diag/pilot/solve-iso-{1,2,3}.json
+```
+The grouped files `solve-grp-g{1,2}{a,b,c}.json` score against `label.key.json` by qid and `fKey`.
+
 The labelling sample is seeded (20261002). Rebuilding it from a fresh live pull reproduces the same
 passages only while the live bank is unchanged.
