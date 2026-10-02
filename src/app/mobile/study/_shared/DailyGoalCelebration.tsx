@@ -7,6 +7,7 @@ import { X, Trophy } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLandingData } from '../LandingDataProvider'
+import { useDialogA11y } from './useDialogA11y'
 
 /**
  * Full-screen overlay that fires once when the student crosses their
@@ -31,7 +32,7 @@ function todayKey(): string {
 }
 
 export function DailyGoalCelebration() {
-  const { language } = useTranslation()
+  const { t, language } = useTranslation()
   const ko = language === 'korean'
   const landingData = useLandingData()
   const pathname = usePathname()
@@ -112,6 +113,8 @@ export function DailyGoalCelebration() {
     return () => { cancelled = true; clearInterval(id) }
   }, [landingData])
 
+  const dialogRef = useDialogA11y(show && !!progress, () => setShow(false))
+
   if (!show || !progress) return null
 
   return (
@@ -119,24 +122,27 @@ export function DailyGoalCelebration() {
       {/* Backdrop */}
       <div
         onClick={() => setShow(false)}
+        aria-hidden
         className="fixed inset-0 z-[110] bg-black/40 backdrop-blur-sm animate-in fade-in duration-300"
       />
       {/* Confetti dots — pure CSS, no library. Random hues, falling. */}
       <ConfettiBurst />
       {/* Celebration card */}
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[111] mx-auto max-w-sm rounded-3xl bg-white ring-1 ring-gray-200 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.28)] animate-in zoom-in-95 fade-in duration-400 overflow-hidden"
+        aria-labelledby="daily-goal-title"
+        className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[111] outline-none mx-auto max-w-sm rounded-3xl bg-white ring-1 ring-gray-200 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.28)] animate-in zoom-in-95 fade-in duration-400 overflow-hidden"
       >
         
         <button
           type="button"
           onClick={() => setShow(false)}
-          aria-label="close"
-          className="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-600 inline-flex items-center justify-center transition"
+          aria-label={String(t('common.close'))}
+          className="tap-target absolute top-3 right-3 w-8 h-8 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-600 inline-flex items-center justify-center transition"
         >
-          <X className="w-4 h-4" />
+          <X className="w-4 h-4" aria-hidden />
         </button>
         <div className="relative p-6 text-center">
           {/* Gradient tile in the study language, not a translucent square
@@ -148,7 +154,7 @@ export function DailyGoalCelebration() {
           <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-gray-500 mb-1">
             {ko ? '오늘의 목표 달성' : 'Goal hit'}
           </div>
-          <h2 className="text-[24px] font-bold tracking-tight leading-tight text-gray-900">
+          <h2 id="daily-goal-title" className="text-[24px] font-bold tracking-tight leading-tight text-gray-900">
             {ko
               ? `${progress.goalMinutes}분 학습 완료`
               : `${progress.goalMinutes} minutes done`}

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Search, X, BookOpen, Camera, AlertCircle, Compass, Loader2 } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useDialogA11y } from './useDialogA11y'
 
 /**
  * SearchSheet — universal-search full-screen overlay across topics,
@@ -72,13 +73,8 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
     return () => clearTimeout(handle)
   }, [q, open])
 
-  // ESC closes.
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open, onClose])
+  // ESC closes; Tab stays inside the full-screen sheet.
+  const dialogRef = useDialogA11y(open, onClose)
 
   const go = useCallback((href: string) => {
     onClose()
@@ -94,20 +90,23 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[100] bg-white flex flex-col animate-in fade-in duration-200"
+      aria-label={ko ? '검색' : 'Search'}
+      className="fixed inset-0 z-[100] outline-none bg-white flex flex-col animate-in fade-in duration-200"
     >
       {/* Search input */}
       <div className="flex-shrink-0 px-4 pt-4 pb-3 border-b border-gray-100">
         <div className="flex items-center gap-2">
-          <div className="flex-1 flex items-center gap-2 h-11 px-3 rounded-xl bg-gray-100">
+          <div className="flex-1 flex items-center gap-2 h-11 px-3 rounded-xl bg-gray-100 focus-within:ring-2 focus-within:ring-primary/40">
             <Search className="w-4 h-4 text-gray-500 flex-shrink-0" />
             <input
               ref={inputRef}
               type="search"
               value={q}
               onChange={e => setQ(e.target.value)}
+              aria-label={ko ? '주제, 세션, 오답 검색…' : 'Search topics, sessions, mistakes…'}
               placeholder={ko ? '주제, 세션, 오답 검색…' : 'Search topics, sessions, mistakes…'}
               className="flex-1 bg-transparent outline-none text-[15px] text-gray-900 placeholder:text-gray-400"
               autoComplete="off"
@@ -117,8 +116,8 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
           </div>
           <button type="button" onClick={onClose}
             aria-label={ko ? '닫기' : 'Close'}
-            className="inline-flex items-center justify-center w-10 h-10 rounded-full text-gray-600 hover:bg-gray-100 transition">
-            <X className="w-5 h-5" />
+            className="tap-target inline-flex items-center justify-center w-10 h-10 rounded-full text-gray-600 hover:bg-gray-100 transition">
+            <X className="w-5 h-5" aria-hidden />
           </button>
         </div>
       </div>

@@ -348,6 +348,7 @@ function WritingCapture({
       <textarea
         value={value}
         onChange={e => onChange(e.target.value)}
+        aria-label={ko ? '여기에 작성하세요…' : 'Type your response here…'}
         placeholder={ko ? '여기에 작성하세요…' : 'Type your response here…'}
         rows={14}
         className="w-full rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-4 text-[15px] text-gray-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"

@@ -1,6 +1,7 @@
 "use client"
 
 import { Sparkles, ListChecks } from '../../_shared/icons'
+import { useDialogA11y } from '../../_shared/useDialogA11y'
 
 /**
  * "You've seen everything we have — more are being written."
@@ -25,22 +26,23 @@ export function BankExhaustedSheet({
   onClose: () => void
 }) {
   const exhausted = reason === 'pool_exhausted'
+  const dialogRef = useDialogA11y(true, onClose)
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-[2px]"
-      role="dialog"
-      aria-modal="true"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-[2px]">
+      {/* Backdrop click closes; Escape (useDialogA11y) is the keyboard path. */}
+      <div className="absolute inset-0" onClick={onClose} aria-hidden />
       <div
-        className="w-full sm:max-w-[420px] bg-white rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl"
-        onClick={e => e.stopPropagation()}
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="bank-exhausted-title"
+        className="relative w-full sm:max-w-[420px] bg-white rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl outline-none"
       >
         <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary inline-flex items-center justify-center">
           {exhausted ? <Sparkles className="w-6 h-6" /> : <ListChecks className="w-6 h-6" />}
         </div>
 
-        <h2 className="text-[20px] font-bold text-gray-900 mt-3 leading-tight">
+        <h2 id="bank-exhausted-title" className="text-[20px] font-bold text-gray-900 mt-3 leading-tight">
           {exhausted
             ? (ko ? '새 문제를 만들고 있어요' : 'We are writing more questions')
             : (ko ? '아직 준비 중인 영역이에요' : 'This section is not ready yet')}
@@ -57,13 +59,13 @@ export function BankExhaustedSheet({
         </p>
 
         {exhausted && unseen > 0 && (
-          <p className="text-[13px] text-gray-400 mt-2 tabular-nums">
+          <p className="text-[13px] text-gray-500 mt-2 tabular-nums">
             {ko ? `남은 새 문제 ${unseen}개 — 한 세트를 채우기엔 부족해요.`
                 : `${unseen} unseen ${unseen === 1 ? 'question' : 'questions'} left — not enough for a full set.`}
           </p>
         )}
 
-        <p className="text-[13px] text-gray-400 mt-3 leading-relaxed">
+        <p className="text-[13px] text-gray-500 mt-3 leading-relaxed">
           {ko ? '크레딧은 차감되지 않았어요.' : 'You were not charged a credit.'}
         </p>
 

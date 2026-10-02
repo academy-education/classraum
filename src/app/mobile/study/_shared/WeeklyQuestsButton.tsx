@@ -6,6 +6,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { ModalPortal } from '@/components/ui/modal-portal'
 import { useSheetDrag } from './useSheetDrag'
 import { WeeklyQuests } from './WeeklyQuests'
+import { useDialogA11y } from './useDialogA11y'
 
 /**
  * A compact button for the "This week" section that opens the weekly
@@ -18,6 +19,7 @@ export function WeeklyQuestsButton() {
   const ko = language === 'korean'
   const [open, setOpen] = useState(false)
   const { handleProps, sheetStyle } = useSheetDrag(() => setOpen(false))
+  const dialogRef = useDialogA11y(open, () => setOpen(false))
 
   return (
     <>
@@ -59,26 +61,29 @@ export function WeeklyQuestsButton() {
           <div
             className="fixed inset-0 z-[120] bg-black/40 animate-fade-in"
             onClick={() => setOpen(false)}
+            aria-hidden
           />
           <div
+            ref={dialogRef}
             role="dialog"
             aria-modal="true"
+            aria-labelledby="weekly-quests-title"
             style={sheetStyle}
-            className="fixed inset-x-0 bottom-0 z-[121] max-h-[88vh] overflow-y-auto rounded-t-3xl bg-gray-50 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] animate-slide-up"
+            className="fixed inset-x-0 bottom-0 z-[121] outline-none max-h-[88vh] overflow-y-auto rounded-t-3xl bg-gray-50 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] animate-slide-up"
           >
             <div {...handleProps} className="sticky top-0 z-10 bg-gray-50/95 backdrop-blur-sm pt-3 pb-2 px-5">
               <div className="mx-auto w-9 h-1 rounded-full bg-gray-300" />
               <div className="mt-3 flex items-center justify-between">
-                <h2 className="text-[17px] font-bold text-gray-900">
+                <h2 id="weekly-quests-title" className="text-[17px] font-bold text-gray-900">
                   {ko ? '주간 퀘스트' : 'Weekly quests'}
                 </h2>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label={ko ? '닫기' : 'Close'}
-                  className="w-8 h-8 inline-flex items-center justify-center rounded-full hover:bg-gray-200 transition"
+                  className="tap-target w-8 h-8 inline-flex items-center justify-center rounded-full hover:bg-gray-200 transition"
                 >
-                  <X className="w-4 h-4 text-gray-500" />
+                  <X className="w-4 h-4 text-gray-500" aria-hidden />
                 </button>
               </div>
             </div>

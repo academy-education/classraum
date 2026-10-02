@@ -3,6 +3,7 @@
 import { Loader2, CheckCircle2 } from '@/app/mobile/study/_shared/icons'
 import { PathMascot } from '../../../_shared/PathMascot'
 import { ModalPortal } from '@/components/ui/modal-portal'
+import { useDialogA11y } from '../../../_shared/useDialogA11y'
 
 /** Pre-submit confirmation. Highlights unanswered count so students
  *  don't accidentally lock in a score they meant to revisit. */
@@ -30,6 +31,7 @@ export function SubmitConfirmModal({
     : unanswered === 1
       ? 'study.test.submitConfirm.bodyUnansweredOne'
       : 'study.test.submitConfirm.bodyUnansweredMany'
+  const dialogRef = useDialogA11y(true, onCancel)
   return (
     <ModalPortal>
       <div
@@ -38,15 +40,18 @@ export function SubmitConfirmModal({
         aria-hidden
       />
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[121] max-w-sm mx-auto rounded-2xl bg-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] animate-slide-up"
+        aria-labelledby="submit-confirm-title"
+        aria-describedby="submit-confirm-body"
+        className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[121] outline-none max-w-sm mx-auto rounded-2xl bg-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] animate-slide-up"
       >
         <div className="px-5 pt-5 pb-3">
-          <h3 className="text-[17px] font-semibold tracking-tight text-gray-900">
+          <h3 id="submit-confirm-title" className="text-[17px] font-semibold tracking-tight text-gray-900">
             {title ?? String(t('study.test.submitConfirm.titleSubmit'))}
           </h3>
-          <p className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
+          <p id="submit-confirm-body" className="text-[13px] text-gray-600 mt-1.5 leading-relaxed">
             {body ?? String(t(bodyKey, { count: unanswered, total: totalQuestions }))}
           </p>
         </div>

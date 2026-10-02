@@ -311,6 +311,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
+            aria-label={ko ? '문제·정답·메모로 검색' : 'Search question, answer, or note'}
             placeholder={ko ? '문제·정답·메모로 검색' : 'Search question, answer, or note'}
             className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[17px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />
@@ -931,6 +932,7 @@ export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
         <textarea
           value={note}
           onChange={e => setNote(e.target.value)}
+          aria-label={String(t('study.wrongNotebook.notePlaceholder'))}
           placeholder={String(t('study.wrongNotebook.notePlaceholder'))}
           rows={2}
           className="w-full rounded-xl bg-white ring-1 ring-gray-200/70 px-3 py-2 text-[17px] text-gray-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"

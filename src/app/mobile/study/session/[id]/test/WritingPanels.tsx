@@ -369,7 +369,7 @@ function BandDial({ band, scaleMax }: { band: number; scaleMax: number }) {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">
         <span className="text-[15px] font-bold text-gray-900 tabular-nums">{band.toFixed(1)}</span>
-        <span className="text-[10px] text-gray-400 tabular-nums mt-0.5">/ {scaleMax}</span>
+        <span className="text-[10px] text-gray-500 tabular-nums mt-0.5">/ {scaleMax}</span>
       </div>
     </div>
   )
@@ -569,7 +569,7 @@ export function WritingFeedbackPanel({
                     </span>
                     <span className={`text-[11px] font-semibold tabular-nums ${TONE_CLASS[ct].text}`}>
                       {c.score.toFixed(1)}
-                      <span className="text-gray-400 font-medium"> / {scaleMax}</span>
+                      <span className="text-gray-500 font-medium"> / {scaleMax}</span>
                     </span>
                   </div>
                   <div className="mt-1 h-1.5 rounded-full bg-gray-100 overflow-hidden">

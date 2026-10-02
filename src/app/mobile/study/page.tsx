@@ -964,6 +964,7 @@ function StudyLandingInner() {
               type="text"
               value={freeFormQuery}
               onChange={(e) => setFreeFormQuery(e.target.value)}
+              aria-label={String(t('study.landing.freeformPlaceholder'))}
               placeholder={String(t('study.landing.freeformPlaceholder'))}
               disabled={creatingFreeForm}
               className="w-full h-12 pl-10 pr-24 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[15px] placeholder:text-gray-400 shadow-[0_1px_2px_rgba(0,0,0,0.03)] focus:outline-none focus:ring-2 focus:ring-primary/30 focus:shadow-[0_2px_12px_-2px_rgba(40,133,232,0.15)] transition-all"

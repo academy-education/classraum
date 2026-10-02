@@ -157,7 +157,7 @@ export function ExplainMore({
     <div className="mt-3 space-y-2.5">
       {/* Header row: label + language toggle. */}
       <div className="flex items-center justify-between gap-2">
-        <span className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+        <span className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">
           <Sparkles className="w-3 h-3" />
           {ko ? '더 알아보기' : 'More help'}
         </span>
@@ -220,18 +220,18 @@ export function ExplainMore({
           </button>
         </form>
       ) : (
-        <p className="text-[11px] text-gray-400 px-1">
+        <p className="text-[11px] text-gray-500 px-1">
           {ko ? '이 문제의 추가 질문 한도에 도달했어요.' : "You've reached the follow-up limit for this question."}
         </p>
       )}
 
       {/* Answer stack */}
       {items.map(it => (
-        <div key={it.id} className="rounded-xl bg-primary/[0.04] ring-1 ring-primary/15 px-3.5 py-3">
+        <div key={it.id} aria-live="polite" aria-busy={it.loading} className="rounded-xl bg-primary/[0.04] ring-1 ring-primary/15 px-3.5 py-3">
           <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-primary/80 mb-1.5">{it.label}</p>
           {it.loading ? (
             <p className="inline-flex items-center gap-2 text-[13px] text-gray-500">
-              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden />
               {it.lang === 'ko' ? '설명을 준비 중…' : 'Thinking…'}
             </p>
           ) : it.error ? (

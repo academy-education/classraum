@@ -599,7 +599,7 @@ export function TestResultView({
                 ko={ko}
               />
             ))}
-            <p className="text-[11px] text-gray-400 leading-snug pt-0.5">
+            <p className="text-[11px] text-gray-500 leading-snug pt-0.5">
               {t('study.test.passageSets.note')}
             </p>
           </div>
@@ -921,7 +921,7 @@ function ScoreBar({ label, detail, percent, tone, ko, headline = false, pending 
         <span className="text-[13px] font-semibold text-gray-900">
           {label}
           {headline && (
-            <span className="ml-1.5 align-middle text-[11px] font-bold uppercase tracking-wide text-gray-400">
+            <span className="ml-1.5 align-middle text-[11px] font-bold uppercase tracking-wide text-gray-500">
               {ko ? '위 점수' : 'the big number'}
             </span>
           )}
@@ -939,7 +939,7 @@ function ScoreBar({ label, detail, percent, tone, ko, headline = false, pending 
           </span>
         )}
         {skipped > 0 && (
-          <span className="text-gray-400 font-semibold">
+          <span className="text-gray-500 font-semibold">
             {ko ? ` · ${skipped}개 미답변` : ` · ${skipped} left blank`}
           </span>
         )}
@@ -992,7 +992,7 @@ function TallyRow({ dot, count, unit, label, note, sub, subTone = 'warn' }: {
         <span className="block text-[15px] font-bold text-gray-900 tabular-nums tracking-tight leading-none">
           {count}
         </span>
-        <span className="block text-[11px] font-semibold uppercase tracking-[0.06em] text-gray-400 mt-1">
+        <span className="block text-[11px] font-semibold uppercase tracking-[0.06em] text-gray-500 mt-1">
           {unit}
         </span>
       </span>

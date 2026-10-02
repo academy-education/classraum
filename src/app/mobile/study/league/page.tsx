@@ -299,6 +299,7 @@ function NicknameJoinGate({ ko, onConfirmed }: { ko: boolean; onConfirmed: () =>
             value={value}
             onChange={(e) => setValue(e.target.value)}
             maxLength={NICKNAME_MAX}
+            aria-label={ko ? '닉네임' : 'Nickname'}
             placeholder={ko ? '닉네임' : 'Nickname'}
             className="w-full rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-3 text-[15px] text-gray-900 outline-none focus:border-amber-400 focus:bg-white focus:ring-2 focus:ring-amber-100"
             autoCapitalize="off" autoCorrect="off" spellCheck={false}

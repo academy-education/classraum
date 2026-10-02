@@ -165,6 +165,7 @@ function HistoryInner() {
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
+            aria-label={ko ? '제목·주제·모드로 검색' : 'Search by title, topic, or mode'}
             placeholder={ko ? '제목·주제·모드로 검색' : 'Search by title, topic, or mode'}
             className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[17px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />

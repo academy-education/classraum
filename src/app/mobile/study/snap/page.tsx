@@ -373,7 +373,7 @@ function ReviewStage({ previewUrl, onSolve, onRetake, ko }: { previewUrl: string
     <div className="space-y-3">
       <div className="rounded-2xl bg-black overflow-hidden ring-1 ring-gray-300">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={previewUrl} alt="captured problem" className="w-full max-h-[60vh] object-contain bg-black" />
+        <img src={previewUrl} alt={ko ? '촬영한 문제 사진' : 'Photo of the captured problem'} className="w-full max-h-[60vh] object-contain bg-black" />
       </div>
       <div className="flex gap-2">
         <button type="button" onClick={onRetake}
@@ -485,7 +485,7 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
           <ImageIcon className="w-3.5 h-3.5" />{ko ? '내가 찍은 사진' : 'My capture'}
         </summary>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={previewUrl} alt="captured" className="w-full max-h-[40vh] object-contain bg-black" />
+        <img src={previewUrl} alt={ko ? '촬영한 문제 사진' : 'Photo of the captured problem'} className="w-full max-h-[40vh] object-contain bg-black" />
       </details>
 
       <section>
