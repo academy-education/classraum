@@ -1,0 +1,444 @@
+[
+ {
+  "id": "SEC10A-14",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: semicolon after a clause whose subject is a that-clause",
+  "difficulty": "hard",
+  "passage": "That the comet sighted over the port city in 1661 and the one recorded by court astronomers more than a century earlier were the same object was not seriously proposed until the twentieth ______ calculations run on early electronic computers finally showed that both sightings fit a single elongated orbit.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "century, orbital",
+   "century; orbital",
+   "century orbital",
+   "century; when orbital"
+  ],
+  "correct_answer": "century; orbital",
+  "explanation": "\"Century; orbital\" is correct. The sentence opens with a long subject, \"That the comet sighted... and the one recorded... were the same object,\" and its verb is \"was not seriously proposed,\" so everything up to \"century\" is a complete independent clause. \"Orbital calculations... finally showed that both sightings fit a single elongated orbit\" is a second independent clause, and a semicolon correctly joins two independent clauses. \"Century, orbital\" joins the two independent clauses with only a comma, which is a comma splice. \"Century orbital\" runs the two clauses together with no punctuation at all. \"Century; when orbital\" turns the second part into a dependent clause beginning with \"when\"; nothing after it supplies a main clause, so the words after the semicolon are a fragment.",
+  "topic_tag": "astronomy"
+ },
+ {
+  "id": "SEC10A-15",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: semicolon before a clause opening with a participial phrase",
+  "difficulty": "hard",
+  "passage": "The hurricane that crossed the island in September 1928 toppled nearly every palm along its northern ______ of its bark and most of its crown, the great fig at the center of the botanical garden survived the storm and is still standing today.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "shore, stripped",
+   "shore stripped",
+   "shore, though stripped",
+   "shore; stripped"
+  ],
+  "correct_answer": "shore; stripped",
+  "explanation": "\"Shore; stripped\" is correct. \"The hurricane... toppled nearly every palm along its northern shore\" is an independent clause. What follows is a second independent clause whose subject is \"the great fig\" and whose verbs are \"survived\" and \"is\"; it simply opens with the descriptive phrase \"stripped of its bark and most of its crown.\" A semicolon correctly joins the two independent clauses. \"Shore, stripped\" joins them with only a comma, which is a comma splice, even though the phrase right after the comma looks as if it could describe the shore. \"Shore stripped\" runs the two clauses together with no punctuation. \"Shore, though stripped\" adds \"though\" to the opening phrase, but the second part is still a complete independent clause (\"the great fig... survived\"), so the two clauses are still joined by only a comma.",
+  "topic_tag": "botany"
+ },
+ {
+  "id": "SEC10A-03",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: no comma between a long subject and its verb",
+  "difficulty": "hard",
+  "passage": "The decision by the city's transit authority to replace its entire fleet of diesel buses with battery-electric models built by a single regional ______ more than a decade to carry out, largely because the power grid serving the bus depots had to be rebuilt before the first vehicles could be charged there overnight.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "manufacturer, which took",
+   "manufacturer eventually took",
+   "manufacturer; this took",
+   "manufacturer, and it took"
+  ],
+  "correct_answer": "manufacturer eventually took",
+  "explanation": "\"Manufacturer eventually took\" is correct. The subject of the sentence is \"the decision,\" and everything from \"by the city's transit authority\" through \"manufacturer\" modifies it; the sentence needs a main verb for that subject, and \"took\" supplies it with no punctuation between subject and verb. \"Manufacturer, which took\" turns the verb into part of a relative clause describing the manufacturer, leaving \"the decision\" without a main verb, so the sentence is a fragment. \"Manufacturer; this took\" places a semicolon after a long noun phrase that is not an independent clause. \"Manufacturer, and it took\" joins the unfinished subject phrase to a new clause with \"and,\" so \"the decision\" still never receives a verb.",
+  "topic_tag": "transit"
+ },
+ {
+  "id": "SEC10A-16",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: no comma after a parenthesis between subject and verb",
+  "difficulty": "hard",
+  "passage": "The original spillway of the reservoir above the old river town (a stepped concrete chute that the dam's engineers had redesigned twice before it was finally completed in ______ later replaced by a wider channel after new rainfall records showed that a once-in-a-century flood would overtop it by nearly two meters.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "1954) was",
+   "1954), was",
+   "1954) and was",
+   "1954, was"
+  ],
+  "correct_answer": "1954) was",
+  "explanation": "\"1954) was\" is correct. The subject of the sentence is \"the original spillway of the reservoir above the old river town,\" and the parenthetical \"(a stepped concrete chute that the dam's engineers had redesigned twice before it was finally completed in 1954)\" adds detail about it. Once the parenthesis is closed, the main verb \"was\" follows directly, with no punctuation between the subject and its verb. \"1954), was\" adds a comma after the parenthesis, placing a comma between the subject and its verb. \"1954) and was\" makes \"was later replaced\" part of a compound with nothing before it to pair with, so \"the original spillway\" never receives a main verb and the sentence is a fragment. \"1954, was\" never closes the parenthesis that opens before \"a stepped concrete chute.\"",
+  "topic_tag": "civil engineering"
+ },
+ {
+  "id": "SEC10A-17",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: trailing although-clause attached to the clause before it",
+  "difficulty": "hard",
+  "passage": "The library scanned its collection of seventeenth-century harbor charts at the modest resolution its online catalog ______ conservators who had restored the charts argued that only a far sharper scan would capture the faint pencil soundings that later pilots had added in the margins.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "required. Although the",
+   "required; although the",
+   "required, although the",
+   "required, and although the"
+  ],
+  "correct_answer": "required, although the",
+  "explanation": "\"Required, although the\" is correct. \"The library scanned its collection... at the modest resolution its online catalog required\" is an independent clause. \"Although the conservators... argued that only a far sharper scan would capture the faint pencil soundings...\" is a dependent clause: it begins with \"although,\" and no main clause follows it. A comma correctly attaches this dependent clause to the end of the independent clause. \"Required. Although the\" makes the dependent clause its own sentence, which is a fragment. \"Required; although the\" uses a semicolon, which must join two independent clauses, but what follows it is a dependent clause with no main clause. \"Required, and although the\" uses \"and\" as if a second independent clause were coming, but after the \"although\" clause the sentence ends without one.",
+  "topic_tag": "cartography"
+ },
+ {
+  "id": "SEC10A-18",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: commas between noun-phrase items in a series",
+  "difficulty": "hard",
+  "passage": "For each of the 212 wells in the district, the hydrologists recorded the depth to which the original casing had been ______ salinity of the water drawn during the dry season, and the date on which the well had last been cleaned.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "sunk, the",
+   "sunk; the",
+   "sunk the",
+   "sunk: the"
+  ],
+  "correct_answer": "sunk, the",
+  "explanation": "\"Sunk, the\" is correct. The verb \"recorded\" has three objects in a series: \"the depth to which the original casing had been sunk,\" \"the salinity of the water drawn during the dry season,\" and \"the date on which the well had last been cleaned.\" Items in a series that contain no internal commas are separated by commas, matching the comma after \"season.\" \"Sunk; the\" puts a semicolon between the first two items but a comma between the second and third; semicolons separate series items only when the items themselves contain commas, and then they must be used between every item. \"Sunk the\" omits the comma between the first and second items, running them together. \"Sunk: the\" uses a colon, which would make \"the salinity...\" and \"the date...\" an explanation of \"the depth\" rather than further items in the list.",
+  "topic_tag": "hydrology"
+ },
+ {
+  "id": "SEC10A-07",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: two independent clauses, the second opening with \"by then\"",
+  "difficulty": "hard",
+  "passage": "The engineers spent nearly six years tunneling beneath the harbor with hand tools and compressed-air caissons, losing dozens of workers to decompression sickness along the ______ had already approved funding for a suspension bridge that would carry far more traffic and make the finished tunnel nearly obsolete.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "way, by then, the council",
+   "way, which by then the council",
+   "way by then, the council",
+   "way. By then, the council"
+  ],
+  "correct_answer": "way. By then, the council",
+  "explanation": "\"Way. By then, the council\" is correct. \"The engineers spent nearly six years tunneling...\" and \"the council had already approved funding...\" are both independent clauses, and a period correctly separates them; \"by then\" begins the second sentence and is followed by a comma. \"Way, by then, the council\" joins the two independent clauses with only a comma, which is a comma splice. \"Way, which by then the council\" introduces \"which\" but gives it no role in the clause that follows, since \"approved\" already has its object, \"funding\"; the result is ungrammatical. \"Way by then, the council\" attaches \"by then\" to the end of the first clause and then joins the second independent clause to it with only a comma, which is also a comma splice.",
+  "topic_tag": "engineering"
+ },
+ {
+  "id": "SEC10A-19",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: comma before a sentence-final noun phrase summing up a clause",
+  "difficulty": "hard",
+  "passage": "After 140 years of continuous operation, the city's covered fish market was closed by a narrow vote of the council in the spring of ______ that the vendors, many of whose families had held the same stalls since the 1880s, protested for months on the steps of city hall.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "2009. A decision",
+   "2009; a decision",
+   "2009, it was a decision",
+   "2009, a decision"
+  ],
+  "correct_answer": "2009, a decision",
+  "explanation": "\"2009, a decision\" is correct. \"The city's covered fish market was closed by a narrow vote of the council in the spring of 2009\" is an independent clause. \"A decision that the vendors... protested for months\" is a noun phrase that renames the event the clause describes; \"protested\" belongs to the clause beginning with \"that,\" so the phrase has no main verb of its own. A comma correctly attaches such a phrase to the end of the clause. \"2009. A decision\" makes the noun phrase its own sentence, which is a fragment. \"2009; a decision\" uses a semicolon, which must join two independent clauses, before a phrase that is not a clause. \"2009, it was a decision\" turns the phrase into a second independent clause with \"it was\" and joins it to the first with only a comma, a comma splice.",
+  "topic_tag": "urban history"
+ },
+ {
+  "id": "SEC10A-20",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: no mark between a verb and its delayed object",
+  "difficulty": "hard",
+  "passage": "The conservators, working with cotton swabs and a solvent gel mild enough to leave the original paint untouched, slowly removed from the altarpiece's gilded ______ layers of darkened varnish, each one applied by a different restorer during the previous three centuries.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "frame three",
+   "frame, three",
+   "frame. Three",
+   "frame: three"
+  ],
+  "correct_answer": "frame three",
+  "explanation": "\"Frame three\" is correct. The verb \"removed\" needs an object, and here the object, \"three layers of darkened varnish,\" comes after the phrase \"from the altarpiece's gilded frame.\" No punctuation belongs between a verb and its object, even when a phrase separates them. \"Frame, three\" puts a comma between \"removed from the altarpiece's gilded frame\" and the object of \"removed.\" \"Frame. Three\" ends the first sentence before \"removed\" has an object and leaves \"Three layers of darkened varnish, each one applied...\" as a fragment with no verb. \"Frame: three\" uses a colon, but a colon must follow a complete independent clause, and \"the conservators... slowly removed from the altarpiece's gilded frame\" is not complete without its object.",
+  "topic_tag": "art conservation"
+ },
+ {
+  "id": "SEC10A-21",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: name after a descriptor that already identifies one person",
+  "difficulty": "hard",
+  "passage": "In 1902 the museum entrusted its newly purchased tablets to the only member of its staff who could read cuneiform ______ Hartmann, and it was his transliterations, published four years later, that first revealed the archive to be a merchant family's correspondence.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "script; Ernst",
+   "script, Ernst",
+   "script Ernst",
+   "script, and Ernst"
+  ],
+  "correct_answer": "script, Ernst",
+  "explanation": "\"Script, Ernst\" is correct. \"The only member of its staff who could read cuneiform script\" already identifies exactly one person, so the name \"Ernst Hartmann\" adds information rather than identifying him, and it is set off by a pair of commas; the second comma, after \"Hartmann,\" also comes before \"and it was.\" \"Script Ernst\" treats the name as needed to tell which staff member is meant, but the phrase \"the only member\" has already done that. \"Script; Ernst\" uses a semicolon, which must join two independent clauses, but \"Ernst Hartmann\" is only a name, not a clause. \"Script, and Ernst\" makes \"Ernst Hartmann\" a second person the tablets were entrusted to, and the sentence then runs on into \", and it was his transliterations...\" with nothing to connect it.",
+  "topic_tag": "assyriology"
+ },
+ {
+  "id": "SEC10A-22",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: comma and conjunction before a clause opening with \"when\"",
+  "difficulty": "hard",
+  "passage": "The river overtopped its levees three times during the unusually wet spring of ______ water finally receded in early June, farmers in the lower valley found their fields buried under nearly a meter of silt.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "1927, when the",
+   "1927 when the",
+   "1927, and when the",
+   "1927, then when the"
+  ],
+  "correct_answer": "1927, and when the",
+  "explanation": "\"1927, and when the\" is correct. \"The river overtopped its levees three times during the unusually wet spring of 1927\" is an independent clause, and \"farmers in the lower valley found their fields buried...\" is a second independent clause that opens with the dependent clause \"when the water finally receded in early June.\" A comma followed by the coordinating conjunction \"and\" correctly joins the two independent clauses. \"1927, when the\" and \"1927 when the\" both attach the \"when\" clause to the first clause and then join \"farmers... found\" to it with only a comma, a comma splice. \"1927, then when the\" also uses only a comma to join the two independent clauses; \"then\" is an adverb, not a conjunction, so it cannot join them.",
+  "topic_tag": "flooding"
+ },
+ {
+  "id": "SEC10A-12",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: colon after an independent clause before a noun phrase",
+  "difficulty": "hard",
+  "passage": "After cataloguing more than six hundred clay tablets recovered from the palace archive, the epigraphers concluded that the scribes had relied on a single standard for every length they ______ royal cubit, a bronze rod kept in the temple of the city god and copied onto wooden measuring sticks for officials in each province.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "recorded the",
+   "recorded, and the",
+   "recorded: the",
+   "recorded. The"
+  ],
+  "correct_answer": "recorded: the",
+  "explanation": "\"Recorded: the\" is correct. \"The epigraphers concluded that the scribes had relied on a single standard for every length they recorded\" is a complete independent clause, and what follows names that standard; a colon correctly introduces an explanation or specification after an independent clause, even when what follows is only a noun phrase. \"Recorded the\" leaves no break, so \"the royal cubit\" reads as the object of \"recorded,\" which already has its object in \"every length\"; the sentence becomes ungrammatical. \"Recorded, and the\" uses \"and\" to begin a second clause, but \"the royal cubit, a bronze rod kept... and copied...\" has no verb, so nothing completes it. \"Recorded. The\" makes \"The royal cubit, a bronze rod kept... and copied...\" a separate sentence, but it has no main verb, so it is a fragment.",
+  "topic_tag": "ancient history"
+ },
+ {
+  "id": "SEC10A-13",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: long introductory prepositional phrase kept whole",
+  "difficulty": "hard",
+  "passage": "Throughout the four years of negotiations between the upstream and downstream ______ insisted on publishing every draft of the proposed compact, a practice that slowed the talks considerably but made it nearly impossible for either side to claim afterward that it had been misled about the terms.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "states over water rights, federal mediators",
+   "states, over water rights, federal mediators",
+   "states over water rights—federal mediators",
+   "states over water rights; federal mediators"
+  ],
+  "correct_answer": "states over water rights, federal mediators",
+  "explanation": "\"States over water rights, federal mediators\" is correct. The sentence opens with one long prepositional phrase, \"Throughout the four years of negotiations between the upstream and downstream states over water rights\"; \"over water rights\" tells which negotiations are meant, so it belongs inside that phrase. A single comma marks the end of the whole introductory phrase, just before the subject \"federal mediators.\" \"States, over water rights, federal mediators\" sets \"over water rights\" off with a pair of commas as if it were removable extra information, but it is an essential part of the phrase that identifies the negotiations. \"States over water rights—federal mediators\" uses a single dash, which is not used to end an introductory phrase. \"States over water rights; federal mediators\" uses a semicolon, which must join two independent clauses, after a phrase that is not a clause.",
+  "topic_tag": "water policy"
+ },
+ {
+  "id": "SEC10B-01",
+  "domain": "Standard English Conventions",
+  "subskill": "form: finite verb for a subject followed by a reduced relative clause",
+  "difficulty": "hard",
+  "passage": "Ecologists studying old-growth forests have found that fungal threads link the roots of neighboring trees and that the network they form ______ sugars from tall, sunlit trees to seedlings growing in deep shade, a transfer that may help young firs survive their first decade.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "redistributing",
+   "and redistribute",
+   "redistributes",
+   "redistribute"
+  ],
+  "correct_answer": "redistributes",
+  "explanation": "The blank falls inside a clause introduced by \"that\": \"that the network they form ______ sugars.\" The subject of this clause is \"the network,\" and \"they form\" is a shortened relative clause describing it (\"the network [that] they form\"). \"Network\" still needs a verb of its own, and because it is singular, that verb must be singular: \"redistributes.\" \"Redistribute\" is plural; it agrees with \"they\" or \"threads,\" which come just before the blank, rather than with \"network.\" \"And redistribute\" joins a second verb to \"form,\" so both verbs belong to \"they,\" and \"the network\" is left with no verb at all. \"Redistributing\" is a participle, not a finite verb, so it also leaves \"the network\" without a verb.",
+  "topic_tag": "ecology"
+ },
+ {
+  "id": "SEC10B-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: nonfinite modifier when the main verb is already present",
+  "difficulty": "hard",
+  "passage": "Over three consecutive summers, a team of volunteers organized by the regional land trust removed nearly forty tons of invasive kudzu from the eroding hillside above the reservoir, ______ native oak and hickory seedlings to take root in soil that the vine had smothered for decades.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "enabling",
+   "enabled",
+   "enables",
+   "enable"
+  ],
+  "correct_answer": "enabling",
+  "explanation": "This sentence already has a subject and a main verb: \"a team of volunteers ... removed nearly forty tons of invasive kudzu.\" What follows the comma must therefore modify that clause rather than add a second main verb. \"Enabling\" is a participle that does exactly that, describing the result of the removal. \"Enabled\" would be a second past-tense main verb attached to the first with only a comma and no conjunction, so the sentence would have two verbs fighting for the same subject. \"Enables\" has the same problem and also shifts from the past tense of \"removed\" to the present. \"Enable\" adds a second main verb as well, and as a plural form it does not even agree with the singular subject \"team.\"",
+  "topic_tag": "conservation"
+ },
+ {
+  "id": "SEC10B-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: finite past verb inside a relative clause with its own subject",
+  "difficulty": "hard",
+  "passage": "Divers recovered a bronze astrolabe from the wreck in 1985, and its finely engraved scales, which the ship's navigator ______ to fix the vessel's latitude, remain legible after four centuries on the seabed.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "relying on",
+   "that relies on",
+   "relied on",
+   "relies on"
+  ],
+  "correct_answer": "relied on",
+  "explanation": "The words between the commas form a relative clause that begins with \"which\" and has its own subject, \"the ship's navigator.\" That clause needs a finite verb, and because the navigator used the astrolabe before the ship sank four centuries ago, the verb must be in the past tense: \"which the ship's navigator relied on to fix the vessel's latitude.\" The main clause then continues: \"its finely engraved scales ... remain legible.\" \"Relies on\" is finite, but its present tense describes a navigator from four centuries ago as if he were still using the instrument. \"Relying on\" is a participle, so the clause beginning \"which the ship's navigator\" has no verb. \"That relies on\" starts a second relative clause inside the first, so \"that\" becomes the subject of \"relies,\" and the clause beginning \"which the ship's navigator\" is still left without a verb.",
+  "topic_tag": "navigation"
+ },
+ {
+  "id": "SEC10B-04",
+  "domain": "Standard English Conventions",
+  "subskill": "form: plural possessive with number set by an earlier sentence",
+  "difficulty": "hard",
+  "passage": "Starting in 2011, two ornithologists kept one shared handwritten log of the arrival date of every barn swallow that nested under the eaves of a dairy barn in rural Ontario. Over thirteen years, the ______ grew to more than 9,000 entries, and it now shows that the birds arrive nearly a week earlier than they once did.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "ornithologist's log",
+   "ornithologist's logs",
+   "ornithologists' logs",
+   "ornithologists' log"
+  ],
+  "correct_answer": "ornithologists' log",
+  "explanation": "The first sentence establishes two facts: two ornithologists kept the record, and they kept one shared log. The possessive must therefore be plural, \"ornithologists'\" (plural noun, apostrophe after the s), and the noun must be singular, \"log.\" \"Ornithologists' log\" gets both right, and it also matches the singular pronoun \"it\" later in the sentence. \"Ornithologist's log\" uses a singular possessive, which credits the record to only one person. \"Ornithologist's logs\" makes that same error and also makes the noun plural. \"Ornithologists' logs\" uses the correct possessive, but the plural \"logs\" contradicts the one shared log described in the first sentence and clashes with \"it.\"",
+  "topic_tag": "ornithology"
+ },
+ {
+  "id": "SEC10B-06",
+  "domain": "Standard English Conventions",
+  "subskill": "pronoun-antecedent: possessive with a distant plural antecedent",
+  "difficulty": "hard",
+  "passage": "Printed charts of the West African coast, which engravers in Lisbon copied and recopied for more than a century, owe ______ error, a cape drawn nearly forty miles too far south, to a single survey that a pilot misread in 1502.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "it's most persistent",
+   "they're most persistent",
+   "its most persistent",
+   "their most persistent"
+  ],
+  "correct_answer": "their most persistent",
+  "explanation": "The pronoun names whatever owns the error: the thing that \"owe[s]\" it to a misread survey. That is the subject of the sentence, \"Printed charts of the West African coast,\" and \"charts\" is plural, so the possessive must be plural: \"their.\" \"Its most persistent\" uses a singular possessive; it may seem to fit the singular nouns closer to the blank, \"coast,\" \"Lisbon,\" and \"century,\" but none of them is what owes the error to the survey. \"It's\" is a contraction of \"it is\" or \"it has,\" and \"they're\" is a contraction of \"they are\"; neither is a possessive, so neither can come before \"error\" this way.",
+  "topic_tag": "cartography"
+ },
+ {
+  "id": "SEC10B-07",
+  "domain": "Standard English Conventions",
+  "subskill": "form: number and tense of the second verb in a compound predicate",
+  "difficulty": "hard",
+  "passage": "After removing brittle wartime letters from their original envelopes, the archive's lead conservator flattens the pages under a single pane of weighted glass for about a week and then ______ them in acid-free folders that are kept in a climate-controlled vault.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "stores",
+   "store",
+   "stored",
+   "storing"
+  ],
+  "correct_answer": "stores",
+  "explanation": "The subject is \"the archive's lead conservator,\" a singular noun, and it has two verbs joined by \"and then\": \"flattens\" and the verb in the blank. The second verb must match the first: singular and in the present tense, \"stores.\" \"Store\" is plural, perhaps drawn by \"letters,\" \"envelopes,\" or \"pages,\" but none of those is the subject. \"Stored\" is past tense, an unexplained shift away from the present-tense \"flattens\" in a description of a routine. \"Storing\" is a participle, not a finite verb, so it cannot pair with \"flattens\" as the second verb of the subject \"conservator.\"",
+  "topic_tag": "archives"
+ },
+ {
+  "id": "SEC10B-08",
+  "domain": "Standard English Conventions",
+  "subskill": "form: agreement with a gerund-phrase subject containing plural nouns",
+  "difficulty": "hard",
+  "passage": "Reintroducing gray wolves to the northern ranges of the park after an absence of nearly seventy years ______ the grazing patterns of elk herds, which now avoid the open riverbanks where young willows have begun to recover.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has reshaped",
+   "have reshaped",
+   "reshaping",
+   "had reshaped"
+  ],
+  "correct_answer": "has reshaped",
+  "explanation": "The subject of this sentence is the gerund phrase \"Reintroducing gray wolves to the northern ranges of the park after an absence of nearly seventy years.\" A gerund phrase names a single action, so it takes a singular verb even though it contains the plural nouns \"wolves,\" \"ranges,\" and \"years.\" \"Has reshaped\" is a singular finite verb, and its present perfect tense links the past reintroduction to the present, where the elk \"now avoid\" the riverbanks. \"Have reshaped\" is plural; it agrees with one of the plural nouns inside the phrase rather than with the phrase itself. \"Reshaping\" is a participle, so it leaves the subject without a main verb and turns the sentence into a fragment. \"Had reshaped\" uses the past perfect, which places an action before some other moment in the past; no such moment appears here, and the sentence goes on to describe what the elk do \"now.\"",
+  "topic_tag": "wildlife"
+ },
+ {
+  "id": "SEC10B-10",
+  "domain": "Standard English Conventions",
+  "subskill": "form: agreement with the head noun next to the blank, earlier trap",
+  "difficulty": "hard",
+  "passage": "Although the great fresco of the harvest in the monastery's refectory, exposed for centuries to candle smoke and to damp air rising from the valley, has faded almost beyond recognition, the smaller altar panels ______ much of the vivid blue pigment that the painters ground from lapis lazuli.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has preserved",
+   "having preserved",
+   "have preserved",
+   "which has preserved"
+  ],
+  "correct_answer": "have preserved",
+  "explanation": "The sentence has two parts: a long introductory clause beginning with \"Although,\" whose subject is the singular \"fresco\" and whose verb is \"has faded,\" and a main clause whose subject is \"the smaller altar panels.\" The blank needs the main clause's verb, and because \"panels\" is plural, that verb must be plural: \"have preserved.\" \"Has preserved\" is singular; it echoes \"has faded\" and the singular \"fresco\" from the first clause, but the subject of the main clause is \"panels.\" \"Having preserved\" is a participle, not a finite verb, so \"panels\" has no verb and the sentence has no main clause. \"Which has preserved\" turns what follows into a relative clause describing \"panels,\" which again leaves \"panels\" without a main verb; its singular \"has\" does not agree with \"panels\" either.",
+  "topic_tag": "art history"
+ },
+ {
+  "id": "SEC10B-12",
+  "domain": "Standard English Conventions",
+  "subskill": "form: agreement with \"the number of\" before plural nouns",
+  "difficulty": "hard",
+  "passage": "The number of migrating songbirds that strike the illuminated glass towers of the city's financial district each spring and fall ______ by nearly half since volunteers persuaded building managers to switch off decorative lighting after midnight.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "have declined",
+   "has declined",
+   "declining",
+   "to decline"
+  ],
+  "correct_answer": "has declined",
+  "explanation": "The subject of this sentence is \"The number,\" not \"songbirds\" or \"towers.\" The phrase \"of migrating songbirds that strike the illuminated glass towers ...\" only describes what is being counted. \"The number\" names a single quantity and takes a singular verb, so \"has declined\" is correct. \"Have declined\" is plural, matching the plural nouns between the subject and the blank rather than the subject itself. \"Declining\" is a participle and \"to decline\" is an infinitive; neither can serve as a main verb, so either one leaves \"The number\" without a verb and makes the sentence a fragment.",
+  "topic_tag": "urban ecology"
+ },
+ {
+  "id": "SEC10B-13",
+  "domain": "Standard English Conventions",
+  "subskill": "form: compound subject with a singular part next to the blank",
+  "difficulty": "hard",
+  "passage": "The steady rise in average summer temperatures across the plateau since the 1980s and the arrival of a bark beetle that bores into any pine weakened by drought ______ to kill nearly a third of the region's old-growth forest, according to a new aerial survey.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has combined",
+   "combining",
+   "which combine",
+   "have combined"
+  ],
+  "correct_answer": "have combined",
+  "explanation": "The subject of this sentence is compound: \"The steady rise in average summer temperatures across the plateau since the 1980s\" and \"the arrival of a bark beetle that bores into any pine weakened by drought.\" Two subjects joined by \"and\" take a plural verb, so \"have combined\" is correct. \"Has combined\" is singular; it agrees with the noun right before the blank, \"drought,\" or with just one half of the compound. \"Combining\" is a participle, so the subject would have no main verb. \"Which combine\" would attach a relative clause to \"drought,\" again leaving the compound subject without a main verb and making the sentence a fragment.",
+  "topic_tag": "forestry"
+ },
+ {
+  "id": "SEC10B-14",
+  "domain": "Standard English Conventions",
+  "subskill": "modifier: opening modifier must attach to the noun after the comma",
+  "difficulty": "hard",
+  "passage": "Last spring a ceremonial robe was returned to the coastal community where it had been made, after more than a century in private collections. Woven from the inner bark of yellow cedar and the wool of mountain goats and patterned with rows of stylized ravens, ______",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "the community now displays the robe in its longhouse.",
+   "the robe now hangs in the community's longhouse.",
+   "the robe's ravens now look out over the longhouse.",
+   "the longhouse now holds the robe at its center."
+  ],
+  "correct_answer": "the robe now hangs in the community's longhouse.",
+  "explanation": "The second sentence opens with a long modifier: \"Woven from the inner bark of yellow cedar and the wool of mountain goats and patterned with rows of stylized ravens.\" A modifier in this position describes the noun that comes right after the comma, so that noun must be the thing that was woven and patterned: the robe. \"The robe now hangs in the community's longhouse\" puts \"the robe\" right after the modifier. \"The community now displays the robe in its longhouse\" makes the community the thing woven from cedar bark and goat wool. \"The robe's ravens now look out over the longhouse\" makes \"ravens\" the subject; \"robe's\" is only a possessive, and the ravens are not what was patterned with rows of ravens. \"The longhouse now holds the robe at its center\" says that the longhouse was woven and patterned.",
+  "topic_tag": "textile arts"
+ },
+ {
+  "id": "SEC10B-15",
+  "domain": "Standard English Conventions",
+  "subskill": "agreement: linking verb with a plural complement after it",
+  "difficulty": "hard",
+  "passage": "For decades the farms along the river were blamed, but the largest single source of the silt that clouds its estuary each spring ______ the eroding sandstone bluffs near its headwaters, according to a new sediment survey.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "are actually",
+   "is actually",
+   "that are actually",
+   "which is actually"
+  ],
+  "correct_answer": "is actually",
+  "explanation": "After \"but,\" the subject is \"the largest single source,\" and everything from \"of the silt\" to \"each spring\" describes it. \"Source\" is singular, so the verb must be singular: \"is actually.\" The plural noun after the verb, \"bluffs,\" does not change this, because a linking verb agrees with its subject, not with the noun that follows it. \"Are actually\" agrees with \"bluffs\" (or with \"farms\") instead of with \"source.\" \"That are actually\" and \"which is actually\" each begin a relative clause that attaches to a nearby noun, so \"source\" is left with no verb and the clause after \"but\" is incomplete.",
+  "topic_tag": "geology"
+ },
+ {
+  "id": "SEC10B-16",
+  "domain": "Standard English Conventions",
+  "subskill": "agreement: verb in a who-clause with a singular antecedent",
+  "difficulty": "hard",
+  "passage": "Linguists recording the harvest songs of a remote mountain village are working against time: the only person there who ______ all forty verses of the cycle by heart is a farmer in his nineties.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "still know",
+   "still knowing",
+   "still knew",
+   "still knows"
+  ],
+  "correct_answer": "still knows",
+  "explanation": "The blank holds the verb of a relative clause, \"who ______ all forty verses of the cycle by heart,\" and \"who\" refers to \"the only person there.\" \"Person\" is singular, so the verb must be singular, and because the sentence describes the present (\"are working,\" \"is a farmer\"), it must be in the present tense: \"still knows.\" \"Still know\" is plural, matching \"songs\" or \"verses\" rather than \"person.\" \"Still knew\" is past tense, which clashes with \"is a farmer in his nineties\": the farmer is the one person who knows the verses now. \"Still knowing\" is a participle, which cannot serve as the verb after \"who,\" so the relative clause is left incomplete.",
+  "topic_tag": "linguistics"
+ }
+]
