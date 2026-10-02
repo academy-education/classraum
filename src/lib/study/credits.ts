@@ -18,12 +18,37 @@ import { raiseAlert } from '@/lib/ops/alert'
 
 /** Deterministic valid UUID for the Nth credit slice of a session.
  *  Slice 0 is the session id itself (backward compatible with every
- *  pre-relaunch 1-credit ledger row). */
-function creditSourceId(sessionId: string, slice: number): string {
-  if (slice === 0) return sessionId
-  const h = createHash('sha1').update(`${sessionId}:credit:${slice}`).digest('hex')
+ *  pre-relaunch 1-credit ledger row).
+ *
+ *  `epoch` > 0 names a RE-CHARGE of a slice whose earlier source was
+ *  refunded. The ledger allows one debit and one refund per (student,
+ *  source), and the debit RPCs answer `already` for any source that has a
+ *  debit row — refunded or not — so without a fresh source a refunded slice
+ *  could only ever be "reserved" for free. Epoch 0 is the original id. */
+function creditSourceId(sessionId: string, slice: number, epoch = 0): string {
+  if (slice === 0 && epoch === 0) return sessionId
+  const seed = epoch === 0 ? `${sessionId}:credit:${slice}` : `${sessionId}:credit:${slice}:epoch:${epoch}`
+  const h = createHash('sha1').update(seed).digest('hex')
   // Format as a v5-style UUID (variant + version nibbles set).
   return `${h.slice(0, 8)}-${h.slice(8, 12)}-5${h.slice(13, 16)}-a${h.slice(17, 20)}-${h.slice(20, 32)}`
+}
+
+/** Bound on re-charges of one slice. Each epoch needs a full charge →
+ *  refund cycle, so a real session never gets near it. */
+const MAX_EPOCHS = 20
+
+/** Has this source been refunded? A refund row is never removed, so a
+ *  `true` cannot go stale. null = the read failed (caller must not guess). */
+async function isRefunded(studentId: string, source: string): Promise<boolean | null> {
+  const { data, error } = await dbAdmin
+    .from('study_credit_ledger')
+    .select('id')
+    .eq('student_id', studentId)
+    .eq('kind', 'refund')
+    .eq('source_id', source)
+    .limit(1)
+  if (error) return null
+  return Array.isArray(data) && data.length > 0
 }
 
 export interface ReserveResult {
@@ -49,33 +74,53 @@ export async function reserveTestCredits(studentId: string, sessionId: string, c
   // student back a credit the winning call's session is still using.
   const reserved: string[] = []
   for (let i = 0; i < cost; i++) {
-    const source = creditSourceId(sessionId, i)
-
-    // Test-scoped pass credit first (idempotent per source; no-op reason
-    // 'no_pass_credits' when the student holds none for this test). Skipped
-    // when the student explicitly chose to spend a regular credit instead.
+    let source = ''
     let reservedSlice = false
     let ownSlice = false
-    if (testFamily && !opts?.skipPass) {
-      const { data, error } = await dbAdmin
-        .rpc('use_study_pass_credit', { p_student: studentId, p_source: source, p_test: testFamily })
-      // An RPC error is indistinguishable from "holds no pass credits" in
-      // `data`, and we silently fall through to a generic credit — i.e. the
-      // student spends a credit they didn't mean to. Not worth failing the
-      // start over, but it must not be invisible.
-      if (error) console.error('[credits] pass-credit reserve errored, falling back to generic', { studentId, sessionId, testFamily, error })
-      const pr = (data ?? null) as { ok?: boolean; already?: boolean } | null
-      if (pr?.ok) { reservedSlice = true; ownSlice = !pr.already }
-    }
-
-    // Fall back to generic grant → purchased.
     let reason: string | undefined
-    if (!reservedSlice) {
-      const { data, error } = await dbAdmin
-        .rpc('use_study_credit', { p_student: studentId, p_source: source })
-      const r = (data ?? {}) as { ok?: boolean; already?: boolean; reason?: string }
-      if (!error && r.ok) { reservedSlice = true; ownSlice = !r.already }
-      else reason = error ? 'rpc_error' : (r.reason ?? 'no_credits')
+
+    for (let epoch = 0; ; epoch++) {
+      source = creditSourceId(sessionId, i, epoch)
+      reservedSlice = false
+      ownSlice = false
+      reason = undefined
+
+      // Test-scoped pass credit first (idempotent per source; no-op reason
+      // 'no_pass_credits' when the student holds none for this test). Skipped
+      // when the student explicitly chose to spend a regular credit instead.
+      if (testFamily && !opts?.skipPass) {
+        const { data, error } = await dbAdmin
+          .rpc('use_study_pass_credit', { p_student: studentId, p_source: source, p_test: testFamily })
+        // An RPC error is indistinguishable from "holds no pass credits" in
+        // `data`, and we silently fall through to a generic credit — i.e. the
+        // student spends a credit they didn't mean to. Not worth failing the
+        // start over, but it must not be invisible.
+        if (error) console.error('[credits] pass-credit reserve errored, falling back to generic', { studentId, sessionId, testFamily, error })
+        const pr = (data ?? null) as { ok?: boolean; already?: boolean } | null
+        if (pr?.ok) { reservedSlice = true; ownSlice = !pr.already }
+      }
+
+      // Fall back to generic grant → purchased.
+      if (!reservedSlice) {
+        const { data, error } = await dbAdmin
+          .rpc('use_study_credit', { p_student: studentId, p_source: source })
+        const r = (data ?? {}) as { ok?: boolean; already?: boolean; reason?: string }
+        if (!error && r.ok) { reservedSlice = true; ownSlice = !r.already }
+        else reason = error ? 'rpc_error' : (r.reason ?? 'no_credits')
+      }
+
+      // `already` means a debit row exists for this source — NOT that the
+      // credit is still held. If that debit was refunded the slice was given
+      // back, and it must be paid for again under a fresh source (next epoch).
+      if (reservedSlice && !ownSlice) {
+        const refunded = await isRefunded(studentId, source)
+        if (refunded === null) { reservedSlice = false; reason = 'rpc_error'; break }
+        if (refunded) {
+          if (epoch + 1 >= MAX_EPOCHS) { reservedSlice = false; reason = 'too_many_recharges'; break }
+          continue
+        }
+      }
+      break
     }
 
     if (!reservedSlice) {
@@ -143,23 +188,34 @@ export interface RefundResult {
 export async function refundTestCredits(studentId: string, sessionId: string, cost: number): Promise<RefundResult> {
   const out: RefundResult = { refunded: 0, already: 0, noDebit: 0 }
   for (let i = 0; i < cost; i++) {
-    const source = creditSourceId(sessionId, i)
-    try {
-      const { data, error } = await dbAdmin
-        .rpc('refund_study_credit', { p_student: studentId, p_source: source })
-      // An errored RPC leaves `data` null, which used to be counted as
-      // `noDebit` — a lost credit reported to the caller (and the reaper's
-      // logs) as "there was nothing to give back". Never conflate the two.
-      if (error) {
-        console.error('[credits] refund slice failed', { studentId, sessionId, slice: i, error })
-        continue
+    // Walk the slice's epochs. reserveTestCredits only moves to epoch N+1
+    // when epoch N was refunded, so every epoch before the live one answers
+    // `already`; the first that does not is the one to act on.
+    for (let epoch = 0; epoch < MAX_EPOCHS; epoch++) {
+      const source = creditSourceId(sessionId, i, epoch)
+      try {
+        const { data, error } = await dbAdmin
+          .rpc('refund_study_credit', { p_student: studentId, p_source: source })
+        // An errored RPC leaves `data` null, which used to be counted as
+        // `noDebit` — a lost credit reported to the caller (and the reaper's
+        // logs) as "there was nothing to give back". Never conflate the two.
+        if (error) {
+          console.error('[credits] refund slice failed', { studentId, sessionId, slice: i, epoch, error })
+          break
+        }
+        const r = (data ?? {}) as { ok?: boolean; already?: boolean; reason?: string }
+        if (r.already) {
+          if (epoch + 1 >= MAX_EPOCHS) out.already++
+          continue
+        }
+        if (r.ok) out.refunded++
+        else if (epoch === 0) out.noDebit++
+        else out.already++          // every debited epoch was already refunded
+        break
+      } catch (e) {
+        console.error('[credits] refund slice failed', sessionId, i, epoch, e)
+        break
       }
-      const r = (data ?? {}) as { ok?: boolean; already?: boolean; reason?: string }
-      if (r.already) out.already++
-      else if (r.ok) out.refunded++
-      else out.noDebit++
-    } catch (e) {
-      console.error('[credits] refund slice failed', sessionId, i, e)
     }
   }
   return out
