@@ -1,0 +1,772 @@
+[
+  {
+    "id": "CH34-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, before you tie in, can I see your belay card? Okay, this is from last spring. Cards expire every semester, so you'd need the retest. That's Thursday at 10:25. B: Really? I thought they switched it to twelve months. There was an email about it in August. A: Twelve months? Hang on, let me check the binder. Huh. Valid twelve months from date of test. Well, the binder's the binder. B: So I can belay today? A: Top-rope, yes. But you said earlier you wanted to lead. That's a separate check. B: Is that the Thursday one too? A: No, lead checks are Wednesdays. Same slot as the retest, I think... no, sorry, they moved it to the afternoon. 3:55. B: Wednesday at 3:55. Do I sign up here? A: Sheet's by the chalk bin. Lorcan runs it.",
+    "passageGroupId": "CH34",
+    "prompt": "[Conversation — Climbing Wall] When can the student take the lead-climbing check?",
+    "choices": [
+      "On Thursday at 3:55",
+      "On Wednesday at 10:25",
+      "On Wednesday at 3:55",
+      "On Thursday at 10:25"
+    ],
+    "correct_answer": "On Wednesday at 3:55",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The supervisor says lead checks are Wednesdays and then corrects the time: 'they moved it to the afternoon. 3:55.'",
+    "distractor_rationales": [
+      {
+        "choice": "On Thursday at 3:55",
+        "reason": "'No, lead checks are Wednesdays.' Thursday is the belay retest day."
+      },
+      {
+        "choice": "On Wednesday at 10:25",
+        "reason": "'Same slot as the retest, I think... no, sorry, they moved it to the afternoon. 3:55.'"
+      },
+      {
+        "choice": "On Thursday at 10:25",
+        "reason": "'That's Thursday at 10:25' is the belay retest; 'No, lead checks are Wednesdays.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH34-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, before you tie in, can I see your belay card? Okay, this is from last spring. Cards expire every semester, so you'd need the retest. That's Thursday at 10:25. B: Really? I thought they switched it to twelve months. There was an email about it in August. A: Twelve months? Hang on, let me check the binder. Huh. Valid twelve months from date of test. Well, the binder's the binder. B: So I can belay today? A: Top-rope, yes. But you said earlier you wanted to lead. That's a separate check. B: Is that the Thursday one too? A: No, lead checks are Wednesdays. Same slot as the retest, I think... no, sorry, they moved it to the afternoon. 3:55. B: Wednesday at 3:55. Do I sign up here? A: Sheet's by the chalk bin. Lorcan runs it.",
+    "passageGroupId": "CH34",
+    "prompt": "[Conversation — Climbing Wall] What does the supervisor mean when he says, 'Well, the binder's the binder'?",
+    "choices": [
+      "He will go by the printed rule rather than his own memory.",
+      "He is refusing to bend the printed rule for the student.",
+      "He suspects the printed rule is out of date and unreliable.",
+      "He wants a colleague to confirm the printed rule first."
+    ],
+    "correct_answer": "He will go by the printed rule rather than his own memory.",
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "He had said cards expire every semester, then reads 'Valid twelve months from date of test' and immediately lets the student belay: 'Top-rope, yes.'",
+    "distractor_rationales": [
+      {
+        "choice": "He is refusing to bend the printed rule for the student.",
+        "reason": "The rule favours the student, and he grants permission at once: 'Top-rope, yes.'"
+      },
+      {
+        "choice": "He suspects the printed rule is out of date and unreliable.",
+        "reason": "He acts on what it says without question: 'Top-rope, yes.'"
+      },
+      {
+        "choice": "He wants a colleague to confirm the printed rule first.",
+        "reason": "He decides on the spot; no one else is consulted before 'Top-rope, yes.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH35-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, I'm here for my viola part, the one with all my bowings. I dropped it in the return slot on Tuesday, I'm pretty sure. B: Hmm, the slot log's empty for Tuesday. Did you maybe hand it to Benedikta at rehearsal? She collects parts at the break. That's a Wednesday thing. A: Tuesday, Wednesday... oh, right, rehearsal was Wednesday. Yeah, I gave it to her. B: Then it won't be on these shelves. Marked parts go over to the Whitcombe Wing first so the bowings can be copied. A: Okay, can I run over there this afternoon? B: It's locked until tomorrow morning, sorry. A: Tomorrow morning, then. Could I borrow a clean copy for tonight? B: Clean copies can't leave the room, but you're welcome to use one at the carrel. A: Fine. I'll pick mine up first thing tomorrow.",
+    "passageGroupId": "CH35",
+    "prompt": "[Conversation — Orchestra Library] Why does the librarian say, 'That's a Wednesday thing'?",
+    "choices": [
+      "To explain that bowings are copied only on Wednesdays",
+      "To warn that the part can't be released before Wednesday",
+      "To point out that Benedikta, not the library, takes returns",
+      "To suggest he is misremembering when he handed the part in"
+    ],
+    "correct_answer": "To suggest he is misremembering when he handed the part in",
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "The student claimed Tuesday; the librarian notes rehearsal collection is on Wednesdays, and he replies 'oh, right, rehearsal was Wednesday. Yeah, I gave it to her.'",
+    "distractor_rationales": [
+      {
+        "choice": "To explain that bowings are copied only on Wednesdays",
+        "reason": "The line follows 'She collects parts at the break'; copying is mentioned later with no day: 'Marked parts go over to the Whitcombe Wing first.'"
+      },
+      {
+        "choice": "To warn that the part can't be released before Wednesday",
+        "reason": "Wednesday has already passed ('rehearsal was Wednesday'); the part is available 'tomorrow morning'."
+      },
+      {
+        "choice": "To point out that Benedikta, not the library, takes returns",
+        "reason": "The library does take returns: 'the slot log's empty for Tuesday.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH35-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, I'm here for my viola part, the one with all my bowings. I dropped it in the return slot on Tuesday, I'm pretty sure. B: Hmm, the slot log's empty for Tuesday. Did you maybe hand it to Benedikta at rehearsal? She collects parts at the break. That's a Wednesday thing. A: Tuesday, Wednesday... oh, right, rehearsal was Wednesday. Yeah, I gave it to her. B: Then it won't be on these shelves. Marked parts go over to the Whitcombe Wing first so the bowings can be copied. A: Okay, can I run over there this afternoon? B: It's locked until tomorrow morning, sorry. A: Tomorrow morning, then. Could I borrow a clean copy for tonight? B: Clean copies can't leave the room, but you're welcome to use one at the carrel. A: Fine. I'll pick mine up first thing tomorrow.",
+    "passageGroupId": "CH35",
+    "prompt": "[Conversation — Orchestra Library] How does the student intend to get his part back?",
+    "choices": [
+      "Collect it from the library shelves this afternoon",
+      "Collect it from the Whitcombe Wing tomorrow morning",
+      "Collect it from the library shelves tomorrow morning",
+      "Collect it from the Whitcombe Wing this afternoon"
+    ],
+    "correct_answer": "Collect it from the Whitcombe Wing tomorrow morning",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "Marked parts 'go over to the Whitcombe Wing first', which is 'locked until tomorrow morning', and the student says 'I'll pick mine up first thing tomorrow.'",
+    "distractor_rationales": [
+      {
+        "choice": "Collect it from the library shelves this afternoon",
+        "reason": "'Then it won't be on these shelves'; and the afternoon is ruled out by 'locked until tomorrow morning'."
+      },
+      {
+        "choice": "Collect it from the library shelves tomorrow morning",
+        "reason": "'Then it won't be on these shelves. Marked parts go over to the Whitcombe Wing first.'"
+      },
+      {
+        "choice": "Collect it from the Whitcombe Wing this afternoon",
+        "reason": "'Can I run over there this afternoon?' is answered 'It's locked until tomorrow morning.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH36-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi there, what can I do for you? B: I'm here for a flu shot. Walk-ins are Thursday mornings, right? That's what the poster in my dorm says. A: That poster's from last year. We're not giving shots here this term at all. They're at the Ellery Center, Tuesday afternoons. B: Huh. My roommate Crispin got his last week, and he said it was $26. I figured it'd be free. A: It's $26 if you show your student plan card. Without the card it's $51, and there's no refund afterward. B: Seriously? Even if I bring the card in later? A: Even then. Billing won't adjust it once it's paid. B: Okay. Can I book a time? A: No appointments. It's first come, first served, Tuesdays from 12:40. B: Then I'll go Tuesday, and I'll bring the card.",
+    "passageGroupId": "CH36",
+    "prompt": "[Conversation — Campus Clinic] What can be inferred about Crispin?",
+    "choices": [
+      "He showed his student plan card when he got the shot.",
+      "He paid the full price because he didn't have his card.",
+      "He got the shot free under the student health plan.",
+      "He was refunded part of the cost after he paid."
+    ],
+    "correct_answer": "He showed his student plan card when he got the shot.",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "Crispin 'said it was $26', and the receptionist says 'It's $26 if you show your student plan card.'",
+    "distractor_rationales": [
+      {
+        "choice": "He paid the full price because he didn't have his card.",
+        "reason": "'Without the card it's $51', but Crispin paid $26."
+      },
+      {
+        "choice": "He got the shot free under the student health plan.",
+        "reason": "'he said it was $26'; even with the card 'It's $26'."
+      },
+      {
+        "choice": "He was refunded part of the cost after he paid.",
+        "reason": "'there's no refund afterward... Billing won't adjust it once it's paid.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH36-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi there, what can I do for you? B: I'm here for a flu shot. Walk-ins are Thursday mornings, right? That's what the poster in my dorm says. A: That poster's from last year. We're not giving shots here this term at all. They're at the Ellery Center, Tuesday afternoons. B: Huh. My roommate Crispin got his last week, and he said it was $26. I figured it'd be free. A: It's $26 if you show your student plan card. Without the card it's $51, and there's no refund afterward. B: Seriously? Even if I bring the card in later? A: Even then. Billing won't adjust it once it's paid. B: Okay. Can I book a time? A: No appointments. It's first come, first served, Tuesdays from 12:40. B: Then I'll go Tuesday, and I'll bring the card.",
+    "passageGroupId": "CH36",
+    "prompt": "[Conversation — Campus Clinic] Where and when are flu shots being given this term?",
+    "choices": [
+      "At the campus clinic on Tuesday",
+      "At the Ellery Center on Thursday",
+      "At the campus clinic on Thursday",
+      "At the Ellery Center on Tuesday"
+    ],
+    "correct_answer": "At the Ellery Center on Tuesday",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'We're not giving shots here this term at all. They're at the Ellery Center, Tuesday afternoons.'",
+    "distractor_rationales": [
+      {
+        "choice": "At the campus clinic on Tuesday",
+        "reason": "'We're not giving shots here this term at all.'"
+      },
+      {
+        "choice": "At the Ellery Center on Thursday",
+        "reason": "Thursday is from the old poster: 'That poster's from last year... Tuesday afternoons.'"
+      },
+      {
+        "choice": "At the campus clinic on Thursday",
+        "reason": "That is the student's assumption from the poster, which is 'from last year'; shots are 'not... here this term at all.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH37-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Professor, about committees for the Penrose House conference. I'd really like the Security Council seat. B: I'd pencilled you in for Human Rights. You've already done all that refugee law research. A: I know, but I did Human Rights last year. I want to try something new. B: Mehitabel's asked for Security Council too, and she's a senior. A: Right. Honestly, I'd rather not go head to head with her for it. What about the historical committee? Nobody's signed up. B: Hmm. Well, that's one way to do it. It's half crisis, half debate, and it's small, so you'd get to speak a lot. A: And Mehitabel keeps her seat. B: And I find someone else for Human Rights. Fine, I can live with that. A: Should I email the organizers? B: No, I'll write to them tonight.",
+    "passageGroupId": "CH37",
+    "prompt": "[Conversation — Model UN] What is the delegate's attitude toward Mehitabel's request?",
+    "choices": [
+      "She resents that seniority decides who gets the seat.",
+      "She hopes the two of them can share the seat as a team.",
+      "She would rather not compete with a senior for the seat.",
+      "She thinks the senior would be better suited to Human Rights."
+    ],
+    "correct_answer": "She would rather not compete with a senior for the seat.",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'Honestly, I'd rather not go head to head with her for it,' and later 'And Mehitabel keeps her seat.'",
+    "distractor_rationales": [
+      {
+        "choice": "She resents that seniority decides who gets the seat.",
+        "reason": "She raises no complaint; she proposes another committee so that 'Mehitabel keeps her seat.'"
+      },
+      {
+        "choice": "She hopes the two of them can share the seat as a team.",
+        "reason": "She moves to the historical committee: 'And Mehitabel keeps her seat.'"
+      },
+      {
+        "choice": "She thinks the senior would be better suited to Human Rights.",
+        "reason": "The adviser fills Human Rights with someone else: 'And I find someone else for Human Rights.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH37-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Professor, about committees for the Penrose House conference. I'd really like the Security Council seat. B: I'd pencilled you in for Human Rights. You've already done all that refugee law research. A: I know, but I did Human Rights last year. I want to try something new. B: Mehitabel's asked for Security Council too, and she's a senior. A: Right. Honestly, I'd rather not go head to head with her for it. What about the historical committee? Nobody's signed up. B: Hmm. Well, that's one way to do it. It's half crisis, half debate, and it's small, so you'd get to speak a lot. A: And Mehitabel keeps her seat. B: And I find someone else for Human Rights. Fine, I can live with that. A: Should I email the organizers? B: No, I'll write to them tonight.",
+    "passageGroupId": "CH37",
+    "prompt": "[Conversation — Model UN] Why does the adviser say, 'Well, that's one way to do it'?",
+    "choices": [
+      "To hint that the proposal is too easy a way out",
+      "To signal that he finds the proposal workable",
+      "To suggest that he has a better plan in mind",
+      "To point out that the proposal skips the usual process"
+    ],
+    "correct_answer": "To signal that he finds the proposal workable",
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "He goes straight on to its merits, 'you'd get to speak a lot', and ends 'Fine, I can live with that.'",
+    "distractor_rationales": [
+      {
+        "choice": "To hint that the proposal is too easy a way out",
+        "reason": "He follows with its benefits: 'It's half crisis, half debate... you'd get to speak a lot.'"
+      },
+      {
+        "choice": "To suggest that he has a better plan in mind",
+        "reason": "He offers no alternative and agrees: 'Fine, I can live with that.'"
+      },
+      {
+        "choice": "To point out that the proposal skips the usual process",
+        "reason": "He raises no procedural problem and arranges it himself: 'I'll write to them tonight.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH38-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, I booked this afternoon. I need prints for Ulric's critique tomorrow morning. B: Sure, you're on enlarger 9. The chemicals are all set, so start whenever you like. A: Um, the label on the fixer says it was mixed last Monday. Isn't the limit a week? B: Last Monday? Let me see. Yeah, you're right, that's well past. I'll dump it and mix fresh. Give me a little while. A: Should I set up on 9 in the meantime? B: Actually, take 14. The bulb on 9 has been flickering. Focus your negatives there, but don't run any test strips until I say so. A: Got it. And can I use the drying cabinet? B: It's switched off this week. Prints just air-dry on the rack overnight. A: Okay. I'll hang mine on the end by the window, then.",
+    "passageGroupId": "CH38",
+    "prompt": "[Conversation — Darkroom] What is the student going to do first?",
+    "choices": [
+      "Start printing at enlarger 9 right away",
+      "Set up at enlarger 9 and wait to print",
+      "Start printing at enlarger 14 right away",
+      "Set up at enlarger 14 and wait to print"
+    ],
+    "correct_answer": "Set up at enlarger 14 and wait to print",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'Actually, take 14... Focus your negatives there, but don't run any test strips until I say so.'",
+    "distractor_rationales": [
+      {
+        "choice": "Start printing at enlarger 9 right away",
+        "reason": "The monitor's first instruction is withdrawn: 'take 14' and 'don't run any test strips until I say so.'"
+      },
+      {
+        "choice": "Set up at enlarger 9 and wait to print",
+        "reason": "'Actually, take 14. The bulb on 9 has been flickering.'"
+      },
+      {
+        "choice": "Start printing at enlarger 14 right away",
+        "reason": "'don't run any test strips until I say so' while fresh fixer is mixed."
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH38-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, I booked this afternoon. I need prints for Ulric's critique tomorrow morning. B: Sure, you're on enlarger 9. The chemicals are all set, so start whenever you like. A: Um, the label on the fixer says it was mixed last Monday. Isn't the limit a week? B: Last Monday? Let me see. Yeah, you're right, that's well past. I'll dump it and mix fresh. Give me a little while. A: Should I set up on 9 in the meantime? B: Actually, take 14. The bulb on 9 has been flickering. Focus your negatives there, but don't run any test strips until I say so. A: Got it. And can I use the drying cabinet? B: It's switched off this week. Prints just air-dry on the rack overnight. A: Okay. I'll hang mine on the end by the window, then.",
+    "passageGroupId": "CH38",
+    "prompt": "[Conversation — Darkroom] What can be inferred about the student's prints for the critique?",
+    "choices": [
+      "They won't be dry in time without the drying cabinet.",
+      "They will be ready to collect later this afternoon.",
+      "They will have dried on the rack by the morning.",
+      "They will go into the cabinet before the room closes."
+    ],
+    "correct_answer": "They will have dried on the rack by the morning.",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The critique is 'tomorrow morning' and 'Prints just air-dry on the rack overnight', so they will be dry in time.",
+    "distractor_rationales": [
+      {
+        "choice": "They won't be dry in time without the drying cabinet.",
+        "reason": "The critique is 'tomorrow morning' and prints 'air-dry on the rack overnight.'"
+      },
+      {
+        "choice": "They will be ready to collect later this afternoon.",
+        "reason": "Drying takes the night: 'air-dry on the rack overnight.'"
+      },
+      {
+        "choice": "They will go into the cabinet before the room closes.",
+        "reason": "'It's switched off this week.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH39-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Shuttle office, what can I do for you? B: I'd like to book the late 84 from Dunmore Annex on Thursday. A: The 84? That stopped going to Dunmore last year. You'd want the 29 from the Halloran Building. B: No, it's back. My friend Signy catches it at Dunmore every week. A: Well, Signy would know, I'm sure. But I go by what's printed. Let me pull up this term's timetable. B: Sure, go ahead. A: Okay, night service, 84, Dunmore Annex. Huh. It's back on. You were right. And the 29 doesn't go anywhere near Dunmore. B: Told you. Does the 84 stop at Halloran too? A: Not at night. It skips Halloran in the evenings, so Dunmore's your stop. B: Great, Dunmore it is. A: You're booked.",
+    "passageGroupId": "CH39",
+    "prompt": "[Conversation — Shuttle Office] What does the dispatcher imply when he says, 'Well, Signy would know, I'm sure'?",
+    "choices": [
+      "He considers the friend's report good enough to go on.",
+      "He isn't convinced the friend's report can be relied on.",
+      "He assumes the friend must work for the shuttle service.",
+      "He wants the friend to confirm the report in person."
+    ],
+    "correct_answer": "He isn't convinced the friend's report can be relied on.",
+    "difficulty": "hard",
+    "listeningTask": "conversation",
+    "explanation": "He immediately adds 'But I go by what's printed. Let me pull up this term's timetable', and only accepts the claim once he sees it there.",
+    "distractor_rationales": [
+      {
+        "choice": "He considers the friend's report good enough to go on.",
+        "reason": "'But I go by what's printed. Let me pull up this term's timetable.'"
+      },
+      {
+        "choice": "He assumes the friend must work for the shuttle service.",
+        "reason": "Signy is described as a rider: 'catches it at Dunmore every week.'"
+      },
+      {
+        "choice": "He wants the friend to confirm the report in person.",
+        "reason": "He checks it himself: 'Let me pull up this term's timetable.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH39-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Shuttle office, what can I do for you? B: I'd like to book the late 84 from Dunmore Annex on Thursday. A: The 84? That stopped going to Dunmore last year. You'd want the 29 from the Halloran Building. B: No, it's back. My friend Signy catches it at Dunmore every week. A: Well, Signy would know, I'm sure. But I go by what's printed. Let me pull up this term's timetable. B: Sure, go ahead. A: Okay, night service, 84, Dunmore Annex. Huh. It's back on. You were right. And the 29 doesn't go anywhere near Dunmore. B: Told you. Does the 84 stop at Halloran too? A: Not at night. It skips Halloran in the evenings, so Dunmore's your stop. B: Great, Dunmore it is. A: You're booked.",
+    "passageGroupId": "CH39",
+    "prompt": "[Conversation — Shuttle Office] Which shuttle and stop is the student booked for?",
+    "choices": [
+      "The 84 from Dunmore Annex",
+      "The 29 from the Halloran Building",
+      "The 29 from Dunmore Annex",
+      "The 84 from the Halloran Building"
+    ],
+    "correct_answer": "The 84 from Dunmore Annex",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The timetable shows 'night service, 84, Dunmore Annex. Huh. It's back on', and the student confirms 'Dunmore it is.'",
+    "distractor_rationales": [
+      {
+        "choice": "The 29 from the Halloran Building",
+        "reason": "The dispatcher's first suggestion, withdrawn once he reads 'night service, 84, Dunmore Annex... You were right.'"
+      },
+      {
+        "choice": "The 29 from Dunmore Annex",
+        "reason": "'the 29 doesn't go anywhere near Dunmore.'"
+      },
+      {
+        "choice": "The 84 from the Halloran Building",
+        "reason": "'Not at night. It skips Halloran in the evenings.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH40-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Morning! Where do you want me today? B: Let's see. You're labelling finds with the second-years. A: Again? I did labelling all day yesterday. B: Did you? Oh, sorry, I'm reading Nkechi's line. You're washing finds today. A: Okay. Over at Ravensworth Hall, like usual? B: Not this week. The water's shut off there, so we've set up basins in the field tent. A: Got it. Anything I should start with? B: Bag 137, from yesterday. Honestly, it's mostly modern junk, bottle glass and such, but it gets washed and logged like everything else. A: Should I be careful with it? B: No need, it's sturdy stuff. Scrub away.",
+    "passageGroupId": "CH40",
+    "prompt": "[Conversation — Archaeology Dig] What has the student been assigned to do today?",
+    "choices": [
+      "Label finds at Ravensworth Hall",
+      "Wash finds in the field tent",
+      "Wash finds at Ravensworth Hall",
+      "Label finds in the field tent"
+    ],
+    "correct_answer": "Wash finds in the field tent",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'Oh, sorry, I'm reading Nkechi's line. You're washing finds today', and 'we've set up basins in the field tent.'",
+    "distractor_rationales": [
+      {
+        "choice": "Label finds at Ravensworth Hall",
+        "reason": "Labelling was 'Nkechi's line', and Ravensworth is 'Not this week. The water's shut off there.'"
+      },
+      {
+        "choice": "Wash finds at Ravensworth Hall",
+        "reason": "'Not this week. The water's shut off there, so we've set up basins in the field tent.'"
+      },
+      {
+        "choice": "Label finds in the field tent",
+        "reason": "'Oh, sorry, I'm reading Nkechi's line. You're washing finds today.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH40-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Morning! Where do you want me today? B: Let's see. You're labelling finds with the second-years. A: Again? I did labelling all day yesterday. B: Did you? Oh, sorry, I'm reading Nkechi's line. You're washing finds today. A: Okay. Over at Ravensworth Hall, like usual? B: Not this week. The water's shut off there, so we've set up basins in the field tent. A: Got it. Anything I should start with? B: Bag 137, from yesterday. Honestly, it's mostly modern junk, bottle glass and such, but it gets washed and logged like everything else. A: Should I be careful with it? B: No need, it's sturdy stuff. Scrub away.",
+    "passageGroupId": "CH40",
+    "prompt": "[Conversation — Archaeology Dig] What is the supervisor's attitude toward bag 137?",
+    "choices": [
+      "She suspects it could be the best find of the season.",
+      "She considers it worthless and would rather discard it.",
+      "She is worried the pieces could break during washing.",
+      "She thinks it is unremarkable but wants it processed anyway."
+    ],
+    "correct_answer": "She thinks it is unremarkable but wants it processed anyway.",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'Honestly, it's mostly modern junk, bottle glass and such, but it gets washed and logged like everything else.'",
+    "distractor_rationales": [
+      {
+        "choice": "She suspects it could be the best find of the season.",
+        "reason": "'Honestly, it's mostly modern junk, bottle glass and such.'"
+      },
+      {
+        "choice": "She considers it worthless and would rather discard it.",
+        "reason": "'but it gets washed and logged like everything else.'"
+      },
+      {
+        "choice": "She is worried the pieces could break during washing.",
+        "reason": "'No need, it's sturdy stuff. Scrub away.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH41-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Senate office. Can I help you? B: Yeah, I want to get a motion on Wednesday's agenda, about longer library hours. I sent it to my senator, Zinnia, last night, so that should cover it, right? A: Not quite. A senator can sponsor it, but it has to come through this office on the motion form, signed by the sponsor. B: Oh. Last semester my friend just emailed his senator, and it showed up on the agenda. A: Last semester, sure. The bylaws were amended in the spring. I typed them up myself. B: Okay, fair enough. So if Zinnia signs the form today, it makes Wednesday? A: The cutoff's Monday at noon for a Wednesday meeting, so today's fine. B: Great. Where's the form? A: Right here. Have her drop it in the tray by the door. B: Thanks. I'll take it over to her now.",
+    "passageGroupId": "CH41",
+    "prompt": "[Conversation — Student Senate] Why does the clerk say, 'I typed them up myself'?",
+    "choices": [
+      "To complain about how much extra work the office has",
+      "To admit the bylaws might contain a typing mistake",
+      "To back up what she said about how motions are submitted",
+      "To offer the student a printed copy of the new rules"
+    ],
+    "correct_answer": "To back up what she said about how motions are submitted",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "She is answering the student's counter-example with first-hand knowledge that the procedure was amended, and he accepts it: 'Okay, fair enough.'",
+    "distractor_rationales": [
+      {
+        "choice": "To complain about how much extra work the office has",
+        "reason": "She moves straight on to helping; the line answers 'Last semester my friend just emailed his senator.'"
+      },
+      {
+        "choice": "To admit the bylaws might contain a typing mistake",
+        "reason": "She uses it to stand by the rule, and the student concedes: 'Okay, fair enough.'"
+      },
+      {
+        "choice": "To offer the student a printed copy of the new rules",
+        "reason": "The only document she hands over is the motion form: 'Right here. Have her drop it in the tray.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH41-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Senate office. Can I help you? B: Yeah, I want to get a motion on Wednesday's agenda, about longer library hours. I sent it to my senator, Zinnia, last night, so that should cover it, right? A: Not quite. A senator can sponsor it, but it has to come through this office on the motion form, signed by the sponsor. B: Oh. Last semester my friend just emailed his senator, and it showed up on the agenda. A: Last semester, sure. The bylaws were amended in the spring. I typed them up myself. B: Okay, fair enough. So if Zinnia signs the form today, it makes Wednesday? A: The cutoff's Monday at noon for a Wednesday meeting, so today's fine. B: Great. Where's the form? A: Right here. Have her drop it in the tray by the door. B: Thanks. I'll take it over to her now.",
+    "passageGroupId": "CH41",
+    "prompt": "[Conversation — Student Senate] What can be inferred about Zinnia?",
+    "choices": [
+      "She has the motion but has not yet signed a form for it.",
+      "She has already filed the motion with the senate office.",
+      "She has declined to sponsor the motion on library hours.",
+      "She works in the senate office alongside the clerk."
+    ],
+    "correct_answer": "She has the motion but has not yet signed a form for it.",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The student 'sent it to my senator, Zinnia, last night', yet asks 'if Zinnia signs the form today', and is taking the form 'over to her now.'",
+    "distractor_rationales": [
+      {
+        "choice": "She has already filed the motion with the senate office.",
+        "reason": "'So if Zinnia signs the form today, it makes Wednesday?' The form has not come in."
+      },
+      {
+        "choice": "She has declined to sponsor the motion on library hours.",
+        "reason": "The student expects her signature: 'I'll take it over to her now.'"
+      },
+      {
+        "choice": "She works in the senate office alongside the clerk.",
+        "reason": "The clerk says 'Have her drop it in the tray by the door', and the student must take the form 'over to her'."
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH42-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, I'm hoping to get a plot this season. I want to grow squash, and lots of it. B: Great! The in-ground plots are all taken, but I've got a raised bed by the shed. It's $7.40 a month. A: That's cheap, but squash roots go deep, and those beds are only about a foot of soil. It'd never work. B: Hmm, fair point. Okay, what about this. Torvald has a big plot and he's only using half. He mentioned wanting to share it. A: Really? That would be perfect. B: I was going to have you come by Saturday for a shed key, but forget that. Torvald waters on Sunday mornings. Meet him at his plot then and sort it out between you. A: Sunday morning at his plot. What about a key? B: He'll lend you his. A: Great, thank you.",
+    "passageGroupId": "CH42",
+    "prompt": "[Conversation — Community Garden] What is the student's attitude toward the raised beds?",
+    "choices": [
+      "She likes how easy they would be to keep tidy.",
+      "She feels they cost too much for what they offer.",
+      "She worries they'd get too little sun beside the shed.",
+      "She thinks they're too shallow for the crop she wants."
+    ],
+    "correct_answer": "She thinks they're too shallow for the crop she wants.",
+    "difficulty": "easy",
+    "listeningTask": "conversation",
+    "explanation": "'squash roots go deep, and those beds are only about a foot of soil. It'd never work.'",
+    "distractor_rationales": [
+      {
+        "choice": "She likes how easy they would be to keep tidy.",
+        "reason": "She rejects them outright: 'It'd never work.'"
+      },
+      {
+        "choice": "She feels they cost too much for what they offer.",
+        "reason": "'That's cheap, but squash roots go deep.'"
+      },
+      {
+        "choice": "She worries they'd get too little sun beside the shed.",
+        "reason": "Her only objection is depth: 'those beds are only about a foot of soil.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH42-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, I'm hoping to get a plot this season. I want to grow squash, and lots of it. B: Great! The in-ground plots are all taken, but I've got a raised bed by the shed. It's $7.40 a month. A: That's cheap, but squash roots go deep, and those beds are only about a foot of soil. It'd never work. B: Hmm, fair point. Okay, what about this. Torvald has a big plot and he's only using half. He mentioned wanting to share it. A: Really? That would be perfect. B: I was going to have you come by Saturday for a shed key, but forget that. Torvald waters on Sunday mornings. Meet him at his plot then and sort it out between you. A: Sunday morning at his plot. What about a key? B: He'll lend you his. A: Great, thank you.",
+    "passageGroupId": "CH42",
+    "prompt": "[Conversation — Community Garden] What is the student's next step?",
+    "choices": [
+      "Get a key from the coordinator on Sunday",
+      "Meet Torvald at his plot on Saturday",
+      "Meet Torvald at his plot on Sunday",
+      "Get a key from the coordinator on Saturday"
+    ],
+    "correct_answer": "Meet Torvald at his plot on Sunday",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'Torvald waters on Sunday mornings. Meet him at his plot then and sort it out between you.'",
+    "distractor_rationales": [
+      {
+        "choice": "Get a key from the coordinator on Sunday",
+        "reason": "'What about a key?' is answered 'He'll lend you his.'"
+      },
+      {
+        "choice": "Meet Torvald at his plot on Saturday",
+        "reason": "Saturday was only the key pickup, now dropped; 'Torvald waters on Sunday mornings.'"
+      },
+      {
+        "choice": "Get a key from the coordinator on Saturday",
+        "reason": "'I was going to have you come by Saturday for a shed key, but forget that.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH43-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, I'm here for my session on the electron microscope. Room 316, today, Tuesday. B: Let me check. I don't see you today. You're down for Wednesday. A: Wednesday? I'm sure I picked Tuesday. I got a confirmation. B: Did you open the confirmation? The system books the next free slot if the one you chose is taken, and Amaryllis already had today. A: Oh. Yeah, here it is. Wednesday. I only read the subject line. B: Happens all the time. And it's not in 316 either. That scope's down for service, so you're on the one in 251. A: Is it the same model? B: Older, but it'll do what you need. Bring your own sample holders. A: Okay. Wednesday, in 251. B: See you then.",
+    "passageGroupId": "CH43",
+    "prompt": "[Conversation — Microscopy Suite] What does the technician imply when she asks, 'Did you open the confirmation?'",
+    "choices": [
+      "She suspects the email says something he hasn't noticed.",
+      "She needs to see the email before she lets him in.",
+      "She wants to know whether the email reached him at all.",
+      "She thinks he may have booked under another name."
+    ],
+    "correct_answer": "She suspects the email says something he hasn't noticed.",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "She explains the system may have moved his slot, and he finds 'Wednesday' in it: 'I only read the subject line.'",
+    "distractor_rationales": [
+      {
+        "choice": "She needs to see the email before she lets him in.",
+        "reason": "She has already found his booking herself: 'You're down for Wednesday.'"
+      },
+      {
+        "choice": "She wants to know whether the email reached him at all.",
+        "reason": "He has just said 'I got a confirmation.'"
+      },
+      {
+        "choice": "She thinks he may have booked under another name.",
+        "reason": "She finds him under his own booking: 'You're down for Wednesday.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH43-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Hi, I'm here for my session on the electron microscope. Room 316, today, Tuesday. B: Let me check. I don't see you today. You're down for Wednesday. A: Wednesday? I'm sure I picked Tuesday. I got a confirmation. B: Did you open the confirmation? The system books the next free slot if the one you chose is taken, and Amaryllis already had today. A: Oh. Yeah, here it is. Wednesday. I only read the subject line. B: Happens all the time. And it's not in 316 either. That scope's down for service, so you're on the one in 251. A: Is it the same model? B: Older, but it'll do what you need. Bring your own sample holders. A: Okay. Wednesday, in 251. B: See you then.",
+    "passageGroupId": "CH43",
+    "prompt": "[Conversation — Microscopy Suite] When and where is the student's microscope session?",
+    "choices": [
+      "Tuesday in Room 316",
+      "Wednesday in Room 251",
+      "Wednesday in Room 316",
+      "Tuesday in Room 251"
+    ],
+    "correct_answer": "Wednesday in Room 251",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "'You're down for Wednesday', and 'it's not in 316 either... you're on the one in 251.'",
+    "distractor_rationales": [
+      {
+        "choice": "Tuesday in Room 316",
+        "reason": "The student's original belief; 'I don't see you today. You're down for Wednesday' and 'it's not in 316 either.'"
+      },
+      {
+        "choice": "Wednesday in Room 316",
+        "reason": "'That scope's down for service, so you're on the one in 251.'"
+      },
+      {
+        "choice": "Tuesday in Room 251",
+        "reason": "'Amaryllis already had today'; 'You're down for Wednesday.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH44-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Alumni office, what can I do for you? B: I'm applying for the alumni travel grant, and the form says I need a faculty reference. My adviser's on leave until next term, though. A: The reference is required, I'm afraid. The committee won't read an application without one. B: Even if my adviser's away? A: Even then. What's the trip for, though? B: I'm joining an alumni chapter overseas on their oral history project. A: Oh, a chapter project? Then the chapter's coordinator can write it instead. Chapter trips are the one case where that's allowed. B: And the committee really accepts that? A: They wrote the small print. Who's coordinating? B: Someone called Evander. A: Evander? He's great. Have him email the letter straight to us. Don't attach it yourself.",
+    "passageGroupId": "CH44",
+    "prompt": "[Conversation — Alumni Office] What can be inferred about Evander?",
+    "choices": [
+      "He is the adviser who is away on leave.",
+      "He is unknown to anyone in the alumni office.",
+      "He is a professor in the student's own department.",
+      "He is someone the officer already knows."
+    ],
+    "correct_answer": "He is someone the officer already knows.",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "The student only knows him as 'Someone called Evander', but the officer responds 'Evander? He's great.'",
+    "distractor_rationales": [
+      {
+        "choice": "He is the adviser who is away on leave.",
+        "reason": "Evander coordinates the chapter project; the adviser is 'on leave until next term.'"
+      },
+      {
+        "choice": "He is unknown to anyone in the alumni office.",
+        "reason": "'Evander? He's great.'"
+      },
+      {
+        "choice": "He is a professor in the student's own department.",
+        "reason": "He is the chapter's coordinator, whose letter replaces the faculty one: 'the chapter's coordinator can write it instead.'"
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  },
+  {
+    "id": "CH44-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: A: Alumni office, what can I do for you? B: I'm applying for the alumni travel grant, and the form says I need a faculty reference. My adviser's on leave until next term, though. A: The reference is required, I'm afraid. The committee won't read an application without one. B: Even if my adviser's away? A: Even then. What's the trip for, though? B: I'm joining an alumni chapter overseas on their oral history project. A: Oh, a chapter project? Then the chapter's coordinator can write it instead. Chapter trips are the one case where that's allowed. B: And the committee really accepts that? A: They wrote the small print. Who's coordinating? B: Someone called Evander. A: Evander? He's great. Have him email the letter straight to us. Don't attach it yourself.",
+    "passageGroupId": "CH44",
+    "prompt": "[Conversation — Alumni Office] Why does the officer say, 'They wrote the small print'?",
+    "choices": [
+      "To warn her that the committee rarely bends on references",
+      "To suggest the committee hides conditions applicants miss",
+      "To assure her that the committee will honor its own rule",
+      "To hint that she should have read the rules more closely"
+    ],
+    "correct_answer": "To assure her that the committee will honor its own rule",
+    "difficulty": "medium",
+    "listeningTask": "conversation",
+    "explanation": "It answers 'And the committee really accepts that?' after he has said 'Chapter trips are the one case where that's allowed', and he moves straight on to arranging the letter.",
+    "distractor_rationales": [
+      {
+        "choice": "To warn her that the committee rarely bends on references",
+        "reason": "He is answering 'really accepts that?' about a case he has just called allowed: 'Chapter trips are the one case where that's allowed.'"
+      },
+      {
+        "choice": "To suggest the committee hides conditions applicants miss",
+        "reason": "He goes straight on to arranging the letter, 'Who's coordinating?', with no criticism of the rules."
+      },
+      {
+        "choice": "To hint that she should have read the rules more closely",
+        "reason": "He himself first said 'The reference is required, I'm afraid', so he is not faulting her reading."
+      }
+    ],
+    "blanks": null,
+    "graphic": null,
+    "correct_answers": null,
+    "acceptable_answers": null
+  }
+]

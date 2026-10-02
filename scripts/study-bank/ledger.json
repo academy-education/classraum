@@ -4568,6 +4568,100 @@
           "verdict": "Recorded, not dropped: graders call A6 (set c=0 in Desmos) and A7 (k=5 coincident-lines trap not offered as an option) insight-bypassable; A7 distractors 35/2 and -15/2 rest on an unlikely slip (one grader: weak). Options print ascending, so rank survives the draw shuffle; key extremity 6/13."
         }
       }
+    },
+    {
+      "id": "conv-hard-v1-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "conversation",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 44,
+        "sets": 22,
+        "authors": 2,
+        "method": "DL-FRESH brief (flat prior, form symmetry, atypical facts, channel parity, name hygiene) + conversation-gate shape + assigned cross-set variation; Opus authors"
+      },
+      "contentSha": "41ce8fd991681395284ad79f7026ef1863ecf3db9c3dbda23579ca8b481cb6fa",
+      "status": "qc",
+      "cohort": "conv-hard-v1",
+      "note": "HELD at the pre-registered no-source bar (PREREG-CONV-HARD-V1-2026-10-02.md, CONV-HARD-V1-RESULT.md). Never inserted; no item repaired or cherry-picked.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "conversation-gate 0 blocking; key uniquely longest 18.2%; joins clean"
+        },
+        "nosource": {
+          "passed": false,
+          "n": 44,
+          "mean": 56.8,
+          "control": 27.3,
+          "margin": 29.5,
+          "liveControl": {
+            "n": 24,
+            "mean": 86.1
+          },
+          "verdict": "SPLIT=2, 3 Haiku samples; margin +29.5 > +15 bar. Leak kinds: self-explaining quoted lines, narrating stems, lexical echo/majority family."
+        }
+      }
+    },
+    {
+      "id": "conv-hard-v2-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "conversation",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 44,
+        "sets": 22,
+        "kept": 34,
+        "keptSets": 17,
+        "authors": 2,
+        "method": "conv-hard-v1 brief + revision 1 (R1 quote-alone ties, R2 no narrating stems, R3 no lexical echo, R4 crossed 2x2 detail grids, R5 stem-assumption is a distractor); Opus authors; difficulty = median of 3 fresh graders"
+      },
+      "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+      "status": "shipped",
+      "cohort": "conv-hard-v2",
+      "note": "Gate per PREREG-CONV-HARD-V1-2026-10-02.md addendum. Keep list conv-hard-v2.keep.json (34 of 44). Dropped whole sets: CH24, CH28 (option certain-rejected by 2+ blind samples; CH28 also grader key dispute), CH32 (two graders name the same second answer), CH23, CH33 (blind 3/3 AND a grader passage_needed=false - CLAUDE.md unanimity+with-source corroboration rule). Difficulty field edited to grader medians AFTER the attack; verified the rendered prompts/options/passages are byte-identical to the attack render (44/44).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "verdict": "conversation-gate 0 blocking (100-158 words, 9-11 turns, strictly alternating); key uniquely longest 13.6% (kept 14.7%); hedge-only-in-key 2.3%; check-batch-joins clean on 44 and on the kept 34. check-batch-variety not applicable to transcripts (the live control fails the same measures)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "n": 44,
+          "mean": 37.1,
+          "control": 27.3,
+          "margin": 9.8,
+          "unanimousRate": 22.7,
+          "liveControl": {
+            "n": 24,
+            "mean": 86.1,
+            "unanimousRate": 83.3,
+            "note": ">=85% ceiling rule: reported, not decisive"
+          },
+          "verdict": "SPLIT=2 make-attack, 3 Haiku samples per file, matched live harvest-v1 2-set control solved by the same agents. PASS (<= +15). Kept-subset mean 34.3% (reported only)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "verdict": "3 fresh graders (Opus, Sonnet, Sonnet), transcript + unmarked options: key agreement 131/132 picks (one dispute, CH28, dropped). Second-defensible claims: CH32 by two graders (dropped); CH35-1 and CH37-2 by one each, refuted by quoted lines (\"oh, right, rehearsal was Wednesday\"; \"I can live with that\"). Median difficulty kept: 5 hard, 28 medium, 1 easy (as banked)."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "verdict": "certain-reject probe inside the blind attack: 2 sets with an option rejected by 2+ samples (CH24, CH28) dropped whole; no key ever certain-rejected."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "6488e6882cdea6041f396ad64ee9482b278ee344b4735f067ab2a1614a5905b2",
+          "verdict": "Cross-item hunter (grader a): on 17 2x2 grid items the key is always the LAST-mentioned value pair (17/17) - transcript-conditional, makes those items medium not hard, and is recorded as the next brief fix (key the restored earlier value sometimes). Quote items: key ties the line to the adjacent turn 11/14; attitude: qualified-agree option 4/6. None is a no-source rule; batch-level blind score is the measure. Stored key slot B 12/34 (35.3%) from the deterministic insert shuffle, invisible to students (serve-time shuffleDrawnChoices)."
+        }
+      }
     }
   ],
   "auditedCohorts": [
