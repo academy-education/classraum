@@ -752,9 +752,10 @@ export interface TestTiming {
  *
  * So the whole-test average is returned whenever there is any time at
  * all (it is the elapsed clock divided out, which is honest), and a
- * per-task split only when the rows actually vary, which today they
- * never do. It lights up by itself if per-question timing is ever
- * captured client-side.
+ * per-task split only when the rows actually vary. Every session before
+ * per-question capture (lib/study/question-time, 2026-10-02) is even
+ * split and stays refused; sessions submitted since carry measured
+ * per-question seconds and split by task.
  *
  * Reconstruction for a reopened test: value x CARD count, because submit
  * divided by cards. Blanks hold NULL but the time was still spent, so

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useTranslation } from '@/hooks/useTranslation'
 import { buildResultModel, familyFromTopicSlug } from '@/lib/study/test-result'
+import { reconcileQuestionSeconds } from '@/lib/study/question-time'
 import { ACT_BLUEPRINT } from '@/lib/study/act-test'
 import { TestResultView } from './TestResultView'
 import type { SpeechSignals, SubmitResult, TestPayload } from './types'
@@ -18,8 +19,12 @@ import type { SpeechSignals, SubmitResult, TestPayload } from './types'
  */
 export function ReviewView({
   test, answers, answerAudioPaths, answerSpeechSignals, speakingGradeMode, result, ko, sessionId,
-  moduleRoute = null, gradingOpenResponses = false, elapsedSeconds = null,
+  moduleRoute = null, gradingOpenResponses = false, elapsedSeconds = null, questionSeconds = null,
 }: {
+  /** Per-question seconds sent with the submit. Put through the SAME
+   *  reconcileQuestionSeconds the server ran, so this screen shows
+   *  exactly what was written to study_attempts, fallback included. */
+  questionSeconds?: number[] | null
   /** The elapsed clock sent with the submit. Exact, unlike the per-row
    *  value submit derives from it. */
   elapsedSeconds?: number | null
@@ -43,6 +48,16 @@ export function ReviewView({
 }) {
   const { t } = useTranslation()
 
+  // No clock, no time: reconciling against a stand-in 0 would invent an
+  // even split of 1s per question.
+  const written = elapsedSeconds != null
+    ? reconcileQuestionSeconds({
+        questionSeconds,
+        elapsedSeconds,
+        answers: test.questions.map((_, i) => answers[i] ?? null),
+        count: test.questions.length,
+      })
+    : null
   const model = buildResultModel({
     // `family` is payload-only and free-form (`string | null`), so it is
     // normalized through the same rule /summary uses on the topic slug
@@ -69,6 +84,7 @@ export function ReviewView({
       // card is numbered. Reopened tests go through the DB path, which
       // reads the stored `position` and suppresses labels without one.
       position: i,
+      timeSpentSeconds: written?.seconds[i] ?? null,
     })),
   })
 

@@ -104,6 +104,34 @@ describe('POST /api/study/test/submit', () => {
     expect(rows.map((r: { is_correct: boolean }) => r.is_correct)).toEqual([true, true, false])
   })
 
+  // time_spent_seconds: this route is the only writer for full tests.
+  describe('time_spent_seconds', () => {
+    async function writtenSeconds(extra: Record<string, unknown>, answers: (string | null)[] = ['A', null, 'B']) {
+      const questions = [mcQuestion('Q1', 'A'), mcQuestion('Q2', 'A'), mcQuestion('Q3', 'A')]
+      enqueue('study_sessions', { data: SESSION })
+      enqueue('study_messages', { data: null })
+      enqueue('study_attempts', { data: [] })
+      const insertChain = enqueue('study_attempts', { error: null })
+      enqueue('study_sessions', { data: null })
+      const res = await POST(makeRequest({ ...submitBody(questions, answers), ...extra }))
+      expect(res.status).toBe(200)
+      return insertChain.insert.mock.calls[0][0].map((r: { time_spent_seconds: number | null }) => r.time_spent_seconds)
+    }
+
+    it('writes each question its OWN measured seconds when they reconcile with elapsed', async () => {
+      // 300s elapsed carved 200 / 40 / 60; the blank Q2 keeps its 40.
+      expect(await writtenSeconds({ questionSeconds: [200, 40, 60] })).toEqual([200, 40, 60])
+    })
+
+    it('falls back to the even split, NULL on blanks, when the client sends none', async () => {
+      expect(await writtenSeconds({})).toEqual([100, null, 100])
+    })
+
+    it('falls back when the measured seconds do not add up to elapsed', async () => {
+      expect(await writtenSeconds({ questionSeconds: [20, 4, 6] })).toEqual([100, null, 100])
+    })
+  })
+
   it('excludes unscored TOEFL pilot items from the score but still grades them', async () => {
     // ETS delivers 48 Reading/Listening questions per path and scores 35;
     // the rest are unscored pilots. Modelling that is what lets Complete
