@@ -1,8 +1,8 @@
 -- 118: one referral redemption per PHONE NUMBER, enforced by the database.
--- NOT APPLIED. Must be applied BEFORE the code that writes
+-- APPLIED 2026-10-02. (Had to be applied BEFORE the code that writes
 -- referee_phone_key deploys — the redeem route inserts that column, and
 -- PostgREST rejects an insert naming a column that does not exist, so the
--- route would 500 every redemption.
+-- route would 500 every redemption.)
 --
 -- WHY: /api/study/referral/redeem checked "has any other account with my
 -- phone already redeemed?" with a SELECT and then INSERTed its own row with
