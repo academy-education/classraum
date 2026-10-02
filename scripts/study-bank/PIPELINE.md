@@ -206,7 +206,17 @@ Artifact: `qc-nosource.json`
 Per item: which option would you reject first, why, are you certain, and how
 many options are confidently rejectable without the source.
 
-PASS: zero items with any confidently rejectable option.
+PASS (other families): zero items with any confidently rejectable option.
+
+PASS (SAT R&W, since 2026-10-02, register A23): the candidate's rate of items
+with a confidently rejected DISTRACTOR is at most +20 points above a matched
+live control read through the same instrument in a separate file, >= 3 samples
+per arm, control at or below 80% (else no verdict). Run
+`elimination-paired.mjs render|score`; `gate.mjs` re-derives the verdict from
+the recorded numbers and refuses a zero-bar record. Why: the zero bar was met by
+no shipped cohort (reject-first lands on a distractor ~96% of the time on the
+live bank), so it was overridden on its first two uses and then read five
+different ways.
 
 Cheaper and more diagnostic than stage 4 — it fires before guessability
 reaches 94% and names WHICH option to rewrite. Run it during authoring too,

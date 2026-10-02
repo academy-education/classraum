@@ -229,3 +229,169 @@ export function analyseSetTell(sets: KeySet[]): SetTellReport {
 export function setTellFails(r: SetTellReport): boolean {
   return r.observed > r.expected && r.pValue < SET_TELL_ALPHA
 }
+
+/* ── Sequential key structure in UNGROUPED cohorts (register A24) ──────
+ *
+ * The per-group check in verify-answer-key-spread.ts finds tell #2 — every
+ * four-question set a complete ABCD permutation — only where items carry a
+ * passageGroupId. SAT R&W items are ungrouped, so on 2026-09-04 two batches
+ * reached the bank with the tell in its purest form: sat-sec-hard-v6's keys ran
+ * CBAD / BDAC five times over, sat-cs-hard-v3 was six complete permutations in
+ * six sequential quadruples, and the guard written for this exact tell passed
+ * both. Two graders saw it in their own answer sequences; the checker could not.
+ *
+ * Three statistics over the key sequence in stored order:
+ *   alignedRate share of NON-overlapping quadruples holding one of each letter,
+ *              at the best of the four phases — the tell exactly as authored
+ *              ("every group of four"). Added because the overlapping version
+ *              alone MISSED sat-cs-hard-v3 (6 of 6 aligned quads, but only
+ *              42.9% of overlapping windows, p=0.004) on the break-test.
+ *   permRate   share of ALL overlapping 4-windows holding one of each letter
+ *              (catches the tell when drops at insert have shifted its phase)
+ *   periodRate max over lags 2..8 of the share of positions where
+ *              key[i] === key[i + lag]  (a repeated block shows at its length)
+ *
+ * THE CONTROL IS THE SAME COHORT'S KEYS, SHUFFLED — never a literal. The 9.4%
+ * "chance of a complete permutation" used by the grouped check assumes a
+ * uniform deal; a cohort dealt exactly 6/6/6/6 has a higher permutation rate by
+ * construction, and a literal would flag it for being balanced. Shuffling the
+ * observed keys holds the composition fixed and destroys only the order, which
+ * is the thing under test. The max-over-lags is taken identically inside every
+ * shuffle, so searching seven lags is paid for in the p-value, not ignored.
+ */
+
+export const SEQ_MIN_N = 12
+export const SEQ_ALPHA = 0.001
+export const SEQ_MAX_LAG = 8
+
+export interface SequenceTellReport {
+  n: number
+  alignedPhase: number
+  alignedRate: number
+  controlAlignedRate: number
+  alignedP: number
+  permWindows: number
+  permRate: number
+  periodLag: number
+  periodRate: number
+  /** mean of each statistic over the shuffled control */
+  controlPermRate: number
+  controlPeriodRate: number
+  /** (1 + #shuffles at or above observed) / (1 + shuffles) */
+  permP: number
+  periodP: number
+  shuffles: number
+}
+
+function mulberry32(seed: number): () => number {
+  let a = (seed >>> 0) || 1
+  return () => {
+    a |= 0; a = (a + 0x6d2b79f5) | 0
+    let t = Math.imul(a ^ (a >>> 15), 1 | a)
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+export function permWindowRate(s: string[]): number {
+  const w = s.length - 3
+  if (w <= 0) return 0
+  let k = 0
+  for (let i = 0; i < w; i++) if (new Set(s.slice(i, i + 4)).size === 4) k++
+  return k / w
+}
+
+export function bestAligned(s: string[]): { phase: number; rate: number } {
+  let best = { phase: 0, rate: 0 }
+  for (let ph = 0; ph < 4; ph++) {
+    let q = 0, k = 0
+    for (let i = ph; i + 4 <= s.length; i += 4) { q++; if (new Set(s.slice(i, i + 4)).size === 4) k++ }
+    const rate = q ? k / q : 0
+    if (rate > best.rate) best = { phase: ph, rate }
+  }
+  return best
+}
+
+export function bestPeriod(s: string[]): { lag: number; rate: number } {
+  let best = { lag: 0, rate: 0 }
+  const maxLag = Math.min(SEQ_MAX_LAG, Math.floor(s.length / 2))
+  for (let lag = 2; lag <= maxLag; lag++) {
+    let m = 0
+    for (let i = 0; i + lag < s.length; i++) if (s[i] === s[i + lag]) m++
+    const rate = m / (s.length - lag)
+    if (rate > best.rate) best = { lag, rate }
+  }
+  return best
+}
+
+export function analyseKeySequence(keys: string[], shuffles = 20000, seed = 20261002): SequenceTellReport {
+  const n = keys.length
+  const aligned = bestAligned(keys)
+  const permRate = permWindowRate(keys)
+  const period = bestPeriod(keys)
+  const rand = mulberry32(seed)
+  const a = keys.slice()
+  let geP = 0, geQ = 0, geA = 0, sumP = 0, sumQ = 0, sumA = 0
+  for (let r = 0; r < shuffles; r++) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(rand() * (i + 1))
+      const t = a[i]!; a[i] = a[j]!; a[j] = t
+    }
+    const p = permWindowRate(a), q = bestPeriod(a).rate, al = bestAligned(a).rate
+    sumP += p; sumQ += q; sumA += al
+    if (al >= aligned.rate - 1e-12) geA++
+    if (p >= permRate - 1e-12) geP++
+    if (q >= period.rate - 1e-12) geQ++
+  }
+  return {
+    n,
+    alignedPhase: aligned.phase,
+    alignedRate: aligned.rate,
+    controlAlignedRate: sumA / shuffles,
+    alignedP: (1 + geA) / (1 + shuffles),
+    permWindows: Math.max(0, n - 3),
+    permRate,
+    periodLag: period.lag,
+    periodRate: period.rate,
+    controlPermRate: sumP / shuffles,
+    controlPeriodRate: sumQ / shuffles,
+    permP: (1 + geP) / (1 + shuffles),
+    periodP: (1 + geQ) / (1 + shuffles),
+    shuffles,
+  }
+}
+
+/** Testable cohorts only; below SEQ_MIN_N the caller must print "too few", never "ok". */
+export function sequenceTellFails(r: SequenceTellReport): boolean {
+  return r.n >= SEQ_MIN_N && (r.alignedP < SEQ_ALPHA || r.permP < SEQ_ALPHA || r.periodP < SEQ_ALPHA)
+}
+
+/* ── Position skew, size-aware (the minimum-cohort gate) ───────────────
+ *
+ * The per-cohort histogram check used to excuse every cohort under 20 items,
+ * and a 14-item cohort at 50% on one slot passed (CLAUDE.md). The gate was
+ * lowered to 12 — which still printed " ok " for an 11-item cohort with every
+ * key on one slot. A small cohort is not a safe cohort. So: at n >= POS_MIN_N
+ * the flat 45% share stands (it is what catches the 14-item case), BELOW it the
+ * exact tail decides — P(busiest slot >= observed) under a uniform deal, which
+ * only an extreme concentration reaches at small n — and under POS_FLOOR_N the
+ * caller prints "untestable", never a pass.
+ */
+export const POS_MIN_N = 12
+export const POS_FLOOR_N = 6
+export const POS_MAX_SHARE = 0.45
+export const POS_SMALL_ALPHA = 0.01
+
+/** P(the busiest of 4 slots holds >= k of n keys), uniform deal (union bound: conservative). */
+export function pMaxSlotAtLeast(n: number, k: number): number {
+  return Math.min(1, 4 * binomUpperTail(n, k, 0.25))
+}
+
+export type PositionVerdict = 'fail' | 'ok' | 'untestable'
+export function positionVerdict(counts: number[]): PositionVerdict {
+  const n = counts.reduce((a, b) => a + b, 0)
+  const worst = Math.max(...counts)
+  if (n < POS_FLOOR_N) return 'untestable'
+  if (n >= POS_MIN_N) return worst / n > POS_MAX_SHARE ? 'fail' : 'ok'
+  return pMaxSlotAtLeast(n, worst) < POS_SMALL_ALPHA ? 'fail' : 'ok'
+}

@@ -26,6 +26,7 @@ import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { eliminationVerdict } from './elimination-paired.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const contract = JSON.parse(readFileSync(join(HERE, 'gate-contract.json'), 'utf8'))
@@ -69,12 +70,30 @@ export function familyFor(task, family, section) {
  *   - unknown/extra stages are ignored rather than credited, so adding a
  *     cheap gate can never accidentally satisfy a required expensive one
  */
-export function evaluate(family, currentSha, stages) {
+export function evaluate(family, currentSha, stages, opts = {}) {
   const required = contract.familyStages[family] ?? []
-  const missing = [], failed = [], stale = []
+  const missing = [], failed = [], stale = [], notes = []
   for (const stage of required) {
     const r = stages?.[stage]
     if (!r) { missing.push(stage); continue }
+    /*
+     * SAT R&W ELIMINATION IS RE-DERIVED, NOT TRUSTED (register A23, 2026-10-02).
+     * The old bar — zero confidently rejectable options — was met by no shipped
+     * cohort, so it was overridden twice and then read five different ways in
+     * later ledger entries. The bar is now a margin over a matched live control
+     * (elimination-paired.mjs). The gate recomputes the verdict from the
+     * recorded numbers: a stage without them, or whose `passed` disagrees with
+     * them, does not count — the same reason the inserters re-derive the drop
+     * rule from qc.json instead of trusting a ledger script.
+     */
+    if (stage === 'elimination' && opts.pairedElimination) {
+      if (r.contentSha && r.contentSha !== currentSha) { stale.push(stage); continue }
+      const v = eliminationVerdict(r)
+      if (v.verdict === 'none') { missing.push(stage); notes.push(`elimination: no verdict under the paired-control bar (${v.why}); run scripts/study-bank/elimination-paired.mjs`); continue }
+      if ((v.verdict === 'pass') !== (r.passed === true)) { failed.push(stage); notes.push(`elimination: recorded passed=${r.passed} but its own numbers say ${v.verdict} (${v.why})`); continue }
+      if (v.verdict === 'fail') { failed.push(stage); notes.push(`elimination: ${v.why}`) }
+      continue
+    }
     // A stage with no explicit `passed` is NOT a pass. The ledger used to
     // store measurements only, and the dashboard rendered a check for any
     // stage that had a result — including one recording an 83%-vs-50% key
@@ -83,7 +102,7 @@ export function evaluate(family, currentSha, stages) {
     if (r.contentSha && r.contentSha !== currentSha) { stale.push(stage); continue }
     if (!r.passed) failed.push(stage)
   }
-  return { canInsert: missing.length === 0 && failed.length === 0 && stale.length === 0, missing, failed, stale }
+  return { canInsert: missing.length === 0 && failed.length === 0 && stale.length === 0, missing, failed, stale, notes }
 }
 
 /** Human-readable reason, so a refusal says what to run rather than just no. */
@@ -93,6 +112,7 @@ export function explain(v) {
   if (v.failed.length) parts.push(`FAILED: ${v.failed.join(', ')}`)
   if (v.missing.length) parts.push(`never run: ${v.missing.join(', ')}`)
   if (v.stale.length) parts.push(`stale (items edited after the gate passed): ${v.stale.join(', ')}`)
+  for (const n of v.notes ?? []) parts.push(n)
   return parts.join(' | ')
 }
 
@@ -119,7 +139,7 @@ export function gateBatch({ task, family, section, itemFiles }) {
       reason: `no QC ledger entry for content hash ${sha.slice(0, 12)}. Run the gates and record them in scripts/study-bank/ledger.json before inserting.`,
     }
   }
-  const v = evaluate(fam, sha, batch.stages)
+  const v = evaluate(fam, sha, batch.stages, { pairedElimination: family === 'sat' && section === 'reading_writing' })
   return { ...v, sha, family: fam, batch: batch.id, reason: explain(v) }
 }
 

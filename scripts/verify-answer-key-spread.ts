@@ -12,19 +12,65 @@
  * check. The bank helpers now shuffle at insert; this is the backstop that
  * makes a regression loud.
  *
+ * (Since then the serve paths DO re-shuffle choices per session —
+ * shuffleDrawnChoices in src/lib/study/assemble.ts — so every flag here is a
+ * latent authoring defect, live only if a serve path ever stops shuffling.
+ * That is exactly why nothing else would catch it if that happened.)
+ *
  * Usage: npx tsx scripts/verify-answer-key-spread.ts
- * Exit 1 if any cohort with >=20 four-choice items exceeds 45% on one slot
- * (uniform is 25%; 45% allows real sampling noise at n=20 without hiding a
- * systematic skew).
+ *        npx tsx scripts/verify-answer-key-spread.ts --batch <file.batch.json>
+ *          (sequence check only, over a candidate file in AUTHORED order —
+ *           run it before insert; the live check sees stored order)
+ * Exit 1 on any failure. Position: a cohort of >=12 four-choice items over 45%
+ * on one slot, or a smaller one (>=6) whose busiest slot is improbable under a
+ * uniform deal (positionVerdict in key-tells.ts). Cohorts under 6 print
+ * "n/a" — untestable, never "ok".
  */
 import { config } from 'dotenv'
 import { resolve } from 'path'
 import { createClient } from '@supabase/supabase-js'
+import { readFileSync } from 'fs'
 import {
   analyseSetTell, setTellFails, lengthMark, binomUpperTail,
   MIN_SET_SIZE, SET_TELL_ALPHA, PER_COHORT_MIN_EXPECTED, type KeySet,
+  analyseKeySequence, sequenceTellFails, positionVerdict,
+  SEQ_MIN_N, SEQ_ALPHA, POS_MIN_N, POS_FLOOR_N, type SequenceTellReport,
 } from '../src/lib/study/key-tells'
 config({ path: resolve(process.cwd(), '.env.local') })
+
+const LATENT = 'Choice order is re-shuffled per session at draw time (shuffleDrawnChoices in ' +
+  'src/lib/study/assemble.ts), so a sequence flag is a LATENT risk in how the cohort was ' +
+  'authored, not a defect a student can exploit today. It becomes live the day any serve ' +
+  'path stops shuffling.'
+
+function fmtP(p: number): string { return p < 1e-3 ? p.toExponential(1) : p.toFixed(4) }
+function seqLine(label: string, r: SequenceTellReport, keys: string[]): string {
+  const flag = r.n < SEQ_MIN_N ? 'n/a ' : sequenceTellFails(r) ? 'FAIL' : ' ok '
+  return `${flag} ${label.padEnd(16)} n=${String(r.n).padStart(4)}  ` +
+    `quads ${(r.alignedRate * 100).toFixed(0)}% vs ${(r.controlAlignedRate * 100).toFixed(0)}% p=${fmtP(r.alignedP)}  ` +
+    `windows ${(r.permRate * 100).toFixed(1)}% vs shuffled ${(r.controlPermRate * 100).toFixed(1)}% p=${fmtP(r.permP)}  ` +
+    `lag-${r.periodLag} repeat ${(r.periodRate * 100).toFixed(1)}% vs ${(r.controlPeriodRate * 100).toFixed(1)}% p=${fmtP(r.periodP)}` +
+    (r.n <= 40 ? `  ${keys.join('')}` : '')
+}
+
+// --batch: sequence check over a candidate file, in the order it was authored.
+const bi = process.argv.indexOf('--batch')
+if (bi >= 0) {
+  const path = process.argv[bi + 1]
+  const batch = JSON.parse(readFileSync(path!, 'utf8')) as Array<Record<string, unknown>>
+  const keys: string[] = []
+  for (const it of batch) {
+    const ch = it.choices as string[] | undefined
+    const pos = Array.isArray(ch) && ch.length === 4 ? ch.indexOf(String(it.correct_answer)) : -1
+    if (pos < 0) { console.error(`REFUSING: ${String(it.id)} has no four-choice key; a sequence with holes is not the authored sequence.`); process.exit(2) }
+    keys.push('ABCD'[pos]!)
+  }
+  if (keys.length < SEQ_MIN_N) { console.error(`REFUSING: ${keys.length} items; the sequence check needs ${SEQ_MIN_N}. Not a pass.`); process.exit(2) }
+  const r = analyseKeySequence(keys, 50000)
+  console.log(seqLine(path!.replace(/^.*\//, ''), r, keys))
+  console.log(LATENT)
+  process.exit(sequenceTellFails(r) ? 1 : 0)
+}
 
 const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 // 12, not 20. A 14-item cohort inserted on 2026-07-28 landed at 50% on one
@@ -33,19 +79,26 @@ const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPAB
 // safe cohort; it is a cohort where one bad draw is a larger share of what
 // gets served. Below 12 the binomial noise genuinely swamps the signal, so
 // that is where the gate belongs.
-const MIN_N = 12
+// The size gate now lives in positionVerdict() (key-tells.ts), with tests:
+// >=12 by the flat share below, 6-11 by the exact tail, under 6 "n/a".
 const MAX_SHARE = 0.45
 
 ;(async () => {
-  const rows: Array<{ cohort: string | null; item: unknown }> = []
+  const rows: Array<{ id: string; cohort: string | null; item: unknown; passage_group_id: string | null }> = []
+  // ORDERED paging: range() over an unordered relation is not "the next 1000
+  // rows" (bank-helper.mjs, 2026-09-04), and the sequence check below needs
+  // STORED order anyway — created_at is insert order, which is file order.
   for (let from = 0; ; from += 1000) {
     const { data, error } = await db.from('study_item_bank')
-      .select('cohort, item').eq('verified', true).eq('archived', false)
-      .eq('item_type', 'multiple_choice').range(from, from + 999)
+      .select('id, cohort, item, passage_group_id').eq('verified', true).eq('archived', false)
+      .eq('item_type', 'multiple_choice')
+      .order('created_at', { ascending: true }).order('id', { ascending: true })
+      .range(from, from + 999)
     if (error) throw new Error(error.message)
     rows.push(...(data ?? []))
     if (!data || data.length < 1000) break
   }
+  if (new Set(rows.map(r => r.id)).size !== rows.length) throw new Error('paging slipped: duplicate ids')
 
   // Per-GROUP key structure, not just per-cohort distribution.
   //
@@ -58,6 +111,9 @@ const MAX_SHARE = 0.45
   // Any regularity a test-taker can exploit counts, and "uniform overall"
   // is not the same as "unpredictable locally".
   const byGroup = new Map<string, string[]>()
+  const groupCohort = new Map<string, string>()
+  // Ungrouped items per cohort, in stored order, for the sequence check.
+  const seqByCohort = new Map<string, string[]>()
 
   const byCohort = new Map<string, number[]>()
   for (const r of rows) {
@@ -71,9 +127,12 @@ const MAX_SHARE = 0.45
     const arr = byCohort.get(c) ?? [0, 0, 0, 0]
     arr[pos]!++
     byCohort.set(c, arr)
-    const g = (r.item as Record<string, unknown>)?.passageGroupId
+    const g = (r.item as Record<string, unknown>)?.passageGroupId ?? r.passage_group_id
     if (typeof g === 'string' && g) {
       byGroup.set(g, [...(byGroup.get(g) ?? []), 'ABCD'[pos]!])
+      groupCohort.set(g, c)
+    } else {
+      seqByCohort.set(c, [...(seqByCohort.get(c) ?? []), 'ABCD'[pos]!])
     }
   }
 
@@ -166,16 +225,18 @@ const MAX_SHARE = 0.45
   }
   console.log()
 
+  console.log(`key POSITION per cohort (>=${POS_MIN_N}: fail over ${MAX_SHARE * 100}% on one slot; ` +
+    `${POS_FLOOR_N}-${POS_MIN_N - 1}: fail only on an improbable concentration; under ${POS_FLOOR_N}: n/a, not ok):`)
   for (const [cohort, counts] of [...byCohort].sort()) {
     const n = counts.reduce((a, b) => a + b, 0)
     const worst = Math.max(...counts)
     const share = worst / n
-    const flag = n >= MIN_N && share > MAX_SHARE
+    const v = positionVerdict(counts)
     console.log(
-      `${flag ? 'FAIL' : ' ok '} ${cohort.padEnd(14)} n=${String(n).padStart(5)}  ` +
+      `${v === 'fail' ? 'FAIL' : v === 'untestable' ? 'n/a ' : ' ok '} ${cohort.padEnd(14)} n=${String(n).padStart(5)}  ` +
       `A/B/C/D ${counts.join('/')}  worst ${(share * 100).toFixed(1)}%`,
     )
-    if (flag) bad++
+    if (v === 'fail') bad++
   }
   // A 4-item set whose keys are a complete ABCD permutation is
   // elimination-solvable; so is one where all four share a slot.
@@ -191,6 +252,50 @@ const MAX_SHARE = 0.45
     console.error(`FAIL ${(rate * 100).toFixed(0)}% of 4-question sets are a complete ABCD permutation ` +
       `(chance is 9.4%) — the fourth answer is forced by elimination`)
     bad++
+  }
+  // Per cohort too: pooled over ~200 sets, one batch authored as all
+  // permutations dilutes to nothing (the same reason the per-set length check
+  // is run per cohort below).
+  const permByCohort = new Map<string, { quads: number; perms: number }>()
+  for (const [g, v] of quads) {
+    const c = groupCohort.get(g) ?? '(none)'
+    const a = permByCohort.get(c) ?? { quads: 0, perms: 0 }
+    a.quads++
+    if ([...v].sort().join('') === 'ABCD') a.perms++
+    permByCohort.set(c, a)
+  }
+  for (const [c, a] of [...permByCohort].sort()) {
+    // P(>= perms of quads complete | 4!/4^4 each). Needs >=4 sets to mean anything.
+    const p = binomUpperTail(a.quads, a.perms, 24 / 256)
+    const flag = a.quads >= 4 && p < 0.001
+    if (flag || a.perms >= 2) console.log(`  ${flag ? 'FAIL' : ' ok '} ${c.padEnd(14)} ${a.perms}/${a.quads} sets complete  p=${fmtP(p)}`)
+    if (flag) { console.error(`FAIL cohort ${c}: four-question sets authored as complete permutations`); bad++ }
+  }
+
+  // ── Sequential key structure, UNGROUPED cohorts (register A24) ─────────
+  //
+  // See analyseKeySequence in key-tells.ts. The control is each cohort's own
+  // keys shuffled 20,000 times; a flag means the stored order is far more
+  // regular than the same keys in random order.
+  console.log(`\nSEQUENCE of keys in stored order, ungrouped items per cohort ` +
+    `(fail at p<${SEQ_ALPHA} vs the cohort's own keys shuffled; under ${SEQ_MIN_N}: n/a):`)
+  const seqRows = [...seqByCohort].sort()
+  let testable = 0
+  const seqFlagged: string[] = []
+  for (const [c, keys] of seqRows) {
+    if (keys.length < SEQ_MIN_N) continue
+    testable++
+    const r = analyseKeySequence(keys, 50000)
+    const line = seqLine(c, r, keys)
+    if (sequenceTellFails(r)) { console.log(line); seqFlagged.push(c); bad++ }
+    else console.log(line)
+  }
+  console.log(`  ${testable} testable cohorts x 3 statistics at p<${SEQ_ALPHA}: ` +
+    `~${(testable * 3 * SEQ_ALPHA).toFixed(2)} false alarms expected per run (the three are correlated, so fewer)`)
+  console.log(`  ${seqRows.length - testable} cohort(s) with fewer than ${SEQ_MIN_N} ungrouped items: untestable, not passed`)
+  if (seqFlagged.length) {
+    console.error(`FAIL sequence tell in ${seqFlagged.length} cohort(s): ${seqFlagged.join(', ')}`)
+    console.error(`     ${LATENT}`)
   }
 
   // ── Per-SET key LENGTH ───────────────────────────────────────────────

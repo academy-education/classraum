@@ -2184,7 +2184,25 @@
         "batchFile": "scripts/study-bank/sat-cs-hard-v3.batch.json",
         "method": "bank-gate 2026-09-04: structural pre-flight + no-source attack vs matched live control + three-grader with-source exclusivity + options-only elimination probe"
       },
-      "status": "shipped"
+      "status": "shipped",
+      "revisits": [
+        {
+          "date": "2026-10-02",
+          "register": "A23",
+          "instrument": "scripts/study-bank/elimination-paired.mjs (bar paired-control-v1, pre-registered in commit 822bdb13 before any read)",
+          "measured": "the 16 LIVE rows of rw-v8-cs-hard, not the 24-item file, so this is not bound to the batch contentSha and does not touch stages.elimination",
+          "candidateRate": 0,
+          "controlRate": 0.5729,
+          "margin": -0.5729,
+          "threshold": 0.2,
+          "n": 16,
+          "controlN": 32,
+          "samples": 3,
+          "control": "live Craft and Structure rows from other cohorts, matched on subskill x difficulty at 2x: v2 22, rw-v12-wic 3, rw-v16-wic 3, rw-v7-cs-hard 2, rw-v14-wic 1, sat-cs-v10 1; v2 83.3% eliminable, the other ten 0.0%",
+          "verdict": "PASS the restated bar (-57.3 pts). The elimination override is retired for this cohort. Information, not gated: the reader's reject-first lands on a distractor in 97.9% of 48 reads against 95.8% of 96 on the control - removing ONE wrong option softly is near-universal in the shipped bank, which is why a zero bar could never be met. All three samples aimed reject-first at the flat denials and absolutes but declined to call any certain. NOT cleared by this: the `tells` stage failure (the key is the single concede-then-qualify option among flat denials). That is a key-shape tell, not a free elimination, and this measurement says nothing about it.",
+          "files": "scripts/study-bank/elim-a23-cs.{cand,ctl}.{blind,key,elim-a,elim-b,elim-c}.json"
+        }
+      ]
     },
     {
       "id": "rw-v8-sec-hard-2026-09-04",
@@ -2229,7 +2247,25 @@
         "batchFile": "scripts/study-bank/sat-sec-hard-v6.batch.json",
         "method": "bank-gate 2026-09-04: structural pre-flight + no-source attack vs matched live control + three-grader with-source exclusivity + options-only elimination probe"
       },
-      "status": "shipped"
+      "status": "shipped",
+      "revisits": [
+        {
+          "date": "2026-10-02",
+          "register": "A23",
+          "instrument": "scripts/study-bank/elimination-paired.mjs (bar paired-control-v1, pre-registered in commit 822bdb13 before any read)",
+          "measured": "the 22 LIVE rows of rw-v8-sec-hard, not the 24-item file, so this is not bound to the batch contentSha and does not touch stages.elimination",
+          "candidateRate": 0.1061,
+          "controlRate": 0.2424,
+          "margin": -0.1364,
+          "threshold": 0.2,
+          "n": 22,
+          "controlN": 44,
+          "samples": 3,
+          "control": "live Standard English Conventions rows from other cohorts, matched on difficulty at 2x: v2 29, rw-v6-sec-hard 7, rw-v7-sec-hard 5, rw-v9-sec-hard 3",
+          "verdict": "PASS the restated bar (-13.6 pts). The two items every sample cut are the noun+verb-inside-one-option shape the 2026-09-04 reader named (embedded question \"what the clams was eating\"; \"whoever/whomever having\"). Soft reject-first on a distractor 95.5% vs 95.5% on the control. The elimination override is retired for this cohort; its only other recorded caveat (the CBAD/BDAC key sequence, A24) is a latent authoring tell, flagged by the new sequence check on the live rows, and harmless while serve-time shuffling holds.",
+          "files": "scripts/study-bank/elim-a23-sec.{cand,ctl}.{blind,key,elim-a,elim-b,elim-c}.json"
+        }
+      ]
     },
     {
       "id": "act-math-v2-alg-2026-09-12",
