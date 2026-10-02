@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
     .select('id')
     .single()
   // The "already started today?" check above is a read; a double-tap
-  // passes it twice. Migration 114's unique index on (student,
+  // passes it twice. Migration 115's unique index on (student,
   // config->>'dailyChallenge') rejects the second insert — return the
   // session the first one created instead of a second free set.
   if (error && (error as { code?: string }).code === '23505') {

@@ -26,7 +26,7 @@ jest.mock('@/lib/supabase-admin', () => {
   return { dbAdmin: client }
 })
 jest.mock('@/lib/cron-auth', () => ({ verifyCronAuth: jest.fn(() => true) }))
-jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn() }))
+jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn(), chargeAlreadyPaid: jest.fn(async () => false) }))
 
 const fromMock = dbAdmin.from as unknown as jest.Mock
 const chargeMock = chargeBillingKey as unknown as jest.Mock

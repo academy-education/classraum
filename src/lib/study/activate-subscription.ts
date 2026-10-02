@@ -1,6 +1,6 @@
 import { createHash } from 'crypto'
 import { dbAdmin } from '@/lib/supabase-admin'
-import { chargeBillingKey } from '@/lib/portone-charge'
+import { chargeBillingKey, chargeAlreadyPaid } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
@@ -32,7 +32,8 @@ import { grantReferralConversionIfEligible } from '@/lib/study/referral-conversi
  * a second of each other, both read "no active sub", and with the old
  * `-${Date.now()}` paymentId each charged the card under its own id —
  * two real charges for one subscription. The loser of that race now gets
- * ALREADY_PAID from PortOne and is treated as the concurrent success it is.
+ * ALREADY_PAID from PortOne; once a re-read of the payment confirms it is
+ * PAID, that is treated as the concurrent success it is.
  */
 
 /** The first-charge paymentId for a billing key. Same length as the old
@@ -40,11 +41,6 @@ import { grantReferralConversionIfEligible } from '@/lib/study/referral-conversi
 export function initialPaymentIdFor(studentId: string, billingKey: string): string {
   const h = createHash('sha256').update(billingKey).digest('hex').slice(0, 13)
   return `study-sub-init-${studentId}-${h}`
-}
-
-/** PortOne's typed error for a paymentId that has already been paid. */
-function isAlreadyPaid(r: { code?: string; httpStatus?: number }): boolean {
-  return r.code === 'ALREADY_PAID' || (!r.code && r.httpStatus === 409)
 }
 
 export type ActivateOutcome =
@@ -98,7 +94,7 @@ export async function activateSubscriptionFromBillingKey(opts: {
     },
   })
 
-  if (!result.ok && isAlreadyPaid(result)) {
+  if (!result.ok && await chargeAlreadyPaid(result, paymentId, plan.priceWon)) {
     // A concurrent caller for this same key charged it a moment ago. If it
     // already wrote the activation we are done; if not (it is still in
     // flight, or died after the charge) fall through and write the same

@@ -1,4 +1,4 @@
--- 115: one recurring invoice per (template, student, period).
+-- 116: one recurring invoice per (template, student, period).
 --
 -- generateRecurringInvoices pre-reads the invoices already written for
 -- (template_id, due_date) and inserts the rest. Two overlapping runs (the

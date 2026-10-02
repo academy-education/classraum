@@ -6,7 +6,7 @@
  * bands it fetched first.
  *
  * This models two concurrent gradeAndPersistResponse calls against a fake
- * table that enforces migration 114's unique indexes, with a grader that
+ * table that enforces migration 115's unique indexes, with a grader that
  * returns a DIFFERENT band each call (it did: 4 then 3). The invariant: one
  * submission row, one grade row, and both callers report the same band.
  */

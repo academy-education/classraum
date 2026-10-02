@@ -355,7 +355,7 @@ export async function POST(req: NextRequest) {
       prompt_text: body.promptText,
       response_text: body.responseText ?? '',
       audio_path: body.audioPath,
-      // Keys the audio-route uniqueness (migration 114): one audio-graded
+      // Keys the audio-route uniqueness (migration 115): one audio-graded
       // submission per (session, student, prompt, recording).
       grader_route: 'audio',
       // MediaRecorder reports a float (44.459999084472656); the column is

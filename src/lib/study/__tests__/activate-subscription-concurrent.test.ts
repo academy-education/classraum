@@ -10,10 +10,10 @@
  */
 import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscription'
 import { dbAdmin } from '@/lib/supabase-admin'
-import { chargeBillingKey } from '@/lib/portone-charge'
+import { chargeBillingKey, chargeAlreadyPaid } from '@/lib/portone-charge'
 
 jest.mock('@/lib/supabase-admin', () => ({ dbAdmin: { from: jest.fn(), rpc: jest.fn() } }))
-jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn() }))
+jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn(), chargeAlreadyPaid: jest.fn() }))
 jest.mock('@/lib/study/record-subscription-payment', () => ({ recordSubscriptionPayment: jest.fn(async () => {}) }))
 jest.mock('@/lib/study/analytics', () => ({ trackEvent: jest.fn(async () => {}) }))
 jest.mock('@/lib/study/referral-conversion', () => ({ grantReferralConversionIfEligible: jest.fn(async () => {}) }))
@@ -58,6 +58,10 @@ function fakePortOne() {
     paid.add(paymentId)
     return { ok: true, status: 'PAID', httpStatus: 200 }
   })
+  // The re-read: PAID iff PortOne actually holds a paid payment for the id.
+  ;(chargeAlreadyPaid as unknown as jest.Mock).mockImplementation(
+    async (r: { ok: boolean; code?: string }, id: string) => !r.ok && r.code === 'ALREADY_PAID' && paid.has(id),
+  )
   return paid
 }
 

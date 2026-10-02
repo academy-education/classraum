@@ -213,7 +213,7 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
   // so two callers a second apart (grade-batch + the review panel, or a
   // retried batch) both miss it and both get here — that is exactly what
   // put four submission rows and two disagreeing bands on one TOEFL Writing
-  // test. Migration 114 makes (session, student, prompt, response) unique
+  // test. Migration 115 makes (session, student, prompt, response) unique
   // for text grades and one grade per submission, so the loser's insert
   // fails with 23505 and it adopts the stored row instead: both callers
   // report the SAME band, and the result screen has one row to read.

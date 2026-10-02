@@ -327,3 +327,27 @@ export async function chargeBillingKey(input: PortOneChargeInput): Promise<PortO
     payment: (body.payment as Record<string, unknown> | undefined) ?? body,
   }
 }
+
+/**
+ * Did a billing-key charge that came back as an error actually leave the
+ * card paid under this paymentId?
+ *
+ * PortOne pays a paymentId at most once. A second payWithBillingKey for an
+ * id that is already paid fails with `{ type: "ALREADY_PAID", message }`
+ * (AlreadyPaidError in PortOne's OpenAPI-generated server SDK; our
+ * chargeBillingKey surfaces `type` as `code`). That is how the loser of a
+ * concurrent first-charge / renewal sees the winner's charge. The HTTP
+ * status for it is not documented, so the status is never trusted, and
+ * neither is the code alone: the payment is re-read and counts as paid
+ * only if PortOne reports it PAID for the amount we asked for.
+ */
+export async function chargeAlreadyPaid(
+  result: PortOneChargeResult,
+  paymentId: string,
+  expectedAmount: number,
+): Promise<boolean> {
+  if (result.ok || result.code !== 'ALREADY_PAID') return false
+  const info = await getPaymentInfo(paymentId)
+  return info.ok && info.status === 'PAID' &&
+    (info.amountTotal === undefined || info.amountTotal === expectedAmount)
+}

@@ -1,4 +1,10 @@
--- 114: database-level guards for check-then-act writes found in the
+-- 115: database-level guards for check-then-act writes found in the
+-- APPLIED to production 2026-10-02 via Supabase MCP (renumbered from 114,
+-- which another branch used). Duplicates re-checked (all 0) and the file
+-- built in a rolled-back txn immediately before; a legacy insert without
+-- grader_route succeeded there, so the deployed code keeps working.
+-- The code on this branch NEEDS the grader_route column (grade-audio
+-- inserts it; gradeResponse filters on it) — it exists now.
 -- 2026-10-02 race audit. Each index backs code that used to SELECT
 -- "already exists?" and then INSERT with nothing in between — two callers a
 -- second apart both miss the SELECT and both insert (CLAUDE.md: the TOEFL

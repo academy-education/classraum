@@ -293,7 +293,7 @@ export async function generateRecurringInvoices(
         //
         // The pre-read above is a read followed by a write: two overlapping
         // runs (cron + a manual retry) both see "nobody invoiced yet" and
-        // both insert — a second bill to the same parent. Migration 115 adds
+        // both insert — a second bill to the same parent. Migration 116 adds
         // UNIQUE (template_id, student_id, due_date) so the database refuses
         // the second; a batch that trips it is re-done row by row, keeping
         // only the rows this run actually created.

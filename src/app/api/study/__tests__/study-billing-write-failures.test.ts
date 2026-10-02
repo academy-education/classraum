@@ -13,7 +13,7 @@
 import { GET } from '@/app/api/cron/study-billing/route'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { verifyCronAuth } from '@/lib/cron-auth'
-import { chargeBillingKey } from '@/lib/portone-charge'
+import { chargeBillingKey, chargeAlreadyPaid } from '@/lib/portone-charge'
 import { raiseAlert } from '@/lib/ops/alert'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { NextRequest } from 'next/server'
@@ -27,7 +27,7 @@ jest.mock('@/lib/supabase-admin', () => {
   return { dbAdmin: client }
 })
 jest.mock('@/lib/cron-auth', () => ({ verifyCronAuth: jest.fn(() => true) }))
-jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn() }))
+jest.mock('@/lib/portone-charge', () => ({ chargeBillingKey: jest.fn(), chargeAlreadyPaid: jest.fn(async () => false) }))
 jest.mock('@/lib/ops/alert', () => ({ raiseAlert: jest.fn(async () => {}) }))
 jest.mock('@/lib/study/record-subscription-payment', () => ({
   recordSubscriptionPayment: jest.fn(async () => {}),
@@ -197,7 +197,8 @@ describe('study-billing cron — overlapping runs', () => {
     expect(body.summary.charged).toBe(0)
   })
 
-  it('ALREADY_PAID from PortOne is the success path, never dunning', async () => {
+  it('ALREADY_PAID confirmed PAID by a re-read is the success path, never dunning', async () => {
+    ;(chargeAlreadyPaid as unknown as jest.Mock).mockResolvedValueOnce(true)
     enqueue('study_subscriptions', { data: [] })
     enqueue('study_subscriptions', { data: [dueRow] })
     const advance = enqueue('study_subscriptions', { data: [{ id: 'sub-1' }], error: null })
@@ -209,5 +210,19 @@ describe('study-billing cron — overlapping runs', () => {
     expect(advance.update).toHaveBeenCalledWith(expect.objectContaining({ status: 'active' }))
     expect(advance.update).not.toHaveBeenCalledWith(expect.objectContaining({ status: 'past_due' }))
     expect(body.summary.failed).toBe(0)
+  })
+
+  it('ALREADY_PAID that the re-read does NOT confirm as paid is still a failure', async () => {
+    ;(chargeAlreadyPaid as unknown as jest.Mock).mockResolvedValueOnce(false)
+    enqueue('study_subscriptions', { data: [] })
+    enqueue('study_subscriptions', { data: [dueRow] })
+    const dun = enqueue('study_subscriptions', { data: [{ id: 'sub-1' }], error: null })
+    enqueue('study_subscriptions', { data: [] })
+    enqueue('study_subscriptions', { data: [] })
+    chargeMock.mockResolvedValue({ ok: false, code: 'ALREADY_PAID', message: 'already paid' })
+
+    const body = await (await GET(req())).json()
+    expect(dun.update).toHaveBeenCalledWith(expect.objectContaining({ status: 'past_due' }))
+    expect(body.summary.failed).toBe(1)
   })
 })

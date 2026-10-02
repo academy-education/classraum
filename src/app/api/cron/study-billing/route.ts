@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import type { Database } from '@/lib/database.types'
 import { verifyCronAuth } from '@/lib/cron-auth'
-import { chargeBillingKey } from '@/lib/portone-charge'
+import { chargeBillingKey, chargeAlreadyPaid } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
 import { resolvePlan, STUDY_PLANS, GRANT_INTERVAL_DAYS, isPassPlan } from '@/lib/study/plans'
 import { notifyStudent } from '@/lib/study/notify'
@@ -369,7 +369,7 @@ async function chargeAndAdvance(
   // so this is the success path, not dunning: marking it past_due both
   // mis-dunned a paying student and — once that write landed first —
   // made the paying run's conditional advance below miss.
-  const paid = result.ok || result.code === 'ALREADY_PAID'
+  const paid = result.ok || await chargeAlreadyPaid(result, paymentId, effectivePlan.priceWon)
   if (paid) {
     // Advance the charge period by the plan's cadence (30 = monthly,
     // 365 = annual). Credits refresh on the renewal AND every 30 days in
