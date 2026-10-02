@@ -260,6 +260,17 @@ for (const [family, section, label, perForm, hidden] of SECTIONS) {
   if (family === 'act' && (section === 'reading' || section === 'science')) {
     binding += '  [ALSO PASSAGE-DRAWN — the domain number is an upper bound]'
   }
+  /* TOEFL IS NOT DOMAIN-QUOTA'D AT ALL — corrected 2026-10-02. The line
+   * above used to call this number "circular" and leave it standing. It is
+   * an UPPER BOUND, and a loose one: a TOEFL section is drawn by TASK, per
+   * ADAPTIVE PATH (lower reads Daily Life + hears Announcements, upper reads
+   * Academic Passages + hears Academic Talks), in WHOLE SETS with strict
+   * packing. Replaying the real assembler against a simulated ledger gave
+   * Reading/Listening 28/29 here vs 3 clean sittings on the lower path
+   * (Announcement) and 4 on the upper (Conversation). Quote that script. */
+  if (family === 'toefl') {
+    binding = 'UPPER BOUND ONLY — drawn by task per adaptive path in whole sets; real depth: npx tsx scripts/study-bank/toefl-form-depth.ts'
+  }
   console.log(pad(label + (hidden ? ' (hidden)' : ''), 24) + num(b.total, 6) + num(naive, 7) + num(byDomain, 11) + '   ' + binding)
   if (hidden) notes.push(`${label}: drawable but the subtopic is hidden — no student can open it.`)
 }
