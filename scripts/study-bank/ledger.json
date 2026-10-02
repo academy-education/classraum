@@ -4773,6 +4773,174 @@
           "verdict": "Keys dealt flat by make-oo-render (candidate 10/9/9/10). Key strictly longest 9/40, shortest 9/40 (chance 10). check-recycled-distractor: NO MEASUREMENT (148 distinct words over 152 slots). Solvers' named heuristics, all three: two-blank 'pair whose two words hang together' (contrast or cause-effect coherence) decided ~10-22 picks each -- the two-blank tell the stratum measured; single-blank 'pick the harder/more test-like word' decided ~12-25 each, and it lands on median-hard keys (A-07, A-09 3/3; A-06, B-03, B-08 2/3), recorded, not a per-item drop under the prereg."
         }
       }
+    },
+    {
+      "id": "act-english-v7-a-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 30,
+        "authors": 1,
+        "method": "bank-act-english brief; per-passage mix CSE 7 / PoW 2 / KoL 1 pre-registered in act-english-v7.PREREG.md (ca0df01f)"
+      },
+      "contentSha": "e6e92b21d4eccb03726723d57703959a616fe308c2f2db50d19338dbc4a1aec5",
+      "status": "qc",
+      "cohort": "act-english-v7",
+      "note": "Passages P1-P3 of the 12-passage act-english-v7 batch (one ledger entry per inserted file; the inserter gates per file). STAGED (BANK_VERIFIED=false) per bank-act-english section 3; released only by a human sitting (bank-gate section 5: <= ~40% blind clean, >= ~60% archive, between = second reader; oversample CSE, the domain the blind screen flagged). Only post-grade edit: the whole-essay PoW stem \"Question 10 asks about the preceding passage as a whole\" reworded to \"This question asks...\" (a hardcoded number is wrong once passages are drawn in any order); no option, key or passage changed. REGISTER A74.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "act-bank-helper check english: structure OK, 3 passages x 10, CSE 21 / PoW 6 / KoL 3. Batch-level prereg bar 1 over all 120: dealt key slots 30/30/30/30; key uniquely longest 6.7%, uniquely shortest 20.0% (bar 25%); NO CHANGE keyed 24/107 = 22.4% (bar 15-35%); Point [A]-[D] each keyed once; Yes/Kept 5/8 (bar 30-70%); semicolon key 1/16."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Prereg bar 3: three independent Claude samples per item (grader-a/b/c over act-en7-h1/h2.ws.md, key unmarked). 120/120 picks on key in all three samples (360/360). Second-defensible named by ONE sample only on 4 items (P1-Q08 B, P3-Q10 A, P4-Q07 D who/whom, P9-Q10 B), none by >= 2, so no drop. PoW no_source_needed: max 1 of 3 on any PoW item (P4-Q10, P6-Q03, P7-Q01), none >= 2. Soft notes kept, not drop rules: P5-Q02 \"After all\" judged a weak-but-only-viable transition by 2 samples. Grader-median difficulty easy 84 / medium 35 / hard 1 across the 120 (author labels 36/60/24 kept on the rows; ACT draw does not select by band)."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 120,
+          "mean": 94.2,
+          "control": null,
+          "verdict": "SCREEN, NOT A VERDICT (prereg bar 2; CLAUDE.md: the options-only instrument saturates on ACT verbal, model 76-79% vs human 10% on shipped English). SPLIT=10, one item per passage per file, a fresh solver per file: 113/120, confident 100/100. Per domain vs the matched live control (actlive-score 2026-09-12): CSE 84/84 = 100.0% vs 68.0% -> +32.0, SCREEN FLAG (> +15); PoW 17/24 = 70.8% vs 66.7% -> +4.1, no flag; KoL 12/12 = 100% vs 92.9%, report-only (ceiling leaves 7.1). Per prereg a flag does not drop items; the sitting oversamples CSE. Solvers in their words: \"each stem quotes the full sentence, so the grammar items could be solved from the sentence alone\"."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Covered by the prereg with-source rule for PoW (no_source_needed from stem+options, >=2 of 3 drops): 0 of 24 PoW items reached 2. CSE/KoL are decidable inside the quoted sentence by design (edit-in-place convention); single-sentence retrievability recorded (90/120 by >=2 samples), not a drop rule."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key longest 6.7% / shortest 20.0%; blind misses all PoW (7/7), solvers named \"the usual ACT answer: No, it digresses\" on add/delete items and it was right on some, wrong on others. No cross-item key-prose tell found by the graders."
+        }
+      }
+    },
+    {
+      "id": "act-english-v7-b-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 30,
+        "authors": 1,
+        "method": "bank-act-english brief; per-passage mix CSE 7 / PoW 2 / KoL 1 pre-registered in act-english-v7.PREREG.md (ca0df01f)"
+      },
+      "contentSha": "f7d1650ad7619b78b462b494e776e8474e165a7c6c983b2a84da6dcabebcc9a9",
+      "status": "qc",
+      "cohort": "act-english-v7",
+      "note": "Passages P4-P6 of the 12-passage act-english-v7 batch (one ledger entry per inserted file; the inserter gates per file). STAGED (BANK_VERIFIED=false) per bank-act-english section 3; released only by a human sitting (bank-gate section 5: <= ~40% blind clean, >= ~60% archive, between = second reader; oversample CSE, the domain the blind screen flagged). Only post-grade edit: the whole-essay PoW stem \"Question 10 asks about the preceding passage as a whole\" reworded to \"This question asks...\" (a hardcoded number is wrong once passages are drawn in any order); no option, key or passage changed. REGISTER A74.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "act-bank-helper check english: structure OK, 3 passages x 10, CSE 21 / PoW 6 / KoL 3. Batch-level prereg bar 1 over all 120: dealt key slots 30/30/30/30; key uniquely longest 6.7%, uniquely shortest 20.0% (bar 25%); NO CHANGE keyed 24/107 = 22.4% (bar 15-35%); Point [A]-[D] each keyed once; Yes/Kept 5/8 (bar 30-70%); semicolon key 1/16."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Prereg bar 3: three independent Claude samples per item (grader-a/b/c over act-en7-h1/h2.ws.md, key unmarked). 120/120 picks on key in all three samples (360/360). Second-defensible named by ONE sample only on 4 items (P1-Q08 B, P3-Q10 A, P4-Q07 D who/whom, P9-Q10 B), none by >= 2, so no drop. PoW no_source_needed: max 1 of 3 on any PoW item (P4-Q10, P6-Q03, P7-Q01), none >= 2. Soft notes kept, not drop rules: P5-Q02 \"After all\" judged a weak-but-only-viable transition by 2 samples. Grader-median difficulty easy 84 / medium 35 / hard 1 across the 120 (author labels 36/60/24 kept on the rows; ACT draw does not select by band)."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 120,
+          "mean": 94.2,
+          "control": null,
+          "verdict": "SCREEN, NOT A VERDICT (prereg bar 2; CLAUDE.md: the options-only instrument saturates on ACT verbal, model 76-79% vs human 10% on shipped English). SPLIT=10, one item per passage per file, a fresh solver per file: 113/120, confident 100/100. Per domain vs the matched live control (actlive-score 2026-09-12): CSE 84/84 = 100.0% vs 68.0% -> +32.0, SCREEN FLAG (> +15); PoW 17/24 = 70.8% vs 66.7% -> +4.1, no flag; KoL 12/12 = 100% vs 92.9%, report-only (ceiling leaves 7.1). Per prereg a flag does not drop items; the sitting oversamples CSE. Solvers in their words: \"each stem quotes the full sentence, so the grammar items could be solved from the sentence alone\"."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Covered by the prereg with-source rule for PoW (no_source_needed from stem+options, >=2 of 3 drops): 0 of 24 PoW items reached 2. CSE/KoL are decidable inside the quoted sentence by design (edit-in-place convention); single-sentence retrievability recorded (90/120 by >=2 samples), not a drop rule."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key longest 6.7% / shortest 20.0%; blind misses all PoW (7/7), solvers named \"the usual ACT answer: No, it digresses\" on add/delete items and it was right on some, wrong on others. No cross-item key-prose tell found by the graders."
+        }
+      }
+    },
+    {
+      "id": "act-english-v7-c-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 30,
+        "authors": 1,
+        "method": "bank-act-english brief; per-passage mix CSE 7 / PoW 2 / KoL 1 pre-registered in act-english-v7.PREREG.md (ca0df01f)"
+      },
+      "contentSha": "05e82da0aebd613d2af3c3b5d639e261f759d2a93fe01eed12f7c55defb7c8a2",
+      "status": "qc",
+      "cohort": "act-english-v7",
+      "note": "Passages P7-P9 of the 12-passage act-english-v7 batch (one ledger entry per inserted file; the inserter gates per file). STAGED (BANK_VERIFIED=false) per bank-act-english section 3; released only by a human sitting (bank-gate section 5: <= ~40% blind clean, >= ~60% archive, between = second reader; oversample CSE, the domain the blind screen flagged). Only post-grade edit: the whole-essay PoW stem \"Question 10 asks about the preceding passage as a whole\" reworded to \"This question asks...\" (a hardcoded number is wrong once passages are drawn in any order); no option, key or passage changed. REGISTER A74.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "act-bank-helper check english: structure OK, 3 passages x 10, CSE 21 / PoW 6 / KoL 3. Batch-level prereg bar 1 over all 120: dealt key slots 30/30/30/30; key uniquely longest 6.7%, uniquely shortest 20.0% (bar 25%); NO CHANGE keyed 24/107 = 22.4% (bar 15-35%); Point [A]-[D] each keyed once; Yes/Kept 5/8 (bar 30-70%); semicolon key 1/16."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Prereg bar 3: three independent Claude samples per item (grader-a/b/c over act-en7-h1/h2.ws.md, key unmarked). 120/120 picks on key in all three samples (360/360). Second-defensible named by ONE sample only on 4 items (P1-Q08 B, P3-Q10 A, P4-Q07 D who/whom, P9-Q10 B), none by >= 2, so no drop. PoW no_source_needed: max 1 of 3 on any PoW item (P4-Q10, P6-Q03, P7-Q01), none >= 2. Soft notes kept, not drop rules: P5-Q02 \"After all\" judged a weak-but-only-viable transition by 2 samples. Grader-median difficulty easy 84 / medium 35 / hard 1 across the 120 (author labels 36/60/24 kept on the rows; ACT draw does not select by band)."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 120,
+          "mean": 94.2,
+          "control": null,
+          "verdict": "SCREEN, NOT A VERDICT (prereg bar 2; CLAUDE.md: the options-only instrument saturates on ACT verbal, model 76-79% vs human 10% on shipped English). SPLIT=10, one item per passage per file, a fresh solver per file: 113/120, confident 100/100. Per domain vs the matched live control (actlive-score 2026-09-12): CSE 84/84 = 100.0% vs 68.0% -> +32.0, SCREEN FLAG (> +15); PoW 17/24 = 70.8% vs 66.7% -> +4.1, no flag; KoL 12/12 = 100% vs 92.9%, report-only (ceiling leaves 7.1). Per prereg a flag does not drop items; the sitting oversamples CSE. Solvers in their words: \"each stem quotes the full sentence, so the grammar items could be solved from the sentence alone\"."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Covered by the prereg with-source rule for PoW (no_source_needed from stem+options, >=2 of 3 drops): 0 of 24 PoW items reached 2. CSE/KoL are decidable inside the quoted sentence by design (edit-in-place convention); single-sentence retrievability recorded (90/120 by >=2 samples), not a drop rule."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key longest 6.7% / shortest 20.0%; blind misses all PoW (7/7), solvers named \"the usual ACT answer: No, it digresses\" on add/delete items and it was right on some, wrong on others. No cross-item key-prose tell found by the graders."
+        }
+      }
+    },
+    {
+      "id": "act-english-v7-d-2026-10-02",
+      "createdAt": "2026-10-02",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 30,
+        "authors": 1,
+        "method": "bank-act-english brief; per-passage mix CSE 7 / PoW 2 / KoL 1 pre-registered in act-english-v7.PREREG.md (ca0df01f)"
+      },
+      "contentSha": "ad4deabafd656198158b3084452cfc9c801b233d81f3fc16022752ad88337f99",
+      "status": "qc",
+      "cohort": "act-english-v7",
+      "note": "Passages P10-P12 of the 12-passage act-english-v7 batch (one ledger entry per inserted file; the inserter gates per file). STAGED (BANK_VERIFIED=false) per bank-act-english section 3; released only by a human sitting (bank-gate section 5: <= ~40% blind clean, >= ~60% archive, between = second reader; oversample CSE, the domain the blind screen flagged). Only post-grade edit: the whole-essay PoW stem \"Question 10 asks about the preceding passage as a whole\" reworded to \"This question asks...\" (a hardcoded number is wrong once passages are drawn in any order); no option, key or passage changed. REGISTER A74.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "act-bank-helper check english: structure OK, 3 passages x 10, CSE 21 / PoW 6 / KoL 3. Batch-level prereg bar 1 over all 120: dealt key slots 30/30/30/30; key uniquely longest 6.7%, uniquely shortest 20.0% (bar 25%); NO CHANGE keyed 24/107 = 22.4% (bar 15-35%); Point [A]-[D] each keyed once; Yes/Kept 5/8 (bar 30-70%); semicolon key 1/16."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Prereg bar 3: three independent Claude samples per item (grader-a/b/c over act-en7-h1/h2.ws.md, key unmarked). 120/120 picks on key in all three samples (360/360). Second-defensible named by ONE sample only on 4 items (P1-Q08 B, P3-Q10 A, P4-Q07 D who/whom, P9-Q10 B), none by >= 2, so no drop. PoW no_source_needed: max 1 of 3 on any PoW item (P4-Q10, P6-Q03, P7-Q01), none >= 2. Soft notes kept, not drop rules: P5-Q02 \"After all\" judged a weak-but-only-viable transition by 2 samples. Grader-median difficulty easy 84 / medium 35 / hard 1 across the 120 (author labels 36/60/24 kept on the rows; ACT draw does not select by band)."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 120,
+          "mean": 94.2,
+          "control": null,
+          "verdict": "SCREEN, NOT A VERDICT (prereg bar 2; CLAUDE.md: the options-only instrument saturates on ACT verbal, model 76-79% vs human 10% on shipped English). SPLIT=10, one item per passage per file, a fresh solver per file: 113/120, confident 100/100. Per domain vs the matched live control (actlive-score 2026-09-12): CSE 84/84 = 100.0% vs 68.0% -> +32.0, SCREEN FLAG (> +15); PoW 17/24 = 70.8% vs 66.7% -> +4.1, no flag; KoL 12/12 = 100% vs 92.9%, report-only (ceiling leaves 7.1). Per prereg a flag does not drop items; the sitting oversamples CSE. Solvers in their words: \"each stem quotes the full sentence, so the grammar items could be solved from the sentence alone\"."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Covered by the prereg with-source rule for PoW (no_source_needed from stem+options, >=2 of 3 drops): 0 of 24 PoW items reached 2. CSE/KoL are decidable inside the quoted sentence by design (edit-in-place convention); single-sentence retrievability recorded (90/120 by >=2 samples), not a drop rule."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key longest 6.7% / shortest 20.0%; blind misses all PoW (7/7), solvers named \"the usual ACT answer: No, it digresses\" on add/delete items and it was right on some, wrong on others. No cross-item key-prose tell found by the graders."
+        }
+      }
     }
   ],
   "auditedCohorts": [

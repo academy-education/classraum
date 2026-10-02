@@ -49,6 +49,22 @@ function actRanges(src, exportName) {
   return out
 }
 
+/** The range MAXIMA of the same export, as decimals. Kept separate so
+ *  `domains` stays the minimums every existing caller reads. Added 2026-10-02:
+ *  form-capacity's ACT English compliance replay needs the ceilings too,
+ *  because Production of Writing 32% is the range a 4/2/4 passage breaks. */
+function actMaxima(src, exportName) {
+  const m = src.match(new RegExp(`export const ${exportName}[^=]*=\\s*\\{([\\s\\S]*?)\\n\\}`))
+  if (!m) throw new Error(`blueprint-quotas: ${exportName} not found in act-test.ts`)
+  const out = {}
+  for (const line of m[1].split('\n')) {
+    const mm = line.match(/'([^']+)':\s*\[\s*(\d+)\s*,\s*(\d+)\s*\]/)
+    if (mm) out[mm[1]] = Number(mm[3]) / 100
+  }
+  if (!Object.keys(out).length) throw new Error(`blueprint-quotas: ${exportName} maxima parsed to zero domains`)
+  return out
+}
+
 /** Pull one section's shares out of BLUEPRINT in assemble.ts.
  *
  * ANCHORED INSIDE `BLUEPRINT` ON PURPOSE. The first version of this searched
@@ -102,7 +118,7 @@ export const QUOTAS = {
   'sat/math': { form: 44, domains: satShares(SAT_SRC, 'math') },
   'sat/reading_writing': { form: 54, domains: satShares(SAT_SRC, 'reading_writing') },
   // Published RANGE MINIMUMS, not a partition. They do not sum to 1 on purpose.
-  'act/english': { form: actForm('english'), minimums: true, domains: actRanges(ACT_SRC, 'ENGLISH_QUOTAS') },
+  'act/english': { form: actForm('english'), minimums: true, domains: actRanges(ACT_SRC, 'ENGLISH_QUOTAS'), max: actMaxima(ACT_SRC, 'ENGLISH_QUOTAS') },
   'act/math': { form: actForm('math'), minimums: true, domains: actRanges(ACT_SRC, 'MATH_QUOTAS') },
   'act/reading': { form: actForm('reading'), minimums: true, domains: actRanges(ACT_SRC, 'READING_QUOTAS') },
   'act/science': { form: actForm('science'), minimums: true, domains: actRanges(ACT_SRC, 'SCIENCE_QUOTAS') },

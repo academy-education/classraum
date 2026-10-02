@@ -97,11 +97,19 @@ for (const dom of Object.keys(SAT_BLUEPRINT.reading_writing)) {
   }
 }
 
+/* PROJECT_COHORT=<cohort> counts that cohort's STAGED rows as if verified,
+ * to answer "what does this cohort buy once a sitting clears it". Every line
+ * of output is then a projection and the header says so -- a staged cohort is
+ * not servable, and a capacity number that silently included one would read
+ * exactly like a real one. */
+const PROJECT_COHORT = process.env.PROJECT_COHORT ?? ''
+if (PROJECT_COHORT && !/^[a-z0-9-]+$/.test(PROJECT_COHORT)) { console.error('REFUSING: PROJECT_COHORT must be a cohort slug'); process.exit(2) }
+
 const pageAll = async () => {
   const out = []
   for (let from = 0; ; from += 1000) {
     const { data, error } = await db.from('study_item_bank')
-      .select('id,family,section,domain,difficulty,passage_group_id')
+      .select('id,family,section,domain,difficulty,passage_group_id,cohort')
       /* .order() is LOAD-BEARING, not tidiness. Without a total order
        * PostgREST may return rows in a different order per page, so
        * .range() windows overlap or skip and pageAll silently returns a
@@ -111,7 +119,8 @@ const pageAll = async () => {
        * Algebra. Every form count, every "binding domain" and every
        * capacity figure taken from this script before this fix is
        * unreliable -- including a 100-form authoring plan sized off it. */
-      .eq('verified', true).eq('archived', false)
+      .eq('archived', false)
+      .or(PROJECT_COHORT ? `verified.eq.true,cohort.eq.${PROJECT_COHORT}` : 'verified.eq.true')
       .order('id', { ascending: true }).range(from, from + 999)
     if (error) throw new Error(error.message)
     out.push(...(data ?? [])); if (!data || data.length < 1000) break
@@ -135,6 +144,10 @@ for (const r of rows) {
   bank[k].total++
   if (r.passage_group_id) bank[k].groups[r.passage_group_id] = (bank[k].groups[r.passage_group_id] ?? 0) + 1
   const d = r.domain ?? '(none)'
+  if (r.passage_group_id) {
+    const gd = ((bank[k].groupDomains ??= {})[r.passage_group_id] ??= {})
+    gd[d] = (gd[d] ?? 0) + 1
+  }
   bank[k].byDomain[d] = (bank[k].byDomain[d] ?? 0) + 1
   if (r.difficulty === 'hard') bank[k].hardByDomain[d] = (bank[k].hardByDomain[d] ?? 0) + 1
 }
@@ -143,6 +156,11 @@ const pad = (s, n) => String(s).padEnd(n)
 const num = (s, n) => String(s).padStart(n)
 
 console.log('\nCOMPLETE NON-REPEATING FORMS PER STUDENT\n')
+if (PROJECT_COHORT) {
+  const n = rows.filter(r => r.cohort === PROJECT_COHORT).length
+  console.log(`*** PROJECTION: ${n} STAGED rows of ${PROJECT_COHORT} counted as if verified. Not servable until a sitting flips them. ***\n`)
+  if (!n) { console.error(`REFUSING: PROJECT_COHORT=${PROJECT_COHORT} matched zero rows -- a projection over nothing is not a projection.`); process.exit(2) }
+}
 console.log(pad('test', 24) + num('items', 6) + num('naive', 7) + num('by domain', 11) + '   binding domain')
 console.log('-'.repeat(92))
 
@@ -170,6 +188,12 @@ for (const [family, section, label, perForm, hidden] of SECTIONS) {
    * Math, where 20 Statistics items moved route-aware capacity by zero
    * because Statistics was not the binding domain.
    *
+   * UPDATED 2026-10-02: the english draw now DOES look at domain --
+   * pickEnglishPassages picks five whole passages whose counts sit inside
+   * ENGLISH_QUOTAS. Capacity is still whole complete passages; what domain
+   * mix changes is how many of those forms are COMPLIANT, which the note
+   * below now replays rather than inferring from bank-wide shares.
+   *
    * ACT reading and science are also passage-drawn, but their draw carries a
    * real accept predicate (one passage per genre; per-format counts), so a
    * domain reading of them is wrong in a different way and is flagged rather
@@ -196,12 +220,58 @@ for (const [family, section, label, perForm, hidden] of SECTIONS) {
         const share = (b.byDomain[dom] ?? 0) / b.total
         if (share < min) lines.push(`${dom} ${(100 * share).toFixed(1)}% vs floor ${(100 * min).toFixed(0)}%`)
       }
-      note = lines.length
-        ? `  BLUEPRINT VIOLATION on every form: ${lines.join('; ')}`
-        : `  blueprint mix satisfied over ${Object.keys(quota).length} domains`
+      /* A bank-wide share above every floor does NOT mean a form can be
+       * drawn inside the ranges: passages are indivisible, and every range
+       * has a CEILING too (PoW 32% is the one a 4/2/4 passage breaks). So
+       * also replay the assembler's own rule -- pickEnglishPassages in
+       * assemble.ts: five whole passages, every domain's count on the
+       * 50-item form inside [ceil(min), floor(max)] -- as sequential draws
+       * for one student, each removing what it used. */
+      const n = pd.want * pd.per
+      const doms = Object.keys(quota)
+      const lo = doms.map(d => Math.ceil(quota[d] * n - 1e-9))
+      const maxima = QUOTAS[`${family}/${section}`]?.max
+      if (!maxima || doms.some(d => typeof maxima[d] !== 'number')) {
+        console.error(`REFUSING: no range maxima for ${family}/${section} -- a compliance replay without ceilings would pass forms that break them`)
+        process.exit(2)
+      }
+      const hi = doms.map(d => Math.floor(maxima[d] * n + 1e-9))
+      let pool = Object.entries(b.groupDomains ?? {}).filter(([g]) => (b.groups[g] ?? 0) >= pd.per)
+        .sort(([a], [c]) => a.localeCompare(c)).map(([g, dd]) => [g, doms.map(d => dd[d] ?? 0)])
+      let compliant = 0
+      for (;;) {
+        const pick = []
+        const tally = doms.map(() => 0)
+        const dfs = start => {
+          if (pick.length === pd.want) return tally.every((t, i) => t >= lo[i] && t <= hi[i])
+          for (let i = start; i <= pool.length - (pd.want - pick.length); i++) {
+            const c = pool[i][1]
+            if (c.some((v, k) => tally[k] + v > hi[k])) continue
+            c.forEach((v, k) => { tally[k] += v }); pick.push(i)
+            if (dfs(i + 1)) return true
+            pick.pop(); c.forEach((v, k) => { tally[k] -= v })
+          }
+          return false
+        }
+        if (!dfs(0)) break
+        compliant++
+        const used = new Set(pick)
+        pool = pool.filter((_, i) => !used.has(i))
+      }
+      b.compliantForms = compliant
+      // The verdict is the replay, not the bank-wide share: shares can clear
+      // every floor while no five whole passages fit, and a share under a
+      // floor can coexist with a few compliant forms.
+      if (compliant === 0) {
+        note = `  BLUEPRINT VIOLATION on every form: ${lines.length ? lines.join('; ') : 'bank-wide shares clear every floor, but NO five whole passages land inside every range'}`
+      } else if (compliant < forms) {
+        note = `  BLUEPRINT VIOLATION on ${forms - compliant} of ${forms} forms: only ${compliant} drawable inside every range (sequential draws, the assembler's rule)${lines.length ? '; ' + lines.join('; ') : ''}`
+      } else {
+        note = `  blueprint mix satisfied: all ${forms} forms drawable inside every range over ${doms.length} domains (sequential draws, the assembler's rule)`
+      }
     }
     console.log(pad(label + (hidden ? ' (hidden)' : ''), 24) + num(b.total, 6) + num(naive, 7) + num(forms, 11)
-      + `   ${complete} complete passages / ${pd.want} per form — DRAWN BY PASSAGE, no domain filter`)
+      + `   ${complete} complete passages / ${pd.want} per form — drawn by passage, mix chosen to fit ENGLISH_QUOTAS (pickEnglishPassages)`)
     notes.push(`${label}:${note}`)
     continue
   }
