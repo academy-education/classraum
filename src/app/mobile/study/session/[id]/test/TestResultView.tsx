@@ -730,6 +730,7 @@ export function TestResultView({
             {tally.counted > 0 && <div className="bg-emerald-500" style={{ flexGrow: tally.counted }} />}
             {tally.pilot > 0 && <div className="bg-orange-400" style={{ flexGrow: tally.pilot }} />}
             {tally.rubric > 0 && <div className="bg-primary" style={{ flexGrow: tally.rubric }} />}
+            {tally.unscored > 0 && <div className="bg-gray-400" style={{ flexGrow: tally.unscored }} />}
           </div>
         </div>
 
@@ -761,6 +762,14 @@ export function TestResultView({
                     : 'Scoring these now — feedback appears in a moment.')
               : undefined}
             subTone="info" />
+          {/* Only the ISEE/SSAT essay ever lands here, so it renders only
+              when non-zero; a dimmed "Not scored 0" on every TOEFL and SAT
+              result would be a bucket that cannot apply to that test. */}
+          {tally.unscored > 0 && (
+            <TallyRow dot="bg-gray-400" count={tally.unscored} unit={questionUnit(tally.unscored)}
+              label={String(t('study.test.tally.unscoredLabel'))}
+              note={String(t('study.test.tally.unscoredNote'))} />
+          )}
         </div>
       </div>
       )}

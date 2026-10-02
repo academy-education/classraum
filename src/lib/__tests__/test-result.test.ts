@@ -162,11 +162,14 @@ describe('buildResultModel', () => {
 })
 
 describe('tallyRows', () => {
-  const rows = (specs: { ungraded?: boolean; isPilot?: boolean; answered?: boolean; blanks?: number }[]) =>
+  // An ungraded row defaults to a rubric type (writing_email), because
+  // that is what `ungraded` meant when these fixtures were written;
+  // `essay` makes it an unscored admission essay instead.
+  const rows = (specs: { ungraded?: boolean; essay?: boolean; isPilot?: boolean; answered?: boolean; blanks?: number }[]) =>
     specs.map(s => ({
       question: s.blanks
         ? { prompt: 'p', type: 'fill_in_blanks', blanks: Array.from({ length: s.blanks }, (_, i) => ({ id: i, answer: 'a' })) }
-        : { prompt: 'p', type: 'multiple_choice' },
+        : { prompt: 'p', type: s.essay ? 'essay' : s.ungraded ? 'writing_email' : 'multiple_choice' },
       studentAnswer: s.answered === false ? null : 'A',
       correct: true,
       ungraded: !!s.ungraded,
@@ -189,7 +192,7 @@ describe('tallyRows', () => {
     ]))
     expect(t.counted).toBe(35)          // == study_sessions.total_count
     expect(t.pilot).toBe(13)
-    expect(t.counted + t.pilot + t.rubric).toBe(48)   // == deliveredTotal
+    expect(t.counted + t.pilot + t.rubric + t.unscored).toBe(48)   // == deliveredTotal
     // The bug the account owner hit: item-counting gave 17 here, a number
     // that appeared nowhere else on the screen.
     expect(t.counted).not.toBe(17)
@@ -205,9 +208,10 @@ describe('tallyRows', () => {
     expect(t.counted).not.toBe(1)
   })
 
-  it('partitions: counted + pilot + rubric always equals delivered', () => {
+  it('partitions: counted + pilot + rubric + unscored always equals delivered', () => {
     const cases = [
       rows([{}, {}, { isPilot: true }, { ungraded: true }, { answered: false }]),
+      rows([{}, { ungraded: true, essay: true }, { ungraded: true }]),
       rows([]),
       rows([{ isPilot: true, ungraded: true }]),
       rows([{ isPilot: true, blanks: 10 }, { ungraded: true, blanks: 4 }]),
@@ -216,7 +220,7 @@ describe('tallyRows', () => {
     for (const rs of cases) {
       const t = tallyRows(rs)
       const delivered = rs.reduce((n, r) => n + deliveredWeight(r.question), 0)
-      expect(t.counted + t.pilot + t.rubric).toBe(delivered)
+      expect(t.counted + t.pilot + t.rubric + t.unscored).toBe(delivered)
       expect(t.skippedWithinCounted).toBeLessThanOrEqual(t.counted)
     }
   })
@@ -228,7 +232,22 @@ describe('tallyRows', () => {
 
   it('classifies rubric before pilot so no question is counted twice', () => {
     const t = tallyRows(rows([{ isPilot: true, ungraded: true }]))
-    expect(t).toEqual({ counted: 0, pilot: 0, rubric: 1, skippedWithinCounted: 0 })
+    expect(t).toEqual({ counted: 0, pilot: 0, rubric: 1, unscored: 0, skippedWithinCounted: 0 })
+  })
+
+  // ISEE Essay / SSAT Writing Sample are open response (ungraded) but
+  // are NOT in RESPONSE_SKILL_BY_TYPE: the rubric grader never sees them.
+  // Counting them under "Graded by rubric" promised a grade that never
+  // arrives.
+  it('counts an unscored admission essay as unscored, not as rubric-graded', () => {
+    const t = tallyRows(rows([{}, { ungraded: true, essay: true }, { ungraded: true }]))
+    expect(t).toEqual({ counted: 1, pilot: 0, rubric: 1, unscored: 1, skippedWithinCounted: 0 })
+  })
+
+  it('treats essay_choice the same as essay', () => {
+    const t = tallyRows([{ ...rows([{ ungraded: true }])[0]!, question: { prompt: 'p', type: 'essay_choice' } }])
+    expect(t.unscored).toBe(1)
+    expect(t.rubric).toBe(0)
   })
 })
 

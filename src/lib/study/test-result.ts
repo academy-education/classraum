@@ -39,6 +39,7 @@
 import { scoreAdmission, type AdmissionScore } from './admission-tests'
 import { scoreActSection, type ActSectionKey, type ActSectionScore } from './act-test'
 import { bracketedLabel, normaliseSectionLabel } from './section-breakdown'
+import { RESPONSE_SKILL_BY_TYPE } from './openResponse'
 export type ResultUnit = 'card' | 'delivered' | 'scored'
 
 /** Minimal shape of a stored question. Structural rather than the submit
@@ -248,15 +249,26 @@ export interface ResultTally {
   pilot: number
   /** Rubric-graded open response — no key, not in the denominator. */
   rubric: number
+  /** Open response nobody grades: the ISEE Essay / SSAT Writing Sample,
+   *  which the real tests send to schools unscored. `ungraded` like the
+   *  rubric items, but NOT in RESPONSE_SKILL_BY_TYPE, so the grader never
+   *  sees them; counting them under "Graded by rubric" promised a grade
+   *  that never arrives. */
+  unscored: number
   /** Subset of `counted` left blank. Counted as wrong, still counted. */
   skippedWithinCounted: number
 }
 
 export function tallyRows(rows: ResultRow[]): ResultTally {
-  const tally: ResultTally = { counted: 0, pilot: 0, rubric: 0, skippedWithinCounted: 0 }
+  const tally: ResultTally = { counted: 0, pilot: 0, rubric: 0, unscored: 0, skippedWithinCounted: 0 }
   for (const r of rows) {
     const w = deliveredWeight(r.question)
-    if (r.ungraded) tally.rubric += w
+    if (r.ungraded) {
+      // The grader's own routing map, so "graded by rubric" here and
+      // "sent to the rubric grader" cannot disagree.
+      if (Object.prototype.hasOwnProperty.call(RESPONSE_SKILL_BY_TYPE, r.question.type ?? '')) tally.rubric += w
+      else tally.unscored += w
+    }
     else if (r.isPilot) tally.pilot += w
     else {
       tally.counted += w
