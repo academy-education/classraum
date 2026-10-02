@@ -292,7 +292,7 @@ function PhoneFrame({
       <div
         className={`
           relative w-full max-w-[360px] bg-white overflow-hidden
-          rounded-[2.5rem] ${highlight ? 'ring-1 ring-primary/30 shadow-[0_24px_48px_-12px_rgba(40,133,232,0.15)]' : 'ring-1 ring-gray-200 shadow-[0_12px_24px_-12px_rgba(0,0,0,0.12)]'}
+          rounded-[2.5rem] ${highlight ? 'ring-1 ring-primary/30 shadow-[0_24px_48px_-12px_rgba(23,118,219,0.15)]' : 'ring-1 ring-gray-200 shadow-[0_12px_24px_-12px_rgba(0,0,0,0.12)]'}
           ${tall ? 'h-[680px]' : 'h-[520px]'}
         `}
       >
@@ -811,7 +811,7 @@ function NewBottomSheet() {
         </div>
         <div className="border-t border-gray-100 p-3 flex items-end gap-2 bg-gray-50/50">
           <textarea placeholder="Add a comment…" className="flex-1 text-sm bg-white rounded-2xl px-3 py-2 resize-none ring-1 ring-gray-200 focus:ring-primary outline-none" rows={1} />
-          <button className="w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center shadow-[0_4px_12px_-4px_rgba(40,133,232,0.5)]"><Send className="w-4 h-4" /></button>
+          <button className="w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center shadow-[0_4px_12px_-4px_rgba(23,118,219,0.5)]"><Send className="w-4 h-4" /></button>
         </div>
       </div>
     </div>

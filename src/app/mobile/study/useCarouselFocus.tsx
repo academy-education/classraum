@@ -98,7 +98,7 @@ export function CarouselDots({
             aria-label={String(t('study.carouselGoTo', { n: i + 1 }))}
             className={`h-1.5 rounded-full transition-all duration-300 ease-out ${
               active
-                ? 'w-6 bg-primary shadow-[0_0_8px_rgba(40,133,232,0.35)]'
+                ? 'w-6 bg-primary shadow-[0_0_8px_rgba(23,118,219,0.35)]'
                 : 'w-1.5 bg-gray-300 hover:bg-gray-400'
             }`}
           />

@@ -576,7 +576,7 @@ function TargetChipStrip({
                 key={test}
                 className={`group flex-shrink-0 inline-flex items-center h-7 rounded-full text-[11px] font-bold tracking-tight transition-all ${
                   isCurrent
-                    ? 'bg-primary text-white shadow-[0_2px_6px_-2px_rgba(40,133,232,0.45)]'
+                    ? 'bg-primary text-white shadow-[0_2px_6px_-2px_rgba(23,118,219,0.45)]'
                     : 'bg-white ring-1 ring-gray-200 text-gray-700'
                 }`}
               >
@@ -800,7 +800,7 @@ function PathList({
       {/* Hero-style progress banner — gradient card with mascot inline,
           big % display, sub-metric. Replaces the plain white card. */}
       <div className="max-w-md mx-auto px-5 pt-4 pb-2">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-indigo-700 text-white p-5 shadow-[0_10px_28px_-12px_rgba(40,133,232,0.55)]">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-indigo-700 text-white p-5 shadow-[0_10px_28px_-12px_rgba(23,118,219,0.55)]">
           <div aria-hidden className="pointer-events-none absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/15 blur-3xl" />
           <div aria-hidden className="pointer-events-none absolute -bottom-8 -left-6 w-32 h-32 rounded-full bg-indigo-300/25 blur-2xl" />
           <div className="relative flex items-center gap-3">
@@ -947,7 +947,7 @@ function PathList({
               <button
                 type="button"
                 onClick={onRepeatRequest}
-                className="mt-3.5 inline-flex items-center gap-1.5 h-11 px-5 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13px] font-bold shadow-[0_6px_14px_-4px_rgba(40,133,232,0.55)] hover:brightness-110 active:scale-95 transition-all"
+                className="mt-3.5 inline-flex items-center gap-1.5 h-11 px-5 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13px] font-bold shadow-[0_6px_14px_-4px_rgba(23,118,219,0.55)] hover:brightness-110 active:scale-95 transition-all"
               >
                 <Repeat className="w-4 h-4" />
                 {ko
@@ -1057,7 +1057,7 @@ function PathNode({
 
   const shadow =
     status === 'active'
-      ? 'shadow-[0_14px_32px_-8px_rgba(40,133,232,0.55)]'
+      ? 'shadow-[0_14px_32px_-8px_rgba(23,118,219,0.55)]'
       : status === 'completed'
         ? 'shadow-[0_8px_20px_-6px_rgba(16,185,129,0.55)]'
         : 'shadow-none'
@@ -1143,7 +1143,7 @@ function ActiveCallout({
   const ko = language === 'korean'
   const resume = !!node.state.resumeSessionId
   return (
-    <div className="relative z-10 mt-3 w-[240px] max-w-[min(240px,calc(100vw-40px))] rounded-2xl bg-white ring-1 ring-primary/20 shadow-[0_10px_28px_-8px_rgba(40,133,232,0.40)] px-4 py-3">
+    <div className="relative z-10 mt-3 w-[240px] max-w-[min(240px,calc(100vw-40px))] rounded-2xl bg-white ring-1 ring-primary/20 shadow-[0_10px_28px_-8px_rgba(23,118,219,0.40)] px-4 py-3">
       {/* Speech-bubble tail pointing up at the node */}
       <div
         aria-hidden
@@ -1163,7 +1163,7 @@ function ActiveCallout({
           type="button"
           onClick={onLaunch}
           disabled={launching}
-          className="mt-2.5 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13px] font-bold shadow-[0_6px_14px_-4px_rgba(40,133,232,0.55)] hover:brightness-110 active:scale-95 transition-all disabled:opacity-70 disabled:cursor-wait"
+          className="mt-2.5 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-gradient-to-br from-primary to-indigo-600 text-white text-[13px] font-bold shadow-[0_6px_14px_-4px_rgba(23,118,219,0.55)] hover:brightness-110 active:scale-95 transition-all disabled:opacity-70 disabled:cursor-wait"
         >
           {launching
             ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -1256,7 +1256,7 @@ function CompletedCallout({
           {node.state.completedSessionId && (
             <Link
               href={`/mobile/study/session/${node.state.completedSessionId}/summary`}
-              className="inline-flex items-center gap-1 h-9 px-3.5 rounded-full whitespace-nowrap bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] hover:brightness-110 active:scale-95 transition-all"
+              className="inline-flex items-center gap-1 h-9 px-3.5 rounded-full whitespace-nowrap bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(23,118,219,0.28)] hover:brightness-110 active:scale-95 transition-all"
             >
               <ChevronRight className="w-3.5 h-3.5" />
               {ko ? '결과 보기' : 'View results'}
@@ -1456,7 +1456,7 @@ function TargetTestPicker({
           <button
             type="button"
             onClick={() => onPicked(sessionAdded[sessionAdded.length - 1])}
-            className="mt-5 w-full h-12 rounded-2xl bg-primary text-white text-[15px] font-bold hover:bg-primary/90 transition"
+            className="mt-5 w-full h-12 rounded-2xl bg-primary text-white text-[15px] font-bold hover:bg-primary-hover transition"
           >
             {ko
               ? `${sessionAdded.length}개 경로로 시작하기`

@@ -29,7 +29,7 @@ export const TEST_STATE_META: Record<TestState, {
   },
   generating: {
     icon: Loader2,
-    iconColorClass: 'bg-gradient-to-br from-primary to-indigo-600 text-white shadow-[0_4px_10px_-2px_rgba(40,133,232,0.35)]',
+    iconColorClass: 'bg-gradient-to-br from-primary to-indigo-600 text-white shadow-[0_4px_10px_-2px_rgba(23,118,219,0.35)]',
     label: ko => ko ? '생성 중' : 'Generating',
   },
   in_progress: {

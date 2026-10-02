@@ -233,12 +233,12 @@ function renderRecapEmail(input: {
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="max-width: 560px; margin: 0 auto;">
     <tr>
       <td style="padding-bottom: 16px;">
-        <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #2885E8;">Weekly recap</span>
+        <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #1776db;">Weekly recap</span>
         <h1 style="margin: 8px 0 4px; font-size: 24px; line-height: 1.2; color: #111827;">Hi ${escapeHtml(input.name)}, here's your week 👋</h1>
       </td>
     </tr>
     <tr>
-      <td style="background: linear-gradient(135deg, #2885E8 0%, #4f46e5 100%); border-radius: 16px; padding: 24px; color: white;">
+      <td style="background: linear-gradient(135deg, #1776db 0%, #4f46e5 100%); border-radius: 16px; padding: 24px; color: white;">
         <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.85; margin-bottom: 8px;">Last 7 days</div>
         <div style="display: table; width: 100%;">
           <div style="display: table-cell; padding-right: 16px;">

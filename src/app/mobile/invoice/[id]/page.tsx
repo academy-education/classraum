@@ -476,7 +476,7 @@ export default function MobileInvoiceDetailsPage() {
                 : t('mobile.invoices.paymentDue')}
             </p>
             <Button
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+              className="w-full bg-primary hover:bg-primary-hover text-primary-foreground"
               onClick={() => router.push(`/mobile/invoice/${invoice.id}/pay`)}
             >
               <CreditCard className="w-4 h-4 mr-2" strokeWidth={1.75} />

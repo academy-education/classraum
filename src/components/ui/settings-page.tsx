@@ -1140,7 +1140,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                             <span className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                               uploadingLogo
                                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                                : 'bg-primary text-white hover:bg-primary/90 cursor-pointer'
+                                : 'bg-primary text-white hover:bg-primary-hover cursor-pointer'
                             }`}>
                               {uploadingLogo ? (
                                 <>

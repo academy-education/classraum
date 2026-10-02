@@ -81,7 +81,7 @@ export default function PricingPage() {
       <header className="relative pt-20 pb-12 text-center">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(40,133,232,.06), transparent 70%)" }}
+          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(23,118,219,.06), transparent 70%)" }}
         />
         <div className={`relative ${WRAP}`}>
           <h1 className="text-[clamp(34px,4.6vw,56px)] font-bold text-[#163e64] leading-[1.16] tracking-[-0.024em]">
@@ -202,12 +202,12 @@ export default function PricingPage() {
                 className={`${CARD} ${CARD_HOVER} hv4-fade group relative overflow-hidden p-7 pt-8 flex flex-col`}
                 style={{ transitionDelay: `${n * 70}ms` }}
               >
-                <span className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#2885e8,#00D0AE)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#1776db,#00D0AE)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="rounded-xl overflow-hidden ring-1 ring-gray-100 h-[172px] mb-5 transition-transform duration-300 group-hover:-translate-y-0.5">
                   <Mock t={t} label={ts(t, shot)} />
                 </div>
                 <div className="flex items-center justify-between mb-5">
-                  <span className="w-11 h-11 rounded-xl bg-[linear-gradient(140deg,rgba(40,133,232,0.14),rgba(0,208,174,0.14))] ring-1 ring-primary/15 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                  <span className="w-11 h-11 rounded-xl bg-[linear-gradient(140deg,rgba(23,118,219,0.14),rgba(0,208,174,0.14))] ring-1 ring-primary/15 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
                     <Icon size={20} strokeWidth={2.2} />
                   </span>
                   <b className="font-mono text-[12px] font-semibold text-gray-300 tabular-nums transition-colors duration-300 group-hover:text-primary">

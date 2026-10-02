@@ -311,7 +311,7 @@ const DatePickerComponent = ({
                   onClick={() => handleDateSelect(day)}
                   className={`p-2 text-sm rounded hover:bg-gray-100 transition-colors ${
                     isSelected 
-                      ? 'bg-primary text-white hover:bg-primary/90' 
+                      ? 'bg-primary text-white hover:bg-primary-hover' 
                       : isToday 
                         ? 'bg-blue-50 text-primary font-medium' 
                         : ''
@@ -2467,7 +2467,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           strokeLinejoin="round" 
           strokeWidth={2} 
           d="M8 9l4-4 4 4" 
-          stroke={isAscending ? '#2885e8' : 'currentColor'}
+          stroke={isAscending ? '#1776db' : 'currentColor'}
           className={isAscending ? '' : 'text-gray-400'}
         />
         <path 
@@ -2475,7 +2475,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           strokeLinejoin="round" 
           strokeWidth={2} 
           d="M8 15l4 4 4-4" 
-          stroke={isDescending ? '#2885e8' : 'currentColor'}
+          stroke={isDescending ? '#1776db' : 'currentColor'}
           className={isDescending ? '' : 'text-gray-400'}
         />
       </svg>
@@ -4891,7 +4891,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                         showErrorToast(String(t('reports.feedbackSaveError')))
                                       }
                                     }}
-                                    className="bg-primary hover:bg-primary/90 text-white"
+                                    className="bg-primary hover:bg-primary-hover text-white"
                                   >
                                     <Save className="w-4 h-4 mr-1" />
                                     {t('common.save')}
@@ -4966,7 +4966,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                               <Button
                                 size="sm"
                                 onClick={handleSaveFeedback}
-                                className="bg-primary hover:bg-primary/90 text-white"
+                                className="bg-primary hover:bg-primary-hover text-white"
                               >
                                 <Save className="w-4 h-4 mr-1" />
                                 {t('common.save')}
@@ -5009,7 +5009,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                     size="sm"
                                     disabled={isStreamingAi}
                                     onClick={() => setIsEditingFeedback(true)}
-                                    className="bg-primary hover:bg-primary/90 text-white text-xs"
+                                    className="bg-primary hover:bg-primary-hover text-white text-xs"
                                   >
                                     <Edit className="w-4 h-4 mr-1" />
                                     {t('reports.addFeedback')}
@@ -5085,7 +5085,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             </Button>
             <Button
               onClick={useStreaming ? handleGenerateStreamingAiFeedback : handleGenerateAiFeedback}
-              className="bg-primary hover:bg-primary/90 text-white"
+              className="bg-primary hover:bg-primary-hover text-white"
             >
               <Bot className="w-4 h-4 mr-2" />
               {t('reports.generateAi')}

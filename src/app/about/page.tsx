@@ -129,7 +129,7 @@ function WeekBar({ t, variant }: { t: TFunc; variant: "before" | "after" }) {
       <div className="flex h-3.5 rounded-full overflow-hidden bg-gray-100 ring-1 ring-black/[0.04]">
         <span
           className="hv-grow-x h-full"
-          style={{ width: `${100 - admin}%`, background: "linear-gradient(90deg,#2885e8,#00D0AE)" }}
+          style={{ width: `${100 - admin}%`, background: "linear-gradient(90deg,#1776db,#00D0AE)" }}
         />
         <span
           className={`hv-grow-x h-full ${before ? "bg-rose-400" : "bg-rose-200"}`}
@@ -138,7 +138,7 @@ function WeekBar({ t, variant }: { t: TFunc; variant: "before" | "after" }) {
       </div>
       <div className="flex items-center gap-3.5 mt-2 text-[10.5px] font-medium text-gray-500">
         <span className="inline-flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full" style={{ background: "linear-gradient(90deg,#2885e8,#00D0AE)" }} />
+          <span className="w-2 h-2 rounded-full" style={{ background: "linear-gradient(90deg,#1776db,#00D0AE)" }} />
           {ts(t, "landing.aboutExtras.week.teaching")}
         </span>
         <span className="inline-flex items-center gap-1.5">
@@ -177,7 +177,7 @@ export default function AboutPage() {
       <header className="relative pt-20 pb-16 text-center">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(40,133,232,.06), transparent 70%)" }}
+          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(23,118,219,.06), transparent 70%)" }}
         />
         <div className={`relative ${WRAP}`}>
           <div className="flex justify-center mb-6">
@@ -312,9 +312,9 @@ export default function AboutPage() {
                   className={`${CARD} ${CARD_HOVER} hv4-fade group relative overflow-hidden p-5 pt-6`}
                   style={{ transitionDelay: `${i * 60}ms` }}
                 >
-                  <span className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#2885e8,#00D0AE)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#1776db,#00D0AE)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div className="flex items-center justify-between mb-4">
-                    <span className="w-10 h-10 rounded-xl bg-[linear-gradient(140deg,#2885e8,#1f6fc9)] text-white flex items-center justify-center shadow-[0_8px_18px_-8px_rgba(40,133,232,0.8)] transition-transform duration-300 group-hover:scale-105">
+                    <span className="w-10 h-10 rounded-xl bg-[linear-gradient(140deg,#1776db,#1568c2)] text-white flex items-center justify-center shadow-[0_8px_18px_-8px_rgba(23,118,219,0.8)] transition-transform duration-300 group-hover:scale-105">
                       <Icon size={19} strokeWidth={2.2} />
                     </span>
                     <b className="font-mono text-[12px] font-semibold text-gray-300 tabular-nums transition-colors duration-300 group-hover:text-[#00806c]">

@@ -374,7 +374,7 @@ export function FileViewerBottomSheet({
               </p>
               <button
                 onClick={handleDownload}
-                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors"
               >
                 <Download className="w-4 h-4" />
                 {t('common.download')}
@@ -393,7 +393,7 @@ export function FileViewerBottomSheet({
               <p className="text-sm text-gray-500 mb-5 max-w-xs">{error}</p>
               <button
                 onClick={handleDownload}
-                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors"
               >
                 <Download className="w-4 h-4" />
                 {t('common.download')}

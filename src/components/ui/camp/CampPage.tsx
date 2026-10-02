@@ -63,7 +63,7 @@ interface CampClassroom {
  * reduced to a dot and a tinted badge (accents inside the dashboard
  * design system, not marketing gradients). */
 const FAMILY_ACCENT: Record<string, { dot: string; badge: string; hex: string }> = {
-  sat: { dot: 'bg-[#2885e8]', badge: 'bg-[#2885e8]/10 text-[#2885e8]', hex: '#2885e8' },
+  sat: { dot: 'bg-primary', badge: 'bg-primary/10 text-primary', hex: '#1776db' },
   toefl: { dot: 'bg-[#7a5af8]', badge: 'bg-[#7a5af8]/10 text-[#7a5af8]', hex: '#7a5af8' },
 }
 const familyAccent = (family: string) => FAMILY_ACCENT[family] ?? FAMILY_ACCENT.sat!

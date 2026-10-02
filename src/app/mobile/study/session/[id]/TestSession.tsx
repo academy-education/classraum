@@ -1337,7 +1337,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               type="button"
               onClick={() => void doBuy(fivePack.id)}
               disabled={!!buyingPack}
-              className="inline-flex items-center justify-center gap-1.5 px-5 h-12 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-60 transition-all"
+              className="inline-flex items-center justify-center gap-1.5 px-5 h-12 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_8px_rgba(23,118,219,0.28)] active:scale-[0.98] disabled:opacity-60 transition-all"
             >
               {buyingPack === fivePack.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Coins className="w-4 h-4" />}
               {ko ? `크레딧 ${fivePack.credits}개 — ${fmtWon(fivePack.priceWon)}` : `Get ${fivePack.credits} credits — ${fmtWon(fivePack.priceWon)}`}
@@ -1678,7 +1678,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               onClick={togglePause}
               className={`tap-target inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold border transition-colors ${
                 paused
-                  ? 'bg-primary text-white border-primary hover:bg-primary/90'
+                  ? 'bg-primary text-white border-primary hover:bg-primary-hover'
                   : 'bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary'
               }`}
               aria-label={paused ? (ko ? '재개' : 'Resume') : (ko ? '일시정지' : 'Pause')}
@@ -1908,7 +1908,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 // below tells them recording is off.
                 setMicPrimed(true)
               }}
-              className="inline-flex items-center gap-2 px-7 h-12 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_8px_-2px_rgba(40,133,232,0.40)] active:scale-[0.99] transition"
+              className="inline-flex items-center gap-2 px-7 h-12 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_8px_-2px_rgba(23,118,219,0.40)] active:scale-[0.99] transition"
             >
               <Mic className="w-4 h-4" />
               {ko ? '테스트 시작' : 'Start Test'}
@@ -2821,7 +2821,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     else void routeToModule2()
                   }}
                   disabled={module2Loading || audioPlaying}
-                  className="h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[15px] font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                  className="h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(23,118,219,0.28)] text-[15px] font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
                 >
                   {module2Loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
                   {module2Loading
@@ -2879,7 +2879,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   setCurrentIdx(i => Math.min(test.questions.length - 1, i + 1))
                 }}
                 disabled={audioPlaying}
-                className="flex-1 lg:flex-none lg:min-w-[220px] h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-[15px] font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                className="flex-1 lg:flex-none lg:min-w-[220px] h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(23,118,219,0.28)] text-[15px] font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
               >
                 {t('study.test.next')}
                 <ArrowRight className="w-4 h-4" />
@@ -2936,7 +2936,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               // Focus moves here when the overlay opens so keyboard and
               // screen-reader users land on the only action available.
               ref={focusOnMount}
-              className="mt-5 inline-flex items-center justify-center gap-1.5 h-11 px-5 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_6px_-2px_rgba(40,133,232,0.35)] active:scale-[0.99] transition"
+              className="mt-5 inline-flex items-center justify-center gap-1.5 h-11 px-5 rounded-full bg-primary text-white text-[15px] font-semibold shadow-[0_2px_6px_-2px_rgba(23,118,219,0.35)] active:scale-[0.99] transition"
             >
               {ko ? '재개' : 'Resume test'}
             </button>

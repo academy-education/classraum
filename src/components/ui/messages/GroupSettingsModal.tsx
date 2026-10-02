@@ -478,7 +478,7 @@ export function GroupSettingsModal({
               onClick={handleAvatarPick}
               disabled={uploadingAvatar}
               aria-label={String(t('messages.changeAvatar'))}
-              className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center shadow-sm hover:bg-primary/90 disabled:opacity-50 transition-colors"
+              className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center shadow-sm hover:bg-primary-hover disabled:opacity-50 transition-colors"
             >
               {uploadingAvatar ? (
                 <Loader2 className="w-4 h-4 animate-spin" />

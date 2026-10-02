@@ -177,7 +177,7 @@ export default function FeaturesPage() {
       <header className="relative pt-20 pb-16 text-center">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(40,133,232,.06), transparent 70%)" }}
+          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(23,118,219,.06), transparent 70%)" }}
         />
         <div className={`relative ${WRAP}`}>
           <span className="text-[12.5px] font-semibold tracking-[0.08em] text-primary">{ts(t, F + "hero.eyebrow")}</span>
@@ -305,10 +305,10 @@ export default function FeaturesPage() {
                 className={`${CARD} ${CARD_HOVER} hv4-fade group relative overflow-hidden px-6 py-6`}
                 style={{ transitionDelay: `${(n - 1) * 60}ms` }}
               >
-                <span className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#2885e8,#00D0AE)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#1776db,#00D0AE)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 {/* the graphic lives in the corner, quiet until hover */}
                 <Glyph />
-                <span className="relative w-11 h-11 rounded-xl bg-[linear-gradient(140deg,rgba(40,133,232,0.14),rgba(0,208,174,0.16))] ring-1 ring-primary/15 text-primary flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                <span className="relative w-11 h-11 rounded-xl bg-[linear-gradient(140deg,rgba(23,118,219,0.14),rgba(0,208,174,0.16))] ring-1 ring-primary/15 text-primary flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                   <Icon size={19} strokeWidth={2.2} />
                 </span>
                 <h3 className="relative text-[15px] font-semibold text-gray-900">{ts(t, `${F}more.m${n}t`)}</h3>

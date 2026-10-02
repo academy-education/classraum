@@ -36,7 +36,7 @@ export default function FAQsPage() {
       <header className="relative pt-20 pb-14 text-center">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(40,133,232,.06), transparent 70%)" }}
+          style={{ background: "radial-gradient(560px 260px at 50% -40px, rgba(23,118,219,.06), transparent 70%)" }}
         />
         <div className={`relative ${WRAP}`}>
           <h1 className="text-[clamp(34px,4.6vw,56px)] font-bold text-[#163e64] leading-[1.16] tracking-[-0.024em]">

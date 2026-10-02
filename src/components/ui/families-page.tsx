@@ -666,7 +666,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           strokeLinejoin="round" 
           strokeWidth={2} 
           d="M8 9l4-4 4 4" 
-          stroke={isAscending ? '#2885e8' : 'currentColor'}
+          stroke={isAscending ? '#1776db' : 'currentColor'}
           className={isAscending ? '' : 'text-gray-400'}
         />
         <path 
@@ -674,7 +674,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           strokeLinejoin="round" 
           strokeWidth={2} 
           d="M8 15l4 4 4-4" 
-          stroke={isDescending ? '#2885e8' : 'currentColor'}
+          stroke={isDescending ? '#1776db' : 'currentColor'}
           className={isDescending ? '' : 'text-gray-400'}
         />
       </svg>
@@ -1315,7 +1315,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               if (isNarrowViewport) return (
                 <DashboardCard
                   key={family.id}
-                  accentColor="var(--color-primary, #2885e8)"
+                  accentColor="var(--color-primary, #1776db)"
                   statusLabel={t('families.family') as string}
                   statusToneClass="text-primary"
                   title={family.name || `${t('families.family')} ${family.id.slice(0, 8)}`}

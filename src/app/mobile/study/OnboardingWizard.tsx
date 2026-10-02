@@ -333,7 +333,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                         className={`relative w-full h-12 rounded-2xl text-[15px] font-semibold transition-all ${
                           selected
                             ? focused
-                              ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                              ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(23,118,219,0.4)] ring-1 ring-primary/30'
                               : 'bg-primary/10 text-primary ring-1 ring-primary/25 active:scale-[0.98]'
                             : locked
                               ? 'bg-gray-50 text-gray-400 ring-1 ring-gray-200/60 cursor-not-allowed'
@@ -449,7 +449,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       onClick={() => setS2({ gradeLevel: selected ? null : grade.value })}
                       className={`flex items-center justify-between h-12 px-4 rounded-2xl text-[15px] font-semibold transition-all ${
                         selected
-                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(23,118,219,0.4)] ring-1 ring-primary/30'
                           : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.99]'
                       }`}
                     >
@@ -486,7 +486,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       onClick={() => setS3({ dailyGoalMinutes: m })}
                       className={`h-14 rounded-2xl text-[15px] font-bold transition-all ${
                         selected
-                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(23,118,219,0.4)] ring-1 ring-primary/30'
                           : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
                       }`}
                     >
@@ -529,7 +529,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       onClick={() => setS4(prev => ({ ...prev, defaultLanguage: o.value }))}
                       className={`h-12 rounded-2xl text-[15px] font-semibold transition-all ${
                         selected
-                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(23,118,219,0.4)] ring-1 ring-primary/30'
                           : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
                       }`}
                     >
@@ -556,7 +556,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                       onClick={() => setS4(prev => ({ ...prev, defaultDifficulty: o.value }))}
                       className={`h-12 rounded-2xl text-[13px] font-semibold transition-all ${
                         selected
-                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(23,118,219,0.4)] ring-1 ring-primary/30'
                           : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
                       }`}
                     >

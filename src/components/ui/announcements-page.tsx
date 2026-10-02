@@ -645,7 +645,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
           strokeLinejoin="round"
           strokeWidth={2}
           d="M8 9l4-4 4 4"
-          stroke={isAscending ? '#2885e8' : 'currentColor'}
+          stroke={isAscending ? '#1776db' : 'currentColor'}
           className={isAscending ? '' : 'text-gray-400'}
         />
         <path
@@ -653,7 +653,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
           strokeLinejoin="round"
           strokeWidth={2}
           d="M16 15l-4 4-4-4"
-          stroke={isDescending ? '#2885e8' : 'currentColor'}
+          stroke={isDescending ? '#1776db' : 'currentColor'}
           className={isDescending ? '' : 'text-gray-400'}
         />
       </svg>
@@ -923,7 +923,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
             {filteredAnnouncements.map((announcement) => (
               <DashboardCard
                 key={announcement.id}
-                accentColor="#2885e8"
+                accentColor="#1776db"
                 statusLabel={formatDate(announcement.created_at)}
                 title={announcement.title}
                 subtitle={

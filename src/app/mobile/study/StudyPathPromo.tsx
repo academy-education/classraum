@@ -30,7 +30,7 @@ export function StudyPathPromo() {
   return (
     <Link
       href="/mobile/study/path"
-      className="relative overflow-hidden block rounded-2xl bg-gradient-to-br from-primary via-primary to-indigo-700 text-white shadow-[0_8px_24px_-12px_rgba(40,133,232,0.55)] hover:shadow-[0_12px_32px_-12px_rgba(40,133,232,0.65)] active:scale-[0.99] transition-all"
+      className="relative overflow-hidden block rounded-2xl bg-gradient-to-br from-primary via-primary to-indigo-700 text-white shadow-[0_8px_24px_-12px_rgba(23,118,219,0.55)] hover:shadow-[0_12px_32px_-12px_rgba(23,118,219,0.65)] active:scale-[0.99] transition-all"
     >
       <div aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-32 h-32 rounded-full bg-white/15 blur-2xl" />
       <div className="relative flex items-center gap-3 p-4">

@@ -163,7 +163,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
             type="button"
             onClick={requestSave}
             disabled={!canSave}
-            className="flex-shrink-0 inline-flex items-center justify-center h-11 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            className="flex-shrink-0 inline-flex items-center justify-center h-11 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(23,118,219,0.28)] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <Check className="w-4 h-4" /> : (ko ? '저장' : 'Save')}
           </button>
@@ -207,7 +207,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
                 <button
                   type="button"
                   onClick={() => void doSave()}
-                  className="flex-1 h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold inline-flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] transition-all"
+                  className="flex-1 h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold inline-flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(23,118,219,0.28)] active:scale-[0.98] transition-all"
                 >
                   {initial ? (ko ? '변경하기' : 'Change') : (ko ? '설정하기' : 'Set nickname')}
                 </button>

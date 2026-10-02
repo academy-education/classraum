@@ -125,7 +125,7 @@ export function ResumableShelf() {
             <Link
               key={row.id}
               href={`/mobile/study/session/${row.id}`}
-              className="group flex items-center gap-3 h-[80px] w-full rounded-2xl bg-white ring-1 ring-gray-200 px-4 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all"
+              className="group flex items-center gap-3 h-[80px] w-full rounded-2xl bg-white ring-1 ring-gray-200 px-4 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(23,118,219,0.15)] active:scale-[0.995] transition-all"
             >
               <div className={`flex-shrink-0 w-11 h-11 rounded-2xl ${style.iconBg} text-white flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.28)]`}>
                 <Icon className="w-5 h-5" strokeWidth={2.25} />

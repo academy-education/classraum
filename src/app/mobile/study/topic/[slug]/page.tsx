@@ -117,7 +117,7 @@ function LockedTopicView() {
       </div>
       <Link
         href="/mobile/study"
-        className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(40,133,232,0.30)] active:scale-[0.97] transition-transform"
+        className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(23,118,219,0.30)] active:scale-[0.97] transition-transform"
       >
         {String(t('study.lockedTopic.back'))}
       </Link>
@@ -1316,7 +1316,7 @@ function CategoryPicker({
               onClick={() => onSelect(cat.id)}
               className={`snap-start flex-shrink-0 inline-flex items-center gap-2 h-11 pl-3.5 pr-4 rounded-full text-[15px] font-semibold whitespace-nowrap transition-all duration-200 active:scale-[0.97] ${
                 isActive
-                  ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_3px_10px_-2px_rgba(40,133,232,0.45)]'
+                  ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_3px_10px_-2px_rgba(23,118,219,0.45)]'
                   : 'bg-white text-gray-700 ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/30 hover:text-gray-900'
               }`}
             >
@@ -1437,7 +1437,7 @@ function FullTestLockedCard({ family, ko }: { family: string; ko: boolean }) {
               ? `${label} 모의고사를 이용하려면 ${label} 패스나 프리미엄 구독이 필요해요.`
               : `Unlock ${label} full tests with the ${label} pass or a Premium plan.`}
           </p>
-          <span className="mt-3.5 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(40,133,232,0.30)]">
+          <span className="mt-3.5 inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_4px_12px_-2px_rgba(23,118,219,0.30)]">
             {ko ? '구독 보기' : 'View plans'}
             <ArrowRight className="w-4 h-4" />
           </span>
@@ -1467,12 +1467,12 @@ function FeaturedFullTestCard({
       disabled={creating !== null}
       // Primary blue, not rose: this is the tab's go-action, and the
       // color system reserves blue for exactly that.
-      className="group relative w-full rounded-2xl p-5 ring-1 ring-primary/20 bg-gradient-to-br from-primary/[0.06] via-primary/[0.02] to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(40,133,232,0.20)] hover:ring-primary/35 hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-12px_rgba(40,133,232,0.28)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait overflow-hidden"
+      className="group relative w-full rounded-2xl p-5 ring-1 ring-primary/20 bg-gradient-to-br from-primary/[0.06] via-primary/[0.02] to-white shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(23,118,219,0.20)] hover:ring-primary/35 hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_16px_32px_-12px_rgba(23,118,219,0.28)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 text-left disabled:opacity-60 disabled:cursor-wait overflow-hidden"
     >
       {/* Subtle inner highlight on top edge for premium depth */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center ring-1 ring-primary/20 shadow-[0_1px_2px_rgba(40,133,232,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] flex-shrink-0">
+        <div className="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center ring-1 ring-primary/20 shadow-[0_1px_2px_rgba(23,118,219,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] flex-shrink-0">
           {creating === 'full_test'
             ? <Loader2 className="w-5 h-5 animate-spin" />
             : <FileText className="w-5 h-5" />}
@@ -1482,7 +1482,7 @@ function FeaturedFullTestCard({
             <div className="text-[17px] font-semibold text-gray-900 group-hover:text-primary transition-colors tracking-tight">
               {String(t('study.modes.full_test.title'))}
             </div>
-            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-primary bg-white/90 backdrop-blur ring-1 ring-primary/25 rounded-full px-2 py-0.5 shadow-[0_1px_2px_rgba(40,133,232,0.06)]">
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-primary bg-white/90 backdrop-blur ring-1 ring-primary/25 rounded-full px-2 py-0.5 shadow-[0_1px_2px_rgba(23,118,219,0.06)]">
               <Sparkles className="w-2.5 h-2.5" />
               {String(t('study.topic.testPrepBadge'))}
             </span>

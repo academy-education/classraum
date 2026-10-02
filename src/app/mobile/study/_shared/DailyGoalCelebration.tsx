@@ -173,7 +173,7 @@ export function DailyGoalCelebration() {
               {ko ? '닫기' : 'Done'}
             </button>
             <Link href="/mobile/study/league" onClick={() => setShow(false)}
-              className="flex-1 h-11 rounded-xl bg-primary text-white inline-flex items-center justify-center gap-1.5 text-[13px] font-semibold shadow-[0_2px_8px_-2px_rgba(40,133,232,0.40)] hover:bg-primary/90 active:scale-[0.99] transition-all">
+              className="flex-1 h-11 rounded-xl bg-primary text-white inline-flex items-center justify-center gap-1.5 text-[13px] font-semibold shadow-[0_2px_8px_-2px_rgba(23,118,219,0.40)] hover:bg-primary-hover active:scale-[0.99] transition-all">
               <Trophy className="w-3.5 h-3.5" />{ko ? '내 리그' : 'My league'}
             </Link>
           </div>

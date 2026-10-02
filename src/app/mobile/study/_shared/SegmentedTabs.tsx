@@ -62,7 +62,7 @@ export function SegmentedTabs<T>({
               onClick={() => onChange(opt.value)}
               className={`relative h-11 min-w-11 px-3.5 rounded-full text-[13px] font-semibold tracking-tight transition-all active:scale-[0.96] ${
                 selected
-                  ? 'bg-primary text-white shadow-[0_6px_14px_-6px_rgba(40,133,232,0.6)]'
+                  ? 'bg-primary text-white shadow-[0_6px_14px_-6px_rgba(23,118,219,0.6)]'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
               }`}
             >

@@ -125,9 +125,9 @@ export function TemplatePaymentsModal({
     return (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4"
-          stroke={isAscending ? '#2885e8' : 'currentColor'} className={isAscending ? '' : 'text-gray-400'} />
+          stroke={isAscending ? '#1776db' : 'currentColor'} className={isAscending ? '' : 'text-gray-400'} />
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 15l4 4 4-4"
-          stroke={isDescending ? '#2885e8' : 'currentColor'} className={isDescending ? '' : 'text-gray-400'} />
+          stroke={isDescending ? '#1776db' : 'currentColor'} className={isDescending ? '' : 'text-gray-400'} />
       </svg>
     )
   }

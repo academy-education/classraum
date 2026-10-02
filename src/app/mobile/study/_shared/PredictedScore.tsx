@@ -346,7 +346,7 @@ function DiagnosticCard({ ko, isPremium, starting, onStart, doneCount, totalCoun
 function Shell({ children }: { children: React.ReactNode }) {
   return (
     <section>
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-indigo-700 text-white p-4 shadow-[0_8px_24px_-12px_rgba(40,133,232,0.5)]">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-indigo-700 text-white p-4 shadow-[0_8px_24px_-12px_rgba(23,118,219,0.5)]">
         <div aria-hidden className="pointer-events-none absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/10 blur-3xl" />
         <div className="relative">{children}</div>
       </div>

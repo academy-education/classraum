@@ -756,7 +756,7 @@ export default function MobileInvoicePaymentPage() {
             className={`w-full h-12 text-lg font-medium ${
               !termsAccepted || processing
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-primary hover:bg-primary/90 text-primary-foreground'
+                : 'bg-primary hover:bg-primary-hover text-primary-foreground'
             }`}
             onClick={handlePayment}
             disabled={!termsAccepted || processing}

@@ -117,7 +117,7 @@ export function CreditConfirmSheet({ open, cost, busy, ko, onConfirm, onCancel, 
               type="button"
               onClick={onConfirm}
               disabled={busy}
-              className="h-11 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-60 transition-all"
+              className="h-11 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_2px_8px_rgba(23,118,219,0.28)] inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-60 transition-all"
             >
               {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
               {confirmLabel ?? (ko ? '시작하기' : 'Start')}
@@ -179,7 +179,7 @@ export function NoCreditsSheet({ open, cost, ko, onCancel, description }: {
             </button>
             <Link
               href="/mobile/study/subscription"
-              className="h-11 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_2px_8px_rgba(40,133,232,0.28)] inline-flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all"
+              className="h-11 rounded-full bg-primary text-white text-[13px] font-semibold shadow-[0_2px_8px_rgba(23,118,219,0.28)] inline-flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all"
             >
               <Coins className="w-4 h-4" />
               {ko ? '크레딧 구매' : 'Buy credits'}

@@ -234,7 +234,7 @@ export function CommentBottomSheet({
                 <button
                   onClick={handleSubmitComment}
                   disabled={!newComment.trim() || isSubmitting}
-                  className="w-9 h-9 bg-primary text-white rounded-full hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center shadow-[0_4px_12px_-4px_rgba(40,133,232,0.5)] flex-shrink-0"
+                  className="w-9 h-9 bg-primary text-white rounded-full hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center shadow-[0_4px_12px_-4px_rgba(23,118,219,0.5)] flex-shrink-0"
                   aria-label={isSubmitting ? String(t('mobile.assignments.comments.posting')) : String(t('mobile.assignments.comments.post'))}
                 >
                   <Send className="w-4 h-4" />

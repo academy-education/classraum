@@ -964,7 +964,7 @@ function MobileMessagesPageContent() {
                   className={cn(
                     "max-w-[80%] rounded-2xl px-4 py-2.5",
                     message.isOwn
-                      ? "bg-primary text-white rounded-br-md shadow-[0_4px_12px_-4px_rgba(40,133,232,0.4)]"
+                      ? "bg-primary text-white rounded-br-md shadow-[0_4px_12px_-4px_rgba(23,118,219,0.4)]"
                       : "bg-gray-50 text-gray-900 rounded-bl-md ring-1 ring-gray-100"
                   )}
                 >

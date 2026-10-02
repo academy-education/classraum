@@ -70,7 +70,7 @@ export function CampAssignmentsShelf() {
               type="button"
               onClick={() => void open(a)}
               disabled={busy}
-              className="group flex items-center gap-3 w-full text-left rounded-2xl bg-gradient-to-br from-blue-50/60 via-white to-white ring-1 ring-blue-100 px-4 py-3 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(40,133,232,0.15)] active:scale-[0.995] transition-all disabled:opacity-60"
+              className="group flex items-center gap-3 w-full text-left rounded-2xl bg-gradient-to-br from-blue-50/60 via-white to-white ring-1 ring-blue-100 px-4 py-3 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(23,118,219,0.15)] active:scale-[0.995] transition-all disabled:opacity-60"
             >
               <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.28)]">
                 {done

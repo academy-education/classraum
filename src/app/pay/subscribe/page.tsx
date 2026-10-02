@@ -354,7 +354,7 @@ function Card({ children, padded = true }: { children: React.ReactNode; padded?:
     <div
       className={cn(
         'w-full max-w-[380px] overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/70',
-        'shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(40,133,232,0.18)]',
+        'shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(23,118,219,0.18)]',
         padded && 'p-6 text-center',
       )}
     >

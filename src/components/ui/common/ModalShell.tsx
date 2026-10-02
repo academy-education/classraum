@@ -196,7 +196,7 @@ const confirmVariantStyles: Record<
   info: {
     chipBg: 'bg-sky-50',
     chipText: 'text-sky-600',
-    button: 'bg-primary hover:bg-primary/90 text-white',
+    button: 'bg-primary hover:bg-primary-hover text-white',
   },
 }
 

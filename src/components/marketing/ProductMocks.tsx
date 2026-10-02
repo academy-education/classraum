@@ -145,13 +145,13 @@ export function DashboardMock({ t, label }: { t: TFunc; label: string }) {
   ]
   const stats = [
     { key: "kRevenue", Icon: CreditCard, value: "₩12,450,000", sub: t(M + "kRevenueDelta"), bar: "#12b76a" },
-    { key: "kUsers", Icon: UserCheck, value: "316", bar: "#2885e8" },
+    { key: "kUsers", Icon: UserCheck, value: "316", bar: "#1776db" },
     { key: "kClassrooms", Icon: School, value: "20", bar: "#7a5af8" },
     { key: "kSessions", Icon: Calendar, value: "42", bar: "#f79009" },
   ]
   const rows = [
     { time: "15:00", cls: t(M + "cls1"), tch: t(M + "tch1"), n: "14 / 14", st: t(M + "stDone"), dot: "#12b76a" },
-    { time: "16:30", cls: t(M + "cls2"), tch: t(M + "tch2"), n: "11 / 12", st: t(M + "stLive"), dot: "#2885e8" },
+    { time: "16:30", cls: t(M + "cls2"), tch: t(M + "tch2"), n: "11 / 12", st: t(M + "stLive"), dot: "#1776db" },
     { time: "18:00", cls: t(M + "cls3"), tch: t(M + "tch3"), n: "— / 16", st: t(M + "stWait"), dot: "#d0d5dd" },
   ]
 
@@ -191,7 +191,7 @@ export function DashboardMock({ t, label }: { t: TFunc; label: string }) {
           </div>
           <div
             className="flex items-center gap-2 rounded-lg px-3 py-[7px] mt-3 text-[10.5px] font-bold text-white"
-            style={{ background: "linear-gradient(90deg,#2885e8,#00D0AE)" }}
+            style={{ background: "linear-gradient(90deg,#1776db,#00D0AE)" }}
           >
             <Zap size={12} strokeWidth={2.4} fill="currentColor" />
             {t(M + "upgrade")}
@@ -461,7 +461,7 @@ export function StudyPhoneMock({ t, label, className }: { t: TFunc; label: strin
           <div className="grid grid-cols-3 border-t border-gray-100 mt-2 pt-2 text-center">
             {[
               { label: t(M + "statStreak"), value: "12", color: "#f79009" },
-              { label: t(M + "statSessions"), value: "4", color: "#2885e8" },
+              { label: t(M + "statSessions"), value: "4", color: "#1776db" },
               { label: t(M + "statProblems"), value: "32", color: "#7a5af8" },
             ].map((s) => (
               <span key={s.label}>
@@ -594,7 +594,7 @@ export function InvoicePhoneMock({ t, label, className }: { t: TFunc; label: str
 
         <span
           className="block text-center text-white text-[9.5px] font-bold rounded-xl py-2 mb-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]"
-          style={{ background: "#2885e8" }}
+          style={{ background: "#1776db" }}
         >
           {t("landing.home.m3.payBtn")}
         </span>
@@ -795,7 +795,7 @@ export function ReviewQueueScreen({ t, label, className = "" }: { t: TFunc; labe
         <span className="text-[11px] font-semibold text-[#00806c] tabular-nums">{t(NB + "queueDue")}</span>
       </div>
       <span className="block h-1.5 rounded-full bg-gray-200/70 overflow-hidden">
-        <span className="block h-full w-[45%] rounded-full bg-gradient-to-r from-[#2885e8] to-[#00D0AE]" />
+        <span className="block h-full w-[45%] rounded-full bg-gradient-to-r from-primary to-[#00D0AE]" />
       </span>
 
       <div className="mt-3 rounded-xl bg-white ring-1 ring-gray-200/70 px-3 py-2.5 flex items-start gap-2">
@@ -882,7 +882,7 @@ export function MiniProgress({ t, label }: { t: TFunc; label: string }) {
           <span className="text-[9.5px] font-bold text-primary tabular-nums">3/4</span>
         </div>
         <span className="block h-1.5 rounded-full bg-gray-100 overflow-hidden">
-          <span className="block h-full w-[75%] rounded-full bg-gradient-to-r from-[#2885e8] to-[#00D0AE]" />
+          <span className="block h-full w-[75%] rounded-full bg-gradient-to-r from-primary to-[#00D0AE]" />
         </span>
       </div>
     </div>
@@ -906,7 +906,7 @@ export function MiniReports({ t, label }: { t: TFunc; label: string }) {
         </div>
       ))}
       <div className="bg-white ring-1 ring-gray-100 rounded-lg px-3 py-2.5 shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
-        <span className="block h-[7px] w-[85%] rounded-full bg-gradient-to-r from-[#2885e8]/60 to-gray-100 mb-1.5" />
+        <span className="block h-[7px] w-[85%] rounded-full bg-gradient-to-r from-primary/60 to-gray-100 mb-1.5" />
         <span className="block h-[7px] w-[60%] rounded-full bg-gray-100" />
       </div>
     </div>

@@ -100,7 +100,7 @@ export function ChartOverview() {
   // a hex value (for recharts <Bar fill="...">).
   const chartColors: Record<ChartType, { dot: string; hex: string }> = {
     revenue:   { dot: 'bg-violet-500',   hex: '#8b5cf6' },
-    academies: { dot: 'bg-primary',    hex: '#2885e8' },
+    academies: { dot: 'bg-primary',    hex: '#1776db' },
     users:     { dot: 'bg-emerald-500',  hex: '#10b981' },
   };
   const getChartColor = (type: ChartType) => chartColors[type].dot;
@@ -247,7 +247,7 @@ export function ChartOverview() {
                 width={activeChart === 'revenue' ? 74 : 50}
               />
               <Tooltip
-                cursor={{ fill: 'rgba(40, 133, 232, 0.06)' }}
+                cursor={{ fill: 'rgba(23,118,219, 0.06)' }}
                 contentStyle={{
                   background: '#0f172a',
                   border: 'none',
