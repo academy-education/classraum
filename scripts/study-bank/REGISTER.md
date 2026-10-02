@@ -89,8 +89,8 @@ Two qualifications, both learned the hard way:
 | ISEE | Math | 328 | — | — | never measured — the attack does not apply |
 | SAT | Standard English Conventions | 320 | 65% | 20% (n=10) — best of 2: 33.3% / 20% / 15% / 0% (1/1 abstained) | human says maybe — needs more |
 | SSAT | Verbal | 313 | — | 20% (n=20) | never measured — the attack does not apply |
-| TOEFL | Daily Life | 296 | 100% | 33.3% (n=15) | human says maybe — needs more |
 | SAT | Problem-Solving and Data Analysis | 296 | 100% | — | **unconfirmed** — model only |
+| TOEFL | Daily Life | 296 | 100% | 33.3% (n=15) | human says maybe — needs more |
 | SAT | Information and Ideas | 280 | 96.6% | no usable sitting — 33.3% / 28.6% / 23.5% / 0% (3/3 abstained) | **sitting not interpretable** — the reader abstained on most of it |
 | TOEFL | Academic Talk | 274 | 100% | 31.6% (n=19) | human says maybe — needs more |
 | SSAT | Math | 257 | — | — | never measured — the attack does not apply |
@@ -99,7 +99,7 @@ Two qualifications, both learned the hard way:
 | TOEFL | Choose a Response | 249 | — | 25% (n=20) | never measured — the attack does not apply |
 | SAT | Expression of Ideas | 244 | 28% transitions / 100% synthesis | 11.1% (n=18) | **cohort mean retired** — see 2026-09-11; the pooled blind figure describes neither stratum |
 | ISEE | Verbal | 244 | — | 20% (n=20) | never measured — the attack does not apply |
-| TOEFL | Conversation | 227 | 86.8% | 20% (n=15) — best of 2: 20% / 0% / 0% (1/1 abstained) / 0% | human says maybe — needs more |
+| TOEFL | Conversation | 227 | 86.8% | 20% (n=15) — best of 2: 20% / 0% / 0% / 0% (1/1 abstained) | human says maybe — needs more |
 | TOEFL | Build a Sentence | 165 | — | — | never measured — the attack does not apply |
 | SSAT | Reading Comprehension | 138 | — | 15% (n=20) | never measured — the attack does not apply |
 | TOEFL | Listen and Repeat | 136 | — | — | never measured — the attack does not apply |
@@ -107,8 +107,8 @@ Two qualifications, both learned the hard way:
 | TOEFL | Announcement | 121 | 100% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | ISEE | Reading Comprehension | 117 | — | 15% (n=20) | never measured — the attack does not apply |
 | ACT | Algebra | 113 | — | — | never measured — the attack does not apply |
-| ACT | Geometry | 113 | — | — | never measured — the attack does not apply |
 | ACT | Functions | 113 | — | — | never measured — the attack does not apply |
+| ACT | Geometry | 113 | — | — | never measured — the attack does not apply |
 | TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
 | TOEFL | Academic Discussion | 92 | — | — | never measured — the attack does not apply |
 | TOEFL | Email | 90 | — | — | never measured — the attack does not apply |
@@ -116,8 +116,8 @@ Two qualifications, both learned the hard way:
 | TOEFL | Interview | 80 | — | — | never measured — the attack does not apply |
 | ACT | Key Ideas and Details | 77 | 94.8% | no usable sitting — 50% / 14.3% | **sitting not interpretable** — the reader abstained on most of it |
 | ACT | Number and Quantity | 70 | — | — | never measured — the attack does not apply |
+| ACT | Production of Writing | 60 | 76.7% | 11.1% (n=18) | human says maybe — needs more |
 | ACT | Conventions of Standard English | 60 | — | — | never measured — the attack does not apply |
-| ACT | Production of Writing | 60 | 76.7% | 10% (n=20) | **cleared by hand** — the model was wrong |
 | ACT | Craft and Structure | 49 | 92.9% | 27.3% (n=11) — best of 2: 33.3% / 27.3% / 25% / 25% / 14.3% / 0% (2/2 abstained) | human says maybe — needs more |
 | ACT | Interpretation of Data | 46 | — | no usable sitting — 42.9% | never measured — the attack does not apply |
 | ACT | Evaluation of Models, Inferences, and Experimental Results | 43 | — | no usable sitting — 28.6% | never measured — the attack does not apply |
@@ -137,10 +137,10 @@ doing the answering. They are kept as data and marked `model_assisted`
 column is worth exactly one thing — being the number a model did not
 produce.
 
-- `craft-and-structure-2026-08-06` — 14/14 (100.0%)
 - `academic-passage-2026-08-06` — 13/20 (65.0%)
+- `craft-and-structure-2026-08-06` — 14/14 (100.0%)
 
-**79.4% assisted vs 19.6% by hand.** That gap is
+**79.4% assisted vs 19.7% by hand.** That gap is
 the point: a model reading four options scores far above a person doing
 the same, which is exactly why one of the two instruments has to stay
 human. Unfiltered, SAT Craft and Structure read *CONFIRMED BROKEN — both
