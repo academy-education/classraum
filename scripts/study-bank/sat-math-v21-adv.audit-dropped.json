@@ -1,0 +1,48 @@
+[
+ {
+  "id": "SM21A-A4",
+  "domain": "Advanced Math",
+  "subskill": "Average-cost rational model: solve, pick the valid root, find profit",
+  "difficulty": "medium",
+  "prompt": "A workshop's total cost, in dollars, to build n chairs is C(n) = 0.5n^2 + 20n + 1200. For one production run of more than 45 chairs, the average cost per chair was $70. If every chair in that run is sold for $85, what is the workshop's profit, in dollars, for the run? (Profit = total revenue - total cost)",
+  "choices": [
+   "600",
+   "900",
+   "2100",
+   "4200"
+  ],
+  "correct_answer": "900",
+  "explanation": "The average cost per chair is C(n)/n, so (0.5n^2 + 20n + 1200)/n = 70. Multiplying both sides by n gives 0.5n^2 + 20n + 1200 = 70n, so 0.5n^2 - 50n + 1200 = 0, or n^2 - 100n + 2400 = 0. Factoring, (n - 40)(n - 60) = 0, so n = 40 or n = 60. The run had more than 45 chairs, so n = 60. Revenue is 85(60) = 5100 and total cost is 70(60) = 4200, so profit is 5100 - 4200 = 900. The value 600 comes from using n = 40: 85(40) - 70(40) = 600. The value 2100 comes from leaving out the fixed cost of 1200 when finding total cost: 5100 - (1800 + 1200) = 2100. The value 4200 is the total cost of the run, not the profit.",
+  "bounds": [],
+  "solve": "const C=n=>0.5*n*n+20*n+1200; const n=(100+Math.sqrt(100*100-4*2400))/2; return 85*n-C(n);",
+  "distractor_solve": {
+   "600": "const C=n=>0.5*n*n+20*n+1200; const n=(100-Math.sqrt(100*100-4*2400))/2; return 85*n-C(n);",
+   "2100": "const n=(100+Math.sqrt(100*100-4*2400))/2; return 85*n-(0.5*n*n+20*n);",
+   "4200": "const C=n=>0.5*n*n+20*n+1200; const n=(100+Math.sqrt(100*100-4*2400))/2; return C(n);"
+  },
+  "dropped_reason": "auditor n_struck 3: profit = 15n, options/15 give n = 40 (violates printed >45), 140 and 280 (0.5n term alone exceeds $70)"
+ },
+ {
+  "id": "SM21A-A5",
+  "domain": "Advanced Math",
+  "subskill": "Line meets parabola at two points a given horizontal distance apart",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = x^2 - 3x + c, where c is a constant, intersects the graph of y = 7x + 8 at two points. The x-coordinates of the two points differ by 12. What is the value of c?",
+  "choices": [
+   "-111",
+   "-11",
+   "-3",
+   "30"
+  ],
+  "correct_answer": "-3",
+  "explanation": "At the intersection points, x^2 - 3x + c = 7x + 8, so x^2 - 10x + (c - 8) = 0. If the solutions are x1 and x2, then x1 + x2 = 10 and x1x2 = c - 8. Because (x1 - x2)^2 = (x1 + x2)^2 - 4x1x2, we have 12^2 = 10^2 - 4(c - 8), so 144 = 100 - 4(c - 8), which gives c - 8 = -11 and c = -3. (Check: the solutions are x = 11 and x = -1, which differ by 12, and their product is -11 = c - 8.) The value -111 comes from placing the solutions 12 units on each side of their midpoint 5, using x = 17 and x = -7, whose product -119 is then set equal to c - 8. The value -11 comes from not moving the 8 from the line's equation, so that the product of the solutions is taken to be c itself. The value 30 comes from setting the discriminant, 100 - 4(c - 8), equal to 12 instead of 12^2.",
+  "bounds": [],
+  "solve": "const s=10,d=12; return (s*s-d*d)/4+8;",
+  "distractor_solve": {
+   "30": "const s=10,d=12; return (s*s-d)/4+8;",
+   "-111": "const m=5,d=12; return (m+d)*(m-d)+8;",
+   "-11": "const s=10,d=12; return (s*s-d*d)/4;"
+  },
+  "dropped_reason": "auditor n_struck 2: -11/-3 the lone pair differing by the printed constant 8; routine root-difference lands on key (medium, not hard)"
+ }
+]

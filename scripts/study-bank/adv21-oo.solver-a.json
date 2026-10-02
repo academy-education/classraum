@@ -1,0 +1,18 @@
+{
+"L01":{"pick":"B","basis":"guess","why":"10109 outlier dropped; picked central clustered value"},
+"L02":{"pick":"A","basis":"guess","why":"4 has sign-flip twin and both off-by-one neighbours"},
+"L03":{"pick":"D","basis":"guess","why":"no clear relation; mid-large value"},
+"L04":{"pick":"A","basis":"guess","why":"3 and -2 look like roots; 5 is their difference"},
+"L05":{"pick":"C","basis":"guess","why":"oddly specific 21.25 vs round distractors"},
+"L06":{"pick":"C","basis":"guess","why":"central value in near-arithmetic spread"},
+"L07":{"pick":"A","basis":"guess","why":"no signal; picked arbitrarily"},
+"L08":{"pick":"C","basis":"guess","why":"9 = 14 - 5, connects other options"},
+"L09":{"pick":"B","basis":"guess","why":"no clear relation; arbitrary"},
+"L10":{"pick":"A","basis":"guess","why":"800 is base; 1600 double, 1200 one-and-half"},
+"L11":{"pick":"B","basis":"guess","why":"13824 = 24^3 clean; 15624 = 25^3-1 looks like error"},
+"L12":{"pick":"A","basis":"guess","why":"7, 49, 42 related; 49 the square"},
+"L13":{"pick":"C","basis":"guess","why":"specific non-round middle value"},
+"L14":{"pick":"A","basis":"guess","why":"middle of 5-9 range, neighbours as off-by-one"},
+"L15":{"pick":"A","basis":"guess","why":"no signal; 3+5=8 ambiguous"},
+"L16":{"pick":"A","basis":"guess","why":"24 central to differences 15, 20, 25"}
+}

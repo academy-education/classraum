@@ -1,0 +1,72 @@
+{
+ "SM21A-A1": {
+  "my_answer": "8424",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. Options 8424, 8564, 8852, 10109: no sum/difference/mean/double closure; none is a printed number or a one-step combination of printed numbers (10109 = 4875*1.44^2 needs a multiplication); the only stem bound is 7020 (2-year value) < answer < 10108.8 (4-year value), and 10109 sits at that upper edge only after computing 4875*1.44^2 - not a glance. Soft pattern, not counted: the key is the SMALLEST option and every distractor is an overestimate (all three error paths compound too fast), so a test-taker who knows 'fractional-period compounding is less than naive interpolation' leans to the low option.",
+  "n_struck": 0,
+  "insight_bypassable": false,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: per-2-year factor 1.44 = 1.2^2, so P(t) = 4875(1.2)^t; P(3) = 4875*1.728 = 8424 exactly (4875 = 39*125, so 4875*216/125 = 39*216). Key correct and unique. Distractor paths verified: 4875*1.44*1.22 = 8564.4, 4875*1.22^3 = 8852.26, 4875*1.44^2 = 10108.8, each rounds to its option. Difficulty: borderline easy - with Desmos the whole item is typing 4875*1.44^(3/2) once the t/2 exponent is written; the only decision is the period conversion, which is a well-drilled SAT trap. I keep it at medium because the 22%/year split (8852) is a genuinely tempting procedure, but a grader calling it easy would not be wrong. No repair required (n_struck 0). If the all-overestimate pattern is to be broken, the same-side rule forbids it here (key is the smallest option, so any replacement must also be larger); the alternative is to accept it."
+ },
+ "SM21A-A2": {
+  "my_answer": "-5",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. Range bound: f has minimum f(1) = -9 and g is a horizontal shift, so g(2) >= -9 - all four options survive. -8 is the printed constant term of f (and equals f(2)), so it reads as a lure, but ruling it out needs f(2-h) = -8 -> h = 0 or 2 and a check of g(1), which is work, not a glance. No closure: -8,-5,1,7 have differences 3,6,9,13,15,... none in set; no mean/double. Sign reasoning (g's zeros are 1 and 1+-6, so g(2) is negative iff 1 is the left zero) needs the h > 0 decision itself, so it does not strike 1 or 7 for free.",
+  "n_struck": 0,
+  "insight_bypassable": false,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: f = (x-4)(x+2); g(1) = f(1-h) = 0 -> 1-h = 4 (h = -3, rejected by h > 0) or 1-h = -2 (h = 3). g(2) = f(-1) = 1 + 2 - 8 = -5. Key correct and unique. The h > 0 condition is a real decision point: h = -3 gives g(2) = f(5) = 7, which is option 7, so a student who takes the first root lands on a distractor. Distractor paths verified: f(5) = 7; vertical shift h = -f(1) = 9, f(2)+9 = 1; unshifted f(2) = -8. Medium: factor, choose root by sign condition, evaluate - three routine steps with one trap; Desmos does not bypass it unless the student builds a slider for h and reads g(1) = 0, which still exposes both roots. Blueprint: quadratic function transformation, squarely Advanced Math. No repair required."
+ },
+ "SM21A-A3": {
+  "my_answer": "9",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "none. No closure (5,6,7,9: 9 is not a sum/mean/double of others; 5+... no). Range: 24 integers in the interval, all options far inside. Soft pattern, not counted: 5, 6, 7 are consecutive and the key 9 is the isolated, LARGEST value - a 'odd one out' / 'the most inclusive count' heuristic points to it, and the stem's phrase 'at least one real solution' signals that the repeated-root case (k = +-8) is to be included, which favours the larger counts. Neither is a strike.",
+  "n_struck": 0,
+  "insight_bypassable": false,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: discriminant k^2 - 64 >= 0 -> |k| >= 8; in [-10, 13]: 8..13 (6) and -10..-8 (3) = 9. Key correct and unique. Distractor paths verified by enumeration: k > 8 only -> 5; k >= 8 only -> 6; k^2 > 64 -> 5 + 2 = 7. Medium, at the low edge: one discriminant inequality then a count with two traps (the inclusive endpoint and the negative branch). Blueprint: number of real solutions of a quadratic is core Advanced Math; the 'how many integers' framing is unusual for the SAT but the skill is on it. No repair required. Optional hardening against the run-of-three pattern: a distractor not adjacent to 5-7 from a named path would help, but replacing 5 or 6 must stay below 9 and 3 (negatives only) creates 3+6 = 9 closure, so I do not recommend it."
+ },
+ "SM21A-A4": {
+  "my_answer": "900",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "All three distractors die without solving the quadratic. The stem gives average cost $70 and price $85, so profit = 15n (the explanation's own last step; no quadratic needed to see it). Dividing each option by 15 gives n = 40, 60, 140, 280. 600 -> n = 40 violates the printed 'more than 45 chairs' (glance). 4200 -> n = 280 and 2100 -> n = 140: average cost is 0.5n + 20 + 1200/n, and the 0.5n term alone is 140 and 70, so the average already exceeds $70 (glance once n is in hand). Backsolving the survivor confirms instantly: n = 60 gives 30 + 20 + 20 = 70. Also present: 4200 = 2 x 2100 (double closure inside the option set).",
+  "n_struck": 3,
+  "insight_bypassable": true,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: (0.5n^2 + 20n + 1200)/n = 70 -> n^2 - 100n + 2400 = 0 -> n = 40 or 60; n > 45 -> 60; profit = 85*60 - 70*60 = 900. Key correct and unique; distractor paths verified (n = 40 -> 600; 85*60 - (1800 + 1200) = 2100, where the 1200 is 20n, coincidentally equal to the fixed cost, so the explanation's 'leaving out the fixed cost' is arithmetically right but reads confusingly; C(60) = 4200). Structural defect: because the stem fixes the average cost, total cost = 70n and profit = 15n, so every option maps to a run size and the rational-equation step can be skipped by backsolving with a one-term magnitude check. The domain decision (40 vs 60), which is the item's intended hard point, is resolved by reading the printed 45 off the option 600/15. Without the bypass it is medium (set up C/n, solve quadratic, pick root, compute). ONE-DISTRACTOR REPAIR (partial): replace 600 (below key) with 750 = 15*50, from taking the axis of symmetry of n^2 - 100n + 2400 (n = 50) as the run size; distractor_solve: 'const n=100/2; return 85*n-70*n;'. n = 50 satisfies n > 45 and its average cost is 25 + 20 + 24 = 69, which is not a glance away from 70; set {750, 900, 2100, 4200} has no new closure (750 is not a sum/mean/double of others). This removes only the 600 strike; 2100 and 4200 still die on 0.5n > 50, and no single-distractor change can fix that while profit is linear in n. Recommendation: re-author, not repair - ask for a quantity that is not proportional to n (e.g. the average cost of the run if 10 more chairs were built, C(70)/70), so options cannot be mapped back to n."
+ },
+ "SM21A-A5": {
+  "my_answer": "-3",
+  "key_ok": true,
+  "exclusive": true,
+  "second_defensible": false,
+  "free_elimination": "Pattern strike on -111 and 30: the line's printed constant is 8, and exactly one pair of options differs by 8 (-11 and -3), signalling 'c vs c - 8' and narrowing a test-wise student to {-11, -3} (same mechanism as the symmetric-pair tell counted in m19alg-a SM19L-A1). The two-intersection premise (discriminant 100 - 4(c - 8) > 0, i.e. c < 33) kills nothing - 30 survives with discriminant 12. No sum/mean/double closure; 30 is the lone positive and lone even but the key is not a lone anything. Between -11 and -3 the student still needs to know the 8 must be moved, which is one line of algebra.",
+  "n_struck": 2,
+  "insight_bypassable": true,
+  "difficulty": "medium",
+  "on_blueprint": true,
+  "path_coherent": true,
+  "representation_ok": true,
+  "note": "Cold solve: x^2 - 10x + (c - 8) = 0; roots symmetric about the axis x = 5 and 12 apart -> x = 11 and -1; product -11 = c - 8 -> c = -3. Key correct and unique (only c = -3 gives sqrt(132 - 4c) = 12). Distractor paths verified: (5+12)(5-12) + 8 = -111; (100-144)/4 = -11; (100-12)/4 + 8 = 30. DIFFICULTY: authored hard, I rate MEDIUM. The obvious procedure - set equal, quadratic formula, root difference = sqrt(discriminant) = sqrt(132 - 4c) = 12 - lands directly on -3; the axis-of-symmetry route (5 +- 6) is even faster; Desmos with a slider on c also reaches it. A competent student running the routine procedure does not land on a distractor; the traps (disc = 12, 12 on each side, unmoved 8) catch careless rather than competent solvers. ONE-DISTRACTOR REPAIR for the pair tell: replace -111 (below key) with -19, from moving the 8 across with the wrong sign, x^2 - 10x + (c + 8) = 0, product c + 8 = -11; distractor_solve: 'const s=10,d=12; return (s*s-d*d)/4-8;'. -19 is below the key (same side as -111); c = -19 gives discriminant 208 > 0 so the two-point premise does not kill it; set {-19, -11, -3, 30} now has two pairs differing by 8, and the arithmetic-progression tell -19, -11, -3 points at the DISTRACTOR -11 (the mean), not the key; no sum/double closure (-19 - (-11) = -8, -3 - (-11) = 8, neither in set; 2*(-11) = -22). Cost: loses the '12 on each side' trap. Making this item hard needs a stem change (e.g. give the difference of the y-coordinates, or ask for c when the intersection x-values differ by 12 AND one is a stated sign, forcing a branch), not a distractor swap."
+ }
+}

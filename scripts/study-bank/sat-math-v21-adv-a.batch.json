@@ -1,0 +1,112 @@
+[
+ {
+  "id": "SM21A-A1",
+  "domain": "Advanced Math",
+  "subskill": "Exponential growth with a rate stated per 2 years, asked at 3 years",
+  "difficulty": "medium",
+  "prompt": "The population of a town was 4,875 at the start of 2020. The population grows exponentially so that it increases by 44% every 2 years. Based on this model, what is the population of the town 3 years after the start of 2020?",
+  "choices": [
+   "8424",
+   "8564",
+   "8852",
+   "10109"
+  ],
+  "correct_answer": "8424",
+  "explanation": "Every 2 years the population is multiplied by 1.44. Over t years there are t/2 such periods, so P(t) = 4875(1.44)^(t/2) = 4875(1.2)^t, because 1.44 = 1.2^2. After 3 years, P(3) = 4875(1.2)^3 = 4875(1.728) = 8424. The value 8564 comes from applying one full 44% period and then adding half of 44%, or 22%, for the remaining year: 4875(1.44)(1.22) is about 8564. The value 8852 comes from splitting 44% evenly into 22% per year and compounding: 4875(1.22)^3 is about 8852. The value 10109 comes from rounding 3 years up to 2 full periods: 4875(1.44)^2 is about 10109.",
+  "bounds": [],
+  "solve": "return Math.round(4875*Math.pow(1.44, 3/2));",
+  "distractor_solve": {
+   "8564": "return Math.round(4875*1.44*1.22);",
+   "8852": "return Math.round(4875*Math.pow(1.22,3));",
+   "10109": "return Math.round(4875*Math.pow(1.44,2));"
+  }
+ },
+ {
+  "id": "SM21A-A2",
+  "domain": "Advanced Math",
+  "subskill": "Horizontal shift fixed by a zero, then evaluate the shifted function",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 - 2x - 8. The function g is defined by g(x) = f(x - h), where h is a positive constant. If g(1) = 0, what is the value of g(2)?",
+  "choices": [
+   "-8",
+   "-5",
+   "1",
+   "7"
+  ],
+  "correct_answer": "-5",
+  "explanation": "Since g(1) = f(1 - h) = 0, the number 1 - h must be a zero of f. Factoring, f(x) = (x - 4)(x + 2), so the zeros of f are 4 and -2. If 1 - h = 4, then h = -3, which is not positive. If 1 - h = -2, then h = 3. So g(x) = f(x - 3), and g(2) = f(-1) = 1 + 2 - 8 = -5. The value 7 comes from shifting the wrong way, computing f(2 + 3) = f(5) = 7 (the same value results from keeping h = -3). The value 1 comes from treating the shift as vertical, g(x) = f(x) + h: then f(1) + h = -9 + h = 0 gives h = 9, and g(2) = f(2) + 9 = 1. The value -8 comes from finding h but then evaluating f(2) without applying the shift.",
+  "bounds": [],
+  "solve": "const f=x=>x*x-2*x-8; const h=1-(-2); return f(2-h);",
+  "distractor_solve": {
+   "1": "const f=x=>x*x-2*x-8; const h=-f(1); return f(2)+h;",
+   "7": "const f=x=>x*x-2*x-8; const h=3; return f(2+h);",
+   "-8": "const f=x=>x*x-2*x-8; return f(2);"
+  }
+ },
+ {
+  "id": "SM21A-A3",
+  "domain": "Advanced Math",
+  "subskill": "Count integer parameters giving real solutions within a stated range",
+  "difficulty": "medium",
+  "prompt": "The integer k satisfies -10 ≤ k ≤ 13. For how many such values of k does the equation x^2 + kx + 16 = 0 have at least one real solution?",
+  "choices": [
+   "5",
+   "6",
+   "7",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "The equation has at least one real solution exactly when its discriminant is nonnegative: k^2 - 4(1)(16) ≥ 0, so k^2 ≥ 64, which means k ≥ 8 or k ≤ -8. Within -10 ≤ k ≤ 13, the values k = 8, 9, 10, 11, 12, 13 give 6 values, and k = -10, -9, -8 give 3 more, for a total of 9. The value 7 comes from requiring k^2 > 64, which leaves out k = 8 and k = -8, even though those give one repeated real solution. The value 6 comes from solving k^2 ≥ 64 as k ≥ 8 only and missing the negative values. The value 5 comes from making both mistakes: using k > 8 and ignoring the negative values.",
+  "bounds": [],
+  "solve": "let n=0; for(let k=-10;k<=13;k++){ if(k*k-64>=0) n++; } return n;",
+  "distractor_solve": {
+   "5": "let n=0; for(let k=-10;k<=13;k++){ if(k>8) n++; } return n;",
+   "6": "let n=0; for(let k=-10;k<=13;k++){ if(k>=8) n++; } return n;",
+   "7": "let n=0; for(let k=-10;k<=13;k++){ if(k*k-64>0) n++; } return n;"
+  }
+ },
+ {
+  "id": "SM21A-A4",
+  "domain": "Advanced Math",
+  "subskill": "Average-cost rational model: solve, pick the valid root, find profit",
+  "difficulty": "medium",
+  "prompt": "A workshop's total cost, in dollars, to build n chairs is C(n) = 0.5n^2 + 20n + 1200. For one production run of more than 45 chairs, the average cost per chair was $70. If every chair in that run is sold for $85, what is the workshop's profit, in dollars, for the run? (Profit = total revenue - total cost)",
+  "choices": [
+   "600",
+   "900",
+   "2100",
+   "4200"
+  ],
+  "correct_answer": "900",
+  "explanation": "The average cost per chair is C(n)/n, so (0.5n^2 + 20n + 1200)/n = 70. Multiplying both sides by n gives 0.5n^2 + 20n + 1200 = 70n, so 0.5n^2 - 50n + 1200 = 0, or n^2 - 100n + 2400 = 0. Factoring, (n - 40)(n - 60) = 0, so n = 40 or n = 60. The run had more than 45 chairs, so n = 60. Revenue is 85(60) = 5100 and total cost is 70(60) = 4200, so profit is 5100 - 4200 = 900. The value 600 comes from using n = 40: 85(40) - 70(40) = 600. The value 2100 comes from leaving out the fixed cost of 1200 when finding total cost: 5100 - (1800 + 1200) = 2100. The value 4200 is the total cost of the run, not the profit.",
+  "bounds": [],
+  "solve": "const C=n=>0.5*n*n+20*n+1200; const n=(100+Math.sqrt(100*100-4*2400))/2; return 85*n-C(n);",
+  "distractor_solve": {
+   "600": "const C=n=>0.5*n*n+20*n+1200; const n=(100-Math.sqrt(100*100-4*2400))/2; return 85*n-C(n);",
+   "2100": "const n=(100+Math.sqrt(100*100-4*2400))/2; return 85*n-(0.5*n*n+20*n);",
+   "4200": "const C=n=>0.5*n*n+20*n+1200; const n=(100+Math.sqrt(100*100-4*2400))/2; return C(n);"
+  }
+ },
+ {
+  "id": "SM21A-A5",
+  "domain": "Advanced Math",
+  "subskill": "Line meets parabola at two points a given horizontal distance apart",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = x^2 - 3x + c, where c is a constant, intersects the graph of y = 7x + 8 at two points. The x-coordinates of the two points differ by 12. What is the value of c?",
+  "choices": [
+   "-111",
+   "-11",
+   "-3",
+   "30"
+  ],
+  "correct_answer": "-3",
+  "explanation": "At the intersection points, x^2 - 3x + c = 7x + 8, so x^2 - 10x + (c - 8) = 0. If the solutions are x1 and x2, then x1 + x2 = 10 and x1x2 = c - 8. Because (x1 - x2)^2 = (x1 + x2)^2 - 4x1x2, we have 12^2 = 10^2 - 4(c - 8), so 144 = 100 - 4(c - 8), which gives c - 8 = -11 and c = -3. (Check: the solutions are x = 11 and x = -1, which differ by 12, and their product is -11 = c - 8.) The value -111 comes from placing the solutions 12 units on each side of their midpoint 5, using x = 17 and x = -7, whose product -119 is then set equal to c - 8. The value -11 comes from not moving the 8 from the line's equation, so that the product of the solutions is taken to be c itself. The value 30 comes from setting the discriminant, 100 - 4(c - 8), equal to 12 instead of 12^2.",
+  "bounds": [],
+  "solve": "const s=10,d=12; return (s*s-d*d)/4+8;",
+  "distractor_solve": {
+   "30": "const s=10,d=12; return (s*s-d)/4+8;",
+   "-111": "const m=5,d=12; return (m+d)*(m-d)+8;",
+   "-11": "const s=10,d=12; return (s*s-d*d)/4;"
+  }
+ }
+]
