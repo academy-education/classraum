@@ -225,18 +225,22 @@ export async function POST(req: NextRequest) {
       .eq('item_type', 'multiple_choice')
       .eq('verified', true).eq('archived', false)
     if (config.domain) void bankFilter.eq('domain', config.domain)
-    const [{ count: poolSize }, { data: seenRows }] = await Promise.all([
+    const [{ count: poolSize }, { count: seenCount }] = await Promise.all([
       bankFilter,
       dbAdmin
         .from('study_item_exposures')
-        .select('item_id, item:study_item_bank!inner(family, section)')
+        // HEAD count, not rows.length: a rows read is capped at 1000 by
+        // PostgREST, so a student with >1000 exposures in this section
+        // was under-counted and let into a test of items they had seen
+        // (2026-10-02). The !inner join filters the count too.
+        .select('item_id, item:study_item_bank!inner(family, section)', { count: 'exact', head: true })
         .eq('student_id', user.id)
         .eq('item.family', bankFamily)
         .eq('item.section', bankSection),
     ])
     const coverage = assessCoverage({
       poolSize: poolSize ?? 0,
-      seen: seenRows?.length ?? 0,
+      seen: seenCount ?? 0,
       needed: count,
     })
     if (!coverage.ok) {
@@ -245,7 +249,7 @@ export async function POST(req: NextRequest) {
         reason: coverage.reason,
         unseen: coverage.unseen,
         shortBy: itemsShortBy({
-          poolSize: poolSize ?? 0, seen: seenRows?.length ?? 0, needed: count,
+          poolSize: poolSize ?? 0, seen: seenCount ?? 0, needed: count,
         }),
       }, 200)
     }

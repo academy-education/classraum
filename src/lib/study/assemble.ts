@@ -291,15 +291,47 @@ export interface AssembleParams {
  *  Exposures written by `excludeSessionId` are ignored — a session
  *  re-drawing its own questions (practice re-mount) must get the same
  *  set back, not treat its own draw as "already seen". */
-async function loadExposures(studentId: string, excludeSessionId?: string): Promise<Map<string, string>> {
-  const { data } = await dbAdmin
-    .from('study_item_exposures')
-    .select('item_id, seen_at, session_id')
-    .eq('student_id', studentId)
+/*
+ * PAGED (2026-10-02). This was one unpaged read, so PostgREST's 1000-row
+ * cap silently dropped every exposure past the first 1000 — and an item
+ * missing from this map ranks as UNSEEN, so a heavy student was served
+ * repeats as if they were fresh. The ledger is one row per (student, item)
+ * across every family, so it reaches 1000 in ~10 TOEFL sittings
+ * (toefl-form-depth.ts: 1111 rows at upper/medium's 11th).
+ *
+ * Why not a narrower read (only this family/section, or only a recent
+ * window)? A time window is exactly the bug: dropping an old exposure
+ * turns that item unseen, and seen_at is also the recycling order once a
+ * pool is exhausted, so every row is needed. Scoping by family/section
+ * would shrink the read but still exceed 1000 on one section (SAT R&W
+ * holds 1000+ items) — it does not remove the need to page, and it would
+ * add a join to the hot path. So: all rows, only the three columns, paged.
+ *
+ * (student_id, item_id) is unique, so ordering by item_id is a total
+ * order — required for range() to page rather than overlap. A failed page
+ * is logged and the read stops there; the map then holds what was read,
+ * which can only under-report exposure (the pre-existing failure mode).
+ */
+export const EXPOSURE_PAGE = 1000
+export async function loadExposures(studentId: string, excludeSessionId?: string): Promise<Map<string, string>> {
   const map = new Map<string, string>()
-  for (const r of data ?? []) {
-    if (excludeSessionId && r.session_id === excludeSessionId) continue
-    map.set(r.item_id as string, r.seen_at as string)
+  for (let from = 0; ; from += EXPOSURE_PAGE) {
+    const { data, error } = await dbAdmin
+      .from('study_item_exposures')
+      .select('item_id, seen_at, session_id')
+      .eq('student_id', studentId)
+      .order('item_id', { ascending: true })
+      .range(from, from + EXPOSURE_PAGE - 1)
+    if (error) {
+      console.error('[assemble] exposure read failed', { studentId, from, error })
+      break
+    }
+    const page = data ?? []
+    for (const r of page) {
+      if (excludeSessionId && r.session_id === excludeSessionId) continue
+      map.set(r.item_id as string, r.seen_at as string)
+    }
+    if (page.length < EXPOSURE_PAGE) break
   }
   return map
 }

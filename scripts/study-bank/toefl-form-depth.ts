@@ -136,7 +136,16 @@ function installFakeFetch() {
       const student = eqParam(q, 'student_id')
       if (!student) throw new Error('fake fetch: ledger read without student_id')
       const led = noLedger ? new Map<string, string>() : LEDGER.get(student) ?? new Map<string, string>()
-      return json([...led].map(([item_id, seen_at]) => ({ item_id, seen_at, session_id: null })))
+      /* PostgREST's cap applies here too (2026-10-02): no range → the first
+       * MAX_ROWS rows, and no page larger than MAX_ROWS. Before this the
+       * fake served the whole ledger, so it could not see that the real
+       * loadExposures was unpaged and lost every exposure past 1000. */
+      let all = [...led].map(([item_id, seen_at]) => ({ item_id, seen_at, session_id: null }))
+      if (q.get('order') === 'item_id.asc') all = all.sort((a, b) => a.item_id.localeCompare(b.item_id))
+      const offset = Number(q.get('offset') ?? 0)
+      const limit = Math.min(MAX_ROWS, Number(q.get('limit') ?? MAX_ROWS))
+      if (!q.has('offset') && all.length > MAX_ROWS) capWarnings.add(`exposure ledger for ${student}: ${all.length} rows, an unpaged read sees ${MAX_ROWS}`)
+      return json(all.slice(offset, offset + limit))
     }
     if (table === 'study_item_exposures' && method === 'POST') {
       const body = JSON.parse(String(init?.body ?? '[]')) as Array<{ student_id: string; item_id: string }>
