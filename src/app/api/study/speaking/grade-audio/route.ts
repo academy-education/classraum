@@ -355,6 +355,9 @@ export async function POST(req: NextRequest) {
       prompt_text: body.promptText,
       response_text: body.responseText ?? '',
       audio_path: body.audioPath,
+      // Keys the audio-route uniqueness (migration 114): one audio-graded
+      // submission per (session, student, prompt, recording).
+      grader_route: 'audio',
       // MediaRecorder reports a float (44.459999084472656); the column is
       // INTEGER, so PostgREST rejected the whole insert with 22P02
       // "invalid input syntax for type integer" and the student saw a bare
@@ -368,14 +371,57 @@ export async function POST(req: NextRequest) {
     })
     .select('id')
     .single()
-  if (submissionErr || !submission) {
+  // Step 0.5's dedupe is a read; two grade-audio calls for one recording
+  // (a retried request, a double-tapped re-grade) both miss it and both
+  // get here. The unique index makes the second insert fail, and that
+  // caller returns the stored grade so both report the same band.
+  let submissionId: string
+  if (submissionErr && (submissionErr as { code?: string }).code === '23505') {
+    const { data: stored } = await dbAdmin
+      .from('study_response_submissions')
+      .select('id, study_response_grades(overall_band, rubric_scores, annotations, model_rewrite, summary, grader_model)')
+      .eq('session_id', body.sessionId)
+      .eq('student_id', user.id)
+      .eq('prompt_text', body.promptText)
+      .eq('grader_route', 'audio')
+      .eq('audio_path', body.audioPath)
+      .limit(1)
+      .maybeSingle()
+    const sg = stored
+      ? (Array.isArray(stored.study_response_grades) ? stored.study_response_grades[0] : stored.study_response_grades)
+      : null
+    if (stored && sg) {
+      return NextResponse.json({
+        submissionId: stored.id,
+        grade: {
+          overallBand: Number(sg.overall_band),
+          criteria: sg.rubric_scores,
+          annotations: sg.annotations,
+          modelRewrite: sg.model_rewrite,
+          summary: sg.summary,
+        },
+        scaleMax: rubric.scaleMax,
+        graderModel: sg.grader_model,
+        cached: true,
+      })
+    }
+    if (!stored) {
+      console.error('[speaking/grade-audio] unique violation but no stored submission', submissionErr)
+      return NextResponse.json({ error: 'persist failed' }, { status: 500 })
+    }
+    // The other caller's submission has no grade yet: attach ours below
+    // (one grade per submission is also unique, so only one lands).
+    submissionId = stored.id
+  } else if (submissionErr || !submission) {
     console.error('[speaking/grade-audio] insert submission', submissionErr)
     return NextResponse.json({ error: 'persist failed' }, { status: 500 })
+  } else {
+    submissionId = submission.id
   }
   const { error: gradeErr } = await dbAdmin
     .from('study_response_grades')
     .insert({
-      submission_id: submission.id,
+      submission_id: submissionId,
       student_id: user.id,
       overall_band: clampedBand,
       rubric_scores: grade.criteria,
@@ -413,7 +459,7 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({
-    submissionId: submission.id,
+    submissionId,
     grade: { ...grade, overallBand: clampedBand },
     scaleMax: rubric.scaleMax,
     graderModel: AUDIO_MODEL,

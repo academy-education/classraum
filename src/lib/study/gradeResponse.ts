@@ -3,6 +3,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { generateObject } from 'ai'
 import type { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
+import type { Database } from '@/lib/database.types'
 import {
   gradeSchemaForCriteria,
   getRubric,
@@ -208,6 +209,25 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
   const usage = staged.usage
   const clampedBand = Math.max(0, Math.min(rubric.scaleMax, grade.overallBand))
 
+  // Persist. The cache check at the top is a read followed by this write,
+  // so two callers a second apart (grade-batch + the review panel, or a
+  // retried batch) both miss it and both get here — that is exactly what
+  // put four submission rows and two disagreeing bands on one TOEFL Writing
+  // test. Migration 114 makes (session, student, prompt, response) unique
+  // for text grades and one grade per submission, so the loser's insert
+  // fails with 23505 and it adopts the stored row instead: both callers
+  // report the SAME band, and the result screen has one row to read.
+  const gradeRow: GradeRowFields = {
+    student_id: p.userId,
+    overall_band: clampedBand,
+    rubric_scores: grade.criteria,
+    annotations: grade.annotations,
+    model_rewrite: grade.modelRewrite,
+    summary: grade.summary,
+    grader_model: 'gpt-4o+staged-ets',
+    tokens_in: usage.tokensIn,
+    tokens_out: usage.tokensOut,
+  }
   const { data: submission, error: submissionErr } = await dbAdmin
     .from('study_response_submissions')
     .insert({
@@ -229,34 +249,53 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
     })
     .select('id')
     .single()
-  if (submissionErr || !submission) {
+
+  let submissionId: string
+  if (submissionErr && isUniqueViolation(submissionErr)) {
+    const adopted = await adoptStoredSubmission(p, gradeRow)
+    if (adopted.kind === 'stored') {
+      return {
+        submissionId: adopted.submissionId,
+        grade: adopted.grade,
+        scaleMax: rubric.scaleMax,
+        cached: true,
+        xpSourceId,
+        diagnostics: null,
+      }
+    }
+    submissionId = adopted.submissionId
+  } else if (submissionErr || !submission) {
     console.error('[gradeResponse] insert submission', submissionErr)
     throw new GradePersistError(submissionErr?.message ?? 'insert submission failed')
-  }
-
-  const { error: gradeErr } = await dbAdmin
-    .from('study_response_grades')
-    .insert({
-      submission_id: submission.id,
-      student_id: p.userId,
-      overall_band: clampedBand,
-      rubric_scores: grade.criteria,
-      annotations: grade.annotations,
-      model_rewrite: grade.modelRewrite,
-      summary: grade.summary,
-      grader_model: 'gpt-4o+staged-ets',
-      tokens_in: usage.tokensIn,
-      tokens_out: usage.tokensOut,
-    })
-  if (gradeErr) {
-    // The submission row exists; a missing grade row means the next run
-    // sees no prior grade and re-grades this item, which is correct.
-    console.error('[gradeResponse] insert grade', gradeErr)
-    throw new GradePersistError(gradeErr.message)
+  } else {
+    submissionId = submission.id
+    const { error: gradeErr } = await dbAdmin
+      .from('study_response_grades')
+      .insert({ submission_id: submissionId, ...gradeRow })
+    if (gradeErr && isUniqueViolation(gradeErr)) {
+      // A concurrent caller adopted our row and attached ITS grade first.
+      // One grade per submission: report that one, not ours.
+      const adopted = await adoptStoredSubmission(p, gradeRow)
+      if (adopted.kind === 'stored') {
+        return {
+          submissionId: adopted.submissionId,
+          grade: adopted.grade,
+          scaleMax: rubric.scaleMax,
+          cached: true,
+          xpSourceId,
+          diagnostics: null,
+        }
+      }
+    } else if (gradeErr) {
+      // The submission row exists; a missing grade row means the next run
+      // finds the submission, adopts it and attaches a grade.
+      console.error('[gradeResponse] insert grade', gradeErr)
+      throw new GradePersistError(gradeErr.message)
+    }
   }
 
   return {
-    submissionId: submission.id,
+    submissionId,
     grade: {
       overallBand: clampedBand,
       criteria: grade.criteria,
@@ -275,4 +314,58 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
       zeroReasons: staged.zeroReasons,
     },
   }
+}
+
+function isUniqueViolation(e: unknown): boolean {
+  return !!e && typeof e === 'object' && (e as { code?: string }).code === '23505'
+}
+
+type StoredGrade = GradedResponse['grade']
+type GradeRowFields = Omit<Database['public']['Tables']['study_response_grades']['Insert'], 'submission_id'>
+type AdoptResult =
+  | { kind: 'stored'; submissionId: string; grade: StoredGrade }
+  | { kind: 'attached'; submissionId: string }
+
+/** A concurrent caller already inserted this (session, student, prompt,
+ *  response) text submission. Return its grade if it has one; otherwise
+ *  attach ours to it. A 23505 on that attach means the other caller's
+ *  grade landed first — return that one, so both report the same band. */
+async function adoptStoredSubmission(
+  p: GradeResponseParams,
+  gradeRow: GradeRowFields,
+): Promise<AdoptResult> {
+  const read = async () => {
+    const { data, error } = await dbAdmin
+      .from('study_response_submissions')
+      .select('id, response_text, study_response_grades(overall_band, rubric_scores, annotations, model_rewrite, summary)')
+      .eq('session_id', p.sessionId)
+      .eq('student_id', p.userId)
+      .eq('prompt_text', p.promptText)
+      .eq('grader_route', 'text')
+      .order('created_at', { ascending: false })
+    if (error) throw new GradePersistError(error.message)
+    const row = (data ?? []).find(r => r.response_text === p.responseText)
+    if (!row) throw new GradePersistError('unique violation but no stored submission found')
+    const g = Array.isArray(row.study_response_grades) ? row.study_response_grades[0] : row.study_response_grades
+    return { id: row.id as string, g }
+  }
+  const toGrade = (g: { overall_band: unknown; rubric_scores: unknown; annotations: unknown; model_rewrite: string | null; summary: string | null }): StoredGrade => ({
+    overallBand: Number(g.overall_band),
+    criteria: g.rubric_scores,
+    annotations: g.annotations,
+    modelRewrite: g.model_rewrite,
+    summary: g.summary,
+  })
+
+  const first = await read()
+  if (first.g) return { kind: 'stored', submissionId: first.id, grade: toGrade(first.g) }
+
+  const { error } = await dbAdmin
+    .from('study_response_grades')
+    .insert({ submission_id: first.id, ...gradeRow })
+  if (!error) return { kind: 'attached', submissionId: first.id }
+  if (!isUniqueViolation(error)) throw new GradePersistError(error.message)
+  const again = await read()
+  if (!again.g) throw new GradePersistError('grade unique violation but no stored grade found')
+  return { kind: 'stored', submissionId: again.id, grade: toGrade(again.g) }
 }

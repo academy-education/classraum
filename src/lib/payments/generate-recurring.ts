@@ -247,6 +247,7 @@ export async function generateRecurringInvoices(
             .from('recurring_payment_templates')
             .update({ next_due_date: nextDueDate })
             .eq('id', template.id)
+            .eq('next_due_date', template.next_due_date)
           if (rollForwardError) {
             // Without the roll-forward the template keeps matching the
             // "due today" query on every subsequent cron run, forever.
@@ -289,10 +290,31 @@ export async function generateRecurringInvoices(
         // into `errors` and moved on — so the cron reported success with
         // totalInvoicesCreated stuck at 0 and no recurring invoice was ever
         // generated. Both columns are now populated from the template.
-        const { data: createdInvoices, error: invoiceError } = await dbAdmin
+        //
+        // The pre-read above is a read followed by a write: two overlapping
+        // runs (cron + a manual retry) both see "nobody invoiced yet" and
+        // both insert — a second bill to the same parent. Migration 115 adds
+        // UNIQUE (template_id, student_id, due_date) so the database refuses
+        // the second; a batch that trips it is re-done row by row, keeping
+        // only the rows this run actually created.
+        let { data: createdInvoices, error: invoiceError } = await dbAdmin
           .from('invoices')
           .insert(invoices)
           .select('id')
+        if (invoiceError && (invoiceError as { code?: string }).code === '23505') {
+          const created: { id: string }[] = []
+          invoiceError = null
+          for (const inv of invoices) {
+            const { data: one, error: oneErr } = await dbAdmin
+              .from('invoices')
+              .insert(inv)
+              .select('id')
+            if (oneErr && (oneErr as { code?: string }).code === '23505') continue
+            if (oneErr) { invoiceError = oneErr; break }
+            created.push(...((one ?? []) as { id: string }[]))
+          }
+          createdInvoices = created
+        }
 
         if (invoiceError) {
           console.error(`[RECURRING] Error creating invoices for template ${template.id}:`, invoiceError.message)
@@ -300,8 +322,9 @@ export async function generateRecurringInvoices(
           continue
         }
 
-        totalInvoicesCreated += invoices.length
-        console.log(`[RECURRING] Created ${invoices.length} invoices for template: ${template.name}`)
+        const createdCount = (createdInvoices ?? []).length
+        totalInvoicesCreated += createdCount
+        console.log(`[RECURRING] Created ${createdCount} invoices for template: ${template.name}`)
 
         // Send invoice creation notifications for each created invoice
         if (createdInvoices && createdInvoices.length > 0) {
@@ -319,10 +342,15 @@ export async function generateRecurringInvoices(
         // Update template's next_due_date to the next occurrence
         const nextDueDate = calculateNextDueDate(template, today)
 
+        // Conditional on the period this run invoiced. calculateNextDueDate
+        // derives from `today`, so a duplicate advance is harmless today; the
+        // guard keeps a stale run from overwriting a date someone (or the
+        // roll-forward script) changed while it was working.
         const { error: updateError } = await dbAdmin
           .from('recurring_payment_templates')
           .update({ next_due_date: nextDueDate })
           .eq('id', template.id)
+          .eq('next_due_date', template.next_due_date)
 
         if (updateError) {
           console.error(`[RECURRING] Error updating next_due_date for template ${template.id}:`, updateError)

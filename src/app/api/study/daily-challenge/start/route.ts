@@ -71,6 +71,19 @@ export async function POST(req: NextRequest) {
     })
     .select('id')
     .single()
+  // The "already started today?" check above is a read; a double-tap
+  // passes it twice. Migration 114's unique index on (student,
+  // config->>'dailyChallenge') rejects the second insert — return the
+  // session the first one created instead of a second free set.
+  if (error && (error as { code?: string }).code === '23505') {
+    const { data: raced } = await dbAdmin
+      .from('study_sessions')
+      .select('id')
+      .eq('student_id', user.id)
+      .contains('config', { dailyChallenge: today })
+      .limit(1)
+    if (raced && raced[0]) return NextResponse.json({ sessionId: raced[0].id, reused: true })
+  }
   if (error || !data) {
     console.error('[daily-challenge/start]', error)
     return NextResponse.json({ error: 'create failed' }, { status: 500 })
