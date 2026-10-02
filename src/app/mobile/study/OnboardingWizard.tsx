@@ -13,6 +13,10 @@ import { STUDY_AVATAR_IDS } from '@/lib/study/avatars'
 import { useKeyboardInset } from '@/hooks/useKeyboardInset'
 import { GOAL_SCALES, goalTestsFor } from '@/lib/study/goal-scales'
 import { isAvailableTargetTest } from '@/lib/study/target-tests'
+import { useDialogA11y } from '@/app/mobile/study/_shared/useDialogA11y'
+
+const STEP_TITLE_ID = 'onboarding-step-title'
+const NOOP = () => {}
 
 type Difficulty = 'warmup' | 'balanced' | 'challenge'
 /**
@@ -105,7 +109,12 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
    * field whose top edge is just visible counts as in-view to 'nearest'
    * and would not move.
    */
-  const sheetRef = useRef<HTMLDivElement | null>(null)
+  //
+  // Focus management comes from the shared useDialogA11y (focus in on
+  // open, Tab trapped inside) — but with a NO-OP close: the wizard is
+  // required, so Escape must not dismiss it. Its own Skip button is the
+  // only way out, and that still saves onboarded_at.
+  const sheetRef = useDialogA11y<HTMLDivElement>(true, NOOP)
   useEffect(() => {
     const sheet = sheetRef.current
     if (!sheet) return
@@ -142,6 +151,17 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
   const [nickStatus, setNickStatus] = useState<'idle' | 'checking' | 'available' | 'taken' | 'invalid'>('idle')
   const [saving, setSaving] = useState(false)
   const nickDebounce = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Each step swaps the whole body, so the Next/Back button that had
+  // focus may unmount and drop focus to <body>. Move it to the new
+  // step's heading instead — keeps focus inside the dialog and makes a
+  // screen reader announce the step. Skipped on mount: the hook has
+  // already focused the dialog.
+  const firstStep = useRef(true)
+  useEffect(() => {
+    if (firstStep.current) { firstStep.current = false; return }
+    document.getElementById(STEP_TITLE_ID)?.focus({ preventScroll: true })
+  }, [step])
 
   // Live nickname availability check (debounced) on step 5.
   useEffect(() => {
@@ -222,6 +242,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
       <div
         role="dialog"
         aria-modal="true"
+        aria-labelledby={STEP_TITLE_ID}
         // z-[121] to sit above the safe-area bars (z-100) so the scrim
         // covers the full screen edge-to-edge, and above BottomNavigation
         // (z-50) — otherwise the
@@ -273,7 +294,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {String(t('study.onboarding.step1Eyebrow'))}
                 </span>
               </div>
-              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 id={STEP_TITLE_ID} tabIndex={-1} className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight outline-none">
                 {String(t('study.onboarding.step1Title'))}
               </h2>
               <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
@@ -412,7 +433,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {String(t('study.onboarding.step2Eyebrow'))}
                 </span>
               </div>
-              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 id={STEP_TITLE_ID} tabIndex={-1} className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight outline-none">
                 {String(t('study.onboarding.step2Title'))}
               </h2>
               <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
@@ -449,7 +470,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {String(t('study.onboarding.step3Eyebrow'))}
                 </span>
               </div>
-              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 id={STEP_TITLE_ID} tabIndex={-1} className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight outline-none">
                 {String(t('study.onboarding.step3Title'))}
               </h2>
               <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
@@ -485,7 +506,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {ko ? '4 / 5 단계' : 'Step 4 of 5'}
                 </span>
               </div>
-              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 id={STEP_TITLE_ID} tabIndex={-1} className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight outline-none">
                 {ko ? '기본값을 정해요' : 'Set your defaults'}
               </h2>
               <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">
@@ -555,7 +576,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
                   {ko ? '5 / 5 단계' : 'Step 5 of 5'}
                 </span>
               </div>
-              <h2 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight">
+              <h2 id={STEP_TITLE_ID} tabIndex={-1} className="text-[20px] font-semibold tracking-tight text-gray-900 leading-tight outline-none">
                 {ko ? '프로필을 만들어요' : 'Make it yours'}
               </h2>
               <p className="text-[13px] text-gray-500 mt-1.5 leading-relaxed">

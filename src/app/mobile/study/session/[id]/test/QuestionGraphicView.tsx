@@ -2,6 +2,34 @@
 
 import type { QuestionGraphic } from './types'
 import { fmtTick } from './helpers'
+import { useTranslation } from '@/hooks/useTranslation'
+import { describeGraphic } from './graphic-description'
+
+/** Accessible wrapper. Charts and constructed figures get a visually
+ *  hidden text description derived from the same data spec the figure
+ *  is drawn from (see graphic-description.ts for what it may and may
+ *  not state — it carries only what the figure shows). When one exists
+ *  the drawing itself is aria-hidden, so a screen reader hears the
+ *  description and caption instead of a stream of stray tick labels.
+ *  Tables are already semantic and raw SVG gets an img role + label. */
+export function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | undefined }) {
+  const { t } = useTranslation()
+  const lines = describeGraphic(graphic, (k, p) => String(t(k, p)))
+  if (lines.length === 0) return <GraphicFigure graphic={graphic} figureLabel={String(t('study.a11y.graphic.figure'))} />
+  return (
+    <div>
+      <div aria-hidden="true">
+        <GraphicFigure graphic={graphic} figureLabel={String(t('study.a11y.graphic.figure'))} />
+      </div>
+      <div className="sr-only" role="group" aria-label={String(t('study.a11y.graphic.descriptionHeading'))}>
+        <ul>
+          {lines.map((line, i) => <li key={i}>{line}</li>)}
+          {graphic?.caption && <li>{graphic.caption}</li>}
+        </ul>
+      </div>
+    </div>
+  )
+}
 
 /** Visual asset renderer for math + data questions. Restyled to
  *  match the College Board's SAT PDF aesthetic: pure black strokes
@@ -9,10 +37,10 @@ import { fmtTick } from './helpers'
  *  decoration. Dispatches on `graphic.type`; each branch tolerates
  *  missing fields and falls through to the rawSvg / caption-only
  *  fallback so a malformed graphic never blocks the question. */
-export function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | null | undefined }) {
+function GraphicFigure({ graphic, figureLabel }: { graphic: QuestionGraphic | null | undefined; figureLabel: string }) {
   if (!graphic || !graphic.type) {
     // Edge case — model emitted a graphic.svg but forgot to set type
-    if (graphic?.svg) return <RawSvgFigure svg={graphic.svg} caption={graphic.caption ?? undefined} />
+    if (graphic?.svg) return <RawSvgFigure svg={graphic.svg} caption={graphic.caption ?? undefined} label={figureLabel} />
     return null
   }
   const t = graphic.type.toLowerCase()
@@ -729,7 +757,7 @@ export function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | nu
 
   // ─ Raw SVG escape hatch (geometry, irregular figures) ──────────
   if (t === 'rawsvg' || graphic.svg) {
-    return <RawSvgFigure svg={graphic.svg ?? ''} caption={graphic.caption ?? undefined} />
+    return <RawSvgFigure svg={graphic.svg ?? ''} caption={graphic.caption ?? undefined} label={figureLabel} />
   }
 
   // ─ Caption-only fallback ───────────────────────────────────────
@@ -740,7 +768,7 @@ export function QuestionGraphicView({ graphic }: { graphic: QuestionGraphic | nu
   ) : null
 }
 
-function RawSvgFigure({ svg, caption }: { svg: string; caption?: string }) {
+function RawSvgFigure({ svg, caption, label }: { svg: string; caption?: string; label: string }) {
   if (!svg) return null
   return (
     <figure className="my-3 flex flex-col items-center">
@@ -752,7 +780,11 @@ function RawSvgFigure({ svg, caption }: { svg: string; caption?: string }) {
        *  surrounding prose. overflow-visible on the svg lets text
        *  labels positioned just outside the viewBox still render. */}
       <div className="max-w-md w-full bg-white rounded-lg ring-1 ring-gray-200 p-4">
+        {/* No data spec to describe from: expose the drawing as one
+         *  image named by its caption (or a generic "Figure"). */}
         <div
+          role="img"
+          aria-label={caption || label}
           className="w-full [&_svg]:w-full [&_svg]:h-auto [&_svg]:max-h-[300px] [&_svg]:overflow-visible"
           dangerouslySetInnerHTML={{ __html: svg }}
         />

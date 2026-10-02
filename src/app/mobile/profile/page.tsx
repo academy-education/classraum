@@ -1117,7 +1117,7 @@ function MobileProfilePageContent() {
                 <p className="text-sm text-gray-700">{t('mobile.profile.pushCategory.account')}</p>
                 <p className="text-xs text-gray-500">{t('mobile.profile.pushCategory.accountDesc')}</p>
               </div>
-              <span className="flex-shrink-0 text-[11px] font-medium text-gray-400 uppercase tracking-wide">
+              <span className="flex-shrink-0 text-[11px] font-medium text-gray-500 uppercase tracking-wide">
                 {t('mobile.profile.pushAlwaysOn')}
               </span>
             </div>

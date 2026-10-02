@@ -1867,7 +1867,7 @@ export default function MobilePage() {
             <div className="flex flex-col items-center gap-1">
               <Calendar className="w-6 h-6 text-gray-300" />
               <div className="text-gray-500 font-medium text-sm leading-tight">{t('mobile.home.noUpcomingClasses')}</div>
-              <div className="text-gray-400 text-xs leading-tight">{t('mobile.home.noUpcomingClassesDesc')}</div>
+              <div className="text-gray-500 text-xs leading-tight">{t('mobile.home.noUpcomingClassesDesc')}</div>
             </div>
           </Card>
         )}

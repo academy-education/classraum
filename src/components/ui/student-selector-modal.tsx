@@ -109,7 +109,7 @@ export function StudentSelectorModal({
                         that says so. Selecting it shows every academy — the
                         pages carry their own academy filter. */}
                     {academyCount > 1 && (
-                      <p className="text-[11px] text-gray-400 truncate mt-0.5">
+                      <p className="text-[11px] text-gray-500 truncate mt-0.5">
                         {t('studentSelector.enrolledInAcademies', { count: academyCount })}
                       </p>
                     )}
@@ -128,7 +128,7 @@ export function StudentSelectorModal({
 
           {/* Footer hint — only when modal is forced (no onClose) */}
           {!onClose && students.length > 0 && (
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-400 text-center mt-5">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-500 text-center mt-5">
               {t('studentSelector.changeInfo')}
             </p>
           )}
