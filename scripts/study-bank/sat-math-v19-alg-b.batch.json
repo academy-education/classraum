@@ -1,0 +1,178 @@
+[
+ {
+  "id": "SM19L-B1",
+  "domain": "Algebra",
+  "subskill": "Linear equations in context: staggered start with a required lead",
+  "difficulty": "hard",
+  "prompt": "Two survey boats leave the same dock and travel along the same straight route in the same direction, each at a constant speed. Boat A leaves at 8:00 a.m. and travels at 12 kilometers per hour. Boat B leaves at 10:00 a.m. and travels at 20 kilometers per hour. How many minutes after boat B leaves the dock is boat B exactly 4 kilometers ahead of boat A?",
+  "choices": [
+   "187.5",
+   "192",
+   "200",
+   "210"
+  ],
+  "correct_answer": "210",
+  "explanation": "Let s be the number of hours boat B has been traveling. Boat A has then been traveling s + 2 hours. Boat B is 4 kilometers ahead when 20s = 12(s + 2) + 4, so 8s = 28 and s = 3.5. That is 3.5(60) = 210 minutes after boat B leaves.\n\n192 comes from finding when boat B catches boat A (after 3 hours) and then dividing the extra 4 kilometers by boat B's speed, as if boat A had stopped. 200 comes from finding the catch-up time and then dividing the extra 4 kilometers by boat A's speed. 187.5 comes from finding the catch-up time and then dividing the extra 4 kilometers by the sum of the speeds, 32 kilometers per hour, as if the boats were moving apart in opposite directions.",
+  "bounds": [],
+  "solve": "const s = (12*2 + 4)/(20 - 12); return 60*s;",
+  "distractor_solve": {
+   "192": "const c = (12*2)/(20 - 12); return 60*(c + 4/20);",
+   "200": "const c = (12*2)/(20 - 12); return 60*(c + 4/12);",
+   "187.5": "const c = (12*2)/(20 - 12); return 60*(c + 4/(20 + 12));"
+  }
+ },
+ {
+  "id": "SM19L-B2",
+  "domain": "Algebra",
+  "subskill": "Linear system in context: replacement that is not one-for-one",
+  "difficulty": "hard",
+  "prompt": "A radio station's overnight playlist consists of 118 tracks, each exactly 4 minutes long. The station replaces some of these tracks with tracks that are each exactly 7 minutes long, keeping the total length of the playlist the same as before. After the change, the 7-minute tracks account for 144 more minutes of the playlist than the 4-minute tracks do. How many 7-minute tracks are on the playlist after the change?",
+  "choices": [
+   "41",
+   "44",
+   "48",
+   "56"
+  ],
+  "correct_answer": "44",
+  "explanation": "The playlist originally lasts 118(4) = 472 minutes, and it still lasts 472 minutes after the change. Let L be the minutes of 7-minute tracks and S the minutes of 4-minute tracks. Then L + S = 472 and L − S = 144, so L = 308 and S = 164. There are 308/7 = 44 seven-minute tracks (and 164/4 = 41 four-minute tracks). Because the total time stays fixed, the number of tracks does not stay at 118.\n\n56 comes from assuming each 7-minute track replaced exactly one 4-minute track, writing 7x − 4(118 − x) = 144; that playlist would last 616 minutes, not 472. 48 comes from assuming one-for-one replacement and reading the 144 minutes as the increase in length, 3x = 144. 41 is the number of 4-minute tracks, not 7-minute tracks.",
+  "bounds": [],
+  "solve": "const T=118*4; const L=(T+144)/2; return L/7;",
+  "distractor_solve": {
+   "41": "const T=118*4; const S=(T-144)/2; return S/4;",
+   "48": "return 144/(7-4);",
+   "56": "return (144+4*118)/(7+4);"
+  }
+ },
+ {
+  "id": "SM19L-B3",
+  "domain": "Algebra",
+  "subskill": "Linear function in context: net change from rates given per day and per week",
+  "difficulty": "hard",
+  "prompt": "A food bank has 4,200 cans in stock. Starting now, it receives donated cans at a constant rate of 340 cans per day, and it gives out cans at a constant rate of 1,890 cans per week. If both rates continue, how many cans will the food bank have in stock 3 weeks and 4 days from now?",
+  "choices": [
+   "5950",
+   "6160",
+   "6580",
+   "7030"
+  ],
+  "correct_answer": "5950",
+  "explanation": "Giving out 1,890 cans per week at a constant rate is 1,890/7 = 270 cans per day, so the stock grows by 340 − 270 = 70 cans per day. Three weeks and 4 days is 3(7) + 4 = 25 days, so the stock will be 4,200 + 70(25) = 5,950 cans.\n\n6160 comes from rounding 3 weeks and 4 days up to 4 full weeks (28 days). 6580 comes from treating 3 weeks and 4 days as 34 days. 7030 comes from subtracting the weekly 1,890 only for the 3 full weeks and counting only donations during the last 4 days, even though cans are given out at a constant rate every day.",
+  "bounds": [],
+  "solve": "const net=340-1890/7; return 4200+net*(3*7+4);",
+  "distractor_solve": {
+   "6160": "const net=340-1890/7; return 4200+net*(4*7);",
+   "6580": "const net=340-1890/7; return 4200+net*34;",
+   "7030": "return 4200+3*(340*7-1890)+4*340;"
+  }
+ },
+ {
+  "id": "SM19L-B4",
+  "domain": "Algebra",
+  "subskill": "Two linear inequalities in context: counting integers, strict vs non-strict",
+  "difficulty": "hard",
+  "prompt": "A delivery drone's frame and battery have a combined mass of 7.5 kilograms. On each trip the drone carries n identical packages, each with a mass of 1.25 kilograms. The total mass of the drone and its packages must be less than 40 kilograms, and a trip is scheduled only if the packages have a combined mass of at least 12.5 kilograms. How many different values of n are possible for a scheduled trip?",
+  "choices": [
+   "14",
+   "15",
+   "16",
+   "17"
+  ],
+  "correct_answer": "16",
+  "explanation": "The mass condition is 7.5 + 1.25n < 40, so 1.25n < 32.5 and n < 26; since n is a whole number, n ≤ 25. The scheduling condition is 1.25n ≥ 12.5, so n ≥ 10. The possible values are 10, 11, ..., 25, which is 25 − 10 + 1 = 16 values.\n\n17 comes from treating 'less than 40' as 'at most 40', which wrongly allows n = 26. 15 comes from treating 'at least 12.5' as 'more than 12.5', which wrongly excludes n = 10 and leaves 11 through 25. 14 comes from making that same mistake and then also finding the count by subtracting the endpoints, 25 − 11, without adding 1.",
+  "bounds": [],
+  "solve": "const hi=Math.ceil((40-7.5)/1.25)-1; const lo=Math.ceil(12.5/1.25); return hi-lo+1;",
+  "distractor_solve": {
+   "14": "const hi=Math.ceil((40-7.5)/1.25)-1; const lo=Math.floor(12.5/1.25)+1; return hi-lo;",
+   "15": "const hi=Math.ceil((40-7.5)/1.25)-1; const lo=Math.floor(12.5/1.25)+1; return hi-lo+1;",
+   "17": "const hi=Math.floor((40-7.5)/1.25); const lo=Math.ceil(12.5/1.25); return hi-lo+1;"
+  }
+ },
+ {
+  "id": "SM19L-B5",
+  "domain": "Algebra",
+  "subskill": "Linear model with literal constants: constant is value at t = 0, not at a stated start",
+  "difficulty": "hard",
+  "prompt": "Biologists model the number of sea turtle nests on a beach with the function N(t) = a + bt, where a and b are constants and t is the number of years after 2018. Monitoring of the beach began in 2021, when 340 nests were counted, and in 2027, 610 nests were counted. Both counts fit the model exactly. What is the value of a + b?",
+  "choices": [
+   "160",
+   "250",
+   "280",
+   "295"
+  ],
+  "correct_answer": "250",
+  "explanation": "In the model, 2021 is t = 3 and 2027 is t = 9. So a + 3b = 340 and a + 9b = 610. Subtracting gives 6b = 270, so b = 45, and then a = 340 − 3(45) = 205. Therefore a + b = 205 + 45 = 250.\n\n295 comes from counting 2021 as t = 2 and 2027 as t = 8, which gives b = 45 and a = 250. 280 comes from dividing the increase of 270 by 9, the number of years from 2018 to 2027, instead of by the 6 years from 2021 to 2027, which gives b = 30 and a = 250. 160 comes from finding a = 205 and b = 45 correctly and then computing a − b instead of a + b.",
+  "bounds": [],
+  "solve": "const b=(610-340)/(9-3); const a=340-3*b; return a+b;",
+  "distractor_solve": {
+   "160": "const b=(610-340)/(9-3); const a=340-3*b; return a-b;",
+   "280": "const b=(610-340)/9; const a=340-3*b; return a+b;",
+   "295": "const b=(610-340)/(8-2); const a=340-2*b; return a+b;"
+  }
+ },
+ {
+  "id": "SM19L-B6",
+  "domain": "Algebra",
+  "subskill": "Linear inequalities in context: pricing tier and a second binding constraint",
+  "difficulty": "hard",
+  "prompt": "A print shop charges a $12 setup fee on every order. In addition, an order of fewer than 400 pages costs $0.085 per page, and an order of 400 pages or more costs $0.06 per page for every page in the order. The shop's printer needs 3 minutes to warm up and then prints 26 pages per minute, and every order must be finished within 20 minutes of turning the printer on. A customer can spend at most $40 on one order. What is the greatest number of pages the customer can order?",
+  "choices": [
+   "266",
+   "329",
+   "442",
+   "466"
+  ],
+  "correct_answer": "442",
+  "explanation": "Time: after the 3-minute warm-up, 17 minutes remain, so the printer can print at most 17(26) = 442 pages. Cost: after the $12 fee, $28 remains for pages. At the under-400 rate, 0.085p ≤ 28 gives at most 329 pages. At the 400-or-more rate, 0.06p ≤ 28 gives p ≤ 466.6..., so at most 466 pages, and the lower rate applies to any order of 400 or more pages. Both conditions must hold, so the greatest order is 442 pages, which is at least 400 pages and costs 12 + 0.06(442) = $38.52.\n\n466 comes from using only the cost condition and ignoring the printing time. 329 comes from using only the under-400 rate and never checking whether a larger order qualifies for the lower rate. 266 comes from subtracting the $12 fee twice, (40 − 24)/0.06.",
+  "bounds": [],
+  "solve": "const t=(20-3)*26; const c=Math.floor((40-12)/0.06+1e-9); let p=Math.min(t,c); if(p<400) p=Math.min(t,Math.floor((40-12)/0.085+1e-9)); return p;",
+  "distractor_solve": {
+   "266": "return Math.floor((40-24)/0.06+1e-9);",
+   "329": "return Math.floor((40-12)/0.085+1e-9);",
+   "466": "return Math.floor((40-12)/0.06+1e-9);"
+  }
+ },
+ {
+  "id": "SM19L-B7",
+  "domain": "Algebra",
+  "subskill": "System in context: asked quantity is a combination of the two rates",
+  "difficulty": "hard",
+  "prompt": "A workshop has two machines, A and B, each producing parts at its own constant rate. On Monday, machine A ran alone for 2 hours, and then machines A and B ran together for 3 more hours; 1,010 parts were produced in all. On Tuesday, machine B ran alone for 1 hour, and then machines A and B ran together for 4 more hours; 1,185 parts were produced in all. How many parts would the two machines produce running together for 6 hours?",
+  "choices": [
+   "1515",
+   "1560",
+   "1580",
+   "1740"
+  ],
+  "correct_answer": "1560",
+  "explanation": "Let a and b be the machines' rates in parts per hour. On Monday machine A ran 5 hours and machine B ran 3 hours, so 5a + 3b = 1,010. On Tuesday machine A ran 4 hours and machine B ran 5 hours, so 4a + 5b = 1,185. Adding Monday's equation to twice Tuesday's gives 13a + 13b = 1,010 + 2,370 = 3,380, so a + b = 260 parts per hour. (Solving the system directly gives a = 115 and b = 145, with the same sum.) Running together for 6 hours, the machines produce 6(260) = 1,560 parts.\n\n1515 comes from assuming the two machines have the same rate and using only Monday's total: 1,010 parts in 8 machine-hours, times 12 machine-hours. 1580 comes from the same equal-rate assumption applied only to Tuesday's total: 1,185 parts in 9 machine-hours, times 12 machine-hours. 1740 comes from finding b = 145 and then multiplying by 12, as if both machines produced at machine B's rate.",
+  "bounds": [],
+  "solve": "const S=(1010+2*1185)/13; return 6*S;",
+  "distractor_solve": {
+   "1515": "return 12*1010/8;",
+   "1580": "return 12*1185/9;",
+   "1740": "const b=(5*1185-4*1010)/(25-12); return 12*b;"
+  }
+ },
+ {
+  "id": "SM19L-B8",
+  "domain": "Algebra",
+  "subskill": "Linear equation from a change in mean: what the totals include",
+  "difficulty": "hard",
+  "prompt": "A hiking club has n members, including its founder, who is 70 years old. The mean age of the n members is 34 years. The founder then leaves the club, and 6 new members whose mean age is 22 years join. The mean age of the club's members is now 32 years. What is the value of n?",
+  "choices": [
+   "14",
+   "30",
+   "31",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "The original total age is 34n. Removing the founder subtracts 70, and the new members add 6(22) = 132, so the new total is 34n + 62. The club now has n − 1 + 6 = n + 5 members, so 34n + 62 = 32(n + 5). Then 34n + 62 = 32n + 160, so 2n = 98 and n = 49.\n\n30 comes from ignoring the founder's departure completely, writing 34n + 132 = 32(n + 6). 14 comes from reducing the member count by one but forgetting to subtract the founder's 70 years, writing 34n + 132 = 32(n + 5). 31 comes from setting the drop in the mean times n equal to the net change in total age, 2n = 132 − 70, which ignores that the number of members changed.",
+  "bounds": [],
+  "solve": "return (32*5 - (6*22 - 70))/(34-32);",
+  "distractor_solve": {
+   "14": "return (32*5 - 6*22)/(34-32);",
+   "30": "return (32*6 - 6*22)/(34-32);",
+   "31": "return (6*22-70)/(34-32);"
+  }
+ }
+]
