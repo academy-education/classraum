@@ -170,6 +170,13 @@ export interface RefundResult {
   already: number
   /** Slices that were never debited (nothing to give back). */
   noDebit: number
+  /** Slices whose refund RPC errored or threw. The credit is STILL DEBITED.
+   *  Callers that are about to destroy the evidence of a session (delete the
+   *  row) must check this — before it existed an errored slice simply fell
+   *  out of the totals, indistinguishable from success. */
+  failed: number
+  /** Ledger source ids this call actually refunded (for audit labelling). */
+  refundedSources: string[]
 }
 
 /** Refund every credit slice of a session.
@@ -186,7 +193,7 @@ export interface RefundResult {
  *  Returns a per-slice breakdown so callers (the reaper especially) can
  *  log whether a refund was real or a replay. */
 export async function refundTestCredits(studentId: string, sessionId: string, cost: number): Promise<RefundResult> {
-  const out: RefundResult = { refunded: 0, already: 0, noDebit: 0 }
+  const out: RefundResult = { refunded: 0, already: 0, noDebit: 0, failed: 0, refundedSources: [] }
   for (let i = 0; i < cost; i++) {
     // Walk the slice's epochs. reserveTestCredits only moves to epoch N+1
     // when epoch N was refunded, so every epoch before the live one answers
@@ -201,6 +208,7 @@ export async function refundTestCredits(studentId: string, sessionId: string, co
         // logs) as "there was nothing to give back". Never conflate the two.
         if (error) {
           console.error('[credits] refund slice failed', { studentId, sessionId, slice: i, epoch, error })
+          out.failed++
           break
         }
         const r = (data ?? {}) as { ok?: boolean; already?: boolean; reason?: string }
@@ -208,12 +216,13 @@ export async function refundTestCredits(studentId: string, sessionId: string, co
           if (epoch + 1 >= MAX_EPOCHS) out.already++
           continue
         }
-        if (r.ok) out.refunded++
+        if (r.ok) { out.refunded++; out.refundedSources.push(source) }
         else if (epoch === 0) out.noDebit++
         else out.already++          // every debited epoch was already refunded
         break
       } catch (e) {
         console.error('[credits] refund slice failed', sessionId, i, epoch, e)
+        out.failed++
         break
       }
     }

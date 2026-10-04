@@ -111,15 +111,15 @@ describe('a refunded slice is not reusable', () => {
     await refundTestCredits('stu', 'sess-4', 1)
     await reserveTestCredits('stu', 'sess-4', 1)
     expect(s.balance).toBe(4)
-    expect(await refundTestCredits('stu', 'sess-4', 1)).toEqual({ refunded: 1, already: 0, noDebit: 0 })
+    expect(await refundTestCredits('stu', 'sess-4', 1)).toMatchObject({ refunded: 1, already: 0, noDebit: 0, failed: 0 })
     expect(s.balance).toBe(5)
-    expect(await refundTestCredits('stu', 'sess-4', 1)).toEqual({ refunded: 0, already: 1, noDebit: 0 })
+    expect(await refundTestCredits('stu', 'sess-4', 1)).toMatchObject({ refunded: 0, already: 1, noDebit: 0, failed: 0 })
     expect(s.balance).toBe(5)
   })
 
   it('a never-charged session still reports noDebit', async () => {
     liveLedger(5)
-    expect(await refundTestCredits('stu', 'sess-none', 2)).toEqual({ refunded: 0, already: 0, noDebit: 2 })
+    expect(await refundTestCredits('stu', 'sess-none', 2)).toMatchObject({ refunded: 0, already: 0, noDebit: 2, failed: 0 })
   })
 
   it('two concurrent retries after a refund charge ONE credit per slice between them', async () => {
