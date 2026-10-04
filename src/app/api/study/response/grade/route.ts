@@ -17,6 +17,8 @@ import {
   GradePersistError,
 } from '@/lib/study/gradeResponse'
 import { requireStudyUser } from '@/lib/study/auth'
+import { recomputeAndPersistSessionScore } from '@/lib/study/persist-session-score'
+import { sessionWriteAfterItemGrade } from '@/lib/study/session-score-decision'
 
 /**
  * POST /api/study/response/grade — runs an essay or transcribed
@@ -146,24 +148,27 @@ export async function POST(req: NextRequest) {
   // that pays out.
   void awardXp(user.id, 'response_graded', xpSourceId)
 
-  // Mark the session completed with a 0-100 score (band / scaleMax) so it
-  // stops showing "in progress" in history and gets a score chip — the
-  // response mode never flipped its session status before.
-  // Deliberately off the response path (the grade is already persisted and
-  // returned), but a failure leaves the session stuck "in progress" in
-  // history with no score chip, so it can't be silent.
-  void dbAdmin
-    .from('study_sessions')
-    .update({
-      status: 'completed',
-      completed_at: new Date().toISOString(),
-      score: Math.round((graded.grade.overallBand / graded.scaleMax) * 100),
-    })
-    .eq('id', session.id)
-    .eq('student_id', user.id)
-    .then(({ error }) => {
-      if (error) console.error('[response/grade] session completion write failed', { sessionId: session.id, error })
-    })
+  // Session row. A `response` session IS this one answer, so it is
+  // marked completed with band/scaleMax. A `full_test` session is a whole
+  // section: writing this one task's band over it replaced the section
+  // score (7d59735a stored 60.00 = 3.0/5 for a Writing section scored 54)
+  // and restamped completed_at. Full tests only get the recompute from
+  // every item. Off the response path either way; failures are logged.
+  const sessionWrite = sessionWriteAfterItemGrade(
+    session.mode, graded.grade.overallBand, graded.scaleMax)
+  if (sessionWrite.kind === 'recompute_full_test') {
+    void recomputeAndPersistSessionScore(session.id).catch(e =>
+      console.error('[response/grade] full-test score recompute failed', { sessionId: session.id, error: (e as Error).message }))
+  } else {
+    void dbAdmin
+      .from('study_sessions')
+      .update(sessionWrite.update)
+      .eq('id', session.id)
+      .eq('student_id', user.id)
+      .then(({ error }) => {
+        if (error) console.error('[response/grade] session completion write failed', { sessionId: session.id, error })
+      })
+  }
   // Inbox row — useful for the student to revisit their graded
   // response later from the bell icon without scrolling history.
   const familyLabel = body.testFamily.toUpperCase()

@@ -26,14 +26,13 @@
  * bug, not an arithmetic one: the score has to be written when the last
  * grade lands, not when the answers do.
  *
- * ONE SCORER. This calls scoreToeflSection, the same function
- * TestResultView calls, so the stored value and the displayed value
+ * ONE SCORER. This calls scoreToeflSection (via decideRubricSessionScore), the same
+ * function TestResultView calls, so the stored value and the displayed value
  * cannot drift by construction. Do not add a second implementation here.
  */
 import { dbAdmin } from '@/lib/supabase-admin'
-import {
-  scoreToeflSection, detectToeflSection, WEIGHTS_FOR,
-} from '@/lib/study/toefl-section-score'
+import { detectToeflSection } from '@/lib/study/toefl-section-score'
+import { decideRubricSessionScore } from '@/lib/study/session-score-decision'
 import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
 
 export interface RecomputeResult {
@@ -102,60 +101,27 @@ export async function recomputeAndPersistSessionScore(
     }
   })
 
-  // An open-response item with no band DROPS OUT of scoreToeflSection
-  // rather than scoring zero. That is right mid-grading — a half-graded
-  // section should not be reported as a bad one — but it means writing
-  // the score now would publish a number computed from fewer items than
-  // the test contains. So hold off until every open response has a band.
-  const openTypes = new Set(['speaking_repeat', 'speaking_interview', 'writing_email', 'writing_discussion'])
-  const open = items.filter(it => openTypes.has(it.type))
-  const ungraded = open.filter(it => it.rubricBand === null).length
-  const graded = open.length - ungraded
-  if (ungraded > 0) {
-    return { score: null, section, graded, ungraded, updated: false, reason: 'grading incomplete' }
+  // Every rule about WHETHER a score may be written (grading incomplete,
+  // nothing answered, nothing scorable) and the arithmetic itself live in
+  // decideRubricSessionScore, which is tested without a DB. In short: an
+  // open response still awaiting its band holds the write, because the
+  // scorer drops it rather than scoring zero and the number would then
+  // come from fewer items than the test contains; a session nobody
+  // answered stays null (three 2026-06-30/07-01 sessions would otherwise
+  // record 0% for a test never taken); and the value is the WEIGHTED
+  // proportion, never raw earned/max (raw gave 75 for a real session
+  // whose score is 83: 6/10 x .20 + 5/5 x .35 + 4/5 x .45 = .830).
+  const decision = decideRubricSessionScore(items, section, scoreListenRepeat)
+  const { graded, ungraded } = decision
+  if (decision.score === null) {
+    return { score: null, section, graded, ungraded, updated: false, reason: decision.reason }
   }
-
-  // A session nobody answered has no score, and 0 is not the same thing.
-  //
-  // Three sessions from 2026-06-30/07-01 are marked completed with 12,
-  // 12 and 5 attempt rows and ZERO answers — abandoned, then closed.
-  // scoreToeflSection happily returns 0 for them, because every item is
-  // wrong. Writing that 0 would record "this student scored 0%" for a
-  // test they never took, and it would then be real input to their trend
-  // line, their mastery scores and the strengths/weaknesses cards.
-  // A null score renders as "no score" everywhere; a 0 renders as
-  // failure. The stored null is right and must survive.
-  const answered = items.filter(it =>
-    (it.studentAnswer != null && String(it.studentAnswer).trim() !== '') || it.rubricBand !== null,
-  ).length
-  if (answered === 0) {
-    return { score: null, section, graded, ungraded: 0, updated: false, reason: 'nothing answered' }
-  }
-
-  const result = scoreToeflSection(items, WEIGHTS_FOR[section], scoreListenRepeat)
-  // `proportion`, NOT earned/max.
-  //
-  // SectionScore carries both, and they are different numbers on
-  // purpose: earned/max are RAW POINTS for the "38 of 55" display, while
-  // proportion is the WEIGHTED 0-1 the section is actually scored on.
-  // The first version of this used earned/max and produced 75 for a
-  // session whose real score is 83 —
-  //
-  //   build_a_sentence     6/10 x 0.20 = 0.120
-  //   write_email        band 5/5 x 0.35 = 0.350
-  //   academic_discussion band 4/5 x 0.45 = 0.360   -> 0.830
-  //   vs raw (6+5+4)/(10+5+5)                       -> 0.750
-  //
-  // which would have replaced one wrong stored score with a different
-  // wrong stored score, and made this helper a THIRD number rather than
-  // the thing that unifies the other two. Caught by hand-computing the
-  // weights against a real graded session, not by any test.
-  const pct = Math.round(10000 * result.proportion) / 100
+  const pct = decision.score
 
   const { data: current } = await dbAdmin
     .from('study_sessions').select('score').eq('id', sessionId).maybeSingle()
   if (current && Number(current.score) === pct) {
-    return { score: pct, section, graded, ungraded: 0, updated: false, reason: 'unchanged' }
+    return { score: pct, section, graded, ungraded, updated: false, reason: 'unchanged' }
   }
 
   const { error: upErr } = await dbAdmin
@@ -166,8 +132,8 @@ export async function recomputeAndPersistSessionScore(
     // number. What breaks is history agreeing with it — an audit gap,
     // never a reason to fail the grading request.
     console.error('[persist-session-score] update failed', { sessionId, pct, error: upErr.message })
-    return { score: pct, section, graded, ungraded: 0, updated: false, reason: upErr.message }
+    return { score: pct, section, graded, ungraded, updated: false, reason: upErr.message }
   }
 
-  return { score: pct, section, graded, ungraded: 0, updated: true }
+  return { score: pct, section, graded, ungraded, updated: true }
 }

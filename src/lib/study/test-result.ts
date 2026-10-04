@@ -517,6 +517,36 @@ export function toeflBandFromScaled(scaled: number): number {
   return Math.max(1, Math.min(6, Math.round(raw * 2) / 2))
 }
 
+/**
+ * The exact proportion a key-matched section is scored on, for the band.
+ *
+ * NOT `scorePercent / 100`. scorePercent is already rounded to a whole
+ * percent (post-submit: round(100c/t); reopened: round(stored 2dp)), and
+ * the band rounds twice more on top of it. On totals the bank does not
+ * use today that triple rounding moves the band half a step — 6/11 is
+ * 54.5% -> 55 -> band 3.5, where 6/11 itself is band 3.0 — and the topic
+ * trend chart, which uses the exact proportion, would then disagree with
+ * the result screen about the same session. Zero live TOEFL R/L sessions
+ * differ (totals 20/35/50), so this changes no published band.
+ */
+export function objectiveProportion(model: { correctCount: number; totalScored: number }): number {
+  if (!(model.totalScored > 0)) return 0
+  return Math.max(0, Math.min(1, model.correctCount / model.totalScored))
+}
+
+/**
+ * Is there any score to report at all?
+ *
+ * False for a section with nothing key-scored and no rubric points — an
+ * SSAT Writing Sample / ISEE Essay, which the real tests send to schools
+ * unscored. Without this gate the hero painted "0%" (scorePercent falls
+ * back to 0 on a zero denominator), which reads as a failed test.
+ */
+export function hasReportableScore(input: { pointsMax: number | null; totalScored: number }): boolean {
+  if (input.pointsMax !== null) return input.pointsMax > 0
+  return input.totalScored > 0
+}
+
 /** Convenience: percent straight through the whole chain. */
 export function toeflBandFromPercent(percent: number): number {
   return toeflBandFromScaled(toeflScaledScore(percent))

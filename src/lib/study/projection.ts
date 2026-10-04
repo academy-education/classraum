@@ -12,6 +12,8 @@
  * summing to a 400–1600 total.
  */
 
+import { satSectionScoreForSession } from './sat-adaptive'
+
 export interface Attempt { score: number; date: string } // date = 'YYYY-MM-DD'
 
 export interface SectionInput {
@@ -153,4 +155,42 @@ export function project(
     weeksToTest: weeksToTest == null ? null : Math.max(0, Math.round(weeksToTest)),
     sections: projections,
   }
+}
+
+/** One completed SAT section session, as computeSatPrediction reads it. */
+export interface SatSessionRow {
+  topic_id: string
+  completed_at: string
+  correct_count: number | null
+  total_count: number | null
+  module2_route: string | null
+}
+
+/**
+ * Group completed SAT section sessions into per-topic 200-800 attempts.
+ *
+ * Deliberately takes the COUNTS and the earned route, never
+ * study_sessions.score: that column is a percent (0-100), and feeding it
+ * to a projection clamped to 200-800 showed "current 176" and pinned the
+ * prediction to the 400 floor. Sessions with no earned route have no
+ * section estimate and are left out rather than guessed.
+ */
+export function satAttemptsFromSessions(
+  rows: SatSessionRow[],
+  slugByTopicId: ReadonlyMap<string, string>,
+): Map<string, Attempt[]> {
+  const byTopic = new Map<string, Attempt[]>()
+  for (const row of rows) {
+    const scaled = satSectionScoreForSession({
+      slug: slugByTopicId.get(row.topic_id),
+      correctCount: row.correct_count,
+      totalCount: row.total_count,
+      module2Route: row.module2_route,
+    })
+    if (scaled === null) continue
+    const arr = byTopic.get(row.topic_id) ?? []
+    arr.push({ score: scaled, date: String(row.completed_at).slice(0, 10) })
+    byTopic.set(row.topic_id, arr)
+  }
+  return byTopic
 }

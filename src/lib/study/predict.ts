@@ -1,5 +1,7 @@
 import { dbAdmin } from '@/lib/supabase-admin'
-import { project, type Prediction, type SectionInput } from './projection'
+import {
+  project, satAttemptsFromSessions, type Prediction, type SatSessionRow, type SectionInput,
+} from './projection'
 
 /**
  * Server-side SAT prediction: reads the student's goal + test date + the
@@ -55,23 +57,21 @@ export async function computeSatPrediction(userId: string): Promise<SatPredictio
     const ids = sections.map(s => s.id)
     const { data: testSessions } = await dbAdmin
       .from('study_sessions')
-      .select('score, completed_at, topic_id')
+      .select('correct_count, total_count, module2_route, completed_at, topic_id')
       .eq('student_id', userId)
       .eq('archived', false)
       .eq('mode', 'full_test')
       .eq('status', 'completed')
-      .not('score', 'is', null)
       .not('completed_at', 'is', null)
       .in('topic_id', ids)
       .order('completed_at', { ascending: true })
 
-    const byTopic = new Map<string, Array<{ score: number; date: string }>>()
-    for (const row of testSessions ?? []) {
-      const tid = row.topic_id as string
-      const arr = byTopic.get(tid) ?? []
-      arr.push({ score: Math.round(Number(row.score)), date: String(row.completed_at).slice(0, 10) })
-      byTopic.set(tid, arr)
-    }
+    // study_sessions.score is a PERCENT; the projection is on the 200-800
+    // section scale. satAttemptsFromSessions converts with the same
+    // estimate the result screen shows.
+    const slugById = new Map(sections.map(s => [s.id as string, s.slug as string]))
+    const byTopic = satAttemptsFromSessions(
+      (testSessions ?? []) as unknown as SatSessionRow[], slugById)
     inputs = sections.map(s => ({
       key: s.slug as string,
       label_en: s.name_en as string,
