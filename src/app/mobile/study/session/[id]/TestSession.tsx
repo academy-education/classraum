@@ -666,6 +666,20 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const [module2Error, setModule2Error] = useState(false)
   const routeToModule2 = useCallback(async () => {
     if (!test || module2Loading) return
+    const loadedBreakIdx = test.moduleBreakIdx ?? test.questions.length
+    if (test.questions.length > loadedBreakIdx) {
+      // Module 2 is ALREADY in the payload: the route call succeeded on
+      // the server but its response was lost (tab discarded, network
+      // dropped), and the reload served the cache with Module 2 appended.
+      // Calling the route again replays the same Module 2 and appending
+      // it would double it — the payload then no longer matches the
+      // served test and /submit refuses it, permanently. Just enter it.
+      const m2Start = currentElapsedMs()
+      setModule2StartMs(m2Start)
+      try { localStorage.setItem(`study:test:${sessionId}:m2StartMs`, String(m2Start)) } catch { /* quota */ }
+      setCurrentIdx(loadedBreakIdx)
+      return
+    }
     setModule2Loading(true)
     setModule2Error(false)
     try {
@@ -1231,6 +1245,18 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // Per-module clock: each module gets its own budget.
       const perModuleMinutes = test.perModuleMinutes ?? Math.round(test.timeLimitMinutes / 2)
       const inModule2 = currentIdx >= test.moduleBreakIdx!
+      if (inModule2 && module2StartMs == null) {
+        // In Module 2 with no start mark: the route response was lost
+        // before the client stored it, or storage was cleared. Timing
+        // Module 2 from the start of the WHOLE test (what a null mark
+        // means to moduleRemainingMs) shows it nearly or fully spent and
+        // can auto-submit the test on entry. Recover the mark assuming
+        // Module 1 used at most its own budget, and check again next tick.
+        const recovered = Math.min(currentElapsedMs(), perModuleMinutes * 60_000)
+        setModule2StartMs(recovered)
+        try { localStorage.setItem(`study:test:${sessionId}:m2StartMs`, String(recovered)) } catch { /* quota */ }
+        return
+      }
       const remaining = moduleRemainingMs({
         perModuleMinutes, currentElapsedMs: currentElapsedMs(), module2StartMs, inModule2,
       })
@@ -1254,7 +1280,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       void submit()
     }
   }, [now, phase, test, currentIdx, module2StartMs, module2Loading, submit, routeToModule2,
-    currentElapsedMs, writingSections, wsStartMs])
+    currentElapsedMs, writingSections, wsStartMs, sessionId])
 
   // ── Render branches ─────────────────────────────────────────────
   // Both pre-'generating' phases share the same shell so the test-
@@ -3033,7 +3059,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 <button
                   type="button"
                   onClick={() => { void submit() }}
-                  className="tap-target rounded-full bg-rose-600 text-white text-[12px] font-semibold px-3 py-1"
+                  className="tap-target rounded-full bg-rose-600 text-white text-[13px] font-semibold px-3 py-1"
                 >
                   {String(t('study.test.submitError.retry'))}
                 </button>

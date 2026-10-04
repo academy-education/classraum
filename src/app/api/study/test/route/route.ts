@@ -15,6 +15,8 @@ import {
 } from '@/lib/study/sat-adaptive'
 import { assembleFromBank, assembleToeflFromBank } from '@/lib/study/assemble'
 import { requireStudyUser } from '@/lib/study/auth'
+import { weightedScore, gradeAnswer, isOpenResponse } from '@/lib/study/test-grading'
+import type { SubmitQuestion } from '@/lib/study/test-submit-schema'
 
 /**
  * POST /api/study/test/route — decide module 2 difficulty for an
@@ -68,7 +70,7 @@ export async function POST(req: NextRequest) {
 
   const { data: session, error: sessErr } = await dbAdmin
     .from('study_sessions')
-    .select('id, student_id, module2_route, module1_correct, module1_total')
+    .select('id, student_id, module2_route, module1_correct, module1_total, module2_claimed_at')
     .eq('id', sessionId)
     .maybeSingle()
   if (sessErr || !session) {
@@ -119,6 +121,11 @@ export async function POST(req: NextRequest) {
     // cache — return the same decision + the same M2 questions so a
     // double-tap doesn't draw a second (different) module.
     if (session.module2_route) {
+      // A route with no Module 2 behind it is a claim whose winner died
+      // before the cache write. Without this it replays an EMPTY module
+      // on every retry, forever (the release below only ran for a request
+      // that read a NULL route, which no retry ever does).
+      if (allQuestions.length <= breakIdx) return abandonedClaimResponse(sessionId, session.module2_claimed_at)
       return NextResponse.json({
         route: session.module2_route,
         module1Correct: session.module1_correct ?? null,
@@ -136,8 +143,11 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const correct = gradeMultipleChoice(module1Questions, answers)
-    const route = computeSatRoute(correct, module1Questions.length)
+    // Routing decides on the WEIGHTED score; the persisted columns stay in
+  // CARDS (summary uses module1_total as Module 2's first index and
+  // cross-checks module1_correct against the per-card verdicts).
+  const { correct: wCorrect, total: wTotal, cardsCorrect: correct } = scoreModule1(module1Questions, answers)
+    const route = computeSatRoute(wCorrect, wTotal)
 
     // CLAIM-then-draw — the same arbitration the TOEFL branch uses below,
     // and for the same reason. This used to draw first and write
@@ -153,7 +163,11 @@ export async function POST(req: NextRequest) {
     // zero rows and replays the winner's Module 2.
     const { data: satClaimed } = await dbAdmin
       .from('study_sessions')
-      .update({ module1_correct: correct, module1_total: module1Questions.length, module2_route: route })
+      .update({
+        module1_correct: correct, module1_total: module1Questions.length, module2_route: route,
+        // Stamped so a claim whose request died can be told from a live one.
+        module2_claimed_at: new Date().toISOString(),
+      })
       .eq('id', sessionId)
       .is('module2_route', null)
       .select('id')
@@ -251,6 +265,9 @@ export async function POST(req: NextRequest) {
   if (session.module2_route) {
     // Idempotent replay: Module 2 is already appended to the same cache
     // row, so hand back the identical decision AND the identical items.
+    if (isBankAdaptive && allQuestions.length <= breakIdx) {
+      return abandonedClaimResponse(sessionId, session.module2_claimed_at)
+    }
     return NextResponse.json({
       route: session.module2_route,
       module1Correct: session.module1_correct ?? null,
@@ -268,8 +285,11 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const correct = gradeMultipleChoice(module1Questions, answers)
-  const route = computeToeflRoute(sectionName, correct, module1Questions.length)
+  // Routing decides on the WEIGHTED score; the persisted columns stay in
+  // CARDS (summary uses module1_total as Module 2's first index and
+  // cross-checks module1_correct against the per-card verdicts).
+  const { correct: wCorrect, total: wTotal, cardsCorrect: correct } = scoreModule1(module1Questions, answers)
+  const route = computeToeflRoute(sectionName, wCorrect, wTotal)
   if (!route) {
     return NextResponse.json({ error: 'not_adaptive', route: null }, { status: 200 })
   }
@@ -347,7 +367,6 @@ export async function POST(req: NextRequest) {
     // A live race looks identical for a second or two, so age is what
     // separates them. Past the window, release the claim and let the
     // caller retry; inside it, keep waiting for the winner.
-    const RECLAIM_AFTER_MS = 90_000
     const claimedAt = s2?.module2_claimed_at ? Date.parse(s2.module2_claimed_at) : null
     const stale = claimedAt != null && Date.now() - claimedAt > RECLAIM_AFTER_MS
     if (module2Questions.length === 0 && (stale || claimedAt == null)) {
@@ -395,7 +414,7 @@ export async function POST(req: NextRequest) {
         section: config.bankSection,
         module: 2,
         difficulties: difficultiesForToeflModule2(route),
-        path: computeToeflStage2Path(correct, module1Questions.length),
+        path: computeToeflStage2Path(wCorrect, wTotal),
         studentId: user.id,
       },
       sessionId,
@@ -433,6 +452,29 @@ export async function POST(req: NextRequest) {
     module2Questions: toeflModule2,
     alreadyRouted: false,
   })
+}
+
+/** A live race and a dead claim look identical for a second or two;
+ *  age separates them. */
+const RECLAIM_AFTER_MS = 90_000
+
+/** The session has a route but the cache holds no Module 2. Past the
+ *  window (or with no claim stamp — pre-column claims, and SAT claims
+ *  before 2026-10-04, are by definition old) release it so the student's
+ *  next tap re-routes; inside it, tell the client to retry shortly. */
+async function abandonedClaimResponse(sessionId: string, claimedAtIso: string | null): Promise<NextResponse> {
+  const claimedAt = claimedAtIso ? Date.parse(claimedAtIso) : null
+  const stale = claimedAt == null || Number.isNaN(claimedAt) || Date.now() - claimedAt > RECLAIM_AFTER_MS
+  if (stale) {
+    console.warn('[test/route] releasing an abandoned module-2 claim (replay)', { sessionId, claimedAt: claimedAtIso })
+    await releaseClaim(sessionId, 'abandoned claim found on replay')
+    return NextResponse.json(
+      { error: 'module2_retry', details: 'the previous attempt did not finish; retry' }, { status: 409 },
+    )
+  }
+  return NextResponse.json(
+    { error: 'module2_pending', details: 'module 2 is still being prepared; retry' }, { status: 409 },
+  )
 }
 
 /** Give up a won `module2_route` claim after the draw or the cache
@@ -485,20 +527,27 @@ function scopeModule2PassageGroups<T extends { passageGroupId?: string | null }>
   )
 }
 
-/** Count correct multiple-choice answers against a question slice.
- *  Shared by the SAT and TOEFL branches; case/space-insensitive. */
-function gradeMultipleChoice(
-  questions: Array<{ correct_answer?: string | null }>,
+/** Module 1 score for routing, by the SAME rules /submit scores with
+ *  (weightedScore): a Complete-the-Words card counts its blanks, an
+ *  unscored pilot item counts nothing. This was an MC-only string match on
+ *  `correct_answer`, which is '' on every CtW card, so all ten blanks
+ *  scored as one wrong item and a CtW-strong student was routed down. */
+function scoreModule1(
+  questions: unknown[],
   answers: Array<{ index: number; answer?: string | null }>,
-): number {
+): { correct: number; total: number; cardsCorrect: number } {
+  const byIndex = new Map(answers.map(a => [a.index, typeof a.answer === 'string' ? a.answer : null]))
   let correct = 0
-  for (const a of answers) {
-    if (a.index >= questions.length) continue
-    const q = questions[a.index]
-    if (!q || typeof a.answer !== 'string') continue
-    const key = String(q.correct_answer ?? '').trim().toLowerCase()
-    if (!key) continue
-    if (a.answer.trim().toLowerCase() === key) correct++
-  }
-  return correct
+  let total = 0
+  let cardsCorrect = 0
+  questions.forEach((q, i) => {
+    if (!q || typeof q !== 'object') return
+    const answer = byIndex.get(i) ?? null
+    const w = weightedScore(q as SubmitQuestion, answer)
+    correct += w.correct
+    total += w.total
+    // Per-card verdict exactly as /submit stores is_correct.
+    if (!isOpenResponse(q as SubmitQuestion) && gradeAnswer(q as SubmitQuestion, answer)) cardsCorrect++
+  })
+  return { correct, total, cardsCorrect }
 }

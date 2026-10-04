@@ -17,6 +17,7 @@ import {
   GradePersistError,
 } from '@/lib/study/gradeResponse'
 import { requireStudyUser } from '@/lib/study/auth'
+import { recomputeAndPersistSessionScore } from '@/lib/study/persist-session-score'
 
 /**
  * POST /api/study/response/grade — runs an essay or transcribed
@@ -152,18 +153,34 @@ export async function POST(req: NextRequest) {
   // Deliberately off the response path (the grade is already persisted and
   // returned), but a failure leaves the session stuck "in progress" in
   // history with no score chip, so it can't be silent.
-  void dbAdmin
-    .from('study_sessions')
-    .update({
-      status: 'completed',
-      completed_at: new Date().toISOString(),
-      score: Math.round((graded.grade.overallBand / graded.scaleMax) * 100),
-    })
-    .eq('id', session.id)
-    .eq('student_id', user.id)
-    .then(({ error }) => {
-      if (error) console.error('[response/grade] session completion write failed', { sessionId: session.id, error })
-    })
+  //
+  // NOT for a full test. This route also serves the full-test review panel
+  // (which auto-requests a grade for any card whose grade is missing — the
+  // batch still running, a 207/502 batch, an audio item grade-audio
+  // refused), and writing ONE item's band as the session score overwrote
+  // the whole TOEFL Writing/Speaking section score in history. A full test
+  // is rescored by the one scorer the summary screen uses, which no-ops
+  // until every open response has a band.
+  if (session.mode === 'full_test') {
+    const rescored = await recomputeAndPersistSessionScore(session.id)
+    if (rescored.reason && rescored.reason !== 'unchanged' && rescored.reason !== 'not a rubric section'
+      && rescored.reason !== 'grading incomplete') {
+      console.warn('[response/grade] full-test session score not updated', { sessionId: session.id, ...rescored })
+    }
+  } else {
+    void dbAdmin
+      .from('study_sessions')
+      .update({
+        status: 'completed',
+        completed_at: new Date().toISOString(),
+        score: Math.round((graded.grade.overallBand / graded.scaleMax) * 100),
+      })
+      .eq('id', session.id)
+      .eq('student_id', user.id)
+      .then(({ error }) => {
+        if (error) console.error('[response/grade] session completion write failed', { sessionId: session.id, error })
+      })
+  }
   // Inbox row — useful for the student to revisit their graded
   // response later from the bell icon without scrolling history.
   const familyLabel = body.testFamily.toUpperCase()

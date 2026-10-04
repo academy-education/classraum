@@ -67,3 +67,25 @@ export function describeSubmitFailure(
   const detail = [status == null ? 'no response' : `HTTP ${status}`, err, det].filter(Boolean).join(' — ')
   return { kind, message: ko ? COPY[kind].ko : COPY[kind].en, detail }
 }
+
+/**
+ * The review panel's "Get AI feedback" failure line. It rendered the
+ * server's string verbatim ("bad body", "persist failed", "session not
+ * found"). The submitted answer is already saved server-side; only the
+ * grade is missing, and the button stays to try again.
+ */
+export function describeGradeFailure(status: number | null, ko: boolean): string {
+  if (status === 429) {
+    return ko
+      ? '채점 요청이 너무 많았어요. 몇 분 후에 다시 눌러 주세요.'
+      : 'Too many grading requests. Wait a few minutes, then tap again.'
+  }
+  if (status === 400) {
+    return ko
+      ? '이 답안은 채점할 수 없어요 (너무 짧거나 비어 있어요).'
+      : 'This answer can’t be graded (it is too short or empty).'
+  }
+  return ko
+    ? '지금 채점하지 못했어요. 답안은 저장되어 있으니 다시 눌러 주세요.'
+    : 'Grading didn’t go through. Your answer is saved — tap again to retry.'
+}
