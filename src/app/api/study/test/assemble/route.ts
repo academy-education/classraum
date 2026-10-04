@@ -14,6 +14,8 @@ import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { isShippedTestFamily } from '@/lib/study/shipped-tests'
 import { SECTION_TOPIC } from '@/lib/study/section-topics'
+import { resolvePathTestNode } from '@/lib/study-path'
+import { raiseAlert } from '@/lib/ops/alert'
 
 /**
  * POST /api/study/test/assemble — build a full-test session from the
@@ -140,6 +142,19 @@ export async function POST(req: NextRequest) {
     )
   }
 
+  // Journey path stops are FREE (creditCost 0 below), so the stop is
+  // resolved against the path definitions, never trusted from the body.
+  // A free-form pathNode with a body-chosen count was a free 54-question
+  // mock, repeatable with a fresh id each time.
+  let pathDef: ReturnType<typeof resolvePathTestNode> = null
+  if (body.pathNode !== undefined && body.pathNode !== null) {
+    pathDef = resolvePathTestNode(typeof body.pathNode === 'string' ? body.pathNode : null)
+    if (!pathDef || pathDef.family !== family || pathDef.section !== section) {
+      return NextResponse.json({ error: 'unknown path stop', reason: 'bad_path_node' }, { status: 400 })
+    }
+  }
+  const pathNode = pathDef ? pathDef.node.id : null
+
   // Adaptive tests draw ONLY Module 1 here (fixed module size, mixed
   // difficulty); Module 2 is drawn by /api/study/test/route after the
   // student finishes and is graded on Module 1.
@@ -158,6 +173,9 @@ export async function POST(req: NextRequest) {
   // halve a section and silently change the test's shape.
   const adaptive = (isAdmission || isAct) ? false
     : isToefl ? (toeflCfg != null && body.adaptive !== false)
+    // A SAT path stop is a fixed-length linear set; adaptive would append a
+    // free Module 2 and turn it into a full two-module section.
+    : pathDef ? false
     : body.adaptive === true
   // The block's published question count, NOT body.count: the whole point
   // of a fixed-form test is that the caller does not choose its length.
@@ -166,10 +184,14 @@ export async function POST(req: NextRequest) {
     : isToefl ? 0
     : adaptive
       ? SAT_MODULE_CONFIG[section as 'math' | 'reading_writing'].moduleSize
-      : Math.min(Math.max(Number(body.count) || 22, 5), 54)
+      : pathDef
+        ? (pathDef.node.questionCount ?? 22)
+        : Math.min(Math.max(Number(body.count) || 22, 5), 54)
   // Journey section-test nodes tag their sessions so the path page can
-  // track per-node completion (config.pathNode → node id).
-  const pathNode = typeof body.pathNode === 'string' && body.pathNode.length <= 64 ? body.pathNode : null
+  // track per-node completion (config.pathNode → node id; resolved above).
+  /** Length / domain the draw uses: the path stop's own, for a free stop. */
+  const drawMaxItems = pathDef ? pathDef.node.questionCount : (body.count ? Number(body.count) : undefined)
+  const drawDomain = pathDef ? pathDef.node.domain : (body.domain ? String(body.domain) : undefined)
 
   // No single-stop repeats on the path: once a node has a completed
   // unarchived session, it's terminal. The only way back in is the
@@ -294,9 +316,9 @@ export async function POST(req: NextRequest) {
              * got a full section and no error. The path's Speaking and
              * Writing warmups depend on this.
              */
-            ...(body.count ? { maxItems: Number(body.count) } : {}),
+            ...(drawMaxItems ? { maxItems: drawMaxItems } : {}),
             // Single-domain drill (path per-question-type stops).
-            ...(body.domain ? { domain: String(body.domain) } : {}),
+            ...(drawDomain ? { domain: drawDomain } : {}),
           },
           sess.id,
         )
@@ -317,8 +339,7 @@ export async function POST(req: NextRequest) {
     // Delete error intentionally ignored: the credits are already back, so
     // the worst case is an empty session row that carries no questions and
     // gets swept by cleanupAbandonedPracticeSessions.
-    if (creditCost > 0) await refundTestCredits(user.id, sess.id, creditCost)
-    await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
+    await rollBack(user.id, sess.id, creditCost, family, section, 'assemble threw')
     return NextResponse.json({ error: (e as Error).message, reason: 'bank_empty' }, { status: 409 })
   }
 
@@ -353,8 +374,7 @@ export async function POST(req: NextRequest) {
   if (cacheErr) {
     // Same rollback as above — delete error intentionally ignored, since
     // the credits are already refunded and the leftover row holds no test.
-    if (creditCost > 0) await refundTestCredits(user.id, sess.id, creditCost)
-    await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
+    await rollBack(user.id, sess.id, creditCost, family, section, 'cache write failed')
     return NextResponse.json({ error: 'cache write failed' }, { status: 500 })
   }
   // Error intentionally ignored: the title is cosmetic (the cached payload
@@ -372,4 +392,39 @@ export async function POST(req: NextRequest) {
     composition: test.composition,
     adaptive,
   })
+}
+
+/**
+ * Undo a start that reserved credits but produced no test: refund, then
+ * delete the question-less session.
+ *
+ * The refund result used to be discarded. refundTestCredits does not throw
+ * — an errored slice just dropped out of its totals — so a failed refund
+ * followed by the delete left the student debited with no session row, no
+ * reaper coverage (it only sees 'pending' generations) and no signal. (The
+ * ledger holds 13 unrefunded debits from July whose session no longer exists
+ * — the shape this produces, though their origin is not proven.) Now a slice
+ * that did not come back pages, carrying the session id the admin refund tool needs
+ * (POST /api/admin/study/sessions/refund-credits takes studentId for a
+ * deleted session).
+ */
+async function rollBack(studentId: string, sessionId: string, cost: number, family: string, section: string, why: string) {
+  if (cost > 0) {
+    const r = await refundTestCredits(studentId, sessionId, cost)
+    if (r.failed > 0) {
+      await raiseAlert({
+        severity: 'critical',
+        title: 'Study credits debited for a test that was never delivered',
+        message:
+          `${r.failed} of ${cost} credit slice(s) could not be refunded after a bank test ` +
+          `failed to start (${why}). Refund with POST /api/admin/study/sessions/refund-credits ` +
+          `{ sessionId: "${sessionId}", studentId: "${studentId}" }.`,
+        dedupeKey: `study-assemble-refund-failed:${sessionId}`,
+        context: { studentId, sessionId, cost, family, section, why, ...r },
+      })
+    }
+  }
+  // Error intentionally ignored: the leftover row holds no test, and the
+  // credits are either back or paged above.
+  await dbAdmin.from('study_sessions').delete().eq('id', sessionId)
 }

@@ -638,6 +638,38 @@ export const PATHS: StudyPathTemplate[] = [
   },
 ]
 
+/**
+ * The server-side definition of a FREE path test stop, or null.
+ *
+ * /api/study/test/assemble prices a session at 0 credits when it carries a
+ * pathNode. That id used to be any client string of <= 64 chars, and count /
+ * domain came from the body too — so `{ section: 'math', count: 54,
+ * pathNode: 'x' }` was a free full-length mock, repeatable with a fresh id
+ * every time. Only a real 'full_test' stop of a real path is free, and the
+ * route takes the stop's family, section, length and domain from HERE, never
+ * from the request.
+ */
+export function resolvePathTestNode(id: string | null | undefined): {
+  node: StudyPathNode
+  family: 'sat' | 'toefl'
+  section: string
+} | null {
+  if (!id) return null
+  for (const path of PATHS) {
+    const node = path.nodes.find(n => n.id === id)
+    if (!node) continue
+    if (node.launchMode !== 'full_test') return null
+    if (path.testSlug === 'test-sat') {
+      return { node, family: 'sat', section: node.subtopicSlug === MATH ? 'math' : 'reading_writing' }
+    }
+    if (path.testSlug === 'test-toefl') {
+      return { node, family: 'toefl', section: node.subtopicSlug.replace(/^toefl-/, '') }
+    }
+    return null
+  }
+  return null
+}
+
 /** Every path for a target test, in study order. */
 export function getPathsForTarget(targetTest: string | null | undefined): StudyPathTemplate[] {
   if (!targetTest) return []
