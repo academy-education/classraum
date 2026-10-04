@@ -1,0 +1,2746 @@
+[
+ {
+  "id": "2015b18b-1a08-48f9-ad33-4042ff990f22",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-2",
+  "item": {
+   "cefr": "B2",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Epidemiology] How does the lecturer regard the claim that whatever survives statistical adjustment is the real effect?",
+   "choices": [
+    "As evidence that observational studies should be abandoned in favour of laboratory experiments, since adjustment cannot be trusted.",
+    "As a sign that the direction of causation has simply been reversed, with better health leading people to drink more coffee.",
+    "As an understandable but unsafe conclusion, because adjustment is limited by how coarsely the confounders were recorded.",
+    "As a sound rule of thumb, provided the list of measured confounders is long enough to cover income, occupation and smoking."
+   ],
+   "passage": "Transcript: Right - so, the headline says coffee drinkers live longer. And the study behind it is not junk. Large sample, careful follow-up, and the association is there and it is fairly strong. The question I want to press is what that association is made of.\n\nStart with the obvious worry: confounding. Coffee drinkers in that cohort were also, on average, wealthier, better housed, more likely to hold a desk job. Any of those will do the work the coffee is being credited with. Fine - the analysts knew that. They adjusted for income, occupation, exercise, smoking. And after adjustment the association shrank. But it did not disappear.\n\nNow, at this point a great many people conclude that the residue must be causal - whatever survives adjustment is the real effect. And that inference is, I am afraid, wishful. Adjustment removes only what you measured, and it removes it only as well as you measured it. Smoking in that questionnaire was recorded as yes or no. Half a pack a day and two packs a day went into the same box. So what is left over need not be a coffee effect at all; it may be the part of smoking your instrument was too blunt to catch. An artifact, in other words - a fact about the measuring, not about the world.\n\nDoes that make observational work worthless? No, and I would resist that conclusion strongly. There are cases where something outside the correlation is doing the argumentative work. Where nature has done the randomising for us. Where the association reverses inside every subgroup. Where the dose tracks the response too cleanly for a confounder to mimic. Those are informative.\n\nSo the discipline here is not blanket scepticism about correlations. It is asking, every single time, what would have to be true of the world for this pattern to arise without the cause you have in mind.",
+   "difficulty": "medium",
+   "explanation": "Stance is carried by 'a great many people conclude' plus the hedged 'I am afraid, wishful' and the immediate reason about the yes/no smoking variable. A is the position he is rejecting, restated with a qualifier; C names a possibility the talk never raises; D overshoots his explicit refusal to call observational work worthless.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "As an understandable but unsafe conclusion, because adjustment is limited by how coarsely the confounders were recorded.",
+   "passageGroupId": "talk-c1-2"
+  },
+  "content_hash": "22fe954221c22155f7567026d5439b54",
+  "word_count": 318,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Dense attitude item; distractor quotes the confounder list verbatim",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.131995+00:00",
+  "updated_at": "2026-07-27T18:01:15.131995+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "9a87e01c66fd63fc1b804bd5f15717e1",
+  "dedup_key": "e8e5e56cca65ad4e9a3e51b389ffe38a"
+ },
+ {
+  "id": "21902fcd-8bb7-477d-98b5-5bfbd7500372",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-8",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Urban Geography] What is the lecturer's view of the knowledge-spillover explanation for clustering?",
+   "choices": [
+    "He considers it an invention of the very industries that benefit from believing it.",
+    "He regards the geographic clustering of patent citations as having settled the question in the spillovers’ favour.",
+    "He accepts that spillovers occur but thinks the support for them is thinner than their popularity suggests.",
+    "He judges it the strongest of Marshall’s three mechanisms and the one supported by the most direct documentation."
+   ],
+   "passage": "Transcript: Rent in central Seoul, or London, or the Bay Area is punishing. Firms pay it. Workers pay it. If you take the cost-minimising firm of the textbook seriously, this should not be happening - you would move to where land is cheap. Some do. Most do not. So something is being bought with that rent.\n\nMarshall's answer, from the 1890s, came in three parts, and it has held up remarkably well. First, suppliers: a cluster can support specialists no single firm could keep busy on its own. Second, matching. A worker with a peculiar skill needs the one employer who happens to need it; in a thin market she never finds him, and both of them settle for less than they might have had. Third, and much the vaguest, knowledge spillovers - things overheard, people who change firms, ideas that leak across a wall.\n\nNow, the third is where I would urge some caution. It has become the fashionable explanation, partly, I suspect, because it flatters the industries doing the explaining. And the evidence is real but indirect. Patent citations cluster geographically, more than chance would predict. That is suggestive. It is not decisive, because firms that had already clustered for the first two reasons would generate the very same citation pattern.\n\nThere is also a selection problem nobody has fully solved. Are productive workers made productive by the city, or does the city simply collect the people who were going to be productive anyway? Studies that follow individuals as they move do find a genuine gain. But they find a gain that arrives gradually, over years - which sits awkwardly with the overhearing story and rather better with the matching one.\n\nNone of which makes spillovers a myth. It makes the point that we have been reading the strongest evidence in support of the weakest of the three mechanisms.",
+   "difficulty": "hard",
+   "explanation": "Built from 'I would urge some caution', 'real but indirect', 'suggestive, not decisive', and the closing refusal to call spillovers a myth. A hardens his remark about flattery into a charge of fabrication; C ignores the reason he gives for discounting the citation pattern; D inverts his final sentence.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "He accepts that spillovers occur but thinks the support for them is thinner than their popularity suggests.",
+   "passageGroupId": "talk-c1-8"
+  },
+  "content_hash": "9c0ff9d34ecb0bcf0c4b95b5c81cffeb",
+  "word_count": 311,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Speaker states spillovers are real but weakly supported",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.481837+00:00",
+  "updated_at": "2026-07-27T18:01:15.481837+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "ee02f2155e24d6af8a2682cf454b231f",
+  "dedup_key": "ceedf815523c6ed97c81a4388746c068"
+ },
+ {
+  "id": "2c821492-142c-45ae-aae8-78f6bf937f0a",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-8",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Urban Geography] Why does the lecturer remark that the spillover explanation 'flatters the industries doing the explaining'?",
+   "choices": [
+    "To offer a reason for the hypothesis's popularity that has nothing to do with how well it is evidenced.",
+    "To claim that researchers in this area are funded by the firms they study.",
+    "To argue that technology firms understand agglomeration better than economists do.",
+    "To show why patent citations are concentrated in a small number of places."
+   ],
+   "passage": "Transcript: Rent in central Seoul, or London, or the Bay Area is punishing. Firms pay it. Workers pay it. If you take the cost-minimising firm of the textbook seriously, this should not be happening - you would move to where land is cheap. Some do. Most do not. So something is being bought with that rent.\n\nMarshall's answer, from the 1890s, came in three parts, and it has held up remarkably well. First, suppliers: a cluster can support specialists no single firm could keep busy on its own. Second, matching. A worker with a peculiar skill needs the one employer who happens to need it; in a thin market she never finds him, and both of them settle for less than they might have had. Third, and much the vaguest, knowledge spillovers - things overheard, people who change firms, ideas that leak across a wall.\n\nNow, the third is where I would urge some caution. It has become the fashionable explanation, partly, I suspect, because it flatters the industries doing the explaining. And the evidence is real but indirect. Patent citations cluster geographically, more than chance would predict. That is suggestive. It is not decisive, because firms that had already clustered for the first two reasons would generate the very same citation pattern.\n\nThere is also a selection problem nobody has fully solved. Are productive workers made productive by the city, or does the city simply collect the people who were going to be productive anyway? Studies that follow individuals as they move do find a genuine gain. But they find a gain that arrives gradually, over years - which sits awkwardly with the overhearing story and rather better with the matching one.\n\nNone of which makes spillovers a myth. It makes the point that we have been reading the strongest evidence in support of the weakest of the three mechanisms.",
+   "difficulty": "hard",
+   "explanation": "The aside separates why a view is believed from whether it is supported, which is what allows him to discount its fashionable status. A confuses the aside with the evidence discussed next; B turns a remark about self-image into an allegation about money; C credits an expertise the talk never grants.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "To offer a reason for the hypothesis's popularity that has nothing to do with how well it is evidenced.",
+   "passageGroupId": "talk-c1-8"
+  },
+  "content_hash": "ee7aa25e2c836021b820baef1342c1aa",
+  "word_count": 311,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Purpose of an aside about motive, never spelled out",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.517753+00:00",
+  "updated_at": "2026-07-27T18:01:15.517753+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "e188b6bea0228cd0b0ead2dda2d256a1",
+  "dedup_key": "052be93376fbd78be30ae6e9e910b79d"
+ },
+ {
+  "id": "3e2b1990-d380-415c-a631-6f762b0ae4cc",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-7",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Philosophy of Science] What is the lecturer's attitude toward the relaxed conventionalism he describes at the end?",
+   "choices": [
+    "He grants the premise it starts from but holds that it draws far too much from it.",
+    "He accepts it, since he agrees that no observation can break the circle from outside.",
+    "He rejects its starting premise, holding that an independent check on the thermometer was available after all.",
+    "He treats it as irrelevant, because the philosophers proposing it have ignored the historical record."
+   ],
+   "passage": "Transcript: Take something as unglamorous as temperature. Before you can measure it, you need a thermometer. To know that your thermometer is any good, you need to know that mercury expands uniformly as temperature rises. And to know that, you would have to measure temperature - independently - which is precisely what you do not yet have.\n\nHasok Chang calls this the problem of nomic measurement, and it is not a puzzle you can dissolve by being more careful. There is no observation that breaks the circle from outside. Fahrenheit could not check his mercury against the truth. There was no such gauge to check it against.\n\nSo how did the thing ever get settled? Not by finding a foundation. By pulling itself up by its own bootstraps - and I use that phrase in its awkward original sense, not the cheerful modern one about self-reliance. The procedure looks impossible from outside and works anyway. You assume the mercury behaves. You build the scale. You use the scale to state laws - the gas laws, latent heat. Those laws then tell you where mercury ought to misbehave, and off you go to look. Mostly it does not. Where it does, you correct, or you switch to another substance, and you run the loop again.\n\nNotice what that is and is not. It is not proof. Nothing here rests on bedrock. But it is not idle either. A bad starting assumption does not stay hidden; it makes the resulting laws messy, and the mess accumulates until somebody trips over it. Self-correction without foundations. Now, some philosophers take all this as licence for a fairly relaxed conventionalism - the scale is simply a choice, so nothing is really being tracked. I would resist that. The choice was constrained at every turn by whether the physics you got out of it hung together, and that constraint did most of the work.",
+   "difficulty": "hard",
+   "explanation": "The stance turns on a bare 'I would resist that' plus the reason that follows about constraint, set against his own earlier admission that no external check exists. A takes the shared premise for agreement with the conclusion; B has him retracting the circle he spent the talk establishing; C invents a charge he never makes.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "He grants the premise it starts from but holds that it draws far too much from it.",
+   "passageGroupId": "talk-c1-7"
+  },
+  "content_hash": "43906b10adb48f98c44f7b753de7e288",
+  "word_count": 318,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Grants premise, rejects conclusion; fine attitude split",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.426204+00:00",
+  "updated_at": "2026-07-27T18:01:15.426204+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "63608d2829a3594ae53eab3b065140f9",
+  "dedup_key": "383d976ce654e08235c1c441b56bfa4a"
+ },
+ {
+  "id": "43509c46-5bf0-4507-9901-4e2404a5f10c",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-1",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Institutional Economics] What is the lecturer's attitude toward Hardin's parable of the pasture?",
+   "choices": [
+    "He accepts it as a general law of resource use that the fieldwork has since confirmed in detail.",
+    "He holds that its central calculation is mistaken, since the private gain does not in fact exceed the shared cost.",
+    "He rejects it outright, on the grounds that the fieldwork found no cheating or disputes among users.",
+    "He treats its reasoning as sound but its reach as overstated, and keeps it for a narrow class of cases."
+   ],
+   "passage": "Transcript: So - the standard story about common-pool resources. You've all met it. Hardin's parable: a pasture open to all, each herder adds one more animal because the gain is private and the cost is shared, and the pasture is stripped bare. Ruin, he said, is the destination toward which all men rush. Tidy. Memorable. And, um, in a narrow sense unobjectionable - the arithmetic does work, given the assumptions.\n\nBut notice what those assumptions do. The herders in the parable cannot talk to one another. They cannot make a rule, cannot monitor a neighbour, cannot impose so much as a mild sanction. Which means the model quietly begs the question - it assumes away exactly the institutions whose existence is at issue, and then reports their absence as a discovery. Now, I want to be careful here. This is not to say the parable is wrong. Where users really are anonymous and mobile - high-seas fisheries are the obvious case - the outcome Hardin describes is not just possible, it is routine.\n\nThe complication comes from the fieldwork. Ostrom and her colleagues catalogued Swiss alpine pastures, Japanese village forests, Spanish irrigation systems, some of them governed for six or seven centuries without either privatisation or a state. And what they found was not harmony. Cheating, disputes, sanctions, all present. What was also present were graduated penalties, boundaries everybody recognised, and cheap local ways of settling quarrels.\n\nSo where does that leave the parable? Not discarded, I would say. Rescued as a special case - the case where communication has been ruled out in advance. And here is the awkward part for policy: for much of the twentieth century governments read Hardin as licence to nationalise or to privatise, and in doing so dismantled working local arrangements they had never bothered to study. That lesson was expensive.",
+   "difficulty": "hard",
+   "explanation": "C1 stance work: the lecturer never evaluates the parable directly, so the answer must be assembled from 'in a narrow sense unobjectionable', 'this is not to say the parable is wrong', and 'rescued as a special case'. B contradicts his explicit concession that the arithmetic works; C ignores that he confines the parable to anonymous, mobile users; D misreports the fieldwork, which found cheating and disputes were present.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "He treats its reasoning as sound but its reach as overstated, and keeps it for a narrow class of cases.",
+   "passageGroupId": "talk-c1-1"
+  },
+  "content_hash": "04307e18f1601f46a94ec08c33960a02",
+  "word_count": 307,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Attitude synthesized across whole talk; each distractor quotes something real",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.003136+00:00",
+  "updated_at": "2026-07-27T18:01:15.003136+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "f57bbd3641b13da9475fe36458b2d2dc",
+  "dedup_key": "e7120f29ee72cd3956af38a0eaa3e8ce"
+ },
+ {
+  "id": "5058c7da-3086-4f90-9832-932a82373557",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-6",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Evolutionary Biology] What is the lecturer's attitude toward the critics of niche construction?",
+   "choices": [
+    "He treats their objection as resting on a misunderstanding of what ecological inheritance means.",
+    "He argues that standard theory has no way at all of representing feedback running from organism back to environment.",
+    "He agrees with them that niche construction adds nothing worth recording that the older bookkeeping cannot capture.",
+    "He concedes that their technical point holds and objects only that their framework directs attention badly."
+   ],
+   "passage": "Transcript: The standard picture - and it is a powerful one - puts the environment on one side, posing problems, and the organism on the other, adapting or failing to. Selection is what the world does to a lineage.\n\nEarthworms make that picture uncomfortable. Their physiology is, frankly, a poor match for soil. The kidney they inherited is a freshwater kidney, built for a life their ancestors left behind. And they have not evolved a soil kidney. What they have done instead is remake the soil - burrowing, casting, dragging leaf litter down after them - until the ground immediately around them is wet enough for a freshwater kidney to work in. So which side is doing the adapting?\n\nOdling-Smee and others call this niche construction, and the term I want you to hold on to is ecological inheritance. An earthworm hatches into a burrow system its grandparents dug. It inherits genes from its parents and, quite separately, it inherits a modified world. Some of the selection pressures acting on it were built by its own ancestors. The arrow runs both ways.\n\nNow, how much does this actually change? Here I would be cautious. The critics - Laland's opponents, and they are not fools - point out that standard theory can absorb these cases without strain. A beaver dam is environmental change; call the changed environment a selection pressure, and the bookkeeping still comes out right. And that is fair, as far as it goes. My own view, for what it is worth, is that this is less a refutation of the older account than a complaint about what that account makes easy to notice. A framework that treats the environment as external will keep generating questions in which the organism is the passive party. You can add the feedback loop afterwards. Whether you would ever have thought to look for it is another matter.",
+   "difficulty": "hard",
+   "explanation": "Stance is signalled by 'they are not fools', 'that is fair, as far as it goes', and the hedged 'for what it is worth'. A misstates a criticism he calls fair; B ignores his continued defence of the concept; D contradicts his own admission that the bookkeeping comes out right.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "He concedes that their technical point holds and objects only that their framework directs attention badly.",
+   "passageGroupId": "talk-c1-6"
+  },
+  "content_hash": "0739720ad88cc610232bef00528e0177",
+  "word_count": 315,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Concession plus complaint; both halves needed",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.370638+00:00",
+  "updated_at": "2026-07-27T18:01:15.370638+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "9db6fdfa04cd903f15d308c2cce3082d",
+  "dedup_key": "8cbfbb70883ac3ab07dfb92f1606c145"
+ },
+ {
+  "id": "6b76825b-a62e-4db7-b066-2378e9481a34",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-8",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Urban Geography] Why does a productivity gain that accumulates over several years count against the spillover account?",
+   "choices": [
+    "Because a gain that appears only after several years shows the city simply collected the workers who were going to be productive anyway, wherever they lived.",
+    "Because rents in clustered cities rise at the same gradual pace, so the wage gain is absorbed by land costs and cannot count as evidence for any mechanism.",
+    "Because ideas that leak across a wall should benefit a worker almost as soon as she arrives, whereas finding the employer who needs her skill takes time.",
+    "Because spillovers are confined to industries that patent, and a patent is granted only after years of examination delay."
+   ],
+   "passage": "Transcript: Rent in central Seoul, or London, or the Bay Area is punishing. Firms pay it. Workers pay it. If you take the cost-minimising firm of the textbook seriously, this should not be happening - you would move to where land is cheap. Some do. Most do not. So something is being bought with that rent.\n\nMarshall's answer, from the 1890s, came in three parts, and it has held up remarkably well. First, suppliers: a cluster can support specialists no single firm could keep busy on its own. Second, matching. A worker with a peculiar skill needs the one employer who happens to need it; in a thin market she never finds him, and both of them settle for less than they might have had. Third, and much the vaguest, knowledge spillovers - things overheard, people who change firms, ideas that leak across a wall.\n\nNow, the third is where I would urge some caution. It has become the fashionable explanation, partly, I suspect, because it flatters the industries doing the explaining. And the evidence is real but indirect. Patent citations cluster geographically, more than chance would predict. That is suggestive. It is not decisive, because firms that had already clustered for the first two reasons would generate the very same citation pattern.\n\nThere is also a selection problem nobody has fully solved. Are productive workers made productive by the city, or does the city simply collect the people who were going to be productive anyway? Studies that follow individuals as they move do find a genuine gain. But they find a gain that arrives gradually, over years - which sits awkwardly with the overhearing story and rather better with the matching one.\n\nNone of which makes spillovers a myth. It makes the point that we have been reading the strongest evidence in support of the weakest of the three mechanisms.",
+   "difficulty": "hard",
+   "explanation": "The timing evidence at the end is inert unless it is read against the definition of matching given much earlier; the mechanism-versus-timing link is never stated. B invents a constraint on spillovers; C is the selection worry, which those very studies were designed to answer; D introduces a comparison the talk does not make.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "Because ideas that leak across a wall should benefit a worker almost as soon as she arrives, whereas finding the employer who needs her skill takes time.",
+   "passageGroupId": "talk-c1-8"
+  },
+  "content_hash": "74a366adf7ff73fdf8aede523c764ab7",
+  "word_count": 311,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Must connect timing evidence back to the three mechanisms",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.498434+00:00",
+  "updated_at": "2026-07-27T18:01:15.498434+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "81309d1ace76d695dd3cc1fcd669e8e9",
+  "dedup_key": "855e6c545f466ed1f24f3ee5ac1faa22"
+ },
+ {
+  "id": "70520b02-dcd8-4924-9c8b-a656810cc07d",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-5",
+  "item": {
+   "cefr": "B2",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Metascience] How does the lecturer treat the explanation that low replication rates are caused by misconduct?",
+   "choices": [
+    "As a genuine but minor factor whose prominence has crowded out a more important one.",
+    "As the principal cause, though one that is difficult to demonstrate case by case.",
+    "As widespread but undetectable, which is why the replication rate is so low.",
+    "As a fabrication of the press, since deliberate fraud in published research is essentially unknown."
+   ],
+   "passage": "Transcript: When the big replication projects reported back - psychology first, then economics, then cancer biology - the number everybody fixed on was the headline rate. Something under half. And the immediate explanation, in the press at least, was misconduct. Somebody had been cooking the books.\n\nI want to suggest that is the least interesting explanation available, and probably the smallest contributor. Fraud exists. It is rare, and when it is caught it is caught precisely because it is crude.\n\nThe bigger problem is subtler and requires nobody to lie. Think about a single honest analysis. Do you exclude the participants who responded implausibly fast? Do you log-transform the skewed variable? Do you keep the two conditions apart or pool them? Every one of those choices is defensible. Every one of them was made after the data had arrived. Gelman calls this the garden of forking paths - and notice, the researcher walks down only one path. She never runs twenty analyses and reports the prettiest. She runs one, honestly. But which one she ran depended on what she saw, and that dependence inflates her false-positive rate just as surely as fishing would.\n\nNow, a qualification, because the crisis narrative has hardened into something rather too simple. A failed replication is not a refutation. It may mean the effect is absent. It may mean the effect is real but small, or fragile, or bounded by some feature of the original setting that the second laboratory did not reproduce. Telling those apart is genuinely hard, and the loudest voices on both sides tend to skate past it.\n\nStill - and I do not want the qualification to swallow the point - the direction of the correction is not in doubt. In the fields that began pre-registering their analyses, published effect sizes fell. Which is what you would expect if forking paths, and not fraud, had been doing the inflating all along.",
+   "difficulty": "medium",
+   "explanation": "The evaluation is compressed into 'the least interesting explanation available, and probably the smallest contributor' plus the flat 'fraud exists'. B denies existence he grants; C reverses his ranking; D contradicts the remark that fraud is caught precisely because it is crude.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "As a genuine but minor factor whose prominence has crowded out a more important one.",
+   "passageGroupId": "talk-c1-5"
+  },
+  "content_hash": "48bdfdb50984c2d5ad9830625eba6712",
+  "word_count": 320,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Fraud is called rare and smallest contributor outright",
+   "passage_needed": true,
+   "difficulty_before": "medium",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.290949+00:00",
+  "updated_at": "2026-07-27T18:01:15.290949+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "5328334d664d2847ff90b523f2b2fc5a",
+  "dedup_key": "b3ac8066be3d0a1010b2f29c5d613304"
+ },
+ {
+  "id": "7d77877e-6667-40ee-9aab-ef9f9f5c4be0",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-3",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Historiography] Why does the lecturer contrast a mob of two thousand with a scuffle of forty?",
+   "choices": [
+    "To suggest that large numbers in early documents were conventional rather than literal.",
+    "To show that official reports record quantities more precisely than private letters do.",
+    "To settle how many people actually took part in the riot.",
+    "To show that a figure can be predicted from the writer's situation, so the discrepancy need not be settled by deciding who lied."
+   ],
+   "passage": "Transcript: Two accounts of the same riot, written in the same month, and they do not agree. One is a magistrate's report to the capital. The other is a letter from a merchant to his brother. The temptation - and it is a strong one - is to ask which of the two men was more honest. That is almost never the productive question.\n\nAsk instead what each document was for. The magistrate is explaining, to superiors who may punish him, why order broke down on his watch. He has every reason to inflate the crowd: a mob of two thousand excuses what a scuffle of forty does not. The merchant is warning his brother whether to send goods next season. He has reason to exaggerate the danger too, but a different reason - and, this matters, no reason whatever to describe the magistrate as competent. Yet he does. That remark cuts against the grain of his own interest, and for exactly that reason it is worth more than the sentences on either side of it.\n\nNow, the older method - sift the sources, decide which one is reliable, then believe it throughout - is not so much wrong as far too coarse. Reliability is not a property of a document. It is a property of a document with respect to a particular claim. A thoroughly partisan chronicler may be useless on motive and excellent on weather.\n\nOne more caution before we stop. Where the silences agree, be careful. Neither writer mentions the militia. It is tempting to conclude that the militia never came. But the magistrate would hardly advertise having summoned them, and the merchant may simply not have known. Absence of mention, here, is evidence about what was sayable, not about what occurred. Silences have authors too.",
+   "difficulty": "hard",
+   "explanation": "The pair of numbers is a device for making incentive visible, which is what licenses the whole move away from the honesty question. A treats an illustration as a finding; B reverses the talk's refusal to rank document types; C is a real historiographical claim about premodern numbers that this lecturer never makes.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "To show that a figure can be predicted from the writer's situation, so the discrepancy need not be settled by deciding who lied.",
+   "passageGroupId": "talk-c1-3"
+  },
+  "content_hash": "7a6fe983110ccafdbae8290aef94993d",
+  "word_count": 299,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Rhetorical purpose of the number contrast is never stated",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.214715+00:00",
+  "updated_at": "2026-07-27T18:01:15.214715+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "5a0f282b03e48a153d575a73d4bc2f4b",
+  "dedup_key": "85ff34b7206ca58a42f09525b87ea35d"
+ },
+ {
+  "id": "821bfc6a-a6eb-40af-acb3-2bfe06892e0d",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-1",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Institutional Economics] What does the lecturer imply about the twentieth-century government policies he describes at the end of the talk?",
+   "choices": [
+    "They showed that state ownership and private ownership are always inferior to community management.",
+    "They removed the very institutions that the model guiding them had defined out of existence in advance.",
+    "They were adopted before Hardin's parable circulated, so they could not have been shaped by it.",
+    "They failed because the local arrangements were already collapsing under the cheating the fieldwork documented."
+   ],
+   "passage": "Transcript: So - the standard story about common-pool resources. You've all met it. Hardin's parable: a pasture open to all, each herder adds one more animal because the gain is private and the cost is shared, and the pasture is stripped bare. Ruin, he said, is the destination toward which all men rush. Tidy. Memorable. And, um, in a narrow sense unobjectionable - the arithmetic does work, given the assumptions.\n\nBut notice what those assumptions do. The herders in the parable cannot talk to one another. They cannot make a rule, cannot monitor a neighbour, cannot impose so much as a mild sanction. Which means the model quietly begs the question - it assumes away exactly the institutions whose existence is at issue, and then reports their absence as a discovery. Now, I want to be careful here. This is not to say the parable is wrong. Where users really are anonymous and mobile - high-seas fisheries are the obvious case - the outcome Hardin describes is not just possible, it is routine.\n\nThe complication comes from the fieldwork. Ostrom and her colleagues catalogued Swiss alpine pastures, Japanese village forests, Spanish irrigation systems, some of them governed for six or seven centuries without either privatisation or a state. And what they found was not harmony. Cheating, disputes, sanctions, all present. What was also present were graduated penalties, boundaries everybody recognised, and cheap local ways of settling quarrels.\n\nSo where does that leave the parable? Not discarded, I would say. Rescued as a special case - the case where communication has been ruled out in advance. And here is the awkward part for policy: for much of the twentieth century governments read Hardin as licence to nationalise or to privatise, and in doing so dismantled working local arrangements they had never bothered to study. That lesson was expensive.",
+   "difficulty": "hard",
+   "explanation": "Requires joining the early point that the parable assumes herders who cannot make rules or sanction each other to the closing point that governments dismantled functioning local rules; neither half yields the answer alone. A borrows real content about disputes but reverses the causal story; B contradicts the chronology given; D is the overgeneralisation the high-seas concession is placed there to block.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "They removed the very institutions that the model guiding them had defined out of existence in advance.",
+   "passageGroupId": "talk-c1-1"
+  },
+  "content_hash": "bba2faa502f9c95268f6fa35b51ad1ff",
+  "word_count": 307,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Implication links closing policy remark to earlier begging-the-question point",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.055381+00:00",
+  "updated_at": "2026-07-27T18:01:15.055381+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "9a968f8bb86dbb7842269bc6314e305c",
+  "dedup_key": "3969004eb919dad371e0c9133080b76d"
+ },
+ {
+  "id": "867be863-19ff-446e-b29d-7f961ec3fa89",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-3",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Historiography] Taken together, the lecturer's treatment of the merchant's remark and his treatment of the missing militia point to which principle?",
+   "choices": [
+    "Private correspondence should be preferred to official reporting, since a private writer answers to no superior.",
+    "Agreement between two independent sources is the strongest evidence a historian can obtain, and their silences agree too.",
+    "Details irrelevant to a writer’s purpose can be accepted as accurate without checking, since no interest was served by them.",
+    "What a source says or omits is weighed by what saying or omitting it would have cost the writer."
+   ],
+   "passage": "Transcript: Two accounts of the same riot, written in the same month, and they do not agree. One is a magistrate's report to the capital. The other is a letter from a merchant to his brother. The temptation - and it is a strong one - is to ask which of the two men was more honest. That is almost never the productive question.\n\nAsk instead what each document was for. The magistrate is explaining, to superiors who may punish him, why order broke down on his watch. He has every reason to inflate the crowd: a mob of two thousand excuses what a scuffle of forty does not. The merchant is warning his brother whether to send goods next season. He has reason to exaggerate the danger too, but a different reason - and, this matters, no reason whatever to describe the magistrate as competent. Yet he does. That remark cuts against the grain of his own interest, and for exactly that reason it is worth more than the sentences on either side of it.\n\nNow, the older method - sift the sources, decide which one is reliable, then believe it throughout - is not so much wrong as far too coarse. Reliability is not a property of a document. It is a property of a document with respect to a particular claim. A thoroughly partisan chronicler may be useless on motive and excellent on weather.\n\nOne more caution before we stop. Where the silences agree, be careful. Neither writer mentions the militia. It is tempting to conclude that the militia never came. But the magistrate would hardly advertise having summoned them, and the merchant may simply not have known. Absence of mention, here, is evidence about what was sayable, not about what occurred. Silences have authors too.",
+   "difficulty": "hard",
+   "explanation": "One half of the answer sits in the middle of the talk, the other in the closing caution; the shared logic is cost to the writer, which neither passage states. B is precisely what the agreeing silences are introduced to undercut; C is a blanket ranking he rejects by treating reliability as claim-specific; D overstates the merchant point into a rule the militia example immediately breaks.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "What a source says or omits is weighed by what saying or omitting it would have cost the writer.",
+   "passageGroupId": "talk-c1-3"
+  },
+  "content_hash": "341c986f84f526b4c009c9807d78112b",
+  "word_count": 299,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Requires joining two separated examples into one principle",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.194827+00:00",
+  "updated_at": "2026-07-27T18:01:15.194827+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "56cc26185ba5955d3853f2f3d4335144",
+  "dedup_key": "1aa66c6238e4de0203fbfac219dfe0bd"
+ },
+ {
+  "id": "ccafa443-cfad-4a2a-98ec-b578b4f553bf",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-6",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Evolutionary Biology] Why does the lecturer bring up beaver dams?",
+   "choices": [
+    "Because it is the critics' example, offered to show that the older framework can redescribe such cases without difficulty.",
+    "To show that constructed environments commonly outlast the organisms that built them.",
+    "To argue that large-bodied animals reshape their habitats more thoroughly than small ones do.",
+    "To supply a second, more familiar illustration of ecological inheritance than the earthworm."
+   ],
+   "passage": "Transcript: The standard picture - and it is a powerful one - puts the environment on one side, posing problems, and the organism on the other, adapting or failing to. Selection is what the world does to a lineage.\n\nEarthworms make that picture uncomfortable. Their physiology is, frankly, a poor match for soil. The kidney they inherited is a freshwater kidney, built for a life their ancestors left behind. And they have not evolved a soil kidney. What they have done instead is remake the soil - burrowing, casting, dragging leaf litter down after them - until the ground immediately around them is wet enough for a freshwater kidney to work in. So which side is doing the adapting?\n\nOdling-Smee and others call this niche construction, and the term I want you to hold on to is ecological inheritance. An earthworm hatches into a burrow system its grandparents dug. It inherits genes from its parents and, quite separately, it inherits a modified world. Some of the selection pressures acting on it were built by its own ancestors. The arrow runs both ways.\n\nNow, how much does this actually change? Here I would be cautious. The critics - Laland's opponents, and they are not fools - point out that standard theory can absorb these cases without strain. A beaver dam is environmental change; call the changed environment a selection pressure, and the bookkeeping still comes out right. And that is fair, as far as it goes. My own view, for what it is worth, is that this is less a refutation of the older account than a complaint about what that account makes easy to notice. A framework that treats the environment as external will keep generating questions in which the organism is the passive party. You can add the feedback loop afterwards. Whether you would ever have thought to look for it is another matter.",
+   "difficulty": "hard",
+   "explanation": "The dam belongs to the opposing argument, not to the lecturer's case, and its role is to show the standard bookkeeping still works. B is the trap: dams really are niche construction, but that is not why the phrase appears here. C and D are true-sounding ecological claims the talk never advances.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "Because it is the critics' example, offered to show that the older framework can redescribe such cases without difficulty.",
+   "passageGroupId": "talk-c1-6"
+  },
+  "content_hash": "95ce04e24eb757dae617ed4e5b7abef5",
+  "word_count": 315,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Must catch whose example it is, not what it shows",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.408477+00:00",
+  "updated_at": "2026-07-27T18:01:15.408477+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "471b5d00810e9092f7960c99f9980e04",
+  "dedup_key": "aae21b52591f8f8ca889659be30ab6da"
+ },
+ {
+  "id": "e476ead1-0fd4-4342-b85f-6aeec6fba1d7",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-4",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Psychophysics] What can be concluded about the two radiologists from the information the lecturer gives?",
+   "choices": [
+    "The second reader is the more sensitive of the two, since a lower hit rate implies a stricter criterion.",
+    "Their sensitivity must be identical, since they read exactly the same set of scans.",
+    "She is the better reader, because in this setting hits matter more than false alarms.",
+    "Nothing yet about their sensitivity; the pattern is equally consistent with her treating a missed tumour as the costlier error."
+   ],
+   "passage": "Transcript: Here is a puzzle out of the radiology literature. Two readers work through the same set of scans, and one of them catches more tumours than the other. The obvious conclusion is that she is the better reader. Sharper eyes. Hold that thought.\n\nBecause she also flags more scans that turn out to be perfectly clean. And once you know that, the obvious conclusion is in trouble. Detecting a faint signal in noise involves two quite separate things, and the old way of scoring - count the hits - runs them together. There is how distinguishable the signal is from the noise for that observer; call it sensitivity. And there is where the observer puts the line at which she is willing to say yes, I see it. That is the criterion. Two different quantities. Slide the criterion toward yes and your hits go up - and your false alarms go up with them, in lockstep. You have not seen any better. You have only become readier to say so.\n\nSo our radiologist may be more sensitive. Or she may simply be moving the goalposts, and I mean that neutrally, which is not how the phrase is ordinarily used. There is no fault in it. Where a missed tumour costs a life and a false alarm costs a second scan, shifting the line is exactly the rational thing to do.\n\nAnd this is where I would push back a little on the textbook framing, which treats the criterion as a nuisance parameter - something to be estimated and set aside so that sensitivity can be read off cleanly. In the laboratory, fine. In a hospital, the criterion is not noise in the measurement. It is the clinical judgement. It encodes what the institution takes a mistake to be worth. Strip it out and you have measured the eye while throwing away the decision.",
+   "difficulty": "hard",
+   "explanation": "The opening pair of facts and the closing point about what the institution takes a mistake to be worth have to be combined; either alone leaves the case undecided. A and C both convert one half of the evidence into a verdict the lecturer says the data cannot support, and D confuses a shared stimulus set with equal discriminability.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "Nothing yet about their sensitivity; the pattern is equally consistent with her treating a missed tumour as the costlier error.",
+   "passageGroupId": "talk-c1-4"
+  },
+  "content_hash": "af35cb437f05f5c4d8b14e0faa6794b2",
+  "word_count": 314,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Conclusion requires the whole sensitivity-criterion logic",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.254405+00:00",
+  "updated_at": "2026-07-27T18:01:15.254405+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "6fde62b99145973732de7fb98440d6b4",
+  "dedup_key": "bbfbf11bb667c73c369b97106ae71aa1"
+ },
+ {
+  "id": "edd5429a-afc2-48b2-bb21-e78f5a98b5a8",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-6",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Evolutionary Biology] What does the earthworm's kidney, taken together with the idea of ecological inheritance, imply about how a trait's persistence should be read?",
+   "choices": [
+    "That adaptation of a trait always lags some distance behind the environmental change that drives it.",
+    "That a lineage may answer a mismatch by altering its surroundings, so persistence is not proof the trait was shaped to fit those surroundings.",
+    "That a trait persisting in a habitat that does not suit it must be vestigial, and will be lost from the lineage once selection has had time enough to work.",
+    "That the soil environment must, over enough generations, have come to select for the very freshwater kidney that the worms have gone on retaining."
+   ],
+   "passage": "Transcript: The standard picture - and it is a powerful one - puts the environment on one side, posing problems, and the organism on the other, adapting or failing to. Selection is what the world does to a lineage.\n\nEarthworms make that picture uncomfortable. Their physiology is, frankly, a poor match for soil. The kidney they inherited is a freshwater kidney, built for a life their ancestors left behind. And they have not evolved a soil kidney. What they have done instead is remake the soil - burrowing, casting, dragging leaf litter down after them - until the ground immediately around them is wet enough for a freshwater kidney to work in. So which side is doing the adapting?\n\nOdling-Smee and others call this niche construction, and the term I want you to hold on to is ecological inheritance. An earthworm hatches into a burrow system its grandparents dug. It inherits genes from its parents and, quite separately, it inherits a modified world. Some of the selection pressures acting on it were built by its own ancestors. The arrow runs both ways.\n\nNow, how much does this actually change? Here I would be cautious. The critics - Laland's opponents, and they are not fools - point out that standard theory can absorb these cases without strain. A beaver dam is environmental change; call the changed environment a selection pressure, and the bookkeeping still comes out right. And that is fair, as far as it goes. My own view, for what it is worth, is that this is less a refutation of the older account than a complaint about what that account makes easy to notice. A framework that treats the environment as external will keep generating questions in which the organism is the passive party. You can add the feedback loop afterwards. Whether you would ever have thought to look for it is another matter.",
+   "difficulty": "hard",
+   "explanation": "The early anatomical mismatch and the later claim that ancestors build the selection pressures have to be joined; on its own the kidney is just an oddity. A is a plausible textbook inference the talk never licenses; C reverses the direction of the argument; D is a general principle the earthworm case is not offered to support.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "That a lineage may answer a mismatch by altering its surroundings, so persistence is not proof the trait was shaped to fit those surroundings.",
+   "passageGroupId": "talk-c1-6"
+  },
+  "content_hash": "448d39d7e4eafb94343fea8e2fd1d502",
+  "word_count": 315,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Synthesis of kidney mismatch and ecological inheritance",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.388969+00:00",
+  "updated_at": "2026-07-27T18:01:15.388969+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "a72107b1d095c89501e0ecc68ee8b21a",
+  "dedup_key": "942b630300136da0c9f6a181795b8a91"
+ },
+ {
+  "id": "fb93b3b8-ef52-4fe7-bc51-c62b44f26cc3",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "talk-c1-4",
+  "item": {
+   "cefr": "C1",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk — Psychophysics] What is the lecturer's position on the textbook practice of treating the criterion as a nuisance parameter?",
+   "choices": [
+    "He rejects it, holding that sensitivity cannot be estimated separately from the criterion at all.",
+    "He allows it as a laboratory convenience but denies it where the two kinds of error carry unequal costs.",
+    "He accepts it wherever the two kinds of error carry unequal costs, since the criterion is then measurable.",
+    "He considers it a statistical error that inflates estimates of sensitivity by folding in the observer’s caution."
+   ],
+   "passage": "Transcript: Here is a puzzle out of the radiology literature. Two readers work through the same set of scans, and one of them catches more tumours than the other. The obvious conclusion is that she is the better reader. Sharper eyes. Hold that thought.\n\nBecause she also flags more scans that turn out to be perfectly clean. And once you know that, the obvious conclusion is in trouble. Detecting a faint signal in noise involves two quite separate things, and the old way of scoring - count the hits - runs them together. There is how distinguishable the signal is from the noise for that observer; call it sensitivity. And there is where the observer puts the line at which she is willing to say yes, I see it. That is the criterion. Two different quantities. Slide the criterion toward yes and your hits go up - and your false alarms go up with them, in lockstep. You have not seen any better. You have only become readier to say so.\n\nSo our radiologist may be more sensitive. Or she may simply be moving the goalposts, and I mean that neutrally, which is not how the phrase is ordinarily used. There is no fault in it. Where a missed tumour costs a life and a false alarm costs a second scan, shifting the line is exactly the rational thing to do.\n\nAnd this is where I would push back a little on the textbook framing, which treats the criterion as a nuisance parameter - something to be estimated and set aside so that sensitivity can be read off cleanly. In the laboratory, fine. In a hospital, the criterion is not noise in the measurement. It is the clinical judgement. It encodes what the institution takes a mistake to be worth. Strip it out and you have measured the eye while throwing away the decision.",
+   "difficulty": "hard",
+   "explanation": "The stance is built from 'push back a little', the concession 'in the laboratory, fine', and the contrasting hospital case; it is never stated as approval or rejection. A misreads a framing choice as a computational mistake; B inverts exactly the condition he sets; C denies the separation the whole talk depends on.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "He allows it as a laboratory convenience but denies it where the two kinds of error carry unequal costs.",
+   "passageGroupId": "talk-c1-4"
+  },
+  "content_hash": "e48b8c29bb00244a06a3bd77bca2b927",
+  "word_count": 314,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Lab-versus-hospital split; distractor inverts the condition",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T18:01:15.235157+00:00",
+  "updated_at": "2026-07-27T18:01:15.235157+00:00",
+  "archived": false,
+  "cohort": "talk-c1",
+  "task": "academic_talk",
+  "content_sha": "d95e070b593693dadaf376f31f68eca3",
+  "dedup_key": "e2c3d13839aef40e914ecbb58e5441b8"
+ },
+ {
+  "id": "a2f36a0a-e9a8-4ac9-8a18-138d8ebee33e",
+  "family": "toefl",
+  "section": "listening",
+  "domain": "Academic Talk",
+  "subskill": null,
+  "difficulty": "hard",
+  "topic_tag": "academic_talk",
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-c6737c647f554a20e1d787984b6552de",
+  "item": {
+   "cefr": "C2",
+   "type": "multiple_choice",
+   "prompt": "[Academic Talk - Earth Science] Given the evidence the talk sets out, which claim about the Cryogenian ocean is left standing, and in whose version?",
+   "choices": [
+    "That open water and a working water cycle ran through the glaciation, as Allen reads the Oman rock, with ice grinding bedrock near the equator all the same.",
+    "That the ocean froze over from pole to pole and stayed shut for millions of years, the carbon dioxide loading and the carbonate blanket at the top of each succession following from that closure.",
+    "That equatorial ice calls for no global freeze at all, a tilt past fifty-four degrees making the tropics the coldest ground on the planet and putting glaciers there by geometry.",
+    "That the diamictites are debris flows and storm beds of ordinary marine origin, the glaciation being a construction laid over rock that never called for one, which is Allen's position."
+   ],
+   "passage": "Transcript: The Cryogenian glaciations. Glacial deposits of this age sit on every craton that preserves rock from the interval, and where the magnetic inclination can be read the ice was grinding bedrock within ten degrees of the equator. A frozen equator leaves nowhere warmer to put the rest of the planet. Sea ice closes over the ocean, evaporation stops, snow stops falling, silicate weathering stops drawing carbon dioxide down, and volcanic gas accumulates until it reaches a few tenths of a bar - several million years of loading, then a deglaciation measured in centuries, then the blanket of carbonate laid straight onto glacial rock at the top of every one of these successions.\n\nAllen, who has worked the Oman sections for thirty years, takes the sealed ocean for a construction of modellers rather than a reading of rock. Inside the diamictites there are graded beds with wave ripples across their tops, sandstones with hummocky cross-stratification, seventeen stacked cycles of coarsening and fining, and lonestones that punched into laminae still soft enough to bend around them. Waves need open water. Debris rained onto the sea floor from floating ice needs ice that is melting. Sand delivered in graded pulses needs rivers, and rivers need rain.\n\nAnother reading has the planet tipped over. An obliquity past fifty-four degrees makes the tropics the coldest ground on Earth, and equatorial glaciers follow from the geometry alone.\n\nTillites of this age turn up at every paleolatitude the method resolves. The Port Askaig beds were laid down near forty degrees. Australian and Namibian units sit higher again. The Congo craton's span both ends of the range inside a single formation.\n\nIron formation returns in these successions after an absence of a billion and a half years. Loading deep water with dissolved iron on that scale takes an ocean shut away from the air. The iron units are lenses: metres thick, a few kilometres across, sitting between glacial members and passing sideways into ordinary glaciomarine mud.\n\nAsh beds above and below the Sturtian give it fifty-seven million years. Sections in Oman, Scotland, Namibia and South Australia, tied to one another by those ashes, carry the same architecture through the whole of that interval: diamictite, a wave-worked top, graded sandstone, diamictite again, a dozen times over and more.",
+   "difficulty": "hard",
+   "explanation": "C2 rather than C1 because the talk never grades the three positions and never states a conclusion: the opening account is delivered warmly and without hedging, and a listener who takes that warmth as endorsement answers A, the sealed-ocean story, which the closing correlation contradicts by putting wave-worked tops and graded sandstone through the entire fifty-seven-million-year interval on four cratons. The paleolatitude survey disposes of B by entailment rather than by denial, and D fails because the same closing paragraph, plus the equatorial inclinations of the opening, keeps the glaciation itself global and long. What is left is the narrowed form of the objection, and nothing in the talk says whose it is.",
+   "listeningTask": "academic_talk",
+   "correct_answer": "That open water and a working water cycle ran through the glaciation, as Allen reads the Oman rock, with ice grinding bedrock near the equator all the same.",
+   "passageGroupId": "pg-c6737c647f554a20e1d787984b6552de"
+  },
+  "content_hash": "ea3b15afd988874530cf07a5b31a3750",
+  "word_count": 380,
+  "verified": true,
+  "verify_meta": {
+   "method": "claude-authored+claude-blind-grade",
+   "legacy_domain": "Academic Talk",
+   "difficulty_why": "Survivor position needs Allen's sedimentology weighed against equatorial ice",
+   "passage_needed": true,
+   "difficulty_before": "hard",
+   "grader_difficulty": "hard",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld",
+   "difficulty_regraded_full_transcript": true
+  },
+  "source": "hand",
+  "created_at": "2026-07-27T19:17:04.483395+00:00",
+  "updated_at": "2026-07-27T19:17:04.483395+00:00",
+  "archived": false,
+  "cohort": "talk-c2",
+  "task": "academic_talk",
+  "content_sha": "930b6f220d922617d52d48608ca0dbc1",
+  "dedup_key": "827440c43abc7f028e57e1daa591b027"
+ },
+ {
+  "id": "0420ce0e-0d88-4897-afa9-fa1ed6b789a6",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Inferences",
+  "difficulty": "medium",
+  "topic_tag": "oceanography/coral-bleaching",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "The passage most strongly suggests that a coral that survives bleaching by acquiring a heat-tolerant algal strain will typically",
+   "choices": [
+    "fully recover, ending up better suited to warm water at no lasting cost.",
+    "quickly shed the hardy strain and reacquire its original algae.",
+    "photosynthesize more efficiently than it did before bleaching.",
+    "gain greater heat tolerance while growing more slowly than it did before."
+   ],
+   "graphic": null,
+   "passage": "Coral bleaching—the expulsion of the algae that feed and color a coral—is usually described as a death sentence, and often it is. But bleaching may also be, paradoxically, a gambit for survival. The expelled algae come in strains that differ in heat tolerance; a coral that sheds a heat-sensitive strain can, if it survives the interval without its food source, be recolonized by a hardier one better suited to warming water. This does not make bleaching benign. The window for reacquiring symbionts is narrow, most bleached corals starve, and the hardier strains often photosynthesize less efficiently, leaving the coral to grow more slowly even when it lives. Bleaching, then, is less a simple catastrophe than a desperate reshuffling—one that a minority of corals may exploit, at a cost, to persist in seas too warm for the partnerships they began with.",
+   "subskill": "Inferences",
+   "topic_tag": "oceanography/coral-bleaching",
+   "difficulty": "medium",
+   "word_count": 140,
+   "explanation": "The passage says the hardier strains are 'better suited to warming water' but 'often photosynthesize less efficiently, leaving the coral to grow more slowly even when it lives'—both the benefit and the cost in D. A is the rosy misreading the passage explicitly blocks ('This does not make bleaching benign'). B is invented and contradicts the described recolonization by a hardier strain. C reverses the passage, which says the hardier strains are less photosynthetically efficient.",
+   "correct_answer": "gain greater heat tolerance while growing more slowly than it did before.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "fully recover, ending up better suited to warm water at no lasting cost.",
+     "reason": ""
+    },
+    {
+     "choice": "quickly shed the hardy strain and reacquire its original algae.",
+     "reason": ""
+    },
+    {
+     "choice": "photosynthesize more efficiently than it did before bleaching.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "285b2dafed8f3b89e6ff14e1b42a28be",
+  "word_count": 140,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:29:45.303484+00:00",
+  "updated_at": "2026-07-08T09:29:45.303484+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "e1d912026186d5b1ea382e0c7991e3d3",
+  "dedup_key": "b7e53535579ff9252269196f2e7e01bc"
+ },
+ {
+  "id": "0602276b-bf6e-4e1a-ab37-a95886cf05a8",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "difficulty": "medium",
+  "topic_tag": "psychology-marshmallow-test",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "The authors of Text 2 would most likely characterize the 'self-control' measured in the original test as",
+   "choices": [
+    "a fixed individual trait whose strength reliably predicts how well a child will fare years afterward",
+    "a skill that wealthier, more predictable families deliberately drill into their children",
+    "partly a reflection of whether a child's environment had made delayed rewards trustworthy",
+    "an artifact of measurement error that vanished entirely in the larger replication"
+   ],
+   "graphic": null,
+   "passage": "Text 1: The famous 'marshmallow test' is popularly summarized as showing that self-control in early childhood predicts success later in life: the children who managed to wait for a second treat went on, years afterward, to fare better by various measures. On this reading, the capacity for self-denial is a largely fixed, individual trait.\n\nText 2: A much larger replication found that the original correlation shrank dramatically once researchers accounted for family income and the stability of a child's home environment. Children from more resourced, predictable households waited longer—plausibly because their experience had taught them that a promised reward reliably arrives, whereas for others it often does not. What the test measured, the authors conclude, may have been less an innate trait of willpower than a reasonable response to what a child had learned about the trustworthiness of the surrounding world.",
+   "subskill": "Cross-Text Connections",
+   "topic_tag": "psychology-marshmallow-test",
+   "difficulty": "medium",
+   "word_count": 141,
+   "explanation": "C matches Text 2's conclusion: waiting reflected a rational response to a learned-trustworthy environment. A is Text 1's fixed-trait view, which Text 2 undercuts. B misreads 'experience had taught' as deliberate parental training. D is too strong—Text 2 grants a real (if attenuated) correlation, not pure measurement error.",
+   "correct_answer": "partly a reflection of whether a child's environment had made delayed rewards trustworthy",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "a fixed individual trait whose strength reliably predicts how well a child will fare years afterward",
+     "reason": ""
+    },
+    {
+     "choice": "a skill that wealthier, more predictable families deliberately drill into their children",
+     "reason": ""
+    },
+    {
+     "choice": "an artifact of measurement error that vanished entirely in the larger replication",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "d3e67a15be8369cefbd5d25d98d34208",
+  "word_count": 141,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:17:28.842487+00:00",
+  "updated_at": "2026-07-08T09:17:28.842487+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "098e7ce7dfcaad6fcb4095e705393aef",
+  "dedup_key": "da0767a3d7f1d970e85e4396a5fe255a"
+ },
+ {
+  "id": "067c9901-5809-4faf-8a8b-08fe532e2b4c",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Inferences",
+  "difficulty": "medium",
+  "topic_tag": "astronomy-faint-young-sun",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "The passage most strongly implies that the carbon dioxide explanation lost favor because",
+   "choices": [
+    "methane rather than carbon dioxide was the only significant greenhouse gas at the time",
+    "the amount of carbon dioxide it required exceeds what the geological record permits",
+    "carbon dioxide does not in fact trap heat in a planetary atmosphere",
+    "the young Sun was actually brighter than the stellar models had predicted"
+   ],
+   "graphic": null,
+   "passage": "The faint young Sun paradox runs as follows: geological evidence shows liquid water, and even life, on Earth billions of years ago, yet stellar models indicate that the young Sun shone about thirty percent more dimly than today—far too weakly, on its own, to keep the planet's surface above freezing. For years the favored escape was a thick atmospheric blanket of carbon dioxide, trapping enough heat to bridge the gap. But newer analyses of the chemistry preserved in ancient rocks cap early carbon dioxide well below the level that solution would require. The resolution now gaining favor is less a single fix than a redistribution of the burden: a modest contribution from methane, another from reduced cloud cover, another from a darker, less reflective young Earth, each supplying a fraction of the missing warmth. The lesson is that a problem seeming to demand one large cause may instead dissolve into several small ones.",
+   "subskill": "Inferences",
+   "topic_tag": "astronomy-faint-young-sun",
+   "difficulty": "medium",
+   "word_count": 153,
+   "explanation": "B follows directly: rock chemistry 'caps early carbon dioxide well below the level that solution would require.' A overreaches—methane is described as one fraction among several, not the sole gas. C is false; the passage assumes CO2 traps heat. D contradicts the premise that the young Sun was dimmer.",
+   "correct_answer": "the amount of carbon dioxide it required exceeds what the geological record permits",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "methane rather than carbon dioxide was the only significant greenhouse gas at the time",
+     "reason": ""
+    },
+    {
+     "choice": "carbon dioxide does not in fact trap heat in a planetary atmosphere",
+     "reason": ""
+    },
+    {
+     "choice": "the young Sun was actually brighter than the stellar models had predicted",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "d8d61f60700d2d5bfac19cbf3b55b5b3",
+  "word_count": 153,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:17:28.797961+00:00",
+  "updated_at": "2026-07-08T09:17:28.797961+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "d033807b9771207bb5386240fddbc089",
+  "dedup_key": "90ab2d00f7f50b687e98de88e095e277"
+ },
+ {
+  "id": "2c67f590-8c5e-48a9-b078-57218f4e790e",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "topic_tag": "development economics",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "Which finding, if true, would most strengthen the argument advanced in the text?",
+   "choices": [
+    "In several countries, growth rates fell sharply in the years immediately following a major mineral discovery.",
+    "A nation whose institutions were rated weak before an oil discovery continued to grow slowly even after the oil was depleted and the windfall had ended.",
+    "Countries with strong institutions tend to have more diversified economies than countries dependent on a single export such as oil or minerals.",
+    "Resource windfalls have been shown to weaken the institutions of countries that were well governed before a discovery."
+   ],
+   "graphic": null,
+   "passage": "The 'resource curse'—the observation that nations rich in oil or minerals often grow more slowly than resource-poor peers—is frequently taken to show that natural wealth is economically corrosive in itself. Some economists argue the correlation is misattributed. In their account, resource windfalls do not degrade otherwise sound institutions; rather, they tend to arrive in countries whose institutions were already weak, and merely make the consequences of that weakness more visible and better funded. Where accountable institutions predate a discovery, they find, windfalls are managed without any subsequent decline in growth. The curse, on this view, is not a property of the resource but a preexisting condition the resource exposes. What looks like wealth causing dysfunction is dysfunction determining how wealth is used.",
+   "subskill": "Command of Evidence",
+   "topic_tag": "development economics",
+   "difficulty": "hard",
+   "word_count": 122,
+   "explanation": "The argument holds that weak institutions, not the resource, cause slow growth. Persistent slow growth after the resource is gone shows the dysfunction is independent of the windfall, supporting that thesis. A restates the raw correlation the passage reinterprets and fits the naive 'resource is corrosive' view it rejects. C is true but irrelevant to the causal claim. D directly contradicts the argument's premise that windfalls 'do not degrade otherwise sound institutions,' so it would weaken, not strengthen.",
+   "correct_answer": "A nation whose institutions were rated weak before an oil discovery continued to grow slowly even after the oil was depleted and the windfall had ended.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "In several countries, growth rates fell sharply in the years immediately following a major mineral discovery.",
+     "reason": ""
+    },
+    {
+     "choice": "Countries with strong institutions tend to have more diversified economies than countries dependent on a single export.",
+     "reason": ""
+    },
+    {
+     "choice": "Resource windfalls have been shown to weaken the institutions of countries that were well governed before a discovery.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "5c6ce14e9259531d3b488b2156133c07",
+  "word_count": 122,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "hard",
+   "single_defensible": true,
+   "distractor_quality": "strong",
+   "length_rebalanced_at": "2026-08-15T16:39:16.445Z",
+   "legacy_choices_length": [
+    "In several countries, growth rates fell sharply in the years immediately following a major mineral discovery.",
+    "A nation whose institutions were rated weak before an oil discovery continued to grow slowly even after the oil was depleted and the windfall had ended.",
+    "Countries with strong institutions tend to have more diversified economies than countries dependent on a single export.",
+    "Resource windfalls have been shown to weaken the institutions of countries that were well governed before a discovery."
+   ]
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T08:47:26.505712+00:00",
+  "updated_at": "2026-07-08T08:47:26.505712+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "29b2c54a0dd1b318eabba447b25125b6",
+  "dedup_key": "aa801134a82637672a23e57fceae03e8"
+ },
+ {
+  "id": "2ca0e0ee-995f-4a13-b0f5-eec3d70615c6",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "difficulty": "medium",
+  "topic_tag": "economics-minimum-wage",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "How would the author of Text 2 most likely respond to the 'settled' view described in Text 1?",
+   "choices": [
+    "By maintaining that the law of demand is simply false when applied to labor markets",
+    "By conceding that minimum wage increases always reduce employment, as the textbooks claim",
+    "By noting that New Jersey's wage increase was too small to affect any hiring decisions",
+    "By arguing that the textbook prediction assumes a market structure that low-wage labor may not fit"
+   ],
+   "graphic": null,
+   "passage": "Text 1: Standard economic accounts hold that raising the minimum wage must reduce employment: increase the price of anything, including labor, and buyers will purchase less of it. The reasoning is that of any ordinary market, and for decades introductory textbooks presented its conclusion as settled fact, a rare point of consensus among economists.\n\nText 2: David Card and Alan Krueger's celebrated study compared fast-food employment in New Jersey, which had just raised its minimum wage, with neighboring Pennsylvania, which had not. They found no relative decline in New Jersey—if anything, a slight increase. The finding did not repeal the law of demand, as critics sometimes charged. Rather, it suggested that low-wage labor markets are not perfectly competitive: where a few employers hold substantial power to set wages below the value of the work, a mandated floor can raise pay without reducing the number of jobs.",
+   "subskill": "Cross-Text Connections",
+   "topic_tag": "economics-minimum-wage",
+   "difficulty": "medium",
+   "word_count": 146,
+   "explanation": "D reflects Text 2's actual point: the prediction holds under perfect competition, which low-wage markets may violate. A is the tempting misreading—but Text 2 explicitly says the finding 'did not repeal the law of demand.' B contradicts Text 2's central result. C invents a rationale (small increase) the passage never offers.",
+   "correct_answer": "By arguing that the textbook prediction assumes a market structure that low-wage labor may not fit",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "By maintaining that the law of demand is simply false when applied to labor markets",
+     "reason": ""
+    },
+    {
+     "choice": "By conceding that minimum wage increases always reduce employment, as the textbooks claim",
+     "reason": ""
+    },
+    {
+     "choice": "By noting that New Jersey's wage increase was too small to affect any hiring decisions",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "ef2baf7ef8ba54f3bb72d6d615a82383",
+  "word_count": 146,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:17:28.775555+00:00",
+  "updated_at": "2026-07-08T09:17:28.775555+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "ea934b6d146ca1b4518f1ecd5feefaa6",
+  "dedup_key": "34f38b01e41e4599efab762bb6b33782"
+ },
+ {
+  "id": "3537c297-db07-4802-a824-88b7036dc3f7",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Inferences",
+  "difficulty": "medium",
+  "topic_tag": "ecology-forest-diversity-drought",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Craft and Structure",
+   "prompt": "Which statement is most strongly supported by the text?",
+   "choices": [
+    "Greater species diversity reliably increases a forest stand's resistance to drought regardless of the drought's severity, because each additional species contributes an independent way of weathering a dry year.",
+    "During moderate droughts, monoculture stands generally lose less biomass than diverse stands of comparable size.",
+    "Species diversity can improve a stand's performance under typical dry conditions while failing to protect it under the most severe droughts, and in some cases worsening its outcome.",
+    "The fast-growing species that diversity favors are the trees most tolerant of extreme water stress — the last to wilt."
+   ],
+   "graphic": null,
+   "passage": "Ecologists once assumed that a forest's resistance to drought would scale neatly with its species diversity: the more kinds of trees a stand contained, the more independent ways it had to weather a dry year. A decade of monitoring in mixed temperate stands has complicated that expectation. Diversity did buffer the average plot against moderate drought, much as the theory predicted. But in the most severe droughts on record, the diverse plots lost as much living biomass as neighboring monocultures did—and in some cases lost more. The reason is unsettling: the fast-growing, competitive species that diversity tends to favor are precisely the ones least tolerant of extreme water stress, so a diverse canopy can concentrate vulnerability just where the theory promised safety. Diversity, on this evidence, hedges a stand against ordinary year-to-year variation while leaving it exposed to the rare catastrophe.",
+   "subskill": "Inferences",
+   "topic_tag": "ecology-forest-diversity-drought",
+   "difficulty": "medium",
+   "word_count": 141,
+   "explanation": "The passage credits diversity with buffering against 'moderate drought' yet reports that in the 'most severe droughts' diverse plots lost 'as much... and in some cases more' than monocultures—exactly the split C describes ('hedges against ordinary variation while leaving it exposed to the rare catastrophe'). A is the old assumption the data 'complicated'—the tempting misreading. B reverses the moderate-drought finding: diversity, not monoculture, buffered the average plot there. D reverses the causal detail: the favored fast-growing species are 'least tolerant' of extreme stress, not most.",
+   "correct_answer": "Species diversity can improve a stand's performance under typical dry conditions while failing to protect it under the most severe droughts, and in some cases worsening its outcome.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Greater species diversity reliably increases a forest stand's resistance to drought regardless of the drought's severity.",
+     "reason": ""
+    },
+    {
+     "choice": "During moderate droughts, monoculture stands generally lose less biomass than diverse stands of comparable size.",
+     "reason": ""
+    },
+    {
+     "choice": "The fast-growing species that diversity favors are the trees most tolerant of extreme water stress — the last to wilt.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "64b99470b665fce0712fe4393f649ff4",
+  "word_count": 141,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible",
+   "length_rebalanced_at": "2026-08-15T16:39:16.622Z",
+   "legacy_choices_length": [
+    "Greater species diversity reliably increases a forest stand's resistance to drought regardless of the drought's severity.",
+    "During moderate droughts, monoculture stands generally lose less biomass than diverse stands of comparable size.",
+    "Species diversity can improve a stand's performance under typical dry conditions while failing to protect it under the most severe droughts, and in some cases worsening its outcome.",
+    "The fast-growing species that diversity favors are the trees most tolerant of extreme water stress — the last to wilt."
+   ]
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T08:22:47.877751+00:00",
+  "updated_at": "2026-07-08T08:22:47.877751+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "86792162a1d2f3b20becb547baaf2ba5",
+  "dedup_key": "5d7cc4c45b6a8483a6569d8e752b474c"
+ },
+ {
+  "id": "4082122b-6024-4d1d-8b40-ce0d83b66660",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "difficulty": "medium",
+  "topic_tag": "paleontology-feather-evolution",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Craft and Structure",
+   "prompt": "Based on Text 2, the 'intricate... aerodynamically tuned structure' cited in Text 1 is best understood as",
+   "choices": [
+    "decisive proof that feathers must originally have evolved as an adaptation for flight, exactly as Text 1 concludes.",
+    "a structure that flight later exploited and refined, though it first arose to serve a purpose other than flight.",
+    "evidence that the earliest feathers, whatever their refinement, cannot have served for insulation or for visual display.",
+    "the reason that so many feathered dinosaurs in the fossil record turned out to be incapable of flight."
+   ],
+   "graphic": null,
+   "passage": "Text 1\nPaleontologists long maintained that feathers evolved for the purpose of flight. A feather's intricate, asymmetrical, aerodynamically tuned structure seemed explicable only as an adaptation for getting an animal airborne; nothing else, it was assumed, could account for so specialized a design. On this view, the appearance of feathers in the fossil record marks the approach of powered flight.\n\nText 2\nA wave of discoveries of plainly flightless feathered dinosaurs has reframed the question entirely. Feathers now turn up in the fossil record well before any evidence of flight, adorning the bodies of animals whose anatomy rules flight out and for which insulation or visual display is by far the likelier original function. Flight, on the current evidence, did not call feathers into being; it co-opted, and then elaborated, a structure that had already arisen to serve altogether different ends.",
+   "subskill": "Cross-Text Connections",
+   "topic_tag": "paleontology-feather-evolution",
+   "difficulty": "medium",
+   "word_count": 141,
+   "explanation": "Text 2 states flight 'co-opted, and then elaborated, a structure that had already arisen to serve altogether different ends'—so from its standpoint the aerodynamic feather is a repurposed structure, later exploited by flight, which is B. A restates Text 1's flight-first conclusion that Text 2 dismantles (the tempting misread). C reverses Text 2, which names insulation or display as the 'likelier original function,' not something ruled out. D garbles causation: feathers did not cause flightlessness; the flightless species simply show feathers predating flight.",
+   "correct_answer": "a structure that flight later exploited and refined, though it first arose to serve a purpose other than flight.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "decisive proof that feathers must originally have evolved as an adaptation for flight, exactly as Text 1 concludes.",
+     "reason": ""
+    },
+    {
+     "choice": "evidence that the earliest feathers, whatever their refinement, cannot have served for insulation or for visual display.",
+     "reason": ""
+    },
+    {
+     "choice": "the reason that so many feathered dinosaurs in the fossil record turned out to be incapable of flight.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "0fffc42f78031ddd3579a53473aaac59",
+  "word_count": 141,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T08:22:47.977863+00:00",
+  "updated_at": "2026-07-08T08:22:47.977863+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "75fa5a18f76c2e807383a6149556c4d4",
+  "dedup_key": "f88c825cbc2b21653418f2b555567312"
+ },
+ {
+  "id": "4089e991-7b0e-426b-8055-b541b9a88d91",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "topic_tag": "sociology-motivated-reasoning",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "The passage is primarily concerned with",
+   "choices": [
+    "demonstrating that scientific literacy has no effect on public beliefs about any risk",
+    "arguing that more information reliably narrows the gap between experts and the public",
+    "identifying a condition under which a generally reliable relationship reverses",
+    "explaining why experts and the public disagree about the specific dangers of smoking"
+   ],
+   "graphic": null,
+   "passage": "One might reasonably expect that giving people more information about a hazard—the dangers of smoking, say—would steadily narrow the gap between what experts know and what the public believes. On politically neutral risks, it largely does. But on risks that have become entangled with group identity, the essay documents something stranger and more troubling. There, greater scientific literacy actually widens the divide between opposing camps, because the more skilled people are at reasoning, the more effectively they can marshal facts and arguments in defense of whatever conclusion their group already favors. Information, in this domain, does not dissolve disagreement. It equips each side to defend its position more ably—turning a tool we imagine as neutral into a weapon for the convictions we bring to it.",
+   "subskill": "Text Structure and Purpose",
+   "topic_tag": "sociology-motivated-reasoning",
+   "difficulty": "medium",
+   "word_count": 125,
+   "explanation": "C captures the structure: information usually closes the gap, but on identity-entangled risks the relationship reverses. A contradicts 'on politically neutral risks, it largely does.' B is the expectation the passage complicates. D treats the smoking example as the topic, when it is only an illustration of the neutral case.",
+   "correct_answer": "identifying a condition under which a generally reliable relationship reverses",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "demonstrating that scientific literacy has no effect on public beliefs about any risk",
+     "reason": ""
+    },
+    {
+     "choice": "arguing that more information reliably narrows the gap between experts and the public",
+     "reason": ""
+    },
+    {
+     "choice": "explaining why experts and the public disagree about the specific dangers of smoking",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "6be3aa409e448ba9dfdc8ece1bf13705",
+  "word_count": 125,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:17:28.890432+00:00",
+  "updated_at": "2026-07-08T09:17:28.890432+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "0cc82108270fd8f1f76fad93d45af0c3",
+  "dedup_key": "6f6e6a4392a99b10da2e59e235a65fee"
+ },
+ {
+  "id": "5c06d7dc-1cd8-443e-94dc-3b22d5c98bbe",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Inferences",
+  "difficulty": "medium",
+  "topic_tag": "neuroscience/adult-neurogenesis",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "The passage most strongly suggests that the first team's negative finding",
+   "choices": [
+    "proves that human neurogenesis stops after childhood.",
+    "has been definitively traced to improperly preserved specimens.",
+    "is more trustworthy than the positive finding because it is less prone to false labeling.",
+    "cannot by itself settle the question, since decayed tissue may create a false absence of new neurons."
+   ],
+   "graphic": null,
+   "passage": "Whether the adult human brain generates new neurons remains genuinely unsettled, and the disagreement is instructive. One team, examining postmortem hippocampi, found no dividing neural progenitors beyond childhood and concluded that human neurogenesis effectively ceases. A second team, using tissue processed within hours of death and different antibodies, reported abundant new neurons even in nonagenarians. The contradiction may be less about biology than about method: the markers that label young neurons degrade quickly, so tissue that sat too long before fixation could show an absence that reflects decay rather than developmental reality. A negative result, in other words, is only as trustworthy as the tissue is fresh. This does not prove that adult neurogenesis occurs—abundant markers can also be misidentified—but it means the failure to find new neurons cannot, on its own, settle the question.",
+   "subskill": "Inferences",
+   "topic_tag": "neuroscience/adult-neurogenesis",
+   "difficulty": "medium",
+   "word_count": 135,
+   "explanation": "The passage says the failure to find new neurons 'cannot, on its own, settle the question' because degraded markers 'could show an absence that reflects decay'—precisely D. A is the face-value misreading the passage undercuts. B overstates in the opposite direction: the passage offers decay as a possibility, not a demonstrated fact about these specimens. C reverses the passage, which notes that positive results, not negative ones, face the misidentification worry.",
+   "correct_answer": "cannot by itself settle the question, since decayed tissue may create a false absence of new neurons.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "proves that human neurogenesis stops after childhood.",
+     "reason": ""
+    },
+    {
+     "choice": "has been definitively traced to improperly preserved specimens.",
+     "reason": ""
+    },
+    {
+     "choice": "is more trustworthy than the positive finding because it is less prone to false labeling.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "6d557c29ba6192397027bcf6765e49e6",
+  "word_count": 135,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:29:45.063088+00:00",
+  "updated_at": "2026-07-08T09:29:45.063088+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "db72506d34c418661d95990a69dbc4fe",
+  "dedup_key": "20c69daa5518de0a1166119685a55098"
+ },
+ {
+  "id": "5c2f343b-8998-40f5-b488-f13733cd09b4",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "topic_tag": "economics/monopsony",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "The main rhetorical purpose of the passage's final sentence is to",
+   "choices": [
+    "dismiss standard economic theory as incapable of predicting how any wage floor will affect employment.",
+    "concede that the competitive model correctly describes the great majority of labor markets.",
+    "present monopsony as an odd exception that leaves the textbook prediction essentially intact.",
+    "recast the puzzling evidence as a challenge to one assumption rather than to economic theory itself."
+   ],
+   "graphic": null,
+   "passage": "Introductory textbooks present a clean verdict: a minimum wage set above the market rate must reduce employment, since firms hire only up to the point where a worker's wage equals the value she adds. Empirical studies of actual wage floors, however, have repeatedly failed to detect the predicted job losses, and some find modest employment gains. The textbook model assumes that employers are price-takers who cannot influence the wage they pay. But where a few firms dominate local hiring, they face an upward-sloping labor supply curve and can suppress wages below the competitive level. In such 'monopsonistic' markets, a minimum wage can raise pay and employment simultaneously, because it removes the incentive to restrict hiring in order to hold wages down. The anomalous findings, then, need not overturn economic theory; they expose the narrowness of the assumption on which the textbook prediction silently depends.",
+   "subskill": "Text Structure and Purpose",
+   "topic_tag": "economics/monopsony",
+   "difficulty": "medium",
+   "word_count": 144,
+   "explanation": "The final sentence says the findings 'need not overturn economic theory' but 'expose the narrowness of the assumption' about price-taking employers—exactly the relocation D describes. A is the misreading the sentence explicitly blocks ('need not overturn'). B is unsupported: the passage never claims the competitive model fits most markets. C wrongly frames monopsony as a minor exception, whereas the passage treats the price-taking assumption itself as the flaw.",
+   "correct_answer": "recast the puzzling evidence as a challenge to one assumption rather than to economic theory itself.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "dismiss standard economic theory as incapable of predicting how any wage floor will affect employment.",
+     "reason": ""
+    },
+    {
+     "choice": "concede that the competitive model correctly describes the great majority of labor markets.",
+     "reason": ""
+    },
+    {
+     "choice": "present monopsony as an odd exception that leaves the textbook prediction essentially intact.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "0a5c5d546bcc3c31c6c938ab3eff47d2",
+  "word_count": 144,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:29:44.998972+00:00",
+  "updated_at": "2026-07-08T09:29:44.998972+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "ed1e53cdac311e889380984bd9883ec4",
+  "dedup_key": "c807fd62c29e20d09cf3fb752c1df86f"
+ },
+ {
+  "id": "65ee7f40-b2fc-4966-98cf-c8cb4bf3da72",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "topic_tag": "behavioral-economics-loss-aversion",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Craft and Structure",
+   "prompt": "What is the main rhetorical function of the final sentence ('The label of irrationality... doing the judging')?",
+   "choices": [
+    "It concedes that loss-averse behavior is, on balance, irrational after all, despite whatever protection against ruin it happens to offer.",
+    "It relocates the source of the apparent defect from the decision-maker to the framework being used to evaluate the decision.",
+    "It introduces a new experiment designed to test whether cautious choosers really do avoid the ruinous losing streaks described.",
+    "It broadens the argument into the sweeping claim that economic models routinely misjudge every form of human behavior they describe."
+   ],
+   "graphic": null,
+   "passage": "Behavioral economists have repeatedly shown that ordinary people reject profitable gambles that a standard rational-choice model insists they should accept. The conventional reading treats such refusals as plain evidence of irrationality—a failure to do the arithmetic and maximize expected value. But consider what the caution actually buys the person who exercises it. An organism that now and then declines a favorable bet also insulates itself against the ruinous losing streak that a relentless maximizer would, sooner or later, be statistically certain to encounter. Seen this way, the so-called irrational aversion begins to look like a form of insurance—rational not with respect to any single wager but across a whole lifetime of them, where survival, not the expected value of one bet, is what matters. The label of irrationality may say less about the chooser than about the narrowness of the model doing the judging.",
+   "subskill": "Text Structure and Purpose",
+   "topic_tag": "behavioral-economics-loss-aversion",
+   "difficulty": "medium",
+   "word_count": 144,
+   "explanation": "After recasting aversion as lifetime 'insurance,' the closing sentence says the irrationality label reflects 'the narrowness of the model doing the judging'—shifting the fault from the chooser to the evaluative model, which is B. A contradicts the passage, which argues the behavior is rational over a lifetime, not ultimately irrational (the tempting reversal). C invents a forthcoming experiment; the sentence draws a conclusion, it does not launch a study. D overgeneralizes: the sentence indicts this particular model's narrowness, not all economic models judging all behavior.",
+   "correct_answer": "It relocates the source of the apparent defect from the decision-maker to the framework being used to evaluate the decision.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "It concedes that loss-averse behavior is, on balance, irrational after all, despite whatever protection against ruin it happens to offer.",
+     "reason": ""
+    },
+    {
+     "choice": "It introduces a new experiment designed to test whether cautious choosers really do avoid the ruinous losing streaks described.",
+     "reason": ""
+    },
+    {
+     "choice": "It broadens the argument into the sweeping claim that economic models routinely misjudge every form of human behavior they describe.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "4a0d69fac6106c4cc6ab80530ad2f102",
+  "word_count": 144,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T08:22:47.939577+00:00",
+  "updated_at": "2026-07-08T08:22:47.939577+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "f5e921973778e85f7dd4b576ab52472c",
+  "dedup_key": "7a5bb8ddb6ef0030e06126f6478b3d69"
+ },
+ {
+  "id": "7da9ac67-b8a5-421d-b2a8-f45cd9aa70e2",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Inferences",
+  "difficulty": "medium",
+  "topic_tag": "social-science-volunteering-happiness",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Craft and Structure",
+   "prompt": "Which statement is most strongly supported by the text?",
+   "choices": [
+    "Much of the happiness gap between volunteers and non-volunteers reflects preexisting differences in who volunteers rather than an effect of the volunteering.",
+    "Volunteering has no genuine effect at all on a person's well-being once the preexisting differences between the people who volunteer and those who do not are accounted for.",
+    "Increases in a person's volunteering reliably generate large and lasting gains in happiness over the years, just as the gap in any single year's snapshot implies.",
+    "People who have already grown happier for unrelated reasons are the group least likely to take up volunteering later on."
+   ],
+   "graphic": null,
+   "passage": "Surveys reliably find that people who volunteer report greater happiness than those who do not, a correlation frequently presented as proof that donating one's time lifts one's mood. Longitudinal data invite more caution than the surveys allow. Tracking the same individuals across many years, researchers found that a rise in a person's happiness tended to precede an increase in their volunteering about as often as it followed one—in other words, people who had grown happier for other reasons subsequently took up volunteering. The activity did still produce a genuine well-being benefit, but a distinctly modest one, far smaller than the gap in any single year's snapshot would imply. Most of that headline gap, it turns out, reflects a difference in who chooses to volunteer in the first place rather than any transformation worked by the volunteering itself.",
+   "subskill": "Inferences",
+   "topic_tag": "social-science-volunteering-happiness",
+   "difficulty": "medium",
+   "word_count": 137,
+   "explanation": "The passage says 'most of that headline gap... reflects a difference in who chooses to volunteer' rather than what volunteering does—selection, not treatment—which is A. B overstates: the text explicitly grants 'a genuine well-being benefit,' just a modest one, so 'no genuine effect' is wrong (the tempting flattening). C reverses the finding, which downgrades the effect to 'distinctly modest,' not large. D reverses the direction: it was 'happier' people, not unhappy ones, who tended to take up volunteering afterward.",
+   "correct_answer": "Much of the happiness gap between volunteers and non-volunteers reflects preexisting differences in who volunteers rather than an effect of the volunteering.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Volunteering has no genuine effect at all on a person's well-being once the preexisting differences between the people who volunteer and those who do not are accounted for.",
+     "reason": ""
+    },
+    {
+     "choice": "Increases in a person's volunteering reliably generate large and lasting gains in happiness over the years, just as the gap in any single year's snapshot implies.",
+     "reason": ""
+    },
+    {
+     "choice": "People who have already grown happier for unrelated reasons are the group least likely to take up volunteering later on.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "72a831b966027765f85cb4eb94ffceef",
+  "word_count": 137,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T08:22:47.959023+00:00",
+  "updated_at": "2026-07-08T08:22:47.959023+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "35b54988b9d3ed5cd8c3b774dffe3c6d",
+  "dedup_key": "3fbc24d1312b0d5db69ca4f69d8c3b90"
+ },
+ {
+  "id": "8750e65d-3b00-48c7-a91b-a3ede1968a78",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Inferences",
+  "difficulty": "medium",
+  "topic_tag": "ecology-trophic-cascade",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "Which statement about the willow recovery is best supported by the passage?",
+   "choices": [
+    "Wolves reengineered the ecosystem by triggering the return of beavers and stable rivers.",
+    "The willows would have recovered to exactly the same extent even if wolves had never been reintroduced.",
+    "Wolf predation was neither the sole nor the decisive cause of the willows' return.",
+    "Drought and hunting were the primary drivers of willow recovery throughout the park."
+   ],
+   "graphic": null,
+   "passage": "The reintroduction of wolves to Yellowstone in 1995 is routinely cited as proof that a single predator can reengineer an entire ecosystem: willows rebounded along the streams, beavers returned to build their dams, and the rivers themselves grew more stable. Yet the ecologists who have monitored the park longest urge caution. Elk numbers did fall after the wolves arrived, but the herds were already thinning under drought and heavy hunting beyond the park's boundaries. Willow recovery, moreover, was strongest precisely where beaver ponds or high water tables kept the soil moist, and negligible where they did not; beaver colonization itself tracked water availability more closely than it tracked wolf density. The wolves, in this reading, did not create the favorable conditions so much as fail to prevent a recovery already latent in the hydrology. To credit them with the landscape's transformation is to mistake a permissive factor for a sufficient one.",
+   "subskill": "Inferences",
+   "topic_tag": "ecology-trophic-cascade",
+   "difficulty": "hard",
+   "word_count": 151,
+   "explanation": "C matches the passage's core claim that wolves were a 'permissive factor,' not a 'sufficient one,' with recovery tied to hydrology. A is the popular narrative the ecologists explicitly reject. B overgeneralizes (the passage says wolves failed to prevent recovery, not that the outcome would have been identical). D reverses the causal chain (drought reduced elk, but willow recovery tracked moisture) and wrongly claims it held 'throughout the park,' though recovery was negligible in dry areas.",
+   "correct_answer": "Wolf predation was neither the sole nor the decisive cause of the willows' return.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Wolves reengineered the ecosystem by triggering the return of beavers and stable rivers.",
+     "reason": ""
+    },
+    {
+     "choice": "The willows would have recovered to exactly the same extent even if wolves had never been reintroduced.",
+     "reason": ""
+    },
+    {
+     "choice": "Drought and hunting were the primary drivers of willow recovery throughout the park.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "9791935bf096f926a4cd92ca362bd02a",
+  "word_count": 151,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "hard",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:17:28.72771+00:00",
+  "updated_at": "2026-07-08T09:17:28.72771+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "b7abca51c70a6551c76fd9564684d45c",
+  "dedup_key": "a88d65bfcbdd382c851ef539e7dca3f6"
+ },
+ {
+  "id": "95fb8d9f-a01d-49aa-bd12-92c6d4f72909",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence (textual)",
+  "difficulty": "medium",
+  "topic_tag": "settlement_abandonment",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "Which finding, if true, would most directly weaken Rivera's argument?",
+   "choices": [
+    "Tree-ring data from the surrounding region record a decades-long dry period that coincides with the settlement's final phase, its narrowest rings falling in the very years the wind-blown sediment accumulated.",
+    "Skeletal remains from the settlement's final phase show widespread injuries consistent with combat, and the community's granaries were found still full of grain.",
+    "Neighboring settlements that drew on the same water sources were abandoned during the same period.",
+    "Pollen records indicate a sharp decline in cultivated crops in the years just before the abandonment."
+   ],
+   "graphic": null,
+   "passage": "The archaeologist Elena Rivera contends that the sudden abandonment of an ancient hilltop settlement was driven by a prolonged regional drought rather than by the enemy raids that earlier scholars had blamed. Her case rests largely on timing: layers of wind-blown sediment and a marked scarcity of the water-hungry crops the inhabitants had once cultivated both appear in the settlement's final occupation phase. Rivera concedes that drought and warfare can leave overlapping traces in the archaeological record, and that a besieged community might abandon its home for reasons having nothing to do with climate. She maintains, nonetheless, that the environmental evidence points more economically to thirst and crop failure than to armed conflict as the settlement's undoing.",
+   "subskill": "Command of Evidence (Textual)",
+   "topic_tag": "settlement_abandonment",
+   "difficulty": "medium",
+   "word_count": 117,
+   "explanation": "B undercuts Rivera on two fronts: combat injuries point to the warfare explanation she rejects, and full granaries argue against the thirst-and-crop-failure story at the heart of her case. A, C, and D all reinforce the drought hypothesis (independent dryness evidence, regionally shared abandonment tied to water, and declining crops), so none weakens her argument.",
+   "correct_answer": "Skeletal remains from the settlement's final phase show widespread injuries consistent with combat, and the community's granaries were found still full of grain.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Tree-ring data from the surrounding region record a decades-long dry period that coincides with the settlement's final phase.",
+     "reason": ""
+    },
+    {
+     "choice": "Neighboring settlements that drew on the same water sources were abandoned during the same period.",
+     "reason": ""
+    },
+    {
+     "choice": "Pollen records indicate a sharp decline in cultivated crops in the years just before the abandonment.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "df8c05482c37917a3f1878e88e87a101",
+  "word_count": 117,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong",
+   "length_rebalanced_at": "2026-08-15T16:39:20.950Z",
+   "legacy_choices_length": [
+    "Tree-ring data from the surrounding region record a decades-long dry period that coincides with the settlement's final phase.",
+    "Skeletal remains from the settlement's final phase show widespread injuries consistent with combat, and the community's granaries were found still full of grain.",
+    "Neighboring settlements that drew on the same water sources were abandoned during the same period.",
+    "Pollen records indicate a sharp decline in cultivated crops in the years just before the abandonment."
+   ]
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T07:54:38.852624+00:00",
+  "updated_at": "2026-07-08T07:54:38.852624+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "4ed3e70008e5bb924843aab8aa1a608d",
+  "dedup_key": "4f354e6295b0cd02d72181b415b625b7"
+ },
+ {
+  "id": "c11235e4-5da4-47dd-9209-31f79df730ad",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Cross-Text Connections",
+  "difficulty": "medium",
+  "topic_tag": "literary-criticism-authorial-intent",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "How would the author of Text 2 most likely respond to the argument in Text 1?",
+   "choices": [
+    "By agreeing that readers complete a text but denying that this makes every reading equally valid.",
+    "By insisting that only the author's biographical intentions can determine a text's meaning.",
+    "By conceding that texts possess no stable meaning once they are published.",
+    "By arguing that readers play no legitimate role in interpretation."
+   ],
+   "graphic": null,
+   "passage": "Text 1: For a work to mean, no consultation of its maker is required. A poem, once released, belongs to its readers, who complete it anew with each encounter; the author's remembered intentions are merely one more reading, privileged by biography but not by logic. To fix meaning to intention is to freeze a living text into a dead document.\n\nText 2: Readers do indeed generate meanings the author never foresaw, and criticism need not police them. Still, not every reading is equally warranted. A text's words carry conventional senses and its structures set expectations; a reading that ignores them is not liberated but simply wrong. Intention survives, then, not as a private message to be recovered but as a public constraint embedded in the words themselves—a boundary, not a key.",
+   "subskill": "Cross-Text Connections",
+   "topic_tag": "literary-criticism-authorial-intent",
+   "difficulty": "medium",
+   "word_count": 131,
+   "explanation": "Text 2 grants Text 1's premise that readers 'generate meanings the author never foresaw' but insists 'not every reading is equally warranted'—so A captures the partial agreement plus the crucial limit. B is the tempting misreading: because Text 2 defends 'intention,' one expects it to champion the author's private intent, yet Text 2 explicitly denies intention is 'a private message to be recovered.' C contradicts Text 2's whole point about warranted readings. D contradicts its concession that readers legitimately generate meanings.",
+   "correct_answer": "By agreeing that readers complete a text but denying that this makes every reading equally valid.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "By insisting that only the author's biographical intentions can determine a text's meaning.",
+     "reason": ""
+    },
+    {
+     "choice": "By conceding that texts possess no stable meaning once they are published.",
+     "reason": ""
+    },
+    {
+     "choice": "By arguing that readers play no legitimate role in interpretation.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "b3c519c9f0c154dd70460933d26bc192",
+  "word_count": 131,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:40:37.855806+00:00",
+  "updated_at": "2026-07-08T09:40:37.855806+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "44e4214327da324d1776d578cdde0bcb",
+  "dedup_key": "a62f815ddf6aad75911406f2bdb574e7"
+ },
+ {
+  "id": "cecc1e41-4015-480b-97e4-0d66b9532327",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Inferences",
+  "difficulty": "medium",
+  "topic_tag": "literary-criticism-omniscient-narration",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Craft and Structure",
+   "prompt": "Which statement is most strongly supported by the text?",
+   "choices": [
+    "The omniscient narrator's god-like knowledge imposes a false and arrogant order on the events the novel relates.",
+    "Realist novels are, on the whole, more concerned with exposing human ignorance than with telling a coherent story.",
+    "Critics of the realist novel generally praise omniscient narration for the humility it displays.",
+    "Omniscient narration can serve to underscore how little the characters understand rather than to assert the narrator's authority."
+   ],
+   "graphic": null,
+   "passage": "A recurring complaint about the classic realist novel targets its omniscient narrator, who hovers above the story with a god-like, unrestricted knowledge and is accused of imposing a false and reassuring order upon the chaos of real experience. The complaint takes for granted that omniscience is essentially a claim to authority. But the greatest realist narrators are seldom so confident as that charge implies. Their omniscience is, in practice, exercised again and again to record how little the characters themselves know—to mark the widening gap between what is actually happening in a scene and what any person inside it manages to perceive. Far from asserting the author's mastery over life, such narration painstakingly measures the reach of ordinary human blindness. The convention that critics deride as arrogant turns out to be the realist novel's most sustained and disciplined instrument of humility.",
+   "subskill": "Inferences",
+   "topic_tag": "literary-criticism-omniscient-narration",
+   "difficulty": "medium",
+   "word_count": 141,
+   "explanation": "The passage argues that realist omniscience is 'exercised... to record how little the characters themselves know' and 'measures the reach of ordinary human blindness'—an instrument of humility, not authority—which is D. A restates the very complaint the passage rebuts (the tempting misread). B overreaches: the text reframes what omniscience does but never claims the novels care more about ignorance than about story—right idea, wrong scope. C reverses the passage: critics 'deride' the convention 'as arrogant'; it is the passage, not the critics, that finds humility in it.",
+   "correct_answer": "Omniscient narration can serve to underscore how little the characters understand rather than to assert the narrator's authority.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "The omniscient narrator's god-like knowledge imposes a false and arrogant order on the events the novel relates.",
+     "reason": ""
+    },
+    {
+     "choice": "Realist novels are, on the whole, more concerned with exposing human ignorance than with telling a coherent story.",
+     "reason": ""
+    },
+    {
+     "choice": "Critics of the realist novel generally praise omniscient narration for the humility it displays.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "c186fb9004e4ca78c67913944fb94303",
+  "word_count": 141,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T08:22:47.997641+00:00",
+  "updated_at": "2026-07-08T08:22:47.997641+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "3701da16e19b0645bed11e9548480ae0",
+  "dedup_key": "806149a9c5703d6905d1cb2178e6f71a"
+ },
+ {
+  "id": "d17b19aa-de7d-4cd3-b46d-aed56d8de6b4",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "topic_tag": "Roman history",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "Which choice best describes the overall structure of the text?",
+   "choices": [
+    "It presents a familiar interpretation, then argues that the event that interpretation names is a construct imposed by later observers rather than a rupture experienced at the time.",
+    "It corrects an outdated date for the empire's fall by supplying the more accurate one that recent scholarship has established.",
+    "It catalogs the administrative continuities—taxes still collected, Latin still administered, Gothic kings still styling themselves Roman—that let the empire survive intact into the medieval period.",
+    "It contrasts the indifference of contemporaries with the fascination of modern historians in order to explain why 476 is still taught."
+   ],
+   "graphic": null,
+   "passage": "Historians once narrated the end of the Western Roman Empire as a catastrophe: a datable collapse in 476, when a Germanic commander deposed the last emperor in Italy. Recent scholarship has not so much revised the date as dissolved the event. To contemporaries, the removal of a figurehead already stripped of real authority was unremarkable; taxes were still collected, Latin still administered, and Gothic kings still styled themselves stewards of a Roman order. What later observers read as a rupture was, on the ground, a gradual renegotiation of who exercised power in whose name. The empire did not fall so much as it was quietly repurposed, its institutions outliving the office that had nominally crowned them. The '476' of the textbooks, then, is less a fact about the fifth century than an artifact of the historians who needed a boundary to mark.",
+   "subskill": "Text Structure and Purpose",
+   "topic_tag": "Roman history",
+   "difficulty": "medium",
+   "word_count": 142,
+   "explanation": "The text opens with the traditional 'collapse in 476' story and then argues that scholarship has 'dissolved the event,' reframing it as an 'artifact of the historians.' B is the tempting misreading: the passage explicitly says scholarship did 'not so much revise the date' but dissolve the event, so it is not supplying a corrected date. C overstates continuity—the empire was 'repurposed,' not preserved 'intact.' D seizes a real detail (contemporaries' indifference) but misidentifies the purpose as explaining classroom prominence.",
+   "correct_answer": "It presents a familiar interpretation, then argues that the event that interpretation names is a construct imposed by later observers rather than a rupture experienced at the time.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "It corrects an outdated date for the empire's fall by supplying the more accurate one that recent scholarship has established.",
+     "reason": ""
+    },
+    {
+     "choice": "It catalogs the administrative continuities—taxes still collected, Latin still administered, Gothic kings still styling themselves Roman—that let the empire survive intact into the medieval period.",
+     "reason": ""
+    },
+    {
+     "choice": "It contrasts the indifference of contemporaries with the fascination of modern historians in order to explain why 476 is still taught.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "38785078c92a1855915de192a286c500",
+  "word_count": 142,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T08:47:26.476059+00:00",
+  "updated_at": "2026-07-08T08:47:26.476059+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "750a45d04a1abd7d662abd7bd2fe9ad7",
+  "dedup_key": "34d29ae37e37f1024d9254570ff9060f"
+ },
+ {
+  "id": "ded7d316-75cc-4a5d-955f-034e559d8806",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "topic_tag": "history/military-revolution",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "The author's primary purpose in the passage is to",
+   "choices": [
+    "deny that warfare contributed in any way to the emergence of centralized states.",
+    "warn that an elegant causal story can substitute for proof that the proposed cause actually operated.",
+    "demonstrate that commercial wealth, rather than warfare, produced the centralized state.",
+    "explain how gunpowder weaponry rendered traditional fortifications obsolete."
+   ],
+   "graphic": null,
+   "passage": "Historians once explained the rise of the centralized European state with a simple chain: gunpowder made medieval fortifications obsolete, siege warfare grew ruinously expensive, and only rulers who could tax and borrow on a large scale survived—so war built the modern state. The thesis is elegant, and for that reason worth distrusting. Its neat causal sequence assumes what it should demonstrate: that fiscal centralization followed military necessity rather than preceding and enabling it. Several polities built formidable armies without developing centralized bureaucracies, hiring them through contractors and financiers, while some centralizing states faced little external threat. The 'military revolution' may describe a correlation that ran in both directions, or that some third factor—commercial wealth, say—drove independently. To call war the maker of the state is to mistake a plausible story for a demonstrated cause.",
+   "subskill": "Text Structure and Purpose",
+   "topic_tag": "history/military-revolution",
+   "difficulty": "medium",
+   "word_count": 134,
+   "explanation": "The passage flags the thesis as 'elegant, and for that reason worth distrusting' because it 'assumes what it should demonstrate,' concluding one must not 'mistake a plausible story for a demonstrated cause'—the caution in B. A overstates: the author disputes war as a demonstrated cause, not any contribution. C is only floated as a possibility ('commercial wealth, say'), never established. D describes a recounted premise of the old thesis, not the author's own purpose.",
+   "correct_answer": "warn that an elegant causal story can substitute for proof that the proposed cause actually operated.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "deny that warfare contributed in any way to the emergence of centralized states.",
+     "reason": ""
+    },
+    {
+     "choice": "demonstrate that commercial wealth, rather than warfare, produced the centralized state.",
+     "reason": ""
+    },
+    {
+     "choice": "explain how gunpowder weaponry rendered traditional fortifications obsolete.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "17f3b88022a2af21a1195f4226fe0d57",
+  "word_count": 134,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:29:45.082416+00:00",
+  "updated_at": "2026-07-08T09:29:45.082416+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "5b1a2d7fd262aafa1451ec01a6ec0683",
+  "dedup_key": "075cee0e25add31460b31c967f8ccadc"
+ },
+ {
+  "id": "e480843a-30d7-4fd2-8530-244a1387adb7",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Inferences",
+  "difficulty": "medium",
+  "topic_tag": "philosophy-of-science-falsification",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "Which statement is best supported by the passage?",
+   "choices": [
+    "Scientific theories become proven true once enough confirming evidence has accumulated.",
+    "Because theories cannot be proven, scientific claims are no more reliable than any other beliefs.",
+    "A theory earns its credibility by remaining unrefuted despite being genuinely open to refutation.",
+    "A claim counts as scientific only if it has already been refuted at least once."
+   ],
+   "graphic": null,
+   "passage": "A common popular defense of science holds that its distinctive virtue is that it proves its theories true. Philosophers of science are nearly unanimous that it does no such thing: no finite body of observation, however large, can establish a universal law beyond all possibility of future revision. What science offers instead is a peculiar and deliberate kind of vulnerability. Its claims are framed precisely so that specific, statable observations could refute them, and a theory earns its standing only by being repeatedly exposed to such tests and repeatedly failing to be overturned. The strength of a scientific theory, on this account, lies not in having been conclusively proven, but in having stood openly exposed to disproof and, so far, endured. Certainty is not on offer; hard-won survival is.",
+   "subskill": "Inferences",
+   "topic_tag": "philosophy-of-science-falsification",
+   "difficulty": "medium",
+   "word_count": 129,
+   "explanation": "C matches the passage's account of strength as 'having stood openly exposed to disproof and, so far, endured.' A is the popular defense the philosophers reject. B overgeneralizes—the passage locates a distinctive strength, not equal unreliability. D distorts 'could be refuted' into 'has been refuted.'",
+   "correct_answer": "A theory earns its credibility by remaining unrefuted despite being genuinely open to refutation.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Scientific theories become proven true once enough confirming evidence has accumulated.",
+     "reason": ""
+    },
+    {
+     "choice": "Because theories cannot be proven, scientific claims are no more reliable than any other beliefs.",
+     "reason": ""
+    },
+    {
+     "choice": "A claim counts as scientific only if it has already been refuted at least once.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "615e0b580e434aa2c096fd1e634f66f4",
+  "word_count": 129,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:17:28.932845+00:00",
+  "updated_at": "2026-07-08T09:17:28.932845+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "0d582d81ea824067f00bedd31cfc32fd",
+  "dedup_key": "faec61546e69b995913c03c25e822212"
+ },
+ {
+  "id": "e9036cc2-fdc6-4359-a75b-47afd63d5fe9",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "medium",
+  "topic_tag": "ecology/trophic-cascade",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "Which finding would most undermine the \"landscape of fear\" explanation as the passage frames it?",
+   "choices": [
+    "Following reintroduction, elk numbers across the park fell by more than half within a decade.",
+    "Songbird diversity rose most sharply along the stretches of river where willow stands grew densest.",
+    "Willows recovered no more in the risky sites elk avoided than in comparably reachable safe sites.",
+    "Beaver colonies expanded only after willow stands along the same streams had already become established."
+   ],
+   "graphic": null,
+   "passage": "The reintroduction of wolves to Yellowstone is often told as a tidy morality tale: wolves frightened elk away from riverbanks, willows and aspen rebounded, and beavers and songbirds returned—a 'landscape of fear' remaking the valley from the top down. The mechanism is appealing, but the evidence for it is thinner than the story suggests. Elk numbers fell sharply after wolf reintroduction, so browsing pressure could have eased simply because there were fewer elk, not because survivors avoided risky terrain. Moreover, willow recovery has been patchy, strongest where beaver ponds and high water tables independently favored growth. Distinguishing a behaviorally driven cascade from a mere reduction in herbivore density requires showing that vegetation recovered specifically in the places elk learned to avoid—not merely wherever elk grew scarcer or hydrology improved.",
+   "subskill": "Command of Evidence",
+   "topic_tag": "ecology/trophic-cascade",
+   "difficulty": "medium",
+   "word_count": 129,
+   "explanation": "The passage says the behavioral cascade requires 'showing that vegetation recovered specifically in the places elk learned to avoid.' C removes exactly that spatial signature, so it most undermines the fear explanation. A is the tempting trap: an elk decline is consistent with the density-reduction alternative and is already granted in the passage, so it doesn't discriminate between the two mechanisms. B is a downstream, true-but-irrelevant effect. D concerns the ordering of beaver and willow recovery, not whether fear drove the cascade.",
+   "correct_answer": "Willows recovered no more in the risky sites elk avoided than in comparably reachable safe sites.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Following reintroduction, elk numbers across the park fell by more than half within a decade.",
+     "reason": ""
+    },
+    {
+     "choice": "Songbird diversity rose most sharply along the stretches of river where willow stands grew densest.",
+     "reason": ""
+    },
+    {
+     "choice": "Beaver colonies expanded only after willow stands along the same streams had already become established.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "eeb67694fae46472a276af39d93c4ebb",
+  "word_count": 129,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:29:45.042921+00:00",
+  "updated_at": "2026-07-08T09:29:45.042921+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "598d910dd416c1b5f086d73d68501e74",
+  "dedup_key": "d9d5322f21e88856c65f9106ebcffb32"
+ },
+ {
+  "id": "ec751918-be15-4ca2-b35b-e79bd6e59fa4",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Information and Ideas",
+  "subskill": "Inferences",
+  "difficulty": "medium",
+  "topic_tag": "epidemiology-vaccine-complacency",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Information and Ideas",
+   "prompt": "The passage most strongly implies that a decline in vaccination rates within a population may signal",
+   "choices": [
+    "that the vaccine has been shown to carry risks greater than those posed by the disease it prevents",
+    "that public health authorities have failed to communicate the vaccine's value to a new generation of parents",
+    "that the disease against which people are vaccinating has itself grown more dangerous",
+    "that a vaccination program has succeeded well enough to make the disease seem unthreatening"
+   ],
+   "graphic": null,
+   "passage": "The near-eradication of a disease can, paradoxically, erode the very public consensus that achieved it. When a vaccine works well, the illness it prevents vanishes from living memory, and with it the vivid, visible stakes of vaccination; what then remains salient to parents is only the small and comparatively rare risk of the vaccine itself. Thus the safest moment in a disease's history—when coverage is highest and cases rarest—is precisely when public commitment to vaccination grows most fragile. At that point even a modest decline in uptake, driven by complacency rather than any real change in danger, can quietly reopen a door that nearly everyone had assumed was permanently sealed. Success, in public health, tends to undermine the conditions that produced it.",
+   "subskill": "Inferences",
+   "topic_tag": "epidemiology-vaccine-complacency",
+   "difficulty": "medium",
+   "word_count": 122,
+   "explanation": "D captures the paradox: high coverage makes the disease vanish from memory, breeding the complacency that lowers uptake. A misreads the passage, which stresses the vaccine's risk is small and calls the perception, not the reality, the driver. B invents a promotional failure the passage does not mention. C contradicts 'rather than any real change in danger.'",
+   "correct_answer": "that a vaccination program has succeeded well enough to make the disease seem unthreatening",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "that the vaccine has been shown to carry risks greater than those posed by the disease it prevents",
+     "reason": ""
+    },
+    {
+     "choice": "that public health authorities have failed to communicate the vaccine's value to a new generation of parents",
+     "reason": ""
+    },
+    {
+     "choice": "that the disease against which people are vaccinating has itself grown more dangerous",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "abb676a1221964c9b3a1ef5dc7ee5d7b",
+  "word_count": 122,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:17:28.952326+00:00",
+  "updated_at": "2026-07-08T09:17:28.952326+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "549f1fecbd1b651eefa8952ea1b14c27",
+  "dedup_key": "3a7f9c09251346693a3cfeedc227a550"
+ },
+ {
+  "id": "f7c3b760-032b-4529-ad28-87244f7d0a2a",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Craft and Structure",
+  "subskill": "Text Structure and Purpose",
+  "difficulty": "medium",
+  "topic_tag": "literary-criticism-henry-james",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Craft and Structure",
+   "prompt": "Which choice best describes the overall structure of the text?",
+   "choices": [
+    "It defends the conventional view that James's indirection reveals psychological depth by explaining how the technique grants readers access to characters' inner lives.",
+    "It presents a widely held interpretation of a stylistic feature, then reinterprets that feature as achieving nearly the reverse of what the interpretation assumes.",
+    "It argues that narrative indirection of any kind ultimately fails to represent consciousness and should therefore be abandoned by serious novelists.",
+    "It contrasts two rival schools of criticism in order to show that neither adequately accounts for the reputation James's late novels enjoy."
+   ],
+   "graphic": null,
+   "passage": "Critics routinely enlist the late novels of Henry James as the supreme example of psychological 'depth,' as though James's celebrated indirection—his refusal to state a character's motive plainly, his habit of circling a feeling through qualification and delay—were a transparent window onto interior life. Yet the indirection may accomplish something nearly opposite to what its admirers suppose. When a Jamesian narrator approaches an emotion without ever naming it, the effect is less to reveal a mind than to advertise the limits of any observer's access to one. The prose does not deliver the character's consciousness so much as it stages the narrator's failure to reach it. What readers experience as intimacy is thus, more precisely, a dramatization of distance—a sustained acknowledgment that other minds remain, finally, opaque to us. To call this achievement 'depth' is to mistake a confession of ignorance for a report filed from within.",
+   "subskill": "Text Structure and Purpose",
+   "topic_tag": "literary-criticism-henry-james",
+   "difficulty": "medium",
+   "word_count": 147,
+   "explanation": "The text first states the standard reading (indirection = a 'window onto interior life') and then turns it over: the same technique 'advertise[s] the limits of any observer's access' and dramatizes distance, not depth—'nearly opposite to what its admirers suppose.' That is the concede-then-invert structure in B. A is the very interpretation the passage rejects (the tempting misreading). C overgeneralizes: the passage is about James's specific effect and never calls for abandoning indirection or claims all indirection fails. D invents a two-schools contrast that appears nowhere; the passage sets up one common view, not two rival schools.",
+   "correct_answer": "It presents a widely held interpretation of a stylistic feature, then reinterprets that feature as achieving nearly the reverse of what the interpretation assumes.",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "It defends the conventional view that James's indirection reveals psychological depth by explaining how the technique grants readers access to characters' inner lives.",
+     "reason": ""
+    },
+    {
+     "choice": "It argues that narrative indirection of any kind ultimately fails to represent consciousness and should therefore be abandoned by serious novelists.",
+     "reason": ""
+    },
+    {
+     "choice": "It contrasts two rival schools of criticism in order to show that neither adequately accounts for the reputation James's late novels enjoy.",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "85e32d507b08d3fed56dd3f6449d5330",
+  "word_count": 147,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T08:22:47.852507+00:00",
+  "updated_at": "2026-07-08T08:22:47.852507+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "a28b873ee194933c45c6e772dd05ed2e",
+  "dedup_key": "8e4ef7ef44cad53fa49947a862eb72ba"
+ },
+ {
+  "id": "31cc9322-00d3-4680-bc29-1b546f096fef",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Standard English Conventions",
+  "subskill": "Boundaries",
+  "difficulty": "medium",
+  "topic_tag": "nonrestrictive supplement punctuation",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Standard English Conventions",
+   "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    ", ",
+    " ",
+    "; ",
+    ": "
+   ],
+   "graphic": null,
+   "passage": "The novelist's debut, a sprawling account of three generations of a Nova Scotia fishing family ______ went on to win several major awards despite its famously unconventional structure.",
+   "subskill": "Boundaries",
+   "topic_tag": "nonrestrictive supplement punctuation",
+   "difficulty": "medium",
+   "word_count": 28,
+   "explanation": "The phrase 'a sprawling account of three generations of a Nova Scotia fishing family' is a nonrestrictive appositive renaming 'debut,' and it is already opened with a comma after 'debut.' A nonrestrictive supplement in the middle of a sentence must be closed with a matching comma, so a comma is required before 'went.' Omitting punctuation leaves the appositive unclosed; a semicolon or colon would each require what follows to relate to a full clause, which 'went on to win...' is not on its own.",
+   "correct_answer": ", ",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": " ",
+     "reason": ""
+    },
+    {
+     "choice": "; ",
+     "reason": ""
+    },
+    {
+     "choice": ": ",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "c86d143b4faa13acab9dc407d67f92d4",
+  "word_count": 28,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "plausible"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T08:22:48.303225+00:00",
+  "updated_at": "2026-07-08T08:22:48.303225+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "b8c4db32cd15256d37b45cd18c5cc5a9",
+  "dedup_key": "7532d6a51ad999be19d77d3a7b8cae6c"
+ },
+ {
+  "id": "3970fa5c-abf2-46b0-a14b-99d89228d932",
+  "family": "sat",
+  "section": "reading_writing",
+  "domain": "Standard English Conventions",
+  "subskill": "Sentence Boundaries",
+  "difficulty": "medium",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Standard English Conventions",
+   "prompt": "The storm knocked out power across the region _____ thousands of residents spent the night without heat. Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "; ",
+    ", ",
+    " ",
+    ", so, "
+   ],
+   "graphic": null,
+   "passage": null,
+   "subskill": "Sentence Boundaries",
+   "topic_tag": null,
+   "difficulty": "medium",
+   "word_count": null,
+   "explanation": "Sentence boundaries: two independent clauses cannot be joined by a comma alone (comma splice) or by nothing (fused sentence); a semicolon correctly links them.",
+   "correct_answer": "; ",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": ", ",
+     "reason": ""
+    },
+    {
+     "choice": " ",
+     "reason": ""
+    },
+    {
+     "choice": ", so, ",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "b07cb57760ef5e41565b757073645f1f",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "qc": "blind Claude solvers + anchored Claude grader; no external model",
+   "method": "claude-authored+claude-qc",
+   "key_votes": 3,
+   "grader_difficulty": "medium",
+   "single_defensible": true,
+   "distractor_quality": "strong"
+  },
+  "source": "hand",
+  "created_at": "2026-07-21T13:38:21.790072+00:00",
+  "updated_at": "2026-07-21T13:38:21.790072+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "501e9aae8cd337900e2f0c24249a9aff",
+  "dedup_key": "33e0100a77959714e97e9b3d7ab0ec80"
+ },
+ {
+  "id": "56a3abee-7d47-4441-830a-19cd946c36dc",
+  "family": "toefl",
+  "section": "reading",
+  "domain": "Daily Life",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-6e3c35eb358797cc9ae136bd9b8bc105",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Daily Life — email from professor] What should Jamie do if she cannot be flexible on Thursday?",
+   "choices": [
+    "Cancel the meeting altogether",
+    "Wait until next week to arrange a meeting",
+    "Insist on meeting after class anyway",
+    "Go to Prof. Li’s office during usual hours"
+   ],
+   "graphic": null,
+   "passage": "From: Prof. Li To: Jamie Subject: Office Hours Hi Jamie, Thanks for your message. I’m afraid I can’t meet during my usual office hours this week due to a conference. If you can be flexible, I could see you briefly after class on Thursday, space permitting. Otherwise, let’s arrange a time for next week. Let me know what works for you. Best, Prof. Li",
+   "difficulty": "hard",
+   "explanation": "Prof. Li suggests arranging a time for next week if Thursday is not possible.",
+   "readingTask": "daily_life",
+   "correct_answer": "Wait until next week to arrange a meeting",
+   "passageGroupId": "pg-6e3c35eb358797cc9ae136bd9b8bc105",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "Go to Prof. Li’s office during usual hours",
+     "reason": "Prof. Li is not available during usual office hours this week."
+    },
+    {
+     "choice": "Insist on meeting after class anyway",
+     "reason": "Prof. Li only offers after-class if Jamie is flexible."
+    },
+    {
+     "choice": "Cancel the meeting altogether",
+     "reason": "Prof. Li offers an alternative for next week, not cancellation."
+    }
+   ]
+  },
+  "content_hash": "e8995a93e0bb89b1b3545a36948504d8",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-07-02T16:51:49.232931+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "Stated alternative in the last sentence",
+   "harvested_from": "test-cache",
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "daily_life",
+  "content_sha": "110f007c91cc0d2d088b75d995db2ad9",
+  "dedup_key": "126011de813d3ed1102021446d3f19c5"
+ },
+ {
+  "id": "2b8a405f-f1b2-4c9c-ae0b-c72c196d637d",
+  "family": "toefl",
+  "section": "reading",
+  "domain": "Daily Life",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-8ec93027f9cec8c1a073bcd271e14e4d",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Daily Life — club flyer] What is implied about the thank-you gifts?",
+   "choices": [
+    "The gifts are very expensive.",
+    "Only club members get gifts.",
+    "Not every volunteer is guaranteed a gift.",
+    "Gifts will be mailed later."
+   ],
+   "graphic": null,
+   "passage": "Club Flyer: The Green Earth Club invites you to our Spring Clean-Up event this Saturday. If you can spare an hour, join us at the campus lake at 10am. Supplies will be provided, space permitting. Please RSVP so we can plan accordingly. Volunteers may receive a small thank-you gift, assuming supplies last.",
+   "difficulty": "hard",
+   "explanation": "'Assuming supplies last' means gifts may run out.",
+   "readingTask": "daily_life",
+   "correct_answer": "Not every volunteer is guaranteed a gift.",
+   "passageGroupId": "pg-8ec93027f9cec8c1a073bcd271e14e4d",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "The gifts are very expensive.",
+     "reason": "No information about the value of gifts."
+    },
+    {
+     "choice": "Only club members get gifts.",
+     "reason": "The flyer invites all volunteers, not just members."
+    },
+    {
+     "choice": "Gifts will be mailed later.",
+     "reason": "No mention of mailing gifts."
+    }
+   ]
+  },
+  "content_hash": "9e18c9c246b741f07c51ee8ee0b12a34",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-07-02T16:28:32.868256+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "'assuming supplies last' means no guarantee",
+   "harvested_from": "test-cache",
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "daily_life",
+  "content_sha": "6ef3edac2daa8fae7ad25fd8f5f94a34",
+  "dedup_key": "7ee65f16244967042afa8cd39152c043"
+ },
+ {
+  "id": "99a6e172-cffb-4b54-8ce6-7ccb400afbda",
+  "family": "toefl",
+  "section": "reading",
+  "domain": "Daily Life",
+  "subskill": null,
+  "difficulty": "easy",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-7d3ae5e1bd806f34a4c76cbbcab9d2ec",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Daily Life — club flyer] What is implied if not enough people RSVP by Tuesday?",
+   "choices": [
+    "The event will be canceled or postponed",
+    "Only the snacks will be canceled, not the film",
+    "The club will book a smaller screening room",
+    "The event will move outdoors so no room is needed"
+   ],
+   "graphic": null,
+   "passage": "Hey everyone! The Film Club is planning a movie night next Friday, assuming enough people sign up. If you’re interested, please RSVP by Tuesday so we can book the screening room. We may have to postpone if we don’t reach the minimum number. Snacks provided (space permitting). Hope to see you there! – Film Club Officers",
+   "difficulty": "hard",
+   "explanation": "The flyer says the event may be postponed if the minimum number is not reached.",
+   "readingTask": "daily_life",
+   "correct_answer": "The event will be canceled or postponed",
+   "passageGroupId": "pg-7d3ae5e1bd806f34a4c76cbbcab9d2ec",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "The event will move outdoors so no room is needed",
+     "reason": "There is no mention of an outdoor event."
+    },
+    {
+     "choice": "Only the snacks will be canceled, not the film",
+     "reason": "Snacks are not the main factor for postponement."
+    },
+    {
+     "choice": "The club will book a smaller screening room",
+     "reason": "Room size is not mentioned as a solution."
+    }
+   ]
+  },
+  "content_hash": "5b428bb8d5517cff700df15936a8395c",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-07-02T16:51:49.232931+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "Stated postponement condition",
+   "harvested_from": "test-cache",
+   "difficulty_before": "hard",
+   "grader_difficulty": "easy",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "daily_life",
+  "content_sha": "ce51ef0b0a8865b4a8864e2c31f52004",
+  "dedup_key": "6f0e20590f7938f9b4ff0fb719875779"
+ },
+ {
+  "id": "caa70a59-d0a1-4ea8-8977-4fe6d72449d9",
+  "family": "toefl",
+  "section": "reading",
+  "domain": "Daily Life",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-d77f76623f324169908721f758c949d4",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Daily Life — Course Registration Page] What is implied about students who delay registering for courses?",
+   "choices": [
+    "They may have to join a waitlist if classes fill up.",
+    "They will be dropped from every course they had planned to take.",
+    "They will have to pay a late registration fee.",
+    "They will be unable to enroll until a registration hold is cleared."
+   ],
+   "graphic": null,
+   "passage": "From: Registrar’s Office Subject: Course Registration Update Dear Students, Registration for Spring courses opens Monday. If you have a registration hold, please resolve it before attempting to enroll. Some courses may fill quickly, so early registration is recommended, space permitting. Waitlists will be available for full classes. If you have questions, contact our office. Thank you for your understanding. Registrar’s Office",
+   "difficulty": "hard",
+   "explanation": "The message says some courses may fill quickly and waitlists are available, implying late registrants may need to wait.",
+   "readingTask": "daily_life",
+   "correct_answer": "They may have to join a waitlist if classes fill up.",
+   "passageGroupId": "pg-d77f76623f324169908721f758c949d4",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "They will be unable to enroll until a registration hold is cleared.",
+     "reason": "Waitlists are available, so registration is still possible."
+    },
+    {
+     "choice": "They will have to pay a late registration fee.",
+     "reason": "No mention of a late fee is made."
+    },
+    {
+     "choice": "They will be dropped from every course they had planned to take.",
+     "reason": "Only full classes require waitlists, not all classes."
+    }
+   ]
+  },
+  "content_hash": "c7dbbd3870777f7e2e68c80916ab1b1e",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-07-02T17:00:01.858328+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "Implication from fill quickly plus waitlists",
+   "harvested_from": "test-cache",
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "daily_life",
+  "content_sha": "15d43b918661797523759f15d3acef35",
+  "dedup_key": "4b833619e0833a530dae8d07255b7321"
+ },
+ {
+  "id": "6ead2164-1d20-43bb-89ae-f0dc192d8116",
+  "family": "toefl",
+  "section": "reading",
+  "domain": "Daily Life",
+  "subskill": null,
+  "difficulty": "medium",
+  "topic_tag": null,
+  "item_type": "multiple_choice",
+  "passage_group_id": "pg-90651a93bec3bb3bf110a328faaeb11a",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "prompt": "[Daily Life — Email] What is Professor Lin suggesting by offering to answer questions by email?",
+   "choices": [
+    "She will not answer any questions until next Wednesday afternoon.",
+    "She would rather handle all of her advising by email than meet students in person.",
+    "She does not want to meet with Alex in person at any point.",
+    "She is unable to meet in person this week but wants to help promptly."
+   ],
+   "graphic": null,
+   "passage": "From: Professor Lin Subject: Meeting Request Hi Alex, Thank you for your email. I’m afraid I can’t meet this week due to conference travel. If you can, please send your questions by email and I’ll reply as soon as possible. Otherwise, I’m available for in-person meetings next Wednesday afternoon, space permitting. Let me know what works best for you. Best, Professor Lin",
+   "difficulty": "hard",
+   "explanation": "Professor Lin cannot meet this week but offers to help by email as soon as possible.",
+   "readingTask": "daily_life",
+   "correct_answer": "She is unable to meet in person this week but wants to help promptly.",
+   "passageGroupId": "pg-90651a93bec3bb3bf110a328faaeb11a",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "She would rather handle all of her advising by email than meet students in person.",
+     "reason": "She offers both options, not a preference."
+    },
+    {
+     "choice": "She does not want to meet with Alex in person at any point.",
+     "reason": "She offers a meeting next week."
+    },
+    {
+     "choice": "She will not answer any questions until next Wednesday afternoon.",
+     "reason": "She offers to answer by email sooner."
+    }
+   ]
+  },
+  "content_hash": "9247c7d4a22067df7e76654f74ffe646",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "generated_at": "2026-07-02T17:00:01.858328+00:00",
+   "legacy_domain": "multiple_choice",
+   "difficulty_why": "Purpose of an offer; must not overread her preference",
+   "harvested_from": "test-cache",
+   "difficulty_before": "hard",
+   "grader_difficulty": "medium",
+   "difficulty_graded_at": "2026-09-01",
+   "difficulty_graded_by": "blind subagent grade, stored label withheld"
+  },
+  "source": "generated",
+  "created_at": "2026-07-21T14:04:14.874689+00:00",
+  "updated_at": "2026-07-21T14:04:14.874689+00:00",
+  "archived": false,
+  "cohort": "harvest-v1",
+  "task": "daily_life",
+  "content_sha": "3db08c3970d354191e1e43f12529d1d3",
+  "dedup_key": "81c32f362707a9d761b6290c70572295"
+ }
+]
