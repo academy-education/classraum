@@ -457,6 +457,11 @@ export function scoreSplit(
   for (const r of rows) {
     const w = deliveredWeight(r.question)
     if (r.ungraded) {
+      // An UNSCORED response (ISEE Essay / SSAT Writing Sample) is never
+      // sent to the grader, so it is neither pending nor rubric work:
+      // counting it here promised "being scored" for a grade that never
+      // comes, under a hero that now says "Not scored".
+      if (!Object.prototype.hasOwnProperty.call(RESPONSE_SKILL_BY_TYPE, r.question.type ?? '')) continue
       const g = grades[r.question.prompt ?? '']
       if (g) {
         earned += g.band

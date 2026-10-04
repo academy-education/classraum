@@ -7,7 +7,7 @@
 import { estimateSectionScore, computeSatRoute, satSectionScoreForSession } from '../sat-adaptive'
 import { project, satAttemptsFromSessions } from '../projection'
 import { bandFromProportion, scoreToeflSection, WEIGHTS_FOR } from '../toefl-section-score'
-import { objectiveProportion, hasReportableScore } from '../test-result'
+import { objectiveProportion, hasReportableScore, scoreSplit } from '../test-result'
 import {
   decideRubricSessionScore, persistedObjectiveScore, sessionWriteAfterItemGrade,
 } from '../session-score-decision'
@@ -211,5 +211,18 @@ describe('ACT section raw', () => {
   it('rights only, percent to one decimal, empty section is 0 not NaN', () => {
     expect(scoreActSection('english', { correct: 27, wrong: 14, omitted: 9 })).toMatchObject({ raw: 27, maxRaw: 50, percentCorrect: 54, scaled: null })
     expect(scoreActSection('math', { correct: 0, wrong: 0, omitted: 0 }).percentCorrect).toBe(0)
+  })
+})
+
+describe('scoreSplit and unscored essays', () => {
+  it('an answered essay is not reported as pending rubric work', () => {
+    const row = (type: string, answer: string | null) => ({
+      question: { type, prompt: type }, studentAnswer: answer, correct: false, ungraded: true,
+      isPilot: false, correctAnswerDisplay: '—', range: null, position: 0,
+    })
+    const s = scoreSplit([row('essay', 'my essay')], {})
+    expect(s.hasRubric).toBe(false)
+    expect(s.rubric.pending).toBe(0)
+    expect(scoreSplit([row('writing_email', 'reply')], {}).rubric.pending).toBe(1)
   })
 })

@@ -35,8 +35,14 @@ export function decideRubricSessionScore(
   scoreRepeat: (expected: string, actual: string) => { score: number },
 ): RubricDecision {
   const open = items.filter(it => OPEN_RESPONSE_TYPES.has(it.type))
+  // Only an ANSWERED rubric item can still be waiting: a blank one is
+  // never graded and scores 0 (scoreItem), so waiting on it held the
+  // write forever and left history on the submit-time percent while the
+  // screen showed something else (6cbfee66: 40 vs 78).
   const awaiting = open.filter(it =>
-    Object.prototype.hasOwnProperty.call(RESPONSE_SKILL_BY_TYPE, it.type) && it.rubricBand == null)
+    Object.prototype.hasOwnProperty.call(RESPONSE_SKILL_BY_TYPE, it.type)
+    && it.rubricBand == null
+    && (it.studentAnswer ?? '').trim() !== '')
   const graded = open.filter(it => it.rubricBand != null).length
   const ungraded = awaiting.length
   if (ungraded > 0) return { score: null, graded, ungraded, reason: 'grading incomplete' }
