@@ -6,6 +6,7 @@ import { buildExplainPrompt, type ExplainMode } from '@/lib/study/explain-prompt
 import { requireStudyUser } from '@/lib/study/auth'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { loggers } from '@/lib/error-monitoring'
+import { withApiFailureLogging } from '@/lib/ops/api-failure'
 
 /**
  * POST /api/study/explain — on-demand, follow-up explanations for a
@@ -48,7 +49,7 @@ interface Body {
   attemptId?: string
 }
 
-export async function POST(req: NextRequest) {
+async function handlePOST(req: NextRequest) {
   const authResult = await requireStudyUser(req)
   if (authResult.response) return authResult.response
   const user = authResult.user
@@ -173,3 +174,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'explain failed' }, { status: 500 })
   }
 }
+
+// Every non-2xx is recorded to error_logs and alerts when it spreads (src/lib/ops/api-failure.ts).
+export const POST = withApiFailureLogging('study/explain', handlePOST)

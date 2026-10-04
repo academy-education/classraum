@@ -17,6 +17,7 @@ import {
   GradeGenerationError,
   GradePersistError,
 } from '@/lib/study/gradeResponse'
+import { withApiFailureLogging } from '@/lib/ops/api-failure'
 
 /**
  * Grade every open response in a finished test, in one request.
@@ -62,7 +63,7 @@ const BodySchema = z.object({
   signals: z.record(z.string(), SignalsSchema).optional(),
 })
 
-export async function POST(req: NextRequest) {
+async function handlePOST(req: NextRequest) {
   const auth = await requireStudyUser(req)
   if ('response' in auth) return auth.response
   const { user } = auth
@@ -244,3 +245,6 @@ export async function POST(req: NextRequest) {
     { status: failures.length > 0 && items.length > 0 ? 207 : failures.length > 0 ? 502 : 200 },
   )
 }
+
+// Every non-2xx is recorded to error_logs and alerts when it spreads (src/lib/ops/api-failure.ts).
+export const POST = withApiFailureLogging('study/response/grade-batch', handlePOST)

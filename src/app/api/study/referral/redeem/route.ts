@@ -8,6 +8,7 @@ import { trackEvent } from '@/lib/study/analytics'
 import { raiseAlert } from '@/lib/ops/alert'
 import { findAccountsByPhone } from '@/lib/auth/phone-duplicates'
 import { phoneKey } from '@/lib/auth/phone'
+import { withApiFailureLogging } from '@/lib/ops/api-failure'
 
 /**
  * POST /api/study/referral/redeem — a new student redeems a friend's
@@ -42,7 +43,7 @@ import { phoneKey } from '@/lib/auth/phone'
 
 export const dynamic = 'force-dynamic'
 
-export async function POST(req: NextRequest) {
+async function handlePOST(req: NextRequest) {
   const authResult = await requireStudyUser(req)
   if (authResult.response) return authResult.response
   const user = authResult.user
@@ -290,3 +291,6 @@ function isUniqueViolation(error: unknown): boolean {
   return !!error && typeof error === 'object' && 'code' in error &&
     (error as { code?: string }).code === '23505'
 }
+
+// Every non-2xx is recorded to error_logs and alerts when it spreads (src/lib/ops/api-failure.ts).
+export const POST = withApiFailureLogging('study/referral/redeem', handlePOST)

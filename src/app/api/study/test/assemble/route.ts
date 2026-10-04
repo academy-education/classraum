@@ -14,6 +14,7 @@ import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { isShippedTestFamily } from '@/lib/study/shipped-tests'
 import { SECTION_TOPIC } from '@/lib/study/section-topics'
+import { withApiFailureLogging } from '@/lib/ops/api-failure'
 
 /**
  * POST /api/study/test/assemble — build a full-test session from the
@@ -52,7 +53,7 @@ const CACHED_TEST_MARKER = '[full-test-v1]'
 
 const TOEFL_SECTIONS: ToeflSection[] = ['reading', 'listening', 'writing', 'speaking']
 
-export async function POST(req: NextRequest) {
+async function handlePOST(req: NextRequest) {
   const authResult = await requireStudyUser(req)
   if (authResult.response) return authResult.response
   const user = authResult.user
@@ -373,3 +374,6 @@ export async function POST(req: NextRequest) {
     adaptive,
   })
 }
+
+// Every non-2xx is recorded to error_logs and alerts when it spreads (src/lib/ops/api-failure.ts).
+export const POST = withApiFailureLogging('study/test/assemble', handlePOST)

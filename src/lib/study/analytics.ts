@@ -37,6 +37,9 @@ export type StudyEvent =
   | 'checkout_result'
   // Whole-path repeat purchased (2-credit reset via /api/study/path/repeat).
   | 'path_repeated'
+  // A full-test submit failed on the student's screen (TestSession). Shape
+  // only: stage, status, the server's short error label — never answers.
+  | 'submit_failed'
 
 /** Client-supplied events are restricted to this set so the endpoint can't
  *  be used to write arbitrary rows. Server-only events (revenue) are never
@@ -48,6 +51,7 @@ export const CLIENT_TRACKABLE: ReadonlySet<string> = new Set<StudyEvent>([
   'checkout_started',
   'checkout_result',
   'activation_cta_clicked',
+  'submit_failed',
 ])
 
 /** Fire-and-forget server-side event write. Never throws — analytics must

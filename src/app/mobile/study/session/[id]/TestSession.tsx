@@ -40,6 +40,8 @@ import { useAppExitGuard } from './test/useAppExitGuard'
 import { setBackInterceptor } from '@/lib/back-intercept'
 import { exitMarkerKey } from '@/lib/study/test-exit-guard'
 import { decideRestoredClock, pausedKey, heartbeatKey } from '@/lib/study/test-clock-restore'
+import { track } from '@/lib/study/track-client'
+import { submitFailedProps, type SubmitFailure } from '@/lib/study/submit-failure'
 import {
   initQuestionTime, checkpointQuestionTime, restoreQuestionTime, questionSecondsArray,
   type QuestionTimeState,
@@ -914,6 +916,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     setSubmitError(null)
     setWaitingForNetwork(false)
     setPhase('submitting')
+    // What went wrong, for the submit_failed event. Set just before each
+    // throw below; null means an exception from our own code.
+    let failure: SubmitFailure | null = null
     try {
       // ONE read of the clock for both numbers, so the per-question
       // seconds sum to the elapsed they are sent with (the server checks).
@@ -961,6 +966,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           return
         }
         console.error('[TestSession] submit network failure', lastNetworkError)
+        failure = { stage: 'network', status: null, error: 'network' }
         throw new Error(ko
           ? '네트워크 연결이 불안정해요. 답안은 저장되어 있으니 다시 시도해 주세요.'
           : 'Network is unstable. Your answers are saved — try again.')
@@ -969,8 +975,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         // Pull the actual error message from the response so the user
         // sees something specific instead of a silent no-op.
         let detail = `HTTP ${res.status}`
+        failure = { stage: 'http', status: res.status, error: null }
         try {
           const errJson = await res.json() as { error?: string; details?: string }
+          failure.error = errJson.error ?? null
           detail = errJson.error
             ? (errJson.details ? `${errJson.error} — ${errJson.details}` : errJson.error)
             : detail
@@ -1102,6 +1110,12 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       setPhase('reviewing')
     } catch (err) {
       console.error('[TestSession] submit failed', err)
+      // The console line above reaches nobody; this reaches the funnel table.
+      track('submit_failed', submitFailedProps(failure, {
+        sessionId,
+        questionCount: test.questions.length,
+        answeredCount: answers.filter(a => a != null && a !== '').length,
+      }))
       setSubmitError((err as Error).message || 'submit failed')
       // Drop back to taking so the student can retry instead of
       // losing the test to a transient error.
