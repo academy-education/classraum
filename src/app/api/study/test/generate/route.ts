@@ -25,6 +25,8 @@ import { requireStudyUser } from '@/lib/study/auth'
 import { trackEvent } from '@/lib/study/analytics'
 import { creditCostForTest } from '@/lib/study/plans'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
+import { SECTION_UNAVAILABLE } from '@/lib/study/section-availability'
+import { reportSectionShort } from '@/lib/study/section-short-report'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { isShippedTestFamily } from '@/lib/study/shipped-tests'
 import { raiseAlert } from '@/lib/ops/alert'
@@ -2099,7 +2101,14 @@ async function handlePOST(req: NextRequest) {
     // chunks were quota-starved) is a broken product — fail it with
     // diagnostics so the student retries instead of sitting a stub.
     const minShip = Math.max(5, Math.ceil(count * 0.5))
-    if (questions.length < minShip) {
+    // "Block short tests" (2026-10-04): the floor used to be minShip, so a
+    // paid test of 30-of-44 shipped at full price. A paid full test is now
+    // delivered at its full count or not at all — refunded, with the typed
+    // section_unavailable reason. minShip survives only to tell the two
+    // apart in the diagnosis: below it the pipeline broke ('content'),
+    // between it and `count` the section simply could not be filled.
+    const shortOfBlueprint = questions.length < count
+    if (questions.length < minShip || shortOfBlueprint) {
       console.error('[test/generate] pipeline produced too few questions to ship', {
         sessionId, family, sectionLabel, target: count, minShip,
         final: questions.length,
@@ -2138,8 +2147,17 @@ async function handlePOST(req: NextRequest) {
         const joined = subtaskErrors.join(' ').toLowerCase()
         const reason = /quota|billing/.test(joined) ? 'quota'
           : /rate.?limit|429/.test(joined) ? 'rate_limit'
+          : questions.length >= minShip ? SECTION_UNAVAILABLE
           : 'content'
-        emit({ type: 'error', message: 'no questions survived verification — please retry', reason })
+        if (reason === SECTION_UNAVAILABLE) {
+          await reportSectionShort(
+            { scope: `${creditFamily ?? family ?? 'unknown'}/${sectionLabel ?? 'unknown'}`, want: count, got: questions.length },
+            { studentId: user.id, sessionId, via: 'test/generate', outcome: 'Generation came up short; the credit was refunded and the test not delivered.' },
+          )
+          emit({ type: 'error', message: 'this section is not available right now', reason, code: SECTION_UNAVAILABLE })
+        } else {
+          emit({ type: 'error', message: 'no questions survived verification — please retry', reason })
+        }
       }
       try { controller.close() } catch { /* already closed */ }
       return

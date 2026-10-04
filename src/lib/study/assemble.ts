@@ -10,6 +10,7 @@ import {
 import type { Question, QuestionType } from '@/lib/test-verify'
 import { shuffleChoices } from '@/lib/test-verify'
 import { capWarmupItems } from '@/lib/study/toefl-warmup'
+import { assertFullDraw } from '@/lib/study/section-availability'
 import { bandTier, chooseExactFill, setScore } from '@/lib/study/toefl-pack'
 
 /**
@@ -274,7 +275,7 @@ function readBankItem(item: unknown): Question | null {
  * 2-module adaptive routing the live/TOEFL path uses.
  */
 
-export interface AssembleParams {
+export interface AssembleParams extends DrawControl {
   family?: string
   section: 'reading_writing' | 'math'
   /** Target item count. Returns fewer if the bank can't satisfy it. */
@@ -399,6 +400,31 @@ export interface AssembledTest {
    *  consumers fall back to a midpoint split, which is only correct when
    *  every item is interchangeable. */
   moduleBreakIdx?: number
+  /** Bank row ids actually drawn, in delivery order. A caller that passed
+   *  `deferExposures` records these with recordTestExposures once the test
+   *  is committed (credits reserved, cache written). */
+  itemIds?: string[]
+}
+
+/**
+ * Draw controls shared by every full-test assembler (see
+ * section-availability.ts, "Block short tests").
+ */
+export interface DrawControl {
+  /** Throw SectionShortError instead of returning fewer items than the
+   *  blueprint asks for. Checked BEFORE the exposure write. */
+  requireFull?: boolean
+  /** Skip the exposure write; the caller records `itemIds` itself via
+   *  recordTestExposures after it has decided to deliver the test. Lets the
+   *  assemble route draw before it charges without a refused or unpaid
+   *  start marking items as seen. */
+  deferExposures?: boolean
+}
+
+/** Record a committed full test's items in the exposure ledger. The
+ *  deferred half of `DrawControl.deferExposures`; non-fatal like the rest. */
+export async function recordTestExposures(studentId: string, itemIds: string[], sessionId: string): Promise<void> {
+  await recordExposures(studentId, itemIds, 'full_test', sessionId)
 }
 
 const SECTION_META: Record<string, { title: string; minutesPerQ: number; label: string }> = {
@@ -967,7 +993,7 @@ export async function assembleToeflFromBank(
      *  That default is a compatibility shim, not the intended contract —
      *  callers should pass `path` explicitly. */
     path?: ToeflStage2Path
-  },
+  } & DrawControl,
   seed = 'bank',
 ): Promise<AssembledTest> {
   const meta = TOEFL_META[p.section]
@@ -1068,7 +1094,8 @@ export async function assembleToeflFromBank(
       }
       picked.push(row)
     }
-    if (p.studentId) {
+    assertFullDraw(p.requireFull, { scope: `toefl/${p.section}`, want, got: picked.length })
+    if (p.studentId && !p.deferExposures) {
       await recordExposures(p.studentId, picked.map(r => r.id), 'full_test', seed)
     }
     return {
@@ -1078,6 +1105,7 @@ export async function assembleToeflFromBank(
       family: 'toefl',
       questions: shuffleDrawnChoices(picked, seed).map(r => r.item),
       composition: { [p.domain]: picked.length },
+      itemIds: picked.map(r => r.id),
     }
   }
   type Row = { id: string; item: Question; difficulty: string | null }
@@ -1372,10 +1400,13 @@ export async function assembleToeflFromBank(
 
   const composition: Record<string, number> = {}
   const picked: Row[] = []
+  /** Rows the blueprint asks for in this draw (sum of every task's share). */
+  let blueprintWant = 0
   for (const entry of meta.mix) {
     const { type, task } = entry
     const n = shareForModule(entry)
     if (n <= 0) continue
+    blueprintWant += n
     const key = mixKey(entry)
     let bucket = byType.get(key) ?? []
     // Drop orphan sets before ranking. See MULTI_QUESTION_TASKS: a
@@ -1480,6 +1511,13 @@ export async function assembleToeflFromBank(
     composition[key] = ordered.length
     picked.push(...ordered)
   }
+  // Judged on the blueprint draw, before the warmup cap below: the cap is
+  // a deliberate shortening, not a thin bank.
+  assertFullDraw(p.requireFull, {
+    scope: `toefl/${p.section}`, want: blueprintWant, got: picked.length,
+    ...(p.module ? { module: p.module } : {}),
+    ...(p.module === 2 ? { path: stage2Path } : {}),
+  })
   if (picked.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
 
   // Reading ships as two modules, one Complete-the-Words paragraph in
@@ -1519,7 +1557,7 @@ export async function assembleToeflFromBank(
   // is untouched. See capWarmupItems for why it is section-guarded.
   const capped = capWarmupItems(picked, p.section, p.maxItems)
 
-  if (p.studentId) {
+  if (p.studentId && !p.deferExposures) {
     await recordExposures(p.studentId, capped.map(r => r.id), 'full_test', seed)
   }
 
@@ -1531,6 +1569,7 @@ export async function assembleToeflFromBank(
     questions: shuffleDrawnChoices(capped, seed).map(r => r.item),
     composition,
     ...(moduleBreakIdx != null ? { moduleBreakIdx } : {}),
+    itemIds: capped.map(r => r.id),
   }
 }
 
@@ -1577,7 +1616,7 @@ export async function assembleAdmissionSection(p: {
   family: AdmissionFamily
   sectionKey: string
   studentId?: string
-}, seed = 'admission'): Promise<AssembledTest> {
+} & DrawControl, seed = 'admission'): Promise<AssembledTest> {
   const block = ADMISSION_BLUEPRINT[p.family].find(b => b.key === p.sectionKey)
   if (!block) throw new Error(`unknown ${p.family} section '${p.sectionKey}'`)
   if (!block.bankSection) throw new Error(`${p.family}/${p.sectionKey} is free-response, not drawn from the bank`)
@@ -1702,7 +1741,8 @@ export async function assembleAdmissionSection(p: {
   const mixed = orderedBlocks
     ? orderedBlocks.flatMap((b, i) => seededShuffle(b, `${seed}:order:${i}`))
     : seededShuffle(picked, seed + ':order')
-  if (p.studentId) await recordExposures(p.studentId, mixed.map(r => r.id), 'full_test', seed)
+  assertFullDraw(p.requireFull, { scope: `${p.family}/${block.key}`, want: block.questions, got: mixed.length })
+  if (p.studentId && !p.deferExposures) await recordExposures(p.studentId, mixed.map(r => r.id), 'full_test', seed)
 
   return {
     title: `${p.family.toUpperCase()} — ${block.name}`,
@@ -1711,6 +1751,7 @@ export async function assembleAdmissionSection(p: {
     family: p.family,
     questions: shuffleDrawnChoices(mixed, seed).map(r => r.item),
     composition: { [block.name]: mixed.length },
+    itemIds: mixed.map(r => r.id),
   }
 }
 
@@ -1918,7 +1959,9 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
   // Mix domain order so the section isn't clustered by domain.
   const mixed = seededShuffle(picked, seed + ':order')
 
-  if (p.studentId) {
+  assertFullDraw(p.requireFull, { scope: `${family}/${p.section}`, want: p.count, got: mixed.length })
+
+  if (p.studentId && !p.deferExposures) {
     // `seed` is the session id at the assemble call site; storing it
     // keeps the ledger row traceable to the test that served the item.
     await recordExposures(p.studentId, mixed.map(r => r.id), 'full_test', seed)
@@ -1933,6 +1976,7 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
     family,
     questions: shuffleDrawnChoices(mixed, seed).map(r => r.item),
     composition,
+    itemIds: mixed.map(r => r.id),
   }
 }
 
@@ -2051,7 +2095,7 @@ export function pickEnglishPassages(
 export async function assembleActSection(p: {
   sectionKey: ActSectionKey
   studentId?: string
-}, seed = 'act'): Promise<AssembledTest> {
+} & DrawControl, seed = 'act'): Promise<AssembledTest> {
   const block = actSection(p.sectionKey)
   if (!block.bankSection || block.choiceCount === 0) {
     throw new Error(`act/${p.sectionKey} is free-response, not drawn from the bank`)
@@ -2125,7 +2169,8 @@ export async function assembleActSection(p: {
     console.warn(`[assemble] act/${block.key} SHORT — wanted ${block.questions}, drew ${picked.length}`)
   }
 
-  if (p.studentId) await recordExposures(p.studentId, picked.map(r => r.id), 'full_test', seed)
+  assertFullDraw(p.requireFull, { scope: `act/${block.key}`, want: block.questions, got: picked.length })
+  if (p.studentId && !p.deferExposures) await recordExposures(p.studentId, picked.map(r => r.id), 'full_test', seed)
 
   return {
     title: `ACT — ${block.name}`,
@@ -2134,5 +2179,6 @@ export async function assembleActSection(p: {
     family: 'act',
     questions: shuffleDrawnChoices(picked, seed).map(r => r.item),
     composition: { [block.name]: picked.length },
+    itemIds: picked.map(r => r.id),
   }
 }

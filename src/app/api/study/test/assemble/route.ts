@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { assembleFromBank, assembleToeflFromBank, assembleAdmissionSection, assembleActSection, type ToeflSection } from '@/lib/study/assemble'
+import { assembleFromBank, assembleToeflFromBank, assembleAdmissionSection, assembleActSection, recordTestExposures, type ToeflSection } from '@/lib/study/assemble'
 import { ADMISSION_BLUEPRINT } from '@/lib/study/admission-tests'
 import { ACT_BLUEPRINT, type ActSectionKey } from '@/lib/study/act-test'
 import { SAT_MODULE_CONFIG } from '@/lib/study/sat-adaptive'
@@ -17,6 +17,8 @@ import { SECTION_TOPIC } from '@/lib/study/section-topics'
 import { resolvePathTestNode } from '@/lib/study-path'
 import { raiseAlert } from '@/lib/ops/alert'
 import { withApiFailureLogging } from '@/lib/ops/api-failure'
+import { isSectionShortError, sectionUnavailableBody, type SectionShortDetail } from '@/lib/study/section-availability'
+import { reportSectionShort } from '@/lib/study/section-short-report'
 
 /**
  * POST /api/study/test/assemble — build a full-test session from the
@@ -290,27 +292,18 @@ async function handlePOST(req: NextRequest) {
     .single()
   if (sessErr || !sess) return NextResponse.json({ error: 'session create failed' }, { status: 500 })
 
-  // ── Credit reserve ─────────────────────────────────────────────
-  // Full mocks cost credits (SAT R&W / Math = 2; TOEFL Reading/Writing
-  // = 1, Speaking/Listening = 2). Journey path-node sessions (SAT only)
-  // are exempt — the StudyPath loop stays free.
+  // Journey path stops are free and keep their own length; every other
+  // start is a paid full section and must be drawn at its blueprint count
+  // or not at all ("Block short tests", section-availability.ts).
   const creditCost = pathNode ? 0 : creditCostForTest(family, section)
-  if (creditCost > 0) {
-    // Spend this test's exam-pass credits first unless the student chose 'regular'.
-    const credit = await reserveTestCredits(user.id, sess.id, creditCost, family, { skipPass: body.creditSource === 'regular' })
-    if (!credit.ok) {
-      // Error intentionally ignored on all three rollback deletes below:
-      // credits are reserved/refunded independently, so a failed delete
-      // only leaves an empty, question-less session in history.
-      await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
-      void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits', kind: `bank_${family}` })
-      return NextResponse.json(
-        { error: 'no test credits remaining', reason: credit.reason === 'no_subscription' ? 'no_subscription' : 'no_credits' },
-        { status: 402 },
-      )
-    }
-  }
+  const requireFull = !pathNode
 
+  // ── Draw FIRST, charge second ──────────────────────────────────
+  // The draw runs before the credit reserve so a section the bank cannot
+  // fill is refused with NO debit — not a debit and a refund that can
+  // itself fail. The exposure write is deferred to after the reserve
+  // (deferExposures) so neither a refused start nor an out-of-credits one
+  // marks items as seen that the student never met.
   let test
   try {
     test = isToefl
@@ -330,29 +323,85 @@ async function handlePOST(req: NextRequest) {
             ...(drawMaxItems ? { maxItems: drawMaxItems } : {}),
             // Single-domain drill (path per-question-type stops).
             ...(drawDomain ? { domain: drawDomain } : {}),
+            requireFull, deferExposures: true,
           },
           sess.id,
         )
       : isAdmission
         ? await assembleAdmissionSection(
-            { family: family as 'ssat' | 'isee', sectionKey: section, studentId: user.id },
+            { family: family as 'ssat' | 'isee', sectionKey: section, studentId: user.id, requireFull, deferExposures: true },
             sess.id,
           )
       : isAct
         ? await assembleActSection(
-            { sectionKey: section as ActSectionKey, studentId: user.id },
+            { sectionKey: section as ActSectionKey, studentId: user.id, requireFull, deferExposures: true },
             sess.id,
           )
         // SAT Module 1 is mixed difficulty → no difficulty filter, blueprint-weighted.
-        : await assembleFromBank({ section: section as 'math' | 'reading_writing', count, studentId: user.id }, sess.id)
+        : await assembleFromBank(
+            { section: section as 'math' | 'reading_writing', count, studentId: user.id, requireFull, deferExposures: true },
+            sess.id,
+          )
   } catch (e) {
-    // Not enough verified items for this section — roll back the session.
-    // Delete error intentionally ignored: the credits are already back, so
-    // the worst case is an empty session row that carries no questions and
-    // gets swept by cleanupAbandonedPracticeSessions.
-    await rollBack(user.id, sess.id, creditCost, family, section, 'assemble threw')
+    // Nothing has been charged yet, so a failed draw only has to remove
+    // the question-less session. Delete error intentionally ignored: the
+    // worst case is an empty row swept by cleanupAbandonedPracticeSessions.
+    await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
+    if (isSectionShortError(e)) {
+      await reportSectionShort(e.detail, {
+        studentId: user.id, sessionId: sess.id, via: 'test/assemble',
+        outcome: 'The start was refused before any credit was reserved.',
+      })
+      return NextResponse.json(sectionUnavailableBody(e.detail), { status: 409 })
+    }
     return NextResponse.json({ error: (e as Error).message, reason: 'bank_empty' }, { status: 409 })
   }
+
+  // An adaptive TOEFL section is only whole if its Module 2 can be whole
+  // too. Module 2 is drawn after Module 1 is graded, by which time the
+  // student has paid and sat half the section — so a Stage-2 module the
+  // bank cannot fill is checked HERE, before the charge. Either Stage-2
+  // path filling is enough: /route falls back to the other path rather
+  // than deliver a short module (see test/route). SAT needs no such check:
+  // its Module 2 reads the whole section at the same module size, so it
+  // can only come up short if Module 1 already did.
+  if (isToefl && adaptive && requireFull) {
+    const m2 = await toeflModule2Feasibility(section as ToeflSection, sess.id)
+    if (!m2.ok) {
+      // Error intentionally ignored: nothing was charged, and a leftover
+      // row holds no test (swept like the other rollback deletes here).
+      await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
+      await reportSectionShort(m2.detail, {
+        studentId: user.id, sessionId: sess.id, via: 'test/assemble (module-2 precheck)',
+        outcome: 'Neither Stage-2 path can be filled; the start was refused before any credit was reserved.',
+      })
+      return NextResponse.json(sectionUnavailableBody(m2.detail), { status: 409 })
+    }
+  }
+
+  // ── Credit reserve ─────────────────────────────────────────────
+  // Full mocks cost credits (SAT R&W / Math = 2; TOEFL Reading/Writing
+  // = 1, Speaking/Listening = 2). Journey path-node sessions are exempt —
+  // the StudyPath loop stays free.
+  if (creditCost > 0) {
+    // Spend this test's exam-pass credits first unless the student chose 'regular'.
+    const credit = await reserveTestCredits(user.id, sess.id, creditCost, family, { skipPass: body.creditSource === 'regular' })
+    if (!credit.ok) {
+      // Error intentionally ignored on the rollback deletes in this route:
+      // credits are reserved/refunded independently, so a failed delete
+      // only leaves an empty, question-less session in history.
+      await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
+      void trackEvent(user.id, 'out_of_credits', { reason: credit.reason ?? 'no_credits', kind: `bank_${family}` })
+      return NextResponse.json(
+        { error: 'no test credits remaining', reason: credit.reason === 'no_subscription' ? 'no_subscription' : 'no_credits' },
+        { status: 402 },
+      )
+    }
+  }
+
+  // The test is committed: now it may count as seen. Non-fatal (a failed
+  // write only risks a later repeat), same contract as the assemblers'.
+  await recordTestExposures(user.id, test.itemIds ?? [], sess.id)
 
   // For adaptive sessions the cached payload carries the module-break
   // index (= Module 1 length) and a combined timer across both modules;
@@ -362,9 +411,13 @@ async function handlePOST(req: NextRequest) {
         ? toeflCfg.minutesPerModule
         : SAT_MODULE_CONFIG[section as 'math' | 'reading_writing'].minutesPerModule)
     : 0
+  // itemIds are bank row ids for the exposure ledger, not test content —
+  // kept out of the cached payload the client receives.
+  const { itemIds: _drawnIds, ...testPayload } = test
+  void _drawnIds
   const payload = adaptive
     ? {
-        ...test,
+        ...testPayload,
         adaptive: true,
         sectionKey: section,
         moduleBreakIdx: test.questions.length,
@@ -374,7 +427,7 @@ async function handlePOST(req: NextRequest) {
         perModuleMinutes,
         timeLimitMinutes: 2 * perModuleMinutes,
       }
-    : test
+    : testPayload
 
   const { error: cacheErr } = await dbAdmin
     .from('study_messages')
@@ -438,6 +491,33 @@ async function rollBack(studentId: string, sessionId: string, cost: number, fami
   // Error intentionally ignored: the leftover row holds no test, and the
   // credits are either back or paged above.
   await dbAdmin.from('study_sessions').delete().eq('id', sessionId)
+}
+
+/**
+ * Can this TOEFL section's Module 2 be drawn whole on at least one Stage-2
+ * path? A dry draw: no studentId, so no exposure read or write — the fill
+ * depends on the bank's set sizes per task, not on what this student has
+ * seen (repeats are the last resort, never a gap). Both paths run in
+ * parallel; the routed draw in /route makes the final call with the real
+ * exposure ranking and its own fallback.
+ */
+async function toeflModule2Feasibility(
+  section: ToeflSection, seed: string,
+): Promise<{ ok: true } | { ok: false; detail: SectionShortDetail }> {
+  const tryPath = async (path: 'lower' | 'upper') => {
+    try {
+      await assembleToeflFromBank({ section, module: 2, path, requireFull: true }, `${seed}:m2-precheck`)
+      return null
+    } catch (e) {
+      if (isSectionShortError(e)) return e.detail
+      // Any other failure (an empty bank, a read error) is not "short": the
+      // routed draw will surface it with its own handling.
+      return null
+    }
+  }
+  const [lower, upper] = await Promise.all([tryPath('lower'), tryPath('upper')])
+  if (lower && upper) return { ok: false, detail: lower.got / lower.want >= upper.got / upper.want ? lower : upper }
+  return { ok: true }
 }
 
 // Every non-2xx is recorded to error_logs and alerts when it spreads (src/lib/ops/api-failure.ts).

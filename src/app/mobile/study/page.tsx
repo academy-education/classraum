@@ -45,6 +45,8 @@ import { track } from '@/lib/study/track-client'
 import { authHeaders } from '@/lib/auth-headers'
 import { VerifyEmailBanner } from '@/components/VerifyEmailBanner'
 import { captureReferralFromUrl, readPendingReferral, clearPendingReferral } from '@/lib/study/pending-referral'
+import { isSectionUnavailableBody } from '@/lib/study/section-availability'
+import { SectionUnavailableSheet } from './_shared/SectionUnavailableSheet'
 
 /**
  * /mobile/study — study landing.
@@ -1206,6 +1208,7 @@ function FirstTestActivationCard() {
   // offers Pass vs Regular. Defaults to spending the pass first.
   const [passCredits, setPassCredits] = useState(0)
   const [creditSource, setCreditSource] = useState<'pass' | 'regular'>('pass')
+  const [sectionUnavailable, setSectionUnavailable] = useState(false)
   const { showError } = useStudyErrorToast()
   const cost = creditCostForTest('sat', 'reading_writing')
 
@@ -1248,6 +1251,10 @@ function FirstTestActivationCard() {
         body: JSON.stringify({ section: 'reading_writing', adaptive: true, creditSource }),
       })
       if (res.status === 402) { setBusy(false); setConfirmOpen(false); setNoCreditsOpen(true); return }
+      if (res.status === 409) {
+        const json = await res.json().catch(() => ({}))
+        if (isSectionUnavailableBody(json)) { setBusy(false); setConfirmOpen(false); setSectionUnavailable(true); return }
+      }
       if (!res.ok) { setBusy(false); showError(startFailedMessage(ko)); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)
@@ -1273,6 +1280,7 @@ function FirstTestActivationCard() {
       onConfirm={() => void start().finally(() => setConfirmOpen(false))}
     />
     <NoCreditsSheet open={noCreditsOpen} cost={cost} ko={ko} onCancel={() => setNoCreditsOpen(false)} />
+    {sectionUnavailable && <SectionUnavailableSheet onClose={() => setSectionUnavailable(false)} />}
     <button
       type="button"
       onClick={() => {

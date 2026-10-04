@@ -14,6 +14,8 @@ import { SkeletonSettingsGroup, SkeletonStickyHeader } from '../skeletons'
 import { useStudyErrorToast, startFailedMessage } from '../_shared/useStudyErrorToast'
 import { NoCreditsSheet } from '../_shared/CreditConfirmSheet'
 import { creditCostForTest } from '@/lib/study/plans'
+import { isSectionUnavailableBody } from '@/lib/study/section-availability'
+import { SectionUnavailableSheet } from '../_shared/SectionUnavailableSheet'
 
 interface TopicRow {
   id: string
@@ -77,6 +79,7 @@ function BuilderInner() {
   const [creating, setCreating] = useState(false)
   // 402 → explicit "not enough credits" popup (cancel / buy).
   const [noCreditsOpen, setNoCreditsOpen] = useState(false)
+  const [sectionUnavailable, setSectionUnavailable] = useState(false)
   const { errorToast, showError } = useStudyErrorToast()
   const [loadingTopics, setLoadingTopics] = useState(true)
 
@@ -150,6 +153,10 @@ function BuilderInner() {
         setCreating(false)
         setNoCreditsOpen(true)
         return
+      }
+      if (res.status === 409) {
+        const json = await res.json().catch(() => ({}))
+        if (isSectionUnavailableBody(json)) { setCreating(false); setSectionUnavailable(true); return }
       }
       if (!res.ok) {
         setCreating(false)
@@ -282,6 +289,7 @@ function BuilderInner() {
       >
         {String(t('study.builder.start'))}
       </StudyButton>
+      {sectionUnavailable && <SectionUnavailableSheet onClose={() => setSectionUnavailable(false)} />}
       <NoCreditsSheet
         open={noCreditsOpen}
         cost={creditCostForTest('sat', selectedTopic && /math/i.test(selectedTopic.slug) ? 'math' : 'reading_writing')}

@@ -35,6 +35,7 @@ jest.mock('@/lib/study/assemble', () => ({
   assembleToeflFromBank: jest.fn(async () => ({ title: 'TOEFL', questions: [{}], composition: {} })),
   assembleAdmissionSection: jest.fn(),
   assembleActSection: jest.fn(),
+  recordTestExposures: jest.fn(async () => {}),
 }))
 
 const from = dbAdmin.from as unknown as jest.Mock
@@ -106,25 +107,15 @@ describe('path stops are resolved server-side', () => {
 describe('rollback after a reserve', () => {
   beforeEach(() => jest.clearAllMocks())
 
-  it('assembler throws and the refund FAILS → critical alert naming the session', async () => {
-    happyDbNoPath()
-    assemble.mockRejectedValueOnce(new Error('no verified items'))
-    refund.mockResolvedValueOnce({ refunded: 1, already: 0, noDebit: 0, failed: 2, refundedSources: ['x'] })
-    const res = await POST(makeRequest({ section: 'math' }))
-    expect(res.status).toBe(409)
-    expect(refund).toHaveBeenCalledWith('stu-1', 'sess-1', 3)
-    expect(alert).toHaveBeenCalledWith(expect.objectContaining({
-      severity: 'critical',
-      context: expect.objectContaining({ sessionId: 'sess-1', studentId: 'stu-1', failed: 2 }),
-    }))
-  })
-
-  it('assembler throws and the refund succeeds → no alert', async () => {
+  // Since "Block short tests" (2026-10-04) the draw runs BEFORE the
+  // reserve, so a failed draw has nothing to refund: no debit was taken.
+  it('assembler throws → 409 with no reserve, no refund, no alert', async () => {
     happyDbNoPath()
     assemble.mockRejectedValueOnce(new Error('no verified items'))
     const res = await POST(makeRequest({ section: 'math' }))
     expect(res.status).toBe(409)
-    expect(refund).toHaveBeenCalled()
+    expect(reserve).not.toHaveBeenCalled()
+    expect(refund).not.toHaveBeenCalled()
     expect(alert).not.toHaveBeenCalled()
   })
 

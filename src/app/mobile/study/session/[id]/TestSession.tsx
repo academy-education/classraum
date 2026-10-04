@@ -39,6 +39,8 @@ import { SubmitConfirmModal, GenerationProgress } from './test/chrome'
 import { useAppExitGuard } from './test/useAppExitGuard'
 import { setBackInterceptor } from '@/lib/back-intercept'
 import { exitMarkerKey } from '@/lib/study/test-exit-guard'
+import { SECTION_UNAVAILABLE, isSectionUnavailableBody } from '@/lib/study/section-availability'
+import { SectionUnavailableSheet } from '../../_shared/SectionUnavailableSheet'
 import { decideRestoredClock, pausedKey, heartbeatKey } from '@/lib/study/test-clock-restore'
 import { track } from '@/lib/study/track-client'
 import { submitFailedProps, type SubmitFailure } from '@/lib/study/submit-failure'
@@ -666,6 +668,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // guard here) lives in exactly one place.
   const [module2Loading, setModule2Loading] = useState(false)
   const [module2Error, setModule2Error] = useState(false)
+  /** Module 2 could not be drawn whole on any route (409
+   *  section_unavailable). The server refunded the session; `refunded`
+   *  says whether there was anything to refund. */
+  const [module2Unavailable, setModule2Unavailable] = useState<{ refunded: boolean } | null>(null)
   const routeToModule2 = useCallback(async () => {
     if (!test || module2Loading) return
     const loadedBreakIdx = test.moduleBreakIdx ?? test.questions.length
@@ -704,6 +710,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           answers: answers.slice(0, breakIdx).map((answer, index) => ({ index, answer })),
         }),
       })
+      if (res.status === 409) {
+        const body = await res.clone().json().catch(() => ({})) as { refunded?: boolean }
+        if (isSectionUnavailableBody(body)) {
+          setModule2Unavailable({ refunded: body.refunded === true })
+          return
+        }
+      }
       if (!res.ok) throw new Error('route failed')
       const json = await res.json() as {
         route?: 'easy' | 'medium' | 'hard'
@@ -1377,6 +1390,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               : 'Give it a minute or two and retry — it should go through.',
             cta: ko ? '다시 시도' : 'Try again',
           }
+        case SECTION_UNAVAILABLE:
+          // A full test is delivered at its blueprint count or not at
+          // all; the credit was refunded. Retrying would fail the same
+          // way, so the CTA is the way out, not a retry.
+          return {
+            title: String(t('study.test.sectionUnavailable.title')),
+            body: `${String(t('study.test.sectionUnavailable.body'))} ${String(t('study.test.sectionUnavailable.suggestion'))} ${String(t('study.test.sectionUnavailable.notCharged'))}`,
+            cta: '',
+          }
         case 'timeout':
         case 'content':
         default:
@@ -1445,7 +1467,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               {ko ? '구독 플랜 보기' : 'See subscription plans'}
             </Link>
           </div>
-        ) : (
+        ) : copy.cta ? (
           <button
             type="button"
             onClick={() => void load()}
@@ -1454,7 +1476,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <RefreshCw className="w-4 h-4" />
             {copy.cta}
           </button>
-        )}
+        ) : null}
         <Link href="/mobile/study" className="text-[13px] text-gray-500 underline mt-1">
           {ko ? '학습 홈으로 돌아가기' : 'Back to Study home'}
         </Link>
@@ -2916,6 +2938,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                     : (ko ? '모듈 2로 계속하기' : 'Continue to Module 2')}
                   {!module2Loading && <ArrowRight className="w-4 h-4" />}
                 </button>
+                {module2Unavailable && (
+                  <SectionUnavailableSheet
+                    variant="module2"
+                    refunded={module2Unavailable.refunded}
+                    onClose={() => setModule2Unavailable(null)}
+                  />
+                )}
                 {module2Error && (
                   <span className="text-[11px] text-rose-600 text-center">
                     {ko ? '모듈 2를 불러오지 못했어요. 다시 시도해 주세요.' : "Couldn't load Module 2. Tap to retry."}

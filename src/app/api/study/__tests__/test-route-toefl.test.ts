@@ -100,6 +100,8 @@ describe('POST /api/study/test/route — TOEFL adaptive branch', () => {
         difficulties: ['medium', 'hard'],
         path: 'upper',
         studentId: 'student-9',
+        // Never a short Module 2 (Block short tests).
+        requireFull: true,
       },
       SID,
     )
