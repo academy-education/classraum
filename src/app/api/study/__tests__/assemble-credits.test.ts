@@ -14,7 +14,8 @@
 import { POST } from '@/app/api/study/test/assemble/route'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
-import { assembleFromBank } from '@/lib/study/assemble'
+import { assembleFromBank, assembleToeflFromBank } from '@/lib/study/assemble'
+import { PATHS, pathTestRequestBody } from '@/lib/study-path'
 import { raiseAlert } from '@/lib/ops/alert'
 import { tableRouter, makeRequest } from '@/tests/study-route-helpers'
 
@@ -31,7 +32,7 @@ jest.mock('@/lib/study/credits', () => ({
 }))
 jest.mock('@/lib/study/assemble', () => ({
   assembleFromBank: jest.fn(async () => ({ title: 'SAT Math', questions: [{}], composition: {} })),
-  assembleToeflFromBank: jest.fn(),
+  assembleToeflFromBank: jest.fn(async () => ({ title: 'TOEFL', questions: [{}], composition: {} })),
   assembleAdmissionSection: jest.fn(),
   assembleActSection: jest.fn(),
 }))
@@ -41,6 +42,7 @@ const reserve = reserveTestCredits as jest.Mock
 const refund = refundTestCredits as jest.Mock
 const assemble = assembleFromBank as jest.Mock
 const alert = raiseAlert as jest.Mock
+const assembleToefl = assembleToeflFromBank as jest.Mock
 
 function happyDb() {
   const enqueue = tableRouter(from)
@@ -133,5 +135,74 @@ describe('rollback after a reserve', () => {
     const res = await POST(makeRequest({ section: 'math' }))
     expect(res.status).toBe(500)
     expect(alert).toHaveBeenCalledWith(expect.objectContaining({ severity: 'critical' }))
+  })
+})
+
+/*
+ * 3. EVERY PATH TEST STOP MUST START (2026-10-04). The path page sent
+ *    `section` with no `family`; the route defaulted to 'sat', so every
+ *    TOEFL stop ('reading', 'speaking', ...) came back 400 and the page's
+ *    catch silently bounced the student to the topic page. Driven from
+ *    PATHS so a new family's stops are covered the day they are added.
+ */
+describe('every path test stop starts, free, at its own length', () => {
+  beforeEach(() => jest.clearAllMocks())
+
+  const stops = PATHS.flatMap(p => p.nodes.filter(n => n.launchMode === 'full_test').map(n => ({ path: p, node: n })))
+
+  it('covers both families that have paths (guard against an empty table)', () => {
+    const fams = new Set(stops.map(s => pathTestRequestBody(s.node.id)?.family))
+    expect(fams).toEqual(new Set(['sat', 'toefl']))
+    expect(stops.length).toBe(14) // 4 SAT + 10 TOEFL
+  })
+
+  it.each(stops.map(s => [s.node.id, s] as const))('%s', async (_id, { path, node }) => {
+    happyDb()
+    const body = pathTestRequestBody(node.id)
+    expect(body).not.toBeNull()
+    const res = await POST(makeRequest(body!))
+    expect(res.status).toBe(200)
+    expect(reserve).not.toHaveBeenCalled()
+    expect((await res.json()).adaptive).toBe(false)
+    if (path.testSlug === 'test-toefl') {
+      expect(assembleToefl).toHaveBeenCalledTimes(1)
+      const arg = assembleToefl.mock.calls[0][0]
+      expect(arg.module).toBeUndefined()
+      expect(arg.maxItems).toBe(node.questionCount)
+      expect(arg.domain).toBe(node.domain)
+    } else {
+      expect(assemble).toHaveBeenCalledWith(expect.objectContaining({ count: node.questionCount ?? 22 }), 'sess-1')
+    }
+  })
+
+  it('a TOEFL stop from an older client (no family) still starts', async () => {
+    happyDb()
+    const res = await POST(makeRequest({ section: 'reading', count: 3, pathNode: 'toefl-rd-ctw', domain: 'Complete the Words' }))
+    expect(res.status).toBe(200)
+    expect(reserve).not.toHaveBeenCalled()
+    expect(assembleToefl).toHaveBeenCalledWith(expect.objectContaining({ maxItems: 3, domain: 'Complete the Words' }), 'sess-1')
+  })
+
+  it('a TOEFL stop with an explicit wrong family is rejected', async () => {
+    happyDb()
+    const res = await POST(makeRequest({ family: 'sat', section: 'math', pathNode: 'toefl-reading-section' }))
+    expect(res.status).toBe(400)
+    expect(assembleToefl).not.toHaveBeenCalled()
+    expect(reserve).not.toHaveBeenCalled()
+  })
+
+  it('a TOEFL stop cannot be turned adaptive by the body', async () => {
+    happyDb()
+    const res = await POST(makeRequest({ family: 'toefl', section: 'listening', adaptive: true, pathNode: 'toefl-listening-section' }))
+    expect(res.status).toBe(200)
+    expect(assembleToefl.mock.calls[0][0].module).toBeUndefined()
+  })
+
+  it('a paid TOEFL section (no pathNode) is still adaptive and charged', async () => {
+    happyDbNoPath()
+    const res = await POST(makeRequest({ family: 'toefl', section: 'reading' }))
+    expect(res.status).toBe(200)
+    expect(reserve).toHaveBeenCalled()
+    expect(assembleToefl.mock.calls[0][0].module).toBe(1)
   })
 })

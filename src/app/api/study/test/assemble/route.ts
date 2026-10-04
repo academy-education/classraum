@@ -74,10 +74,19 @@ export async function POST(req: NextRequest) {
   // topic the session attaches to, credit cost, access gating, and which
   // assembler runs. Defaults to 'sat' for back-compat with older clients
   // that only sent `section`.
-  const family = body.family === 'toefl' ? 'toefl'
-    : body.family === 'ssat' ? 'ssat'
-    : body.family === 'isee' ? 'isee'
-    : body.family === 'act' ? 'act'
+  //
+  // A path stop knows its own family. Path-page builds before 2026-10-04
+  // sent no family, so a TOEFL stop defaulted to 'sat' and was rejected as
+  // a bad SAT section; an omitted family on a real stop now comes from the
+  // stop. An explicit family is still checked against it below.
+  const stopFamily = !body.family && typeof body.pathNode === 'string'
+    ? resolvePathTestNode(body.pathNode)?.family
+    : undefined
+  const requestedFamily = body.family ?? stopFamily
+  const family = requestedFamily === 'toefl' ? 'toefl'
+    : requestedFamily === 'ssat' ? 'ssat'
+    : requestedFamily === 'isee' ? 'isee'
+    : requestedFamily === 'act' ? 'act'
     : 'sat'
   const isToefl = family === 'toefl'
   const isAdmission = family === 'ssat' || family === 'isee'
@@ -171,11 +180,12 @@ export async function POST(req: NextRequest) {
   // fixed clocks, with no module branching to model. `adaptive` is forced
   // off rather than left to the caller so a stray adaptive:true cannot
   // halve a section and silently change the test's shape.
+  // A path stop (SAT or TOEFL) is a fixed-length linear set; adaptive
+  // would append a free Module 2 — on a TOEFL drill, a whole module after
+  // a 3-item stop. Checked before the TOEFL default-on below.
   const adaptive = (isAdmission || isAct) ? false
-    : isToefl ? (toeflCfg != null && body.adaptive !== false)
-    // A SAT path stop is a fixed-length linear set; adaptive would append a
-    // free Module 2 and turn it into a full two-module section.
     : pathDef ? false
+    : isToefl ? (toeflCfg != null && body.adaptive !== false)
     : body.adaptive === true
   // The block's published question count, NOT body.count: the whole point
   // of a fixed-form test is that the caller does not choose its length.
