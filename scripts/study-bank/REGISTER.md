@@ -3657,3 +3657,22 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Staged items were already drawable. No flag was added and no `verified` flag was touched.** `draw-review-run.mjs` filters `archived`, never `verified`; the review route's `next=1` and the `study_item_reviews_fresh` view filter neither. The script now prints `N verified, M staged` per domain so a draw says which it got (this one: 0 verified / 120 staged). Checked after the draw: 0 v7 rows `verified=true`, 40 rows with `item_sha` stamped, `reviewer_kind='human'`, 40 distinct items over all 12 passages, 0 previously seen by this reviewer.
 
   **Resume path, read and not signed in:** `ReviewPanel` mount → `GET /api/admin/bank-qc/review` returns `openRun` (the reviewer's newest run with a `blind_at IS NULL` row; it is the only one, so `bank-state.mjs open` lists exactly this run) → `GET ?runId=…&next=1` serves `{itemId, options}` only. The panel sits in a `hidden` div on `/admin/bank-qc`, so it mounts and resumes on any tab; the note links `?tab=review`. **Front-loading has no ORDER BY behind it:** `next=1` is `.limit(1)` over an unordered scan. It held in practice: B7's 40 answers came back in exact insertion order, and the same unordered scan over this run returns CSE×24, PoW×12, KoL×4 in order. Scoring is per domain either way, so a reordering would cost only the half-finished-sitting property. **Caveat for reading the result:** no human number exists on shipped ACT CSE (B7 sat PoW and Reading), so the CSE bars are absolute, not parity with shipped.
+
+- **2026-10-04** — **SEC v10 INSERTED: 17 of 26, 3 HARD / 14 MEDIUM BY PANEL MEDIAN. SEC hard 30 → 33. THE R&W HARD ROUTE STAYS AT 4 FORMS — the commission did not buy form 5 (needs 35, 2 short).** `rw-v10-sec-hard`, kept sha `9c5ebfd5`, prereg `2ecde234` (PREREG-SEC10-2026-10-02.md), authoring/repair `e75c6290`. → **A75**
+
+      nosource    candidate 42.3% (33/78) vs live HARD-band control 68.1% (49/72), margin -25.7 (bar <= +10)
+                  control below 90% and above its letter line +5: MEASURED, not saturated-out
+                  pairwise agreement 88.0% vs 25.4% independent - one solver sampled three times
+                  unanimity as rate: candidate 8/26 = 30.8%, control 16/24 = 66.7%
+      withsource  three cold graders (ws-d/e/f): 26/26 keys on all three, 0 cold misses,
+                  0 second-defensible, 0 bad paths, 0 drop recommendations, 0 off-blueprint
+      rule drops  B-02 B-03 B-07 B-16 weak distractors by majority (all four panel-median EASY);
+                  B-06 B-10 B-12 B-13 B-15 median 2 of 3 distractors free-strikable
+      elimination candidate 0.0% vs matched control 10.8% (n=34), margin -10.8, PASS (A23 bar)
+      panel       hard A-15 A-20 A-22; authors labelled all 26 hard (12th consecutive demotion)
+
+  **The cross-item tell is half B's template, named by all three graders by their strike counts and in words by F:** an agreement/tense set of a singular/plural finite pair plus a non-finite -ing option and a relative/infinitive option, where the non-finite option is never the key unless the item tests it. Strike the two non-finites, coin-flip the pair. Every item where a majority counted 2 free strikes went on the rule; the survivors carry median ≤ 1. Half A: A-03's key is its only unpunctuated option and A-16 has one option with an unclosed parenthesis — each one strike, kept.
+
+  **The insert needed a stage the job did not plan for.** Since A23 (2026-10-02) `gate.mjs` re-derives a numeric paired-control `elimination` verdict, and `elimination-paired.mjs render` could only read LIVE rows of the candidate cohort — so it could not run before the insert it gates. Added `--batch <file> --qc <qc.json>`: candidate from the uninserted kept file, difficulty from the panel median that will actually be banked. First pre-insert use of the A23 instrument.
+
+  **Next form:** 2 more panel-median HARD SEC items buy form 5; after that I&I binds. Half A (boundaries) produced all 3 hard survivors; half B's form/agreement items produced none.

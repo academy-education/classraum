@@ -1,0 +1,216 @@
+{
+  "L01": {
+    "reject_first": "B",
+    "why": "full clause where a phrase likely fits",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "A",
+    "why": "comma between subject and verb, unless closing an appositive",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "A",
+    "why": "'herds's' is never a valid plural possessive",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L04": {
+    "reject_first": "B",
+    "why": "dash without a pair or clause context",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "D",
+    "why": "'records says' subject-verb disagreement",
+    "certain": true,
+    "confident_rejects": [
+      "D"
+    ]
+  },
+  "L06": {
+    "reject_first": "D",
+    "why": "progressive odd one out",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "A",
+    "why": "possible comma splice with conjunctive adverb",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "C",
+    "why": "participle cannot serve as main verb",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L09": {
+    "reject_first": "B",
+    "why": "conditional odd one out",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L10": {
+    "reject_first": "A",
+    "why": "double possessive 'those of ... seal's' is redundant",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L11": {
+    "reject_first": "D",
+    "why": "participle fragment",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "B",
+    "why": "'still' inserted awkwardly",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L13": {
+    "reject_first": "D",
+    "why": "progressive odd one out",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L14": {
+    "reject_first": "D",
+    "why": "participle fragment",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L15": {
+    "reject_first": "B",
+    "why": "perfect odd one out",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "A",
+    "why": "lay/lie confusion risk",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L17": {
+    "reject_first": "D",
+    "why": "infinitive purpose phrase likely dangles",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "A",
+    "why": "'so as' wordy",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L19": {
+    "reject_first": "A",
+    "why": "mismatched punctuation pair likely",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "D",
+    "why": "plural form odd one out",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L21": {
+    "reject_first": "D",
+    "why": "full clause where phrase likely fits",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "D",
+    "why": "'whoever ... that' likely redundant",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "B",
+    "why": "conditional odd one out",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "D",
+    "why": "plural form odd one out",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "D",
+    "why": "'nurses's' is never valid",
+    "certain": true,
+    "confident_rejects": [
+      "D"
+    ]
+  },
+  "L26": {
+    "reject_first": "D",
+    "why": "'unrolling the archaeologist' is nonsensical in any sentence",
+    "certain": true,
+    "confident_rejects": [
+      "D"
+    ]
+  },
+  "L27": {
+    "reject_first": "A",
+    "why": "dash before verb unlikely",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "B",
+    "why": "'however' without following comma",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "D",
+    "why": "participle fragment",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L30": {
+    "reject_first": "A",
+    "why": "passive likely misplaces modifier",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "B",
+    "why": "semicolon likely fragments",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "C",
+    "why": "progressive odd one out",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "C",
+    "why": "stray comma after subject",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "D",
+    "why": "wordy nominalization",
+    "certain": false,
+    "confident_rejects": []
+  }
+}
