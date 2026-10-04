@@ -53,6 +53,9 @@ const QuestionSchema = z.object({
     'multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison',
     'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
     'writing_email', 'writing_discussion',
+    // SSAT Writing Sample / ISEE Essay. Missing from this list until
+    // 2026-10-04, so every essay submit 400'd with "bad payload".
+    'essay', 'essay_choice',
   ]).nullable().optional(),
   choices: z.array(z.string()).nullable().optional(),
   correct_answer: z.string().nullable().optional(),

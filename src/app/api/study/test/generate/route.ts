@@ -87,6 +87,7 @@ const QuestionSchema = z.object({
     // write the reply / discussion contribution (100+ words) — NOT MC.
     // Rubric-graded via /api/study/response/grade.
     'writing_email', 'writing_discussion',
+    'essay', 'essay_choice',
   ]).nullable().optional(),
   /** Fill-in-blanks payload — one entry per [N] placeholder in passage. */
   blanks: z.array(z.object({

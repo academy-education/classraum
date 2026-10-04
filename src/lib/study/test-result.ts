@@ -73,7 +73,7 @@ export function displayCorrectAnswer(q: ResultQuestion): string {
   }
   // Open-response: rubric-graded elsewhere, no single correct answer.
   if (q.type === 'speaking_interview') return '—'
-  if (q.type === 'writing_email' || q.type === 'writing_discussion') return '—'
+  if (q.type === 'writing_email' || q.type === 'writing_discussion' || q.type === 'essay' || q.type === 'essay_choice') return '—'
   return q.correct_answer ?? ''
 }
 

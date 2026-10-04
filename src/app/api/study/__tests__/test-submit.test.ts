@@ -104,6 +104,35 @@ describe('POST /api/study/test/submit', () => {
     expect(rows.map((r: { is_correct: boolean }) => r.is_correct)).toEqual([true, true, false])
   })
 
+  // 2026-10-04: SSAT Writing / ISEE Essay submits 400'd ("bad payload —
+  // invalid_enum_value ... received 'essay_choice'") because the schema's
+  // type list predated the essay types. Every type the bank can serve
+  // must be accepted here.
+  it.each(['essay_choice', 'essay'] as const)('accepts and stores a %s response, ungraded', async (type) => {
+    const essay = {
+      prompt: 'Choose ONE of the two prompts below and write your response.',
+      passage: '[Essay] Who should choose the books students read?\n\n[Story Starter] Write a story that begins: "I had practised the apology for a week."',
+      type,
+      choices: null,
+      correct_answer: null,
+      difficulty: 'medium' as const,
+      explanation: 'Rubric-graded.',
+    }
+    enqueue('study_sessions', { data: SESSION })
+    enqueue('study_messages', { data: null })
+    enqueue('study_attempts', { data: [] })
+    const insertChain = enqueue('study_attempts', { error: null })
+    enqueue('study_sessions', { data: null })
+
+    const res = await POST(makeRequest(submitBody([essay], ['Essay\n\nMany students and educators debate...'])))
+    expect(res.status).toBe(200)
+    const body = await res.json()
+    expect(body.verdicts[0]).toMatchObject({ index: 0, ungraded: true })
+    const rows = insertChain.insert.mock.calls[0][0]
+    expect(rows).toHaveLength(1)
+    expect(rows[0].student_answer ?? rows[0].answer).toContain('Many students')
+  })
+
   // time_spent_seconds: this route is the only writer for full tests.
   describe('time_spent_seconds', () => {
     async function writtenSeconds(extra: Record<string, unknown>, answers: (string | null)[] = ['A', null, 'B']) {

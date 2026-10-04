@@ -48,3 +48,21 @@ describe('the essay types are known everywhere they must be', () => {
     expect(helper).toMatch(/correct_answer:\s*''/)
   })
 })
+
+describe('every servable question type is accepted by the API schemas', () => {
+  // 2026-10-04: the submit route's zod enum predated 'essay'/'essay_choice',
+  // so every SSAT Writing / ISEE Essay submit failed with "bad payload".
+  const types = assemble
+    .slice(assemble.indexOf('const QUESTION_TYPES'), assemble.indexOf('] as const'))
+    .match(/'([a-z_]+)'/g)!.map(s => s.slice(1, -1))
+  const routes = ['submit', 'generate'].map(r => [r,
+    readFileSync(join(process.cwd(), `src/app/api/study/test/${r}/route.ts`), 'utf8')] as const)
+
+  it('found the type list', () => expect(types.length).toBeGreaterThanOrEqual(13))
+  it.each(routes)('%s route enum lists every QUESTION_TYPES entry', (_name, src) => {
+    const start = src.indexOf('type: z.enum([')
+    expect(start).toBeGreaterThan(-1)
+    const list = src.slice(start, src.indexOf('])', start))
+    for (const t of types) expect(list).toContain(`'${t}'`)
+  })
+})

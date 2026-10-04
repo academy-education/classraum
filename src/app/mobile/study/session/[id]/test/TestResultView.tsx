@@ -36,7 +36,7 @@ import { SectionBreakdownCard } from '@/app/mobile/study/_shared/SectionBreakdow
  *  bank), so "no choices" is not the same question. */
 const FREE_TEXT_TYPES = new Set([
   'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
-  'writing_email', 'writing_discussion',
+  'writing_email', 'writing_discussion', 'essay', 'essay_choice',
 ])
 
 /**

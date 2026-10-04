@@ -472,6 +472,7 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     return true
   })
   const preservesNewlines = q.type === 'writing_email' || q.type === 'writing_discussion'
+    || q.type === 'essay' || q.type === 'essay_choice'
 
   /*
    * Some generated items arrive with the whole PASSAGE inside `prompt`
@@ -486,7 +487,8 @@ export function sanitizeQuestion(q: RawQuestion): Question {
    * rather than silently truncated. Free-response types are excluded:
    * their `prompt` legitimately carries long instructions.
    */
-  const repaired = (!q.passage && q.type !== 'writing_email' && q.type !== 'writing_discussion')
+  const repaired = (!q.passage && q.type !== 'writing_email' && q.type !== 'writing_discussion'
+    && q.type !== 'essay' && q.type !== 'essay_choice')
     ? splitSourceFromStem(q.prompt ?? '')
     : null
   const effectivePassage = repaired ? repaired.passage : q.passage
