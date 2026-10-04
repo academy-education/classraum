@@ -19,7 +19,7 @@ import { PathMascot } from '../_shared/PathMascot'
 import { ModalPortal } from '@/components/ui/modal-portal'
 import { CreditConfirmSheet, NoCreditsSheet } from '../_shared/CreditConfirmSheet'
 import {
-  annotatePath, getPathTemplate, getPathsForTarget, getPathById, PATH_REPEAT_CREDITS,
+  annotatePath, getPathTemplate, getPathsForTarget, getPathById, PATH_REPEAT_CREDITS, pathTestRequestBody,
   type PathNodeProgress, type PathNodeWithState, type StudyPathTemplate,
 } from '@/lib/study-path'
 
@@ -768,21 +768,15 @@ function PathList({
        * student on "pick how you want to study", contradicting the
        * path's own promise to pick the next step for them.
        */
-      const section = testSlug === 'test-sat'
-        ? (node.subtopicSlug === 'sat-math' ? 'math' : 'reading_writing')
-        : node.subtopicSlug.replace('toefl-', '')
+      // family + section + pathNode from the shared path definitions;
+      // the route derives length and domain from the stop itself.
+      const body = pathTestRequestBody(node.id)
+      if (!body) throw new Error('not a path test stop')
       const headers = await authHeaders()
       const res = await fetch('/api/study/test/assemble', {
         method: 'POST',
         headers,
-        body: JSON.stringify({
-          section,
-          count: node.questionCount ?? 22,
-          pathNode: node.id,
-          // Per-question-type drills restrict the draw to one bank
-          // domain. Absent on section tests, which draw the full mix.
-          ...(node.domain ? { domain: node.domain } : {}),
-        }),
+        body: JSON.stringify(body),
       })
       if (!res.ok) throw new Error('assemble failed')
       const json = await res.json() as { sessionId: string }

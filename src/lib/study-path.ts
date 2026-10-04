@@ -670,6 +670,24 @@ export function resolvePathTestNode(id: string | null | undefined): {
   return null
 }
 
+/**
+ * The /api/study/test/assemble body for a path test stop — the ONE place
+ * the client builds it.
+ *
+ * The path page used to build it inline and sent `section` without
+ * `family`. The route defaults a missing family to 'sat', so every TOEFL
+ * stop ('reading', 'speaking', ...) was rejected as a bad SAT section and
+ * the page's catch silently dumped the student on the topic page. Family
+ * and section are taken from resolvePathTestNode, the same definition the
+ * route checks them against. Length and domain are not sent: the route
+ * takes them from the stop itself.
+ */
+export function pathTestRequestBody(nodeId: string): { family: 'sat' | 'toefl'; section: string; pathNode: string } | null {
+  const def = resolvePathTestNode(nodeId)
+  if (!def) return null
+  return { family: def.family, section: def.section, pathNode: def.node.id }
+}
+
 /** Every path for a target test, in study order. */
 export function getPathsForTarget(targetTest: string | null | undefined): StudyPathTemplate[] {
   if (!targetTest) return []
