@@ -1,23 +1,40 @@
-import type { z } from 'zod'
-import { OPEN_RESPONSE_TYPES } from '@/lib/test-verify'
-import type { QuestionSchema } from '@/lib/study/test-submit-schema'
-
 /**
- * The full-test scorer. Moved out of /api/study/test/submit on 2026-10-04
- * so the adaptive router (/api/study/test/route) grades Module 1 with the
- * SAME rules: it had its own MC-only string match, which scored every
+ * Full-test grading: the per-item verdict and the WEIGHTED contribution
+ * each item makes to the session score.
+ *
+ * Moved verbatim out of api/study/test/submit/route.ts on 2026-10-04 so
+ * it can be tested and so audits can recompute stored scores with the
+ * SAME code that wrote them (a route file may export only handlers, so
+ * it could not be imported). submit is still the only caller that
+ * writes study_sessions.correct_count / total_count / score.
+ *
+ * The adaptive router (/api/study/test/route) also grades Module 1 with
+ * these SAME rules: it had its own MC-only string match, which scored every
  * Complete-the-Words card wrong (its correct_answer is '' — the key is the
  * blanks) and counted unscored pilot items, so a student strong on CtW was
  * routed down.
  */
-type Q = z.infer<typeof QuestionSchema>
+// NOT from @/lib/test-verify: that module pulls in `ai`, and a jest suite
+// reaching this through it dies at import with zero tests collected.
+import { OPEN_RESPONSE_TYPES } from './openResponse'
+
+/** Structural shape of a served question, as far as grading needs it. */
+export interface GradableQuestion {
+  type?: string | null
+  correct_answer?: string | null
+  correct_answers?: string[] | null
+  acceptable_answers?: string[] | null
+  blanks?: { id: number; answer: string; alternates?: string[] | null }[] | null
+  /** false = unscored ETS pilot item. Absent/true = scored. */
+  scored?: boolean | null
+}
 
 /** Open-response types have no objective answer key — they're scored
  *  by the gpt-4o rubric grader in the review pane, not here. Counting
  *  them as "correct" on a length check inflated the auto-score (a
  *  long-enough gibberish paste scored 100% on Writing), so they're
  *  excluded from the score denominator entirely. */
-export function isOpenResponse(q: Q): boolean {
+export function isOpenResponse(q: GradableQuestion): boolean {
   // Set lives in lib/test-verify so the client's completed-session
   // rehydration marks exactly the same items ungraded. See OPEN_RESPONSE_TYPES.
   // `type` is nullable in QuestionSchema (sanitizeQuestion normalises
@@ -32,7 +49,7 @@ export function isOpenResponse(q: Q): boolean {
  *  graded separately, see isOpenResponse. Every other type: total = 1,
  *  correct = gradeAnswer verdict. */
 export function weightedScore(
-  q: Q,
+  q: GradableQuestion,
   studentAnswer: string | null,
 ): { total: number; correct: number } {
   if (isOpenResponse(q)) return { total: 0, correct: 0 }
@@ -75,7 +92,7 @@ export function weightedScore(
  *  = student input matches any acceptable_answer (after normalization),
  *  multi_select = parsed JSON array equals correct_answers (order-
  *  insensitive set match). */
-export function gradeAnswer(q: Q, studentAnswer: string | null): boolean {
+export function gradeAnswer(q: GradableQuestion, studentAnswer: string | null): boolean {
   if (studentAnswer == null || studentAnswer.trim() === '') return false
   const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ')
 
@@ -187,7 +204,7 @@ export function gradeAnswer(q: Q, studentAnswer: string | null): boolean {
 
 /** Normalize numeric input so "12", "12.0", "12.00", " 12 " all match.
  *  Fractions like "5/8" stay as-is for string compare. */
-function normalizeNumeric(s: string): string {
+export function normalizeNumeric(s: string): string {
   const t = s.trim().replace(/\s+/g, '')
   if (/^-?\d+\.?\d*$/.test(t)) {
     const n = parseFloat(t)

@@ -150,3 +150,30 @@ export function estimateSectionScore(
   const score = Math.max(200, Math.min(800, Math.round(interpolated / 10) * 10))
   return { score, route, capped: route === 'easy' }
 }
+
+/**
+ * The 200-800 estimate for ONE stored session, from the same columns the
+ * result screens use (correct_count / total_count / module2_route) and
+ * the section its topic slug names. Null when the session is not an
+ * adaptive SAT section — a session with no earned route has no estimate,
+ * and its percent must never be read as one.
+ *
+ * Exists because computeSatPrediction read study_sessions.score — a
+ * PERCENT (0-100) — straight into a projection clamped to 200-800, so a
+ * student at 81% R&W and 95% Math was shown "current 176" and a
+ * predicted total pinned at the 400 floor.
+ */
+export function satSectionScoreForSession(s: {
+  slug: string | null | undefined
+  correctCount: number | null | undefined
+  totalCount: number | null | undefined
+  module2Route: string | null | undefined
+}): number | null {
+  const slug = (s.slug ?? '').trim().toLowerCase()
+  if (!slug.startsWith('sat-')) return null
+  if (s.module2Route !== 'hard' && s.module2Route !== 'easy') return null
+  if (typeof s.totalCount !== 'number' || s.totalCount <= 0) return null
+  if (typeof s.correctCount !== 'number' || s.correctCount < 0) return null
+  const section: SatSection = slug.includes('math') ? 'math' : 'reading_writing'
+  return estimateSectionScore(s.correctCount, s.totalCount, s.module2Route, section).score
+}

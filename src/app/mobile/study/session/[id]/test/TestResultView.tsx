@@ -15,7 +15,7 @@ import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
 import {
   tallyRows, scaleFraction, scoreSplit, moduleSplit, passageSetBreakdown,
-  admissionScoreFromRows, testTiming,
+  admissionScoreFromRows, testTiming, objectiveProportion, hasReportableScore,
   type ResultRow, type RubricGrade, type TestResultModel,
 } from '@/lib/study/test-result'
 import { actScoreFromRows } from '@/lib/study/test-result'
@@ -250,7 +250,14 @@ export function TestResultView({
     ? Math.round(pointsScore.proportion * 100)
     : model.scorePercent
 
-  const hero = !scoreReady
+  /* Nothing scored at all (SSAT Writing Sample / ISEE Essay): say so.
+     A 0% here reads as a failed test for a section the real exam does
+     not score. */
+  const scorable = hasReportableScore({
+    pointsMax: pointsScore ? pointsScore.max : null,
+    totalScored: model.totalScored,
+  })
+  const hero = !scoreReady || !scorable
     ? { gradient: 'from-slate-400 via-slate-500 to-slate-600' }
     : shownPercent >= 80
     ? { gradient: 'from-emerald-500 via-emerald-600 to-teal-700' }
@@ -263,6 +270,7 @@ export function TestResultView({
   // most anxious about.
   const mascotState: MascotState = !scoreReady
     ? 'thinking'
+    : !scorable ? 'idle'
     : shownPercent >= 80 ? 'celebrate' : shownPercent >= 60 ? 'idle' : 'sad'
 
   return (
@@ -293,7 +301,20 @@ export function TestResultView({
             <Sparkles className="w-3.5 h-3.5" />
             {t('study.test.resultEyebrow')}
           </div>
-          {scoreReady ? (
+          {scoreReady && !scorable ? (
+            <>
+              <h2 className="text-[28px] font-bold leading-tight tracking-tight">
+                {ko ? '채점하지 않는 섹션' : 'Not scored'}
+              </h2>
+              <p className="text-[13px] mt-1.5 opacity-85 leading-snug max-w-[85%]">
+                {(model.family === 'ssat' || model.family === 'isee')
+                  ? (ko ? '실제 시험에서도 이 답안은 점수 없이 학교로 전달돼요. 아래에서 작성한 답안을 확인하세요.'
+                        : 'The real test sends this writing to schools unscored, so there is no score here. Your response is below.')
+                  : (ko ? '이 섹션에는 채점되는 문항이 없어요. 답안은 아래에서 확인하세요.'
+                        : 'Nothing in this section counts toward a score. Your responses are below.')}
+              </p>
+            </>
+          ) : scoreReady ? (
             <>
               <h2 className="text-[40px] font-bold leading-none tracking-tight tabular-nums">
                 <CountUp value={shownPercent} /><span className="text-[24px] opacity-80">%</span>
@@ -337,7 +358,7 @@ export function TestResultView({
             * No proficiency labels ("Intermediate") — ETS publishes those
             * and we would be inventing the mapping. Everything here is
             * derivable from the score and its scale. */}
-          {model.family === 'toefl' && scoreReady && (
+          {model.family === 'toefl' && scoreReady && scorable && (
             <div className="mt-5 space-y-2.5">
               <ScaleRow
 
@@ -348,10 +369,10 @@ export function TestResultView({
                    keeping two spellings of the same arithmetic is how the
                    band and the scaled score drifted apart this morning. */
                 value={bandFromProportion(
-                  pointsScore ? pointsScore.proportion : model.scorePercent / 100).toFixed(1)}
+                  pointsScore ? pointsScore.proportion : objectiveProportion(model)).toFixed(1)}
                 min={1} max={6}
                 fraction={scaleFraction(bandFromProportion(
-                  pointsScore ? pointsScore.proportion : model.scorePercent / 100), 1, 6)}
+                  pointsScore ? pointsScore.proportion : objectiveProportion(model)), 1, 6)}
                 note={ko ? '이 섹션의 밴드 점수예요. 네 개 섹션의 평균이 총점이 됩니다.'
                          : 'This section only. Your overall score averages all four.'}
               />
@@ -396,7 +417,7 @@ export function TestResultView({
             * shipped one of those before. `scaleNote` says so in words
             * instead.
             */}
-          {(model.family === 'ssat' || model.family === 'isee') && admission && scoreReady && (
+          {(model.family === 'ssat' || model.family === 'isee') && admission && scoreReady && scorable && (
             <div className="mt-5 space-y-2.5">
               <ScaleRow
 
@@ -426,7 +447,7 @@ export function TestResultView({
               </p>
             </div>
           )}
-          {model.family === 'act' && act && scoreReady && (
+          {model.family === 'act' && act && scoreReady && scorable && (
             <div className="mt-5 space-y-2.5">
               <ScaleRow
 

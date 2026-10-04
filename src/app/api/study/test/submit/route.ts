@@ -15,6 +15,8 @@ import { trackEvent } from '@/lib/study/analytics'
 import { raiseAlert } from '@/lib/ops/alert'
 import { reconcileQuestionSeconds } from '@/lib/study/question-time'
 import { withApiFailureLogging } from '@/lib/ops/api-failure'
+import { recomputeAndPersistSessionScore } from '@/lib/study/persist-session-score'
+import { persistedObjectiveScore } from '@/lib/study/session-score-decision'
 
 /**
  * POST /api/study/test/submit — grade a completed full_test in one
@@ -37,7 +39,7 @@ import { withApiFailureLogging } from '@/lib/ops/api-failure'
  * turning `weightedCorrect / weightedTotal` into a band here would be
  * an invention. Speaking/Writing items are rubric-graded 0–5 on
  * study_response_grades instead, and are excluded from the weighted
- * percentage entirely (see isOpenResponse / weightedScore below).
+ * percentage entirely (see isOpenResponse / weightedScore in lib/study/test-grading).
  */
 
 export const dynamic = 'force-dynamic'
@@ -347,9 +349,9 @@ async function handlePOST(req: NextRequest) {
   // the UI knows it's no longer resumable. Persist the WEIGHTED score
   // — the tests overview and stats "recent tests" panel read from
   // these columns rather than recomputing from attempts on every load.
-  const persistedScore = weightedTotal > 0
-    ? Math.round((10000 * weightedCorrect) / weightedTotal) / 100
-    : 0
+  // NULL when nothing is key-scorable (an SSAT Writing Sample / ISEE
+  // Essay section): "not scored", never 0%. See persistedObjectiveScore.
+  const persistedScore = persistedObjectiveScore(weightedCorrect, weightedTotal)
   //
   // Verified before the score goes back to the student: these columns ARE
   // the test result everywhere except this response. An unchecked failure
@@ -377,6 +379,20 @@ async function handlePOST(req: NextRequest) {
       context: { sessionId: body.sessionId, studentId: user.id, score: persistedScore },
     })
     return NextResponse.json({ error: 'could not save result' }, { status: 500 })
+  }
+
+  // TOEFL Speaking/Writing: the percent just written covers only the
+  // key-matched items. Grades fired by the client can land before the
+  // attempt rows exist, in which case their recompute found nothing
+  // ('no attempts') and no later grade will retry it. Recomputing here
+  // makes both orders converge on the one scorer. A no-op until every
+  // rubric response is graded, and for every non-rubric section.
+  if (topicSlug.startsWith('toefl-') && gradingQuestions.some(q => isOpenResponse(q))) {
+    try {
+      await recomputeAndPersistSessionScore(body.sessionId)
+    } catch (e) {
+      console.warn('[test/submit] rubric score recompute failed', (e as Error).message)
+    }
   }
 
   // Why the test ended, when it wasn't a deliberate Submit. Written as

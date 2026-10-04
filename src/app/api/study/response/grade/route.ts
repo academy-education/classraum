@@ -19,6 +19,7 @@ import {
 import { requireStudyUser } from '@/lib/study/auth'
 import { withApiFailureLogging } from '@/lib/ops/api-failure'
 import { recomputeAndPersistSessionScore } from '@/lib/study/persist-session-score'
+import { sessionWriteAfterItemGrade } from '@/lib/study/session-score-decision'
 
 /**
  * POST /api/study/response/grade — runs an essay or transcribed
@@ -148,34 +149,31 @@ async function handlePOST(req: NextRequest) {
   // that pays out.
   void awardXp(user.id, 'response_graded', xpSourceId)
 
-  // Mark the session completed with a 0-100 score (band / scaleMax) so it
-  // stops showing "in progress" in history and gets a score chip — the
-  // response mode never flipped its session status before.
-  // Deliberately off the response path (the grade is already persisted and
-  // returned), but a failure leaves the session stuck "in progress" in
-  // history with no score chip, so it can't be silent.
-  //
-  // NOT for a full test. This route also serves the full-test review panel
-  // (which auto-requests a grade for any card whose grade is missing — the
-  // batch still running, a 207/502 batch, an audio item grade-audio
-  // refused), and writing ONE item's band as the session score overwrote
-  // the whole TOEFL Writing/Speaking section score in history. A full test
-  // is rescored by the one scorer the summary screen uses, which no-ops
-  // until every open response has a band.
-  if (session.mode === 'full_test') {
-    const rescored = await recomputeAndPersistSessionScore(session.id)
-    if (rescored.reason && rescored.reason !== 'unchanged' && rescored.reason !== 'not a rubric section'
-      && rescored.reason !== 'grading incomplete') {
-      console.warn('[response/grade] full-test session score not updated', { sessionId: session.id, ...rescored })
+  // Session row. A `response` session IS this one answer, so it is
+  // marked completed with band/scaleMax. A `full_test` session is a whole
+  // section: writing this one task's band over it replaced the section
+  // score (7d59735a stored 60.00 = 3.0/5 for a Writing section scored 54)
+  // and restamped completed_at. This route also serves the full-test
+  // review panel (which auto-requests a grade for any card whose grade is
+  // missing), so full tests only get the recompute from every item — the
+  // one scorer the summary screen uses, which no-ops until every open
+  // response has a band. A failure is logged, never fails the grade.
+  const sessionWrite = sessionWriteAfterItemGrade(
+    session.mode, graded.grade.overallBand, graded.scaleMax)
+  if (sessionWrite.kind === 'recompute_full_test') {
+    const benign = new Set(['unchanged', 'not a rubric section', 'grading incomplete', 'nothing answered', 'nothing scorable'])
+    try {
+      const rescored = await recomputeAndPersistSessionScore(session.id)
+      if (rescored.reason && !benign.has(rescored.reason)) {
+        console.warn('[response/grade] full-test session score not updated', { sessionId: session.id, ...rescored })
+      }
+    } catch (e) {
+      console.error('[response/grade] full-test score recompute failed', { sessionId: session.id, error: (e as Error).message })
     }
   } else {
     void dbAdmin
       .from('study_sessions')
-      .update({
-        status: 'completed',
-        completed_at: new Date().toISOString(),
-        score: Math.round((graded.grade.overallBand / graded.scaleMax) * 100),
-      })
+      .update(sessionWrite.update)
       .eq('id', session.id)
       .eq('student_id', user.id)
       .then(({ error }) => {
