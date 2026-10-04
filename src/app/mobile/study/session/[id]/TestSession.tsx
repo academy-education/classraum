@@ -40,6 +40,7 @@ import { useAppExitGuard } from './test/useAppExitGuard'
 import { setBackInterceptor } from '@/lib/back-intercept'
 import { exitMarkerKey } from '@/lib/study/test-exit-guard'
 import { decideRestoredClock, pausedKey, heartbeatKey } from '@/lib/study/test-clock-restore'
+import { describeSubmitFailure } from '@/lib/study/submit-error'
 import {
   initQuestionTime, checkpointQuestionTime, restoreQuestionTime, questionSecondsArray,
   type QuestionTimeState,
@@ -961,21 +962,18 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           return
         }
         console.error('[TestSession] submit network failure', lastNetworkError)
-        throw new Error(ko
-          ? '네트워크 연결이 불안정해요. 답안은 저장되어 있으니 다시 시도해 주세요.'
-          : 'Network is unstable. Your answers are saved — try again.')
+        throw new Error(describeSubmitFailure(null, null, ko).message)
       }
       if (!res.ok) {
-        // Pull the actual error message from the response so the user
-        // sees something specific instead of a silent no-op.
-        let detail = `HTTP ${res.status}`
-        try {
-          const errJson = await res.json() as { error?: string; details?: string }
-          detail = errJson.error
-            ? (errJson.details ? `${errJson.error} — ${errJson.details}` : errJson.error)
-            : detail
-        } catch { /* not JSON */ }
-        throw new Error(detail)
+        // The server's error string goes to the console, never the
+        // banner: it used to render verbatim, which put a raw zod dump
+        // ("bad payload — invalid_enum_value ... essay_choice") in front
+        // of every SSAT/ISEE essay taker. See lib/study/submit-error.
+        let errJson: { error?: unknown; details?: unknown } | null = null
+        try { errJson = await res.json() as { error?: unknown; details?: unknown } } catch { /* not JSON */ }
+        const failure = describeSubmitFailure(res.status, errJson, ko)
+        console.error('[TestSession] submit rejected', failure.detail)
+        throw new Error(failure.message)
       }
       const json = await res.json() as SubmitResult
       setSubmittedElapsed(elapsedSeconds)
@@ -1102,7 +1100,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       setPhase('reviewing')
     } catch (err) {
       console.error('[TestSession] submit failed', err)
-      setSubmitError((err as Error).message || 'submit failed')
+      setSubmitError((err as Error).message || describeSubmitFailure(500, null, ko).message)
       // Drop back to taking so the student can retry instead of
       // losing the test to a transient error.
       setPhase('taking')
@@ -3027,13 +3025,27 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               </div>
               <div className="text-[13px] text-rose-800 mt-0.5 break-words">{submitError}</div>
             </div>
-            <button
-              type="button"
-              onClick={() => setSubmitError(null)}
-              className="tap-target text-rose-700 hover:text-rose-800 text-[11px] font-medium px-1"
-            >
-              {String(t('study.test.submitError.dismiss'))}
-            </button>
+            <div className="flex flex-col items-end gap-1 flex-shrink-0">
+              {/* Retry in place. Without it a timer-expiry submit that
+                  failed left the student on a 0:00 test with the auto-
+                  submit already spent and no obvious way to finish. */}
+              {phase === 'taking' && (
+                <button
+                  type="button"
+                  onClick={() => { void submit() }}
+                  className="tap-target rounded-full bg-rose-600 text-white text-[12px] font-semibold px-3 py-1"
+                >
+                  {String(t('study.test.submitError.retry'))}
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={() => setSubmitError(null)}
+                className="tap-target text-rose-700 hover:text-rose-800 text-[11px] font-medium px-1"
+              >
+                {String(t('study.test.submitError.dismiss'))}
+              </button>
+            </div>
           </div>
         </div>
       )}
