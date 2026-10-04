@@ -62,7 +62,7 @@
  *
  * Usage:
  *   node scripts/study-bank/elimination-paired.mjs render <cohort> --domain "<D>" --tag T
- *        [--match subskill,difficulty] [--ratio 2] [--exclude c1,c2]
+ *        [--match subskill,difficulty] [--ratio 2] [--exclude c1,c2] [--batch file.json [--qc qc.json]]
  *     -> T.cand.blind.json / T.cand.key.json / T.ctl.blind.json / T.ctl.key.json
  *   node scripts/study-bank/elimination-paired.mjs score T
  *     reads T.cand.elim-*.json and T.ctl.elim-*.json (same sample letters both arms)
@@ -115,7 +115,20 @@ async function render(args) {
     rows.push(...data); if (data.length < 1000) break
   }
   const ok = r => Array.isArray(r.item?.choices) && r.item.choices.length === 4 && r.item.choices.map(String).includes(String(r.item.correct_answer))
-  const cand = rows.filter(r => r.cohort === cohort && ok(r))
+  /* --batch <file> [--qc <qc.json>]: read the candidate from an UNINSERTED batch
+   * file instead of live rows, so the stage can run before insert (the inserter
+   * refuses without it). Difficulty comes from the qc file's panel median when
+   * given, never the author's label, because that is what will be banked. */
+  const batchPath = opt('--batch'), qcPath = opt('--qc')
+  let cand
+  if (batchPath) {
+    const qc = qcPath ? JSON.parse(readFileSync(qcPath, 'utf8')) : null
+    const raw = JSON.parse(readFileSync(batchPath, 'utf8'))
+    if (qc) { const miss = raw.filter(r => !qc[r.id]); if (miss.length) { console.error(`REFUSING: ${miss.length} batch ids missing from ${qcPath}`); process.exit(2) } }
+    cand = raw.filter(r => r.domain === domain).map(r => ({ id: r.id, cohort, difficulty: qc ? qc[r.id].difficulty : r.difficulty, subskill: r.subskill, item: { choices: r.choices, correct_answer: r.correct_answer } })).filter(ok)
+    if (cand.length !== raw.length) { console.error(`REFUSING: ${raw.length - cand.length} batch rows not four-choice ${domain} items`); process.exit(2) }
+    console.log(`candidate read from ${batchPath}${qc ? ` (difficulty from ${qcPath})` : ''}`)
+  } else cand = rows.filter(r => r.cohort === cohort && ok(r))
   if (cand.length < ELIM_MIN_N) { console.error(`REFUSING: ${cand.length} live four-choice rows in ${cohort}/${domain}; need ${ELIM_MIN_N}.`); process.exit(2) }
   const stratum = r => match.map(k => String(r[k] ?? r.item?.[k] ?? '')).join(' | ')
   const pool = rows.filter(r => !exclude.has(r.cohort) && ok(r))
