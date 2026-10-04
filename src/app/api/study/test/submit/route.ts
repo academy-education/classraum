@@ -13,6 +13,7 @@ import { seedSrsFromWrongAnswer } from '@/lib/study/srs-seed'
 import { trackEvent } from '@/lib/study/analytics'
 import { raiseAlert } from '@/lib/ops/alert'
 import { reconcileQuestionSeconds } from '@/lib/study/question-time'
+import { withApiFailureLogging } from '@/lib/ops/api-failure'
 
 /**
  * POST /api/study/test/submit — grade a completed full_test in one
@@ -106,7 +107,7 @@ const SubmitSchema = z.object({
   endReason: z.literal('app_exited').nullable().optional(),
 })
 
-export async function POST(req: NextRequest) {
+async function handlePOST(req: NextRequest) {
   const authResult = await requireStudyUser(req)
   if (authResult.response) return authResult.response
   const user = authResult.user
@@ -658,3 +659,6 @@ function normalizeNumeric(s: string): string {
   }
   return t
 }
+
+// Every non-2xx is recorded to error_logs and alerts when it spreads (src/lib/ops/api-failure.ts).
+export const POST = withApiFailureLogging('study/test/submit', handlePOST)

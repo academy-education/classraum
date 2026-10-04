@@ -28,6 +28,7 @@ import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { isShippedTestFamily } from '@/lib/study/shipped-tests'
 import { raiseAlert } from '@/lib/ops/alert'
+import { withApiFailureLogging } from '@/lib/ops/api-failure'
 
 /**
  * POST /api/study/test/generate — build a full mock test for a
@@ -355,7 +356,7 @@ ${formatBlock}
 - 모든 텍스트는 한국어.
 `.trim()
 
-export async function POST(req: NextRequest) {
+async function handlePOST(req: NextRequest) {
   const authResult = await requireStudyUser(req)
   if (authResult.response) return authResult.response
   const user = authResult.user
@@ -3706,3 +3707,6 @@ function prettyTest(family: TestFamily | null): string {
  * `.insert()` — supabase-js resolves with `{ error }` rather than
  * throwing, so its try/catch never fired and every rejected row (e.g. a
  * `type` the CHECK constraint didn't allow) was lost silently. */
+
+// Every non-2xx is recorded to error_logs and alerts when it spreads (src/lib/ops/api-failure.ts).
+export const POST = withApiFailureLogging('study/test/generate', handlePOST)

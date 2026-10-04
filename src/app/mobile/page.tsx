@@ -27,6 +27,7 @@ import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { formatDateLocal, getWeekdayShort } from '@/utils/dateUtils'
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 import { getSessionsForDateRange } from '@/lib/virtual-sessions'
+import { fetchStudentAttendance, realSessionIds } from '@/lib/attendance/student-attendance'
 import { useToast } from '@/hooks/use-toast'
 
 interface Session {
@@ -369,25 +370,14 @@ export default function MobilePage() {
       }
 
       // Fetch attendance data separately to avoid RLS issues with complex joins
-      const attendanceMap = new Map()
-      if (filteredData.length > 0) {
-        const sessionIds = filteredData.map((session: any) => session.id)
-        if (process.env.NODE_ENV === 'development') {
-          // console.log('Fetching attendance for sessions:', sessionIds)
-        }
-
-        const { data: attendanceData } = await db
-          .from('attendance')
-          .select('classroom_session_id, status, student_id')
-          .in('classroom_session_id', sessionIds)
-          .eq('student_id', effectiveUserId)
-
-        if (attendanceData) {
-          attendanceData.forEach(att => {
-            attendanceMap.set(att.classroom_session_id, att.status)
-          })
-        }
-      }
+      // Virtual (recurring) session ids are filtered out inside the helper:
+      // one of them used to fail the whole query.
+      const { map: attendanceMap } = await fetchStudentAttendance(
+        db as any,
+        filteredData.map((session: any) => session.id),
+        effectiveUserId,
+        'mobile.home.dailyAttendance'
+      )
 
       const teacherIds = Array.from(new Set(filteredData.map((s: any) => {
         const classrooms = (s as unknown as {classrooms: {teacher_id: string} | Array<{teacher_id: string}>}).classrooms
@@ -644,21 +634,12 @@ export default function MobilePage() {
       }
 
       // Fetch attendance data for all sessions in this month
-      const attendanceMap = new Map()
-      if (studentSessions.length > 0) {
-        const sessionIds = studentSessions.map((session: any) => session.id)
-        const { data: attendanceData } = await db
-          .from('attendance')
-          .select('classroom_session_id, status, student_id')
-          .in('classroom_session_id', sessionIds)
-          .eq('student_id', effectiveUserId)
-
-        if (attendanceData) {
-          attendanceData.forEach(att => {
-            attendanceMap.set(att.classroom_session_id, att.status)
-          })
-        }
-      }
+      const { map: attendanceMap } = await fetchStudentAttendance(
+        db as any,
+        studentSessions.map((session: any) => session.id),
+        effectiveUserId,
+        'mobile.home.monthlyAttendance'
+      )
 
       const newScheduleCache: Record<string, Session[]> = {}
       const sessionDates = new Set<string>()
@@ -867,19 +848,15 @@ export default function MobilePage() {
 
           // Always fetch fresh attendance data even when using cached sessions
           const cachedSessions = currentCache[studentCacheKey]
-          const sessionIds = cachedSessions.map((s: Session) => s.id).filter((id: string) => !id.startsWith('virtual-'))
+          const sessionIds = realSessionIds(cachedSessions.map((s: Session) => s.id))
 
           if (sessionIds.length > 0) {
-            const { data: freshAttendance } = await db
-              .from('attendance')
-              .select('classroom_session_id, status')
-              .in('classroom_session_id', sessionIds)
-              .eq('student_id', effectiveUserId)
-
-            const attendanceMap = new Map()
-            freshAttendance?.forEach(att => {
-              attendanceMap.set(att.classroom_session_id, att.status)
-            })
+            const { map: attendanceMap } = await fetchStudentAttendance(
+              db as any,
+              sessionIds,
+              effectiveUserId,
+              'mobile.home.cachedAttendance'
+            )
 
             // Merge fresh attendance with cached sessions
             const sessionsWithFreshAttendance = cachedSessions.map((s: Session) => ({

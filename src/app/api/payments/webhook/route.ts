@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyPayment } from '@/lib/portone';
-import { createClient } from '@/lib/supabase/server';
+import { dbAdmin } from '@/lib/supabase-admin';
 import { triggerInvoicePaymentNotifications } from '@/lib/notification-triggers';
 import { verifyWebhookSignature as verifyStandardWebhook, WebhookVerificationError } from '@/lib/portone-webhook';
 import { tryHandleStudyOneTimeWebhook } from '@/lib/study/payment-webhook-handler';
@@ -77,7 +77,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const supabase = await createClient();
+    // SERVICE ROLE, deliberately. This is a server-to-server call from
+    // PortOne: there is no user and no session cookie, so the cookie-bound
+    // anon client it used until 2026-10-04 ran every write as `anon`. RLS
+    // rejected the webhook_events claim (401 "new row violates row-level
+    // security policy", 3x in prod), so invoice-paid notifications never
+    // fired, and the invoice / subscription UPDATEs were filtered to zero
+    // rows without an error. Authenticity comes from the Standard Webhooks
+    // signature above plus verifyPayment() against PortOne's API below —
+    // never from the database role.
+    const supabase = dbAdmin;
 
     // ── Idempotency guard ──────────────────────────────────────────────
     // PortOne retries on non-2xx and can also redeliver after timeouts even
@@ -93,11 +102,17 @@ export async function POST(request: NextRequest) {
     // INSERT raises 23505 and we skip the notification.
     const webhookId = request.headers.get('webhook-id') || '';
     if (webhookId) {
-      const { data: existing } = await supabase
+      const { data: existing, error: existingError } = await supabase
         .from('webhook_events')
         .select('id')
         .eq('webhook_id', webhookId)
         .maybeSingle();
+      if (existingError) {
+        // Cannot tell a retry from a first delivery. Ask PortOne to
+        // redeliver rather than risk a second notification.
+        console.error('[Webhook] Idempotency lookup failed:', existingError);
+        return NextResponse.json({ error: 'Idempotency check failed' }, { status: 500 });
+      }
       if (existing) {
         console.log('[Webhook] Already processed; skipping:', webhookId);
         return NextResponse.json({
@@ -174,10 +189,11 @@ export async function POST(request: NextRequest) {
         updateData.paid_at = verification.payment.paidAt;
       }
 
-      const { error: invoiceUpdateError } = await supabase
+      const { data: updatedInvoices, error: invoiceUpdateError } = await supabase
         .from('invoices')
         .update(updateData)
-        .eq('id', invoiceId);
+        .eq('id', invoiceId)
+        .select('id');
 
       if (invoiceUpdateError) {
         console.error('Failed to update invoice status:', invoiceUpdateError);
@@ -194,15 +210,36 @@ export async function POST(request: NextRequest) {
       // on its success so two concurrent deliveries can't both notify.
       // (For the common single-delivery case, the early-return guard
       // above already handled the retry path.)
-      if (invoiceStatus === 'paid') {
-        const claimed = await claimWebhookId(supabase, webhookId, {
+      // Zero rows is not a transient failure (a retry cannot make the
+      // invoice exist), so it is alerted rather than retried — and nobody is
+      // told an invoice was paid when no invoice was marked paid.
+      const invoiceFound = (updatedInvoices?.length ?? 0) > 0;
+      if (!invoiceFound) {
+        await raiseAlert({
+          severity: 'warning',
+          title: 'Payment webhook matched no invoice',
+          message:
+            `Webhook for ${paymentId} (status ${verification.payment.status}) named invoice ${invoiceId}, ` +
+            `but the update matched no row. The payment is not reflected on any invoice.`,
+          dedupeKey: `payment-webhook-invoice-missing:${invoiceId}`,
+          context: { invoiceId, paymentId },
+        });
+      }
+
+      if (invoiceStatus === 'paid' && invoiceFound) {
+        const claim = await claimWebhookId(supabase, webhookId, {
           eventType: 'Payment.InvoicePaid',
           paymentId,
           status: verification.payment.status,
           amount: verification.payment.amount?.total ?? null,
           rawData: data,
         });
-        if (claimed) {
+        if (claim === 'error') {
+          // The invoice IS paid, but without the claim we cannot notify
+          // exactly once. Redeliver: the invoice update is idempotent.
+          return NextResponse.json({ error: 'Failed to record webhook' }, { status: 500 });
+        }
+        if (claim === 'claimed') {
           try {
             await triggerInvoicePaymentNotifications(invoiceId);
           } catch (notificationError) {
@@ -226,14 +263,15 @@ export async function POST(request: NextRequest) {
       if (subscriptionId) {
         if (verification.payment.status === 'PAID') {
           // Update academy_subscriptions table
-          const { error: subUpdateError } = await supabase
+          const { data: activatedSubs, error: subUpdateError } = await supabase
             .from('academy_subscriptions')
             .update({
               status: 'active',
               last_payment_date: verification.payment.paidAt || new Date().toISOString(),
               updated_at: new Date().toISOString(),
             })
-            .eq('id', subscriptionId);
+            .eq('id', subscriptionId)
+            .select('id');
 
           if (subUpdateError) {
             console.error('Error updating subscription:', subUpdateError);
@@ -242,6 +280,15 @@ export async function POST(request: NextRequest) {
               { error: 'Failed to update subscription status' },
               { status: 500 }
             );
+          }
+          if ((activatedSubs?.length ?? 0) === 0) {
+            await raiseAlert({
+              severity: 'warning',
+              title: 'Payment webhook matched no academy subscription',
+              message: `PAID webhook for ${paymentId} named academy subscription ${subscriptionId}, but no row matched.`,
+              dedupeKey: `payment-webhook-sub-missing:${subscriptionId}`,
+              context: { subscriptionId, paymentId },
+            });
           }
           // Create the subscription_invoices row ONLY IF nobody else did.
           //
@@ -297,8 +344,17 @@ export async function POST(request: NextRequest) {
               }, { onConflict: 'kg_transaction_id', ignoreDuplicates: true });
 
             if (invoiceUpdateError) {
-              console.error('Error updating subscription invoice:', invoiceUpdateError);
-              // Log but don't fail — subscription status is already updated
+              // Don't fail — subscription status is already updated and the
+              // cron / client callback are the authoritative writers. But
+              // say so somewhere a person reads.
+              await raiseAlert({
+                severity: 'warning',
+                title: 'Subscription invoice backstop insert failed',
+                message: `PAID webhook for ${paymentId} could not write its subscription_invoices backstop row.`,
+                dedupeKey: `payment-webhook-sub-invoice-upsert:${paymentId}`,
+                error: invoiceUpdateError,
+                context: { subscriptionId, paymentId },
+              });
             }
           }
         } else if (verification.payment.status === 'FAILED') {
@@ -414,13 +470,18 @@ export async function POST(request: NextRequest) {
     // and we ignore the 23505). Always runs so every delivery leaves an
     // audit row, even subscription / cancelled / failed paths that have
     // no side effects.
-    await claimWebhookId(supabase, webhookId, {
+    const finalClaim = await claimWebhookId(supabase, webhookId, {
       eventType: 'Payment.StatusChanged',
       paymentId,
       status: verification.payment.status,
       amount: verification.payment.amount?.total ?? null,
       rawData: data,
     });
+    if (finalClaim === 'error') {
+      // Every write above is an idempotent end-state, so a redelivery is
+      // safe; acking would leave no audit row and no idempotency key.
+      return NextResponse.json({ error: 'Failed to record webhook' }, { status: 500 });
+    }
 
     return NextResponse.json({
       success: true,
@@ -437,8 +498,11 @@ export async function POST(request: NextRequest) {
 
 /**
  * Atomically claim a webhook-id by inserting into webhook_events. Returns
- * true if this call wrote the row, false if it was already there (race
- * with a concurrent retry).
+ * 'claimed' if this call wrote the row, 'duplicate' if it was already there
+ * (race with a concurrent retry), and 'error' for any other failure — which
+ * the caller must treat as retryable (500), never as a duplicate: until
+ * 2026-10-04 an RLS rejection here read as "someone else claimed it" and
+ * silently suppressed every invoice-paid notification.
  *
  * Callers should gate side-effecting operations (notifications, alerts)
  * on the return value so duplicate deliveries can never double-fire.
@@ -447,7 +511,8 @@ export async function POST(request: NextRequest) {
  * case, since there's no idempotency key to enforce. (PortOne always
  * sends webhook-id; the null branch exists for tests / manual replay.)
  */
-type SupabaseClient = Awaited<ReturnType<typeof createClient>>;
+type SupabaseClient = typeof dbAdmin;
+type ClaimOutcome = 'claimed' | 'duplicate' | 'error';
 async function claimWebhookId(
   supabase: SupabaseClient,
   webhookId: string,
@@ -460,8 +525,8 @@ async function claimWebhookId(
     // meant it couldn't be handed to .insert() honestly.
     rawData: Json;
   }
-): Promise<boolean> {
-  if (!webhookId) return true;
+): Promise<ClaimOutcome> {
+  if (!webhookId) return 'claimed';
   const { error } = await supabase.from('webhook_events').insert({
     type: 'payment',
     event_type: event.eventType,
@@ -474,14 +539,12 @@ async function claimWebhookId(
     raw_data: event.rawData,
     webhook_id: webhookId,
   });
-  if (!error) return true;
+  if (!error) return 'claimed';
   // 23505 = unique_violation — concurrent retry beat us to the claim.
-  // Any other error gets logged but we still treat as "not claimed" so
-  // the caller skips the side effect (safer than firing twice).
   if ((error as { code?: string }).code === '23505') {
     console.log('[Webhook] webhook_id already claimed (race-loss):', webhookId);
-    return false;
+    return 'duplicate';
   }
   console.error('[Webhook] Failed to log webhook_events row:', error);
-  return false;
+  return 'error';
 }

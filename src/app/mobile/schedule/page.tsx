@@ -13,6 +13,7 @@ import { ErrorState } from '@/components/ui/common/ErrorState'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { StaggeredListSkeleton } from '@/components/ui/skeleton'
 import { db } from '@/lib/supabase'
+import { fetchStudentAttendance } from '@/lib/attendance/student-attendance'
 import { Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight, RefreshCw, School, UserCheck } from 'lucide-react'
 import { getTeacherNamesWithCache } from '@/utils/mobileCache'
 import { getWeekdayShort } from '@/utils/dateUtils'
@@ -182,20 +183,12 @@ function MobileSchedulePageContent() {
       }
 
       // Fetch attendance records for these sessions
-      const sessionIds = filteredData.map(s => s.id)
-      const attendanceMap = new Map<string, string>()
-
-      if (sessionIds.length > 0) {
-        const { data: attendanceRecords } = await db
-          .from('attendance')
-          .select('classroom_session_id, status')
-          .in('classroom_session_id', sessionIds)
-          .eq('student_id', effectiveUserId)
-
-        attendanceRecords?.forEach(record => {
-          attendanceMap.set(record.classroom_session_id, record.status)
-        })
-      }
+      const { map: attendanceMap } = await fetchStudentAttendance(
+        db as any,
+        filteredData.map(s => s.id),
+        effectiveUserId,
+        'mobile.schedule.dailyAttendance'
+      )
 
       const formattedSessions: Session[] = filteredData.map((session) => {
         const classroom = session.classrooms
@@ -325,20 +318,12 @@ function MobileSchedulePageContent() {
       }
 
       // Fetch attendance records for all sessions in this month
-      const allSessionIds = studentSessions.map((s) => s.id)
-      const attendanceMap = new Map<string, string>()
-
-      if (allSessionIds.length > 0) {
-        const { data: attendanceRecords } = await db
-          .from('attendance')
-          .select('classroom_session_id, status')
-          .in('classroom_session_id', allSessionIds)
-          .eq('student_id', effectiveUserId)
-
-        attendanceRecords?.forEach(record => {
-          attendanceMap.set(record.classroom_session_id, record.status)
-        })
-      }
+      const { map: attendanceMap } = await fetchStudentAttendance(
+        db as any,
+        studentSessions.map((s) => s.id),
+        effectiveUserId,
+        'mobile.schedule.monthlyAttendance'
+      )
 
       // Format sessions and organize by date
       const newScheduleCache: Record<string, Session[]> = {}

@@ -17,6 +17,7 @@ import {
   GradePersistError,
 } from '@/lib/study/gradeResponse'
 import { requireStudyUser } from '@/lib/study/auth'
+import { withApiFailureLogging } from '@/lib/ops/api-failure'
 
 /**
  * POST /api/study/response/grade — runs an essay or transcribed
@@ -58,7 +59,7 @@ const BodySchema = z.object({
   clarity: z.number().min(0).max(1).nullable().optional(),
 })
 
-export async function POST(req: NextRequest) {
+async function handlePOST(req: NextRequest) {
   const authResult = await requireStudyUser(req)
   if (authResult.response) return authResult.response
   const user = authResult.user
@@ -201,3 +202,6 @@ export async function POST(req: NextRequest) {
     xpAwarded: XP_VALUES.response_graded,
   })
 }
+
+// Every non-2xx is recorded to error_logs and alerts when it spreads (src/lib/ops/api-failure.ts).
+export const POST = withApiFailureLogging('study/response/grade', handlePOST)

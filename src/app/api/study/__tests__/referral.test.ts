@@ -269,7 +269,8 @@ describe('referral loop', () => {
       const res = await POST(makeRequest({}))
       expect(res.status).toBe(400)
       expect((await res.json()).code).toBe('missing_code')
-      expect(fromMock).not.toHaveBeenCalled()
+      // The failure recorder (withApiFailureLogging) writes error_logs; no business table is touched.
+      expect(fromMock.mock.calls.filter(([t]) => t !== 'error_logs')).toEqual([])
     })
 
     it('passes the rate-limit response through untouched', async () => {
@@ -277,7 +278,8 @@ describe('referral loop', () => {
       enforceRateLimitMock.mockReturnValue(NextResponse.json({ error: 'rate limited' }, { status: 429 }))
       const res = await POST(makeRequest({ code: 'ABC234' }))
       expect(res.status).toBe(429)
-      expect(fromMock).not.toHaveBeenCalled()
+      // The failure recorder (withApiFailureLogging) writes error_logs; no business table is touched.
+      expect(fromMock.mock.calls.filter(([t]) => t !== 'error_logs')).toEqual([])
     })
   })
 })

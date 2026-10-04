@@ -281,6 +281,7 @@ describe('POST /api/study/test/submit', () => {
     enforceRateLimitMock.mockReturnValue(limited)
     const res = await POST(makeRequest(submitBody([mcQuestion('Q1', 'A')], ['A'])))
     expect(res.status).toBe(429)
-    expect(fromMock).not.toHaveBeenCalled()
+    // The failure recorder (withApiFailureLogging) writes error_logs; no business table is touched.
+    expect(fromMock.mock.calls.filter(([t]) => t !== 'error_logs')).toEqual([])
   })
 })

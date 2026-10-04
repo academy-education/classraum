@@ -86,6 +86,7 @@ describe('POST /api/study/explain — saving against an attempt', () => {
     const res = await POST(makeRequest(body({ attemptId: 'att-1' })))
     expect(res.status).toBe(429)
     expect(generateTextMock).not.toHaveBeenCalled()
-    expect(fromMock).not.toHaveBeenCalled()
+    // The failure recorder (withApiFailureLogging) writes error_logs; no business table is touched.
+    expect(fromMock.mock.calls.filter(([t]) => t !== 'error_logs')).toEqual([])
   })
 })
