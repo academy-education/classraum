@@ -1,4 +1,5 @@
 import { dbAdmin } from '@/lib/supabase-admin'
+import { readBankPaged } from '@/lib/study/bank-read'
 import {
   ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, VERBAL_TYPES, verbalKind,
   type AdmissionFamily,
@@ -541,14 +542,15 @@ export async function drawBankPractice(p: {
   sessionId?: string
 }): Promise<PracticeQuestion[]> {
   const family = p.family ?? 'sat'
-  let query = dbAdmin
-    .from('study_item_bank')
-    .select('id, item')
-    .eq('family', family)
-    .eq('section', p.section)
-    .eq('verified', true)
-    .eq('archived', false)
-  if (p.domain) query = query.eq('domain', p.domain)
+  const bankQuery = (withCount: boolean) => {
+    let query = dbAdmin
+      .from('study_item_bank')
+      .select('id, item', withCount ? { count: 'exact' } : undefined)
+      .eq('family', family)
+      .eq('section', p.section)
+      .eq('verified', true)
+      .eq('archived', false)
+    if (p.domain) query = query.eq('domain', p.domain)
   // NOTE this is a real SQL FILTER, unlike the TOEFL full-test draw where
   // difficulty is only a preference. A caller asking for a band the bank
   // does not hold gets ZERO items, not a smaller set.
@@ -558,13 +560,15 @@ export async function drawBankPractice(p: {
   // scripts/classify-toefl-tasks.ts re-labelled every TOEFL listening item
   // off 'hard' — a TOEFL node requesting ['medium','hard'] would now come
   // back nearly empty. Check the bank's actual spread before adding one.
-  if (p.difficulties?.length) query = query.in('difficulty', p.difficulties)
-  // Stable pool order so the same seed always yields the same draw
+    if (p.difficulties?.length) query = query.in('difficulty', p.difficulties)
+    return query
+  }
+  // Stable pool order (by id) so the same seed always yields the same draw
   // (the daily challenge relies on this for its shared-set property).
-  const { data, error } = await query.order('id', { ascending: true })
-  if (error) throw new Error(`bank practice query failed: ${error.message}`)
+  // PAGED: an unfiltered SAT section exceeds PostgREST's 1000-row cap.
+  const data = await readBankPaged<{ id: string; item: unknown }>(bankQuery, `practice ${family}/${p.section}`)
 
-  const pool = (data ?? [])
+  const pool = data
     .flatMap(row => {
       const item = readBankItem(row.item)
       if (!item) {
@@ -1034,30 +1038,13 @@ export async function assembleToeflFromBank(
   // sort is not paging (bank-register: 1222 rows fetched, 1057 distinct) —
   // so `id` breaks created_at ties. The exact count is read with the first
   // page and the result is asserted against it, distinct ids included.
-  const PAGE = 1000
-  const data: Array<{ id: string; item_type: string; item: unknown; difficulty: string | null }> = []
-  let expected: number | null = null
-  for (let from = 0; ; from += PAGE) {
-    const res = await bankQuery(from === 0)
-      // Authoring order = insertion order. A Take-an-Interview set is
-      // banked 1→N in ETS's escalation order (personal experience →
-      // policy/prediction), and nothing else in the row carries that
-      // sequence, so the draw must start from a stable authored order.
-      .order('created_at', { ascending: true })
-      .order('id', { ascending: true })
-      .range(from, from + PAGE - 1)
-    if (res.error) throw new Error(`toefl assemble query failed: ${res.error.message}`)
-    if (from === 0) expected = res.count ?? null
-    const page = res.data ?? []
-    data.push(...page)
-    if (page.length < PAGE) break
-  }
-  if (expected !== null && data.length !== expected) {
-    throw new Error(`toefl assemble: read ${data.length} toefl/${p.section} rows, bank count says ${expected}`)
-  }
-  if (new Set(data.map(r => r.id)).size !== data.length) {
-    throw new Error(`toefl assemble: duplicate rows across pages for toefl/${p.section} — paging is not on a total order`)
-  }
+  // Authoring order = insertion order. A Take-an-Interview set is
+  // banked 1→N in ETS's escalation order (personal experience →
+  // policy/prediction), and nothing else in the row carries that
+  // sequence, so the draw must start from a stable authored order.
+  const data = await readBankPaged<{ id: string; item_type: string; item: unknown; difficulty: string | null }>(
+    bankQuery, `toefl/${p.section}`, [{ column: 'created_at' }],
+  )
   const rows = data.flatMap(row => {
     const item = readBankItem(row.item)
     if (!item) {
@@ -1621,20 +1608,22 @@ export async function assembleAdmissionSection(p: {
   if (!block) throw new Error(`unknown ${p.family} section '${p.sectionKey}'`)
   if (!block.bankSection) throw new Error(`${p.family}/${p.sectionKey} is free-response, not drawn from the bank`)
 
-  const { data, error } = await dbAdmin
-    .from('study_item_bank')
-    /* `task` carries the verbal question type for the two cohorts that
-     * predate the "[Synonym]"/"[Analogy]" prompt tags — without it, 52 of
-     * 180 SSAT verbal rows classify as nothing and drop out of the split
-     * draw. */
-    .select('id, difficulty, item, passage_group_id, task')
-    .eq('family', p.family)
-    .eq('section', block.bankSection)
-    .eq('verified', true)
-    .eq('archived', false)
-  if (error) throw new Error(`assemble query failed: ${error.message}`)
+  const data = await readBankPaged<{ id: string; difficulty: string | null; item: unknown; passage_group_id: string | null; task: string | null }>(
+    (withCount) => dbAdmin
+      .from('study_item_bank')
+      /* `task` carries the verbal question type for the two cohorts that
+       * predate the "[Synonym]"/"[Analogy]" prompt tags — without it, 52 of
+       * 180 SSAT verbal rows classify as nothing and drop out of the split
+       * draw. */
+      .select('id, difficulty, item, passage_group_id, task', withCount ? { count: 'exact' } : undefined)
+      .eq('family', p.family)
+      .eq('section', block.bankSection!)
+      .eq('verified', true)
+      .eq('archived', false),
+    `${p.family}/${block.bankSection}`,
+  )
 
-  const rows = (data ?? []).flatMap(row => {
+  const rows = data.flatMap(row => {
     const item = readBankItem(row.item)
     if (!item) {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
@@ -1870,13 +1859,6 @@ export function rankByBand<T extends { id: string; difficulty: 'easy' | 'medium'
 
 export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promise<AssembledTest> {
   const family = p.family ?? 'sat'
-  const query = dbAdmin
-    .from('study_item_bank')
-    .select('id, domain, difficulty, item')
-    .eq('family', family)
-    .eq('section', p.section)
-    .eq('verified', true)
-    .eq('archived', false)
   // `difficulties` used to be a SQL filter here. On the SAT R&W hard route
   // that meant a domain whose HARD band is thin (Standard English
   // Conventions: 12 hard items against a 7-per-form quota, 2026-09-03) ran
@@ -1886,9 +1868,22 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
   // section is read now and the band is a PREFERENCE within each domain -
   // see rankByBand - so a thin band costs difficulty inside its own domain
   // rather than repeats or a different domain mix.
-  const { data, error } = await query
-  if (error) throw new Error(`assemble query failed: ${error.message}`)
-  const rows = (data ?? []).flatMap(row => {
+  //
+  // PAGED (2026-10-04, BANK-INTEGRITY-2026-10-04). This was one unpaged
+  // read: PostgREST returned 1,000 of SAT Math's 1,364 live rows and 1,000
+  // of R&W's 1,117, so 481 items — all 17 rw-v10-sec-hard among them —
+  // could never be served. readBankPaged asserts the full count.
+  const data = await readBankPaged<{ id: string; domain: string; difficulty: string | null; item: unknown }>(
+    (withCount) => dbAdmin
+      .from('study_item_bank')
+      .select('id, domain, difficulty, item', withCount ? { count: 'exact' } : undefined)
+      .eq('family', family)
+      .eq('section', p.section)
+      .eq('verified', true)
+      .eq('archived', false),
+    `${family}/${p.section}`,
+  )
+  const rows = data.flatMap(row => {
     const item = readBankItem(row.item)
     if (!item) {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
@@ -2101,16 +2096,18 @@ export async function assembleActSection(p: {
     throw new Error(`act/${p.sectionKey} is free-response, not drawn from the bank`)
   }
 
-  const { data, error } = await dbAdmin
-    .from('study_item_bank')
-    .select('id, difficulty, item, passage_group_id, task, domain')
-    .eq('family', 'act')
-    .eq('section', block.bankSection)
-    .eq('verified', true)
-    .eq('archived', false)
-  if (error) throw new Error(`assemble query failed: ${error.message}`)
+  const data = await readBankPaged<{ id: string; difficulty: string | null; item: unknown; passage_group_id: string | null; task: string | null; domain: string | null }>(
+    (withCount) => dbAdmin
+      .from('study_item_bank')
+      .select('id, difficulty, item, passage_group_id, task, domain', withCount ? { count: 'exact' } : undefined)
+      .eq('family', 'act')
+      .eq('section', block.bankSection!)
+      .eq('verified', true)
+      .eq('archived', false),
+    `act/${block.bankSection}`,
+  )
 
-  const rows: ActRow[] = (data ?? []).flatMap(row => {
+  const rows: ActRow[] = data.flatMap(row => {
     const item = readBankItem(row.item)
     if (!item) {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)

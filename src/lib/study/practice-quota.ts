@@ -1,4 +1,5 @@
 import { dbAdmin } from '@/lib/supabase-admin'
+import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { isPassPlan } from '@/lib/study/plans'
 import { raiseAlert } from '@/lib/ops/alert'
 
@@ -270,10 +271,16 @@ export async function cleanupAbandonedPracticeSessions(studentId: string, except
       .map(s => s.id as string)
     if (candidateIds.length === 0) return
 
-    const { data: attempts } = await dbAdmin
+    // PAGED, and a failed read aborts: this set decides what gets DELETED.
+    // Unpaged, >1000 attempts across the candidates truncated it, and a
+    // session whose attempts fell past the cap read as empty.
+    const { data: attempts, error: attemptsErr, truncated } = await fetchAllRows<{ session_id: string }>((from, to) => dbAdmin
       .from('study_attempts')
       .select('session_id')
       .in('session_id', candidateIds)
+      .order('id', { ascending: true })
+      .range(from, to))
+    if (attemptsErr || truncated || !attempts) return
     const engaged = new Set((attempts ?? []).map(a => a.session_id as string))
     const empties = candidateIds.filter(id => !engaged.has(id))
     if (empties.length === 0) return
