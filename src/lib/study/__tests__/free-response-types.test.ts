@@ -55,8 +55,12 @@ describe('every servable question type is accepted by the API schemas', () => {
   const types = assemble
     .slice(assemble.indexOf('const QUESTION_TYPES'), assemble.indexOf('] as const'))
     .match(/'([a-z_]+)'/g)!.map(s => s.slice(1, -1))
-  const routes = ['submit', 'generate'].map(r => [r,
-    readFileSync(join(process.cwd(), `src/app/api/study/test/${r}/route.ts`), 'utf8')] as const)
+  // The submit schema moved to lib/study/test-submit-schema.ts so the
+  // route file exports only its handler.
+  const routes = [
+    ['submit', 'src/lib/study/test-submit-schema.ts'],
+    ['generate', 'src/app/api/study/test/generate/route.ts'],
+  ].map(([r, f]) => [r, readFileSync(join(process.cwd(), f), 'utf8')] as const)
 
   it('found the type list', () => expect(types.length).toBeGreaterThanOrEqual(13))
   it.each(routes)('%s route enum lists every QUESTION_TYPES entry', (_name, src) => {

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
+import { describeGradeFailure } from '@/lib/study/submit-error'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { db } from '@/lib/supabase'
@@ -488,8 +489,9 @@ export function WritingFeedbackPanel({
         res = await callText()
       }
       if (!res.ok) {
-        const errJson = await res.json().catch(() => null)
-        setErrMsg(errJson?.error ?? 'grading failed')
+        const errJson = await res.json().catch(() => null) as { error?: unknown } | null
+        console.error('[WritingFeedbackPanel] grade failed', res.status, errJson?.error)
+        setErrMsg(describeGradeFailure(res.status, ko))
         setState('error')
         return
       }
@@ -508,7 +510,8 @@ export function WritingFeedbackPanel({
       }
       setState('done')
     } catch (e) {
-      setErrMsg((e as Error).message)
+      console.error('[WritingFeedbackPanel] grade request failed', e)
+      setErrMsg(describeGradeFailure(null, ko))
       setState('error')
     }
   }

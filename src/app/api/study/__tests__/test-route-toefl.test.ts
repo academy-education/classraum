@@ -358,4 +358,60 @@ describe('POST /api/study/test/route — TOEFL adaptive branch', () => {
     expect(json.module2Questions).toBeUndefined()
     expect(assembleMock).not.toHaveBeenCalled()
   })
+
+  // 2026-10-04: the abandoned-claim release only ran for a request that
+  // read a NULL route and lost the claim. A RETRY reads the route the dead
+  // claimant left behind, took the replay branch, and returned an empty
+  // Module 2 on every tap, forever ("Couldn't load Module 2. Tap to retry").
+  it('a retry after the claimant died releases the claim instead of replaying nothing', async () => {
+    const stale = new Date(Date.now() - 10 * 60_000).toISOString()
+    enqueue('study_sessions', { data: { id: SID, student_id: 'student-9', module2_route: 'hard', module2_claimed_at: stale } })
+    enqueue('study_messages', { data: [{ content: cacheContent() }] })   // Module 1 only
+    const release = enqueue('study_sessions', { error: null })
+    const res = await POST(makeRequest(body(['A', 'B', 'C', 'D', 'E'])))
+    expect(res.status).toBe(409)
+    expect((await res.json()).error).toBe('module2_retry')
+    expect(release.update).toHaveBeenCalledWith({ module2_route: null, module2_claimed_at: null })
+  })
+
+  it('a retry while the claimant is still working waits (409 pending), never steals', async () => {
+    const fresh = new Date(Date.now() - 2_000).toISOString()
+    enqueue('study_sessions', { data: { id: SID, student_id: 'student-9', module2_route: 'hard', module2_claimed_at: fresh } })
+    enqueue('study_messages', { data: [{ content: cacheContent() }] })
+    const release = enqueue('study_sessions', { error: null })
+    const res = await POST(makeRequest(body(['A', 'B', 'C', 'D', 'E'])))
+    expect(res.status).toBe(409)
+    expect((await res.json()).error).toBe('module2_pending')
+    expect(release.update).not.toHaveBeenCalled()
+  })
+
+
+  // 2026-10-04: Module 1 was scored by an MC-only match on correct_answer,
+  // which is '' on every live Complete-the-Words card (93 of 93). Ten
+  // correct blanks scored as ONE wrong item, so a CtW-strong reader was
+  // routed down. Routing now uses /submit's weighted scorer; the stored
+  // columns stay in cards (the summary uses them as card indices).
+  it('routes on blank-weighted Module 1, counting Complete-the-Words blanks', async () => {
+    const blanks = Array.from({ length: 10 }, (_, k) => ({ id: k + 1, answer: 'x' + k, alternates: null }))
+    const ctwAnswer = JSON.stringify(Object.fromEntries(blanks.map(b => [String(b.id), b.answer])))
+    enqueue('study_sessions', { data: { id: SID, student_id: 'student-9', module2_route: null } })
+    enqueue('study_messages', { data: [{ content: cacheContent({
+      questions: [
+        { type: 'fill_in_blanks', correct_answer: '', blanks },
+        { correct_answer: 'A' }, { correct_answer: 'B' }, { correct_answer: 'C' }, { correct_answer: 'D' },
+      ],
+    }) }] })
+    const claim = enqueue('study_sessions', { data: [{ id: SID }] })
+    enqueue('study_messages', { error: null })
+    assembleMock.mockResolvedValue({ questions: [m2Question(0)] })
+
+    // CtW all ten right, MC 2 of 4: 12/14 = 86% (old scoring: 2/5 = 40%).
+    const res = await POST(makeRequest(body([ctwAnswer, 'A', 'B', 'x', 'x'])))
+    expect(res.status).toBe(200)
+    expect(claim.update).toHaveBeenCalledWith(expect.objectContaining({
+      module2_route: 'hard', module1_correct: 3, module1_total: 5,
+    }))
+    expect(assembleMock).toHaveBeenCalledWith(expect.objectContaining({ path: 'upper' }), SID)
+  })
+
 })
