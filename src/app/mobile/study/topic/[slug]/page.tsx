@@ -24,6 +24,8 @@ import { sectionVisual } from '../../_shared/sectionVisuals'
 import { PredictedScore } from '../../_shared/PredictedScore'
 import { TopicInsights } from './TopicInsights'
 import { BankExhaustedSheet } from './BankExhaustedSheet'
+import { SectionUnavailableSheet } from '../../_shared/SectionUnavailableSheet'
+import { isSectionUnavailableBody } from '@/lib/study/section-availability'
 import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
@@ -144,6 +146,7 @@ function TopicInner({ slug }: { slug: string }) {
      from an error: the request succeeded and the answer is "not yet". */
   const [exhausted, setExhausted] = useState<
     { reason: 'pool_exhausted' | 'no_bank_coverage'; unseen: number } | null>(null)
+  const [sectionUnavailable, setSectionUnavailable] = useState(false)
   const [testSheetOpen, setTestSheetOpen] = useState(false)
   // Credit-spend confirm for the one-tap SAT bank start (the AI-test
   // customization sheet shows its own cost line, so it skips this).
@@ -589,6 +592,9 @@ function TopicInner({ slug }: { slug: string }) {
         const json = await res.json().catch(() => ({})) as { reason?: string; unseen?: number }
         setBankBusy(false)
         setCreditConfirmOpen(false)
+        // The bank cannot fill this section to its blueprint count — the
+        // server refused to start it and charged nothing.
+        if (isSectionUnavailableBody(json)) { setSectionUnavailable(true); return }
         setExhausted({
           reason: json.reason === 'no_bank_coverage' ? 'no_bank_coverage' : 'pool_exhausted',
           unseen: json.unseen ?? 0,
@@ -623,6 +629,9 @@ function TopicInner({ slug }: { slug: string }) {
         const json = await res.json().catch(() => ({})) as { reason?: string; unseen?: number }
         setBankBusy(false)
         setCreditConfirmOpen(false)
+        // The bank cannot fill this section to its blueprint count — the
+        // server refused to start it and charged nothing.
+        if (isSectionUnavailableBody(json)) { setSectionUnavailable(true); return }
         setExhausted({
           reason: json.reason === 'no_bank_coverage' ? 'no_bank_coverage' : 'pool_exhausted',
           unseen: json.unseen ?? 0,
@@ -707,6 +716,9 @@ function TopicInner({ slug }: { slug: string }) {
         const json = await res.json().catch(() => ({})) as { reason?: string; unseen?: number }
         setBankBusy(false)
         setCreditConfirmOpen(false)
+        // The bank cannot fill this section to its blueprint count — the
+        // server refused to start it and charged nothing.
+        if (isSectionUnavailableBody(json)) { setSectionUnavailable(true); return }
         setExhausted({
           reason: json.reason === 'no_bank_coverage' ? 'no_bank_coverage' : 'pool_exhausted',
           unseen: json.unseen ?? 0,
@@ -944,6 +956,9 @@ function TopicInner({ slug }: { slug: string }) {
 
       {/* Pool exhausted / not yet banked. Deliberately NOT an error
           dialog: nothing failed, and no credit was spent. */}
+      {sectionUnavailable && (
+        <SectionUnavailableSheet onClose={() => setSectionUnavailable(false)} />
+      )}
       {exhausted && (
         <BankExhaustedSheet
           reason={exhausted.reason}

@@ -10,6 +10,8 @@ import { NumberRoll } from './primitives'
 import { StudyButton, studyButtonClass } from './StudyButton'
 import { CreditConfirmSheet, NoCreditsSheet } from './CreditConfirmSheet'
 import { creditCostForTest } from '@/lib/study/plans'
+import { isSectionUnavailableBody } from '@/lib/study/section-availability'
+import { SectionUnavailableSheet } from './SectionUnavailableSheet'
 
 // The diagnostic launches an SAT Reading & Writing adaptive full test.
 const DIAGNOSTIC_CREDIT_COST = creditCostForTest('sat', 'reading_writing')
@@ -59,6 +61,7 @@ export function PredictedScore() {
   const [confirmOpen, setConfirmOpen] = useState(false)
   // 402 → explicit "not enough credits" popup (cancel / buy).
   const [noCreditsOpen, setNoCreditsOpen] = useState(false)
+  const [sectionUnavailable, setSectionUnavailable] = useState(false)
   // Balance from the same subscription fetch — when it can't cover the
   // cost, the start tap goes straight to the no-credits popup instead
   // of confirming a spend that would fail.
@@ -114,6 +117,10 @@ export function PredictedScore() {
         body: JSON.stringify({ section, adaptive: true }),
       })
       if (res.status === 402) { setStarting(false); setConfirmOpen(false); setNoCreditsOpen(true); return }
+      if (res.status === 409) {
+        const json = await res.json().catch(() => ({}))
+        if (isSectionUnavailableBody(json)) { setStarting(false); setConfirmOpen(false); setSectionUnavailable(true); return }
+      }
       if (!res.ok) { setStarting(false); return }
       const json = await res.json()
       router.push(`/mobile/study/session/${json.sessionId}`)
@@ -172,6 +179,7 @@ export function PredictedScore() {
           ko={ko}
           onCancel={() => setNoCreditsOpen(false)}
         />
+        {sectionUnavailable && <SectionUnavailableSheet onClose={() => setSectionUnavailable(false)} />}
       </>
     )
   }

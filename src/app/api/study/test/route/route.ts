@@ -15,6 +15,11 @@ import {
 } from '@/lib/study/sat-adaptive'
 import { assembleFromBank, assembleToeflFromBank } from '@/lib/study/assemble'
 import { requireStudyUser } from '@/lib/study/auth'
+import { creditCostForTest } from '@/lib/study/plans'
+import { refundTestCredits } from '@/lib/study/credits'
+import { raiseAlert } from '@/lib/ops/alert'
+import { isSectionShortError, sectionUnavailableBody, type SectionShortDetail } from '@/lib/study/section-availability'
+import { reportSectionShort } from '@/lib/study/section-short-report'
 
 /**
  * POST /api/study/test/route — decide module 2 difficulty for an
@@ -31,6 +36,20 @@ import { requireStudyUser } from '@/lib/study/auth'
  * intentionally — we don't want /submit's full-session side effects
  * (mastery reassessment, completion timestamp) firing at the halfway
  * point.
+ *
+ * NEVER A SHORT MODULE 2 ("Block short tests", 2026-10-04). Module 2 is
+ * drawn with requireFull. The difficulty band is already a preference, not
+ * a filter (a thin band costs difficulty, never items), so the remaining
+ * ways to come up short are a task the bank cannot fill:
+ *   - TOEFL: the routed Stage-2 path's task mix cannot be filled → draw the
+ *     OTHER path's module instead. A whole module with a different task mix
+ *     is a real TOEFL Stage-2 module; a short one is not a TOEFL module at
+ *     all. The routing verdict (module2_route) is still the student's own.
+ *   - Neither path (or SAT, whose Module 2 reads the whole section) → the
+ *     section cannot be completed: the session's credits are REFUNDED, the
+ *     claim is released, and a 409 section_unavailable tells the client to
+ *     say so. The assemble route pre-checks Module 2 before charging, so
+ *     this is only reachable if the bank changed between the two calls.
  */
 
 export const dynamic = 'force-dynamic'
@@ -68,7 +87,7 @@ export async function POST(req: NextRequest) {
 
   const { data: session, error: sessErr } = await dbAdmin
     .from('study_sessions')
-    .select('id, student_id, module2_route, module1_correct, module1_total')
+    .select('id, student_id, module2_route, module1_correct, module1_total, config')
     .eq('id', sessionId)
     .maybeSingle()
   if (sessErr || !session) {
@@ -194,10 +213,14 @@ export async function POST(req: NextRequest) {
           count: SAT_MODULE_CONFIG[sectionKey].moduleSize,
           difficulties: difficultiesForModule2(route),
           studentId: user.id,
+          requireFull: true,
         },
         sessionId,
       )
     } catch (e) {
+      if (isSectionShortError(e)) {
+        return refuseShortModule2(user.id, sessionId, session.config, 'sat', sectionKey, e.detail)
+      }
       await releaseClaim(sessionId, 'empty bank')
       return NextResponse.json(
         { error: 'module2_bank_empty', details: (e as Error).message }, { status: 409 },
@@ -388,18 +411,39 @@ export async function POST(req: NextRequest) {
   // Module 1's items are already in the exposure ledger (recorded at
   // assemble), so the unseen-first ranking cannot deal them a second time;
   // seeding with the session id keeps the draw stable on retry.
+  const routedPath = computeToeflStage2Path(correct, module1Questions.length)
+  const drawToeflModule2 = (path: 'lower' | 'upper') => assembleToeflFromBank(
+    {
+      section: config.bankSection,
+      module: 2,
+      difficulties: difficultiesForToeflModule2(route),
+      path,
+      studentId: user.id,
+      requireFull: true,
+    },
+    sessionId,
+  )
   let module2
   try {
-    module2 = await assembleToeflFromBank(
-      {
-        section: config.bankSection,
-        module: 2,
-        difficulties: difficultiesForToeflModule2(route),
-        path: computeToeflStage2Path(correct, module1Questions.length),
-        studentId: user.id,
-      },
-      sessionId,
-    )
+    try {
+      module2 = await drawToeflModule2(routedPath)
+    } catch (e) {
+      if (!isSectionShortError(e)) throw e
+      // The routed path's task mix cannot be filled whole. The other
+      // path's module is a complete Stage-2 module; serve that rather
+      // than a short one, and record that the fallback fired.
+      const otherPath = routedPath === 'lower' ? 'upper' : 'lower'
+      try {
+        module2 = await drawToeflModule2(otherPath)
+      } catch (e2) {
+        if (!isSectionShortError(e2)) throw e2
+        return refuseShortModule2(user.id, sessionId, session.config, 'toefl', config.bankSection, e.detail)
+      }
+      await reportSectionShort(e.detail, {
+        studentId: user.id, sessionId, via: 'test/route',
+        outcome: `Served the ${otherPath} Stage-2 module instead (full length, other task mix).`,
+      })
+    }
   } catch (e) {
     // Release the claim so the student can retry once the bank is
     // seeded, rather than being stranded with a route and no Module 2.
@@ -433,6 +477,55 @@ export async function POST(req: NextRequest) {
     module2Questions: toeflModule2,
     alreadyRouted: false,
   })
+}
+
+/**
+ * Module 2 cannot be drawn whole on any route: refund the session's
+ * credits, release the claim, and return the typed 409.
+ *
+ * The student has paid and sat Module 1 of a section we cannot finish, so
+ * the charge is returned rather than kept for half a test. The claim is
+ * released (not held) so the module-break screen is not stranded on an
+ * empty replay; a retry that later succeeds — the bank refilled — is a
+ * free Module 2, which is the right side to err on. A refund that does not
+ * fully come back pages, exactly like the assemble route's rollback.
+ */
+async function refuseShortModule2(
+  studentId: string,
+  sessionId: string,
+  sessionConfig: unknown,
+  fallbackFamily: 'sat' | 'toefl',
+  fallbackSection: string,
+  detail: SectionShortDetail,
+): Promise<NextResponse> {
+  const cfg = (sessionConfig && typeof sessionConfig === 'object' ? sessionConfig : {}) as
+    { family?: string; section?: string; pathNode?: string | null }
+  const family = cfg.family ?? fallbackFamily
+  const section = cfg.section ?? fallbackSection
+  const cost = cfg.pathNode ? 0 : creditCostForTest(family, section)
+  let refunded = 0
+  if (cost > 0) {
+    const r = await refundTestCredits(studentId, sessionId, cost)
+    refunded = r.refunded + r.already
+    if (r.failed > 0) {
+      await raiseAlert({
+        severity: 'critical',
+        title: 'Study credits kept for a test whose Module 2 could not be delivered',
+        message:
+          `${r.failed} of ${cost} credit slice(s) could not be refunded after Module 2 came up short ` +
+          `(${detail.scope}). Refund with POST /api/admin/study/sessions/refund-credits ` +
+          `{ sessionId: "${sessionId}", studentId: "${studentId}" }.`,
+        dedupeKey: `study-module2-refund-failed:${sessionId}`,
+        context: { studentId, sessionId, cost, family, section, ...detail, ...r },
+      })
+    }
+  }
+  await releaseClaim(sessionId, 'short module 2')
+  await reportSectionShort(detail, {
+    studentId, sessionId, via: 'test/route',
+    outcome: `Module 2 could not be filled on any route; ${cost} credit(s) refunded and the student told.`,
+  })
+  return NextResponse.json({ ...sectionUnavailableBody(detail), refunded: cost > 0, refundedCredits: refunded }, { status: 409 })
 }
 
 /** Give up a won `module2_route` claim after the draw or the cache
