@@ -148,7 +148,7 @@ describe('buildSectionBreakdown', () => {
   it('ignores an item still awaiting its grade', () => {
     const items: BreakdownItem[] = [
       { type: 'writing_email', prompt: '[Email] a', rubricBand: 4 },
-      { type: 'writing_email', prompt: '[Email] b', rubricBand: null },
+      { type: 'writing_email', prompt: '[Email] b', rubricBand: null, studentAnswer: 'a reply' },
     ]
     const b = buildSectionBreakdown(items, scoreListenRepeat, { minItems: 1 })
     expect(b.groups[0]!.items).toBe(1)

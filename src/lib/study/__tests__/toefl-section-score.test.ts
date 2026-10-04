@@ -103,9 +103,21 @@ describe('scoreToeflSection', () => {
   const repeat = (expected: string, said: string): ScorableItem =>
     ({ type: 'speaking_repeat', expectedText: expected, studentAnswer: said })
   const interview = (band: number | null): ScorableItem =>
-    ({ type: 'speaking_interview', rubricBand: band })
+    // Answered: a blank open response scores 0 rather than dropping out
+    // (see the blank test below), so "awaiting a grade" needs an answer.
+    ({ type: 'speaking_interview', rubricBand: band, studentAnswer: 'an answer' })
 
   const SENT = 'She works at the library on Friday afternoons'
+
+  it('scores a BLANK open response 0 instead of dropping it (owner decision 2026-10-04)', () => {
+    const s = scoreToeflSection(
+      [repeat(SENT, SENT), interview(4), { type: 'speaking_interview', rubricBand: null, studentAnswer: '  ' }],
+      SPEAKING_WEIGHTS, scoreListenRepeat,
+    )
+    expect(s.parts.find(p => p.key === 'take_interview')).toMatchObject({ earned: 4, max: 10 })
+    // 0.4 x 5/5 + 0.6 x 4/10
+    expect(s.proportion).toBeCloseTo(0.64, 10)
+  })
 
   it('gives a near-miss repeat partial credit instead of zero', () => {
     // A real transcript from a real session. Under the old model this

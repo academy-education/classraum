@@ -174,7 +174,8 @@ export interface ItemScore {
 /**
  * Points for ONE delivered item, or null when it is not scorable —
  * an item type from another section, a repeat with no target sentence,
- * an open response still awaiting its grade.
+ * an ANSWERED open response still awaiting its grade. A blank open
+ * response is scorable: it is 0.
  *
  * Exported because the per-section breakdown on the result screen needs
  * the same arithmetic. Two functions scoring the same item is how the
@@ -198,7 +199,17 @@ export function scoreItem(
     return { part, earned: scoreRepeat(expected, it.studentAnswer ?? '').score, max }
   }
   if (part === 'build_a_sentence') return { part, earned: it.correct ? 1 : 0, max }
-  if (it.rubricBand == null) return null
+  if (it.rubricBand == null) {
+    // A BLANK open response scores 0, as on the real TOEFL (owner
+    // decision 2026-10-04). It used to drop out like an ungraded one, so
+    // skipping the hardest task re-weighted the section onto the rest:
+    // 6cbfee66 showed 78 with the discussion skipped, where 0 for it
+    // gives 43. A blank is never sent to the grader (0 of 52 live blank
+    // open answers have a submission), so nothing will ever replace it.
+    // An ANSWERED item with no band is still in flight and drops out.
+    if (!(it.studentAnswer ?? '').trim()) return { part, earned: 0, max }
+    return null
+  }
   return { part, earned: Math.max(0, Math.min(max, it.rubricBand)), max }
 }
 
