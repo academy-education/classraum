@@ -17,18 +17,78 @@
  *   the state    study_item_bank + attacks + reviews  (measured)
  *
  * Both renderings — this markdown and /admin/bank-qc — are generated
- * from those. Editing REGISTER.md by hand is pointless; the next run
- * overwrites it, which is the intended behaviour rather than a flaw.
+ * from those. Editing §0-§4 or the §6 rule by hand is pointless; the
+ * next run overwrites them.
  *
- * usage: node scripts/study-bank/render-register.mjs [--check]
+ * ── EXCEPT §5, which is hand-maintained and PRESERVED VERBATIM ───────
+ * CLAUDE.md says: "When a fix uncovers something new, append it to §5
+ * of that file in the SAME commit as the fix." From 2026-09-04 to
+ * 2026-10-02 ~3,000 lines of §5 entries were appended that way, while
+ * this script still regenerated §5 from FOUND_WHILE_FIXING — one run
+ * would have deleted all of them. The two rules contradicted; now they
+ * do not. Two regions of the EXISTING file are copied byte-for-byte:
+ *
+ *   §5     from "## 5. Found while fixing" up to "## 6."
+ *   tail   everything after the §6 rule paragraph (entries were also
+ *          appended at the very end of the file)
+ *
+ * If REGISTER.md exists and either marker cannot be found, the script
+ * exits 2 and writes nothing — it never falls back to regenerating §5,
+ * because that fallback IS the deletion. FOUND_WHILE_FIXING is only
+ * used to seed §5 when no REGISTER.md exists at all. A backup of the
+ * file as it stood before this change is REGISTER.pre-render-backup-
+ * 2026-10-02.md.
+ *
+ * usage: node scripts/study-bank/render-register.mjs [--check] [--out=PATH]
  *        --check exits 1 if the file is stale, and writes nothing.
+ *        --out   writes elsewhere (dry run); §5 is still read from
+ *                REGISTER.md.
  */
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 
 const CHECK = process.argv.includes('--check')
-const OUT = new URL('./REGISTER.md', import.meta.url).pathname
+const REGISTER = new URL('./REGISTER.md', import.meta.url).pathname
+const OUT = process.argv.find(a => a.startsWith('--out='))?.slice(6) || REGISTER
+
+const S5_HEAD = '## 5. Found while fixing'
+const S6_HEAD = '## 6. The rule that keeps this honest'
+const S6_RULE = `${S6_HEAD}
+
+A cohort is **not** clean because the cheap checks passed. Five
+structural proxies have been built — letter spread, length rank,
+punctuation asymmetry, concessive pivot, option-family balance — and
+each caught the tell it was built for while missing the next one. The
+blind attack is the gate, a human sitting is the confirmation, and the
+structural checks are pre-flight only. See CLAUDE.md.
+`
+
+/**
+ * The hand-maintained regions of the existing file, byte-for-byte.
+ * Read as late as possible (just before writing) so an entry another
+ * session appended while the DB queries ran is kept.
+ */
+function preservedRegions() {
+  if (!existsSync(REGISTER)) return null
+  const cur = readFileSync(REGISTER, 'utf8')
+  const lineStart = h => {
+    if (cur.startsWith(h)) return 0
+    const i = cur.indexOf('\n' + h)
+    return i < 0 ? -1 : i + 1
+  }
+  const i5 = lineStart(S5_HEAD)
+  const i6 = lineStart(S6_HEAD)
+  const iRule = cur.indexOf(S6_RULE, i6)
+  if (i5 < 0 || i6 < 0 || i6 < i5 || iRule !== i6) {
+    console.error(`REGISTER.md exists but its §5/§6 markers were not found intact `
+      + `(§5 at ${i5}, §6 at ${i6}, rule at ${iRule}). Refusing to write: regenerating §5 `
+      + `would delete the hand-appended findings. Fix the headings, or restore from `
+      + `REGISTER.pre-render-backup-2026-10-02.md.`)
+    process.exit(2)
+  }
+  return { s5: cur.slice(i5, i6), tail: cur.slice(i6 + S6_RULE.length) }
+}
 
 /*
  * The plan lives in a .ts module the app imports. Rather than duplicate
@@ -38,7 +98,7 @@ const OUT = new URL('./REGISTER.md', import.meta.url).pathname
 const TS = new URL('../../src/lib/study/bank-register.ts', import.meta.url).pathname
 const js = execFileSync('npx', ['esbuild', TS, '--format=esm', '--platform=node', '--loader:.ts=ts'],
   { encoding: 'utf8', maxBuffer: 8 << 20 })
-const { WORK, SETTLED, FOUND_WHILE_FIXING, registerSummary, A3_ATTEMPTS, PLAIN_STATUS, unverifiedItems } =
+const { WORK, SETTLED, FOUND_WHILE_FIXING, COHORT_NOTES, registerSummary, A3_ATTEMPTS, PLAIN_STATUS, unverifiedItems } =
   await import('data:text/javascript;base64,' + Buffer.from(js).toString('base64'))
 
 /* Same trick for the review maths — imported, never re-implemented. */
@@ -54,15 +114,32 @@ const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY,
   { auth: { persistSession: false } })
 
-/** .range(), never .limit() — PostgREST caps at 1000 and lies about it. */
+/** .range(), never .limit() — PostgREST caps at 1000 and lies about it.
+ *
+ * ORDERED BY id, and the total asserted — added 2026-10-02. Paging an
+ * unordered select gives no guarantee that pages partition the table, so
+ * a row can repeat on one page and be missing from another; at 9,000+
+ * bank rows (10 pages) that would silently drop a reviewed item out of
+ * domainOf. (Not the cause of the drift seen that day: two renders
+ * minutes apart moved ACT Production of Writing from n=20 to n=18
+ * ordered and unordered alike, because B7-reviewed items were changing
+ * underneath — study_item_reviews_fresh holds 38 of that run's 40 rows.) */
 async function all(table, cols, tweak = q => q) {
   const out = []
+  let total = null
   for (let from = 0; ; from += 1000) {
-    const { data, error } = await tweak(db.from(table).select(cols).range(from, from + 999))
+    const { data, error, count } = await tweak(
+      db.from(table).select(cols, { count: 'exact' }).order('id').range(from, from + 999))
     if (error) throw new Error(`${table}: ${error.message}`)
+    if (total === null) total = count
     if (!data?.length) break
     out.push(...data)
     if (data.length < 1000) break
+  }
+  const ids = new Set(out.map(r => r.id))
+  if (out.length !== total || ids.size !== out.length) {
+    console.error(`${table}: read ${out.length} rows (${ids.size} distinct) but count says ${total} — refusing to render`)
+    process.exit(2)
   }
   return out
 }
@@ -80,7 +157,7 @@ async function all(table, cols, tweak = q => q) {
  */
 const bank = (await all('study_item_bank', 'id, family, domain, item, archived, verified'))
   .filter(r => !r.archived && r.verified)
-const attacks = await all('study_item_attacks', 'item_id, correct, solvers, attacked_at')
+const attacks = await all('study_item_attacks', 'id, item_id, correct, solvers, attacked_at')
 /*
  * "Everything else" is COUNTED, not declared. It used to be a literal
  * in bank-register.ts (3,387) while this script already had the live
@@ -96,9 +173,9 @@ const UNVERIFIED = unverifiedItems(bank.length)
  * model-produced row in the human column collapses the two into one and
  * every verdict becomes a model agreeing with itself. See migration 079.
  */
-const reviews = await all('study_item_reviews_fresh', 'item_id, run_id, reviewer_id, blind_pick, key_slot, blind_at, reviewed_at',
+const reviews = await all('study_item_reviews_fresh', 'id, item_id, run_id, reviewer_id, blind_pick, key_slot, blind_at, reviewed_at',
   q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'human'))
-const assisted = await all('study_item_reviews_fresh', 'item_id, run_id, blind_pick, key_slot',
+const assisted = await all('study_item_reviews_fresh', 'id, item_id, run_id, blind_pick, key_slot',
   q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'model_assisted'))
 
 const latest = new Map()
@@ -343,11 +420,15 @@ const open = WORK.filter(w => w.state !== 'done')
    nine hours after Seoul midnight. */
 const today = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10)
 
-const md = `# Question bank register — the one list
+const mdHead = `# Question bank register — the one list
 
-<!-- GENERATED by scripts/study-bank/render-register.mjs. Do not edit by
-     hand: the plan lives in src/lib/study/bank-register.ts and the
-     cohort table is measured from the database. Re-run to update. -->
+<!-- GENERATED by scripts/study-bank/render-register.mjs, EXCEPT §5.
+     §0-§4 and the §6 rule: do not edit by hand - the plan lives in
+     src/lib/study/bank-register.ts and the cohort table is measured
+     from the database. Re-run to update.
+     §5 "Found while fixing" (and anything after the §6 rule) is
+     HAND-MAINTAINED: append there per CLAUDE.md; the renderer copies
+     it verbatim and never regenerates it. -->
 
 **Everything outstanding on the bank, in one place.** The same content
 renders on /admin/bank-qc, from the same source, so the two cannot
@@ -412,7 +493,7 @@ Two qualifications, both learned the hard way:
 
 | test | cohort | items | blind | human | state |
 |---|---|---|---|---|---|
-${rows.map(r => `| ${r.family.toUpperCase()} | ${r.domain} | ${r.items} | ${r.blind === null ? '—' : r.blind + '%'} | ${humanCell(r.human)} | ${verdict(r.blind, r.human)} |`).join('\n')}
+${rows.map(r => { const n = COHORT_NOTES[`${r.family}|${r.domain}`] ?? {}; return `| ${r.family.toUpperCase()} | ${r.domain} | ${r.items} | ${n.blind ?? (r.blind === null ? '—' : r.blind + '%')} | ${humanCell(r.human)} | ${n.state ?? verdict(r.blind, r.human)} |` }).join('\n')}
 
 ${(() => {
   /*
@@ -537,25 +618,30 @@ ${open.filter(w => w.owner === 'you').map(w => `| ${w.id} | ${w.title} | ${w.siz
 
 ${SETTLED.map(x => `- **${x.title}.** ${x.finding}${x.doc ? ` → \`${x.doc}\`` : ''}`).join('\n')}
 
-## 5. Found while fixing
+`
+
+/* Splice the hand-maintained regions in AFTER the template is built, so
+ * nothing in them is ever interpreted as a template expression. */
+const kept = preservedRegions()
+const seededS5 = `${S5_HEAD}
 
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
 ${FOUND_WHILE_FIXING.map(f => `- **${f.date}** — ${f.what} ${f.landedAs === 'fixed' ? '_(fixed on the spot)_' : `→ **${f.landedAs}**`}`).join('\n')}
 
-## 6. The rule that keeps this honest
-
-A cohort is **not** clean because the cheap checks passed. Five
-structural proxies have been built — letter spread, length rank,
-punctuation asymmetry, concessive pivot, option-family balance — and
-each caught the tell it was built for while missing the next one. The
-blind attack is the gate, a human sitting is the confirmation, and the
-structural checks are pre-flight only. See CLAUDE.md.
 `
+const s5 = kept ? kept.s5 : seededS5
+const tail = kept ? kept.tail : ''
+const md = mdHead + s5 + S6_RULE + tail
+/* Belt and braces: the regions must survive the splice exactly. */
+if (kept && (md.slice(mdHead.length, mdHead.length + s5.length) !== kept.s5 || !md.endsWith(S6_RULE + kept.tail))) {
+  console.error('internal: preserved §5/tail did not survive the splice — refusing to write')
+  process.exit(2)
+}
 
 if (CHECK) {
-  const current = existsSync(OUT) ? readFileSync(OUT, 'utf8') : ''
+  const current = existsSync(REGISTER) ? readFileSync(REGISTER, 'utf8') : ''
   // The generated-on date changes daily and is not a drift signal.
   const strip = t => t.replace(/^Generated \d{4}-\d{2}-\d{2}\./m, 'Generated <date>.')
   if (strip(current) !== strip(md)) {

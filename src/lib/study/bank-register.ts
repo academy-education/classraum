@@ -328,12 +328,12 @@ export const WORK: WorkItem[] = [
     id: 'B7',
     title: 'ACT human sitting: can a person answer English PoW and Reading without the passage?',
     size: '40 questions, blind, about 25-30 minutes in one sitting',
-    state: 'open',
+    state: 'done',
     owner: 'you',
     why: 'ACT English Production of Writing and all of ACT Reading fail the AI blind attack at 76% and 79% per item with cross-item leakage removed, and three distractor rewrites did not move them (ACT-ATTACK-RESULT.md). The register already holds seven TOEFL cohorts where the same attack said 83-100% and a person scored 13-27%, so the AI number is a screen and not a verdict. A person is the only instrument left that can return either answer. Run act-cofounder-2026-09-02 is drawn: 20 Production of Writing, then 7 Key Ideas, 7 Craft and Structure, 6 Integration - one reading cohort of 20 across its three domains, PoW front-loaded so a half-finished sitting still answers the question worth asking. Keys dealt flat: control 27.5% overall, 25.0% on PoW. Pool restricted to family act (DRAW_FAMILY) because "Craft and Structure" is also an SAT domain name.',
     account: 'support@classraum.com - the co-founder, already super_admin. The run is pre-drawn for his reviewer id; /admin/bank-qc resumes it, no dropdown.',
     whoSpecifically: 'The co-founder. He has not seen any ACT item, and the draw excludes anything he has ever reviewed.',
-    note: 'Decision rule, fixed before the number exists: PoW or Reading at or below ~40% blind = clean, gate flips for English, Math and Reading; at or above ~60% = a person can guess it too, archive the 258 verbal items rather than repair them; between = dead zone, second reader decides, exactly the B2/B6 rule. Do not lower the bar to fit the data.',
+    note: 'CLOSED 2026-09-02 — 40/40 at 10.0%, ACT shipped. Left open here until 2026-09-04, which is why a duplicate sitting was requested (REGISTER.md section 5, 2026-09-04). Decision rule, fixed before the number exists: PoW or Reading at or below ~40% blind = clean, gate flips for English, Math and Reading; at or above ~60% = a person can guess it too, archive the 258 verbal items rather than repair them; between = dead zone, second reader decides, exactly the B2/B6 rule. Do not lower the bar to fit the data.',
     doc: 'scripts/study-bank/ACT-ATTACK-RESULT.md',
   },
   {
@@ -345,7 +345,7 @@ export const WORK: WorkItem[] = [
     why: 'B2 scored Craft and Structure 8/20 = 40% and Information and Ideas 8/20 = 40%. Both sit in the pre-registered 36-59% dead zone, and B2-PREREGISTERED.md fixed the consequence before the data existed: a second reader decides, nothing else changes. It also closed the obvious escape in advance — "if a cohort lands at 36%, it is inconclusive, not basically cleared" — so these do NOT get read as passes on the grounds that 40% is near chance. The dead zone is wide on purpose: at n=20 one item moves the score 5 points, and 486 items should not turn on one item.',
     account: 'andy@classraum.com - promoted to super_admin 2026-09-01 and verified CLEAN: zero study_item_reviews rows and zero sweep verdicts, so it is a genuinely distinct reviewer identity. NOT support@ (the co-founder) and NOT andy.manager@ (holds the co-founder B1 mirror despite its name).',
     whoSpecifically: 'ANDY, not the co-founder. This is the one task on the register that the co-founder must not do: he holds every human sitting on this bank, so a second pass by him measures his own consistency rather than two readers — which is exactly how B1 died. andy.manager@gmail.com is unusable despite its name because it holds the co-founder\'s B1 mirror, so Andy needs a THIRD account created before this can start. Andy\'s only prior data point is 85% abstention on that mirror, taken under the old wording, and calibration is per-reviewer (see B4) — so his first sitting needs its own calibration before its number means anything.',
-    note: 'Cheapest correct order: create the third login, sit a calibration on it, then sit the two cohorts. Skipping the calibration is what produced four consecutive unusable sittings before B4.',
+    note: 'Calibration DONE 2026-09-12: calibration-andy-2026-09-02, 20/20 answered, zero abstentions - Andy is a usable second reader (REGISTER.md section 5, 2026-09-12). Still open: the dedicated second-reader sitting on the two cohorts. Cheapest correct order: create the third login, sit a calibration on it, then sit the two cohorts. Skipping the calibration is what produced four consecutive unusable sittings before B4.',
     doc: 'scripts/study-bank/B2-RESULT.md (the scoring) + B2-PREREGISTERED.md (the rule that makes this mandatory rather than optional)',
   },
   {
@@ -392,7 +392,8 @@ export const WORK: WorkItem[] = [
     size: '1 decision + 2 ledger entries',
     why: 'The elimination stage was run on SAT R&W for the first time on 2026-09-04 and both batches failed its stated bar of ZERO confidently rejectable options — a bar no cohort in this bank meets and arguably no real SAT item meets either. rw-v8-cs-hard (16 of 24 items) and rw-v8-sec-hard (5 of 24) shipped under BANK_GATE_OVERRIDE with the reason written into their ledger entries. Either the bar is wrong for this family and should be restated as a rate against a matched live control, or it is right and those two cohorts should be reconsidered. Leaving it as an override that nobody revisits is the one outcome that is definitely wrong.',
     owner: 'claude',
-    state: 'open',
+    state: 'done',
+    note: 'DONE 2026-10-02 (e9a9291b, pre-registered in 822bdb13). Bar restated as candidate minus matched live control <= +20 pts (elimination-paired.mjs, re-derived in gate.mjs); both overridden cohorts PASS it. See REGISTER.md section 5, 2026-10-02.',
   },
   {
     id: 'A24',
@@ -400,9 +401,94 @@ export const WORK: WorkItem[] = [
     size: '1 check',
     why: 'verify-answer-key-spread.ts guards against tell #2 — every four-question set a complete ABCD permutation — but only inspects PASSAGE-GROUPED sets. sat-cs-hard-v3 and sat-sec-hard-v6 are both 6-of-6 complete permutations over sequential quadruples, sec-v6 fully periodic after item 05, and the guard passes both because R&W items are ungrouped. Two graders spotted it from their own answer sequences; the designated checker could not. Harmless today because choice order is randomised at draw time, which is exactly why nothing else will catch it if that ever changes.',
     owner: 'claude',
-    state: 'open',
+    state: 'done',
+    note: 'DONE 2026-10-02 (e9a9291b). verify-answer-key-spread.ts now runs a sequence check on ungrouped keys in stored order (aligned quads, overlapping windows, period; control = the cohort\'s own keys shuffled); it flags 10 live cohorts. See REGISTER.md section 5, 2026-10-02.',
+  },
+  {
+    id: "B8",
+    title: "Decide whether the 26 held B8 sign-pair items get a second pass",
+    size: "~26 items, two-value edits (or re-author)",
+    why: "B8 repaired 88 of 114 live hard SAT Math items on 2026-09-28 (A68): live key-in-pair fell from 79% to 40%, below chance, and the hard band holds 2 of 7 sets. The 26 held items need a two-distractor edit or a re-author; the residual tell is small because the remaining sign pairs sit outside the key on most of them.",
+    owner: "you",
+    state: "open",
+    note: "List them: node scripts/study-bank/b8/check-repairs.mjs | grep HELD. You decide; I run it.",
+  },
+  {
+    id: "B9",
+    title: "Human sitting on act-english-v7 (120 items, STAGED)",
+    size: "one blind sitting, CSE-weighted, ~25-30 minutes",
+    why: "ACT English v7 (12 passages / 120 items, CSE 7 / PoW 2 / KoL 1) passed the with-source gate and is inserted verified=false. The model attack saturates on ACT, so per the pre-registered release rule only a person can release it: <= ~40% blind -> verified=true, >= ~60% archive, between = second reader. It takes projected English forms from 3 to 5.",
+    whoSpecifically: "The co-founder: the run is drawn for his reviewer id on support@classraum.com.",
+    owner: "you",
+    state: "open",
+    note: "Run act-en7-cofounder-2026-10-02 is DRAWN, not sent: 40 items (CSE 24 / PoW 12 / KoL 4) for the co-founder on support@classraum.com, control 25.0% per domain. Forwardable note: ACT-EN7-SITTING.md (REGISTER.md section 5, 2026-10-02).",
+    doc: "scripts/study-bank/act-english-v7.SITTING.PREREG.md + scripts/study-bank/ACT-EN7-SITTING.md",
+  },
+  {
+    id: "B10",
+    title: "SSAT Reading deficit: human authoring only",
+    size: "person-authored passage sets; agent authoring has stopped",
+    why: "The A69 pilot (2026-10-02) refuted the last untried agent construction: 80.0% options-only vs a 24.3% live control. SSAT Reading is a family where the attack discriminates (shipped bank 21.1% model / 15.0% human), so the deviation is real; agent authoring of SSAT Reading stops and the deficit needs a human author.",
+    owner: "you",
+    state: "open",
+    doc: "scripts/study-bank/SSAT-READING-DIAGNOSIS.md",
+  },
+  {
+    id: "B11",
+    title: "MAP comprehension: a human decides, not a third agent batch",
+    size: "a human sitting, or human-authored items, on MAP reading comprehension",
+    why: "MAP pilot batch 2 (2026-10-02) fixed the Mechanics centroid tell, but comprehension still leaks options-only at 83.3% (5/6 unanimous) against a comprehension-shaped live control at 25.0%, with the fixing rule followed. Per the stop-after-a-failed-rewrite rule no third comprehension batch is recommended; MAP has no human sitting and nothing is inserted.",
+    owner: "you",
+    state: "open",
+    doc: "scripts/study-bank/MAP-PILOT-2-2026-10-02.md",
+  },
+  {
+    id: "B12",
+    title: "Owner decision: teacher invite links attach anyone holding the academy UUID",
+    size: "one product decision, then a migration",
+    why: "Teacher invites are /auth?role=teacher&academy_id=..., and handle_new_user's teacher branch makes anyone with that UUID (it is in every invite link) an active teacher who can see the academy's students. Migration 117 left it as is because either fix (per-invite tokens, or manager approval) changes the invite product.",
+    whoSpecifically: "Andy, as owner: it changes the invite product.",
+    owner: "you",
+    state: "open",
+    doc: ".tmp-artifacts/definer-functions-review-2026-10-02.md (finding #5) + database/migrations/117_scope_definer_functions.sql",
+  },
+  {
+    id: "B13",
+    title: "Owner decision: users_read_all_authenticated lets every signed-in user read every email and phone",
+    size: "one decision, then a policy migration and a caller audit",
+    why: "The users read policy is USING (true) for authenticated, so any self-signed-up student can read every user's email and phone. Narrowing it is a privacy fix that may break screens listing users across an academy, so the 2026-10-02 definer review left it as an owner decision.",
+    whoSpecifically: "Andy, as owner: it trades a privacy fix against screens that may list users.",
+    owner: "you",
+    state: "open",
+    doc: ".tmp-artifacts/definer-functions-review-2026-10-02.md (finding #6)",
+  },
+  {
+    id: "B14",
+    title: "Resolve the duplicate recurring invoice, then apply migration 116",
+    size: "1 duplicate row to void, then one unique index",
+    why: "Migration 116 (one recurring invoice per template, student and period) is the database guard against an overlapping cron run and retry billing a real parent twice. It is NOT APPLIED: the live table already holds a duplicate the index cannot build over (template c91a7ab2, student c73c0670, due 2025-10-15, two pending rows). Someone must decide which row is real first.",
+    whoSpecifically: "Andy, as owner: which of the two pending invoices a real parent should receive.",
+    owner: "you",
+    state: "open",
+    doc: "database/migrations/116_recurring_invoice_once.sql",
   },
 ]
+
+/**
+ * Hand verdicts on the MEASURED cohort table, keyed `family|domain`.
+ *
+ * The table is computed, but a few cohorts have a finding the arithmetic
+ * cannot express — a pooled blind mean that describes neither of two
+ * strata. Before 2026-10-02 these were hand-edited into REGISTER.md and
+ * would have been lost on the next render. `blind` and `state` replace
+ * the computed cells; omit either to keep the computed one.
+ */
+export const COHORT_NOTES: Record<string, { blind?: string; state?: string }> = {
+  'sat|Expression of Ideas': {
+    blind: '28% transitions / 100% synthesis',
+    state: '**cohort mean retired** — see 2026-09-11; the pooled blind figure describes neither stratum',
+  },
+}
 
 export interface Settled {
   title: string
@@ -440,6 +526,26 @@ export const SETTLED: Settled[] = [
     title: 'Reviews are bound to the content they judged',
     finding: 'Migration 076 applied. Scoring reads study_item_reviews_fresh, so editing a reviewed item visibly invalidates its review instead of silently keeping it.',
     doc: 'database/migrations/076_review_content_binding.sql',
+  },
+  {
+    title: "The 120 held items are held on DIFFERENT evidence from `v2`, and the `v2` result does not release them",
+    finding: "`v2` ran high *including its own live control*, so 82.8% was the instrument's level on that material and never a deviation. The held reading batches deviate from a matched control that sits **at chance**: shipped ssat/reading measures 21.1% against a 20.0% line, while `ssat-reading-s11` came in at 66.7%, and `isee-reading-s10` at 69.4%/72.2% with the cross-item channel designed out by construction. A deviation from a floor-at-chance control is a stronger claim than a high absolute number. Decided 2026-09-12: do **not** release `ssat-reading-s11`, `ssat-reading-s12`, `isee-reading-s10` or `sat-cs-h4` on the strength of the `v2` finding. The open question is narrower and is not settled — nobody has tested whether a model *deviation* transfers to a human, only that model *levels* do not.",
+    doc: "scripts/study-bank/REGISTER.md section 5 (2026-09-12, the v2 finding)",
+  },
+  {
+    title: "A model options-only number on a PROSE cohort may not be cited to repair or archive live items",
+    finding: "Established 2026-09-12 on `v2` (see §5). It stays a verdict on numeric maths, where the option set is bare values carrying no recall prior. Consequence: the SSAT Verbal (180 items) and ACT English recommendations are **not executable** until a human sits a sample — and per the width finding in §5, that sitting was not even drawable until today.",
+    doc: "scripts/study-bank/REGISTER.md section 5 (2026-09-12, the v2 finding)",
+  },
+  {
+    title: "Author maths, do not author reading",
+    finding: "Maths is where the attack is a verdict rather than a screen, and 258 items cleared it in one day. Reading has failed six consecutive rewrites; the unit of repair is the **passage set**, not the item, and no brief has yet addressed that. Do not commission a seventh reading rewrite to the same shape.",
+    doc: "scripts/study-bank/READING-PILOT-KILLED.md",
+  },
+  {
+    title: 'Key extremity is diffuse, not a cohort: no repair programme, gated at authoring',
+    finding: 'Live SAT keys sit at an extreme 31.1% vs a 50% derived line (ACT 43.1%, SSAT 20.0% vs 40, ISEE 41.9%), spread across every cohort; repairing all of v2 would cut the SAT exploit only from +9.1 to ~+6.0 pts. No item rewrite. Instead key-extremity-gate.mjs refuses a maths batch under 0.8 x derived chance at insert (2026-10-02).',
+    doc: 'scripts/study-bank/KEY-EXTREMITY-RESULT.md',
   },
   {
     title: 'The grader is not calibrated, and cannot be from public data',
