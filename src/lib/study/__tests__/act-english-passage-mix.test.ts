@@ -4,7 +4,9 @@ jest.mock('@/lib/supabase-admin', () => {
   const builder: Record<string, unknown> = {}
   builder.select = () => builder
   builder.eq = () => builder
-  builder.then = (res: (v: unknown) => unknown) => res({ data: mockRows, error: null })
+  builder.order = () => builder
+  builder.range = () => builder
+  builder.then = (res: (v: unknown) => unknown) => res({ data: mockRows, error: null, count: mockRows.length })
   return { dbAdmin: { from: () => builder } }
 })
 

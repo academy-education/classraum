@@ -47,13 +47,24 @@ export function chain(result: QueryResult = {}, opts: { reject?: unknown } = {})
   const resolved = { data: null, error: null, ...result }
   const target: Record<string, unknown> = {}
   for (const m of CHAIN_METHODS) target[m] = jest.fn(() => target)
+  // Like PostgREST: a select asking for { count: 'exact' } gets a count
+  // back. An enqueued array stands for the whole matching set, so its
+  // length is that count unless the test supplies one explicitly.
+  let wantsCount = false
+  target.select = jest.fn((_cols?: unknown, o?: { count?: string }) => {
+    if (o?.count === 'exact') wantsCount = true
+    return target
+  })
   target.then = (
     onFulfilled?: (v: { data: unknown; error: unknown }) => unknown,
     onRejected?: (e: unknown) => unknown,
   ) => {
+    const withCount = wantsCount && resolved.count === undefined && Array.isArray(resolved.data)
+      ? { ...resolved, count: (resolved.data as unknown[]).length }
+      : resolved
     const p = 'reject' in opts
       ? Promise.reject(opts.reject)
-      : Promise.resolve(resolved)
+      : Promise.resolve(withCount)
     return p.then(onFulfilled, onRejected)
   }
   return target as unknown as ChainMock

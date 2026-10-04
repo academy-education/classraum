@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
+import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { resolvePlan } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -45,14 +46,18 @@ export async function GET(req: NextRequest) {
     // Archived sessions (and every question answered inside them) are
     // excluded from all aggregates — matching the history page, which
     // hides archived sessions entirely.
-    dbAdmin
+    // PAGED: a heavy student is already at 857 attempts (2026-10-04);
+    // unpaged, accuracy/hours/heatmap silently freeze at the first 1000.
+    fetchAllRows<{ id: string; is_correct: boolean | null; time_spent_seconds: number | null; created_at: string }>((from, to) => dbAdmin
       .from('study_attempts')
       .select(`
         id, is_correct, time_spent_seconds, created_at,
         session:study_sessions!inner ( student_id, archived )
       `)
       .eq('session.student_id', user.id)
-      .eq('session.archived', false),
+      .eq('session.archived', false)
+      .order('id', { ascending: true })
+      .range(from, to)),
     dbAdmin
       .from('study_mastery')
       .select(`
