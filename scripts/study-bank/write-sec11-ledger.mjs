@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+/** Ledger entry for sat-sec-hard-v11.kept, bound to its exact bytes. */
+import { readFileSync, writeFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+const D = 'scripts/study-bank'
+const file = `${D}/sat-sec-hard-v11.kept.batch.json`
+const sha = createHash('sha256').update(readFileSync(file)).digest('hex')
+const kept = JSON.parse(readFileSync(file, 'utf8')).length
+const ledger = JSON.parse(readFileSync(`${D}/ledger.json`, 'utf8'))
+const id = 'sat-sec-hard-v11-kept-2026-10-06'
+if (ledger.batches.some(b => b.id === id)) { console.error('entry exists'); process.exit(2) }
+ledger.batches.push({
+  id, createdAt: '2026-10-06', targetTest: 'sat', section: 'reading_writing',
+  task: 'multiple_choice', family: 'mc_hidden_source', cohort: 'rw-v11-sec-hard', contentSha: sha, status: 'inserted',
+  note: `Pre-registered 45a69054 (PREREG-SEC11-2026-10-04.md, v10 bars/control from 2ecde234) before any item existed. 12 authored, boundary constructions only, in two halves of 6 by two Claude agents; no audit/repair round. Gated by three options-only solver samples and three fresh with-source graders. ${kept} kept: 4 hard / 7 medium by panel median; the authors labelled all 12 hard. 1 dropped by the pre-registered rule (SEC11B-06, median 2 free strikes), none held.`,
+  stages: {
+    shape: { passed: true, contentSha: sha, verdict: `${kept} items, one ______ blank each; bank-helper check shape OK on all 12. Key letters across the 12 authored A3/B3/C3/D3; key uniquely longest 0/12, uniquely shortest 1/12. Length ratio over 1.6 on SEC11A-06 (2.38) and SEC11B-03 (2.00), both from a long DISTRACTOR ("kiln, alongside the", "site, however, because the"). No grader marked any item off the digital SAT SEC blueprint.` },
+    withsource: { passed: true, contentSha: sha, verdict: `THREE INDEPENDENT GRADERS (ws-d, ws-e, ws-f), each solving cold and writing phase 1 before opening keys: 12 of 12 keys matched on all three, zero cold misses, zero second-defensible options, zero resolving words, zero incoherent explanation paths, zero drop recommendations, zero off-blueprint. Pre-registered drop (gate-verdict.mjs): SEC11B-06 on a median of 2 of 3 distractors free-strikable [2,2,0] (colon and semicolon after a Because-clause). Panel median: hard SEC11A-03, SEC11B-01, SEC11B-02, SEC11B-04; medium the other 7. Two graders noted wording slips in explanations (B-06 dropped anyway; B-05 calls a fused sentence a comma splice) - conclusions correct, path_coherent true on all three.` },
+    nosource: { passed: true, contentSha: sha, verdict: `Options-only attack (make-oo-render --control 24 --control-difficulty hard --exclude rw-v10-sec-hard), 12 candidates interleaved with 24 live HARD-band SEC items, keys dealt flat, three solver samples, 36/36 answered each. CANDIDATE 25.0% (9/36, letter line 25.0%) vs LIVE CONTROL 69.4% (50/72, letter line 25.0%), margin -44.4, inside the pre-registered +10 bar. Ceiling check: control 69.4% is below 90% and above its letter line +5, so the blind half is MEASURED. Solver independence: pairwise agreement 85.2% vs 26.1% if independent. Unanimity as batch rate: candidate 3/12 = 25.0%, control 14/24 = 58.3%. Unanimously solved candidates: SEC11B-02 (no mark subject-verb default), SEC11A-06 and SEC11A-01 (strong stop).` },
+    elimination: { passed: true, bar: 'paired-control-v1', candidateRate: 0, controlRate: 0.0694, margin: -0.0694, threshold: 0.2, n: 12, controlN: 24, samples: 3, contentSha: sha, verdict: `elimination-paired.mjs --batch/--qc (A23 bar). Run on ALL 12 authored items before drops, as the prereg requires when fewer than 12 survive (11 did); difficulty from the full panel median (5 hard incl. B-06 / 7 medium), matched on difficulty: 10 hard + 14 medium live SEC controls (v2 12, rw-v6 6, rw-v8 3, rw-v7 1, rw-v9 1, rw-v10 1), separate files, 3 Claude samples per arm. Candidate 0.0% [0,0,0] vs control 6.9% [4.2,8.3,8.3] -> margin -6.9, PASS. No key ever confidently rejected. Control eliminations: "nurses's" (3/3), "man'; are" (2/3).` },
+    tells: { passed: true, contentSha: sha, verdict: `Cross-item, recorded against the batch (named by a majority of graders): a dash option is never the key (0/3), ", however," never the key (0/2), the colon never the key (0/2), options inserting a preposition/subordinator ("with", "alongside", "so that", "even after", "was") never the key; the period option is the key both times it appears (SEC11A-01, SEC11A-04) and is the only period option in each set - the prereg's every-mark-both-ways constraint is violated for the period, dash and colon. Grader F: a "strongest boundary mark wins; however/preposition loses" rule gets roughly 8 of 12 without parsing. All 12 are boundary items (by design). SEC11A-04 and SEC11A-06 share one option template (comma / none / comma+preposition / strong stop) - graders advise not co-serving them. Key letters cycle A-B-C-D in file order; irrelevant to students because choices are shuffled per session at draw time. Options-only measured these as invisible to the solver (25.0%, at chance) - recorded, not dropped on.` },
+  },
+})
+ledger.generatedAt = new Date().toISOString()
+writeFileSync(`${D}/ledger.json`, JSON.stringify(ledger, null, 2))
+console.log(`ledger: ${id}  sha ${sha.slice(0,16)}  ${kept} items`)

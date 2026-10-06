@@ -839,6 +839,25 @@ recorded only in a commit message is a finding nobody reads.
 
 - **2026-10-06** — **NINE DUPLICATE-STEM PAIRS: ONE OF EACH ARCHIVED (owner's decision).** Found by form-qc (FORM-QC-2026-10-04.md): ISEE "ARDUOUS" appeared twice in one delivered form. Each pair shares a stem (7 of 9 also the key) with different distractors and no shared passage_group_id, so the one-per-group rule could not keep them apart. Kept the reviewed copy, else the older; set `archived = true` (reversible — set it back to false) on: `2c457df2` (ACT "Two sides 7 and 9"), `c9ee39c8` (ACT "5 red marbles"), `b0c5c122` (ACT "committee of 3 from 8"), `319cc343` (SSAT "Petal is to flower"), `ea3dda7c` (SSAT "Drought is to famine"), `fdb8ef4c` (SSAT "x+1/x=5"), `e7fcfd3d` (ISEE ARDUOUS), `373b58cf` (ISEE SUPERFLUOUS), `cfcc2265` (ISEE "circumference 12π"). Two pairs (Petal) had DIFFERENT keys under the same stem — legitimate items, but a student meeting both in one sitting would see one stem with two answers. A stem-duplicate check belongs in the insert gate; not added yet.
 
+- **2026-10-06** — **SEC v11 INSERTED: 11 of 12, 4 HARD / 7 MEDIUM BY PANEL MEDIAN. SEC hard 33 → 37. THE R&W MODULE-2 HARD ROUTE GOES 4 → 5 FORMS (form-capacity.mjs; next form needs 42 hard SEC, 5 short).** `rw-v11-sec-hard`, kept sha `ae2954fc`, prereg `45a69054` (PREREG-SEC11-2026-10-04.md, v10's bars and control from `2ecde234`), ledger `sat-sec-hard-v11-kept-2026-10-06`. Two Claude authors, 6 items each, boundary constructions only; no audit or repair round, no repair after any gate stage.
+
+      nosource    candidate 25.0% (9/36) vs live HARD-band control 69.4% (50/72), margin -44.4 (bar <= +10)
+                  control below 90% and above its letter line +5: MEASURED
+                  pairwise agreement 85.2% vs 26.1% independent - one solver sampled three times
+                  unanimity as rate: candidate 3/12 = 25.0%, control 14/24 = 58.3%
+      withsource  three cold graders (ws-d/e/f): 12/12 keys on all three, 0 cold misses, 0 second-defensible,
+                  0 resolving words, 0 bad paths, 0 drop recommendations, 0 off-blueprint
+      rule drops  SEC11B-06 median 2 of 3 distractors free-strikable [2,2,0] (colon/semicolon after a Because-clause)
+      elimination candidate 0.0% vs matched control 6.9% (n=12 vs 24), margin -6.9, PASS (A23 bar)
+                  run on all 12 authored items, as the prereg requires when under 12 survive
+      panel       hard A-03 (that-clause subject), B-01 (delayed object), B-02 (no mark, long restrictive
+                  subject), B-04 (closing comma before a that-complement); authors labelled all 12 hard
+                  (13th consecutive demotion)
+
+  **Cross-item tell, named by all three graders, recorded and not dropped on:** among the 12 a dash is never the key (0/3), ", however," never (0/2), the colon never (0/2), and options adding a preposition or subordinator ("with", "alongside", "so that", "even after", "was") never; the period is the key both times it appears (A-01, A-04), each time as the only period option. That breaks the prereg's brief ("every mark appears as key in some items and as a distractor in others"), which I saw at pre-flight and did not repair, per the prereg. Grader F: "strongest boundary mark wins; however/preposition loses" gets about 8 of 12 without parsing. The options-only attack did not find it (candidate exactly at chance), so it is a rule a coached student could learn rather than something visible in one option set. A-04 and A-06 share one option template (comma / none / comma+preposition / strong stop); graders advise not serving both in one form, and nothing enforces that. The key letters cycle A-B-C-D in file order; this does not matter because choices are shuffled at draw time.
+
+  **Read the hard count as the panel's number.** Two of the four hard items are 2-of-3 calls (B-02 and B-04: D said medium). The next v12 commission should vary which mark wins, with dash/colon keys and a strong stop as a distractor, before adding more boundary items. Seven more panel-median hard items buy form 6.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

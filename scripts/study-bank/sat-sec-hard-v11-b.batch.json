@@ -1,0 +1,74 @@
+[
+  {
+    "id": "SEC11B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark between a verb (with fronted as-complement) and its delayed direct object",
+    "difficulty": "hard",
+    "passage": "Reviewing two decades of records from rural banks across the Midwest, the economist Elena Varga singled out as the most dependable early warning of a coming ______ steady withdrawal of savings by small depositors, a pattern that typically began several months before larger account holders reacted and long before local newspapers reported any sign of trouble.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["panic the", "panic, the", "panic: the", "panic was the"],
+    "correct_answer": "panic the",
+    "explanation": "The verb \"singled out\" needs a direct object, and here the object (\"the steady withdrawal of savings by small depositors\") has been moved after the long complement \"as the most dependable early warning of a coming panic.\" No punctuation may separate a verb from its object, so \"panic the\" is correct. \"panic, the\" places a comma between the verb phrase and its object; the phrase after the comma cannot be an appositive, because the sentence would then give \"singled out\" no object at all. \"panic: the\" fails for the same reason: a colon must follow a complete independent clause, and the words before it lack the object \"singled out\" requires. \"panic was the\" adds a second finite verb, turning the sentence into \"[subject] singled out as ... was ...,\" which would be grammatical only if it began with a word such as \"What\"; as written it has two verbs and no structure linking them.",
+    "topic_tag": "economics"
+  },
+  {
+    "id": "SEC11B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark between a long restrictive subject (containing its own comma pair) and an ambiguous past-tense main verb",
+    "difficulty": "hard",
+    "passage": "The twelve keyboard sonatas that the composer, then an organist at a provincial cathedral in northern Italy and the sole music teacher for its choirboys, wrote for his ______ for decades only in manuscript copies made by those pupils and their own students, a fact that explains why no two surviving versions agree on a single ornament.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["pupils, circulated", "pupils circulated", "pupils and circulated", "pupils—circulated"],
+    "correct_answer": "pupils circulated",
+    "explanation": "The subject is the long phrase \"The twelve keyboard sonatas that the composer ... wrote for his pupils\"; the nonrestrictive phrase \"then an organist ... for its choirboys\" is already closed by the comma after \"choirboys.\" The only finite verb available to the main clause is \"circulated\" (\"explains\" and \"agree\" belong to the relative clause in \"a fact that explains why ...\"), so \"circulated\" is the main verb, and no punctuation may separate a subject from its verb: \"pupils circulated\" is correct. \"pupils, circulated\" puts a single comma between subject and verb; read instead as opening a participial phrase closed by the comma after \"students,\" it leaves the sentence with no main verb. \"pupils and circulated\" joins \"circulated\" to \"wrote\" inside the relative clause, so the sentence again never reaches a main verb. \"pupils—circulated\" separates subject and verb with an unpaired dash.",
+    "topic_tag": "music history"
+  },
+  {
+    "id": "SEC11B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma + coordinating conjunction before a second clause that opens with a because-clause",
+    "difficulty": "hard",
+    "passage": "When construction began in 1928, the architects intended to clad the public library's exterior entirely in a pale limestone quarried a few miles upriver from the ______ quarry flooded and closed abruptly in the spring of 1931, the building's upper three stories were finished instead in a cheaper glazed terra-cotta, a substitution still visible as a faint seam of color above the third-floor windows.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["site, because the", "site, however, because the", "site, but because the", "site, but the"],
+    "correct_answer": "site, but because the",
+    "explanation": "The sentence contains two independent clauses: \"the architects intended to clad ... from the site\" and \"the building's upper three stories were finished instead ...,\" the second preceded by the dependent clause \"because the quarry flooded and closed abruptly in the spring of 1931.\" Two independent clauses may be joined by a comma plus a coordinating conjunction, so \"site, but because the\" is correct. \"site, because the\" supplies only a subordinator; whether the because-clause attaches to the first clause or the second, the two independent clauses end up joined by a comma alone (a comma splice). \"site, however, because the\" fails the same way, since \"however\" is an adverb, not a conjunction, and cannot join independent clauses with commas. \"site, but the\" makes \"the quarry flooded and closed abruptly in the spring of 1931\" a second independent clause after \"but,\" and then \"the building's upper three stories were finished\" becomes a third clause attached by a comma alone, another comma splice.",
+    "topic_tag": "architecture"
+  },
+  {
+    "id": "SEC11B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: closing a comma pair (which encloses a dash pair) between a verb and its that-clause complement",
+    "difficulty": "hard",
+    "passage": "In a series of experiments in the 1770s, the chemist demonstrated, using little more than a precision balance—an instrument he had commissioned at great expense from a renowned maker of scientific apparatus—and a sealed glass ______ total mass of the substances inside remained constant even as a bright metal slowly turned to dull powder, a result that undermined the prevailing theory of combustion.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["vessel—that the", "vessel that the", "vessel; that the", "vessel, that the"],
+    "correct_answer": "vessel, that the",
+    "explanation": "The phrase \"using little more than a precision balance ... and a sealed glass vessel\" interrupts the verb \"demonstrated\" and its complement, the clause \"that the total mass ... remained constant.\" The interruption opens with a comma after \"demonstrated,\" so it must close with a comma: \"vessel, that the\" is correct. The dashes around \"an instrument ... scientific apparatus\" form their own completed pair inside the phrase. \"vessel—that the\" closes a comma-opened interruption with a dash, mismatching the pair. \"vessel that the\" leaves the interruption unclosed; it also invites reading \"that\" as a relative pronoun modifying \"vessel,\" a reading that fails once \"remained constant\" shows that the clause has no gap. \"vessel; that the\" places a semicolon between a verb and its complement clause, but a semicolon must separate two independent clauses, and \"that the total mass ... remained constant ...\" is not one.",
+    "topic_tag": "chemistry"
+  },
+  {
+    "id": "SEC11B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon before an independent clause whose subject and verb are delayed by a long prepositional phrase and relative clause",
+    "difficulty": "hard",
+    "passage": "Most insect-eating bats locate prey by emitting calls far above the range of human hearing and then timing the faint echoes those calls ______ tiger moths that a team of zoologists netted along the upper reaches of a single desert canyon, several species answer with ultrasonic clicks of their own, which appear to scramble the bats' sonar in the final instant of an attack.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["return; among the", "return, among the", "return among the", "return, however, among the"],
+    "correct_answer": "return; among the",
+    "explanation": "The passage contains two independent clauses. The first ends with \"the faint echoes those calls return.\" The second opens with the long prepositional phrase \"among the tiger moths that a team of zoologists netted along the upper reaches of a single desert canyon,\" and only then reaches its subject and verb, \"several species answer.\" A semicolon may join two independent clauses, so \"return; among the\" is correct. \"return, among the\" and \"return among the\" both seem at first to attach \"among the tiger moths ...\" to the first clause as a modifier, but once \"several species answer\" appears, the two independent clauses are joined by only a comma (a comma splice). \"return, however, among the\" fails the same way, because \"however\" is an adverb and cannot join independent clauses with only commas.",
+    "topic_tag": "zoology"
+  },
+  {
+    "id": "SEC11B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma after an introductory dependent clause ending in an optionally transitive verb (garden path into the main subject)",
+    "difficulty": "hard",
+    "passage": "Because the trustees who governed the female academy during its first decade never settled the question of how much girls ought to ______ and Greek, languages that the town's grammar school had always reserved for boys, were offered only in evening sessions that the principal organized and paid for herself.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["study Latin", "study, Latin", "study: Latin", "study; Latin"],
+    "correct_answer": "study, Latin",
+    "explanation": "The sentence opens with the dependent clause \"Because the trustees ... never settled the question of how much girls ought to study,\" in which \"study\" is used without an object. The main clause's subject is \"Latin and Greek,\" which is followed by the nonrestrictive appositive \"languages that ... reserved for boys,\" and its verb, \"were offered,\" comes much later. A comma conventionally separates a long introductory dependent clause from the main clause, so \"study, Latin\" is correct. \"study Latin\" makes \"Latin and Greek\" the object of \"study\" inside the because-clause, which leaves \"were offered\" with no subject. \"study: Latin\" and \"study; Latin\" both fail because a colon or semicolon must follow an independent clause, and everything before the blank is a dependent clause introduced by \"Because.\"",
+    "topic_tag": "education history"
+  }
+]

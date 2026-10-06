@@ -1,0 +1,189 @@
+[
+  {
+    "id": "SEC11A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma splice disguised by a perfect-participial phrase opening the second clause",
+    "difficulty": "hard",
+    "passage": "Where the fault crosses the dry wash at the mouth of the canyon, a low scarp offsets the old gravel bars by nearly two meters, and every buried soil horizon beneath it is broken cleanly along a single ______ the geologists who spent two summers logging the trench walls concluded that the fault had ruptured at least four times in the past ten thousand years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "plane. Having dated the charcoal in each horizon,",
+      "plane, having dated the charcoal in each horizon;",
+      "plane, having dated the charcoal in each horizon,",
+      "plane having dated the charcoal in each horizon,"
+    ],
+    "correct_answer": "plane. Having dated the charcoal in each horizon,",
+    "explanation": "The text after the blank contains a complete main clause whose subject is \"the geologists\" and whose verb, \"concluded,\" arrives only after a long relative clause. The phrase \"having dated the charcoal in each horizon\" describes what the geologists did, so it must introduce that second clause. \"plane. Having dated the charcoal in each horizon,\" ends the first independent clause with a period and attaches the participial phrase to \"the geologists,\" who performed the dating. \"plane, having dated the charcoal in each horizon;\" places the semicolon after the phrase, which attaches the phrase to the first clause, whose subjects are \"a low scarp\" and \"every buried soil horizon\"; neither can have dated charcoal, so the phrase dangles. \"plane, having dated the charcoal in each horizon,\" joins two independent clauses with only commas, a comma splice. \"plane having dated the charcoal in each horizon,\" also joins the two clauses with only a comma and removes the boundary entirely.",
+    "topic_tag": "geology: paleoseismology"
+  },
+  {
+    "id": "SEC11A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: closing a long nonrestrictive relative clause between subject and main verb",
+    "difficulty": "hard",
+    "passage": "The ward register of the hospital's first resident surgeon, which he kept from 1861 to 1872 and which lists every amputation he performed along with the patient's age, the type of dressing applied, and the eventual ______ that deaths after surgery fell by nearly half once he began soaking his instruments and bandages in carbolic acid.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "outcome and shows",
+      "outcome, shows",
+      "outcome; it shows",
+      "outcome—shows"
+    ],
+    "correct_answer": "outcome, shows",
+    "explanation": "The subject \"The ward register of the hospital's first resident surgeon\" is followed by a long nonrestrictive relative clause opened with a comma (\"which he kept ... and which lists ... the eventual outcome\"). That clause must be closed with a matching comma before the main verb. \"outcome, shows\" closes the clause and supplies \"shows\" as the verb of \"register.\" \"outcome and shows\" makes \"shows\" a third verb inside the relative clause (\"which he kept ... and which lists ... and shows\"), so the subject \"register\" never receives a main verb and the sentence is a fragment. \"outcome; it shows\" leaves everything before the semicolon without a main verb, so the first part is a fragment. \"outcome—shows\" closes a comma-opened interruption with a dash; the marks around a nonrestrictive element must match.",
+    "topic_tag": "history of medicine: antiseptic surgery"
+  },
+  {
+    "id": "SEC11A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: second independent clause whose subject is a that-clause",
+    "difficulty": "hard",
+    "passage": "For most of the nineteenth century, philologists classified the island's two dialects as separate languages, citing their sharply divergent vowel systems and the apparent absence of shared basic ______ the two in fact descend from a single ancestral language was not demonstrated until 1953, when a field linguist recorded elderly speakers in the interior villages.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "vocabulary that",
+      "vocabulary, that",
+      "vocabulary; that",
+      "vocabulary, so that"
+    ],
+    "correct_answer": "vocabulary; that",
+    "explanation": "The text after the blank is an independent clause whose subject is the noun clause \"that the two in fact descend from a single ancestral language\" and whose verb is \"was not demonstrated.\" Two independent clauses must be separated by a semicolon or a period, or joined by a comma and a coordinating conjunction. \"vocabulary; that\" separates them correctly. \"vocabulary that\" runs the clauses together and invites reading \"that\" as beginning a relative clause modifying \"vocabulary,\" which collapses at \"was not demonstrated.\" \"vocabulary, that\" joins two independent clauses with only a comma, a comma splice. \"vocabulary, so that\" turns \"the two in fact descend from a single ancestral language\" into a subordinate clause, leaving the verb \"was not demonstrated\" without a subject.",
+    "topic_tag": "linguistics: historical dialectology"
+  },
+  {
+    "id": "SEC11A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: independent clause that resembles an absolute phrase until its finite verb",
+    "difficulty": "hard",
+    "passage": "Late on a February night in 1791, the merchant brig ran onto the reef that guards the harbor ______ oak hull, weakened by three decades of shipworm and patched in a dozen foreign ports, had begun to open along the keel before the crew could lower the boats, and most of the cargo was lost.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "entrance, its",
+      "entrance its",
+      "entrance, with its",
+      "entrance. Its"
+    ],
+    "correct_answer": "entrance. Its",
+    "explanation": "\"its oak hull, weakened by ... foreign ports,\" looks like the start of an absolute phrase, but the finite verb \"had begun\" later makes \"its oak hull ... had begun to open along the keel\" a complete independent clause. \"entrance. Its\" separates the two independent clauses with a period. \"entrance, its\" would be correct only if an absolute phrase followed; because \"had begun\" is a finite verb, it creates a comma splice. \"entrance its\" fuses the two independent clauses with no punctuation. \"entrance, with its\" turns \"its oak hull\" into the object of a preposition, leaving the verb \"had begun\" without a subject.",
+    "topic_tag": "maritime history: shipwreck"
+  },
+  {
+    "id": "SEC11A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: fronted \"only after\" clause with inverted subject opening the second independent clause",
+    "difficulty": "hard",
+    "passage": "When the bright star's slight wobble first appeared on the observatory's photographic plates, it was dismissed as an artifact of the telescope's drive and went unremarked for nearly a ______ the plates had been remeasured with a new micrometer and compared against two decades of archival exposures did the astronomers recognize that the wobble was caused by an unseen orbiting companion.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "decade, only after",
+      "decade only after",
+      "decade, and only after",
+      "decade, and even after"
+    ],
+    "correct_answer": "decade, and only after",
+    "explanation": "The words \"did the astronomers recognize\" show that the text after the blank is an independent clause with an inverted subject; the inversion is licensed by the fronted element \"only after the plates had been remeasured ... exposures.\" \"decade, and only after\" joins this second independent clause to the first with a comma and a coordinating conjunction. \"decade, only after\" joins the two independent clauses with only a comma, a comma splice. \"decade only after\" attaches \"only after ...\" to the first clause as if it modified \"went unremarked,\" leaving \"did the astronomers recognize\" with no grammatical connection, so the clauses are fused. \"decade, and even after\" supplies the conjunction but removes \"only\"; \"even after\" does not trigger subject-auxiliary inversion, so \"did the astronomers recognize\" is ungrammatical in a statement.",
+    "topic_tag": "astronomy: astrometric binary"
+  },
+  {
+    "id": "SEC11A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: second clause opening with a long noun phrase that reads as an appositive",
+    "difficulty": "hard",
+    "passage": "Excavators had long identified the low circular foundation at the edge of the settlement as a pottery ______ charred barley and the dozens of clay loom weights recovered from its floor, together with a spindle whorl found near the threshold, now suggest that the building served instead as a household workshop for spinning and weaving.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "kiln, the",
+      "kiln the",
+      "kiln, alongside the",
+      "kiln; the"
+    ],
+    "correct_answer": "kiln; the",
+    "explanation": "The long noun phrase \"the charred barley and the dozens of clay loom weights recovered from its floor\" is not an appositive to \"kiln\"; it is the subject of the verb \"suggest,\" which appears only after a further interrupting phrase. The text after the blank is therefore an independent clause, and \"kiln; the\" separates it from the first independent clause with a semicolon. \"kiln, the\" makes the noun phrase look like an appositive renaming \"kiln,\" but when \"suggest\" arrives it becomes clear that two independent clauses have been joined with only a comma, a comma splice. \"kiln the\" fuses the two independent clauses with no punctuation. \"kiln, alongside the\" makes \"the charred barley and the dozens of clay loom weights\" the object of a preposition, leaving \"suggest\" without a subject.",
+    "topic_tag": "archaeology: settlement excavation"
+  },
+  {
+    "id": "SEC11B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark between a verb (with fronted as-complement) and its delayed direct object",
+    "difficulty": "hard",
+    "passage": "Reviewing two decades of records from rural banks across the Midwest, the economist Elena Varga singled out as the most dependable early warning of a coming ______ steady withdrawal of savings by small depositors, a pattern that typically began several months before larger account holders reacted and long before local newspapers reported any sign of trouble.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "panic the",
+      "panic, the",
+      "panic: the",
+      "panic was the"
+    ],
+    "correct_answer": "panic the",
+    "explanation": "The verb \"singled out\" needs a direct object, and here the object (\"the steady withdrawal of savings by small depositors\") has been moved after the long complement \"as the most dependable early warning of a coming panic.\" No punctuation may separate a verb from its object, so \"panic the\" is correct. \"panic, the\" places a comma between the verb phrase and its object; the phrase after the comma cannot be an appositive, because the sentence would then give \"singled out\" no object at all. \"panic: the\" fails for the same reason: a colon must follow a complete independent clause, and the words before it lack the object \"singled out\" requires. \"panic was the\" adds a second finite verb, turning the sentence into \"[subject] singled out as ... was ...,\" which would be grammatical only if it began with a word such as \"What\"; as written it has two verbs and no structure linking them.",
+    "topic_tag": "economics"
+  },
+  {
+    "id": "SEC11B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark between a long restrictive subject (containing its own comma pair) and an ambiguous past-tense main verb",
+    "difficulty": "hard",
+    "passage": "The twelve keyboard sonatas that the composer, then an organist at a provincial cathedral in northern Italy and the sole music teacher for its choirboys, wrote for his ______ for decades only in manuscript copies made by those pupils and their own students, a fact that explains why no two surviving versions agree on a single ornament.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "pupils, circulated",
+      "pupils circulated",
+      "pupils and circulated",
+      "pupils—circulated"
+    ],
+    "correct_answer": "pupils circulated",
+    "explanation": "The subject is the long phrase \"The twelve keyboard sonatas that the composer ... wrote for his pupils\"; the nonrestrictive phrase \"then an organist ... for its choirboys\" is already closed by the comma after \"choirboys.\" The only finite verb available to the main clause is \"circulated\" (\"explains\" and \"agree\" belong to the relative clause in \"a fact that explains why ...\"), so \"circulated\" is the main verb, and no punctuation may separate a subject from its verb: \"pupils circulated\" is correct. \"pupils, circulated\" puts a single comma between subject and verb; read instead as opening a participial phrase closed by the comma after \"students,\" it leaves the sentence with no main verb. \"pupils and circulated\" joins \"circulated\" to \"wrote\" inside the relative clause, so the sentence again never reaches a main verb. \"pupils—circulated\" separates subject and verb with an unpaired dash.",
+    "topic_tag": "music history"
+  },
+  {
+    "id": "SEC11B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma + coordinating conjunction before a second clause that opens with a because-clause",
+    "difficulty": "hard",
+    "passage": "When construction began in 1928, the architects intended to clad the public library's exterior entirely in a pale limestone quarried a few miles upriver from the ______ quarry flooded and closed abruptly in the spring of 1931, the building's upper three stories were finished instead in a cheaper glazed terra-cotta, a substitution still visible as a faint seam of color above the third-floor windows.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "site, because the",
+      "site, however, because the",
+      "site, but because the",
+      "site, but the"
+    ],
+    "correct_answer": "site, but because the",
+    "explanation": "The sentence contains two independent clauses: \"the architects intended to clad ... from the site\" and \"the building's upper three stories were finished instead ...,\" the second preceded by the dependent clause \"because the quarry flooded and closed abruptly in the spring of 1931.\" Two independent clauses may be joined by a comma plus a coordinating conjunction, so \"site, but because the\" is correct. \"site, because the\" supplies only a subordinator; whether the because-clause attaches to the first clause or the second, the two independent clauses end up joined by a comma alone (a comma splice). \"site, however, because the\" fails the same way, since \"however\" is an adverb, not a conjunction, and cannot join independent clauses with commas. \"site, but the\" makes \"the quarry flooded and closed abruptly in the spring of 1931\" a second independent clause after \"but,\" and then \"the building's upper three stories were finished\" becomes a third clause attached by a comma alone, another comma splice.",
+    "topic_tag": "architecture"
+  },
+  {
+    "id": "SEC11B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: closing a comma pair (which encloses a dash pair) between a verb and its that-clause complement",
+    "difficulty": "hard",
+    "passage": "In a series of experiments in the 1770s, the chemist demonstrated, using little more than a precision balance—an instrument he had commissioned at great expense from a renowned maker of scientific apparatus—and a sealed glass ______ total mass of the substances inside remained constant even as a bright metal slowly turned to dull powder, a result that undermined the prevailing theory of combustion.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "vessel—that the",
+      "vessel that the",
+      "vessel; that the",
+      "vessel, that the"
+    ],
+    "correct_answer": "vessel, that the",
+    "explanation": "The phrase \"using little more than a precision balance ... and a sealed glass vessel\" interrupts the verb \"demonstrated\" and its complement, the clause \"that the total mass ... remained constant.\" The interruption opens with a comma after \"demonstrated,\" so it must close with a comma: \"vessel, that the\" is correct. The dashes around \"an instrument ... scientific apparatus\" form their own completed pair inside the phrase. \"vessel—that the\" closes a comma-opened interruption with a dash, mismatching the pair. \"vessel that the\" leaves the interruption unclosed; it also invites reading \"that\" as a relative pronoun modifying \"vessel,\" a reading that fails once \"remained constant\" shows that the clause has no gap. \"vessel; that the\" places a semicolon between a verb and its complement clause, but a semicolon must separate two independent clauses, and \"that the total mass ... remained constant ...\" is not one.",
+    "topic_tag": "chemistry"
+  },
+  {
+    "id": "SEC11B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon before an independent clause whose subject and verb are delayed by a long prepositional phrase and relative clause",
+    "difficulty": "hard",
+    "passage": "Most insect-eating bats locate prey by emitting calls far above the range of human hearing and then timing the faint echoes those calls ______ tiger moths that a team of zoologists netted along the upper reaches of a single desert canyon, several species answer with ultrasonic clicks of their own, which appear to scramble the bats' sonar in the final instant of an attack.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "return; among the",
+      "return, among the",
+      "return among the",
+      "return, however, among the"
+    ],
+    "correct_answer": "return; among the",
+    "explanation": "The passage contains two independent clauses. The first ends with \"the faint echoes those calls return.\" The second opens with the long prepositional phrase \"among the tiger moths that a team of zoologists netted along the upper reaches of a single desert canyon,\" and only then reaches its subject and verb, \"several species answer.\" A semicolon may join two independent clauses, so \"return; among the\" is correct. \"return, among the\" and \"return among the\" both seem at first to attach \"among the tiger moths ...\" to the first clause as a modifier, but once \"several species answer\" appears, the two independent clauses are joined by only a comma (a comma splice). \"return, however, among the\" fails the same way, because \"however\" is an adverb and cannot join independent clauses with only commas.",
+    "topic_tag": "zoology"
+  }
+]
