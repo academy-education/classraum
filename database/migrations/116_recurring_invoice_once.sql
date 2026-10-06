@@ -7,6 +7,10 @@
 -- re-inserting row by row and skipping the duplicates, so with this index
 -- the database is the guard. Without it the code behaves as before.
 --
+-- APPLIED 2026-10-06 as a PARTIAL index (where deleted_at is null): the one
+-- duplicate below turned out to be already soft-deleted (deleted_at 2026-02-13,
+-- owner's test academy), so soft-deleted rows are excluded rather than any row
+-- being removed. Original note follows.
 -- NOT APPLIED (2026-10-02). The live table already holds one duplicate
 -- that makes this index fail to build:
 --   template c91a7ab2-abec-41da-8643-832024c7f55e, student
@@ -20,7 +24,8 @@
 --
 -- template_id NULL (one-off invoices) is unaffected: NULLs are distinct.
 create unique index if not exists invoices_recurring_period_once
-  on public.invoices (template_id, student_id, due_date);
+  on public.invoices (template_id, student_id, due_date)
+  where deleted_at is null;
 
 -- Rollback:
 --   drop index if exists public.invoices_recurring_period_once;
