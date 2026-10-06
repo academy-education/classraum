@@ -1,0 +1,905 @@
+{
+ "L01": {
+  "pick": "E",
+  "basis": "confident",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "twin:broken-gesture C guards gesture-expresses-emotion"
+ },
+ "L02": {
+  "pick": "C",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "singleton defining-trait; opposites and targets each duplicated"
+ },
+ "L03": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "B,D both lacks; C,E enthusiasts"
+ },
+ "L04": {
+  "pick": "B",
+  "basis": "confident",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "singleton defining-trait"
+ },
+ "L05": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L06": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "degree"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L08": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L09": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "young:adult"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "C,D both responses eliminated"
+ },
+ "L11": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "A,D both after-remedy eliminated"
+ },
+ "L12": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "manner"
+ },
+ "L13": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L14": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "degree"
+ },
+ "L15": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "prevent vs eliminate pair"
+ },
+ "L16": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L17": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L18": {
+  "pick": "E",
+  "basis": "confident",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "singleton defining-trait"
+ },
+ "L19": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L20": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "C,D both undergo eliminated"
+ },
+ "L21": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L22": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "B,D near-synonyms eliminated"
+ },
+ "L23": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L24": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L25": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "young:adult"
+ },
+ "L26": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "A,D worker/tool eliminated"
+ },
+ "L27": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "B,D both violate eliminated"
+ },
+ "L28": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "young:adult"
+ },
+ "L29": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "B,D,E substitutes eliminated"
+ },
+ "L31": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "A,E removal eliminated"
+ },
+ "L32": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "young:adult"
+ },
+ "L33": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L34": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L35": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": true,
+  "why": "three antonyms eliminated"
+ },
+ "L36": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L37": {
+  "pick": "E",
+  "basis": "confident",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "singleton defining-trait"
+ },
+ "L38": {
+  "pick": "E",
+  "basis": "confident",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "singleton lacks (family pattern)"
+ },
+ "L39": {
+  "pick": "C",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "twin:hush:jubilation guards expression"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "degree"
+ },
+ "L41": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "A,D worker/tool eliminated"
+ },
+ "L42": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L43": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": true,
+  "why": "A,C antonyms eliminated"
+ },
+ "L45": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "A,E synonyms eliminated"
+ },
+ "L46": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L47": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "degree"
+ },
+ "L48": {
+  "pick": "E",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "singleton lacks; A,C has eliminated"
+ },
+ "L49": {
+  "pick": "A",
+  "basis": "confident",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "singleton defining-trait"
+ },
+ "L50": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L51": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "twin:humming:desperation guards expression"
+ },
+ "L52": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L53": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "singleton lacks; has/causes duplicated"
+ },
+ "L55": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "lacks (family pattern)"
+ },
+ "L56": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L58": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L59": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L60": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L61": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L62": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L63": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L64": {
+  "pick": "A",
+  "basis": "confident",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "singleton lacks; B,E has eliminated"
+ },
+ "L65": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "prevent vs mop-after pair"
+ },
+ "L67": {
+  "pick": "A",
+  "basis": "confident",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "singleton lacks; D,E has eliminated"
+ },
+ "L68": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L69": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": true,
+  "why": "A,E antonyms eliminated"
+ },
+ "L70": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L71": {
+  "pick": "C",
+  "basis": "confident",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "singleton defining-trait"
+ },
+ "L72": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L73": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L74": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L76": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "C,D maker/product eliminated"
+ },
+ "L77": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L78": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L79": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "singleton defining-trait"
+ },
+ "L81": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L82": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L83": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L84": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L86": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L87": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L88": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L89": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L90": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L91": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L92": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L93": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L94": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L95": {
+  "pick": "C",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "singleton lacks (family pattern)"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "B,E sequence eliminated"
+ },
+ "L97": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "C,E synonyms eliminated"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "degree"
+ },
+ "L99": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L100": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L101": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "twin:simper:antipathy guards expression"
+ },
+ "L102": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L103": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "degree"
+ },
+ "L104": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L105": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L106": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "singleton defining-trait"
+ },
+ "L107": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L108": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L109": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "singleton lacks; A,C has eliminated"
+ },
+ "L110": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L111": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L112": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L113": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L114": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L115": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L116": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L117": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L118": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L119": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L120": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L121": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L122": {
+  "pick": "B",
+  "basis": "confident",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "twin:prance:desolation guards expression"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "singleton defining-trait"
+ },
+ "L124": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L125": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L126": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "A,D part-of eliminated"
+ },
+ "L127": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "young:adult"
+ },
+ "L128": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no option-set signal; arbitrary among survivors"
+ }
+}

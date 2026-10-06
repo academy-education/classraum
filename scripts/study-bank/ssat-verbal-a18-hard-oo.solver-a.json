@@ -1,0 +1,905 @@
+{
+ "L01": {
+  "pick": "E",
+  "basis": "confident",
+  "reject": "C",
+  "reject_certain": true,
+  "why": "broken twin: a nonsense pair in the same shape points to this relation"
+ },
+ "L02": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "defining-trait default"
+ },
+ "L03": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "voluntary shunning guess"
+ },
+ "L04": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "defining-trait default"
+ },
+ "L05": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "symbol guess"
+ },
+ "L06": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "E",
+  "reject_certain": true,
+  "why": "broken degree twin points to degree relation"
+ },
+ "L07": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L08": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L09": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "young/adult guess"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L11": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two after-remedy twins, pick other"
+ },
+ "L12": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "manner guess"
+ },
+ "L13": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "preparation guess"
+ },
+ "L14": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "degree guess"
+ },
+ "L15": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L16": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "stage guess"
+ },
+ "L17": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "purpose/function default"
+ },
+ "L18": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "defining-trait default"
+ },
+ "L19": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "function guess"
+ },
+ "L20": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "purpose default"
+ },
+ "L21": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "cause guess"
+ },
+ "L22": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "cause guess"
+ },
+ "L23": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "avoidance guess"
+ },
+ "L24": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "precedes guess"
+ },
+ "L25": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "young/adult guess"
+ },
+ "L26": {
+  "pick": "A",
+  "basis": "confident",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "reversed twin trowel/mason marks worker:tool"
+ },
+ "L27": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L28": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "young/adult guess"
+ },
+ "L29": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "symbol guess"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L31": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "removal options twinned, pick other"
+ },
+ "L32": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "young/adult guess"
+ },
+ "L33": {
+  "pick": "B",
+  "basis": "confident",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L34": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L35": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "three antonyms excluded"
+ },
+ "L36": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L37": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "defining-trait default"
+ },
+ "L38": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "adjective-causes-feeling default"
+ },
+ "L39": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "degree; irate/incensed synonym twin"
+ },
+ "L41": {
+  "pick": "A",
+  "basis": "confident",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "reversed twin lathe/machinist"
+ },
+ "L42": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "member/group guess"
+ },
+ "L43": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "degree guess"
+ },
+ "L45": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L46": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "degree (excessive) guess"
+ },
+ "L47": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "degree guess"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "adjective merits/causes default"
+ },
+ "L49": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "defining-trait default"
+ },
+ "L50": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L51": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": true,
+  "why": "broken twin: a nonsense pair in the same shape points to this relation"
+ },
+ "L52": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L53": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "purpose default"
+ },
+ "L54": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "adjective-causes-feeling default"
+ },
+ "L55": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L56": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L58": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L59": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L60": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L61": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L62": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L63": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L64": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L65": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "prevention guess"
+ },
+ "L67": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "adjective-causes-feeling default"
+ },
+ "L68": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L69": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L70": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "purpose default"
+ },
+ "L71": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "defining-trait default"
+ },
+ "L72": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "degree guess"
+ },
+ "L73": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "preparation guess"
+ },
+ "L74": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "degree guess"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L76": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "reversed twin sonata/composer marks maker:product"
+ },
+ "L77": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L78": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "rejects guess"
+ },
+ "L79": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "defining-trait default"
+ },
+ "L81": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L82": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L83": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "purpose default"
+ },
+ "L84": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "degree guess"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "violation guess"
+ },
+ "L86": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "violation guess"
+ },
+ "L87": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "rejects guess"
+ },
+ "L88": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "purpose default"
+ },
+ "L89": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L90": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L91": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "member/group guess"
+ },
+ "L92": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L93": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L94": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L95": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "adjective-causes default"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "manner guess"
+ },
+ "L97": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "confident",
+  "reject": "C",
+  "reject_certain": true,
+  "why": "broken degree twin points to degree relation"
+ },
+ "L99": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "part/whole guess"
+ },
+ "L100": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "member guess"
+ },
+ "L101": {
+  "pick": "D",
+  "basis": "confident",
+  "reject": "C",
+  "reject_certain": true,
+  "why": "broken twin: a nonsense pair in the same shape points to this relation"
+ },
+ "L102": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L103": {
+  "pick": "C",
+  "basis": "confident",
+  "reject": "D",
+  "reject_certain": true,
+  "why": "broken degree twin points to degree relation"
+ },
+ "L104": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L105": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L106": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "defining-trait default"
+ },
+ "L107": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L108": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L109": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "adjective-causes default"
+ },
+ "L110": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L111": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L112": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "degree guess"
+ },
+ "L113": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L114": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L115": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L116": {
+  "pick": "C",
+  "basis": "confident",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "reversed twin rust/moisture marks cause:effect"
+ },
+ "L117": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L119": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L120": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L121": {
+  "pick": "C",
+  "basis": "confident",
+  "reject": "D",
+  "reject_certain": true,
+  "why": "broken degree twin points to degree relation"
+ },
+ "L122": {
+  "pick": "B",
+  "basis": "confident",
+  "reject": "D",
+  "reject_certain": true,
+  "why": "broken twin: a nonsense pair in the same shape points to this relation"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "defining-trait default"
+ },
+ "L124": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L125": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L126": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "guess"
+ },
+ "L127": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "young/adult guess"
+ },
+ "L128": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "gesture/behaviour expresses feeling (most common relation type across set)"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guess"
+ }
+}

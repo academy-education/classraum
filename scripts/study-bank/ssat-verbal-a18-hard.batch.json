@@ -1,0 +1,2576 @@
+[
+ {
+  "id": "SVA18A-01",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "degree",
+  "prompt": "[Analogy] tepid is to searing as",
+  "choices": [
+   "pricey is to exorbitant",
+   "irked is to petrified",
+   "frosty is to sweltering",
+   "antiquated is to outmoded",
+   "grueling is to spent"
+  ],
+  "correct_answer": "pricey is to exorbitant",
+  "explanation": "Relation: A is a mild degree and B the extreme degree of the same quality (heat; costliness). Tepid is slightly warm and searing extremely hot; pricey is somewhat expensive and exorbitant outrageously expensive.",
+  "distractor_rationales": {
+   "irked is to petrified": "Mild to extreme, but on two different scales (annoyance vs. fear), so not one quality intensified.",
+   "frosty is to sweltering": "Opposite ends of the temperature scale, not a milder and stronger form of one quality.",
+   "antiquated is to outmoded": "Near-synonyms of equal strength; no intensification.",
+   "grueling is to spent": "Cause and effect: a grueling task leaves a person spent."
+  }
+ },
+ {
+  "id": "SVA18A-02",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "degree",
+  "prompt": "[Analogy] chide is to berate as",
+  "choices": [
+   "rebuke is to reprimand",
+   "urge is to coerce",
+   "goad is to erupt",
+   "commend is to denounce",
+   "inquire is to reply"
+  ],
+  "correct_answer": "urge is to coerce",
+  "explanation": "Relation: A is a mild form and B a forceful form of the same action (scolding; pressuring). To chide is to scold mildly and to berate is to scold harshly; to urge is to press gently and to coerce is to press by force.",
+  "distractor_rationales": {
+   "rebuke is to reprimand": "Two verbs of roughly equal force for scolding; no mild-to-strong step.",
+   "goad is to erupt": "Cause and response: goading someone may make them erupt.",
+   "commend is to denounce": "Opposites (praise vs. condemn), not two strengths of one act.",
+   "inquire is to reply": "Sequence: an inquiry is followed by a reply."
+  }
+ },
+ {
+  "id": "SVA18A-03",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "degree",
+  "prompt": "[Analogy] esteem is to reverence as",
+  "choices": [
+   "animosity is to enmity",
+   "suspicion is to exultation",
+   "satisfaction is to rapture",
+   "insolence is to indignation",
+   "levity is to gravity"
+  ],
+  "correct_answer": "satisfaction is to rapture",
+  "explanation": "Relation: A is a moderate degree and B an intense degree of the same feeling. Esteem is respect and reverence is deep, awed respect; satisfaction is contentment and rapture is overwhelming delight.",
+  "distractor_rationales": {
+   "animosity is to enmity": "Near-synonyms of equal strength (hostility).",
+   "suspicion is to exultation": "Two unrelated feelings; not one feeling intensified.",
+   "insolence is to indignation": "Cause and effect: insolence provokes indignation.",
+   "levity is to gravity": "Opposites (lightness vs. seriousness)."
+  }
+ },
+ {
+  "id": "SVA18A-04",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "degree",
+  "prompt": "[Analogy] assertive is to domineering as",
+  "choices": [
+   "lanky is to gawky",
+   "subdued is to exuberant",
+   "thoughtful is to vindictive",
+   "selective is to finicky",
+   "sedentary is to flabby"
+  ],
+  "correct_answer": "selective is to finicky",
+  "explanation": "Relation: A is a reasonable degree of a trait and B an excessive degree of the same trait. An assertive person states views firmly, a domineering one overrides others; a selective person chooses carefully, a finicky one is excessively hard to please.",
+  "distractor_rationales": {
+   "lanky is to gawky": "Near-synonyms of equal degree.",
+   "subdued is to exuberant": "Opposites, not two degrees of one trait.",
+   "thoughtful is to vindictive": "Two unrelated traits.",
+   "sedentary is to flabby": "Cause and effect: a sedentary life can make one flabby."
+  }
+ },
+ {
+  "id": "SVA18A-05",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "degree",
+  "prompt": "[Analogy] graze is to wallop as",
+  "choices": [
+   "rescind is to revoke",
+   "chafe is to redden",
+   "mull is to holler",
+   "embark is to disembark",
+   "singe is to incinerate"
+  ],
+  "correct_answer": "singe is to incinerate",
+  "explanation": "Relation: A is a slight degree and B an extreme degree of the same action (striking; burning). To graze is to strike lightly and to wallop is to strike very hard; to singe is to burn slightly and to incinerate is to burn completely.",
+  "distractor_rationales": {
+   "rescind is to revoke": "Synonyms of equal force.",
+   "chafe is to redden": "Cause and effect: chafing makes skin redden.",
+   "mull is to holler": "Two unrelated actions (thinking vs. shouting).",
+   "embark is to disembark": "Opposite actions."
+  }
+ },
+ {
+  "id": "SVA18A-06",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "degree",
+  "prompt": "[Analogy] tiff is to vendetta as",
+  "choices": [
+   "smattering is to fluency",
+   "fracas is to melee",
+   "glint is to tempest",
+   "gaffe is to mortification",
+   "consensus is to dissent"
+  ],
+  "correct_answer": "smattering is to fluency",
+  "explanation": "Relation: A is a slight degree and B the fullest degree of the same thing (quarrel; command of a language). A tiff is a minor quarrel and a vendetta a prolonged, bitter feud; a smattering is a slight knowledge of a language and fluency full command of it.",
+  "distractor_rationales": {
+   "fracas is to melee": "Near-synonyms of equal degree (noisy brawls).",
+   "glint is to tempest": "Unrelated things; not one thing in two degrees.",
+   "gaffe is to mortification": "Cause and effect: a gaffe causes mortification.",
+   "consensus is to dissent": "Opposites (agreement vs. disagreement)."
+  }
+ },
+ {
+  "id": "SVA18A-07",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "degree",
+  "prompt": "[Analogy] glum is to despondent as",
+  "choices": [
+   "irate is to incensed",
+   "peeved is to livid",
+   "dubious is to euphoric",
+   "slighted is to vengeful",
+   "taciturn is to voluble"
+  ],
+  "correct_answer": "peeved is to livid",
+  "explanation": "Relation: A is a mild degree and B an extreme degree of the same mood. Glum is mildly gloomy and despondent utterly without hope; peeved is mildly annoyed and livid furiously angry.",
+  "distractor_rationales": {
+   "irate is to incensed": "Near-synonyms, both already very angry; no mild-to-extreme step.",
+   "dubious is to euphoric": "Two different states (doubt vs. elation).",
+   "slighted is to vengeful": "Cause and effect: feeling slighted can make one vengeful.",
+   "taciturn is to voluble": "Opposites (silent vs. talkative)."
+  }
+ },
+ {
+  "id": "SVA18A-08",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "degree",
+  "prompt": "[Analogy] sniffle is to bawl as",
+  "choices": [
+   "yearn is to crave",
+   "bicker is to rejoice",
+   "disappoint is to devastate",
+   "frighten is to flinch",
+   "exalt is to debase"
+  ],
+  "correct_answer": "disappoint is to devastate",
+  "explanation": "Relation: A is a mild form and B an extreme form of the same action. To sniffle is to cry quietly and to bawl is to cry loudly and hard; to disappoint is to let someone down mildly and to devastate is to crush them.",
+  "distractor_rationales": {
+   "yearn is to crave": "Near-synonyms of comparable intensity (strong longing).",
+   "bicker is to rejoice": "Two unrelated actions.",
+   "frighten is to flinch": "Cause and response: being frightened makes one flinch.",
+   "exalt is to debase": "Opposites (raise up vs. lower in esteem)."
+  }
+ },
+ {
+  "id": "SVA18A-09",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "lack",
+  "prompt": "[Analogy] artless is to guile as",
+  "choices": [
+   "ardent is to zest",
+   "harrowing is to distress",
+   "acquisitive is to property",
+   "insipid is to flavor",
+   "luminous is to radiance"
+  ],
+  "correct_answer": "insipid is to flavor",
+  "explanation": "Relation: something that is A is by definition without B. An artless person has no guile; insipid food has no flavor.",
+  "distractor_rationales": {
+   "ardent is to zest": "An ardent person is FULL of zest: possession, the reverse of lacking.",
+   "harrowing is to distress": "A harrowing event CAUSES distress in others; it does not lack it.",
+   "acquisitive is to property": "An acquisitive person is eager to GAIN property; desire, not absence.",
+   "luminous is to radiance": "Something luminous HAS radiance."
+  }
+ },
+ {
+  "id": "SVA18A-10",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "lack",
+  "prompt": "[Analogy] callow is to maturity as",
+  "choices": [
+   "precocious is to aptitude",
+   "galling is to exasperation",
+   "avid is to novelty",
+   "celebrated is to acclaim",
+   "insolvent is to funds"
+  ],
+  "correct_answer": "insolvent is to funds",
+  "explanation": "Relation: someone who is A is by definition without B. A callow youth lacks maturity; an insolvent business lacks the funds to pay its debts.",
+  "distractor_rationales": {
+   "precocious is to aptitude": "A precocious child shows aptitude early: possession, not absence.",
+   "galling is to exasperation": "Something galling CAUSES exasperation.",
+   "avid is to novelty": "An avid person is eager FOR something; desire, not absence.",
+   "celebrated is to acclaim": "A celebrated figure RECEIVES acclaim."
+  }
+ },
+ {
+  "id": "SVA18A-11",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "lack",
+  "prompt": "[Analogy] amorphous is to form as",
+  "choices": [
+   "inert is to motion",
+   "symmetrical is to proportion",
+   "deafening is to hearing",
+   "redundant is to repetition",
+   "tangible is to touch"
+  ],
+  "correct_answer": "inert is to motion",
+  "explanation": "Relation: something that is A is by definition without B. Amorphous means without definite form; inert means without motion or activity.",
+  "distractor_rationales": {
+   "symmetrical is to proportion": "Something symmetrical HAS balanced proportion.",
+   "deafening is to hearing": "A deafening noise DESTROYS others’ hearing; it is not itself without hearing.",
+   "redundant is to repetition": "Something redundant is characterized BY needless repetition.",
+   "tangible is to touch": "Something tangible CAN be perceived by touch: capability, not absence."
+  }
+ },
+ {
+  "id": "SVA18A-12",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "lack",
+  "prompt": "[Analogy] tactless is to discretion as",
+  "choices": [
+   "jovial is to mirth",
+   "intrepid is to fright",
+   "unnerving is to anxiety",
+   "daring is to audacity",
+   "credible is to belief"
+  ],
+  "correct_answer": "intrepid is to fright",
+  "explanation": "Relation: someone who is A is by definition without B. A tactless person lacks discretion; an intrepid person feels no fright.",
+  "distractor_rationales": {
+   "jovial is to mirth": "A jovial person is FULL of mirth.",
+   "unnerving is to anxiety": "Something unnerving CAUSES anxiety.",
+   "daring is to audacity": "A daring person HAS audacity; possession, though on the same courage axis as the key.",
+   "credible is to belief": "Something credible DESERVES belief."
+  }
+ },
+ {
+  "id": "SVA18A-13",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "lack",
+  "prompt": "[Analogy] unscrupulous is to principles as",
+  "choices": [
+   "dignified is to poise",
+   "edifying is to enlightenment",
+   "uncouth is to refinement",
+   "covetous is to belongings",
+   "taxing is to stamina"
+  ],
+  "correct_answer": "uncouth is to refinement",
+  "explanation": "Relation: someone who is A is by definition without B. An unscrupulous person has no moral principles; an uncouth person has no refinement.",
+  "distractor_rationales": {
+   "dignified is to poise": "A dignified person HAS poise.",
+   "edifying is to enlightenment": "Something edifying GIVES enlightenment.",
+   "covetous is to belongings": "A covetous person DESIRES others’ belongings.",
+   "taxing is to stamina": "A taxing task DEMANDS stamina."
+  }
+ },
+ {
+  "id": "SVA18A-14",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "lack",
+  "prompt": "[Analogy] unkempt is to grooming as",
+  "choices": [
+   "substantiated is to proof",
+   "contentious is to dispute",
+   "speculative is to conjecture",
+   "groundless is to basis",
+   "nutritious is to sustenance"
+  ],
+  "correct_answer": "groundless is to basis",
+  "explanation": "Relation: something that is A is by definition without B. Unkempt hair has had no grooming; a groundless accusation has no basis.",
+  "distractor_rationales": {
+   "substantiated is to proof": "A substantiated claim HAS proof, the reverse of the key.",
+   "contentious is to dispute": "A contentious issue PROVOKES dispute.",
+   "speculative is to conjecture": "A speculative idea CONSISTS of conjecture; it is made of it, not without it.",
+   "nutritious is to sustenance": "Nutritious food PROVIDES sustenance."
+  }
+ },
+ {
+  "id": "SVA18A-15",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "lack",
+  "prompt": "[Analogy] pallid is to color as",
+  "choices": [
+   "empathetic is to understanding",
+   "deplorable is to disapproval",
+   "vulnerable is to exploitation",
+   "intimate is to familiarity",
+   "callous is to sympathy"
+  ],
+  "correct_answer": "callous is to sympathy",
+  "explanation": "Relation: someone or something that is A is by definition without B. A pallid face lacks color; a callous person lacks sympathy.",
+  "distractor_rationales": {
+   "empathetic is to understanding": "An empathetic person HAS understanding of others.",
+   "deplorable is to disapproval": "Something deplorable DESERVES disapproval.",
+   "vulnerable is to exploitation": "Someone vulnerable is OPEN to exploitation.",
+   "intimate is to familiarity": "An intimate relationship HAS familiarity."
+  }
+ },
+ {
+  "id": "SVA18A-16",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "lack",
+  "prompt": "[Analogy] dispirited is to morale as",
+  "choices": [
+   "unwitting is to awareness",
+   "perceptive is to insight",
+   "perplexing is to bafflement",
+   "studious is to scholarship",
+   "premeditated is to intent"
+  ],
+  "correct_answer": "unwitting is to awareness",
+  "explanation": "Relation: someone who is A is by definition without B. A dispirited team has lost its morale; an unwitting accomplice acts without awareness.",
+  "distractor_rationales": {
+   "perceptive is to insight": "A perceptive person HAS insight.",
+   "perplexing is to bafflement": "Something perplexing CAUSES bafflement.",
+   "studious is to scholarship": "A studious person is DEVOTED to scholarship.",
+   "premeditated is to intent": "A premeditated act is done WITH prior intent, the reverse of the key."
+  }
+ },
+ {
+  "id": "SVA18A-17",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "person_trait",
+  "prompt": "[Analogy] curmudgeon is to grouchy as",
+  "choices": [
+   "follower is to charismatic",
+   "busybody is to meddlesome",
+   "bully is to defenseless",
+   "worrywart is to carefree",
+   "pioneer is to uncharted"
+  ],
+  "correct_answer": "busybody is to meddlesome",
+  "explanation": "Relation: a person called A is characteristically B. A curmudgeon is by nature grouchy; a busybody is by nature meddlesome.",
+  "distractor_rationales": {
+   "follower is to charismatic": "A follower is drawn to a charismatic LEADER; the adjective describes someone else.",
+   "bully is to defenseless": "A bully preys on defenseless VICTIMS; the adjective describes the target.",
+   "worrywart is to carefree": "A worrywart is the OPPOSITE of carefree.",
+   "pioneer is to uncharted": "A pioneer explores uncharted TERRITORY; the adjective describes the place."
+  }
+ },
+ {
+  "id": "SVA18A-18",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "person_trait",
+  "prompt": "[Analogy] stoic is to impassive as",
+  "choices": [
+   "underdog is to favored",
+   "mentor is to unproven",
+   "maverick is to independent",
+   "scapegoat is to blameworthy",
+   "fugitive is to captured"
+  ],
+  "correct_answer": "maverick is to independent",
+  "explanation": "Relation: a person called A is characteristically B. A stoic is by nature impassive; a maverick is by nature independent.",
+  "distractor_rationales": {
+   "underdog is to favored": "An underdog is precisely NOT favored.",
+   "mentor is to unproven": "A mentor guides someone unproven; the adjective describes the PROTEGE.",
+   "scapegoat is to blameworthy": "A scapegoat is blamed but is characteristically NOT blameworthy.",
+   "fugitive is to captured": "A fugitive is by definition NOT captured."
+  }
+ },
+ {
+  "id": "SVA18A-19",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "person_trait",
+  "prompt": "[Analogy] renegade is to disloyal as",
+  "choices": [
+   "loner is to convivial",
+   "censor is to obscene",
+   "arbiter is to contested",
+   "snob is to condescending",
+   "detractor is to laudatory"
+  ],
+  "correct_answer": "snob is to condescending",
+  "explanation": "Relation: a person called A is characteristically B. A renegade is by nature disloyal; a snob is by nature condescending.",
+  "distractor_rationales": {
+   "loner is to convivial": "A loner is the OPPOSITE of convivial.",
+   "censor is to obscene": "A censor suppresses obscene MATERIAL; the adjective describes the target.",
+   "arbiter is to contested": "An arbiter settles contested MATTERS; the adjective describes what is judged.",
+   "detractor is to laudatory": "A detractor is the OPPOSITE of laudatory."
+  }
+ },
+ {
+  "id": "SVA18A-20",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "person_trait",
+  "prompt": "[Analogy] fatalist is to passive as",
+  "choices": [
+   "hothead is to unflappable",
+   "therapist is to distraught",
+   "usurper is to rightful",
+   "archivist is to historical",
+   "perfectionist is to exacting"
+  ],
+  "correct_answer": "perfectionist is to exacting",
+  "explanation": "Relation: a person called A is characteristically B. A fatalist is by outlook passive before events; a perfectionist is by nature exacting.",
+  "distractor_rationales": {
+   "hothead is to unflappable": "A hothead is the OPPOSITE of unflappable.",
+   "therapist is to distraught": "A therapist treats distraught CLIENTS; the adjective describes them.",
+   "usurper is to rightful": "A usurper is precisely NOT the rightful ruler.",
+   "archivist is to historical": "An archivist keeps historical RECORDS; the adjective describes the material."
+  }
+ },
+ {
+  "id": "SVA18A-21",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "person_trait",
+  "prompt": "[Analogy] introvert is to reticent as",
+  "choices": [
+   "pushover is to compliant",
+   "malcontent is to gratified",
+   "insider is to uninformed",
+   "rescuer is to stranded",
+   "arsonist is to flammable"
+  ],
+  "correct_answer": "pushover is to compliant",
+  "explanation": "Relation: a person called A is characteristically B. An introvert is by nature reticent; a pushover is by nature compliant.",
+  "distractor_rationales": {
+   "malcontent is to gratified": "A malcontent is the OPPOSITE of gratified.",
+   "insider is to uninformed": "An insider is the OPPOSITE of uninformed.",
+   "rescuer is to stranded": "A rescuer saves stranded PEOPLE; the adjective describes them.",
+   "arsonist is to flammable": "An arsonist sets flammable THINGS alight; the adjective describes the material."
+  }
+ },
+ {
+  "id": "SVA18A-22",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "person_trait",
+  "prompt": "[Analogy] visionary is to farsighted as",
+  "choices": [
+   "swindler is to unwary",
+   "dupe is to unsuspecting",
+   "dynamo is to indolent",
+   "benefactor is to indebted",
+   "celebrity is to anonymous"
+  ],
+  "correct_answer": "dupe is to unsuspecting",
+  "explanation": "Relation: a person called A is characteristically B. A visionary is by nature farsighted; a dupe is by nature unsuspecting.",
+  "distractor_rationales": {
+   "swindler is to unwary": "A swindler preys on unwary VICTIMS; the adjective describes the target, not the swindler.",
+   "dynamo is to indolent": "A dynamo is the OPPOSITE of indolent.",
+   "benefactor is to indebted": "A benefactor leaves RECIPIENTS indebted.",
+   "celebrity is to anonymous": "A celebrity is the OPPOSITE of anonymous."
+  }
+ },
+ {
+  "id": "SVA18A-23",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "person_trait",
+  "prompt": "[Analogy] extrovert is to outgoing as",
+  "choices": [
+   "altruist is to mercenary",
+   "reformer is to corrupt",
+   "egotist is to conceited",
+   "appraiser is to antique",
+   "neophyte is to seasoned"
+  ],
+  "correct_answer": "egotist is to conceited",
+  "explanation": "Relation: a person called A is characteristically B. An extrovert is by nature outgoing; an egotist is by nature conceited.",
+  "distractor_rationales": {
+   "altruist is to mercenary": "An altruist is the OPPOSITE of mercenary.",
+   "reformer is to corrupt": "A reformer targets corrupt INSTITUTIONS; the adjective describes them.",
+   "appraiser is to antique": "An appraiser values antique OBJECTS; the adjective describes the goods.",
+   "neophyte is to seasoned": "A neophyte is the OPPOSITE of seasoned."
+  }
+ },
+ {
+  "id": "SVA18A-24",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "person_trait",
+  "prompt": "[Analogy] partisan is to biased as",
+  "choices": [
+   "centrist is to extreme",
+   "propagandist is to impressionable",
+   "mediator is to estranged",
+   "purist is to unbending",
+   "heretic is to orthodox"
+  ],
+  "correct_answer": "purist is to unbending",
+  "explanation": "Relation: a person called A is characteristically B. A partisan is by nature biased; a purist is by nature unbending about standards.",
+  "distractor_rationales": {
+   "centrist is to extreme": "A centrist is the OPPOSITE of extreme.",
+   "propagandist is to impressionable": "A propagandist targets impressionable AUDIENCES.",
+   "mediator is to estranged": "A mediator reconciles estranged PARTIES.",
+   "heretic is to orthodox": "A heretic is the OPPOSITE of orthodox."
+  }
+ },
+ {
+  "id": "SVA18A-25",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "person_trait",
+  "prompt": "[Analogy] connoisseur is to discerning as",
+  "choices": [
+   "daydreamer is to grounded",
+   "pickpocket is to inattentive",
+   "warden is to incarcerated",
+   "trailblazer is to imitative",
+   "skinflint is to tightfisted"
+  ],
+  "correct_answer": "skinflint is to tightfisted",
+  "explanation": "Relation: a person called A is characteristically B. A connoisseur is by nature discerning; a skinflint is by nature tightfisted.",
+  "distractor_rationales": {
+   "daydreamer is to grounded": "A daydreamer is the OPPOSITE of grounded.",
+   "pickpocket is to inattentive": "A pickpocket preys on inattentive VICTIMS; the adjective describes the target.",
+   "warden is to incarcerated": "A warden oversees incarcerated PRISONERS; the adjective describes them.",
+   "trailblazer is to imitative": "A trailblazer is the OPPOSITE of imitative."
+  }
+ },
+ {
+  "id": "SVA18A-26",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "manner",
+  "prompt": "[Analogy] lope is to run as",
+  "choices": [
+   "smirk is to smile",
+   "clench is to slacken",
+   "bend is to straighten",
+   "hire is to oust",
+   "beckon is to approach"
+  ],
+  "correct_answer": "smirk is to smile",
+  "explanation": "Relation: to A is to B in a particular manner. To lope is to run with long, easy strides; to smirk is to smile in a smug manner.",
+  "distractor_rationales": {
+   "clench is to slacken": "Opposite actions (tighten vs. loosen a grip).",
+   "bend is to straighten": "Opposite movements.",
+   "hire is to oust": "Opposite actions (take on vs. remove).",
+   "beckon is to approach": "Cause and response: beckoning someone makes them approach."
+  }
+ },
+ {
+  "id": "SVA18A-27",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "manner",
+  "prompt": "[Analogy] pilfer is to steal as",
+  "choices": [
+   "foretell is to prophesy",
+   "hurl is to throw",
+   "hunt is to catch",
+   "bury is to exhume",
+   "evict is to vacate"
+  ],
+  "correct_answer": "hurl is to throw",
+  "explanation": "Relation: to A is to B in a particular manner. To pilfer is to steal in small amounts; to hurl is to throw with great force.",
+  "distractor_rationales": {
+   "foretell is to prophesy": "Synonyms; neither is a particular way of doing the other.",
+   "hunt is to catch": "Purpose and result: one hunts in order to catch.",
+   "bury is to exhume": "Opposite actions.",
+   "evict is to vacate": "Cause and effect: evicting a tenant forces them to vacate."
+  }
+ },
+ {
+  "id": "SVA18A-28",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "manner",
+  "prompt": "[Analogy] gobble is to eat as",
+  "choices": [
+   "coil is to lunge",
+   "sadden is to sigh",
+   "glower is to look",
+   "inhale is to exhale",
+   "incubate is to hatch"
+  ],
+  "correct_answer": "glower is to look",
+  "explanation": "Relation: to A is to B in a particular manner. To gobble is to eat quickly and greedily; to glower is to look angrily.",
+  "distractor_rationales": {
+   "coil is to lunge": "Sequence: a snake coils, then lunges.",
+   "sadden is to sigh": "Cause and response: being saddened makes one sigh.",
+   "inhale is to exhale": "Opposite actions.",
+   "incubate is to hatch": "Sequence: eggs are incubated, then hatch."
+  }
+ },
+ {
+  "id": "SVA18A-29",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "manner",
+  "prompt": "[Analogy] sob is to cry as",
+  "choices": [
+   "hug is to embrace",
+   "kneel is to arise",
+   "bestow is to receive",
+   "jostle is to push",
+   "plead is to relent"
+  ],
+  "correct_answer": "jostle is to push",
+  "explanation": "Relation: to A is to B in a particular manner. To sob is to cry with convulsive gasps; to jostle is to push roughly against others.",
+  "distractor_rationales": {
+   "hug is to embrace": "Synonyms; neither is a particular way of doing the other.",
+   "kneel is to arise": "Opposite movements.",
+   "bestow is to receive": "Reciprocal actions by two different parties.",
+   "plead is to relent": "Cause and response: pleading may make someone relent."
+  }
+ },
+ {
+  "id": "SVA18A-30",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "manner",
+  "prompt": "[Analogy] snicker is to laugh as",
+  "choices": [
+   "totter is to topple",
+   "lull is to doze",
+   "widen is to narrow",
+   "apply is to enroll",
+   "slouch is to stand"
+  ],
+  "correct_answer": "slouch is to stand",
+  "explanation": "Relation: to A is to B in a particular manner. To snicker is to laugh in a sly, half-suppressed way; to slouch is to stand with a drooping posture.",
+  "distractor_rationales": {
+   "totter is to topple": "Sequence: what totters may then topple.",
+   "lull is to doze": "Cause and effect: being lulled makes one doze.",
+   "widen is to narrow": "Opposite actions.",
+   "apply is to enroll": "Sequence: one applies and then enrolls."
+  }
+ },
+ {
+  "id": "SVA18A-31",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "manner",
+  "prompt": "[Analogy] quaff is to drink as",
+  "choices": [
+   "drawl is to speak",
+   "nap is to snooze",
+   "binge is to bloat",
+   "affirm is to negate",
+   "nominate is to elect"
+  ],
+  "correct_answer": "drawl is to speak",
+  "explanation": "Relation: to A is to B in a particular manner. To quaff is to drink heartily; to drawl is to speak slowly with drawn-out vowels.",
+  "distractor_rationales": {
+   "nap is to snooze": "Synonyms.",
+   "binge is to bloat": "Cause and effect: bingeing leaves one bloated.",
+   "affirm is to negate": "Opposite actions.",
+   "nominate is to elect": "Sequence: a candidate is nominated, then elected."
+  }
+ },
+ {
+  "id": "SVA18A-32",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "manner",
+  "prompt": "[Analogy] cower is to crouch as",
+  "choices": [
+   "seize is to release",
+   "yank is to pull",
+   "mock is to retort",
+   "emerge is to submerge",
+   "sign is to ratify"
+  ],
+  "correct_answer": "yank is to pull",
+  "explanation": "Relation: to A is to B in a particular manner. To cower is to crouch in fear; to yank is to pull suddenly and hard.",
+  "distractor_rationales": {
+   "seize is to release": "Opposite actions.",
+   "mock is to retort": "Cause and response: being mocked prompts a retort.",
+   "emerge is to submerge": "Opposite actions.",
+   "sign is to ratify": "Sequence: a treaty is signed, then ratified."
+  }
+ },
+ {
+  "id": "SVA18A-33",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "manner",
+  "prompt": "[Analogy] stomp is to tread as",
+  "choices": [
+   "prohibit is to ban",
+   "entice is to succumb",
+   "swat is to strike",
+   "hoist is to lower",
+   "stalk is to pounce"
+  ],
+  "correct_answer": "swat is to strike",
+  "explanation": "Relation: to A is to B in a particular manner. To stomp is to tread heavily; to swat is to strike with a quick, flat blow.",
+  "distractor_rationales": {
+   "prohibit is to ban": "Synonyms.",
+   "entice is to succumb": "Cause and response: being enticed may make one succumb.",
+   "hoist is to lower": "Opposite actions.",
+   "stalk is to pounce": "Sequence: a predator stalks, then pounces."
+  }
+ },
+ {
+  "id": "SVA18A-34",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "manner",
+  "prompt": "[Analogy] clutch is to grasp as",
+  "choices": [
+   "vex is to rile",
+   "jolt is to awaken",
+   "dismantle is to reassemble",
+   "jab is to poke",
+   "enlist is to deploy"
+  ],
+  "correct_answer": "jab is to poke",
+  "explanation": "Relation: to A is to B in a particular manner. To clutch is to grasp tightly and eagerly; to jab is to poke quickly and sharply.",
+  "distractor_rationales": {
+   "vex is to rile": "Synonyms.",
+   "jolt is to awaken": "Cause and effect: a jolt may awaken a sleeper.",
+   "dismantle is to reassemble": "Opposite actions.",
+   "enlist is to deploy": "Sequence: a soldier enlists, then is deployed."
+  }
+ },
+ {
+  "id": "SVA18A-35",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "rejecter",
+  "prompt": "[Analogy] pacifist is to combat as",
+  "choices": [
+   "insomniac is to slumber",
+   "hedonist is to pleasure",
+   "hypochondriac is to disease",
+   "exile is to homeland",
+   "teetotaler is to liquor"
+  ],
+  "correct_answer": "teetotaler is to liquor",
+  "explanation": "Relation: a person who is A rejects or avoids B on principle. A pacifist refuses combat on principle; a teetotaler refuses liquor on principle.",
+  "distractor_rationales": {
+   "insomniac is to slumber": "An insomniac LACKS slumber against his will; not a principled refusal.",
+   "hedonist is to pleasure": "A hedonist SEEKS pleasure, the reverse of rejecting it.",
+   "hypochondriac is to disease": "A hypochondriac FEARS and imagines disease; anxiety, not principle.",
+   "exile is to homeland": "An exile is BANISHED from a homeland by others, not by choice."
+  }
+ },
+ {
+  "id": "SVA18A-36",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "rejecter",
+  "prompt": "[Analogy] vegetarian is to meat as",
+  "choices": [
+   "isolationist is to alliances",
+   "gourmet is to cuisine",
+   "vagrant is to lodging",
+   "castaway is to civilization",
+   "collector is to memorabilia"
+  ],
+  "correct_answer": "isolationist is to alliances",
+  "explanation": "Relation: a person who is A rejects or avoids B on principle. A vegetarian refuses meat on principle; an isolationist refuses foreign alliances on principle.",
+  "distractor_rationales": {
+   "gourmet is to cuisine": "A gourmet SAVORS fine cuisine.",
+   "vagrant is to lodging": "A vagrant LACKS lodging; circumstance, not principle.",
+   "castaway is to civilization": "A castaway is CUT OFF from civilization by accident.",
+   "collector is to memorabilia": "A collector ACCUMULATES memorabilia."
+  }
+ },
+ {
+  "id": "SVA18A-37",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "rejecter",
+  "prompt": "[Analogy] ascetic is to luxury as",
+  "choices": [
+   "socialite is to gala",
+   "abolitionist is to slavery",
+   "widower is to wife",
+   "loyalist is to regime",
+   "victim is to extortion"
+  ],
+  "correct_answer": "abolitionist is to slavery",
+  "explanation": "Relation: a person who is A rejects or opposes B on principle. An ascetic renounces luxury on principle; an abolitionist rejects slavery on principle.",
+  "distractor_rationales": {
+   "socialite is to gala": "A socialite FREQUENTS galas.",
+   "widower is to wife": "A widower has LOST his wife; loss, not rejection.",
+   "loyalist is to regime": "A loyalist SUPPORTS a regime.",
+   "victim is to extortion": "A victim SUFFERS extortion."
+  }
+ },
+ {
+  "id": "SVA18A-38",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "rejecter",
+  "prompt": "[Analogy] minimalist is to clutter as",
+  "choices": [
+   "hobbyist is to pastime",
+   "polluter is to contamination",
+   "vegan is to dairy",
+   "addict is to narcotics",
+   "squatter is to premises"
+  ],
+  "correct_answer": "vegan is to dairy",
+  "explanation": "Relation: a person who is A rejects or avoids B on principle. A minimalist rejects clutter on principle; a vegan refuses dairy on principle.",
+  "distractor_rationales": {
+   "hobbyist is to pastime": "A hobbyist PURSUES a pastime.",
+   "polluter is to contamination": "A polluter CAUSES contamination.",
+   "addict is to narcotics": "An addict DEPENDS on narcotics, the reverse of avoiding them.",
+   "squatter is to premises": "A squatter OCCUPIES premises without right."
+  }
+ },
+ {
+  "id": "SVA18A-39",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "rejecter",
+  "prompt": "[Analogy] puritan is to frivolity as",
+  "choices": [
+   "worshiper is to idol",
+   "captive is to autonomy",
+   "vandal is to graffiti",
+   "atheist is to deity",
+   "heir is to estate"
+  ],
+  "correct_answer": "atheist is to deity",
+  "explanation": "Relation: a person who is A rejects B on principle. A puritan rejects frivolity on principle; an atheist rejects belief in any deity on principle.",
+  "distractor_rationales": {
+   "worshiper is to idol": "A worshiper ADORES an idol, the reverse of rejecting it.",
+   "captive is to autonomy": "A captive LACKS autonomy by force, not by principle.",
+   "vandal is to graffiti": "A vandal PRODUCES graffiti.",
+   "heir is to estate": "An heir RECEIVES an estate."
+  }
+ },
+ {
+  "id": "SVA18A-40",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "rejecter",
+  "prompt": "[Analogy] anarchist is to hierarchy as",
+  "choices": [
+   "careerist is to promotion",
+   "layman is to credentials",
+   "firebrand is to unrest",
+   "motorist is to congestion",
+   "freethinker is to dogma"
+  ],
+  "correct_answer": "freethinker is to dogma",
+  "explanation": "Relation: a person who is A rejects B on principle. An anarchist rejects hierarchy on principle; a freethinker rejects dogma on principle.",
+  "distractor_rationales": {
+   "careerist is to promotion": "A careerist SEEKS promotion.",
+   "layman is to credentials": "A layman LACKS professional credentials; not a principled refusal.",
+   "firebrand is to unrest": "A firebrand STIRS UP unrest.",
+   "motorist is to congestion": "A motorist ENDURES congestion."
+  }
+ },
+ {
+  "id": "SVA18A-41",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "rejecter",
+  "prompt": "[Analogy] objector is to conscription as",
+  "choices": [
+   "egalitarian is to privilege",
+   "speculator is to windfall",
+   "debtor is to solvency",
+   "instigator is to strife",
+   "martyr is to persecution"
+  ],
+  "correct_answer": "egalitarian is to privilege",
+  "explanation": "Relation: a person who is A rejects B on principle. A conscientious objector refuses conscription on principle; an egalitarian rejects special privilege on principle.",
+  "distractor_rationales": {
+   "speculator is to windfall": "A speculator HOPES FOR a windfall.",
+   "debtor is to solvency": "A debtor LACKS solvency; circumstance, not principle.",
+   "instigator is to strife": "An instigator STARTS strife.",
+   "martyr is to persecution": "A martyr SUFFERS persecution; the principle is the martyr’s cause, not a rejection of persecution."
+  }
+ },
+ {
+  "id": "SVA18A-42",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "rejecter",
+  "prompt": "[Analogy] iconoclast is to tradition as",
+  "choices": [
+   "preservationist is to landmarks",
+   "rationalist is to superstition",
+   "outsider is to membership",
+   "folklorist is to legends",
+   "laureate is to prize"
+  ],
+  "correct_answer": "rationalist is to superstition",
+  "explanation": "Relation: a person who is A rejects B on principle. An iconoclast attacks cherished tradition on principle; a rationalist rejects superstition on principle.",
+  "distractor_rationales": {
+   "preservationist is to landmarks": "A preservationist PROTECTS landmarks, the reverse of rejecting them.",
+   "outsider is to membership": "An outsider LACKS membership; not a principled refusal.",
+   "folklorist is to legends": "A folklorist STUDIES legends.",
+   "laureate is to prize": "A laureate RECEIVES a prize."
+  }
+ },
+ {
+  "id": "SVA18A-43",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sham",
+  "prompt": "[Analogy] pretext is to reason as",
+  "choices": [
+   "paraphrase is to quotation",
+   "symptom is to malady",
+   "alias is to name",
+   "prototype is to product",
+   "motive is to crime"
+  ],
+  "correct_answer": "alias is to name",
+  "explanation": "Relation: A is a false form of B, put forward in place of the real one. A pretext is a false reason given to hide the real one; an alias is a false name used to hide the real one.",
+  "distractor_rationales": {
+   "paraphrase is to quotation": "A paraphrase is an honest RESTATEMENT of a quotation, not a false one.",
+   "symptom is to malady": "A symptom is a SIGN of a malady.",
+   "prototype is to product": "A prototype is an EARLY genuine version of a product.",
+   "motive is to crime": "A motive is the REAL reason behind a crime."
+  }
+ },
+ {
+  "id": "SVA18A-44",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sham",
+  "prompt": "[Analogy] bravado is to nerve as",
+  "choices": [
+   "fortitude is to adversity",
+   "gallantry is to chivalry",
+   "onslaught is to assault",
+   "feint is to attack",
+   "retaliation is to aggression"
+  ],
+  "correct_answer": "feint is to attack",
+  "explanation": "Relation: A is a pretended show of B, not the real thing. Bravado is a showy pretense of nerve; a feint is a pretended attack meant to mislead.",
+  "distractor_rationales": {
+   "fortitude is to adversity": "Fortitude is genuine strength IN THE FACE OF adversity.",
+   "gallantry is to chivalry": "Near-synonyms; both genuine.",
+   "onslaught is to assault": "An onslaught is an especially FIERCE assault: degree, not pretense.",
+   "retaliation is to aggression": "Retaliation is a RESPONSE to aggression."
+  }
+ },
+ {
+  "id": "SVA18A-45",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sham",
+  "prompt": "[Analogy] quackery is to healing as",
+  "choices": [
+   "cruelty is to compassion",
+   "concern is to paranoia",
+   "rehabilitation is to sobriety",
+   "decency is to propriety",
+   "hypocrisy is to morality"
+  ],
+  "correct_answer": "hypocrisy is to morality",
+  "explanation": "Relation: A is a false, pretended form of B. Quackery is fraudulent healing; hypocrisy is a pretense of morality one does not have.",
+  "distractor_rationales": {
+   "cruelty is to compassion": "Cruelty is the ABSENCE or opposite of compassion, not a pretense of it.",
+   "concern is to paranoia": "Paranoia is an EXTREME degree of concern.",
+   "rehabilitation is to sobriety": "Rehabilitation AIMS at sobriety.",
+   "decency is to propriety": "Near-synonyms; both genuine."
+  }
+ },
+ {
+  "id": "SVA18A-46",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sham",
+  "prompt": "[Analogy] veneer is to sophistication as",
+  "choices": [
+   "lip service is to commitment",
+   "oath is to fidelity",
+   "lapse is to attention",
+   "inclination is to compulsion",
+   "nuance is to distinction"
+  ],
+  "correct_answer": "lip service is to commitment",
+  "explanation": "Relation: A is a merely outward, insincere show of B. A veneer of sophistication is a thin surface show of it; lip service is an insincere show of commitment.",
+  "distractor_rationales": {
+   "oath is to fidelity": "An oath is a sincere PLEDGE of fidelity.",
+   "lapse is to attention": "A lapse is a momentary FAILURE of attention.",
+   "inclination is to compulsion": "A compulsion is an irresistibly STRONG inclination: degree.",
+   "nuance is to distinction": "A nuance is a SUBTLE distinction: degree."
+  }
+ },
+ {
+  "id": "SVA18A-47",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sham",
+  "prompt": "[Analogy] travesty is to justice as",
+  "choices": [
+   "overdose is to dosage",
+   "placebo is to medication",
+   "anthem is to patriotism",
+   "subsidy is to enterprise",
+   "embargo is to commerce"
+  ],
+  "correct_answer": "placebo is to medication",
+  "explanation": "Relation: A is a false or imitation form of B that lacks its real substance. A travesty of justice is a false mockery of it; a placebo is an imitation medication with no active ingredient.",
+  "distractor_rationales": {
+   "overdose is to dosage": "An overdose is an EXCESSIVE dosage: degree.",
+   "anthem is to patriotism": "An anthem EXPRESSES patriotism.",
+   "subsidy is to enterprise": "A subsidy SUPPORTS an enterprise.",
+   "embargo is to commerce": "An embargo BLOCKS commerce."
+  }
+ },
+ {
+  "id": "SVA18A-48",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sham",
+  "prompt": "[Analogy] tokenism is to integration as",
+  "choices": [
+   "deputy is to official",
+   "successor is to predecessor",
+   "figurehead is to leader",
+   "understudy is to lead",
+   "proxy is to shareholder"
+  ],
+  "correct_answer": "figurehead is to leader",
+  "explanation": "Relation: A is a merely nominal form of B, having its name but not its substance. Tokenism is integration in name only; a figurehead is a leader in name only, without real power.",
+  "distractor_rationales": {
+   "deputy is to official": "A deputy is a genuine SUBORDINATE of an official.",
+   "successor is to predecessor": "A successor FOLLOWS a predecessor.",
+   "understudy is to lead": "An understudy is a real STAND-IN for a lead actor.",
+   "proxy is to shareholder": "A proxy genuinely ACTS FOR a shareholder with real authority."
+  }
+ },
+ {
+  "id": "SVA18A-49",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sham",
+  "prompt": "[Analogy] mirage is to oasis as",
+  "choices": [
+   "pride is to hubris",
+   "experiment is to hypothesis",
+   "etiquette is to decorum",
+   "pseudoscience is to science",
+   "ambivalence is to resolve"
+  ],
+  "correct_answer": "pseudoscience is to science",
+  "explanation": "Relation: A is a false appearance of B. A mirage is a false appearance of an oasis; pseudoscience is a false appearance of science.",
+  "distractor_rationales": {
+   "pride is to hubris": "Hubris is EXCESSIVE pride: degree.",
+   "experiment is to hypothesis": "An experiment TESTS a hypothesis.",
+   "etiquette is to decorum": "Etiquette is the set of RULES of decorum; both genuine.",
+   "ambivalence is to resolve": "Ambivalence is the ABSENCE of resolve."
+  }
+ },
+ {
+  "id": "SVA18A-50",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sham",
+  "prompt": "[Analogy] glib is to articulate as",
+  "choices": [
+   "plucky is to foolhardy",
+   "lucid is to intelligible",
+   "graceless is to suave",
+   "victorious is to jubilant",
+   "sanctimonious is to righteous"
+  ],
+  "correct_answer": "sanctimonious is to righteous",
+  "explanation": "Relation: someone who is A makes an insincere, superficial show of being B. A glib speaker seems articulate but is shallow and insincere; a sanctimonious person makes a hypocritical show of being righteous.",
+  "distractor_rationales": {
+   "plucky is to foolhardy": "Foolhardy is an EXCESSIVE degree of plucky.",
+   "lucid is to intelligible": "Near-synonyms; both genuine.",
+   "graceless is to suave": "Opposites.",
+   "victorious is to jubilant": "Cause and effect: being victorious makes one jubilant."
+  }
+ },
+ {
+  "id": "SVA18B-01",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "function",
+  "prompt": "[Analogy] decoy is to beguile as",
+  "choices": [
+   "alibi is to exonerate",
+   "avalanche is to engulf",
+   "escapee is to recapture",
+   "procrastinator is to stall",
+   "contraband is to confiscate"
+  ],
+  "correct_answer": "alibi is to exonerate",
+  "explanation": "Relation: A is something contrived for the express purpose of B-ing. A decoy is set out precisely to beguile its quarry; an alibi is offered precisely to exonerate the accused.",
+  "distractor_rationales": {
+   "avalanche is to engulf": "An avalanche engulfs by blind natural force; nobody contrives it for that purpose.",
+   "escapee is to recapture": "An escapee is the one who gets recaptured (the object of the action), not a device made to recapture.",
+   "procrastinator is to stall": "Stalling is what a procrastinator habitually does (a trait), not a purpose the person was devised for.",
+   "contraband is to confiscate": "Contraband is what customs officers confiscate (object of B); it is not made for the purpose of being confiscated."
+  }
+ },
+ {
+  "id": "SVA18B-02",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "function",
+  "prompt": "[Analogy] mnemonic is to recall as",
+  "choices": [
+   "illiterate is to decipher",
+   "worrier is to agonize",
+   "geyser is to spew",
+   "epitaph is to memorialize",
+   "legacy is to bequeath"
+  ],
+  "correct_answer": "epitaph is to memorialize",
+  "explanation": "Relation: A is a device whose purpose is to B. A mnemonic exists to help one recall; an epitaph exists to memorialize the dead.",
+  "distractor_rationales": {
+   "illiterate is to decipher": "An illiterate person is unable to decipher writing: absence of B, not purpose.",
+   "worrier is to agonize": "Agonizing is a worrier's habitual tendency, not a designed purpose.",
+   "geyser is to spew": "A geyser spews water by natural behaviour; it was not made in order to spew.",
+   "legacy is to bequeath": "A legacy is what one bequeaths (object of B), not a device whose purpose is to bequeath."
+  }
+ },
+ {
+  "id": "SVA18B-03",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "function",
+  "prompt": "[Analogy] subpoena is to compel as",
+  "choices": [
+   "dilettante is to dabble",
+   "satire is to deride",
+   "comet is to orbit",
+   "detainee is to parole",
+   "loophole is to exploit"
+  ],
+  "correct_answer": "satire is to deride",
+  "explanation": "Relation: A is created in order to B (its defining purpose). A subpoena is issued to compel a witness; a satire is written to deride folly.",
+  "distractor_rationales": {
+   "dilettante is to dabble": "Dabbling is what a dilettante characteristically does; a person is not an instrument with a purpose.",
+   "comet is to orbit": "A comet orbits by natural motion, not by design or intent.",
+   "detainee is to parole": "A detainee is the one who may be paroled (object of B).",
+   "loophole is to exploit": "A loophole is what people exploit (object of B); no one creates a loophole for that purpose."
+  }
+ },
+ {
+  "id": "SVA18B-04",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "function",
+  "prompt": "[Analogy] blockade is to isolate as",
+  "choices": [
+   "gourmand is to relish",
+   "insurgent is to subdue",
+   "meteor is to streak",
+   "controversy is to flare",
+   "bluff is to hoodwink"
+  ],
+  "correct_answer": "bluff is to hoodwink",
+  "explanation": "Relation: A is a deliberate manoeuvre whose purpose is to B an opponent. A blockade is mounted to isolate an enemy; a bluff is made to hoodwink an opponent.",
+  "distractor_rationales": {
+   "gourmand is to relish": "Relishing food is a gourmand's habitual behaviour, not a purpose A was devised for.",
+   "insurgent is to subdue": "An insurgent is the one others try to subdue (object of B).",
+   "meteor is to streak": "A meteor streaks by natural motion; no purpose is involved.",
+   "controversy is to flare": "A controversy characteristically flares up; that is how it behaves, not a goal anyone designed it for."
+  }
+ },
+ {
+  "id": "SVA18B-05",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "function",
+  "prompt": "[Analogy] pseudonym is to anonymity as",
+  "choices": [
+   "indolence is to penury",
+   "stutter is to jitteriness",
+   "chaperone is to respectability",
+   "forgery is to signature",
+   "liniment is to stiffness"
+  ],
+  "correct_answer": "chaperone is to respectability",
+  "explanation": "Relation: A is adopted for the purpose of securing B. A pseudonym is adopted to secure anonymity; a chaperone is present to secure respectability.",
+  "distractor_rationales": {
+   "indolence is to penury": "Indolence tends to produce penury (cause and effect); nobody adopts it in order to be poor.",
+   "stutter is to jitteriness": "A stutter can be an outward sign of jitteriness (sign of an inner state), not a means of securing it.",
+   "forgery is to signature": "A forgery is a fraudulent imitation of a signature; it is not used to secure one.",
+   "liniment is to stiffness": "A liniment is applied to relieve stiffness: it removes B rather than securing it."
+  }
+ },
+ {
+  "id": "SVA18B-06",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "function",
+  "prompt": "[Analogy] census is to enumeration as",
+  "choices": [
+   "deprivation is to craving",
+   "audit is to verification",
+   "pacing is to fretting",
+   "salve is to abrasion",
+   "heresy is to orthodoxy"
+  ],
+  "correct_answer": "audit is to verification",
+  "explanation": "Relation: A is conducted for the purpose of B. A census is conducted for the enumeration of a population; an audit is conducted for the verification of accounts.",
+  "distractor_rationales": {
+   "deprivation is to craving": "Deprivation produces craving as an unintended effect; nobody conducts it for that purpose.",
+   "pacing is to fretting": "Pacing is the outward sign of fretting, not a procedure undertaken to achieve it.",
+   "salve is to abrasion": "A salve is applied to an abrasion to soothe it; it relieves B rather than aiming at it.",
+   "heresy is to orthodoxy": "Heresy is a departure from orthodoxy, the opposite of serving it."
+  }
+ },
+ {
+  "id": "SVA18B-07",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "function",
+  "prompt": "[Analogy] manifesto is to proclaim as",
+  "choices": [
+   "fad is to fizzle",
+   "borrower is to owe",
+   "hostage is to ransom",
+   "tide is to surge",
+   "tribunal is to adjudicate"
+  ],
+  "correct_answer": "tribunal is to adjudicate",
+  "explanation": "Relation: A is a formal instrument whose purpose is to B. A manifesto is issued to proclaim principles; a tribunal is convened to adjudicate disputes.",
+  "distractor_rationales": {
+   "fad is to fizzle": "A fad characteristically fizzles out; that is its typical fate, not its purpose.",
+   "borrower is to owe": "A borrower is by definition one who owes: B is A's condition, not A's purpose.",
+   "hostage is to ransom": "A hostage is the one who is ransomed (object of B).",
+   "tide is to surge": "A tide surges by natural force; there is no purpose."
+  }
+ },
+ {
+  "id": "SVA18B-08",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "function",
+  "prompt": "[Analogy] buttress is to reinforce as",
+  "choices": [
+   "inflation is to spiral",
+   "defendant is to acquit",
+   "tariff is to cushion",
+   "convalescent is to recuperate",
+   "dew is to evaporate"
+  ],
+  "correct_answer": "tariff is to cushion",
+  "explanation": "Relation: A is put in place in order to B something vulnerable. A buttress is built to reinforce a wall; a tariff is imposed to cushion domestic producers from foreign competition.",
+  "distractor_rationales": {
+   "inflation is to spiral": "Inflation tends to spiral; that is its characteristic behaviour, not a purpose it was put in place to serve.",
+   "defendant is to acquit": "A defendant is the one who may be acquitted (object of B).",
+   "convalescent is to recuperate": "A convalescent is one who is recuperating: B is A's state, not a purpose.",
+   "dew is to evaporate": "Dew evaporates naturally; no one places it to do so."
+  }
+ },
+ {
+  "id": "SVA18B-09",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "cause_effect",
+  "prompt": "[Analogy] complacency is to stagnation as",
+  "choices": [
+   "mismanagement is to deficit",
+   "groveling is to servility",
+   "emollient is to chafing",
+   "qualifying is to tournament",
+   "abstention is to ballot"
+  ],
+  "correct_answer": "mismanagement is to deficit",
+  "explanation": "Relation: A, left unchecked, characteristically brings about B. Complacency tends to bring about stagnation; mismanagement tends to bring about a deficit.",
+  "distractor_rationales": {
+   "groveling is to servility": "Groveling is the outward show of servility (sign); servility comes first and is displayed, not produced.",
+   "emollient is to chafing": "An emollient relieves chafing (counteracts B) rather than producing it.",
+   "qualifying is to tournament": "Qualifying is the preparatory round before a tournament; it does not cause the tournament.",
+   "abstention is to ballot": "An abstention is declining to cast a ballot; it withholds B rather than producing it."
+  }
+ },
+ {
+  "id": "SVA18B-10",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "cause_effect",
+  "prompt": "[Analogy] tyranny is to insurrection as",
+  "choices": [
+   "squirm is to discomfort",
+   "refutation is to fallacy",
+   "orientation is to semester",
+   "condescension is to umbrage",
+   "plagiarism is to attribution"
+  ],
+  "correct_answer": "condescension is to umbrage",
+  "explanation": "Relation: A provokes B as a reaction in those subjected to it. Tyranny provokes insurrection among the oppressed; condescension provokes umbrage in those it is aimed at.",
+  "distractor_rationales": {
+   "squirm is to discomfort": "A squirm is the outward sign of discomfort; the discomfort is shown, not provoked.",
+   "refutation is to fallacy": "A refutation counteracts a fallacy; it does not provoke one.",
+   "orientation is to semester": "Orientation is the preparatory step before a semester, not its cause.",
+   "plagiarism is to attribution": "Plagiarism is the breach of proper attribution; it violates B rather than provoking it."
+  }
+ },
+ {
+  "id": "SVA18B-11",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "cause_effect",
+  "prompt": "[Analogy] conceit is to comeuppance as",
+  "choices": [
+   "snarl is to ire",
+   "balm is to chapping",
+   "procrastination is to backlog",
+   "enrollment is to coursework",
+   "renunciation is to throne"
+  ],
+  "correct_answer": "procrastination is to backlog",
+  "explanation": "Relation: A, a failing, leads in time to B. Conceit leads in time to a comeuppance; procrastination leads to a backlog.",
+  "distractor_rationales": {
+   "snarl is to ire": "A snarl is the outward sign of ire; ire is expressed by it, not produced by it.",
+   "balm is to chapping": "A balm relieves chapping; it counteracts B.",
+   "enrollment is to coursework": "Enrollment is the preparatory step before coursework, not a failing that produces it.",
+   "renunciation is to throne": "Renunciation gives up a throne lawfully; A relinquishes B, it does not produce it."
+  }
+ },
+ {
+  "id": "SVA18B-12",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "cause_effect",
+  "prompt": "[Analogy] secrecy is to mistrust as",
+  "choices": [
+   "impunity is to lawlessness",
+   "goosebumps is to eeriness",
+   "tonic is to lassitude",
+   "countdown is to liftoff",
+   "torpor is to sluggishness"
+  ],
+  "correct_answer": "impunity is to lawlessness",
+  "explanation": "Relation: A, by its nature, breeds B. Secrecy breeds mistrust; impunity breeds lawlessness.",
+  "distractor_rationales": {
+   "goosebumps is to eeriness": "Goosebumps are an involuntary outward sign of eeriness felt (sign), not its cause.",
+   "tonic is to lassitude": "A tonic relieves lassitude; it counteracts B rather than breeding it.",
+   "countdown is to liftoff": "A countdown is the preparatory sequence before liftoff; it precedes B by plan, it does not breed it.",
+   "torpor is to sluggishness": "Torpor and sluggishness are near-synonyms; one does not breed the other."
+  }
+ },
+ {
+  "id": "SVA18B-13",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "cause_effect",
+  "prompt": "[Analogy] infighting is to deadlock as",
+  "choices": [
+   "blink is to flash",
+   "antihistamine is to allergen",
+   "taxiing is to takeoff",
+   "ambiguity is to misunderstanding",
+   "smuggling is to customs"
+  ],
+  "correct_answer": "ambiguity is to misunderstanding",
+  "explanation": "Relation: A characteristically produces B as its result. Infighting produces deadlock; ambiguity produces misunderstanding.",
+  "distractor_rationales": {
+   "blink is to flash": "A blink is a reflex reaction to a flash: B prompts A, the reverse of A producing B.",
+   "antihistamine is to allergen": "An antihistamine counteracts the effect of an allergen rather than producing it.",
+   "taxiing is to takeoff": "Taxiing is the preparatory step before takeoff; it precedes B by procedure, it does not produce it.",
+   "smuggling is to customs": "Smuggling evades customs; it is a breach of B, not a cause of it."
+  }
+ },
+ {
+  "id": "SVA18B-14",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "cause_effect",
+  "prompt": "[Analogy] austerity is to restiveness as",
+  "choices": [
+   "beaming is to gratification",
+   "favoritism is to acrimony",
+   "perfume is to mustiness",
+   "concord is to unanimity",
+   "tryout is to season"
+  ],
+  "correct_answer": "favoritism is to acrimony",
+  "explanation": "Relation: A, imposed on a group, stirs up B within it. Austerity stirs up restiveness among the public; favoritism stirs up acrimony among those passed over.",
+  "distractor_rationales": {
+   "beaming is to gratification": "Beaming is the outward sign of gratification (sign), not something that stirs it up.",
+   "perfume is to mustiness": "Perfume masks mustiness; it covers B rather than producing it.",
+   "concord is to unanimity": "Concord and unanimity are near-synonyms; neither produces the other.",
+   "tryout is to season": "A tryout is the preparatory step before a season, not its cause."
+  }
+ },
+ {
+  "id": "SVA18B-15",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "cause_effect",
+  "prompt": "[Analogy] prodigality is to destitution as",
+  "choices": [
+   "chortle is to merriment",
+   "euphemism is to tactlessness",
+   "cocoon is to metamorphosis",
+   "repeal is to ordinance",
+   "idleness is to delinquency"
+  ],
+  "correct_answer": "idleness is to delinquency",
+  "explanation": "Relation: A, a habit, leads to B, a bad end. Prodigality leads to destitution; idleness (proverbially) leads to delinquency.",
+  "distractor_rationales": {
+   "chortle is to merriment": "A chortle is the outward expression of merriment; merriment comes first and shows in it.",
+   "euphemism is to tactlessness": "A euphemism avoids tactlessness; it counteracts B rather than leading to it.",
+   "cocoon is to metamorphosis": "A cocoon is the place where metamorphosis happens: location, not a habit leading to a bad end.",
+   "repeal is to ordinance": "A repeal lawfully annuls an ordinance; it ends B rather than producing it."
+  }
+ },
+ {
+  "id": "SVA18B-16",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "cause_effect",
+  "prompt": "[Analogy] drudgery is to weariness as",
+  "choices": [
+   "huffing is to pique",
+   "ventilation is to stuffiness",
+   "candidacy is to inauguration",
+   "notoriety is to scrutiny",
+   "truancy is to attendance"
+  ],
+  "correct_answer": "notoriety is to scrutiny",
+  "explanation": "Relation: A brings B upon the person who experiences A. Drudgery brings weariness on the worker; notoriety brings scrutiny on the notorious.",
+  "distractor_rationales": {
+   "huffing is to pique": "Huffing is the outward display of pique, not something that brings pique on a person.",
+   "ventilation is to stuffiness": "Ventilation relieves stuffiness; it removes B.",
+   "candidacy is to inauguration": "Candidacy is the stage before inauguration; it precedes B, it does not bring B on anyone.",
+   "truancy is to attendance": "Truancy is a breach of required attendance; it violates B."
+  }
+ },
+ {
+  "id": "SVA18B-17",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sign",
+  "prompt": "[Analogy] wince is to hurt as",
+  "choices": [
+   "mockery is to humiliation",
+   "gape is to astonishment",
+   "yelp is to pinch",
+   "rejoinder is to jibe",
+   "bigamy is to monogamy"
+  ],
+  "correct_answer": "gape is to astonishment",
+  "explanation": "Relation: A is the involuntary facial reaction that shows B. A wince shows hurt; a gape shows astonishment.",
+  "distractor_rationales": {
+   "mockery is to humiliation": "Mockery produces humiliation in its target (cause and effect); it does not show the mocker's own state.",
+   "yelp is to pinch": "A yelp is an involuntary cry at a pinch, but B is the external blow that triggers it, not an inner feeling it shows.",
+   "rejoinder is to jibe": "A rejoinder is a reply made to a jibe; A responds to B, it does not express an inner state.",
+   "bigamy is to monogamy": "Bigamy breaches monogamy; violation, not expression."
+  }
+ },
+ {
+  "id": "SVA18B-18",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sign",
+  "prompt": "[Analogy] yawn is to ennui as",
+  "choices": [
+   "tedium is to lethargy",
+   "detergent is to grime",
+   "audition is to debut",
+   "handshake is to acquaintance",
+   "drumming is to impatience"
+  ],
+  "correct_answer": "drumming is to impatience",
+  "explanation": "Relation: A is the outward bodily sign of B, an inner state of restlessness or tedium. A yawn betrays ennui; drumming the fingers betrays impatience.",
+  "distractor_rationales": {
+   "tedium is to lethargy": "Tedium produces lethargy (cause and effect): both are inner conditions and neither is a visible sign.",
+   "detergent is to grime": "A detergent removes grime (counteract), it does not display it.",
+   "audition is to debut": "An audition precedes a debut as a step toward it (preparation), not as its outward sign.",
+   "handshake is to acquaintance": "A handshake is offered TO an acquaintance: B is the recipient of the gesture, not the inner state it expresses."
+  }
+ },
+ {
+  "id": "SVA18B-19",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sign",
+  "prompt": "[Analogy] hoot is to derision as",
+  "choices": [
+   "betrayal is to bitterness",
+   "humming is to desperation",
+   "moan is to suffering",
+   "deliberation is to judgment",
+   "transcript is to oration"
+  ],
+  "correct_answer": "moan is to suffering",
+  "explanation": "Relation: A is the wordless vocal sound by which a person expresses B. A hoot expresses derision; a moan expresses suffering.",
+  "distractor_rationales": {
+   "betrayal is to bitterness": "Betrayal produces bitterness in the betrayed (cause and effect), it is not an outward sign.",
+   "humming is to desperation": "Humming is a wordless vocal sound, but it suggests ease or contentment, not desperation: the sound does not match the feeling.",
+   "deliberation is to judgment": "Deliberation is the preparatory step before a judgment.",
+   "transcript is to oration": "A transcript is a written copy of an oration: A records B, it does not express an inner state."
+  }
+ },
+ {
+  "id": "SVA18B-20",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sign",
+  "prompt": "[Analogy] pout is to petulance as",
+  "choices": [
+   "strut is to self-importance",
+   "indulgence is to selfishness",
+   "mimicry is to mannerism",
+   "browning is to braising",
+   "shuffle is to exuberance"
+  ],
+  "correct_answer": "strut is to self-importance",
+  "explanation": "Relation: A is a bearing or expression that displays B, a self-regarding attitude. A pout displays petulance; a strut displays self-importance.",
+  "distractor_rationales": {
+   "indulgence is to selfishness": "Indulgence breeds selfishness (cause and effect); it is not a visible display.",
+   "mimicry is to mannerism": "Mimicry imitates a mannerism: A copies an outward B, it does not display an inner attitude.",
+   "browning is to braising": "Browning the meat is the preparatory step before braising.",
+   "shuffle is to exuberance": "A shuffle is a bearing, but it displays weariness or reluctance, never exuberance: the bearing does not match the attitude."
+  }
+ },
+ {
+  "id": "SVA18B-21",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sign",
+  "prompt": "[Analogy] frown is to dissatisfaction as",
+  "choices": [
+   "condolence is to bereavement",
+   "titter is to solemnity",
+   "calibration is to measurement",
+   "sacrilege is to piety",
+   "prostration is to submission"
+  ],
+  "correct_answer": "prostration is to submission",
+  "explanation": "Relation: A is the conventional bodily sign of B, an attitude toward someone or something. A frown conventionally signals dissatisfaction; prostration conventionally signals submission.",
+  "distractor_rationales": {
+   "condolence is to bereavement": "Condolence is offered in response to a bereavement: B is the occasion of A, not the inner attitude A displays.",
+   "titter is to solemnity": "A titter is a bodily sign, but of nervous amusement; it does not signal solemnity.",
+   "calibration is to measurement": "Calibration is the preparatory step before measurement.",
+   "sacrilege is to piety": "Sacrilege offends against piety; it violates B rather than expressing it."
+  }
+ },
+ {
+  "id": "SVA18B-22",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sign",
+  "prompt": "[Analogy] swagger is to cockiness as",
+  "choices": [
+   "isolation is to loneliness",
+   "prance is to desolation",
+   "slump is to dejection",
+   "whetting is to carving",
+   "inkling is to premonition"
+  ],
+  "correct_answer": "slump is to dejection",
+  "explanation": "Relation: A is the visible expression of B in face or posture. A swagger is cockiness made visible; a slump is dejection made visible.",
+  "distractor_rationales": {
+   "isolation is to loneliness": "Isolation produces loneliness (cause and effect); neither is visible.",
+   "prance is to desolation": "A prance is a visible expression, but of high spirits; it never displays desolation.",
+   "whetting is to carving": "Whetting the blade is the preparatory step before carving.",
+   "inkling is to premonition": "An inkling and a premonition are both inner intuitions (near-synonyms); neither is an outward sign."
+  }
+ },
+ {
+  "id": "SVA18B-23",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sign",
+  "prompt": "[Analogy] ovation is to approbation as",
+  "choices": [
+   "booing is to disfavor",
+   "virtuosity is to admiration",
+   "hush is to jubilation",
+   "scouting is to expedition",
+   "encore is to finale"
+  ],
+  "correct_answer": "booing is to disfavor",
+  "explanation": "Relation: A is the collective audible expression of B by a crowd. An ovation is a crowd voicing approbation; booing is a crowd voicing disfavor.",
+  "distractor_rationales": {
+   "virtuosity is to admiration": "Virtuosity wins admiration (cause and effect); it is the cause of the feeling, not its expression.",
+   "hush is to jubilation": "A hush falls over a crowd from suspense or awe-struck attention; it does not voice jubilation, so the sign does not match the feeling.",
+   "scouting is to expedition": "Scouting is the preparatory step before an expedition.",
+   "encore is to finale": "An encore is an extra piece played after the finale: what follows B, not a crowd's expression of a feeling."
+  }
+ },
+ {
+  "id": "SVA18B-24",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "sign",
+  "prompt": "[Analogy] recoil is to repugnance as",
+  "choices": [
+   "suspense is to jitters",
+   "sanitation is to filth",
+   "excavation is to foundation",
+   "blanching is to shock",
+   "simper is to antipathy"
+  ],
+  "correct_answer": "blanching is to shock",
+  "explanation": "Relation: A is the involuntary outward sign of B, an intense inner feeling. A recoil betrays repugnance; blanching betrays shock.",
+  "distractor_rationales": {
+   "suspense is to jitters": "Suspense produces jitters (cause and effect); A is a situation, not an outward sign.",
+   "sanitation is to filth": "Sanitation removes filth (counteract); it does not betray a feeling.",
+   "excavation is to foundation": "Excavation is the preparatory step before the foundation is laid.",
+   "simper is to antipathy": "A simper is a silly, affected smile; it does not betray antipathy."
+  }
+ },
+ {
+  "id": "SVA18B-25",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "counteract",
+  "prompt": "[Analogy] antivenom is to toxin as",
+  "choices": [
+   "slander is to infamy",
+   "consolation is to misery",
+   "tantrum is to vexation",
+   "vigilance is to ambush",
+   "cramming is to examination"
+  ],
+  "correct_answer": "consolation is to misery",
+  "explanation": "Relation: A relieves or neutralizes B, an ill that is already present. An antivenom is given to neutralize a toxin already in the body; consolation is offered to relieve misery already felt.",
+  "distractor_rationales": {
+   "slander is to infamy": "Slander produces infamy for its victim (cause and effect); it creates B rather than relieving it.",
+   "tantrum is to vexation": "A tantrum is the outward display of vexation (sign).",
+   "vigilance is to ambush": "Vigilance forestalls an ambush before it happens (prevention); it does not relieve an ill already present.",
+   "cramming is to examination": "Cramming is the preparatory step before an examination."
+  }
+ },
+ {
+  "id": "SVA18B-26",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "counteract",
+  "prompt": "[Analogy] sedative is to agitation as",
+  "choices": [
+   "humor is to tension",
+   "turbulence is to queasiness",
+   "quaking is to dismay",
+   "makeup is to blemish",
+   "reneging is to pact"
+  ],
+  "correct_answer": "humor is to tension",
+  "explanation": "Relation: A relieves B, a strained state, by easing it. A sedative eases agitation; humor eases tension.",
+  "distractor_rationales": {
+   "turbulence is to queasiness": "Turbulence produces queasiness (cause and effect), the opposite of easing it.",
+   "quaking is to dismay": "Quaking is an outward sign of dismay (sign).",
+   "makeup is to blemish": "Makeup conceals a blemish: it hides B from view without relieving or removing it.",
+   "reneging is to pact": "Reneging breaks a pact (violation)."
+  }
+ },
+ {
+  "id": "SVA18B-27",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "counteract",
+  "prompt": "[Analogy] lozenge is to hoarseness as",
+  "choices": [
+   "corruption is to cynicism",
+   "scowl is to displeasure",
+   "thawing is to roasting",
+   "retraction is to libel",
+   "trespass is to boundary"
+  ],
+  "correct_answer": "retraction is to libel",
+  "explanation": "Relation: A is applied after B has occurred, to undo the harm of B. A lozenge is taken to undo hoarseness; a retraction is published to undo the harm of a libel.",
+  "distractor_rationales": {
+   "corruption is to cynicism": "Corruption breeds cynicism (cause and effect); it creates B rather than undoing it.",
+   "scowl is to displeasure": "A scowl is the outward sign of displeasure (sign).",
+   "thawing is to roasting": "Thawing is the preparatory step before roasting.",
+   "trespass is to boundary": "A trespass is a violation of a boundary (violation), not a remedy for it."
+  }
+ },
+ {
+  "id": "SVA18B-28",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "counteract",
+  "prompt": "[Analogy] analgesic is to migraine as",
+  "choices": [
+   "overcrowding is to squalor",
+   "alms is to privation",
+   "cheering is to elation",
+   "antifreeze is to icing",
+   "vetting is to appointment"
+  ],
+  "correct_answer": "alms is to privation",
+  "explanation": "Relation: A is given to relieve B, a suffering already being endured. An analgesic relieves a migraine; alms relieve privation.",
+  "distractor_rationales": {
+   "overcrowding is to squalor": "Overcrowding produces squalor (cause and effect).",
+   "cheering is to elation": "Cheering is the outward expression of elation (sign).",
+   "antifreeze is to icing": "Antifreeze keeps icing from occurring at all (prevention); it does not relieve an existing ill.",
+   "vetting is to appointment": "Vetting is the preparatory step before an appointment."
+  }
+ },
+ {
+  "id": "SVA18B-29",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "counteract",
+  "prompt": "[Analogy] reassurance is to apprehension as",
+  "choices": [
+   "oppression is to exodus",
+   "laughter is to amusement",
+   "mobilization is to campaign",
+   "backsliding is to resolution",
+   "poultice is to inflammation"
+  ],
+  "correct_answer": "poultice is to inflammation",
+  "explanation": "Relation: A soothes and reduces B, a present distress. Reassurance soothes apprehension; a poultice soothes inflammation.",
+  "distractor_rationales": {
+   "oppression is to exodus": "Oppression drives an exodus (cause and effect).",
+   "laughter is to amusement": "Laughter is the outward expression of amusement (sign).",
+   "mobilization is to campaign": "Mobilization is the preparatory step before a campaign.",
+   "backsliding is to resolution": "Backsliding breaks a resolution (violation)."
+  }
+ },
+ {
+  "id": "SVA18B-30",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "counteract",
+  "prompt": "[Analogy] absolution is to guilt as",
+  "choices": [
+   "frugality is to prosperity",
+   "grinning is to jubilance",
+   "fumigation is to infestation",
+   "galvanizing is to corrosion",
+   "apostasy is to denomination"
+  ],
+  "correct_answer": "fumigation is to infestation",
+  "explanation": "Relation: A clears away B, a condition already present. Absolution clears away guilt; fumigation clears away an infestation.",
+  "distractor_rationales": {
+   "frugality is to prosperity": "Frugality produces prosperity (cause and effect); it brings B about rather than clearing it away.",
+   "grinning is to jubilance": "Grinning is the outward sign of jubilance (sign).",
+   "galvanizing is to corrosion": "Galvanizing keeps corrosion from starting (prevention); it acts before B exists, not on B once present.",
+   "apostasy is to denomination": "Apostasy is the abandonment of one's denomination or faith (violation)."
+  }
+ },
+ {
+  "id": "SVA18B-31",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "counteract",
+  "prompt": "[Analogy] antacid is to heartburn as",
+  "choices": [
+   "stereotyping is to prejudice",
+   "amends is to affront",
+   "research is to thesis",
+   "aftermath is to upheaval",
+   "misstep is to slip"
+  ],
+  "correct_answer": "amends is to affront",
+  "explanation": "Relation: A is offered to remedy B, a harm already done. An antacid remedies heartburn; amends remedy an affront.",
+  "distractor_rationales": {
+   "stereotyping is to prejudice": "Stereotyping feeds prejudice (cause and effect).",
+   "research is to thesis": "Research is the preparatory step before a thesis.",
+   "aftermath is to upheaval": "An aftermath is the period that follows an upheaval: A comes after B but does nothing to remedy it.",
+   "misstep is to slip": "A misstep and a slip are near-synonyms; neither remedies the other."
+  }
+ },
+ {
+  "id": "SVA18B-32",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "counteract",
+  "prompt": "[Analogy] mediation is to impasse as",
+  "choices": [
+   "ordeal is to toughness",
+   "deterrent is to invasion",
+   "groundwork is to construction",
+   "hugging is to tenderness",
+   "restitution is to larceny"
+  ],
+  "correct_answer": "restitution is to larceny",
+  "explanation": "Relation: A sets right B, a breakdown or wrong that has already occurred. Mediation breaks an impasse that has already set in; restitution sets right a larceny already committed.",
+  "distractor_rationales": {
+   "ordeal is to toughness": "An ordeal builds toughness (cause and effect); A produces B rather than setting it right.",
+   "deterrent is to invasion": "A deterrent forestalls an invasion before it occurs (prevention), rather than setting right a wrong already done.",
+   "groundwork is to construction": "Groundwork is the preparatory step before construction.",
+   "hugging is to tenderness": "Hugging is an outward expression of tenderness (sign)."
+  }
+ },
+ {
+  "id": "SVA18B-33",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "preparation",
+  "prompt": "[Analogy] reconnaissance is to offensive as",
+  "choices": [
+   "overconfidence is to oversight",
+   "minutes is to session",
+   "tuning is to recital",
+   "smiling is to cordiality",
+   "counseling is to addiction"
+  ],
+  "correct_answer": "tuning is to recital",
+  "explanation": "Relation: A is the preparatory step undertaken before B so that B can succeed. Reconnaissance is carried out before an offensive; tuning is done before a recital.",
+  "distractor_rationales": {
+   "overconfidence is to oversight": "Overconfidence leads to oversight (cause and effect), not a deliberate preparatory step.",
+   "minutes is to session": "Minutes are the record made of a session, during and after it, not a step taken to prepare for it.",
+   "smiling is to cordiality": "Smiling is the outward sign of cordiality (sign).",
+   "counseling is to addiction": "Counseling treats addiction (counteract)."
+  }
+ },
+ {
+  "id": "SVA18B-34",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "preparation",
+  "prompt": "[Analogy] preheating is to baking as",
+  "choices": [
+   "brainstorming is to composing",
+   "indoctrination is to bigotry",
+   "adjournment is to proceedings",
+   "bristling is to rancor",
+   "remediation is to illiteracy"
+  ],
+  "correct_answer": "brainstorming is to composing",
+  "explanation": "Relation: A is the step done first so that B can proceed properly. Preheating comes before baking; brainstorming comes before composing.",
+  "distractor_rationales": {
+   "indoctrination is to bigotry": "Indoctrination breeds bigotry (cause and effect).",
+   "adjournment is to proceedings": "An adjournment ends the proceedings; it comes at the close of B, not before it.",
+   "bristling is to rancor": "Bristling is the outward sign of rancor (sign).",
+   "remediation is to illiteracy": "Remediation remedies illiteracy (counteract)."
+  }
+ },
+ {
+  "id": "SVA18B-35",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "preparation",
+  "prompt": "[Analogy] triage is to surgery as",
+  "choices": [
+   "jealousy is to estrangement",
+   "postscript is to memo",
+   "whooping is to exhilaration",
+   "negotiation is to ratification",
+   "splint is to fracture"
+  ],
+  "correct_answer": "negotiation is to ratification",
+  "explanation": "Relation: A is the preliminary process that must be completed before B. Triage precedes surgery; negotiation precedes ratification.",
+  "distractor_rationales": {
+   "jealousy is to estrangement": "Jealousy leads to estrangement (cause and effect), not as a planned preliminary.",
+   "postscript is to memo": "A postscript is added after a memo is written; it follows B rather than preparing for it.",
+   "whooping is to exhilaration": "Whooping is the outward expression of exhilaration (sign).",
+   "splint is to fracture": "A splint treats a fracture (counteract)."
+  }
+ },
+ {
+  "id": "SVA18B-36",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "preparation",
+  "prompt": "[Analogy] stretching is to calisthenics as",
+  "choices": [
+   "inactivity is to atrophy",
+   "clapping is to appreciation",
+   "registration is to voting",
+   "defrosting is to frost",
+   "expiry is to warranty"
+  ],
+  "correct_answer": "registration is to voting",
+  "explanation": "Relation: A is the step one must take beforehand in order to do B. Stretching comes before calisthenics; registration comes before voting.",
+  "distractor_rationales": {
+   "inactivity is to atrophy": "Inactivity produces atrophy (cause and effect).",
+   "clapping is to appreciation": "Clapping is the outward expression of appreciation (sign).",
+   "defrosting is to frost": "Defrosting removes frost (counteract); B is what A clears away, not what A prepares for.",
+   "expiry is to warranty": "Expiry is the lawful end of a warranty; it marks B's end, not a step toward it."
+  }
+ },
+ {
+  "id": "SVA18B-37",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "preparation",
+  "prompt": "[Analogy] fueling is to launch as",
+  "choices": [
+   "courtship is to matrimony",
+   "affluence is to decadence",
+   "snorting is to disdain",
+   "nourishment is to emaciation",
+   "eulogy is to funeral"
+  ],
+  "correct_answer": "courtship is to matrimony",
+  "explanation": "Relation: A is the preparatory stage that comes before B and makes it possible. Fueling precedes a launch; courtship precedes matrimony.",
+  "distractor_rationales": {
+   "affluence is to decadence": "Affluence can breed decadence (cause and effect).",
+   "snorting is to disdain": "Snorting is the outward expression of disdain (sign).",
+   "nourishment is to emaciation": "Nourishment remedies emaciation (counteract).",
+   "eulogy is to funeral": "A eulogy is delivered during a funeral: A is part of B, not a stage before it."
+  }
+ },
+ {
+  "id": "SVA18B-38",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "preparation",
+  "prompt": "[Analogy] screening is to admission as",
+  "choices": [
+   "inequality is to discontent",
+   "lolling is to languor",
+   "intermission is to play",
+   "saddling is to riding",
+   "bailout is to collapse"
+  ],
+  "correct_answer": "saddling is to riding",
+  "explanation": "Relation: A is the step taken immediately before B, without which B cannot begin. Screening comes before admission; saddling comes before riding.",
+  "distractor_rationales": {
+   "inequality is to discontent": "Inequality breeds discontent (cause and effect).",
+   "lolling is to languor": "Lolling is the outward sign of languor (sign).",
+   "intermission is to play": "An intermission is a pause in the middle of a play, not a step before it.",
+   "bailout is to collapse": "A bailout counteracts a collapse; it relieves B rather than preparing for it."
+  }
+ },
+ {
+  "id": "SVA18B-39",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "preparation",
+  "prompt": "[Analogy] mustering is to march as",
+  "choices": [
+   "competition is to innovation",
+   "fermentation is to distillation",
+   "skulking is to cowardice",
+   "residue is to combustion",
+   "indiscretion is to confidentiality"
+  ],
+  "correct_answer": "fermentation is to distillation",
+  "explanation": "Relation: A is the earlier process that must be carried out before B can be done. Troops are mustered before a march; a wash is fermented before distillation.",
+  "distractor_rationales": {
+   "competition is to innovation": "Competition spurs innovation (cause and effect).",
+   "skulking is to cowardice": "Skulking is the outward sign of cowardice (sign).",
+   "residue is to combustion": "Residue is what is left after combustion; it follows B rather than preparing for it.",
+   "indiscretion is to confidentiality": "An indiscretion breaches confidentiality (violation)."
+  }
+ },
+ {
+  "id": "SVA18B-40",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "preparation",
+  "prompt": "[Analogy] anesthesia is to operation as",
+  "choices": [
+   "clamor is to distraction",
+   "souvenir is to tour",
+   "probation is to offender",
+   "recovery is to downturn",
+   "lacing is to skating"
+  ],
+  "correct_answer": "lacing is to skating",
+  "explanation": "Relation: A is the step done first so that B can be carried out. Anesthesia is given before an operation; skates are laced before skating.",
+  "distractor_rationales": {
+   "clamor is to distraction": "Clamor causes distraction (cause and effect).",
+   "souvenir is to tour": "A souvenir is a memento kept after a tour, not a step before it.",
+   "probation is to offender": "Probation is a condition imposed on an offender: B is the person subject to A.",
+   "recovery is to downturn": "A recovery reverses a downturn (counteract), coming after B rather than before it."
+  }
+ },
+ {
+  "id": "SVA18B-42",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "violation",
+  "prompt": "[Analogy] default is to mortgage as",
+  "choices": [
+   "fulfillment is to covenant",
+   "absconding is to bail",
+   "eviction is to lodger",
+   "veto is to bill",
+   "insurance is to burglary"
+  ],
+  "correct_answer": "absconding is to bail",
+  "explanation": "Relation: A is the failure to honor the terms of B, an agreement one entered into. Default breaks the terms of a mortgage; absconding breaks the terms of bail.",
+  "distractor_rationales": {
+   "fulfillment is to covenant": "Fulfillment honors a covenant: the opposite of breaching it.",
+   "eviction is to lodger": "Eviction is a penalty applied to a lodger: B is the person acted on, not an agreement broken.",
+   "veto is to bill": "A veto lawfully rejects a bill; it is an exercise of a power, not a breach.",
+   "insurance is to burglary": "Insurance compensates for a burglary after it occurs (counteract), it does not break anything."
+  }
+ },
+ {
+  "id": "SVA18B-43",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "violation",
+  "prompt": "[Analogy] nepotism is to impartiality as",
+  "choices": [
+   "impeachment is to magistrate",
+   "integrity is to honesty",
+   "expulsion is to member",
+   "hindsight is to mistake",
+   "embezzlement is to stewardship"
+  ],
+  "correct_answer": "embezzlement is to stewardship",
+  "explanation": "Relation: A is the misconduct by which an official betrays B, a duty of the office. Nepotism betrays an official's duty of impartiality; embezzlement betrays an official's duty of honest stewardship.",
+  "distractor_rationales": {
+   "impeachment is to magistrate": "Impeachment is a process brought against a magistrate: B is the person accused, not a duty betrayed.",
+   "integrity is to honesty": "Integrity and honesty are near-synonymous virtues; neither breaches the other.",
+   "expulsion is to member": "Expulsion is a penalty imposed on a member: B is the person punished.",
+   "hindsight is to mistake": "Hindsight is the clear view of a mistake after it is made; it looks back on B rather than betraying it."
+  }
+ },
+ {
+  "id": "SVA18B-44",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "violation",
+  "prompt": "[Analogy] strikebreaking is to solidarity as",
+  "choices": [
+   "boycott is to retailer",
+   "retirement is to career",
+   "jilting is to betrothal",
+   "renewal is to passport",
+   "induction is to trainee"
+  ],
+  "correct_answer": "jilting is to betrothal",
+  "explanation": "Relation: A is the act by which one abandons the people to whom B binds one. Strikebreaking abandons fellow strikers and so breaks solidarity; jilting abandons a fiance and so breaks a betrothal.",
+  "distractor_rationales": {
+   "boycott is to retailer": "A boycott is collective pressure aimed AT a retailer: B is the target, not a commitment broken.",
+   "retirement is to career": "Retirement ends a career honourably; nothing is betrayed.",
+   "renewal is to passport": "A renewal extends a passport: it keeps B going rather than breaking it.",
+   "induction is to trainee": "An induction is a ceremony that admits a trainee: B is the person admitted."
+  }
+ },
+ {
+  "id": "SVA18B-45",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "violation",
+  "prompt": "[Analogy] relapse is to abstinence as",
+  "choices": [
+   "splurge is to budget",
+   "temperance is to excess",
+   "gorging is to buffet",
+   "satiety is to surfeit",
+   "thunderstorm is to runoff"
+  ],
+  "correct_answer": "splurge is to budget",
+  "explanation": "Relation: A is the lapse by which one breaks B, a regimen of self-restraint one has undertaken. A relapse breaks a pledge of abstinence; a splurge breaks a budget.",
+  "distractor_rationales": {
+   "temperance is to excess": "Temperance is the avoidance of excess (opposites), not a breach of a regimen.",
+   "gorging is to buffet": "Gorging is what one may do at a buffet: B is the occasion, not a commitment broken.",
+   "satiety is to surfeit": "Satiety is being full and surfeit is being overfull: a mild to extreme scale, not a breach.",
+   "thunderstorm is to runoff": "A thunderstorm produces runoff (cause and effect)."
+  }
+ },
+ {
+  "id": "SVA18B-46",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "violation",
+  "prompt": "[Analogy] partisanship is to neutrality as",
+  "choices": [
+   "moderator is to debate",
+   "objectivity is to detachment",
+   "overtime is to shift",
+   "sabbatical is to scholar",
+   "dereliction is to duty"
+  ],
+  "correct_answer": "dereliction is to duty",
+  "explanation": "Relation: A is the failure by which someone entrusted with a role betrays B, what that role requires. Partisanship by a referee betrays the neutrality the role requires; dereliction betrays the duty a post requires.",
+  "distractor_rationales": {
+   "moderator is to debate": "A moderator is the one who runs a debate: role and event, not breach and duty.",
+   "objectivity is to detachment": "Objectivity and detachment are near-synonyms; neither breaches the other.",
+   "overtime is to shift": "Overtime is work beyond a shift: A exceeds B rather than betraying it.",
+   "sabbatical is to scholar": "A sabbatical is a sanctioned leave granted to a scholar: B is the person, and the leave is permitted, not a breach."
+  }
+ },
+ {
+  "id": "SVA18B-47",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "violation",
+  "prompt": "[Analogy] doping is to sportsmanship as",
+  "choices": [
+   "disqualification is to contestant",
+   "rote is to memorization",
+   "insubordination is to obedience",
+   "observance is to sabbath",
+   "scrimmage is to match"
+  ],
+  "correct_answer": "insubordination is to obedience",
+  "explanation": "Relation: A is the conduct that breaches B, a code a participant is bound to observe. Doping breaches the code of sportsmanship; insubordination breaches the obedience a subordinate owes.",
+  "distractor_rationales": {
+   "disqualification is to contestant": "Disqualification is the penalty imposed on a contestant: B is the person punished, not the code breached.",
+   "rote is to memorization": "Rote drilling produces memorization (cause and effect).",
+   "observance is to sabbath": "Observance keeps the sabbath: the opposite of breaching B.",
+   "scrimmage is to match": "A scrimmage is a practice game before a match (preparation)."
+  }
+ },
+ {
+  "id": "SVA18B-48",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "violation",
+  "prompt": "[Analogy] infringement is to patent as",
+  "choices": [
+   "snooping is to privacy",
+   "royalty is to copyright",
+   "warrant is to arrest",
+   "dossier is to suspect",
+   "gridlock is to lateness"
+  ],
+  "correct_answer": "snooping is to privacy",
+  "explanation": "Relation: A is the act that violates B, a right that belongs to someone else. Infringement violates an inventor's patent; snooping violates a person's privacy.",
+  "distractor_rationales": {
+   "royalty is to copyright": "A royalty is the lawful payment for using a copyright: honoring B, not violating it.",
+   "warrant is to arrest": "A warrant authorizes an arrest: A permits B rather than violating anything.",
+   "dossier is to suspect": "A dossier is the file kept on a suspect: record and its subject.",
+   "gridlock is to lateness": "Gridlock produces lateness (cause and effect)."
+  }
+ },
+ {
+  "id": "SVA18B-49",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "prevention",
+  "prompt": "[Analogy] inoculation is to outbreak as",
+  "choices": [
+   "rebuilding is to ruin",
+   "resuscitation is to drowning",
+   "sedition is to turmoil",
+   "foresight is to calamity",
+   "omen is to disaster"
+  ],
+  "correct_answer": "foresight is to calamity",
+  "explanation": "Relation: A forestalls B so that B never occurs, rather than dealing with B once it has come. Inoculation forestalls an outbreak; foresight forestalls a calamity.",
+  "distractor_rationales": {
+   "rebuilding is to ruin": "Rebuilding repairs ruin AFTER it has occurred (counteract), the reverse of forestalling it.",
+   "resuscitation is to drowning": "Resuscitation responds to a drowning already underway (counteract); it does not keep B from happening.",
+   "sedition is to turmoil": "Sedition stirs up turmoil (cause and effect).",
+   "omen is to disaster": "An omen foretells a disaster: it comes before B but does nothing to prevent it."
+  }
+ },
+ {
+  "id": "SVA18B-50",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "relation_family": "prevention",
+  "prompt": "[Analogy] diplomacy is to warfare as",
+  "choices": [
+   "ceasefire is to bombardment",
+   "sandbagging is to overflow",
+   "aftershock is to quake",
+   "escalation is to conflict",
+   "mopping is to seepage"
+  ],
+  "correct_answer": "sandbagging is to overflow",
+  "explanation": "Relation: A is a precaution that keeps B from breaking out in the first place. Diplomacy keeps warfare from breaking out; sandbagging keeps an overflow from reaching what it protects.",
+  "distractor_rationales": {
+   "ceasefire is to bombardment": "A ceasefire halts a bombardment that is already underway (counteract), not before it breaks out.",
+   "aftershock is to quake": "An aftershock follows a quake: a later echo of B, not a precaution against it.",
+   "escalation is to conflict": "Escalation intensifies a conflict: it worsens B rather than keeping it from breaking out.",
+   "mopping is to seepage": "Mopping cleans up seepage after it has come in (counteract)."
+  }
+ }
+]
