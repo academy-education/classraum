@@ -28,6 +28,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { eliminationVerdict } from './elimination-paired.mjs'
 import { scanFiles, describeHits } from './question-number-refs.mjs'
+import { checkFiles as checkStemDuplicates, describe as describeStemDuplicates } from './stem-duplicates.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const contract = JSON.parse(readFileSync(join(HERE, 'gate-contract.json'), 'utf8'))
@@ -126,7 +127,7 @@ export function explain(v) {
  * A batch with no ledger entry at all is REFUSED, not waved through — the
  * default for an unreviewed batch has to be "no", or the gate is decoration.
  */
-export function gateBatch({ task, family, section, itemFiles }) {
+export function gateBatch({ task, family, section, itemFiles, liveStems }) {
   const fam = familyFor(task, family, section)
   const h = createHash('sha256')
   for (const f of itemFiles) h.update(readFileSync(f))
@@ -145,6 +146,23 @@ export function gateBatch({ task, family, section, itemFiles }) {
     return {
       canInsert: false, sha, family: fam, batch: null, questionNumberRefs: q.hits,
       reason: `${q.hits.length} hardcoded question-number reference(s) — items are drawn into a new order, so this text names the wrong question on a form. Reword position-independently ("This question asks…"):\n    ${describeHits(q.hits)}`,
+    }
+  }
+
+  /*
+   * STEM DUPLICATES (REGISTER §5, 2026-10-06). Nine live pairs shared a stem
+   * (+passage+graphic) with different distractors and no passage group, so the
+   * one-per-group draw rule could not keep them apart; ISEE "ARDUOUS" was served
+   * twice in one form. Refused here against the LIVE bank (same family) and
+   * within the batch, unless the two share a passage group (an intentional set).
+   * The live read throws on failure rather than passing the batch. `liveStems`
+   * lets a test inject the live rows.
+   */
+  const d = checkStemDuplicates(itemFiles, family, { live: liveStems })
+  if (d.hits.length) {
+    return {
+      canInsert: false, sha, family: fam, batch: null, stemDuplicates: d.hits,
+      reason: `${d.hits.length} stem duplicate(s) — the same question (stem+passage+graphic) is already live or appears twice in this batch, with no shared passage group, so one form can draw both. Drop or rewrite the duplicate, or give an intentional set a shared passage group:\n    ${describeStemDuplicates(d.hits)}`,
     }
   }
 

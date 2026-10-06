@@ -91,6 +91,17 @@ async function insert(family, batchPath, qcPath) {
    * ssat-reading-s11 — which failed its attack at 66.7% — could not have been
    * stopped here yesterday.
    */
+  /*
+   * NO DEFAULT COHORT (2026-10-06). This used to fall back to
+   * `${family}-verbal-v1` when BANK_COHORT was unset, and 146 rows from three
+   * later batches (ssat-verbal-a7, ssat-verbal-s8ab, isee-verbal-s14) landed
+   * under the v1 label, so a per-cohort query for those batches read zero
+   * rows. Relabelled by fixes/apply-2026-10-06-cohorts.mjs. Refuse instead.
+   */
+  if (!process.env.BANK_COHORT || !process.env.BANK_COHORT.trim()) {
+    console.error('REFUSING: set BANK_COHORT=<cohort> (the ledger entry\'s cohort). There is no default label.')
+    process.exit(1)
+  }
   const g = gateBatch({ task: 'multiple_choice', family, section: SECTION, itemFiles: [batchPath] })
   if (!g.canInsert) {
     const why = overrideReason()
@@ -162,7 +173,7 @@ async function insert(family, batchPath, qcPath) {
       difficulty: graded, topic_tag: raw.topic_tag || raw.kind,
       passage_group_id: raw.topic_id ? `rw-${raw.topic_id}` : null,
       item: it, content_hash, word_count: null, verified: true, archived: false,
-      source: 'hand', cohort: process.env.BANK_COHORT || `${family}-verbal-v1`,
+      source: 'hand', cohort: process.env.BANK_COHORT.trim(),
       verify_meta: {
         method: 'claude-authored+claude-qc',
         key_votes: q.key_votes ?? null, exclusivity: q.exclusivity ?? null,

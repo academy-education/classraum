@@ -1,0 +1,86 @@
+[
+  {
+    "id": "SEC12B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark between verb + object complement and its delayed object",
+    "difficulty": "hard",
+    "passage": "For decades, the fungi that partner with plant roots could be studied only indirectly, through chemical traces they left in soil samples. A staining technique developed in a university soil laboratory changed that. Applied to a thin slice of undisturbed earth, the new dye makes visible to anyone with an ordinary light ______ thread-like fungal filaments that link the root tips of neighboring plants into a single underground network.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["microscope, the", "microscope and the", "microscope. The", "microscope the"],
+    "correct_answer": "microscope the",
+    "explanation": "The verb phrase \"makes visible\" needs an object, and here that object (\"the thread-like fungal filaments that link ...\") has been moved after the long phrase \"to anyone with an ordinary light microscope.\" Nothing may separate a verb from its object, so \"microscope the\" is correct. \"microscope, the\" inserts a comma between the verb and its object. \"microscope. The\" leaves \"the new dye makes visible to anyone with an ordinary light microscope\" without an object and turns the rest into a fragment, since \"The thread-like fungal filaments that link ...\" has no main verb (\"link\" belongs to the relative clause). \"microscope and the\" folds the filaments into the phrase \"anyone with an ordinary light microscope and the ... filaments,\" so \"makes visible\" again has no object.",
+    "topic_tag": "soil microbiology"
+  },
+  {
+    "id": "SEC12B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma + coordinating conjunction before a clause that opens with a subordinate clause",
+    "difficulty": "hard",
+    "passage": "Printed partbooks, which gave each singer a separate volume containing a single voice, let a motet travel far beyond the chapel where it was first performed. These editions preserved the composer's pitches and rhythms ______ printers seldom showed exactly which syllable of the Latin text belonged beneath which note, singers in different cities had to settle that alignment for themselves.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["faithfully but, because", "faithfully, because", "faithfully, but because", "faithfully but because"],
+    "correct_answer": "faithfully, but because",
+    "explanation": "The sentence contains two independent clauses: \"These editions preserved the composer's pitches and rhythms faithfully\" and \"singers in different cities had to settle that alignment for themselves.\" The second is preceded by the introductory clause \"because printers seldom showed ... note.\" Two independent clauses joined by a coordinating conjunction take a comma before the conjunction, so \"faithfully, but because\" is correct. \"faithfully, because\" makes the \"because\" clause modify the first clause and then joins \"singers ... had to settle\" with only a comma, a comma splice. \"faithfully but because\" and \"faithfully but, because\" both omit the required comma before \"but\" between the two independent clauses; the comma after \"but\" in the latter does not replace it.",
+    "topic_tag": "Renaissance music"
+  },
+  {
+    "id": "SEC12B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon introducing an independent clause the first clause announces",
+    "difficulty": "hard",
+    "passage": "Historians had long treated a 1570s chart of the Breton coast as a straightforward copy of an earlier map. But when conservators examined the sheet under raking light, the faint guidelines beneath its ink revealed something no scholar had ______ the mapmaker had first sketched the shoreline as seen from a ship offshore and only later corrected it against surveys made on land.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["anticipated, the", "anticipated: the", "anticipated the", "anticipated, which the"],
+    "correct_answer": "anticipated: the",
+    "explanation": "\"The faint guidelines ... revealed something no scholar had anticipated\" is a complete clause that announces a discovery, and \"the mapmaker had first sketched the shoreline ...\" is an independent clause stating what that discovery was. A colon correctly introduces such an explanation, so \"anticipated: the\" is correct. \"anticipated, the\" joins the two independent clauses with only a comma, a comma splice. \"anticipated the\" runs them together with no punctuation; \"the mapmaker\" cannot serve as the object of \"anticipated\" because \"had first sketched the shoreline\" follows it as a second verb with its own object. \"anticipated, which the\" opens a relative clause, but \"which the mapmaker had first sketched the shoreline\" has no gap for \"which\" to fill, since \"sketched\" already has its object, \"the shoreline.\"",
+    "topic_tag": "cartography"
+  },
+  {
+    "id": "SEC12B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: dash before a long sentence-final summarizing appositive",
+    "difficulty": "hard",
+    "passage": "Over six years of monitoring, researchers found that reef patches shaded by overhanging mangroves bleached less often during marine heat waves and, when they did bleach, regained their symbiotic algae within weeks rather than ______ a pattern that suggests coastal forests, which have been widely cleared for shrimp farming, may serve as refuges for corals in a warming ocean.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["months—a pattern", "months. A pattern", "months; a pattern", "months a pattern"],
+    "correct_answer": "months—a pattern",
+    "explanation": "\"A pattern that suggests coastal forests ... may serve as refuges\" is not a clause: it is the noun \"pattern\" followed by a relative clause, and the verb \"may serve\" belongs to \"coastal forests\" inside that relative clause. The phrase is an appositive summarizing the finding described before it, and a dash correctly sets off such an appositive at the end of a sentence, so \"months—a pattern\" is correct. \"months. A pattern\" and \"months; a pattern\" each require a complete sentence or independent clause after the mark, leaving \"A pattern that suggests ... ocean\" as a fragment. \"months a pattern\" runs the appositive into the clause with no punctuation, so \"rather than months a pattern\" cannot be parsed.",
+    "topic_tag": "coral reef ecology"
+  },
+  {
+    "id": "SEC12B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon + conjunctive adverb between independent clauses",
+    "difficulty": "hard",
+    "passage": "Engineers who built the valley's first railway in the 1830s butted each iron rail tightly against the next, and in summer heat that line buckled so often that trains were regularly ______ the extension laid eleven years later along the same river, whose rails were set with a narrow gap at every joint, ran through even the hottest seasons without a single reported failure.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["halted, however,", "halted however,", "halted however", "halted; however,"],
+    "correct_answer": "halted; however,",
+    "explanation": "\"In summer heat that line buckled so often that trains were regularly halted\" and \"the extension laid eleven years later ... ran through even the hottest seasons\" are independent clauses. \"However\" is a conjunctive adverb, not a conjunction, so it cannot join them by itself; a semicolon before it is required, and a comma follows it. \"halted; however,\" is therefore correct. \"halted, however,\" joins the two clauses with only commas, a comma splice. \"halted however,\" and \"halted however\" provide no punctuation between the clauses at all, producing run-on sentences (in the former, \"however\" can attach only to the first clause, leaving the second joined by a comma).",
+    "topic_tag": "railway engineering"
+  },
+  {
+    "id": "SEC12B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: closing comma of a long nonrestrictive clause with internal commas, between subject and verb",
+    "difficulty": "hard",
+    "passage": "Primatologists long assumed that great apes share food chiefly with close relatives. Yet the bonobo community at one long-term field station, which observers have followed almost daily since the late 1970s and which, unlike most wild groups studied so far, has never been given supplementary food by ______ shares meat with unrelated females at least as often as with kin.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["humans—shares", "humans; shares", "humans, shares", "humans shares"],
+    "correct_answer": "humans, shares",
+    "explanation": "The subject \"the bonobo community at one long-term field station\" is followed by a nonrestrictive relative clause that opens with a comma (\"which observers have followed ... and which ... has never been given supplementary food by humans\"); the commas around \"unlike most wild groups studied so far\" are a separate pair nested inside it. The main verb is \"shares,\" and the relative clause must be closed with a second comma before it, so \"humans, shares\" is correct. \"humans—shares\" closes a comma-opened element with a dash, a mismatched pair. \"humans; shares\" separates the subject from its verb with a semicolon, leaving neither side an independent clause. \"humans shares\" leaves the relative clause unclosed.",
+    "topic_tag": "primatology"
+  },
+  {
+    "id": "SEC12B-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: period before a clause opening with an \"only after\" inversion",
+    "difficulty": "hard",
+    "passage": "Workshops in the eastern Mediterranean produced a brilliant, colorfast red on cotton through a sequence of more than a dozen baths in oil, alkali, and dye, the exact order of which was closely guarded by the dyers' ______ several of these artisans were recruited by French manufacturers in the 1740s did western European mills begin producing the color themselves.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": ["guilds, only after", "guilds. Only after", "guilds only after", "guilds, although only after"],
+    "correct_answer": "guilds. Only after",
+    "explanation": "The inverted verb \"did western European mills begin\" shows that \"only after several of these artisans were recruited ...\" is fronted to open a new independent clause (\"Only after X did mills begin\"). That clause must be separated from the first independent clause, which ends with \"the dyers' guilds,\" and a period does so, so \"guilds. Only after\" is correct. \"guilds, only after\" joins the two independent clauses with only a comma, a comma splice. \"guilds only after\" runs them together; \"guarded ... only after\" cannot absorb the phrase, because \"did western European mills begin\" is left with no clause to belong to. \"guilds, although only after\" makes the second clause subordinate, but the subject-auxiliary inversion \"did ... mills begin\" is not possible in an \"although\" clause.",
+    "topic_tag": "textile history"
+  }
+]

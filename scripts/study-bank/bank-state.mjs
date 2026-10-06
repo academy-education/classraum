@@ -95,29 +95,57 @@ async function counts() {
   }
 }
 
-async function sittings() {
-  const revs = await pageAll('study_item_reviews',
-    'run_id,reviewer_id,reviewer_kind,blind_at,blind_pick,key_slot,item_id')
-  // Reviews reference ARCHIVED items too (a cohort retired after its
-  // sitting). Filtering them out here printed the family as '?' and split
-  // one run across two lines, which is how a 100-item run looked like 80.
-  const items = await pageAll('study_item_bank', 'id,family,section,archived')
-  const meta = new Map(items.map(r => [r.id, r]))
-  const { data: users } = await db.from('users').select('id,email')
-  const email = new Map((users ?? []).map(u => [u.id, u.email]))
-
+/**
+ * Group review rows into runs. Exported-shape pure function so --selftest can
+ * pin it without a database.
+ *
+ * FRESH ONLY (fixed 2026-10-06). Migration 076 binds every review to the
+ * content sha of the item it was made on; a review of an item that has since
+ * been edited is a historical fact, not evidence about the item today
+ * (study_item_reviews_fresh). This read the raw table and scored stale rows
+ * as though they described the current item — 32 human rows on live items on
+ * 2026-10-04 (BANK-INTEGRITY-2026-10-04.md). Stale rows are now counted apart
+ * and never enter the score or the answered count.
+ */
+export function aggregateSittings(revs, freshIds, meta, email) {
   const g = {}
   for (const r of revs) {
     const m = meta.get(r.item_id)
     const k = `${r.run_id}|${m ? `${m.family}/${m.section}` : '?'}`
-    ;(g[k] ??= { n: 0, seen: 0, picked: 0, correct: 0, kinds: new Set(), who: new Set() })
+    ;(g[k] ??= { n: 0, seen: 0, picked: 0, correct: 0, stale: 0, staleCorrect: 0, stalePicked: 0, kinds: new Set(), who: new Set() })
     const e = g[k]
+    if (r.reviewer_kind) e.kinds.add(r.reviewer_kind)
+    e.who.add(email.get(r.reviewer_id) ?? '?')
+    if (!freshIds.has(r.id)) {
+      e.stale++
+      if (r.blind_pick) { e.stalePicked++; if (r.blind_pick === r.key_slot) e.staleCorrect++ }
+      continue
+    }
     e.n++
     if (r.blind_at) e.seen++
     if (r.blind_pick) { e.picked++; if (r.blind_pick === r.key_slot) e.correct++ }
-    if (r.reviewer_kind) e.kinds.add(r.reviewer_kind)
-    e.who.add(email.get(r.reviewer_id) ?? '?')
   }
+  return g
+}
+
+async function sittings() {
+  const order = q => q.order('id')   // unordered paging can repeat or skip rows
+  const revs = await pageAll('study_item_reviews',
+    'id,run_id,reviewer_id,reviewer_kind,blind_at,blind_pick,key_slot,item_id', order)
+  const fresh = await pageAll('study_item_reviews_fresh', 'id', order)
+  const freshIds = new Set(fresh.map(r => r.id))
+  for (const id of freshIds) if (!revs.some(r => r.id === id)) throw new Error(`fresh review ${id} not in study_item_reviews — reads disagree`)
+  // Reviews reference ARCHIVED items too (a cohort retired after its
+  // sitting). Filtering them out here printed the family as '?' and split
+  // one run across two lines, which is how a 100-item run looked like 80.
+  const items = await pageAll('study_item_bank', 'id,family,section,archived', order)
+  const meta = new Map(items.map(r => [r.id, r]))
+  const { data: users } = await db.from('users').select('id,email')
+  const email = new Map((users ?? []).map(u => [u.id, u.email]))
+
+  const g = aggregateSittings(revs, freshIds, meta, email)
+  const nStale = revs.length - freshIds.size
+  console.log(`\n    ${revs.length} review rows: ${freshIds.size} FRESH (study_item_reviews_fresh, scored), ${nStale} STALE (item edited since review — migration 076; shown, never scored)`)
   // A model run is not a sitting. Print them apart so they cannot be conflated.
   for (const want of ['human', 'model_assisted', 'other']) {
     const rows = Object.entries(g).filter(([, v]) => {
@@ -125,13 +153,44 @@ async function sittings() {
       return want === 'other' ? kinds.length === 0 : kinds.includes(want) && !(want === 'human' && kinds.includes('model_assisted'))
     })
     if (!rows.length) continue
-    console.log(`\n=== ${want.toUpperCase()} REVIEW RUNS   (score = blind_pick vs key_slot; control 25%)\n`)
+    const st = rows.reduce((a, [, v]) => a + v.stale, 0)
+    console.log(`\n=== ${want.toUpperCase()} REVIEW RUNS   (FRESH rows only; score = blind_pick vs key_slot; control 25%)${st ? `   ${st} stale row(s) excluded` : ''}\n`)
     for (const [k, v] of rows.sort()) {
       const [run, fam] = k.split('|')
       const pct = v.picked ? `${(100 * v.correct / v.picked).toFixed(1)}%` : '—'
-      console.log(`${pad(run, 36)} ${pad(fam, 22)} ${num(v.picked, 3)}/${num(v.n, 3)} answered  ${num(pct, 6)}  ${[...v.who].join(',')}`)
+      const staleNote = v.stale ? `   [+${v.stale} STALE not scored${v.stalePicked ? `: ${v.staleCorrect}/${v.stalePicked} on the old text` : ''}]` : ''
+      console.log(`${pad(run, 36)} ${pad(fam, 22)} ${num(v.picked, 3)}/${num(v.n, 3)} answered  ${num(pct, 6)}  ${[...v.who].join(',')}${staleNote}`)
     }
   }
+}
+
+function selftest() {
+  let bad = 0
+  const fail = m => { console.error(`SELF-TEST FAIL: ${m}`); bad++ }
+  const meta = new Map([['i1', { family: 'sat', section: 'reading_writing' }], ['i2', { family: 'sat', section: 'reading_writing' }], ['i3', { family: 'sat', section: 'reading_writing' }]])
+  const email = new Map([['u', 'a@x']])
+  const revs = [
+    { id: 'r1', run_id: 'R', reviewer_id: 'u', reviewer_kind: 'human', item_id: 'i1', blind_at: 't', blind_pick: 'A', key_slot: 'A' },
+    { id: 'r2', run_id: 'R', reviewer_id: 'u', reviewer_kind: 'human', item_id: 'i2', blind_at: 't', blind_pick: 'B', key_slot: 'C' },
+    // stale: correct on the OLD text, must not lift the score to 2/3
+    { id: 'r3', run_id: 'R', reviewer_id: 'u', reviewer_kind: 'human', item_id: 'i3', blind_at: 't', blind_pick: 'D', key_slot: 'D' },
+  ]
+  const g = aggregateSittings(revs, new Set(['r1', 'r2']), meta, email)
+  const e = g['R|sat/reading_writing']
+  if (!e) fail('run not grouped')
+  else {
+    if (e.picked !== 2 || e.correct !== 1) fail(`stale row scored: ${e.correct}/${e.picked} (want 1/2)`)
+    if (e.n !== 2) fail(`stale row counted in n: ${e.n}`)
+    if (e.stale !== 1 || e.staleCorrect !== 1) fail(`stale not reported apart: stale=${e.stale} staleCorrect=${e.staleCorrect}`)
+  }
+  // all fresh -> identical to the old behaviour
+  const all = aggregateSittings(revs, new Set(['r1', 'r2', 'r3']), meta, email)['R|sat/reading_writing']
+  if (all.picked !== 3 || all.correct !== 2 || all.stale !== 0) fail('all-fresh run changed')
+  // a run with no fresh rows still appears (so stale-only runs are visible), at 0 answered
+  const none = aggregateSittings(revs, new Set(), meta, email)['R|sat/reading_writing']
+  if (none.picked !== 0 || none.stale !== 3) fail('stale-only run mis-reported')
+  if (bad) { console.error(`${bad} self-test failure(s)`); process.exit(1) }
+  console.log('bank-state self-test: stale excluded from score and n, reported apart; all-fresh unchanged; stale-only visible — OK')
 }
 
 async function open_() {
@@ -184,6 +243,7 @@ async function held() {
 }
 
 const mode = process.argv[2] ?? 'all'
+if (mode === '--selftest' || mode === 'selftest') { selftest(); process.exit(0) }
 if (!existsSync('.env.local')) { console.error('run from the repo root (.env.local not found)'); process.exit(1) }
 if (mode === 'counts' || mode === 'all') await counts()
 if (mode === 'sittings' || mode === 'all') await sittings()

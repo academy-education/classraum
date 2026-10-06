@@ -141,7 +141,9 @@ each time from a fresh ad-hoc query against `study_item_bank` /
 
 - "SAT R&W has never had a human blind sitting" — false, and sourced to
   nothing but my own earlier sentence. `b2-all-cohorts-2026-08-15` is
-  `reviewer_kind='human'`, 80 SAT items at 26.3%.
+  `reviewer_kind='human'`, 80 SAT items at 26.3% when sat — 70 at 20.0%
+  counting only reviews still bound to the item's current content
+  (bank-state.mjs sittings excludes stale reviews since 2026-10-06).
 - "the co-founder has six open runs blocking the draw" — false; I counted
   null `blind_pick`, the guard uses `blind_at`. He had one.
 - a 20/20 read as a person scoring full marks — it is `model_assisted`.
