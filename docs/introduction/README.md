@@ -95,3 +95,9 @@ page numbers from page position (`.tp[data-ref]` -> section id), fails if the
 DOM and `pdfinfo` disagree on the page count or a print build is not a
 multiple of 4, and with `PNG=1` rasterises every PDF page into
 `$SRC/_png/<pdf name>/` so each variant can be looked at.
+
+**2026-10-07 owner corrections, applied to all six sources:** academy students
+do NOT get Classraum Study free (only academy assignments show in the student
+app; Study is a separate student subscription); there is no annual Study plan;
+only SAT Camps teachers see a student's Study results. The previous combined
+PDFs were moved to `~/Downloads/Introduction PDFs/old/` with a "- v4" suffix.
