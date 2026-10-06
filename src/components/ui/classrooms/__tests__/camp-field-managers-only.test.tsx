@@ -102,7 +102,7 @@ describe('migration 123', () => {
     expect(sql).toMatch(/if caller is not null and camp_changed then/)
   })
 
-  it('is marked NOT APPLIED', () => {
-    expect(sql).toMatch(/^-- NOT APPLIED\./m)
+  it('records that it was applied (2026-10-07)', () => {
+    expect(sql).toMatch(/^-- APPLIED 2026-10-07/m)
   })
 })
