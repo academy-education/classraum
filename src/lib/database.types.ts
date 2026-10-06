@@ -3205,6 +3205,7 @@ export type Database = {
           id: string
           kind: string
           note: string | null
+          refund_notified_at: string | null
           source_id: string | null
           student_id: string
         }
@@ -3215,6 +3216,7 @@ export type Database = {
           id?: string
           kind: string
           note?: string | null
+          refund_notified_at?: string | null
           source_id?: string | null
           student_id: string
         }
@@ -3225,6 +3227,7 @@ export type Database = {
           id?: string
           kind?: string
           note?: string | null
+          refund_notified_at?: string | null
           source_id?: string | null
           student_id?: string
         }

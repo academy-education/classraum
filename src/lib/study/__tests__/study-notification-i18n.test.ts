@@ -52,6 +52,7 @@ const EXPECTED_KINDS = [
   'study_payment_failed',
   'study_subscription_expired',
   'study_payment_receipt',
+  'study_credits_refunded',
 ] as const
 
 const LANGS = ['english', 'korean'] as const
@@ -270,6 +271,7 @@ describe('rendering', () => {
       days: 7, questions: 5, minutes: 5, xp: 50,
       family: 'TOEFL', skill: skillParam('speaking'), score: 24, summary: 'Good work.',
       amount: '₩26,900', item: 'Classraum Study — Premium Plus (Monthly)',
+      count: 12, test: 'SSAT Writing', reason: 'A bug stopped your answer from being submitted.',
     }
     for (const { kind, variant, copy } of allStudyCopyEntries()) {
       for (const lang of LANGS) {

@@ -75,6 +75,7 @@ const STUDY_FALLBACK_ROUTES: Record<string, string> = {
   study_payment_failed: '/mobile/study/subscription',
   study_subscription_expired: '/mobile/study/subscription',
   study_payment_receipt: '/mobile/study/billing',
+  study_credits_refunded: '/mobile/study',
 }
 
 /**
