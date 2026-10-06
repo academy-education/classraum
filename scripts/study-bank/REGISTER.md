@@ -980,6 +980,8 @@ recorded only in a commit message is a finding nobody reads.
 
   **Side finding — a live duplicate the stem-duplicate gate cannot see.** The planted-copy break-test also hit a LIVE pair: `ccd66a9a` (isee-math-s2) and `447a4fba` (isee-math-s6) are the same question — "In an arithmetic sequence, the 4th term is 17 and the 9th term is 42. What is the 1st term [of the sequence]?" — same key 2, different distractors. `stem-duplicates --live` reports 0 pairs because its key is the normalised stem verbatim, and three trailing words differ. A student can meet both on one ISEE test (the pools are shared). Not fixed here: archiving one is an owner call like the nine 2026-10-06 pairs, and the gate wants a near-match mode (shingle Jaccard on the stem) rather than exact keys.
 
+- **2026-10-07** — Archived `447a4fba` (isee-math-s6), the newer copy of live `ccd66a9a` (isee-math-s2): the same arithmetic-sequence item (4th term 17, 9th term 42, key 2), wording differing by three trailing words, invisible to `stem-duplicates.mjs` (exact-match only). Archived under the owner's standing "archive the newer copy" rule. ISEE Math 349 -> 348 drawable. Open: `stem-duplicates.mjs` needs a near-match mode.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
