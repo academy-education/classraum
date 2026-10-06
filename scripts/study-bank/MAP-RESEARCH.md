@@ -1147,3 +1147,55 @@ MAP comprehension at 180-209 needs a human author. Strand 1 is worth one more
 round only with the vocabulary rule narrowed to "meanings a reader could read
 into THIS sentence" and bands anchored to each grade's own standard. MAP still
 has no human sitting.
+
+## 17. 2026-10-06 — THE FOURTH PILOT: MECHANICS HOLDS, VOCABULARY FAILS UNDER ITS SECOND RULE
+
+The owner said "keep going". Batch 4 is Language Usage only: 24 items at RIT
+180-209, no comprehension (§16). It reused batch 3 strand 1's bars
+unchanged, pre-registered at `1554878a`. Results are in
+`MAP-PILOT-4-2026-10-06.md`. Nothing was inserted.
+
+**It FAILS, and is worse than batch 3 on both failing bars:**
+- pilot-pass **15/24** (bar 20; batch 3: 18)
+- `easier` **12/48** (bar 8; batch 3: 11)
+- E1-E9 and the band-offset bar pass
+- on batch 1-2's three conditions alone it scores 16/24, against batch 3's
+  23/24
+
+**What the two fixes did:**
+- **The dead-distractor fix worked.** Options named dead by both graders fell
+  from 5 holds to 3 items, and none of them is a condition-4-only hold.
+  - The new pre-gate teacher-voice rater flagged every option the graders
+    later named dead.
+  - All three got through because one rewrite was allowed and then the item
+    went on as it stood.
+  - Two rater instances disagreed on 3 options. Next time: two raters, take
+    every option either one rejects, and drop any item whose rewrite is still
+    rated no.
+- **Its vocabulary half backfired.** Batch 3's rule was "every option is a
+  genuine meaning of the word". Batch 4 replaced it with "real words that
+  fit the sentence's surface".
+  - The key then becomes the only option that reads like a dictionary gloss.
+  - Vocabulary options-only rose to **88.9%** (4/6 unanimous on the key),
+    against control V at 52.8%; batch 3 was 22.2%.
+  - 4 of 6 vocabulary items were held, mostly too_easy.
+  - Two vocabulary rules have now been measured, and each fails on one side:
+    genuine meanings gives dead options, surface-fit words give a leak.
+- **The calibration fix did not move `easier`.** Every item's `ccss` code
+  matched its band's grade.
+  - The misses moved up, to the context-clue items at 190-209.
+  - The grade-5 hard-end rules lifted the lowest band's Mechanics: two items
+    were rated *harder*.
+
+**Mechanics is the one strand that has held for two batches** (8/10, after
+9/10). The teacher rater found no dead option in any of its 30 distractors,
+and no grader found a grid tell. One key was wrong: "my uncle and Grandma",
+rejected by both graders and all three blind samples.
+
+**Decision recorded:**
+- No third agent vocabulary rule on this evidence, per the
+  stop-after-a-failed-rewrite rule.
+- Agent authoring is now evidenced only for Mechanics (and partly grammar).
+  For Mechanics the remaining step is a human key check, not another pilot.
+- **For NSSpellChecker E4:** macOS accepts "occurence" and "excelence", so
+  the commonest misspellings of some words cannot be used as distractors.
