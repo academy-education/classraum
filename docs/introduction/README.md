@@ -65,8 +65,8 @@ The owner split the introduction into two documents, each in Korean and
 English. The two `classraum-introduction*.src.html` files above are kept
 unchanged as the previous edition; the four new sources are:
 
-    classraum-academy-ko.src.html   학원 운영 소개서            11 pages (print 12)
-    classraum-academy-en.src.html   Classraum for Academies     11 pages (print 12)
+    classraum-academy-ko.src.html   학원 운영 소개서            13 pages (print 16)
+    classraum-academy-en.src.html   Classraum for Academies     13 pages (print 16)
     classraum-study-ko.src.html     Classraum Study 소개서       8 pages (print 8)
     classraum-study-en.src.html     Classraum Study              8 pages (print 8)
 
