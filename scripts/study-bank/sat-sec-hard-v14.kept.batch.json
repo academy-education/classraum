@@ -1,0 +1,172 @@
+[
+  {
+    "id": "SEC14A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a postposed subject under locative inversion, crossed with past-tense consistency",
+    "difficulty": "hard",
+    "passage": "The excavators who opened the cathedral's foundation vault in 1911 expected to find nothing but rubble. Beneath the single cracked slab at the center of the floor ______, folded into a scrap of parchment that still bore part of a bishop's wax seal, two silver pennies of a type that no catalog then listed, and their discovery forced numismatists to push the town's minting history back by more than a century.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was tucked",
+      "were tucked",
+      "is tucked",
+      "are tucked"
+    ],
+    "correct_answer": "were tucked",
+    "explanation": "The sentence is inverted: the fronted phrase \"Beneath the single cracked slab at the center of the floor\" is followed by the verb, and the subject comes only after the participial phrase \"folded into a scrap of parchment that still bore part of a bishop's wax seal.\" That subject is \"two silver pennies,\" which is plural, and the passage narrates a past event (\"opened ... in 1911,\" \"expected,\" \"forced\"), so the verb must be plural and past: \"were tucked.\" \"was tucked\" is past tense but singular; it agrees with nearby singular nouns such as \"slab,\" \"floor,\" or \"parchment,\" none of which is the subject. \"is tucked\" is both singular and present tense. \"are tucked\" is plural but present tense, which breaks the past-tense narration of the 1911 discovery.",
+    "topic_tag": "numismatics: coin hoard dating"
+  },
+  {
+    "id": "SEC14A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "structure: finite main verb needed after a long subject that contains its own relative-clause verb, crossed with agreement across intervening plural nouns",
+    "difficulty": "hard",
+    "passage": "The practice of illustrating every sense of a headword with dated quotations that the editors of the earliest historical dictionaries copied by hand from printed sources ______ a means of watching a single meaning narrow, widen, or even reverse across several centuries of use.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "giving readers",
+      "to give readers",
+      "have given readers",
+      "has given readers"
+    ],
+    "correct_answer": "has given readers",
+    "explanation": "The subject of the sentence is \"The practice of illustrating every sense of a headword with dated quotations ...\"; the verb \"copied\" belongs to the relative clause \"that the editors ... copied by hand from printed sources\" and cannot serve as the sentence's main verb. The blank must therefore supply a finite main verb that agrees with the singular head noun \"practice\": \"has given readers.\" \"giving readers\" is a participle, so the sentence would have no main verb and would be a fragment. \"to give readers\" is an infinitive and leaves the same fragment. \"have given readers\" is finite but plural; it agrees with nearby plural nouns such as \"sources,\" \"editors,\" or \"quotations,\" not with the singular subject \"practice.\"",
+    "topic_tag": "lexicography: historical dictionaries"
+  },
+  {
+    "id": "SEC14A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon introducing an appositive noun-phrase series (whose items contain relative clauses) after an independent clause; semicolon, period, and added relative fail",
+    "difficulty": "hard",
+    "passage": "Rudolf Laban's movement notation, published in 1928, does not draw the dancer at all. Instead, each symbol on its vertical staff encodes four separate pieces of ______ direction in which a limb travels, the level at which it moves, the part of the body that performs it, and the length of time the motion lasts.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "information: the",
+      "information; the",
+      "information. The",
+      "information, which the"
+    ],
+    "correct_answer": "information: the",
+    "explanation": "The first part, \"each symbol on its vertical staff encodes four separate pieces of information,\" is an independent clause. What follows is not a clause but a series of four noun phrases that specifies those pieces; the verbs \"travels,\" \"moves,\" \"performs,\" and \"lasts\" sit inside relative clauses that modify \"direction,\" \"level,\" \"part,\" and \"length,\" so the series has no main verb of its own. A colon correctly introduces such an elaboration: \"information: the.\" \"information; the\" is wrong because a semicolon must be followed by an independent clause, and the series is not one. \"information. The\" makes the series a sentence of its own, a fragment with no main verb. \"information, which the\" opens a relative clause, but nothing after \"which\" supplies that clause with a verb, so the sentence becomes ungrammatical.",
+    "topic_tag": "dance notation"
+  },
+  {
+    "id": "SEC14A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark between the degree phrase \"so high a multiple\" and its delayed that-clause complement; comma, colon, and added \"so\" fail",
+    "difficulty": "hard",
+    "passage": "Merchants who crossed the desert with caravans in the fourteenth century did not regard rock salt as a cheap commodity. In the markets of Timbuktu, a slab cut at the mines of Taghaza often sold for so high a multiple of the price it had first fetched at the ______ a caravan of a few hundred camels could clear a trader's debts for several years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "mine, that",
+      "mine: that",
+      "mine that",
+      "mine, so that"
+    ],
+    "correct_answer": "mine that",
+    "explanation": "The phrase \"so high a multiple of the price it had first fetched at the mine\" begins a \"so ... that\" construction, and the that-clause \"that a caravan of a few hundred camels could clear a trader's debts for several years\" is the required complement of \"so.\" No punctuation separates \"so\" and its that-clause, however much material intervenes, so \"mine that\" is correct. \"mine, that\" inserts a comma that cuts the complement off from the \"so\" it completes. \"mine: that\" uses a colon, which must follow an independent clause and introduce an elaboration; here it would separate \"so\" from its own complement and leave \"that a caravan ... could clear a trader's debts\" as a detached noun clause. \"mine, so that\" turns the clause into a purpose or result clause introduced by \"so that,\" leaving the earlier \"so high a multiple\" with no complement.",
+    "topic_tag": "economic history: trans-Saharan salt trade"
+  },
+  {
+    "id": "SEC14A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: period between independent clauses where the second clause's subject is a free relative opening with \"whatever\"; comma, no mark, and added \"that\" fail",
+    "difficulty": "hard",
+    "passage": "In a gaslit theater of the 1860s, every change of light was made by hand. A technician seated at the gas table beside the stage turned one of dozens of brass valves whenever the prompter called a ______ he wrote in the margins of his own copy of the script, if anything, has seldom survived, and historians reconstruct most lighting plots from newspaper reviews.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "cue, whatever",
+      "cue whatever",
+      "cue, that whatever",
+      "cue. Whatever"
+    ],
+    "correct_answer": "cue. Whatever",
+    "explanation": "\"Whatever he wrote in the margins of his own copy of the script\" is not a concessive phrase attached to the previous clause; it is the subject of the verb \"has seldom survived.\" The text therefore contains two independent clauses: \"A technician ... turned one of dozens of brass valves whenever the prompter called a cue\" and \"Whatever he wrote ... has seldom survived, and historians reconstruct ...\" A period correctly separates them: \"cue. Whatever.\" \"cue, whatever\" joins the two independent clauses with only a comma, a comma splice. \"cue whatever\" joins them with no punctuation at all, a run-on sentence. \"cue, that whatever\" adds the subordinator \"that,\" but nothing in the first clause can take a that-clause, so the clause beginning \"that whatever he wrote\" attaches to nothing and the sentence is ungrammatical.",
+    "topic_tag": "theater lighting history"
+  },
+  {
+    "id": "SEC14A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries + form: participle needed to attach a verbless continuation as a modifier; period, and added subordinators \"although\" and \"whereupon\" fail",
+    "difficulty": "hard",
+    "passage": "The housing cooperatives that garment workers' unions built during the 1920s were financed largely by their own members, each family buying a share in the building instead of paying rent to a landlord. After the stock market crash, many members lost their jobs, and unpaid monthly charges ______ boards of many of the cooperatives facing a choice between evicting neighbors and defaulting on the building's mortgage.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "accumulated rapidly. The",
+      "accumulated rapidly, leaving the",
+      "accumulated rapidly, although the",
+      "accumulated rapidly, whereupon the"
+    ],
+    "correct_answer": "accumulated rapidly, leaving the",
+    "explanation": "After \"unpaid monthly charges accumulated rapidly,\" the remaining words, \"the boards of many of the cooperatives facing a choice between evicting neighbors and defaulting on the building's mortgage,\" contain no finite verb: \"facing\" is a participle. That material can attach to the sentence only if something turns it into a modifier, and the participle \"leaving\" does so: \"accumulated rapidly, leaving the\" boards facing a choice. \"accumulated rapidly. The\" makes \"The boards ... facing a choice ...\" a separate sentence, which is a fragment because it has no main verb. \"accumulated rapidly, although the\" introduces a dependent clause with \"although,\" but the clause has no finite verb, so it is incomplete. \"accumulated rapidly, whereupon the\" fails the same way: \"whereupon\" requires a clause, and \"the boards ... facing a choice\" is not one.",
+    "topic_tag": "history of cooperative housing"
+  },
+  {
+    "id": "SEC14B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "subject-verb agreement with a whether-clause subject ending in plural nouns, crossed with present perfect required by a since-phrase",
+    "difficulty": "hard",
+    "passage": "Truffles fruit underground, so unlike most mushrooms they cannot release their spores into the wind; the animals that smell them out and eat them must do the dispersing. Whether those spores survive the trip through the guts of the voles and flying squirrels that dig up truffles ______ mycologists who study the genus divided since the first feeding trials of the 1980s, because spores recovered from droppings germinate readily in some laboratories and refuse to in others.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have kept",
+      "were keeping",
+      "has kept",
+      "was keeping"
+    ],
+    "correct_answer": "has kept",
+    "explanation": "The subject of the verb is the entire noun clause \"Whether those spores survive the trip through the guts of the voles and flying squirrels that dig up truffles.\" A clause used as a subject is singular, even though the plural nouns \"squirrels\" and \"truffles\" sit just before the blank. The phrase \"since the first feeding trials of the 1980s\" describes a state that began in the past and continues now, which requires the present perfect. \"has kept\" is singular and present perfect, so it is correct. \"have kept\" is present perfect but plural; it agrees with \"truffles,\" which is inside the clause, not with the clausal subject. \"were keeping\" is plural and past progressive; a past progressive cannot express a state continuing from a point marked by \"since.\" \"was keeping\" is singular, but it is past progressive and fails with \"since\" for the same reason.",
+    "topic_tag": "mycology"
+  },
+  {
+    "id": "SEC14B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "dangling modifier: a fronted participial phrase must be followed by the noun it modifies; a possessive or an active-voice subject leaves it dangling",
+    "difficulty": "hard",
+    "passage": "Lichens are usually identified by color and growth form, but both can mislead, as one specimen collected in the 1930s shows. Bleached nearly white by decades of sun on an exposed granite outcrop, ______ for a different species entirely until a chemical spot test revealed usnic acid in its outer layer.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the lichen's first collector had long mistaken it",
+      "a visiting botanist long mistook the lichen",
+      "the collector of the lichen long mistook it",
+      "the lichen was long mistaken by its collector"
+    ],
+    "correct_answer": "the lichen was long mistaken by its collector",
+    "explanation": "The introductory phrase \"Bleached nearly white by decades of sun on an exposed granite outcrop\" describes the lichen, so the subject of the main clause, which comes right after the comma, must be the lichen. \"the lichen was long mistaken by its collector\" makes \"the lichen\" the subject, so the modifier attaches correctly. \"the lichen's first collector had long mistaken it\" begins with a possessive, but the subject is \"collector,\" so the sentence says the collector was bleached by decades of sun. \"a visiting botanist long mistook the lichen\" makes \"a visiting botanist\" the subject, so the botanist is the thing bleached on the outcrop. \"the collector of the lichen long mistook it\" makes \"the collector\" the subject; \"of the lichen\" only modifies that noun, so the modifier still dangles.",
+    "topic_tag": "lichenology"
+  },
+  {
+    "id": "SEC14B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "semicolon between independent clauses when the second opens with a short introductory adverbial; comma splice and a relative pronoun with no gap",
+    "difficulty": "hard",
+    "passage": "Ozone and nitrogen dioxide react to form nitrate radicals around the clock, but sunlight breaks the radicals apart within seconds, so in daytime air they are all but ______ concentration of these molecules over a polluted city climbs by orders of magnitude, and they go on to oxidize much of the pollution that daytime chemistry leaves behind.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "undetectable, after sunset the",
+      "undetectable; after sunset, the",
+      "undetectable after sunset, the",
+      "undetectable, which the"
+    ],
+    "correct_answer": "undetectable; after sunset, the",
+    "explanation": "The text before the blank is an independent clause ending in \"in daytime air they are all but undetectable.\" The text after it is also independent: \"after sunset\" is a short introductory phrase, \"the concentration of these molecules over a polluted city\" is the subject, and \"climbs\" is the verb. Two independent clauses with no conjunction need a semicolon, and the introductory phrase in the second clause is set off by a comma, so \"undetectable; after sunset, the\" is correct. \"undetectable, after sunset the\" joins the two independent clauses with only a comma, a comma splice; the comma makes \"after sunset\" look like the start of a dependent element, but nothing in the second clause subordinates it. \"undetectable after sunset, the\" attaches \"after sunset\" to the first clause and then joins the two independent clauses with a comma, again a comma splice. \"undetectable, which the\" introduces a relative clause, but the clause that follows (\"the concentration ... climbs\") is complete and leaves no place for \"which\" to fill, so the result is ungrammatical.",
+    "topic_tag": "atmospheric chemistry"
+  },
+  {
+    "id": "SEC14B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "comma after an introductory dependent clause whose verb could take the main clause's subject as its object (garden path); period and coordinator leave no main clause",
+    "difficulty": "hard",
+    "passage": "Growing a single large crystal is mostly a matter of patience. While a saturated solution slowly ______ suspended in it on a fine thread grows by adding layer after layer of molecules to its faces, and the slower the cooling, the fewer the flaws those layers contain.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "cools, a seed crystal",
+      "cools a seed crystal",
+      "cools. Then a seed crystal",
+      "cools, and a seed crystal"
+    ],
+    "correct_answer": "cools, a seed crystal",
+    "explanation": "\"While a saturated solution slowly cools\" is an introductory dependent clause, and the main clause is \"a seed crystal suspended in it on a fine thread grows by adding layer after layer of molecules.\" A comma must separate the two, so \"cools, a seed crystal\" is correct. \"cools a seed crystal\" omits the comma; because \"cools\" can take an object, the reader takes \"a seed crystal suspended in it on a fine thread\" as what the solution cools, and \"grows\" is then left without a subject. \"cools. Then a seed crystal\" ends a sentence after \"While a saturated solution slowly cools,\" which is a dependent clause and cannot stand alone. \"cools, and a seed crystal\" uses \"and\" to join the main clause to the dependent clause, which makes the main clause part of the \"While\" clause and leaves the sentence with no main clause at all.",
+    "topic_tag": "crystallography"
+  }
+]

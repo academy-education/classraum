@@ -1,0 +1,14 @@
+{
+  "L01": {"reject_first": "C", "why": "Comma after 'undetectable' then 'after sunset the' likely joins two independent clauses with a comma splice; but depends on unseen sentence.", "certain": false, "confident_rejects": []},
+  "L02": {"reject_first": "C", "why": "Infinitive is the odd form out among finite verbs and participle; but any could fit depending on subject and structure.", "certain": false, "confident_rejects": []},
+  "L03": {"reject_first": "A", "why": "Pure agreement/tense item; no option is wrong without knowing the subject's number and the passage tense.", "certain": false, "confident_rejects": []},
+  "L04": {"reject_first": "B", "why": "Relative 'which the' structurally different; period, semicolon, colon are often all equivalent so one of B or colon must be key.", "certain": false, "confident_rejects": []},
+  "L05": {"reject_first": "D", "why": "No punctuation lets 'cools a seed crystal' misread as transitive or fuse clauses; still possible if clause is not independent.", "certain": false, "confident_rejects": []},
+  "L06": {"reject_first": "C", "why": "Comma before restrictive 'that' (or comma splice with demonstrative 'that') is never accepted SEC usage.", "certain": true, "confident_rejects": ["C"]},
+  "L07": {"reject_first": "D", "why": "Comma likely creates a splice; but could precede an appositive or dependent element, so not certain.", "certain": false, "confident_rejects": []},
+  "L08": {"reject_first": "C", "why": "'cue, that whatever' is an awkward comma plus 'that' construction; appositive noun clause is possible but unlikely.", "certain": false, "confident_rejects": []},
+  "L09": {"reject_first": "B", "why": "'whereupon' is a marked, rare connector; but all four are grammatical structures depending on what follows.", "certain": false, "confident_rejects": []},
+  "L10": {"reject_first": "A", "why": "Agreement/tense item; correctness depends entirely on the unseen subject and time frame.", "certain": false, "confident_rejects": []},
+  "L11": {"reject_first": "A", "why": "Dangling-modifier item; 'a visiting botanist' introduces new actor, plausibly mismatched; true subject depends on the withheld modifier.", "certain": false, "confident_rejects": []},
+  "L12": {"reject_first": "D", "why": "who/whom depends on whether a verb or infinitive follows 'considered'; tense depends on context. Nothing decidable from options.", "certain": false, "confident_rejects": []}
+}

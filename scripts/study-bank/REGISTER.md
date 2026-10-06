@@ -930,6 +930,36 @@ recorded only in a commit message is a finding nobody reads.
 
   **Next form:** form 7 needs 49 SEC hard (5 more). Across v10-v13 the hard yield is 3/26, 4/12, 3/14, 4/12.
 
+- **2026-10-07** — **SEC v14 INSERTED: 10 of 12, 5 HARD / 5 MEDIUM BY PANEL MEDIAN. SEC hard 44 → 49. THE R&W MODULE-2 HARD ROUTE GOES FROM 6 TO 7 FORMS** (form-capacity "SAT MODULE-2 HARD ROUTE": 7, capped by SEC 49 / ~7; `verify-sat-hard-route.ts`: 3 of 3 drawn forms all-hard, 0 repeats). `rw-v14-sec-hard`, kept sha `cf4c411f`, frozen sha `a44120c1` (b1d98276), prereg `9ade1be5` (PREREG-SEC14-2026-10-07.md: v13's bars and control, plus rule 7 "key decided by matching a mark already in the sentence", the bare-render assertion, and `sec-near-dup.mjs`), ledger `sat-sec-hard-v14-kept-2026-10-07`. Two Claude authors, 6 each, brief varied away from v13 (≤3 fronted-phrase items, ≥3 Form/Structure/Sense, no open-mark keys); no audit or repair round, nothing repaired after freeze. Every agent Claude.
+
+      near-dup    sec-near-dup.mjs (new; paged, count-asserted) frozen 12 vs ALL 363 live SEC rows: 0 flagged, max passage
+                  trigram Jaccard 0.031, 0 option skeletons equal to any live item, 0 within batch. Self-test: the live v13
+                  kept file finds itself 8/8 at 1.000, 0/8 with its cohort excluded. 48 v2 rows keep the sentence in `prompt`
+                  (passage null); the first draft silently compared 315 of 363 - fixed to passage-or-prompt, refuses on neither
+      render      BLIND=bare; asserted before any grader read it: 0 subskill strings, 0 of the pre-registered header words
+      nosource    candidate 52.8% (19/36) vs live HARD-band control 66.7% (48/72), margin -13.9 (bar <= +10); MEASURED
+                  pairwise agreement 80.6% vs 25.6% independent; unanimity rate candidate 5/12 = 41.7%, control 14/24 = 58.3%
+      withsource  three graders (ws-d/e/f), phase 1 cold snapshotted before the key existed for them, unchanged after phase 2:
+                  12/12 keys on all three, 0 cold misses, 0 non-exclusive, 0 resolving words, 0 path errors,
+                  0 matches_open_mark (rule 7: 0/12), 0 majority off-blueprint; gate-verdict rules 1-6: 12/12 KEEP
+      drops       SEC14B-06 at PRE-FLIGHT: the word before the blank ("cyanobacterium") is also the first word of every option,
+                  so every reading duplicates it. None of the three graders flagged it - my grader brief said "options often
+                  repeat the word before the blank", which excuses exactly this; strike that sentence from future briefs.
+                  SEC14B-02 (panel hard): grader d recommend_drop, who/whom case judged off the SEC blueprint (1/3 off-blueprint,
+                  so dropped under the recommend rule, not held)
+      elimination candidate 11.1% vs matched control 16.7% (n=12 vs 24), margin -5.6, PASS (A23), run on all 12 authored;
+                  free strikes "mine, that" (A-04, 2/3), the interchangeable period/semicolon pair (A-03, 1/3), ", that whatever"
+      panel       hard A-01 (agreement under locative inversion, plural subject after 20 words), A-02 (finite verb after a
+                  subject carrying its own relative-clause verb), A-04 (no mark before the delayed that-clause of "so high a
+                  multiple"), A-05 (period before a "Whatever ..." subject clause), B-01 (singular verb for a whether-clause
+                  subject ending in plural nouns); authors labelled all 12 hard (16th demotion, 5 of 12 this time)
+
+  **The yield moved because the brief left boundaries.** 3 of the 5 banked hard items are Form/Structure/Sense (agreement x2, finite verb); v10-v13 were boundaries only and yielded 3/26, 4/12, 3/14, 4/12. Hard yield here 6/12 before drops, 5/12 banked. Candidate options-only is higher than v13 (52.8% vs 36.1%) but still 13.9 below its control.
+
+  **Tells.** (1) All three graders: an option that ADDS a connector is never the key in the punctuation items (free strike on A-03, A-04, A-05, A-06, B-04, B-05); with B-06 dropped, an added joining word is never the key in the kept 10 — the v12 direction again, after v13 inverted it. The fix is not another flip: the next brief should stop offering a reworded-connector distractor in most items. (2) Grader d: the lone strong mark is the key on A-03, A-05, B-04. (3) All three: **SEC14A-02 and SEC14B-01 share one template** (singular "has + participle" against plural nouns at the verb); do not serve both in one form — nothing enforces it. (4) No dash key survived authoring under the no-open-mark rule; recorded, not forced.
+
+  **Next form:** form 8 needs 56 SEC hard (7 more); I&I (59 / 7 = 8) and C&S (70 / 8 = 8) stop at 8 forms, so form 9 also needs I&I and C&S hard.
+
 - **2026-10-07** — **B9 CLOSED: the co-founder sat `act-en7-cofounder-2026-10-02` and ACT English v7 is RELEASED, all 120 items `verified=true`.** 40/40 answered in 44 min (1.10 min/item), zero abstentions. Scored with `score-sweep-run.mjs` against the integer cutoffs fixed in `act-english-v7.SITTING.PREREG.md` before the draw: **CSE 4/24 = 16.7%** (clean is <= 9), **PoW 1/12 = 8.3%** (clean is <= 4), KoL 2/4 report-only. Both domains CLEAN, so the release rule fired as written. That is the model screen's 100% blind on CSE against a person's 16.7%: ACT verbal joins the families where the options-only attack saturates and the human sitting decides.
   One step-2 flag: item `6994d1d9` (ACT-EN7-P1-Q03, comma splice), note "A is also grammatically correct". A is "No Change", i.e. "He started me on the alphabet, I painted capital A's..." — two independent clauses joined by a comma alone, which the ACT scores wrong in every form. The key ("alphabet, and I painted") stands; the flag was read and not upheld, and the item was released with the rest. Recorded rather than silently overridden: if the owner disagrees, archive that one row.
   Effect: ACT English drawable 150 -> 270, forms **3 -> 5** (27 passages / 5 per form), and the standing note "BLUEPRINT VIOLATION on every form: CSE 40.0% vs floor 51%" is gone — form-capacity now reports the blueprint mix satisfied on all 5 forms. `verify-act-draw.ts`: English 50/50, Math 45/45, Reading 36/36, Science 40/40.

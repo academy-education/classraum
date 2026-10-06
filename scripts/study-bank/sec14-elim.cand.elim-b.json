@@ -1,0 +1,14 @@
+{
+  "L01": {"reject_first": "C", "why": "Comma then 'after sunset the' with no comma after the intro phrase likely splices two clauses; but sentence could vary.", "certain": false, "confident_rejects": []},
+  "L02": {"reject_first": "C", "why": "Infinitive often leaves a fragment, but finite/participle choice depends wholly on the withheld subject and structure.", "certain": false, "confident_rejects": []},
+  "L03": {"reject_first": "B", "why": "Pure number/tense agreement; subject and time frame withheld, any could be correct.", "certain": false, "confident_rejects": []},
+  "L04": {"reject_first": "A", "why": "Period+'The' and semicolon+'the' are interchangeable; both cannot be the single key, so both are wrong.", "certain": true, "confident_rejects": ["A", "C"]},
+  "L05": {"reject_first": "D", "why": "No comma after a likely introductory clause; but 'cools' could be transitive, so not certain.", "certain": false, "confident_rejects": []},
+  "L06": {"reject_first": "C", "why": "Comma before 'that' is almost never correct: neither a valid restrictive clause nor a proper clause join.", "certain": true, "confident_rejects": ["C"]},
+  "L07": {"reject_first": "B", "why": "Period vs semicolon differ via fixed case of next word; relative 'whose' or comma could also fit. Undecidable.", "certain": false, "confident_rejects": []},
+  "L08": {"reject_first": "C", "why": "', that whatever' produces an ungrammatical stacked connector in nearly any sentence.", "certain": true, "confident_rejects": ["C"]},
+  "L09": {"reject_first": "B", "why": "'whereupon' is stilted but grammatical; logic depends on withheld context, none certainly wrong.", "certain": false, "confident_rejects": []},
+  "L10": {"reject_first": "A", "why": "Number/tense agreement only; subject withheld.", "certain": false, "confident_rejects": []},
+  "L11": {"reject_first": "B", "why": "Modifier placement decides the subject; without the introductory modifier any subject could be required.", "certain": false, "confident_rejects": []},
+  "L12": {"reject_first": "B", "why": "who/whom depends on whether a verb follows; tense pairs also need context. Nothing decidable.", "certain": false, "confident_rejects": []}
+}
