@@ -1,0 +1,122 @@
+{
+ "MAPP4-LU-01": {"distractors": [
+  {"option": "Last summer we drove North for two days to visit my cousins, who live in the Midwest.", "would_pick": "yes", "reason": "Capitalizing compass directions used as directions is one of the most common grade 5 errors."},
+  {"option": "Last summer we drove North for two days to visit my cousins, who live in the midwest.", "would_pick": "yes", "reason": "Students who have the rule backwards (direction capped, region not) pick this."},
+  {"option": "Last summer we drove north for two days to visit my cousins, who live in the midwest.", "would_pick": "yes", "reason": "Lowercasing region names like midwest is very common; students treat it like the plain direction."}
+ ]},
+ "MAPP4-LU-02": {"distractors": [
+  {"option": "On Saturday, my Uncle and grandma drove us to the county fair.", "would_pick": "yes", "reason": "Students mix up which family word gets capitalized and often get it exactly backwards."},
+  {"option": "On Saturday, my Uncle and Grandma drove us to the county fair.", "would_pick": "yes", "reason": "Capitalizing every family title, even after 'my', is a very frequent error."},
+  {"option": "On Saturday, my uncle and grandma drove us to the county fair.", "would_pick": "yes", "reason": "Students who learned 'don't capitalize family words' apply it to Grandma used as a name too."}
+ ]},
+ "MAPP4-LU-03": {"distractors": [
+  {"option": "Because Hana signed up for french this year, her science class moved to the last period of the day.", "would_pick": "yes", "reason": "Students treat all school subjects alike and lowercase languages too."},
+  {"option": "Because Hana signed up for French this year, her Science class moved to the last period of the day.", "would_pick": "yes", "reason": "Capitalizing all school subjects is a very common habit from schedules and folders."},
+  {"option": "Because Hana signed up for french this year, her Science class moved to the last period of the day.", "would_pick": "yes", "reason": "Weak students are inconsistent with subject names; reversing the rule is a real pattern."}
+ ]},
+ "MAPP4-LU-04": {"distractors": [
+  {"option": "Our class report compares the civil war with other wars fought during the nineteenth century.", "would_pick": "yes", "reason": "Many students do not recognize named historical events as proper nouns."},
+  {"option": "Our class report compares the civil war with other wars fought during the Nineteenth Century.", "would_pick": "yes", "reason": "Less likely than the others, but weak students capitalize inconsistently and 'Nineteenth Century' looks official to them."},
+  {"option": "Our class report compares the Civil War with other wars fought during the Nineteenth Century.", "would_pick": "yes", "reason": "Capitalizing centuries alongside named eras is a very common overgeneralization."}
+ ]},
+ "MAPP4-LU-05": {"distractors": [
+  {"option": "neccessary", "would_pick": "yes", "reason": "Doubling the c as well as the s is a classic misspelling."},
+  {"option": "necesary", "would_pick": "yes", "reason": "Dropping the double s is one of the most frequent spellings I see."},
+  {"option": "neccesary", "would_pick": "yes", "reason": "Swapping which letter doubles is the textbook 'necessary' error."}
+ ]},
+ "MAPP4-LU-06": {"distractors": [
+  {"option": "privelege", "would_pick": "yes", "reason": "The unstressed middle vowel is commonly written as e."},
+  {"option": "priviledge", "would_pick": "yes", "reason": "Adding a d by analogy with 'knowledge' or 'ledge' is very common."},
+  {"option": "priveledge", "would_pick": "yes", "reason": "Combines both common errors; frequently seen in student writing."}
+ ]},
+ "MAPP4-LU-07": {"distractors": [
+  {"option": "occurence", "would_pick": "yes", "reason": "Single r is probably the single most common misspelling of this word."},
+  {"option": "occurrance", "would_pick": "yes", "reason": "-ance vs -ence confusion is common; the doubles look right."},
+  {"option": "occurance", "would_pick": "yes", "reason": "Both the single r and the -ance ending show up regularly."}
+ ]},
+ "MAPP4-LU-08": {"distractors": [
+  {"option": "When the storm ended we swept the porch, picked up fallen branches, and dragged the trash cans back to the curb.", "would_pick": "yes", "reason": "Leaving out the comma after an introductory clause is extremely common."},
+  {"option": "When the storm ended, we swept the porch picked up fallen branches and dragged the trash cans back to the curb.", "would_pick": "yes", "reason": "Students often leave out commas in a series of verb phrases."},
+  {"option": "When the storm ended we swept the porch picked up fallen branches and dragged the trash cans back to the curb.", "would_pick": "yes", "reason": "Weak writers often use no commas at all; a quick reader may not see that anything is missing."}
+ ]},
+ "MAPP4-LU-09": {"distractors": [
+  {"option": "Our school library which reopened last month after the flood, now stays open until five o'clock.", "would_pick": "yes", "reason": "Putting only the closing comma (a pause before the verb) is a common error."},
+  {"option": "Our school library, which reopened last month after the flood now stays open until five o'clock.", "would_pick": "yes", "reason": "Forgetting the closing comma of the pair is the most common nonessential-clause error."},
+  {"option": "Our school library which reopened last month after the flood now stays open until five o'clock.", "would_pick": "yes", "reason": "Many students don't set off the clause at all, and it reads smoothly to them."}
+ ]},
+ "MAPP4-LU-10": {"distractors": [
+  {"option": "After a long boring bus ride, Mia pulled on her new winter coat and stepped into the snow.", "would_pick": "yes", "reason": "Leaving the comma out between coordinate adjectives is very common."},
+  {"option": "After a long boring bus ride, Mia pulled on her new, winter coat and stepped into the snow.", "would_pick": "yes", "reason": "Students who half-know the rule put the comma between the wrong pair."},
+  {"option": "After a long, boring bus ride, Mia pulled on her new, winter coat and stepped into the snow.", "would_pick": "yes", "reason": "Putting a comma between every pair of adjectives is the classic overgeneralization."}
+ ]},
+ "MAPP4-LU-11": {"distractors": [
+  {"option": "taste stale", "would_pick": "yes", "reason": "Weak readers may explain the tiny sips as the water tasting bad."},
+  {"option": "grow warm", "would_pick": "yes", "reason": "Water warming on a hike is a real-world link a quick reader could pick."},
+  {"option": "turn cloudy", "would_pick": "no", "reason": "Nothing in the passage points to it; it doesn't explain the tiny sips at all."}
+ ]},
+ "MAPP4-LU-12": {"distractors": [
+  {"option": "costly", "would_pick": "yes", "reason": "'Fancy' suggests 'expensive' to many kids; this is a common lure."},
+  {"option": "cheerful", "would_pick": "yes", "reason": "A birthday card with flowers feels cheerful; weak readers pick the mood word."},
+  {"option": "funny", "would_pick": "no", "reason": "Nothing in the sentence is humorous; even weak readers rarely land here."}
+ ]},
+ "MAPP4-LU-13": {"distractors": [
+  {"option": "amazed", "would_pick": "yes", "reason": "A goldfish doing a trick sounds amazing, and a raised eyebrow can read as surprise."},
+  {"option": "jealous", "would_pick": "no", "reason": "Her words 'Show me' don't suggest jealousy; few students would go here."},
+  {"option": "worried", "would_pick": "no", "reason": "Nothing in the scene suggests worry; it's plainly off."}
+ ]},
+ "MAPP4-LU-14": {"distractors": [
+  {"option": "speedy", "would_pick": "yes", "reason": "Quick readers carry over 'rushes' from Owen's sentence or miss the contrast."},
+  {"option": "cheerful", "would_pick": "no", "reason": "Nothing describes Grace's mood; there's no cue for it."},
+  {"option": "proud", "would_pick": "yes", "reason": "Weak readers sometimes pick a character trait like 'proud of her work' from the exact folding."}
+ ]},
+ "MAPP4-LU-15": {"distractors": [
+  {"option": "feeling very excited", "would_pick": "yes", "reason": "Students who stop after the art-studio sentence choose this."},
+  {"option": "feeling deeply upset", "would_pick": "yes", "reason": "Students who focus on leaving friends choose this."},
+  {"option": "feeling quite nervous", "would_pick": "yes", "reason": "'Nervous about moving schools' is the default feeling kids expect."}
+ ]},
+ "MAPP4-LU-16": {"distractors": [
+  {"option": "turn gray", "would_pick": "no", "reason": "Nothing cues color, and the town wouldn't close a bridge for that."},
+  {"option": "squeak loudly", "would_pick": "yes", "reason": "Old wooden boards squeak; quick readers link the two without thinking about the closure."},
+  {"option": "dry out", "would_pick": "yes", "reason": "It sounds like what happens to old wood; a plausible near-miss."}
+ ]},
+ "MAPP4-LU-17": {"distractors": [
+  {"option": "had taught", "would_pick": "yes", "reason": "Past perfect vs present perfect confusion is common; 'since' makes 'had' sound right."},
+  {"option": "taught", "would_pick": "yes", "reason": "Simple past is what many students default to with a past time reference."},
+  {"option": "teaches", "would_pick": "yes", "reason": "'He still runs the club' pulls quick readers toward present tense."}
+ ]},
+ "MAPP4-LU-18": {"distractors": [
+  {"option": "theirselves", "would_pick": "yes", "reason": "Very common in speech and student writing."},
+  {"option": "themself", "would_pick": "yes", "reason": "Students hear it and may not notice the plural subject."},
+  {"option": "theirself", "would_pick": "yes", "reason": "A form that shows up in weak student writing, by analogy with 'myself/yourself'."}
+ ]},
+ "MAPP4-LU-19": {"distractors": [
+  {"option": "as an adverb that tells where", "would_pick": "yes", "reason": "The word 'where' is a strong lure toward the adverb answer."},
+  {"option": "as an adjective that describes Nobody", "would_pick": "no", "reason": "The clause is nowhere near 'Nobody' and can't describe a pronoun; even weak students rarely choose it."},
+  {"option": "as a noun that is the subject", "would_pick": "yes", "reason": "Students who spot a noun clause often guess it's the subject, since 'subject' is the first noun job they learn."}
+ ]},
+ "MAPP4-LU-20": {"distractors": [
+  {"option": "Either ... or", "would_pick": "yes", "reason": "The most familiar pair; quick readers miss that the tent implies neither room worked."},
+  {"option": "Both ... and", "would_pick": "yes", "reason": "Quick readers fill the blanks without checking against 'so the school rented a tent'."},
+  {"option": "Not only ... but also", "would_pick": "no", "reason": "Too long and unfamiliar for grade 5 to be a quick pick, and it means the same wrong thing as 'both'."}
+ ]},
+ "MAPP4-LU-21": {"distractors": [
+  {"option": "your", "would_pick": "yes", "reason": "Shifting to generic 'your' is the most common pronoun-shift error."},
+  {"option": "their", "would_pick": "yes", "reason": "Students sometimes switch to talking about 'athletes' in general."},
+  {"option": "my", "would_pick": "no", "reason": "Plainly clashes with 'we'; even a weak student hears it as wrong."}
+ ]},
+ "MAPP4-LU-22": {"distractors": [
+  {"option": "Dripping with melted cheese, Marco carried the pizza to the table.", "would_pick": "yes", "reason": "The classic dangling modifier sounds natural to students; many pick it."},
+  {"option": "Marco, dripping with melted cheese, carried the pizza to the table.", "would_pick": "no", "reason": "Plainly says Marco is dripping cheese; even weak students see the joke."},
+  {"option": "Marco carried the pizza to the table, dripping with melted cheese.", "would_pick": "yes", "reason": "Putting the modifier at the end feels natural and most students wouldn't notice it now points to the table."}
+ ]},
+ "MAPP4-LU-23": {"distractors": [
+  {"option": "Instead", "would_pick": "yes", "reason": "'instead of five' later in the sentence lures quick readers into matching the word."},
+  {"option": "In addition", "would_pick": "yes", "reason": "The default 'adding another fact' transition many students reach for."},
+  {"option": "Even so", "would_pick": "no", "reason": "No contrast in sight; even weak students seldom pick a concession here."}
+ ]},
+ "MAPP4-LU-24": {"distractors": [
+  {"option": "estimated", "would_pick": "yes", "reason": "It sounds scientific; students miss that an exact 18 mL means it was measured."},
+  {"option": "noticed", "would_pick": "yes", "reason": "Common everyday verb that fits the sentence; weak students don't weigh precision."},
+  {"option": "described", "would_pick": "yes", "reason": "Grammatical and plausible-sounding; a quick reader could choose it."}
+ ]}
+}

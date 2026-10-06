@@ -1,0 +1,677 @@
+[
+ {
+  "id": "MAPP4-LU-01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "stratum": "mechanics",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Last summer we drove North for two days to visit my cousins, who live in the Midwest.",
+   "Last summer we drove north for two days to visit my cousins, who live in the Midwest.",
+   "Last summer we drove North for two days to visit my cousins, who live in the midwest.",
+   "Last summer we drove north for two days to visit my cousins, who live in the midwest."
+  ],
+  "correct_answer": "Last summer we drove north for two days to visit my cousins, who live in the Midwest.",
+  "explanation": "A compass direction used to tell which way someone travels (drove north) stays lowercase; the name of a region (the Midwest) is a proper noun and is capitalized. The other options capitalize the direction, lowercase the region, or do both.",
+  "student_error": {
+   "Last summer we drove North for two days to visit my cousins, who live in the Midwest.": "Capitalizes every compass word, treating a travel direction as if it were a place name.",
+   "Last summer we drove North for two days to visit my cousins, who live in the midwest.": "Has the direction/region rule backwards: treats 'North' as the named place and 'midwest' as an ordinary direction word.",
+   "Last summer we drove north for two days to visit my cousins, who live in the midwest.": "Lowercases all direction-based words, not recognizing that a region named from a direction is a proper noun."
+  },
+  "difficulty": "easy",
+  "cap_rule": "compass direction (lowercase) vs. named region (capitalized)"
+ },
+ {
+  "id": "MAPP4-LU-02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "stratum": "mechanics",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "ccss": "L.5.2",
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "On Saturday, my Uncle and grandma drove us to the county fair.",
+   "On Saturday, my Uncle and Grandma drove us to the county fair.",
+   "On Saturday, my uncle and grandma drove us to the county fair.",
+   "On Saturday, my uncle and Grandma drove us to the county fair."
+  ],
+  "correct_answer": "On Saturday, my uncle and Grandma drove us to the county fair.",
+  "explanation": "A family title after a possessive such as 'my' is a common noun (my uncle) and stays lowercase; a family title used in place of the person's name (Grandma) is capitalized. The other options capitalize 'Uncle' after 'my', lowercase 'grandma' used as a name, or both.",
+  "student_error": {
+   "On Saturday, my Uncle and grandma drove us to the county fair.": "Reverses the rule: thinks the title with 'my' is the special one and the bare title is the ordinary word.",
+   "On Saturday, my Uncle and Grandma drove us to the county fair.": "Capitalizes every family title, ignoring that 'my' turns 'uncle' into a common noun.",
+   "On Saturday, my uncle and grandma drove us to the county fair.": "Treats all family words as common nouns, not seeing that 'Grandma' is used as her name."
+  },
+  "difficulty": "easy",
+  "cap_rule": "family title used as a name (capitalized) vs. after a possessive (lowercase)"
+ },
+ {
+  "id": "MAPP4-LU-03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "stratum": "mechanics",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "ccss": "L.6.2",
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Because Hana signed up for French this year, her science class moved to the last period of the day.",
+   "Because Hana signed up for french this year, her science class moved to the last period of the day.",
+   "Because Hana signed up for French this year, her Science class moved to the last period of the day.",
+   "Because Hana signed up for french this year, her Science class moved to the last period of the day."
+  ],
+  "correct_answer": "Because Hana signed up for French this year, her science class moved to the last period of the day.",
+  "explanation": "Languages are proper nouns and are always capitalized (French), but general school subjects without a course number are common nouns (science). The other options lowercase the language, capitalize the subject, or both.",
+  "student_error": {
+   "Because Hana signed up for french this year, her science class moved to the last period of the day.": "Treats every school subject alike and lowercases the language too.",
+   "Because Hana signed up for French this year, her Science class moved to the last period of the day.": "Capitalizes every school subject, as they appear on a schedule or report card.",
+   "Because Hana signed up for french this year, her Science class moved to the last period of the day.": "Thinks a 'real' academic class gets a capital and a language is just an ordinary word."
+  },
+  "difficulty": "medium",
+  "cap_rule": "language (capitalized) vs. general school subject (lowercase)"
+ },
+ {
+  "id": "MAPP4-LU-04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "stratum": "mechanics",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "ccss": "L.7.2",
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Our report compares the civil war with other wars of the nineteenth century.",
+   "Our report compares the civil war with other wars of the Nineteenth Century.",
+   "Our report compares the Civil War with other wars of the nineteenth century.",
+   "Our report compares the Civil War with other wars of the Nineteenth Century."
+  ],
+  "correct_answer": "Our report compares the Civil War with other wars of the nineteenth century.",
+  "explanation": "The name of a specific historical event (the Civil War) is capitalized, but a century written out as a time span (the nineteenth century) is not a proper name and stays lowercase. The other options lowercase the event, capitalize the century, or both.",
+  "student_error": {
+   "Our report compares the civil war with other wars of the nineteenth century.": "Sees 'civil war' as a general description of a kind of war rather than the name of one event.",
+   "Our report compares the civil war with other wars of the Nineteenth Century.": "Swaps the two: treats the century as the named historical period and the war as a general phrase.",
+   "Our report compares the Civil War with other wars of the Nineteenth Century.": "Capitalizes every history time phrase, treating a century like the name of an era."
+  },
+  "difficulty": "hard",
+  "cap_rule": "named historical event (capitalized) vs. century as a time span (lowercase)",
+  "pre_attack_repair": "E1 options FK 9.1: shortened (\"class report\"->\"report\", \"fought during\"->\"of\"); rule unchanged (orchestrator)"
+ },
+ {
+  "id": "MAPP4-LU-05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "stratum": "mechanics",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "ccss": "L.5.2e",
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nWearing safety goggles is ___ for every step of the experiment.",
+  "choices": [
+   "neccessary",
+   "necesary",
+   "necessary",
+   "neccesary"
+  ],
+  "correct_answer": "necessary",
+  "explanation": "'Necessary' has one c and a double s. 'neccessary' doubles the c, 'necesary' drops one s, and 'neccesary' swaps the doubling onto the wrong letter.",
+  "student_error": {
+   "neccessary": "Knows a letter is doubled somewhere and doubles the c as well as the s.",
+   "necesary": "Writes the word as it sounds, with a single s for the /s/ sound.",
+   "neccesary": "Remembers that one consonant is doubled but doubles the wrong one (c instead of s)."
+  },
+  "difficulty": "easy",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "single vs. double consonant at two sites (one c, double s)",
+  "intended_word": "necessary"
+ },
+ {
+  "id": "MAPP4-LU-06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "stratum": "mechanics",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "ccss": "L.6.2b",
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nFeeding the class turtle is a ___ that students earn by finishing their work early.",
+  "choices": [
+   "privilege",
+   "privelege",
+   "priviledge",
+   "priveledge"
+  ],
+  "correct_answer": "privilege",
+  "explanation": "'Privilege' has i in the unstressed second syllable and ends in -lege with no d. 'privelege' changes the unstressed vowel, 'priviledge' adds a d by analogy with 'ledge' or 'knowledge', and 'priveledge' makes both mistakes.",
+  "student_error": {
+   "privelege": "Guesses the vowel in the unstressed middle syllable, which sounds like 'uh', and writes e.",
+   "priviledge": "Spells the ending like the familiar word 'ledge' or 'knowledge' and adds a d.",
+   "priveledge": "Spells the whole word by sound and by analogy, guessing the vowel and adding the d."
+  },
+  "difficulty": "medium",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "vowel in an unstressed syllable + -lege vs. -ledge ending",
+  "intended_word": "privilege"
+ },
+ {
+  "id": "MAPP4-LU-07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "stratum": "mechanics",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "ccss": "L.7.2b",
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nA total solar eclipse is a rare ___ that scientists plan for years in advance.",
+  "choices": [
+   "ocurrence",
+   "occurrance",
+   "ocurrance",
+   "occurrence"
+  ],
+  "correct_answer": "occurrence",
+  "explanation": "'Occurrence' keeps the double c of 'occur', doubles the final r before the suffix because the stress falls on the last syllable (occurring, occurred), and ends in -ence. 'ocurrence' drops one c, 'occurrance' uses -ance, and 'ocurrance' makes both mistakes.",
+  "student_error": {
+   "ocurrence": "Hears one /k/ sound and writes a single c at the start, as in 'ocean'.",
+   "occurrance": "Chooses -ance for the unstressed ending, which sounds the same as -ence.",
+   "ocurrance": "Makes both mistakes: a single c and the -ance ending; spells the word as it sounds."
+  },
+  "difficulty": "hard",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "double c in the prefix oc- (site 1) + -ence vs. -ance after a doubled r (site 2)",
+  "intended_word": "occurrence",
+  "pre_attack_repair": "E4: macOS NSSpellChecker accepts 'occurence', so site 1 moved from the doubled r to the doubled c; word, sentence and key unchanged (orchestrator)"
+ },
+ {
+  "id": "MAPP4-LU-08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "stratum": "mechanics",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "ccss": "L.5.2a",
+  "passage": null,
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "When the storm ended we swept the porch, picked up fallen branches, and dragged the trash cans back to the curb.",
+   "When the storm ended, we swept the porch, picked up fallen branches, and dragged the trash cans back to the curb.",
+   "When the storm ended, we swept the porch picked up fallen branches and dragged the trash cans back to the curb.",
+   "When the storm ended we swept the porch picked up fallen branches and dragged the trash cans back to the curb."
+  ],
+  "correct_answer": "When the storm ended, we swept the porch, picked up fallen branches, and dragged the trash cans back to the curb.",
+  "explanation": "A comma follows the introductory clause 'When the storm ended' (L.5.2b), and commas separate the three verb phrases in the series (L.5.2a). The other options leave out the introductory comma, the series commas, or both.",
+  "student_error": {
+   "When the storm ended we swept the porch, picked up fallen branches, and dragged the trash cans back to the curb.": "Uses commas for the list but does not see the opening 'When...' clause as needing a comma.",
+   "When the storm ended, we swept the porch picked up fallen branches and dragged the trash cans back to the curb.": "Only puts series commas between single words, not between longer action phrases.",
+   "When the storm ended we swept the porch picked up fallen branches and dragged the trash cans back to the curb.": "Writes the sentence as one breath with no internal commas, a common habit with long sentences."
+  },
+  "difficulty": "easy",
+  "punct_rule": "comma after an introductory clause + commas separating verb phrases in a series"
+ },
+ {
+  "id": "MAPP4-LU-09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "stratum": "mechanics",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "ccss": "L.6.2a",
+  "passage": null,
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Our school library, which reopened last month after the flood, now stays open until five o'clock.",
+   "Our school library which reopened last month after the flood, now stays open until five o'clock.",
+   "Our school library, which reopened last month after the flood now stays open until five o'clock.",
+   "Our school library which reopened last month after the flood now stays open until five o'clock."
+  ],
+  "correct_answer": "Our school library, which reopened last month after the flood, now stays open until five o'clock.",
+  "explanation": "The clause 'which reopened last month after the flood' adds extra information about the one school library, so it is nonrestrictive and needs a comma on BOTH sides. The other options leave out the opening comma, the closing comma, or both.",
+  "student_error": {
+   "Our school library which reopened last month after the flood, now stays open until five o'clock.": "Puts a comma only where the sentence pauses before the main verb, missing the opening comma.",
+   "Our school library, which reopened last month after the flood now stays open until five o'clock.": "Opens the interrupting clause with a comma but forgets to close it.",
+   "Our school library which reopened last month after the flood now stays open until five o'clock.": "Does not recognize the 'which' clause as extra information that must be set off."
+  },
+  "difficulty": "medium",
+  "punct_rule": "paired commas around a nonrestrictive (which) clause"
+ },
+ {
+  "id": "MAPP4-LU-10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "stratum": "mechanics",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "ccss": "L.7.2a",
+  "passage": null,
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "After a long boring bus ride, Mia pulled on her new winter coat and stepped into the snow.",
+   "After a long boring bus ride, Mia pulled on her new, winter coat and stepped into the snow.",
+   "After a long, boring bus ride, Mia pulled on her new, winter coat and stepped into the snow.",
+   "After a long, boring bus ride, Mia pulled on her new winter coat and stepped into the snow."
+  ],
+  "correct_answer": "After a long, boring bus ride, Mia pulled on her new winter coat and stepped into the snow.",
+  "explanation": "'Long' and 'boring' are coordinate adjectives (you could say 'long and boring'), so they take a comma. 'New winter coat' is cumulative ('new and winter coat' does not work), so no comma. The other options miss the coordinate comma, add a comma to the cumulative pair, or both.",
+  "student_error": {
+   "After a long boring bus ride, Mia pulled on her new winter coat and stepped into the snow.": "Never puts commas between adjectives, so misses the coordinate pair.",
+   "After a long boring bus ride, Mia pulled on her new, winter coat and stepped into the snow.": "Has the coordinate/cumulative test backwards and places the comma in the wrong pair.",
+   "After a long, boring bus ride, Mia pulled on her new, winter coat and stepped into the snow.": "Puts a comma between every pair of adjectives without testing whether 'and' fits."
+  },
+  "difficulty": "hard",
+  "punct_rule": "comma between coordinate adjectives, none between cumulative adjectives"
+ },
+ {
+  "id": "MAPP4-LU-11",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "ccss": "L.5.4a",
+  "passage": "At the start of the hike, the scouts had plenty of water. By the third hour, though, their supply had begun to dwindle, and Jonah was taking only tiny sips.",
+  "prompt": "What does the word **dwindle** most likely mean as it is used in the passage?",
+  "choices": [
+   "taste stale",
+   "run low",
+   "grow warm",
+   "leak out"
+  ],
+  "correct_answer": "run low",
+  "explanation": "The contrast between 'plenty of water' at the start and 'though' later, plus Jonah taking only tiny sips to save it, shows the amount was getting smaller. Water that tastes stale or grows warm is still plentiful and would not explain rationing; 'leak out' adds a cause the passage never mentions (no leak, spill or hole), while 'dwindle' names only the gradual shrinking of the supply.",
+  "student_error": {
+   "taste stale": "Pictures old water on a long hike and picks a change in quality instead of using the 'plenty... though' contrast about amount.",
+   "grow warm": "Imagines a hot hike and picks what commonly happens to carried water, ignoring the amount clue.",
+   "leak out": "Picks a way water gets lost that would also explain the tiny sips, adding a cause (a leak) the passage never mentions instead of naming the shrinking amount."
+  },
+  "difficulty": "easy"
+ },
+ {
+  "id": "MAPP4-LU-12",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "ccss": "L.5.4a",
+  "passage": null,
+  "prompt": "Instead of a simple card for her grandmother's birthday, Priya made an elaborate one. It had pop-up flowers, a fold-out map of their town, and a poem inside.\n\nWhat does the word **elaborate** most likely mean as it is used in the passage?",
+  "choices": [
+   "costly",
+   "detailed",
+   "cheerful",
+   "handmade"
+  ],
+  "correct_answer": "detailed",
+  "explanation": "'Elaborate' is set against 'simple' and then shown by a list of many parts (pop-up flowers, a fold-out map, a poem), so it means having many careful parts. Nothing says the card cost much; cheerful describes a mood, not the opposite of 'simple'; and a simple card can be handmade too, so 'handmade' does not explain the contrast or the list.",
+  "student_error": {
+   "costly": "Reads 'simple' vs. fancy as cheap vs. expensive, a common association.",
+   "cheerful": "Takes the meaning from the birthday topic and the flowers rather than from the contrast with 'simple'.",
+   "handmade": "Sees that Priya 'made' the card and reads 'simple' as store-bought, so picks handmade instead of using the list of many parts."
+  },
+  "difficulty": "easy",
+  "pre_attack_repair": "E1 stem FK 12.4: split one 27-word sentence into two; prompt says passage (orchestrator)"
+ },
+ {
+  "id": "MAPP4-LU-13",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "ccss": "L.6.4a",
+  "passage": "When Leon announced at dinner that he had taught his pet goldfish to swim through a tiny plastic hoop, his older sister was skeptical. She raised one eyebrow and said, \"Show me. Then do it again.\"",
+  "prompt": "What does the word **skeptical** most likely mean as it is used in the passage?",
+  "choices": [
+   "amazed",
+   "impatient",
+   "doubtful",
+   "excited"
+  ],
+  "correct_answer": "doubtful",
+  "explanation": "The raised eyebrow and the demand to see it, and then see it again, show she does not yet believe the claim. An amazed or excited sister would already believe it and would not need a repeat; nothing suggests she is in a hurry, so 'impatient' explains neither the eyebrow nor 'do it again'.",
+  "student_error": {
+   "amazed": "Reacts to how surprising the claim is and skips the clue that she demands proof.",
+   "impatient": "Hears 'Show me. Then do it again.' as a pushy demand and picks impatience, missing that the raised eyebrow and the demand to repeat are about not believing him.",
+   "excited": "Hears 'Show me' as eagerness to see the trick, reacting to how fun the claim is instead of to the raised eyebrow and the demand for a second try."
+  },
+  "difficulty": "medium",
+  "pre_attack_repair": "E1 passage FK 3.3: first sentence lengthened (at dinner, pet, tiny plastic, older) (orchestrator)"
+ },
+ {
+  "id": "MAPP4-LU-14",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "ccss": "L.6.4a",
+  "passage": "Owen rushes through his chores and is done in five minutes. His sister Grace is meticulous: she folds each towel into exact thirds and lines up the corners before she stacks it.",
+  "prompt": "What does the word **meticulous** most likely mean as it is used in the passage?",
+  "choices": [
+   "careful",
+   "speedy",
+   "helpful",
+   "proud"
+  ],
+  "correct_answer": "careful",
+  "explanation": "Grace is contrasted with Owen, who rushes, and the colon introduces examples of exact, precise work (exact thirds, lined-up corners). That shows close attention to detail. 'Speedy' describes Owen, not Grace; both children do chores, so 'helpful' does not mark the contrast; and nothing shows her pride.",
+  "student_error": {
+   "speedy": "Misses that Grace is being contrasted with Owen and carries 'rushes... five minutes' over to her.",
+   "helpful": "Takes the meaning from the topic (doing chores) rather than the contrast, missing that Owen does chores too.",
+   "proud": "Infers that someone who folds so neatly must be proud of the result, a feeling the passage never states."
+  },
+  "difficulty": "medium"
+ },
+ {
+  "id": "MAPP4-LU-15",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "ccss": "L.7.4a",
+  "passage": "Rosa was ambivalent about moving to Oakdale Middle School. She would finally have a real art studio to work in. She would also have to leave the friends she had known since kindergarten.",
+  "prompt": "What does the word **ambivalent** most likely mean as it is used in the passage?",
+  "choices": [
+   "feeling very excited",
+   "feeling deeply upset",
+   "feeling quite nervous",
+   "having mixed feelings"
+  ],
+  "correct_answer": "having mixed feelings",
+  "explanation": "The second sentence gives a reason to be glad (an art studio) and the third a reason to be sad (leaving friends). Holding both at once is having mixed feelings. Excited and upset each match only one sentence, and nervous is not supported by either reason.",
+  "student_error": {
+   "feeling very excited": "Reads only the sentence about the art studio, the first clue after the word.",
+   "feeling deeply upset": "Weights the last sentence about leaving friends and ignores the good news.",
+   "feeling quite nervous": "Picks the feeling most students associate with starting a new school rather than what the two reasons show."
+  },
+  "difficulty": "hard"
+ },
+ {
+  "id": "MAPP4-LU-16",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "ccss": "L.7.4a",
+  "passage": "Nobody had repaired the footbridge in the park for years. Its boards had begun to deteriorate, so the town closed the bridge until workers could replace them.",
+  "prompt": "What does the word **deteriorate** most likely mean as it is used in the passage?",
+  "choices": [
+   "get slippery",
+   "squeak loudly",
+   "break down",
+   "dry out"
+  ],
+  "correct_answer": "break down",
+  "explanation": "Years without repair, a closing for safety, and boards that must be replaced together show the wood was falling apart. Squeaking or drying out are changes old boards can show, and slippery boards might be a hazard, but none comes from years of neglect in a way that requires replacing the boards; only 'break down' fits all three clues.",
+  "student_error": {
+   "get slippery": "Looks for a safety hazard that would make a town close a bridge and misses that 'years' without repair and 'replace them' point to the boards wearing out.",
+   "squeak loudly": "Pictures walking on an old bridge and picks a sound, not a reason to close it.",
+   "dry out": "Picks a natural change in old wood that fits the first sentence but not the need to replace the boards."
+  },
+  "difficulty": "hard"
+ },
+ {
+  "id": "MAPP4-LU-17",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "stratum": "usage",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "ccss": "L.5.1c",
+  "passage": null,
+  "prompt": "Which verb correctly completes the sentence?\n\nMr. Kwan ___ at our school since my sister was in first grade, and he still runs the chess club every Friday.",
+  "choices": [
+   "has taught",
+   "had taught",
+   "taught",
+   "teaches"
+  ],
+  "correct_answer": "has taught",
+  "explanation": "An action that began in the past and continues now ('since...', 'he still runs') takes the present perfect: has taught. 'Had taught' places the action before another past time and implies it is over; 'taught' and 'teaches' do not work with 'since' for an action still going on.",
+  "student_error": {
+   "had taught": "Knows 'since' needs a perfect tense but picks the past perfect because the sister's first grade is in the past.",
+   "taught": "Uses the simple past because the teaching started long ago.",
+   "teaches": "Matches the present tense of 'still runs' later in the sentence without seeing that 'since' needs the perfect."
+  },
+  "difficulty": "easy",
+  "varied_dimension": "verb tense"
+ },
+ {
+  "id": "MAPP4-LU-18",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "stratum": "usage",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "ccss": "L.6.1b",
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nThe twins built the entire birdhouse ___, without any help from their dad.",
+  "choices": [
+   "theirselves",
+   "themselves",
+   "themself",
+   "theirself"
+  ],
+  "correct_answer": "themselves",
+  "explanation": "The intensive pronoun for a plural subject (the twins) is 'themselves', built on the object form 'them' plus plural '-selves'. 'Theirselves' and 'theirself' use the possessive 'their', and 'themself' pairs a singular '-self' with two people.",
+  "student_error": {
+   "theirselves": "Builds the word on the possessive 'their' by analogy with 'myself' and 'yourself'.",
+   "themself": "Keeps the singular '-self' it hears in 'himself' and 'herself' even though the subject is two people.",
+   "theirself": "Uses the spoken form common in casual speech, built on 'their' with a singular '-self'."
+  },
+  "difficulty": "medium",
+  "varied_dimension": "form of the intensive pronoun"
+ },
+ {
+  "id": "MAPP4-LU-19",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "stratum": "usage",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "ccss": "L.7.1a",
+  "passage": "Nobody in Room 12 knew where the hamster had hidden.",
+  "prompt": "How does the clause \"where the hamster had hidden\" function in the sentence?",
+  "choices": [
+   "as an adverb that tells where",
+   "as an adjective that describes Room 12",
+   "as a noun that is the subject",
+   "as a noun that is the object of knew"
+  ],
+  "correct_answer": "as a noun that is the object of knew",
+  "explanation": "The clause answers 'knew what?', so it works as a noun: the direct object of 'knew'. It does not tell where anyone knew something, it does not describe Room 12 (a 'where' clause describes a place only when it follows that place noun, as in 'the room where...'), and the subject of the sentence is 'Nobody'.",
+  "student_error": {
+   "as an adverb that tells where": "Sees the word 'where' and assumes the clause tells place, the most common confusion with noun clauses.",
+   "as an adjective that describes Room 12": "Knows that clauses beginning with 'where' often describe a place ('the room where...') and attaches the clause to Room 12, the only place named in the sentence.",
+   "as a noun that is the subject": "Correctly sees it as a noun clause but assumes a noun clause must be the subject."
+  },
+  "difficulty": "hard",
+  "varied_dimension": "grammatical function of the clause"
+ },
+ {
+  "id": "MAPP4-LU-20",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "stratum": "usage",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "ccss": "L.5.1e",
+  "passage": null,
+  "prompt": "Which pair of words best completes the sentence?\n\n___ the gym ___ the cafeteria had room for the science fair, so the school rented a tent.",
+  "choices": [
+   "Either ... or",
+   "Both ... and",
+   "Neither ... nor",
+   "Neither ... or"
+  ],
+  "correct_answer": "Neither ... nor",
+  "explanation": "The school had to rent a tent, so no indoor room was big enough: 'Neither the gym nor the cafeteria had enough space.' 'Either ... or' and 'Both ... and' make grammatical sentences, but each says at least one room had enough space, which does not explain renting a tent. 'Neither ... or' has the right meaning but the wrong partner: 'neither' must be paired with 'nor'.",
+  "student_error": {
+   "Either ... or": "Picks the most familiar pair and reads only the first half, before 'so the school rented a large tent'.",
+   "Both ... and": "Reads the first half as a statement about two rooms and does not connect it to the result in the second half.",
+   "Neither ... or": "Sees that no room had space and starts with 'Neither', then finishes with 'or', the partner students hear in everyday speech."
+  },
+  "difficulty": "easy",
+  "varied_dimension": "correlative conjunction pair",
+  "pre_attack_repair": "E1 stem FK 9.7: \"had enough space\"->\"had room\", \"a large tent\"->\"a tent\" (orchestrator; one repair, trimmed until E1 passed)"
+ },
+ {
+  "id": "MAPP4-LU-21",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "stratum": "usage",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "ccss": "L.6.1c",
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nOur coach explained that if we skip the warm-up, ___ muscles are more likely to get hurt.",
+  "choices": [
+   "our",
+   "your",
+   "their",
+   "his"
+  ],
+  "correct_answer": "our",
+  "explanation": "The clause begins with 'we', so the pronoun must stay in the first person plural: our muscles. 'Your' shifts to second person, 'their' shifts to third person plural, and 'his' shifts to third person singular, pointing back to the coach, whose muscles are not hurt by the team skipping the warm-up.",
+  "student_error": {
+   "your": "Switches to the general 'you' people use in speech for advice ('your muscles get hurt').",
+   "their": "Thinks of the team or players as 'them' and loses track of 'we' earlier in the clause.",
+   "his": "Ties the pronoun to 'Our coach', the singular subject of the main sentence, instead of to 'we' in the clause."
+  },
+  "difficulty": "medium",
+  "varied_dimension": "pronoun person and number"
+ },
+ {
+  "id": "MAPP4-LU-22",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "stratum": "usage",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "ccss": "L.7.1c",
+  "passage": null,
+  "prompt": "In which sentence is the phrase \"dripping with melted cheese\" placed correctly?",
+  "choices": [
+   "Dripping with melted cheese, Marco carried the pizza to the table.",
+   "Marco carried, dripping with melted cheese, the pizza to the table.",
+   "Marco carried the pizza to the table, dripping with melted cheese.",
+   "Marco carried the pizza, dripping with melted cheese, to the table."
+  ],
+  "correct_answer": "Marco carried the pizza, dripping with melted cheese, to the table.",
+  "explanation": "The phrase describes the pizza, so it must come right after 'pizza'. An opening participial phrase describes the subject (Marco); a phrase set off between 'carried' and its object also reads as describing Marco and splits the verb from its object; and the phrase at the end after a comma reads as describing Marco (or the table).",
+  "student_error": {
+   "Dripping with melted cheese, Marco carried the pizza to the table.": "Picks the familiar opening-phrase pattern without checking which noun comes right after the comma (a dangling modifier).",
+   "Marco carried, dripping with melted cheese, the pizza to the table.": "Puts the phrase right in front of 'the pizza', thinking that touching the noun from either side is enough, without seeing that a phrase set off after the verb reads as describing the subject, Marco.",
+   "Marco carried the pizza to the table, dripping with melted cheese.": "Adds the description at the end, as in speech, without seeing it now attaches to Marco or the table."
+  },
+  "difficulty": "hard",
+  "varied_dimension": "placement of the modifier"
+ },
+ {
+  "id": "MAPP4-LU-23",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Writing: Write, Revise Texts for Purpose and Audience",
+  "map_strand": "Plan, Organize; Create Cohesion, Use Transitions",
+  "stratum": "usage",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "ccss": "W.6.2c",
+  "passage": "(1) In September, our school started a compost program. (2) Every day at lunch, students now scrape fruit peels and leftover bread into green bins. (3) ___, the cafeteria fills only two trash bags a day instead of five. (4) The custodians say the change has made their afternoons much easier.",
+  "prompt": "Which transition best completes sentence 3?",
+  "choices": [
+   "Instead",
+   "As a result",
+   "In addition",
+   "Meanwhile"
+  ],
+  "correct_answer": "As a result",
+  "explanation": "Sentence 3 is the effect of sentence 2: because food scraps go into compost bins, fewer trash bags are filled. 'As a result' shows cause and effect. 'Instead' signals a replacement, 'In addition' adds an unrelated fact, and 'Meanwhile' signals a separate event happening at the same time rather than a result.",
+  "student_error": {
+   "Instead": "Is drawn by 'instead of five' later in the sentence and picks the transition that echoes it.",
+   "In addition": "Treats sentence 3 as one more fact about the program rather than the result of sentence 2.",
+   "Meanwhile": "Reads sentences 2 and 3 as two things happening at the same time in the cafeteria, missing that fewer trash bags is caused by the scraping in sentence 2."
+  },
+  "difficulty": "medium"
+ },
+ {
+  "id": "MAPP4-LU-24",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Writing: Write, Revise Texts for Purpose and Audience",
+  "map_strand": "Establish and Maintain Style; Use Precise Language",
+  "stratum": "usage",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "ccss": "W.7.2d",
+  "passage": "(1) Lucia's science group tested how quickly ice melts on different surfaces. (2) They set identical ice cubes on a metal tray, a wooden board, and a plastic plate. (3) After ten minutes, they ___ how much water had collected around each cube. (4) The metal tray held 18 milliliters, more than twice as much as either of the others.",
+  "prompt": "Which word most precisely completes sentence 3?",
+  "choices": [
+   "estimated",
+   "noticed",
+   "measured",
+   "described"
+  ],
+  "correct_answer": "measured",
+  "explanation": "Sentence 4 reports an exact amount (18 milliliters), which can only come from measuring. 'Estimated' would give a guess, not an exact figure; 'noticed' and 'described' are vague and do not produce a number.",
+  "student_error": {
+   "estimated": "Picks the word that sounds most scientific without checking it against the exact figure in sentence 4.",
+   "noticed": "Chooses the everyday word for seeing a result, reading sentence 3 alone.",
+   "described": "Thinks of writing up observations in a lab report rather than finding the amount."
+  },
+  "difficulty": "hard"
+ }
+]
