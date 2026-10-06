@@ -1,0 +1,16 @@
+{
+  "L01": {"reject_first": "D", "why": "Semicolon before a verb-like 'shares' rarely starts an independent clause", "certain": false, "confident_rejects": []},
+  "L02": {"reject_first": "B", "why": "Colon after verb 'anticipated' usually splits verb from its object", "certain": false, "confident_rejects": []},
+  "L03": {"reject_first": "B", "why": "Semicolon after a bare noun likely joins non-independent material", "certain": false, "confident_rejects": []},
+  "L04": {"reject_first": "A", "why": "'as to whether' is wordy; others are tighter", "certain": false, "confident_rejects": []},
+  "L05": {"reject_first": "D", "why": "Semicolon needs independent clauses on both sides; uncertain here", "certain": false, "confident_rejects": []},
+  "L06": {"reject_first": "D", "why": "'however' interrupter with closing comma but no opening punctuation", "certain": true, "confident_rejects": ["D"]},
+  "L07": {"reject_first": "A", "why": "Possible comma splice if 'bubbles' begins an independent clause", "certain": false, "confident_rejects": []},
+  "L08": {"reject_first": "B", "why": "'however' with closing comma but no opening punctuation is unbalanced", "certain": true, "confident_rejects": ["B"]},
+  "L09": {"reject_first": "C", "why": "Semicolon before 'also' fragment unlikely to join independent clauses", "certain": false, "confident_rejects": []},
+  "L10": {"reject_first": "D", "why": "Adds 'although', likely creating illogical or wordy subordination", "certain": false, "confident_rejects": []},
+  "L11": {"reject_first": "C", "why": "No punctuation between likely clauses risks a run-on", "certain": false, "confident_rejects": []},
+  "L12": {"reject_first": "B", "why": "Comma after 'but' is the least standard placement", "certain": false, "confident_rejects": []},
+  "L13": {"reject_first": "D", "why": "Missing comma before participial phrase opening after 'week'", "certain": false, "confident_rejects": []},
+  "L14": {"reject_first": "A", "why": "No punctuation before appositive-like 'a pattern' likely run-on", "certain": false, "confident_rejects": []}
+}

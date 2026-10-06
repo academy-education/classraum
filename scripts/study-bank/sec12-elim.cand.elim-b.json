@@ -1,0 +1,16 @@
+{
+  "L01": {"reject_first": "C", "why": "No punctuation likely fuses clauses; others mark a boundary.", "certain": false, "confident_rejects": []},
+  "L02": {"reject_first": "D", "why": "Adds relative pronoun; likely creates fragment or wordiness.", "certain": false, "confident_rejects": []},
+  "L03": {"reject_first": "B", "why": "Semicolon needs independent clauses on both sides; unlikely after noun.", "certain": false, "confident_rejects": []},
+  "L04": {"reject_first": "A", "why": "'as to whether' is wordy and adds an unneeded comma.", "certain": false, "confident_rejects": []},
+  "L05": {"reject_first": "C", "why": "Comma may splice two clauses if 'remarkably' starts a new one.", "certain": false, "confident_rejects": []},
+  "L06": {"reject_first": "D", "why": "Interrupting 'however' needs paired commas; one-sided comma always wrong.", "certain": true, "confident_rejects": ["D"]},
+  "L07": {"reject_first": "A", "why": "Likely comma splice between two independent clauses.", "certain": false, "confident_rejects": []},
+  "L08": {"reject_first": "B", "why": "Asymmetric punctuation around parenthetical 'however' is never correct.", "certain": true, "confident_rejects": ["B"]},
+  "L09": {"reject_first": "C", "why": "Semicolon before 'also' likely precedes a non-clause.", "certain": false, "confident_rejects": []},
+  "L10": {"reject_first": "A", "why": "Comma before dependent 'only after' likely splices or misplaces.", "certain": false, "confident_rejects": []},
+  "L11": {"reject_first": "C", "why": "No punctuation likely fuses two independent clauses.", "certain": false, "confident_rejects": []},
+  "L12": {"reject_first": "C", "why": "Drops 'but', likely breaking a 'not X but because Y' parallel.", "certain": false, "confident_rejects": []},
+  "L13": {"reject_first": "D", "why": "Missing comma before participial phrase; likely run-on structure.", "certain": false, "confident_rejects": []},
+  "L14": {"reject_first": "A", "why": "Appositive 'a pattern' needs punctuation separating it from clause.", "certain": false, "confident_rejects": []}
+}

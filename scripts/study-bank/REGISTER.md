@@ -874,6 +874,28 @@ recorded only in a commit message is a finding nobody reads.
   Top-ups are new human-authored questions (agent authoring of SSAT/ISEE reading is stopped). Do **not** re-admit the QC-dropped candidates: re-deciding them now would be fitting to the round that rejected them. **Code note (src, not done):** `drawByPassage`'s top-up opens a NEW passage to supply a single question. Making it top up only from whole short passages, or accept a short section, removes most of the harm whatever happens to the data.
   **TOEFL `pg-afeddf8c…` (`harvest-v1`, Academic — Biology "coral reefs", 151 words): 12 live of 31 rows (19 archived).** This is not a large set. It is one short passage asking the same few questions in paraphrase: **'symbiosis' meaning ×5** (`715c9e9c`, `b460a553`, `d8f7cf8b`, `de84ca98`, `f8383de6`), **purpose of 'mass bleaching events' ×4** (`0be74a0e`, `13359d03`, `3b6a0f6e`, `e34f2015`), **ocean-temperature detail ×2** (`242865c1`, `b16ba728`), main idea ×1 (`6874a945`), all-true ×1 (`1d749235`). It is the "coral block, symbiosis asked 5×" that `check-duplicate-questions.mjs` described on 2026-09-01. It reaches students only through last-resort truncation, and then the student sees the same vocabulary question several times. **Recommendation:** keep one item per question (5: main idea, symbiosis, mass-bleaching purpose, temperature detail, all-true), preferring any with reviews or attacks bound, and archive the other 7. That gives a 5-item set that fits the 8/10 slots and removes the within-set leak. Owner's call, like the 9 stem pairs. The stem-duplicate gate cannot see these: they are paraphrases, and they share a group. Side observation for the difficulty work: all 12 have row ≠ item difficulty (row easy/medium, item hard).
 
+- **2026-10-06** — **SEC v12 INSERTED: 7 of 14, 3 HARD / 4 MEDIUM BY PANEL MEDIAN. SEC hard 37 → 40. THE R&W MODULE-2 HARD ROUTE STAYS AT 5 FORMS — the commission did not buy form 6 (needs 42, 2 short).** `rw-v12-sec-hard`, kept sha `4c503918`, prereg `feebab2d` (PREREG-SEC12-2026-10-06.md, v11's bars and control), ledger `sat-sec-hard-v12-kept-2026-10-06`. Two Claude authors, 7 items each, boundary constructions with a per-item KEY PLAN written to break v11's mark tell; no audit or repair round, no repair after any gate stage.
+
+      nosource    candidate 35.7% (15/42) vs live HARD-band control 72.2% (52/72), margin -36.5 (bar <= +10)
+                  control pool = the same 30 live hard items as v10/v11 (--exclude rw-v10,rw-v11); MEASURED
+                  pairwise agreement 86.0% vs 26.6% independent - one solver sampled three times
+                  unanimity as rate: candidate 4/14 = 28.6%, control 17/24 = 70.8%
+      withsource  three cold graders (ws-d/e/f): 14/14 keys on all three, 0 cold misses, 0 off-blueprint
+      rule drops  A-02 B-06 resolving word 2/3 ("remains", "shares": main verb right after the closing mark)
+                  A-07 B-03 weak distractors + median 2 free strikes; B-04 B-05 median 2 free strikes
+                  B-07 explanation path wrong 2/3 (inversion after "although" IS possible; E: D grammatical)
+      elimination candidate 14.3% vs matched control 10.7% (n=14 vs 28), margin +3.6, PASS (A23 bar)
+                  run on all 14 authored items (7 survived); the only free strike is a one-sided "however,"
+      panel       hard A-06 (semicolon before a whether-clause subject), B-01 (no mark before a delayed object
+                  after "makes visible to ..."), B-02 (", but because"); authors labelled all 14 hard
+                  (14th consecutive demotion)
+
+  **The v11 mark tell is fixed across the authored 14, and the gate then removed most of the fix.** Keys were dash 2, colon 2, however 2 (opposite forms), period 1, a period WRONG in 5; graders E and F confirmed no mark is always or never the key. But both dash keys and one colon key died on the rule (A-02 resolving word, B-04 two free strikes, B-03 two free strikes), so **the 7 banked items carry no dash key**. A dash key is hard to make hard: the closing dash before a main verb puts the verb right after the blank, and a sentence-final appositive dash lets the period and semicolon fall together.
+
+  **New cross-item tell, named by all three graders:** an option that ADDS A WORD ("and also", "as to whether", "which the", "although only after", "and the") is wrong 5-6 times of 6-7. The one added-word key (A-07, "with") was dropped as easy, so among the 7 banked an added-word option is never the key. Next brief: make an added conjunction/preposition the key in two or three items that are not otherwise easy, or stop offering reworded distractors. Key letters cycle in file order (D, E); irrelevant, shuffled at draw time.
+
+  **Next form:** 2 more panel-median HARD SEC items buy form 6. Across v10-v12 the hard yield is 3/26, 4/12, 3/14; every hard item is a boundary item whose decider sits 5+ words past the blank.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

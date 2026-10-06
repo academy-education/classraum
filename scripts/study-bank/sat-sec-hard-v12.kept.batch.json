@@ -1,0 +1,121 @@
+[
+  {
+    "id": "SEC12A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma splice disguised by a having-phrase opening the second clause",
+    "difficulty": "hard",
+    "passage": "For months before the eruption, seismometers on the volcano's southern slope recorded the lava dome swelling by nearly a meter each ______ dome collapsed without warning in late March, releasing a lateral blast that flattened mature forest more than ten kilometers from the vent and buried the valley below in ash.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "week; having finally outgrown its crater, the",
+      "week, having finally outgrown its crater, the",
+      "week, having finally outgrown its crater. The",
+      "week having finally outgrown its crater, the"
+    ],
+    "correct_answer": "week; having finally outgrown its crater, the",
+    "explanation": "The text contains two independent clauses: \"seismometers ... recorded the lava dome swelling by nearly a meter each week\" and \"the dome collapsed without warning.\" The participial phrase \"having finally outgrown its crater\" belongs to the second clause and describes the dome. \"week; having finally outgrown its crater, the\" places a semicolon between the clauses and leaves the phrase introducing \"the dome,\" which it modifies. \"week, having finally outgrown its crater, the\" joins the two independent clauses with only a comma, a comma splice. \"week having finally outgrown its crater, the\" runs the clauses together with no mark at all. \"week, having finally outgrown its crater. The\" puts the period after the phrase, attaching it to the first sentence, where it can only modify that sentence's subject, \"seismometers\"; the seismometers did not outgrow a crater (and the singular \"its\" cannot refer back to them), so the modifier dangles.",
+    "topic_tag": "volcanology"
+  },
+  {
+    "id": "SEC12A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: closing a comma-set relative clause that contains a nested dash pair",
+    "difficulty": "hard",
+    "passage": "The psalter's principal scribe, who—unusually for a monastic copyist of that era—signed and dated each finished ______ illustrated the margins himself, filling them with grotesques and hybrid beasts that later cataloguers mistook for the work of a second, more accomplished hand. Only in 2009 did ink analysis show that a single batch of iron-gall ink had been used for both the text and the drawings.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "quire; also",
+      "quire—also",
+      "quire, also",
+      "quire, and also"
+    ],
+    "correct_answer": "quire, also",
+    "explanation": "The subject \"The psalter's principal scribe\" is followed by a nonrestrictive relative clause, \"who ... signed and dated each finished quire,\" which opens with a comma and contains its own dash pair (\"—unusually for a monastic copyist of that era—\"). The dash pair is already closed, so the relative clause must now close with a comma, matching the comma that opened it; the main verb \"also illustrated\" then follows. \"quire, also\" does this. \"quire—also\" closes a comma-opened element with a dash, mismatching the pair. \"quire; also\" places a semicolon between the subject and its verb, leaving \"The psalter's principal scribe, who ... quire\" as a fragment. \"quire, and also\" makes \"illustrated\" a second verb inside the relative clause or a verb joined by \"and\" to nothing, so the subject \"scribe\" never receives a main verb.",
+    "topic_tag": "medieval manuscripts"
+  },
+  {
+    "id": "SEC12A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon before a long, internally punctuated noun-phrase series",
+    "difficulty": "hard",
+    "passage": "Because snow falling on the ice sheet traps air and dust as it compacts, a single core drilled through the ice preserves several independent records of past climate, all aligned in one ______ bubbles of ancient air, whose carbon dioxide can be measured directly; layers of volcanic ash, which can be dated against known eruptions; and ratios of oxygen isotopes, which track the temperature at which each year's snow formed.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "column. Bubbles",
+      "column; bubbles",
+      "column, bubbles",
+      "column: bubbles"
+    ],
+    "correct_answer": "column: bubbles",
+    "explanation": "The text before the blank is an independent clause that mentions \"several independent records of past climate.\" What follows is not a clause but a long series of noun phrases (\"bubbles of ancient air ...; layers of volcanic ash ...; and ratios of oxygen isotopes ...\") that specifies those records, with semicolons separating its internally punctuated items. A colon is the mark that introduces such a list after a complete clause, so \"column: bubbles\" is correct. \"column. Bubbles\" leaves the series standing alone as a sentence with no main verb, a fragment. \"column; bubbles\" also fails, because a semicolon must be followed by an independent clause or by another item in a semicolon series, and the series has not begun. \"column, bubbles\" makes the list read as an appositive renaming \"one column,\" which it cannot do (a column is not bubbles, ash, and isotope ratios), and a comma cannot introduce a series whose items are separated by semicolons.",
+    "topic_tag": "glaciology"
+  },
+  {
+    "id": "SEC12A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: however as an interrupter after a long verbless introductory phrase",
+    "difficulty": "hard",
+    "passage": "Designers of the first biplanes assumed that stacking two identical wings would roughly double an aircraft's lift. In the wind-tunnel trials that a pair of engineers ran on scale models of such machines during ______ the lower wing of a typical model generated barely half the lift of the upper wing, because it sat in the disturbed air flowing off the wing above it.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "1910, however,",
+      "1910; however,",
+      "1910 however,",
+      "1910, however"
+    ],
+    "correct_answer": "1910, however,",
+    "explanation": "The second sentence is a single independent clause, \"the lower wing of a typical model generated barely half the lift,\" preceded by a long introductory prepositional phrase, \"In the wind-tunnel trials that a pair of engineers ran ... during 1910.\" Although that phrase contains the verb \"ran,\" it sits inside a relative clause, so the phrase itself is not a clause. \"However\" interrupts the sentence to signal contrast with the designers' assumption, and an interrupter is set off by a pair of commas: \"1910, however,\" is correct. \"1910; however,\" treats the introductory phrase as an independent clause, but \"In the wind-tunnel trials ... during 1910\" has no subject and main verb of its own, so it is a fragment. \"1910 however,\" omits the comma that should open the interrupter. \"1910, however\" omits the comma that should close it, so \"however\" runs into \"the lower wing\" and reads as \"in whatever way.\"",
+    "topic_tag": "early aviation"
+  },
+  {
+    "id": "SEC12A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon before a whether-clause subject opening the second clause",
+    "difficulty": "hard",
+    "passage": "Potters have known for centuries that a copper glaze fired in a kiln starved of oxygen emerges a deep blood red instead of the usual ______ the red comes from tiny particles of metallic copper or from a reduced oxide of the metal remained disputed until the 1980s, when electron microscopes finally resolved the particles directly.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "green, whether",
+      "green; whether",
+      "green whether",
+      "green, as to whether"
+    ],
+    "correct_answer": "green; whether",
+    "explanation": "The text contains two independent clauses. The first ends with \"instead of the usual green.\" The second has a whole clause as its subject, \"whether the red comes from tiny particles of metallic copper or from a reduced oxide of the metal,\" and \"remained disputed\" as its verb. A semicolon properly joins two independent clauses, so \"green; whether\" is correct. \"green, whether\" joins the two clauses with only a comma, a comma splice; read instead as an adverbial \"whether ... or ...\" clause attached to the first sentence, it leaves \"remained disputed\" with no subject. \"green whether\" runs the clauses together with no punctuation. \"green, as to whether\" turns the whether-clause into the object of the prepositional phrase \"as to,\" so it can no longer serve as a subject, and \"remained disputed\" again has nothing to agree with.",
+    "topic_tag": "ceramics chemistry"
+  },
+  {
+    "id": "SEC12B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark between verb + object complement and its delayed object",
+    "difficulty": "hard",
+    "passage": "For decades, the fungi that partner with plant roots could be studied only indirectly, through chemical traces they left in soil samples. A staining technique developed in a university soil laboratory changed that. Applied to a thin slice of undisturbed earth, the new dye makes visible to anyone with an ordinary light ______ thread-like fungal filaments that link the root tips of neighboring plants into a single underground network.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "microscope, the",
+      "microscope and the",
+      "microscope. The",
+      "microscope the"
+    ],
+    "correct_answer": "microscope the",
+    "explanation": "The verb phrase \"makes visible\" needs an object, and here that object (\"the thread-like fungal filaments that link ...\") has been moved after the long phrase \"to anyone with an ordinary light microscope.\" Nothing may separate a verb from its object, so \"microscope the\" is correct. \"microscope, the\" inserts a comma between the verb and its object. \"microscope. The\" leaves \"the new dye makes visible to anyone with an ordinary light microscope\" without an object and turns the rest into a fragment, since \"The thread-like fungal filaments that link ...\" has no main verb (\"link\" belongs to the relative clause). \"microscope and the\" folds the filaments into the phrase \"anyone with an ordinary light microscope and the ... filaments,\" so \"makes visible\" again has no object.",
+    "topic_tag": "soil microbiology"
+  },
+  {
+    "id": "SEC12B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma + coordinating conjunction before a clause that opens with a subordinate clause",
+    "difficulty": "hard",
+    "passage": "Printed partbooks, which gave each singer a separate volume containing a single voice, let a motet travel far beyond the chapel where it was first performed. These editions preserved the composer's pitches and rhythms ______ printers seldom showed exactly which syllable of the Latin text belonged beneath which note, singers in different cities had to settle that alignment for themselves.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "faithfully but, because",
+      "faithfully, because",
+      "faithfully, but because",
+      "faithfully but because"
+    ],
+    "correct_answer": "faithfully, but because",
+    "explanation": "The sentence contains two independent clauses: \"These editions preserved the composer's pitches and rhythms faithfully\" and \"singers in different cities had to settle that alignment for themselves.\" The second is preceded by the introductory clause \"because printers seldom showed ... note.\" Two independent clauses joined by a coordinating conjunction take a comma before the conjunction, so \"faithfully, but because\" is correct. \"faithfully, because\" makes the \"because\" clause modify the first clause and then joins \"singers ... had to settle\" with only a comma, a comma splice. \"faithfully but because\" and \"faithfully but, because\" both omit the required comma before \"but\" between the two independent clauses; the comma after \"but\" in the latter does not replace it.",
+    "topic_tag": "Renaissance music"
+  }
+]

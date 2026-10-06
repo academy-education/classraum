@@ -1,0 +1,16 @@
+{
+  "L01": {"reject_first": "C", "why": "No punctuation likely runs phrases together; could be grammatical in some sentences", "certain": false, "confident_rejects": []},
+  "L02": {"reject_first": "D", "why": "Added 'which' often creates fragment, but relative clause could fit", "certain": false, "confident_rejects": []},
+  "L03": {"reject_first": "B", "why": "Semicolon needs independent clauses on both sides; unknown here", "certain": false, "confident_rejects": []},
+  "L04": {"reject_first": "A", "why": "'as to whether' wordy; but grammatical in some constructions", "certain": false, "confident_rejects": []},
+  "L05": {"reject_first": "A", "why": "'with' changes structure, odd odd-one-out; still possibly grammatical", "certain": false, "confident_rejects": []},
+  "L06": {"reject_first": "D", "why": "Unpaired comma after embedded 'however' with nothing before it", "certain": true, "confident_rejects": ["D"]},
+  "L07": {"reject_first": "A", "why": "Comma between clauses risks splice; depends on sentence", "certain": false, "confident_rejects": []},
+  "L08": {"reject_first": "B", "why": "Interrupter 'however' closed by comma but not opened", "certain": true, "confident_rejects": ["B"]},
+  "L09": {"reject_first": "D", "why": "'and also' redundant-looking; may still be grammatical", "certain": false, "confident_rejects": []},
+  "L10": {"reject_first": "D", "why": "Added 'although' can create logic mismatch; depends on sentence", "certain": false, "confident_rejects": []},
+  "L11": {"reject_first": "A", "why": "Comma between clauses risks splice; introductory phrase would allow it", "certain": false, "confident_rejects": []},
+  "L12": {"reject_first": "C", "why": "Drops 'but', likely breaks 'not X but Y' structure", "certain": false, "confident_rejects": []},
+  "L13": {"reject_first": "D", "why": "No comma before participial phrase looks odd; not impossible", "certain": false, "confident_rejects": []},
+  "L14": {"reject_first": "A", "why": "Appositive 'a pattern' usually needs punctuation; not certain", "certain": false, "confident_rejects": []}
+}

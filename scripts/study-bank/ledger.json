@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T02:23:23.608Z",
+  "generatedAt": "2026-10-06T05:45:38.782Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -5069,6 +5069,53 @@
           "passed": true,
           "contentSha": "ae2954fce92b749a8bf1ad18172a803ab81b0271f30e4bf91e5803e34a3f8464",
           "verdict": "Cross-item, recorded against the batch (named by a majority of graders): a dash option is never the key (0/3), \", however,\" never the key (0/2), the colon never the key (0/2), options inserting a preposition/subordinator (\"with\", \"alongside\", \"so that\", \"even after\", \"was\") never the key; the period option is the key both times it appears (SEC11A-01, SEC11A-04) and is the only period option in each set - the prereg's every-mark-both-ways constraint is violated for the period, dash and colon. Grader F: a \"strongest boundary mark wins; however/preposition loses\" rule gets roughly 8 of 12 without parsing. All 12 are boundary items (by design). SEC11A-04 and SEC11A-06 share one option template (comma / none / comma+preposition / strong stop) - graders advise not co-serving them. Key letters cycle A-B-C-D in file order; irrelevant to students because choices are shuffled per session at draw time. Options-only measured these as invisible to the solver (25.0%, at chance) - recorded, not dropped on."
+        }
+      }
+    },
+    {
+      "id": "sat-sec-hard-v12-kept-2026-10-06",
+      "createdAt": "2026-10-06",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v12-sec-hard",
+      "contentSha": "4c50391811d491e13734c892780c5d82ee516597e0e9edf1375e28204169d48b",
+      "status": "inserted",
+      "note": "Pre-registered feebab2d (PREREG-SEC12-2026-10-06.md, v11 bars/control) before any item existed. 14 authored, boundary constructions with a per-item KEY PLAN that made a dash, colon, however, preposition and conjunction the key somewhere and put a period among the wrong options in 5 items (fixing v11's mark tell); two Claude agents, 7 each; no audit/repair round. 7 kept: 3 hard / 4 medium by panel median; authors labelled all 14 hard. 7 dropped by the pre-registered rule, none held.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "4c50391811d491e13734c892780c5d82ee516597e0e9edf1375e28204169d48b",
+          "verdict": "7 items, one ______ blank each; bank-helper check shape OK on all 14 authored. Key letters across the 14 A3/B4/C4/D3; key uniquely longest 1/14 (SEC12A-07, dropped), uniquely shortest 1/14 (SEC12B-01). Max length ratio 1.59 (SEC12B-07, dropped). No grader marked any item off the digital SAT SEC blueprint. Key mark families across the 14: semicolon 2, \"; however,\" 1, comma 2, \", however,\" 1, dash 2, colon 2, period 1, no mark 1, comma+conjunction 1, added preposition 1; a period option is WRONG in 5 items."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "4c50391811d491e13734c892780c5d82ee516597e0e9edf1375e28204169d48b",
+          "verdict": "THREE INDEPENDENT GRADERS (ws-d, ws-e, ws-f), cold phase 1 written before keys: 14 of 14 keys matched on all three, zero cold misses, zero key disputes. Pre-registered drops (gate-verdict.mjs): SEC12A-02 and SEC12B-06 resolving word after the blank per 2/3 (\"remains\", \"shares\" - the main verb right after a closing mark); SEC12A-07 weak distractors 3/3 + median 2 free strikes (also recommend_drop by D); SEC12B-03 weak 2/3 + median 2 strikes; SEC12B-04 and SEC12B-05 median 2 free strikes; SEC12B-07 explanation path wrong per 2/3 (claims inversion is impossible after \"although\"; E also called D grammatical, exclusive=false, recommend_drop). Panel median of kept: hard SEC12A-06, SEC12B-01, SEC12B-02; medium SEC12A-01, SEC12A-03, SEC12A-04, SEC12A-05."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "4c50391811d491e13734c892780c5d82ee516597e0e9edf1375e28204169d48b",
+          "verdict": "Options-only attack (make-oo-render --control 24 --control-difficulty hard --exclude rw-v10-sec-hard,rw-v11-sec-hard; pool = the same 30 live hard items as v10/v11), 14 candidates interleaved with 24 live HARD-band SEC items, keys dealt flat, three solver samples, 38/38 answered each. CANDIDATE 35.7% (15/42, letter line 28.6%) vs LIVE CONTROL 72.2% (52/72, letter line 25.0%), margin -36.5, inside the pre-registered +10 bar. Ceiling check: control below 90% and above its letter line +5, so MEASURED. Pairwise agreement 86.0% vs 26.6% independent. Unanimity as batch rate: candidate 4/14 = 28.6%, control 17/24 = 70.8%."
+        },
+        "elimination": {
+          "passed": true,
+          "bar": "paired-control-v1",
+          "candidateRate": 0.1429,
+          "controlRate": 0.1071,
+          "margin": 0.0357,
+          "threshold": 0.2,
+          "n": 14,
+          "controlN": 28,
+          "samples": 3,
+          "contentSha": "4c50391811d491e13734c892780c5d82ee516597e0e9edf1375e28204169d48b",
+          "verdict": "elimination-paired.mjs --batch/--qc (A23 bar). Run on ALL 14 authored items before drops, as the prereg requires when fewer than 12 survive (7 did); difficulty from the full panel median (3 hard / 9 medium / 2 easy), matched on difficulty: 28 live SEC controls (v2 19, rw-v6 4, rw-v7 2, rw-v11 2, rw-v10 1), separate files, 3 Claude samples per arm. Candidate 14.3% [14.3,14.3,14.3] vs control 10.7% -> margin +3.6, PASS. No key ever confidently rejected. Candidate eliminations: a one-sided \"however,\" option in SEC12A-05 (kept) and SEC12B-05 (dropped)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "4c50391811d491e13734c892780c5d82ee516597e0e9edf1375e28204169d48b",
+          "verdict": "v11's mark tell is broken across the authored 14 (graders E and F: \"no mark is always or never the key\"; the two however items take opposite forms as keys). NEW cross-item tell named by all three graders: an option that ADDS A WORD (\"and also\", \"as to whether\", \"which the\", \"although only after\", \"and the\") is wrong 5-6 times of 6-7; the only added-word key (SEC12A-07, \"with\") was dropped, so among the kept 7 an added-word option is never the key. Also named: a semicolon between subject and verb is never the key (A-02/A-03/B-06); A-03 and B-06 share the close-the-pair template (B-06 dropped). Both dash keys (A-02, B-04) and one colon key (B-03) were dropped by the rule, so the kept 7 carry no dash key. Key letters cycle in file order (D, E); irrelevant to students because choices are shuffled per session at draw time."
         }
       }
     }
