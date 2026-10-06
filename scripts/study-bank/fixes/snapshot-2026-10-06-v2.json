@@ -1,0 +1,237 @@
+[
+ {
+  "id": "2651c472-897d-45a5-8330-911cfc29272b",
+  "family": "sat",
+  "section": "math",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Statistics (interquartile range)",
+  "difficulty": "medium",
+  "topic_tag": "iqr",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Problem-Solving and Data Analysis",
+   "prompt": "Consider the data set 2, 5, 7, 10, 14, 16, 21. What is the interquartile range (IQR) of this data set?",
+   "choices": [
+    "9",
+    "11",
+    "16",
+    "19"
+   ],
+   "graphic": null,
+   "passage": null,
+   "subskill": "Statistics (interquartile range)",
+   "topic_tag": "iqr",
+   "difficulty": "medium",
+   "word_count": null,
+   "explanation": "The median is 10; the lower half is 2, 5, 7 (Q1 = 5) and the upper half is 14, 16, 21 (Q3 = 16), so IQR = 16 - 5 = 11. Distractors: 9 wrongly includes the median in both halves (Q1 = 6, Q3 = 15); 16 is Q3 alone; 19 is the full range (21 - 2).",
+   "correct_answer": "11",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "9",
+     "reason": ""
+    },
+    {
+     "choice": "16",
+     "reason": ""
+    },
+    {
+     "choice": "19",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "51f818c5a08c905ade60073826b2de63",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "qc": "deterministic sandbox recompute; no external model",
+   "method": "claude-authored+sandbox",
+   "computed": "11",
+   "blind_letter": "B",
+   "grader_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T09:53:07.734677+00:00",
+  "updated_at": "2026-07-08T09:53:07.734677+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "000014adf3b327db87ba981ae66e3cd7",
+  "dedup_key": "b6c1209f9177fabc1f03861e1b75d7bf"
+ },
+ {
+  "id": "40b7798b-46e2-47c1-9607-93c57988ab1e",
+  "family": "sat",
+  "section": "math",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Ratios, rates, and percentages",
+  "difficulty": "easy",
+  "topic_tag": "rate-percent",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Problem-Solving and Data Analysis",
+   "prompt": "What is the car's speed, in miles per hour?",
+   "choices": [
+    "104",
+    "26",
+    "208",
+    "52"
+   ],
+   "graphic": {
+    "type": "table",
+    "cells": [
+     [
+      52
+     ],
+     [
+      104
+     ],
+     [
+      156
+     ],
+     [
+      208
+     ]
+    ],
+    "caption": "Data table",
+    "colLabels": [
+     "Distance (miles)"
+    ],
+    "rowLabels": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ]
+   },
+   "passage": null,
+   "subskill": "Ratios, rates, and percentages",
+   "topic_tag": "rate-percent",
+   "difficulty": "medium",
+   "word_count": null,
+   "explanation": "Computing from the table values gives 52.",
+   "correct_answer": "52",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "104",
+     "reason": ""
+    },
+    {
+     "choice": "26",
+     "reason": ""
+    },
+    {
+     "choice": "208",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "09826f7452f684d9d5db86d7dd10c1dc",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "qc": "deterministic sandbox recompute; no external model",
+   "method": "claude-authored+sandbox",
+   "computed": "52",
+   "blind_letter": null,
+   "grader_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T13:21:51.57486+00:00",
+  "updated_at": "2026-07-08T13:21:51.57486+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "9bf30d16197b610f4075b0dd518c42de",
+  "dedup_key": "e7dc3ddf9a3fe87746c5dcd98a0e8147"
+ },
+ {
+  "id": "825707e2-b9b0-4cb2-8219-b04e8379996b",
+  "family": "sat",
+  "section": "math",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Circles: inscribed and central angles",
+  "difficulty": "medium",
+  "topic_tag": "inscribed-angle",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "domain": "Geometry and Trigonometry",
+   "prompt": "In the circle with center O, central angle AOB measures 100°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+   "choices": [
+    "100°",
+    "260°",
+    "65°",
+    "50°"
+   ],
+   "graphic": {
+    "svg": "<svg viewBox=\"0 0 300 240\" width=\"280\" role=\"img\" aria-label=\"Circle center O; central angle A O B is 100 degrees; inscribed angle A P B subtends the same arc from point P on the major arc.\">\n  <circle cx=\"150\" cy=\"120\" r=\"80\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/>\n  <line x1=\"150.0\" y1=\"120.0\" x2=\"78.7\" y2=\"156.3\" stroke=\"#2B3A8C\" stroke-width=\"1.6\"/>\n  <line x1=\"150.0\" y1=\"120.0\" x2=\"186.3\" y2=\"48.7\" stroke=\"#2B3A8C\" stroke-width=\"1.6\"/>\n  <line x1=\"206.6\" y1=\"176.6\" x2=\"78.7\" y2=\"156.3\" stroke=\"#0E7A5F\" stroke-width=\"1.6\"/>\n  <line x1=\"206.6\" y1=\"176.6\" x2=\"186.3\" y2=\"48.7\" stroke=\"#0E7A5F\" stroke-width=\"1.6\"/>\n  <circle cx=\"150.0\" cy=\"120.0\" r=\"2.5\" fill=\"#5A6474\" stroke=\"#fff\" stroke-width=\"1.1\"/><circle cx=\"78.7\" cy=\"156.3\" r=\"3.4\" fill=\"#2B3A8C\" stroke=\"#fff\" stroke-width=\"1.1\"/><circle cx=\"186.3\" cy=\"48.7\" r=\"3.4\" fill=\"#2B3A8C\" stroke=\"#fff\" stroke-width=\"1.1\"/><circle cx=\"206.6\" cy=\"176.6\" r=\"3.4\" fill=\"#0E7A5F\" stroke=\"#fff\" stroke-width=\"1.1\"/>\n  <text x=\"146.0\" y=\"136.0\" text-anchor=\"end\" font-size=\"12\" font-weight=\"600\" fill=\"#5A6474\" font-family=\"system-ui,sans-serif\">O</text><text x=\"72.7\" y=\"152.3\" text-anchor=\"end\" font-size=\"13\" font-weight=\"600\" fill=\"#12151C\" font-family=\"system-ui,sans-serif\">A</text><text x=\"192.3\" y=\"62.7\" text-anchor=\"start\" font-size=\"13\" font-weight=\"600\" fill=\"#12151C\" font-family=\"system-ui,sans-serif\">B</text><text x=\"214.6\" y=\"180.6\" text-anchor=\"start\" font-size=\"13\" font-weight=\"600\" fill=\"#0A5C48\" font-family=\"system-ui,sans-serif\">P</text>\n  <text x=\"148.0\" y=\"106.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"600\" fill=\"#2B3A8C\" font-family=\"system-ui,sans-serif\">100°</text></svg>",
+    "type": "rawsvg",
+    "caption": null
+   },
+   "passage": null,
+   "subskill": "Circles: inscribed and central angles",
+   "topic_tag": "inscribed-angle",
+   "difficulty": "medium",
+   "word_count": null,
+   "explanation": "An inscribed angle is half the central angle that subtends the same arc, so ∠APB = 100°/2 = 50°.",
+   "correct_answer": "50°",
+   "passageGroupId": null,
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "distractor_rationales": [
+    {
+     "choice": "100°",
+     "reason": ""
+    },
+    {
+     "choice": "130°",
+     "reason": ""
+    },
+    {
+     "choice": "25°",
+     "reason": ""
+    }
+   ]
+  },
+  "content_hash": "2ec84d66b37c4aca4cc55f4b4b3e909d",
+  "word_count": null,
+  "verified": true,
+  "verify_meta": {
+   "qc": "deterministic sandbox recompute; no external model",
+   "method": "claude-authored+sandbox",
+   "computed": "50°",
+   "blind_letter": null,
+   "legacy_choices": [
+    "100°",
+    "130°",
+    "25°",
+    "50°"
+   ],
+   "hub_repaired_at": "2026-08-06T03:14:50.821Z",
+   "grader_difficulty": "medium"
+  },
+  "source": "hand",
+  "created_at": "2026-07-08T12:49:05.486306+00:00",
+  "updated_at": "2026-07-08T12:49:05.486306+00:00",
+  "archived": false,
+  "cohort": "v2",
+  "task": "multiple_choice",
+  "content_sha": "9b61738ead83c160fcd39d5546e17385",
+  "dedup_key": "03dd3c350de32f1861c2e9a94c8ec70c"
+ }
+]
