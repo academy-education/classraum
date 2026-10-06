@@ -1,0 +1,1666 @@
+[
+  {
+    "id": "SVA17D-01",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "tool/function",
+    "prompt": "[Analogy] needle is to stitch as",
+    "choices": [
+      "juggler is to toss",
+      "sieve is to strain",
+      "pepper is to sneeze",
+      "angler is to reel",
+      "pup is to seal"
+    ],
+    "correct_answer": "sieve is to strain",
+    "explanation": "Relation: tool/function. Needle is used to stitch; likewise sieve is used to strain.",
+    "distractor_rationales": {
+      "juggler is to toss": "relation it instantiates instead: performer/action (the characteristic action of juggler is to toss)",
+      "pepper is to sneeze": "relation it instantiates instead: cause/effect (pepper causes sneeze)",
+      "angler is to reel": "relation it instantiates instead: worker/tool (reel is the tool of angler)",
+      "pup is to seal": "relation it instantiates instead: young/adult (pup is the young of seal)"
+    }
+  },
+  {
+    "id": "SVA17D-02",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "symbol/what it stands for",
+    "prompt": "[Analogy] shrug is to indifference as",
+    "choices": [
+      "brim is to hat",
+      "bishop is to clergy",
+      "sundial is to hour",
+      "fondness is to adoration",
+      "olive branch is to truce"
+    ],
+    "correct_answer": "olive branch is to truce",
+    "explanation": "Relation: symbol/what it stands for. Shrug is a symbol of indifference; likewise olive branch is a symbol of truce.",
+    "distractor_rationales": {
+      "brim is to hat": "relation it instantiates instead: part/whole (brim is part of hat)",
+      "bishop is to clergy": "relation it instantiates instead: member/collective (bishop is one member of clergy)",
+      "sundial is to hour": "relation it instantiates instead: instrument/what it measures (sundial measures hour)",
+      "fondness is to adoration": "relation it instantiates instead: degree or intensity (adoration is a more intense degree of fondness)"
+    }
+  },
+  {
+    "id": "SVA17D-03",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "degree or intensity",
+    "prompt": "[Analogy] pat is to slap as",
+    "choices": [
+      "mend is to repair",
+      "advance is to retreat",
+      "tease is to torment",
+      "scald is to blister",
+      "chew is to swallow"
+    ],
+    "correct_answer": "tease is to torment",
+    "explanation": "Relation: degree or intensity. Slap is a more intense degree of pat; likewise torment is a more intense degree of tease.",
+    "distractor_rationales": {
+      "mend is to repair": "relation it instantiates instead: synonym (mend and repair mean nearly the same thing)",
+      "advance is to retreat": "relation it instantiates instead: antonym (advance is the opposite of retreat)",
+      "scald is to blister": "relation it instantiates instead: cause/effect (scald causes blister)",
+      "chew is to swallow": "relation it instantiates instead: stage/next stage in sequence (swallow is the stage that follows chew)"
+    }
+  },
+  {
+    "id": "SVA17D-04",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "degree or intensity",
+    "prompt": "[Analogy] moist is to drenched as",
+    "choices": [
+      "pleased is to ecstatic",
+      "brave is to courageous",
+      "generous is to stingy",
+      "icy is to slippery",
+      "ripe is to rotten"
+    ],
+    "correct_answer": "pleased is to ecstatic",
+    "explanation": "Relation: degree or intensity. Drenched is a more intense degree of moist; likewise ecstatic is a more intense degree of pleased.",
+    "distractor_rationales": {
+      "brave is to courageous": "relation it instantiates instead: synonym (brave and courageous mean nearly the same thing)",
+      "generous is to stingy": "relation it instantiates instead: antonym (generous is the opposite of stingy)",
+      "icy is to slippery": "relation it instantiates instead: cause/effect (icy causes slippery)",
+      "ripe is to rotten": "relation it instantiates instead: stage/next stage in sequence (rotten is the stage that follows ripe)"
+    }
+  },
+  {
+    "id": "SVA17D-05",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "performer/action",
+    "prompt": "[Analogy] mime is to gesture as",
+    "choices": [
+      "ladle is to scoop",
+      "dust is to cough",
+      "jacket is to denim",
+      "editor is to proofread",
+      "shingle is to roof"
+    ],
+    "correct_answer": "editor is to proofread",
+    "explanation": "Relation: performer/action. The characteristic action of mime is to gesture; likewise the characteristic action of editor is to proofread.",
+    "distractor_rationales": {
+      "ladle is to scoop": "relation it instantiates instead: tool/function (ladle is used to scoop)",
+      "dust is to cough": "relation it instantiates instead: cause/effect (dust causes cough)",
+      "jacket is to denim": "relation it instantiates instead: object/material (jacket is made of denim)",
+      "shingle is to roof": "relation it instantiates instead: part/whole (shingle is part of roof)"
+    }
+  },
+  {
+    "id": "SVA17D-06",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "person or thing/what it lacks",
+    "prompt": "[Analogy] mute is to speech as",
+    "choices": [
+      "vegetable is to turnip",
+      "bachelor is to spouse",
+      "chore is to task",
+      "mule is to stable",
+      "pillowcase is to linen"
+    ],
+    "correct_answer": "bachelor is to spouse",
+    "explanation": "Relation: person or thing/what it lacks. Mute is by definition without speech; likewise bachelor is by definition without spouse.",
+    "distractor_rationales": {
+      "vegetable is to turnip": "relation it instantiates instead: category/instance (turnip is a kind of vegetable)",
+      "chore is to task": "relation it instantiates instead: synonym (chore and task mean nearly the same thing)",
+      "mule is to stable": "relation it instantiates instead: item/where it is found or kept (mule is found or kept in stable)",
+      "pillowcase is to linen": "relation it instantiates instead: object/material (pillowcase is made of linen)"
+    }
+  },
+  {
+    "id": "SVA17D-07",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "cause/effect",
+    "prompt": "[Analogy] terror is to tremble as",
+    "choices": [
+      "grater is to shred",
+      "butler is to serve",
+      "marcher is to parade",
+      "basket is to wicker",
+      "embarrassment is to blush"
+    ],
+    "correct_answer": "embarrassment is to blush",
+    "explanation": "Relation: cause/effect. Terror causes tremble; likewise embarrassment causes blush.",
+    "distractor_rationales": {
+      "grater is to shred": "relation it instantiates instead: tool/function (grater is used to shred)",
+      "butler is to serve": "relation it instantiates instead: performer/action (the characteristic action of butler is to serve)",
+      "marcher is to parade": "relation it instantiates instead: member/collective (marcher is one member of parade)",
+      "basket is to wicker": "relation it instantiates instead: object/material (basket is made of wicker)"
+    }
+  },
+  {
+    "id": "SVA17D-08",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "degree or intensity",
+    "prompt": "[Analogy] whimper is to wail as",
+    "choices": [
+      "pardon is to forgive",
+      "obey is to defy",
+      "request is to demand",
+      "puncture is to deflate",
+      "lather is to rinse"
+    ],
+    "correct_answer": "request is to demand",
+    "explanation": "Relation: degree or intensity. Wail is a more intense degree of whimper; likewise demand is a more intense degree of request.",
+    "distractor_rationales": {
+      "pardon is to forgive": "relation it instantiates instead: synonym (pardon and forgive mean nearly the same thing)",
+      "obey is to defy": "relation it instantiates instead: antonym (obey is the opposite of defy)",
+      "puncture is to deflate": "relation it instantiates instead: cause/effect (puncture causes deflate)",
+      "lather is to rinse": "relation it instantiates instead: stage/next stage in sequence (rinse is the stage that follows lather)"
+    }
+  },
+  {
+    "id": "SVA17D-09",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "tool/function",
+    "prompt": "[Analogy] whisk is to whip as",
+    "choices": [
+      "plow is to till",
+      "sentry is to patrol",
+      "glare is to squint",
+      "bracelet is to jewelry",
+      "purse is to pennies"
+    ],
+    "correct_answer": "plow is to till",
+    "explanation": "Relation: tool/function. Whisk is used to whip; likewise plow is used to till.",
+    "distractor_rationales": {
+      "sentry is to patrol": "relation it instantiates instead: performer/action (the characteristic action of sentry is to patrol)",
+      "glare is to squint": "relation it instantiates instead: cause/effect (glare causes squint)",
+      "bracelet is to jewelry": "relation it instantiates instead: instance/category (bracelet is a kind of jewelry)",
+      "purse is to pennies": "relation it instantiates instead: container/contents (purse holds pennies)"
+    }
+  },
+  {
+    "id": "SVA17D-10",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "degree or intensity",
+    "prompt": "[Analogy] pretty is to gorgeous as",
+    "choices": [
+      "quick is to rapid",
+      "humble is to arrogant",
+      "spicy is to thirsty",
+      "bright is to dazzling",
+      "fresh is to stale"
+    ],
+    "correct_answer": "bright is to dazzling",
+    "explanation": "Relation: degree or intensity. Gorgeous is a more intense degree of pretty; likewise dazzling is a more intense degree of bright.",
+    "distractor_rationales": {
+      "quick is to rapid": "relation it instantiates instead: synonym (quick and rapid mean nearly the same thing)",
+      "humble is to arrogant": "relation it instantiates instead: antonym (humble is the opposite of arrogant)",
+      "spicy is to thirsty": "relation it instantiates instead: cause/effect (spicy causes thirsty)",
+      "fresh is to stale": "relation it instantiates instead: stage/next stage in sequence (stale is the stage that follows fresh)"
+    }
+  },
+  {
+    "id": "SVA17D-11",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "thing/defining characteristic",
+    "prompt": "[Analogy] snail is to slowness as",
+    "choices": [
+      "lend is to borrow",
+      "molasses is to stickiness",
+      "spider is to web",
+      "talon is to falcon",
+      "predicament is to dilemma"
+    ],
+    "correct_answer": "molasses is to stickiness",
+    "explanation": "Relation: thing/defining characteristic. Slowness is the defining characteristic of snail; likewise stickiness is the defining characteristic of molasses.",
+    "distractor_rationales": {
+      "lend is to borrow": "relation it instantiates instead: antonym (lend is the opposite of borrow)",
+      "spider is to web": "relation it instantiates instead: worker/product (spider makes web)",
+      "talon is to falcon": "relation it instantiates instead: part/whole (talon is part of falcon)",
+      "predicament is to dilemma": "relation it instantiates instead: synonym (predicament and dilemma mean nearly the same thing)"
+    }
+  },
+  {
+    "id": "SVA17D-12",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "performer/action",
+    "prompt": "[Analogy] nomad is to wander as",
+    "choices": [
+      "sickle is to reap",
+      "sunburn is to peel",
+      "island is to archipelago",
+      "larva is to pupa",
+      "braggart is to boast"
+    ],
+    "correct_answer": "braggart is to boast",
+    "explanation": "Relation: performer/action. The characteristic action of nomad is to wander; likewise the characteristic action of braggart is to boast.",
+    "distractor_rationales": {
+      "sickle is to reap": "relation it instantiates instead: tool/function (sickle is used to reap)",
+      "sunburn is to peel": "relation it instantiates instead: cause/effect (sunburn causes peel)",
+      "island is to archipelago": "relation it instantiates instead: member/collective (island is one member of archipelago)",
+      "larva is to pupa": "relation it instantiates instead: stage/next stage in sequence (pupa is the stage that follows larva)"
+    }
+  },
+  {
+    "id": "SVA17D-13",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "synonym",
+    "prompt": "[Analogy] mimic is to imitate as",
+    "choices": [
+      "dampen is to soak",
+      "ascend is to descend",
+      "ponder is to contemplate",
+      "sprain is to limp",
+      "knead is to bake"
+    ],
+    "correct_answer": "ponder is to contemplate",
+    "explanation": "Relation: synonym. Mimic and imitate mean nearly the same thing; likewise ponder and contemplate mean nearly the same thing.",
+    "distractor_rationales": {
+      "dampen is to soak": "relation it instantiates instead: degree or intensity (soak is a more intense degree of dampen)",
+      "ascend is to descend": "relation it instantiates instead: antonym (ascend is the opposite of descend)",
+      "sprain is to limp": "relation it instantiates instead: cause/effect (sprain causes limp)",
+      "knead is to bake": "relation it instantiates instead: stage/next stage in sequence (bake is the stage that follows knead)"
+    }
+  },
+  {
+    "id": "SVA17D-14",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "tool/function",
+    "prompt": "[Analogy] tweezers is to pluck as",
+    "choices": [
+      "stapler is to fasten",
+      "auditor is to inspect",
+      "tickle is to giggle",
+      "raincoat is to vinyl",
+      "cygnet is to swan"
+    ],
+    "correct_answer": "stapler is to fasten",
+    "explanation": "Relation: tool/function. Tweezers is used to pluck; likewise stapler is used to fasten.",
+    "distractor_rationales": {
+      "auditor is to inspect": "relation it instantiates instead: performer/action (the characteristic action of auditor is to inspect)",
+      "tickle is to giggle": "relation it instantiates instead: cause/effect (tickle causes giggle)",
+      "raincoat is to vinyl": "relation it instantiates instead: object/material (raincoat is made of vinyl)",
+      "cygnet is to swan": "relation it instantiates instead: young/adult (cygnet is the young of swan)"
+    }
+  },
+  {
+    "id": "SVA17D-15",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "synonym",
+    "prompt": "[Analogy] weary is to fatigued as",
+    "choices": [
+      "sad is to miserable",
+      "fragile is to sturdy",
+      "rainy is to muddy",
+      "honest is to truthful",
+      "middle-aged is to elderly"
+    ],
+    "correct_answer": "honest is to truthful",
+    "explanation": "Relation: synonym. Weary and fatigued mean nearly the same thing; likewise honest and truthful mean nearly the same thing.",
+    "distractor_rationales": {
+      "sad is to miserable": "relation it instantiates instead: degree or intensity (miserable is a more intense degree of sad)",
+      "fragile is to sturdy": "relation it instantiates instead: antonym (fragile is the opposite of sturdy)",
+      "rainy is to muddy": "relation it instantiates instead: cause/effect (rainy causes muddy)",
+      "middle-aged is to elderly": "relation it instantiates instead: stage/next stage in sequence (elderly is the stage that follows middle-aged)"
+    }
+  },
+  {
+    "id": "SVA17D-16",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "cause/effect",
+    "prompt": "[Analogy] oversleeping is to tardiness as",
+    "choices": [
+      "scratch is to laceration",
+      "caffeine is to alertness",
+      "spout is to teapot",
+      "safe is to valuables",
+      "costly is to expensive"
+    ],
+    "correct_answer": "caffeine is to alertness",
+    "explanation": "Relation: cause/effect. Oversleeping causes tardiness; likewise caffeine causes alertness.",
+    "distractor_rationales": {
+      "scratch is to laceration": "relation it instantiates instead: degree or intensity (laceration is a more intense degree of scratch)",
+      "spout is to teapot": "relation it instantiates instead: part/whole (spout is part of teapot)",
+      "safe is to valuables": "relation it instantiates instead: container/contents (safe holds valuables)",
+      "costly is to expensive": "relation it instantiates instead: synonym (costly and expensive mean nearly the same thing)"
+    }
+  },
+  {
+    "id": "SVA17D-17",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "performer/action",
+    "prompt": "[Analogy] usher is to escort as",
+    "choices": [
+      "ladder is to climb",
+      "nervousness is to fidget",
+      "greenhouse is to orchids",
+      "wren is to songbird",
+      "courier is to deliver"
+    ],
+    "correct_answer": "courier is to deliver",
+    "explanation": "Relation: performer/action. The characteristic action of usher is to escort; likewise the characteristic action of courier is to deliver.",
+    "distractor_rationales": {
+      "ladder is to climb": "relation it instantiates instead: tool/function (ladder is used to climb)",
+      "nervousness is to fidget": "relation it instantiates instead: cause/effect (nervousness causes fidget)",
+      "greenhouse is to orchids": "relation it instantiates instead: place/item kept there (orchids is found or kept in greenhouse)",
+      "wren is to songbird": "relation it instantiates instead: instance/category (wren is a kind of songbird)"
+    }
+  },
+  {
+    "id": "SVA17D-18",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "synonym",
+    "prompt": "[Analogy] vanish is to disappear as",
+    "choices": [
+      "annoy is to infuriate",
+      "permit is to forbid",
+      "commence is to begin",
+      "trip is to fall",
+      "aim is to shoot"
+    ],
+    "correct_answer": "commence is to begin",
+    "explanation": "Relation: synonym. Vanish and disappear mean nearly the same thing; likewise commence and begin mean nearly the same thing.",
+    "distractor_rationales": {
+      "annoy is to infuriate": "relation it instantiates instead: degree or intensity (infuriate is a more intense degree of annoy)",
+      "permit is to forbid": "relation it instantiates instead: antonym (permit is the opposite of forbid)",
+      "trip is to fall": "relation it instantiates instead: cause/effect (trip causes fall)",
+      "aim is to shoot": "relation it instantiates instead: stage/next stage in sequence (shoot is the stage that follows aim)"
+    }
+  },
+  {
+    "id": "SVA17D-19",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "tool/function",
+    "prompt": "[Analogy] padlock is to secure as",
+    "choices": [
+      "anchor is to moor",
+      "detective is to investigate",
+      "fumes is to wheeze",
+      "shed is to plywood",
+      "senator is to senate"
+    ],
+    "correct_answer": "anchor is to moor",
+    "explanation": "Relation: tool/function. Padlock is used to secure; likewise anchor is used to moor.",
+    "distractor_rationales": {
+      "detective is to investigate": "relation it instantiates instead: performer/action (the characteristic action of detective is to investigate)",
+      "fumes is to wheeze": "relation it instantiates instead: cause/effect (fumes causes wheeze)",
+      "shed is to plywood": "relation it instantiates instead: object/material (shed is made of plywood)",
+      "senator is to senate": "relation it instantiates instead: member/collective (senator is one member of senate)"
+    }
+  },
+  {
+    "id": "SVA17D-20",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "synonym",
+    "prompt": "[Analogy] vacant is to empty as",
+    "choices": [
+      "irritated is to enraged",
+      "sparse is to dense",
+      "humid is to sweaty",
+      "faithful is to loyal",
+      "engaged is to married"
+    ],
+    "correct_answer": "faithful is to loyal",
+    "explanation": "Relation: synonym. Vacant and empty mean nearly the same thing; likewise faithful and loyal mean nearly the same thing.",
+    "distractor_rationales": {
+      "irritated is to enraged": "relation it instantiates instead: degree or intensity (enraged is a more intense degree of irritated)",
+      "sparse is to dense": "relation it instantiates instead: antonym (sparse is the opposite of dense)",
+      "humid is to sweaty": "relation it instantiates instead: cause/effect (humid causes sweaty)",
+      "engaged is to married": "relation it instantiates instead: stage/next stage in sequence (married is the stage that follows engaged)"
+    }
+  },
+  {
+    "id": "SVA17D-21",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "cause/effect",
+    "prompt": "[Analogy] pain is to grimace as",
+    "choices": [
+      "dishcloth is to wipe",
+      "surprise is to gasp",
+      "messenger is to relay",
+      "tablecloth is to lace",
+      "trooper is to regiment"
+    ],
+    "correct_answer": "surprise is to gasp",
+    "explanation": "Relation: cause/effect. Pain causes grimace; likewise surprise causes gasp.",
+    "distractor_rationales": {
+      "dishcloth is to wipe": "relation it instantiates instead: tool/function (dishcloth is used to wipe)",
+      "messenger is to relay": "relation it instantiates instead: performer/action (the characteristic action of messenger is to relay)",
+      "tablecloth is to lace": "relation it instantiates instead: object/material (tablecloth is made of lace)",
+      "trooper is to regiment": "relation it instantiates instead: member/collective (trooper is one member of regiment)"
+    }
+  },
+  {
+    "id": "SVA17D-22",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "degree or intensity",
+    "prompt": "[Analogy] pamphlet is to tome as",
+    "choices": [
+      "fruit is to papaya",
+      "rower is to paddle",
+      "canoe is to boathouse",
+      "canister is to cornstarch",
+      "rowboat is to ocean liner"
+    ],
+    "correct_answer": "rowboat is to ocean liner",
+    "explanation": "Relation: degree or intensity. Tome is a more intense degree of pamphlet; likewise ocean liner is a more intense degree of rowboat.",
+    "distractor_rationales": {
+      "fruit is to papaya": "relation it instantiates instead: category/instance (papaya is a kind of fruit)",
+      "rower is to paddle": "relation it instantiates instead: worker/tool (paddle is the tool of rower)",
+      "canoe is to boathouse": "relation it instantiates instead: item/where it is found or kept (canoe is found or kept in boathouse)",
+      "canister is to cornstarch": "relation it instantiates instead: container/contents (canister holds cornstarch)"
+    }
+  },
+  {
+    "id": "SVA17D-23",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "performer/action",
+    "prompt": "[Analogy] umpire is to officiate as",
+    "choices": [
+      "comb is to untangle",
+      "lemon is to pucker",
+      "lifeguard is to rescue",
+      "binder is to papers",
+      "chocolatier is to truffles"
+    ],
+    "correct_answer": "lifeguard is to rescue",
+    "explanation": "Relation: performer/action. The characteristic action of umpire is to officiate; likewise the characteristic action of lifeguard is to rescue.",
+    "distractor_rationales": {
+      "comb is to untangle": "relation it instantiates instead: tool/function (comb is used to untangle)",
+      "lemon is to pucker": "relation it instantiates instead: cause/effect (lemon causes pucker)",
+      "binder is to papers": "relation it instantiates instead: container/contents (binder holds papers)",
+      "chocolatier is to truffles": "relation it instantiates instead: worker/product (chocolatier makes truffles)"
+    }
+  },
+  {
+    "id": "SVA17D-24",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "antonym",
+    "prompt": "[Analogy] shun is to welcome as",
+    "choices": [
+      "construct is to demolish",
+      "simmer is to boil",
+      "endure is to withstand",
+      "wound is to bleed",
+      "marinate is to grill"
+    ],
+    "correct_answer": "construct is to demolish",
+    "explanation": "Relation: antonym. Shun is the opposite of welcome; likewise construct is the opposite of demolish.",
+    "distractor_rationales": {
+      "simmer is to boil": "relation it instantiates instead: degree or intensity (boil is a more intense degree of simmer)",
+      "endure is to withstand": "relation it instantiates instead: synonym (endure and withstand mean nearly the same thing)",
+      "wound is to bleed": "relation it instantiates instead: cause/effect (wound causes bleed)",
+      "marinate is to grill": "relation it instantiates instead: stage/next stage in sequence (grill is the stage that follows marinate)"
+    }
+  },
+  {
+    "id": "SVA17D-25",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "antonym",
+    "prompt": "[Analogy] naive is to worldly as",
+    "choices": [
+      "large is to colossal",
+      "sly is to crafty",
+      "sleepless is to groggy",
+      "candid is to evasive",
+      "blazing is to smoldering"
+    ],
+    "correct_answer": "candid is to evasive",
+    "explanation": "Relation: antonym. Naive is the opposite of worldly; likewise candid is the opposite of evasive.",
+    "distractor_rationales": {
+      "large is to colossal": "relation it instantiates instead: degree or intensity (colossal is a more intense degree of large)",
+      "sly is to crafty": "relation it instantiates instead: synonym (sly and crafty mean nearly the same thing)",
+      "sleepless is to groggy": "relation it instantiates instead: cause/effect (sleepless causes groggy)",
+      "blazing is to smoldering": "relation it instantiates instead: stage/next stage in sequence (smoldering is the stage that follows blazing)"
+    }
+  },
+  {
+    "id": "SVA17D-26",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "tool/function",
+    "prompt": "[Analogy] razor is to shave as",
+    "choices": [
+      "jockey is to ride",
+      "loom is to weave",
+      "horseradish is to weep",
+      "cooler is to sodas",
+      "planet is to galaxy"
+    ],
+    "correct_answer": "loom is to weave",
+    "explanation": "Relation: tool/function. Razor is used to shave; likewise loom is used to weave.",
+    "distractor_rationales": {
+      "jockey is to ride": "relation it instantiates instead: performer/action (the characteristic action of jockey is to ride)",
+      "horseradish is to weep": "relation it instantiates instead: cause/effect (horseradish causes weep)",
+      "cooler is to sodas": "relation it instantiates instead: container/contents (cooler holds sodas)",
+      "planet is to galaxy": "relation it instantiates instead: part/whole (planet is part of galaxy)"
+    }
+  },
+  {
+    "id": "SVA17D-27",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "antonym",
+    "prompt": "[Analogy] reward is to punish as",
+    "choices": [
+      "drizzle is to pour",
+      "abandon is to forsake",
+      "freeze is to crack",
+      "propose is to wed",
+      "admire is to despise"
+    ],
+    "correct_answer": "admire is to despise",
+    "explanation": "Relation: antonym. Reward is the opposite of punish; likewise admire is the opposite of despise.",
+    "distractor_rationales": {
+      "drizzle is to pour": "relation it instantiates instead: degree or intensity (pour is a more intense degree of drizzle)",
+      "abandon is to forsake": "relation it instantiates instead: synonym (abandon and forsake mean nearly the same thing)",
+      "freeze is to crack": "relation it instantiates instead: cause/effect (freeze causes crack)",
+      "propose is to wed": "relation it instantiates instead: stage/next stage in sequence (wed is the stage that follows propose)"
+    }
+  },
+  {
+    "id": "SVA17D-28",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "performer/action",
+    "prompt": "[Analogy] spy is to eavesdrop as",
+    "choices": [
+      "harpoon is to spear",
+      "corny joke is to groan",
+      "heckler is to jeer",
+      "battleship is to armada",
+      "tapestry is to thread"
+    ],
+    "correct_answer": "heckler is to jeer",
+    "explanation": "Relation: performer/action. The characteristic action of spy is to eavesdrop; likewise the characteristic action of heckler is to jeer.",
+    "distractor_rationales": {
+      "harpoon is to spear": "relation it instantiates instead: tool/function (harpoon is used to spear)",
+      "corny joke is to groan": "relation it instantiates instead: cause/effect (corny joke causes groan)",
+      "battleship is to armada": "relation it instantiates instead: member/collective (battleship is one member of armada)",
+      "tapestry is to thread": "relation it instantiates instead: object/material (tapestry is made of thread)"
+    }
+  },
+  {
+    "id": "SVA17D-29",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "antonym",
+    "prompt": "[Analogy] tame is to wild as",
+    "choices": [
+      "ample is to scarce",
+      "small is to microscopic",
+      "calm is to placid",
+      "overfed is to sluggish",
+      "juvenile is to adult"
+    ],
+    "correct_answer": "ample is to scarce",
+    "explanation": "Relation: antonym. Tame is the opposite of wild; likewise ample is the opposite of scarce.",
+    "distractor_rationales": {
+      "small is to microscopic": "relation it instantiates instead: degree or intensity (microscopic is a more intense degree of small)",
+      "calm is to placid": "relation it instantiates instead: synonym (calm and placid mean nearly the same thing)",
+      "overfed is to sluggish": "relation it instantiates instead: cause/effect (overfed causes sluggish)",
+      "juvenile is to adult": "relation it instantiates instead: stage/next stage in sequence (adult is the stage that follows juvenile)"
+    }
+  },
+  {
+    "id": "SVA17D-30",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "cause/effect",
+    "prompt": "[Analogy] sting is to swell as",
+    "choices": [
+      "sip is to gulp",
+      "assist is to aid",
+      "include is to exclude",
+      "bump is to bruise",
+      "sow is to harvest"
+    ],
+    "correct_answer": "bump is to bruise",
+    "explanation": "Relation: cause/effect. Sting causes swell; likewise bump causes bruise.",
+    "distractor_rationales": {
+      "sip is to gulp": "relation it instantiates instead: degree or intensity (gulp is a more intense degree of sip)",
+      "assist is to aid": "relation it instantiates instead: synonym (assist and aid mean nearly the same thing)",
+      "include is to exclude": "relation it instantiates instead: antonym (include is the opposite of exclude)",
+      "sow is to harvest": "relation it instantiates instead: stage/next stage in sequence (harvest is the stage that follows sow)"
+    }
+  },
+  {
+    "id": "SVA17D-31",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "tool/function",
+    "prompt": "[Analogy] peeler is to pare as",
+    "choices": [
+      "herald is to announce",
+      "pump is to inflate",
+      "chill is to shudder",
+      "samurai is to sword",
+      "halibut is to flatfish"
+    ],
+    "correct_answer": "pump is to inflate",
+    "explanation": "Relation: tool/function. Peeler is used to pare; likewise pump is used to inflate.",
+    "distractor_rationales": {
+      "herald is to announce": "relation it instantiates instead: performer/action (the characteristic action of herald is to announce)",
+      "chill is to shudder": "relation it instantiates instead: cause/effect (chill causes shudder)",
+      "samurai is to sword": "relation it instantiates instead: worker/tool (sword is the tool of samurai)",
+      "halibut is to flatfish": "relation it instantiates instead: instance/category (halibut is a kind of flatfish)"
+    }
+  },
+  {
+    "id": "SVA17D-32",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "stage/next stage in sequence",
+    "prompt": "[Analogy] wilting is to withered as",
+    "choices": [
+      "chilly is to frigid",
+      "odd is to peculiar",
+      "vague is to precise",
+      "starving is to lightheaded",
+      "budding is to blooming"
+    ],
+    "correct_answer": "budding is to blooming",
+    "explanation": "Relation: stage/next stage in sequence. Withered is the stage that follows wilting; likewise blooming is the stage that follows budding.",
+    "distractor_rationales": {
+      "chilly is to frigid": "relation it instantiates instead: degree or intensity (frigid is a more intense degree of chilly)",
+      "odd is to peculiar": "relation it instantiates instead: synonym (odd and peculiar mean nearly the same thing)",
+      "vague is to precise": "relation it instantiates instead: antonym (vague is the opposite of precise)",
+      "starving is to lightheaded": "relation it instantiates instead: cause/effect (starving causes lightheaded)"
+    }
+  },
+  {
+    "id": "SVA17D-33",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "symbol/what it stands for",
+    "prompt": "[Analogy] mortarboard is to graduation as",
+    "choices": [
+      "sunshine is to freckles",
+      "nostril is to nose",
+      "black armband is to mourning",
+      "decanter is to wine",
+      "prowler is to lurk"
+    ],
+    "correct_answer": "black armband is to mourning",
+    "explanation": "Relation: symbol/what it stands for. Mortarboard is a symbol of graduation; likewise black armband is a symbol of mourning.",
+    "distractor_rationales": {
+      "sunshine is to freckles": "relation it instantiates instead: cause/effect (sunshine causes freckles)",
+      "nostril is to nose": "relation it instantiates instead: part/whole (nostril is part of nose)",
+      "decanter is to wine": "relation it instantiates instead: container/contents (decanter holds wine)",
+      "prowler is to lurk": "relation it instantiates instead: performer/action (the characteristic action of prowler is to lurk)"
+    }
+  },
+  {
+    "id": "SVA17D-34",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "person or thing/what it lacks",
+    "prompt": "[Analogy] scoundrel is to scruples as",
+    "choices": [
+      "ghost town is to residents",
+      "carelessness is to blunder",
+      "ancient is to modern",
+      "appliance is to blender",
+      "animator is to cartoon"
+    ],
+    "correct_answer": "ghost town is to residents",
+    "explanation": "Relation: person or thing/what it lacks. Scoundrel is by definition without scruples; likewise ghost town is by definition without residents.",
+    "distractor_rationales": {
+      "carelessness is to blunder": "relation it instantiates instead: cause/effect (carelessness causes blunder)",
+      "ancient is to modern": "relation it instantiates instead: antonym (ancient is the opposite of modern)",
+      "appliance is to blender": "relation it instantiates instead: category/instance (blender is a kind of appliance)",
+      "animator is to cartoon": "relation it instantiates instead: worker/product (animator makes cartoon)"
+    }
+  },
+  {
+    "id": "SVA17D-35",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "thing/defining characteristic",
+    "prompt": "[Analogy] saint is to virtue as",
+    "choices": [
+      "kindergarten is to first grade",
+      "painting is to gallery",
+      "spectator is to crowd",
+      "genius is to brilliance",
+      "pollution is to smog"
+    ],
+    "correct_answer": "genius is to brilliance",
+    "explanation": "Relation: thing/defining characteristic. Virtue is the defining characteristic of saint; likewise brilliance is the defining characteristic of genius.",
+    "distractor_rationales": {
+      "kindergarten is to first grade": "relation it instantiates instead: stage/next stage in sequence (first grade is the stage that follows kindergarten)",
+      "painting is to gallery": "relation it instantiates instead: item/where it is found or kept (painting is found or kept in gallery)",
+      "spectator is to crowd": "relation it instantiates instead: member/collective (spectator is one member of crowd)",
+      "pollution is to smog": "relation it instantiates instead: cause/effect (pollution causes smog)"
+    }
+  },
+  {
+    "id": "SVA17D-36",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "cause/effect",
+    "prompt": "[Analogy] monsoon is to mudslide as",
+    "choices": [
+      "seedling is to sapling",
+      "gale is to shipwreck",
+      "sole is to shoe",
+      "skier is to poles",
+      "uproar is to commotion"
+    ],
+    "correct_answer": "gale is to shipwreck",
+    "explanation": "Relation: cause/effect. Monsoon causes mudslide; likewise gale causes shipwreck.",
+    "distractor_rationales": {
+      "seedling is to sapling": "relation it instantiates instead: stage/next stage in sequence (sapling is the stage that follows seedling)",
+      "sole is to shoe": "relation it instantiates instead: part/whole (sole is part of shoe)",
+      "skier is to poles": "relation it instantiates instead: worker/tool (poles is the tool of skier)",
+      "uproar is to commotion": "relation it instantiates instead: synonym (uproar and commotion mean nearly the same thing)"
+    }
+  },
+  {
+    "id": "SVA17D-37",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "symbol/what it stands for",
+    "prompt": "[Analogy] smiley face is to happiness as",
+    "choices": [
+      "buckle is to belt",
+      "drummer is to band",
+      "contentment is to euphoria",
+      "widow is to husband",
+      "gold star is to excellence"
+    ],
+    "correct_answer": "gold star is to excellence",
+    "explanation": "Relation: symbol/what it stands for. Smiley face is a symbol of happiness; likewise gold star is a symbol of excellence.",
+    "distractor_rationales": {
+      "buckle is to belt": "relation it instantiates instead: part/whole (buckle is part of belt)",
+      "drummer is to band": "relation it instantiates instead: member/collective (drummer is one member of band)",
+      "contentment is to euphoria": "relation it instantiates instead: degree or intensity (euphoria is a more intense degree of contentment)",
+      "widow is to husband": "relation it instantiates instead: person or thing/what it lacks (widow is by definition without husband)"
+    }
+  },
+  {
+    "id": "SVA17D-38",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "degree or intensity",
+    "prompt": "[Analogy] sprinkle is to cloudburst as",
+    "choices": [
+      "ox is to strength",
+      "sink is to float",
+      "whiff is to stench",
+      "puppet is to felt",
+      "tackle box is to lures"
+    ],
+    "correct_answer": "whiff is to stench",
+    "explanation": "Relation: degree or intensity. Cloudburst is a more intense degree of sprinkle; likewise stench is a more intense degree of whiff.",
+    "distractor_rationales": {
+      "ox is to strength": "relation it instantiates instead: thing/defining characteristic (strength is the defining characteristic of ox)",
+      "sink is to float": "relation it instantiates instead: antonym (sink is the opposite of float)",
+      "puppet is to felt": "relation it instantiates instead: object/material (puppet is made of felt)",
+      "tackle box is to lures": "relation it instantiates instead: container/contents (tackle box holds lures)"
+    }
+  },
+  {
+    "id": "SVA17D-39",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "synonym",
+    "prompt": "[Analogy] riddle is to puzzle as",
+    "choices": [
+      "fragrance is to scent",
+      "toaster is to kitchen",
+      "herb is to basil",
+      "asset is to liability",
+      "thursday is to friday"
+    ],
+    "correct_answer": "fragrance is to scent",
+    "explanation": "Relation: synonym. Riddle and puzzle mean nearly the same thing; likewise fragrance and scent mean nearly the same thing.",
+    "distractor_rationales": {
+      "toaster is to kitchen": "relation it instantiates instead: item/where it is found or kept (toaster is found or kept in kitchen)",
+      "herb is to basil": "relation it instantiates instead: category/instance (basil is a kind of herb)",
+      "asset is to liability": "relation it instantiates instead: antonym (asset is the opposite of liability)",
+      "thursday is to friday": "relation it instantiates instead: stage/next stage in sequence (friday is the stage that follows thursday)"
+    }
+  },
+  {
+    "id": "SVA17D-40",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "person or thing/what it lacks",
+    "prompt": "[Analogy] tyrant is to mercy as",
+    "choices": [
+      "liking is to passion",
+      "nun is to convent",
+      "antler is to moose",
+      "silent movie is to dialogue",
+      "flowerpot is to soil"
+    ],
+    "correct_answer": "silent movie is to dialogue",
+    "explanation": "Relation: person or thing/what it lacks. Tyrant is by definition without mercy; likewise silent movie is by definition without dialogue.",
+    "distractor_rationales": {
+      "liking is to passion": "relation it instantiates instead: degree or intensity (passion is a more intense degree of liking)",
+      "nun is to convent": "relation it instantiates instead: item/where it is found or kept (nun is found or kept in convent)",
+      "antler is to moose": "relation it instantiates instead: part/whole (antler is part of moose)",
+      "flowerpot is to soil": "relation it instantiates instead: container/contents (flowerpot holds soil)"
+    }
+  },
+  {
+    "id": "SVA17D-41",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "stage/next stage in sequence",
+    "prompt": "[Analogy] morning is to afternoon as",
+    "choices": [
+      "tree is to maple",
+      "breakfast is to lunch",
+      "birdcage is to canary",
+      "dinner is to supper",
+      "rider is to cavalry"
+    ],
+    "correct_answer": "breakfast is to lunch",
+    "explanation": "Relation: stage/next stage in sequence. Afternoon is the stage that follows morning; likewise lunch is the stage that follows breakfast.",
+    "distractor_rationales": {
+      "tree is to maple": "relation it instantiates instead: category/instance (maple is a kind of tree)",
+      "birdcage is to canary": "relation it instantiates instead: container/contents (birdcage holds canary)",
+      "dinner is to supper": "relation it instantiates instead: synonym (dinner and supper mean nearly the same thing)",
+      "rider is to cavalry": "relation it instantiates instead: member/collective (rider is one member of cavalry)"
+    }
+  },
+  {
+    "id": "SVA17D-42",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "thing/defining characteristic",
+    "prompt": "[Analogy] zebra is to stripes as",
+    "choices": [
+      "worker bee is to hive",
+      "funnel is to channel",
+      "modesty is to vanity",
+      "mishap is to catastrophe",
+      "leopard is to spots"
+    ],
+    "correct_answer": "leopard is to spots",
+    "explanation": "Relation: thing/defining characteristic. Stripes is the defining characteristic of zebra; likewise spots is the defining characteristic of leopard.",
+    "distractor_rationales": {
+      "worker bee is to hive": "relation it instantiates instead: member/collective (worker bee is one member of hive)",
+      "funnel is to channel": "relation it instantiates instead: tool/function (funnel is used to channel)",
+      "modesty is to vanity": "relation it instantiates instead: antonym (modesty is the opposite of vanity)",
+      "mishap is to catastrophe": "relation it instantiates instead: degree or intensity (catastrophe is a more intense degree of mishap)"
+    }
+  },
+  {
+    "id": "SVA17D-43",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "antonym",
+    "prompt": "[Analogy] optimism is to pessimism as",
+    "choices": [
+      "notion is to idea",
+      "shack is to manor",
+      "friend is to foe",
+      "stalactite is to cavern",
+      "duckling is to duck"
+    ],
+    "correct_answer": "friend is to foe",
+    "explanation": "Relation: antonym. Optimism is the opposite of pessimism; likewise friend is the opposite of foe.",
+    "distractor_rationales": {
+      "notion is to idea": "relation it instantiates instead: synonym (notion and idea mean nearly the same thing)",
+      "shack is to manor": "relation it instantiates instead: degree or intensity (manor is a more intense degree of shack)",
+      "stalactite is to cavern": "relation it instantiates instead: item/where it is found or kept (stalactite is found or kept in cavern)",
+      "duckling is to duck": "relation it instantiates instead: young/adult (duckling is the young of duck)"
+    }
+  },
+  {
+    "id": "SVA17D-44",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "symbol/what it stands for",
+    "prompt": "[Analogy] medal is to valor as",
+    "choices": [
+      "lightbulb is to inspiration",
+      "beaver is to dam",
+      "impact is to crater",
+      "courtesy is to politeness",
+      "butcher is to cleaver"
+    ],
+    "correct_answer": "lightbulb is to inspiration",
+    "explanation": "Relation: symbol/what it stands for. Medal is a symbol of valor; likewise lightbulb is a symbol of inspiration.",
+    "distractor_rationales": {
+      "beaver is to dam": "relation it instantiates instead: worker/product (beaver makes dam)",
+      "impact is to crater": "relation it instantiates instead: cause/effect (impact causes crater)",
+      "courtesy is to politeness": "relation it instantiates instead: synonym (courtesy and politeness mean nearly the same thing)",
+      "butcher is to cleaver": "relation it instantiates instead: worker/tool (cleaver is the tool of butcher)"
+    }
+  },
+  {
+    "id": "SVA17D-45",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "cause/effect",
+    "prompt": "[Analogy] termites is to rot as",
+    "choices": [
+      "bodyguard is to protect",
+      "grain is to sorghum",
+      "chaos is to order",
+      "moth is to holes",
+      "bottle is to plastic"
+    ],
+    "correct_answer": "moth is to holes",
+    "explanation": "Relation: cause/effect. Termites causes rot; likewise moth causes holes.",
+    "distractor_rationales": {
+      "bodyguard is to protect": "relation it instantiates instead: performer/action (the characteristic action of bodyguard is to protect)",
+      "grain is to sorghum": "relation it instantiates instead: category/instance (sorghum is a kind of grain)",
+      "chaos is to order": "relation it instantiates instead: antonym (chaos is the opposite of order)",
+      "bottle is to plastic": "relation it instantiates instead: object/material (bottle is made of plastic)"
+    }
+  },
+  {
+    "id": "SVA17D-46",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "person or thing/what it lacks",
+    "prompt": "[Analogy] stalemate is to winner as",
+    "choices": [
+      "cadet is to corps",
+      "blackout is to electricity",
+      "lieutenant is to captain",
+      "statuette is to jade",
+      "pirate is to plunder"
+    ],
+    "correct_answer": "blackout is to electricity",
+    "explanation": "Relation: person or thing/what it lacks. Stalemate is by definition without winner; likewise blackout is by definition without electricity.",
+    "distractor_rationales": {
+      "cadet is to corps": "relation it instantiates instead: member/collective (cadet is one member of corps)",
+      "lieutenant is to captain": "relation it instantiates instead: stage/next stage in sequence (captain is the stage that follows lieutenant)",
+      "statuette is to jade": "relation it instantiates instead: object/material (statuette is made of jade)",
+      "pirate is to plunder": "relation it instantiates instead: performer/action (the characteristic action of pirate is to plunder)"
+    }
+  },
+  {
+    "id": "SVA17D-47",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "stage/next stage in sequence",
+    "prompt": "[Analogy] nomination is to election as",
+    "choices": [
+      "scandal is to resignation",
+      "scene is to act",
+      "jester is to amuse",
+      "director is to film",
+      "interview is to hiring"
+    ],
+    "correct_answer": "interview is to hiring",
+    "explanation": "Relation: stage/next stage in sequence. Election is the stage that follows nomination; likewise hiring is the stage that follows interview.",
+    "distractor_rationales": {
+      "scandal is to resignation": "relation it instantiates instead: cause/effect (scandal causes resignation)",
+      "scene is to act": "relation it instantiates instead: part/whole (scene is part of act)",
+      "jester is to amuse": "relation it instantiates instead: performer/action (the characteristic action of jester is to amuse)",
+      "director is to film": "relation it instantiates instead: worker/product (director makes film)"
+    }
+  },
+  {
+    "id": "SVA17D-48",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "thing/defining characteristic",
+    "prompt": "[Analogy] prodigy is to talent as",
+    "choices": [
+      "stork is to childbirth",
+      "diver is to snorkel",
+      "rascal is to mischief",
+      "candlestick is to pewter",
+      "rodent is to squirrel"
+    ],
+    "correct_answer": "rascal is to mischief",
+    "explanation": "Relation: thing/defining characteristic. Talent is the defining characteristic of prodigy; likewise mischief is the defining characteristic of rascal.",
+    "distractor_rationales": {
+      "stork is to childbirth": "relation it instantiates instead: symbol/what it stands for (stork is a symbol of childbirth)",
+      "diver is to snorkel": "relation it instantiates instead: worker/tool (snorkel is the tool of diver)",
+      "candlestick is to pewter": "relation it instantiates instead: object/material (candlestick is made of pewter)",
+      "rodent is to squirrel": "relation it instantiates instead: category/instance (squirrel is a kind of rodent)"
+    }
+  },
+  {
+    "id": "SVA17D-49",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "performer/action",
+    "prompt": "[Analogy] tutor is to instruct as",
+    "choices": [
+      "chauffeur is to drive",
+      "clamp is to hold",
+      "mosquito bite is to itch",
+      "nickel is to coin",
+      "boat is to marina"
+    ],
+    "correct_answer": "chauffeur is to drive",
+    "explanation": "Relation: performer/action. The characteristic action of tutor is to instruct; likewise the characteristic action of chauffeur is to drive.",
+    "distractor_rationales": {
+      "clamp is to hold": "relation it instantiates instead: tool/function (clamp is used to hold)",
+      "mosquito bite is to itch": "relation it instantiates instead: cause/effect (mosquito bite causes itch)",
+      "nickel is to coin": "relation it instantiates instead: instance/category (nickel is a kind of coin)",
+      "boat is to marina": "relation it instantiates instead: item/where it is found or kept (boat is found or kept in marina)"
+    }
+  },
+  {
+    "id": "SVA17D-50",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "degree or intensity",
+    "prompt": "[Analogy] skirmish is to war as",
+    "choices": [
+      "sunrise is to sunset",
+      "shoemaker is to slippers",
+      "toothbrush is to bathroom",
+      "scuffle is to riot",
+      "trunk is to elephant"
+    ],
+    "correct_answer": "scuffle is to riot",
+    "explanation": "Relation: degree or intensity. War is a more intense degree of skirmish; likewise riot is a more intense degree of scuffle.",
+    "distractor_rationales": {
+      "sunrise is to sunset": "relation it instantiates instead: antonym (sunrise is the opposite of sunset)",
+      "shoemaker is to slippers": "relation it instantiates instead: worker/product (shoemaker makes slippers)",
+      "toothbrush is to bathroom": "relation it instantiates instead: item/where it is found or kept (toothbrush is found or kept in bathroom)",
+      "trunk is to elephant": "relation it instantiates instead: part/whole (trunk is part of elephant)"
+    }
+  },
+  {
+    "id": "SVA17D-51",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "symbol/what it stands for",
+    "prompt": "[Analogy] thumbs-up is to approval as",
+    "choices": [
+      "leaf is to houseplant",
+      "nod is to agreement",
+      "volunteer is to search party",
+      "flashlight is to illuminate",
+      "loyalty is to treachery"
+    ],
+    "correct_answer": "nod is to agreement",
+    "explanation": "Relation: symbol/what it stands for. Thumbs-up is a symbol of approval; likewise nod is a symbol of agreement.",
+    "distractor_rationales": {
+      "leaf is to houseplant": "relation it instantiates instead: part/whole (leaf is part of houseplant)",
+      "volunteer is to search party": "relation it instantiates instead: member/collective (volunteer is one member of search party)",
+      "flashlight is to illuminate": "relation it instantiates instead: tool/function (flashlight is used to illuminate)",
+      "loyalty is to treachery": "relation it instantiates instead: antonym (loyalty is the opposite of treachery)"
+    }
+  },
+  {
+    "id": "SVA17D-52",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "antonym",
+    "prompt": "[Analogy] timidity is to boldness as",
+    "choices": [
+      "stress is to headache",
+      "pupil is to eye",
+      "glad is to overjoyed",
+      "stonecutter is to chisel",
+      "harmony is to discord"
+    ],
+    "correct_answer": "harmony is to discord",
+    "explanation": "Relation: antonym. Timidity is the opposite of boldness; likewise harmony is the opposite of discord.",
+    "distractor_rationales": {
+      "stress is to headache": "relation it instantiates instead: cause/effect (stress causes headache)",
+      "pupil is to eye": "relation it instantiates instead: part/whole (pupil is part of eye)",
+      "glad is to overjoyed": "relation it instantiates instead: degree or intensity (overjoyed is a more intense degree of glad)",
+      "stonecutter is to chisel": "relation it instantiates instead: worker/tool (chisel is the tool of stonecutter)"
+    }
+  },
+  {
+    "id": "SVA17D-53",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "person or thing/what it lacks",
+    "prompt": "[Analogy] monotony is to variety as",
+    "choices": [
+      "ruse is to trick",
+      "dampness is to mold",
+      "anarchy is to government",
+      "ceiling is to floor",
+      "logger is to axe"
+    ],
+    "correct_answer": "anarchy is to government",
+    "explanation": "Relation: person or thing/what it lacks. Monotony is by definition without variety; likewise anarchy is by definition without government.",
+    "distractor_rationales": {
+      "ruse is to trick": "relation it instantiates instead: synonym (ruse and trick mean nearly the same thing)",
+      "dampness is to mold": "relation it instantiates instead: cause/effect (dampness causes mold)",
+      "ceiling is to floor": "relation it instantiates instead: antonym (ceiling is the opposite of floor)",
+      "logger is to axe": "relation it instantiates instead: worker/tool (axe is the tool of logger)"
+    }
+  },
+  {
+    "id": "SVA17D-54",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "thing/defining characteristic",
+    "prompt": "[Analogy] vinegar is to sourness as",
+    "choices": [
+      "brine is to saltiness",
+      "embryo is to fetus",
+      "cattle is to ranch",
+      "porch is to bungalow",
+      "advantage is to drawback"
+    ],
+    "correct_answer": "brine is to saltiness",
+    "explanation": "Relation: thing/defining characteristic. Sourness is the defining characteristic of vinegar; likewise saltiness is the defining characteristic of brine.",
+    "distractor_rationales": {
+      "embryo is to fetus": "relation it instantiates instead: stage/next stage in sequence (fetus is the stage that follows embryo)",
+      "cattle is to ranch": "relation it instantiates instead: item/where it is found or kept (cattle is found or kept in ranch)",
+      "porch is to bungalow": "relation it instantiates instead: part/whole (porch is part of bungalow)",
+      "advantage is to drawback": "relation it instantiates instead: antonym (advantage is the opposite of drawback)"
+    }
+  },
+  {
+    "id": "SVA17D-55",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "cause/effect",
+    "prompt": "[Analogy] panic is to stampede as",
+    "choices": [
+      "pledge is to vow",
+      "oyster is to pearl",
+      "appetizer is to main course",
+      "provocation is to brawl",
+      "money is to bank"
+    ],
+    "correct_answer": "provocation is to brawl",
+    "explanation": "Relation: cause/effect. Panic causes stampede; likewise provocation causes brawl.",
+    "distractor_rationales": {
+      "pledge is to vow": "relation it instantiates instead: synonym (pledge and vow mean nearly the same thing)",
+      "oyster is to pearl": "relation it instantiates instead: worker/product (oyster makes pearl)",
+      "appetizer is to main course": "relation it instantiates instead: stage/next stage in sequence (main course is the stage that follows appetizer)",
+      "money is to bank": "relation it instantiates instead: item/where it is found or kept (money is found or kept in bank)"
+    }
+  },
+  {
+    "id": "SVA17D-56",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "synonym",
+    "prompt": "[Analogy] vigor is to energy as",
+    "choices": [
+      "microscope is to magnify",
+      "dwelling is to residence",
+      "dartboard is to cork",
+      "steeple is to church",
+      "workout is to soreness"
+    ],
+    "correct_answer": "dwelling is to residence",
+    "explanation": "Relation: synonym. Vigor and energy mean nearly the same thing; likewise dwelling and residence mean nearly the same thing.",
+    "distractor_rationales": {
+      "microscope is to magnify": "relation it instantiates instead: tool/function (microscope is used to magnify)",
+      "dartboard is to cork": "relation it instantiates instead: object/material (dartboard is made of cork)",
+      "steeple is to church": "relation it instantiates instead: part/whole (steeple is part of church)",
+      "workout is to soreness": "relation it instantiates instead: cause/effect (workout causes soreness)"
+    }
+  },
+  {
+    "id": "SVA17D-57",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "symbol/what it stands for",
+    "prompt": "[Analogy] yellow card is to caution as",
+    "choices": [
+      "canine is to beagle",
+      "deceit is to distrust",
+      "painter is to brush",
+      "skunk is to odor",
+      "badge is to authority"
+    ],
+    "correct_answer": "badge is to authority",
+    "explanation": "Relation: symbol/what it stands for. Yellow card is a symbol of caution; likewise badge is a symbol of authority.",
+    "distractor_rationales": {
+      "canine is to beagle": "relation it instantiates instead: category/instance (beagle is a kind of canine)",
+      "deceit is to distrust": "relation it instantiates instead: cause/effect (deceit causes distrust)",
+      "painter is to brush": "relation it instantiates instead: worker/tool (brush is the tool of painter)",
+      "skunk is to odor": "relation it instantiates instead: thing/defining characteristic (odor is the defining characteristic of skunk)"
+    }
+  },
+  {
+    "id": "SVA17D-58",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "stage/next stage in sequence",
+    "prompt": "[Analogy] twilight is to night as",
+    "choices": [
+      "headwear is to beret",
+      "vacancy is to occupant",
+      "adolescence is to adulthood",
+      "keg is to ale",
+      "hairstylist is to scissors"
+    ],
+    "correct_answer": "adolescence is to adulthood",
+    "explanation": "Relation: stage/next stage in sequence. Night is the stage that follows twilight; likewise adulthood is the stage that follows adolescence.",
+    "distractor_rationales": {
+      "headwear is to beret": "relation it instantiates instead: category/instance (beret is a kind of headwear)",
+      "vacancy is to occupant": "relation it instantiates instead: person or thing/what it lacks (vacancy is by definition without occupant)",
+      "keg is to ale": "relation it instantiates instead: container/contents (keg holds ale)",
+      "hairstylist is to scissors": "relation it instantiates instead: worker/tool (scissors is the tool of hairstylist)"
+    }
+  },
+  {
+    "id": "SVA17D-59",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "stage/next stage in sequence",
+    "prompt": "[Analogy] train is to compete as",
+    "choices": [
+      "edit is to publish",
+      "like is to adore",
+      "resign is to quit",
+      "accept is to refuse",
+      "trample is to flatten"
+    ],
+    "correct_answer": "edit is to publish",
+    "explanation": "Relation: stage/next stage in sequence. Compete is the stage that follows train; likewise publish is the stage that follows edit.",
+    "distractor_rationales": {
+      "like is to adore": "relation it instantiates instead: degree or intensity (adore is a more intense degree of like)",
+      "resign is to quit": "relation it instantiates instead: synonym (resign and quit mean nearly the same thing)",
+      "accept is to refuse": "relation it instantiates instead: antonym (accept is the opposite of refuse)",
+      "trample is to flatten": "relation it instantiates instead: cause/effect (trample causes flatten)"
+    }
+  },
+  {
+    "id": "SVA17D-60",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "relation": "person or thing/what it lacks",
+    "prompt": "[Analogy] poacher is to license as",
+    "choices": [
+      "bassinet is to infant",
+      "brother is to fraternity",
+      "fame is to renown",
+      "trespasser is to permission",
+      "hunch is to conviction"
+    ],
+    "correct_answer": "trespasser is to permission",
+    "explanation": "Relation: person or thing/what it lacks. Poacher is by definition without license; likewise trespasser is by definition without permission.",
+    "distractor_rationales": {
+      "bassinet is to infant": "relation it instantiates instead: container/contents (bassinet holds infant)",
+      "brother is to fraternity": "relation it instantiates instead: member/collective (brother is one member of fraternity)",
+      "fame is to renown": "relation it instantiates instead: synonym (fame and renown mean nearly the same thing)",
+      "hunch is to conviction": "relation it instantiates instead: degree or intensity (conviction is a more intense degree of hunch)"
+    }
+  },
+  {
+    "id": "SVA17D-61",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "thing/defining characteristic",
+    "prompt": "[Analogy] wallflower is to shyness as",
+    "choices": [
+      "goldsmith is to pendant",
+      "daredevil is to recklessness",
+      "cyclone is to devastation",
+      "courtier is to court",
+      "fabric is to corduroy"
+    ],
+    "correct_answer": "daredevil is to recklessness",
+    "explanation": "Relation: thing/defining characteristic. Shyness is the defining characteristic of wallflower; likewise recklessness is the defining characteristic of daredevil.",
+    "distractor_rationales": {
+      "goldsmith is to pendant": "relation it instantiates instead: worker/product (goldsmith makes pendant)",
+      "cyclone is to devastation": "relation it instantiates instead: cause/effect (cyclone causes devastation)",
+      "courtier is to court": "relation it instantiates instead: member/collective (courtier is one member of court)",
+      "fabric is to corduroy": "relation it instantiates instead: category/instance (corduroy is a kind of fabric)"
+    }
+  },
+  {
+    "id": "SVA17D-62",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "relation": "antonym",
+    "prompt": "[Analogy] prologue is to epilogue as",
+    "choices": [
+      "private is to corporal",
+      "postage stamps is to album",
+      "picket fence is to cedar",
+      "minister is to cabinet",
+      "entrance is to exit"
+    ],
+    "correct_answer": "entrance is to exit",
+    "explanation": "Relation: antonym. Prologue is the opposite of epilogue; likewise entrance is the opposite of exit.",
+    "distractor_rationales": {
+      "private is to corporal": "relation it instantiates instead: stage/next stage in sequence (corporal is the stage that follows private)",
+      "postage stamps is to album": "relation it instantiates instead: item/where it is found or kept (postage stamps is found or kept in album)",
+      "picket fence is to cedar": "relation it instantiates instead: object/material (picket fence is made of cedar)",
+      "minister is to cabinet": "relation it instantiates instead: member/collective (minister is one member of cabinet)"
+    }
+  },
+  {
+    "id": "SVA17D-63",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "synonym",
+    "prompt": "[Analogy] malice is to spite as",
+    "choices": [
+      "tentacle is to octopus",
+      "infantryman is to battalion",
+      "contempt is to scorn",
+      "spring is to summer",
+      "saltshaker is to salt"
+    ],
+    "correct_answer": "contempt is to scorn",
+    "explanation": "Relation: synonym. Malice and spite mean nearly the same thing; likewise contempt and scorn mean nearly the same thing.",
+    "distractor_rationales": {
+      "tentacle is to octopus": "relation it instantiates instead: part/whole (tentacle is part of octopus)",
+      "infantryman is to battalion": "relation it instantiates instead: member/collective (infantryman is one member of battalion)",
+      "spring is to summer": "relation it instantiates instead: stage/next stage in sequence (summer is the stage that follows spring)",
+      "saltshaker is to salt": "relation it instantiates instead: container/contents (saltshaker holds salt)"
+    }
+  },
+  {
+    "id": "SVA17D-64",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation": "stage/next stage in sequence",
+    "prompt": "[Analogy] verdict is to sentence as",
+    "choices": [
+      "diagnosis is to treatment",
+      "eclipse is to darkness",
+      "toe is to foot",
+      "voter is to electorate",
+      "summary is to synopsis"
+    ],
+    "correct_answer": "diagnosis is to treatment",
+    "explanation": "Relation: stage/next stage in sequence. Sentence is the stage that follows verdict; likewise treatment is the stage that follows diagnosis.",
+    "distractor_rationales": {
+      "eclipse is to darkness": "relation it instantiates instead: cause/effect (eclipse causes darkness)",
+      "toe is to foot": "relation it instantiates instead: part/whole (toe is part of foot)",
+      "voter is to electorate": "relation it instantiates instead: member/collective (voter is one member of electorate)",
+      "summary is to synopsis": "relation it instantiates instead: synonym (summary and synopsis mean nearly the same thing)"
+    }
+  }
+]
