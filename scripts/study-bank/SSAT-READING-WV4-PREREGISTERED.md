@@ -129,3 +129,35 @@ F <= 50% easy, A supports, B <= 40%, E median >= live). Items failing C are drop
 with fewer than 5 items are dropped. QC ledger entry, insert as cohort `ssat-reading-wv4`, re-run
 `admission-form-depth.ts`, report forms before -> after. The human sitting remains the verdict for a
 verbal cohort (bank-gate §5).
+
+## Result (2026-10-06): FAILS C (9/12) and F (7/12 easy). Stopped at the first stage. Nothing inserted.
+
+- **Authoring.** Two fresh authors produced P01 (narrative fiction, Grandfather's boat *Linnet*) and
+  P02 (history feature, the Gannet Point lighthouse). Verify then refused P01 on 3 problems (two kill
+  quotes off-target, one stem word unique to another question's choice) and P02 on 1 (a kill quote
+  off-target). One fix round followed, with fresh agents that got only the PROBLEM lines and the
+  brief. All four fixes changed only quotes or a choice; no passage text changed. Result: verify OK,
+  v4 absent-option hits 0, named-attitude hits 0, and the lexical solver at 6.0/25 and 5.2/25 against
+  a 5.0 chance line. Neither author nor fixer reported opening the checker. P02's author wrote its
+  own Rule-A checker from the brief text (`p02work/verify.py`, scratchpad).
+- **Freeze** `4b6bbfb0` → frozenSha `410a94aa…` (recomputed independently with `shasum`) → **draw**
+  P01 v3, P02 v0, committed with the renders in `d9e24f8f` before any grader ran.
+- **C+F** (two graders, frozen prompt, `ssat-wv4-pilot/ws-{a,b}.json`). **C 9/12, FAIL (bar ≥ 10).**
+  Both graders gave the same three items a second defensible answer:
+  - **both attitude items**: P01 "doubtful" vs "wistful" (the two graders even picked different keys),
+    and P02 "admiring" vs "sympathetic";
+  - **one inference item**: P02 "why the board ordered the bell", where the budget motive is a
+    defensible second because the passage says the board "had little money to spend".
+  **F 7/12 easy, FAIL (bar ≤ 6)**, with P01 at 4 and P02 at 3. The notes give the mechanisms: keys
+  stated outright ("I marked that bevel wrong"; "the board ordered a heavier bell"; "says the two of
+  them will rebuild"), a purpose item settled by the topic of a paragraph, and both vocabulary items
+  on the transparent word "fair" ("fair distance", "fair wind").
+- E, D, A and B were not run (stop at first failure; no repair round).
+- **What moved, against pilot 3:** easy fell from 9 to 7, and no grader cited an absent option, so
+  rule A did remove mechanism 1. But exclusivity fell from 12/12 to 9/12. The two misses besides
+  attitude are the price of rule B: once a rival is present and tempting ("little money to spend"),
+  a careful reader can defend it. The remaining easy items are keys the drawn version states as fact.
+  **The bind now has a third side:** rivals absent makes items easy, rivals dismissed makes them
+  easy, and rivals present and undismissed makes them non-exclusive.
+- Grader B flagged a contradiction in P02 ("thirty-two years" vs "thirteen winters"). It is **not
+  one**: 13 winters before 1871, plus 1871, plus 18 years after, makes 32.
