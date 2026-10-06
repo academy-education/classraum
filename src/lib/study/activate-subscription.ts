@@ -2,7 +2,7 @@ import { createHash } from 'crypto'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { chargeBillingKey, chargeAlreadyPaid } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
-import { resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
+import { resolvePlan, GRANT_INTERVAL_DAYS, isPurchasableStudyPlan } from '@/lib/study/plans'
 import { trackEvent } from '@/lib/study/analytics'
 import { grantReferralConversionIfEligible } from '@/lib/study/referral-conversion'
 
@@ -58,6 +58,12 @@ export async function activateSubscriptionFromBillingKey(opts: {
    *  successful client retry). */
   onlyIfNoActiveSub?: boolean
 }): Promise<ActivateOutcome> {
+  // Last line of defence for every caller (billing-key, webhook backstop,
+  // recover): only monthly plans start a subscription. An absent planId
+  // keeps resolving to general_v1 for pre-tier clients.
+  if (opts.planId && !isPurchasableStudyPlan(opts.planId)) {
+    return { status: 'error', httpStatus: 400, message: 'plan not available', paymentId: '' }
+  }
   const plan = resolvePlan(opts.planId)
 
   const { data: sub } = await dbAdmin

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { getBillingKeyInfo, getPaymentInfo } from '@/lib/portone-charge'
-import { resolvePack, resolvePass, STUDY_PLANS } from '@/lib/study/plans'
+import { resolvePack, resolvePass, STUDY_PLANS, isPurchasableStudyPlan } from '@/lib/study/plans'
 import { grantCreditPack, grantExamPass } from '@/lib/study/grant-purchase'
 import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscription'
 
@@ -87,6 +87,9 @@ export async function POST(req: NextRequest) {
     const planId = typeof cd.plan === 'string' ? cd.plan : undefined
     if (planId && !STUDY_PLANS[planId]) {
       return NextResponse.json({ error: 'unknown_plan' }, { status: 409 })
+    }
+    if (planId && !isPurchasableStudyPlan(planId)) {
+      return NextResponse.json({ error: 'plan_not_sold' }, { status: 409 })
     }
     // onlyIfNoActiveSub: the client may have succeeded already, or the
     // webhook may have beaten us here. Never double-charge a race.

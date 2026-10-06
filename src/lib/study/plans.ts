@@ -276,6 +276,29 @@ export function isPassPlan(planId: string | null | undefined): boolean {
   return STUDY_PASSES.some(p => p.id === planId)
 }
 
+/**
+ * May a NEW buyer start this plan? Owner decision 2026-10-07: "there is
+ * no annual plan". Only monthly (intervalDays === 30) recurring plans are
+ * sold; the annual, 3-month and 6-month entries above stay defined so a
+ * historical row or payment still resolves and renders, and the renewal
+ * cron keeps charging any EXISTING holder (0 on 2026-10-07: no
+ * study_subscriptions plan/pending_plan, study_payments, ledger note or
+ * analytics event names any of them).
+ *
+ * Every entry point that STARTS a subscription must check this
+ * server-side: /pay/subscribe (resolveItem), the billing-key route, the
+ * BillingKey.Issued webhook backstop, /recover, the shared
+ * activateSubscriptionFromBillingKey helper, and change-plan's target.
+ * Passes are excluded too (they mirror into STUDY_PLANS with a 3650-day
+ * interval and are sold through purchase-pass, never billing-key).
+ */
+export function isPurchasableStudyPlan(planId: string | null | undefined): boolean {
+  if (!planId) return false
+  const p = STUDY_PLANS[planId]
+  if (!p || isPassPlan(planId)) return false
+  return p.intervalDays === 30
+}
+
 /** Credit top-up packs — available to any active/trial subscriber (not
  *  just Premium). Bigger packs give a lower per-credit price to raise
  *  AOV. Purchased credits never expire and are consumed only after the

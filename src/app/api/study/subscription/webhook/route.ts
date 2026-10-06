@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getBillingKeyInfo } from '@/lib/portone-charge'
-import { STUDY_PLANS } from '@/lib/study/plans'
+import { STUDY_PLANS, isPurchasableStudyPlan } from '@/lib/study/plans'
 import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscription'
 import { syncStudyPaymentRefund } from '@/lib/study/sync-refund'
 import { raiseAlert } from '@/lib/ops/alert'
@@ -111,6 +111,11 @@ export async function POST(req: NextRequest) {
     // pre-backstop issuance without student_id) — nothing to do here.
     if (cd.kind !== 'study_subscription' || !studentId || (planId && !STUDY_PLANS[planId])) {
       return NextResponse.json({ ok: true, ignored: 'not a study subscription key' })
+    }
+    // A key stamped with a plan that is no longer sold (annual / 3- / 6-
+    // month) must not be charged by the backstop either.
+    if (planId && !isPurchasableStudyPlan(planId)) {
+      return NextResponse.json({ ok: true, ignored: 'plan not sold' })
     }
     // onlyIfNoActiveSub: never charges a buyer a client retry already
     // subscribed; the shared guard also no-ops on the exact-key match.

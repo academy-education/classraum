@@ -24,7 +24,7 @@
  * switch would never have happened.
  */
 
-import { isPassPlan, resolvePlan, STUDY_PLANS, type StudyPlan } from './plans'
+import { isPassPlan, isPurchasableStudyPlan, resolvePlan, STUDY_PLANS, type StudyPlan } from './plans'
 
 export interface SubscriptionStateRow {
   status: string
@@ -94,6 +94,13 @@ export function decidePlanChange(
   }
   const current = resolvePlan(row.plan)
   if (target.id === current.id) return { ok: true, action: 'clear_pending', target, current }
+  // Switching INTO an annual / 3-month / 6-month plan is a new purchase of
+  // a plan that is no longer sold (owner decision 2026-10-07). An existing
+  // holder can still send their own plan id (clear_pending above) and can
+  // still move to a monthly plan.
+  if (!isPurchasableStudyPlan(target.id)) {
+    return { ok: false, status: 400, body: { error: 'plan not available', code: 'plan_not_sold' } }
+  }
   if (target.priceWon < current.priceWon) return { ok: true, action: 'schedule_downgrade', target, current }
   return { ok: true, action: 'upgrade', target, current }
 }

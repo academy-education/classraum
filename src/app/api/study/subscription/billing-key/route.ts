@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { STUDY_PLANS } from '@/lib/study/plans'
+import { STUDY_PLANS, isPurchasableStudyPlan } from '@/lib/study/plans'
 import { requireStudyUser } from '@/lib/study/auth'
 import { activateSubscriptionFromBillingKey } from '@/lib/study/activate-subscription'
 
@@ -40,6 +40,13 @@ export async function POST(req: NextRequest) {
   // General for backward compatibility with pre-tier clients.
   if (body.plan && !STUDY_PLANS[body.plan]) {
     return NextResponse.json({ error: 'unknown plan' }, { status: 400 })
+  }
+  // Only monthly plans are sold (owner decision 2026-10-07). Annual,
+  // 3-month and 6-month ids stay in the catalog for history but cannot
+  // start a subscription — and a pass id here would register a recurring
+  // card for a one-time product.
+  if (body.plan && !isPurchasableStudyPlan(body.plan)) {
+    return NextResponse.json({ error: 'plan not available', code: 'plan_not_sold' }, { status: 400 })
   }
 
   // Charge + activate via the shared helper — the SAME code the

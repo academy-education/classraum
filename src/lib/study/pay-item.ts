@@ -5,7 +5,7 @@
  * guards was invisible in every automated check and surfaced only when
  * Andy tapped a credit pack and got "알 수 없는 플랜이에요".
  */
-import { STUDY_PLANS, resolvePass, resolvePack, CREDIT_PACKS, isPassPlan } from '@/lib/study/plans'
+import { STUDY_PLANS, resolvePass, resolvePack, CREDIT_PACKS, isPassPlan, isPurchasableStudyPlan } from '@/lib/study/plans'
 
 export type Item = {
   kind: 'plan' | 'pass' | 'pack'
@@ -37,6 +37,11 @@ export function resolveItem(params: URLSearchParams, ko: boolean): Item | null {
     // expiry, never renews". Exactly what Andy reported: "the 3 month
     // passes are taking to subscription when its a one time payment."
     if (isPassPlan(planId)) return null
+    // Annual / 3-month / 6-month plans are no longer sold (owner decision
+    // 2026-10-07). Nothing links to them, but ?plan=general_annual_v1 typed
+    // by hand used to render a working checkout. The billing-key route
+    // refuses them too; this only keeps the page from offering one.
+    if (!isPurchasableStudyPlan(planId)) return null
     const p = STUDY_PLANS[planId]
     if (!p) return null
     return {
