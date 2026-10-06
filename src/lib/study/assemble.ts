@@ -204,7 +204,31 @@ function readBlanks(v: unknown): Question['blanks'] {
  * be used. Takes `unknown` rather than `Json` so the narrowing yields a plain
  * object type instead of an intersection with `Json`'s scalar members.
  */
-function readBankItem(item: unknown): Question | null {
+/**
+ * ONE DIFFICULTY, AND IT IS THE ROW COLUMN (2026-10-06).
+ *
+ * `study_item_bank` stores difficulty twice: the row column and a copy inside
+ * `item`. On 2026-10-04 they disagreed on 1,450 live rows (TOEFL 1,294 —
+ * BANK-INTEGRITY-2026-10-04.md), because regrades (scripts/classify-toefl-tasks.ts,
+ * the TOEFL-DIFFICULTY-LABEL.md repair) wrote the column and left the copy at
+ * the inserter's old default. Every draw decision already read the column —
+ * the practice filter, the SAT module-2 band, TOEFL module-2 band tiers and
+ * the ramp — but `readBankItem` returned the COPY as `Question.difficulty`,
+ * so the TOEFL pilot picker (hardest items become unscored), the practice
+ * chip, the submitted question snapshot, the wrong notebook and the mastery
+ * prompt all saw the stale label. A regraded item was piloted by its old one.
+ *
+ * So every bank read passes the row column here and it wins whenever it is a
+ * valid band. The jsonb copy is only a fallback for a row whose column is
+ * null/invalid (none live on 2026-10-06), never a second opinion.
+ */
+export function resolveBankDifficulty(rowDifficulty: unknown, itemDifficulty: unknown): Question['difficulty'] | null {
+  if (isDifficulty(rowDifficulty)) return rowDifficulty
+  if (isDifficulty(itemDifficulty)) return itemDifficulty
+  return null
+}
+
+function readBankItem(item: unknown, rowDifficulty?: unknown): Question | null {
   if (item === null || typeof item !== 'object' || Array.isArray(item)) return null
   const b = bagOf(item)
 
@@ -212,10 +236,10 @@ function readBankItem(item: unknown): Question | null {
   const type = b.get('type')
   const choices = b.get('choices')
   const correctAnswer = b.get('correct_answer')
-  const difficulty = b.get('difficulty')
+  const difficulty = resolveBankDifficulty(rowDifficulty, b.get('difficulty'))
   if (typeof prompt !== 'string' || !prompt) return null
   if (!isQuestionType(type)) return null
-  if (!isDifficulty(difficulty)) return null
+  if (!difficulty) return null
   /*
    * Free response has no key, and requiring a string here silently made
    * every SSAT Writing Sample and ISEE Essay item undrawable: they were
@@ -545,7 +569,7 @@ export async function drawBankPractice(p: {
   const bankQuery = (withCount: boolean) => {
     let query = dbAdmin
       .from('study_item_bank')
-      .select('id, item', withCount ? { count: 'exact' } : undefined)
+      .select('id, item, difficulty', withCount ? { count: 'exact' } : undefined)
       .eq('family', family)
       .eq('section', p.section)
       .eq('verified', true)
@@ -566,11 +590,11 @@ export async function drawBankPractice(p: {
   // Stable pool order (by id) so the same seed always yields the same draw
   // (the daily challenge relies on this for its shared-set property).
   // PAGED: an unfiltered SAT section exceeds PostgREST's 1000-row cap.
-  const data = await readBankPaged<{ id: string; item: unknown }>(bankQuery, `practice ${family}/${p.section}`)
+  const data = await readBankPaged<{ id: string; item: unknown; difficulty: string | null }>(bankQuery, `practice ${family}/${p.section}`)
 
   const pool = data
     .flatMap(row => {
-      const item = readBankItem(row.item)
+      const item = readBankItem(row.item, row.difficulty)
       if (!item) {
         console.error('[assemble] skipping malformed study_item_bank row', row.id)
         return []
@@ -1046,12 +1070,14 @@ export async function assembleToeflFromBank(
     bankQuery, `toefl/${p.section}`, [{ column: 'created_at' }],
   )
   const rows = data.flatMap(row => {
-    const item = readBankItem(row.item)
+    const item = readBankItem(row.item, row.difficulty)
     if (!item) {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
       return []
     }
-    return [{ id: row.id, item_type: row.item_type, item, difficulty: row.difficulty }]
+    // The resolved band (row column, see resolveBankDifficulty), so routing,
+    // the ramp and the pilot picker below all read one value.
+    return [{ id: row.id, item_type: row.item_type, item, difficulty: item.difficulty }]
   })
   if (rows.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
 
@@ -1487,7 +1513,7 @@ export async function assembleToeflFromBank(
       const RANK: Record<string, number> = { hard: 0, medium: 1, easy: 2 }
       const byHardest = seededShuffle(ordered.map(r => r.id), seed + ':pilot:' + key)
         .map(id => ordered.find(r => r.id === id)!)
-        .sort((a, b) => (RANK[a.item.difficulty ?? 'medium'] ?? 1) - (RANK[b.item.difficulty ?? 'medium'] ?? 1))
+        .sort((a, b) => (RANK[a.difficulty ?? 'medium'] ?? 1) - (RANK[b.difficulty ?? 'medium'] ?? 1))
       const pilots = new Set(
         byHardest.slice(0, ordered.length - scoredShare).map(r => r.id),
       )
@@ -1627,7 +1653,7 @@ export async function assembleAdmissionSection(p: {
   )
 
   const rows = data.flatMap(row => {
-    const item = readBankItem(row.item)
+    const item = readBankItem(row.item, row.difficulty)
     if (!item) {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
       return []
@@ -1849,7 +1875,7 @@ export async function assembleFromItemIds(
 
   const { data, error } = await dbAdmin
     .from('study_item_bank')
-    .select('id, section, item')
+    .select('id, section, item, difficulty')
     .in('id', p.itemIds)
   if (error) throw new Error(`item-id assemble query failed: ${error.message}`)
 
@@ -1863,7 +1889,7 @@ export async function assembleFromItemIds(
       console.error('[assemble] camp item missing from bank', id)
       continue
     }
-    const item = readBankItem(row.item)
+    const item = readBankItem(row.item, row.difficulty)
     if (!item) {
       console.error('[assemble] skipping malformed study_item_bank row', id)
       continue
@@ -1974,12 +2000,14 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
     `${family}/${p.section}`,
   )
   const rows = data.flatMap(row => {
-    const item = readBankItem(row.item)
+    const item = readBankItem(row.item, row.difficulty)
     if (!item) {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
       return []
     }
-    return [{ id: row.id, domain: row.domain, difficulty: (row.difficulty ?? 'medium') as 'easy' | 'medium' | 'hard', item }]
+    // The resolved band: the row column, the jsonb copy only when the column
+    // is null — never a silent 'medium' that disagrees with the Question.
+    return [{ id: row.id, domain: row.domain, difficulty: item.difficulty, item }]
   })
   if (rows.length === 0) throw new Error(`no verified items for ${family}/${p.section}`)
 
@@ -2262,7 +2290,7 @@ export async function assembleActSection(p: {
   )
 
   const rows: ActRow[] = data.flatMap(row => {
-    const item = readBankItem(row.item)
+    const item = readBankItem(row.item, row.difficulty)
     if (!item) {
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
       return []
