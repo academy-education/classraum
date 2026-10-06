@@ -1,0 +1,2102 @@
+[
+ {
+  "id": "WV1-P01.v0",
+  "passage": "When I was a child in Tessel Hollow, my grandfather rang the meetinghouse bell at noon. People liked to say it had come over the pass on an ox sled, and that his own father had helped haul it into the tower, but what I remember is the sound: a round, dark note that hummed for a full minute after the rope went slack.\n\nThe winter I turned twelve, that hum changed. Reverend Coombe was the first to say so, telling my grandfather after service that the bell rattled like a pan lid. My mother insisted afterward that she had heard it days earlier, and Miss Ardley, the schoolteacher, claimed the same, but it was the minister who climbed the tower with a lantern and found the crack.\n\nAt the town meeting in March, Mr. Pruett wanted to sell the bell to a collector in Brask and put the money toward the school roof, and someone else suggested setting it in the schoolyard. My grandfather said little. Afterward he took me up the tower and struck the bell once near the crack. The note came out split in two, a buzz laid over a groan.\n\n\"It used to answer itself,\" he said. \"Now it only argues.\" Some neighbors valued the bell for its age, and a few for its value as a fire alarm, but he spoke about it the way a singer speaks about a voice. He argued that the metal should go to the foundry at Ludd and be poured again, and by summer the town had voted to send it. Keeping it ringing as it was, he said, would be like letting a choir sing flat forever.\n\nThe new bell came back in October, cast from the old one, and I was glad for him. Still, when I go home now and hear that bright, correct note, I find myself listening for the buzz underneath, the sound I grew up with, and missing it more than I can easily explain. Nell, my sister, laughs at me for it; she says the old bell sounded like a goat.",
+  "questions": [
+   {
+    "id": "WV1-P01-1.v0",
+    "question": "The passage is primarily about",
+    "choices": [
+     "the decision to melt down the cracked bell and recast it",
+     "the decision to keep ringing the cracked bell as it was",
+     "the decision to sell the cracked bell to a collector",
+     "the decision to display the cracked bell at the school",
+     "the decision to store the cracked bell in a family barn"
+    ],
+    "claimed_answer": "the decision to melt down the cracked bell and recast it",
+    "kills": {
+     "the decision to keep ringing the cracked bell as it was": {
+      "kind": "mention",
+      "quote": "Keeping it ringing as it was, he said, would be like letting a choir sing flat forever",
+      "reason": "raised only to be rejected"
+     },
+     "the decision to sell the cracked bell to a collector": {
+      "kind": "mention",
+      "quote": "Mr. Pruett wanted to sell the bell to a collector in Brask",
+      "reason": "one neighbor's proposal, not adopted"
+     },
+     "the decision to display the cracked bell at the school": {
+      "kind": "mention",
+      "quote": "someone else suggested setting it in the schoolyard",
+      "reason": "a suggestion the town did not follow"
+     },
+     "the decision to store the cracked bell in a family barn": {
+      "kind": "refute",
+      "quote": "The new bell came back in October, cast from the old one",
+      "reason": "the bell was melted and recast, not stored"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-2.v0",
+    "question": "According to the passage, the crack in the bell was first noticed by",
+    "choices": [
+     "the meetinghouse minister",
+     "the narrator's sister",
+     "the village schoolteacher",
+     "a visiting organ tuner",
+     "the narrator's mother"
+    ],
+    "claimed_answer": "the meetinghouse minister",
+    "kills": {
+     "the narrator's sister": {
+      "kind": "refute",
+      "quote": "Reverend Coombe was the first to say so",
+      "reason": "the minister was first"
+     },
+     "the village schoolteacher": {
+      "kind": "mention",
+      "quote": "Miss Ardley, the schoolteacher, claimed the same",
+      "reason": "a later claim, set aside by the narrator"
+     },
+     "a visiting organ tuner": {
+      "kind": "refute",
+      "quote": "it was the minister who climbed the tower with a lantern and found the crack",
+      "reason": "the minister found it"
+     },
+     "the narrator's mother": {
+      "kind": "mention",
+      "quote": "My mother insisted afterward that she had heard it days earlier",
+      "reason": "an after-the-fact claim the narrator sets aside"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-3.v0",
+    "question": "The passage suggests that the narrator's grandfather valued the bell chiefly for",
+    "choices": [
+     "the richness of its tone",
+     "its usefulness as an alarm",
+     "the money it could bring",
+     "the length of its history",
+     "its tie to his own father"
+    ],
+    "claimed_answer": "the richness of its tone",
+    "kills": {
+     "its usefulness as an alarm": {
+      "kind": "mention",
+      "quote": "a few for its value as a fire alarm",
+      "reason": "what a few neighbors valued, contrasted with him"
+     },
+     "the money it could bring": {
+      "kind": "mention",
+      "quote": "put the money toward the school roof",
+      "reason": "Pruett's concern, not his"
+     },
+     "the length of its history": {
+      "kind": "mention",
+      "quote": "Some neighbors valued the bell for its age",
+      "reason": "contrasted with his view"
+     },
+     "its tie to his own father": {
+      "kind": "mention",
+      "quote": "his own father had helped haul it into the tower",
+      "reason": "a family fact, not what he dwells on"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-4.v0",
+    "question": "As it is used in the third paragraph, the word \"struck\" most nearly means",
+    "choices": [
+     "knocked",
+     "impressed",
+     "settled",
+     "removed",
+     "discovered"
+    ],
+    "claimed_answer": "knocked",
+    "kills": {
+     "impressed": {
+      "kind": "refute",
+      "quote": "struck the bell once near the crack",
+      "reason": "here \"struck\" means knocked, not impressed"
+     },
+     "settled": {
+      "kind": "refute",
+      "quote": "struck the bell once near the crack",
+      "reason": "here \"struck\" means knocked, not settled"
+     },
+     "removed": {
+      "kind": "refute",
+      "quote": "struck the bell once near the crack",
+      "reason": "here \"struck\" means knocked, not removed"
+     },
+     "discovered": {
+      "kind": "refute",
+      "quote": "struck the bell once near the crack",
+      "reason": "here \"struck\" means knocked, not discovered"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-5.v0",
+    "question": "The narrator's attitude toward the bell's fate is best described as",
+    "choices": [
+     "lingering regret",
+     "wry amusement",
+     "nagging unease",
+     "quiet contentment",
+     "tender gratitude"
+    ],
+    "claimed_answer": "lingering regret",
+    "kills": {
+     "wry amusement": {
+      "kind": "mention",
+      "quote": "Nell, my sister, laughs at me for it",
+      "reason": "the sister's reaction, not the narrator's"
+     },
+     "nagging unease": {
+      "kind": "refute",
+      "quote": "missing it more than I can easily explain",
+      "reason": "a sense of loss, not worry"
+     },
+     "quiet contentment": {
+      "kind": "mention",
+      "quote": "I was glad for him",
+      "reason": "glad for the grandfather, but then 'Still...' turns to loss"
+     },
+     "tender gratitude": {
+      "kind": "refute",
+      "quote": "missing it more than I can easily explain",
+      "reason": "loss, not thanks"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-6.v0",
+    "question": "The first paragraph chiefly serves to",
+    "choices": [
+     "describe how the bell sounded in its best years",
+     "explain the grandfather's daily ringing routine",
+     "show how short of money the town had become",
+     "recount how the bell was brought to the town",
+     "introduce the grandfather's father, who hung the bell"
+    ],
+    "claimed_answer": "describe how the bell sounded in its best years",
+    "kills": {
+     "explain the grandfather's daily ringing routine": {
+      "kind": "mention",
+      "quote": "my grandfather rang the meetinghouse bell at noon",
+      "reason": "mentioned in passing"
+     },
+     "show how short of money the town had become": {
+      "kind": "refute",
+      "quote": "but what I remember is the sound",
+      "reason": "the paragraph centers on the sound"
+     },
+     "recount how the bell was brought to the town": {
+      "kind": "mention",
+      "quote": "People liked to say it had come over the pass on an ox sled",
+      "reason": "hearsay set aside by 'but what I remember'"
+     },
+     "introduce the grandfather's father, who hung the bell": {
+      "kind": "mention",
+      "quote": "his own father had helped haul it into the tower",
+      "reason": "set aside by 'but what I remember'"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV1-P01.v1",
+  "passage": "In Tessel Hollow my grandfather rang the meetinghouse bell, and he did it the same way every day of my childhood. At a quarter to twelve he left his workbench, climbed the forty-one steps, and pulled the rope nine times at noon exactly. People said the bell had a lovely voice, and that his father had hung it, but to him the job was simply a duty, like winding the clock.\n\nThe winter I turned twelve, my little sister Nell came home from sledding and announced that the bell sounded broken. Nobody believed her at first. Miss Ardley thought it was the cold that made it rattle, and Reverend Coombe blamed the wind in the louvers, but Nell kept on about it until my grandfather took a lantern up the tower and found the crack.\n\nAt the town meeting in March, some wanted to send the bell to the foundry at Ludd to be recast; Mr. Pruett wanted to sell it to a collector in Brask. Then, in the middle of the arguing, the Hask barn on the ridge caught fire. My grandfather ran to the tower and rang. I remember being struck by how far that wounded sound carried over the snow, and the volunteers came running from three farms away.\n\nAfter that the question settled itself. A few people still talked about the bell's age, or about what the collector had offered, but my grandfather put the matter plainly at the next meeting: a bell that could bring men to a fire in four minutes was doing its work, cracked or whole. The town voted to leave it hanging and keep ringing it as it was. The schoolyard plan, which some of the mothers had liked, was quietly dropped.\n\nIt still hangs there. Visitors wince at noon, and the new minister once asked, very politely, whether something might be done about it. Nell rings it now when she is home, and every time it clanks out over the fields like a dropped kettle I find myself grinning. The town has a voice like a cracked plate, and it seems rather proud of it.",
+  "questions": [
+   {
+    "id": "WV1-P01-1.v1",
+    "question": "The passage is primarily about",
+    "choices": [
+     "the decision to melt down the cracked bell and recast it",
+     "the decision to keep ringing the cracked bell as it was",
+     "the decision to sell the cracked bell to a collector",
+     "the decision to display the cracked bell at the school",
+     "the decision to store the cracked bell in a family barn"
+    ],
+    "claimed_answer": "the decision to keep ringing the cracked bell as it was",
+    "kills": {
+     "the decision to melt down the cracked bell and recast it": {
+      "kind": "mention",
+      "quote": "some wanted to send the bell to the foundry at Ludd to be recast",
+      "reason": "proposed before the fire, then abandoned"
+     },
+     "the decision to sell the cracked bell to a collector": {
+      "kind": "mention",
+      "quote": "Mr. Pruett wanted to sell it to a collector in Brask",
+      "reason": "proposal overtaken by the vote"
+     },
+     "the decision to display the cracked bell at the school": {
+      "kind": "mention",
+      "quote": "The schoolyard plan, which some of the mothers had liked, was quietly dropped",
+      "reason": "dropped"
+     },
+     "the decision to store the cracked bell in a family barn": {
+      "kind": "refute",
+      "quote": "It still hangs there.",
+      "reason": "it remains in the tower"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-2.v1",
+    "question": "According to the passage, the crack in the bell was first noticed by",
+    "choices": [
+     "the meetinghouse minister",
+     "the narrator's sister",
+     "the village schoolteacher",
+     "a visiting organ tuner",
+     "the narrator's mother"
+    ],
+    "claimed_answer": "the narrator's sister",
+    "kills": {
+     "the meetinghouse minister": {
+      "kind": "mention",
+      "quote": "Reverend Coombe blamed the wind in the louvers",
+      "reason": "he misread the sound"
+     },
+     "the village schoolteacher": {
+      "kind": "mention",
+      "quote": "Miss Ardley thought it was the cold that made it rattle",
+      "reason": "she explained it away"
+     },
+     "a visiting organ tuner": {
+      "kind": "refute",
+      "quote": "Nell kept on about it until my grandfather took a lantern up the tower",
+      "reason": "Nell drove the discovery"
+     },
+     "the narrator's mother": {
+      "kind": "refute",
+      "quote": "my little sister Nell came home from sledding and announced that the bell sounded broken",
+      "reason": "the sister was first"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-3.v1",
+    "question": "The passage suggests that the narrator's grandfather valued the bell chiefly for",
+    "choices": [
+     "the richness of its tone",
+     "its usefulness as an alarm",
+     "the money it could bring",
+     "the length of its history",
+     "its tie to his own father"
+    ],
+    "claimed_answer": "its usefulness as an alarm",
+    "kills": {
+     "the richness of its tone": {
+      "kind": "mention",
+      "quote": "People said the bell had a lovely voice",
+      "reason": "other people's view; to him it was a duty"
+     },
+     "the money it could bring": {
+      "kind": "mention",
+      "quote": "or about what the collector had offered",
+      "reason": "what others still talked about"
+     },
+     "the length of its history": {
+      "kind": "mention",
+      "quote": "A few people still talked about the bell's age",
+      "reason": "others' concern"
+     },
+     "its tie to his own father": {
+      "kind": "mention",
+      "quote": "that his father had hung it, but to him the job was simply a duty",
+      "reason": "mentioned but set aside"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-4.v1",
+    "question": "As it is used in the third paragraph, the word \"struck\" most nearly means",
+    "choices": [
+     "knocked",
+     "impressed",
+     "settled",
+     "removed",
+     "discovered"
+    ],
+    "claimed_answer": "impressed",
+    "kills": {
+     "knocked": {
+      "kind": "refute",
+      "quote": "being struck by how far that wounded sound carried",
+      "reason": "here \"struck\" means impressed, not knocked"
+     },
+     "settled": {
+      "kind": "refute",
+      "quote": "being struck by how far that wounded sound carried",
+      "reason": "here \"struck\" means impressed, not settled"
+     },
+     "removed": {
+      "kind": "refute",
+      "quote": "being struck by how far that wounded sound carried",
+      "reason": "here \"struck\" means impressed, not removed"
+     },
+     "discovered": {
+      "kind": "refute",
+      "quote": "being struck by how far that wounded sound carried",
+      "reason": "here \"struck\" means impressed, not discovered"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-5.v1",
+    "question": "The narrator's attitude toward the bell's fate is best described as",
+    "choices": [
+     "lingering regret",
+     "wry amusement",
+     "nagging unease",
+     "quiet contentment",
+     "tender gratitude"
+    ],
+    "claimed_answer": "wry amusement",
+    "kills": {
+     "lingering regret": {
+      "kind": "refute",
+      "quote": "I find myself grinning",
+      "reason": "amused rather than sorry"
+     },
+     "nagging unease": {
+      "kind": "mention",
+      "quote": "the new minister once asked, very politely, whether something might be done about it",
+      "reason": "the minister's discomfort, not the narrator's"
+     },
+     "quiet contentment": {
+      "kind": "mention",
+      "quote": "it seems rather proud of it",
+      "reason": "the town's pride, described with a joke"
+     },
+     "tender gratitude": {
+      "kind": "refute",
+      "quote": "I find myself grinning",
+      "reason": "amused, not thankful"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-6.v1",
+    "question": "The first paragraph chiefly serves to",
+    "choices": [
+     "describe how the bell sounded in its best years",
+     "explain the grandfather's daily ringing routine",
+     "show how short of money the town had become",
+     "recount how the bell was brought to the town",
+     "introduce the grandfather's father, who hung the bell"
+    ],
+    "claimed_answer": "explain the grandfather's daily ringing routine",
+    "kills": {
+     "describe how the bell sounded in its best years": {
+      "kind": "mention",
+      "quote": "People said the bell had a lovely voice",
+      "reason": "other people's view, subordinate"
+     },
+     "show how short of money the town had become": {
+      "kind": "refute",
+      "quote": "he did it the same way every day of my childhood",
+      "reason": "the paragraph is about his routine"
+     },
+     "recount how the bell was brought to the town": {
+      "kind": "refute",
+      "quote": "he did it the same way every day of my childhood",
+      "reason": "the arrival is never told"
+     },
+     "introduce the grandfather's father, who hung the bell": {
+      "kind": "mention",
+      "quote": "that his father had hung it",
+      "reason": "mentioned in passing"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV1-P01.v2",
+  "passage": "The year I turned twelve, Tessel Hollow was very nearly broke. The mill had closed, the school roof leaked into the reading corner, and the meetinghouse bell that my grandfather rang every noon was about the only thing in town worth much. Everyone knew its history, how it had come over the pass on an ox sled, but that winter people spoke mostly of what it might fetch.\n\nIt was Miss Ardley, the schoolteacher, who first heard the change. Walking her pupils home one January noon, she caught a rasp in the bell and sent a boy to tell my grandfather. My mother said later she had noticed it too, and Reverend Coombe agreed once it was pointed out, but Miss Ardley was the one who insisted someone climb up and look.\n\nAt the town meeting in March, some wanted to send the bell to the foundry at Ludd to be recast, and for a while the room was with them. Then my grandfather read out a letter from a collector in Brask who wanted old bells, cracked or whole, and named a figure larger than the cost of a new roof. Within a week a price had been struck, and the collector's men were measuring the tower door.\n\nPeople were surprised, since he had rung it for forty years. Some had expected him to defend its age, or to ask that it be set in the schoolyard. But he had always talked about the bell the way he talked about a good cow or a sound roof, as something the town owned and could spend when it needed to. The roof, he said, was what mattered now. By April the bell was gone.\n\nI was there when they lowered it. My grandfather watched with his hands in his pockets and said it was a fair trade. I suppose it was. Even so, I have sometimes wondered where the bell hangs now, or whether it sits in a warehouse with a paper tag on its lip, and the thought stays with me like a pebble in a shoe.",
+  "questions": [
+   {
+    "id": "WV1-P01-1.v2",
+    "question": "The passage is primarily about",
+    "choices": [
+     "the decision to melt down the cracked bell and recast it",
+     "the decision to keep ringing the cracked bell as it was",
+     "the decision to sell the cracked bell to a collector",
+     "the decision to display the cracked bell at the school",
+     "the decision to store the cracked bell in a family barn"
+    ],
+    "claimed_answer": "the decision to sell the cracked bell to a collector",
+    "kills": {
+     "the decision to melt down the cracked bell and recast it": {
+      "kind": "mention",
+      "quote": "some wanted to send the bell to the foundry at Ludd to be recast",
+      "reason": "the room moved away from this"
+     },
+     "the decision to keep ringing the cracked bell as it was": {
+      "kind": "refute",
+      "quote": "By April the bell was gone",
+      "reason": "it no longer hangs to be rung"
+     },
+     "the decision to display the cracked bell at the school": {
+      "kind": "mention",
+      "quote": "or to ask that it be set in the schoolyard",
+      "reason": "something people expected, not what happened"
+     },
+     "the decision to store the cracked bell in a family barn": {
+      "kind": "refute",
+      "quote": "I have sometimes wondered where the bell hangs now",
+      "reason": "the family does not have it"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-2.v2",
+    "question": "According to the passage, the crack in the bell was first noticed by",
+    "choices": [
+     "the meetinghouse minister",
+     "the narrator's sister",
+     "the village schoolteacher",
+     "a visiting organ tuner",
+     "the narrator's mother"
+    ],
+    "claimed_answer": "the village schoolteacher",
+    "kills": {
+     "the meetinghouse minister": {
+      "kind": "mention",
+      "quote": "Reverend Coombe agreed once it was pointed out",
+      "reason": "only after being told"
+     },
+     "the narrator's sister": {
+      "kind": "refute",
+      "quote": "It was Miss Ardley, the schoolteacher, who first heard the change.",
+      "reason": "the teacher was first"
+     },
+     "a visiting organ tuner": {
+      "kind": "refute",
+      "quote": "It was Miss Ardley, the schoolteacher, who first heard the change.",
+      "reason": "the teacher was first"
+     },
+     "the narrator's mother": {
+      "kind": "mention",
+      "quote": "My mother said later she had noticed it too",
+      "reason": "a later claim"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-3.v2",
+    "question": "The passage suggests that the narrator's grandfather valued the bell chiefly for",
+    "choices": [
+     "the richness of its tone",
+     "its usefulness as an alarm",
+     "the money it could bring",
+     "the length of its history",
+     "its tie to his own father"
+    ],
+    "claimed_answer": "the money it could bring",
+    "kills": {
+     "the richness of its tone": {
+      "kind": "refute",
+      "quote": "he had always talked about the bell the way he talked about a good cow or a sound roof",
+      "reason": "practical, not musical"
+     },
+     "its usefulness as an alarm": {
+      "kind": "refute",
+      "quote": "The roof, he said, was what mattered now.",
+      "reason": "his concern was paying for the roof"
+     },
+     "the length of its history": {
+      "kind": "mention",
+      "quote": "Some had expected him to defend its age",
+      "reason": "an expectation he defied"
+     },
+     "its tie to his own father": {
+      "kind": "refute",
+      "quote": "he had always talked about the bell the way he talked about a good cow or a sound roof",
+      "reason": "no sentiment attached"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-4.v2",
+    "question": "As it is used in the third paragraph, the word \"struck\" most nearly means",
+    "choices": [
+     "knocked",
+     "impressed",
+     "settled",
+     "removed",
+     "discovered"
+    ],
+    "claimed_answer": "settled",
+    "kills": {
+     "knocked": {
+      "kind": "refute",
+      "quote": "a price had been struck",
+      "reason": "here \"struck\" means settled, not knocked"
+     },
+     "impressed": {
+      "kind": "refute",
+      "quote": "a price had been struck",
+      "reason": "here \"struck\" means settled, not impressed"
+     },
+     "removed": {
+      "kind": "refute",
+      "quote": "a price had been struck",
+      "reason": "here \"struck\" means settled, not removed"
+     },
+     "discovered": {
+      "kind": "refute",
+      "quote": "a price had been struck",
+      "reason": "here \"struck\" means settled, not discovered"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-5.v2",
+    "question": "The narrator's attitude toward the bell's fate is best described as",
+    "choices": [
+     "lingering regret",
+     "wry amusement",
+     "nagging unease",
+     "quiet contentment",
+     "tender gratitude"
+    ],
+    "claimed_answer": "nagging unease",
+    "kills": {
+     "lingering regret": {
+      "kind": "mention",
+      "quote": "I suppose it was",
+      "reason": "the narrator accepts the trade, so it is not regret"
+     },
+     "wry amusement": {
+      "kind": "refute",
+      "quote": "the thought stays with me like a pebble in a shoe",
+      "reason": "nagging, not funny"
+     },
+     "quiet contentment": {
+      "kind": "mention",
+      "quote": "said it was a fair trade",
+      "reason": "the grandfather's satisfaction, followed by 'Even so'"
+     },
+     "tender gratitude": {
+      "kind": "refute",
+      "quote": "the thought stays with me like a pebble in a shoe",
+      "reason": "unsettled, not thankful"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-6.v2",
+    "question": "The first paragraph chiefly serves to",
+    "choices": [
+     "describe how the bell sounded in its best years",
+     "explain the grandfather's daily ringing routine",
+     "show how short of money the town had become",
+     "recount how the bell was brought to the town",
+     "introduce the grandfather's father, who hung the bell"
+    ],
+    "claimed_answer": "show how short of money the town had become",
+    "kills": {
+     "describe how the bell sounded in its best years": {
+      "kind": "refute",
+      "quote": "Tessel Hollow was very nearly broke",
+      "reason": "the paragraph is about poverty, not sound"
+     },
+     "explain the grandfather's daily ringing routine": {
+      "kind": "mention",
+      "quote": "the meetinghouse bell that my grandfather rang every noon",
+      "reason": "a passing detail"
+     },
+     "recount how the bell was brought to the town": {
+      "kind": "mention",
+      "quote": "Everyone knew its history, how it had come over the pass on an ox sled",
+      "reason": "mentioned, then turned toward what it might fetch"
+     },
+     "introduce the grandfather's father, who hung the bell": {
+      "kind": "refute",
+      "quote": "Tessel Hollow was very nearly broke",
+      "reason": "the paragraph is about the town's money"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV1-P01.v3",
+  "passage": "The meetinghouse bell in Tessel Hollow came over the pass on an ox sled in 1841, after the town had saved for it for eleven years. Near the top the sled broke an axle, and the men carried the bell the last mile on poles. My grandfather had rung it at noon for decades, and it had a deep, round voice, but the story of its arrival was what he told me most.\n\nThe winter I turned twelve, a Mr. Fenn came from the city to tune the meetinghouse organ. He was the first to hear it: at noon on his second day he frowned at the ceiling and asked my grandfather whether he knew his bell was cracked. Reverend Coombe had thought the new rasp was ice, and my mother had blamed the wind, but Mr. Fenn climbed the tower and showed us the crack.\n\nAt the town meeting in March, the warrant listed one proposal: send the bell to the foundry at Ludd to be recast. My grandfather rose and asked who in the room had carried it up the pass. Nobody had, but several had grandfathers who did. By the end of the evening the recasting article had been struck from the warrant, and Mr. Pruett's idea of selling to a collector in Brask got even fewer votes.\n\nWhat the town did instead was my grandfather's idea. In May the bell was set on a stone base in the schoolyard, beside a plaque naming the men who had hauled it. A few people grumbled that it would have been more useful as a fire alarm, and some had wanted it rung cracked as before, but he said a bell that old belonged where children would ask about it. A smaller bell went up in the tower.\n\nIt is still there. Children climb on it and knock on its side to hear the dull clunk, and every fall the third grade learns about the ox sled. When I walk past, I put my hand on the cool green metal, and think that it ended up in exactly the right place. My sister says it looks lonely out there; I have never thought so.",
+  "questions": [
+   {
+    "id": "WV1-P01-1.v3",
+    "question": "The passage is primarily about",
+    "choices": [
+     "the decision to melt down the cracked bell and recast it",
+     "the decision to keep ringing the cracked bell as it was",
+     "the decision to sell the cracked bell to a collector",
+     "the decision to display the cracked bell at the school",
+     "the decision to store the cracked bell in a family barn"
+    ],
+    "claimed_answer": "the decision to display the cracked bell at the school",
+    "kills": {
+     "the decision to melt down the cracked bell and recast it": {
+      "kind": "mention",
+      "quote": "the recasting article had been struck from the warrant",
+      "reason": "recasting was removed from consideration"
+     },
+     "the decision to keep ringing the cracked bell as it was": {
+      "kind": "mention",
+      "quote": "some had wanted it rung cracked as before",
+      "reason": "a view the town passed over"
+     },
+     "the decision to sell the cracked bell to a collector": {
+      "kind": "mention",
+      "quote": "Mr. Pruett's idea of selling to a collector in Brask got even fewer votes",
+      "reason": "rejected"
+     },
+     "the decision to store the cracked bell in a family barn": {
+      "kind": "refute",
+      "quote": "set on a stone base in the schoolyard",
+      "reason": "it stands at the school, not in a barn"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-2.v3",
+    "question": "According to the passage, the crack in the bell was first noticed by",
+    "choices": [
+     "the meetinghouse minister",
+     "the narrator's sister",
+     "the village schoolteacher",
+     "a visiting organ tuner",
+     "the narrator's mother"
+    ],
+    "claimed_answer": "a visiting organ tuner",
+    "kills": {
+     "the meetinghouse minister": {
+      "kind": "mention",
+      "quote": "Reverend Coombe had thought the new rasp was ice",
+      "reason": "he misread it"
+     },
+     "the narrator's sister": {
+      "kind": "refute",
+      "quote": "He was the first to hear it",
+      "reason": "the tuner was first"
+     },
+     "the village schoolteacher": {
+      "kind": "refute",
+      "quote": "He was the first to hear it",
+      "reason": "the tuner was first"
+     },
+     "the narrator's mother": {
+      "kind": "mention",
+      "quote": "my mother had blamed the wind",
+      "reason": "she misread it"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-3.v3",
+    "question": "The passage suggests that the narrator's grandfather valued the bell chiefly for",
+    "choices": [
+     "the richness of its tone",
+     "its usefulness as an alarm",
+     "the money it could bring",
+     "the length of its history",
+     "its tie to his own father"
+    ],
+    "claimed_answer": "the length of its history",
+    "kills": {
+     "the richness of its tone": {
+      "kind": "mention",
+      "quote": "it had a deep, round voice, but the story of its arrival was what he told me most",
+      "reason": "its voice was secondary to its story"
+     },
+     "its usefulness as an alarm": {
+      "kind": "mention",
+      "quote": "A few people grumbled that it would have been more useful as a fire alarm",
+      "reason": "others' view, rejected"
+     },
+     "the money it could bring": {
+      "kind": "mention",
+      "quote": "Mr. Pruett's idea of selling to a collector in Brask got even fewer votes",
+      "reason": "sale rejected"
+     },
+     "its tie to his own father": {
+      "kind": "refute",
+      "quote": "the story of its arrival was what he told me most",
+      "reason": "the town's story, not his father, is what he dwells on"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-4.v3",
+    "question": "As it is used in the third paragraph, the word \"struck\" most nearly means",
+    "choices": [
+     "knocked",
+     "impressed",
+     "settled",
+     "removed",
+     "discovered"
+    ],
+    "claimed_answer": "removed",
+    "kills": {
+     "knocked": {
+      "kind": "refute",
+      "quote": "struck from the warrant",
+      "reason": "here \"struck\" means removed, not knocked"
+     },
+     "impressed": {
+      "kind": "refute",
+      "quote": "struck from the warrant",
+      "reason": "here \"struck\" means removed, not impressed"
+     },
+     "settled": {
+      "kind": "refute",
+      "quote": "struck from the warrant",
+      "reason": "here \"struck\" means removed, not settled"
+     },
+     "discovered": {
+      "kind": "refute",
+      "quote": "struck from the warrant",
+      "reason": "here \"struck\" means removed, not discovered"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-5.v3",
+    "question": "The narrator's attitude toward the bell's fate is best described as",
+    "choices": [
+     "lingering regret",
+     "wry amusement",
+     "nagging unease",
+     "quiet contentment",
+     "tender gratitude"
+    ],
+    "claimed_answer": "quiet contentment",
+    "kills": {
+     "lingering regret": {
+      "kind": "refute",
+      "quote": "think that it ended up in exactly the right place",
+      "reason": "no sense of loss"
+     },
+     "wry amusement": {
+      "kind": "mention",
+      "quote": "knock on its side to hear the dull clunk",
+      "reason": "the children's play, not the narrator's stance"
+     },
+     "nagging unease": {
+      "kind": "mention",
+      "quote": "My sister says it looks lonely out there",
+      "reason": "the sister's view, which the narrator rejects"
+     },
+     "tender gratitude": {
+      "kind": "refute",
+      "quote": "think that it ended up in exactly the right place",
+      "reason": "approval of the outcome, not thanks to anyone"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-6.v3",
+    "question": "The first paragraph chiefly serves to",
+    "choices": [
+     "describe how the bell sounded in its best years",
+     "explain the grandfather's daily ringing routine",
+     "show how short of money the town had become",
+     "recount how the bell was brought to the town",
+     "introduce the grandfather's father, who hung the bell"
+    ],
+    "claimed_answer": "recount how the bell was brought to the town",
+    "kills": {
+     "describe how the bell sounded in its best years": {
+      "kind": "mention",
+      "quote": "it had a deep, round voice",
+      "reason": "a passing detail"
+     },
+     "explain the grandfather's daily ringing routine": {
+      "kind": "mention",
+      "quote": "My grandfather had rung it at noon for decades",
+      "reason": "a passing detail"
+     },
+     "show how short of money the town had become": {
+      "kind": "mention",
+      "quote": "after the town had saved for it for eleven years",
+      "reason": "part of the arrival story, not a present shortage"
+     },
+     "introduce the grandfather's father, who hung the bell": {
+      "kind": "refute",
+      "quote": "the story of its arrival was what he told me most",
+      "reason": "the arrival, not a person, is the focus"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV1-P01.v4",
+  "passage": "My great-grandfather, Tobias Wren, was the man who hung the meetinghouse bell in Tessel Hollow. He rigged the beam himself, set the yoke, and rang it for thirty years before handing the rope to my grandfather, then a boy of fifteen. My grandfather spoke of him every noon, as if the bell's deep, round note were his father's voice still calling across the fields.\n\nThe winter I turned twelve, my mother was the first to hear the crack. She came in from hanging laundry saying the bell sounded hoarse. My sister thought she was imagining it, and the organ tuner who visited that month blamed the cold, but my mother walked my grandfather to the tower herself, and there it was.\n\nAt the town meeting in March, most people favored sending the bell to the foundry at Ludd to be recast, and Mr. Pruett spoke for selling it to a collector in Brask. My grandfather sat through both arguments with his hat on his knees. It was my mother who finally struck on the answer: if the town wanted a new bell it could have one, and the old bell could come home to the family that had hung it.\n\nIn May four neighbors helped us lay it on oak blocks in the back of our barn. Some people thought it a waste, since it might have stood in the schoolyard or raised money for the roof, and Reverend Coombe worried the town would miss its sound. My grandfather said only that he would rather sit with it than hear a stranger ring it, and most evenings he did, on an upturned crate, his hand resting on the yoke Tobias had set.\n\nThe barn is mine now, and the bell is still there under a canvas sheet. Some evenings I sit on the same crate and think about my mother standing up in that meeting, and about the neighbors who carried four hundred pounds of bronze across our yard for no pay, and I hope they knew what they gave him. My sister calls it the family's heaviest heirloom and laughs, but she visits it too.",
+  "questions": [
+   {
+    "id": "WV1-P01-1.v4",
+    "question": "The passage is primarily about",
+    "choices": [
+     "the decision to melt down the cracked bell and recast it",
+     "the decision to keep ringing the cracked bell as it was",
+     "the decision to sell the cracked bell to a collector",
+     "the decision to display the cracked bell at the school",
+     "the decision to store the cracked bell in a family barn"
+    ],
+    "claimed_answer": "the decision to store the cracked bell in a family barn",
+    "kills": {
+     "the decision to melt down the cracked bell and recast it": {
+      "kind": "mention",
+      "quote": "most people favored sending the bell to the foundry at Ludd to be recast",
+      "reason": "majority view, overtaken by the mother's idea"
+     },
+     "the decision to keep ringing the cracked bell as it was": {
+      "kind": "mention",
+      "quote": "Reverend Coombe worried the town would miss its sound",
+      "reason": "a worry, not the outcome"
+     },
+     "the decision to sell the cracked bell to a collector": {
+      "kind": "mention",
+      "quote": "Mr. Pruett spoke for selling it to a collector in Brask",
+      "reason": "a proposal not adopted"
+     },
+     "the decision to display the cracked bell at the school": {
+      "kind": "mention",
+      "quote": "it might have stood in the schoolyard",
+      "reason": "an alternative people regretted, not the outcome"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-2.v4",
+    "question": "According to the passage, the crack in the bell was first noticed by",
+    "choices": [
+     "the meetinghouse minister",
+     "the narrator's sister",
+     "the village schoolteacher",
+     "a visiting organ tuner",
+     "the narrator's mother"
+    ],
+    "claimed_answer": "the narrator's mother",
+    "kills": {
+     "the meetinghouse minister": {
+      "kind": "refute",
+      "quote": "my mother was the first to hear the crack",
+      "reason": "the mother was first"
+     },
+     "the narrator's sister": {
+      "kind": "mention",
+      "quote": "My sister thought she was imagining it",
+      "reason": "the sister doubted it"
+     },
+     "the village schoolteacher": {
+      "kind": "refute",
+      "quote": "my mother was the first to hear the crack",
+      "reason": "the mother was first"
+     },
+     "a visiting organ tuner": {
+      "kind": "mention",
+      "quote": "the organ tuner who visited that month blamed the cold",
+      "reason": "he explained it away"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-3.v4",
+    "question": "The passage suggests that the narrator's grandfather valued the bell chiefly for",
+    "choices": [
+     "the richness of its tone",
+     "its usefulness as an alarm",
+     "the money it could bring",
+     "the length of its history",
+     "its tie to his own father"
+    ],
+    "claimed_answer": "its tie to his own father",
+    "kills": {
+     "the richness of its tone": {
+      "kind": "mention",
+      "quote": "Reverend Coombe worried the town would miss its sound",
+      "reason": "the minister's concern; the grandfather gives up hearing it"
+     },
+     "its usefulness as an alarm": {
+      "kind": "refute",
+      "quote": "he would rather sit with it than hear a stranger ring it",
+      "reason": "he takes it out of use"
+     },
+     "the money it could bring": {
+      "kind": "mention",
+      "quote": "raised money for the roof",
+      "reason": "others' alternative"
+     },
+     "the length of its history": {
+      "kind": "refute",
+      "quote": "his hand resting on the yoke Tobias had set",
+      "reason": "personal, family tie rather than the town's history"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-4.v4",
+    "question": "As it is used in the third paragraph, the word \"struck\" most nearly means",
+    "choices": [
+     "knocked",
+     "impressed",
+     "settled",
+     "removed",
+     "discovered"
+    ],
+    "claimed_answer": "discovered",
+    "kills": {
+     "knocked": {
+      "kind": "refute",
+      "quote": "struck on the answer",
+      "reason": "here \"struck\" means discovered, not knocked"
+     },
+     "impressed": {
+      "kind": "refute",
+      "quote": "struck on the answer",
+      "reason": "here \"struck\" means discovered, not impressed"
+     },
+     "settled": {
+      "kind": "refute",
+      "quote": "struck on the answer",
+      "reason": "here \"struck\" means discovered, not settled"
+     },
+     "removed": {
+      "kind": "refute",
+      "quote": "struck on the answer",
+      "reason": "here \"struck\" means discovered, not removed"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-5.v4",
+    "question": "The narrator's attitude toward the bell's fate is best described as",
+    "choices": [
+     "lingering regret",
+     "wry amusement",
+     "nagging unease",
+     "quiet contentment",
+     "tender gratitude"
+    ],
+    "claimed_answer": "tender gratitude",
+    "kills": {
+     "lingering regret": {
+      "kind": "refute",
+      "quote": "I hope they knew what they gave him",
+      "reason": "thankful, not regretful"
+     },
+     "wry amusement": {
+      "kind": "mention",
+      "quote": "My sister calls it the family's heaviest heirloom and laughs",
+      "reason": "the sister's amusement, not the narrator's"
+     },
+     "nagging unease": {
+      "kind": "refute",
+      "quote": "I hope they knew what they gave him",
+      "reason": "no worry"
+     },
+     "quiet contentment": {
+      "kind": "refute",
+      "quote": "I hope they knew what they gave him",
+      "reason": "directed at people who helped, beyond approval of the result"
+     }
+    }
+   },
+   {
+    "id": "WV1-P01-6.v4",
+    "question": "The first paragraph chiefly serves to",
+    "choices": [
+     "describe how the bell sounded in its best years",
+     "explain the grandfather's daily ringing routine",
+     "show how short of money the town had become",
+     "recount how the bell was brought to the town",
+     "introduce the grandfather's father, who hung the bell"
+    ],
+    "claimed_answer": "introduce the grandfather's father, who hung the bell",
+    "kills": {
+     "describe how the bell sounded in its best years": {
+      "kind": "mention",
+      "quote": "the bell's deep, round note",
+      "reason": "in service of describing the father"
+     },
+     "explain the grandfather's daily ringing routine": {
+      "kind": "mention",
+      "quote": "handing the rope to my grandfather",
+      "reason": "a detail of Tobias's story"
+     },
+     "show how short of money the town had become": {
+      "kind": "refute",
+      "quote": "was the man who hung the meetinghouse bell in Tessel Hollow",
+      "reason": "about a person, not money"
+     },
+     "recount how the bell was brought to the town": {
+      "kind": "refute",
+      "quote": "He rigged the beam himself, set the yoke",
+      "reason": "his hanging of it, not its journey"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV1-P02.v0",
+  "passage": "For more than two centuries, the stone well at the center of Tessendale had a habit shared by no other well in the county. On certain evenings it hummed, a low, steady note that rose from the shaft and carried as far as the churchyard. The villagers called it the Piper's Well, and few of them wanted it explained.\n\nThe name came from a story every child in the valley could recite. A young shepherd named Owen Marr, the tale went, played his pipe at the well-head each evening until a gust took his cap down the shaft. He leaned in after it, fell, and drowned, and ever since he had gone on playing below for anyone who stopped to listen.\n\nIn 1891 a county surveyor, Agathe Lorne, came to look into the matter. The miller, Josiah Fenn, assured her that the sound was his own wheel across the valley, carried through the rock, and the schoolmaster believed a stream ran beneath the well. Lorne kept a log for a season. The hum came on days when the mill was idle, and in dry weeks as readily as wet ones; what it always kept company with was a west wind. When she stretched a canvas sheet across the well's mouth one breezy evening, the piper fell silent at once. The sound, she wrote, was wind passing over the shaft, as breath passes over the neck of a bottle.\n\nHer report caused more argument than the hum ever had. One councillor proposed filling the shaft with earth, and another wanted a stone slab laid over it. The women who drew water there every morning settled the matter by ignoring both, and by spring the proposals were forgotten.\n\nOn west-wind evenings the note still rises as the last buckets of the day come up, and anyone can hear exactly what Lorne heard: air moving over stone. It is a tidy answer. Yet the older people of Tessendale remember a sound that belonged to a drowned boy with a pipe, and it is hard to read Lorne's careful log without missing him a little.",
+  "questions": [
+   {
+    "id": "WV1-P02-1.v0",
+    "question": "The passage is primarily about",
+    "choices": [
+     "how the hum was traced to wind passing over the well",
+     "how the hum was traced to a stream running beneath the well",
+     "how the hum was traced to a crack in the well's stone lining",
+     "how the hum was traced to toads living in the well's walls",
+     "how the hum was traced to a mill wheel across the valley"
+    ],
+    "claimed_answer": "how the hum was traced to wind passing over the well",
+    "kills": {
+     "how the hum was traced to a stream running beneath the well": {
+      "kind": "mention",
+      "quote": "the schoolmaster believed a stream ran beneath the well",
+      "reason": "the schoolmaster's guess is overtaken by the log and the canvas test"
+     },
+     "how the hum was traced to a crack in the well's stone lining": {
+      "kind": "refute",
+      "quote": "When she stretched a canvas sheet across the well's mouth one breezy evening, the piper fell silent at once",
+      "reason": "covering the mouth silenced it, so the source was at the mouth, not in the lining"
+     },
+     "how the hum was traced to toads living in the well's walls": {
+      "kind": "refute",
+      "quote": "When she stretched a canvas sheet across the well's mouth one breezy evening, the piper fell silent at once",
+      "reason": "covering the mouth silenced it; toads below would keep calling"
+     },
+     "how the hum was traced to a mill wheel across the valley": {
+      "kind": "mention",
+      "quote": "assured her that the sound was his own wheel across the valley",
+      "reason": "the miller's belief; the hum came when the mill was idle"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-2.v0",
+    "question": "According to the passage, the hum was most often heard",
+    "choices": [
+     "on evenings when a west wind blew",
+     "in the weeks after heavy rain",
+     "on the coldest nights of winter",
+     "on warm nights in early summer",
+     "on days when grain was being ground"
+    ],
+    "claimed_answer": "on evenings when a west wind blew",
+    "kills": {
+     "in the weeks after heavy rain": {
+      "kind": "refute",
+      "quote": "in dry weeks as readily as wet ones",
+      "reason": "rain made no difference"
+     },
+     "on the coldest nights of winter": {
+      "kind": "refute",
+      "quote": "what it always kept company with was a west wind",
+      "reason": "the log ties the hum to wind, not to cold"
+     },
+     "on warm nights in early summer": {
+      "kind": "refute",
+      "quote": "what it always kept company with was a west wind",
+      "reason": "the log ties the hum to wind, not to season"
+     },
+     "on days when grain was being ground": {
+      "kind": "refute",
+      "quote": "The hum came on days when the mill was idle",
+      "reason": "it came when no grain was being ground"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-3.v0",
+    "question": "It can most reasonably be inferred that the well at Tessendale today",
+    "choices": [
+     "is still worked by bucket and rope",
+     "has been filled in with earth",
+     "attracts visitors from far away",
+     "is sealed beneath a stone slab",
+     "is fitted with an iron pump"
+    ],
+    "claimed_answer": "is still worked by bucket and rope",
+    "kills": {
+     "has been filled in with earth": {
+      "kind": "mention",
+      "quote": "One councillor proposed filling the shaft with earth",
+      "reason": "the proposal was ignored and forgotten"
+     },
+     "attracts visitors from far away": {
+      "kind": "refute",
+      "quote": "The women who drew water there every morning",
+      "reason": "it remains an everyday village water source; no visitors are described"
+     },
+     "is sealed beneath a stone slab": {
+      "kind": "mention",
+      "quote": "another wanted a stone slab laid over it",
+      "reason": "the proposal was ignored and forgotten"
+     },
+     "is fitted with an iron pump": {
+      "kind": "refute",
+      "quote": "the last buckets of the day come up",
+      "reason": "water still comes up by bucket"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-4.v0",
+    "question": "As it is used in the fourth paragraph, the word \"drew\" most nearly means",
+    "choices": [
+     "fetched",
+     "withdrew",
+     "attracted",
+     "sketched",
+     "approached"
+    ],
+    "claimed_answer": "fetched",
+    "kills": {
+     "withdrew": {
+      "kind": "refute",
+      "quote": "The women who drew water there every morning",
+      "reason": "here water is fetched from a well"
+     },
+     "attracted": {
+      "kind": "refute",
+      "quote": "The women who drew water there every morning",
+      "reason": "here water is fetched from a well"
+     },
+     "sketched": {
+      "kind": "refute",
+      "quote": "The women who drew water there every morning",
+      "reason": "here water is fetched from a well"
+     },
+     "approached": {
+      "kind": "refute",
+      "quote": "The women who drew water there every morning",
+      "reason": "here water is fetched from a well"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-5.v0",
+    "question": "The author's attitude toward the legend of the drowned piper is best described as",
+    "choices": [
+     "nostalgic",
+     "impatient",
+     "admiring",
+     "amused",
+     "grateful"
+    ],
+    "claimed_answer": "nostalgic",
+    "kills": {
+     "impatient": {
+      "kind": "refute",
+      "quote": "it is hard to read Lorne's careful log without missing him a little",
+      "reason": "the author misses the lost legend"
+     },
+     "admiring": {
+      "kind": "refute",
+      "quote": "it is hard to read Lorne's careful log without missing him a little",
+      "reason": "the author misses the lost legend"
+     },
+     "amused": {
+      "kind": "refute",
+      "quote": "it is hard to read Lorne's careful log without missing him a little",
+      "reason": "the author misses the lost legend"
+     },
+     "grateful": {
+      "kind": "refute",
+      "quote": "it is hard to read Lorne's careful log without missing him a little",
+      "reason": "the author misses the lost legend"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-6.v0",
+    "question": "The second paragraph chiefly serves to",
+    "choices": [
+     "retell the story behind the well's name",
+     "explain why the council sent for a surveyor",
+     "present the earliest written report of the sound",
+     "describe how and when the well was dug",
+     "introduce the surveyor who studied the well"
+    ],
+    "claimed_answer": "retell the story behind the well's name",
+    "kills": {
+     "explain why the council sent for a surveyor": {
+      "kind": "refute",
+      "quote": "The name came from a story every child in the valley could recite.",
+      "reason": "the paragraph tells the legend; no council appears"
+     },
+     "present the earliest written report of the sound": {
+      "kind": "refute",
+      "quote": "The name came from a story every child in the valley could recite.",
+      "reason": "an oral tale, not a written report"
+     },
+     "describe how and when the well was dug": {
+      "kind": "refute",
+      "quote": "The name came from a story every child in the valley could recite.",
+      "reason": "nothing on the well's building"
+     },
+     "introduce the surveyor who studied the well": {
+      "kind": "mention",
+      "quote": "In 1891 a county surveyor, Agathe Lorne, came to look into the matter.",
+      "reason": "Lorne is introduced in the third paragraph"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV1-P02.v1",
+  "passage": "For more than two centuries, the stone well at the center of Tessendale had a habit shared by no other well in the county. On certain evenings it hummed, a low, steady note that rose from the shaft and carried as far as the churchyard. The villagers called it the Piper's Well, and few of them wanted it explained.\n\nThe village council had other worries. After every heavy storm the well's water ran brown for days, and two families had fallen ill the previous autumn. In the spring of 1891 the council wrote to the county for a surveyor who could say whether the well was safe to keep.\n\nThe surveyor, Agathe Lorne, heard the theories first. The miller, Josiah Fenn, was sure the sound was his own wheel across the valley, carried through the rock, and a visiting naturalist had heard toads in the walls. Lorne kept a log through the summer. The hum came whether the wheel turned or stood, and long after the toads had gone quiet in June; it followed the rain, swelling in the weeks after a downpour. Lowering a weighted line, she found that the shaft opened at its base onto a hollow where an underground stream fell several feet. The falling water was the piper, and the same stream carried mud from the hillside into the well.\n\nSome villagers asked for a pump to lift water from higher in the shaft, and the vicar wanted a stone slab laid over it so the hum could still be heard. The council judged the stream too close to mend. In October it drew twelve pounds from the parish fund for cartloads of earth, and once the ground had settled, turf was laid.\n\nIt is tempting to mourn the piper, but the legend has much to answer for. For decades it made the village treat a failing well as something sacred, and families went on drinking brown water out of respect for a drowned boy who, by every record Lorne could find, had never existed. Children now play ball on the square of grass by the church where he was said to play his pipe.",
+  "questions": [
+   {
+    "id": "WV1-P02-1.v1",
+    "question": "The passage is primarily about",
+    "choices": [
+     "how the hum was traced to wind passing over the well",
+     "how the hum was traced to a stream running beneath the well",
+     "how the hum was traced to a crack in the well's stone lining",
+     "how the hum was traced to toads living in the well's walls",
+     "how the hum was traced to a mill wheel across the valley"
+    ],
+    "claimed_answer": "how the hum was traced to a stream running beneath the well",
+    "kills": {
+     "how the hum was traced to wind passing over the well": {
+      "kind": "refute",
+      "quote": "it followed the rain, swelling in the weeks after a downpour",
+      "reason": "the hum tracks rain, not wind, and Lorne finds a falling stream"
+     },
+     "how the hum was traced to a crack in the well's stone lining": {
+      "kind": "refute",
+      "quote": "The falling water was the piper",
+      "reason": "the cause found is falling water, not a crack"
+     },
+     "how the hum was traced to toads living in the well's walls": {
+      "kind": "mention",
+      "quote": "a visiting naturalist had heard toads in the walls",
+      "reason": "the hum went on long after the toads went quiet"
+     },
+     "how the hum was traced to a mill wheel across the valley": {
+      "kind": "mention",
+      "quote": "was sure the sound was his own wheel across the valley",
+      "reason": "the hum came whether the wheel turned or stood"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-2.v1",
+    "question": "According to the passage, the hum was most often heard",
+    "choices": [
+     "on evenings when a west wind blew",
+     "in the weeks after heavy rain",
+     "on the coldest nights of winter",
+     "on warm nights in early summer",
+     "on days when grain was being ground"
+    ],
+    "claimed_answer": "in the weeks after heavy rain",
+    "kills": {
+     "on evenings when a west wind blew": {
+      "kind": "refute",
+      "quote": "it followed the rain",
+      "reason": "the hum tracks rain, not wind"
+     },
+     "on the coldest nights of winter": {
+      "kind": "refute",
+      "quote": "it followed the rain",
+      "reason": "the hum tracks rain, not cold"
+     },
+     "on warm nights in early summer": {
+      "kind": "refute",
+      "quote": "long after the toads had gone quiet in June",
+      "reason": "it continued well past early summer"
+     },
+     "on days when grain was being ground": {
+      "kind": "refute",
+      "quote": "The hum came whether the wheel turned or stood",
+      "reason": "grinding made no difference"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-3.v1",
+    "question": "It can most reasonably be inferred that the well at Tessendale today",
+    "choices": [
+     "is still worked by bucket and rope",
+     "has been filled in with earth",
+     "attracts visitors from far away",
+     "is sealed beneath a stone slab",
+     "is fitted with an iron pump"
+    ],
+    "claimed_answer": "has been filled in with earth",
+    "kills": {
+     "is still worked by bucket and rope": {
+      "kind": "refute",
+      "quote": "In October it drew twelve pounds from the parish fund for cartloads of earth",
+      "reason": "the shaft was filled, so no buckets"
+     },
+     "attracts visitors from far away": {
+      "kind": "refute",
+      "quote": "Children now play ball on the square of grass",
+      "reason": "only a patch of grass remains"
+     },
+     "is sealed beneath a stone slab": {
+      "kind": "mention",
+      "quote": "the vicar wanted a stone slab laid over it",
+      "reason": "the vicar's wish lost to filling"
+     },
+     "is fitted with an iron pump": {
+      "kind": "mention",
+      "quote": "Some villagers asked for a pump to lift water from higher in the shaft",
+      "reason": "a request the council passed over"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-4.v1",
+    "question": "As it is used in the fourth paragraph, the word \"drew\" most nearly means",
+    "choices": [
+     "fetched",
+     "withdrew",
+     "attracted",
+     "sketched",
+     "approached"
+    ],
+    "claimed_answer": "withdrew",
+    "kills": {
+     "fetched": {
+      "kind": "refute",
+      "quote": "it drew twelve pounds from the parish fund",
+      "reason": "here money is withdrawn from a fund"
+     },
+     "attracted": {
+      "kind": "refute",
+      "quote": "it drew twelve pounds from the parish fund",
+      "reason": "here money is withdrawn from a fund"
+     },
+     "sketched": {
+      "kind": "refute",
+      "quote": "it drew twelve pounds from the parish fund",
+      "reason": "here money is withdrawn from a fund"
+     },
+     "approached": {
+      "kind": "refute",
+      "quote": "it drew twelve pounds from the parish fund",
+      "reason": "here money is withdrawn from a fund"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-5.v1",
+    "question": "The author's attitude toward the legend of the drowned piper is best described as",
+    "choices": [
+     "nostalgic",
+     "impatient",
+     "admiring",
+     "amused",
+     "grateful"
+    ],
+    "claimed_answer": "impatient",
+    "kills": {
+     "nostalgic": {
+      "kind": "mention",
+      "quote": "It is tempting to mourn the piper",
+      "reason": "the author raises mourning only to set it aside"
+     },
+     "admiring": {
+      "kind": "refute",
+      "quote": "by every record Lorne could find, had never existed",
+      "reason": "the author stresses the legend was baseless"
+     },
+     "amused": {
+      "kind": "refute",
+      "quote": "families went on drinking brown water out of respect for a drowned boy",
+      "reason": "the legend's cost is treated as serious"
+     },
+     "grateful": {
+      "kind": "refute",
+      "quote": "the legend has much to answer for",
+      "reason": "the author blames the legend"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-6.v1",
+    "question": "The second paragraph chiefly serves to",
+    "choices": [
+     "retell the story behind the well's name",
+     "explain why the council sent for a surveyor",
+     "present the earliest written report of the sound",
+     "describe how and when the well was dug",
+     "introduce the surveyor who studied the well"
+    ],
+    "claimed_answer": "explain why the council sent for a surveyor",
+    "kills": {
+     "retell the story behind the well's name": {
+      "kind": "mention",
+      "quote": "The villagers called it the Piper's Well",
+      "reason": "the name is only mentioned in the first paragraph; the story is never told"
+     },
+     "present the earliest written report of the sound": {
+      "kind": "refute",
+      "quote": "After every heavy storm the well's water ran brown for days",
+      "reason": "about the council's worry, not an old record"
+     },
+     "describe how and when the well was dug": {
+      "kind": "refute",
+      "quote": "After every heavy storm the well's water ran brown for days",
+      "reason": "about the water's condition, not the digging"
+     },
+     "introduce the surveyor who studied the well": {
+      "kind": "mention",
+      "quote": "The surveyor, Agathe Lorne, heard the theories first.",
+      "reason": "she is named and introduced in the third paragraph"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV1-P02.v2",
+  "passage": "For more than two centuries, the stone well at the center of Tessendale had a habit shared by no other well in the county. On certain evenings it hummed, a low, steady note that rose from the shaft and carried as far as the churchyard. The villagers called it the Piper's Well, and few of them wanted it explained.\n\nThe earliest written report of the sound is an entry in the parish register for January 1702, in which the curate noted that the well \"did sing all the night of the great frost, to the terror of the house next it.\" Later entries mention it in other hard winters, usually beside a remark about the cold.\n\nIn 1891 a county surveyor, Agathe Lorne, took up the question. The miller, Josiah Fenn, insisted the sound was his own wheel, carried through the rock, while the schoolmaster held that a stream ran under the well. Lorne kept her log from November to March. The hum came on frost nights whether the wheel turned or stood, and it was loudest when the ground was frozen hard and every spring on the hill had stopped. Descending on a rope, she found a long crack in the stone lining. As the stones shrank in the bitter cold, the edges of the crack rubbed and rang, and the shaft carried the note upward like a pipe.\n\nThe council's first thought was to fill the shaft with earth or cover it with a stone slab. Then Lorne's report appeared in the county newspaper, and it drew readers from as far as the coast who wanted to hear a well sing in the frost. The innkeeper, who had empty rooms every winter, argued for leaving it exactly as it was, and the council agreed.\n\nEach January the inn is full again, and the lantern-lit path to the well, which has given no water since the spring house was built, is worn smooth. The legend, it turns out, had the details right. The old rhyme says the piper plays \"when the ice is on the trough,\" which describes the conditions as exactly as Lorne's log, and it was set down by people with only their ears to go by.",
+  "questions": [
+   {
+    "id": "WV1-P02-1.v2",
+    "question": "The passage is primarily about",
+    "choices": [
+     "how the hum was traced to wind passing over the well",
+     "how the hum was traced to a stream running beneath the well",
+     "how the hum was traced to a crack in the well's stone lining",
+     "how the hum was traced to toads living in the well's walls",
+     "how the hum was traced to a mill wheel across the valley"
+    ],
+    "claimed_answer": "how the hum was traced to a crack in the well's stone lining",
+    "kills": {
+     "how the hum was traced to wind passing over the well": {
+      "kind": "refute",
+      "quote": "As the stones shrank in the bitter cold, the edges of the crack rubbed and rang",
+      "reason": "the note comes from the crack, not from wind"
+     },
+     "how the hum was traced to a stream running beneath the well": {
+      "kind": "mention",
+      "quote": "the schoolmaster held that a stream ran under the well",
+      "reason": "the hum was loudest when every spring had stopped"
+     },
+     "how the hum was traced to toads living in the well's walls": {
+      "kind": "refute",
+      "quote": "As the stones shrank in the bitter cold, the edges of the crack rubbed and rang",
+      "reason": "the source is the crack's edges, not animals"
+     },
+     "how the hum was traced to a mill wheel across the valley": {
+      "kind": "mention",
+      "quote": "insisted the sound was his own wheel",
+      "reason": "the hum came whether the wheel turned or stood"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-2.v2",
+    "question": "According to the passage, the hum was most often heard",
+    "choices": [
+     "on evenings when a west wind blew",
+     "in the weeks after heavy rain",
+     "on the coldest nights of winter",
+     "on warm nights in early summer",
+     "on days when grain was being ground"
+    ],
+    "claimed_answer": "on the coldest nights of winter",
+    "kills": {
+     "on evenings when a west wind blew": {
+      "kind": "refute",
+      "quote": "As the stones shrank in the bitter cold",
+      "reason": "cold, not wind, sets it off"
+     },
+     "in the weeks after heavy rain": {
+      "kind": "refute",
+      "quote": "it was loudest when the ground was frozen hard and every spring on the hill had stopped",
+      "reason": "loudest when no water was running"
+     },
+     "on warm nights in early summer": {
+      "kind": "mention",
+      "quote": "Later entries mention it in other hard winters",
+      "reason": "the records place it in winter, not summer"
+     },
+     "on days when grain was being ground": {
+      "kind": "refute",
+      "quote": "whether the wheel turned or stood",
+      "reason": "grinding made no difference"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-3.v2",
+    "question": "It can most reasonably be inferred that the well at Tessendale today",
+    "choices": [
+     "is still worked by bucket and rope",
+     "has been filled in with earth",
+     "attracts visitors from far away",
+     "is sealed beneath a stone slab",
+     "is fitted with an iron pump"
+    ],
+    "claimed_answer": "attracts visitors from far away",
+    "kills": {
+     "is still worked by bucket and rope": {
+      "kind": "refute",
+      "quote": "which has given no water since the spring house was built",
+      "reason": "it supplies no water"
+     },
+     "has been filled in with earth": {
+      "kind": "mention",
+      "quote": "The council's first thought was to fill the shaft with earth",
+      "reason": "a first thought abandoned after the report"
+     },
+     "is sealed beneath a stone slab": {
+      "kind": "mention",
+      "quote": "or cover it with a stone slab",
+      "reason": "abandoned; the well was left as it was"
+     },
+     "is fitted with an iron pump": {
+      "kind": "refute",
+      "quote": "argued for leaving it exactly as it was, and the council agreed",
+      "reason": "the well was left unchanged"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-4.v2",
+    "question": "As it is used in the fourth paragraph, the word \"drew\" most nearly means",
+    "choices": [
+     "fetched",
+     "withdrew",
+     "attracted",
+     "sketched",
+     "approached"
+    ],
+    "claimed_answer": "attracted",
+    "kills": {
+     "fetched": {
+      "kind": "refute",
+      "quote": "it drew readers from as far as the coast",
+      "reason": "here the report attracted readers to come"
+     },
+     "withdrew": {
+      "kind": "refute",
+      "quote": "it drew readers from as far as the coast",
+      "reason": "here the report attracted readers to come"
+     },
+     "sketched": {
+      "kind": "refute",
+      "quote": "it drew readers from as far as the coast",
+      "reason": "here the report attracted readers to come"
+     },
+     "approached": {
+      "kind": "refute",
+      "quote": "it drew readers from as far as the coast",
+      "reason": "here the report attracted readers to come"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-5.v2",
+    "question": "The author's attitude toward the legend of the drowned piper is best described as",
+    "choices": [
+     "nostalgic",
+     "impatient",
+     "admiring",
+     "amused",
+     "grateful"
+    ],
+    "claimed_answer": "admiring",
+    "kills": {
+     "nostalgic": {
+      "kind": "refute",
+      "quote": "which describes the conditions as exactly as Lorne's log",
+      "reason": "the author credits the legend's accuracy"
+     },
+     "impatient": {
+      "kind": "refute",
+      "quote": "which describes the conditions as exactly as Lorne's log",
+      "reason": "the author credits the legend's accuracy"
+     },
+     "amused": {
+      "kind": "refute",
+      "quote": "which describes the conditions as exactly as Lorne's log",
+      "reason": "the author credits the legend's accuracy"
+     },
+     "grateful": {
+      "kind": "refute",
+      "quote": "which describes the conditions as exactly as Lorne's log",
+      "reason": "the author credits the legend's accuracy"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-6.v2",
+    "question": "The second paragraph chiefly serves to",
+    "choices": [
+     "retell the story behind the well's name",
+     "explain why the council sent for a surveyor",
+     "present the earliest written report of the sound",
+     "describe how and when the well was dug",
+     "introduce the surveyor who studied the well"
+    ],
+    "claimed_answer": "present the earliest written report of the sound",
+    "kills": {
+     "retell the story behind the well's name": {
+      "kind": "refute",
+      "quote": "The earliest written report of the sound is an entry in the parish register",
+      "reason": "a register entry, not the name's story"
+     },
+     "explain why the council sent for a surveyor": {
+      "kind": "mention",
+      "quote": "The council's first thought was to fill the shaft with earth",
+      "reason": "the council appears later, after the survey"
+     },
+     "describe how and when the well was dug": {
+      "kind": "refute",
+      "quote": "The earliest written report of the sound is an entry in the parish register",
+      "reason": "about the sound, not the well's building"
+     },
+     "introduce the surveyor who studied the well": {
+      "kind": "mention",
+      "quote": "In 1891 a county surveyor, Agathe Lorne, took up the question.",
+      "reason": "Lorne is introduced in the third paragraph"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV1-P02.v3",
+  "passage": "For more than two centuries, the stone well at the center of Tessendale had a habit shared by no other well in the county. On certain evenings it hummed, a low, steady note that rose from the shaft and carried as far as the churchyard. The villagers called it the Piper's Well, and few of them wanted it explained.\n\nThe well was dug in 1640, when the village outgrew the spring on the hill. Its builders lined the shaft with dry stone, fitting the blocks without mortar, and left a ring of gaps just above the waterline where ground water could seep in. For two centuries it served the village well, apart from the hum.\n\nIn 1891 a county surveyor, Agathe Lorne, came to look into the matter. The miller, Josiah Fenn, was certain the sound was his own wheel, carried through the rock, and the schoolmaster blamed the west wind blowing across the well's mouth. Lorne kept a log from spring into autumn. The hum came on still nights as often as windy ones, and on Sundays, when the mill stood idle; it began in late May, ended by July, and came only after warm days. Lowering a lantern, she saw dozens of small brown toads crowded into the gaps in the lining. Their calls, echoed by the shaft, made the piper's note.\n\nOnce the cause was known, children crowded the low wall each June to peer at the toads, and the council feared a real drowning to match the legendary one. A pump was proposed and rejected as too costly, and one councillor wanted the shaft filled in. In the end the mason drew a heavy slab to close the shaft, and the village went back to the old spring on the hill.\n\nSo the drowned piper of Tessendale was a chorus of toads, and the shepherd who leaned too far over the wall was invented to explain creatures the size of a thumb. The old tale gave him a mournful tune; the toads, by Lorne's count, managed two notes. In early summer you can still hear them faintly through the stone, sounding rather pleased with themselves.",
+  "questions": [
+   {
+    "id": "WV1-P02-1.v3",
+    "question": "The passage is primarily about",
+    "choices": [
+     "how the hum was traced to wind passing over the well",
+     "how the hum was traced to a stream running beneath the well",
+     "how the hum was traced to a crack in the well's stone lining",
+     "how the hum was traced to toads living in the well's walls",
+     "how the hum was traced to a mill wheel across the valley"
+    ],
+    "claimed_answer": "how the hum was traced to toads living in the well's walls",
+    "kills": {
+     "how the hum was traced to wind passing over the well": {
+      "kind": "mention",
+      "quote": "the schoolmaster blamed the west wind blowing across the well's mouth",
+      "reason": "the hum came on still nights as often as windy ones"
+     },
+     "how the hum was traced to a stream running beneath the well": {
+      "kind": "refute",
+      "quote": "Their calls, echoed by the shaft, made the piper's note.",
+      "reason": "the note is the toads' calls, not water"
+     },
+     "how the hum was traced to a crack in the well's stone lining": {
+      "kind": "refute",
+      "quote": "Their calls, echoed by the shaft, made the piper's note.",
+      "reason": "the gaps in the lining hold toads; no crack is the source"
+     },
+     "how the hum was traced to a mill wheel across the valley": {
+      "kind": "mention",
+      "quote": "was certain the sound was his own wheel",
+      "reason": "the hum came on Sundays when the mill stood idle"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-2.v3",
+    "question": "According to the passage, the hum was most often heard",
+    "choices": [
+     "on evenings when a west wind blew",
+     "in the weeks after heavy rain",
+     "on the coldest nights of winter",
+     "on warm nights in early summer",
+     "on days when grain was being ground"
+    ],
+    "claimed_answer": "on warm nights in early summer",
+    "kills": {
+     "on evenings when a west wind blew": {
+      "kind": "refute",
+      "quote": "The hum came on still nights as often as windy ones",
+      "reason": "wind made no difference"
+     },
+     "in the weeks after heavy rain": {
+      "kind": "refute",
+      "quote": "it began in late May, ended by July, and came only after warm days",
+      "reason": "tied to warm early-summer days, not rain"
+     },
+     "on the coldest nights of winter": {
+      "kind": "refute",
+      "quote": "it began in late May, ended by July, and came only after warm days",
+      "reason": "only after warm days, never in winter cold"
+     },
+     "on days when grain was being ground": {
+      "kind": "refute",
+      "quote": "on Sundays, when the mill stood idle",
+      "reason": "it came when no grain was being ground"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-3.v3",
+    "question": "It can most reasonably be inferred that the well at Tessendale today",
+    "choices": [
+     "is still worked by bucket and rope",
+     "has been filled in with earth",
+     "attracts visitors from far away",
+     "is sealed beneath a stone slab",
+     "is fitted with an iron pump"
+    ],
+    "claimed_answer": "is sealed beneath a stone slab",
+    "kills": {
+     "is still worked by bucket and rope": {
+      "kind": "refute",
+      "quote": "the mason drew a heavy slab to close the shaft, and the village went back to the old spring on the hill",
+      "reason": "the shaft was closed and water came from the spring"
+     },
+     "has been filled in with earth": {
+      "kind": "mention",
+      "quote": "one councillor wanted the shaft filled in",
+      "reason": "one councillor's wish; a slab was chosen"
+     },
+     "attracts visitors from far away": {
+      "kind": "mention",
+      "quote": "children crowded the low wall each June to peer at the toads",
+      "reason": "the crowding was the problem the slab ended"
+     },
+     "is fitted with an iron pump": {
+      "kind": "mention",
+      "quote": "A pump was proposed and rejected as too costly",
+      "reason": "rejected"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-4.v3",
+    "question": "As it is used in the fourth paragraph, the word \"drew\" most nearly means",
+    "choices": [
+     "fetched",
+     "withdrew",
+     "attracted",
+     "sketched",
+     "approached"
+    ],
+    "claimed_answer": "sketched",
+    "kills": {
+     "fetched": {
+      "kind": "refute",
+      "quote": "the mason drew a heavy slab",
+      "reason": "here a mason sketches a design"
+     },
+     "withdrew": {
+      "kind": "refute",
+      "quote": "the mason drew a heavy slab",
+      "reason": "here a mason sketches a design"
+     },
+     "attracted": {
+      "kind": "refute",
+      "quote": "the mason drew a heavy slab",
+      "reason": "here a mason sketches a design"
+     },
+     "approached": {
+      "kind": "refute",
+      "quote": "the mason drew a heavy slab",
+      "reason": "here a mason sketches a design"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-5.v3",
+    "question": "The author's attitude toward the legend of the drowned piper is best described as",
+    "choices": [
+     "nostalgic",
+     "impatient",
+     "admiring",
+     "amused",
+     "grateful"
+    ],
+    "claimed_answer": "amused",
+    "kills": {
+     "nostalgic": {
+      "kind": "refute",
+      "quote": "The old tale gave him a mournful tune; the toads, by Lorne's count, managed two notes.",
+      "reason": "the author pokes gentle fun at the tale"
+     },
+     "impatient": {
+      "kind": "refute",
+      "quote": "The old tale gave him a mournful tune; the toads, by Lorne's count, managed two notes.",
+      "reason": "the author pokes gentle fun at the tale"
+     },
+     "admiring": {
+      "kind": "refute",
+      "quote": "The old tale gave him a mournful tune; the toads, by Lorne's count, managed two notes.",
+      "reason": "the author pokes gentle fun at the tale"
+     },
+     "grateful": {
+      "kind": "refute",
+      "quote": "The old tale gave him a mournful tune; the toads, by Lorne's count, managed two notes.",
+      "reason": "the author pokes gentle fun at the tale"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-6.v3",
+    "question": "The second paragraph chiefly serves to",
+    "choices": [
+     "retell the story behind the well's name",
+     "explain why the council sent for a surveyor",
+     "present the earliest written report of the sound",
+     "describe how and when the well was dug",
+     "introduce the surveyor who studied the well"
+    ],
+    "claimed_answer": "describe how and when the well was dug",
+    "kills": {
+     "retell the story behind the well's name": {
+      "kind": "refute",
+      "quote": "Its builders lined the shaft with dry stone",
+      "reason": "about construction, not the name's story"
+     },
+     "explain why the council sent for a surveyor": {
+      "kind": "mention",
+      "quote": "the council feared a real drowning to match the legendary one",
+      "reason": "the council acts later, after the cause is known"
+     },
+     "present the earliest written report of the sound": {
+      "kind": "refute",
+      "quote": "Its builders lined the shaft with dry stone",
+      "reason": "no record of the sound is given"
+     },
+     "introduce the surveyor who studied the well": {
+      "kind": "mention",
+      "quote": "In 1891 a county surveyor, Agathe Lorne, came to look into the matter.",
+      "reason": "Lorne is introduced in the third paragraph"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV1-P02.v4",
+  "passage": "For more than two centuries, the stone well at the center of Tessendale had a habit shared by no other well in the county. On certain evenings it hummed, a low, steady note that rose from the shaft and carried as far as the churchyard. The villagers called it the Piper's Well, and few of them wanted it explained.\n\nThe person who finally explained it was Agathe Lorne, a county surveyor who had spent ten years mapping drains and quarries. She was known for distrusting any account she had not tested herself, and she arrived in Tessendale in the spring of 1891 with a notebook, a set of tuning forks, and a reputation for being rude to legends.\n\nThe villagers offered her explanations freely. The schoolmaster blamed the west wind blowing across the well's mouth, and a visiting naturalist had heard toads in the walls. Lorne kept a log for a season and compared it with the miller's account book. The hum came on calm days as well as windy ones, and in autumn as readily as in June; what matched it, day for day, was the record of grain going through Josiah Fenn's mill across the valley. The great wheel shook the rock beneath the valley as it turned, and the column of water in the well answered it like a struck glass.\n\nThe council considered filling the shaft with earth, since a well that trembled with the mill might one day crack, and the vicar proposed a stone slab to quiet it. Lorne's soundings showed the shaft solid and the water clean. As winter drew near, the council voted instead for an iron pump, so that nobody would have to lean over an icy wall to haul a bucket.\n\nThe well survived long enough to be explained only because of its legend. Three other wells in the parish were filled in during the 1880s, and the Piper's Well was spared because the village would not part with its drowned shepherd. The piper still plays on grinding days, though now he competes with the creak of a handle, and for that the village owes its old story a real debt.",
+  "questions": [
+   {
+    "id": "WV1-P02-1.v4",
+    "question": "The passage is primarily about",
+    "choices": [
+     "how the hum was traced to wind passing over the well",
+     "how the hum was traced to a stream running beneath the well",
+     "how the hum was traced to a crack in the well's stone lining",
+     "how the hum was traced to toads living in the well's walls",
+     "how the hum was traced to a mill wheel across the valley"
+    ],
+    "claimed_answer": "how the hum was traced to a mill wheel across the valley",
+    "kills": {
+     "how the hum was traced to wind passing over the well": {
+      "kind": "mention",
+      "quote": "The schoolmaster blamed the west wind blowing across the well's mouth",
+      "reason": "the hum came on calm days as well as windy ones"
+     },
+     "how the hum was traced to a stream running beneath the well": {
+      "kind": "refute",
+      "quote": "The great wheel shook the rock beneath the valley as it turned",
+      "reason": "the vibration comes from the wheel, not a stream"
+     },
+     "how the hum was traced to a crack in the well's stone lining": {
+      "kind": "refute",
+      "quote": "Lorne's soundings showed the shaft solid",
+      "reason": "the shaft was sound, so no crack"
+     },
+     "how the hum was traced to toads living in the well's walls": {
+      "kind": "mention",
+      "quote": "a visiting naturalist had heard toads in the walls",
+      "reason": "the hum came in autumn too, and matched the mill's record instead"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-2.v4",
+    "question": "According to the passage, the hum was most often heard",
+    "choices": [
+     "on evenings when a west wind blew",
+     "in the weeks after heavy rain",
+     "on the coldest nights of winter",
+     "on warm nights in early summer",
+     "on days when grain was being ground"
+    ],
+    "claimed_answer": "on days when grain was being ground",
+    "kills": {
+     "on evenings when a west wind blew": {
+      "kind": "refute",
+      "quote": "The hum came on calm days as well as windy ones",
+      "reason": "wind made no difference"
+     },
+     "in the weeks after heavy rain": {
+      "kind": "refute",
+      "quote": "what matched it, day for day, was the record of grain going through Josiah Fenn's mill",
+      "reason": "only the mill record matched, not rainfall"
+     },
+     "on the coldest nights of winter": {
+      "kind": "refute",
+      "quote": "in autumn as readily as in June",
+      "reason": "it is not tied to winter cold; grinding days matched"
+     },
+     "on warm nights in early summer": {
+      "kind": "refute",
+      "quote": "in autumn as readily as in June",
+      "reason": "it came in autumn as readily as early summer"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-3.v4",
+    "question": "It can most reasonably be inferred that the well at Tessendale today",
+    "choices": [
+     "is still worked by bucket and rope",
+     "has been filled in with earth",
+     "attracts visitors from far away",
+     "is sealed beneath a stone slab",
+     "is fitted with an iron pump"
+    ],
+    "claimed_answer": "is fitted with an iron pump",
+    "kills": {
+     "is still worked by bucket and rope": {
+      "kind": "refute",
+      "quote": "so that nobody would have to lean over an icy wall to haul a bucket",
+      "reason": "the pump replaced the bucket"
+     },
+     "has been filled in with earth": {
+      "kind": "mention",
+      "quote": "The council considered filling the shaft with earth",
+      "reason": "considered and dropped for a pump"
+     },
+     "attracts visitors from far away": {
+      "kind": "refute",
+      "quote": "the council voted instead for an iron pump, so that nobody would have to lean over an icy wall",
+      "reason": "a working village pump; no visitors described"
+     },
+     "is sealed beneath a stone slab": {
+      "kind": "mention",
+      "quote": "the vicar proposed a stone slab to quiet it",
+      "reason": "dropped for a pump"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-4.v4",
+    "question": "As it is used in the fourth paragraph, the word \"drew\" most nearly means",
+    "choices": [
+     "fetched",
+     "withdrew",
+     "attracted",
+     "sketched",
+     "approached"
+    ],
+    "claimed_answer": "approached",
+    "kills": {
+     "fetched": {
+      "kind": "refute",
+      "quote": "As winter drew near",
+      "reason": "here winter approached"
+     },
+     "withdrew": {
+      "kind": "refute",
+      "quote": "As winter drew near",
+      "reason": "here winter approached"
+     },
+     "attracted": {
+      "kind": "refute",
+      "quote": "As winter drew near",
+      "reason": "here winter approached"
+     },
+     "sketched": {
+      "kind": "refute",
+      "quote": "As winter drew near",
+      "reason": "here winter approached"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-5.v4",
+    "question": "The author's attitude toward the legend of the drowned piper is best described as",
+    "choices": [
+     "nostalgic",
+     "impatient",
+     "admiring",
+     "amused",
+     "grateful"
+    ],
+    "claimed_answer": "grateful",
+    "kills": {
+     "nostalgic": {
+      "kind": "refute",
+      "quote": "the Piper's Well was spared because the village would not part with its drowned shepherd",
+      "reason": "the author credits the legend with saving the well"
+     },
+     "impatient": {
+      "kind": "refute",
+      "quote": "the Piper's Well was spared because the village would not part with its drowned shepherd",
+      "reason": "the author credits the legend with saving the well"
+     },
+     "admiring": {
+      "kind": "refute",
+      "quote": "the Piper's Well was spared because the village would not part with its drowned shepherd",
+      "reason": "the author credits the legend with saving the well"
+     },
+     "amused": {
+      "kind": "refute",
+      "quote": "the Piper's Well was spared because the village would not part with its drowned shepherd",
+      "reason": "the author credits the legend with saving the well"
+     }
+    }
+   },
+   {
+    "id": "WV1-P02-6.v4",
+    "question": "The second paragraph chiefly serves to",
+    "choices": [
+     "retell the story behind the well's name",
+     "explain why the council sent for a surveyor",
+     "present the earliest written report of the sound",
+     "describe how and when the well was dug",
+     "introduce the surveyor who studied the well"
+    ],
+    "claimed_answer": "introduce the surveyor who studied the well",
+    "kills": {
+     "retell the story behind the well's name": {
+      "kind": "refute",
+      "quote": "She was known for distrusting any account she had not tested herself",
+      "reason": "the paragraph describes Lorne herself"
+     },
+     "explain why the council sent for a surveyor": {
+      "kind": "refute",
+      "quote": "She was known for distrusting any account she had not tested herself",
+      "reason": "the paragraph describes Lorne herself"
+     },
+     "present the earliest written report of the sound": {
+      "kind": "refute",
+      "quote": "She was known for distrusting any account she had not tested herself",
+      "reason": "the paragraph describes Lorne herself"
+     },
+     "describe how and when the well was dug": {
+      "kind": "refute",
+      "quote": "She was known for distrusting any account she had not tested herself",
+      "reason": "the paragraph describes Lorne herself"
+     }
+    }
+   }
+  ]
+ }
+]

@@ -111,3 +111,43 @@ question-version, and E on every passage with the s4 fixture in each judge file.
 dropped, and passages left with fewer than 5 items are dropped. Ledger entry, insert as cohort
 `ssat-reading-wv1`, then re-run `admission-form-depth.ts` and report forms before → after. The human
 sitting stays the verdict for a verbal cohort (bank-gate §5). It is not run here.
+
+## Result (run 2026-10-06): FAILS on E (naturalness). Per the rule, the run stopped: nothing inserted, no batch authored, forms unchanged at 3.
+
+The text was frozen in `26207d7c` (`ssat-wv1-p01/p02.wv.json`, verify OK, 240 kill quotes
+verbatim). `frozenSha` is `3c571402…7272`, and the drawn versions were P01 → v3, P02 → v1. Evidence
+is in `ssat-wv-pilot/`.
+
+| bar | result | verdict |
+|---|---|---|
+| E naturalness | s4 fixture rated 1 and 1, flagged by both, so both judges are valid. s3 reference rated 2 and 2, flagged (identical to pilot 1). **P01 rated 4 and 4, FLAGGED by both. P02 rated 3 and 3, FLAGGED by both.** | **FAIL** |
+| A, B, C, D, F | not run: E decided the outcome, and the rule is to stop | — |
+
+**What the judges flagged was the design change itself.** Both judges independently quoted the
+rival mentions, not the prose. On P01 they quoted "Reverend Coombe had thought the new rasp was ice,
+and my mother had blamed the wind", the collector in Brask, and "more useful as a fire alarm". On
+P02 they quoted the miller's wheel and the naturalist's toads, both ruled out ("whether the wheel
+turned or stood … long after the toads had gone quiet"), and the pump and slab proposals. Their
+verdict was that the passage "keeps listing alternatives that get rejected" and that these "look
+built for distractors". The ≤ 1-negation-per-paragraph rule did remove the denial runs: neither
+judge cited a negation. But rivals raised one at a time and then disposed of still read as
+distractor supply.
+
+**The bind is now measured from both sides on the same instrument:**
+- Pilot 1 printed only the drawn slot, so the rivals were absent. P01 was rated 4/4 and not flagged,
+  but the graders called 10/12 items easy word-matches.
+- Pilot 2 named the rivals in the passage, which is the live pattern and the fix for difficulty
+  (the lexical word-match solver fell to 5.3/25 on P01 against a 5.0 chance line). Both passages
+  were flagged as constructed.
+- The live cohorts that name their rivals (s3, s4) are flagged too, and rated 1–2.
+
+A model author can produce natural prose with absent distractors, or present distractors that a
+reader can see are distractors. Across two pilots it has not produced both at once.
+
+**Caveat, stated before anyone reads more into it.** The judge prompt lists "names a set of
+candidates and rules them out" as an example of constructed text. That is exactly the feature this
+design requires, so the judges may be sensitised to it. The calibration matches pilot 1 exactly
+(s4 1/1, s3 2/2 on both pilots), and the bar was fixed in advance, so the verdict stands. It is
+not, however, evidence that a human reader would flag these passages. A human sitting or a human
+naturalness read is the only instrument that could separate "a model judge spots model-made
+rivals" from "the passages are unnatural".
