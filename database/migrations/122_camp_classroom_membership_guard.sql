@@ -1,7 +1,9 @@
 -- 122: a camp classroom, its program, its teacher and its students must
 -- all belong to ONE academy.
 --
--- NOT APPLIED. Written and tested 2026-10-07 inside a rolled-back
+-- APPLIED 2026-10-07 after fc2f9273 deployed; break-tested live (a teacher
+-- of another academy inserting a camp classroom: denied, rolled back).
+-- Originally written and tested 2026-10-07 inside a rolled-back
 -- transaction (see the bottom of this file); apply after the code on
 -- branch camp-study-visibility ships.
 --
