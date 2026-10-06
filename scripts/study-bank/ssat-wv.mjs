@@ -11,7 +11,9 @@
  *                                    live control items as A69/A73/A76), grp-N.json, withsource.json,
  *                                    cv.json (every version x every question), naturalness.json,
  *                                    attack.key.json + naturalness.key.json.
- *   score  <outdir> --iso <f>... [--grp <f>...] [--ws <f>...] [--cv <f>...] [--nat <f>...]
+ *   score  <outdir> --iso <f>... [--grp <f>...] [--ws <f>...] [--cv <f>...] [--nat <f>...] [--nat3 <f>...]
+ *   (pilot 3: build --natlive <natlive.json> writes the relative-naturalness file; score --nat3 applies
+ *    SSAT-READING-WV3-PREREGISTERED.md bar E: pooled candidate median >= pooled live median)
  *   null   <outdir> --iso <f>...     exact null of the pooled iso candidate hits over all 5^P draws,
  *                                    picks held fixed (reported, not a bar).
  *
@@ -143,7 +145,7 @@ function shuffle(a, r) { const b = [...a]; for (let i = b.length - 1; i > 0; i--
 function dealer(n, r) { const d = []; while (d.length < n) d.push(...shuffle([...L], r)); let i = 0; return () => d[i++] }
 function placeKey(choices, key, letter, r) { const rest = shuffle(choices.filter(c => c !== key), r); rest.splice(L.indexOf(letter), 0, key); return rest }
 
-function build(outdir, ctlDir, wvFiles, fixturesFile) {
+function build(outdir, ctlDir, wvFiles, fixturesFile, natLiveFile) {
   const batch = JSON.parse(readFileSync(join(outdir, 'batch.json'), 'utf8'))
   if (!batch.length) die('empty batch')
   const r = rng(`render|${outdir}`)
@@ -203,6 +205,15 @@ function build(outdir, ctlDir, wvFiles, fixturesFile) {
     writeFileSync(join(outdir, 'naturalness.json'), JSON.stringify(nat.map((x, i) => { nkey[`N${i + 1}`] = x.src; return { id: `N${i + 1}`, passage: x.passage } }), null, 1))
     writeFileSync(join(outdir, 'naturalness.key.json'), JSON.stringify(nkey, null, 1))
   }
+  if (natLiveFile) {
+    // pilot 3 (SSAT-READING-WV3-PREREGISTERED.md): drawn candidates + >= 4 live s2/s3/s4 passages, unlabelled, shuffled
+    const lv = JSON.parse(readFileSync(natLiveFile, 'utf8'))
+    if (lv.length < 4 || lv.some(x => !/^rw-RW/.test(x.src) || !x.passage?.trim())) die('natlive: need >= 4 live rw-RW passages with text')
+    const nat = shuffle([...groups.map(g => ({ src: g, passage: batch.find(x => x.set_id === g).passage })), ...lv.map(x => ({ src: x.src, passage: x.passage }))], r)
+    const nkey = {}
+    writeFileSync(join(outdir, 'naturalness.json'), JSON.stringify(nat.map((x, i) => { nkey[`N${i + 1}`] = x.src; return { id: `N${i + 1}`, passage: x.passage } }), null, 1))
+    writeFileSync(join(outdir, 'naturalness.key.json'), JSON.stringify(nkey, null, 1))
+  }
   writeFileSync(join(outdir, 'attack.key.json'), JSON.stringify(key, null, 1))
   console.log(`  iso ${order.length} (candidate ${cand.length}, live ${live.length}); grouped files ${groups.length}; withsource ${ws.length} passages; keys ${Object.keys(key).length}`)
 }
@@ -212,7 +223,7 @@ const RANK = { easy: 1, medium: 2, hard: 3 }
 
 function score(outdir, args) {
   const key = JSON.parse(readFileSync(join(outdir, 'attack.key.json'), 'utf8'))
-  const sets = { iso: [], grp: [], ws: [], cv: [], nat: [] }
+  const sets = { iso: [], grp: [], ws: [], cv: [], nat: [], nat3: [] }
   let cur = null
   for (const a of args) { if (a.startsWith('--')) cur = a.slice(2); else if (cur) sets[cur].push(a) }
   const verdicts = {}
@@ -322,6 +333,32 @@ function score(outdir, args) {
       console.log(`  BAR E: ${verdicts.E}`)
     }
   }
+  if (sets.nat3.length) {
+    // pilot 3 relative bar: median of pooled candidate ratings >= median of pooled live ratings (valid judges only)
+    const nkey = JSON.parse(readFileSync(join(outdir, 'naturalness.key.json'), 'utf8'))
+    const ids = Object.keys(nkey), isLive = n => /^rw-/.test(nkey[n])
+    const nc = ids.filter(n => !isLive(n)).length, nl = ids.filter(isLive).length
+    if (nc < 1 || nl < 4) die(`naturalness key: ${nc} candidates, ${nl} live (need >= 4 live)`)
+    const med = a => { const b = [...a].sort((x, y) => x - y), m = b.length >> 1; return b.length % 2 ? b[m] : (b[m - 1] + b[m]) / 2 }
+    const valid = []
+    for (const f of sets.nat3) {
+      const lab = load(f)
+      const bad = ids.filter(n => !lab[n] || !Number.isInteger(lab[n].rating) || lab[n].rating < 1 || lab[n].rating > 5 || !String(lab[n].reason ?? '').trim())
+      const flat = new Set(ids.map(n => lab[n]?.rating)).size === 1
+      const ok = !bad.length && !flat
+      console.log(`  nat3 ${f.replace(/^.*\//, '')}: ${ids.length - bad.length}/${ids.length} rated with a reason${flat ? ', ALL IDENTICAL' : ''} -> ${ok ? 'valid' : 'DISCARD'}; ${ids.map(n => `${nkey[n]} ${lab[n]?.rating}`).join(', ')}`)
+      if (ok) valid.push(lab)
+    }
+    if (valid.length < 2) { verdicts.E = 'INCOMPLETE'; console.log('  BAR E: fewer than 2 valid judges') }
+    else {
+      const cr = valid.flatMap(l => ids.filter(n => !isLive(n)).map(n => l[n].rating)), lr = valid.flatMap(l => ids.filter(isLive).map(n => l[n].rating))
+      const cm = med(cr), lm = med(lr)
+      for (const n of ids.filter(n => !isLive(n))) console.log(`  E ${nkey[n]}: ${valid.map(l => l[n].rating).join('/')}`)
+      console.log(`  E pooled medians: candidate ${cm} (n=${cr.length})  live ${lm} (n=${lr.length})`)
+      if (lm <= 1) { verdicts.E = 'INVALID'; console.log('  BAR E: INVALID: live median 1 leaves the bar unable to fail (floor)') }
+      else { verdicts.E = cm >= lm ? 'PASS' : 'FAIL'; console.log(`  BAR E: ${verdicts.E} (candidate median >= live median)`) }
+    }
+  }
   console.log(`  VERDICTS ${JSON.stringify(verdicts)}`)
 }
 
@@ -350,7 +387,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const after = flag => { const i = rest.indexOf(flag); if (i < 0) return []; const out = []; for (let j = i + 1; j < rest.length && !rest[j].startsWith('--'); j++) out.push(rest[j]); return out }
   if (cmd === 'verify') { if (!rest.length) die('no files'); verify(rest) }
   else if (cmd === 'draw') { const [out, ...f] = rest; if (!f.length) die('no files'); draw(out, f) }
-  else if (cmd === 'build') build(rest[0], after('--ctl')[0] ?? join(HERE, 'ssat-reading-diag'), after('--wv'), after('--fixtures')[0])
+  else if (cmd === 'build') build(rest[0], after('--ctl')[0] ?? join(HERE, 'ssat-reading-diag'), after('--wv'), after('--fixtures')[0], after('--natlive')[0])
   else if (cmd === 'score') score(rest[0], rest.slice(1))
   else if (cmd === 'null') nullDist(rest[0], rest.slice(1))
   else die('usage: verify | draw | build | score | null')
