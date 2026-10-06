@@ -35,9 +35,16 @@ const USER_ID = '4fab6aed-b8b9-45cb-adfc-1235c98460e5'
 
 // Sessions are language-specific: an English UI over a Korean test reads as
 // a bug in a document, so each language gets its own session ids.
+//
+// RESULT_SESSION overrides the result session for every language pass. The
+// English result session above is a 1-of-54 attempt (2%, "53 left blank"),
+// which is unusable in a document for students and parents; the split Study
+// introduction (2026-10-07) shot the English result screen from the 89% SAT
+// Reading and Writing session instead. The result SUMMARY shows no Korean
+// content, so the language caveat above does not apply to it.
 const SESS = {
-  english: { test: '36d4ee42-abf4-49d9-b10d-ac9de231cd26', result: '91303218-c961-4929-837d-3f147d53c9a0' },
-  korean:  { test: 'ff4cb5b1-7895-4407-bcc6-23bf5f470bb2', result: '75336910-e2d1-4070-a037-8098676ea873' },
+  english: { test: '36d4ee42-abf4-49d9-b10d-ac9de231cd26', result: process.env.RESULT_SESSION ?? '91303218-c961-4929-837d-3f147d53c9a0' },
+  korean:  { test: 'ff4cb5b1-7895-4407-bcc6-23bf5f470bb2', result: process.env.RESULT_SESSION ?? '75336910-e2d1-4070-a037-8098676ea873' },
 }
 const SHOTS = (lang) => [
   ['home',    '/mobile/study'],

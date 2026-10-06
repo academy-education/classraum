@@ -58,3 +58,40 @@ cropped by hand and a naive re-shoot gets the framing wrong (the originals are
 an offset crop of the content area, not a top-left capture, and the sidebar
 must be expanded). If you re-shoot those, match the existing 2030px width and
 the offset, or the document's layout shifts.
+
+## The split documents (2026-10-07)
+
+The owner split the introduction into two documents, each in Korean and
+English. The two `classraum-introduction*.src.html` files above are kept
+unchanged as the previous edition; the four new sources are:
+
+    classraum-academy-ko.src.html   학원 운영 소개서            11 pages (print 12)
+    classraum-academy-en.src.html   Classraum for Academies     11 pages (print 12)
+    classraum-study-ko.src.html     Classraum Study 소개서       8 pages (print 8)
+    classraum-study-en.src.html     Classraum Study              8 pages (print 8)
+
+The academy edition reuses the 2026-10-06 pages verbatim (owner-edited
+Korean); the Classraum Study section shrank to half a page under 4.3. The
+print booklet adds the FAQ page ahead of the back cover (11 + 1 = 12). The
+Study edition is 8 pages on screen and in print.
+
+Build (same image directory; `result2` is a 2026-10-07 re-shoot of the result
+screen, because the English `result` image is a 1-of-54 attempt):
+
+```bash
+SRC=~/Downloads/"Introduction PDFs"/sources; OUT=~/Downloads/"Introduction PDFs"/split
+cp docs/introduction/classraum-{academy,study}-*.src.html "$SRC/"
+for d in academy-ko academy-en study-ko study-en; do
+  for v in "X=0" "SIZE=b5" "PRINT=1 BLEED=1" "SIZE=b5 PRINT=1 BLEED=1"; do
+    bash -c "env $v PNG=1 node scripts/shots/_render-split.mjs \"$SRC\" $d \"$OUT\""
+  done
+done
+```
+
+(Run the loop under bash or pass the variables explicitly: zsh does not
+word-split `$v`, and `env "PRINT=1 BLEED=1"` silently sets PRINT to
+"1 BLEED=1" and no bleed.) `_render-split.mjs` computes folios and contents
+page numbers from page position (`.tp[data-ref]` -> section id), fails if the
+DOM and `pdfinfo` disagree on the page count or a print build is not a
+multiple of 4, and with `PNG=1` rasterises every PDF page into
+`$SRC/_png/<pdf name>/` so each variant can be looked at.
