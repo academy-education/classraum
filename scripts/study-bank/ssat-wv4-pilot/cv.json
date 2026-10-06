@@ -1,0 +1,2102 @@
+[
+ {
+  "id": "WV4-P01.v0",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mrs. Vale had asked to buy the boat for her grandson on her first visit to the shed. Mr. Corran, who sold us the cedar, had offered to finish it in his yard, and Grandfather had laughed.\n\nOne morning in late July the fourth plank split from end to end. Grandfather ran his thumb along the break, went to the telephone, and told Mr. Corran that a yard which sold green cedar to an old friend ought to be ashamed. He wanted a fresh board by Friday.\n\nI spent the afternoon checking. My times at the steam box matched the ones he had taught me, and his measuring agreed with the plans to the sixteenth. I kept coming back to the window. The split plank was the only one the sun reached after noon, when the tin roof held the heat like an oven, and its twin on the shaded side, cut from the same cedar board, was as sound as the day I bent it.\n\n“Well, Ada,” Grandfather said when I showed him, and stood at the window a long time. The next morning was fair and still, and he spent it tacking canvas over the glass and fitting a new plank. That evening Mrs. Vale came to ask whether her grandson could sail the Linnet in the regatta. I had hoped Grandfather would keep it for us, or set it aside to be rebuilt next summer, but he told her it was hers once the repair was done.\n\nOn regatta day I stood on the seawall while her grandson took the Linnet out past the moorings. I knew every plank in her, which ones I had bent and which he had, and I followed the white sail until it went behind the point, and for a while after that.",
+  "questions": [
+   {
+    "id": "WV4-P01-1.v0",
+    "question": "It can most reasonably be inferred that, when the damage was found, Grandfather blamed it on",
+    "choices": [
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "the heat inside the shed",
+     "an error in his own measuring",
+     "a mistake in his father’s plans"
+    ],
+    "claimed_answer": "the cedar Mr. Corran had sold him",
+    "kills": {
+     "Ada’s work at the steam box": {
+      "kind": "mention",
+      "quote": "My times at the steam box matched the ones he had taught me",
+      "reason": "Ada checks her own steam-box times later; Grandfather never questions them."
+     },
+     "the heat inside the shed": {
+      "kind": "mention",
+      "quote": "The split plank was the only one the sun reached after noon, when the tin roof held the heat like an oven",
+      "reason": "This is what Ada works out that afternoon, after Grandfather has already phoned Mr. Corran."
+     },
+     "an error in his own measuring": {
+      "kind": "mention",
+      "quote": "his measuring agreed with the plans to the sixteenth",
+      "reason": "Ada checks his measuring herself; Grandfather blames the wood, not himself."
+     },
+     "a mistake in his father’s plans": {
+      "kind": "mention",
+      "quote": "from the plans his father drew sixty years ago",
+      "reason": "The plans are simply what he builds from; his first reaction is aimed at the cedar."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-2.v0",
+    "question": "The passage most strongly suggests that the damage was actually caused by",
+    "choices": [
+     "the heat inside Grandfather’s shed",
+     "a mistake in his father’s plans",
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "an error in Grandfather’s measuring"
+    ],
+    "claimed_answer": "the heat inside Grandfather’s shed",
+    "kills": {
+     "a mistake in his father’s plans": {
+      "kind": "refute",
+      "quote": "his measuring agreed with the plans to the sixteenth",
+      "reason": "The frames match the plans, and the plans are not what Grandfather fixes."
+     },
+     "the cedar Mr. Corran had sold him": {
+      "kind": "refute",
+      "quote": "its twin on the shaded side, cut from the same cedar board, was as sound as the day I bent it",
+      "reason": "Grandfather blamed the cedar, but a plank from the same board held in the shade."
+     },
+     "Ada’s work at the steam box": {
+      "kind": "refute",
+      "quote": "My times at the steam box matched the ones he had taught me",
+      "reason": "Ada's steaming followed his times."
+     },
+     "an error in Grandfather’s measuring": {
+      "kind": "refute",
+      "quote": "his measuring agreed with the plans to the sixteenth",
+      "reason": "His measuring checks out."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-3.v0",
+    "question": "The main purpose of the second paragraph is to",
+    "choices": [
+     "describe the morning the plank split",
+     "recount Mrs. Vale’s first visit to the shed",
+     "explain how Ada was taught to steam planks",
+     "describe Mr. Corran’s offer to finish the boat",
+     "recall how Grandfather’s father drew the plans"
+    ],
+    "claimed_answer": "describe the morning the plank split",
+    "kills": {
+     "recount Mrs. Vale’s first visit to the shed": {
+      "kind": "mention",
+      "quote": "Mrs. Vale had asked to buy the boat for her grandson on her first visit to the shed",
+      "reason": "Her first visit is summarized in the first paragraph."
+     },
+     "explain how Ada was taught to steam planks": {
+      "kind": "mention",
+      "quote": "so he taught me the steam box, and I bent each plank while he measured it",
+      "reason": "The steam-box lessons are mentioned in the first paragraph."
+     },
+     "describe Mr. Corran’s offer to finish the boat": {
+      "kind": "mention",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish it in his yard",
+      "reason": "The offer is mentioned in the first paragraph."
+     },
+     "recall how Grandfather’s father drew the plans": {
+      "kind": "mention",
+      "quote": "from the plans his father drew sixty years ago",
+      "reason": "The plans' origin is mentioned in the first paragraph."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-4.v0",
+    "question": "As it is used in the fourth paragraph, the word “fair” most nearly means",
+    "choices": [
+     "cloudless",
+     "reasonable",
+     "favorable",
+     "sizable",
+     "adequate"
+    ],
+    "claimed_answer": "cloudless",
+    "kills": {
+     "reasonable": {
+      "kind": "refute",
+      "quote": "The next morning was fair and still",
+      "reason": "\"reasonable\" does not fit here; A still morning good for outdoor work: the sky is clear."
+     },
+     "favorable": {
+      "kind": "refute",
+      "quote": "The next morning was fair and still",
+      "reason": "\"favorable\" does not fit here; A still morning good for outdoor work: the sky is clear."
+     },
+     "sizable": {
+      "kind": "refute",
+      "quote": "The next morning was fair and still",
+      "reason": "\"sizable\" does not fit here; A still morning good for outdoor work: the sky is clear."
+     },
+     "adequate": {
+      "kind": "refute",
+      "quote": "The next morning was fair and still",
+      "reason": "\"adequate\" does not fit here; A still morning good for outdoor work: the sky is clear."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-5.v0",
+    "question": "Which best describes the attitude of the narrator toward the final decision about the Linnet?",
+    "choices": [
+     "wistful",
+     "grateful",
+     "resentful",
+     "doubtful",
+     "admiring"
+    ],
+    "claimed_answer": "wistful",
+    "kills": {
+     "grateful": {
+      "kind": "refute",
+      "quote": "I had hoped Grandfather would keep it for us",
+      "reason": "She wanted a different outcome; the decision gives her nothing to thank him for."
+     },
+     "resentful": {
+      "kind": "mention",
+      "quote": "I had hoped Grandfather would keep it for us, or set it aside to be rebuilt next summer, but he told her it was hers",
+      "reason": "She is disappointed, but she watches the boat with longing, not bitterness."
+     },
+     "doubtful": {
+      "kind": "refute",
+      "quote": "I knew every plank in her, which ones I had bent and which he had",
+      "reason": "She has no question about whether the decision will work; the boat is already sailing."
+     },
+     "admiring": {
+      "kind": "mention",
+      "quote": "I knew every plank in her, which ones I had bent and which he had",
+      "reason": "Her attention is on what she has lost, not on Grandfather's choice."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-6.v0",
+    "question": "By the end of the passage, it has been decided that the Linnet will be",
+    "choices": [
+     "sold to Mrs. Vale once it is repaired",
+     "sailed by Ada in the regatta",
+     "finished in Mr. Corran’s yard",
+     "rebuilt by Grandfather and Ada next summer",
+     "raced by Grandfather in the regatta"
+    ],
+    "claimed_answer": "sold to Mrs. Vale once it is repaired",
+    "kills": {
+     "sailed by Ada in the regatta": {
+      "kind": "refute",
+      "quote": "Mrs. Vale came to ask whether her grandson could sail the Linnet in the regatta",
+      "reason": "Her grandson sails it, not Ada."
+     },
+     "finished in Mr. Corran’s yard": {
+      "kind": "refute",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish it in his yard, and Grandfather had laughed",
+      "reason": "He laughed off Mr. Corran's offer."
+     },
+     "rebuilt by Grandfather and Ada next summer": {
+      "kind": "mention",
+      "quote": "I had hoped Grandfather would keep it for us, or set it aside to be rebuilt next summer",
+      "reason": "That was only Ada's hope."
+     },
+     "raced by Grandfather in the regatta": {
+      "kind": "mention",
+      "quote": "He had raced in the harbor regatta every August of his life, but his hands had grown stiff",
+      "reason": "He raced in past years; this boat goes to Mrs. Vale."
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV4-P01.v1",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mr. Corran, who sold us the cedar, had offered to finish the boat in his yard, and Grandfather had laughed.\n\nMrs. Vale’s first visit to the shed was in June. She walked twice around the frames, asked who had drawn the lines, and said she wanted the Linnet for her grandson to sail. Grandfather told her to come back when the hull was closed. After she left he said she had a good eye, and he whistled through the rest of the day.\n\nOne morning in late July the fourth plank split from end to end. Grandfather looked at it, then at me. “How long was it in the box, Ada?” For the rest of that week he did the steaming himself, standing over the box in the heat with his watch in his hand, and he began to talk of setting the boat aside to be rebuilt next summer.\n\nOn Saturday I took the plans down to look at the fourth station. In the margin, in his father’s hand, was a note: too sharp here, eased on the first Linnet. We measured the frames again, and they matched the drawing exactly. He eased the curve where his father had eased it and repaired the plank, and when Mrs. Vale offered a fair price that evening, he told her the Linnet was spoken for. I would sail it in the regatta.\n\nI sailed it in his old cap and came in fifth. That night I swept the shed, oiled his tools and hung them back in their places, and under his father’s note, in my smallest letters, I wrote the date and four words: he gave me this.",
+  "questions": [
+   {
+    "id": "WV4-P01-1.v1",
+    "question": "It can most reasonably be inferred that, when the damage was found, Grandfather blamed it on",
+    "choices": [
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "the heat inside the shed",
+     "an error in his own measuring",
+     "a mistake in his father’s plans"
+    ],
+    "claimed_answer": "Ada’s work at the steam box",
+    "kills": {
+     "the cedar Mr. Corran had sold him": {
+      "kind": "mention",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish the boat in his yard",
+      "reason": "The cedar is mentioned only as Mr. Corran's supply; Grandfather never questions it."
+     },
+     "the heat inside the shed": {
+      "kind": "mention",
+      "quote": "standing over the box in the heat with his watch in his hand",
+      "reason": "He works in the heat, but what he takes over and times is the steaming, which shows where he put the blame."
+     },
+     "an error in his own measuring": {
+      "kind": "refute",
+      "quote": "We measured the frames again, and they matched the drawing exactly.",
+      "reason": "His measuring is checked later and holds; he suspected Ada's steaming, not himself."
+     },
+     "a mistake in his father’s plans": {
+      "kind": "mention",
+      "quote": "In the margin, in his father’s hand, was a note: too sharp here, eased on the first Linnet.",
+      "reason": "The plans turn out to be the real cause, but Ada finds this days later; at first he questioned her steaming."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-2.v1",
+    "question": "The passage most strongly suggests that the damage was actually caused by",
+    "choices": [
+     "the heat inside Grandfather’s shed",
+     "a mistake in his father’s plans",
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "an error in Grandfather’s measuring"
+    ],
+    "claimed_answer": "a mistake in his father’s plans",
+    "kills": {
+     "the heat inside Grandfather’s shed": {
+      "kind": "mention",
+      "quote": "standing over the box in the heat with his watch in his hand",
+      "reason": "The heat is where he stands to steam; the fix is to the curve in the drawing."
+     },
+     "the cedar Mr. Corran had sold him": {
+      "kind": "mention",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish the boat in his yard",
+      "reason": "The cedar is mentioned only as Mr. Corran's supply."
+     },
+     "Ada’s work at the steam box": {
+      "kind": "mention",
+      "quote": "For the rest of that week he did the steaming himself",
+      "reason": "He takes over the steaming on suspicion of Ada, but the margin note shows the drawing was at fault."
+     },
+     "an error in Grandfather’s measuring": {
+      "kind": "refute",
+      "quote": "We measured the frames again, and they matched the drawing exactly.",
+      "reason": "His measured frames were faithful to the drawing; the fix follows his father's note, so the drawing was at fault."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-3.v1",
+    "question": "The main purpose of the second paragraph is to",
+    "choices": [
+     "describe the morning the plank split",
+     "recount Mrs. Vale’s first visit to the shed",
+     "explain how Ada was taught to steam planks",
+     "describe Mr. Corran’s offer to finish the boat",
+     "recall how Grandfather’s father drew the plans"
+    ],
+    "claimed_answer": "recount Mrs. Vale’s first visit to the shed",
+    "kills": {
+     "describe the morning the plank split": {
+      "kind": "mention",
+      "quote": "One morning in late July the fourth plank split from end to end.",
+      "reason": "The split comes in the third paragraph."
+     },
+     "explain how Ada was taught to steam planks": {
+      "kind": "mention",
+      "quote": "so he taught me the steam box, and I bent each plank while he measured it",
+      "reason": "The lessons are mentioned in the first paragraph."
+     },
+     "describe Mr. Corran’s offer to finish the boat": {
+      "kind": "mention",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish the boat in his yard",
+      "reason": "The offer is mentioned in the first paragraph."
+     },
+     "recall how Grandfather’s father drew the plans": {
+      "kind": "mention",
+      "quote": "from the plans his father drew sixty years ago",
+      "reason": "The plans' origin is mentioned in the first paragraph."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-4.v1",
+    "question": "As it is used in the fourth paragraph, the word “fair” most nearly means",
+    "choices": [
+     "cloudless",
+     "reasonable",
+     "favorable",
+     "sizable",
+     "adequate"
+    ],
+    "claimed_answer": "reasonable",
+    "kills": {
+     "cloudless": {
+      "kind": "refute",
+      "quote": "when Mrs. Vale offered a fair price that evening",
+      "reason": "\"cloudless\" does not fit here; A price offered for a boat: reasonable, just."
+     },
+     "favorable": {
+      "kind": "refute",
+      "quote": "when Mrs. Vale offered a fair price that evening",
+      "reason": "\"favorable\" does not fit here; A price offered for a boat: reasonable, just."
+     },
+     "sizable": {
+      "kind": "refute",
+      "quote": "when Mrs. Vale offered a fair price that evening",
+      "reason": "\"sizable\" does not fit here; A price offered for a boat: reasonable, just."
+     },
+     "adequate": {
+      "kind": "refute",
+      "quote": "when Mrs. Vale offered a fair price that evening",
+      "reason": "\"adequate\" does not fit here; A price offered for a boat: reasonable, just."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-5.v1",
+    "question": "Which best describes the attitude of the narrator toward the final decision about the Linnet?",
+    "choices": [
+     "wistful",
+     "grateful",
+     "resentful",
+     "doubtful",
+     "admiring"
+    ],
+    "claimed_answer": "grateful",
+    "kills": {
+     "wistful": {
+      "kind": "refute",
+      "quote": "I sailed it in his old cap and came in fifth.",
+      "reason": "She keeps and sails the boat; there is nothing lost to long for."
+     },
+     "resentful": {
+      "kind": "refute",
+      "quote": "oiled his tools and hung them back in their places",
+      "reason": "She tends his tools in return; nothing suggests bitterness."
+     },
+     "doubtful": {
+      "kind": "refute",
+      "quote": "I sailed it in his old cap and came in fifth.",
+      "reason": "The plan has already worked; there is nothing to question."
+     },
+     "admiring": {
+      "kind": "mention",
+      "quote": "oiled his tools and hung them back in their places",
+      "reason": "These are acts of repaying a gift, and her note records the gift, not his skill."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-6.v1",
+    "question": "By the end of the passage, it has been decided that the Linnet will be",
+    "choices": [
+     "sold to Mrs. Vale once it is repaired",
+     "sailed by Ada in the regatta",
+     "finished in Mr. Corran’s yard",
+     "rebuilt by Grandfather and Ada next summer",
+     "raced by Grandfather in the regatta"
+    ],
+    "claimed_answer": "sailed by Ada in the regatta",
+    "kills": {
+     "sold to Mrs. Vale once it is repaired": {
+      "kind": "refute",
+      "quote": "when Mrs. Vale offered a fair price that evening, he told her the Linnet was spoken for",
+      "reason": "He turns down her offer."
+     },
+     "finished in Mr. Corran’s yard": {
+      "kind": "refute",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish the boat in his yard, and Grandfather had laughed",
+      "reason": "He laughed off Mr. Corran's offer."
+     },
+     "rebuilt by Grandfather and Ada next summer": {
+      "kind": "mention",
+      "quote": "he began to talk of setting the boat aside to be rebuilt next summer",
+      "reason": "He talked of this before the plans were found to be at fault, then repaired the plank instead."
+     },
+     "raced by Grandfather in the regatta": {
+      "kind": "mention",
+      "quote": "He had raced in the harbor regatta every August of his life, but his hands had grown stiff",
+      "reason": "He raced in past years; this time Ada sails."
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV4-P01.v2",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff. Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed, and Mr. Corran, who sold us the cedar, had offered to finish it in his yard. Grandfather had laughed.\n\nSo in June he taught me the steam box. An hour for every inch of thickness, he said, then out with gloves on and onto the frames before you can count twenty, because the wood remembers being a tree. He made me bend scrap until I could do it without his hand on mine, and after that I bent each plank while he measured it.\n\nOne morning in late July the fourth plank split from end to end. “That’s the heat, Ada,” Grandfather said. He propped both doors open, hung wet sacks over the window, and said the tin roof had baked the plank before it could settle. He began to talk of setting the boat aside to be rebuilt next summer, in the cool of spring.\n\nTwo nights later, with the sacks still wet and the shed as cool as a cellar, the plank beside it split too. Both had come from the last load of cedar Mr. Corran sold us, and when I sawed the board’s end it was dark and damp at the heart. Mrs. Vale heard and asked for her money back. Grandfather rowed across, and by noon Mr. Corran’s men were towing the Linnet over to be repaired and finished in his yard, with a fair wind behind them.\n\nI stayed in the shed. The man who had sold us wet cedar would put his own brass plate on her transom, and at the regatta people would say what a fine boat Corran’s yard had built. I swept up the shavings of every plank I had bent, and when his son waved from the towline, I kept both hands on the broom.",
+  "questions": [
+   {
+    "id": "WV4-P01-1.v2",
+    "question": "It can most reasonably be inferred that, when the damage was found, Grandfather blamed it on",
+    "choices": [
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "the heat inside the shed",
+     "an error in his own measuring",
+     "a mistake in his father’s plans"
+    ],
+    "claimed_answer": "the heat inside the shed",
+    "kills": {
+     "the cedar Mr. Corran had sold him": {
+      "kind": "mention",
+      "quote": "Both had come from the last load of cedar Mr. Corran sold us",
+      "reason": "The bad cedar is discovered two nights later; it was not what Grandfather first believed."
+     },
+     "Ada’s work at the steam box": {
+      "kind": "mention",
+      "quote": "So in June he taught me the steam box.",
+      "reason": "Ada's steaming is described as a lesson; he never blames it."
+     },
+     "an error in his own measuring": {
+      "kind": "mention",
+      "quote": "after that I bent each plank while he measured it",
+      "reason": "His measuring is part of the routine; he never suspects it."
+     },
+     "a mistake in his father’s plans": {
+      "kind": "mention",
+      "quote": "from the plans his father drew sixty years ago",
+      "reason": "The plans are only where the boat comes from; his response is to cool the shed."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-2.v2",
+    "question": "The passage most strongly suggests that the damage was actually caused by",
+    "choices": [
+     "the heat inside Grandfather’s shed",
+     "a mistake in his father’s plans",
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "an error in Grandfather’s measuring"
+    ],
+    "claimed_answer": "the cedar Mr. Corran had sold him",
+    "kills": {
+     "the heat inside Grandfather’s shed": {
+      "kind": "refute",
+      "quote": "with the sacks still wet and the shed as cool as a cellar, the plank beside it split too",
+      "reason": "Grandfather blamed the heat, but a second plank split in a cool shed."
+     },
+     "a mistake in his father’s plans": {
+      "kind": "mention",
+      "quote": "from the plans his father drew sixty years ago",
+      "reason": "The plans are only the source of the design."
+     },
+     "Ada’s work at the steam box": {
+      "kind": "mention",
+      "quote": "So in June he taught me the steam box.",
+      "reason": "Ada's steaming is shown as careful practice; both bad planks share the wood, not the steaming."
+     },
+     "an error in Grandfather’s measuring": {
+      "kind": "mention",
+      "quote": "after that I bent each plank while he measured it",
+      "reason": "His measuring is routine and plays no part in the discovery."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-3.v2",
+    "question": "The main purpose of the second paragraph is to",
+    "choices": [
+     "describe the morning the plank split",
+     "recount Mrs. Vale’s first visit to the shed",
+     "explain how Ada was taught to steam planks",
+     "describe Mr. Corran’s offer to finish the boat",
+     "recall how Grandfather’s father drew the plans"
+    ],
+    "claimed_answer": "explain how Ada was taught to steam planks",
+    "kills": {
+     "describe the morning the plank split": {
+      "kind": "mention",
+      "quote": "One morning in late July the fourth plank split from end to end.",
+      "reason": "The split comes in the third paragraph."
+     },
+     "recount Mrs. Vale’s first visit to the shed": {
+      "kind": "mention",
+      "quote": "Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed",
+      "reason": "Her first visit is mentioned in the first paragraph."
+     },
+     "describe Mr. Corran’s offer to finish the boat": {
+      "kind": "mention",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish it in his yard",
+      "reason": "The offer is mentioned in the first paragraph."
+     },
+     "recall how Grandfather’s father drew the plans": {
+      "kind": "mention",
+      "quote": "from the plans his father drew sixty years ago",
+      "reason": "The plans' origin is mentioned in the first paragraph."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-4.v2",
+    "question": "As it is used in the fourth paragraph, the word “fair” most nearly means",
+    "choices": [
+     "cloudless",
+     "reasonable",
+     "favorable",
+     "sizable",
+     "adequate"
+    ],
+    "claimed_answer": "favorable",
+    "kills": {
+     "cloudless": {
+      "kind": "refute",
+      "quote": "with a fair wind behind them",
+      "reason": "\"cloudless\" does not fit here; A wind behind a boat being towed: helpful, favorable."
+     },
+     "reasonable": {
+      "kind": "refute",
+      "quote": "with a fair wind behind them",
+      "reason": "\"reasonable\" does not fit here; A wind behind a boat being towed: helpful, favorable."
+     },
+     "sizable": {
+      "kind": "refute",
+      "quote": "with a fair wind behind them",
+      "reason": "\"sizable\" does not fit here; A wind behind a boat being towed: helpful, favorable."
+     },
+     "adequate": {
+      "kind": "refute",
+      "quote": "with a fair wind behind them",
+      "reason": "\"adequate\" does not fit here; A wind behind a boat being towed: helpful, favorable."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-5.v2",
+    "question": "Which best describes the attitude of the narrator toward the final decision about the Linnet?",
+    "choices": [
+     "wistful",
+     "grateful",
+     "resentful",
+     "doubtful",
+     "admiring"
+    ],
+    "claimed_answer": "resentful",
+    "kills": {
+     "wistful": {
+      "kind": "mention",
+      "quote": "I swept up the shavings of every plank I had bent",
+      "reason": "This could look like longing, but the snub that follows shows anger."
+     },
+     "grateful": {
+      "kind": "refute",
+      "quote": "when his son waved from the towline, I kept both hands on the broom",
+      "reason": "She refuses to wave back."
+     },
+     "doubtful": {
+      "kind": "refute",
+      "quote": "at the regatta people would say what a fine boat Corran’s yard had built",
+      "reason": "She expects the plan to succeed; what galls her is who gets the credit."
+     },
+     "admiring": {
+      "kind": "refute",
+      "quote": "The man who had sold us wet cedar",
+      "reason": "She speaks of Corran with contempt."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-6.v2",
+    "question": "By the end of the passage, it has been decided that the Linnet will be",
+    "choices": [
+     "sold to Mrs. Vale once it is repaired",
+     "sailed by Ada in the regatta",
+     "finished in Mr. Corran’s yard",
+     "rebuilt by Grandfather and Ada next summer",
+     "raced by Grandfather in the regatta"
+    ],
+    "claimed_answer": "finished in Mr. Corran’s yard",
+    "kills": {
+     "sold to Mrs. Vale once it is repaired": {
+      "kind": "refute",
+      "quote": "Mrs. Vale heard and asked for her money back.",
+      "reason": "Mrs. Vale withdraws."
+     },
+     "sailed by Ada in the regatta": {
+      "kind": "refute",
+      "quote": "at the regatta people would say what a fine boat Corran’s yard had built",
+      "reason": "The boat goes out as Corran's work; Ada stays in the shed."
+     },
+     "rebuilt by Grandfather and Ada next summer": {
+      "kind": "mention",
+      "quote": "He began to talk of setting the boat aside to be rebuilt next summer, in the cool of spring.",
+      "reason": "This was his first idea, overtaken when the second plank split."
+     },
+     "raced by Grandfather in the regatta": {
+      "kind": "mention",
+      "quote": "He had raced in the harbor regatta every August of his life, but his hands had grown stiff",
+      "reason": "His racing belongs to past years; the boat goes to Corran's yard."
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV4-P01.v3",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed.\n\nIn July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull. He watched Grandfather try to hold a pencil, and then he made his offer: he would finish the Linnet in his yard in time for the regatta and charge only for the varnish. Grandfather said he would think it over, which in our family can mean anything.\n\nOne morning a week later the fourth plank split from end to end. Grandfather held his hands up to the light as if they belonged to someone else. “I marked that bevel wrong, Ada,” he said, and he spent the afternoon measuring every frame again, finding each one where the plans put it, while I stood by the steam box and said nothing.\n\nThat evening I opened my steam log. On the day I bent the fourth plank he had gone a fair distance up the coast to see Mrs. Vale, and I had pulled the plank out after forty minutes instead of an hour, wanting it on before he came home. I showed him the page. He read it twice. Then he said a repaired plank in a hurried hull would split again in the first heat of August, and that next summer the two of us would rebuild the Linnet properly. The regatta would have to manage without her.\n\nMrs. Vale found another boat for her grandson, and Grandfather says next summer the way other people say tomorrow. I watched him fumble the latch on the shed door that night, three tries before it caught, and in my room I counted the months to June, and then counted them again.",
+  "questions": [
+   {
+    "id": "WV4-P01-1.v3",
+    "question": "It can most reasonably be inferred that, when the damage was found, Grandfather blamed it on",
+    "choices": [
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "the heat inside the shed",
+     "an error in his own measuring",
+     "a mistake in his father’s plans"
+    ],
+    "claimed_answer": "an error in his own measuring",
+    "kills": {
+     "the cedar Mr. Corran had sold him": {
+      "kind": "mention",
+      "quote": "In July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull",
+      "reason": "Mr. Corran's cedar is mentioned, but Grandfather looks at his own hands, not the wood."
+     },
+     "Ada’s work at the steam box": {
+      "kind": "mention",
+      "quote": "That evening I opened my steam log.",
+      "reason": "The steam log is Ada's discovery later that evening; Grandfather had blamed himself."
+     },
+     "the heat inside the shed": {
+      "kind": "mention",
+      "quote": "would split again in the first heat of August",
+      "reason": "Heat comes up only as a reason to wait, after the cause is known."
+     },
+     "a mistake in his father’s plans": {
+      "kind": "refute",
+      "quote": "finding each one where the plans put it",
+      "reason": "He checks his frames against the plans and trusts the plans throughout."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-2.v3",
+    "question": "The passage most strongly suggests that the damage was actually caused by",
+    "choices": [
+     "the heat inside Grandfather’s shed",
+     "a mistake in his father’s plans",
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "an error in Grandfather’s measuring"
+    ],
+    "claimed_answer": "Ada’s work at the steam box",
+    "kills": {
+     "the heat inside Grandfather’s shed": {
+      "kind": "mention",
+      "quote": "would split again in the first heat of August",
+      "reason": "Heat is a future risk to a rushed repair, not the cause of this split."
+     },
+     "a mistake in his father’s plans": {
+      "kind": "refute",
+      "quote": "finding each one where the plans put it",
+      "reason": "The frames sit where the plans say."
+     },
+     "the cedar Mr. Corran had sold him": {
+      "kind": "mention",
+      "quote": "In July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull",
+      "reason": "The cedar is mentioned only as what Mr. Corran sold."
+     },
+     "an error in Grandfather’s measuring": {
+      "kind": "refute",
+      "quote": "he spent the afternoon measuring every frame again, finding each one where the plans put it",
+      "reason": "Grandfather blamed his measuring, but every frame checked out."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-3.v3",
+    "question": "The main purpose of the second paragraph is to",
+    "choices": [
+     "describe the morning the plank split",
+     "recount Mrs. Vale’s first visit to the shed",
+     "explain how Ada was taught to steam planks",
+     "describe Mr. Corran’s offer to finish the boat",
+     "recall how Grandfather’s father drew the plans"
+    ],
+    "claimed_answer": "describe Mr. Corran’s offer to finish the boat",
+    "kills": {
+     "describe the morning the plank split": {
+      "kind": "mention",
+      "quote": "One morning a week later the fourth plank split from end to end.",
+      "reason": "The split comes in the third paragraph."
+     },
+     "recount Mrs. Vale’s first visit to the shed": {
+      "kind": "mention",
+      "quote": "Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed",
+      "reason": "Her first visit is mentioned in the first paragraph."
+     },
+     "explain how Ada was taught to steam planks": {
+      "kind": "mention",
+      "quote": "so he taught me the steam box, and I bent each plank while he measured it",
+      "reason": "The lessons are mentioned in the first paragraph."
+     },
+     "recall how Grandfather’s father drew the plans": {
+      "kind": "mention",
+      "quote": "from the plans his father drew sixty years ago",
+      "reason": "The plans' origin is mentioned in the first paragraph."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-4.v3",
+    "question": "As it is used in the fourth paragraph, the word “fair” most nearly means",
+    "choices": [
+     "cloudless",
+     "reasonable",
+     "favorable",
+     "sizable",
+     "adequate"
+    ],
+    "claimed_answer": "sizable",
+    "kills": {
+     "cloudless": {
+      "kind": "refute",
+      "quote": "he had gone a fair distance up the coast to see Mrs. Vale",
+      "reason": "\"cloudless\" does not fit here; A trip up the coast: a sizable distance."
+     },
+     "reasonable": {
+      "kind": "refute",
+      "quote": "he had gone a fair distance up the coast to see Mrs. Vale",
+      "reason": "\"reasonable\" does not fit here; A trip up the coast: a sizable distance."
+     },
+     "favorable": {
+      "kind": "refute",
+      "quote": "he had gone a fair distance up the coast to see Mrs. Vale",
+      "reason": "\"favorable\" does not fit here; A trip up the coast: a sizable distance."
+     },
+     "adequate": {
+      "kind": "refute",
+      "quote": "he had gone a fair distance up the coast to see Mrs. Vale",
+      "reason": "\"adequate\" does not fit here; A trip up the coast: a sizable distance."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-5.v3",
+    "question": "Which best describes the attitude of the narrator toward the final decision about the Linnet?",
+    "choices": [
+     "wistful",
+     "grateful",
+     "resentful",
+     "doubtful",
+     "admiring"
+    ],
+    "claimed_answer": "doubtful",
+    "kills": {
+     "wistful": {
+      "kind": "mention",
+      "quote": "Mrs. Vale found another boat for her grandson",
+      "reason": "The sale is lost, but her attention is on whether next summer will come for him."
+     },
+     "grateful": {
+      "kind": "mention",
+      "quote": "next summer the two of us would rebuild the Linnet properly",
+      "reason": "He includes her, but her response is to count months and watch his hands."
+     },
+     "resentful": {
+      "kind": "refute",
+      "quote": "I showed him the page. He read it twice.",
+      "reason": "There is no blame on either side."
+     },
+     "admiring": {
+      "kind": "mention",
+      "quote": "Grandfather says next summer the way other people say tomorrow",
+      "reason": "She notes his confidence without sharing it."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-6.v3",
+    "question": "By the end of the passage, it has been decided that the Linnet will be",
+    "choices": [
+     "sold to Mrs. Vale once it is repaired",
+     "sailed by Ada in the regatta",
+     "finished in Mr. Corran’s yard",
+     "rebuilt by Grandfather and Ada next summer",
+     "raced by Grandfather in the regatta"
+    ],
+    "claimed_answer": "rebuilt by Grandfather and Ada next summer",
+    "kills": {
+     "sold to Mrs. Vale once it is repaired": {
+      "kind": "refute",
+      "quote": "Mrs. Vale found another boat for her grandson",
+      "reason": "She buys elsewhere."
+     },
+     "sailed by Ada in the regatta": {
+      "kind": "refute",
+      "quote": "The regatta would have to manage without her.",
+      "reason": "The Linnet misses this regatta."
+     },
+     "finished in Mr. Corran’s yard": {
+      "kind": "mention",
+      "quote": "he would finish the Linnet in his yard in time for the regatta",
+      "reason": "This is only Mr. Corran's offer, which Grandfather said he would think over."
+     },
+     "raced by Grandfather in the regatta": {
+      "kind": "refute",
+      "quote": "The regatta would have to manage without her.",
+      "reason": "The Linnet misses this regatta."
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV4-P01.v4",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed. Mr. Corran, who sold us the cedar, had offered to finish it in his yard, and Grandfather had laughed.\n\nThe plans hung above the bench. His father drew them one winter at the kitchen table, with a ruler cut from a broken oar, and every Linnet since had come from those sheets. The margins were crowded with notes in two hands, his father’s upright and his own leaning, and he touched them in passing, the way people touch a doorframe.\n\nOne morning in late July the fourth plank split from end to end. Grandfather took the plans down and spread them on the bench. “He always drew her too sharp in the bow, Ada,” he said, and for two days, in the heat of the shed, he went over his father’s lines with a magnifying glass. I asked whether we should set the boat aside to be rebuilt next summer, and he kept reading.\n\nOn the third day I held the tape while he measured the frames again. At the fourth station his own pencil mark sat a quarter inch from the line on the drawing. He looked at it a while, rolled the plans up, and repaired the plank that afternoon. When Mrs. Vale asked again to buy it, he said he would race the Linnet himself. He had been a fair sailor once, and he meant to find out whether he still was.\n\nOn regatta day he took her out with his stiff hands taped and handled the tiller like a young man. He came in sixth of eleven. I watched every tack from the seawall, and that winter I practiced his bowline until I could tie it the way he does, with my eyes closed.",
+  "questions": [
+   {
+    "id": "WV4-P01-1.v4",
+    "question": "It can most reasonably be inferred that, when the damage was found, Grandfather blamed it on",
+    "choices": [
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "the heat inside the shed",
+     "an error in his own measuring",
+     "a mistake in his father’s plans"
+    ],
+    "claimed_answer": "a mistake in his father’s plans",
+    "kills": {
+     "the cedar Mr. Corran had sold him": {
+      "kind": "mention",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish it in his yard",
+      "reason": "The cedar is mentioned only as Mr. Corran's supply."
+     },
+     "Ada’s work at the steam box": {
+      "kind": "mention",
+      "quote": "so he taught me the steam box, and I bent each plank while he measured it",
+      "reason": "Ada did the steaming, but Grandfather goes straight to his father's lines."
+     },
+     "the heat inside the shed": {
+      "kind": "mention",
+      "quote": "in the heat of the shed",
+      "reason": "The heat is just the setting of his two days of reading."
+     },
+     "an error in his own measuring": {
+      "kind": "mention",
+      "quote": "On the third day I held the tape while he measured the frames again. At the fourth station his own pencil mark sat a quarter inch from the line on the drawing.",
+      "reason": "His own error is what they find on the third day, not what he first believed."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-2.v4",
+    "question": "The passage most strongly suggests that the damage was actually caused by",
+    "choices": [
+     "the heat inside Grandfather’s shed",
+     "a mistake in his father’s plans",
+     "the cedar Mr. Corran had sold him",
+     "Ada’s work at the steam box",
+     "an error in Grandfather’s measuring"
+    ],
+    "claimed_answer": "an error in Grandfather’s measuring",
+    "kills": {
+     "the heat inside Grandfather’s shed": {
+      "kind": "mention",
+      "quote": "in the heat of the shed",
+      "reason": "The heat is only the setting of his search."
+     },
+     "a mistake in his father’s plans": {
+      "kind": "mention",
+      "quote": "he went over his father’s lines with a magnifying glass",
+      "reason": "This is Grandfather's belief about the plans; the mark off the drawing shows the plans were right."
+     },
+     "the cedar Mr. Corran had sold him": {
+      "kind": "mention",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish it in his yard",
+      "reason": "The cedar is mentioned only as Mr. Corran's supply."
+     },
+     "Ada’s work at the steam box": {
+      "kind": "mention",
+      "quote": "so he taught me the steam box, and I bent each plank while he measured it",
+      "reason": "Ada bent the planks, but the error found is in his marking."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-3.v4",
+    "question": "The main purpose of the second paragraph is to",
+    "choices": [
+     "describe the morning the plank split",
+     "recount Mrs. Vale’s first visit to the shed",
+     "explain how Ada was taught to steam planks",
+     "describe Mr. Corran’s offer to finish the boat",
+     "recall how Grandfather’s father drew the plans"
+    ],
+    "claimed_answer": "recall how Grandfather’s father drew the plans",
+    "kills": {
+     "describe the morning the plank split": {
+      "kind": "mention",
+      "quote": "One morning in late July the fourth plank split from end to end.",
+      "reason": "The split comes in the third paragraph."
+     },
+     "recount Mrs. Vale’s first visit to the shed": {
+      "kind": "mention",
+      "quote": "Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed",
+      "reason": "Her first visit is mentioned in the first paragraph."
+     },
+     "explain how Ada was taught to steam planks": {
+      "kind": "mention",
+      "quote": "so he taught me the steam box, and I bent each plank while he measured it",
+      "reason": "The lessons are mentioned in the first paragraph."
+     },
+     "describe Mr. Corran’s offer to finish the boat": {
+      "kind": "mention",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish it in his yard",
+      "reason": "The offer is mentioned in the first paragraph."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-4.v4",
+    "question": "As it is used in the fourth paragraph, the word “fair” most nearly means",
+    "choices": [
+     "cloudless",
+     "reasonable",
+     "favorable",
+     "sizable",
+     "adequate"
+    ],
+    "claimed_answer": "adequate",
+    "kills": {
+     "cloudless": {
+      "kind": "refute",
+      "quote": "He had been a fair sailor once, and he meant to find out whether he still was",
+      "reason": "\"cloudless\" does not fit here; A sailor who wonders whether he still is one: adequate, decent."
+     },
+     "reasonable": {
+      "kind": "refute",
+      "quote": "He had been a fair sailor once, and he meant to find out whether he still was",
+      "reason": "\"reasonable\" does not fit here; A sailor who wonders whether he still is one: adequate, decent."
+     },
+     "favorable": {
+      "kind": "refute",
+      "quote": "He had been a fair sailor once, and he meant to find out whether he still was",
+      "reason": "\"favorable\" does not fit here; A sailor who wonders whether he still is one: adequate, decent."
+     },
+     "sizable": {
+      "kind": "refute",
+      "quote": "He had been a fair sailor once, and he meant to find out whether he still was",
+      "reason": "\"sizable\" does not fit here; A sailor who wonders whether he still is one: adequate, decent."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-5.v4",
+    "question": "Which best describes the attitude of the narrator toward the final decision about the Linnet?",
+    "choices": [
+     "wistful",
+     "grateful",
+     "resentful",
+     "doubtful",
+     "admiring"
+    ],
+    "claimed_answer": "admiring",
+    "kills": {
+     "wistful": {
+      "kind": "mention",
+      "quote": "I watched every tack from the seawall",
+      "reason": "She watches, but for his skill, not out of a sense of loss."
+     },
+     "grateful": {
+      "kind": "refute",
+      "quote": "he said he would race the Linnet himself",
+      "reason": "The decision is for his own sake, not a gift to her."
+     },
+     "resentful": {
+      "kind": "refute",
+      "quote": "that winter I practiced his bowline until I could tie it the way he does",
+      "reason": "She copies him; there is no bitterness."
+     },
+     "doubtful": {
+      "kind": "refute",
+      "quote": "handled the tiller like a young man",
+      "reason": "His question about himself is answered on the water, and she shows no question about it."
+     }
+    }
+   },
+   {
+    "id": "WV4-P01-6.v4",
+    "question": "By the end of the passage, it has been decided that the Linnet will be",
+    "choices": [
+     "sold to Mrs. Vale once it is repaired",
+     "sailed by Ada in the regatta",
+     "finished in Mr. Corran’s yard",
+     "rebuilt by Grandfather and Ada next summer",
+     "raced by Grandfather in the regatta"
+    ],
+    "claimed_answer": "raced by Grandfather in the regatta",
+    "kills": {
+     "sold to Mrs. Vale once it is repaired": {
+      "kind": "refute",
+      "quote": "When Mrs. Vale asked again to buy it, he said he would race the Linnet himself.",
+      "reason": "He answers her request by keeping the boat to race."
+     },
+     "sailed by Ada in the regatta": {
+      "kind": "refute",
+      "quote": "On regatta day he took her out",
+      "reason": "Grandfather sails it, not Ada."
+     },
+     "finished in Mr. Corran’s yard": {
+      "kind": "refute",
+      "quote": "Mr. Corran, who sold us the cedar, had offered to finish it in his yard, and Grandfather had laughed",
+      "reason": "He laughed off Mr. Corran's offer."
+     },
+     "rebuilt by Grandfather and Ada next summer": {
+      "kind": "mention",
+      "quote": "I asked whether we should set the boat aside to be rebuilt next summer, and he kept reading.",
+      "reason": "That was only Ada's suggestion, which he ignored."
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV4-P02.v0",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby, who had come down the coast on a fair wind, said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry. The pilots of Kelby sent the board a petition: the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license.\n\nThe inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. Holm had rung the bell all night, and Lise's logbook marks each stroke until dawn. He spent the week after the hearing on the rocks, striking a borrowed church bell into a heavy surf while Lise walked the beach marking where each stroke was drowned out.\n\nThe board had little money to spend, and a lightship would have consumed most of it. Its chairman, Amos Reddick, said that a man who had stood thirteen winters on the point knew its weather better than any inquiry, and on the keeper's account of the night the board ordered a heavier bell.\n\nIt went up in 1872, low on the rock where Lise's marks showed a stroke carried farthest. In the eighteen years Holm kept the light after that, nothing larger than a rowboat touched Tarrow in fog, and the bell still hangs where he placed it, struck by machine at his old rate of one stroke a minute.",
+  "questions": [
+   {
+    "id": "WV4-P02-1.v0",
+    "question": "It can most reasonably be inferred that Ezra Holm believed the Merrow was lost because",
+    "choices": [
+     "the fog bell was drowned out by the surf",
+     "the beam from the old lens was too weak",
+     "the shoal had shifted since the charts were made",
+     "the pilot had steered too close to the point",
+     "the captain had taken the light for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "the fog bell was drowned out by the surf",
+    "kills": {
+     "the beam from the old lens was too weak": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry",
+      "reason": "This is the owners' view, which Holm's own actions never take up."
+     },
+     "the shoal had shifted since the charts were made": {
+      "kind": "mention",
+      "quote": "The inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow",
+      "reason": "This is the inquiry's finding, which Holm answers by testing the bell instead."
+     },
+     "the pilot had steered too close to the point": {
+      "kind": "mention",
+      "quote": "the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license",
+      "reason": "This is the pilots' petition, which Holm's actions never take up."
+     },
+     "the captain had taken the light for Kelby's harbor lamp": {
+      "kind": "mention",
+      "quote": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red",
+      "reason": "This is Danby's account; Holm's test is about the bell and the surf."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-2.v0",
+    "question": "According to the passage, the remedy the board adopted was",
+    "choices": [
+     "a heavier bell for Gannet Point",
+     "a lightship beside Tarrow Shoal",
+     "a license for every pilot in the channel",
+     "a new lens for the Gannet lamp",
+     "red paint for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "a heavier bell for Gannet Point",
+    "kills": {
+     "a lightship beside Tarrow Shoal": {
+      "kind": "refute",
+      "quote": "a lightship would have consumed most of it",
+      "reason": "The inquiry urged a lightship, but the board judged it too costly and ordered the bell."
+     },
+     "a license for every pilot in the channel": {
+      "kind": "mention",
+      "quote": "the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license",
+      "reason": "Only the pilots' petition asked for licensing."
+     },
+     "a new lens for the Gannet lamp": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry",
+      "reason": "Only the owners pressed for a new lens."
+     },
+     "red paint for Kelby's harbor lamp": {
+      "kind": "mention",
+      "quote": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red",
+      "reason": "Only Danby asked for the harbor lamp to be painted red."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-3.v0",
+    "question": "The author mentions Lise Holm's logbook chiefly in order to",
+    "choices": [
+     "show that the bell was rung all night",
+     "show that the lamp burned low before midnight",
+     "show that the breakers had moved farther out",
+     "show that the vessel passed close inside the point",
+     "show that both lights were visible that night"
+    ],
+    "claimed_answer": "show that the bell was rung all night",
+    "kills": {
+     "show that the lamp burned low before midnight": {
+      "kind": "mention",
+      "quote": "Kelby's harbor lamp burned two miles farther up",
+      "reason": "The lamp burning is general background; the logbook is cited for the bell."
+     },
+     "show that the breakers had moved farther out": {
+      "kind": "mention",
+      "quote": "Off the point lie the breakers of Tarrow Shoal",
+      "reason": "The breakers are setting; the logbook is never cited about them."
+     },
+     "show that the vessel passed close inside the point": {
+      "kind": "mention",
+      "quote": "In fog a bell was rung by hand for every vessel that passed inside the point",
+      "reason": "Vessels passing inside the point are general practice; the logbook is cited for bell strokes."
+     },
+     "show that both lights were visible that night": {
+      "kind": "mention",
+      "quote": "on clear nights both lights were visible from the gallery",
+      "reason": "This describes clear nights in general, without reference to the logbook."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-4.v0",
+    "question": "As it is used in the second paragraph, the word \"fair\" most nearly means",
+    "choices": [
+     "favorable",
+     "impartial",
+     "considerable",
+     "neatly written",
+     "light-colored"
+    ],
+    "claimed_answer": "favorable",
+    "kills": {
+     "impartial": {
+      "kind": "refute",
+      "quote": "Captain Danby, who had come down the coast on a fair wind",
+      "reason": "Here 'fair' describes a wind that helps a ship along, not something 'impartial'."
+     },
+     "considerable": {
+      "kind": "refute",
+      "quote": "Captain Danby, who had come down the coast on a fair wind",
+      "reason": "Here 'fair' describes a wind that helps a ship along, not something 'considerable'."
+     },
+     "neatly written": {
+      "kind": "refute",
+      "quote": "Captain Danby, who had come down the coast on a fair wind",
+      "reason": "Here 'fair' describes a wind that helps a ship along, not something 'neatly written'."
+     },
+     "light-colored": {
+      "kind": "refute",
+      "quote": "Captain Danby, who had come down the coast on a fair wind",
+      "reason": "Here 'fair' describes a wind that helps a ship along, not something 'light-colored'."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-5.v0",
+    "question": "It can most reasonably be inferred that the board chose its remedy chiefly because it",
+    "choices": [
+     "trusted the keeper's account of the night",
+     "accepted what the inquiry had found",
+     "yielded to a petition from the pilots",
+     "was pressed by the schooner's owners",
+     "wanted to spend as little as it could"
+    ],
+    "claimed_answer": "trusted the keeper's account of the night",
+    "kills": {
+     "accepted what the inquiry had found": {
+      "kind": "refute",
+      "quote": "knew its weather better than any inquiry",
+      "reason": "The chairman sets the inquiry's finding below Holm's judgment."
+     },
+     "yielded to a petition from the pilots": {
+      "kind": "mention",
+      "quote": "The pilots of Kelby sent the board a petition",
+      "reason": "The petition asked for licensing, which the board did not adopt."
+     },
+     "was pressed by the schooner's owners": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a new lens",
+      "reason": "The owners' lens was not what the board ordered."
+     },
+     "wanted to spend as little as it could": {
+      "kind": "mention",
+      "quote": "The board had little money to spend, and a lightship would have consumed most of it",
+      "reason": "Cost ruled out the lightship, but the chairman grounds the choice of the bell in Holm's account."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-6.v0",
+    "question": "The author's attitude toward Ezra Holm is best described as",
+    "choices": [
+     "admiring",
+     "sympathetic",
+     "indulgent",
+     "disapproving",
+     "skeptical"
+    ],
+    "claimed_answer": "admiring",
+    "kills": {
+     "sympathetic": {
+      "kind": "mention",
+      "quote": "knew its weather better than any inquiry",
+      "reason": "Holm is vindicated, not shown suffering, so there is nothing to pity."
+     },
+     "indulgent": {
+      "kind": "mention",
+      "quote": "striking a borrowed church bell into a heavy surf",
+      "reason": "His testing is presented as method, not as a quirk to smile at."
+     },
+     "disapproving": {
+      "kind": "refute",
+      "quote": "nothing larger than a rowboat touched Tarrow in fog",
+      "reason": "The outcome credits his judgment rather than faulting his conduct."
+     },
+     "skeptical": {
+      "kind": "refute",
+      "quote": "on the keeper's account of the night the board ordered a heavier bell",
+      "reason": "The author endorses the results of Holm's account rather than doubting it."
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV4-P02.v1",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The schooner's owners pressed for a heavier bell, insisting that the old one had been drowned out by the surf. The pilots of Kelby sent the board a petition: the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license. The inquiry gave each party a fair hearing.\n\nThen it found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. Holm had a different hour in mind. Lise's logbook shows that the lamp burned low before midnight, its old lens sooted and its beam weak, and that he climbed twice to trim it before the Merrow struck. He asked the clerk to read that entry aloud a second time.\n\nThe board had little money to spend, and the lightship would take most of it. It voted the money all the same, its chairman, Amos Reddick, saying that a board which called an inquiry must abide by what it found. The keeper's account of the night went into the minutes beside the vote.\n\nHolm went on trimming the old lamp through every fog for seventeen more years, and each spring he wrote to the board asking for a new lens, in letters that grew shorter as his hand grew stiffer. The lens arrived in 1890, two months after he retired. Lise, keeper now, lit it and wrote to tell him how far it carried.",
+  "questions": [
+   {
+    "id": "WV4-P02-1.v1",
+    "question": "It can most reasonably be inferred that Ezra Holm believed the Merrow was lost because",
+    "choices": [
+     "the fog bell was drowned out by the surf",
+     "the beam from the old lens was too weak",
+     "the shoal had shifted since the charts were made",
+     "the pilot had steered too close to the point",
+     "the captain had taken the light for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "the beam from the old lens was too weak",
+    "kills": {
+     "the fog bell was drowned out by the surf": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a heavier bell, insisting that the old one had been drowned out by the surf",
+      "reason": "This is the owners' claim, which Holm sets aside for the lamp entry."
+     },
+     "the shoal had shifted since the charts were made": {
+      "kind": "mention",
+      "quote": "Then it found that the shoal had shifted since the charts were made",
+      "reason": "This is the inquiry's finding; Holm 'had a different hour in mind'."
+     },
+     "the pilot had steered too close to the point": {
+      "kind": "mention",
+      "quote": "the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license",
+      "reason": "This is the pilots' petition, which Holm never takes up."
+     },
+     "the captain had taken the light for Kelby's harbor lamp": {
+      "kind": "mention",
+      "quote": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red",
+      "reason": "This is Danby's account; Holm points instead to the lamp burning low."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-2.v1",
+    "question": "According to the passage, the remedy the board adopted was",
+    "choices": [
+     "a heavier bell for Gannet Point",
+     "a lightship beside Tarrow Shoal",
+     "a license for every pilot in the channel",
+     "a new lens for the Gannet lamp",
+     "red paint for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "a lightship beside Tarrow Shoal",
+    "kills": {
+     "a heavier bell for Gannet Point": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a heavier bell",
+      "reason": "Only the owners asked for a heavier bell."
+     },
+     "a license for every pilot in the channel": {
+      "kind": "mention",
+      "quote": "the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license",
+      "reason": "Only the pilots' petition asked for licensing."
+     },
+     "a new lens for the Gannet lamp": {
+      "kind": "refute",
+      "quote": "each spring he wrote to the board asking for a new lens",
+      "reason": "Holm kept asking for a new lens; it came only after he retired."
+     },
+     "red paint for Kelby's harbor lamp": {
+      "kind": "mention",
+      "quote": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red",
+      "reason": "Only Danby asked for the harbor lamp to be painted red."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-3.v1",
+    "question": "The author mentions Lise Holm's logbook chiefly in order to",
+    "choices": [
+     "show that the bell was rung all night",
+     "show that the lamp burned low before midnight",
+     "show that the breakers had moved farther out",
+     "show that the vessel passed close inside the point",
+     "show that both lights were visible that night"
+    ],
+    "claimed_answer": "show that the lamp burned low before midnight",
+    "kills": {
+     "show that the bell was rung all night": {
+      "kind": "mention",
+      "quote": "In fog a bell was rung by hand for every vessel that passed inside the point",
+      "reason": "The bell is general practice; the logbook entry concerns the lamp."
+     },
+     "show that the breakers had moved farther out": {
+      "kind": "mention",
+      "quote": "Off the point lie the breakers of Tarrow Shoal",
+      "reason": "The breakers are setting only."
+     },
+     "show that the vessel passed close inside the point": {
+      "kind": "mention",
+      "quote": "In fog a bell was rung by hand for every vessel that passed inside the point",
+      "reason": "Vessels passing inside the point are background; the entry concerns the lamp."
+     },
+     "show that both lights were visible that night": {
+      "kind": "mention",
+      "quote": "on clear nights both lights were visible from the gallery",
+      "reason": "Clear-night visibility is background, without reference to the logbook."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-4.v1",
+    "question": "As it is used in the second paragraph, the word \"fair\" most nearly means",
+    "choices": [
+     "favorable",
+     "impartial",
+     "considerable",
+     "neatly written",
+     "light-colored"
+    ],
+    "claimed_answer": "impartial",
+    "kills": {
+     "favorable": {
+      "kind": "refute",
+      "quote": "The inquiry gave each party a fair hearing",
+      "reason": "Here 'fair' describes a hearing that treats all sides alike, not something 'favorable'."
+     },
+     "considerable": {
+      "kind": "refute",
+      "quote": "The inquiry gave each party a fair hearing",
+      "reason": "Here 'fair' describes a hearing that treats all sides alike, not something 'considerable'."
+     },
+     "neatly written": {
+      "kind": "refute",
+      "quote": "The inquiry gave each party a fair hearing",
+      "reason": "Here 'fair' describes a hearing that treats all sides alike, not something 'neatly written'."
+     },
+     "light-colored": {
+      "kind": "refute",
+      "quote": "The inquiry gave each party a fair hearing",
+      "reason": "Here 'fair' describes a hearing that treats all sides alike, not something 'light-colored'."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-5.v1",
+    "question": "It can most reasonably be inferred that the board chose its remedy chiefly because it",
+    "choices": [
+     "trusted the keeper's account of the night",
+     "accepted what the inquiry had found",
+     "yielded to a petition from the pilots",
+     "was pressed by the schooner's owners",
+     "wanted to spend as little as it could"
+    ],
+    "claimed_answer": "accepted what the inquiry had found",
+    "kills": {
+     "trusted the keeper's account of the night": {
+      "kind": "mention",
+      "quote": "The keeper's account of the night went into the minutes beside the vote",
+      "reason": "Holm's account was recorded, but the vote went to the inquiry's remedy."
+     },
+     "yielded to a petition from the pilots": {
+      "kind": "mention",
+      "quote": "The pilots of Kelby sent the board a petition",
+      "reason": "The petition asked for licensing, which was not adopted."
+     },
+     "was pressed by the schooner's owners": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a heavier bell",
+      "reason": "The owners' bell was not what the board voted."
+     },
+     "wanted to spend as little as it could": {
+      "kind": "refute",
+      "quote": "The board had little money to spend, and the lightship would take most of it. It voted the money all the same",
+      "reason": "The board chose the costly remedy despite its little money."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-6.v1",
+    "question": "The author's attitude toward Ezra Holm is best described as",
+    "choices": [
+     "admiring",
+     "sympathetic",
+     "indulgent",
+     "disapproving",
+     "skeptical"
+    ],
+    "claimed_answer": "sympathetic",
+    "kills": {
+     "admiring": {
+      "kind": "mention",
+      "quote": "Holm went on trimming the old lamp through every fog for seventeen more years",
+      "reason": "His persistence is shown, but the emphasis is on what he was denied."
+     },
+     "indulgent": {
+      "kind": "mention",
+      "quote": "each spring he wrote to the board asking for a new lens",
+      "reason": "The letters are presented as poignant, not comic."
+     },
+     "disapproving": {
+      "kind": "refute",
+      "quote": "Lise, keeper now, lit it and wrote to tell him how far it carried",
+      "reason": "The ending is tender toward him, not critical."
+     },
+     "skeptical": {
+      "kind": "refute",
+      "quote": "Lise's logbook shows that the lamp burned low before midnight",
+      "reason": "The author presents Holm's evidence plainly, without casting doubt on it."
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV4-P02.v2",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry a fair distance. The pilots of Kelby sent the board a petition: the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license.\n\nThe inquiry found that the bell had been drowned out by the surf, and it urged a heavier one. Holm's theory was older than the wreck. Lise's logbook, read back across a decade of winters, shows the breakers over Tarrow moving farther out each season, and he asked for a lightship beside the shoal where it now lay. The charts, he told the hearing with some satisfaction, had been made for a shoal that had shifted elsewhere since about 1865.\n\nThe board had little money to spend. The pilots' petition was carried into the hall by thirty men in oilskins who stood at the back until the vote, and from 1872 every pilot working the channel needed a license. The keeper's account of the night was thanked and filed.\n\nHolm went calmly on with his soundings. Every summer Sunday he rowed out with a lead line, and every Monday he posted the board a corrected chart, which the clerk laid in a drawer kept for the purpose. The drawer still holds two hundred and six of them, each one confident, and each a little different from the last.",
+  "questions": [
+   {
+    "id": "WV4-P02-1.v2",
+    "question": "It can most reasonably be inferred that Ezra Holm believed the Merrow was lost because",
+    "choices": [
+     "the fog bell was drowned out by the surf",
+     "the beam from the old lens was too weak",
+     "the shoal had shifted since the charts were made",
+     "the pilot had steered too close to the point",
+     "the captain had taken the light for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "the shoal had shifted since the charts were made",
+    "kills": {
+     "the fog bell was drowned out by the surf": {
+      "kind": "mention",
+      "quote": "The inquiry found that the bell had been drowned out by the surf",
+      "reason": "This is the inquiry's finding; Holm's theory is about the shoal."
+     },
+     "the beam from the old lens was too weak": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry a fair distance",
+      "reason": "This is the owners' claim, which Holm never takes up."
+     },
+     "the pilot had steered too close to the point": {
+      "kind": "mention",
+      "quote": "the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license",
+      "reason": "This is the pilots' petition, which carried the vote but is not Holm's theory."
+     },
+     "the captain had taken the light for Kelby's harbor lamp": {
+      "kind": "mention",
+      "quote": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red",
+      "reason": "This is Danby's account, which Holm never takes up."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-2.v2",
+    "question": "According to the passage, the remedy the board adopted was",
+    "choices": [
+     "a heavier bell for Gannet Point",
+     "a lightship beside Tarrow Shoal",
+     "a license for every pilot in the channel",
+     "a new lens for the Gannet lamp",
+     "red paint for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "a license for every pilot in the channel",
+    "kills": {
+     "a heavier bell for Gannet Point": {
+      "kind": "mention",
+      "quote": "The inquiry found that the bell had been drowned out by the surf, and it urged a heavier one",
+      "reason": "The inquiry urged a heavier bell, but the vote went to the petition."
+     },
+     "a lightship beside Tarrow Shoal": {
+      "kind": "mention",
+      "quote": "he asked for a lightship beside the shoal where it now lay",
+      "reason": "Holm asked for a lightship; the board went another way."
+     },
+     "a new lens for the Gannet lamp": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a new lens",
+      "reason": "Only the owners pressed for a new lens."
+     },
+     "red paint for Kelby's harbor lamp": {
+      "kind": "mention",
+      "quote": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red",
+      "reason": "Only Danby asked for the harbor lamp to be painted red."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-3.v2",
+    "question": "The author mentions Lise Holm's logbook chiefly in order to",
+    "choices": [
+     "show that the bell was rung all night",
+     "show that the lamp burned low before midnight",
+     "show that the breakers had moved farther out",
+     "show that the vessel passed close inside the point",
+     "show that both lights were visible that night"
+    ],
+    "claimed_answer": "show that the breakers had moved farther out",
+    "kills": {
+     "show that the bell was rung all night": {
+      "kind": "mention",
+      "quote": "In fog a bell was rung by hand for every vessel that passed inside the point",
+      "reason": "The bell is background; the inquiry, not the logbook, deals with it."
+     },
+     "show that the lamp burned low before midnight": {
+      "kind": "mention",
+      "quote": "Kelby's harbor lamp burned two miles farther up",
+      "reason": "The lamp is background only."
+     },
+     "show that the vessel passed close inside the point": {
+      "kind": "mention",
+      "quote": "In fog a bell was rung by hand for every vessel that passed inside the point",
+      "reason": "Vessels passing inside the point are background; the logbook is read for the breakers."
+     },
+     "show that both lights were visible that night": {
+      "kind": "mention",
+      "quote": "on clear nights both lights were visible from the gallery",
+      "reason": "Clear-night visibility is background only."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-4.v2",
+    "question": "As it is used in the second paragraph, the word \"fair\" most nearly means",
+    "choices": [
+     "favorable",
+     "impartial",
+     "considerable",
+     "neatly written",
+     "light-colored"
+    ],
+    "claimed_answer": "considerable",
+    "kills": {
+     "favorable": {
+      "kind": "refute",
+      "quote": "its beam too dim to carry a fair distance",
+      "reason": "Here 'fair' describes a distance of some length, not something 'favorable'."
+     },
+     "impartial": {
+      "kind": "refute",
+      "quote": "its beam too dim to carry a fair distance",
+      "reason": "Here 'fair' describes a distance of some length, not something 'impartial'."
+     },
+     "neatly written": {
+      "kind": "refute",
+      "quote": "its beam too dim to carry a fair distance",
+      "reason": "Here 'fair' describes a distance of some length, not something 'neatly written'."
+     },
+     "light-colored": {
+      "kind": "refute",
+      "quote": "its beam too dim to carry a fair distance",
+      "reason": "Here 'fair' describes a distance of some length, not something 'light-colored'."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-5.v2",
+    "question": "It can most reasonably be inferred that the board chose its remedy chiefly because it",
+    "choices": [
+     "trusted the keeper's account of the night",
+     "accepted what the inquiry had found",
+     "yielded to a petition from the pilots",
+     "was pressed by the schooner's owners",
+     "wanted to spend as little as it could"
+    ],
+    "claimed_answer": "yielded to a petition from the pilots",
+    "kills": {
+     "trusted the keeper's account of the night": {
+      "kind": "mention",
+      "quote": "The keeper's account of the night was thanked and filed",
+      "reason": "Holm's account was filed, not acted on."
+     },
+     "accepted what the inquiry had found": {
+      "kind": "mention",
+      "quote": "The inquiry found that the bell had been drowned out by the surf, and it urged a heavier one",
+      "reason": "The inquiry urged a bell; the board licensed pilots instead."
+     },
+     "was pressed by the schooner's owners": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a new lens",
+      "reason": "The owners' lens was not adopted."
+     },
+     "wanted to spend as little as it could": {
+      "kind": "mention",
+      "quote": "The board had little money to spend",
+      "reason": "Shortage of money is stated, but the vote follows the petitioners standing in the hall."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-6.v2",
+    "question": "The author's attitude toward Ezra Holm is best described as",
+    "choices": [
+     "admiring",
+     "sympathetic",
+     "indulgent",
+     "disapproving",
+     "skeptical"
+    ],
+    "claimed_answer": "indulgent",
+    "kills": {
+     "admiring": {
+      "kind": "mention",
+      "quote": "Holm's theory was older than the wreck",
+      "reason": "His theory is supported by the logbook, but the author treats his charts with a smile, not praise."
+     },
+     "sympathetic": {
+      "kind": "mention",
+      "quote": "Holm went calmly on with his soundings",
+      "reason": "He is untroubled by losing the vote, so there is no hardship to pity."
+     },
+     "disapproving": {
+      "kind": "refute",
+      "quote": "he told the hearing with some satisfaction",
+      "reason": "His self-satisfaction is treated as endearing, not blamed."
+     },
+     "skeptical": {
+      "kind": "mention",
+      "quote": "read back across a decade of winters",
+      "reason": "The logbook backs his theory; the author teases his charts, not his evidence."
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV4-P02.v3",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The pilots of Kelby sent the board a petition blaming the bell, which the surf, they said, had drowned out, and asking for a heavier one. Holm answered with the logbook. Lise made a fair copy of it for the inquiry, and its entry for that night shows the Merrow passing close inside the point: the work, Holm said, of her pilot, a stranger who had steered too close and held no license.\n\nThe inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. The schooner's owners, who could recover their loss only if the light were at fault, pressed for something else: the old lens was weak, they argued, and its beam too dim. They wrote to every member of the board.\n\nThe board had little money to spend. Its chairman, Amos Reddick, whose brother held shares in the Merrow, moved that the Gannet lamp be fitted with a new lens, and the motion carried without debate. The keeper's account of the night was entered in the minutes and went no further.\n\nHolm kept at it. For two years he wrote to the Kelby paper, naming the Merrow's pilot, Orrin Tay, in every letter; masters along the coast stopped taking Tay aboard, and he left the sea for an inland mill. Holm, whose light had come through the inquiry with a new lens and an unblemished record, wrote for a third year.",
+  "questions": [
+   {
+    "id": "WV4-P02-1.v3",
+    "question": "It can most reasonably be inferred that Ezra Holm believed the Merrow was lost because",
+    "choices": [
+     "the fog bell was drowned out by the surf",
+     "the beam from the old lens was too weak",
+     "the shoal had shifted since the charts were made",
+     "the pilot had steered too close to the point",
+     "the captain had taken the light for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "the pilot had steered too close to the point",
+    "kills": {
+     "the fog bell was drowned out by the surf": {
+      "kind": "mention",
+      "quote": "The pilots of Kelby sent the board a petition blaming the bell, which the surf, they said, had drowned out",
+      "reason": "This is the pilots' view; Holm answers it with the logbook."
+     },
+     "the beam from the old lens was too weak": {
+      "kind": "mention",
+      "quote": "the old lens was weak, they argued, and its beam too dim",
+      "reason": "This is the owners' argument, which the board adopted, but it is not Holm's view."
+     },
+     "the shoal had shifted since the charts were made": {
+      "kind": "mention",
+      "quote": "The inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow",
+      "reason": "This is the inquiry's finding, which Holm never takes up."
+     },
+     "the captain had taken the light for Kelby's harbor lamp": {
+      "kind": "mention",
+      "quote": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red",
+      "reason": "This is Danby's account; Holm answers it with the logbook entry about the pilot."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-2.v3",
+    "question": "According to the passage, the remedy the board adopted was",
+    "choices": [
+     "a heavier bell for Gannet Point",
+     "a lightship beside Tarrow Shoal",
+     "a license for every pilot in the channel",
+     "a new lens for the Gannet lamp",
+     "red paint for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "a new lens for the Gannet lamp",
+    "kills": {
+     "a heavier bell for Gannet Point": {
+      "kind": "mention",
+      "quote": "The pilots of Kelby sent the board a petition blaming the bell, which the surf, they said, had drowned out, and asking for a heavier one",
+      "reason": "Only the pilots asked for a heavier bell."
+     },
+     "a lightship beside Tarrow Shoal": {
+      "kind": "mention",
+      "quote": "The inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow",
+      "reason": "The inquiry urged a lightship; the motion that carried was for a lens."
+     },
+     "a license for every pilot in the channel": {
+      "kind": "mention",
+      "quote": "a stranger who had steered too close and held no license",
+      "reason": "Holm raised the license only to blame the pilot; the board licensed no one."
+     },
+     "red paint for Kelby's harbor lamp": {
+      "kind": "mention",
+      "quote": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red",
+      "reason": "Only Danby asked for the harbor lamp to be painted red."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-3.v3",
+    "question": "The author mentions Lise Holm's logbook chiefly in order to",
+    "choices": [
+     "show that the bell was rung all night",
+     "show that the lamp burned low before midnight",
+     "show that the breakers had moved farther out",
+     "show that the vessel passed close inside the point",
+     "show that both lights were visible that night"
+    ],
+    "claimed_answer": "show that the vessel passed close inside the point",
+    "kills": {
+     "show that the bell was rung all night": {
+      "kind": "mention",
+      "quote": "The pilots of Kelby sent the board a petition blaming the bell",
+      "reason": "The bell is the pilots' theme; Holm answers it with the logbook's entry on the vessel."
+     },
+     "show that the lamp burned low before midnight": {
+      "kind": "mention",
+      "quote": "Kelby's harbor lamp burned two miles farther up",
+      "reason": "The lamp is background; the owners, not the logbook, attack it."
+     },
+     "show that the breakers had moved farther out": {
+      "kind": "mention",
+      "quote": "Off the point lie the breakers of Tarrow Shoal",
+      "reason": "The breakers are setting only."
+     },
+     "show that both lights were visible that night": {
+      "kind": "mention",
+      "quote": "on clear nights both lights were visible from the gallery",
+      "reason": "Clear-night visibility is background, unconnected to the logbook."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-4.v3",
+    "question": "As it is used in the second paragraph, the word \"fair\" most nearly means",
+    "choices": [
+     "favorable",
+     "impartial",
+     "considerable",
+     "neatly written",
+     "light-colored"
+    ],
+    "claimed_answer": "neatly written",
+    "kills": {
+     "favorable": {
+      "kind": "refute",
+      "quote": "Lise made a fair copy of it for the inquiry",
+      "reason": "Here 'fair' describes a clean final copy, not something 'favorable'."
+     },
+     "impartial": {
+      "kind": "refute",
+      "quote": "Lise made a fair copy of it for the inquiry",
+      "reason": "Here 'fair' describes a clean final copy, not something 'impartial'."
+     },
+     "considerable": {
+      "kind": "refute",
+      "quote": "Lise made a fair copy of it for the inquiry",
+      "reason": "Here 'fair' describes a clean final copy, not something 'considerable'."
+     },
+     "light-colored": {
+      "kind": "refute",
+      "quote": "Lise made a fair copy of it for the inquiry",
+      "reason": "Here 'fair' describes a clean final copy, not something 'light-colored'."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-5.v3",
+    "question": "It can most reasonably be inferred that the board chose its remedy chiefly because it",
+    "choices": [
+     "trusted the keeper's account of the night",
+     "accepted what the inquiry had found",
+     "yielded to a petition from the pilots",
+     "was pressed by the schooner's owners",
+     "wanted to spend as little as it could"
+    ],
+    "claimed_answer": "was pressed by the schooner's owners",
+    "kills": {
+     "trusted the keeper's account of the night": {
+      "kind": "refute",
+      "quote": "The keeper's account of the night was entered in the minutes and went no further",
+      "reason": "Holm's account is explicitly set aside."
+     },
+     "accepted what the inquiry had found": {
+      "kind": "mention",
+      "quote": "The inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow",
+      "reason": "The inquiry urged a lightship; the board fitted the owners' lens."
+     },
+     "yielded to a petition from the pilots": {
+      "kind": "mention",
+      "quote": "The pilots of Kelby sent the board a petition blaming the bell",
+      "reason": "The pilots wanted a heavier bell, which was not adopted."
+     },
+     "wanted to spend as little as it could": {
+      "kind": "mention",
+      "quote": "The board had little money to spend",
+      "reason": "Money was short, but the lens matched the owners' lobbying, not the cheapest option."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-6.v3",
+    "question": "The author's attitude toward Ezra Holm is best described as",
+    "choices": [
+     "admiring",
+     "sympathetic",
+     "indulgent",
+     "disapproving",
+     "skeptical"
+    ],
+    "claimed_answer": "disapproving",
+    "kills": {
+     "admiring": {
+      "kind": "refute",
+      "quote": "For two years he wrote to the Kelby paper, naming the Merrow's pilot, Orrin Tay, in every letter",
+      "reason": "The campaign is shown by its cost to Tay, not as a credit to Holm."
+     },
+     "sympathetic": {
+      "kind": "refute",
+      "quote": "whose light had come through the inquiry with a new lens and an unblemished record",
+      "reason": "Holm lost nothing, so there is no hardship of his to feel for."
+     },
+     "indulgent": {
+      "kind": "mention",
+      "quote": "Holm kept at it",
+      "reason": "His persistence harms another man, so it is not treated as a harmless quirk."
+     },
+     "skeptical": {
+      "kind": "mention",
+      "quote": "its entry for that night shows the Merrow passing close inside the point",
+      "reason": "The author accepts the logbook's evidence; the objection is to what Holm did with it."
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "WV4-P02.v4",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby blamed his pilot, a stranger without a license who had steered too close to the point. The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry. The pilots of Kelby sent the board a petition asking for a heavier bell, since the old one, they said, had been drowned out by the surf. Holm called Lise, sixteen, her fair hair tucked under a sou'wester, to read the logbook's entry: both lights, Gannet's and Kelby's, visible from the gallery that night.\n\nThe inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. Holm offered a simpler story. A captain coming down in fog, he told the hearing, sees two lights and steers for the wrong one, having taken Gannet's light for Kelby's harbor lamp. The inquiry heard him out.\n\nThe board had little money to spend, and the estimates were read aloud: four hundred pounds for a lightship, ninety for a lens, eleven shillings for paint to turn Kelby's harbor lamp red. The keeper's account of the night was quoted in the minutes, but the vote followed the figures, and the harbor lamp was painted red that spring.\n\nIt was an explanation that asked nothing of the light Holm kept, and he gave it to every visitor for eighteen years. In 1894 a survey placed Tarrow Shoal three hundred yards seaward of the old charts. Two ships had struck it in the meantime, both on clear nights, with Kelby's red lamp in plain view.",
+  "questions": [
+   {
+    "id": "WV4-P02-1.v4",
+    "question": "It can most reasonably be inferred that Ezra Holm believed the Merrow was lost because",
+    "choices": [
+     "the fog bell was drowned out by the surf",
+     "the beam from the old lens was too weak",
+     "the shoal had shifted since the charts were made",
+     "the pilot had steered too close to the point",
+     "the captain had taken the light for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "the captain had taken the light for Kelby's harbor lamp",
+    "kills": {
+     "the fog bell was drowned out by the surf": {
+      "kind": "mention",
+      "quote": "The pilots of Kelby sent the board a petition asking for a heavier bell, since the old one, they said, had been drowned out by the surf",
+      "reason": "This is the pilots' view, which Holm never takes up."
+     },
+     "the beam from the old lens was too weak": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry",
+      "reason": "This is the owners' claim, which Holm never takes up."
+     },
+     "the shoal had shifted since the charts were made": {
+      "kind": "mention",
+      "quote": "The inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow",
+      "reason": "This is the inquiry's finding; Holm 'offered a simpler story'."
+     },
+     "the pilot had steered too close to the point": {
+      "kind": "mention",
+      "quote": "Captain Danby blamed his pilot, a stranger without a license who had steered too close to the point",
+      "reason": "This is Danby's view; Holm's story puts the error on the captain."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-2.v4",
+    "question": "According to the passage, the remedy the board adopted was",
+    "choices": [
+     "a heavier bell for Gannet Point",
+     "a lightship beside Tarrow Shoal",
+     "a license for every pilot in the channel",
+     "a new lens for the Gannet lamp",
+     "red paint for Kelby's harbor lamp"
+    ],
+    "claimed_answer": "red paint for Kelby's harbor lamp",
+    "kills": {
+     "a heavier bell for Gannet Point": {
+      "kind": "mention",
+      "quote": "The pilots of Kelby sent the board a petition asking for a heavier bell",
+      "reason": "Only the pilots asked for a heavier bell."
+     },
+     "a lightship beside Tarrow Shoal": {
+      "kind": "refute",
+      "quote": "four hundred pounds for a lightship",
+      "reason": "The lightship was the costliest estimate; the vote followed the figures."
+     },
+     "a license for every pilot in the channel": {
+      "kind": "mention",
+      "quote": "Captain Danby blamed his pilot, a stranger without a license",
+      "reason": "Danby's charge mentions the license, but no licensing was adopted."
+     },
+     "a new lens for the Gannet lamp": {
+      "kind": "refute",
+      "quote": "ninety for a lens",
+      "reason": "The lens cost far more than paint, and the vote followed the figures."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-3.v4",
+    "question": "The author mentions Lise Holm's logbook chiefly in order to",
+    "choices": [
+     "show that the bell was rung all night",
+     "show that the lamp burned low before midnight",
+     "show that the breakers had moved farther out",
+     "show that the vessel passed close inside the point",
+     "show that both lights were visible that night"
+    ],
+    "claimed_answer": "show that both lights were visible that night",
+    "kills": {
+     "show that the bell was rung all night": {
+      "kind": "mention",
+      "quote": "In fog a bell was rung by hand for every vessel that passed inside the point",
+      "reason": "The bell is background; the logbook entry concerns the lights."
+     },
+     "show that the lamp burned low before midnight": {
+      "kind": "mention",
+      "quote": "Kelby's harbor lamp burned two miles farther up",
+      "reason": "The lamp burning is background only."
+     },
+     "show that the breakers had moved farther out": {
+      "kind": "mention",
+      "quote": "Off the point lie the breakers of Tarrow Shoal",
+      "reason": "The breakers are setting only."
+     },
+     "show that the vessel passed close inside the point": {
+      "kind": "mention",
+      "quote": "Captain Danby blamed his pilot, a stranger without a license who had steered too close to the point",
+      "reason": "Danby makes this charge; the logbook is read for the lights."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-4.v4",
+    "question": "As it is used in the second paragraph, the word \"fair\" most nearly means",
+    "choices": [
+     "favorable",
+     "impartial",
+     "considerable",
+     "neatly written",
+     "light-colored"
+    ],
+    "claimed_answer": "light-colored",
+    "kills": {
+     "favorable": {
+      "kind": "refute",
+      "quote": "her fair hair tucked under a sou'wester",
+      "reason": "Here 'fair' describes hair light in color, not something 'favorable'."
+     },
+     "impartial": {
+      "kind": "refute",
+      "quote": "her fair hair tucked under a sou'wester",
+      "reason": "Here 'fair' describes hair light in color, not something 'impartial'."
+     },
+     "considerable": {
+      "kind": "refute",
+      "quote": "her fair hair tucked under a sou'wester",
+      "reason": "Here 'fair' describes hair light in color, not something 'considerable'."
+     },
+     "neatly written": {
+      "kind": "refute",
+      "quote": "her fair hair tucked under a sou'wester",
+      "reason": "Here 'fair' describes hair light in color, not something 'neatly written'."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-5.v4",
+    "question": "It can most reasonably be inferred that the board chose its remedy chiefly because it",
+    "choices": [
+     "trusted the keeper's account of the night",
+     "accepted what the inquiry had found",
+     "yielded to a petition from the pilots",
+     "was pressed by the schooner's owners",
+     "wanted to spend as little as it could"
+    ],
+    "claimed_answer": "wanted to spend as little as it could",
+    "kills": {
+     "trusted the keeper's account of the night": {
+      "kind": "refute",
+      "quote": "The keeper's account of the night was quoted in the minutes, but the vote followed the figures",
+      "reason": "Holm's account matched the remedy but is said not to have decided it."
+     },
+     "accepted what the inquiry had found": {
+      "kind": "mention",
+      "quote": "The inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow",
+      "reason": "The inquiry urged a lightship, the costliest estimate."
+     },
+     "yielded to a petition from the pilots": {
+      "kind": "mention",
+      "quote": "The pilots of Kelby sent the board a petition asking for a heavier bell",
+      "reason": "The petition's bell was not adopted."
+     },
+     "was pressed by the schooner's owners": {
+      "kind": "mention",
+      "quote": "The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry",
+      "reason": "The owners' lens was not adopted."
+     }
+    }
+   },
+   {
+    "id": "WV4-P02-6.v4",
+    "question": "The author's attitude toward Ezra Holm is best described as",
+    "choices": [
+     "admiring",
+     "sympathetic",
+     "indulgent",
+     "disapproving",
+     "skeptical"
+    ],
+    "claimed_answer": "skeptical",
+    "kills": {
+     "admiring": {
+      "kind": "refute",
+      "quote": "Two ships had struck it in the meantime, both on clear nights, with Kelby's red lamp in plain view",
+      "reason": "The later wrecks undercut Holm's story rather than crediting it."
+     },
+     "sympathetic": {
+      "kind": "mention",
+      "quote": "he gave it to every visitor for eighteen years",
+      "reason": "Repetition is shown as clinging to a convenient story, not as a hardship."
+     },
+     "indulgent": {
+      "kind": "mention",
+      "quote": "Holm offered a simpler story",
+      "reason": "The 'simpler story' is questioned by the evidence that follows, not smiled at."
+     },
+     "disapproving": {
+      "kind": "mention",
+      "quote": "The inquiry heard him out",
+      "reason": "The author doubts his explanation but does not fault his conduct toward anyone."
+     }
+    }
+   }
+  ]
+ }
+]

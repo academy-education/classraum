@@ -1,0 +1,314 @@
+[
+ {
+  "id": "WV4-P01-1",
+  "set_id": "WV4-P01",
+  "passageGroupId": "wv-WV4-P01",
+  "genre": "narrative fiction",
+  "version": 3,
+  "subskill": "inference",
+  "difficulty": "hard",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed.\n\nIn July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull. He watched Grandfather try to hold a pencil, and then he made his offer: he would finish the Linnet in his yard in time for the regatta and charge only for the varnish. Grandfather said he would think it over, which in our family can mean anything.\n\nOne morning a week later the fourth plank split from end to end. Grandfather held his hands up to the light as if they belonged to someone else. “I marked that bevel wrong, Ada,” he said, and he spent the afternoon measuring every frame again, finding each one where the plans put it, while I stood by the steam box and said nothing.\n\nThat evening I opened my steam log. On the day I bent the fourth plank he had gone a fair distance up the coast to see Mrs. Vale, and I had pulled the plank out after forty minutes instead of an hour, wanting it on before he came home. I showed him the page. He read it twice. Then he said a repaired plank in a hurried hull would split again in the first heat of August, and that next summer the two of us would rebuild the Linnet properly. The regatta would have to manage without her.\n\nMrs. Vale found another boat for her grandson, and Grandfather says next summer the way other people say tomorrow. I watched him fumble the latch on the shed door that night, three tries before it caught, and in my room I counted the months to June, and then counted them again.",
+  "prompt": "It can most reasonably be inferred that, when the damage was found, Grandfather blamed it on",
+  "choices": [
+   "the cedar Mr. Corran had sold him",
+   "Ada’s work at the steam box",
+   "the heat inside the shed",
+   "an error in his own measuring",
+   "a mistake in his father’s plans"
+  ],
+  "correct_answer": "an error in his own measuring",
+  "explanation": "I marked that bevel wrong, Ada",
+  "kills": {
+   "the cedar Mr. Corran had sold him": "In July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull",
+   "Ada’s work at the steam box": "That evening I opened my steam log.",
+   "the heat inside the shed": "would split again in the first heat of August",
+   "a mistake in his father’s plans": "finding each one where the plans put it"
+  }
+ },
+ {
+  "id": "WV4-P01-2",
+  "set_id": "WV4-P01",
+  "passageGroupId": "wv-WV4-P01",
+  "genre": "narrative fiction",
+  "version": 3,
+  "subskill": "inference",
+  "difficulty": "hard",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed.\n\nIn July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull. He watched Grandfather try to hold a pencil, and then he made his offer: he would finish the Linnet in his yard in time for the regatta and charge only for the varnish. Grandfather said he would think it over, which in our family can mean anything.\n\nOne morning a week later the fourth plank split from end to end. Grandfather held his hands up to the light as if they belonged to someone else. “I marked that bevel wrong, Ada,” he said, and he spent the afternoon measuring every frame again, finding each one where the plans put it, while I stood by the steam box and said nothing.\n\nThat evening I opened my steam log. On the day I bent the fourth plank he had gone a fair distance up the coast to see Mrs. Vale, and I had pulled the plank out after forty minutes instead of an hour, wanting it on before he came home. I showed him the page. He read it twice. Then he said a repaired plank in a hurried hull would split again in the first heat of August, and that next summer the two of us would rebuild the Linnet properly. The regatta would have to manage without her.\n\nMrs. Vale found another boat for her grandson, and Grandfather says next summer the way other people say tomorrow. I watched him fumble the latch on the shed door that night, three tries before it caught, and in my room I counted the months to June, and then counted them again.",
+  "prompt": "The passage most strongly suggests that the damage was actually caused by",
+  "choices": [
+   "the heat inside Grandfather’s shed",
+   "a mistake in his father’s plans",
+   "the cedar Mr. Corran had sold him",
+   "Ada’s work at the steam box",
+   "an error in Grandfather’s measuring"
+  ],
+  "correct_answer": "Ada’s work at the steam box",
+  "explanation": "I had pulled the plank out after forty minutes instead of an hour, wanting it on before he came home",
+  "kills": {
+   "the heat inside Grandfather’s shed": "would split again in the first heat of August",
+   "a mistake in his father’s plans": "finding each one where the plans put it",
+   "the cedar Mr. Corran had sold him": "In July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull",
+   "an error in Grandfather’s measuring": "he spent the afternoon measuring every frame again, finding each one where the plans put it"
+  }
+ },
+ {
+  "id": "WV4-P01-3",
+  "set_id": "WV4-P01",
+  "passageGroupId": "wv-WV4-P01",
+  "genre": "narrative fiction",
+  "version": 3,
+  "subskill": "purpose",
+  "difficulty": "medium",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed.\n\nIn July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull. He watched Grandfather try to hold a pencil, and then he made his offer: he would finish the Linnet in his yard in time for the regatta and charge only for the varnish. Grandfather said he would think it over, which in our family can mean anything.\n\nOne morning a week later the fourth plank split from end to end. Grandfather held his hands up to the light as if they belonged to someone else. “I marked that bevel wrong, Ada,” he said, and he spent the afternoon measuring every frame again, finding each one where the plans put it, while I stood by the steam box and said nothing.\n\nThat evening I opened my steam log. On the day I bent the fourth plank he had gone a fair distance up the coast to see Mrs. Vale, and I had pulled the plank out after forty minutes instead of an hour, wanting it on before he came home. I showed him the page. He read it twice. Then he said a repaired plank in a hurried hull would split again in the first heat of August, and that next summer the two of us would rebuild the Linnet properly. The regatta would have to manage without her.\n\nMrs. Vale found another boat for her grandson, and Grandfather says next summer the way other people say tomorrow. I watched him fumble the latch on the shed door that night, three tries before it caught, and in my room I counted the months to June, and then counted them again.",
+  "prompt": "The main purpose of the second paragraph is to",
+  "choices": [
+   "describe the morning the plank split",
+   "recount Mrs. Vale’s first visit to the shed",
+   "explain how Ada was taught to steam planks",
+   "describe Mr. Corran’s offer to finish the boat",
+   "recall how Grandfather’s father drew the plans"
+  ],
+  "correct_answer": "describe Mr. Corran’s offer to finish the boat",
+  "explanation": "then he made his offer: he would finish the Linnet in his yard in time for the regatta",
+  "kills": {
+   "describe the morning the plank split": "One morning a week later the fourth plank split from end to end.",
+   "recount Mrs. Vale’s first visit to the shed": "Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed",
+   "explain how Ada was taught to steam planks": "so he taught me the steam box, and I bent each plank while he measured it",
+   "recall how Grandfather’s father drew the plans": "from the plans his father drew sixty years ago"
+  }
+ },
+ {
+  "id": "WV4-P01-4",
+  "set_id": "WV4-P01",
+  "passageGroupId": "wv-WV4-P01",
+  "genre": "narrative fiction",
+  "version": 3,
+  "subskill": "vocabulary-in-context",
+  "difficulty": "medium",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed.\n\nIn July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull. He watched Grandfather try to hold a pencil, and then he made his offer: he would finish the Linnet in his yard in time for the regatta and charge only for the varnish. Grandfather said he would think it over, which in our family can mean anything.\n\nOne morning a week later the fourth plank split from end to end. Grandfather held his hands up to the light as if they belonged to someone else. “I marked that bevel wrong, Ada,” he said, and he spent the afternoon measuring every frame again, finding each one where the plans put it, while I stood by the steam box and said nothing.\n\nThat evening I opened my steam log. On the day I bent the fourth plank he had gone a fair distance up the coast to see Mrs. Vale, and I had pulled the plank out after forty minutes instead of an hour, wanting it on before he came home. I showed him the page. He read it twice. Then he said a repaired plank in a hurried hull would split again in the first heat of August, and that next summer the two of us would rebuild the Linnet properly. The regatta would have to manage without her.\n\nMrs. Vale found another boat for her grandson, and Grandfather says next summer the way other people say tomorrow. I watched him fumble the latch on the shed door that night, three tries before it caught, and in my room I counted the months to June, and then counted them again.",
+  "prompt": "As it is used in the fourth paragraph, the word “fair” most nearly means",
+  "choices": [
+   "cloudless",
+   "reasonable",
+   "favorable",
+   "sizable",
+   "adequate"
+  ],
+  "correct_answer": "sizable",
+  "explanation": "he had gone a fair distance up the coast to see Mrs. Vale",
+  "kills": {
+   "cloudless": "he had gone a fair distance up the coast to see Mrs. Vale",
+   "reasonable": "he had gone a fair distance up the coast to see Mrs. Vale",
+   "favorable": "he had gone a fair distance up the coast to see Mrs. Vale",
+   "adequate": "he had gone a fair distance up the coast to see Mrs. Vale"
+  }
+ },
+ {
+  "id": "WV4-P01-5",
+  "set_id": "WV4-P01",
+  "passageGroupId": "wv-WV4-P01",
+  "genre": "narrative fiction",
+  "version": 3,
+  "subskill": "attitude",
+  "difficulty": "hard",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed.\n\nIn July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull. He watched Grandfather try to hold a pencil, and then he made his offer: he would finish the Linnet in his yard in time for the regatta and charge only for the varnish. Grandfather said he would think it over, which in our family can mean anything.\n\nOne morning a week later the fourth plank split from end to end. Grandfather held his hands up to the light as if they belonged to someone else. “I marked that bevel wrong, Ada,” he said, and he spent the afternoon measuring every frame again, finding each one where the plans put it, while I stood by the steam box and said nothing.\n\nThat evening I opened my steam log. On the day I bent the fourth plank he had gone a fair distance up the coast to see Mrs. Vale, and I had pulled the plank out after forty minutes instead of an hour, wanting it on before he came home. I showed him the page. He read it twice. Then he said a repaired plank in a hurried hull would split again in the first heat of August, and that next summer the two of us would rebuild the Linnet properly. The regatta would have to manage without her.\n\nMrs. Vale found another boat for her grandson, and Grandfather says next summer the way other people say tomorrow. I watched him fumble the latch on the shed door that night, three tries before it caught, and in my room I counted the months to June, and then counted them again.",
+  "prompt": "Which best describes the attitude of the narrator toward the final decision about the Linnet?",
+  "choices": [
+   "wistful",
+   "grateful",
+   "resentful",
+   "doubtful",
+   "admiring"
+  ],
+  "correct_answer": "doubtful",
+  "explanation": "I watched him fumble the latch on the shed door that night, three tries before it caught, and in my room I counted the months to June, and then counted them again.",
+  "kills": {
+   "wistful": "Mrs. Vale found another boat for her grandson",
+   "grateful": "next summer the two of us would rebuild the Linnet properly",
+   "resentful": "I showed him the page. He read it twice.",
+   "admiring": "Grandfather says next summer the way other people say tomorrow"
+  }
+ },
+ {
+  "id": "WV4-P01-6",
+  "set_id": "WV4-P01",
+  "passageGroupId": "wv-WV4-P01",
+  "genre": "narrative fiction",
+  "version": 3,
+  "subskill": "detail",
+  "difficulty": "medium",
+  "passage": "The summer I turned fifteen, Grandfather was building the Linnet in his shed at Merrow Point from the plans his father drew sixty years ago. He had raced in the harbor regatta every August of his life, but his hands had grown stiff, so he taught me the steam box, and I bent each plank while he measured it. Mrs. Vale had asked to buy the boat for her grandson to sail on her first visit to the shed.\n\nIn July Mr. Corran, who sold us the cedar, rowed across the harbor to look at the hull. He watched Grandfather try to hold a pencil, and then he made his offer: he would finish the Linnet in his yard in time for the regatta and charge only for the varnish. Grandfather said he would think it over, which in our family can mean anything.\n\nOne morning a week later the fourth plank split from end to end. Grandfather held his hands up to the light as if they belonged to someone else. “I marked that bevel wrong, Ada,” he said, and he spent the afternoon measuring every frame again, finding each one where the plans put it, while I stood by the steam box and said nothing.\n\nThat evening I opened my steam log. On the day I bent the fourth plank he had gone a fair distance up the coast to see Mrs. Vale, and I had pulled the plank out after forty minutes instead of an hour, wanting it on before he came home. I showed him the page. He read it twice. Then he said a repaired plank in a hurried hull would split again in the first heat of August, and that next summer the two of us would rebuild the Linnet properly. The regatta would have to manage without her.\n\nMrs. Vale found another boat for her grandson, and Grandfather says next summer the way other people say tomorrow. I watched him fumble the latch on the shed door that night, three tries before it caught, and in my room I counted the months to June, and then counted them again.",
+  "prompt": "By the end of the passage, it has been decided that the Linnet will be",
+  "choices": [
+   "sold to Mrs. Vale once it is repaired",
+   "sailed by Ada in the regatta",
+   "finished in Mr. Corran’s yard",
+   "rebuilt by Grandfather and Ada next summer",
+   "raced by Grandfather in the regatta"
+  ],
+  "correct_answer": "rebuilt by Grandfather and Ada next summer",
+  "explanation": "next summer the two of us would rebuild the Linnet properly",
+  "kills": {
+   "sold to Mrs. Vale once it is repaired": "Mrs. Vale found another boat for her grandson",
+   "sailed by Ada in the regatta": "The regatta would have to manage without her.",
+   "finished in Mr. Corran’s yard": "he would finish the Linnet in his yard in time for the regatta",
+   "raced by Grandfather in the regatta": "The regatta would have to manage without her."
+  }
+ },
+ {
+  "id": "WV4-P02-1",
+  "set_id": "WV4-P02",
+  "passageGroupId": "wv-WV4-P02",
+  "genre": "history feature",
+  "version": 0,
+  "subskill": "inference",
+  "difficulty": "hard",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby, who had come down the coast on a fair wind, said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry. The pilots of Kelby sent the board a petition: the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license.\n\nThe inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. Holm had rung the bell all night, and Lise's logbook marks each stroke until dawn. He spent the week after the hearing on the rocks, striking a borrowed church bell into a heavy surf while Lise walked the beach marking where each stroke was drowned out.\n\nThe board had little money to spend, and a lightship would have consumed most of it. Its chairman, Amos Reddick, said that a man who had stood thirteen winters on the point knew its weather better than any inquiry, and on the keeper's account of the night the board ordered a heavier bell.\n\nIt went up in 1872, low on the rock where Lise's marks showed a stroke carried farthest. In the eighteen years Holm kept the light after that, nothing larger than a rowboat touched Tarrow in fog, and the bell still hangs where he placed it, struck by machine at his old rate of one stroke a minute.",
+  "prompt": "It can most reasonably be inferred that Ezra Holm believed the Merrow was lost because",
+  "choices": [
+   "the fog bell was drowned out by the surf",
+   "the beam from the old lens was too weak",
+   "the shoal had shifted since the charts were made",
+   "the pilot had steered too close to the point",
+   "the captain had taken the light for Kelby's harbor lamp"
+  ],
+  "correct_answer": "the fog bell was drowned out by the surf",
+  "explanation": "striking a borrowed church bell into a heavy surf while Lise walked the beach marking where each stroke was drowned out",
+  "kills": {
+   "the beam from the old lens was too weak": "The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry",
+   "the shoal had shifted since the charts were made": "The inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow",
+   "the pilot had steered too close to the point": "the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license",
+   "the captain had taken the light for Kelby's harbor lamp": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red"
+  }
+ },
+ {
+  "id": "WV4-P02-2",
+  "set_id": "WV4-P02",
+  "passageGroupId": "wv-WV4-P02",
+  "genre": "history feature",
+  "version": 0,
+  "subskill": "detail",
+  "difficulty": "medium",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby, who had come down the coast on a fair wind, said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry. The pilots of Kelby sent the board a petition: the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license.\n\nThe inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. Holm had rung the bell all night, and Lise's logbook marks each stroke until dawn. He spent the week after the hearing on the rocks, striking a borrowed church bell into a heavy surf while Lise walked the beach marking where each stroke was drowned out.\n\nThe board had little money to spend, and a lightship would have consumed most of it. Its chairman, Amos Reddick, said that a man who had stood thirteen winters on the point knew its weather better than any inquiry, and on the keeper's account of the night the board ordered a heavier bell.\n\nIt went up in 1872, low on the rock where Lise's marks showed a stroke carried farthest. In the eighteen years Holm kept the light after that, nothing larger than a rowboat touched Tarrow in fog, and the bell still hangs where he placed it, struck by machine at his old rate of one stroke a minute.",
+  "prompt": "According to the passage, the remedy the board adopted was",
+  "choices": [
+   "a heavier bell for Gannet Point",
+   "a lightship beside Tarrow Shoal",
+   "a license for every pilot in the channel",
+   "a new lens for the Gannet lamp",
+   "red paint for Kelby's harbor lamp"
+  ],
+  "correct_answer": "a heavier bell for Gannet Point",
+  "explanation": "on the keeper's account of the night the board ordered a heavier bell",
+  "kills": {
+   "a lightship beside Tarrow Shoal": "a lightship would have consumed most of it",
+   "a license for every pilot in the channel": "the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license",
+   "a new lens for the Gannet lamp": "The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry",
+   "red paint for Kelby's harbor lamp": "said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red"
+  }
+ },
+ {
+  "id": "WV4-P02-3",
+  "set_id": "WV4-P02",
+  "passageGroupId": "wv-WV4-P02",
+  "genre": "history feature",
+  "version": 0,
+  "subskill": "purpose",
+  "difficulty": "hard",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby, who had come down the coast on a fair wind, said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry. The pilots of Kelby sent the board a petition: the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license.\n\nThe inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. Holm had rung the bell all night, and Lise's logbook marks each stroke until dawn. He spent the week after the hearing on the rocks, striking a borrowed church bell into a heavy surf while Lise walked the beach marking where each stroke was drowned out.\n\nThe board had little money to spend, and a lightship would have consumed most of it. Its chairman, Amos Reddick, said that a man who had stood thirteen winters on the point knew its weather better than any inquiry, and on the keeper's account of the night the board ordered a heavier bell.\n\nIt went up in 1872, low on the rock where Lise's marks showed a stroke carried farthest. In the eighteen years Holm kept the light after that, nothing larger than a rowboat touched Tarrow in fog, and the bell still hangs where he placed it, struck by machine at his old rate of one stroke a minute.",
+  "prompt": "The author mentions Lise Holm's logbook chiefly in order to",
+  "choices": [
+   "show that the bell was rung all night",
+   "show that the lamp burned low before midnight",
+   "show that the breakers had moved farther out",
+   "show that the vessel passed close inside the point",
+   "show that both lights were visible that night"
+  ],
+  "correct_answer": "show that the bell was rung all night",
+  "explanation": "Holm had rung the bell all night, and Lise's logbook marks each stroke until dawn",
+  "kills": {
+   "show that the lamp burned low before midnight": "Kelby's harbor lamp burned two miles farther up",
+   "show that the breakers had moved farther out": "Off the point lie the breakers of Tarrow Shoal",
+   "show that the vessel passed close inside the point": "In fog a bell was rung by hand for every vessel that passed inside the point",
+   "show that both lights were visible that night": "on clear nights both lights were visible from the gallery"
+  }
+ },
+ {
+  "id": "WV4-P02-4",
+  "set_id": "WV4-P02",
+  "passageGroupId": "wv-WV4-P02",
+  "genre": "history feature",
+  "version": 0,
+  "subskill": "vocabulary-in-context",
+  "difficulty": "medium",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby, who had come down the coast on a fair wind, said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry. The pilots of Kelby sent the board a petition: the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license.\n\nThe inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. Holm had rung the bell all night, and Lise's logbook marks each stroke until dawn. He spent the week after the hearing on the rocks, striking a borrowed church bell into a heavy surf while Lise walked the beach marking where each stroke was drowned out.\n\nThe board had little money to spend, and a lightship would have consumed most of it. Its chairman, Amos Reddick, said that a man who had stood thirteen winters on the point knew its weather better than any inquiry, and on the keeper's account of the night the board ordered a heavier bell.\n\nIt went up in 1872, low on the rock where Lise's marks showed a stroke carried farthest. In the eighteen years Holm kept the light after that, nothing larger than a rowboat touched Tarrow in fog, and the bell still hangs where he placed it, struck by machine at his old rate of one stroke a minute.",
+  "prompt": "As it is used in the second paragraph, the word \"fair\" most nearly means",
+  "choices": [
+   "favorable",
+   "impartial",
+   "considerable",
+   "neatly written",
+   "light-colored"
+  ],
+  "correct_answer": "favorable",
+  "explanation": "Captain Danby, who had come down the coast on a fair wind",
+  "kills": {
+   "impartial": "Captain Danby, who had come down the coast on a fair wind",
+   "considerable": "Captain Danby, who had come down the coast on a fair wind",
+   "neatly written": "Captain Danby, who had come down the coast on a fair wind",
+   "light-colored": "Captain Danby, who had come down the coast on a fair wind"
+  }
+ },
+ {
+  "id": "WV4-P02-5",
+  "set_id": "WV4-P02",
+  "passageGroupId": "wv-WV4-P02",
+  "genre": "history feature",
+  "version": 0,
+  "subskill": "inference",
+  "difficulty": "hard",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby, who had come down the coast on a fair wind, said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry. The pilots of Kelby sent the board a petition: the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license.\n\nThe inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. Holm had rung the bell all night, and Lise's logbook marks each stroke until dawn. He spent the week after the hearing on the rocks, striking a borrowed church bell into a heavy surf while Lise walked the beach marking where each stroke was drowned out.\n\nThe board had little money to spend, and a lightship would have consumed most of it. Its chairman, Amos Reddick, said that a man who had stood thirteen winters on the point knew its weather better than any inquiry, and on the keeper's account of the night the board ordered a heavier bell.\n\nIt went up in 1872, low on the rock where Lise's marks showed a stroke carried farthest. In the eighteen years Holm kept the light after that, nothing larger than a rowboat touched Tarrow in fog, and the bell still hangs where he placed it, struck by machine at his old rate of one stroke a minute.",
+  "prompt": "It can most reasonably be inferred that the board chose its remedy chiefly because it",
+  "choices": [
+   "trusted the keeper's account of the night",
+   "accepted what the inquiry had found",
+   "yielded to a petition from the pilots",
+   "was pressed by the schooner's owners",
+   "wanted to spend as little as it could"
+  ],
+  "correct_answer": "trusted the keeper's account of the night",
+  "explanation": "said that a man who had stood thirteen winters on the point knew its weather better than any inquiry",
+  "kills": {
+   "accepted what the inquiry had found": "knew its weather better than any inquiry",
+   "yielded to a petition from the pilots": "The pilots of Kelby sent the board a petition",
+   "was pressed by the schooner's owners": "The schooner's owners pressed for a new lens",
+   "wanted to spend as little as it could": "The board had little money to spend, and a lightship would have consumed most of it"
+  }
+ },
+ {
+  "id": "WV4-P02-6",
+  "set_id": "WV4-P02",
+  "passageGroupId": "wv-WV4-P02",
+  "genre": "history feature",
+  "version": 0,
+  "subskill": "attitude",
+  "difficulty": "hard",
+  "passage": "For thirty-two years Ezra Holm kept the light on Gannet Point, the low headland guarding the channel into Kelby. Off the point lie the breakers of Tarrow Shoal; Kelby's harbor lamp burned two miles farther up, and on clear nights both lights were visible from the gallery. In fog a bell was rung by hand for every vessel that passed inside the point, and his daughter Lise kept the logbook. Soon after midnight one November night in 1871, as fog moved in, the schooner Merrow struck the shoal and three of her crew drowned before dawn.\n\nCaptain Danby, who had come down the coast on a fair wind, said he had taken Gannet's light for Kelby's harbor lamp and asked that the harbor lamp be painted red. The schooner's owners pressed for a new lens, calling the old one weak and its beam too dim to carry. The pilots of Kelby sent the board a petition: the Merrow's pilot, a stranger, had steered too close to the point, and every pilot working the channel ought to hold a license.\n\nThe inquiry found that the shoal had shifted since the charts were made, and it urged a lightship beside Tarrow. Holm had rung the bell all night, and Lise's logbook marks each stroke until dawn. He spent the week after the hearing on the rocks, striking a borrowed church bell into a heavy surf while Lise walked the beach marking where each stroke was drowned out.\n\nThe board had little money to spend, and a lightship would have consumed most of it. Its chairman, Amos Reddick, said that a man who had stood thirteen winters on the point knew its weather better than any inquiry, and on the keeper's account of the night the board ordered a heavier bell.\n\nIt went up in 1872, low on the rock where Lise's marks showed a stroke carried farthest. In the eighteen years Holm kept the light after that, nothing larger than a rowboat touched Tarrow in fog, and the bell still hangs where he placed it, struck by machine at his old rate of one stroke a minute.",
+  "prompt": "The author's attitude toward Ezra Holm is best described as",
+  "choices": [
+   "admiring",
+   "sympathetic",
+   "indulgent",
+   "disapproving",
+   "skeptical"
+  ],
+  "correct_answer": "admiring",
+  "explanation": "the bell still hangs where he placed it, struck by machine at his old rate of one stroke a minute",
+  "kills": {
+   "sympathetic": "knew its weather better than any inquiry",
+   "indulgent": "striking a borrowed church bell into a heavy surf",
+   "disapproving": "nothing larger than a rowboat touched Tarrow in fog",
+   "skeptical": "on the keeper's account of the night the board ordered a heavier bell"
+  }
+ }
+]
