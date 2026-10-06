@@ -113,3 +113,18 @@ describe('USER_PUBLIC_COLUMNS vs migration 120', () => {
     expect(sql).not.toMatch(/grant execute on function public\.app_user_contacts\(uuid\[\]\) to[^;]*\banon\b/i)
   })
 })
+
+describe('app_user_contacts rule branches (migration 120)', () => {
+  const sql = fs.readFileSync(
+    path.join(process.cwd(), 'database/migrations/120_users_contact_columns.sql'), 'utf8')
+  const body = sql.match(/create or replace function public\.app_user_contacts[\s\S]*?\n\$\$;/)![0]
+
+  it('has the family branch: callers see members sharing a family_id', () => {
+    expect(body).toMatch(/from public\.family_members a\s+join public\.family_members b on b\.family_id = a\.family_id\s+where a\.user_id = auth\.uid\(\) and b\.user_id = u\.id/)
+  })
+
+  it('requires the CALLER to be active staff (target row may be inactive)', () => {
+    expect(body).toMatch(/from public\.managers where user_id = auth\.uid\(\) and active is true/)
+    expect(body).toMatch(/from public\.teachers where user_id = auth\.uid\(\) and active is true/)
+  })
+})

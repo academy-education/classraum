@@ -31,6 +31,9 @@
 --           `where active is true` to each branch of the target union.
 --        c. callers whose users.role is admin or super_admin
 --           (role writes are guarded by migration 119),
+--        e. members of the same family (family_members sharing a family_id:
+--           parent<->child, siblings) — consistent with get_users_for_family,
+--           which already returns family members' emails,
 --        d. auth.uid() IS NULL — service role / owner. EXECUTE is revoked
 --           from anon and PUBLIC, so an unauthenticated browser cannot reach
 --           this branch.
@@ -91,6 +94,13 @@ as $$
         ) m on m.academy_id = staff.academy_id
         where m.user_id = u.id
       )
+      or exists (
+        -- e. same family (parent<->child, siblings), as get_users_for_family
+        select 1
+        from public.family_members a
+        join public.family_members b on b.family_id = a.family_id
+        where a.user_id = auth.uid() and b.user_id = u.id
+      )
     )
 $$;
 
@@ -98,7 +108,7 @@ revoke all on function public.app_user_contacts(uuid[]) from public, anon;
 grant execute on function public.app_user_contacts(uuid[]) to authenticated, service_role;
 
 comment on function public.app_user_contacts(uuid[]) is
-  'Contact PII (email, phone) of public.users for ids the caller may see: self, staff of a shared academy, admins. Migration 120.';
+  'Contact PII (email, phone) of public.users for ids the caller may see: self, staff of a shared academy, same family, admins. Migration 120.';
 
 -- Column-level narrowing. Order matters: revoke the table grant, then grant
 -- the non-PII columns back.

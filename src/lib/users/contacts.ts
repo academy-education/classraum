@@ -9,8 +9,8 @@ import type { Database } from '@/lib/database.types'
  * and `users(name, email)` embeds from a browser / user-session client fail
  * with "permission denied". Contacts come ONLY from the SECURITY DEFINER
  * function `app_user_contacts(uids)`, which returns rows the caller may see:
- * self, members of an academy where the caller is active staff, or anyone
- * for admins / the service role. Ids the caller may not see are simply
+ * self, members of an academy where the caller is active staff, members of
+ * the caller's family, or anyone for admins / the service role. Ids the caller may not see are simply
  * absent from the map — render them as "no email", never as an error.
  *
  * Rollout: the code ships BEFORE the migration. Until the function exists

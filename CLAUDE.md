@@ -800,6 +800,6 @@ other column stay visible. From a browser or user-session client, never
 embed, never `.select()` bare after a users write, never filter on them — each
 fails with "permission denied for table users". Contacts come from
 `fetchUserContacts` (`src/lib/users/contacts.ts` → `app_user_contacts`): self,
-staff of an academy the target belongs to, admins. `dbAdmin` is unaffected.
+staff of an academy the target belongs to, same family, admins. `dbAdmin` is unaffected.
 A column ADDED to `users` is not selectable by `authenticated` until granted.
 `src/lib/users/__tests__/no-user-session-contact-reads.test.ts` enforces this.

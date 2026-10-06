@@ -192,7 +192,7 @@ function MobileReportsPageContent() {
         // Still show reports even if student names fail
       }
 
-      // users.email is not selectable since migration 120 (self/staff only).
+      // users.email is not selectable since migration 120 (self, family, staff).
       const studentContacts = await fetchUserContacts(db, studentIds as string[])
 
       // Create a map of student info

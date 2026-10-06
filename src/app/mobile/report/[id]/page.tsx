@@ -758,8 +758,8 @@ export default function MobileReportDetailsPage() {
       }
 
       // users.email is not selectable since migration 120; app_user_contacts
-      // returns it for the student themself and academy staff (a parent
-      // viewer gets none, and the email line is hidden).
+      // returns it for the student themself, their family (parents) and
+      // academy staff.
       const studentEmail = (await fetchUserContacts(db, [reportData.student_id])).get(reportData.student_id)?.email
 
       // students.user_id is the PK of the embedded `users` row, so PostgREST
