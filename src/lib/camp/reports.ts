@@ -221,39 +221,6 @@ export async function loadClassroomCampData(classroom: {
 
 const pct = (correct: number, total: number) => Math.round((100 * correct) / total)
 
-/** Completed full mock tests for this family, NOT tagged to a camp
- *  assignment (those are camp sessions, already in the trend). */
-async function loadMockTests(studentId: string, testFamily: string): Promise<CampReportPayload['mockTests']> {
-  const rows = await pageAll<SessionRow & { mode: string }>(
-    (from, to) => dbAdmin
-      .from('study_sessions')
-      .select('id, student_id, status, correct_count, total_count, completed_at, config, mode')
-      .eq('student_id', studentId)
-      .eq('mode', 'full_test')
-      .eq('status', 'completed')
-      .eq('archived', false)
-      .order('id', { ascending: true })
-      .range(from, to),
-    'camp report mock tests query failed',
-  )
-  return rows
-    .filter(s => {
-      const cfg = s.config as { family?: unknown; campAssignmentId?: unknown } | null
-      return cfg?.family === testFamily && typeof cfg?.campAssignmentId !== 'string'
-    })
-    .map(s => ({
-      sessionId: s.id,
-      section: (() => {
-        const cfg = s.config as { section?: unknown } | null
-        return typeof cfg?.section === 'string' ? cfg.section : null
-      })(),
-      correctCount: s.correct_count,
-      totalCount: s.total_count,
-      completedAt: s.completed_at,
-    }))
-    .sort((a, b) => (a.completedAt ?? '').localeCompare(b.completedAt ?? ''))
-}
-
 export async function buildCampReportPayload(
   data: ClassroomCampData,
   studentId: string,
@@ -325,7 +292,6 @@ export async function buildCampReportPayload(
     weaknesses,
     cohort: { n: cohortAccuracies.length, studentAccuracy, percentile },
     completion,
-    mockTests: await loadMockTests(studentId, data.program.test_family),
   }
 }
 
@@ -333,7 +299,23 @@ export async function buildCampReportPayload(
  *  parent or student (completion is a classroom-management signal, not
  *  a family-facing one — P4 spec). */
 export function toFamilyPayload(payload: CampReportPayload): CampReportPayload {
-  return { ...payload, completion: null }
+  return { ...withoutPersonalStudy(payload), completion: null }
+}
+
+/**
+ * CAMP SURFACES SHOW CAMP ASSIGNMENTS ONLY (owner decision 2026-10-07).
+ * A student's personal Study sessions — anything not tagged
+ * config.campAssignmentId for an assignment of this classroom — are
+ * private to the student. The builder no longer reads them; this strips
+ * the `mockTests` list a pre-2026-10-07 snapshot may still carry, so an
+ * old report cannot show them either. Apply to every stored payload
+ * before it leaves the server.
+ */
+export function withoutPersonalStudy(payload: CampReportPayload): CampReportPayload {
+  if (!payload || typeof payload !== 'object' || !('mockTests' in payload)) return payload
+  const { mockTests: _personal, ...rest } = payload as CampReportPayload & { mockTests?: unknown }
+  void _personal
+  return rest as CampReportPayload
 }
 
 /**

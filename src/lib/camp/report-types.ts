@@ -5,7 +5,9 @@
  * server imports: the view is a client component.
  */
 
-export const CAMP_REPORT_PAYLOAD_VERSION = 1
+/** 2 = mockTests removed (2026-10-07). Nothing gates on the number; it
+ *  records which shape a snapshot was frozen in. */
+export const CAMP_REPORT_PAYLOAD_VERSION = 2
 
 /** Below this many graded answers a domain is reported in `skills` but
  *  never named a strength or weakness — same threshold the dashboard
@@ -63,13 +65,10 @@ export interface CampReportPayload {
   /** Teacher-facing only — the view routes strip this (null) for
    *  parents and students. */
   completion: { done: number; total: number; rate: number } | null
-  /** Completed full mock tests for the camp's test family (sessions
-   *  with mode 'full_test' NOT tagged to a camp assignment). */
-  mockTests: Array<{
-    sessionId: string
-    section: string | null
-    correctCount: number | null
-    totalCount: number | null
-    completedAt: string | null
-  }>
+  // mockTests REMOVED 2026-10-07 (owner decision): it listed the
+  // student's own personal Study full tests, which are not camp
+  // assignments. Camp surfaces show camp-assignment sessions only; personal
+  // Study stays private to the student. Snapshots written before then may
+  // still carry the key (all 47 held [] on 2026-10-07); readers strip it
+  // with withoutPersonalStudy().
 }

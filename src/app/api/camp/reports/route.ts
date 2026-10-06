@@ -3,7 +3,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { canManageClassroom } from '@/lib/camp/api'
 import { canViewClassroomCampResults } from '@/lib/camp/access'
-import { isParentOfStudent, toFamilyPayload, type CampReportPayload } from '@/lib/camp/reports'
+import { isParentOfStudent, toFamilyPayload, withoutPersonalStudy, type CampReportPayload } from '@/lib/camp/reports'
 
 /**
  * Camp P4 — read camp reports.
@@ -97,7 +97,9 @@ export async function GET(req: NextRequest) {
     const payload = report.payload as unknown as CampReportPayload
     return NextResponse.json({
       report: meta(report as ReportMetaRow, {
-        payload: isTeacher ? payload : toFamilyPayload(payload),
+        // Camp assignments only, for everyone: a pre-2026-10-07 snapshot
+        // may still list the student's personal Study mock tests.
+        payload: isTeacher ? withoutPersonalStudy(payload) : toFamilyPayload(payload),
       }),
     })
   }

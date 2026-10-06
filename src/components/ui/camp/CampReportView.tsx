@@ -213,28 +213,6 @@ export function CampReportView({ payload }: CampReportViewProps) {
         </div>
       )}
 
-      {/* Mock tests */}
-      {payload.mockTests.length > 0 && (
-        <div className="print:break-inside-avoid">
-          <h3 className="text-sm font-semibold text-gray-900 mb-2">{t('camp.reports.mockTests')}</h3>
-          <div className="divide-y divide-gray-100">
-            {payload.mockTests.map(m => (
-              <div key={m.sessionId} className="py-2 flex items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <p className="text-sm text-gray-700">
-                    {m.section ? t(`camp.sections.${m.section}`) : t('camp.reports.mockTest')}
-                  </p>
-                  <p className="text-[11px] text-gray-400">{formatDate(m.completedAt)}</p>
-                </div>
-                <span className="text-sm font-semibold text-gray-900">
-                  {m.correctCount !== null && m.totalCount !== null ? `${m.correctCount}/${m.totalCount}` : '—'}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
       <p className="text-[11px] text-gray-300 print:text-gray-400">
         {t('camp.reports.generatedAt', { date: formatDate(payload.generatedAt) ?? payload.generatedAt })}
       </p>

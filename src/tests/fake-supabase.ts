@@ -9,14 +9,26 @@
  * applied synchronously at the terminal call, so a conditional UPDATE is
  * atomic the way it is in Postgres (two concurrent claims: one winner).
  *
- * Supported: select, insert, update, eq, is, in, lt, order, limit, range,
- * maybeSingle, single, and awaiting the builder directly.
+ * Supported: select, insert, update, eq, neq, is, in, lt, not(col,'is',null),
+ * or('a.neq.x,a.is.null'), order, limit, range, maybeSingle, single, and
+ * awaiting the builder directly. A jsonb `config->key` path works in
+ * not/neq/or. Anything else throws rather than silently matching all rows.
  *
  * NOTE: lives outside __tests__/ on purpose — jest's testMatch picks up
  * every file under __tests__/.
  */
 type Row = Record<string, unknown>
 type Filter = (r: Row) => boolean
+
+/** Column value, following one jsonb `col->key` hop; missing reads as null
+ *  (SQL semantics: a null never equals or not-equals anything). */
+function get(r: Row, path: string): unknown {
+  const [col, key] = path.split(/->>?/)
+  const base = r[col] ?? null
+  if (key === undefined) return base
+  if (base === null || typeof base !== 'object') return null
+  return (base as Row)[key] ?? null
+}
 
 export interface FakeDb {
   tables: Record<string, Row[]>
@@ -70,6 +82,26 @@ export function fakeDb(seed: Record<string, Row[]> = {}): FakeDb {
       is: (c: string, v: unknown) => { filters.push(r => (r[c] ?? null) === v); return b },
       in: (c: string, vs: unknown[]) => { filters.push(r => vs.includes(r[c])); return b },
       lt: (c: string, v: string) => { filters.push(r => String(r[c]) < v); return b },
+      neq: (c: string, v: unknown) => { filters.push(r => { const x = get(r, c); return x !== null && x !== v }); return b },
+      // Only the `.not(col, 'is', null)` shape, with a jsonb `a->b` path.
+      not: (c: string, operator: string, v: unknown) => {
+        if (operator !== 'is' || v !== null) throw new Error(`fakeDb: unsupported not(${c}, ${operator})`)
+        filters.push(r => get(r, c) !== null)
+        return b
+      },
+      // PostgREST or-list of `col.eq.x` / `col.neq.x` / `col.is.null`.
+      or: (expr: string) => {
+        const parts = expr.split(',').map(p => {
+          const [col, operator, ...rest] = p.split('.')
+          const val = rest.join('.')
+          if (operator === 'is' && val === 'null') return (r: Row) => get(r, col) === null
+          if (operator === 'eq') return (r: Row) => String(get(r, col)) === val
+          if (operator === 'neq') return (r: Row) => { const x = get(r, col); return x !== null && String(x) !== val }
+          throw new Error(`fakeDb: unsupported or(${p})`)
+        })
+        filters.push(r => parts.some(f => f(r)))
+        return b
+      },
       order: (col: string, o?: { ascending?: boolean }) => { orderBy = { col, asc: o?.ascending !== false }; return b },
       limit: (n: number) => { limitN = n; return b },
       range: (from: number, to: number) => { rangeFrom = from; limitN = to - from + 1; return b },

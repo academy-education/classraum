@@ -14,8 +14,10 @@ import { buildCampReportPayload, loadClassroomCampData } from '@/lib/camp/report
  * src/lib/camp/reports.ts) — but computed fresh on every call, so the
  * drill-down always agrees with a report generated at the same moment.
  *
- * Adds `lastActivity`: the latest camp completion (assignments or mock
- * tests) for the student, null when nothing is finished yet.
+ * Adds `lastActivity`: the latest camp-assignment completion for the
+ * student, null when nothing is finished yet. Only camp-assignment
+ * sessions are ever read — the student's personal Study is private to
+ * them (owner decision 2026-10-07).
  */
 
 export const dynamic = 'force-dynamic'
@@ -58,7 +60,7 @@ export async function GET(req: NextRequest) {
   // Enrolled here AND on the academy's own roster: a student enrolled
   // into a camp classroom from outside the school is not in the camp
   // (classroom_students writes are not academy-checked before migration
-  // 122), and this payload carries their name, email and mock tests.
+  // 122), and this payload carries their name, email and camp results.
   if (!data.studentIds.includes(studentId) || !(await isStudentOfAcademy(studentId, classroom.academy_id))) {
     return NextResponse.json({ error: 'student is not enrolled in this classroom' }, { status: 404 })
   }
@@ -77,10 +79,9 @@ export async function GET(req: NextRequest) {
 
   const payload = await buildCampReportPayload(data, studentId, period)
 
-  const completions = [
-    ...payload.assignments.map(a => a.completedAt),
-    ...payload.mockTests.map(m => m.completedAt),
-  ].filter((d): d is string => typeof d === 'string')
+  const completions = payload.assignments
+    .map(a => a.completedAt)
+    .filter((d): d is string => typeof d === 'string')
   const lastActivity = completions.length > 0 ? completions.sort().at(-1)! : null
 
   return NextResponse.json({ payload, lastActivity })
