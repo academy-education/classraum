@@ -1,0 +1,136 @@
+{
+ "IM13A-01": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM13A-02": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13A-03": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13A-04": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13A-05": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: a current that helps one way and hinders the other always lengthens a round trip (240/2.5 = 96 s floor; upstream leg alone is 120 s) - kills 96 and 60 without the method"
+ },
+ "IM13A-06": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "easy"
+ },
+ "IM13A-07": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13A-08": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM13A-09": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM13A-10": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM13A-11": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: 36 is a perfect square (odd factor count) and, on a LEAST question, plug-back of the smallest survivor 48 (10 factors) kills 80 and 162 without the exponent-pattern construction; also 3/3 blind"
+ },
+ "IM13A-12": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: 26/111 and 236/999 have 3-digit repetends and die on denominator recognition against a 1+2-digit decimal; also 3/3 blind"
+ },
+ "IM13A-13": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13A-14": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM13B-01": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM13B-02": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13B-03": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13B-04": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13B-05": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "easy"
+ },
+ "IM13B-06": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13B-07": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM13B-08": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13B-09": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13B-10": {
+  "verdict": "drop",
+  "why": "free elimination, grader A, confirmed: a12 = 2 + 11d, so with integer d the key is 2 mod 11 - kills 72 and 122 without solving"
+ },
+ "IM13B-11": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM13B-12": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: x+36 must be a perfect square; only 13 -> 49 survives - all three distractors die by inspection and the extraneous root is not offered"
+ },
+ "IM13B-13": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "easy"
+ },
+ "IM13B-14": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: plug-back 360/15 - 360/20 = 6 kills all three distractors with no quadratic (method bypass, \u00a713c); divisibility of 360 kills 18 and 20"
+ }
+}

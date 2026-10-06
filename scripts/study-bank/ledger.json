@@ -5336,6 +5336,48 @@
           "verdict": "Named by all three graders: an option that ADDS a connector (\"which\", \"so that\", \"that\", \"although\", \"whereupon\", \"Then\", \"and\") is never the key in the punctuation items - a free strike on A-03, A-04, A-05, A-06, B-04, B-05; the only added-word keys were A-06 (participle \"leaving\") and B-06 (relative \"whose\", dropped), so in the kept 10 an added JOINING word is never the key (the v12 direction; v13 was the opposite). Named by grader d: the lone strong mark is the key on A-03 (colon), A-05 (period), B-04 (semicolon). Named by all three: SEC14A-02 and SEC14B-01 share one template (singular \"has + participle\" against plural nouns at the verb) - do not serve both in one form; nothing enforces it. A-03 and B-04 share the \", which the\" distractor."
         }
       }
+    },
+    {
+      "id": "isee-math-s13-2026-10-07",
+      "createdAt": "2026-10-07",
+      "targetTest": "isee",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "isee-math-s13",
+      "contentSha": "13b1cbd22807bb66fa86fe9f639c2b93d76c32ee1580cef745ed2faaf9ebe2a8",
+      "status": "shipped",
+      "spec": {
+        "n": 28,
+        "authors": 2,
+        "batchFile": "scripts/study-bank/isee-math-s13.batch.json",
+        "prereg": "scripts/study-bank/isee-math-s13.prereg.md",
+        "method": "two Claude authors on disjoint ground (A: number/ratio/counting/statistics, B: algebra/geometry/coordinate/sequences), solve + distractor_solve, frozen before attack; options-only attack with 24-item interleaved live control; two with-source graders on the key-withheld render"
+      },
+      "note": "Commissioned because ISEE quant and mathach share bank section math and the student's exposures, so a full ISEE test consumes 84 math items: 327 live = 3 clean tests (admission-form-depth.ts was replaying the blocks separately and printing 6; fixed same commit). 22 of 28 inserted under the pre-registered bars; the 6 drops are all with-source free eliminations: IM13A-05, IM13A-11, IM13A-12, IM13B-10, IM13B-12, IM13B-14 (reasons in isee-math-s13.qc-reasons.json). Inserted at BANK_BAND=mixed; difficulty = graders' consensus, or the easier label where they split (4 of 28 splits).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "13b1cbd22807bb66fa86fe9f639c2b93d76c32ee1580cef745ed2faaf9ebe2a8",
+          "verdict": "math-bank-helper verify on the frozen 28: sandbox 28/28, distractors 84/84, symbolic hub none, numeric hub none, key extremity PASS 14/28 = 50.0% (bar 40.0%; kept 22: 13/22 = 59.1%). run-middle: the one run in the batch does not hold the key; option-pair-constant 0 of 28; key-is-sum: one sum node, not the key. stem-duplicates 0 of 28 against 694 live ISEE rows; own paged shingle scan (break-tested on a planted copy, which flagged at 0.76) max stem Jaccard 0.33, 0 pairs >= 0.35."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 84,
+          "mean": 31.0,
+          "control": 38.9,
+          "margin": -7.9,
+          "verdict": "make-oo-render --control 24, stems withheld, keys dealt 7/7/7/7 and 6/6/6/6, three Claude samples x 52 interleaved items. Candidate 26/84 = 31.0%, live control 28/72 = 38.9%, each against its own 25.0% best-fixed-letter line: CANDIDATE minus LIVE CONTROL -7.9 (pre-registered pass <= +5.0). Unanimous-correct rate 6/28 = 21.4% vs control 6/24 = 25.0%. Pairwise solver agreement 69.9% vs 26.3% independent - one solver sampled three times. 153 of 156 picks labelled guess."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two Claude graders on isee-math-s13.grade.json (render sha 73370f4fc5fb93dc, unchanged after grading). 28/28 keys agreed by both, 0 non-exclusive, 0 out of band, 0 live duplicates named. 6 dropped on free eliminations killing >= 2 distractors (5 named by both graders, IM13B-10 by one and confirmed by hand). Not confirmed and kept: IM13B-05 (plug-back on a one-step linear equation is the method), IM13B-08 (the 'area must be a square' kill requires computing C = 44 first). Batch-hold bar was > 8 of 28 dropped; 6 dropped."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Candidate unanimous items IM13A-13, IM13B-01, IM13B-03, IM13B-11 kept: with-source names nothing on any of them (pre-registered: unanimity alone never drops). On IM13B-03 all three samples named the same hub (45 = 3 x 15) and the key is 15 - recorded, not acted on. IM13A-11 and IM13A-12 were unanimous AND carry a with-source free elimination, and are dropped."
+        }
+      }
     }
   ],
   "auditedCohorts": [

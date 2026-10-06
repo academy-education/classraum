@@ -72,10 +72,15 @@ function unseenFirst(rows: Row[], seen: Map<string, number>): Row[] {
 export function replay(
   rows: Row[], questions: number, perPassage: number, forms: number,
   types?: Array<{ kind: string; count: number }>,
+  /* Pass a shared map when several sections draw from ONE bank section for
+   * the same student (ISEE quant + mathach both draw `math`). The assembler
+   * reads exposures per student, not per section, so a section must see
+   * what its sibling already served. `firstForm` is the seen-order tick. */
+  seen: Map<string, number> = new Map(),
+  firstForm = 1,
 ) {
-  const seen = new Map<string, number>()
   const out: { form: number; delivered: number; fresh: number; repeats: number }[] = []
-  for (let f = 1; f <= forms; f++) {
+  for (let f = firstForm; f < firstForm + forms; f++) {
     /* The same predicate assembleAdmissionSection passes. Set
      * NO_FRESH=1 to drop it and reproduce the pre-2026-09-21 behaviour —
      * that is the break-test for this whole measurement: if the numbers
@@ -209,8 +214,24 @@ for (const family of ['ssat', 'isee'] as AdmissionFamily[]) {
   console.log('  section      items  groups   ' + Array.from({ length: FORMS }, (_, i) => `form${i + 1}`).join('  ') + '   CLEAN')
   console.log('  ' + '-'.repeat(86))
   let clean = Infinity
-  for (const block of ADMISSION_BLUEPRINT[family]) {
-    if (!block.bankSection) continue
+  /*
+   * SHARED POOLS (2026-10-07). ISEE serves TWO blocks from bank section
+   * `math` — quant (37) and mathach (47) — and assemble.ts loads exposures
+   * per STUDENT (loadExposures), so on one ISEE test the second block draws
+   * from what the first left unseen. This script used to replay each block
+   * with its own fresh `seen` map, i.e. as if the student sat quant on one
+   * account and mathach on another, and printed ISEE math as 6 clean forms
+   * when a full test consumes 84 math items from 327 (3 clean). Blocks are
+   * now replayed test by test in blueprint order with one `seen` map per
+   * bank section. SHARED_POOL=0 restores the old per-block replay — the
+   * break-test: ISEE mathach must jump back to 6 under it.
+   */
+  const shared = process.env.SHARED_POOL !== '0'
+  const seenBySection = new Map<string, Map<string, number>>()
+  const blocks = ADMISSION_BLUEPRINT[family].filter(b => b.bankSection)
+  const rowsBySection = new Map<string, Row[]>()
+  for (const block of blocks) {
+    if (rowsBySection.has(block.bankSection!)) continue
     const rows: Row[] = []
     for (let f = 0; ; f += 1000) {
       const { data, error } = await db.from('study_item_bank').select('id,passage_group_id,item,task')
@@ -226,17 +247,37 @@ for (const family of ['ssat', 'isee'] as AdmissionFamily[]) {
       })))
       if (data.length < 1000) break
     }
+    rowsBySection.set(block.bankSection!, rows)
+  }
+  /* Replay test by test: form f of every block before form f+1 of any. */
+  const results = new Map<string, ReturnType<typeof replay>>(blocks.map(b => [b.key, []]))
+  let tick = 1
+  for (let f = 1; f <= FORMS; f++) {
+    for (const block of blocks) {
+      const rows = rowsBySection.get(block.bankSection!)!
+      if (!rows.length) continue
+      const perPassage = block.bankSection === 'reading' ? ITEMS_PER_PASSAGE[family] : 1
+      const types = block.bankSection === 'verbal' ? VERBAL_TYPES[family] : undefined
+      const key = shared ? block.bankSection! : block.key
+      if (!seenBySection.has(key)) seenBySection.set(key, new Map())
+      const [r] = replay(rows, block.questions, perPassage, 1, types, seenBySection.get(key)!, tick++)
+      results.get(block.key)!.push({ ...r, form: f })
+    }
+  }
+  for (const block of blocks) {
+    const rows = rowsBySection.get(block.bankSection!)!
     if (!rows.length) { console.log(`  ${block.key.padEnd(12)} REFUSING: zero verified items`); continue }
     const groups = new Set(rows.map(r => r.passageGroupId ?? `__solo__${r.id}`)).size
-    const perPassage = block.bankSection === 'reading' ? ITEMS_PER_PASSAGE[family] : 1
-    const types = block.bankSection === 'verbal' ? VERBAL_TYPES[family] : undefined
-    const res = replay(rows, block.questions, perPassage, FORMS, types)
+    const sharers = blocks.filter(b => b.bankSection === block.bankSection).map(b => b.key)
+    const res = results.get(block.key)!
     const cleanHere = res.findIndex(r => r.fresh < r.delivered)
     const c = cleanHere === -1 ? FORMS : cleanHere
     clean = Math.min(clean, c)
     const cells = res.map(r => (r.fresh === r.delivered ? `${r.fresh}/${r.delivered}` : `${r.fresh}/${r.delivered}*`).padStart(7)).join('')
-    console.log(`  ${block.key.padEnd(12)}${String(rows.length).padStart(5)}${String(groups).padStart(8)}   ${cells}   ${c}`)
+    const note = shared && sharers.length > 1 ? `   (pool shared with ${sharers.filter(k => k !== block.key).join(', ')})` : ''
+    console.log(`  ${block.key.padEnd(12)}${String(rows.length).padStart(5)}${String(groups).padStart(8)}   ${cells}   ${c}${note}`)
   }
+  if (!shared) console.log('  SHARED_POOL=0: blocks replayed with separate exposure maps (pre-2026-10-07 behaviour, NOT what the assembler does)')
   console.log(`  => a student gets ${clean} complete test(s) with no repeated question. * = the form contains questions they have already answered.`)
 }
 console.log('')

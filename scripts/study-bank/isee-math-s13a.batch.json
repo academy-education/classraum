@@ -1,0 +1,296 @@
+[
+ {
+  "id": "IM13A-01",
+  "domain": "Math",
+  "subskill": "addition principle combined with the multiplication principle for an either-or choice",
+  "difficulty": "easy",
+  "prompt": "For a trip, Dana packs 5 shirts, 4 pairs of pants, and 3 dresses. Each day she wears either one shirt together with one pair of pants, or one dress by itself. How many different outfits can she wear?",
+  "choices": [
+   "23",
+   "47",
+   "32",
+   "60"
+  ],
+  "correct_answer": "23",
+  "explanation": "A shirt-and-pants outfit can be chosen in 5 x 4 = 20 ways, and a dress outfit in 3 ways. The two kinds of outfit never overlap, so the counts are added: 20 + 3 = 23. \"32\" comes from treating each dress like a fourth kind of top that is also paired with a pair of pants, (5 + 3) x 4. \"47\" comes from counting every way to pick two items of different kinds, 5 x 4 + 5 x 3 + 4 x 3, as if a shirt with a dress or pants with a dress were outfits. \"60\" comes from multiplying all three counts, 5 x 4 x 3, as if every outfit used a shirt, pants and a dress.",
+  "solve": "return 5*4 + 3;",
+  "distractor_solve": {
+   "32": "return (5+3)*4;",
+   "47": "return 5*4 + 5*3 + 4*3;",
+   "60": "return 5*4*3;"
+  }
+ },
+ {
+  "id": "IM13A-02",
+  "domain": "Math",
+  "subskill": "counting how many times one digit is written across a range, units and tens places separately",
+  "difficulty": "easy",
+  "prompt": "When all of the whole numbers from 1 through 250 are written out, how many times is the digit 3 written?",
+  "choices": [
+   "35",
+   "55",
+   "25",
+   "52"
+  ],
+  "correct_answer": "55",
+  "explanation": "Count each place separately. In the units place a 3 appears once in every ten numbers: 3, 13, 23, ..., 243, which is 25 times. In the tens place a 3 appears in 30-39, 130-139 and 230-239, which is 30 times. No number up to 250 has a 3 in the hundreds place. Total: 25 + 30 = 55. \"25\" counts only the units place. \"35\" counts the units place and the tens-place 3s in 30-39 but forgets that 130-139 and 230-239 also have a 3 in the tens place. \"52\" counts the NUMBERS that contain a 3, so 33, 133 and 233 are each counted once even though each has the digit written twice.",
+  "solve": "let c=0; for(let n=1;n<=250;n++){ for(const ch of String(n)) if(ch===\"3\") c++ } return c;",
+  "distractor_solve": {
+   "25": "let c=0; for(let n=1;n<=250;n++) if(n%10===3) c++; return c;",
+   "35": "let c=0; for(let n=1;n<=250;n++) if(n%10===3) c++; for(let n=30;n<=39;n++) c++; return c;",
+   "52": "let c=0; for(let n=1;n<=250;n++) if(String(n).includes(\"3\")) c++; return c;"
+  }
+ },
+ {
+  "id": "IM13A-03",
+  "domain": "Math",
+  "subskill": "expected net winnings of a game with unequal outcome probabilities, scaled to repeated plays",
+  "difficulty": "medium",
+  "prompt": "In a game, a player rolls a fair six-sided number cube once. A roll of 6 wins $14, a roll of 4 or 5 wins $4, and a roll of 1, 2, or 3 loses $5. If a player plays this game 30 times, what is the expected total of the player's winnings minus losses, in dollars?",
+  "choices": [
+   "130",
+   "185",
+   "35",
+   "85"
+  ],
+  "correct_answer": "35",
+  "explanation": "In 30 games each face is expected to come up 5 times, so the player expects 5 rolls of 6, 10 rolls of 4 or 5, and 15 rolls of 1, 2 or 3. That is 5 x 14 + 10 x 4 - 15 x 5 = 70 + 40 - 75 = 35 dollars. \"185\" comes from adding the $5 loss instead of subtracting it, 70 + 40 + 75. \"130\" comes from averaging the three amounts 14, 4 and -5 as if each were equally likely, (14 + 4 - 5) / 3 per game, times 30. \"85\" comes from counting the $5 loss for only one face out of six instead of three, (14 + 2 x 4 - 5) / 6 per game, times 30.",
+  "solve": "return 30*(14*1 + 4*2 - 5*3)/6;",
+  "distractor_solve": {
+   "85": "return 30*(14*1 + 4*2 - 5*1)/6;",
+   "130": "return 30*(14 + 4 - 5)/3;",
+   "185": "return 30*(14*1 + 4*2 + 5*3)/6;"
+  }
+ },
+ {
+  "id": "IM13A-04",
+  "domain": "Math",
+  "subskill": "systematic case count of the ways to make an amount from three coin values",
+  "difficulty": "medium",
+  "prompt": "Using only nickels (5 cents), dimes (10 cents), and quarters (25 cents), in how many different ways can exactly 60 cents be made? (Two ways are different if they use a different number of at least one kind of coin.)",
+  "choices": [
+   "10",
+   "21",
+   "6",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Organize by the number of quarters. With 2 quarters, 10 cents remain, made with 0 or 1 dime (the rest nickels): 2 ways. With 1 quarter, 35 cents remain, made with 0, 1, 2 or 3 dimes: 4 ways. With no quarters, 60 cents is made with 0 through 6 dimes: 7 ways. Total 2 + 4 + 7 = 13. \"6\" leaves out the case with no quarters, 2 + 4. \"10\" assumes every way must include at least one dime, so it drops the all-nickel remainder in each case, 1 + 3 + 6. \"21\" multiplies 3 possible quarter counts by 7 possible dime counts, as though every combination fit inside 60 cents.",
+  "solve": "let w=0; for(let q=0;q<=2;q++) for(let d=0;d<=6;d++){ const r=60-25*q-10*d; if(r>=0 && r%5===0) w++ } return w;",
+  "distractor_solve": {
+   "6": "let w=0; for(let q=1;q<=2;q++) for(let d=0;d<=6;d++){ const r=60-25*q-10*d; if(r>=0 && r%5===0) w++ } return w;",
+   "10": "let w=0; for(let q=0;q<=2;q++) for(let d=1;d<=6;d++){ const r=60-25*q-10*d; if(r>=0 && r%5===0) w++ } return w;",
+   "21": "return 3*7;"
+  }
+ },
+ {
+  "id": "IM13A-05",
+  "domain": "Math",
+  "subskill": "relative speed with and against a moving walkway over a round trip",
+  "difficulty": "medium",
+  "prompt": "A moving walkway 120 meters long carries people at 1.5 meters per second. Kim walks at 2.5 meters per second relative to the walkway. She walks from one end to the other in the direction the walkway moves, then immediately turns around and walks back to her starting point against the walkway's motion. How many seconds does the round trip take?",
+  "choices": [
+   "150",
+   "60",
+   "168",
+   "96"
+  ],
+  "correct_answer": "150",
+  "explanation": "Going with the walkway her ground speed is 2.5 + 1.5 = 4 meters per second, so that leg takes 120 / 4 = 30 seconds. Going against it her ground speed is 2.5 - 1.5 = 1 meter per second, so that leg takes 120 / 1 = 120 seconds. Total 30 + 120 = 150 seconds. \"96\" ignores the walkway entirely and divides the 240 meters by her walking speed of 2.5. \"60\" adds the walkway's speed on both legs, 240 / 4. \"168\" handles the return leg correctly (120 seconds) but forgets that the walkway helps on the first leg, timing it at her walking speed alone, 120 / 2.5 = 48 seconds.",
+  "solve": "return 120/(2.5+1.5) + 120/(2.5-1.5);",
+  "distractor_solve": {
+   "60": "return 240/(2.5+1.5);",
+   "96": "return 240/2.5;",
+   "168": "return 120/2.5 + 120/(2.5-1.5);"
+  }
+ },
+ {
+  "id": "IM13A-06",
+  "domain": "Math",
+  "subskill": "percent change in a total when only one of its parts changes",
+  "difficulty": "medium",
+  "prompt": "A restaurant bill was $40 for food and $10 for drinks. Food prices then rose by 15 percent while drink prices stayed the same. For the same order, by what percent did the total bill increase? (Round to the nearest tenth of a percent.)",
+  "choices": [
+   "6.0",
+   "12.0",
+   "11.3",
+   "10.7"
+  ],
+  "correct_answer": "12.0",
+  "explanation": "The food cost rises by 15% of $40 = $6, so the bill goes from $50 to $56. The percent increase is 6 / 50 = 0.12 = 12.0%. \"6.0\" reports the $6 increase in dollars as though it were the percent. \"10.7\" divides the $6 increase by the NEW bill of $56 instead of the original $50, 6 / 56 = 0.107. \"11.3\" reads the drinks-to-food ratio of 10 : 40 = 1 : 4 as though drinks were one quarter of the bill, so it scales the 15% by 3/4 instead of by 40/50 = 4/5, giving 11.25, which rounds to 11.3.",
+  "solve": "return (100*(40*0.15)/50).toFixed(1);",
+  "distractor_solve": {
+   "6.0": "return (40*0.15).toFixed(1);",
+   "10.7": "return (100*(40*0.15)/(50+40*0.15)).toFixed(1);",
+   "11.3": "return (15*(1 - 10/40)).toFixed(1);"
+  }
+ },
+ {
+  "id": "IM13A-07",
+  "domain": "Math",
+  "subskill": "sums recovered from the means of two overlapping groups within a list",
+  "difficulty": "medium",
+  "prompt": "The mean of seven numbers is 11. The mean of the first four numbers is 9, and the mean of the last four numbers is 15. What is the sum of the first three numbers?",
+  "choices": [
+   "27",
+   "41",
+   "17",
+   "19"
+  ],
+  "correct_answer": "17",
+  "explanation": "The seven numbers add to 7 x 11 = 77. The last four add to 4 x 15 = 60, and the first three are everything else, so their sum is 77 - 60 = 17. \"19\" goes one step further than the question asks: it adds the first-four total, 36, to the last-four total, 60, and subtracts 77 to find the fourth number, which both groups share. \"27\" assumes the first three numbers also have a mean of 9, 3 x 9. \"41\" subtracts the wrong group from the total, 77 - 36, which gives the sum of the LAST three numbers.",
+  "solve": "return 7*11 - 4*15;",
+  "distractor_solve": {
+   "19": "return 4*9 + 4*15 - 7*11;",
+   "27": "return 3*9;",
+   "41": "return 7*11 - 4*9;"
+  }
+ },
+ {
+  "id": "IM13A-08",
+  "domain": "Math",
+  "subskill": "round trips counted by cases when no road may be reused",
+  "difficulty": "hard",
+  "prompt": "Three roads connect town A to town B, and four roads connect town B to town C. In addition, two direct roads connect town A to town C without passing through B. Ana travels from A to C and then returns from C to A. If she never travels on the same road twice, how many different round trips are possible?",
+  "choices": [
+   "98",
+   "48",
+   "72",
+   "122"
+  ],
+  "correct_answer": "122",
+  "explanation": "Split by how Ana goes. If she goes through B (3 x 4 = 12 ways), she can return through B on a different B-to-C road and a different A-to-B road (3 x 2 = 6 ways) or on either direct road (2 ways): 12 x 8 = 96. If she goes on a direct road (2 ways), she can return through B (12 ways) or on the other direct road (1 way): 2 x 13 = 26. Total 96 + 26 = 122. \"48\" assumes she must come back by the other kind of route, 12 x 2 + 2 x 12. \"72\" ignores the direct roads and counts only trips through B both ways, 12 x 6. \"98\" counts 14 ways to go and then uses 6 + 1 = 7 return routes for every one of them, which is right for neither case.",
+  "solve": "const viaB=3*4; return viaB*(2*3 + 2) + 2*(viaB + 1);",
+  "distractor_solve": {
+   "48": "return 3*4*2 + 2*3*4;",
+   "72": "return 3*4*(3*2);",
+   "98": "return (3*4 + 2)*(3*2 + 1);"
+  }
+ },
+ {
+  "id": "IM13A-09",
+  "domain": "Math",
+  "subskill": "counting three-digit numbers with a fixed digit sum, respecting the leading digit and allowing zeros",
+  "difficulty": "hard",
+  "prompt": "How many three-digit whole numbers have digits whose sum is 8?",
+  "choices": [
+   "36",
+   "21",
+   "10",
+   "24"
+  ],
+  "correct_answer": "36",
+  "explanation": "Let the hundreds digit be h, from 1 to 8; the other two digits must add to 8 - h, and each can be 0. If they add to s there are s + 1 ordered choices (0 and s, 1 and s - 1, ..., s and 0). So the count is 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 36. \"21\" forgets that the tens and units digits may be 0 and counts only numbers using the digits 1-9, 6 + 5 + 4 + 3 + 2 + 1. \"10\" lists the different groups of three digits that add to 8 (such as 8, 0, 0 or 5, 2, 1) without counting their different orders. \"24\" assumes the three digits must all be different.",
+  "solve": "let c=0; for(let n=100;n<1000;n++){ const d=String(n).split(\"\").map(Number); if(d[0]+d[1]+d[2]===8) c++ } return c;",
+  "distractor_solve": {
+   "10": "const s=new Set(); for(let n=100;n<1000;n++){ const d=String(n).split(\"\").map(Number); if(d[0]+d[1]+d[2]===8) s.add([...d].sort().join(\"\")) } return s.size;",
+   "21": "let c=0; for(let n=100;n<1000;n++){ const d=String(n).split(\"\").map(Number); if(d[0]+d[1]+d[2]===8 && !d.includes(0)) c++ } return c;",
+   "24": "let c=0; for(let n=100;n<1000;n++){ const d=String(n).split(\"\").map(Number); if(d[0]+d[1]+d[2]===8 && new Set(d).size===3) c++ } return c;"
+  }
+ },
+ {
+  "id": "IM13A-10",
+  "domain": "Math",
+  "subskill": "trailing zeros of a long product counted through factors of 5, including repeated factors",
+  "difficulty": "hard",
+  "prompt": "The product 1 × 2 × 3 × ... × 75 of all the whole numbers from 1 through 75 is written out in full. How many zeros are at the end of this number?",
+  "choices": [
+   "15",
+   "18",
+   "22",
+   "7"
+  ],
+  "correct_answer": "18",
+  "explanation": "Each zero at the end comes from a factor of 10 = 2 x 5, and factors of 2 are far more plentiful than factors of 5, so count the factors of 5. The 15 multiples of 5 up to 75 each give one, and 25, 50 and 75 each contain a second factor of 5, giving 3 more: 15 + 3 = 18. \"15\" counts one factor of 5 for each multiple of 5 and misses the extra factor in 25, 50 and 75. \"7\" counts only the multiples of 10 (10, 20, ..., 70), as if only those produced zeros. \"22\" counts a zero for every multiple of 5 and then another for every multiple of 10, 15 + 7, so the multiples of 10 are counted twice.",
+  "solve": "let c=0; for(let n=1;n<=75;n++){ let m=n; while(m%5===0){ c++; m/=5 } } return c;",
+  "distractor_solve": {
+   "7": "return Math.floor(75/10);",
+   "15": "return Math.floor(75/5);",
+   "22": "return Math.floor(75/5) + Math.floor(75/10);"
+  }
+ },
+ {
+  "id": "IM13A-11",
+  "domain": "Math",
+  "subskill": "building the least whole number with a given number of factors from its prime exponents",
+  "difficulty": "hard",
+  "prompt": "What is the least positive whole number that has exactly 10 positive factors?",
+  "choices": [
+   "80",
+   "162",
+   "48",
+   "36"
+  ],
+  "correct_answer": "48",
+  "explanation": "A number written as p^a x q^b with different primes p and q has (a + 1)(b + 1) factors, and a single prime power p^a has a + 1. Ten factors needs a = 9 (the least is 2^9 = 512) or (a + 1)(b + 1) = 5 x 2, so a = 4 and b = 1. The least choice puts the larger exponent on the smaller prime: 2^4 x 3 = 48, whose factors are 1, 2, 3, 4, 6, 8, 12, 16, 24, 48. \"36\" comes from listing factor pairs (1, 36), (2, 18), (3, 12), (4, 9), (6, 6) and counting 6 twice; 36 has only 9 different factors. \"80\" is 2^4 x 5, which does have 10 factors but uses the prime 5 where 3 would give a smaller number. \"162\" is 2 x 3^4, which also has 10 factors but puts the larger exponent on the larger prime.",
+  "solve": "for(let n=1;;n++){ let k=0; for(let i=1;i<=n;i++) if(n%i===0) k++; if(k===10) return n }",
+  "distractor_solve": {
+   "36": "for(let n=1;;n++){ let pairs=0; for(let i=1;i*i<=n;i++) if(n%i===0) pairs++; if(2*pairs===10) return n }",
+   "80": "return 2**4*5;",
+   "162": "return 2*3**4;"
+  }
+ },
+ {
+  "id": "IM13A-12",
+  "domain": "Math",
+  "subskill": "converting a repeating decimal with a non-repeating digit into a fraction",
+  "difficulty": "medium",
+  "prompt": "The decimal 0.2363636... continues forever, with the block of digits 36 repeating after the 2. Which fraction is equal to this decimal?",
+  "choices": [
+   "236/999",
+   "118/495",
+   "26/111",
+   "13/55"
+  ],
+  "correct_answer": "13/55",
+  "explanation": "Let x = 0.23636... Then 1000x = 236.3636... and 10x = 2.3636..., which have the same repeating tail, so 990x = 236 - 2 = 234 and x = 234/990 = 13/55. \"118/495\" is 236/990 reduced: it uses the right denominator but forgets to subtract the 2 that does not repeat. \"236/999\" treats all three digits 236 as the repeating block. \"26/111\" is 234/999 reduced: it subtracts the 2 correctly but uses 999 as the denominator, as if the decimal repeated every three digits from the start.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=236-2, d=990, k=g(n,d); return (n/k)+\"/\"+(d/k);",
+  "distractor_solve": {
+   "118/495": "const g=(a,b)=>b?g(b,a%b):a; const n=236, d=990, k=g(n,d); return (n/k)+\"/\"+(d/k);",
+   "236/999": "const g=(a,b)=>b?g(b,a%b):a; const n=236, d=999, k=g(n,d); return (n/k)+\"/\"+(d/k);",
+   "26/111": "const g=(a,b)=>b?g(b,a%b):a; const n=236-2, d=999, k=g(n,d); return (n/k)+\"/\"+(d/k);"
+  }
+ },
+ {
+  "id": "IM13A-13",
+  "domain": "Math",
+  "subskill": "mean absolute deviation of a small data set with an outlier",
+  "difficulty": "medium",
+  "prompt": "What is the mean absolute deviation of the data set 2, 6, 7, 9, 21? (The mean absolute deviation is the average distance of the values from their mean.)",
+  "choices": [
+   "4.8",
+   "3",
+   "6",
+   "4.4"
+  ],
+  "correct_answer": "4.8",
+  "explanation": "The mean is (2 + 6 + 7 + 9 + 21) / 5 = 45 / 5 = 9. The distances from 9 are 7, 3, 2, 0 and 12, which add to 24, and their average is 24 / 5 = 4.8. \"4.4\" measures the distances from the median, 7, instead of the mean: 5, 1, 0, 2 and 14 add to 22, and 22 / 5 = 4.4. \"6\" divides the total distance 24 by 4 instead of by the 5 values. \"3\" takes the median of the five distances (0, 2, 3, 7, 12) instead of their mean.",
+  "solve": "const v=[2,6,7,9,21]; const m=v.reduce((a,b)=>a+b)/v.length; return v.reduce((s,x)=>s+Math.abs(x-m),0)/v.length;",
+  "distractor_solve": {
+   "3": "const v=[2,6,7,9,21]; const m=v.reduce((a,b)=>a+b)/v.length; const d=v.map(x=>Math.abs(x-m)).sort((a,b)=>a-b); return d[2];",
+   "6": "const v=[2,6,7,9,21]; const m=v.reduce((a,b)=>a+b)/v.length; return v.reduce((s,x)=>s+Math.abs(x-m),0)/(v.length-1);",
+   "4.4": "const v=[2,6,7,9,21]; const med=7; return v.reduce((s,x)=>s+Math.abs(x-med),0)/v.length;"
+  }
+ },
+ {
+  "id": "IM13A-14",
+  "domain": "Math",
+  "subskill": "worst-case (pigeonhole) count when some colors run out before reaching the target",
+  "difficulty": "hard",
+  "prompt": "A drawer holds 1 red sock, 2 green socks, 7 blue socks, and 9 black socks. Socks are taken out one at a time without looking. What is the least number of socks that must be taken out to be certain that at least 4 of the socks taken out are the same color?",
+  "choices": [
+   "13",
+   "10",
+   "5",
+   "16"
+  ],
+  "correct_answer": "10",
+  "explanation": "Picture the unluckiest order: the 1 red sock, both green socks, 3 blue socks and 3 black socks can come out with no color reaching 4. That is 9 socks. The 10th sock must be blue or black, giving 4 of that color, so 10 socks guarantee it. \"13\" uses 3 of each of the four colors plus one more, 3 x 4 + 1, ignoring that there is only 1 red and only 2 green to draw. \"5\" uses the rule for a matching pair, one more than the number of colors. \"16\" answers a different question, how many guarantee 4 BLUE socks: 1 + 2 + 9 non-blue socks and then 4 blue.",
+  "solve": "const piles=[1,2,7,9]; return piles.reduce((s,p)=>s+Math.min(p,3),0)+1;",
+  "distractor_solve": {
+   "5": "return 4 + 1;",
+   "13": "return 3*4 + 1;",
+   "16": "return 1 + 2 + 9 + 4;"
+  }
+ }
+]

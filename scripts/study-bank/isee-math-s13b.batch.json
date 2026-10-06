@@ -1,0 +1,296 @@
+[
+  {
+    "id": "IM13B-01",
+    "domain": "Math",
+    "subskill": "evaluating a composition of two functions at a number",
+    "difficulty": "easy",
+    "prompt": "The functions f and g are defined by f(x) = 3x - 4 and g(x) = x^2 + 2. What is the value of f(g(3))?",
+    "choices": [
+      "29",
+      "5",
+      "11",
+      "71"
+    ],
+    "correct_answer": "29",
+    "explanation": "Work from the inside out: g(3) = 3^2 + 2 = 11, and then f(11) = 3(11) - 4 = 29. \"11\" is the inside value g(3), reported without ever putting it into f. \"5\" comes from ignoring g and evaluating f(3) = 3(3) - 4 directly. \"71\" comes from reading x^2 + 2 as (x + 2)^2, so g(3) becomes 25 and f(25) = 75 - 4 = 71.",
+    "solve": "const f = x => 3*x - 4, g = x => x*x + 2; return f(g(3));",
+    "distractor_solve": {
+      "5": "const f = x => 3*x - 4; return f(3);",
+      "11": "const g = x => x*x + 2; return g(3);",
+      "71": "const f = x => 3*x - 4, gWrong = x => (x + 2)**2; return f(gWrong(3));"
+    }
+  },
+  {
+    "id": "IM13B-02",
+    "domain": "Math",
+    "subskill": "y-intercept of a line through a point perpendicular to a line given in standard form",
+    "difficulty": "medium",
+    "prompt": "Line l passes through the point (12, 6) and is perpendicular to the line 3x - 2y = 10. What is the y-intercept of line l?",
+    "choices": [
+      "24",
+      "14",
+      "21",
+      "16"
+    ],
+    "correct_answer": "14",
+    "explanation": "Solving 3x - 2y = 10 for y gives y = (3/2)x - 5, so its slope is 3/2 and a perpendicular line has slope -2/3. Then 6 = (-2/3)(12) + b gives 6 = -8 + b, so b = 14. \"24\" comes from negating the slope without taking the reciprocal, using -3/2: 6 = -18 + b. \"21\" is the x-intercept of line l rather than the y-intercept: setting 0 = (-2/3)x + 14 gives x = 21. \"16\" comes from substituting the point with its coordinates swapped, as (6, 12): 12 = (-2/3)(6) + b.",
+    "solve": "const m = 3/2, p = -1/m, x0 = 12, y0 = 6; return y0 - p*x0;",
+    "distractor_solve": {
+      "16": "const m = 3/2, p = -1/m, x0 = 6, y0 = 12; return y0 - p*x0;",
+      "21": "const m = 3/2, p = -1/m, b = 6 - p*12; return -b/p;",
+      "24": "const m = 3/2, s = -m, x0 = 12, y0 = 6; return y0 - s*x0;"
+    }
+  },
+  {
+    "id": "IM13B-03",
+    "domain": "Math",
+    "subskill": "catch-up time when a faster traveler starts later from the same place",
+    "difficulty": "medium",
+    "prompt": "A cyclist leaves a town riding at a steady 24 kilometers per hour. Thirty minutes later, a car leaves the same town along the same road in the same direction, traveling at a steady 72 kilometers per hour. How many minutes after the car leaves does it catch up with the cyclist?",
+    "choices": [
+      "45",
+      "25",
+      "15",
+      "18"
+    ],
+    "correct_answer": "15",
+    "explanation": "In the 30-minute head start the cyclist rides 24 x 0.5 = 12 kilometers. The car closes that gap at 72 - 24 = 48 kilometers per hour, so it needs 12 / 48 = 0.25 hour, which is 15 minutes. \"45\" measures the time from when the cyclist left, 15 + 30, rather than from when the car left. \"25\" comes from reading 0.25 hour as 25 minutes instead of converting with 60 minutes per hour. \"18\" goes one step further and gives the distance from town where they meet, 72 x 0.25 = 18 kilometers, instead of the time.",
+    "solve": "const v1 = 24, v2 = 72, head = 30/60; const h = v1*head/(v2 - v1); return 60*h;",
+    "distractor_solve": {
+      "18": "const v1 = 24, v2 = 72, head = 30/60; const h = v1*head/(v2 - v1); return v2*h;",
+      "25": "const v1 = 24, v2 = 72, head = 30/60; const h = v1*head/(v2 - v1); return 100*h;",
+      "45": "const v1 = 24, v2 = 72, head = 30/60; const h = v1*head/(v2 - v1); return 60*h + 30;"
+    }
+  },
+  {
+    "id": "IM13B-04",
+    "domain": "Math",
+    "subskill": "point on the x-axis equidistant from two given points",
+    "difficulty": "hard",
+    "prompt": "In the coordinate plane, point P lies on the x-axis and is the same distance from A(-1, 5) as it is from B(4, 10). What is the x-coordinate of P?",
+    "choices": [
+      "2",
+      "4",
+      "15",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "Let P = (x, 0). Setting the squared distances equal gives (x + 1)^2 + 25 = (x - 4)^2 + 100. Expanding, x^2 + 2x + 26 = x^2 - 8x + 116, so 10x = 90 and x = 9. Check: from (9, 0) the squared distances are 100 + 25 and 25 + 100. \"2\" comes from forgetting to square the y-coordinates, writing (x + 1)^2 + 5 = (x - 4)^2 + 10, which gives 10x = 20. \"4\" comes from adding the horizontal and vertical distances instead of using the Pythagorean theorem: (x + 1) + 5 = (4 - x) + 10 gives 2x = 8. \"15\" comes from expanding (x + 1)^2 as x^2 - 2x + 1, which gives -2x + 26 = -8x + 116 and 6x = 90.",
+    "solve": "const [a1, a2, b1, b2] = [-1, 5, 4, 10]; return (b1*b1 + b2*b2 - a1*a1 - a2*a2) / (2*(b1 - a1));",
+    "distractor_solve": {
+      "2": "const [a1, a2, b1, b2] = [-1, 5, 4, 10]; return (b1*b1 + b2 - a1*a1 - a2) / (2*(b1 - a1));",
+      "4": "const [a1, a2, b1, b2] = [-1, 5, 4, 10]; return (b1 + b2 + a1 - a2) / 2;",
+      "15": "const [a1, a2, b1, b2] = [-1, 5, 4, 10]; return (b1*b1 + b2*b2 - a1*a1 - a2*a2) / (2*b1 + 2*a1);"
+    }
+  },
+  {
+    "id": "IM13B-05",
+    "domain": "Math",
+    "subskill": "solving a proportion with the variable in both denominators",
+    "difficulty": "easy",
+    "prompt": "If 3/(x - 2) = 5/(x + 4), what is the value of x?",
+    "choices": [
+      "11",
+      "3",
+      "-13",
+      "1"
+    ],
+    "correct_answer": "11",
+    "explanation": "Cross-multiplying gives 3(x + 4) = 5(x - 2), so 3x + 12 = 5x - 10, and 22 = 2x, x = 11. Check: 3/9 = 5/15. \"3\" comes from not distributing, writing 3x + 4 = 5x - 2. \"-13\" comes from cross-multiplying each numerator with its own denominator, 3(x - 2) = 5(x + 4), which gives -2x = 26. \"1\" comes from a sign slip on the -10, writing 3x + 12 = 5x + 10.",
+    "solve": "// 3(x+4) = 5(x-2)  ->  (3-5)x = -10 - 12\nreturn (-5*2 - 3*4) / (3 - 5);",
+    "distractor_solve": {
+      "1": "// 3x + 12 = 5x + 10\nreturn (10 - 12) / (3 - 5);",
+      "3": "// 3x + 4 = 5x - 2\nreturn (-2 - 4) / (3 - 5);",
+      "-13": "// 3(x-2) = 5(x+4)  ->  3x - 6 = 5x + 20\nreturn (20 + 6) / (3 - 5);"
+    }
+  },
+  {
+    "id": "IM13B-06",
+    "domain": "Math",
+    "subskill": "sum of the first n terms of a repeating three-term pattern",
+    "difficulty": "medium",
+    "prompt": "The sequence 8, -5, 3, 8, -5, 3, ... repeats the three numbers 8, -5, and 3 in that order forever. What is the sum of the first 40 terms of the sequence?",
+    "choices": [
+      "78",
+      "86",
+      "84",
+      "80"
+    ],
+    "correct_answer": "86",
+    "explanation": "Each block of three terms sums to 8 - 5 + 3 = 6. Forty terms are 13 complete blocks (39 terms) plus one more term, and that 40th term begins a new block, so it is 8. The sum is 13 x 6 + 8 = 86. \"78\" counts the 13 complete blocks and drops the leftover term. \"84\" rounds 40 / 3 up to 14 and counts 14 complete blocks. \"80\" treats the sum as proportional to the number of terms, (40 / 3) x 6, as though a fraction of a block contributed a fraction of 6.",
+    "solve": "const cyc = [8, -5, 3], n = 40; let s = 0; for (let i = 0; i < n; i++) s += cyc[i % 3]; return s;",
+    "distractor_solve": {
+      "78": "const cyc = [8, -5, 3], n = 40; const blk = cyc.reduce((a, b) => a + b, 0); return Math.floor(n/3)*blk;",
+      "80": "const cyc = [8, -5, 3], n = 40; const blk = cyc.reduce((a, b) => a + b, 0); return (n/3)*blk;",
+      "84": "const cyc = [8, -5, 3], n = 40; const blk = cyc.reduce((a, b) => a + b, 0); return Math.ceil(n/3)*blk;"
+    }
+  },
+  {
+    "id": "IM13B-07",
+    "domain": "Math",
+    "subskill": "total distance traveled by a bouncing ball (geometric sequence of rebounds)",
+    "difficulty": "hard",
+    "prompt": "A ball is dropped from a height of 256 centimeters. Each time it hits the ground, it bounces straight back up to 3/4 of the height from which it last fell. What is the total distance, in centimeters, the ball has traveled at the moment it hits the ground for the fourth time?",
+    "choices": [
+      "700",
+      "1400",
+      "1144",
+      "928"
+    ],
+    "correct_answer": "1144",
+    "explanation": "The rebound heights are 192, 144, and 108. The ball falls 256, then rises and falls 192, rises and falls 144, and rises and falls 108, hitting the ground for the fourth time at the end of that fall. Total: 256 + 2(192 + 144 + 108) = 256 + 888 = 1144. \"700\" counts each height only once, 256 + 192 + 144 + 108, forgetting that every rebound is traveled both up and down. \"1400\" doubles every height, including the first 256, although the first drop is only traveled downward. \"928\" stops at the third hit, 256 + 2(192 + 144), miscounting which fall ends in the fourth hit.",
+    "solve": "let h = 256, total = h; for (let hit = 2; hit <= 4; hit++) { h = h*3/4; total += 2*h; } return total;",
+    "distractor_solve": {
+      "700": "let h = 256, total = h; for (let i = 0; i < 3; i++) { h = h*3/4; total += h; } return total;",
+      "928": "let h = 256, total = h; for (let hit = 2; hit <= 3; hit++) { h = h*3/4; total += 2*h; } return total;",
+      "1400": "let h = 256, total = 2*h; for (let i = 0; i < 3; i++) { h = h*3/4; total += 2*h; } return total;"
+    }
+  },
+  {
+    "id": "IM13B-08",
+    "domain": "Math",
+    "subskill": "area of a square whose perimeter equals the circumference of a given circle",
+    "difficulty": "medium",
+    "prompt": "A circle has a radius of 7 centimeters. A square has a perimeter equal to the circumference of the circle. Using 22/7 for pi, what is the area of the square, in square centimeters?",
+    "choices": [
+      "98",
+      "49",
+      "44",
+      "121"
+    ],
+    "correct_answer": "121",
+    "explanation": "The circumference is 2 x (22/7) x 7 = 44 centimeters, so each side of the square is 44 / 4 = 11 centimeters and the area is 11 x 11 = 121. \"98\" treats the square as inscribed in the circle, so that its diagonal equals the diameter 14, giving an area of 14^2 / 2. \"49\" takes the side of the square to be the radius, 7. \"44\" stops at the perimeter of the square, which equals the circumference, and reports it as the area.",
+    "solve": "const r = 7, pi = 22/7; const side = 2*pi*r/4; return Math.round(side*side*1e6)/1e6;",
+    "distractor_solve": {
+      "44": "const r = 7, pi = 22/7; return Math.round(2*pi*r*1e6)/1e6;",
+      "49": "const r = 7; return r*r;",
+      "98": "const r = 7; const d = 2*r; return d*d/2;"
+    }
+  },
+  {
+    "id": "IM13B-09",
+    "domain": "Math",
+    "subskill": "area of the triangle formed by two intersecting lines and the x-axis",
+    "difficulty": "hard",
+    "prompt": "In the coordinate plane, the lines y = x + 2 and y = -2x + 14 intersect at point P. What is the area of the triangle formed by these two lines and the x-axis?",
+    "choices": [
+      "27",
+      "24",
+      "15",
+      "36"
+    ],
+    "correct_answer": "27",
+    "explanation": "Setting x + 2 = -2x + 14 gives x = 4, so P = (4, 6). The lines cross the x-axis at x = -2 and x = 7, so the base along the x-axis is 7 - (-2) = 9, the height is the y-coordinate of P, 6, and the area is (1/2)(9)(6) = 27. \"24\" is the area of the triangle the lines form with the y-axis instead: the y-intercepts 2 and 14 give a base of 12 and the height is the x-coordinate of P, 4. \"15\" comes from a sign slip on the first x-intercept, taking it as 2 instead of -2, so the base is 7 - 2 = 5. \"36\" mixes the two triangles, using the distance between the y-intercepts, 12, as the base with P's height of 6.",
+    "solve": "const [m1, c1, m2, c2] = [1, 2, -2, 14]; const xp = (c2 - c1)/(m1 - m2), yp = m1*xp + c1; const x1 = -c1/m1, x2 = -c2/m2; return Math.abs(x2 - x1)*yp/2;",
+    "distractor_solve": {
+      "15": "const [m1, c1, m2, c2] = [1, 2, -2, 14]; const xp = (c2 - c1)/(m1 - m2), yp = m1*xp + c1; const x1 = c1/m1, x2 = -c2/m2; return Math.abs(x2 - x1)*yp/2;",
+      "24": "const [m1, c1, m2, c2] = [1, 2, -2, 14]; const xp = (c2 - c1)/(m1 - m2); return Math.abs(c2 - c1)*xp/2;",
+      "36": "const [m1, c1, m2, c2] = [1, 2, -2, 14]; const xp = (c2 - c1)/(m1 - m2), yp = m1*xp + c1; return Math.abs(c2 - c1)*yp/2;"
+    }
+  },
+  {
+    "id": "IM13B-10",
+    "domain": "Math",
+    "subskill": "arithmetic sequence term from a stated relationship between two other terms",
+    "difficulty": "medium",
+    "prompt": "The first term of an arithmetic sequence is 2. The eighth term is 6 more than three times the third term. What is the twelfth term of the sequence?",
+    "choices": [
+      "72",
+      "112",
+      "24",
+      "122"
+    ],
+    "correct_answer": "112",
+    "explanation": "With common difference d, the third term is 2 + 2d and the eighth is 2 + 7d. So 2 + 7d = 3(2 + 2d) + 6 = 12 + 6d, which gives d = 10. The twelfth term is 2 + 11(10) = 112. \"72\" is the eighth term, 2 + 7(10), the term named in the condition rather than the one asked for. \"24\" comes from tripling only the first term of 2 + 2d, writing 2 + 7d = 6 + 2d + 6, so 5d = 10, d = 2, and the twelfth term is 2 + 22. \"122\" uses 2 + 12d for the twelfth term, one step too many.",
+    "solve": "const a = 2; // a + 7d = 3(a + 2d) + 6\nconst d = (3*a + 6 - a) / (7 - 3*2); return a + 11*d;",
+    "distractor_solve": {
+      "24": "const a = 2; // a + 7d = 3a + 2d + 6\nconst d = (3*a + 6 - a) / (7 - 2); return a + 11*d;",
+      "72": "const a = 2; const d = (3*a + 6 - a) / (7 - 3*2); return a + 7*d;",
+      "122": "const a = 2; const d = (3*a + 6 - a) / (7 - 3*2); return a + 12*d;"
+    }
+  },
+  {
+    "id": "IM13B-11",
+    "domain": "Math",
+    "subskill": "counting the whole-number third sides allowed by the triangle inequality",
+    "difficulty": "medium",
+    "prompt": "Two sides of a triangle measure 5 centimeters and 12 centimeters. The length of the third side is a whole number of centimeters. How many different lengths are possible for the third side?",
+    "choices": [
+      "11",
+      "16",
+      "9",
+      "4"
+    ],
+    "correct_answer": "9",
+    "explanation": "The third side must be greater than 12 - 5 = 7 and less than 12 + 5 = 17, so it can be any whole number from 8 through 16, which is 9 lengths. \"11\" includes the endpoints 7 and 17, but a side of 7 or 17 makes the three sides lie flat rather than form a triangle. \"16\" uses only the upper limit, counting every whole number from 1 through 16. \"4\" assumes the third side must be the longest side, counting only 13 through 16.",
+    "solve": "const a = 5, b = 12; let n = 0; for (let c = 1; c < 100; c++) if (c < a + b && c > Math.abs(a - b)) n++; return n;",
+    "distractor_solve": {
+      "4": "const a = 5, b = 12; let n = 0; for (let c = 1; c < 100; c++) if (c < a + b && c > Math.max(a, b)) n++; return n;",
+      "11": "const a = 5, b = 12; let n = 0; for (let c = 1; c < 100; c++) if (c <= a + b && c >= Math.abs(a - b)) n++; return n;",
+      "16": "const a = 5, b = 12; let n = 0; for (let c = 1; c < 100; c++) if (c < a + b) n++; return n;"
+    }
+  },
+  {
+    "id": "IM13B-12",
+    "domain": "Math",
+    "subskill": "solving a radical equation and rejecting the extraneous root",
+    "difficulty": "hard",
+    "prompt": "What is the value of x that satisfies the equation sqrt(x + 36) = x - 6 ?",
+    "choices": [
+      "7",
+      "15",
+      "16",
+      "13"
+    ],
+    "correct_answer": "13",
+    "explanation": "Squaring both sides gives x + 36 = x^2 - 12x + 36, so x^2 - 13x = 0 and x = 0 or x = 13. The square root cannot be negative, so x - 6 must be at least 0, which rules out x = 0; check x = 13: sqrt(49) = 7 = 13 - 6. \"7\" comes from squaring x - 6 as x^2 - 6x + 36, without doubling the middle term, which gives x^2 - 7x = 0. \"15\" comes from squaring only the x and not the 6, writing x + 36 = x^2 - 12x + 6, so x^2 - 13x - 30 = 0 and x = 15. \"16\" comes from splitting the root as sqrt(x) + 6 = x - 6, so sqrt(x) = x - 12 and x = 16.",
+    "solve": "// x + 36 = (x - 6)^2  ->  x^2 - 13x + 0 = 0\nconst B = -13, C = 0; const D = Math.sqrt(B*B - 4*C); const roots = [(-B + D)/2, (-B - D)/2]; return roots.find(x => x - 6 >= 0 && Math.abs(Math.sqrt(x + 36) - (x - 6)) < 1e-9);",
+    "distractor_solve": {
+      "7": "// x + 36 = x^2 - 6x + 36  ->  x^2 - 7x = 0\nconst B = -7, C = 0; const D = Math.sqrt(B*B - 4*C); return Math.max((-B + D)/2, (-B - D)/2);",
+      "15": "// x + 36 = x^2 - 12x + 6  ->  x^2 - 13x - 30 = 0\nconst B = -13, C = -30; const D = Math.sqrt(B*B - 4*C); return Math.max((-B + D)/2, (-B - D)/2);",
+      "16": "// sqrt(x) + 6 = x - 6  ->  sqrt(x) = x - 12  ->  x = x^2 - 24x + 144\nconst B = -25, C = 144; const D = Math.sqrt(B*B - 4*C); return [(-B + D)/2, (-B - D)/2].find(x => Math.sqrt(x) === x - 12);"
+    }
+  },
+  {
+    "id": "IM13B-13",
+    "domain": "Math",
+    "subskill": "product rule for exponents with an unknown exponent",
+    "difficulty": "medium",
+    "prompt": "If 2^a = 5, what is the value of 2^(a + 3)?",
+    "choices": [
+      "40",
+      "13",
+      "15",
+      "8"
+    ],
+    "correct_answer": "40",
+    "explanation": "By the product rule, 2^(a + 3) = 2^a x 2^3 = 5 x 8 = 40. \"13\" adds the two powers instead of multiplying them, 5 + 8. \"15\" treats the exponent 3 as a multiplier, 3 x 5. \"8\" adds the 3 to the value of 2^a, 5 + 3, as though 2^(a + 3) meant 2^a + 3.",
+    "solve": "const p = 5; return p * 2**3;",
+    "distractor_solve": {
+      "8": "const p = 5; return p + 3;",
+      "13": "const p = 5; return p + 2**3;",
+      "15": "const p = 5; return 3*p;"
+    }
+  },
+  {
+    "id": "IM13B-14",
+    "domain": "Math",
+    "subskill": "unit price from a rational equation that becomes a quadratic",
+    "difficulty": "hard",
+    "prompt": "A store spent $360 on ribbon, all at the same price per meter. If the price had been $5 more per meter, the same $360 would have bought 6 fewer meters. What was the price of the ribbon, in dollars per meter?",
+    "choices": [
+      "20",
+      "15",
+      "18",
+      "40"
+    ],
+    "correct_answer": "15",
+    "explanation": "With price x dollars per meter, 360/x - 360/(x + 5) = 6. Multiplying through by x(x + 5) gives 360 x 5 = 6x(x + 5), so x^2 + 5x = 300, and (x + 20)(x - 15) = 0 gives x = 15. Check: $360 buys 24 meters at $15 and 18 meters at $20. \"20\" is the higher price, x + 5, and it is also what a solver gets by dropping the sign of the root x = -20. \"18\" is the number of meters bought at the higher price, not a price. \"40\" comes from forgetting to divide by the 6, solving x(x + 5) = 360 x 5 = 1800.",
+    "solve": "const T = 360, c = 5, n = 6; const K = T*c/n; return (-c + Math.sqrt(c*c + 4*K))/2;",
+    "distractor_solve": {
+      "18": "const T = 360, c = 5, n = 6; const K = T*c/n; const x = (-c + Math.sqrt(c*c + 4*K))/2; return T/(x + c);",
+      "20": "const T = 360, c = 5, n = 6; const K = T*c/n; return Math.abs((-c - Math.sqrt(c*c + 4*K))/2);",
+      "40": "const T = 360, c = 5; const K = T*c; return (-c + Math.sqrt(c*c + 4*K))/2;"
+    }
+  }
+]
