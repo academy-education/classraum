@@ -132,14 +132,22 @@ function draw(outdir, files) {
 // deterministic shuffles for render only (independent of the key draw)
 function rng(seedStr) { let s = parseInt(sha(seedStr).slice(0, 8), 16); return () => { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff } }
 function shuffle(a, r) { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1));[b[i], b[j]] = [b[j], b[i]] } return b }
+/* Flat letter deal (bank-gate §2): within each rendered population the key
+ * letters are dealt as evenly as n allows, so a constant-letter solver scores
+ * the 5-choice line and no letter habit can masquerade as a leak. Render only;
+ * the key itself was fixed by the draw. */
+function dealer(n, r) { const d = []; while (d.length < n) d.push(...shuffle([...L], r)); let i = 0; return () => d[i++] }
+function placeKey(choices, key, letter, r) { const rest = shuffle(choices.filter(c => c !== key), r); rest.splice(L.indexOf(letter), 0, key); return rest }
 
 function build(outdir, ctlDir, cfFiles) {
   const batch = JSON.parse(readFileSync(join(outdir, 'batch.json'), 'utf8'))
   if (!batch.length) die('empty batch')
   const r = rng(`render|${outdir}`)
   const key = {}
-  const cand = batch.filter(x => x.subskill !== 'vocabulary-in-context').map(x => {
-    const opts = shuffle(x.choices, r)
+  const nonVocab = batch.filter(x => x.subskill !== 'vocabulary-in-context')
+  const dealC = dealer(nonVocab.length, r)
+  const cand = nonVocab.map(x => {
+    const opts = placeKey(x.choices, x.correct_answer, dealC(), r)
     return { src: x.id, group: x.set_id, prompt: x.prompt, options: Object.fromEntries(opts.map((c, j) => [L[j], c])), fKey: L[opts.indexOf(x.correct_answer)], pop: 'candidate', subskill: x.subskill }
   })
   const dkey = JSON.parse(readFileSync(join(ctlDir, 'label.key.json'), 'utf8'))
@@ -153,19 +161,21 @@ function build(outdir, ctlDir, cfFiles) {
   writeFileSync(join(outdir, 'iso.json'), JSON.stringify(order.map(({ qid, prompt, options }) => ({ qid, prompt, options })), null, 1))
   // grouped: all 6 items of a passage (incl. vocab), fresh letters
   const groups = [...new Set(batch.map(x => x.set_id))]
+  const dealG = dealer(batch.length, r)
   groups.forEach((g, gi) => {
     const items = batch.filter(x => x.set_id === g).map((x, i) => {
-      const opts = shuffle(x.choices, r), qid = `G${gi + 1}-${i + 1}`
+      const opts = placeKey(x.choices, x.correct_answer, dealG(), r), qid = `G${gi + 1}-${i + 1}`
       key[qid] = { src: x.id, pop: 'candidate-grouped', group: g, fKey: L[opts.indexOf(x.correct_answer)], subskill: x.subskill }
       return { qid, prompt: x.prompt, options: Object.fromEntries(opts.map((c, j) => [L[j], c])) }
     })
     writeFileSync(join(outdir, `grp-${gi + 1}.json`), JSON.stringify(items, null, 1))
   })
   // with-source: passage + unmarked shuffled choices
+  const dealW = dealer(batch.length, r)
   const ws = groups.map((g, gi) => {
     const items = batch.filter(x => x.set_id === g)
     return { passage_id: `P${gi + 1}`, passage: items[0].passage, questions: items.map((x, i) => {
-      const opts = shuffle(x.choices, r), qid = `W${gi + 1}-${i + 1}`
+      const opts = placeKey(x.choices, x.correct_answer, dealW(), r), qid = `W${gi + 1}-${i + 1}`
       key[qid] = { src: x.id, pop: 'withsource', group: g, fKey: L[opts.indexOf(x.correct_answer)], subskill: x.subskill }
       return { qid, prompt: x.prompt, options: Object.fromEntries(opts.map((c, j) => [L[j], c])) }
     }) }

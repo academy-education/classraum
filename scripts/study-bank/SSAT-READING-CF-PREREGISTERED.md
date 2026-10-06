@@ -119,3 +119,52 @@ passage, with the s4 fixture in each judge file. Items failing C are dropped, an
 with fewer than 5 items are dropped. Ledger entry, insert as cohort `ssat-reading-cf1`, then
 re-run `admission-form-depth.ts` and report forms before → after. The human sitting stays the
 verdict for a verbal cohort (bank-gate §5). It is not run here, because a sitting needs a person.
+
+## Result (run 2026-10-06): FAILS on E (naturalness). The pre-registered rule says stop, so nothing was inserted and no batch was authored.
+
+Text was frozen in `75b100fc` (`ssat-cf1-p01/p02.cf.json`). `frozenSha` is `d3d2a9b5…a3ed`, and the
+key-index histogram is 1/3/4/2/2. Evidence is in `ssat-cf-pilot/`. Key letters in every rendered
+file are dealt flat (2/2/2/2/2 on the isolated candidate set).
+
+| bar | result | verdict |
+|---|---|---|
+| A isolated options-only | candidate **14/30 = 46.7%** (3/10, 6/10, 5/10) vs live control **38/144 = 26.4%** | BETWEEN, so the rule calls for a second pilot |
+| B grouped | 6/12 = 50.0% (1 sample of the 3 pre-registered; the other 2 were not run once E decided the outcome) | — |
+| C with-source exclusivity | **12/12** (both graders pick the key, neither names a second defensible option) | pass |
+| D cross-version | not run: E had already decided the outcome | — |
+| E naturalness | s4 fixture rated 1 and 1, flagged by both, so both judges are valid. **P01 rated 4 and 4, not flagged (pass). P02 rated 3 and 3, flagged by BOTH** ("the second paragraph is two unrelated asides: the 1953 storm … and the generator") | **FAIL** |
+
+**A: the 46.7% is not a leak, and the instrument can show why.** No path exists from the draw to
+the options-only files. Stems and choices are identical for every draw, letters are dealt flat,
+and the key comes from a hash of the frozen text. Holding the three samples' picks fixed, the exact
+distribution of hits over all 5^10 equally likely draws has **mean 6.0/30 (20%) and P(≥ 14) =
+0.021**. The excess comes from three unanimous items where the draw happened to land on the
+solver's prior: "admiring" and "tender" (the positive-attitude prior) and "a watch repairer". This
+is a property of the bar, not the batch. With a random key, an item's guessability equals the
+solver's prior on whichever option was drawn. So 10 items × 3 correlated samples, with these picks,
+has a null SD of 11.2 points, and the 40% bar (≥ 12/30) fires by chance on **6.2%** of draws. A batch-level rate
+averages this out; a 10-item pilot does not.
+
+**C passed, and that exposed the real defect of the method: every distractor is absent from the
+passage.** Only the drawn version is printed, so the four other choices are never mentioned. The
+graders called **10 of 12 items "easy"**, saying "only option the passage mentions at all" and
+"other locations never mentioned". That makes each item a word-match. It is the opposite of the
+live bank, where 77.6% of distractors are candidates the passage names and rules out.
+
+**E failed for a reason built into the method.** Each question's slot must be independent of
+every other slot, so slots end up as self-contained facts about unrelated matters: a storm, a
+generator, a photograph, a ferry. Both with-source graders independently called **both** passages
+unnatural for this reason ("self-contained slots with no link to the narrative", "irrelevant
+asides that exist only to answer a function and vocab question"), and the naturalness judges
+flagged P02 on the same ground. P01 scored better (4/4) because its author tied the slots into one
+memoir. It is still far ahead of the live cohorts on prose: the live s3 reference was rated 2 and
+2 and flagged as a candidate catalogue.
+
+**Statable conclusion.** Independent per-question slots solve the two problems they targeted. They
+remove authorship asymmetry (key independent of text) and topic-level correlation. They create
+two new ones that pull against each other. Independence pushes slots toward unrelated asides,
+which breaks naturalness. Printing only one version makes every distractor an absent invention,
+which makes items trivial word-matches. Giving the passage the ruled-out candidates (the s3/s4
+fix) is what produced the denial runs. This pilot does not show a method that reaches the live
+bank's options-only rate AND natural prose AND non-trivial difficulty all at once. The deficit
+returns to B10.

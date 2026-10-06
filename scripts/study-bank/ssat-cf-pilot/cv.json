@@ -1,0 +1,1982 @@
+[
+ {
+  "id": "CF1-P01-1.v0",
+  "passage_id": "CF1-P01",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how a great-aunt taught the narrator to bake bread",
+   "how a great-aunt taught the narrator to play chess",
+   "how a great-aunt taught the narrator to mend old books",
+   "how a great-aunt taught the narrator to draw birds",
+   "how a great-aunt taught the narrator to fix bicycles"
+  ],
+  "slot_text_shown": "What filled that July, though, was bread. Every morning at five she woke me to knead, and she made me throw out loaf after flat loaf until my hands learned what hers already knew. On my last day I baked the batch alone, and she sliced it at the table without a word of advice, which from Hedda was the highest praise.",
+  "claimed_answer": "how a great-aunt taught the narrator to bake bread",
+  "kills": {
+   "how a great-aunt taught the narrator to play chess": {
+    "quote": "What filled that July, though, was bread.",
+    "reason": "The month was filled with baking; no chess is played."
+   },
+   "how a great-aunt taught the narrator to mend old books": {
+    "quote": "What filled that July, though, was bread.",
+    "reason": "The month was filled with baking; no books are mended."
+   },
+   "how a great-aunt taught the narrator to draw birds": {
+    "quote": "What filled that July, though, was bread.",
+    "reason": "The month was filled with baking; no drawing takes place."
+   },
+   "how a great-aunt taught the narrator to fix bicycles": {
+    "quote": "What filled that July, though, was bread.",
+    "reason": "The month was filled with baking; no bicycle appears."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\n[[What filled that July, though, was bread. Every morning at five she woke me to knead, and she made me throw out loaf after flat loaf until my hands learned what hers already knew. On my last day I baked the batch alone, and she sliced it at the table without a word of advice, which from Hedda was the highest praise.]]\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-1.v1",
+  "passage_id": "CF1-P01",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how a great-aunt taught the narrator to bake bread",
+   "how a great-aunt taught the narrator to play chess",
+   "how a great-aunt taught the narrator to mend old books",
+   "how a great-aunt taught the narrator to draw birds",
+   "how a great-aunt taught the narrator to fix bicycles"
+  ],
+  "slot_text_shown": "What filled that July, though, was chess. On my first night she set a board on the kitchen table and beat me in nine moves, and she went on beating me every night after supper while I worked out why. On my last night I finally took a game from her, and she shook my hand across the board as if we had just been introduced.",
+  "claimed_answer": "how a great-aunt taught the narrator to play chess",
+  "kills": {
+   "how a great-aunt taught the narrator to bake bread": {
+    "quote": "What filled that July, though, was chess.",
+    "reason": "The month was filled with chess; no baking is taught."
+   },
+   "how a great-aunt taught the narrator to mend old books": {
+    "quote": "What filled that July, though, was chess.",
+    "reason": "The month was filled with chess; no books are mended."
+   },
+   "how a great-aunt taught the narrator to draw birds": {
+    "quote": "What filled that July, though, was chess.",
+    "reason": "The month was filled with chess; no drawing takes place."
+   },
+   "how a great-aunt taught the narrator to fix bicycles": {
+    "quote": "What filled that July, though, was chess.",
+    "reason": "The month was filled with chess; no bicycle appears."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\n[[What filled that July, though, was chess. On my first night she set a board on the kitchen table and beat me in nine moves, and she went on beating me every night after supper while I worked out why. On my last night I finally took a game from her, and she shook my hand across the board as if we had just been introduced.]]\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-1.v2",
+  "passage_id": "CF1-P01",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how a great-aunt taught the narrator to bake bread",
+   "how a great-aunt taught the narrator to play chess",
+   "how a great-aunt taught the narrator to mend old books",
+   "how a great-aunt taught the narrator to draw birds",
+   "how a great-aunt taught the narrator to fix bicycles"
+  ],
+  "slot_text_shown": "What filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.",
+  "claimed_answer": "how a great-aunt taught the narrator to mend old books",
+  "kills": {
+   "how a great-aunt taught the narrator to bake bread": {
+    "quote": "What filled that July, though, was a crate of water-stained books",
+    "reason": "The month went to repairing books; no baking is taught."
+   },
+   "how a great-aunt taught the narrator to play chess": {
+    "quote": "What filled that July, though, was a crate of water-stained books",
+    "reason": "The month went to repairing books; no chess is played."
+   },
+   "how a great-aunt taught the narrator to draw birds": {
+    "quote": "What filled that July, though, was a crate of water-stained books",
+    "reason": "The month went to repairing books; no drawing takes place."
+   },
+   "how a great-aunt taught the narrator to fix bicycles": {
+    "quote": "What filled that July, though, was a crate of water-stained books",
+    "reason": "The month went to repairing books; no bicycle appears."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\n[[What filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.]]\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-1.v3",
+  "passage_id": "CF1-P01",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how a great-aunt taught the narrator to bake bread",
+   "how a great-aunt taught the narrator to play chess",
+   "how a great-aunt taught the narrator to mend old books",
+   "how a great-aunt taught the narrator to draw birds",
+   "how a great-aunt taught the narrator to fix bicycles"
+  ],
+  "slot_text_shown": "What filled that July, though, was drawing birds. Each morning she handed me a pencil and a pad, sat me on the porch steps, and made me sketch whatever landed on the rail until I could catch a wren before it flew off. On my last day she pinned my best page beside one of her own on the kitchen wall.",
+  "claimed_answer": "how a great-aunt taught the narrator to draw birds",
+  "kills": {
+   "how a great-aunt taught the narrator to bake bread": {
+    "quote": "What filled that July, though, was drawing birds.",
+    "reason": "The month was spent sketching; no baking is taught."
+   },
+   "how a great-aunt taught the narrator to play chess": {
+    "quote": "What filled that July, though, was drawing birds.",
+    "reason": "The month was spent sketching; no chess is played."
+   },
+   "how a great-aunt taught the narrator to mend old books": {
+    "quote": "What filled that July, though, was drawing birds.",
+    "reason": "The month was spent sketching; no books are mended."
+   },
+   "how a great-aunt taught the narrator to fix bicycles": {
+    "quote": "What filled that July, though, was drawing birds.",
+    "reason": "The month was spent sketching; no bicycle appears."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\n[[What filled that July, though, was drawing birds. Each morning she handed me a pencil and a pad, sat me on the porch steps, and made me sketch whatever landed on the rail until I could catch a wren before it flew off. On my last day she pinned my best page beside one of her own on the kitchen wall.]]\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-1.v4",
+  "passage_id": "CF1-P01",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how a great-aunt taught the narrator to bake bread",
+   "how a great-aunt taught the narrator to play chess",
+   "how a great-aunt taught the narrator to mend old books",
+   "how a great-aunt taught the narrator to draw birds",
+   "how a great-aunt taught the narrator to fix bicycles"
+  ],
+  "slot_text_shown": "What filled that July, though, was a rusted bicycle from her shed. She taught me to strip the chain, straighten a bent wheel, and patch a tube in a bucket of water, my hands black to the wrist. On my last day I rode it, rebuilt, down to the river and back while she timed me with her watch.",
+  "claimed_answer": "how a great-aunt taught the narrator to fix bicycles",
+  "kills": {
+   "how a great-aunt taught the narrator to bake bread": {
+    "quote": "What filled that July, though, was a rusted bicycle from her shed.",
+    "reason": "The month went to the bicycle; no baking is taught."
+   },
+   "how a great-aunt taught the narrator to play chess": {
+    "quote": "What filled that July, though, was a rusted bicycle from her shed.",
+    "reason": "The month went to the bicycle; no chess is played."
+   },
+   "how a great-aunt taught the narrator to mend old books": {
+    "quote": "What filled that July, though, was a rusted bicycle from her shed.",
+    "reason": "The month went to the bicycle; no books are mended."
+   },
+   "how a great-aunt taught the narrator to draw birds": {
+    "quote": "What filled that July, though, was a rusted bicycle from her shed.",
+    "reason": "The month went to the bicycle; no drawing takes place."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\n[[What filled that July, though, was a rusted bicycle from her shed. She taught me to strip the chain, straighten a bent wheel, and patch a tube in a bucket of water, my hands black to the wrist. On my last day I rode it, rebuilt, down to the river and back while she timed me with her watch.]]\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-2.v0",
+  "passage_id": "CF1-P01",
+  "question": "According to the passage, Hedda had earned her living as",
+  "choices": [
+   "a teacher at the town school",
+   "a nurse at the county hospital",
+   "a carrier on the town's mail route",
+   "a clerk at the county courthouse",
+   "an operator at the telephone exchange"
+  ],
+  "slot_text_shown": "For thirty-eight years she had taught fourth grade at the town school, and grown men still lowered their voices when she passed them on the sidewalk.",
+  "claimed_answer": "a teacher at the town school",
+  "kills": {
+   "a nurse at the county hospital": {
+    "quote": "For thirty-eight years she had taught fourth grade at the town school",
+    "reason": "Her whole working life was teaching, not nursing."
+   },
+   "a carrier on the town's mail route": {
+    "quote": "For thirty-eight years she had taught fourth grade at the town school",
+    "reason": "Her whole working life was teaching, not carrying mail."
+   },
+   "a clerk at the county courthouse": {
+    "quote": "For thirty-eight years she had taught fourth grade at the town school",
+    "reason": "Her whole working life was teaching, not clerking."
+   },
+   "an operator at the telephone exchange": {
+    "quote": "For thirty-eight years she had taught fourth grade at the town school",
+    "reason": "Her whole working life was teaching, not the switchboard."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. [[For thirty-eight years she had taught fourth grade at the town school, and grown men still lowered their voices when she passed them on the sidewalk.]]\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-2.v1",
+  "passage_id": "CF1-P01",
+  "question": "According to the passage, Hedda had earned her living as",
+  "choices": [
+   "a teacher at the town school",
+   "a nurse at the county hospital",
+   "a carrier on the town's mail route",
+   "a clerk at the county courthouse",
+   "an operator at the telephone exchange"
+  ],
+  "slot_text_shown": "For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.",
+  "claimed_answer": "a nurse at the county hospital",
+  "kills": {
+   "a teacher at the town school": {
+    "quote": "For thirty-eight years she had worked the night ward at the county hospital",
+    "reason": "Her whole working life was on a hospital ward, not in a school."
+   },
+   "a carrier on the town's mail route": {
+    "quote": "For thirty-eight years she had worked the night ward at the county hospital",
+    "reason": "Her whole working life was on a hospital ward, not a mail route."
+   },
+   "a clerk at the county courthouse": {
+    "quote": "For thirty-eight years she had worked the night ward at the county hospital",
+    "reason": "Her whole working life was on a hospital ward, not at the courthouse."
+   },
+   "an operator at the telephone exchange": {
+    "quote": "For thirty-eight years she had worked the night ward at the county hospital",
+    "reason": "Her whole working life was on a hospital ward, not at the exchange."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. [[For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.]]\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-2.v2",
+  "passage_id": "CF1-P01",
+  "question": "According to the passage, Hedda had earned her living as",
+  "choices": [
+   "a teacher at the town school",
+   "a nurse at the county hospital",
+   "a carrier on the town's mail route",
+   "a clerk at the county courthouse",
+   "an operator at the telephone exchange"
+  ],
+  "slot_text_shown": "For thirty-eight years she had walked the mail route along the river road, and people still waved from their porches as if she might have a letter.",
+  "claimed_answer": "a carrier on the town's mail route",
+  "kills": {
+   "a teacher at the town school": {
+    "quote": "For thirty-eight years she had walked the mail route along the river road",
+    "reason": "Her whole working life was the mail route, not a school."
+   },
+   "a nurse at the county hospital": {
+    "quote": "For thirty-eight years she had walked the mail route along the river road",
+    "reason": "Her whole working life was the mail route, not a hospital."
+   },
+   "a clerk at the county courthouse": {
+    "quote": "For thirty-eight years she had walked the mail route along the river road",
+    "reason": "Her whole working life was the mail route, not the courthouse."
+   },
+   "an operator at the telephone exchange": {
+    "quote": "For thirty-eight years she had walked the mail route along the river road",
+    "reason": "Her whole working life was the mail route, not the exchange."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. [[For thirty-eight years she had walked the mail route along the river road, and people still waved from their porches as if she might have a letter.]]\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-2.v3",
+  "passage_id": "CF1-P01",
+  "question": "According to the passage, Hedda had earned her living as",
+  "choices": [
+   "a teacher at the town school",
+   "a nurse at the county hospital",
+   "a carrier on the town's mail route",
+   "a clerk at the county courthouse",
+   "an operator at the telephone exchange"
+  ],
+  "slot_text_shown": "For thirty-eight years she had recorded deeds and marriages at the county courthouse, and she still knew who owned every field and who had married whom.",
+  "claimed_answer": "a clerk at the county courthouse",
+  "kills": {
+   "a teacher at the town school": {
+    "quote": "For thirty-eight years she had recorded deeds and marriages at the county courthouse",
+    "reason": "Her whole working life was courthouse records, not teaching."
+   },
+   "a nurse at the county hospital": {
+    "quote": "For thirty-eight years she had recorded deeds and marriages at the county courthouse",
+    "reason": "Her whole working life was courthouse records, not nursing."
+   },
+   "a carrier on the town's mail route": {
+    "quote": "For thirty-eight years she had recorded deeds and marriages at the county courthouse",
+    "reason": "Her whole working life was courthouse records, not the mail."
+   },
+   "an operator at the telephone exchange": {
+    "quote": "For thirty-eight years she had recorded deeds and marriages at the county courthouse",
+    "reason": "Her whole working life was courthouse records, not the switchboard."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. [[For thirty-eight years she had recorded deeds and marriages at the county courthouse, and she still knew who owned every field and who had married whom.]]\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-2.v4",
+  "passage_id": "CF1-P01",
+  "question": "According to the passage, Hedda had earned her living as",
+  "choices": [
+   "a teacher at the town school",
+   "a nurse at the county hospital",
+   "a carrier on the town's mail route",
+   "a clerk at the county courthouse",
+   "an operator at the telephone exchange"
+  ],
+  "slot_text_shown": "For thirty-eight years she had sat at the switchboard of the telephone exchange, and she still knew half the town's numbers, and its secrets, by heart.",
+  "claimed_answer": "an operator at the telephone exchange",
+  "kills": {
+   "a teacher at the town school": {
+    "quote": "For thirty-eight years she had sat at the switchboard of the telephone exchange",
+    "reason": "Her whole working life was the switchboard, not a school."
+   },
+   "a nurse at the county hospital": {
+    "quote": "For thirty-eight years she had sat at the switchboard of the telephone exchange",
+    "reason": "Her whole working life was the switchboard, not a hospital."
+   },
+   "a carrier on the town's mail route": {
+    "quote": "For thirty-eight years she had sat at the switchboard of the telephone exchange",
+    "reason": "Her whole working life was the switchboard, not the mail."
+   },
+   "a clerk at the county courthouse": {
+    "quote": "For thirty-eight years she had sat at the switchboard of the telephone exchange",
+    "reason": "Her whole working life was the switchboard, not the courthouse."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. [[For thirty-eight years she had sat at the switchboard of the telephone exchange, and she still knew half the town's numbers, and its secrets, by heart.]]\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-3.v0",
+  "passage_id": "CF1-P01",
+  "question": "It can most reasonably be inferred that the photograph on the mantel showed",
+  "choices": [
+   "a husband Hedda had lost",
+   "a twin sister of Hedda's",
+   "the narrator's grandfather as a boy",
+   "a dog Hedda had once owned",
+   "the house where Hedda was born"
+  ],
+  "slot_text_shown": "'Forty years he wore that same hat,' she said, 'and he forgot it at every wedding but our own.'",
+  "claimed_answer": "a husband Hedda had lost",
+  "kills": {
+   "a twin sister of Hedda's": {
+    "quote": "Forty years he wore that same hat",
+    "reason": "The subject is a man, not a sister."
+   },
+   "the narrator's grandfather as a boy": {
+    "quote": "Forty years he wore that same hat",
+    "reason": "He wore the hat for forty years and married Hedda, so he is a grown husband, not a boy."
+   },
+   "a dog Hedda had once owned": {
+    "quote": "he forgot it at every wedding but our own",
+    "reason": "A dog does not wear a hat or marry."
+   },
+   "the house where Hedda was born": {
+    "quote": "Forty years he wore that same hat",
+    "reason": "The subject is a person, not a building."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. [['Forty years he wore that same hat,' she said, 'and he forgot it at every wedding but our own.']]\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-3.v1",
+  "passage_id": "CF1-P01",
+  "question": "It can most reasonably be inferred that the photograph on the mantel showed",
+  "choices": [
+   "a husband Hedda had lost",
+   "a twin sister of Hedda's",
+   "the narrator's grandfather as a boy",
+   "a dog Hedda had once owned",
+   "the house where Hedda was born"
+  ],
+  "slot_text_shown": "'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'",
+  "claimed_answer": "a twin sister of Hedda's",
+  "kills": {
+   "a husband Hedda had lost": {
+    "quote": "she was always the one laughing",
+    "reason": "The subject is a woman, not a husband."
+   },
+   "the narrator's grandfather as a boy": {
+    "quote": "she was always the one laughing",
+    "reason": "The subject is a woman, not a boy."
+   },
+   "a dog Hedda had once owned": {
+    "quote": "People could never tell us apart",
+    "reason": "Only someone identical to Hedda could be mistaken for her, not a dog."
+   },
+   "the house where Hedda was born": {
+    "quote": "People could never tell us apart",
+    "reason": "The subject is a person identical to Hedda, not a building."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. [['People could never tell us apart,' she said, 'except that she was always the one laughing at something.']]\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-3.v2",
+  "passage_id": "CF1-P01",
+  "question": "It can most reasonably be inferred that the photograph on the mantel showed",
+  "choices": [
+   "a husband Hedda had lost",
+   "a twin sister of Hedda's",
+   "the narrator's grandfather as a boy",
+   "a dog Hedda had once owned",
+   "the house where Hedda was born"
+  ],
+  "slot_text_shown": "'That's my brother at nine, already bossing me,' she said. 'Your mother got her chin from him, and so did you.'",
+  "claimed_answer": "the narrator's grandfather as a boy",
+  "kills": {
+   "a husband Hedda had lost": {
+    "quote": "That's my brother at nine",
+    "reason": "The boy is her brother, not her husband."
+   },
+   "a twin sister of Hedda's": {
+    "quote": "That's my brother at nine",
+    "reason": "The child is a brother, not a sister."
+   },
+   "a dog Hedda had once owned": {
+    "quote": "Your mother got her chin from him",
+    "reason": "A dog cannot pass a chin to the narrator's mother."
+   },
+   "the house where Hedda was born": {
+    "quote": "That's my brother at nine",
+    "reason": "The photograph shows a boy, not a building."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. [['That's my brother at nine, already bossing me,' she said. 'Your mother got her chin from him, and so did you.']]\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-3.v3",
+  "passage_id": "CF1-P01",
+  "question": "It can most reasonably be inferred that the photograph on the mantel showed",
+  "choices": [
+   "a husband Hedda had lost",
+   "a twin sister of Hedda's",
+   "the narrator's grandfather as a boy",
+   "a dog Hedda had once owned",
+   "the house where Hedda was born"
+  ],
+  "slot_text_shown": "'He bit the minister twice,' she said, 'and slept across my feet every night for fourteen good years.'",
+  "claimed_answer": "a dog Hedda had once owned",
+  "kills": {
+   "a husband Hedda had lost": {
+    "quote": "slept across my feet every night",
+    "reason": "Biting the minister and sleeping across her feet describe a pet, not a husband."
+   },
+   "a twin sister of Hedda's": {
+    "quote": "He bit the minister twice",
+    "reason": "The subject is male and an animal, not a sister."
+   },
+   "the narrator's grandfather as a boy": {
+    "quote": "slept across my feet every night for fourteen good years",
+    "reason": "Fourteen years at her feet describes a pet, not her brother as a boy."
+   },
+   "the house where Hedda was born": {
+    "quote": "He bit the minister twice",
+    "reason": "The subject is a living animal, not a building."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. [['He bit the minister twice,' she said, 'and slept across my feet every night for fourteen good years.']]\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-3.v4",
+  "passage_id": "CF1-P01",
+  "question": "It can most reasonably be inferred that the photograph on the mantel showed",
+  "choices": [
+   "a husband Hedda had lost",
+   "a twin sister of Hedda's",
+   "the narrator's grandfather as a boy",
+   "a dog Hedda had once owned",
+   "the house where Hedda was born"
+  ],
+  "slot_text_shown": "'Every board of it came from the old mill,' she said, 'and I was born in its front room during a thunderstorm.'",
+  "claimed_answer": "the house where Hedda was born",
+  "kills": {
+   "a husband Hedda had lost": {
+    "quote": "Every board of it came from the old mill",
+    "reason": "The subject is built of boards, not a person."
+   },
+   "a twin sister of Hedda's": {
+    "quote": "Every board of it came from the old mill",
+    "reason": "The subject is built of boards, not a sister."
+   },
+   "the narrator's grandfather as a boy": {
+    "quote": "Every board of it came from the old mill",
+    "reason": "The subject is built of boards, not a boy."
+   },
+   "a dog Hedda had once owned": {
+    "quote": "Every board of it came from the old mill",
+    "reason": "The subject is built of boards, not an animal."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. [['Every board of it came from the old mill,' she said, 'and I was born in its front room during a thunderstorm.']]\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-4.v0",
+  "passage_id": "CF1-P01",
+  "question": "As it is used in the second paragraph, the word \"kept\" most nearly means",
+  "choices": [
+   "stored",
+   "raised",
+   "honored",
+   "detained",
+   "continued"
+  ],
+  "slot_text_shown": "Hedda kept the good dishes in a cedar trunk at the foot of the stairs, each plate wrapped in newspaper against the damp.",
+  "claimed_answer": "stored",
+  "kills": {
+   "raised": {
+    "quote": "kept the good dishes in a cedar trunk",
+    "reason": "Dishes are put away, not bred or reared."
+   },
+   "honored": {
+    "quote": "kept the good dishes in a cedar trunk",
+    "reason": "Dishes are objects, not a custom to honor."
+   },
+   "detained": {
+    "quote": "kept the good dishes in a cedar trunk",
+    "reason": "Dishes are not held up the way a person is."
+   },
+   "continued": {
+    "quote": "kept the good dishes in a cedar trunk",
+    "reason": "The object is a thing, not an ongoing activity."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. [[Hedda kept the good dishes in a cedar trunk at the foot of the stairs, each plate wrapped in newspaper against the damp.]] On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-4.v1",
+  "passage_id": "CF1-P01",
+  "question": "As it is used in the second paragraph, the word \"kept\" most nearly means",
+  "choices": [
+   "stored",
+   "raised",
+   "honored",
+   "detained",
+   "continued"
+  ],
+  "slot_text_shown": "Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints.",
+  "claimed_answer": "raised",
+  "kills": {
+   "stored": {
+    "quote": "kept a dozen hens in a wire run",
+    "reason": "Living hens are tended, not put away."
+   },
+   "honored": {
+    "quote": "kept a dozen hens in a wire run",
+    "reason": "Hens are animals, not a custom."
+   },
+   "detained": {
+    "quote": "kept a dozen hens in a wire run behind the house",
+    "reason": "Hens housed in a run are reared, not delaying anyone."
+   },
+   "continued": {
+    "quote": "kept a dozen hens",
+    "reason": "The object is animals, not an ongoing activity."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. [[Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints.]] On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-4.v2",
+  "passage_id": "CF1-P01",
+  "question": "As it is used in the second paragraph, the word \"kept\" most nearly means",
+  "choices": [
+   "stored",
+   "raised",
+   "honored",
+   "detained",
+   "continued"
+  ],
+  "slot_text_shown": "Hedda kept an old river holiday that the rest of Callow Bend had forgotten, setting a candle on the porch rail each night of its week.",
+  "claimed_answer": "honored",
+  "kills": {
+   "stored": {
+    "quote": "setting a candle on the porch rail each night of its week",
+    "reason": "A holiday is celebrated, not put away."
+   },
+   "raised": {
+    "quote": "kept an old river holiday",
+    "reason": "A holiday cannot be reared like livestock."
+   },
+   "detained": {
+    "quote": "kept an old river holiday",
+    "reason": "A holiday is not a person held back."
+   },
+   "continued": {
+    "quote": "kept an old river holiday",
+    "reason": "The object is a holiday, not an activity she went on doing."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. [[Hedda kept an old river holiday that the rest of Callow Bend had forgotten, setting a candle on the porch rail each night of its week.]] On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-4.v3",
+  "passage_id": "CF1-P01",
+  "question": "As it is used in the second paragraph, the word \"kept\" most nearly means",
+  "choices": [
+   "stored",
+   "raised",
+   "honored",
+   "detained",
+   "continued"
+  ],
+  "slot_text_shown": "Hedda kept the grocer's boy on the porch for half an hour most days, asking after his mother and his tomatoes while his butter went soft.",
+  "claimed_answer": "detained",
+  "kills": {
+   "stored": {
+    "quote": "kept the grocer's boy on the porch",
+    "reason": "A boy is held up, not put away."
+   },
+   "raised": {
+    "quote": "kept the grocer's boy on the porch for half an hour",
+    "reason": "She delayed him; she did not bring him up."
+   },
+   "honored": {
+    "quote": "kept the grocer's boy on the porch",
+    "reason": "A boy is not a custom to honor."
+   },
+   "continued": {
+    "quote": "kept the grocer's boy on the porch",
+    "reason": "The object is a person, not an activity."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. [[Hedda kept the grocer's boy on the porch for half an hour most days, asking after his mother and his tomatoes while his butter went soft.]] On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-4.v4",
+  "passage_id": "CF1-P01",
+  "question": "As it is used in the second paragraph, the word \"kept\" most nearly means",
+  "choices": [
+   "stored",
+   "raised",
+   "honored",
+   "detained",
+   "continued"
+  ],
+  "slot_text_shown": "Hedda kept swimming in the river every morning until the first frost, as she had done since she was a girl younger than me.",
+  "claimed_answer": "continued",
+  "kills": {
+   "stored": {
+    "quote": "kept swimming in the river",
+    "reason": "Swimming is an activity carried on, not an object put away."
+   },
+   "raised": {
+    "quote": "kept swimming in the river",
+    "reason": "Swimming is not something reared."
+   },
+   "honored": {
+    "quote": "kept swimming in the river every morning",
+    "reason": "She went on doing an activity; no custom or holiday is named."
+   },
+   "detained": {
+    "quote": "kept swimming in the river",
+    "reason": "No one is held back; she went on swimming."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. [[Hedda kept swimming in the river every morning until the first frost, as she had done since she was a girl younger than me.]] On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-5.v0",
+  "passage_id": "CF1-P01",
+  "question": "In the final paragraph, the attitude of the narrator toward the twelve-year-old who arrived in Callow Bend is best described as",
+  "choices": [
+   "amused",
+   "ashamed",
+   "envious",
+   "puzzled",
+   "tender"
+  ],
+  "slot_text_shown": "I have to laugh. That child had the whole month of misery planned down to the menu, and the plan fell apart at the first supper, which was fried trout and peach pie.",
+  "claimed_answer": "amused",
+  "kills": {
+   "ashamed": {
+    "quote": "I have to laugh.",
+    "reason": "The narrator laughs at the child rather than feeling disgraced."
+   },
+   "envious": {
+    "quote": "the plan fell apart at the first supper",
+    "reason": "The narrator finds the plan comic; there is no wish to be that child again."
+   },
+   "puzzled": {
+    "quote": "That child had the whole month of misery planned down to the menu",
+    "reason": "The narrator understands the child's thinking and finds it funny, not mysterious."
+   },
+   "tender": {
+    "quote": "I have to laugh.",
+    "reason": "The narrator laughs at the child instead of wishing to comfort it."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, [[I have to laugh. That child had the whole month of misery planned down to the menu, and the plan fell apart at the first supper, which was fried trout and peach pie.]]"
+ },
+ {
+  "id": "CF1-P01-5.v1",
+  "passage_id": "CF1-P01",
+  "question": "In the final paragraph, the attitude of the narrator toward the twelve-year-old who arrived in Callow Bend is best described as",
+  "choices": [
+   "amused",
+   "ashamed",
+   "envious",
+   "puzzled",
+   "tender"
+  ],
+  "slot_text_shown": "I wince. That child had judged an old woman dull before hearing her speak, and had said as much in a letter home that Hedda herself carried to the post office.",
+  "claimed_answer": "ashamed",
+  "kills": {
+   "amused": {
+    "quote": "I wince.",
+    "reason": "Wincing shows discomfort, not laughter."
+   },
+   "envious": {
+    "quote": "I wince.",
+    "reason": "The narrator recoils from that child rather than wanting to be it."
+   },
+   "puzzled": {
+    "quote": "had judged an old woman dull before hearing her speak",
+    "reason": "The narrator knows exactly what the child did wrong; nothing is a mystery."
+   },
+   "tender": {
+    "quote": "That child had judged an old woman dull",
+    "reason": "The narrator faults the child instead of comforting it."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, [[I wince. That child had judged an old woman dull before hearing her speak, and had said as much in a letter home that Hedda herself carried to the post office.]]"
+ },
+ {
+  "id": "CF1-P01-5.v2",
+  "passage_id": "CF1-P01",
+  "question": "In the final paragraph, the attitude of the narrator toward the twelve-year-old who arrived in Callow Bend is best described as",
+  "choices": [
+   "amused",
+   "ashamed",
+   "envious",
+   "puzzled",
+   "tender"
+  ],
+  "slot_text_shown": "I would trade places with that child in a heartbeat. The whole month still lay ahead of it, unspent, and every surprise in it was still waiting to happen.",
+  "claimed_answer": "envious",
+  "kills": {
+   "amused": {
+    "quote": "every surprise in it was still waiting to happen",
+    "reason": "The narrator longs for the child's position rather than laughing at it."
+   },
+   "ashamed": {
+    "quote": "I would trade places with that child in a heartbeat.",
+    "reason": "One does not wish to become someone one is embarrassed by."
+   },
+   "puzzled": {
+    "quote": "The whole month still lay ahead of it, unspent",
+    "reason": "The narrator states plainly why the child's place is desirable; nothing is unexplained."
+   },
+   "tender": {
+    "quote": "I would trade places with that child",
+    "reason": "The narrator wants the child's place, not to console the child."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, [[I would trade places with that child in a heartbeat. The whole month still lay ahead of it, unspent, and every surprise in it was still waiting to happen.]]"
+ },
+ {
+  "id": "CF1-P01-5.v3",
+  "passage_id": "CF1-P01",
+  "question": "In the final paragraph, the attitude of the narrator toward the twelve-year-old who arrived in Callow Bend is best described as",
+  "choices": [
+   "amused",
+   "ashamed",
+   "envious",
+   "puzzled",
+   "tender"
+  ],
+  "slot_text_shown": "I still wonder where the idea came from. My parents had spoken of Hedda only warmly, and at both funerals she had been the one who made the mourners laugh.",
+  "claimed_answer": "puzzled",
+  "kills": {
+   "amused": {
+    "quote": "I still wonder where the idea came from.",
+    "reason": "The narrator is searching for an explanation, not laughing."
+   },
+   "ashamed": {
+    "quote": "I still wonder where the idea came from.",
+    "reason": "The narrator is curious about the idea, not embarrassed by it."
+   },
+   "envious": {
+    "quote": "My parents had spoken of Hedda only warmly",
+    "reason": "The narrator examines the child's mistaken idea; there is no longing to be that child."
+   },
+   "tender": {
+    "quote": "I still wonder where the idea came from.",
+    "reason": "The narrator questions the idea instead of comforting the child."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, [[I still wonder where the idea came from. My parents had spoken of Hedda only warmly, and at both funerals she had been the one who made the mourners laugh.]]"
+ },
+ {
+  "id": "CF1-P01-5.v4",
+  "passage_id": "CF1-P01",
+  "question": "In the final paragraph, the attitude of the narrator toward the twelve-year-old who arrived in Callow Bend is best described as",
+  "choices": [
+   "amused",
+   "ashamed",
+   "envious",
+   "puzzled",
+   "tender"
+  ],
+  "slot_text_shown": "I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise.",
+  "claimed_answer": "tender",
+  "kills": {
+   "amused": {
+    "quote": "Being handed to a near stranger is frightening at any age",
+    "reason": "The narrator takes the child's fear seriously rather than laughing."
+   },
+   "ashamed": {
+    "quote": "that gloomy forecast was only fear in disguise",
+    "reason": "The narrator excuses the child's prediction rather than being embarrassed by it."
+   },
+   "envious": {
+    "quote": "Being handed to a near stranger is frightening",
+    "reason": "The narrator sees the child as frightened, not as someone to trade places with."
+   },
+   "puzzled": {
+    "quote": "that gloomy forecast was only fear in disguise",
+    "reason": "The narrator knows where the prediction came from: fear."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, [[I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise.]]"
+ },
+ {
+  "id": "CF1-P01-6.v0",
+  "passage_id": "CF1-P01",
+  "question": "The mention of the ferry in the third paragraph chiefly serves",
+  "choices": [
+   "to explain how Hedda's street got its name",
+   "to explain why the narrator's trip took all day",
+   "to explain why many shops in town stood empty",
+   "to explain why a bell hung from Hedda's porch",
+   "to explain why the far bank seemed so distant"
+  ],
+  "slot_text_shown": "Its only trace was the name of Hedda's street, Ferry Lane, which ended at a landing with weeds growing up between the planks.",
+  "claimed_answer": "to explain how Hedda's street got its name",
+  "kills": {
+   "to explain why the narrator's trip took all day": {
+    "quote": "Its only trace was the name of Hedda's street",
+    "reason": "The ferry is linked only to the street name, not to the trip."
+   },
+   "to explain why many shops in town stood empty": {
+    "quote": "Its only trace was the name of Hedda's street",
+    "reason": "The ferry is linked only to the street name, not to empty shops."
+   },
+   "to explain why a bell hung from Hedda's porch": {
+    "quote": "Its only trace was the name of Hedda's street",
+    "reason": "The only trace is the name, so no bell from it is mentioned."
+   },
+   "to explain why the far bank seemed so distant": {
+    "quote": "Its only trace was the name of Hedda's street",
+    "reason": "The ferry is linked only to the street name, not to the far bank."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. [[Its only trace was the name of Hedda's street, Ferry Lane, which ended at a landing with weeds growing up between the planks.]]\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-6.v1",
+  "passage_id": "CF1-P01",
+  "question": "The mention of the ferry in the third paragraph chiefly serves",
+  "choices": [
+   "to explain how Hedda's street got its name",
+   "to explain why the narrator's trip took all day",
+   "to explain why many shops in town stood empty",
+   "to explain why a bell hung from Hedda's porch",
+   "to explain why the far bank seemed so distant"
+  ],
+  "slot_text_shown": "Without it, the bus from the city had to wind forty miles north to the nearest bridge, which was why my trip had taken all day.",
+  "claimed_answer": "to explain why the narrator's trip took all day",
+  "kills": {
+   "to explain how Hedda's street got its name": {
+    "quote": "the bus from the city had to wind forty miles north",
+    "reason": "The ferry is tied to the bus route, not to a street name."
+   },
+   "to explain why many shops in town stood empty": {
+    "quote": "the bus from the city had to wind forty miles north",
+    "reason": "The ferry is tied to the bus route, not to the shops."
+   },
+   "to explain why a bell hung from Hedda's porch": {
+    "quote": "the bus from the city had to wind forty miles north",
+    "reason": "The ferry is tied to the bus route, not to a bell."
+   },
+   "to explain why the far bank seemed so distant": {
+    "quote": "which was why my trip had taken all day",
+    "reason": "The consequence named is the narrator's long trip, not the far bank."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. [[Without it, the bus from the city had to wind forty miles north to the nearest bridge, which was why my trip had taken all day.]]\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-6.v2",
+  "passage_id": "CF1-P01",
+  "question": "The mention of the ferry in the third paragraph chiefly serves",
+  "choices": [
+   "to explain how Hedda's street got its name",
+   "to explain why the narrator's trip took all day",
+   "to explain why many shops in town stood empty",
+   "to explain why a bell hung from Hedda's porch",
+   "to explain why the far bank seemed so distant"
+  ],
+  "slot_text_shown": "When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.",
+  "claimed_answer": "to explain why many shops in town stood empty",
+  "kills": {
+   "to explain how Hedda's street got its name": {
+    "quote": "it took half of Front Street with it",
+    "reason": "The ferry is tied to the shops' decline, not a street name."
+   },
+   "to explain why the narrator's trip took all day": {
+    "quote": "When the crossing trade went",
+    "reason": "The consequence named is lost trade, not the narrator's trip."
+   },
+   "to explain why a bell hung from Hedda's porch": {
+    "quote": "it took half of Front Street with it",
+    "reason": "The ferry is tied to the shops, not to a bell."
+   },
+   "to explain why the far bank seemed so distant": {
+    "quote": "When the crossing trade went",
+    "reason": "The consequence named is lost trade, not the far bank."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. [[When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.]]\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-6.v3",
+  "passage_id": "CF1-P01",
+  "question": "The mention of the ferry in the third paragraph chiefly serves",
+  "choices": [
+   "to explain how Hedda's street got its name",
+   "to explain why the narrator's trip took all day",
+   "to explain why many shops in town stood empty",
+   "to explain why a bell hung from Hedda's porch",
+   "to explain why the far bank seemed so distant"
+  ],
+  "slot_text_shown": "Hedda's house had been the ferryman's, and the iron bell that travelers once rang to call him across still hung from her porch.",
+  "claimed_answer": "to explain why a bell hung from Hedda's porch",
+  "kills": {
+   "to explain how Hedda's street got its name": {
+    "quote": "Hedda's house had been the ferryman's",
+    "reason": "The ferry is tied to her house and its bell, not a street name."
+   },
+   "to explain why the narrator's trip took all day": {
+    "quote": "the iron bell that travelers once rang",
+    "reason": "The ferry is tied to the bell, not the narrator's trip."
+   },
+   "to explain why many shops in town stood empty": {
+    "quote": "Hedda's house had been the ferryman's",
+    "reason": "The ferry is tied to her house, not to the shops."
+   },
+   "to explain why the far bank seemed so distant": {
+    "quote": "the iron bell that travelers once rang to call him across",
+    "reason": "The ferry is tied to the bell, not the far bank."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. [[Hedda's house had been the ferryman's, and the iron bell that travelers once rang to call him across still hung from her porch.]]\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P01-6.v4",
+  "passage_id": "CF1-P01",
+  "question": "The mention of the ferry in the third paragraph chiefly serves",
+  "choices": [
+   "to explain how Hedda's street got its name",
+   "to explain why the narrator's trip took all day",
+   "to explain why many shops in town stood empty",
+   "to explain why a bell hung from Hedda's porch",
+   "to explain why the far bank seemed so distant"
+  ],
+  "slot_text_shown": "Without it, the far bank, close enough that I could hear its dogs barking at night, might as well have been another country.",
+  "claimed_answer": "to explain why the far bank seemed so distant",
+  "kills": {
+   "to explain how Hedda's street got its name": {
+    "quote": "the far bank, close enough that I could hear its dogs",
+    "reason": "The ferry is tied to the far bank, not a street name."
+   },
+   "to explain why the narrator's trip took all day": {
+    "quote": "the far bank, close enough that I could hear its dogs",
+    "reason": "The ferry is tied to the far bank, not the narrator's trip."
+   },
+   "to explain why many shops in town stood empty": {
+    "quote": "the far bank, close enough that I could hear its dogs",
+    "reason": "The ferry is tied to the far bank, not to the shops."
+   },
+   "to explain why a bell hung from Hedda's porch": {
+    "quote": "might as well have been another country",
+    "reason": "The ferry is tied to the far bank's remoteness, not to a bell."
+   }
+  },
+  "passage_with_this_version": "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.\n\nHer house was narrow and dim, with a porch that sagged toward the road. Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints. On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. 'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. [[Without it, the far bank, close enough that I could hear its dogs barking at night, might as well have been another country.]]\n\nWhat filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise."
+ },
+ {
+  "id": "CF1-P02-1.v0",
+  "passage_id": "CF1-P02",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how researchers found the crabs wintering in deep burrows beneath the mudflats",
+   "how researchers found the crabs wintering on the seabed beyond the sandbar",
+   "how researchers found the crabs wintering in freshwater ditches far inland",
+   "how researchers found the crabs wintering inside the stems of dead reeds",
+   "how researchers found the crabs wintering in the cracks of a stone breakwater"
+  ],
+  "slot_text_shown": "the team found them at last, a full yard beneath the mudflats. Every tagged crab they recovered lay curled at the bottom of a narrow burrow sealed with a plug of clay, motionless and safe below the reach of the frost.",
+  "claimed_answer": "how researchers found the crabs wintering in deep burrows beneath the mudflats",
+  "kills": {
+   "how researchers found the crabs wintering on the seabed beyond the sandbar": {
+    "quote": "a full yard beneath the mudflats",
+    "reason": "The crabs were under the shore's mudflats, not out on the seabed past the sandbar."
+   },
+   "how researchers found the crabs wintering in freshwater ditches far inland": {
+    "quote": "a full yard beneath the mudflats",
+    "reason": "The crabs were under the mudflats of the marsh, not in inland freshwater ditches."
+   },
+   "how researchers found the crabs wintering inside the stems of dead reeds": {
+    "quote": "lay curled at the bottom of a narrow burrow",
+    "reason": "Every recovered crab was underground in a burrow, not inside a reed stem."
+   },
+   "how researchers found the crabs wintering in the cracks of a stone breakwater": {
+    "quote": "lay curled at the bottom of a narrow burrow",
+    "reason": "Every recovered crab was in a burrow, not in the cracks of a breakwater."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, [[the team found them at last, a full yard beneath the mudflats. Every tagged crab they recovered lay curled at the bottom of a narrow burrow sealed with a plug of clay, motionless and safe below the reach of the frost.]] After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-1.v1",
+  "passage_id": "CF1-P02",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how researchers found the crabs wintering in deep burrows beneath the mudflats",
+   "how researchers found the crabs wintering on the seabed beyond the sandbar",
+   "how researchers found the crabs wintering in freshwater ditches far inland",
+   "how researchers found the crabs wintering inside the stems of dead reeds",
+   "how researchers found the crabs wintering in the cracks of a stone breakwater"
+  ],
+  "slot_text_shown": "a diver working beyond the sandbar surfaced holding a tagged crab. Every tagged crab the team recovered that winter came from the same place: the open seabed past the bar, in water too deep to freeze, where the animals huddled under drifts of weed.",
+  "claimed_answer": "how researchers found the crabs wintering on the seabed beyond the sandbar",
+  "kills": {
+   "how researchers found the crabs wintering in deep burrows beneath the mudflats": {
+    "quote": "Every tagged crab the team recovered that winter came from the same place: the open seabed past the bar",
+    "reason": "All the crabs were offshore on the seabed, not in burrows under the mudflats."
+   },
+   "how researchers found the crabs wintering in freshwater ditches far inland": {
+    "quote": "Every tagged crab the team recovered that winter came from the same place: the open seabed past the bar",
+    "reason": "All the crabs were offshore, the opposite direction from inland ditches."
+   },
+   "how researchers found the crabs wintering inside the stems of dead reeds": {
+    "quote": "in water too deep to freeze, where the animals huddled under drifts of weed",
+    "reason": "The crabs were underwater among weed, not in dead reed stems on the marsh."
+   },
+   "how researchers found the crabs wintering in the cracks of a stone breakwater": {
+    "quote": "the open seabed",
+    "reason": "The crabs were on open seabed, not packed into the cracks of a stone structure."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, [[a diver working beyond the sandbar surfaced holding a tagged crab. Every tagged crab the team recovered that winter came from the same place: the open seabed past the bar, in water too deep to freeze, where the animals huddled under drifts of weed.]] After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-1.v2",
+  "passage_id": "CF1-P02",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how researchers found the crabs wintering in deep burrows beneath the mudflats",
+   "how researchers found the crabs wintering on the seabed beyond the sandbar",
+   "how researchers found the crabs wintering in freshwater ditches far inland",
+   "how researchers found the crabs wintering inside the stems of dead reeds",
+   "how researchers found the crabs wintering in the cracks of a stone breakwater"
+  ],
+  "slot_text_shown": "the team found them a quarter mile inland. Every tagged crab they recovered lay half buried in the silt of the freshwater ditches that drain the farm fields, having walked there across the meadows at the first frost.",
+  "claimed_answer": "how researchers found the crabs wintering in freshwater ditches far inland",
+  "kills": {
+   "how researchers found the crabs wintering in deep burrows beneath the mudflats": {
+    "quote": "the team found them a quarter mile inland",
+    "reason": "The crabs had left the marsh for inland ditches, so they were not under the mudflats."
+   },
+   "how researchers found the crabs wintering on the seabed beyond the sandbar": {
+    "quote": "the team found them a quarter mile inland",
+    "reason": "The crabs were inland, not offshore on the seabed."
+   },
+   "how researchers found the crabs wintering inside the stems of dead reeds": {
+    "quote": "lay half buried in the silt of the freshwater ditches that drain the farm fields",
+    "reason": "The crabs were in ditch silt among farm fields, not in reed stems."
+   },
+   "how researchers found the crabs wintering in the cracks of a stone breakwater": {
+    "quote": "lay half buried in the silt of the freshwater ditches that drain the farm fields",
+    "reason": "The crabs were in ditch silt, not in a breakwater."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, [[the team found them a quarter mile inland. Every tagged crab they recovered lay half buried in the silt of the freshwater ditches that drain the farm fields, having walked there across the meadows at the first frost.]] After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-1.v3",
+  "passage_id": "CF1-P02",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how researchers found the crabs wintering in deep burrows beneath the mudflats",
+   "how researchers found the crabs wintering on the seabed beyond the sandbar",
+   "how researchers found the crabs wintering in freshwater ditches far inland",
+   "how researchers found the crabs wintering inside the stems of dead reeds",
+   "how researchers found the crabs wintering in the cracks of a stone breakwater"
+  ],
+  "slot_text_shown": "the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides.",
+  "claimed_answer": "how researchers found the crabs wintering inside the stems of dead reeds",
+  "kills": {
+   "how researchers found the crabs wintering in deep burrows beneath the mudflats": {
+    "quote": "had wedged itself inside the hollow stem of a dead reed",
+    "reason": "The crabs were above ground in reed stems, not in burrows beneath the mudflats."
+   },
+   "how researchers found the crabs wintering on the seabed beyond the sandbar": {
+    "quote": "well above the reach of the winter tides",
+    "reason": "The crabs were above the tides, not on the seabed."
+   },
+   "how researchers found the crabs wintering in freshwater ditches far inland": {
+    "quote": "in the reed beds at the marsh's upper edge",
+    "reason": "The crabs stayed on the marsh's edge, not in inland freshwater ditches."
+   },
+   "how researchers found the crabs wintering in the cracks of a stone breakwater": {
+    "quote": "had wedged itself inside the hollow stem of a dead reed",
+    "reason": "The crabs were in reed stems, not in breakwater cracks."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, [[the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides.]] After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-1.v4",
+  "passage_id": "CF1-P02",
+  "question": "The passage is chiefly concerned with",
+  "choices": [
+   "how researchers found the crabs wintering in deep burrows beneath the mudflats",
+   "how researchers found the crabs wintering on the seabed beyond the sandbar",
+   "how researchers found the crabs wintering in freshwater ditches far inland",
+   "how researchers found the crabs wintering inside the stems of dead reeds",
+   "how researchers found the crabs wintering in the cracks of a stone breakwater"
+  ],
+  "slot_text_shown": "the team found them at the mouth of the main creek. Every tagged crab they recovered was packed into the cracks of the old stone breakwater there, dozens to a crack, pressed together against the cold.",
+  "claimed_answer": "how researchers found the crabs wintering in the cracks of a stone breakwater",
+  "kills": {
+   "how researchers found the crabs wintering in deep burrows beneath the mudflats": {
+    "quote": "was packed into the cracks of the old stone breakwater there",
+    "reason": "The crabs were in stone cracks, not in burrows in the mud."
+   },
+   "how researchers found the crabs wintering on the seabed beyond the sandbar": {
+    "quote": "was packed into the cracks of the old stone breakwater there",
+    "reason": "The crabs were in the breakwater at the creek mouth, not on the open seabed past the sandbar."
+   },
+   "how researchers found the crabs wintering in freshwater ditches far inland": {
+    "quote": "the team found them at the mouth of the main creek",
+    "reason": "The crabs were at the creek mouth on the shore, not in inland ditches."
+   },
+   "how researchers found the crabs wintering inside the stems of dead reeds": {
+    "quote": "was packed into the cracks of the old stone breakwater there",
+    "reason": "The crabs were in stone cracks, not reed stems."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, [[the team found them at the mouth of the main creek. Every tagged crab they recovered was packed into the cracks of the old stone breakwater there, dozens to a crack, pressed together against the cold.]] After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-2.v0",
+  "passage_id": "CF1-P02",
+  "question": "According to the passage, the crab species was first described by",
+  "choices": [
+   "a lighthouse keeper",
+   "a parish priest",
+   "a ship's doctor",
+   "a customs officer",
+   "a land surveyor"
+  ],
+  "slot_text_shown": "The species was first described in 1897 by the keeper of the Tarrow Point light, who sketched it in the margin of his weather log.",
+  "claimed_answer": "a lighthouse keeper",
+  "kills": {
+   "a parish priest": {
+    "quote": "first described in 1897 by the keeper of the Tarrow Point light",
+    "reason": "The describer was the lighthouse keeper, not a priest."
+   },
+   "a ship's doctor": {
+    "quote": "first described in 1897 by the keeper of the Tarrow Point light",
+    "reason": "The describer was the lighthouse keeper, not a ship's doctor."
+   },
+   "a customs officer": {
+    "quote": "first described in 1897 by the keeper of the Tarrow Point light",
+    "reason": "The describer was the lighthouse keeper, not a customs officer."
+   },
+   "a land surveyor": {
+    "quote": "first described in 1897 by the keeper of the Tarrow Point light",
+    "reason": "The describer was the lighthouse keeper, not a surveyor."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. [[The species was first described in 1897 by the keeper of the Tarrow Point light, who sketched it in the margin of his weather log.]] Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-2.v1",
+  "passage_id": "CF1-P02",
+  "question": "According to the passage, the crab species was first described by",
+  "choices": [
+   "a lighthouse keeper",
+   "a parish priest",
+   "a ship's doctor",
+   "a customs officer",
+   "a land surveyor"
+  ],
+  "slot_text_shown": "The species was first described in 1897 by the parish priest of Tarrow, who sketched it on the back of a Sunday sermon.",
+  "claimed_answer": "a parish priest",
+  "kills": {
+   "a lighthouse keeper": {
+    "quote": "first described in 1897 by the parish priest of Tarrow",
+    "reason": "The describer was the priest, not a lighthouse keeper."
+   },
+   "a ship's doctor": {
+    "quote": "first described in 1897 by the parish priest of Tarrow",
+    "reason": "The describer was the priest, not a ship's doctor."
+   },
+   "a customs officer": {
+    "quote": "first described in 1897 by the parish priest of Tarrow",
+    "reason": "The describer was the priest, not a customs officer."
+   },
+   "a land surveyor": {
+    "quote": "first described in 1897 by the parish priest of Tarrow",
+    "reason": "The describer was the priest, not a surveyor."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. [[The species was first described in 1897 by the parish priest of Tarrow, who sketched it on the back of a Sunday sermon.]] Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-2.v2",
+  "passage_id": "CF1-P02",
+  "question": "According to the passage, the crab species was first described by",
+  "choices": [
+   "a lighthouse keeper",
+   "a parish priest",
+   "a ship's doctor",
+   "a customs officer",
+   "a land surveyor"
+  ],
+  "slot_text_shown": "The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log.",
+  "claimed_answer": "a ship's doctor",
+  "kills": {
+   "a lighthouse keeper": {
+    "quote": "first described in 1897 by the doctor of a supply ship",
+    "reason": "The describer was the ship's doctor, not a lighthouse keeper."
+   },
+   "a parish priest": {
+    "quote": "first described in 1897 by the doctor of a supply ship",
+    "reason": "The describer was the ship's doctor, not a priest."
+   },
+   "a customs officer": {
+    "quote": "first described in 1897 by the doctor of a supply ship",
+    "reason": "The describer was the ship's doctor, not a customs officer."
+   },
+   "a land surveyor": {
+    "quote": "first described in 1897 by the doctor of a supply ship",
+    "reason": "The describer was the ship's doctor, not a surveyor."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. [[The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log.]] Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-2.v3",
+  "passage_id": "CF1-P02",
+  "question": "According to the passage, the crab species was first described by",
+  "choices": [
+   "a lighthouse keeper",
+   "a parish priest",
+   "a ship's doctor",
+   "a customs officer",
+   "a land surveyor"
+  ],
+  "slot_text_shown": "The species was first described in 1897 by the customs officer at Tarrow, who sketched it while waiting on the quay for smugglers.",
+  "claimed_answer": "a customs officer",
+  "kills": {
+   "a lighthouse keeper": {
+    "quote": "first described in 1897 by the customs officer at Tarrow",
+    "reason": "The describer was the customs officer, not a lighthouse keeper."
+   },
+   "a parish priest": {
+    "quote": "first described in 1897 by the customs officer at Tarrow",
+    "reason": "The describer was the customs officer, not a priest."
+   },
+   "a ship's doctor": {
+    "quote": "first described in 1897 by the customs officer at Tarrow",
+    "reason": "The describer was the customs officer, not a ship's doctor."
+   },
+   "a land surveyor": {
+    "quote": "first described in 1897 by the customs officer at Tarrow",
+    "reason": "The describer was the customs officer, not a surveyor."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. [[The species was first described in 1897 by the customs officer at Tarrow, who sketched it while waiting on the quay for smugglers.]] Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-2.v4",
+  "passage_id": "CF1-P02",
+  "question": "According to the passage, the crab species was first described by",
+  "choices": [
+   "a lighthouse keeper",
+   "a parish priest",
+   "a ship's doctor",
+   "a customs officer",
+   "a land surveyor"
+  ],
+  "slot_text_shown": "The species was first described in 1897 by a surveyor mapping the coast for the county, who sketched it beside his measurements.",
+  "claimed_answer": "a land surveyor",
+  "kills": {
+   "a lighthouse keeper": {
+    "quote": "first described in 1897 by a surveyor mapping the coast",
+    "reason": "The describer was a surveyor, not a lighthouse keeper."
+   },
+   "a parish priest": {
+    "quote": "first described in 1897 by a surveyor mapping the coast",
+    "reason": "The describer was a surveyor, not a priest."
+   },
+   "a ship's doctor": {
+    "quote": "first described in 1897 by a surveyor mapping the coast",
+    "reason": "The describer was a surveyor, not a ship's doctor."
+   },
+   "a customs officer": {
+    "quote": "first described in 1897 by a surveyor mapping the coast",
+    "reason": "The describer was a surveyor, not a customs officer."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. [[The species was first described in 1897 by a surveyor mapping the coast for the county, who sketched it beside his measurements.]] Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-3.v0",
+  "passage_id": "CF1-P02",
+  "question": "The mention of the storm of 1953 chiefly serves to",
+  "choices": [
+   "explain why the crabs were once listed as extinct",
+   "explain why the field station stands on stilts",
+   "explain why the marsh became a nature reserve",
+   "explain why the village of Tarrow was abandoned",
+   "explain why the sea dike was rebuilt higher"
+  ],
+  "slot_text_shown": "its surge smothered the flats in sand, and for thirty years afterward the crabs were so scarce that the species was officially listed as extinct.",
+  "claimed_answer": "explain why the crabs were once listed as extinct",
+  "kills": {
+   "explain why the field station stands on stilts": {
+    "quote": "its surge smothered the flats in sand",
+    "reason": "The storm's one lasting change was to the crabs' numbers; it is tied to nothing about the station."
+   },
+   "explain why the marsh became a nature reserve": {
+    "quote": "the species was officially listed as extinct",
+    "reason": "The one lasting change was the crab listing, so the storm does not account for a reserve."
+   },
+   "explain why the village of Tarrow was abandoned": {
+    "quote": "the species was officially listed as extinct",
+    "reason": "The one lasting change was the crab listing, so the storm does not account for the village."
+   },
+   "explain why the sea dike was rebuilt higher": {
+    "quote": "its surge smothered the flats in sand",
+    "reason": "The one lasting change concerns the flats and crabs, so the storm does not account for any dike."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: [[its surge smothered the flats in sand, and for thirty years afterward the crabs were so scarce that the species was officially listed as extinct.]] During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-3.v1",
+  "passage_id": "CF1-P02",
+  "question": "The mention of the storm of 1953 chiefly serves to",
+  "choices": [
+   "explain why the crabs were once listed as extinct",
+   "explain why the field station stands on stilts",
+   "explain why the marsh became a nature reserve",
+   "explain why the village of Tarrow was abandoned",
+   "explain why the sea dike was rebuilt higher"
+  ],
+  "slot_text_shown": "the surge stood six feet deep on the spot where the marsh's field station would later be built, which is why that station now sits on stilts taller than a man.",
+  "claimed_answer": "explain why the field station stands on stilts",
+  "kills": {
+   "explain why the crabs were once listed as extinct": {
+    "quote": "which is why that station now sits on stilts",
+    "reason": "The storm's one lasting change was the stilted station, not the crab listing."
+   },
+   "explain why the marsh became a nature reserve": {
+    "quote": "which is why that station now sits on stilts",
+    "reason": "The storm's one lasting change was the stilted station, not a reserve."
+   },
+   "explain why the village of Tarrow was abandoned": {
+    "quote": "which is why that station now sits on stilts",
+    "reason": "The storm's one lasting change was the stilted station, not the village."
+   },
+   "explain why the sea dike was rebuilt higher": {
+    "quote": "which is why that station now sits on stilts",
+    "reason": "The storm's one lasting change was the stilted station, not a dike."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: [[the surge stood six feet deep on the spot where the marsh's field station would later be built, which is why that station now sits on stilts taller than a man.]] During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-3.v2",
+  "passage_id": "CF1-P02",
+  "question": "The mention of the storm of 1953 chiefly serves to",
+  "choices": [
+   "explain why the crabs were once listed as extinct",
+   "explain why the field station stands on stilts",
+   "explain why the marsh became a nature reserve",
+   "explain why the village of Tarrow was abandoned",
+   "explain why the sea dike was rebuilt higher"
+  ],
+  "slot_text_shown": "the flood so alarmed the county that it bought the entire marsh the following spring and declared it a nature reserve, which it remains today.",
+  "claimed_answer": "explain why the marsh became a nature reserve",
+  "kills": {
+   "explain why the crabs were once listed as extinct": {
+    "quote": "declared it a nature reserve",
+    "reason": "The storm's one lasting change was the reserve, not the crab listing."
+   },
+   "explain why the field station stands on stilts": {
+    "quote": "declared it a nature reserve",
+    "reason": "The storm's one lasting change was the reserve, not the station's stilts."
+   },
+   "explain why the village of Tarrow was abandoned": {
+    "quote": "declared it a nature reserve",
+    "reason": "The storm's one lasting change was the reserve, not the village."
+   },
+   "explain why the sea dike was rebuilt higher": {
+    "quote": "declared it a nature reserve",
+    "reason": "The storm's one lasting change was the reserve, not a dike."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: [[the flood so alarmed the county that it bought the entire marsh the following spring and declared it a nature reserve, which it remains today.]] During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-3.v3",
+  "passage_id": "CF1-P02",
+  "question": "The mention of the storm of 1953 chiefly serves to",
+  "choices": [
+   "explain why the crabs were once listed as extinct",
+   "explain why the field station stands on stilts",
+   "explain why the marsh became a nature reserve",
+   "explain why the village of Tarrow was abandoned",
+   "explain why the sea dike was rebuilt higher"
+  ],
+  "slot_text_shown": "the surge swept through the village of Tarrow, and within a year its last families had moved inland, leaving the cottages to the gulls.",
+  "claimed_answer": "explain why the village of Tarrow was abandoned",
+  "kills": {
+   "explain why the crabs were once listed as extinct": {
+    "quote": "its last families had moved inland",
+    "reason": "The storm's one lasting change was the village emptying, not the crab listing."
+   },
+   "explain why the field station stands on stilts": {
+    "quote": "its last families had moved inland",
+    "reason": "The storm's one lasting change was the village emptying, not the station's stilts."
+   },
+   "explain why the marsh became a nature reserve": {
+    "quote": "its last families had moved inland",
+    "reason": "The storm's one lasting change was the village emptying, not a reserve."
+   },
+   "explain why the sea dike was rebuilt higher": {
+    "quote": "its last families had moved inland",
+    "reason": "The storm's one lasting change was the village emptying, not a dike."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: [[the surge swept through the village of Tarrow, and within a year its last families had moved inland, leaving the cottages to the gulls.]] During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-3.v4",
+  "passage_id": "CF1-P02",
+  "question": "The mention of the storm of 1953 chiefly serves to",
+  "choices": [
+   "explain why the crabs were once listed as extinct",
+   "explain why the field station stands on stilts",
+   "explain why the marsh became a nature reserve",
+   "explain why the village of Tarrow was abandoned",
+   "explain why the sea dike was rebuilt higher"
+  ],
+  "slot_text_shown": "it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh.",
+  "claimed_answer": "explain why the sea dike was rebuilt higher",
+  "kills": {
+   "explain why the crabs were once listed as extinct": {
+    "quote": "the dike was rebuilt a full yard higher",
+    "reason": "The storm's one lasting change was the higher dike, not the crab listing."
+   },
+   "explain why the field station stands on stilts": {
+    "quote": "the dike was rebuilt a full yard higher",
+    "reason": "The storm's one lasting change was the higher dike, not the station's stilts."
+   },
+   "explain why the marsh became a nature reserve": {
+    "quote": "the dike was rebuilt a full yard higher",
+    "reason": "The storm's one lasting change was the higher dike, not a reserve."
+   },
+   "explain why the village of Tarrow was abandoned": {
+    "quote": "the wall that still guards the fields behind the marsh",
+    "reason": "The storm's one lasting change was the higher dike protecting the land, not an abandoned village."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: [[it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh.]] During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-4.v0",
+  "passage_id": "CF1-P02",
+  "question": "As it is used in the second paragraph, the word \"ran\" most nearly means",
+  "choices": [
+   "to flow",
+   "to extend",
+   "to function",
+   "to manage",
+   "to scurry"
+  ],
+  "slot_text_shown": "At the highest spring tides, the sea ran up the creeks almost to its door.",
+  "claimed_answer": "to flow",
+  "kills": {
+   "to extend": {
+    "quote": "the sea ran up the creeks",
+    "reason": "The sea is moving water rising up the creeks, not something stretching across a fixed distance."
+   },
+   "to function": {
+    "quote": "the sea ran up the creeks",
+    "reason": "The sea is not a machine that functions."
+   },
+   "to manage": {
+    "quote": "the sea ran up the creeks",
+    "reason": "The sea does not manage anything here; it has no object to direct."
+   },
+   "to scurry": {
+    "quote": "the sea ran up the creeks",
+    "reason": "Water flows; scurrying is the quick movement of an animal."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. [[At the highest spring tides, the sea ran up the creeks almost to its door.]]\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-4.v1",
+  "passage_id": "CF1-P02",
+  "question": "As it is used in the second paragraph, the word \"ran\" most nearly means",
+  "choices": [
+   "to flow",
+   "to extend",
+   "to function",
+   "to manage",
+   "to scurry"
+  ],
+  "slot_text_shown": "A boardwalk of weathered planks ran from its door to the edge of the flats.",
+  "claimed_answer": "to extend",
+  "kills": {
+   "to flow": {
+    "quote": "A boardwalk of weathered planks ran",
+    "reason": "A boardwalk is a fixed structure and cannot flow."
+   },
+   "to function": {
+    "quote": "A boardwalk of weathered planks ran",
+    "reason": "A boardwalk is not a machine that functions."
+   },
+   "to manage": {
+    "quote": "A boardwalk of weathered planks ran",
+    "reason": "A boardwalk cannot manage anything."
+   },
+   "to scurry": {
+    "quote": "A boardwalk of weathered planks ran",
+    "reason": "A boardwalk cannot scurry; it stays in place."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. [[A boardwalk of weathered planks ran from its door to the edge of the flats.]]\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-4.v2",
+  "passage_id": "CF1-P02",
+  "question": "As it is used in the second paragraph, the word \"ran\" most nearly means",
+  "choices": [
+   "to flow",
+   "to extend",
+   "to function",
+   "to manage",
+   "to scurry"
+  ],
+  "slot_text_shown": "Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.",
+  "claimed_answer": "to function",
+  "kills": {
+   "to flow": {
+    "quote": "Its one diesel generator ran",
+    "reason": "A generator operates; it does not flow."
+   },
+   "to extend": {
+    "quote": "ran only between dusk and midnight",
+    "reason": "The span is a period of time the machine operated, not a physical stretch."
+   },
+   "to manage": {
+    "quote": "Its one diesel generator ran",
+    "reason": "A generator cannot manage anything."
+   },
+   "to scurry": {
+    "quote": "Its one diesel generator ran",
+    "reason": "A generator does not scurry about."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. [[Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.]]\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-4.v3",
+  "passage_id": "CF1-P02",
+  "question": "As it is used in the second paragraph, the word \"ran\" most nearly means",
+  "choices": [
+   "to flow",
+   "to extend",
+   "to function",
+   "to manage",
+   "to scurry"
+  ],
+  "slot_text_shown": "A retired harbor pilot ran it for the university, keeping the logbooks and the keys.",
+  "claimed_answer": "to manage",
+  "kills": {
+   "to flow": {
+    "quote": "A retired harbor pilot ran it",
+    "reason": "A person directing a station is not flowing."
+   },
+   "to extend": {
+    "quote": "A retired harbor pilot ran it",
+    "reason": "The pilot directs the station; nothing stretches across a distance."
+   },
+   "to function": {
+    "quote": "A retired harbor pilot ran it",
+    "reason": "The pilot is a person who manages, not a machine that functions."
+   },
+   "to scurry": {
+    "quote": "keeping the logbooks and the keys",
+    "reason": "The context is administration of the station, not quick movement."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. [[A retired harbor pilot ran it for the university, keeping the logbooks and the keys.]]\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-4.v4",
+  "passage_id": "CF1-P02",
+  "question": "As it is used in the second paragraph, the word \"ran\" most nearly means",
+  "choices": [
+   "to flow",
+   "to extend",
+   "to function",
+   "to manage",
+   "to scurry"
+  ],
+  "slot_text_shown": "At dusk, sandpipers ran along the tideline beneath its windows, just ahead of the water.",
+  "claimed_answer": "to scurry",
+  "kills": {
+   "to flow": {
+    "quote": "sandpipers ran along the tideline",
+    "reason": "Birds move on foot; they do not flow."
+   },
+   "to extend": {
+    "quote": "sandpipers ran along the tideline",
+    "reason": "Living birds dash about; they are not a fixed line stretching across space."
+   },
+   "to function": {
+    "quote": "sandpipers ran along the tideline",
+    "reason": "Birds are not machines that function."
+   },
+   "to manage": {
+    "quote": "sandpipers ran along the tideline",
+    "reason": "The birds have no object to manage."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. [[At dusk, sandpipers ran along the tideline beneath its windows, just ahead of the water.]]\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-5.v0",
+  "passage_id": "CF1-P02",
+  "question": "The passage suggests that, before she retired, Sollis spent her career as",
+  "choices": [
+   "a hospital nurse",
+   "a fishing captain",
+   "a schoolteacher",
+   "a watch repairer",
+   "a court reporter"
+  ],
+  "slot_text_shown": "Forty years of night shifts on a children's ward had taught her to check on small sleeping creatures without waking them.",
+  "claimed_answer": "a hospital nurse",
+  "kills": {
+   "a fishing captain": {
+    "quote": "Forty years of night shifts on a children's ward",
+    "reason": "Her whole forty-year career was on a ward, leaving no room for captaining a boat."
+   },
+   "a schoolteacher": {
+    "quote": "Forty years of night shifts on a children's ward",
+    "reason": "Her career was on a hospital ward, not in a classroom."
+   },
+   "a watch repairer": {
+    "quote": "Forty years of night shifts on a children's ward",
+    "reason": "Her career was on a ward, not at a repair bench."
+   },
+   "a court reporter": {
+    "quote": "Forty years of night shifts on a children's ward",
+    "reason": "Her career was on a ward, not in courtrooms."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. [[Forty years of night shifts on a children's ward had taught her to check on small sleeping creatures without waking them.]] Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-5.v1",
+  "passage_id": "CF1-P02",
+  "question": "The passage suggests that, before she retired, Sollis spent her career as",
+  "choices": [
+   "a hospital nurse",
+   "a fishing captain",
+   "a schoolteacher",
+   "a watch repairer",
+   "a court reporter"
+  ],
+  "slot_text_shown": "Forty years at the wheel of her own trawler, bringing catches home through winter gales, had left her untroubled by cold and spray.",
+  "claimed_answer": "a fishing captain",
+  "kills": {
+   "a hospital nurse": {
+    "quote": "Forty years at the wheel of her own trawler",
+    "reason": "Her whole career was at sea commanding a boat, not nursing."
+   },
+   "a schoolteacher": {
+    "quote": "Forty years at the wheel of her own trawler",
+    "reason": "Her career was at sea, not in a classroom."
+   },
+   "a watch repairer": {
+    "quote": "Forty years at the wheel of her own trawler",
+    "reason": "Her career was at sea, not at a repair bench."
+   },
+   "a court reporter": {
+    "quote": "Forty years at the wheel of her own trawler",
+    "reason": "Her career was at sea, not in courtrooms."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. [[Forty years at the wheel of her own trawler, bringing catches home through winter gales, had left her untroubled by cold and spray.]] Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-5.v2",
+  "passage_id": "CF1-P02",
+  "question": "The passage suggests that, before she retired, Sollis spent her career as",
+  "choices": [
+   "a hospital nurse",
+   "a fishing captain",
+   "a schoolteacher",
+   "a watch repairer",
+   "a court reporter"
+  ],
+  "slot_text_shown": "Forty years in front of a class of restless eleven-year-olds had given her a patience that could outlast any frost.",
+  "claimed_answer": "a schoolteacher",
+  "kills": {
+   "a hospital nurse": {
+    "quote": "Forty years in front of a class of restless eleven-year-olds",
+    "reason": "Her whole career was spent teaching a class, not nursing."
+   },
+   "a fishing captain": {
+    "quote": "Forty years in front of a class of restless eleven-year-olds",
+    "reason": "Her career was in a classroom, not at sea."
+   },
+   "a watch repairer": {
+    "quote": "Forty years in front of a class of restless eleven-year-olds",
+    "reason": "Her career was in a classroom, not at a repair bench."
+   },
+   "a court reporter": {
+    "quote": "Forty years in front of a class of restless eleven-year-olds",
+    "reason": "Her career was in a classroom, not in courtrooms."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. [[Forty years in front of a class of restless eleven-year-olds had given her a patience that could outlast any frost.]] Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-5.v3",
+  "passage_id": "CF1-P02",
+  "question": "The passage suggests that, before she retired, Sollis spent her career as",
+  "choices": [
+   "a hospital nurse",
+   "a fishing captain",
+   "a schoolteacher",
+   "a watch repairer",
+   "a court reporter"
+  ],
+  "slot_text_shown": "Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team.",
+  "claimed_answer": "a watch repairer",
+  "kills": {
+   "a hospital nurse": {
+    "quote": "Forty years of fitting hairsprings and balance wheels at a jeweler's bench",
+    "reason": "Her whole career was spent on watch mechanisms, not nursing."
+   },
+   "a fishing captain": {
+    "quote": "Forty years of fitting hairsprings and balance wheels at a jeweler's bench",
+    "reason": "Her career was at a bench, not at sea."
+   },
+   "a schoolteacher": {
+    "quote": "Forty years of fitting hairsprings and balance wheels at a jeweler's bench",
+    "reason": "Her career was at a bench, not in a classroom."
+   },
+   "a court reporter": {
+    "quote": "Forty years of fitting hairsprings and balance wheels at a jeweler's bench",
+    "reason": "Her career was at a bench, not in courtrooms."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. [[Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team.]] Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-5.v4",
+  "passage_id": "CF1-P02",
+  "question": "The passage suggests that, before she retired, Sollis spent her career as",
+  "choices": [
+   "a hospital nurse",
+   "a fishing captain",
+   "a schoolteacher",
+   "a watch repairer",
+   "a court reporter"
+  ],
+  "slot_text_shown": "Forty years of taking down testimony word for word at criminal trials had made her the most exact keeper of field notes on the team.",
+  "claimed_answer": "a court reporter",
+  "kills": {
+   "a hospital nurse": {
+    "quote": "Forty years of taking down testimony word for word at criminal trials",
+    "reason": "Her whole career was recording trials, not nursing."
+   },
+   "a fishing captain": {
+    "quote": "Forty years of taking down testimony word for word at criminal trials",
+    "reason": "Her career was at trials, not at sea."
+   },
+   "a schoolteacher": {
+    "quote": "Forty years of taking down testimony word for word at criminal trials",
+    "reason": "Her career was at trials, not in a classroom."
+   },
+   "a watch repairer": {
+    "quote": "Forty years of taking down testimony word for word at criminal trials",
+    "reason": "Her career was at trials, not at a repair bench."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. [[Forty years of taking down testimony word for word at criminal trials had made her the most exact keeper of field notes on the team.]] Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model."
+ },
+ {
+  "id": "CF1-P02-6.v0",
+  "passage_id": "CF1-P02",
+  "question": "The author's attitude toward the team's long search is best described as",
+  "choices": [
+   "admiring",
+   "doubtful",
+   "entertained",
+   "impatient",
+   "disappointed"
+  ],
+  "slot_text_shown": "Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model.",
+  "claimed_answer": "admiring",
+  "kills": {
+   "doubtful": {
+    "quote": "deserves to be held up as a model",
+    "reason": "Holding the work up as a model expresses confidence in it, not doubt."
+   },
+   "entertained": {
+    "quote": "deserves to be held up as a model",
+    "reason": "The author treats the search as exemplary and serious, not comic."
+   },
+   "impatient": {
+    "quote": "such patience deserves to be held up",
+    "reason": "The author praises the slowness as patience, the opposite of impatience."
+   },
+   "disappointed": {
+    "quote": "deserves to be held up as a model",
+    "reason": "Praise of the work rules out disappointment in it."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. [[Few researchers would have spent four freezing winters chasing an animal the size of a thumbnail, and such patience deserves to be held up as a model.]]"
+ },
+ {
+  "id": "CF1-P02-6.v1",
+  "passage_id": "CF1-P02",
+  "question": "The author's attitude toward the team's long search is best described as",
+  "choices": [
+   "admiring",
+   "doubtful",
+   "entertained",
+   "impatient",
+   "disappointed"
+  ],
+  "slot_text_shown": "Still, one winter's tags from one small marsh are a slender basis for a claim about a whole species, and the finding may yet look shakier after another season.",
+  "claimed_answer": "doubtful",
+  "kills": {
+   "admiring": {
+    "quote": "a slender basis for a claim",
+    "reason": "The author questions the result's footing rather than praising the team."
+   },
+   "entertained": {
+    "quote": "the finding may yet look shakier",
+    "reason": "The author's concern is evidential weakness, treated seriously, not with humor."
+   },
+   "impatient": {
+    "quote": "the finding may yet look shakier after another season",
+    "reason": "The author expects more seasons to test the claim, so further fieldwork is welcomed, not resented."
+   },
+   "disappointed": {
+    "quote": "the finding may yet look shakier",
+    "reason": "The author questions whether the claim is true, rather than accepting it and wishing it were bigger."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. [[Still, one winter's tags from one small marsh are a slender basis for a claim about a whole species, and the finding may yet look shakier after another season.]]"
+ },
+ {
+  "id": "CF1-P02-6.v2",
+  "passage_id": "CF1-P02",
+  "question": "The author's attitude toward the team's long search is best described as",
+  "choices": [
+   "admiring",
+   "doubtful",
+   "entertained",
+   "impatient",
+   "disappointed"
+  ],
+  "slot_text_shown": "There is something comic in the picture of grown scientists, armed with grants and doctorates, outwitted for three winters by an animal the size of a thumbnail.",
+  "claimed_answer": "entertained",
+  "kills": {
+   "admiring": {
+    "quote": "outwitted for three winters by an animal the size of a thumbnail",
+    "reason": "The author stresses the team being outwitted, a joke rather than praise."
+   },
+   "doubtful": {
+    "quote": "There is something comic",
+    "reason": "The author's reaction is humor at the picture, not doubt about the finding."
+   },
+   "impatient": {
+    "quote": "There is something comic in the picture",
+    "reason": "The author enjoys the scene rather than urging the team to hurry."
+   },
+   "disappointed": {
+    "quote": "There is something comic in the picture",
+    "reason": "The author takes light pleasure in the story, not a sense of letdown."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. [[There is something comic in the picture of grown scientists, armed with grants and doctorates, outwitted for three winters by an animal the size of a thumbnail.]]"
+ },
+ {
+  "id": "CF1-P02-6.v3",
+  "passage_id": "CF1-P02",
+  "question": "The author's attitude toward the team's long search is best described as",
+  "choices": [
+   "admiring",
+   "doubtful",
+   "entertained",
+   "impatient",
+   "disappointed"
+  ],
+  "slot_text_shown": "But the answer has been in hand since that fourth winter, and yet another season spent confirming it looks less like caution than like delay; it is past time to move on.",
+  "claimed_answer": "impatient",
+  "kills": {
+   "admiring": {
+    "quote": "looks less like caution than like delay",
+    "reason": "The author calls the continued work delay, not something to praise."
+   },
+   "doubtful": {
+    "quote": "the answer has been in hand since that fourth winter",
+    "reason": "The author treats the answer as settled, so is not doubting it."
+   },
+   "entertained": {
+    "quote": "it is past time to move on",
+    "reason": "The author is pressing for action, not laughing at the team."
+   },
+   "disappointed": {
+    "quote": "the answer has been in hand",
+    "reason": "The author's complaint is about wasted time after a satisfying answer, not that the answer fell short."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. [[But the answer has been in hand since that fourth winter, and yet another season spent confirming it looks less like caution than like delay; it is past time to move on.]]"
+ },
+ {
+  "id": "CF1-P02-6.v4",
+  "passage_id": "CF1-P02",
+  "question": "The author's attitude toward the team's long search is best described as",
+  "choices": [
+   "admiring",
+   "doubtful",
+   "entertained",
+   "impatient",
+   "disappointed"
+  ],
+  "slot_text_shown": "Yet for all that effort, the finding settles only where the crabs sleep; the larger question of whether the marsh itself will survive the rising sea is as open as it was in 2016.",
+  "claimed_answer": "disappointed",
+  "kills": {
+   "admiring": {
+    "quote": "for all that effort, the finding settles only where the crabs sleep",
+    "reason": "The author belittles what the effort achieved rather than praising it."
+   },
+   "doubtful": {
+    "quote": "the finding settles only where the crabs sleep",
+    "reason": "The author accepts the finding as settled, so does not doubt it."
+   },
+   "entertained": {
+    "quote": "the larger question of whether the marsh itself will survive the rising sea",
+    "reason": "The author's tone is sober about the marsh's survival, not humorous."
+   },
+   "impatient": {
+    "quote": "is as open as it was in 2016",
+    "reason": "The author laments what is still unknown, which is a call for more work, not for the team to stop and move on."
+   }
+  },
+  "passage_with_this_version": "Tarrow Marsh is a mile of mudflat, creek and cordgrass on a quiet coast, and it is the only known home of the banded marsh crab, an animal no wider than a thumbnail. The species was first described in 1897 by the doctor of a supply ship anchored off the marsh, who sketched it in his medical log. Each summer the flats swarm with the crabs. Each October they disappear, and for more than a century nobody could say where they went.\n\nThe storm of 1953 is remembered at Tarrow for one lasting change: it breached the old sea dike in four places, and the dike was rebuilt a full yard higher, as the wall that still guards the fields behind the marsh. During the long search for the crabs, researchers worked from the marsh's field station, a small hut at the landward edge. Its one diesel generator ran only between dusk and midnight, so late notes were written by lamplight.\n\nThe search began in earnest in 2016, when the ecologist Peter Halloran and his team glued tiny numbered tags to two hundred crabs each September. For three winters the tagged animals simply vanished. In the fourth, the team found them in the reed beds at the marsh's upper edge. Every tagged crab they recovered had wedged itself inside the hollow stem of a dead reed, one crab to a stem, well above the reach of the winter tides. After more than a century, the crabs' winter hiding place was finally known.\n\nMuch of the fieldwork in those winters fell to Mara Sollis, who had joined the project as an unpaid volunteer when she retired at sixty. Forty years of fitting hairsprings and balance wheels at a jeweler's bench had given her the steadiest hands on the team. Halloran still calls her the best recruit the project ever had.\n\nHalloran's team is now planning a fifth winter on the flats. [[Yet for all that effort, the finding settles only where the crabs sleep; the larger question of whether the marsh itself will survive the rising sea is as open as it was in 2016.]]"
+ }
+]
