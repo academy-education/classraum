@@ -285,7 +285,10 @@ function selfTest() {
   console.log('stem-duplicates self-test: 19 checks (stem twin, normalisation, passage/graphic/BaS discrimination, group exemption, live, nested sets, clusters, gateBatch refuses/passes) — OK')
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
+// The CLI body runs inside an async IIFE, not top-level await: jest imports
+// this module (via gate.mjs) and cannot compile top-level await (same trap
+// as elimination-paired.mjs on 2026-10-04).
+if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) (async () => {
   const args = process.argv.slice(2)
   if (args[0] === '--dump-live') {
     const rows = await readLive()
@@ -313,4 +316,4 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
     console.error('usage: stem-duplicates.mjs <batch.json> --family <f> | --live [--include-ids a,b] | --selftest')
     process.exit(2)
   }
-}
+})().catch(e => { console.error(e); process.exit(2) })
