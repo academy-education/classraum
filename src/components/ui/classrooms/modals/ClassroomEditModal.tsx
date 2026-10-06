@@ -188,6 +188,7 @@ export function ClassroomEditModal({
               value={formData.camp_program_id}
               onChange={(id) => setFormData({ ...formData, camp_program_id: id })}
               locked={campLocked}
+              canManageCamp={isManager}
               t={t}
             />
             <div className="space-y-2">

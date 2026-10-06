@@ -685,7 +685,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       return
     }
 
-    const capMsg = await campCapError(formData.camp_program_id, selectedStudents)
+    // Only a manager may wire a classroom to a camp (owner decision
+    // 2026-10-07; migration 123 refuses it in the database too). The field
+    // is read-only for teachers, and this keeps a stale form from sending one.
+    const createProgram = isManager ? formData.camp_program_id : ''
+    const capMsg = await campCapError(createProgram, selectedStudents)
     if (capMsg) {
       showErrorToast(String(t('classrooms.camp.whichProgram')), capMsg)
       return
@@ -709,7 +713,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           notes: formData.notes || null,
           academy_id: academyId,
           // Nullable: '' from the form means "an ordinary classroom".
-          camp_program_id: formData.camp_program_id || null
+          camp_program_id: createProgram || null
         })
         .select('*')
         .single()
@@ -1014,7 +1018,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       return
     }
 
-    const targetProgram = campLocked
+    // A teacher cannot change the camp (managers only, owner decision
+    // 2026-10-07), so for them the ORIGINAL program goes back, same as a
+    // locked classroom.
+    const campFrozen = campLocked || !isManager
+    const targetProgram = campFrozen
       ? (editingClassroom.camp_program_id || '')
       : formData.camp_program_id
     const capMsgEdit = await campCapError(targetProgram, selectedStudents, editingClassroom.id)
@@ -1043,7 +1051,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           // The control is disabled, so they agree — this is the belt to
           // that braces, because a stale form state must never be able
           // to move assignments between camps.
-          camp_program_id: campLocked
+          camp_program_id: campFrozen
             ? (editingClassroom.camp_program_id || null)
             : (formData.camp_program_id || null),
           updated_at: new Date().toISOString()

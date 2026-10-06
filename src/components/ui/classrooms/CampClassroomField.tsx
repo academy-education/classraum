@@ -18,6 +18,13 @@ import type { CampProgramOption } from '@/hooks/useCampPrograms'
  *
  * It renders NOTHING when the academy has no camp programs. A school
  * that has never bought a camp should not see camp vocabulary at all.
+ *
+ * MANAGERS ONLY (owner decision 2026-10-07). Wiring a classroom to a camp
+ * makes its teacher a camp teacher, who sees every camp student's Study
+ * results — so a teacher cannot grant themselves that. A teacher sees the
+ * field read-only with a note; a manager may still make them the camp
+ * classroom's teacher_id. Migration 123's trigger enforces the same rule
+ * on the database, so this is the explanation, not the guard.
  */
 
 export interface CampClassroomFieldProps {
@@ -27,11 +34,15 @@ export interface CampClassroomFieldProps {
   onChange: (programId: string) => void
   /** Set when existing camp work pins this classroom to its program. */
   locked?: boolean
+  /** Only an academy manager may set or change the camp. */
+  canManageCamp: boolean
   t: (key: string, params?: Record<string, string | number | undefined>) => string | string[]
 }
 
-export function CampClassroomField({ programs, value, onChange, locked = false, t }: CampClassroomFieldProps) {
+export function CampClassroomField({ programs, value, onChange, locked = false, canManageCamp, t }: CampClassroomFieldProps) {
   if (programs.length === 0) return null
+
+  const readOnly = locked || !canManageCamp
 
   const enabled = value !== ''
   const selected = programs.find(p => p.id === value)
@@ -48,9 +59,9 @@ export function CampClassroomField({ programs, value, onChange, locked = false, 
         <Checkbox
           id="camp-classroom-toggle"
           checked={enabled}
-          disabled={locked}
+          disabled={readOnly}
           onCheckedChange={(checked) => {
-            if (locked) return
+            if (readOnly) return
             if (checked) {
               const firstOpen = programs.find(p => isProgramOpen(p))
               onChange(firstOpen?.id ?? '')
@@ -63,7 +74,7 @@ export function CampClassroomField({ programs, value, onChange, locked = false, 
         <div className="space-y-1 min-w-0">
           <Label
             htmlFor="camp-classroom-toggle"
-            className={`text-sm font-medium flex items-center gap-1.5 ${locked ? 'text-foreground/50' : 'text-foreground/80 cursor-pointer'}`}
+            className={`text-sm font-medium flex items-center gap-1.5 ${readOnly ? 'text-foreground/50' : 'text-foreground/80 cursor-pointer'}`}
           >
             <Tent className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.75} />
             {t('classrooms.camp.toggle')}
@@ -71,6 +82,12 @@ export function CampClassroomField({ programs, value, onChange, locked = false, 
           <p className="text-xs text-muted-foreground">
             {t('classrooms.camp.toggleHint')}
           </p>
+          {!canManageCamp && (
+            <p className="text-xs text-muted-foreground flex items-start gap-1.5" data-testid="camp-manager-only">
+              <Lock className="w-3 h-3 mt-0.5 flex-shrink-0" strokeWidth={2} />
+              <span>{t('classrooms.camp.managerOnly')}</span>
+            </p>
+          )}
         </div>
       </div>
 
@@ -79,7 +96,7 @@ export function CampClassroomField({ programs, value, onChange, locked = false, 
           <Label className="text-sm font-medium text-foreground/80">
             {t('classrooms.camp.whichProgram')}
           </Label>
-          <Select value={value} onValueChange={onChange} disabled={locked}>
+          <Select value={value} onValueChange={onChange} disabled={readOnly}>
             <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
               <SelectValue placeholder={String(t('classrooms.camp.selectProgram'))} />
             </SelectTrigger>
@@ -115,7 +132,7 @@ export function CampClassroomField({ programs, value, onChange, locked = false, 
               work exists the lock message below replaces it — by then
               the warning is useless, so it has to land while the user
               can still pick a different camp. */}
-          {!locked && (
+          {!readOnly && (
             <p className="text-xs text-amber-700 dark:text-amber-500 flex items-start gap-1.5">
               <AlertTriangle className="w-3 h-3 mt-0.5 flex-shrink-0" strokeWidth={2} />
               <span>{t('classrooms.camp.fixedWarning')}</span>

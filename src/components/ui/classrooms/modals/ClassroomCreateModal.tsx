@@ -193,6 +193,7 @@ export function ClassroomCreateModal({
               value={formData.camp_program_id}
               onChange={(id) => handleInputChange('camp_program_id', id)}
               locked={campLocked}
+              canManageCamp={isManager}
               t={t}
             />
             <div className="space-y-2">
