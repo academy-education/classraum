@@ -5,7 +5,7 @@ import {
   type AdmissionFamily,
 } from './admission-tests'
 import {
-  actSection, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE, ENGLISH_QUOTAS,
+  actSection, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE, ENGLISH_QUOTAS, MATH_QUOTAS, READING_QUOTAS, SCIENCE_QUOTAS,
   READING_GENRE_ORDER, READING_ITEMS_PER_PASSAGE, type ActSectionKey, type ReadingGenre,
 } from './act-test'
 import type { Question, QuestionType } from '@/lib/test-verify'
@@ -1621,6 +1621,9 @@ export async function assembleAdmissionSection(p: {
       .eq('verified', true)
       .eq('archived', false),
     `${p.family}/${block.bankSection}`,
+    // AUTHORED order (created_at, then id): reading keeps it inside each
+    // passage — see passagesInSeededOrder below.
+    [{ column: 'created_at' }],
   )
 
   const rows = data.flatMap(row => {
@@ -1639,6 +1642,8 @@ export async function assembleAdmissionSection(p: {
 
   const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
   const ranked = unseenFirst(rows, exposures, seed + block.key)
+  /** Authored position — `rows` arrives in (created_at, id) order. */
+  const authored = new Map(rows.map((r, i) => [r.id, i]))
 
   /*
    * Reading draws by passage, at the published per-passage count.
@@ -1727,9 +1732,20 @@ export async function assembleAdmissionSection(p: {
   /* Shuffle WITHIN each published block, never across them: two students
    * should not meet the same running order, and neither should meet
    * analogies before synonyms. */
+  /* Reading is shuffled by PASSAGE, never by item (2026-10-04, form-qc.ts).
+   * A whole-section item shuffle scattered every passage's questions across
+   * the section — on six simulated SSAT and ISEE forms, all six passages of
+   * every form were split, e.g. one passage's six questions at positions 1,
+   * 9, 17, 22, 28 and 33. The runner only groups CONSECUTIVE questions into
+   * a passage run (helpers.tsx passageRuns), so the student re-read the same
+   * passage up to six times and lost the "question 3 of 6" counter. Passages
+   * move as units in a seeded order; inside a passage the questions keep
+   * their authored order, as the real forms print them. */
   const mixed = orderedBlocks
     ? orderedBlocks.flatMap((b, i) => seededShuffle(b, `${seed}:order:${i}`))
-    : seededShuffle(picked, seed + ':order')
+    : block.bankSection === 'reading'
+      ? passagesInSeededOrder(picked, authored, seed + ':order')
+      : seededShuffle(picked, seed + ':order')
   assertFullDraw(p.requireFull, { scope: `${p.family}/${block.key}`, want: block.questions, got: mixed.length })
   if (p.studentId && !p.deferExposures) await recordExposures(p.studentId, mixed.map(r => r.id), 'full_test', seed)
 
@@ -1742,6 +1758,80 @@ export async function assembleAdmissionSection(p: {
     composition: { [block.name]: mixed.length },
     itemIds: mixed.map(r => r.id),
   }
+}
+
+/** Keep each passage's questions together and in authored order; shuffle
+ *  only the order of the passages. Rows with no group are their own unit. */
+export function passagesInSeededOrder<T extends { id: string; passageGroupId: string | null }>(
+  rows: T[], authored: ReadonlyMap<string, number>, seed: string,
+): T[] {
+  const groups = new Map<string, T[]>()
+  for (const r of rows) {
+    const k = r.passageGroupId ?? `__solo__${r.id}`
+    const g = groups.get(k)
+    if (g) g.push(r); else groups.set(k, [r])
+  }
+  const pos = (r: T) => authored.get(r.id) ?? Number.MAX_SAFE_INTEGER
+  return seededShuffle([...groups.keys()], seed)
+    .flatMap(k => [...groups.get(k)!].sort((a, b) => pos(a) - pos(b)))
+}
+
+/**
+ * Draw `n` items so every domain lands inside its published % range
+ * (ACT_QUOTAS shape), unseen-first within each domain. Added 2026-10-04:
+ * ACT Math drew 45 items with no regard to MATH_QUOTAS, and six simulated
+ * forms all fell outside it — Number and Quantity anywhere from 1 to 9
+ * against a published 5, Algebra 4 to 15 against 8-9.
+ *
+ *   1. each domain's FLOOR, taking its best-ranked items;
+ *   2. the remaining seats in overall rank order, never past a CEILING;
+ *   3. only if the bank cannot satisfy the ranges, anything left in rank
+ *      order — a short form is worse than an off-blueprint one, and the
+ *      caller is told (`onBlueprint: false`) so it can say so.
+ *
+ * Keeps the one-item-per-group rule the previous drawByPassage(ranked, n, 1)
+ * enforced: the first-ranked member of a group stands for the group.
+ */
+export function pickByDomainQuota<T extends { id: string; domain?: string | null; passageGroupId: string | null }>(
+  ranked: T[], n: number, quotas: Readonly<Record<string, readonly [number, number]>>,
+): { picked: T[]; onBlueprint: boolean } {
+  const groupSeen = new Set<string>()
+  const pool = ranked.filter(r => {
+    if (!r.passageGroupId) return true
+    if (groupSeen.has(r.passageGroupId)) return false
+    groupSeen.add(r.passageGroupId)
+    return true
+  })
+  const domains = Object.keys(quotas)
+  const lo = new Map(domains.map(d => [d, Math.ceil(quotas[d]![0] * n / 100 - 1e-9)]))
+  const hi = new Map(domains.map(d => [d, Math.floor(quotas[d]![1] * n / 100 + 1e-9)]))
+  const count = new Map<string, number>()
+  const taken = new Set<string>()
+  const picked: T[] = []
+  const take = (r: T) => {
+    picked.push(r); taken.add(r.id)
+    const d = r.domain ?? ''
+    count.set(d, (count.get(d) ?? 0) + 1)
+  }
+  for (const d of domains) {
+    for (const r of pool) {
+      if (picked.length >= n || (count.get(d) ?? 0) >= lo.get(d)!) break
+      if (r.domain === d && !taken.has(r.id)) take(r)
+    }
+  }
+  for (const r of pool) {
+    if (picked.length >= n) break
+    const d = r.domain ?? ''
+    if (taken.has(r.id) || !hi.has(d) || (count.get(d) ?? 0) >= hi.get(d)!) continue
+    take(r)
+  }
+  const onBlueprint = picked.length === n
+    && domains.every(d => (count.get(d) ?? 0) >= lo.get(d)! && (count.get(d) ?? 0) <= hi.get(d)!)
+  for (const r of pool) {
+    if (picked.length >= n) break
+    if (!taken.has(r.id)) take(r)
+  }
+  return { picked, onBlueprint }
 }
 
 export async function assembleFromItemIds(
@@ -2087,6 +2177,67 @@ export function pickEnglishPassages(
   return { passages: takePassages(ranked, want, per), onBlueprint: false }
 }
 
+/**
+ * Fill a fixed sequence of passage SLOTS (each wants one full passage of a
+ * given `task` and size) so the form lands inside `quotas`, the published
+ * reporting-category % ranges. Depth-first in RANKED order, so the first
+ * feasible set is the lexicographically earliest — unseen passages still
+ * win, exactly as in pickEnglishPassages. If no set satisfies the ranges,
+ * falls back to the plain exposure-order fill (the first unused full
+ * passage per slot) and reports `onBlueprint: false`. A slot no passage can
+ * fill comes back null.
+ */
+export function pickPassagesForSlots(
+  ranked: ActRow[],
+  slots: ReadonlyArray<{ task: string; per: number }>,
+  quotas: Readonly<Record<string, readonly [number, number]>>,
+): { passages: Array<ActRow[] | null>; onBlueprint: boolean } {
+  const groups = [...groupsOf(ranked).values()]
+  const n = slots.reduce((a, sl) => a + sl.per, 0)
+  const domains = Object.keys(quotas)
+  const lo = domains.map(d => Math.ceil(quotas[d]![0] * n / 100 - 1e-9))
+  const hi = domains.map(d => Math.floor(quotas[d]![1] * n / 100 + 1e-9))
+  const cand = slots.map(sl => groups
+    .map((g, gi) => ({ gi, rows: g.slice(0, sl.per) }))
+    .filter(c => groups[c.gi]!.length >= sl.per && groups[c.gi]![0]!.task === sl.task))
+  const counts = cand.map(cs => cs.map(c => domains.map(d => c.rows.filter(r => r.domain === d).length)))
+  const after = slots.map((_, i) => slots.slice(i + 1).reduce((a, sl) => a + sl.per, 0))
+  const chosen: number[] = []
+  const used = new Set<number>()
+  const tally = domains.map(() => 0)
+  let budget = 200_000
+  const dfs = (i: number): boolean => {
+    if (--budget < 0) return false
+    if (i === slots.length) return tally.every((t, k) => t >= lo[k]! && t <= hi[k]!)
+    for (let ci = 0; ci < cand[i]!.length; ci++) {
+      const c = cand[i]![ci]!
+      if (used.has(c.gi)) continue
+      const cc = counts[i]![ci]!
+      if (cc.some((v, k) => tally[k]! + v > hi[k]!)) continue
+      cc.forEach((v, k) => { tally[k]! += v })
+      // Pruning only: a domain that cannot reach its floor even if every
+      // remaining slot were all that domain is dead.
+      const reachable = tally.every((t, k) => t + after[i]! >= lo[k]!)
+      used.add(c.gi); chosen.push(ci)
+      if (reachable && dfs(i + 1)) return true
+      chosen.pop(); used.delete(c.gi)
+      cc.forEach((v, k) => { tally[k]! -= v })
+    }
+    return false
+  }
+  if (slots.every((_, i) => cand[i]!.length > 0) && dfs(0)) {
+    return { passages: chosen.map((ci, i) => cand[i]![ci]!.rows), onBlueprint: true }
+  }
+  const taken = new Set<number>()
+  const passages = cand.map(cs => {
+    const c = cs.find(x => !taken.has(x.gi))
+    if (!c) return null
+    taken.add(c.gi)
+    return c.rows
+  })
+  return { passages, onBlueprint: false }
+}
+
 export async function assembleActSection(p: {
   sectionKey: ActSectionKey
   studentId?: string
@@ -2105,6 +2256,9 @@ export async function assembleActSection(p: {
       .eq('verified', true)
       .eq('archived', false),
     `act/${block.bankSection}`,
+    // AUTHORED order (created_at, then id): `authored` below restores it
+    // inside each passage.
+    [{ column: 'created_at' }],
   )
 
   const rows: ActRow[] = data.flatMap(row => {
@@ -2120,46 +2274,56 @@ export async function assembleActSection(p: {
   const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
   const ranked = unseenFirst(rows, exposures, seed + block.key)
 
+  /* A passage's questions in AUTHORED order (2026-10-04, form-qc.ts).
+   * `ranked` is a seeded per-item shuffle, and takePassages /
+   * pickEnglishPassages keep that order inside each passage — so a fresh
+   * form served the questions of every passage scrambled: the two "as a
+   * whole" questions that close an English passage could open it, and a
+   * question about paragraph 4 came before one about paragraph 1. 15 of 15
+   * fresh English passages and 18 of 20 Reading passages in six simulated
+   * forms. `rows` arrives in (created_at, id) order, which is the order the
+   * authoring helpers insert a passage's questions in. */
+  const authored = new Map(rows.map((r, i) => [r.id, i]))
+  const inAuthoredOrder = (g: ActRow[]): ActRow[] =>
+    [...g].sort((a, b) => authored.get(a.id)! - authored.get(b.id)!)
+
   let picked: ActRow[]
   if (block.key === 'english') {
     const { passages, onBlueprint } = pickEnglishPassages(ranked)
     if (!onBlueprint) console.warn('[assemble] act/english: no five passages satisfy ENGLISH_QUOTAS — drew in exposure order, OFF-BLUEPRINT')
-    picked = passages.flat()
-  } else if (block.key === 'reading') {
-    /* One passage per genre, in the published order. A genre with no full
-       passage in the bank is skipped — and reported SHORT below — rather
-       than back-filled from another genre, because the back-fill is the
-       defect this branch exists to prevent. */
-    const byGenre: ActRow[][] = []
-    const used = new Set<string>()
-    for (const genre of READING_GENRE_ORDER as readonly ReadingGenre[]) {
-      const [g] = takePassages(ranked, 1, READING_ITEMS_PER_PASSAGE,
-        grp => grp[0].task === genre && !used.has(grp[0].passageGroupId ?? ''))
-      if (g) { byGenre.push(g); used.add(g[0].passageGroupId ?? '') }
-      else console.warn(`[assemble] act/reading has no full ${genre} passage`)
+    picked = passages.flatMap(inAuthoredOrder)
+  } else if (block.key === 'reading' || block.key === 'science') {
+    /* Reading: one passage per genre, in the published order.
+       Science: seven passages in ACT's own sequence on form 25MC5 (DR, CV,
+       RS, RS, CV, RS, DR), sized as that form sizes them: DR 5, RS 6, CV 6
+       -> 40. A passage's genre/format is in `task` (act-bank-helper writes
+       it). A slot with no full passage is skipped — and reported SHORT
+       below — never back-filled from another genre/format, because that
+       back-fill is the defect these branches exist to prevent.
+
+       Which passage fills each slot now also respects the published
+       reporting-category ranges (READING_QUOTAS / SCIENCE_QUOTAS), the way
+       pickEnglishPassages does for English (2026-10-04, form-qc.ts: two of
+       six simulated forms of each fell outside them, e.g. Science
+       Interpretation of Data 14 against 16-20). */
+    const slots = block.key === 'reading'
+      ? (READING_GENRE_ORDER as readonly ReadingGenre[]).map(genre => ({ task: genre as string, per: READING_ITEMS_PER_PASSAGE }))
+      : ([
+          ['data_representation', 5], ['conflicting_viewpoints', 6], ['research_summaries', 6],
+          ['research_summaries', 6], ['conflicting_viewpoints', 6], ['research_summaries', 6], ['data_representation', 5],
+        ] as const).map(([task, per]) => ({ task: task as string, per }))
+    const { passages, onBlueprint } = pickPassagesForSlots(ranked, slots, block.key === 'reading' ? READING_QUOTAS : SCIENCE_QUOTAS)
+    passages.forEach((g, i) => { if (!g) console.warn(`[assemble] act/${block.key} has no full ${slots[i]!.task} passage left`) })
+    if (!onBlueprint && passages.every(Boolean)) {
+      console.warn(`[assemble] act/${block.key}: no passage set satisfies the reporting-category ranges — drew in exposure order, OFF-BLUEPRINT`)
     }
-    picked = byGenre.flat()
-  } else if (block.key === 'science') {
-    /* Seven passages in ACT's own sequence on form 25MC5 (DR, CV, RS, RS,
-       CV, RS, DR), sized as that form sizes them: DR 5, RS 6, CV 6 -> 40.
-       A passage's format is in `task` (act-bank-helper writes it). A
-       format with too few full passages is reported SHORT, never
-       back-filled from another format - a form with four Research
-       Summaries is not an ACT Science section. */
-    const SEQUENCE: Array<['data_representation' | 'research_summaries' | 'conflicting_viewpoints', number]> = [
-      ['data_representation', 5], ['conflicting_viewpoints', 6], ['research_summaries', 6],
-      ['research_summaries', 6], ['conflicting_viewpoints', 6], ['research_summaries', 6], ['data_representation', 5],
-    ]
-    const used = new Set<string>()
-    const out: ActRow[][] = []
-    for (const [format, per] of SEQUENCE) {
-      const [g] = takePassages(ranked, 1, per, grp => grp[0].task === format && !used.has(grp[0].passageGroupId ?? ''))
-      if (g) { out.push(g); used.add(g[0].passageGroupId ?? '') }
-      else console.warn(`[assemble] act/science has no full ${format} passage left`)
-    }
-    picked = out.flat()
+    picked = passages.flatMap(g => (g ? inAuthoredOrder(g) : []))
   } else {
-    picked = seededShuffle(drawByPassage(ranked, block.questions, 1), seed + ':order')
+    // Math: the published reporting-category ranges (MATH_QUOTAS), then a
+    // free shuffle — math has no passage order to keep.
+    const { picked: drawn, onBlueprint } = pickByDomainQuota(ranked, block.questions, MATH_QUOTAS)
+    if (!onBlueprint) console.warn('[assemble] act/math: the bank cannot satisfy MATH_QUOTAS — filled in exposure order, OFF-BLUEPRINT')
+    picked = seededShuffle(drawn, seed + ':order')
   }
 
   if (picked.length < block.questions) {
