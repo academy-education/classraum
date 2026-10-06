@@ -79,7 +79,9 @@ export function useStudentActions() {
           email: formData.email,
           role: 'student'
         })
-        .select()
+        // Not select(): RETURNING * needs SELECT on users.email, which is
+        // revoked from authenticated by migration 120.
+        .select('id')
         .single()
 
       if (userError) throw userError

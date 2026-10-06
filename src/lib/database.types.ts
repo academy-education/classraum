@@ -5907,6 +5907,14 @@ export type Database = {
           event_type: string
         }[]
       }
+      app_user_contacts: {
+        Args: { uids: string[] }
+        Returns: {
+          email: string | null
+          id: string
+          phone: string | null
+        }[]
+      }
       award_study_xp: {
         Args: {
           p_event_type: string

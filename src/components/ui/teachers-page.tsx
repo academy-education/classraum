@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -233,11 +234,13 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
 
       // Get user details
       const teacherIds = teachersData.map(t => t.user_id)
-      const { data: usersData, error: usersError } = await db
-        .from('users')
-        .select('id, name, email')
-        .in('id', teacherIds)
-      
+      // Emails via app_user_contacts (staff of this academy) — not
+      // selectable on users since migration 120.
+      const [{ data: usersData, error: usersError }, contacts] = await Promise.all([
+        db.from('users').select('id, name').in('id', teacherIds),
+        fetchUserContacts(db, teacherIds),
+      ])
+
       if (usersError) throw usersError
 
       // Get classroom counts using database aggregation for optimal performance
@@ -283,7 +286,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
         return {
           user_id: teacher.user_id,
           name: user?.name || '',
-          email: user?.email || '',
+          email: contacts.get(teacher.user_id)?.email || '',
           phone: teacher.phone,
           academy_id: teacher.academy_id,
           active: teacher.active,

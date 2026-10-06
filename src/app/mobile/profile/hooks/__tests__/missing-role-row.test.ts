@@ -45,6 +45,9 @@ function table(rows: Record<string, unknown>[] | null, err: unknown = null) {
 }
 
 const USER = { id: 'u1', name: 'Andrew', email: 'a@b.c', role: 'student', phone: '010-0000-0000' }
+// Since migration 120 the users row carries no email/phone (column SELECT is
+// revoked); the hook reads them from app_user_contacts.
+const { email: _email, phone: _phone, ...USER_ROW } = USER
 
 /** Tables the hook touches. `students` deliberately has NO row. */
 let FIXTURE: Record<string, { rows: Record<string, unknown>[] | null; err?: unknown }>
@@ -55,6 +58,12 @@ jest.mock('@/lib/supabase', () => ({
       const f = FIXTURE[t] ?? { rows: [] }
       return table(f.rows, f.err ?? null)
     },
+    rpc: (name: string, args: { uids: string[] }) =>
+      Promise.resolve(
+        name === 'app_user_contacts' && args.uids.includes(USER.id)
+          ? { data: [{ id: USER.id, email: USER.email, phone: USER.phone }], error: null }
+          : { data: [], error: null },
+      ),
   },
 }))
 
@@ -67,7 +76,7 @@ describe('a study-only student (no students row)', () => {
   beforeEach(() => {
     sessionStorage.clear()
     FIXTURE = {
-      users: { rows: [USER] },
+      users: { rows: [USER_ROW] },
       user_preferences: { rows: [] },
       students: { rows: [] }, // ← the whole point: the row is absent
     }

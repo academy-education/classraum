@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { db } from '@/lib/supabase'
+import { fetchOwnContact } from '@/lib/users/contacts'
 
 const USER_ROLES = ['admin', 'manager', 'teacher', 'parent', 'student'] as const
 type UserRole = (typeof USER_ROLES)[number]
@@ -78,10 +79,12 @@ export const useUserStore = create<UserState>()(
         set({ loading: true, error: null })
         
         try {
+          // email is not selectable on users since migration 120; the
+          // caller's own comes from app_user_contacts.
           const { data, error } = await db
             .from('users')
             .select(`
-              id, email, name, role, created_at,
+              id, name, role, created_at,
               managers(academy_id),
               teachers(academy_id),
               parents(academy_id),
@@ -91,6 +94,7 @@ export const useUserStore = create<UserState>()(
             .single()
 
           if (error) throw error
+          const ownContact = await fetchOwnContact(db, userId)
 
           // managers/teachers/parents have user_id as their PRIMARY KEY, so
           // PostgREST embeds each as a single object (or null); students has
@@ -129,7 +133,7 @@ export const useUserStore = create<UserState>()(
 
           const user: User = {
             id: data.id,
-            email: data.email,
+            email: ownContact.email ?? '',
             name: data.name,
             role,
             academy_id,

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts, withContacts } from '@/lib/users/contacts'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -214,11 +215,13 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
 
       // Get user details for parents
       const parentIds = parentsData.map(p => p.user_id)
-      const { data: usersData, error: usersError } = await db
-        .from('users')
-        .select('id, name, email')
-        .in('id', parentIds)
-      
+      // Emails via app_user_contacts (staff of this academy) — not
+      // selectable on users since migration 120.
+      const [{ data: usersData, error: usersError }, parentContacts] = await Promise.all([
+        db.from('users').select('id, name').in('id', parentIds),
+        fetchUserContacts(db, parentIds),
+      ])
+
       if (usersError) throw usersError
 
       // Get family information and children for each parent
@@ -314,7 +317,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       const mappedParents = parentsData.map(parent => ({
         user_id: parent.user_id,
         name: userMap[parent.user_id]?.name || '',
-        email: userMap[parent.user_id]?.email || '',
+        email: parentContacts.get(parent.user_id)?.email || '',
         phone: parent.phone,
         academy_id: parent.academy_id,
         active: parent.active,
@@ -609,11 +612,12 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
         .filter((id): id is string => id !== null)
 
       // Fetch user details and all phone numbers in parallel
-      const [memberUsersResult, parentPhonesResult, studentPhonesResult, teacherPhonesResult] = await Promise.all([
-        db.from('users').select('id, name, email, role').in('id', memberIds),
+      const [memberUsersResult, parentPhonesResult, studentPhonesResult, teacherPhonesResult, memberContacts] = await Promise.all([
+        db.from('users').select('id, name, role').in('id', memberIds),
         db.from('parents').select('user_id, phone').in('user_id', memberIds),
         db.from('students').select('user_id, phone').in('user_id', memberIds),
-        db.from('teachers').select('user_id, phone').in('user_id', memberIds)
+        db.from('teachers').select('user_id, phone').in('user_id', memberIds),
+        fetchUserContacts(db, memberIds),
       ])
 
       if (memberUsersResult.error) throw memberUsersResult.error
@@ -638,7 +642,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
             users: {
               id: user?.id || member.user_id,
               name: user?.name || String(t('common.fallbacks.unknown')),
-              email: user?.email || '',
+              email: memberContacts.get(member.user_id)?.email || '',
               role: user?.role || member.role
             },
             phone: phoneMap[member.user_id] || null
@@ -687,13 +691,15 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       const memberIds = familyMembersData
         .map(fm => fm.user_id)
         .filter((id): id is string => id !== null)
-      const { data: memberUsersData, error: usersError } = await db
+      const { data: memberUserRows, error: usersError } = await db
         .from('users')
-        .select('id, name, email, role')
+        .select('id, name, role')
         .in('id', memberIds)
         .eq('role', 'student')
 
       if (usersError) throw usersError
+      const childContacts = await fetchUserContacts(db, (memberUserRows || []).map(u => u.id))
+      const memberUsersData = withContacts(memberUserRows || [], u => u.id, childContacts)
 
       const studentIds = (memberUsersData || []).map(u => u.id)
 

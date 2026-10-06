@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchOwnContact, USER_PUBLIC_COLUMNS } from '@/lib/users/contacts'
 import type { Json } from '@/lib/database.types'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -431,9 +432,9 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     }
     
     try {
-      const { data, error } = await db
+      const { data: row, error } = await db
         .from('users')
-        .select('*')
+        .select(USER_PUBLIC_COLUMNS)
         .eq('id', userId)
         .single()
 
@@ -442,10 +443,15 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         throw error
       }
 
-      if (!data) {
+      if (!row) {
         console.error('No user data returned for userId:', userId)
         return
       }
+
+      // email/phone: own contact via app_user_contacts (migration 120).
+      // users.email is NOT NULL; self is always visible to app_user_contacts.
+      const own = await fetchOwnContact(db, userId)
+      const data = { ...row, email: own.email ?? '', phone: own.phone }
 
       setUserData(data)
       setOriginalUserData(data) // Store original data for comparison

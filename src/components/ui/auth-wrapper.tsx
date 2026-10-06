@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { db } from '@/lib/supabase'
+import { fetchOwnContact } from '@/lib/users/contacts'
 import { isDevAuthEnabled } from '@/lib/dev-auth'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 import { NamePrompt, type NamePromptUser } from '@/components/ui/name-prompt'
@@ -79,9 +80,11 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         // Get additional user info from database
         // family_name/given_name/name_confirmed_at/name_prompt_snoozed_until
         // drive the re-prompt (191 of 444 rows have NULL split columns).
-        const { data: userInfo, error: userError } = await db
+        // email/phone are not selectable on public.users since migration
+        // 120; the caller's own come from app_user_contacts.
+        const { data: userRow, error: userError } = await db
           .from('users')
-          .select('id, name, email, role, phone, family_name, given_name, name_confirmed_at, name_prompt_snoozed_until')
+          .select('id, name, role, family_name, given_name, name_confirmed_at, name_prompt_snoozed_until')
           .eq('id', user.id)
           .single()
 
@@ -92,6 +95,10 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
           setAuthError('Failed to load user profile')
           return
         }
+
+        const ownContact = await fetchOwnContact(db, user.id)
+        if (!isMounted) return
+        const userInfo = { ...userRow, ...ownContact }
 
         setNamePromptUser({
           id: userInfo.id,

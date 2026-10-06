@@ -790,3 +790,16 @@ no email, no in-app notice, no history page. Only failures notified. Now:
 - A new charge path must call `sendChargeReceipt` after recording the payment,
   and must write `last_payment_id` first if it is a subscription charge — the
   receipt only quotes a next-renewal date for the subscription's current charge.
+
+## users.email / users.phone are not selectable by signed-in clients
+
+Migration 120 (owner decision 2, step 1) revokes column SELECT on
+`public.users.email` and `.phone` from `authenticated`/`anon`; rows and every
+other column stay visible. From a browser or user-session client, never
+`select('*')`, never name `email`/`phone` in a users select or a `users(...)`
+embed, never `.select()` bare after a users write, never filter on them — each
+fails with "permission denied for table users". Contacts come from
+`fetchUserContacts` (`src/lib/users/contacts.ts` → `app_user_contacts`): self,
+staff of an academy the target belongs to, same family, admins. `dbAdmin` is unaffected.
+A column ADDED to `users` is not selectable by `authenticated` until granted.
+`src/lib/users/__tests__/no-user-session-contact-reads.test.ts` enforces this.

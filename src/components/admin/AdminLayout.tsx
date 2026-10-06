@@ -57,9 +57,11 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
 
         // Get user info directly from database
+        // No email here: not selectable on users since migration 120. The
+        // admin's own address is on the session.
         const { data: userInfo, error: userError } = await db
           .from('users')
-          .select('*')
+          .select('id, name, role, created_at')
           .eq('id', session.user.id)
           .single();
 
@@ -93,7 +95,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         // Set admin user data
         const adminUserData: AdminUser = {
           id: session.user.id,
-          email: userInfo.email,
+          email: session.user.email ?? '',
           name: userInfo.name,
           role: userInfo.role as 'admin' | 'super_admin',
           // users.created_at is nullable in the schema (it only has a now()

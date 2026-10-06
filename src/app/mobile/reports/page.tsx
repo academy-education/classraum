@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
@@ -182,7 +183,7 @@ function MobileReportsPageContent() {
         .from('students')
         .select(`
           user_id,
-          users!students_user_id_fkey(name, email)
+          users!students_user_id_fkey(name)
         `)
         .in('user_id', studentIds)
 
@@ -191,13 +192,16 @@ function MobileReportsPageContent() {
         // Still show reports even if student names fail
       }
 
+      // users.email is not selectable since migration 120 (self, family, staff).
+      const studentContacts = await fetchUserContacts(db, studentIds as string[])
+
       // Create a map of student info
       const studentMap = new Map()
       if (studentsData) {
         studentsData.forEach(student => {
           studentMap.set(student.user_id, {
             name: (student.users as any)?.name || String(t('mobile.fallbacks.unknownStudent')),
-            email: (student.users as any)?.email || ''
+            email: studentContacts.get(student.user_id)?.email || ''
           })
         })
       }

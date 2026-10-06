@@ -11,6 +11,7 @@ import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { db } from '@/lib/supabase'
+import { fetchOwnContact } from '@/lib/users/contacts'
 import {
   ArrowLeft,
   CreditCard,
@@ -228,14 +229,15 @@ export default function MobileInvoicePaymentPage() {
       let payerName: string | undefined
       let payerEmail: string | undefined
       try {
-        const { data: payer } = await db
-          .from('users')
-          .select('phone, name, email')
-          .eq('id', user!.userId)
-          .maybeSingle()
-        payerPhone = payer?.phone || undefined
+        // email/phone via app_user_contacts (migration 120: not
+        // selectable on users).
+        const [{ data: payer }, payerContact] = await Promise.all([
+          db.from('users').select('name').eq('id', user!.userId).maybeSingle(),
+          fetchOwnContact(db, user!.userId),
+        ])
+        payerPhone = payerContact.phone || undefined
         payerName = payer?.name || undefined
-        payerEmail = payer?.email || undefined
+        payerEmail = payerContact.email || undefined
       } catch { /* fall through to fallbacks */ }
 
       // Request payment using PortOne SDK
