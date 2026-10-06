@@ -104,7 +104,7 @@ export async function POST(request: NextRequest) {
 
     if (targetPlan.limits.classroomLimit !== -1 && usage.currentClassroomCount > targetPlan.limits.classroomLimit) {
       violations.push(
-        `교실 수: 현재 ${usage.currentClassroomCount}개, ${targetPlan.name}은 최대 ${targetPlan.limits.classroomLimit}개`
+        `클래스룸 수: 현재 ${usage.currentClassroomCount}개, ${targetPlan.name}은 최대 ${targetPlan.limits.classroomLimit}개`
       );
     }
 

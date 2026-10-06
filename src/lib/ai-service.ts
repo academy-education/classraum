@@ -244,7 +244,7 @@ FORMAT: Return the feedback as HTML using only these tags: <p>, <strong>, <em>, 
 2. 샘플 과제의 구체적인 맥락을 반영한 개선 영역
 3. 추세 분석 및 진전 궤적
 4. 성과 패턴에 기반한 구체적인 권장사항
-5. 과목과 교실 성과에 맞춘 학습 전략
+5. 과목과 클래스룸 성과에 맞춘 학습 전략
 
 중요: 위 통계는 이 기간 동안 학생의 전체 과제 기록을 나타냅니다. 정확한 지표로 사용하세요. 샘플 과제는 피드백을 위한 구체적인 맥락을 제공합니다.
 
@@ -445,14 +445,14 @@ export function formatSubjects(subjects: Array<{ id: string; name: string }> | u
 // Helper function to format classrooms information
 export function formatClassrooms(classrooms: Array<{ id: string; name: string; subject: string }> | undefined, language: FeedbackLanguage): string {
   if (!classrooms || classrooms.length === 0) {
-    return language === 'english' ? 'All classrooms' : '모든 교실'
+    return language === 'english' ? 'All classrooms' : '모든 클래스룸'
   }
 
   const classroomInfo = classrooms.map(c => `${c.name} (${c.subject})`).join(', ')
   if (language === 'english') {
     return `Classrooms: ${classroomInfo}`
   } else {
-    return `교실: ${classroomInfo}`
+    return `클래스룸: ${classroomInfo}`
   }
 }
 
@@ -591,7 +591,7 @@ export function formatAIStatistics(stats: AIGradeStatistics | null | undefined, 
 
   // By classroom
   if (by_classroom && by_classroom.length > 0) {
-    const classroomHeader = language === 'english' ? '\n🏫 By Classroom:' : '\n🏫 교실별:'
+    const classroomHeader = language === 'english' ? '\n🏫 By Classroom:' : '\n🏫 클래스룸별:'
     const classroomLines = by_classroom.map(c =>
       language === 'english'
         ? `• ${c.classroom_name} (${c.subject}): ${c.average ?? 'N/A'}% avg, ${c.completed}/${c.total} completed`
@@ -709,7 +709,7 @@ export function formatDataContext(dataContext: DataContext, language: FeedbackLa
     if (!dataContext.hasAssignmentData) contextInfo.push('과제 데이터 없음')
     if (!dataContext.hasAttendanceData) contextInfo.push('출석 데이터 없음')
     if (dataContext.selectedSubjectCount > 0) contextInfo.push(`${dataContext.selectedSubjectCount}개 과목 선택`)
-    if (dataContext.selectedClassroomCount > 0) contextInfo.push(`${dataContext.selectedClassroomCount}개 교실 선택`)
+    if (dataContext.selectedClassroomCount > 0) contextInfo.push(`${dataContext.selectedClassroomCount}개 클래스룸 선택`)
     if (dataContext.selectedCategoryCount > 0) contextInfo.push(`${dataContext.selectedCategoryCount}개 카테고리 선택`)
   }
 

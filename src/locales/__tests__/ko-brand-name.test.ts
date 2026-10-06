@@ -44,6 +44,10 @@ const FILE_ALLOWLIST: Record<string, number> = {
   'content/help/ko/02-classrooms.md': 20,
   // That article's Korean title and blurb.
   'content/help/articles.ts': 2,
+  // AI report labels and prompt ("모든 클래스룸", "클래스룸별:"), formerly 교실.
+  'src/lib/ai-service.ts': 5,
+  // Downgrade-blocked message: "클래스룸 수: 현재 N개" (the plan's classroomLimit).
+  'src/app/api/subscription/downgrade/route.ts': 1,
 }
 
 const SOURCE_DIRS = ['src', 'content', 'public']
@@ -78,14 +82,28 @@ describe('Korean brand name is 클래스라움', () => {
     expect(offenders).toEqual([])
   })
 
-  it('no allowlisted key is the brand (English says Classraum there)', () => {
-    const brand = [...allowed].filter((k) => /classraum/i.test(enByKey.get(k) ?? ''))
+  // A sentence may name both the brand and the feature ("클래스룸을 만들었습니다.
+  // 클래스라움의 나머지 기능은…"). What must never happen is 클래스룸 standing
+  // in for the brand, so wherever English says Classraum, Korean must carry
+  // 클래스라움 at least as often, and 클래스룸 there must have an English
+  // "classroom" to stand for.
+  const NEW = '클래스라움'
+  const count = (s: string, re: RegExp) => (s.match(re) ?? []).length
+  const brandMissing = (k: string, v: string) =>
+    count(v, new RegExp(NEW, 'g')) < count(enByKey.get(k) ?? '', /classraum/gi)
+
+  it('no allowlisted key is the brand (English says Classraum and not classroom there)', () => {
+    const brand = [...allowed].filter((k) => {
+      const enV = enByKey.get(k) ?? ''
+      return /classraum/i.test(enV) && !/classroom/i.test(enV)
+    })
     expect(brand).toEqual([])
   })
 
   it('every key whose English names Classraum uses 클래스라움, not 클래스룸', () => {
     const wrong = koEntries
       .filter(([k, v]) => v.includes(OLD) && /classraum/i.test(enByKey.get(k) ?? ''))
+      .filter(([k, v]) => brandMissing(k, v) || !/classroom/i.test(enByKey.get(k) ?? ''))
       .map(([k]) => k)
     expect(wrong).toEqual([])
   })

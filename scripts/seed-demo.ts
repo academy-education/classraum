@@ -507,7 +507,7 @@ async function createClassrooms(
   students: StudentData[],
   subjectMap: Map<string, string>
 ): Promise<ClassroomData[]> {
-  console.log('🏛️ 교실 생성 중...')
+  console.log('🏛️ 클래스룸 생성 중...')
 
   const classrooms: ClassroomData[] = []
 
@@ -526,7 +526,7 @@ async function createClassrooms(
         teacher_id: teacherId,
         academy_id: academyId,
         color: config.color,
-        notes: `${config.subject} ${config.grade}반 수업을 진행하는 교실입니다.`,
+        notes: `${config.subject} ${config.grade}반 수업을 진행하는 클래스룸입니다.`,
       })
       .select('id')
       .single()
@@ -563,7 +563,7 @@ async function createClassrooms(
       studentIds,
     })
 
-    console.log(`   교실: ${config.subject} ${config.grade}반 (학생 ${enrolledStudents.length}명)`)
+    console.log(`   클래스룸: ${config.subject} ${config.grade}반 (학생 ${enrolledStudents.length}명)`)
   }
 
   return classrooms
