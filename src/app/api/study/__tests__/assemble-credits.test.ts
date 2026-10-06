@@ -36,6 +36,8 @@ jest.mock('@/lib/study/assemble', () => ({
   assembleAdmissionSection: jest.fn(),
   assembleActSection: jest.fn(),
   recordTestExposures: jest.fn(async () => {}),
+  // Pure blueprint arithmetic the exhaustion gate sizes TOEFL with.
+  toeflSectionShape: jest.requireActual('@/lib/study/assemble').toeflSectionShape,
 }))
 
 const from = dbAdmin.from as unknown as jest.Mock

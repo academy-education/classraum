@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { assembleFromBank, assembleToeflFromBank, assembleAdmissionSection, assembleActSection, recordTestExposures, type ToeflSection } from '@/lib/study/assemble'
+import { assembleFromBank, assembleToeflFromBank, assembleAdmissionSection, assembleActSection, recordTestExposures, toeflSectionShape, type ToeflSection } from '@/lib/study/assemble'
 import { ADMISSION_BLUEPRINT } from '@/lib/study/admission-tests'
 import { ACT_BLUEPRINT, type ActSectionKey } from '@/lib/study/act-test'
 import { SAT_MODULE_CONFIG } from '@/lib/study/sat-adaptive'
@@ -256,9 +256,20 @@ async function handlePOST(req: NextRequest) {
         .eq('item.family', family)
         .eq('item.section', bankSection),
     ])
-    const input = { poolSize: poolSize ?? 0, seen: seenCount ?? 0, needed: count }
+    // TOEFL's `count` is 0 (the blueprint, not the caller, sizes the
+    // draw), and 0 is assessCoverage's "no requirement" — so until
+    // 2026-10-06 this gate could never refuse a TOEFL section and a student
+    // who had seen the whole pool was charged for a replay.
+    const needed = isToefl ? toeflRowsNeeded(section as ToeflSection, { drawDomain, drawMaxItems }) : count
+    const input = { poolSize: poolSize ?? 0, seen: seenCount ?? 0, needed }
     const coverage = assessCoverage(input)
-    if (!coverage.ok) {
+    // One gate per cause. This one is "YOU have seen it all": it only
+    // speaks when the bank holds at least a full draw and the student's
+    // history is what leaves it short. A bank too thin to fill the section
+    // for anyone is the draw's call — requireFull refuses it below as
+    // section_unavailable, with the alert — and answering that with "you
+    // have seen every question" would be false and would skip the alert.
+    if (!coverage.ok && (coverage.reason === 'no_bank_coverage' || input.poolSize >= needed)) {
       return NextResponse.json({
         error: coverage.reason === 'no_bank_coverage'
           ? 'no questions banked for this section yet'
@@ -491,6 +502,33 @@ async function rollBack(studentId: string, sessionId: string, cost: number, fami
   // Error intentionally ignored: the leftover row holds no test, and the
   // credits are either back or paged above.
   await dbAdmin.from('study_sessions').delete().eq('id', sessionId)
+}
+
+/**
+ * Bank ROWS one TOEFL start will draw — the exhaustion gate's `needed`,
+ * in the same unit as the pool and exposure counts it is compared with
+ * (a Complete-the-Words paragraph is one row, so cards, not questions).
+ *
+ * Derived from TOEFL_META via toeflSectionShape, never restated here:
+ *   - an adaptive start is charged for BOTH modules, and Module 2 draws
+ *     from the same pool, so the whole section counts — the smaller of the
+ *     two Stage-2 paths, since the route is not known yet (Reading 30,
+ *     Listening 48 today);
+ *   - a linear section is its whole draw (Writing 12, Speaking 11);
+ *   - a warmup cap (`maxItems`) shortens only Speaking/Writing, exactly as
+ *     capWarmupItems does; a single-domain drill draws `maxItems ?? 3`.
+ */
+function toeflRowsNeeded(
+  section: ToeflSection,
+  draw: { drawDomain?: string; drawMaxItems?: number },
+): number {
+  if (draw.drawDomain) return draw.drawMaxItems ?? 3
+  const whole = Math.min(
+    toeflSectionShape(section, 'lower').total.cards,
+    toeflSectionShape(section, 'upper').total.cards,
+  )
+  const capped = (section === 'speaking' || section === 'writing') && draw.drawMaxItems
+  return capped ? Math.min(whole, draw.drawMaxItems!) : whole
 }
 
 /**
