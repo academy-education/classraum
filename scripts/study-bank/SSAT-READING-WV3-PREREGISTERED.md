@@ -92,3 +92,36 @@ question-version, E (relative, same 6 live passages, same prompt). Items failing
 passages left with fewer than 5 items are dropped. Ledger entry, insert as cohort
 `ssat-reading-wv3`, re-run `admission-form-depth.ts`, report forms before -> after. The human sitting
 remains the verdict for a verbal cohort (bank-gate §5).
+
+## Result (run 2026-10-06): PASSES E, PASSES C, FAILS F (difficulty). Per the rule the run stopped: nothing inserted, no batch authored, forms unchanged at 3.
+
+Text frozen in `50d6fa27` (verify OK, 240 kill quotes verbatim). `frozenSha` `bb585645…a298`;
+drawn P01 → v0, P02 → v4. Evidence is in `ssat-wv3-pilot/`.
+
+| bar | result | verdict |
+|---|---|---|
+| E naturalness (relative) | both judges valid (8/8 rated, not flat). Live: s2 5/5/5/5, s3 2/2/2/3, s4 1/1/1/1, so the pooled live median is **2** (n=12). Candidates P01 4/4, P02 4/4, so the candidate median is **4** (n=4) | **PASS** |
+| C exclusivity | **12/12**: both graders picked the key, with no second defensible choice | **PASS** |
+| F difficulty | **9/12** grader-median easy (bar <= 6). Both graders rated these easy: P01 main-idea, detail, purpose; P02 main-idea, detail, attitude, purpose; plus P01 attitude and P02 vocab (one easy and one medium) | **FAIL** |
+| A, B, D | not run: F decided the outcome, and the rule is to stop | — |
+
+**Why F failed.** The graders' notes name the same mechanism as pilot 1. In each drawn version some
+of the distractors never appear in the passage at all: the museum (P01 main idea), the herons and
+food (P02 main idea), the herons and beetles (P02 inference). The options the passage does raise
+are set aside explicitly, by a named failed test ("earlier tests that failed") or by an explicit
+"relief … was the wrong word". Two items are answered by paragraph position (P02 purpose: "Odell is
+not introduced until paragraph 2"). The prose fix worked: the neutral judges rated both candidates
+above every s3/s4 passage. But "rivals discussed naturally" turned into rivals disposed of plainly,
+which a reader can settle at a glance. So **the bind that pilots 1 and 2 measured still holds under
+a fair naturalness bar:** natural prose came with easy items again.
+
+**Recorded, not deciding:**
+- E: both judges independently called P02's digger and volunteers paragraph "loosely connected" or
+  "filler", the aside defect from pilot 1, although neither rated it below 4.
+- The s2 passages rated 5/5 and s3/s4 1–3, so the relative bar was carried by s3/s4. Against s2
+  alone the candidates (4) would fall short (5).
+- The lexical word-match solver was elevated on P01, at 9.3/25 against a 5.0 chance line (P02 6.5/25).
+- **Protocol deviation:** P02's author disclosed that before writing, it grepped `ssat-wv.mjs` and
+  saw the verify checks (word ratio, negations per paragraph, choice-length ratio, lexical solver).
+  The deciding bars (options-only, grouped, exclusivity, difficulty, relative naturalness) were not
+  visible to it, and F failed on both passages alike (P01 4–5/6 easy, P02 4–5/6).

@@ -5204,6 +5204,44 @@
           "verdict": "Keys dealt flat by make-oo-render (26/26/26/25/25 candidate). Key strictly longest 26/128, shortest 24/128 (chance 25.6). check-recycled-distractor merged and kept: NO MEASUREMENT (605 distinct words over 605 slots). Solvers' named heuristics, and where they landed: 'odd domain out' (sample A, 8 confident picks - all 8 live controls, 7 correct) and 'reversed-order trap' (sample B, 12 confident - 10 live, 8 correct; 2 candidate, 1 correct). Both are tells of the LIVE analogy bank (topical-cluster distractors; reversed-relation distractors), absent from this cohort by construction. Author D flagged a residual part-of-speech majority tell in its 26 mixed-POS items; not visible in the blind result."
         }
       }
+    },
+    {
+      "id": "ssat-verbal-a18-hard-2026-10-06",
+      "createdAt": "2026-10-06",
+      "targetTest": "ssat",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-verbal-a18-hard",
+      "contentSha": "342045fc8b58f9d344cd08540c1ad7e6e4a89da20c4535424512522cb22e6ed3",
+      "status": "killed",
+      "note": "HELD under ssat-verbal-a18-hard.prereg.md: options-only excess +14.2 > +10. Nothing inserted, no repairs (prereg). 99 hard-commissioned analogies from two independent Claude authors (A: degree, lack, person_trait, manner, rejecter, sham; B: function, cause_effect, sign, counteract, preparation, violation, prevention); SVA18B-41 removed pre-attack as unsuitable content. Two candidate-side tells named by the blind samples: same-relation distractor PAIRS (key = the singleton relation) and mismatched 'broken twin' decoys.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "342045fc8b58f9d344cd08540c1ad7e6e4a89da20c4535424512522cb22e6ed3",
+          "verdict": "99 items; 0 stem duplicates vs 944 live SSAT rows; 0 words shared with a17 or live SSAT verbal (two morphological variants across authors: conceit/conceited, season/seasoned); recycled-distractor NO MEASUREMENT (495/495 distinct); analogy-reversal NO MEASUREMENT (0 reversal pairs); stored key slots flat; key longest 14/99, shortest 14/99."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "342045fc8b58f9d344cd08540c1ad7e6e4a89da20c4535424512522cb22e6ed3",
+          "verdict": "Options-only with 30 type-matched live analogies (s6 excluded), three samples of one Claude solver (pairwise agreement 75.7% vs 20.1%). Candidate 165/297 = 55.6% vs letter 20.2% (+35.4); live 37/90 = 41.1% vs 20.0% (+21.1). EXCESS +14.2 > +10: HOLD. Live arm < 85%, bar could fire. Unanimous-correct candidate 45.5% vs live 26.7%.",
+          "n": 99,
+          "mean": 55.6,
+          "control": 20.2,
+          "margin": 35.4
+        },
+        "withsource": {
+          "passed": false,
+          "contentSha": "342045fc8b58f9d344cd08540c1ad7e6e4a89da20c4535424512522cb22e6ed3",
+          "verdict": "One grader run before the hold was read (graders b, c not run: the batch cannot insert). Grader A 99/99 on key, notes match picks; second defensible B-17, B-28, B-50; above band 'apostasy' (B-30); difficulty 12 easy / 58 medium / 29 hard."
+        },
+        "tells": {
+          "passed": false,
+          "contentSha": "342045fc8b58f9d344cd08540c1ad7e6e4a89da20c4535424512522cb22e6ed3",
+          "verdict": "Solver picks naming 'singleton relation / distractors paired': candidate 17/17 correct, live 0 named. 'Broken twin' (mismatched same-shape decoy): candidate 22/22 correct, live 3/4. Reversal and odd-domain: 0 candidate picks. Per-family candidate hit rate: sign, degree, prevention 100%, person_trait 92.6%, rejecter 79.2%, manner 70.4% ... cause_effect 0%, preparation 12.5%, counteract 16.7%."
+        }
+      }
     }
   ],
   "auditedCohorts": [

@@ -1,0 +1,1302 @@
+[
+  {
+    "id": "SVA18A-01",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "degree",
+    "prompt": "[Analogy] tepid is to searing as",
+    "choices": [
+      "pricey is to exorbitant",
+      "irked is to petrified",
+      "frosty is to sweltering",
+      "antiquated is to outmoded",
+      "grueling is to spent"
+    ],
+    "correct_answer": "pricey is to exorbitant",
+    "explanation": "Relation: A is a mild degree and B the extreme degree of the same quality (heat; costliness). Tepid is slightly warm and searing extremely hot; pricey is somewhat expensive and exorbitant outrageously expensive.",
+    "distractor_rationales": {
+      "irked is to petrified": "Mild to extreme, but on two different scales (annoyance vs. fear), so not one quality intensified.",
+      "frosty is to sweltering": "Opposite ends of the temperature scale, not a milder and stronger form of one quality.",
+      "antiquated is to outmoded": "Near-synonyms of equal strength; no intensification.",
+      "grueling is to spent": "Cause and effect: a grueling task leaves a person spent."
+    }
+  },
+  {
+    "id": "SVA18A-02",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "degree",
+    "prompt": "[Analogy] chide is to berate as",
+    "choices": [
+      "rebuke is to reprimand",
+      "urge is to coerce",
+      "goad is to erupt",
+      "commend is to denounce",
+      "inquire is to reply"
+    ],
+    "correct_answer": "urge is to coerce",
+    "explanation": "Relation: A is a mild form and B a forceful form of the same action (scolding; pressuring). To chide is to scold mildly and to berate is to scold harshly; to urge is to press gently and to coerce is to press by force.",
+    "distractor_rationales": {
+      "rebuke is to reprimand": "Two verbs of roughly equal force for scolding; no mild-to-strong step.",
+      "goad is to erupt": "Cause and response: goading someone may make them erupt.",
+      "commend is to denounce": "Opposites (praise vs. condemn), not two strengths of one act.",
+      "inquire is to reply": "Sequence: an inquiry is followed by a reply."
+    }
+  },
+  {
+    "id": "SVA18A-03",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "degree",
+    "prompt": "[Analogy] esteem is to reverence as",
+    "choices": [
+      "animosity is to enmity",
+      "suspicion is to exultation",
+      "satisfaction is to rapture",
+      "insolence is to indignation",
+      "levity is to gravity"
+    ],
+    "correct_answer": "satisfaction is to rapture",
+    "explanation": "Relation: A is a moderate degree and B an intense degree of the same feeling. Esteem is respect and reverence is deep, awed respect; satisfaction is contentment and rapture is overwhelming delight.",
+    "distractor_rationales": {
+      "animosity is to enmity": "Near-synonyms of equal strength (hostility).",
+      "suspicion is to exultation": "Two unrelated feelings; not one feeling intensified.",
+      "insolence is to indignation": "Cause and effect: insolence provokes indignation.",
+      "levity is to gravity": "Opposites (lightness vs. seriousness)."
+    }
+  },
+  {
+    "id": "SVA18A-04",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "degree",
+    "prompt": "[Analogy] assertive is to domineering as",
+    "choices": [
+      "lanky is to gawky",
+      "subdued is to exuberant",
+      "thoughtful is to vindictive",
+      "selective is to finicky",
+      "sedentary is to flabby"
+    ],
+    "correct_answer": "selective is to finicky",
+    "explanation": "Relation: A is a reasonable degree of a trait and B an excessive degree of the same trait. An assertive person states views firmly, a domineering one overrides others; a selective person chooses carefully, a finicky one is excessively hard to please.",
+    "distractor_rationales": {
+      "lanky is to gawky": "Near-synonyms of equal degree.",
+      "subdued is to exuberant": "Opposites, not two degrees of one trait.",
+      "thoughtful is to vindictive": "Two unrelated traits.",
+      "sedentary is to flabby": "Cause and effect: a sedentary life can make one flabby."
+    }
+  },
+  {
+    "id": "SVA18A-05",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "degree",
+    "prompt": "[Analogy] graze is to wallop as",
+    "choices": [
+      "rescind is to revoke",
+      "chafe is to redden",
+      "mull is to holler",
+      "embark is to disembark",
+      "singe is to incinerate"
+    ],
+    "correct_answer": "singe is to incinerate",
+    "explanation": "Relation: A is a slight degree and B an extreme degree of the same action (striking; burning). To graze is to strike lightly and to wallop is to strike very hard; to singe is to burn slightly and to incinerate is to burn completely.",
+    "distractor_rationales": {
+      "rescind is to revoke": "Synonyms of equal force.",
+      "chafe is to redden": "Cause and effect: chafing makes skin redden.",
+      "mull is to holler": "Two unrelated actions (thinking vs. shouting).",
+      "embark is to disembark": "Opposite actions."
+    }
+  },
+  {
+    "id": "SVA18A-06",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "degree",
+    "prompt": "[Analogy] tiff is to vendetta as",
+    "choices": [
+      "smattering is to fluency",
+      "fracas is to melee",
+      "glint is to tempest",
+      "gaffe is to mortification",
+      "consensus is to dissent"
+    ],
+    "correct_answer": "smattering is to fluency",
+    "explanation": "Relation: A is a slight degree and B the fullest degree of the same thing (quarrel; command of a language). A tiff is a minor quarrel and a vendetta a prolonged, bitter feud; a smattering is a slight knowledge of a language and fluency full command of it.",
+    "distractor_rationales": {
+      "fracas is to melee": "Near-synonyms of equal degree (noisy brawls).",
+      "glint is to tempest": "Unrelated things; not one thing in two degrees.",
+      "gaffe is to mortification": "Cause and effect: a gaffe causes mortification.",
+      "consensus is to dissent": "Opposites (agreement vs. disagreement)."
+    }
+  },
+  {
+    "id": "SVA18A-07",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "degree",
+    "prompt": "[Analogy] glum is to despondent as",
+    "choices": [
+      "irate is to incensed",
+      "peeved is to livid",
+      "dubious is to euphoric",
+      "slighted is to vengeful",
+      "taciturn is to voluble"
+    ],
+    "correct_answer": "peeved is to livid",
+    "explanation": "Relation: A is a mild degree and B an extreme degree of the same mood. Glum is mildly gloomy and despondent utterly without hope; peeved is mildly annoyed and livid furiously angry.",
+    "distractor_rationales": {
+      "irate is to incensed": "Near-synonyms, both already very angry; no mild-to-extreme step.",
+      "dubious is to euphoric": "Two different states (doubt vs. elation).",
+      "slighted is to vengeful": "Cause and effect: feeling slighted can make one vengeful.",
+      "taciturn is to voluble": "Opposites (silent vs. talkative)."
+    }
+  },
+  {
+    "id": "SVA18A-08",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "degree",
+    "prompt": "[Analogy] sniffle is to bawl as",
+    "choices": [
+      "yearn is to crave",
+      "bicker is to rejoice",
+      "disappoint is to devastate",
+      "frighten is to flinch",
+      "exalt is to debase"
+    ],
+    "correct_answer": "disappoint is to devastate",
+    "explanation": "Relation: A is a mild form and B an extreme form of the same action. To sniffle is to cry quietly and to bawl is to cry loudly and hard; to disappoint is to let someone down mildly and to devastate is to crush them.",
+    "distractor_rationales": {
+      "yearn is to crave": "Near-synonyms of comparable intensity (strong longing).",
+      "bicker is to rejoice": "Two unrelated actions.",
+      "frighten is to flinch": "Cause and response: being frightened makes one flinch.",
+      "exalt is to debase": "Opposites (raise up vs. lower in esteem)."
+    }
+  },
+  {
+    "id": "SVA18A-09",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "lack",
+    "prompt": "[Analogy] artless is to guile as",
+    "choices": [
+      "ardent is to zest",
+      "harrowing is to distress",
+      "acquisitive is to property",
+      "insipid is to flavor",
+      "luminous is to radiance"
+    ],
+    "correct_answer": "insipid is to flavor",
+    "explanation": "Relation: something that is A is by definition without B. An artless person has no guile; insipid food has no flavor.",
+    "distractor_rationales": {
+      "ardent is to zest": "An ardent person is FULL of zest: possession, the reverse of lacking.",
+      "harrowing is to distress": "A harrowing event CAUSES distress in others; it does not lack it.",
+      "acquisitive is to property": "An acquisitive person is eager to GAIN property; desire, not absence.",
+      "luminous is to radiance": "Something luminous HAS radiance."
+    }
+  },
+  {
+    "id": "SVA18A-10",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "lack",
+    "prompt": "[Analogy] callow is to maturity as",
+    "choices": [
+      "precocious is to aptitude",
+      "galling is to exasperation",
+      "avid is to novelty",
+      "celebrated is to acclaim",
+      "insolvent is to funds"
+    ],
+    "correct_answer": "insolvent is to funds",
+    "explanation": "Relation: someone who is A is by definition without B. A callow youth lacks maturity; an insolvent business lacks the funds to pay its debts.",
+    "distractor_rationales": {
+      "precocious is to aptitude": "A precocious child shows aptitude early: possession, not absence.",
+      "galling is to exasperation": "Something galling CAUSES exasperation.",
+      "avid is to novelty": "An avid person is eager FOR something; desire, not absence.",
+      "celebrated is to acclaim": "A celebrated figure RECEIVES acclaim."
+    }
+  },
+  {
+    "id": "SVA18A-11",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "lack",
+    "prompt": "[Analogy] amorphous is to form as",
+    "choices": [
+      "inert is to motion",
+      "symmetrical is to proportion",
+      "deafening is to hearing",
+      "redundant is to repetition",
+      "tangible is to touch"
+    ],
+    "correct_answer": "inert is to motion",
+    "explanation": "Relation: something that is A is by definition without B. Amorphous means without definite form; inert means without motion or activity.",
+    "distractor_rationales": {
+      "symmetrical is to proportion": "Something symmetrical HAS balanced proportion.",
+      "deafening is to hearing": "A deafening noise DESTROYS others’ hearing; it is not itself without hearing.",
+      "redundant is to repetition": "Something redundant is characterized BY needless repetition.",
+      "tangible is to touch": "Something tangible CAN be perceived by touch: capability, not absence."
+    }
+  },
+  {
+    "id": "SVA18A-12",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "lack",
+    "prompt": "[Analogy] tactless is to discretion as",
+    "choices": [
+      "jovial is to mirth",
+      "intrepid is to fright",
+      "unnerving is to anxiety",
+      "daring is to audacity",
+      "credible is to belief"
+    ],
+    "correct_answer": "intrepid is to fright",
+    "explanation": "Relation: someone who is A is by definition without B. A tactless person lacks discretion; an intrepid person feels no fright.",
+    "distractor_rationales": {
+      "jovial is to mirth": "A jovial person is FULL of mirth.",
+      "unnerving is to anxiety": "Something unnerving CAUSES anxiety.",
+      "daring is to audacity": "A daring person HAS audacity; possession, though on the same courage axis as the key.",
+      "credible is to belief": "Something credible DESERVES belief."
+    }
+  },
+  {
+    "id": "SVA18A-13",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "lack",
+    "prompt": "[Analogy] unscrupulous is to principles as",
+    "choices": [
+      "dignified is to poise",
+      "edifying is to enlightenment",
+      "uncouth is to refinement",
+      "covetous is to belongings",
+      "taxing is to stamina"
+    ],
+    "correct_answer": "uncouth is to refinement",
+    "explanation": "Relation: someone who is A is by definition without B. An unscrupulous person has no moral principles; an uncouth person has no refinement.",
+    "distractor_rationales": {
+      "dignified is to poise": "A dignified person HAS poise.",
+      "edifying is to enlightenment": "Something edifying GIVES enlightenment.",
+      "covetous is to belongings": "A covetous person DESIRES others’ belongings.",
+      "taxing is to stamina": "A taxing task DEMANDS stamina."
+    }
+  },
+  {
+    "id": "SVA18A-14",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "lack",
+    "prompt": "[Analogy] unkempt is to grooming as",
+    "choices": [
+      "substantiated is to proof",
+      "contentious is to dispute",
+      "speculative is to conjecture",
+      "groundless is to basis",
+      "nutritious is to sustenance"
+    ],
+    "correct_answer": "groundless is to basis",
+    "explanation": "Relation: something that is A is by definition without B. Unkempt hair has had no grooming; a groundless accusation has no basis.",
+    "distractor_rationales": {
+      "substantiated is to proof": "A substantiated claim HAS proof, the reverse of the key.",
+      "contentious is to dispute": "A contentious issue PROVOKES dispute.",
+      "speculative is to conjecture": "A speculative idea CONSISTS of conjecture; it is made of it, not without it.",
+      "nutritious is to sustenance": "Nutritious food PROVIDES sustenance."
+    }
+  },
+  {
+    "id": "SVA18A-15",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "lack",
+    "prompt": "[Analogy] pallid is to color as",
+    "choices": [
+      "empathetic is to understanding",
+      "deplorable is to disapproval",
+      "vulnerable is to exploitation",
+      "intimate is to familiarity",
+      "callous is to sympathy"
+    ],
+    "correct_answer": "callous is to sympathy",
+    "explanation": "Relation: someone or something that is A is by definition without B. A pallid face lacks color; a callous person lacks sympathy.",
+    "distractor_rationales": {
+      "empathetic is to understanding": "An empathetic person HAS understanding of others.",
+      "deplorable is to disapproval": "Something deplorable DESERVES disapproval.",
+      "vulnerable is to exploitation": "Someone vulnerable is OPEN to exploitation.",
+      "intimate is to familiarity": "An intimate relationship HAS familiarity."
+    }
+  },
+  {
+    "id": "SVA18A-16",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "lack",
+    "prompt": "[Analogy] dispirited is to morale as",
+    "choices": [
+      "unwitting is to awareness",
+      "perceptive is to insight",
+      "perplexing is to bafflement",
+      "studious is to scholarship",
+      "premeditated is to intent"
+    ],
+    "correct_answer": "unwitting is to awareness",
+    "explanation": "Relation: someone who is A is by definition without B. A dispirited team has lost its morale; an unwitting accomplice acts without awareness.",
+    "distractor_rationales": {
+      "perceptive is to insight": "A perceptive person HAS insight.",
+      "perplexing is to bafflement": "Something perplexing CAUSES bafflement.",
+      "studious is to scholarship": "A studious person is DEVOTED to scholarship.",
+      "premeditated is to intent": "A premeditated act is done WITH prior intent, the reverse of the key."
+    }
+  },
+  {
+    "id": "SVA18A-17",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "person_trait",
+    "prompt": "[Analogy] curmudgeon is to grouchy as",
+    "choices": [
+      "follower is to charismatic",
+      "busybody is to meddlesome",
+      "bully is to defenseless",
+      "worrywart is to carefree",
+      "pioneer is to uncharted"
+    ],
+    "correct_answer": "busybody is to meddlesome",
+    "explanation": "Relation: a person called A is characteristically B. A curmudgeon is by nature grouchy; a busybody is by nature meddlesome.",
+    "distractor_rationales": {
+      "follower is to charismatic": "A follower is drawn to a charismatic LEADER; the adjective describes someone else.",
+      "bully is to defenseless": "A bully preys on defenseless VICTIMS; the adjective describes the target.",
+      "worrywart is to carefree": "A worrywart is the OPPOSITE of carefree.",
+      "pioneer is to uncharted": "A pioneer explores uncharted TERRITORY; the adjective describes the place."
+    }
+  },
+  {
+    "id": "SVA18A-18",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "person_trait",
+    "prompt": "[Analogy] stoic is to impassive as",
+    "choices": [
+      "underdog is to favored",
+      "mentor is to unproven",
+      "maverick is to independent",
+      "scapegoat is to blameworthy",
+      "fugitive is to captured"
+    ],
+    "correct_answer": "maverick is to independent",
+    "explanation": "Relation: a person called A is characteristically B. A stoic is by nature impassive; a maverick is by nature independent.",
+    "distractor_rationales": {
+      "underdog is to favored": "An underdog is precisely NOT favored.",
+      "mentor is to unproven": "A mentor guides someone unproven; the adjective describes the PROTEGE.",
+      "scapegoat is to blameworthy": "A scapegoat is blamed but is characteristically NOT blameworthy.",
+      "fugitive is to captured": "A fugitive is by definition NOT captured."
+    }
+  },
+  {
+    "id": "SVA18A-19",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "person_trait",
+    "prompt": "[Analogy] renegade is to disloyal as",
+    "choices": [
+      "loner is to convivial",
+      "censor is to obscene",
+      "arbiter is to contested",
+      "snob is to condescending",
+      "detractor is to laudatory"
+    ],
+    "correct_answer": "snob is to condescending",
+    "explanation": "Relation: a person called A is characteristically B. A renegade is by nature disloyal; a snob is by nature condescending.",
+    "distractor_rationales": {
+      "loner is to convivial": "A loner is the OPPOSITE of convivial.",
+      "censor is to obscene": "A censor suppresses obscene MATERIAL; the adjective describes the target.",
+      "arbiter is to contested": "An arbiter settles contested MATTERS; the adjective describes what is judged.",
+      "detractor is to laudatory": "A detractor is the OPPOSITE of laudatory."
+    }
+  },
+  {
+    "id": "SVA18A-20",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "person_trait",
+    "prompt": "[Analogy] fatalist is to passive as",
+    "choices": [
+      "hothead is to unflappable",
+      "therapist is to distraught",
+      "usurper is to rightful",
+      "archivist is to historical",
+      "perfectionist is to exacting"
+    ],
+    "correct_answer": "perfectionist is to exacting",
+    "explanation": "Relation: a person called A is characteristically B. A fatalist is by outlook passive before events; a perfectionist is by nature exacting.",
+    "distractor_rationales": {
+      "hothead is to unflappable": "A hothead is the OPPOSITE of unflappable.",
+      "therapist is to distraught": "A therapist treats distraught CLIENTS; the adjective describes them.",
+      "usurper is to rightful": "A usurper is precisely NOT the rightful ruler.",
+      "archivist is to historical": "An archivist keeps historical RECORDS; the adjective describes the material."
+    }
+  },
+  {
+    "id": "SVA18A-21",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "person_trait",
+    "prompt": "[Analogy] introvert is to reticent as",
+    "choices": [
+      "pushover is to compliant",
+      "malcontent is to gratified",
+      "insider is to uninformed",
+      "rescuer is to stranded",
+      "arsonist is to flammable"
+    ],
+    "correct_answer": "pushover is to compliant",
+    "explanation": "Relation: a person called A is characteristically B. An introvert is by nature reticent; a pushover is by nature compliant.",
+    "distractor_rationales": {
+      "malcontent is to gratified": "A malcontent is the OPPOSITE of gratified.",
+      "insider is to uninformed": "An insider is the OPPOSITE of uninformed.",
+      "rescuer is to stranded": "A rescuer saves stranded PEOPLE; the adjective describes them.",
+      "arsonist is to flammable": "An arsonist sets flammable THINGS alight; the adjective describes the material."
+    }
+  },
+  {
+    "id": "SVA18A-22",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "person_trait",
+    "prompt": "[Analogy] visionary is to farsighted as",
+    "choices": [
+      "swindler is to unwary",
+      "dupe is to unsuspecting",
+      "dynamo is to indolent",
+      "benefactor is to indebted",
+      "celebrity is to anonymous"
+    ],
+    "correct_answer": "dupe is to unsuspecting",
+    "explanation": "Relation: a person called A is characteristically B. A visionary is by nature farsighted; a dupe is by nature unsuspecting.",
+    "distractor_rationales": {
+      "swindler is to unwary": "A swindler preys on unwary VICTIMS; the adjective describes the target, not the swindler.",
+      "dynamo is to indolent": "A dynamo is the OPPOSITE of indolent.",
+      "benefactor is to indebted": "A benefactor leaves RECIPIENTS indebted.",
+      "celebrity is to anonymous": "A celebrity is the OPPOSITE of anonymous."
+    }
+  },
+  {
+    "id": "SVA18A-23",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "person_trait",
+    "prompt": "[Analogy] extrovert is to outgoing as",
+    "choices": [
+      "altruist is to mercenary",
+      "reformer is to corrupt",
+      "egotist is to conceited",
+      "appraiser is to antique",
+      "neophyte is to seasoned"
+    ],
+    "correct_answer": "egotist is to conceited",
+    "explanation": "Relation: a person called A is characteristically B. An extrovert is by nature outgoing; an egotist is by nature conceited.",
+    "distractor_rationales": {
+      "altruist is to mercenary": "An altruist is the OPPOSITE of mercenary.",
+      "reformer is to corrupt": "A reformer targets corrupt INSTITUTIONS; the adjective describes them.",
+      "appraiser is to antique": "An appraiser values antique OBJECTS; the adjective describes the goods.",
+      "neophyte is to seasoned": "A neophyte is the OPPOSITE of seasoned."
+    }
+  },
+  {
+    "id": "SVA18A-24",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "person_trait",
+    "prompt": "[Analogy] partisan is to biased as",
+    "choices": [
+      "centrist is to extreme",
+      "propagandist is to impressionable",
+      "mediator is to estranged",
+      "purist is to unbending",
+      "heretic is to orthodox"
+    ],
+    "correct_answer": "purist is to unbending",
+    "explanation": "Relation: a person called A is characteristically B. A partisan is by nature biased; a purist is by nature unbending about standards.",
+    "distractor_rationales": {
+      "centrist is to extreme": "A centrist is the OPPOSITE of extreme.",
+      "propagandist is to impressionable": "A propagandist targets impressionable AUDIENCES.",
+      "mediator is to estranged": "A mediator reconciles estranged PARTIES.",
+      "heretic is to orthodox": "A heretic is the OPPOSITE of orthodox."
+    }
+  },
+  {
+    "id": "SVA18A-25",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "person_trait",
+    "prompt": "[Analogy] connoisseur is to discerning as",
+    "choices": [
+      "daydreamer is to grounded",
+      "pickpocket is to inattentive",
+      "warden is to incarcerated",
+      "trailblazer is to imitative",
+      "skinflint is to tightfisted"
+    ],
+    "correct_answer": "skinflint is to tightfisted",
+    "explanation": "Relation: a person called A is characteristically B. A connoisseur is by nature discerning; a skinflint is by nature tightfisted.",
+    "distractor_rationales": {
+      "daydreamer is to grounded": "A daydreamer is the OPPOSITE of grounded.",
+      "pickpocket is to inattentive": "A pickpocket preys on inattentive VICTIMS; the adjective describes the target.",
+      "warden is to incarcerated": "A warden oversees incarcerated PRISONERS; the adjective describes them.",
+      "trailblazer is to imitative": "A trailblazer is the OPPOSITE of imitative."
+    }
+  },
+  {
+    "id": "SVA18A-26",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "manner",
+    "prompt": "[Analogy] lope is to run as",
+    "choices": [
+      "smirk is to smile",
+      "clench is to slacken",
+      "bend is to straighten",
+      "hire is to oust",
+      "beckon is to approach"
+    ],
+    "correct_answer": "smirk is to smile",
+    "explanation": "Relation: to A is to B in a particular manner. To lope is to run with long, easy strides; to smirk is to smile in a smug manner.",
+    "distractor_rationales": {
+      "clench is to slacken": "Opposite actions (tighten vs. loosen a grip).",
+      "bend is to straighten": "Opposite movements.",
+      "hire is to oust": "Opposite actions (take on vs. remove).",
+      "beckon is to approach": "Cause and response: beckoning someone makes them approach."
+    }
+  },
+  {
+    "id": "SVA18A-27",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "manner",
+    "prompt": "[Analogy] pilfer is to steal as",
+    "choices": [
+      "foretell is to prophesy",
+      "hurl is to throw",
+      "hunt is to catch",
+      "bury is to exhume",
+      "evict is to vacate"
+    ],
+    "correct_answer": "hurl is to throw",
+    "explanation": "Relation: to A is to B in a particular manner. To pilfer is to steal in small amounts; to hurl is to throw with great force.",
+    "distractor_rationales": {
+      "foretell is to prophesy": "Synonyms; neither is a particular way of doing the other.",
+      "hunt is to catch": "Purpose and result: one hunts in order to catch.",
+      "bury is to exhume": "Opposite actions.",
+      "evict is to vacate": "Cause and effect: evicting a tenant forces them to vacate."
+    }
+  },
+  {
+    "id": "SVA18A-28",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "manner",
+    "prompt": "[Analogy] gobble is to eat as",
+    "choices": [
+      "coil is to lunge",
+      "sadden is to sigh",
+      "glower is to look",
+      "inhale is to exhale",
+      "incubate is to hatch"
+    ],
+    "correct_answer": "glower is to look",
+    "explanation": "Relation: to A is to B in a particular manner. To gobble is to eat quickly and greedily; to glower is to look angrily.",
+    "distractor_rationales": {
+      "coil is to lunge": "Sequence: a snake coils, then lunges.",
+      "sadden is to sigh": "Cause and response: being saddened makes one sigh.",
+      "inhale is to exhale": "Opposite actions.",
+      "incubate is to hatch": "Sequence: eggs are incubated, then hatch."
+    }
+  },
+  {
+    "id": "SVA18A-29",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "manner",
+    "prompt": "[Analogy] sob is to cry as",
+    "choices": [
+      "hug is to embrace",
+      "kneel is to arise",
+      "bestow is to receive",
+      "jostle is to push",
+      "plead is to relent"
+    ],
+    "correct_answer": "jostle is to push",
+    "explanation": "Relation: to A is to B in a particular manner. To sob is to cry with convulsive gasps; to jostle is to push roughly against others.",
+    "distractor_rationales": {
+      "hug is to embrace": "Synonyms; neither is a particular way of doing the other.",
+      "kneel is to arise": "Opposite movements.",
+      "bestow is to receive": "Reciprocal actions by two different parties.",
+      "plead is to relent": "Cause and response: pleading may make someone relent."
+    }
+  },
+  {
+    "id": "SVA18A-30",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "manner",
+    "prompt": "[Analogy] snicker is to laugh as",
+    "choices": [
+      "totter is to topple",
+      "lull is to doze",
+      "widen is to narrow",
+      "apply is to enroll",
+      "slouch is to stand"
+    ],
+    "correct_answer": "slouch is to stand",
+    "explanation": "Relation: to A is to B in a particular manner. To snicker is to laugh in a sly, half-suppressed way; to slouch is to stand with a drooping posture.",
+    "distractor_rationales": {
+      "totter is to topple": "Sequence: what totters may then topple.",
+      "lull is to doze": "Cause and effect: being lulled makes one doze.",
+      "widen is to narrow": "Opposite actions.",
+      "apply is to enroll": "Sequence: one applies and then enrolls."
+    }
+  },
+  {
+    "id": "SVA18A-31",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "manner",
+    "prompt": "[Analogy] quaff is to drink as",
+    "choices": [
+      "drawl is to speak",
+      "nap is to snooze",
+      "binge is to bloat",
+      "affirm is to negate",
+      "nominate is to elect"
+    ],
+    "correct_answer": "drawl is to speak",
+    "explanation": "Relation: to A is to B in a particular manner. To quaff is to drink heartily; to drawl is to speak slowly with drawn-out vowels.",
+    "distractor_rationales": {
+      "nap is to snooze": "Synonyms.",
+      "binge is to bloat": "Cause and effect: bingeing leaves one bloated.",
+      "affirm is to negate": "Opposite actions.",
+      "nominate is to elect": "Sequence: a candidate is nominated, then elected."
+    }
+  },
+  {
+    "id": "SVA18A-32",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "manner",
+    "prompt": "[Analogy] cower is to crouch as",
+    "choices": [
+      "seize is to release",
+      "yank is to pull",
+      "mock is to retort",
+      "emerge is to submerge",
+      "sign is to ratify"
+    ],
+    "correct_answer": "yank is to pull",
+    "explanation": "Relation: to A is to B in a particular manner. To cower is to crouch in fear; to yank is to pull suddenly and hard.",
+    "distractor_rationales": {
+      "seize is to release": "Opposite actions.",
+      "mock is to retort": "Cause and response: being mocked prompts a retort.",
+      "emerge is to submerge": "Opposite actions.",
+      "sign is to ratify": "Sequence: a treaty is signed, then ratified."
+    }
+  },
+  {
+    "id": "SVA18A-33",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "manner",
+    "prompt": "[Analogy] stomp is to tread as",
+    "choices": [
+      "prohibit is to ban",
+      "entice is to succumb",
+      "swat is to strike",
+      "hoist is to lower",
+      "stalk is to pounce"
+    ],
+    "correct_answer": "swat is to strike",
+    "explanation": "Relation: to A is to B in a particular manner. To stomp is to tread heavily; to swat is to strike with a quick, flat blow.",
+    "distractor_rationales": {
+      "prohibit is to ban": "Synonyms.",
+      "entice is to succumb": "Cause and response: being enticed may make one succumb.",
+      "hoist is to lower": "Opposite actions.",
+      "stalk is to pounce": "Sequence: a predator stalks, then pounces."
+    }
+  },
+  {
+    "id": "SVA18A-34",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "manner",
+    "prompt": "[Analogy] clutch is to grasp as",
+    "choices": [
+      "vex is to rile",
+      "jolt is to awaken",
+      "dismantle is to reassemble",
+      "jab is to poke",
+      "enlist is to deploy"
+    ],
+    "correct_answer": "jab is to poke",
+    "explanation": "Relation: to A is to B in a particular manner. To clutch is to grasp tightly and eagerly; to jab is to poke quickly and sharply.",
+    "distractor_rationales": {
+      "vex is to rile": "Synonyms.",
+      "jolt is to awaken": "Cause and effect: a jolt may awaken a sleeper.",
+      "dismantle is to reassemble": "Opposite actions.",
+      "enlist is to deploy": "Sequence: a soldier enlists, then is deployed."
+    }
+  },
+  {
+    "id": "SVA18A-35",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "rejecter",
+    "prompt": "[Analogy] pacifist is to combat as",
+    "choices": [
+      "insomniac is to slumber",
+      "hedonist is to pleasure",
+      "hypochondriac is to disease",
+      "exile is to homeland",
+      "teetotaler is to liquor"
+    ],
+    "correct_answer": "teetotaler is to liquor",
+    "explanation": "Relation: a person who is A rejects or avoids B on principle. A pacifist refuses combat on principle; a teetotaler refuses liquor on principle.",
+    "distractor_rationales": {
+      "insomniac is to slumber": "An insomniac LACKS slumber against his will; not a principled refusal.",
+      "hedonist is to pleasure": "A hedonist SEEKS pleasure, the reverse of rejecting it.",
+      "hypochondriac is to disease": "A hypochondriac FEARS and imagines disease; anxiety, not principle.",
+      "exile is to homeland": "An exile is BANISHED from a homeland by others, not by choice."
+    }
+  },
+  {
+    "id": "SVA18A-36",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "rejecter",
+    "prompt": "[Analogy] vegetarian is to meat as",
+    "choices": [
+      "isolationist is to alliances",
+      "gourmet is to cuisine",
+      "vagrant is to lodging",
+      "castaway is to civilization",
+      "collector is to memorabilia"
+    ],
+    "correct_answer": "isolationist is to alliances",
+    "explanation": "Relation: a person who is A rejects or avoids B on principle. A vegetarian refuses meat on principle; an isolationist refuses foreign alliances on principle.",
+    "distractor_rationales": {
+      "gourmet is to cuisine": "A gourmet SAVORS fine cuisine.",
+      "vagrant is to lodging": "A vagrant LACKS lodging; circumstance, not principle.",
+      "castaway is to civilization": "A castaway is CUT OFF from civilization by accident.",
+      "collector is to memorabilia": "A collector ACCUMULATES memorabilia."
+    }
+  },
+  {
+    "id": "SVA18A-37",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "rejecter",
+    "prompt": "[Analogy] ascetic is to luxury as",
+    "choices": [
+      "socialite is to gala",
+      "abolitionist is to slavery",
+      "widower is to wife",
+      "loyalist is to regime",
+      "victim is to extortion"
+    ],
+    "correct_answer": "abolitionist is to slavery",
+    "explanation": "Relation: a person who is A rejects or opposes B on principle. An ascetic renounces luxury on principle; an abolitionist rejects slavery on principle.",
+    "distractor_rationales": {
+      "socialite is to gala": "A socialite FREQUENTS galas.",
+      "widower is to wife": "A widower has LOST his wife; loss, not rejection.",
+      "loyalist is to regime": "A loyalist SUPPORTS a regime.",
+      "victim is to extortion": "A victim SUFFERS extortion."
+    }
+  },
+  {
+    "id": "SVA18A-38",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "rejecter",
+    "prompt": "[Analogy] minimalist is to clutter as",
+    "choices": [
+      "hobbyist is to pastime",
+      "polluter is to contamination",
+      "vegan is to dairy",
+      "addict is to narcotics",
+      "squatter is to premises"
+    ],
+    "correct_answer": "vegan is to dairy",
+    "explanation": "Relation: a person who is A rejects or avoids B on principle. A minimalist rejects clutter on principle; a vegan refuses dairy on principle.",
+    "distractor_rationales": {
+      "hobbyist is to pastime": "A hobbyist PURSUES a pastime.",
+      "polluter is to contamination": "A polluter CAUSES contamination.",
+      "addict is to narcotics": "An addict DEPENDS on narcotics, the reverse of avoiding them.",
+      "squatter is to premises": "A squatter OCCUPIES premises without right."
+    }
+  },
+  {
+    "id": "SVA18A-39",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "rejecter",
+    "prompt": "[Analogy] puritan is to frivolity as",
+    "choices": [
+      "worshiper is to idol",
+      "captive is to autonomy",
+      "vandal is to graffiti",
+      "atheist is to deity",
+      "heir is to estate"
+    ],
+    "correct_answer": "atheist is to deity",
+    "explanation": "Relation: a person who is A rejects B on principle. A puritan rejects frivolity on principle; an atheist rejects belief in any deity on principle.",
+    "distractor_rationales": {
+      "worshiper is to idol": "A worshiper ADORES an idol, the reverse of rejecting it.",
+      "captive is to autonomy": "A captive LACKS autonomy by force, not by principle.",
+      "vandal is to graffiti": "A vandal PRODUCES graffiti.",
+      "heir is to estate": "An heir RECEIVES an estate."
+    }
+  },
+  {
+    "id": "SVA18A-40",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "rejecter",
+    "prompt": "[Analogy] anarchist is to hierarchy as",
+    "choices": [
+      "careerist is to promotion",
+      "layman is to credentials",
+      "firebrand is to unrest",
+      "motorist is to congestion",
+      "freethinker is to dogma"
+    ],
+    "correct_answer": "freethinker is to dogma",
+    "explanation": "Relation: a person who is A rejects B on principle. An anarchist rejects hierarchy on principle; a freethinker rejects dogma on principle.",
+    "distractor_rationales": {
+      "careerist is to promotion": "A careerist SEEKS promotion.",
+      "layman is to credentials": "A layman LACKS professional credentials; not a principled refusal.",
+      "firebrand is to unrest": "A firebrand STIRS UP unrest.",
+      "motorist is to congestion": "A motorist ENDURES congestion."
+    }
+  },
+  {
+    "id": "SVA18A-41",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "rejecter",
+    "prompt": "[Analogy] objector is to conscription as",
+    "choices": [
+      "egalitarian is to privilege",
+      "speculator is to windfall",
+      "debtor is to solvency",
+      "instigator is to strife",
+      "martyr is to persecution"
+    ],
+    "correct_answer": "egalitarian is to privilege",
+    "explanation": "Relation: a person who is A rejects B on principle. A conscientious objector refuses conscription on principle; an egalitarian rejects special privilege on principle.",
+    "distractor_rationales": {
+      "speculator is to windfall": "A speculator HOPES FOR a windfall.",
+      "debtor is to solvency": "A debtor LACKS solvency; circumstance, not principle.",
+      "instigator is to strife": "An instigator STARTS strife.",
+      "martyr is to persecution": "A martyr SUFFERS persecution; the principle is the martyr’s cause, not a rejection of persecution."
+    }
+  },
+  {
+    "id": "SVA18A-42",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "rejecter",
+    "prompt": "[Analogy] iconoclast is to tradition as",
+    "choices": [
+      "preservationist is to landmarks",
+      "rationalist is to superstition",
+      "outsider is to membership",
+      "folklorist is to legends",
+      "laureate is to prize"
+    ],
+    "correct_answer": "rationalist is to superstition",
+    "explanation": "Relation: a person who is A rejects B on principle. An iconoclast attacks cherished tradition on principle; a rationalist rejects superstition on principle.",
+    "distractor_rationales": {
+      "preservationist is to landmarks": "A preservationist PROTECTS landmarks, the reverse of rejecting them.",
+      "outsider is to membership": "An outsider LACKS membership; not a principled refusal.",
+      "folklorist is to legends": "A folklorist STUDIES legends.",
+      "laureate is to prize": "A laureate RECEIVES a prize."
+    }
+  },
+  {
+    "id": "SVA18A-43",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "sham",
+    "prompt": "[Analogy] pretext is to reason as",
+    "choices": [
+      "paraphrase is to quotation",
+      "symptom is to malady",
+      "alias is to name",
+      "prototype is to product",
+      "motive is to crime"
+    ],
+    "correct_answer": "alias is to name",
+    "explanation": "Relation: A is a false form of B, put forward in place of the real one. A pretext is a false reason given to hide the real one; an alias is a false name used to hide the real one.",
+    "distractor_rationales": {
+      "paraphrase is to quotation": "A paraphrase is an honest RESTATEMENT of a quotation, not a false one.",
+      "symptom is to malady": "A symptom is a SIGN of a malady.",
+      "prototype is to product": "A prototype is an EARLY genuine version of a product.",
+      "motive is to crime": "A motive is the REAL reason behind a crime."
+    }
+  },
+  {
+    "id": "SVA18A-44",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "sham",
+    "prompt": "[Analogy] bravado is to nerve as",
+    "choices": [
+      "fortitude is to adversity",
+      "gallantry is to chivalry",
+      "onslaught is to assault",
+      "feint is to attack",
+      "retaliation is to aggression"
+    ],
+    "correct_answer": "feint is to attack",
+    "explanation": "Relation: A is a pretended show of B, not the real thing. Bravado is a showy pretense of nerve; a feint is a pretended attack meant to mislead.",
+    "distractor_rationales": {
+      "fortitude is to adversity": "Fortitude is genuine strength IN THE FACE OF adversity.",
+      "gallantry is to chivalry": "Near-synonyms; both genuine.",
+      "onslaught is to assault": "An onslaught is an especially FIERCE assault: degree, not pretense.",
+      "retaliation is to aggression": "Retaliation is a RESPONSE to aggression."
+    }
+  },
+  {
+    "id": "SVA18A-45",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "sham",
+    "prompt": "[Analogy] quackery is to healing as",
+    "choices": [
+      "cruelty is to compassion",
+      "concern is to paranoia",
+      "rehabilitation is to sobriety",
+      "decency is to propriety",
+      "hypocrisy is to morality"
+    ],
+    "correct_answer": "hypocrisy is to morality",
+    "explanation": "Relation: A is a false, pretended form of B. Quackery is fraudulent healing; hypocrisy is a pretense of morality one does not have.",
+    "distractor_rationales": {
+      "cruelty is to compassion": "Cruelty is the ABSENCE or opposite of compassion, not a pretense of it.",
+      "concern is to paranoia": "Paranoia is an EXTREME degree of concern.",
+      "rehabilitation is to sobriety": "Rehabilitation AIMS at sobriety.",
+      "decency is to propriety": "Near-synonyms; both genuine."
+    }
+  },
+  {
+    "id": "SVA18A-46",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "sham",
+    "prompt": "[Analogy] veneer is to sophistication as",
+    "choices": [
+      "lip service is to commitment",
+      "oath is to fidelity",
+      "lapse is to attention",
+      "inclination is to compulsion",
+      "nuance is to distinction"
+    ],
+    "correct_answer": "lip service is to commitment",
+    "explanation": "Relation: A is a merely outward, insincere show of B. A veneer of sophistication is a thin surface show of it; lip service is an insincere show of commitment.",
+    "distractor_rationales": {
+      "oath is to fidelity": "An oath is a sincere PLEDGE of fidelity.",
+      "lapse is to attention": "A lapse is a momentary FAILURE of attention.",
+      "inclination is to compulsion": "A compulsion is an irresistibly STRONG inclination: degree.",
+      "nuance is to distinction": "A nuance is a SUBTLE distinction: degree."
+    }
+  },
+  {
+    "id": "SVA18A-47",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "sham",
+    "prompt": "[Analogy] travesty is to justice as",
+    "choices": [
+      "overdose is to dosage",
+      "placebo is to medication",
+      "anthem is to patriotism",
+      "subsidy is to enterprise",
+      "embargo is to commerce"
+    ],
+    "correct_answer": "placebo is to medication",
+    "explanation": "Relation: A is a false or imitation form of B that lacks its real substance. A travesty of justice is a false mockery of it; a placebo is an imitation medication with no active ingredient.",
+    "distractor_rationales": {
+      "overdose is to dosage": "An overdose is an EXCESSIVE dosage: degree.",
+      "anthem is to patriotism": "An anthem EXPRESSES patriotism.",
+      "subsidy is to enterprise": "A subsidy SUPPORTS an enterprise.",
+      "embargo is to commerce": "An embargo BLOCKS commerce."
+    }
+  },
+  {
+    "id": "SVA18A-48",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "sham",
+    "prompt": "[Analogy] tokenism is to integration as",
+    "choices": [
+      "deputy is to official",
+      "successor is to predecessor",
+      "figurehead is to leader",
+      "understudy is to lead",
+      "proxy is to shareholder"
+    ],
+    "correct_answer": "figurehead is to leader",
+    "explanation": "Relation: A is a merely nominal form of B, having its name but not its substance. Tokenism is integration in name only; a figurehead is a leader in name only, without real power.",
+    "distractor_rationales": {
+      "deputy is to official": "A deputy is a genuine SUBORDINATE of an official.",
+      "successor is to predecessor": "A successor FOLLOWS a predecessor.",
+      "understudy is to lead": "An understudy is a real STAND-IN for a lead actor.",
+      "proxy is to shareholder": "A proxy genuinely ACTS FOR a shareholder with real authority."
+    }
+  },
+  {
+    "id": "SVA18A-49",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "sham",
+    "prompt": "[Analogy] mirage is to oasis as",
+    "choices": [
+      "pride is to hubris",
+      "experiment is to hypothesis",
+      "etiquette is to decorum",
+      "pseudoscience is to science",
+      "ambivalence is to resolve"
+    ],
+    "correct_answer": "pseudoscience is to science",
+    "explanation": "Relation: A is a false appearance of B. A mirage is a false appearance of an oasis; pseudoscience is a false appearance of science.",
+    "distractor_rationales": {
+      "pride is to hubris": "Hubris is EXCESSIVE pride: degree.",
+      "experiment is to hypothesis": "An experiment TESTS a hypothesis.",
+      "etiquette is to decorum": "Etiquette is the set of RULES of decorum; both genuine.",
+      "ambivalence is to resolve": "Ambivalence is the ABSENCE of resolve."
+    }
+  },
+  {
+    "id": "SVA18A-50",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "analogy",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "relation_family": "sham",
+    "prompt": "[Analogy] glib is to articulate as",
+    "choices": [
+      "plucky is to foolhardy",
+      "lucid is to intelligible",
+      "graceless is to suave",
+      "victorious is to jubilant",
+      "sanctimonious is to righteous"
+    ],
+    "correct_answer": "sanctimonious is to righteous",
+    "explanation": "Relation: someone who is A makes an insincere, superficial show of being B. A glib speaker seems articulate but is shallow and insincere; a sanctimonious person makes a hypocritical show of being righteous.",
+    "distractor_rationales": {
+      "plucky is to foolhardy": "Foolhardy is an EXCESSIVE degree of plucky.",
+      "lucid is to intelligible": "Near-synonyms; both genuine.",
+      "graceless is to suave": "Opposites.",
+      "victorious is to jubilant": "Cause and effect: being victorious makes one jubilant."
+    }
+  }
+]

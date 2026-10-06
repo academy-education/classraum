@@ -14,6 +14,8 @@
  *   score  <outdir> --iso <f>... [--grp <f>...] [--ws <f>...] [--cv <f>...] [--nat <f>...] [--nat3 <f>...]
  *   (pilot 3: build --natlive <natlive.json> writes the relative-naturalness file; score --nat3 applies
  *    SSAT-READING-WV3-PREREGISTERED.md bar E: pooled candidate median >= pooled live median)
+ *   (pilot 4: verify applies SSAT-READING-WV4-PREREGISTERED.md rules to passage ids WV4- and later:
+ *    question mix, no absent-entity options, kill quotes on target, attitude word never named)
  *   null   <outdir> --iso <f>...     exact null of the pooled iso candidate hits over all 5^P draws,
  *                                    picks held fixed (reported, not a bar).
  *
@@ -37,6 +39,20 @@ const words = s => String(s).trim().split(/\s+/).filter(Boolean).length
 const norm = s => String(s).toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[—–]/g, '-').replace(/\s+/g, ' ').trim()
 const STOP = new Set('the a an of to in on and or for with by at from as that this which who whom whose was were is are be been his her their its it he she they them him one what how why when chiefly most best passage author writer narrator'.split(' '))
 const content = s => norm(s).replace(/[^a-z' ]/g, ' ').split(' ').filter(w => w.length > 3 && !STOP.has(w))
+
+// ── pilot 4 rules (SSAT-READING-WV4-PREREGISTERED.md), applied to passage_ids WV4- and later ──
+const isV4 = id => /^WV(?:[4-9]|\d{2,})-/.test(String(id))
+const GENERIC = new Set('show shows describe describes explain explains illustrate illustrates introduce introduces suggest suggests reveal reveals emphasize emphasizes contrast compare provide provides offer offers present presents recount recounts recall recalls account example give gives point reader readers establish establishes indicate indicates highlight highlights note notes stress stresses primarily serves serve mainly concerned where more into than there then been have would could about after before over some only also what other such each every very much made make makes take took became become becomes most many under upon them once just even still'.split(' '))
+const stemW = w => w.replace(/'s$/, '').replace(/'/g, '')
+const stemEq = (a, b) => { const n = Math.min(5, a.length, b.length); return n >= 4 && a.slice(0, n) === b.slice(0, n) }
+const cw4 = s => [...new Set(content(s).map(stemW).filter(w => w.length > 3 && !STOP.has(w) && !GENERIC.has(w)))]
+// distinctive words of choice j: content words NOT present in every other choice of the question
+export function distinctive(choices, j) {
+  const others = choices.filter((_, i) => i !== j).map(cw4)
+  return cw4(choices[j]).filter(w => !others.every(o => o.some(x => stemEq(x, w))))
+}
+const present = (w, textWords) => textWords.some(t => stemEq(t, w))
+export const V4_MIX = { 'vocabulary-in-context': [1, 1], attitude: [1, 1], detail: [0, 1], 'main-idea': [0, 1], inference: [2, 6], purpose: [1, 6] }
 
 export function kOf(frozenSha, pid) {
   return parseInt(sha(`${SEED}|${frozenSha}|${pid}`).slice(0, 8), 16) % 5
@@ -63,7 +79,16 @@ function verify(files, { quiet = false } = {}) {
     })
     if (p.questions.length !== 6) problems.push(`${id}: ${p.questions.length} questions (need 6)`)
     const kinds = p.questions.map(q => q.kind).sort().join(',')
-    if (kinds !== [...KINDS].sort().join(',')) problems.push(`${id}: kinds ${kinds} (need one each of ${KINDS.join(', ')})`)
+    if (!isV4(id)) { if (kinds !== [...KINDS].sort().join(',')) problems.push(`${id}: kinds ${kinds} (need one each of ${KINDS.join(', ')})`) }
+    else {
+      // pilot 4 mix: weighted to inference/purpose/tone/vocab; at most one detail and one main-idea
+      for (const q of p.questions) if (!KINDS.includes(q.kind)) problems.push(`${id}/${q.qid}: kind ${q.kind} not one of ${KINDS.join(', ')}`)
+      for (const [k, [lo, hi]] of Object.entries(V4_MIX)) {
+        const n = p.questions.filter(q => q.kind === k).length
+        if (n < lo || n > hi) problems.push(`${id}: ${n} ${k} question(s) (pilot 4 mix needs ${lo}-${hi})`)
+      }
+    }
+    let v4absent = 0, v4attn = 0
     let named = 0, nk = 0, lexHits = 0, lexN = 0
     for (const q of p.questions) {
       const tag = `${id}/${q.qid}`
@@ -91,6 +116,29 @@ function verify(files, { quiet = false } = {}) {
           if (!T.includes(norm(kill.quote))) problems.push(`${tag} v${k}: kill quote for choice ${j} not verbatim in version ${k}`)
           nk++; if (kill.kind === 'mention') named++
         }
+        if (isV4(id)) {
+          const Tw4 = [...new Set(content(p.versions[k].text).map(stemW))]
+          if (q.kind === 'attitude') {
+            // the passage must not NAME the attitude: the head (last distinctive) word of every choice is absent from every version
+            q.choices.forEach((c, j) => {
+              const d = distinctive(q.choices, j), head = d[d.length - 1]
+              if (!head) { if (k === 0) problems.push(`${tag}: attitude choice ${j} has no distinctive word`); return }
+              if (present(head, Tw4)) { v4attn++; problems.push(`${tag} v${k}: attitude word "${head}" (choice ${j}) appears in the passage; the reader must infer the attitude`) }
+            })
+          } else if (q.kind !== 'vocabulary-in-context') {
+            // no absent-entity options: every choice (key included) is about something THIS version discusses
+            q.choices.forEach((c, j) => {
+              const d = distinctive(q.choices, j)
+              if (!d.length) return
+              const hit = d.filter(w => present(w, Tw4)), need = Math.ceil(d.length / 2)
+              if (hit.length < need) { v4absent++; problems.push(`${tag} v${k}: choice ${j} is ABSENT from this version (distinctive words present ${hit.length}/${d.length}, need ${need}; missing ${d.filter(w => !hit.includes(w)).join(',')})`) }
+              if (j !== k) {
+                const kq = s.kills?.[String(j)]?.quote
+                if (kq) { const qw = [...new Set(content(kq).map(stemW))]; if (!d.some(w => present(w, qw))) problems.push(`${tag} v${k}: kill quote for choice ${j} shares no distinctive word with it (${d.join(',')}); quote where the passage discusses it`) }
+              }
+            })
+          }
+        }
         // lexical word-match solver (reported): choice with most content words present in the version
         if (q.kind !== 'vocabulary-in-context') {
           const Tw = new Set(content(p.versions[k].text))
@@ -108,7 +156,7 @@ function verify(files, { quiet = false } = {}) {
         if (own.length) problems.push(`${id}: stem of ${o.qid} contains "${own.join(',')}", unique to one choice of ${q.qid}`)
       }
     }
-    notes.push(`${id}: words ${vl.join('/')}; negations per version ${negs.join('/')}; kills naming the rival ${named}/${nk}; lexical word-match solver ${lexHits.toFixed(1)}/${lexN} (20% = ${(lexN / 5).toFixed(1)})`)
+    notes.push(`${id}: words ${vl.join('/')}; negations per version ${negs.join('/')}; kills naming the rival ${named}/${nk}; lexical word-match solver ${lexHits.toFixed(1)}/${lexN} (20% = ${(lexN / 5).toFixed(1)})${isV4(id) ? `; v4 absent-option hits ${v4absent}, named-attitude hits ${v4attn}` : ''}`)
   }
   if (!quiet) notes.forEach(n => console.log('  ' + n))
   if (problems.length) { problems.forEach(x => console.log('  PROBLEM ' + x)); die(`${problems.length} mechanical problem(s)`) }
