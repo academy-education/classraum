@@ -1,0 +1,104 @@
+[
+  {
+    "id": "SEC14A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a postposed subject under locative inversion, crossed with past-tense consistency",
+    "difficulty": "hard",
+    "passage": "The excavators who opened the cathedral's foundation vault in 1911 expected to find nothing but rubble. Beneath the single cracked slab at the center of the floor ______, folded into a scrap of parchment that still bore part of a bishop's wax seal, two silver pennies of a type that no catalog then listed, and their discovery forced numismatists to push the town's minting history back by more than a century.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was tucked",
+      "were tucked",
+      "is tucked",
+      "are tucked"
+    ],
+    "correct_answer": "were tucked",
+    "explanation": "The sentence is inverted: the fronted phrase \"Beneath the single cracked slab at the center of the floor\" is followed by the verb, and the subject comes only after the participial phrase \"folded into a scrap of parchment that still bore part of a bishop's wax seal.\" That subject is \"two silver pennies,\" which is plural, and the passage narrates a past event (\"opened ... in 1911,\" \"expected,\" \"forced\"), so the verb must be plural and past: \"were tucked.\" \"was tucked\" is past tense but singular; it agrees with nearby singular nouns such as \"slab,\" \"floor,\" or \"parchment,\" none of which is the subject. \"is tucked\" is both singular and present tense. \"are tucked\" is plural but present tense, which breaks the past-tense narration of the 1911 discovery.",
+    "topic_tag": "numismatics: coin hoard dating"
+  },
+  {
+    "id": "SEC14A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "structure: finite main verb needed after a long subject that contains its own relative-clause verb, crossed with agreement across intervening plural nouns",
+    "difficulty": "hard",
+    "passage": "The practice of illustrating every sense of a headword with dated quotations that the editors of the earliest historical dictionaries copied by hand from printed sources ______ a means of watching a single meaning narrow, widen, or even reverse across several centuries of use.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "giving readers",
+      "to give readers",
+      "have given readers",
+      "has given readers"
+    ],
+    "correct_answer": "has given readers",
+    "explanation": "The subject of the sentence is \"The practice of illustrating every sense of a headword with dated quotations ...\"; the verb \"copied\" belongs to the relative clause \"that the editors ... copied by hand from printed sources\" and cannot serve as the sentence's main verb. The blank must therefore supply a finite main verb that agrees with the singular head noun \"practice\": \"has given readers.\" \"giving readers\" is a participle, so the sentence would have no main verb and would be a fragment. \"to give readers\" is an infinitive and leaves the same fragment. \"have given readers\" is finite but plural; it agrees with nearby plural nouns such as \"sources,\" \"editors,\" or \"quotations,\" not with the singular subject \"practice.\"",
+    "topic_tag": "lexicography: historical dictionaries"
+  },
+  {
+    "id": "SEC14A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon introducing an appositive noun-phrase series (whose items contain relative clauses) after an independent clause; semicolon, period, and added relative fail",
+    "difficulty": "hard",
+    "passage": "Rudolf Laban's movement notation, published in 1928, does not draw the dancer at all. Instead, each symbol on its vertical staff encodes four separate pieces of ______ direction in which a limb travels, the level at which it moves, the part of the body that performs it, and the length of time the motion lasts.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "information: the",
+      "information; the",
+      "information. The",
+      "information, which the"
+    ],
+    "correct_answer": "information: the",
+    "explanation": "The first part, \"each symbol on its vertical staff encodes four separate pieces of information,\" is an independent clause. What follows is not a clause but a series of four noun phrases that specifies those pieces; the verbs \"travels,\" \"moves,\" \"performs,\" and \"lasts\" sit inside relative clauses that modify \"direction,\" \"level,\" \"part,\" and \"length,\" so the series has no main verb of its own. A colon correctly introduces such an elaboration: \"information: the.\" \"information; the\" is wrong because a semicolon must be followed by an independent clause, and the series is not one. \"information. The\" makes the series a sentence of its own, a fragment with no main verb. \"information, which the\" opens a relative clause, but nothing after \"which\" supplies that clause with a verb, so the sentence becomes ungrammatical.",
+    "topic_tag": "dance notation"
+  },
+  {
+    "id": "SEC14A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark between the degree phrase \"so high a multiple\" and its delayed that-clause complement; comma, colon, and added \"so\" fail",
+    "difficulty": "hard",
+    "passage": "Merchants who crossed the desert with caravans in the fourteenth century did not regard rock salt as a cheap commodity. In the markets of Timbuktu, a slab cut at the mines of Taghaza often sold for so high a multiple of the price it had first fetched at the ______ a caravan of a few hundred camels could clear a trader's debts for several years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "mine, that",
+      "mine: that",
+      "mine that",
+      "mine, so that"
+    ],
+    "correct_answer": "mine that",
+    "explanation": "The phrase \"so high a multiple of the price it had first fetched at the mine\" begins a \"so ... that\" construction, and the that-clause \"that a caravan of a few hundred camels could clear a trader's debts for several years\" is the required complement of \"so.\" No punctuation separates \"so\" and its that-clause, however much material intervenes, so \"mine that\" is correct. \"mine, that\" inserts a comma that cuts the complement off from the \"so\" it completes. \"mine: that\" uses a colon, which must follow an independent clause and introduce an elaboration; here it would separate \"so\" from its own complement and leave \"that a caravan ... could clear a trader's debts\" as a detached noun clause. \"mine, so that\" turns the clause into a purpose or result clause introduced by \"so that,\" leaving the earlier \"so high a multiple\" with no complement.",
+    "topic_tag": "economic history: trans-Saharan salt trade"
+  },
+  {
+    "id": "SEC14A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: period between independent clauses where the second clause's subject is a free relative opening with \"whatever\"; comma, no mark, and added \"that\" fail",
+    "difficulty": "hard",
+    "passage": "In a gaslit theater of the 1860s, every change of light was made by hand. A technician seated at the gas table beside the stage turned one of dozens of brass valves whenever the prompter called a ______ he wrote in the margins of his own copy of the script, if anything, has seldom survived, and historians reconstruct most lighting plots from newspaper reviews.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "cue, whatever",
+      "cue whatever",
+      "cue, that whatever",
+      "cue. Whatever"
+    ],
+    "correct_answer": "cue. Whatever",
+    "explanation": "\"Whatever he wrote in the margins of his own copy of the script\" is not a concessive phrase attached to the previous clause; it is the subject of the verb \"has seldom survived.\" The text therefore contains two independent clauses: \"A technician ... turned one of dozens of brass valves whenever the prompter called a cue\" and \"Whatever he wrote ... has seldom survived, and historians reconstruct ...\" A period correctly separates them: \"cue. Whatever.\" \"cue, whatever\" joins the two independent clauses with only a comma, a comma splice. \"cue whatever\" joins them with no punctuation at all, a run-on sentence. \"cue, that whatever\" adds the subordinator \"that,\" but nothing in the first clause can take a that-clause, so the clause beginning \"that whatever he wrote\" attaches to nothing and the sentence is ungrammatical.",
+    "topic_tag": "theater lighting history"
+  },
+  {
+    "id": "SEC14A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries + form: participle needed to attach a verbless continuation as a modifier; period, and added subordinators \"although\" and \"whereupon\" fail",
+    "difficulty": "hard",
+    "passage": "The housing cooperatives that garment workers' unions built during the 1920s were financed largely by their own members, each family buying a share in the building instead of paying rent to a landlord. After the stock market crash, many members lost their jobs, and unpaid monthly charges ______ boards of many of the cooperatives facing a choice between evicting neighbors and defaulting on the building's mortgage.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "accumulated rapidly. The",
+      "accumulated rapidly, leaving the",
+      "accumulated rapidly, although the",
+      "accumulated rapidly, whereupon the"
+    ],
+    "correct_answer": "accumulated rapidly, leaving the",
+    "explanation": "After \"unpaid monthly charges accumulated rapidly,\" the remaining words, \"the boards of many of the cooperatives facing a choice between evicting neighbors and defaulting on the building's mortgage,\" contain no finite verb: \"facing\" is a participle. That material can attach to the sentence only if something turns it into a modifier, and the participle \"leaving\" does so: \"accumulated rapidly, leaving the\" boards facing a choice. \"accumulated rapidly. The\" makes \"The boards ... facing a choice ...\" a separate sentence, which is a fragment because it has no main verb. \"accumulated rapidly, although the\" introduces a dependent clause with \"although,\" but the clause has no finite verb, so it is incomplete. \"accumulated rapidly, whereupon the\" fails the same way: \"whereupon\" requires a clause, and \"the boards ... facing a choice\" is not one.",
+    "topic_tag": "history of cooperative housing"
+  }
+]

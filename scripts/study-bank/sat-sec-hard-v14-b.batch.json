@@ -1,0 +1,104 @@
+[
+  {
+    "id": "SEC14B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "subject-verb agreement with a whether-clause subject ending in plural nouns, crossed with present perfect required by a since-phrase",
+    "difficulty": "hard",
+    "passage": "Truffles fruit underground, so unlike most mushrooms they cannot release their spores into the wind; the animals that smell them out and eat them must do the dispersing. Whether those spores survive the trip through the guts of the voles and flying squirrels that dig up truffles ______ mycologists who study the genus divided since the first feeding trials of the 1980s, because spores recovered from droppings germinate readily in some laboratories and refuse to in others.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have kept",
+      "were keeping",
+      "has kept",
+      "was keeping"
+    ],
+    "correct_answer": "has kept",
+    "explanation": "The subject of the verb is the entire noun clause \"Whether those spores survive the trip through the guts of the voles and flying squirrels that dig up truffles.\" A clause used as a subject is singular, even though the plural nouns \"squirrels\" and \"truffles\" sit just before the blank. The phrase \"since the first feeding trials of the 1980s\" describes a state that began in the past and continues now, which requires the present perfect. \"has kept\" is singular and present perfect, so it is correct. \"have kept\" is present perfect but plural; it agrees with \"truffles,\" which is inside the clause, not with the clausal subject. \"were keeping\" is plural and past progressive; a past progressive cannot express a state continuing from a point marked by \"since.\" \"was keeping\" is singular, but it is past progressive and fails with \"since\" for the same reason.",
+    "topic_tag": "mycology"
+  },
+  {
+    "id": "SEC14B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "relative pronoun case (whom as object of considered) despite an interposed subject-verb that suggests who, crossed with simple past required by a completed period",
+    "difficulty": "hard",
+    "passage": "Survey maps of the cave drawn in the 1870s show a deep chamber that no one is known to have entered again until the 1960s. The chamber is now named for their author, a village schoolteacher ______ too careless a mapmaker to have reached it at all, until a 1998 expedition found his initials scratched into its far wall.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "whom later cavers long considered",
+      "who later cavers have long considered",
+      "whom later cavers have long considered",
+      "who later cavers long considered"
+    ],
+    "correct_answer": "whom later cavers long considered",
+    "explanation": "In the relative clause, \"later cavers\" is the subject and \"considered\" is the verb; the pronoun is the object of \"considered\" (later cavers considered him too careless a mapmaker). Nothing after the blank supplies a finite verb that needs the pronoun as its subject: \"too careless a mapmaker to have reached it\" is a complement with an infinitive. So the objective \"whom\" is required. The phrase \"until a 1998 expedition found\" marks the opinion as having ended in the past, so the simple past \"considered\" is required. \"whom later cavers long considered\" is correct. \"who later cavers have long considered\" uses the subjective \"who\" for an object and uses the present perfect for an opinion that the sentence says ended in 1998. \"whom later cavers have long considered\" has the right case but the present perfect conflicts with \"until a 1998 expedition found.\" \"who later cavers long considered\" has the right tense but uses the subjective \"who\" where the pronoun is the object of \"considered.\"",
+    "topic_tag": "speleology"
+  },
+  {
+    "id": "SEC14B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "dangling modifier: a fronted participial phrase must be followed by the noun it modifies; a possessive or an active-voice subject leaves it dangling",
+    "difficulty": "hard",
+    "passage": "Lichens are usually identified by color and growth form, but both can mislead, as one specimen collected in the 1930s shows. Bleached nearly white by decades of sun on an exposed granite outcrop, ______ for a different species entirely until a chemical spot test revealed usnic acid in its outer layer.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the lichen's first collector had long mistaken it",
+      "a visiting botanist long mistook the lichen",
+      "the collector of the lichen long mistook it",
+      "the lichen was long mistaken by its collector"
+    ],
+    "correct_answer": "the lichen was long mistaken by its collector",
+    "explanation": "The introductory phrase \"Bleached nearly white by decades of sun on an exposed granite outcrop\" describes the lichen, so the subject of the main clause, which comes right after the comma, must be the lichen. \"the lichen was long mistaken by its collector\" makes \"the lichen\" the subject, so the modifier attaches correctly. \"the lichen's first collector had long mistaken it\" begins with a possessive, but the subject is \"collector,\" so the sentence says the collector was bleached by decades of sun. \"a visiting botanist long mistook the lichen\" makes \"a visiting botanist\" the subject, so the botanist is the thing bleached on the outcrop. \"the collector of the lichen long mistook it\" makes \"the collector\" the subject; \"of the lichen\" only modifies that noun, so the modifier still dangles.",
+    "topic_tag": "lichenology"
+  },
+  {
+    "id": "SEC14B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "semicolon between independent clauses when the second opens with a short introductory adverbial; comma splice and a relative pronoun with no gap",
+    "difficulty": "hard",
+    "passage": "Ozone and nitrogen dioxide react to form nitrate radicals around the clock, but sunlight breaks the radicals apart within seconds, so in daytime air they are all but ______ concentration of these molecules over a polluted city climbs by orders of magnitude, and they go on to oxidize much of the pollution that daytime chemistry leaves behind.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "undetectable, after sunset the",
+      "undetectable; after sunset, the",
+      "undetectable after sunset, the",
+      "undetectable, which the"
+    ],
+    "correct_answer": "undetectable; after sunset, the",
+    "explanation": "The text before the blank is an independent clause ending in \"in daytime air they are all but undetectable.\" The text after it is also independent: \"after sunset\" is a short introductory phrase, \"the concentration of these molecules over a polluted city\" is the subject, and \"climbs\" is the verb. Two independent clauses with no conjunction need a semicolon, and the introductory phrase in the second clause is set off by a comma, so \"undetectable; after sunset, the\" is correct. \"undetectable, after sunset the\" joins the two independent clauses with only a comma, a comma splice; the comma makes \"after sunset\" look like the start of a dependent element, but nothing in the second clause subordinates it. \"undetectable after sunset, the\" attaches \"after sunset\" to the first clause and then joins the two independent clauses with a comma, again a comma splice. \"undetectable, which the\" introduces a relative clause, but the clause that follows (\"the concentration ... climbs\") is complete and leaves no place for \"which\" to fill, so the result is ungrammatical.",
+    "topic_tag": "atmospheric chemistry"
+  },
+  {
+    "id": "SEC14B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "comma after an introductory dependent clause whose verb could take the main clause's subject as its object (garden path); period and coordinator leave no main clause",
+    "difficulty": "hard",
+    "passage": "Growing a single large crystal is mostly a matter of patience. While a saturated solution slowly ______ suspended in it on a fine thread grows by adding layer after layer of molecules to its faces, and the slower the cooling, the fewer the flaws those layers contain.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "cools, a seed crystal",
+      "cools a seed crystal",
+      "cools. Then a seed crystal",
+      "cools, and a seed crystal"
+    ],
+    "correct_answer": "cools, a seed crystal",
+    "explanation": "\"While a saturated solution slowly cools\" is an introductory dependent clause, and the main clause is \"a seed crystal suspended in it on a fine thread grows by adding layer after layer of molecules.\" A comma must separate the two, so \"cools, a seed crystal\" is correct. \"cools a seed crystal\" omits the comma; because \"cools\" can take an object, the reader takes \"a seed crystal suspended in it on a fine thread\" as what the solution cools, and \"grows\" is then left without a subject. \"cools. Then a seed crystal\" ends a sentence after \"While a saturated solution slowly cools,\" which is a dependent clause and cannot stand alone. \"cools, and a seed crystal\" uses \"and\" to join the main clause to the dependent clause, which makes the main clause part of the \"While\" clause and leaves the sentence with no main clause at all.",
+    "topic_tag": "crystallography"
+  },
+  {
+    "id": "SEC14B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "relative pronoun whose needed to attach a clause inside an appositive that the main verb follows; comma, semicolon and period each leave the subject or the clause stranded",
+    "difficulty": "hard",
+    "passage": "The ocean's most abundant photosynthetic organism went unnoticed until 1988. Prochlorococcus, a cyanobacterium ______ cells measure less than a micrometer across and slip through the filters once used to collect plankton, accounts for a substantial share of the oxygen produced in the open ocean.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "cyanobacterium;",
+      "cyanobacterium.",
+      "cyanobacterium whose",
+      "cyanobacterium,"
+    ],
+    "correct_answer": "cyanobacterium whose",
+    "explanation": "The subject of the sentence is \"Prochlorococcus,\" and its verb is \"accounts\"; \"a cyanobacterium ...\" is an appositive between them, closed by the comma after \"plankton.\" The words \"cells measure less than a micrometer across and slip through the filters once used to collect plankton\" form a clause with its own subject and verbs, so it can sit inside the appositive only if a relative word attaches it to \"cyanobacterium.\" \"cyanobacterium whose\" does this, so it is correct. \"cyanobacterium;\" leaves \"Prochlorococcus, a cyanobacterium\" before the semicolon with no verb, and the part after it, ending in \"accounts for a substantial share,\" has two verbs for one subject; both sides fail. \"cyanobacterium.\" leaves the same fragment as a sentence. \"cyanobacterium,\" closes the appositive and then runs the independent clause \"cells measure ... plankton\" into the sentence with no connecting word, leaving \"accounts\" without a grammatical subject.",
+    "topic_tag": "marine microbiology"
+  }
+]
