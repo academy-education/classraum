@@ -28,7 +28,7 @@ export const NOTIFICATION_TYPES = [
   // --- cross-cutting (2) ---
   'system',
   'level_test',
-  // --- study domain (12) — mirrors StudyNotificationKind in lib/study/notify.ts ---
+  // --- study domain (14) — mirrors StudyNotificationKind in lib/study/notify.ts ---
   'study_league_promoted',
   'study_league_demoted',
   'study_weekly_recap',
@@ -42,6 +42,7 @@ export const NOTIFICATION_TYPES = [
   'study_payment_failed',
   'study_subscription_expired',
   'study_payment_receipt',
+  'study_credits_refunded',
 ] as const
 
 export type NotificationType = (typeof NOTIFICATION_TYPES)[number]

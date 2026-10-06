@@ -4931,6 +4931,12 @@
         "paymentReceipt": {
           "title": "결제 완료",
           "message": "{item} {amount} 결제가 완료됐어요. 영수증은 결제 내역에서 볼 수 있어요."
+        },
+        "creditsRefunded": {
+          "title": "크레딧 {count}개를 돌려드렸어요",
+          "titleOne": "크레딧 1개를 돌려드렸어요",
+          "message": "{test} 시험에 사용하신 크레딧을 계정으로 돌려드렸어요. 불편을 드려 죄송합니다.",
+          "messageReason": "{test} 시험에 사용하신 크레딧을 계정으로 돌려드렸어요. {reason} 불편을 드려 죄송합니다."
         }
       }
     }

@@ -4931,6 +4931,12 @@
         "paymentReceipt": {
           "title": "Payment received",
           "message": "{amount} for {item}. Your receipt is in Billing history."
+        },
+        "creditsRefunded": {
+          "title": "{count} credits returned to your account",
+          "titleOne": "1 credit returned to your account",
+          "message": "We've returned the credits you used on {test}. We're sorry for the trouble.",
+          "messageReason": "We've returned the credits you used on {test}. {reason} We're sorry for the trouble."
         }
       }
     }

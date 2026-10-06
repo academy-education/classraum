@@ -107,6 +107,14 @@ export const STUDY_NOTIFICATION_COPY = {
   study_payment_receipt: {
     default: { titleKey: `${NS}.paymentReceipt.title`, messageKey: `${NS}.paymentReceipt.message` },
   },
+  // {count} credits for {test}; withReason adds the admin's student-facing
+  // sentence. `one` variants exist because English needs "1 credit".
+  study_credits_refunded: {
+    default: { titleKey: `${NS}.creditsRefunded.title`, messageKey: `${NS}.creditsRefunded.message` },
+    withReason: { titleKey: `${NS}.creditsRefunded.title`, messageKey: `${NS}.creditsRefunded.messageReason` },
+    one: { titleKey: `${NS}.creditsRefunded.titleOne`, messageKey: `${NS}.creditsRefunded.message` },
+    oneWithReason: { titleKey: `${NS}.creditsRefunded.titleOne`, messageKey: `${NS}.creditsRefunded.messageReason` },
+  },
 } as const satisfies Record<StudyNotificationKind, Record<string, StudyCopy>>
 
 export type StudyCopyRegistry = typeof STUDY_NOTIFICATION_COPY

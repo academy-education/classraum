@@ -1,6 +1,8 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import { refundTestCredits, type RefundResult } from '@/lib/study/credits'
 import { raiseAlert } from '@/lib/ops/alert'
+import { notifyCreditRefund, type RefundNoticeOutcome } from '@/lib/study/credit-refund-notify'
+import type { RefundNoticeReason } from '@/lib/study/credit-refund-notice'
 
 /**
  * Operator refund of ONE test session's credits.
@@ -29,6 +31,11 @@ import { raiseAlert } from '@/lib/ops/alert'
  *     admin_activity_logs row is written by the route.
  *   - A refunded, unfinished session is ARCHIVED so the refund cannot be
  *     followed by finishing the same test for free.
+ *   - The STUDENT IS TOLD (2026-10-06) when `notify` is set: one in-app
+ *     notice + email via notifyCreditRefund, exactly once per ledger row.
+ *     A batch caller passes notify:false per session and calls
+ *     notifyCreditRefund once with every session's refundLedgerIds, so six
+ *     sessions read as one "12 credits returned", not six messages.
  */
 
 /** Above the highest price ever charged (3), with margin. */
@@ -42,13 +49,19 @@ export interface SessionRefundInput {
   studentId?: string
   reason: string
   allowCompleted?: boolean
+  /** Notify the student about the credits THIS call returned. */
+  notify?: boolean
+  /** Student-facing sentence per language (the audit `reason` is internal). */
+  noticeReason?: RefundNoticeReason
 }
 
 export interface SessionRefundOutcome {
   status: number
   body: Record<string, unknown>
   /** Present when credits were examined — for the activity log. */
-  result?: RefundResult & { studentId: string; archived: boolean; labelled: boolean }
+  result?: RefundResult & { studentId: string; archived: boolean; labelled: boolean; refundLedgerIds: string[] }
+  /** Present when `notify` was set and credits were returned. */
+  notice?: RefundNoticeOutcome
 }
 
 type SessionRow = { id: string; student_id: string; status: string | null; mode: string | null; archived: boolean | null; config: unknown }
@@ -90,15 +103,23 @@ export async function refundSessionCredits(input: SessionRefundInput): Promise<S
   // Label the refund rows THIS call wrote. Only these: an earlier automatic
   // refund (assemble rollback, reaper) must not be relabelled as an admin's.
   let labelled = true
+  let refundLedgerIds: string[] = []
   if (r.refundedSources.length > 0) {
     const note = `admin refund by ${input.adminId}: ${input.reason}`.slice(0, 500)
-    const { error: noteErr } = await dbAdmin
+    const { data: labelledRows, error: noteErr } = await dbAdmin
       .from('study_credit_ledger')
       .update({ note })
       .eq('student_id', studentId)
       .eq('kind', 'refund')
       .in('source_id', r.refundedSources)
+      .select('id')
+    refundLedgerIds = ((labelledRows ?? []) as Array<{ id: string }>).map(x => x.id)
     if (noteErr) {
+      // The ids are still needed to notify; read them without the label.
+      const { data: idRows } = await dbAdmin
+        .from('study_credit_ledger').select('id')
+        .eq('student_id', studentId).eq('kind', 'refund').in('source_id', r.refundedSources)
+      refundLedgerIds = ((idRows ?? []) as Array<{ id: string }>).map(x => x.id)
       labelled = false
       await raiseAlert({
         severity: 'warning',
@@ -141,7 +162,14 @@ export async function refundSessionCredits(input: SessionRefundInput): Promise<S
     }
   }
 
-  const result = { ...r, studentId, archived, labelled }
+  // Never throws, and runs after the refund is final: a notification
+  // problem cannot undo or fail the refund.
+  let notice: RefundNoticeOutcome | undefined
+  if (input.notify && refundLedgerIds.length > 0) {
+    notice = await notifyCreditRefund(studentId, refundLedgerIds, input.noticeReason, { sessionIds: [input.sessionId] })
+  }
+
+  const result = { ...r, studentId, archived, labelled, refundLedgerIds }
   const summary = {
     sessionId: input.sessionId,
     studentId,
@@ -154,7 +182,7 @@ export async function refundSessionCredits(input: SessionRefundInput): Promise<S
   if (r.failed > 0) {
     // Some slices still debited. Safe to retry: the ones that went through
     // will read `already`.
-    return { status: 502, body: { ok: false, error: 'some credit slices could not be refunded — retry', ...summary }, result }
+    return { status: 502, body: { ok: false, error: 'some credit slices could not be refunded — retry', ...summary }, result, notice }
   }
-  return { status: 200, body: { ok: true, ...summary }, result }
+  return { status: 200, body: { ok: true, ...summary }, result, notice }
 }
