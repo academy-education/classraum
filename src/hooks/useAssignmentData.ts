@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { useStableCallback } from './useStableCallback'
 import { type AssignmentGradeStatus, isAssignmentGradeStatus } from '@/types/db-enums'
 
@@ -225,21 +226,22 @@ export function useAssignmentData(academyId: string, filterSessionId?: string) {
           students!inner(
             user_id,
             users!students_user_id_fkey(
-              name,
-              email
+              name
             )
           )
         `)
         .eq('assignment_id', assignmentId)
 
       if (error) throw error
+      // users.email is not selectable since migration 120.
+      const contacts = await fetchUserContacts(db, (data || []).map(g => g.student_id))
 
       return (data || []).map((item: Record<string, unknown>) => ({
         id: item.id,
         assignment_id: item.assignment_id,
         student_id: item.student_id,
         student_name: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name || 'Unknown Student',
-        student_email: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.email || '',
+        student_email: contacts.get(item.student_id as string)?.email || '',
         submitted_at: item.submitted_date,
         grade: item.score,
         feedback: item.feedback,

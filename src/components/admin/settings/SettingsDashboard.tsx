@@ -73,7 +73,7 @@ export function SettingsDashboard() {
 
       const { data: row, error: rowError } = await db
         .from('users')
-        .select('id, email, name, role, created_at')
+        .select('id, name, role, created_at')
         .eq('id', user.id)
         .single()
 
@@ -88,7 +88,9 @@ export function SettingsDashboard() {
 
       const p: AdminProfile = {
         id: row.id,
-        email: row.email,
+        // users.email is not selectable since migration 120; own address
+        // from the auth session.
+        email: user.email ?? '',
         name: row.name || '',
         role: row.role,
         createdAt: row.created_at,

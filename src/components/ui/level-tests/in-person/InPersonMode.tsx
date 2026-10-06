@@ -20,6 +20,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { showErrorToast } from '@/stores'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { authHeaders } from '../hooks/authHeaders'
 import { useAnalysisOptions } from '../hooks/useAnalysisOptions'
 import { AnalysisOptions } from '../components/AnalysisOptions'
@@ -87,9 +88,14 @@ export function InPersonMode({
   const loadStudents = useCallback(async () => {
     const { data } = await db
       .from('students')
-      .select('user_id, users(name, email)')
+      .select('user_id, users(name)')
       .eq('academy_id', academyId)
-    setStudents((data as unknown as Student[]) || [])
+    // users.email is not selectable since migration 120.
+    const contacts = await fetchUserContacts(db, (data || []).map(s => s.user_id))
+    setStudents((data || []).map(s => ({
+      user_id: s.user_id,
+      users: s.users ? { name: s.users.name, email: contacts.get(s.user_id)?.email ?? '' } : null,
+    })) as unknown as Student[])
   }, [academyId])
 
   // Handle open/close and resume

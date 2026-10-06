@@ -8,6 +8,7 @@ import { Eyebrow } from '@/components/ui/eyebrow'
 import { ErrorState } from '@/components/ui/common/ErrorState'
 import { ArrowLeft, BookOpen, Users, Clock } from 'lucide-react'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -747,7 +748,7 @@ export default function MobileReportDetailsPage() {
         .from('students')
         .select(`
           user_id,
-          users!students_user_id_fkey(name, email)
+          users!students_user_id_fkey(name)
         `)
         .eq('user_id', reportData.student_id)
         .single()
@@ -756,6 +757,11 @@ export default function MobileReportDetailsPage() {
         console.error('Error fetching student:', studentError)
       }
 
+      // users.email is not selectable since migration 120; app_user_contacts
+      // returns it for the student themself and academy staff (a parent
+      // viewer gets none, and the email line is hidden).
+      const studentEmail = (await fetchUserContacts(db, [reportData.student_id])).get(reportData.student_id)?.email
+
       // students.user_id is the PK of the embedded `users` row, so PostgREST
       // returns it as a single object (not an array).
       const studentUser = studentData?.users
@@ -763,7 +769,7 @@ export default function MobileReportDetailsPage() {
         id: reportData.id,
         student_id: reportData.student_id,
         student_name: studentUser?.name || String(t('mobile.fallbacks.unknownStudent')),
-        student_email: studentUser?.email || '',
+        student_email: studentEmail || '',
         report_name: reportData.report_name ?? undefined,
         start_date: reportData.start_date ?? undefined,
         end_date: reportData.end_date ?? undefined,

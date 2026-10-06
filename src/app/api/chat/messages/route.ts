@@ -6,7 +6,9 @@ import type { Database } from '@/lib/database.types'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-// Create a function to get an authenticated client for each request
+// Create a function to get an authenticated client for each request.
+// This is a USER-SESSION client (anon key + the caller's JWT): it cannot read
+// users.email / users.phone since migration 120, so never embed them here.
 function getAuthenticatedClient(token: string) {
   const client = createClient<Database>(supabaseUrl, supabaseAnonKey, {
     global: {
@@ -75,8 +77,7 @@ export async function GET(request: Request) {
         created_at,
         updated_at,
         users!sender_id (
-          name,
-          email
+          name
         )
       `)
       .eq('conversation_id', conversationId)
@@ -182,8 +183,7 @@ export async function POST(request: Request) {
         created_at,
         updated_at,
         users!sender_id (
-          name,
-          email
+          name
         )
       `)
       .single()

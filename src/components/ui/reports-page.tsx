@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import type { Database, Json } from '@/lib/database.types'
 
 /** student_reports.status is a real Postgres enum, so this union is exact. */
@@ -603,19 +604,21 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           active,
           users!inner(
             id,
-            name,
-            email
+            name
           )
         `)
         .eq('academy_id', academyId)
         .eq('active', true)
       
       if (error) throw error
+
+      // users.email is not selectable since migration 120.
+      const studentContacts = await fetchUserContacts(db, (data || []).map(s => s.user_id))
       
       const studentsData = data?.map((student: Record<string, unknown>) => ({
         user_id: student.user_id as string,
         name: ((student.users as Record<string, unknown>)?.name as string) || String(t('common.fallbacks.unknown')),
-        email: ((student.users as Record<string, unknown>)?.email as string) || '',
+        email: studentContacts.get(student.user_id as string)?.email || '',
         school_name: student.school_name as string
       })) || []
       
@@ -678,8 +681,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
             academy_id,
             school_name,
             users!inner(
-              name,
-              email
+              name
             )
           )
         `, { count: 'exact' })
@@ -698,11 +700,14 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
 
       if (error) throw error
 
+      // users.email is not selectable since migration 120.
+      const reportContacts = await fetchUserContacts(db, (data || []).map(r => r.student_id))
+
       const reportsData = data?.map((report: Record<string, unknown>) => ({
         id: report.id as string,
         student_id: report.student_id as string,
         student_name: ((report.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string || '',
-        student_email: ((report.students as Record<string, unknown>)?.users as Record<string, unknown>)?.email as string || '',
+        student_email: reportContacts.get(report.student_id as string)?.email || '',
         student_school: (report.students as Record<string, unknown>)?.school_name as string || '',
         report_name: report.report_name as string,
         start_date: report.start_date as string,

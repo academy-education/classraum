@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { toRecurrenceType, type RecurrenceType } from '@/components/ui/common/db-enums'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
@@ -126,8 +127,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
           school_name,
           users!inner(
             id,
-            name,
-            email
+            name
           )
         `)
         .eq('academy_id', academyId)
@@ -137,6 +137,9 @@ export function usePaymentsData(academyId: string, activeTab: string) {
         console.error('Supabase error:', error)
         throw error
       }
+
+      // users.email is not selectable since migration 120.
+      const studentContacts = await fetchUserContacts(db, (data || []).map(s => s.user_id))
 
       // Get family information for all students
       const studentUserIds = data?.map((s: any) => s.user_id) || []
@@ -183,7 +186,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
           name: student.users.name || 'Unknown Student',
           school_name: student.school_name,
           phone: student.phone,
-          email: student.users.email,
+          email: studentContacts.get(student.user_id)?.email ?? undefined,
           family_name: familyInfo.family_name,
           parent_names: familyInfo.parent_names
         }
@@ -350,8 +353,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
         .select(`
           user_id,
           users(
-            name,
-            email
+            name
           )
         `)
         .in('user_id', studentIds)
@@ -361,14 +363,17 @@ export function usePaymentsData(academyId: string, activeTab: string) {
         // Continue with unknown student data rather than failing completely
       }
 
+      // users.email is not selectable since migration 120.
+      const invoiceContacts = await fetchUserContacts(db, studentIds)
+
       // Create a map for quick student lookup
       const studentMap = new Map()
       if (studentsData) {
         studentsData.forEach((student: Record<string, unknown>) => {
-          const users = student.users as { name?: string; email?: string } | null
+          const users = student.users as { name?: string } | null
           studentMap.set(student.user_id, {
             name: users?.name || 'Unknown Student',
-            email: users?.email || 'Unknown Email'
+            email: invoiceContacts.get(student.user_id as string)?.email || 'Unknown Email'
           })
         })
       }
@@ -476,8 +481,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
             academy_id,
             users!inner(
               id,
-              name,
-              email
+              name
             )
           `)
           .in('user_id', studentIds)
@@ -512,6 +516,9 @@ export function usePaymentsData(academyId: string, activeTab: string) {
         return
       }
 
+      // users.email is not selectable since migration 120.
+      const recurringContacts = await fetchUserContacts(db, studentIds)
+
       // Create lookup maps for O(1) access
       const studentsMap = new Map(studentsResult.data?.map(s => [s.user_id, s]) || [])
       const templatesMap = new Map(templatesResult.data?.map(t => [t.id, t]) || [])
@@ -531,7 +538,7 @@ export function usePaymentsData(academyId: string, activeTab: string) {
           template_id: item.template_id,
           student_id: item.student_id,
           student_name: ((studentData.users as unknown as Record<string, unknown>)?.name as string) || 'Unknown Student',
-          student_email: ((studentData.users as unknown as Record<string, unknown>)?.email as string) || 'Unknown Email',
+          student_email: recurringContacts.get(item.student_id)?.email || 'Unknown Email',
           template_name: templateData.name || 'Template',
           template_amount: templateData.amount,
           // null amount_override means "no override" — fall through to the

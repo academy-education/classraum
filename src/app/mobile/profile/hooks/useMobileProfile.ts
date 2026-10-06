@@ -7,6 +7,7 @@ import {
   getProfileRefreshServerSnapshot,
 } from '@/lib/ui/profile-refresh'
 import { db } from '@/lib/supabase'
+import { fetchOwnContact, USER_PUBLIC_COLUMNS } from '@/lib/users/contacts'
 import type { Json } from '@/lib/database.types'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { buildNameUpdate, validateFamilyName, validateGivenName } from '@/lib/name'
@@ -242,17 +243,20 @@ export const useMobileProfile = (
     try {
 
       // Fetch profile and preferences in parallel
-      const [userDataResult, preferencesResult] = await Promise.all([
+      // email/phone are not selectable on users since migration 120; the
+      // caller's own come from app_user_contacts (third promise).
+      const [userDataResult, preferencesResult, ownContact] = await Promise.all([
         // `users` stays `.single()`: no row here means the caller handed
         // us an id that does not exist, which IS an error.
-        db.from('users').select('*').eq('id', userId).single(),
+        db.from('users').select(USER_PUBLIC_COLUMNS).eq('id', userId).single(),
         // `user_preferences` does not: 6 of 415 accounts have no row (the
         // column is only written when something is changed), and the
         // reader below already falls through to `defaultPreferences`.
         // Behaviourally identical — the guard is `data && !error` either
         // way — but it stops a PostgrestError sitting in the result for a
         // normal state, waiting for someone to log it.
-        db.from('user_preferences').select('*').eq('user_id', userId).maybeSingle()
+        db.from('user_preferences').select('*').eq('user_id', userId).maybeSingle(),
+        fetchOwnContact(db, userId),
       ])
 
       // Build profile data
@@ -271,12 +275,12 @@ export const useMobileProfile = (
           family_name: userData.family_name ?? null,
           given_name: userData.given_name ?? null,
           name_confirmed_at: userData.name_confirmed_at ?? null,
-          email: userData.email || '',
+          email: ownContact.email || '',
           role: userData.role,
           // users.phone is the base — study-only accounts have no role
           // table row, so this is their only phone home. Role tables
           // override below when they carry one.
-          phone: userData.phone || undefined
+          phone: ownContact.phone || undefined
         }
 
         /*

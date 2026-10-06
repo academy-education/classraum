@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { useStableCallback } from './useStableCallback'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
@@ -91,8 +92,7 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
           created_at,
           users!inner(
             id,
-            name,
-            email
+            name
           )
         `, { count: 'exact' })
         .eq('academy_id', academyId)
@@ -199,10 +199,13 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
         }
       }
 
+      // users.email is not selectable since migration 120.
+      const studentContacts = await fetchUserContacts(db, (data || []).map(s => s.user_id))
+
       const mappedStudents = data?.map((student: Record<string, unknown>) => ({
         user_id: student.user_id as string,
         name: ((student.users as Record<string, unknown>)?.name as string) || 'Unknown',
-        email: ((student.users as Record<string, unknown>)?.email as string) || '',
+        email: studentContacts.get(student.user_id as string)?.email || '',
         phone: student.phone as string,
         school_name: student.school_name as string,
         academy_id: student.academy_id as string,
@@ -357,7 +360,6 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
           role,
           users!inner(
             name,
-            email,
             role
           )
         `)
@@ -411,9 +413,13 @@ export function useStudentData(academyId: string, currentPage: number = 1, items
         })
       }
 
+      // users.email is not selectable since migration 120.
+      const memberContacts = await fetchUserContacts(db, memberIds)
+
       // Add phone data to members
       const enrichedMembers = linkedMembers.map(member => ({
         ...member,
+        users: { ...member.users, email: memberContacts.get(member.user_id)?.email ?? '' },
         // `undefined`, not null, to match the consumer's optional-field
         // convention — the phone is absent, not known-to-be-empty.
         phone: phoneMap[member.user_id] ?? undefined,

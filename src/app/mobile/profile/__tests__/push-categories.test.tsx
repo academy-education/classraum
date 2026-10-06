@@ -59,7 +59,7 @@ function table(name: string) {
 }
 
 jest.mock('@/lib/supabase', () => ({
-  db: { from: (t: string) => table(t) },
+  db: { from: (t: string) => table(t), rpc: () => Promise.resolve({ data: [], error: null }) },
   supabase: { auth: { signOut: jest.fn() } },
 }))
 

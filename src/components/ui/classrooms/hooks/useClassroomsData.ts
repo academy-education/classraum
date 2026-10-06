@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -363,8 +364,7 @@ export function useClassroomsData(academyId: string) {
           school_name,
           users!inner(
             id,
-            name,
-            email
+            name
           )
         `)
         .eq('academy_id', academyId)
@@ -375,6 +375,9 @@ export function useClassroomsData(academyId: string) {
         setStudents([])
         return
       }
+
+      // users.email is not selectable since migration 120.
+      const studentContacts = await fetchUserContacts(db, (data || []).map(s => s.user_id))
 
       // Get family information for all students
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -426,7 +429,7 @@ export function useClassroomsData(academyId: string) {
           user_id: student.user_id,
           school_name: student.school_name,
           phone: student.phone,
-          email: student.users.email,
+          email: studentContacts.get(student.user_id)?.email ?? undefined,
           family_name: familyInfo.family_name,
           parent_names: familyInfo.parent_names
         }

@@ -66,7 +66,7 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
 
         const { data: userInfo } = await db
           .from('users')
-          .select('*')
+          .select('role')
           .eq('id', session.user.id)
           .single()
 

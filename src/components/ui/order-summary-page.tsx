@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Check, ArrowLeft, Info, ExternalLink } from 'lucide-react'
 import { db } from '@/lib/supabase'
+import { fetchOwnContact } from '@/lib/users/contacts'
 import { isPlausiblePhone, normalizePhone } from '@/lib/auth/phone'
 import { useTranslation } from '@/hooks/useTranslation'
 import { getDateLocale } from '@/utils/dateUtils'
@@ -123,7 +124,7 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
 
         const { data: userData } = await db
           .from('users')
-          .select('name, email, role')
+          .select('name, role')
           .eq('id', user.id)
           .single()
 
@@ -164,16 +165,14 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         // trigger with phone NULL, and signup no longer asks for one.
         // Without this the field is blank for a user who has already
         // given us their number at a previous checkout.
-        const { data: userPhoneRow } = await db
-          .from('users')
-          .select('phone')
-          .eq('id', user.id)
-          .maybeSingle()
+        // email/phone are not selectable on users since migration 120;
+        // own contact via app_user_contacts.
+        const ownContact = await fetchOwnContact(db, user.id)
 
         setUserInfo({
           name: userData?.name || '',
-          email: userData?.email || '',
-          phone: roleData?.phone || userPhoneRow?.phone || '',
+          email: ownContact.email || '',
+          phone: roleData?.phone || ownContact.phone || '',
           address: academyData?.address || ''
         })
 

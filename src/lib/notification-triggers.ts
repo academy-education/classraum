@@ -1,4 +1,5 @@
 import { db as anonDb } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { createBulkNotifications, createNotification, sendPushNotification } from '@/lib/notifications'
 import type { NotificationType } from '@/lib/notification-types'
@@ -745,11 +746,16 @@ export async function triggerStudentReportCompletedNotifications(reportId: strin
 export async function triggerUserDeactivatedNotifications(userId: string) {
   try {
     // Get user details
-    const { data: user } = await anonDb
+    // email is not selectable on users since migration 120 — it comes from
+    // app_user_contacts (the caller is the academy's staff).
+    const { data: userRow } = await anonDb
       .from('users')
-      .select('id, name, email, role')
+      .select('id, name, role')
       .eq('id', userId)
       .single()
+    const user = userRow
+      ? { ...userRow, email: (await fetchUserContacts(anonDb, [userId])).get(userId)?.email ?? undefined }
+      : null
 
     if (!user) {
       console.error('User not found for deactivation notification:', userId)
@@ -1851,11 +1857,16 @@ export async function triggerPaymentOverdueNotifications() {
 export async function triggerWelcomeNotifications(userId: string) {
   try {
     // Get user details
-    const { data: user } = await anonDb
+    // email is not selectable on users since migration 120 — it comes from
+    // app_user_contacts (the caller is the academy's staff).
+    const { data: userRow } = await anonDb
       .from('users')
-      .select('id, name, email, role')
+      .select('id, name, role')
       .eq('id', userId)
       .single()
+    const user = userRow
+      ? { ...userRow, email: (await fetchUserContacts(anonDb, [userId])).get(userId)?.email ?? undefined }
+      : null
 
     if (!user) {
       console.error('User not found for welcome notification:', userId)

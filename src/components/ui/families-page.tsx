@@ -6,6 +6,7 @@ import { useDirtyState } from '@/hooks/useDirtyState'
 import { useConfirm } from '@/hooks/useConfirm'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -281,13 +282,15 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               name,
               family_name,
               given_name,
-              email,
               role
             )
           `)
           .in('family_id', familyIds)
 
         if (!membersError && membersData) {
+          // users.email is not selectable since migration 120 — linked
+          // members' emails come from app_user_contacts.
+          const memberContacts = await fetchUserContacts(db, membersData.map(m => m.user_id))
           // Get phone numbers for members with user_id from their respective role tables
           // family_members.user_id is nullable; only linked members have phones.
           const allMemberIds = membersData
@@ -339,7 +342,6 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 name: string
                 family_name?: string | null
                 given_name?: string | null
-                email: string
                 role?: string
               } | null
               role: string
@@ -361,7 +363,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
                 id: typedMember.id,
                 user_id: typedMember.user_id,
                 name: displayName(typedMember.users),
-                email: typedMember.users.email,
+                email: memberContacts.get(typedMember.user_id)?.email ?? null,
                 phone: phoneMap[typedMember.user_id] || null,
                 role: typedMember.role,
                 user_role: (typedMember.users.role as 'student' | 'teacher' | 'manager' | 'parent') || 'parent'
@@ -474,7 +476,6 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           users!inner(
             id,
             name,
-            email,
             role
           )
         `)
@@ -488,12 +489,17 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           users!inner(
             id,
             name,
-            email,
             role
           )
         `)
         .eq('academy_id', academyId)
         .eq('active', true)
+
+      // users.email is not selectable since migration 120.
+      const availableContacts = await fetchUserContacts(db, [
+        ...(studentsData || []).map(s => s.user_id),
+        ...(parentsData || []).map(p => p.user_id),
+      ])
 
       // Get users already in families within this academy (excluding current family if editing)
       let assignedUsersQuery = db
@@ -531,11 +537,11 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             return !assignedUserIds.has(typedS.users.id)
           })
           .map((s: Record<string, unknown>) => {
-            const typedS = s as { users: { id: string; name: string; email: string; role: string } }
+            const typedS = s as { users: { id: string; name: string; role: string } }
             return {
               id: typedS.users.id,
               name: typedS.users.name,
-              email: typedS.users.email,
+              email: availableContacts.get(typedS.users.id)?.email || '',
               role: typedS.users.role as 'student'
             }
           })
@@ -549,11 +555,11 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             return !assignedUserIds.has(typedP.users.id)
           })
           .map((p: Record<string, unknown>) => {
-            const typedP = p as { users: { id: string; name: string; email: string; role: string } }
+            const typedP = p as { users: { id: string; name: string; role: string } }
             return {
               id: typedP.users.id,
               name: typedP.users.name,
-              email: typedP.users.email,
+              email: availableContacts.get(typedP.users.id)?.email || '',
               role: typedP.users.role as 'parent'
             }
           })

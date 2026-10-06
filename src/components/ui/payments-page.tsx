@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { toRecurrenceType } from '@/components/ui/common/db-enums'
 import { authHeaders } from '@/lib/auth-headers'
 import { Button } from '@/components/ui/button'
@@ -763,8 +764,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             user_id,
             academy_id,
             users!inner(
-              name,
-              email
+              name
             )
           )
         `)
@@ -776,11 +776,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
 
       if (invoicesError) throw invoicesError
 
+      // users.email is not selectable since migration 120.
+      const studentEmail = (await fetchUserContacts(db, [studentId])).get(studentId)?.email
+
       const formattedInvoices = invoices?.map((item: Record<string, unknown>) => ({
         id: item.id as string,
         student_id: item.student_id as string,
         student_name: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.name as string || String(t('common.fallbacks.unknown')),
-        student_email: ((item.students as Record<string, unknown>)?.users as Record<string, unknown>)?.email as string || 'unknown@example.com',
+        student_email: studentEmail || 'unknown@example.com',
         template_id: item.template_id as string,
         amount: item.amount as number,
         discount_amount: (item.discount_amount as number) || 0,

@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 import type { Database } from '@/lib/database.types'
 
@@ -124,8 +125,7 @@ export function usePaymentData(academyId: string) {
             *,
             students!inner(
               users!inner(
-                name,
-                email
+                name
               )
             )
           `)
@@ -133,12 +133,14 @@ export function usePaymentData(academyId: string) {
           .order('created_at', { ascending: false })
 
         if (error) throw error
+        // users.email is not selectable since migration 120.
+        const contacts = await fetchUserContacts(db, (data || []).map(i => i.student_id))
 
         const invoicesWithStudentInfo: Invoice[] = (data || []).map((invoice) => ({
           ...invoice,
           status: toInvoiceStatus(invoice.status),
           student_name: invoice.students?.users?.name || 'Unknown Student',
-          student_email: invoice.students?.users?.email || ''
+          student_email: (invoice.student_id ? contacts.get(invoice.student_id)?.email : null) || ''
         }))
 
         cachedInvoices = invoicesWithStudentInfo

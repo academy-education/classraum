@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { TicketDetailModal } from './TicketDetailModal';
 import { db } from '@/lib/supabase';
+import { fetchUserContacts } from '@/lib/users/contacts';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -177,7 +178,7 @@ export function SupportManagement() {
         .from('chat_conversations')
         .select(`
           *,
-          users!chat_conversations_user_id_fkey(name, email),
+          users!chat_conversations_user_id_fkey(name),
           academies(name)
         `)
         .order('updated_at', { ascending: false });
@@ -238,6 +239,10 @@ export function SupportManagement() {
         }
       }
 
+      // Emails via app_user_contacts (admin branch) — not selectable on
+      // users since migration 120.
+      const contacts = await fetchUserContacts(db, (conversationsData || []).map(c => c.user_id));
+
       const conversationsWithMessages = (conversationsData || []).map((conv) => {
         const agg = byConv.get(conv.id);
         const lastMessage = agg?.lastMessage;
@@ -252,7 +257,7 @@ export function SupportManagement() {
           createdAt: conv.created_at ? new Date(conv.created_at) : undefined,
           updatedAt: conv.updated_at ? new Date(conv.updated_at) : undefined,
           userName: conv.users?.name || String(t('admin.common.unknownUser')),
-          userEmail: conv.users?.email || String(t('admin.support.noEmail')),
+          userEmail: (conv.user_id ? contacts.get(conv.user_id)?.email : null) || String(t('admin.support.noEmail')),
           academyName: conv.academies?.name,
           messageCount: agg?.messageCount || 0,
           lastMessage: lastMessage?.message ? lastMessage.message.substring(0, 100) : undefined,

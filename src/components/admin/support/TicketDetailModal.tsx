@@ -197,7 +197,7 @@ export function TicketDetailModal({ ticket, onClose, onSuccess }: TicketDetailMo
           // Fetch user info for the message
           const { data: userData } = await db
             .from('users')
-            .select('name, email')
+            .select('name')
             .eq('id', newMsg.sender_id)
             .single();
 

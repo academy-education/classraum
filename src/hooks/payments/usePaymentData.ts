@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchUserContacts } from '@/lib/users/contacts'
 import { useTranslation } from '@/hooks/useTranslation'
 
 export interface Invoice {
@@ -112,8 +113,7 @@ export const usePaymentData = (academyId: string) => {
           phone,
           active,
           users!inner(
-            name,
-            email
+            name
           )
         `)
         .eq('academy_id', academyId)
@@ -121,6 +121,8 @@ export const usePaymentData = (academyId: string) => {
         .order('users.name')
 
       if (error) throw error
+      // users.email is not selectable since migration 120.
+      const studentContacts = await fetchUserContacts(db, (data || []).map(s => s.user_id))
       // students.user_id -> users is a to-one FK, so the embed is a single
       // object, never an array.
       const transformedStudents: Student[] = (data || []).map((student) => ({
@@ -131,7 +133,7 @@ export const usePaymentData = (academyId: string) => {
         active: student.active!,
         users: {
           name: student.users?.name || '',
-          email: student.users?.email || ''
+          email: studentContacts.get(student.user_id)?.email || ''
         }
       }))
       setStudents(transformedStudents)
@@ -155,6 +157,10 @@ export const usePaymentData = (academyId: string) => {
 
       if (error) throw error
 
+      // users.email is not selectable since migration 120 — one contacts
+      // call for every invoice's student.
+      const invoiceContacts = await fetchUserContacts(db, (invoiceData || []).map(i => i.student_id))
+
       // Get student details for each invoice
       const invoicesWithDetails = await Promise.all(
         (invoiceData || []).map(async (invoice) => {
@@ -169,8 +175,7 @@ export const usePaymentData = (academyId: string) => {
                 user_id,
                 academy_id,
                 users!inner(
-                  name,
-                  email
+                  name
                 )
               `)
               .eq('user_id', invoice.student_id)
@@ -185,7 +190,7 @@ export const usePaymentData = (academyId: string) => {
               id: invoice.id,
               student_id: invoice.student_id,
               student_name: studentData?.users?.name || String(t('payments.unknownStudent')),
-              student_email: studentData?.users?.email || String(t('payments.unknownEmail')),
+              student_email: invoiceContacts.get(invoice.student_id)?.email || String(t('payments.unknownEmail')),
               template_id: invoice.template_id ?? undefined,
               amount: invoice.amount,
               discount_amount: invoice.discount_amount ?? undefined,
@@ -265,8 +270,7 @@ export const usePaymentData = (academyId: string) => {
             academy_id,
             users!inner(
               id,
-              name,
-              email
+              name
             )
           `)
           .in('user_id', studentIds)
@@ -298,6 +302,9 @@ export const usePaymentData = (academyId: string) => {
         return
       }
 
+      // users.email is not selectable since migration 120.
+      const recurringContacts = await fetchUserContacts(db, studentIds)
+
       // Create lookup maps for O(1) access
       const studentsMap = new Map(studentsResult.data?.map(s => [s.user_id, s]) || [])
       const templatesMap = new Map(templatesResult.data?.map(t => [t.id, t]) || [])
@@ -317,7 +324,7 @@ export const usePaymentData = (academyId: string) => {
           template_id: item.template_id,
           student_id: item.student_id,
           student_name: studentData.users.name || String(t('payments.unknownStudent')),
-          student_email: studentData.users.email || String(t('payments.unknownEmail')),
+          student_email: recurringContacts.get(item.student_id)?.email || String(t('payments.unknownEmail')),
           template_name: templateData.name || String(t('payments.template')),
           template_amount: templateData.amount || 0,
           amount_override: item.amount_override ?? undefined,

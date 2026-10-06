@@ -2,6 +2,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { db } from '@/lib/supabase'
+import { fetchOwnContact } from '@/lib/users/contacts'
 import { resolvePack } from '@/lib/study/plans'
 
 /**
@@ -16,12 +17,13 @@ export async function billingCustomer(
   let fullName: string | undefined
   if (user?.id) {
     try {
-      const { data } = await db
-        .from('users')
-        .select('phone, name')
-        .eq('id', user.id)
-        .maybeSingle()
-      phoneNumber = data?.phone || undefined
+      // phone via app_user_contacts: not selectable on users since
+      // migration 120.
+      const [{ data }, own] = await Promise.all([
+        db.from('users').select('name').eq('id', user.id).maybeSingle(),
+        fetchOwnContact(db, user.id),
+      ])
+      phoneNumber = own.phone || undefined
       fullName = data?.name || undefined
     } catch { /* fall through — PortOne will surface its own error */ }
   }
