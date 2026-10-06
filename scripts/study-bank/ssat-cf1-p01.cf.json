@@ -1,0 +1,326 @@
+{
+  "passage_id": "CF1-P01",
+  "genre": "narrative fiction",
+  "segments": [
+    "The summer I turned twelve, my parents sent me to spend July with my great-aunt Hedda in Callow Bend, a river town with two churches, one traffic light, and a hardware store that also sold bait. I had met Hedda only twice, both times at funerals, and I expected a month of silence and boiled vegetables. She had retired the spring before. ",
+    {"slot": "CF1-P01-2"},
+    "\n\nHer house was narrow and dim, with a porch that sagged toward the road. ",
+    {"slot": "CF1-P01-4"},
+    " On the first evening I noticed a framed photograph on the mantel, the only picture in the room, and Hedda caught me looking at it. ",
+    {"slot": "CF1-P01-3"},
+    "\n\nCallow Bend sits where the river turns hard to the east, and the water there runs deep and fast. A ferry had once crossed at the bend, but it had stopped running before I was born. ",
+    {"slot": "CF1-P01-6"},
+    "\n\n",
+    {"slot": "CF1-P01-1"},
+    "\n\nWhen I think now of the twelve-year-old who arrived in Callow Bend expecting boiled vegetables, ",
+    {"slot": "CF1-P01-5"}
+  ],
+  "questions": [
+    {
+      "qid": "CF1-P01-1", "kind": "main-idea", "difficulty": "medium",
+      "prompt": "The passage is chiefly concerned with",
+      "choices": [
+        "how a great-aunt taught the narrator to bake bread",
+        "how a great-aunt taught the narrator to play chess",
+        "how a great-aunt taught the narrator to mend old books",
+        "how a great-aunt taught the narrator to draw birds",
+        "how a great-aunt taught the narrator to fix bicycles"
+      ],
+      "versions": [
+        { "text": "What filled that July, though, was bread. Every morning at five she woke me to knead, and she made me throw out loaf after flat loaf until my hands learned what hers already knew. On my last day I baked the batch alone, and she sliced it at the table without a word of advice, which from Hedda was the highest praise.",
+          "why": "What filled that July, though, was bread. Every morning at five she woke me to knead",
+          "kills": {
+            "1": {"quote": "What filled that July, though, was bread.", "reason": "The month was filled with baking; no chess is played."},
+            "2": {"quote": "What filled that July, though, was bread.", "reason": "The month was filled with baking; no books are mended."},
+            "3": {"quote": "What filled that July, though, was bread.", "reason": "The month was filled with baking; no drawing takes place."},
+            "4": {"quote": "What filled that July, though, was bread.", "reason": "The month was filled with baking; no bicycle appears."}
+          } },
+        { "text": "What filled that July, though, was chess. On my first night she set a board on the kitchen table and beat me in nine moves, and she went on beating me every night after supper while I worked out why. On my last night I finally took a game from her, and she shook my hand across the board as if we had just been introduced.",
+          "why": "What filled that July, though, was chess.",
+          "kills": {
+            "0": {"quote": "What filled that July, though, was chess.", "reason": "The month was filled with chess; no baking is taught."},
+            "2": {"quote": "What filled that July, though, was chess.", "reason": "The month was filled with chess; no books are mended."},
+            "3": {"quote": "What filled that July, though, was chess.", "reason": "The month was filled with chess; no drawing takes place."},
+            "4": {"quote": "What filled that July, though, was chess.", "reason": "The month was filled with chess; no bicycle appears."}
+          } },
+        { "text": "What filled that July, though, was a crate of water-stained books from the church cellar. She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards. By my last day we had saved forty-one of them, and she let me write my name inside the cover of the last.",
+          "why": "She showed me how to lift a ruined spine, sew the loose pages back into their bundles, and glue fresh cloth over the boards.",
+          "kills": {
+            "0": {"quote": "What filled that July, though, was a crate of water-stained books", "reason": "The month went to repairing books; no baking is taught."},
+            "1": {"quote": "What filled that July, though, was a crate of water-stained books", "reason": "The month went to repairing books; no chess is played."},
+            "3": {"quote": "What filled that July, though, was a crate of water-stained books", "reason": "The month went to repairing books; no drawing takes place."},
+            "4": {"quote": "What filled that July, though, was a crate of water-stained books", "reason": "The month went to repairing books; no bicycle appears."}
+          } },
+        { "text": "What filled that July, though, was drawing birds. Each morning she handed me a pencil and a pad, sat me on the porch steps, and made me sketch whatever landed on the rail until I could catch a wren before it flew off. On my last day she pinned my best page beside one of her own on the kitchen wall.",
+          "why": "What filled that July, though, was drawing birds.",
+          "kills": {
+            "0": {"quote": "What filled that July, though, was drawing birds.", "reason": "The month was spent sketching; no baking is taught."},
+            "1": {"quote": "What filled that July, though, was drawing birds.", "reason": "The month was spent sketching; no chess is played."},
+            "2": {"quote": "What filled that July, though, was drawing birds.", "reason": "The month was spent sketching; no books are mended."},
+            "4": {"quote": "What filled that July, though, was drawing birds.", "reason": "The month was spent sketching; no bicycle appears."}
+          } },
+        { "text": "What filled that July, though, was a rusted bicycle from her shed. She taught me to strip the chain, straighten a bent wheel, and patch a tube in a bucket of water, my hands black to the wrist. On my last day I rode it, rebuilt, down to the river and back while she timed me with her watch.",
+          "why": "She taught me to strip the chain, straighten a bent wheel, and patch a tube in a bucket of water",
+          "kills": {
+            "0": {"quote": "What filled that July, though, was a rusted bicycle from her shed.", "reason": "The month went to the bicycle; no baking is taught."},
+            "1": {"quote": "What filled that July, though, was a rusted bicycle from her shed.", "reason": "The month went to the bicycle; no chess is played."},
+            "2": {"quote": "What filled that July, though, was a rusted bicycle from her shed.", "reason": "The month went to the bicycle; no books are mended."},
+            "3": {"quote": "What filled that July, though, was a rusted bicycle from her shed.", "reason": "The month went to the bicycle; no drawing takes place."}
+          } }
+      ]
+    },
+    {
+      "qid": "CF1-P01-2", "kind": "detail", "difficulty": "easy",
+      "prompt": "According to the passage, Hedda had earned her living as",
+      "choices": [
+        "a teacher at the town school",
+        "a nurse at the county hospital",
+        "a carrier on the town's mail route",
+        "a clerk at the county courthouse",
+        "an operator at the telephone exchange"
+      ],
+      "versions": [
+        { "text": "For thirty-eight years she had taught fourth grade at the town school, and grown men still lowered their voices when she passed them on the sidewalk.",
+          "why": "For thirty-eight years she had taught fourth grade at the town school",
+          "kills": {
+            "1": {"quote": "For thirty-eight years she had taught fourth grade at the town school", "reason": "Her whole working life was teaching, not nursing."},
+            "2": {"quote": "For thirty-eight years she had taught fourth grade at the town school", "reason": "Her whole working life was teaching, not carrying mail."},
+            "3": {"quote": "For thirty-eight years she had taught fourth grade at the town school", "reason": "Her whole working life was teaching, not clerking."},
+            "4": {"quote": "For thirty-eight years she had taught fourth grade at the town school", "reason": "Her whole working life was teaching, not the switchboard."}
+          } },
+        { "text": "For thirty-eight years she had worked the night ward at the county hospital, and half the town had been born or stitched up under her watch.",
+          "why": "For thirty-eight years she had worked the night ward at the county hospital",
+          "kills": {
+            "0": {"quote": "For thirty-eight years she had worked the night ward at the county hospital", "reason": "Her whole working life was on a hospital ward, not in a school."},
+            "2": {"quote": "For thirty-eight years she had worked the night ward at the county hospital", "reason": "Her whole working life was on a hospital ward, not a mail route."},
+            "3": {"quote": "For thirty-eight years she had worked the night ward at the county hospital", "reason": "Her whole working life was on a hospital ward, not at the courthouse."},
+            "4": {"quote": "For thirty-eight years she had worked the night ward at the county hospital", "reason": "Her whole working life was on a hospital ward, not at the exchange."}
+          } },
+        { "text": "For thirty-eight years she had walked the mail route along the river road, and people still waved from their porches as if she might have a letter.",
+          "why": "For thirty-eight years she had walked the mail route along the river road",
+          "kills": {
+            "0": {"quote": "For thirty-eight years she had walked the mail route along the river road", "reason": "Her whole working life was the mail route, not a school."},
+            "1": {"quote": "For thirty-eight years she had walked the mail route along the river road", "reason": "Her whole working life was the mail route, not a hospital."},
+            "3": {"quote": "For thirty-eight years she had walked the mail route along the river road", "reason": "Her whole working life was the mail route, not the courthouse."},
+            "4": {"quote": "For thirty-eight years she had walked the mail route along the river road", "reason": "Her whole working life was the mail route, not the exchange."}
+          } },
+        { "text": "For thirty-eight years she had recorded deeds and marriages at the county courthouse, and she still knew who owned every field and who had married whom.",
+          "why": "For thirty-eight years she had recorded deeds and marriages at the county courthouse",
+          "kills": {
+            "0": {"quote": "For thirty-eight years she had recorded deeds and marriages at the county courthouse", "reason": "Her whole working life was courthouse records, not teaching."},
+            "1": {"quote": "For thirty-eight years she had recorded deeds and marriages at the county courthouse", "reason": "Her whole working life was courthouse records, not nursing."},
+            "2": {"quote": "For thirty-eight years she had recorded deeds and marriages at the county courthouse", "reason": "Her whole working life was courthouse records, not the mail."},
+            "4": {"quote": "For thirty-eight years she had recorded deeds and marriages at the county courthouse", "reason": "Her whole working life was courthouse records, not the switchboard."}
+          } },
+        { "text": "For thirty-eight years she had sat at the switchboard of the telephone exchange, and she still knew half the town's numbers, and its secrets, by heart.",
+          "why": "For thirty-eight years she had sat at the switchboard of the telephone exchange",
+          "kills": {
+            "0": {"quote": "For thirty-eight years she had sat at the switchboard of the telephone exchange", "reason": "Her whole working life was the switchboard, not a school."},
+            "1": {"quote": "For thirty-eight years she had sat at the switchboard of the telephone exchange", "reason": "Her whole working life was the switchboard, not a hospital."},
+            "2": {"quote": "For thirty-eight years she had sat at the switchboard of the telephone exchange", "reason": "Her whole working life was the switchboard, not the mail."},
+            "3": {"quote": "For thirty-eight years she had sat at the switchboard of the telephone exchange", "reason": "Her whole working life was the switchboard, not the courthouse."}
+          } }
+      ]
+    },
+    {
+      "qid": "CF1-P01-3", "kind": "inference", "difficulty": "medium",
+      "prompt": "It can most reasonably be inferred that the photograph on the mantel showed",
+      "choices": [
+        "a husband Hedda had lost",
+        "a twin sister of Hedda's",
+        "the narrator's grandfather as a boy",
+        "a dog Hedda had once owned",
+        "the house where Hedda was born"
+      ],
+      "versions": [
+        { "text": "'Forty years he wore that same hat,' she said, 'and he forgot it at every wedding but our own.'",
+          "why": "he forgot it at every wedding but our own",
+          "kills": {
+            "1": {"quote": "Forty years he wore that same hat", "reason": "The subject is a man, not a sister."},
+            "2": {"quote": "Forty years he wore that same hat", "reason": "He wore the hat for forty years and married Hedda, so he is a grown husband, not a boy."},
+            "3": {"quote": "he forgot it at every wedding but our own", "reason": "A dog does not wear a hat or marry."},
+            "4": {"quote": "Forty years he wore that same hat", "reason": "The subject is a person, not a building."}
+          } },
+        { "text": "'People could never tell us apart,' she said, 'except that she was always the one laughing at something.'",
+          "why": "People could never tell us apart",
+          "kills": {
+            "0": {"quote": "she was always the one laughing", "reason": "The subject is a woman, not a husband."},
+            "2": {"quote": "she was always the one laughing", "reason": "The subject is a woman, not a boy."},
+            "3": {"quote": "People could never tell us apart", "reason": "Only someone identical to Hedda could be mistaken for her, not a dog."},
+            "4": {"quote": "People could never tell us apart", "reason": "The subject is a person identical to Hedda, not a building."}
+          } },
+        { "text": "'That's my brother at nine, already bossing me,' she said. 'Your mother got her chin from him, and so did you.'",
+          "why": "Your mother got her chin from him, and so did you.",
+          "kills": {
+            "0": {"quote": "That's my brother at nine", "reason": "The boy is her brother, not her husband."},
+            "1": {"quote": "That's my brother at nine", "reason": "The child is a brother, not a sister."},
+            "3": {"quote": "Your mother got her chin from him", "reason": "A dog cannot pass a chin to the narrator's mother."},
+            "4": {"quote": "That's my brother at nine", "reason": "The photograph shows a boy, not a building."}
+          } },
+        { "text": "'He bit the minister twice,' she said, 'and slept across my feet every night for fourteen good years.'",
+          "why": "He bit the minister twice",
+          "kills": {
+            "0": {"quote": "slept across my feet every night", "reason": "Biting the minister and sleeping across her feet describe a pet, not a husband."},
+            "1": {"quote": "He bit the minister twice", "reason": "The subject is male and an animal, not a sister."},
+            "2": {"quote": "slept across my feet every night for fourteen good years", "reason": "Fourteen years at her feet describes a pet, not her brother as a boy."},
+            "4": {"quote": "He bit the minister twice", "reason": "The subject is a living animal, not a building."}
+          } },
+        { "text": "'Every board of it came from the old mill,' she said, 'and I was born in its front room during a thunderstorm.'",
+          "why": "I was born in its front room during a thunderstorm",
+          "kills": {
+            "0": {"quote": "Every board of it came from the old mill", "reason": "The subject is built of boards, not a person."},
+            "1": {"quote": "Every board of it came from the old mill", "reason": "The subject is built of boards, not a sister."},
+            "2": {"quote": "Every board of it came from the old mill", "reason": "The subject is built of boards, not a boy."},
+            "3": {"quote": "Every board of it came from the old mill", "reason": "The subject is built of boards, not an animal."}
+          } }
+      ]
+    },
+    {
+      "qid": "CF1-P01-4", "kind": "vocabulary-in-context", "difficulty": "medium",
+      "prompt": "As it is used in the second paragraph, the word \"kept\" most nearly means",
+      "choices": ["stored", "raised", "honored", "detained", "continued"],
+      "versions": [
+        { "text": "Hedda kept the good dishes in a cedar trunk at the foot of the stairs, each plate wrapped in newspaper against the damp.",
+          "why": "kept the good dishes in a cedar trunk",
+          "kills": {
+            "1": {"quote": "kept the good dishes in a cedar trunk", "reason": "Dishes are put away, not bred or reared."},
+            "2": {"quote": "kept the good dishes in a cedar trunk", "reason": "Dishes are objects, not a custom to honor."},
+            "3": {"quote": "kept the good dishes in a cedar trunk", "reason": "Dishes are not held up the way a person is."},
+            "4": {"quote": "kept the good dishes in a cedar trunk", "reason": "The object is a thing, not an ongoing activity."}
+          } },
+        { "text": "Hedda kept a dozen hens in a wire run behind the house and could tell each one apart by the sound of its complaints.",
+          "why": "kept a dozen hens in a wire run behind the house",
+          "kills": {
+            "0": {"quote": "kept a dozen hens in a wire run", "reason": "Living hens are tended, not put away."},
+            "2": {"quote": "kept a dozen hens in a wire run", "reason": "Hens are animals, not a custom."},
+            "3": {"quote": "kept a dozen hens in a wire run behind the house", "reason": "Hens housed in a run are reared, not delaying anyone."},
+            "4": {"quote": "kept a dozen hens", "reason": "The object is animals, not an ongoing activity."}
+          } },
+        { "text": "Hedda kept an old river holiday that the rest of Callow Bend had forgotten, setting a candle on the porch rail each night of its week.",
+          "why": "kept an old river holiday",
+          "kills": {
+            "0": {"quote": "setting a candle on the porch rail each night of its week", "reason": "A holiday is celebrated, not put away."},
+            "1": {"quote": "kept an old river holiday", "reason": "A holiday cannot be reared like livestock."},
+            "3": {"quote": "kept an old river holiday", "reason": "A holiday is not a person held back."},
+            "4": {"quote": "kept an old river holiday", "reason": "The object is a holiday, not an activity she went on doing."}
+          } },
+        { "text": "Hedda kept the grocer's boy on the porch for half an hour most days, asking after his mother and his tomatoes while his butter went soft.",
+          "why": "kept the grocer's boy on the porch for half an hour",
+          "kills": {
+            "0": {"quote": "kept the grocer's boy on the porch", "reason": "A boy is held up, not put away."},
+            "1": {"quote": "kept the grocer's boy on the porch for half an hour", "reason": "She delayed him; she did not bring him up."},
+            "2": {"quote": "kept the grocer's boy on the porch", "reason": "A boy is not a custom to honor."},
+            "4": {"quote": "kept the grocer's boy on the porch", "reason": "The object is a person, not an activity."}
+          } },
+        { "text": "Hedda kept swimming in the river every morning until the first frost, as she had done since she was a girl younger than me.",
+          "why": "kept swimming in the river every morning until the first frost",
+          "kills": {
+            "0": {"quote": "kept swimming in the river", "reason": "Swimming is an activity carried on, not an object put away."},
+            "1": {"quote": "kept swimming in the river", "reason": "Swimming is not something reared."},
+            "2": {"quote": "kept swimming in the river every morning", "reason": "She went on doing an activity; no custom or holiday is named."},
+            "3": {"quote": "kept swimming in the river", "reason": "No one is held back; she went on swimming."}
+          } }
+      ]
+    },
+    {
+      "qid": "CF1-P01-5", "kind": "attitude", "difficulty": "hard",
+      "prompt": "In the final paragraph, the attitude of the narrator toward the twelve-year-old who arrived in Callow Bend is best described as",
+      "choices": ["amused", "ashamed", "envious", "puzzled", "tender"],
+      "versions": [
+        { "text": "I have to laugh. That child had the whole month of misery planned down to the menu, and the plan fell apart at the first supper, which was fried trout and peach pie.",
+          "why": "I have to laugh.",
+          "kills": {
+            "1": {"quote": "I have to laugh.", "reason": "The narrator laughs at the child rather than feeling disgraced."},
+            "2": {"quote": "the plan fell apart at the first supper", "reason": "The narrator finds the plan comic; there is no wish to be that child again."},
+            "3": {"quote": "That child had the whole month of misery planned down to the menu", "reason": "The narrator understands the child's thinking and finds it funny, not mysterious."},
+            "4": {"quote": "I have to laugh.", "reason": "The narrator laughs at the child instead of wishing to comfort it."}
+          } },
+        { "text": "I wince. That child had judged an old woman dull before hearing her speak, and had said as much in a letter home that Hedda herself carried to the post office.",
+          "why": "That child had judged an old woman dull before hearing her speak",
+          "kills": {
+            "0": {"quote": "I wince.", "reason": "Wincing shows discomfort, not laughter."},
+            "2": {"quote": "I wince.", "reason": "The narrator recoils from that child rather than wanting to be it."},
+            "3": {"quote": "had judged an old woman dull before hearing her speak", "reason": "The narrator knows exactly what the child did wrong; nothing is a mystery."},
+            "4": {"quote": "That child had judged an old woman dull", "reason": "The narrator faults the child instead of comforting it."}
+          } },
+        { "text": "I would trade places with that child in a heartbeat. The whole month still lay ahead of it, unspent, and every surprise in it was still waiting to happen.",
+          "why": "I would trade places with that child in a heartbeat.",
+          "kills": {
+            "0": {"quote": "every surprise in it was still waiting to happen", "reason": "The narrator longs for the child's position rather than laughing at it."},
+            "1": {"quote": "I would trade places with that child in a heartbeat.", "reason": "One does not wish to become someone one is embarrassed by."},
+            "3": {"quote": "The whole month still lay ahead of it, unspent", "reason": "The narrator states plainly why the child's place is desirable; nothing is unexplained."},
+            "4": {"quote": "I would trade places with that child", "reason": "The narrator wants the child's place, not to console the child."}
+          } },
+        { "text": "I still wonder where the idea came from. My parents had spoken of Hedda only warmly, and at both funerals she had been the one who made the mourners laugh.",
+          "why": "I still wonder where the idea came from.",
+          "kills": {
+            "0": {"quote": "I still wonder where the idea came from.", "reason": "The narrator is searching for an explanation, not laughing."},
+            "1": {"quote": "I still wonder where the idea came from.", "reason": "The narrator is curious about the idea, not embarrassed by it."},
+            "2": {"quote": "My parents had spoken of Hedda only warmly", "reason": "The narrator examines the child's mistaken idea; there is no longing to be that child."},
+            "4": {"quote": "I still wonder where the idea came from.", "reason": "The narrator questions the idea instead of comforting the child."}
+          } },
+        { "text": "I want to sit beside that child and promise that it will all be fine. Being handed to a near stranger is frightening at any age, and that gloomy forecast was only fear in disguise.",
+          "why": "I want to sit beside that child and promise that it will all be fine.",
+          "kills": {
+            "0": {"quote": "Being handed to a near stranger is frightening at any age", "reason": "The narrator takes the child's fear seriously rather than laughing."},
+            "1": {"quote": "that gloomy forecast was only fear in disguise", "reason": "The narrator excuses the child's prediction rather than being embarrassed by it."},
+            "2": {"quote": "Being handed to a near stranger is frightening", "reason": "The narrator sees the child as frightened, not as someone to trade places with."},
+            "3": {"quote": "that gloomy forecast was only fear in disguise", "reason": "The narrator knows where the prediction came from: fear."}
+          } }
+      ]
+    },
+    {
+      "qid": "CF1-P01-6", "kind": "purpose", "difficulty": "medium",
+      "prompt": "The mention of the ferry in the third paragraph chiefly serves",
+      "choices": [
+        "to explain how Hedda's street got its name",
+        "to explain why the narrator's trip took all day",
+        "to explain why many shops in town stood empty",
+        "to explain why a bell hung from Hedda's porch",
+        "to explain why the far bank seemed so distant"
+      ],
+      "versions": [
+        { "text": "Its only trace was the name of Hedda's street, Ferry Lane, which ended at a landing with weeds growing up between the planks.",
+          "why": "Its only trace was the name of Hedda's street, Ferry Lane",
+          "kills": {
+            "1": {"quote": "Its only trace was the name of Hedda's street", "reason": "The ferry is linked only to the street name, not to the trip."},
+            "2": {"quote": "Its only trace was the name of Hedda's street", "reason": "The ferry is linked only to the street name, not to empty shops."},
+            "3": {"quote": "Its only trace was the name of Hedda's street", "reason": "The only trace is the name, so no bell from it is mentioned."},
+            "4": {"quote": "Its only trace was the name of Hedda's street", "reason": "The ferry is linked only to the street name, not to the far bank."}
+          } },
+        { "text": "Without it, the bus from the city had to wind forty miles north to the nearest bridge, which was why my trip had taken all day.",
+          "why": "which was why my trip had taken all day",
+          "kills": {
+            "0": {"quote": "the bus from the city had to wind forty miles north", "reason": "The ferry is tied to the bus route, not to a street name."},
+            "2": {"quote": "the bus from the city had to wind forty miles north", "reason": "The ferry is tied to the bus route, not to the shops."},
+            "3": {"quote": "the bus from the city had to wind forty miles north", "reason": "The ferry is tied to the bus route, not to a bell."},
+            "4": {"quote": "which was why my trip had taken all day", "reason": "The consequence named is the narrator's long trip, not the far bank."}
+          } },
+        { "text": "When the crossing trade went, it took half of Front Street with it, and the shops there had stood empty ever since.",
+          "why": "the shops there had stood empty ever since",
+          "kills": {
+            "0": {"quote": "it took half of Front Street with it", "reason": "The ferry is tied to the shops' decline, not a street name."},
+            "1": {"quote": "When the crossing trade went", "reason": "The consequence named is lost trade, not the narrator's trip."},
+            "3": {"quote": "it took half of Front Street with it", "reason": "The ferry is tied to the shops, not to a bell."},
+            "4": {"quote": "When the crossing trade went", "reason": "The consequence named is lost trade, not the far bank."}
+          } },
+        { "text": "Hedda's house had been the ferryman's, and the iron bell that travelers once rang to call him across still hung from her porch.",
+          "why": "the iron bell that travelers once rang to call him across still hung from her porch",
+          "kills": {
+            "0": {"quote": "Hedda's house had been the ferryman's", "reason": "The ferry is tied to her house and its bell, not a street name."},
+            "1": {"quote": "the iron bell that travelers once rang", "reason": "The ferry is tied to the bell, not the narrator's trip."},
+            "2": {"quote": "Hedda's house had been the ferryman's", "reason": "The ferry is tied to her house, not to the shops."},
+            "4": {"quote": "the iron bell that travelers once rang to call him across", "reason": "The ferry is tied to the bell, not the far bank."}
+          } },
+        { "text": "Without it, the far bank, close enough that I could hear its dogs barking at night, might as well have been another country.",
+          "why": "might as well have been another country",
+          "kills": {
+            "0": {"quote": "the far bank, close enough that I could hear its dogs", "reason": "The ferry is tied to the far bank, not a street name."},
+            "1": {"quote": "the far bank, close enough that I could hear its dogs", "reason": "The ferry is tied to the far bank, not the narrator's trip."},
+            "2": {"quote": "the far bank, close enough that I could hear its dogs", "reason": "The ferry is tied to the far bank, not to the shops."},
+            "3": {"quote": "might as well have been another country", "reason": "The ferry is tied to the far bank's remoteness, not to a bell."}
+          } }
+      ]
+    }
+  ]
+}
