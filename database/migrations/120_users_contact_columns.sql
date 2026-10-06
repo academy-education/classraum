@@ -1,7 +1,7 @@
 -- 120: hide users.email / users.phone from other signed-in users (owner decision 2, STEP 1).
--- NOT APPLIED. Ship the code on branch users-pii-step1 first (it reads contacts
--- only through app_user_contacts, falling back to the direct columns while
--- the function does not exist yet), then apply this file.
+-- APPLIED 2026-10-06 after the code shipped (7a3eba2b). Verified via PostgREST as a
+-- demo student: direct email/phone and select(*) denied (42501), names readable,
+-- app_user_contacts returns self only.
 --
 -- Problem: policy users_read_all_authenticated (FOR SELECT TO authenticated
 -- USING (true)) lets any signed-in user read every row of public.users,
