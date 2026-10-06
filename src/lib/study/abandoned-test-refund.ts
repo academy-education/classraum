@@ -70,6 +70,12 @@ export async function sweepAbandonedTests(opts: { now?: Date; apply: boolean }):
     .eq('status', 'active')
     .eq('archived', false)
     .is('module2_route', null)
+    // Camp assignment sessions charge no credits (api/study/camp/start),
+    // so there is nothing to refund — and archiving one hides the
+    // school's assigned work from the student's shelf and from every
+    // camp teacher surface (they all read archived=false) while the
+    // start route keeps handing the archived id back. Leave them alone.
+    .is('config->campAssignmentId', null)
     .lt('created_at', cutoff)
     .order('created_at', { ascending: true })
     .limit(MAX_PER_RUN)

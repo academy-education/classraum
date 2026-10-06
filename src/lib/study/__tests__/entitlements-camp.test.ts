@@ -1,5 +1,7 @@
 /**
- * A camp entitlement only ever ADDS access — it must never narrow.
+ * A camp entitlement row grants nothing (owner rule 2026-10-07: academy
+ * students do not get Study for free) — and, as before, it must never
+ * NARROW a free user either.
  *
  * The trap (docs/CAMP-MODE-PLAN.md): resolveAccess treats "zero active
  * entitlement rows" as the free/trial state where EVERY test is open.
@@ -53,14 +55,17 @@ describe('camp entitlements are add-only', () => {
     expect(await canAccessTest('s1', 'sat')).toBe(true)
   })
 
-  test('a pass still scopes, and a camp grant widens the pass list', async () => {
+  test('a camp row grants NOTHING: a TOEFL pass holder in a SAT camp stays TOEFL-only', async () => {
+    // Owner, 2026-10-07: "The academy students will not get the study
+    // for free. Only the assignments will be available from the
+    // school/academy." Until then this row widened the pass list to
+    // ['sat', 'toefl'] — free SAT Study handed out by the camp.
     ROWS = [
       { test: 'toefl', source: 'pass', expires_at: null },
       { test: 'sat', source: 'camp', expires_at: null },
     ]
-    const access = await getTestAccess('s1')
-    expect(access.all).toBe(false)
-    expect(access.tests.sort()).toEqual(['sat', 'toefl'])
+    expect(await getTestAccess('s1')).toEqual({ all: false, tests: ['toefl'] })
+    expect(await canAccessTest('s1', 'sat')).toBe(false)
   })
 
   test('a pass alone scopes exactly as before (no camp regression)', async () => {

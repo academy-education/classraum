@@ -38,6 +38,9 @@ describe('sweepAbandonedTests', () => {
     const cutoff = new Date(NOW.getTime() - ABANDON_AFTER_DAYS * 86_400_000).toISOString()
     expect(list.lt).toHaveBeenCalledWith('created_at', cutoff)
     expect(list.is).toHaveBeenCalledWith('module2_route', null)
+    // camp assignment sessions charged nothing and must stay visible to
+    // the student's shelf and the camp teacher (all read archived=false)
+    expect(list.is).toHaveBeenCalledWith('config->campAssignmentId', null)
   })
 
   it('refunds only rows whose conditional claim lands', async () => {

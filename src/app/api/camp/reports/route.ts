@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { canManageClassroom } from '@/lib/camp/api'
+import { canViewClassroomCampResults } from '@/lib/camp/access'
 import { isParentOfStudent, toFamilyPayload, type CampReportPayload } from '@/lib/camp/reports'
 
 /**
@@ -50,6 +51,18 @@ function meta(r: ReportMetaRow, extra: Record<string, unknown> = {}) {
   }
 }
 
+/** Reading a classroom's reports: any camp teacher of its program or an
+ *  academy manager (owner rule 2026-10-07, src/lib/camp/access.ts), or —
+ *  for a classroom since detached from its camp — whoever manages it.
+ *  Generating and withdrawing stay with the classroom's own teacher. */
+async function canReadClassroomReports(
+  userId: string,
+  classroom: { teacher_id: string | null; academy_id: string; camp_program_id: string | null },
+): Promise<boolean> {
+  if (await canViewClassroomCampResults(userId, classroom)) return true
+  return !classroom.camp_program_id && canManageClassroom(userId, classroom)
+}
+
 export async function GET(req: NextRequest) {
   const user = await getUserFromRequest(req)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -71,10 +84,10 @@ export async function GET(req: NextRequest) {
 
     const { data: classroom } = await dbAdmin
       .from('classrooms')
-      .select('id, teacher_id, academy_id')
+      .select('id, teacher_id, academy_id, camp_program_id')
       .eq('id', report.classroom_id)
       .maybeSingle()
-    const isTeacher = classroom ? await canManageClassroom(user.id, classroom) : false
+    const isTeacher = classroom ? await canReadClassroomReports(user.id, classroom) : false
     const isSelf = user.id === report.student_id
     const isParent = !isTeacher && !isSelf && (await isParentOfStudent(user.id, report.student_id))
     if (!isTeacher && !isSelf && !isParent) {
@@ -93,13 +106,13 @@ export async function GET(req: NextRequest) {
   if (classroomId) {
     const { data: classroom } = await dbAdmin
       .from('classrooms')
-      .select('id, teacher_id, academy_id, deleted_at')
+      .select('id, teacher_id, academy_id, camp_program_id, deleted_at')
       .eq('id', classroomId)
       .maybeSingle()
     if (!classroom || classroom.deleted_at !== null) {
       return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
     }
-    if (!(await canManageClassroom(user.id, classroom))) {
+    if (!(await canReadClassroomReports(user.id, classroom))) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
@@ -107,7 +120,7 @@ export async function GET(req: NextRequest) {
        one student — the per-student drill-down needs exactly that, and
        fetching the whole classroom to filter it client-side would grow
        with the roster. Authorisation is unchanged: the caller has
-       already been proven to manage this classroom, and the filter can
+       already been proven to read this classroom's reports, and the filter can
        only ever narrow what they were entitled to see. */
     let listQuery = dbAdmin
       .from('camp_reports')

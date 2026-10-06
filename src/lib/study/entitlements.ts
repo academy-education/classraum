@@ -96,21 +96,22 @@ async function resolveAccess(studentId: string): Promise<AccessResult> {
     .eq('student_id', studentId)
     .or(`expires_at.is.null,expires_at.gt.${nowIso}`)
 
-  const active = (rows ?? []) as { test: string; source: string | null }[]
-  // CAMP grants are ADD-ONLY (see docs/CAMP-MODE-PLAN.md). Zero
-  // entitlement rows means a free user sees ALL tests, so treating a
-  // camp row like a pass would NARROW a free camp student from
-  // everything down to one family. Scoping therefore keys on PASS rows
-  // alone: camp rows never subtract, they only widen a pass holder's
-  // list.
-  const passes = active.filter(r => r.source !== 'camp')
+  // CAMP rows (source='camp') grant NOTHING. The camp start route wrote
+  // them until 2026-10-07 so camp students got the camp family's mock
+  // tests; the owner's rule since then is that academy students do not
+  // get Study for free — only the assigned work, which needs no
+  // entitlement. Rows already written stay in the table (inert) until
+  // they expire; ignoring them here is what stops them widening a pass
+  // holder's list. Ignoring them also keeps the old add-only guarantee:
+  // a camp row can never NARROW a free user, because it is not counted.
+  const passes = ((rows ?? []) as { test: string; source: string | null }[])
+    .filter(r => r.source !== 'camp')
   // No active pass entitlements → free/trial: everything is open (limited by
-  // free credits, not by test) — whether or not camp grants exist.
+  // free credits, not by test).
   if (passes.length === 0) return { all: true, tests: [] }
   // Holds a pass → scoped. An all-access pass ('*') opens everything.
   if (passes.some(r => r.test === '*')) return { all: true, tests: [] }
-  // Pass-scoped, widened by any camp grants the student also holds.
-  return { all: false, tests: [...new Set(active.map(r => r.test))] }
+  return { all: false, tests: [...new Set(passes.map(r => r.test))] }
 }
 
 /** Can this student access the given test family? */

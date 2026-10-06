@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
-import { canManageClassroom } from '@/lib/camp/api'
+import { canViewClassroomCampResults, isStudentOfAcademy } from '@/lib/camp/access'
 import { buildCampReportPayload, loadClassroomCampData } from '@/lib/camp/reports'
 
 /**
  * GET /api/camp/student?classroomId=…&studentId=…
  *
- * Live per-student drill-down for the teacher dashboard (classroom
- * teacher or academy manager). Returns the SAME payload shape a camp
+ * Live per-student drill-down for the teacher dashboard (any camp
+ * teacher of the classroom's program, or an academy manager). Returns the SAME payload shape a camp
  * report snapshots — built by the one shared implementation
  * (loadClassroomCampData + buildCampReportPayload in
  * src/lib/camp/reports.ts) — but computed fresh on every call, so the
@@ -38,7 +38,10 @@ export async function GET(req: NextRequest) {
   if (!classroom || classroom.deleted_at !== null) {
     return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
   }
-  if (!(await canManageClassroom(user.id, classroom))) {
+  // Any camp teacher of this classroom's PROGRAM, or an academy manager
+  // (owner rule 2026-10-07: "same camp", not "same classroom"). Refuses
+  // non-camp classrooms and plain academy teachers.
+  if (!(await canViewClassroomCampResults(user.id, classroom))) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
   if (!classroom.camp_program_id) {
@@ -52,7 +55,11 @@ export async function GET(req: NextRequest) {
   })
   if ('error' in data) return NextResponse.json({ error: data.error }, { status: 500 })
 
-  if (!data.studentIds.includes(studentId)) {
+  // Enrolled here AND on the academy's own roster: a student enrolled
+  // into a camp classroom from outside the school is not in the camp
+  // (classroom_students writes are not academy-checked before migration
+  // 122), and this payload carries their name, email and mock tests.
+  if (!data.studentIds.includes(studentId) || !(await isStudentOfAcademy(studentId, classroom.academy_id))) {
     return NextResponse.json({ error: 'student is not enrolled in this classroom' }, { status: 404 })
   }
 

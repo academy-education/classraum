@@ -9,7 +9,7 @@
  * applied synchronously at the terminal call, so a conditional UPDATE is
  * atomic the way it is in Postgres (two concurrent claims: one winner).
  *
- * Supported: select, insert, update, eq, is, in, lt, order, limit,
+ * Supported: select, insert, update, eq, is, in, lt, order, limit, range,
  * maybeSingle, single, and awaiting the builder directly.
  *
  * NOTE: lives outside __tests__/ on purpose — jest's testMatch picks up
@@ -37,6 +37,7 @@ export function fakeDb(seed: Record<string, Row[]> = {}): FakeDb {
     let toInsert: Row[] = []
     let returning = false
     let limitN: number | null = null
+    let rangeFrom = 0
     let orderBy: { col: string; asc: boolean } | null = null
     const filters: Filter[] = []
 
@@ -56,6 +57,7 @@ export function fakeDb(seed: Record<string, Row[]> = {}): FakeDb {
         const { col, asc } = orderBy
         hit = [...hit].sort((a, b) => (String(a[col]) < String(b[col]) ? -1 : 1) * (asc ? 1 : -1))
       }
+      if (rangeFrom > 0) hit = hit.slice(rangeFrom)
       if (limitN !== null) hit = hit.slice(0, limitN)
       return { data: hit.map(r => ({ ...r })), error: null }
     }
@@ -70,6 +72,7 @@ export function fakeDb(seed: Record<string, Row[]> = {}): FakeDb {
       lt: (c: string, v: string) => { filters.push(r => String(r[c]) < v); return b },
       order: (col: string, o?: { ascending?: boolean }) => { orderBy = { col, asc: o?.ascending !== false }; return b },
       limit: (n: number) => { limitN = n; return b },
+      range: (from: number, to: number) => { rangeFrom = from; limitN = to - from + 1; return b },
       maybeSingle: async () => {
         const { data } = run()
         if (op === 'update' && !returning) return { data: null, error: null }

@@ -35,6 +35,9 @@ interface SessionReviewRow {
   question: ResultRowQuestion
   studentAnswer: string | null
   isCorrect: boolean | null
+  /** Seconds on this question. Null unless the server found genuinely
+   *  measured per-question times (never an even split). */
+  timeSpentSeconds?: number | null
 }
 
 interface SessionReviewData {
@@ -45,10 +48,20 @@ interface SessionReviewData {
     correctCount: number | null
     totalCount: number | null
     scorePercent: number | null
+    startedAt?: string | null
     completedAt: string | null
   }
   assignment: { id: string; title: string; questionCount: number }
+  /** Whole-sitting time. basis 'even_split' means only the total is real. */
+  timing?: { totalSeconds: number; perQuestionSeconds: number; basis: 'elapsed' | 'even_split' | 'measured' } | null
   rows: SessionReviewRow[]
+}
+
+/** 75 -> "1m 15s", 40 -> "40s". */
+function formatSeconds(total: number): string {
+  const s = Math.max(0, Math.round(total))
+  const m = Math.floor(s / 60)
+  return m > 0 ? `${m}m ${s % 60}s` : `${s}s`
 }
 
 interface CampStudentSessionReviewProps {
@@ -127,7 +140,7 @@ export function CampStudentSessionReview({
       ) : (
         <div className="space-y-5">
           {/* Summary chips — same idiom as the student-detail modal. */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
             <div className="rounded-xl bg-gray-50 px-4 py-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-1">
                 {t('camp.studentSession.score')}
@@ -153,7 +166,23 @@ export function CampStudentSessionReview({
                 {data.session.completedAt ? formatDate(data.session.completedAt) : '—'}
               </p>
             </div>
+            <div className="rounded-xl bg-gray-50 px-4 py-3">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-1">
+                {t('camp.studentSession.timeSpent')}
+              </p>
+              <p className="text-xl font-semibold text-gray-900 tabular-nums">
+                {data.timing ? formatSeconds(data.timing.totalSeconds) : '—'}
+                {data.timing && (
+                  <span className="ml-1.5 text-sm font-normal text-gray-400">
+                    {t('camp.studentSession.perQuestionAvg', { time: formatSeconds(data.timing.perQuestionSeconds) })}
+                  </span>
+                )}
+              </p>
+            </div>
           </div>
+          {data.timing && data.timing.basis !== 'measured' && (
+            <p className="text-xs text-gray-500 -mt-2">{t('camp.studentSession.noPerQuestionTime')}</p>
+          )}
 
           <div className="space-y-2">
             {data.rows.map((row, i) => (
@@ -206,6 +235,11 @@ function SessionReviewCard({ row, index, total }: {
         <div className="flex-1 min-w-0">
           <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 mb-0.5">
             {t('camp.studentSession.questionN', { n: index + 1, total })}
+            {typeof row.timeSpentSeconds === 'number' && (
+              <span className="ml-2 normal-case tracking-normal font-normal text-gray-400 tabular-nums">
+                {formatSeconds(row.timeSpentSeconds)}
+              </span>
+            )}
           </p>
           <div className="text-sm font-medium text-gray-900 leading-snug line-clamp-2">
             <PromptText text={q.prompt} />
