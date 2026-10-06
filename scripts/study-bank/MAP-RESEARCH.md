@@ -1088,3 +1088,62 @@ unprompted, blamed a "shared-fragment medoid" in the comprehension options.
 briefs have failed on the same stratum, and the narrower rule RLU-01 suggests
 rests on n=1. Fixed frames have also backfired before (SSAT Reading, REGISTER
 2026-09-21). MAP has no human sitting and nothing was inserted.
+
+## 16. 2026-10-06 — THE THIRD PILOT: BOTH STRANDS FAIL, FOR DIFFERENT REASONS
+
+The owner asked to "keep going with MAP". Batch 3 ran two strands, each a
+separate pilot with bars pre-registered at `94f0d107`. Results:
+`MAP-PILOT-3-2026-10-06.md`. Nothing was inserted.
+
+**Strand 1: Mechanics, Vocabulary and Language Usage at RIT 180-209 (24
+items). FAIL, but close.**
+- The 2x2 grids were kept and extended to Punctuation, a new strand for us,
+  guarded by a new exact gate E9.
+- **23/24 pass batch 1-2's three grader conditions**, the best so far
+  (batch 1 18, batch 2 16).
+- It fails the stricter bar: **18/24** with batch 2's dead-distractor
+  condition (bar 20), and `easier` **11/48** (bar 8).
+- Five of the six holds are a dead distractor named by both graders. Most
+  come from the vocabulary rule "every option is a genuine meaning of the
+  word". A real sense that has nothing to do with the sentence reads as
+  dead: a musical scale in a map sentence, a yield sign in a harvest one.
+- The rule did clean the options-only screen: vocabulary 22.2% here, 55.6%
+  in batch 2.
+- **Calibration flipped ends.** The misses are now at the BOTTOM band
+  (grade-5 items rated 170-179; grade-5 standards labelled grade 6). Only
+  4/8 survive at 180-189, against 8/8 at 200-209.
+
+**Strand 2: comprehension by the whole-passage-variant method (2 passages x
+5). FAIL on four of six bars.**
+- Options-only came in at chance as the method guarantees: 16.7% against a
+  control R of 25.0%, down from batch 2's 83.3%.
+- Cross-version validity passed (38/40).
+- **The with-source half and naturalness failed together:**
+  - exclusivity 6/10 (bar 9)
+  - easy 4/10 (bar 2)
+  - dead distractors 6/10 (bar 1)
+  - naturalness median 2.5 against 4.5 for batch 2's unconstrained passages
+- Named mechanisms:
+  - keys stated almost verbatim, or else thinly supported
+  - transparent vocabulary collocations
+  - rivals flatly false in the drawn version
+  - repeated anchor words, so the prose reads "assembled rather than
+    written"
+  - a cross-item keyword thread: each world's keys share one word
+- The SSAT pilots traded naturalness against difficulty. MAP's 4-choice,
+  ~290-word shape lost both.
+
+**Coverage this adds:** nothing drawable. It adds 18 pilot-pass candidate
+items at RIT 180-209 that are fit to show a human, where the bank holds
+zero:
+- 9 Mechanics: 4 Capitalization, 3 Spelling, 2 Punctuation
+- 4 Vocabulary
+- 5 Usage
+The 18 are not shippable and carry no validated RIT (§10).
+
+**Decision recorded:** no further agent comprehension pilot for MAP. This is
+the third MAP method and the fourth variant-method failure (with SSAT A76-A78).
+MAP comprehension at 180-209 needs a human author. Strand 1 is worth one more
+round only with the vocabulary rule narrowed to "meanings a reader could read
+into THIS sentence" and bands anchored to each grade's own standard. MAP still
+has no human sitting.

@@ -103,7 +103,7 @@ else if (mode === 'oo') {
   for (const a of ['vocab', 'usage']) if (pct(out[a]) - pct(v) > 20) console.log(`  SCREEN FLAG (not a verdict): ${a} ${pct(out[a]).toFixed(1)}% is more than 20 points above control V ${pct(v).toFixed(1)}%`)
 } else if (mode === 'ws') {
   const key = rd(O + 'ws.key.json'), ids = Object.keys(key)
-  const gr = ['a', 'b'].map(s => O + `ws.grader-${s}.json`).filter(existsSync).map(p => [p.split('.').at(-2), lab(rd(p))])
+  const gr = ['a', 'b'].map(s => O + `ws.grader-${s}.json`).filter(existsSync).map(p => [p.split('.').at(-2).replace('grader-', ''), lab(rd(p))])
   if (gr.length < 2) { console.error(`REFUSING: ${gr.length} of 2 grader files`); process.exit(2) }
   for (const [t, g] of gr) { const miss = ids.filter(i => !/^[A-D]$/.test(g[i]?.pick ?? '') || bandLo(g[i]?.band_assigned) == null || !['fits', 'too_easy', 'too_hard'].includes(g[i]?.grade_fit)); if (miss.length) { console.error(`REFUSING: ${t} missing pick/band_assigned/grade_fit on ${miss.join(',')}`); process.exit(2) } }
   if (ids.length !== 34) { console.error(`REFUSING: ${ids.length} with-source items, expected 34`); process.exit(2) }
