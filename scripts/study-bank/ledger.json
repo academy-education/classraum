@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T05:45:38.782Z",
+  "generatedAt": "2026-10-06T14:10:07.011Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -5240,6 +5240,53 @@
           "passed": false,
           "contentSha": "342045fc8b58f9d344cd08540c1ad7e6e4a89da20c4535424512522cb22e6ed3",
           "verdict": "Solver picks naming 'singleton relation / distractors paired': candidate 17/17 correct, live 0 named. 'Broken twin' (mismatched same-shape decoy): candidate 22/22 correct, live 3/4. Reversal and odd-domain: 0 candidate picks. Per-family candidate hit rate: sign, degree, prevention 100%, person_trait 92.6%, rejecter 79.2%, manner 70.4% ... cause_effect 0%, preparation 12.5%, counteract 16.7%."
+        }
+      }
+    },
+    {
+      "id": "sat-sec-hard-v13-kept-2026-10-06",
+      "createdAt": "2026-10-06",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v13-sec-hard",
+      "contentSha": "bd236bd467d1a005404c70866ee8cd7a904e330a5d64486347ac6b67983a64d6",
+      "status": "inserted",
+      "note": "Pre-registered 40ae6f36 (PREREG-SEC13-2026-10-06.md, v12 bars/control) before any item existed. 12 authored, siblings of the v10-v12 panel-median-hard constructions; two Claude agents, 6 each, disjoint construction lists; no audit/repair round, no repair after any gate stage. 8 kept: 4 hard / 4 medium by panel median; authors labelled all 12 hard. 4 dropped by the pre-registered rule, none held. The first with-source render was made in BLIND=labelled mode (subskill headers name the key mark); those three grades are kept as sec13.ws-leaky-{d,e,f}.json and NOT used; three fresh graders read the BLIND=bare render.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "bd236bd467d1a005404c70866ee8cd7a904e330a5d64486347ac6b67983a64d6",
+          "verdict": "8 items, one ______ blank each; bank-helper check shape OK on all 12 authored. Key letters across the 12 A3/B3/C3/D3 (kept 8: A2/B2/C3/D1, shuffled at draw time). Key uniquely longest 0/12, uniquely shortest 2/12. Max length ratio 1.57 (kept 1.55). No grader marked any item off the digital SAT SEC blueprint. Key mark families across the 12: comma+coordinator 2, no mark 2, dash 2, colon 1, semicolon 1, \", however,\" 1, period 1, relative \"that\" 1, comma 1; added-word keys 3 (but, so, that); a period option is WRONG in 6 items."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "bd236bd467d1a005404c70866ee8cd7a904e330a5d64486347ac6b67983a64d6",
+          "verdict": "THREE INDEPENDENT GRADERS (ws-d, ws-e, ws-f) on the BLIND=bare render (identical bytes to bank-helper BLIND=bare blind), cold phase 1 written before keys: 12 of 12 keys matched on all three, zero cold misses, zero key disputes, zero non-exclusive, zero resolving words, zero path errors. Pre-registered drops (gate-verdict.mjs): SEC13A-04 median 3 free strikes (closing dash matches an opening dash); SEC13B-03 weak 2/3 + median 3 strikes (opening dash matches a later dash; also shares the wet-plate topic with A-03); SEC13B-04 weak 2/3 + median 2 strikes (question mark + \"did they leave\"; panel easy); SEC13B-06 median 2 strikes (closing comma matches an opening comma). Every recommend_drop falls on those four. Panel median of kept: hard SEC13A-02, SEC13B-01, SEC13B-02, SEC13B-05; medium SEC13A-01, SEC13A-03, SEC13A-05, SEC13A-06. Superseded leaky grades (subskill shown) put 3 at hard median (A-02, A-03, B-02) - the bare panel moved A-03 down and B-01/B-05 up."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "bd236bd467d1a005404c70866ee8cd7a904e330a5d64486347ac6b67983a64d6",
+          "verdict": "Options-only attack (make-oo-render --control 24 --control-difficulty hard --exclude rw-v10-sec-hard,rw-v11-sec-hard,rw-v12-sec-hard; control cohorts v2 5, rw-v6 5, rw-v7 6, rw-v8 6, rw-v9 2, all live hard SEC), 12 candidates interleaved with 24 controls, keys dealt flat (9/9/9/9), three solver samples, 36/36 answered each. CANDIDATE 36.1% (13/36, letter line 25.0%) vs LIVE CONTROL 69.4% (50/72, letter line 25.0%), margin -33.3, inside the pre-registered +10 bar. Ceiling check: control below 90% and above its letter line +5, so MEASURED. Pairwise agreement 79.6% vs 27.8% independent. Unanimity as batch rate: candidate 3/12 = 25.0%, control 15/24 = 62.5%. Candidate unanimous-correct: SEC13B-03 and SEC13A-04 (dash keys; both dropped) and SEC13A-05 (colon key)."
+        },
+        "elimination": {
+          "passed": true,
+          "bar": "paired-control-v1",
+          "candidateRate": 0,
+          "controlRate": 0.0556,
+          "margin": -0.0556,
+          "threshold": 0.2,
+          "n": 12,
+          "controlN": 24,
+          "samples": 3,
+          "contentSha": "bd236bd467d1a005404c70866ee8cd7a904e330a5d64486347ac6b67983a64d6",
+          "verdict": "elimination-paired.mjs --batch/--qc (A23 bar). Run on ALL 12 authored items before drops, as the prereg requires when fewer than 12 survive (8 did); difficulty from the full panel median (4 hard / 6 medium / 2 easy), matched on difficulty: 24 live SEC controls (v2 15, rw-v6 2, rw-v8 2, rw-v10 2, rw-v7 1, rw-v9 1, rw-v12 1), separate files, 3 Claude samples per arm. Candidate 0.0% [0,0,0] vs control 5.6% [4.2,8.3,4.2] -> margin -5.6, PASS. No key ever confidently rejected. Control eliminations: \"it's own\" (3/3), \"whoever ... that\" (1/3)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "bd236bd467d1a005404c70866ee8cd7a904e330a5d64486347ac6b67983a64d6",
+          "verdict": "Named by all three graders: \"match the mark already open\" decides SEC13A-04, SEC13B-03, SEC13B-06 (all three dropped by the rule). Named by two (d, f): an added JOINING word (\"but\", \"so\", \"that\") is the key in A-01, A-03, B-05 while an added \"which\"/\"in\"/\"even\"/\"asking\" is always wrong - the v12 added-word tell inverted rather than removed (v12: added word never the key). Named by all three: one template throughout (a long fronted phrase delays the deciding clause) and the batch is boundaries-only, no Form/Structure/Sense. Blind solvers picked the lone dash/colon as odd-one-out (unanimous-correct on both dash keys and the colon key) and were unanimously WRONG on SEC13A-06, SEC13A-02 and SEC13B-02, choosing the added-word or textbook \"; however,\" option. Both dash keys were dropped by the rule, so for the second batch running the kept set carries no dash key."
         }
       }
     }

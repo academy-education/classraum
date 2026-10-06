@@ -911,6 +911,25 @@ recorded only in a commit message is a finding nobody reads.
 
   Per unit, neither passage would have inserted anyway (8/9 each; the batch rule needs 9/9). **Same failure as the SSAT pilots (A78, 9/12 easy), now with the pilot-4 difficulty brief applied from the start**: all three graders picked the key on 18/18, and the brief's "tempting partial readings" did not make them work for it. The method removes the option-text channel by construction; it does nothing for difficulty. The authors labelled every item medium/hard; graders put two thirds at easy (authors' labels again not a measure). **Do not re-run this brief unchanged for the +2 forms**; a next attempt needs a difficulty mechanism the graders can see (keys that require combining two non-adjacent paragraphs, or the version difference located in what is implied rather than stated), pre-registered before authoring.
 
+- **2026-10-06** — **SEC v13 INSERTED: 8 of 12, 4 HARD / 4 MEDIUM BY PANEL MEDIAN. SEC hard 40 → 44. THE R&W MODULE-2 HARD ROUTE GOES FROM 5 TO 6 FORMS** (form-capacity; `verify-sat-hard-route.ts`: 3 of 3 drawn forms all-hard, 0 repeats). `rw-v13-sec-hard`, kept sha `bd236bd4`, prereg `40ae6f36` (PREREG-SEC13-2026-10-06.md, v12's bars and control), ledger `sat-sec-hard-v13-kept-2026-10-06`. Two Claude authors, 6 items each, siblings of the v10-v12 panel-hard constructions; no audit or repair round, no repair after any gate stage.
+
+      nosource    candidate 36.1% (13/36) vs live HARD-band control 69.4% (50/72), margin -33.3 (bar <= +10); MEASURED
+                  pairwise agreement 79.6% vs 27.8% independent; unanimity rate candidate 3/12 = 25.0%, control 15/24 = 62.5%
+      withsource  three cold graders (ws-d/e/f) on the BLIND=bare render: 12/12 keys on all three, 0 cold misses,
+                  0 non-exclusive, 0 resolving words, 0 path errors, 0 off-blueprint
+      rule drops  A-04 median 3 free strikes; B-03 weak 2/3 + median 3; B-04 weak 2/3 + median 2 (panel easy);
+                  B-06 median 2 - three of the four are "match the mark already open" (dash/dash/comma pairs)
+      elimination candidate 0.0% vs matched control 5.6% (n=12 vs 24), margin -5.6, PASS (A23), run on all 12 authored
+      panel       hard A-02 (no mark before a delayed how-clause object), B-01 (no mark inside a long restrictive
+                  subject), B-02 (", however," after a semicolon - the "; however," reflex is the trap),
+                  B-05 (relative "that" for a subjectless clause); authors labelled all 12 hard (15th demotion)
+
+  **The with-source render the resumed job inherited was LEAKY and its three grades were thrown away.** `sec13.ws-blind.txt` had been made with `bank-helper.mjs blind` in its default `BLIND=labelled` mode, so each item header carried the authored subskill — "closing dash of a dash pair", "colon before an explanatory clause", "period before a direct question". That names the key. v12's render was `BLIND=bare`. It matched the batch files byte-for-byte on passages and options, which is what the resume check looked at; the leak was in the header. Grader d (of the first panel) said so in its reply. Kept as `sec13.ws-blind-leaky.txt` + `sec13.ws-leaky-{d,e,f}.json`, not used; the replacement render is byte-identical to `BLIND=bare … blind`, and three fresh graders read it. The leak moved difficulty in both directions (leaky panel: hard A-02, A-03, B-02; bare panel: hard A-02, B-01, B-02, B-05) and moved no key or drop decision. **Every with-source SEC render should be `BLIND=bare`; the default is the wrong mode for a grade, and nothing refuses it.**
+
+  **Tells.** (1) All three graders: "match the mark already open" decides A-04, B-03, B-06; the rule dropped all three, so for the second batch running **the kept set has no dash key** (v12 lost both of its dash keys the same way). (2) Graders d and f: the v12 added-word tell is **inverted, not removed** — an added JOINING word ("but", "so", "that") is the key in A-01, A-03, B-05, while an added "which"/"in"/"even"/"asking" is always wrong. (3) All three: one template (a long fronted phrase delays the deciding clause), boundaries only, no Form/Structure/Sense. (4) Blind solvers were unanimously right on both dash keys and the colon key (lone mark as odd-one-out) and unanimously WRONG on A-02, A-06 and B-02, picking the added-word or textbook "; however," option.
+
+  **Next form:** form 7 needs 49 SEC hard (5 more). Across v10-v13 the hard yield is 3/26, 4/12, 3/14, 4/12.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

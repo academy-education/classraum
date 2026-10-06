@@ -1,0 +1,104 @@
+[
+ {
+  "id": "SEC13B-01",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: no mark inside a long restrictive subject (containing a dash pair) before a delayed adverbial and main verb",
+  "difficulty": "hard",
+  "passage": "Whether the earliest horses crossed between North America and Asia once or several times long divided paleontologists. The fossil teeth that two amateur collectors—one a retired dentist, the other a high school chemistry teacher—dug from an eroding ______ a single wet summer in the 1980s ultimately settled the matter: their enamel preserved chemical signatures from two distinct source regions.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "riverbank—over",
+   "riverbank, which over",
+   "riverbank, over",
+   "riverbank over"
+  ],
+  "correct_answer": "riverbank over",
+  "explanation": "The second sentence is one independent clause. Its subject is \"The fossil teeth,\" restricted by the relative clause \"that two amateur collectors ... dug from an eroding riverbank over a single wet summer in the 1980s\"; the dash pair inside that clause is already complete. The main verb is \"settled,\" which arrives only after \"ultimately.\" Because the phrase \"over a single wet summer in the 1980s\" belongs inside the restrictive subject (it tells when the teeth were dug), no punctuation should separate it from \"riverbank,\" and none may separate the subject from its verb, so \"riverbank over\" is correct. \"riverbank, over\" places a single comma between the subject and \"settled,\" with no closing comma to make a pair. \"riverbank—over\" does the same with a lone dash; the dash pair around the collectors has already closed, so this dash has no partner. \"riverbank, which over\" begins a new relative clause about the riverbank whose verb is \"settled,\" leaving \"The fossil teeth\" with no main verb, so the sentence becomes a fragment.",
+  "topic_tag": "vertebrate paleontology"
+ },
+ {
+  "id": "SEC13B-02",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: however as an interrupter after a long introductory dependent clause (with nested relative clause) that follows a semicolon",
+  "difficulty": "hard",
+  "passage": "Early screening of the antiviral compound looked extraordinarily promising. In cell cultures, it blocked replication of the virus in nearly every sample tested; when researchers gave it to laboratory mice, whose livers rapidly broke the molecule down into inactive ______ antiviral effect seen in the culture dishes all but vanished.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "fragments; however, the",
+   "fragments. However, the",
+   "fragments, however, the",
+   "fragments, however; the"
+  ],
+  "correct_answer": "fragments, however, the",
+  "explanation": "The semicolon after \"tested\" already separates the second sentence's two independent clauses. The second clause opens with a long dependent clause, \"when researchers gave it to laboratory mice, whose livers rapidly broke the molecule down into inactive fragments,\" and its own subject and verb are \"the antiviral effect ... vanished.\" \"However\" interrupts that clause to signal the contrast with the cell-culture results; the comma before it closes the introductory clause, and the comma after it closes the interrupter, so \"fragments, however, the\" is correct. \"fragments; however, the\" and \"fragments, however; the\" each place a semicolon directly after the \"when\" clause, but a semicolon must follow an independent clause, and \"when researchers gave it ... into inactive fragments\" is dependent, so it is left as a fragment. \"fragments. However, the\" fails for the same reason: the text between the earlier semicolon and the period would be a sentence consisting only of the dependent \"when\" clause.",
+  "topic_tag": "pharmacology"
+ },
+ {
+  "id": "SEC13B-03",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: opening dash of a mid-sentence summarizing appositive closed by a later dash",
+  "difficulty": "hard",
+  "passage": "Wet-plate photographers of the 1850s had to coat, sensitize, and develop each glass plate within about ten minutes, before its coating dried. Working in cramped portable darkrooms, they handled ether, silver nitrate, and potassium ______ chemicals capable of causing burns, blindness, or fatal poisoning—with bare hands and little ventilation, and many developed chronic illnesses as a result.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "cyanide; three",
+   "cyanide—three",
+   "cyanide, three",
+   "cyanide. Three"
+  ],
+  "correct_answer": "cyanide—three",
+  "explanation": "The independent clause is \"they handled ether, silver nitrate, and potassium cyanide ... with bare hands and little ventilation.\" Between the list and \"with bare hands\" sits \"three chemicals capable of causing burns, blindness, or fatal poisoning,\" a noun phrase that summarizes the list; it has no verb of its own (\"capable\" is an adjective). This interrupting appositive is already closed by the dash after \"poisoning,\" so it must be opened by a matching dash: \"cyanide—three\" is correct. \"cyanide, three\" opens the interrupter with a comma but closes it with a dash; the two marks around an interrupting element must match. \"cyanide; three\" and \"cyanide. Three\" each require an independent clause to follow, but \"three chemicals capable of causing burns, blindness, or fatal poisoning—with bare hands and little ventilation\" has no subject-verb pair, so each leaves a fragment and strands the phrase \"with bare hands,\" which modifies \"handled.\"",
+  "topic_tag": "history of photography"
+ },
+ {
+  "id": "SEC13B-04",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: period before a direct question whose inversion is delayed by a long fronted phrase",
+  "difficulty": "hard",
+  "passage": "Letters sent home by the first colonists at the northern fishing station describe bays crowded with cod, forests of straight timber, and mild summers, yet within a decade the colonists had abandoned the ______, given catches and harvests that their own accounts repeatedly call abundant, did they leave so quickly when neighboring stations survived for more than a century?",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "settlement. Why",
+   "settlement, why",
+   "settlement why",
+   "settlement, asking why"
+  ],
+  "correct_answer": "settlement. Why",
+  "explanation": "The first sentence, \"Letters ... describe bays ..., yet within a decade the colonists had abandoned the settlement,\" is a statement. What follows is a direct question: \"Why, given catches and harvests that their own accounts repeatedly call abundant, did they leave so quickly ...?\" The question is marked by the inverted auxiliary \"did they leave,\" which appears only after the long fronted phrase, and by the closing question mark. A statement and a separate direct question must be punctuated as separate sentences, so \"settlement. Why\" is correct. \"settlement, why\" joins the two independent clauses with only a comma, a comma splice, and leaves a declarative clause inside a sentence that ends in a question mark. \"settlement why\" fuses the two clauses with no punctuation at all. \"settlement, asking why\" turns the question into a participial phrase containing an indirect question, but an indirect question takes statement word order (\"why they left\"), not the inverted \"did they leave,\" and the whole sentence would then be a statement wrongly ending in a question mark.",
+  "topic_tag": "colonial history"
+ },
+ {
+  "id": "SEC13B-05",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: relative pronoun needed to attach a subjectless clause (verb delayed by a fronted phrase) to a noun",
+  "difficulty": "hard",
+  "passage": "When a muscle fiber's outer membrane is torn during strenuous exercise, the cell can reseal the breach within seconds. Studying a form of muscular dystrophy in which fibers steadily degenerate, researchers in 2003 identified a membrane ______ the presence of the calcium ions admitted through a tear rapidly gathers at the breach, where it helps assemble a patch from small vesicles inside the cell.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "protein that in",
+   "protein, and in",
+   "protein; in",
+   "protein. In"
+  ],
+  "correct_answer": "protein that in",
+  "explanation": "The main clause is \"researchers in 2003 identified a membrane protein.\" The words that follow, \"in the presence of the calcium ions admitted through a tear rapidly gathers at the breach,\" contain the finite verb \"gathers\" but no subject: \"admitted\" is a participle modifying \"ions,\" and \"in the presence of ...\" is a fronted prepositional phrase. Only the relative pronoun \"that\" supplies a subject and attaches the clause to \"protein\" (\"a protein that ... gathers at the breach\"), so \"protein that in\" is correct. \"protein; in\" and \"protein. In\" each require an independent clause to follow, but \"in the presence of ... rapidly gathers at the breach\" has no subject, so each leaves a fragment. \"protein, and in\" tries to make \"gathers\" a second verb of the main clause, but the subject of that clause is the plural \"researchers\" and its verb is the past tense \"identified,\" so \"and ... gathers\" has no subject it can agree with.",
+  "topic_tag": "cell biology"
+ },
+ {
+  "id": "SEC13B-06",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: closing comma of a long nonrestrictive appositive between an indirect object and a delayed direct object",
+  "difficulty": "hard",
+  "passage": "Printing licenses in the seventeenth century were valuable and fiercely contested. In 1662 the city council granted the printer, a former apprentice to the region's leading engraver who had, according to one hostile pamphlet, carried off several of his master's copper plates when he quit the ______ exclusive right to print and sell almanacs within the city walls for the next twenty years.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "workshop. The",
+   "workshop—the",
+   "workshop the",
+   "workshop, the"
+  ],
+  "correct_answer": "workshop, the",
+  "explanation": "The main clause is \"the city council granted the printer ... the exclusive right to print and sell almanacs,\" in which \"the printer\" is the indirect object and \"the exclusive right ...\" is the direct object. Between them is a nonrestrictive appositive, \"a former apprentice to the region's leading engraver who had ... quit the workshop,\" which opens with the comma after \"printer\" and contains its own comma pair around \"according to one hostile pamphlet.\" The appositive must be closed with a matching comma before the direct object, so \"workshop, the\" is correct. \"workshop the\" leaves the appositive unclosed and runs it into the direct object. \"workshop—the\" closes a comma-opened appositive with a dash; the marks around an interrupting element must match. \"workshop. The\" ends the first sentence with \"granted the printer\" lacking its direct object and leaves \"The exclusive right to print and sell almanacs ... for the next twenty years\" as a fragment with no verb.",
+  "topic_tag": "early modern printing"
+ }
+]

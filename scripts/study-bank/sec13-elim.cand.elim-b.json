@@ -1,0 +1,14 @@
+{
+  "L01": {"reject_first": "A", "why": "No mark between a noun and an interrogative 'how' clause usually produces a run-on or fused clause; but 'how' could open a noun clause in some frames, so not certain.", "certain": false, "confident_rejects": []},
+  "L02": {"reject_first": "A", "why": "Bare 'settlement why' is the least likely join; a 'why' noun clause directly after a noun is rare but not impossible (e.g. a reason clause after a verb-like frame).", "certain": false, "confident_rejects": []},
+  "L03": {"reject_first": "A", "why": "Semicolon followed by 'though' is unusual; still, '; though how X arose is unclear, Y...' can be a complete clause, so not certain.", "certain": false, "confident_rejects": []},
+  "L04": {"reject_first": "D", "why": "'so until' adds a result conjunction that often mismatches; but ', so until X, Y' is a legal independent clause join.", "certain": false, "confident_rejects": []},
+  "L05": {"reject_first": "D", "why": "Comma before 'three' risks a comma splice if 'three...' starts a clause; but an appositive ('cyanide, three times...') is possible.", "certain": false, "confident_rejects": []},
+  "L06": {"reject_first": "D", "why": "'off a' with no mark is the outlier among appositive/clause boundary options; but 'broke off a piece' makes it grammatical.", "certain": false, "confident_rejects": []},
+  "L07": {"reject_first": "C", "why": "Semicolon before a prepositional 'beside' phrase needs an independent clause after it (e.g. inverted 'beside it stood...'), which is possible but less likely.", "certain": false, "confident_rejects": []},
+  "L08": {"reject_first": "C", "why": "', which in' adds a relative pronoun that may leave a clause without a verb; but a well-formed relative clause is possible.", "certain": false, "confident_rejects": []},
+  "L09": {"reject_first": "A", "why": "'protein that in' creates a restrictive clause that may lack a verb or conflict with sentence structure; possible in some frames.", "certain": false, "confident_rejects": []},
+  "L10": {"reject_first": "C", "why": "No mark between two noun-phrase/clause units likely fuses clauses; but 'in the workshop the artisans used' is grammatical.", "certain": false, "confident_rejects": []},
+  "L11": {"reject_first": "C", "why": "Commas on both sides of 'however' between two independent clauses is a comma splice; but if the first part is a dependent/introductory phrase it is legal.", "certain": false, "confident_rejects": []},
+  "L12": {"reject_first": "B", "why": "', which over' inserts a relative pronoun that may leave a verbless clause; possible if a verb follows.", "certain": false, "confident_rejects": []}
+}

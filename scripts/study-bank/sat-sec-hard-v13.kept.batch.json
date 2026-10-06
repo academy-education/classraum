@@ -1,0 +1,138 @@
+[
+  {
+    "id": "SEC13A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma + coordinating conjunction before a second independent clause whose subject is a how-clause",
+    "difficulty": "hard",
+    "passage": "Herpetologists had documented for decades that hatchling sea turtles, emerging from their nests at night, crawl directly toward the brightest part of the surrounding ______ the animals tell the faint glow above open water from the darker outline of the dunes behind them remained uncertain until laboratory trials in the 1990s isolated the role of the light's wavelength.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "landscape, but how",
+      "landscape, how",
+      "landscape; though how",
+      "landscape, in how"
+    ],
+    "correct_answer": "landscape, but how",
+    "explanation": "The sentence contains two independent clauses. The first is \"Herpetologists had documented for decades that hatchling sea turtles ... crawl directly toward the brightest part of the surrounding landscape.\" The second has a noun clause as its subject, \"how the animals tell the faint glow above open water from the darker outline of the dunes behind them,\" and \"remained\" as its verb. Two independent clauses can be joined by a comma and a coordinating conjunction, so \"landscape, but how\" is correct. \"landscape, how\" joins the two independent clauses with only a comma, a comma splice. \"landscape; though how\" places a semicolon before \"though,\" which is a subordinating conjunction here; the semicolon would then separate the first independent clause from a dependent clause, which a semicolon cannot do. \"landscape, in how\" turns the noun clause into the object of the preposition \"in,\" leaving the verb \"remained\" with no subject.",
+    "topic_tag": "herpetology: sea turtle hatchlings"
+  },
+  {
+    "id": "SEC13A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark between a verb (with fronted to-phrase) and its delayed noun-clause object",
+    "difficulty": "hard",
+    "passage": "For two centuries, the woodcuts issued by the workshop were credited to its founder alone, whose monogram appears in the corner of each print. The workshop's account books, rediscovered in a provincial archive in 2015, now reveal to anyone familiar only with the finished ______ many of those celebrated blocks were in fact cut by apprentices, whose names and weekly wages the books record line by line.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "impressions, how",
+      "impressions how",
+      "impressions. How",
+      "impressions and how"
+    ],
+    "correct_answer": "impressions how",
+    "explanation": "The verb \"reveal\" is followed first by the phrase \"to anyone familiar only with the finished impressions\" and then by its direct object, the noun clause \"how many of those celebrated blocks were in fact cut by apprentices.\" No punctuation should separate a verb from its object, even when a phrase intervenes, so \"impressions how\" is correct. \"impressions, how\" inserts a comma between the verb phrase and its object. \"impressions. How\" ends the first sentence before \"reveal\" has an object, leaving it incomplete, and the second sentence is likewise not a complete statement. \"impressions and how\" makes the noun clause a second object of \"with\" (\"familiar only with the finished impressions and how many ...\"), so \"reveal\" is again left without an object.",
+    "topic_tag": "printmaking history"
+  },
+  {
+    "id": "SEC13A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma + coordinating conjunction before a clause that opens with an until-clause",
+    "difficulty": "hard",
+    "passage": "Wet collodion plates, the standard medium of mid-nineteenth-century photography, had to be coated, exposed, and developed within about ten minutes, because the coating lost its sensitivity as it ______ lighter dry plates that could be prepared weeks in advance were introduced in the 1870s, photographers working in the field had to carry a darkroom tent, bottles of chemicals, and water to every site.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "dried, until",
+      "dried until",
+      "dried, so until",
+      "dried, even until"
+    ],
+    "correct_answer": "dried, so until",
+    "explanation": "The sentence contains two independent clauses. The first ends with \"because the coating lost its sensitivity as it dried.\" The second is \"photographers working in the field had to carry a darkroom tent, bottles of chemicals, and water to every site,\" and it is preceded by the introductory clause \"until lighter dry plates ... were introduced in the 1870s.\" Two independent clauses can be joined by a comma and a coordinating conjunction, so \"dried, so until\" is correct. \"dried, until\" attaches the \"until\" clause to the first clause and then joins \"photographers ... had to carry\" to it with only a comma, a comma splice. \"dried until\" does the same with no punctuation at the end of the first clause, producing a run-on sentence. \"dried, even until\" adds the adverb \"even,\" which cannot join clauses, so it is also a comma splice.",
+    "topic_tag": "history of photography"
+  },
+  {
+    "id": "SEC13A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon before an explanatory clause that opens with a long prepositional phrase",
+    "difficulty": "hard",
+    "passage": "A beekeeper in the 1880s weighed each of her hives every evening for eleven years and recorded the results in a set of notebooks now held by an agricultural museum. Read together, the notebooks make one pattern ______ nearly every season for which a complete run of weights survives, the hives gained more in the two weeks after the clover bloom than in the whole of the following summer.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "unmistakable, in",
+      "unmistakable: in",
+      "unmistakable in",
+      "unmistakable, which in"
+    ],
+    "correct_answer": "unmistakable: in",
+    "explanation": "\"Read together, the notebooks make one pattern unmistakable\" is an independent clause that announces a pattern, and the independent clause that follows explains it: its subject and verb are \"the hives gained,\" which come after the long introductory phrase \"in nearly every season for which a complete run of weights survives.\" A colon may join an independent clause to a second independent clause that explains it, so \"unmistakable: in\" is correct. \"unmistakable, in\" joins the two independent clauses with only a comma, a comma splice. \"unmistakable in\" makes the prepositional phrase seem to modify \"unmistakable\" and then runs \"the hives gained\" into the first clause with no conjunction, producing a comma splice. \"unmistakable, which in\" begins a relative clause, but \"the hives gained more ...\" is already a complete clause with no gap for \"which\" to fill, so the sentence is ungrammatical.",
+    "topic_tag": "apiculture"
+  },
+  {
+    "id": "SEC13A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon after a clause whose delayed object follows a dash pair, before a clause opening with a long prepositional phrase",
+    "difficulty": "hard",
+    "passage": "Fossil trackways are usually short, since the mud that records a footprint rarely stays soft enough, or exposed long enough, to capture more than a few steps. The researchers traced across the quarry floor—a limestone shelf uncovered only after the quarry closed—an unbroken trackway of three-toed prints running for nearly ninety ______ several of the deeper prints, in mud that had cracked as it dried before burial, they identified the much smaller tracks of a second, lighter animal.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "meters, beside",
+      "meters beside",
+      "meters; beside",
+      "meters, beside which"
+    ],
+    "correct_answer": "meters; beside",
+    "explanation": "The first independent clause is \"The researchers traced across the quarry floor—a limestone shelf uncovered only after the quarry closed—an unbroken trackway of three-toed prints running for nearly ninety meters\"; the dash pair has already closed before \"an unbroken trackway,\" the object of \"traced.\" A second independent clause follows, with the subject and verb \"they identified\" placed after the introductory phrase \"beside several of the deeper prints, in mud that had cracked as it dried before burial.\" A semicolon can join two independent clauses, so \"meters; beside\" is correct. \"meters, beside\" joins the two independent clauses with only a comma, a comma splice. \"meters beside\" makes \"beside several of the deeper prints\" seem to describe where the trackway ran and then attaches \"they identified\" with only a comma, again a comma splice. \"meters, beside which\" begins a relative clause, but \"several of the deeper prints\" then has no role in it and \"they identified the much smaller tracks\" leaves no gap for \"which,\" so the sentence is ungrammatical.",
+    "topic_tag": "paleontology: dinosaur trackways"
+  },
+  {
+    "id": "SEC13B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark inside a long restrictive subject (containing a dash pair) before a delayed adverbial and main verb",
+    "difficulty": "hard",
+    "passage": "Whether the earliest horses crossed between North America and Asia once or several times long divided paleontologists. The fossil teeth that two amateur collectors—one a retired dentist, the other a high school chemistry teacher—dug from an eroding ______ a single wet summer in the 1980s ultimately settled the matter: their enamel preserved chemical signatures from two distinct source regions.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "riverbank—over",
+      "riverbank, which over",
+      "riverbank, over",
+      "riverbank over"
+    ],
+    "correct_answer": "riverbank over",
+    "explanation": "The second sentence is one independent clause. Its subject is \"The fossil teeth,\" restricted by the relative clause \"that two amateur collectors ... dug from an eroding riverbank over a single wet summer in the 1980s\"; the dash pair inside that clause is already complete. The main verb is \"settled,\" which arrives only after \"ultimately.\" Because the phrase \"over a single wet summer in the 1980s\" belongs inside the restrictive subject (it tells when the teeth were dug), no punctuation should separate it from \"riverbank,\" and none may separate the subject from its verb, so \"riverbank over\" is correct. \"riverbank, over\" places a single comma between the subject and \"settled,\" with no closing comma to make a pair. \"riverbank—over\" does the same with a lone dash; the dash pair around the collectors has already closed, so this dash has no partner. \"riverbank, which over\" begins a new relative clause about the riverbank whose verb is \"settled,\" leaving \"The fossil teeth\" with no main verb, so the sentence becomes a fragment.",
+    "topic_tag": "vertebrate paleontology"
+  },
+  {
+    "id": "SEC13B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: however as an interrupter after a long introductory dependent clause (with nested relative clause) that follows a semicolon",
+    "difficulty": "hard",
+    "passage": "Early screening of the antiviral compound looked extraordinarily promising. In cell cultures, it blocked replication of the virus in nearly every sample tested; when researchers gave it to laboratory mice, whose livers rapidly broke the molecule down into inactive ______ antiviral effect seen in the culture dishes all but vanished.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "fragments; however, the",
+      "fragments. However, the",
+      "fragments, however, the",
+      "fragments, however; the"
+    ],
+    "correct_answer": "fragments, however, the",
+    "explanation": "The semicolon after \"tested\" already separates the second sentence's two independent clauses. The second clause opens with a long dependent clause, \"when researchers gave it to laboratory mice, whose livers rapidly broke the molecule down into inactive fragments,\" and its own subject and verb are \"the antiviral effect ... vanished.\" \"However\" interrupts that clause to signal the contrast with the cell-culture results; the comma before it closes the introductory clause, and the comma after it closes the interrupter, so \"fragments, however, the\" is correct. \"fragments; however, the\" and \"fragments, however; the\" each place a semicolon directly after the \"when\" clause, but a semicolon must follow an independent clause, and \"when researchers gave it ... into inactive fragments\" is dependent, so it is left as a fragment. \"fragments. However, the\" fails for the same reason: the text between the earlier semicolon and the period would be a sentence consisting only of the dependent \"when\" clause.",
+    "topic_tag": "pharmacology"
+  },
+  {
+    "id": "SEC13B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: relative pronoun needed to attach a subjectless clause (verb delayed by a fronted phrase) to a noun",
+    "difficulty": "hard",
+    "passage": "When a muscle fiber's outer membrane is torn during strenuous exercise, the cell can reseal the breach within seconds. Studying a form of muscular dystrophy in which fibers steadily degenerate, researchers in 2003 identified a membrane ______ the presence of the calcium ions admitted through a tear rapidly gathers at the breach, where it helps assemble a patch from small vesicles inside the cell.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "protein that in",
+      "protein, and in",
+      "protein; in",
+      "protein. In"
+    ],
+    "correct_answer": "protein that in",
+    "explanation": "The main clause is \"researchers in 2003 identified a membrane protein.\" The words that follow, \"in the presence of the calcium ions admitted through a tear rapidly gathers at the breach,\" contain the finite verb \"gathers\" but no subject: \"admitted\" is a participle modifying \"ions,\" and \"in the presence of ...\" is a fronted prepositional phrase. Only the relative pronoun \"that\" supplies a subject and attaches the clause to \"protein\" (\"a protein that ... gathers at the breach\"), so \"protein that in\" is correct. \"protein; in\" and \"protein. In\" each require an independent clause to follow, but \"in the presence of ... rapidly gathers at the breach\" has no subject, so each leaves a fragment. \"protein, and in\" tries to make \"gathers\" a second verb of the main clause, but the subject of that clause is the plural \"researchers\" and its verb is the past tense \"identified,\" so \"and ... gathers\" has no subject it can agree with.",
+    "topic_tag": "cell biology"
+  }
+]
