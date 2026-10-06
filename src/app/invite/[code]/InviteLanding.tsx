@@ -36,6 +36,7 @@ import { savePendingReferral } from '@/lib/study/pending-referral'
 import { appStoreUrl, detectPlatform, PLAY_STORE_URL, type DevicePlatform } from '@/lib/deeplinks'
 import { REFERRAL_INVITEE_CREDITS } from '@/lib/study/referral'
 import { StudyButton, studyButtonClass } from '@/app/mobile/study/_shared/StudyButton'
+import { shippedTestList } from '@/lib/study/plan-copy'
 
 export function InviteLanding({ code }: { code: string }) {
   const router = useRouter()
@@ -102,8 +103,8 @@ export function InviteLanding({ code }: { code: string }) {
           </h1>
           <p className="text-[13.5px] text-gray-600 leading-relaxed break-keep">
             {ko
-              ? 'AI가 만들어주는 SAT · TOEFL · 수능 모의고사로 친구와 함께 공부해요.'
-              : 'AI-built SAT, TOEFL and Suneung (Korean CSAT) practice tests.'}
+              ? `AI가 만들어주는 ${shippedTestList(true)} 모의고사로 친구와 함께 공부해요.`
+              : `AI-built ${shippedTestList(false)} practice tests.`}
           </p>
         </header>
 

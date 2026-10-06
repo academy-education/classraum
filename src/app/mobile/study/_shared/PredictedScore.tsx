@@ -15,6 +15,10 @@ import { SectionUnavailableSheet } from './SectionUnavailableSheet'
 
 // The diagnostic launches an SAT Reading & Writing adaptive full test.
 const DIAGNOSTIC_CREDIT_COST = creditCostForTest('sat', 'reading_writing')
+// The partial state ("finish Math") quotes the dearer SAT section so the
+// note can never understate the charge. Both read the live price table;
+// the old literal "2 credits" outlived the 2026-09-04 reprice to 3.
+const NEXT_SECTION_CREDIT_COST = Math.max(DIAGNOSTIC_CREDIT_COST, creditCostForTest('sat', 'math'))
 
 // Digital SAT structure — shown on the diagnostic card so students know
 // exactly what the baseline test involves. Reading & Writing: 2 adaptive
@@ -329,8 +333,8 @@ function DiagnosticCard({ ko, isPremium, starting, onStart, doneCount, totalCoun
             </StudyButton>
             <p className="text-[10px] text-white/55 text-center mt-1.5">
               {partial
-                ? (ko ? '크레딧 2개 사용 · 2개 적응형 모듈' : 'Uses 2 credits · 2 adaptive modules')
-                : (ko ? 'Reading & Writing부터 시작 · 크레딧 2개 사용' : 'Begins with Reading & Writing · uses 2 credits')}
+                ? (ko ? `크레딧 ${NEXT_SECTION_CREDIT_COST}개 사용 · 2개 적응형 모듈` : `Uses ${NEXT_SECTION_CREDIT_COST} credits · 2 adaptive modules`)
+                : (ko ? `Reading & Writing부터 시작 · 크레딧 ${DIAGNOSTIC_CREDIT_COST}개 사용` : `Begins with Reading & Writing · uses ${DIAGNOSTIC_CREDIT_COST} credits`)}
             </p>
           </>
         ) : (

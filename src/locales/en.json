@@ -5979,7 +5979,7 @@
     },
     "lockedTopic": {
       "title": "Coming soon",
-      "body": "This test isn't available yet. Currently the SAT and TOEFL are open.",
+      "body": "This test isn't available yet. Open now: {tests}.",
       "back": "Back to study"
     },
     "carouselGoTo": "Go to card {n}",
@@ -7931,7 +7931,7 @@
       "title": "About CLASSRAUM"
     },
     "mission": {
-      "description": "CLASSRAUM is an all-in-one, AI-powered platform for academies. For directors and teachers, it takes over the operational work — attendance, report cards, billing, and parent communication. And for every student in the academy, Classraum Study provides an AI study partner. One system, from the front desk to the student's phone."
+      "description": "CLASSRAUM is an all-in-one, AI-powered platform for academies. For directors and teachers, it takes over the operational work — attendance, report cards, billing, and parent communication. For students, academy assignments reach their phones, and Classraum Study, a subscription they take out themselves, adds an AI study partner. One system, from the front desk to the student's phone."
     },
     "problemSolution": {
       "problem": {
@@ -8081,7 +8081,7 @@
       {
         "id": 11,
         "question": "What is Classraum Study?",
-        "answer": "Classraum Study is our mobile study app for students — AI-powered SAT and TOEFL prep built on expert-verified question banks. It offers full timed mock tests that mirror the real exams (including TOEFL listening audio, speaking recording, and writing tasks), instant AI explanations for every mistake, a wrong-answer notebook, and flashcards with spaced repetition. A guided study path with Raumi the mascot — plus streaks, XP, and leagues with friends — keeps the habit going. Daily practice is free; Premium unlocks credits for full mock tests."
+        "answer": "Classraum Study is our mobile study app for students — AI-powered prep for the SAT, ACT, TOEFL, SSAT and ISEE, built on expert-verified question banks. It offers full timed mock tests that mirror the real exams (including TOEFL listening audio, speaking recording, and writing tasks), instant AI explanations for every mistake, a wrong-answer notebook, and flashcards with spaced repetition. A guided study path with Raumi the mascot — plus streaks, XP, and leagues with friends — keeps the habit going. Daily practice is free; full mock tests use credits, which every paid plan includes each month and which can also be bought in packs. Classraum Study is a separate subscription the student takes out; assignments from the academy appear in the student app for free."
       }
     ],
     "support": {
@@ -8320,21 +8320,21 @@
       "eyebrow": "New — Classraum Study",
       "title": "Their academy runs on Classraum.",
       "titleHighlight": "Now their studying does too.",
-      "description": "Classraum Study is the AI study app for your students — full mock tests for SAT, TOEFL, TOEIC, IELTS, and KSAT, instant AI explanations for every mistake, and a mistake notebook that plans their review automatically.",
+      "description": "Classraum Study is the AI study app for your students — full mock tests for SAT, ACT, TOEFL, SSAT, and ISEE, instant AI explanations for every mistake, and a mistake notebook that plans their review automatically.",
       "bullets": {
         "snap": "Miss a question and get an instant AI explanation of why",
-        "tests": "AI-generated mock tests with real timing, sections, and scoring",
+        "tests": "Mock tests from a reviewed question bank, with real timing, sections, and scoring",
         "review": "Wrong-answer notebook and spaced review built from their mistakes"
       },
       "cta": "Explore Classraum Study →",
-      "note": "Available to students on their own, or included with your academy."
+      "note": "A separate subscription students take out themselves. Assignments from their academy appear in the app without one."
     },
     "studyPage": {
       "hero": {
         "badge": "Classraum Study",
         "title": "Your AI study partner for",
         "titleHighlight": "every test that matters",
-        "subtitle": "Practice SAT, TOEFL, TOEIC, IELTS, and KSAT with AI-generated mock tests. Miss a question? See exactly why, explained instantly by AI. Every mistake you make becomes part of your review plan.",
+        "subtitle": "Practice {tests} with full mock tests from a reviewed question bank. Miss a question? See exactly why, explained instantly by AI. Every mistake you make becomes part of your review plan.",
         "ctaPrimary": "Start studying free →",
         "features": {
           "freeTrial": "Free trial",
@@ -8342,33 +8342,14 @@
           "cancelAnytime": "Cancel anytime"
         }
       },
-      "snap": {
-        "eyebrow": "Snap",
-        "title": "Stuck? Take a picture.",
-        "description": "Point your camera at any problem — math, English, science — and Snap reads it, solves it, and walks you through every step.",
-        "steps": {
-          "capture": {
-            "title": "Snap it",
-            "description": "Take a photo of the problem, straight from your homework or textbook"
-          },
-          "solve": {
-            "title": "See it solved",
-            "description": "AI reads the problem and explains the solution step by step"
-          },
-          "keep": {
-            "title": "Keep it",
-            "description": "Save it to your notebook and review it before the next test"
-          }
-        }
-      },
       "testPrep": {
         "eyebrow": "Test Prep",
-        "title": "Real mock tests, generated fresh every time",
-        "description": "Full-length practice tests with real sections, real timing, and real scoring — never the same test twice.",
+        "title": "Real mock tests, from a reviewed question bank",
+        "description": "Full-length practice tests with real sections, real timing, and real scoring — built from questions that are reviewed before any student sees them.",
         "items": {
           "fullTests": {
             "title": "Full mock tests",
-            "description": "Complete timed tests for SAT, TOEFL, TOEIC, IELTS, and KSAT"
+            "description": "Complete timed tests for {tests}"
           },
           "listening": {
             "title": "Listening with real audio",
@@ -8399,7 +8380,7 @@
           },
           "daily": {
             "title": "Daily challenge",
-            "description": "A 5-question quiz on your weakest topics, every day"
+            "description": "A {count}-question quiz on your weakest topics, every day"
           }
         }
       },
@@ -8424,10 +8405,11 @@
       "pricing": {
         "eyebrow": "Pricing",
         "title": "Start free, upgrade when you need more",
-        "subtitle": "Signing up is free and includes free mock-test credits. Every plan unlocks all study modes — plans differ in how many full mock tests you can generate each month.",
+        "subtitle": "Signing up is free and includes starter mock-test credits. Plans differ in how many mock-test credits you get each month, and Premium adds speaking graded from real audio and score analytics.",
         "perMonth": "/mo",
         "creditsPerMonth": "{count} mock-test credits every month",
         "popular": "Most popular",
+        "creditNote": "Each mock-test section uses {range} credits ({summary}).",
         "cta": "Start free",
         "plans": {
           "general": {
@@ -8452,7 +8434,7 @@
       },
       "bridge": {
         "title": "Run an academy?",
-        "description": "Classraum Study is part of Classraum, the all-in-one academy management platform. Give every student in your academy an AI study partner.",
+        "description": "Classraum Study is part of Classraum, the all-in-one academy management platform. Students subscribe to Study on their own; assignments from your academy reach them in the student app for free.",
         "cta": "See Classraum for academies →"
       },
       "cta": {
@@ -8486,7 +8468,7 @@
         "dailyTitle": "Daily challenge",
         "dailyXp": "+50 XP",
         "dailyTopic": "Your weakest topic this week",
-        "dailyPos": "3 / 5",
+        "dailyPos": "{pos} / {count}",
         "dailyQ": "A line passes through (2, 5) and (6, 13). What is its slope?",
         "dailyOpts": [
           "1/2",
@@ -8582,8 +8564,8 @@
         "sub": "AI-generated level tests that prospective students can take before they enroll — graded automatically."
       },
       "study": {
-        "title": "Classraum Study, included",
-        "sub": "The AI study app for every student in your academy — mock tests for five exam families, instant AI explanations for every mistake, and a mistake notebook that plans review."
+        "title": "Classraum Study, for students",
+        "sub": "The AI study app students subscribe to on their own — mock tests for SAT, ACT, TOEFL, SSAT and ISEE, instant AI explanations for every mistake, and a mistake notebook that plans review. Academy assignments stay free in the student app."
       },
       "privacy": {
         "title": "Private by design",
@@ -8751,7 +8733,7 @@
         "readyTitle": "Test ready",
         "readySub": "Speaking",
         "challengeTitle": "Daily challenge",
-        "challengeSub": "5 weak-spot questions",
+        "challengeSub": "{count} weak-spot questions",
         "xp": "+50 XP",
         "payTitleM": "Payment",
         "payAcademy": "Classraum Demo Academy",
@@ -8804,14 +8786,14 @@
         "when": "At home, studying",
         "title1": "Class ends.",
         "title2": "The studying doesn't.",
-        "sub": "Classraum Study is the AI study app included for every student in your academy. Practice with full AI mock tests, see every mistake explained the moment you make it — and each one becomes part of a review plan.",
+        "sub": "Assignments from your academy land in the student app, free. Classraum Study, a separate subscription students take out themselves, adds full mock tests and explains every mistake the moment it happens — and each one becomes part of a review plan.",
         "uiTitle": "Study · Today",
         "streak": "12-day streak",
         "goalLabel": "Today's study",
         "goalValue": "18 / 30 min",
         "item1": "Resume · TOEFL Listening mock test",
         "item1cta": "Resume",
-        "item2": "Daily challenge · 5 weak spots",
+        "item2": "Daily challenge · {count} weak spots",
         "item2cta": "+50 XP",
         "snapTitle": "AI explanation · missed question",
         "snap1": "Missed a TOEFL Listening detail question",

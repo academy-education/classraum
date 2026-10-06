@@ -25,10 +25,11 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { isWellFormedReferralCode, normalizeReferralCode } from '@/lib/study/referral'
 import { InviteLanding } from './InviteLanding'
+import { shippedTestList } from '@/lib/study/plan-copy'
 
 export const metadata: Metadata = {
   title: 'Classraum 초대 · Join me on Classraum',
-  description: 'Study for the SAT, TOEFL and 수능 with AI-generated practice tests.',
+  description: `Study for the ${shippedTestList(false)} with AI-generated practice tests.`,
   // A shared link should never end up in search results keyed to someone's code.
   robots: { index: false, follow: false },
 }
