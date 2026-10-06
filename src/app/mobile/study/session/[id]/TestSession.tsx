@@ -45,6 +45,7 @@ import { decideRestoredClock, pausedKey, heartbeatKey } from '@/lib/study/test-c
 import { track } from '@/lib/study/track-client'
 import { submitFailedProps, type SubmitFailure } from '@/lib/study/submit-failure'
 import { describeSubmitFailure } from '@/lib/study/submit-error'
+import { formatCreditRange, sectionCreditRange } from '@/lib/study/plan-copy'
 import {
   initQuestionTime, checkpointQuestionTime, restoreQuestionTime, questionSecondsArray,
   type QuestionTimeState,
@@ -1370,8 +1371,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           return {
             title: ko ? '테스트 크레딧이 부족해요' : 'You’re out of test credits',
             body: ko
-              ? '모의고사 생성에는 크레딧 1~2개가 사용돼요. 크레딧을 충전하면 바로 이어서 만들 수 있어요.'
-              : 'Each mock test uses 1–2 credits. Top up and we’ll pick up right where you left off.',
+              ? `모의고사는 섹션당 크레딧 ${formatCreditRange(sectionCreditRange(), true)}개가 사용돼요. 크레딧을 충전하면 바로 이어서 만들 수 있어요.`
+              : `Each mock-test section uses ${formatCreditRange(sectionCreditRange(), false)} credits. Top up and we’ll pick up right where you left off.`,
             cta: '',
           }
         case 'quota':

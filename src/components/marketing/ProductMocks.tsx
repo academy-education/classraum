@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
+import { DAILY_CHALLENGE_QUESTION_COUNT } from "@/lib/study/daily-challenge-count"
 import {
   Home,
   School,
@@ -505,7 +506,7 @@ export function StudyPhoneMock({ t, label, className }: { t: TFunc; label: strin
           <span className="flex-1 min-w-0">
             <i className="not-italic block text-[7px] text-gray-400">{t(M + "challengeTitle")}</i>
             <b className="block text-[8.5px] font-semibold text-gray-800 truncate">
-              {t(M + "challengeSub")} · {t(M + "xp")}
+              {t(M + "challengeSub", { count: DAILY_CHALLENGE_QUESTION_COUNT })} · {t(M + "xp")}
             </b>
           </span>
           <ChevronRight size={10} className="text-gray-300 shrink-0" />
@@ -819,10 +820,13 @@ export function DailyChallengeScreen({ t, label, className = "" }: { t: TFunc; l
       </div>
 
       <div className="flex items-center gap-1.5 mb-3">
-        {[0, 1, 2, 3, 4].map((i) => (
+        {/* One segment per real challenge question (was a literal 5 while
+            the challenge is DAILY_CHALLENGE_QUESTION_COUNT = 3); the last
+            one is the question on screen. */}
+        {Array.from({ length: DAILY_CHALLENGE_QUESTION_COUNT }, (_, i) => i).map((i) => (
           <span
             key={i}
-            className={`h-1.5 flex-1 rounded-full ${i < 2 ? "bg-[#00D0AE]" : i === 2 ? "bg-primary" : "bg-gray-200/80"}`}
+            className={`h-1.5 flex-1 rounded-full ${i < DAILY_CHALLENGE_QUESTION_COUNT - 1 ? "bg-[#00D0AE]" : "bg-primary"}`}
           />
         ))}
       </div>
@@ -831,7 +835,7 @@ export function DailyChallengeScreen({ t, label, className = "" }: { t: TFunc; l
         <div className="flex items-center justify-between mb-2.5">
           <span className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500">{t(NB + "dailyTopic")}</span>
           <span className="text-[10px] font-bold text-primary bg-blue-50 rounded-full px-2 py-0.5 tabular-nums">
-            {t(NB + "dailyPos")}
+            {t(NB + "dailyPos", { pos: DAILY_CHALLENGE_QUESTION_COUNT, count: DAILY_CHALLENGE_QUESTION_COUNT })}
           </span>
         </div>
         <p className="text-[13.5px] font-semibold text-gray-900 leading-snug mb-3">{t(NB + "dailyQ")}</p>

@@ -29,6 +29,7 @@ import { isSectionUnavailableBody } from '@/lib/study/section-availability'
 import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
+import { shippedTestList } from '@/lib/study/plan-copy'
 import { admissionSectionForSlug, type AdmissionSection } from '@/lib/study/admission-tests'
 import { actSectionForSlug, type ActSection } from '@/lib/study/act-test'
 import { passCreditLabel } from '../../_shared/pass-label'
@@ -105,7 +106,7 @@ export default function TopicPage({ params }: { params: Promise<{ slug: string }
 }
 
 function LockedTopicView() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-5 text-center gap-4">
       <div className="w-14 h-14 rounded-full bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center">
@@ -114,7 +115,7 @@ function LockedTopicView() {
       <div>
         <h1 className="text-[20px] font-semibold text-gray-900">{String(t('study.lockedTopic.title'))}</h1>
         <p className="text-[13px] text-gray-500 mt-1.5 max-w-xs leading-relaxed">
-          {String(t('study.lockedTopic.body'))}
+          {String(t('study.lockedTopic.body', { tests: shippedTestList(language === 'korean') }))}
         </p>
       </div>
       <Link

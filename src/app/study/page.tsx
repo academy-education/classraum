@@ -13,8 +13,12 @@ import { useTranslation } from "@/hooks/useTranslation"
 import { StudyPhoneMock, NotebookScreen, ReviewQueueScreen, DailyChallengeScreen } from "@/components/marketing/ProductMocks"
 import { CARD, CARD_HOVER, WRAP, ts, useReveal, NightBadge, NightRailMark, TEAL_TEXT } from "@/components/marketing/ui"
 import { STUDY_PLANS } from "@/lib/study/plans"
+import { DAILY_CHALLENGE_QUESTION_COUNT } from "@/lib/study/daily-challenge-count"
+import { shippedTestNames, shippedTestList, sectionCreditRange, formatCreditRange, familyCreditSummary } from "@/lib/study/plan-copy"
 
-const TEST_FAMILIES = ["SAT", "TOEFL", "TOEIC", "IELTS", "KSAT"]
+// Derived from SHIPPED_TEST_FAMILIES: this strip used to be a literal
+// naming TOEIC, IELTS and KSAT, none of which has ever shipped.
+const TEST_FAMILIES = shippedTestNames()
 const P = "landing.studyPage."
 
 /* The three Review surfaces, paired with the card that selects them. */
@@ -63,7 +67,7 @@ export default function StudyLandingPage() {
               <span className={TEAL_TEXT}>{ts(t, P + "hero.titleHighlight")}</span>
             </h1>
             <p className="text-[#9db3ca] text-base sm:text-[16.5px] leading-[1.75] max-w-[52ch] mt-5 mb-6">
-              {ts(t, P + "hero.subtitle")}
+              {String(t(P + "hero.subtitle", { tests: shippedTestList(language === "korean") }))}
             </p>
             <div className="flex flex-wrap gap-2 mb-8">
               {TEST_FAMILIES.map((family) => (
@@ -116,7 +120,7 @@ export default function StudyLandingPage() {
                   </span>
                   <div className="min-w-0">
                     <h3 className="text-[14.5px] font-semibold text-[#163e64] mb-1">{ts(t, `${P}testPrep.items.${key}.title`)}</h3>
-                    <p className="text-[13px] text-gray-500 leading-relaxed">{ts(t, `${P}testPrep.items.${key}.description`)}</p>
+                    <p className="text-[13px] text-gray-500 leading-relaxed">{String(t(`${P}testPrep.items.${key}.description`, { tests: shippedTestList(language === "korean") }))}</p>
                   </div>
                 </div>
               ))}
@@ -170,7 +174,7 @@ export default function StudyLandingPage() {
                           <Icon size={19} strokeWidth={2.1} />
                         </span>
                         <h3 className="text-[14.5px] font-semibold text-white mb-1.5">{ts(t, `${P}review.items.${key}.title`)}</h3>
-                        <p className="text-[13px] text-[#9fb3c8] leading-relaxed">{ts(t, `${P}review.items.${key}.description`)}</p>
+                        <p className="text-[13px] text-[#9fb3c8] leading-relaxed">{String(t(`${P}review.items.${key}.description`, { count: DAILY_CHALLENGE_QUESTION_COUNT }))}</p>
                         <span
                           className={`block h-px mt-4 bg-gradient-to-r from-[#00D0AE] to-transparent transition-all duration-500 ${
                             active ? "w-full opacity-100" : "w-0 opacity-0"
@@ -306,7 +310,15 @@ export default function StudyLandingPage() {
               </div>
             ))}
           </div>
-          <p className="text-center text-[13px] text-gray-500 mt-6">{ts(t, P + "pricing.annualNote")}</p>
+          {/* Study has no annual plan; this line used to promise "2 months
+              free" on one. It now states what a section costs, read from
+              the same price table the routes charge from. */}
+          <p className="text-center text-[13px] text-gray-500 mt-6">
+            {String(t(P + "pricing.creditNote", {
+              range: formatCreditRange(sectionCreditRange(), language === "korean"),
+              summary: familyCreditSummary(language === "korean"),
+            }))}
+          </p>
         </div>
       </section>
 

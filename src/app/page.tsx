@@ -42,6 +42,7 @@ import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
 import { db } from "@/lib/supabase"
+import { DAILY_CHALLENGE_QUESTION_COUNT } from "@/lib/study/daily-challenge-count"
 import "./home.css"
 
 // Set NEXT_PUBLIC_KAKAO_CHANNEL_URL to show the KakaoTalk inquiry button.
@@ -769,7 +770,7 @@ function HomeContent() {
                   </div>
                   {[
                     { label: ts(t, "landing.home.m2.item1"), cta: ts(t, "landing.home.m2.item1cta") },
-                    { label: ts(t, "landing.home.m2.item2"), cta: ts(t, "landing.home.m2.item2cta") },
+                    { label: String(t("landing.home.m2.item2", { count: DAILY_CHALLENGE_QUESTION_COUNT })), cta: ts(t, "landing.home.m2.item2cta") },
                   ].map((item) => (
                     <div key={item.label} className="flex justify-between items-center gap-2 px-4 py-2.5 border-b border-gray-100 last:border-0 text-[12.5px] text-gray-700">
                       <span>{item.label}</span>

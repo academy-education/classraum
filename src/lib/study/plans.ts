@@ -364,6 +364,13 @@ export function creditCostForTest(family: string | null | undefined, section: st
   return SECTION_CREDIT_COST[family]?.[section ?? ''] ?? 1
 }
 
+/** Every per-section price listed for a family (empty for an unknown
+ *  family). Read-only view of SECTION_CREDIT_COST so student-facing copy
+ *  (see ./plan-copy.ts) quotes the same numbers the routes charge. */
+export function sectionCreditCostsFor(family: string): number[] {
+  return Object.values(SECTION_CREDIT_COST[family] ?? {})
+}
+
 /** Resolve a subscription row's plan id to a catalog entry. Legacy
  *  'monthly_v1' rows (pre-tier era) are grandfathered as General. */
 export function resolvePlan(planId: string | null | undefined): StudyPlan {

@@ -14,7 +14,8 @@ import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { openExternalUrl } from '@/lib/nativeApp'
-import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
+import { FREE_CREDITS } from '@/lib/study/plans'
+import { shippedTestList, sectionCreditRange, formatCreditRange, familyCreditCosts } from '@/lib/study/plan-copy'
 import { deriveSubscriptionUiState } from '@/lib/study/subscription-state'
 import { buyCreditPack, billingCustomer, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment, checkoutContext } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
@@ -431,9 +432,9 @@ export default function SubscriptionPage() {
   // month-by-month cost struck through and the savings.
   const monthlyPriceByTier: Record<string, number> = {}
   for (const p of plans) if (p.intervalDays === 30 && p.priceWon > 0) monthlyPriceByTier[p.tier] = p.priceWon
-  // Plan-switch direction is set by price, not tier: switching a monthly
-  // plan to its annual version costs more → immediate-charge upgrade,
-  // while a cheaper target is a downgrade scheduled for renewal. (The
+  // Plan-switch direction is set by price, not tier: a dearer target is
+  // an immediate-charge upgrade, while a cheaper target is a downgrade
+  // scheduled for renewal. (The
   // change-plan route uses the same priceWon comparison.)
   const currentPrice = plans.find(p => p.id === currentPlanId)?.priceWon ?? 0
 
@@ -754,8 +755,9 @@ export default function SubscriptionPage() {
           </div>
         )}
 
-        {/* Credit balance — full mock tests cost 1–2 credits by section
-            (see creditCostForTest in plans.ts). */}
+        {/* Credit balance — every mock-test section costs credits; the
+            range and the per-test key below are derived from the price
+            table behind creditCostForTest (lib/study/plan-copy.ts). */}
         {sub && (
           <div className="rounded-2xl bg-gradient-to-br from-amber-50/70 via-white to-white ring-1 ring-amber-200/50 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
             <div className="flex items-start justify-between gap-3">
@@ -810,7 +812,7 @@ export default function SubscriptionPage() {
                 </span>
               ))}
               <span className="text-[11px] text-gray-400 ml-auto">
-                {ko ? '모의고사 1회 = 크레딧 1~2개' : '1 mock test = 1–2 credits'}
+                {ko ? `모의고사 섹션 1개 = 크레딧 ${creditRange(true)}개` : `1 test section = ${creditRange(false)} credits`}
               </span>
             </div>
             {passCredits.length > 0 && (
@@ -867,21 +869,16 @@ export default function SubscriptionPage() {
                 </span>
                 <div>
                   <p className="text-[15px] font-semibold text-gray-900">{ko ? '크레딧 충전' : 'Buy credits'}</p>
-                  <p className="text-[11px] text-gray-400">{ko ? '구매 크레딧은 만료 없음 · 테스트당 1~2개 사용' : 'Never expire · tests use 1–2 credits'}</p>
+                  <p className="text-[11px] text-gray-400">{ko ? `구매 크레딧은 만료 없음 · 섹션당 ${creditRange(true)}개 사용` : `Never expire · each section uses ${creditRange(false)} credits`}</p>
                 </div>
               </div>
             </div>
-            {/* Per-test cost key — values read live from the credit
-                table so this can't drift from what tests actually charge. */}
+            {/* Per-section cost key, one entry per SHIPPED test — values
+                read live from the credit table so this can't drift from
+                what tests actually charge, nor omit a test that ships. */}
             <div className="mt-2.5 rounded-xl bg-gray-50 ring-1 ring-gray-100 px-3 py-2 flex flex-wrap gap-x-3 gap-y-1">
-              {([
-                [ko ? 'SAT 영어' : 'SAT R&W', creditCostForTest('sat', 'reading_writing')],
-                [ko ? 'SAT 수학' : 'SAT Math', creditCostForTest('sat', 'math')],
-                [ko ? 'TOEFL 리딩' : 'TOEFL Reading', creditCostForTest('toefl', 'reading')],
-                [ko ? '라이팅' : 'Writing', creditCostForTest('toefl', 'writing')],
-                [ko ? '스피킹' : 'Speaking', creditCostForTest('toefl', 'speaking')],
-                [ko ? '리스닝' : 'Listening', creditCostForTest('toefl', 'listening')],
-              ] as [string, number][]).map(([label, cost]) => (
+              <span className="text-[10px] text-gray-400">{ko ? '섹션당' : 'Per section'}</span>
+              {familyCreditCosts(ko).map(([label, cost]) => (
                 <span key={label} className="inline-flex items-baseline gap-1 text-[10px] text-gray-500">
                   {label}
                   <span className="font-bold text-amber-600 tabular-nums">{cost}</span>
@@ -1029,7 +1026,7 @@ export default function SubscriptionPage() {
 
         {/* Plan cards — visible even while on a pass, so a pass holder can
             upgrade to a recurring plan, which unlocks every SHIPPED test
-            (SAT + TOEFL) rather than only the pass's own family. */}
+            (SHIPPED_TEST_FAMILIES) rather than only the pass's own family. */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {displayedPlans.map(plan => {
             const isCurrent = currentPlanId === plan.id
@@ -1095,13 +1092,13 @@ export default function SubscriptionPage() {
                       ? (ko ? `가입 시 테스트 크레딧 ${FREE_CREDITS}개 (1회)` : `${FREE_CREDITS} test credits at signup (one-time)`)
                       : (ko ? `매달 테스트 크레딧 ${plan.monthlyCredits}개` : `${plan.monthlyCredits} test credits every month`)}
                   </Feature>
-                  {/* Only SAT and TOEFL have a shipped item bank — every
-                      other family is locked (SHIPPED_TEST_FAMILIES in
+                  {/* Name exactly the families with a shipped item bank —
+                      every other family is locked (SHIPPED_TEST_FAMILIES in
                       lib/study/shipped-tests.ts, enforced by
-                      /api/study/test/assemble). Name them rather than
-                      implying a full catalog. */}
+                      /api/study/test/assemble). Derived, so a family that
+                      ships or is pulled updates this line with it. */}
                   <Feature ok>
-                    {ko ? 'SAT · TOEFL 모의고사' : 'SAT & TOEFL mock tests'}
+                    {ko ? `${shippedTestList(true)} 모의고사` : `${shippedTestList(false)} mock tests`}
                   </Feature>
                   {/* Practice/flashcard sets are NOT unlimited: each fresh
                       set spends 1 energy (spendEnergy in
@@ -1232,8 +1229,8 @@ export default function SubscriptionPage() {
                     {isUpgrade ? (
                       <p className="text-[13px] text-gray-700 leading-relaxed">
                         {ko
-                          ? `등록된 카드로 지금 ${formatWon(plan.priceWon)}이 결제되고, 오늘부터 새 ${plan.intervalDays === 365 ? '1년' : '30일'} 기간이 시작돼요.`
-                          : `Your saved card will be charged ${formatWon(plan.priceWon)} now, and a fresh ${plan.intervalDays === 365 ? '1-year' : '30-day'} period starts today.`}
+                          ? `등록된 카드로 지금 ${formatWon(plan.priceWon)}이 결제되고, 오늘부터 새 ${plan.intervalDays}일 기간이 시작돼요.`
+                          : `Your saved card will be charged ${formatWon(plan.priceWon)} now, and a fresh ${plan.intervalDays}-day period starts today.`}
                       </p>
                     ) : (
                       <p className="text-[13px] text-gray-700 leading-relaxed">
@@ -1278,9 +1275,7 @@ export default function SubscriptionPage() {
                 {!isNative && !isCurrent && isActive && !onPass && !cancelling && (
                   <p className="text-[11px] text-gray-400 -mt-2 text-center leading-snug">
                     {isUpgrade
-                      ? plan.intervalDays === 365
-                        ? (ko ? '지금 결제되고 새 1년 기간이 시작돼요.' : 'Charged now — a fresh 1-year period starts.')
-                        : (ko ? '지금 결제되고 새 30일 기간이 시작돼요.' : 'Charged now — a fresh 30-day period starts.')
+                      ? (ko ? `지금 결제되고 새 ${plan.intervalDays}일 기간이 시작돼요.` : `Charged now — a fresh ${plan.intervalDays}-day period starts.`)
                       : (ko ? '다음 갱신일부터 적용돼요. 그 전까지 현재 플랜이 유지됩니다.' : 'Applies at your next renewal. Your current plan stays until then.')}
                   </p>
                 )}
@@ -1460,6 +1455,11 @@ function planName(plans: CatalogPlan[], planId: string, ko: boolean): string {
   return ko ? p.name_ko : p.name_en
 }
 
+/** "2~3" / "2–3": cheapest to dearest section across shipped tests. */
+function creditRange(ko: boolean): string {
+  return formatCreditRange(sectionCreditRange(), ko)
+}
+
 function formatWon(won: number): string {
   return `₩${won.toLocaleString()}`
 }
@@ -1476,10 +1476,10 @@ function passTestLabel(passId: string, ko: boolean): string {
 }
 
 /** Short "<Test> Pass" label for the scoped-credit chips. */
-/** Per-price unit suffix (/ month, / 3M, / yr). */
+/** Per-price unit suffix (/ month, / 3M). Study has no annual plan on
+ *  sale, so there is deliberately no "year" unit here. */
 function durationUnit(days: number, ko: boolean, t: (k: string) => unknown): string {
   if (days === 30) return String(t('study.subscription.month'))
-  if (days === 365) return ko ? '년' : 'yr'
   const months = Math.round(days / 30)
   return ko ? `${months}개월` : `${months}M`
 }
