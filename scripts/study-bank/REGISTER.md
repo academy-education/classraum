@@ -906,10 +906,10 @@ recorded only in a commit message is a finding nobody reads.
 
       C exclusivity  16/18 PASS (>= 15)   fails: P01-7 (purpose; grader A 2nd-defensible D), P02-4 (belief-before
                      inference; grader C 2nd B, "the lost-pages story was the choir's legend")
-      F difficulty   12/18 grader-mean easy -> FAIL (<= 9). 0/18 hard by mean; 23 of 54 labels medium, 1 hard
+      F difficulty   12/18 grader-mean easy -> FAIL (<= 9). 0/18 hard by mean; labels easy 34 / medium 19 / hard 1 of 54
       E, D, A, B     NOT RUN (order C+F, E, D, A, B; stop at first failure; no repair round)
 
-  Per unit, neither passage would have inserted anyway (8/9 each; the batch rule needs 9/9). **Same failure as the SSAT pilots (A78, 9/12 easy), now with the pilot-4 difficulty brief applied from the start**: the brief's "tempting partial readings" did not survive three expert graders; 13 of 18 items were unanimous with every grader agreeing and most notes cite one sentence. The method removes the option-text channel by construction, and the remaining keys are retrievable from a single sentence of the drawn version. The authors labelled every item medium/hard; graders put two thirds at easy (authors' labels again not a measure). **Do not re-run this brief unchanged for the +2 forms**; a next attempt needs a difficulty mechanism the graders can see (keys that require combining two non-adjacent paragraphs, or the version difference located in what is implied rather than stated), pre-registered before authoring.
+  Per unit, neither passage would have inserted anyway (8/9 each; the batch rule needs 9/9). **Same failure as the SSAT pilots (A78, 9/12 easy), now with the pilot-4 difficulty brief applied from the start**: all three graders picked the key on 18/18, and the brief's "tempting partial readings" did not make them work for it. The method removes the option-text channel by construction; it does nothing for difficulty. The authors labelled every item medium/hard; graders put two thirds at easy (authors' labels again not a measure). **Do not re-run this brief unchanged for the +2 forms**; a next attempt needs a difficulty mechanism the graders can see (keys that require combining two non-adjacent paragraphs, or the version difference located in what is implied rather than stated), pre-registered before authoring.
 
 ## 6. The rule that keeps this honest
 
