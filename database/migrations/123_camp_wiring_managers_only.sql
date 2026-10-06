@@ -1,7 +1,9 @@
 -- 123: only an ACTIVE MANAGER of the academy may set or change
 -- classrooms.camp_program_id.
 --
--- NOT APPLIED. Written and tested 2026-10-07 inside a rolled-back
+-- APPLIED 2026-10-07 after 0e71a9dc deployed; break-tested live (teacher
+-- attaching a camp classroom denied, manager allowed; rolled back).
+-- Originally written and tested 2026-10-07 inside a rolled-back
 -- transaction (see the bottom of this file). Apply after the branch that
 -- makes CampClassroomField read-only for teachers ships, so a teacher never
 -- sees an enabled control the database then refuses.
