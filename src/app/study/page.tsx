@@ -306,7 +306,8 @@ export default function StudyLandingPage() {
               </div>
             ))}
           </div>
-          <p className="text-center text-[13px] text-gray-500 mt-6">{ts(t, P + "pricing.annualNote")}</p>
+          {/* No annual-billing note: there is no annual Study plan (owner,
+              2026-10-07), and the annual ids are refused at checkout. */}
         </div>
       </section>
 
