@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
-import { isAcademyManager, isAcademyTeacher } from '@/lib/camp/api'
+import { canViewProgramResults } from '@/lib/camp/access'
 import { loadClassroomCampData } from '@/lib/camp/reports'
 
 /**
@@ -26,7 +26,7 @@ import { loadClassroomCampData } from '@/lib/camp/reports'
  * classroom, the same loader the overview/dashboard/report paths use,
  * so every number here matches those surfaces by construction.
  *
- * Read-only; academy managers and teachers.
+ * Read-only; academy managers and camp teachers of THIS program.
  */
 
 export const dynamic = 'force-dynamic'
@@ -58,11 +58,12 @@ export async function GET(req: NextRequest) {
     .maybeSingle()
   if (!program) return NextResponse.json({ error: 'camp program not found' }, { status: 404 })
 
-  const [manager, teacher] = await Promise.all([
-    isAcademyManager(user.id, program.academy_id),
-    isAcademyTeacher(user.id, program.academy_id),
-  ])
-  if (!manager && !teacher) {
+  // Study results: academy managers and CAMP TEACHERS OF THIS PROGRAM
+  // only (owner rule 2026-10-07, src/lib/camp/access.ts). This used to
+  // admit every teacher of the academy — a regular academy teacher, or
+  // the teacher of a different camp, could read every camp student's
+  // scores here.
+  if (!(await canViewProgramResults(user.id, program))) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 

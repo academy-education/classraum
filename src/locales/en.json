@@ -2868,6 +2868,7 @@
       "noTopics": "No weak areas detected yet.",
       "topicAccuracy": "{accuracy}% correct"
     },
+    "resultsRestricted": "Study results for this camp are visible only to its camp teachers and the academy's managers.",
     "tabs": {
       "overview": "Overview",
       "students": "Students",
@@ -2920,7 +2921,10 @@
       "correctAnswer": "Correct answer",
       "studentAnswer": "Student's answer",
       "leftBlank": "Left blank",
-      "explanation": "Explanation"
+      "explanation": "Explanation",
+      "timeSpent": "Time spent",
+      "perQuestionAvg": "{time} / question",
+      "noPerQuestionTime": "Per-question times were not recorded for this sitting; only the total time is shown."
     },
     "sessionLabel": "Session {{date}}",
     "noSessionLabel": "No session",

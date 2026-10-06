@@ -4,9 +4,8 @@ import { getUserFromRequest } from '@/lib/api-auth'
 import {
   CAMP_PROGRAM_COLUMNS,
   type CampProgramRow,
-  isAcademyManager,
-  isAcademyTeacher,
 } from '@/lib/camp/api'
+import { isActiveAcademyManager, isActiveAcademyTeacher } from '@/lib/camp/access'
 
 /**
  * GET /api/camp/program?academyId=…
@@ -23,7 +22,13 @@ import {
  * backward-compat with pre-multi-program consumers.
  *
  * Read-only; visible to the academy's managers and teachers (the same
- * audience as the RLS read policies from migration 082).
+ * audience as the RLS read policies from migration 082). Program
+ * metadata is not Study results, but each group carries
+ * `canViewResults`: whether this caller may open the program's results
+ * (overview, Students tab, classroom dashboards). True for an active
+ * manager, or for an active teacher who teaches one of the program's
+ * classrooms — the same rule src/lib/camp/access.ts enforces on those
+ * routes, so the page can say so instead of showing a wall of 403s.
  */
 
 export const dynamic = 'force-dynamic'
@@ -42,11 +47,12 @@ export async function GET(req: NextRequest) {
   const academyId = req.nextUrl.searchParams.get('academyId')
   if (!academyId) return NextResponse.json({ error: 'academyId required' }, { status: 400 })
 
-  const [manager, teacher] = await Promise.all([
-    isAcademyManager(user.id, academyId),
-    isAcademyTeacher(user.id, academyId),
+  // Active staff only (a deactivated teacher keeps no camp access).
+  const [activeManager, activeTeacher] = await Promise.all([
+    isActiveAcademyManager(user.id, academyId),
+    isActiveAcademyTeacher(user.id, academyId),
   ])
-  if (!manager && !teacher) {
+  if (!activeManager && !activeTeacher) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
@@ -67,6 +73,9 @@ export async function GET(req: NextRequest) {
     .from('classrooms')
     .select('id, name, teacher_id, camp_program_id')
     .in('camp_program_id', programs.map(p => p.id))
+    // Same academy only: a classroom row in ANOTHER academy pointed at
+    // this program can only exist through the pre-122 write gap.
+    .eq('academy_id', academyId)
     .is('deleted_at', null)
     .order('name', { ascending: true })
   if (classroomsError) {
@@ -111,7 +120,14 @@ export async function GET(req: NextRequest) {
     byProgram.set(row.camp_program_id, list)
   }
 
-  const grouped = programs.map(p => ({ program: p, classrooms: byProgram.get(p.id) ?? [] }))
+  const grouped = programs.map(p => {
+    const rooms = byProgram.get(p.id) ?? []
+    return {
+      program: p,
+      classrooms: rooms,
+      canViewResults: activeManager || (activeTeacher && rooms.some(r => r.teacher_id === user.id)),
+    }
+  })
 
   // Legacy single-program shape = the newest program (what .limit(1)
   // used to return when this route was single-program).

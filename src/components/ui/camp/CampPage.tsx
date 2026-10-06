@@ -73,6 +73,11 @@ const familyAccent = (family: string) => FAMILY_ACCENT[family] ?? FAMILY_ACCENT.
 interface ProgramGroup {
   program: CampProgram
   classrooms: CampClassroom[]
+  /** Whether this caller may see the program's Study results (overview,
+   *  Students tab, classroom progress). Only academy managers and camp
+   *  teachers of THIS program — the server enforces it; this flag only
+   *  keeps the page from rendering panels that would 403. */
+  canViewResults?: boolean
 }
 
 /** GET /api/camp/overview — program-wide stats + chart data. */
@@ -326,6 +331,7 @@ export function CampPage({ academyId }: CampPageProps) {
   const program = activeGroup?.program ?? null
   const classrooms = useMemo(() => activeGroup?.classrooms ?? [], [activeGroup])
   const overview = program ? (overviews[program.id] ?? null) : null
+  const canViewResults = activeGroup?.canViewResults === true
 
   // Assignments for the ACTIVE program's classrooms (lazy per tab).
   useEffect(() => {
@@ -335,7 +341,7 @@ export function CampPage({ academyId }: CampPageProps) {
   // Overview strip for the active program (lazy, cached until fetchAll).
   useEffect(() => {
     const pid = program?.id
-    if (!pid || overviews[pid]) return
+    if (!pid || overviews[pid] || !canViewResults) return
     let cancelled = false
     ;(async () => {
       try {
@@ -350,7 +356,7 @@ export function CampPage({ academyId }: CampPageProps) {
       }
     })()
     return () => { cancelled = true }
-  }, [program?.id, overviews])
+  }, [program?.id, overviews, canViewResults])
 
   const sections = program ? (FAMILY_SECTIONS[program.test_family] ?? []) : []
   const domains = program && form.section
@@ -839,7 +845,16 @@ export function CampPage({ academyId }: CampPageProps) {
       {/* ── Overview tab — the marketing mock's dashboard, with real
             numbers: 4 stat cards, average-score trend line, assignment
             status donut, suggested review topics. ── */}
-      {activeTab === 'overview' && (
+      {!canViewResults && activeTab !== 'classrooms' && (
+        <Card>
+          <EmptyState
+            icon={School}
+            title={String(t('camp.resultsRestricted'))}
+          />
+        </Card>
+      )}
+
+      {canViewResults && activeTab === 'overview' && (
         <CampOverviewPanel
           overview={overview}
           program={program}
@@ -865,7 +880,7 @@ export function CampPage({ academyId }: CampPageProps) {
       )}
 
       {/* ── Students tab — program-wide searchable roster ── */}
-      {activeTab === 'students' && (
+      {canViewResults && activeTab === 'students' && (
         <CampStudentsPanel programId={program.id} testFamily={program.test_family} />
       )}
 
@@ -916,6 +931,7 @@ export function CampPage({ academyId }: CampPageProps) {
                       <Presentation className="w-3.5 h-3.5" />
                       {t('camp.review.classReview')}
                     </Button>
+                    {canViewResults && (
                     <Button
                       variant="ghost"
                       size="sm"
@@ -931,6 +947,7 @@ export function CampPage({ academyId }: CampPageProps) {
                         ? <ChevronUp className="w-3.5 h-3.5" />
                         : <ChevronDown className="w-3.5 h-3.5" />}
                     </Button>
+                    )}
                   </div>
                 </div>
 
@@ -1050,7 +1067,7 @@ export function CampPage({ academyId }: CampPageProps) {
                 )}
 
                 {/* Expanded tracking panel (P2) */}
-                {openDashboards[room.id] && (
+                {canViewResults && openDashboards[room.id] && (
                   <div className="ml-4 sm:ml-6">
                     <CampClassroomDashboard classroomId={room.id} testFamily={program.test_family} />
                   </div>

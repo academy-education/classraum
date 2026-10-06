@@ -1,5 +1,6 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import { BLUEPRINT, LISTENING_TASKS, READING_TASKS } from '@/lib/study/assemble'
+import { isActiveAcademyManager, isActiveAcademyTeacher, loadCampProgramRef } from '@/lib/camp/access'
 
 /**
  * Camp mode server helpers — shared by /api/camp/* routes.
@@ -45,13 +46,35 @@ export async function isAcademyTeacher(userId: string, academyId: string): Promi
 
 /** The classroom's own teacher, or any manager of its academy. Mirrors
  *  the camp_assignments RLS read policy so the API can't create rows
- *  the caller couldn't read back. */
+ *  the caller couldn't read back.
+ *
+ *  Two cross-checks (2026-10-07). `classrooms_teacher_policy` lets any
+ *  teacher insert a classroom into ANY academy, pointed at ANY camp
+ *  program, so "teacher_id = me" alone let a stranger build assignments
+ *  against another school's paid quota. Now:
+ *    - the classroom's own teacher must be an ACTIVE teacher or manager
+ *      of the classroom's academy;
+ *    - when the caller passes camp_program_id, that program must belong
+ *      to the classroom's academy (otherwise nobody manages it).
+ *  Managers must be ACTIVE (managers.active), like the classrooms RLS.
+ *  Migration 122 stops such rows being written; this refuses the ones
+ *  that might already exist. */
 export async function canManageClassroom(
   userId: string,
-  classroom: { teacher_id: string | null; academy_id: string },
+  classroom: { teacher_id: string | null; academy_id: string; camp_program_id?: string | null },
 ): Promise<boolean> {
-  if (classroom.teacher_id === userId) return true
-  return isAcademyManager(userId, classroom.academy_id)
+  if (classroom.camp_program_id) {
+    const program = await loadCampProgramRef(classroom.camp_program_id)
+    if (program && program.academy_id !== classroom.academy_id) return false
+  }
+  if (classroom.teacher_id === userId) {
+    const [teacher, manager] = await Promise.all([
+      isActiveAcademyTeacher(userId, classroom.academy_id),
+      isActiveAcademyManager(userId, classroom.academy_id),
+    ])
+    return teacher || manager
+  }
+  return isActiveAcademyManager(userId, classroom.academy_id)
 }
 
 /* ── Section/domain vocabulary per test family ──────────────────────────

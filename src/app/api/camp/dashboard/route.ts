@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
-import { canManageClassroom } from '@/lib/camp/api'
+import { canViewClassroomCampResults } from '@/lib/camp/access'
 
 /**
  * Camp P2 — teacher tracking dashboard for one camp classroom.
  *
- * GET ?classroomId=…  (classroom teacher or academy manager)
+ * GET ?classroomId=…  (any camp teacher of the program, or an academy manager)
  *
  * Joins the classroom's camp assignments to student sessions
  * (study_sessions tagged config.campAssignmentId by /api/study/camp/start)
@@ -83,7 +83,10 @@ export async function GET(req: NextRequest) {
   if (!classroom || classroom.deleted_at !== null) {
     return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
   }
-  if (!(await canManageClassroom(user.id, classroom))) {
+  // Any camp teacher of this classroom's PROGRAM, or an academy manager
+  // (owner rule 2026-10-07: "same camp", not "same classroom"). Refuses
+  // non-camp classrooms and plain academy teachers.
+  if (!(await canViewClassroomCampResults(user.id, classroom))) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
   if (!classroom.camp_program_id) {

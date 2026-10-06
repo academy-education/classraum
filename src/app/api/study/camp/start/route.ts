@@ -4,7 +4,6 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { assembleFromItemIds } from '@/lib/study/assemble'
 import { campTopicId } from '@/lib/study/section-topics'
-import { grantTestEntitlement } from '@/lib/study/entitlements'
 import { CAMP_PROGRAM_COLUMNS, type CampProgramRow } from '@/lib/camp/api'
 import { trackEvent } from '@/lib/study/analytics'
 
@@ -103,20 +102,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ sessionId: existing[0].id, reused: true })
   }
 
-  // Camp students get mock tests for the camp's family (decision in
-  // docs/CAMP-MODE-PLAN.md) — granted on first camp session start.
-  // Non-fatal: the assignment itself must start even if the grant write
-  // fails. resolveAccess treats source='camp' as ADD-ONLY, so this row
-  // can never narrow a free user down to one test.
-  try {
-    const family = program.test_family === 'toefl' ? 'toefl' as const : 'sat' as const
-    const expiresAt = program.ends_on
-      ? new Date(`${program.ends_on}T23:59:59.999Z`)
-      : new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
-    await grantTestEntitlement({ studentId: user.id, test: family, expiresAt, source: 'camp' })
-  } catch (e) {
-    console.error('[camp/start] entitlement grant failed', e)
-  }
+  // NO Study entitlement is granted here. Until 2026-10-07 the first
+  // camp start wrote a study_entitlements row (source='camp') so camp
+  // students got the camp family's mock tests. Owner, 2026-10-07: "The
+  // academy students will not get the study for free. Only the
+  // assignments will be available from the school/academy." The
+  // assignment itself needs no entitlement and no credits (see the
+  // header), so removing the grant takes nothing away from the work the
+  // school assigned.
 
   const itemIds = Array.isArray(assignment.item_ids)
     ? (assignment.item_ids as unknown[]).filter((x): x is string => typeof x === 'string')

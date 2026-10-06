@@ -2868,6 +2868,7 @@
       "noTopics": "아직 발견된 취약 영역이 없습니다.",
       "topicAccuracy": "정답률 {accuracy}%"
     },
+    "resultsRestricted": "이 캠프의 학습 결과는 해당 캠프 담당 선생님과 학원 관리자만 볼 수 있습니다.",
     "tabs": {
       "overview": "개요",
       "students": "학생",
@@ -2920,7 +2921,10 @@
       "correctAnswer": "정답",
       "studentAnswer": "학생 답안",
       "leftBlank": "답하지 않음",
-      "explanation": "해설"
+      "explanation": "해설",
+      "timeSpent": "소요 시간",
+      "perQuestionAvg": "문항당 {time}",
+      "noPerQuestionTime": "이 응시에는 문항별 시간이 기록되지 않아 전체 시간만 표시합니다."
     },
     "sessionLabel": "{{date}} 수업",
     "noSessionLabel": "수업 미연결",
