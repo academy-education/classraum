@@ -1,0 +1,648 @@
+[
+ {
+  "id": "MAPP3-LU-01",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "stratum": "mechanics",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "This Summer, my brother is taking a Korean cooking class at the community center.",
+   "This summer, my brother is taking a Korean cooking class at the community center.",
+   "This Summer, my brother is taking a korean cooking class at the community center.",
+   "This summer, my brother is taking a korean cooking class at the community center."
+  ],
+  "correct_answer": "This summer, my brother is taking a Korean cooking class at the community center.",
+  "explanation": "Seasons are common nouns, so 'summer' is lowercase; 'Korean' names a language and nationality, so it is a proper adjective and is capitalized. The other options capitalize the season, lowercase the language, or both.",
+  "student_error": {
+   "This Summer, my brother is taking a Korean cooking class at the community center.": "Treats a season like a holiday or month and capitalizes it.",
+   "This summer, my brother is taking a korean cooking class at the community center.": "Thinks 'korean' is just describing the class, like 'cooking', and does not see it as a proper adjective from a language name.",
+   "This Summer, my brother is taking a korean cooking class at the community center.": "Makes both mistakes: capitalizes the season and lowercases the language name."
+  },
+  "difficulty": "easy",
+  "cap_rule": "seasons lowercase (site 1); language/nationality proper adjective capitalized (site 2)"
+ },
+ {
+  "id": "MAPP3-LU-02",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "stratum": "mechanics",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "For my birthday, my Grandmother gave me a copy of Secrets of the Silver Mine.",
+   "For my birthday, my Grandmother gave me a copy of Secrets of The Silver Mine.",
+   "For my birthday, my grandmother gave me a copy of Secrets of The Silver Mine.",
+   "For my birthday, my grandmother gave me a copy of Secrets of the Silver Mine."
+  ],
+  "correct_answer": "For my birthday, my grandmother gave me a copy of Secrets of the Silver Mine.",
+  "explanation": "A family title after a possessive such as 'my' is a common noun, so 'grandmother' is lowercase. In a title, a short article like 'the' is lowercase unless it is the first or last word. The other options capitalize 'Grandmother', 'The', or both.",
+  "student_error": {
+   "For my birthday, my Grandmother gave me a copy of Secrets of the Silver Mine.": "Capitalizes 'Grandmother' as if it were being used as her name, missing the possessive 'my'.",
+   "For my birthday, my grandmother gave me a copy of Secrets of The Silver Mine.": "Capitalizes every word in a book title, including the article 'the' in the middle.",
+   "For my birthday, my Grandmother gave me a copy of Secrets of The Silver Mine.": "Capitalizes both the family title after 'my' and the article inside the title."
+  },
+  "difficulty": "medium",
+  "cap_rule": "family title after a possessive lowercase (site 1); article in the middle of a title lowercase (site 2)"
+ },
+ {
+  "id": "MAPP3-LU-03",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "stratum": "mechanics",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "Ms. Okafor grew up in the Southwest, but she moved north to teach at our school.",
+   "Ms. Okafor grew up in the southwest, but she moved north to teach at our school.",
+   "Ms. Okafor grew up in the Southwest, but she moved North to teach at our school.",
+   "Ms. Okafor grew up in the southwest, but she moved North to teach at our school."
+  ],
+  "correct_answer": "Ms. Okafor grew up in the Southwest, but she moved north to teach at our school.",
+  "explanation": "'The Southwest' names a region of the country, so it is capitalized; 'north' only tells the direction she moved, so it is lowercase. The other options reverse one rule or both.",
+  "student_error": {
+   "Ms. Okafor grew up in the southwest, but she moved north to teach at our school.": "Treats every compass word as a direction and lowercases the region name 'the Southwest'.",
+   "Ms. Okafor grew up in the Southwest, but she moved North to teach at our school.": "Treats every compass word as a place name and capitalizes the direction 'north'.",
+   "Ms. Okafor grew up in the southwest, but she moved North to teach at our school.": "Reverses both: lowercases the region and capitalizes the direction."
+  },
+  "difficulty": "hard",
+  "cap_rule": "compass word naming a region capitalized (site 1); compass word giving a direction lowercase (site 2)"
+ },
+ {
+  "id": "MAPP3-LU-04",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Capitalization",
+  "stratum": "mechanics",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "passage": null,
+  "prompt": "Which sentence is capitalized correctly?",
+  "choices": [
+   "“This fossil,” said the guide at Ridgeway Science museum, “Is older than the rocks in our town.”",
+   "“This fossil,” said the guide at Ridgeway Science museum, “is older than the rocks in our town.”",
+   "“This fossil,” said the guide at Ridgeway Science Museum, “is older than the rocks in our town.”",
+   "“This fossil,” said the guide at Ridgeway Science Museum, “Is older than the rocks in our town.”"
+  ],
+  "correct_answer": "“This fossil,” said the guide at Ridgeway Science Museum, “is older than the rocks in our town.”",
+  "explanation": "'Museum' is part of the full proper name 'Ridgeway Science Museum', so it is capitalized. The second part of a quotation that is split by 'said the guide' continues the same sentence, so 'is' stays lowercase. The other options lowercase 'museum', capitalize 'Is', or both.",
+  "student_error": {
+   "“This fossil,” said the guide at Ridgeway Science museum, “is older than the rocks in our town.”": "Leaves the generic word 'museum' lowercase even though it is part of the building's proper name.",
+   "“This fossil,” said the guide at Ridgeway Science Museum, “Is older than the rocks in our town.”": "Capitalizes the first word inside every set of quotation marks, not seeing that the quotation is one sentence interrupted by the speaker tag.",
+   "“This fossil,” said the guide at Ridgeway Science museum, “Is older than the rocks in our town.”": "Lowercases the generic word in the proper name and capitalizes the continuation of the split quotation."
+  },
+  "difficulty": "hard",
+  "cap_rule": "generic word that is part of a proper name capitalized (site 1); continuation of a split quotation lowercase (site 2)"
+ },
+ {
+  "id": "MAPP3-LU-05",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "stratum": "mechanics",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nThe trail was ______ steep near the top, so we stopped often to rest.",
+  "choices": [
+   "expecially",
+   "especialy",
+   "especially",
+   "expecialy"
+  ],
+  "correct_answer": "especially",
+  "explanation": "'Especially' begins with 'es-' (not 'ex-') and ends in '-ally' with two l's, because the suffix -ly is added to 'especial'.",
+  "student_error": {
+   "expecially": "Spells the word the way it is often mispronounced, with an 'x' sound in the first syllable.",
+   "especialy": "Adds only '-y' instead of '-ly' to 'especial', dropping one l.",
+   "expecialy": "Makes both mistakes: 'ex-' for 'es-' and a single l."
+  },
+  "difficulty": "easy",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "es- vs ex- in the first syllable (site 1); -ally with double l from adding -ly to -al (site 2)",
+  "intended_word": "especially"
+ },
+ {
+  "id": "MAPP3-LU-06",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "stratum": "mechanics",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nWhen the fire alarm rang, the students ______ lined up at the classroom door.",
+  "choices": [
+   "immediately",
+   "imediately",
+   "imediatly",
+   "immediatly"
+  ],
+  "correct_answer": "immediately",
+  "explanation": "'Immediately' has a double m (the prefix im- joined to 'mediate') and keeps the silent e of 'immediate' before -ly.",
+  "student_error": {
+   "imediately": "Hears only one m sound and does not know the prefix im- doubles the m.",
+   "immediatly": "Drops the silent e of 'immediate' before adding -ly, as if the rule for -ing applied.",
+   "imediatly": "Makes both mistakes: a single m and a dropped silent e."
+  },
+  "difficulty": "medium",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "double m from prefix im- (site 1); silent e kept before -ly (site 2)",
+  "intended_word": "immediately"
+ },
+ {
+  "id": "MAPP3-LU-07",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Spelling",
+  "stratum": "mechanics",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "passage": null,
+  "prompt": "Which word correctly completes the sentence?\n\nVisiting the research station was a rare ______ for the young scientists in the club.",
+  "choices": [
+   "privelege",
+   "priveledge",
+   "priviledge",
+   "privilege"
+  ],
+  "correct_answer": "privilege",
+  "explanation": "'Privilege' is spelled p-r-i-v-i-l-e-g-e: an i in the second syllable and no d before the final -ge.",
+  "student_error": {
+   "privelege": "Spells the unstressed middle vowel as e because it sounds like 'uh'.",
+   "priviledge": "Adds a d before -ge by analogy with words such as 'knowledge' and 'ledge'.",
+   "priveledge": "Makes both mistakes: e for the unstressed i and an extra d before -ge."
+  },
+  "difficulty": "hard",
+  "spelling_polarity": "correct",
+  "spelling_pattern": "unstressed vowel i in second syllable (site 1); no d before final -ge (site 2)",
+  "intended_word": "privilege"
+ },
+ {
+  "id": "MAPP3-LU-08",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "stratum": "mechanics",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": null,
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Because the bus was late our teacher handed out snacks to every group.",
+   "Because the bus was late, our teacher handed out snacks to every group.",
+   "Because the bus was late our teacher handed out snack's to every group.",
+   "Because the bus was late, our teacher handed out snack's to every group."
+  ],
+  "correct_answer": "Because the bus was late, our teacher handed out snacks to every group.",
+  "explanation": "An introductory dependent clause ('Because the bus was late') is followed by a comma. 'Snacks' is a plain plural, not a possessive, so it takes no apostrophe.",
+  "student_error": {
+   "Because the bus was late our teacher handed out snacks to every group.": "Does not recognize 'Because the bus was late' as an introductory clause that needs a comma.",
+   "Because the bus was late, our teacher handed out snack's to every group.": "Puts an apostrophe in a plural noun ending in s, confusing plural with possessive.",
+   "Because the bus was late our teacher handed out snack's to every group.": "Leaves out the introductory comma and adds an apostrophe to a simple plural."
+  },
+  "difficulty": "easy",
+  "punct_rule": "comma after an introductory dependent clause (site 1); no apostrophe in a simple plural (site 2)"
+ },
+ {
+  "id": "MAPP3-LU-09",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "stratum": "mechanics",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": null,
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "Priya, the library closes at five, but the study room stays open until six.",
+   "Priya the library closes at five, but the study room stays open until six.",
+   "Priya, the library closes at five but, the study room stays open until six.",
+   "Priya the library closes at five but, the study room stays open until six."
+  ],
+  "correct_answer": "Priya, the library closes at five, but the study room stays open until six.",
+  "explanation": "A name used in direct address ('Priya') is set off by a comma. In a compound sentence the comma goes before the coordinating conjunction 'but', not after it.",
+  "student_error": {
+   "Priya the library closes at five, but the study room stays open until six.": "Does not set off the name of the person being spoken to, so 'Priya' runs into the sentence.",
+   "Priya, the library closes at five but, the study room stays open until six.": "Knows a comma belongs near 'but' but places it after the conjunction instead of before it.",
+   "Priya the library closes at five but, the study room stays open until six.": "Leaves the direct address unpunctuated and puts the compound-sentence comma after 'but'."
+  },
+  "difficulty": "medium",
+  "punct_rule": "comma setting off a noun of direct address (site 1); comma before, not after, the coordinating conjunction in a compound sentence (site 2)"
+ },
+ {
+  "id": "MAPP3-LU-10",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Mechanics",
+  "map_strand": "Punctuation",
+  "stratum": "mechanics",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "passage": null,
+  "prompt": "Which sentence is punctuated correctly?",
+  "choices": [
+   "The childrens' museum was closed for repairs, however, the aquarium next door was open.",
+   "The childrens' museum was closed for repairs; however, the aquarium next door was open.",
+   "The children's museum was closed for repairs, however, the aquarium next door was open.",
+   "The children's museum was closed for repairs; however, the aquarium next door was open."
+  ],
+  "correct_answer": "The children's museum was closed for repairs; however, the aquarium next door was open.",
+  "explanation": "'Children' is already plural and does not end in s, so its possessive is 'children's'. Two independent clauses joined by 'however' need a semicolon before 'however'; a comma there makes a comma splice.",
+  "student_error": {
+   "The childrens' museum was closed for repairs; however, the aquarium next door was open.": "Applies the plural-possessive rule (apostrophe after s) to an irregular plural that does not end in s.",
+   "The children's museum was closed for repairs, however, the aquarium next door was open.": "Treats 'however' like 'but' and joins two complete sentences with only a comma.",
+   "The childrens' museum was closed for repairs, however, the aquarium next door was open.": "Misplaces the apostrophe in the irregular plural and writes a comma splice before 'however'."
+  },
+  "difficulty": "hard",
+  "punct_rule": "apostrophe before s in an irregular plural possessive (site 1); semicolon before a conjunctive adverb joining two independent clauses (site 2)"
+ },
+ {
+  "id": "MAPP3-LU-11",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": null,
+  "prompt": "What does the word **yield** most likely mean as it is used in the sentence?\n\nThe new garden beds should yield almost twice as many tomatoes as the old ones did.",
+  "choices": [
+   "surrender",
+   "slow down",
+   "bend",
+   "produce"
+  ],
+  "correct_answer": "produce",
+  "explanation": "The beds will give, or produce, more tomatoes; 'twice as many tomatoes' signals an amount that comes out of the beds. 'Surrender' and 'bend' are other meanings of yield that do not fit, and 'slow down' comes from yield signs.",
+  "student_error": {
+   "surrender": "Uses the meaning 'give up to an opponent' without checking that garden beds cannot surrender.",
+   "slow down": "Brings in the meaning from a yield traffic sign.",
+   "bend": "Uses the meaning 'give way under pressure', as a branch yields, without checking the tomatoes."
+  },
+  "difficulty": "easy"
+ },
+ {
+  "id": "MAPP3-LU-12",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": null,
+  "prompt": "What does the word **scale** most likely mean as it is used in the sentence?\n\nThe scale in the corner of the map shows that one inch stands for ten miles.",
+  "choices": [
+   "device for weighing",
+   "ratio of distances",
+   "series of notes",
+   "thin outer plate"
+  ],
+  "correct_answer": "ratio of distances",
+  "explanation": "On a map, the scale compares a distance on the paper to a real distance, so it is a ratio of distances. The other choices are real meanings of scale (a weighing machine, a musical scale, a fish's scale) that do not fit a map.",
+  "student_error": {
+   "device for weighing": "Picks the most familiar meaning, a bathroom or kitchen scale.",
+   "series of notes": "Uses the music meaning, a scale played on an instrument.",
+   "thin outer plate": "Uses the meaning of a fish's or reptile's scale."
+  },
+  "difficulty": "easy"
+ },
+ {
+  "id": "MAPP3-LU-13",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": "Instead of writing another book report, Ms. Ruiz challenged our class to find a novel way to share what we had read. Jaden suggested recording a podcast, something no class at our school had tried before.",
+  "prompt": "What does the word **novel** most likely mean as it is used in the passage?",
+  "choices": [
+   "like a long book",
+   "new and unusual",
+   "made up or imaginary",
+   "fun and exciting"
+  ],
+  "correct_answer": "new and unusual",
+  "explanation": "The second sentence explains that the podcast was 'something no class at our school had tried before', which shows that novel means new and unusual here. The other choices come from the noun novel (a long, made-up story) or from guessing that the idea was enjoyable.",
+  "student_error": {
+   "like a long book": "Uses the noun meaning of novel (a book) because the passage is about a book report.",
+   "made up or imaginary": "Connects novel to fiction, since novels are made-up stories.",
+   "fun and exciting": "Guesses from the feeling of the passage that a podcast sounds fun, ignoring the clue 'no class had tried before'."
+  },
+  "difficulty": "medium"
+ },
+ {
+  "id": "MAPP3-LU-14",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": null,
+  "prompt": "What does the word **observes** most likely mean as it is used in the sentence?\n\nEvery spring, the town of Millbrook observes Founders' Day by closing the schools and holding a parade down Main Street.",
+  "choices": [
+   "watches",
+   "obeys",
+   "celebrates",
+   "remarks on"
+  ],
+  "correct_answer": "celebrates",
+  "explanation": "The town marks the day with a parade and a day off from school, so observes means celebrates or keeps the holiday. 'Watches', 'obeys' and 'remarks on' are other meanings of observe that do not fit a holiday.",
+  "student_error": {
+   "watches": "Uses the most common meaning of observe, encouraged by the mention of a parade, which people watch.",
+   "obeys": "Uses the meaning from 'observe the rules', treating the holiday as a rule to follow.",
+   "remarks on": "Uses the meaning 'to say or comment', as in 'she observed that it was cold'."
+  },
+  "difficulty": "medium"
+ },
+ {
+  "id": "MAPP3-LU-15",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "passage": "Ms. Lowe tempered her criticism of our project with praise for its creative design. She still pointed out every mistake, but nobody left the meeting feeling discouraged.",
+  "prompt": "What does the word **tempered** most likely mean as it is used in the passage?",
+  "choices": [
+   "toughened",
+   "softened",
+   "replaced",
+   "heated"
+  ],
+  "correct_answer": "softened",
+  "explanation": "Ms. Lowe still pointed out every mistake, but the praise kept anyone from feeling discouraged, so she softened, or made milder, her criticism. 'Toughened' and 'heated' come from tempering metal, and 'replaced' ignores that she still gave the criticism.",
+  "student_error": {
+   "toughened": "Uses the meaning from metalwork, where tempered steel is made harder and stronger.",
+   "replaced": "Reads 'criticism with praise' as swapping one for the other and misses that she still pointed out every mistake.",
+   "heated": "Connects tempered to 'temper' meaning anger, or to heating metal, and pictures the criticism getting hotter."
+  },
+  "difficulty": "hard"
+ },
+ {
+  "id": "MAPP3-LU-16",
+  "family": "map",
+  "map_subject": "reading",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "stratum": "vocab",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "passage": "Mr. Hensley predicted that most students would vote for the zoo as the spring field trip. He qualified his prediction, though, adding that the results could change once the last surveys came in.",
+  "prompt": "What does the word **qualified** most likely mean as it is used in the passage?",
+  "choices": [
+   "certified",
+   "entitled",
+   "described",
+   "limited"
+  ],
+  "correct_answer": "limited",
+  "explanation": "Mr. Hensley added that the results could change, which narrows how sure his prediction is; to qualify a statement is to limit it. 'Certified' and 'entitled' come from the meaning 'made eligible', and 'described' comes from the grammar meaning (adjectives qualify nouns).",
+  "student_error": {
+   "certified": "Uses the meaning of being officially qualified, as for a job, and thinks he approved his prediction.",
+   "entitled": "Uses the meaning 'made eligible', as when a team qualifies for the finals.",
+   "described": "Uses the grammar meaning, in which a describing word qualifies a noun."
+  },
+  "difficulty": "hard"
+ },
+ {
+  "id": "MAPP3-LU-17",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "stratum": "usage",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": null,
+  "prompt": "Which verb correctly completes the sentence?\n\nBy the time Ana reached the theater, the movie ______.",
+  "choices": [
+   "had already started",
+   "has already started",
+   "is already starting",
+   "will have already started"
+  ],
+  "correct_answer": "had already started",
+  "explanation": "The movie started before Ana reached the theater, which is itself in the past ('reached'). An action completed before another past action uses the past perfect, 'had already started'. The other choices shift to present or future.",
+  "student_error": {
+   "has already started": "Uses the present perfect because the action is finished, not noticing the time frame is set in the past by 'reached'.",
+   "is already starting": "Shifts to the present tense in the middle of a past-tense sentence.",
+   "will have already started": "Uses the future perfect, which matches 'by the time' in many sentences, without noticing that 'reached' is past."
+  },
+  "difficulty": "easy",
+  "varied_dimension": "verb tense"
+ },
+ {
+  "id": "MAPP3-LU-18",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "stratum": "usage",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": null,
+  "prompt": "Which words correctly complete the sentence?\n\nMs. Chen asked ______ to stay after class and help clean the lab tables.",
+  "choices": [
+   "he and I",
+   "him and I",
+   "him and me",
+   "he and me"
+  ],
+  "correct_answer": "him and me",
+  "explanation": "Both pronouns are objects of the verb 'asked', so both take the objective case: 'him' and 'me'. Test each alone: 'Ms. Chen asked him' and 'Ms. Chen asked me'.",
+  "student_error": {
+   "he and I": "Uses subject pronouns because 'he and I' sounds formal and correct.",
+   "him and I": "Uses 'I' after 'and' from overcorrecting 'me and him', while getting 'him' right.",
+   "he and me": "Picks 'me' correctly but uses the subject form 'he' for the first pronoun."
+  },
+  "difficulty": "medium",
+  "varied_dimension": "pronoun case (subjective vs objective) of each pronoun"
+ },
+ {
+  "id": "MAPP3-LU-19",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Parts of Speech",
+  "stratum": "usage",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "passage": null,
+  "prompt": "Which words correctly complete the sentence?\n\nThe puppy sniffed ______ at its new bowl, but the food inside smelled ______.",
+  "choices": [
+   "cautious / delicious",
+   "cautiously / delicious",
+   "cautiously / deliciously",
+   "cautious / deliciously"
+  ],
+  "correct_answer": "cautiously / delicious",
+  "explanation": "'Sniffed' is an action verb, so it is described by the adverb 'cautiously'. In the second clause 'smelled' is a linking verb that connects 'food' to a word describing the food, so it takes the adjective 'delicious'.",
+  "student_error": {
+   "cautious / delicious": "Uses an adjective after the action verb 'sniffed' because the word seems to describe the puppy.",
+   "cautiously / deliciously": "Thinks every word after a verb must be an adverb and misses that 'smelled' is a linking verb here.",
+   "cautious / deliciously": "Reverses the rule: an adjective after the action verb and an adverb after the linking verb."
+  },
+  "difficulty": "hard",
+  "varied_dimension": "adjective vs adverb form of each modifier"
+ },
+ {
+  "id": "MAPP3-LU-20",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "stratum": "usage",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": null,
+  "prompt": "Which words correctly complete the sentence?\n\nMom said we can ______ walk to the park ______ ride our bikes there, so we need to decide which one we want to do.",
+  "choices": [
+   "neither / or",
+   "either / nor",
+   "neither / nor",
+   "either / or"
+  ],
+  "correct_answer": "either / or",
+  "explanation": "The sentence offers a choice between two options ('decide which one we want to do'), so it needs the correlative pair 'either ... or'. 'Neither ... nor' is a correct pair but says they can do neither, which contradicts deciding between them; 'neither ... or' and 'either ... nor' mismatch the pairs.",
+  "student_error": {
+   "neither / or": "Mixes the pairs, starting with 'neither' and ending with 'or'.",
+   "either / nor": "Mixes the pairs, starting with 'either' and ending with 'nor'.",
+   "neither / nor": "Chooses a correctly matched pair without checking that 'decide which one' means both choices are allowed."
+  },
+  "difficulty": "easy",
+  "varied_dimension": "correlative conjunction pair"
+ },
+ {
+  "id": "MAPP3-LU-21",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "stratum": "usage",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": null,
+  "prompt": "Which words correctly complete the sentence?\n\nEach of the drawings ______ signed by the artist, and there ______ three more drying on the table.",
+  "choices": [
+   "were / are",
+   "were / is",
+   "was / are",
+   "was / is"
+  ],
+  "correct_answer": "was / are",
+  "explanation": "The subject of the first clause is 'Each', which is singular, so it takes 'was'; 'of the drawings' is only a phrase in between. In a sentence starting with 'there', the subject comes after the verb: 'three more' is plural, so it takes 'are'.",
+  "student_error": {
+   "were / are": "Makes the verb agree with 'drawings', the noun right before it, instead of the singular subject 'Each'.",
+   "was / is": "Uses 'there is' by habit, not looking ahead to the plural subject 'three more'.",
+   "were / is": "Makes both mistakes: agrees with 'drawings' and uses 'there is' with a plural subject."
+  },
+  "difficulty": "medium",
+  "varied_dimension": "verb number (singular vs plural) in each clause"
+ },
+ {
+  "id": "MAPP3-LU-22",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Language: Understand, Edit for Grammar, Usage",
+  "map_strand": "Phrases, Clauses, Agreement, Sentences",
+  "stratum": "usage",
+  "target_band": "RIT 200-209",
+  "grade_target": 7,
+  "passage": "Leah frosted a cupcake for her brother and covered it in sprinkles.",
+  "prompt": "Which sentence places the phrase \"covered in sprinkles\" correctly?",
+  "choices": [
+   "Leah handed the cupcake covered in sprinkles to her brother.",
+   "Covered in sprinkles, Leah handed the cupcake to her brother.",
+   "Leah handed the cupcake to her brother covered in sprinkles.",
+   "Leah, covered in sprinkles, handed the cupcake to her brother."
+  ],
+  "correct_answer": "Leah handed the cupcake covered in sprinkles to her brother.",
+  "explanation": "The passage says the cupcake was covered in sprinkles, so the phrase must sit right after 'cupcake'. Placed anywhere else, it describes Leah or her brother instead.",
+  "student_error": {
+   "Covered in sprinkles, Leah handed the cupcake to her brother.": "Opens with the phrase for variety, not seeing that an opening modifier describes the subject, Leah.",
+   "Leah handed the cupcake to her brother covered in sprinkles.": "Adds the phrase at the end of the sentence, where it now describes the nearest noun, her brother.",
+   "Leah, covered in sprinkles, handed the cupcake to her brother.": "Sets the phrase off with commas as extra information, attaching it to Leah."
+  },
+  "difficulty": "hard",
+  "varied_dimension": "placement of the modifier"
+ },
+ {
+  "id": "MAPP3-LU-23",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Writing: Write, Revise Texts for Purpose and Audience",
+  "map_strand": "Plan, Organize; Create Cohesion, Use Transitions",
+  "stratum": "usage",
+  "target_band": "RIT 180-189",
+  "grade_target": 5,
+  "passage": "(1) Last fall, the creek behind Linden Elementary was clogged with plastic bottles and wrappers. (2) Students in Mr. Abara's class began picking up trash along its banks every Friday afternoon. (3) ______, by June the water was clear enough to see small fish darting between the rocks. (4) The class plans to continue the cleanups next year.",
+  "prompt": "Which transition best completes sentence 3?",
+  "choices": [
+   "However",
+   "For example",
+   "In addition",
+   "As a result"
+  ],
+  "correct_answer": "As a result",
+  "explanation": "Sentence 3 describes what happened because the students cleaned the creek every Friday (sentence 2), so it needs a cause-and-effect transition: 'As a result'.",
+  "student_error": {
+   "However": "Sees the change from a dirty creek in sentence 1 to clear water and picks a contrast word, missing that sentence 3 follows from sentence 2.",
+   "For example": "Treats sentence 3 as an example of the cleanups instead of an effect of them.",
+   "In addition": "Treats sentence 3 as one more fact on a list rather than a result."
+  },
+  "difficulty": "easy"
+ },
+ {
+  "id": "MAPP3-LU-24",
+  "family": "map",
+  "map_subject": "language_usage",
+  "map_area": "Writing: Write, Revise Texts for Purpose and Audience",
+  "map_strand": "Establish and Maintain Style; Use Precise Language",
+  "stratum": "usage",
+  "target_band": "RIT 190-199",
+  "grade_target": 6,
+  "passage": "(1) The storm howled through the valley all night long, rattling the windows of every house on Birch Street. (2) In the morning, Ruby looked out the kitchen window and gasped at what she saw. (3) The old oak tree had ______ onto the garden shed and flattened its roof. (4) Her father said it would take at least a week to clear away all of the broken branches.",
+  "prompt": "Which word best completes sentence 3 to show most precisely that the tree hit the shed with great force?",
+  "choices": [
+   "fallen",
+   "crashed",
+   "leaned",
+   "moved"
+  ],
+  "correct_answer": "crashed",
+  "explanation": "'Crashed' shows a sudden, forceful hit, which matches the flattened roof. 'Fallen' is accurate but says nothing about force, 'leaned' suggests a gentle push, and 'moved' is vague.",
+  "student_error": {
+   "fallen": "Picks a word that is true about the tree but does not show the force the question asks for.",
+   "leaned": "Pictures the tree resting against the shed, which does not fit a roof being flattened.",
+   "moved": "Chooses a general word that is not wrong but tells the reader almost nothing."
+  },
+  "difficulty": "medium"
+ }
+]
