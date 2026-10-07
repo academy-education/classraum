@@ -1,0 +1,206 @@
+[
+ {
+  "id": "WIC17A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "passage": "Chemists who recover fat residues from ancient cooking pots begin every sample with a ______ step. The outer two millimeters of the sherd are ground off with a drill, and the powder goes straight into the waste bin without being analyzed. That surface layer typically holds more lipid than any other part of the vessel. Its lipids cannot be credited to cooking, however: over centuries, fats from roots and burial soil seep into exposed clay, and once degraded they are chemically indistinguishable from the remains of a meal.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "diagnostic",
+   "sacrificial",
+   "redundant",
+   "exploratory"
+  ],
+  "correct_answer": "sacrificial",
+  "explanation": "The step throws away material that the third sentence says \"typically holds more lipid than any other part of the vessel,\" and the final sentence explains why that rich layer must be given up: its fats are contaminated by roots and burial soil. Discarding the most abundant material for the sake of a trustworthy sample is a \"sacrificial\" step. \"diagnostic\" and \"exploratory\" are ruled out by the second sentence, which says the powder \"goes straight into the waste bin without being analyzed,\" so the step neither diagnoses nor explores anything. \"redundant\" is ruled out by the last sentence: because soil fats are indistinguishable from cooking residues once degraded, removing the surface is necessary, not superfluous.",
+  "topic_tag": "pottery-lipid-residue-sampling"
+ },
+ {
+  "id": "WIC17A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "passage": "In a trial of 140 knee-surgery patients at a single hospital, the pharmacologist Ines Varga found that a low dose of an anti-nausea drug shortened the average hospital stay by nearly a day, a large effect for that operation. Patients at the same hospital who received a placebo stayed the usual length, so the difference was not a fluke of scheduling or staffing. Varga describes the result as ______. The hospital's surgeons had recently adopted a new anesthetic protocol, and she suspects the drug shortens stays only in combination with it; until the trial is repeated at hospitals using other protocols, she argues, the finding should not change prescribing.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "spurious",
+   "definitive",
+   "contingent",
+   "marginal"
+  ],
+  "correct_answer": "contingent",
+  "explanation": "The final sentence says Varga suspects the drug works \"only in combination with\" the hospital's new anesthetic protocol, so she regards the effect as real but dependent on a condition: \"contingent.\" \"spurious\" is ruled out by the second sentence, where placebo patients at the same hospital \"stayed the usual length, so the difference was not a fluke.\" \"marginal\" is ruled out by the first sentence, which calls nearly a day \"a large effect for that operation.\" \"definitive\" is ruled out by the last sentence, in which Varga says the finding \"should not change prescribing\" until it is repeated elsewhere.",
+  "topic_tag": "anti-nausea-drug-surgical-stay-trial"
+ },
+ {
+  "id": "WIC17A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "passage": "Two footbridges of the same span and rated load were built over the Ostra River in the same year, one of timber and one of steel. Over twenty years the timber bridge had its deck replaced three times and its railings twice, and it cost more to build and to repair than its neighbor. Neither bridge was ever loaded anywhere near its rating, so the record says nothing about which was stronger. Yet the engineers who reviewed them called the timber bridge the more ______ design. Any of its parts could be swapped by two workers with hand tools in an afternoon, whereas a single corroded steel member closed its neighbor for five months while a replacement was fabricated.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "repairable",
+   "durable",
+   "affordable",
+   "substantial"
+  ],
+  "correct_answer": "repairable",
+  "explanation": "The last sentence gives the engineers' reason: any timber part \"could be swapped by two workers with hand tools in an afternoon,\" while one bad steel member closed the other bridge for five months. That makes the timber bridge the more \"repairable\" design. \"durable\" is ruled out by the second sentence, which says the timber deck was \"replaced three times and its railings twice.\" \"affordable\" is ruled out by the same sentence: the timber bridge \"cost more to build and to repair than its neighbor.\" \"substantial\" is ruled out by the third sentence, which says the record \"says nothing about which was stronger.\"",
+  "topic_tag": "timber-vs-steel-footbridge-maintenance"
+ },
+ {
+  "id": "WIC17A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "passage": "A plant's most frequent visitor is not necessarily the animal that pollinates it, and the wild flax of Hadley Meadow shows why. Sweat bees outnumbered every other insect at its flowers by four to one throughout the season. Yet they were ______ pollinators. The bees gathered nectar from the base of each flower without brushing its anthers, and flowers that only sweat bees could reach set no more seed than flowers bagged against insects entirely. Nearly all of the flax's seed came from the far rarer bumblebees.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "occasional",
+   "efficient",
+   "exclusive",
+   "nominal"
+  ],
+  "correct_answer": "nominal",
+  "explanation": "The sweat bees count as pollinators in name only: the fourth sentence says flowers reached only by them \"set no more seed than flowers bagged against insects entirely,\" even though the second sentence shows they were by far the commonest visitor. They were \"nominal\" pollinators. \"occasional\" is ruled out by the second sentence: they outnumbered every other insect \"by four to one throughout the season.\" \"efficient\" is ruled out by the fourth sentence, since their visits added no seed at all. \"exclusive\" is ruled out by the last sentence, which says nearly all the seed \"came from the far rarer bumblebees,\" so the sweat bees were not the only pollinators.",
+  "topic_tag": "sweat-bee-flax-pollination"
+ },
+ {
+  "id": "WIC17A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "passage": "Handheld X-ray fluorescence identifies the metals in a pigment within seconds and without removing a single flake of paint, and the author of a new survey of Flemish altarpieces relies on it for nearly every panel. She concedes, however, that the instrument is ______ on one class of colorants. Indigo and the madder lakes consist of carbon, hydrogen, and oxygen, elements too light for the detector to register. The instrument never mistakes these pigments for anything else, and it behaves the same way on every scan: where they are present, it simply reports nothing.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "sluggish",
+   "silent",
+   "invasive",
+   "fickle"
+  ],
+  "correct_answer": "silent",
+  "explanation": "The third sentence says these pigments are made of elements \"too light for the detector to register,\" and the last sentence says that where they are present the instrument \"simply reports nothing.\" It is therefore \"silent\" on them. \"sluggish\" is ruled out by the first sentence, which says the instrument works \"within seconds.\" \"invasive\" is ruled out by the same sentence: it works \"without removing a single flake of paint.\" \"fickle\" is ruled out by the last sentence, which says it \"behaves the same way on every scan.\"",
+  "topic_tag": "xrf-organic-pigment-limit"
+ },
+ {
+  "id": "WIC17A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "passage": "Boulders strewn across the Varn Plateau were long mapped as the moraine of one glacial advance, since they form a single unbroken arc several kilometers long. Exposure dating has since shown that the boulders on the arc's northern half were dropped roughly 4,000 years before those on its southern half, and a buried soil, which takes centuries to form, separates the two sets where they meet. The arc is therefore ______. Its boulders still lie where the ice released them, so the pattern cannot be blamed on later landslides or meltwater floods.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "composite",
+   "fragmentary",
+   "uniform",
+   "displaced"
+  ],
+  "correct_answer": "composite",
+  "explanation": "The second sentence shows the arc is made of two sets of boulders dropped about 4,000 years apart and separated by a buried soil, so one continuous-looking feature was built by two advances: it is \"composite.\" \"fragmentary\" is ruled out by the first sentence, which describes \"a single unbroken arc several kilometers long.\" \"uniform\" is ruled out by the second sentence, since the two halves differ in age by millennia. \"displaced\" is ruled out by the last sentence: the boulders \"still lie where the ice released them.\"",
+  "topic_tag": "moraine-exposure-dating"
+ },
+ {
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "id": "WIC17B-01",
+  "topic_tag": "commercial-court-reported-decisions",
+  "passage": "Legal historian Ines Varga has tallied every reported decision of a provincial commercial court from 1880 to 1910, the first such count for any court in the region, and found that sellers won nearly four in five disputes over defective goods. She describes this figure as ______. When she later read a sample of the court's unpublished docket books, buyers prevailed there about as often as sellers, and she notes that reports were printed only for cases a judge thought worth circulating. The ratio is still worth knowing, she argues, because it shows which outcomes the bench wished to publicize.",
+  "choices": [
+   "inexact",
+   "partial",
+   "derivative",
+   "trivial"
+  ],
+  "correct_answer": "partial",
+  "explanation": "Varga's count covers only the printed reports, and the docket books show buyers winning about as often as sellers, while \"reports were printed only for cases a judge thought worth circulating\": the figure reflects a one-sided slice of the court's work, so \"partial\" is right. \"inexact\" is refused by \"tallied every reported decision,\" so the count itself is exact; the problem is which cases were counted, not how accurately. \"derivative\" is refused by \"the first such count for any court in the region.\" \"trivial\" is refused by the last sentence: the ratio \"is still worth knowing\" because it reveals what the bench wished to publicize."
+ },
+ {
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "id": "WIC17B-02",
+  "topic_tag": "dialect-atlas-picture-elicitation",
+  "passage": "Fieldworkers compiling the Harrow Valley dialect atlas were instructed never to name the object they were asking about. Each speaker sat alone with a fieldworker, who held up a drawing and then waited, sometimes for a full minute, without comment. This step was meant to be ______. Pilot recordings had shown that a speaker asked whether she said \"spider\" or \"attercop\" tended to choose whichever form the question offered first. Later analysts note the method's cost: drawings of tools no longer in use often drew silence, so some entries in the atlas record no word at all.",
+  "choices": [
+   "hurried",
+   "public",
+   "voluntary",
+   "indirect"
+  ],
+  "correct_answer": "indirect",
+  "explanation": "The fieldworkers were \"instructed never to name the object,\" and the pilot recordings explain why: a question that names the forms steers the answer. Showing a drawing gets at the word without asking for it, so the step was \"indirect.\" \"hurried\" is refused by the fieldworker who \"waited, sometimes for a full minute.\" \"public\" is refused by \"Each speaker sat alone with a fieldworker.\" \"voluntary\" is refused by \"were instructed never to name the object,\" which makes the procedure a requirement rather than a choice left to the fieldworker."
+ },
+ {
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "id": "WIC17B-03",
+  "topic_tag": "salt-duty-two-ports",
+  "passage": "In 1790 the neighboring ports of Velmar and Ostrel adopted an identical duty on imported salt, and both kept it on their books until 1831. In Velmar, where customs officers were paid a share of what they collected, merchants' ledgers show the duty adding roughly a fifth to the retail price of salt. In Ostrel, whose officers drew a fixed salary, ledgers from the same decades show salt prices scarcely moving, and smugglers questioned at an 1832 inquiry described cargoes landed openly at the main quay. Ostrel's merchants never once petitioned against the tax. The Ostrel duty, the inquiry concluded, had been ______.",
+  "choices": [
+   "nominal",
+   "temporary",
+   "ruinous",
+   "disputed"
+  ],
+  "correct_answer": "nominal",
+  "explanation": "The same duty raised Velmar's salt price by about a fifth, yet Ostrel's prices \"scarcely moving\" and cargoes \"landed openly\" show the tax existed on paper but was not collected: \"nominal.\" Only the comparison with Velmar shows that the rate itself was not too small to matter. \"temporary\" is refused by \"both kept it on their books until 1831.\" \"ruinous\" is refused by Ostrel's \"salt prices scarcely moving.\" \"disputed\" is refused by \"Ostrel's merchants never once petitioned against the tax.\""
+ },
+ {
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "id": "WIC17B-04",
+  "topic_tag": "fiddle-grace-notes-tradition",
+  "passage": "Early transcribers of the Aurel valley fiddle repertory printed its grace notes in small type, as though a player might add or omit them at will. Recordings made in the 1950s complicate that picture. Every fiddler recorded placed the grace notes on the same beats of the same tunes, and two elderly players, asked to perform a tune \"plain,\" stopped after a few bars and said it was no longer the tune. The figures also turn up in no neighboring repertory that collectors have documented. In this tradition, the ornaments are ______.",
+  "choices": [
+   "optional",
+   "individual",
+   "integral",
+   "borrowed"
+  ],
+  "correct_answer": "integral",
+  "explanation": "Two pieces of the recordings combine: every fiddler placed the grace notes identically, and without them the players said \"it was no longer the tune.\" The ornaments are part of what makes the tune itself, so \"integral\" is right. \"optional\" is the transcribers' assumption, refused by the players who stopped because a plain version \"was no longer the tune.\" \"individual\" is refused by \"Every fiddler recorded placed the grace notes on the same beats of the same tunes.\" \"borrowed\" is refused by \"The figures also turn up in no neighboring repertory.\""
+ },
+ {
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "id": "WIC17B-05",
+  "topic_tag": "altarpiece-workshop-landscapes",
+  "passage": "Art historian Pell Okafor holds that the landscapes behind the figures in panels from the Tervane workshop were largely ______. Her clearest case is a castle on a crag that appears, fully painted, behind three different saints in altarpieces sent to three different towns; infrared images show that each was transferred from a single pricked drawing. Surviving contracts with patrons describe the saints, the robes, and the gilding in detail but never mention the setting. Nor, Okafor notes, does the castle bear on any of the three saints' legends.",
+  "choices": [
+   "generic",
+   "unfinished",
+   "specified",
+   "symbolic"
+  ],
+  "correct_answer": "generic",
+  "explanation": "One castle, copied from \"a single pricked drawing,\" serves behind three saints for three towns, and patrons' contracts are silent about settings: the backgrounds were stock scenery not tied to any particular place or patron, so \"generic.\" \"unfinished\" is refused by \"fully painted.\" \"specified\" is refused by contracts that \"never mention the setting.\" \"symbolic\" is refused by the last sentence: the castle does not \"bear on any of the three saints' legends.\""
+ },
+ {
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "id": "WIC17B-06",
+  "topic_tag": "market-savings-circles",
+  "passage": "Accounts of the savings circles run by cloth sellers in the Kessa market have usually described them as a form of charity, in which prosperous traders carried poorer ones through hard seasons. The circles' record books, kept from 1962 onward and read aloud at every meeting, suggest otherwise. Each member paid the same sum every week, and each in turn received the whole pot exactly once per cycle. Members could leave at the end of any cycle, and the books show that many did, often rejoining later. The arrangement, in short, was ______.",
+  "choices": [
+   "charitable",
+   "reciprocal",
+   "compulsory",
+   "secretive"
+  ],
+  "correct_answer": "reciprocal",
+  "explanation": "Equal weekly payments combined with each member receiving \"the whole pot exactly once per cycle\" mean everyone gave and got back the same amount: the arrangement was \"reciprocal.\" \"charitable\" is the older reading the record books overturn; with equal contributions and one payout each, no trader carried another. \"compulsory\" is refused by \"Members could leave at the end of any cycle,\" and many did. \"secretive\" is refused by books \"read aloud at every meeting.\""
+ }
+]

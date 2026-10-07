@@ -1,0 +1,210 @@
+[
+ {
+  "id": "II17A-01",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "In the Varga Mountains, entomologist Petra Halloran has found that a flightless ground beetle, the ridge runner, has darker wing covers at high elevations than at low ones. Halloran hypothesizes that the dark coloring helps the beetles absorb heat in cold surroundings. Her colleague Marcus Ide proposes instead that the pigment shields the beetles from ultraviolet radiation, which grows more intense with altitude. Both accounts fit the elevation pattern. Halloran points out, however, that the range's steep north-facing slopes, which receive little direct sunlight, are markedly colder than the south-facing slopes at the same elevation and are also exposed to far less ultraviolet radiation.",
+  "prompt": "Which finding, if true, would most directly support Halloran's hypothesis?",
+  "choices": [
+   "Beetles from south-facing slopes had darker wing covers than beetles from north-facing slopes at the same elevation.",
+   "Beetles from low elevations had darker wing covers than beetles from high elevations on slopes facing the same direction.",
+   "Beetles from north-facing slopes had darker wing covers than beetles from south-facing slopes at the same elevation.",
+   "Beetles from high elevations had darker wing covers than beetles from low elevations on slopes facing the same direction."
+  ],
+  "correct_answer": "Beetles from north-facing slopes had darker wing covers than beetles from south-facing slopes at the same elevation.",
+  "explanation": "Halloran says dark coloring helps beetles absorb heat \"in cold surroundings,\" while Ide ties it to ultraviolet exposure. The passage says north-facing slopes are \"markedly colder\" than south-facing ones at the same elevation but receive \"far less ultraviolet radiation,\" so slope orientation pulls the two accounts apart. The finding that \"Beetles from north-facing slopes had darker wing covers than beetles from south-facing slopes at the same elevation\" fits the colder, low-ultraviolet slopes having darker beetles, which Halloran's account predicts and Ide's does not. The finding that \"Beetles from south-facing slopes had darker wing covers\" than north-facing ones is what Ide's ultraviolet account predicts. The finding that \"Beetles from high elevations had darker wing covers than beetles from low elevations\" restates the pattern the passage says \"Both accounts fit,\" so it cannot favor Halloran. The finding that \"Beetles from low elevations had darker wing covers\" reverses the observed elevation pattern and supports neither account.",
+  "topic_tag": "beetle-coloration-slope-aspect"
+ },
+ {
+  "id": "II17A-02",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Fragments of a distinctive red-slipped pottery, long thought to have been made only at workshops on the Selvane coast, have turned up in large numbers at Okrin, an inland settlement some 200 kilometers away. Archaeologist Ilse Brandvold proposes that potters trained in the coastal tradition resettled at Okrin and produced the ware there. Others hold that finished vessels were simply carried inland by traders. Potters almost always dig their clay close to where they work, so Brandvold's team compared the chemical makeup of the Okrin fragments with that of clay beds near Okrin and clay beds near the coastal workshops.",
+  "prompt": "Which finding, if true, would most directly support Brandvold's proposal?",
+  "choices": [
+   "The fragments' clay matched the beds near Okrin and differed from the beds near the coastal workshops.",
+   "The fragments' clay matched the beds near the coastal workshops and differed from the beds near Okrin.",
+   "The fragments' clay differed from the beds near Okrin and differed from the beds near the coastal workshops.",
+   "The fragments' clay matched the beds near Okrin and matched the beds near the coastal workshops."
+  ],
+  "correct_answer": "The fragments' clay matched the beds near Okrin and differed from the beds near the coastal workshops.",
+  "explanation": "Brandvold proposes that the ware was \"produced\" at Okrin by resettled potters, and the passage notes that potters \"almost always dig their clay close to where they work.\" Combining these, her proposal predicts Okrin clay in the fragments, while the traders account predicts coastal clay. The finding that \"The fragments' clay matched the beds near Okrin and differed from the beds near the coastal workshops\" is therefore the one that favors her. Clay that \"matched the beds near the coastal workshops and differed from the beds near Okrin\" is what the rival view, that vessels were \"carried inland by traders,\" predicts. Clay that \"matched the beds near Okrin and matched the beds near the coastal workshops\" fits either origin, so it cannot discriminate. Clay that \"differed from the beds near Okrin and differed from the beds near the coastal workshops\" points to neither Okrin nor the coast and supports neither account.",
+  "topic_tag": "pottery-clay-sourcing-migration"
+ },
+ {
+  "id": "II17A-03",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Inspectors for a regional transit authority have found hairline cracks in high-strength steel bolts on several of its coastal rail bridges. Many of the authority's bolts are hot-dip galvanized: cleaned in an acid bath and then dipped in molten zinc. Engineer Dayo Okonkwo claims that the cracks stem from hydrogen the steel absorbs during the acid cleaning, which can leave the metal brittle for years afterward. A consultant argues instead that salt spray from the sea is attacking the bolts. The authority uses both galvanized and ungalvanized bolts of the same steel on its coastal bridges and on its inland bridges, which lie well beyond the reach of sea spray.",
+  "prompt": "Which finding, if true, would most directly support Okonkwo's claim?",
+  "choices": [
+   "Cracks were more common in ungalvanized bolts on coastal bridges than in ungalvanized bolts on inland bridges.",
+   "Cracks were more common in galvanized bolts on coastal bridges than in ungalvanized bolts on inland bridges.",
+   "Cracks were more common in ungalvanized bolts on inland bridges than in galvanized bolts on inland bridges.",
+   "Cracks were more common in galvanized bolts on inland bridges than in ungalvanized bolts on inland bridges."
+  ],
+  "correct_answer": "Cracks were more common in galvanized bolts on inland bridges than in ungalvanized bolts on inland bridges.",
+  "explanation": "Okonkwo blames hydrogen absorbed during the acid cleaning that is part of galvanizing; the consultant blames sea salt. Inland bridges \"lie well beyond the reach of sea spray,\" so a difference there between bolt types isolates galvanizing. The finding that \"Cracks were more common in galvanized bolts on inland bridges than in ungalvanized bolts on inland bridges\" shows galvanizing raising cracking where salt cannot be the cause, which supports Okonkwo. The finding that cracks \"were more common in ungalvanized bolts on coastal bridges than in ungalvanized bolts on inland bridges\" shows a location effect in bolts never acid-cleaned, which is what the salt-spray account predicts. The finding comparing \"galvanized bolts on coastal bridges\" with \"ungalvanized bolts on inland bridges\" changes both factors at once, so either account explains it. The finding that cracks \"were more common in ungalvanized bolts on inland bridges than in galvanized bolts on inland bridges\" runs opposite to Okonkwo's prediction.",
+  "topic_tag": "bolt-cracking-galvanizing-hydrogen"
+ },
+ {
+  "id": "II17A-04",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "On an airless moon, impact craters pile up steadily over time, so a plain with fewer craters per unit area is generally younger: lava that floods a plain buries the craters that were there before. Planetary geologist Noor Tavassoli argues that a late burst of volcanism on the moon Ilmara repaved the plain Sorrin after every one of the moon's southern plains had already formed. Tavassoli's argument is supported by the fact that ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Crater density on five plains of Ilmara",
+   "colLabels": [
+    "Hemisphere",
+    "Craters per 10,000 sq km"
+   ],
+   "rowLabels": [
+    "Sorrin",
+    "Kettle",
+    "Abrel",
+    "Dunmo",
+    "Pell"
+   ],
+   "cells": [
+    [
+     "Northern",
+     "41"
+    ],
+    [
+     "Northern",
+     "49"
+    ],
+    [
+     "Southern",
+     "63"
+    ],
+    [
+     "Southern",
+     "57"
+    ],
+    [
+     "Southern",
+     "72"
+    ]
+   ]
+  },
+  "choices": [
+   "Sorrin has 41 craters per 10,000 square kilometers, while Kettle has 49.",
+   "Sorrin has 41 craters per 10,000 square kilometers, while Dunmo has 57.",
+   "Sorrin has 41 craters per 10,000 square kilometers, while Abrel has 63.",
+   "Sorrin has 41 craters per 10,000 square kilometers, while Pell has 72."
+  ],
+  "correct_answer": "Sorrin has 41 craters per 10,000 square kilometers, while Dunmo has 57.",
+  "explanation": "Tavassoli claims Sorrin is younger than \"every one of the moon's southern plains,\" and the passage says fewer craters per unit area means a younger surface. The table lists three southern plains: Abrel (63), Dunmo (57), and Pell (72). Dunmo has the fewest craters of the three, so showing that \"Sorrin has 41 craters per 10,000 square kilometers, while Dunmo has 57\" establishes that Sorrin is less cratered than the youngest southern plain and therefore than all of them. All four choices read the table accurately. The choice ending \"while Kettle has 49\" compares Sorrin with Kettle, which the table lists as a northern plain, so it says nothing about the southern plains. The choices ending \"while Abrel has 63\" and \"while Pell has 72\" each cover only one southern plain and leave open whether Sorrin is younger than Dunmo, the least cratered southern plain.",
+  "topic_tag": "moon-plains-crater-density"
+ },
+ {
+  "id": "II17A-05",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Many drugs work only within a window: blood concentration must peak below the level that causes side effects yet must not fall, before the next dose, below the level needed to keep fighting the infection. For the experimental antibiotic veltomycin, the peak must stay under 20 micrograms per milliliter (µg/mL) and the trough must stay above 4 µg/mL. Pharmacologist Tomas Edvardsen gave volunteers the same total daily dose on four schedules. Because patients follow less frequent schedules more reliably, Edvardsen recommends the least frequent schedule that keeps veltomycin within both limits: ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Veltomycin blood concentrations under four dosing schedules",
+   "colLabels": [
+    "Peak (µg/mL)",
+    "Trough (µg/mL)"
+   ],
+   "rowLabels": [
+    "One dose every 6 hours",
+    "One dose every 8 hours",
+    "One dose every 12 hours",
+    "One dose every 24 hours"
+   ],
+   "cells": [
+    [
+     "12",
+     "7.5"
+    ],
+    [
+     "16",
+     "5.2"
+    ],
+    [
+     "21",
+     "3.1"
+    ],
+    [
+     "34",
+     "0.8"
+    ]
+   ]
+  },
+  "choices": [
+   "the 6-hour schedule, which produced a peak of 12 µg/mL and a trough of 7.5 µg/mL.",
+   "the 12-hour schedule, which produced a peak of 21 µg/mL and a trough of 3.1 µg/mL.",
+   "the 8-hour schedule, which produced a peak of 16 µg/mL and a trough of 5.2 µg/mL.",
+   "the 24-hour schedule, which produced a peak of 34 µg/mL and a trough of 0.8 µg/mL."
+  ],
+  "correct_answer": "the 8-hour schedule, which produced a peak of 16 µg/mL and a trough of 5.2 µg/mL.",
+  "explanation": "The recommendation requires two checks: a schedule must keep the peak \"under 20\" and the trough \"above 4,\" and among the schedules that pass, Edvardsen wants the least frequent. \"The 8-hour schedule, which produced a peak of 16 µg/mL and a trough of 5.2 µg/mL\" passes both limits, and every less frequent schedule fails. \"The 12-hour schedule, which produced a peak of 21 µg/mL and a trough of 3.1 µg/mL\" exceeds the peak limit and falls below the trough limit. \"The 24-hour schedule, which produced a peak of 34 µg/mL and a trough of 0.8 µg/mL\" fails both limits by wider margins. \"The 6-hour schedule, which produced a peak of 12 µg/mL and a trough of 7.5 µg/mL\" stays within both limits, but it requires doses more often than the 8-hour schedule, which also passes. All four choices read the table accurately.",
+  "topic_tag": "antibiotic-dosing-interval-window"
+ },
+ {
+  "id": "II17A-06",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Beneath the Corran Valley, a layer of dense clay at a depth of about 85 meters separates a shallow aquifer from a deeper one, and each well draws water from whichever aquifer its intake screen sits in. Over a three-year drought, hydrologist Leena Mabuza tracked the water level in five wells across the valley. She claims that the drought lowered the shallow aquifer far more than the deep aquifer, a difference she attributes to the clay layer slowing the movement of water out of the deeper formation.",
+  "prompt": "Which choice most effectively uses data from the table to support Mabuza's claim?",
+  "graphic": {
+   "type": "table",
+   "title": "Water levels in five Corran Valley wells, 2019–2022",
+   "colLabels": [
+    "Intake screen depth (m)",
+    "Change in water level (m)"
+   ],
+   "rowLabels": [
+    "Well P",
+    "Well Q",
+    "Well R",
+    "Well S",
+    "Well T"
+   ],
+   "cells": [
+    [
+     "22",
+     "−4.8"
+    ],
+    [
+     "41",
+     "−6.2"
+    ],
+    [
+     "78",
+     "−1.3"
+    ],
+    [
+     "96",
+     "−1.1"
+    ],
+    [
+     "134",
+     "−0.6"
+    ]
+   ]
+  },
+  "choices": [
+   "The water level in well P fell by 4.8 meters, compared with 1.1 meters in well S.",
+   "The water level in well Q fell by 6.2 meters, compared with 1.3 meters in well R.",
+   "The water level in well Q fell by 6.2 meters, compared with 4.8 meters in well P.",
+   "The water level in well S fell by 1.1 meters, compared with 0.6 meters in well T."
+  ],
+  "correct_answer": "The water level in well P fell by 4.8 meters, compared with 1.1 meters in well S.",
+  "explanation": "The passage places the clay layer at \"about 85 meters,\" so wells screened above it draw from the shallow aquifer and wells screened below it draw from the deep one. Well P (22 m) is shallow and well S (96 m) is deep, so \"The water level in well P fell by 4.8 meters, compared with 1.1 meters in well S\" compares the two aquifers and shows the shallow one dropping far more. All four choices read the table accurately. The choice comparing well Q with well R looks like a strong contrast, but R's screen is at 78 m, above the clay, so both wells tap the shallow aquifer. The choice comparing well Q with well P likewise sets two shallow wells against each other. The choice comparing well S with well T sets two deep wells (96 m and 134 m) against each other, so none of these three says anything about the shallow aquifer relative to the deep one.",
+  "topic_tag": "aquifer-drawdown-clay-layer"
+ }
+]

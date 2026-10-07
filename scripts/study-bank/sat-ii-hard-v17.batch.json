@@ -1,0 +1,406 @@
+[
+ {
+  "id": "II17A-01",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "In the Varga Mountains, entomologist Petra Halloran has found that a flightless ground beetle, the ridge runner, has darker wing covers at high elevations than at low ones. Halloran hypothesizes that the dark coloring helps the beetles absorb heat in cold surroundings. Her colleague Marcus Ide proposes instead that the pigment shields the beetles from ultraviolet radiation, which grows more intense with altitude. Both accounts fit the elevation pattern. Halloran points out, however, that the range's steep north-facing slopes, which receive little direct sunlight, are markedly colder than the south-facing slopes at the same elevation and are also exposed to far less ultraviolet radiation.",
+  "prompt": "Which finding, if true, would most directly support Halloran's hypothesis?",
+  "choices": [
+   "Beetles from south-facing slopes had darker wing covers than beetles from north-facing slopes at the same elevation.",
+   "Beetles from low elevations had darker wing covers than beetles from high elevations on slopes facing the same direction.",
+   "Beetles from north-facing slopes had darker wing covers than beetles from south-facing slopes at the same elevation.",
+   "Beetles from high elevations had darker wing covers than beetles from low elevations on slopes facing the same direction."
+  ],
+  "correct_answer": "Beetles from north-facing slopes had darker wing covers than beetles from south-facing slopes at the same elevation.",
+  "explanation": "Halloran says dark coloring helps beetles absorb heat \"in cold surroundings,\" while Ide ties it to ultraviolet exposure. The passage says north-facing slopes are \"markedly colder\" than south-facing ones at the same elevation but receive \"far less ultraviolet radiation,\" so slope orientation pulls the two accounts apart. The finding that \"Beetles from north-facing slopes had darker wing covers than beetles from south-facing slopes at the same elevation\" fits the colder, low-ultraviolet slopes having darker beetles, which Halloran's account predicts and Ide's does not. The finding that \"Beetles from south-facing slopes had darker wing covers\" than north-facing ones is what Ide's ultraviolet account predicts. The finding that \"Beetles from high elevations had darker wing covers than beetles from low elevations\" restates the pattern the passage says \"Both accounts fit,\" so it cannot favor Halloran. The finding that \"Beetles from low elevations had darker wing covers\" reverses the observed elevation pattern and supports neither account.",
+  "topic_tag": "beetle-coloration-slope-aspect"
+ },
+ {
+  "id": "II17A-02",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Fragments of a distinctive red-slipped pottery, long thought to have been made only at workshops on the Selvane coast, have turned up in large numbers at Okrin, an inland settlement some 200 kilometers away. Archaeologist Ilse Brandvold proposes that potters trained in the coastal tradition resettled at Okrin and produced the ware there. Others hold that finished vessels were simply carried inland by traders. Potters almost always dig their clay close to where they work, so Brandvold's team compared the chemical makeup of the Okrin fragments with that of clay beds near Okrin and clay beds near the coastal workshops.",
+  "prompt": "Which finding, if true, would most directly support Brandvold's proposal?",
+  "choices": [
+   "The fragments' clay matched the beds near Okrin and differed from the beds near the coastal workshops.",
+   "The fragments' clay matched the beds near the coastal workshops and differed from the beds near Okrin.",
+   "The fragments' clay differed from the beds near Okrin and differed from the beds near the coastal workshops.",
+   "The fragments' clay matched the beds near Okrin and matched the beds near the coastal workshops."
+  ],
+  "correct_answer": "The fragments' clay matched the beds near Okrin and differed from the beds near the coastal workshops.",
+  "explanation": "Brandvold proposes that the ware was \"produced\" at Okrin by resettled potters, and the passage notes that potters \"almost always dig their clay close to where they work.\" Combining these, her proposal predicts Okrin clay in the fragments, while the traders account predicts coastal clay. The finding that \"The fragments' clay matched the beds near Okrin and differed from the beds near the coastal workshops\" is therefore the one that favors her. Clay that \"matched the beds near the coastal workshops and differed from the beds near Okrin\" is what the rival view, that vessels were \"carried inland by traders,\" predicts. Clay that \"matched the beds near Okrin and matched the beds near the coastal workshops\" fits either origin, so it cannot discriminate. Clay that \"differed from the beds near Okrin and differed from the beds near the coastal workshops\" points to neither Okrin nor the coast and supports neither account.",
+  "topic_tag": "pottery-clay-sourcing-migration"
+ },
+ {
+  "id": "II17A-03",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Inspectors for a regional transit authority have found hairline cracks in high-strength steel bolts on several of its coastal rail bridges. Many of the authority's bolts are hot-dip galvanized: cleaned in an acid bath and then dipped in molten zinc. Engineer Dayo Okonkwo claims that the cracks stem from hydrogen the steel absorbs during the acid cleaning, which can leave the metal brittle for years afterward. A consultant argues instead that salt spray from the sea is attacking the bolts. The authority uses both galvanized and ungalvanized bolts of the same steel on its coastal bridges and on its inland bridges, which lie well beyond the reach of sea spray.",
+  "prompt": "Which finding, if true, would most directly support Okonkwo's claim?",
+  "choices": [
+   "Cracks were more common in ungalvanized bolts on coastal bridges than in ungalvanized bolts on inland bridges.",
+   "Cracks were more common in galvanized bolts on coastal bridges than in ungalvanized bolts on inland bridges.",
+   "Cracks were more common in ungalvanized bolts on inland bridges than in galvanized bolts on inland bridges.",
+   "Cracks were more common in galvanized bolts on inland bridges than in ungalvanized bolts on inland bridges."
+  ],
+  "correct_answer": "Cracks were more common in galvanized bolts on inland bridges than in ungalvanized bolts on inland bridges.",
+  "explanation": "Okonkwo blames hydrogen absorbed during the acid cleaning that is part of galvanizing; the consultant blames sea salt. Inland bridges \"lie well beyond the reach of sea spray,\" so a difference there between bolt types isolates galvanizing. The finding that \"Cracks were more common in galvanized bolts on inland bridges than in ungalvanized bolts on inland bridges\" shows galvanizing raising cracking where salt cannot be the cause, which supports Okonkwo. The finding that cracks \"were more common in ungalvanized bolts on coastal bridges than in ungalvanized bolts on inland bridges\" shows a location effect in bolts never acid-cleaned, which is what the salt-spray account predicts. The finding comparing \"galvanized bolts on coastal bridges\" with \"ungalvanized bolts on inland bridges\" changes both factors at once, so either account explains it. The finding that cracks \"were more common in ungalvanized bolts on inland bridges than in galvanized bolts on inland bridges\" runs opposite to Okonkwo's prediction.",
+  "topic_tag": "bolt-cracking-galvanizing-hydrogen"
+ },
+ {
+  "id": "II17A-04",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "On an airless moon, impact craters pile up steadily over time, so a plain with fewer craters per unit area is generally younger: lava that floods a plain buries the craters that were there before. Planetary geologist Noor Tavassoli argues that a late burst of volcanism on the moon Ilmara repaved the plain Sorrin after every one of the moon's southern plains had already formed. Tavassoli's argument is supported by the fact that ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Crater density on five plains of Ilmara",
+   "colLabels": [
+    "Hemisphere",
+    "Craters per 10,000 sq km"
+   ],
+   "rowLabels": [
+    "Sorrin",
+    "Kettle",
+    "Abrel",
+    "Dunmo",
+    "Pell"
+   ],
+   "cells": [
+    [
+     "Northern",
+     "41"
+    ],
+    [
+     "Northern",
+     "49"
+    ],
+    [
+     "Southern",
+     "63"
+    ],
+    [
+     "Southern",
+     "57"
+    ],
+    [
+     "Southern",
+     "72"
+    ]
+   ]
+  },
+  "choices": [
+   "Sorrin has 41 craters per 10,000 square kilometers, while Kettle has 49.",
+   "Sorrin has 41 craters per 10,000 square kilometers, while Dunmo has 57.",
+   "Sorrin has 41 craters per 10,000 square kilometers, while Abrel has 63.",
+   "Sorrin has 41 craters per 10,000 square kilometers, while Pell has 72."
+  ],
+  "correct_answer": "Sorrin has 41 craters per 10,000 square kilometers, while Dunmo has 57.",
+  "explanation": "Tavassoli claims Sorrin is younger than \"every one of the moon's southern plains,\" and the passage says fewer craters per unit area means a younger surface. The table lists three southern plains: Abrel (63), Dunmo (57), and Pell (72). Dunmo has the fewest craters of the three, so showing that \"Sorrin has 41 craters per 10,000 square kilometers, while Dunmo has 57\" establishes that Sorrin is less cratered than the youngest southern plain and therefore than all of them. All four choices read the table accurately. The choice ending \"while Kettle has 49\" compares Sorrin with Kettle, which the table lists as a northern plain, so it says nothing about the southern plains. The choices ending \"while Abrel has 63\" and \"while Pell has 72\" each cover only one southern plain and leave open whether Sorrin is younger than Dunmo, the least cratered southern plain.",
+  "topic_tag": "moon-plains-crater-density"
+ },
+ {
+  "id": "II17A-05",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Many drugs work only within a window: blood concentration must peak below the level that causes side effects yet must not fall, before the next dose, below the level needed to keep fighting the infection. For the experimental antibiotic veltomycin, the peak must stay under 20 micrograms per milliliter (µg/mL) and the trough must stay above 4 µg/mL. Pharmacologist Tomas Edvardsen gave volunteers the same total daily dose on four schedules. Because patients follow less frequent schedules more reliably, Edvardsen recommends the least frequent schedule that keeps veltomycin within both limits: ______",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "graphic": {
+   "type": "table",
+   "title": "Veltomycin blood concentrations under four dosing schedules",
+   "colLabels": [
+    "Peak (µg/mL)",
+    "Trough (µg/mL)"
+   ],
+   "rowLabels": [
+    "One dose every 6 hours",
+    "One dose every 8 hours",
+    "One dose every 12 hours",
+    "One dose every 24 hours"
+   ],
+   "cells": [
+    [
+     "12",
+     "7.5"
+    ],
+    [
+     "16",
+     "5.2"
+    ],
+    [
+     "21",
+     "3.1"
+    ],
+    [
+     "34",
+     "0.8"
+    ]
+   ]
+  },
+  "choices": [
+   "the 6-hour schedule, which produced a peak of 12 µg/mL and a trough of 7.5 µg/mL.",
+   "the 12-hour schedule, which produced a peak of 21 µg/mL and a trough of 3.1 µg/mL.",
+   "the 8-hour schedule, which produced a peak of 16 µg/mL and a trough of 5.2 µg/mL.",
+   "the 24-hour schedule, which produced a peak of 34 µg/mL and a trough of 0.8 µg/mL."
+  ],
+  "correct_answer": "the 8-hour schedule, which produced a peak of 16 µg/mL and a trough of 5.2 µg/mL.",
+  "explanation": "The recommendation requires two checks: a schedule must keep the peak \"under 20\" and the trough \"above 4,\" and among the schedules that pass, Edvardsen wants the least frequent. \"The 8-hour schedule, which produced a peak of 16 µg/mL and a trough of 5.2 µg/mL\" passes both limits, and every less frequent schedule fails. \"The 12-hour schedule, which produced a peak of 21 µg/mL and a trough of 3.1 µg/mL\" exceeds the peak limit and falls below the trough limit. \"The 24-hour schedule, which produced a peak of 34 µg/mL and a trough of 0.8 µg/mL\" fails both limits by wider margins. \"The 6-hour schedule, which produced a peak of 12 µg/mL and a trough of 7.5 µg/mL\" stays within both limits, but it requires doses more often than the 8-hour schedule, which also passes. All four choices read the table accurately.",
+  "topic_tag": "antibiotic-dosing-interval-window"
+ },
+ {
+  "id": "II17A-06",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Beneath the Corran Valley, a layer of dense clay at a depth of about 85 meters separates a shallow aquifer from a deeper one, and each well draws water from whichever aquifer its intake screen sits in. Over a three-year drought, hydrologist Leena Mabuza tracked the water level in five wells across the valley. She claims that the drought lowered the shallow aquifer far more than the deep aquifer, a difference she attributes to the clay layer slowing the movement of water out of the deeper formation.",
+  "prompt": "Which choice most effectively uses data from the table to support Mabuza's claim?",
+  "graphic": {
+   "type": "table",
+   "title": "Water levels in five Corran Valley wells, 2019–2022",
+   "colLabels": [
+    "Intake screen depth (m)",
+    "Change in water level (m)"
+   ],
+   "rowLabels": [
+    "Well P",
+    "Well Q",
+    "Well R",
+    "Well S",
+    "Well T"
+   ],
+   "cells": [
+    [
+     "22",
+     "−4.8"
+    ],
+    [
+     "41",
+     "−6.2"
+    ],
+    [
+     "78",
+     "−1.3"
+    ],
+    [
+     "96",
+     "−1.1"
+    ],
+    [
+     "134",
+     "−0.6"
+    ]
+   ]
+  },
+  "choices": [
+   "The water level in well P fell by 4.8 meters, compared with 1.1 meters in well S.",
+   "The water level in well Q fell by 6.2 meters, compared with 1.3 meters in well R.",
+   "The water level in well Q fell by 6.2 meters, compared with 4.8 meters in well P.",
+   "The water level in well S fell by 1.1 meters, compared with 0.6 meters in well T."
+  ],
+  "correct_answer": "The water level in well P fell by 4.8 meters, compared with 1.1 meters in well S.",
+  "explanation": "The passage places the clay layer at \"about 85 meters,\" so wells screened above it draw from the shallow aquifer and wells screened below it draw from the deep one. Well P (22 m) is shallow and well S (96 m) is deep, so \"The water level in well P fell by 4.8 meters, compared with 1.1 meters in well S\" compares the two aquifers and shows the shallow one dropping far more. All four choices read the table accurately. The choice comparing well Q with well R looks like a strong contrast, but R's screen is at 78 m, above the clay, so both wells tap the shallow aquifer. The choice comparing well Q with well P likewise sets two shallow wells against each other. The choice comparing well S with well T sets two deep wells (96 m and 134 m) against each other, so none of these three says anything about the shallow aquifer relative to the deep one.",
+  "topic_tag": "aquifer-drawdown-clay-layer"
+ },
+ {
+  "id": "II17B-01",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Records from the civil court of the port town of Halvering show that lawsuits over unpaid debts fell by nearly half in the decade after 1680. Historian Ines Calloway attributes the decline to a merchants' arbitration board founded in 1679, which settled disputes privately but heard only cases in which both parties were registered merchants. Other scholars point instead to a slump in Halvering's herring trade during the same decade, arguing that it reduced borrowing throughout the town's economy, among merchants and craftsmen alike, and so left fewer debts to dispute. The nearby inland towns had neither an arbitration board nor a herring trade.",
+  "prompt": "Which finding, if true, would most directly support Calloway's hypothesis?",
+  "choices": [
+   "Debt suits fell in Halvering while debt suits in the nearby inland towns held steady.",
+   "Debt suits between craftsmen fell while debt suits between merchants held steady.",
+   "Debt suits between merchants fell while debt suits between craftsmen held steady.",
+   "Debt suits between merchants fell, and debt suits between craftsmen fell just as steeply."
+  ],
+  "correct_answer": "Debt suits between merchants fell while debt suits between craftsmen held steady.",
+  "explanation": "Calloway's board heard only cases \"in which both parties were registered merchants,\" so it could divert merchant-to-merchant suits but not craftsmen's suits; the rival herring slump reduced borrowing \"among merchants and craftsmen alike.\" Only the finding that \"Debt suits between merchants fell while debt suits between craftsmen held steady\" matches the board's reach and not the slump's, so it discriminates in Calloway's favor. \"Debt suits between merchants fell, and debt suits between craftsmen fell just as steeply\" is exactly what the town-wide slump predicts, and the board could not have reduced craftsmen's suits. \"Debt suits fell in Halvering while debt suits in the nearby inland towns held steady\" fits both accounts, since the inland towns had \"neither an arbitration board nor a herring trade.\" \"Debt suits between craftsmen fell while debt suits between merchants held steady\" reverses the pattern: the only parties the board could serve showed no decline.",
+  "topic_tag": "legal-history-debt-arbitration"
+ },
+ {
+  "id": "II17B-02",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Recordings of the brass bands of the Corrow Valley mining towns show that the bands' marches slowed by roughly a tenth between 1915 and 1940. Musicologist Petra Lindqvist attributes the change to the heavier valved horns the bands adopted in the late 1920s, which she argues are harder to articulate quickly. An archivist proposes instead that after 1919 the bands began leading street processions that included aging war veterans, and that bandleaders slowed the beat to match the marchers' pace. The bands played the same marches both in processions and in seated concerts at the town halls, and the archive holds recordings of both.",
+  "prompt": "Which finding, if true, would most directly support Lindqvist's hypothesis?",
+  "choices": [
+   "The marches slowed by about the same amount in seated concerts as in street processions.",
+   "The marches slowed by a larger amount in street processions than in seated concerts.",
+   "The marches slowed by a larger amount before the bands adopted valved horns than after.",
+   "The marches slowed by a larger amount in recordings made after 1919 than in earlier ones."
+  ],
+  "correct_answer": "The marches slowed by about the same amount in seated concerts as in street processions.",
+  "explanation": "Lindqvist blames the heavier valved horns, which the bands would have played in every setting, while the archivist blames the pace of veterans in \"street processions,\" which would not affect \"seated concerts at the town halls.\" So \"The marches slowed by about the same amount in seated concerts as in street processions\" is what the horn account predicts and the procession account does not. \"The marches slowed by a larger amount in street processions than in seated concerts\" is the archivist's prediction. \"The marches slowed by a larger amount in recordings made after 1919 than in earlier ones\" fits both accounts, because the processions began \"after 1919\" and the horns arrived \"in the late 1920s,\" also after 1919. \"The marches slowed by a larger amount before the bands adopted valved horns than after\" runs against Lindqvist, since most of the slowing would have come before the horns existed in the bands.",
+  "topic_tag": "brass-band-march-tempo"
+ },
+ {
+  "id": "II17B-03",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Textual Evidence",
+  "difficulty": "hard",
+  "passage": "Account books from the market towns of Ashgrove County show that the gap between the highest and lowest local prices of a given good narrowed sharply after 1760. Historian Kwame Okafor attributes the change to the turnpike roads completed that year, which cut the cost of hauling goods between towns; carriers' charges were set by weight. A rival account credits a weekly price bulletin, first printed in 1758, which listed the going prices of every good sold in the county's markets and was carried to subscribers by riders who traveled the turnpikes. Two goods sold in every town were milled grain, which is heavy for its value, and silk ribbon, which is light.",
+  "prompt": "Which finding, if true, would most directly support Okafor's hypothesis?",
+  "choices": [
+   "After 1760, price gaps narrowed by a larger share among towns on a turnpike than among other towns.",
+   "After 1760, price gaps narrowed by about the same share for milled grain as for silk ribbon.",
+   "After 1760, price gaps narrowed by a larger share for silk ribbon than for milled grain.",
+   "After 1760, price gaps narrowed by a larger share for milled grain than for silk ribbon."
+  ],
+  "correct_answer": "After 1760, price gaps narrowed by a larger share for milled grain than for silk ribbon.",
+  "explanation": "Okafor credits cheaper hauling, and because \"carriers' charges were set by weight,\" lower hauling costs matter most for a good that is \"heavy for its value\" such as grain. The bulletin, by contrast, listed \"the going prices of every good,\" so better information should narrow gaps for heavy and light goods alike. Hence \"After 1760, price gaps narrowed by a larger share for milled grain than for silk ribbon\" favors Okafor over the rival. \"After 1760, price gaps narrowed by about the same share for milled grain as for silk ribbon\" is what the bulletin account predicts. \"After 1760, price gaps narrowed by a larger share among towns on a turnpike than among other towns\" fits both accounts, since the bulletin's riders \"traveled the turnpikes.\" \"After 1760, price gaps narrowed by a larger share for silk ribbon than for milled grain\" reverses the weight-based pattern Okafor's account implies.",
+  "topic_tag": "turnpike-price-convergence"
+ },
+ {
+  "id": "II17B-04",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Education researcher Mirela Sandoval studied a summer program meant to prevent the reading losses many children suffer between school years. The program had two components: a set of books for each child to keep and twice-weekly reading lessons. To separate the components' effects, Sandoval assigned children in one district to four groups and measured the change in each group's average reading score from June to September. She concluded that, for children who already received the books, the lessons added little. Supporting this conclusion, children who received",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "choices": [
+   "lessons only averaged a gain of 2 points, compared with a loss of 3 points for children who received neither component.",
+   "books only averaged a gain of 8 points, compared with a gain of 9 points for children who received both books and lessons.",
+   "books only averaged a gain of 8 points, compared with a loss of 3 points for children who received neither component.",
+   "lessons only averaged a gain of 2 points, compared with a gain of 9 points for children who received both books and lessons."
+  ],
+  "correct_answer": "books only averaged a gain of 8 points, compared with a gain of 9 points for children who received both books and lessons.",
+  "explanation": "Sandoval's claim concerns children who \"already received the books\": it compares having books alone with having books plus lessons. The table shows \"Books only\" at +8 and \"Books and lessons\" at +9, so adding lessons to books raised the average by only 1 point; that is the comparison in \"books only averaged a gain of 8 points, compared with a gain of 9 points for children who received both books and lessons.\" All four choices read the table accurately. \"lessons only averaged a gain of 2 points, compared with a loss of 3 points for children who received neither component\" concerns children without books and suggests lessons help by themselves. \"books only averaged a gain of 8 points, compared with a loss of 3 points for children who received neither component\" shows the value of the books, not what lessons add to them. \"lessons only averaged a gain of 2 points, compared with a gain of 9 points for children who received both books and lessons\" shows what books add to lessons, the reverse of the comparison the claim needs.",
+  "topic_tag": "summer-reading-books-lessons",
+  "graphic": {
+   "type": "table",
+   "title": "Change in Average Reading Score, June to September",
+   "colLabels": [
+    "Children (number)",
+    "Average change (points)"
+   ],
+   "rowLabels": [
+    "Books and lessons",
+    "Books only",
+    "Lessons only",
+    "Neither component"
+   ],
+   "cells": [
+    [
+     "112",
+     "+9"
+    ],
+    [
+     "108",
+     "+8"
+    ],
+    [
+     "115",
+     "+2"
+    ],
+    [
+     "110",
+     "-3"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "II17B-05",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Between 1850 and 1870, the number of landscapes hung at the annual Varenne Salon, a juried exhibition, quadrupled. Some critics of the period explained the change by supply alone: painters, they said, were simply sending the Salon far more landscapes than before. Art historian Odile Brassard argues instead that the Salon's jury itself became more receptive to the genre, accepting a larger proportion of the landscapes that reached it.",
+  "prompt": "Which choice most effectively uses data from the table to support Brassard's claim?",
+  "choices": [
+   "From 1850 to 1870, landscapes submitted rose from 120 to 240, while landscapes accepted rose from 30 to 120.",
+   "From 1850 to 1870, landscapes submitted rose from 120 to 240, while history paintings submitted fell from 200 to 150.",
+   "From 1850 to 1870, landscapes accepted rose from 30 to 120, while history paintings accepted fell from 100 to 75.",
+   "From 1850 to 1870, portraits submitted rose from 150 to 160, while portraits accepted rose from 60 to 64."
+  ],
+  "correct_answer": "From 1850 to 1870, landscapes submitted rose from 120 to 240, while landscapes accepted rose from 30 to 120.",
+  "explanation": "Brassard claims the jury accepted \"a larger proportion\" of landscapes, so the evidence must compare landscapes accepted with landscapes submitted in both years. \"From 1850 to 1870, landscapes submitted rose from 120 to 240, while landscapes accepted rose from 30 to 120\" does this: the acceptance rate rose from 30 of 120 (25%) to 120 of 240 (50%), so acceptances grew faster than supply. All four choices are accurate readings of the table. \"From 1850 to 1870, landscapes submitted rose from 120 to 240, while history paintings submitted fell from 200 to 150\" concerns submissions only, which is the critics' supply explanation. \"From 1850 to 1870, landscapes accepted rose from 30 to 120, while history paintings accepted fell from 100 to 75\" gives raw acceptances without submissions, which the critics' account also explains. \"From 1850 to 1870, portraits submitted rose from 150 to 160, while portraits accepted rose from 60 to 64\" concerns portraits, whose rate stayed at 40%, and says nothing about landscapes.",
+  "topic_tag": "salon-jury-landscape-acceptance",
+  "graphic": {
+   "type": "table",
+   "title": "Paintings Submitted to and Accepted by the Varenne Salon",
+   "colLabels": [
+    "Submitted, 1850",
+    "Accepted, 1850",
+    "Submitted, 1870",
+    "Accepted, 1870"
+   ],
+   "rowLabels": [
+    "Landscape",
+    "History painting",
+    "Portrait"
+   ],
+   "cells": [
+    [
+     "120",
+     "30",
+     "240",
+     "120"
+    ],
+    [
+     "200",
+     "100",
+     "150",
+     "75"
+    ],
+    [
+     "150",
+     "60",
+     "160",
+     "64"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "II17B-06",
+  "domain": "Information and Ideas",
+  "subskill": "Command of Evidence",
+  "difficulty": "hard",
+  "passage": "Linguists studying the town of Kelmsby have tracked a new pronunciation of the vowel in words such as \"boat,\" produced farther forward in the mouth. Because younger residents use the new vowel more than older ones do, some researchers suspect it is a youthful habit that speakers abandon as they age. Linguist Hana Ruzicka disagrees. In 1995 her team recorded residents in three age groups; in 2020 it re-recorded the same individuals, now twenty-five years older, along with a new group of residents in their twenties. Ruzicka concludes that speakers do not give up the vowel as they grow older, noting that",
+  "prompt": "Which choice most effectively uses data from the table to complete the text?",
+  "choices": [
+   "residents aged 20-29 in 1995 used the new vowel in 38% of words, while those aged 20-29 in 2020 used it in 63%.",
+   "residents aged 45-54 in 1995 used the new vowel in 17% of words, while those aged 20-29 in 1995 used it in 38%.",
+   "residents aged 20-29 in 1995 used the new vowel in 38% of words, while those aged 45-54 in 2020 used it in 40%.",
+   "residents aged 70-79 in 2020 used the new vowel in 18% of words, while those aged 20-29 in 2020 used it in 63%."
+  ],
+  "correct_answer": "residents aged 20-29 in 1995 used the new vowel in 38% of words, while those aged 45-54 in 2020 used it in 40%.",
+  "explanation": "Because the 2020 recordings re-recorded \"the same individuals, now twenty-five years older,\" the 2020 group aged 45-54 consists of the people who were aged 20-29 in 1995. \"residents aged 20-29 in 1995 used the new vowel in 38% of words, while those aged 45-54 in 2020 used it in 40%\" therefore tracks the same speakers across twenty-five years and shows their use did not fall, which is Ruzicka's conclusion. All four choices are accurate readings of the table. \"residents aged 20-29 in 1995 used the new vowel in 38% of words, while those aged 20-29 in 2020 used it in 63%\" compares two different sets of people (the 2020 twenties are \"a new group\"), so it says nothing about individuals aging. \"residents aged 45-54 in 1995 used the new vowel in 17% of words, while those aged 20-29 in 1995 used it in 38%\" and \"residents aged 70-79 in 2020 used the new vowel in 18% of words, while those aged 20-29 in 2020 used it in 63%\" each compare age groups at one moment, the very pattern that the youthful-habit view also predicts.",
+  "topic_tag": "vowel-change-real-time-panel",
+  "graphic": {
+   "type": "table",
+   "title": "Use of the New Vowel in Kelmsby (% of Recorded Words)",
+   "colLabels": [
+    "1995",
+    "2020"
+   ],
+   "rowLabels": [
+    "Aged 20-29",
+    "Aged 45-54",
+    "Aged 70-79"
+   ],
+   "cells": [
+    [
+     "38%",
+     "63%"
+    ],
+    [
+     "17%",
+     "40%"
+    ],
+    [
+     "6%",
+     "18%"
+    ]
+   ]
+  }
+ }
+]
