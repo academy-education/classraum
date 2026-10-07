@@ -1,6 +1,6 @@
 -- 125_test_account_flags.sql — one definition of "test account".
 --
--- NOT APPLIED. Tested in a rolled-back transaction against the live
+-- APPLIED 2026-10-07 after f342ae3d deployed (125 then 126). Originally: Tested in a rolled-back transaction against the live
 -- database on 2026-10-07 (database/tests/125_test_account_flags.test.sql).
 --
 -- ── Owner decision 1 (2026-10-07) ────────────────────────────────────

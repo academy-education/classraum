@@ -1,6 +1,6 @@
 -- 126_exposure_first_seen.sql — keep the FIRST time a student saw an item.
 --
--- NOT APPLIED. Tested in a rolled-back transaction against the live
+-- APPLIED 2026-10-07 after f342ae3d deployed (125 then 126). Originally: Tested in a rolled-back transaction against the live
 -- database on 2026-10-07 (database/tests/126_exposure_first_seen.test.sql).
 --
 -- ── Owner decision 2 (2026-10-07) ────────────────────────────────────
