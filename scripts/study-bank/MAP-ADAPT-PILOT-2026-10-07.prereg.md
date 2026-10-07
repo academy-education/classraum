@@ -218,3 +218,41 @@ All renders and scorers refuse (exit 2) on missing or short input. Each has
 - Cross-test exposure is a product risk, not a quality bar. A student who met
   the SSAT passage will recognise its MAP adaptation. That is recorded for the
   owner, not decided here.
+
+## Amendment 1 (2026-10-07, after freeze, before any pick was scored): leakage-free split
+
+**What happened.** The first options-only render put all four items of each
+passage set into one file per side. One sample had been collected on each
+side. The coordinator relayed a source-side solver's report: L03/L41 (P2's
+inference and main-idea items) and L04/L42 (P3's purpose and inference items)
+carry the same option content, and the solver matched them.
+
+**Diagnosis.**
+- Neither listed render defect applies:
+  - Sources and adaptations were in separate files.
+  - No source is a control: the controls are ISEE, the sources SSAT/SAT.
+- It is two items of one passage group in one sheet. That is the
+  cross-item leak the standing rule exists for: `attack-split.mjs`, memory
+  `agent-rewrite-inverts-tell`, "interleaving items from the same passage in
+  one blind file inflates the attack".
+- This prereg should have applied that rule and did not.
+
+**Change.** The instrument changes; no bar does.
+- Each side is dealt into **K=4 files**, with no file holding two items of
+  one passage.
+- Standalones are spread by seeded order.
+- All 20 controls go into every file.
+- Each file gets **its own three fresh samples**: 24 solver agents in all.
+- Arms pool across files.
+- Controls pool over 12 samples per control item. Control R/V validity and
+  bars V and P read the pooled control.
+- Unanimity is still per item over its 3 samples.
+
+**Second render fix, found while splitting.** The per-arm flat deal keyed
+every singleton arm "A". Candidates are now dealt flat across all candidate
+arms per choice width, from a random offset. Bar A's threshold is absolute,
+and P's chance line is mean(1/k), so neither depends on the deal.
+
+The two samples taken on the interleaved render are kept as
+`*.DEFECTIVE-RENDER.*` and are **not scored**. Their content was not read
+before this amendment beyond the coordinator's relay.

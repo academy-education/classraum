@@ -39,7 +39,7 @@ function place(choices, key, letter, r) {
   let q = 0
   return Object.fromEntries(L.map(s => [s, s === letter ? ch[k] : rest[q++]]))
 }
-const flat = (n, w, r) => shuffleWith(Array.from({ length: n }, (_, i) => L5[i % w]), r)
+const flat = (n, w, r) => { const off = Math.floor(r() * w); return shuffleWith(Array.from({ length: n }, (_, i) => L5[(i + off) % w]), r) }
 
 function ooFile(items, seed0, name) {
   // items: {uid, arm, pair, choices, key}
@@ -47,10 +47,13 @@ function ooFile(items, seed0, name) {
   for (;;) {
     tries++; r = rng(seed++)
     order = shuffleWith(items.slice(), r)
+    // deal flat per (control arm | all candidates) x width, from a random offset: a split
+    // file holds 1-4 items per candidate arm, and a per-arm deal would key every singleton A
+    const grp = x => `${x.arm.startsWith('control') ? x.arm : 'cand'}|${x.choices.length}`
     const q = {}
-    for (const x of items) { const g = `${x.arm}|${x.choices.length}`; q[g] ??= null }
-    for (const g of Object.keys(q)) { const [a, w] = g.split('|'); q[g] = flat(items.filter(x => x.arm === a && x.choices.length === +w).length, +w, r) }
-    letters = order.map(x => q[`${x.arm}|${x.choices.length}`].pop())
+    for (const x of items) q[grp(x)] ??= null
+    for (const g of Object.keys(q)) q[g] = flat(items.filter(x => grp(x) === g).length, +g.split('|')[1], r)
+    letters = order.map(x => q[grp(x)].pop())
     if (!periodicity(letters.join('')).fail) break
     if (tries > 500) die('no E8-clean deal in 500 seeds')
   }
@@ -85,8 +88,22 @@ if (mode === 'fidelity') {
   const ctlR = rd('map-pilot-2-control-r.batch.json'), ctlV = rd('map-pilot-control.batch.json')
   if (ctlR.length !== 8 || ctlV.length !== 12) die('controls must be batch 2\'s 8 R and 12 V')
   const ctl = [...ctlR.map(x => ({ uid: x.id, arm: 'controlR', choices: x.choices, key: x.correct_answer })), ...ctlV.map(x => ({ uid: x.id, arm: 'controlV', choices: x.choices, key: x.correct_answer }))]
-  ooFile([...batch.map(it => ({ uid: it.id, arm: it.stratum, pair: it.id, choices: it.choices, key: it.correct_answer })), ...ctl], 20261007, 'oo-adapted')
-  ooFile([...srcKept.map(s => ({ uid: `src:${s.source_id}`, arm: stratumOf(s), pair: s.adapt_id, choices: s.item.choices, key: s.item.correct_answer })), ...ctl], 20261107, 'oo-source')
+  // LEAKAGE-FREE SPLIT (attack-split.mjs rule, memory agent-rewrite-inverts-tell): no file
+  // holds two items from one passage, each file gets its own three samples. The first
+  // render interleaved all four items of a set in one file; solvers matched sibling
+  // option casts across items (L03/L41, L04/L42 in the source sheet). Set aside, unscored.
+  const K = 4
+  const fileOf = {}
+  for (const g of ['P1', 'P2', 'P3']) batch.filter(x => x.set_id === g).sort((a, b) => a.id.localeCompare(b.id)).forEach((x, i) => { fileOf[x.id] = i % K })
+  const solo = batch.filter(x => !x.set_id).sort((a, b) => a.id.localeCompare(b.id))
+  shuffleWith(solo, rng(20261010)).forEach((x, i) => { fileOf[x.id] = i % K })
+  for (let f = 0; f < K; f++) {
+    const ids = new Set(batch.filter(x => fileOf[x.id] === f).map(x => x.id))
+    const sets = batch.filter(x => ids.has(x.id) && x.set_id).map(x => x.set_id)
+    if (new Set(sets).size !== sets.length) die(`file ${f + 1} holds two items of one passage`)
+    ooFile([...batch.filter(x => ids.has(x.id)).map(it => ({ uid: it.id, arm: it.stratum, pair: it.id, choices: it.choices, key: it.correct_answer })), ...ctl], 20261007 + f, `oo-adapted-f${f + 1}`)
+    ooFile([...srcKept.filter(s => ids.has(s.adapt_id)).map(s => ({ uid: `src:${s.source_id}`, arm: stratumOf(s), pair: s.adapt_id, choices: s.item.choices, key: s.item.correct_answer })), ...ctl], 20261107 + f, `oo-source-f${f + 1}`)
+  }
 } else if (mode === 'ws') {
   const { batch } = load()
   const sets = [...new Set(batch.filter(x => x.set_id).map(x => x.set_id))]

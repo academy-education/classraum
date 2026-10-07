@@ -74,22 +74,29 @@ function selftest() {
   process.exit(fail ? 1 : 0)
 }
 
-function ooRead(name) {
-  const key = rd(O + `${name}.key.json`), ids = Object.keys(key)
-  const sol = ['a', 'b', 'c'].map(s => O + `${name}.solver-${s}.json`)
-  for (const p of sol) if (!existsSync(p)) die(`${p} missing; the screen is pre-registered on 3 samples per file`)
-  const S = sol.map(p => [p, lab(rd(p))])
-  for (const [p, s] of S) { const miss = ids.filter(i => !new RegExp(`^[A-${key[i].width === 5 ? 'E' : 'D'}]$`).test(s[i]?.pick ?? '')); if (miss.length) die(`${p} missing or out-of-range picks on ${miss.length} ids`) }
-  const arms = {}, pairs = {}
-  for (const id of ids) {
-    const k = key[id], picks = S.map(([, s]) => s[id].pick), h = picks.filter(x => x === k.letter).length
-    const a = (arms[k.arm] ??= { n: 0, hits: 0, picks: 0, chance: 0, unanS: 0, unanK: 0, items: [] })
-    a.n++; a.hits += h; a.picks += picks.length; a.chance += 1 / k.width
-    if (new Set(picks).size === 1) { a.unanS++; if (h === picks.length) a.unanK++ }
-    a.items.push(`${String(k.localId).replace(/^src:/, '').slice(0, 8)}:${h}/3`)
-    if (k.pair) pairs[k.pair] = { h, w: k.width, arm: k.arm }
+// each side is K=4 split files (one item per passage per file), each with its own 3 samples;
+// arms pool across files, controls (in every file) pool over 12 samples per control item
+function ooRead(side, K = 4) {
+  const arms = {}, pairs = {}; let n = 0
+  for (let f = 1; f <= K; f++) {
+    const name = `${side}-f${f}`
+    const key = rd(O + `${name}.key.json`), ids = Object.keys(key)
+    const sol = ['a', 'b', 'c'].map(s => O + `${name}.solver-${s}.json`)
+    for (const p of sol) if (!existsSync(p)) die(`${p} missing; the screen is pre-registered on 3 samples per file`)
+    const S = sol.map(p => [p, lab(rd(p))])
+    for (const [p, s] of S) { const miss = ids.filter(i => !new RegExp(`^[A-${key[i].width === 5 ? 'E' : 'D'}]$`).test(s[i]?.pick ?? '')); if (miss.length) die(`${p} missing or out-of-range picks on ${miss.length} ids`) }
+    const groups = {}
+    for (const id of ids) {
+      const k = key[id], picks = S.map(([, s]) => s[id].pick), h = picks.filter(x => x === k.letter).length
+      const a = (arms[k.arm] ??= { n: 0, hits: 0, picks: 0, chance: 0, unanS: 0, unanK: 0, items: [] })
+      a.n++; a.hits += h; a.picks += picks.length; a.chance += 1 / k.width
+      if (new Set(picks).size === 1) { a.unanS++; if (h === picks.length) a.unanK++ }
+      a.items.push(`${String(k.localId).replace(/^src:/, '').slice(0, 8)}:${h}/3`)
+      if (k.pair) { if (pairs[k.pair]) die(`pair ${k.pair} rendered twice on one side`); pairs[k.pair] = { h, w: k.width, arm: k.arm } }
+      n++
+    }
   }
-  return { arms, pairs, n: ids.length }
+  return { arms, pairs, n }
 }
 const pct = a => 100 * a.hits / a.picks
 
@@ -99,7 +106,7 @@ else if (mode === '--selftest') selftest()
 else if (mode === 'oo') {
   const ad = ooRead('oo-adapted'), src = ooRead('oo-source')
   const batch = rd(O + 'batch.json')
-  console.log(`denominators: adapted file ${ad.n} items x 3 samples, source file ${src.n} items x 3 samples; frozen adapted items ${batch.length} of ${N}`)
+  console.log(`denominators (4 split files a side, 3 fresh samples per file): adapted ${ad.n} item-renders, source ${src.n} item-renders; frozen adapted items ${batch.length} of ${N}`)
   for (const [nm, f] of [['ADAPTED', ad], ['SOURCE', src]]) {
     console.log(`\n${nm} file`)
     for (const [a, o] of Object.entries(f.arms)) console.log(`  ${a.padEnd(13)} n=${String(o.n).padStart(2)} x3 = ${o.picks} picks | ${pct(o).toFixed(1)}% vs chance ${(100 * o.chance / o.n).toFixed(1)}% | unanimous on some letter ${o.unanS}/${o.n}, on key ${o.unanK}/${o.n}${a.startsWith('control') ? '' : '\n                per item ' + o.items.join(' ')}`)
