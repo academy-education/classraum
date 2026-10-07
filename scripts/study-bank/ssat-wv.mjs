@@ -50,6 +50,29 @@ const isV4 = id => /^WV(?:[4-9]|\d{2,})-/.test(String(id))
 const isV5 = id => /^WV(?:[5-9]|\d{2,})-/.test(String(id))
 export const LURES = ['stops-short', 'reversed', 'half-right', 'detail-as-whole', 'misplaced-detail', 'character-not-author']
 const a1Exempt = kind => kind === 'vocabulary-in-context' || kind === 'attitude'
+// ── batch WV6 (READING-BATCH-WV6-2026-10-07.prereg.md): attitude options must differ in DIRECTION. Each option must
+//    contain a word from exactly one class below, and the five options must cover five different classes.
+//    Unknown attitude words refuse (use the lexicon). Plus the licensing pre-check (licbuild / verify --lic). ──
+const isV6 = id => /^WV(?:[6-9]|\d{2,})-/.test(String(id))
+export const ATT_DIR = {
+  warm: 'admiring admiration approving approval appreciative appreciation proud pride respectful respect grateful gratitude sympathetic sympathy fond fondness affectionate affection enthusiastic enthusiasm reverent reverence tender'.split(' '),
+  critical: 'critical disapproving disapproval scornful scorn contemptuous contempt indignant indignation irritated irritation resentful resentment exasperated exasperation disdainful disdain annoyed annoyance angry'.split(' '),
+  troubled: 'uneasy unease worried worry apprehensive apprehension anxious anxiety wary wariness fearful alarmed regretful regret sad sadness wistful nostalgic nostalgia mournful melancholy rueful doubtful doubt skeptical skepticism uncertain sorrowful sorrow grief troubled'.split(' '),
+  indifferent: 'indifferent indifference detached detachment neutral unconcerned impassive dispassionate uninterested'.split(' '),
+  amused: 'amused amusement wry playful ironic bemused humorous mocking whimsical'.split(' '),
+}
+export function attitudeDirections(choices) {
+  const probs = [], classes = choices.map((c, j) => {
+    const ws = norm(c).replace(/[^a-z ]/g, ' ').split(/\s+/).filter(Boolean)
+    const hits = Object.entries(ATT_DIR).filter(([, lex]) => ws.some(w => lex.includes(w))).map(([k]) => k)
+    if (hits.length !== 1) probs.push(`attitude choice ${j} ("${c}") matches ${hits.length ? hits.join('+') : 'no'} direction class (need exactly one; use a lexicon word)`)
+    return hits.length === 1 ? hits[0] : null
+  })
+  const seen = {}; classes.forEach((k, j) => { if (k) (seen[k] ??= []).push(j) })
+  for (const [k, js] of Object.entries(seen)) if (js.length > 1) probs.push(`attitude choices ${js.join(' and ')} share the direction "${k}" (${js.map(j => `"${choices[j]}"`).join(' / ')}): they differ in shade, not direction`)
+  return { classes, probs }
+}
+export const licId = (pid, k, qid) => `${pid}.v${k}.${qid.slice(pid.length + 1)}`
 export const a1Oid = (pid, k, qid, j) => `${pid}.v${k}.${qid.slice(pid.length + 1)}.${'ABCDE'[j]}`
 const GENERIC = new Set('show shows describe describes explain explains illustrate illustrates introduce introduces suggest suggests reveal reveals emphasize emphasizes contrast compare provide provides offer offers present presents recount recounts recall recalls account example give gives point reader readers establish establishes indicate indicates highlight highlights note notes stress stresses primarily serves serve mainly concerned where more into than there then been have would could about after before over some only also what other such each every very much made make makes take took became become becomes most many under upon them once just even still'.split(' '))
 export const stemW = w => w.replace(/'s$/, '').replace(/'/g, '')
@@ -67,8 +90,15 @@ export function kOf(frozenSha, pid) {
   return parseInt(sha(`${SEED}|${frozenSha}|${pid}`).slice(0, 8), 16) % 5
 }
 
-function verify(files, { quiet = false, a1Dir = null } = {}) {
+function verify(files, { quiet = false, a1Dir = null, licDir = null } = {}) {
   const problems = [], notes = []
+  let lic = null
+  if (licDir) {
+    const rdj = f => { const p = join(licDir, f); try { return JSON.parse(readFileSync(p, 'utf8')) } catch { die(`licensing: cannot read ${p}`) } }
+    const key = rdj('lic-key.json'), j = [{}, {}]
+    for (let k = 0; k < 5; k++) ['a', 'b'].forEach((t, ti) => { const x = rdj(`lic-v${k}.${t}.json`); Object.entries(x.labels ?? x).forEach(([qid, v]) => { j[ti][`${k}|${qid}`] = v }) })
+    lic = { key, j }
+  }
   let a1 = null
   if (a1Dir) {
     const rdj = f => { const p = join(a1Dir, f); try { return JSON.parse(readFileSync(p, 'utf8')) } catch { die(`A1: cannot read ${p}`) } }
@@ -114,6 +144,23 @@ function verify(files, { quiet = false, a1Dir = null } = {}) {
       const cl = q.choices.map(c => c.length)
       const maxRatio = isV5(id) ? 1.5 : 1.6
       if (Math.max(...cl) / Math.min(...cl) > maxRatio) problems.push(`${tag}: choice length ratio ${(Math.max(...cl) / Math.min(...cl)).toFixed(2)} > ${maxRatio}`)
+      if (isV6(id) && q.kind === 'attitude') attitudeDirections(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
+      if (isV6(id) && (q.kind === 'attitude' || q.kind === 'vocabulary-in-context')) {
+        p.versions.forEach((v, k) => {
+          const lid = licId(id, k, q.qid)
+          if (!lic) { problems.push(`${tag} v${k}: licensing pre-check required (licbuild, then verify --lic <dir>)`); return }
+          const ke = lic.key[lid]
+          if (!ke || ke.versionSha !== sha(v.text) || JSON.stringify(ke.choices) !== JSON.stringify(q.choices)) { problems.push(`${tag} v${k}: licensing judgement missing or stale (${lid})`); return }
+          lic.j.forEach((J, ji) => {
+            const r = J[`${k}|${lid.replace(`.v${k}.`, '.')}`], want = ke.keyLetter
+            if (!r || !'ABCDE'.includes(r.pick ?? '_')) { problems.push(`${tag} v${k}: licensing judge ${'ab'[ji]} output missing ${lid}`); return }
+            const sd = r.second_defensible && r.second_defensible !== 'none' && r.second_defensible !== r.pick
+            if (r.pick !== want) problems.push(`${tag} v${k}: licensing judge ${'ab'[ji]} picks choice ${ke.order['ABCDE'.indexOf(r.pick)]} ("${q.choices[ke.order['ABCDE'.indexOf(r.pick)]]}"), not the key (choice ${k})`)
+            if (sd) problems.push(`${tag} v${k}: licensing judge ${'ab'[ji]} finds a second defensible answer: choice ${ke.order['ABCDE'.indexOf(r.second_defensible)]} ("${q.choices[ke.order['ABCDE'.indexOf(r.second_defensible)]]}")`)
+            for (const x of 'ABCDE') { if (x === want) continue; const qt = r.exclusions?.[x]; if (!qt || String(qt).trim().split(/\s+/).length < 3 || !norm(v.text).includes(norm(qt))) problems.push(`${tag} v${k}: licensing judge ${'ab'[ji]} gives no verbatim sentence excluding choice ${ke.order['ABCDE'.indexOf(x)]}`) }
+          })
+        })
+      }
       if (q.kind === 'vocabulary-in-context') {
         const w = (q.prompt.match(/["“]([^"”]+)["”]/) ?? [])[1]
         if (!w) problems.push(`${tag}: vocabulary stem must quote the word`)
@@ -194,6 +241,31 @@ function verify(files, { quiet = false, a1Dir = null } = {}) {
   return passages
 }
 
+// licensing pre-check input (WV6), v2 after the v1 design failed its break test on WV5 (letters in choice order gave
+// "version k keys letter k"; one file showed all five versions side by side). Now: ONE FILE PER VERSION INDEX k (both
+// passages' version k, never two versions of one passage), only the attitude and vocabulary questions, letters
+// re-dealt per question by a seeded shuffle, key withheld.
+function licbuild(outdir, files) {
+  const key = {}, byK = [[], [], [], [], []]
+  for (const f of [...files].sort()) {
+    const p = JSON.parse(readFileSync(f, 'utf8')), id = p.passage_id
+    if (!isV6(id)) die(`${id}: licbuild is for WV6 units`)
+    p.versions.forEach((v, k) => {
+      const qs = p.questions.filter(q => q.kind === 'attitude' || q.kind === 'vocabulary-in-context').map(q => {
+        const lid = licId(id, k, q.qid), r = rng(`lic|${lid}|${sha(v.text)}`)
+        const order = shuffle([0, 1, 2, 3, 4], r)          // order[slot] = choice index
+        key[lid] = { versionSha: sha(v.text), choices: q.choices, kind: q.kind, file: k, order, keyLetter: 'ABCDE'[order.indexOf(k)] }
+        return { id: lid.replace(`.v${k}.`, '.'), question: q.prompt, options: Object.fromEntries(order.map((ci, slot) => ['ABCDE'[slot], q.choices[ci]])) }
+      })
+      byK[k].push({ passage_id: id, passage: v.text, questions: qs })
+    })
+  }
+  mkdirSync(outdir, { recursive: true })
+  byK.forEach((arr, k) => writeFileSync(join(outdir, `lic-v${k}.json`), JSON.stringify(arr, null, 1) + '\n'))
+  writeFileSync(join(outdir, 'lic-key.json'), JSON.stringify(key, null, 1) + '\n')
+  console.log(`  licbuild: 5 files (one per version index), ${Object.keys(key).length} question-versions; key letters ${Object.values(key).map(x => x.keyLetter).join('')}`)
+}
+
 // A1 judge input for every lexically flagged non-exempt question-version of WV5 units (all five choices listed)
 function a1build(outdir, files) {
   const key = {}, out = []
@@ -217,9 +289,9 @@ function a1build(outdir, files) {
   console.log(`  a1build: ${out.length} passage-versions, ${out.reduce((a, x) => a + x.option_lists.length, 0)} question-versions, ${Object.keys(key).length} option ids (${Object.values(key).filter(x => x.lexFlag).length} lexically flagged)`)
 }
 
-function draw(outdir, files, a1Dir = null) {
+function draw(outdir, files, a1Dir = null, licDir = null) {
   const sorted = [...files].sort()
-  const passages = verify(sorted, { quiet: true, a1Dir })
+  const passages = verify(sorted, { quiet: true, a1Dir, licDir })
   const frozenSha = sha(Buffer.concat(sorted.map(f => readFileSync(f))))
   mkdirSync(outdir, { recursive: true })
   const drawn = {}, batch = []
@@ -487,9 +559,11 @@ function nullDist(outdir, args) {
 const [cmd, ...rest] = process.argv.slice(2)
 if (import.meta.url === `file://${process.argv[1]}`) {
   const after = flag => { const i = rest.indexOf(flag); if (i < 0) return []; const out = []; for (let j = i + 1; j < rest.length && !rest[j].startsWith('--'); j++) out.push(rest[j]); return out }
-  if (cmd === 'verify') { const a1Dir = after('--a1')[0] ?? null; const fl = rest.filter((x, i) => x !== '--a1' && rest[i - 1] !== '--a1'); if (!fl.length) die('no files'); verify(fl, { a1Dir }) }
+  const strip = flags => rest.filter((x, i) => !flags.includes(x) && !flags.includes(rest[i - 1]))
+  if (cmd === 'verify') { const a1Dir = after('--a1')[0] ?? null, licDir = after('--lic')[0] ?? null; const fl = strip(['--a1', '--lic']); if (!fl.length) die('no files'); verify(fl, { a1Dir, licDir }) }
+  else if (cmd === 'licbuild') { const [out, ...f] = rest; if (!f.length) die('no files'); licbuild(out, f) }
   else if (cmd === 'a1build') { const [out, ...f] = rest; if (!f.length) die('no files'); a1build(out, f) }
-  else if (cmd === 'draw') { const a1Dir = after('--a1')[0] ?? null; const [out, ...f] = rest.filter((x, i) => x !== '--a1' && rest[i - 1] !== '--a1'); if (!f.length) die('no files'); draw(out, f, a1Dir) }
+  else if (cmd === 'draw') { const a1Dir = after('--a1')[0] ?? null, licDir = after('--lic')[0] ?? null; const [out, ...f] = strip(['--a1', '--lic']); if (!f.length) die('no files'); draw(out, f, a1Dir, licDir) }
   else if (cmd === 'build') build(rest[0], after('--ctl')[0] ?? join(HERE, 'ssat-reading-diag'), after('--wv'), after('--fixtures')[0], after('--natlive')[0], rest.includes('--iso-all'))
   else if (cmd === 'score') score(rest[0], rest.slice(1))
   else if (cmd === 'null') nullDist(rest[0], rest.slice(1))
