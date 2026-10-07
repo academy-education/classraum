@@ -3,7 +3,9 @@ import { z } from 'zod'
 import {
   analyzePadding,
   applyCeiling,
+  buildZeroGatePrompt,
   enforceRelevanceCeiling,
+  levelAfterGatePassed,
   runStagedGrade,
   type QualityStageCall,
   type StageContext,
@@ -12,10 +14,14 @@ import {
 import {
   RELEVANCE_CEILING_5,
   RelevanceSchema,
+  WritingZeroGateSchema,
   ZeroGateSchema,
   getRubric,
   inferSpeakingTaskType,
+  quoteOccursIn,
+  reconcileWritingGate,
   relevanceCeiling,
+  zeroGateSchemaFor,
   zeroGateTriggered,
   type Grade,
   type Relevance,
@@ -69,9 +75,11 @@ function grade(overall: number, relevanceKey = 'topic_relevance'): Grade {
  *  same stub serves both the zero gate and the relevance ladder. */
 function stubCalls(opts: { gate?: ZeroGate; rel?: Relevance; quality?: Grade }) {
   const calls: string[] = []
-  const text: TextStageCall = async ({ schema, prompt }) => {
-    if ((schema as z.ZodType<unknown>) === (ZeroGateSchema as z.ZodType<unknown>)) {
+  const gateSchemas: z.ZodType<unknown>[] = []
+  const text: TextStageCall = async ({ schema, schemaName, prompt }) => {
+    if (schemaName === 'zero_gate') {
       calls.push('zero_gate')
+      gateSchemas.push(schema as z.ZodType<unknown>)
       expect(prompt).toContain(INTERVIEW_PROMPT)
       return { object: (opts.gate ?? cleanGate) as never, usage: { tokensIn: 10, tokensOut: 5 } }
     }
@@ -85,7 +93,7 @@ function stubCalls(opts: { gate?: ZeroGate; rel?: Relevance; quality?: Grade }) 
     calls.push('quality')
     return { object: opts.quality ?? grade(5), usage: { tokensIn: 30, tokensOut: 9 } }
   }
-  return { calls, stages: { text, quality } }
+  return { calls, gateSchemas, stages: { text, quality } }
 }
 
 const ctx: StageContext = {
@@ -209,16 +217,164 @@ describe('zero gate', () => {
       expect(zeroGateTriggered(cleanGate, skill)).toBe(false)
     })
 
+  // The official Writing guide's whole 0 description: "The response is
+  // blank, rejects the topic, is not in English, is entirely copied from
+  // the prompt, is entirely unconnected to the prompt or consists of
+  // arbitrary keystrokes."
   it.each([
     'noResponse',
     'notInEnglish',
-    'entirelyUnintelligible',
     'rejectsTopic',
     'entirelyCopiedFromPrompt',
     'entirelyUnconnected',
     'arbitraryKeystrokes',
   ] as const)('zeroes a WRITING response on %s alone', flag => {
     expect(zeroGateTriggered({ ...cleanGate, [flag]: true }, 'writing')).toBe(true)
+  })
+
+  it('does NOT zero a WRITING response as "entirely unintelligible" — not a Writing 0 condition', () => {
+    // Writing puts unintelligibility at band 1 ("The message may be
+    // limited to the point of being unintelligible"). The ladder found
+    // band-1 borrowed-phrase answers zeroed on this flag in 10 of 12.
+    expect(zeroGateTriggered({ ...cleanGate, entirelyUnintelligible: true }, 'writing')).toBe(false)
+  })
+
+  it('does not even ask the Writing gate about unintelligibility', () => {
+    expect(zeroGateSchemaFor('writing')).toBe(WritingZeroGateSchema)
+    expect(Object.keys(WritingZeroGateSchema.shape)).not.toContain('entirelyUnintelligible')
+    expect(Object.keys(WritingZeroGateSchema.shape).sort()).toEqual([
+      'arbitraryKeystrokes', 'connectedSpan', 'entirelyCopiedFromPrompt', 'entirelyUnconnected', 'feedback',
+      'noResponse', 'notInEnglish', 'originalWords', 'quotedSpan', 'reasoning', 'refusalQuote', 'rejectsTopic',
+    ])
+    // Evidence is emitted BEFORE the flags it decides.
+    const keys = Object.keys(WritingZeroGateSchema.shape)
+    expect(keys.indexOf('connectedSpan')).toBeLessThan(keys.indexOf('entirelyUnconnected'))
+    expect(keys.indexOf('originalWords')).toBeLessThan(keys.indexOf('entirelyCopiedFromPrompt'))
+    expect(keys.indexOf('refusalQuote')).toBeLessThan(keys.indexOf('rejectsTopic'))
+  })
+
+  describe('reconcileWritingGate — the guide\'s "entirely", enforced against the gate\'s own quotes', () => {
+    const PROMPT = 'Professor Lee asks you to help organize next month\'s Departmental Research Symposium. Reply to the email.'
+    // email-lee-G from the ladder, shortened: fluent, mostly off topic.
+    const OFF_TOPIC = 'Dear Professor Lee, Thank you for your email about the symposium. I have enjoyed your seminar on research ethics. Unfortunately, I am busy with my thesis.'
+
+    it('keeps entirelyUnconnected off when the gate itself quoted a connected span', () => {
+      const g = reconcileWritingGate({ ...cleanGate, entirelyUnconnected: true, connectedSpan: 'Thank you for your email about the symposium.' }, PROMPT, OFF_TOPIC)
+      expect(g.entirelyUnconnected).toBe(false)
+      expect(zeroGateTriggered(g, 'writing')).toBe(false)
+    })
+
+    it('honours entirelyUnconnected when no connected span was quoted', () => {
+      const g = reconcileWritingGate({ ...cleanGate, entirelyUnconnected: true, connectedSpan: '' }, PROMPT, 'My favourite food is kimchi stew and I cook it every Sunday.')
+      expect(zeroGateTriggered(g, 'writing')).toBe(true)
+    })
+
+    it('ignores a "connected" quote that is not actually in the response', () => {
+      const g = reconcileWritingGate({ ...cleanGate, entirelyUnconnected: true, connectedSpan: 'I would love to help with the symposium' }, PROMPT, 'My favourite food is kimchi stew.')
+      expect(g.entirelyUnconnected).toBe(true)
+    })
+
+    it('accepts a quote with an ellipsis when every piece is in the response', () => {
+      expect(quoteOccursIn('Dear Professor Lee... busy with my thesis', OFF_TOPIC)).toBe(true)
+      expect(quoteOccursIn('Dear Professor Lee... busy with my exams', OFF_TOPIC)).toBe(false)
+    })
+
+    it('keeps entirelyCopiedFromPrompt off when the writer added words of their own', () => {
+      const borrowed = 'Professor Lee. help organize next month\'s Departmental Research Symposium. ok I help little. thank you'
+      const g = reconcileWritingGate({ ...cleanGate, entirelyCopiedFromPrompt: true, originalWords: 'ok I help little. thank you' }, PROMPT, borrowed)
+      expect(g.entirelyCopiedFromPrompt).toBe(false)
+    })
+
+    it('honours entirelyCopiedFromPrompt when the quoted "own" words are all the prompt\'s', () => {
+      const copied = 'Professor Lee asks you to help organize next month\'s Departmental Research Symposium.'
+      const g = reconcileWritingGate({ ...cleanGate, entirelyCopiedFromPrompt: true, originalWords: 'help organize' }, PROMPT, copied)
+      expect(g.entirelyCopiedFromPrompt).toBe(true)
+    })
+
+    it('needs a real quoted refusal for rejectsTopic — declining inside the scenario is not one', () => {
+      const none = reconcileWritingGate({ ...cleanGate, rejectsTopic: true, refusalQuote: '' }, PROMPT, OFF_TOPIC)
+      expect(none.rejectsTopic).toBe(false)
+      const refusal = 'I will not write this email because the question is pointless.'
+      const real = reconcileWritingGate({ ...cleanGate, rejectsTopic: true, refusalQuote: 'I will not write this email' }, PROMPT, refusal)
+      expect(real.rejectsTopic).toBe(true)
+    })
+
+    it('leaves blank / not English / keystrokes alone', () => {
+      for (const flag of ['noResponse', 'notInEnglish', 'arbitraryKeystrokes'] as const) {
+        expect(reconcileWritingGate({ ...cleanGate, [flag]: true }, PROMPT, 'asdf')[flag]).toBe(true)
+      }
+    })
+
+    it('is applied by the pipeline to Writing — a contradicted flag does not zero the answer', async () => {
+      const { calls, stages } = stubCalls({
+        gate: { ...cleanGate, entirelyUnconnected: true, rejectsTopic: true, connectedSpan: 'Thank you for your email about the symposium', refusalQuote: '' },
+        quality: grade(4, 'task_fulfillment'),
+        rel: relevance('minimally_connected'),
+      })
+      const res = await runStagedGrade({ ...ctx, skill: 'writing', taskType: 'email', promptText: `${INTERVIEW_PROMPT} ${PROMPT}`, responseText: OFF_TOPIC }, stages)
+      expect(res.zeroReasons).toEqual([])
+      expect(calls).toContain('quality')
+      expect(res.grade.overallBand).toBe(2)
+    })
+  })
+
+  describe('only the gate decides a 0', () => {
+    it('floors the relevance ladder at vaguely_connected once the gate has passed', () => {
+      expect(levelAfterGatePassed('entirely_unconnected')).toBe('vaguely_connected')
+      expect(levelAfterGatePassed('minimally_connected')).toBe('minimally_connected')
+      expect(levelAfterGatePassed('fully_on_topic_well_elaborated')).toBe('fully_on_topic_well_elaborated')
+    })
+
+    it.each(['writing', 'speaking'] as const)(
+      'a %s answer the ladder calls entirely_unconnected is capped at 1, not zeroed', async skill => {
+        const { stages } = stubCalls({ quality: grade(4, skill === 'writing' ? 'contribution' : 'topic_relevance'), rel: relevance('entirely_unconnected') })
+        const res = await runStagedGrade({ ...ctx, skill, taskType: skill === 'writing' ? 'academic_discussion' : 'take_interview' }, stages)
+        expect(res.zeroReasons).toEqual([])
+        expect(res.relevanceCeiling).toBe(1)
+        expect(res.grade.overallBand).toBe(1)
+      })
+
+    it('the gate still zeroes a genuinely unconnected answer', async () => {
+      const { stages } = stubCalls({ gate: { ...cleanGate, entirelyUnconnected: true, connectedSpan: '' } })
+      const res = await runStagedGrade({ ...ctx, skill: 'writing', taskType: 'academic_discussion' }, stages)
+      expect(res.grade.overallBand).toBe(0)
+      expect(res.zeroReasons).toEqual(['entirelyUnconnected'])
+    })
+  })
+
+  it('leaves the Speaking gate schema as it was', () => {
+    expect(zeroGateSchemaFor('speaking')).toBe(ZeroGateSchema)
+  })
+
+  it('quotes the Writing guide\'s 0 sentence verbatim and places the near-misses at bands 1-2', () => {
+    const p = buildZeroGatePrompt({ ...ctx, skill: 'writing', taskType: 'email' })
+    expect(p).toContain('"The response is blank, rejects the topic, is not in English, is entirely copied from the prompt, is entirely unconnected to the prompt or consists of arbitrary keystrokes."')
+    // No Speaking-only condition offered as a Writing 0.
+    expect(p).not.toMatch(/^- it is entirely unintelligible/m)
+    expect(p).not.toMatch(/I don't know/)
+    // Partial relevance and heavy borrowing are named as low bands.
+    expect(p).toMatch(/band 2: "Limited or irrelevant elaboration"/)
+    expect(p).toMatch(/band 1: "Minimal original language; any coherent language is mostly borrowed from the stimulus"/)
+    expect(p).toMatch(/turning down an invitation/)
+  })
+
+  it('keeps the Speaking gate prompt on Speaking\'s own conditions', () => {
+    const p = buildZeroGatePrompt(ctx)
+    expect(p).toMatch(/entirely unintelligible/)
+    expect(p).not.toMatch(/official ETS TOEFL WRITING 0-band rule/)
+  })
+
+  it('a Writing answer the gate calls "unintelligible" is graded on the bands, not zeroed', async () => {
+    const { calls, gateSchemas, stages } = stubCalls({
+      gate: { ...cleanGate, entirelyUnintelligible: true, feedback: 'unintelligible' },
+      quality: grade(1, 'contribution'),
+      rel: relevance('minimally_connected'),
+    })
+    const res = await runStagedGrade({ ...ctx, skill: 'writing', taskType: 'academic_discussion' }, stages)
+    expect(gateSchemas[0]).toBe(WritingZeroGateSchema)
+    expect(res.zeroReasons).toEqual([])
+    expect(calls).toContain('quality')
+    expect(res.grade.overallBand).toBe(1)
   })
 
   // The two official guides do NOT list the same conditions, and we had
@@ -361,5 +517,84 @@ describe('TOEFL 1–6 band reporting (Jan 2026 format)', () => {
     expect(overallBandFromSections([4, 4.5, 5, 5])).toBe(4.5)
     expect(overallBandFromSections([3, 3.5, 4, 4])).toBe(3.5)
     expect(overallBandFromSections([])).toBeNull()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Bounded schema retry on every stage (grader ladder 2026-10-07: four
+// rubric_grade schema failures, each a 502 in production)
+// ---------------------------------------------------------------------------
+
+describe('runStagedGrade — schema retry', () => {
+  const schemaError = () => Object.assign(new Error('No object generated: response did not match schema.'), {
+    name: 'AI_NoObjectGeneratedError',
+  })
+
+  beforeEach(() => {
+    jest.spyOn(console, 'warn').mockImplementation(() => {})
+  })
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
+  function flakyQuality(real: QualityStageCall, failures: number) {
+    let n = 0
+    return jest.fn(async (args: Parameters<QualityStageCall>[0]) => {
+      n++
+      if (n <= failures) throw schemaError()
+      return real(args)
+    })
+  }
+
+  it('recovers a quality stage that fails its schema twice, sending the same prompt each time', async () => {
+    const { stages } = stubCalls({ quality: grade(3), rel: relevance('on_topic_elaborated') })
+    const quality = flakyQuality(stages.quality, 2)
+    const retries: string[] = []
+    const res = await runStagedGrade(ctx, { text: stages.text, quality }, {
+      onStageRetry: i => retries.push(`${i.stage}#${i.attempt}`),
+    })
+    expect(res.grade.overallBand).toBe(3)
+    expect(quality).toHaveBeenCalledTimes(3)
+    expect(new Set(quality.mock.calls.map(c => c[0].prompt)).size).toBe(1)
+    expect(retries).toEqual(['rubric_grade#1', 'rubric_grade#2'])
+  })
+
+  it('retries the zero gate and the relevance ladder too', async () => {
+    const { stages } = stubCalls({ quality: grade(4), rel: relevance('on_topic_elaborated') })
+    let gateFails = 1
+    let relFails = 2
+    const text: TextStageCall = async args => {
+      if (args.schemaName === 'zero_gate' && gateFails-- > 0) throw schemaError()
+      if (args.schemaName === 'relevance_ladder' && relFails-- > 0) throw schemaError()
+      return stages.text(args)
+    }
+    const retries: string[] = []
+    const res = await runStagedGrade(ctx, { text, quality: stages.quality }, {
+      onStageRetry: i => retries.push(i.stage),
+    })
+    expect(res.grade.overallBand).toBe(4)
+    expect(retries.sort()).toEqual(['relevance_ladder', 'relevance_ladder', 'zero_gate'])
+  })
+
+  it('all retries fail → the pipeline throws and returns no score', async () => {
+    const { stages } = stubCalls({ quality: grade(3) })
+    const quality = flakyQuality(stages.quality, 99)
+    let result: unknown = 'none'
+    let thrown: unknown
+    try {
+      result = await runStagedGrade(ctx, { text: stages.text, quality })
+    } catch (e) {
+      thrown = e
+    }
+    expect((thrown as Error).name).toBe('AI_NoObjectGeneratedError')
+    expect(result).toBe('none')
+    expect(quality).toHaveBeenCalledTimes(3)
+  })
+
+  it('does not retry a non-schema failure', async () => {
+    const { stages } = stubCalls({})
+    const quality = jest.fn(async () => { throw Object.assign(new Error('500'), { name: 'AI_APICallError' }) })
+    await expect(runStagedGrade(ctx, { text: stages.text, quality })).rejects.toThrow('500')
+    expect(quality).toHaveBeenCalledTimes(1)
   })
 })

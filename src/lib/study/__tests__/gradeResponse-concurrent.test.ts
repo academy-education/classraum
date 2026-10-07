@@ -10,7 +10,7 @@
  * returns a DIFFERENT band each call (it did: 4 then 3). The invariant: one
  * submission row, one grade row, and both callers report the same band.
  */
-import { gradeAndPersistResponse } from '@/lib/study/gradeResponse'
+import { gradeAndPersistResponse, GradeGenerationError } from '@/lib/study/gradeResponse'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { runStagedGrade } from '@/lib/study/gradePipeline'
 
@@ -138,5 +138,23 @@ describe('gradeAndPersistResponse — two concurrent callers', () => {
     const [a, b] = await Promise.all([gradeAndPersistResponse(params), gradeAndPersistResponse(params)])
     expect(t.subs).toHaveLength(2)
     expect(a.grade.overallBand).not.toBe(b.grade.overallBand)
+  })
+})
+
+describe('gradeAndPersistResponse — grading that never produces a grade', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+    jest.spyOn(console, 'error').mockImplementation(() => {})
+  })
+
+  it('throws GradeGenerationError and writes NO submission or grade row (no default score)', async () => {
+    // runStagedGrade throws only after its per-stage schema retries are
+    // exhausted. The persist layer must stay loud: no row, no band.
+    const t = fakeTables({ enforceUnique: true })
+    staged.mockRejectedValue(Object.assign(new Error('No object generated'), { name: 'AI_NoObjectGeneratedError' }))
+    await expect(gradeAndPersistResponse(params)).rejects.toBeInstanceOf(GradeGenerationError)
+    expect(t.subs).toHaveLength(0)
+    expect(t.grades).toHaveLength(0)
+    expect(staged).toHaveBeenCalledTimes(1)
   })
 })

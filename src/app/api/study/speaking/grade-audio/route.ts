@@ -273,26 +273,13 @@ export async function POST(req: NextRequest) {
       tokensIn: completion.usage?.prompt_tokens ?? 0,
       tokensOut: completion.usage?.completion_tokens ?? 0,
     }
-    // The model occasionally returns prose or a near-miss shape. Retry
-    // the call once before giving up.
-    try {
-      return { object: schema.parse(JSON.parse(raw)), usage }
-    } catch (e) {
-      console.warn('[speaking/grade-audio] parse failed, retrying', e)
-      const retry = await callOpenAi(usedModel, prompt)
-      if (!retry.ok) throw new AudioGradeError('audio grading failed', retry.status)
-      const retryJson = await retry.json() as {
-        choices?: Array<{ message?: { content?: string } }>
-        usage?: { prompt_tokens?: number; completion_tokens?: number }
-      }
-      return {
-        object: schema.parse(JSON.parse(retryJson.choices?.[0]?.message?.content ?? '')),
-        usage: {
-          tokensIn: usage.tokensIn + (retryJson.usage?.prompt_tokens ?? 0),
-          tokensOut: usage.tokensOut + (retryJson.usage?.completion_tokens ?? 0),
-        },
-      }
-    }
+    // The model occasionally returns prose or a near-miss shape. A
+    // SyntaxError / ZodError thrown here is retried by runStagedGrade
+    // (withSchemaRetry: same inputs, at most 3 attempts, then the error is
+    // thrown). This stage used to retry once on its own as well, which
+    // nested under the pipeline's retry would have been up to 6 audio
+    // calls. One retry mechanism per stage.
+    return { object: schema.parse(JSON.parse(raw)), usage }
   }
 
   const openai = createOpenAI({ apiKey })
