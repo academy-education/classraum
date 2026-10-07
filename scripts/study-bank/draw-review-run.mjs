@@ -136,8 +136,19 @@ for (const [di, domain] of domains.entries()) {
   const nStaged = usable.filter(r => r.verified !== true).length
   console.log(`${domain}: ${pool.length} unarchived, ${usable.length} reviewable (unseen) — ${usable.length - nStaged} verified, ${nStaged} staged`)
   if (usable.length < size) { console.error(`only ${usable.length} reviewable in "${domain}", need ${size}`); process.exit(1) }
-  sample.push(...sh(usable).slice(0, size))
+  let picked = sh(usable).slice(0, size)
+  /* DRAW_FIRST=<item id>, added 2026-10-07 (ssat-wv6 sitting): that item, if it is in this cohort's pool,
+   * goes FIRST in the sitting, so a flagged item is certainly reached. The run row for it is also
+   * inserted on its own before the rest, because the panel serves "the next unanswered row" with no
+   * explicit ORDER BY (insertion order in practice). The key-slot deal below is unaffected. */
+  const first = process.env.DRAW_FIRST
+  if (first && usable.some(r => r.id === first)) {
+    if (!picked.some(r => r.id === first)) { if (picked.length < size) die0(); picked = [usable.find(r => r.id === first), ...picked.slice(0, size - 1)] }
+    picked = [picked.find(r => r.id === first), ...picked.filter(r => r.id !== first)]
+  } else if (first && di === 0) { console.error(`DRAW_FIRST ${first} is not reviewable in "${domain}"`); process.exit(1) }
+  sample.push(...picked)
 }
+function die0() { console.error('DRAW_FIRST: sample shorter than size'); process.exit(1) }
 
 /* Key letters flat WITHIN EACH COHORT, not merely across the run.
  *
@@ -191,8 +202,12 @@ const rows = sample.map((r, i) => {
   return { item_id: r.id, run_id: runId, reviewer_id: reviewerId, shown_order: shown, key_slot: slots[i] }
 })
 
-const { error } = await db.from('study_item_reviews').insert(rows)
-if (error) { console.error('insert failed:', error.message, error.code ?? ''); process.exit(1) }
+// insert the DRAW_FIRST row on its own first (see above), then the rest in order
+const firstIdx = process.env.DRAW_FIRST ? rows.findIndex(r => r.item_id === process.env.DRAW_FIRST) : -1
+for (const batch of firstIdx === 0 ? [rows.slice(0, 1), rows.slice(1)] : [rows]) {
+  const { error } = await db.from('study_item_reviews').insert(batch)
+  if (error) { console.error('insert failed:', error.message, error.code ?? ''); process.exit(1) }
+}
 
 domains.forEach((d, ci) => {
   const seg = rows.slice(offsets[ci], offsets[ci + 1])
