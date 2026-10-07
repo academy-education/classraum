@@ -189,6 +189,18 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-08** — **SSAT WV9 FAILS STAGE 0: ONLY 1 OF 3 UNITS PASSED PRE-FLIGHT (needs 2). NOTHING FROZEN, DRAWN OR INSERTED.** Prereg `d15ddd88`.
+  - **The fixes held:** felt-only attitude lexicon, no announced tone, pre-draw grouped screen, exact-word rule. All three units passed the lexicon and tone checks.
+  - **Round 0 licensing:** every failure was an attitude item confused between adjacent felt directions: wistful/admiring, amused/critical, worried/wistful.
+  - **After one fix round:**
+    - P02: PASS.
+    - P01: still refused (v1 wistful/admiring, v2 amused/critical; both judges).
+    - P03: still refused (v2 worried/wistful; one judge).
+  - **Grouped screen, report-only:** P01 REFUSE (v2 12/18), P02 PASS (max 5/18), P03 PASS (7/18, at the limit).
+  - **Finding:** removing "detached" moved the attitude confusion to neighbouring felt directions; it did not remove it. The attitude item is the binding constraint in every batch WV5-WV9.
+  - **Recommendation:** a person writes the attitude item, or a character-action attitude construction is tried. Keep the four checks.
+  - Evidence: `READING-BATCH-WV9-2026-10-08.md`, `ssat-wv9-batch/preflight/`. → **B10**
+
 - **2026-10-07/08** — **SSAT WV8 FAILS STAGE 4 (grouped options-only 21/36 = 58.3%, bar <= 40%). STOPPED. NOTHING INSERTED.**
   - **Commits:** prereg `159757d1`, freeze `38572021`, draw `d169f81c`.
   - **Stages passed before B:**
