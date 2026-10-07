@@ -189,6 +189,17 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-08** — **SSAT WV10 STOPPED AT STAGE 0 BY THE PRE-REGISTERED ATTITUDE STOP RULE. REPORTED FOR THE OWNER'S DECISION ON A PERSON WRITING THE ATTITUDE QUESTION. NOTHING FROZEN, DRAWN OR INSERTED.** Prereg `7deddce2`.
+  - **The change:** the attitude item became character-action form ("X's reply in paragraph N suggests that X is").
+  - **Round 0:** the attitude item was licensing-clean in all 15 question-versions, from both judges. That is a first for WV5-WV10.
+  - **After one fix round, all three units are refused:**
+    - P01: attitude, both judges on the key with no second answer, but the excluding quote ("'Ready, yes.") is under the 3-word minimum. A technicality.
+    - P02: vocabulary "raised", hoisted vs reared, both judges, surviving one rewrite. Not attitude.
+    - P03: attitude v4, irritated vs playful, one judge. A real refusal.
+  - **Overall:** 1 substantive attitude failure in 30 attitude question-versions, against WV9's 8 in 15 in round 0.
+  - The owner decides whether to accept the stop (a person writes the attitude question) or run a WV11 with the form kept, actions as full sentences, and non-overlapping vocabulary senses.
+  - Evidence: `READING-BATCH-WV10-2026-10-08.md`, `ssat-wv10-batch/preflight/`. → **B10**
+
 - **2026-10-08** — **SSAT WV9 FAILS STAGE 0: ONLY 1 OF 3 UNITS PASSED PRE-FLIGHT (needs 2). NOTHING FROZEN, DRAWN OR INSERTED.** Prereg `d15ddd88`.
   - **The fixes held:** felt-only attitude lexicon, no announced tone, pre-draw grouped screen, exact-word rule. All three units passed the lexicon and tone checks.
   - **Round 0 licensing:** every failure was an attitude item confused between adjacent felt directions: wistful/admiring, amused/critical, worried/wistful.
