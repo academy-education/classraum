@@ -30,8 +30,12 @@ const env = Object.fromEntries(readFileSync(join(ROOT, '.env.local'), 'utf8').sp
 const admin = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 const ref = env.NEXT_PUBLIC_SUPABASE_URL.match(/https:\/\/([a-z0-9]+)\.supabase\.co/)[1]
 const STORAGE_KEY = `sb-${ref}-auth-token`
-const ACCOUNT = 'student42@demo.classraum.com'
-const USER_ID = '4fab6aed-b8b9-45cb-adfc-1235c98460e5'
+// MODE=manager shoots the academy (manager) surface as the demo manager 김관리,
+// for the academy edition of the introduction (2026-10-07). Same magic-link
+// sign-in; the manager's language preference is restored to English at the end.
+const MANAGER = process.env.MODE === 'manager'
+const ACCOUNT = MANAGER ? 'manager@demo.classraum.com' : 'student42@demo.classraum.com'
+const USER_ID = MANAGER ? '813954a2-7405-478a-9c93-62bdc42c08ec' : '4fab6aed-b8b9-45cb-adfc-1235c98460e5'
 
 // Sessions are language-specific: an English UI over a Korean test reads as
 // a bug in a document, so each language gets its own session ids.
@@ -46,7 +50,18 @@ const SESS = {
   english: { test: '36d4ee42-abf4-49d9-b10d-ac9de231cd26', result: process.env.RESULT_SESSION ?? '91303218-c961-4929-837d-3f147d53c9a0' },
   korean:  { test: 'ff4cb5b1-7895-4407-bcc6-23bf5f470bb2', result: process.env.RESULT_SESSION ?? '75336910-e2d1-4070-a037-8098676ea873' },
 }
-const SHOTS = (lang) => [
+const MANAGER_SHOTS = [
+  ['m-dashboard', '/dashboard'],
+  ['m-students',  '/students'],
+  ['m-classrooms','/classrooms'],
+  ['m-payments',  '/payments'],
+  ['m-reports',   '/reports'],
+  ['m-exams',     '/exams-and-scores'],
+  ['m-camp',      '/camp-program'],
+  ['m-camp-review','/camp-program', -640],
+  ['m-camp-students','/camp-program', 0, ['학생', 'Students']],
+]
+const SHOTS = (lang) => MANAGER ? MANAGER_SHOTS : [
   ['home',    '/mobile/study'],
   ['tests',   '/mobile/study/tests'],
   ['sat',     `/mobile/study/topic/${process.env.SAT_SLUG ?? 'sat-reading-writing'}`],
@@ -78,13 +93,17 @@ async function main() {
       const dir = join(OUT, lang === 'korean' ? 'src-ko' : 'src-en'); mkdirSync(dir, { recursive: true })
       const page = await browser.newPage()
       await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 2 })
-      await page.evaluateOnNewDocument((k, v) => { localStorage.setItem(k, v) }, STORAGE_KEY, JSON.stringify(s.session))
-      for (const [name, path, scroll] of SHOTS(lang)) {
+      await page.evaluateOnNewDocument((k, v) => { localStorage.setItem(k, v); localStorage.setItem('classraum:getting_started_dismissed:813954a2-7405-478a-9c93-62bdc42c08ec', '1'); localStorage.setItem('classraum:welcome_seen:813954a2-7405-478a-9c93-62bdc42c08ec', '1'); const hide = () => { const st = document.createElement('style'); st.textContent = 'nextjs-portal{display:none!important}'; document.documentElement.appendChild(st) }; document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', hide) : hide() }, STORAGE_KEY, JSON.stringify(s.session))
+      for (const [name, path, scroll, click] of SHOTS(lang)) {
         if (ONLY.length && !ONLY.includes(name)) continue
         let navErr = null
         await page.goto(BASE + path, { waitUntil: 'load', timeout: 120000 }).catch(e => { navErr = String(e.message || e).slice(0, 80) })
         await new Promise(r => setTimeout(r, SETTLE))
-        if (scroll) { await page.evaluate(px => { const el = [...document.querySelectorAll('*')].find(e => /auto|scroll/.test(getComputedStyle(e).overflowY) && e.scrollHeight > e.clientHeight + 200); (el || document.scrollingElement).scrollTop = px }, scroll); await new Promise(r => setTimeout(r, 1200)) }
+        // click: [koText, enText] of a tab/button to press before the shot (camp tabs)
+        if (click) { const txt = lang === 'korean' ? click[0] : click[1]; await page.evaluate(t => { const el = [...document.querySelectorAll('button, [role=tab]')].find(e => (e.textContent || '').trim() === t); if (el) el.click() }, txt); await new Promise(r => setTimeout(r, 6000)) }
+        // a negative scroll means: scroll every scrollable container (and the window) by that many px
+        if (scroll < 0) { await page.evaluate(px => { window.scrollTo(0, px); for (const e of document.querySelectorAll('*')) { if (/auto|scroll/.test(getComputedStyle(e).overflowY) && e.scrollHeight > e.clientHeight + 4) e.scrollTop = px } }, -scroll); await new Promise(r => setTimeout(r, 1500)) }
+        else if (scroll) { await page.evaluate(px => { const el = [...document.querySelectorAll('*')].find(e => /auto|scroll/.test(getComputedStyle(e).overflowY) && e.scrollHeight > e.clientHeight + 200); (el || document.scrollingElement).scrollTop = px }, scroll); await new Promise(r => setTimeout(r, 1200)) }
         const state = await page.evaluate(() => {
           const t = document.body.innerText || ''
           if (/ERR_|refused to connect|This site can.t be reached/i.test(t)) return 'ERROR'
