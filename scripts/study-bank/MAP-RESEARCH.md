@@ -1199,3 +1199,27 @@ rejected by both graders and all three blind samples.
   For Mechanics the remaining step is a human key check, not another pilot.
 - **For NSSpellChecker E4:** macOS accepts "occurence" and "excelence", so
   the commonest misspellings of some words cannot be used as distractors.
+
+## 18. 2026-10-07 — THE FIFTH PILOT: ADAPTING OUR OWN GATED ITEMS KEEPS THE KEYS, NOT THE DISTRACTORS
+
+The owner's idea: adapt items that already passed our gates (SSAT Reading s3
+sets, SAT WIC, transitions, human-sat CoE) into MAP's four-option format at
+RIT 180-219, instead of authoring. Pre-registered in
+`MAP-ADAPT-PILOT-2026-10-07.prereg.md`. Results are in
+`MAP-ADAPT-PILOT-2026-10-07.md`. Nothing was inserted.
+
+- **Stage 0 passes (22/24).**
+- **Options-only passes**, including a new paired bar: adapted vs its own
+  source, delta -17.9 against a bar of <= +10.
+- **Exclusivity passes (21/24).** The key logic survives the trip down.
+- **It fails on the same with-source quality as pilots 1-4:**
+  - pilot-pass **6/24**: 11 items have an option both graders call dead
+  - `easier` **17/44**
+- **The cause is the source construction.** The SSAT "worlds" passages kill
+  each wrong option with one explicit sentence. At grade 6-8 that kill is
+  visible, and sibling items share distractor families.
+- SAT CoE standalones passed all four with-source conditions, 3/3 (n=3, not a
+  clean stratum).
+- Agent comprehension for MAP stays stopped. A person writes or selects it
+  (REGISTER B11).
+
