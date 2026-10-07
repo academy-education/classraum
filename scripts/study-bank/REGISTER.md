@@ -1023,6 +1023,8 @@ recorded only in a commit message is a finding nobody reads.
 
 - **2026-10-07** — **ACT English sitting rule changed by the owner, committed before v8 is sat:** `ACT-ENGLISH-SPOTCHECK-RULE.md`. If v8 releases, later batches from the same method get a 20-item spot check every other batch instead of a full 40-item sitting per batch; dead zone or failure falls back to full sittings.
 
+- **2026-10-07** — **Owner closed AI attempts at MAP comprehension** after adaptation pilots 5–7 (passage sets fail graders; command-of-evidence screen unsatisfiable; graders-decide re-run fails pilot-pass 6/12, dead-by-both 4/12, easier 10/24). Keys survive adaptation; tempting distractors and difficulty do not. No further agent MAP comprehension pilots; B11 stands (a person writes or selects).
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
