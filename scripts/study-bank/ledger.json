@@ -5753,6 +5753,40 @@
           "verdict": "Residuals recorded, not acted on: AM18I-10 grader A counts 1 survivor via drift/width = 0.9/1.5 < 1; grader B 4 and I judge that ratio IS the item work, not a free bound; 180 weak by both. AM18F-06 both graders note to the nearest tenth on an exact key 5.0 (not an error; pushes away from the key). AM18N-03 grader A names a modulus shortcut (|a+5i||2-i| = 25), not unanimous. AM18A-02 grader B: 9 (strict) and 12 (includes x = 5) are neighbouring setups bracketing 11, with 10 also between so not a forced elimination. AM18F-09 unanimous blind; grader B notes three options are the 3-cycle consecutive products but names no route to the key without the phase; kept under rule 6. Confirmation standard for the two-weak rule: a distractor counts as confirmed weak only if both graders name it or it sits on a bound I confirmed; graders split on which option is weak on 9 kept items."
         }
       }
+    },
+    {
+      "id": "act-math-v19-kept-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v19",
+      "contentSha": "7362b4186e301e4b5d5c65a4b6e897d6e191f2f32bd74856ddeba0264ba6dbb7",
+      "status": "shipped",
+      "note": "9 of 11 authored survive. Commissioned against next-form for ACT Math form 16 (2 items: N&Q +1, IES +1) with margin: N&Q 5 + IES 6, bars pre-registered in ACT-MATH-V19-PREREGISTERED.md (commit 94d7d5c2) before authoring, adding the v18 one-step estimation-bound check per distractor and the both-graders weak standard up front. Two Claude authors (A N&Q, B IES), medium/hard commission, BANK_BAND=mixed. No repairs. Form 16 bought: N&Q kept 5 of 1 needed, IES 4 of 1.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "7362b4186e301e4b5d5c65a4b6e897d6e191f2f32bd74856ddeba0264ba6dbb7",
+          "verdict": "11 authored, all exactly 4 choices (act-test.ts math choiceCount 4). Merged 11 (my re-run of act-math-v18-preflight.sh, sha d8cf66128e28fd24): PREFLIGHT PASS - sandbox 11/11, distractors 33/33; hub no structure; key at an extreme 5/11 = 45.5% (bar 40.0%); check-key-magnitude consistent (z -1.04/1.08/-0.05); 0 composites; stem echo 0/11; sign-pair, dead-options, key-singleton exit 0; 0 stem duplicates vs live act; 0 duplicate option sets; plurality NOT MEASURED. Per-author files (5 and 6 items) cannot pass the preflight: check-key-magnitude refuses n < 10 (exit 2), correctly. Kept 9 (sha 7362b4186e301e4b): sandbox 9/9, 27/27; key-extremity and magnitude NOT MEASURED at n = 9 (need >= 10; pre-registered as not applying), raw key-at-extreme 4/9; 0 composites, 0 echoes. Duplicate scan (act-math-v16-dupscan.mjs, unchanged) against all 2,720 live maths rows, paged: 1 flag (AM19N-01 det(AB) solve-for-x vs act-math-v10-mix 339b1ba7 product entry, Jaccard 0.60) + 16 near, read by hand: 0 mechanism duplicates; live has one determinant item (det 3A) and one dot product (components)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "7362b4186e301e4b5d5c65a4b6e897d6e191f2f32bd74856ddeba0264ba6dbb7",
+          "verdict": "Options-only attack (act-math-v19-attack-draw.mjs, blind sha 15d668f122ea8709), three Claude samples (pairwise agreement 75.8% vs 27.3% if independent - one solver sampled three times), 11 candidates interleaved 1:1 by domain with 11 live act/math items (v16-v19 excluded), keys flat within each arm (27.3% best-fixed each). Candidate 10/33 = 30.3% (margin +3.0) vs live control 10/33 = 30.3% (margin +3.0): candidate minus control +0.0 (hold bar +10). Unanimous-correct candidate 1/11 = 9.1% vs control 3/11 = 27.3% (hold bar +15). Mechanism-labelled 34.5% vs guess 27.0% pooled."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "7362b4186e301e4b5d5c65a4b6e897d6e191f2f32bd74856ddeba0264ba6dbb7",
+          "verdict": "Two independent Claude graders on make-grade-render of a copy with bounds and distractor_kind stripped (render sha 6947cebb0b30df65, quoted by both at start and end; render summary: no unrecognised field kept), with dedicated limiting_case, neighbouring_setup and estimation_bound fields. 22 of 22 picks equal the key; 0 second-defensible; 0 stem issues. Dropped 2: AM19I-02 survivors 2 (both, confirmed: Eli pays between 1/3 and 1/2 of his 38-km cost, [6.08, 9.12]; 6.08 ON the edge, 5.12 below; also two weak by both); AM19I-06 unanimous blind + both graders name the under-5-hours cap (total < 958.28 kills 1370.78 and 964.88). Difficulty banked from graders (agree 6/9; one apart -> easier): easy 1 / medium 8 / hard 0, against authors 0 / 6 / 3 on the same 9."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "7362b4186e301e4b5d5c65a4b6e897d6e191f2f32bd74856ddeba0264ba6dbb7",
+          "verdict": "Residuals recorded, not acted on: AM19I-03 grader B kills 59.5 and 62.4 with a rounded total (~30,000 / 62,000 < 50 cents); grader A calls that estimate the computation itself and I agree - it sums all four cost components, so it is the item done at low precision, not a one-step bound; 62.4 weak by both (one weak, rule 4 needs two). AM19I-04 grader A notes 2764.8 = 4 x key (80% vs 20%), a 1:4 pair that hints but does not pick; grader B banks it easy. AM19N-01 2.05 and AM19I-05 343 weak by both (no traceable path from the option alone; both have named author paths) - one weak each, kept under rule 4. AM19N-03 grader A: parity kills 12 only once the expansion is known, not counted."
+        }
+      }
     }
   ],
   "auditedCohorts": [

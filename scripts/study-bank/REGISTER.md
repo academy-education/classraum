@@ -1282,6 +1282,40 @@ recorded only in a commit message is a finding nobody reads.
 
   Evidence: `ACT-MATH-V18-PREREGISTERED.md`, `act-math-v18-preflight.sh`, `act-math-v18{-a,-b,-c,}.batch.json`, `act-math-v18.kept.batch.json`, `act-math-v18.qc.json`, `act-math-v18.drops.json`, `act-math-v18-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v18.grader-{a,b}.json`, `act-math-v18-grade.{grade,gradekey}.json`, `act-math-v18-attack-draw.mjs`; ledger `act-math-v18-kept-2026-10-07`.
 
+- **2026-10-08** — **ACT MATH 15 → 16 FORMS: `act-math-v19` INSERTED 9 OF 11. act/math 706 → 715; N&Q 79 → 84, IES 143 → 147.** Binding domain is still Number and Quantity (84 / 5 per form). Bars pre-registered before any item existed: `ACT-MATH-V19-PREREGISTERED.md` (committed alone, 94d7d5c2).
+
+  **Scope.** `next-form` after v18: *"Number and Quantity +1, Integrating Essential Skills +1"*, confirmed by `form-capacity` (15 forms, N&Q 79 / 5). Authored N&Q 5 + IES 6 = 11 (asked "about 4 and 5"; one more each so the authored set reached the key-extremity gate's n ≥ 10). Two Claude authors. Format from `act-test.ts` (`choiceCount: 4`). Medium/hard commission as v18.
+
+  **What was new in the brief.** (1) **v18's estimation-bound lesson as a per-distractor duty**: for every distractor the author stated the cheapest one-step estimate (one multiplication, containment, unit-size comparison, monotonicity) bracketing the key, its interval, and kept the distractor strictly inside it, on top of the v16 limiting-case and v17 neighbouring-setup checks. (2) **v18's after-the-fact weak standard written in up front**: a distractor counts as weak only if both graders name it or it sits on a bound I confirmed by hand. Graders got a third dedicated field, `estimation_bound`.
+
+  **Pre-flight (my re-run on the merged 11):** PREFLIGHT PASS — sandbox 11/11, distractors 33/33, hub no structure, key-at-extreme 5/11 = 45.5% (bar 40.0%), magnitude consistent (z −1.04 / 1.08 / −0.05), 0 composites, stem echo 0/11, 0 stem duplicates, plurality NOT MEASURED. **Neither author's file could pass alone**: `check-key-magnitude` refuses n < 10 with exit 2 and the runner counts that as a fail. Both authors reported it rather than padding the file or editing the script; it is correct behaviour, and a ≤ 9-item per-author file should be pre-flighted merged. The preflight was re-break-tested before authoring: FAIL on the live `act-math-v18.kept` (6 stem duplicates).
+
+  **Duplicate scan** (`act-math-v16-dupscan.mjs`, unchanged) against all 2,720 live maths rows, paged: 1 flag (AM19N-01 det(AB) solve-for-x vs `act-math-v10-mix` 339b1ba7, a product entry; Jaccard 0.60) and 16 near, read by hand; **0 mechanism duplicates**. Live has one determinant item (det 3A) and one dot product (from components); AM19N-05 (z·z̄ + 2z, quadratic in a) is not v16's linear z + 3z̄.
+
+  **Options-only attack:** 11 candidates + 11 live controls matched 1:1 by domain (v16–v19 excluded), keys flat within each arm (27.3% each), three Claude samples.
+
+      CANDIDATE     10/33 = 30.3%   line 27.3%   margin +3.0
+      LIVE CONTROL  10/33 = 30.3%   line 27.3%   margin +3.0
+      candidate minus control  +0.0  (hold bar +10)
+      unanimous-correct        candidate 1/11 = 9.1%  vs  control 3/11 = 27.3%  (hold bar +15)
+      pairwise agreement 75.8% vs 27.3% if independent: one solver sampled three times
+
+  n = 11 per arm: one pick is 3.0 points, one unanimous item 9.1 — stated in the pre-registration.
+
+  **With-source: two Claude graders, 22 of 22 picks equal the key, 0 second-defensible, 0 stem issues.** Render had `bounds` and `distractor_kind` stripped (make-grade-render: no unrecognised field kept; sha 6947cebb0b30df65 quoted by both). Two dropped, no repairs, **both IES, both the estimation bound**:
+  - `AM19I-02` (carpool fuel split) — **survivors 2, both graders, confirmed**: Eli rides 38 km and always shares with 2 or 3 people, so he pays between ⅓ and ½ of 38 × 0.48: [6.08, 9.12]. 6.08 is ON the edge (the everyone-splits-three-ways limiting case), 5.12 below. Also two weak by both. **The author ran the estimation check and declared (4.80, 9.12) — the lower bound computed over the 30-km three-person stretch only, not Eli's whole ride.** The duty was done, on the wrong quantity, and a declaration cannot tell the two apart.
+  - `AM19I-06` (movers' bill) — **unanimous blind + both graders name the same free elimination** (rule 6): 8:40 to 1:10 is under 5 hours, so total < 825 + 1.12 × 119 = 958.28, killing 1370.78 and 964.88. The author had removed the billed-5-hours value 958.28 for sitting ON that observation and kept 964.88, 6.60 past it.
+
+  **What the new duty bought.** N&Q 5 of 5 kept (v18 4/7, v16 6/8) with no bound kills at all; IES 4 of 6 (v18 8/12). Overall 2/11 = 18% lost against 30–40% in these domains recently. The surviving failures are the ones where the author's estimate was **slightly too loose** (wrong base quantity; a cap one step finer than the one checked), not absent — so the remaining risk sits in "is this the cheapest estimate", which only the graders' dedicated field answered. Small n; one batch, not a trend.
+
+  **Difficulty banked from graders (agree 6/9; one apart → easier): easy 1 / medium 8 / hard 0, against the authors' 0 / 6 / 3 on the same 9.** All three author "hard" came down, as in v16 and v18.
+
+  **Kept 9:** N&Q 5 (AM19N-01…05), IES 4 (AM19I-01, -03, -04, -05). Kept-set gates: sandbox 9/9, 27/27; **key-extremity and magnitude NOT MEASURED at n = 9** (both need ≥ 10; pre-registered as not applying), raw key-at-extreme 4/9; 0 composites, 0 echoes. `verify-act-draw`: act/math draws 45 of 45. `form-capacity`: **ACT Math 16 forms** by domain (naive 15). Form 17 needs 33: Algebra +7, Functions +7, Geometry +7, IES +6, S&P +5, N&Q +1.
+
+  **Residuals recorded, not acted on:** `AM19I-03` — grader B kills 59.5 and 62.4 with a rounded total (~30,000 / 62,000 < 50¢); grader A calls that estimate "the computation itself" and I agree: it sums all four cost components, i.e. it is the item at low precision, not a one-step bound. 62.4 weak by both — one weak, rule 4 needs two. `AM19I-04` — 2764.8 = 4 × key (80% vs 20%): a 1:4 pair that hints but does not pick (grader A); grader B banks it easy. `AM19N-01` 2.05 and `AM19I-05` 343 weak by both (no path readable from the option; both have named author paths) — one weak each, kept. If any surfaces in a human sitting, that is the reason.
+
+  Evidence: `ACT-MATH-V19-PREREGISTERED.md`, `act-math-v19{-a,-b,}.batch.json`, `act-math-v19.kept.batch.json`, `act-math-v19.qc.json`, `act-math-v19.drops.json`, `act-math-v19-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v19.grader-{a,b}.json`, `act-math-v19-grade.{grade,gradekey}.json`, `act-math-v19-attack-draw.mjs`; ledger `act-math-v19-kept-2026-10-08`.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

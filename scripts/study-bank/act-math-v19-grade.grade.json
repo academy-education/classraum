@@ -1,0 +1,123 @@
+[
+ {
+  "id": "AM19N-01",
+  "topic_tag": "matrices",
+  "prompt": "Matrix A has first row (x, 3) and second row (2, 4). Matrix B has first row (2, 1) and second row (1, 3). The determinant of the product AB is 35. What is the value of x ?",
+  "choices": [
+   "9",
+   "2.05",
+   "3.25",
+   "2.75"
+  ]
+ },
+ {
+  "id": "AM19N-02",
+  "topic_tag": "logarithms",
+  "prompt": "For positive numbers a and b, log₂ a = 3.6 and log₈ b = 1.4. What is the value of log₄ (ab) ?",
+  "choices": [
+   "5.7",
+   "3.9",
+   "4.6",
+   "5.0"
+  ]
+ },
+ {
+  "id": "AM19N-03",
+  "topic_tag": "vectors",
+  "prompt": "Vectors u and v satisfy |u| = 3, |v| = 4, and u · v = 7. What is the value of (2u − v) · (u + 3v) ?",
+  "choices": [
+   "29",
+   "5",
+   "12",
+   "23"
+  ]
+ },
+ {
+  "id": "AM19N-04",
+  "topic_tag": "sequences and series",
+  "prompt": "In a geometric sequence, the first term is 3, the sum of the first three terms is 21, and the fourth term is negative. What is the sum of the first five terms of the sequence?",
+  "choices": [
+   "363",
+   "93",
+   "243",
+   "183"
+  ]
+ },
+ {
+  "id": "AM19N-05",
+  "topic_tag": "complex numbers",
+  "prompt": "For i = √(−1), exactly two complex numbers z = a + bi, where a and b are real numbers, satisfy the equation z·z̄ + 2z = 40 + 10i, where z̄ = a − bi is the complex conjugate of z. What is the product of the real parts of these two complex numbers?",
+  "choices": [
+   "-35",
+   "-2",
+   "-30",
+   "-15"
+  ]
+ },
+ {
+  "id": "AM19I-01",
+  "topic_tag": "averages",
+  "prompt": "A credit card's billing cycle runs from April 1 through April 30. The card's balance at the end of each day from April 1 through April 9 was $840. On April 10 a payment lowered the balance to $390, and on April 22 a purchase raised it to $1,110, where it stayed through April 30. The card company's average daily balance for the cycle is the mean of the 30 end-of-day balances. To the nearest dollar, what is the average daily balance for the cycle?",
+  "choices": [
+   "741",
+   "728",
+   "713",
+   "704"
+  ]
+ },
+ {
+  "id": "AM19I-02",
+  "topic_tag": "proportional sharing",
+  "prompt": "Dana drives 50 kilometers along one road from her home to work. She picks up Eli at a point 12 kilometers from her home and Femi at a point 20 kilometers from her home, and all three ride the rest of the way to work. The fuel for the 50-kilometer drive costs $24.00, and this cost is spread evenly over the distance. They agree that the fuel cost of each stretch of road is split equally among the people in the car on that stretch. How much should Eli pay, in dollars?",
+  "choices": [
+   "5.12",
+   "6.08",
+   "6.72",
+   "7.73"
+  ]
+ },
+ {
+  "id": "AM19I-03",
+  "topic_tag": "unit cost",
+  "prompt": "Mara bought a used car for $28,000 and sold it 4 years later for $13,600. During those 4 years she drove the car 62,000 miles. Her other costs over the 4 years were gasoline averaging $0.14 per mile, insurance of $1,150 per year, and maintenance totaling $2,300. Counting the drop in the car's value as a cost, what was her average cost of owning the car, in cents per mile, to the nearest tenth of a cent?",
+  "choices": [
+   "48.4",
+   "47.1",
+   "62.4",
+   "59.5"
+  ]
+ },
+ {
+  "id": "AM19I-04",
+  "topic_tag": "area and energy rate",
+  "prompt": "A homeowner installs 16 solar panels, each a rectangle 1.0 meter by 1.6 meters. When sunlight strikes the panels with a power of 1,000 watts per square meter, each panel converts 20% of that power into electrical power. Her roof receives the equivalent of 4.5 hours of such sunlight per day, on average. On average, how many kilowatt-hours of electrical energy do the panels produce in a 30-day month? (1 kilowatt = 1,000 watts, and energy in kilowatt-hours equals power in kilowatts times time in hours.)",
+  "choices": [
+   "691.2",
+   "1123.2",
+   "2764.8",
+   "2246.4"
+  ]
+ },
+ {
+  "id": "AM19I-05",
+  "topic_tag": "rates",
+  "prompt": "A garden's drip-irrigation system waters 8 tomato plants and 45 pepper plants. Each tomato plant has 2 emitters, and each pepper plant has 1 emitter. Each tomato emitter releases 2 gallons of water per hour, and each pepper emitter releases 0.5 gallon of water per hour. The system runs for 30 minutes every day. How many gallons of water does the system release in one week?",
+  "choices": [
+   "269.5",
+   "190.75",
+   "134.75",
+   "343"
+  ]
+ },
+ {
+  "id": "AM19I-06",
+  "topic_tag": "percent and rates",
+  "prompt": "A moving company charges $165 per hour for a crew of 3 movers, plus $1.40 per mile for the truck, plus a fuel surcharge equal to 12% of the truck's mileage charge. For one move, the crew worked from 8:40 a.m. to 1:10 p.m. without a break, and the truck was driven 85 miles. What was the total charge, in dollars?",
+  "choices": [
+   "950.60",
+   "1370.78",
+   "875.78",
+   "964.88"
+  ]
+ }
+]

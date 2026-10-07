@@ -1,0 +1,193 @@
+[
+ {
+  "id": "AM19I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "averages",
+  "subskill": "time-weighted mean (average daily balance) from date ranges with day-boundary decisions",
+  "prompt": "A credit card's billing cycle runs from April 1 through April 30. The card's balance at the end of each day from April 1 through April 9 was $840. On April 10 a payment lowered the balance to $390, and on April 22 a purchase raised it to $1,110, where it stayed through April 30. The card company's average daily balance for the cycle is the mean of the 30 end-of-day balances. To the nearest dollar, what is the average daily balance for the cycle?",
+  "choices": [
+   "713",
+   "741",
+   "704",
+   "728"
+  ],
+  "correct_answer": "741",
+  "explanation": "Count the end-of-day balances in each stretch. April 1 through April 9 is 9 days at $840. The payment on April 10 makes the April 10 end-of-day balance $390, so $390 holds from April 10 through April 21, which is 12 days. The purchase on April 22 makes $1,110 hold from April 22 through April 30, which is 9 days. The 9 + 12 + 9 = 30 balances sum to 9(840) + 12(390) + 9(1,110) = 7,560 + 4,680 + 9,990 = 22,230, and 22,230 / 30 = 741. The option \"704\" counts April 22 through April 30 as 30 - 22 = 8 days, then divides the resulting sum 21,120 by 30. The option \"728\" makes the same 8-day count and divides 21,120 by the 29 days it counted (728.3). The option \"713\" counts April 1 through April 9 as 9 - 1 = 8 days: (6,720 + 4,680 + 9,990) / 30 = 713.",
+  "solve": "const s=9*840+12*390+9*1110; return String(Math.round(s/30));",
+  "distractor_solve": {
+   "704": "const s=9*840+12*390+8*1110; return String(Math.round(s/30));",
+   "713": "const s=8*840+12*390+9*1110; return String(Math.round(s/30));",
+   "728": "const s=9*840+12*390+8*1110; return String(Math.round(s/29));"
+  },
+  "bounds": [
+   "v > 390",
+   "v < 1110",
+   "v < 780",
+   "v > 660",
+   "v < 822"
+  ],
+  "distractor_kind": {
+   "704": "wrong procedure: last stretch counted by date subtraction (8 days, not 9), sum divided by 30. (a) not a parameter extreme: no balance or stretch is taken to a limit; (b) not the exact answer to an adjacent problem (no consistent calendar gives these counts with a 30-day divisor). (c) estimation bounds checked: range of balances (390, 1110); one comparison - $390 holds 12 of 30 days (more than a third), so the mean is below the plain mean of the three balances, 780; weight bracket - 12 days at 390 and 18 days at no less than 840 / no more than 1,110 gives (660, 822). Key interval (660, 780); 704 strictly inside, not on an edge.",
+   "713": "wrong procedure: first stretch counted as 9 - 1 = 8 days. (a) no; (b) no. (c) inside (660, 780). Key is the largest option on this item by design (each count slip loses a day at a positive balance); not a greatest/least stem, so 13j does not apply. The plain mean 780 and the both-ends-inclusive value 782 were deliberately not used: 782 sits beyond the one-comparison bound 780.",
+   "728": "wrong procedure: same 8-day count, divided by the 29 days counted. (a) no; (b) no. (c) inside (660, 780) and below the plain-mean bound 780; it is 1.8% under the key but no one-step comparison orders it against the key (the count error lowers the sum and the divisor together)."
+  }
+ },
+ {
+  "id": "AM19I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "proportional sharing",
+  "subskill": "split a distance-proportional cost stretch by stretch among a changing number of riders",
+  "prompt": "Dana drives 50 kilometers along one road from her home to work. She picks up Eli at a point 12 kilometers from her home and Femi at a point 20 kilometers from her home, and all three ride the rest of the way to work. The fuel for the 50-kilometer drive costs $24.00, and this cost is spread evenly over the distance. They agree that the fuel cost of each stretch of road is split equally among the people in the car on that stretch. How much should Eli pay, in dollars?",
+  "choices": [
+   "6.08",
+   "7.73",
+   "6.72",
+   "5.12"
+  ],
+  "correct_answer": "6.72",
+  "explanation": "Fuel costs $24.00 / 50 = $0.48 per kilometer. From 0 to 12 km Dana is alone, so Eli pays nothing there. From 12 to 20 km (8 km, $3.84) Dana and Eli share, so Eli pays $1.92. From 20 to 50 km (30 km, $14.40) all three share, so Eli pays $4.80. Eli pays 1.92 + 4.80 = $6.72. The option \"6.08\" splits the 12-to-20 km stretch three ways as if Femi were already in the car, so Eli pays a third of the cost of his whole 38 km: 38(0.48)/3. The option \"5.12\" takes the last stretch to be 20 km long, confusing Femi's pickup distance with the distance remaining: 1.92 + 20(0.48)/3. The option \"7.73\" ignores the stretch-by-stretch rule and splits the $24.00 in proportion to the distance each person rode (Dana 50 km, Eli 38 km, Femi 30 km): 24(38)/118.",
+  "solve": "const r=24/50; return (8*r/2+30*r/3).toFixed(2);",
+  "distractor_solve": {
+   "6.08": "const r=24/50; return ((8+30)*r/3).toFixed(2);",
+   "5.12": "const r=24/50; return (8*r/2+20*r/3).toFixed(2);",
+   "7.73": "return (24*38/(50+38+30)).toFixed(2);"
+  },
+  "bounds": [
+   "v > 4.8",
+   "v < 9.12",
+   "v < 24"
+  ],
+  "distractor_kind": {
+   "6.08": "wrong procedure: the two-person stretch split three ways. (a) not a parameter extreme; (b) it is the answer if Femi boarded with Eli, but no stem bound places the key on one side of it without computing both stretches. (c) cheapest bounds: Eli pays at least a third and at most a half of the cost of the 38 km he rides, (4.80, 9.12) - itself two multiplications of the item's own work; also below 24. 6.08 strictly inside.",
+   "5.12": "wrong procedure: last stretch taken as 20 km (Femi's pickup distance read as the remaining distance). (a) no; (b) no. (c) inside (4.80, 9.12); above 4.80, a third of the 30-km stretch. Femi's own share 4.80 (which sits ON the lower bound) was deliberately not used.",
+   "7.73": "wrong procedure: total split in proportion to distance ridden instead of by stretch. (a) not the equal three-way split 8.00, which was deliberately excluded; (b) a different sharing rule; no one-step comparison orders it against the key. (c) inside (4.80, 9.12) and below the equal split. The half-of-38-km value 9.12 (ON the upper bound) was deliberately not used."
+  }
+ },
+ {
+  "id": "AM19I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "unit cost",
+  "subskill": "average cost per mile combining depreciation, per-mile, per-year and lump-sum costs",
+  "prompt": "Mara bought a used car for $28,000 and sold it 4 years later for $13,600. During those 4 years she drove the car 62,000 miles. Her other costs over the 4 years were gasoline averaging $0.14 per mile, insurance of $1,150 per year, and maintenance totaling $2,300. Counting the drop in the car's value as a cost, what was her average cost of owning the car, in cents per mile, to the nearest tenth of a cent?",
+  "choices": [
+   "59.5",
+   "48.4",
+   "62.4",
+   "47.1"
+  ],
+  "correct_answer": "48.4",
+  "explanation": "The drop in value is 28,000 - 13,600 = $14,400. Gasoline costs 0.14(62,000) = $8,680, insurance 4(1,150) = $4,600, and maintenance $2,300 in total. The total is 14,400 + 8,680 + 4,600 + 2,300 = $29,980, and 29,980 / 62,000 = $0.4835 per mile, or 48.4 cents. The option \"47.1\" uses the sale price $13,600 as the drop in value: 29,180 / 62,000. The option \"59.5\" treats the $2,300 maintenance as a yearly amount and counts it 4 times: 36,880 / 62,000. The option \"62.4\" finds the correct average and then adds the 14 cents of gasoline per mile again, although the gasoline is already in the total.",
+  "solve": "const t=(28000-13600)+0.14*62000+4*1150+2300; return (Math.round(t/62000*1000)/10).toFixed(1);",
+  "distractor_solve": {
+   "47.1": "const t=13600+0.14*62000+4*1150+2300; return (Math.round(t/62000*1000)/10).toFixed(1);",
+   "59.5": "const t=(28000-13600)+0.14*62000+4*1150+4*2300; return (Math.round(t/62000*1000)/10).toFixed(1);",
+   "62.4": "const t=(28000-13600)+0.14*62000+4*1150+2300; return (Math.round((t/62000+0.14)*1000)/10).toFixed(1);"
+  },
+  "bounds": [
+   "v > 44.6",
+   "v < 70.3",
+   "v > 14"
+  ],
+  "distractor_kind": {
+   "47.1": "wrong procedure: sale price used as the drop in value. (a) not a limiting case: the no-resale value 70.3 (purchase price as the cost) was deliberately not used; (b) not an adjacent problem's answer. (c) cheapest bounds: gasoline alone is 14 cents; drop in value + gasoline + insurance, each one multiplication, is 27,680 / 62,000 = 44.6 cents (lower); counting the whole purchase price is 70.3 (upper). Interval (44.6, 70.3); 47.1 strictly inside.",
+   "59.5": "wrong procedure: lump-sum maintenance treated as per year. (a) no; (b) it is the answer if maintenance were $2,300 per year, but no free bound separates the two - deciding which costs are yearly is the item's work. (c) inside (44.6, 70.3).",
+   "62.4": "wrong procedure: per-mile gasoline added again after averaging. (a) no; (b) no. (c) inside (44.6, 70.3)."
+  }
+ },
+ {
+  "id": "AM19I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "area and energy rate",
+  "subskill": "energy from panel area, power per unit area, conversion efficiency and hours of use",
+  "prompt": "A homeowner installs 16 solar panels, each a rectangle 1.0 meter by 1.6 meters. When sunlight strikes the panels with a power of 1,000 watts per square meter, each panel converts 20% of that power into electrical power. Her roof receives the equivalent of 4.5 hours of such sunlight per day, on average. On average, how many kilowatt-hours of electrical energy do the panels produce in a 30-day month? (1 kilowatt = 1,000 watts, and energy in kilowatt-hours equals power in kilowatts times time in hours.)",
+  "choices": [
+   "2246.4",
+   "691.2",
+   "2764.8",
+   "1123.2"
+  ],
+  "correct_answer": "691.2",
+  "explanation": "Each panel has area 1.0(1.6) = 1.6 square meters, so the 16 panels have 25.6 square meters. Sunlight delivers 1,000(25.6) = 25,600 watts, and 20% of that is 5,120 watts = 5.12 kilowatts of electrical power. Over 4.5 hours a day for 30 days, that is 5.12(4.5)(30) = 691.2 kilowatt-hours. The option \"1123.2\" uses 1.0 + 1.6 = 2.6 square meters for each panel's area. The option \"2246.4\" uses each panel's perimeter, 2(1.0 + 1.6) = 5.2, as its area. The option \"2764.8\" reads the 20% as the share lost and uses 80% of the sunlight's power.",
+  "solve": "const kw=16*1.0*1.6*1000*0.20/1000; return (Math.round(kw*4.5*30*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "1123.2": "const kw=16*(1.0+1.6)*1000*0.20/1000; return (Math.round(kw*4.5*30*10)/10).toFixed(1);",
+   "2246.4": "const kw=16*2*(1.0+1.6)*1000*0.20/1000; return (Math.round(kw*4.5*30*10)/10).toFixed(1);",
+   "2764.8": "const kw=16*1.0*1.6*1000*0.80/1000; return (Math.round(kw*4.5*30*10)/10).toFixed(1);"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 3456"
+  ],
+  "distractor_kind": {
+   "1123.2": "wrong procedure: panel area as the sum of its sides. (a) not a parameter extreme (the no-loss value 3,456 and the one-panel and one-day values were deliberately not used); (b) no. (c) cheapest bounds: electrical output is less than the sunlight's energy on the panels, 16(1.6)(1)(4.5)(30) = 3,456 kWh - and even that needs every step but one; no one-step estimate (single multiplication, containment or unit comparison) brackets the key more tightly without doing the item. 1123.2 strictly inside (0, 3456). Key is the smallest option on this item by design (errors overshoot).",
+   "2246.4": "wrong procedure: panel perimeter used as area. (a) no; (b) no. (c) inside (0, 3456).",
+   "2764.8": "wrong procedure: 20% read as the share lost (80% converted). (a) not the lossless 100% value; (b) it would answer an 80%-efficient panel, but nothing in the stem forces a bound between 20% and 80% other than reading the stem. (c) inside (0, 3456), 691.2 short of the ceiling."
+  }
+ },
+ {
+  "id": "AM19I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates",
+  "subskill": "combined flow of two groups of emitters with different counts and rates over a weekly schedule",
+  "prompt": "A garden's drip-irrigation system waters 8 tomato plants and 45 pepper plants. Each tomato plant has 2 emitters, and each pepper plant has 1 emitter. Each tomato emitter releases 2 gallons of water per hour, and each pepper emitter releases 0.5 gallon of water per hour. The system runs for 30 minutes every day. How many gallons of water does the system release in one week?",
+  "choices": [
+   "269.5",
+   "134.75",
+   "343",
+   "190.75"
+  ],
+  "correct_answer": "190.75",
+  "explanation": "The tomato plants have 8(2) = 16 emitters releasing 16(2) = 32 gallons per hour, and the pepper plants have 45 emitters releasing 45(0.5) = 22.5 gallons per hour, for 54.5 gallons per hour in all. The system runs 0.5 hour a day for 7 days, which is 3.5 hours, so it releases 54.5(3.5) = 190.75 gallons. The option \"134.75\" gives each tomato plant only 1 emitter: (16 + 22.5)(3.5). The option \"269.5\" gives every plant 2 emitters: (32 + 45)(3.5). The option \"343\" swaps the two emitter rates: (16(0.5) + 45(2))(3.5).",
+  "solve": "const gph=8*2*2+45*1*0.5; return String(gph*0.5*7);",
+  "distractor_solve": {
+   "343": "const gph=8*2*0.5+45*1*2; return String(gph*0.5*7);",
+   "134.75": "const gph=8*1*2+45*1*0.5; return String(gph*0.5*7);",
+   "269.5": "const gph=8*2*2+45*2*0.5; return String(gph*0.5*7);"
+  },
+  "bounds": [
+   "v > 112",
+   "v > 106.75",
+   "v < 427"
+  ],
+  "distractor_kind": {
+   "343": "wrong procedure: emitter rates swapped between the crops. (a) no; (b) no. (c) inside (112, 427).",
+   "134.75": "wrong procedure: one emitter per tomato plant. (a) not the tomato-only or pepper-only value (both absent); (b) no. (c) cheapest bounds: the week's water is at least the tomatoes' share alone, 16(2)(3.5) = 112 (part of the whole), and at least all 61 emitters at the lower rate, 106.75; at most all 61 at the higher rate, 61(2)(3.5) = 427. Interval (112, 427); 134.75 strictly inside (the numbers were chosen so the pepper flow exceeds half the tomato flow, which keeps this option above the tomato-only floor).",
+   "269.5": "wrong procedure: two emitters on every plant. (a) no; (b) no. (c) inside (112, 427); below the all-at-high-rate ceiling because the high rate is at least twice the low rate."
+  }
+ },
+ {
+  "id": "AM19I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "percent and rates",
+  "subskill": "service bill: hourly charge from clock times, per-mile charge, and a percent surcharge on one component",
+  "prompt": "A moving company charges $165 per hour for a crew of 3 movers, plus $1.40 per mile for the truck, plus a fuel surcharge equal to 12% of the truck's mileage charge. For one move, the crew worked from 8:40 a.m. to 1:10 p.m. without a break, and the truck was driven 85 miles. What was the total charge, in dollars?",
+  "choices": [
+   "950.60",
+   "1370.78",
+   "964.88",
+   "875.78"
+  ],
+  "correct_answer": "875.78",
+  "explanation": "From 8:40 a.m. to 1:10 p.m. is 4 hours 30 minutes, or 4.5 hours, so the crew charge is 165(4.5) = $742.50 (the $165 is for the whole crew). The mileage charge is 1.40(85) = $119.00, and the surcharge is 12% of that, 0.12(119) = $14.28. The total is 742.50 + 119.00 + 14.28 = $875.78. The option \"950.60\" takes the 12% of the crew charge instead of the mileage charge: 742.50 + 119.00 + 89.10. The option \"964.88\" takes the 12% of the crew and mileage charges together: 1.12(861.50). The option \"1370.78\" subtracts the clock times the wrong way round, 8:40 - 1:10 = 7 hours 30 minutes, and bills 7.5 hours: 1,237.50 + 119.00 + 14.28.",
+  "solve": "const t=(13*60+10-(8*60+40))/60; return (165*t+1.40*85+0.12*1.40*85).toFixed(2);",
+  "distractor_solve": {
+   "950.60": "const t=4.5; return (165*t+1.40*85+0.12*165*t).toFixed(2);",
+   "964.88": "const t=4.5; return ((165*t+1.40*85)*1.12).toFixed(2);",
+   "1370.78": "const t=((8*60+40)-(1*60+10))/60; return (165*t+1.40*85+0.12*1.40*85).toFixed(2);"
+  },
+  "bounds": [
+   "v > 861.5"
+  ],
+  "distractor_kind": {
+   "950.60": "wrong procedure: surcharge applied to the crew charge. (a) not the no-surcharge value 861.50 (absent; it is the floor); (b) it answers a surcharge on labor, but nothing in the stem bounds the key below it without computing the surcharge, which is the item. (c) cheapest bounds: total exceeds crew + mileage = 861.50 (two multiplications plus the clock subtraction); there is no free upper bound - a ceiling needs the surcharge itself. Key is the smallest option by design (errors overshoot); 950.60 inside (861.50, inf).",
+   "964.88": "wrong procedure: surcharge applied to the whole bill. (a) no; (b) no. (c) inside (861.50, inf).",
+   "1370.78": "wrong procedure: clock times subtracted the wrong way (7 h 30 min). (a) no; (b) no. (c) inside (861.50, inf). The 12-hour rounding value (5 h billed, 958.28) was deliberately not used: it would sit ON the cheap 'less than 5 hours' observation."
+  }
+ }
+]
