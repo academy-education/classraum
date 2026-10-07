@@ -60,6 +60,7 @@ const MANAGER_SHOTS = [
   ['m-camp',      '/camp-program'],
   ['m-camp-review','/camp-program', -640],
   ['m-camp-students','/camp-program', 0, ['학생', 'Students']],
+  ['m-camp-answers', '/camp-program', 0, [['학생', 'Students'], 'ROW', ['과제', 'Assignments'], ['title:학생 답안 보기', "title:Review this student's answers"], 'WRONG']],
 ]
 const SHOTS = (lang) => MANAGER ? MANAGER_SHOTS : [
   ['home',    '/mobile/study'],
@@ -99,8 +100,34 @@ async function main() {
         let navErr = null
         await page.goto(BASE + path, { waitUntil: 'load', timeout: 120000 }).catch(e => { navErr = String(e.message || e).slice(0, 80) })
         await new Promise(r => setTimeout(r, SETTLE))
-        // click: [koText, enText] of a tab/button to press before the shot (camp tabs)
-        if (click) { const txt = lang === 'korean' ? click[0] : click[1]; await page.evaluate(t => { const el = [...document.querySelectorAll('button, [role=tab]')].find(e => (e.textContent || '').trim() === t); if (el) el.click() }, txt); await new Promise(r => setTimeout(r, 6000)) }
+        // click: a list of steps run in order before the shot. A step is
+        // [koText, enText] (press the LAST button/tab with that text, so a
+        // content tab wins over a same-named sidebar entry), 'ROW' (open the
+        // first clickable table row), or ['title:ko', 'title:en'] (press the
+        // first element with that title attribute).
+        if (click) {
+          const steps = Array.isArray(click[0]) || click[0] === 'ROW' || click[0] === 'WRONG' ? click : [click]
+          for (const step of steps) {
+            // Poll up to 40s: camp panels load after the click, and a step run
+            // against a skeleton presses nothing (or the sidebar). Text steps
+            // look inside an open dialog first.
+            let ok = false
+            for (let tries = 0; tries < 80 && !ok; tries++) {
+              ok = await page.evaluate((st, ko) => {
+                const scope = [...document.querySelectorAll('[role=dialog]')].pop() || document
+                if (st === 'WRONG') { const d = [...document.querySelectorAll('[role=dialog]')].pop(); const w = d && [...d.querySelectorAll('[class*="rose"]')].find(e => e.getBoundingClientRect().height > 0); if (!w) return false; let p = w.parentElement; while (p && p !== d && !(p.scrollHeight > p.clientHeight + 4 && /auto|scroll/.test(getComputedStyle(p).overflowY))) p = p.parentElement; const row = w.closest('li, [class*="rounded"]') || w; if (p && p !== d) p.scrollTop += row.getBoundingClientRect().top - p.getBoundingClientRect().top - 12; return true }
+                if (st === 'ROW') { const r = [...document.querySelectorAll('main tbody tr, tbody tr')].find(e => getComputedStyle(e).cursor === 'pointer'); if (r) { r.click(); return true } return false }
+                const t = ko ? st[0] : st[1]
+                if (t.startsWith('title:')) { const el = [...scope.querySelectorAll('[title]')].find(e => e.getAttribute('title') === t.slice(6)); if (el) { el.click(); return true } return false }
+                const els = [...scope.querySelectorAll('button, [role=tab]')].filter(e => (e.textContent || '').trim() === t && !e.closest('aside'))
+                if (els.length) { els[els.length - 1].click(); return true } return false
+              }, step, lang === 'korean')
+              if (!ok) await new Promise(r => setTimeout(r, 500))
+            }
+            if (!ok) console.log(`     step not found: ${JSON.stringify(step)}`)
+            await new Promise(r => setTimeout(r, 5000))
+          }
+        }
         // a negative scroll means: scroll every scrollable container (and the window) by that many px
         if (scroll < 0) { await page.evaluate(px => { window.scrollTo(0, px); for (const e of document.querySelectorAll('*')) { if (/auto|scroll/.test(getComputedStyle(e).overflowY) && e.scrollHeight > e.clientHeight + 4) e.scrollTop = px } }, -scroll); await new Promise(r => setTimeout(r, 1500)) }
         else if (scroll) { await page.evaluate(px => { const el = [...document.querySelectorAll('*')].find(e => /auto|scroll/.test(getComputedStyle(e).overflowY) && e.scrollHeight > e.clientHeight + 200); (el || document.scrollingElement).scrollTop = px }, scroll); await new Promise(r => setTimeout(r, 1200)) }
