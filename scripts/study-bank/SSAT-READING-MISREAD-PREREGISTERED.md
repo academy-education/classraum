@@ -150,3 +150,22 @@ samples, **<= 40%**.
   required before release.
 - **The panel is one model sampled 26 times under different instructions,
   not 26 students.**
+
+## Amendment 1 (2026-10-07, after passage selection, BEFORE any stem, panel answer or distractor exists): NAEP distractor guide
+
+This is identical to Amendment 1 of `MAP-MISREAD-PILOT-2026-10-07.prereg.md`.
+The owner's addition is `misread/NAEP-DISTRACTOR-PATTERNS.md`: NAEP released
+items used as models only, never shipped or copied.
+
+- The assembler and the repair agent consult it:
+  - for eligibility reasons
+  - for parallel option phrasing
+  - to break ties between equal-size clusters
+- The top-k-by-frequency rule is unchanged and checked by `tally` T3.
+- The C+F+Q graders get its difficulty-anchor section appended verbatim. This
+  changes the instrument behind F relative to pilot 4, but not the threshold.
+- The orchestrator reads the whole guide first, and passes no copied NAEP
+  item text to any agent.
+- If the guide is not ready, the run waits for it.
+
+**No bar changes.**

@@ -209,3 +209,37 @@ Q scoring:
   The habits are research-documented, but their enactment is a model
   playing a reader. **The panel is one model sampled 26 times with different
   instructions, not 26 students.**
+
+## Amendment 1 (2026-10-07, after passage selection, BEFORE any stem, panel answer or distractor exists): NAEP distractor guide
+
+**Owner addition, relayed by the coordinator.** NAEP released reading items
+may serve as MODELS only, never shipped or copied. A separate agent is writing
+`misread/NAEP-DISTRACTOR-PATTERNS.md`, which covers:
+- how NAEP grade-4/8 MC distractors are built, mapped to misreading types
+- difficulty anchors from NAEP's published percent-correct
+
+**What changes (instruments only; NO bar changes):**
+1. **Assembler (prompts §5).** It reads the guide and consults it in three
+   places:
+   - (a) deciding a cluster's eligibility reason, for example what counts
+     as `defensible` or `non-answer`;
+   - (b) phrasing each option in parallel NAEP-like form, keeping the
+     panel proposition;
+   - (c) breaking ties between equal-size wrong clusters, replacing "your
+     cluster order".
+
+   **The top-k-by-frequency rule is unchanged and still checked
+   mechanically by `tally` (T3).** The guide cannot promote a smaller
+   cluster over a larger one. The repair agent gets the same guide.
+2. **With-source graders (prompts §7 MAP, §8 SSAT).** They receive the
+   guide's difficulty-anchor section, appended verbatim after their prompt,
+   for rating `band` / `grade_fit` (MAP) or `difficulty` (SSAT).
+   - This changes the instrument behind S1-c, S1-d and F relative to
+     pilots 4 and 7. Their thresholds are untouched.
+   - Results are compared with those pilots with that caveat.
+3. **Source safety.** Before use, the orchestrator reads the whole guide. If
+   it reproduces any NAEP item text (passage, stem or option) beyond a short
+   quoted phrase, the copied material is not passed to any agent.
+   NAEP-derived material never enters a passage, stem or option.
+4. If the guide is not ready when the assembler stage is reached, the run
+   waits for it.
